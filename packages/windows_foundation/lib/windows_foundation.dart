@@ -2,6 +2,7 @@
 
 library windows_foundation;
 
+export 'src/enums.g.dart';
 export 'src/iclosable.dart';
 export 'src/ipropertyvalue.dart';
 export 'src/ireference.dart';
