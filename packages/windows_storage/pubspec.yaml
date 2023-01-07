@@ -1,0 +1,20 @@
+name: windows_storage
+description: >
+  Provides classes for managing files, folders, and application settings.
+version: 0.0.1
+publish_to: none
+
+environment:
+  sdk: '>=2.17.0 <3.0.0'
+
+dependencies:
+  ffi: ^2.0.1
+  win32: ^4.1.0
+  windows_foundation:
+    path: ../windows_foundation
+  windows_system:
+    path: ../windows_system
+
+dev_dependencies:
+  lints: ^2.0.1
+  test: ^1.22.1
