@@ -11,14 +11,6 @@ import 'package:winmd/winmd.dart';
 
 import 'winrt_type.dart';
 
-const acronyms = <String>{
-  // These are acronyms that appear in the WinRT enum identifiers, function
-  // names. We use this Set while projecting WinRT enums and functions to
-  // match the Dart style guide.
-  // See https://dart.dev/guides/language/effective-dart/style#do-capitalize-acronyms-and-abbreviations-longer-than-two-letters-like-words
-  'AC', 'DB', 'DPad', 'HD', 'HR', 'IO', 'IP', 'NT', 'TV', 'UI', 'WiFi' //
-};
-
 /// Strip the `?` suffix from the name.
 ///
 /// For example, `IJsonValue?` should become `JsonValue`.
