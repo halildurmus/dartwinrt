@@ -6,10 +6,10 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
+import 'package:windows_media/windows_media.dart';
 
 import '../internal/ipropertyvalue_helpers.dart';
 import '../internal/map_helpers.dart';
-// import '../../media/mediaproperties/mediapropertyset.dart';
 import '../ipropertyvalue.dart';
 import '../winrt_constants.dart';
 import '../winrt_enum.dart';
@@ -39,14 +39,14 @@ class IMap<K, V> extends IInspectable
   /// [K] must be of type `Guid` or `String` and [V] must be of type
   /// `Object?` or `String`.
   factory IMap() {
-    // if (isSameType<K, Guid>() && isSimilarType<V, Object>()) {
-    //   final mediaPropertySet = MediaPropertySet();
-    //   final mapPtr = mediaPropertySet.toInterface(IID_IMap_Guid_Object);
-    //   mediaPropertySet.release();
+    if (isSameType<K, Guid>() && isSimilarType<V, Object>()) {
+      final mediaPropertySet = MediaPropertySet();
+      final mapPtr = mediaPropertySet.toInterface(IID_IMap_Guid_Object);
+      mediaPropertySet.release();
 
-    //   return IMap.fromRawPointer(mapPtr,
-    //       iterableIid: IID_IIterable_IKeyValuePair_Guid_Object);
-    // }
+      return IMap.fromRawPointer(mapPtr,
+          iterableIid: IID_IIterable_IKeyValuePair_Guid_Object);
+    }
 
     if (isSameType<K, String>()) {
       if (isSameType<V, String>()) {

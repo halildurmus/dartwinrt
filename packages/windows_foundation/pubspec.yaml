@@ -11,7 +11,21 @@ environment:
 dependencies:
   ffi: ^2.0.1
   win32: ^4.1.0
+  windows_media:
+    path: ../windows_media
 
 dev_dependencies:
   lints: ^2.0.1
   test: ^1.22.1
+  windows_data:
+    path: ../windows_data
+  windows_devices:
+    path: ../windows_devices
+  windows_globalization:
+    path: ../windows_globalization
+  windows_graphics:
+    path: ../windows_graphics
+  windows_networking:
+    path: ../windows_networking
+  windows_storage:
+    path: ../windows_storage
