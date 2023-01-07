@@ -220,7 +220,10 @@ class IMap<K, V> extends IInspectable
 
     free(nativeGuidPtr);
 
-    if (retValuePtr.ref.lpVtbl == nullptr) return null;
+    if (retValuePtr.ref.lpVtbl == nullptr) {
+      free(retValuePtr);
+      return null;
+    }
 
     return IPropertyValue.fromRawPointer(retValuePtr).value;
   }
@@ -290,8 +293,10 @@ class IMap<K, V> extends IInspectable
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.lpVtbl == nullptr) return null;
-
+    if (retValuePtr.ref.lpVtbl == nullptr) {
+      free(retValuePtr);
+      return null;
+    }
     return IPropertyValue.fromRawPointer(retValuePtr).value;
   }
 
@@ -369,7 +374,10 @@ class IMap<K, V> extends IInspectable
         throw WindowsException(hr);
       }
 
-      if (retValuePtr.ref.lpVtbl == nullptr) return null;
+      if (retValuePtr.ref.lpVtbl == nullptr) {
+        free(retValuePtr);
+        return null;
+      }
 
       return IPropertyValue.fromRawPointer(retValuePtr).value;
     } finally {
