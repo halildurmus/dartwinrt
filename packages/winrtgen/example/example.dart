@@ -21,33 +21,33 @@ void printStruct() {
 }
 
 void printMethod() {
-//   final typeDef =
-//       scope.findTypeDef('Windows.Win32.System.StationsAndDesktops.Apis');
-//   final method = typeDef?.findMethod('BroadcastSystemMessageW');
-//   if (method != null) {
-//     final functionProjection = FunctionProjection(method, 'user32');
-//     print(functionProjection);
-//   }
+  final typeDef = MetadataStore.getMetadataForType(
+      'Windows.Storage.Pickers.IFileOpenPicker');
+  final method = typeDef?.findMethod('PickSingleFileAsync');
+  if (method != null) {
+    final methodProjection = WinRTMethodProjection(method, 15);
+    print(methodProjection);
+  }
 }
 
 void printGetProperty() {
-//   final interface = scope.findTypeDef(
-//       'Windows.Win32.Security.Cryptography.Certificates.ICEnroll4');
-//   final method = interface?.findMethod('get_IncludeSubjectKeyID');
-//   if (method != null) {
-//     final methodProjection = ComGetPropertyProjection(method, 122);
-//     print(methodProjection);
-//   }
+  final typeDef =
+      MetadataStore.getMetadataForType('Windows.Globalization.ICalendar');
+  final method = typeDef?.findMethod('get_Languages');
+  if (method != null) {
+    final getPropertyProjection = WinRTGetPropertyProjection(method, 9);
+    print(getPropertyProjection);
+  }
 }
 
 void printSetProperty() {
-//   final interface = scope.findTypeDef(
-//       'Windows.Win32.Networking.ActiveDirectory.IADsPropertyEntry');
-//   final method = interface?.findMethod('put_Name');
-//   if (method != null) {
-//     final methodProjection = ComSetPropertyProjection(method, 11);
-//     print(methodProjection);
-//   }
+  final typeDef = MetadataStore.getMetadataForType(
+      'Windows.Devices.Geolocation.IGeolocator');
+  final method = typeDef?.findMethod('put_DesiredAccuracy');
+  if (method != null) {
+    final setPropertyProjection = WinRTSetPropertyProjection(method, 7);
+    print(setPropertyProjection);
+  }
 }
 
 void printInterface() {
@@ -69,11 +69,11 @@ void printClass() {
 }
 
 void main() {
-  printEnum();
-  printStruct();
+  // printEnum();
+  // printStruct();
   printMethod();
-  printGetProperty();
-  printSetProperty();
-  printInterface();
-  printClass();
+  // printGetProperty();
+  // printSetProperty();
+  // printInterface();
+  // printClass();
 }
