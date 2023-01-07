@@ -6,10 +6,13 @@
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
 // ignore_for_file: no_leading_underscores_for_local_identifiers
 
+import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
+import 'package:windows_foundation/internal.dart';
+import 'package:windows_foundation/windows_foundation.dart';
 
 /// @nodoc
 const IID_IGeolocator2 = '{d1b42e6d-8891-43b4-ad36-27c6fe9a97b1}';

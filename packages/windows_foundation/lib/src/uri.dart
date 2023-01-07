@@ -6,17 +6,19 @@
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
 // ignore_for_file: no_leading_underscores_for_local_identifiers
 
+import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
 
-import 'internal/hstring_array.dart';
+import '../../../internal.dart';
 import 'istringable.dart';
 import 'iuriescapestatics.dart';
 import 'iuriruntimeclass.dart';
 import 'iuriruntimeclassfactory.dart';
 import 'iuriruntimeclasswithabsolutecanonicaluri.dart';
+import 'winrt_callbacks.dart';
 import 'winrt_helpers.dart';
 import 'wwwformurldecoder.dart';
 
