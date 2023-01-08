@@ -6,6 +6,43 @@ import 'package:winmd/winmd.dart';
 import 'package:winrtgen/winrtgen.dart';
 
 void main() {
+  test('outerType', () {
+    expect(
+        outerType('IAsyncOperation<StorageFile?>'), equals('IAsyncOperation'));
+    expect(outerType('IMap<String, Object?>'), equals('IMap'));
+    expect(outerType('IMapView<String, IVectorView<TextSegment>?>'),
+        equals('IMapView'));
+  });
+
+  test('parentNamespace', () {
+    expect(parentNamespace('Windows.Foundation.IAsyncInfo'),
+        equals('Windows.Foundation'));
+    expect(parentNamespace('Windows.Gaming.Input.Gamepad'),
+        equals('Windows.Gaming.Input'));
+    expect(parentNamespace('Windows.Devices.Display.Core.DisplayManager'),
+        equals('Windows.Devices.Display.Core'));
+  });
+
+  test('relativePath', () {
+    expect(relativePath('winrt_helpers.dart', start: 'winrt/foundation'),
+        equals('../../winrt_helpers.dart'));
+    expect(
+        relativePath('winrt/globalization/calendar.dart',
+            start: 'winrt/globalization'),
+        equals('calendar.dart'));
+    expect(relativePath('com/iinspectable.dart', start: 'winrt/storage'),
+        equals('../../com/iinspectable.dart'));
+    expect(
+        relativePath('winrt/foundation/collections/ivector.dart',
+            start: 'winrt/globalization'),
+        equals('../foundation/collections/ivector.dart'));
+    expect(
+        relativePath(
+            'winrt/globalization/phonenumberformatting/phonenumberformatter.dart',
+            start: 'winrt/globalization'),
+        equals('phonenumberformatting/phonenumberformatter.dart'));
+  });
+
   test('stripQuestionMarkSuffix', () {
     expect(stripQuestionMarkSuffix('IJsonValue?'), equals('IJsonValue'));
     expect(stripQuestionMarkSuffix('IJsonValue'), equals('IJsonValue'));
@@ -19,12 +56,39 @@ void main() {
         equals('String, IVectorView<TextSegment>?'));
   });
 
-  test('outerType', () {
+  test('packageNameFromWinRTType', () {
+    expect(packageNameFromWinRTType('Windows.Globalization.Calendar'),
+        equals('windows_globalization'));
+    expect(packageNameFromWinRTType('Windows.Storage.Pickers.FileOpenPicker'),
+        equals('windows_storage'));
     expect(
-        outerType('IAsyncOperation<StorageFile?>'), equals('IAsyncOperation'));
-    expect(outerType('IMap<String, Object?>'), equals('IMap'));
-    expect(outerType('IMapView<String, IVectorView<TextSegment>?>'),
-        equals('IMapView'));
+        packageNameFromWinRTType(
+            'Windows.Devices.Geolocation.Geofencing.Geofence'),
+        equals('windows_devices'));
+  });
+
+  test('relativeFolderPathFromWinRTType', () {
+    expect(relativeFolderPathFromWinRTType('Windows.Globalization.Calendar'),
+        equals('../../packages/windows_globalization/lib/src'));
+    expect(
+        relativeFolderPathFromWinRTType(
+            'Windows.Storage.Pickers.FileOpenPicker'),
+        equals('../../packages/windows_storage/lib/src/pickers'));
+    expect(
+        relativeFolderPathFromWinRTType(
+            'Windows.Devices.Geolocation.Geofencing.Geofence'),
+        equals(
+            '../../packages/windows_devices/lib/src/geolocation/geofencing'));
+  });
+
+  test('folderFromWinRTType', () {
+    expect(folderFromWinRTType('Windows.Globalization.Calendar'),
+        equals('windows_globalization'));
+    expect(folderFromWinRTType('Windows.Storage.Pickers.FileOpenPicker'),
+        equals('windows_storage/pickers'));
+    expect(
+        folderFromWinRTType('Windows.Devices.Geolocation.Geofencing.Geofence'),
+        equals('windows_devices/geolocation/geofencing'));
   });
 
   test('primitiveTypeNameFromBaseType', () {
@@ -705,52 +769,6 @@ void main() {
           "import '../storagefile.dart';",
           "import 'enums.g.dart';",
         ]));
-  });
-
-  test('relativePath', () {
-    expect(relativePath('winrt_helpers.dart', start: 'winrt/foundation'),
-        equals('../../winrt_helpers.dart'));
-    expect(
-        relativePath('winrt/globalization/calendar.dart',
-            start: 'winrt/globalization'),
-        equals('calendar.dart'));
-    expect(relativePath('com/iinspectable.dart', start: 'winrt/storage'),
-        equals('../../com/iinspectable.dart'));
-    expect(
-        relativePath('winrt/foundation/collections/ivector.dart',
-            start: 'winrt/globalization'),
-        equals('../foundation/collections/ivector.dart'));
-    expect(
-        relativePath(
-            'winrt/globalization/phonenumberformatting/phonenumberformatter.dart',
-            start: 'winrt/globalization'),
-        equals('phonenumberformatting/phonenumberformatter.dart'));
-  });
-
-  test('folderFromNamespace', () {
-    expect(
-        folderFromNamespace('Windows.Win32.System.Console'), equals('system'));
-    expect(folderFromNamespace('Windows.Win32.UI.Shell.Common'),
-        equals('ui/shell'));
-  });
-
-  test('folderFromWinRTType', () {
-    expect(folderFromWinRTType('Windows.Globalization.Calendar'),
-        equals('windows_globalization'));
-    expect(folderFromWinRTType('Windows.Storage.Pickers.FileOpenPicker'),
-        equals('windows_storage/pickers'));
-    expect(
-        folderFromWinRTType('Windows.Devices.Geolocation.Geofencing.Geofence'),
-        equals('windows_devices/geolocation/geofencing'));
-  });
-
-  test('parentNamespace', () {
-    expect(parentNamespace('Windows.Foundation.IAsyncInfo'),
-        equals('Windows.Foundation'));
-    expect(parentNamespace('Windows.Gaming.Input.Gamepad'),
-        equals('Windows.Gaming.Input'));
-    expect(parentNamespace('Windows.Devices.Display.Core.DisplayManager'),
-        equals('Windows.Devices.Display.Core'));
   });
 
   test('groupTypesByParentNamespace', () {
