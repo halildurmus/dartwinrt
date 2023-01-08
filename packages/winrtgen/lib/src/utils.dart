@@ -11,6 +11,21 @@ import 'package:winmd/winmd.dart';
 
 import 'winrt_type.dart';
 
+/// Take a name like `IAsyncOperation<StorageFile>` and return `IAsyncOperation`.
+String outerType(String name) {
+  if (!name.contains('<')) return name;
+  return name.substring(0, name.indexOf('<'));
+}
+
+/// Return the parent namespace of a fully-qualified type
+/// (e.g. `Windows.Gaming.Input.Gamepad` becomes `Windows.Gaming.Input`).
+String parentNamespace(String fullyQualifiedType) =>
+    (fullyQualifiedType.split('.')..removeLast()).join('.');
+
+/// Converts [targetPath] to an equivalent relative path from the [start] directory.
+String relativePath(String targetPath, {required String start}) =>
+    path.relative(targetPath, from: start).replaceAll(r'\', '/');
+
 /// Strip the `?` suffix from the name.
 ///
 /// For example, `IJsonValue?` should become `JsonValue`.
@@ -18,18 +33,26 @@ String stripQuestionMarkSuffix(String typeName) => typeName.endsWith('?')
     ? typeName.substring(0, typeName.length - 1)
     : typeName;
 
-/// Converts [targetPath] to an equivalent relative path from the [start] directory.
-String relativePath(String targetPath, {required String start}) =>
-    path.relative(targetPath, from: start).replaceAll(r'\', '/');
+/// Take a name like `IAsyncOperation<StorageFile>` and return `StorageFile` or
+/// `String, String` for a name like `IMap<String, String>`.
+String typeArguments(String name) {
+  if (!name.contains('<')) return name;
+  return name.substring(name.indexOf('<') + 1, name.lastIndexOf('>'));
+}
 
+/// Converts a fully-qualified type (e.g. `Windows.Globalization.Calendar`) and
+/// returns the matching package name (e.g. `windows_globalization`).
 String packageNameFromWinRTType(String fullyQualifiedType) =>
-    'windows_${fullyQualifiedType.split('.').skip(1).first.toLowerCase()}';
+    fullyQualifiedType.split('.').take(2).join('_').toLowerCase();
 
-String folderPathFromWinRTType(String fullyQualifiedType) {
+/// Converts a fully-qualified type (e.g.
+/// `Windows.Storage.Pickers.FileOpenPicker`) and returns the relative path from
+/// the `dartwinrt/tools` folder to matching folder path  (e.g.
+/// `../../packages/windows_storage/lib/src/pickers`).
+String relativeFolderPathFromWinRTType(String fullyQualifiedType) {
   final packageName = packageNameFromWinRTType(fullyQualifiedType);
-  // e.g. Windows.Storage.Pickers.FileOpenPicker -> pickers
-  final segments = stripGenerics(fullyQualifiedType).split('.').skip(2).toList()
-    ..removeLast();
+  // e.g. Windows.Storage.Pickers.FileOpenPicker -> [pickers]
+  final segments = fullyQualifiedType.split('.').skip(2).toList()..removeLast();
   final classFolderPath =
       segments.isEmpty ? '' : '/${segments.join('/').toLowerCase()}';
   return '../../packages/$packageName/lib/src$classFolderPath';
@@ -39,26 +62,9 @@ String folderPathFromWinRTType(String fullyQualifiedType) {
 /// `Windows.Storage.Pickers.FileOpenPicker`) and returns the matching folder
 /// (e.g. `windows_storage/pickers`).
 String folderFromWinRTType(String fullyQualifiedType) {
+  // e.g. Windows.Storage.Pickers.FileOpenPicker -> [storage, pickers]
   final segments = fullyQualifiedType.split('.').skip(1).toList()..removeLast();
   return 'windows_${segments.join('/').toLowerCase()}';
-}
-
-/// Return the parent namespace of a fully-qualified type
-/// (e.g. `Windows.Gaming.Input.Gamepad` becomes `Windows.Gaming.Input`).
-String parentNamespace(String fullyQualifiedType) =>
-    (fullyQualifiedType.split('.')..removeLast()).join('.');
-
-/// Take a name like `IAsyncOperation<StorageFile>` and return `StorageFile` or
-/// `String, String` for a name like `IMap<String, String>`.
-String typeArguments(String name) {
-  if (!name.contains('<')) return name;
-  return name.substring(name.indexOf('<') + 1, name.lastIndexOf('>'));
-}
-
-/// Take a name like `IAsyncOperation<StorageFile>` and return `IAsyncOperation`.
-String outerType(String name) {
-  if (!name.contains('<')) return name;
-  return name.substring(0, name.indexOf('<'));
 }
 
 /// Parses the argument to be passed to the `creator` parameter from [ti].

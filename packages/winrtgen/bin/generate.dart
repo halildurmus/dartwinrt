@@ -46,7 +46,8 @@ void generateWinRTObjects(Map<String, String> typesToGenerate) {
 
     final dartClass = projection.toString();
     final fileName = stripGenerics(lastComponent(type)).toLowerCase();
-    final classOutputPath = '${folderPathFromWinRTType(type)}/$fileName.dart';
+    final classOutputPath =
+        '${relativeFolderPathFromWinRTType(type)}/$fileName.dart';
 
     try {
       final formattedDartClass = DartFormatter().format(dartClass);
@@ -71,7 +72,8 @@ void generateWinRTEnumerations(Map<String, String> enums) {
     final enumProjections = <WinRTEnumProjection>[];
     final firstType = namespaceGroup.types.first;
     final packageName = packageNameFromWinRTType(firstType);
-    final fileOutputPath = '${folderPathFromWinRTType(firstType)}/enums.g.dart';
+    final fileOutputPath =
+        '${relativeFolderPathFromWinRTType(firstType)}/enums.g.dart';
     final file = File(fileOutputPath)..createSync(recursive: true);
 
     for (final type in namespaceGroup.types) {
@@ -117,7 +119,7 @@ void generateWinRTStructs(Map<String, String> structs) {
   for (final namespaceGroup in namespaceGroups) {
     final structProjections = <StructProjection>[];
     final fileOutputPath =
-        '${folderPathFromWinRTType(namespaceGroup.types.first)}/structs.g.dart';
+        '${relativeFolderPathFromWinRTType(namespaceGroup.types.first)}/structs.g.dart';
     final file = File(fileOutputPath)..createSync(recursive: true);
 
     for (final type in namespaceGroup.types) {
