@@ -81,6 +81,13 @@ void main() {
             '../../packages/windows_devices/lib/src/geolocation/geofencing'));
   });
 
+  test('fileNameFromWinRTType', () {
+    expect(fileNameFromWinRTType('Windows.Globalization.Calendar'),
+        equals('calendar.dart'));
+    expect(fileNameFromWinRTType('Windows.Foundation.Collections.IMapView`2'),
+        equals('imapview.dart'));
+  });
+
   test('folderFromWinRTType', () {
     expect(folderFromWinRTType('Windows.Globalization.Calendar'),
         equals('windows_globalization'));
@@ -89,6 +96,42 @@ void main() {
     expect(
         folderFromWinRTType('Windows.Devices.Geolocation.Geofencing.Geofence'),
         equals('windows_devices/geolocation/geofencing'));
+  });
+
+  test('fullyQualifiedTypeNameFromTypeDef', () {
+    final calendarTypeDef =
+        MetadataStore.getMetadataForType('Windows.Globalization.Calendar')!;
+    expect(fullyQualifiedTypeNameFromTypeDef(calendarTypeDef),
+        equals('Windows.Globalization.Calendar'));
+
+    final mapViewTypeDef = MetadataStore.getMetadataForType(
+        'Windows.Foundation.Collections.IMapView`2')!;
+    expect(fullyQualifiedTypeNameFromTypeDef(mapViewTypeDef),
+        equals('Windows.Foundation.Collections.IMapView`2'));
+  });
+
+  test('packageImportFromTypeDef', () {
+    final calendarTypeDef =
+        MetadataStore.getMetadataForType('Windows.Globalization.Calendar')!;
+    expect(packageImportFromTypeDef(calendarTypeDef),
+        equals('package:windows_globalization/windows_globalization.dart'));
+
+    final mapViewTypeDef = MetadataStore.getMetadataForType(
+        'Windows.Foundation.Collections.IMapView`2')!;
+    expect(packageImportFromTypeDef(mapViewTypeDef),
+        equals('package:windows_foundation/windows_foundation.dart'));
+  });
+
+  test('packageNameFromTypeDef', () {
+    final calendarTypeDef =
+        MetadataStore.getMetadataForType('Windows.Globalization.Calendar')!;
+    expect(packageNameFromTypeDef(calendarTypeDef),
+        equals('windows_globalization'));
+
+    final mapViewTypeDef = MetadataStore.getMetadataForType(
+        'Windows.Foundation.Collections.IMapView`2')!;
+    expect(
+        packageNameFromTypeDef(mapViewTypeDef), equals('windows_foundation'));
   });
 
   test('primitiveTypeNameFromBaseType', () {
