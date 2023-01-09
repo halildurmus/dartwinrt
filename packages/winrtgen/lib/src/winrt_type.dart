@@ -137,16 +137,13 @@ class WinRTTypeProjection extends TypeProjection {
           methodParamType: lastComponent(typeIdentifier.name));
     }
 
-    if (isInterface ||
-        typeIdentifier.baseType == BaseType.classTypeModifier ||
-        typeIdentifier.baseType == BaseType.objectType) {
-      return TypeTuple(
-        'Pointer<COMObject>',
-        'Pointer<COMObject>',
-        methodParamType: typeIdentifier.baseType != BaseType.objectType
-            ? '${lastComponent(typeIdentifier.name)}?'
-            : null,
-      );
+    if (typeIdentifier.baseType == BaseType.objectType) {
+      return const TypeTuple('Pointer<COMObject>', 'Pointer<COMObject>');
+    }
+
+    if (isInterface || typeIdentifier.baseType == BaseType.classTypeModifier) {
+      return TypeTuple('Pointer<COMObject>', 'Pointer<COMObject>',
+          methodParamType: '${lastComponent(typeIdentifier.name)}?');
     }
 
     // default: return the name as returned by metadata

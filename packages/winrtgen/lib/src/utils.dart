@@ -11,14 +11,15 @@ import 'package:winmd/winmd.dart';
 
 import 'winrt_type.dart';
 
-/// Take a name like `IAsyncOperation<StorageFile>` and return `IAsyncOperation`.
-String outerType(String name) {
-  if (!name.contains('<')) return name;
-  return name.substring(0, name.indexOf('<'));
+/// Take a type like `IAsyncOperation<StorageFile>` and return
+/// `IAsyncOperation`.
+String outerType(String type) {
+  if (!type.contains('<')) return type;
+  return type.substring(0, type.indexOf('<'));
 }
 
-/// Return the parent namespace of a fully-qualified type
-/// (e.g. `Windows.Gaming.Input.Gamepad` becomes `Windows.Gaming.Input`).
+/// Return the parent namespace of a fully-qualified type (e.g.
+/// `Windows.Gaming.Input.Gamepad` becomes `Windows.Gaming.Input`).
 String parentNamespace(String fullyQualifiedType) =>
     (fullyQualifiedType.split('.')..removeLast()).join('.');
 
@@ -26,18 +27,16 @@ String parentNamespace(String fullyQualifiedType) =>
 String relativePath(String targetPath, {required String start}) =>
     path.relative(targetPath, from: start).replaceAll(r'\', '/');
 
-/// Strip the `?` suffix from the name.
-///
-/// For example, `IJsonValue?` should become `JsonValue`.
-String stripQuestionMarkSuffix(String typeName) => typeName.endsWith('?')
-    ? typeName.substring(0, typeName.length - 1)
-    : typeName;
+/// Strip the `?` suffix from the type (e.g. `IJsonValue?` should become
+/// `JsonValue`).
+String stripQuestionMarkSuffix(String type) =>
+    type.endsWith('?') ? type.substring(0, type.length - 1) : type;
 
-/// Take a name like `IAsyncOperation<StorageFile>` and return `StorageFile` or
-/// `String, String` for a name like `IMap<String, String>`.
-String typeArguments(String name) {
-  if (!name.contains('<')) return name;
-  return name.substring(name.indexOf('<') + 1, name.lastIndexOf('>'));
+/// Take a type like `IAsyncOperation<StorageFile>` and return `StorageFile` or
+/// `String, String` for a type like `IMap<String, String>`.
+String typeArguments(String type) {
+  if (!type.contains('<')) return type;
+  return type.substring(type.indexOf('<') + 1, type.lastIndexOf('>'));
 }
 
 /// Converts a fully-qualified type (e.g. `Windows.Globalization.Calendar`) and
@@ -58,6 +57,11 @@ String relativeFolderPathFromWinRTType(String fullyQualifiedType) {
   return '../../packages/$packageName/lib/src$classFolderPath';
 }
 
+/// Converts a fully-qualified type (e.g. `Windows.Globalization.Calendar`) and
+/// returns the matching file name (e.g. `calendar.dart`).
+String fileNameFromWinRTType(String fullyQualifiedType) =>
+    '${stripGenerics(lastComponent(fullyQualifiedType)).toLowerCase()}.dart';
+
 /// Converts a fully-qualified type (e.g.
 /// `Windows.Storage.Pickers.FileOpenPicker`) and returns the matching folder
 /// (e.g. `windows_storage/pickers`).
@@ -66,6 +70,33 @@ String folderFromWinRTType(String fullyQualifiedType) {
   final segments = fullyQualifiedType.split('.').skip(1).toList()..removeLast();
   return 'windows_${segments.join('/').toLowerCase()}';
 }
+
+/// Returns the fully-qualified type of the class/interface defined in [typeDef]
+/// (e.g. `Windows.Foundation.Calendar`, `Windows.Foundation.IReference`1).
+String fullyQualifiedTypeNameFromTypeDef(TypeDef typeDef) =>
+    typeDef.typeSpec?.baseType == BaseType.genericTypeModifier
+        ? typeDef.typeSpec!.type!.name
+        : typeDef.name;
+
+/// Returns the package import for the interface defined in [typeDef] (e.g.
+/// `package:windows_globalization/windows_globalization.dart` for
+/// `Windows.Globalization.Calendar`).
+String packageImportFromTypeDef(TypeDef typeDef) {
+  final packageName = packageNameFromTypeDef(typeDef);
+  return 'package:$packageName/$packageName.dart';
+}
+
+/// Returns the name of the package where the interface defined in [typeDef]
+/// (e.g. `windows_globalization` for `Windows.Globalization.Calendar`).
+String packageNameFromTypeDef(TypeDef typeDef) =>
+    packageNameFromWinRTType(fullyQualifiedTypeNameFromTypeDef(typeDef));
+
+/// Returns the short type name of the class/interface defined in [typeDef]
+/// (e.g. `ICalendar`, `IMap<String, String>`).
+String shortTypeNameFromTypeDef(TypeDef typeDef) =>
+    typeDef.typeSpec?.baseType == BaseType.genericTypeModifier
+        ? parseGenericTypeIdentifierName(typeDef.typeSpec!)
+        : lastComponent(typeDef.name);
 
 /// Parses the argument to be passed to the `creator` parameter from [ti].
 String? parseArgumentForCreatorParameter(TypeIdentifier ti) {

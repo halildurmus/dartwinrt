@@ -18,9 +18,7 @@ class WinRTImplementsMapperProjection extends WinRTInterfaceProjection {
 
   /// The [interface] name with type arguments (e.g. `IMap<String, String>`,
   /// `ICalendar`).
-  String get interfaceNameWithTypeArgs => isGenericInterface
-      ? parseGenericTypeIdentifierName(interface.typeSpec!)
-      : lastComponent(interface.name);
+  String get interfaceNameWithTypeArgs => shortTypeNameFromTypeDef(interface);
 
   /// The shortened [interface] name without type arguments (e.g. `IMap`,
   /// `ICalendar`).

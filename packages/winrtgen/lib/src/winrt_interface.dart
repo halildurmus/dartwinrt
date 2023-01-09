@@ -12,13 +12,8 @@ class WinRTInterfaceProjection extends ComInterfaceProjection {
   WinRTInterfaceProjection(super.typeDef, [super.comment]);
 
   @override
-  String get inheritsFrom => implementsInterfaces
-      .map((interface) =>
-          interface.typeSpec?.baseType == BaseType.genericTypeModifier
-              ? parseGenericTypeIdentifierName(interface.typeSpec!)
-              : lastComponent(interface.name))
-      .toList()
-      .join(', ');
+  String get inheritsFrom =>
+      implementsInterfaces.map(shortTypeNameFromTypeDef).toList().join(', ');
 
   /// Returns the path to the folder where the current interface is located
   /// (e.g. `packages/windows_storage/pickers` for
@@ -26,20 +21,13 @@ class WinRTInterfaceProjection extends ComInterfaceProjection {
   String get currentFolderPath =>
       'packages/${folderFromWinRTType(typeDef.name)}';
 
+  /// Returns the name of the package where the current interface is located
+  /// (e.g. `windows_globalization` for `Windows.Globalization.Calendar`).
   String get currentPackageName => packageNameFromTypeDef(typeDef);
 
-  String packageNameFromTypeDef(TypeDef typeDef) {
-    final typeDefName =
-        typeDef.typeSpec?.baseType == BaseType.genericTypeModifier
-            ? typeDef.typeSpec!.type!.name
-            : typeDef.name;
-    return packageNameFromWinRTType(typeDefName);
-  }
-
-  String packageImportFromTypeDef(TypeDef typeDef) {
-    final packageName = packageNameFromTypeDef(typeDef);
-    return 'package:$packageName/$packageName.dart';
-  }
+  /// Returns the fully qualified name of the current interface (e.g.
+  /// `Windows.Globalization.Calendar`, `Windows.Foundation.IReference`1`).
+  String get currentTypeName => fullyQualifiedTypeNameFromTypeDef(typeDef);
 
   /// Converts [path] to an equivalent relative path from the
   /// [currentFolderPath].
@@ -63,13 +51,10 @@ class WinRTInterfaceProjection extends ComInterfaceProjection {
 
   @override
   String getImportForTypeDef(TypeDef typeDef) {
-    final typeDefName =
-        typeDef.typeSpec?.baseType == BaseType.genericTypeModifier
-            ? typeDef.typeSpec!.type!.name
-            : typeDef.name;
+    final typeName = fullyQualifiedTypeNameFromTypeDef(typeDef);
 
-    if (this.typeDef.name == typeDefName ||
-        ignoredWindowsRuntimeTypes.contains(typeDefName)) {
+    if (currentTypeName == typeName ||
+        ignoredWindowsRuntimeTypes.contains(typeName)) {
       return '';
     }
 
@@ -84,26 +69,23 @@ class WinRTInterfaceProjection extends ComInterfaceProjection {
       }
 
       return relativePathTo(
-          'packages/${folderFromWinRTType(typeDefName)}/enums.g.dart');
+          'packages/${folderFromWinRTType(typeName)}/enums.g.dart');
     } else if (typeDef.isClass || typeDef.isInterface) {
       if (currentPackageName != packageNameFromTypeDef(typeDef)) {
-        if (typeDefName == 'Windows.Foundation.Uri') {
-          return 'package:windows_foundation/uri.dart';
-        }
-
-        return packageImportFromTypeDef(typeDef);
+        return typeName == 'Windows.Foundation.Uri'
+            ? 'package:windows_foundation/uri.dart'
+            : packageImportFromTypeDef(typeDef);
       }
 
-      final fileName = stripGenerics(lastComponent(typeDefName)).toLowerCase();
       return relativePathTo(
-          'packages/${folderFromWinRTType(typeDefName)}/$fileName.dart');
+          'packages/${folderFromWinRTType(typeName)}/${fileNameFromWinRTType(typeName)}');
     } else if (typeDef.isStruct) {
       if (currentPackageName != packageNameFromTypeDef(typeDef)) {
         return packageImportFromTypeDef(typeDef);
       }
 
       return relativePathTo(
-          'packages/${folderFromWinRTType(typeDefName)}/structs.g.dart');
+          'packages/${folderFromWinRTType(typeName)}/structs.g.dart');
     } else {
       // TODO: Add support for these as they occur.
       print('Unable to get import for typeDef: $typeDef');
@@ -112,37 +94,31 @@ class WinRTInterfaceProjection extends ComInterfaceProjection {
   }
 
   @override
-  String? getImportForTypeIdentifier(TypeIdentifier typeIdentifier) {
-    if (typeIdentifier.name.startsWith('Windows')) {
-      return getImportForTypeDef(typeIdentifier.type!);
-    }
-
-    return null;
-  }
+  String? getImportForTypeIdentifier(TypeIdentifier typeIdentifier) =>
+      typeIdentifier.name.startsWith('Windows')
+          ? getImportForTypeDef(typeIdentifier.type!)
+          : null;
 
   @override
   Set<String> get interfaceImports {
-    if (typeDef.interfaces.isEmpty) {
-      // Inherits from IInspectable, which is a traditional COM type.
-      return {'iinspectable.dart'};
-    } else {
-      final importList = <String>{};
+    // Inherits from IInspectable, which is a traditional COM type.
+    if (typeDef.interfaces.isEmpty) return {'iinspectable.dart'};
 
-      for (final interface in typeDef.interfaces) {
-        importList.add(getImportForTypeDef(interface));
-        // Keep unwrapping until there are no types left.
-        var refType = interface.typeSpec;
-        while (refType?.typeArg != null) {
-          refType = refType?.typeArg;
-          if (refType != null) {
-            final import = getImportForTypeIdentifier(refType);
-            if (import != null) importList.add(import);
-          }
+    final importList = <String>{};
+    for (final interface in typeDef.interfaces) {
+      importList.add(getImportForTypeDef(interface));
+      // Keep unwrapping until there are no types left.
+      var refType = interface.typeSpec;
+      while (refType?.typeArg != null) {
+        refType = refType?.typeArg;
+        if (refType != null) {
+          final import = getImportForTypeIdentifier(refType);
+          if (import != null) importList.add(import);
         }
       }
-
-      return importList;
     }
+
+    return importList;
   }
 
   @override
@@ -260,13 +236,8 @@ class WinRTInterfaceProjection extends ComInterfaceProjection {
       $shortName.fromRawPointer(interface.toInterface(IID_$shortName));''';
 
   List<TypeDef> get implementsInterfaces => typeDef.interfaces
-    ..removeWhere((interface) {
-      final interfaceName =
-          interface.typeSpec?.baseType == BaseType.genericTypeModifier
-              ? interface.typeSpec!.type!.name
-              : interface.name;
-      return excludedWindowsRuntimeInterfacesInInherits.contains(interfaceName);
-    });
+    ..removeWhere((interface) => excludedWindowsRuntimeInterfacesInInherits
+        .contains(fullyQualifiedTypeNameFromTypeDef(interface)));
 
   List<WinRTImplementsMapperProjection>? _implementsMappers;
 
@@ -275,14 +246,9 @@ class WinRTInterfaceProjection extends ComInterfaceProjection {
 
   List<WinRTImplementsMapperProjection> _cacheImplementsMappers() =>
       implementsInterfaces
-          .where((interface) {
-            final interfaceName =
-                interface.typeSpec?.baseType == BaseType.genericTypeModifier
-                    ? interface.typeSpec!.type!.name
-                    : interface.name;
-            return !excludedWindowsRuntimeInterfacesInImplementsMappers
-                .contains(interfaceName);
-          })
+          .where((interface) =>
+              !excludedWindowsRuntimeInterfacesInImplementsMappers
+                  .contains(fullyQualifiedTypeNameFromTypeDef(interface)))
           .map((interface) =>
               WinRTImplementsMapperProjection(typeDef, interface))
           .toList();

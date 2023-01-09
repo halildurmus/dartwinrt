@@ -1,6 +1,5 @@
-import 'package:win32gen/win32gen.dart';
-
 import 'exclusions.dart';
+import 'utils.dart';
 import 'winrt_factory_interface_mapper.dart';
 import 'winrt_interface.dart';
 import 'winrt_static_interface_mapper.dart';
@@ -11,11 +10,8 @@ class WinRTClassProjection extends WinRTInterfaceProjection {
   @override
   Set<String> get interfaceImports => {
         ...super.interfaceImports,
-        // TODO: should unify format -- FQDN
-        ...factoryInterfaces.map(
-            (interface) => '${lastComponent(interface).toLowerCase()}.dart'),
-        ...staticInterfaces.map(
-            (interface) => '${lastComponent(interface).toLowerCase()}.dart'),
+        ...factoryInterfaces.map(fileNameFromWinRTType),
+        ...staticInterfaces.map(fileNameFromWinRTType),
       };
 
   bool get hasDefaultConstructor => typeDef.customAttributes
