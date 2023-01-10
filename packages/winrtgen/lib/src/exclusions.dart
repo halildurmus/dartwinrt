@@ -58,3 +58,18 @@ const excludedWindowsRuntimeInterfacesInImplementsMappers = <String>{
   // IIterable on these interfaces, we need to exclude this one.
   'Windows.Foundation.Collections.IIterable`1',
 };
+
+/// The WinRT types to ignore when generating the imports.
+const ignoredWindowsRuntimeTypes = <String>{
+  // This is exposed as dart:core's DateTime
+  'Windows.Foundation.DateTime',
+
+  // These are exposed as int
+  'Windows.Foundation.EventRegistrationToken',
+  'Windows.Foundation.HResult',
+
+  // This is exposed as dart:core's Duration
+  'Windows.Foundation.TimeSpan',
+
+  ...excludedWindowsRuntimeInterfacesInInherits,
+};

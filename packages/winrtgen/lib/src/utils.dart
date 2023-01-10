@@ -71,8 +71,8 @@ String folderFromWinRTType(String fullyQualifiedType) {
   return 'windows_${segments.join('/').toLowerCase()}';
 }
 
-/// Returns the fully-qualified type of the class/interface defined in [typeDef]
-/// (e.g. `Windows.Foundation.Calendar`, `Windows.Foundation.IReference`1).
+/// Returns the fully-qualified type of the object defined in [typeDef] (e.g.
+/// `Windows.Foundation.Calendar`, `Windows.Foundation.IReference`1).
 String fullyQualifiedTypeNameFromTypeDef(TypeDef typeDef) =>
     typeDef.typeSpec?.baseType == BaseType.genericTypeModifier
         ? typeDef.typeSpec!.type!.name
@@ -91,8 +91,8 @@ String packageImportFromTypeDef(TypeDef typeDef) {
 String packageNameFromTypeDef(TypeDef typeDef) =>
     packageNameFromWinRTType(fullyQualifiedTypeNameFromTypeDef(typeDef));
 
-/// Returns the short type name of the class/interface defined in [typeDef]
-/// (e.g. `ICalendar`, `IMap<String, String>`).
+/// Returns the short type name of the object defined in [typeDef] (e.g.
+/// `ICalendar`, `IMap<String, String>`).
 String shortTypeNameFromTypeDef(TypeDef typeDef) =>
     typeDef.typeSpec?.baseType == BaseType.genericTypeModifier
         ? parseGenericTypeIdentifierName(typeDef.typeSpec!)

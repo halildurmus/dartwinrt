@@ -34,21 +34,6 @@ class WinRTInterfaceProjection extends ComInterfaceProjection {
   String relativePathTo(String path) =>
       relativePath(path, start: currentFolderPath);
 
-  /// The WinRT types to ignore when generating the imports.
-  static const ignoredWindowsRuntimeTypes = <String>{
-    // This is exposed as dart:core's DateTime
-    'Windows.Foundation.DateTime',
-
-    // These are exposed as int
-    'Windows.Foundation.EventRegistrationToken',
-    'Windows.Foundation.HResult',
-
-    // This is exposed as dart:core's Duration
-    'Windows.Foundation.TimeSpan',
-
-    ...excludedWindowsRuntimeInterfacesInInherits,
-  };
-
   @override
   String getImportForTypeDef(TypeDef typeDef) {
     final typeName = fullyQualifiedTypeNameFromTypeDef(typeDef);

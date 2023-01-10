@@ -251,7 +251,7 @@ class WinRTImplementsMapperProjection extends WinRTInterfaceProjection {
       $fieldIdentifier.append(value);
 ''';
 
-  // Pointer<NativeType> is used as the value parameter's type as the getMany
+  // Pointer<NativeType> is used as the value parameter's type since the getMany
   // function in IVector and IVectorView implementations also use it this way in
   // order to handle various types such as Pointer<Int32> and
   // Pointer<COMObject>.
