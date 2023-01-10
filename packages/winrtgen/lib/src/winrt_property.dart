@@ -26,12 +26,4 @@ abstract class WinRTPropertyProjection extends WinRTMethodProjection {
 
     return safeIdentifierForString(formattedMethodName).toCamelCase();
   }
-
-  // WinRT properties always return an HRESULT
-  @override
-  String get nativePrototype => 'HRESULT Function($nativeParams)';
-
-  // WinRT properties always return an HRESULT
-  @override
-  String get dartPrototype => 'int Function($dartParams)';
 }
