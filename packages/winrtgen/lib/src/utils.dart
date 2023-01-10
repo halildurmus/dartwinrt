@@ -408,6 +408,12 @@ const wrtPinterfaceNamespace = [
 /// defined here:
 /// https://learn.microsoft.com/en-us/uwp/winrt-cref/winrt-type-system#guid-generation-for-parameterized-types
 Guid iidFromSignature(String signature) {
+  if (signature.startsWith('{') &&
+      signature.endsWith('}') &&
+      signature.length == 38) {
+    return Guid.parse(signature);
+  }
+
   final signatureInBytes = const Utf8Encoder().convert(signature);
   final data = [...wrtPinterfaceNamespace, ...signatureInBytes];
   final sha1Hash = sha1.convert(data);
