@@ -83,11 +83,11 @@ void generateWinRTEnumerations(Map<String, String> enums) {
       final WinRTEnumProjection enumProjection;
       if (typeDef.existsAttribute('System.FlagsAttribute')) {
         enumProjection = WinRTFlagsEnumProjection(
-            typeDef, stripAnsiUnicodeSuffix(lastComponent(typeDef.name)),
+            typeDef, lastComponent(typeDef.name),
             comment: enums[typeDef.name]!);
       } else {
         enumProjection = WinRTEnumProjection(
-            typeDef, stripAnsiUnicodeSuffix(lastComponent(typeDef.name)),
+            typeDef, lastComponent(typeDef.name),
             comment: enums[typeDef.name]!);
       }
       enumProjections.add(enumProjection);
@@ -107,9 +107,9 @@ void generateWinRTEnumerations(Map<String, String> enums) {
           "import 'package:windows_foundation/windows_foundation.dart';";
     }
 
-    final enumsFile =
+    final enumsFileContent =
         [winrtEnumFileHeader, winrtEnumFileImport, ...enumProjections].join();
-    file.writeAsStringSync(DartFormatter().format(enumsFile));
+    file.writeAsStringSync(DartFormatter().format(enumsFileContent));
   }
 }
 
@@ -127,7 +127,7 @@ void generateWinRTStructs(Map<String, String> structs) {
       if (typeDef == null) throw Exception("Can't find $type");
 
       final structProjection = StructProjection(
-          typeDef, stripAnsiUnicodeSuffix(lastComponent(typeDef.name)),
+          typeDef, lastComponent(typeDef.name),
           comment: structs[typeDef.name]!);
       structProjections.add(structProjection);
     }
@@ -135,8 +135,9 @@ void generateWinRTStructs(Map<String, String> structs) {
     structProjections.sort((a, b) =>
         lastComponent(a.structName).compareTo(lastComponent(b.structName)));
 
-    final structsFile = [winrtStructFileHeader, ...structProjections].join();
-    file.writeAsStringSync(DartFormatter().format(structsFile));
+    final structsFileContent =
+        [winrtStructFileHeader, ...structProjections].join();
+    file.writeAsStringSync(DartFormatter().format(structsFileContent));
   }
 }
 
