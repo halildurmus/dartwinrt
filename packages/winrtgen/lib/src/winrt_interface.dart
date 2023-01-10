@@ -11,28 +11,11 @@ import 'winrt_set_property.dart';
 class WinRTInterfaceProjection extends ComInterfaceProjection {
   WinRTInterfaceProjection(super.typeDef, [super.comment]);
 
+  // ComInterfaceProjection overrides
+
   @override
   String get inheritsFrom =>
       implementsInterfaces.map(shortTypeNameFromTypeDef).toList().join(', ');
-
-  /// Returns the path to the folder where the current interface is located
-  /// (e.g. `packages/windows_storage/pickers` for
-  /// `Windows.Storage.Pickers.IFileOpenPicker`).
-  String get currentFolderPath =>
-      'packages/${folderFromWinRTType(typeDef.name)}';
-
-  /// Returns the name of the package where the current interface is located
-  /// (e.g. `windows_globalization` for `Windows.Globalization.Calendar`).
-  String get currentPackageName => packageNameFromTypeDef(typeDef);
-
-  /// Returns the fully qualified name of the current interface (e.g.
-  /// `Windows.Globalization.Calendar`, `Windows.Foundation.IReference`1`).
-  String get currentTypeName => fullyQualifiedTypeNameFromTypeDef(typeDef);
-
-  /// Converts [path] to an equivalent relative path from the
-  /// [currentFolderPath].
-  String relativePathTo(String path) =>
-      relativePath(path, start: currentFolderPath);
 
   @override
   String getImportForTypeDef(TypeDef typeDef) {
@@ -212,13 +195,32 @@ class WinRTInterfaceProjection extends ComInterfaceProjection {
   @override
   String get shortName => stripGenerics(lastComponent(typeDef.name));
 
-  String get classDeclaration => 'class $shortName extends IInspectable'
-      '${inheritsFrom.isNotEmpty ? ' implements $inheritsFrom {' : ' {'}';
-
   @override
   String get fromCOMObjectHelper => '''
   factory $shortName.from(IInspectable interface) =>
       $shortName.fromRawPointer(interface.toInterface(IID_$shortName));''';
+
+  /// Returns the path to the folder where the current interface is located
+  /// (e.g. `packages/windows_storage/pickers` for
+  /// `Windows.Storage.Pickers.IFileOpenPicker`).
+  String get currentFolderPath =>
+      'packages/${folderFromWinRTType(typeDef.name)}';
+
+  /// Returns the name of the package where the current interface is located
+  /// (e.g. `windows_globalization` for `Windows.Globalization.Calendar`).
+  String get currentPackageName => packageNameFromTypeDef(typeDef);
+
+  /// Returns the fully qualified name of the current interface (e.g.
+  /// `Windows.Globalization.Calendar`, `Windows.Foundation.IReference`1`).
+  String get currentTypeName => fullyQualifiedTypeNameFromTypeDef(typeDef);
+
+  /// Converts [path] to an equivalent relative path from the
+  /// [currentFolderPath].
+  String relativePathTo(String path) =>
+      relativePath(path, start: currentFolderPath);
+
+  String get classDeclaration => 'class $shortName extends IInspectable'
+      '${inheritsFrom.isNotEmpty ? ' implements $inheritsFrom {' : ' {'}';
 
   List<TypeDef> get implementsInterfaces => typeDef.interfaces
     ..removeWhere((interface) => excludedWindowsRuntimeInterfacesInInherits

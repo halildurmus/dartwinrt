@@ -7,6 +7,11 @@ import 'winrt_static_interface_mapper.dart';
 class WinRTClassProjection extends WinRTInterfaceProjection {
   WinRTClassProjection(super.typeDef, [super.comment]);
 
+  // WinRTInterfaceProjection overrides
+
+  @override
+  String get classType => 'Class';
+
   @override
   Set<String> get interfaceImports => {
         ...super.interfaceImports,
@@ -65,9 +70,6 @@ class WinRTClassProjection extends WinRTInterfaceProjection {
           .map((interface) =>
               WinRTStaticInterfaceMapperProjection(typeDef, interface))
           .toList();
-
-  @override
-  String get classType => 'Class';
 
   @override
   String toString() {

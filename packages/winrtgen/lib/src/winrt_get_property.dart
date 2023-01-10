@@ -15,6 +15,7 @@ class WinRTGetPropertyProjection extends WinRTPropertyProjection {
   WinRTGetPropertyProjection(super.method, super.vtableOffset);
 
   // WinRTPropertyProjection overrides
+
   @override
   String get dartParams => nativeParams;
 

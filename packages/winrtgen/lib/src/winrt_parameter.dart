@@ -15,6 +15,11 @@ class WinRTParameterProjection extends ParameterProjection {
 
   final Method method;
 
+  // ParameterProjection override
+
+  @override
+  String get paramProjection => '$paramType ${safeIdentifierForString(name)}';
+
   String get paramType {
     final originalParamType = safeTypenameForString(type.methodParamType);
     if (originalParamType == 'GUID') return 'Guid';
@@ -43,9 +48,6 @@ class WinRTParameterProjection extends ParameterProjection {
 
     return originalParamType;
   }
-
-  @override
-  String get paramProjection => '$paramType ${safeIdentifierForString(name)}';
 
   // Matcher properties
 

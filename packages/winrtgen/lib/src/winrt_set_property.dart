@@ -20,6 +20,11 @@ class WinRTSetPropertyProjection extends WinRTPropertyProjection {
   @override
   String get dartParams => 'Pointer, ${parameters.first.type.dartType}';
 
+  // MethodProjection override
+
+  @override
+  String get shortForm => '$exposedMethodName = value';
+
   @override
   String ffiCall({String params = '', bool freeRetValOnFailure = false}) => '''
     final hr = ptr.ref.vtable
@@ -58,9 +63,6 @@ class WinRTSetPropertyProjection extends WinRTPropertyProjection {
 
   bool get isUriProperty =>
       parameters.first.type.typeIdentifier.name == 'Windows.Foundation.Uri';
-
-  @override
-  String get shortForm => '$exposedMethodName = value';
 
   @override
   String toString() {
