@@ -5,11 +5,11 @@ import 'package:win32gen/win32gen.dart';
 import 'package:winmd/winmd.dart';
 import 'package:winrtgen/winrtgen.dart';
 
-void generateWinRTObjects(Map<String, String> typesToGenerate) {
+void generateWinRTTypes(Map<String, String> types) {
   // Catalog all the types we need to generate: the types themselves and their
   // dependencies
   final typesAndDependencies = <String>{};
-  for (final type in typesToGenerate.keys) {
+  for (final type in types.keys) {
     final typeDef = MetadataStore.getMetadataForType(type);
     if (typeDef == null) throw Exception("Can't find $type");
     final projection = typeDef.isInterface
@@ -31,7 +31,7 @@ void generateWinRTObjects(Map<String, String> typesToGenerate) {
   }
 
   typesAndDependencies
-    // Remove generic interfaces (https://github.com/timsneath/win32/issues/480)
+    // Remove generic interfaces as they are projected manually
     ..removeWhere((type) => type.isEmpty)
     // Remove excluded WinRT types
     ..removeWhere((type) => excludedWindowsRuntimeTypes.contains(type));
@@ -41,8 +41,8 @@ void generateWinRTObjects(Map<String, String> typesToGenerate) {
     final typeDef = MetadataStore.getMetadataForType(type);
     if (typeDef == null) throw Exception("Can't find $type");
     final projection = typeDef.isInterface
-        ? WinRTInterfaceProjection(typeDef, typesToGenerate[typeDef.name] ?? '')
-        : WinRTClassProjection(typeDef, typesToGenerate[typeDef.name] ?? '');
+        ? WinRTInterfaceProjection(typeDef, types[typeDef.name] ?? '')
+        : WinRTClassProjection(typeDef, types[typeDef.name] ?? '');
 
     final dartClass = projection.toString();
     final fileName = stripGenerics(lastComponent(type)).toLowerCase();
@@ -141,10 +141,10 @@ void generateWinRTStructs(Map<String, String> structs) {
 }
 
 void main() {
-  print('Generating Windows Runtime objects...');
+  print('Generating Windows Runtime classes and interfaces...');
   final winrtTypesToGenerate = loadMap('winrt_types.json');
   saveMap(winrtTypesToGenerate, 'winrt_types.json');
-  generateWinRTObjects(winrtTypesToGenerate);
+  generateWinRTTypes(winrtTypesToGenerate);
 
   print('Generating Windows Runtime enumerations...');
   final winrtEnumsToGenerate = loadMap('winrt_enums.json');
