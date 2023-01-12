@@ -1,4 +1,8 @@
-// COM interfaces have a chain of inheritance, and the function vtable depends
+// Copyright (c) 2023, the dartwinrt authors. Please see the AUTHORS file for
+// details. All rights reserved. Use of this source code is governed by a
+// BSD-style license that can be found in the LICENSE file.
+
+// WinRT interfaces have a chain of inheritance, and the function vtable depends
 // on this being calculated accurately. Test a variety of existing interfaces to
 // make sure the algorithm matches a manual count.
 
