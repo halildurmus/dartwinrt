@@ -2,10 +2,11 @@
 // details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-import 'package:win32gen/win32gen.dart';
+import 'package:win32gen/win32gen.dart' hide copyrightHeader;
 import 'package:winmd/winmd.dart';
 
 import 'exclusions.dart';
+import 'headers.dart';
 import 'utils.dart';
 import 'winrt_get_property.dart';
 import 'winrt_implements_mapper.dart';
@@ -16,6 +17,17 @@ class WinRTInterfaceProjection extends ComInterfaceProjection {
   WinRTInterfaceProjection(super.typeDef, [super.comment]);
 
   // ComInterfaceProjection overrides
+
+  @override
+  String get header => '''
+    $copyrightHeader
+
+    // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
+
+    // ignore_for_file: constant_identifier_names, non_constant_identifier_names
+    // ignore_for_file: no_leading_underscores_for_local_identifiers
+    // ignore_for_file: unused_import
+  ''';
 
   @override
   String get inheritsFrom =>
