@@ -13,7 +13,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// Indicates the altitude reference system to be used in defining a
 /// geographic shape.
 ///
-/// {@category Enum}
+/// {@category enum}
 enum AltitudeReferenceSystem implements WinRTEnum {
   unspecified(0),
   terrain(1),
@@ -34,7 +34,7 @@ enum AltitudeReferenceSystem implements WinRTEnum {
 
 /// Indicates if your app has permission to access location data.
 ///
-/// {@category Enum}
+/// {@category enum}
 enum GeolocationAccessStatus implements WinRTEnum {
   unspecified(0),
   allowed(1),
@@ -53,7 +53,7 @@ enum GeolocationAccessStatus implements WinRTEnum {
 
 /// Indicates the shape of a geographic region.
 ///
-/// {@category Enum}
+/// {@category enum}
 enum GeoshapeType implements WinRTEnum {
   geopoint(0),
   geocircle(1),
@@ -74,7 +74,7 @@ enum GeoshapeType implements WinRTEnum {
 /// Indicates the requested accuracy level for the location data that the
 /// application uses.
 ///
-/// {@category Enum}
+/// {@category enum}
 enum PositionAccuracy implements WinRTEnum {
   default_(0),
   high(1);
@@ -92,7 +92,7 @@ enum PositionAccuracy implements WinRTEnum {
 
 /// Indicates the source used to obtain a Geocoordinate.
 ///
-/// {@category Enum}
+/// {@category enum}
 enum PositionSource implements WinRTEnum {
   cellular(0),
   satellite(1),
@@ -115,7 +115,7 @@ enum PositionSource implements WinRTEnum {
 
 /// Indicates the ability of the Geolocator object to provide location data.
 ///
-/// {@category Enum}
+/// {@category enum}
 enum PositionStatus implements WinRTEnum {
   ready(0),
   initializing(1),

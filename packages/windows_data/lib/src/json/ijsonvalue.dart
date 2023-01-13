@@ -23,8 +23,7 @@ import 'jsonobject.dart';
 /// @nodoc
 const IID_IJsonValue = '{a3219ecb-f0b3-4dcd-beee-19d48cd3ed1e}';
 
-/// {@category Interface}
-/// {@category winrt}
+/// {@category interface}
 class IJsonValue extends IInspectable {
   // vtable begins at 6, is 7 entries long.
   IJsonValue.fromRawPointer(super.ptr);

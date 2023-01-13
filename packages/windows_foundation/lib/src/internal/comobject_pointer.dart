@@ -24,8 +24,6 @@ extension COMObjectPointer on Pointer<COMObject> {
   /// final pComObject = ...
   /// final list = pComObject.toList(StorageFile.fromRawPointer, length: 4);
   /// ```
-  ///
-  /// {@category winrt}
   List<T> toList<T>(T Function(Pointer<COMObject>) creator, {int length = 1}) {
     final list = <T>[];
 

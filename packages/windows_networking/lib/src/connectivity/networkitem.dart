@@ -21,8 +21,7 @@ import 'inetworkitem.dart';
 
 /// Represents a connected network.
 ///
-/// {@category Class}
-/// {@category winrt}
+/// {@category class}
 class NetworkItem extends IInspectable implements INetworkItem {
   NetworkItem.fromRawPointer(super.ptr);
 

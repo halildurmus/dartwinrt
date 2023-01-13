@@ -25,8 +25,7 @@ import 'itimezoneoncalendar.dart';
 /// Manipulates the representation of a `DateTime` within a given calendar
 /// and clock.
 ///
-/// {@category Class}
-/// {@category winrt}
+/// {@category class}
 class Calendar extends IInspectable implements ICalendar, ITimeZoneOnCalendar {
   Calendar() : super(ActivateClass(_className));
   Calendar.fromRawPointer(super.ptr);

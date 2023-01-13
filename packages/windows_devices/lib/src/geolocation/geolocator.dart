@@ -27,8 +27,7 @@ import 'structs.g.dart';
 
 /// Provides access to the current geographic location.
 ///
-/// {@category Class}
-/// {@category winrt}
+/// {@category class}
 class Geolocator extends IInspectable
     implements IGeolocator, IGeolocatorWithScalarAccuracy, IGeolocator2 {
   Geolocator() : super(ActivateClass(_className));

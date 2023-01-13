@@ -22,8 +22,7 @@ import 'phonenumberinfo.dart';
 /// @nodoc
 const IID_IPhoneNumberInfo = '{1c7ce4dd-c8b4-4ea3-9aef-b342e2c5b417}';
 
-/// {@category Interface}
-/// {@category winrt}
+/// {@category interface}
 class IPhoneNumberInfo extends IInspectable {
   // vtable begins at 6, is 8 entries long.
   IPhoneNumberInfo.fromRawPointer(super.ptr);

@@ -18,8 +18,6 @@ extension HStringHelper on Pointer<HSTRING> {
   /// final pHString = ...
   /// final list = pHString.toList(length: 5);
   /// ```
-  ///
-  /// {@category winrt}
   List<String> toList({int length = 1}) {
     final list = <String>[];
     for (var i = 0; i < length; i++) {

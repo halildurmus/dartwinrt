@@ -23,8 +23,7 @@ import 'wwwformurldecoder.dart';
 const IID_IWwwFormUrlDecoderRuntimeClassFactory =
     '{5b8c6b3d-24ae-41b5-a1bf-f0c3d544845b}';
 
-/// {@category Interface}
-/// {@category winrt}
+/// {@category interface}
 class IWwwFormUrlDecoderRuntimeClassFactory extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IWwwFormUrlDecoderRuntimeClassFactory.fromRawPointer(super.ptr);

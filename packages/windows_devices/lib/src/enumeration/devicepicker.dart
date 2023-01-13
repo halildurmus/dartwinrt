@@ -15,8 +15,7 @@ import 'devicepickerfilter.dart';
 import 'enums.g.dart';
 import 'idevicepicker.dart';
 
-/// {@category Class}
-/// {@category winrt}
+/// {@category class}
 class DevicePicker extends IInspectable implements IDevicePicker {
   DevicePicker() : super(ActivateClass(_className));
   DevicePicker.fromRawPointer(super.ptr);

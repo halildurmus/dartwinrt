@@ -21,8 +21,7 @@ import 'jsonarray.dart';
 /// @nodoc
 const IID_IJsonArrayStatics = '{db1434a9-e164-499f-93e2-8a8f49bb90ba}';
 
-/// {@category Interface}
-/// {@category winrt}
+/// {@category interface}
 class IJsonArrayStatics extends IInspectable {
   // vtable begins at 6, is 2 entries long.
   IJsonArrayStatics.fromRawPointer(super.ptr);

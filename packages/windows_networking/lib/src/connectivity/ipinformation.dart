@@ -22,8 +22,7 @@ import 'networkadapter.dart';
 /// Represents the association between an IP address and an adapter on the
 /// network.
 ///
-/// {@category Class}
-/// {@category winrt}
+/// {@category class}
 class IPInformation extends IInspectable implements IIPInformation {
   IPInformation.fromRawPointer(super.ptr);
 

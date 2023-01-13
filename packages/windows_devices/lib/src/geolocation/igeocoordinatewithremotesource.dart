@@ -15,8 +15,7 @@ import 'package:win32/win32.dart';
 const IID_IGeocoordinateWithRemoteSource =
     '{397cebd7-ee38-5f3b-8900-c4a7bc9cf953}';
 
-/// {@category Interface}
-/// {@category winrt}
+/// {@category interface}
 class IGeocoordinateWithRemoteSource extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IGeocoordinateWithRemoteSource.fromRawPointer(super.ptr);

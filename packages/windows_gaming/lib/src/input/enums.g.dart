@@ -12,7 +12,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 /// Label that appears on the physical controller button.
 ///
-/// {@category Enum}
+/// {@category enum}
 enum GameControllerButtonLabel implements WinRTEnum {
   none(0),
   xboxBack(1),
@@ -97,7 +97,7 @@ enum GameControllerButtonLabel implements WinRTEnum {
 
 /// Specifies the button type.
 ///
-/// {@category Enum}
+/// {@category enum}
 class GamepadButtons extends WinRTEnum {
   const GamepadButtons(super.value, {super.name});
 

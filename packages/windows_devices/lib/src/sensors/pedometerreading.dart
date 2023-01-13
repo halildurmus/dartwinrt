@@ -22,8 +22,7 @@ import 'ipedometerreading.dart';
 /// Provides an interface for a pedometer to measure the number of steps
 /// taken.
 ///
-/// {@category Class}
-/// {@category winrt}
+/// {@category class}
 class PedometerReading extends IInspectable implements IPedometerReading {
   PedometerReading.fromRawPointer(super.ptr);
 

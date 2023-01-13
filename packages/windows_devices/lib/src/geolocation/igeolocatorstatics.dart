@@ -22,8 +22,7 @@ import 'geoposition.dart';
 /// @nodoc
 const IID_IGeolocatorStatics = '{9a8e7571-2df5-4591-9f87-eb5fd894e9b7}';
 
-/// {@category Interface}
-/// {@category winrt}
+/// {@category interface}
 class IGeolocatorStatics extends IInspectable {
   // vtable begins at 6, is 3 entries long.
   IGeolocatorStatics.fromRawPointer(super.ptr);

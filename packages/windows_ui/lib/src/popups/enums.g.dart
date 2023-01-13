@@ -13,7 +13,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// Specifies where the context menu should be positioned relative to the
 /// selection rectangle.
 ///
-/// {@category Enum}
+/// {@category enum}
 enum Placement implements WinRTEnum {
   default_(0),
   above(1),

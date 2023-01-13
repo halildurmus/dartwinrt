@@ -25,8 +25,7 @@ import 'venuedata.dart';
 /// Represents a location that may contain latitude and longitude data or
 /// venue data.
 ///
-/// {@category Class}
-/// {@category winrt}
+/// {@category class}
 class Geoposition extends IInspectable implements IGeoposition, IGeoposition2 {
   Geoposition.fromRawPointer(super.ptr);
 

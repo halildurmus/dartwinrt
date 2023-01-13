@@ -13,7 +13,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// Identifies the storage location that the file picker presents to the
 /// user.
 ///
-/// {@category Enum}
+/// {@category enum}
 enum PickerLocationId implements WinRTEnum {
   documentsLibrary(0),
   computerFolder(1),
@@ -39,7 +39,7 @@ enum PickerLocationId implements WinRTEnum {
 
 /// Indicates the view mode that the file picker is using to present items.
 ///
-/// {@category Enum}
+/// {@category enum}
 enum PickerViewMode implements WinRTEnum {
   list(0),
   thumbnail(1);

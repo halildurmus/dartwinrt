@@ -18,7 +18,7 @@ import 'package:ffi/ffi.dart';
 
 /// The basic information to describe a geographic position.
 ///
-/// {@category Struct}
+/// {@category struct}
 class BasicGeoposition extends Struct {
   @Double()
   external double Latitude;

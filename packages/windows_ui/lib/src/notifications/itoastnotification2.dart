@@ -14,8 +14,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// @nodoc
 const IID_IToastNotification2 = '{9dfb9fd1-143a-490e-90bf-b9fba7132de7}';
 
-/// {@category Interface}
-/// {@category winrt}
+/// {@category interface}
 class IToastNotification2 extends IInspectable {
   // vtable begins at 6, is 6 entries long.
   IToastNotification2.fromRawPointer(super.ptr);

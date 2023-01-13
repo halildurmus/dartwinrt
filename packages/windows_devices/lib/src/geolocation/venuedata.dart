@@ -20,8 +20,7 @@ import 'ivenuedata.dart';
 
 /// Represents the venue associated with a geographic location.
 ///
-/// {@category Class}
-/// {@category winrt}
+/// {@category class}
 class VenueData extends IInspectable implements IVenueData {
   VenueData.fromRawPointer(super.ptr);
 

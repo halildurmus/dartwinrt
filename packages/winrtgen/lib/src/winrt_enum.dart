@@ -14,7 +14,7 @@ class WinRTEnumProjection {
   WinRTEnumProjection(this.typeDef, this.enumName, {this.comment = ''});
 
   String get classPreamble {
-    const enumCategoryComment = '/// {@category Enum}';
+    const enumCategoryComment = '/// {@category enum}';
     final classComment = wrapCommentText(comment);
     final docComment = classComment.isEmpty
         ? enumCategoryComment

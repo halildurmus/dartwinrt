@@ -21,8 +21,7 @@ import 'winrt_helpers.dart';
 /// @nodoc
 const IID_IUriEscapeStatics = '{c1d432ba-c824-4452-a7fd-512bc3bbe9a1}';
 
-/// {@category Interface}
-/// {@category winrt}
+/// {@category interface}
 class IUriEscapeStatics extends IInspectable {
   // vtable begins at 6, is 2 entries long.
   IUriEscapeStatics.fromRawPointer(super.ptr);

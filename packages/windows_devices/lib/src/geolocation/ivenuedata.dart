@@ -19,8 +19,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// @nodoc
 const IID_IVenueData = '{66f39187-60e3-4b2f-b527-4f53f1c3c677}';
 
-/// {@category Interface}
-/// {@category winrt}
+/// {@category interface}
 class IVenueData extends IInspectable {
   // vtable begins at 6, is 2 entries long.
   IVenueData.fromRawPointer(super.ptr);

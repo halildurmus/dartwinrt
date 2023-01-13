@@ -24,8 +24,7 @@ import 'jsonobject.dart';
 
 /// Represents a JSON array.
 ///
-/// {@category Class}
-/// {@category winrt}
+/// {@category class}
 class JsonArray extends IInspectable
     implements
         IJsonArray,

@@ -19,8 +19,7 @@ import 'stringmap.dart';
 /// Notifies listeners of dynamic changes to a map, such as when items are added
 /// or removed.
 ///
-/// {@category Interface}
-/// {@category winrt}
+/// {@category interface}
 class IObservableMap<K, V> extends IInspectable {
   // vtable begins at 6, is 2 entries long.
   IObservableMap.fromRawPointer(super.ptr);

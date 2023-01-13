@@ -22,8 +22,7 @@ import 'enums.g.dart';
 /// @nodoc
 const IID_IFileOpenPicker = '{2ca8278a-12c5-4c5f-8977-94547793c241}';
 
-/// {@category Interface}
-/// {@category winrt}
+/// {@category interface}
 class IFileOpenPicker extends IInspectable {
   // vtable begins at 6, is 11 entries long.
   IFileOpenPicker.fromRawPointer(super.ptr);

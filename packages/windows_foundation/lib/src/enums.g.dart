@@ -12,7 +12,7 @@ import 'winrt_enum.dart';
 
 /// Specifies the status of an asynchronous operation.
 ///
-/// {@category Enum}
+/// {@category enum}
 enum AsyncStatus implements WinRTEnum {
   started(0),
   completed(1),
@@ -32,7 +32,7 @@ enum AsyncStatus implements WinRTEnum {
 
 /// Specifies property value types.
 ///
-/// {@category Enum}
+/// {@category enum}
 enum PropertyType implements WinRTEnum {
   empty(0),
   uint8(1),

@@ -27,8 +27,7 @@ const IID_IAsyncAction = '{5a648006-843a-4da9-865b-9d26e5dfad7b}';
 /// Windows Runtime asynchronous methods that don't have a result object,
 /// and don't report ongoing progress.
 ///
-/// {@category Interface}
-/// {@category winrt}
+/// {@category interface}
 class IAsyncAction extends IInspectable implements IAsyncInfo {
   // vtable begins at 6, is 3 entries long.
   IAsyncAction.fromRawPointer(super.ptr);

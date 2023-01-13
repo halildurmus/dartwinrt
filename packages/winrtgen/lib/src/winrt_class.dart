@@ -14,7 +14,7 @@ class WinRTClassProjection extends WinRTInterfaceProjection {
   // WinRTInterfaceProjection overrides
 
   @override
-  String get classType => 'Class';
+  String get category => 'class';
 
   @override
   Set<String> get interfaceImports => {

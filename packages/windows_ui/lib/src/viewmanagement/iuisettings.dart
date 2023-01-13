@@ -22,8 +22,7 @@ import 'enums.g.dart';
 /// @nodoc
 const IID_IUISettings = '{85361600-1c63-4627-bcb1-3a89e0bc9c55}';
 
-/// {@category Interface}
-/// {@category winrt}
+/// {@category interface}
 class IUISettings extends IInspectable {
   // vtable begins at 6, is 13 entries long.
   IUISettings.fromRawPointer(super.ptr);

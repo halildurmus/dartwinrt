@@ -132,7 +132,7 @@ void generateWinRTStructs(Map<String, String> structs) {
 
       final structProjection = StructProjection(
           typeDef, lastComponent(typeDef.name),
-          comment: structs[typeDef.name]!);
+          category: 'struct', comment: structs[typeDef.name]!);
       structProjections.add(structProjection);
     }
 

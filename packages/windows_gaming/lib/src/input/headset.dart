@@ -22,8 +22,7 @@ import 'iheadset.dart';
 
 /// Contains information about an audio headset attached to a gamepad.
 ///
-/// {@category Class}
-/// {@category winrt}
+/// {@category class}
 class Headset extends IInspectable
     implements IHeadset, IGameControllerBatteryInfo {
   Headset.fromRawPointer(super.ptr);

@@ -31,8 +31,7 @@ import 'ipropertyset.dart';
 /// `InspectableArray`. This limitation exists to ensure that the value can
 /// be serialized; passed by value across a process boundary.
 ///
-/// {@category Class}
-/// {@category winrt}
+/// {@category class}
 class ValueSet extends IInspectable
     implements
         IPropertySet,

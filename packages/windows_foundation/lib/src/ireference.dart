@@ -12,8 +12,7 @@ import 'winrt_helpers.dart';
 /// Enables arbitrary enumerations, structures, and delegate types to be used
 /// as property values.
 ///
-/// {@category Interface}
-/// {@category winrt}
+/// {@category interface}
 class IReference<T> extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   final String _referenceIid;

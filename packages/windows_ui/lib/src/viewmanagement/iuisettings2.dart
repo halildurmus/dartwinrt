@@ -21,8 +21,7 @@ import 'uisettings.dart';
 /// @nodoc
 const IID_IUISettings2 = '{bad82401-2721-44f9-bb91-2bb228be442f}';
 
-/// {@category Interface}
-/// {@category winrt}
+/// {@category interface}
 class IUISettings2 extends IInspectable {
   // vtable begins at 6, is 3 entries long.
   IUISettings2.fromRawPointer(super.ptr);

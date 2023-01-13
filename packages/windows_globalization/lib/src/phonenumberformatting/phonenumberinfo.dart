@@ -23,8 +23,7 @@ import 'iphonenumberinfostatics.dart';
 
 /// Information about a phone number.
 ///
-/// {@category Class}
-/// {@category winrt}
+/// {@category class}
 class PhoneNumberInfo extends IInspectable
     implements IPhoneNumberInfo, IStringable {
   PhoneNumberInfo.fromRawPointer(super.ptr);

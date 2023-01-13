@@ -18,8 +18,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 /// Represents a set of media properties.
 ///
-/// {@category Class}
-/// {@category winrt}
+/// {@category class}
 class MediaPropertySet extends IInspectable
     implements IMap<Guid, Object?>, IIterable<IKeyValuePair<Guid, Object?>> {
   MediaPropertySet() : super(ActivateClass(_className));

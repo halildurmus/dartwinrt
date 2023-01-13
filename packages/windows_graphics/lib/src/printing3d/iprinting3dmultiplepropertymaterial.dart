@@ -20,8 +20,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IPrinting3DMultiplePropertyMaterial =
     '{25a6254b-c6e9-484d-a214-a25e5776ba62}';
 
-/// {@category Interface}
-/// {@category winrt}
+/// {@category interface}
 class IPrinting3DMultiplePropertyMaterial extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IPrinting3DMultiplePropertyMaterial.fromRawPointer(super.ptr);

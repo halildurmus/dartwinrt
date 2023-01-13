@@ -23,8 +23,7 @@ import 'igamepadstatics.dart';
 /// @nodoc
 const IID_IGamepadStatics2 = '{42676dc5-0856-47c4-9213-b395504c3a3c}';
 
-/// {@category Interface}
-/// {@category winrt}
+/// {@category interface}
 class IGamepadStatics2 extends IInspectable implements IGamepadStatics {
   // vtable begins at 6, is 1 entries long.
   IGamepadStatics2.fromRawPointer(super.ptr);

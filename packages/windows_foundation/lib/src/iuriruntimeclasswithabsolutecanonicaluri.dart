@@ -22,8 +22,7 @@ import 'winrt_helpers.dart';
 const IID_IUriRuntimeClassWithAbsoluteCanonicalUri =
     '{758d9661-221c-480f-a339-50656673f46f}';
 
-/// {@category Interface}
-/// {@category winrt}
+/// {@category interface}
 class IUriRuntimeClassWithAbsoluteCanonicalUri extends IInspectable {
   // vtable begins at 6, is 2 entries long.
   IUriRuntimeClassWithAbsoluteCanonicalUri.fromRawPointer(super.ptr);

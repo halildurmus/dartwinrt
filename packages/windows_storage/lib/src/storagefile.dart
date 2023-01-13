@@ -19,8 +19,7 @@ import 'istorageitem.dart';
 /// Represents a file. Provides information about the file and its content, and
 /// ways to manipulate them.
 ///
-/// {@category Class}
-/// {@category winrt}
+/// {@category class}
 class StorageFile extends IInspectable implements IStorageFile, IStorageItem {
   StorageFile() : super(ActivateClass(_className));
   StorageFile.fromRawPointer(super.ptr);

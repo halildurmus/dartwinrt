@@ -12,7 +12,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 /// Identifies the day of the week.
 ///
-/// {@category Enum}
+/// {@category enum}
 enum DayOfWeek implements WinRTEnum {
   sunday(0),
   monday(1),

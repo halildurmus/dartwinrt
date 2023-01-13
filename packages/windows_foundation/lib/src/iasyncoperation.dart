@@ -17,8 +17,7 @@ import 'winrt_helpers.dart';
 /// completion. This is the return type for many Windows Runtime asynchronous
 /// methods that have results but don't report progress.
 ///
-/// {@category Interface}
-/// {@category winrt}
+/// {@category interface}
 class IAsyncOperation<TResult> extends IInspectable implements IAsyncInfo {
   // vtable begins at 6, is 3 entries long.
   final TResult Function(Pointer<COMObject>)? _creator;

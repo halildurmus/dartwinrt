@@ -23,8 +23,7 @@ import 'istorageitemextraproperties.dart';
 /// the date the item was last modified, of the item (like a file or
 /// folder).
 ///
-/// {@category Class}
-/// {@category winrt}
+/// {@category class}
 class BasicProperties extends IInspectable
     implements IBasicProperties, IStorageItemExtraProperties {
   BasicProperties.fromRawPointer(super.ptr);

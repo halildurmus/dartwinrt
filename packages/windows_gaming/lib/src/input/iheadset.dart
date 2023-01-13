@@ -19,8 +19,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// @nodoc
 const IID_IHeadset = '{3fd156ef-6925-3fa8-9181-029c5223ae3b}';
 
-/// {@category Interface}
-/// {@category winrt}
+/// {@category interface}
 class IHeadset extends IInspectable {
   // vtable begins at 6, is 2 entries long.
   IHeadset.fromRawPointer(super.ptr);

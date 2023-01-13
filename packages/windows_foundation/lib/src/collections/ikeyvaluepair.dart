@@ -18,8 +18,7 @@ import '../winrt_helpers.dart';
 /// two type parameters into one to satisfy the constraints of another generic
 /// interface.
 ///
-/// {@category Interface}
-/// {@category winrt}
+/// {@category interface}
 class IKeyValuePair<K, V> extends IInspectable {
   // vtable begins at 6, is 2 entries long.
   final V Function(Pointer<COMObject>)? _creator;

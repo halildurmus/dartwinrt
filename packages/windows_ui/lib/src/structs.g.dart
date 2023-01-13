@@ -18,7 +18,7 @@ import 'package:ffi/ffi.dart';
 
 /// Describes a color in terms of alpha, red, green, and blue channels.
 ///
-/// {@category Struct}
+/// {@category struct}
 class Color extends Struct {
   @Uint8()
   external int A;

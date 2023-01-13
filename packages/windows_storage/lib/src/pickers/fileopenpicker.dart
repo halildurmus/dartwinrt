@@ -28,8 +28,7 @@ import 'ifileopenpickerstatics2.dart';
 /// displays UI, you'll need to associate the object with its owner's window
 /// handle.
 ///
-/// {@category Class}
-/// {@category winrt}
+/// {@category class}
 class FileOpenPicker extends IInspectable
     implements IFileOpenPicker, IFileOpenPicker3 {
   FileOpenPicker() : super(ActivateClass(_className));

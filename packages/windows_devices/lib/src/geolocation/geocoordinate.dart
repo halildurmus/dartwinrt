@@ -26,8 +26,7 @@ import 'igeocoordinatewithpositionsourcetimestamp.dart';
 
 /// Contains the information for identifying a geographic location.
 ///
-/// {@category Class}
-/// {@category winrt}
+/// {@category class}
 class Geocoordinate extends IInspectable
     implements
         IGeocoordinate,

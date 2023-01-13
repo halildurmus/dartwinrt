@@ -17,8 +17,7 @@ import 'enums.g.dart';
 /// @nodoc
 const IID_IDevicePicker = '{84997aa2-034a-4440-8813-7d0bd479bf5a}';
 
-/// {@category Interface}
-/// {@category winrt}
+/// {@category interface}
 class IDevicePicker extends IInspectable {
   // vtable begins at 6, is 15 entries long.
   IDevicePicker.fromRawPointer(super.ptr);

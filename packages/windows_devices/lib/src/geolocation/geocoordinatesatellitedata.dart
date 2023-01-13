@@ -22,8 +22,7 @@ import 'igeocoordinatesatellitedata.dart';
 /// is only applicable to position estimates obtained using satellite
 /// signals.
 ///
-/// {@category Class}
-/// {@category winrt}
+/// {@category class}
 class GeocoordinateSatelliteData extends IInspectable
     implements IGeocoordinateSatelliteData {
   GeocoordinateSatelliteData.fromRawPointer(super.ptr);

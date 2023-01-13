@@ -21,8 +21,7 @@ import 'iprinting3dmultiplepropertymaterial.dart';
 /// Represents a combination of properties and/or materials from the
 /// material groups specified in `MaterialGroupIndices`.
 ///
-/// {@category Class}
-/// {@category winrt}
+/// {@category class}
 class Printing3DMultiplePropertyMaterial extends IInspectable
     implements IPrinting3DMultiplePropertyMaterial {
   Printing3DMultiplePropertyMaterial() : super(ActivateClass(_className));

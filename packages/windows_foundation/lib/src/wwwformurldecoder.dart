@@ -27,8 +27,7 @@ import 'winrt_helpers.dart';
 /// Parses a URL query string, and exposes the results as a read-only vector
 /// (list) of name-value pairs from the query string.
 ///
-/// {@category Class}
-/// {@category winrt}
+/// {@category class}
 class WwwFormUrlDecoder extends IInspectable
     implements
         IWwwFormUrlDecoderRuntimeClass,

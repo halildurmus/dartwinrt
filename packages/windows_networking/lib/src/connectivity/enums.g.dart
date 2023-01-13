@@ -12,7 +12,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 /// Defines the network connection types.
 ///
-/// {@category Enum}
+/// {@category enum}
 class NetworkTypes extends WinRTEnum {
   const NetworkTypes(super.value, {super.name});
 

@@ -22,8 +22,7 @@ import 'fileopenpicker.dart';
 /// @nodoc
 const IID_IFileOpenPickerStatics2 = '{e8917415-eddd-5c98-b6f3-366fdfcad392}';
 
-/// {@category Interface}
-/// {@category winrt}
+/// {@category interface}
 class IFileOpenPickerStatics2 extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IFileOpenPickerStatics2.fromRawPointer(super.ptr);

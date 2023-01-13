@@ -23,8 +23,7 @@ import 'hostname.dart';
 /// @nodoc
 const IID_IHostName = '{bf8ecaad-ed96-49a7-9084-d416cae88dcb}';
 
-/// {@category Interface}
-/// {@category winrt}
+/// {@category interface}
 class IHostName extends IInspectable {
   // vtable begins at 6, is 6 entries long.
   IHostName.fromRawPointer(super.ptr);

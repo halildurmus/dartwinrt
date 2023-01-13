@@ -12,7 +12,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 /// Defines errors encountered while parsing JSON data.
 ///
-/// {@category Enum}
+/// {@category enum}
 enum JsonErrorStatus implements WinRTEnum {
   unknown(0),
   invalidJsonString(1),
@@ -33,7 +33,7 @@ enum JsonErrorStatus implements WinRTEnum {
 
 /// Specifies the JSON value type of a JsonValue object.
 ///
-/// {@category Enum}
+/// {@category enum}
 enum JsonValueType implements WinRTEnum {
   null_(0),
   boolean(1),

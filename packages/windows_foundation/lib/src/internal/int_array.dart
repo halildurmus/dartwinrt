@@ -14,8 +14,6 @@ extension Uint8Helper on Pointer<Uint8> {
   ///
   /// [length] must not be greater than the number of elements stored inside the
   /// `Pointer<Uint8>`.
-  ///
-  /// {@category winrt}
   List<int> toList({int length = 1}) =>
       Uint8List.fromList(this.asTypedList(length));
 }
@@ -27,8 +25,6 @@ extension Int16Helper on Pointer<Int16> {
   ///
   /// [length] must not be greater than the number of elements stored inside the
   /// `Pointer<Int16>`.
-  ///
-  /// {@category winrt}
   List<int> toList({int length = 1}) =>
       Int16List.fromList(this.asTypedList(length));
 }
@@ -40,8 +36,6 @@ extension UInt16Helper on Pointer<Uint16> {
   ///
   /// [length] must not be greater than the number of elements stored inside the
   /// `Pointer<Uint16>`.
-  ///
-  /// {@category winrt}
   List<int> toList({int length = 1}) =>
       Uint16List.fromList(this.asTypedList(length));
 }
@@ -53,8 +47,6 @@ extension Int32Helper on Pointer<Int32> {
   ///
   /// [length] must not be greater than the number of elements stored inside the
   /// `Pointer<Int32>`.
-  ///
-  /// {@category winrt}
   List<int> toList({int length = 1}) =>
       Int32List.fromList(this.asTypedList(length));
 }
@@ -66,8 +58,6 @@ extension UInt32Helper on Pointer<Uint32> {
   ///
   /// [length] must not be greater than the number of elements stored inside the
   /// `Pointer<Uint32>`.
-  ///
-  /// {@category winrt}
   List<int> toList({int length = 1}) =>
       Uint32List.fromList(this.asTypedList(length));
 }
@@ -79,8 +69,6 @@ extension Int64Helper on Pointer<Int64> {
   ///
   /// [length] must not be greater than the number of elements stored inside the
   /// `Pointer<Int64>`.
-  ///
-  /// {@category winrt}
   List<int> toList({int length = 1}) =>
       Int64List.fromList(this.asTypedList(length));
 }
@@ -92,8 +80,6 @@ extension UInt64Helper on Pointer<Uint64> {
   ///
   /// [length] must not be greater than the number of elements stored inside the
   /// `Pointer<Uint64>`.
-  ///
-  /// {@category winrt}
   List<int> toList({int length = 1}) =>
       Uint64List.fromList(this.asTypedList(length));
 }

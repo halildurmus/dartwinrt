@@ -12,7 +12,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 /// Describes the attributes of a file or folder.
 ///
-/// {@category Enum}
+/// {@category enum}
 class FileAttributes extends WinRTEnum {
   const FileAttributes(super.value, {super.name});
 
@@ -62,7 +62,7 @@ class FileAttributes extends WinRTEnum {
 /// exists in the current folder when you copy, move, or rename a file or
 /// folder.
 ///
-/// {@category Enum}
+/// {@category enum}
 enum NameCollisionOption implements WinRTEnum {
   generateUniqueName(0),
   replaceExisting(1),
@@ -82,7 +82,7 @@ enum NameCollisionOption implements WinRTEnum {
 /// Specifies whether a deleted item is moved to the Recycle Bin or
 /// permanently deleted.
 ///
-/// {@category Enum}
+/// {@category enum}
 enum StorageDeleteOption implements WinRTEnum {
   default_(0),
   permanentDelete(1);
@@ -101,7 +101,7 @@ enum StorageDeleteOption implements WinRTEnum {
 /// Describes whether an item that implements the IStorageItem interface is
 /// a file or a folder.
 ///
-/// {@category Enum}
+/// {@category enum}
 class StorageItemTypes extends WinRTEnum {
   const StorageItemTypes(super.value, {super.name});
 

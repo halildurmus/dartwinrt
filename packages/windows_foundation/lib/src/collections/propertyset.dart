@@ -28,8 +28,7 @@ import 'ipropertyset.dart';
 /// Represents a property set, which is a set of [PropertyValue] objects
 /// with string keys.
 ///
-/// {@category Class}
-/// {@category winrt}
+/// {@category class}
 class PropertySet extends IInspectable
     implements
         IPropertySet,

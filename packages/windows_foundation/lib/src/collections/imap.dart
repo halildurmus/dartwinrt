@@ -23,8 +23,7 @@ import 'stringmap.dart';
 
 /// Represents an associative collection, also known as a map or a dictionary.
 ///
-/// {@category Interface}
-/// {@category winrt}
+/// {@category interface}
 class IMap<K, V> extends IInspectable
     implements IIterable<IKeyValuePair<K, V>> {
   // vtable begins at 6, is 7 entries long.

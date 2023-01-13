@@ -12,7 +12,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 /// The type of a HostName object.
 ///
-/// {@category Enum}
+/// {@category enum}
 enum HostNameType implements WinRTEnum {
   domainName(0),
   ipv4(1),

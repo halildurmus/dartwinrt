@@ -21,8 +21,7 @@ import 'inotificationdatafactory.dart';
 
 /// Stores data for display in a toast notification.
 ///
-/// {@category Class}
-/// {@category winrt}
+/// {@category class}
 class NotificationData extends IInspectable implements INotificationData {
   NotificationData() : super(ActivateClass(_className));
   NotificationData.fromRawPointer(super.ptr);

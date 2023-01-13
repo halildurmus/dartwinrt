@@ -18,7 +18,7 @@ import 'package:ffi/ffi.dart';
 
 /// Represents the current state of the gamepad.
 ///
-/// {@category Struct}
+/// {@category struct}
 class GamepadReading extends Struct {
   @Uint64()
   external int Timestamp;
@@ -47,7 +47,7 @@ class GamepadReading extends Struct {
 
 /// Describes the gamepad motor speed.
 ///
-/// {@category Struct}
+/// {@category struct}
 class GamepadVibration extends Struct {
   @Double()
   external double LeftMotor;

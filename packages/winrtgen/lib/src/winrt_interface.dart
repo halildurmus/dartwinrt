@@ -2,7 +2,7 @@
 // details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-import 'package:win32gen/win32gen.dart' hide copyrightHeader;
+import 'package:win32gen/win32gen.dart';
 import 'package:winmd/winmd.dart';
 
 import 'exclusions.dart';
@@ -28,6 +28,12 @@ class WinRTInterfaceProjection extends ComInterfaceProjection {
     // ignore_for_file: no_leading_underscores_for_local_identifiers
     // ignore_for_file: unused_import
   ''';
+
+  @override
+  String get category => 'interface';
+
+  @override
+  String get classType => '';
 
   @override
   String get inheritsFrom =>
@@ -190,12 +196,6 @@ class WinRTInterfaceProjection extends ComInterfaceProjection {
     }
     return projection;
   }
-
-  @override
-  String get classType => 'Interface';
-
-  @override
-  String get category => 'winrt';
 
   // WinRT interfaces don't inherit in metadata (e.g. IAsyncInfo has no
   // parent), but all WinRT interfaces have a base type of IInspectable as far

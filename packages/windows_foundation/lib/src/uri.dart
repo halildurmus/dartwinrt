@@ -29,8 +29,7 @@ import 'wwwformurldecoder.dart';
 /// other Windows Runtime APIs that are not necessarily confined to web
 /// browser scenarios.
 ///
-/// {@category Class}
-/// {@category winrt}
+/// {@category class}
 class Uri extends IInspectable
     implements
         IUriRuntimeClass,

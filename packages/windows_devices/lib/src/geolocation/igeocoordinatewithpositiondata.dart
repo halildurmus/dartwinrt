@@ -24,8 +24,7 @@ import 'igeocoordinate.dart';
 const IID_IGeocoordinateWithPositionData =
     '{95e634be-dbd6-40ac-b8f2-a65c0340d9a6}';
 
-/// {@category Interface}
-/// {@category winrt}
+/// {@category interface}
 class IGeocoordinateWithPositionData extends IInspectable
     implements IGeocoordinate {
   // vtable begins at 6, is 2 entries long.

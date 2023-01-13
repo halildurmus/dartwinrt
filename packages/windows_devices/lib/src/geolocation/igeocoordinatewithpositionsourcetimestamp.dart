@@ -20,8 +20,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IGeocoordinateWithPositionSourceTimestamp =
     '{8543fc02-c9f1-4610-afe0-8bc3a6a87036}';
 
-/// {@category Interface}
-/// {@category winrt}
+/// {@category interface}
 class IGeocoordinateWithPositionSourceTimestamp extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IGeocoordinateWithPositionSourceTimestamp.fromRawPointer(super.ptr);

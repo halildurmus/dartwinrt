@@ -21,8 +21,7 @@ import 'enums.g.dart';
 /// @nodoc
 const IID_IDevicePickerFilter = '{91db92a2-57cb-48f1-9b59-a59b7a1f02a2}';
 
-/// {@category Interface}
-/// {@category winrt}
+/// {@category interface}
 class IDevicePickerFilter extends IInspectable {
   // vtable begins at 6, is 2 entries long.
   IDevicePickerFilter.fromRawPointer(super.ptr);

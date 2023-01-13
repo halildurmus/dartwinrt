@@ -22,8 +22,7 @@ import 'networkitem.dart';
 
 /// Represents a network adapter.
 ///
-/// {@category Class}
-/// {@category winrt}
+/// {@category class}
 class NetworkAdapter extends IInspectable implements INetworkAdapter {
   NetworkAdapter.fromRawPointer(super.ptr);
 

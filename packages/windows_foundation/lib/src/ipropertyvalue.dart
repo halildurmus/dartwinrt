@@ -25,8 +25,7 @@ const IID_IPropertyValue = '{4bd682dd-7554-40e9-9a9b-82654ede7e62}';
 
 /// Represents a value in a property store.
 ///
-/// {@category Interface}
-/// {@category winrt}
+/// {@category interface}
 class IPropertyValue extends IInspectable {
   // vtable begins at 6, is 39 entries long.
   IPropertyValue.fromRawPointer(super.ptr);

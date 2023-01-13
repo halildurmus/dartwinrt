@@ -12,7 +12,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 /// Indicates the type of devices that the user wants to enumerate.
 ///
-/// {@category Enum}
+/// {@category enum}
 enum DeviceClass implements WinRTEnum {
   all(0),
   audioCapture(1),
@@ -37,7 +37,7 @@ enum DeviceClass implements WinRTEnum {
 /// device. Used with the SetDisplayStatus method on the DevicePicker
 /// object.
 ///
-/// {@category Enum}
+/// {@category enum}
 class DevicePickerDisplayStatusOptions extends WinRTEnum {
   const DevicePickerDisplayStatusOptions(super.value, {super.name});
 

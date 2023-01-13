@@ -22,8 +22,7 @@ import 'winrt_helpers.dart';
 /// @nodoc
 const IID_IUriRuntimeClassFactory = '{44a9796f-723e-4fdf-a218-033e75b0c084}';
 
-/// {@category Interface}
-/// {@category winrt}
+/// {@category interface}
 class IUriRuntimeClassFactory extends IInspectable {
   // vtable begins at 6, is 2 entries long.
   IUriRuntimeClassFactory.fromRawPointer(super.ptr);

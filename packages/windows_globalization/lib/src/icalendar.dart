@@ -22,8 +22,7 @@ import 'enums.g.dart';
 /// @nodoc
 const IID_ICalendar = '{ca30221d-86d9-40fb-a26b-d44eb7cf08ea}';
 
-/// {@category Interface}
-/// {@category winrt}
+/// {@category interface}
 class ICalendar extends IInspectable {
   // vtable begins at 6, is 98 entries long.
   ICalendar.fromRawPointer(super.ptr);

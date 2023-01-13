@@ -23,8 +23,7 @@ import 'idevicepickerfilter.dart';
 /// device picker. The filter parameters are OR-ed together to build the
 /// resulting filter.
 ///
-/// {@category Class}
-/// {@category winrt}
+/// {@category class}
 class DevicePickerFilter extends IInspectable implements IDevicePickerFilter {
   DevicePickerFilter.fromRawPointer(super.ptr);
 

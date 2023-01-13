@@ -24,8 +24,6 @@ extension WinRTStringConversion on Pointer<HSTRING> {
 /// final object = CreateObject('Windows.Globalization.Calendar', IID_ICalendar);
 /// final calendar = ICalendar.fromRawPointer(object);
 /// ```
-///
-/// {@category winrt}
 Pointer<COMObject> CreateObject(String className, String iid) {
   // Activates the specified Windows Runtime class
   final inspectablePtr = ActivateClass(className);
@@ -45,8 +43,6 @@ Pointer<COMObject> CreateObject(String className, String iid) {
 /// It is the caller's responsibility to deallocate the returned pointer when
 /// they are finished with it. A FFI `Arena` may be passed as a custom allocator
 /// for ease of memory management.
-///
-/// {@category winrt}
 Pointer<COMObject> ActivateClass(String className,
     {Allocator allocator = calloc}) {
   // Create a HSTRING representing the object
@@ -87,8 +83,6 @@ Pointer<COMObject> ActivateClass(String className,
 /// It is the caller's responsibility to deallocate the returned pointer when
 /// they are finished with it. A FFI `Arena` may be passed as a custom allocator
 /// for ease of memory management.
-///
-/// {@category winrt}
 Pointer<COMObject> CreateActivationFactory(String className, String iid,
     {Allocator allocator = calloc}) {
   // Create a HSTRING representing the object
@@ -177,7 +171,7 @@ bool isSubtypeOfInspectable<T>() => isSubtype<T, IInspectable>();
 
 /// Represents the trust level of an activatable class.
 ///
-/// {@category Enum}
+/// {@category enum}
 enum TrustLevel {
   /// The component has access to resources that are not protected.
   baseTrust,

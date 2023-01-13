@@ -18,7 +18,7 @@ import 'package:ffi/ffi.dart';
 
 /// Describes a 3*2 floating point matrix.
 ///
-/// {@category Struct}
+/// {@category struct}
 class Matrix3x2 extends Struct {
   @Float()
   external double M11;
@@ -41,7 +41,7 @@ class Matrix3x2 extends Struct {
 
 /// Describes a 4*4 floating point matrix.
 ///
-/// {@category Struct}
+/// {@category struct}
 class Matrix4x4 extends Struct {
   @Float()
   external double M11;
@@ -94,7 +94,7 @@ class Matrix4x4 extends Struct {
 
 /// Describes a plane (a flat, two-dimensional surface).
 ///
-/// {@category Struct}
+/// {@category struct}
 class Plane extends Struct {
   external Vector3 Normal;
 
@@ -105,7 +105,7 @@ class Plane extends Struct {
 /// Describes a quaternion, which is an abstract representation of an
 /// orientation in space that is based on complex numbers.
 ///
-/// {@category Struct}
+/// {@category struct}
 class Quaternion extends Struct {
   @Float()
   external double X;
@@ -122,7 +122,7 @@ class Quaternion extends Struct {
 
 /// Describes a number that can be created by the division of 2 integers.
 ///
-/// {@category Struct}
+/// {@category struct}
 class Rational extends Struct {
   @Uint32()
   external int Numerator;
@@ -133,7 +133,7 @@ class Rational extends Struct {
 
 /// Describes a vector of two floating-point components.
 ///
-/// {@category Struct}
+/// {@category struct}
 class Vector2 extends Struct {
   @Float()
   external double X;
@@ -144,7 +144,7 @@ class Vector2 extends Struct {
 
 /// Describes a vector of three floating-point components.
 ///
-/// {@category Struct}
+/// {@category struct}
 class Vector3 extends Struct {
   @Float()
   external double X;
@@ -158,7 +158,7 @@ class Vector3 extends Struct {
 
 /// Describes a vector of four floating-point components.
 ///
-/// {@category Struct}
+/// {@category struct}
 class Vector4 extends Struct {
   @Float()
   external double X;

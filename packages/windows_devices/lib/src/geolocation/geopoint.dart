@@ -24,8 +24,7 @@ import 'structs.g.dart';
 
 /// Describes a geographic point.
 ///
-/// {@category Class}
-/// {@category winrt}
+/// {@category class}
 class Geopoint extends IInspectable implements IGeopoint, IGeoshape {
   Geopoint.fromRawPointer(super.ptr);
 

@@ -24,8 +24,7 @@ import 'winrt_helpers.dart';
 /// Represents a value in a property store (such as a [PropertySet]
 /// instance).
 ///
-/// {@category Class}
-/// {@category winrt}
+/// {@category class}
 class PropertyValue extends IInspectable {
   PropertyValue.fromRawPointer(super.ptr);
 

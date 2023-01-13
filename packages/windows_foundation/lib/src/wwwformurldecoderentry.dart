@@ -21,8 +21,7 @@ import 'winrt_helpers.dart';
 
 /// Represents a name-value pair in a URL query string.
 ///
-/// {@category Class}
-/// {@category winrt}
+/// {@category class}
 class WwwFormUrlDecoderEntry extends IInspectable
     implements IWwwFormUrlDecoderEntry {
   WwwFormUrlDecoderEntry.fromRawPointer(super.ptr);

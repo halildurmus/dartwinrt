@@ -20,8 +20,7 @@ import 'icivicaddress.dart';
 
 /// Unsupported API.
 ///
-/// {@category Class}
-/// {@category winrt}
+/// {@category class}
 class CivicAddress extends IInspectable implements ICivicAddress {
   CivicAddress.fromRawPointer(super.ptr);
 

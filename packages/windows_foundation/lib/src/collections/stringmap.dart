@@ -26,8 +26,7 @@ import 'iobservablemap.dart';
 
 /// An associative collection, also known as a map or a dictionary.
 ///
-/// {@category Class}
-/// {@category winrt}
+/// {@category class}
 class StringMap extends IInspectable
     implements
         IMap<String, String>,

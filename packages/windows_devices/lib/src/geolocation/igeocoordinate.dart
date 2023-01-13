@@ -19,8 +19,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// @nodoc
 const IID_IGeocoordinate = '{ee21a3aa-976a-4c70-803d-083ea55bcbc4}';
 
-/// {@category Interface}
-/// {@category winrt}
+/// {@category interface}
 class IGeocoordinate extends IInspectable {
   // vtable begins at 6, is 8 entries long.
   IGeocoordinate.fromRawPointer(super.ptr);

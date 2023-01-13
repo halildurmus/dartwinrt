@@ -13,7 +13,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// Defines the set of directional preferences for the user interface
 /// presented by the app view.
 ///
-/// {@category Enum}
+/// {@category enum}
 enum HandPreference implements WinRTEnum {
   leftHanded(0),
   rightHanded(1);
@@ -31,7 +31,7 @@ enum HandPreference implements WinRTEnum {
 
 /// Defines constants that specify known system color values.
 ///
-/// {@category Enum}
+/// {@category enum}
 enum UIColorType implements WinRTEnum {
   background(0),
   foreground(1),
@@ -57,7 +57,7 @@ enum UIColorType implements WinRTEnum {
 
 /// Defines the set of user interface element types.
 ///
-/// {@category Enum}
+/// {@category enum}
 enum UIElementType implements WinRTEnum {
   activeCaption(0),
   background(1),

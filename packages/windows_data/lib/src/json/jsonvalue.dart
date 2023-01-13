@@ -25,8 +25,7 @@ import 'jsonobject.dart';
 
 /// Implements the [IJsonValue] interface which represents a JSON value.
 ///
-/// {@category Class}
-/// {@category winrt}
+/// {@category class}
 class JsonValue extends IInspectable implements IJsonValue, IStringable {
   JsonValue.fromRawPointer(super.ptr);
 

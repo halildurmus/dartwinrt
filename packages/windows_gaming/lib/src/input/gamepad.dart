@@ -30,8 +30,7 @@ import 'structs.g.dart';
 
 /// Represents a gamepad.
 ///
-/// {@category Class}
-/// {@category winrt}
+/// {@category class}
 class Gamepad extends IInspectable
     implements
         IGamepad,
