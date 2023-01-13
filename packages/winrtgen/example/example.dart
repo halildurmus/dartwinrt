@@ -19,7 +19,8 @@ void printStruct() {
   final structTypeDef =
       MetadataStore.getMetadataForType('Windows.Gaming.Input.GamepadReading');
   if (structTypeDef != null) {
-    final structProjection = StructProjection(structTypeDef, 'GamepadReading');
+    final structProjection =
+        StructProjection(structTypeDef, 'GamepadReading', category: 'struct');
     print(structProjection);
   }
 }
