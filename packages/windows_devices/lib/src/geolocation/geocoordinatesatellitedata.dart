@@ -17,6 +17,7 @@ import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
 import 'igeocoordinatesatellitedata.dart';
+import 'igeocoordinatesatellitedata2.dart';
 
 /// Provides additional information about a Geocoordinate. This information
 /// is only applicable to position estimates obtained using satellite
@@ -24,7 +25,7 @@ import 'igeocoordinatesatellitedata.dart';
 ///
 /// {@category class}
 class GeocoordinateSatelliteData extends IInspectable
-    implements IGeocoordinateSatelliteData {
+    implements IGeocoordinateSatelliteData, IGeocoordinateSatelliteData2 {
   GeocoordinateSatelliteData.fromRawPointer(super.ptr);
 
   // IGeocoordinateSatelliteData methods
@@ -42,4 +43,16 @@ class GeocoordinateSatelliteData extends IInspectable
   @override
   double? get verticalDilutionOfPrecision =>
       _iGeocoordinateSatelliteData.verticalDilutionOfPrecision;
+
+  // IGeocoordinateSatelliteData2 methods
+  late final _iGeocoordinateSatelliteData2 =
+      IGeocoordinateSatelliteData2.from(this);
+
+  @override
+  double? get geometricDilutionOfPrecision =>
+      _iGeocoordinateSatelliteData2.geometricDilutionOfPrecision;
+
+  @override
+  double? get timeDilutionOfPrecision =>
+      _iGeocoordinateSatelliteData2.timeDilutionOfPrecision;
 }

@@ -23,6 +23,7 @@ import 'igeocoordinate.dart';
 import 'igeocoordinatewithpoint.dart';
 import 'igeocoordinatewithpositiondata.dart';
 import 'igeocoordinatewithpositionsourcetimestamp.dart';
+import 'igeocoordinatewithremotesource.dart';
 
 /// Contains the information for identifying a geographic location.
 ///
@@ -32,7 +33,8 @@ class Geocoordinate extends IInspectable
         IGeocoordinate,
         IGeocoordinateWithPositionData,
         IGeocoordinateWithPoint,
-        IGeocoordinateWithPositionSourceTimestamp {
+        IGeocoordinateWithPositionSourceTimestamp,
+        IGeocoordinateWithRemoteSource {
   Geocoordinate.fromRawPointer(super.ptr);
 
   // IGeocoordinate methods
@@ -87,4 +89,11 @@ class Geocoordinate extends IInspectable
   @override
   DateTime? get positionSourceTimestamp =>
       _iGeocoordinateWithPositionSourceTimestamp.positionSourceTimestamp;
+
+  // IGeocoordinateWithRemoteSource methods
+  late final _iGeocoordinateWithRemoteSource =
+      IGeocoordinateWithRemoteSource.from(this);
+
+  @override
+  bool get isRemoteSource => _iGeocoordinateWithRemoteSource.isRemoteSource;
 }

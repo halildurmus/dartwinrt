@@ -109,7 +109,7 @@ class WinRTInterfaceProjection extends ComInterfaceProjection {
         'package:win32/win32.dart',
         if (currentPackageName == 'windows_foundation') ...[
           relativePathTo('../internal.dart'),
-          relativePathTo('packages/windows_foundation/winrt_callbacks.dart'),
+          relativePathTo('packages/windows_foundation/callbacks.dart'),
           relativePathTo('packages/windows_foundation/winrt_helpers.dart'),
         ] else ...[
           'package:windows_foundation/internal.dart',
