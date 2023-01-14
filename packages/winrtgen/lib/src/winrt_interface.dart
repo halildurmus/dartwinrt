@@ -204,7 +204,7 @@ class WinRTInterfaceProjection extends ComInterfaceProjection {
   String get shortName => stripGenerics(lastComponent(typeDef.name));
 
   @override
-  String get fromCOMObjectHelper => '''
+  String get fromInterfaceHelper => '''
   factory $shortName.from(IInspectable interface) =>
       $shortName.fromRawPointer(interface.toInterface(IID_$shortName));''';
 
@@ -260,7 +260,7 @@ class WinRTInterfaceProjection extends ComInterfaceProjection {
         // vtable begins at $vtableStart, is ${methodProjections.length} entries long.
         $shortName.fromRawPointer(super.ptr);
 
-        $fromCOMObjectHelper
+        $fromInterfaceHelper
 
         ${methodProjections.map((p) => p.toString()).join('\n')}
 
