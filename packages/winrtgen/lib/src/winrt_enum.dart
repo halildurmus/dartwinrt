@@ -9,12 +9,14 @@ import 'package:winmd/winmd.dart';
 class WinRTEnumProjection {
   final TypeDef typeDef;
   final String enumName;
+  final String category;
   final String comment;
 
-  WinRTEnumProjection(this.typeDef, this.enumName, {this.comment = ''});
+  WinRTEnumProjection(this.typeDef, this.enumName,
+      {this.category = 'enum', this.comment = ''});
 
   String get classPreamble {
-    const enumCategoryComment = '/// {@category enum}';
+    final enumCategoryComment = '/// {@category $category}';
     final classComment = wrapCommentText(comment);
     final docComment = classComment.isEmpty
         ? enumCategoryComment
