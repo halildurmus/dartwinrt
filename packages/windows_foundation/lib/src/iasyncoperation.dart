@@ -7,10 +7,10 @@ import 'dart:ffi';
 import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
 
+import 'callbacks.dart';
 import 'enums.g.dart';
 import 'iasyncinfo.dart';
 import 'uri.dart' as winrt_uri;
-import 'winrt_callbacks.dart';
 import 'winrt_helpers.dart';
 
 /// Represents an asynchronous operation, which returns a result upon

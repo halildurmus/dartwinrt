@@ -23,7 +23,7 @@ import 'inotificationdatafactory.dart';
 ///
 /// {@category class}
 class NotificationData extends IInspectable implements INotificationData {
-  NotificationData() : super(ActivateClass(_className));
+  NotificationData() : super(activateClass(_className));
   NotificationData.fromRawPointer(super.ptr);
 
   static const _className = 'Windows.UI.Notifications.NotificationData';
@@ -33,7 +33,7 @@ class NotificationData extends IInspectable implements INotificationData {
       IIterable<IKeyValuePair<String, String>> initialValues,
       int sequenceNumber) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_INotificationDataFactory);
+        createActivationFactory(_className, IID_INotificationDataFactory);
     final object =
         INotificationDataFactory.fromRawPointer(activationFactoryPtr);
 
@@ -48,7 +48,7 @@ class NotificationData extends IInspectable implements INotificationData {
   static NotificationData createNotificationDataWithValues(
       IIterable<IKeyValuePair<String, String>> initialValues) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_INotificationDataFactory);
+        createActivationFactory(_className, IID_INotificationDataFactory);
     final object =
         INotificationDataFactory.fromRawPointer(activationFactoryPtr);
 

@@ -19,7 +19,7 @@ import 'package:windows_graphics/windows_graphics.dart';
 import 'package:windows_networking/windows_networking.dart';
 import 'package:windows_storage/windows_storage.dart';
 
-// Exhaustively test the WinRT Collections to make sure constructors,
+// Exhaustively test the WinRT collection interfaces to make sure constructors,
 // properties and methods are working correctly.
 
 void main() {
@@ -1899,7 +1899,7 @@ void main() {
       setUp(() {
         // ignore: constant_identifier_names
         const IID_IVpnPlugInProfile = '{0EDF0DA4-4F00-4589-8D7B-4BF988F6542C}';
-        final object = CreateObject(
+        final object = createObject(
             'Windows.Networking.Vpn.VpnPlugInProfile', IID_IVpnPlugInProfile);
         allocator = Arena();
         vector = getServerUris(object);
@@ -2257,7 +2257,7 @@ void main() {
 
       setUp(() {
         allocator = Arena();
-        final object = CreateActivationFactory(
+        final object = createActivationFactory(
             'Windows.Networking.Connectivity.NetworkInformation',
             '{5074f851-950d-4165-9c15-365619481eea}' // IID_INetworkInformationStatics,
             );

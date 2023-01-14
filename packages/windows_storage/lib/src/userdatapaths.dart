@@ -32,7 +32,7 @@ class UserDataPaths extends IInspectable implements IUserDataPaths {
   // IUserDataPathsStatics methods
   static UserDataPaths? getForUser(User? user) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IUserDataPathsStatics);
+        createActivationFactory(_className, IID_IUserDataPathsStatics);
     final object = IUserDataPathsStatics.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -44,7 +44,7 @@ class UserDataPaths extends IInspectable implements IUserDataPaths {
 
   static UserDataPaths? getDefault() {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IUserDataPathsStatics);
+        createActivationFactory(_className, IID_IUserDataPathsStatics);
     final object = IUserDataPathsStatics.fromRawPointer(activationFactoryPtr);
 
     try {

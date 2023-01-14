@@ -27,7 +27,7 @@ import 'itimezoneoncalendar.dart';
 ///
 /// {@category class}
 class Calendar extends IInspectable implements ICalendar, ITimeZoneOnCalendar {
-  Calendar() : super(ActivateClass(_className));
+  Calendar() : super(activateClass(_className));
   Calendar.fromRawPointer(super.ptr);
 
   static const _className = 'Windows.Globalization.Calendar';
@@ -36,7 +36,7 @@ class Calendar extends IInspectable implements ICalendar, ITimeZoneOnCalendar {
   static Calendar createCalendarDefaultCalendarAndClock(
       IIterable<String> languages) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_ICalendarFactory);
+        createActivationFactory(_className, IID_ICalendarFactory);
     final object = ICalendarFactory.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -49,7 +49,7 @@ class Calendar extends IInspectable implements ICalendar, ITimeZoneOnCalendar {
   static Calendar createCalendar(
       IIterable<String> languages, String calendar, String clock) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_ICalendarFactory);
+        createActivationFactory(_className, IID_ICalendarFactory);
     final object = ICalendarFactory.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -63,7 +63,7 @@ class Calendar extends IInspectable implements ICalendar, ITimeZoneOnCalendar {
   static Calendar createCalendarWithTimeZone(IIterable<String> languages,
       String calendar, String clock, String timeZoneId) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_ICalendarFactory2);
+        createActivationFactory(_className, IID_ICalendarFactory2);
     final object = ICalendarFactory2.fromRawPointer(activationFactoryPtr);
 
     try {

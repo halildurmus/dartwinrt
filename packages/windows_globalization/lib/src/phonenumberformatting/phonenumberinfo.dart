@@ -34,7 +34,7 @@ class PhoneNumberInfo extends IInspectable
   // IPhoneNumberInfoFactory methods
   static PhoneNumberInfo create(String number) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IPhoneNumberInfoFactory);
+        createActivationFactory(_className, IID_IPhoneNumberInfoFactory);
     final object = IPhoneNumberInfoFactory.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -48,7 +48,7 @@ class PhoneNumberInfo extends IInspectable
   static PhoneNumberParseResult tryParse(
       String input, PhoneNumberInfo phoneNumber) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IPhoneNumberInfoStatics);
+        createActivationFactory(_className, IID_IPhoneNumberInfoStatics);
     final object = IPhoneNumberInfoStatics.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -61,7 +61,7 @@ class PhoneNumberInfo extends IInspectable
   static PhoneNumberParseResult tryParseWithRegion(
       String input, String regionCode, PhoneNumberInfo phoneNumber) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IPhoneNumberInfoStatics);
+        createActivationFactory(_className, IID_IPhoneNumberInfoStatics);
     final object = IPhoneNumberInfoStatics.fromRawPointer(activationFactoryPtr);
 
     try {

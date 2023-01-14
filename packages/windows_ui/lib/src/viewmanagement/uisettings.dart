@@ -36,7 +36,7 @@ class UISettings extends IInspectable
         IUISettings4,
         IUISettings5,
         IUISettings6 {
-  UISettings() : super(ActivateClass(_className));
+  UISettings() : super(activateClass(_className));
   UISettings.fromRawPointer(super.ptr);
 
   static const _className = 'Windows.UI.ViewManagement.UISettings';

@@ -85,7 +85,7 @@ void main() {
     test('WinRT getTrustLevel test of partial trust class', () {
       const className = 'Windows.Storage.Pickers.FileOpenPicker';
 
-      final object = CreateObject(className, IID_IInspectable);
+      final object = createObject(className, IID_IInspectable);
       final inspectableObject = IInspectable(object);
       expect(inspectableObject.trustLevel, equals(TrustLevel.partialTrust));
 

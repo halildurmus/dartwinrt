@@ -24,7 +24,7 @@ import 'iprinting3dmultiplepropertymaterial.dart';
 /// {@category class}
 class Printing3DMultiplePropertyMaterial extends IInspectable
     implements IPrinting3DMultiplePropertyMaterial {
-  Printing3DMultiplePropertyMaterial() : super(ActivateClass(_className));
+  Printing3DMultiplePropertyMaterial() : super(activateClass(_className));
   Printing3DMultiplePropertyMaterial.fromRawPointer(super.ptr);
 
   static const _className =

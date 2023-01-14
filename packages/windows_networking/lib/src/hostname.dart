@@ -33,7 +33,7 @@ class HostName extends IInspectable implements IHostName, IStringable {
   // IHostNameFactory methods
   static HostName createHostName(String hostName) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IHostNameFactory);
+        createActivationFactory(_className, IID_IHostNameFactory);
     final object = IHostNameFactory.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -46,7 +46,7 @@ class HostName extends IInspectable implements IHostName, IStringable {
   // IHostNameStatics methods
   static int compare(String value1, String value2) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IHostNameStatics);
+        createActivationFactory(_className, IID_IHostNameStatics);
     final object = IHostNameStatics.fromRawPointer(activationFactoryPtr);
 
     try {

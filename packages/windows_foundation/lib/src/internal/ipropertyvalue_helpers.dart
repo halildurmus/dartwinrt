@@ -7,12 +7,12 @@ import 'dart:ffi';
 import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
 
+import '../constants.dart';
 import '../enums.g.dart';
 import '../ipropertyvalue.dart';
 import '../ireference.dart';
 import '../propertyvalue.dart';
 import '../structs.g.dart';
-import '../winrt_constants.dart';
 import '../winrt_helpers.dart';
 import 'comobject_pointer.dart';
 import 'hstring_array.dart';

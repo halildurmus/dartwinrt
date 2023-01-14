@@ -12,8 +12,7 @@ import 'package:win32/win32.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 import 'package:windows_globalization/windows_globalization.dart';
 
-// Test the WinRT IReference<T> types to make sure everything is working
-// correctly.
+// Test the IReference<T> types to make sure everything is working correctly.
 
 void main() {
   if (isWindowsRuntimeAvailable()) {

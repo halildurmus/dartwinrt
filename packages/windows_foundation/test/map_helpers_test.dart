@@ -8,8 +8,7 @@ import 'package:windows_devices/windows_devices.dart';
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
-// Test the WinRT map helper functions to make sure everything is working
-// correctly.
+// Test the map helper functions to make sure everything is working correctly.
 
 void main() {
   test('isSupportedKeyValuePair', () {

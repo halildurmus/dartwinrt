@@ -26,7 +26,7 @@ import 'phonenumberinfo.dart';
 /// {@category class}
 class PhoneNumberFormatter extends IInspectable
     implements IPhoneNumberFormatter {
-  PhoneNumberFormatter() : super(ActivateClass(_className));
+  PhoneNumberFormatter() : super(activateClass(_className));
   PhoneNumberFormatter.fromRawPointer(super.ptr);
 
   static const _className =
@@ -35,7 +35,7 @@ class PhoneNumberFormatter extends IInspectable
   // IPhoneNumberFormatterStatics methods
   static void tryCreate(String regionCode, PhoneNumberFormatter phoneNumber) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IPhoneNumberFormatterStatics);
+        createActivationFactory(_className, IID_IPhoneNumberFormatterStatics);
     final object =
         IPhoneNumberFormatterStatics.fromRawPointer(activationFactoryPtr);
 
@@ -48,7 +48,7 @@ class PhoneNumberFormatter extends IInspectable
 
   static int getCountryCodeForRegion(String regionCode) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IPhoneNumberFormatterStatics);
+        createActivationFactory(_className, IID_IPhoneNumberFormatterStatics);
     final object =
         IPhoneNumberFormatterStatics.fromRawPointer(activationFactoryPtr);
 
@@ -62,7 +62,7 @@ class PhoneNumberFormatter extends IInspectable
   static String getNationalDirectDialingPrefixForRegion(
       String regionCode, bool stripNonDigit) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IPhoneNumberFormatterStatics);
+        createActivationFactory(_className, IID_IPhoneNumberFormatterStatics);
     final object =
         IPhoneNumberFormatterStatics.fromRawPointer(activationFactoryPtr);
 
@@ -76,7 +76,7 @@ class PhoneNumberFormatter extends IInspectable
 
   static String wrapWithLeftToRightMarkers(String number) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IPhoneNumberFormatterStatics);
+        createActivationFactory(_className, IID_IPhoneNumberFormatterStatics);
     final object =
         IPhoneNumberFormatterStatics.fromRawPointer(activationFactoryPtr);
 

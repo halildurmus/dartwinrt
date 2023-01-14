@@ -34,7 +34,7 @@ class JsonValue extends IInspectable implements IJsonValue, IStringable {
   // IJsonValueStatics methods
   static JsonValue? parse(String input) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IJsonValueStatics);
+        createActivationFactory(_className, IID_IJsonValueStatics);
     final object = IJsonValueStatics.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -46,7 +46,7 @@ class JsonValue extends IInspectable implements IJsonValue, IStringable {
 
   static bool tryParse(String input, JsonValue result) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IJsonValueStatics);
+        createActivationFactory(_className, IID_IJsonValueStatics);
     final object = IJsonValueStatics.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -58,7 +58,7 @@ class JsonValue extends IInspectable implements IJsonValue, IStringable {
 
   static JsonValue? createBooleanValue(bool input) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IJsonValueStatics);
+        createActivationFactory(_className, IID_IJsonValueStatics);
     final object = IJsonValueStatics.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -70,7 +70,7 @@ class JsonValue extends IInspectable implements IJsonValue, IStringable {
 
   static JsonValue? createNumberValue(double input) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IJsonValueStatics);
+        createActivationFactory(_className, IID_IJsonValueStatics);
     final object = IJsonValueStatics.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -82,7 +82,7 @@ class JsonValue extends IInspectable implements IJsonValue, IStringable {
 
   static JsonValue? createStringValue(String input) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IJsonValueStatics);
+        createActivationFactory(_className, IID_IJsonValueStatics);
     final object = IJsonValueStatics.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -95,7 +95,7 @@ class JsonValue extends IInspectable implements IJsonValue, IStringable {
   // IJsonValueStatics2 methods
   static JsonValue? createNullValue() {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IJsonValueStatics2);
+        createActivationFactory(_className, IID_IJsonValueStatics2);
     final object = IJsonValueStatics2.fromRawPointer(activationFactoryPtr);
 
     try {

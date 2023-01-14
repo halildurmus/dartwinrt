@@ -15,12 +15,12 @@ import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
 
 import '../../../internal.dart';
+import 'callbacks.dart';
 import 'istringable.dart';
 import 'iuriescapestatics.dart';
 import 'iuriruntimeclass.dart';
 import 'iuriruntimeclassfactory.dart';
 import 'iuriruntimeclasswithabsolutecanonicaluri.dart';
-import 'winrt_callbacks.dart';
 import 'winrt_helpers.dart';
 import 'wwwformurldecoder.dart';
 
@@ -42,7 +42,7 @@ class Uri extends IInspectable
   // IUriRuntimeClassFactory methods
   static Uri createUri(String uri) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IUriRuntimeClassFactory);
+        createActivationFactory(_className, IID_IUriRuntimeClassFactory);
     final object = IUriRuntimeClassFactory.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -54,7 +54,7 @@ class Uri extends IInspectable
 
   static Uri createWithRelativeUri(String baseUri, String relativeUri) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IUriRuntimeClassFactory);
+        createActivationFactory(_className, IID_IUriRuntimeClassFactory);
     final object = IUriRuntimeClassFactory.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -67,7 +67,7 @@ class Uri extends IInspectable
   // IUriEscapeStatics methods
   static String unescapeComponent(String toUnescape) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IUriEscapeStatics);
+        createActivationFactory(_className, IID_IUriEscapeStatics);
     final object = IUriEscapeStatics.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -79,7 +79,7 @@ class Uri extends IInspectable
 
   static String escapeComponent(String toEscape) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IUriEscapeStatics);
+        createActivationFactory(_className, IID_IUriEscapeStatics);
     final object = IUriEscapeStatics.fromRawPointer(activationFactoryPtr);
 
     try {

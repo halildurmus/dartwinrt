@@ -14,8 +14,8 @@ import 'package:windows_foundation/windows_foundation.dart';
 import 'package:windows_globalization/windows_globalization.dart';
 import 'package:windows_storage/windows_storage.dart';
 
-// Test the WinRT PropertyValue object to make sure overrides, properties and
-// methods are working correctly.
+// Test the PropertyValue class to make sure overrides, properties and methods
+// are working correctly.
 
 void main() {
   if (isWindowsRuntimeAvailable()) {

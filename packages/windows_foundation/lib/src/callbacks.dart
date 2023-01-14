@@ -2,7 +2,7 @@
 // details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-// Helper functions to minimize ceremony when calling WinRT APIs.
+// Callbacks used in the WinRT APIs.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
 

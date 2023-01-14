@@ -15,7 +15,7 @@ import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
 
 import '../../../../internal.dart';
-import '../winrt_callbacks.dart';
+import '../callbacks.dart';
 import '../winrt_helpers.dart';
 import 'iiterable.dart';
 import 'iiterator.dart';
@@ -35,7 +35,7 @@ class PropertySet extends IInspectable
         IObservableMap<String, Object?>,
         IMap<String, Object?>,
         IIterable<IKeyValuePair<String, Object?>> {
-  PropertySet() : super(ActivateClass(_className));
+  PropertySet() : super(activateClass(_className));
   PropertySet.fromRawPointer(super.ptr);
 
   static const _className = 'Windows.Foundation.Collections.PropertySet';

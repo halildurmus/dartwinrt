@@ -33,7 +33,7 @@ class Geopoint extends IInspectable implements IGeopoint, IGeoshape {
   // IGeopointFactory methods
   static Geopoint create(BasicGeoposition position) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IGeopointFactory);
+        createActivationFactory(_className, IID_IGeopointFactory);
     final object = IGeopointFactory.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -46,7 +46,7 @@ class Geopoint extends IInspectable implements IGeopoint, IGeoshape {
   static Geopoint createWithAltitudeReferenceSystem(BasicGeoposition position,
       AltitudeReferenceSystem altitudeReferenceSystem) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IGeopointFactory);
+        createActivationFactory(_className, IID_IGeopointFactory);
     final object = IGeopointFactory.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -62,7 +62,7 @@ class Geopoint extends IInspectable implements IGeopoint, IGeoshape {
       AltitudeReferenceSystem altitudeReferenceSystem,
       int spatialReferenceId) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IGeopointFactory);
+        createActivationFactory(_className, IID_IGeopointFactory);
     final object = IGeopointFactory.fromRawPointer(activationFactoryPtr);
 
     try {

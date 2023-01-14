@@ -15,7 +15,7 @@ import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
 
 import '../../../../internal.dart';
-import '../winrt_callbacks.dart';
+import '../callbacks.dart';
 import '../winrt_helpers.dart';
 import 'iiterable.dart';
 import 'iiterator.dart';
@@ -32,7 +32,7 @@ class StringMap extends IInspectable
         IMap<String, String>,
         IIterable<IKeyValuePair<String, String>>,
         IObservableMap<String, String> {
-  StringMap() : super(ActivateClass(_className));
+  StringMap() : super(activateClass(_className));
   StringMap.fromRawPointer(super.ptr);
 
   static const _className = 'Windows.Foundation.Collections.StringMap';

@@ -8,8 +8,8 @@ import 'package:test/test.dart';
 import 'package:win32/win32.dart';
 import 'package:windows_foundation/uri.dart' as winrt_uri;
 
-// Test the WinRT Uri object to make sure overrides, properties and
-// methods are working correctly.
+// Test the WinRT Uri class to make sure overrides, properties and methods are
+// working correctly.
 
 void main() {
   if (isWindowsRuntimeAvailable()) {

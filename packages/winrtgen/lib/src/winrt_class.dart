@@ -29,7 +29,7 @@ class WinRTClassProjection extends WinRTInterfaceProjection {
       .isNotEmpty;
 
   String get defaultConstructor => hasDefaultConstructor
-      ? '$shortName() : super(ActivateClass(_className));'
+      ? '$shortName() : super(activateClass(_className));'
       : '';
 
   String get classNameDeclaration => (hasDefaultConstructor ||

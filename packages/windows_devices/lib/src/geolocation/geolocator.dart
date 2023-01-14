@@ -30,7 +30,7 @@ import 'structs.g.dart';
 /// {@category class}
 class Geolocator extends IInspectable
     implements IGeolocator, IGeolocatorWithScalarAccuracy, IGeolocator2 {
-  Geolocator() : super(ActivateClass(_className));
+  Geolocator() : super(activateClass(_className));
   Geolocator.fromRawPointer(super.ptr);
 
   static const _className = 'Windows.Devices.Geolocation.Geolocator';
@@ -38,7 +38,7 @@ class Geolocator extends IInspectable
   // IGeolocatorStatics methods
   static Future<GeolocationAccessStatus> requestAccessAsync() {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IGeolocatorStatics);
+        createActivationFactory(_className, IID_IGeolocatorStatics);
     final object = IGeolocatorStatics.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -51,7 +51,7 @@ class Geolocator extends IInspectable
   static Future<List<Geoposition>> getGeopositionHistoryAsync(
       DateTime startTime) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IGeolocatorStatics);
+        createActivationFactory(_className, IID_IGeolocatorStatics);
     final object = IGeolocatorStatics.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -64,7 +64,7 @@ class Geolocator extends IInspectable
   static Future<List<Geoposition>> getGeopositionHistoryWithDurationAsync(
       DateTime startTime, Duration duration) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IGeolocatorStatics);
+        createActivationFactory(_className, IID_IGeolocatorStatics);
     final object = IGeolocatorStatics.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -77,7 +77,7 @@ class Geolocator extends IInspectable
   // IGeolocatorStatics2 methods
   static bool get isDefaultGeopositionRecommended {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IGeolocatorStatics2);
+        createActivationFactory(_className, IID_IGeolocatorStatics2);
     final object = IGeolocatorStatics2.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -89,7 +89,7 @@ class Geolocator extends IInspectable
 
   static set defaultGeoposition(BasicGeoposition? value) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IGeolocatorStatics2);
+        createActivationFactory(_className, IID_IGeolocatorStatics2);
     final object = IGeolocatorStatics2.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -101,7 +101,7 @@ class Geolocator extends IInspectable
 
   static BasicGeoposition? get defaultGeoposition {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IGeolocatorStatics2);
+        createActivationFactory(_className, IID_IGeolocatorStatics2);
     final object = IGeolocatorStatics2.fromRawPointer(activationFactoryPtr);
 
     try {

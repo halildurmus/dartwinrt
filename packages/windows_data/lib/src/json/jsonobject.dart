@@ -36,7 +36,7 @@ class JsonObject extends IInspectable
         IIterable<IKeyValuePair<String, IJsonValue?>>,
         IJsonObjectWithDefaultValues,
         IStringable {
-  JsonObject() : super(ActivateClass(_className));
+  JsonObject() : super(activateClass(_className));
   JsonObject.fromRawPointer(super.ptr);
 
   static const _className = 'Windows.Data.Json.JsonObject';
@@ -44,7 +44,7 @@ class JsonObject extends IInspectable
   // IJsonObjectStatics methods
   static JsonObject? parse(String input) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IJsonObjectStatics);
+        createActivationFactory(_className, IID_IJsonObjectStatics);
     final object = IJsonObjectStatics.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -56,7 +56,7 @@ class JsonObject extends IInspectable
 
   static bool tryParse(String input, JsonObject result) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IJsonObjectStatics);
+        createActivationFactory(_className, IID_IJsonObjectStatics);
     final object = IJsonObjectStatics.fromRawPointer(activationFactoryPtr);
 
     try {

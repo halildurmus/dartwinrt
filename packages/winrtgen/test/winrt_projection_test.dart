@@ -549,7 +549,7 @@ void main() {
     expect(
         projection.defaultConstructor,
         equalsIgnoringWhitespace(
-            'FileOpenPicker() : super(ActivateClass(_className));'));
+            'FileOpenPicker() : super(activateClass(_className));'));
   });
 
   test('WinRT class does not project a default constructor', () {

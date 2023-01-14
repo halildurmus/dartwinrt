@@ -38,7 +38,7 @@ class ToastNotification extends IInspectable
   // IToastNotificationFactory methods
   static ToastNotification createToastNotification(Pointer<COMObject> content) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IToastNotificationFactory);
+        createActivationFactory(_className, IID_IToastNotificationFactory);
     final object =
         IToastNotificationFactory.fromRawPointer(activationFactoryPtr);
 

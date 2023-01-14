@@ -21,7 +21,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// {@category class}
 class MediaPropertySet extends IInspectable
     implements IMap<Guid, Object?>, IIterable<IKeyValuePair<Guid, Object?>> {
-  MediaPropertySet() : super(ActivateClass(_className));
+  MediaPropertySet() : super(activateClass(_className));
   MediaPropertySet.fromRawPointer(super.ptr);
 
   static const _className = 'Windows.Media.MediaProperties.MediaPropertySet';

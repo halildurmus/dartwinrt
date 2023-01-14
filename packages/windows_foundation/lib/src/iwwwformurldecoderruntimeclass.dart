@@ -15,11 +15,11 @@ import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
 
 import '../../../internal.dart';
+import 'callbacks.dart';
 import 'collections/iiterable.dart';
 import 'collections/iiterator.dart';
 import 'collections/ivectorview.dart';
 import 'iwwwformurldecoderentry.dart';
-import 'winrt_callbacks.dart';
 import 'winrt_helpers.dart';
 
 /// @nodoc

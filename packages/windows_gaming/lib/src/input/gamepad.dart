@@ -44,7 +44,7 @@ class Gamepad extends IInspectable
   // IGamepadStatics methods
   static int add_GamepadAdded(Pointer<NativeFunction<EventHandler>> value) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IGamepadStatics);
+        createActivationFactory(_className, IID_IGamepadStatics);
     final object = IGamepadStatics.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -56,7 +56,7 @@ class Gamepad extends IInspectable
 
   static void remove_GamepadAdded(int token) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IGamepadStatics);
+        createActivationFactory(_className, IID_IGamepadStatics);
     final object = IGamepadStatics.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -68,7 +68,7 @@ class Gamepad extends IInspectable
 
   static int add_GamepadRemoved(Pointer<NativeFunction<EventHandler>> value) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IGamepadStatics);
+        createActivationFactory(_className, IID_IGamepadStatics);
     final object = IGamepadStatics.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -80,7 +80,7 @@ class Gamepad extends IInspectable
 
   static void remove_GamepadRemoved(int token) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IGamepadStatics);
+        createActivationFactory(_className, IID_IGamepadStatics);
     final object = IGamepadStatics.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -92,7 +92,7 @@ class Gamepad extends IInspectable
 
   static List<Gamepad> get gamepads {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IGamepadStatics);
+        createActivationFactory(_className, IID_IGamepadStatics);
     final object = IGamepadStatics.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -105,7 +105,7 @@ class Gamepad extends IInspectable
   // IGamepadStatics2 methods
   static Gamepad? fromGameController(IGameController? gameController) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IGamepadStatics2);
+        createActivationFactory(_className, IID_IGamepadStatics2);
     final object = IGamepadStatics2.fromRawPointer(activationFactoryPtr);
 
     try {

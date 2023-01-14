@@ -15,13 +15,13 @@ import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
 
 import '../../../internal.dart';
+import 'callbacks.dart';
 import 'collections/iiterable.dart';
 import 'collections/iiterator.dart';
 import 'collections/ivectorview.dart';
 import 'iwwwformurldecoderentry.dart';
 import 'iwwwformurldecoderruntimeclass.dart';
 import 'iwwwformurldecoderruntimeclassfactory.dart';
-import 'winrt_callbacks.dart';
 import 'winrt_helpers.dart';
 
 /// Parses a URL query string, and exposes the results as a read-only vector
@@ -39,7 +39,7 @@ class WwwFormUrlDecoder extends IInspectable
 
   // IWwwFormUrlDecoderRuntimeClassFactory methods
   static WwwFormUrlDecoder createWwwFormUrlDecoder(String query) {
-    final activationFactoryPtr = CreateActivationFactory(
+    final activationFactoryPtr = createActivationFactory(
         _className, IID_IWwwFormUrlDecoderRuntimeClassFactory);
     final object = IWwwFormUrlDecoderRuntimeClassFactory.fromRawPointer(
         activationFactoryPtr);

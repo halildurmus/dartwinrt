@@ -63,7 +63,7 @@ const excludedWindowsRuntimeInterfacesInImplementsMappers = <String>{
   'Windows.Foundation.Collections.IIterable`1',
 };
 
-/// The WinRT types to ignore when generating the imports.
+/// WinRT types to ignore when generating the imports.
 const ignoredWindowsRuntimeTypes = <String>{
   // This is exposed as dart:core's DateTime
   'Windows.Foundation.DateTime',
