@@ -1,5 +1,5 @@
-// Copyright (c) 2020, the Dart project authors.  Please see the AUTHORS file
-// for details. All rights reserved. Use of this source code is governed by a
+// Copyright (c) 2023, the dartwinrt authors. Please see the AUTHORS file for
+// details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
 // Extension method to convert COMObject arrays to List<T>
@@ -24,8 +24,6 @@ extension COMObjectPointer on Pointer<COMObject> {
   /// final pComObject = ...
   /// final list = pComObject.toList(StorageFile.fromRawPointer, length: 4);
   /// ```
-  ///
-  /// {@category winrt}
   List<T> toList<T>(T Function(Pointer<COMObject>) creator, {int length = 1}) {
     final list = <T>[];
 

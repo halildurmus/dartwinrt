@@ -1,4 +1,6 @@
-// propertyvalue.dart
+// Copyright (c) 2023, the dartwinrt authors. Please see the AUTHORS file for
+// details. All rights reserved. Use of this source code is governed by a
+// BSD-style license that can be found in the LICENSE file.
 
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
@@ -6,23 +8,23 @@
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
 // ignore_for_file: no_leading_underscores_for_local_identifiers
 
+import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
 
-import 'internal/hstring_array.dart';
+import '../../../internal.dart';
+import 'callbacks.dart';
 import 'ipropertyvalue.dart';
 import 'ipropertyvaluestatics.dart';
 import 'structs.g.dart';
-import 'winrt_callbacks.dart';
 import 'winrt_helpers.dart';
 
 /// Represents a value in a property store (such as a [PropertySet]
 /// instance).
 ///
-/// {@category Class}
-/// {@category winrt}
+/// {@category class}
 class PropertyValue extends IInspectable {
   PropertyValue.fromRawPointer(super.ptr);
 
@@ -31,7 +33,7 @@ class PropertyValue extends IInspectable {
   // IPropertyValueStatics methods
   static Pointer<COMObject> createEmpty() {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IPropertyValueStatics);
+        createActivationFactory(_className, IID_IPropertyValueStatics);
     final object = IPropertyValueStatics.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -43,7 +45,7 @@ class PropertyValue extends IInspectable {
 
   static IPropertyValue createUInt8(int value) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IPropertyValueStatics);
+        createActivationFactory(_className, IID_IPropertyValueStatics);
     final object = IPropertyValueStatics.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -55,7 +57,7 @@ class PropertyValue extends IInspectable {
 
   static IPropertyValue createInt16(int value) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IPropertyValueStatics);
+        createActivationFactory(_className, IID_IPropertyValueStatics);
     final object = IPropertyValueStatics.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -67,7 +69,7 @@ class PropertyValue extends IInspectable {
 
   static IPropertyValue createUInt16(int value) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IPropertyValueStatics);
+        createActivationFactory(_className, IID_IPropertyValueStatics);
     final object = IPropertyValueStatics.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -79,7 +81,7 @@ class PropertyValue extends IInspectable {
 
   static IPropertyValue createInt32(int value) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IPropertyValueStatics);
+        createActivationFactory(_className, IID_IPropertyValueStatics);
     final object = IPropertyValueStatics.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -91,7 +93,7 @@ class PropertyValue extends IInspectable {
 
   static IPropertyValue createUInt32(int value) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IPropertyValueStatics);
+        createActivationFactory(_className, IID_IPropertyValueStatics);
     final object = IPropertyValueStatics.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -103,7 +105,7 @@ class PropertyValue extends IInspectable {
 
   static IPropertyValue createInt64(int value) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IPropertyValueStatics);
+        createActivationFactory(_className, IID_IPropertyValueStatics);
     final object = IPropertyValueStatics.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -115,7 +117,7 @@ class PropertyValue extends IInspectable {
 
   static IPropertyValue createUInt64(int value) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IPropertyValueStatics);
+        createActivationFactory(_className, IID_IPropertyValueStatics);
     final object = IPropertyValueStatics.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -127,7 +129,7 @@ class PropertyValue extends IInspectable {
 
   static IPropertyValue createSingle(double value) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IPropertyValueStatics);
+        createActivationFactory(_className, IID_IPropertyValueStatics);
     final object = IPropertyValueStatics.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -139,7 +141,7 @@ class PropertyValue extends IInspectable {
 
   static IPropertyValue createDouble(double value) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IPropertyValueStatics);
+        createActivationFactory(_className, IID_IPropertyValueStatics);
     final object = IPropertyValueStatics.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -151,7 +153,7 @@ class PropertyValue extends IInspectable {
 
   static IPropertyValue createChar16(int value) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IPropertyValueStatics);
+        createActivationFactory(_className, IID_IPropertyValueStatics);
     final object = IPropertyValueStatics.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -163,7 +165,7 @@ class PropertyValue extends IInspectable {
 
   static IPropertyValue createBoolean(bool value) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IPropertyValueStatics);
+        createActivationFactory(_className, IID_IPropertyValueStatics);
     final object = IPropertyValueStatics.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -175,7 +177,7 @@ class PropertyValue extends IInspectable {
 
   static IPropertyValue createString(String value) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IPropertyValueStatics);
+        createActivationFactory(_className, IID_IPropertyValueStatics);
     final object = IPropertyValueStatics.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -187,7 +189,7 @@ class PropertyValue extends IInspectable {
 
   static Pointer<COMObject> createInspectable(Pointer<COMObject> value) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IPropertyValueStatics);
+        createActivationFactory(_className, IID_IPropertyValueStatics);
     final object = IPropertyValueStatics.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -199,7 +201,7 @@ class PropertyValue extends IInspectable {
 
   static IPropertyValue createGuid(Guid value) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IPropertyValueStatics);
+        createActivationFactory(_className, IID_IPropertyValueStatics);
     final object = IPropertyValueStatics.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -211,7 +213,7 @@ class PropertyValue extends IInspectable {
 
   static IPropertyValue createDateTime(DateTime value) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IPropertyValueStatics);
+        createActivationFactory(_className, IID_IPropertyValueStatics);
     final object = IPropertyValueStatics.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -223,7 +225,7 @@ class PropertyValue extends IInspectable {
 
   static IPropertyValue createTimeSpan(Duration value) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IPropertyValueStatics);
+        createActivationFactory(_className, IID_IPropertyValueStatics);
     final object = IPropertyValueStatics.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -235,7 +237,7 @@ class PropertyValue extends IInspectable {
 
   static IPropertyValue createPoint(Point value) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IPropertyValueStatics);
+        createActivationFactory(_className, IID_IPropertyValueStatics);
     final object = IPropertyValueStatics.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -247,7 +249,7 @@ class PropertyValue extends IInspectable {
 
   static IPropertyValue createSize(Size value) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IPropertyValueStatics);
+        createActivationFactory(_className, IID_IPropertyValueStatics);
     final object = IPropertyValueStatics.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -259,7 +261,7 @@ class PropertyValue extends IInspectable {
 
   static IPropertyValue createRect(Rect value) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IPropertyValueStatics);
+        createActivationFactory(_className, IID_IPropertyValueStatics);
     final object = IPropertyValueStatics.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -271,7 +273,7 @@ class PropertyValue extends IInspectable {
 
   static IPropertyValue createUInt8Array(int valueSize, Pointer<Uint8> value) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IPropertyValueStatics);
+        createActivationFactory(_className, IID_IPropertyValueStatics);
     final object = IPropertyValueStatics.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -283,7 +285,7 @@ class PropertyValue extends IInspectable {
 
   static IPropertyValue createInt16Array(int valueSize, Pointer<Int16> value) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IPropertyValueStatics);
+        createActivationFactory(_className, IID_IPropertyValueStatics);
     final object = IPropertyValueStatics.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -296,7 +298,7 @@ class PropertyValue extends IInspectable {
   static IPropertyValue createUInt16Array(
       int valueSize, Pointer<Uint16> value) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IPropertyValueStatics);
+        createActivationFactory(_className, IID_IPropertyValueStatics);
     final object = IPropertyValueStatics.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -308,7 +310,7 @@ class PropertyValue extends IInspectable {
 
   static IPropertyValue createInt32Array(int valueSize, Pointer<Int32> value) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IPropertyValueStatics);
+        createActivationFactory(_className, IID_IPropertyValueStatics);
     final object = IPropertyValueStatics.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -321,7 +323,7 @@ class PropertyValue extends IInspectable {
   static IPropertyValue createUInt32Array(
       int valueSize, Pointer<Uint32> value) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IPropertyValueStatics);
+        createActivationFactory(_className, IID_IPropertyValueStatics);
     final object = IPropertyValueStatics.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -333,7 +335,7 @@ class PropertyValue extends IInspectable {
 
   static IPropertyValue createInt64Array(int valueSize, Pointer<Int64> value) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IPropertyValueStatics);
+        createActivationFactory(_className, IID_IPropertyValueStatics);
     final object = IPropertyValueStatics.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -346,7 +348,7 @@ class PropertyValue extends IInspectable {
   static IPropertyValue createUInt64Array(
       int valueSize, Pointer<Uint64> value) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IPropertyValueStatics);
+        createActivationFactory(_className, IID_IPropertyValueStatics);
     final object = IPropertyValueStatics.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -358,7 +360,7 @@ class PropertyValue extends IInspectable {
 
   static IPropertyValue createSingleArray(int valueSize, Pointer<Float> value) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IPropertyValueStatics);
+        createActivationFactory(_className, IID_IPropertyValueStatics);
     final object = IPropertyValueStatics.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -371,7 +373,7 @@ class PropertyValue extends IInspectable {
   static IPropertyValue createDoubleArray(
       int valueSize, Pointer<Double> value) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IPropertyValueStatics);
+        createActivationFactory(_className, IID_IPropertyValueStatics);
     final object = IPropertyValueStatics.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -384,7 +386,7 @@ class PropertyValue extends IInspectable {
   static IPropertyValue createChar16Array(
       int valueSize, Pointer<Uint16> value) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IPropertyValueStatics);
+        createActivationFactory(_className, IID_IPropertyValueStatics);
     final object = IPropertyValueStatics.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -396,7 +398,7 @@ class PropertyValue extends IInspectable {
 
   static IPropertyValue createBooleanArray(int valueSize, Pointer<Bool> value) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IPropertyValueStatics);
+        createActivationFactory(_className, IID_IPropertyValueStatics);
     final object = IPropertyValueStatics.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -409,7 +411,7 @@ class PropertyValue extends IInspectable {
   static IPropertyValue createStringArray(
       int valueSize, Pointer<IntPtr> value) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IPropertyValueStatics);
+        createActivationFactory(_className, IID_IPropertyValueStatics);
     final object = IPropertyValueStatics.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -422,7 +424,7 @@ class PropertyValue extends IInspectable {
   static IPropertyValue createInspectableArray(
       int valueSize, Pointer<COMObject> value) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IPropertyValueStatics);
+        createActivationFactory(_className, IID_IPropertyValueStatics);
     final object = IPropertyValueStatics.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -434,7 +436,7 @@ class PropertyValue extends IInspectable {
 
   static IPropertyValue createGuidArray(int valueSize, Pointer<GUID> value) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IPropertyValueStatics);
+        createActivationFactory(_className, IID_IPropertyValueStatics);
     final object = IPropertyValueStatics.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -447,7 +449,7 @@ class PropertyValue extends IInspectable {
   static IPropertyValue createDateTimeArray(
       int valueSize, Pointer<Uint64> value) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IPropertyValueStatics);
+        createActivationFactory(_className, IID_IPropertyValueStatics);
     final object = IPropertyValueStatics.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -460,7 +462,7 @@ class PropertyValue extends IInspectable {
   static IPropertyValue createTimeSpanArray(
       int valueSize, Pointer<Uint64> value) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IPropertyValueStatics);
+        createActivationFactory(_className, IID_IPropertyValueStatics);
     final object = IPropertyValueStatics.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -472,7 +474,7 @@ class PropertyValue extends IInspectable {
 
   static IPropertyValue createPointArray(int valueSize, Pointer<Point> value) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IPropertyValueStatics);
+        createActivationFactory(_className, IID_IPropertyValueStatics);
     final object = IPropertyValueStatics.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -484,7 +486,7 @@ class PropertyValue extends IInspectable {
 
   static IPropertyValue createSizeArray(int valueSize, Pointer<Size> value) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IPropertyValueStatics);
+        createActivationFactory(_className, IID_IPropertyValueStatics);
     final object = IPropertyValueStatics.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -496,7 +498,7 @@ class PropertyValue extends IInspectable {
 
   static IPropertyValue createRectArray(int valueSize, Pointer<Rect> value) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IPropertyValueStatics);
+        createActivationFactory(_className, IID_IPropertyValueStatics);
     final object = IPropertyValueStatics.fromRawPointer(activationFactoryPtr);
 
     try {

@@ -10,8 +10,8 @@ import 'dart:ffi';
 import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
 
+import '../callbacks.dart';
 import '../internal/hstring_array.dart';
-import '../winrt_callbacks.dart';
 import '../winrt_helpers.dart';
 import 'imap.dart';
 import 'stringmap.dart';
@@ -19,8 +19,7 @@ import 'stringmap.dart';
 /// Notifies listeners of dynamic changes to a map, such as when items are added
 /// or removed.
 ///
-/// {@category Interface}
-/// {@category winrt}
+/// {@category interface}
 class IObservableMap<K, V> extends IInspectable {
   // vtable begins at 6, is 2 entries long.
   IObservableMap.fromRawPointer(super.ptr);

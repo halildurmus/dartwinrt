@@ -1,4 +1,6 @@
-// jsonvalue.dart
+// Copyright (c) 2023, the dartwinrt authors. Please see the AUTHORS file for
+// details. All rights reserved. Use of this source code is governed by a
+// BSD-style license that can be found in the LICENSE file.
 
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
@@ -6,6 +8,7 @@
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
 // ignore_for_file: no_leading_underscores_for_local_identifiers
 
+import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
@@ -22,8 +25,7 @@ import 'jsonobject.dart';
 
 /// Implements the [IJsonValue] interface which represents a JSON value.
 ///
-/// {@category Class}
-/// {@category winrt}
+/// {@category class}
 class JsonValue extends IInspectable implements IJsonValue, IStringable {
   JsonValue.fromRawPointer(super.ptr);
 
@@ -32,7 +34,7 @@ class JsonValue extends IInspectable implements IJsonValue, IStringable {
   // IJsonValueStatics methods
   static JsonValue? parse(String input) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IJsonValueStatics);
+        createActivationFactory(_className, IID_IJsonValueStatics);
     final object = IJsonValueStatics.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -44,7 +46,7 @@ class JsonValue extends IInspectable implements IJsonValue, IStringable {
 
   static bool tryParse(String input, JsonValue result) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IJsonValueStatics);
+        createActivationFactory(_className, IID_IJsonValueStatics);
     final object = IJsonValueStatics.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -56,7 +58,7 @@ class JsonValue extends IInspectable implements IJsonValue, IStringable {
 
   static JsonValue? createBooleanValue(bool input) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IJsonValueStatics);
+        createActivationFactory(_className, IID_IJsonValueStatics);
     final object = IJsonValueStatics.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -68,7 +70,7 @@ class JsonValue extends IInspectable implements IJsonValue, IStringable {
 
   static JsonValue? createNumberValue(double input) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IJsonValueStatics);
+        createActivationFactory(_className, IID_IJsonValueStatics);
     final object = IJsonValueStatics.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -80,7 +82,7 @@ class JsonValue extends IInspectable implements IJsonValue, IStringable {
 
   static JsonValue? createStringValue(String input) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IJsonValueStatics);
+        createActivationFactory(_className, IID_IJsonValueStatics);
     final object = IJsonValueStatics.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -93,7 +95,7 @@ class JsonValue extends IInspectable implements IJsonValue, IStringable {
   // IJsonValueStatics2 methods
   static JsonValue? createNullValue() {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IJsonValueStatics2);
+        createActivationFactory(_className, IID_IJsonValueStatics2);
     final object = IJsonValueStatics2.fromRawPointer(activationFactoryPtr);
 
     try {

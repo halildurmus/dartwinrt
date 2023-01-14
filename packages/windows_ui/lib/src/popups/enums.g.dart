@@ -1,5 +1,5 @@
-// Copyright (c) 2020, the Dart project authors.  Please see the AUTHORS file
-// for details. All rights reserved. Use of this source code is governed by a
+// Copyright (c) 2023, the dartwinrt authors. Please see the AUTHORS file for
+// details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
 // Dart representations of common enumerations used in the Windows Runtime APIs.
@@ -13,7 +13,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// Specifies where the context menu should be positioned relative to the
 /// selection rectangle.
 ///
-/// {@category Enum}
+/// {@category enum}
 enum Placement implements WinRTEnum {
   default_(0),
   above(1),

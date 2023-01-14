@@ -1,4 +1,6 @@
-// iasyncaction.dart
+// Copyright (c) 2023, the dartwinrt authors. Please see the AUTHORS file for
+// details. All rights reserved. Use of this source code is governed by a
+// BSD-style license that can be found in the LICENSE file.
 
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
@@ -6,15 +8,17 @@
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
 // ignore_for_file: no_leading_underscores_for_local_identifiers
 
+import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
 
+import '../../../internal.dart';
+import 'callbacks.dart';
 import 'enums.g.dart';
 import 'iasyncinfo.dart';
-import 'internal/hstring_array.dart';
-import 'winrt_callbacks.dart';
+import 'winrt_helpers.dart';
 
 /// @nodoc
 const IID_IAsyncAction = '{5a648006-843a-4da9-865b-9d26e5dfad7b}';
@@ -23,8 +27,7 @@ const IID_IAsyncAction = '{5a648006-843a-4da9-865b-9d26e5dfad7b}';
 /// Windows Runtime asynchronous methods that don't have a result object,
 /// and don't report ongoing progress.
 ///
-/// {@category Interface}
-/// {@category winrt}
+/// {@category interface}
 class IAsyncAction extends IInspectable implements IAsyncInfo {
   // vtable begins at 6, is 3 entries long.
   IAsyncAction.fromRawPointer(super.ptr);

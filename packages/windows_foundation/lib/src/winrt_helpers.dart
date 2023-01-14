@@ -1,10 +1,8 @@
-// Copyright (c) 2020, the Dart project authors.  Please see the AUTHORS file
-// for details. All rights reserved. Use of this source code is governed by a
+// Copyright (c) 2023, the dartwinrt authors. Please see the AUTHORS file for
+// details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
 // Helper functions to minimize ceremony when calling WinRT APIs.
-
-// ignore_for_file: constant_identifier_names, non_constant_identifier_names
 
 import 'dart:ffi';
 
@@ -21,14 +19,12 @@ extension WinRTStringConversion on Pointer<HSTRING> {
 /// Creates a WinRT object.
 ///
 /// ```dart
-/// final object = CreateObject('Windows.Globalization.Calendar', IID_ICalendar);
+/// final object = createObject('Windows.Globalization.Calendar', IID_ICalendar);
 /// final calendar = ICalendar.fromRawPointer(object);
 /// ```
-///
-/// {@category winrt}
-Pointer<COMObject> CreateObject(String className, String iid) {
+Pointer<COMObject> createObject(String className, String iid) {
   // Activates the specified Windows Runtime class
-  final inspectablePtr = ActivateClass(className);
+  final inspectablePtr = activateClass(className);
   // Now use IInspectable to navigate to the relevant interface
   final inspectable = IInspectable(inspectablePtr);
   final objectPtr = inspectable.toInterface(iid);
@@ -45,9 +41,7 @@ Pointer<COMObject> CreateObject(String className, String iid) {
 /// It is the caller's responsibility to deallocate the returned pointer when
 /// they are finished with it. A FFI `Arena` may be passed as a custom allocator
 /// for ease of memory management.
-///
-/// {@category winrt}
-Pointer<COMObject> ActivateClass(String className,
+Pointer<COMObject> activateClass(String className,
     {Allocator allocator = calloc}) {
   // Create a HSTRING representing the object
   final hClassName = convertToHString(className);
@@ -78,7 +72,7 @@ Pointer<COMObject> ActivateClass(String className,
 /// `className` and `iid`.
 ///
 /// ```dart
-/// final object = CreateActivationFactory(
+/// final object = createActivationFactory(
 ///     'Windows.Globalization.PhoneNumberFormatting.PhoneNumberFormatter',
 ///     IID_IPhoneNumberFormatterStatics);
 /// final phoneNumberFormatter = IPhoneNumberFormatterStatics(object);
@@ -87,9 +81,7 @@ Pointer<COMObject> ActivateClass(String className,
 /// It is the caller's responsibility to deallocate the returned pointer when
 /// they are finished with it. A FFI `Arena` may be passed as a custom allocator
 /// for ease of memory management.
-///
-/// {@category winrt}
-Pointer<COMObject> CreateActivationFactory(String className, String iid,
+Pointer<COMObject> createActivationFactory(String className, String iid,
     {Allocator allocator = calloc}) {
   // Create a HSTRING representing the object
   final hClassName = convertToHString(className);
@@ -177,7 +169,7 @@ bool isSubtypeOfInspectable<T>() => isSubtype<T, IInspectable>();
 
 /// Represents the trust level of an activatable class.
 ///
-/// {@category Enum}
+/// {@category enum}
 enum TrustLevel {
   /// The component has access to resources that are not protected.
   baseTrust,

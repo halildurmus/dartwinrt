@@ -2,10 +2,19 @@ name: windows_data
 description: >
   TODO: Write description
 version: 0.0.1
-publish_to: none
+homepage: https://dartwinrt.pub
+repository: https://github.com/halildurmus/dartwinrt
+issue_tracker: https://github.com/halildurmus/dartwinrt/issues?q=is%3Aopen+is%3Aissue+label%3A%22p%3A+windows_data%22
+publish_to: none # TODO: Remove this
 
 environment:
+  # Change upper constraint to <4.0.0 when this PR is deployed to pub.dev:
+  #   https://github.com/dart-lang/pub-dev/pull/6269
   sdk: '>=2.17.0 <3.0.0'
+
+# Declare that this package only works on Windows.
+platforms:
+  windows:
 
 dependencies:
   ffi: ^2.0.1
@@ -14,5 +23,4 @@ dependencies:
     path: ../windows_foundation
 
 dev_dependencies:
-  lints: ^2.0.1
   test: ^1.22.1

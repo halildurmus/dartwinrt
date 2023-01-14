@@ -19,10 +19,9 @@ import 'istorageitem.dart';
 /// Represents a file. Provides information about the file and its content, and
 /// ways to manipulate them.
 ///
-/// {@category Class}
-/// {@category winrt}
+/// {@category class}
 class StorageFile extends IInspectable implements IStorageFile, IStorageItem {
-  StorageFile() : super(ActivateClass(_className));
+  StorageFile() : super(activateClass(_className));
   StorageFile.fromRawPointer(super.ptr);
 
   static const _className = 'Windows.Storage.StorageFile';
@@ -30,7 +29,7 @@ class StorageFile extends IInspectable implements IStorageFile, IStorageItem {
   // IStorageFileStatics methods
   static Future<StorageFile?> getFileFromPathAsync(String path) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IStorageFileStatics);
+        createActivationFactory(_className, IID_IStorageFileStatics);
     final object = IStorageFileStatics.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -42,7 +41,7 @@ class StorageFile extends IInspectable implements IStorageFile, IStorageItem {
 
   static Future<StorageFile?> getFileFromApplicationUriAsync(Uri uri) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IStorageFileStatics);
+        createActivationFactory(_className, IID_IStorageFileStatics);
     final object = IStorageFileStatics.fromRawPointer(activationFactoryPtr);
 
     try {

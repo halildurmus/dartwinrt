@@ -1,4 +1,6 @@
-// inetworkadapter.dart
+// Copyright (c) 2023, the dartwinrt authors. Please see the AUTHORS file for
+// details. All rights reserved. Use of this source code is governed by a
+// BSD-style license that can be found in the LICENSE file.
 
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
@@ -20,8 +22,7 @@ import 'networkitem.dart';
 /// @nodoc
 const IID_INetworkAdapter = '{3b542e03-5388-496c-a8a3-affd39aec2e6}';
 
-/// {@category Interface}
-/// {@category winrt}
+/// {@category interface}
 class INetworkAdapter extends IInspectable {
   // vtable begins at 6, is 6 entries long.
   INetworkAdapter.fromRawPointer(super.ptr);

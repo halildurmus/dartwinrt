@@ -1,5 +1,5 @@
-// Copyright (c) 2020, the Dart project authors.  Please see the AUTHORS file
-// for details. All rights reserved. Use of this source code is governed by a
+// Copyright (c) 2023, the dartwinrt authors. Please see the AUTHORS file for
+// details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
 // Dart representations of common enumerations used in the Windows Runtime APIs.
@@ -12,7 +12,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 /// Indicates the type of devices that the user wants to enumerate.
 ///
-/// {@category Enum}
+/// {@category enum}
 enum DeviceClass implements WinRTEnum {
   all(0),
   audioCapture(1),
@@ -37,7 +37,7 @@ enum DeviceClass implements WinRTEnum {
 /// device. Used with the SetDisplayStatus method on the DevicePicker
 /// object.
 ///
-/// {@category Enum}
+/// {@category enum}
 class DevicePickerDisplayStatusOptions extends WinRTEnum {
   const DevicePickerDisplayStatusOptions(super.value, {super.name});
 

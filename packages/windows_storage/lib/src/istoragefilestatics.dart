@@ -18,8 +18,7 @@ import 'storagefile.dart';
 /// @nodoc
 const IID_IStorageFileStatics = '{5984c710-daf2-43c8-8bb4-a4d3eacfd03f}';
 
-/// {@category Interface}
-/// {@category winrt}
+/// {@category interface}
 class IStorageFileStatics extends IInspectable {
   // vtable begins at 6, is 6 entries long.
   IStorageFileStatics.fromRawPointer(super.ptr);

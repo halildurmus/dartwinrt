@@ -1,5 +1,5 @@
-// Copyright (c) 2020, the Dart project authors.  Please see the AUTHORS file
-// for details. All rights reserved. Use of this source code is governed by a
+// Copyright (c) 2023, the dartwinrt authors. Please see the AUTHORS file for
+// details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
 // Dart representations of common enumerations used in the Windows Runtime APIs.
@@ -13,7 +13,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// Specifies whether notification mirroring is allowed. Mirroring enables a
 /// notification to be displayed on multiple devices.
 ///
-/// {@category Enum}
+/// {@category enum}
 enum NotificationMirroring implements WinRTEnum {
   allowed(0),
   disabled(1);
@@ -31,7 +31,7 @@ enum NotificationMirroring implements WinRTEnum {
 
 /// Specifies the priority of a ToastNotification.
 ///
-/// {@category Enum}
+/// {@category enum}
 enum ToastNotificationPriority implements WinRTEnum {
   default_(0),
   high(1);
@@ -49,7 +49,7 @@ enum ToastNotificationPriority implements WinRTEnum {
 
 /// Specifies the template to use in a toast notification.
 ///
-/// {@category Enum}
+/// {@category enum}
 enum ToastTemplateType implements WinRTEnum {
   toastImageAndText01(0),
   toastImageAndText02(1),

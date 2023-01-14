@@ -1,4 +1,6 @@
-// igeolocatorstatics.dart
+// Copyright (c) 2023, the dartwinrt authors. Please see the AUTHORS file for
+// details. All rights reserved. Use of this source code is governed by a
+// BSD-style license that can be found in the LICENSE file.
 
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
@@ -20,8 +22,7 @@ import 'geoposition.dart';
 /// @nodoc
 const IID_IGeolocatorStatics = '{9a8e7571-2df5-4591-9f87-eb5fd894e9b7}';
 
-/// {@category Interface}
-/// {@category winrt}
+/// {@category interface}
 class IGeolocatorStatics extends IInspectable {
   // vtable begins at 6, is 3 entries long.
   IGeolocatorStatics.fromRawPointer(super.ptr);

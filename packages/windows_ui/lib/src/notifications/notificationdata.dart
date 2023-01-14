@@ -1,4 +1,6 @@
-// notificationdata.dart
+// Copyright (c) 2023, the dartwinrt authors. Please see the AUTHORS file for
+// details. All rights reserved. Use of this source code is governed by a
+// BSD-style license that can be found in the LICENSE file.
 
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
@@ -6,6 +8,7 @@
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
 // ignore_for_file: no_leading_underscores_for_local_identifiers
 
+import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
@@ -18,10 +21,9 @@ import 'inotificationdatafactory.dart';
 
 /// Stores data for display in a toast notification.
 ///
-/// {@category Class}
-/// {@category winrt}
+/// {@category class}
 class NotificationData extends IInspectable implements INotificationData {
-  NotificationData() : super(ActivateClass(_className));
+  NotificationData() : super(activateClass(_className));
   NotificationData.fromRawPointer(super.ptr);
 
   static const _className = 'Windows.UI.Notifications.NotificationData';
@@ -31,7 +33,7 @@ class NotificationData extends IInspectable implements INotificationData {
       IIterable<IKeyValuePair<String, String>> initialValues,
       int sequenceNumber) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_INotificationDataFactory);
+        createActivationFactory(_className, IID_INotificationDataFactory);
     final object =
         INotificationDataFactory.fromRawPointer(activationFactoryPtr);
 
@@ -46,7 +48,7 @@ class NotificationData extends IInspectable implements INotificationData {
   static NotificationData createNotificationDataWithValues(
       IIterable<IKeyValuePair<String, String>> initialValues) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_INotificationDataFactory);
+        createActivationFactory(_className, IID_INotificationDataFactory);
     final object =
         INotificationDataFactory.fromRawPointer(activationFactoryPtr);
 

@@ -1,0 +1,31 @@
+# Files and directories created by pub
+.dart_tool/
+.packages
+
+.DS_Store
+.atom/
+.idea/
+.vscode/
+
+# Conventional directory for build outputs
+build/
+
+# Directory created by dartdoc
+doc/api/
+
+# We create these files for inspection if the goldens tests fail, but we don't
+# need to check them in.
+packages/winrtgen/test/goldens/*.comparison
+
+# Avoid committing pubspec.lock for library packages; see
+# https://dart.dev/guides/libraries/private-files#pubspeclock.
+pubspec.lock
+
+# We don't need to publish the tools folder - it's only used for code generation
+tool/
+
+# Get rid of any unwanted executables...
+*.exe
+*.exe.config
+*.obj
+*.pdb

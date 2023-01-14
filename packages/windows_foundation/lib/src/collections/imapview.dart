@@ -18,8 +18,7 @@ import 'ikeyvaluepair.dart';
 
 /// Represents an immutable view into a map.
 ///
-/// {@category Interface}
-/// {@category winrt}
+/// {@category interface}
 class IMapView<K, V> extends IInspectable
     implements IIterable<IKeyValuePair<K, V>> {
   // vtable begins at 6, is 4 entries long.

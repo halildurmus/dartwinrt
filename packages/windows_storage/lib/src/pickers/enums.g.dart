@@ -1,5 +1,5 @@
-// Copyright (c) 2020, the Dart project authors.  Please see the AUTHORS file
-// for details. All rights reserved. Use of this source code is governed by a
+// Copyright (c) 2023, the dartwinrt authors. Please see the AUTHORS file for
+// details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
 // Dart representations of common enumerations used in the Windows Runtime APIs.
@@ -13,7 +13,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// Identifies the storage location that the file picker presents to the
 /// user.
 ///
-/// {@category Enum}
+/// {@category enum}
 enum PickerLocationId implements WinRTEnum {
   documentsLibrary(0),
   computerFolder(1),
@@ -39,7 +39,7 @@ enum PickerLocationId implements WinRTEnum {
 
 /// Indicates the view mode that the file picker is using to present items.
 ///
-/// {@category Enum}
+/// {@category enum}
 enum PickerViewMode implements WinRTEnum {
   list(0),
   thumbnail(1);

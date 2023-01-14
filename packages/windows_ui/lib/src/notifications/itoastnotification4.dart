@@ -17,8 +17,7 @@ import 'notificationdata.dart';
 /// @nodoc
 const IID_IToastNotification4 = '{15154935-28ea-4727-88e9-c58680e2d118}';
 
-/// {@category Interface}
-/// {@category winrt}
+/// {@category interface}
 class IToastNotification4 extends IInspectable {
   // vtable begins at 6, is 4 entries long.
   IToastNotification4.fromRawPointer(super.ptr);

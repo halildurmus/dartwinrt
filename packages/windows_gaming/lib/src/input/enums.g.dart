@@ -1,5 +1,5 @@
-// Copyright (c) 2020, the Dart project authors.  Please see the AUTHORS file
-// for details. All rights reserved. Use of this source code is governed by a
+// Copyright (c) 2023, the dartwinrt authors. Please see the AUTHORS file for
+// details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
 // Dart representations of common enumerations used in the Windows Runtime APIs.
@@ -12,7 +12,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 /// Label that appears on the physical controller button.
 ///
-/// {@category Enum}
+/// {@category enum}
 enum GameControllerButtonLabel implements WinRTEnum {
   none(0),
   xboxBack(1),
@@ -97,7 +97,7 @@ enum GameControllerButtonLabel implements WinRTEnum {
 
 /// Specifies the button type.
 ///
-/// {@category Enum}
+/// {@category enum}
 class GamepadButtons extends WinRTEnum {
   const GamepadButtons(super.value, {super.name});
 

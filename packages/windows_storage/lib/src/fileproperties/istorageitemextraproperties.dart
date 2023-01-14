@@ -1,4 +1,6 @@
-// istorageitemextraproperties.dart
+// Copyright (c) 2023, the dartwinrt authors. Please see the AUTHORS file for
+// details. All rights reserved. Use of this source code is governed by a
+// BSD-style license that can be found in the LICENSE file.
 
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
@@ -18,8 +20,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IStorageItemExtraProperties =
     '{c54361b2-54cd-432b-bdbc-4b19c4b470d7}';
 
-/// {@category Interface}
-/// {@category winrt}
+/// {@category interface}
 class IStorageItemExtraProperties extends IInspectable {
   // vtable begins at 6, is 3 entries long.
   IStorageItemExtraProperties.fromRawPointer(super.ptr);

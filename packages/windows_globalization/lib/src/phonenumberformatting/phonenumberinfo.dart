@@ -1,4 +1,6 @@
-// phonenumberinfo.dart
+// Copyright (c) 2023, the dartwinrt authors. Please see the AUTHORS file for
+// details. All rights reserved. Use of this source code is governed by a
+// BSD-style license that can be found in the LICENSE file.
 
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
@@ -6,10 +8,12 @@
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
 // ignore_for_file: no_leading_underscores_for_local_identifiers
 
+import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
+import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
 import 'enums.g.dart';
@@ -19,8 +23,7 @@ import 'iphonenumberinfostatics.dart';
 
 /// Information about a phone number.
 ///
-/// {@category Class}
-/// {@category winrt}
+/// {@category class}
 class PhoneNumberInfo extends IInspectable
     implements IPhoneNumberInfo, IStringable {
   PhoneNumberInfo.fromRawPointer(super.ptr);
@@ -31,7 +34,7 @@ class PhoneNumberInfo extends IInspectable
   // IPhoneNumberInfoFactory methods
   static PhoneNumberInfo create(String number) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IPhoneNumberInfoFactory);
+        createActivationFactory(_className, IID_IPhoneNumberInfoFactory);
     final object = IPhoneNumberInfoFactory.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -45,7 +48,7 @@ class PhoneNumberInfo extends IInspectable
   static PhoneNumberParseResult tryParse(
       String input, PhoneNumberInfo phoneNumber) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IPhoneNumberInfoStatics);
+        createActivationFactory(_className, IID_IPhoneNumberInfoStatics);
     final object = IPhoneNumberInfoStatics.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -58,7 +61,7 @@ class PhoneNumberInfo extends IInspectable
   static PhoneNumberParseResult tryParseWithRegion(
       String input, String regionCode, PhoneNumberInfo phoneNumber) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IPhoneNumberInfoStatics);
+        createActivationFactory(_className, IID_IPhoneNumberInfoStatics);
     final object = IPhoneNumberInfoStatics.fromRawPointer(activationFactoryPtr);
 
     try {

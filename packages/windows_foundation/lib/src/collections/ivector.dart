@@ -17,8 +17,7 @@ import 'ivectorview.dart';
 
 /// Represents a random-access collection of elements.
 ///
-/// {@category Interface}
-/// {@category winrt}
+/// {@category interface}
 class IVector<T> extends IInspectable implements IIterable<T> {
   // vtable begins at 6, is 12 entries long.
   final String _iterableIid;

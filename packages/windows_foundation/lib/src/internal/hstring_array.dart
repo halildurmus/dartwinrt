@@ -1,5 +1,5 @@
-// Copyright (c) 2020, the Dart project authors.  Please see the AUTHORS file
-// for details. All rights reserved. Use of this source code is governed by a
+// Copyright (c) 2023, the dartwinrt authors. Please see the AUTHORS file for
+// details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
 // Extension method to convert HSTRING arrays to List<String>
@@ -18,8 +18,6 @@ extension HStringHelper on Pointer<HSTRING> {
   /// final pHString = ...
   /// final list = pHString.toList(length: 5);
   /// ```
-  ///
-  /// {@category winrt}
   List<String> toList({int length = 1}) {
     final list = <String>[];
     for (var i = 0; i < length; i++) {

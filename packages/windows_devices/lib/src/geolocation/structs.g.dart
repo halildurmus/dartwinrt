@@ -1,5 +1,5 @@
-// Copyright (c) 2020, the Dart project authors.  Please see the AUTHORS file
-// for details. All rights reserved. Use of this source code is governed by a
+// Copyright (c) 2023, the dartwinrt authors. Please see the AUTHORS file for
+// details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
 // Dart representations of common structs used in the Windows Runtime APIs.
@@ -18,7 +18,7 @@ import 'package:ffi/ffi.dart';
 
 /// The basic information to describe a geographic position.
 ///
-/// {@category Struct}
+/// {@category struct}
 class BasicGeoposition extends Struct {
   @Double()
   external double Latitude;

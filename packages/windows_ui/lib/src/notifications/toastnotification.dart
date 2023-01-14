@@ -23,8 +23,7 @@ import 'notificationdata.dart';
 /// Defines the content, associated metadata and events, and expiration time
 /// of a toast notification.
 ///
-/// {@category Class}
-/// {@category winrt}
+/// {@category class}
 class ToastNotification extends IInspectable
     implements
         IToastNotification,
@@ -39,7 +38,7 @@ class ToastNotification extends IInspectable
   // IToastNotificationFactory methods
   static ToastNotification createToastNotification(Pointer<COMObject> content) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IToastNotificationFactory);
+        createActivationFactory(_className, IID_IToastNotificationFactory);
     final object =
         IToastNotificationFactory.fromRawPointer(activationFactoryPtr);
 

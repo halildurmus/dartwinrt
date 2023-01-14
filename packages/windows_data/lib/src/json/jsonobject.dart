@@ -1,4 +1,6 @@
-// jsonobject.dart
+// Copyright (c) 2023, the dartwinrt authors. Please see the AUTHORS file for
+// details. All rights reserved. Use of this source code is governed by a
+// BSD-style license that can be found in the LICENSE file.
 
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
@@ -6,6 +8,7 @@
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
 // ignore_for_file: no_leading_underscores_for_local_identifiers
 
+import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
@@ -24,8 +27,7 @@ import 'jsonvalue.dart';
 /// Represents a JSON object containing a collection of name and [JsonValue]
 /// pairs.
 ///
-/// {@category Class}
-/// {@category winrt}
+/// {@category class}
 class JsonObject extends IInspectable
     implements
         IJsonObject,
@@ -34,7 +36,7 @@ class JsonObject extends IInspectable
         IIterable<IKeyValuePair<String, IJsonValue?>>,
         IJsonObjectWithDefaultValues,
         IStringable {
-  JsonObject() : super(ActivateClass(_className));
+  JsonObject() : super(activateClass(_className));
   JsonObject.fromRawPointer(super.ptr);
 
   static const _className = 'Windows.Data.Json.JsonObject';
@@ -42,7 +44,7 @@ class JsonObject extends IInspectable
   // IJsonObjectStatics methods
   static JsonObject? parse(String input) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IJsonObjectStatics);
+        createActivationFactory(_className, IID_IJsonObjectStatics);
     final object = IJsonObjectStatics.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -54,7 +56,7 @@ class JsonObject extends IInspectable
 
   static bool tryParse(String input, JsonObject result) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IJsonObjectStatics);
+        createActivationFactory(_className, IID_IJsonObjectStatics);
     final object = IJsonObjectStatics.fromRawPointer(activationFactoryPtr);
 
     try {

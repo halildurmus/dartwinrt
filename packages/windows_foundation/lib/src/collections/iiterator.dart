@@ -13,8 +13,7 @@ import '../winrt_helpers.dart';
 
 /// Supports simple iteration over a collection.
 ///
-/// {@category Interface}
-/// {@category winrt}
+/// {@category interface}
 class IIterator<T> extends IInspectable {
   // vtable begins at 6, is 4 entries long.
   final T Function(Pointer<COMObject>)? _creator;

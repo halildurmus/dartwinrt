@@ -7,18 +7,17 @@ import 'dart:ffi';
 import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
 
+import 'callbacks.dart';
 import 'enums.g.dart';
 import 'iasyncinfo.dart';
 import 'uri.dart' as winrt_uri;
-import 'winrt_callbacks.dart';
 import 'winrt_helpers.dart';
 
 /// Represents an asynchronous operation, which returns a result upon
 /// completion. This is the return type for many Windows Runtime asynchronous
 /// methods that have results but don't report progress.
 ///
-/// {@category Interface}
-/// {@category winrt}
+/// {@category interface}
 class IAsyncOperation<TResult> extends IInspectable implements IAsyncInfo {
   // vtable begins at 6, is 3 entries long.
   final TResult Function(Pointer<COMObject>)? _creator;

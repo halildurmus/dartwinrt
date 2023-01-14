@@ -1,4 +1,6 @@
-// iuriruntimeclasswithabsolutecanonicaluri.dart
+// Copyright (c) 2023, the dartwinrt authors. Please see the AUTHORS file for
+// details. All rights reserved. Use of this source code is governed by a
+// BSD-style license that can be found in the LICENSE file.
 
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
@@ -6,21 +8,21 @@
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
 // ignore_for_file: no_leading_underscores_for_local_identifiers
 
+import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
 
-import 'internal/hstring_array.dart';
-import 'winrt_callbacks.dart';
+import '../../../internal.dart';
+import 'callbacks.dart';
 import 'winrt_helpers.dart';
 
 /// @nodoc
 const IID_IUriRuntimeClassWithAbsoluteCanonicalUri =
     '{758d9661-221c-480f-a339-50656673f46f}';
 
-/// {@category Interface}
-/// {@category winrt}
+/// {@category interface}
 class IUriRuntimeClassWithAbsoluteCanonicalUri extends IInspectable {
   // vtable begins at 6, is 2 entries long.
   IUriRuntimeClassWithAbsoluteCanonicalUri.fromRawPointer(super.ptr);

@@ -1,3 +1,7 @@
+// Copyright (c) 2023, the dartwinrt authors. Please see the AUTHORS file for
+// details. All rights reserved. Use of this source code is governed by a
+// BSD-style license that can be found in the LICENSE file.
+
 @TestOn('windows')
 
 import 'package:test/test.dart';
@@ -81,7 +85,7 @@ void main() {
     test('WinRT getTrustLevel test of partial trust class', () {
       const className = 'Windows.Storage.Pickers.FileOpenPicker';
 
-      final object = CreateObject(className, IID_IInspectable);
+      final object = createObject(className, IID_IInspectable);
       final inspectableObject = IInspectable(object);
       expect(inspectableObject.trustLevel, equals(TrustLevel.partialTrust));
 

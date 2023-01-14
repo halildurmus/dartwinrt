@@ -1,5 +1,5 @@
-// Copyright (c) 2020, the Dart project authors.  Please see the AUTHORS file
-// for details. All rights reserved. Use of this source code is governed by a
+// Copyright (c) 2023, the dartwinrt authors. Please see the AUTHORS file for
+// details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
 // Dart representations of common enumerations used in the Windows Runtime APIs.
@@ -13,7 +13,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// Defines the set of directional preferences for the user interface
 /// presented by the app view.
 ///
-/// {@category Enum}
+/// {@category enum}
 enum HandPreference implements WinRTEnum {
   leftHanded(0),
   rightHanded(1);
@@ -31,7 +31,7 @@ enum HandPreference implements WinRTEnum {
 
 /// Defines constants that specify known system color values.
 ///
-/// {@category Enum}
+/// {@category enum}
 enum UIColorType implements WinRTEnum {
   background(0),
   foreground(1),
@@ -57,7 +57,7 @@ enum UIColorType implements WinRTEnum {
 
 /// Defines the set of user interface element types.
 ///
-/// {@category Enum}
+/// {@category enum}
 enum UIElementType implements WinRTEnum {
   activeCaption(0),
   background(1),

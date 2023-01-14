@@ -16,8 +16,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IGeocoordinateSatelliteData2 =
     '{761c8cfd-a19d-5a51-80f5-71676115483e}';
 
-/// {@category Interface}
-/// {@category winrt}
+/// {@category interface}
 class IGeocoordinateSatelliteData2 extends IInspectable {
   // vtable begins at 6, is 2 entries long.
   IGeocoordinateSatelliteData2.fromRawPointer(super.ptr);

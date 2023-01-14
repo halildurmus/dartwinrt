@@ -16,8 +16,7 @@ import 'iiterator.dart';
 
 /// Represents an immutable view into a vector.
 ///
-/// {@category Interface}
-/// {@category winrt}
+/// {@category interface}
 class IVectorView<T> extends IInspectable implements IIterable<T> {
   // vtable begins at 6, is 4 entries long.
   final String _iterableIid;

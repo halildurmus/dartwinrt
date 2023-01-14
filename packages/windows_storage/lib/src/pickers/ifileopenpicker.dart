@@ -1,4 +1,6 @@
-// ifileopenpicker.dart
+// Copyright (c) 2023, the dartwinrt authors. Please see the AUTHORS file for
+// details. All rights reserved. Use of this source code is governed by a
+// BSD-style license that can be found in the LICENSE file.
 
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
@@ -20,8 +22,7 @@ import 'enums.g.dart';
 /// @nodoc
 const IID_IFileOpenPicker = '{2ca8278a-12c5-4c5f-8977-94547793c241}';
 
-/// {@category Interface}
-/// {@category winrt}
+/// {@category interface}
 class IFileOpenPicker extends IInspectable {
   // vtable begins at 6, is 11 entries long.
   IFileOpenPicker.fromRawPointer(super.ptr);

@@ -8,10 +8,10 @@ import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
 import 'package:windows_media/windows_media.dart';
 
+import '../constants.dart';
 import '../internal/ipropertyvalue_helpers.dart';
 import '../internal/map_helpers.dart';
 import '../ipropertyvalue.dart';
-import '../winrt_constants.dart';
 import '../winrt_enum.dart';
 import '../winrt_helpers.dart';
 import 'iiterable.dart';
@@ -23,8 +23,7 @@ import 'stringmap.dart';
 
 /// Represents an associative collection, also known as a map or a dictionary.
 ///
-/// {@category Interface}
-/// {@category winrt}
+/// {@category interface}
 class IMap<K, V> extends IInspectable
     implements IIterable<IKeyValuePair<K, V>> {
   // vtable begins at 6, is 7 entries long.

@@ -1,4 +1,6 @@
-// hostname.dart
+// Copyright (c) 2023, the dartwinrt authors. Please see the AUTHORS file for
+// details. All rights reserved. Use of this source code is governed by a
+// BSD-style license that can be found in the LICENSE file.
 
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
@@ -6,10 +8,12 @@
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
 // ignore_for_file: no_leading_underscores_for_local_identifiers
 
+import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
+import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
 import 'connectivity/ipinformation.dart';
@@ -20,8 +24,7 @@ import 'ihostnamestatics.dart';
 
 /// Provides data for a hostname or an IP address.
 ///
-/// {@category Class}
-/// {@category winrt}
+/// {@category class}
 class HostName extends IInspectable implements IHostName, IStringable {
   HostName.fromRawPointer(super.ptr);
 
@@ -30,7 +33,7 @@ class HostName extends IInspectable implements IHostName, IStringable {
   // IHostNameFactory methods
   static HostName createHostName(String hostName) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IHostNameFactory);
+        createActivationFactory(_className, IID_IHostNameFactory);
     final object = IHostNameFactory.fromRawPointer(activationFactoryPtr);
 
     try {
@@ -43,7 +46,7 @@ class HostName extends IInspectable implements IHostName, IStringable {
   // IHostNameStatics methods
   static int compare(String value1, String value2) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IHostNameStatics);
+        createActivationFactory(_className, IID_IHostNameStatics);
     final object = IHostNameStatics.fromRawPointer(activationFactoryPtr);
 
     try {

@@ -1,4 +1,6 @@
-// fileopenpicker.dart
+// Copyright (c) 2023, the dartwinrt authors. Please see the AUTHORS file for
+// details. All rights reserved. Use of this source code is governed by a
+// BSD-style license that can be found in the LICENSE file.
 
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
@@ -6,10 +8,12 @@
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
 // ignore_for_file: no_leading_underscores_for_local_identifiers
 
+import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
+import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 import 'package:windows_system/windows_system.dart';
 
@@ -24,11 +28,10 @@ import 'ifileopenpickerstatics2.dart';
 /// displays UI, you'll need to associate the object with its owner's window
 /// handle.
 ///
-/// {@category Class}
-/// {@category winrt}
+/// {@category class}
 class FileOpenPicker extends IInspectable
     implements IFileOpenPicker, IFileOpenPicker3 {
-  FileOpenPicker() : super(ActivateClass(_className));
+  FileOpenPicker() : super(activateClass(_className));
   FileOpenPicker.fromRawPointer(super.ptr);
 
   static const _className = 'Windows.Storage.Pickers.FileOpenPicker';
@@ -36,7 +39,7 @@ class FileOpenPicker extends IInspectable
   // IFileOpenPickerStatics2 methods
   static FileOpenPicker? createForUser(User? user) {
     final activationFactoryPtr =
-        CreateActivationFactory(_className, IID_IFileOpenPickerStatics2);
+        createActivationFactory(_className, IID_IFileOpenPickerStatics2);
     final object = IFileOpenPickerStatics2.fromRawPointer(activationFactoryPtr);
 
     try {
