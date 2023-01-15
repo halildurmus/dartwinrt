@@ -1,6 +1,5 @@
 name: windows_system
-description: >
-  Enables system functionality such as launching apps, obtaining
+description: Enables system functionality such as launching apps, obtaining
   information about a user, and memory profiling.
 version: 0.0.1
 homepage: https://dartwinrt.pub

@@ -1,7 +1,6 @@
 name: windows_foundation
-description: >
-  Enables fundamental Windows Runtime functionality, including managing
-  asynchronous operations and accessing property stores.
+description: Enables fundamental Windows Runtime functionality, including
+  managing asynchronous operations and accessing property stores.
 version: 0.0.1
 homepage: https://dartwinrt.pub
 repository: https://github.com/halildurmus/dartwinrt

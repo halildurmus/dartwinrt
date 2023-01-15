@@ -1,7 +1,6 @@
 name: windows_ui
-description: >
-  Provides an app with access to core system functionality and run-time
-  information about its UI.
+description: Provides an app with access to core system functionality and
+  run-time information about its UI.
 version: 0.0.1
 homepage: https://dartwinrt.pub
 repository: https://github.com/halildurmus/dartwinrt

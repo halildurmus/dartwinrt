@@ -1,6 +1,5 @@
 name: windows_data
-description: >
-  TODO: Write description
+description: Provides support for JSON arrays, values, and objects.
 version: 0.0.1
 homepage: https://dartwinrt.pub
 repository: https://github.com/halildurmus/dartwinrt

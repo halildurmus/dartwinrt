@@ -1,6 +1,5 @@
 name: windows_globalization
-description: >
-  Provides globalization support for language profiles, geographic
+description: Provides globalization support for language profiles, geographic
   regions, and international calendars.
 version: 0.0.1
 homepage: https://dartwinrt.pub

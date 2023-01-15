@@ -1,6 +1,5 @@
 name: windows_gaming
-description: >
-  TODO: Write description
+description: Provides access to game controller input for Windows applications.
 version: 0.0.1
 homepage: https://dartwinrt.pub
 repository: https://github.com/halildurmus/dartwinrt

@@ -1,7 +1,6 @@
 name: windows_devices
-description: >
-  This namespace provides access to the low level device providers, including
-  ADC, GPIO, I2 C, PWM and SPI.
+description: Provides access to the low level device providers, including ADC,
+  GPIO, I2 C, PWM and SPI.
 version: 0.0.1
 homepage: https://dartwinrt.pub
 repository: https://github.com/halildurmus/dartwinrt

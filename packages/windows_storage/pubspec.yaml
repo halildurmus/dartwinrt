@@ -1,6 +1,6 @@
 name: windows_storage
-description: >
-  Provides classes for managing files, folders, and application settings.
+description: Provides classes for managing files, folders, and application
+  settings.
 version: 0.0.1
 homepage: https://dartwinrt.pub
 repository: https://github.com/halildurmus/dartwinrt
