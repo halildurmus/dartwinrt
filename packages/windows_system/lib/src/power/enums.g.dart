@@ -29,3 +29,41 @@ enum BatteryStatus implements WinRTEnum {
           orElse: () => throw ArgumentError.value(
               value, 'value', 'No enum value with that value'));
 }
+
+/// Specifies the status of battery saver.
+///
+/// {@category enum}
+enum EnergySaverStatus implements WinRTEnum {
+  disabled(0),
+  off(1),
+  on(2);
+
+  @override
+  final int value;
+
+  const EnergySaverStatus(this.value);
+
+  factory EnergySaverStatus.from(int value) =>
+      EnergySaverStatus.values.firstWhere((e) => e.value == value,
+          orElse: () => throw ArgumentError.value(
+              value, 'value', 'No enum value with that value'));
+}
+
+/// Represents the device's power supply status.
+///
+/// {@category enum}
+enum PowerSupplyStatus implements WinRTEnum {
+  notPresent(0),
+  inadequate(1),
+  adequate(2);
+
+  @override
+  final int value;
+
+  const PowerSupplyStatus(this.value);
+
+  factory PowerSupplyStatus.from(int value) =>
+      PowerSupplyStatus.values.firstWhere((e) => e.value == value,
+          orElse: () => throw ArgumentError.value(
+              value, 'value', 'No enum value with that value'));
+}

@@ -11,3 +11,4 @@ library windows_system;
 export 'src/user.dart';
 
 export 'src/power/enums.g.dart';
+export 'src/power/powermanager.dart';
