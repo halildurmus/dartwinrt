@@ -1,6 +1,6 @@
 name: winrtgen
-description: >
-  TODO: Write description
+description: Provides functionality to generate Windows Runtime APIs from
+  Windows Metadata (WinMD) files.
 version: 0.0.1
 homepage: https://dartwinrt.pub
 repository: https://github.com/halildurmus/dartwinrt
