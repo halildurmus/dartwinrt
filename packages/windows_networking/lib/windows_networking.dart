@@ -4,6 +4,9 @@
 
 // ignore_for_file: directives_ordering
 
+/// Provides access to hostnames and endpoints used by network apps, connection
+/// profiles that provide connectivity, usage, and data plan information for
+/// established network connections.
 library windows_networking;
 
 export 'src/enums.g.dart';

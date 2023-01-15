@@ -4,6 +4,8 @@
 
 // ignore_for_file: directives_ordering
 
+/// Enables system functionality such as launching apps, obtaining information
+/// about a user, and memory profiling.
 library windows_system;
 
 export 'src/user.dart';

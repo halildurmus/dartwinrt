@@ -2,8 +2,8 @@
 // details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-/// Generates WinRT APIs for the windows_* packages based on Windows metadata
-/// files.
+/// Provides functionality to generate Windows Runtime APIs from Windows
+/// Metadata (WinMD) files.
 library winrtgen;
 
 export 'src/exclusions.dart';

@@ -4,6 +4,8 @@
 
 // ignore_for_file: directives_ordering
 
+/// Provides an app with access to core system functionality and run-time
+/// information about its UI.
 library windows_ui;
 
 export 'src/structs.g.dart';

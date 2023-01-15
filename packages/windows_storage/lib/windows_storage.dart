@@ -4,6 +4,7 @@
 
 // ignore_for_file: directives_ordering
 
+/// Provides classes for managing files, folders, and application settings.
 library windows_storage;
 
 export 'src/enums.g.dart';

@@ -4,6 +4,8 @@
 
 // ignore_for_file: directives_ordering
 
+/// Enables fundamental Windows Runtime functionality, including managing
+/// asynchronous operations and accessing property stores.
 library windows_foundation;
 
 export 'src/callbacks.dart';
