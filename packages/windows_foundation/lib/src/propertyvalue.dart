@@ -16,10 +16,10 @@ import 'package:win32/win32.dart';
 
 import '../../../internal.dart';
 import 'callbacks.dart';
+import 'helpers.dart';
 import 'ipropertyvalue.dart';
 import 'ipropertyvaluestatics.dart';
 import 'structs.g.dart';
-import 'winrt_helpers.dart';
 
 /// Represents a value in a property store (such as a [PropertySet]
 /// instance).

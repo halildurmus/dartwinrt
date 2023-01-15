@@ -11,8 +11,8 @@ import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
 
 import '../callbacks.dart';
+import '../helpers.dart';
 import '../internal/hstring_array.dart';
-import '../winrt_helpers.dart';
 import 'imap.dart';
 import 'stringmap.dart';
 

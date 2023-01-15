@@ -9,7 +9,7 @@ import 'package:win32/win32.dart';
 
 import '../collections/iiterator.dart';
 import '../collections/ikeyvaluepair.dart';
-import '../winrt_helpers.dart';
+import '../helpers.dart';
 import 'comobject_pointer.dart';
 
 class MapHelper {

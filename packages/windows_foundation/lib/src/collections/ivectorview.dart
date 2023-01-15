@@ -7,10 +7,10 @@ import 'dart:ffi';
 import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
 
+import '../helpers.dart';
 import '../internal/vector_helper.dart';
 import '../uri.dart' as winrt_uri;
 import '../winrt_enum.dart';
-import '../winrt_helpers.dart';
 import 'iiterable.dart';
 import 'iiterator.dart';
 

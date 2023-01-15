@@ -16,7 +16,7 @@ import 'package:win32/win32.dart';
 
 import '../../../internal.dart';
 import 'callbacks.dart';
-import 'winrt_helpers.dart';
+import 'helpers.dart';
 
 /// @nodoc
 const IID_IClosable = '{30d5a829-7fa4-4026-83bb-d75bae4ea99e}';

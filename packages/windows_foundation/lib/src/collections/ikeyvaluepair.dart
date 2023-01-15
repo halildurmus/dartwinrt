@@ -7,10 +7,10 @@ import 'dart:ffi';
 import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
 
+import '../helpers.dart';
 import '../internal/ipropertyvalue_helpers.dart';
 import '../internal/map_helpers.dart';
 import '../ipropertyvalue.dart';
-import '../winrt_helpers.dart';
 
 /// Represents a key-value pair.
 ///

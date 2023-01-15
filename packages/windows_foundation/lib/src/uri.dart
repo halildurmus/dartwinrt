@@ -16,12 +16,12 @@ import 'package:win32/win32.dart';
 
 import '../../../internal.dart';
 import 'callbacks.dart';
+import 'helpers.dart';
 import 'istringable.dart';
 import 'iuriescapestatics.dart';
 import 'iuriruntimeclass.dart';
 import 'iuriruntimeclassfactory.dart';
 import 'iuriruntimeclasswithabsolutecanonicaluri.dart';
-import 'winrt_helpers.dart';
 import 'wwwformurldecoder.dart';
 
 /// Defines an object that represents a Uniform Resource Identifier (URI)
