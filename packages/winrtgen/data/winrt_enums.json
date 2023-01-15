@@ -28,6 +28,8 @@
     "Windows.Storage.StorageDeleteOption": "Specifies whether a deleted item is moved to the Recycle Bin or permanently deleted.",
     "Windows.Storage.StorageItemTypes": "Describes whether an item that implements the IStorageItem interface is a file or a folder.",
     "Windows.System.Power.BatteryStatus": "Indicates the status of the battery.",
+    "Windows.System.Power.EnergySaverStatus": "Specifies the status of battery saver.",
+    "Windows.System.Power.PowerSupplyStatus": "Represents the device's power supply status.",
     "Windows.UI.Notifications.NotificationMirroring": "Specifies whether notification mirroring is allowed. Mirroring enables a notification to be displayed on multiple devices.",
     "Windows.UI.Notifications.ToastNotificationPriority": "Specifies the priority of a ToastNotification.",
     "Windows.UI.Notifications.ToastTemplateType": "Specifies the template to use in a toast notification.",
