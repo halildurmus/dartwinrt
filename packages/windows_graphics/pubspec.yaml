@@ -1,6 +1,5 @@
 name: windows_graphics
-description: Provides basic data types that contain info on how to draw
-  graphics.
+description: Provides APIs for working with 3D printers.
 version: 0.0.1
 homepage: https://dartwinrt.pub
 repository: https://github.com/halildurmus/dartwinrt

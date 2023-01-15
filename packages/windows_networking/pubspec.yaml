@@ -1,5 +1,7 @@
 name: windows_networking
-description: Provides access to hostnames and endpoints used by network apps.
+description: Provides access to hostnames and endpoints used by network apps,
+  connection profiles that provide connectivity, usage, and data plan
+  information for established network connections.
 version: 0.0.1
 homepage: https://dartwinrt.pub
 repository: https://github.com/halildurmus/dartwinrt

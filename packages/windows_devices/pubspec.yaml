@@ -1,6 +1,7 @@
 name: windows_devices
-description: Provides access to the low level device providers, including ADC,
-  GPIO, I2 C, PWM and SPI.
+description: Provides classes for enumerating devices, getting the current
+  location or tracking the device's location over time, and getting
+  detailed battery information.
 version: 0.0.1
 homepage: https://dartwinrt.pub
 repository: https://github.com/halildurmus/dartwinrt
