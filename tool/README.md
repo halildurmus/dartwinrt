@@ -11,8 +11,8 @@ The metadata is extracted and parsed using the separate winmd package:
 
 Not every WinRT API is projected.
 
-- The JSON files prefixed with `winrt_` in the `packages\winrtgen\data`
-  directory are used to determine which APIs to project.
+- The JSON files in the `packages\winrtgen\data` directory are used to
+  determine which APIs to project.
 
 During the build process, you should call `generate.cmd` from the project root
 to instantiate these types and generate the classes from them, for example:
