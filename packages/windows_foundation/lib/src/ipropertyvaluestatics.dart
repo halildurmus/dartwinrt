@@ -16,9 +16,9 @@ import 'package:win32/win32.dart';
 
 import '../../../internal.dart';
 import 'callbacks.dart';
+import 'helpers.dart';
 import 'ipropertyvalue.dart';
 import 'structs.g.dart';
-import 'winrt_helpers.dart';
 
 /// @nodoc
 const IID_IPropertyValueStatics = '{629bdbc8-d932-4ff4-96b9-8d96c5c1e858}';

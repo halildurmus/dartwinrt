@@ -9,6 +9,7 @@ library windows_foundation;
 export 'src/callbacks.dart';
 export 'src/constants.dart';
 export 'src/enums.g.dart';
+export 'src/helpers.dart';
 export 'src/iclosable.dart';
 export 'src/ipropertyvalue.dart';
 export 'src/ireference.dart';
@@ -17,7 +18,6 @@ export 'src/propertyvalue.dart';
 export 'src/structs.g.dart';
 export 'src/winrt_com_interop_helpers.dart';
 export 'src/winrt_enum.dart';
-export 'src/winrt_helpers.dart';
 
 export 'src/collections/iiterable.dart';
 export 'src/collections/iiterator.dart';

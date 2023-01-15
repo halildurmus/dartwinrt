@@ -17,8 +17,8 @@ import 'package:win32/win32.dart';
 import '../../../internal.dart';
 import 'callbacks.dart';
 import 'enums.g.dart';
+import 'helpers.dart';
 import 'iasyncinfo.dart';
-import 'winrt_helpers.dart';
 
 /// @nodoc
 const IID_IAsyncAction = '{5a648006-843a-4da9-865b-9d26e5dfad7b}';

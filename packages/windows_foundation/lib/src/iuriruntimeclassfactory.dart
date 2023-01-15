@@ -16,8 +16,8 @@ import 'package:win32/win32.dart';
 
 import '../../../internal.dart';
 import 'callbacks.dart';
+import 'helpers.dart';
 import 'uri.dart';
-import 'winrt_helpers.dart';
 
 /// @nodoc
 const IID_IUriRuntimeClassFactory = '{44a9796f-723e-4fdf-a218-033e75b0c084}';

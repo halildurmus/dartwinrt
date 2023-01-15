@@ -7,8 +7,8 @@ import 'dart:ffi';
 import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
 
+import '../helpers.dart';
 import '../internal/vector_helper.dart';
-import '../winrt_helpers.dart';
 import 'iiterator.dart';
 
 /// Exposes an iterator that supports simple iteration over a collection of a

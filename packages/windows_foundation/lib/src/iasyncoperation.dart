@@ -9,9 +9,9 @@ import 'package:win32/win32.dart';
 
 import 'callbacks.dart';
 import 'enums.g.dart';
+import 'helpers.dart';
 import 'iasyncinfo.dart';
 import 'uri.dart' as winrt_uri;
-import 'winrt_helpers.dart';
 
 /// Represents an asynchronous operation, which returns a result upon
 /// completion. This is the return type for many Windows Runtime asynchronous

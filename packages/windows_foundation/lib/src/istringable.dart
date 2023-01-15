@@ -16,7 +16,7 @@ import 'package:win32/win32.dart';
 
 import '../../../internal.dart';
 import 'callbacks.dart';
-import 'winrt_helpers.dart';
+import 'helpers.dart';
 
 /// @nodoc
 const IID_IStringable = '{96369f54-8eb6-48f0-abce-c1b211e627c3}';

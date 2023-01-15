@@ -28,8 +28,8 @@ void main() {
   });
 
   test('relativePath', () {
-    expect(relativePath('winrt_helpers.dart', start: 'winrt/foundation'),
-        equals('../../winrt_helpers.dart'));
+    expect(relativePath('helpers.dart', start: 'winrt/foundation'),
+        equals('../../helpers.dart'));
     expect(
         relativePath('winrt/globalization/calendar.dart',
             start: 'winrt/globalization'),
@@ -787,9 +787,9 @@ void main() {
           "import '../../../utils.dart';",
           "import '../../foundation/iasyncoperation.dart';",
           "import '../../../win32/api_ms_win_core_winrt_string_l1_1_0.g.dart';",
-          "import '../../../winrt_callbacks.dart';",
+          "import '../../../callbacks.dart';",
           "import '../storagefile.dart';",
-          "import '../../../winrt_helpers.dart';",
+          "import '../../../helpers.dart';",
           "import '../../foundation/collections/ivector.dart';",
           "import '../../internal/hstring_array.dart';",
           "import '../../../macros.dart';",
@@ -807,8 +807,8 @@ void main() {
           "import '../../../types.dart';",
           "import '../../../utils.dart';",
           "import '../../../win32/api_ms_win_core_winrt_string_l1_1_0.g.dart';",
-          "import '../../../winrt_callbacks.dart';",
-          "import '../../../winrt_helpers.dart';",
+          "import '../../../callbacks.dart';",
+          "import '../../../helpers.dart';",
           "import '../../foundation/collections/ivector.dart';",
           "import '../../foundation/collections/ivectorview.dart';",
           "import '../../foundation/iasyncoperation.dart';",

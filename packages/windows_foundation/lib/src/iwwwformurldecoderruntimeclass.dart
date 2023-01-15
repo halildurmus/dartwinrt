@@ -19,8 +19,8 @@ import 'callbacks.dart';
 import 'collections/iiterable.dart';
 import 'collections/iiterator.dart';
 import 'collections/ivectorview.dart';
+import 'helpers.dart';
 import 'iwwwformurldecoderentry.dart';
-import 'winrt_helpers.dart';
 
 /// @nodoc
 const IID_IWwwFormUrlDecoderRuntimeClass =

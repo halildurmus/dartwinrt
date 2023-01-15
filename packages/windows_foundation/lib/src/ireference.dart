@@ -6,8 +6,8 @@ import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
 
 import 'constants.dart';
+import 'helpers.dart';
 import 'structs.g.dart';
-import 'winrt_helpers.dart';
 
 /// Enables arbitrary enumerations, structures, and delegate types to be used
 /// as property values.
