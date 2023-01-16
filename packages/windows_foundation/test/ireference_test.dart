@@ -9,8 +9,8 @@ import 'dart:ffi';
 import 'package:ffi/ffi.dart';
 import 'package:test/test.dart';
 import 'package:win32/win32.dart';
+import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
-import 'package:windows_globalization/windows_globalization.dart';
 
 // Test the IReference<T> types to make sure everything is working correctly.
 
@@ -80,12 +80,12 @@ void main() {
     });
 
     test('IReference<Guid>', () {
-      final pv = PropertyValue.createGuid(Guid.parse(IID_ICalendar));
+      final pv = PropertyValue.createGuid(Guid.parse(IID_IAsyncInfo));
       final ireference = IReference<Guid>.fromRawPointer(
           pv.toInterface(IID_IReference_Guid),
           referenceIid: IID_IReference_Guid);
       expect(ireference.value, isNotNull);
-      expect(ireference.value!.toString(), equals(IID_ICalendar));
+      expect(ireference.value!.toString(), equals(IID_IAsyncInfo));
 
       ireference.release();
       pv.release();

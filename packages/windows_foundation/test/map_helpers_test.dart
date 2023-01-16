@@ -4,7 +4,6 @@
 
 import 'package:test/test.dart';
 import 'package:win32/win32.dart';
-import 'package:windows_devices/windows_devices.dart';
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -23,11 +22,10 @@ void main() {
     expect(isSupportedKeyValuePair<Guid, String?>(), isFalse);
     expect(isSupportedKeyValuePair<Guid, WinRTEnum>(), isFalse);
 
-    expect(isSupportedKeyValuePair<PedometerStepKind, PedometerReading?>(),
-        isTrue);
-    expect(isSupportedKeyValuePair<PedometerStepKind, Object?>(), isFalse);
-    expect(isSupportedKeyValuePair<PedometerStepKind, String?>(), isFalse);
-    expect(isSupportedKeyValuePair<PedometerStepKind, WinRTEnum>(), isFalse);
+    expect(isSupportedKeyValuePair<WinRTEnum, IInspectable?>(), isTrue);
+    expect(isSupportedKeyValuePair<WinRTEnum, Object?>(), isFalse);
+    expect(isSupportedKeyValuePair<WinRTEnum, String?>(), isFalse);
+    expect(isSupportedKeyValuePair<WinRTEnum, WinRTEnum>(), isFalse);
 
     expect(isSupportedKeyValuePair<Object, IInspectable?>(), isFalse);
     expect(isSupportedKeyValuePair<Object, Object?>(), isTrue);

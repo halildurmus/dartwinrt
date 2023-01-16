@@ -11,8 +11,6 @@ import 'package:test/test.dart';
 import 'package:win32/win32.dart';
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
-import 'package:windows_globalization/windows_globalization.dart';
-import 'package:windows_storage/windows_storage.dart';
 
 // Test the PropertyValue class to make sure overrides, properties and methods
 // are working correctly.
@@ -80,18 +78,18 @@ void main() {
     });
 
     test('Guid', () {
-      final pv = PropertyValue.createGuid(Guid.parse(IID_ICalendar));
+      final pv = PropertyValue.createGuid(Guid.parse(IID_IAsyncInfo));
       expect(pv.type, equals(PropertyType.guid));
-      expect(pv.getGuid().toString(), equals(IID_ICalendar));
+      expect(pv.getGuid().toString(), equals(IID_IAsyncInfo));
 
       pv.release();
     });
 
     test('GuidArray', () {
       final array = calloc<GUID>(3);
-      array[0].setGUID(IID_ICalendar);
-      array[1].setGUID(IID_IFileOpenPicker);
-      array[2].setGUID(IID_IStorageItem);
+      array[0].setGUID(IID_IAsyncAction);
+      array[1].setGUID(IID_IAsyncInfo);
+      array[2].setGUID(IID_IClosable);
       final pv = PropertyValue.createGuidArray(3, array);
       expect(pv.type, equals(PropertyType.guidArray));
 
@@ -100,28 +98,28 @@ void main() {
 
       pv.getGuidArray(arraySize, newArray);
       expect(arraySize.value, equals(3));
-      expect(newArray.value[0].toString(), equals(IID_ICalendar));
-      expect(newArray.value[1].toString(), equals(IID_IFileOpenPicker));
-      expect(newArray.value[2].toString(), equals(IID_IStorageItem));
+      expect(newArray.value[0].toString(), equals(IID_IAsyncAction));
+      expect(newArray.value[1].toString(), equals(IID_IAsyncInfo));
+      expect(newArray.value[2].toString(), equals(IID_IClosable));
 
       pv.release();
     });
 
     test('Inspectable', () {
-      final calendar = Calendar();
-      final pv = PropertyValue.createInspectable(calendar.ptr);
+      final stringMap = StringMap();
+      final pv = PropertyValue.createInspectable(stringMap.ptr);
       expect(IInspectable(pv).runtimeClassName,
-          equals('Windows.Globalization.Calendar'));
+          equals('Windows.Foundation.Collections.StringMap'));
 
-      calendar.release();
+      stringMap.release();
     });
 
     test('InspectableArray', () {
-      final calendar = Calendar();
-      final formatter = PhoneNumberFormatter();
+      final stringMap = StringMap();
+      final propertySet = PropertySet();
       final array = calloc<COMObject>(2);
-      array[0] = calendar.ptr.ref;
-      array[1] = formatter.ptr.ref;
+      array[0] = stringMap.ptr.ref;
+      array[1] = propertySet.ptr.ref;
       final pv = PropertyValue.createInspectableArray(2, array);
       expect(pv.type, equals(PropertyType.inspectableArray));
 
@@ -134,11 +132,9 @@ void main() {
       final firstElement = list.first;
       final lastElement = list.last;
       expect(firstElement.runtimeClassName,
-          equals('Windows.Globalization.Calendar'));
-      expect(
-          lastElement.runtimeClassName,
-          equals(
-              'Windows.Globalization.PhoneNumberFormatting.PhoneNumberFormatter'));
+          equals('Windows.Foundation.Collections.StringMap'));
+      expect(lastElement.runtimeClassName,
+          equals('Windows.Foundation.Collections.PropertySet'));
 
       lastElement.release();
       firstElement.release();

@@ -4,9 +4,8 @@
 
 import 'package:test/test.dart';
 import 'package:win32/win32.dart';
+import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
-import 'package:windows_globalization/windows_globalization.dart';
-import 'package:windows_storage/windows_storage.dart';
 
 // Test the WinRT helper functions to make sure everything is working correctly.
 
@@ -30,22 +29,22 @@ void main() {
   });
 
   test('isSubtype', () {
-    expect(isSubtype<Calendar, IInspectable>(), isTrue);
-    expect(isSubtype<IFileOpenPicker, IInspectable>(), isTrue);
+    expect(isSubtype<StringMap, IInspectable>(), isTrue);
+    expect(isSubtype<IAsyncInfo, IInspectable>(), isTrue);
     expect(isSubtype<IUnknown, IInspectable>(), isFalse);
     expect(isSubtype<IInspectable, IUnknown>(), isTrue);
   });
 
   test('isSubtypeOfInspectable', () {
-    expect(isSubtypeOfInspectable<Calendar>(), isTrue);
-    expect(isSubtypeOfInspectable<IFileOpenPicker>(), isTrue);
+    expect(isSubtypeOfInspectable<StringMap>(), isTrue);
+    expect(isSubtypeOfInspectable<IAsyncInfo>(), isTrue);
     expect(isSubtypeOfInspectable<IUnknown>(), isFalse);
     expect(isSubtypeOfInspectable<INetwork>(), isFalse);
   });
 
   test('isSubtypeOfWinRTEnum', () {
     expect(isSubtypeOfWinRTEnum<AsyncStatus>(), isTrue);
-    expect(isSubtypeOfWinRTEnum<FileAttributes>(), isTrue);
-    expect(isSubtypeOfWinRTEnum<ICalendar>(), isFalse);
+    expect(isSubtypeOfWinRTEnum<WinRTEnum>(), isTrue);
+    expect(isSubtypeOfWinRTEnum<IAsyncAction>(), isFalse);
   });
 }
