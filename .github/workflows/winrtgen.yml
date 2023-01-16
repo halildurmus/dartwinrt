@@ -21,7 +21,7 @@ on:
       - "packages/winrtgen/pubspec.yaml"
 
 jobs:
-  winrtgen:
+  build:
     strategy:
       # We want to see the results on stable even if main fails (and vice
       # versa). This prevents one failure from stopping the entire run.
