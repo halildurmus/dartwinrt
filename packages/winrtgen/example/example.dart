@@ -26,9 +26,9 @@ void printStruct() {
 }
 
 void printMethod() {
-  final typeDef = MetadataStore.getMetadataForType(
+  final interfaceTypeDef = MetadataStore.getMetadataForType(
       'Windows.Storage.Pickers.IFileOpenPicker');
-  final method = typeDef?.findMethod('PickSingleFileAsync');
+  final method = interfaceTypeDef?.findMethod('PickSingleFileAsync');
   if (method != null) {
     final methodProjection = WinRTMethodProjection(method, 15);
     print(methodProjection);
@@ -36,9 +36,9 @@ void printMethod() {
 }
 
 void printGetProperty() {
-  final typeDef =
+  final interfaceTypeDef =
       MetadataStore.getMetadataForType('Windows.Globalization.ICalendar');
-  final method = typeDef?.findMethod('get_Languages');
+  final method = interfaceTypeDef?.findMethod('get_Languages');
   if (method != null) {
     final getPropertyProjection = WinRTGetPropertyProjection(method, 9);
     print(getPropertyProjection);
@@ -46,9 +46,9 @@ void printGetProperty() {
 }
 
 void printSetProperty() {
-  final typeDef = MetadataStore.getMetadataForType(
+  final interfaceTypeDef = MetadataStore.getMetadataForType(
       'Windows.Devices.Geolocation.IGeolocator');
-  final method = typeDef?.findMethod('put_DesiredAccuracy');
+  final method = interfaceTypeDef?.findMethod('put_DesiredAccuracy');
   if (method != null) {
     final setPropertyProjection = WinRTSetPropertyProjection(method, 7);
     print(setPropertyProjection);
