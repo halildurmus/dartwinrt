@@ -7,7 +7,6 @@
 import 'package:test/test.dart';
 import 'package:win32/win32.dart';
 import 'package:windows_foundation/windows_foundation.dart';
-import 'package:windows_globalization/windows_globalization.dart';
 
 void main() {
   if (isWindowsRuntimeAvailable()) {
@@ -46,40 +45,40 @@ void main() {
     });
 
     test('WinRT basic test', () {
-      final calendar = Calendar();
-      expect(calendar.year, greaterThanOrEqualTo(2020));
+      final propertyValue = PropertyValue.createString('basic');
+      expect(propertyValue.getString(), equals('basic'));
 
-      calendar.release();
+      propertyValue.release();
     });
 
     test('WinRT getIids test', () {
       const iids = [
-        '{ca30221d-86d9-40fb-a26b-d44eb7cf08ea}', // ICalendar
-        '{00000038-0000-0000-c000-000000000046}', // IWeakReferenceSource
-        '{bb3c25e5-46cf-4317-a3f5-02621ad54478}', // ITimeZoneOnCalendar
-        '{0ca51cc6-17cf-4642-b08e-473dcc3ca3ef}'
+        '{f6d1f700-49c2-52ae-8154-826f9908773c}', // IMap<String, String>
+        '{e9bdaaf0-cbf6-5c72-be90-29cbf3a1319b}', // IIterable<IKeyValuePair<String, String>
+        '{1e036276-2f60-55f6-b7f3-f86079e6900b}', // IObservableMap<String, String>
+        '{00000038-0000-0000-c000-000000000046}' // IWeakReferenceSource
       ];
 
-      final calendar = Calendar();
-      expect(calendar.iids, equals(iids));
+      final stringMap = StringMap();
+      expect(stringMap.iids, equals(iids));
 
-      calendar.release();
+      stringMap.release();
     });
 
     test('WinRT getRuntimeClassName test', () {
-      const calendarClassName = 'Windows.Globalization.Calendar';
+      const stringMapClassName = 'Windows.Foundation.Collections.StringMap';
 
-      final calendar = Calendar();
-      expect(calendar.runtimeClassName, equals(calendarClassName));
+      final stringMap = StringMap();
+      expect(stringMap.runtimeClassName, equals(stringMapClassName));
 
-      calendar.release();
+      stringMap.release();
     });
 
     test('WinRT getTrustLevel test of base trust class', () {
-      final calendar = Calendar();
-      expect(calendar.trustLevel, equals(TrustLevel.baseTrust));
+      final stringMap = StringMap();
+      expect(stringMap.trustLevel, equals(TrustLevel.baseTrust));
 
-      calendar.release();
+      stringMap.release();
     });
 
     test('WinRT getTrustLevel test of partial trust class', () {

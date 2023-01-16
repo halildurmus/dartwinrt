@@ -24,15 +24,3 @@ dependencies:
 
 dev_dependencies:
   test: ^1.22.1
-  windows_data:
-    path: ../windows_data
-  windows_devices:
-    path: ../windows_devices
-  windows_globalization:
-    path: ../windows_globalization
-  windows_graphics:
-    path: ../windows_graphics
-  windows_networking:
-    path: ../windows_networking
-  windows_storage:
-    path: ../windows_storage
