@@ -1,0 +1,48 @@
+name: windows_ui
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/windows_ui.yaml"
+      - "packages/windows_ui/example/**"
+      - "packages/windows_ui/lib/**"
+      - "packages/windows_ui/test/**"
+      - "packages/windows_ui/pubspec.yaml"
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/windows_ui.yaml"
+      - "packages/windows_ui/example/**"
+      - "packages/windows_ui/lib/**"
+      - "packages/windows_ui/test/**"
+      - "packages/windows_ui/pubspec.yaml"
+
+jobs:
+  build:
+    strategy:
+      # We want to see the results on stable even if main fails (and vice
+      # versa). This prevents one failure from stopping the entire run.
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            sdk: main
+          - os: windows-2022
+            sdk: beta
+          - os: windows-2019
+            sdk: stable
+          - os: ubuntu-latest
+            sdk: stable
+    uses: ./.github/workflows/dart_package.yml
+    with:
+      analyze_directories: example lib test
+      dart_sdk: ${{ matrix.sdk }}
+      runs_on: ${{ matrix.os }}
+      working_directory: packages/windows_ui
+
+  # TODO: Enable after all packages in this repository are published.
+  # pana:
+  #   uses: ./.github/workflows/pana.yml
+  #   with:
+  #     working_directory: packages/windows_ui
