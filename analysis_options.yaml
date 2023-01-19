@@ -107,4 +107,3 @@ linter:
     - use_super_parameters
     - valid_regexps
     - void_checks
-

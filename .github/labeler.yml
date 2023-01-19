@@ -1,0 +1,63 @@
+"p: windows_data":
+  - packages/windows_data/**/*
+
+"p: windows_devices":
+  - packages/windows_devices/**/*
+
+"p: windows_foundation":
+  - packages/windows_foundation/**/*
+
+"p: windows_gaming":
+  - packages/windows_gaming/**/*
+
+"p: windows_globalization":
+  - packages/windows_globalization/**/*
+
+"p: windows_graphics":
+  - packages/windows_graphics/**/*
+
+"p: windows_media":
+  - packages/windows_media/**/*
+
+"p: windows_networking":
+  - packages/windows_networking/**/*
+
+"p: windows_security":
+  - packages/windows_security/**/*
+
+"p: windows_storage":
+  - packages/windows_storage/**/*
+
+"p: windows_system":
+  - packages/windows_system/**/*
+
+"p: windows_ui":
+  - packages/windows_ui/**/*
+
+"p: winrtgen":
+  - packages/winrtgen/**/*
+
+chore:
+  - all: ["packages/*/CHANGELOG.md", "packages/*/pubspec.yaml"]
+
+ci:
+  - all:
+      [
+        ".github/dependabot.yml",
+        ".github/labeler.yml",
+        ".github/workflows/*.yml",
+      ]
+
+documentation:
+  - all:
+      [
+        "README.md",
+        "doc/*.md",
+        "packages/README.md",
+        "packages/*/README.md",
+        "packages/*/example/README.md",
+        "tool/README.md",
+      ]
+
+test:
+  - all: ["packages/*/test/*_test.dart"]
