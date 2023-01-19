@@ -20,6 +20,7 @@ import 'collections/iiterable.dart';
 import 'collections/iiterator.dart';
 import 'collections/ivectorview.dart';
 import 'helpers.dart';
+import 'iinspectable.dart';
 import 'iwwwformurldecoderentry.dart';
 
 /// @nodoc

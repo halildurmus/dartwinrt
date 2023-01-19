@@ -17,6 +17,7 @@ import 'package:win32/win32.dart';
 import '../../../../internal.dart';
 import '../callbacks.dart';
 import '../helpers.dart';
+import '../iinspectable.dart';
 import 'iiterable.dart';
 import 'iiterator.dart';
 import 'ikeyvaluepair.dart';

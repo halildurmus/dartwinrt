@@ -18,6 +18,7 @@ import '../../../internal.dart';
 import 'callbacks.dart';
 import 'enums.g.dart';
 import 'helpers.dart';
+import 'iinspectable.dart';
 import 'structs.g.dart';
 
 /// @nodoc

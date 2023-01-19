@@ -10,6 +10,7 @@ import 'package:windows_media/windows_media.dart';
 
 import '../constants.dart';
 import '../helpers.dart';
+import '../iinspectable.dart';
 import '../internal/ipropertyvalue_helpers.dart';
 import '../internal/map_helpers.dart';
 import '../ipropertyvalue.dart';

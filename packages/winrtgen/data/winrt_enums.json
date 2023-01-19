@@ -19,6 +19,8 @@
     "Windows.Globalization.PhoneNumberFormatting.PhoneNumberMatchResult": "The result of calling the PhoneNumberInfo.CheckNumberMatch method.",
     "Windows.Globalization.PhoneNumberFormatting.PhoneNumberParseResult": "Describes the results of trying to parse a string into a phone number.",
     "Windows.Globalization.PhoneNumberFormatting.PredictedPhoneNumberKind": "The kinds of phone numbers returned by PhoneNumberInfo.PredictNumberKind.",
+    "Windows.Graphics.Printing.PrintColorMode": "Specifies the color mode option.",
+    "Windows.Media.SpeechSynthesis.VoiceGender": "Specifies the gender preferences available for speech synthesis (if supported by the specified speech synthesis engine).",
     "Windows.Networking.Connectivity.NetworkTypes": "Defines the network connection types.",
     "Windows.Networking.HostNameType": "The type of a HostName object.",
     "Windows.Storage.FileAttributes": "Describes the attributes of a file or folder.",

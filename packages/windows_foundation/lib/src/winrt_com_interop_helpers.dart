@@ -7,6 +7,8 @@
 
 import 'package:win32/win32.dart';
 
+import 'iinspectable.dart';
+
 /// Exposes a method through which a client can provide an owner window to a
 /// Windows Runtime (WinRT) object used in a desktop application.
 ///

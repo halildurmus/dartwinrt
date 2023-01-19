@@ -32,3 +32,4 @@ echo.
 :end
 rem Restore old working directory
 popd
+pause

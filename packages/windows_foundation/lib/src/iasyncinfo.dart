@@ -18,6 +18,7 @@ import '../../../internal.dart';
 import 'callbacks.dart';
 import 'enums.g.dart';
 import 'helpers.dart';
+import 'iinspectable.dart';
 
 /// @nodoc
 const IID_IAsyncInfo = '{00000036-0000-0000-c000-000000000046}';
