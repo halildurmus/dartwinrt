@@ -17,7 +17,10 @@ platforms:
 
 dependencies:
   ffi: ^2.0.1
-  win32: ^4.1.0
+  win32:
+    git:
+      url: https://github.com/timsneath/win32.git
+      ref: dev
   windows_devices:
     path: ../windows_devices
   windows_foundation:
