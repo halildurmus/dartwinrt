@@ -26,7 +26,9 @@ extension IPropertyValueHelper on IPropertyValue {
 
     // If the object does not implement the IPropertyValue interface, return it
     // as an IInspectable object.
-    if (!iids.contains(IID_IPropertyValue)) return IInspectable.from(this);
+    if (!getInterfaces(this).contains(IID_IPropertyValue)) {
+      return IInspectable.from(this);
+    }
 
     switch (this.type) {
       case PropertyType.boolean:

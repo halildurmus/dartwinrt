@@ -183,68 +183,90 @@ enum TrustLevel {
   fullTrust
 }
 
-extension IInspectableExtension on IInspectable {
-  /// Returns the interface IIDs that are implemented by the current Windows
-  /// Runtime class.
-  ///
-  /// The `IUnknown` and `IInspectable` interfaces are excluded.
-  List<String> get iids {
-    final pIIDCount = calloc<Uint32>();
-    final pIIDs = calloc<Pointer<GUID>>();
+/// Returns the interface IIDs that are implemented by the Windows Runtime
+/// [object].
+///
+/// The `IUnknown` and `IInspectable` interfaces are excluded.
+List<String> getInterfaces(IInspectable object) {
+  final pIIDCount = calloc<Uint32>();
+  final pIIDs = calloc<Pointer<GUID>>();
 
-    try {
-      final hr = getIids(pIIDCount, pIIDs);
-      if (SUCCEEDED(hr)) {
-        return [
-          for (var i = 0; i < pIIDCount.value; i++) pIIDs.value[i].toString()
-        ];
-      } else {
-        throw WindowsException(hr);
-      }
-    } finally {
-      free(pIIDCount);
-      free(pIIDs);
-    }
+  try {
+    final hr = object.ptr.ref.vtable
+            .elementAt(3)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        Int32 Function(Pointer, Pointer<Uint32> iidCount,
+                            Pointer<Pointer<GUID>> iids)>>>()
+            .value
+            .asFunction<
+                int Function(Pointer, Pointer<Uint32> iidCount,
+                    Pointer<Pointer<GUID>> iids)>()(
+        object.ptr.ref.lpVtbl, pIIDCount, pIIDs);
+
+    if (FAILED(hr)) throw WindowsException(hr);
+
+    return [
+      for (var i = 0; i < pIIDCount.value; i++) pIIDs.value[i].toString()
+    ];
+  } finally {
+    free(pIIDCount);
+    free(pIIDs);
   }
+}
 
-  /// Gets the fully qualified name of the current Windows Runtime object.
-  String get runtimeClassName {
-    final hstr = calloc<HSTRING>();
+/// Gets the fully qualified name of the Windows Runtime [object].
+String getClassName(IInspectable object) {
+  final hClassName = calloc<HSTRING>();
 
-    try {
-      final hr = getRuntimeClassName(hstr);
-      if (SUCCEEDED(hr)) {
-        return convertFromHString(hstr.value);
-      } else {
-        throw WindowsException(hr);
-      }
-    } finally {
-      free(hstr);
-    }
+  try {
+    final hr = object.ptr.ref.vtable
+            .elementAt(4)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        Int32 Function(Pointer, Pointer<IntPtr> className)>>>()
+            .value
+            .asFunction<int Function(Pointer, Pointer<IntPtr> className)>()(
+        object.ptr.ref.lpVtbl, hClassName);
+
+    if (FAILED(hr)) throw WindowsException(hr);
+
+    return convertFromHString(hClassName.value);
+  } finally {
+    free(hClassName);
   }
+}
 
-  /// Gets the trust level of the current Windows Runtime object.
-  TrustLevel get trustLevel {
-    final pTrustLevel = calloc<Int32>();
+/// Gets the trust level of the Windows Runtime [object].
+TrustLevel getTrustLevel(IInspectable object) {
+  final pTrustLevel = calloc<Int32>();
 
-    try {
-      final hr = getTrustLevel(pTrustLevel);
-      if (SUCCEEDED(hr)) {
-        switch (pTrustLevel.value) {
-          case 0:
-            return TrustLevel.baseTrust;
-          case 1:
-            return TrustLevel.partialTrust;
-          case 2:
-            return TrustLevel.fullTrust;
-          default:
-            throw ArgumentError('GetTrustLevel returned an unexpected value.');
-        }
-      } else {
-        throw WindowsException(hr);
-      }
-    } finally {
-      free(pTrustLevel);
+  try {
+    final hr = object.ptr.ref.vtable
+            .elementAt(5)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        Int32 Function(Pointer, Pointer<Int32> trustLevel)>>>()
+            .value
+            .asFunction<int Function(Pointer, Pointer<Int32> trustLevel)>()(
+        object.ptr.ref.lpVtbl, pTrustLevel);
+
+    if (FAILED(hr)) throw WindowsException(hr);
+
+    switch (pTrustLevel.value) {
+      case 0:
+        return TrustLevel.baseTrust;
+      case 1:
+        return TrustLevel.partialTrust;
+      case 2:
+        return TrustLevel.fullTrust;
+      default:
+        throw ArgumentError('GetTrustLevel returned an unexpected value.');
     }
+  } finally {
+    free(pTrustLevel);
   }
 }
