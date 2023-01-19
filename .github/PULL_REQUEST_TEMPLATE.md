@@ -10,9 +10,9 @@
 
 ## Type of Change
 
-<!--- 
-  Please look at the following checklist and put an `x` in all the boxes that 
-  apply to ensure that your PR can be accepted quickly: 
+<!---
+  Please look at the following checklist and put an `x` in all the boxes that
+  apply to ensure that your PR can be accepted quickly:
 -->
 
 - [ ] ✨ New feature (non-breaking change which adds functionality)
