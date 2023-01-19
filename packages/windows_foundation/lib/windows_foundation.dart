@@ -13,6 +13,7 @@ export 'src/constants.dart';
 export 'src/enums.g.dart';
 export 'src/helpers.dart';
 export 'src/iclosable.dart';
+export 'src/iinspectable.dart';
 export 'src/ipropertyvalue.dart';
 export 'src/ireference.dart';
 export 'src/istringable.dart';

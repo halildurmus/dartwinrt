@@ -11,6 +11,7 @@ import 'callbacks.dart';
 import 'enums.g.dart';
 import 'helpers.dart';
 import 'iasyncinfo.dart';
+import 'iinspectable.dart';
 import 'uri.dart' as winrt_uri;
 
 /// Represents an asynchronous operation, which returns a result upon

@@ -12,6 +12,7 @@ import 'package:win32/win32.dart';
 
 import '../callbacks.dart';
 import '../helpers.dart';
+import '../iinspectable.dart';
 import '../internal/hstring_array.dart';
 import 'imap.dart';
 import 'stringmap.dart';

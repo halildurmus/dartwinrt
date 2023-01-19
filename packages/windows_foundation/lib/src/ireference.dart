@@ -7,6 +7,7 @@ import 'package:win32/win32.dart';
 
 import 'constants.dart';
 import 'helpers.dart';
+import 'iinspectable.dart';
 import 'structs.g.dart';
 
 /// Enables arbitrary enumerations, structures, and delegate types to be used

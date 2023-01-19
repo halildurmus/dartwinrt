@@ -83,8 +83,7 @@ class WinRTInterfaceProjection extends ComInterfaceProjection {
 
   @override
   Set<String> get interfaceImports {
-    // Inherits from IInspectable, which is a traditional COM type.
-    if (typeDef.interfaces.isEmpty) return {'iinspectable.dart'};
+    if (typeDef.interfaces.isEmpty) return {};
 
     final importList = <String>{};
     for (final interface in typeDef.interfaces) {
@@ -111,6 +110,7 @@ class WinRTInterfaceProjection extends ComInterfaceProjection {
           relativePathTo('../internal.dart'),
           relativePathTo('packages/windows_foundation/callbacks.dart'),
           relativePathTo('packages/windows_foundation/helpers.dart'),
+          relativePathTo('packages/windows_foundation/iinspectable.dart')
         ] else ...[
           'package:windows_foundation/internal.dart',
           'package:windows_foundation/windows_foundation.dart',
@@ -125,7 +125,7 @@ class WinRTInterfaceProjection extends ComInterfaceProjection {
       ...importsForClass,
       ...extraImports
     }
-      ..removeWhere((import) => import == 'iinspectable.dart' || import.isEmpty)
+      ..removeWhere((import) => import.isEmpty)
       // TODO: Remove this check once WinRT events are supported.
       ..removeWhere((import) => import.endsWith('eventargs.dart'));
 
