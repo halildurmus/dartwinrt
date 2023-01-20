@@ -4,6 +4,7 @@
 
 import '../winrt_get_property.dart';
 import '../winrt_method.dart';
+import '../winrt_parameter.dart';
 import '../winrt_set_property.dart';
 
 class WinRTMethodReturningDateTimeProjection extends WinRTMethodProjection {
@@ -68,4 +69,19 @@ class WinRTSetPropertyReturningDateTimeProjection
         ${ffiCall(params: 'dateTimeOffset')}
       }
 ''';
+}
+
+class WinRTDateTimeParameterProjection extends WinRTParameterProjection {
+  WinRTDateTimeParameterProjection(super.method, super.name, super.type);
+
+  @override
+  String get preamble => '''
+      final ${name}DateTime =
+          $name.difference(DateTime.utc(1601, 01, 01)).inMicroseconds * 10;''';
+
+  @override
+  String get postamble => '';
+
+  @override
+  String get localIdentifier => '${name}DateTime';
 }

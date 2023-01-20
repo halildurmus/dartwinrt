@@ -4,6 +4,7 @@
 
 import '../winrt_get_property.dart';
 import '../winrt_method.dart';
+import '../winrt_parameter.dart';
 import '../winrt_set_property.dart';
 
 class WinRTMethodReturningStringProjection extends WinRTMethodProjection {
@@ -71,4 +72,17 @@ class WinRTSetPropertyReturningStringProjection
         }
       }
 ''';
+}
+
+class WinRTStringParameterProjection extends WinRTParameterProjection {
+  WinRTStringParameterProjection(super.method, super.name, super.type);
+
+  @override
+  String get preamble => 'final ${name}HString = convertToHString($name);';
+
+  @override
+  String get postamble => 'WindowsDeleteString(${name}HString);';
+
+  @override
+  String get localIdentifier => '${name}HString';
 }

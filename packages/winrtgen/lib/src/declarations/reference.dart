@@ -9,6 +9,7 @@ import 'package:winmd/winmd.dart';
 import '../utils.dart';
 import '../winrt_get_property.dart';
 import '../winrt_method.dart';
+import '../winrt_parameter.dart';
 import '../winrt_set_property.dart';
 import '../winrt_type.dart';
 
@@ -75,6 +76,13 @@ mixin _ReferenceProjection on WinRTMethodProjection {
 
     return ', ${args.join(', ')}';
   }
+
+  String get nullCheck => '''
+    if (retValuePtr.ref.lpVtbl == nullptr) {
+      free(retValuePtr);
+      return null;
+    }
+''';
 }
 
 class WinRTMethodReturningReferenceProjection extends WinRTMethodProjection
@@ -89,10 +97,7 @@ class WinRTMethodReturningReferenceProjection extends WinRTMethodProjection
 
         ${ffiCall(freeRetValOnFailure: true)}
 
-        if (retValuePtr.ref.lpVtbl == nullptr) {
-          free(retValuePtr);
-          return null;
-        }
+        $nullCheck
 
         final reference = IReference<$referenceTypeArg>.fromRawPointer
             (retValuePtr$referenceConstructorArgs);
@@ -118,10 +123,7 @@ class WinRTGetPropertyReturningReferenceProjection
 
         ${ffiCall(freeRetValOnFailure: true)}
 
-        if (retValuePtr.ref.lpVtbl == nullptr) {
-          free(retValuePtr);
-          return null;
-        }
+        $nullCheck
 
         final reference = IReference<$referenceTypeArg>.fromRawPointer
             (retValuePtr$referenceConstructorArgs);
@@ -150,4 +152,38 @@ class WinRTSetPropertyReturningReferenceProjection
         if (value == null) free(referencePtr);
       }
   ''';
+}
+
+class WinRTReferenceParameterProjection extends WinRTParameterProjection {
+  WinRTReferenceParameterProjection(super.method, super.name, super.type);
+
+  @override
+  String get preamble => '';
+
+  @override
+  String get postamble => '';
+
+  @override
+  String get localIdentifier {
+    // IReference<T> parameters must be passed to WinRT APIs as 'IReference'
+    // interfaces by calling the 'boxValue' function with the
+    // 'convertToIReference' flag set to true
+    final typeProjection = WinRTTypeProjection(type.typeIdentifier.typeArg!);
+    final args = <String>['convertToIReference: true'];
+
+    // If the nullable parameter is an enum, a double or an int, its native
+    // type (e.g. Double, Float, Int32, Uint32) must be passed in the
+    // `nativeType` parameter so that the 'boxValue' function can use the
+    // appropriate native type for the parameter
+    if (typeProjection.isWinRTEnum ||
+        ['double', 'int'].contains(typeProjection.methodParamType)) {
+      args.add('nativeType: ${typeProjection.nativeType}');
+    }
+
+    final valueArg = typeProjection.isWinRTEnum ? '$name.value' : name;
+    return '''
+        $name == null
+            ? calloc<COMObject>().ref
+            : boxValue($valueArg, ${args.join(', ')}).ref''';
+  }
 }
