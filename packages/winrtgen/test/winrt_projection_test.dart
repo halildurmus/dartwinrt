@@ -762,12 +762,12 @@ void main() {
     final uriParameter =
         launchUriAsyncProjection.parameters.first as WinRTParameterProjection;
     expect(uriParameter.preamble,
-        equals('final uriUri = winrt_uri.Uri.createUri(uri.toString());'));
-    expect(uriParameter.postamble, equals('uriUri.release();'));
+        equals('final uriUri = uri == null ? null : winrt_uri.Uri.createUri(uri.toString());'));
+    expect(uriParameter.postamble, equals('uriUri?.release();'));
     expect(
         uriParameter.localIdentifier,
         equals(
-            'uri == null ? nullptr : uriUri.ptr.cast<Pointer<COMObject>>().value'));
+            'uriUri == null ? nullptr : uriUri.ptr.cast<Pointer<COMObject>>().value'));
     expect(uriParameter.type.methodParamType, equals('Uri?'));
   });
 
