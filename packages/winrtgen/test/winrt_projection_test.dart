@@ -761,8 +761,10 @@ void main() {
         .firstWhere((m) => m.name == 'LaunchUriAsync');
     final uriParameter =
         launchUriAsyncProjection.parameters.first as WinRTParameterProjection;
-    expect(uriParameter.preamble,
-        equals('final uriUri = uri == null ? null : winrt_uri.Uri.createUri(uri.toString());'));
+    expect(
+        uriParameter.preamble,
+        equals(
+            'final uriUri = uri == null ? null : winrt_uri.Uri.createUri(uri.toString());'));
     expect(uriParameter.postamble, equals('uriUri?.release();'));
     expect(
         uriParameter.localIdentifier,
