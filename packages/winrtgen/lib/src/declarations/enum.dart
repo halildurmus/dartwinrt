@@ -4,6 +4,7 @@
 
 import '../winrt_get_property.dart';
 import '../winrt_method.dart';
+import '../winrt_parameter.dart';
 import '../winrt_set_property.dart';
 
 class WinRTMethodReturningEnumProjection extends WinRTMethodProjection {
@@ -57,4 +58,17 @@ class WinRTSetPropertyReturningEnumProjection
         ${ffiCall(params: 'value.value')}
       }
   ''';
+}
+
+class WinRTEnumParameterProjection extends WinRTParameterProjection {
+  WinRTEnumParameterProjection(super.method, super.name, super.type);
+
+  @override
+  String get preamble => '';
+
+  @override
+  String get postamble => '';
+
+  @override
+  String get localIdentifier => '$identifier.value';
 }

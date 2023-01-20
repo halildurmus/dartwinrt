@@ -33,7 +33,7 @@ class IUriEscapeStatics extends IInspectable {
 
   String unescapeComponent(String toUnescape) {
     final retValuePtr = calloc<HSTRING>();
-    final toUnescapeHstring = convertToHString(toUnescape);
+    final toUnescapeHString = convertToHString(toUnescape);
 
     try {
       final hr = ptr.ref.vtable
@@ -46,14 +46,14 @@ class IUriEscapeStatics extends IInspectable {
               .value
               .asFunction<
                   int Function(Pointer, int toUnescape, Pointer<IntPtr>)>()(
-          ptr.ref.lpVtbl, toUnescapeHstring, retValuePtr);
+          ptr.ref.lpVtbl, toUnescapeHString, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.toDartString();
       return retValue;
     } finally {
-      WindowsDeleteString(toUnescapeHstring);
+      WindowsDeleteString(toUnescapeHString);
       WindowsDeleteString(retValuePtr.value);
       free(retValuePtr);
     }
@@ -61,7 +61,7 @@ class IUriEscapeStatics extends IInspectable {
 
   String escapeComponent(String toEscape) {
     final retValuePtr = calloc<HSTRING>();
-    final toEscapeHstring = convertToHString(toEscape);
+    final toEscapeHString = convertToHString(toEscape);
 
     try {
       final hr = ptr.ref.vtable
@@ -74,14 +74,14 @@ class IUriEscapeStatics extends IInspectable {
               .value
               .asFunction<
                   int Function(Pointer, int toEscape, Pointer<IntPtr>)>()(
-          ptr.ref.lpVtbl, toEscapeHstring, retValuePtr);
+          ptr.ref.lpVtbl, toEscapeHString, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.toDartString();
       return retValue;
     } finally {
-      WindowsDeleteString(toEscapeHstring);
+      WindowsDeleteString(toEscapeHString);
       WindowsDeleteString(retValuePtr.value);
       free(retValuePtr);
     }

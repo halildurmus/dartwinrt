@@ -423,7 +423,7 @@ class IUriRuntimeClass extends IInspectable {
 
   Uri? combineUri(String relativeUri) {
     final retValuePtr = calloc<COMObject>();
-    final relativeUriHstring = convertToHString(relativeUri);
+    final relativeUriHString = convertToHString(relativeUri);
 
     final hr = ptr.ref.vtable
             .elementAt(22)
@@ -435,14 +435,14 @@ class IUriRuntimeClass extends IInspectable {
             .value
             .asFunction<
                 int Function(Pointer, int relativeUri, Pointer<COMObject>)>()(
-        ptr.ref.lpVtbl, relativeUriHstring, retValuePtr);
+        ptr.ref.lpVtbl, relativeUriHString, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
 
-    WindowsDeleteString(relativeUriHstring);
+    WindowsDeleteString(relativeUriHString);
 
     if (retValuePtr.ref.lpVtbl == nullptr) {
       free(retValuePtr);

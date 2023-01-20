@@ -58,8 +58,8 @@ class ICalendarFactory extends IInspectable {
       IIterable<String> languages, String calendar, String clock) {
     final retValuePtr = calloc<COMObject>();
 
-    final calendarHstring = convertToHString(calendar);
-    final clockHstring = convertToHString(clock);
+    final calendarHString = convertToHString(calendar);
+    final clockHString = convertToHString(clock);
 
     final hr =
         ptr.ref.vtable
@@ -79,8 +79,8 @@ class ICalendarFactory extends IInspectable {
                         int calendar, int clock, Pointer<COMObject>)>()(
             ptr.ref.lpVtbl,
             languages.ptr.cast<Pointer<COMObject>>().value,
-            calendarHstring,
-            clockHstring,
+            calendarHString,
+            clockHString,
             retValuePtr);
 
     if (FAILED(hr)) {
@@ -88,8 +88,8 @@ class ICalendarFactory extends IInspectable {
       throw WindowsException(hr);
     }
 
-    WindowsDeleteString(calendarHstring);
-    WindowsDeleteString(clockHstring);
+    WindowsDeleteString(calendarHString);
+    WindowsDeleteString(clockHString);
 
     return Calendar.fromRawPointer(retValuePtr);
   }

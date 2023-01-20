@@ -53,7 +53,7 @@ class ITimeZoneOnCalendar extends IInspectable {
   }
 
   void changeTimeZone(String timeZoneId) {
-    final timeZoneIdHstring = convertToHString(timeZoneId);
+    final timeZoneIdHString = convertToHString(timeZoneId);
 
     final hr = ptr.ref.vtable
         .elementAt(7)
@@ -63,11 +63,11 @@ class ITimeZoneOnCalendar extends IInspectable {
         .value
         .asFunction<
             int Function(
-                Pointer, int timeZoneId)>()(ptr.ref.lpVtbl, timeZoneIdHstring);
+                Pointer, int timeZoneId)>()(ptr.ref.lpVtbl, timeZoneIdHString);
 
     if (FAILED(hr)) throw WindowsException(hr);
 
-    WindowsDeleteString(timeZoneIdHstring);
+    WindowsDeleteString(timeZoneIdHString);
   }
 
   String timeZoneAsFullString() {

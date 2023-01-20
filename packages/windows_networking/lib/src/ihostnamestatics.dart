@@ -30,8 +30,8 @@ class IHostNameStatics extends IInspectable {
 
   int compare(String value1, String value2) {
     final retValuePtr = calloc<Int32>();
-    final value1Hstring = convertToHString(value1);
-    final value2Hstring = convertToHString(value2);
+    final value1HString = convertToHString(value1);
+    final value2HString = convertToHString(value2);
 
     try {
       final hr =
@@ -46,15 +46,15 @@ class IHostNameStatics extends IInspectable {
                   .asFunction<
                       int Function(
                           Pointer, int value1, int value2, Pointer<Int32>)>()(
-              ptr.ref.lpVtbl, value1Hstring, value2Hstring, retValuePtr);
+              ptr.ref.lpVtbl, value1HString, value2HString, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
       return retValue;
     } finally {
-      WindowsDeleteString(value1Hstring);
-      WindowsDeleteString(value2Hstring);
+      WindowsDeleteString(value1HString);
+      WindowsDeleteString(value2HString);
       free(retValuePtr);
     }
   }

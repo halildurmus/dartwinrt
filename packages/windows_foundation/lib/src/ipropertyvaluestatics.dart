@@ -301,7 +301,7 @@ class IPropertyValueStatics extends IInspectable {
 
   IPropertyValue createString(String value) {
     final retValuePtr = calloc<COMObject>();
-    final valueHstring = convertToHString(value);
+    final valueHString = convertToHString(value);
 
     final hr = ptr.ref.vtable
             .elementAt(18)
@@ -312,14 +312,14 @@ class IPropertyValueStatics extends IInspectable {
                             Pointer, IntPtr value, Pointer<COMObject>)>>>()
             .value
             .asFunction<int Function(Pointer, int value, Pointer<COMObject>)>()(
-        ptr.ref.lpVtbl, valueHstring, retValuePtr);
+        ptr.ref.lpVtbl, valueHString, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
 
-    WindowsDeleteString(valueHstring);
+    WindowsDeleteString(valueHString);
 
     return IPropertyValue.fromRawPointer(retValuePtr);
   }

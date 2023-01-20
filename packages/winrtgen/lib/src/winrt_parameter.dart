@@ -5,8 +5,15 @@
 import 'package:win32gen/win32gen.dart';
 import 'package:winmd/winmd.dart';
 
+import 'declarations/comobject.dart';
+import 'declarations/datetime.dart';
+import 'declarations/duration.dart';
+import 'declarations/enum.dart';
+import 'declarations/guid.dart';
+import 'declarations/reference.dart';
+import 'declarations/string.dart';
+import 'declarations/uri.dart';
 import 'utils.dart';
-import 'winrt_type.dart';
 
 /// A WinRT parameter.
 ///
@@ -22,7 +29,7 @@ class WinRTParameterProjection extends ParameterProjection {
   // ParameterProjection override
 
   @override
-  String get paramProjection => '$paramType ${safeIdentifierForString(name)}';
+  String get paramProjection => '$paramType $identifier';
 
   String get paramType {
     final originalParamType = safeTypenameForString(type.methodParamType);
@@ -55,7 +62,7 @@ class WinRTParameterProjection extends ParameterProjection {
 
   // Matcher properties
 
-  bool get isCOMObject => type.dartType == 'Pointer<COMObject>';
+  bool get isComObjectPointer => type.dartType == 'Pointer<COMObject>';
 
   bool get isDateTime =>
       type.typeIdentifier.name == 'Windows.Foundation.DateTime';
@@ -74,108 +81,37 @@ class WinRTParameterProjection extends ParameterProjection {
 
   bool get isUri => type.typeIdentifier.name == 'Windows.Foundation.Uri';
 
-  /// Whether the method belongs to `IUriRuntimeClass` or
-  /// `IUriRuntimeClassFactory`.
-  ///
-  /// Used to determine whether the parameter should be exposed as WinRT `Uri`
-  /// or dart:core's `Uri`.
-  bool get methodBelongsToUriRuntimeClass => [
-        'Windows.Foundation.IUriRuntimeClass',
-        'Windows.Foundation.IUriRuntimeClassFactory'
-      ].contains(method.parent.name);
+  /// Returns the appropriate projection for the parameter.
+  WinRTParameterProjection? get parameterProjection {
+    if (isDateTime) return WinRTDateTimeParameterProjection(method, name, type);
+    if (isEnum) return WinRTEnumParameterProjection(method, name, type);
+    if (isGuid) return WinRTGuidParameterProjection(method, name, type);
+    if (isString) return WinRTStringParameterProjection(method, name, type);
+    if (isReference) {
+      return WinRTReferenceParameterProjection(method, name, type);
+    }
+    if (isTimeSpan) return WinRTDurationParameterProjection(method, name, type);
+    if (isUri) return WinRTUriParameterProjection(method, name, type);
+    if (isComObjectPointer) {
+      return WinRTComObjectParameterProjection(method, name, type);
+    }
+
+    return null;
+  }
 
   /// Code to be inserted prior to the function call to set up the variable
   /// conversion.
   ///
   /// Any preamble that allocates memory should have a matching postamble that
   /// frees the memory.
-  String get preamble {
-    if (isDateTime) {
-      return 'final ${name}DateTime = '
-          '$name.difference(DateTime.utc(1601, 01, 01)).inMicroseconds * 10;';
-    }
-
-    if (isGuid) return 'final ${name}NativeGuidPtr = $name.toNativeGUID();';
-
-    // Nullable parameters must be passed to WinRT APIs as 'IReference'
-    // interfaces by calling the 'boxValue' function with the
-    // 'convertToIReference' flag set to true
-    if (isReference) {
-      final typeProjection = WinRTTypeProjection(type.typeIdentifier.typeArg!);
-      final args = <String>['convertToIReference: true'];
-
-      // If the nullable parameter is an enum, a double or an int, its native
-      // type (e.g. Double, Float, Int32, Uint32) must be passed in the
-      // `nativeType` parameter so that the 'boxValue' function can use the
-      // appropriate native type for the parameter
-      if (typeProjection.isWinRTEnum ||
-          ['double', 'int'].contains(typeProjection.methodParamType)) {
-        args.add('nativeType: ${typeProjection.nativeType}');
-      }
-
-      final valueArg = typeProjection.isWinRTEnum ? 'value.value' : 'value';
-      return '''
-        final ${name}ReferencePtr = value == null
-            ? calloc<COMObject>()
-            : boxValue($valueArg, ${args.join(', ')});''';
-    }
-
-    if (isString) return 'final ${name}Hstring = convertToHString($name);';
-    if (isTimeSpan) return 'final ${name}Duration = $name.inMicroseconds * 10;';
-
-    if (isUri && !methodBelongsToUriRuntimeClass) {
-      return 'final ${name}Uri = winrt_uri.Uri.createUri($name.toString());';
-    }
-
-    return '';
-  }
+  String get preamble => parameterProjection?.preamble ?? '';
 
   /// Code to be inserted prior to the function call to tear down allocated
   /// memory.
-  String get postamble {
-    if (isGuid) return 'free(${name}NativeGuidPtr);';
-    if (isReference) return 'if (value == null) free(${name}ReferencePtr);';
-    if (isString) return 'WindowsDeleteString(${name}Hstring);';
-    if (isUri && !methodBelongsToUriRuntimeClass) {
-      return '${name}Uri.release();';
-    }
-
-    return '';
-  }
+  String get postamble => parameterProjection?.postamble ?? '';
 
   /// The name of the converted variable that should be passed inside the method
   /// call (e.g. `today` -> `todayDateTime`)
-  String get localIdentifier {
-    if (isEnum) return '$identifier.value';
-    if (isGuid) return '${name}NativeGuidPtr.ref';
-    if (isReference) return '${name}ReferencePtr.ref';
-
-    if (isCOMObject) {
-      if (isUri) {
-        if (methodBelongsToUriRuntimeClass) {
-          return '$identifier == null ? nullptr : $identifier.ptr.cast<Pointer<COMObject>>().value';
-        }
-
-        return paramType.endsWith('?')
-            ? '$name == null ? nullptr : ${name}Uri.ptr.cast<Pointer<COMObject>>().value'
-            : '${name}Uri.ptr.cast<Pointer<COMObject>>().value';
-      }
-
-      if (type.isReferenceType || type.isSimpleArrayType) {
-        return paramType == 'Pointer<COMObject>'
-            ? identifier
-            : '$identifier.ptr';
-      }
-
-      if (paramType == 'Pointer<COMObject>') {
-        return '$identifier.cast<Pointer<COMObject>>().value';
-      }
-
-      return paramType.endsWith('?')
-          ? '$identifier == null ? nullptr : $identifier.ptr.cast<Pointer<COMObject>>().value'
-          : '$identifier.ptr.cast<Pointer<COMObject>>().value';
-    }
-
-    return preamble.isEmpty ? identifier : preamble.split(' ')[1];
-  }
+  String get localIdentifier =>
+      parameterProjection?.localIdentifier ?? identifier;
 }

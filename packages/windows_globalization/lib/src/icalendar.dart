@@ -167,7 +167,7 @@ class ICalendar extends IInspectable {
   }
 
   void changeCalendarSystem(String value) {
-    final valueHstring = convertToHString(value);
+    final valueHString = convertToHString(value);
 
     final hr = ptr.ref.vtable
         .elementAt(13)
@@ -175,11 +175,11 @@ class ICalendar extends IInspectable {
             Pointer<NativeFunction<HRESULT Function(Pointer, IntPtr value)>>>()
         .value
         .asFunction<
-            int Function(Pointer, int value)>()(ptr.ref.lpVtbl, valueHstring);
+            int Function(Pointer, int value)>()(ptr.ref.lpVtbl, valueHString);
 
     if (FAILED(hr)) throw WindowsException(hr);
 
-    WindowsDeleteString(valueHstring);
+    WindowsDeleteString(valueHString);
   }
 
   String getClock() {
@@ -207,7 +207,7 @@ class ICalendar extends IInspectable {
   }
 
   void changeClock(String value) {
-    final valueHstring = convertToHString(value);
+    final valueHString = convertToHString(value);
 
     final hr = ptr.ref.vtable
         .elementAt(15)
@@ -215,11 +215,11 @@ class ICalendar extends IInspectable {
             Pointer<NativeFunction<HRESULT Function(Pointer, IntPtr value)>>>()
         .value
         .asFunction<
-            int Function(Pointer, int value)>()(ptr.ref.lpVtbl, valueHstring);
+            int Function(Pointer, int value)>()(ptr.ref.lpVtbl, valueHString);
 
     if (FAILED(hr)) throw WindowsException(hr);
 
-    WindowsDeleteString(valueHstring);
+    WindowsDeleteString(valueHString);
   }
 
   DateTime getDateTime() {

@@ -36,7 +36,7 @@ class IStorageItem extends IInspectable {
   Future<void> renameAsyncOverloadDefaultOptions(String desiredName) {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<void>();
-    final desiredNameHstring = convertToHString(desiredName);
+    final desiredNameHString = convertToHString(desiredName);
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -48,14 +48,14 @@ class IStorageItem extends IInspectable {
             .value
             .asFunction<
                 int Function(Pointer, int desiredName, Pointer<COMObject>)>()(
-        ptr.ref.lpVtbl, desiredNameHstring, retValuePtr);
+        ptr.ref.lpVtbl, desiredNameHString, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
 
-    WindowsDeleteString(desiredNameHstring);
+    WindowsDeleteString(desiredNameHString);
 
     final asyncAction = IAsyncAction.fromRawPointer(retValuePtr);
     completeAsyncAction(asyncAction, completer);
@@ -66,7 +66,7 @@ class IStorageItem extends IInspectable {
   Future<void> renameAsync(String desiredName, NameCollisionOption option) {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<void>();
-    final desiredNameHstring = convertToHString(desiredName);
+    final desiredNameHString = convertToHString(desiredName);
 
     final hr =
         ptr.ref.vtable
@@ -80,14 +80,14 @@ class IStorageItem extends IInspectable {
                 .asFunction<
                     int Function(Pointer, int desiredName, int option,
                         Pointer<COMObject>)>()(
-            ptr.ref.lpVtbl, desiredNameHstring, option.value, retValuePtr);
+            ptr.ref.lpVtbl, desiredNameHString, option.value, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
 
-    WindowsDeleteString(desiredNameHstring);
+    WindowsDeleteString(desiredNameHString);
 
     final asyncAction = IAsyncAction.fromRawPointer(retValuePtr);
     completeAsyncAction(asyncAction, completer);

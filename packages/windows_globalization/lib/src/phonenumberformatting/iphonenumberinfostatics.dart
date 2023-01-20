@@ -33,7 +33,7 @@ class IPhoneNumberInfoStatics extends IInspectable {
 
   PhoneNumberParseResult tryParse(String input, PhoneNumberInfo phoneNumber) {
     final retValuePtr = calloc<Int32>();
-    final inputHstring = convertToHString(input);
+    final inputHString = convertToHString(input);
 
     try {
       final hr =
@@ -51,13 +51,13 @@ class IPhoneNumberInfoStatics extends IInspectable {
                   .asFunction<
                       int Function(Pointer, int input,
                           Pointer<COMObject> phoneNumber, Pointer<Int32>)>()(
-              ptr.ref.lpVtbl, inputHstring, phoneNumber.ptr, retValuePtr);
+              ptr.ref.lpVtbl, inputHString, phoneNumber.ptr, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
       return PhoneNumberParseResult.from(retValuePtr.value);
     } finally {
-      WindowsDeleteString(inputHstring);
+      WindowsDeleteString(inputHString);
 
       free(retValuePtr);
     }
@@ -66,8 +66,8 @@ class IPhoneNumberInfoStatics extends IInspectable {
   PhoneNumberParseResult tryParseWithRegion(
       String input, String regionCode, PhoneNumberInfo phoneNumber) {
     final retValuePtr = calloc<Int32>();
-    final inputHstring = convertToHString(input);
-    final regionCodeHstring = convertToHString(regionCode);
+    final inputHString = convertToHString(input);
+    final regionCodeHString = convertToHString(regionCode);
 
     try {
       final hr =
@@ -87,8 +87,8 @@ class IPhoneNumberInfoStatics extends IInspectable {
                       int Function(Pointer, int input, int regionCode,
                           Pointer<COMObject> phoneNumber, Pointer<Int32>)>()(
               ptr.ref.lpVtbl,
-              inputHstring,
-              regionCodeHstring,
+              inputHString,
+              regionCodeHString,
               phoneNumber.ptr,
               retValuePtr);
 
@@ -96,8 +96,8 @@ class IPhoneNumberInfoStatics extends IInspectable {
 
       return PhoneNumberParseResult.from(retValuePtr.value);
     } finally {
-      WindowsDeleteString(inputHstring);
-      WindowsDeleteString(regionCodeHstring);
+      WindowsDeleteString(inputHString);
+      WindowsDeleteString(regionCodeHString);
 
       free(retValuePtr);
     }

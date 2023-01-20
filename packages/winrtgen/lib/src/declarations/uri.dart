@@ -4,9 +4,20 @@
 
 import '../winrt_get_property.dart';
 import '../winrt_method.dart';
+import '../winrt_parameter.dart';
 import '../winrt_set_property.dart';
 
-class WinRTMethodReturningUriProjection extends WinRTMethodProjection {
+mixin _UriProjection on WinRTMethodProjection {
+  String get nullCheck => '''
+    if (retValuePtr.ref.lpVtbl == nullptr) {
+      free(retValuePtr);
+      return null;
+    }
+''';
+}
+
+class WinRTMethodReturningUriProjection extends WinRTMethodProjection
+    with _UriProjection {
   WinRTMethodReturningUriProjection(super.method, super.vtableOffset);
 
   @override
@@ -17,10 +28,7 @@ class WinRTMethodReturningUriProjection extends WinRTMethodProjection {
 
         ${ffiCall(freeRetValOnFailure: true)}
 
-        if (retValuePtr.ref.lpVtbl == nullptr) {
-          free(retValuePtr);
-          return null;
-        }
+        $nullCheck
 
         final winrtUri = winrt_uri.Uri.fromRawPointer(retValuePtr);
         final uriAsString = winrtUri.toString();
@@ -33,8 +41,8 @@ class WinRTMethodReturningUriProjection extends WinRTMethodProjection {
 ''';
 }
 
-class WinRTGetPropertyReturningUriProjection
-    extends WinRTGetPropertyProjection {
+class WinRTGetPropertyReturningUriProjection extends WinRTGetPropertyProjection
+    with _UriProjection {
   WinRTGetPropertyReturningUriProjection(super.method, super.vtableOffset);
 
   @override
@@ -44,10 +52,7 @@ class WinRTGetPropertyReturningUriProjection
 
         ${ffiCall(freeRetValOnFailure: true)}
 
-        if (retValuePtr.ref.lpVtbl == nullptr) {
-          free(retValuePtr);
-          return null;
-        }
+        $nullCheck
 
         final winrtUri = winrt_uri.Uri.fromRawPointer(retValuePtr);
         final uriAsString = winrtUri.toString();
@@ -68,10 +73,38 @@ class WinRTSetPropertyReturningUriProjection
         final winrtUri = value == null ? null : winrt_uri.Uri.createUri(value.toString());
 
         try {
-          ${ffiCall(params: 'value == null ? nullptr : winrtUri.ptr.cast<Pointer<COMObject>>().value')}
+          ${ffiCall(params: 'winrtUri == null ? nullptr : winrtUri.ptr.cast<Pointer<COMObject>>().value')}
         } finally {
           winrtUri?.release();
         }
       }
 ''';
+}
+
+class WinRTUriParameterProjection extends WinRTParameterProjection {
+  WinRTUriParameterProjection(super.method, super.name, super.type);
+
+  /// Whether the method belongs to `IUriRuntimeClass` or
+  /// `IUriRuntimeClassFactory`.
+  ///
+  /// Used to determine whether the parameter should be exposed as WinRT `Uri`
+  /// or dart:core's `Uri`.
+  bool get methodBelongsToUriRuntimeClass => [
+        'Windows.Foundation.IUriRuntimeClass',
+        'Windows.Foundation.IUriRuntimeClassFactory'
+      ].contains(method.parent.name);
+
+  @override
+  String get preamble => !methodBelongsToUriRuntimeClass
+      ? 'final ${name}Uri = $name == null ? null : winrt_uri.Uri.createUri($name.toString());'
+      : '';
+
+  @override
+  String get postamble =>
+      !methodBelongsToUriRuntimeClass ? '${name}Uri?.release();' : '';
+
+  @override
+  String get localIdentifier => !methodBelongsToUriRuntimeClass
+      ? '${name}Uri == null ? nullptr : ${name}Uri.ptr.cast<Pointer<COMObject>>().value'
+      : '$name == null ? nullptr : $name.ptr.cast<Pointer<COMObject>>().value';
 }

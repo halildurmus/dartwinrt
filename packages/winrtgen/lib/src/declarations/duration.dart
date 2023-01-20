@@ -4,6 +4,7 @@
 
 import '../winrt_get_property.dart';
 import '../winrt_method.dart';
+import '../winrt_parameter.dart';
 import '../winrt_set_property.dart';
 
 class WinRTMethodReturningDurationProjection extends WinRTMethodProjection {
@@ -59,4 +60,17 @@ class WinRTSetPropertyReturningDurationProjection
         ${ffiCall(params: 'duration')}
       }
 ''';
+}
+
+class WinRTDurationParameterProjection extends WinRTParameterProjection {
+  WinRTDurationParameterProjection(super.method, super.name, super.type);
+
+  @override
+  String get preamble => 'final ${name}Duration = $name.inMicroseconds * 10;';
+
+  @override
+  String get postamble => '';
+
+  @override
+  String get localIdentifier => '${name}Duration';
 }

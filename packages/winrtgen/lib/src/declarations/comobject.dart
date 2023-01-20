@@ -7,6 +7,7 @@ import 'package:win32gen/win32gen.dart';
 import '../utils.dart';
 import '../winrt_get_property.dart';
 import '../winrt_method.dart';
+import '../winrt_parameter.dart';
 import '../winrt_set_property.dart';
 
 mixin _ComObjectProjection on WinRTMethodProjection {
@@ -119,4 +120,29 @@ class WinRTSetPropertyReturningComObjectProjection
         ${ffiCall(params: 'value == null ? nullptr : value.ptr.cast<Pointer<COMObject>>().value')}
       }
   ''';
+}
+
+class WinRTComObjectParameterProjection extends WinRTParameterProjection {
+  WinRTComObjectParameterProjection(super.method, super.name, super.type);
+
+  @override
+  String get preamble => '';
+
+  @override
+  String get postamble => '';
+
+  @override
+  String get localIdentifier {
+    if (type.isReferenceType || type.isSimpleArrayType) {
+      return paramType == 'Pointer<COMObject>' ? identifier : '$identifier.ptr';
+    }
+
+    if (paramType == 'Pointer<COMObject>') {
+      return '$name.cast<Pointer<COMObject>>().value';
+    }
+
+    return paramType.endsWith('?')
+        ? '$name == null ? nullptr : $name.ptr.cast<Pointer<COMObject>>().value'
+        : '$name.ptr.cast<Pointer<COMObject>>().value';
+  }
 }

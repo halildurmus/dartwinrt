@@ -34,7 +34,7 @@ class IUriRuntimeClassFactory extends IInspectable {
 
   Uri createUri(String uri) {
     final retValuePtr = calloc<COMObject>();
-    final uriHstring = convertToHString(uri);
+    final uriHString = convertToHString(uri);
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -45,22 +45,22 @@ class IUriRuntimeClassFactory extends IInspectable {
                             Pointer, IntPtr uri, Pointer<COMObject>)>>>()
             .value
             .asFunction<int Function(Pointer, int uri, Pointer<COMObject>)>()(
-        ptr.ref.lpVtbl, uriHstring, retValuePtr);
+        ptr.ref.lpVtbl, uriHString, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
 
-    WindowsDeleteString(uriHstring);
+    WindowsDeleteString(uriHString);
 
     return Uri.fromRawPointer(retValuePtr);
   }
 
   Uri createWithRelativeUri(String baseUri, String relativeUri) {
     final retValuePtr = calloc<COMObject>();
-    final baseUriHstring = convertToHString(baseUri);
-    final relativeUriHstring = convertToHString(relativeUri);
+    final baseUriHString = convertToHString(baseUri);
+    final relativeUriHString = convertToHString(relativeUri);
 
     final hr = ptr.ref.vtable
             .elementAt(7)
@@ -73,15 +73,15 @@ class IUriRuntimeClassFactory extends IInspectable {
             .asFunction<
                 int Function(Pointer, int baseUri, int relativeUri,
                     Pointer<COMObject>)>()(
-        ptr.ref.lpVtbl, baseUriHstring, relativeUriHstring, retValuePtr);
+        ptr.ref.lpVtbl, baseUriHString, relativeUriHString, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
 
-    WindowsDeleteString(baseUriHstring);
-    WindowsDeleteString(relativeUriHstring);
+    WindowsDeleteString(baseUriHString);
+    WindowsDeleteString(relativeUriHString);
 
     return Uri.fromRawPointer(retValuePtr);
   }

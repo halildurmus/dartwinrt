@@ -32,7 +32,7 @@ class IJsonObjectStatics extends IInspectable {
 
   JsonObject? parse(String input) {
     final retValuePtr = calloc<COMObject>();
-    final inputHstring = convertToHString(input);
+    final inputHString = convertToHString(input);
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -43,14 +43,14 @@ class IJsonObjectStatics extends IInspectable {
                             Pointer, IntPtr input, Pointer<COMObject>)>>>()
             .value
             .asFunction<int Function(Pointer, int input, Pointer<COMObject>)>()(
-        ptr.ref.lpVtbl, inputHstring, retValuePtr);
+        ptr.ref.lpVtbl, inputHString, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
 
-    WindowsDeleteString(inputHstring);
+    WindowsDeleteString(inputHString);
 
     if (retValuePtr.ref.lpVtbl == nullptr) {
       free(retValuePtr);
@@ -62,7 +62,7 @@ class IJsonObjectStatics extends IInspectable {
 
   bool tryParse(String input, JsonObject result) {
     final retValuePtr = calloc<Bool>();
-    final inputHstring = convertToHString(input);
+    final inputHString = convertToHString(input);
 
     try {
       final hr = ptr.ref.vtable
@@ -76,14 +76,14 @@ class IJsonObjectStatics extends IInspectable {
               .asFunction<
                   int Function(Pointer, int input, Pointer<COMObject> result,
                       Pointer<Bool>)>()(
-          ptr.ref.lpVtbl, inputHstring, result.ptr, retValuePtr);
+          ptr.ref.lpVtbl, inputHString, result.ptr, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
       return retValue;
     } finally {
-      WindowsDeleteString(inputHstring);
+      WindowsDeleteString(inputHString);
 
       free(retValuePtr);
     }
