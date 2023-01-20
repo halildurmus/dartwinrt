@@ -32,7 +32,7 @@ class IPhoneNumberInfoFactory extends IInspectable {
 
   PhoneNumberInfo create(String number) {
     final retValuePtr = calloc<COMObject>();
-    final numberHstring = convertToHString(number);
+    final numberHString = convertToHString(number);
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -44,14 +44,14 @@ class IPhoneNumberInfoFactory extends IInspectable {
             .value
             .asFunction<
                 int Function(Pointer, int number, Pointer<COMObject>)>()(
-        ptr.ref.lpVtbl, numberHstring, retValuePtr);
+        ptr.ref.lpVtbl, numberHString, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
 
-    WindowsDeleteString(numberHstring);
+    WindowsDeleteString(numberHString);
 
     return PhoneNumberInfo.fromRawPointer(retValuePtr);
   }

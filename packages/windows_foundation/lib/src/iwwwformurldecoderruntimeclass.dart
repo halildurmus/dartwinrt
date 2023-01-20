@@ -41,7 +41,7 @@ class IWwwFormUrlDecoderRuntimeClass extends IInspectable
 
   String getFirstValueByName(String name) {
     final retValuePtr = calloc<HSTRING>();
-    final nameHstring = convertToHString(name);
+    final nameHString = convertToHString(name);
 
     try {
       final hr = ptr.ref.vtable
@@ -53,14 +53,14 @@ class IWwwFormUrlDecoderRuntimeClass extends IInspectable
                               Pointer, IntPtr name, Pointer<IntPtr>)>>>()
               .value
               .asFunction<int Function(Pointer, int name, Pointer<IntPtr>)>()(
-          ptr.ref.lpVtbl, nameHstring, retValuePtr);
+          ptr.ref.lpVtbl, nameHString, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.toDartString();
       return retValue;
     } finally {
-      WindowsDeleteString(nameHstring);
+      WindowsDeleteString(nameHString);
       WindowsDeleteString(retValuePtr.value);
       free(retValuePtr);
     }

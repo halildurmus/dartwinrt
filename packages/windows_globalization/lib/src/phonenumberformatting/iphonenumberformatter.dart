@@ -97,7 +97,7 @@ class IPhoneNumberFormatter extends IInspectable {
 
   String formatPartialString(String number) {
     final retValuePtr = calloc<HSTRING>();
-    final numberHstring = convertToHString(number);
+    final numberHString = convertToHString(number);
 
     try {
       final hr = ptr.ref.vtable
@@ -109,14 +109,14 @@ class IPhoneNumberFormatter extends IInspectable {
                               Pointer, IntPtr number, Pointer<IntPtr>)>>>()
               .value
               .asFunction<int Function(Pointer, int number, Pointer<IntPtr>)>()(
-          ptr.ref.lpVtbl, numberHstring, retValuePtr);
+          ptr.ref.lpVtbl, numberHString, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.toDartString();
       return retValue;
     } finally {
-      WindowsDeleteString(numberHstring);
+      WindowsDeleteString(numberHString);
       WindowsDeleteString(retValuePtr.value);
       free(retValuePtr);
     }
@@ -124,7 +124,7 @@ class IPhoneNumberFormatter extends IInspectable {
 
   String formatString(String number) {
     final retValuePtr = calloc<HSTRING>();
-    final numberHstring = convertToHString(number);
+    final numberHString = convertToHString(number);
 
     try {
       final hr = ptr.ref.vtable
@@ -136,14 +136,14 @@ class IPhoneNumberFormatter extends IInspectable {
                               Pointer, IntPtr number, Pointer<IntPtr>)>>>()
               .value
               .asFunction<int Function(Pointer, int number, Pointer<IntPtr>)>()(
-          ptr.ref.lpVtbl, numberHstring, retValuePtr);
+          ptr.ref.lpVtbl, numberHString, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.toDartString();
       return retValue;
     } finally {
-      WindowsDeleteString(numberHstring);
+      WindowsDeleteString(numberHString);
       WindowsDeleteString(retValuePtr.value);
       free(retValuePtr);
     }
@@ -151,7 +151,7 @@ class IPhoneNumberFormatter extends IInspectable {
 
   String formatStringWithLeftToRightMarkers(String number) {
     final retValuePtr = calloc<HSTRING>();
-    final numberHstring = convertToHString(number);
+    final numberHString = convertToHString(number);
 
     try {
       final hr = ptr.ref.vtable
@@ -163,14 +163,14 @@ class IPhoneNumberFormatter extends IInspectable {
                               Pointer, IntPtr number, Pointer<IntPtr>)>>>()
               .value
               .asFunction<int Function(Pointer, int number, Pointer<IntPtr>)>()(
-          ptr.ref.lpVtbl, numberHstring, retValuePtr);
+          ptr.ref.lpVtbl, numberHString, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.toDartString();
       return retValue;
     } finally {
-      WindowsDeleteString(numberHstring);
+      WindowsDeleteString(numberHString);
       WindowsDeleteString(retValuePtr.value);
       free(retValuePtr);
     }

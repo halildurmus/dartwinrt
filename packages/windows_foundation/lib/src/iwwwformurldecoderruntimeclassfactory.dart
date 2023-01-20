@@ -35,7 +35,7 @@ class IWwwFormUrlDecoderRuntimeClassFactory extends IInspectable {
 
   WwwFormUrlDecoder createWwwFormUrlDecoder(String query) {
     final retValuePtr = calloc<COMObject>();
-    final queryHstring = convertToHString(query);
+    final queryHString = convertToHString(query);
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -46,14 +46,14 @@ class IWwwFormUrlDecoderRuntimeClassFactory extends IInspectable {
                             Pointer, IntPtr query, Pointer<COMObject>)>>>()
             .value
             .asFunction<int Function(Pointer, int query, Pointer<COMObject>)>()(
-        ptr.ref.lpVtbl, queryHstring, retValuePtr);
+        ptr.ref.lpVtbl, queryHString, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
 
-    WindowsDeleteString(queryHstring);
+    WindowsDeleteString(queryHString);
 
     return WwwFormUrlDecoder.fromRawPointer(retValuePtr);
   }

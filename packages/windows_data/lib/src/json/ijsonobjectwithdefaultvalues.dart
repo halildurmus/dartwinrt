@@ -39,7 +39,7 @@ class IJsonObjectWithDefaultValues extends IInspectable
 
   JsonValue? getNamedValueOrDefault(String name, JsonValue? defaultValue) {
     final retValuePtr = calloc<COMObject>();
-    final nameHstring = convertToHString(name);
+    final nameHString = convertToHString(name);
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -56,7 +56,7 @@ class IJsonObjectWithDefaultValues extends IInspectable
                 int Function(Pointer, int name, Pointer<COMObject> defaultValue,
                     Pointer<COMObject>)>()(
         ptr.ref.lpVtbl,
-        nameHstring,
+        nameHString,
         defaultValue == null
             ? nullptr
             : defaultValue.ptr.cast<Pointer<COMObject>>().value,
@@ -67,7 +67,7 @@ class IJsonObjectWithDefaultValues extends IInspectable
       throw WindowsException(hr);
     }
 
-    WindowsDeleteString(nameHstring);
+    WindowsDeleteString(nameHString);
 
     if (retValuePtr.ref.lpVtbl == nullptr) {
       free(retValuePtr);
@@ -79,7 +79,7 @@ class IJsonObjectWithDefaultValues extends IInspectable
 
   JsonObject? getNamedObjectOrDefault(String name, JsonObject? defaultValue) {
     final retValuePtr = calloc<COMObject>();
-    final nameHstring = convertToHString(name);
+    final nameHString = convertToHString(name);
 
     final hr = ptr.ref.vtable
             .elementAt(7)
@@ -96,7 +96,7 @@ class IJsonObjectWithDefaultValues extends IInspectable
                 int Function(Pointer, int name, Pointer<COMObject> defaultValue,
                     Pointer<COMObject>)>()(
         ptr.ref.lpVtbl,
-        nameHstring,
+        nameHString,
         defaultValue == null
             ? nullptr
             : defaultValue.ptr.cast<Pointer<COMObject>>().value,
@@ -107,7 +107,7 @@ class IJsonObjectWithDefaultValues extends IInspectable
       throw WindowsException(hr);
     }
 
-    WindowsDeleteString(nameHstring);
+    WindowsDeleteString(nameHString);
 
     if (retValuePtr.ref.lpVtbl == nullptr) {
       free(retValuePtr);
@@ -119,8 +119,8 @@ class IJsonObjectWithDefaultValues extends IInspectable
 
   String getNamedStringOrDefault(String name, String defaultValue) {
     final retValuePtr = calloc<HSTRING>();
-    final nameHstring = convertToHString(name);
-    final defaultValueHstring = convertToHString(defaultValue);
+    final nameHString = convertToHString(name);
+    final defaultValueHString = convertToHString(defaultValue);
 
     try {
       final hr = ptr.ref.vtable
@@ -134,15 +134,15 @@ class IJsonObjectWithDefaultValues extends IInspectable
               .asFunction<
                   int Function(
                       Pointer, int name, int defaultValue, Pointer<IntPtr>)>()(
-          ptr.ref.lpVtbl, nameHstring, defaultValueHstring, retValuePtr);
+          ptr.ref.lpVtbl, nameHString, defaultValueHString, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.toDartString();
       return retValue;
     } finally {
-      WindowsDeleteString(nameHstring);
-      WindowsDeleteString(defaultValueHstring);
+      WindowsDeleteString(nameHString);
+      WindowsDeleteString(defaultValueHString);
       WindowsDeleteString(retValuePtr.value);
       free(retValuePtr);
     }
@@ -150,7 +150,7 @@ class IJsonObjectWithDefaultValues extends IInspectable
 
   JsonArray? getNamedArrayOrDefault(String name, JsonArray? defaultValue) {
     final retValuePtr = calloc<COMObject>();
-    final nameHstring = convertToHString(name);
+    final nameHString = convertToHString(name);
 
     final hr = ptr.ref.vtable
             .elementAt(9)
@@ -167,7 +167,7 @@ class IJsonObjectWithDefaultValues extends IInspectable
                 int Function(Pointer, int name, Pointer<COMObject> defaultValue,
                     Pointer<COMObject>)>()(
         ptr.ref.lpVtbl,
-        nameHstring,
+        nameHString,
         defaultValue == null
             ? nullptr
             : defaultValue.ptr.cast<Pointer<COMObject>>().value,
@@ -178,7 +178,7 @@ class IJsonObjectWithDefaultValues extends IInspectable
       throw WindowsException(hr);
     }
 
-    WindowsDeleteString(nameHstring);
+    WindowsDeleteString(nameHString);
 
     if (retValuePtr.ref.lpVtbl == nullptr) {
       free(retValuePtr);
@@ -190,7 +190,7 @@ class IJsonObjectWithDefaultValues extends IInspectable
 
   double getNamedNumberOrDefault(String name, double defaultValue) {
     final retValuePtr = calloc<Double>();
-    final nameHstring = convertToHString(name);
+    final nameHString = convertToHString(name);
 
     try {
       final hr = ptr.ref.vtable
@@ -204,14 +204,14 @@ class IJsonObjectWithDefaultValues extends IInspectable
               .asFunction<
                   int Function(Pointer, int name, double defaultValue,
                       Pointer<Double>)>()(
-          ptr.ref.lpVtbl, nameHstring, defaultValue, retValuePtr);
+          ptr.ref.lpVtbl, nameHString, defaultValue, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
       return retValue;
     } finally {
-      WindowsDeleteString(nameHstring);
+      WindowsDeleteString(nameHString);
 
       free(retValuePtr);
     }
@@ -219,7 +219,7 @@ class IJsonObjectWithDefaultValues extends IInspectable
 
   bool getNamedBooleanOrDefault(String name, bool defaultValue) {
     final retValuePtr = calloc<Bool>();
-    final nameHstring = convertToHString(name);
+    final nameHString = convertToHString(name);
 
     try {
       final hr =
@@ -234,14 +234,14 @@ class IJsonObjectWithDefaultValues extends IInspectable
                   .asFunction<
                       int Function(Pointer, int name, bool defaultValue,
                           Pointer<Bool>)>()(
-              ptr.ref.lpVtbl, nameHstring, defaultValue, retValuePtr);
+              ptr.ref.lpVtbl, nameHString, defaultValue, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
       return retValue;
     } finally {
-      WindowsDeleteString(nameHstring);
+      WindowsDeleteString(nameHString);
 
       free(retValuePtr);
     }

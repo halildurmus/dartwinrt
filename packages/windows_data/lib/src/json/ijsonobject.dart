@@ -35,7 +35,7 @@ class IJsonObject extends IInspectable implements IJsonValue {
 
   JsonValue? getNamedValue(String name) {
     final retValuePtr = calloc<COMObject>();
-    final nameHstring = convertToHString(name);
+    final nameHString = convertToHString(name);
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -46,14 +46,14 @@ class IJsonObject extends IInspectable implements IJsonValue {
                             Pointer, IntPtr name, Pointer<COMObject>)>>>()
             .value
             .asFunction<int Function(Pointer, int name, Pointer<COMObject>)>()(
-        ptr.ref.lpVtbl, nameHstring, retValuePtr);
+        ptr.ref.lpVtbl, nameHString, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
 
-    WindowsDeleteString(nameHstring);
+    WindowsDeleteString(nameHString);
 
     if (retValuePtr.ref.lpVtbl == nullptr) {
       free(retValuePtr);
@@ -64,7 +64,7 @@ class IJsonObject extends IInspectable implements IJsonValue {
   }
 
   void setNamedValue(String name, IJsonValue? value) {
-    final nameHstring = convertToHString(name);
+    final nameHString = convertToHString(name);
 
     final hr = ptr.ref.vtable
             .elementAt(7)
@@ -77,17 +77,17 @@ class IJsonObject extends IInspectable implements IJsonValue {
             .asFunction<
                 int Function(Pointer, int name, Pointer<COMObject> value)>()(
         ptr.ref.lpVtbl,
-        nameHstring,
+        nameHString,
         value == null ? nullptr : value.ptr.cast<Pointer<COMObject>>().value);
 
     if (FAILED(hr)) throw WindowsException(hr);
 
-    WindowsDeleteString(nameHstring);
+    WindowsDeleteString(nameHString);
   }
 
   JsonObject? getNamedObject(String name) {
     final retValuePtr = calloc<COMObject>();
-    final nameHstring = convertToHString(name);
+    final nameHString = convertToHString(name);
 
     final hr = ptr.ref.vtable
             .elementAt(8)
@@ -98,14 +98,14 @@ class IJsonObject extends IInspectable implements IJsonValue {
                             Pointer, IntPtr name, Pointer<COMObject>)>>>()
             .value
             .asFunction<int Function(Pointer, int name, Pointer<COMObject>)>()(
-        ptr.ref.lpVtbl, nameHstring, retValuePtr);
+        ptr.ref.lpVtbl, nameHString, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
 
-    WindowsDeleteString(nameHstring);
+    WindowsDeleteString(nameHString);
 
     if (retValuePtr.ref.lpVtbl == nullptr) {
       free(retValuePtr);
@@ -117,7 +117,7 @@ class IJsonObject extends IInspectable implements IJsonValue {
 
   JsonArray? getNamedArray(String name) {
     final retValuePtr = calloc<COMObject>();
-    final nameHstring = convertToHString(name);
+    final nameHString = convertToHString(name);
 
     final hr = ptr.ref.vtable
             .elementAt(9)
@@ -128,14 +128,14 @@ class IJsonObject extends IInspectable implements IJsonValue {
                             Pointer, IntPtr name, Pointer<COMObject>)>>>()
             .value
             .asFunction<int Function(Pointer, int name, Pointer<COMObject>)>()(
-        ptr.ref.lpVtbl, nameHstring, retValuePtr);
+        ptr.ref.lpVtbl, nameHString, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
 
-    WindowsDeleteString(nameHstring);
+    WindowsDeleteString(nameHString);
 
     if (retValuePtr.ref.lpVtbl == nullptr) {
       free(retValuePtr);
@@ -147,7 +147,7 @@ class IJsonObject extends IInspectable implements IJsonValue {
 
   String getNamedString(String name) {
     final retValuePtr = calloc<HSTRING>();
-    final nameHstring = convertToHString(name);
+    final nameHString = convertToHString(name);
 
     try {
       final hr = ptr.ref.vtable
@@ -159,14 +159,14 @@ class IJsonObject extends IInspectable implements IJsonValue {
                               Pointer, IntPtr name, Pointer<IntPtr>)>>>()
               .value
               .asFunction<int Function(Pointer, int name, Pointer<IntPtr>)>()(
-          ptr.ref.lpVtbl, nameHstring, retValuePtr);
+          ptr.ref.lpVtbl, nameHString, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.toDartString();
       return retValue;
     } finally {
-      WindowsDeleteString(nameHstring);
+      WindowsDeleteString(nameHString);
       WindowsDeleteString(retValuePtr.value);
       free(retValuePtr);
     }
@@ -174,7 +174,7 @@ class IJsonObject extends IInspectable implements IJsonValue {
 
   double getNamedNumber(String name) {
     final retValuePtr = calloc<Double>();
-    final nameHstring = convertToHString(name);
+    final nameHString = convertToHString(name);
 
     try {
       final hr = ptr.ref.vtable
@@ -186,21 +186,21 @@ class IJsonObject extends IInspectable implements IJsonValue {
                               Pointer, IntPtr name, Pointer<Double>)>>>()
               .value
               .asFunction<int Function(Pointer, int name, Pointer<Double>)>()(
-          ptr.ref.lpVtbl, nameHstring, retValuePtr);
+          ptr.ref.lpVtbl, nameHString, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
       return retValue;
     } finally {
-      WindowsDeleteString(nameHstring);
+      WindowsDeleteString(nameHString);
       free(retValuePtr);
     }
   }
 
   bool getNamedBoolean(String name) {
     final retValuePtr = calloc<Bool>();
-    final nameHstring = convertToHString(name);
+    final nameHString = convertToHString(name);
 
     try {
       final hr =
@@ -213,14 +213,14 @@ class IJsonObject extends IInspectable implements IJsonValue {
                                   Pointer, IntPtr name, Pointer<Bool>)>>>()
                   .value
                   .asFunction<int Function(Pointer, int name, Pointer<Bool>)>()(
-              ptr.ref.lpVtbl, nameHstring, retValuePtr);
+              ptr.ref.lpVtbl, nameHString, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
       final retValue = retValuePtr.value;
       return retValue;
     } finally {
-      WindowsDeleteString(nameHstring);
+      WindowsDeleteString(nameHString);
       free(retValuePtr);
     }
   }

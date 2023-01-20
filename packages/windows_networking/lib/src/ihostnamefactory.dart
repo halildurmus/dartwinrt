@@ -32,7 +32,7 @@ class IHostNameFactory extends IInspectable {
 
   HostName createHostName(String hostName) {
     final retValuePtr = calloc<COMObject>();
-    final hostNameHstring = convertToHString(hostName);
+    final hostNameHString = convertToHString(hostName);
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -44,14 +44,14 @@ class IHostNameFactory extends IInspectable {
             .value
             .asFunction<
                 int Function(Pointer, int hostName, Pointer<COMObject>)>()(
-        ptr.ref.lpVtbl, hostNameHstring, retValuePtr);
+        ptr.ref.lpVtbl, hostNameHString, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
 
-    WindowsDeleteString(hostNameHstring);
+    WindowsDeleteString(hostNameHString);
 
     return HostName.fromRawPointer(retValuePtr);
   }
