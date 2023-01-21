@@ -5,7 +5,4 @@
 /// Provides APIs for working with 3D printers.
 library windows_graphics;
 
-export 'src/printing/enums.g.dart';
-
-export 'src/printing3d/iprinting3dmultiplepropertymaterial.dart';
-export 'src/printing3d/printing3dmultiplepropertymaterial.dart';
+export 'src/exports.g.dart';
