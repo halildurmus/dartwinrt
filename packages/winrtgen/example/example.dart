@@ -2,16 +2,19 @@
 // details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
+import 'package:dart_style/dart_style.dart';
 import 'package:win32gen/win32gen.dart';
 import 'package:winmd/winmd.dart';
 import 'package:winrtgen/winrtgen.dart';
+
+String format(Object object) => DartFormatter().format(object.toString());
 
 void printEnum() {
   final enumTypeDef =
       MetadataStore.getMetadataForType('Windows.Foundation.AsyncStatus');
   if (enumTypeDef != null) {
     final enumProjection = WinRTEnumProjection(enumTypeDef, 'AsyncStatus');
-    print(enumProjection);
+    print(format(enumProjection));
   }
 }
 
@@ -21,17 +24,17 @@ void printStruct() {
   if (structTypeDef != null) {
     final structProjection =
         StructProjection(structTypeDef, 'GamepadReading', category: 'struct');
-    print(structProjection);
+    print(format(structProjection));
   }
 }
 
 void printMethod() {
-  final interfaceTypeDef = MetadataStore.getMetadataForType(
-      'Windows.Storage.Pickers.IFileOpenPicker');
-  final method = interfaceTypeDef?.findMethod('PickSingleFileAsync');
+  final interfaceTypeDef =
+      MetadataStore.getMetadataForType('Windows.Data.Xml.Dom.IXmlDocument');
+  final method = interfaceTypeDef?.findMethod('CreateElementNS');
   if (method != null) {
     final methodProjection = WinRTMethodProjection(method, 15);
-    print(methodProjection);
+    print(format(methodProjection));
   }
 }
 
@@ -41,7 +44,7 @@ void printGetProperty() {
   final method = interfaceTypeDef?.findMethod('get_Languages');
   if (method != null) {
     final getPropertyProjection = WinRTGetPropertyProjection(method, 9);
-    print(getPropertyProjection);
+    print(format(getPropertyProjection));
   }
 }
 
@@ -51,16 +54,16 @@ void printSetProperty() {
   final method = interfaceTypeDef?.findMethod('put_DesiredAccuracy');
   if (method != null) {
     final setPropertyProjection = WinRTSetPropertyProjection(method, 7);
-    print(setPropertyProjection);
+    print(format(setPropertyProjection));
   }
 }
 
 void printInterface() {
-  final interfaceTypeDef = MetadataStore.getMetadataForType(
-      'Windows.Storage.Pickers.IFileOpenPicker');
+  final interfaceTypeDef =
+      MetadataStore.getMetadataForType('Windows.Data.Xml.Dom.IXmlNode');
   if (interfaceTypeDef != null) {
     final interfaceProjection = WinRTInterfaceProjection(interfaceTypeDef);
-    print(interfaceProjection);
+    print(format(interfaceProjection));
   }
 }
 
@@ -69,7 +72,7 @@ void printClass() {
       MetadataStore.getMetadataForType('Windows.Globalization.Calendar');
   if (classTypeDef != null) {
     final classProjection = WinRTClassProjection(classTypeDef);
-    print(classProjection);
+    print(format(classProjection));
   }
 }
 
