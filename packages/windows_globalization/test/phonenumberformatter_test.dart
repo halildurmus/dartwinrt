@@ -20,9 +20,9 @@ void main() {
     });
 
     test('Formatter is a materialized object', () {
-      expect(formatter.trustLevel, equals(TrustLevel.baseTrust));
+      expect(getTrustLevel(formatter), equals(TrustLevel.baseTrust));
       expect(
-          formatter.runtimeClassName,
+          getClassName(formatter),
           equals(
               'Windows.Globalization.PhoneNumberFormatting.PhoneNumberFormatter'));
     });
