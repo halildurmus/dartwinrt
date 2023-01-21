@@ -2,6 +2,28 @@
 // details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
+/// Files to exclude when generating the package exports.
+const excludedPackageExports = <String>{
+  // Async delegates
+  'iasyncaction.dart',
+  'iasyncactionwithprogress.dart',
+  'iasyncinfo.dart',
+  'iasyncoperation.dart',
+  'iasyncoperationwithprogress.dart',
+
+  'exports.g.dart', // Generated package exports file
+
+  // WinRT Uri files
+  'iuriruntimeclass.dart',
+  'iuriruntimeclasswithabsolutecanonicaluri.dart',
+  'iwwwformurldecoderentry.dart',
+  'iwwwformurldecoderruntimeclass.dart',
+  'uri.dart',
+  'wwwformurldecoder.dart',
+  'wwwformurldecoderentry.dart',
+};
+
+/// WinRT classes and interfaces to exclude when generating.
 const excludedWindowsRuntimeTypes = <String>{
   ...excludedWindowsRuntimeInterfacesInInherits,
   ...excludedWindowsRuntimeStaticInterfaces,

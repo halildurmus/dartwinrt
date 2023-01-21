@@ -30,7 +30,7 @@ mixin _ComObjectProjection on WinRTMethodProjection {
     if (typeIdentifierName.startsWith('IAsync')) return 'Pointer<COMObject>';
 
     // Factory interface methods (constructors) cannot return null.
-    final factoryInterfacePattern = RegExp(r'^(I[A-Z]\w+)Factory\d{0,1}$');
+    final factoryInterfacePattern = RegExp(r'^I\w+Factory\d{0,2}$');
     if (factoryInterfacePattern.hasMatch(lastComponent(method.parent.name))) {
       return typeIdentifierName;
     }
