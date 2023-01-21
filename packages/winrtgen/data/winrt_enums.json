@@ -1,4 +1,6 @@
 {
+    "Windows.AI.MachineLearning.TensorKind": "Defines the list of supported tensor data types.",
+    "Windows.ApplicationModel.StartupTaskState": "Represents the state (enabled, disabled, or disabled by user) of a startup task.",
     "Windows.Data.Json.JsonErrorStatus": "Defines errors encountered while parsing JSON data.",
     "Windows.Data.Json.JsonValueType": "Specifies the JSON value type of a JsonValue object.",
     "Windows.Devices.Enumeration.DeviceClass": "Indicates the type of devices that the user wants to enumerate.",
@@ -20,9 +22,13 @@
     "Windows.Globalization.PhoneNumberFormatting.PhoneNumberParseResult": "Describes the results of trying to parse a string into a phone number.",
     "Windows.Globalization.PhoneNumberFormatting.PredictedPhoneNumberKind": "The kinds of phone numbers returned by PhoneNumberInfo.PredictNumberKind.",
     "Windows.Graphics.Printing.PrintColorMode": "Specifies the color mode option.",
+    "Windows.Management.MdmAlertMark": "Values indicating priority or criticality of the MDM alert.",
     "Windows.Media.SpeechSynthesis.VoiceGender": "Specifies the gender preferences available for speech synthesis (if supported by the specified speech synthesis engine).",
     "Windows.Networking.Connectivity.NetworkTypes": "Defines the network connection types.",
     "Windows.Networking.HostNameType": "The type of a HostName object.",
+    "Windows.Perception.Spatial.SpatialLocatability": "Indicates the lifecycle state of the device's spatial location system. This lets an app know whether it can reason about the device's orientation or its position in the user's surroundings.",
+    "Windows.Security.Credentials.WebAccountState": "Describes the state of a WebAccount object.",
+    "Windows.Services.Maps.MapLocationDesiredAccuracy": "Indicates the desired accuracy to use when converting latitude and longitude coordinates to a physical location like a city or address.",
     "Windows.Storage.FileAttributes": "Describes the attributes of a file or folder.",
     "Windows.Storage.NameCollisionOption": "Specifies what to do if a file or folder with the specified name already exists in the current folder when you copy, move, or rename a file or folder.",
     "Windows.Storage.Pickers.PickerLocationId": "Identifies the storage location that the file picker presents to the user.",
@@ -38,5 +44,6 @@
     "Windows.UI.Popups.Placement": "Specifies where the context menu should be positioned relative to the selection rectangle.",
     "Windows.UI.ViewManagement.HandPreference": "Defines the set of directional preferences for the user interface presented by the app view.",
     "Windows.UI.ViewManagement.UIColorType": "Defines constants that specify known system color values.",
-    "Windows.UI.ViewManagement.UIElementType": "Defines the set of user interface element types."
+    "Windows.UI.ViewManagement.UIElementType": "Defines the set of user interface element types.",
+    "Windows.Web.WebErrorStatus": "Defines errors encountered during operations involving web services, such as authentication, proxy configuration, and destination URIs."
 }

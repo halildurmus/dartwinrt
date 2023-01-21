@@ -1,0 +1,29 @@
+name: windows_ai
+description: Enables apps to load machine learning models, bind features, and
+  evaluate the results.
+version: 0.0.1
+homepage: https://dartwinrt.pub
+repository: https://github.com/halildurmus/dartwinrt
+issue_tracker: https://github.com/halildurmus/dartwinrt/issues?q=is%3Aopen+is%3Aissue+label%3A%22p%3A+windows_ai%22
+publish_to: none # TODO: Remove this
+
+environment:
+  # Change upper constraint to <4.0.0 when this PR is deployed to pub.dev:
+  #   https://github.com/dart-lang/pub-dev/pull/6269
+  sdk: '>=2.17.0 <3.0.0'
+
+# Declare that this package only works on Windows.
+platforms:
+  windows:
+
+dependencies:
+  ffi: ^2.0.1
+  win32:
+    git:
+      url: https://github.com/timsneath/win32.git
+      ref: dev
+  windows_foundation:
+    path: ../windows_foundation
+
+dev_dependencies:
+  test: ^1.22.1

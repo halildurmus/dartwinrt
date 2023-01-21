@@ -1,3 +1,9 @@
+"p: windows_ai":
+  - packages/windows_ai/**/*
+
+"p: windows_applicationmodel":
+  - packages/windows_applicationmodel/**/*
+
 "p: windows_data":
   - packages/windows_data/**/*
 
@@ -16,14 +22,23 @@
 "p: windows_graphics":
   - packages/windows_graphics/**/*
 
+"p: windows_management":
+  - packages/windows_management/**/*
+
 "p: windows_media":
   - packages/windows_media/**/*
 
 "p: windows_networking":
   - packages/windows_networking/**/*
 
+"p: windows_perception":
+  - packages/windows_perception/**/*
+
 "p: windows_security":
   - packages/windows_security/**/*
+
+"p: windows_services":
+  - packages/windows_services/**/*
 
 "p: windows_storage":
   - packages/windows_storage/**/*
@@ -33,6 +48,9 @@
 
 "p: windows_ui":
   - packages/windows_ui/**/*
+
+"p: windows_web":
+  - packages/windows_web/**/*
 
 "p: winrtgen":
   - packages/winrtgen/**/*
