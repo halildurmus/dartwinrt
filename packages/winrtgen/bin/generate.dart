@@ -146,18 +146,12 @@ void generateWinRTStructs(Map<String, String> structs) {
 }
 
 const packageNames = <String>{
-  'windows_data',
-  'windows_devices',
-  'windows_foundation',
-  'windows_gaming',
-  'windows_globalization',
-  'windows_graphics',
-  'windows_media',
-  'windows_networking',
-  'windows_security',
-  'windows_storage',
-  'windows_system',
-  'windows_ui',
+  'windows_ai', 'windows_applicationmodel', 'windows_data', //
+  'windows_devices', 'windows_foundation', 'windows_gaming', //
+  'windows_globalization', 'windows_graphics', 'windows_management', //
+  'windows_media', 'windows_networking', 'windows_perception', //
+  'windows_security', 'windows_services', 'windows_storage', //
+  'windows_system', 'windows_ui', 'windows_web', //
 };
 
 void generatePackageExports() {
