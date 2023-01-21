@@ -73,7 +73,7 @@ void main() {
 
         final stringMapVal = map.lookup('key1');
         expect(stringMapVal, isA<IInspectable>());
-        expect((stringMapVal as IInspectable).runtimeClassName,
+        expect(getClassName(stringMapVal as IInspectable),
             equals('Windows.Foundation.Collections.StringMap'));
         expect(map.lookup('key2'), equals(259));
         expect(map.lookup('key3'), equals('strVal'));
@@ -93,7 +93,7 @@ void main() {
 
         final stringMapVal = map.lookup('key2');
         expect(stringMapVal, isA<IInspectable>());
-        expect((stringMapVal as IInspectable).runtimeClassName,
+        expect(getClassName(stringMapVal as IInspectable),
             equals('Windows.Foundation.Collections.StringMap'));
 
         expect(map.lookup('key3'), isTrue);
@@ -159,7 +159,7 @@ void main() {
         final stringMapListVal = map.lookup('key18');
         expect(stringMapListVal, isA<List<IInspectable>>());
         final stringMapList = stringMapListVal as List<IInspectable>;
-        expect(stringMapList.first.runtimeClassName,
+        expect(getClassName(stringMapList.first),
             equals('Windows.Foundation.Collections.StringMap'));
 
         expect(map.lookup('key19'), equals([2022, -2022]));
@@ -336,7 +336,7 @@ void main() {
         expect(valueSetVal, isA<IInspectable>());
         final valueSet = ValueSet.fromRawPointer(
             (valueSetVal as IInspectable).toInterface(IID_IMap_String_Object));
-        expect(valueSet.runtimeClassName,
+        expect(getClassName(valueSet),
             equals('Windows.Foundation.Collections.ValueSet'));
         expect(valueSet.size, equals(2));
         expect(valueSet.lookup('key1'), isNull);

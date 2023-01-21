@@ -108,7 +108,7 @@ void main() {
     test('Inspectable', () {
       final stringMap = StringMap();
       final pv = PropertyValue.createInspectable(stringMap.ptr);
-      expect(IInspectable(pv).runtimeClassName,
+      expect(getClassName(IInspectable(pv)),
           equals('Windows.Foundation.Collections.StringMap'));
 
       stringMap.release();
@@ -131,9 +131,9 @@ void main() {
       final list = newArray.value.toList(IInspectable.new, length: 2);
       final firstElement = list.first;
       final lastElement = list.last;
-      expect(firstElement.runtimeClassName,
+      expect(getClassName(firstElement),
           equals('Windows.Foundation.Collections.StringMap'));
-      expect(lastElement.runtimeClassName,
+      expect(getClassName(lastElement),
           equals('Windows.Foundation.Collections.PropertySet'));
 
       lastElement.release();

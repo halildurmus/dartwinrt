@@ -17,16 +17,14 @@ void main() {
     });
 
     test('Calendar is a materialized object', () {
-      expect(calendar.trustLevel, equals(TrustLevel.baseTrust));
-      expect(
-          calendar.runtimeClassName, equals('Windows.Globalization.Calendar'));
+      expect(getTrustLevel(calendar), equals(TrustLevel.baseTrust));
+      expect(getClassName(calendar), equals('Windows.Globalization.Calendar'));
     });
 
     test('Calendar.clone', () {
       final calendar2 = calendar.clone()!;
 
-      expect(
-          calendar2.runtimeClassName, equals('Windows.Globalization.Calendar'));
+      expect(getClassName(calendar2), equals('Windows.Globalization.Calendar'));
       expect(calendar2.year, equals(calendar.year));
 
       calendar2.release();

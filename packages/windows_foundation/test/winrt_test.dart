@@ -60,7 +60,7 @@ void main() {
       ];
 
       final stringMap = StringMap();
-      expect(stringMap.iids, equals(iids));
+      expect(getInterfaces(stringMap), equals(iids));
 
       stringMap.release();
     });
@@ -69,14 +69,14 @@ void main() {
       const stringMapClassName = 'Windows.Foundation.Collections.StringMap';
 
       final stringMap = StringMap();
-      expect(stringMap.runtimeClassName, equals(stringMapClassName));
+      expect(getClassName(stringMap), equals(stringMapClassName));
 
       stringMap.release();
     });
 
     test('WinRT getTrustLevel test of base trust class', () {
       final stringMap = StringMap();
-      expect(stringMap.trustLevel, equals(TrustLevel.baseTrust));
+      expect(getTrustLevel(stringMap), equals(TrustLevel.baseTrust));
 
       stringMap.release();
     });
@@ -86,7 +86,7 @@ void main() {
 
       final object = createObject(className, IID_IInspectable);
       final inspectableObject = IInspectable(object);
-      expect(inspectableObject.trustLevel, equals(TrustLevel.partialTrust));
+      expect(getTrustLevel(inspectableObject), equals(TrustLevel.partialTrust));
 
       inspectableObject.release();
     });

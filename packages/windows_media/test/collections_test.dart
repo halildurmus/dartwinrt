@@ -73,7 +73,7 @@ void main() {
 
         final stringMapVal = map.lookup(stringableGuid);
         expect(stringMapVal, isA<IInspectable>());
-        expect((stringMapVal as IInspectable).runtimeClassName,
+        expect(getClassName(stringMapVal as IInspectable),
             equals('Windows.Foundation.Collections.StringMap'));
         expect(map.lookup(closableGuid), equals(259));
         expect(map.lookup(propertyValueGuid), equals('strVal'));
@@ -93,7 +93,7 @@ void main() {
 
         final stringableVal = map.lookup(Guid.parse(IID_IStringable));
         expect(stringableVal, isA<IInspectable>());
-        expect((stringableVal as IInspectable).runtimeClassName,
+        expect(getClassName(stringableVal as IInspectable),
             equals('Windows.Foundation.Collections.StringMap'));
 
         expect(map.lookup(Guid.parse(IID_IDispatch)), isTrue);
@@ -162,7 +162,7 @@ void main() {
             map.lookup(Guid.parse(IID_IAppxManifestReader5));
         expect(stringableListVal, isA<List<IInspectable>>());
         final stringableList = stringableListVal as List<IInspectable>;
-        expect(stringableList.first.runtimeClassName,
+        expect(getClassName(stringableList.first),
             equals('Windows.Foundation.Collections.StringMap'));
 
         expect(map.lookup(Guid.parse(IID_IAppxManifestReader6)),
