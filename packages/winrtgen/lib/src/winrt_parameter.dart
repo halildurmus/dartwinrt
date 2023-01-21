@@ -37,7 +37,7 @@ class WinRTParameterProjection extends ParameterProjection {
     if (!originalParamType.endsWith('?')) return originalParamType;
 
     // Parameters of factory interface methods (constructors) can't be nullable.
-    final factoryInterfacePattern = RegExp(r'^(I[A-Z]\w+)Factory\d{0,1}$');
+    final factoryInterfacePattern = RegExp(r'^I\w+Factory\d{0,2}$');
     if (factoryInterfacePattern.hasMatch(lastComponent(method.parent.name))) {
       return stripQuestionMarkSuffix(originalParamType);
     }
