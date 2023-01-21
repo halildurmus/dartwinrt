@@ -145,6 +145,56 @@ void generateWinRTStructs(Map<String, String> structs) {
   }
 }
 
+const packageNames = <String>{
+  'windows_data',
+  'windows_devices',
+  'windows_foundation',
+  'windows_gaming',
+  'windows_globalization',
+  'windows_graphics',
+  'windows_media',
+  'windows_networking',
+  'windows_security',
+  'windows_storage',
+  'windows_system',
+  'windows_ui',
+};
+
+void generatePackageExports() {
+  for (final packageName in packageNames) {
+    final exports = <String>{};
+    final packagePath = '../$packageName/lib/src/';
+    final exportsFile = File('${packagePath}exports.g.dart')
+      ..createSync(recursive: true);
+    final dir = Directory(packagePath);
+    final files =
+        dir.listSync(recursive: true, followLinks: false).whereType<File>();
+
+    for (final file in files) {
+      // Skip internal files in the windows_foundation package
+      if (file.path.contains(r'internal\')) continue;
+
+      final fileName = file.uri.pathSegments.last; // e.g. calendar.dart
+      // Skip excluded files
+      if (excludedPackageExports.contains(fileName)) continue;
+
+      // Skip factory and statics files
+      final factoryOrStaticsFilePattern =
+          RegExp(r'\w+(factory\d{0,2}|statics\d{0,2})\.dart');
+      if (factoryOrStaticsFilePattern.hasMatch(fileName)) continue;
+
+      // e.g. ..\windows_data\lib\src\json\jsonvalue.dart -> json/jsonvalue.dart
+      final filePath =
+          file.path.replaceFirst(packagePath, '').replaceAll(r'\', '/');
+      exports.add(filePath);
+    }
+
+    final formattedExports =
+        DartFormatter().format(exports.map((e) => "export '$e';").join('\n'));
+    exportsFile.writeAsStringSync(formattedExports);
+  }
+}
+
 void main() {
   print('Generating Windows Runtime classes and interfaces...');
   final winrtTypesToGenerate = loadMap('winrt_types.json');
@@ -160,4 +210,7 @@ void main() {
   final winrtStructsToGenerate = loadMap('winrt_structs.json');
   saveMap(winrtStructsToGenerate, 'winrt_structs.json');
   generateWinRTStructs(winrtStructsToGenerate);
+
+  print('Generating package exports...');
+  generatePackageExports();
 }
