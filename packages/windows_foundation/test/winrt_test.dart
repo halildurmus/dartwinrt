@@ -6,6 +6,7 @@
 
 import 'package:test/test.dart';
 import 'package:win32/win32.dart';
+import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
 void main() {
@@ -51,7 +52,7 @@ void main() {
       propertyValue.release();
     });
 
-    test('WinRT getIids test', () {
+    test('WinRT getInterfaces test', () {
       const iids = [
         '{f6d1f700-49c2-52ae-8154-826f9908773c}', // IMap<String, String>
         '{e9bdaaf0-cbf6-5c72-be90-29cbf3a1319b}', // IIterable<IKeyValuePair<String, String>
@@ -65,7 +66,7 @@ void main() {
       stringMap.release();
     });
 
-    test('WinRT getRuntimeClassName test', () {
+    test('WinRT getClassName test', () {
       const stringMapClassName = 'Windows.Foundation.Collections.StringMap';
 
       final stringMap = StringMap();

@@ -12,18 +12,6 @@ import '../winrt_set_property.dart';
 
 mixin _ClassOrInterfaceProjection on WinRTMethodProjection {
   String get methodReturnType {
-    // The return types of methods in the IPropertyValueStatics are specified
-    // as 'object' in WinMD. However, these methods actually return the
-    // IPropertyValue interface (except for the CreateEmpty() and
-    // CreateInspectable() methods, which return Pointer<COMObject>).
-    final isMethodFromPropertyValueStatics =
-        method.parent.name == 'Windows.Foundation.IPropertyValueStatics';
-    if (isMethodFromPropertyValueStatics) {
-      return ['CreateEmpty', 'CreateInspectable'].contains(method.name)
-          ? 'Pointer<COMObject>'
-          : 'IPropertyValue';
-    }
-
     final typeIdentifierName = lastComponent(returnType.typeIdentifier.name);
     // TODO: Remove this once methods that return IAsyncActionWithProgress and
     // IAsyncOperationWithProgress delegates are supported.
@@ -65,11 +53,6 @@ mixin _ClassOrInterfaceProjection on WinRTMethodProjection {
 
   String get returnStatement {
     if (methodReturnType == 'Pointer<COMObject>') return 'return retValuePtr;';
-
-    if (methodReturnType == 'Object?') {
-      return 'return IPropertyValue.fromRawPointer(retValuePtr).value;';
-    }
-
     return 'return ${stripQuestionMarkSuffix(methodReturnType)}.fromRawPointer(retValuePtr);';
   }
 }

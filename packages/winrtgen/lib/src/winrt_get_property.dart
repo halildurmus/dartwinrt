@@ -52,7 +52,7 @@ class WinRTGetPropertyProjection extends WinRTPropertyProjection {
   @override
   String toString() {
     try {
-      if (!isObjectReturn && isClassOrInterfaceReturn) {
+      if (isClassOrInterfaceReturn) {
         if (isMapReturn) return declarationFor(WinRTMapGetterProjection.new);
 
         if (isMapViewReturn) {
