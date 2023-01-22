@@ -10,6 +10,7 @@ import 'declarations/datetime.dart';
 import 'declarations/duration.dart';
 import 'declarations/enum.dart';
 import 'declarations/guid.dart';
+import 'declarations/object.dart';
 import 'declarations/reference.dart';
 import 'declarations/string.dart';
 import 'declarations/uri.dart';
@@ -86,7 +87,7 @@ class WinRTParameterProjection extends ParameterProjection {
 
   /// Returns the appropriate projection for the parameter.
   WinRTParameterProjection? get parameterProjection {
-    if (isObject || isClassOrInterface) {
+    if (isClassOrInterface) {
       if (isReference) {
         return WinRTReferenceParameterProjection(method, name, type);
       }
@@ -100,6 +101,7 @@ class WinRTParameterProjection extends ParameterProjection {
     if (isDuration) return WinRTDurationParameterProjection(method, name, type);
     if (isEnum) return WinRTEnumParameterProjection(method, name, type);
     if (isGuid) return WinRTGuidParameterProjection(method, name, type);
+    if (isObject) return WinRTObjectParameterProjection(method, name, type);
     if (isString) return WinRTStringParameterProjection(method, name, type);
 
     return null;

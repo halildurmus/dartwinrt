@@ -142,10 +142,6 @@ class WinRTClassOrInterfaceParameterProjection
       return paramType == 'Pointer<COMObject>' ? identifier : '$identifier.ptr';
     }
 
-    if (paramType == 'Object?') {
-      return '$name == null ? nullptr : boxValue($name).ref.lpVtbl';
-    }
-
     if (type.nativeType == 'LPVTBL') {
       return paramType.endsWith('?')
           ? '$name == null ? nullptr : $name.ptr.ref.lpVtbl'

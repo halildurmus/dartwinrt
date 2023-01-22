@@ -8,6 +8,7 @@ import 'declarations/default.dart';
 import 'declarations/duration.dart';
 import 'declarations/enum.dart';
 import 'declarations/guid.dart';
+import 'declarations/object.dart';
 import 'declarations/reference.dart';
 import 'declarations/string.dart';
 import 'declarations/uri.dart';
@@ -94,6 +95,10 @@ class WinRTSetPropertyProjection extends WinRTPropertyProjection {
 
       if (isEnumProperty) return declarationFor(WinRTEnumSetterProjection.new);
       if (isGuidProperty) return declarationFor(WinRTGuidSetterProjection.new);
+
+      if (isObjectProperty) {
+        return declarationFor(WinRTObjectSetterProjection.new);
+      }
 
       if (isStringProperty) {
         return declarationFor(WinRTStringSetterProjection.new);

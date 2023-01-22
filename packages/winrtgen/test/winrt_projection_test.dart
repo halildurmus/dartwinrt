@@ -344,9 +344,29 @@ void main() {
         contains("referenceIid: '{5541d8a7-497c-5aa4-86fc-7713adbf2a2c}'"));
   });
 
-  test(
-      'WinRT Clone method successfully projects Pointer<COMObject> as nullable',
-      () {
+  test('WinRT get property successfully projects Object type', () {
+    final winTypeDef =
+        MetadataStore.getMetadataForType('Windows.Data.Xml.Dom.IXmlNode');
+
+    final projection = WinRTInterfaceProjection(winTypeDef!);
+    final localNameProjection = projection.methodProjections
+        .firstWhere((m) => m.name == 'get_LocalName');
+
+    expect(
+        localNameProjection.nativePrototype,
+        equalsIgnoringWhitespace(
+            'HRESULT Function(Pointer, Pointer<COMObject>)'));
+    expect(localNameProjection.dartPrototype,
+        equalsIgnoringWhitespace('int Function(Pointer, Pointer<COMObject>)'));
+    expect(
+        localNameProjection.returnType.dartType, equals('Pointer<COMObject>'));
+    expect(localNameProjection.toString().trimLeft(),
+        startsWith('Object? get localName'));
+    expect(localNameProjection.toString().trimLeft(),
+        contains('return IPropertyValue.fromRawPointer(retValuePtr).value;'));
+  });
+
+  test('WinRT Clone method successfully projects return type as nullable', () {
     final winTypeDef =
         MetadataStore.getMetadataForType('Windows.Globalization.ICalendar');
 
@@ -365,7 +385,7 @@ void main() {
         cloneProjection.toString().trimLeft(), startsWith('Calendar? clone()'));
   });
 
-  test('WinRT TryCreate method successfully projects Pointer<COMObject>', () {
+  test('WinRT TryCreate method successfully projects WinRT Class', () {
     final winTypeDef = MetadataStore.getMetadataForType(
         'Windows.Globalization.PhoneNumberFormatting.IPhoneNumberFormatterStatics');
 
@@ -705,7 +725,9 @@ void main() {
         contains("import 'package:windows_foundation/uri.dart' as winrt_uri;"));
   });
 
-  test('WinRT interface that imports dart:async and async_helpers.dart', () {
+  test(
+      'WinRT interface that imports dart:async and package:windows_foundation/internal.dart',
+      () {
     final winTypeDef = MetadataStore.getMetadataForType(
         'Windows.Storage.Pickers.IFileOpenPicker');
 

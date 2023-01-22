@@ -9,6 +9,7 @@ import 'declarations/duration.dart';
 import 'declarations/enum.dart';
 import 'declarations/guid.dart';
 import 'declarations/map.dart';
+import 'declarations/object.dart';
 import 'declarations/reference.dart';
 import 'declarations/string.dart';
 import 'declarations/uri.dart';
@@ -24,7 +25,7 @@ class WinRTGetPropertyProjection extends WinRTPropertyProjection {
   String get dartParams => nativeParams;
 
   @override
-  String get nativeParams => isClassOrInterfaceReturn
+  String get nativeParams => isClassOrInterfaceReturn || isObjectReturn
       ? 'Pointer, Pointer<COMObject>'
       : 'Pointer, Pointer<${returnType.nativeType}>';
 
@@ -51,7 +52,7 @@ class WinRTGetPropertyProjection extends WinRTPropertyProjection {
   @override
   String toString() {
     try {
-      if (isClassOrInterfaceReturn) {
+      if (!isObjectReturn && isClassOrInterfaceReturn) {
         if (isMapReturn) return declarationFor(WinRTMapGetterProjection.new);
 
         if (isMapViewReturn) {
@@ -85,6 +86,10 @@ class WinRTGetPropertyProjection extends WinRTPropertyProjection {
 
       if (isEnumReturn) return declarationFor(WinRTEnumGetterProjection.new);
       if (isGuidReturn) return declarationFor(WinRTGuidGetterProjection.new);
+
+      if (isObjectReturn) {
+        return declarationFor(WinRTObjectGetterProjection.new);
+      }
 
       if (isStringReturn) {
         return declarationFor(WinRTStringGetterProjection.new);
