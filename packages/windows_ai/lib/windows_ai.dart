@@ -6,4 +6,4 @@
 /// the results.
 library windows_ai;
 
-export 'src/machinelearning/enums.g.dart';
+export 'src/exports.g.dart';

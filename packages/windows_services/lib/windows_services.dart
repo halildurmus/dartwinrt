@@ -5,4 +5,4 @@
 /// TODO: Add documentation.
 library windows_services;
 
-export 'src/maps/enums.g.dart';
+export 'src/exports.g.dart';

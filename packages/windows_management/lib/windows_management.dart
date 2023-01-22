@@ -5,4 +5,4 @@
 /// Provides capabilities to force a sync from an MDM device to the server.
 library windows_management;
 
-export 'src/enums.g.dart';
+export 'src/exports.g.dart';

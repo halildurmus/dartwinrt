@@ -6,4 +6,4 @@
 /// information about its app package, and handles suspend operations.
 library windows_applicationmodel;
 
-export 'src/enums.g.dart';
+export 'src/exports.g.dart';

@@ -5,4 +5,4 @@
 /// TODO: Add documentation.
 library windows_security;
 
-export 'src/credentials/enums.g.dart';
+export 'src/exports.g.dart';
