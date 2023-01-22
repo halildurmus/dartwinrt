@@ -2,7 +2,7 @@
 // details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-import 'declarations/comobject.dart';
+import 'declarations/class_or_interface.dart';
 import 'declarations/datetime.dart';
 import 'declarations/default.dart';
 import 'declarations/duration.dart';
@@ -42,28 +42,29 @@ class WinRTSetPropertyProjection extends WinRTPropertyProjection {
 
   // Matcher properties
 
-  bool get isComObjectProperty =>
-      parameters.first.type.dartType == 'Pointer<COMObject>';
-
-  bool get isGuidProperty =>
-      parameters.first.type.typeIdentifier.name == 'System.Guid';
-
-  bool get isStringProperty => parameters.first.type.isString;
+  bool get isClassOrInterfaceProperty =>
+      ['Pointer<COMObject>'].contains(parameters.first.type.dartType);
 
   bool get isDateTimeProperty =>
       parameters.first.type.typeIdentifier.name ==
       'Windows.Foundation.DateTime';
 
-  bool get isReferenceProperty =>
-      parameters.first.type.typeIdentifier.type?.name
-          .endsWith('IReference`1') ??
-      false;
-
-  bool get isTimeSpanProperty =>
+  bool get isDurationProperty =>
       parameters.first.type.typeIdentifier.name ==
       'Windows.Foundation.TimeSpan';
 
   bool get isEnumProperty => parameters.first.type.isWinRTEnum;
+
+  bool get isGuidProperty => parameters.first.type.dartType == 'GUID';
+
+  bool get isObjectProperty => parameters.first.type.isObject;
+
+  bool get isStringProperty => parameters.first.type.isString;
+
+  bool get isReferenceProperty =>
+      parameters.first.type.typeIdentifier.type?.name
+          .endsWith('IReference`1') ??
+      false;
 
   bool get isUriProperty =>
       parameters.first.type.typeIdentifier.name == 'Windows.Foundation.Uri';
@@ -71,44 +72,34 @@ class WinRTSetPropertyProjection extends WinRTPropertyProjection {
   @override
   String toString() {
     try {
-      // TODO: declarationFor(WinRTSetPropertyReturningMapProjection.new)
-      // TODO: declarationFor(WinRTSetPropertyReturningMapViewProjection.new)
-      // TODO: declarationFor(WinRTSetPropertyReturningVectorProjection.new)
-      // TODO: declarationFor(WinRTSetPropertyReturningVectorViewProjection.new)
+      if (isClassOrInterfaceProperty) {
+        // TODO: declarationFor(WinRTMapSetterProjection.new)
+        // TODO: declarationFor(WinRTMapViewSetterProjection.new)
+        // TODO: declarationFor(WinRTVectorSetterProjection.new)
+        // TODO: declarationFor(WinRTVectorViewSetterProjection.new)
+        if (isUriProperty) return declarationFor(WinRTUriSetterProjection.new);
 
-      if (isEnumProperty) {
-        return declarationFor(WinRTSetPropertyReturningEnumProjection.new);
-      }
-
-      if (isGuidProperty) {
-        return declarationFor(WinRTSetPropertyReturningGuidProjection.new);
-      }
-
-      if (isReferenceProperty) {
-        return declarationFor(WinRTSetPropertyReturningReferenceProjection.new);
-      }
-
-      if (isUriProperty) {
-        return declarationFor(WinRTSetPropertyReturningUriProjection.new);
-      }
-
-      if (isComObjectProperty) {
-        return declarationFor(WinRTSetPropertyReturningComObjectProjection.new);
-      }
-
-      if (isStringProperty) {
-        return declarationFor(WinRTSetPropertyReturningStringProjection.new);
+        return isReferenceProperty
+            ? declarationFor(WinRTReferenceSetterProjection.new)
+            : declarationFor(WinRTClassOrInterfaceSetterProjection.new);
       }
 
       if (isDateTimeProperty) {
-        return declarationFor(WinRTSetPropertyReturningDateTimeProjection.new);
+        return declarationFor(WinRTDateTimeSetterProjection.new);
       }
 
-      if (isTimeSpanProperty) {
-        return declarationFor(WinRTSetPropertyReturningDurationProjection.new);
+      if (isDurationProperty) {
+        return declarationFor(WinRTDurationSetterProjection.new);
       }
 
-      return declarationFor(WinRTSetPropertyReturningDefaultProjection.new);
+      if (isEnumProperty) return declarationFor(WinRTEnumSetterProjection.new);
+      if (isGuidProperty) return declarationFor(WinRTGuidSetterProjection.new);
+
+      if (isStringProperty) {
+        return declarationFor(WinRTStringSetterProjection.new);
+      }
+
+      return declarationFor(WinRTDefaultSetterProjection.new);
     } on Exception {
       // Print an error if we're unable to project a method, but don't
       // completely bail out. The rest may be useful.

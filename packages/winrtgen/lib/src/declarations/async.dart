@@ -6,8 +6,8 @@ import '../utils.dart';
 import '../winrt_method.dart';
 import '../winrt_type.dart';
 
-class WinRTMethodReturningAsyncActionProjection extends WinRTMethodProjection {
-  WinRTMethodReturningAsyncActionProjection(super.method, super.vtableOffset);
+class WinRTAsyncActionMethodProjection extends WinRTMethodProjection {
+  WinRTAsyncActionMethodProjection(super.method, super.vtableOffset);
 
   @override
   String toString() => '''
@@ -43,7 +43,7 @@ mixin _AsyncOperationProjection on WinRTMethodProjection {
       return asyncOperationTypeArg.replaceFirst('IVectorView', 'List');
     } else if (asyncOperationTypeArg.startsWith('IReference')) {
       // e.g. return Duration? instead of IReference<Duration>?
-      return '${typeArguments(asyncOperationTypeArg)}?';
+      return nullable(typeArguments(asyncOperationTypeArg));
     }
 
     return asyncOperationTypeArg;
@@ -96,10 +96,9 @@ mixin _AsyncOperationProjection on WinRTMethodProjection {
   }
 }
 
-class WinRTMethodReturningAsyncOperationProjection extends WinRTMethodProjection
+class WinRTAsyncOperationMethodProjection extends WinRTMethodProjection
     with _AsyncOperationProjection {
-  WinRTMethodReturningAsyncOperationProjection(
-      super.method, super.vtableOffset);
+  WinRTAsyncOperationMethodProjection(super.method, super.vtableOffset);
 
   @override
   String toString() => '''

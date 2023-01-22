@@ -10,6 +10,13 @@ import 'package:winmd/winmd.dart';
 import 'package:winrtgen/winrtgen.dart';
 
 void main() {
+  test('nullable', () {
+    expect(nullable('StorageFile'), equals('StorageFile?'));
+    expect(nullable('Calendar?'), equals('Calendar?'));
+    expect(nullable('IIterable<IKeyValuePair<String, String>>'),
+        equals('IIterable<IKeyValuePair<String, String>>?'));
+  });
+
   test('outerType', () {
     expect(
         outerType('IAsyncOperation<StorageFile?>'), equals('IAsyncOperation'));

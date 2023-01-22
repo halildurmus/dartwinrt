@@ -54,21 +54,22 @@ class IGeolocatorStatics2 extends IInspectable {
   }
 
   set defaultGeoposition(BasicGeoposition? value) {
-    final referencePtr = value == null
-        ? calloc<COMObject>()
-        : boxValue(value, convertToIReference: true);
-
     final hr = ptr.ref.vtable
-        .elementAt(7)
-        .cast<Pointer<NativeFunction<HRESULT Function(Pointer, COMObject)>>>()
-        .value
-        .asFunction<
-            int Function(
-                Pointer, COMObject)>()(ptr.ref.lpVtbl, referencePtr.ref);
+            .elementAt(7)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(Pointer, Pointer<COMObject>)>>>()
+            .value
+            .asFunction<int Function(Pointer, Pointer<COMObject>)>()(
+        ptr.ref.lpVtbl,
+        value == null
+            ? calloc<COMObject>()
+            : boxValue(value, convertToIReference: true)
+                .cast<Pointer<COMObject>>()
+                .value);
 
     if (FAILED(hr)) throw WindowsException(hr);
-
-    if (value == null) free(referencePtr);
   }
 
   BasicGeoposition? get defaultGeoposition {

@@ -5,7 +5,7 @@
 import 'package:win32gen/win32gen.dart';
 import 'package:winmd/winmd.dart';
 
-import 'declarations/comobject.dart';
+import 'declarations/class_or_interface.dart';
 import 'declarations/datetime.dart';
 import 'declarations/duration.dart';
 import 'declarations/enum.dart';
@@ -62,39 +62,44 @@ class WinRTParameterProjection extends ParameterProjection {
 
   // Matcher properties
 
-  bool get isComObjectPointer => type.dartType == 'Pointer<COMObject>';
+  bool get isClassOrInterface => ['Pointer<COMObject>'].contains(type.dartType);
 
   bool get isDateTime =>
       type.typeIdentifier.name == 'Windows.Foundation.DateTime';
 
+  bool get isDuration =>
+      type.typeIdentifier.name == 'Windows.Foundation.TimeSpan';
+
   bool get isEnum => type.isWinRTEnum;
 
-  bool get isGuid => type.typeIdentifier.name == 'System.Guid';
+  bool get isGuid => type.dartType == 'GUID';
+
+  bool get isObject => type.isObject;
 
   bool get isReference =>
       type.typeIdentifier.type?.name.endsWith('IReference`1') ?? false;
 
   bool get isString => type.isString;
 
-  bool get isTimeSpan =>
-      type.typeIdentifier.name == 'Windows.Foundation.TimeSpan';
-
   bool get isUri => type.typeIdentifier.name == 'Windows.Foundation.Uri';
 
   /// Returns the appropriate projection for the parameter.
   WinRTParameterProjection? get parameterProjection {
+    if (isClassOrInterface) {
+      if (isReference) {
+        return WinRTReferenceParameterProjection(method, name, type);
+      }
+
+      if (isUri) return WinRTUriParameterProjection(method, name, type);
+
+      return WinRTClassOrInterfaceParameterProjection(method, name, type);
+    }
+
     if (isDateTime) return WinRTDateTimeParameterProjection(method, name, type);
+    if (isDuration) return WinRTDurationParameterProjection(method, name, type);
     if (isEnum) return WinRTEnumParameterProjection(method, name, type);
     if (isGuid) return WinRTGuidParameterProjection(method, name, type);
     if (isString) return WinRTStringParameterProjection(method, name, type);
-    if (isReference) {
-      return WinRTReferenceParameterProjection(method, name, type);
-    }
-    if (isTimeSpan) return WinRTDurationParameterProjection(method, name, type);
-    if (isUri) return WinRTUriParameterProjection(method, name, type);
-    if (isComObjectPointer) {
-      return WinRTComObjectParameterProjection(method, name, type);
-    }
 
     return null;
   }

@@ -54,9 +54,9 @@ mixin _VectorProjection on WinRTMethodProjection {
   }
 }
 
-class WinRTMethodReturningVectorProjection extends WinRTMethodProjection
+class WinRTVectorMethodProjection extends WinRTMethodProjection
     with _VectorProjection {
-  WinRTMethodReturningVectorProjection(super.method, super.vtableOffset);
+  WinRTVectorMethodProjection(super.method, super.vtableOffset);
 
   @override
   String toString() => '''
@@ -73,9 +73,9 @@ class WinRTMethodReturningVectorProjection extends WinRTMethodProjection
   ''';
 }
 
-class WinRTGetPropertyReturningVectorProjection
-    extends WinRTGetPropertyProjection with _VectorProjection {
-  WinRTGetPropertyReturningVectorProjection(super.method, super.vtableOffset);
+class WinRTVectorGetterProjection extends WinRTGetPropertyProjection
+    with _VectorProjection {
+  WinRTVectorGetterProjection(super.method, super.vtableOffset);
 
   @override
   String toString() => '''
@@ -89,9 +89,9 @@ class WinRTGetPropertyReturningVectorProjection
   ''';
 }
 
-class WinRTMethodReturningVectorViewProjection extends WinRTMethodProjection
+class WinRTVectorViewMethodProjection extends WinRTMethodProjection
     with _VectorProjection {
-  WinRTMethodReturningVectorViewProjection(super.method, super.vtableOffset);
+  WinRTVectorViewMethodProjection(super.method, super.vtableOffset);
 
   @override
   String toString() => '''
@@ -113,10 +113,9 @@ class WinRTMethodReturningVectorViewProjection extends WinRTMethodProjection
   ''';
 }
 
-class WinRTGetPropertyReturningVectorViewProjection
-    extends WinRTGetPropertyProjection with _VectorProjection {
-  WinRTGetPropertyReturningVectorViewProjection(
-      super.method, super.vtableOffset);
+class WinRTVectorViewGetterProjection extends WinRTGetPropertyProjection
+    with _VectorProjection {
+  WinRTVectorViewGetterProjection(super.method, super.vtableOffset);
 
   @override
   String toString() => '''

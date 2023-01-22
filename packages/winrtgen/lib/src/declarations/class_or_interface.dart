@@ -10,7 +10,7 @@ import '../winrt_method.dart';
 import '../winrt_parameter.dart';
 import '../winrt_set_property.dart';
 
-mixin _ComObjectProjection on WinRTMethodProjection {
+mixin _ClassOrInterfaceProjection on WinRTMethodProjection {
   String get methodReturnType {
     // The return types of methods in the IPropertyValueStatics are specified
     // as 'object' in WinMD. However, these methods actually return the
@@ -50,7 +50,7 @@ mixin _ComObjectProjection on WinRTMethodProjection {
       return typeIdentifierName;
     }
 
-    return '$typeIdentifierName?';
+    return nullable(typeIdentifierName);
   }
 
   String get nullCheck {
@@ -65,13 +65,18 @@ mixin _ComObjectProjection on WinRTMethodProjection {
 
   String get returnStatement {
     if (methodReturnType == 'Pointer<COMObject>') return 'return retValuePtr;';
+
+    if (methodReturnType == 'Object?') {
+      return 'return IPropertyValue.fromRawPointer(retValuePtr).value;';
+    }
+
     return 'return ${stripQuestionMarkSuffix(methodReturnType)}.fromRawPointer(retValuePtr);';
   }
 }
 
-class WinRTMethodReturningComObjectProjection extends WinRTMethodProjection
-    with _ComObjectProjection {
-  WinRTMethodReturningComObjectProjection(super.method, super.vtableOffset);
+class WinRTClassOrInterfaceMethodProjection extends WinRTMethodProjection
+    with _ClassOrInterfaceProjection {
+  WinRTClassOrInterfaceMethodProjection(super.method, super.vtableOffset);
 
   @override
   String toString() => '''
@@ -90,10 +95,9 @@ class WinRTMethodReturningComObjectProjection extends WinRTMethodProjection
 ''';
 }
 
-class WinRTGetPropertyReturningComObjectProjection
-    extends WinRTGetPropertyProjection with _ComObjectProjection {
-  WinRTGetPropertyReturningComObjectProjection(
-      super.method, super.vtableOffset);
+class WinRTClassOrInterfaceGetterProjection extends WinRTGetPropertyProjection
+    with _ClassOrInterfaceProjection {
+  WinRTClassOrInterfaceGetterProjection(super.method, super.vtableOffset);
 
   @override
   String toString() => '''
@@ -109,21 +113,22 @@ class WinRTGetPropertyReturningComObjectProjection
 ''';
 }
 
-class WinRTSetPropertyReturningComObjectProjection
-    extends WinRTSetPropertyProjection with _ComObjectProjection {
-  WinRTSetPropertyReturningComObjectProjection(
-      super.method, super.vtableOffset);
+class WinRTClassOrInterfaceSetterProjection extends WinRTSetPropertyProjection
+    with _ClassOrInterfaceProjection {
+  WinRTClassOrInterfaceSetterProjection(super.method, super.vtableOffset);
 
   @override
   String toString() => '''
       set $exposedMethodName(${parameters.first.type.methodParamType} value) {
-        ${ffiCall(params: 'value == null ? nullptr : value.ptr.cast<Pointer<COMObject>>().value')}
+        ${ffiCall(params: 'value == null ? calloc<COMObject>() : value.ptr.cast<Pointer<COMObject>>().value')}
       }
   ''';
 }
 
-class WinRTComObjectParameterProjection extends WinRTParameterProjection {
-  WinRTComObjectParameterProjection(super.method, super.name, super.type);
+class WinRTClassOrInterfaceParameterProjection
+    extends WinRTParameterProjection {
+  WinRTClassOrInterfaceParameterProjection(
+      super.method, super.name, super.type);
 
   @override
   String get preamble => '';

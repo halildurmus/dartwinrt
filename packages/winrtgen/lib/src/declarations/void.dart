@@ -4,8 +4,8 @@
 
 import '../winrt_method.dart';
 
-class WinRTMethodReturningVoidProjection extends WinRTMethodProjection {
-  WinRTMethodReturningVoidProjection(super.method, super.vtableOffset);
+class WinRTVoidMethodProjection extends WinRTMethodProjection {
+  WinRTVoidMethodProjection(super.method, super.vtableOffset);
 
   @override
   String toString() => '''

@@ -2,7 +2,7 @@
 // details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-import 'declarations/comobject.dart';
+import 'declarations/class_or_interface.dart';
 import 'declarations/datetime.dart';
 import 'declarations/default.dart';
 import 'declarations/duration.dart';
@@ -24,7 +24,7 @@ class WinRTGetPropertyProjection extends WinRTPropertyProjection {
   String get dartParams => nativeParams;
 
   @override
-  String get nativeParams => isCOMObjectReturn
+  String get nativeParams => isClassOrInterfaceReturn
       ? 'Pointer, Pointer<COMObject>'
       : 'Pointer, Pointer<${returnType.nativeType}>';
 
@@ -51,56 +51,46 @@ class WinRTGetPropertyProjection extends WinRTPropertyProjection {
   @override
   String toString() {
     try {
-      if (isEnumReturn) {
-        return declarationFor(WinRTGetPropertyReturningEnumProjection.new);
-      }
+      if (isClassOrInterfaceReturn) {
+        if (isMapReturn) return declarationFor(WinRTMapGetterProjection.new);
 
-      if (isGuidReturn) {
-        return declarationFor(WinRTGetPropertyReturningGuidProjection.new);
-      }
+        if (isMapViewReturn) {
+          return declarationFor(WinRTMapViewGetterProjection.new);
+        }
 
-      if (isMapReturn) {
-        return declarationFor(WinRTGetPropertyReturningMapProjection.new);
-      }
+        if (isReferenceReturn) {
+          return declarationFor(WinRTReferenceGetterProjection.new);
+        }
 
-      if (isMapViewReturn) {
-        return declarationFor(WinRTGetPropertyReturningMapViewProjection.new);
-      }
+        if (isUriReturn) return declarationFor(WinRTUriGetterProjection.new);
 
-      if (isReferenceReturn) {
-        return declarationFor(WinRTGetPropertyReturningReferenceProjection.new);
-      }
+        if (isVectorReturn) {
+          return declarationFor(WinRTVectorGetterProjection.new);
+        }
 
-      if (isUriReturn) {
-        return declarationFor(WinRTGetPropertyReturningUriProjection.new);
-      }
+        if (isVectorViewReturn) {
+          return declarationFor(WinRTVectorViewGetterProjection.new);
+        }
 
-      if (isVectorReturn) {
-        return declarationFor(WinRTGetPropertyReturningVectorProjection.new);
-      }
-
-      if (isVectorViewReturn) {
-        return declarationFor(
-            WinRTGetPropertyReturningVectorViewProjection.new);
-      }
-
-      if (isCOMObjectReturn) {
-        return declarationFor(WinRTGetPropertyReturningComObjectProjection.new);
-      }
-
-      if (isStringReturn) {
-        return declarationFor(WinRTGetPropertyReturningStringProjection.new);
+        return declarationFor(WinRTClassOrInterfaceGetterProjection.new);
       }
 
       if (isDateTimeReturn) {
-        return declarationFor(WinRTGetPropertyReturningDateTimeProjection.new);
+        return declarationFor(WinRTDateTimeGetterProjection.new);
       }
 
-      if (isTimeSpanReturn) {
-        return declarationFor(WinRTGetPropertyReturningDurationProjection.new);
+      if (isDurationReturn) {
+        return declarationFor(WinRTDurationGetterProjection.new);
       }
 
-      return declarationFor(WinRTGetPropertyReturningDefaultProjection.new);
+      if (isEnumReturn) return declarationFor(WinRTEnumGetterProjection.new);
+      if (isGuidReturn) return declarationFor(WinRTGuidGetterProjection.new);
+
+      if (isStringReturn) {
+        return declarationFor(WinRTStringGetterProjection.new);
+      }
+
+      return declarationFor(WinRTDefaultGetterProjection.new);
     } on Exception {
       // Print an error if we're unable to project a method, but don't
       // completely bail out. The rest may be useful.
