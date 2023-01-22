@@ -7,4 +7,4 @@
 /// the user.
 library windows_perception;
 
-export 'src/spatial/enums.g.dart';
+export 'src/exports.g.dart';

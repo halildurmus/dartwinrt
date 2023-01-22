@@ -5,4 +5,4 @@
 /// Provides information on errors resulting from web service operations.
 library windows_web;
 
-export 'src/enums.g.dart';
+export 'src/exports.g.dart';
