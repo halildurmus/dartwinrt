@@ -23,8 +23,8 @@ const excludedPackageFiles = <String>{
   'wwwformurldecoderentry.dart',
 };
 
-/// WinRT classes and interfaces to exclude when generating.
-const excludedWindowsRuntimeTypes = <String>{
+/// WinRT classes and interfaces to exclude from code generation.
+const excludedWindowsRuntimeClassesAndInterfaces = <String>{
   ...excludedWindowsRuntimeInterfacesInInherits,
   ...excludedWindowsRuntimeStaticInterfaces,
 

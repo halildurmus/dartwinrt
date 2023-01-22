@@ -9,7 +9,7 @@ import 'package:win32gen/win32gen.dart';
 import 'package:winmd/winmd.dart';
 import 'package:winrtgen/winrtgen.dart';
 
-void generateWinRTTypes(Map<String, String> types) {
+void generateClassesAndInterfaces(Map<String, String> types) {
   // Catalog all the types we need to generate: the types themselves and their
   // dependencies
   final typesAndDependencies = <String>{};
@@ -38,7 +38,8 @@ void generateWinRTTypes(Map<String, String> types) {
     // Remove generic interfaces as they are projected manually
     ..removeWhere((type) => type.isEmpty)
     // Remove excluded WinRT types
-    ..removeWhere((type) => excludedWindowsRuntimeTypes.contains(type));
+    ..removeWhere(
+        (type) => excludedWindowsRuntimeClassesAndInterfaces.contains(type));
 
   // Generate the type projection for each type
   for (final type in typesAndDependencies) {
@@ -69,7 +70,7 @@ void generateWinRTTypes(Map<String, String> types) {
   }
 }
 
-void generateWinRTEnumerations(Map<String, String> enums) {
+void generateEnumerations(Map<String, String> enums) {
   final namespaceGroups = groupTypesByParentNamespace(enums.keys);
 
   for (final namespaceGroup in namespaceGroups) {
@@ -100,24 +101,24 @@ void generateWinRTEnumerations(Map<String, String> enums) {
     enumProjections.sort((a, b) =>
         lastComponent(a.enumName).compareTo(lastComponent(b.enumName)));
 
-    final String winrtEnumFileImport;
+    final String winrtEnumImport;
     if (packageName == 'windows_foundation') {
       final filePath = relativePath(
           'packages/windows_foundation/winrt_enum.dart',
           start: 'packages/${folderFromWinRTType(firstType)}');
-      winrtEnumFileImport = "import '$filePath';";
+      winrtEnumImport = "import '$filePath';";
     } else {
-      winrtEnumFileImport =
+      winrtEnumImport =
           "import 'package:windows_foundation/windows_foundation.dart';";
     }
 
     final enumsFileContent =
-        [winrtEnumFileHeader, winrtEnumFileImport, ...enumProjections].join();
+        [winrtEnumFileHeader, winrtEnumImport, ...enumProjections].join();
     file.writeAsStringSync(DartFormatter().format(enumsFileContent));
   }
 }
 
-void generateWinRTStructs(Map<String, String> structs) {
+void generateStructs(Map<String, String> structs) {
   final namespaceGroups = groupTypesByParentNamespace(structs.keys);
 
   for (final namespaceGroup in namespaceGroups) {
@@ -194,19 +195,19 @@ void generatePackageExports() {
 
 void main() {
   print('Generating Windows Runtime classes and interfaces...');
-  final winrtTypesToGenerate = loadMap('winrt_types.json');
-  saveMap(winrtTypesToGenerate, 'winrt_types.json');
-  generateWinRTTypes(winrtTypesToGenerate);
+  final typesToGenerate = loadMap('classes_and_interfaces.json');
+  saveMap(typesToGenerate, 'classes_and_interfaces.json');
+  generateClassesAndInterfaces(typesToGenerate);
 
   print('Generating Windows Runtime enumerations...');
-  final winrtEnumsToGenerate = loadMap('winrt_enums.json');
-  saveMap(winrtEnumsToGenerate, 'winrt_enums.json');
-  generateWinRTEnumerations(winrtEnumsToGenerate);
+  final enumsToGenerate = loadMap('enums.json');
+  saveMap(enumsToGenerate, 'enums.json');
+  generateEnumerations(enumsToGenerate);
 
   print('Generating Windows Runtime structs...');
-  final winrtStructsToGenerate = loadMap('winrt_structs.json');
-  saveMap(winrtStructsToGenerate, 'winrt_structs.json');
-  generateWinRTStructs(winrtStructsToGenerate);
+  final structsToGenerate = loadMap('structs.json');
+  saveMap(structsToGenerate, 'structs.json');
+  generateStructs(structsToGenerate);
 
   print('Generating package exports...');
   generatePackageExports();
