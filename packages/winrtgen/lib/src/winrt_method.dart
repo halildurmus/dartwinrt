@@ -13,6 +13,7 @@ import 'declarations/duration.dart';
 import 'declarations/enum.dart';
 import 'declarations/guid.dart';
 import 'declarations/map.dart';
+import 'declarations/object.dart';
 import 'declarations/reference.dart';
 import 'declarations/string.dart';
 import 'declarations/uri.dart';
@@ -37,7 +38,7 @@ class WinRTMethodProjection extends MethodProjection {
         'Pointer',
         ...parameters.map((param) => param.dartProjection),
         if (!isVoidReturn)
-          isClassOrInterfaceReturn
+          isClassOrInterfaceReturn || isObjectReturn
               ? 'Pointer<COMObject>'
               : 'Pointer<${returnType.nativeType}>',
       ].join(', ');
@@ -47,7 +48,7 @@ class WinRTMethodProjection extends MethodProjection {
         'Pointer',
         ...parameters.map((param) => param.ffiProjection),
         if (!isVoidReturn)
-          isClassOrInterfaceReturn
+          isClassOrInterfaceReturn || isObjectReturn
               ? 'Pointer<COMObject>'
               : 'Pointer<${returnType.nativeType}>',
       ].join(', ');
@@ -219,6 +220,10 @@ class WinRTMethodProjection extends MethodProjection {
 
       if (isEnumReturn) return declarationFor(WinRTEnumMethodProjection.new);
       if (isGuidReturn) return declarationFor(WinRTGuidMethodProjection.new);
+
+      if (isObjectReturn) {
+        return declarationFor(WinRTObjectMethodProjection.new);
+      }
 
       if (isStringReturn) {
         return declarationFor(WinRTStringMethodProjection.new);
