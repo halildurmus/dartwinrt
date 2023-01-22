@@ -1,4 +1,6 @@
-// istoragefilestatics.dart
+// Copyright (c) 2023, the dartwinrt authors. Please see the AUTHORS file for
+// details. All rights reserved. Use of this source code is governed by a
+// BSD-style license that can be found in the LICENSE file.
 
 // ignore_for_file: unused_import
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
@@ -30,7 +32,7 @@ class IStorageFileStatics extends IInspectable {
   Future<StorageFile?> getFileFromPathAsync(String path) {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<StorageFile?>();
-    final pathHstring = convertToHString(path);
+    final pathHString = convertToHString(path);
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -41,14 +43,14 @@ class IStorageFileStatics extends IInspectable {
                             Pointer, IntPtr path, Pointer<COMObject>)>>>()
             .value
             .asFunction<int Function(Pointer, int path, Pointer<COMObject>)>()(
-        ptr.ref.lpVtbl, pathHstring, retValuePtr);
+        ptr.ref.lpVtbl, pathHString, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
 
-    WindowsDeleteString(pathHstring);
+    WindowsDeleteString(pathHString);
 
     final asyncOperation = IAsyncOperation<StorageFile?>.fromRawPointer(
         retValuePtr,
@@ -69,15 +71,12 @@ class IStorageFileStatics extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(Pointer, Pointer<COMObject> uri,
-                            Pointer<COMObject>)>>>()
+                        HRESULT Function(
+                            Pointer, LPVTBL uri, Pointer<COMObject>)>>>()
             .value
             .asFunction<
-                int Function(
-                    Pointer, Pointer<COMObject> uri, Pointer<COMObject>)>()(
-        ptr.ref.lpVtbl,
-        uriUri.ptr.cast<Pointer<COMObject>>().value,
-        retValuePtr);
+                int Function(Pointer, LPVTBL uri, Pointer<COMObject>)>()(
+        ptr.ref.lpVtbl, uriUri.ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
