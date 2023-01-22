@@ -7,7 +7,9 @@ import 'package:win32gen/win32gen.dart';
 import 'package:winmd/winmd.dart';
 import 'package:winrtgen/winrtgen.dart';
 
-String format(Object object) => DartFormatter().format(object.toString());
+final formatter = DartFormatter();
+
+String format(Object object) => formatter.format(object.toString());
 
 void printEnum() {
   final enumTypeDef =
