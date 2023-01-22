@@ -84,44 +84,59 @@ class WinRTImplementsMapperProjection extends WinRTInterfaceProjection {
         '.fromRawPointer(toInterface($iid)$constructorArgs);';
   }
 
+  /// Tries to find the method projections for the [interface] from the given
+  /// [methodProjections] by comparing method names.
+  List<MethodProjection> _methodProjectionsOfInterface(
+          List<MethodProjection> methodProjections) =>
+      methodProjections
+          .where((method) =>
+              method.name != '.ctor' &&
+              // Take only the interface's methods by comparing method names
+              interface.typeSpec!.type!.methods
+                  .map((m) => m.name)
+                  .toList()
+                  .contains(method.name))
+          .toList();
+
   @override
   List<MethodProjection> get methodProjections {
     if (!isGenericInterface) {
       return WinRTInterfaceProjection(interface).methodProjections;
     }
 
-    final List<MethodProjection> $methodProjections;
-    // IPropertySet interface is unusual in that it doesn't define any members.
-    // Because of that, PropertySet's methodProjections are used to generate
-    // implements mappers for it.
-    if (shortName == 'IPropertySet') {
-      final propertySetTypeDef = MetadataStore.getMetadataForType(
-          'Windows.Foundation.Collections.PropertySet')!;
-      $methodProjections =
-          WinRTClassProjection(propertySetTypeDef).methodProjections;
-    }
-    // IWwwFormUrlDecoderRuntimeClass interface doesn't define any members for
-    // IIterable and IVectorView despite inheriting from them. Because of that,
-    // WwwFormUrlDecoder's methodProjections are used to generate implements
-    // mappers for it.
-    else if (shortName == 'IWwwFormUrlDecoderRuntimeClass') {
-      final formUrlDecoderTypeDef = MetadataStore.getMetadataForType(
-          'Windows.Foundation.WwwFormUrlDecoder')!;
-      $methodProjections =
-          WinRTClassProjection(formUrlDecoderTypeDef).methodProjections;
+    // Try to find method projections for the interface from the super class's
+    // method projections.
+    var $methodProjections =
+        _methodProjectionsOfInterface(super.methodProjections);
+    if ($methodProjections.isNotEmpty) return $methodProjections;
+
+    const attributeName = 'Windows.Foundation.Metadata.ExclusiveToAttribute';
+    final String classTypeName;
+
+    // Try to find the class that implements the interface through the
+    // 'ExclusiveToAttribute'.
+    if (typeDef.existsAttribute(attributeName)) {
+      classTypeName = typeDef
+          .findAttribute(attributeName)!
+          .parameters
+          .first
+          .value
+          .toString();
     } else {
-      $methodProjections = super.methodProjections;
+      // If the 'ExclusiveToAttribute' not found, try using the interface name
+      // as a class name by removing the 'I' prefix.
+      classTypeName = (typeDef.name.split('.')
+            ..removeLast() // Remove the shortName (e.g. IPropertySet)
+            // Add shortName without 'I' prefix (e.g. PropertySet)
+            ..add(shortName.substring(1)))
+          .join('.');
     }
 
-    return $methodProjections
-        .where((method) =>
-            method.name != '.ctor' &&
-            // Take only the interface's methods by comparing method names
-            interface.typeSpec!.type!.methods
-                .map((m) => m.name)
-                .toList()
-                .contains(method.name))
-        .toList();
+    final classTypeDef = MetadataStore.getMetadataForType(classTypeName);
+    if (classTypeDef == null) throw Exception("Can't find $classTypeName");
+
+    $methodProjections = WinRTClassProjection(classTypeDef).methodProjections;
+    return _methodProjectionsOfInterface($methodProjections);
   }
 
   List<String>? _methods;
