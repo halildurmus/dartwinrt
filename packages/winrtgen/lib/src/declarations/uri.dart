@@ -16,9 +16,9 @@ mixin _UriProjection on WinRTMethodProjection {
 ''';
 }
 
-class WinRTMethodReturningUriProjection extends WinRTMethodProjection
+class WinRTUriMethodProjection extends WinRTMethodProjection
     with _UriProjection {
-  WinRTMethodReturningUriProjection(super.method, super.vtableOffset);
+  WinRTUriMethodProjection(super.method, super.vtableOffset);
 
   @override
   String toString() => '''
@@ -41,9 +41,9 @@ class WinRTMethodReturningUriProjection extends WinRTMethodProjection
 ''';
 }
 
-class WinRTGetPropertyReturningUriProjection extends WinRTGetPropertyProjection
+class WinRTUriGetterProjection extends WinRTGetPropertyProjection
     with _UriProjection {
-  WinRTGetPropertyReturningUriProjection(super.method, super.vtableOffset);
+  WinRTUriGetterProjection(super.method, super.vtableOffset);
 
   @override
   String toString() => '''
@@ -63,9 +63,8 @@ class WinRTGetPropertyReturningUriProjection extends WinRTGetPropertyProjection
 ''';
 }
 
-class WinRTSetPropertyReturningUriProjection
-    extends WinRTSetPropertyProjection {
-  WinRTSetPropertyReturningUriProjection(super.method, super.vtableOffset);
+class WinRTUriSetterProjection extends WinRTSetPropertyProjection {
+  WinRTUriSetterProjection(super.method, super.vtableOffset);
 
   @override
   String toString() => '''
@@ -73,7 +72,7 @@ class WinRTSetPropertyReturningUriProjection
         final winrtUri = value == null ? null : winrt_uri.Uri.createUri(value.toString());
 
         try {
-          ${ffiCall(params: 'winrtUri == null ? nullptr : winrtUri.ptr.cast<Pointer<COMObject>>().value')}
+          ${ffiCall(params: 'winrtUri == null ? nullptr : winrtUri.ptr.ref.lpVtbl')}
         } finally {
           winrtUri?.release();
         }

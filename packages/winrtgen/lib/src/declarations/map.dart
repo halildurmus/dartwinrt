@@ -55,9 +55,9 @@ mixin _MapProjection on WinRTMethodProjection {
   }
 }
 
-class WinRTMethodReturningMapProjection extends WinRTMethodProjection
+class WinRTMapMethodProjection extends WinRTMethodProjection
     with _MapProjection {
-  WinRTMethodReturningMapProjection(super.method, super.vtableOffset);
+  WinRTMapMethodProjection(super.method, super.vtableOffset);
 
   @override
   String toString() => '''
@@ -74,9 +74,9 @@ class WinRTMethodReturningMapProjection extends WinRTMethodProjection
   ''';
 }
 
-class WinRTGetPropertyReturningMapProjection extends WinRTGetPropertyProjection
+class WinRTMapGetterProjection extends WinRTGetPropertyProjection
     with _MapProjection {
-  WinRTGetPropertyReturningMapProjection(super.method, super.vtableOffset);
+  WinRTMapGetterProjection(super.method, super.vtableOffset);
 
   @override
   String toString() => '''
@@ -90,9 +90,9 @@ class WinRTGetPropertyReturningMapProjection extends WinRTGetPropertyProjection
   ''';
 }
 
-class WinRTMethodReturningMapViewProjection extends WinRTMethodProjection
+class WinRTMapViewMethodProjection extends WinRTMethodProjection
     with _MapProjection {
-  WinRTMethodReturningMapViewProjection(super.method, super.vtableOffset);
+  WinRTMapViewMethodProjection(super.method, super.vtableOffset);
 
   @override
   String toString() => '''
@@ -112,9 +112,9 @@ class WinRTMethodReturningMapViewProjection extends WinRTMethodProjection
   ''';
 }
 
-class WinRTGetPropertyReturningMapViewProjection
-    extends WinRTGetPropertyProjection with _MapProjection {
-  WinRTGetPropertyReturningMapViewProjection(super.method, super.vtableOffset);
+class WinRTMapViewGetterProjection extends WinRTGetPropertyProjection
+    with _MapProjection {
+  WinRTMapViewGetterProjection(super.method, super.vtableOffset);
 
   @override
   String toString() => '''

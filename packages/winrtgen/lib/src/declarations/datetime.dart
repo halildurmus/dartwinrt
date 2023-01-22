@@ -7,8 +7,8 @@ import '../winrt_method.dart';
 import '../winrt_parameter.dart';
 import '../winrt_set_property.dart';
 
-class WinRTMethodReturningDateTimeProjection extends WinRTMethodProjection {
-  WinRTMethodReturningDateTimeProjection(super.method, super.vtableOffset);
+class WinRTDateTimeMethodProjection extends WinRTMethodProjection {
+  WinRTDateTimeMethodProjection(super.method, super.vtableOffset);
 
   // In WinRT, DateTime is represented as a 64-bit signed integer that
   // represents a point in time as the number of 100-nanosecond intervals prior
@@ -34,9 +34,8 @@ class WinRTMethodReturningDateTimeProjection extends WinRTMethodProjection {
 ''';
 }
 
-class WinRTGetPropertyReturningDateTimeProjection
-    extends WinRTGetPropertyProjection {
-  WinRTGetPropertyReturningDateTimeProjection(super.method, super.vtableOffset);
+class WinRTDateTimeGetterProjection extends WinRTGetPropertyProjection {
+  WinRTDateTimeGetterProjection(super.method, super.vtableOffset);
 
   @override
   String toString() => '''
@@ -56,9 +55,8 @@ class WinRTGetPropertyReturningDateTimeProjection
 ''';
 }
 
-class WinRTSetPropertyReturningDateTimeProjection
-    extends WinRTSetPropertyProjection {
-  WinRTSetPropertyReturningDateTimeProjection(super.method, super.vtableOffset);
+class WinRTDateTimeSetterProjection extends WinRTSetPropertyProjection {
+  WinRTDateTimeSetterProjection(super.method, super.vtableOffset);
 
   @override
   String toString() => '''

@@ -7,8 +7,8 @@ import '../winrt_method.dart';
 import '../winrt_parameter.dart';
 import '../winrt_set_property.dart';
 
-class WinRTMethodReturningStringProjection extends WinRTMethodProjection {
-  WinRTMethodReturningStringProjection(super.method, super.vtableOffset);
+class WinRTStringMethodProjection extends WinRTMethodProjection {
+  WinRTStringMethodProjection(super.method, super.vtableOffset);
 
   @override
   String toString() {
@@ -34,9 +34,8 @@ class WinRTMethodReturningStringProjection extends WinRTMethodProjection {
   }
 }
 
-class WinRTGetPropertyReturningStringProjection
-    extends WinRTGetPropertyProjection {
-  WinRTGetPropertyReturningStringProjection(super.method, super.vtableOffset);
+class WinRTStringGetterProjection extends WinRTGetPropertyProjection {
+  WinRTStringGetterProjection(super.method, super.vtableOffset);
 
   @override
   String toString() => '''
@@ -56,9 +55,8 @@ class WinRTGetPropertyReturningStringProjection
 ''';
 }
 
-class WinRTSetPropertyReturningStringProjection
-    extends WinRTSetPropertyProjection {
-  WinRTSetPropertyReturningStringProjection(super.method, super.vtableOffset);
+class WinRTStringSetterProjection extends WinRTSetPropertyProjection {
+  WinRTStringSetterProjection(super.method, super.vtableOffset);
 
   @override
   String toString() => '''

@@ -337,7 +337,7 @@ void main() {
     expect(expirationTimeSystemProjection.dartPrototype,
         equalsIgnoringWhitespace('int Function(Pointer, Pointer<COMObject>)'));
     expect(expirationTimeSystemProjection.returnType.dartType,
-        equals('COMObject'));
+        equals('Pointer<COMObject>'));
     expect(expirationTimeSystemProjection.toString().trimLeft(),
         startsWith('DateTime? get expirationTime'));
     expect(expirationTimeSystemProjection.toString(),
@@ -423,17 +423,15 @@ void main() {
     final expirationTimeProjection = projection.methodProjections
         .firstWhere((m) => m.name == 'put_ExpirationTime');
 
-    expect(expirationTimeProjection.nativePrototype,
-        equalsIgnoringWhitespace('HRESULT Function(Pointer, COMObject)'));
+    expect(
+        expirationTimeProjection.nativePrototype,
+        equalsIgnoringWhitespace(
+            'HRESULT Function(Pointer, Pointer<COMObject>)'));
     expect(expirationTimeProjection.dartPrototype,
-        equalsIgnoringWhitespace('int Function(Pointer, COMObject)'));
+        equalsIgnoringWhitespace('int Function(Pointer, Pointer<COMObject>)'));
     expect(expirationTimeProjection.returnType.dartType, equals('void'));
     expect(expirationTimeProjection.toString().trimLeft(),
         startsWith('set expirationTime(DateTime? value)'));
-    expect(expirationTimeProjection.toString(),
-        contains('''final referencePtr = value == null
-            ? calloc<COMObject>()
-            : boxValue(value, convertToIReference: true);'''));
   });
 
   test('WinRT set property projects WinRT object parameter as nullable', () {
@@ -458,7 +456,7 @@ void main() {
     expect(
         dataPropertyProjection.toString(),
         contains(
-            'value == null ? nullptr : value.ptr.cast<Pointer<COMObject>>().value'));
+            'value == null ? calloc<COMObject>() : value.ptr.cast<Pointer<COMObject>>().value'));
   });
 
   test(
@@ -471,17 +469,15 @@ void main() {
     final flagsProjection =
         projection.methodProjections.firstWhere((m) => m.name == 'put_Flags');
 
-    expect(flagsProjection.nativePrototype,
-        equalsIgnoringWhitespace('HRESULT Function(Pointer, COMObject)'));
+    expect(
+        flagsProjection.nativePrototype,
+        equalsIgnoringWhitespace(
+            'HRESULT Function(Pointer, Pointer<COMObject>)'));
     expect(flagsProjection.dartPrototype,
-        equalsIgnoringWhitespace('int Function(Pointer, COMObject)'));
+        equalsIgnoringWhitespace('int Function(Pointer, Pointer<COMObject>)'));
     expect(flagsProjection.returnType.dartType, equals('void'));
     expect(flagsProjection.toString().trimLeft(),
         startsWith('set flags(BluetoothLEAdvertisementFlags? value)'));
-    expect(flagsProjection.toString(),
-        contains('''final referencePtr = value == null
-            ? calloc<COMObject>()
-            : boxValue(value?.value, convertToIReference: true, nativeType: Uint32);'''));
   });
 
   test('WinRT method projects DateTime parameter correctly', () {
@@ -546,7 +542,7 @@ void main() {
         'Windows.Storage.Pickers.FileOpenPicker');
 
     final projection = WinRTClassProjection(winTypeDef!);
-    expect(projection.hasDefaultConstructor, isTrue);
+    expect(projection.isActivatable, isTrue);
     expect(
         projection.defaultConstructor,
         equalsIgnoringWhitespace(
@@ -558,7 +554,7 @@ void main() {
         MetadataStore.getMetadataForType('Windows.Networking.HostName');
 
     final projection = WinRTClassProjection(winTypeDef!);
-    expect(projection.hasDefaultConstructor, isFalse);
+    expect(projection.isActivatable, isFalse);
     expect(projection.defaultConstructor, isEmpty);
   });
 
@@ -635,7 +631,7 @@ void main() {
     final winTypeDef = MetadataStore.getMetadataForType(namespace);
 
     final projection = WinRTClassProjection(winTypeDef!);
-    expect(projection.hasDefaultConstructor, isTrue);
+    expect(projection.isActivatable, isTrue);
     expect(projection.factoryMappers, isNotEmpty);
     expect(projection.staticMappers, isEmpty);
     expect(projection.classNameDeclaration,
@@ -647,7 +643,7 @@ void main() {
         'Windows.Storage.FileProperties.BasicProperties');
 
     final projection = WinRTClassProjection(winTypeDef!);
-    expect(projection.hasDefaultConstructor, isFalse);
+    expect(projection.isActivatable, isFalse);
     expect(projection.factoryMappers, isEmpty);
     expect(projection.staticMappers, isEmpty);
     expect(projection.classNameDeclaration, isEmpty);

@@ -6,7 +6,7 @@ import '../winrt_get_property.dart';
 import '../winrt_method.dart';
 import '../winrt_set_property.dart';
 
-mixin DefaultMethodProjection on WinRTMethodProjection {
+mixin _DefaultMethodProjection on WinRTMethodProjection {
   String get valRef => returnType.dartType == 'double' ||
           returnType.dartType == 'int' ||
           returnType.dartType == 'bool' ||
@@ -17,9 +17,9 @@ mixin DefaultMethodProjection on WinRTMethodProjection {
   String get freePointer => isStructReturn ? '' : 'free(retValuePtr);';
 }
 
-class WinRTMethodReturningDefaultProjection extends WinRTMethodProjection
-    with DefaultMethodProjection {
-  WinRTMethodReturningDefaultProjection(super.method, super.vtableOffset);
+class WinRTDefaultMethodProjection extends WinRTMethodProjection
+    with _DefaultMethodProjection {
+  WinRTDefaultMethodProjection(super.method, super.vtableOffset);
 
   @override
   String toString() => '''
@@ -40,9 +40,9 @@ class WinRTMethodReturningDefaultProjection extends WinRTMethodProjection
 ''';
 }
 
-class WinRTGetPropertyReturningDefaultProjection
-    extends WinRTGetPropertyProjection with DefaultMethodProjection {
-  WinRTGetPropertyReturningDefaultProjection(super.method, super.vtableOffset);
+class WinRTDefaultGetterProjection extends WinRTGetPropertyProjection
+    with _DefaultMethodProjection {
+  WinRTDefaultGetterProjection(super.method, super.vtableOffset);
 
   @override
   String toString() => '''
@@ -61,9 +61,8 @@ class WinRTGetPropertyReturningDefaultProjection
 ''';
 }
 
-class WinRTSetPropertyReturningDefaultProjection
-    extends WinRTSetPropertyProjection {
-  WinRTSetPropertyReturningDefaultProjection(super.method, super.vtableOffset);
+class WinRTDefaultSetterProjection extends WinRTSetPropertyProjection {
+  WinRTDefaultSetterProjection(super.method, super.vtableOffset);
 
   @override
   String toString() => '''

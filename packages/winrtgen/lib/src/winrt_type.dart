@@ -60,13 +60,12 @@ class WinRTTypeProjection extends TypeProjection {
   /// Takes a type such as `simpleArrayType` -> `BaseType.Uint8` and converts
   /// it to `Pointer<Uint8>`.
   TypeTuple unwrapSimpleArrayType(TypeIdentifier type) {
-    if (type.typeArg == null) {
-      throw Exception('Array type missing for $type.');
-    }
+    if (type.typeArg == null) throw Exception('Array type missing for $type.');
+
     final typeArg = WinRTTypeProjection(type.typeArg!);
 
-    // Strip leading underscores (unless the type is nested, in which
-    // case leave one behind).
+    // Strip leading underscores (unless the type is nested, in which case leave
+    // one behind).
     final typeArgNativeType = type.typeArg?.type?.isNested ?? false
         ? '_${stripLeadingUnderscores(typeArg.projection.nativeType)}'
         : stripLeadingUnderscores(typeArg.projection.nativeType);
@@ -134,20 +133,11 @@ class WinRTTypeProjection extends TypeProjection {
     if (isWinRTDelegate) return unwrapWinRTDelegate();
     if (isReferenceType) return unwrapReferenceType();
 
-    // IReference<T> parameters accept COMObject instead of Pointer<COMObject>
-    if (isGenericType &&
-        (typeIdentifier.type?.name.endsWith('IReference`1') ?? false)) {
-      return TypeTuple('COMObject', 'COMObject',
-          methodParamType: lastComponent(typeIdentifier.name));
-    }
-
-    if (typeIdentifier.baseType == BaseType.objectType) {
-      return const TypeTuple('Pointer<COMObject>', 'Pointer<COMObject>');
-    }
-
-    if (isInterface || typeIdentifier.baseType == BaseType.classTypeModifier) {
-      return TypeTuple('Pointer<COMObject>', 'Pointer<COMObject>',
-          methodParamType: '${lastComponent(typeIdentifier.name)}?');
+    if (isClass || isInterface || isObject) {
+      const type = 'Pointer<COMObject>';
+      return TypeTuple(type, type,
+          methodParamType:
+              isObject ? null : nullable(lastComponent(typeIdentifier.name)));
     }
 
     // default: return the name as returned by metadata

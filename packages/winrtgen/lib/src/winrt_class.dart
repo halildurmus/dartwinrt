@@ -23,20 +23,18 @@ class WinRTClassProjection extends WinRTInterfaceProjection {
         ...staticInterfaces.map(fileNameFromWinRTType),
       };
 
-  bool get hasDefaultConstructor => typeDef.customAttributes
+  bool get isActivatable => typeDef.customAttributes
       .where((element) => element.name.endsWith('ActivatableAttribute'))
       .where((element) => element.parameters.length == 2)
       .isNotEmpty;
 
-  String get defaultConstructor => hasDefaultConstructor
-      ? '$shortName() : super(activateClass(_className));'
-      : '';
+  String get defaultConstructor =>
+      isActivatable ? '$shortName() : super(activateClass(_className));' : '';
 
-  String get classNameDeclaration => (hasDefaultConstructor ||
-          factoryMappers.isNotEmpty ||
-          staticMappers.isNotEmpty)
-      ? "static const _className = '${typeDef.name}';"
-      : '';
+  String get classNameDeclaration =>
+      (isActivatable || factoryMappers.isNotEmpty || staticMappers.isNotEmpty)
+          ? "static const _className = '${typeDef.name}';"
+          : '';
 
   List<String> get factoryInterfaces => typeDef.customAttributes
       .where((element) => element.name.endsWith('ActivatableAttribute'))

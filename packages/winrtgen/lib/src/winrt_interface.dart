@@ -131,7 +131,7 @@ class WinRTInterfaceProjection extends ComInterfaceProjection {
 
     // IPropertySet and IWwwFormUrlDecoderRuntimeClass interfaces are unusual in
     // that they don't define any members for IIterable despite inheriting from
-    // them. The IIterator import is manually added here as it is necessary as
+    // them. The IIterator import is manually added here as it is required since
     // implements mappers are generated for them.
     if (['IPropertySet', 'IWwwFormUrlDecoderRuntimeClass']
         .contains(shortName)) {
@@ -227,8 +227,8 @@ class WinRTInterfaceProjection extends ComInterfaceProjection {
   String relativePathTo(String path) =>
       relativePath(path, start: currentFolderPath);
 
-  String get classDeclaration => 'class $shortName extends IInspectable'
-      '${inheritsFrom.isNotEmpty ? ' implements $inheritsFrom {' : ' {'}';
+  String get classDeclaration =>
+      'class $shortName extends IInspectable ${inheritsFrom.isNotEmpty ? 'implements $inheritsFrom ' : ''}{';
 
   List<TypeDef> get implementsInterfaces => typeDef.interfaces
     ..removeWhere((interface) => excludedWindowsRuntimeInterfacesInInherits
@@ -262,7 +262,7 @@ class WinRTInterfaceProjection extends ComInterfaceProjection {
 
         $fromInterfaceHelper
 
-        ${methodProjections.map((p) => p.toString()).join('\n')}
+        ${methodProjections.join('\n')}
 
         ${implementsMappers.join('\n')}
       }

@@ -15,6 +15,9 @@ import 'package:winmd/winmd.dart';
 
 import 'winrt_type.dart';
 
+/// Add the `?` suffix to the type (e.g. `StorageFile` -> `StorageFile?`).
+String nullable(String type) => type.endsWith('?') ? type : '$type?';
+
 /// Take a type like `IAsyncOperation<StorageFile>` and return
 /// `IAsyncOperation`.
 String outerType(String type) {
