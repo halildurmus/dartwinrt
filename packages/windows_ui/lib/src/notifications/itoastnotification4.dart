@@ -1,9 +1,12 @@
-// itoastnotification4.dart
+// Copyright (c) 2023, the dartwinrt authors. Please see the AUTHORS file for
+// details. All rights reserved. Use of this source code is governed by a
+// BSD-style license that can be found in the LICENSE file.
 
 // ignore_for_file: unused_import
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
 // ignore_for_file: no_leading_underscores_for_local_identifiers
 
+import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
@@ -55,14 +58,10 @@ class IToastNotification4 extends IInspectable {
   set data(NotificationData? value) {
     final hr = ptr.ref.vtable
             .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(Pointer, Pointer<COMObject>)>>>()
+            .cast<Pointer<NativeFunction<HRESULT Function(Pointer, LPVTBL)>>>()
             .value
-            .asFunction<int Function(Pointer, Pointer<COMObject>)>()(
-        ptr.ref.lpVtbl,
-        value == null ? nullptr : value.ptr.cast<Pointer<COMObject>>().value);
+            .asFunction<int Function(Pointer, LPVTBL)>()(
+        ptr.ref.lpVtbl, value == null ? nullptr : value.ptr.ref.lpVtbl);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }

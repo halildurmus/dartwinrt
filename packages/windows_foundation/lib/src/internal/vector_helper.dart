@@ -2,7 +2,7 @@
 // details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-// ignore_for_file: camel_case_types, non_constant_identifier_names
+// ignore_for_file: non_constant_identifier_names
 
 import 'dart:ffi';
 
@@ -80,7 +80,7 @@ class VectorHelper<T> {
   }
 
   List<T> _toList_enum() {
-    // The only valid WinRT types for enums are Int32 or UInt32.
+    // The only valid types for enums are Int32 or UInt32.
     // See https://docs.microsoft.com/en-us/uwp/winrt-cref/winrt-type-system#enums
     switch (intType) {
       case Uint32:
@@ -209,6 +209,6 @@ class VectorHelper<T> {
   }
 }
 
-// WinRT Type system does not support Int8 types.
+// WinRT type system does not support Int8 types.
 // See https://docs.microsoft.com/en-us/uwp/winrt-cref/winrt-type-system#fundamental-types
 const supportedIntTypes = [Int16, Int32, Int64, Uint8, Uint16, Uint32, Uint64];

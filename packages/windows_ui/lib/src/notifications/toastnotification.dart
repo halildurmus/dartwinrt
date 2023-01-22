@@ -1,13 +1,17 @@
-// toastnotification.dart
+// Copyright (c) 2023, the dartwinrt authors. Please see the AUTHORS file for
+// details. All rights reserved. Use of this source code is governed by a
+// BSD-style license that can be found in the LICENSE file.
 
 // ignore_for_file: unused_import
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
 // ignore_for_file: no_leading_underscores_for_local_identifiers
 
+import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
+// import 'package:windows_data/windows_data.dart';
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -33,28 +37,27 @@ class ToastNotification extends IInspectable
         IToastNotification6 {
   ToastNotification.fromRawPointer(super.ptr);
 
-  static const _className = 'Windows.UI.Notifications.ToastNotification';
+  // static const _className = 'Windows.UI.Notifications.ToastNotification';
 
   // IToastNotificationFactory methods
-  static ToastNotification createToastNotification(Pointer<COMObject> content) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IToastNotificationFactory);
-    final object =
-        IToastNotificationFactory.fromRawPointer(activationFactoryPtr);
+  // static ToastNotification createToastNotification(XmlDocument content) {
+  //   final activationFactoryPtr =
+  //       createActivationFactory(_className, IID_IToastNotificationFactory);
+  //   final object =
+  //       IToastNotificationFactory.fromRawPointer(activationFactoryPtr);
 
-    try {
-      final result = object.createToastNotification(content);
-      return ToastNotification.fromRawPointer(result);
-    } finally {
-      object.release();
-    }
-  }
+  //   try {
+  //     return object.createToastNotification(content);
+  //   } finally {
+  //     object.release();
+  //   }
+  // }
 
   // IToastNotification methods
   late final _iToastNotification = IToastNotification.from(this);
 
-  @override
-  Pointer<COMObject> get content => _iToastNotification.content;
+  // @override
+  // XmlDocument? get content => _iToastNotification.content;
 
   @override
   set expirationTime(DateTime? value) =>

@@ -1,4 +1,6 @@
-// iasyncoperation.dart
+// Copyright (c) 2023, the dartwinrt authors. Please see the AUTHORS file for
+// details. All rights reserved. Use of this source code is governed by a
+// BSD-style license that can be found in the LICENSE file.
 
 // ignore_for_file: non_constant_identifier_names
 
@@ -29,8 +31,8 @@ class IAsyncOperation<TResult> extends IInspectable implements IAsyncInfo {
 
   /// Creates an instance of `IAsyncOperation<TResult>` using the given `ptr`.
   ///
-  /// [TResult] must be of type `bool`, `Guid`, `int`, `Object?`, `String`,
-  /// `Uri`, `WinRT` (e.g. `IBuffer`, `StorageFile`) or `WinRTEnum` (e.g.
+  /// [TResult] must be of type `bool`, `Guid`, `int`, `String`, `Uri`, `WinRT`
+  /// class/interface (e.g. `StorageFile`, `IBuffer`) or `WinRTEnum` (e.g.
   /// `LaunchUriStatus`).
   ///
   /// [intType] must be specified if [TResult] is `int`. Supported types are:
@@ -40,7 +42,7 @@ class IAsyncOperation<TResult> extends IInspectable implements IAsyncInfo {
   ///     intType: Uint64);
   /// ```
   ///
-  /// [creator] must be specified if [TResult] is a `WinRT` type.
+  /// [creator] must be specified if [TResult] is a `WinRT` class/interface.
   /// ```dart
   /// ...
   /// final asyncOperation = IAsyncOperation<StorageFile?>(ptr,

@@ -2,9 +2,9 @@
 // details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-// Enums and constants used by WinRT projection
+// Constants used by WinRT projection
 
-// ignore_for_file: camel_case_types, constant_identifier_names
+// ignore_for_file: constant_identifier_names
 
 // IIterable<IKeyValuePair<K, V>> IIDs
 const IID_IIterable_IKeyValuePair_Guid_BackgroundTaskRegistration =
