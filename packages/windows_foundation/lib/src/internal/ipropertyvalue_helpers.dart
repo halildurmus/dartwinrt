@@ -386,11 +386,6 @@ List<int> _uint8ListFromArray(
 }
 
 IInspectable _boxValue(Object value, {Type? nativeType}) {
-  // There is no need to box IInspectable objects since .createInspectable()
-  // returns the object provided without modification.
-  // See https://docs.microsoft.com/en-us/uwp/api/windows.foundation.PropertyValue.createinspectable
-  if (value is IInspectable) return value;
-
   if (value is bool) return PropertyValue.createBoolean(value);
   if (value is DateTime) return PropertyValue.createDateTime(value);
 
@@ -480,6 +475,12 @@ Pointer<COMObject> boxValue(
   bool convertToIReference = false,
   Type? nativeType,
 }) {
+  // Since an object is a reference type, it is also a valid property value and
+  // does not need to be boxed.
+  // See https://learn.microsoft.com/en-us/uwp/api/windows.foundation.propertyvalue.createinspectable
+  if (value is Pointer<COMObject>) return value;
+  if (value is IInspectable) return value.ptr;
+
   final propertyValue = _boxValue(value, nativeType: nativeType);
   if (!convertToIReference) return propertyValue.ptr;
 

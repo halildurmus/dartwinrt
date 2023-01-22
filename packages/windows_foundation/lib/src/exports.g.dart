@@ -28,5 +28,6 @@ export 'istringable.dart';
 export 'numerics/structs.g.dart';
 export 'propertyvalue.dart';
 export 'structs.g.dart';
+export 'types.dart';
 export 'winrt_com_interop_helpers.dart';
 export 'winrt_enum.dart';

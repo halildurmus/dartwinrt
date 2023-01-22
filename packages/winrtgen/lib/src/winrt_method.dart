@@ -24,8 +24,8 @@ import 'winrt_type.dart';
 class WinRTMethodProjection extends MethodProjection {
   WinRTMethodProjection(super.method, super.vtableOffset) {
     parameters = method.parameters
-        .map((param) => WinRTParameterProjection(
-            method, param.name, WinRTTypeProjection(param.typeIdentifier)))
+        .map((param) => WinRTParameterProjection(method, param.name,
+            WinRTTypeProjection(param.typeIdentifier, isParameter: true)))
         .toList();
     returnType = WinRTTypeProjection(method.returnType.typeIdentifier);
   }

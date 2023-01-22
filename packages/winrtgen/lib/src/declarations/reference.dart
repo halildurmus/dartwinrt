@@ -141,7 +141,7 @@ class WinRTReferenceSetterProjection extends WinRTSetPropertyProjection
   @override
   String toString() => '''
       set $exposedMethodName($referenceTypeArgFromParameter? value) {
-        ${ffiCall(params: 'value == null ? calloc<COMObject>() : $boxValueMethodCall.cast<Pointer<COMObject>>().value')}
+        ${ffiCall(params: 'value == null ? nullptr : $boxValueMethodCall.ref.lpVtbl')}
       }
   ''';
 }
@@ -175,7 +175,7 @@ class WinRTReferenceParameterProjection extends WinRTParameterProjection {
     final valueArg = typeProjection.isWinRTEnum ? '$name.value' : name;
     return '''
         $name == null
-            ? calloc<COMObject>()
-            : boxValue($valueArg, ${args.join(', ')}).cast<Pointer<COMObject>>().value''';
+            ? nullptr
+            : boxValue($valueArg, ${args.join(', ')}).ref.lpVtbl''';
   }
 }

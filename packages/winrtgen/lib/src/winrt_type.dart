@@ -20,10 +20,13 @@ const Map<String, TypeTuple> specialTypes = {
 };
 
 class WinRTTypeProjection extends TypeProjection {
-  WinRTTypeProjection(TypeIdentifier ti)
+  WinRTTypeProjection(TypeIdentifier ti, {this.isParameter = false})
       : super(ti.baseType == BaseType.genericTypeModifier
             ? ti.copyWith(name: parseGenericTypeIdentifierName(ti))
             : ti);
+
+  /// Whether this type belongs to a parameter.
+  final bool isParameter;
 
   bool get isWinRTSpecialType =>
       specialTypes.keys.contains(typeIdentifier.name);
@@ -134,10 +137,11 @@ class WinRTTypeProjection extends TypeProjection {
     if (isReferenceType) return unwrapReferenceType();
 
     if (isClass || isInterface || isObject) {
-      const type = 'Pointer<COMObject>';
+      final type = isParameter ? 'LPVTBL' : 'Pointer<COMObject>';
       return TypeTuple(type, type,
-          methodParamType:
-              isObject ? null : nullable(lastComponent(typeIdentifier.name)));
+          methodParamType: isObject
+              ? 'Object?'
+              : nullable(lastComponent(typeIdentifier.name)));
     }
 
     // default: return the name as returned by metadata

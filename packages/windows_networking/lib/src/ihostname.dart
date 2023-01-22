@@ -160,16 +160,13 @@ class IHostName extends IInspectable {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(Pointer, Pointer<COMObject> hostName,
-                              Pointer<Bool>)>>>()
+                          HRESULT Function(
+                              Pointer, LPVTBL hostName, Pointer<Bool>)>>>()
               .value
               .asFunction<
-                  int Function(
-                      Pointer, Pointer<COMObject> hostName, Pointer<Bool>)>()(
+                  int Function(Pointer, LPVTBL hostName, Pointer<Bool>)>()(
           ptr.ref.lpVtbl,
-          hostName == null
-              ? nullptr
-              : hostName.ptr.cast<Pointer<COMObject>>().value,
+          hostName == null ? nullptr : hostName.ptr.ref.lpVtbl,
           retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);

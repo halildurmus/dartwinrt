@@ -1,4 +1,6 @@
-// inetworkinformationstatics.dart
+// Copyright (c) 2023, the dartwinrt authors. Please see the AUTHORS file for
+// details. All rights reserved. Use of this source code is governed by a
+// BSD-style license that can be found in the LICENSE file.
 
 // ignore_for_file: unused_import
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
@@ -129,15 +131,12 @@ class INetworkInformationStatics extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(Pointer, Pointer<COMObject> uri,
-                            Pointer<COMObject>)>>>()
+                        HRESULT Function(
+                            Pointer, LPVTBL uri, Pointer<COMObject>)>>>()
             .value
             .asFunction<
-                int Function(
-                    Pointer, Pointer<COMObject> uri, Pointer<COMObject>)>()(
-        ptr.ref.lpVtbl,
-        uriUri.ptr.cast<Pointer<COMObject>>().value,
-        retValuePtr);
+                int Function(Pointer, LPVTBL uri, Pointer<COMObject>)>()(
+        ptr.ref.lpVtbl, uriUri.ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -160,19 +159,13 @@ class INetworkInformationStatics extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(
-                            Pointer,
-                            Pointer<COMObject> destinationList,
-                            Uint32 sortOptions,
-                            Pointer<COMObject>)>>>()
+                        HRESULT Function(Pointer, LPVTBL destinationList,
+                            Uint32 sortOptions, Pointer<COMObject>)>>>()
             .value
             .asFunction<
-                int Function(Pointer, Pointer<COMObject> destinationList,
-                    int sortOptions, Pointer<COMObject>)>()(
-        ptr.ref.lpVtbl,
-        destinationList.cast<Pointer<COMObject>>().value,
-        sortOptions,
-        retValuePtr);
+                int Function(Pointer, LPVTBL destinationList, int sortOptions,
+                    Pointer<COMObject>)>()(
+        ptr.ref.lpVtbl, destinationList.ref.lpVtbl, sortOptions, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);

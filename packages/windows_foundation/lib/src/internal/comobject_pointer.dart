@@ -12,17 +12,17 @@ import 'package:win32/win32.dart';
 extension COMObjectPointer on Pointer<COMObject> {
   /// Creates a [List] from `Pointer<COMObject>`.
   ///
-  /// [T] must be a `WinRT` type (e.g. `IHostName`, `StorageFile`).
+  /// [T] must be a `WinRT` class/interface (e.g. `HostName`, `ICalendar`).
   ///
-  /// [creator] must be specified for [T] (e.g. `IHostName.fromRawPointer`,
-  /// `StorageFile.fromRawPointer`).
+  /// [creator] must be specified for [T] (e.g. `HostName.fromRawPointer`,
+  /// `ICalendar.fromRawPointer`).
   ///
   /// [length] must not be greater than the number of elements stored inside the
   /// `Pointer<COMObject>`.
   ///
   /// ```dart
   /// final pComObject = ...
-  /// final list = pComObject.toList(StorageFile.fromRawPointer, length: 4);
+  /// final list = pComObject.toList(HostName.fromRawPointer, length: 4);
   /// ```
   List<T> toList<T>(T Function(Pointer<COMObject>) creator, {int length = 1}) {
     final list = <T>[];

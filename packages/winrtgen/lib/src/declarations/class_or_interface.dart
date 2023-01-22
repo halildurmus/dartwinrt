@@ -120,7 +120,7 @@ class WinRTClassOrInterfaceSetterProjection extends WinRTSetPropertyProjection
   @override
   String toString() => '''
       set $exposedMethodName(${parameters.first.type.methodParamType} value) {
-        ${ffiCall(params: 'value == null ? calloc<COMObject>() : value.ptr.cast<Pointer<COMObject>>().value')}
+        ${ffiCall(params: 'value == null ? nullptr : value.ptr.ref.lpVtbl')}
       }
   ''';
 }
@@ -142,12 +142,16 @@ class WinRTClassOrInterfaceParameterProjection
       return paramType == 'Pointer<COMObject>' ? identifier : '$identifier.ptr';
     }
 
-    if (paramType == 'Pointer<COMObject>') {
-      return '$name.cast<Pointer<COMObject>>().value';
+    if (paramType == 'Object?') {
+      return '$name == null ? nullptr : boxValue($name).ref.lpVtbl';
     }
 
-    return paramType.endsWith('?')
-        ? '$name == null ? nullptr : $name.ptr.cast<Pointer<COMObject>>().value'
-        : '$name.ptr.cast<Pointer<COMObject>>().value';
+    if (type.nativeType == 'LPVTBL') {
+      return paramType.endsWith('?')
+          ? '$name == null ? nullptr : $name.ptr.ref.lpVtbl'
+          : '$name.ptr.ref.lpVtbl';
+    }
+
+    return '';
   }
 }

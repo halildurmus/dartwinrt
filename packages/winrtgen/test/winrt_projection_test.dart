@@ -423,15 +423,23 @@ void main() {
     final expirationTimeProjection = projection.methodProjections
         .firstWhere((m) => m.name == 'put_ExpirationTime');
 
-    expect(
-        expirationTimeProjection.nativePrototype,
-        equalsIgnoringWhitespace(
-            'HRESULT Function(Pointer, Pointer<COMObject>)'));
+    expect(expirationTimeProjection.nativePrototype,
+        equalsIgnoringWhitespace('HRESULT Function(Pointer, LPVTBL)'));
     expect(expirationTimeProjection.dartPrototype,
-        equalsIgnoringWhitespace('int Function(Pointer, Pointer<COMObject>)'));
+        equalsIgnoringWhitespace('int Function(Pointer, LPVTBL)'));
     expect(expirationTimeProjection.returnType.dartType, equals('void'));
     expect(expirationTimeProjection.toString().trimLeft(),
         startsWith('set expirationTime(DateTime? value)'));
+
+    final expirationTimeParamProjection =
+        expirationTimeProjection.parameters.first as WinRTParameterProjection;
+
+    expect(expirationTimeParamProjection.preamble, isEmpty);
+    expect(expirationTimeParamProjection.postamble, isEmpty);
+    expect(
+        expirationTimeParamProjection.localIdentifier,
+        equalsIgnoringWhitespace(
+            'value == null ? nullptr : boxValue(value, convertToIReference: true).ref.lpVtbl'));
   });
 
   test('WinRT set property projects WinRT object parameter as nullable', () {
@@ -441,22 +449,22 @@ void main() {
     final projection = WinRTInterfaceProjection(winTypeDef!);
     final dataProjection =
         projection.methodProjections.firstWhere((m) => m.name == 'put_Data');
-    final dataPropertyProjection =
-        WinRTSetPropertyProjection(dataProjection.method, 0);
 
-    expect(
-        dataProjection.nativePrototype,
-        equalsIgnoringWhitespace(
-            'HRESULT Function(Pointer, Pointer<COMObject>)'));
+    expect(dataProjection.nativePrototype,
+        equalsIgnoringWhitespace('HRESULT Function(Pointer, LPVTBL)'));
     expect(dataProjection.dartPrototype,
-        equalsIgnoringWhitespace('int Function(Pointer, Pointer<COMObject>)'));
+        equalsIgnoringWhitespace('int Function(Pointer, LPVTBL)'));
     expect(dataProjection.returnType.dartType, equals('void'));
     expect(dataProjection.toString().trimLeft(),
         startsWith('set data(NotificationData? value)'));
-    expect(
-        dataPropertyProjection.toString(),
-        contains(
-            'value == null ? calloc<COMObject>() : value.ptr.cast<Pointer<COMObject>>().value'));
+
+    final dataParamProjection =
+        dataProjection.parameters.first as WinRTParameterProjection;
+
+    expect(dataParamProjection.preamble, isEmpty);
+    expect(dataParamProjection.postamble, isEmpty);
+    expect(dataParamProjection.localIdentifier,
+        equals('value == null ? nullptr : value.ptr.ref.lpVtbl'));
   });
 
   test(
@@ -469,15 +477,23 @@ void main() {
     final flagsProjection =
         projection.methodProjections.firstWhere((m) => m.name == 'put_Flags');
 
-    expect(
-        flagsProjection.nativePrototype,
-        equalsIgnoringWhitespace(
-            'HRESULT Function(Pointer, Pointer<COMObject>)'));
+    expect(flagsProjection.nativePrototype,
+        equalsIgnoringWhitespace('HRESULT Function(Pointer, LPVTBL)'));
     expect(flagsProjection.dartPrototype,
-        equalsIgnoringWhitespace('int Function(Pointer, Pointer<COMObject>)'));
+        equalsIgnoringWhitespace('int Function(Pointer, LPVTBL)'));
     expect(flagsProjection.returnType.dartType, equals('void'));
     expect(flagsProjection.toString().trimLeft(),
         startsWith('set flags(BluetoothLEAdvertisementFlags? value)'));
+
+    final flagsParamProjection =
+        flagsProjection.parameters.first as WinRTParameterProjection;
+
+    expect(flagsParamProjection.preamble, isEmpty);
+    expect(flagsParamProjection.postamble, isEmpty);
+    expect(
+        flagsParamProjection.localIdentifier,
+        equalsIgnoringWhitespace(
+            'value == null ? nullptr : boxValue(value.value, convertToIReference: true, nativeType: Uint32).ref.lpVtbl'));
   });
 
   test('WinRT method projects DateTime parameter correctly', () {
@@ -522,7 +538,7 @@ void main() {
     expect(initialValuesParameter.preamble, isEmpty);
     expect(initialValuesParameter.postamble, isEmpty);
     expect(initialValuesParameter.localIdentifier,
-        equals('initialValues.ptr.cast<Pointer<COMObject>>().value'));
+        equals('initialValues.ptr.ref.lpVtbl'));
     expect(initialValuesParameter.type.methodParamType,
         equals('IIterable<IKeyValuePair<String, String>>?'));
   });
@@ -734,18 +750,27 @@ void main() {
     final projection = WinRTInterfaceProjection(winTypeDef!);
     final fallbackUriProjection = projection.methodProjections
         .firstWhere((m) => m.name == 'put_FallbackUri');
-    expect(
-        fallbackUriProjection.nativePrototype,
-        equalsIgnoringWhitespace(
-            'HRESULT Function(Pointer, Pointer<COMObject>)'));
+
+    expect(fallbackUriProjection.nativePrototype,
+        equalsIgnoringWhitespace('HRESULT Function(Pointer, LPVTBL)'));
     expect(fallbackUriProjection.dartPrototype,
-        equalsIgnoringWhitespace('int Function(Pointer, Pointer<COMObject>)'));
+        equalsIgnoringWhitespace('int Function(Pointer, LPVTBL)'));
     expect(fallbackUriProjection.toString().trimLeft(),
         startsWith('set fallbackUri(Uri? value)'));
+
+    final fallbackUriParamProjection =
+        fallbackUriProjection.parameters.first as WinRTParameterProjection;
+
     expect(
-        fallbackUriProjection.toString().trimLeft(),
-        contains(
-            'final winrtUri = value == null ? null : winrt_uri.Uri.createUri(value.toString());'));
+        fallbackUriParamProjection.preamble,
+        equalsIgnoringWhitespace(
+            'final valueUri = value == null ? null : winrt_uri.Uri.createUri(value.toString());'));
+    expect(fallbackUriParamProjection.postamble,
+        equalsIgnoringWhitespace('valueUri?.release();'));
+    expect(
+        fallbackUriParamProjection.localIdentifier,
+        equalsIgnoringWhitespace(
+            'valueUri == null ? nullptr : valueUri.ptr.ref.lpVtbl'));
   });
 
   test('WinRT method successfully projects Uri parameter', () {
@@ -762,10 +787,8 @@ void main() {
         equals(
             'final uriUri = uri == null ? null : winrt_uri.Uri.createUri(uri.toString());'));
     expect(uriParameter.postamble, equals('uriUri?.release();'));
-    expect(
-        uriParameter.localIdentifier,
-        equals(
-            'uriUri == null ? nullptr : uriUri.ptr.cast<Pointer<COMObject>>().value'));
+    expect(uriParameter.localIdentifier,
+        equals('uriUri == null ? nullptr : uriUri.ptr.ref.lpVtbl'));
     expect(uriParameter.type.methodParamType, equals('Uri?'));
   });
 

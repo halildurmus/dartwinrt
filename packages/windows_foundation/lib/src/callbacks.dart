@@ -4,8 +4,6 @@
 
 // Callbacks used in the WinRT APIs.
 
-// ignore_for_file: constant_identifier_names, non_constant_identifier_names
-
 import 'dart:ffi';
 
 import 'package:win32/win32.dart';

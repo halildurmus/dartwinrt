@@ -38,13 +38,12 @@ class ICalendarFactory extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(Pointer, Pointer<COMObject> languages,
-                            Pointer<COMObject>)>>>()
+                        HRESULT Function(
+                            Pointer, LPVTBL languages, Pointer<COMObject>)>>>()
             .value
             .asFunction<
-                int Function(Pointer, Pointer<COMObject> languages,
-                    Pointer<COMObject>)>()(ptr.ref.lpVtbl,
-        languages.ptr.cast<Pointer<COMObject>>().value, retValuePtr);
+                int Function(Pointer, LPVTBL languages, Pointer<COMObject>)>()(
+        ptr.ref.lpVtbl, languages.ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -69,16 +68,16 @@ class ICalendarFactory extends IInspectable {
                         NativeFunction<
                             HRESULT Function(
                                 Pointer,
-                                Pointer<COMObject> languages,
+                                LPVTBL languages,
                                 IntPtr calendar,
                                 IntPtr clock,
                                 Pointer<COMObject>)>>>()
                 .value
                 .asFunction<
-                    int Function(Pointer, Pointer<COMObject> languages,
-                        int calendar, int clock, Pointer<COMObject>)>()(
+                    int Function(Pointer, LPVTBL languages, int calendar,
+                        int clock, Pointer<COMObject>)>()(
             ptr.ref.lpVtbl,
-            languages.ptr.cast<Pointer<COMObject>>().value,
+            languages.ptr.ref.lpVtbl,
             calendarHString,
             clockHString,
             retValuePtr);

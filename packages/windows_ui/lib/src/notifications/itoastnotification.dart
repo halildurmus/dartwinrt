@@ -1,13 +1,17 @@
-// itoastnotification.dart
+// Copyright (c) 2023, the dartwinrt authors. Please see the AUTHORS file for
+// details. All rights reserved. Use of this source code is governed by a
+// BSD-style license that can be found in the LICENSE file.
 
 // ignore_for_file: unused_import
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
 // ignore_for_file: no_leading_underscores_for_local_identifiers
 
+import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
+// import 'package:windows_data/windows_data.dart';
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -25,43 +29,44 @@ class IToastNotification extends IInspectable {
       IToastNotification.fromRawPointer(
           interface.toInterface(IID_IToastNotification));
 
-  Pointer<COMObject> get content {
-    final retValuePtr = calloc<COMObject>();
+  // XmlDocument? get content {
+  //   final retValuePtr = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(Pointer, Pointer<COMObject>)>>>()
-            .value
-            .asFunction<int Function(Pointer, Pointer<COMObject>)>()(
-        ptr.ref.lpVtbl, retValuePtr);
+  //   final hr = ptr.ref.vtable
+  //           .elementAt(6)
+  //           .cast<
+  //               Pointer<
+  //                   NativeFunction<
+  //                       HRESULT Function(Pointer, Pointer<COMObject>)>>>()
+  //           .value
+  //           .asFunction<int Function(Pointer, Pointer<COMObject>)>()(
+  //       ptr.ref.lpVtbl, retValuePtr);
 
-    if (FAILED(hr)) {
-      free(retValuePtr);
-      throw WindowsException(hr);
-    }
+  //   if (FAILED(hr)) {
+  //     free(retValuePtr);
+  //     throw WindowsException(hr);
+  //   }
 
-    return retValuePtr;
-  }
+  //   if (retValuePtr.ref.lpVtbl == nullptr) {
+  //     free(retValuePtr);
+  //     return null;
+  //   }
+
+  //   return XmlDocument.fromRawPointer(retValuePtr);
+  // }
 
   set expirationTime(DateTime? value) {
-    final referencePtr = value == null
-        ? calloc<COMObject>()
-        : boxValue(value, convertToIReference: true);
-
     final hr = ptr.ref.vtable
-        .elementAt(7)
-        .cast<Pointer<NativeFunction<HRESULT Function(Pointer, COMObject)>>>()
-        .value
-        .asFunction<
-            int Function(
-                Pointer, COMObject)>()(ptr.ref.lpVtbl, referencePtr.ref);
+            .elementAt(7)
+            .cast<Pointer<NativeFunction<HRESULT Function(Pointer, LPVTBL)>>>()
+            .value
+            .asFunction<int Function(Pointer, LPVTBL)>()(
+        ptr.ref.lpVtbl,
+        value == null
+            ? nullptr
+            : boxValue(value, convertToIReference: true).ref.lpVtbl);
 
     if (FAILED(hr)) throw WindowsException(hr);
-
-    if (value == null) free(referencePtr);
   }
 
   DateTime? get expirationTime {
@@ -82,7 +87,10 @@ class IToastNotification extends IInspectable {
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.lpVtbl == nullptr) return null;
+    if (retValuePtr.ref.lpVtbl == nullptr) {
+      free(retValuePtr);
+      return null;
+    }
 
     final reference = IReference<DateTime>.fromRawPointer(retValuePtr,
         referenceIid: '{5541d8a7-497c-5aa4-86fc-7713adbf2a2c}');

@@ -20,6 +20,7 @@ import 'helpers.dart';
 import 'iinspectable.dart';
 import 'ipropertyvalue.dart';
 import 'structs.g.dart';
+import 'types.dart';
 
 /// @nodoc
 const IID_IPropertyValueStatics = '{629bdbc8-d932-4ff4-96b9-8d96c5c1e858}';
@@ -324,7 +325,7 @@ class IPropertyValueStatics extends IInspectable {
     return IPropertyValue.fromRawPointer(retValuePtr);
   }
 
-  Pointer<COMObject> createInspectable(Pointer<COMObject> value) {
+  Pointer<COMObject> createInspectable(Object? value) {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -332,13 +333,14 @@ class IPropertyValueStatics extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(Pointer, Pointer<COMObject> value,
-                            Pointer<COMObject>)>>>()
+                        HRESULT Function(
+                            Pointer, LPVTBL value, Pointer<COMObject>)>>>()
             .value
             .asFunction<
-                int Function(
-                    Pointer, Pointer<COMObject> value, Pointer<COMObject>)>()(
-        ptr.ref.lpVtbl, value.cast<Pointer<COMObject>>().value, retValuePtr);
+                int Function(Pointer, LPVTBL value, Pointer<COMObject>)>()(
+        ptr.ref.lpVtbl,
+        value == null ? nullptr : boxValue(value).ref.lpVtbl,
+        retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);

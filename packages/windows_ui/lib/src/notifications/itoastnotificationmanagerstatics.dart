@@ -1,4 +1,6 @@
-// itoastnotificationmanagerstatics.dart
+// Copyright (c) 2023, the dartwinrt authors. Please see the AUTHORS file for
+// details. All rights reserved. Use of this source code is governed by a
+// BSD-style license that can be found in the LICENSE file.
 
 // ignore_for_file: unused_import
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
@@ -50,7 +52,8 @@ class IToastNotificationManagerStatics extends IInspectable {
 
   Pointer<COMObject> createToastNotifierWithId(String applicationId) {
     final retValuePtr = calloc<COMObject>();
-    final applicationIdHstring = convertToHString(applicationId);
+    final applicationIdHString = convertToHString(applicationId);
+
     final hr = ptr.ref.vtable
             .elementAt(7)
             .cast<
@@ -61,13 +64,13 @@ class IToastNotificationManagerStatics extends IInspectable {
             .value
             .asFunction<
                 int Function(Pointer, int applicationId, Pointer<COMObject>)>()(
-        ptr.ref.lpVtbl, applicationIdHstring, retValuePtr);
+        ptr.ref.lpVtbl, applicationIdHString, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
-    WindowsDeleteString(applicationIdHstring);
+    WindowsDeleteString(applicationIdHString);
     return retValuePtr;
   }
 

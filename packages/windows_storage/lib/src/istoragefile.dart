@@ -1,4 +1,6 @@
-// istoragefile.dart
+// Copyright (c) 2023, the dartwinrt authors. Please see the AUTHORS file for
+// details. All rights reserved. Use of this source code is governed by a
+// BSD-style license that can be found in the LICENSE file.
 
 // ignore_for_file: unused_import
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
@@ -80,21 +82,18 @@ class IStorageFile extends IInspectable implements IStorageItem {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<void>();
 
-    final hr =
-        ptr.ref.vtable
-                .elementAt(13)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                Pointer,
-                                Pointer<COMObject> fileToReplace,
-                                Pointer<COMObject>)>>>()
-                .value
-                .asFunction<
-                    int Function(Pointer, Pointer<COMObject> fileToReplace,
-                        Pointer<COMObject>)>()(ptr.ref.lpVtbl,
-            fileToReplace.ptr.cast<Pointer<COMObject>>().value, retValuePtr);
+    final hr = ptr.ref.vtable
+            .elementAt(13)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(Pointer, LPVTBL fileToReplace,
+                            Pointer<COMObject>)>>>()
+            .value
+            .asFunction<
+                int Function(
+                    Pointer, LPVTBL fileToReplace, Pointer<COMObject>)>()(
+        ptr.ref.lpVtbl, fileToReplace.ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -111,21 +110,18 @@ class IStorageFile extends IInspectable implements IStorageItem {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<void>();
 
-    final hr =
-        ptr.ref.vtable
-                .elementAt(17)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                Pointer,
-                                Pointer<COMObject> fileToReplace,
-                                Pointer<COMObject>)>>>()
-                .value
-                .asFunction<
-                    int Function(Pointer, Pointer<COMObject> fileToReplace,
-                        Pointer<COMObject>)>()(ptr.ref.lpVtbl,
-            fileToReplace.ptr.cast<Pointer<COMObject>>().value, retValuePtr);
+    final hr = ptr.ref.vtable
+            .elementAt(17)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(Pointer, LPVTBL fileToReplace,
+                            Pointer<COMObject>)>>>()
+            .value
+            .asFunction<
+                int Function(
+                    Pointer, LPVTBL fileToReplace, Pointer<COMObject>)>()(
+        ptr.ref.lpVtbl, fileToReplace.ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);

@@ -18,6 +18,7 @@ import '../../../internal.dart';
 import 'callbacks.dart';
 import 'helpers.dart';
 import 'iinspectable.dart';
+import 'types.dart';
 
 /// @nodoc
 const IID_IUriEscapeStatics = '{c1d432ba-c824-4452-a7fd-512bc3bbe9a1}';

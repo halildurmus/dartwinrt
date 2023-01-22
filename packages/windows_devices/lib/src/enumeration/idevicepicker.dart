@@ -1,4 +1,6 @@
-// idevicepicker.dart
+// Copyright (c) 2023, the dartwinrt authors. Please see the AUTHORS file for
+// details. All rights reserved. Use of this source code is governed by a
+// BSD-style license that can be found in the LICENSE file.
 
 // ignore_for_file: unused_import
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
@@ -285,23 +287,23 @@ class IDevicePicker extends IInspectable {
 
   void setDisplayStatus(Pointer<COMObject> device, String status,
       DevicePickerDisplayStatusOptions options) {
-    final statusHstring = convertToHString(status);
+    final statusHString = convertToHString(status);
 
     final hr = ptr.ref.vtable
             .elementAt(20)
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(Pointer, Pointer<COMObject> device,
-                            IntPtr status, Uint32 options)>>>()
+                        HRESULT Function(Pointer, LPVTBL device, IntPtr status,
+                            Uint32 options)>>>()
             .value
             .asFunction<
-                int Function(Pointer, Pointer<COMObject> device, int status,
-                    int options)>()(ptr.ref.lpVtbl,
-        device.cast<Pointer<COMObject>>().value, statusHstring, options.value);
+                int Function(
+                    Pointer, LPVTBL device, int status, int options)>()(
+        ptr.ref.lpVtbl, device.ref.lpVtbl, statusHString, options.value);
 
     if (FAILED(hr)) throw WindowsException(hr);
 
-    WindowsDeleteString(statusHstring);
+    WindowsDeleteString(statusHString);
   }
 }
