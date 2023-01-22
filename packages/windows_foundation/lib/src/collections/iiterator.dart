@@ -1,6 +1,8 @@
-// iiterator.dart
+// Copyright (c) 2023, the dartwinrt authors. Please see the AUTHORS file for
+// details. All rights reserved. Use of this source code is governed by a
+// BSD-style license that can be found in the LICENSE file.
 
-// ignore_for_file: constant_identifier_names, non_constant_identifier_names
+// ignore_for_file: non_constant_identifier_names
 
 import 'dart:ffi';
 
@@ -23,8 +25,8 @@ class IIterator<T> extends IInspectable {
 
   /// Creates an instance of [IIterator] using the given [ptr].
   ///
-  /// [T] must be of type `int`, `String`, `Uri`, `WinRT` (e.g. `IHostName`,
-  /// `IStorageFile`) or `WinRTEnum` (e.g. `DeviceClass`).
+  /// [T] must be of type `int`, `String`, `Uri`, `WinRT` class/interface (e.g.
+  /// `HostName`, `IStorageFile`) or `WinRTEnum` (e.g. `DeviceClass`).
   ///
   /// [intType] must be specified if [T] is `int`. Supported types are: [Int16],
   /// [Int32], [Int64], [Uint8], [Uint16], [Uint32], [Uint64].
@@ -32,7 +34,7 @@ class IIterator<T> extends IInspectable {
   /// final iterator = IIterator<int>.fromRawPointer(ptr, intType: Uint64);
   /// ```
   ///
-  /// [creator] must be specified if [T] is a `WinRT` type.
+  /// [creator] must be specified if [T] is a `WinRT` class/interface.
   /// ```dart
   /// final iterator = IIterator<StorageFile>.fromRawPointer(ptr,
   ///    creator: StorageFile.fromRawPointer);
@@ -83,6 +85,7 @@ class IIterator<T> extends IInspectable {
     if (isSameType<T, String>()) return _current_String() as T;
     if (isSameType<T, Uri>()) return _current_Uri() as T;
     if (isSubtypeOfWinRTEnum<T>()) return _enumCreator!(_current_int());
+
     return _creator!(_current_COMObject());
   }
 

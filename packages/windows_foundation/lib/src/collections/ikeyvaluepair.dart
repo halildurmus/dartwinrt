@@ -1,6 +1,8 @@
-// ikeyvaluepair.dart
+// Copyright (c) 2023, the dartwinrt authors. Please see the AUTHORS file for
+// details. All rights reserved. Use of this source code is governed by a
+// BSD-style license that can be found in the LICENSE file.
 
-// ignore_for_file: constant_identifier_names, non_constant_identifier_names
+// ignore_for_file: non_constant_identifier_names
 
 import 'dart:ffi';
 
@@ -31,10 +33,10 @@ class IKeyValuePair<K, V> extends IInspectable {
   /// [K] must be of type `Guid`, `int`, `Object`, `String`, or `WinRTEnum`
   /// (e.g. `PedometerStepKind`).
   ///
-  /// [V] must be of type `Object`, `String`, or `WinRT` (e.g. `IJsonValue`,
-  /// `ProductLicense`).
+  /// [V] must be of type `Object`, `String`, or `WinRT` class/interface (e.g.
+  /// `ProductLicense`, `IJsonValue`).
   ///
-  /// [creator] must be specified if [V] is a `WinRT` type.
+  /// [creator] must be specified if [V] is a `WinRT` class/interface.
   /// ```dart
   /// final keyValuePair =
   ///     IKeyValuePair<String, IJsonValue?>.fromRawPointer(ptr,
@@ -218,6 +220,11 @@ class IKeyValuePair<K, V> extends IInspectable {
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
+    }
+
+    if (retValuePtr.ref.lpVtbl == nullptr) {
+      free(retValuePtr);
+      return null as V;
     }
 
     return _creator!(retValuePtr);

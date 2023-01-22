@@ -1,6 +1,8 @@
-// imap.dart
+// Copyright (c) 2023, the dartwinrt authors. Please see the AUTHORS file for
+// details. All rights reserved. Use of this source code is governed by a
+// BSD-style license that can be found in the LICENSE file.
 
-// ignore_for_file: constant_identifier_names, non_constant_identifier_names
+// ignore_for_file: non_constant_identifier_names
 
 import 'dart:ffi';
 
@@ -14,6 +16,7 @@ import '../iinspectable.dart';
 import '../internal/ipropertyvalue_helpers.dart';
 import '../internal/map_helpers.dart';
 import '../ipropertyvalue.dart';
+import '../types.dart';
 import '../winrt_enum.dart';
 import 'iiterable.dart';
 import 'iiterator.dart';
@@ -79,19 +82,21 @@ class IMap<K, V> extends IInspectable
   /// [K] must be of type `Guid`, `int`, `Object`, `String`, or `WinRTEnum`
   /// (e.g. `PedometerStepKind`).
   ///
-  /// [V] must be of type `Object`, `String`, or `WinRT` (e.g. `IJsonValue`,
-  /// `ProductLicense`).
+  /// [V] must be of type `Object`, `String`, or `WinRT` class/interface (e.g.
+  /// `ProductLicense`, `IJsonValue`).
   ///
-  /// [creator] must be specified if [V] is a `WinRT` type.
+  /// [creator] must be specified if [V] is a `WinRT` class/interface.
   /// ```dart
   /// final map = IMap<String, IJsonValue?>.fromRawPointer(ptr,
-  ///     creator: IJsonValue.fromRawPointer);
+  ///     creator: IJsonValue.fromRawPointer,
+  ///     iterableIid: '{dfabb6e1-0411-5a8f-aa87-354e7110f099}');
   /// ```
   ///
   /// [enumCreator] must be specified if [V] is a `WinRTEnum` type.
   /// ```dart
   /// final map = IMap<String, ChatMessageStatus>.fromRawPointer(ptr,
-  ///     enumCreator: ChatMessageStatus.from);
+  ///     enumCreator: ChatMessageStatus.from,
+  ///     iterableIid: '{57d87c13-48e9-546f-9b4e-a3906e1e7c24}');
   /// ```
   IMap.fromRawPointer(
     super.ptr, {
@@ -277,16 +282,18 @@ class IMap<K, V> extends IInspectable
   Object? _lookup_Object_Object(IInspectable key) {
     final retValuePtr = calloc<COMObject>();
 
-    final hr = ptr.ref.lpVtbl.value
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            Pointer, COMObject, Pointer<COMObject>)>>>()
-            .value
-            .asFunction<int Function(Pointer, COMObject, Pointer<COMObject>)>()(
-        ptr.ref.lpVtbl, key.ptr.ref, retValuePtr);
+    final hr =
+        ptr.ref.lpVtbl.value
+                .elementAt(6)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                Pointer, LPVTBL, Pointer<COMObject>)>>>()
+                .value
+                .asFunction<
+                    int Function(Pointer, LPVTBL, Pointer<COMObject>)>()(
+            ptr.ref.lpVtbl, key.ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -297,6 +304,7 @@ class IMap<K, V> extends IInspectable
       free(retValuePtr);
       return null;
     }
+
     return IPropertyValue.fromRawPointer(retValuePtr).value;
   }
 
@@ -521,15 +529,14 @@ class IMap<K, V> extends IInspectable
 
     try {
       final hr = ptr.ref.lpVtbl.value
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(Pointer, COMObject, Pointer<Bool>)>>>()
-          .value
-          .asFunction<
-              int Function(Pointer, COMObject,
-                  Pointer<Bool>)>()(ptr.ref.lpVtbl, value.ptr.ref, retValuePtr);
+              .elementAt(8)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(Pointer, LPVTBL, Pointer<Bool>)>>>()
+              .value
+              .asFunction<int Function(Pointer, LPVTBL, Pointer<Bool>)>()(
+          ptr.ref.lpVtbl, value.ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -577,7 +584,10 @@ class IMap<K, V> extends IInspectable
             .asFunction<int Function(Pointer, Pointer<COMObject>)>()(
         ptr.ref.lpVtbl, retValuePtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) {
+      free(retValuePtr);
+      throw WindowsException(hr);
+    }
 
     final mapView = IMapView<K, V>.fromRawPointer(retValuePtr,
         creator: _creator,
@@ -630,8 +640,6 @@ class IMap<K, V> extends IInspectable
   bool _insert_Guid_Object(Guid key, V value) {
     final retValuePtr = calloc<Bool>();
     final nativeGuidPtr = key.toNativeGUID();
-    final propertyValuePtr =
-        value == null ? calloc<COMObject>() : boxValue(value);
 
     try {
       final hr = ptr.ref.lpVtbl.value
@@ -640,17 +648,18 @@ class IMap<K, V> extends IInspectable
                   Pointer<
                       NativeFunction<
                           HRESULT Function(
-                              Pointer, GUID, COMObject, Pointer<Bool>)>>>()
+                              Pointer, GUID, LPVTBL, Pointer<Bool>)>>>()
               .value
-              .asFunction<
-                  int Function(Pointer, GUID, COMObject, Pointer<Bool>)>()(
-          ptr.ref.lpVtbl, nativeGuidPtr.ref, propertyValuePtr.ref, retValuePtr);
+              .asFunction<int Function(Pointer, GUID, LPVTBL, Pointer<Bool>)>()(
+          ptr.ref.lpVtbl,
+          nativeGuidPtr.ref,
+          value == null ? nullptr : boxValue(value).ref.lpVtbl,
+          retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
       return retValuePtr.value;
     } finally {
-      if (value == null) free(propertyValuePtr);
       free(nativeGuidPtr);
       free(retValuePtr);
     }
@@ -666,11 +675,10 @@ class IMap<K, V> extends IInspectable
                   Pointer<
                       NativeFunction<
                           HRESULT Function(
-                              Pointer, Int32, COMObject, Pointer<Bool>)>>>()
+                              Pointer, Int32, LPVTBL, Pointer<Bool>)>>>()
               .value
-              .asFunction<
-                  int Function(Pointer, int, COMObject, Pointer<Bool>)>()(
-          ptr.ref.lpVtbl, key.value, value.ref, retValuePtr);
+              .asFunction<int Function(Pointer, int, LPVTBL, Pointer<Bool>)>()(
+          ptr.ref.lpVtbl, key.value, value.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -690,11 +698,10 @@ class IMap<K, V> extends IInspectable
                   Pointer<
                       NativeFunction<
                           HRESULT Function(
-                              Pointer, Uint32, COMObject, Pointer<Bool>)>>>()
+                              Pointer, Uint32, LPVTBL, Pointer<Bool>)>>>()
               .value
-              .asFunction<
-                  int Function(Pointer, int, COMObject, Pointer<Bool>)>()(
-          ptr.ref.lpVtbl, key, value.ref, retValuePtr);
+              .asFunction<int Function(Pointer, int, LPVTBL, Pointer<Bool>)>()(
+          ptr.ref.lpVtbl, key, value.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -706,8 +713,6 @@ class IMap<K, V> extends IInspectable
 
   bool _insert_Object_Object(IInspectable key, V value) {
     final retValuePtr = calloc<Bool>();
-    final propertyValuePtr =
-        value == null ? calloc<COMObject>() : boxValue(value);
 
     try {
       final hr = ptr.ref.lpVtbl.value
@@ -716,17 +721,19 @@ class IMap<K, V> extends IInspectable
                   Pointer<
                       NativeFunction<
                           HRESULT Function(
-                              Pointer, COMObject, COMObject, Pointer<Bool>)>>>()
+                              Pointer, LPVTBL, LPVTBL, Pointer<Bool>)>>>()
               .value
               .asFunction<
-                  int Function(Pointer, COMObject, COMObject, Pointer<Bool>)>()(
-          ptr.ref.lpVtbl, key.ptr.ref, propertyValuePtr.ref, retValuePtr);
+                  int Function(Pointer, LPVTBL, LPVTBL, Pointer<Bool>)>()(
+          ptr.ref.lpVtbl,
+          key.ptr.ref.lpVtbl,
+          value == null ? nullptr : boxValue(value).ref.lpVtbl,
+          retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
       return retValuePtr.value;
     } finally {
-      if (value == null) propertyValuePtr;
       free(retValuePtr);
     }
   }
@@ -759,8 +766,6 @@ class IMap<K, V> extends IInspectable
   bool _insert_String_Object(String key, V value) {
     final retValuePtr = calloc<Bool>();
     final hKey = convertToHString(key);
-    final propertyValuePtr =
-        value == null ? calloc<COMObject>() : boxValue(value);
 
     try {
       final hr = ptr.ref.lpVtbl.value
@@ -769,17 +774,18 @@ class IMap<K, V> extends IInspectable
                   Pointer<
                       NativeFunction<
                           HRESULT Function(
-                              Pointer, HSTRING, COMObject, Pointer<Bool>)>>>()
+                              Pointer, HSTRING, LPVTBL, Pointer<Bool>)>>>()
               .value
-              .asFunction<
-                  int Function(Pointer, int, COMObject, Pointer<Bool>)>()(
-          ptr.ref.lpVtbl, hKey, propertyValuePtr.ref, retValuePtr);
+              .asFunction<int Function(Pointer, int, LPVTBL, Pointer<Bool>)>()(
+          ptr.ref.lpVtbl,
+          hKey,
+          value == null ? nullptr : boxValue(value).ref.lpVtbl,
+          retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
       return retValuePtr.value;
     } finally {
-      if (value == null) free(propertyValuePtr);
       WindowsDeleteString(hKey);
       free(retValuePtr);
     }
@@ -858,11 +864,11 @@ class IMap<K, V> extends IInspectable
 
   void _remove_Object(IInspectable key) {
     final hr = ptr.ref.lpVtbl.value
-        .elementAt(11)
-        .cast<Pointer<NativeFunction<HRESULT Function(Pointer, COMObject)>>>()
-        .value
-        .asFunction<
-            int Function(Pointer, COMObject)>()(ptr.ref.lpVtbl, key.ptr.ref);
+            .elementAt(11)
+            .cast<Pointer<NativeFunction<HRESULT Function(Pointer, LPVTBL)>>>()
+            .value
+            .asFunction<int Function(Pointer, LPVTBL)>()(
+        ptr.ref.lpVtbl, key.ptr.ref.lpVtbl);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }

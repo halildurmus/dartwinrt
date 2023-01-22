@@ -1,6 +1,8 @@
-// ivectorview.dart
+// Copyright (c) 2023, the dartwinrt authors. Please see the AUTHORS file for
+// details. All rights reserved. Use of this source code is governed by a
+// BSD-style license that can be found in the LICENSE file.
 
-// ignore_for_file: constant_identifier_names, non_constant_identifier_names
+// ignore_for_file: non_constant_identifier_names
 
 import 'dart:ffi';
 
@@ -10,6 +12,7 @@ import 'package:win32/win32.dart';
 import '../helpers.dart';
 import '../iinspectable.dart';
 import '../internal/vector_helper.dart';
+import '../types.dart';
 import '../uri.dart' as winrt_uri;
 import '../winrt_enum.dart';
 import 'iiterable.dart';
@@ -30,25 +33,28 @@ class IVectorView<T> extends IInspectable implements IIterable<T> {
   /// [iterableIid] must be the IID of the `IIterable<T>` interface (e.g.
   /// [IID_IIterable_String]).
   ///
-  /// [T] must be of type `int`, `Uri`, `String`, `WinRT` (e.g. `IHostName`,
-  /// `IStorageFile`) or `WinRTEnum` (e.g. `DeviceClass`).
+  /// [T] must be of type `int`, `Uri`, `String`, `WinRT` class/interface (e.g.
+  /// `HostName`, `IStorageFile`) or `WinRTEnum` (e.g. `DeviceClass`).
   ///
   /// [intType] must be specified if [T] is `int`. Supported types are: [Int16],
   /// [Int32], [Int64], [Uint8], [Uint16], [Uint32], [Uint64].
   /// ```dart
-  /// final vectorView = IVectorView<int>.fromRawPointer(ptr, intType: Uint64);
+  /// final vectorView = IVectorView<int>.fromRawPointer(ptr, intType: Uint64,
+  ///     iterableIid: '{4b3a3229-7995-5f3c-b248-6c1f7e664f01}');
   /// ```
   ///
-  /// [creator] must be specified if [T] is a `WinRT` type.
+  /// [creator] must be specified if [T] is a `WinRT` class/interface.
   /// ```dart
   /// final vectorView = IVectorView<StorageFile>.fromRawPointer(ptr,
-  ///    creator: StorageFile.fromRawPointer);
+  ///    creator: StorageFile.fromRawPointer,
+  ///    iterableIid: '{9ac00304-83ea-5688-87b6-ae38aab65d0b}');
   /// ```
   ///
   /// [enumCreator] and [intType] must be specified if [T] is a `WinRTEnum`.
   /// ```dart
   /// final vectorView = IVectorView<DeviceClass>.fromRawPointer(ptr,
-  ///     enumCreator: DeviceClass.from, intType: Int32);
+  ///     enumCreator: DeviceClass.from, intType: Int32,
+  ///     iterableIid: '{47d4be05-58f1-522e-81c6-975eb4131bb9}');
   /// ```
   IVectorView.fromRawPointer(
     super.ptr, {
@@ -312,7 +318,10 @@ class IVectorView<T> extends IInspectable implements IIterable<T> {
                 .asFunction<int Function(Pointer, int, Pointer<COMObject>)>()(
             ptr.ref.lpVtbl, index, retValuePtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) {
+      free(retValuePtr);
+      throw WindowsException(hr);
+    }
 
     final winrtUri = winrt_uri.Uri.fromRawPointer(retValuePtr);
     final uriAsString = winrtUri.toString();
@@ -393,13 +402,16 @@ class IVectorView<T> extends IInspectable implements IIterable<T> {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(Pointer, COMObject, Pointer<Uint32>,
+                          HRESULT Function(Pointer, LPVTBL, Pointer<Uint32>,
                               Pointer<Bool>)>>>()
               .value
               .asFunction<
                   int Function(
-                      Pointer, COMObject, Pointer<Uint32>, Pointer<Bool>)>()(
-          ptr.ref.lpVtbl, (value as IInspectable).ptr.ref, index, retValuePtr);
+                      Pointer, LPVTBL, Pointer<Uint32>, Pointer<Bool>)>()(
+          ptr.ref.lpVtbl,
+          (value as IInspectable).ptr.ref.lpVtbl,
+          index,
+          retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -615,13 +627,13 @@ class IVectorView<T> extends IInspectable implements IIterable<T> {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(Pointer, COMObject, Pointer<Uint32>,
+                          HRESULT Function(Pointer, LPVTBL, Pointer<Uint32>,
                               Pointer<Bool>)>>>()
               .value
               .asFunction<
                   int Function(
-                      Pointer, COMObject, Pointer<Uint32>, Pointer<Bool>)>()(
-          ptr.ref.lpVtbl, winrtUri.ptr.ref, index, retValuePtr);
+                      Pointer, LPVTBL, Pointer<Uint32>, Pointer<Bool>)>()(
+          ptr.ref.lpVtbl, winrtUri.ptr.ref.lpVtbl, index, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
