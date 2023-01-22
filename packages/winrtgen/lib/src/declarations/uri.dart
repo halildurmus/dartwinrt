@@ -104,6 +104,6 @@ class WinRTUriParameterProjection extends WinRTParameterProjection {
 
   @override
   String get localIdentifier => !methodBelongsToUriRuntimeClass
-      ? '${name}Uri == null ? nullptr : ${name}Uri.ptr.cast<Pointer<COMObject>>().value'
-      : '$name == null ? nullptr : $name.ptr.cast<Pointer<COMObject>>().value';
+      ? '${name}Uri == null ? nullptr : ${name}Uri.ptr.ref.lpVtbl'
+      : '$name == null ? nullptr : $name.ptr.ref.lpVtbl';
 }

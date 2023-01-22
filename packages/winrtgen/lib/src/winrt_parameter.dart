@@ -62,7 +62,8 @@ class WinRTParameterProjection extends ParameterProjection {
 
   // Matcher properties
 
-  bool get isClassOrInterface => ['Pointer<COMObject>'].contains(type.dartType);
+  bool get isClassOrInterface =>
+      !isObject && ['LPVTBL', 'Pointer<COMObject>'].contains(type.dartType);
 
   bool get isDateTime =>
       type.typeIdentifier.name == 'Windows.Foundation.DateTime';
@@ -85,7 +86,7 @@ class WinRTParameterProjection extends ParameterProjection {
 
   /// Returns the appropriate projection for the parameter.
   WinRTParameterProjection? get parameterProjection {
-    if (isClassOrInterface) {
+    if (isObject || isClassOrInterface) {
       if (isReference) {
         return WinRTReferenceParameterProjection(method, name, type);
       }

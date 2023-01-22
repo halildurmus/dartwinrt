@@ -110,7 +110,8 @@ class WinRTInterfaceProjection extends ComInterfaceProjection {
           relativePathTo('../internal.dart'),
           relativePathTo('packages/windows_foundation/callbacks.dart'),
           relativePathTo('packages/windows_foundation/helpers.dart'),
-          relativePathTo('packages/windows_foundation/iinspectable.dart')
+          relativePathTo('packages/windows_foundation/iinspectable.dart'),
+          relativePathTo('packages/windows_foundation/types.dart')
         ] else ...[
           'package:windows_foundation/internal.dart',
           'package:windows_foundation/windows_foundation.dart',
