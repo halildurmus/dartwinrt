@@ -156,7 +156,6 @@ const packageNames = <String>{
 
 void generatePackageExports() {
   for (final packageName in packageNames) {
-    final exports = <String>{};
     final packagePath = '../$packageName/lib/src/';
     final exportsFile = File('${packagePath}exports.g.dart')
       ..createSync(recursive: true);
@@ -164,13 +163,15 @@ void generatePackageExports() {
     final files =
         dir.listSync(recursive: true, followLinks: false).whereType<File>();
 
+    final exports = <String>{};
+
     for (final file in files) {
-      // Skip internal files in the windows_foundation package
+      // Skip internally used files from the windows_foundation package
       if (file.path.contains(r'internal\')) continue;
 
       final fileName = file.uri.pathSegments.last; // e.g. calendar.dart
       // Skip excluded files
-      if (excludedPackageExports.contains(fileName)) continue;
+      if (excludedPackageFiles.contains(fileName)) continue;
 
       // Skip factory and statics files
       final factoryOrStaticsFilePattern =
@@ -183,9 +184,11 @@ void generatePackageExports() {
       exports.add(filePath);
     }
 
-    final formattedExports =
-        DartFormatter().format(exports.map((e) => "export '$e';").join('\n'));
-    exportsFile.writeAsStringSync(formattedExports);
+    final exportsFileContent = [
+      exportsFileHeader,
+      exports.map((e) => "export '$e';").join('\n')
+    ].join();
+    exportsFile.writeAsStringSync(DartFormatter().format(exportsFileContent));
   }
 }
 

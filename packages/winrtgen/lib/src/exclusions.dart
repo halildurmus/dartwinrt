@@ -3,7 +3,7 @@
 // BSD-style license that can be found in the LICENSE file.
 
 /// Files to exclude when generating the package exports.
-const excludedPackageExports = <String>{
+const excludedPackageFiles = <String>{
   // Async delegates
   'iasyncaction.dart',
   'iasyncactionwithprogress.dart',
