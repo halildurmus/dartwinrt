@@ -8,14 +8,41 @@ import '../winrt_parameter.dart';
 import '../winrt_set_property.dart';
 
 mixin _ObjectProjection on WinRTMethodProjection {
-  String get nullCheck => '''
+  bool get isMethodFromPropertyValueStatics =>
+      method.parent.name == 'Windows.Foundation.IPropertyValueStatics';
+
+  String get methodReturnType {
+    // IPropertyValueStatics' methods return 'IInspectable' in WinMD. Normally
+    // we expose them as 'Object?' and return the underlying value they carry
+    // (e.g. String, bool). However, since these methods are used to box values,
+    // we need the 'IPropertyValue' interface to be returned instead of the
+    // underlying value (except 'CreateEmpty' and 'CreateInspectable' methods).
+    if (isMethodFromPropertyValueStatics) {
+      return ['CreateEmpty', 'CreateInspectable'].contains(method.name)
+          ? 'Pointer<COMObject>'
+          : 'IPropertyValue';
+    }
+
+    return 'Object?';
+  }
+
+  String get nullCheck => isMethodFromPropertyValueStatics
+      ? ''
+      : '''
     if (retValuePtr.ref.lpVtbl == nullptr) {
       free(retValuePtr);
       return null;
     }''';
 
-  String get returnStatement =>
-      'return IPropertyValue.fromRawPointer(retValuePtr).value;';
+  String get returnStatement {
+    if (isMethodFromPropertyValueStatics) {
+      return ['CreateEmpty', 'CreateInspectable'].contains(method.name)
+          ? 'return retValuePtr;'
+          : 'return IPropertyValue.fromRawPointer(retValuePtr);';
+    }
+
+    return 'return IPropertyValue.fromRawPointer(retValuePtr).value;';
+  }
 }
 
 class WinRTObjectMethodProjection extends WinRTMethodProjection
@@ -24,7 +51,7 @@ class WinRTObjectMethodProjection extends WinRTMethodProjection
 
   @override
   String toString() => '''
-      Object? $camelCasedName($methodParams) {
+      $methodReturnType $camelCasedName($methodParams) {
         final retValuePtr = calloc<COMObject>();
         $parametersPreamble
 

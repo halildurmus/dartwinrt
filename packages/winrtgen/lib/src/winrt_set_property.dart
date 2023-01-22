@@ -44,6 +44,7 @@ class WinRTSetPropertyProjection extends WinRTPropertyProjection {
   // Matcher properties
 
   bool get isClassOrInterfaceProperty =>
+      (parameters.first.type.isClass || parameters.first.type.isInterface) &&
       ['LPVTBL', 'Pointer<COMObject>'].contains(parameters.first.type.dartType);
 
   bool get isDateTimeProperty =>

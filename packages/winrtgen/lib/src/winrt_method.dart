@@ -82,6 +82,7 @@ class WinRTMethodProjection extends MethodProjection {
   bool get isBooleanReturn => returnType.dartType == 'bool';
 
   bool get isClassOrInterfaceReturn =>
+      (returnType.isInterface || returnType.isClass) &&
       returnType.dartType == 'Pointer<COMObject>';
 
   bool get isDateTimeReturn =>

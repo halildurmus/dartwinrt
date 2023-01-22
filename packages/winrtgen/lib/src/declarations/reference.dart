@@ -25,9 +25,9 @@ mixin _ReferenceProjection on WinRTMethodProjection {
 
   /// Method call to `boxValue` function.
   ///
-  /// Nullable parameters must be passed to WinRT APIs as `IReference` interfaces
-  /// by calling the `boxValue` function with the `convertToIReference` flag set
-  /// to `true`.
+  /// `IReference<T>` parameters (exposed as nullable Dart primitives) must be
+  /// passed to WinRT APIs as `IReference` interfaces by calling the `boxValue`
+  /// function with the `convertToIReference` flag set to `true`.
   String get boxValueMethodCall {
     final typeProjection =
         WinRTTypeProjection(parameters.first.type.typeIdentifier.typeArg!);
