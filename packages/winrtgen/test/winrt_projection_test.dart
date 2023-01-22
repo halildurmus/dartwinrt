@@ -685,22 +685,6 @@ void main() {
     expect(projection.classNameDeclaration, isEmpty);
   });
 
-  test('WinRT class that imports ipropertvalue.dart', () {
-    final winTypeDef =
-        MetadataStore.getMetadataForType('Windows.Foundation.PropertyValue');
-
-    final projection = WinRTClassProjection(winTypeDef!);
-    expect(projection.importHeader, contains("import 'ipropertyvalue.dart'"));
-  });
-
-  test('WinRT interface that imports ipropertyvalue.dart', () {
-    final winTypeDef = MetadataStore.getMetadataForType(
-        'Windows.Foundation.IPropertyValueStatics');
-
-    final projection = WinRTInterfaceProjection(winTypeDef!);
-    expect(projection.importHeader, contains("import 'ipropertyvalue.dart'"));
-  });
-
   test(
       'WinRT interface that imports package:windows_foundation and package:windows_foundation/internal.dart',
       () {

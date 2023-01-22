@@ -13,6 +13,11 @@ const excludedPackageFiles = <String>{
 
   'exports.g.dart', // Generated package exports file
 
+  // Fully wrapped by projection
+  'ipropertyvalue.dart',
+  'propertyvalue.dart',
+  'ireference.dart',
+
   // WinRT Uri files
   'iuriruntimeclass.dart',
   'iuriruntimeclasswithabsolutecanonicaluri.dart',

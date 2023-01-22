@@ -140,15 +140,6 @@ class WinRTInterfaceProjection extends ComInterfaceProjection {
           'packages/windows_foundation/collections/iiterator.dart'));
     }
 
-    // The return types of methods in the IPropertyValueStatics are specified
-    // as 'object' in WinMD. However, these methods actually return the
-    // IPropertyValue interface (except for the CreateEmpty() and
-    // CreateInspectable() methods, which return Pointer<COMObject>). Therefore,
-    // the IProperyValue import is manually added here.
-    if (['IPropertyValueStatics', 'PropertyValue'].contains(shortName)) {
-      imports.add('ipropertyvalue.dart');
-    }
-
     final useImportAliasForWinRTUri =
         !['IUriRuntimeClass', 'IUriRuntimeClassFactory'].contains(shortName);
 

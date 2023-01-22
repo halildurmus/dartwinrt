@@ -18,7 +18,6 @@ import '../../../internal.dart';
 import 'callbacks.dart';
 import 'helpers.dart';
 import 'iinspectable.dart';
-import 'ipropertyvalue.dart';
 import 'ipropertyvaluestatics.dart';
 import 'structs.g.dart';
 import 'types.dart';
