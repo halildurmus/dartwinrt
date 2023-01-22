@@ -18,6 +18,7 @@ import '../../../internal.dart';
 import 'callbacks.dart';
 import 'helpers.dart';
 import 'iinspectable.dart';
+import 'types.dart';
 import 'uri.dart';
 import 'wwwformurldecoder.dart';
 
@@ -397,20 +398,20 @@ class IUriRuntimeClass extends IInspectable {
     final retValuePtr = calloc<Bool>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(21)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(Pointer, Pointer<COMObject> pUri,
-                              Pointer<Bool>)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      Pointer, Pointer<COMObject> pUri, Pointer<Bool>)>()(
-          ptr.ref.lpVtbl,
-          pUri == null ? nullptr : pUri.ptr.cast<Pointer<COMObject>>().value,
-          retValuePtr);
+      final hr =
+          ptr.ref.vtable
+                  .elementAt(21)
+                  .cast<
+                      Pointer<
+                          NativeFunction<
+                              HRESULT Function(
+                                  Pointer, LPVTBL pUri, Pointer<Bool>)>>>()
+                  .value
+                  .asFunction<
+                      int Function(Pointer, LPVTBL pUri, Pointer<Bool>)>()(
+              ptr.ref.lpVtbl,
+              pUri == null ? nullptr : pUri.ptr.ref.lpVtbl,
+              retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 

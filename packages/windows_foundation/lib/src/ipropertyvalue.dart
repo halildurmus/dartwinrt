@@ -20,6 +20,7 @@ import 'enums.g.dart';
 import 'helpers.dart';
 import 'iinspectable.dart';
 import 'structs.g.dart';
+import 'types.dart';
 
 /// @nodoc
 const IID_IPropertyValue = '{4bd682dd-7554-40e9-9a9b-82654ede7e62}';

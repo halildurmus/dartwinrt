@@ -24,6 +24,7 @@ import 'iinspectable.dart';
 import 'iwwwformurldecoderentry.dart';
 import 'iwwwformurldecoderruntimeclass.dart';
 import 'iwwwformurldecoderruntimeclassfactory.dart';
+import 'types.dart';
 
 /// Parses a URL query string, and exposes the results as a read-only vector
 /// (list) of name-value pairs from the query string.

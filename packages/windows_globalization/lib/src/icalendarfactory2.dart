@@ -45,22 +45,17 @@ class ICalendarFactory2 extends IInspectable {
                     NativeFunction<
                         HRESULT Function(
                             Pointer,
-                            Pointer<COMObject> languages,
+                            LPVTBL languages,
                             IntPtr calendar,
                             IntPtr clock,
                             IntPtr timeZoneId,
                             Pointer<COMObject>)>>>()
             .value
             .asFunction<
-                int Function(
-                    Pointer,
-                    Pointer<COMObject> languages,
-                    int calendar,
-                    int clock,
-                    int timeZoneId,
-                    Pointer<COMObject>)>()(
+                int Function(Pointer, LPVTBL languages, int calendar, int clock,
+                    int timeZoneId, Pointer<COMObject>)>()(
         ptr.ref.lpVtbl,
-        languages.ptr.cast<Pointer<COMObject>>().value,
+        languages.ptr.ref.lpVtbl,
         calendarHString,
         clockHString,
         timeZoneIdHString,

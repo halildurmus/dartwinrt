@@ -35,25 +35,18 @@ class INotificationDataFactory extends IInspectable {
       int sequenceNumber) {
     final retValuePtr = calloc<COMObject>();
 
-    final hr =
-        ptr.ref.vtable
-                .elementAt(6)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                Pointer,
-                                Pointer<COMObject> initialValues,
-                                Uint32 sequenceNumber,
-                                Pointer<COMObject>)>>>()
-                .value
-                .asFunction<
-                    int Function(Pointer, Pointer<COMObject> initialValues,
-                        int sequenceNumber, Pointer<COMObject>)>()(
-            ptr.ref.lpVtbl,
-            initialValues.ptr.cast<Pointer<COMObject>>().value,
-            sequenceNumber,
-            retValuePtr);
+    final hr = ptr.ref.vtable
+            .elementAt(6)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(Pointer, LPVTBL initialValues,
+                            Uint32 sequenceNumber, Pointer<COMObject>)>>>()
+            .value
+            .asFunction<
+                int Function(Pointer, LPVTBL initialValues, int sequenceNumber,
+                    Pointer<COMObject>)>()(ptr.ref.lpVtbl,
+        initialValues.ptr.ref.lpVtbl, sequenceNumber, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -67,21 +60,18 @@ class INotificationDataFactory extends IInspectable {
       IIterable<IKeyValuePair<String, String>> initialValues) {
     final retValuePtr = calloc<COMObject>();
 
-    final hr =
-        ptr.ref.vtable
-                .elementAt(7)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                Pointer,
-                                Pointer<COMObject> initialValues,
-                                Pointer<COMObject>)>>>()
-                .value
-                .asFunction<
-                    int Function(Pointer, Pointer<COMObject> initialValues,
-                        Pointer<COMObject>)>()(ptr.ref.lpVtbl,
-            initialValues.ptr.cast<Pointer<COMObject>>().value, retValuePtr);
+    final hr = ptr.ref.vtable
+            .elementAt(7)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(Pointer, LPVTBL initialValues,
+                            Pointer<COMObject>)>>>()
+            .value
+            .asFunction<
+                int Function(
+                    Pointer, LPVTBL initialValues, Pointer<COMObject>)>()(
+        ptr.ref.lpVtbl, initialValues.ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);

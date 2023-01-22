@@ -20,6 +20,7 @@ import 'enums.g.dart';
 import 'helpers.dart';
 import 'iasyncinfo.dart';
 import 'iinspectable.dart';
+import 'types.dart';
 
 /// @nodoc
 const IID_IAsyncAction = '{5a648006-843a-4da9-865b-9d26e5dfad7b}';

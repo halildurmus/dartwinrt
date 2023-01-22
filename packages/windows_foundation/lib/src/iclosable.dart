@@ -18,6 +18,7 @@ import '../../../internal.dart';
 import 'callbacks.dart';
 import 'helpers.dart';
 import 'iinspectable.dart';
+import 'types.dart';
 
 /// @nodoc
 const IID_IClosable = '{30d5a829-7fa4-4026-83bb-d75bae4ea99e}';

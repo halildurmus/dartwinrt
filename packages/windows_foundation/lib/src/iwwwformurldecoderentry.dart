@@ -18,6 +18,7 @@ import '../../../internal.dart';
 import 'callbacks.dart';
 import 'helpers.dart';
 import 'iinspectable.dart';
+import 'types.dart';
 
 /// @nodoc
 const IID_IWwwFormUrlDecoderEntry = '{125e7431-f678-4e8e-b670-20a9b06c512d}';

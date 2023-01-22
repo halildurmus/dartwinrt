@@ -198,25 +198,19 @@ class IPhoneNumberInfo extends IInspectable {
     final retValuePtr = calloc<Int32>();
 
     try {
-      final hr =
-          ptr.ref.vtable
-                  .elementAt(13)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(
-                                  Pointer,
-                                  Pointer<COMObject> otherNumber,
-                                  Pointer<Int32>)>>>()
-                  .value
-                  .asFunction<
-                      int Function(Pointer, Pointer<COMObject> otherNumber,
-                          Pointer<Int32>)>()(
-              ptr.ref.lpVtbl,
-              otherNumber == null
-                  ? nullptr
-                  : otherNumber.ptr.cast<Pointer<COMObject>>().value,
-              retValuePtr);
+      final hr = ptr.ref.vtable
+              .elementAt(13)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              Pointer, LPVTBL otherNumber, Pointer<Int32>)>>>()
+              .value
+              .asFunction<
+                  int Function(Pointer, LPVTBL otherNumber, Pointer<Int32>)>()(
+          ptr.ref.lpVtbl,
+          otherNumber == null ? nullptr : otherNumber.ptr.ref.lpVtbl,
+          retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 

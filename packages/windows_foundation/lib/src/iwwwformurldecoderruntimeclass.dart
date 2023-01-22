@@ -22,6 +22,7 @@ import 'collections/ivectorview.dart';
 import 'helpers.dart';
 import 'iinspectable.dart';
 import 'iwwwformurldecoderentry.dart';
+import 'types.dart';
 
 /// @nodoc
 const IID_IWwwFormUrlDecoderRuntimeClass =

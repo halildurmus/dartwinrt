@@ -21,6 +21,7 @@ import 'iinspectable.dart';
 import 'ipropertyvalue.dart';
 import 'ipropertyvaluestatics.dart';
 import 'structs.g.dart';
+import 'types.dart';
 
 /// Represents a value in a property store (such as a [PropertySet]
 /// instance).
@@ -188,7 +189,7 @@ class PropertyValue extends IInspectable {
     }
   }
 
-  static Pointer<COMObject> createInspectable(Pointer<COMObject> value) {
+  static Pointer<COMObject> createInspectable(Object? value) {
     final activationFactoryPtr =
         createActivationFactory(_className, IID_IPropertyValueStatics);
     final object = IPropertyValueStatics.fromRawPointer(activationFactoryPtr);

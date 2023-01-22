@@ -66,19 +66,19 @@ class IJsonObject extends IInspectable implements IJsonValue {
   void setNamedValue(String name, IJsonValue? value) {
     final nameHString = convertToHString(name);
 
-    final hr = ptr.ref.vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            Pointer, IntPtr name, Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(Pointer, int name, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl,
-        nameHString,
-        value == null ? nullptr : value.ptr.cast<Pointer<COMObject>>().value);
+    final hr =
+        ptr.ref.vtable
+                .elementAt(7)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                Pointer, IntPtr name, LPVTBL value)>>>()
+                .value
+                .asFunction<int Function(Pointer, int name, LPVTBL value)>()(
+            ptr.ref.lpVtbl,
+            nameHString,
+            value == null ? nullptr : value.ptr.ref.lpVtbl);
 
     if (FAILED(hr)) throw WindowsException(hr);
 

@@ -40,16 +40,13 @@ class IPhoneNumberFormatter extends IInspectable {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(Pointer, Pointer<COMObject> number,
-                              Pointer<IntPtr>)>>>()
+                          HRESULT Function(
+                              Pointer, LPVTBL number, Pointer<IntPtr>)>>>()
               .value
               .asFunction<
-                  int Function(
-                      Pointer, Pointer<COMObject> number, Pointer<IntPtr>)>()(
+                  int Function(Pointer, LPVTBL number, Pointer<IntPtr>)>()(
           ptr.ref.lpVtbl,
-          number == null
-              ? nullptr
-              : number.ptr.cast<Pointer<COMObject>>().value,
+          number == null ? nullptr : number.ptr.ref.lpVtbl,
           retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
@@ -72,16 +69,14 @@ class IPhoneNumberFormatter extends IInspectable {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(Pointer, Pointer<COMObject> number,
+                          HRESULT Function(Pointer, LPVTBL number,
                               Int32 numberFormat, Pointer<IntPtr>)>>>()
               .value
               .asFunction<
-                  int Function(Pointer, Pointer<COMObject> number,
-                      int numberFormat, Pointer<IntPtr>)>()(
+                  int Function(Pointer, LPVTBL number, int numberFormat,
+                      Pointer<IntPtr>)>()(
           ptr.ref.lpVtbl,
-          number == null
-              ? nullptr
-              : number.ptr.cast<Pointer<COMObject>>().value,
+          number == null ? nullptr : number.ptr.ref.lpVtbl,
           numberFormat.value,
           retValuePtr);
 

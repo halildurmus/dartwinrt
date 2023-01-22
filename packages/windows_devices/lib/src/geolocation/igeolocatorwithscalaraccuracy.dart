@@ -69,18 +69,15 @@ class IGeolocatorWithScalarAccuracy extends IInspectable
   set desiredAccuracyInMeters(int? value) {
     final hr = ptr.ref.vtable
             .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(Pointer, Pointer<COMObject>)>>>()
+            .cast<Pointer<NativeFunction<HRESULT Function(Pointer, LPVTBL)>>>()
             .value
-            .asFunction<int Function(Pointer, Pointer<COMObject>)>()(
+            .asFunction<int Function(Pointer, LPVTBL)>()(
         ptr.ref.lpVtbl,
         value == null
-            ? calloc<COMObject>()
+            ? nullptr
             : boxValue(value, convertToIReference: true, nativeType: Uint32)
-                .cast<Pointer<COMObject>>()
-                .value);
+                .ref
+                .lpVtbl);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }

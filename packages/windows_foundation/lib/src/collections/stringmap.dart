@@ -18,6 +18,7 @@ import '../../../../internal.dart';
 import '../callbacks.dart';
 import '../helpers.dart';
 import '../iinspectable.dart';
+import '../types.dart';
 import 'iiterable.dart';
 import 'iiterator.dart';
 import 'ikeyvaluepair.dart';

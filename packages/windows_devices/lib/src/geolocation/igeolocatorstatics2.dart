@@ -56,18 +56,13 @@ class IGeolocatorStatics2 extends IInspectable {
   set defaultGeoposition(BasicGeoposition? value) {
     final hr = ptr.ref.vtable
             .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(Pointer, Pointer<COMObject>)>>>()
+            .cast<Pointer<NativeFunction<HRESULT Function(Pointer, LPVTBL)>>>()
             .value
-            .asFunction<int Function(Pointer, Pointer<COMObject>)>()(
+            .asFunction<int Function(Pointer, LPVTBL)>()(
         ptr.ref.lpVtbl,
         value == null
-            ? calloc<COMObject>()
-            : boxValue(value, convertToIReference: true)
-                .cast<Pointer<COMObject>>()
-                .value);
+            ? nullptr
+            : boxValue(value, convertToIReference: true).ref.lpVtbl);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
