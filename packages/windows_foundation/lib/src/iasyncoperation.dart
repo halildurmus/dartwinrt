@@ -12,6 +12,8 @@ import 'enums.g.dart';
 import 'helpers.dart';
 import 'iasyncinfo.dart';
 import 'iinspectable.dart';
+import 'internal/ipropertyvalue_helpers.dart';
+import 'ipropertyvalue.dart';
 import 'uri.dart' as winrt_uri;
 
 /// Represents an asynchronous operation, which returns a result upon
@@ -27,8 +29,9 @@ class IAsyncOperation<TResult> extends IInspectable implements IAsyncInfo {
 
   /// Creates an instance of `IAsyncOperation<TResult>` using the given `ptr`.
   ///
-  /// [TResult] must be of type `bool`, `Guid`, `int`, `String`, `Uri`, `WinRT`
-  /// (e.g. `IBuffer`, `StorageFile`) or `WinRTEnum` (e.g. `LaunchUriStatus`).
+  /// [TResult] must be of type `bool`, `Guid`, `int`, `Object?`, `String`,
+  /// `Uri`, `WinRT` (e.g. `IBuffer`, `StorageFile`) or `WinRTEnum` (e.g.
+  /// `LaunchUriStatus`).
   ///
   /// [intType] must be specified if [TResult] is `int`. Supported types are:
   /// [Int32], [Int64], [Uint32], [Uint64].
@@ -61,6 +64,7 @@ class IAsyncOperation<TResult> extends IInspectable implements IAsyncInfo {
     if (!isSameType<TResult, bool>() &&
         !isSameType<TResult, Guid>() &&
         !isSameType<TResult, int>() &&
+        !isSameType<TResult, Object?>() &&
         !isSameType<TResult, String>() &&
         !isSameType<TResult, Uri?>() &&
         !isSubtypeOfInspectable<TResult>() &&
@@ -121,14 +125,14 @@ class IAsyncOperation<TResult> extends IInspectable implements IAsyncInfo {
     if (isSameType<TResult, bool>()) return _getResults_bool() as TResult;
     if (isSameType<TResult, Guid>()) return _getResults_Guid() as TResult;
     if (isSameType<TResult, int>()) return _getResults_int() as TResult;
+    if (isSameType<TResult, Object?>()) return _getResults_Object() as TResult;
     if (isSameType<TResult, String>()) return _getResults_String() as TResult;
     if (isSameType<TResult, Uri?>()) return _getResults_Uri() as TResult;
     if (isSubtypeOfWinRTEnum<TResult>()) {
       return _enumCreator!(_getResults_int());
     }
 
-    final retValuePtr = _getResults_COMObject();
-    return retValuePtr == null ? null as TResult : _creator!(retValuePtr);
+    return _getResults_COMObject();
   }
 
   bool _getResults_bool() {
@@ -154,7 +158,7 @@ class IAsyncOperation<TResult> extends IInspectable implements IAsyncInfo {
     }
   }
 
-  Pointer<COMObject>? _getResults_COMObject() {
+  TResult _getResults_COMObject() {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.lpVtbl.value
@@ -174,10 +178,10 @@ class IAsyncOperation<TResult> extends IInspectable implements IAsyncInfo {
 
     if (retValuePtr.ref.lpVtbl == nullptr) {
       free(retValuePtr);
-      return null;
+      return null as TResult;
     }
 
-    return retValuePtr;
+    return _creator!(retValuePtr);
   }
 
   Guid _getResults_Guid() {
@@ -301,6 +305,32 @@ class IAsyncOperation<TResult> extends IInspectable implements IAsyncInfo {
     } finally {
       free(retValuePtr);
     }
+  }
+
+  Object? _getResults_Object() {
+    final retValuePtr = calloc<COMObject>();
+
+    final hr = ptr.ref.lpVtbl.value
+            .elementAt(8)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(Pointer, Pointer<COMObject>)>>>()
+            .value
+            .asFunction<int Function(Pointer, Pointer<COMObject>)>()(
+        ptr.ref.lpVtbl, retValuePtr);
+
+    if (FAILED(hr)) {
+      free(retValuePtr);
+      throw WindowsException(hr);
+    }
+
+    if (retValuePtr.ref.lpVtbl == nullptr) {
+      free(retValuePtr);
+      return null;
+    }
+
+    return IPropertyValue.fromRawPointer(retValuePtr).value;
   }
 
   String _getResults_String() {
