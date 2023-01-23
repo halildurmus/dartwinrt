@@ -111,7 +111,9 @@ class WinRTInterfaceProjection extends ComInterfaceProjection {
           relativePathTo('packages/windows_foundation/callbacks.dart'),
           relativePathTo('packages/windows_foundation/helpers.dart'),
           relativePathTo('packages/windows_foundation/iinspectable.dart'),
-          relativePathTo('packages/windows_foundation/types.dart')
+          relativePathTo('packages/windows_foundation/types.dart'),
+          relativePathTo(
+              'packages/windows_foundation/collections/iiterator.dart'),
         ] else ...[
           'package:windows_foundation/internal.dart',
           'package:windows_foundation/windows_foundation.dart',
@@ -129,16 +131,6 @@ class WinRTInterfaceProjection extends ComInterfaceProjection {
       ..removeWhere((import) => import.isEmpty)
       // TODO: Remove this check once WinRT events are supported.
       ..removeWhere((import) => import.endsWith('eventargs.dart'));
-
-    // IPropertySet and IWwwFormUrlDecoderRuntimeClass interfaces are unusual in
-    // that they don't define any members for IIterable despite inheriting from
-    // them. The IIterator import is manually added here as it is required since
-    // implements mappers are generated for them.
-    if (['IPropertySet', 'IWwwFormUrlDecoderRuntimeClass']
-        .contains(shortName)) {
-      imports.add(relativePathTo(
-          'packages/windows_foundation/collections/iiterator.dart'));
-    }
 
     final useImportAliasForWinRTUri =
         !['IUriRuntimeClass', 'IUriRuntimeClassFactory'].contains(shortName);
