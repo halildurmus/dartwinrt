@@ -87,14 +87,15 @@ class WinRTInterfaceProjection extends ComInterfaceProjection {
 
     final importList = <String>{};
     for (final interface in typeDef.interfaces) {
-      importList.add(getImportForTypeDef(interface));
+      final import = getImportForTypeDef(interface);
+      if (import.isNotEmpty) importList.add(import);
       // Keep unwrapping until there are no types left.
       var refType = interface.typeSpec;
       while (refType?.typeArg != null) {
         refType = refType?.typeArg;
         if (refType != null) {
           final import = getImportForTypeIdentifier(refType);
-          if (import != null) importList.add(import);
+          if (import != null && import.isNotEmpty) importList.add(import);
         }
       }
     }
@@ -103,7 +104,7 @@ class WinRTInterfaceProjection extends ComInterfaceProjection {
   }
 
   @override
-  List<String> get extraImports => [
+  Set<String> get extraImports => {
         'dart:async',
         'package:win32/win32.dart',
         if (currentPackageName == 'windows_foundation') ...[
@@ -118,20 +119,16 @@ class WinRTInterfaceProjection extends ComInterfaceProjection {
           'package:windows_foundation/internal.dart',
           'package:windows_foundation/windows_foundation.dart',
         ],
-      ];
+      };
+
+  @override
+  Set<String> get imports =>
+      {...coreImports, ...interfaceImports, ...importsForClass, ...extraImports}
+        // TODO: Remove this once WinRT events are supported.
+        ..removeWhere((import) => import.endsWith('eventargs.dart'));
 
   @override
   String get importHeader {
-    final imports = {
-      ...coreImports,
-      ...interfaceImports,
-      ...importsForClass,
-      ...extraImports
-    }
-      ..removeWhere((import) => import.isEmpty)
-      // TODO: Remove this check once WinRT events are supported.
-      ..removeWhere((import) => import.endsWith('eventargs.dart'));
-
     final useImportAliasForWinRTUri =
         !['IUriRuntimeClass', 'IUriRuntimeClassFactory'].contains(shortName);
 
@@ -211,8 +208,13 @@ class WinRTInterfaceProjection extends ComInterfaceProjection {
   String relativePathTo(String path) =>
       relativePath(path, start: currentFolderPath);
 
+  String get implementsClause =>
+      inheritsFrom.isNotEmpty ? 'implements $inheritsFrom ' : '';
+
   String get classDeclaration =>
-      'class $shortName extends IInspectable ${inheritsFrom.isNotEmpty ? 'implements $inheritsFrom ' : ''}{';
+      'class $shortName extends IInspectable $implementsClause{';
+
+  String get namedConstructor => '$shortName.fromRawPointer(super.ptr);';
 
   List<TypeDef> get implementsInterfaces => typeDef.interfaces
     ..removeWhere((interface) => excludedWindowsRuntimeInterfacesInInherits
@@ -242,7 +244,7 @@ class WinRTInterfaceProjection extends ComInterfaceProjection {
       $classPreamble
       $classDeclaration
         // vtable begins at $vtableStart, is ${methodProjections.length} entries long.
-        $shortName.fromRawPointer(super.ptr);
+        $namedConstructor
 
         $fromInterfaceHelper
 
