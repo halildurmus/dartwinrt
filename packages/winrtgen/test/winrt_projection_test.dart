@@ -670,7 +670,7 @@ void main() {
     expect(projection.isActivatable, isTrue);
     expect(projection.factoryMappers, isNotEmpty);
     expect(projection.staticMappers, isEmpty);
-    expect(projection.classNameDeclaration,
+    expect(projection.classNameVariable,
         equals("static const _className = '$namespace';"));
   });
 
@@ -682,7 +682,7 @@ void main() {
     expect(projection.isActivatable, isFalse);
     expect(projection.factoryMappers, isEmpty);
     expect(projection.staticMappers, isEmpty);
-    expect(projection.classNameDeclaration, isEmpty);
+    expect(projection.classNameVariable, isEmpty);
   });
 
   test(

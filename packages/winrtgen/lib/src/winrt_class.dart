@@ -31,7 +31,7 @@ class WinRTClassProjection extends WinRTInterfaceProjection {
   String get defaultConstructor =>
       isActivatable ? '$shortName() : super(activateClass(_className));' : '';
 
-  String get classNameDeclaration =>
+  String get classNameVariable =>
       (isActivatable || factoryMappers.isNotEmpty || staticMappers.isNotEmpty)
           ? "static const _className = '${typeDef.name}';"
           : '';
@@ -82,9 +82,9 @@ class WinRTClassProjection extends WinRTInterfaceProjection {
       $classPreamble
       $classDeclaration
         $defaultConstructor
-        $shortName.fromRawPointer(super.ptr);
+        $namedConstructor
 
-        $classNameDeclaration
+        $classNameVariable
 
         ${factoryMappers.join('\n')}
         ${staticMappers.join('\n')}
