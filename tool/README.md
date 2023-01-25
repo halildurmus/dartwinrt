@@ -2,9 +2,10 @@ This folder contains utilities to help with developing the dartwinrt package.
 
 # Code-generation tools
 
-The WinRT APIs available in this package are generated from metadata supplied
-by Microsoft. The metadata is in the form of an ECMA-335 specification file,
-generated from this repo: <https://github.com/microsoft/win32metadata>
+The WinRT APIs available in this package are generated from [Windows Metadata
+(WinMD)](https://learn.microsoft.com/en-us/uwp/winrt-cref/winmd-files) files
+supplied by Microsoft. The metadata files are in the ECMA-335 specification
+file format and can be found in the `%windir%\System32\WinMetadata` directory.
 
 The metadata is extracted and parsed using the separate winmd package:
 <https://pub.dev/packages/winmd>
