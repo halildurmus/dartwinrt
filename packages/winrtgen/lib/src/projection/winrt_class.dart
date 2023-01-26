@@ -13,7 +13,11 @@ import 'winrt_static_interface_mapper.dart';
 class WinRTClassProjection extends WinRTInterfaceProjection {
   WinRTClassProjection(super.typeDef, [super.comment]);
 
-  /// TODO:
+  /// Attempts to create a [WinRTClassProjection] from
+  /// [fullyQualifiedTypeName] by searching its [TypeDef].
+  ///
+  /// Throws an [Exception] if no [TypeDef] matching [fullyQualifiedTypeName]
+  /// is found.
   factory WinRTClassProjection.fromTypeName(String fullyQualifiedTypeName,
       [String comment = '']) {
     final typeDef = MetadataStore.getMetadataForType(fullyQualifiedTypeName);

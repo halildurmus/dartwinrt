@@ -16,7 +16,11 @@ import 'winrt_set_property.dart';
 class WinRTInterfaceProjection extends ComInterfaceProjection {
   WinRTInterfaceProjection(super.typeDef, [super.comment]);
 
-  /// TODO:
+  /// Attempts to create a [WinRTInterfaceProjection] from
+  /// [fullyQualifiedTypeName] by searching its [TypeDef].
+  ///
+  /// Throws an [Exception] if no [TypeDef] matching [fullyQualifiedTypeName]
+  /// is found.
   factory WinRTInterfaceProjection.fromTypeName(String fullyQualifiedTypeName,
       [String comment = '']) {
     final typeDef = MetadataStore.getMetadataForType(fullyQualifiedTypeName);
