@@ -19,55 +19,58 @@ mixin _DefaultMethodProjection on WinRTMethodProjection {
 
 class WinRTDefaultMethodProjection extends WinRTMethodProjection
     with _DefaultMethodProjection {
-  WinRTDefaultMethodProjection(super.method, super.vtableOffset);
+  WinRTDefaultMethodProjection(WinRTMethodProjection projection)
+      : super(projection.method, projection.vtableOffset);
 
   @override
   String toString() => '''
-      ${returnType.dartType} $camelCasedName($methodParams) {
-        final retValuePtr = calloc<${returnType.nativeType}>();
-        $parametersPreamble
+  ${returnType.dartType} $camelCasedName($methodParams) {
+    final retValuePtr = calloc<${returnType.nativeType}>();
+    $parametersPreamble
 
-        try {
-          ${ffiCall()}
+    try {
+      ${ffiCall()}
 
-          final retValue = retValuePtr.$valRef;
-          return retValue;
-        } finally {
-          $parametersPostamble
-          $freePointer
-        }
-      }
+      final retValue = retValuePtr.$valRef;
+      return retValue;
+    } finally {
+      $parametersPostamble
+      $freePointer
+    }
+  }
 ''';
 }
 
 class WinRTDefaultGetterProjection extends WinRTGetPropertyProjection
     with _DefaultMethodProjection {
-  WinRTDefaultGetterProjection(super.method, super.vtableOffset);
+  WinRTDefaultGetterProjection(WinRTGetPropertyProjection projection)
+      : super(projection.method, projection.vtableOffset);
 
   @override
   String toString() => '''
-      ${returnType.dartType} get $exposedMethodName {
-        final retValuePtr = calloc<${returnType.nativeType}>();
+  ${returnType.dartType} get $exposedMethodName {
+    final retValuePtr = calloc<${returnType.nativeType}>();
 
-        try {
-          ${ffiCall()}
+    try {
+      ${ffiCall()}
 
-          final retValue = retValuePtr.$valRef;
-          return retValue;
-        } finally {
-          $freePointer
-        }
-      }
+      final retValue = retValuePtr.$valRef;
+      return retValue;
+    } finally {
+      $freePointer
+    }
+  }
 ''';
 }
 
 class WinRTDefaultSetterProjection extends WinRTSetPropertyProjection {
-  WinRTDefaultSetterProjection(super.method, super.vtableOffset);
+  WinRTDefaultSetterProjection(WinRTSetPropertyProjection projection)
+      : super(projection.method, projection.vtableOffset);
 
   @override
   String toString() => '''
-      set $exposedMethodName(${parameters.first.type.dartType} value) {
-        ${ffiCall(params: 'value')}
-      }
-  ''';
+  set $exposedMethodName(${parameters.first.type.dartType} value) {
+    ${ffiCall(params: 'value')}
+  }
+''';
 }

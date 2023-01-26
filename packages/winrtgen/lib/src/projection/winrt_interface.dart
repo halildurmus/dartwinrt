@@ -5,9 +5,9 @@
 import 'package:win32gen/win32gen.dart';
 import 'package:winmd/winmd.dart';
 
-import 'exclusions.dart';
-import 'headers.dart';
-import 'utils.dart';
+import '../constants/exclusions.dart';
+import '../constants/headers.dart';
+import '../utils.dart';
 import 'winrt_get_property.dart';
 import 'winrt_implements_mapper.dart';
 import 'winrt_method.dart';
@@ -15,6 +15,15 @@ import 'winrt_set_property.dart';
 
 class WinRTInterfaceProjection extends ComInterfaceProjection {
   WinRTInterfaceProjection(super.typeDef, [super.comment]);
+
+  /// TODO:
+  factory WinRTInterfaceProjection.fromTypeName(String fullyQualifiedTypeName,
+      [String comment = '']) {
+    final typeDef = MetadataStore.getMetadataForType(fullyQualifiedTypeName);
+    if (typeDef == null) throw Exception("Can't find $fullyQualifiedTypeName");
+
+    return WinRTInterfaceProjection(typeDef, comment);
+  }
 
   // ComInterfaceProjection overrides
 
@@ -153,6 +162,7 @@ class WinRTInterfaceProjection extends ComInterfaceProjection {
   List<MethodProjection> _cacheMethodProjections() {
     final projection = <MethodProjection>[];
     var vtableOffset = vtableStart;
+
     for (final method in typeDef.methods) {
       if (method.isGetProperty) {
         final getPropertyProjection =
@@ -167,6 +177,7 @@ class WinRTInterfaceProjection extends ComInterfaceProjection {
         projection.add(methodProjection);
       }
     }
+
     return projection;
   }
 
@@ -235,23 +246,21 @@ class WinRTInterfaceProjection extends ComInterfaceProjection {
           .toList();
 
   @override
-  String toString() {
-    return '''
-      $header
-      $importHeader
-      $guidConstants
+  String toString() => '''
+$header
+$importHeader
+$guidConstants
 
-      $classPreamble
-      $classDeclaration
-        // vtable begins at $vtableStart, is ${methodProjections.length} entries long.
-        $namedConstructor
+$classPreamble
+$classDeclaration
+  // vtable begins at $vtableStart, is ${methodProjections.length} entries long.
+  $namedConstructor
 
-        $fromInterfaceHelper
+  $fromInterfaceHelper
 
-        ${methodProjections.join('\n')}
+  ${methodProjections.join('\n')}
 
-        ${implementsMappers.join('\n')}
-      }
+  ${implementsMappers.join('\n')}
+}
 ''';
-  }
 }

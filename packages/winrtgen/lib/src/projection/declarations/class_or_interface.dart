@@ -4,7 +4,7 @@
 
 import 'package:win32gen/win32gen.dart';
 
-import '../utils.dart';
+import '../../utils.dart';
 import '../winrt_get_property.dart';
 import '../winrt_method.dart';
 import '../winrt_parameter.dart';
@@ -53,65 +53,69 @@ mixin _ClassOrInterfaceProjection on WinRTMethodProjection {
 
   String get returnStatement {
     if (methodReturnType == 'Pointer<COMObject>') return 'return retValuePtr;';
-    return 'return ${stripQuestionMarkSuffix(methodReturnType)}.fromRawPointer(retValuePtr);';
+    final returnType = stripQuestionMarkSuffix(methodReturnType);
+    return 'return $returnType.fromRawPointer(retValuePtr);';
   }
 }
 
 class WinRTClassOrInterfaceMethodProjection extends WinRTMethodProjection
     with _ClassOrInterfaceProjection {
-  WinRTClassOrInterfaceMethodProjection(super.method, super.vtableOffset);
+  WinRTClassOrInterfaceMethodProjection(WinRTMethodProjection projection)
+      : super(projection.method, projection.vtableOffset);
 
   @override
   String toString() => '''
-      $methodReturnType $camelCasedName($methodParams) {
-        final retValuePtr = calloc<COMObject>();
-        $parametersPreamble
+  $methodReturnType $camelCasedName($methodParams) {
+    final retValuePtr = calloc<COMObject>();
+    $parametersPreamble
 
-        ${ffiCall(freeRetValOnFailure: true)}
+    ${ffiCall(freeRetValOnFailure: true)}
 
-        $parametersPostamble
+    $parametersPostamble
 
-        $nullCheck
+    $nullCheck
 
-        $returnStatement
-      }
+    $returnStatement
+  }
 ''';
 }
 
 class WinRTClassOrInterfaceGetterProjection extends WinRTGetPropertyProjection
     with _ClassOrInterfaceProjection {
-  WinRTClassOrInterfaceGetterProjection(super.method, super.vtableOffset);
+  WinRTClassOrInterfaceGetterProjection(WinRTGetPropertyProjection projection)
+      : super(projection.method, projection.vtableOffset);
 
   @override
   String toString() => '''
-      $methodReturnType get $exposedMethodName {
-        final retValuePtr = calloc<COMObject>();
+  $methodReturnType get $exposedMethodName {
+    final retValuePtr = calloc<COMObject>();
 
-        ${ffiCall(freeRetValOnFailure: true)}
+    ${ffiCall(freeRetValOnFailure: true)}
 
-        $nullCheck
+    $nullCheck
 
-        $returnStatement
-      }
+    $returnStatement
+  }
 ''';
 }
 
 class WinRTClassOrInterfaceSetterProjection extends WinRTSetPropertyProjection
     with _ClassOrInterfaceProjection {
-  WinRTClassOrInterfaceSetterProjection(super.method, super.vtableOffset);
+  WinRTClassOrInterfaceSetterProjection(WinRTSetPropertyProjection projection)
+      : super(projection.method, projection.vtableOffset);
 
   @override
   String toString() => '''
-      set $exposedMethodName(${parameters.first.type.methodParamType} value) {
-        ${ffiCall(params: 'value == null ? nullptr : value.ptr.ref.lpVtbl')}
-      }
-  ''';
+  set $exposedMethodName(${parameters.first.type.methodParamType} value) {
+    ${ffiCall(params: 'value == null ? nullptr : value.ptr.ref.lpVtbl')}
+  }
+''';
 }
 
 class WinRTClassOrInterfaceParameterProjection
     extends WinRTParameterProjection {
-  WinRTClassOrInterfaceParameterProjection(
-      super.method, super.name, super.type);
+  WinRTClassOrInterfaceParameterProjection(WinRTParameterProjection projection)
+      : super(projection.method, projection.name, projection.type);
 
   @override
   String get preamble => '';

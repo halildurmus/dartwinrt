@@ -5,7 +5,7 @@
 import 'package:win32gen/win32gen.dart';
 import 'package:winmd/winmd.dart';
 
-import 'utils.dart';
+import '../utils.dart';
 import 'winrt_class.dart';
 import 'winrt_interface.dart';
 import 'winrt_type.dart';

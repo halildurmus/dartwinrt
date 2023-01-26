@@ -5,7 +5,7 @@
 import 'package:win32gen/win32gen.dart';
 import 'package:winmd/winmd.dart' hide TypeTuple;
 
-import 'utils.dart';
+import '../utils.dart';
 
 const Map<String, TypeTuple> specialTypes = {
   'System.Guid': TypeTuple('GUID', 'GUID'),

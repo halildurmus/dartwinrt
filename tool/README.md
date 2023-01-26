@@ -5,7 +5,8 @@ This folder contains utilities to help with developing the dartwinrt package.
 The WinRT APIs available in this package are generated from [Windows Metadata
 (WinMD)](https://learn.microsoft.com/en-us/uwp/winrt-cref/winmd-files) files
 supplied by Microsoft. The metadata files are in the ECMA-335 specification
-file format and can be found in the `%windir%\System32\WinMetadata` directory.
+file format and can be found on Windows machines under the
+`%windir%\System32\WinMetadata` directory.
 
 The metadata is extracted and parsed using the separate winmd package:
 <https://pub.dev/packages/winmd>

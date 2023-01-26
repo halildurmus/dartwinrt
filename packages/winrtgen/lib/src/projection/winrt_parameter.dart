@@ -5,16 +5,8 @@
 import 'package:win32gen/win32gen.dart';
 import 'package:winmd/winmd.dart';
 
-import 'declarations/class_or_interface.dart';
-import 'declarations/datetime.dart';
-import 'declarations/duration.dart';
-import 'declarations/enum.dart';
-import 'declarations/guid.dart';
-import 'declarations/object.dart';
-import 'declarations/reference.dart';
-import 'declarations/string.dart';
-import 'declarations/uri.dart';
-import 'utils.dart';
+import '../utils.dart';
+import 'declarations/declarations.dart';
 
 /// A WinRT parameter.
 ///
@@ -86,23 +78,18 @@ class WinRTParameterProjection extends ParameterProjection {
   bool get isUri => type.typeIdentifier.name == 'Windows.Foundation.Uri';
 
   /// Returns the appropriate projection for the parameter.
-  WinRTParameterProjection? get parameterProjection {
+  WinRTParameterProjection? get projection {
+    if (isDateTime) return WinRTDateTimeParameterProjection(this);
+    if (isDuration) return WinRTDurationParameterProjection(this);
+    if (isEnum) return WinRTEnumParameterProjection(this);
+    if (isGuid) return WinRTGuidParameterProjection(this);
+    if (isObject) return WinRTObjectParameterProjection(this);
+    if (isReference) return WinRTReferenceParameterProjection(this);
+    if (isString) return WinRTStringParameterProjection(this);
+    if (isUri) return WinRTUriParameterProjection(this);
     if (isClassOrInterface) {
-      if (isReference) {
-        return WinRTReferenceParameterProjection(method, name, type);
-      }
-
-      if (isUri) return WinRTUriParameterProjection(method, name, type);
-
-      return WinRTClassOrInterfaceParameterProjection(method, name, type);
+      return WinRTClassOrInterfaceParameterProjection(this);
     }
-
-    if (isDateTime) return WinRTDateTimeParameterProjection(method, name, type);
-    if (isDuration) return WinRTDurationParameterProjection(method, name, type);
-    if (isEnum) return WinRTEnumParameterProjection(method, name, type);
-    if (isGuid) return WinRTGuidParameterProjection(method, name, type);
-    if (isObject) return WinRTObjectParameterProjection(method, name, type);
-    if (isString) return WinRTStringParameterProjection(method, name, type);
 
     return null;
   }
@@ -112,14 +99,13 @@ class WinRTParameterProjection extends ParameterProjection {
   ///
   /// Any preamble that allocates memory should have a matching postamble that
   /// frees the memory.
-  String get preamble => parameterProjection?.preamble ?? '';
+  String get preamble => projection?.preamble ?? '';
 
   /// Code to be inserted prior to the function call to tear down allocated
   /// memory.
-  String get postamble => parameterProjection?.postamble ?? '';
+  String get postamble => projection?.postamble ?? '';
 
   /// The name of the converted variable that should be passed inside the method
   /// call (e.g. `today` -> `todayDateTime`)
-  String get localIdentifier =>
-      parameterProjection?.localIdentifier ?? identifier;
+  String get localIdentifier => projection?.localIdentifier ?? identifier;
 }

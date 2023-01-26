@@ -47,57 +47,61 @@ mixin _ObjectProjection on WinRTMethodProjection {
 
 class WinRTObjectMethodProjection extends WinRTMethodProjection
     with _ObjectProjection {
-  WinRTObjectMethodProjection(super.method, super.vtableOffset);
+  WinRTObjectMethodProjection(WinRTMethodProjection projection)
+      : super(projection.method, projection.vtableOffset);
 
   @override
   String toString() => '''
-      $methodReturnType $camelCasedName($methodParams) {
-        final retValuePtr = calloc<COMObject>();
-        $parametersPreamble
+  $methodReturnType $camelCasedName($methodParams) {
+    final retValuePtr = calloc<COMObject>();
+    $parametersPreamble
 
-        ${ffiCall(freeRetValOnFailure: true)}
+    ${ffiCall(freeRetValOnFailure: true)}
 
-        $parametersPostamble
+    $parametersPostamble
 
-        $nullCheck
+    $nullCheck
 
-        $returnStatement
-      }
+    $returnStatement
+  }
 ''';
 }
 
 class WinRTObjectGetterProjection extends WinRTGetPropertyProjection
     with _ObjectProjection {
-  WinRTObjectGetterProjection(super.method, super.vtableOffset);
+  WinRTObjectGetterProjection(WinRTGetPropertyProjection projection)
+      : super(projection.method, projection.vtableOffset);
 
   @override
   String toString() => '''
-      Object? get $exposedMethodName {
-        final retValuePtr = calloc<COMObject>();
+  Object? get $exposedMethodName {
+    final retValuePtr = calloc<COMObject>();
 
-        ${ffiCall(freeRetValOnFailure: true)}
+    ${ffiCall(freeRetValOnFailure: true)}
 
-        $nullCheck
+    $nullCheck
 
-        $returnStatement
-      }
+    $returnStatement
+  }
 ''';
 }
 
 class WinRTObjectSetterProjection extends WinRTSetPropertyProjection
     with _ObjectProjection {
-  WinRTObjectSetterProjection(super.method, super.vtableOffset);
+  WinRTObjectSetterProjection(WinRTSetPropertyProjection projection)
+      : super(projection.method, projection.vtableOffset);
 
   @override
   String toString() => '''
-      set $exposedMethodName(Object? value) {
-        ${ffiCall(params: 'value == null ? nullptr : boxValue(value).ref.lpVtbl')}
-      }
-  ''';
+  set $exposedMethodName(Object? value) {
+    ${ffiCall(params: 'value == null ? nullptr : boxValue(value).ref.lpVtbl')}
+  }
+''';
 }
 
 class WinRTObjectParameterProjection extends WinRTParameterProjection {
-  WinRTObjectParameterProjection(super.method, super.name, super.type);
+  WinRTObjectParameterProjection(WinRTParameterProjection projection)
+      : super(projection.method, projection.name, projection.type);
 
   @override
   String get preamble => '';
