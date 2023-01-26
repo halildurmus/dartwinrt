@@ -3,22 +3,8 @@
 // BSD-style license that can be found in the LICENSE file.
 
 import 'package:win32gen/win32gen.dart';
-import 'package:winmd/winmd.dart';
 
-import 'declarations/async.dart';
-import 'declarations/class_or_interface.dart';
-import 'declarations/datetime.dart';
-import 'declarations/default.dart';
-import 'declarations/duration.dart';
-import 'declarations/enum.dart';
-import 'declarations/guid.dart';
-import 'declarations/map.dart';
-import 'declarations/object.dart';
-import 'declarations/reference.dart';
-import 'declarations/string.dart';
-import 'declarations/uri.dart';
-import 'declarations/vector.dart';
-import 'declarations/void.dart';
+import 'declarations/declarations.dart';
 import 'winrt_parameter.dart';
 import 'winrt_type.dart';
 
@@ -135,7 +121,8 @@ class WinRTMethodProjection extends MethodProjection {
   /// `IUriRuntimeClassFactory`.
   ///
   /// Used to determine whether the method should be exposed as WinRT `Uri` or
-  /// dart:core's `Uri`.
+  /// dart:core's `Uri` (In other words, whether it should be projected with
+  /// [WinRTClassOrInterfaceMethodProjection] or [WinRTUriMethodProjection]).
   bool get methodBelongsToUriRuntimeClass => [
         'Windows.Foundation.IUriRuntimeClass',
         'Windows.Foundation.IUriRuntimeClassFactory'
@@ -165,74 +152,37 @@ class WinRTMethodProjection extends MethodProjection {
     ].join('\n');
   }
 
-  /// Returns the method declaration for a method or property declaration class
-  /// specified in [creator].
-  ///
-  /// [creator] must be the constructor of a WinRT method or property
-  /// declaration class (e.g. `WinRTVectorMethodProjection.new`,
-  /// `WinRTStringGetterProjection.new`, `WinRTEnumSetterProjection.new`).
-  String declarationFor(WinRTMethodProjection Function(Method, int) creator) =>
-      creator(method, vtableOffset).toString();
+  WinRTMethodProjection get projection {
+    if (isAsyncActionReturn) return WinRTAsyncActionMethodProjection(this);
+    if (isAsyncOperationReturn) {
+      return WinRTAsyncOperationMethodProjection(this);
+    }
+    if (isDateTimeReturn) return WinRTDateTimeMethodProjection(this);
+    if (isDurationReturn) return WinRTDurationMethodProjection(this);
+    if (isEnumReturn) return WinRTEnumMethodProjection(this);
+    if (isGuidReturn) return WinRTGuidMethodProjection(this);
+    if (isMapReturn) return WinRTMapMethodProjection(this);
+    if (isMapViewReturn) return WinRTMapViewMethodProjection(this);
+    if (isObjectReturn) return WinRTObjectMethodProjection(this);
+    if (isReferenceReturn) return WinRTReferenceMethodProjection(this);
+    if (isStringReturn) return WinRTStringMethodProjection(this);
+    if (isUriReturn && !methodBelongsToUriRuntimeClass) {
+      return WinRTUriMethodProjection(this);
+    }
+    if (isVectorReturn) return WinRTVectorMethodProjection(this);
+    if (isVectorViewReturn) return WinRTVectorViewMethodProjection(this);
+    if (isVoidReturn) return WinRTVoidMethodProjection(this);
+    if (isClassOrInterfaceReturn) {
+      return WinRTClassOrInterfaceMethodProjection(this);
+    }
+
+    return WinRTDefaultMethodProjection(this);
+  }
 
   @override
   String toString() {
     try {
-      if (isClassOrInterfaceReturn) {
-        if (isAsyncActionReturn) {
-          return declarationFor(WinRTAsyncActionMethodProjection.new);
-        }
-
-        if (isAsyncOperationReturn) {
-          return declarationFor(WinRTAsyncOperationMethodProjection.new);
-        }
-
-        if (isMapReturn) return declarationFor(WinRTMapMethodProjection.new);
-
-        if (isMapViewReturn) {
-          return declarationFor(WinRTMapViewMethodProjection.new);
-        }
-
-        if (isReferenceReturn) {
-          return declarationFor(WinRTReferenceMethodProjection.new);
-        }
-
-        if (isUriReturn && !methodBelongsToUriRuntimeClass) {
-          return declarationFor(WinRTUriMethodProjection.new);
-        }
-
-        if (isVectorReturn) {
-          return declarationFor(WinRTVectorMethodProjection.new);
-        }
-
-        if (isVectorViewReturn) {
-          return declarationFor(WinRTVectorViewMethodProjection.new);
-        }
-
-        return declarationFor(WinRTClassOrInterfaceMethodProjection.new);
-      }
-
-      if (isDateTimeReturn) {
-        return declarationFor(WinRTDateTimeMethodProjection.new);
-      }
-
-      if (isDurationReturn) {
-        return declarationFor(WinRTDurationMethodProjection.new);
-      }
-
-      if (isEnumReturn) return declarationFor(WinRTEnumMethodProjection.new);
-      if (isGuidReturn) return declarationFor(WinRTGuidMethodProjection.new);
-
-      if (isObjectReturn) {
-        return declarationFor(WinRTObjectMethodProjection.new);
-      }
-
-      if (isStringReturn) {
-        return declarationFor(WinRTStringMethodProjection.new);
-      }
-
-      if (isVoidReturn) return declarationFor(WinRTVoidMethodProjection.new);
-
-      return declarationFor(WinRTDefaultMethodProjection.new);
+      return projection.toString();
     } on Exception {
       // Print an error if we're unable to project a method, but don't
       // completely bail out. The rest may be useful.

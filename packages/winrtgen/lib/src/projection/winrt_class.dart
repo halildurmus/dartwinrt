@@ -2,14 +2,29 @@
 // details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-import 'exclusions.dart';
-import 'utils.dart';
+import 'package:winmd/winmd.dart';
+
+import '../constants/exclusions.dart';
+import '../utils.dart';
 import 'winrt_factory_interface_mapper.dart';
 import 'winrt_interface.dart';
 import 'winrt_static_interface_mapper.dart';
 
 class WinRTClassProjection extends WinRTInterfaceProjection {
   WinRTClassProjection(super.typeDef, [super.comment]);
+
+  /// Attempts to create a [WinRTClassProjection] from
+  /// [fullyQualifiedTypeName] by searching its [TypeDef].
+  ///
+  /// Throws an [Exception] if no [TypeDef] matching [fullyQualifiedTypeName]
+  /// is found.
+  factory WinRTClassProjection.fromTypeName(String fullyQualifiedTypeName,
+      [String comment = '']) {
+    final typeDef = MetadataStore.getMetadataForType(fullyQualifiedTypeName);
+    if (typeDef == null) throw Exception("Can't find $fullyQualifiedTypeName");
+
+    return WinRTClassProjection(typeDef, comment);
+  }
 
   // WinRTInterfaceProjection overrides
 
@@ -31,10 +46,11 @@ class WinRTClassProjection extends WinRTInterfaceProjection {
   String get defaultConstructor =>
       isActivatable ? '$shortName() : super(activateClass(_className));' : '';
 
-  String get classNameVariable =>
-      (isActivatable || factoryMappers.isNotEmpty || staticMappers.isNotEmpty)
-          ? "static const _className = '${typeDef.name}';"
-          : '';
+  String get classNameVariable => (isActivatable ||
+          factoryInterfaces.isNotEmpty ||
+          staticInterfaces.isNotEmpty)
+      ? "static const _className = '${typeDef.name}';"
+      : '';
 
   List<String> get factoryInterfaces => typeDef.customAttributes
       .where((element) => element.name.endsWith('ActivatableAttribute'))
@@ -74,22 +90,20 @@ class WinRTClassProjection extends WinRTInterfaceProjection {
           .toList();
 
   @override
-  String toString() {
-    return '''
-      $header
-      $importHeader
+  String toString() => '''
+$header
+$importHeader
 
-      $classPreamble
-      $classDeclaration
-        $defaultConstructor
-        $namedConstructor
+$classPreamble
+$classDeclaration
+  $defaultConstructor
+  $namedConstructor
 
-        $classNameVariable
+  $classNameVariable
 
-        ${factoryMappers.join('\n')}
-        ${staticMappers.join('\n')}
-        ${implementsMappers.join('\n')}
-      }
+  ${factoryMappers.join('\n')}
+  ${staticMappers.join('\n')}
+  ${implementsMappers.join('\n')}
+}
 ''';
-  }
 }

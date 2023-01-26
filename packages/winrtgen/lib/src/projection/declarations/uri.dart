@@ -18,70 +18,75 @@ mixin _UriProjection on WinRTMethodProjection {
 
 class WinRTUriMethodProjection extends WinRTMethodProjection
     with _UriProjection {
-  WinRTUriMethodProjection(super.method, super.vtableOffset);
+  WinRTUriMethodProjection(WinRTMethodProjection projection)
+      : super(projection.method, projection.vtableOffset);
 
   @override
   String toString() => '''
-      Uri? $camelCasedName($methodParams) {
-        final retValuePtr = calloc<COMObject>();
-        $parametersPreamble
+  Uri? $camelCasedName($methodParams) {
+    final retValuePtr = calloc<COMObject>();
+    $parametersPreamble
 
-        ${ffiCall(freeRetValOnFailure: true)}
+    ${ffiCall(freeRetValOnFailure: true)}
 
-        $nullCheck
+    $nullCheck
 
-        final winrtUri = winrt_uri.Uri.fromRawPointer(retValuePtr);
-        final uriAsString = winrtUri.toString();
-        winrtUri.release();
+    final winrtUri = winrt_uri.Uri.fromRawPointer(retValuePtr);
+    final uriAsString = winrtUri.toString();
+    winrtUri.release();
 
-        $parametersPostamble
+    $parametersPostamble
 
-        return Uri.parse(uriAsString);
-      }
+    return Uri.parse(uriAsString);
+  }
 ''';
 }
 
 class WinRTUriGetterProjection extends WinRTGetPropertyProjection
     with _UriProjection {
-  WinRTUriGetterProjection(super.method, super.vtableOffset);
+  WinRTUriGetterProjection(WinRTGetPropertyProjection projection)
+      : super(projection.method, projection.vtableOffset);
 
   @override
   String toString() => '''
-      Uri? get $exposedMethodName {
-        final retValuePtr = calloc<COMObject>();
+  Uri? get $exposedMethodName {
+    final retValuePtr = calloc<COMObject>();
 
-        ${ffiCall(freeRetValOnFailure: true)}
+    ${ffiCall(freeRetValOnFailure: true)}
 
-        $nullCheck
+    $nullCheck
 
-        final winrtUri = winrt_uri.Uri.fromRawPointer(retValuePtr);
-        final uriAsString = winrtUri.toString();
-        winrtUri.release();
+    final winrtUri = winrt_uri.Uri.fromRawPointer(retValuePtr);
+    final uriAsString = winrtUri.toString();
+    winrtUri.release();
 
-        return Uri.parse(uriAsString);
-      }
+    return Uri.parse(uriAsString);
+  }
 ''';
 }
 
 class WinRTUriSetterProjection extends WinRTSetPropertyProjection {
-  WinRTUriSetterProjection(super.method, super.vtableOffset);
+  WinRTUriSetterProjection(WinRTSetPropertyProjection projection)
+      : super(projection.method, projection.vtableOffset);
 
   @override
   String toString() => '''
-      set $exposedMethodName(Uri? value) {
-        final winrtUri = value == null ? null : winrt_uri.Uri.createUri(value.toString());
+  set $exposedMethodName(Uri? value) {
+    final winrtUri =
+        value == null ? null : winrt_uri.Uri.createUri(value.toString());
 
-        try {
-          ${ffiCall(params: 'winrtUri == null ? nullptr : winrtUri.ptr.ref.lpVtbl')}
-        } finally {
-          winrtUri?.release();
-        }
-      }
+    try {
+      ${ffiCall(params: 'winrtUri == null ? nullptr : winrtUri.ptr.ref.lpVtbl')}
+    } finally {
+      winrtUri?.release();
+    }
+  }
 ''';
 }
 
 class WinRTUriParameterProjection extends WinRTParameterProjection {
-  WinRTUriParameterProjection(super.method, super.name, super.type);
+  WinRTUriParameterProjection(WinRTParameterProjection projection)
+      : super(projection.method, projection.name, projection.type);
 
   /// Whether the method belongs to `IUriRuntimeClass` or
   /// `IUriRuntimeClassFactory`.

@@ -9,11 +9,12 @@ import 'dart:typed_data';
 
 import 'package:crypto/crypto.dart';
 import 'package:path/path.dart' as path;
-import 'package:win32/winrt.dart';
+import 'package:win32/win32.dart';
 import 'package:win32gen/win32gen.dart';
 import 'package:winmd/winmd.dart';
 
-import 'winrt_type.dart';
+import 'constants/iids.dart';
+import 'projection/winrt_type.dart';
 
 /// Add the `?` suffix to the type (e.g. `StorageFile` -> `StorageFile?`).
 String nullable(String type) => type.endsWith('?') ? type : '$type?';

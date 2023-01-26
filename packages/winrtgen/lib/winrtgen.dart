@@ -6,15 +6,15 @@
 /// Metadata (WinMD) files.
 library winrtgen;
 
-export 'src/exclusions.dart';
-export 'src/headers.dart';
+export 'src/constants/constants.dart';
+export 'src/projection/declarations/declarations.dart';
+export 'src/projection/winrt_class.dart';
+export 'src/projection/winrt_enum.dart';
+export 'src/projection/winrt_get_property.dart';
+export 'src/projection/winrt_interface.dart';
+export 'src/projection/winrt_method.dart';
+export 'src/projection/winrt_parameter.dart';
+export 'src/projection/winrt_property.dart';
+export 'src/projection/winrt_set_property.dart';
+export 'src/projection/winrt_type.dart';
 export 'src/utils.dart';
-export 'src/winrt_class.dart';
-export 'src/winrt_enum.dart';
-export 'src/winrt_get_property.dart';
-export 'src/winrt_interface.dart';
-export 'src/winrt_method.dart';
-export 'src/winrt_parameter.dart';
-export 'src/winrt_property.dart';
-export 'src/winrt_set_property.dart';
-export 'src/winrt_type.dart';

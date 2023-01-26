@@ -4,7 +4,7 @@
 
 import 'package:winmd/winmd.dart';
 
-import '../utils.dart';
+import '../../utils.dart';
 import '../winrt_get_property.dart';
 import '../winrt_method.dart';
 import '../winrt_type.dart';
@@ -57,78 +57,82 @@ mixin _MapProjection on WinRTMethodProjection {
 
 class WinRTMapMethodProjection extends WinRTMethodProjection
     with _MapProjection {
-  WinRTMapMethodProjection(super.method, super.vtableOffset);
+  WinRTMapMethodProjection(WinRTMethodProjection projection)
+      : super(projection.method, projection.vtableOffset);
 
   @override
   String toString() => '''
-      IMap<$mapTypeArgs> $camelCasedName($methodParams) {
-        final retValuePtr = calloc<COMObject>();
-        $parametersPreamble
+  IMap<$mapTypeArgs> $camelCasedName($methodParams) {
+    final retValuePtr = calloc<COMObject>();
+    $parametersPreamble
 
-        ${ffiCall(freeRetValOnFailure: true)}
+    ${ffiCall(freeRetValOnFailure: true)}
 
-        $parametersPostamble
+    $parametersPostamble
 
-        return IMap.fromRawPointer(retValuePtr$mapConstructorArgs);
-      }
-  ''';
+    return IMap.fromRawPointer(retValuePtr$mapConstructorArgs);
+  }
+''';
 }
 
 class WinRTMapGetterProjection extends WinRTGetPropertyProjection
     with _MapProjection {
-  WinRTMapGetterProjection(super.method, super.vtableOffset);
+  WinRTMapGetterProjection(WinRTGetPropertyProjection projection)
+      : super(projection.method, projection.vtableOffset);
 
   @override
   String toString() => '''
-      IMap<$mapTypeArgs> get $exposedMethodName {
-        final retValuePtr = calloc<COMObject>();
+  IMap<$mapTypeArgs> get $exposedMethodName {
+    final retValuePtr = calloc<COMObject>();
 
-        ${ffiCall(freeRetValOnFailure: true)}
+    ${ffiCall(freeRetValOnFailure: true)}
 
-        return IMap.fromRawPointer(retValuePtr$mapConstructorArgs);
-      }
-  ''';
+    return IMap.fromRawPointer(retValuePtr$mapConstructorArgs);
+  }
+''';
 }
 
 class WinRTMapViewMethodProjection extends WinRTMethodProjection
     with _MapProjection {
-  WinRTMapViewMethodProjection(super.method, super.vtableOffset);
+  WinRTMapViewMethodProjection(WinRTMethodProjection projection)
+      : super(projection.method, projection.vtableOffset);
 
   @override
   String toString() => '''
-      Map<$mapTypeArgs> $camelCasedName($methodParams) {
-        final retValuePtr = calloc<COMObject>();
-        $parametersPreamble
+  Map<$mapTypeArgs> $camelCasedName($methodParams) {
+    final retValuePtr = calloc<COMObject>();
+    $parametersPreamble
 
-        final mapView = IMapView<$mapTypeArgs>.fromRawPointer
-            (retValuePtr$mapConstructorArgs);
-        final map = mapView.toMap();
-        mapView.release();
+    final mapView = IMapView<$mapTypeArgs>.fromRawPointer
+        (retValuePtr$mapConstructorArgs);
+    final map = mapView.toMap();
+    mapView.release();
 
-        $parametersPostamble
+    $parametersPostamble
 
-        return map;
-      }
-  ''';
+    return map;
+  }
+''';
 }
 
 class WinRTMapViewGetterProjection extends WinRTGetPropertyProjection
     with _MapProjection {
-  WinRTMapViewGetterProjection(super.method, super.vtableOffset);
+  WinRTMapViewGetterProjection(WinRTGetPropertyProjection projection)
+      : super(projection.method, projection.vtableOffset);
 
   @override
   String toString() => '''
-      Map<$mapTypeArgs> get $exposedMethodName {
-        final retValuePtr = calloc<COMObject>();
+  Map<$mapTypeArgs> get $exposedMethodName {
+    final retValuePtr = calloc<COMObject>();
 
-        ${ffiCall(freeRetValOnFailure: true)}
+    ${ffiCall(freeRetValOnFailure: true)}
 
-        final mapView = IMapView<$mapTypeArgs>.fromRawPointer
-            (retValuePtr$mapConstructorArgs);
-        final map = mapView.toMap();
-        mapView.release();
+    final mapView = IMapView<$mapTypeArgs>.fromRawPointer
+        (retValuePtr$mapConstructorArgs);
+    final map = mapView.toMap();
+    mapView.release();
 
-        return map;
-      }
-  ''';
+    return map;
+  }
+''';
 }

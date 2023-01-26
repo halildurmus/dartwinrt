@@ -2,11 +2,11 @@
 // details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-import 'package:win32/winrt.dart';
 import 'package:win32gen/win32gen.dart';
 import 'package:winmd/winmd.dart';
 
-import '../utils.dart';
+import '../../constants/iids.dart';
+import '../../utils.dart';
 import '../winrt_get_property.dart';
 import '../winrt_method.dart';
 import '../winrt_parameter.dart';
@@ -87,67 +87,71 @@ mixin _ReferenceProjection on WinRTMethodProjection {
 
 class WinRTReferenceMethodProjection extends WinRTMethodProjection
     with _ReferenceProjection {
-  WinRTReferenceMethodProjection(super.method, super.vtableOffset);
+  WinRTReferenceMethodProjection(WinRTMethodProjection projection)
+      : super(projection.method, projection.vtableOffset);
 
   @override
   String toString() => '''
-      $referenceTypeArg? $camelCasedName($methodParams) {
-        final retValuePtr = calloc<COMObject>();
-        $parametersPreamble
+  $referenceTypeArg? $camelCasedName($methodParams) {
+    final retValuePtr = calloc<COMObject>();
+    $parametersPreamble
 
-        ${ffiCall(freeRetValOnFailure: true)}
+    ${ffiCall(freeRetValOnFailure: true)}
 
-        $nullCheck
+    $nullCheck
 
-        final reference = IReference<$referenceTypeArg>.fromRawPointer
-            (retValuePtr$referenceConstructorArgs);
-        final value = reference.value;
-        reference.release();
+    final reference = IReference<$referenceTypeArg>.fromRawPointer
+        (retValuePtr$referenceConstructorArgs);
+    final value = reference.value;
+    reference.release();
 
-        $parametersPostamble
+    $parametersPostamble
 
-        return value;
-      }
-  ''';
+    return value;
+  }
+''';
 }
 
 class WinRTReferenceGetterProjection extends WinRTGetPropertyProjection
     with _ReferenceProjection {
-  WinRTReferenceGetterProjection(super.method, super.vtableOffset);
+  WinRTReferenceGetterProjection(WinRTGetPropertyProjection projection)
+      : super(projection.method, projection.vtableOffset);
 
   @override
   String toString() => '''
-      $referenceTypeArg? get $exposedMethodName {
-        final retValuePtr = calloc<COMObject>();
+  $referenceTypeArg? get $exposedMethodName {
+    final retValuePtr = calloc<COMObject>();
 
-        ${ffiCall(freeRetValOnFailure: true)}
+    ${ffiCall(freeRetValOnFailure: true)}
 
-        $nullCheck
+    $nullCheck
 
-        final reference = IReference<$referenceTypeArg>.fromRawPointer
-            (retValuePtr$referenceConstructorArgs);
-        final value = reference.value;
-        reference.release();
+    final reference = IReference<$referenceTypeArg>.fromRawPointer
+        (retValuePtr$referenceConstructorArgs);
+    final value = reference.value;
+    reference.release();
 
-        return value;
-      }
-  ''';
+    return value;
+  }
+''';
 }
 
 class WinRTReferenceSetterProjection extends WinRTSetPropertyProjection
     with _ReferenceProjection {
-  WinRTReferenceSetterProjection(super.method, super.vtableOffset);
+  WinRTReferenceSetterProjection(WinRTSetPropertyProjection projection)
+      : super(projection.method, projection.vtableOffset);
 
   @override
   String toString() => '''
-      set $exposedMethodName($referenceTypeArgFromParameter? value) {
-        ${ffiCall(params: 'value == null ? nullptr : $boxValueMethodCall.ref.lpVtbl')}
-      }
-  ''';
+  set $exposedMethodName($referenceTypeArgFromParameter? value) {
+    ${ffiCall(params: 'value == null ? nullptr : $boxValueMethodCall.ref.lpVtbl')}
+  }
+''';
 }
 
 class WinRTReferenceParameterProjection extends WinRTParameterProjection {
-  WinRTReferenceParameterProjection(super.method, super.name, super.type);
+  WinRTReferenceParameterProjection(WinRTParameterProjection projection)
+      : super(projection.method, projection.name, projection.type);
 
   @override
   String get preamble => '';

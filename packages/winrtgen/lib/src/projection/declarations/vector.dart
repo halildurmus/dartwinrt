@@ -4,7 +4,7 @@
 
 import 'package:winmd/winmd.dart';
 
-import '../utils.dart';
+import '../../utils.dart';
 import '../winrt_get_property.dart';
 import '../winrt_method.dart';
 import '../winrt_type.dart';
@@ -56,80 +56,84 @@ mixin _VectorProjection on WinRTMethodProjection {
 
 class WinRTVectorMethodProjection extends WinRTMethodProjection
     with _VectorProjection {
-  WinRTVectorMethodProjection(super.method, super.vtableOffset);
+  WinRTVectorMethodProjection(WinRTMethodProjection projection)
+      : super(projection.method, projection.vtableOffset);
 
   @override
   String toString() => '''
-      IVector<$vectorTypeArg> $camelCasedName($methodParams) {
-        final retValuePtr = calloc<COMObject>();
-        $parametersPreamble
+  IVector<$vectorTypeArg> $camelCasedName($methodParams) {
+    final retValuePtr = calloc<COMObject>();
+    $parametersPreamble
 
-        ${ffiCall(freeRetValOnFailure: true)}
+    ${ffiCall(freeRetValOnFailure: true)}
 
-        $parametersPostamble
+    $parametersPostamble
 
-        return IVector.fromRawPointer(retValuePtr$vectorConstructorArgs);
-      }
-  ''';
+    return IVector.fromRawPointer(retValuePtr$vectorConstructorArgs);
+  }
+''';
 }
 
 class WinRTVectorGetterProjection extends WinRTGetPropertyProjection
     with _VectorProjection {
-  WinRTVectorGetterProjection(super.method, super.vtableOffset);
+  WinRTVectorGetterProjection(WinRTGetPropertyProjection projection)
+      : super(projection.method, projection.vtableOffset);
 
   @override
   String toString() => '''
-      IVector<$vectorTypeArg> get $exposedMethodName {
-        final retValuePtr = calloc<COMObject>();
+  IVector<$vectorTypeArg> get $exposedMethodName {
+    final retValuePtr = calloc<COMObject>();
 
-        ${ffiCall(freeRetValOnFailure: true)}
+    ${ffiCall(freeRetValOnFailure: true)}
 
-        return IVector.fromRawPointer(retValuePtr$vectorConstructorArgs);
-      }
-  ''';
+    return IVector.fromRawPointer(retValuePtr$vectorConstructorArgs);
+  }
+''';
 }
 
 class WinRTVectorViewMethodProjection extends WinRTMethodProjection
     with _VectorProjection {
-  WinRTVectorViewMethodProjection(super.method, super.vtableOffset);
+  WinRTVectorViewMethodProjection(WinRTMethodProjection projection)
+      : super(projection.method, projection.vtableOffset);
 
   @override
   String toString() => '''
-      List<$vectorTypeArg> $camelCasedName($methodParams) {
-        final retValuePtr = calloc<COMObject>();
-        $parametersPreamble
+  List<$vectorTypeArg> $camelCasedName($methodParams) {
+    final retValuePtr = calloc<COMObject>();
+    $parametersPreamble
 
-        ${ffiCall(freeRetValOnFailure: true)}
+    ${ffiCall(freeRetValOnFailure: true)}
 
-        final vectorView = IVectorView<$vectorTypeArg>.fromRawPointer
-            (retValuePtr$vectorConstructorArgs);
-        final list = vectorView.toList();
-        vectorView.release();
+    final vectorView = IVectorView<$vectorTypeArg>.fromRawPointer
+        (retValuePtr$vectorConstructorArgs);
+    final list = vectorView.toList();
+    vectorView.release();
 
-        $parametersPostamble
+    $parametersPostamble
 
-        return list;
-      }
-  ''';
+    return list;
+  }
+''';
 }
 
 class WinRTVectorViewGetterProjection extends WinRTGetPropertyProjection
     with _VectorProjection {
-  WinRTVectorViewGetterProjection(super.method, super.vtableOffset);
+  WinRTVectorViewGetterProjection(WinRTGetPropertyProjection projection)
+      : super(projection.method, projection.vtableOffset);
 
   @override
   String toString() => '''
-      List<$vectorTypeArg> get $exposedMethodName {
-        final retValuePtr = calloc<COMObject>();
+  List<$vectorTypeArg> get $exposedMethodName {
+    final retValuePtr = calloc<COMObject>();
 
-        ${ffiCall(freeRetValOnFailure: true)}
+    ${ffiCall(freeRetValOnFailure: true)}
 
-        final vectorView = IVectorView<$vectorTypeArg>.fromRawPointer
-            (retValuePtr$vectorConstructorArgs);
-        final list = vectorView.toList();
-        vectorView.release();
+    final vectorView = IVectorView<$vectorTypeArg>.fromRawPointer
+        (retValuePtr$vectorConstructorArgs);
+    final list = vectorView.toList();
+    vectorView.release();
 
-        return list;
-      }
-  ''';
+    return list;
+  }
+''';
 }

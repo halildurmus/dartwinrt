@@ -54,7 +54,7 @@ class WinRTEnumProjection {
   String get _enumValueVariable => '''
     @override
     final int value;
-  ''';
+''';
 
   String get _constructor => 'const $enumName(this.value);';
 
@@ -63,7 +63,7 @@ class WinRTEnumProjection {
       $enumName.values.firstWhere((e) => e.value == value,
           orElse: () => throw ArgumentError.value(
               value, 'value', 'No enum value with that value'));
-  ''';
+''';
 
   @override
   String toString() => '''
@@ -77,7 +77,7 @@ class WinRTEnumProjection {
 
       $_factoryConstructor
     }
-  ''';
+''';
 }
 
 /// Represents a Dart projection of a WinRT Flags enumeration typedef.
@@ -95,7 +95,7 @@ class WinRTFlagsEnumProjection extends WinRTEnumProjection {
     factory $enumName.from(int value) =>
         $enumName.values.firstWhere((e) => e.value == value,
             orElse: () => $enumName(value));
-  ''';
+''';
 
   @override
   List<String> get identifiers {
@@ -114,12 +114,12 @@ class WinRTFlagsEnumProjection extends WinRTEnumProjection {
   String get _andOperator => '''
     $_projectedName operator &($_projectedName other) =>
         $_projectedName(value & other.value);
-  ''';
+''';
 
   String get _orOperator => '''
     $_projectedName operator |($_projectedName other) =>
         $_projectedName(value | other.value);
-  ''';
+''';
 
   String get _hasFlag => '''
     /// Determines whether one or more bit fields are set in the current enum
@@ -136,25 +136,25 @@ class WinRTFlagsEnumProjection extends WinRTEnumProjection {
       if (value != 0 && flag.value == 0) return false;
       return value & flag.value == flag.value;
     }
-  ''';
+''';
 
   @override
   String toString() => '''
-    $classPreamble
-    $classDeclaration
-      $_constructor
+$classPreamble
+$classDeclaration
+  $_constructor
 
-      $_factoryConstructor
+  $_factoryConstructor
 
-      ${identifiers.join()}
+  ${identifiers.join()}
 
-      $_values
+  $_values
 
-      $_andOperator
+  $_andOperator
 
-      $_orOperator
+  $_orOperator
 
-      $_hasFlag
-    }
-  ''';
+  $_hasFlag
+}
+''';
 }

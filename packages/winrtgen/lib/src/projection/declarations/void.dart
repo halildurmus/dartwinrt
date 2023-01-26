@@ -5,16 +5,17 @@
 import '../winrt_method.dart';
 
 class WinRTVoidMethodProjection extends WinRTMethodProjection {
-  WinRTVoidMethodProjection(super.method, super.vtableOffset);
+  WinRTVoidMethodProjection(WinRTMethodProjection projection)
+      : super(projection.method, projection.vtableOffset);
 
   @override
   String toString() => '''
-      void $camelCasedName($methodParams) {
-        $parametersPreamble
+  void $camelCasedName($methodParams) {
+    $parametersPreamble
 
-        ${ffiCall()}
+    ${ffiCall()}
 
-        $parametersPostamble
-      }
-  ''';
+    $parametersPostamble
+  }
+''';
 }

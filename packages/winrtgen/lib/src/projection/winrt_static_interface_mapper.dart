@@ -37,18 +37,19 @@ class WinRTStaticInterfaceMapperProjection extends WinRTClassProjection {
           ? statement
           : 'return $statement';
       methods.add('''
-          static ${methodProjection.shortDeclaration} {
-            final activationFactoryPtr = createActivationFactory(
-                _className, IID_$shortStaticInterfaceName);
-            final object =
-                $shortStaticInterfaceName.fromRawPointer(activationFactoryPtr);
+  static ${methodProjection.shortDeclaration} {
+    final activationFactoryPtr =
+        createActivationFactory(_className, IID_$shortStaticInterfaceName);
+    final object =
+        $shortStaticInterfaceName.fromRawPointer(activationFactoryPtr);
 
-            try {
-              $returnStatement
-            } finally {
-              object.release();
-            }
-          }''');
+    try {
+      $returnStatement
+    } finally {
+      object.release();
+    }
+  }
+''');
     }
 
     return methods;

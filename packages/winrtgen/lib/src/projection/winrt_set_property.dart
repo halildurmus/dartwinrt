@@ -2,16 +2,7 @@
 // details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-import 'declarations/class_or_interface.dart';
-import 'declarations/datetime.dart';
-import 'declarations/default.dart';
-import 'declarations/duration.dart';
-import 'declarations/enum.dart';
-import 'declarations/guid.dart';
-import 'declarations/object.dart';
-import 'declarations/reference.dart';
-import 'declarations/string.dart';
-import 'declarations/uri.dart';
+import 'declarations/declarations.dart';
 import 'winrt_property.dart';
 
 class WinRTSetPropertyProjection extends WinRTPropertyProjection {
@@ -39,7 +30,7 @@ class WinRTSetPropertyProjection extends WinRTPropertyProjection {
       .asFunction<$dartPrototype>()(ptr.ref.lpVtbl, $params);
 
     if (FAILED(hr)) throw WindowsException(hr);
-  ''';
+''';
 
   // Matcher properties
 
@@ -72,47 +63,25 @@ class WinRTSetPropertyProjection extends WinRTPropertyProjection {
       parameters.first.type.typeIdentifier.name == 'Windows.Foundation.Uri';
 
   @override
-  String toString() {
-    try {
-      if (isClassOrInterfaceProperty) {
-        // TODO: declarationFor(WinRTMapSetterProjection.new)
-        // TODO: declarationFor(WinRTMapViewSetterProjection.new)
-        // TODO: declarationFor(WinRTVectorSetterProjection.new)
-        // TODO: declarationFor(WinRTVectorViewSetterProjection.new)
-        if (isUriProperty) return declarationFor(WinRTUriSetterProjection.new);
+  WinRTSetPropertyProjection get projection {
+    // Not sure if there are setters for these in WinMD but just in case...
+    // TODO: WinRTMapSetterProjection(this);
+    // TODO: WinRTMapViewSetterProjection(this);
+    // TODO: WinRTVectorSetterProjection(this);
+    // TODO: WinRTVectorViewSetterProjection(this);
 
-        return isReferenceProperty
-            ? declarationFor(WinRTReferenceSetterProjection.new)
-            : declarationFor(WinRTClassOrInterfaceSetterProjection.new);
-      }
-
-      if (isDateTimeProperty) {
-        return declarationFor(WinRTDateTimeSetterProjection.new);
-      }
-
-      if (isDurationProperty) {
-        return declarationFor(WinRTDurationSetterProjection.new);
-      }
-
-      if (isEnumProperty) return declarationFor(WinRTEnumSetterProjection.new);
-      if (isGuidProperty) return declarationFor(WinRTGuidSetterProjection.new);
-
-      if (isObjectProperty) {
-        return declarationFor(WinRTObjectSetterProjection.new);
-      }
-
-      if (isStringProperty) {
-        return declarationFor(WinRTStringSetterProjection.new);
-      }
-
-      return declarationFor(WinRTDefaultSetterProjection.new);
-    } on Exception {
-      // Print an error if we're unable to project a method, but don't
-      // completely bail out. The rest may be useful.
-
-      // TODO: Fix these errors as they occur.
-      print('Unable to project set property: ${method.name}');
-      return '';
+    if (isDateTimeProperty) return WinRTDateTimeSetterProjection(this);
+    if (isDurationProperty) return WinRTDurationSetterProjection(this);
+    if (isEnumProperty) return WinRTEnumSetterProjection(this);
+    if (isGuidProperty) return WinRTGuidSetterProjection(this);
+    if (isObjectProperty) return WinRTObjectSetterProjection(this);
+    if (isReferenceProperty) return WinRTReferenceSetterProjection(this);
+    if (isStringProperty) return WinRTStringSetterProjection(this);
+    if (isUriProperty) return WinRTUriSetterProjection(this);
+    if (isClassOrInterfaceProperty) {
+      return WinRTClassOrInterfaceSetterProjection(this);
     }
+
+    return WinRTDefaultSetterProjection(this);
   }
 }

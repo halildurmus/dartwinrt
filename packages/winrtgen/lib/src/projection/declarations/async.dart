@@ -2,29 +2,30 @@
 // details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-import '../utils.dart';
+import '../../utils.dart';
 import '../winrt_method.dart';
 import '../winrt_type.dart';
 
 class WinRTAsyncActionMethodProjection extends WinRTMethodProjection {
-  WinRTAsyncActionMethodProjection(super.method, super.vtableOffset);
+  WinRTAsyncActionMethodProjection(WinRTMethodProjection projection)
+      : super(projection.method, projection.vtableOffset);
 
   @override
   String toString() => '''
-      Future<void> $camelCasedName($methodParams) {
-        final retValuePtr = calloc<COMObject>();
-        final completer = Completer<void>();
-        $parametersPreamble
+  Future<void> $camelCasedName($methodParams) {
+    final retValuePtr = calloc<COMObject>();
+    final completer = Completer<void>();
+    $parametersPreamble
 
-        ${ffiCall(freeRetValOnFailure: true)}
+    ${ffiCall(freeRetValOnFailure: true)}
 
-        $parametersPostamble
+    $parametersPostamble
 
-        final asyncAction = IAsyncAction.fromRawPointer(retValuePtr);
-        completeAsyncAction(asyncAction, completer);
+    final asyncAction = IAsyncAction.fromRawPointer(retValuePtr);
+    completeAsyncAction(asyncAction, completer);
 
-        return completer.future;
-      }
+    return completer.future;
+  }
 ''';
 }
 
@@ -98,24 +99,25 @@ mixin _AsyncOperationProjection on WinRTMethodProjection {
 
 class WinRTAsyncOperationMethodProjection extends WinRTMethodProjection
     with _AsyncOperationProjection {
-  WinRTAsyncOperationMethodProjection(super.method, super.vtableOffset);
+  WinRTAsyncOperationMethodProjection(WinRTMethodProjection projection)
+      : super(projection.method, projection.vtableOffset);
 
   @override
   String toString() => '''
-      Future<$futureTypeArg> $camelCasedName($methodParams) {
-        final retValuePtr = calloc<COMObject>();
-        final completer = Completer<$futureTypeArg>();
-        $parametersPreamble
+  Future<$futureTypeArg> $camelCasedName($methodParams) {
+    final retValuePtr = calloc<COMObject>();
+    final completer = Completer<$futureTypeArg>();
+    $parametersPreamble
 
-        ${ffiCall(freeRetValOnFailure: true)}
+    ${ffiCall(freeRetValOnFailure: true)}
 
-        $parametersPostamble
+    $parametersPostamble
 
-        final asyncOperation = IAsyncOperation<$asyncOperationTypeArg>
+    final asyncOperation = IAsyncOperation<$asyncOperationTypeArg>
             .fromRawPointer(retValuePtr$asyncOperationConstructorArgs);
-        completeAsyncOperation(asyncOperation, completer, $onCompletedCallback);
+    completeAsyncOperation(asyncOperation, completer, $onCompletedCallback);
 
-        return completer.future;
-      }
+    return completer.future;
+  }
 ''';
 }
