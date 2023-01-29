@@ -11,7 +11,7 @@ class WinRTDefaultMethodProjection extends WinRTMethodProjection {
   WinRTDefaultMethodProjection(super.method, super.vtableOffset);
 
   @override
-  String get methodDeclaration => '''
+  String get methodProjection => '''
   ${returnType.dartType} $camelCasedName($methodParams) {
     final retValuePtr = calloc<${returnType.nativeType}>();
     $parametersPreamble
@@ -32,7 +32,7 @@ class WinRTDefaultGetterProjection extends WinRTGetPropertyProjection {
   WinRTDefaultGetterProjection(super.method, super.vtableOffset);
 
   @override
-  String get methodDeclaration => '''
+  String get methodProjection => '''
   ${returnType.dartType} get $exposedMethodName {
     final retValuePtr = calloc<${returnType.nativeType}>();
 
@@ -51,7 +51,7 @@ class WinRTDefaultSetterProjection extends WinRTSetPropertyProjection {
   WinRTDefaultSetterProjection(super.method, super.vtableOffset);
 
   @override
-  String get methodDeclaration => '''
+  String get methodProjection => '''
   set $exposedMethodName(${parameters.first.type.dartType} value) {
     ${ffiCall(params: 'value')}
   }

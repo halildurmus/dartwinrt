@@ -15,7 +15,7 @@ class WinRTDateTimeMethodProjection extends WinRTMethodProjection {
   // to or after midnight on January 1, 1601 (according to the Gregorian
   // Calendar).
   @override
-  String get methodDeclaration => '''
+  String get methodProjection => '''
   DateTime $camelCasedName($methodParams) {
     final retValuePtr = calloc<Uint64>();
     $parametersPreamble
@@ -37,7 +37,7 @@ class WinRTDateTimeGetterProjection extends WinRTGetPropertyProjection {
   WinRTDateTimeGetterProjection(super.method, super.vtableOffset);
 
   @override
-  String get methodDeclaration => '''
+  String get methodProjection => '''
   DateTime get $exposedMethodName {
     final retValuePtr = calloc<Uint64>();
 
@@ -57,7 +57,7 @@ class WinRTDateTimeSetterProjection extends WinRTSetPropertyProjection {
   WinRTDateTimeSetterProjection(super.method, super.vtableOffset);
 
   @override
-  String get methodDeclaration => '''
+  String get methodProjection => '''
   set $exposedMethodName(DateTime value) {
     final dateTimeOffset =
         value.difference(DateTime.utc(1601, 01, 01)).inMicroseconds * 10;

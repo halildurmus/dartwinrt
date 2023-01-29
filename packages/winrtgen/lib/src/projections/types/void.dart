@@ -8,7 +8,7 @@ class WinRTVoidMethodProjection extends WinRTMethodProjection {
   WinRTVoidMethodProjection(super.method, super.vtableOffset);
 
   @override
-  String get methodDeclaration => '''
+  String get methodProjection => '''
   void $camelCasedName($methodParams) {
     $parametersPreamble
 

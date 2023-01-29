@@ -10,7 +10,7 @@ class WinRTAsyncActionMethodProjection extends WinRTMethodProjection {
   WinRTAsyncActionMethodProjection(super.method, super.vtableOffset);
 
   @override
-  String get methodDeclaration => '''
+  String get methodProjection => '''
   Future<void> $camelCasedName($methodParams) {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<void>();
@@ -100,7 +100,7 @@ class WinRTAsyncOperationMethodProjection extends WinRTMethodProjection
   WinRTAsyncOperationMethodProjection(super.method, super.vtableOffset);
 
   @override
-  String get methodDeclaration => '''
+  String get methodProjection => '''
   Future<$futureTypeArg> $camelCasedName($methodParams) {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<$futureTypeArg>();

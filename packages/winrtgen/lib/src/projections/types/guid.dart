@@ -11,7 +11,7 @@ class WinRTGuidMethodProjection extends WinRTMethodProjection {
   WinRTGuidMethodProjection(super.method, super.vtableOffset);
 
   @override
-  String get methodDeclaration => '''
+  String get methodProjection => '''
   Guid $camelCasedName($methodParams) {
     final retValuePtr = calloc<GUID>();
     $parametersPreamble
@@ -32,7 +32,7 @@ class WinRTGuidGetterProjection extends WinRTGetPropertyProjection {
   WinRTGuidGetterProjection(super.method, super.vtableOffset);
 
   @override
-  String get methodDeclaration => '''
+  String get methodProjection => '''
   Guid get $exposedMethodName {
     final retValuePtr = calloc<GUID>();
 
@@ -51,7 +51,7 @@ class WinRTGuidSetterProjection extends WinRTSetPropertyProjection {
   WinRTGuidSetterProjection(super.method, super.vtableOffset);
 
   @override
-  String get methodDeclaration => '''
+  String get methodProjection => '''
   set $exposedMethodName(Guid value) {
     final nativeGuidPtr = value.toNativeGUID();
 

@@ -135,18 +135,4 @@ abstract class WinRTMethodProjection extends MethodProjection {
         'if (FAILED(hr)) throw WindowsException(hr);'
     ].join('\n');
   }
-
-  @override
-  String toString() {
-    try {
-      return methodDeclaration.toString();
-    } on Exception {
-      // Print an error if we're unable to project a method, but don't
-      // completely bail out. The rest may be useful.
-
-      // TODO: Fix these errors as they occur.
-      print('Unable to project WinRT method: ${method.name}');
-      return '';
-    }
-  }
 }

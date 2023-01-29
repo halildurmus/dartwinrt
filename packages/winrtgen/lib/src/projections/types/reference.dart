@@ -88,7 +88,7 @@ class WinRTReferenceMethodProjection extends WinRTMethodProjection
   WinRTReferenceMethodProjection(super.method, super.vtableOffset);
 
   @override
-  String get methodDeclaration => '''
+  String get methodProjection => '''
   $referenceTypeArg? $camelCasedName($methodParams) {
     final retValuePtr = calloc<COMObject>();
     $parametersPreamble
@@ -114,7 +114,7 @@ class WinRTReferenceGetterProjection extends WinRTGetPropertyProjection
   WinRTReferenceGetterProjection(super.method, super.vtableOffset);
 
   @override
-  String get methodDeclaration => '''
+  String get methodProjection => '''
   $referenceTypeArg? get $exposedMethodName {
     final retValuePtr = calloc<COMObject>();
 
@@ -137,7 +137,7 @@ class WinRTReferenceSetterProjection extends WinRTSetPropertyProjection
   WinRTReferenceSetterProjection(super.method, super.vtableOffset);
 
   @override
-  String get methodDeclaration => '''
+  String get methodProjection => '''
   set $exposedMethodName($referenceTypeArgFromParameter? value) {
     ${ffiCall(params: 'value == null ? nullptr : $boxValueMethodCall.ref.lpVtbl')}
   }

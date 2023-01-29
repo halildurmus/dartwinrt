@@ -11,7 +11,7 @@ class WinRTDurationMethodProjection extends WinRTMethodProjection {
   WinRTDurationMethodProjection(super.method, super.vtableOffset);
 
   @override
-  String get methodDeclaration => '''
+  String get methodProjection => '''
   Duration $camelCasedName($methodParams) {
     final retValuePtr = calloc<Uint64>();
     $parametersPreamble
@@ -32,7 +32,7 @@ class WinRTDurationGetterProjection extends WinRTGetPropertyProjection {
   WinRTDurationGetterProjection(super.method, super.vtableOffset);
 
   @override
-  String get methodDeclaration => '''
+  String get methodProjection => '''
   Duration get $exposedMethodName {
     final retValuePtr = calloc<Uint64>();
 
@@ -51,7 +51,7 @@ class WinRTDurationSetterProjection extends WinRTSetPropertyProjection {
   WinRTDurationSetterProjection(super.method, super.vtableOffset);
 
   @override
-  String get methodDeclaration => '''
+  String get methodProjection => '''
   set $exposedMethodName(Duration value) {
     final duration = value.inMicroseconds * 10;
 

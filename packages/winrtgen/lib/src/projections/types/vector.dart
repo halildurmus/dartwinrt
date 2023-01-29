@@ -58,7 +58,7 @@ class WinRTVectorMethodProjection extends WinRTMethodProjection
   WinRTVectorMethodProjection(super.method, super.vtableOffset);
 
   @override
-  String get methodDeclaration => '''
+  String get methodProjection => '''
   IVector<$vectorTypeArg> $camelCasedName($methodParams) {
     final retValuePtr = calloc<COMObject>();
     $parametersPreamble
@@ -77,7 +77,7 @@ class WinRTVectorGetterProjection extends WinRTGetPropertyProjection
   WinRTVectorGetterProjection(super.method, super.vtableOffset);
 
   @override
-  String get methodDeclaration => '''
+  String get methodProjection => '''
   IVector<$vectorTypeArg> get $exposedMethodName {
     final retValuePtr = calloc<COMObject>();
 
@@ -93,7 +93,7 @@ class WinRTVectorViewMethodProjection extends WinRTMethodProjection
   WinRTVectorViewMethodProjection(super.method, super.vtableOffset);
 
   @override
-  String get methodDeclaration => '''
+  String get methodProjection => '''
   List<$vectorTypeArg> $camelCasedName($methodParams) {
     final retValuePtr = calloc<COMObject>();
     $parametersPreamble
@@ -117,7 +117,7 @@ class WinRTVectorViewGetterProjection extends WinRTGetPropertyProjection
   WinRTVectorViewGetterProjection(super.method, super.vtableOffset);
 
   @override
-  String get methodDeclaration => '''
+  String get methodProjection => '''
   List<$vectorTypeArg> get $exposedMethodName {
     final retValuePtr = calloc<COMObject>();
 

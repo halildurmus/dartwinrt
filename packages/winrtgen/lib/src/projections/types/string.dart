@@ -11,7 +11,7 @@ class WinRTStringMethodProjection extends WinRTMethodProjection {
   WinRTStringMethodProjection(super.method, super.vtableOffset);
 
   @override
-  String get methodDeclaration {
+  String get methodProjection {
     final overrideAnnotation = camelCasedName == 'toString' ? '@override' : '';
     return '''
   $overrideAnnotation
@@ -37,7 +37,7 @@ class WinRTStringGetterProjection extends WinRTGetPropertyProjection {
   WinRTStringGetterProjection(super.method, super.vtableOffset);
 
   @override
-  String get methodDeclaration => '''
+  String get methodProjection => '''
   String get $exposedMethodName {
     final retValuePtr = calloc<HSTRING>();
 
@@ -57,7 +57,7 @@ class WinRTStringSetterProjection extends WinRTSetPropertyProjection {
   WinRTStringSetterProjection(super.method, super.vtableOffset);
 
   @override
-  String get methodDeclaration => '''
+  String get methodProjection => '''
   set $exposedMethodName(String value) {
     final hstr = convertToHString(value);
 

@@ -21,7 +21,7 @@ class WinRTUriMethodProjection extends WinRTMethodProjection
   WinRTUriMethodProjection(super.method, super.vtableOffset);
 
   @override
-  String get methodDeclaration => '''
+  String get methodProjection => '''
   Uri? $camelCasedName($methodParams) {
     final retValuePtr = calloc<COMObject>();
     $parametersPreamble
@@ -46,7 +46,7 @@ class WinRTUriGetterProjection extends WinRTGetPropertyProjection
   WinRTUriGetterProjection(super.method, super.vtableOffset);
 
   @override
-  String get methodDeclaration => '''
+  String get methodProjection => '''
   Uri? get $exposedMethodName {
     final retValuePtr = calloc<COMObject>();
 
@@ -67,7 +67,7 @@ class WinRTUriSetterProjection extends WinRTSetPropertyProjection {
   WinRTUriSetterProjection(super.method, super.vtableOffset);
 
   @override
-  String get methodDeclaration => '''
+  String get methodProjection => '''
   set $exposedMethodName(Uri? value) {
     final winrtUri =
         value == null ? null : winrt_uri.Uri.createUri(value.toString());

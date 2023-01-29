@@ -60,7 +60,7 @@ class WinRTMapMethodProjection extends WinRTMethodProjection
   WinRTMapMethodProjection(super.method, super.vtableOffset);
 
   @override
-  String get methodDeclaration => '''
+  String get methodProjection => '''
   IMap<$mapTypeArgs> $camelCasedName($methodParams) {
     final retValuePtr = calloc<COMObject>();
     $parametersPreamble
@@ -79,7 +79,7 @@ class WinRTMapGetterProjection extends WinRTGetPropertyProjection
   WinRTMapGetterProjection(super.method, super.vtableOffset);
 
   @override
-  String get methodDeclaration => '''
+  String get methodProjection => '''
   IMap<$mapTypeArgs> get $exposedMethodName {
     final retValuePtr = calloc<COMObject>();
 
@@ -95,7 +95,7 @@ class WinRTMapViewMethodProjection extends WinRTMethodProjection
   WinRTMapViewMethodProjection(super.method, super.vtableOffset);
 
   @override
-  String get methodDeclaration => '''
+  String get methodProjection => '''
   Map<$mapTypeArgs> $camelCasedName($methodParams) {
     final retValuePtr = calloc<COMObject>();
     $parametersPreamble
@@ -117,7 +117,7 @@ class WinRTMapViewGetterProjection extends WinRTGetPropertyProjection
   WinRTMapViewGetterProjection(super.method, super.vtableOffset);
 
   @override
-  String get methodDeclaration => '''
+  String get methodProjection => '''
   Map<$mapTypeArgs> get $exposedMethodName {
     final retValuePtr = calloc<COMObject>();
 
