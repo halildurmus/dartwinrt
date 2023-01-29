@@ -32,9 +32,6 @@ class WinRTInterfaceProjection {
     return WinRTInterfaceProjection(typeDef, comment);
   }
 
-  // ComInterfaceProjection overrides
-
-  // TODO: Find duplicates. This is the "correct" one.
   Set<String> get importsForClass {
     final importList = <String>{};
     final methods = {
