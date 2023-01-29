@@ -37,6 +37,7 @@ mixin _ClassProjection on WinRTMethodProjection {
   }
 }
 
+/// Method projection for methods that return a WinRT class (e.g. `Calendar`).
 class WinRTClassMethodProjection extends WinRTMethodProjection
     with _ClassProjection {
   WinRTClassMethodProjection(super.method, super.vtableOffset);
@@ -58,6 +59,7 @@ class WinRTClassMethodProjection extends WinRTMethodProjection
 ''';
 }
 
+/// Getter projection for WinRT class getters.
 class WinRTClassGetterProjection extends WinRTGetPropertyProjection
     with _ClassProjection {
   WinRTClassGetterProjection(super.method, super.vtableOffset);
@@ -76,6 +78,7 @@ class WinRTClassGetterProjection extends WinRTGetPropertyProjection
 ''';
 }
 
+/// Setter projection for WinRT class setters.
 class WinRTClassSetterProjection extends WinRTSetPropertyProjection
     with _ClassProjection {
   WinRTClassSetterProjection(super.method, super.vtableOffset);
@@ -88,6 +91,7 @@ class WinRTClassSetterProjection extends WinRTSetPropertyProjection
 ''';
 }
 
+/// Parameter projection for WinRT class parameters.
 class WinRTClassParameterProjection extends WinRTParameterProjection {
   WinRTClassParameterProjection(super.method, super.name, super.type);
 

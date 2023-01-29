@@ -55,6 +55,7 @@ mixin _MapProjection on WinRTMethodProjection {
   }
 }
 
+/// Method projection for methods that return an `IMap<K, V>`.
 class WinRTMapMethodProjection extends WinRTMethodProjection
     with _MapProjection {
   WinRTMapMethodProjection(super.method, super.vtableOffset);
@@ -74,6 +75,7 @@ class WinRTMapMethodProjection extends WinRTMethodProjection
 ''';
 }
 
+/// Getter projection for `IMap<K, V>` getters.
 class WinRTMapGetterProjection extends WinRTGetPropertyProjection
     with _MapProjection {
   WinRTMapGetterProjection(super.method, super.vtableOffset);
@@ -90,6 +92,8 @@ class WinRTMapGetterProjection extends WinRTGetPropertyProjection
 ''';
 }
 
+/// Method projection for methods that return an `IMapView<K, V>` (exposed as
+/// `Map<K, V>`).
 class WinRTMapViewMethodProjection extends WinRTMethodProjection
     with _MapProjection {
   WinRTMapViewMethodProjection(super.method, super.vtableOffset);
@@ -112,6 +116,7 @@ class WinRTMapViewMethodProjection extends WinRTMethodProjection
 ''';
 }
 
+/// Getter projection for `IMapView<K, V>` (exposed as `Map<K, V>`) getters.
 class WinRTMapViewGetterProjection extends WinRTGetPropertyProjection
     with _MapProjection {
   WinRTMapViewGetterProjection(super.method, super.vtableOffset);

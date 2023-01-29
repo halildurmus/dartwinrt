@@ -53,6 +53,7 @@ mixin _VectorProjection on WinRTMethodProjection {
   }
 }
 
+/// Method projection for methods that return an `IVector<T>`.
 class WinRTVectorMethodProjection extends WinRTMethodProjection
     with _VectorProjection {
   WinRTVectorMethodProjection(super.method, super.vtableOffset);
@@ -72,6 +73,7 @@ class WinRTVectorMethodProjection extends WinRTMethodProjection
 ''';
 }
 
+/// Getter projection for `IVector<T>` getters.
 class WinRTVectorGetterProjection extends WinRTGetPropertyProjection
     with _VectorProjection {
   WinRTVectorGetterProjection(super.method, super.vtableOffset);
@@ -88,6 +90,8 @@ class WinRTVectorGetterProjection extends WinRTGetPropertyProjection
 ''';
 }
 
+/// Method projection for methods that return an `IVectorView<T>` (exposed as
+/// `List<T>`).
 class WinRTVectorViewMethodProjection extends WinRTMethodProjection
     with _VectorProjection {
   WinRTVectorViewMethodProjection(super.method, super.vtableOffset);
@@ -112,6 +116,7 @@ class WinRTVectorViewMethodProjection extends WinRTMethodProjection
 ''';
 }
 
+/// Getter projection for `IVectorView<T>` (exposed as `List<T>`) getters.
 class WinRTVectorViewGetterProjection extends WinRTGetPropertyProjection
     with _VectorProjection {
   WinRTVectorViewGetterProjection(super.method, super.vtableOffset);

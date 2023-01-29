@@ -7,6 +7,7 @@ import '../winrt_method.dart';
 import '../winrt_parameter.dart';
 import '../winrt_set_property.dart';
 
+/// Method projection for methods that return a `DateTime`.
 class WinRTDateTimeMethodProjection extends WinRTMethodProjection {
   WinRTDateTimeMethodProjection(super.method, super.vtableOffset);
 
@@ -33,6 +34,7 @@ class WinRTDateTimeMethodProjection extends WinRTMethodProjection {
 ''';
 }
 
+/// Getter projection for `DateTime` getters.
 class WinRTDateTimeGetterProjection extends WinRTGetPropertyProjection {
   WinRTDateTimeGetterProjection(super.method, super.vtableOffset);
 
@@ -53,6 +55,7 @@ class WinRTDateTimeGetterProjection extends WinRTGetPropertyProjection {
 ''';
 }
 
+/// Setter projection for `DateTime` setters.
 class WinRTDateTimeSetterProjection extends WinRTSetPropertyProjection {
   WinRTDateTimeSetterProjection(super.method, super.vtableOffset);
 
@@ -67,6 +70,7 @@ class WinRTDateTimeSetterProjection extends WinRTSetPropertyProjection {
 ''';
 }
 
+/// Parameter projection for `DateTime` parameters.
 class WinRTDateTimeParameterProjection extends WinRTParameterProjection {
   WinRTDateTimeParameterProjection(super.method, super.name, super.type);
 

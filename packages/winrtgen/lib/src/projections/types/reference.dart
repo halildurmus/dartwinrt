@@ -83,6 +83,8 @@ mixin _ReferenceProjection on WinRTMethodProjection {
 ''';
 }
 
+/// Method projection for methods that return an `IReference<T>` (exposed as
+/// `T?`).
 class WinRTReferenceMethodProjection extends WinRTMethodProjection
     with _ReferenceProjection {
   WinRTReferenceMethodProjection(super.method, super.vtableOffset);
@@ -109,6 +111,7 @@ class WinRTReferenceMethodProjection extends WinRTMethodProjection
 ''';
 }
 
+/// Getter projection for `IReference<T>` (exposed as `T?`) getters.
 class WinRTReferenceGetterProjection extends WinRTGetPropertyProjection
     with _ReferenceProjection {
   WinRTReferenceGetterProjection(super.method, super.vtableOffset);
@@ -132,6 +135,7 @@ class WinRTReferenceGetterProjection extends WinRTGetPropertyProjection
 ''';
 }
 
+/// Setter projection for `IReference<T>` (exposed as `T?`) setters.
 class WinRTReferenceSetterProjection extends WinRTSetPropertyProjection
     with _ReferenceProjection {
   WinRTReferenceSetterProjection(super.method, super.vtableOffset);
@@ -144,6 +148,7 @@ class WinRTReferenceSetterProjection extends WinRTSetPropertyProjection
 ''';
 }
 
+/// Parameter projection for `IReference<T>` (exposed as `T?`) parameters.
 class WinRTReferenceParameterProjection extends WinRTParameterProjection {
   WinRTReferenceParameterProjection(super.method, super.name, super.type);
 

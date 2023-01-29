@@ -6,6 +6,8 @@ import '../winrt_get_property.dart';
 import '../winrt_method.dart';
 import '../winrt_set_property.dart';
 
+/// Method projection for methods that return a WinRT delegate (e.g.
+/// `AsyncActionCompletedHandler`).
 class WinRTDelegateMethodProjection extends WinRTMethodProjection {
   WinRTDelegateMethodProjection(super.method, super.vtableOffset);
 
@@ -27,6 +29,7 @@ class WinRTDelegateMethodProjection extends WinRTMethodProjection {
 ''';
 }
 
+/// Getter projection for WinRT delegate getters.
 class WinRTDelegateGetterProjection extends WinRTGetPropertyProjection {
   WinRTDelegateGetterProjection(super.method, super.vtableOffset);
 
@@ -46,6 +49,7 @@ class WinRTDelegateGetterProjection extends WinRTGetPropertyProjection {
 ''';
 }
 
+/// Setter projection for WinRT delegate setters.
 class WinRTDelegateSetterProjection extends WinRTSetPropertyProjection {
   WinRTDelegateSetterProjection(super.method, super.vtableOffset);
 

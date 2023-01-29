@@ -6,6 +6,7 @@ import '../winrt_get_property.dart';
 import '../winrt_method.dart';
 import '../winrt_set_property.dart';
 
+/// Method projection for methods that return a WinRT struct (e.g. `Point`).
 class WinRTStructMethodProjection extends WinRTMethodProjection {
   WinRTStructMethodProjection(super.method, super.vtableOffset);
 
@@ -22,6 +23,7 @@ class WinRTStructMethodProjection extends WinRTMethodProjection {
 ''';
 }
 
+/// Getter projection for WinRT struct getters.
 class WinRTStructGetterProjection extends WinRTGetPropertyProjection {
   WinRTStructGetterProjection(super.method, super.vtableOffset);
 
@@ -37,6 +39,7 @@ class WinRTStructGetterProjection extends WinRTGetPropertyProjection {
 ''';
 }
 
+/// Setter projection for WinRT struct setters.
 class WinRTStructSetterProjection extends WinRTSetPropertyProjection {
   WinRTStructSetterProjection(super.method, super.vtableOffset);
 

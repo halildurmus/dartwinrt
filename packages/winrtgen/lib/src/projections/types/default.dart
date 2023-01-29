@@ -7,6 +7,7 @@ import '../winrt_method.dart';
 import '../winrt_parameter.dart';
 import '../winrt_set_property.dart';
 
+/// Default method projection for methods.
 class WinRTDefaultMethodProjection extends WinRTMethodProjection {
   WinRTDefaultMethodProjection(super.method, super.vtableOffset);
 
@@ -28,6 +29,7 @@ class WinRTDefaultMethodProjection extends WinRTMethodProjection {
 ''';
 }
 
+/// Default getter projection for getters.
 class WinRTDefaultGetterProjection extends WinRTGetPropertyProjection {
   WinRTDefaultGetterProjection(super.method, super.vtableOffset);
 
@@ -47,6 +49,7 @@ class WinRTDefaultGetterProjection extends WinRTGetPropertyProjection {
 ''';
 }
 
+/// Default setter projection for setters.
 class WinRTDefaultSetterProjection extends WinRTSetPropertyProjection {
   WinRTDefaultSetterProjection(super.method, super.vtableOffset);
 
@@ -58,6 +61,7 @@ class WinRTDefaultSetterProjection extends WinRTSetPropertyProjection {
 ''';
 }
 
+/// Default parameter projection for parameters.
 class WinRTDefaultParameterProjection extends WinRTParameterProjection {
   WinRTDefaultParameterProjection(super.method, super.name, super.type);
 

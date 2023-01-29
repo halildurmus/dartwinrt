@@ -7,6 +7,7 @@ import '../winrt_method.dart';
 import '../winrt_parameter.dart';
 import '../winrt_set_property.dart';
 
+/// Method projection for methods that return a WinRT enum (e.g. `AsyncStatus`).
 class WinRTEnumMethodProjection extends WinRTMethodProjection {
   WinRTEnumMethodProjection(super.method, super.vtableOffset);
 
@@ -28,6 +29,7 @@ class WinRTEnumMethodProjection extends WinRTMethodProjection {
 ''';
 }
 
+/// Getter projection for WinRT enum getters.
 class WinRTEnumGetterProjection extends WinRTGetPropertyProjection {
   WinRTEnumGetterProjection(super.method, super.vtableOffset);
 
@@ -47,6 +49,7 @@ class WinRTEnumGetterProjection extends WinRTGetPropertyProjection {
 ''';
 }
 
+/// Setter projection for WinRT enum setters.
 class WinRTEnumSetterProjection extends WinRTSetPropertyProjection {
   WinRTEnumSetterProjection(super.method, super.vtableOffset);
 
@@ -58,6 +61,7 @@ class WinRTEnumSetterProjection extends WinRTSetPropertyProjection {
 ''';
 }
 
+/// Parameter projection for WinRT enum parameters.
 class WinRTEnumParameterProjection extends WinRTParameterProjection {
   WinRTEnumParameterProjection(super.method, super.name, super.type);
 

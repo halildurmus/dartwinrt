@@ -7,6 +7,7 @@ import '../winrt_method.dart';
 import '../winrt_parameter.dart';
 import '../winrt_set_property.dart';
 
+/// Method projection for methods that return a `String`.
 class WinRTStringMethodProjection extends WinRTMethodProjection {
   WinRTStringMethodProjection(super.method, super.vtableOffset);
 
@@ -33,6 +34,7 @@ class WinRTStringMethodProjection extends WinRTMethodProjection {
   }
 }
 
+/// Getter projection for `String` getters.
 class WinRTStringGetterProjection extends WinRTGetPropertyProjection {
   WinRTStringGetterProjection(super.method, super.vtableOffset);
 
@@ -53,6 +55,7 @@ class WinRTStringGetterProjection extends WinRTGetPropertyProjection {
 ''';
 }
 
+/// Setter projection for `String` setters.
 class WinRTStringSetterProjection extends WinRTSetPropertyProjection {
   WinRTStringSetterProjection(super.method, super.vtableOffset);
 
@@ -70,6 +73,7 @@ class WinRTStringSetterProjection extends WinRTSetPropertyProjection {
 ''';
 }
 
+/// Parameter projection for `String` parameters.
 class WinRTStringParameterProjection extends WinRTParameterProjection {
   WinRTStringParameterProjection(super.method, super.name, super.type);
 

@@ -16,6 +16,7 @@ mixin _UriProjection on WinRTMethodProjection {
 ''';
 }
 
+/// Method projection for methods that return an `Uri`.
 class WinRTUriMethodProjection extends WinRTMethodProjection
     with _UriProjection {
   WinRTUriMethodProjection(super.method, super.vtableOffset);
@@ -41,6 +42,7 @@ class WinRTUriMethodProjection extends WinRTMethodProjection
 ''';
 }
 
+/// Getter projection for `Uri` getters.
 class WinRTUriGetterProjection extends WinRTGetPropertyProjection
     with _UriProjection {
   WinRTUriGetterProjection(super.method, super.vtableOffset);
@@ -63,6 +65,7 @@ class WinRTUriGetterProjection extends WinRTGetPropertyProjection
 ''';
 }
 
+/// Setter projection for `Uri` setters.
 class WinRTUriSetterProjection extends WinRTSetPropertyProjection {
   WinRTUriSetterProjection(super.method, super.vtableOffset);
 
@@ -81,6 +84,7 @@ class WinRTUriSetterProjection extends WinRTSetPropertyProjection {
 ''';
 }
 
+/// Parameter projection for `Uri` parameters.
 class WinRTUriParameterProjection extends WinRTParameterProjection {
   WinRTUriParameterProjection(super.method, super.name, super.type);
 

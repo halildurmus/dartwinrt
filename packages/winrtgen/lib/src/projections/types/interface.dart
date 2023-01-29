@@ -56,6 +56,8 @@ mixin _InterfaceProjection on WinRTMethodProjection {
   }
 }
 
+/// Method projection for methods that return a WinRT interface (e.g.
+/// `ICalendar`).
 class WinRTInterfaceMethodProjection extends WinRTMethodProjection
     with _InterfaceProjection {
   WinRTInterfaceMethodProjection(super.method, super.vtableOffset);
@@ -77,6 +79,7 @@ class WinRTInterfaceMethodProjection extends WinRTMethodProjection
 ''';
 }
 
+/// Getter projection for WinRT interface getters.
 class WinRTInterfaceGetterProjection extends WinRTGetPropertyProjection
     with _InterfaceProjection {
   WinRTInterfaceGetterProjection(super.method, super.vtableOffset);
@@ -95,6 +98,7 @@ class WinRTInterfaceGetterProjection extends WinRTGetPropertyProjection
 ''';
 }
 
+/// Setter projection for WinRT interface setters.
 class WinRTInterfaceSetterProjection extends WinRTSetPropertyProjection
     with _InterfaceProjection {
   WinRTInterfaceSetterProjection(super.method, super.vtableOffset);
@@ -107,6 +111,7 @@ class WinRTInterfaceSetterProjection extends WinRTSetPropertyProjection
 ''';
 }
 
+/// Parameter projection for WinRT interface parameters.
 class WinRTInterfaceParameterProjection extends WinRTParameterProjection {
   WinRTInterfaceParameterProjection(super.method, super.name, super.type);
 

@@ -7,6 +7,7 @@ import '../winrt_method.dart';
 import '../winrt_parameter.dart';
 import '../winrt_set_property.dart';
 
+/// Method projection for methods that return a `Guid`.
 class WinRTGuidMethodProjection extends WinRTMethodProjection {
   WinRTGuidMethodProjection(super.method, super.vtableOffset);
 
@@ -28,6 +29,7 @@ class WinRTGuidMethodProjection extends WinRTMethodProjection {
 ''';
 }
 
+/// Getter projection for `Guid` getters.
 class WinRTGuidGetterProjection extends WinRTGetPropertyProjection {
   WinRTGuidGetterProjection(super.method, super.vtableOffset);
 
@@ -47,6 +49,7 @@ class WinRTGuidGetterProjection extends WinRTGetPropertyProjection {
 ''';
 }
 
+/// Setter projection for `Guid` setters.
 class WinRTGuidSetterProjection extends WinRTSetPropertyProjection {
   WinRTGuidSetterProjection(super.method, super.vtableOffset);
 
@@ -64,6 +67,7 @@ class WinRTGuidSetterProjection extends WinRTSetPropertyProjection {
 ''';
 }
 
+/// Parameter projection for `Guid` parameters.
 class WinRTGuidParameterProjection extends WinRTParameterProjection {
   WinRTGuidParameterProjection(super.method, super.name, super.type);
 

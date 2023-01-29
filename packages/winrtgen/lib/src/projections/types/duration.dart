@@ -7,6 +7,7 @@ import '../winrt_method.dart';
 import '../winrt_parameter.dart';
 import '../winrt_set_property.dart';
 
+/// Method projection for methods that return a `Duration`.
 class WinRTDurationMethodProjection extends WinRTMethodProjection {
   WinRTDurationMethodProjection(super.method, super.vtableOffset);
 
@@ -28,6 +29,7 @@ class WinRTDurationMethodProjection extends WinRTMethodProjection {
 ''';
 }
 
+/// Getter projection for `Duration` getters.
 class WinRTDurationGetterProjection extends WinRTGetPropertyProjection {
   WinRTDurationGetterProjection(super.method, super.vtableOffset);
 
@@ -47,6 +49,7 @@ class WinRTDurationGetterProjection extends WinRTGetPropertyProjection {
 ''';
 }
 
+/// Setter projection for `Duration` setters.
 class WinRTDurationSetterProjection extends WinRTSetPropertyProjection {
   WinRTDurationSetterProjection(super.method, super.vtableOffset);
 
@@ -60,6 +63,7 @@ class WinRTDurationSetterProjection extends WinRTSetPropertyProjection {
 ''';
 }
 
+/// Parameter projection for `Duration` parameters.
 class WinRTDurationParameterProjection extends WinRTParameterProjection {
   WinRTDurationParameterProjection(super.method, super.name, super.type);
 

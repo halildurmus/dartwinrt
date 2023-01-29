@@ -45,6 +45,7 @@ mixin _ObjectProjection on WinRTMethodProjection {
   }
 }
 
+/// Method projection for methods that return an `Object`.
 class WinRTObjectMethodProjection extends WinRTMethodProjection
     with _ObjectProjection {
   WinRTObjectMethodProjection(super.method, super.vtableOffset);
@@ -66,6 +67,7 @@ class WinRTObjectMethodProjection extends WinRTMethodProjection
 ''';
 }
 
+/// Getter projection for `Object` getters.
 class WinRTObjectGetterProjection extends WinRTGetPropertyProjection
     with _ObjectProjection {
   WinRTObjectGetterProjection(super.method, super.vtableOffset);
@@ -84,6 +86,7 @@ class WinRTObjectGetterProjection extends WinRTGetPropertyProjection
 ''';
 }
 
+/// Setter projection for `Object` setters.
 class WinRTObjectSetterProjection extends WinRTSetPropertyProjection
     with _ObjectProjection {
   WinRTObjectSetterProjection(super.method, super.vtableOffset);
@@ -96,6 +99,7 @@ class WinRTObjectSetterProjection extends WinRTSetPropertyProjection
 ''';
 }
 
+/// Parameter projection for `Object` parameters.
 class WinRTObjectParameterProjection extends WinRTParameterProjection {
   WinRTObjectParameterProjection(super.method, super.name, super.type);
 

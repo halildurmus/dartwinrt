@@ -4,6 +4,7 @@
 
 import '../winrt_method.dart';
 
+/// Method projection for `void` methods.
 class WinRTVoidMethodProjection extends WinRTMethodProjection {
   WinRTVoidMethodProjection(super.method, super.vtableOffset);
 

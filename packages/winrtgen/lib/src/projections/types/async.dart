@@ -6,6 +6,7 @@ import '../../utils.dart';
 import '../type.dart';
 import '../winrt_method.dart';
 
+/// Method projection for methods that return an `IAsyncAction`.
 class WinRTAsyncActionMethodProjection extends WinRTMethodProjection {
   WinRTAsyncActionMethodProjection(super.method, super.vtableOffset);
 
@@ -95,6 +96,7 @@ mixin _AsyncOperationProjection on WinRTMethodProjection {
   }
 }
 
+/// Method projection for methods that return `IAsyncOperation<TResult>`.
 class WinRTAsyncOperationMethodProjection extends WinRTMethodProjection
     with _AsyncOperationProjection {
   WinRTAsyncOperationMethodProjection(super.method, super.vtableOffset);
