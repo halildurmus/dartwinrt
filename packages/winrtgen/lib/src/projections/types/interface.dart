@@ -122,12 +122,8 @@ class WinRTInterfaceParameterProjection extends WinRTParameterProjection {
       return paramType == 'Pointer<COMObject>' ? identifier : '$identifier.ptr';
     }
 
-    // if (type.nativeType == 'LPVTBL') {
     return paramType.endsWith('?')
         ? '$name == null ? nullptr : $name.ptr.ref.lpVtbl'
         : '$name.ptr.ref.lpVtbl';
-    // }
-
-    // return '';
   }
 }
