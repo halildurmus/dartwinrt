@@ -103,8 +103,7 @@ class IJsonArray extends IInspectable implements IJsonValue {
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      final retValue = retValuePtr.toDartString();
-      return retValue;
+      return retValuePtr.toDartString();
     } finally {
       WindowsDeleteString(retValuePtr.value);
       free(retValuePtr);
@@ -128,8 +127,7 @@ class IJsonArray extends IInspectable implements IJsonValue {
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      final retValue = retValuePtr.value;
-      return retValue;
+      return retValuePtr.value;
     } finally {
       free(retValuePtr);
     }
@@ -152,8 +150,7 @@ class IJsonArray extends IInspectable implements IJsonValue {
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      final retValue = retValuePtr.value;
-      return retValue;
+      return retValuePtr.value;
     } finally {
       free(retValuePtr);
     }

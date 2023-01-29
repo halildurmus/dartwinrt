@@ -51,8 +51,7 @@ class IPhoneNumberFormatter extends IInspectable {
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      final retValue = retValuePtr.toDartString();
-      return retValue;
+      return retValuePtr.toDartString();
     } finally {
       WindowsDeleteString(retValuePtr.value);
       free(retValuePtr);
@@ -82,8 +81,7 @@ class IPhoneNumberFormatter extends IInspectable {
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      final retValue = retValuePtr.toDartString();
-      return retValue;
+      return retValuePtr.toDartString();
     } finally {
       WindowsDeleteString(retValuePtr.value);
       free(retValuePtr);
@@ -108,8 +106,7 @@ class IPhoneNumberFormatter extends IInspectable {
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      final retValue = retValuePtr.toDartString();
-      return retValue;
+      return retValuePtr.toDartString();
     } finally {
       WindowsDeleteString(numberHString);
       WindowsDeleteString(retValuePtr.value);
@@ -135,8 +132,7 @@ class IPhoneNumberFormatter extends IInspectable {
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      final retValue = retValuePtr.toDartString();
-      return retValue;
+      return retValuePtr.toDartString();
     } finally {
       WindowsDeleteString(numberHString);
       WindowsDeleteString(retValuePtr.value);
@@ -162,8 +158,7 @@ class IPhoneNumberFormatter extends IInspectable {
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      final retValue = retValuePtr.toDartString();
-      return retValue;
+      return retValuePtr.toDartString();
     } finally {
       WindowsDeleteString(numberHString);
       WindowsDeleteString(retValuePtr.value);

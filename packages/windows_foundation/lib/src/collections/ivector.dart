@@ -322,8 +322,7 @@ class IVector<T> extends IInspectable implements IIterable<T> {
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      final retValue = retValuePtr.toDartString();
-      return retValue;
+      return retValuePtr.toDartString();
     } finally {
       WindowsDeleteString(retValuePtr.value);
       free(retValuePtr);

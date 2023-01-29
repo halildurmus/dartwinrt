@@ -76,8 +76,7 @@ class IToastNotification3 extends IInspectable {
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      final retValue = retValuePtr.toDartString();
-      return retValue;
+      return retValuePtr.toDartString();
     } finally {
       WindowsDeleteString(retValuePtr.value);
       free(retValuePtr);
