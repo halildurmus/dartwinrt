@@ -14,7 +14,7 @@ void main() {
         MetadataStore.getMetadataForType('Windows.Globalization.ICalendar')!;
     final typeDef = scope.findMethod('GetDateTime')!;
     final dateTime = typeDef.returnType.typeIdentifier;
-    final typeProjection = WinRTTypeProjection(dateTime);
+    final typeProjection = TypeProjection(dateTime);
 
     // TODO: Test assumption that this is passed on the wire as a Uint64.
     expect(typeProjection.dartType, equals('int'));
@@ -27,7 +27,7 @@ void main() {
         'Windows.UI.Notifications.IToastNotification')!;
     final method = scope.findMethod('remove_Dismissed')!;
     final token = method.parameters.first;
-    final typeProjection = WinRTTypeProjection(token.typeIdentifier);
+    final typeProjection = TypeProjection(token.typeIdentifier);
 
     expect(typeProjection.dartType, equals('int'));
     expect(typeProjection.nativeType, equals('IntPtr'));
@@ -39,7 +39,7 @@ void main() {
         'Windows.UI.Notifications.ToastNotification')!;
     final method = winTypeDef.findMethod('add_Activated')!;
     final param = method.parameters.first;
-    final projection = WinRTTypeProjection(param.typeIdentifier);
+    final projection = TypeProjection(param.typeIdentifier);
 
     // TypedEventHandler<ToastNotification, object>
     expect(projection.projection.dartType,
@@ -56,14 +56,14 @@ void main() {
     expect(valueSizeParam.name, equals('__valueSize'));
 
     final valueSizeParamProjection =
-        WinRTTypeProjection(valueSizeParam.typeIdentifier);
+        TypeProjection(valueSizeParam.typeIdentifier);
     expect(valueSizeParamProjection.dartType, equals('int'));
     expect(valueSizeParamProjection.nativeType, equals('Uint32'));
     expect(valueSizeParamProjection.isDartPrimitive, isTrue);
 
     final valueParam = method.parameters.last;
     expect(valueParam.name, equals('value'));
-    final valueParamProjection = WinRTTypeProjection(valueParam.typeIdentifier);
+    final valueParamProjection = TypeProjection(valueParam.typeIdentifier);
     expect(valueParamProjection.dartType, equals('Pointer<Uint8>'));
     expect(valueParamProjection.nativeType, equals('Pointer<Uint8>'));
     expect(valueParamProjection.isDartPrimitive, isTrue);
@@ -82,14 +82,14 @@ void main() {
     final valueSizeParam = method.parameters.first;
     expect(valueSizeParam.name, equals('__valueSize'));
     final valueSizeParamProjection =
-        WinRTTypeProjection(valueSizeParam.typeIdentifier);
+        TypeProjection(valueSizeParam.typeIdentifier);
     expect(valueSizeParamProjection.dartType, equals('Pointer<Uint32>'));
     expect(valueSizeParamProjection.nativeType, equals('Pointer<Uint32>'));
     expect(valueSizeParamProjection.isDartPrimitive, isTrue);
 
     final valueParam = method.parameters.last;
     expect(valueParam.name, equals('value'));
-    final valueParamProjection = WinRTTypeProjection(valueParam.typeIdentifier);
+    final valueParamProjection = TypeProjection(valueParam.typeIdentifier);
     expect(
         valueParamProjection.dartType, equals('Pointer<Pointer<COMObject>>'));
     expect(
@@ -110,14 +110,14 @@ void main() {
     final valueSizeParam = method.parameters.first;
     expect(valueSizeParam.name, equals('__valueSize'));
     final valueSizeParamProjection =
-        WinRTTypeProjection(valueSizeParam.typeIdentifier);
+        TypeProjection(valueSizeParam.typeIdentifier);
     expect(valueSizeParamProjection.dartType, equals('Pointer<Uint32>'));
     expect(valueSizeParamProjection.nativeType, equals('Pointer<Uint32>'));
     expect(valueSizeParamProjection.isDartPrimitive, isTrue);
 
     final valueParam = method.parameters.last;
     expect(valueParam.name, equals('value'));
-    final valueParamProjection = WinRTTypeProjection(valueParam.typeIdentifier);
+    final valueParamProjection = TypeProjection(valueParam.typeIdentifier);
     expect(valueParamProjection.dartType, equals('Pointer<Pointer<Uint8>>'));
     expect(valueParamProjection.nativeType, equals('Pointer<Pointer<Uint8>>'));
     expect(valueParamProjection.isDartPrimitive, isTrue);

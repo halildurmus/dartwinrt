@@ -130,8 +130,7 @@ class IJsonObjectWithDefaultValues extends IInspectable
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      final retValue = retValuePtr.toDartString();
-      return retValue;
+      return retValuePtr.toDartString();
     } finally {
       WindowsDeleteString(nameHString);
       WindowsDeleteString(defaultValueHString);
@@ -196,8 +195,7 @@ class IJsonObjectWithDefaultValues extends IInspectable
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      final retValue = retValuePtr.value;
-      return retValue;
+      return retValuePtr.value;
     } finally {
       WindowsDeleteString(nameHString);
 
@@ -226,8 +224,7 @@ class IJsonObjectWithDefaultValues extends IInspectable
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      final retValue = retValuePtr.value;
-      return retValue;
+      return retValuePtr.value;
     } finally {
       WindowsDeleteString(nameHString);
 

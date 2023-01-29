@@ -34,24 +34,21 @@ class IUISettings3 extends IInspectable {
   Color getColorValue(UIColorType desiredColor) {
     final retValuePtr = calloc<Color>();
 
-    try {
-      final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              Pointer, Int32 desiredColor, Pointer<Color>)>>>()
-              .value
-              .asFunction<
-                  int Function(Pointer, int desiredColor, Pointer<Color>)>()(
-          ptr.ref.lpVtbl, desiredColor.value, retValuePtr);
+    final hr = ptr.ref.vtable
+            .elementAt(6)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            Pointer, Int32 desiredColor, Pointer<Color>)>>>()
+            .value
+            .asFunction<
+                int Function(Pointer, int desiredColor, Pointer<Color>)>()(
+        ptr.ref.lpVtbl, desiredColor.value, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throw WindowsException(hr);
 
-      final retValue = retValuePtr.ref;
-      return retValue;
-    } finally {}
+    return retValuePtr.ref;
   }
 
   int add_ColorValuesChanged(
@@ -77,8 +74,7 @@ class IUISettings3 extends IInspectable {
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      final retValue = retValuePtr.value;
-      return retValue;
+      return retValuePtr.value;
     } finally {
       free(retValuePtr);
     }

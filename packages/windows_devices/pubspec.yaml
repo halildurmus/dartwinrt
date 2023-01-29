@@ -3,7 +3,7 @@ description: Provides classes for enumerating devices, getting the current
   location or tracking the device's location over time, and getting
   detailed battery information.
 version: 0.0.1
-homepage: https://dartwinrt.pub
+homepage: https://dartwinrt.dev
 repository: https://github.com/halildurmus/dartwinrt
 issue_tracker: https://github.com/halildurmus/dartwinrt/issues?q=is%3Aopen+is%3Aissue+label%3A%22p%3A+windows_devices%22
 publish_to: none # TODO: Remove this

@@ -5,11 +5,70 @@
 @TestOn('windows')
 
 import 'package:test/test.dart';
-import 'package:win32gen/win32gen.dart';
 import 'package:winmd/winmd.dart';
 import 'package:winrtgen/winrtgen.dart';
 
 void main() {
+  test('toCamelCase', () {
+    expect('TitleCase'.toCamelCase(), equals('titleCase'));
+    expect('camelCase'.toCamelCase(), equals('camelCase'));
+    expect('IPAddress'.toCamelCase(), equals('ipAddress'));
+    expect('UInt32'.toCamelCase(), equals('uint32'));
+    expect(''.toCamelCase(), equals(''));
+  });
+
+  test('lastComponent', () {
+    expect(lastComponent('Windows.Globalization.Calendar'), equals('Calendar'));
+    expect(lastComponent('Windows.Foundation.Collections.IVector`1'),
+        equals('IVector`1'));
+  });
+
+  test('safeIdentifierForString', () {
+    expect(safeIdentifierForString('null'), equals('null_'));
+    expect(safeIdentifierForString('double'), equals('double_'));
+    expect(safeIdentifierForString('__valueSize'), equals('valueSize'));
+  });
+
+  test('sortImports', () {
+    expect(
+        sortImports([
+          "import 'fileproperties/basicproperties.dart';",
+          "import 'dart:ffi';",
+          "import 'package:ffi/ffi.dart';",
+          "import 'enums.g.dart';",
+          "import 'dart:async';",
+          "import 'package:win32/win32.dart';",
+          "import 'istoragefile.dart';",
+          "import 'istoragefilestatics.dart';",
+          "import 'istorageitem.dart';",
+        ]),
+        orderedEquals([
+          "import 'dart:async';",
+          "import 'dart:ffi';",
+          '',
+          "import 'package:ffi/ffi.dart';",
+          "import 'package:win32/win32.dart';",
+          '',
+          "import 'enums.g.dart';",
+          "import 'fileproperties/basicproperties.dart';",
+          "import 'istoragefile.dart';",
+          "import 'istoragefilestatics.dart';",
+          "import 'istorageitem.dart';",
+        ]));
+  });
+
+  test('stripGenerics', () {
+    expect(stripGenerics('TypedEventHandler`2'), equals('TypedEventHandler'));
+    expect(stripGenerics('LicenseChangedEventHandler'),
+        equals('LicenseChangedEventHandler'));
+  });
+
+  test('stripLeadingUnderscores', () {
+    expect(stripLeadingUnderscores('_leading'), equals('leading'));
+    expect(stripLeadingUnderscores('__valueSize'), equals('valueSize'));
+    expect(stripLeadingUnderscores('noUnderscore'), equals('noUnderscore'));
+  });
+
   test('nullable', () {
     expect(nullable('StorageFile'), equals('StorageFile?'));
     expect(nullable('Calendar?'), equals('Calendar?'));
@@ -893,5 +952,21 @@ void main() {
             ],
           )
         ]));
+  });
+
+  test('wrapCommentText', () {
+    expect(wrapCommentText('', 12), isEmpty);
+
+    expect(wrapCommentText('This is a short string', 8),
+        equals('/// This\n/// is a\n/// short\n/// string'));
+
+    expect(wrapCommentText('This is a short string', 12),
+        equals('/// This is\n/// a short\n/// string'));
+
+    expect(wrapCommentText('This is a short string', 20),
+        equals('/// This is a short\n/// string'));
+
+    expect(wrapCommentText('This is a short string', 200),
+        equals('/// This is a short string'));
   });
 }

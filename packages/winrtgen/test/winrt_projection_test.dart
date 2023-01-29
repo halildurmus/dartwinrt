@@ -19,7 +19,7 @@ void main() {
 
     final method = winTypeDef.findMethod('put_ViewMode')!;
     final classType = method.parameters.first.typeIdentifier;
-    final typeProjection = WinRTTypeProjection(classType);
+    final typeProjection = TypeProjection(classType);
 
     expect(typeProjection.isWrappedValueType, isTrue);
   });
@@ -29,8 +29,7 @@ void main() {
         MetadataStore.getMetadataForType('Windows.Media.Playback.MediaPlayer')!;
 
     final method = winTypeDef.findMethod('get_Source')!;
-    final typeProjection =
-        WinRTTypeProjection(method.returnType.typeIdentifier);
+    final typeProjection = TypeProjection(method.returnType.typeIdentifier);
     expect(typeProjection.dartType, equals('Pointer<COMObject>'));
     expect(typeProjection.nativeType, equals('Pointer<COMObject>'));
     expect(typeProjection.methodParamType, equals('IMediaPlaybackSource?'));
@@ -42,7 +41,7 @@ void main() {
 
     final method = winTypeDef.findMethod('put_Completed')!;
     final typeProjection =
-        WinRTTypeProjection(method.parameters.first.typeIdentifier);
+        TypeProjection(method.parameters.first.typeIdentifier);
     expect(typeProjection.dartType,
         equals('Pointer<NativeFunction<AsyncActionCompletedHandler>>'));
     expect(typeProjection.nativeType,
@@ -57,7 +56,7 @@ void main() {
     final method = winTypeDef!.findMethod('GetString');
     expect(method, isNotNull);
     final typeIdentifier = method!.returnType.typeIdentifier;
-    final typeProjection = WinRTTypeProjection(typeIdentifier);
+    final typeProjection = TypeProjection(typeIdentifier);
 
     expect(typeProjection.nativeType, equals('IntPtr'));
     expect(typeProjection.dartType, equals('int'));
@@ -121,7 +120,7 @@ void main() {
     final getPropertyProjection = projection.methodProjections.first;
 
     expect(
-        getPropertyProjection.runtimeType, equals(WinRTGetPropertyProjection));
+        getPropertyProjection.runtimeType, equals(WinRTEnumGetterProjection));
     expect(
         projection.methodProjections.first.returnType.dartType, equals('int'));
     expect(projection.methodProjections.first.returnType.typeIdentifier.name,

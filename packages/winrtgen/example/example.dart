@@ -3,7 +3,6 @@
 // BSD-style license that can be found in the LICENSE file.
 
 import 'package:dart_style/dart_style.dart';
-import 'package:win32gen/win32gen.dart';
 import 'package:winmd/winmd.dart';
 import 'package:winrtgen/winrtgen.dart';
 
@@ -25,7 +24,7 @@ void printStruct() {
       MetadataStore.getMetadataForType('Windows.Gaming.Input.GamepadReading');
   if (structTypeDef != null) {
     final structProjection =
-        StructProjection(structTypeDef, 'GamepadReading', category: 'struct');
+        WinRTStructProjection(structTypeDef, 'GamepadReading');
     print(format(structProjection));
   }
 }
@@ -35,7 +34,7 @@ void printMethod() {
       MetadataStore.getMetadataForType('Windows.Data.Xml.Dom.IXmlDocument');
   final method = interfaceTypeDef?.findMethod('CreateElementNS');
   if (method != null) {
-    final methodProjection = WinRTMethodProjection(method, 15);
+    final methodProjection = WinRTMethodProjection.create(method, 15);
     print(format(methodProjection));
   }
 }
@@ -45,7 +44,7 @@ void printGetProperty() {
       MetadataStore.getMetadataForType('Windows.Globalization.ICalendar');
   final method = interfaceTypeDef?.findMethod('get_Languages');
   if (method != null) {
-    final getPropertyProjection = WinRTGetPropertyProjection(method, 9);
+    final getPropertyProjection = WinRTGetPropertyProjection.create(method, 9);
     print(format(getPropertyProjection));
   }
 }
@@ -55,7 +54,7 @@ void printSetProperty() {
       'Windows.Devices.Geolocation.IGeolocator');
   final method = interfaceTypeDef?.findMethod('put_DesiredAccuracy');
   if (method != null) {
-    final setPropertyProjection = WinRTSetPropertyProjection(method, 7);
+    final setPropertyProjection = WinRTSetPropertyProjection.create(method, 7);
     print(format(setPropertyProjection));
   }
 }

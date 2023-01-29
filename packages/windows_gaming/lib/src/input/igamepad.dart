@@ -35,23 +35,21 @@ class IGamepad extends IInspectable implements IGameController {
   GamepadVibration get vibration {
     final retValuePtr = calloc<GamepadVibration>();
 
-    try {
-      final hr = ptr.ref.vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(Pointer, Pointer<GamepadVibration>)>>>()
-          .value
-          .asFunction<
-              int Function(Pointer,
-                  Pointer<GamepadVibration>)>()(ptr.ref.lpVtbl, retValuePtr);
+    final hr =
+        ptr.ref.vtable
+                .elementAt(6)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                Pointer, Pointer<GamepadVibration>)>>>()
+                .value
+                .asFunction<int Function(Pointer, Pointer<GamepadVibration>)>()(
+            ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throw WindowsException(hr);
 
-      final retValue = retValuePtr.ref;
-      return retValue;
-    } finally {}
+    return retValuePtr.ref;
   }
 
   set vibration(GamepadVibration value) {
@@ -70,24 +68,19 @@ class IGamepad extends IInspectable implements IGameController {
   GamepadReading getCurrentReading() {
     final retValuePtr = calloc<GamepadReading>();
 
-    try {
-      final hr =
-          ptr.ref.vtable
-                  .elementAt(8)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(
-                                  Pointer, Pointer<GamepadReading>)>>>()
-                  .value
-                  .asFunction<int Function(Pointer, Pointer<GamepadReading>)>()(
-              ptr.ref.lpVtbl, retValuePtr);
+    final hr = ptr.ref.vtable
+            .elementAt(8)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(Pointer, Pointer<GamepadReading>)>>>()
+            .value
+            .asFunction<int Function(Pointer, Pointer<GamepadReading>)>()(
+        ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throw WindowsException(hr);
 
-      final retValue = retValuePtr.ref;
-      return retValue;
-    } finally {}
+    return retValuePtr.ref;
   }
 
   // IGameController methods

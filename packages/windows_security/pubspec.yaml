@@ -1,7 +1,7 @@
 name: windows_security
 description: TODO
 version: 0.0.1
-homepage: https://dartwinrt.pub
+homepage: https://dartwinrt.dev
 repository: https://github.com/halildurmus/dartwinrt
 issue_tracker: https://github.com/halildurmus/dartwinrt/issues?q=is%3Aopen+is%3Aissue+label%3A%22p%3A+windows_security%22
 publish_to: none # TODO: Remove this

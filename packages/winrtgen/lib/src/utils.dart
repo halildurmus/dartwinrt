@@ -4,55 +4,175 @@
 
 // Useful utilities
 
+import 'dart:collection';
 import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:crypto/crypto.dart';
 import 'package:path/path.dart' as path;
 import 'package:win32/win32.dart';
-import 'package:win32gen/win32gen.dart';
 import 'package:winmd/winmd.dart';
 
 import 'constants/iids.dart';
-import 'projection/winrt_type.dart';
+import 'projections/type.dart';
 
-/// Add the `?` suffix to the type (e.g. `StorageFile` -> `StorageFile?`).
-String nullable(String type) => type.endsWith('?') ? type : '$type?';
+extension CamelCaseConversion on String {
+  /// Converts a string to `camelCase`.
+  String toCamelCase() {
+    if (length < 2) return this;
 
-/// Take a type like `IAsyncOperation<StorageFile>` and return
-/// `IAsyncOperation`.
-String outerType(String type) {
-  if (!type.contains('<')) return type;
-  return type.substring(0, type.indexOf('<'));
+    for (final acronym in acronyms) {
+      if (startsWith(acronym)) {
+        // e.g. IPAddress -> ipAddress, UInt32 -> uint32
+        return safeIdentifierForString(
+            acronym.toLowerCase() + substring(acronym.length));
+      }
+    }
+
+    return substring(0, 1).toLowerCase() + substring(1);
+  }
 }
 
-/// Return the parent namespace of a fully-qualified type (e.g.
+/// Acronyms that appear in the enum fields and method names.
+/// These are used while projecting enums and methods to match the Dart style
+/// guide.
+/// See https://dart.dev/guides/language/effective-dart/style#do-capitalize-acronyms-and-abbreviations-longer-than-two-letters-like-words
+const acronyms = <String>{
+  'AC', 'DB', 'DPad', 'HD', 'HR', 'IO', 'IP', 'NT', 'TV', 'UI', 'WiFi', //
+};
+
+/// A list of all words that should not be used as identifiers.
+const badIdentifierNames = <String>{...dartReservedWords, ...dartTypes};
+
+/// Reserved words in the Dart language that can never be used as identifiers.
+/// Keywords are from https://dart.dev/guides/language/language-tour#keywords.
+const dartReservedWords = <String>{
+  // Contextual keywords and built-in identifiers are not included here, since
+  // they can be used as valid identifiers in most places.
+  'assert', 'break', 'case', 'catch', 'class', 'const', 'continue', 'default',
+  'do', 'else', 'enum', 'extends', 'false', 'final', 'finally', 'for', 'if',
+  'in', 'is', 'new', 'null', 'rethrow', 'return', 'super', 'switch', 'this',
+  'throw', 'true', 'try', 'var', 'void', 'while', 'with',
+};
+
+/// Dart intrinsic types that will cause problems if used as identifiers.
+const dartTypes = <String>{
+  'int', 'double', 'String', 'bool', 'List', 'Set', 'Map', //
+};
+
+/// Return the final component of a fully qualified name (e.g.
+/// `Windows.Globalization.Calendar` becomes `Calendar`).
+String lastComponent(String fullyQualifiedType) =>
+    fullyQualifiedType.split('.').last;
+
+/// Whether the method belongs to `IUriRuntimeClass` or
+/// `IUriRuntimeClassFactory`.
+///
+/// Used to determine whether the method return type or parameter should be
+/// exposed as WinRT `Uri` or dart:core's `Uri`.
+bool methodBelongsToUriRuntimeClass(Method method) => [
+      'Windows.Foundation.IUriRuntimeClass',
+      'Windows.Foundation.IUriRuntimeClassFactory'
+    ].contains(method.parent.name);
+
+/// Takes a [name] and converts it to a safe Dart identifier (i.e. one that
+/// is not a reserved word or a private modifier).
+///
+/// For example, `null` should be converted to `null_`, and `__valueSize` should
+/// be converted to `valueSize`.
+String safeIdentifierForString(String name) => badIdentifierNames.contains(name)
+    ? '${name}_'
+    : stripLeadingUnderscores(name);
+
+/// Sorts [importLines] according to Effective Dart: Style guidelines.
+/// See https://dart.dev/guides/language/effective-dart/style#ordering
+List<String> sortImports(List<String> importLines) {
+  if (importLines.isEmpty) return importLines;
+
+  final dartImports = SplayTreeSet<String>();
+  final packageImports = SplayTreeSet<String>();
+  final projectRelativeImports = SplayTreeSet<String>();
+
+  for (final importLine in importLines) {
+    assert(importLine.startsWith('import ') && importLine.endsWith(';'));
+
+    if (importLine.contains('dart:')) {
+      dartImports.add(importLine);
+    } else if (importLine.contains('package:')) {
+      packageImports.add(importLine);
+    } else {
+      projectRelativeImports.add(importLine);
+    }
+  }
+
+  final sortedImportLines = <String>[];
+
+  if (dartImports.isNotEmpty) {
+    sortedImportLines.addAll(dartImports);
+  }
+
+  if (packageImports.isNotEmpty) {
+    if (dartImports.isNotEmpty) sortedImportLines.add('');
+    sortedImportLines.addAll(packageImports);
+  }
+
+  if (projectRelativeImports.isNotEmpty) {
+    if (dartImports.isNotEmpty || packageImports.isNotEmpty) {
+      sortedImportLines.add('');
+    }
+
+    sortedImportLines.addAll(projectRelativeImports);
+  }
+
+  return sortedImportLines;
+}
+
+/// Take a [name] like IVector`1 and return IVector.
+String stripGenerics(String name) {
+  final backtickIndex = name.indexOf('`');
+  if (backtickIndex == -1) return name;
+  return name.substring(0, backtickIndex);
+}
+
+/// Take a [name] like `__valueSize` and return `valueSize`.
+String stripLeadingUnderscores(String name) =>
+    !name.startsWith('_') ? name : stripLeadingUnderscores(name.substring(1));
+
+/// Add the `?` suffix to the [type] (e.g. `StorageFile` -> `StorageFile?`).
+String nullable(String type) => type.endsWith('?') ? type : '$type?';
+
+/// Take a [type] like `IAsyncOperation<StorageFile>` and return
+/// `IAsyncOperation`.
+String outerType(String type) =>
+    !type.contains('<') ? type : type.substring(0, type.indexOf('<'));
+
+/// Return the parent namespace of a [fullyQualifiedType] (e.g.
 /// `Windows.Gaming.Input.Gamepad` becomes `Windows.Gaming.Input`).
 String parentNamespace(String fullyQualifiedType) =>
     (fullyQualifiedType.split('.')..removeLast()).join('.');
 
-/// Converts [targetPath] to an equivalent relative path from the [start] directory.
+/// Converts [targetPath] to an equivalent relative path from the [start]
+/// directory.
 String relativePath(String targetPath, {required String start}) =>
     path.relative(targetPath, from: start).replaceAll(r'\', '/');
 
-/// Strip the `?` suffix from the type (e.g. `IJsonValue?` should become
+/// Strip the `?` suffix from the [type] (e.g. `IJsonValue?` should become
 /// `JsonValue`).
 String stripQuestionMarkSuffix(String type) =>
     type.endsWith('?') ? type.substring(0, type.length - 1) : type;
 
-/// Take a type like `IAsyncOperation<StorageFile>` and return `StorageFile` or
-/// `String, String` for a type like `IMap<String, String>`.
-String typeArguments(String type) {
-  if (!type.contains('<')) return type;
-  return type.substring(type.indexOf('<') + 1, type.lastIndexOf('>'));
-}
+/// Take a [type] like `IAsyncOperation<StorageFile>` and return `StorageFile`
+/// or `String, String` for a type like `IMap<String, String>`.
+String typeArguments(String type) => !type.contains('<')
+    ? type
+    : type.substring(type.indexOf('<') + 1, type.lastIndexOf('>'));
 
-/// Converts a fully-qualified type (e.g. `Windows.Globalization.Calendar`) and
+/// Converts a [fullyQualifiedType] (e.g. `Windows.Globalization.Calendar`) and
 /// returns the matching package name (e.g. `windows_globalization`).
 String packageNameFromWinRTType(String fullyQualifiedType) =>
     fullyQualifiedType.split('.').take(2).join('_').toLowerCase();
 
-/// Converts a fully-qualified type (e.g.
+/// Converts a [fullyQualifiedType] (e.g.
 /// `Windows.Storage.Pickers.FileOpenPicker`) and returns the relative path from
 /// the `dartwinrt/tools` folder to matching folder path  (e.g.
 /// `../../packages/windows_storage/lib/src/pickers`).
@@ -65,12 +185,12 @@ String relativeFolderPathFromWinRTType(String fullyQualifiedType) {
   return '../../packages/$packageName/lib/src$classFolderPath';
 }
 
-/// Converts a fully-qualified type (e.g. `Windows.Globalization.Calendar`) and
+/// Converts a [fullyQualifiedType] (e.g. `Windows.Globalization.Calendar`) and
 /// returns the matching file name (e.g. `calendar.dart`).
 String fileNameFromWinRTType(String fullyQualifiedType) =>
     '${stripGenerics(lastComponent(fullyQualifiedType)).toLowerCase()}.dart';
 
-/// Converts a fully-qualified type (e.g.
+/// Converts a [fullyQualifiedType] (e.g.
 /// `Windows.Storage.Pickers.FileOpenPicker`) and returns the matching folder
 /// (e.g. `windows_storage/pickers`).
 String folderFromWinRTType(String fullyQualifiedType) {
@@ -79,7 +199,7 @@ String folderFromWinRTType(String fullyQualifiedType) {
   return 'windows_${segments.join('/').toLowerCase()}';
 }
 
-/// Returns the fully-qualified type of the object defined in [typeDef] (e.g.
+/// Returns the [fullyQualifiedType] of the object defined in [typeDef] (e.g.
 /// `Windows.Foundation.Calendar`, `Windows.Foundation.IReference`1).
 String fullyQualifiedTypeNameFromTypeDef(TypeDef typeDef) =>
     typeDef.typeSpec?.baseType == BaseType.genericTypeModifier
@@ -108,8 +228,8 @@ String shortTypeNameFromTypeDef(TypeDef typeDef) =>
 
 /// Parses the argument to be passed to the `creator` parameter from [ti].
 String? parseArgumentForCreatorParameter(TypeIdentifier ti) {
-  final typeProjection = WinRTTypeProjection(ti);
-  if (typeProjection.isWinRTStruct ||
+  final typeProjection = TypeProjection(ti);
+  if (typeProjection.isStruct ||
       ['bool', 'DateTime', 'double', 'Duration', 'int', 'String', 'Uri']
           .contains(typeProjection.methodParamType)) {
     return null;
@@ -176,11 +296,12 @@ String parseArgumentForCreatorParameterFromGenericTypeIdentifier(
 
   // e.g. IIterable<int>, IVector<int>, IVectorView<int>
   if (typeArguments(parseGenericTypeIdentifierName(ti)) == 'int') {
-    final typeProjection = WinRTTypeProjection(ti.typeArg!);
+    final typeProjection = TypeProjection(ti.typeArg!);
     args.add('intType: ${typeProjection.nativeType}');
   }
 
-  return '(Pointer<COMObject> ptr) => $typeIdentifierName.fromRawPointer(${args.join(', ')})';
+  return '(Pointer<COMObject> ptr) => '
+      '$typeIdentifierName.fromRawPointer(${args.join(', ')})';
 }
 
 /// Returns the appropriate Dart primitive type name for the given [baseType].
@@ -250,7 +371,7 @@ String parseGenericTypeIdentifierName(TypeIdentifier typeIdentifier) {
     var questionMark = '';
     if (secondArgIsPotentiallyNullable) {
       final secondArgIsEnum =
-          WinRTTypeProjection(typeIdentifier.typeArg!.typeArg!).isWinRTEnum;
+          TypeProjection(typeIdentifier.typeArg!.typeArg!).isEnum;
       final secondArgIsNullable = !secondArgIsEnum && secondArg != 'String';
       questionMark = secondArgIsNullable ? '?' : '';
     }
@@ -261,7 +382,7 @@ String parseGenericTypeIdentifierName(TypeIdentifier typeIdentifier) {
   final isAsyncOperation = parentTypeName == 'IAsyncOperation';
   if (isAsyncOperation) {
     final typeArg = parseTypeIdentifierName(typeIdentifier.typeArg!);
-    final typeProjection = WinRTTypeProjection(typeIdentifier.typeArg!);
+    final typeProjection = TypeProjection(typeIdentifier.typeArg!);
     final typeArgIsNullable =
         // Collection interfaces cannot return null.
         !typeArg.startsWith(RegExp(r'(IMap|IVector)')) &&
@@ -337,20 +458,17 @@ String parseTypeIdentifierSignature(TypeIdentifier ti) {
 
   if (ti.name == 'System.Guid') return 'g16';
 
-  final typeProjection = WinRTTypeProjection(ti);
+  final typeProjection = TypeProjection(ti);
+  if (typeProjection.isDelegate) return 'delegate(${ti.type!.guid!})';
 
-  if (typeProjection.isWinRTDelegate) {
-    return 'delegate(${ti.type!.guid!})';
-  }
-
-  if (typeProjection.isWinRTEnum) {
+  if (typeProjection.isEnum) {
     final enumName = ti.name;
     final isFlagsEnum = ti.type!.existsAttribute('System.FlagsAttribute');
     final enumSignature = isFlagsEnum ? 'u4' : 'i4';
     return 'enum($enumName;$enumSignature)';
   }
 
-  if (typeProjection.isWinRTStruct) {
+  if (typeProjection.isStruct) {
     final structName = ti.name;
     final fields = ti.type!.fields
         .map((field) => parseTypeIdentifierSignature(field.typeIdentifier));
@@ -391,7 +509,8 @@ String parseGenericTypeIdentifierSignature(TypeIdentifier typeIdentifier) {
     return 'pinterface($parentTypeGuid;$firstArgSignature;$secondArgSignature)';
   }
 
-  return 'pinterface($parentTypeGuid;${parseTypeIdentifierSignature(typeIdentifier.typeArg!)})';
+  final signature = parseTypeIdentifierSignature(typeIdentifier.typeArg!);
+  return 'pinterface($parentTypeGuid;$signature)';
 }
 
 /// A byte representation of the pinterface instantiation.
@@ -455,11 +574,13 @@ Guid iterableIidFromMapTypeIdentifier(TypeIdentifier typeIdentifier) {
     throw ArgumentError("Expected an 'IMap' or 'IMapView' type identifier.");
   }
 
-  final kvpKeyArgSig = parseTypeIdentifierSignature(typeIdentifier.typeArg!);
-  final kvpValueArgSig =
+  final kvpKeyArgSignature =
+      parseTypeIdentifierSignature(typeIdentifier.typeArg!);
+  final kvpValueArgSignature =
       parseTypeIdentifierSignature(typeIdentifier.typeArg!.typeArg!);
-  final iterableSignature =
-      'pinterface($IID_IIterable;pinterface($IID_IKeyValuePair;$kvpKeyArgSig;$kvpValueArgSig))';
+  final kvpSignature =
+      'pinterface($IID_IKeyValuePair;$kvpKeyArgSignature;$kvpValueArgSignature)';
+  final iterableSignature = 'pinterface($IID_IIterable;$kvpSignature)';
   return iidFromSignature(iterableSignature);
 }
 
@@ -478,6 +599,7 @@ Guid iterableIidFromVectorTypeIdentifier(TypeIdentifier typeIdentifier) {
   return iidFromSignature(iterableSignature);
 }
 
+/// Groups types by their parent namespace.
 List<NamespaceGroup> groupTypesByParentNamespace(Iterable<String> types) {
   types.toList().sort((a, b) => a.compareTo(b));
   final namespaceGroups = <NamespaceGroup>[];
@@ -504,13 +626,15 @@ List<NamespaceGroup> groupTypesByParentNamespace(Iterable<String> types) {
 class NamespaceGroup {
   NamespaceGroup({required this.namespace, required this.types});
 
+  /// The namespace of the group (e.g. `Windows.Gaming.Input`).
   final String namespace;
+
+  /// The types in the group (e.g. `Windows.Gaming.Input.Gamepad`).
   final List<String> types;
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-
     return other is NamespaceGroup &&
         other.namespace == namespace &&
         other.types.length == types.length &&
@@ -522,4 +646,28 @@ class NamespaceGroup {
 
   @override
   String toString() => 'NamespaceGroup(namespace: $namespace, types: $types)';
+}
+
+/// Take an [inputText] and turn it into a multi-line doc comment.
+String wrapCommentText(String inputText, [int wrapLength = 76]) {
+  if (inputText.isEmpty) return '';
+
+  final words = inputText.split(' ');
+  final textLine = StringBuffer('///');
+  final outputText = StringBuffer();
+
+  for (final word in words) {
+    if ((textLine.length + word.length) >= wrapLength) {
+      textLine.write('\n');
+      outputText.write(textLine);
+      textLine
+        ..clear()
+        ..write('/// $word');
+    } else {
+      textLine.write(' $word');
+    }
+  }
+
+  outputText.write(textLine);
+  return outputText.toString().trimRight();
 }
