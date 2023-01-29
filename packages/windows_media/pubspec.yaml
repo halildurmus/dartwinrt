@@ -2,7 +2,7 @@ name: windows_media
 description: Provides classes for creating and working with media such as
   photos, audio recordings and videos.
 version: 0.0.1
-homepage: https://dartwinrt.pub
+homepage: https://dartwinrt.dev
 repository: https://github.com/halildurmus/dartwinrt
 issue_tracker: https://github.com/halildurmus/dartwinrt/issues?q=is%3Aopen+is%3Aissue+label%3A%22p%3A+windows_media%22
 publish_to: none # TODO: Remove this
