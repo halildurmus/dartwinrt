@@ -74,8 +74,7 @@ class IPropertyValue extends IInspectable {
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      final retValue = retValuePtr.value;
-      return retValue;
+      return retValuePtr.value;
     } finally {
       free(retValuePtr);
     }
@@ -97,8 +96,7 @@ class IPropertyValue extends IInspectable {
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      final retValue = retValuePtr.value;
-      return retValue;
+      return retValuePtr.value;
     } finally {
       free(retValuePtr);
     }
@@ -120,8 +118,7 @@ class IPropertyValue extends IInspectable {
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      final retValue = retValuePtr.value;
-      return retValue;
+      return retValuePtr.value;
     } finally {
       free(retValuePtr);
     }
@@ -143,8 +140,7 @@ class IPropertyValue extends IInspectable {
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      final retValue = retValuePtr.value;
-      return retValue;
+      return retValuePtr.value;
     } finally {
       free(retValuePtr);
     }
@@ -166,8 +162,7 @@ class IPropertyValue extends IInspectable {
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      final retValue = retValuePtr.value;
-      return retValue;
+      return retValuePtr.value;
     } finally {
       free(retValuePtr);
     }
@@ -189,8 +184,7 @@ class IPropertyValue extends IInspectable {
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      final retValue = retValuePtr.value;
-      return retValue;
+      return retValuePtr.value;
     } finally {
       free(retValuePtr);
     }
@@ -212,8 +206,7 @@ class IPropertyValue extends IInspectable {
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      final retValue = retValuePtr.value;
-      return retValue;
+      return retValuePtr.value;
     } finally {
       free(retValuePtr);
     }
@@ -235,8 +228,7 @@ class IPropertyValue extends IInspectable {
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      final retValue = retValuePtr.value;
-      return retValue;
+      return retValuePtr.value;
     } finally {
       free(retValuePtr);
     }
@@ -258,8 +250,7 @@ class IPropertyValue extends IInspectable {
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      final retValue = retValuePtr.value;
-      return retValue;
+      return retValuePtr.value;
     } finally {
       free(retValuePtr);
     }
@@ -281,8 +272,7 @@ class IPropertyValue extends IInspectable {
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      final retValue = retValuePtr.value;
-      return retValue;
+      return retValuePtr.value;
     } finally {
       free(retValuePtr);
     }
@@ -304,8 +294,7 @@ class IPropertyValue extends IInspectable {
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      final retValue = retValuePtr.value;
-      return retValue;
+      return retValuePtr.value;
     } finally {
       free(retValuePtr);
     }
@@ -327,8 +316,7 @@ class IPropertyValue extends IInspectable {
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      final retValue = retValuePtr.value;
-      return retValue;
+      return retValuePtr.value;
     } finally {
       free(retValuePtr);
     }
@@ -350,8 +338,7 @@ class IPropertyValue extends IInspectable {
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      final retValue = retValuePtr.toDartString();
-      return retValue;
+      return retValuePtr.toDartString();
     } finally {
       WindowsDeleteString(retValuePtr.value);
       free(retValuePtr);
@@ -428,64 +415,53 @@ class IPropertyValue extends IInspectable {
   Point getPoint() {
     final retValuePtr = calloc<Point>();
 
-    try {
-      final hr = ptr.ref.vtable
-          .elementAt(23)
-          .cast<
-              Pointer<
-                  NativeFunction<HRESULT Function(Pointer, Pointer<Point>)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  Pointer, Pointer<Point>)>()(ptr.ref.lpVtbl, retValuePtr);
+    final hr = ptr.ref.vtable
+        .elementAt(23)
+        .cast<
+            Pointer<
+                NativeFunction<HRESULT Function(Pointer, Pointer<Point>)>>>()
+        .value
+        .asFunction<
+            int Function(
+                Pointer, Pointer<Point>)>()(ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throw WindowsException(hr);
 
-      final retValue = retValuePtr.ref;
-      return retValue;
-    } finally {}
+    return retValuePtr.ref;
   }
 
   Size getSize() {
     final retValuePtr = calloc<Size>();
 
-    try {
-      final hr = ptr.ref.vtable
-          .elementAt(24)
-          .cast<
-              Pointer<
-                  NativeFunction<HRESULT Function(Pointer, Pointer<Size>)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  Pointer, Pointer<Size>)>()(ptr.ref.lpVtbl, retValuePtr);
+    final hr = ptr.ref.vtable
+        .elementAt(24)
+        .cast<
+            Pointer<NativeFunction<HRESULT Function(Pointer, Pointer<Size>)>>>()
+        .value
+        .asFunction<
+            int Function(
+                Pointer, Pointer<Size>)>()(ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throw WindowsException(hr);
 
-      final retValue = retValuePtr.ref;
-      return retValue;
-    } finally {}
+    return retValuePtr.ref;
   }
 
   Rect getRect() {
     final retValuePtr = calloc<Rect>();
 
-    try {
-      final hr = ptr.ref.vtable
-          .elementAt(25)
-          .cast<
-              Pointer<
-                  NativeFunction<HRESULT Function(Pointer, Pointer<Rect>)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  Pointer, Pointer<Rect>)>()(ptr.ref.lpVtbl, retValuePtr);
+    final hr = ptr.ref.vtable
+        .elementAt(25)
+        .cast<
+            Pointer<NativeFunction<HRESULT Function(Pointer, Pointer<Rect>)>>>()
+        .value
+        .asFunction<
+            int Function(
+                Pointer, Pointer<Rect>)>()(ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throw WindowsException(hr);
 
-      final retValue = retValuePtr.ref;
-      return retValue;
-    } finally {}
+    return retValuePtr.ref;
   }
 
   void getUInt8Array(Pointer<Uint32> valueSize, Pointer<Pointer<Uint8>> value) {

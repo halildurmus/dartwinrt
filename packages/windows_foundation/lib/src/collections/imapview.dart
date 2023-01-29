@@ -380,8 +380,7 @@ class IMapView<K, V> extends IInspectable
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      final retValue = retValuePtr.toDartString();
-      return retValue;
+      return retValuePtr.toDartString();
     } finally {
       WindowsDeleteString(hKey);
       WindowsDeleteString(retValuePtr.value);

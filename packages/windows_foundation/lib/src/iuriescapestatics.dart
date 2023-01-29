@@ -52,8 +52,7 @@ class IUriEscapeStatics extends IInspectable {
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      final retValue = retValuePtr.toDartString();
-      return retValue;
+      return retValuePtr.toDartString();
     } finally {
       WindowsDeleteString(toUnescapeHString);
       WindowsDeleteString(retValuePtr.value);
@@ -80,8 +79,7 @@ class IUriEscapeStatics extends IInspectable {
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      final retValue = retValuePtr.toDartString();
-      return retValue;
+      return retValuePtr.toDartString();
     } finally {
       WindowsDeleteString(toEscapeHString);
       WindowsDeleteString(retValuePtr.value);

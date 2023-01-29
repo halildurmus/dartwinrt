@@ -88,8 +88,7 @@ class IAsyncAction extends IInspectable implements IAsyncInfo {
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      final retValue = retValuePtr.value;
-      return retValue;
+      return retValuePtr.value;
     } finally {
       free(retValuePtr);
     }

@@ -5,7 +5,6 @@
 import 'dart:io';
 
 import 'package:dart_style/dart_style.dart';
-import 'package:win32gen/win32gen.dart';
 import 'package:winmd/winmd.dart';
 import 'package:winrtgen/winrtgen.dart';
 
@@ -122,7 +121,7 @@ void generateStructs(Map<String, String> structs) {
   final namespaceGroups = groupTypesByParentNamespace(structs.keys);
 
   for (final namespaceGroup in namespaceGroups) {
-    final structProjections = <StructProjection>[];
+    final structProjections = <WinRTStructProjection>[];
     final fileOutputPath =
         '${relativeFolderPathFromWinRTType(namespaceGroup.types.first)}/structs.g.dart';
     final file = File(fileOutputPath)..createSync(recursive: true);
@@ -131,9 +130,9 @@ void generateStructs(Map<String, String> structs) {
       final typeDef = MetadataStore.getMetadataForType(type);
       if (typeDef == null) throw Exception("Can't find $type");
 
-      final structProjection = StructProjection(
+      final structProjection = WinRTStructProjection(
           typeDef, lastComponent(typeDef.name),
-          category: 'struct', comment: structs[typeDef.name]!);
+          comment: structs[typeDef.name]!);
       structProjections.add(structProjection);
     }
 

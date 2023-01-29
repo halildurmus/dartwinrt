@@ -34,23 +34,21 @@ class IGeopoint extends IInspectable implements IGeoshape {
   BasicGeoposition get position {
     final retValuePtr = calloc<BasicGeoposition>();
 
-    try {
-      final hr = ptr.ref.vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(Pointer, Pointer<BasicGeoposition>)>>>()
-          .value
-          .asFunction<
-              int Function(Pointer,
-                  Pointer<BasicGeoposition>)>()(ptr.ref.lpVtbl, retValuePtr);
+    final hr =
+        ptr.ref.vtable
+                .elementAt(6)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                Pointer, Pointer<BasicGeoposition>)>>>()
+                .value
+                .asFunction<int Function(Pointer, Pointer<BasicGeoposition>)>()(
+            ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throw WindowsException(hr);
 
-      final retValue = retValuePtr.ref;
-      return retValue;
-    } finally {}
+    return retValuePtr.ref;
   }
 
   // IGeoshape methods

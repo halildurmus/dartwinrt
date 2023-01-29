@@ -33,12 +33,6 @@ dependencies:
 
   win32: ^4.1.0
 
-  win32gen:
-    git:
-      url: https://github.com/timsneath/win32.git
-      path: tool/win32gen
-      ref: dev
-
 dependency_overrides:
   win32: ^4.1.0
 
