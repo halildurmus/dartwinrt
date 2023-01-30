@@ -20,8 +20,12 @@ class TypeTuple {
   /// `DateTime`)
   final String? methodParamType;
 
-  const TypeTuple(this.nativeType, this.dartType,
-      {this.attribute, this.methodParamType});
+  const TypeTuple(
+    this.nativeType,
+    this.dartType, {
+    this.attribute,
+    this.methodParamType,
+  });
 }
 
 const Map<BaseType, TypeTuple> baseNativeMapping = {
@@ -148,6 +152,8 @@ class TypeProjection {
 
   bool get isUri => typeIdentifier.name == 'Windows.Foundation.Uri';
 
+  bool get isValueType => typeIdentifier.baseType == BaseType.valueTypeModifier;
+
   bool get isVector =>
       isGenericType &&
       (typeIdentifier.type?.name.endsWith('IVector`1') ?? false);
@@ -163,8 +169,12 @@ class TypeProjection {
   bool get isWinRTSpecialType =>
       specialTypes.keys.contains(typeIdentifier.name);
 
-  bool get isWrappedValueType =>
-      typeIdentifier.baseType == BaseType.valueTypeModifier;
+  TypeTuple unwrapDelegate() {
+    final delegateName =
+        outerType(stripGenerics(lastComponent(typeIdentifier.name)));
+    return TypeTuple('Pointer<NativeFunction<$delegateName>>',
+        'Pointer<NativeFunction<$delegateName>>');
+  }
 
   TypeTuple unwrapEnum() {
     final fieldType = typeIdentifier.type?.findField('value__')?.typeIdentifier;
@@ -184,13 +194,6 @@ class TypeProjection {
       default:
         throw Exception('Enum $typeIdentifier has unsupported underlying type');
     }
-  }
-
-  TypeTuple unwrapDelegate() {
-    final delegateName =
-        outerType(stripGenerics(lastComponent(typeIdentifier.name)));
-    return TypeTuple('Pointer<NativeFunction<$delegateName>>',
-        'Pointer<NativeFunction<$delegateName>>');
   }
 
   /// Takes a type such as `pointerTypeModifier` -> `BaseType.Uint32` and
@@ -267,22 +270,24 @@ class TypeProjection {
     // Could be a string or other special type that we want to custom-map
     if (isWinRTSpecialType) return specialTypes[typeIdentifier.name]!;
 
-    // This is used by WinRT for an HSTRING
+    // Could be a WinRT delegate like AsyncActionCompletedHandler
+    if (isDelegate) return unwrapDelegate();
+
+    // Could be a WinRT enum like AsyncStatus
+    if (isEnum) return unwrapEnum();
+
+    if (isPointer) return unwrapPointerType();
+    if (isReferenceType) return unwrapReferenceType();
+    if (isSimpleArray) return unwrapSimpleArrayType(typeIdentifier);
+
+    // Strings in WinRT are defined as HSTRING
     if (isString) {
       return const TypeTuple('IntPtr', 'int',
           attribute: '@IntPtr()', methodParamType: 'String');
     }
 
-    // Could be a WinRT enum like AsyncStatus
-    if (isEnum) return unwrapEnum();
-
-    // Could be a wrapped type (e.g. a HWND)
-    if (isWrappedValueType) return unwrapValueType();
-
-    if (isPointer) return unwrapPointerType();
-    if (isSimpleArray) return unwrapSimpleArrayType(typeIdentifier);
-    if (isDelegate) return unwrapDelegate();
-    if (isReferenceType) return unwrapReferenceType();
+    // Could be a WinRT struct like BasicGeoposition
+    if (isValueType) return unwrapValueType();
 
     if (isClass || isInterface || isObject) {
       final type = isParameter ? 'LPVTBL' : 'Pointer<COMObject>';
