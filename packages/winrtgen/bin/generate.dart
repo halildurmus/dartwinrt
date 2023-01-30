@@ -112,7 +112,7 @@ void generateEnumerations(Map<String, String> enums) {
     }
 
     final enumsFileContent =
-        [winrtEnumFileHeader, winrtEnumImport, ...enumProjections].join();
+        [enumsFileHeader, winrtEnumImport, ...enumProjections].join();
     file.writeAsStringSync(DartFormatter().format(enumsFileContent));
   }
 }
@@ -139,8 +139,7 @@ void generateStructs(Map<String, String> structs) {
     structProjections.sort((a, b) =>
         lastComponent(a.structName).compareTo(lastComponent(b.structName)));
 
-    final structsFileContent =
-        [winrtStructFileHeader, ...structProjections].join();
+    final structsFileContent = [structsFileHeader, ...structProjections].join();
     file.writeAsStringSync(DartFormatter().format(structsFileContent));
   }
 }
