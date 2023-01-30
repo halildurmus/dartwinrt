@@ -7,6 +7,7 @@
 library winrtgen;
 
 export 'src/constants/constants.dart';
+export 'src/extensions.dart';
 export 'src/models/load_json.dart';
 export 'src/models/namespace_group.dart';
 export 'src/models/winrt_getter_return_type.dart';
