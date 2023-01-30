@@ -14,24 +14,8 @@ import 'package:win32/win32.dart';
 import 'package:winmd/winmd.dart';
 
 import 'constants/iids.dart';
+import 'extensions.dart';
 import 'projections/type.dart';
-
-extension CamelCaseConversion on String {
-  /// Converts a string to `camelCase`.
-  String toCamelCase() {
-    if (length < 2) return this;
-
-    for (final acronym in acronyms) {
-      if (startsWith(acronym)) {
-        // e.g. IPAddress -> ipAddress, UInt32 -> uint32
-        return safeIdentifierForString(
-            acronym.toLowerCase() + substring(acronym.length));
-      }
-    }
-
-    return substring(0, 1).toLowerCase() + substring(1);
-  }
-}
 
 /// Acronyms that appear in the enum fields and method names.
 /// These are used while projecting enums and methods to match the Dart style
@@ -304,30 +288,6 @@ String parseArgumentForCreatorParameterFromGenericTypeIdentifier(
       '$typeIdentifierName.fromRawPointer(${args.join(', ')})';
 }
 
-/// Returns the appropriate Dart primitive type name for the given [baseType].
-String primitiveTypeNameFromBaseType(BaseType baseType) {
-  switch (baseType) {
-    case BaseType.booleanType:
-      return 'bool';
-    case BaseType.doubleType:
-    case BaseType.floatType:
-      return 'double';
-    case BaseType.int8Type:
-    case BaseType.int16Type:
-    case BaseType.int32Type:
-    case BaseType.int64Type:
-    case BaseType.uint8Type:
-    case BaseType.uint16Type:
-    case BaseType.uint32Type:
-    case BaseType.uint64Type:
-      return 'int';
-    case BaseType.stringType:
-      return 'String';
-    default:
-      return 'undefined';
-  }
-}
-
 /// Returns the appropriate Dart type name for the given [ti].
 String parseTypeIdentifierName(TypeIdentifier ti) {
   switch (ti.baseType) {
@@ -343,7 +303,7 @@ String parseTypeIdentifierName(TypeIdentifier ti) {
     case BaseType.referenceTypeModifier:
       return parseTypeIdentifierName(ti.typeArg!);
     default:
-      return primitiveTypeNameFromBaseType(ti.baseType);
+      return ti.baseType.dartTypeName;
   }
 }
 
@@ -389,51 +349,12 @@ String parseGenericTypeIdentifierName(TypeIdentifier typeIdentifier) {
             // Primitives cannot return null.
             !['bool', 'double', 'int', 'String'].contains(typeArg) &&
             // Value types (enums and structs) cannot return null.
-            !typeProjection.isWrappedValueType;
+            !typeProjection.isValueType;
     final questionMark = typeArgIsNullable ? '?' : '';
     return 'IAsyncOperation<$typeArg$questionMark>';
   }
 
   return '$parentTypeName<${parseTypeIdentifierName(typeIdentifier.typeArg!)}>';
-}
-
-/// Returns the primitive type signature for the given [baseType].
-///
-/// To learn more about this, see
-/// https://learn.microsoft.com/en-us/uwp/winrt-cref/winrt-type-system#guid-generation-for-parameterized-types
-String primitiveTypeSignatureFromBaseType(BaseType baseType) {
-  switch (baseType) {
-    case BaseType.booleanType:
-      return 'b1';
-    case BaseType.charType:
-      return 'c2';
-    case BaseType.doubleType:
-      return 'f8';
-    case BaseType.floatType:
-      return 'f4';
-    case BaseType.int8Type:
-      return 'i1';
-    case BaseType.int16Type:
-      return 'i2';
-    case BaseType.int32Type:
-      return 'i4';
-    case BaseType.int64Type:
-      return 'i8';
-    case BaseType.objectType:
-      return 'cinterface(IInspectable)';
-    case BaseType.stringType:
-      return 'string';
-    case BaseType.uint8Type:
-      return 'u1';
-    case BaseType.uint16Type:
-      return 'u2';
-    case BaseType.uint32Type:
-      return 'u4';
-    case BaseType.uint64Type:
-      return 'u8';
-    default:
-      throw UnsupportedError('Unsupported baseType: $baseType');
-  }
 }
 
 /// Returns the type signature for the given [td].
@@ -490,7 +411,7 @@ String parseTypeIdentifierSignature(TypeIdentifier ti) {
     return 'rc($className;$defaultInterfaceSignature)';
   }
 
-  return primitiveTypeSignatureFromBaseType(ti.baseType);
+  return ti.baseType.signature;
 }
 
 /// Returns the type signature for the given generic [typeIdentifier].
@@ -557,12 +478,24 @@ Guid iidFromSignature(String signature) {
 /// Returns the IID for the given [typeDef].
 Guid iidFromTypeDef(TypeDef typeDef) {
   final signature = parseTypeDefSignature(typeDef);
+  if (signature.startsWith('{') &&
+      signature.endsWith('}') &&
+      signature.length == 38) {
+    return Guid.parse(signature);
+  }
+
   return iidFromSignature(signature);
 }
 
 /// Returns the IID for the given [typeIdentifier].
 Guid iidFromTypeIdentifier(TypeIdentifier typeIdentifier) {
   final signature = parseTypeIdentifierSignature(typeIdentifier);
+  if (signature.startsWith('{') &&
+      signature.endsWith('}') &&
+      signature.length == 38) {
+    return Guid.parse(signature);
+  }
+
   return iidFromSignature(signature);
 }
 
@@ -597,55 +530,6 @@ Guid iterableIidFromVectorTypeIdentifier(TypeIdentifier typeIdentifier) {
       parseTypeIdentifierSignature(typeIdentifier.typeArg!);
   final iterableSignature = 'pinterface($IID_IIterable;$iterableArgSignature)';
   return iidFromSignature(iterableSignature);
-}
-
-/// Groups types by their parent namespace.
-List<NamespaceGroup> groupTypesByParentNamespace(Iterable<String> types) {
-  types.toList().sort((a, b) => a.compareTo(b));
-  final namespaceGroups = <NamespaceGroup>[];
-  final namespaceGroup = NamespaceGroup(
-      namespace: parentNamespace(types.first), types: [types.first]);
-  namespaceGroups.add(namespaceGroup);
-
-  for (var i = 1; i < types.length; i++) {
-    final type = types.elementAt(i);
-    if (namespaceGroups.any((e) => e.namespace == parentNamespace(type))) {
-      final namespaceGroup = namespaceGroups
-          .firstWhere((e) => e.namespace == parentNamespace(type));
-      namespaceGroup.types.add(type);
-    } else {
-      final namespaceGroup =
-          NamespaceGroup(namespace: parentNamespace(type), types: [type]);
-      namespaceGroups.add(namespaceGroup);
-    }
-  }
-
-  return namespaceGroups;
-}
-
-class NamespaceGroup {
-  NamespaceGroup({required this.namespace, required this.types});
-
-  /// The namespace of the group (e.g. `Windows.Gaming.Input`).
-  final String namespace;
-
-  /// The types in the group (e.g. `Windows.Gaming.Input.Gamepad`).
-  final List<String> types;
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-    return other is NamespaceGroup &&
-        other.namespace == namespace &&
-        other.types.length == types.length &&
-        other.types.every(types.contains);
-  }
-
-  @override
-  int get hashCode => namespace.hashCode ^ types.hashCode;
-
-  @override
-  String toString() => 'NamespaceGroup(namespace: $namespace, types: $types)';
 }
 
 /// Take an [inputText] and turn it into a multi-line doc comment.

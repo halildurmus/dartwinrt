@@ -4,6 +4,7 @@
 
 import 'package:winmd/winmd.dart';
 
+import '../extensions.dart';
 import '../utils.dart';
 import 'parameter.dart';
 import 'type.dart';

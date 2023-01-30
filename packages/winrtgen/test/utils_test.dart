@@ -9,14 +9,6 @@ import 'package:winmd/winmd.dart';
 import 'package:winrtgen/winrtgen.dart';
 
 void main() {
-  test('toCamelCase', () {
-    expect('TitleCase'.toCamelCase(), equals('titleCase'));
-    expect('camelCase'.toCamelCase(), equals('camelCase'));
-    expect('IPAddress'.toCamelCase(), equals('ipAddress'));
-    expect('UInt32'.toCamelCase(), equals('uint32'));
-    expect(''.toCamelCase(), equals(''));
-  });
-
   test('lastComponent', () {
     expect(lastComponent('Windows.Globalization.Calendar'), equals('Calendar'));
     expect(lastComponent('Windows.Foundation.Collections.IVector`1'),
@@ -202,23 +194,6 @@ void main() {
         'Windows.Foundation.Collections.IMapView`2')!;
     expect(
         packageNameFromTypeDef(mapViewTypeDef), equals('windows_foundation'));
-  });
-
-  test('primitiveTypeNameFromBaseType', () {
-    expect(primitiveTypeNameFromBaseType(BaseType.booleanType), equals('bool'));
-    expect(
-        primitiveTypeNameFromBaseType(BaseType.doubleType), equals('double'));
-    expect(primitiveTypeNameFromBaseType(BaseType.floatType), equals('double'));
-    expect(primitiveTypeNameFromBaseType(BaseType.int8Type), equals('int'));
-    expect(primitiveTypeNameFromBaseType(BaseType.int16Type), equals('int'));
-    expect(primitiveTypeNameFromBaseType(BaseType.int32Type), equals('int'));
-    expect(primitiveTypeNameFromBaseType(BaseType.int64Type), equals('int'));
-    expect(primitiveTypeNameFromBaseType(BaseType.uint8Type), equals('int'));
-    expect(primitiveTypeNameFromBaseType(BaseType.uint16Type), equals('int'));
-    expect(primitiveTypeNameFromBaseType(BaseType.uint32Type), equals('int'));
-    expect(primitiveTypeNameFromBaseType(BaseType.uint64Type), equals('int'));
-    expect(
-        primitiveTypeNameFromBaseType(BaseType.stringType), equals('String'));
   });
 
   test('parseTypeIdentifierName', () {
@@ -494,36 +469,6 @@ void main() {
             "(Pointer<COMObject> ptr) => IMapView.fromRawPointer(ptr, enumKeyCreator: PedometerStepKind.from, creator: PedometerReading.fromRawPointer, iterableIid: '{098f29cb-bc91-5639-a541-d5a4811ec35b}')"));
   });
 
-  test('primitiveTypeSignatureFromBaseType', () {
-    expect(
-        primitiveTypeSignatureFromBaseType(BaseType.booleanType), equals('b1'));
-    expect(primitiveTypeSignatureFromBaseType(BaseType.charType), equals('c2'));
-    expect(
-        primitiveTypeSignatureFromBaseType(BaseType.doubleType), equals('f8'));
-    expect(
-        primitiveTypeSignatureFromBaseType(BaseType.floatType), equals('f4'));
-    expect(primitiveTypeSignatureFromBaseType(BaseType.int8Type), equals('i1'));
-    expect(
-        primitiveTypeSignatureFromBaseType(BaseType.int16Type), equals('i2'));
-    expect(
-        primitiveTypeSignatureFromBaseType(BaseType.int32Type), equals('i4'));
-    expect(
-        primitiveTypeSignatureFromBaseType(BaseType.int64Type), equals('i8'));
-
-    expect(primitiveTypeSignatureFromBaseType(BaseType.objectType),
-        equals('cinterface(IInspectable)'));
-    expect(primitiveTypeSignatureFromBaseType(BaseType.stringType),
-        equals('string'));
-    expect(
-        primitiveTypeSignatureFromBaseType(BaseType.uint8Type), equals('u1'));
-    expect(
-        primitiveTypeSignatureFromBaseType(BaseType.uint16Type), equals('u2'));
-    expect(
-        primitiveTypeSignatureFromBaseType(BaseType.uint32Type), equals('u4'));
-    expect(
-        primitiveTypeSignatureFromBaseType(BaseType.uint64Type), equals('u8'));
-  });
-
   test('parseTypeDefSignature', () {
     final asyncAction =
         MetadataStore.getMetadataForType('Windows.Foundation.IAsyncAction')!;
@@ -710,6 +655,10 @@ void main() {
                 'pinterface({913337e9-11a1-4345-a3a2-4e7f956e222d};string)')
             .toString(),
         equals('{98b9acc1-4b56-532e-ac73-03d5291cca90}'));
+
+    expect(
+        iidFromSignature('{913337e9-11a1-4345-a3a2-4e7f956e222d}').toString(),
+        equals('{913337e9-11a1-4345-a3a2-4e7f956e222d}'));
   });
 
   test('iidFromTypeDef', () {
@@ -881,76 +830,6 @@ void main() {
           "import '../../internal/hstring_array.dart';",
           "import '../storagefile.dart';",
           "import 'enums.g.dart';",
-        ]));
-  });
-
-  test('groupTypesByParentNamespace', () {
-    expect(
-        groupTypesByParentNamespace([
-          'Windows.Foundation.IAsyncInfo',
-          'Windows.Foundation.IClosable',
-          'Windows.Foundation.IPropertyValue',
-          'Windows.Foundation.IStringable',
-          'Windows.Foundation.PropertyValue',
-          'Windows.Gaming.Input.Gamepad',
-          'Windows.Globalization.Calendar',
-          'Windows.Globalization.PhoneNumberFormatting.PhoneNumberFormatter',
-          'Windows.Globalization.PhoneNumberFormatting.PhoneNumberInfo',
-          'Windows.Networking.IHostName',
-          'Windows.Storage.IStorageItem',
-          'Windows.Storage.UserDataPaths',
-          'Windows.Storage.Pickers.FileOpenPicker',
-          'Windows.UI.Notifications.IToastNotificationManagerStatics',
-          'Windows.UI.Notifications.ToastNotification',
-        ]),
-        equals([
-          NamespaceGroup(
-            namespace: 'Windows.Foundation',
-            types: [
-              'Windows.Foundation.IAsyncInfo',
-              'Windows.Foundation.IClosable',
-              'Windows.Foundation.IPropertyValue',
-              'Windows.Foundation.IStringable',
-              'Windows.Foundation.PropertyValue'
-            ],
-          ),
-          NamespaceGroup(
-            namespace: 'Windows.Gaming.Input',
-            types: ['Windows.Gaming.Input.Gamepad'],
-          ),
-          NamespaceGroup(
-            namespace: 'Windows.Globalization',
-            types: ['Windows.Globalization.Calendar'],
-          ),
-          NamespaceGroup(
-            namespace: 'Windows.Globalization.PhoneNumberFormatting',
-            types: [
-              'Windows.Globalization.PhoneNumberFormatting.PhoneNumberFormatter',
-              'Windows.Globalization.PhoneNumberFormatting.PhoneNumberInfo'
-            ],
-          ),
-          NamespaceGroup(
-            namespace: 'Windows.Networking',
-            types: ['Windows.Networking.IHostName'],
-          ),
-          NamespaceGroup(
-            namespace: 'Windows.Storage',
-            types: [
-              'Windows.Storage.IStorageItem',
-              'Windows.Storage.UserDataPaths'
-            ],
-          ),
-          NamespaceGroup(
-            namespace: 'Windows.Storage.Pickers',
-            types: ['Windows.Storage.Pickers.FileOpenPicker'],
-          ),
-          NamespaceGroup(
-            namespace: 'Windows.UI.Notifications',
-            types: [
-              'Windows.UI.Notifications.IToastNotificationManagerStatics',
-              'Windows.UI.Notifications.ToastNotification'
-            ],
-          )
         ]));
   });
 

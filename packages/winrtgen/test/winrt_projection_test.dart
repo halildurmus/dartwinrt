@@ -21,7 +21,7 @@ void main() {
     final classType = method.parameters.first.typeIdentifier;
     final typeProjection = TypeProjection(classType);
 
-    expect(typeProjection.isWrappedValueType, isTrue);
+    expect(typeProjection.isValueType, isTrue);
   });
 
   test('Property getter projects appropriate results for interface.', () {
