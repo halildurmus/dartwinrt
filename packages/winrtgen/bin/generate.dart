@@ -86,13 +86,11 @@ void generateEnumerations(Map<String, String> enums) {
 
       final WinRTEnumProjection enumProjection;
       if (typeDef.existsAttribute('System.FlagsAttribute')) {
-        enumProjection = WinRTFlagsEnumProjection(
-            typeDef, lastComponent(typeDef.name),
-            comment: enums[typeDef.name]!);
+        enumProjection =
+            WinRTFlagsEnumProjection(typeDef, comment: enums[typeDef.name]!);
       } else {
-        enumProjection = WinRTEnumProjection(
-            typeDef, lastComponent(typeDef.name),
-            comment: enums[typeDef.name]!);
+        enumProjection =
+            WinRTEnumProjection(typeDef, comment: enums[typeDef.name]!);
       }
       enumProjections.add(enumProjection);
     }
@@ -130,9 +128,8 @@ void generateStructs(Map<String, String> structs) {
       final typeDef = MetadataStore.getMetadataForType(type);
       if (typeDef == null) throw Exception("Can't find $type");
 
-      final structProjection = WinRTStructProjection(
-          typeDef, lastComponent(typeDef.name),
-          comment: structs[typeDef.name]!);
+      final structProjection =
+          WinRTStructProjection(typeDef, comment: structs[typeDef.name]!);
       structProjections.add(structProjection);
     }
 

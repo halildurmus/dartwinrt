@@ -4,6 +4,7 @@
 
 import '../projections/type.dart';
 
+/// The return type of a WinRT getter.
 enum WinRTGetterReturnType {
   bool,
   class_,
@@ -25,6 +26,7 @@ enum WinRTGetterReturnType {
   vector,
   vectorView;
 
+  /// Returns the appropriate WinRT getter return type for the [type].
   factory WinRTGetterReturnType.from(TypeProjection type) {
     if (type.isDateTime) return WinRTGetterReturnType.dateTime;
     if (type.isTimeSpan) return WinRTGetterReturnType.duration;

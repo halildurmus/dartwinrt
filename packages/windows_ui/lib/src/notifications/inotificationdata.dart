@@ -75,9 +75,10 @@ class INotificationData extends IInspectable {
   set sequenceNumber(int value) {
     final hr = ptr.ref.vtable
         .elementAt(8)
-        .cast<Pointer<NativeFunction<HRESULT Function(Pointer, Uint32)>>>()
+        .cast<
+            Pointer<NativeFunction<HRESULT Function(Pointer, Uint32 value)>>>()
         .value
-        .asFunction<int Function(Pointer, int)>()(ptr.ref.lpVtbl, value);
+        .asFunction<int Function(Pointer, int value)>()(ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }

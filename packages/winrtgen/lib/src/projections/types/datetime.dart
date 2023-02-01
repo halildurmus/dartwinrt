@@ -72,7 +72,7 @@ class WinRTDateTimeSetterProjection extends WinRTSetPropertyProjection {
 
 /// Parameter projection for `DateTime` parameters.
 class WinRTDateTimeParameterProjection extends WinRTParameterProjection {
-  WinRTDateTimeParameterProjection(super.method, super.name, super.type);
+  WinRTDateTimeParameterProjection(super.parameter);
 
   @override
   String get preamble => '''

@@ -4,13 +4,12 @@
 
 import 'package:winmd/winmd.dart';
 
-import '../constants/exclusions.dart';
-import '../constants/headers.dart';
+import '../constants/constants.dart';
+import '../extensions/typedef_helpers.dart';
 import '../utils.dart';
-import 'method.dart';
 import 'winrt_get_property.dart';
-import 'winrt_implements_mapper.dart';
 import 'winrt_method.dart';
+import 'winrt_method_forwarders.dart';
 import 'winrt_set_property.dart';
 
 class WinRTInterfaceProjection {
@@ -64,11 +63,9 @@ class WinRTInterfaceProjection {
   String get header => classFileHeader;
 
   String get guidConstants => '''
-    /// @nodoc
-    const IID_$shortName = '${typeDef.guid}';
-  ''';
-
-  Set<String> get coreImports => {'dart:ffi', 'package:ffi/ffi.dart'};
+/// @nodoc
+const IID_$shortName = '${typeDef.guid}';
+''';
 
   String get category => 'interface';
 
@@ -80,12 +77,13 @@ class WinRTInterfaceProjection {
         : categoryComment;
   }
 
-  String get inheritsFrom =>
-      implementsInterfaces.map(shortTypeNameFromTypeDef).toList().join(', ');
+  String get inheritsFrom => implementsInterfaces
+      .map((interface) => interface.shortName)
+      .toList()
+      .join(', ');
 
   String getImportForTypeDef(TypeDef typeDef) {
-    final typeName = fullyQualifiedTypeNameFromTypeDef(typeDef);
-
+    final typeName = typeDef.fullyQualifiedName;
     if (currentTypeName == typeName ||
         ignoredWindowsRuntimeTypes.contains(typeName)) {
       return '';
@@ -97,24 +95,24 @@ class WinRTInterfaceProjection {
       // packages/windows_foundation/delegates.g.dart)
       return '';
     } else if (typeDef.isEnum) {
-      if (currentPackageName != packageNameFromTypeDef(typeDef)) {
-        return packageImportFromTypeDef(typeDef);
+      if (currentPackageName != typeDef.packageName) {
+        return typeDef.packageImport;
       }
 
       return relativePathTo(
           'packages/${folderFromWinRTType(typeName)}/enums.g.dart');
     } else if (typeDef.isClass || typeDef.isInterface) {
-      if (currentPackageName != packageNameFromTypeDef(typeDef)) {
+      if (currentPackageName != typeDef.packageName) {
         return typeName == 'Windows.Foundation.Uri'
             ? 'package:windows_foundation/uri.dart'
-            : packageImportFromTypeDef(typeDef);
+            : typeDef.packageImport;
       }
 
       return relativePathTo(
           'packages/${folderFromWinRTType(typeName)}/${fileNameFromWinRTType(typeName)}');
     } else if (typeDef.isStruct) {
-      if (currentPackageName != packageNameFromTypeDef(typeDef)) {
-        return packageImportFromTypeDef(typeDef);
+      if (currentPackageName != typeDef.packageName) {
+        return typeDef.packageImport;
       }
 
       return relativePathTo(
@@ -154,6 +152,8 @@ class WinRTInterfaceProjection {
 
   Set<String> get extraImports => {
         'dart:async',
+        'dart:ffi',
+        'package:ffi/ffi.dart',
         'package:win32/win32.dart',
         if (currentPackageName == 'windows_foundation') ...[
           relativePathTo('../internal.dart'),
@@ -170,7 +170,7 @@ class WinRTInterfaceProjection {
       };
 
   Set<String> get imports =>
-      {...coreImports, ...interfaceImports, ...importsForClass, ...extraImports}
+      {...interfaceImports, ...importsForClass, ...extraImports}
         // TODO: Remove this once WinRT events are supported.
         ..removeWhere((import) => import.endsWith('eventargs.dart'));
 
@@ -190,13 +190,13 @@ class WinRTInterfaceProjection {
     ).join('\n');
   }
 
-  List<MethodProjection>? _methodProjections;
+  List<WinRTMethodProjection>? _methodProjections;
 
-  List<MethodProjection> get methodProjections =>
+  List<WinRTMethodProjection> get methodProjections =>
       _methodProjections ??= _cacheMethodProjections();
 
-  List<MethodProjection> _cacheMethodProjections() {
-    final projection = <MethodProjection>[];
+  List<WinRTMethodProjection> _cacheMethodProjections() {
+    final projection = <WinRTMethodProjection>[];
     var vtableOffset = vtableStart;
 
     for (final method in typeDef.methods) {
@@ -230,7 +230,7 @@ class WinRTInterfaceProjection {
 
   String get shortName => stripGenerics(lastComponent(typeDef.name));
 
-  String get fromInterfaceHelper => '''
+  String get fromFactoryConstructor => '''
   factory $shortName.from(IInspectable interface) =>
       $shortName.fromRawPointer(interface.toInterface(IID_$shortName));''';
 
@@ -242,11 +242,11 @@ class WinRTInterfaceProjection {
 
   /// Returns the name of the package where the current interface is located
   /// (e.g. `windows_globalization` for `Windows.Globalization.Calendar`).
-  String get currentPackageName => packageNameFromTypeDef(typeDef);
+  String get currentPackageName => typeDef.packageName;
 
   /// Returns the fully qualified name of the current interface (e.g.
   /// `Windows.Globalization.Calendar`, `Windows.Foundation.IReference`1`).
-  String get currentTypeName => fullyQualifiedTypeNameFromTypeDef(typeDef);
+  String get currentTypeName => typeDef.fullyQualifiedName;
 
   /// Converts [path] to an equivalent relative path from the
   /// [currentFolderPath].
@@ -263,20 +263,19 @@ class WinRTInterfaceProjection {
 
   List<TypeDef> get implementsInterfaces => typeDef.interfaces
     ..removeWhere((interface) => excludedWindowsRuntimeInterfacesInInherits
-        .contains(fullyQualifiedTypeNameFromTypeDef(interface)));
+        .contains(interface.fullyQualifiedName));
 
-  List<WinRTImplementsMapperProjection>? _implementsMappers;
+  List<WinRTMethodForwardersProjection>? _methodForwarders;
 
-  List<WinRTImplementsMapperProjection> get implementsMappers =>
-      _implementsMappers ??= _cacheImplementsMappers();
+  List<WinRTMethodForwardersProjection> get methodForwarders =>
+      _methodForwarders ??= _cacheMethodForwarders();
 
-  List<WinRTImplementsMapperProjection> _cacheImplementsMappers() =>
+  List<WinRTMethodForwardersProjection> _cacheMethodForwarders() =>
       implementsInterfaces
           .where((interface) =>
-              !excludedWindowsRuntimeInterfacesInImplementsMappers
-                  .contains(fullyQualifiedTypeNameFromTypeDef(interface)))
-          .map((interface) =>
-              WinRTImplementsMapperProjection(typeDef, interface))
+              !excludedWindowsRuntimeInterfacesInMethodForwarders
+                  .contains(interface.fullyQualifiedName))
+          .map((interface) => WinRTMethodForwardersProjection(interface, this))
           .toList();
 
   @override
@@ -290,11 +289,10 @@ $classDeclaration
   // vtable begins at $vtableStart, is ${methodProjections.length} entries long.
   $namedConstructor
 
-  $fromInterfaceHelper
+  $fromFactoryConstructor
 
   ${methodProjections.join('\n')}
-
-  ${implementsMappers.join('\n')}
+  ${methodForwarders.join('\n')}
 }
 ''';
 }

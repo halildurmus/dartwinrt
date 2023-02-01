@@ -27,8 +27,8 @@ void main() {
         ]),
         equals([
           NamespaceGroup(
-            namespace: 'Windows.Foundation',
-            types: [
+            'Windows.Foundation',
+            [
               'Windows.Foundation.IAsyncInfo',
               'Windows.Foundation.IClosable',
               'Windows.Foundation.IPropertyValue',
@@ -37,38 +37,35 @@ void main() {
             ],
           ),
           NamespaceGroup(
-            namespace: 'Windows.Gaming.Input',
-            types: ['Windows.Gaming.Input.Gamepad'],
+            'Windows.Gaming.Input',
+            ['Windows.Gaming.Input.Gamepad'],
           ),
           NamespaceGroup(
-            namespace: 'Windows.Globalization',
-            types: ['Windows.Globalization.Calendar'],
+            'Windows.Globalization',
+            ['Windows.Globalization.Calendar'],
           ),
           NamespaceGroup(
-            namespace: 'Windows.Globalization.PhoneNumberFormatting',
-            types: [
+            'Windows.Globalization.PhoneNumberFormatting',
+            [
               'Windows.Globalization.PhoneNumberFormatting.PhoneNumberFormatter',
               'Windows.Globalization.PhoneNumberFormatting.PhoneNumberInfo'
             ],
           ),
           NamespaceGroup(
-            namespace: 'Windows.Networking',
-            types: ['Windows.Networking.IHostName'],
+            'Windows.Networking',
+            ['Windows.Networking.IHostName'],
           ),
           NamespaceGroup(
-            namespace: 'Windows.Storage',
-            types: [
-              'Windows.Storage.IStorageItem',
-              'Windows.Storage.UserDataPaths'
-            ],
+            'Windows.Storage',
+            ['Windows.Storage.IStorageItem', 'Windows.Storage.UserDataPaths'],
           ),
           NamespaceGroup(
-            namespace: 'Windows.Storage.Pickers',
-            types: ['Windows.Storage.Pickers.FileOpenPicker'],
+            'Windows.Storage.Pickers',
+            ['Windows.Storage.Pickers.FileOpenPicker'],
           ),
           NamespaceGroup(
-            namespace: 'Windows.UI.Notifications',
-            types: [
+            'Windows.UI.Notifications',
+            [
               'Windows.UI.Notifications.IToastNotificationManagerStatics',
               'Windows.UI.Notifications.ToastNotification'
             ],

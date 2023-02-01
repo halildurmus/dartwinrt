@@ -105,7 +105,7 @@ class WinRTInterfaceSetterProjection extends WinRTSetPropertyProjection
 
   @override
   String get methodProjection => '''
-  set $camelCasedName(${parameters.first.type.methodParamType} value) {
+  set $camelCasedName(${parameters.first.type.exposedType} value) {
     ${ffiCall(params: 'value == null ? nullptr : value.ptr.ref.lpVtbl')}
   }
 ''';
@@ -113,7 +113,7 @@ class WinRTInterfaceSetterProjection extends WinRTSetPropertyProjection
 
 /// Parameter projection for WinRT interface parameters.
 class WinRTInterfaceParameterProjection extends WinRTParameterProjection {
-  WinRTInterfaceParameterProjection(super.method, super.name, super.type);
+  WinRTInterfaceParameterProjection(super.parameter);
 
   @override
   String get preamble => '';

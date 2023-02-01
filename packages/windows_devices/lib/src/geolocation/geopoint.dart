@@ -31,7 +31,7 @@ class Geopoint extends IInspectable implements IGeopoint, IGeoshape {
   static const _className = 'Windows.Devices.Geolocation.Geopoint';
 
   // IGeopointFactory methods
-  static Geopoint create(BasicGeoposition position) {
+  factory Geopoint.create(BasicGeoposition position) {
     final activationFactoryPtr =
         createActivationFactory(_className, IID_IGeopointFactory);
     final object = IGeopointFactory.fromRawPointer(activationFactoryPtr);
@@ -43,7 +43,7 @@ class Geopoint extends IInspectable implements IGeopoint, IGeoshape {
     }
   }
 
-  static Geopoint createWithAltitudeReferenceSystem(BasicGeoposition position,
+  factory Geopoint.createWithAltitudeReferenceSystem(BasicGeoposition position,
       AltitudeReferenceSystem altitudeReferenceSystem) {
     final activationFactoryPtr =
         createActivationFactory(_className, IID_IGeopointFactory);
@@ -57,7 +57,7 @@ class Geopoint extends IInspectable implements IGeopoint, IGeoshape {
     }
   }
 
-  static Geopoint createWithAltitudeReferenceSystemAndSpatialReferenceId(
+  factory Geopoint.createWithAltitudeReferenceSystemAndSpatialReferenceId(
       BasicGeoposition position,
       AltitudeReferenceSystem altitudeReferenceSystem,
       int spatialReferenceId) {

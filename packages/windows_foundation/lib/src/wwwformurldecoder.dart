@@ -40,7 +40,7 @@ class WwwFormUrlDecoder extends IInspectable
   static const _className = 'Windows.Foundation.WwwFormUrlDecoder';
 
   // IWwwFormUrlDecoderRuntimeClassFactory methods
-  static WwwFormUrlDecoder createWwwFormUrlDecoder(String query) {
+  factory WwwFormUrlDecoder.createWwwFormUrlDecoder(String query) {
     final activationFactoryPtr = createActivationFactory(
         _className, IID_IWwwFormUrlDecoderRuntimeClassFactory);
     final object = IWwwFormUrlDecoderRuntimeClassFactory.fromRawPointer(

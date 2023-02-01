@@ -4,6 +4,7 @@
 
 import 'package:winmd/winmd.dart';
 
+import '../../extensions/extensions.dart';
 import '../../utils.dart';
 import '../type.dart';
 import '../winrt_get_property.dart';
@@ -25,15 +26,13 @@ mixin _MapProjection on WinRTMethodProjection {
     // If the type argument is an enum, the constructor of that class must be
     // passed in the 'enumKeyCreator' parameter for enum, so that the 'IMap' and
     // 'IMapView' implementations can instantiate the enum.
-    final enumKeyCreator =
-        parseArgumentForCreatorParameter(returnType.typeIdentifier.typeArg!);
+    final enumKeyCreator = returnType.typeIdentifier.typeArg!.creator;
 
     // If the type argument is an enum, a WinRT Object (e.g. IJsonValue), the
     // constructor of that class must be passed in the 'enumCreator' parameter
     // for enum, 'creator' parameter for WinRT Object so that the 'IMap' and
     // 'IMapView' implementations can instantiate the object
-    final creator = parseArgumentForCreatorParameter(
-        returnType.typeIdentifier.typeArg!.typeArg!);
+    final creator = returnType.typeIdentifier.typeArg!.typeArg!.creator;
 
     // The IID for IIterable<IKeyValuePair<K, V>> must be passed in the
     // 'iterableIid' parameter so that the 'IMap' and 'IMapView' implementations

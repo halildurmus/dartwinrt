@@ -65,7 +65,7 @@ class WinRTDurationSetterProjection extends WinRTSetPropertyProjection {
 
 /// Parameter projection for `Duration` parameters.
 class WinRTDurationParameterProjection extends WinRTParameterProjection {
-  WinRTDurationParameterProjection(super.method, super.name, super.type);
+  WinRTDurationParameterProjection(super.parameter);
 
   @override
   String get preamble => 'final ${name}Duration = $name.inMicroseconds * 10;';

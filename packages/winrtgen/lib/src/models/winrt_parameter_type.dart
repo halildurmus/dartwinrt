@@ -4,6 +4,7 @@
 
 import '../projections/type.dart';
 
+/// The type of a WinRT parameter.
 enum WinRTParameterType {
   bool,
   class_,
@@ -23,6 +24,7 @@ enum WinRTParameterType {
   struct,
   uri;
 
+  /// Returns the appropriate WinRT parameter type for the [type].
   factory WinRTParameterType.from(TypeProjection type) {
     if (type.isReferenceType) {
       // Return the wrapped type's parameter type.

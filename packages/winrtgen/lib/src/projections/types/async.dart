@@ -2,6 +2,7 @@
 // details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
+import '../../extensions/extensions.dart';
 import '../../utils.dart';
 import '../type.dart';
 import '../winrt_method.dart';
@@ -58,8 +59,7 @@ mixin _AsyncOperationProjection on WinRTMethodProjection {
     // constructor of that class must be passed in the 'enumCreator' parameter
     // for enums, 'creator' parameter for WinRT Objects so that the
     // IAsyncOperation implementation can instantiate the object.
-    final creator =
-        parseArgumentForCreatorParameter(returnType.typeIdentifier.typeArg!);
+    final creator = returnType.typeIdentifier.typeArg!.creator;
 
     // If the type argument is an enum or int, its native type (e.g. Int32,
     // Uint32) must be passed in the 'intType' parameter so that the

@@ -75,7 +75,7 @@ class WinRTStringSetterProjection extends WinRTSetPropertyProjection {
 
 /// Parameter projection for `String` parameters.
 class WinRTStringParameterProjection extends WinRTParameterProjection {
-  WinRTStringParameterProjection(super.method, super.name, super.type);
+  WinRTStringParameterProjection(super.parameter);
 
   @override
   String get preamble => 'final ${name}HString = convertToHString($name);';

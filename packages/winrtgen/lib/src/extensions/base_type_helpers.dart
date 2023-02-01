@@ -4,11 +4,9 @@
 
 import 'package:winmd/winmd.dart';
 
-import 'utils.dart';
-
-extension DartTypeNameConversion on BaseType {
-  /// Returns the appropriate Dart type name of the [baseType].
-  String get dartTypeName {
+extension BaseTypeHelpers on BaseType {
+  /// Returns the appropriate Dart type name of this BaseType.
+  String get dartType {
     switch (this) {
       case BaseType.booleanType:
         return 'bool';
@@ -27,13 +25,11 @@ extension DartTypeNameConversion on BaseType {
       case BaseType.stringType:
         return 'String';
       default:
-        return 'undefined';
+        throw Exception('Unsupported base type: $name');
     }
   }
 
-  /// Returns the type signature of the [baseType].
-  ///
-  /// To learn more about this, see
+  /// Returns the type signature of this BaseType as defined in:
   /// https://learn.microsoft.com/en-us/uwp/winrt-cref/winrt-type-system#guid-generation-for-parameterized-types
   String get signature {
     switch (this) {
@@ -66,26 +62,7 @@ extension DartTypeNameConversion on BaseType {
       case BaseType.uint64Type:
         return 'u8';
       default:
-        return 'undefined';
+        throw Exception('Unsupported base type: $name');
     }
-  }
-}
-
-extension CamelCaseConversion on String {
-  /// Converts a string to `camelCase`.
-  String toCamelCase() {
-    if (length == 0) return this;
-    if (length == 1) return toLowerCase();
-
-    for (final acronym in acronyms) {
-      if (startsWith(acronym)) {
-        // e.g. IPAddress -> ipAddress, UInt32 -> uint32
-        return safeIdentifierForString(
-            acronym.toLowerCase() + substring(acronym.length));
-      }
-    }
-
-    // e.g. ICalendar -> iCalendar
-    return substring(0, 1).toLowerCase() + substring(1);
   }
 }

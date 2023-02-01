@@ -5,18 +5,17 @@
 import 'package:winmd/winmd.dart';
 
 import '../utils.dart';
-import 'winrt_class.dart';
 import 'winrt_interface.dart';
 
-class WinRTFactoryInterfaceMapperProjection extends WinRTClassProjection {
-  WinRTFactoryInterfaceMapperProjection(super.typeDef, this.interface);
+class WinRTFactoryConstructorsProjection {
+  WinRTFactoryConstructorsProjection(this.interface);
 
-  /// The fully qualified type name of the factory interface (e.g.
+  /// The fully qualified type name of a factory interface (e.g.
   /// `Windows.Globalization.ICalendarFactory`).
   final String interface;
 
-  /// The shortened factory [interface] name (e.g. `ICalendarFactory`).
-  String get shortFactoryInterfaceName => lastComponent(interface);
+  /// The shorter [interface] name (e.g. `ICalendarFactory`).
+  String get shortName => lastComponent(interface);
 
   List<String>? _methods;
 
@@ -28,16 +27,17 @@ class WinRTFactoryInterfaceMapperProjection extends WinRTClassProjection {
       throw Exception('Factory typedef $interface missing.');
     }
 
-    final methods = <String>[];
     final interfaceProjection = WinRTInterfaceProjection(factoryTypeDef);
+    final methods = <String>[];
 
     for (final method in interfaceProjection.methodProjections) {
+      final className = method.shortDeclaration.split(' ').first;
       methods.add('''
-  static $shortName ${method.camelCasedName}(${method.methodParams}) {
+  factory $className.${method.camelCasedName}(${method.methodParams}) {
     final activationFactoryPtr =
-        createActivationFactory(_className, IID_$shortFactoryInterfaceName);
+        createActivationFactory(_className, IID_$shortName);
     final object =
-        $shortFactoryInterfaceName.fromRawPointer(activationFactoryPtr);
+        $shortName.fromRawPointer(activationFactoryPtr);
 
     try {
        return object.${method.shortForm};
@@ -53,7 +53,7 @@ class WinRTFactoryInterfaceMapperProjection extends WinRTClassProjection {
 
   @override
   String toString() => '''
-  // $shortFactoryInterfaceName methods
+  // $shortName methods
   ${methods.join('\n')}
 ''';
 }

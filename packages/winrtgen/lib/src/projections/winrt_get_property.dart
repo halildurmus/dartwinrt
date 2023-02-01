@@ -61,30 +61,5 @@ abstract class WinRTGetPropertyProjection extends WinRTPropertyProjection {
   // WinRTPropertyProjection overrides
 
   @override
-  String get dartParams => nativeParams;
-
-  @override
-  String get nativeParams => returnType.dartType == 'Pointer<COMObject>'
-      ? 'Pointer, Pointer<COMObject>'
-      : 'Pointer, Pointer<${returnType.nativeType}>';
-
-  @override
-  String ffiCall({String params = '', bool freeRetValOnFailure = false}) {
-    return [
-      '''
-    final hr = ptr.ref.vtable
-      .elementAt($vtableOffset)
-      .cast<Pointer<NativeFunction<$nativePrototype>>>()
-      .value
-      .asFunction<$dartPrototype>()(ptr.ref.lpVtbl, retValuePtr);
-''',
-      if (freeRetValOnFailure)
-        'if (FAILED(hr)) { free(retValuePtr); throw WindowsException(hr); }'
-      else
-        'if (FAILED(hr)) throw WindowsException(hr);'
-    ].join('\n');
-  }
-
-  @override
   String get shortForm => camelCasedName;
 }

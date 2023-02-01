@@ -5,18 +5,17 @@
 import 'package:winmd/winmd.dart';
 
 import '../utils.dart';
-import 'winrt_class.dart';
 import 'winrt_interface.dart';
 
-class WinRTStaticInterfaceMapperProjection extends WinRTClassProjection {
-  WinRTStaticInterfaceMapperProjection(super.typeDef, this.interface);
+class WinRTStaticMethodsProjection {
+  WinRTStaticMethodsProjection(this.interface);
 
-  /// The fully qualified type name of the static interface (e.g.
+  /// The fully-qualified type name of a static interface (e.g.
   /// `Windows.Foundation.IPropertyValueStatics`).
   final String interface;
 
-  /// The shortened static [interface] name (e.g. `IPropertyValueStatics`).
-  String get shortStaticInterfaceName => lastComponent(interface);
+  /// The shorter [interface] name (e.g. `IPropertyValueStatics`).
+  String get shortName => lastComponent(interface);
 
   List<String>? _methods;
 
@@ -31,17 +30,16 @@ class WinRTStaticInterfaceMapperProjection extends WinRTClassProjection {
     final methods = <String>[];
     final interfaceProjection = WinRTInterfaceProjection(staticTypeDef);
 
-    for (final methodProjection in interfaceProjection.methodProjections) {
-      final statement = 'object.${methodProjection.shortForm};';
-      final returnStatement = methodProjection.method.isSetProperty
-          ? statement
-          : 'return $statement';
+    for (final method in interfaceProjection.methodProjections) {
+      final statement = 'object.${method.shortForm};';
+      final returnStatement =
+          method.method.isSetProperty ? statement : 'return $statement';
       methods.add('''
-  static ${methodProjection.shortDeclaration} {
+  static ${method.shortDeclaration} {
     final activationFactoryPtr =
-        createActivationFactory(_className, IID_$shortStaticInterfaceName);
+        createActivationFactory(_className, IID_$shortName);
     final object =
-        $shortStaticInterfaceName.fromRawPointer(activationFactoryPtr);
+        $shortName.fromRawPointer(activationFactoryPtr);
 
     try {
       $returnStatement
@@ -57,7 +55,7 @@ class WinRTStaticInterfaceMapperProjection extends WinRTClassProjection {
 
   @override
   String toString() => '''
-  // $shortStaticInterfaceName methods
+  // $shortName methods
   ${methods.join('\n')}
 ''';
 }

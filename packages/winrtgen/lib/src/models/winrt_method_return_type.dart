@@ -4,6 +4,7 @@
 
 import '../projections/type.dart';
 
+/// The return type of a WinRT method.
 enum WinRTMethodReturnType {
   asyncAction,
   asyncActionWithProgress,
@@ -30,6 +31,7 @@ enum WinRTMethodReturnType {
   vectorView,
   void_;
 
+  /// Returns the appropriate WinRT method return type for the [type].
   factory WinRTMethodReturnType.from(TypeProjection type) {
     if (type.isDateTime) return WinRTMethodReturnType.dateTime;
     if (type.isTimeSpan) return WinRTMethodReturnType.duration;

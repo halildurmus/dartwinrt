@@ -56,9 +56,10 @@ class IGeolocator extends IInspectable {
   set desiredAccuracy(PositionAccuracy value) {
     final hr = ptr.ref.vtable
         .elementAt(7)
-        .cast<Pointer<NativeFunction<HRESULT Function(Pointer, Int32)>>>()
+        .cast<Pointer<NativeFunction<HRESULT Function(Pointer, Int32 value)>>>()
         .value
-        .asFunction<int Function(Pointer, int)>()(ptr.ref.lpVtbl, value.value);
+        .asFunction<
+            int Function(Pointer, int value)>()(ptr.ref.lpVtbl, value.value);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
@@ -88,9 +89,11 @@ class IGeolocator extends IInspectable {
   set movementThreshold(double value) {
     final hr = ptr.ref.vtable
         .elementAt(9)
-        .cast<Pointer<NativeFunction<HRESULT Function(Pointer, Double)>>>()
+        .cast<
+            Pointer<NativeFunction<HRESULT Function(Pointer, Double value)>>>()
         .value
-        .asFunction<int Function(Pointer, double)>()(ptr.ref.lpVtbl, value);
+        .asFunction<
+            int Function(Pointer, double value)>()(ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
@@ -120,9 +123,10 @@ class IGeolocator extends IInspectable {
   set reportInterval(int value) {
     final hr = ptr.ref.vtable
         .elementAt(11)
-        .cast<Pointer<NativeFunction<HRESULT Function(Pointer, Uint32)>>>()
+        .cast<
+            Pointer<NativeFunction<HRESULT Function(Pointer, Uint32 value)>>>()
         .value
-        .asFunction<int Function(Pointer, int)>()(ptr.ref.lpVtbl, value);
+        .asFunction<int Function(Pointer, int value)>()(ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }

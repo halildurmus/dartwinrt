@@ -14,22 +14,21 @@ import 'package:winrtgen/winrtgen.dart';
 
 void main() {
   test('vTableStart for Windows Runtime types', () {
-    const testedTypes = <String, int>{
-      'Windows.Globalization.ICalendar': 6,
-      'Windows.Foundation.IAsyncInfo': 6,
+    const types = <String, int>{
+      'Windows.Foundation.Collections.IPropertySet': 6,
       'Windows.Foundation.IAsyncAction': 6,
-      'Windows.Foundation.Collections.IPropertySet': 6
+      'Windows.Foundation.IAsyncInfo': 6,
+      'Windows.Globalization.ICalendar': 6,
     };
 
-    for (final type in testedTypes.keys) {
-      final scope = MetadataStore.getScopeForType(type);
-      final typeDef = scope.findTypeDef(type);
+    for (final type in types.keys) {
+      final typeDef = MetadataStore.getMetadataForType(type);
       expect(typeDef, isNotNull);
       if (typeDef != null) {
         final projectedClass = WinRTInterfaceProjection(typeDef);
         final calculatedVTableStart = projectedClass.vtableStart;
 
-        expect(calculatedVTableStart, equals(testedTypes[type]),
+        expect(calculatedVTableStart, equals(types[type]),
             reason: typeDef.name);
       }
     }

@@ -7,20 +7,20 @@ import 'package:winmd/winmd.dart';
 import 'package:winrtgen/winrtgen.dart';
 
 void main() {
-  test('dartTypeName', () {
-    expect(BaseType.booleanType.dartTypeName, equals('bool'));
-    expect(BaseType.doubleType.dartTypeName, equals('double'));
-    expect(BaseType.floatType.dartTypeName, equals('double'));
-    expect(BaseType.int8Type.dartTypeName, equals('int'));
-    expect(BaseType.int16Type.dartTypeName, equals('int'));
-    expect(BaseType.int32Type.dartTypeName, equals('int'));
-    expect(BaseType.int64Type.dartTypeName, equals('int'));
-    expect(BaseType.uint8Type.dartTypeName, equals('int'));
-    expect(BaseType.uint16Type.dartTypeName, equals('int'));
-    expect(BaseType.uint32Type.dartTypeName, equals('int'));
-    expect(BaseType.uint64Type.dartTypeName, equals('int'));
-    expect(BaseType.stringType.dartTypeName, equals('String'));
-    expect(BaseType.genericTypeModifier.dartTypeName, equals('undefined'));
+  test('dartType', () {
+    expect(BaseType.booleanType.dartType, equals('bool'));
+    expect(BaseType.doubleType.dartType, equals('double'));
+    expect(BaseType.floatType.dartType, equals('double'));
+    expect(BaseType.int8Type.dartType, equals('int'));
+    expect(BaseType.int16Type.dartType, equals('int'));
+    expect(BaseType.int32Type.dartType, equals('int'));
+    expect(BaseType.int64Type.dartType, equals('int'));
+    expect(BaseType.uint8Type.dartType, equals('int'));
+    expect(BaseType.uint16Type.dartType, equals('int'));
+    expect(BaseType.uint32Type.dartType, equals('int'));
+    expect(BaseType.uint64Type.dartType, equals('int'));
+    expect(BaseType.stringType.dartType, equals('String'));
+    expect(() => BaseType.genericTypeModifier.dartType, throwsException);
   });
 
   test('signature', () {
@@ -38,13 +38,6 @@ void main() {
     expect(BaseType.uint16Type.signature, equals('u2'));
     expect(BaseType.uint32Type.signature, equals('u4'));
     expect(BaseType.uint64Type.signature, equals('u8'));
-  });
-
-  test('toCamelCase', () {
-    expect('TitleCase'.toCamelCase(), equals('titleCase'));
-    expect('camelCase'.toCamelCase(), equals('camelCase'));
-    expect('IPAddress'.toCamelCase(), equals('ipAddress'));
-    expect('UInt32'.toCamelCase(), equals('uint32'));
-    expect(''.toCamelCase(), equals(''));
+    expect(() => BaseType.genericTypeModifier.signature, throwsException);
   });
 }

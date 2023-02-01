@@ -8,7 +8,7 @@ import 'package:test/test.dart';
 import 'package:winmd/winmd.dart';
 import 'package:winrtgen/winrtgen.dart';
 
-import 'helpers.dart';
+import '../helpers.dart';
 
 void main() {
   final windowsBuildNumber = getWindowsBuildNumber();
@@ -32,7 +32,7 @@ void main() {
     final typeProjection = TypeProjection(method.returnType.typeIdentifier);
     expect(typeProjection.dartType, equals('Pointer<COMObject>'));
     expect(typeProjection.nativeType, equals('Pointer<COMObject>'));
-    expect(typeProjection.methodParamType, equals('IMediaPlaybackSource?'));
+    expect(typeProjection.exposedType, equals('IMediaPlaybackSource?'));
   });
 
   test('Property setter projects appropriate results for delegate.', () {
@@ -423,9 +423,9 @@ void main() {
         projection.methodProjections.firstWhere((m) => m.name == 'put_Era');
 
     expect(setEraProjection.nativePrototype,
-        equalsIgnoringWhitespace('HRESULT Function(Pointer, Int32)'));
+        equalsIgnoringWhitespace('HRESULT Function(Pointer, Int32 value)'));
     expect(setEraProjection.dartPrototype,
-        equalsIgnoringWhitespace('int Function(Pointer, int)'));
+        equalsIgnoringWhitespace('int Function(Pointer, int value)'));
     expect(setEraProjection.returnType.dartType, equals('void'));
     expect(setEraProjection.toString().trimLeft(),
         startsWith('set era(int value)'));
@@ -442,15 +442,15 @@ void main() {
         .firstWhere((m) => m.name == 'put_ExpirationTime');
 
     expect(expirationTimeProjection.nativePrototype,
-        equalsIgnoringWhitespace('HRESULT Function(Pointer, LPVTBL)'));
+        equalsIgnoringWhitespace('HRESULT Function(Pointer, LPVTBL value)'));
     expect(expirationTimeProjection.dartPrototype,
-        equalsIgnoringWhitespace('int Function(Pointer, LPVTBL)'));
+        equalsIgnoringWhitespace('int Function(Pointer, LPVTBL value)'));
     expect(expirationTimeProjection.returnType.dartType, equals('void'));
     expect(expirationTimeProjection.toString().trimLeft(),
         startsWith('set expirationTime(DateTime? value)'));
 
     final expirationTimeParamProjection =
-        expirationTimeProjection.parameters.first as WinRTParameterProjection;
+        expirationTimeProjection.parameters.first;
 
     expect(expirationTimeParamProjection.preamble, isEmpty);
     expect(expirationTimeParamProjection.postamble, isEmpty);
@@ -469,16 +469,14 @@ void main() {
         projection.methodProjections.firstWhere((m) => m.name == 'put_Data');
 
     expect(dataProjection.nativePrototype,
-        equalsIgnoringWhitespace('HRESULT Function(Pointer, LPVTBL)'));
+        equalsIgnoringWhitespace('HRESULT Function(Pointer, LPVTBL value)'));
     expect(dataProjection.dartPrototype,
-        equalsIgnoringWhitespace('int Function(Pointer, LPVTBL)'));
+        equalsIgnoringWhitespace('int Function(Pointer, LPVTBL value)'));
     expect(dataProjection.returnType.dartType, equals('void'));
     expect(dataProjection.toString().trimLeft(),
         startsWith('set data(NotificationData? value)'));
 
-    final dataParamProjection =
-        dataProjection.parameters.first as WinRTParameterProjection;
-
+    final dataParamProjection = dataProjection.parameters.first;
     expect(dataParamProjection.preamble, isEmpty);
     expect(dataParamProjection.postamble, isEmpty);
     expect(dataParamProjection.localIdentifier,
@@ -496,16 +494,14 @@ void main() {
         projection.methodProjections.firstWhere((m) => m.name == 'put_Flags');
 
     expect(flagsProjection.nativePrototype,
-        equalsIgnoringWhitespace('HRESULT Function(Pointer, LPVTBL)'));
+        equalsIgnoringWhitespace('HRESULT Function(Pointer, LPVTBL value)'));
     expect(flagsProjection.dartPrototype,
-        equalsIgnoringWhitespace('int Function(Pointer, LPVTBL)'));
+        equalsIgnoringWhitespace('int Function(Pointer, LPVTBL value)'));
     expect(flagsProjection.returnType.dartType, equals('void'));
     expect(flagsProjection.toString().trimLeft(),
         startsWith('set flags(BluetoothLEAdvertisementFlags? value)'));
 
-    final flagsParamProjection =
-        flagsProjection.parameters.first as WinRTParameterProjection;
-
+    final flagsParamProjection = flagsProjection.parameters.first;
     expect(flagsParamProjection.preamble, isEmpty);
     expect(flagsParamProjection.postamble, isEmpty);
     expect(
@@ -519,11 +515,9 @@ void main() {
         MetadataStore.getMetadataForType('Windows.Globalization.ICalendar');
 
     final projection = WinRTInterfaceProjection(winTypeDef!);
-    final setDateTimeProjection = projection.methodProjections
-        .firstWhere((m) => m.name == 'SetDateTime') as WinRTMethodProjection;
-    final dateTimeParameter =
-        setDateTimeProjection.parameters.first as WinRTParameterProjection;
-
+    final setDateTimeProjection =
+        projection.methodProjections.firstWhere((m) => m.name == 'SetDateTime');
+    final dateTimeParameter = setDateTimeProjection.parameters.first;
     expect(dateTimeParameter.preamble, isNotEmpty);
     expect(setDateTimeProjection.parametersPreamble, isNotEmpty);
   });
@@ -533,10 +527,10 @@ void main() {
         'Windows.Foundation.Collections.StringMap');
 
     final projection = WinRTClassProjection(winTypeDef!);
-    final firstProjection = projection.methodProjections
-        .firstWhere((m) => m.name == 'First') as WinRTMethodProjection;
+    final firstProjection =
+        projection.methodProjections.firstWhere((m) => m.name == 'First');
 
-    expect(firstProjection.returnType.methodParamType,
+    expect(firstProjection.returnType.exposedType,
         equals('IIterator<IKeyValuePair<String, String>>?'));
     expect(firstProjection.toString().trimLeft(),
         startsWith('IIterator<IKeyValuePair<String, String>> first()'));
@@ -548,16 +542,14 @@ void main() {
 
     final projection = WinRTInterfaceProjection(winTypeDef!);
     final createNotificationDataProjection = projection.methodProjections
-            .firstWhere((m) => m.name == 'CreateNotificationDataWithValues')
-        as WinRTMethodProjection;
-    final initialValuesParameter = createNotificationDataProjection
-        .parameters.first as WinRTParameterProjection;
-
+        .firstWhere((m) => m.name == 'CreateNotificationDataWithValues');
+    final initialValuesParameter =
+        createNotificationDataProjection.parameters.first;
     expect(initialValuesParameter.preamble, isEmpty);
     expect(initialValuesParameter.postamble, isEmpty);
     expect(initialValuesParameter.localIdentifier,
         equals('initialValues.ptr.ref.lpVtbl'));
-    expect(initialValuesParameter.type.methodParamType,
+    expect(initialValuesParameter.type.exposedType,
         equals('IIterable<IKeyValuePair<String, String>>?'));
   });
 
@@ -666,8 +658,8 @@ void main() {
 
     final projection = WinRTClassProjection(winTypeDef!);
     expect(projection.isActivatable, isTrue);
-    expect(projection.factoryMappers, isNotEmpty);
-    expect(projection.staticMappers, isEmpty);
+    expect(projection.factoryConstructors, isNotEmpty);
+    expect(projection.staticMethods, isEmpty);
     expect(projection.classNameVariable,
         equals("static const _className = '$namespace';"));
   });
@@ -678,8 +670,8 @@ void main() {
 
     final projection = WinRTClassProjection(winTypeDef!);
     expect(projection.isActivatable, isFalse);
-    expect(projection.factoryMappers, isEmpty);
-    expect(projection.staticMappers, isEmpty);
+    expect(projection.factoryConstructors, isEmpty);
+    expect(projection.staticMethods, isEmpty);
     expect(projection.classNameVariable, isEmpty);
   });
 
@@ -732,7 +724,7 @@ void main() {
             'HRESULT Function(Pointer, Pointer<COMObject>)'));
     expect(fallbackUriProjection.dartPrototype,
         equalsIgnoringWhitespace('int Function(Pointer, Pointer<COMObject>)'));
-    expect(fallbackUriProjection.returnType.methodParamType, equals('Uri?'));
+    expect(fallbackUriProjection.returnType.exposedType, equals('Uri?'));
     expect(fallbackUriProjection.toString().trimLeft(),
         startsWith('Uri? get fallbackUri'));
     expect(
@@ -756,15 +748,13 @@ void main() {
         .firstWhere((m) => m.name == 'put_FallbackUri');
 
     expect(fallbackUriProjection.nativePrototype,
-        equalsIgnoringWhitespace('HRESULT Function(Pointer, LPVTBL)'));
+        equalsIgnoringWhitespace('HRESULT Function(Pointer, LPVTBL value)'));
     expect(fallbackUriProjection.dartPrototype,
-        equalsIgnoringWhitespace('int Function(Pointer, LPVTBL)'));
+        equalsIgnoringWhitespace('int Function(Pointer, LPVTBL value)'));
     expect(fallbackUriProjection.toString().trimLeft(),
         startsWith('set fallbackUri(Uri? value)'));
 
-    final fallbackUriParamProjection =
-        fallbackUriProjection.parameters.first as WinRTParameterProjection;
-
+    final fallbackUriParamProjection = fallbackUriProjection.parameters.first;
     expect(
         fallbackUriParamProjection.preamble,
         equalsIgnoringWhitespace(
@@ -784,8 +774,7 @@ void main() {
     final projection = WinRTInterfaceProjection(winTypeDef!);
     final launchUriAsyncProjection = projection.methodProjections
         .firstWhere((m) => m.name == 'LaunchUriAsync');
-    final uriParameter =
-        launchUriAsyncProjection.parameters.first as WinRTParameterProjection;
+    final uriParameter = launchUriAsyncProjection.parameters.first;
     expect(
         uriParameter.preamble,
         equals(
@@ -793,7 +782,7 @@ void main() {
     expect(uriParameter.postamble, equals('uriUri?.release();'));
     expect(uriParameter.localIdentifier,
         equals('uriUri == null ? nullptr : uriUri.ptr.ref.lpVtbl'));
-    expect(uriParameter.type.methodParamType, equals('Uri?'));
+    expect(uriParameter.type.exposedType, equals('Uri?'));
   });
 
   test('WinRT interface includes imports for methods in implemented interfaces',

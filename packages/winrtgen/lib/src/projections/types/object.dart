@@ -101,7 +101,7 @@ class WinRTObjectSetterProjection extends WinRTSetPropertyProjection
 
 /// Parameter projection for `Object` parameters.
 class WinRTObjectParameterProjection extends WinRTParameterProjection {
-  WinRTObjectParameterProjection(super.method, super.name, super.type);
+  WinRTObjectParameterProjection(super.parameter);
 
   @override
   String get preamble => '';

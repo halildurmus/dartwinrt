@@ -33,7 +33,7 @@ class Calendar extends IInspectable implements ICalendar, ITimeZoneOnCalendar {
   static const _className = 'Windows.Globalization.Calendar';
 
   // ICalendarFactory methods
-  static Calendar createCalendarDefaultCalendarAndClock(
+  factory Calendar.createCalendarDefaultCalendarAndClock(
       IIterable<String> languages) {
     final activationFactoryPtr =
         createActivationFactory(_className, IID_ICalendarFactory);
@@ -46,7 +46,7 @@ class Calendar extends IInspectable implements ICalendar, ITimeZoneOnCalendar {
     }
   }
 
-  static Calendar createCalendar(
+  factory Calendar.createCalendar(
       IIterable<String> languages, String calendar, String clock) {
     final activationFactoryPtr =
         createActivationFactory(_className, IID_ICalendarFactory);
@@ -60,7 +60,7 @@ class Calendar extends IInspectable implements ICalendar, ITimeZoneOnCalendar {
   }
 
   // ICalendarFactory2 methods
-  static Calendar createCalendarWithTimeZone(IIterable<String> languages,
+  factory Calendar.createCalendarWithTimeZone(IIterable<String> languages,
       String calendar, String clock, String timeZoneId) {
     final activationFactoryPtr =
         createActivationFactory(_className, IID_ICalendarFactory2);

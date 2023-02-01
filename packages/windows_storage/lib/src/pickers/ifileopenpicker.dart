@@ -56,9 +56,10 @@ class IFileOpenPicker extends IInspectable {
   set viewMode(PickerViewMode value) {
     final hr = ptr.ref.vtable
         .elementAt(7)
-        .cast<Pointer<NativeFunction<HRESULT Function(Pointer, Int32)>>>()
+        .cast<Pointer<NativeFunction<HRESULT Function(Pointer, Int32 value)>>>()
         .value
-        .asFunction<int Function(Pointer, int)>()(ptr.ref.lpVtbl, value.value);
+        .asFunction<
+            int Function(Pointer, int value)>()(ptr.ref.lpVtbl, value.value);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
@@ -92,9 +93,11 @@ class IFileOpenPicker extends IInspectable {
     try {
       final hr = ptr.ref.vtable
           .elementAt(9)
-          .cast<Pointer<NativeFunction<HRESULT Function(Pointer, IntPtr)>>>()
+          .cast<
+              Pointer<
+                  NativeFunction<HRESULT Function(Pointer, IntPtr value)>>>()
           .value
-          .asFunction<int Function(Pointer, int)>()(ptr.ref.lpVtbl, hstr);
+          .asFunction<int Function(Pointer, int value)>()(ptr.ref.lpVtbl, hstr);
 
       if (FAILED(hr)) throw WindowsException(hr);
     } finally {
@@ -127,9 +130,10 @@ class IFileOpenPicker extends IInspectable {
   set suggestedStartLocation(PickerLocationId value) {
     final hr = ptr.ref.vtable
         .elementAt(11)
-        .cast<Pointer<NativeFunction<HRESULT Function(Pointer, Int32)>>>()
+        .cast<Pointer<NativeFunction<HRESULT Function(Pointer, Int32 value)>>>()
         .value
-        .asFunction<int Function(Pointer, int)>()(ptr.ref.lpVtbl, value.value);
+        .asFunction<
+            int Function(Pointer, int value)>()(ptr.ref.lpVtbl, value.value);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
@@ -163,9 +167,11 @@ class IFileOpenPicker extends IInspectable {
     try {
       final hr = ptr.ref.vtable
           .elementAt(13)
-          .cast<Pointer<NativeFunction<HRESULT Function(Pointer, IntPtr)>>>()
+          .cast<
+              Pointer<
+                  NativeFunction<HRESULT Function(Pointer, IntPtr value)>>>()
           .value
-          .asFunction<int Function(Pointer, int)>()(ptr.ref.lpVtbl, hstr);
+          .asFunction<int Function(Pointer, int value)>()(ptr.ref.lpVtbl, hstr);
 
       if (FAILED(hr)) throw WindowsException(hr);
     } finally {
