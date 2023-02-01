@@ -66,7 +66,7 @@ class WinRTClassGetterProjection extends WinRTGetPropertyProjection
 
   @override
   String get methodProjection => '''
-  $methodReturnType get $exposedMethodName {
+  $methodReturnType get $camelCasedName {
     final retValuePtr = calloc<COMObject>();
 
     ${ffiCall(freeRetValOnFailure: true)}
@@ -85,7 +85,7 @@ class WinRTClassSetterProjection extends WinRTSetPropertyProjection
 
   @override
   String get methodProjection => '''
-  set $exposedMethodName(${parameters.first.type.methodParamType} value) {
+  set $camelCasedName(${parameters.first.type.methodParamType} value) {
     ${ffiCall(params: 'value == null ? nullptr : value.ptr.ref.lpVtbl')}
   }
 ''';

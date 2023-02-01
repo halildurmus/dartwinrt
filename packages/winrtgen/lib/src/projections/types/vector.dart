@@ -80,7 +80,7 @@ class WinRTVectorGetterProjection extends WinRTGetPropertyProjection
 
   @override
   String get methodProjection => '''
-  IVector<$vectorTypeArg> get $exposedMethodName {
+  IVector<$vectorTypeArg> get $camelCasedName {
     final retValuePtr = calloc<COMObject>();
 
     ${ffiCall(freeRetValOnFailure: true)}
@@ -123,7 +123,7 @@ class WinRTVectorViewGetterProjection extends WinRTGetPropertyProjection
 
   @override
   String get methodProjection => '''
-  List<$vectorTypeArg> get $exposedMethodName {
+  List<$vectorTypeArg> get $camelCasedName {
     final retValuePtr = calloc<COMObject>();
 
     ${ffiCall(freeRetValOnFailure: true)}

@@ -126,8 +126,7 @@ void main() {
     expect(projection.methodProjections.first.returnType.typeIdentifier.name,
         endsWith('PickerViewMode'));
     expect(projection.methodProjections.first.parameters, isEmpty);
-    expect(
-        (getPropertyProjection as WinRTGetPropertyProjection).exposedMethodName,
+    expect((getPropertyProjection as WinRTGetPropertyProjection).camelCasedName,
         equals('viewMode'));
   });
 
@@ -190,7 +189,7 @@ void main() {
     final ipInformationProjection = projection.methodProjections
             .firstWhere((m) => m.name == 'get_IPInformation')
         as WinRTGetPropertyProjection;
-    expect(ipInformationProjection.exposedMethodName, equals('ipInformation'));
+    expect(ipInformationProjection.camelCasedName, equals('ipInformation'));
   });
 
   test('WinRT exposed method name is properly converted to camelCase', () {

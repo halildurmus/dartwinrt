@@ -11,7 +11,8 @@ abstract class WinRTPropertyProjection extends WinRTMethodProjection {
 
   /// Strip off all underscores, even if double underscores (e.g.
   /// `get_Languages` -> `languages`, `put__Data` -> `data`).
-  String get exposedMethodName {
+  @override
+  String get camelCasedName {
     final String formattedMethodName;
     if (method.name.startsWith('get__') || method.name.startsWith('put__')) {
       // e.g. get__Languages -> Languages, put__Data -> Data
@@ -21,6 +22,6 @@ abstract class WinRTPropertyProjection extends WinRTMethodProjection {
       formattedMethodName = method.name.substring(4);
     }
 
-    return safeIdentifierForString(formattedMethodName).toCamelCase();
+    return safeIdentifierForString(formattedMethodName.toCamelCase());
   }
 }

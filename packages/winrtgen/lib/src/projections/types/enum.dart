@@ -35,7 +35,7 @@ class WinRTEnumGetterProjection extends WinRTGetPropertyProjection {
 
   @override
   String get methodProjection => '''
-  ${returnType.methodParamType} get $exposedMethodName {
+  ${returnType.methodParamType} get $camelCasedName {
     final retValuePtr = calloc<${returnType.nativeType}>();
 
     try {
@@ -55,7 +55,7 @@ class WinRTEnumSetterProjection extends WinRTSetPropertyProjection {
 
   @override
   String get methodProjection => '''
-  set $exposedMethodName(${parameters.first.type.methodParamType} value) {
+  set $camelCasedName(${parameters.first.type.methodParamType} value) {
     ${ffiCall(params: 'value.value')}
   }
 ''';

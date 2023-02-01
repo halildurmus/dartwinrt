@@ -35,7 +35,7 @@ class WinRTDurationGetterProjection extends WinRTGetPropertyProjection {
 
   @override
   String get methodProjection => '''
-  Duration get $exposedMethodName {
+  Duration get $camelCasedName {
     final retValuePtr = calloc<Uint64>();
 
     try {
@@ -55,7 +55,7 @@ class WinRTDurationSetterProjection extends WinRTSetPropertyProjection {
 
   @override
   String get methodProjection => '''
-  set $exposedMethodName(Duration value) {
+  set $camelCasedName(Duration value) {
     final duration = value.inMicroseconds * 10;
 
     ${ffiCall(params: 'duration')}

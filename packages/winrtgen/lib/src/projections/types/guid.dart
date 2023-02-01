@@ -35,7 +35,7 @@ class WinRTGuidGetterProjection extends WinRTGetPropertyProjection {
 
   @override
   String get methodProjection => '''
-  Guid get $exposedMethodName {
+  Guid get $camelCasedName {
     final retValuePtr = calloc<GUID>();
 
     try {
@@ -55,7 +55,7 @@ class WinRTGuidSetterProjection extends WinRTSetPropertyProjection {
 
   @override
   String get methodProjection => '''
-  set $exposedMethodName(Guid value) {
+  set $camelCasedName(Guid value) {
     final nativeGuidPtr = value.toNativeGUID();
 
     try {

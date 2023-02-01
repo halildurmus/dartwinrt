@@ -40,7 +40,7 @@ class WinRTDateTimeGetterProjection extends WinRTGetPropertyProjection {
 
   @override
   String get methodProjection => '''
-  DateTime get $exposedMethodName {
+  DateTime get $camelCasedName {
     final retValuePtr = calloc<Uint64>();
 
     try {
@@ -61,7 +61,7 @@ class WinRTDateTimeSetterProjection extends WinRTSetPropertyProjection {
 
   @override
   String get methodProjection => '''
-  set $exposedMethodName(DateTime value) {
+  set $camelCasedName(DateTime value) {
     final dateTimeOffset =
         value.difference(DateTime.utc(1601, 01, 01)).inMicroseconds * 10;
 

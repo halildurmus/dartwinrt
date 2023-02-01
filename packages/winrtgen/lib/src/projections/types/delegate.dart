@@ -35,7 +35,7 @@ class WinRTDelegateGetterProjection extends WinRTGetPropertyProjection {
 
   @override
   String get methodProjection => '''
-  ${returnType.dartType} get $exposedMethodName {
+  ${returnType.dartType} get $camelCasedName {
     final retValuePtr = calloc<${returnType.nativeType}>();
 
     try {
@@ -55,7 +55,7 @@ class WinRTDelegateSetterProjection extends WinRTSetPropertyProjection {
 
   @override
   String get methodProjection => '''
-  set $exposedMethodName(${parameters.first.type.dartType} value) {
+  set $camelCasedName(${parameters.first.type.dartType} value) {
     ${ffiCall(params: 'value')}
   }
 ''';
