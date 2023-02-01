@@ -21,11 +21,11 @@ import 'package:ffi/ffi.dart';
 /// {@category struct}
 class BasicGeoposition extends Struct {
   @Double()
-  external double Latitude;
+  external double latitude;
 
   @Double()
-  external double Longitude;
+  external double longitude;
 
   @Double()
-  external double Altitude;
+  external double altitude;
 }

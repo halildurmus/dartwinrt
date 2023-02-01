@@ -165,15 +165,15 @@ void main() {
 
     test('IReference<Point>', () {
       final pointPtr = calloc<Point>()
-        ..ref.X = 50
-        ..ref.Y = 100;
+        ..ref.x = 50
+        ..ref.y = 100;
       final pv = PropertyValue.createPoint(pointPtr.ref);
       final ireference = IReference<Point>.fromRawPointer(
           pv.toInterface(IID_IReference_Point),
           referenceIid: IID_IReference_Point);
       expect(ireference.value, isNotNull);
-      expect(ireference.value!.X, equals(50));
-      expect(ireference.value!.Y, equals(100));
+      expect(ireference.value!.x, equals(50));
+      expect(ireference.value!.y, equals(100));
 
       ireference.release();
       pv.release();
@@ -182,19 +182,19 @@ void main() {
 
     test('IReference<Rect>', () {
       final rectPtr = calloc<Rect>()
-        ..ref.Height = 200
-        ..ref.Width = 100
-        ..ref.X = 50
-        ..ref.Y = 100;
+        ..ref.height = 200
+        ..ref.width = 100
+        ..ref.x = 50
+        ..ref.y = 100;
       final pv = PropertyValue.createRect(rectPtr.ref);
       final ireference = IReference<Rect>.fromRawPointer(
           pv.toInterface(IID_IReference_Rect),
           referenceIid: IID_IReference_Rect);
       expect(ireference.value, isNotNull);
-      expect(ireference.value!.Height, equals(200));
-      expect(ireference.value!.Width, equals(100));
-      expect(ireference.value!.X, equals(50));
-      expect(ireference.value!.Y, equals(100));
+      expect(ireference.value!.height, equals(200));
+      expect(ireference.value!.width, equals(100));
+      expect(ireference.value!.x, equals(50));
+      expect(ireference.value!.y, equals(100));
 
       ireference.release();
       pv.release();
@@ -203,15 +203,15 @@ void main() {
 
     test('IReference<Size>', () {
       final sizePtr = calloc<Size>()
-        ..ref.Height = 200
-        ..ref.Width = 100;
+        ..ref.height = 200
+        ..ref.width = 100;
       final pv = PropertyValue.createSize(sizePtr.ref);
       final ireference = IReference<Size>.fromRawPointer(
           pv.toInterface(IID_IReference_Size),
           referenceIid: IID_IReference_Size);
       expect(ireference.value, isNotNull);
-      expect(ireference.value!.Height, equals(200));
-      expect(ireference.value!.Width, equals(100));
+      expect(ireference.value!.height, equals(200));
+      expect(ireference.value!.width, equals(100));
 
       ireference.release();
       pv.release();

@@ -21,28 +21,28 @@ import 'package:ffi/ffi.dart';
 /// {@category struct}
 class GamepadReading extends Struct {
   @Uint64()
-  external int Timestamp;
+  external int timestamp;
 
   @Uint32()
-  external int Buttons;
+  external int buttons;
 
   @Double()
-  external double LeftTrigger;
+  external double leftTrigger;
 
   @Double()
-  external double RightTrigger;
+  external double rightTrigger;
 
   @Double()
-  external double LeftThumbstickX;
+  external double leftThumbstickX;
 
   @Double()
-  external double LeftThumbstickY;
+  external double leftThumbstickY;
 
   @Double()
-  external double RightThumbstickX;
+  external double rightThumbstickX;
 
   @Double()
-  external double RightThumbstickY;
+  external double rightThumbstickY;
 }
 
 /// Describes the gamepad motor speed.
@@ -50,14 +50,14 @@ class GamepadReading extends Struct {
 /// {@category struct}
 class GamepadVibration extends Struct {
   @Double()
-  external double LeftMotor;
+  external double leftMotor;
 
   @Double()
-  external double RightMotor;
+  external double rightMotor;
 
   @Double()
-  external double LeftTrigger;
+  external double leftTrigger;
 
   @Double()
-  external double RightTrigger;
+  external double rightTrigger;
 }
