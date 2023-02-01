@@ -7,6 +7,7 @@ import 'package:winmd/winmd.dart';
 import '../models/winrt_parameter_type.dart';
 import 'type.dart';
 import 'types/types.dart';
+import 'winrt_method.dart';
 import 'winrt_property.dart';
 
 abstract class WinRTSetPropertyProjection extends WinRTPropertyProjection {
@@ -53,27 +54,20 @@ abstract class WinRTSetPropertyProjection extends WinRTPropertyProjection {
     }
   }
 
-  // WinRTPropertyProjection overrides
+  factory WinRTSetPropertyProjection.forTypeAndMethodName(
+      String fullyQualifiedTypeName, String methodName) {
+    final setPropertyPattern = RegExp(r'^put(_{1,2})(\w+)');
+    if (!setPropertyPattern.hasMatch(methodName)) {
+      throw ArgumentError.value(
+          methodName, 'methodName', 'Method name must start with `put_`.');
+    }
 
-  @override
-  String get nativeParams => 'Pointer, ${parameters.first.type.nativeType}';
+    return WinRTMethodProjection.forTypeAndMethodName(
+        fullyQualifiedTypeName, methodName) as WinRTSetPropertyProjection;
+  }
 
-  @override
-  String get dartParams => 'Pointer, ${parameters.first.type.dartType}';
-
-  // MethodProjection override
+  // WinRTMethodProjection overrides
 
   @override
   String get shortForm => '$camelCasedName = value';
-
-  @override
-  String ffiCall({String params = '', bool freeRetValOnFailure = false}) => '''
-    final hr = ptr.ref.vtable
-      .elementAt($vtableOffset)
-      .cast<Pointer<NativeFunction<$nativePrototype>>>()
-      .value
-      .asFunction<$dartPrototype>()(ptr.ref.lpVtbl, $params);
-
-    if (FAILED(hr)) throw WindowsException(hr);
-''';
 }

@@ -7,6 +7,7 @@ import 'package:winmd/winmd.dart';
 import '../models/winrt_getter_return_type.dart';
 import 'type.dart';
 import 'types/types.dart';
+import 'winrt_method.dart';
 import 'winrt_property.dart';
 
 abstract class WinRTGetPropertyProjection extends WinRTPropertyProjection {
@@ -58,32 +59,19 @@ abstract class WinRTGetPropertyProjection extends WinRTPropertyProjection {
     }
   }
 
-  // WinRTPropertyProjection overrides
+  factory WinRTGetPropertyProjection.forTypeAndMethodName(
+      String fullyQualifiedTypeName, String methodName) {
+    final getPropertyPattern = RegExp(r'^get(_{1,2})(\w+)');
+    if (!getPropertyPattern.hasMatch(methodName)) {
+      throw ArgumentError.value(
+          methodName, 'methodName', 'Method name must start with `get_`.');
+    }
 
-  @override
-  String get dartParams => nativeParams;
-
-  @override
-  String get nativeParams => returnType.dartType == 'Pointer<COMObject>'
-      ? 'Pointer, Pointer<COMObject>'
-      : 'Pointer, Pointer<${returnType.nativeType}>';
-
-  @override
-  String ffiCall({String params = '', bool freeRetValOnFailure = false}) {
-    return [
-      '''
-    final hr = ptr.ref.vtable
-      .elementAt($vtableOffset)
-      .cast<Pointer<NativeFunction<$nativePrototype>>>()
-      .value
-      .asFunction<$dartPrototype>()(ptr.ref.lpVtbl, retValuePtr);
-''',
-      if (freeRetValOnFailure)
-        'if (FAILED(hr)) { free(retValuePtr); throw WindowsException(hr); }'
-      else
-        'if (FAILED(hr)) throw WindowsException(hr);'
-    ].join('\n');
+    return WinRTMethodProjection.forTypeAndMethodName(
+        fullyQualifiedTypeName, methodName) as WinRTGetPropertyProjection;
   }
+
+  // WinRTPropertyProjection overrides
 
   @override
   String get shortForm => camelCasedName;

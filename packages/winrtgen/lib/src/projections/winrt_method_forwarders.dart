@@ -4,37 +4,37 @@
 
 import 'package:winmd/winmd.dart';
 
+import '../extensions/extensions.dart';
 import '../utils.dart';
-import 'method.dart';
 import 'type.dart';
 import 'winrt_class.dart';
 import 'winrt_interface.dart';
+import 'winrt_method.dart';
 
-class WinRTImplementsMapperProjection extends WinRTInterfaceProjection {
-  WinRTImplementsMapperProjection(super.typeDef, this.interface);
+class WinRTMethodForwardersProjection {
+  WinRTMethodForwardersProjection(this.interface, this.interfaceProjection);
 
-  /// The interface that implements mappers are generated from.
+  /// The interface typedef that method forwarders are generated from (e.g.
+  /// `Windows.Storage.IStorageItem`).
   final TypeDef interface;
+
+  /// The interface projection that method forwarders are generated to (e.g.
+  /// `Windows.Storage.StorageFile`, `Windows.Storage.IStorageFile`).
+  final WinRTInterfaceProjection interfaceProjection;
 
   /// Whether the [interface] is a generic interface.
   bool get isGenericInterface =>
       interface.typeSpec?.baseType == BaseType.genericTypeModifier;
 
-  /// The [interface] name with type arguments (e.g. `IMap<String, String>`,
+  /// The shorter [interface] name without type arguments (e.g. `IMap`,
   /// `ICalendar`).
-  String get interfaceNameWithTypeArgs => shortTypeNameFromTypeDef(interface);
-
-  /// The shortened [interface] name without type arguments (e.g. `IMap`,
-  /// `ICalendar`).
-  String get shortInterfaceName => isGenericInterface
-      ? outerType(interfaceNameWithTypeArgs)
-      : lastComponent(interface.name);
+  String get shortInterfaceName => outerType(interface.shortName);
 
   /// The type arguments of the [interface] (e.g. `String, String?`,
-  ///  `StorageFile`).
-  String get typeArgs => typeArguments(interfaceNameWithTypeArgs);
+  /// `StorageFile`).
+  String get typeArgs => typeArguments(interface.shortName);
 
-  /// Private field identifier for the interface (e.g. `_iCalendar`).
+  /// Private field identifier for the [interface] (e.g. `_iCalendar`).
   String get fieldIdentifier => '_i${shortInterfaceName.substring(1)}';
 
   /// The constructor arguments passed to the constructors of the [interface].
@@ -56,7 +56,7 @@ class WinRTImplementsMapperProjection extends WinRTInterfaceProjection {
     final typeArg = ['IMap', 'IMapView'].contains(shortInterfaceName)
         ? interface.typeSpec!.typeArg!.typeArg!
         : interface.typeSpec!.typeArg!;
-    final creator = parseArgumentForCreatorParameter(typeArg);
+    final creator = typeArg.creator;
     if (creator == null) return null;
 
     final typeArgProjection = TypeProjection(typeArg);
@@ -79,15 +79,14 @@ class WinRTImplementsMapperProjection extends WinRTInterfaceProjection {
 
   String get interfaceInstantiation {
     if (!isGenericInterface) return '$shortInterfaceName.from(this);';
-    final iid = "'${iidFromTypeDef(interface)}'";
-    return '$interfaceNameWithTypeArgs'
-        '.fromRawPointer(toInterface($iid)$constructorArgs);';
+    final iid = "'${interface.iid}'";
+    return '${interface.shortName}.fromRawPointer(toInterface($iid)$constructorArgs);';
   }
 
   /// Tries to find the method projections for the [interface] from the given
   /// [methodProjections] by comparing method names.
-  List<MethodProjection> _methodProjectionsOfInterface(
-          List<MethodProjection> methodProjections) =>
+  List<WinRTMethodProjection> _methodProjectionsOfInterface(
+          List<WinRTMethodProjection> methodProjections) =>
       methodProjections
           .where((method) =>
               method.name != '.ctor' &&
@@ -98,8 +97,7 @@ class WinRTImplementsMapperProjection extends WinRTInterfaceProjection {
                   .contains(method.name))
           .toList();
 
-  @override
-  List<MethodProjection> get methodProjections {
+  List<WinRTMethodProjection> get methodProjections {
     if (!isGenericInterface) {
       return WinRTInterfaceProjection(interface).methodProjections;
     }
@@ -107,7 +105,7 @@ class WinRTImplementsMapperProjection extends WinRTInterfaceProjection {
     // Try to find method projections for the interface from the super class's
     // method projections.
     var $methodProjections =
-        _methodProjectionsOfInterface(super.methodProjections);
+        _methodProjectionsOfInterface(interfaceProjection.methodProjections);
     if ($methodProjections.isNotEmpty) return $methodProjections;
 
     const attributeName = 'Windows.Foundation.Metadata.ExclusiveToAttribute';
@@ -115,8 +113,8 @@ class WinRTImplementsMapperProjection extends WinRTInterfaceProjection {
 
     // Try to find the class that implements the interface through the
     // 'ExclusiveToAttribute'.
-    if (typeDef.existsAttribute(attributeName)) {
-      classTypeName = typeDef
+    if (interfaceProjection.typeDef.existsAttribute(attributeName)) {
+      classTypeName = interfaceProjection.typeDef
           .findAttribute(attributeName)!
           .parameters
           .first
@@ -125,10 +123,10 @@ class WinRTImplementsMapperProjection extends WinRTInterfaceProjection {
     } else {
       // If the 'ExclusiveToAttribute' not found, try using the interface name
       // as a class name by removing the 'I' prefix.
-      classTypeName = (typeDef.name.split('.')
+      classTypeName = (interfaceProjection.typeDef.name.split('.')
             ..removeLast() // Remove the shortName (e.g. IPropertySet)
             // Add shortName without 'I' prefix (e.g. PropertySet)
-            ..add(shortName.substring(1)))
+            ..add(interfaceProjection.shortName.substring(1)))
           .join('.');
     }
 
@@ -148,71 +146,71 @@ class WinRTImplementsMapperProjection extends WinRTInterfaceProjection {
 
     for (final methodProjection in methodProjections) {
       if (['IMap', 'IMapView'].contains(shortInterfaceName)) {
-        // Use custom mapper for Insert to make its value parameter nullable
+        // Use custom forwarder for Insert to make its value parameter nullable
         if (methodProjection.name == 'Insert') {
           // To insert null values in JsonObject, JsonValue.createNullValue()
-          // needs to be used. jsonObjectInsertMapper() passes
+          // needs to be used. jsonObjectInsertForwarder() passes
           // JsonValue.createNullValue() if the value argument is null.
-          if (shortName == 'JsonObject') {
-            methods.add(jsonObjectInsertMapper());
+          if (interfaceProjection.shortName == 'JsonObject') {
+            methods.add(jsonObjectInsertForwarder());
             continue;
           }
 
-          methods.add(mapInsertMapper(methodProjection.shortForm));
+          methods.add(mapInsertForwarder(methodProjection.shortForm));
           continue;
         }
 
-        // Use custom mapper for Lookup to make its return type nullable.
+        // Use custom forwarder for Lookup to make its return type nullable.
         if (methodProjection.name == 'Lookup') {
-          methods.add(mapLookupMapper(methodProjection.shortForm));
+          methods.add(mapLookupForwarder(methodProjection.shortForm));
           continue;
         }
       }
 
       if (['IVector', 'IVectorView'].contains(shortInterfaceName)) {
-        // Use custom mapper for Append to make its parameter non-nullable.
+        // Use custom forwarder for Append to make its parameter non-nullable.
         if (methodProjection.name == 'Append') {
-          methods.add(vectorAppendMapper());
+          methods.add(vectorAppendForwarder());
           continue;
         }
 
-        // Use custom mapper for GetMany to change the type of the value
+        // Use custom forwarder for GetMany to change the type of the value
         // parameter to Pointer<NativeType>.
         if (methodProjection.name == 'GetMany') {
-          methods.add(vectorGetManyMapper(methodProjection.shortForm));
+          methods.add(vectorGetManyForwarder(methodProjection.shortForm));
           continue;
         }
 
-        // Use custom mapper for IndexOf to make its 'value' parameter
+        // Use custom forwarder for IndexOf to make its 'value' parameter
         // non-nullable.
         if (methodProjection.name == 'IndexOf') {
-          methods.add(vectorIndexOfMapper());
+          methods.add(vectorIndexOfForwarder());
           continue;
         }
 
-        // Use custom mapper for InsertAt to make its 'value' parameter
+        // Use custom forwarder for InsertAt to make its 'value' parameter
         // non-nullable.
         if (methodProjection.name == 'InsertAt') {
-          methods.add(vectorInsertAtMapper());
+          methods.add(vectorInsertAtForwarder());
           continue;
         }
 
-        // Use custom mapper for ReplaceAll to change the type of the value
+        // Use custom forwarder for ReplaceAll to change the type of the value
         // parameter to List<...>.
         if (methodProjection.name == 'ReplaceAll') {
-          methods.add(vectorReplaceAllMapper());
+          methods.add(vectorReplaceAllForwarder());
           continue;
         }
 
-        // Use custom mapper for SetAt to make its 'value' parameter
+        // Use custom forwarder for SetAt to make its 'value' parameter
         // non-nullable.
         if (methodProjection.name == 'SetAt') {
-          methods.add(vectorSetAtMapper());
+          methods.add(vectorSetAtForwarder());
           continue;
         }
       }
 
-      methods.add(defaultMapper(methodProjection));
+      methods.add(defaultForwarder(methodProjection));
     }
 
     if (['IMap', 'IMapView'].contains(shortInterfaceName)) {
@@ -224,7 +222,7 @@ class WinRTImplementsMapperProjection extends WinRTInterfaceProjection {
     return methods;
   }
 
-  String defaultMapper(MethodProjection methodProjection) {
+  String defaultForwarder(WinRTMethodProjection methodProjection) {
     // e.g. `int get Second` or `void addHours(int hours)`
     final declaration = methodProjection.shortDeclaration;
     final overrideAnnotation =
@@ -235,8 +233,8 @@ class WinRTImplementsMapperProjection extends WinRTInterfaceProjection {
 ''';
   }
 
-  // Custom implements mapper declarations
-  String jsonObjectInsertMapper() {
+  // Custom method forwarder declarations
+  String jsonObjectInsertForwarder() {
     final keyType = typeArgs.split(', ')[0];
     final valueType = typeArgs.split(', ')[1];
     return '''
@@ -246,7 +244,7 @@ class WinRTImplementsMapperProjection extends WinRTInterfaceProjection {
 ''';
   }
 
-  String mapInsertMapper(String methodShortForm) {
+  String mapInsertForwarder(String methodShortForm) {
     final keyType = typeArgs.split(', ')[0];
     final valueType = typeArgs.split(', ')[1];
     return '''
@@ -255,7 +253,7 @@ class WinRTImplementsMapperProjection extends WinRTInterfaceProjection {
 ''';
   }
 
-  String mapLookupMapper(String methodShortForm) {
+  String mapLookupForwarder(String methodShortForm) {
     final keyType = typeArgs.split(', ')[0];
     final returnType = typeArgs.split(', ')[1];
     return '''
@@ -264,7 +262,7 @@ class WinRTImplementsMapperProjection extends WinRTInterfaceProjection {
 ''';
   }
 
-  String vectorAppendMapper() => '''
+  String vectorAppendForwarder() => '''
   @override
   void append(${stripQuestionMarkSuffix(typeArgs)} value) =>
       $fieldIdentifier.append(value);
@@ -274,36 +272,36 @@ class WinRTImplementsMapperProjection extends WinRTInterfaceProjection {
   // function in IVector and IVectorView implementations also use it this way in
   // order to handle various types such as Pointer<Int32> and
   // Pointer<COMObject>.
-  String vectorGetManyMapper(String methodShortForm) => '''
+  String vectorGetManyForwarder(String methodShortForm) => '''
   @override
   int getMany(int startIndex, int valueSize, Pointer<NativeType> value) =>
       $fieldIdentifier.$methodShortForm;
 ''';
 
-  String vectorIndexOfMapper() => '''
+  String vectorIndexOfForwarder() => '''
   @override
   bool indexOf(${stripQuestionMarkSuffix(typeArgs)} value, Pointer<Uint32> index) =>
       $fieldIdentifier.indexOf(value, index);
 ''';
 
-  String vectorInsertAtMapper() => '''
+  String vectorInsertAtForwarder() => '''
   @override
   void insertAt(int index, ${stripQuestionMarkSuffix(typeArgs)} value) =>
       $fieldIdentifier.insertAt(index, value);
 ''';
 
-  String vectorReplaceAllMapper() => '''
+  String vectorReplaceAllForwarder() => '''
   @override
   void replaceAll(List<$typeArgs> value) => $fieldIdentifier.replaceAll(value);
 ''';
 
-  String vectorSetAtMapper() => '''
+  String vectorSetAtForwarder() => '''
   @override
   void setAt(int index, ${stripQuestionMarkSuffix(typeArgs)} value) =>
       $fieldIdentifier.setAt(index, value);
 ''';
 
-  /// The mappers for `IIterable`s `first()` and helper function `toMap()`.
+  /// Method forwarders for `IIterable`s `first()` and helper function `toMap()`.
   String mapPostamble() => '''
   @override
   IIterator<IKeyValuePair<$typeArgs>> first() => $fieldIdentifier.first();
@@ -312,7 +310,7 @@ class WinRTImplementsMapperProjection extends WinRTInterfaceProjection {
   Map<$typeArgs> toMap() => $fieldIdentifier.toMap();
 ''';
 
-  /// The mappers for `IIterable`s `first()` and helper function `toList()`.
+  /// Method forwarders for `IIterable`s `first()` and helper function `toList()`.
   String vectorPostamble() => '''
   @override
   IIterator<$typeArgs> first() => $fieldIdentifier.first();
@@ -325,7 +323,7 @@ class WinRTImplementsMapperProjection extends WinRTInterfaceProjection {
   String toString() => methodProjections.isEmpty
       ? ''
       : '''
-  // $interfaceNameWithTypeArgs methods
+  // ${interface.shortName} methods
   late final $fieldIdentifier = $interfaceInstantiation
 
   ${methods.join('\n')}

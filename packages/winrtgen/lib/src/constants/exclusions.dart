@@ -76,16 +76,16 @@ const excludedWindowsRuntimeInterfacesInInherits = <String>{
   'Windows.Storage.Pickers.IFileOpenPickerWithOperationId',
 };
 
-/// WinRT static interfaces to exclude when generating the static mappers.
+/// WinRT static interfaces to exclude when generating the static methods.
 const excludedWindowsRuntimeStaticInterfaces = <String>{
   // Contains deprecated APIs
   'Windows.Storage.Pickers.IFileOpenPickerStatics',
 };
 
-/// WinRT interfaces to exclude when generating interfaces' implements mappers.
-const excludedWindowsRuntimeInterfacesInImplementsMappers = <String>{
+/// WinRT interfaces to exclude when generating interfaces' method forwarders.
+const excludedWindowsRuntimeInterfacesInMethodForwarders = <String>{
   // The WinRT interfaces that inherit IIterable also inherit from IMap,
-  // IMapView, IVector, or IVectorView. As we generate implements mappers for
+  // IMapView, IVector, or IVectorView. As we generate method forwarders for the
   // IIterable on these interfaces, we need to exclude this one.
   'Windows.Foundation.Collections.IIterable`1',
 };

@@ -69,9 +69,10 @@ class IGeolocatorWithScalarAccuracy extends IInspectable
   set desiredAccuracyInMeters(int? value) {
     final hr = ptr.ref.vtable
             .elementAt(7)
-            .cast<Pointer<NativeFunction<HRESULT Function(Pointer, LPVTBL)>>>()
+            .cast<
+                Pointer<NativeFunction<HRESULT Function(Pointer, LPVTBL value)>>>()
             .value
-            .asFunction<int Function(Pointer, LPVTBL)>()(
+            .asFunction<int Function(Pointer, LPVTBL value)>()(
         ptr.ref.lpVtbl,
         value == null
             ? nullptr

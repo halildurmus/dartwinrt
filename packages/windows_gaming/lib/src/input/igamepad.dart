@@ -54,13 +54,14 @@ class IGamepad extends IInspectable implements IGameController {
 
   set vibration(GamepadVibration value) {
     final hr = ptr.ref.vtable
-        .elementAt(7)
-        .cast<
-            Pointer<
-                NativeFunction<HRESULT Function(Pointer, GamepadVibration)>>>()
-        .value
-        .asFunction<
-            int Function(Pointer, GamepadVibration)>()(ptr.ref.lpVtbl, value);
+            .elementAt(7)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(Pointer, GamepadVibration value)>>>()
+            .value
+            .asFunction<int Function(Pointer, GamepadVibration value)>()(
+        ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }

@@ -4,7 +4,7 @@
 
 import 'package:winmd/winmd.dart';
 
-import '../extensions.dart';
+import '../extensions/camel_case.dart';
 import '../utils.dart';
 import 'type.dart';
 
@@ -18,16 +18,15 @@ class StructFieldProjection {
   final Field field;
   final String fieldName;
 
-  @override
-  String toString() {
-    final typeProjection = TypeProjection(field.typeIdentifier);
-    final dartType = typeProjection.dartType;
+  TypeProjection get typeProjection => TypeProjection(field.typeIdentifier);
+  String get attribute => typeProjection.attribute;
+  String get dartType => typeProjection.dartType;
 
-    return '''
+  @override
+  String toString() => '''
   ${typeProjection.attribute}
   external $dartType $fieldName;
 ''';
-  }
 }
 
 /// Represents a Dart projection of a WinRT Struct typedef.

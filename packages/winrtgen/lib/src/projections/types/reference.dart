@@ -5,6 +5,7 @@
 import 'package:winmd/winmd.dart';
 
 import '../../constants/iids.dart';
+import '../../extensions/extensions.dart';
 import '../../utils.dart';
 import '../type.dart';
 import '../winrt_get_property.dart';
@@ -37,7 +38,7 @@ mixin _ReferenceProjection on WinRTMethodProjection {
     // parameter so that the 'boxValue' function can use the appropriate native
     // type for the parameter
     if (typeProjection.isEnum ||
-        ['double', 'int'].contains(typeProjection.methodParamType)) {
+        ['double', 'int'].contains(typeProjection.exposedType)) {
       args.add('nativeType: ${typeProjection.nativeType}');
     }
 
@@ -61,8 +62,7 @@ mixin _ReferenceProjection on WinRTMethodProjection {
     // so that the 'IReference' implementation can use the correct IID when
     // retrieving the value it holds
     // To learn know more about how the IID is calculated, please see https://learn.microsoft.com/en-us/uwp/winrt-cref/winrt-type-system#guid-generation-for-parameterized-types
-    final referenceArgSignature =
-        parseTypeIdentifierSignature(returnType.typeIdentifier.typeArg!);
+    final referenceArgSignature = returnType.typeIdentifier.typeArg!.signature;
     final referenceSignature =
         'pinterface($IID_IReference;$referenceArgSignature)';
     final referenceIid = iidFromSignature(referenceSignature);
@@ -171,7 +171,7 @@ class WinRTReferenceParameterProjection extends WinRTParameterProjection {
     // `nativeType` parameter so that the 'boxValue' function can use the
     // appropriate native type for the parameter
     if (typeProjection.isEnum ||
-        ['double', 'int'].contains(typeProjection.methodParamType)) {
+        ['double', 'int'].contains(typeProjection.exposedType)) {
       args.add('nativeType: ${typeProjection.nativeType}');
     }
 

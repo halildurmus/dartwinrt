@@ -6,12 +6,14 @@ import 'dart:collection';
 import 'dart:convert';
 import 'dart:io';
 
+/// Loads a map from a JSON file.
 Map<String, String> loadMap(String filename) {
-  final load = File('data/$filename').readAsStringSync();
-  final decoded = json.decode(load) as Map<String, dynamic>;
+  final jsonString = File('data/$filename').readAsStringSync();
+  final decoded = json.decode(jsonString) as Map<String, dynamic>;
   return SplayTreeMap<String, String>.from(decoded);
 }
 
+/// Saves the [map] to a JSON file.
 void saveMap(Map<String, String> map, String filename) {
   final encoder = const JsonEncoder.withIndent('    ');
   final file = encoder.convert(map);

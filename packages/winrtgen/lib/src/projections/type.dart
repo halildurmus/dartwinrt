@@ -4,6 +4,7 @@
 
 import 'package:winmd/winmd.dart';
 
+import '../extensions/extensions.dart';
 import '../utils.dart';
 
 class TypeTuple {
@@ -16,15 +17,14 @@ class TypeTuple {
   /// The type, as represented as a struct attribute (e.g. `@Uint64()`)
   final String? attribute;
 
-  /// The type, as represented in a method declaration prior to conversion (e.g.
-  /// `DateTime`)
-  final String? methodParamType;
+  /// The type, as represented in a method declaration (e.g. `DateTime`)
+  final String? exposedType;
 
   const TypeTuple(
     this.nativeType,
     this.dartType, {
     this.attribute,
-    this.methodParamType,
+    this.exposedType,
   });
 }
 
@@ -47,13 +47,13 @@ const Map<BaseType, TypeTuple> baseNativeMapping = {
 };
 
 const Map<String, TypeTuple> specialTypes = {
-  'System.Guid': TypeTuple('GUID', 'GUID'),
+  'System.Guid': TypeTuple('GUID', 'GUID', exposedType: 'Guid'),
   'Windows.Foundation.DateTime': TypeTuple('Uint64', 'int',
-      attribute: '@Uint64()', methodParamType: 'DateTime'),
+      attribute: '@Uint64()', exposedType: 'DateTime'),
   'Windows.Foundation.HResult':
       TypeTuple('Int32', 'int', attribute: '@Int32()'),
   'Windows.Foundation.TimeSpan': TypeTuple('Uint64', 'int',
-      attribute: '@Uint64()', methodParamType: 'Duration'),
+      attribute: '@Uint64()', exposedType: 'Duration'),
   'Windows.Foundation.EventRegistrationToken':
       TypeTuple('IntPtr', 'int', attribute: '@IntPtr()'),
 };
@@ -61,7 +61,7 @@ const Map<String, TypeTuple> specialTypes = {
 class TypeProjection {
   TypeProjection(TypeIdentifier ti, {this.isParameter = false})
       : typeIdentifier = ti.baseType == BaseType.genericTypeModifier
-            ? ti.copyWith(name: parseGenericTypeIdentifierName(ti))
+            ? ti.copyWith(name: ti.shortName)
             : ti;
 
   final TypeIdentifier typeIdentifier;
@@ -82,8 +82,7 @@ class TypeProjection {
 
   String get dartType => projection.dartType;
 
-  String get methodParamType =>
-      projection.methodParamType ?? projection.dartType;
+  String get exposedType => projection.exposedType ?? projection.dartType;
 
   // Type matcher properties
 
@@ -179,18 +178,17 @@ class TypeProjection {
   TypeTuple unwrapEnum() {
     final fieldType = typeIdentifier.type?.findField('value__')?.typeIdentifier;
     if (fieldType == null) {
-      throw Exception('Enum $typeIdentifier is missing value__');
+      throw Exception('Enum $typeIdentifier is missing value__ field');
     }
 
-    final enumName = lastComponent(typeIdentifier.type!.name);
-
+    final enumName = typeIdentifier.type!.shortName;
     switch (fieldType.baseType) {
       case BaseType.int32Type:
         return TypeTuple('Int32', 'int',
-            attribute: '@Int32()', methodParamType: enumName);
+            attribute: '@Int32()', exposedType: enumName);
       case BaseType.uint32Type:
         return TypeTuple('Uint32', 'int',
-            attribute: '@Uint32()', methodParamType: enumName);
+            attribute: '@Uint32()', exposedType: enumName);
       default:
         throw Exception('Enum $typeIdentifier has unsupported underlying type');
     }
@@ -214,7 +212,7 @@ class TypeProjection {
     switch (baseType) {
       case BaseType.classTypeModifier:
         return TypeTuple('Pointer<COMObject>', 'Pointer<COMObject>',
-            methodParamType: lastComponent(typeIdentifier.typeArg!.name));
+            exposedType: typeIdentifier.typeArg!.shortName);
       case BaseType.simpleArrayType:
         // This form is used in WinRT methods when the caller receives an array
         // that was allocated by the method. In this style, the array size
@@ -228,7 +226,7 @@ class TypeProjection {
       case BaseType.uint32Type:
         return const TypeTuple('Pointer<Uint32>', 'Pointer<Uint32>');
       default:
-        throw Exception('Could not unwrap reference type: $typeIdentifier');
+        throw Exception('Could not unwrap reference type of $typeIdentifier');
     }
   }
 
@@ -255,11 +253,10 @@ class TypeProjection {
   TypeTuple unwrapValueType() {
     final wrappedType = typeIdentifier.type;
     if (wrappedType == null) {
-      throw Exception(
-          'Wrapped type TypeIdentifier missing for $typeIdentifier.');
+      throw Exception('Wrapped type missing for $typeIdentifier.');
     }
 
-    final typeClass = lastComponent(wrappedType.name);
+    final typeClass = wrappedType.shortName;
     return TypeTuple(typeClass, typeClass);
   }
 
@@ -267,7 +264,7 @@ class TypeProjection {
     // Could be an intrinsic base type (e.g. Int32)
     if (isBaseType) return baseNativeMapping[typeIdentifier.baseType]!;
 
-    // Could be a string or other special type that we want to custom-map
+    // Could be a GUID or other special type that we want to custom-map
     if (isWinRTSpecialType) return specialTypes[typeIdentifier.name]!;
 
     // Could be a WinRT delegate like AsyncActionCompletedHandler
@@ -280,21 +277,22 @@ class TypeProjection {
     if (isReferenceType) return unwrapReferenceType();
     if (isSimpleArray) return unwrapSimpleArrayType(typeIdentifier);
 
-    // Strings in WinRT are defined as HSTRING
+    // Strings in WinRT are defined as HSTRING which corresponding to IntPtr
     if (isString) {
       return const TypeTuple('IntPtr', 'int',
-          attribute: '@IntPtr()', methodParamType: 'String');
+          attribute: '@IntPtr()', exposedType: 'String');
     }
 
     // Could be a WinRT struct like BasicGeoposition
     if (isValueType) return unwrapValueType();
 
     if (isClass || isInterface || isObject) {
+      // LPVTBL is an alias for a Pointer to COM vtable (i.e.
+      // Pointer<Pointer<IntPtr>>).
       final type = isParameter ? 'LPVTBL' : 'Pointer<COMObject>';
-      return TypeTuple(type, type,
-          methodParamType: isObject
-              ? 'Object?'
-              : nullable(lastComponent(typeIdentifier.name)));
+      final exposedType =
+          isObject ? 'Object?' : nullable(typeIdentifier.shortName);
+      return TypeTuple(type, type, exposedType: exposedType);
     }
 
     throw Exception('Type information missing for $typeIdentifier.');

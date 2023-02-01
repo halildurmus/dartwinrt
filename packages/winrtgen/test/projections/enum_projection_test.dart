@@ -10,10 +10,11 @@ import 'package:winrtgen/winrtgen.dart';
 
 void main() {
   test('WinRT enumerations projected correctly', () {
-    final winTypeDef =
-        MetadataStore.getMetadataForType('Windows.Foundation.AsyncStatus');
+    final typeDef =
+        MetadataStore.getMetadataForType('Windows.Foundation.AsyncStatus')!;
 
-    final enumProjection = WinRTEnumProjection(winTypeDef!, 'AsyncStatus');
+    final enumProjection = WinRTEnumProjection(typeDef, 'AsyncStatus');
+    expect(enumProjection.category, equals('enum'));
     expect(enumProjection.classDeclaration,
         equals('enum AsyncStatus implements WinRTEnum {'));
     expect(
@@ -27,10 +28,11 @@ void main() {
   });
 
   test('Acronyms in enum identifiers are converted to lowercase', () {
-    final winTypeDef = MetadataStore.getMetadataForType(
-        'Windows.Devices.Geolocation.PositionSource');
+    final typeDef = MetadataStore.getMetadataForType(
+        'Windows.Devices.Geolocation.PositionSource')!;
 
-    final enumProjection = WinRTEnumProjection(winTypeDef!, 'PositionSource');
+    final enumProjection = WinRTEnumProjection(typeDef, 'PositionSource');
+    expect(enumProjection.category, equals('enum'));
     expect(enumProjection.classDeclaration,
         equals('enum PositionSource implements WinRTEnum {'));
     expect(
@@ -47,11 +49,11 @@ void main() {
   });
 
   test('WinRT Flags Enumerations projected correctly', () {
-    final winTypeDef =
-        MetadataStore.getMetadataForType('Windows.Storage.FileAttributes');
+    final typeDef =
+        MetadataStore.getMetadataForType('Windows.Storage.FileAttributes')!;
 
     final flagsEnumProjection =
-        WinRTFlagsEnumProjection(winTypeDef!, 'FileAttributes');
+        WinRTFlagsEnumProjection(typeDef, 'FileAttributes');
     expect(flagsEnumProjection.classDeclaration,
         equals('class FileAttributes extends WinRTEnum {'));
     expect(

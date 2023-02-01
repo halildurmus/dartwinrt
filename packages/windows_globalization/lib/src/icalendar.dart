@@ -131,9 +131,11 @@ class ICalendar extends IInspectable {
     try {
       final hr = ptr.ref.vtable
           .elementAt(11)
-          .cast<Pointer<NativeFunction<HRESULT Function(Pointer, IntPtr)>>>()
+          .cast<
+              Pointer<
+                  NativeFunction<HRESULT Function(Pointer, IntPtr value)>>>()
           .value
-          .asFunction<int Function(Pointer, int)>()(ptr.ref.lpVtbl, hstr);
+          .asFunction<int Function(Pointer, int value)>()(ptr.ref.lpVtbl, hstr);
 
       if (FAILED(hr)) throw WindowsException(hr);
     } finally {
@@ -358,9 +360,9 @@ class ICalendar extends IInspectable {
   set era(int value) {
     final hr = ptr.ref.vtable
         .elementAt(23)
-        .cast<Pointer<NativeFunction<HRESULT Function(Pointer, Int32)>>>()
+        .cast<Pointer<NativeFunction<HRESULT Function(Pointer, Int32 value)>>>()
         .value
-        .asFunction<int Function(Pointer, int)>()(ptr.ref.lpVtbl, value);
+        .asFunction<int Function(Pointer, int value)>()(ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
@@ -514,9 +516,9 @@ class ICalendar extends IInspectable {
   set year(int value) {
     final hr = ptr.ref.vtable
         .elementAt(31)
-        .cast<Pointer<NativeFunction<HRESULT Function(Pointer, Int32)>>>()
+        .cast<Pointer<NativeFunction<HRESULT Function(Pointer, Int32 value)>>>()
         .value
-        .asFunction<int Function(Pointer, int)>()(ptr.ref.lpVtbl, value);
+        .asFunction<int Function(Pointer, int value)>()(ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
@@ -696,9 +698,9 @@ class ICalendar extends IInspectable {
   set month(int value) {
     final hr = ptr.ref.vtable
         .elementAt(40)
-        .cast<Pointer<NativeFunction<HRESULT Function(Pointer, Int32)>>>()
+        .cast<Pointer<NativeFunction<HRESULT Function(Pointer, Int32 value)>>>()
         .value
-        .asFunction<int Function(Pointer, int)>()(ptr.ref.lpVtbl, value);
+        .asFunction<int Function(Pointer, int value)>()(ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
@@ -960,9 +962,9 @@ class ICalendar extends IInspectable {
   set day(int value) {
     final hr = ptr.ref.vtable
         .elementAt(53)
-        .cast<Pointer<NativeFunction<HRESULT Function(Pointer, Int32)>>>()
+        .cast<Pointer<NativeFunction<HRESULT Function(Pointer, Int32 value)>>>()
         .value
-        .asFunction<int Function(Pointer, int)>()(ptr.ref.lpVtbl, value);
+        .asFunction<int Function(Pointer, int value)>()(ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
@@ -1234,9 +1236,9 @@ class ICalendar extends IInspectable {
   set period(int value) {
     final hr = ptr.ref.vtable
         .elementAt(66)
-        .cast<Pointer<NativeFunction<HRESULT Function(Pointer, Int32)>>>()
+        .cast<Pointer<NativeFunction<HRESULT Function(Pointer, Int32 value)>>>()
         .value
-        .asFunction<int Function(Pointer, int)>()(ptr.ref.lpVtbl, value);
+        .asFunction<int Function(Pointer, int value)>()(ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
@@ -1392,9 +1394,9 @@ class ICalendar extends IInspectable {
   set hour(int value) {
     final hr = ptr.ref.vtable
         .elementAt(74)
-        .cast<Pointer<NativeFunction<HRESULT Function(Pointer, Int32)>>>()
+        .cast<Pointer<NativeFunction<HRESULT Function(Pointer, Int32 value)>>>()
         .value
-        .asFunction<int Function(Pointer, int)>()(ptr.ref.lpVtbl, value);
+        .asFunction<int Function(Pointer, int value)>()(ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
@@ -1482,9 +1484,9 @@ class ICalendar extends IInspectable {
   set minute(int value) {
     final hr = ptr.ref.vtable
         .elementAt(79)
-        .cast<Pointer<NativeFunction<HRESULT Function(Pointer, Int32)>>>()
+        .cast<Pointer<NativeFunction<HRESULT Function(Pointer, Int32 value)>>>()
         .value
-        .asFunction<int Function(Pointer, int)>()(ptr.ref.lpVtbl, value);
+        .asFunction<int Function(Pointer, int value)>()(ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
@@ -1574,9 +1576,9 @@ class ICalendar extends IInspectable {
   set second(int value) {
     final hr = ptr.ref.vtable
         .elementAt(84)
-        .cast<Pointer<NativeFunction<HRESULT Function(Pointer, Int32)>>>()
+        .cast<Pointer<NativeFunction<HRESULT Function(Pointer, Int32 value)>>>()
         .value
-        .asFunction<int Function(Pointer, int)>()(ptr.ref.lpVtbl, value);
+        .asFunction<int Function(Pointer, int value)>()(ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
@@ -1666,9 +1668,9 @@ class ICalendar extends IInspectable {
   set nanosecond(int value) {
     final hr = ptr.ref.vtable
         .elementAt(89)
-        .cast<Pointer<NativeFunction<HRESULT Function(Pointer, Int32)>>>()
+        .cast<Pointer<NativeFunction<HRESULT Function(Pointer, Int32 value)>>>()
         .value
-        .asFunction<int Function(Pointer, int)>()(ptr.ref.lpVtbl, value);
+        .asFunction<int Function(Pointer, int value)>()(ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }

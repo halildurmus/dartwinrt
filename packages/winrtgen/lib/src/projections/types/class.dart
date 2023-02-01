@@ -85,7 +85,7 @@ class WinRTClassSetterProjection extends WinRTSetPropertyProjection
 
   @override
   String get methodProjection => '''
-  set $camelCasedName(${parameters.first.type.methodParamType} value) {
+  set $camelCasedName(${parameters.first.type.exposedType} value) {
     ${ffiCall(params: 'value == null ? nullptr : value.ptr.ref.lpVtbl')}
   }
 ''';

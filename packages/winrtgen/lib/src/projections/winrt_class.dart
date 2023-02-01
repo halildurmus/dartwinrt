@@ -6,9 +6,9 @@ import 'package:winmd/winmd.dart';
 
 import '../constants/exclusions.dart';
 import '../utils.dart';
-import 'winrt_factory_interface_mapper.dart';
+import 'winrt_factory_constructors.dart';
 import 'winrt_interface.dart';
-import 'winrt_static_interface_mapper.dart';
+import 'winrt_static_methods.dart';
 
 class WinRTClassProjection extends WinRTInterfaceProjection {
   WinRTClassProjection(super.typeDef, [super.comment]);
@@ -59,16 +59,13 @@ class WinRTClassProjection extends WinRTInterfaceProjection {
       .toList()
     ..sort();
 
-  List<WinRTFactoryInterfaceMapperProjection>? _factoryMappers;
+  List<WinRTFactoryConstructorsProjection>? _factoryConstructors;
 
-  List<WinRTFactoryInterfaceMapperProjection> get factoryMappers =>
-      _factoryMappers ??= _cacheFactoryMappers();
+  List<WinRTFactoryConstructorsProjection> get factoryConstructors =>
+      _factoryConstructors ??= _cacheFactoryConstructors();
 
-  List<WinRTFactoryInterfaceMapperProjection> _cacheFactoryMappers() =>
-      factoryInterfaces
-          .map((interface) =>
-              WinRTFactoryInterfaceMapperProjection(typeDef, interface))
-          .toList();
+  List<WinRTFactoryConstructorsProjection> _cacheFactoryConstructors() =>
+      factoryInterfaces.map(WinRTFactoryConstructorsProjection.new).toList();
 
   List<String> get staticInterfaces => typeDef.customAttributes
       .where((element) => element.name.endsWith('StaticAttribute'))
@@ -78,16 +75,13 @@ class WinRTClassProjection extends WinRTInterfaceProjection {
     ..removeWhere(excludedWindowsRuntimeStaticInterfaces.contains)
     ..sort();
 
-  List<WinRTStaticInterfaceMapperProjection>? _staticMappers;
+  List<WinRTStaticMethodsProjection>? _staticMethods;
 
-  List<WinRTStaticInterfaceMapperProjection> get staticMappers =>
-      _staticMappers ??= _cacheStaticMappers();
+  List<WinRTStaticMethodsProjection> get staticMethods =>
+      _staticMethods ??= _cacheStaticMethods();
 
-  List<WinRTStaticInterfaceMapperProjection> _cacheStaticMappers() =>
-      staticInterfaces
-          .map((interface) =>
-              WinRTStaticInterfaceMapperProjection(typeDef, interface))
-          .toList();
+  List<WinRTStaticMethodsProjection> _cacheStaticMethods() =>
+      staticInterfaces.map(WinRTStaticMethodsProjection.new).toList();
 
   @override
   String toString() => '''
@@ -101,9 +95,9 @@ $classDeclaration
 
   $classNameVariable
 
-  ${factoryMappers.join('\n')}
-  ${staticMappers.join('\n')}
-  ${implementsMappers.join('\n')}
+  ${factoryConstructors.join('\n')}
+  ${staticMethods.join('\n')}
+  ${methodForwarders.join('\n')}
 }
 ''';
 }

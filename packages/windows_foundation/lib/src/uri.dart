@@ -43,7 +43,7 @@ class Uri extends IInspectable
   static const _className = 'Windows.Foundation.Uri';
 
   // IUriRuntimeClassFactory methods
-  static Uri createUri(String uri) {
+  factory Uri.createUri(String uri) {
     final activationFactoryPtr =
         createActivationFactory(_className, IID_IUriRuntimeClassFactory);
     final object = IUriRuntimeClassFactory.fromRawPointer(activationFactoryPtr);
@@ -55,7 +55,7 @@ class Uri extends IInspectable
     }
   }
 
-  static Uri createWithRelativeUri(String baseUri, String relativeUri) {
+  factory Uri.createWithRelativeUri(String baseUri, String relativeUri) {
     final activationFactoryPtr =
         createActivationFactory(_className, IID_IUriRuntimeClassFactory);
     final object = IUriRuntimeClassFactory.fromRawPointer(activationFactoryPtr);

@@ -5,7 +5,7 @@
 import '../utils.dart';
 
 class NamespaceGroup {
-  NamespaceGroup({required this.namespace, required this.types});
+  NamespaceGroup(this.namespace, this.types);
 
   /// The namespace of the group (e.g. `Windows.Gaming.Input`).
   final String namespace;
@@ -26,29 +26,29 @@ class NamespaceGroup {
   int get hashCode => namespace.hashCode ^ types.hashCode;
 
   @override
-  String toString() => 'NamespaceGroup(namespace: $namespace, types: $types)';
+  String toString() => 'NamespaceGroup($namespace, $types)';
 }
 
-/// Groups types by their parent namespace.
+/// Groups [types] by their parent namespace.
 List<NamespaceGroup> groupTypesByParentNamespace(Iterable<String> types) {
   types.toList().sort((a, b) => a.compareTo(b));
-  final namespaceGroups = <NamespaceGroup>[];
-  final namespaceGroup = NamespaceGroup(
-      namespace: parentNamespace(types.first), types: [types.first]);
-  namespaceGroups.add(namespaceGroup);
 
-  for (var i = 1; i < types.length; i++) {
-    final type = types.elementAt(i);
-    if (namespaceGroups.any((e) => e.namespace == parentNamespace(type))) {
-      final namespaceGroup = namespaceGroups
-          .firstWhere((e) => e.namespace == parentNamespace(type));
-      namespaceGroup.types.add(type);
+  final groups = <NamespaceGroup>[
+    NamespaceGroup(parentNamespace(types.first), [types.first])
+  ];
+
+  for (final type in types.skip(1)) {
+    final namespace = parentNamespace(type);
+    if (groups.any((group) => group.namespace == namespace)) {
+      // Add the type to an existing group's types.
+      final group = groups.firstWhere((g) => g.namespace == namespace);
+      group.types.add(type);
     } else {
-      final namespaceGroup =
-          NamespaceGroup(namespace: parentNamespace(type), types: [type]);
-      namespaceGroups.add(namespaceGroup);
+      // Create a new group for the type.
+      final group = NamespaceGroup(namespace, [type]);
+      groups.add(group);
     }
   }
 
-  return namespaceGroups;
+  return groups;
 }

@@ -4,6 +4,7 @@
 
 import 'package:winmd/winmd.dart';
 
+import '../../extensions/extensions.dart';
 import '../../utils.dart';
 import '../type.dart';
 import '../winrt_get_property.dart';
@@ -23,8 +24,7 @@ mixin _VectorProjection on WinRTMethodProjection {
     // constructor of that class must be passed in the 'enumCreator' parameter
     // for enums, 'creator' parameter for WinRT Objects so that the 'IVector'
     // and 'IVectorView' implementations can instantiate the object
-    final creator =
-        parseArgumentForCreatorParameter(returnType.typeIdentifier.typeArg!);
+    final creator = returnType.typeIdentifier.typeArg!.creator;
 
     // The IID for IIterable<T> must be passed in the 'iterableIid' parameter so
     // that the 'IVector' and 'IVectorView' implementations can use the correct

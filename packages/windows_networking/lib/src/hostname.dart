@@ -31,7 +31,7 @@ class HostName extends IInspectable implements IHostName, IStringable {
   static const _className = 'Windows.Networking.HostName';
 
   // IHostNameFactory methods
-  static HostName createHostName(String hostName) {
+  factory HostName.createHostName(String hostName) {
     final activationFactoryPtr =
         createActivationFactory(_className, IID_IHostNameFactory);
     final object = IHostNameFactory.fromRawPointer(activationFactoryPtr);

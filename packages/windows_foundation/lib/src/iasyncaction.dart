@@ -39,24 +39,21 @@ class IAsyncAction extends IInspectable implements IAsyncInfo {
       IAsyncAction.fromRawPointer(interface.toInterface(IID_IAsyncAction));
 
   set completed(Pointer<NativeFunction<AsyncActionCompletedHandler>> value) {
-    final hr =
-        ptr.ref.vtable
-                .elementAt(6)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                Pointer,
-                                Pointer<
-                                    NativeFunction<
-                                        AsyncActionCompletedHandler>>)>>>()
-                .value
-                .asFunction<
-                    int Function(
+    final hr = ptr.ref.vtable
+        .elementAt(6)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(
                         Pointer,
-                        Pointer<
-                            NativeFunction<AsyncActionCompletedHandler>>)>()(
-            ptr.ref.lpVtbl, value);
+                        Pointer<NativeFunction<AsyncActionCompletedHandler>>
+                            handler)>>>()
+        .value
+        .asFunction<
+            int Function(
+                Pointer,
+                Pointer<NativeFunction<AsyncActionCompletedHandler>>
+                    handler)>()(ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }

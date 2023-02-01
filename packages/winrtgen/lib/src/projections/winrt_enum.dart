@@ -4,7 +4,7 @@
 
 import 'package:winmd/winmd.dart';
 
-import '../extensions.dart';
+import '../extensions/extensions.dart';
 import '../utils.dart';
 
 /// Represents a Dart projection of a WinRT enumeration typedef.
