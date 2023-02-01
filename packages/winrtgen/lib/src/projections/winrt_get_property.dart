@@ -7,7 +7,6 @@ import 'package:winmd/winmd.dart';
 import '../models/winrt_getter_return_type.dart';
 import 'type.dart';
 import 'types/types.dart';
-import 'winrt_method.dart';
 import 'winrt_property.dart';
 
 abstract class WinRTGetPropertyProjection extends WinRTPropertyProjection {
@@ -57,18 +56,6 @@ abstract class WinRTGetPropertyProjection extends WinRTPropertyProjection {
       case WinRTGetterReturnType.int:
         return WinRTDefaultGetterProjection(method, vtableOffset);
     }
-  }
-
-  factory WinRTGetPropertyProjection.forTypeAndMethodName(
-      String fullyQualifiedTypeName, String methodName) {
-    final getPropertyPattern = RegExp(r'^get(_{1,2})(\w+)');
-    if (!getPropertyPattern.hasMatch(methodName)) {
-      throw ArgumentError.value(
-          methodName, 'methodName', 'Method name must start with `get_`.');
-    }
-
-    return WinRTMethodProjection.forTypeAndMethodName(
-        fullyQualifiedTypeName, methodName) as WinRTGetPropertyProjection;
   }
 
   // WinRTPropertyProjection overrides

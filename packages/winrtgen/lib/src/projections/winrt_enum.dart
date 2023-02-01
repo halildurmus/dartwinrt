@@ -9,11 +9,12 @@ import '../utils.dart';
 
 /// Represents a Dart projection of a WinRT enumeration typedef.
 class WinRTEnumProjection {
-  WinRTEnumProjection(this.typeDef, this.enumName, {this.comment = ''});
+  WinRTEnumProjection(this.typeDef, {this.comment = '', String? enumName})
+      : enumName = enumName ?? typeDef.shortName;
 
   final TypeDef typeDef;
-  final String enumName;
   final String comment;
+  final String enumName;
 
   String get category => 'enum';
 
@@ -71,7 +72,7 @@ class WinRTEnumProjection {
 
 /// Represents a Dart projection of a WinRT Flags enumeration typedef.
 class WinRTFlagsEnumProjection extends WinRTEnumProjection {
-  WinRTFlagsEnumProjection(super.typeDef, super.enumName, {super.comment});
+  WinRTFlagsEnumProjection(super.typeDef, {super.comment, super.enumName});
 
   @override
   String get classDeclaration => 'class $enumName extends WinRTEnum {';

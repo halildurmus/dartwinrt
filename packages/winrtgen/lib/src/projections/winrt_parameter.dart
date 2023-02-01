@@ -16,48 +16,13 @@ import 'types/types.dart';
 /// their Dart equivalents (e.g. a WinRT `TimeSpan` can be represented by a Dart
 /// [Duration]).
 abstract class WinRTParameterProjection {
-  const WinRTParameterProjection(this.method, this.name, this.type);
+  WinRTParameterProjection(this.parameter)
+      : method = parameter.parent,
+        name = parameter.name,
+        type = TypeProjection(parameter.typeIdentifier, isParameter: true);
 
-  /// Returns the appropriate projection for the parameter.
-  factory WinRTParameterProjection.create(
-      Method method, String name, TypeProjection type) {
-    final parameterType = WinRTParameterType.from(type);
-    if (parameterType == WinRTParameterType.uri &&
-        methodBelongsToUriRuntimeClass(method)) {
-      return WinRTInterfaceParameterProjection(method, name, type);
-    }
-
-    switch (parameterType) {
-      case WinRTParameterType.class_:
-        return WinRTClassParameterProjection(method, name, type);
-      case WinRTParameterType.interface:
-        return WinRTInterfaceParameterProjection(method, name, type);
-      case WinRTParameterType.dateTime:
-        return WinRTDateTimeParameterProjection(method, name, type);
-      case WinRTParameterType.duration:
-        return WinRTDurationParameterProjection(method, name, type);
-      case WinRTParameterType.enum_:
-        return WinRTEnumParameterProjection(method, name, type);
-      case WinRTParameterType.guid:
-        return WinRTGuidParameterProjection(method, name, type);
-      case WinRTParameterType.object:
-        return WinRTObjectParameterProjection(method, name, type);
-      case WinRTParameterType.reference:
-        return WinRTReferenceParameterProjection(method, name, type);
-      case WinRTParameterType.string:
-        return WinRTStringParameterProjection(method, name, type);
-      case WinRTParameterType.uri:
-        return WinRTUriParameterProjection(method, name, type);
-      case WinRTParameterType.bool:
-      case WinRTParameterType.delegate:
-      case WinRTParameterType.double:
-      case WinRTParameterType.int:
-      case WinRTParameterType.pointer:
-      case WinRTParameterType.simpleArray:
-      case WinRTParameterType.struct:
-        return WinRTDefaultParameterProjection(method, name, type);
-    }
-  }
+  /// The retrieved Windows metadata for the parameter.
+  final Parameter parameter;
 
   /// The method that this parameter is a part of.
   final Method method;
@@ -67,6 +32,47 @@ abstract class WinRTParameterProjection {
 
   /// The type of the parameter.
   final TypeProjection type;
+
+  /// Returns the appropriate projection for the parameter.
+  factory WinRTParameterProjection.create(Parameter parameter) {
+    final typeProjection = TypeProjection(parameter.typeIdentifier);
+    final parameterType = WinRTParameterType.from(typeProjection);
+    if (parameterType == WinRTParameterType.uri &&
+        methodBelongsToUriRuntimeClass(parameter.parent)) {
+      return WinRTInterfaceParameterProjection(parameter);
+    }
+
+    switch (parameterType) {
+      case WinRTParameterType.class_:
+        return WinRTClassParameterProjection(parameter);
+      case WinRTParameterType.interface:
+        return WinRTInterfaceParameterProjection(parameter);
+      case WinRTParameterType.dateTime:
+        return WinRTDateTimeParameterProjection(parameter);
+      case WinRTParameterType.duration:
+        return WinRTDurationParameterProjection(parameter);
+      case WinRTParameterType.enum_:
+        return WinRTEnumParameterProjection(parameter);
+      case WinRTParameterType.guid:
+        return WinRTGuidParameterProjection(parameter);
+      case WinRTParameterType.object:
+        return WinRTObjectParameterProjection(parameter);
+      case WinRTParameterType.reference:
+        return WinRTReferenceParameterProjection(parameter);
+      case WinRTParameterType.string:
+        return WinRTStringParameterProjection(parameter);
+      case WinRTParameterType.uri:
+        return WinRTUriParameterProjection(parameter);
+      case WinRTParameterType.bool:
+      case WinRTParameterType.delegate:
+      case WinRTParameterType.double:
+      case WinRTParameterType.int:
+      case WinRTParameterType.pointer:
+      case WinRTParameterType.simpleArray:
+      case WinRTParameterType.struct:
+        return WinRTDefaultParameterProjection(parameter);
+    }
+  }
 
   String get ffiProjection => '${type.nativeType} $identifier';
 

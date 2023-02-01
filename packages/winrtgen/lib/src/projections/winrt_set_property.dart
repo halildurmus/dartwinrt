@@ -7,7 +7,6 @@ import 'package:winmd/winmd.dart';
 import '../models/winrt_parameter_type.dart';
 import 'type.dart';
 import 'types/types.dart';
-import 'winrt_method.dart';
 import 'winrt_property.dart';
 
 abstract class WinRTSetPropertyProjection extends WinRTPropertyProjection {
@@ -52,18 +51,6 @@ abstract class WinRTSetPropertyProjection extends WinRTPropertyProjection {
       case WinRTParameterType.simpleArray:
         return WinRTDefaultSetterProjection(method, vtableOffset);
     }
-  }
-
-  factory WinRTSetPropertyProjection.forTypeAndMethodName(
-      String fullyQualifiedTypeName, String methodName) {
-    final setPropertyPattern = RegExp(r'^put(_{1,2})(\w+)');
-    if (!setPropertyPattern.hasMatch(methodName)) {
-      throw ArgumentError.value(
-          methodName, 'methodName', 'Method name must start with `put_`.');
-    }
-
-    return WinRTMethodProjection.forTypeAndMethodName(
-        fullyQualifiedTypeName, methodName) as WinRTSetPropertyProjection;
   }
 
   // WinRTMethodProjection overrides

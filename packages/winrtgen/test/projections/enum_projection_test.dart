@@ -13,7 +13,7 @@ void main() {
     final typeDef =
         MetadataStore.getMetadataForType('Windows.Foundation.AsyncStatus')!;
 
-    final enumProjection = WinRTEnumProjection(typeDef, 'AsyncStatus');
+    final enumProjection = WinRTEnumProjection(typeDef);
     expect(enumProjection.category, equals('enum'));
     expect(enumProjection.classDeclaration,
         equals('enum AsyncStatus implements WinRTEnum {'));
@@ -31,7 +31,7 @@ void main() {
     final typeDef = MetadataStore.getMetadataForType(
         'Windows.Devices.Geolocation.PositionSource')!;
 
-    final enumProjection = WinRTEnumProjection(typeDef, 'PositionSource');
+    final enumProjection = WinRTEnumProjection(typeDef);
     expect(enumProjection.category, equals('enum'));
     expect(enumProjection.classDeclaration,
         equals('enum PositionSource implements WinRTEnum {'));
@@ -52,8 +52,7 @@ void main() {
     final typeDef =
         MetadataStore.getMetadataForType('Windows.Storage.FileAttributes')!;
 
-    final flagsEnumProjection =
-        WinRTFlagsEnumProjection(typeDef, 'FileAttributes');
+    final flagsEnumProjection = WinRTFlagsEnumProjection(typeDef);
     expect(flagsEnumProjection.classDeclaration,
         equals('class FileAttributes extends WinRTEnum {'));
     expect(

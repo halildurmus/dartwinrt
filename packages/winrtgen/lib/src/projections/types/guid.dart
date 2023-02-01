@@ -69,7 +69,7 @@ class WinRTGuidSetterProjection extends WinRTSetPropertyProjection {
 
 /// Parameter projection for `Guid` parameters.
 class WinRTGuidParameterProjection extends WinRTParameterProjection {
-  WinRTGuidParameterProjection(super.method, super.name, super.type);
+  WinRTGuidParameterProjection(super.parameter);
 
   @override
   String get preamble => 'final ${name}NativeGuidPtr = $name.toNativeGUID();';

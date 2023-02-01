@@ -63,7 +63,7 @@ class WinRTDefaultSetterProjection extends WinRTSetPropertyProjection {
 
 /// Default parameter projection for parameters.
 class WinRTDefaultParameterProjection extends WinRTParameterProjection {
-  WinRTDefaultParameterProjection(super.method, super.name, super.type);
+  WinRTDefaultParameterProjection(super.parameter);
 
   @override
   String get preamble => '';

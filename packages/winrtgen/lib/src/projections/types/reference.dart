@@ -150,7 +150,7 @@ class WinRTReferenceSetterProjection extends WinRTSetPropertyProjection
 
 /// Parameter projection for `IReference<T>` (exposed as `T?`) parameters.
 class WinRTReferenceParameterProjection extends WinRTParameterProjection {
-  WinRTReferenceParameterProjection(super.method, super.name, super.type);
+  WinRTReferenceParameterProjection(super.parameter);
 
   @override
   String get preamble => '';

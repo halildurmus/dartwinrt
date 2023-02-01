@@ -13,7 +13,7 @@ void main() {
     final typeDef =
         MetadataStore.getMetadataForType('Windows.Foundation.Rect')!;
 
-    final structProjection = WinRTStructProjection(typeDef, 'Rect');
+    final structProjection = WinRTStructProjection(typeDef);
     expect(structProjection.category, equals('struct'));
     expect(structProjection.classDeclaration,
         equals('class Rect extends Struct {'));

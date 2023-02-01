@@ -14,7 +14,7 @@ void printEnum() {
   final enumTypeDef =
       MetadataStore.getMetadataForType('Windows.Foundation.AsyncStatus');
   if (enumTypeDef != null) {
-    final enumProjection = WinRTEnumProjection(enumTypeDef, 'AsyncStatus');
+    final enumProjection = WinRTEnumProjection(enumTypeDef);
     print(format(enumProjection));
   }
 }
@@ -23,8 +23,7 @@ void printStruct() {
   final structTypeDef =
       MetadataStore.getMetadataForType('Windows.Gaming.Input.GamepadReading');
   if (structTypeDef != null) {
-    final structProjection =
-        WinRTStructProjection(structTypeDef, 'GamepadReading');
+    final structProjection = WinRTStructProjection(structTypeDef);
     print(format(structProjection));
   }
 }

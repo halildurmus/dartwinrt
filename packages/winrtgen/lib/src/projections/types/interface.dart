@@ -113,7 +113,7 @@ class WinRTInterfaceSetterProjection extends WinRTSetPropertyProjection
 
 /// Parameter projection for WinRT interface parameters.
 class WinRTInterfaceParameterProjection extends WinRTParameterProjection {
-  WinRTInterfaceParameterProjection(super.method, super.name, super.type);
+  WinRTInterfaceParameterProjection(super.parameter);
 
   @override
   String get preamble => '';

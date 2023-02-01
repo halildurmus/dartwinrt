@@ -63,7 +63,7 @@ class WinRTEnumSetterProjection extends WinRTSetPropertyProjection {
 
 /// Parameter projection for WinRT enum parameters.
 class WinRTEnumParameterProjection extends WinRTParameterProjection {
-  WinRTEnumParameterProjection(super.method, super.name, super.type);
+  WinRTEnumParameterProjection(super.parameter);
 
   @override
   String get preamble => '';

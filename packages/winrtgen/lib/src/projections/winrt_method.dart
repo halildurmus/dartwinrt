@@ -9,7 +9,6 @@ import '../models/winrt_method_return_type.dart';
 import '../utils.dart';
 import 'type.dart';
 import 'types/types.dart';
-import 'winrt_interface.dart';
 import 'winrt_parameter.dart';
 
 /// A generic class representing an entry in a COM function vtable.
@@ -22,11 +21,24 @@ import 'winrt_parameter.dart';
 abstract class WinRTMethodProjection {
   WinRTMethodProjection(this.method, this.vtableOffset)
       : name = uniquelyNameMethod(method),
-        parameters = method.parameters
-            .map((param) => WinRTParameterProjection.create(method, param.name,
-                TypeProjection(param.typeIdentifier, isParameter: true)))
-            .toList(),
+        parameters =
+            method.parameters.map(WinRTParameterProjection.create).toList(),
         returnType = TypeProjection(method.returnType.typeIdentifier);
+
+  /// The retrieved Windows metadata for the method or property.
+  final Method method;
+
+  /// Offset into the COM v-table that represents the method or property.
+  final int vtableOffset;
+
+  /// The name, incorporating any overloads that may be required.
+  final String name;
+
+  /// Projections for the parameters of the method.
+  final List<WinRTParameterProjection> parameters;
+
+  /// Projection for the return type.
+  final TypeProjection returnType;
 
   /// Returns the appropriate method projection for the [method] based on the
   /// return type.
@@ -85,31 +97,6 @@ abstract class WinRTMethodProjection {
         return WinRTDefaultMethodProjection(method, vtableOffset);
     }
   }
-
-  factory WinRTMethodProjection.forTypeAndMethodName(
-      String fullyQualifiedTypeName, String methodName) {
-    final projection = WinRTInterfaceProjection.forType(fullyQualifiedTypeName);
-    final methodProjection = projection.methodProjections
-        .where((element) => element.name == methodName);
-    if (methodProjection.isEmpty) throw Exception("Can't find $methodName");
-
-    return methodProjection.first;
-  }
-
-  /// The retrieved Windows metadata for the method or property.
-  final Method method;
-
-  /// Offset into the COM v-table that represents the method or property.
-  final int vtableOffset;
-
-  /// The name, incorporating any overloads that may be required.
-  final String name;
-
-  /// Projections for the parameters of the method.
-  final List<WinRTParameterProjection> parameters;
-
-  /// Projection for the return type.
-  final TypeProjection returnType;
 
   /// Uniquely name the method.
   ///
