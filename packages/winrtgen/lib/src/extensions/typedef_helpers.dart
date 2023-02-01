@@ -23,7 +23,9 @@ extension TypeDefHelpers on TypeDef {
   /// Returns the package import for the type defined in this TypeDef (e.g.
   /// `package:windows_globalization/windows_globalization.dart` for
   /// `Windows.Globalization.Calendar`).
-  String get packageImport => 'package:$packageName/$packageName.dart';
+  String get packageImport => name == 'Windows.Foundation.Uri'
+      ? 'package:windows_foundation/uri.dart'
+      : 'package:$packageName/$packageName.dart';
 
   /// Returns the package name for the type defined in this TypeDef (e.g.
   /// `windows_globalization` for `Windows.Globalization.Calendar`).

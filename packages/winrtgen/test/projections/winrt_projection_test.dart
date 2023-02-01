@@ -91,8 +91,8 @@ void main() {
         'Windows.Storage.Pickers.IFileOpenPicker');
 
     final projection = WinRTInterfaceProjection(winTypeDef!);
-    expect(projection.guidConstants, contains('IID_IFileOpenPicker'));
-    expect(projection.guidConstants,
+    expect(projection.iidConstant, contains('IID_IFileOpenPicker'));
+    expect(projection.iidConstant,
         contains('{2ca8278a-12c5-4c5f-8977-94547793c241}'));
   });
 
