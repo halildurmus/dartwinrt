@@ -244,6 +244,47 @@ String typeArguments(String type) => !type.contains('<')
     ? type
     : type.substring(type.indexOf('<') + 1, type.lastIndexOf('>'));
 
+/// Uniquely name a [method].
+///
+/// Since Dart doesn't allow overloaded methods, we have to rename methods
+/// that are duplicated.
+String uniquelyNameMethod(Method method) {
+  // Is it a WinRT method overloaded with a name provided by the metadata?
+  final overloadName =
+      method.attributeAsString('Windows.Foundation.Metadata.OverloadAttribute');
+  if (overloadName.isNotEmpty) return overloadName;
+
+  // If not, we check whether multiple methods exist with the same name. We
+  // also need to check up the interface chain, since otherwise overloaded
+  // methods may be missed. For example, IDWriteFactory2 contains methods that
+  // overload those in IDWriteFactory1.
+  final overloads =
+      method.parent.methods.where((m) => m.name == method.name).toList();
+  var interfaceTypeDef = method.parent;
+  // perf optimization to save work on the most common case of IUnknown
+  while (interfaceTypeDef.interfaces.isNotEmpty &&
+      !(interfaceTypeDef.interfaces.first.name ==
+          'Windows.Win32.System.Com.IUnknown')) {
+    interfaceTypeDef = interfaceTypeDef.interfaces.first;
+    overloads
+        .addAll(interfaceTypeDef.methods.where((m) => m.name == method.name));
+  }
+
+  // If so, and there is more than one entry with the same name, add a suffix
+  // to all but the first.
+  if (overloads.length > 1) {
+    final reversedOverloads = overloads.reversed.toList();
+    final overloadIndex =
+        reversedOverloads.indexWhere((m) => m.token == method.token);
+    if (overloadIndex > 0) {
+      return '${safeIdentifierForString(method.name)}_$overloadIndex';
+    }
+  }
+
+  // Otherwise the original name is fine.
+  return method.name;
+}
+
 /// Take an [inputText] and turn it into a multi-line doc comment.
 String wrapCommentText(String inputText, [int wrapLength = 76]) {
   if (inputText.isEmpty) return '';
