@@ -9,11 +9,11 @@ import '../utils.dart';
 
 /// Represents a Dart projection of a WinRT enumeration typedef.
 class WinRTEnumProjection {
+  WinRTEnumProjection(this.typeDef, this.enumName, {this.comment = ''});
+
   final TypeDef typeDef;
   final String enumName;
   final String comment;
-
-  WinRTEnumProjection(this.typeDef, this.enumName, {this.comment = ''});
 
   String get category => 'enum';
 
@@ -29,19 +29,18 @@ class WinRTEnumProjection {
 
   String get classDeclaration => 'enum $enumName implements WinRTEnum {';
 
-  // The first field is always the special field _value
+  // The first field is always the special field value__
   List<Field> get fields => typeDef.fields.skip(1).toList()
     ..sort((a, b) => a.value.compareTo(b.value));
 
-  String safeEnumIdentifier(String fieldName) => fieldName.length == 1
-      ? fieldName.toLowerCase()
-      : safeIdentifierForString(fieldName.toCamelCase());
+  String safeIdentifier(String name) =>
+      safeIdentifierForString(name.toCamelCase());
 
   List<String> get identifiers => fields
-      .map((field) => '${safeEnumIdentifier(field.name)}(${field.value})')
+      .map((field) => '${safeIdentifier(field.name)}(${field.value})')
       .toList();
 
-  String get enumValueVariable => '''
+  String get valueField => '''
     @override
     final int value;
 ''';
@@ -61,7 +60,7 @@ class WinRTEnumProjection {
     $classDeclaration
       ${identifiers.join(',\n')};
 
-      $enumValueVariable
+      $valueField
 
       $constructor
 
@@ -90,14 +89,14 @@ class WinRTFlagsEnumProjection extends WinRTEnumProjection {
   @override
   List<String> get identifiers {
     return fields.map((field) {
-      final identifier = safeEnumIdentifier(field.name);
+      final identifier = safeIdentifier(field.name);
       return "static const $identifier = $enumName(${field.value}, name: '$identifier');";
     }).toList();
   }
 
   String get values {
     final fieldNames =
-        fields.map((field) => safeEnumIdentifier(field.name)).join(',');
+        fields.map((field) => safeIdentifier(field.name)).join(',');
     return 'static const List<$enumName> values = [$fieldNames];';
   }
 

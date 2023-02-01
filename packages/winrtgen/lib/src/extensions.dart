@@ -74,7 +74,8 @@ extension DartTypeNameConversion on BaseType {
 extension CamelCaseConversion on String {
   /// Converts a string to `camelCase`.
   String toCamelCase() {
-    if (length < 2) return this;
+    if (length == 0) return this;
+    if (length == 1) return toLowerCase();
 
     for (final acronym in acronyms) {
       if (startsWith(acronym)) {
