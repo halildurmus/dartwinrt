@@ -82,7 +82,7 @@ class WinRTMapGetterProjection extends WinRTGetPropertyProjection
 
   @override
   String get methodProjection => '''
-  IMap<$mapTypeArgs> get $exposedMethodName {
+  IMap<$mapTypeArgs> get $camelCasedName {
     final retValuePtr = calloc<COMObject>();
 
     ${ffiCall(freeRetValOnFailure: true)}
@@ -123,7 +123,7 @@ class WinRTMapViewGetterProjection extends WinRTGetPropertyProjection
 
   @override
   String get methodProjection => '''
-  Map<$mapTypeArgs> get $exposedMethodName {
+  Map<$mapTypeArgs> get $camelCasedName {
     final retValuePtr = calloc<COMObject>();
 
     ${ffiCall(freeRetValOnFailure: true)}

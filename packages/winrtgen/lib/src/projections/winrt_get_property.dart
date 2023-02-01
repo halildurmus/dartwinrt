@@ -86,5 +86,5 @@ abstract class WinRTGetPropertyProjection extends WinRTPropertyProjection {
   }
 
   @override
-  String get shortForm => exposedMethodName;
+  String get shortForm => camelCasedName;
 }

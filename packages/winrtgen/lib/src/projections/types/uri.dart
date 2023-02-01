@@ -49,7 +49,7 @@ class WinRTUriGetterProjection extends WinRTGetPropertyProjection
 
   @override
   String get methodProjection => '''
-  Uri? get $exposedMethodName {
+  Uri? get $camelCasedName {
     final retValuePtr = calloc<COMObject>();
 
     ${ffiCall(freeRetValOnFailure: true)}
@@ -71,7 +71,7 @@ class WinRTUriSetterProjection extends WinRTSetPropertyProjection {
 
   @override
   String get methodProjection => '''
-  set $exposedMethodName(Uri? value) {
+  set $camelCasedName(Uri? value) {
     final winrtUri =
         value == null ? null : winrt_uri.Uri.createUri(value.toString());
 

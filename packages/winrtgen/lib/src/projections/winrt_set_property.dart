@@ -64,7 +64,7 @@ abstract class WinRTSetPropertyProjection extends WinRTPropertyProjection {
   // MethodProjection override
 
   @override
-  String get shortForm => '$exposedMethodName = value';
+  String get shortForm => '$camelCasedName = value';
 
   @override
   String ffiCall({String params = '', bool freeRetValOnFailure = false}) => '''

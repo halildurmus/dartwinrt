@@ -40,7 +40,7 @@ class WinRTStringGetterProjection extends WinRTGetPropertyProjection {
 
   @override
   String get methodProjection => '''
-  String get $exposedMethodName {
+  String get $camelCasedName {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -61,7 +61,7 @@ class WinRTStringSetterProjection extends WinRTSetPropertyProjection {
 
   @override
   String get methodProjection => '''
-  set $exposedMethodName(String value) {
+  set $camelCasedName(String value) {
     final hstr = convertToHString(value);
 
     try {
