@@ -4,18 +4,19 @@
 
 import 'package:winmd/winmd.dart';
 
+import '../extensions.dart';
 import '../utils.dart';
 import 'type.dart';
 
-/// A field.
+/// A struct field.
 ///
 /// Fields are a tuple of a type and a name.
 class StructFieldProjection {
+  StructFieldProjection(this.field)
+      : fieldName = safeIdentifierForString(field.name.toCamelCase());
+
   final Field field;
   final String fieldName;
-
-  StructFieldProjection(this.field)
-      : fieldName = safeIdentifierForString(field.name);
 
   @override
   String toString() {
@@ -29,13 +30,13 @@ class StructFieldProjection {
   }
 }
 
-/// Represents a Dart projection of a Struct typedef.
+/// Represents a Dart projection of a WinRT Struct typedef.
 class WinRTStructProjection {
+  WinRTStructProjection(this.typeDef, this.structName, {this.comment = ''});
+
   final TypeDef typeDef;
   final String structName;
   final String comment;
-
-  WinRTStructProjection(this.typeDef, this.structName, {this.comment = ''});
 
   String get category => 'struct';
 
@@ -49,13 +50,15 @@ class WinRTStructProjection {
     return docComment;
   }
 
+  String get classDeclaration => 'class $structName extends Struct {';
+
   List<StructFieldProjection> get fields =>
       typeDef.fields.map(StructFieldProjection.new).toList();
 
   @override
   String toString() => '''
 $classPreamble
-class $structName extends Struct {
+$classDeclaration
   ${fields.join('\n')}
 }
 ''';

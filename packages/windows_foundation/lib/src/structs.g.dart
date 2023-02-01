@@ -22,10 +22,10 @@ import 'package:ffi/ffi.dart';
 /// {@category struct}
 class Point extends Struct {
   @Float()
-  external double X;
+  external double x;
 
   @Float()
-  external double Y;
+  external double y;
 }
 
 /// Describes the width, height, and point origin of a rectangle.
@@ -33,16 +33,16 @@ class Point extends Struct {
 /// {@category struct}
 class Rect extends Struct {
   @Float()
-  external double X;
+  external double x;
 
   @Float()
-  external double Y;
+  external double y;
 
   @Float()
-  external double Width;
+  external double width;
 
   @Float()
-  external double Height;
+  external double height;
 }
 
 /// Describes the width and height of an object.
@@ -50,8 +50,8 @@ class Rect extends Struct {
 /// {@category struct}
 class Size extends Struct {
   @Float()
-  external double Width;
+  external double width;
 
   @Float()
-  external double Height;
+  external double height;
 }

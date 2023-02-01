@@ -26,16 +26,16 @@ void main() {
         allocator = Arena();
         final guid = Guid.parse(IID_ISpVoice);
         final pPoint = allocator<Point>()
-          ..ref.X = 3
-          ..ref.Y = -3;
+          ..ref.x = 3
+          ..ref.y = -3;
         final pRect = allocator<Rect>()
-          ..ref.Height = 100
-          ..ref.Width = 200
-          ..ref.X = 2
-          ..ref.Y = -2;
+          ..ref.height = 100
+          ..ref.width = 200
+          ..ref.x = 2
+          ..ref.y = -2;
         final pSize = allocator<Size>()
-          ..ref.Height = 1500
-          ..ref.Width = 300;
+          ..ref.height = 1500
+          ..ref.width = 300;
 
         map = IMap()
           ..insert('key1', null)
@@ -117,22 +117,22 @@ void main() {
         final pointVal = map.lookup('key9');
         expect(pointVal, isA<Point>());
         final point = pointVal as Point;
-        expect(point.X, equals(3));
-        expect(point.Y, equals(-3));
+        expect(point.x, equals(3));
+        expect(point.y, equals(-3));
 
         final rectVal = map.lookup('key10');
         expect(rectVal, isA<Rect>());
         final rect = rectVal as Rect;
-        expect(rect.Height, equals(100));
-        expect(rect.Width, equals(200));
-        expect(rect.X, equals(2));
-        expect(rect.Y, equals(-2));
+        expect(rect.height, equals(100));
+        expect(rect.width, equals(200));
+        expect(rect.x, equals(2));
+        expect(rect.y, equals(-2));
 
         final sizeVal = map.lookup('key11');
         expect(sizeVal, isA<Size>());
         final size = sizeVal as Size;
-        expect(size.Height, equals(1500));
-        expect(size.Width, equals(300));
+        expect(size.height, equals(1500));
+        expect(size.width, equals(300));
 
         expect(map.lookup('key12'), equals('strVal'));
 
@@ -167,22 +167,22 @@ void main() {
         final pointListVal = map.lookup('key20');
         expect(pointListVal, isA<List<Point>>());
         final pointList = pointListVal as List<Point>;
-        expect(pointList.first.X, equals(3));
-        expect(pointList.first.Y, equals(-3));
+        expect(pointList.first.x, equals(3));
+        expect(pointList.first.y, equals(-3));
 
         final rectListVal = map.lookup('key21');
         expect(rectListVal, isA<List<Rect>>());
         final rectList = rectListVal as List<Rect>;
-        expect(rectList.first.Height, equals(100));
-        expect(rectList.first.Width, equals(200));
-        expect(rectList.first.X, equals(2));
-        expect(rectList.first.Y, equals(-2));
+        expect(rectList.first.height, equals(100));
+        expect(rectList.first.width, equals(200));
+        expect(rectList.first.x, equals(2));
+        expect(rectList.first.y, equals(-2));
 
         final sizeListVal = map.lookup('key22');
         expect(sizeListVal, isA<List<Size>>());
         final sizeList = sizeListVal as List<Size>;
-        expect(sizeList.first.Height, equals(1500));
-        expect(sizeList.first.Width, equals(300));
+        expect(sizeList.first.height, equals(1500));
+        expect(sizeList.first.width, equals(300));
 
         expect(map.lookup('key23'), equals(['str1', 'str2']));
       });
@@ -283,16 +283,16 @@ void main() {
           ..insert('key1', null)
           ..insert('key2', 'strVal');
         final pPoint = allocator<Point>()
-          ..ref.X = 3
-          ..ref.Y = -3;
+          ..ref.x = 3
+          ..ref.y = -3;
         final pRect = allocator<Rect>()
-          ..ref.Height = 100
-          ..ref.Width = 200
-          ..ref.X = 2
-          ..ref.Y = -2;
+          ..ref.height = 100
+          ..ref.width = 200
+          ..ref.x = 2
+          ..ref.y = -2;
         final pSize = allocator<Size>()
-          ..ref.Height = 1500
-          ..ref.Width = 300;
+          ..ref.height = 1500
+          ..ref.width = 300;
 
         map = ValueSet()
           ..insert('key1', null)
@@ -363,22 +363,22 @@ void main() {
         final pointVal = map.lookup('key9');
         expect(pointVal, isA<Point>());
         final point = pointVal as Point;
-        expect(point.X, equals(3));
-        expect(point.Y, equals(-3));
+        expect(point.x, equals(3));
+        expect(point.y, equals(-3));
 
         final rectVal = map.lookup('key10');
         expect(rectVal, isA<Rect>());
         final rect = rectVal as Rect;
-        expect(rect.Height, equals(100));
-        expect(rect.Width, equals(200));
-        expect(rect.X, equals(2));
-        expect(rect.Y, equals(-2));
+        expect(rect.height, equals(100));
+        expect(rect.width, equals(200));
+        expect(rect.x, equals(2));
+        expect(rect.y, equals(-2));
 
         final sizeVal = map.lookup('key11');
         expect(sizeVal, isA<Size>());
         final size = sizeVal as Size;
-        expect(size.Height, equals(1500));
-        expect(size.Width, equals(300));
+        expect(size.height, equals(1500));
+        expect(size.width, equals(300));
 
         expect(map.lookup('key12'), equals('strVal'));
 
@@ -407,22 +407,22 @@ void main() {
         final pointListVal = map.lookup('key19');
         expect(pointListVal, isA<List<Point>>());
         final pointList = pointListVal as List<Point>;
-        expect(pointList.first.X, equals(3));
-        expect(pointList.first.Y, equals(-3));
+        expect(pointList.first.x, equals(3));
+        expect(pointList.first.y, equals(-3));
 
         final rectListVal = map.lookup('key20');
         expect(rectListVal, isA<List<Rect>>());
         final rectList = rectListVal as List<Rect>;
-        expect(rectList.first.Height, equals(100));
-        expect(rectList.first.Width, equals(200));
-        expect(rectList.first.X, equals(2));
-        expect(rectList.first.Y, equals(-2));
+        expect(rectList.first.height, equals(100));
+        expect(rectList.first.width, equals(200));
+        expect(rectList.first.x, equals(2));
+        expect(rectList.first.y, equals(-2));
 
         final sizeListVal = map.lookup('key21');
         expect(sizeListVal, isA<List<Size>>());
         final sizeList = sizeListVal as List<Size>;
-        expect(sizeList.first.Height, equals(1500));
-        expect(sizeList.first.Width, equals(300));
+        expect(sizeList.first.height, equals(1500));
+        expect(sizeList.first.width, equals(300));
 
         expect(map.lookup('key22'), equals(['str1', 'str2']));
       });

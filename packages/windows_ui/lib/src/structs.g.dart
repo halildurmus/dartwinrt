@@ -21,14 +21,14 @@ import 'package:ffi/ffi.dart';
 /// {@category struct}
 class Color extends Struct {
   @Uint8()
-  external int A;
+  external int a;
 
   @Uint8()
-  external int R;
+  external int r;
 
   @Uint8()
-  external int G;
+  external int g;
 
   @Uint8()
-  external int B;
+  external int b;
 }

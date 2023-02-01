@@ -21,22 +21,22 @@ import 'package:ffi/ffi.dart';
 /// {@category struct}
 class Matrix3x2 extends Struct {
   @Float()
-  external double M11;
+  external double m11;
 
   @Float()
-  external double M12;
+  external double m12;
 
   @Float()
-  external double M21;
+  external double m21;
 
   @Float()
-  external double M22;
+  external double m22;
 
   @Float()
-  external double M31;
+  external double m31;
 
   @Float()
-  external double M32;
+  external double m32;
 }
 
 /// Describes a 4*4 floating point matrix.
@@ -44,62 +44,62 @@ class Matrix3x2 extends Struct {
 /// {@category struct}
 class Matrix4x4 extends Struct {
   @Float()
-  external double M11;
+  external double m11;
 
   @Float()
-  external double M12;
+  external double m12;
 
   @Float()
-  external double M13;
+  external double m13;
 
   @Float()
-  external double M14;
+  external double m14;
 
   @Float()
-  external double M21;
+  external double m21;
 
   @Float()
-  external double M22;
+  external double m22;
 
   @Float()
-  external double M23;
+  external double m23;
 
   @Float()
-  external double M24;
+  external double m24;
 
   @Float()
-  external double M31;
+  external double m31;
 
   @Float()
-  external double M32;
+  external double m32;
 
   @Float()
-  external double M33;
+  external double m33;
 
   @Float()
-  external double M34;
+  external double m34;
 
   @Float()
-  external double M41;
+  external double m41;
 
   @Float()
-  external double M42;
+  external double m42;
 
   @Float()
-  external double M43;
+  external double m43;
 
   @Float()
-  external double M44;
+  external double m44;
 }
 
 /// Describes a plane (a flat, two-dimensional surface).
 ///
 /// {@category struct}
 class Plane extends Struct {
-  external Vector3 Normal;
+  external Vector3 normal;
 
   @Float()
-  external double D;
+  external double d;
 }
 
 /// Describes a quaternion, which is an abstract representation of an
@@ -108,16 +108,16 @@ class Plane extends Struct {
 /// {@category struct}
 class Quaternion extends Struct {
   @Float()
-  external double X;
+  external double x;
 
   @Float()
-  external double Y;
+  external double y;
 
   @Float()
-  external double Z;
+  external double z;
 
   @Float()
-  external double W;
+  external double w;
 }
 
 /// Describes a number that can be created by the division of 2 integers.
@@ -125,10 +125,10 @@ class Quaternion extends Struct {
 /// {@category struct}
 class Rational extends Struct {
   @Uint32()
-  external int Numerator;
+  external int numerator;
 
   @Uint32()
-  external int Denominator;
+  external int denominator;
 }
 
 /// Describes a vector of two floating-point components.
@@ -136,10 +136,10 @@ class Rational extends Struct {
 /// {@category struct}
 class Vector2 extends Struct {
   @Float()
-  external double X;
+  external double x;
 
   @Float()
-  external double Y;
+  external double y;
 }
 
 /// Describes a vector of three floating-point components.
@@ -147,13 +147,13 @@ class Vector2 extends Struct {
 /// {@category struct}
 class Vector3 extends Struct {
   @Float()
-  external double X;
+  external double x;
 
   @Float()
-  external double Y;
+  external double y;
 
   @Float()
-  external double Z;
+  external double z;
 }
 
 /// Describes a vector of four floating-point components.
@@ -161,14 +161,14 @@ class Vector3 extends Struct {
 /// {@category struct}
 class Vector4 extends Struct {
   @Float()
-  external double X;
+  external double x;
 
   @Float()
-  external double Y;
+  external double y;
 
   @Float()
-  external double Z;
+  external double z;
 
   @Float()
-  external double W;
+  external double w;
 }
