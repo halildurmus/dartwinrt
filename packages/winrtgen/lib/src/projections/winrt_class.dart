@@ -4,7 +4,7 @@
 
 import 'package:winmd/winmd.dart';
 
-import '../constants/exclusions.dart';
+import '../constants/constants.dart';
 import '../utils.dart';
 import 'winrt_factory_constructors.dart';
 import 'winrt_interface.dart';

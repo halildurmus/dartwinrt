@@ -13,7 +13,7 @@ import 'package:path/path.dart' as path;
 import 'package:win32/win32.dart';
 import 'package:winmd/winmd.dart';
 
-import 'constants/iids.dart';
+import 'constants/constants.dart';
 import 'extensions/extensions.dart';
 
 /// A list of all words that should not be used as identifiers.
