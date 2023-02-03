@@ -86,12 +86,12 @@ class EnumProjection {
 class FlagsEnumProjection extends EnumProjection {
   FlagsEnumProjection(super.typeDef, {super.comment, super.enumName});
 
-  /// Attempts to create a [FlagsEnumProjection] for [fullyQualifiedType] by
+  /// Attempts to create a [FlagsEnumProjection] from [fullyQualifiedType] by
   /// searching its [TypeDef].
   ///
   /// Throws an [Exception] if no [TypeDef] matching [fullyQualifiedType] is
   /// found.
-  factory FlagsEnumProjection.forType(String fullyQualifiedType,
+  factory FlagsEnumProjection.from(String fullyQualifiedType,
       {String comment = ''}) {
     final typeDef = MetadataStore.getMetadataForType(fullyQualifiedType);
     if (typeDef == null) throw Exception("Can't find $fullyQualifiedType");

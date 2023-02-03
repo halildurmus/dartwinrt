@@ -45,7 +45,7 @@ void main() {
 
   test('WinRT Flags enumerations projected correctly', () {
     final flagsEnumProjection =
-        FlagsEnumProjection.forType('Windows.Storage.FileAttributes');
+        FlagsEnumProjection.from('Windows.Storage.FileAttributes');
     expect(flagsEnumProjection.classDeclaration,
         equals('class FileAttributes extends WinRTEnum {'));
     expect(
