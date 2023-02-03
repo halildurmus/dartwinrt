@@ -7,13 +7,13 @@ import 'package:winmd/winmd.dart';
 import '../../constants/constants.dart';
 import '../../extensions/extensions.dart';
 import '../../utils.dart';
+import '../getter.dart';
+import '../method.dart';
+import '../parameter.dart';
+import '../setter.dart';
 import '../type.dart';
-import '../winrt_get_property.dart';
-import '../winrt_method.dart';
-import '../winrt_parameter.dart';
-import '../winrt_set_property.dart';
 
-mixin _ReferenceProjection on WinRTMethodProjection {
+mixin _ReferenceProjection on MethodProjection {
   /// The type argument of `IReference`, as represented in the [returnType]'s
   /// [TypeIdentifier] (e.g. `DateTime`, `int`, `String`).
   String get referenceTypeArg => typeArguments(returnType.typeIdentifier.name);
@@ -37,12 +37,12 @@ mixin _ReferenceProjection on WinRTMethodProjection {
     // type (e.g. Double, Float, Int32, Uint32) must be passed in the `nativeType`
     // parameter so that the 'boxValue' function can use the appropriate native
     // type for the parameter
-    if (typeProjection.isEnum ||
+    if (typeProjection.isWinRTEnum ||
         ['double', 'int'].contains(typeProjection.exposedType)) {
       args.add('nativeType: ${typeProjection.nativeType}');
     }
 
-    return typeProjection.isEnum
+    return typeProjection.isWinRTEnum
         ? 'boxValue(value?.value, ${args.join(', ')})'
         : 'boxValue(value, ${args.join(', ')})';
   }
@@ -54,7 +54,7 @@ mixin _ReferenceProjection on WinRTMethodProjection {
     // If the type argument is an enum, the constructor of the enum class must
     // be passed in the 'enumCreator' parameter so that the 'IReference'
     // implementation can instantiate the object
-    final enumCreator = typeProjection.isEnum
+    final enumCreator = typeProjection.isWinRTEnum
         ? '${lastComponent(typeProjection.typeIdentifier.name)}.from'
         : null;
 
@@ -85,9 +85,9 @@ mixin _ReferenceProjection on WinRTMethodProjection {
 
 /// Method projection for methods that return an `IReference<T>` (exposed as
 /// `T?`).
-class WinRTReferenceMethodProjection extends WinRTMethodProjection
+class ReferenceMethodProjection extends MethodProjection
     with _ReferenceProjection {
-  WinRTReferenceMethodProjection(super.method, super.vtableOffset);
+  ReferenceMethodProjection(super.method, super.vtableOffset);
 
   @override
   String get methodProjection => '''
@@ -112,9 +112,9 @@ class WinRTReferenceMethodProjection extends WinRTMethodProjection
 }
 
 /// Getter projection for `IReference<T>` (exposed as `T?`) getters.
-class WinRTReferenceGetterProjection extends WinRTGetPropertyProjection
+class ReferenceGetterProjection extends GetterProjection
     with _ReferenceProjection {
-  WinRTReferenceGetterProjection(super.method, super.vtableOffset);
+  ReferenceGetterProjection(super.method, super.vtableOffset);
 
   @override
   String get methodProjection => '''
@@ -136,9 +136,9 @@ class WinRTReferenceGetterProjection extends WinRTGetPropertyProjection
 }
 
 /// Setter projection for `IReference<T>` (exposed as `T?`) setters.
-class WinRTReferenceSetterProjection extends WinRTSetPropertyProjection
+class ReferenceSetterProjection extends SetterProjection
     with _ReferenceProjection {
-  WinRTReferenceSetterProjection(super.method, super.vtableOffset);
+  ReferenceSetterProjection(super.method, super.vtableOffset);
 
   @override
   String get methodProjection => '''
@@ -149,8 +149,8 @@ class WinRTReferenceSetterProjection extends WinRTSetPropertyProjection
 }
 
 /// Parameter projection for `IReference<T>` (exposed as `T?`) parameters.
-class WinRTReferenceParameterProjection extends WinRTParameterProjection {
-  WinRTReferenceParameterProjection(super.parameter);
+class ReferenceParameterProjection extends ParameterProjection {
+  ReferenceParameterProjection(super.parameter);
 
   @override
   String get preamble => '';
@@ -170,12 +170,12 @@ class WinRTReferenceParameterProjection extends WinRTParameterProjection {
     // type (e.g. Double, Float, Int32, Uint32) must be passed in the
     // `nativeType` parameter so that the 'boxValue' function can use the
     // appropriate native type for the parameter
-    if (typeProjection.isEnum ||
+    if (typeProjection.isWinRTEnum ||
         ['double', 'int'].contains(typeProjection.exposedType)) {
       args.add('nativeType: ${typeProjection.nativeType}');
     }
 
-    final valueArg = typeProjection.isEnum ? '$name.value' : name;
+    final valueArg = typeProjection.isWinRTEnum ? '$name.value' : name;
     return '''
         $name == null
             ? nullptr

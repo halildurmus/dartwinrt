@@ -5,16 +5,16 @@
 import 'package:winmd/winmd.dart';
 
 import '../utils.dart';
-import 'winrt_interface.dart';
+import 'interface.dart';
 
-class WinRTFactoryConstructorsProjection {
-  WinRTFactoryConstructorsProjection(this.interface);
+class StaticMethodsProjection {
+  StaticMethodsProjection(this.interface);
 
-  /// The fully qualified type name of a factory interface (e.g.
-  /// `Windows.Globalization.ICalendarFactory`).
+  /// The fully-qualified type name of a static interface (e.g.
+  /// `Windows.Foundation.IPropertyValueStatics`).
   final String interface;
 
-  /// The shorter [interface] name (e.g. `ICalendarFactory`).
+  /// The shorter [interface] name (e.g. `IPropertyValueStatics`).
   String get shortName => lastComponent(interface);
 
   List<String>? _methods;
@@ -22,25 +22,27 @@ class WinRTFactoryConstructorsProjection {
   List<String> get methods => _methods ??= _cacheMethods();
 
   List<String> _cacheMethods() {
-    final factoryTypeDef = MetadataStore.getMetadataForType(interface);
-    if (factoryTypeDef == null) {
-      throw Exception('Factory typedef $interface missing.');
+    final staticTypeDef = MetadataStore.getMetadataForType(interface);
+    if (staticTypeDef == null) {
+      throw Exception('Static typedef $interface missing.');
     }
 
-    final interfaceProjection = WinRTInterfaceProjection(factoryTypeDef);
     final methods = <String>[];
+    final interfaceProjection = InterfaceProjection(staticTypeDef);
 
     for (final method in interfaceProjection.methodProjections) {
-      final className = method.shortDeclaration.split(' ').first;
+      final statement = 'object.${method.shortForm};';
+      final returnStatement =
+          method.method.isSetProperty ? statement : 'return $statement';
       methods.add('''
-  factory $className.${method.camelCasedName}(${method.methodParams}) {
+  static ${method.shortDeclaration} {
     final activationFactoryPtr =
         createActivationFactory(_className, IID_$shortName);
     final object =
         $shortName.fromRawPointer(activationFactoryPtr);
 
     try {
-       return object.${method.shortForm};
+      $returnStatement
     } finally {
       object.release();
     }

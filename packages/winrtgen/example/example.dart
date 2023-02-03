@@ -14,7 +14,7 @@ void printEnum() {
   final enumTypeDef =
       MetadataStore.getMetadataForType('Windows.Foundation.AsyncStatus');
   if (enumTypeDef != null) {
-    final enumProjection = WinRTEnumProjection(enumTypeDef);
+    final enumProjection = EnumProjection(enumTypeDef);
     print(format(enumProjection));
   }
 }
@@ -23,7 +23,7 @@ void printStruct() {
   final structTypeDef =
       MetadataStore.getMetadataForType('Windows.Gaming.Input.GamepadReading');
   if (structTypeDef != null) {
-    final structProjection = WinRTStructProjection(structTypeDef);
+    final structProjection = StructProjection(structTypeDef);
     print(format(structProjection));
   }
 }
@@ -33,28 +33,28 @@ void printMethod() {
       MetadataStore.getMetadataForType('Windows.Data.Xml.Dom.IXmlDocument');
   final method = interfaceTypeDef?.findMethod('CreateElementNS');
   if (method != null) {
-    final methodProjection = WinRTMethodProjection.create(method, 15);
+    final methodProjection = MethodProjection.create(method, 15);
     print(format(methodProjection));
   }
 }
 
-void printGetProperty() {
+void printGetter() {
   final interfaceTypeDef =
       MetadataStore.getMetadataForType('Windows.Globalization.ICalendar');
   final method = interfaceTypeDef?.findMethod('get_Languages');
   if (method != null) {
-    final getPropertyProjection = WinRTGetPropertyProjection.create(method, 9);
-    print(format(getPropertyProjection));
+    final getterProjection = GetterProjection.create(method, 9);
+    print(format(getterProjection));
   }
 }
 
-void printSetProperty() {
+void printSetter() {
   final interfaceTypeDef = MetadataStore.getMetadataForType(
       'Windows.Devices.Geolocation.IGeolocator');
   final method = interfaceTypeDef?.findMethod('put_DesiredAccuracy');
   if (method != null) {
-    final setPropertyProjection = WinRTSetPropertyProjection.create(method, 7);
-    print(format(setPropertyProjection));
+    final setterProjection = SetterProjection.create(method, 7);
+    print(format(setterProjection));
   }
 }
 
@@ -62,7 +62,7 @@ void printInterface() {
   final interfaceTypeDef =
       MetadataStore.getMetadataForType('Windows.Data.Xml.Dom.IXmlNode');
   if (interfaceTypeDef != null) {
-    final interfaceProjection = WinRTInterfaceProjection(interfaceTypeDef);
+    final interfaceProjection = InterfaceProjection(interfaceTypeDef);
     print(format(interfaceProjection));
   }
 }
@@ -71,7 +71,7 @@ void printClass() {
   final classTypeDef =
       MetadataStore.getMetadataForType('Windows.Globalization.Calendar');
   if (classTypeDef != null) {
-    final classProjection = WinRTClassProjection(classTypeDef);
+    final classProjection = ClassProjection(classTypeDef);
     print(format(classProjection));
   }
 }
@@ -80,8 +80,8 @@ void main() {
   // printEnum();
   // printStruct();
   printMethod();
-  // printGetProperty();
-  // printSetProperty();
+  // printGetter();
+  // printSetter();
   // printInterface();
   // printClass();
 }

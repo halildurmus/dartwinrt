@@ -4,10 +4,10 @@
 
 import '../extensions/extensions.dart';
 import '../utils.dart';
-import 'winrt_method.dart';
+import 'method.dart';
 
-abstract class WinRTPropertyProjection extends WinRTMethodProjection {
-  WinRTPropertyProjection(super.method, super.vtableOffset);
+abstract class PropertyProjection extends MethodProjection {
+  PropertyProjection(super.method, super.vtableOffset);
 
   /// Strip off all underscores, even if double underscores (e.g.
   /// `get_Languages` -> `languages`, `put__Data` -> `data`).

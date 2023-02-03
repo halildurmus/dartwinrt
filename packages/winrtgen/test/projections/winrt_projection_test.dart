@@ -66,7 +66,7 @@ void main() {
     final winTypeDef =
         MetadataStore.getMetadataForType('Windows.Foundation.IPropertyValue');
 
-    final projection = WinRTInterfaceProjection(winTypeDef!);
+    final projection = InterfaceProjection(winTypeDef!);
     expect(projection.vtableStart, equals(6));
   });
 
@@ -74,7 +74,7 @@ void main() {
     final winTypeDef =
         MetadataStore.getMetadataForType('Windows.Foundation.IPropertyValue');
 
-    final projection = WinRTInterfaceProjection(winTypeDef!);
+    final projection = InterfaceProjection(winTypeDef!);
     expect(projection.inheritsFrom, isEmpty);
   });
 
@@ -82,7 +82,7 @@ void main() {
     final winTypeDef =
         MetadataStore.getMetadataForType('Windows.Foundation.IPropertyValue');
 
-    final projection = WinRTInterfaceProjection(winTypeDef!);
+    final projection = InterfaceProjection(winTypeDef!);
     expect(projection.shortName, equals('IPropertyValue'));
   });
 
@@ -90,7 +90,7 @@ void main() {
     final winTypeDef = MetadataStore.getMetadataForType(
         'Windows.Storage.Pickers.IFileOpenPicker');
 
-    final projection = WinRTInterfaceProjection(winTypeDef!);
+    final projection = InterfaceProjection(winTypeDef!);
     expect(projection.iidConstant, contains('IID_IFileOpenPicker'));
     expect(projection.iidConstant,
         contains('{2ca8278a-12c5-4c5f-8977-94547793c241}'));
@@ -100,7 +100,7 @@ void main() {
     final winTypeDef = MetadataStore.getMetadataForType(
         'Windows.Storage.Pickers.IFileOpenPicker');
 
-    final projection = WinRTInterfaceProjection(winTypeDef!);
+    final projection = InterfaceProjection(winTypeDef!);
     expect(projection.methodProjections.length, equals(11));
   });
 
@@ -108,7 +108,7 @@ void main() {
     final winTypeDef = MetadataStore.getMetadataForType(
         'Windows.Storage.Pickers.IFileOpenPicker');
 
-    final projection = WinRTInterfaceProjection(winTypeDef!);
+    final projection = InterfaceProjection(winTypeDef!);
     expect(projection.methodProjections.first.name, equals('get_ViewMode'));
   });
 
@@ -116,17 +116,16 @@ void main() {
     final winTypeDef = MetadataStore.getMetadataForType(
         'Windows.Storage.Pickers.IFileOpenPicker');
 
-    final projection = WinRTInterfaceProjection(winTypeDef!);
+    final projection = InterfaceProjection(winTypeDef!);
     final getPropertyProjection = projection.methodProjections.first;
 
-    expect(
-        getPropertyProjection.runtimeType, equals(WinRTEnumGetterProjection));
+    expect(getPropertyProjection.runtimeType, equals(EnumGetterProjection));
     expect(
         projection.methodProjections.first.returnType.dartType, equals('int'));
     expect(projection.methodProjections.first.returnType.typeIdentifier.name,
         endsWith('PickerViewMode'));
     expect(projection.methodProjections.first.parameters, isEmpty);
-    expect((getPropertyProjection as WinRTGetPropertyProjection).camelCasedName,
+    expect((getPropertyProjection as GetterProjection).camelCasedName,
         equals('viewMode'));
   });
 
@@ -134,7 +133,7 @@ void main() {
     final winTypeDef = MetadataStore.getMetadataForType(
         'Windows.Storage.Pickers.IFileOpenPicker');
 
-    final projection = WinRTInterfaceProjection(winTypeDef!);
+    final projection = InterfaceProjection(winTypeDef!);
     expect(projection.importHeader,
         contains('package:windows_foundation/windows_foundation.dart'));
   });
@@ -143,7 +142,7 @@ void main() {
     final winTypeDef = MetadataStore.getMetadataForType(
         'Windows.Gaming.Input.IGamepadStatics2');
 
-    final projection = WinRTInterfaceProjection(winTypeDef!);
+    final projection = InterfaceProjection(winTypeDef!);
     expect(projection.importHeader, contains("import 'igamepadstatics.dart'"));
   });
 
@@ -151,7 +150,7 @@ void main() {
     final winTypeDef =
         MetadataStore.getMetadataForType('Windows.Gaming.Input.Gamepad');
 
-    final projection = WinRTClassProjection(winTypeDef!);
+    final projection = ClassProjection(winTypeDef!);
     expect(projection.importHeader, contains("import 'structs.g.dart'"));
   });
 
@@ -159,7 +158,7 @@ void main() {
     final winTypeDef =
         MetadataStore.getMetadataForType('Windows.Gaming.Input.IGamepad');
 
-    final projection = WinRTInterfaceProjection(winTypeDef!);
+    final projection = InterfaceProjection(winTypeDef!);
     expect(projection.importHeader, contains("import 'structs.g.dart"));
   });
 
@@ -167,7 +166,7 @@ void main() {
     final winTypeDef =
         MetadataStore.getMetadataForType('Windows.Globalization.ICalendar');
 
-    final projection = WinRTInterfaceProjection(winTypeDef!);
+    final projection = InterfaceProjection(winTypeDef!);
     final dateTimeProjection =
         projection.methodProjections.firstWhere((m) => m.name == 'GetDateTime');
 
@@ -185,10 +184,9 @@ void main() {
     final winTypeDef =
         MetadataStore.getMetadataForType('Windows.Networking.IHostName');
 
-    final projection = WinRTInterfaceProjection(winTypeDef!);
+    final projection = InterfaceProjection(winTypeDef!);
     final ipInformationProjection = projection.methodProjections
-            .firstWhere((m) => m.name == 'get_IPInformation')
-        as WinRTGetPropertyProjection;
+        .firstWhere((m) => m.name == 'get_IPInformation') as GetterProjection;
     expect(ipInformationProjection.camelCasedName, equals('ipInformation'));
   });
 
@@ -196,7 +194,7 @@ void main() {
     final winTypeDef = MetadataStore.getMetadataForType(
         'Windows.UI.ViewManagement.IUISettings');
 
-    final projection = WinRTInterfaceProjection(winTypeDef!);
+    final projection = InterfaceProjection(winTypeDef!);
     final ipInformationProjection = projection.methodProjections
         .firstWhere((m) => m.name == 'UIElementColor');
 
@@ -207,7 +205,7 @@ void main() {
     final winTypeDef = MetadataStore.getMetadataForType(
         'Windows.Storage.Pickers.IFileOpenPicker');
 
-    final projection = WinRTInterfaceProjection(winTypeDef!);
+    final projection = InterfaceProjection(winTypeDef!);
     final output = projection.methodProjections.first.toString();
     expect(output, isNotEmpty);
   });
@@ -216,7 +214,7 @@ void main() {
     final winTypeDef =
         MetadataStore.getMetadataForType('Windows.Globalization.ICalendar');
 
-    final projection = WinRTInterfaceProjection(winTypeDef!);
+    final projection = InterfaceProjection(winTypeDef!);
     final numeralSystemProjection = projection.methodProjections
         .firstWhere((m) => m.name == 'get_NumeralSystem');
 
@@ -233,7 +231,7 @@ void main() {
     final winTypeDef =
         MetadataStore.getMetadataForType('Windows.Globalization.ICalendar');
 
-    final projection = WinRTInterfaceProjection(winTypeDef!);
+    final projection = InterfaceProjection(winTypeDef!);
     final numDaysProjection = projection.methodProjections
         .firstWhere((m) => m.name == 'get_NumberOfDaysInThisMonth');
 
@@ -249,7 +247,7 @@ void main() {
     final winTypeDef = MetadataStore.getMetadataForType(
         'Windows.Storage.FileProperties.IBasicProperties');
 
-    final projection = WinRTInterfaceProjection(winTypeDef!);
+    final projection = InterfaceProjection(winTypeDef!);
     final dateModifiedProjection = projection.methodProjections
         .firstWhere((m) => m.name == 'get_DateModified');
 
@@ -266,7 +264,7 @@ void main() {
     final winTypeDef = MetadataStore.getMetadataForType(
         'Windows.System.Power.IPowerManagerStatics');
 
-    final projection = WinRTInterfaceProjection(winTypeDef!);
+    final projection = InterfaceProjection(winTypeDef!);
     final dischargeTimeProjection = projection.methodProjections
         .firstWhere((m) => m.name == 'get_RemainingDischargeTime');
 
@@ -283,7 +281,7 @@ void main() {
     final winTypeDef =
         MetadataStore.getMetadataForType('Windows.Globalization.ICalendar');
 
-    final projection = WinRTInterfaceProjection(winTypeDef!);
+    final projection = InterfaceProjection(winTypeDef!);
     final languagesProjection = projection.methodProjections
         .firstWhere((m) => m.name == 'get_Languages');
 
@@ -303,7 +301,7 @@ void main() {
     final winTypeDef = MetadataStore.getMetadataForType(
         'Windows.UI.Notifications.INotificationData');
 
-    final projection = WinRTInterfaceProjection(winTypeDef!);
+    final projection = InterfaceProjection(winTypeDef!);
     final valuesProjection =
         projection.methodProjections.firstWhere((m) => m.name == 'get_Values');
 
@@ -324,7 +322,7 @@ void main() {
     final winTypeDef = MetadataStore.getMetadataForType(
         'Windows.UI.Notifications.IToastNotification');
 
-    final projection = WinRTInterfaceProjection(winTypeDef!);
+    final projection = InterfaceProjection(winTypeDef!);
     final expirationTimeSystemProjection = projection.methodProjections
         .firstWhere((m) => m.name == 'get_ExpirationTime');
 
@@ -346,7 +344,7 @@ void main() {
     final winTypeDef =
         MetadataStore.getMetadataForType('Windows.Data.Xml.Dom.IXmlNode');
 
-    final projection = WinRTInterfaceProjection(winTypeDef!);
+    final projection = InterfaceProjection(winTypeDef!);
     final localNameProjection = projection.methodProjections
         .firstWhere((m) => m.name == 'get_LocalName');
 
@@ -368,7 +366,7 @@ void main() {
     final winTypeDef =
         MetadataStore.getMetadataForType('Windows.Globalization.ICalendar');
 
-    final projection = WinRTInterfaceProjection(winTypeDef!);
+    final projection = InterfaceProjection(winTypeDef!);
     final cloneProjection =
         projection.methodProjections.firstWhere((m) => m.name == 'Clone');
 
@@ -387,7 +385,7 @@ void main() {
     final winTypeDef = MetadataStore.getMetadataForType(
         'Windows.Globalization.PhoneNumberFormatting.IPhoneNumberFormatterStatics');
 
-    final projection = WinRTInterfaceProjection(winTypeDef!);
+    final projection = InterfaceProjection(winTypeDef!);
     final tryCreateProjection =
         projection.methodProjections.firstWhere((m) => m.name == 'TryCreate');
 
@@ -409,7 +407,7 @@ void main() {
     final winTypeDef = MetadataStore.getMetadataForType(
         'Windows.Storage.Pickers.IFileOpenPicker');
 
-    final projection = WinRTInterfaceProjection(winTypeDef!);
+    final projection = InterfaceProjection(winTypeDef!);
     final output = projection.methodProjections[1].toString();
     expect(output, isNotEmpty);
   });
@@ -418,7 +416,7 @@ void main() {
     final winTypeDef =
         MetadataStore.getMetadataForType('Windows.Globalization.ICalendar');
 
-    final projection = WinRTInterfaceProjection(winTypeDef!);
+    final projection = InterfaceProjection(winTypeDef!);
     final setEraProjection =
         projection.methodProjections.firstWhere((m) => m.name == 'put_Era');
 
@@ -437,7 +435,7 @@ void main() {
     final winTypeDef = MetadataStore.getMetadataForType(
         'Windows.UI.Notifications.IToastNotification');
 
-    final projection = WinRTInterfaceProjection(winTypeDef!);
+    final projection = InterfaceProjection(winTypeDef!);
     final expirationTimeProjection = projection.methodProjections
         .firstWhere((m) => m.name == 'put_ExpirationTime');
 
@@ -464,7 +462,7 @@ void main() {
     final winTypeDef = MetadataStore.getMetadataForType(
         'Windows.UI.Notifications.IToastNotification4');
 
-    final projection = WinRTInterfaceProjection(winTypeDef!);
+    final projection = InterfaceProjection(winTypeDef!);
     final dataProjection =
         projection.methodProjections.firstWhere((m) => m.name == 'put_Data');
 
@@ -489,7 +487,7 @@ void main() {
     final winTypeDef = MetadataStore.getMetadataForType(
         'Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisement');
 
-    final projection = WinRTInterfaceProjection(winTypeDef!);
+    final projection = InterfaceProjection(winTypeDef!);
     final flagsProjection =
         projection.methodProjections.firstWhere((m) => m.name == 'put_Flags');
 
@@ -514,7 +512,7 @@ void main() {
     final winTypeDef =
         MetadataStore.getMetadataForType('Windows.Globalization.ICalendar');
 
-    final projection = WinRTInterfaceProjection(winTypeDef!);
+    final projection = InterfaceProjection(winTypeDef!);
     final setDateTimeProjection =
         projection.methodProjections.firstWhere((m) => m.name == 'SetDateTime');
     final dateTimeParameter = setDateTimeProjection.parameters.first;
@@ -526,7 +524,7 @@ void main() {
     final winTypeDef = MetadataStore.getMetadataForType(
         'Windows.Foundation.Collections.StringMap');
 
-    final projection = WinRTClassProjection(winTypeDef!);
+    final projection = ClassProjection(winTypeDef!);
     final firstProjection =
         projection.methodProjections.firstWhere((m) => m.name == 'First');
 
@@ -540,7 +538,7 @@ void main() {
     final winTypeDef = MetadataStore.getMetadataForType(
         'Windows.UI.Notifications.INotificationDataFactory');
 
-    final projection = WinRTInterfaceProjection(winTypeDef!);
+    final projection = InterfaceProjection(winTypeDef!);
     final createNotificationDataProjection = projection.methodProjections
         .firstWhere((m) => m.name == 'CreateNotificationDataWithValues');
     final initialValuesParameter =
@@ -557,7 +555,7 @@ void main() {
     final winTypeDef = MetadataStore.getMetadataForType(
         'Windows.Storage.Pickers.IFileOpenPicker');
 
-    final projection = WinRTInterfaceProjection(winTypeDef!);
+    final projection = InterfaceProjection(winTypeDef!);
     final output = projection.toString();
     expect(output, isNotEmpty);
     expect(output, contains('win32/win32.dart'));
@@ -567,7 +565,7 @@ void main() {
     final winTypeDef = MetadataStore.getMetadataForType(
         'Windows.Storage.Pickers.FileOpenPicker');
 
-    final projection = WinRTClassProjection(winTypeDef!);
+    final projection = ClassProjection(winTypeDef!);
     expect(projection.isActivatable, isTrue);
     expect(
         projection.defaultConstructor,
@@ -579,7 +577,7 @@ void main() {
     final winTypeDef =
         MetadataStore.getMetadataForType('Windows.Networking.HostName');
 
-    final projection = WinRTClassProjection(winTypeDef!);
+    final projection = ClassProjection(winTypeDef!);
     expect(projection.isActivatable, isFalse);
     expect(projection.defaultConstructor, isEmpty);
   });
@@ -588,7 +586,7 @@ void main() {
     final winTypeDef =
         MetadataStore.getMetadataForType('Windows.Networking.HostName');
 
-    final projection = WinRTClassProjection(winTypeDef!);
+    final projection = ClassProjection(winTypeDef!);
     expect(projection.inheritsFrom, isNotEmpty);
     expect(
         projection.classDeclaration,
@@ -601,7 +599,7 @@ void main() {
     final winTypeDef =
         MetadataStore.getMetadataForType('Windows.System.Launcher');
 
-    final projection = WinRTClassProjection(winTypeDef!);
+    final projection = ClassProjection(winTypeDef!);
     expect(projection.inheritsFrom, isEmpty);
     expect(projection.classDeclaration,
         equals('class Launcher extends IInspectable {'));
@@ -612,7 +610,7 @@ void main() {
     final winTypeDef =
         MetadataStore.getMetadataForType('Windows.Gaming.Input.IGamepad');
 
-    final projection = WinRTInterfaceProjection(winTypeDef!);
+    final projection = InterfaceProjection(winTypeDef!);
     expect(projection.inheritsFrom, isNotEmpty);
     expect(
         projection.classDeclaration,
@@ -626,7 +624,7 @@ void main() {
     final winTypeDef =
         MetadataStore.getMetadataForType('Windows.Globalization.ICalendar');
 
-    final projection = WinRTInterfaceProjection(winTypeDef!);
+    final projection = InterfaceProjection(winTypeDef!);
     expect(projection.inheritsFrom, isEmpty);
     expect(projection.classDeclaration,
         equals('class ICalendar extends IInspectable {'));
@@ -636,7 +634,7 @@ void main() {
     final winTypeDef = MetadataStore.getMetadataForType(
         'Windows.Globalization.PhoneNumberFormatting.PhoneNumberInfo');
 
-    final projection = WinRTClassProjection(winTypeDef!);
+    final projection = ClassProjection(winTypeDef!);
     expect(projection.inheritsFrom, contains('IStringable'));
     expect(projection.interfaceImports,
         contains('package:windows_foundation/windows_foundation.dart'));
@@ -646,7 +644,7 @@ void main() {
     final winTypeDef =
         MetadataStore.getMetadataForType('Windows.Globalization.Calendar');
 
-    final projection = WinRTClassProjection(winTypeDef!);
+    final projection = ClassProjection(winTypeDef!);
     expect(projection.inheritsFrom, isNot(contains('IStringable')));
     expect(projection.interfaceImports,
         isNot(contains('../foundation/istringable.dart')));
@@ -656,7 +654,7 @@ void main() {
     const namespace = 'Windows.Globalization.Calendar';
     final winTypeDef = MetadataStore.getMetadataForType(namespace);
 
-    final projection = WinRTClassProjection(winTypeDef!);
+    final projection = ClassProjection(winTypeDef!);
     expect(projection.isActivatable, isTrue);
     expect(projection.factoryConstructors, isNotEmpty);
     expect(projection.staticMethods, isEmpty);
@@ -668,7 +666,7 @@ void main() {
     final winTypeDef = MetadataStore.getMetadataForType(
         'Windows.Storage.FileProperties.BasicProperties');
 
-    final projection = WinRTClassProjection(winTypeDef!);
+    final projection = ClassProjection(winTypeDef!);
     expect(projection.isActivatable, isFalse);
     expect(projection.factoryConstructors, isEmpty);
     expect(projection.staticMethods, isEmpty);
@@ -681,7 +679,7 @@ void main() {
     final winTypeDef = MetadataStore.getMetadataForType(
         'Windows.Devices.Power.IBatteryReport');
 
-    final projection = WinRTInterfaceProjection(winTypeDef!);
+    final projection = InterfaceProjection(winTypeDef!);
     expect(
         projection.importHeader,
         contains(
@@ -694,7 +692,7 @@ void main() {
     final winTypeDef =
         MetadataStore.getMetadataForType('Windows.System.ILauncherOptions');
 
-    final projection = WinRTInterfaceProjection(winTypeDef!);
+    final projection = InterfaceProjection(winTypeDef!);
     expect(projection.importHeader,
         contains("import 'package:windows_foundation/uri.dart' as winrt_uri;"));
   });
@@ -705,7 +703,7 @@ void main() {
     final winTypeDef = MetadataStore.getMetadataForType(
         'Windows.Storage.Pickers.IFileOpenPicker');
 
-    final projection = WinRTInterfaceProjection(winTypeDef!);
+    final projection = InterfaceProjection(winTypeDef!);
     expect(projection.importHeader, contains("import 'dart:async';"));
     expect(projection.importHeader,
         contains("import 'package:windows_foundation/internal.dart';"));
@@ -715,7 +713,7 @@ void main() {
     final winTypeDef =
         MetadataStore.getMetadataForType('Windows.System.ILauncherOptions');
 
-    final projection = WinRTInterfaceProjection(winTypeDef!);
+    final projection = InterfaceProjection(winTypeDef!);
     final fallbackUriProjection = projection.methodProjections
         .firstWhere((m) => m.name == 'get_FallbackUri');
     expect(
@@ -743,7 +741,7 @@ void main() {
     final winTypeDef =
         MetadataStore.getMetadataForType('Windows.System.ILauncherOptions');
 
-    final projection = WinRTInterfaceProjection(winTypeDef!);
+    final projection = InterfaceProjection(winTypeDef!);
     final fallbackUriProjection = projection.methodProjections
         .firstWhere((m) => m.name == 'put_FallbackUri');
 
@@ -771,7 +769,7 @@ void main() {
     final winTypeDef =
         MetadataStore.getMetadataForType('Windows.System.ILauncherStatics');
 
-    final projection = WinRTInterfaceProjection(winTypeDef!);
+    final projection = InterfaceProjection(winTypeDef!);
     final launchUriAsyncProjection = projection.methodProjections
         .firstWhere((m) => m.name == 'LaunchUriAsync');
     final uriParameter = launchUriAsyncProjection.parameters.first;
@@ -790,7 +788,7 @@ void main() {
     final winTypeDef =
         MetadataStore.getMetadataForType('Windows.Gaming.Input.IGamepad');
 
-    final projection = WinRTInterfaceProjection(winTypeDef!);
+    final projection = InterfaceProjection(winTypeDef!);
     expect(projection.importHeader, contains("import 'headset.dart'"));
     expect(projection.importHeader,
         contains("import 'package:windows_system/windows_system.dart'"));
@@ -804,7 +802,7 @@ void main() {
       final winTypeDef = MetadataStore.getMetadataForType(
           'Windows.Storage.Pickers.FileOpenPicker');
 
-      final projection = WinRTClassProjection(winTypeDef!);
+      final projection = ClassProjection(winTypeDef!);
       expect(projection.importHeader.contains('ifileopenpicker.dart'), isTrue);
       expect(
           projection.importHeader.contains('ifileopenpicker2.dart'), isFalse);
@@ -824,7 +822,7 @@ void main() {
       final winTypeDef = MetadataStore.getMetadataForType(
           'Windows.Storage.Pickers.FileOpenPicker');
 
-      final projection = WinRTClassProjection(winTypeDef!);
+      final projection = ClassProjection(winTypeDef!);
       expect(
           projection.inheritsFrom, equals('IFileOpenPicker, IFileOpenPicker3'));
       expect(

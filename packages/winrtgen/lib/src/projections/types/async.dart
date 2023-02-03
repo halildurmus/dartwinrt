@@ -4,12 +4,12 @@
 
 import '../../extensions/extensions.dart';
 import '../../utils.dart';
+import '../method.dart';
 import '../type.dart';
-import '../winrt_method.dart';
 
 /// Method projection for methods that return an `IAsyncAction`.
-class WinRTAsyncActionMethodProjection extends WinRTMethodProjection {
-  WinRTAsyncActionMethodProjection(super.method, super.vtableOffset);
+class AsyncActionMethodProjection extends MethodProjection {
+  AsyncActionMethodProjection(super.method, super.vtableOffset);
 
   @override
   String get methodProjection => '''
@@ -30,7 +30,7 @@ class WinRTAsyncActionMethodProjection extends WinRTMethodProjection {
 ''';
 }
 
-mixin _AsyncOperationProjection on WinRTMethodProjection {
+mixin _AsyncOperationProjection on MethodProjection {
   /// The type argument of `IAsyncOperation`, as represented in the
   /// [returnType]'s [TypeIdentifier] (e.g. `bool`, `String`, `StorageFile?`).
   String get asyncOperationTypeArg =>
@@ -55,21 +55,21 @@ mixin _AsyncOperationProjection on WinRTMethodProjection {
   String get asyncOperationConstructorArgs {
     final typeProjection = TypeProjection(returnType.typeIdentifier.typeArg!);
 
-    // If the type argument is an enum or a WinRT Object (e.g. StorageFile), the
+    // If the type argument is an enum or a WinRT object (e.g. StorageFile), the
     // constructor of that class must be passed in the 'enumCreator' parameter
-    // for enums, 'creator' parameter for WinRT Objects so that the
+    // for enums, 'creator' parameter for WinRT objects so that the
     // IAsyncOperation implementation can instantiate the object.
     final creator = returnType.typeIdentifier.typeArg!.creator;
 
     // If the type argument is an enum or int, its native type (e.g. Int32,
     // Uint32) must be passed in the 'intType' parameter so that the
     // 'IAsyncOperation' implementations can use the appropriate native type
-    final intType = typeProjection.isEnum || asyncOperationTypeArg == 'int'
+    final intType = typeProjection.isWinRTEnum || asyncOperationTypeArg == 'int'
         ? typeProjection.nativeType
         : null;
 
     final args = <String>[];
-    if (typeProjection.isEnum) {
+    if (typeProjection.isWinRTEnum) {
       args.add('enumCreator: $creator');
     } else if (creator != null) {
       args.add('creator: $creator');
@@ -97,9 +97,9 @@ mixin _AsyncOperationProjection on WinRTMethodProjection {
 }
 
 /// Method projection for methods that return `IAsyncOperation<TResult>`.
-class WinRTAsyncOperationMethodProjection extends WinRTMethodProjection
+class AsyncOperationMethodProjection extends MethodProjection
     with _AsyncOperationProjection {
-  WinRTAsyncOperationMethodProjection(super.method, super.vtableOffset);
+  AsyncOperationMethodProjection(super.method, super.vtableOffset);
 
   @override
   String get methodProjection => '''

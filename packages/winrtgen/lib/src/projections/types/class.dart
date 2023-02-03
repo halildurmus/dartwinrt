@@ -3,12 +3,12 @@
 // BSD-style license that can be found in the LICENSE file.
 
 import '../../utils.dart';
-import '../winrt_get_property.dart';
-import '../winrt_method.dart';
-import '../winrt_parameter.dart';
-import '../winrt_set_property.dart';
+import '../getter.dart';
+import '../method.dart';
+import '../parameter.dart';
+import '../setter.dart';
 
-mixin _ClassProjection on WinRTMethodProjection {
+mixin _ClassProjection on MethodProjection {
   String get methodReturnType {
     final typeIdentifierName = lastComponent(returnType.typeIdentifier.name);
 
@@ -38,9 +38,8 @@ mixin _ClassProjection on WinRTMethodProjection {
 }
 
 /// Method projection for methods that return a WinRT class (e.g. `Calendar`).
-class WinRTClassMethodProjection extends WinRTMethodProjection
-    with _ClassProjection {
-  WinRTClassMethodProjection(super.method, super.vtableOffset);
+class ClassMethodProjection extends MethodProjection with _ClassProjection {
+  ClassMethodProjection(super.method, super.vtableOffset);
 
   @override
   String get methodProjection => '''
@@ -60,9 +59,8 @@ class WinRTClassMethodProjection extends WinRTMethodProjection
 }
 
 /// Getter projection for WinRT class getters.
-class WinRTClassGetterProjection extends WinRTGetPropertyProjection
-    with _ClassProjection {
-  WinRTClassGetterProjection(super.method, super.vtableOffset);
+class ClassGetterProjection extends GetterProjection with _ClassProjection {
+  ClassGetterProjection(super.method, super.vtableOffset);
 
   @override
   String get methodProjection => '''
@@ -79,9 +77,8 @@ class WinRTClassGetterProjection extends WinRTGetPropertyProjection
 }
 
 /// Setter projection for WinRT class setters.
-class WinRTClassSetterProjection extends WinRTSetPropertyProjection
-    with _ClassProjection {
-  WinRTClassSetterProjection(super.method, super.vtableOffset);
+class ClassSetterProjection extends SetterProjection with _ClassProjection {
+  ClassSetterProjection(super.method, super.vtableOffset);
 
   @override
   String get methodProjection => '''
@@ -92,8 +89,8 @@ class WinRTClassSetterProjection extends WinRTSetPropertyProjection
 }
 
 /// Parameter projection for WinRT class parameters.
-class WinRTClassParameterProjection extends WinRTParameterProjection {
-  WinRTClassParameterProjection(super.parameter);
+class ClassParameterProjection extends ParameterProjection {
+  ClassParameterProjection(super.parameter);
 
   @override
   String get preamble => '';

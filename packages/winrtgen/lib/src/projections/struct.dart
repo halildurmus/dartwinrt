@@ -31,14 +31,26 @@ class StructFieldProjection {
 ''';
 }
 
-/// Represents a Dart projection of a WinRT Struct typedef.
-class WinRTStructProjection {
-  WinRTStructProjection(this.typeDef, {this.comment = '', String? structName})
+/// Represents a Dart projection of a WinRT struct typedef.
+class StructProjection {
+  StructProjection(this.typeDef, {this.comment = '', String? structName})
       : structName = structName ?? typeDef.shortName;
 
   final TypeDef typeDef;
   final String comment;
   final String structName;
+
+  /// Attempts to create a [StructProjection] from [fullyQualifiedType] by
+  /// searching its [TypeDef].
+  ///
+  /// Throws an [Exception] if no [TypeDef] matching [fullyQualifiedType] is
+  /// found.
+  factory StructProjection.from(String fullyQualifiedType,
+      {String comment = ''}) {
+    final typeDef = MetadataStore.getMetadataForType(fullyQualifiedType);
+    if (typeDef == null) throw Exception("Can't find $fullyQualifiedType");
+    return StructProjection(typeDef, comment: comment);
+  }
 
   String get category => 'struct';
 

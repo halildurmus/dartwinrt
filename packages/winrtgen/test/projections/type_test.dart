@@ -19,7 +19,6 @@ void main() {
     // TODO: Test assumption that this is passed on the wire as a Uint64.
     expect(typeProjection.dartType, equals('int'));
     expect(typeProjection.nativeType, equals('Uint64'));
-    expect(typeProjection.isDartPrimitive, isTrue);
   });
 
   test('EventRegistrationToken types are projected correctly', () {
@@ -31,7 +30,6 @@ void main() {
 
     expect(typeProjection.dartType, equals('int'));
     expect(typeProjection.nativeType, equals('IntPtr'));
-    expect(typeProjection.isDartPrimitive, isTrue);
   });
 
   test('Event handler types are projected correctly', () {
@@ -59,14 +57,12 @@ void main() {
         TypeProjection(valueSizeParam.typeIdentifier);
     expect(valueSizeParamProjection.dartType, equals('int'));
     expect(valueSizeParamProjection.nativeType, equals('Uint32'));
-    expect(valueSizeParamProjection.isDartPrimitive, isTrue);
 
     final valueParam = method.parameters.last;
     expect(valueParam.name, equals('value'));
     final valueParamProjection = TypeProjection(valueParam.typeIdentifier);
     expect(valueParamProjection.dartType, equals('Pointer<Uint8>'));
     expect(valueParamProjection.nativeType, equals('Pointer<Uint8>'));
-    expect(valueParamProjection.isDartPrimitive, isTrue);
   });
 
   test('Reference simple array COM types are projected correctly', () {
@@ -85,7 +81,6 @@ void main() {
         TypeProjection(valueSizeParam.typeIdentifier);
     expect(valueSizeParamProjection.dartType, equals('Pointer<Uint32>'));
     expect(valueSizeParamProjection.nativeType, equals('Pointer<Uint32>'));
-    expect(valueSizeParamProjection.isDartPrimitive, isTrue);
 
     final valueParam = method.parameters.last;
     expect(valueParam.name, equals('value'));
@@ -94,7 +89,6 @@ void main() {
         valueParamProjection.dartType, equals('Pointer<Pointer<COMObject>>'));
     expect(
         valueParamProjection.nativeType, equals('Pointer<Pointer<COMObject>>'));
-    expect(valueParamProjection.isDartPrimitive, isTrue);
   });
 
   test('Reference simple array value types are projected correctly', () {
@@ -113,13 +107,11 @@ void main() {
         TypeProjection(valueSizeParam.typeIdentifier);
     expect(valueSizeParamProjection.dartType, equals('Pointer<Uint32>'));
     expect(valueSizeParamProjection.nativeType, equals('Pointer<Uint32>'));
-    expect(valueSizeParamProjection.isDartPrimitive, isTrue);
 
     final valueParam = method.parameters.last;
     expect(valueParam.name, equals('value'));
     final valueParamProjection = TypeProjection(valueParam.typeIdentifier);
     expect(valueParamProjection.dartType, equals('Pointer<Pointer<Uint8>>'));
     expect(valueParamProjection.nativeType, equals('Pointer<Pointer<Uint8>>'));
-    expect(valueParamProjection.isDartPrimitive, isTrue);
   });
 }

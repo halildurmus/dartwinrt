@@ -2,11 +2,11 @@
 // details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-import '../winrt_method.dart';
+import '../method.dart';
 
 /// Method projection for `void` methods.
-class WinRTVoidMethodProjection extends WinRTMethodProjection {
-  WinRTVoidMethodProjection(super.method, super.vtableOffset);
+class VoidMethodProjection extends MethodProjection {
+  VoidMethodProjection(super.method, super.vtableOffset);
 
   @override
   String get methodProjection => '''

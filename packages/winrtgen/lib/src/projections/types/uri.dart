@@ -2,12 +2,12 @@
 // details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-import '../winrt_get_property.dart';
-import '../winrt_method.dart';
-import '../winrt_parameter.dart';
-import '../winrt_set_property.dart';
+import '../getter.dart';
+import '../method.dart';
+import '../parameter.dart';
+import '../setter.dart';
 
-mixin _UriProjection on WinRTMethodProjection {
+mixin _UriProjection on MethodProjection {
   String get nullCheck => '''
     if (retValuePtr.ref.lpVtbl == nullptr) {
       free(retValuePtr);
@@ -17,9 +17,8 @@ mixin _UriProjection on WinRTMethodProjection {
 }
 
 /// Method projection for methods that return an `Uri`.
-class WinRTUriMethodProjection extends WinRTMethodProjection
-    with _UriProjection {
-  WinRTUriMethodProjection(super.method, super.vtableOffset);
+class UriMethodProjection extends MethodProjection with _UriProjection {
+  UriMethodProjection(super.method, super.vtableOffset);
 
   @override
   String get methodProjection => '''
@@ -43,9 +42,8 @@ class WinRTUriMethodProjection extends WinRTMethodProjection
 }
 
 /// Getter projection for `Uri` getters.
-class WinRTUriGetterProjection extends WinRTGetPropertyProjection
-    with _UriProjection {
-  WinRTUriGetterProjection(super.method, super.vtableOffset);
+class UriGetterProjection extends GetterProjection with _UriProjection {
+  UriGetterProjection(super.method, super.vtableOffset);
 
   @override
   String get methodProjection => '''
@@ -66,8 +64,8 @@ class WinRTUriGetterProjection extends WinRTGetPropertyProjection
 }
 
 /// Setter projection for `Uri` setters.
-class WinRTUriSetterProjection extends WinRTSetPropertyProjection {
-  WinRTUriSetterProjection(super.method, super.vtableOffset);
+class UriSetterProjection extends SetterProjection {
+  UriSetterProjection(super.method, super.vtableOffset);
 
   @override
   String get methodProjection => '''
@@ -85,8 +83,8 @@ class WinRTUriSetterProjection extends WinRTSetPropertyProjection {
 }
 
 /// Parameter projection for `Uri` parameters.
-class WinRTUriParameterProjection extends WinRTParameterProjection {
-  WinRTUriParameterProjection(super.parameter);
+class UriParameterProjection extends ParameterProjection {
+  UriParameterProjection(super.parameter);
 
   @override
   String get preamble => 'final ${name}Uri = $name == null ? null : '

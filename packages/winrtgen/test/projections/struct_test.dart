@@ -5,15 +5,11 @@
 @TestOn('windows')
 
 import 'package:test/test.dart';
-import 'package:winmd/winmd.dart';
 import 'package:winrtgen/winrtgen.dart';
 
 void main() {
   test('WinRT structs projected correctly', () {
-    final typeDef =
-        MetadataStore.getMetadataForType('Windows.Foundation.Rect')!;
-
-    final structProjection = WinRTStructProjection(typeDef);
+    final structProjection = StructProjection.from('Windows.Foundation.Rect');
     expect(structProjection.category, equals('struct'));
     expect(structProjection.classDeclaration,
         equals('class Rect extends Struct {'));

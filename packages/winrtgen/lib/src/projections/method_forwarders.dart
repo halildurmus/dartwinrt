@@ -6,13 +6,13 @@ import 'package:winmd/winmd.dart';
 
 import '../extensions/extensions.dart';
 import '../utils.dart';
+import 'class.dart';
+import 'interface.dart';
+import 'method.dart';
 import 'type.dart';
-import 'winrt_class.dart';
-import 'winrt_interface.dart';
-import 'winrt_method.dart';
 
-class WinRTMethodForwardersProjection {
-  WinRTMethodForwardersProjection(this.interface, this.interfaceProjection);
+class MethodForwardersProjection {
+  MethodForwardersProjection(this.interface, this.interfaceProjection);
 
   /// The interface typedef that method forwarders are generated from (e.g.
   /// `Windows.Storage.IStorageItem`).
@@ -20,7 +20,7 @@ class WinRTMethodForwardersProjection {
 
   /// The interface projection that method forwarders are generated to (e.g.
   /// `Windows.Storage.StorageFile`, `Windows.Storage.IStorageFile`).
-  final WinRTInterfaceProjection interfaceProjection;
+  final InterfaceProjection interfaceProjection;
 
   /// Whether the [interface] is a generic interface.
   bool get isGenericInterface =>
@@ -60,7 +60,7 @@ class WinRTMethodForwardersProjection {
     if (creator == null) return null;
 
     final typeArgProjection = TypeProjection(typeArg);
-    return typeArgProjection.isEnum
+    return typeArgProjection.isWinRTEnum
         ? 'enumCreator: $creator'
         : 'creator: $creator';
   }
@@ -85,8 +85,8 @@ class WinRTMethodForwardersProjection {
 
   /// Tries to find the method projections for the [interface] from the given
   /// [methodProjections] by comparing method names.
-  List<WinRTMethodProjection> _methodProjectionsOfInterface(
-          List<WinRTMethodProjection> methodProjections) =>
+  List<MethodProjection> _methodProjectionsOfInterface(
+          List<MethodProjection> methodProjections) =>
       methodProjections
           .where((method) =>
               method.name != '.ctor' &&
@@ -97,16 +97,16 @@ class WinRTMethodForwardersProjection {
                   .contains(method.name))
           .toList();
 
-  List<WinRTMethodProjection> get methodProjections {
+  List<MethodProjection> get methodProjections {
     if (!isGenericInterface) {
-      return WinRTInterfaceProjection(interface).methodProjections;
+      return InterfaceProjection(interface).methodProjections;
     }
 
     // Try to find method projections for the interface from the super class's
     // method projections.
-    var $methodProjections =
+    var projections =
         _methodProjectionsOfInterface(interfaceProjection.methodProjections);
-    if ($methodProjections.isNotEmpty) return $methodProjections;
+    if (projections.isNotEmpty) return projections;
 
     const attributeName = 'Windows.Foundation.Metadata.ExclusiveToAttribute';
     final String classTypeName;
@@ -133,8 +133,8 @@ class WinRTMethodForwardersProjection {
     final classTypeDef = MetadataStore.getMetadataForType(classTypeName);
     if (classTypeDef == null) throw Exception("Can't find $classTypeName");
 
-    $methodProjections = WinRTClassProjection(classTypeDef).methodProjections;
-    return _methodProjectionsOfInterface($methodProjections);
+    projections = ClassProjection(classTypeDef).methodProjections;
+    return _methodProjectionsOfInterface(projections);
   }
 
   List<String>? _methods;
@@ -222,7 +222,7 @@ class WinRTMethodForwardersProjection {
     return methods;
   }
 
-  String defaultForwarder(WinRTMethodProjection methodProjection) {
+  String defaultForwarder(MethodProjection methodProjection) {
     // e.g. `int get Second` or `void addHours(int hours)`
     final declaration = methodProjection.shortDeclaration;
     final overrideAnnotation =

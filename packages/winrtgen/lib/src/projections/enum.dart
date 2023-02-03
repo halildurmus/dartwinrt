@@ -8,13 +8,25 @@ import '../extensions/extensions.dart';
 import '../utils.dart';
 
 /// Represents a Dart projection of a WinRT enumeration typedef.
-class WinRTEnumProjection {
-  WinRTEnumProjection(this.typeDef, {this.comment = '', String? enumName})
+class EnumProjection {
+  EnumProjection(this.typeDef, {this.comment = '', String? enumName})
       : enumName = enumName ?? typeDef.shortName;
 
   final TypeDef typeDef;
   final String comment;
   final String enumName;
+
+  /// Attempts to create a [EnumProjection] from [fullyQualifiedType] by
+  /// searching its [TypeDef].
+  ///
+  /// Throws an [Exception] if no [TypeDef] matching [fullyQualifiedType] is
+  /// found.
+  factory EnumProjection.from(String fullyQualifiedType,
+      {String comment = ''}) {
+    final typeDef = MetadataStore.getMetadataForType(fullyQualifiedType);
+    if (typeDef == null) throw Exception("Can't find $fullyQualifiedType");
+    return EnumProjection(typeDef, comment: comment);
+  }
 
   String get category => 'enum';
 
@@ -71,8 +83,20 @@ class WinRTEnumProjection {
 }
 
 /// Represents a Dart projection of a WinRT Flags enumeration typedef.
-class WinRTFlagsEnumProjection extends WinRTEnumProjection {
-  WinRTFlagsEnumProjection(super.typeDef, {super.comment, super.enumName});
+class FlagsEnumProjection extends EnumProjection {
+  FlagsEnumProjection(super.typeDef, {super.comment, super.enumName});
+
+  /// Attempts to create a [FlagsEnumProjection] from [fullyQualifiedType] by
+  /// searching its [TypeDef].
+  ///
+  /// Throws an [Exception] if no [TypeDef] matching [fullyQualifiedType] is
+  /// found.
+  factory FlagsEnumProjection.from(String fullyQualifiedType,
+      {String comment = ''}) {
+    final typeDef = MetadataStore.getMetadataForType(fullyQualifiedType);
+    if (typeDef == null) throw Exception("Can't find $fullyQualifiedType");
+    return FlagsEnumProjection(typeDef, comment: comment);
+  }
 
   @override
   String get classDeclaration => 'class $enumName extends WinRTEnum {';

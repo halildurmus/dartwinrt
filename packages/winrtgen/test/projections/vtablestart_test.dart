@@ -21,7 +21,7 @@ void main() {
     };
 
     for (final type in types.keys) {
-      final projectedClass = WinRTInterfaceProjection.from(type);
+      final projectedClass = InterfaceProjection.from(type);
       final calculatedVTableStart = projectedClass.vtableStart;
       expect(calculatedVTableStart, equals(types[type]), reason: type);
     }

@@ -5,24 +5,23 @@
 import 'package:winmd/winmd.dart';
 
 import '../extensions/extensions.dart';
-import '../models/winrt_method_return_type.dart';
+import '../models/models.dart';
 import '../utils.dart';
+import 'parameter.dart';
 import 'type.dart';
 import 'types/types.dart';
-import 'winrt_parameter.dart';
 
 /// A generic class representing an entry in a COM function vtable.
 ///
 /// This is the base class for a range of WinRT-based objects, including
-/// [WinRTMethodProjection], [WinRTGetterProjection], [WinRTSetterProjection].
+/// [GetterProjection], [SetterProjection].
 /// All of these map down to an entry in a COM vtable representing a method.
 ///
 /// Methods have names, a list of parameters, and may return a type.
-abstract class WinRTMethodProjection {
-  WinRTMethodProjection(this.method, this.vtableOffset)
+abstract class MethodProjection {
+  MethodProjection(this.method, this.vtableOffset)
       : name = uniquelyNameMethod(method),
-        parameters =
-            method.parameters.map(WinRTParameterProjection.create).toList(),
+        parameters = method.parameters.map(ParameterProjection.create).toList(),
         returnType = TypeProjection(method.returnType.typeIdentifier);
 
   /// The retrieved Windows metadata for the method or property.
@@ -35,66 +34,66 @@ abstract class WinRTMethodProjection {
   final String name;
 
   /// Projections for the parameters of the method.
-  final List<WinRTParameterProjection> parameters;
+  final List<ParameterProjection> parameters;
 
   /// Projection for the return type.
   final TypeProjection returnType;
 
   /// Returns the appropriate method projection for the [method] based on the
   /// return type.
-  factory WinRTMethodProjection.create(Method method, int vtableOffset) {
-    final typeProjection = TypeProjection(method.returnType.typeIdentifier);
-    final methodReturnType = WinRTMethodReturnType.from(typeProjection);
-    if (methodReturnType == WinRTMethodReturnType.uri &&
+  factory MethodProjection.create(Method method, int vtableOffset) {
+    final projectedType =
+        TypeProjection(method.returnType.typeIdentifier).projectionType;
+    if (projectedType == ProjectionType.uri &&
         methodBelongsToUriRuntimeClass(method)) {
-      return WinRTInterfaceMethodProjection(method, vtableOffset);
+      return InterfaceMethodProjection(method, vtableOffset);
     }
 
-    switch (methodReturnType) {
-      case WinRTMethodReturnType.asyncAction:
-        return WinRTAsyncActionMethodProjection(method, vtableOffset);
-      case WinRTMethodReturnType.asyncOperation:
-        return WinRTAsyncOperationMethodProjection(method, vtableOffset);
-      case WinRTMethodReturnType.class_:
-        return WinRTClassMethodProjection(method, vtableOffset);
-      case WinRTMethodReturnType.asyncActionWithProgress:
-      case WinRTMethodReturnType.asyncOperationWithProgress:
-      case WinRTMethodReturnType.interface:
-        return WinRTInterfaceMethodProjection(method, vtableOffset);
-      case WinRTMethodReturnType.dateTime:
-        return WinRTDateTimeMethodProjection(method, vtableOffset);
-      case WinRTMethodReturnType.delegate:
-        return WinRTDelegateMethodProjection(method, vtableOffset);
-      case WinRTMethodReturnType.duration:
-        return WinRTDurationMethodProjection(method, vtableOffset);
-      case WinRTMethodReturnType.enum_:
-        return WinRTEnumMethodProjection(method, vtableOffset);
-      case WinRTMethodReturnType.guid:
-        return WinRTGuidMethodProjection(method, vtableOffset);
-      case WinRTMethodReturnType.map:
-        return WinRTMapMethodProjection(method, vtableOffset);
-      case WinRTMethodReturnType.mapView:
-        return WinRTMapViewMethodProjection(method, vtableOffset);
-      case WinRTMethodReturnType.object:
-        return WinRTObjectMethodProjection(method, vtableOffset);
-      case WinRTMethodReturnType.reference:
-        return WinRTReferenceMethodProjection(method, vtableOffset);
-      case WinRTMethodReturnType.string:
-        return WinRTStringMethodProjection(method, vtableOffset);
-      case WinRTMethodReturnType.struct:
-        return WinRTStructMethodProjection(method, vtableOffset);
-      case WinRTMethodReturnType.uri:
-        return WinRTUriMethodProjection(method, vtableOffset);
-      case WinRTMethodReturnType.vector:
-        return WinRTVectorMethodProjection(method, vtableOffset);
-      case WinRTMethodReturnType.vectorView:
-        return WinRTVectorViewMethodProjection(method, vtableOffset);
-      case WinRTMethodReturnType.void_:
-        return WinRTVoidMethodProjection(method, vtableOffset);
-      case WinRTMethodReturnType.bool:
-      case WinRTMethodReturnType.double:
-      case WinRTMethodReturnType.int:
-        return WinRTDefaultMethodProjection(method, vtableOffset);
+    switch (projectedType) {
+      case ProjectionType.asyncAction:
+        return AsyncActionMethodProjection(method, vtableOffset);
+      case ProjectionType.asyncOperation:
+        return AsyncOperationMethodProjection(method, vtableOffset);
+      case ProjectionType.class_:
+        return ClassMethodProjection(method, vtableOffset);
+      case ProjectionType.asyncActionWithProgress:
+      case ProjectionType.asyncOperationWithProgress:
+      case ProjectionType.interface:
+        return InterfaceMethodProjection(method, vtableOffset);
+      case ProjectionType.dateTime:
+        return DateTimeMethodProjection(method, vtableOffset);
+      case ProjectionType.delegate:
+        return DelegateMethodProjection(method, vtableOffset);
+      case ProjectionType.duration:
+        return DurationMethodProjection(method, vtableOffset);
+      case ProjectionType.enum_:
+        return EnumMethodProjection(method, vtableOffset);
+      case ProjectionType.guid:
+        return GuidMethodProjection(method, vtableOffset);
+      case ProjectionType.map:
+        return MapMethodProjection(method, vtableOffset);
+      case ProjectionType.mapView:
+        return MapViewMethodProjection(method, vtableOffset);
+      case ProjectionType.object:
+        return ObjectMethodProjection(method, vtableOffset);
+      case ProjectionType.reference:
+        return ReferenceMethodProjection(method, vtableOffset);
+      case ProjectionType.string:
+        return StringMethodProjection(method, vtableOffset);
+      case ProjectionType.struct:
+        return StructMethodProjection(method, vtableOffset);
+      case ProjectionType.uri:
+        return UriMethodProjection(method, vtableOffset);
+      case ProjectionType.vector:
+        return VectorMethodProjection(method, vtableOffset);
+      case ProjectionType.vectorView:
+        return VectorViewMethodProjection(method, vtableOffset);
+      case ProjectionType.void_:
+        return VoidMethodProjection(method, vtableOffset);
+      case ProjectionType.dartPrimitive:
+        return DefaultMethodProjection(method, vtableOffset);
+      default:
+        throw UnsupportedError('Unsupported method type: $projectedType');
     }
   }
 

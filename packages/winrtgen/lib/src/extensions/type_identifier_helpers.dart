@@ -80,7 +80,7 @@ String _parseGenericTypeIdentifierName(TypeIdentifier typeIdentifier) {
     var questionMark = '';
     if (secondArgIsPotentiallyNullable) {
       final secondArgIsEnum =
-          TypeProjection(typeIdentifier.typeArg!.typeArg!).isEnum;
+          TypeProjection(typeIdentifier.typeArg!.typeArg!).isWinRTEnum;
       final secondArgIsNullable = !secondArgIsEnum && secondArg != 'String';
       questionMark = secondArgIsNullable ? '?' : '';
     }
@@ -111,7 +111,8 @@ extension TypeIdentifierHelpers on TypeIdentifier {
   /// defined in this TypeIdentifier.
   String? get creator {
     final typeProjection = TypeProjection(this);
-    if (typeProjection.isStruct ||
+    if (typeProjection.isGuid ||
+        typeProjection.isWinRTStruct ||
         ['bool', 'DateTime', 'double', 'Duration', 'int', 'String', 'Uri']
             .contains(typeProjection.exposedType)) {
       return null;
@@ -125,7 +126,7 @@ extension TypeIdentifierHelpers on TypeIdentifier {
       case BaseType.referenceTypeModifier:
         return typeArg!.creator;
       case BaseType.valueTypeModifier:
-        if (typeProjection.isEnum) return '${lastComponent(name)}.from';
+        if (typeProjection.isWinRTEnum) return '${lastComponent(name)}.from';
         return null;
       default:
         return null;
@@ -172,10 +173,10 @@ extension TypeIdentifierHelpers on TypeIdentifier {
     if (name == 'System.Guid') return 'g16';
 
     final typeProjection = TypeProjection(this);
-    if (typeProjection.isDelegate) return 'delegate(${type!.guid!})';
-    if (typeProjection.isInterface) return type!.guid!;
+    if (typeProjection.isWinRTDelegate) return 'delegate(${type!.guid!})';
+    if (typeProjection.isWinRTInterface) return type!.guid!;
 
-    if (typeProjection.isClass) {
+    if (typeProjection.isWinRTClass) {
       final defaultInterface = type!.interfaces.first;
       final defaultInterfaceSignature = defaultInterface.typeSpec != null
           ? defaultInterface.typeSpec!.signature
@@ -183,13 +184,13 @@ extension TypeIdentifierHelpers on TypeIdentifier {
       return 'rc($name;$defaultInterfaceSignature)';
     }
 
-    if (typeProjection.isEnum) {
+    if (typeProjection.isWinRTEnum) {
       final isFlagsEnum = type!.existsAttribute('System.FlagsAttribute');
       final enumSignature = isFlagsEnum ? 'u4' : 'i4';
       return 'enum($name;$enumSignature)';
     }
 
-    if (typeProjection.isStruct) {
+    if (typeProjection.isWinRTStruct) {
       final fieldSignatures =
           type!.fields.map((field) => field.typeIdentifier.signature);
       return 'struct($name;${fieldSignatures.join(';')})';

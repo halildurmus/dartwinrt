@@ -2,14 +2,14 @@
 // details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-import '../winrt_get_property.dart';
-import '../winrt_method.dart';
-import '../winrt_parameter.dart';
-import '../winrt_set_property.dart';
+import '../getter.dart';
+import '../method.dart';
+import '../parameter.dart';
+import '../setter.dart';
 
 /// Method projection for methods that return a `DateTime`.
-class WinRTDateTimeMethodProjection extends WinRTMethodProjection {
-  WinRTDateTimeMethodProjection(super.method, super.vtableOffset);
+class DateTimeMethodProjection extends MethodProjection {
+  DateTimeMethodProjection(super.method, super.vtableOffset);
 
   // In WinRT, DateTime is represented as a 64-bit signed integer that
   // represents a point in time as the number of 100-nanosecond intervals prior
@@ -35,8 +35,8 @@ class WinRTDateTimeMethodProjection extends WinRTMethodProjection {
 }
 
 /// Getter projection for `DateTime` getters.
-class WinRTDateTimeGetterProjection extends WinRTGetPropertyProjection {
-  WinRTDateTimeGetterProjection(super.method, super.vtableOffset);
+class DateTimeGetterProjection extends GetterProjection {
+  DateTimeGetterProjection(super.method, super.vtableOffset);
 
   @override
   String get methodProjection => '''
@@ -56,8 +56,8 @@ class WinRTDateTimeGetterProjection extends WinRTGetPropertyProjection {
 }
 
 /// Setter projection for `DateTime` setters.
-class WinRTDateTimeSetterProjection extends WinRTSetPropertyProjection {
-  WinRTDateTimeSetterProjection(super.method, super.vtableOffset);
+class DateTimeSetterProjection extends SetterProjection {
+  DateTimeSetterProjection(super.method, super.vtableOffset);
 
   @override
   String get methodProjection => '''
@@ -71,8 +71,8 @@ class WinRTDateTimeSetterProjection extends WinRTSetPropertyProjection {
 }
 
 /// Parameter projection for `DateTime` parameters.
-class WinRTDateTimeParameterProjection extends WinRTParameterProjection {
-  WinRTDateTimeParameterProjection(super.parameter);
+class DateTimeParameterProjection extends ParameterProjection {
+  DateTimeParameterProjection(super.parameter);
 
   @override
   String get preamble => '''
