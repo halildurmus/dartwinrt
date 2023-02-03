@@ -69,10 +69,10 @@ class WinRTMethodForwardersProjection {
     if (!isGenericInterface) return null;
     if (['IMap', 'IMapView'].contains(shortInterfaceName)) {
       return "iterableIid: "
-          "'${iterableIidFromMapTypeIdentifier(interface.typeSpec!)}'";
+          "'${iterableIidFromMapType(interface.typeSpec!)}'";
     } else if (['IVector', 'IVectorView'].contains(shortInterfaceName)) {
       return "iterableIid: "
-          "'${iterableIidFromVectorTypeIdentifier(interface.typeSpec!)}'";
+          "'${iterableIidFromVectorType(interface.typeSpec!)}'";
     }
     return null;
   }

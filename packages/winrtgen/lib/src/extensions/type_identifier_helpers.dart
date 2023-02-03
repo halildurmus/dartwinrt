@@ -41,11 +41,9 @@ String _parseGenericTypeIdentifierCreator(TypeIdentifier typeIdentifier) {
   }
 
   if (['IVector', 'IVectorView'].contains(typeIdentifierName)) {
-    args.add(
-        "iterableIid: '${iterableIidFromVectorTypeIdentifier(typeIdentifier)}'");
+    args.add("iterableIid: '${iterableIidFromVectorType(typeIdentifier)}'");
   } else if (['IMap', 'IMapView'].contains(typeIdentifierName)) {
-    args.add(
-        "iterableIid: '${iterableIidFromMapTypeIdentifier(typeIdentifier)}'");
+    args.add("iterableIid: '${iterableIidFromMapType(typeIdentifier)}'");
   } else if (typeIdentifierName == 'IReference') {
     final referenceArgSignature = typeIdentifier.typeArg!.signature;
     final referenceSignature =

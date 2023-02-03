@@ -37,8 +37,7 @@ mixin _MapProjection on WinRTMethodProjection {
     // The IID for IIterable<IKeyValuePair<K, V>> must be passed in the
     // 'iterableIid' parameter so that the 'IMap' and 'IMapView' implementations
     // can use the correct IID when instantiating the IIterable object
-    final iterableIid =
-        iterableIidFromMapTypeIdentifier(returnType.typeIdentifier);
+    final iterableIid = iterableIidFromMapType(returnType.typeIdentifier);
 
     final args = <String>["iterableIid: '$iterableIid'"];
     if (keyArgTypeProjection.isEnum) {

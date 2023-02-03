@@ -9,21 +9,20 @@ import 'package:winmd/winmd.dart';
 import 'package:winrtgen/winrtgen.dart';
 
 void main() {
-  test('fileNameFromWinRTType', () {
-    expect(fileNameFromWinRTType('Windows.Globalization.Calendar'),
+  test('fileNameFromType', () {
+    expect(fileNameFromType('Windows.Globalization.Calendar'),
         equals('calendar.dart'));
-    expect(fileNameFromWinRTType('Windows.Foundation.Collections.IMapView`2'),
+    expect(fileNameFromType('Windows.Foundation.Collections.IMapView`2'),
         equals('imapview.dart'));
   });
 
-  test('folderFromWinRTType', () {
-    expect(folderFromWinRTType('Windows.Globalization.Calendar'),
-        equals('windows_globalization'));
-    expect(folderFromWinRTType('Windows.Storage.Pickers.FileOpenPicker'),
-        equals('windows_storage/pickers'));
-    expect(
-        folderFromWinRTType('Windows.Devices.Geolocation.Geofencing.Geofence'),
-        equals('windows_devices/geolocation/geofencing'));
+  test('folderFromType', () {
+    expect(folderFromType('Windows.Globalization.Calendar'),
+        equals('windows_globalization/lib/src'));
+    expect(folderFromType('Windows.Storage.Pickers.FileOpenPicker'),
+        equals('windows_storage/lib/src/pickers'));
+    expect(folderFromType('Windows.Devices.Geolocation.Geofencing.Geofence'),
+        equals('windows_devices/lib/src/geolocation/geofencing'));
   });
 
   group('iidFromSignature', () {
@@ -108,7 +107,7 @@ void main() {
       final typeDef = MetadataStore.getMetadataForType(
           'Windows.Storage.Search.IStorageFileQueryResult2')!;
       expect(
-          iterableIidFromMapTypeIdentifier(typeDef
+          iterableIidFromMapType(typeDef
                   .findMethod('GetMatchingPropertiesWithRanges')!
                   .returnType // IMap<String, IVectorView<TextSegment>>
                   .typeIdentifier)
@@ -122,7 +121,7 @@ void main() {
       final typeDef = MetadataStore.getMetadataForType(
           'Windows.Devices.Sensors.IPedometer2')!;
       expect(
-          iterableIidFromMapTypeIdentifier(typeDef
+          iterableIidFromMapType(typeDef
                   .findMethod('GetCurrentReadings')!
                   .returnType // IMapView<PedometerStepKind, PedometerReading>
                   .typeIdentifier)
@@ -136,7 +135,7 @@ void main() {
       final typeDef = MetadataStore.getMetadataForType(
           'Windows.Storage.Pickers.IFileOpenPicker')!;
       expect(
-          iterableIidFromVectorTypeIdentifier(typeDef
+          iterableIidFromVectorType(typeDef
                   .findMethod('get_FileTypeFilter')!
                   .returnType // IVector<String>
                   .typeIdentifier)
@@ -148,7 +147,7 @@ void main() {
       final typeDef = MetadataStore.getMetadataForType(
           'Windows.Networking.Connectivity.INetworkInformationStatics')!;
       expect(
-          iterableIidFromVectorTypeIdentifier(typeDef
+          iterableIidFromVectorType(typeDef
                   .findMethod('GetHostNames')!
                   .returnType // IVectorView<HostName>
                   .typeIdentifier)
@@ -178,14 +177,13 @@ void main() {
         equals('IMapView'));
   });
 
-  test('packageNameFromWinRTType', () {
-    expect(packageNameFromWinRTType('Windows.Globalization.Calendar'),
+  test('packageNameFromType', () {
+    expect(packageNameFromType('Windows.Globalization.Calendar'),
         equals('windows_globalization'));
-    expect(packageNameFromWinRTType('Windows.Storage.Pickers.FileOpenPicker'),
+    expect(packageNameFromType('Windows.Storage.Pickers.FileOpenPicker'),
         equals('windows_storage'));
     expect(
-        packageNameFromWinRTType(
-            'Windows.Devices.Geolocation.Geofencing.Geofence'),
+        packageNameFromType('Windows.Devices.Geolocation.Geofencing.Geofence'),
         equals('windows_devices'));
   });
 
@@ -198,15 +196,13 @@ void main() {
         equals('Windows.Devices.Display.Core'));
   });
 
-  test('relativeFolderPathFromWinRTType', () {
-    expect(relativeFolderPathFromWinRTType('Windows.Globalization.Calendar'),
+  test('relativeFolderPathFromType', () {
+    expect(relativeFolderPathFromType('Windows.Globalization.Calendar'),
         equals('../../packages/windows_globalization/lib/src'));
-    expect(
-        relativeFolderPathFromWinRTType(
-            'Windows.Storage.Pickers.FileOpenPicker'),
+    expect(relativeFolderPathFromType('Windows.Storage.Pickers.FileOpenPicker'),
         equals('../../packages/windows_storage/lib/src/pickers'));
     expect(
-        relativeFolderPathFromWinRTType(
+        relativeFolderPathFromType(
             'Windows.Devices.Geolocation.Geofencing.Geofence'),
         equals(
             '../../packages/windows_devices/lib/src/geolocation/geofencing'));

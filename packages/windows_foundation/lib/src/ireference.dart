@@ -7,7 +7,7 @@ import 'dart:ffi';
 import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
 
-import 'constants.dart';
+import '../internal.dart';
 import 'helpers.dart';
 import 'iinspectable.dart';
 import 'structs.g.dart';

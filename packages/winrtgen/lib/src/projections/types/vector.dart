@@ -29,8 +29,7 @@ mixin _VectorProjection on WinRTMethodProjection {
     // The IID for IIterable<T> must be passed in the 'iterableIid' parameter so
     // that the 'IVector' and 'IVectorView' implementations can use the correct
     // IID when instantiating the IIterable object
-    final iterableIid =
-        iterableIidFromVectorTypeIdentifier(returnType.typeIdentifier);
+    final iterableIid = iterableIidFromVectorType(returnType.typeIdentifier);
 
     // If the type argument is an enum or int, its native type (e.g. Int32,
     // Uint32) must be passed in the 'intType' parameter so that the 'IVector'

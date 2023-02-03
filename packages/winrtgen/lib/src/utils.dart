@@ -37,23 +37,26 @@ const dartTypes = <String>{
 
 /// Converts a [fullyQualifiedType] (e.g. `Windows.Globalization.Calendar`) and
 /// returns the matching file name (e.g. `calendar.dart`).
-String fileNameFromWinRTType(String fullyQualifiedType) =>
+String fileNameFromType(String fullyQualifiedType) =>
     '${stripGenerics(lastComponent(fullyQualifiedType)).toLowerCase()}.dart';
 
 /// Converts a [fullyQualifiedType] (e.g.
 /// `Windows.Storage.Pickers.FileOpenPicker`) and returns the matching folder
-/// (e.g. `windows_storage/pickers`).
-String folderFromWinRTType(String fullyQualifiedType) {
-  // e.g. Windows.Storage.Pickers.FileOpenPicker -> [storage, pickers]
-  final segments = fullyQualifiedType.split('.').skip(1).toList()..removeLast();
-  return 'windows_${segments.join('/').toLowerCase()}';
+/// (e.g. `windows_storage/lib/src/pickers`).
+String folderFromType(String fullyQualifiedType) {
+  // e.g. windows_storage
+  final packageName = packageNameFromType(fullyQualifiedType);
+  // e.g. Windows.Storage.Pickers.FileOpenPicker -> [Pickers]
+  final segments = fullyQualifiedType.split('.').skip(2).toList()..removeLast();
+  if (segments.isEmpty) return '$packageName/lib/src';
+  return '$packageName/lib/src/${segments.join('/').toLowerCase()}';
 }
 
 /// A byte representation of the pinterface instantiation.
 ///
 /// This is hardcoded as the value {11f47ad5-7b73-42c0-abae-878b1e16adee} in
 /// https://learn.microsoft.com/en-us/uwp/winrt-cref/winrt-type-system
-const wrtPinterfaceNamespace = [
+const wrtPinterfaceNamespace = <int>[
   0x11, 0xf4, 0x7a, 0xd5,
   0x7b, 0x73,
   0x42, 0xc0,
@@ -63,7 +66,7 @@ const wrtPinterfaceNamespace = [
 
 /// Returns the IID for the given [signature].
 ///
-/// Takes a parameterized type instance, such as `IMap<String, String>`, which
+/// Takes a [signature] of a WinRT type, such as `IMap<String, String>`, which
 /// can be represented as:
 /// `pinterface({3c2925fe-8519-45c1-aa79-197b6718c1c1};string;string)`
 ///
@@ -78,7 +81,7 @@ Guid iidFromSignature(String signature) {
   }
 
   final signatureInBytes = const Utf8Encoder().convert(signature);
-  final data = [...wrtPinterfaceNamespace, ...signatureInBytes];
+  final data = <int>[...wrtPinterfaceNamespace, ...signatureInBytes];
   final sha1Hash = sha1.convert(data);
   final sha1Bytes = Uint8List.fromList(sha1Hash.bytes).buffer.asByteData();
 
@@ -92,7 +95,7 @@ Guid iidFromSignature(String signature) {
 
 /// Returns the `IIterable<IKeyValuePair<K, V>>` IID for the given `IMap` or
 /// `IMapView` [typeIdentifier].
-Guid iterableIidFromMapTypeIdentifier(TypeIdentifier typeIdentifier) {
+Guid iterableIidFromMapType(TypeIdentifier typeIdentifier) {
   if (!['IMap', 'IMapView'].contains(outerType(typeIdentifier.shortName))) {
     throw ArgumentError("Expected an 'IMap' or 'IMapView' type identifier.");
   }
@@ -107,7 +110,7 @@ Guid iterableIidFromMapTypeIdentifier(TypeIdentifier typeIdentifier) {
 
 /// Returns the `IIterable<T>` IID for the given `IVector` or `IVectorView`
 /// [typeIdentifier].
-Guid iterableIidFromVectorTypeIdentifier(TypeIdentifier typeIdentifier) {
+Guid iterableIidFromVectorType(TypeIdentifier typeIdentifier) {
   if (!['IVector', 'IVectorView']
       .contains(outerType(typeIdentifier.shortName))) {
     throw ArgumentError(
@@ -144,7 +147,7 @@ String outerType(String type) =>
 
 /// Converts a [fullyQualifiedType] (e.g. `Windows.Globalization.Calendar`) and
 /// returns the matching package name (e.g. `windows_globalization`).
-String packageNameFromWinRTType(String fullyQualifiedType) =>
+String packageNameFromType(String fullyQualifiedType) =>
     fullyQualifiedType.split('.').take(2).join('_').toLowerCase();
 
 /// Return the parent namespace of a [fullyQualifiedType] (e.g.
@@ -156,8 +159,8 @@ String parentNamespace(String fullyQualifiedType) =>
 /// `Windows.Storage.Pickers.FileOpenPicker`) and returns the relative path from
 /// the `dartwinrt/tools` folder to matching folder path  (e.g.
 /// `../../packages/windows_storage/lib/src/pickers`).
-String relativeFolderPathFromWinRTType(String fullyQualifiedType) {
-  final packageName = packageNameFromWinRTType(fullyQualifiedType);
+String relativeFolderPathFromType(String fullyQualifiedType) {
+  final packageName = packageNameFromType(fullyQualifiedType);
   // e.g. Windows.Storage.Pickers.FileOpenPicker -> [pickers]
   final segments = fullyQualifiedType.split('.').skip(2).toList()..removeLast();
   final classFolderPath =
@@ -253,34 +256,6 @@ String uniquelyNameMethod(Method method) {
   final overloadName =
       method.attributeAsString('Windows.Foundation.Metadata.OverloadAttribute');
   if (overloadName.isNotEmpty) return overloadName;
-
-  // If not, we check whether multiple methods exist with the same name. We
-  // also need to check up the interface chain, since otherwise overloaded
-  // methods may be missed. For example, IDWriteFactory2 contains methods that
-  // overload those in IDWriteFactory1.
-  final overloads =
-      method.parent.methods.where((m) => m.name == method.name).toList();
-  var interfaceTypeDef = method.parent;
-  // perf optimization to save work on the most common case of IUnknown
-  while (interfaceTypeDef.interfaces.isNotEmpty &&
-      !(interfaceTypeDef.interfaces.first.name ==
-          'Windows.Win32.System.Com.IUnknown')) {
-    interfaceTypeDef = interfaceTypeDef.interfaces.first;
-    overloads
-        .addAll(interfaceTypeDef.methods.where((m) => m.name == method.name));
-  }
-
-  // If so, and there is more than one entry with the same name, add a suffix
-  // to all but the first.
-  if (overloads.length > 1) {
-    final reversedOverloads = overloads.reversed.toList();
-    final overloadIndex =
-        reversedOverloads.indexWhere((m) => m.token == method.token);
-    if (overloadIndex > 0) {
-      return '${safeIdentifierForString(method.name)}_$overloadIndex';
-    }
-  }
-
   // Otherwise the original name is fine.
   return method.name;
 }

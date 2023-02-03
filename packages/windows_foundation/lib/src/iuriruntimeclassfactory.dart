@@ -14,7 +14,7 @@ import 'dart:ffi';
 import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
 
-import '../../../internal.dart';
+import '../internal.dart';
 import 'callbacks.dart';
 import 'collections/iiterator.dart';
 import 'helpers.dart';
