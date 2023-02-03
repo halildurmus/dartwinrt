@@ -2,14 +2,14 @@
 // details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-import '../winrt_get_property.dart';
-import '../winrt_method.dart';
-import '../winrt_parameter.dart';
-import '../winrt_set_property.dart';
+import '../getter.dart';
+import '../method.dart';
+import '../parameter.dart';
+import '../setter.dart';
 
 /// Method projection for methods that return a `String`.
-class WinRTStringMethodProjection extends WinRTMethodProjection {
-  WinRTStringMethodProjection(super.method, super.vtableOffset);
+class StringMethodProjection extends MethodProjection {
+  StringMethodProjection(super.method, super.vtableOffset);
 
   @override
   String get methodProjection {
@@ -35,8 +35,8 @@ class WinRTStringMethodProjection extends WinRTMethodProjection {
 }
 
 /// Getter projection for `String` getters.
-class WinRTStringGetterProjection extends WinRTGetPropertyProjection {
-  WinRTStringGetterProjection(super.method, super.vtableOffset);
+class StringGetterProjection extends GetterProjection {
+  StringGetterProjection(super.method, super.vtableOffset);
 
   @override
   String get methodProjection => '''
@@ -56,8 +56,8 @@ class WinRTStringGetterProjection extends WinRTGetPropertyProjection {
 }
 
 /// Setter projection for `String` setters.
-class WinRTStringSetterProjection extends WinRTSetPropertyProjection {
-  WinRTStringSetterProjection(super.method, super.vtableOffset);
+class StringSetterProjection extends SetterProjection {
+  StringSetterProjection(super.method, super.vtableOffset);
 
   @override
   String get methodProjection => '''
@@ -74,8 +74,8 @@ class WinRTStringSetterProjection extends WinRTSetPropertyProjection {
 }
 
 /// Parameter projection for `String` parameters.
-class WinRTStringParameterProjection extends WinRTParameterProjection {
-  WinRTStringParameterProjection(super.parameter);
+class StringParameterProjection extends ParameterProjection {
+  StringParameterProjection(super.parameter);
 
   @override
   String get preamble => 'final ${name}HString = convertToHString($name);';

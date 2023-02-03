@@ -2,14 +2,14 @@
 // details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-import '../winrt_get_property.dart';
-import '../winrt_method.dart';
-import '../winrt_parameter.dart';
-import '../winrt_set_property.dart';
+import '../getter.dart';
+import '../method.dart';
+import '../parameter.dart';
+import '../setter.dart';
 
 /// Method projection for methods that return a WinRT enum (e.g. `AsyncStatus`).
-class WinRTEnumMethodProjection extends WinRTMethodProjection {
-  WinRTEnumMethodProjection(super.method, super.vtableOffset);
+class EnumMethodProjection extends MethodProjection {
+  EnumMethodProjection(super.method, super.vtableOffset);
 
   @override
   String get methodProjection => '''
@@ -30,8 +30,8 @@ class WinRTEnumMethodProjection extends WinRTMethodProjection {
 }
 
 /// Getter projection for WinRT enum getters.
-class WinRTEnumGetterProjection extends WinRTGetPropertyProjection {
-  WinRTEnumGetterProjection(super.method, super.vtableOffset);
+class EnumGetterProjection extends GetterProjection {
+  EnumGetterProjection(super.method, super.vtableOffset);
 
   @override
   String get methodProjection => '''
@@ -50,8 +50,8 @@ class WinRTEnumGetterProjection extends WinRTGetPropertyProjection {
 }
 
 /// Setter projection for WinRT enum setters.
-class WinRTEnumSetterProjection extends WinRTSetPropertyProjection {
-  WinRTEnumSetterProjection(super.method, super.vtableOffset);
+class EnumSetterProjection extends SetterProjection {
+  EnumSetterProjection(super.method, super.vtableOffset);
 
   @override
   String get methodProjection => '''
@@ -62,8 +62,8 @@ class WinRTEnumSetterProjection extends WinRTSetPropertyProjection {
 }
 
 /// Parameter projection for WinRT enum parameters.
-class WinRTEnumParameterProjection extends WinRTParameterProjection {
-  WinRTEnumParameterProjection(super.parameter);
+class EnumParameterProjection extends ParameterProjection {
+  EnumParameterProjection(super.parameter);
 
   @override
   String get preamble => '';

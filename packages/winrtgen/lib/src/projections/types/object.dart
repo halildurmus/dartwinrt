@@ -2,12 +2,12 @@
 // details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-import '../winrt_get_property.dart';
-import '../winrt_method.dart';
-import '../winrt_parameter.dart';
-import '../winrt_set_property.dart';
+import '../getter.dart';
+import '../method.dart';
+import '../parameter.dart';
+import '../setter.dart';
 
-mixin _ObjectProjection on WinRTMethodProjection {
+mixin _ObjectProjection on MethodProjection {
   bool get isMethodFromPropertyValueStatics =>
       method.parent.name == 'Windows.Foundation.IPropertyValueStatics';
 
@@ -46,9 +46,8 @@ mixin _ObjectProjection on WinRTMethodProjection {
 }
 
 /// Method projection for methods that return an `Object`.
-class WinRTObjectMethodProjection extends WinRTMethodProjection
-    with _ObjectProjection {
-  WinRTObjectMethodProjection(super.method, super.vtableOffset);
+class ObjectMethodProjection extends MethodProjection with _ObjectProjection {
+  ObjectMethodProjection(super.method, super.vtableOffset);
 
   @override
   String get methodProjection => '''
@@ -68,9 +67,8 @@ class WinRTObjectMethodProjection extends WinRTMethodProjection
 }
 
 /// Getter projection for `Object` getters.
-class WinRTObjectGetterProjection extends WinRTGetPropertyProjection
-    with _ObjectProjection {
-  WinRTObjectGetterProjection(super.method, super.vtableOffset);
+class ObjectGetterProjection extends GetterProjection with _ObjectProjection {
+  ObjectGetterProjection(super.method, super.vtableOffset);
 
   @override
   String get methodProjection => '''
@@ -87,9 +85,8 @@ class WinRTObjectGetterProjection extends WinRTGetPropertyProjection
 }
 
 /// Setter projection for `Object` setters.
-class WinRTObjectSetterProjection extends WinRTSetPropertyProjection
-    with _ObjectProjection {
-  WinRTObjectSetterProjection(super.method, super.vtableOffset);
+class ObjectSetterProjection extends SetterProjection with _ObjectProjection {
+  ObjectSetterProjection(super.method, super.vtableOffset);
 
   @override
   String get methodProjection => '''
@@ -100,8 +97,8 @@ class WinRTObjectSetterProjection extends WinRTSetPropertyProjection
 }
 
 /// Parameter projection for `Object` parameters.
-class WinRTObjectParameterProjection extends WinRTParameterProjection {
-  WinRTObjectParameterProjection(super.parameter);
+class ObjectParameterProjection extends ParameterProjection {
+  ObjectParameterProjection(super.parameter);
 
   @override
   String get preamble => '';

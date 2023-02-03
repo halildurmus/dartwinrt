@@ -2,14 +2,14 @@
 // details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-import '../winrt_get_property.dart';
-import '../winrt_method.dart';
-import '../winrt_parameter.dart';
-import '../winrt_set_property.dart';
+import '../getter.dart';
+import '../method.dart';
+import '../parameter.dart';
+import '../setter.dart';
 
 /// Default method projection for methods.
-class WinRTDefaultMethodProjection extends WinRTMethodProjection {
-  WinRTDefaultMethodProjection(super.method, super.vtableOffset);
+class DefaultMethodProjection extends MethodProjection {
+  DefaultMethodProjection(super.method, super.vtableOffset);
 
   @override
   String get methodProjection => '''
@@ -30,8 +30,8 @@ class WinRTDefaultMethodProjection extends WinRTMethodProjection {
 }
 
 /// Default getter projection for getters.
-class WinRTDefaultGetterProjection extends WinRTGetPropertyProjection {
-  WinRTDefaultGetterProjection(super.method, super.vtableOffset);
+class DefaultGetterProjection extends GetterProjection {
+  DefaultGetterProjection(super.method, super.vtableOffset);
 
   @override
   String get methodProjection => '''
@@ -50,8 +50,8 @@ class WinRTDefaultGetterProjection extends WinRTGetPropertyProjection {
 }
 
 /// Default setter projection for setters.
-class WinRTDefaultSetterProjection extends WinRTSetPropertyProjection {
-  WinRTDefaultSetterProjection(super.method, super.vtableOffset);
+class DefaultSetterProjection extends SetterProjection {
+  DefaultSetterProjection(super.method, super.vtableOffset);
 
   @override
   String get methodProjection => '''
@@ -62,8 +62,8 @@ class WinRTDefaultSetterProjection extends WinRTSetPropertyProjection {
 }
 
 /// Default parameter projection for parameters.
-class WinRTDefaultParameterProjection extends WinRTParameterProjection {
-  WinRTDefaultParameterProjection(super.parameter);
+class DefaultParameterProjection extends ParameterProjection {
+  DefaultParameterProjection(super.parameter);
 
   @override
   String get preamble => '';

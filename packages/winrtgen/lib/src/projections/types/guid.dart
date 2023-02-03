@@ -2,14 +2,14 @@
 // details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-import '../winrt_get_property.dart';
-import '../winrt_method.dart';
-import '../winrt_parameter.dart';
-import '../winrt_set_property.dart';
+import '../getter.dart';
+import '../method.dart';
+import '../parameter.dart';
+import '../setter.dart';
 
 /// Method projection for methods that return a `Guid`.
-class WinRTGuidMethodProjection extends WinRTMethodProjection {
-  WinRTGuidMethodProjection(super.method, super.vtableOffset);
+class GuidMethodProjection extends MethodProjection {
+  GuidMethodProjection(super.method, super.vtableOffset);
 
   @override
   String get methodProjection => '''
@@ -30,8 +30,8 @@ class WinRTGuidMethodProjection extends WinRTMethodProjection {
 }
 
 /// Getter projection for `Guid` getters.
-class WinRTGuidGetterProjection extends WinRTGetPropertyProjection {
-  WinRTGuidGetterProjection(super.method, super.vtableOffset);
+class GuidGetterProjection extends GetterProjection {
+  GuidGetterProjection(super.method, super.vtableOffset);
 
   @override
   String get methodProjection => '''
@@ -50,8 +50,8 @@ class WinRTGuidGetterProjection extends WinRTGetPropertyProjection {
 }
 
 /// Setter projection for `Guid` setters.
-class WinRTGuidSetterProjection extends WinRTSetPropertyProjection {
-  WinRTGuidSetterProjection(super.method, super.vtableOffset);
+class GuidSetterProjection extends SetterProjection {
+  GuidSetterProjection(super.method, super.vtableOffset);
 
   @override
   String get methodProjection => '''
@@ -68,8 +68,8 @@ class WinRTGuidSetterProjection extends WinRTSetPropertyProjection {
 }
 
 /// Parameter projection for `Guid` parameters.
-class WinRTGuidParameterProjection extends WinRTParameterProjection {
-  WinRTGuidParameterProjection(super.parameter);
+class GuidParameterProjection extends ParameterProjection {
+  GuidParameterProjection(super.parameter);
 
   @override
   String get preamble => 'final ${name}NativeGuidPtr = $name.toNativeGUID();';

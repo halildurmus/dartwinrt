@@ -5,16 +5,14 @@
 import 'package:winmd/winmd.dart';
 
 import '../constants/constants.dart';
-import '../projections/winrt_interface.dart';
+import '../projections/interface.dart';
 import '../utils.dart';
 import 'typedef_helpers.dart';
 
-extension ImportHelpers on WinRTInterfaceProjection {
+extension ImportHelpers on InterfaceProjection {
   String? importForTypeDef(TypeDef typeDef) {
     final type = typeDef.fullyQualifiedName;
-    if (name == type || ignoredWindowsRuntimeTypesInImports.contains(type)) {
-      return null;
-    }
+    if (name == type || ignoredTypesInImports.contains(type)) return null;
 
     // If the type is in another package, return package import for that package
     if (packageName != typeDef.packageName) return typeDef.packageImport;
@@ -24,16 +22,16 @@ extension ImportHelpers on WinRTInterfaceProjection {
     if (typeDef.isDelegate) return null;
 
     if (typeDef.isEnum) {
-      return relativePathTo('packages/${folderFromType(type)}/enums.g.dart');
+      return relativePathTo('${folderFromType(type)}/enums.g.dart');
     }
 
     if (typeDef.isClass || typeDef.isInterface) {
       return relativePathTo(
-          'packages/${folderFromType(type)}/${fileNameFromType(type)}');
+          '${folderFromType(type)}/${fileNameFromType(type)}');
     }
 
     if (typeDef.isStruct) {
-      return relativePathTo('packages/${folderFromType(type)}/structs.g.dart');
+      return relativePathTo('${folderFromType(type)}/structs.g.dart');
     }
 
     // TODO: Add support for these as they occur.

@@ -2,14 +2,14 @@
 // details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-import '../winrt_get_property.dart';
-import '../winrt_method.dart';
-import '../winrt_parameter.dart';
-import '../winrt_set_property.dart';
+import '../getter.dart';
+import '../method.dart';
+import '../parameter.dart';
+import '../setter.dart';
 
 /// Method projection for methods that return a `Duration`.
-class WinRTDurationMethodProjection extends WinRTMethodProjection {
-  WinRTDurationMethodProjection(super.method, super.vtableOffset);
+class DurationMethodProjection extends MethodProjection {
+  DurationMethodProjection(super.method, super.vtableOffset);
 
   @override
   String get methodProjection => '''
@@ -30,8 +30,8 @@ class WinRTDurationMethodProjection extends WinRTMethodProjection {
 }
 
 /// Getter projection for `Duration` getters.
-class WinRTDurationGetterProjection extends WinRTGetPropertyProjection {
-  WinRTDurationGetterProjection(super.method, super.vtableOffset);
+class DurationGetterProjection extends GetterProjection {
+  DurationGetterProjection(super.method, super.vtableOffset);
 
   @override
   String get methodProjection => '''
@@ -50,8 +50,8 @@ class WinRTDurationGetterProjection extends WinRTGetPropertyProjection {
 }
 
 /// Setter projection for `Duration` setters.
-class WinRTDurationSetterProjection extends WinRTSetPropertyProjection {
-  WinRTDurationSetterProjection(super.method, super.vtableOffset);
+class DurationSetterProjection extends SetterProjection {
+  DurationSetterProjection(super.method, super.vtableOffset);
 
   @override
   String get methodProjection => '''
@@ -64,8 +64,8 @@ class WinRTDurationSetterProjection extends WinRTSetPropertyProjection {
 }
 
 /// Parameter projection for `Duration` parameters.
-class WinRTDurationParameterProjection extends WinRTParameterProjection {
-  WinRTDurationParameterProjection(super.parameter);
+class DurationParameterProjection extends ParameterProjection {
+  DurationParameterProjection(super.parameter);
 
   @override
   String get preamble => 'final ${name}Duration = $name.inMicroseconds * 10;';

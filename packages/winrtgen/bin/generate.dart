@@ -16,8 +16,8 @@ void generateClassesAndInterfaces(Map<String, String> types) {
     final typeDef = MetadataStore.getMetadataForType(type);
     if (typeDef == null) throw Exception("Can't find $type");
     final projection = typeDef.isInterface
-        ? WinRTInterfaceProjection(typeDef)
-        : WinRTClassProjection(typeDef);
+        ? InterfaceProjection(typeDef)
+        : ClassProjection(typeDef);
 
     typesAndDependencies.addAll({
       // The type itself, e.g. 'Windows.Globalization.Calendar'
@@ -28,8 +28,8 @@ void generateClassesAndInterfaces(Map<String, String> types) {
 
       // The type's factory and static interfaces e.g.
       // 'Windows.Globalization.ICalendarFactory'
-      if (projection is WinRTClassProjection) ...projection.factoryInterfaces,
-      if (projection is WinRTClassProjection) ...projection.staticInterfaces
+      if (projection is ClassProjection) ...projection.factoryInterfaces,
+      if (projection is ClassProjection) ...projection.staticInterfaces
     });
   }
 
@@ -37,16 +37,15 @@ void generateClassesAndInterfaces(Map<String, String> types) {
     // Remove generic interfaces as they are projected manually
     ..removeWhere((type) => type.isEmpty)
     // Remove excluded WinRT types
-    ..removeWhere(
-        (type) => excludedWindowsRuntimeClassesAndInterfaces.contains(type));
+    ..removeWhere((type) => excludedClassesAndInterfaces.contains(type));
 
   // Generate the type projection for each type
   for (final type in typesAndDependencies) {
     final typeDef = MetadataStore.getMetadataForType(type);
     if (typeDef == null) throw Exception("Can't find $type");
     final projection = typeDef.isInterface
-        ? WinRTInterfaceProjection(typeDef, comment: types[typeDef.name] ?? '')
-        : WinRTClassProjection(typeDef, comment: types[typeDef.name] ?? '');
+        ? InterfaceProjection(typeDef, comment: types[typeDef.name] ?? '')
+        : ClassProjection(typeDef, comment: types[typeDef.name] ?? '');
 
     final dartClass = projection.toString();
     final fileName = stripGenerics(lastComponent(type)).toLowerCase();
@@ -73,7 +72,7 @@ void generateEnumerations(Map<String, String> enums) {
   final namespaceGroups = groupTypesByParentNamespace(enums.keys);
 
   for (final namespaceGroup in namespaceGroups) {
-    final enumProjections = <WinRTEnumProjection>[];
+    final enumProjections = <EnumProjection>[];
     final firstType = namespaceGroup.types.first;
     final packageName = packageNameFromType(firstType);
     final fileOutputPath =
@@ -84,13 +83,12 @@ void generateEnumerations(Map<String, String> enums) {
       final typeDef = MetadataStore.getMetadataForType(type);
       if (typeDef == null) throw Exception("Can't find $type");
 
-      final WinRTEnumProjection enumProjection;
+      final EnumProjection enumProjection;
       if (typeDef.existsAttribute('System.FlagsAttribute')) {
         enumProjection =
-            WinRTFlagsEnumProjection(typeDef, comment: enums[typeDef.name]!);
+            FlagsEnumProjection(typeDef, comment: enums[typeDef.name]!);
       } else {
-        enumProjection =
-            WinRTEnumProjection(typeDef, comment: enums[typeDef.name]!);
+        enumProjection = EnumProjection(typeDef, comment: enums[typeDef.name]!);
       }
       enumProjections.add(enumProjection);
     }
@@ -101,8 +99,8 @@ void generateEnumerations(Map<String, String> enums) {
     final String winrtEnumImport;
     if (packageName == 'windows_foundation') {
       final filePath = relativePath(
-          'packages/windows_foundation/lib/src/winrt_enum.dart',
-          start: 'packages/${folderFromType(firstType)}');
+          'windows_foundation/lib/src/winrt_enum.dart',
+          start: folderFromType(firstType));
       winrtEnumImport = "import '$filePath';";
     } else {
       winrtEnumImport =
@@ -119,17 +117,14 @@ void generateStructs(Map<String, String> structs) {
   final namespaceGroups = groupTypesByParentNamespace(structs.keys);
 
   for (final namespaceGroup in namespaceGroups) {
-    final structProjections = <WinRTStructProjection>[];
+    final structProjections = <StructProjection>[];
     final fileOutputPath =
         '${relativeFolderPathFromType(namespaceGroup.types.first)}/structs.g.dart';
     final file = File(fileOutputPath)..createSync(recursive: true);
 
     for (final type in namespaceGroup.types) {
-      final typeDef = MetadataStore.getMetadataForType(type);
-      if (typeDef == null) throw Exception("Can't find $type");
-
       final structProjection =
-          WinRTStructProjection(typeDef, comment: structs[typeDef.name]!);
+          StructProjection.from(type, comment: structs[type]!);
       structProjections.add(structProjection);
     }
 
@@ -189,17 +184,17 @@ void generatePackageExports() {
 }
 
 void main() {
-  print('Generating Windows Runtime classes and interfaces...');
+  print('Generating WinRT classes and interfaces...');
   final typesToGenerate = loadMap('classes_and_interfaces.json');
   saveMap(typesToGenerate, 'classes_and_interfaces.json');
   generateClassesAndInterfaces(typesToGenerate);
 
-  print('Generating Windows Runtime enumerations...');
+  print('Generating WinRT enumerations...');
   final enumsToGenerate = loadMap('enums.json');
   saveMap(enumsToGenerate, 'enums.json');
   generateEnumerations(enumsToGenerate);
 
-  print('Generating Windows Runtime structs...');
+  print('Generating WinRT structs...');
   final structsToGenerate = loadMap('structs.json');
   saveMap(structsToGenerate, 'structs.json');
   generateStructs(structsToGenerate);

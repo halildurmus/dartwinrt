@@ -4,7 +4,7 @@
 
 import 'package:winmd/winmd.dart';
 
-import '../models/winrt_parameter_type.dart';
+import '../models/models.dart';
 import '../utils.dart';
 import 'type.dart';
 import 'types/types.dart';
@@ -15,8 +15,8 @@ import 'types/types.dart';
 /// specialized in that they have logic to translate primitive WinRT types to
 /// their Dart equivalents (e.g. a WinRT `TimeSpan` can be represented by a Dart
 /// [Duration]).
-abstract class WinRTParameterProjection {
-  WinRTParameterProjection(this.parameter)
+abstract class ParameterProjection {
+  ParameterProjection(this.parameter)
       : method = parameter.parent,
         name = parameter.name,
         type = TypeProjection(parameter.typeIdentifier, isParameter: true);
@@ -34,43 +34,43 @@ abstract class WinRTParameterProjection {
   final TypeProjection type;
 
   /// Returns the appropriate projection for the parameter.
-  factory WinRTParameterProjection.create(Parameter parameter) {
-    final typeProjection = TypeProjection(parameter.typeIdentifier);
-    final parameterType = WinRTParameterType.from(typeProjection);
-    if (parameterType == WinRTParameterType.uri &&
+  factory ParameterProjection.create(Parameter parameter) {
+    final projectedType =
+        TypeProjection(parameter.typeIdentifier).projectionType;
+    if (projectedType == ProjectionType.uri &&
         methodBelongsToUriRuntimeClass(parameter.parent)) {
-      return WinRTInterfaceParameterProjection(parameter);
+      return InterfaceParameterProjection(parameter);
     }
 
-    switch (parameterType) {
-      case WinRTParameterType.class_:
-        return WinRTClassParameterProjection(parameter);
-      case WinRTParameterType.interface:
-        return WinRTInterfaceParameterProjection(parameter);
-      case WinRTParameterType.dateTime:
-        return WinRTDateTimeParameterProjection(parameter);
-      case WinRTParameterType.duration:
-        return WinRTDurationParameterProjection(parameter);
-      case WinRTParameterType.enum_:
-        return WinRTEnumParameterProjection(parameter);
-      case WinRTParameterType.guid:
-        return WinRTGuidParameterProjection(parameter);
-      case WinRTParameterType.object:
-        return WinRTObjectParameterProjection(parameter);
-      case WinRTParameterType.reference:
-        return WinRTReferenceParameterProjection(parameter);
-      case WinRTParameterType.string:
-        return WinRTStringParameterProjection(parameter);
-      case WinRTParameterType.uri:
-        return WinRTUriParameterProjection(parameter);
-      case WinRTParameterType.bool:
-      case WinRTParameterType.delegate:
-      case WinRTParameterType.double:
-      case WinRTParameterType.int:
-      case WinRTParameterType.pointer:
-      case WinRTParameterType.simpleArray:
-      case WinRTParameterType.struct:
-        return WinRTDefaultParameterProjection(parameter);
+    switch (projectedType) {
+      case ProjectionType.class_:
+        return ClassParameterProjection(parameter);
+      case ProjectionType.interface:
+        return InterfaceParameterProjection(parameter);
+      case ProjectionType.dateTime:
+        return DateTimeParameterProjection(parameter);
+      case ProjectionType.duration:
+        return DurationParameterProjection(parameter);
+      case ProjectionType.enum_:
+        return EnumParameterProjection(parameter);
+      case ProjectionType.guid:
+        return GuidParameterProjection(parameter);
+      case ProjectionType.object:
+        return ObjectParameterProjection(parameter);
+      case ProjectionType.reference:
+        return ReferenceParameterProjection(parameter);
+      case ProjectionType.string:
+        return StringParameterProjection(parameter);
+      case ProjectionType.uri:
+        return UriParameterProjection(parameter);
+      case ProjectionType.dartPrimitive:
+      case ProjectionType.delegate:
+      case ProjectionType.pointer:
+      case ProjectionType.simpleArray:
+      case ProjectionType.struct:
+        return DefaultParameterProjection(parameter);
+      default:
+        throw UnsupportedError('Unsupported parameter type: $projectedType');
     }
   }
 

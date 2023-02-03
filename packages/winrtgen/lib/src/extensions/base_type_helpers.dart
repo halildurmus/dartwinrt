@@ -25,7 +25,7 @@ extension BaseTypeHelpers on BaseType {
       case BaseType.stringType:
         return 'String';
       default:
-        throw Exception('Unsupported base type: $name');
+        throw UnsupportedError('Unsupported base type: $name');
     }
   }
 
@@ -62,7 +62,7 @@ extension BaseTypeHelpers on BaseType {
       case BaseType.uint64Type:
         return 'u8';
       default:
-        throw Exception('Unsupported base type: $name');
+        throw UnsupportedError('Unsupported base type: $name');
     }
   }
 }

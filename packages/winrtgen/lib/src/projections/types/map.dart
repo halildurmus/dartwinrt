@@ -6,11 +6,11 @@ import 'package:winmd/winmd.dart';
 
 import '../../extensions/extensions.dart';
 import '../../utils.dart';
+import '../getter.dart';
+import '../method.dart';
 import '../type.dart';
-import '../winrt_get_property.dart';
-import '../winrt_method.dart';
 
-mixin _MapProjection on WinRTMethodProjection {
+mixin _MapProjection on MethodProjection {
   /// The type arguments of `IMap` and `IMapView`, as represented in the
   /// [returnType]'s [TypeIdentifier] (e.g. `String, Object?`, `String, String?`).
   String get mapTypeArgs => typeArguments(returnType.typeIdentifier.name);
@@ -28,9 +28,9 @@ mixin _MapProjection on WinRTMethodProjection {
     // 'IMapView' implementations can instantiate the enum.
     final enumKeyCreator = returnType.typeIdentifier.typeArg!.creator;
 
-    // If the type argument is an enum, a WinRT Object (e.g. IJsonValue), the
+    // If the type argument is an enum, a WinRT object (e.g. IJsonValue), the
     // constructor of that class must be passed in the 'enumCreator' parameter
-    // for enum, 'creator' parameter for WinRT Object so that the 'IMap' and
+    // for enum, 'creator' parameter for WinRT object so that the 'IMap' and
     // 'IMapView' implementations can instantiate the object
     final creator = returnType.typeIdentifier.typeArg!.typeArg!.creator;
 
@@ -40,10 +40,10 @@ mixin _MapProjection on WinRTMethodProjection {
     final iterableIid = iterableIidFromMapType(returnType.typeIdentifier);
 
     final args = <String>["iterableIid: '$iterableIid'"];
-    if (keyArgTypeProjection.isEnum) {
+    if (keyArgTypeProjection.isWinRTEnum) {
       args.add('enumKeyCreator: $enumKeyCreator');
     }
-    if (valueArgTypeProjection.isEnum) {
+    if (valueArgTypeProjection.isWinRTEnum) {
       args.add('enumCreator: $creator');
     } else if (creator != null) {
       args.add('creator: $creator');
@@ -54,9 +54,8 @@ mixin _MapProjection on WinRTMethodProjection {
 }
 
 /// Method projection for methods that return an `IMap<K, V>`.
-class WinRTMapMethodProjection extends WinRTMethodProjection
-    with _MapProjection {
-  WinRTMapMethodProjection(super.method, super.vtableOffset);
+class MapMethodProjection extends MethodProjection with _MapProjection {
+  MapMethodProjection(super.method, super.vtableOffset);
 
   @override
   String get methodProjection => '''
@@ -74,9 +73,8 @@ class WinRTMapMethodProjection extends WinRTMethodProjection
 }
 
 /// Getter projection for `IMap<K, V>` getters.
-class WinRTMapGetterProjection extends WinRTGetPropertyProjection
-    with _MapProjection {
-  WinRTMapGetterProjection(super.method, super.vtableOffset);
+class MapGetterProjection extends GetterProjection with _MapProjection {
+  MapGetterProjection(super.method, super.vtableOffset);
 
   @override
   String get methodProjection => '''
@@ -92,9 +90,8 @@ class WinRTMapGetterProjection extends WinRTGetPropertyProjection
 
 /// Method projection for methods that return an `IMapView<K, V>` (exposed as
 /// `Map<K, V>`).
-class WinRTMapViewMethodProjection extends WinRTMethodProjection
-    with _MapProjection {
-  WinRTMapViewMethodProjection(super.method, super.vtableOffset);
+class MapViewMethodProjection extends MethodProjection with _MapProjection {
+  MapViewMethodProjection(super.method, super.vtableOffset);
 
   @override
   String get methodProjection => '''
@@ -115,9 +112,8 @@ class WinRTMapViewMethodProjection extends WinRTMethodProjection
 }
 
 /// Getter projection for `IMapView<K, V>` (exposed as `Map<K, V>`) getters.
-class WinRTMapViewGetterProjection extends WinRTGetPropertyProjection
-    with _MapProjection {
-  WinRTMapViewGetterProjection(super.method, super.vtableOffset);
+class MapViewGetterProjection extends GetterProjection with _MapProjection {
+  MapViewGetterProjection(super.method, super.vtableOffset);
 
   @override
   String get methodProjection => '''

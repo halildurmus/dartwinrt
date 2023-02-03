@@ -5,16 +5,16 @@
 import 'package:winmd/winmd.dart';
 
 import '../utils.dart';
-import 'winrt_interface.dart';
+import 'interface.dart';
 
-class WinRTStaticMethodsProjection {
-  WinRTStaticMethodsProjection(this.interface);
+class FactoryConstructorsProjection {
+  FactoryConstructorsProjection(this.interface);
 
-  /// The fully-qualified type name of a static interface (e.g.
-  /// `Windows.Foundation.IPropertyValueStatics`).
+  /// The fully qualified type name of a factory interface (e.g.
+  /// `Windows.Globalization.ICalendarFactory`).
   final String interface;
 
-  /// The shorter [interface] name (e.g. `IPropertyValueStatics`).
+  /// The shorter [interface] name (e.g. `ICalendarFactory`).
   String get shortName => lastComponent(interface);
 
   List<String>? _methods;
@@ -22,27 +22,25 @@ class WinRTStaticMethodsProjection {
   List<String> get methods => _methods ??= _cacheMethods();
 
   List<String> _cacheMethods() {
-    final staticTypeDef = MetadataStore.getMetadataForType(interface);
-    if (staticTypeDef == null) {
-      throw Exception('Static typedef $interface missing.');
+    final factoryTypeDef = MetadataStore.getMetadataForType(interface);
+    if (factoryTypeDef == null) {
+      throw Exception('Factory typedef $interface missing.');
     }
 
+    final interfaceProjection = InterfaceProjection(factoryTypeDef);
     final methods = <String>[];
-    final interfaceProjection = WinRTInterfaceProjection(staticTypeDef);
 
     for (final method in interfaceProjection.methodProjections) {
-      final statement = 'object.${method.shortForm};';
-      final returnStatement =
-          method.method.isSetProperty ? statement : 'return $statement';
+      final className = method.shortDeclaration.split(' ').first;
       methods.add('''
-  static ${method.shortDeclaration} {
+  factory $className.${method.camelCasedName}(${method.methodParams}) {
     final activationFactoryPtr =
         createActivationFactory(_className, IID_$shortName);
     final object =
         $shortName.fromRawPointer(activationFactoryPtr);
 
     try {
-      $returnStatement
+       return object.${method.shortForm};
     } finally {
       object.release();
     }

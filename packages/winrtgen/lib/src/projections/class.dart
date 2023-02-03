@@ -6,27 +6,26 @@ import 'package:winmd/winmd.dart';
 
 import '../constants/constants.dart';
 import '../utils.dart';
-import 'winrt_factory_constructors.dart';
-import 'winrt_interface.dart';
-import 'winrt_static_methods.dart';
+import 'factory_constructors.dart';
+import 'interface.dart';
+import 'static_methods.dart';
 
-class WinRTClassProjection extends WinRTInterfaceProjection {
-  WinRTClassProjection(super.typeDef, {super.comment});
+class ClassProjection extends InterfaceProjection {
+  ClassProjection(super.typeDef, {super.comment});
 
-  /// Attempts to create a [WinRTClassProjection] from
-  /// [fullyQualifiedTypeName] by searching its [TypeDef].
+  /// Attempts to create a [ClassProjection] from [fullyQualifiedType] by
+  /// searching its [TypeDef].
   ///
-  /// Throws an [Exception] if no [TypeDef] matching [fullyQualifiedTypeName]
-  /// is found.
-  factory WinRTClassProjection.from(String fullyQualifiedTypeName,
-      [String comment = '']) {
-    final typeDef = MetadataStore.getMetadataForType(fullyQualifiedTypeName);
-    if (typeDef == null) throw Exception("Can't find $fullyQualifiedTypeName");
-
-    return WinRTClassProjection(typeDef, comment: comment);
+  /// Throws an [Exception] if no [TypeDef] matching [fullyQualifiedType] is
+  /// found.
+  factory ClassProjection.from(String fullyQualifiedType,
+      {String comment = ''}) {
+    final typeDef = MetadataStore.getMetadataForType(fullyQualifiedType);
+    if (typeDef == null) throw Exception("Can't find $fullyQualifiedType");
+    return ClassProjection(typeDef, comment: comment);
   }
 
-  // WinRTInterfaceProjection overrides
+  // InterfaceProjection overrides
 
   @override
   String get category => 'class';
@@ -59,29 +58,29 @@ class WinRTClassProjection extends WinRTInterfaceProjection {
       .toList()
     ..sort();
 
-  List<WinRTFactoryConstructorsProjection>? _factoryConstructors;
+  List<FactoryConstructorsProjection>? _factoryConstructors;
 
-  List<WinRTFactoryConstructorsProjection> get factoryConstructors =>
+  List<FactoryConstructorsProjection> get factoryConstructors =>
       _factoryConstructors ??= _cacheFactoryConstructors();
 
-  List<WinRTFactoryConstructorsProjection> _cacheFactoryConstructors() =>
-      factoryInterfaces.map(WinRTFactoryConstructorsProjection.new).toList();
+  List<FactoryConstructorsProjection> _cacheFactoryConstructors() =>
+      factoryInterfaces.map(FactoryConstructorsProjection.new).toList();
 
   List<String> get staticInterfaces => typeDef.customAttributes
       .where((element) => element.name.endsWith('StaticAttribute'))
       .where((element) => element.parameters.length == 3)
       .map((element) => element.parameters.first.value as String)
       .toList()
-    ..removeWhere(excludedWindowsRuntimeStaticInterfaces.contains)
+    ..removeWhere(excludedStaticInterfaces.contains)
     ..sort();
 
-  List<WinRTStaticMethodsProjection>? _staticMethods;
+  List<StaticMethodsProjection>? _staticMethods;
 
-  List<WinRTStaticMethodsProjection> get staticMethods =>
+  List<StaticMethodsProjection> get staticMethods =>
       _staticMethods ??= _cacheStaticMethods();
 
-  List<WinRTStaticMethodsProjection> _cacheStaticMethods() =>
-      staticInterfaces.map(WinRTStaticMethodsProjection.new).toList();
+  List<StaticMethodsProjection> _cacheStaticMethods() =>
+      staticInterfaces.map(StaticMethodsProjection.new).toList();
 
   @override
   String toString() => '''

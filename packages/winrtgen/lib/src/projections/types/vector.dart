@@ -6,11 +6,11 @@ import 'package:winmd/winmd.dart';
 
 import '../../extensions/extensions.dart';
 import '../../utils.dart';
+import '../getter.dart';
+import '../method.dart';
 import '../type.dart';
-import '../winrt_get_property.dart';
-import '../winrt_method.dart';
 
-mixin _VectorProjection on WinRTMethodProjection {
+mixin _VectorProjection on MethodProjection {
   /// The type argument of `IVector` and `IVectorView`, as represented in the
   /// [returnType]'s [TypeIdentifier] (e.g. `int`, `String`, `StorageFile`).
   String get vectorTypeArg => typeArguments(returnType.typeIdentifier.name);
@@ -20,9 +20,9 @@ mixin _VectorProjection on WinRTMethodProjection {
   String get vectorConstructorArgs {
     final typeProjection = TypeProjection(returnType.typeIdentifier.typeArg!);
 
-    // If the type argument is an enum or a WinRT Object (e.g. StorageFile), the
+    // If the type argument is an enum or a WinRT object (e.g. StorageFile), the
     // constructor of that class must be passed in the 'enumCreator' parameter
-    // for enums, 'creator' parameter for WinRT Objects so that the 'IVector'
+    // for enums, 'creator' parameter for WinRT objects so that the 'IVector'
     // and 'IVectorView' implementations can instantiate the object
     final creator = returnType.typeIdentifier.typeArg!.creator;
 
@@ -34,12 +34,12 @@ mixin _VectorProjection on WinRTMethodProjection {
     // If the type argument is an enum or int, its native type (e.g. Int32,
     // Uint32) must be passed in the 'intType' parameter so that the 'IVector'
     // and 'IVectorView' implementations can use the appropriate native type
-    final intType = typeProjection.isEnum || vectorTypeArg == 'int'
+    final intType = typeProjection.isWinRTEnum || vectorTypeArg == 'int'
         ? typeProjection.nativeType
         : null;
 
     final args = <String>["iterableIid: '$iterableIid'"];
-    if (typeProjection.isEnum) {
+    if (typeProjection.isWinRTEnum) {
       args.add('enumCreator: $creator');
     } else if (creator != null) {
       args.add('creator: $creator');
@@ -53,9 +53,8 @@ mixin _VectorProjection on WinRTMethodProjection {
 }
 
 /// Method projection for methods that return an `IVector<T>`.
-class WinRTVectorMethodProjection extends WinRTMethodProjection
-    with _VectorProjection {
-  WinRTVectorMethodProjection(super.method, super.vtableOffset);
+class VectorMethodProjection extends MethodProjection with _VectorProjection {
+  VectorMethodProjection(super.method, super.vtableOffset);
 
   @override
   String get methodProjection => '''
@@ -73,9 +72,8 @@ class WinRTVectorMethodProjection extends WinRTMethodProjection
 }
 
 /// Getter projection for `IVector<T>` getters.
-class WinRTVectorGetterProjection extends WinRTGetPropertyProjection
-    with _VectorProjection {
-  WinRTVectorGetterProjection(super.method, super.vtableOffset);
+class VectorGetterProjection extends GetterProjection with _VectorProjection {
+  VectorGetterProjection(super.method, super.vtableOffset);
 
   @override
   String get methodProjection => '''
@@ -91,9 +89,9 @@ class WinRTVectorGetterProjection extends WinRTGetPropertyProjection
 
 /// Method projection for methods that return an `IVectorView<T>` (exposed as
 /// `List<T>`).
-class WinRTVectorViewMethodProjection extends WinRTMethodProjection
+class VectorViewMethodProjection extends MethodProjection
     with _VectorProjection {
-  WinRTVectorViewMethodProjection(super.method, super.vtableOffset);
+  VectorViewMethodProjection(super.method, super.vtableOffset);
 
   @override
   String get methodProjection => '''
@@ -116,9 +114,9 @@ class WinRTVectorViewMethodProjection extends WinRTMethodProjection
 }
 
 /// Getter projection for `IVectorView<T>` (exposed as `List<T>`) getters.
-class WinRTVectorViewGetterProjection extends WinRTGetPropertyProjection
+class VectorViewGetterProjection extends GetterProjection
     with _VectorProjection {
-  WinRTVectorViewGetterProjection(super.method, super.vtableOffset);
+  VectorViewGetterProjection(super.method, super.vtableOffset);
 
   @override
   String get methodProjection => '''

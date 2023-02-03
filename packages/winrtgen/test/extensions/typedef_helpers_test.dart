@@ -66,6 +66,11 @@ void main() {
         equals('package:windows_globalization/windows_globalization.dart'));
     expect(mapViewTypeDef.packageImport,
         equals('package:windows_foundation/windows_foundation.dart'));
+
+    final uriTypeDef =
+        MetadataStore.getMetadataForType('Windows.Foundation.Uri')!;
+    expect(uriTypeDef.packageImport,
+        equals('package:windows_foundation/uri.dart'));
   });
 
   test('packageName', () {

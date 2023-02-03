@@ -29,9 +29,9 @@ const excludedPackageFiles = <String>{
 };
 
 /// WinRT classes and interfaces to exclude from code generation.
-const excludedWindowsRuntimeClassesAndInterfaces = <String>{
-  ...excludedWindowsRuntimeInterfacesInInherits,
-  ...excludedWindowsRuntimeStaticInterfaces,
+const excludedClassesAndInterfaces = <String>{
+  ...excludedInterfacesInInherits,
+  ...excludedStaticInterfaces,
 
   // These types are generated manually by design
   'Windows.Foundation.IAsyncOperation`1',
@@ -64,9 +64,9 @@ const excludedWindowsRuntimeClassesAndInterfaces = <String>{
   'Windows.UI.Notifications.ToastNotification',
 };
 
-/// WinRT interfaces to exclude when generating interfaces' inherited
+/// WinRT interfaces to exclude when generating an interface's inherited
 /// interfaces.
-const excludedWindowsRuntimeInterfacesInInherits = <String>{
+const excludedInterfacesInInherits = <String>{
   // INumberFormatter2's methods conflict with INumberFormatter's methods
   'Windows.Globalization.NumberFormatting.INumberFormatter2',
   // Contains deprecated APIs
@@ -77,30 +77,23 @@ const excludedWindowsRuntimeInterfacesInInherits = <String>{
 };
 
 /// WinRT static interfaces to exclude when generating the static methods.
-const excludedWindowsRuntimeStaticInterfaces = <String>{
-  // Contains deprecated APIs
-  'Windows.Storage.Pickers.IFileOpenPickerStatics',
+const excludedStaticInterfaces = <String>{
+  'Windows.Storage.Pickers.IFileOpenPickerStatics', // Contains deprecated APIs
 };
 
-/// WinRT interfaces to exclude when generating interfaces' method forwarders.
-const excludedWindowsRuntimeInterfacesInMethodForwarders = <String>{
+/// WinRT interfaces to exclude when generating the method forwarders.
+const excludedInterfacesInMethodForwarders = <String>{
   // The WinRT interfaces that inherit IIterable also inherit from IMap,
-  // IMapView, IVector, or IVectorView. As we generate method forwarders for the
-  // IIterable on these interfaces, we need to exclude this one.
+  // IMapView, IVector, or IVectorView. As we generate method forwarders for
+  // the IIterable in these interfaces, we need to exclude this one.
   'Windows.Foundation.Collections.IIterable`1',
 };
 
 /// WinRT types to ignore when generating the imports.
-const ignoredWindowsRuntimeTypesInImports = <String>{
-  // This is exposed as dart:core's DateTime
-  'Windows.Foundation.DateTime',
-
-  // These are exposed as int
-  'Windows.Foundation.EventRegistrationToken',
-  'Windows.Foundation.HResult',
-
-  // This is exposed as dart:core's Duration
-  'Windows.Foundation.TimeSpan',
-
-  ...excludedWindowsRuntimeInterfacesInInherits,
+const ignoredTypesInImports = <String>{
+  'Windows.Foundation.DateTime', // Exposed as dart:core's DateTime
+  'Windows.Foundation.EventRegistrationToken', // Exposed as int
+  'Windows.Foundation.HResult', // Exposed as int
+  'Windows.Foundation.TimeSpan', // Exposed as dart:core's Duration
+  ...excludedInterfacesInInherits,
 };

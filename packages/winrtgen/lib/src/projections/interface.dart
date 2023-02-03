@@ -7,36 +7,36 @@ import 'package:winmd/winmd.dart';
 import '../constants/constants.dart';
 import '../extensions/extensions.dart';
 import '../utils.dart';
-import 'winrt_get_property.dart';
-import 'winrt_method.dart';
-import 'winrt_method_forwarders.dart';
-import 'winrt_set_property.dart';
+import 'getter.dart';
+import 'method.dart';
+import 'method_forwarders.dart';
+import 'setter.dart';
 
-class WinRTInterfaceProjection {
-  WinRTInterfaceProjection(this.typeDef, {this.comment = ''});
+class InterfaceProjection {
+  InterfaceProjection(this.typeDef, {this.comment = ''});
 
   final TypeDef typeDef;
   final String comment;
 
-  /// Attempts to create a [WinRTInterfaceProjection] from [fullyQualifiedType]
-  /// by searching its [TypeDef].
+  /// Attempts to create a [InterfaceProjection] from [fullyQualifiedType] by
+  /// searching its [TypeDef].
   ///
   /// Throws an [Exception] if no [TypeDef] matching [fullyQualifiedType] is
   /// found.
-  factory WinRTInterfaceProjection.from(String fullyQualifiedType,
+  factory InterfaceProjection.from(String fullyQualifiedType,
       {String comment = ''}) {
     final typeDef = MetadataStore.getMetadataForType(fullyQualifiedType);
     if (typeDef == null) throw Exception("Can't find $fullyQualifiedType");
-    return WinRTInterfaceProjection(typeDef, comment: comment);
+    return InterfaceProjection(typeDef, comment: comment);
   }
 
   /// Returns the shorter name of the [typeDef] (e.g. `IAsyncInfo`, `Calendar`).
   String get shortName => stripGenerics(lastComponent(typeDef.name));
 
   /// Returns the path to the folder where the current interface is located
-  /// (e.g. `packages/windows_storage/lib/src/pickers` for
+  /// (e.g. `windows_storage/lib/src/pickers` for
   /// `Windows.Storage.Pickers.IFileOpenPicker`).
-  String get currentFolderPath => 'packages/${folderFromType(typeDef.name)}';
+  String get currentFolderPath => folderFromType(typeDef.name);
 
   /// Returns the package name for the [typeDef] (e.g. `windows_globalization`
   /// for `Windows.Globalization.Calendar`).
@@ -64,8 +64,8 @@ const IID_$shortName = '${typeDef.guid}';
   }
 
   List<TypeDef> get implementsInterfaces => typeDef.interfaces
-    ..removeWhere((interface) => excludedWindowsRuntimeInterfacesInInherits
-        .contains(interface.fullyQualifiedName));
+    ..removeWhere((interface) =>
+        excludedInterfacesInInherits.contains(interface.fullyQualifiedName));
 
   String get inheritsFrom => implementsInterfaces
       .map((interface) => interface.shortName)
@@ -85,14 +85,13 @@ const IID_$shortName = '${typeDef.guid}';
         'package:ffi/ffi.dart',
         'package:win32/win32.dart',
         if (packageName == 'windows_foundation') ...[
-          relativePathTo('packages/windows_foundation/lib/internal.dart'),
-          relativePathTo('packages/windows_foundation/lib/src/callbacks.dart'),
-          relativePathTo('packages/windows_foundation/lib/src/helpers.dart'),
+          relativePathTo('windows_foundation/lib/internal.dart'),
+          relativePathTo('windows_foundation/lib/src/callbacks.dart'),
+          relativePathTo('windows_foundation/lib/src/helpers.dart'),
+          relativePathTo('windows_foundation/lib/src/iinspectable.dart'),
+          relativePathTo('windows_foundation/lib/src/types.dart'),
           relativePathTo(
-              'packages/windows_foundation/lib/src/iinspectable.dart'),
-          relativePathTo('packages/windows_foundation/lib/src/types.dart'),
-          relativePathTo(
-              'packages/windows_foundation/lib/src/collections/iiterator.dart'),
+              'windows_foundation/lib/src/collections/iiterator.dart'),
         ] else ...[
           'package:windows_foundation/internal.dart',
           'package:windows_foundation/windows_foundation.dart',
@@ -141,45 +140,41 @@ const IID_$shortName = '${typeDef.guid}';
   // https://docs.microsoft.com/en-us/uwp/winrt-cref/winrt-type-system
   int get vtableStart => 6;
 
-  List<WinRTMethodProjection>? _methodProjections;
+  List<MethodProjection>? _methodProjections;
 
-  List<WinRTMethodProjection> get methodProjections =>
+  List<MethodProjection> get methodProjections =>
       _methodProjections ??= _cacheMethodProjections();
 
-  List<WinRTMethodProjection> _cacheMethodProjections() {
-    final projection = <WinRTMethodProjection>[];
+  List<MethodProjection> _cacheMethodProjections() {
+    final projections = <MethodProjection>[];
     var vtableOffset = vtableStart;
 
     for (final method in typeDef.methods) {
       if (method.isGetProperty) {
-        final getPropertyProjection =
-            WinRTGetPropertyProjection.create(method, vtableOffset++);
-        projection.add(getPropertyProjection);
+        final projection = GetterProjection.create(method, vtableOffset++);
+        projections.add(projection);
       } else if (method.isSetProperty) {
-        final setPropertyProjection =
-            WinRTSetPropertyProjection.create(method, vtableOffset++);
-        projection.add(setPropertyProjection);
+        final projection = SetterProjection.create(method, vtableOffset++);
+        projections.add(projection);
       } else {
-        final methodProjection =
-            WinRTMethodProjection.create(method, vtableOffset++);
-        projection.add(methodProjection);
+        final projection = MethodProjection.create(method, vtableOffset++);
+        projections.add(projection);
       }
     }
 
-    return projection;
+    return projections;
   }
 
-  List<WinRTMethodForwardersProjection>? _methodForwarders;
+  List<MethodForwardersProjection>? _methodForwarders;
 
-  List<WinRTMethodForwardersProjection> get methodForwarders =>
+  List<MethodForwardersProjection> get methodForwarders =>
       _methodForwarders ??= _cacheMethodForwarders();
 
-  List<WinRTMethodForwardersProjection> _cacheMethodForwarders() =>
+  List<MethodForwardersProjection> _cacheMethodForwarders() =>
       implementsInterfaces
-          .where((interface) =>
-              !excludedWindowsRuntimeInterfacesInMethodForwarders
-                  .contains(interface.fullyQualifiedName))
-          .map((interface) => WinRTMethodForwardersProjection(interface, this))
+          .where((interface) => !excludedInterfacesInMethodForwarders
+              .contains(interface.fullyQualifiedName))
+          .map((interface) => MethodForwardersProjection(interface, this))
           .toList();
 
   @override

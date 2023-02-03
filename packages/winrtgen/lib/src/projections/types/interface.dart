@@ -3,12 +3,12 @@
 // BSD-style license that can be found in the LICENSE file.
 
 import '../../utils.dart';
-import '../winrt_get_property.dart';
-import '../winrt_method.dart';
-import '../winrt_parameter.dart';
-import '../winrt_set_property.dart';
+import '../getter.dart';
+import '../method.dart';
+import '../parameter.dart';
+import '../setter.dart';
 
-mixin _InterfaceProjection on WinRTMethodProjection {
+mixin _InterfaceProjection on MethodProjection {
   String get methodReturnType {
     final typeIdentifierName = lastComponent(returnType.typeIdentifier.name);
     // TODO: Remove this once methods that return IAsyncActionWithProgress and
@@ -58,9 +58,9 @@ mixin _InterfaceProjection on WinRTMethodProjection {
 
 /// Method projection for methods that return a WinRT interface (e.g.
 /// `ICalendar`).
-class WinRTInterfaceMethodProjection extends WinRTMethodProjection
+class InterfaceMethodProjection extends MethodProjection
     with _InterfaceProjection {
-  WinRTInterfaceMethodProjection(super.method, super.vtableOffset);
+  InterfaceMethodProjection(super.method, super.vtableOffset);
 
   @override
   String get methodProjection => '''
@@ -80,9 +80,9 @@ class WinRTInterfaceMethodProjection extends WinRTMethodProjection
 }
 
 /// Getter projection for WinRT interface getters.
-class WinRTInterfaceGetterProjection extends WinRTGetPropertyProjection
+class InterfaceGetterProjection extends GetterProjection
     with _InterfaceProjection {
-  WinRTInterfaceGetterProjection(super.method, super.vtableOffset);
+  InterfaceGetterProjection(super.method, super.vtableOffset);
 
   @override
   String get methodProjection => '''
@@ -99,9 +99,9 @@ class WinRTInterfaceGetterProjection extends WinRTGetPropertyProjection
 }
 
 /// Setter projection for WinRT interface setters.
-class WinRTInterfaceSetterProjection extends WinRTSetPropertyProjection
+class InterfaceSetterProjection extends SetterProjection
     with _InterfaceProjection {
-  WinRTInterfaceSetterProjection(super.method, super.vtableOffset);
+  InterfaceSetterProjection(super.method, super.vtableOffset);
 
   @override
   String get methodProjection => '''
@@ -112,8 +112,8 @@ class WinRTInterfaceSetterProjection extends WinRTSetPropertyProjection
 }
 
 /// Parameter projection for WinRT interface parameters.
-class WinRTInterfaceParameterProjection extends WinRTParameterProjection {
-  WinRTInterfaceParameterProjection(super.parameter);
+class InterfaceParameterProjection extends ParameterProjection {
+  InterfaceParameterProjection(super.parameter);
 
   @override
   String get preamble => '';
