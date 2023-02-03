@@ -17,7 +17,6 @@ export 'collections/ivectorview.dart';
 export 'collections/propertyset.dart';
 export 'collections/stringmap.dart';
 export 'collections/valueset.dart';
-export 'constants.dart';
 export 'enums.g.dart';
 export 'helpers.dart';
 export 'iclosable.dart';

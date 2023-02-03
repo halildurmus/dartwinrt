@@ -11,31 +11,29 @@ import 'typedef_helpers.dart';
 
 extension ImportHelpers on WinRTInterfaceProjection {
   String? importForTypeDef(TypeDef typeDef) {
-    final typeName = typeDef.fullyQualifiedName;
-    if (name == typeName || ignoredWindowsRuntimeTypes.contains(typeName)) {
+    final type = typeDef.fullyQualifiedName;
+    if (name == type || ignoredWindowsRuntimeTypesInImports.contains(type)) {
       return null;
     }
 
+    // If the type is in another package, return package import for that package
     if (packageName != typeDef.packageName) return typeDef.packageImport;
 
-    // TODO: Update this once we generate WinRT delegates in their respective
-    // folders (e.g. Windows.Foundation.AsyncActionCompletedHandler ->
-    // packages/windows_foundation/delegates.g.dart)
+    // Otherwise, return relative import for that file
+
     if (typeDef.isDelegate) return null;
 
     if (typeDef.isEnum) {
-      return relativePathTo(
-          'packages/${folderFromWinRTType(typeName)}/enums.g.dart');
+      return relativePathTo('packages/${folderFromType(type)}/enums.g.dart');
     }
 
     if (typeDef.isClass || typeDef.isInterface) {
       return relativePathTo(
-          'packages/${folderFromWinRTType(typeName)}/${fileNameFromWinRTType(typeName)}');
+          'packages/${folderFromType(type)}/${fileNameFromType(type)}');
     }
 
     if (typeDef.isStruct) {
-      return relativePathTo(
-          'packages/${folderFromWinRTType(typeName)}/structs.g.dart');
+      return relativePathTo('packages/${folderFromType(type)}/structs.g.dart');
     }
 
     // TODO: Add support for these as they occur.

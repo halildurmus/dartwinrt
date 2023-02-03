@@ -13,31 +13,30 @@ import 'winrt_method_forwarders.dart';
 import 'winrt_set_property.dart';
 
 class WinRTInterfaceProjection {
-  WinRTInterfaceProjection(this.typeDef, [this.comment = '']);
+  WinRTInterfaceProjection(this.typeDef, {this.comment = ''});
 
   final TypeDef typeDef;
   final String comment;
 
-  /// Attempts to create a [WinRTInterfaceProjection] for [fullyQualifiedType]
+  /// Attempts to create a [WinRTInterfaceProjection] from [fullyQualifiedType]
   /// by searching its [TypeDef].
   ///
-  /// Throws an [Exception] if no [TypeDef] matching [fullyQualifiedType]
-  /// is found.
-  factory WinRTInterfaceProjection.forType(String fullyQualifiedType,
-      [String comment = '']) {
+  /// Throws an [Exception] if no [TypeDef] matching [fullyQualifiedType] is
+  /// found.
+  factory WinRTInterfaceProjection.from(String fullyQualifiedType,
+      {String comment = ''}) {
     final typeDef = MetadataStore.getMetadataForType(fullyQualifiedType);
     if (typeDef == null) throw Exception("Can't find $fullyQualifiedType");
-    return WinRTInterfaceProjection(typeDef, comment);
+    return WinRTInterfaceProjection(typeDef, comment: comment);
   }
 
   /// Returns the shorter name of the [typeDef] (e.g. `IAsyncInfo`, `Calendar`).
   String get shortName => stripGenerics(lastComponent(typeDef.name));
 
   /// Returns the path to the folder where the current interface is located
-  /// (e.g. `packages/windows_storage/pickers` for
+  /// (e.g. `packages/windows_storage/lib/src/pickers` for
   /// `Windows.Storage.Pickers.IFileOpenPicker`).
-  String get currentFolderPath =>
-      'packages/${folderFromWinRTType(typeDef.name)}';
+  String get currentFolderPath => 'packages/${folderFromType(typeDef.name)}';
 
   /// Returns the package name for the [typeDef] (e.g. `windows_globalization`
   /// for `Windows.Globalization.Calendar`).
@@ -86,13 +85,14 @@ const IID_$shortName = '${typeDef.guid}';
         'package:ffi/ffi.dart',
         'package:win32/win32.dart',
         if (packageName == 'windows_foundation') ...[
-          relativePathTo('../internal.dart'),
-          relativePathTo('packages/windows_foundation/callbacks.dart'),
-          relativePathTo('packages/windows_foundation/helpers.dart'),
-          relativePathTo('packages/windows_foundation/iinspectable.dart'),
-          relativePathTo('packages/windows_foundation/types.dart'),
+          relativePathTo('packages/windows_foundation/lib/internal.dart'),
+          relativePathTo('packages/windows_foundation/lib/src/callbacks.dart'),
+          relativePathTo('packages/windows_foundation/lib/src/helpers.dart'),
           relativePathTo(
-              'packages/windows_foundation/collections/iiterator.dart'),
+              'packages/windows_foundation/lib/src/iinspectable.dart'),
+          relativePathTo('packages/windows_foundation/lib/src/types.dart'),
+          relativePathTo(
+              'packages/windows_foundation/lib/src/collections/iiterator.dart'),
         ] else ...[
           'package:windows_foundation/internal.dart',
           'package:windows_foundation/windows_foundation.dart',

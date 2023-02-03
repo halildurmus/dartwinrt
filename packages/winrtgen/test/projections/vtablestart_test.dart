@@ -9,7 +9,6 @@
 @TestOn('windows')
 
 import 'package:test/test.dart';
-import 'package:winmd/winmd.dart';
 import 'package:winrtgen/winrtgen.dart';
 
 void main() {
@@ -22,15 +21,9 @@ void main() {
     };
 
     for (final type in types.keys) {
-      final typeDef = MetadataStore.getMetadataForType(type);
-      expect(typeDef, isNotNull);
-      if (typeDef != null) {
-        final projectedClass = WinRTInterfaceProjection(typeDef);
-        final calculatedVTableStart = projectedClass.vtableStart;
-
-        expect(calculatedVTableStart, equals(types[type]),
-            reason: typeDef.name);
-      }
+      final projectedClass = WinRTInterfaceProjection.from(type);
+      final calculatedVTableStart = projectedClass.vtableStart;
+      expect(calculatedVTableStart, equals(types[type]), reason: type);
     }
   });
 }

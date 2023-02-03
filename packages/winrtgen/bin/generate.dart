@@ -45,13 +45,13 @@ void generateClassesAndInterfaces(Map<String, String> types) {
     final typeDef = MetadataStore.getMetadataForType(type);
     if (typeDef == null) throw Exception("Can't find $type");
     final projection = typeDef.isInterface
-        ? WinRTInterfaceProjection(typeDef, types[typeDef.name] ?? '')
-        : WinRTClassProjection(typeDef, types[typeDef.name] ?? '');
+        ? WinRTInterfaceProjection(typeDef, comment: types[typeDef.name] ?? '')
+        : WinRTClassProjection(typeDef, comment: types[typeDef.name] ?? '');
 
     final dartClass = projection.toString();
     final fileName = stripGenerics(lastComponent(type)).toLowerCase();
     final classOutputPath =
-        '${relativeFolderPathFromWinRTType(type)}/$fileName.dart';
+        '${relativeFolderPathFromType(type)}/$fileName.dart';
 
     try {
       final formattedDartClass = DartFormatter().format(dartClass);
@@ -75,9 +75,9 @@ void generateEnumerations(Map<String, String> enums) {
   for (final namespaceGroup in namespaceGroups) {
     final enumProjections = <WinRTEnumProjection>[];
     final firstType = namespaceGroup.types.first;
-    final packageName = packageNameFromWinRTType(firstType);
+    final packageName = packageNameFromType(firstType);
     final fileOutputPath =
-        '${relativeFolderPathFromWinRTType(firstType)}/enums.g.dart';
+        '${relativeFolderPathFromType(firstType)}/enums.g.dart';
     final file = File(fileOutputPath)..createSync(recursive: true);
 
     for (final type in namespaceGroup.types) {
@@ -101,8 +101,8 @@ void generateEnumerations(Map<String, String> enums) {
     final String winrtEnumImport;
     if (packageName == 'windows_foundation') {
       final filePath = relativePath(
-          'packages/windows_foundation/winrt_enum.dart',
-          start: 'packages/${folderFromWinRTType(firstType)}');
+          'packages/windows_foundation/lib/src/winrt_enum.dart',
+          start: 'packages/${folderFromType(firstType)}');
       winrtEnumImport = "import '$filePath';";
     } else {
       winrtEnumImport =
@@ -121,7 +121,7 @@ void generateStructs(Map<String, String> structs) {
   for (final namespaceGroup in namespaceGroups) {
     final structProjections = <WinRTStructProjection>[];
     final fileOutputPath =
-        '${relativeFolderPathFromWinRTType(namespaceGroup.types.first)}/structs.g.dart';
+        '${relativeFolderPathFromType(namespaceGroup.types.first)}/structs.g.dart';
     final file = File(fileOutputPath)..createSync(recursive: true);
 
     for (final type in namespaceGroup.types) {

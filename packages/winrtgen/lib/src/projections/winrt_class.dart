@@ -11,19 +11,19 @@ import 'winrt_interface.dart';
 import 'winrt_static_methods.dart';
 
 class WinRTClassProjection extends WinRTInterfaceProjection {
-  WinRTClassProjection(super.typeDef, [super.comment]);
+  WinRTClassProjection(super.typeDef, {super.comment});
 
-  /// Attempts to create a [WinRTClassProjection] for
+  /// Attempts to create a [WinRTClassProjection] from
   /// [fullyQualifiedTypeName] by searching its [TypeDef].
   ///
   /// Throws an [Exception] if no [TypeDef] matching [fullyQualifiedTypeName]
   /// is found.
-  factory WinRTClassProjection.forType(String fullyQualifiedTypeName,
+  factory WinRTClassProjection.from(String fullyQualifiedTypeName,
       [String comment = '']) {
     final typeDef = MetadataStore.getMetadataForType(fullyQualifiedTypeName);
     if (typeDef == null) throw Exception("Can't find $fullyQualifiedTypeName");
 
-    return WinRTClassProjection(typeDef, comment);
+    return WinRTClassProjection(typeDef, comment: comment);
   }
 
   // WinRTInterfaceProjection overrides
@@ -34,8 +34,8 @@ class WinRTClassProjection extends WinRTInterfaceProjection {
   @override
   Set<String> get interfaceImports => {
         ...super.interfaceImports,
-        ...factoryInterfaces.map(fileNameFromWinRTType),
-        ...staticInterfaces.map(fileNameFromWinRTType),
+        ...factoryInterfaces.map(fileNameFromType),
+        ...staticInterfaces.map(fileNameFromType),
       };
 
   bool get isActivatable => typeDef.customAttributes
