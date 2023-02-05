@@ -8,14 +8,13 @@ import 'package:test/test.dart';
 import 'package:winrtgen/winrtgen.dart';
 
 void main() {
-  test('WinRT enumerations projected correctly', () {
-    final enumProjection =
-        EnumProjection.from('Windows.Foundation.AsyncStatus');
-    expect(enumProjection.category, equals('enum'));
-    expect(enumProjection.classDeclaration,
+  test('WinRT enumeration projected correctly', () {
+    final projection = EnumProjection.from('Windows.Foundation.AsyncStatus');
+    expect(projection.category, equals('enum'));
+    expect(projection.classDeclaration,
         equals('enum AsyncStatus implements WinRTEnum {'));
     expect(
-        enumProjection.identifiers,
+        projection.identifiers,
         orderedEquals([
           'started(0)',
           'completed(1)',
@@ -25,13 +24,13 @@ void main() {
   });
 
   test('Acronyms in enum identifiers are converted to lowercase', () {
-    final enumProjection =
+    final projection =
         EnumProjection.from('Windows.Devices.Geolocation.PositionSource');
-    expect(enumProjection.category, equals('enum'));
-    expect(enumProjection.classDeclaration,
+    expect(projection.category, equals('enum'));
+    expect(projection.classDeclaration,
         equals('enum PositionSource implements WinRTEnum {'));
     expect(
-        enumProjection.identifiers,
+        projection.identifiers,
         orderedEquals([
           'cellular(0)',
           'satellite(1)',
@@ -43,13 +42,13 @@ void main() {
         ]));
   });
 
-  test('WinRT Flags enumerations projected correctly', () {
-    final flagsEnumProjection =
+  test('WinRT Flags enumeration projected correctly', () {
+    final projection =
         FlagsEnumProjection.from('Windows.Storage.FileAttributes');
-    expect(flagsEnumProjection.classDeclaration,
+    expect(projection.classDeclaration,
         equals('class FileAttributes extends WinRTEnum {'));
     expect(
-        flagsEnumProjection.identifiers,
+        projection.identifiers,
         orderedEquals([
           "static const normal = FileAttributes(0, name: 'normal');",
           "static const readOnly = FileAttributes(1, name: 'readOnly');",

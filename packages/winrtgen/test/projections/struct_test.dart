@@ -8,15 +8,14 @@ import 'package:test/test.dart';
 import 'package:winrtgen/winrtgen.dart';
 
 void main() {
-  test('WinRT structs projected correctly', () {
-    final structProjection = StructProjection.from('Windows.Foundation.Rect');
-    expect(structProjection.category, equals('struct'));
-    expect(structProjection.classDeclaration,
-        equals('class Rect extends Struct {'));
+  test('WinRT struct projected correctly', () {
+    final projection = StructProjection.from('Windows.Foundation.Rect');
+    expect(projection.category, equals('struct'));
+    expect(projection.classDeclaration, equals('class Rect extends Struct {'));
 
-    final structFieldProjection = structProjection.fields.first;
-    expect(structFieldProjection.attribute, equals('@Float()'));
-    expect(structFieldProjection.dartType, equals('double'));
-    expect(structFieldProjection.fieldName, equals('x'));
+    final fieldProjection = projection.fields.first;
+    expect(fieldProjection.attribute, equals('@Float()'));
+    expect(fieldProjection.dartType, equals('double'));
+    expect(fieldProjection.fieldName, equals('x'));
   });
 }
