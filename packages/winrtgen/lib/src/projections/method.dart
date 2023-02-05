@@ -185,12 +185,10 @@ abstract class MethodProjection {
   @override
   String toString() {
     try {
-      return methodProjection.toString();
+      return methodProjection;
     } on Exception {
       // Print an error if we're unable to project a method, but don't
       // completely bail out. The rest may be useful.
-
-      // TODO: Fix these errors as they occur.
       print('Unable to project WinRT method: ${method.name}');
       return '';
     }
