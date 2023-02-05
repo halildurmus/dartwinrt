@@ -17,11 +17,11 @@ import 'constants/constants.dart';
 import 'extensions/extensions.dart';
 
 /// A list of all words that should not be used as identifiers.
-const badIdentifierNames = <String>{...dartReservedWords, ...dartTypes};
+const badIdentifierNames = <String>{..._dartReservedWords, ..._dartTypes};
 
 /// Reserved words in the Dart language that can never be used as identifiers.
 /// Keywords are from https://dart.dev/guides/language/language-tour#keywords.
-const dartReservedWords = <String>{
+const _dartReservedWords = <String>{
   // Contextual keywords and built-in identifiers are not included here, since
   // they can be used as valid identifiers in most places.
   'assert', 'break', 'case', 'catch', 'class', 'const', 'continue', 'default',
@@ -31,7 +31,7 @@ const dartReservedWords = <String>{
 };
 
 /// Dart intrinsic types that will cause problems if used as identifiers.
-const dartTypes = <String>{
+const _dartTypes = <String>{
   'int', 'double', 'String', 'bool', 'List', 'Set', 'Map', //
 };
 

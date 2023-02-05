@@ -5,6 +5,7 @@
 import 'package:winmd/winmd.dart';
 
 import '../models/models.dart';
+import 'method.dart';
 import 'property.dart';
 import 'type.dart';
 import 'types/types.dart';
@@ -56,6 +57,31 @@ abstract class GetterProjection extends PropertyProjection {
       default:
         throw UnsupportedError('Unsupported getter type: $projectedType');
     }
+  }
+
+  /// Attempts to create a [GetterProjection] from [fullyQualifiedType] and
+  /// [methodName].
+  ///
+  /// ```dart
+  /// final projection = GetterProjection.fromTypeAndMethodName(
+  ///     'Windows.Globalization.Calendar', 'get_Era');
+  /// ```
+  ///
+  /// It does this by calling `MethodProjection.fromTypeAndMethodName`
+  /// constructor with given [fullyQualifiedType] and [methodName].
+  ///
+  /// Throws an [Exception] if [methodName] is invalid or no [GetterProjection]
+  /// matching [methodName] is found.
+  factory GetterProjection.fromTypeAndMethodName(
+      String fullyQualifiedType, String methodName) {
+    final getPropertyPattern = RegExp(r'^get(_{1,2})(\w+)$');
+    if (!getPropertyPattern.hasMatch(methodName)) {
+      throw ArgumentError.value(
+          methodName, 'methodName', 'Method name must start with `get_`.');
+    }
+
+    return MethodProjection.fromTypeAndMethodName(
+        fullyQualifiedType, methodName) as GetterProjection;
   }
 
   // PropertyProjection overrides
