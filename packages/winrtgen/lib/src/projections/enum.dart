@@ -16,6 +16,15 @@ class EnumProjection {
   final String comment;
   final String enumName;
 
+  /// Returns the appropriate enum projection for the [typeDef] depending on
+  /// whether it has the `System.FlagsAttribute` attribute.
+  factory EnumProjection.create(TypeDef typeDef, {String comment = ''}) {
+    final isFlagsEnum = typeDef.existsAttribute('System.FlagsAttribute');
+    return isFlagsEnum
+        ? FlagsEnumProjection(typeDef, comment: comment)
+        : EnumProjection(typeDef, comment: comment);
+  }
+
   /// Attempts to create a [EnumProjection] from [fullyQualifiedType] by
   /// searching its [TypeDef].
   ///
@@ -29,7 +38,7 @@ class EnumProjection {
       {String comment = ''}) {
     final typeDef = MetadataStore.getMetadataForType(fullyQualifiedType);
     if (typeDef == null) throw Exception("Can't find $fullyQualifiedType");
-    return EnumProjection(typeDef, comment: comment);
+    return EnumProjection.create(typeDef, comment: comment);
   }
 
   String get category => 'enum';

@@ -7,6 +7,7 @@ import 'package:winmd/winmd.dart';
 import '../extensions/extensions.dart';
 import '../models/models.dart';
 import '../utils.dart';
+import 'interface.dart';
 import 'parameter.dart';
 import 'type.dart';
 import 'types/types.dart';
@@ -95,6 +96,29 @@ abstract class MethodProjection {
       default:
         throw UnsupportedError('Unsupported method type: $projectedType');
     }
+  }
+
+  /// Attempts to create a [MethodProjection] from [fullyQualifiedType] and
+  /// [methodName].
+  ///
+  /// ```dart
+  /// final projection = MethodProjection.fromTypeAndMethodName(
+  ///     'Windows.Globalization.Calendar', 'GetCalendarSystem');
+  /// ```
+  ///
+  /// It does this by first creating an [InterfaceProjection] from the
+  /// [fullyQualifiedType] and then searching the [MethodProjection] for the
+  /// [methodName] in it.
+  ///
+  /// Throws an [Exception] if no [MethodProjection] matching [methodName] is
+  /// found.
+  factory MethodProjection.fromTypeAndMethodName(
+      String fullyQualifiedType, String methodName) {
+    final interfaceProjection = InterfaceProjection.from(fullyQualifiedType);
+    final methodProjections = interfaceProjection.methodProjections
+        .where((methodProjection) => methodProjection.name == methodName);
+    if (methodProjections.isEmpty) throw Exception("Can't find $methodName");
+    return methodProjections.first;
   }
 
   /// The method name without uppercased first letter.

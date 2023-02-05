@@ -5,6 +5,7 @@
 import 'package:winmd/winmd.dart';
 
 import '../models/models.dart';
+import 'method.dart';
 import 'property.dart';
 import 'type.dart';
 import 'types/types.dart';
@@ -50,6 +51,31 @@ abstract class SetterProjection extends PropertyProjection {
       default:
         throw UnsupportedError('Unsupported setter type: $projectedType');
     }
+  }
+
+  /// Attempts to create a [SetterProjection] from [fullyQualifiedType] and
+  /// [methodName].
+  ///
+  /// ```dart
+  /// final projection = SetterProjection.fromTypeAndMethodName(
+  ///     'Windows.Globalization.Calendar', 'put_Era');
+  /// ```
+  ///
+  /// It does this by calling `MethodProjection.fromTypeAndMethodName`
+  /// constructor with given [fullyQualifiedType] and [methodName].
+  ///
+  /// Throws an [Exception] if [methodName] is invalid or no [SetterProjection]
+  /// matching [methodName] is found.
+  factory SetterProjection.fromTypeAndMethodName(
+      String fullyQualifiedType, String methodName) {
+    final setPropertyPattern = RegExp(r'^put(_{1,2})(\w+)$');
+    if (!setPropertyPattern.hasMatch(methodName)) {
+      throw ArgumentError.value(
+          methodName, 'methodName', 'Method name must start with `put_`.');
+    }
+
+    return MethodProjection.fromTypeAndMethodName(
+        fullyQualifiedType, methodName) as SetterProjection;
   }
 
   // MethodProjection overrides
