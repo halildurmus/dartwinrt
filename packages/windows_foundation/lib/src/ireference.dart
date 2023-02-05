@@ -24,7 +24,7 @@ class IReference<T> extends IInspectable {
   /// Creates an instance of [IReference] using the given [ptr] and [referenceIid].
   ///
   /// [referenceIid] must be the IID of the `IReference<T>` interface (e.g.
-  /// [IID_IReference_Uint32]).
+  /// `'{513ef3af-e784-5325-a91e-97c2b8111cf3}'`).
   ///
   /// [T] must be of type `DateTime`, `double`, `Duration`, `int`, `String`,
   /// `Struct` (e.g. `Guid`,`Point`, `Rect`, `Size`), or `WinRTEnum` (e.g.

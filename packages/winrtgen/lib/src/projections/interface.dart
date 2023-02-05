@@ -18,8 +18,13 @@ class InterfaceProjection {
   final TypeDef typeDef;
   final String comment;
 
-  /// Attempts to create a [InterfaceProjection] from [fullyQualifiedType] by
+  /// Attempts to create an [InterfaceProjection] from [fullyQualifiedType] by
   /// searching its [TypeDef].
+  ///
+  /// ```dart
+  /// final projection =
+  ///    InterfaceProjection.from('Windows.Foundation.IAsyncInfo');
+  /// ```
   ///
   /// Throws an [Exception] if no [TypeDef] matching [fullyQualifiedType] is
   /// found.

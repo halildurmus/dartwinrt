@@ -32,7 +32,7 @@ class IVector<T> extends IInspectable implements IIterable<T> {
   /// Creates an instance of [IVector] using the given [ptr] and [iterableIid].
   ///
   /// [iterableIid] must be the IID of the `IIterable<T>` interface (e.g.
-  /// [IID_IIterable_String]).
+  /// `'{9ac00304-83ea-5688-87b6-ae38aab65d0b}'`).
   ///
   /// [T] must be of type `int`, `String`, `Uri`, `WinRT` class/interface (e.g.
   /// `HostName`, `IStorageFile`) or `WinRTEnum` (e.g. `DeviceClass`).

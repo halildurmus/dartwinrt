@@ -19,6 +19,10 @@ class EnumProjection {
   /// Attempts to create a [EnumProjection] from [fullyQualifiedType] by
   /// searching its [TypeDef].
   ///
+  /// ```dart
+  /// final projection = EnumProjection.from('Windows.Globalization.DayOfWeek');
+  /// ```
+  ///
   /// Throws an [Exception] if no [TypeDef] matching [fullyQualifiedType] is
   /// found.
   factory EnumProjection.from(String fullyQualifiedType,
@@ -88,6 +92,11 @@ class FlagsEnumProjection extends EnumProjection {
 
   /// Attempts to create a [FlagsEnumProjection] from [fullyQualifiedType] by
   /// searching its [TypeDef].
+  ///
+  /// ```dart
+  /// final projection =
+  ///     FlagsEnumProjection.from('Windows.Storage.FileAttributes');
+  /// ```
   ///
   /// Throws an [Exception] if no [TypeDef] matching [fullyQualifiedType] is
   /// found.

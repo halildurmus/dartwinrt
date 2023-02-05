@@ -74,7 +74,7 @@ class IMap<K, V> extends IInspectable
   /// Creates an instance of [IMap] using the given [ptr] and [iterableIid].
   ///
   /// [iterableIid] must be the IID of the `IIterable<IKeyValuePair<K, V>>`
-  /// interface (e.g. [IID_IIterable_IKeyValuePair_String_Object]).
+  /// interface (e.g. `'{fe2f3d47-5d47-5499-8374-430c7cda0204}'`).
   ///
   /// [K] must be of type `Guid`, `int`, `Object`, `String`, or `WinRTEnum`
   /// (e.g. `PedometerStepKind`).

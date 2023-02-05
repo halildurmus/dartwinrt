@@ -27,6 +27,7 @@ dependencies:
   # For calculating the relative file paths
   path: ^1.8.3
 
+  # For working with Windows Metadata (winmd) files
   winmd: ^2.4.7
 
   win32: ^4.1.0
