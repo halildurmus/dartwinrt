@@ -2,30 +2,31 @@
 // details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-/// Files to exclude when generating the package exports.
-const excludedPackageFiles = <String>{
-  // Async delegates
-  'iasyncaction.dart',
-  'iasyncactionwithprogress.dart',
-  'iasyncinfo.dart',
-  'iasyncoperation.dart',
-  'iasyncoperationwithprogress.dart',
+/// Files to exclude from packages when generating the package export files.
+const excludedPackageFiles = <String, Set<String>>{
+  // Excluded files in the 'windows_foundation' package
+  'windows_foundation': {
+    // Async delegates
+    'iasyncaction.dart',
+    'iasyncactionwithprogress.dart',
+    'iasyncinfo.dart',
+    'iasyncoperation.dart',
+    'iasyncoperationwithprogress.dart',
 
-  'exports.g.dart', // Generated package exports file
+    // Fully wrapped by projection
+    'ipropertyvalue.dart',
+    'propertyvalue.dart',
+    'ireference.dart',
 
-  // Fully wrapped by projection
-  'ipropertyvalue.dart',
-  'propertyvalue.dart',
-  'ireference.dart',
-
-  // WinRT Uri files
-  'iuriruntimeclass.dart',
-  'iuriruntimeclasswithabsolutecanonicaluri.dart',
-  'iwwwformurldecoderentry.dart',
-  'iwwwformurldecoderruntimeclass.dart',
-  'uri.dart',
-  'wwwformurldecoder.dart',
-  'wwwformurldecoderentry.dart',
+    // Windows.Foundation.Uri files
+    'iuriruntimeclass.dart',
+    'iuriruntimeclasswithabsolutecanonicaluri.dart',
+    'iwwwformurldecoderentry.dart',
+    'iwwwformurldecoderruntimeclass.dart',
+    'uri.dart',
+    'wwwformurldecoder.dart',
+    'wwwformurldecoderentry.dart',
+  },
 };
 
 /// WinRT classes and interfaces to exclude from code generation.

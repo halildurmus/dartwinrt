@@ -142,11 +142,9 @@ const packageNames = <String>{
 void generatePackageExports() {
   for (final packageName in packageNames) {
     final packagePath = '../$packageName/lib/src/';
-
     final dir = Directory(packagePath);
     final files =
         dir.listSync(recursive: true, followLinks: false).whereType<File>();
-
     final exports = <String>{};
 
     for (final file in files) {
@@ -154,8 +152,14 @@ void generatePackageExports() {
       if (file.path.contains(r'internal\')) continue;
 
       final fileName = file.uri.pathSegments.last; // e.g. calendar.dart
-      // Skip excluded files
-      if (excludedPackageFiles.contains(fileName)) continue;
+
+      // Skip generated package export files
+      if (fileName == 'exports.g.dart') continue;
+
+      // Skip excluded package files
+      if (excludedPackageFiles[packageName]?.contains(fileName) ?? false) {
+        continue;
+      }
 
       // Skip factory and statics files
       final factoryOrStaticsFilePattern =
