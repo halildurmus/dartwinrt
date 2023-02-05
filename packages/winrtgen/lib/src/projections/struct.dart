@@ -43,6 +43,10 @@ class StructProjection {
   /// Attempts to create a [StructProjection] from [fullyQualifiedType] by
   /// searching its [TypeDef].
   ///
+  /// ```dart
+  /// final projection = StructProjection.from('Windows.Foundation.Rect');
+  /// ```
+  ///
   /// Throws an [Exception] if no [TypeDef] matching [fullyQualifiedType] is
   /// found.
   factory StructProjection.from(String fullyQualifiedType,

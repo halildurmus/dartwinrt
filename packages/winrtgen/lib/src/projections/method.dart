@@ -14,7 +14,7 @@ import 'types/types.dart';
 /// A generic class representing an entry in a COM function vtable.
 ///
 /// This is the base class for a range of WinRT-based objects, including
-/// [GetterProjection], [SetterProjection].
+/// `GetterProjection`, `SetterProjection`.
 /// All of these map down to an entry in a COM vtable representing a method.
 ///
 /// Methods have names, a list of parameters, and may return a type.

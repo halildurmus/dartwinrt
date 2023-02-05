@@ -16,6 +16,11 @@ class ClassProjection extends InterfaceProjection {
   /// Attempts to create a [ClassProjection] from [fullyQualifiedType] by
   /// searching its [TypeDef].
   ///
+  /// ```dart
+  /// final projection =
+  ///    ClassProjection.from('Windows.Storage.Pickers.FileOpenPicker');
+  /// ```
+  ///
   /// Throws an [Exception] if no [TypeDef] matching [fullyQualifiedType] is
   /// found.
   factory ClassProjection.from(String fullyQualifiedType,
