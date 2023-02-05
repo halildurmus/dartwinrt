@@ -8,6 +8,24 @@ import 'package:dart_style/dart_style.dart';
 import 'package:winmd/winmd.dart';
 import 'package:winrtgen/winrtgen.dart';
 
+/// Creates a file at the given [path] and writes the formatted [content] to it.
+///
+/// If the [content] cannot be formatted, it will be written as unformatted.
+void writeToFile(String path, String content) {
+  try {
+    File(path)
+      ..createSync(recursive: true)
+      ..writeAsStringSync(DartFormatter().format(content));
+  } catch (_) {
+    // Better to write even on failure, so we can figure out what syntax error
+    // it was that thwarted DartFormatter.
+    print('Unable to format file. Writing unformatted...');
+    File(path)
+      ..createSync(recursive: true)
+      ..writeAsStringSync(content);
+  }
+}
+
 void generateClassesAndInterfaces(Map<String, String> types) {
   // Catalog all the types we need to generate: the types themselves and their
   // dependencies
@@ -44,27 +62,13 @@ void generateClassesAndInterfaces(Map<String, String> types) {
     final typeDef = MetadataStore.getMetadataForType(type);
     if (typeDef == null) throw Exception("Can't find $type");
     final projection = typeDef.isInterface
-        ? InterfaceProjection(typeDef, comment: types[typeDef.name] ?? '')
-        : ClassProjection(typeDef, comment: types[typeDef.name] ?? '');
+        ? InterfaceProjection(typeDef, comment: types[type] ?? '')
+        : ClassProjection(typeDef, comment: types[type] ?? '');
 
-    final dartClass = projection.toString();
     final fileName = stripGenerics(lastComponent(type)).toLowerCase();
-    final classOutputPath =
-        '${relativeFolderPathFromType(type)}/$fileName.dart';
-
-    try {
-      final formattedDartClass = DartFormatter().format(dartClass);
-      File(classOutputPath)
-        ..createSync(recursive: true)
-        ..writeAsStringSync(formattedDartClass);
-    } catch (_) {
-      // Better to write even on failure, so we can figure out what syntax error
-      // it was that thwarted DartFormatter.
-      print('Unable to format class. Writing unformatted...');
-      File(classOutputPath)
-        ..createSync(recursive: true)
-        ..writeAsStringSync(dartClass);
-    }
+    final path = '${relativeFolderPathFromType(type)}/$fileName.dart';
+    final content = projection.toString();
+    writeToFile(path, content);
   }
 }
 
@@ -72,28 +76,19 @@ void generateEnumerations(Map<String, String> enums) {
   final namespaceGroups = groupTypesByParentNamespace(enums.keys);
 
   for (final namespaceGroup in namespaceGroups) {
-    final enumProjections = <EnumProjection>[];
+    final projections = <EnumProjection>[];
     final firstType = namespaceGroup.types.first;
     final packageName = packageNameFromType(firstType);
-    final fileOutputPath =
-        '${relativeFolderPathFromType(firstType)}/enums.g.dart';
-    final file = File(fileOutputPath)..createSync(recursive: true);
 
     for (final type in namespaceGroup.types) {
       final typeDef = MetadataStore.getMetadataForType(type);
       if (typeDef == null) throw Exception("Can't find $type");
-
-      final EnumProjection enumProjection;
-      if (typeDef.existsAttribute('System.FlagsAttribute')) {
-        enumProjection =
-            FlagsEnumProjection(typeDef, comment: enums[typeDef.name]!);
-      } else {
-        enumProjection = EnumProjection(typeDef, comment: enums[typeDef.name]!);
-      }
-      enumProjections.add(enumProjection);
+      final projection =
+          EnumProjection.create(typeDef, comment: enums[type] ?? '');
+      projections.add(projection);
     }
 
-    enumProjections.sort((a, b) =>
+    projections.sort((a, b) =>
         lastComponent(a.enumName).compareTo(lastComponent(b.enumName)));
 
     final String winrtEnumImport;
@@ -107,9 +102,9 @@ void generateEnumerations(Map<String, String> enums) {
           "import 'package:windows_foundation/windows_foundation.dart';";
     }
 
-    final enumsFileContent =
-        [enumsFileHeader, winrtEnumImport, ...enumProjections].join();
-    file.writeAsStringSync(DartFormatter().format(enumsFileContent));
+    final path = '${relativeFolderPathFromType(firstType)}/enums.g.dart';
+    final content = [enumsFileHeader, winrtEnumImport, ...projections].join();
+    writeToFile(path, content);
   }
 }
 
@@ -117,22 +112,21 @@ void generateStructs(Map<String, String> structs) {
   final namespaceGroups = groupTypesByParentNamespace(structs.keys);
 
   for (final namespaceGroup in namespaceGroups) {
-    final structProjections = <StructProjection>[];
-    final fileOutputPath =
-        '${relativeFolderPathFromType(namespaceGroup.types.first)}/structs.g.dart';
-    final file = File(fileOutputPath)..createSync(recursive: true);
+    final projections = <StructProjection>[];
 
     for (final type in namespaceGroup.types) {
-      final structProjection =
-          StructProjection.from(type, comment: structs[type]!);
-      structProjections.add(structProjection);
+      final projection =
+          StructProjection.from(type, comment: structs[type] ?? '');
+      projections.add(projection);
     }
 
-    structProjections.sort((a, b) =>
+    projections.sort((a, b) =>
         lastComponent(a.structName).compareTo(lastComponent(b.structName)));
 
-    final structsFileContent = [structsFileHeader, ...structProjections].join();
-    file.writeAsStringSync(DartFormatter().format(structsFileContent));
+    final path =
+        '${relativeFolderPathFromType(namespaceGroup.types.first)}/structs.g.dart';
+    final content = [structsFileHeader, ...projections].join();
+    writeToFile(path, content);
   }
 }
 
@@ -148,8 +142,7 @@ const packageNames = <String>{
 void generatePackageExports() {
   for (final packageName in packageNames) {
     final packagePath = '../$packageName/lib/src/';
-    final exportsFile = File('${packagePath}exports.g.dart')
-      ..createSync(recursive: true);
+
     final dir = Directory(packagePath);
     final files =
         dir.listSync(recursive: true, followLinks: false).whereType<File>();
@@ -175,11 +168,12 @@ void generatePackageExports() {
       exports.add(filePath);
     }
 
-    final exportsFileContent = [
+    final path = '${packagePath}exports.g.dart';
+    final content = [
       exportsFileHeader,
       exports.map((e) => "export '$e';").join('\n')
     ].join();
-    exportsFile.writeAsStringSync(DartFormatter().format(exportsFileContent));
+    writeToFile(path, content);
   }
 }
 
