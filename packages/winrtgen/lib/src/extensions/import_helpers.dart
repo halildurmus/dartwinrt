@@ -14,12 +14,12 @@ extension ImportHelpers on InterfaceProjection {
     final type = typeDef.fullyQualifiedName;
     if (name == type || ignoredTypesInImports.contains(type)) return null;
 
+    if (typeDef.isDelegate) return null;
+
     // If the type is in another package, return package import for that package
     if (packageName != typeDef.packageName) return typeDef.packageImport;
 
     // Otherwise, return relative import for that file
-
-    if (typeDef.isDelegate) return null;
 
     if (typeDef.isEnum) {
       return relativePathTo('${folderFromType(type)}/enums.g.dart');
