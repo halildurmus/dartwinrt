@@ -5,10 +5,118 @@
 @TestOn('windows')
 
 import 'package:test/test.dart';
+import 'package:winmd/winmd.dart';
+import 'package:winrtgen/winrtgen.dart';
 
 void main() {
-  // TODO: Write tests.
-  test('test', () {
-    expect(true, true);
+  final geolocatorProjection =
+      ClassProjection.from('Windows.Devices.Geolocation.Geolocator');
+
+  group('importForTypeDef', () {
+    test('returns null for ignored types', () {
+      final tokenTypeDef = MetadataStore.getMetadataForType(
+          'Windows.Foundation.EventRegistrationToken')!;
+      expect(geolocatorProjection.importForTypeDef(tokenTypeDef), isNull);
+
+      final picker2TypeDef = MetadataStore.getMetadataForType(
+          'Windows.Storage.Pickers.IFileOpenPicker2')!;
+      expect(geolocatorProjection.importForTypeDef(picker2TypeDef), isNull);
+    });
+
+    test('returns null for WinRT delegate', () {
+      final typeDef = MetadataStore.getMetadataForType(
+          'Windows.Foundation.TypedEventHandler`2')!;
+      expect(geolocatorProjection.importForTypeDef(typeDef), isNull);
+    });
+
+    test('returns package import for WinRT enum', () {
+      final typeDef =
+          MetadataStore.getMetadataForType('Windows.Foundation.AsyncStatus')!;
+      expect(geolocatorProjection.importForTypeDef(typeDef),
+          equals('package:windows_foundation/windows_foundation.dart'));
+    });
+
+    test('returns relative import for WinRT enum', () {
+      final methodProjection = geolocatorProjection.methodProjections
+          .firstWhere((m) => m.name == 'get_DesiredAccuracy');
+      expect(
+          geolocatorProjection.importForTypeDef(
+              methodProjection.returnType.typeIdentifier.type!),
+          equals('enums.g.dart'));
+    });
+
+    test('returns package import for WinRT class', () {
+      final typeDef =
+          MetadataStore.getMetadataForType('Windows.Globalization.Calendar')!;
+      expect(geolocatorProjection.importForTypeDef(typeDef),
+          equals('package:windows_globalization/windows_globalization.dart'));
+    });
+
+    test('returns relative import for WinRT class', () {
+      final typeDef = MetadataStore.getMetadataForType(
+          'Windows.Devices.Geolocation.Geoposition')!;
+      expect(geolocatorProjection.importForTypeDef(typeDef),
+          equals('geoposition.dart'));
+    });
+
+    test('returns package import for WinRT interface', () {
+      final typeDef =
+          MetadataStore.getMetadataForType('Windows.Globalization.ICalendar')!;
+      expect(geolocatorProjection.importForTypeDef(typeDef),
+          equals('package:windows_globalization/windows_globalization.dart'));
+    });
+
+    test('returns relative import for WinRT interface', () {
+      expect(
+          geolocatorProjection
+              .importForTypeDef(geolocatorProjection.inheritedInterfaces.first),
+          equals('igeolocator.dart'));
+    });
+
+    test('returns package import for WinRT struct', () {
+      final typeDef =
+          MetadataStore.getMetadataForType('Windows.Foundation.Point')!;
+      expect(geolocatorProjection.importForTypeDef(typeDef),
+          equals('package:windows_foundation/windows_foundation.dart'));
+    });
+
+    test('returns relative import for WinRT struct', () {
+      final typeDef = MetadataStore.getMetadataForType(
+          'Windows.Devices.Geolocation.BasicGeoposition')!;
+      expect(geolocatorProjection.importForTypeDef(typeDef),
+          equals('structs.g.dart'));
+    });
+  });
+
+  test('importForTypeIdentifier', () {
+    final methodProjection = geolocatorProjection.methodProjections
+        .firstWhere((m) => m.name == 'get_DesiredAccuracy');
+    expect(
+        geolocatorProjection.importForTypeIdentifier(
+            methodProjection.returnType.typeIdentifier),
+        equals('enums.g.dart'));
+  });
+
+  test('importsForInheritedInterfaces', () {
+    expect(
+        geolocatorProjection.importsForInheritedInterfaces,
+        unorderedEquals([
+          'igeolocator.dart',
+          'igeolocatorwithscalaraccuracy.dart',
+          'igeolocator2.dart'
+        ]));
+  });
+
+  test('importsForTypes', () {
+    expect(
+        geolocatorProjection.importsForTypes,
+        unorderedEquals([
+          'enums.g.dart',
+          'package:windows_foundation/windows_foundation.dart',
+          'geoposition.dart',
+          'positionchangedeventargs.dart',
+          'statuschangedeventargs.dart',
+          'structs.g.dart'
+        ]));
   });
 }
