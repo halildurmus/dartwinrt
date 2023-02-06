@@ -22,7 +22,9 @@ import 'types/types.dart';
 abstract class MethodProjection {
   MethodProjection(this.method, this.vtableOffset)
       : name = uniquelyNameMethod(method),
-        parameters = method.parameters.map(ParameterProjection.create).toList(),
+        parameters = method.isGetProperty
+            ? const []
+            : method.parameters.map(ParameterProjection.create).toList(),
         returnType = TypeProjection(method.returnType.typeIdentifier);
 
   /// The retrieved Windows metadata for the method or property.

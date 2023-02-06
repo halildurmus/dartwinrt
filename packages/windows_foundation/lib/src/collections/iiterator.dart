@@ -26,7 +26,7 @@ class IIterator<T> extends IInspectable {
   /// Creates an instance of [IIterator] using the given [ptr].
   ///
   /// [T] must be of type `int`, `String`, `Uri`, `WinRT` class/interface (e.g.
-  /// `HostName`, `IStorageFile`) or `WinRTEnum` (e.g. `DeviceClass`).
+  /// `HostName`, `StorageFile`) or `WinRTEnum` (e.g. `DeviceClass`).
   ///
   /// [intType] must be specified if [T] is `int`. Supported types are: [Int16],
   /// [Int32], [Int64], [Uint8], [Uint16], [Uint32], [Uint64].

@@ -68,11 +68,11 @@ const IID_$shortName = '${typeDef.guid}';
         : categoryComment;
   }
 
-  List<TypeDef> get implementsInterfaces => typeDef.interfaces
+  List<TypeDef> get inheritedInterfaces => typeDef.interfaces
     ..removeWhere((interface) =>
         excludedInterfacesInInherits.contains(interface.fullyQualifiedName));
 
-  String get inheritsFrom => implementsInterfaces
+  String get inheritsFrom => inheritedInterfaces
       .map((interface) => interface.shortName)
       .toList()
       .join(', ');
@@ -176,7 +176,7 @@ const IID_$shortName = '${typeDef.guid}';
       _methodForwarders ??= _cacheMethodForwarders();
 
   List<MethodForwardersProjection> _cacheMethodForwarders() =>
-      implementsInterfaces
+      inheritedInterfaces
           .where((interface) => !excludedInterfacesInMethodForwarders
               .contains(interface.fullyQualifiedName))
           .map((interface) => MethodForwardersProjection(interface, this))

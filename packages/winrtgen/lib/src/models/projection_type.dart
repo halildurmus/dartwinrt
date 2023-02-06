@@ -40,8 +40,8 @@ enum ProjectionType {
   /// Returns the appropriate [ProjectionType] for the [type].
   factory ProjectionType.from(TypeProjection type) {
     if (type.isReferenceType) {
+      // Return the wrapped type's projection type.
       final typeProjection = TypeProjection(type.typeIdentifier.typeArg!);
-      // Return the wrapped type's projected type.
       return typeProjection.projectionType;
     }
 

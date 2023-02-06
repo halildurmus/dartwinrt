@@ -34,7 +34,7 @@ class IVectorView<T> extends IInspectable implements IIterable<T> {
   /// `'{9ac00304-83ea-5688-87b6-ae38aab65d0b}'`).
   ///
   /// [T] must be of type `int`, `Uri`, `String`, `WinRT` class/interface (e.g.
-  /// `HostName`, `IStorageFile`) or `WinRTEnum` (e.g. `DeviceClass`).
+  /// `HostName`, `StorageFile`) or `WinRTEnum` (e.g. `DeviceClass`).
   ///
   /// [intType] must be specified if [T] is `int`. Supported types are: [Int16],
   /// [Int32], [Int64], [Uint8], [Uint16], [Uint32], [Uint64].

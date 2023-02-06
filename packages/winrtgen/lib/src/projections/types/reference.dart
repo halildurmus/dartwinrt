@@ -58,10 +58,11 @@ mixin _ReferenceProjection on MethodProjection {
         ? '${lastComponent(typeProjection.typeIdentifier.name)}.from'
         : null;
 
-    // The IID for IReference<T> must be passed in the 'iterableIid' parameter
+    // The IID for IReference<T> must be passed in the 'referenceIid' parameter
     // so that the 'IReference' implementation can use the correct IID when
-    // retrieving the value it holds
-    // To learn know more about how the IID is calculated, please see https://learn.microsoft.com/en-us/uwp/winrt-cref/winrt-type-system#guid-generation-for-parameterized-types
+    // retrieving the value it holds.
+    // To learn know more about how the IID is calculated, please see
+    // https://learn.microsoft.com/en-us/uwp/winrt-cref/winrt-type-system#guid-generation-for-parameterized-types
     final referenceArgSignature = returnType.typeIdentifier.typeArg!.signature;
     final referenceSignature =
         'pinterface($IID_IReference;$referenceArgSignature)';
