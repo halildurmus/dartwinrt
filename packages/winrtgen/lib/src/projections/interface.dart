@@ -155,6 +155,8 @@ const IID_$shortName = '${typeDef.guid}';
     var vtableOffset = vtableStart;
 
     for (final method in typeDef.methods) {
+      if (method.name == '.ctor') continue; // Skip constructors
+
       if (method.isGetProperty) {
         final projection = GetterProjection.create(method, vtableOffset++);
         projections.add(projection);

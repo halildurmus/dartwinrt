@@ -2,17 +2,20 @@
 // details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-import 'package:winmd/winmd.dart';
-
 import '../utils.dart';
 import 'interface.dart';
+import 'method.dart';
 
 class FactoryConstructorsProjection {
-  FactoryConstructorsProjection(this.interface);
+  FactoryConstructorsProjection(this.interface)
+      : methodProjections =
+            InterfaceProjection.from(interface).methodProjections;
 
   /// The fully qualified type name of a factory interface (e.g.
   /// `Windows.Globalization.ICalendarFactory`).
   final String interface;
+
+  final List<MethodProjection> methodProjections;
 
   /// The shorter [interface] name (e.g. `ICalendarFactory`).
   String get shortName => lastComponent(interface);
@@ -22,15 +25,9 @@ class FactoryConstructorsProjection {
   List<String> get methods => _methods ??= _cacheMethods();
 
   List<String> _cacheMethods() {
-    final factoryTypeDef = MetadataStore.getMetadataForType(interface);
-    if (factoryTypeDef == null) {
-      throw Exception('Factory typedef $interface missing.');
-    }
-
-    final interfaceProjection = InterfaceProjection(factoryTypeDef);
     final methods = <String>[];
 
-    for (final method in interfaceProjection.methodProjections) {
+    for (final method in methodProjections) {
       final className = method.shortDeclaration.split(' ').first;
       methods.add('''
   factory $className.${method.camelCasedName}(${method.methodParams}) {
