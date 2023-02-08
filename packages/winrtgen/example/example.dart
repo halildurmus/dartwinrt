@@ -7,7 +7,14 @@ import 'package:winrtgen/winrtgen.dart';
 
 final formatter = DartFormatter();
 
-String format(Object object) => formatter.format(object.toString());
+String format(Object object) {
+  try {
+    return formatter.format(object.toString());
+  } catch (_) {
+    print('Unable to format ${object.runtimeType}}');
+    return object.toString();
+  }
+}
 
 void printEnum() {
   final enumProjection = EnumProjection.from('Windows.Foundation.AsyncStatus');

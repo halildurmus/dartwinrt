@@ -88,13 +88,9 @@ class MethodForwardersProjection {
   List<MethodProjection> _methodProjectionsOfInterface(
           List<MethodProjection> methodProjections) =>
       methodProjections
-          .where((method) =>
-              method.name != '.ctor' &&
-              // Take only the interface's methods by comparing method names
-              interface.typeSpec!.type!.methods
-                  .map((m) => m.name)
-                  .toList()
-                  .contains(method.name))
+          .where((methodProjection) => interface.typeSpec!.type!.methods
+              .map((method) => method.name)
+              .contains(methodProjection.name))
           .toList();
 
   List<MethodProjection> get methodProjections {
@@ -102,27 +98,25 @@ class MethodForwardersProjection {
       return InterfaceProjection(interface).methodProjections;
     }
 
-    // Try to find method projections for the interface from the super class's
-    // method projections.
-    var projections =
+    // Try interfaceProjection's method projections.
+    final projections =
         _methodProjectionsOfInterface(interfaceProjection.methodProjections);
     if (projections.isNotEmpty) return projections;
 
-    const attributeName = 'Windows.Foundation.Metadata.ExclusiveToAttribute';
     final String classTypeName;
+    const exclusiveToAttr = 'Windows.Foundation.Metadata.ExclusiveToAttribute';
 
     // Try to find the class that implements the interface through the
     // 'ExclusiveToAttribute'.
-    if (interfaceProjection.typeDef.existsAttribute(attributeName)) {
+    if (interfaceProjection.typeDef.existsAttribute(exclusiveToAttr)) {
       classTypeName = interfaceProjection.typeDef
-          .findAttribute(attributeName)!
+          .findAttribute(exclusiveToAttr)!
           .parameters
           .first
           .value
           .toString();
     } else {
-      // If the 'ExclusiveToAttribute' not found, try using the interface name
-      // as a class name by removing the 'I' prefix.
+      // Try using the interface name as a class name by removing the 'I' prefix
       classTypeName = (interfaceProjection.typeDef.name.split('.')
             ..removeLast() // Remove the shortName (e.g. IPropertySet)
             // Add shortName without 'I' prefix (e.g. PropertySet)
@@ -130,11 +124,8 @@ class MethodForwardersProjection {
           .join('.');
     }
 
-    final classTypeDef = MetadataStore.getMetadataForType(classTypeName);
-    if (classTypeDef == null) throw Exception("Can't find $classTypeName");
-
-    projections = ClassProjection(classTypeDef).methodProjections;
-    return _methodProjectionsOfInterface(projections);
+    final classProjection = ClassProjection.from(classTypeName);
+    return _methodProjectionsOfInterface(classProjection.methodProjections);
   }
 
   List<String>? _methods;

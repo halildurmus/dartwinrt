@@ -6,12 +6,18 @@ import 'package:winmd/winmd.dart';
 
 import '../models/models.dart';
 import 'method.dart';
+import 'parameter.dart';
 import 'property.dart';
 import 'type.dart';
 import 'types/types.dart';
 
 abstract class SetterProjection extends PropertyProjection {
-  SetterProjection(super.method, super.vtableOffset);
+  SetterProjection(super.method, super.vtableOffset) {
+    parameter = parameters.first;
+  }
+
+  /// [ParameterProjection] for the parameter of the method.
+  late final ParameterProjection parameter;
 
   /// Returns the appropriate setter projection for the [method] based on the
   /// parameter type.
@@ -45,8 +51,6 @@ abstract class SetterProjection extends PropertyProjection {
       case ProjectionType.uri:
         return UriSetterProjection(method, vtableOffset);
       case ProjectionType.dartPrimitive:
-      case ProjectionType.pointer:
-      case ProjectionType.simpleArray:
         return DefaultSetterProjection(method, vtableOffset);
       default:
         throw UnsupportedError('Unsupported setter type: $projectedType');

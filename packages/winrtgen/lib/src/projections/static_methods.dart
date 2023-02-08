@@ -2,17 +2,20 @@
 // details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-import 'package:winmd/winmd.dart';
-
 import '../utils.dart';
 import 'interface.dart';
+import 'method.dart';
 
 class StaticMethodsProjection {
-  StaticMethodsProjection(this.interface);
+  StaticMethodsProjection(this.interface)
+      : methodProjections =
+            InterfaceProjection.from(interface).methodProjections;
 
   /// The fully-qualified type name of a static interface (e.g.
   /// `Windows.Foundation.IPropertyValueStatics`).
   final String interface;
+
+  final List<MethodProjection> methodProjections;
 
   /// The shorter [interface] name (e.g. `IPropertyValueStatics`).
   String get shortName => lastComponent(interface);
@@ -22,15 +25,9 @@ class StaticMethodsProjection {
   List<String> get methods => _methods ??= _cacheMethods();
 
   List<String> _cacheMethods() {
-    final staticTypeDef = MetadataStore.getMetadataForType(interface);
-    if (staticTypeDef == null) {
-      throw Exception('Static typedef $interface missing.');
-    }
-
     final methods = <String>[];
-    final interfaceProjection = InterfaceProjection(staticTypeDef);
 
-    for (final method in interfaceProjection.methodProjections) {
+    for (final method in methodProjections) {
       final statement = 'object.${method.shortForm};';
       final returnStatement =
           method.method.isSetProperty ? statement : 'return $statement';

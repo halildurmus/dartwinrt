@@ -82,7 +82,7 @@ class ClassSetterProjection extends SetterProjection with _ClassProjection {
 
   @override
   String get methodProjection => '''
-  set $camelCasedName(${parameters.first.type.exposedType} value) {
+  set $camelCasedName(${parameter.type.exposedType} value) {
     ${ffiCall(params: 'value == null ? nullptr : value.ptr.ref.lpVtbl')}
   }
 ''';

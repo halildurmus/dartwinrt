@@ -55,7 +55,7 @@ class DefaultSetterProjection extends SetterProjection {
 
   @override
   String get methodProjection => '''
-  set $camelCasedName(${parameters.first.type.dartType} value) {
+  set $camelCasedName(${parameter.type.dartType} value) {
     ${ffiCall(params: 'value')}
   }
 ''';
