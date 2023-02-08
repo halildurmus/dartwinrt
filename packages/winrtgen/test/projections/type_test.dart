@@ -5,112 +5,120 @@
 @TestOn('windows')
 
 import 'package:test/test.dart';
-import 'package:winmd/winmd.dart';
 import 'package:winrtgen/winrtgen.dart';
 
 void main() {
-  test('DateTime value types are projected correctly', () {
-    final scope =
-        MetadataStore.getMetadataForType('Windows.Globalization.ICalendar')!;
-    final typeDef = scope.findMethod('GetDateTime')!;
-    final dateTime = typeDef.returnType.typeIdentifier;
-    final typeProjection = TypeProjection(dateTime);
+  group('Windows.Foundation.', () {
+    test('DateTime types are projected correctly', () {
+      final methodProjection = MethodProjection.fromTypeAndMethodName(
+          'Windows.Globalization.ICalendar', 'GetDateTime');
+      final typeProjection = methodProjection.returnType;
+      expect(typeProjection.dartType, equals('int'));
+      expect(typeProjection.nativeType, equals('Uint64'));
+      expect(typeProjection.exposedType, equals('DateTime'));
+    });
 
-    // TODO: Test assumption that this is passed on the wire as a Uint64.
-    expect(typeProjection.dartType, equals('int'));
-    expect(typeProjection.nativeType, equals('Uint64'));
+    test('EventRegistrationToken types are projected correctly', () {
+      final methodProjection = MethodProjection.fromTypeAndMethodName(
+          'Windows.UI.Notifications.IToastNotification', 'remove_Dismissed');
+      final typeProjection = methodProjection.parameters.first.type;
+      expect(typeProjection.dartType, equals('int'));
+      expect(typeProjection.nativeType, equals('IntPtr'));
+      expect(typeProjection.exposedType, equals('int'));
+    });
+
+    test('HResult types are projected correctly', () {
+      final methodProjection = MethodProjection.fromTypeAndMethodName(
+          'Windows.Foundation.IAsyncInfo', 'get_ErrorCode');
+      final typeProjection = methodProjection.returnType;
+      expect(typeProjection.dartType, equals('int'));
+      expect(typeProjection.nativeType, equals('Int32'));
+      expect(typeProjection.exposedType, equals('int'));
+    });
+
+    test('TimeSpan types are projected correctly', () {
+      final methodProjection = MethodProjection.fromTypeAndMethodName(
+          'Windows.Foundation.IPropertyValue', 'GetTimeSpan');
+      final typeProjection = methodProjection.returnType;
+      expect(typeProjection.dartType, equals('int'));
+      expect(typeProjection.nativeType, equals('Uint64'));
+      expect(typeProjection.exposedType, equals('Duration'));
+    });
   });
 
-  test('EventRegistrationToken types are projected correctly', () {
-    final scope = MetadataStore.getMetadataForType(
-        'Windows.UI.Notifications.IToastNotification')!;
-    final method = scope.findMethod('remove_Dismissed')!;
-    final token = method.parameters.first;
-    final typeProjection = TypeProjection(token.typeIdentifier);
-
-    expect(typeProjection.dartType, equals('int'));
-    expect(typeProjection.nativeType, equals('IntPtr'));
-  });
-
-  test('Event handler types are projected correctly', () {
-    final winTypeDef = MetadataStore.getMetadataForType(
-        'Windows.UI.Notifications.ToastNotification')!;
-    final method = winTypeDef.findMethod('add_Activated')!;
-    final param = method.parameters.first;
-    final projection = TypeProjection(param.typeIdentifier);
-
+  test('Delegate types are projected correctly', () {
+    final methodProjection = MethodProjection.fromTypeAndMethodName(
+        'Windows.UI.Notifications.IToastNotification', 'add_Activated');
+    final typeProjection = methodProjection.parameters.first.type;
     // TypedEventHandler<ToastNotification, object>
-    expect(projection.projection.dartType,
+    expect(typeProjection.dartType,
+        equals('Pointer<NativeFunction<TypedEventHandler>>'));
+    expect(typeProjection.nativeType,
+        equals('Pointer<NativeFunction<TypedEventHandler>>'));
+    expect(typeProjection.exposedType,
         equals('Pointer<NativeFunction<TypedEventHandler>>'));
   });
 
   test('Simple array types are projected correctly', () {
-    final scope = MetadataStore.getMetadataForType(
-        'Windows.Foundation.IPropertyValueStatics')!;
-    final method = scope.findMethod('CreateUInt8Array')!;
-    expect(method.parameters.length, equals(2));
+    final methodProjection = MethodProjection.fromTypeAndMethodName(
+        'Windows.Foundation.IPropertyValueStatics', 'CreateUInt8Array');
+    expect(methodProjection.parameters.length, equals(2));
 
-    final valueSizeParam = method.parameters.first;
+    final valueSizeParam = methodProjection.parameters.first;
     expect(valueSizeParam.name, equals('__valueSize'));
-
-    final valueSizeParamProjection =
-        TypeProjection(valueSizeParam.typeIdentifier);
+    final valueSizeParamProjection = valueSizeParam.type;
     expect(valueSizeParamProjection.dartType, equals('int'));
     expect(valueSizeParamProjection.nativeType, equals('Uint32'));
 
-    final valueParam = method.parameters.last;
+    final valueParam = methodProjection.parameters.last;
     expect(valueParam.name, equals('value'));
-    final valueParamProjection = TypeProjection(valueParam.typeIdentifier);
+    final valueParamProjection = valueParam.type;
     expect(valueParamProjection.dartType, equals('Pointer<Uint8>'));
     expect(valueParamProjection.nativeType, equals('Pointer<Uint8>'));
   });
 
-  test('Reference simple array COM types are projected correctly', () {
+  test('Reference simple array COMObject types are projected correctly', () {
     // virtual HRESULT STDMETHODCALLTYPE GetInspectableArray(
     //   UINT32* valueLength,
     //   IInspectable*** value
     // )
-    final scope =
-        MetadataStore.getMetadataForType('Windows.Foundation.IPropertyValue')!;
-    final method = scope.findMethod('GetInspectableArray')!;
-    expect(method.parameters.length, equals(2));
+    final methodProjection = MethodProjection.fromTypeAndMethodName(
+        'Windows.Foundation.IPropertyValue', 'GetInspectableArray');
+    expect(methodProjection.parameters.length, equals(2));
 
-    final valueSizeParam = method.parameters.first;
+    final valueSizeParam = methodProjection.parameters.first;
     expect(valueSizeParam.name, equals('__valueSize'));
-    final valueSizeParamProjection =
-        TypeProjection(valueSizeParam.typeIdentifier);
+    final valueSizeParamProjection = valueSizeParam.type;
     expect(valueSizeParamProjection.dartType, equals('Pointer<Uint32>'));
     expect(valueSizeParamProjection.nativeType, equals('Pointer<Uint32>'));
 
-    final valueParam = method.parameters.last;
+    final valueParam = methodProjection.parameters.last;
     expect(valueParam.name, equals('value'));
-    final valueParamProjection = TypeProjection(valueParam.typeIdentifier);
+    final valueParamProjection = valueParam.type;
     expect(
         valueParamProjection.dartType, equals('Pointer<Pointer<COMObject>>'));
     expect(
         valueParamProjection.nativeType, equals('Pointer<Pointer<COMObject>>'));
   });
 
-  test('Reference simple array value types are projected correctly', () {
+  test('Reference simple array int types are projected correctly', () {
     // virtual HRESULT STDMETHODCALLTYPE GetUInt8Array(
     //   UINT32* valueLength,
     //   BYTE** value
     // )
-    final scope =
-        MetadataStore.getMetadataForType('Windows.Foundation.IPropertyValue')!;
-    final method = scope.findMethod('GetUInt8Array')!;
-    expect(method.parameters.length, equals(2));
+    final methodProjection = MethodProjection.fromTypeAndMethodName(
+        'Windows.Foundation.IPropertyValue', 'GetUInt8Array');
+    expect(methodProjection.parameters.length, equals(2));
 
-    final valueSizeParam = method.parameters.first;
+    final valueSizeParam = methodProjection.parameters.first;
     expect(valueSizeParam.name, equals('__valueSize'));
-    final valueSizeParamProjection =
-        TypeProjection(valueSizeParam.typeIdentifier);
+    final valueSizeParamProjection = valueSizeParam.type;
     expect(valueSizeParamProjection.dartType, equals('Pointer<Uint32>'));
     expect(valueSizeParamProjection.nativeType, equals('Pointer<Uint32>'));
 
-    final valueParam = method.parameters.last;
+    final valueParam = methodProjection.parameters.last;
     expect(valueParam.name, equals('value'));
-    final valueParamProjection = TypeProjection(valueParam.typeIdentifier);
+    final valueParamProjection = valueParam.type;
     expect(valueParamProjection.dartType, equals('Pointer<Pointer<Uint8>>'));
     expect(valueParamProjection.nativeType, equals('Pointer<Pointer<Uint8>>'));
   });

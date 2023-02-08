@@ -8,28 +8,72 @@ import 'package:test/test.dart';
 import 'package:winrtgen/winrtgen.dart';
 
 void main() {
-  test('WinRT enumeration projected correctly', () {
-    final projection = EnumProjection.from('Windows.Foundation.AsyncStatus');
-    expect(projection.category, equals('enum'));
-    expect(projection.classDeclaration,
-        equals('enum AsyncStatus implements WinRTEnum {'));
-    expect(
-        projection.identifiers,
-        orderedEquals([
-          'started(0)',
-          'completed(1)',
-          'canceled(2)',
-          'error(3)',
-        ]));
+  group('EnumProjection', () {
+    test('projects something', () {
+      final output =
+          EnumProjection.from('Windows.Foundation.AsyncStatus').toString();
+      expect(output, isNotEmpty);
+      expect(output, contains('AsyncStatus'));
+    });
+
+    test('from factory constructor throws if type is not found', () {
+      expect(() => EnumProjection.from('Windows.Foo.Bar'),
+          throwsA(isA<Exception>()));
+    });
   });
 
-  test('Acronyms in enum identifiers are converted to lowercase', () {
-    final projection =
-        EnumProjection.from('Windows.Devices.Geolocation.PositionSource');
-    expect(projection.category, equals('enum'));
-    expect(projection.classDeclaration,
-        equals('enum PositionSource implements WinRTEnum {'));
-    expect(
+  group('FlagsEnumProjection', () {
+    test('projects something', () {
+      final output =
+          FlagsEnumProjection.from('Windows.Storage.FileAttributes').toString();
+      expect(output, isNotEmpty);
+      expect(output, contains('FileAttributes'));
+    });
+
+    test('from factory constructor throws if type is not found', () {
+      expect(() => FlagsEnumProjection.from('Windows.Foo.Bar'),
+          throwsA(isA<Exception>()));
+    });
+  });
+
+  group('WinRT enum', () {
+    final asyncStatusProjection =
+        EnumProjection.from('Windows.Foundation.AsyncStatus');
+
+    test('includes correct dartdoc category comment', () {
+      expect(asyncStatusProjection.category, equals('enum'));
+      expect(
+          asyncStatusProjection.classPreamble, equals('/// {@category enum}'));
+    });
+
+    test('has correct enum name', () {
+      expect(asyncStatusProjection.enumName, equals('AsyncStatus'));
+    });
+
+    test('has correct class declaration', () {
+      expect(asyncStatusProjection.classDeclaration,
+          equals('enum AsyncStatus implements WinRTEnum {'));
+    });
+
+    test('has correct number of identifiers', () {
+      expect(asyncStatusProjection.identifiers.length, equals(4));
+    });
+
+    test('has correct identifiers', () {
+      expect(
+          asyncStatusProjection.identifiers,
+          orderedEquals([
+            'started(0)',
+            'completed(1)',
+            'canceled(2)',
+            'error(3)',
+          ]));
+    });
+
+    test('identifiers are correctly converted to lowercase', () {
+      final projection =
+          EnumProjection.from('Windows.Devices.Geolocation.PositionSource');
+      expect(
         projection.identifiers,
         orderedEquals([
           'cellular(0)',
@@ -39,16 +83,33 @@ void main() {
           'unknown(4)',
           'default_(5)',
           'obfuscated(6)'
-        ]));
+        ]),
+      );
+    });
   });
 
-  test('WinRT Flags enumeration projected correctly', () {
-    final projection =
+  group('WinRT Flags enum', () {
+    final fileAttributesProjection =
         FlagsEnumProjection.from('Windows.Storage.FileAttributes');
-    expect(projection.classDeclaration,
-        equals('class FileAttributes extends WinRTEnum {'));
-    expect(
-        projection.identifiers,
+
+    test('includes correct dartdoc category comment', () {
+      expect(fileAttributesProjection.category, equals('enum'));
+      expect(fileAttributesProjection.classPreamble,
+          equals('/// {@category enum}'));
+    });
+
+    test('has correct enum name', () {
+      expect(fileAttributesProjection.enumName, equals('FileAttributes'));
+    });
+
+    test('has correct class declaration', () {
+      expect(fileAttributesProjection.classDeclaration,
+          equals('class FileAttributes extends WinRTEnum {'));
+    });
+
+    test('has correct identifiers', () {
+      expect(
+        fileAttributesProjection.identifiers,
         orderedEquals([
           "static const normal = FileAttributes(0, name: 'normal');",
           "static const readOnly = FileAttributes(1, name: 'readOnly');",
@@ -56,6 +117,8 @@ void main() {
           "static const archive = FileAttributes(32, name: 'archive');",
           "static const temporary = FileAttributes(256, name: 'temporary');",
           "static const locallyIncomplete = FileAttributes(512, name: 'locallyIncomplete');",
-        ]));
+        ]),
+      );
+    });
   });
 }
