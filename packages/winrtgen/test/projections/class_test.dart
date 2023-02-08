@@ -177,7 +177,7 @@ void main() {
     test('has correct number of factory constructors', () {
       expect(
           calendarProjection.factoryConstructors
-              .fold(0, (prev, element) => prev + element.methods.length),
+              .fold<int>(0, (prev, element) => prev + element.methods.length),
           equals(3));
     });
 
@@ -202,7 +202,7 @@ void main() {
     test('has correct number of static methods', () {
       expect(
           geolocatorProjection.staticMethods
-              .fold(0, (prev, element) => prev + element.methods.length),
+              .fold<int>(0, (prev, element) => prev + element.methods.length),
           equals(6));
     });
 
@@ -225,7 +225,7 @@ void main() {
     test('has correct number of method forwarders', () {
       expect(
           calendarProjection.methodForwarders
-              .fold(0, (prev, element) => prev + element.methods.length),
+              .fold<int>(0, (prev, element) => prev + element.methods.length),
           equals(102));
     });
 
