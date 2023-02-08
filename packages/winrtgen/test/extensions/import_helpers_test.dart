@@ -99,24 +99,26 @@ void main() {
 
   test('importsForInheritedInterfaces', () {
     expect(
-        geolocatorProjection.importsForInheritedInterfaces,
-        unorderedEquals([
-          'igeolocator.dart',
-          'igeolocatorwithscalaraccuracy.dart',
-          'igeolocator2.dart'
-        ]));
+      geolocatorProjection.importsForInheritedInterfaces,
+      unorderedEquals([
+        'igeolocator.dart',
+        'igeolocatorwithscalaraccuracy.dart',
+        'igeolocator2.dart'
+      ]),
+    );
   });
 
   test('importsForTypes', () {
     expect(
-        geolocatorProjection.importsForTypes,
-        unorderedEquals([
-          'enums.g.dart',
-          'package:windows_foundation/windows_foundation.dart',
-          'geoposition.dart',
-          'positionchangedeventargs.dart',
-          'statuschangedeventargs.dart',
-          'structs.g.dart'
-        ]));
+      geolocatorProjection.importsForTypes,
+      unorderedEquals([
+        'enums.g.dart',
+        'package:windows_foundation/windows_foundation.dart',
+        'geoposition.dart',
+        'positionchangedeventargs.dart',
+        'statuschangedeventargs.dart',
+        'structs.g.dart'
+      ]),
+    );
   });
 }
