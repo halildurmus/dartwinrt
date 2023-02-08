@@ -195,16 +195,17 @@ void main() {
       expect(projection.shortDeclaration, equals('int? getSignalBars()'));
     });
 
-    test('projects IVector<String>', () {
+    test('projects IVector<BackgroundTransferFileRange>', () {
       final projection = MethodProjection.fromTypeAndMethodName(
-          'Windows.Devices.Printers.IIppAttributeValue', 'GetKeywordArray');
+          'Windows.Networking.BackgroundTransfer.IDownloadOperation3',
+          'GetDownloadedRanges');
       expect(projection, isA<VectorMethodProjection>());
       expect(projection.nativePrototype,
           equals('HRESULT Function(Pointer, Pointer<COMObject>)'));
       expect(projection.dartPrototype,
           equals('int Function(Pointer, Pointer<COMObject>)'));
       expect(projection.shortDeclaration,
-          equals('IVector<String> getKeywordArray()'));
+          equals('IVector<BackgroundTransferFileRange> getDownloadedRanges()'));
     });
 
     test('projects IVectorView<String>', () {

@@ -42,15 +42,14 @@ void main() {
 
     test('projects bool', () {
       final projection = SetterProjection.fromTypeAndMethodName(
-          'Windows.UI.Notifications.IToastNotification6',
-          'put_ExpiresOnReboot');
+          'Windows.UI.Notifications.IToastNotification2', 'put_SuppressPopup');
       expect(projection, isA<DefaultSetterProjection>());
       expect(projection.nativePrototype,
           equals('HRESULT Function(Pointer, Bool value)'));
       expect(projection.dartPrototype,
           equals('int Function(Pointer, bool value)'));
-      expect(projection.shortDeclaration,
-          equals('set expiresOnReboot(bool value)'));
+      expect(
+          projection.shortDeclaration, equals('set suppressPopup(bool value)'));
     });
 
     test('projects class', () {
