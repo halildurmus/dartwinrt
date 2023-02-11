@@ -61,11 +61,11 @@ mixin _AsyncOperationProjection on MethodProjection {
     // IAsyncOperation implementation can instantiate the object.
     final creator = returnType.typeIdentifier.typeArg!.creator;
 
-    // If the type argument is an enum or int, its native type (e.g. Int32,
-    // Uint32) must be passed in the 'intType' parameter so that the
-    // 'IAsyncOperation' implementations can use the appropriate native type
+    // If the type argument is an enum or int, 'intType' parameter must be
+    // specified so that the IAsyncOperation implementation can use the
+    // appropriate native integer type
     final intType = typeProjection.isWinRTEnum || asyncOperationTypeArg == 'int'
-        ? typeProjection.nativeType
+        ? 'WinRTIntType.${typeProjection.nativeType.toLowerCase()}'
         : null;
 
     final args = <String>[];

@@ -10,22 +10,20 @@ import 'package:windows_foundation/windows_foundation.dart';
 // Test the WinRT helper functions to make sure everything is working correctly.
 
 void main() {
-  test('isSameType', () {
-    expect(isSameType<Guid, Guid>(), isTrue);
-    expect(isSameType<int, int>(), isTrue);
-    expect(isSameType<int, int?>(), isFalse);
-    expect(isSameType<Object, Object>(), isTrue);
-    expect(isSameType<String, String>(), isTrue);
-    expect(isSameType<String?, String>(), isFalse);
+  test('isNullableObjectType', () {
+    expect(isNullableObjectType<Object?>(), isTrue);
+    expect(isNullableObjectType<Object>(), isFalse);
+    expect(isNullableObjectType<String?>(), isFalse);
+    expect(isNullableObjectType<String>(), isFalse);
   });
 
-  test('isSimilarType', () {
-    expect(isSimilarType<Guid, Guid>(), isTrue);
-    expect(isSimilarType<int?, int>(), isTrue);
-    expect(isSimilarType<int?, int?>(), isTrue);
-    expect(isSimilarType<Object, Object>(), isTrue);
-    expect(isSimilarType<String, String>(), isTrue);
-    expect(isSimilarType<String?, String?>(), isTrue);
+  test('isSameType', () {
+    expect(isSameType<Guid, Guid>(), isTrue);
+    expect(isSameType<Object, Object>(), isTrue);
+    expect(isSameType<Object, Object?>(), isFalse);
+    expect(isSameType<Object?, Object?>(), isTrue);
+    expect(isSameType<String, String>(), isTrue);
+    expect(isSameType<String?, String>(), isFalse);
   });
 
   test('isSubtype', () {
@@ -36,15 +34,22 @@ void main() {
   });
 
   test('isSubtypeOfInspectable', () {
+    expect(isSubtypeOfInspectable<IInspectable>(), isTrue);
     expect(isSubtypeOfInspectable<StringMap>(), isTrue);
     expect(isSubtypeOfInspectable<IAsyncInfo>(), isTrue);
     expect(isSubtypeOfInspectable<IUnknown>(), isFalse);
     expect(isSubtypeOfInspectable<INetwork>(), isFalse);
   });
 
+  test('isSubtypeOfStruct', () {
+    expect(isSubtypeOfStruct<GUID>(), isTrue);
+    expect(isSubtypeOfStruct<Guid>(), isFalse);
+    expect(isSubtypeOfStruct<Point>(), isTrue);
+  });
+
   test('isSubtypeOfWinRTEnum', () {
-    expect(isSubtypeOfWinRTEnum<AsyncStatus>(), isTrue);
     expect(isSubtypeOfWinRTEnum<WinRTEnum>(), isTrue);
+    expect(isSubtypeOfWinRTEnum<AsyncStatus>(), isTrue);
     expect(isSubtypeOfWinRTEnum<IAsyncAction>(), isFalse);
   });
 }

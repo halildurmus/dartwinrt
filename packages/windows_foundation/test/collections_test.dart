@@ -37,7 +37,7 @@ void main() {
           ..ref.height = 1500
           ..ref.width = 300;
 
-        map = IMap()
+        map = IMap.empty()
           ..insert('key1', null)
           ..insert('key2', StringMap())
           ..insert('key3', true)
@@ -518,7 +518,7 @@ void main() {
       late IMap<String, String> map;
 
       setUp(() {
-        map = IMap()
+        map = IMap.empty()
           ..insert('key1', 'value1')
           ..insert('key2', '')
           ..insert('key3', 'value3');
@@ -649,7 +649,7 @@ void main() {
       }
 
       setUp(() {
-        final map = IMap<String, String>()
+        final map = IMap<String, String>.empty()
           ..insert('key1', 'value1')
           ..insert('key2', '')
           ..insert('key3', 'value3');
@@ -657,7 +657,7 @@ void main() {
       });
 
       test('lookup fails if the map is empty', () {
-        final map = IMap<String, String>();
+        final map = IMap<String, String>.empty();
         mapView = getView(map.ptr);
         expect(() => mapView.lookup('key1'), throwsException);
       });

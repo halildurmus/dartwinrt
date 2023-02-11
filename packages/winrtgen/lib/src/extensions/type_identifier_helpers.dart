@@ -56,7 +56,8 @@ String _parseGenericTypeIdentifierCreator(TypeIdentifier typeIdentifier) {
   // e.g. IIterable<int>, IVector<int>, IVectorView<int>
   if (typeArguments(_parseGenericTypeIdentifierName(typeIdentifier)) == 'int') {
     final typeProjection = TypeProjection(typeIdentifier.typeArg!);
-    args.add('intType: ${typeProjection.nativeType}');
+    final intType = 'WinRTIntType.${typeProjection.nativeType.toLowerCase()}';
+    args.add('intType: $intType');
   }
 
   return '(Pointer<COMObject> ptr) => '

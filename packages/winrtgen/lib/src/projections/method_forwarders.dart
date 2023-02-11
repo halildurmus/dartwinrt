@@ -172,14 +172,14 @@ class MethodForwardersProjection {
           continue;
         }
 
-        // Use custom forwarder for IndexOf to make its 'value' parameter
+        // Use custom forwarder for IndexOf to make its value parameter
         // non-nullable.
         if (methodProjection.name == 'IndexOf') {
           methods.add(vectorIndexOfForwarder());
           continue;
         }
 
-        // Use custom forwarder for InsertAt to make its 'value' parameter
+        // Use custom forwarder for InsertAt to make its value parameter
         // non-nullable.
         if (methodProjection.name == 'InsertAt') {
           methods.add(vectorInsertAtForwarder());
@@ -193,7 +193,7 @@ class MethodForwardersProjection {
           continue;
         }
 
-        // Use custom forwarder for SetAt to make its 'value' parameter
+        // Use custom forwarder for SetAt to make its value parameter
         // non-nullable.
         if (methodProjection.name == 'SetAt') {
           methods.add(vectorSetAtForwarder());
@@ -219,12 +219,13 @@ class MethodForwardersProjection {
     final overrideAnnotation =
         declaration.contains('@override') ? '' : '@override';
     return '''
-        $overrideAnnotation
-        $declaration => $fieldIdentifier.${methodProjection.shortForm};
+  $overrideAnnotation
+  $declaration => $fieldIdentifier.${methodProjection.shortForm};
 ''';
   }
 
-  // Custom method forwarder declarations
+  // Custom method forwarders
+
   String jsonObjectInsertForwarder() {
     final keyType = typeArgs.split(', ')[0];
     final valueType = typeArgs.split(', ')[1];
@@ -292,7 +293,7 @@ class MethodForwardersProjection {
       $fieldIdentifier.setAt(index, value);
 ''';
 
-  /// Method forwarders for `IIterable`s `first()` and helper function `toMap()`.
+  /// Method forwarders for IIterable's `first()` and IMap/IMapView's `toMap()`.
   String mapPostamble() => '''
   @override
   IIterator<IKeyValuePair<$typeArgs>> first() => $fieldIdentifier.first();
@@ -301,7 +302,8 @@ class MethodForwardersProjection {
   Map<$typeArgs> toMap() => $fieldIdentifier.toMap();
 ''';
 
-  /// Method forwarders for `IIterable`s `first()` and helper function `toList()`.
+  /// Method forwarders for IIterable's `first()` and Vector/VectorView's
+  /// `toList()`.
   String vectorPostamble() => '''
   @override
   IIterator<$typeArgs> first() => $fieldIdentifier.first();
@@ -311,12 +313,13 @@ class MethodForwardersProjection {
 ''';
 
   @override
-  String toString() => methodProjections.isEmpty
-      ? ''
-      : '''
+  String toString() {
+    if (methodProjections.isEmpty) return '';
+    return '''
   // ${interface.shortName} methods
   late final $fieldIdentifier = $interfaceInstantiation
 
   ${methods.join('\n')}
 ''';
+  }
 }

@@ -22,20 +22,20 @@ mixin _VectorProjection on MethodProjection {
 
     // If the type argument is an enum or a WinRT object (e.g. StorageFile), the
     // constructor of that class must be passed in the 'enumCreator' parameter
-    // for enums, 'creator' parameter for WinRT objects so that the 'IVector'
-    // and 'IVectorView' implementations can instantiate the object
+    // for enums, 'creator' parameter for WinRT objects so that the IVector and
+    // IVectorView implementations can instantiate the object
     final creator = returnType.typeIdentifier.typeArg!.creator;
 
     // The IID for IIterable<T> must be passed in the 'iterableIid' parameter so
-    // that the 'IVector' and 'IVectorView' implementations can use the correct
-    // IID when instantiating the IIterable object
+    // that the IVector and IVectorView implementations can use the correct IID
+    // when instantiating the IIterable object
     final iterableIid = iterableIidFromVectorType(returnType.typeIdentifier);
 
-    // If the type argument is an enum or int, its native type (e.g. Int32,
-    // Uint32) must be passed in the 'intType' parameter so that the 'IVector'
-    // and 'IVectorView' implementations can use the appropriate native type
+    // If the type argument is an enum or int, 'intType' parameter must be
+    // specified so that the IVector and IVectorView implementations can use the
+    // appropriate native integer type
     final intType = typeProjection.isWinRTEnum || vectorTypeArg == 'int'
-        ? typeProjection.nativeType
+        ? 'WinRTIntType.${typeProjection.nativeType.toLowerCase()}'
         : null;
 
     final args = <String>["iterableIid: '$iterableIid'"];

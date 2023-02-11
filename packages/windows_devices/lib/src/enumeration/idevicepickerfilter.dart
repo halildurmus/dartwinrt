@@ -51,7 +51,7 @@ class IDevicePickerFilter extends IInspectable {
     return IVector.fromRawPointer(retValuePtr,
         iterableIid: '{47d4be05-58f1-522e-81c6-975eb4131bb9}',
         enumCreator: DeviceClass.from,
-        intType: Int32);
+        intType: WinRTIntType.int32);
   }
 
   IVector<String> get supportedDeviceSelectors {
