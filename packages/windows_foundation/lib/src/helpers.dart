@@ -152,14 +152,6 @@ bool isSimilarType<S, T>() => isSameType<S, T>() || isSameType<S, T?>();
 /// ```
 bool isSubtype<S, T>() => <S>[] is List<T> || <S>[] is List<T?>;
 
-/// Determines whether [T] is a subtype of `WinRTEnum`.
-///
-/// ```dart
-/// isSubtypeOfWinRTEnum<AsyncStatus>(); // true
-/// isSubtypeOfWinRTEnum<FileAttributes>(); // true
-/// ```
-bool isSubtypeOfWinRTEnum<T>() => isSubtype<T, WinRTEnum>();
-
 /// Determines whether [T] is a subtype of `IInspectable`.
 ///
 /// ```dart
@@ -167,6 +159,22 @@ bool isSubtypeOfWinRTEnum<T>() => isSubtype<T, WinRTEnum>();
 /// isSubtypeOfInspectable<INetwork>(); // false
 /// ```
 bool isSubtypeOfInspectable<T>() => isSubtype<T, IInspectable>();
+
+/// Determines whether [T] is a subtype of [Struct].
+///
+/// ```dart
+/// isSubtypeOfStruct<Point>(); // true
+/// isSubtypeOfStruct<GUID>(); // true
+/// ```
+bool isSubtypeOfStruct<T>() => isSubtype<T, Struct>();
+
+/// Determines whether [T] is a subtype of [WinRTEnum].
+///
+/// ```dart
+/// isSubtypeOfWinRTEnum<AsyncStatus>(); // true
+/// isSubtypeOfWinRTEnum<FileAttributes>(); // true
+/// ```
+bool isSubtypeOfWinRTEnum<T>() => isSubtype<T, WinRTEnum>();
 
 /// Represents the trust level of an activatable class.
 ///
