@@ -199,7 +199,7 @@ void main() {
           contains("iterableIid: '{fe2f3d47-5d47-5499-8374-430c7cda0204}'"));
     });
 
-    test('projects IReference<DateTime>', () {
+    test('projects IReference<DateTime?>', () {
       final projection = GetterProjection.fromTypeAndMethodName(
           'Windows.UI.Notifications.IToastNotification', 'get_ExpirationTime');
       expect(projection, isA<ReferenceGetterProjection>());
