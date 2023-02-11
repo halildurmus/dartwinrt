@@ -88,8 +88,7 @@ String _parseGenericTypeIdentifierName(TypeIdentifier typeIdentifier) {
     return '$parentTypeName<$firstArg, $secondArg$questionMark>';
   }
 
-  final isAsyncOperation = parentTypeName == 'IAsyncOperation';
-  if (isAsyncOperation) {
+  if (parentTypeName == 'IAsyncOperation') {
     final typeArg = typeIdentifier.typeArg!.shortName;
     final typeProjection = TypeProjection(typeIdentifier.typeArg!);
     final typeArgIsNullable =
@@ -101,6 +100,12 @@ String _parseGenericTypeIdentifierName(TypeIdentifier typeIdentifier) {
             !typeProjection.isValueType;
     final questionMark = typeArgIsNullable ? '?' : '';
     return 'IAsyncOperation<$typeArg$questionMark>';
+  }
+
+  if (parentTypeName == 'IReference') {
+    final typeArg = typeIdentifier.typeArg!.shortName;
+    // Mark typeArg as nullable as all IReference types are nullable.
+    return 'IReference<$typeArg?>';
   }
 
   return '$parentTypeName<${typeIdentifier.typeArg!.shortName}>';
