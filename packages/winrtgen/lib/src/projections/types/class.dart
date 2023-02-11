@@ -24,7 +24,7 @@ mixin _ClassProjection on MethodProjection {
   String get nullCheck {
     if (!methodReturnType.endsWith('?')) return '';
     return '''
-    if (retValuePtr.ref.lpVtbl == nullptr) {
+    if (retValuePtr.ref.isNull) {
       free(retValuePtr);
       return null;
     }

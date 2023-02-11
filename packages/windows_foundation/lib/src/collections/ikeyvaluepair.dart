@@ -369,7 +369,7 @@ Pointer<COMObject>? _valueCOMObject(Pointer<COMObject> ptr) {
     throw WindowsException(hr);
   }
 
-  if (retValuePtr.ref.lpVtbl == nullptr) {
+  if (retValuePtr.ref.isNull) {
     free(retValuePtr);
     return null;
   }
@@ -395,7 +395,7 @@ Object? _valueObject(Pointer<COMObject> ptr) {
     throw WindowsException(hr);
   }
 
-  if (retValuePtr.ref.lpVtbl == nullptr) {
+  if (retValuePtr.ref.isNull) {
     free(retValuePtr);
     return null;
   }

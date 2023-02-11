@@ -52,7 +52,7 @@ class IJsonValueStatics extends IInspectable {
 
     WindowsDeleteString(inputHString);
 
-    if (retValuePtr.ref.lpVtbl == nullptr) {
+    if (retValuePtr.ref.isNull) {
       free(retValuePtr);
       return null;
     }
@@ -108,7 +108,7 @@ class IJsonValueStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.lpVtbl == nullptr) {
+    if (retValuePtr.ref.isNull) {
       free(retValuePtr);
       return null;
     }
@@ -136,7 +136,7 @@ class IJsonValueStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.lpVtbl == nullptr) {
+    if (retValuePtr.ref.isNull) {
       free(retValuePtr);
       return null;
     }
@@ -166,7 +166,7 @@ class IJsonValueStatics extends IInspectable {
 
     WindowsDeleteString(inputHString);
 
-    if (retValuePtr.ref.lpVtbl == nullptr) {
+    if (retValuePtr.ref.isNull) {
       free(retValuePtr);
       return null;
     }

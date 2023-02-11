@@ -193,7 +193,7 @@ class _IMapViewEnumInspectable<K, V> extends IMapView<K, V> {
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.lpVtbl == nullptr) {
+    if (retValuePtr.ref.isNull) {
       free(retValuePtr);
       return null as V;
     }
@@ -269,7 +269,7 @@ class _IMapViewGuidInspectable<V> extends IMapView<Guid, V> {
 
     free(nativeGuidPtr);
 
-    if (retValuePtr.ref.lpVtbl == nullptr) {
+    if (retValuePtr.ref.isNull) {
       free(retValuePtr);
       return null as V;
     }
@@ -321,7 +321,7 @@ class _IMapViewGuidObject extends IMapView<Guid, Object?> {
 
     free(nativeGuidPtr);
 
-    if (retValuePtr.ref.lpVtbl == nullptr) {
+    if (retValuePtr.ref.isNull) {
       free(retValuePtr);
       return null;
     }
@@ -376,7 +376,7 @@ class _IMapViewIntInspectable<V> extends IMapView<int, V> {
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.lpVtbl == nullptr) {
+    if (retValuePtr.ref.isNull) {
       free(retValuePtr);
       return null as V;
     }
@@ -505,7 +505,7 @@ class _IMapViewStringInspectable<V> extends IMapView<String, V> {
         throw WindowsException(hr);
       }
 
-      if (retValuePtr.ref.lpVtbl == nullptr) {
+      if (retValuePtr.ref.isNull) {
         free(retValuePtr);
         return null as V;
       }
@@ -559,7 +559,7 @@ class _IMapViewStringObject extends IMapView<String, Object?> {
         throw WindowsException(hr);
       }
 
-      if (retValuePtr.ref.lpVtbl == nullptr) {
+      if (retValuePtr.ref.isNull) {
         free(retValuePtr);
         return null;
       }

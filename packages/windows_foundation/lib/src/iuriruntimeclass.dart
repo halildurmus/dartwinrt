@@ -260,7 +260,7 @@ class IUriRuntimeClass extends IInspectable {
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.lpVtbl == nullptr) {
+    if (retValuePtr.ref.isNull) {
       free(retValuePtr);
       return null;
     }
@@ -431,7 +431,7 @@ class IUriRuntimeClass extends IInspectable {
 
     WindowsDeleteString(relativeUriHString);
 
-    if (retValuePtr.ref.lpVtbl == nullptr) {
+    if (retValuePtr.ref.isNull) {
       free(retValuePtr);
       return null;
     }

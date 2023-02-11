@@ -294,7 +294,7 @@ class _IAsyncOperationInspectable<T> extends IAsyncOperation<T> {
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.lpVtbl == nullptr) {
+    if (retValuePtr.ref.isNull) {
       free(retValuePtr);
       return null as T;
     }
@@ -429,7 +429,7 @@ class _IAsyncOperationObject extends IAsyncOperation<Object?> {
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.lpVtbl == nullptr) {
+    if (retValuePtr.ref.isNull) {
       free(retValuePtr);
       return null;
     }
@@ -488,7 +488,7 @@ class _IAsyncOperationUri extends IAsyncOperation<Uri?> {
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.lpVtbl == nullptr) {
+    if (retValuePtr.ref.isNull) {
       free(retValuePtr);
       return null;
     }

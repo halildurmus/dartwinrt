@@ -29,7 +29,7 @@ mixin _ObjectProjection on MethodProjection {
   String get nullCheck => isMethodFromPropertyValueStatics
       ? ''
       : '''
-    if (retValuePtr.ref.lpVtbl == nullptr) {
+    if (retValuePtr.ref.isNull) {
       free(retValuePtr);
       return null;
     }''';

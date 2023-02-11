@@ -12,6 +12,11 @@ import 'package:win32/win32.dart';
 import 'iinspectable.dart';
 import 'winrt_enum.dart';
 
+extension NullCheckHelper on COMObject {
+  /// Whether the [lpVtbl] pointer is null.
+  bool get isNull => lpVtbl.address == 0;
+}
+
 extension WinRTStringConversion on Pointer<HSTRING> {
   /// Gets the Dart string at the handle pointed to by this object.
   String toDartString() => convertFromHString(value);
