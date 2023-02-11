@@ -10,7 +10,6 @@ import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
 
 import 'iinspectable.dart';
-import 'winrt_enum.dart';
 
 extension NullCheckHelper on COMObject {
   /// Whether the [lpVtbl] pointer is null.
@@ -129,57 +128,6 @@ void _initializeMTA() {
     free(pCookie);
   }
 }
-
-/// Determines whether [S] is the same type as [T].
-///
-/// ```dart
-/// isSameType<bool?, bool?>(); // true
-/// isSameType<String, String?>(); // false
-/// ```
-bool isSameType<S, T>() {
-  void func<X extends S>() {}
-  return func is void Function<X extends T>();
-}
-
-/// Determines whether [T] is `Object?`.
-///
-/// ```dart
-/// isNullableObjectType<Object?>(); // true
-/// isNullableObjectType<Object>(); // false
-/// ```
-bool isNullableObjectType<T>() => isSameType<T, Object?>();
-
-/// Determines whether [S] is a subtype of [T] or [T?].
-///
-/// ```dart
-/// isSubtype<Calendar, IInspectable>(); // true
-/// isSubtype<IUnknown, IInspectable>(); // false
-/// ```
-bool isSubtype<S, T>() => <S>[] is List<T> || <S>[] is List<T?>;
-
-/// Determines whether [T] is a subtype of [IInspectable].
-///
-/// ```dart
-/// isSubtypeOfInspectable<StorageFile>(); // true
-/// isSubtypeOfInspectable<INetwork>(); // false
-/// ```
-bool isSubtypeOfInspectable<T>() => isSubtype<T, IInspectable>();
-
-/// Determines whether [T] is a subtype of [Struct].
-///
-/// ```dart
-/// isSubtypeOfStruct<Point>(); // true
-/// isSubtypeOfStruct<GUID>(); // true
-/// ```
-bool isSubtypeOfStruct<T>() => isSubtype<T, Struct>();
-
-/// Determines whether [T] is a subtype of [WinRTEnum].
-///
-/// ```dart
-/// isSubtypeOfWinRTEnum<AsyncStatus>(); // true
-/// isSubtypeOfWinRTEnum<FileAttributes>(); // true
-/// ```
-bool isSubtypeOfWinRTEnum<T>() => isSubtype<T, WinRTEnum>();
 
 /// Represents the trust level of an activatable class.
 ///

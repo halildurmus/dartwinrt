@@ -7,10 +7,8 @@ import 'dart:ffi';
 import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
 
+import '../internal.dart';
 import 'exports.g.dart';
-import 'iasyncinfo.dart';
-import 'internal/ipropertyvalue_helpers.dart';
-import 'ipropertyvalue.dart';
 import 'uri.dart' as winrt_uri;
 
 /// Represents an asynchronous operation, which returns a result upon
