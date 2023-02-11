@@ -15,7 +15,7 @@ import '../type.dart';
 
 mixin _ReferenceProjection on MethodProjection {
   /// The type argument of `IReference`, as represented in the [returnType]'s
-  /// [TypeIdentifier] (e.g. `DateTime`, `int`, `String`).
+  /// [TypeIdentifier] (e.g. `DateTime?`, `int?`, `WebErrorStatus?`).
   String get referenceTypeArg => typeArguments(returnType.typeIdentifier.name);
 
   /// The type argument of `IReference`, as represented in the [TypeIdentifier]
@@ -84,7 +84,7 @@ mixin _ReferenceProjection on MethodProjection {
 ''';
 }
 
-/// Method projection for methods that return an `IReference<T>` (exposed as
+/// Method projection for methods that return an `IReference<T?>` (exposed as
 /// `T?`).
 class ReferenceMethodProjection extends MethodProjection
     with _ReferenceProjection {
@@ -92,7 +92,7 @@ class ReferenceMethodProjection extends MethodProjection
 
   @override
   String get methodProjection => '''
-  $referenceTypeArg? $camelCasedName($methodParams) {
+  $referenceTypeArg $camelCasedName($methodParams) {
     final retValuePtr = calloc<COMObject>();
     $parametersPreamble
 
@@ -112,14 +112,14 @@ class ReferenceMethodProjection extends MethodProjection
 ''';
 }
 
-/// Getter projection for `IReference<T>` (exposed as `T?`) getters.
+/// Getter projection for `IReference<T?>` (exposed as `T?`) getters.
 class ReferenceGetterProjection extends GetterProjection
     with _ReferenceProjection {
   ReferenceGetterProjection(super.method, super.vtableOffset);
 
   @override
   String get methodProjection => '''
-  $referenceTypeArg? get $camelCasedName {
+  $referenceTypeArg get $camelCasedName {
     final retValuePtr = calloc<COMObject>();
 
     ${ffiCall(freeRetValOnFailure: true)}
@@ -136,20 +136,20 @@ class ReferenceGetterProjection extends GetterProjection
 ''';
 }
 
-/// Setter projection for `IReference<T>` (exposed as `T?`) setters.
+/// Setter projection for `IReference<T?>` (exposed as `T?`) setters.
 class ReferenceSetterProjection extends SetterProjection
     with _ReferenceProjection {
   ReferenceSetterProjection(super.method, super.vtableOffset);
 
   @override
   String get methodProjection => '''
-  set $camelCasedName($referenceTypeArgFromParameter? value) {
+  set $camelCasedName($referenceTypeArgFromParameter value) {
     ${ffiCall(params: 'value == null ? nullptr : $boxValueMethodCall.ref.lpVtbl')}
   }
 ''';
 }
 
-/// Parameter projection for `IReference<T>` (exposed as `T?`) parameters.
+/// Parameter projection for `IReference<T?>` (exposed as `T?`) parameters.
 class ReferenceParameterProjection extends ParameterProjection {
   ReferenceParameterProjection(super.parameter);
 

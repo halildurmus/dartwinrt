@@ -184,7 +184,7 @@ void main() {
           projection.shortDeclaration, equals('Map<String, String> getView()'));
     });
 
-    test('projects IReference<int>', () {
+    test('projects IReference<int?>', () {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Networking.Connectivity.ConnectionProfile', 'GetSignalBars');
       expect(projection, isA<ReferenceMethodProjection>());

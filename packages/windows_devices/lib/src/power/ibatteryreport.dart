@@ -51,7 +51,7 @@ class IBatteryReport extends IInspectable {
       return null;
     }
 
-    final reference = IReference<int>.fromRawPointer(retValuePtr,
+    final reference = IReference<int?>.fromRawPointer(retValuePtr,
         referenceIid: '{548cefbd-bc8a-5fa0-8df2-957440fc8bf4}');
     final value = reference.value;
     reference.release();
@@ -82,7 +82,7 @@ class IBatteryReport extends IInspectable {
       return null;
     }
 
-    final reference = IReference<int>.fromRawPointer(retValuePtr,
+    final reference = IReference<int?>.fromRawPointer(retValuePtr,
         referenceIid: '{548cefbd-bc8a-5fa0-8df2-957440fc8bf4}');
     final value = reference.value;
     reference.release();
@@ -113,7 +113,7 @@ class IBatteryReport extends IInspectable {
       return null;
     }
 
-    final reference = IReference<int>.fromRawPointer(retValuePtr,
+    final reference = IReference<int?>.fromRawPointer(retValuePtr,
         referenceIid: '{548cefbd-bc8a-5fa0-8df2-957440fc8bf4}');
     final value = reference.value;
     reference.release();
@@ -144,7 +144,7 @@ class IBatteryReport extends IInspectable {
       return null;
     }
 
-    final reference = IReference<int>.fromRawPointer(retValuePtr,
+    final reference = IReference<int?>.fromRawPointer(retValuePtr,
         referenceIid: '{548cefbd-bc8a-5fa0-8df2-957440fc8bf4}');
     final value = reference.value;
     reference.release();

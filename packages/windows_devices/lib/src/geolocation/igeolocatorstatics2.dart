@@ -90,7 +90,7 @@ class IGeolocatorStatics2 extends IInspectable {
       return null;
     }
 
-    final reference = IReference<BasicGeoposition>.fromRawPointer(retValuePtr,
+    final reference = IReference<BasicGeoposition?>.fromRawPointer(retValuePtr,
         referenceIid: '{e4d5dda6-f57c-57cc-b67f-2939a901dabe}');
     final value = reference.value;
     reference.release();

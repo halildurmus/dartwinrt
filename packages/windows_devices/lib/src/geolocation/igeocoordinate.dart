@@ -94,7 +94,7 @@ class IGeocoordinate extends IInspectable {
       return null;
     }
 
-    final reference = IReference<double>.fromRawPointer(retValuePtr,
+    final reference = IReference<double?>.fromRawPointer(retValuePtr,
         referenceIid: '{2f2d6c29-5473-5f3e-92e7-96572bb990e2}');
     final value = reference.value;
     reference.release();
@@ -147,7 +147,7 @@ class IGeocoordinate extends IInspectable {
       return null;
     }
 
-    final reference = IReference<double>.fromRawPointer(retValuePtr,
+    final reference = IReference<double?>.fromRawPointer(retValuePtr,
         referenceIid: '{2f2d6c29-5473-5f3e-92e7-96572bb990e2}');
     final value = reference.value;
     reference.release();
@@ -178,7 +178,7 @@ class IGeocoordinate extends IInspectable {
       return null;
     }
 
-    final reference = IReference<double>.fromRawPointer(retValuePtr,
+    final reference = IReference<double?>.fromRawPointer(retValuePtr,
         referenceIid: '{2f2d6c29-5473-5f3e-92e7-96572bb990e2}');
     final value = reference.value;
     reference.release();
@@ -209,7 +209,7 @@ class IGeocoordinate extends IInspectable {
       return null;
     }
 
-    final reference = IReference<double>.fromRawPointer(retValuePtr,
+    final reference = IReference<double?>.fromRawPointer(retValuePtr,
         referenceIid: '{2f2d6c29-5473-5f3e-92e7-96572bb990e2}');
     final value = reference.value;
     reference.release();

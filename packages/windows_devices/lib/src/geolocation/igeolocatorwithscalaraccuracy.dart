@@ -58,7 +58,7 @@ class IGeolocatorWithScalarAccuracy extends IInspectable
       return null;
     }
 
-    final reference = IReference<int>.fromRawPointer(retValuePtr,
+    final reference = IReference<int?>.fromRawPointer(retValuePtr,
         referenceIid: '{513ef3af-e784-5325-a91e-97c2b8111cf3}');
     final value = reference.value;
     reference.release();

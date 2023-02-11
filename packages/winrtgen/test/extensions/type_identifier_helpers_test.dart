@@ -270,7 +270,7 @@ void main() {
               .returnType
               .typeIdentifier
               .shortName,
-          equals('IReference<int>'));
+          equals('IReference<int?>'));
     });
 
     test('4', () {
@@ -282,7 +282,7 @@ void main() {
               .returnType
               .typeIdentifier
               .shortName,
-          equals('IReference<BasicGeoposition>'));
+          equals('IReference<BasicGeoposition?>'));
     });
 
     test('5', () {
