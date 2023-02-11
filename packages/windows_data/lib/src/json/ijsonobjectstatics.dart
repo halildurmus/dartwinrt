@@ -52,7 +52,7 @@ class IJsonObjectStatics extends IInspectable {
 
     WindowsDeleteString(inputHString);
 
-    if (retValuePtr.ref.lpVtbl == nullptr) {
+    if (retValuePtr.ref.isNull) {
       free(retValuePtr);
       return null;
     }

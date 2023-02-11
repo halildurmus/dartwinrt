@@ -65,7 +65,7 @@ class IJsonObjectWithDefaultValues extends IInspectable
 
     WindowsDeleteString(nameHString);
 
-    if (retValuePtr.ref.lpVtbl == nullptr) {
+    if (retValuePtr.ref.isNull) {
       free(retValuePtr);
       return null;
     }
@@ -101,7 +101,7 @@ class IJsonObjectWithDefaultValues extends IInspectable
 
     WindowsDeleteString(nameHString);
 
-    if (retValuePtr.ref.lpVtbl == nullptr) {
+    if (retValuePtr.ref.isNull) {
       free(retValuePtr);
       return null;
     }
@@ -167,7 +167,7 @@ class IJsonObjectWithDefaultValues extends IInspectable
 
     WindowsDeleteString(nameHString);
 
-    if (retValuePtr.ref.lpVtbl == nullptr) {
+    if (retValuePtr.ref.isNull) {
       free(retValuePtr);
       return null;
     }

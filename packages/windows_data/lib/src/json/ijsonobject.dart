@@ -55,7 +55,7 @@ class IJsonObject extends IInspectable implements IJsonValue {
 
     WindowsDeleteString(nameHString);
 
-    if (retValuePtr.ref.lpVtbl == nullptr) {
+    if (retValuePtr.ref.isNull) {
       free(retValuePtr);
       return null;
     }
@@ -107,7 +107,7 @@ class IJsonObject extends IInspectable implements IJsonValue {
 
     WindowsDeleteString(nameHString);
 
-    if (retValuePtr.ref.lpVtbl == nullptr) {
+    if (retValuePtr.ref.isNull) {
       free(retValuePtr);
       return null;
     }
@@ -137,7 +137,7 @@ class IJsonObject extends IInspectable implements IJsonValue {
 
     WindowsDeleteString(nameHString);
 
-    if (retValuePtr.ref.lpVtbl == nullptr) {
+    if (retValuePtr.ref.isNull) {
       free(retValuePtr);
       return null;
     }
