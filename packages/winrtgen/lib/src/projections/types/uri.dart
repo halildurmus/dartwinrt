@@ -9,7 +9,7 @@ import '../setter.dart';
 
 mixin _UriProjection on MethodProjection {
   String get nullCheck => '''
-    if (retValuePtr.ref.lpVtbl == nullptr) {
+    if (retValuePtr.ref.isNull) {
       free(retValuePtr);
       return null;
     }

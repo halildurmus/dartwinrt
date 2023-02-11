@@ -247,7 +247,7 @@ class _IMapEnumInspectable<K, V> extends IMap<K, V> {
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.lpVtbl == nullptr) {
+    if (retValuePtr.ref.isNull) {
       free(retValuePtr);
       return null as V;
     }
@@ -481,7 +481,7 @@ class _IMapGuidObject extends IMap<Guid, Object?> {
 
     free(nativeGuidPtr);
 
-    if (retValuePtr.ref.lpVtbl == nullptr) {
+    if (retValuePtr.ref.isNull) {
       free(retValuePtr);
       return null;
     }
@@ -956,7 +956,7 @@ class _IMapStringObject extends IMap<String, Object?> {
         throw WindowsException(hr);
       }
 
-      if (retValuePtr.ref.lpVtbl == nullptr) {
+      if (retValuePtr.ref.isNull) {
         free(retValuePtr);
         return null;
       }

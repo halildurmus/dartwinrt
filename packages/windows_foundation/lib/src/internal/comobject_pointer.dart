@@ -9,6 +9,8 @@ import 'dart:ffi';
 import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
 
+import '../helpers.dart';
+
 extension COMObjectPointer on Pointer<COMObject> {
   /// Creates a [List] from `Pointer<COMObject>`.
   ///
@@ -29,7 +31,7 @@ extension COMObjectPointer on Pointer<COMObject> {
 
     for (var i = 0; i < length; i++) {
       final objectPtr = this.elementAt(i);
-      if (objectPtr.ref.lpVtbl == nullptr) break;
+      if (objectPtr.ref.isNull) break;
       // Move each element to a newly allocated pointer so that it can be
       // freed properly.
       final newObjectPtr = calloc<COMObject>()..ref = objectPtr.ref;

@@ -98,7 +98,7 @@ class _IReferenceBool extends IReference<bool?> {
 
   @override
   bool? get value {
-    if (ptr.ref.lpVtbl == nullptr) return null;
+    if (ptr.ref.isNull) return null;
 
     final retValuePtr = calloc<Bool>();
 
@@ -127,7 +127,7 @@ class _IReferenceDateTime extends IReference<DateTime?> {
 
   @override
   DateTime? get value {
-    if (ptr.ref.lpVtbl == nullptr) return null;
+    if (ptr.ref.isNull) return null;
 
     final retValuePtr = calloc<Uint64>();
 
@@ -159,7 +159,7 @@ class _IReferenceDouble extends IReference<double?> {
 
   @override
   double? get value {
-    if (ptr.ref.lpVtbl == nullptr) return null;
+    if (ptr.ref.isNull) return null;
     switch (referenceIid) {
       case IID_IReference_Double:
         return _getDouble();
@@ -220,7 +220,7 @@ class IReferenceDuration extends IReference<Duration?> {
 
   @override
   Duration? get value {
-    if (ptr.ref.lpVtbl == nullptr) return null;
+    if (ptr.ref.isNull) return null;
 
     final retValuePtr = calloc<Uint64>();
 
@@ -249,7 +249,7 @@ class _IReferenceGuid extends IReference<Guid?> {
 
   @override
   Guid? get value {
-    if (ptr.ref.lpVtbl == nullptr) return null;
+    if (ptr.ref.isNull) return null;
 
     final retValuePtr = calloc<GUID>();
 
@@ -280,7 +280,7 @@ class _IReferenceInt extends IReference<int?> {
 
   @override
   int? get value {
-    if (ptr.ref.lpVtbl == nullptr) return null;
+    if (ptr.ref.isNull) return null;
     switch (referenceIid) {
       case IID_IReference_Int16:
         return _getInt16();
@@ -437,7 +437,7 @@ class _IReferencePoint extends IReference<Point?> {
 
   @override
   Point? get value {
-    if (ptr.ref.lpVtbl == nullptr) return null;
+    if (ptr.ref.isNull) return null;
 
     final retValuePtr = calloc<Point>();
 
@@ -462,7 +462,7 @@ class _IReferenceRect extends IReference<Rect?> {
 
   @override
   Rect? get value {
-    if (ptr.ref.lpVtbl == nullptr) return null;
+    if (ptr.ref.isNull) return null;
 
     final retValuePtr = calloc<Rect>();
 
@@ -486,7 +486,7 @@ class _IReferenceSize extends IReference<Size?> {
 
   @override
   Size? get value {
-    if (ptr.ref.lpVtbl == nullptr) return null;
+    if (ptr.ref.isNull) return null;
 
     final retValuePtr = calloc<Size>();
 
@@ -514,7 +514,7 @@ class _IReferenceEnum<T> extends IReference<T> {
 
   @override
   T get value {
-    if (ptr.ref.lpVtbl == nullptr) return null as T;
+    if (ptr.ref.isNull) return null as T;
     switch (referenceIid) {
       // Int32 enumerations
       case IID_IReference_AdaptiveMediaSourceResourceType:

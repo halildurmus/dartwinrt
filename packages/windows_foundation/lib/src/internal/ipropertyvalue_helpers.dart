@@ -22,7 +22,7 @@ import 'int_array.dart';
 extension IPropertyValueHelper on IPropertyValue {
   /// Gets the type that is represented as an [IPropertyValue].
   Object? get value {
-    if (ptr.ref.lpVtbl == nullptr) return null;
+    if (ptr.ref.isNull) return null;
 
     // If the object does not implement the IPropertyValue interface, return it
     // as an IInspectable object.
