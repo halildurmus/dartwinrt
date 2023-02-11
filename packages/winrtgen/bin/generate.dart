@@ -148,8 +148,10 @@ void generatePackageExports() {
     final exports = <String>{};
 
     for (final file in files) {
-      // Skip internally used files from the windows_foundation package
-      if (file.path.contains(r'internal\')) continue;
+      if (packageName == 'windows_foundation') {
+        // Skip internally used files
+        if (file.path.contains(r'internal\')) continue;
+      }
 
       final fileName = file.uri.pathSegments.last; // e.g. calendar.dart
 
