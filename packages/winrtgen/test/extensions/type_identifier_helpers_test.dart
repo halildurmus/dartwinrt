@@ -9,146 +9,159 @@ import 'package:winmd/winmd.dart';
 import 'package:winrtgen/winrtgen.dart';
 
 void main() {
-  test('creator', () {
-    final calendarFactory = MetadataStore.getMetadataForType(
-        'Windows.Globalization.ICalendarFactory')!;
-    expect(
-        calendarFactory
-            .findMethod('CreateCalendar')!
-            .returnType
-            .typeIdentifier
-            .creator,
-        equals('Calendar.fromRawPointer'));
+  group('creator', () {
+    test('1', () {
+      final typeDef = MetadataStore.getMetadataForType(
+          'Windows.Globalization.ICalendarFactory')!;
+      expect(
+          typeDef
+              .findMethod('CreateCalendar')!
+              .returnType
+              .typeIdentifier
+              .creator,
+          equals('Calendar.fromRawPointer'));
+    });
 
-    final propertyValueStatics = MetadataStore.getMetadataForType(
-        'Windows.Foundation.IPropertyValueStatics')!;
-    expect(
-        propertyValueStatics
-            .findMethod('CreateGuid')!
-            .parameters
-            .first
-            .typeIdentifier
-            .creator,
-        isNull);
-    expect(
-        propertyValueStatics
-            .findMethod('CreatePoint')!
-            .parameters
-            .first
-            .typeIdentifier
-            .creator,
-        isNull);
-    expect(
-        propertyValueStatics
-            .findMethod('CreateTimeSpan')!
-            .parameters
-            .first
-            .typeIdentifier
-            .creator,
-        isNull);
+    test('2', () {
+      final typeDef = MetadataStore.getMetadataForType(
+          'Windows.Foundation.IPropertyValueStatics')!;
+      expect(
+          typeDef
+              .findMethod('CreateGuid')!
+              .parameters
+              .first
+              .typeIdentifier
+              .creator,
+          isNull);
+      expect(
+          typeDef
+              .findMethod('CreatePoint')!
+              .parameters
+              .first
+              .typeIdentifier
+              .creator,
+          isNull);
+      expect(
+          typeDef
+              .findMethod('CreateTimeSpan')!
+              .parameters
+              .first
+              .typeIdentifier
+              .creator,
+          isNull);
+    });
 
-    final jsonObject =
-        MetadataStore.getMetadataForType('Windows.Data.Json.JsonObject')!;
-    expect(
-        jsonObject.interfaces[2].typeSpec!.creator,
-        equals(
-            "(Pointer<COMObject> ptr) => IMap.fromRawPointer(ptr, creator: IJsonValue.fromRawPointer, iterableIid: '{dfabb6e1-0411-5a8f-aa87-354e7110f099}')"));
-    expect(
-        jsonObject.interfaces[3].typeSpec!.creator,
-        equals(
-            '(Pointer<COMObject> ptr) => IIterable.fromRawPointer(ptr, creator: (Pointer<COMObject> ptr) => IKeyValuePair.fromRawPointer(ptr, creator: IJsonValue.fromRawPointer))'));
+    test('3', () {
+      final typeDef =
+          MetadataStore.getMetadataForType('Windows.Data.Json.JsonObject')!;
+      expect(
+          typeDef.interfaces[2].typeSpec!.creator,
+          equals(
+              "(Pointer<COMObject> ptr) => IMap.fromRawPointer(ptr, creator: IJsonValue.fromRawPointer, iterableIid: '{dfabb6e1-0411-5a8f-aa87-354e7110f099}')"));
+      expect(
+          typeDef.interfaces[3].typeSpec!.creator,
+          equals(
+              '(Pointer<COMObject> ptr) => IIterable.fromRawPointer(ptr, creator: (Pointer<COMObject> ptr) => IKeyValuePair.fromRawPointer(ptr, creator: IJsonValue.fromRawPointer))'));
+    });
 
-    final propertySet = MetadataStore.getMetadataForType(
-        'Windows.Foundation.Collections.PropertySet')!;
-    expect(
-        propertySet
-            .findMethod('Insert')!
-            .parameters
-            .last
-            .typeIdentifier
-            .creator,
-        isNull);
+    test('4', () {
+      final typeDef = MetadataStore.getMetadataForType(
+          'Windows.Foundation.Collections.PropertySet')!;
+      expect(
+          typeDef.findMethod('Insert')!.parameters.last.typeIdentifier.creator,
+          isNull);
+    });
 
-    final phoneNumberFormatterStatics = MetadataStore.getMetadataForType(
-        'Windows.Globalization.PhoneNumberFormatting.IPhoneNumberFormatterStatics')!;
-    expect(
-        phoneNumberFormatterStatics
-            .findMethod('TryCreate')!
-            .parameters
-            .last
-            .typeIdentifier
-            .creator,
-        equals('PhoneNumberFormatter.fromRawPointer'));
+    test('5', () {
+      final typeDef = MetadataStore.getMetadataForType(
+          'Windows.Globalization.PhoneNumberFormatting.IPhoneNumberFormatterStatics')!;
+      expect(
+          typeDef
+              .findMethod('TryCreate')!
+              .parameters
+              .last
+              .typeIdentifier
+              .creator,
+          equals('PhoneNumberFormatter.fromRawPointer'));
+    });
 
-    final stringMap = MetadataStore.getMetadataForType(
-        'Windows.Foundation.Collections.StringMap')!;
-    expect(
-        stringMap.interfaces[0].typeSpec!.creator,
-        equals(
-            "(Pointer<COMObject> ptr) => IMap.fromRawPointer(ptr, iterableIid: '{e9bdaaf0-cbf6-5c72-be90-29cbf3a1319b}')"));
-    expect(
-        stringMap.interfaces[1].typeSpec!.creator,
-        equals(
-            '(Pointer<COMObject> ptr) => IIterable.fromRawPointer(ptr, creator: IKeyValuePair.fromRawPointer)'));
-    expect(stringMap.interfaces[2].typeSpec!.creator,
-        equals('IObservableMap.fromRawPointer'));
-    expect(
-        stringMap.findMethod('First')!.returnType.typeIdentifier.creator,
-        equals(
-            '(Pointer<COMObject> ptr) => IIterator.fromRawPointer(ptr, creator: IKeyValuePair.fromRawPointer)'));
-    expect(
-        stringMap.findMethod('GetView')!.returnType.typeIdentifier.creator,
-        equals(
-            "(Pointer<COMObject> ptr) => IMapView.fromRawPointer(ptr, iterableIid: '{e9bdaaf0-cbf6-5c72-be90-29cbf3a1319b}')"));
+    test('6', () {
+      final typeDef = MetadataStore.getMetadataForType(
+          'Windows.Foundation.Collections.StringMap')!;
+      expect(
+          typeDef.interfaces[0].typeSpec!.creator,
+          equals(
+              "(Pointer<COMObject> ptr) => IMap.fromRawPointer(ptr, iterableIid: '{e9bdaaf0-cbf6-5c72-be90-29cbf3a1319b}')"));
+      expect(
+          typeDef.interfaces[1].typeSpec!.creator,
+          equals(
+              '(Pointer<COMObject> ptr) => IIterable.fromRawPointer(ptr, creator: IKeyValuePair.fromRawPointer)'));
+      expect(typeDef.interfaces[2].typeSpec!.creator,
+          equals('IObservableMap.fromRawPointer'));
+      expect(
+          typeDef.findMethod('First')!.returnType.typeIdentifier.creator,
+          equals(
+              '(Pointer<COMObject> ptr) => IIterator.fromRawPointer(ptr, creator: IKeyValuePair.fromRawPointer)'));
+      expect(
+          typeDef.findMethod('GetView')!.returnType.typeIdentifier.creator,
+          equals(
+              "(Pointer<COMObject> ptr) => IMapView.fromRawPointer(ptr, iterableIid: '{e9bdaaf0-cbf6-5c72-be90-29cbf3a1319b}')"));
+    });
 
-    final fileOpenPicker = MetadataStore.getMetadataForType(
-        'Windows.Storage.Pickers.IFileOpenPicker')!;
-    expect(
-        fileOpenPicker
-            .findMethod('get_FileTypeFilter')!
-            .returnType
-            .typeIdentifier
-            .creator,
-        equals(
-            "(Pointer<COMObject> ptr) => IVector.fromRawPointer(ptr, iterableIid: '{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}')"));
-    expect(
-        fileOpenPicker
-            .findMethod('PickSingleFileAsync')!
-            .returnType
-            .typeIdentifier
-            .creator,
-        equals(
-            '(Pointer<COMObject> ptr) => IAsyncOperation.fromRawPointer(ptr, creator: StorageFile.fromRawPointer)'));
-    expect(
-        fileOpenPicker
-            .findMethod('PickMultipleFilesAsync')!
-            .returnType
-            .typeIdentifier
-            .creator,
-        equals(
-            "(Pointer<COMObject> ptr) => IAsyncOperation.fromRawPointer(ptr, creator: (Pointer<COMObject> ptr) => IVectorView.fromRawPointer(ptr, creator: StorageFile.fromRawPointer, iterableIid: '{9ac00304-83ea-5688-87b6-ae38aab65d0b}'))"));
+    test('7', () {
+      final fileOpenPicker = MetadataStore.getMetadataForType(
+          'Windows.Storage.Pickers.IFileOpenPicker')!;
+      expect(
+          fileOpenPicker
+              .findMethod('get_FileTypeFilter')!
+              .returnType
+              .typeIdentifier
+              .creator,
+          equals(
+              "(Pointer<COMObject> ptr) => IVector.fromRawPointer(ptr, iterableIid: '{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}')"));
+      expect(
+          fileOpenPicker
+              .findMethod('PickSingleFileAsync')!
+              .returnType
+              .typeIdentifier
+              .creator,
+          equals(
+              '(Pointer<COMObject> ptr) => IAsyncOperation.fromRawPointer(ptr, creator: StorageFile.fromRawPointer)'));
+      expect(
+          fileOpenPicker
+              .findMethod('PickMultipleFilesAsync')!
+              .returnType
+              .typeIdentifier
+              .creator,
+          equals(
+              "(Pointer<COMObject> ptr) => IAsyncOperation.fromRawPointer(ptr, creator: (Pointer<COMObject> ptr) => IVectorView.fromRawPointer(ptr, creator: StorageFile.fromRawPointer, iterableIid: '{9ac00304-83ea-5688-87b6-ae38aab65d0b}'))"));
+    });
 
-    final storageFileQueryResult2 = MetadataStore.getMetadataForType(
-        'Windows.Storage.Search.IStorageFileQueryResult2')!;
-    expect(
-        storageFileQueryResult2
-            .findMethod('GetMatchingPropertiesWithRanges')!
-            .returnType
-            .typeIdentifier
-            .creator,
-        equals(
-            "(Pointer<COMObject> ptr) => IMap.fromRawPointer(ptr, creator: (Pointer<COMObject> ptr) => IVectorView.fromRawPointer(ptr, iterableIid: '{5498f4f3-cee4-5b72-9729-815c4ad7b9dc}'), iterableIid: '{f819a276-b3f5-54d4-b8fd-c9adb7f700e3}')"));
+    test('8', () {
+      final storageFileQueryResult2 = MetadataStore.getMetadataForType(
+          'Windows.Storage.Search.IStorageFileQueryResult2')!;
+      expect(
+          storageFileQueryResult2
+              .findMethod('GetMatchingPropertiesWithRanges')!
+              .returnType
+              .typeIdentifier
+              .creator,
+          equals(
+              "(Pointer<COMObject> ptr) => IMap.fromRawPointer(ptr, creator: (Pointer<COMObject> ptr) => IVectorView.fromRawPointer(ptr, iterableIid: '{5498f4f3-cee4-5b72-9729-815c4ad7b9dc}'), iterableIid: '{f819a276-b3f5-54d4-b8fd-c9adb7f700e3}')"));
+    });
 
-    final pedometer2 = MetadataStore.getMetadataForType(
-        'Windows.Devices.Sensors.IPedometer2')!;
-    expect(
-        pedometer2
-            .findMethod('GetCurrentReadings')!
-            .returnType
-            .typeIdentifier
-            .creator,
-        equals(
-            "(Pointer<COMObject> ptr) => IMapView.fromRawPointer(ptr, enumKeyCreator: PedometerStepKind.from, creator: PedometerReading.fromRawPointer, iterableIid: '{098f29cb-bc91-5639-a541-d5a4811ec35b}')"));
+    test('9', () {
+      final pedometer2 = MetadataStore.getMetadataForType(
+          'Windows.Devices.Sensors.IPedometer2')!;
+      expect(
+          pedometer2
+              .findMethod('GetCurrentReadings')!
+              .returnType
+              .typeIdentifier
+              .creator,
+          equals(
+              "(Pointer<COMObject> ptr) => IMapView.fromRawPointer(ptr, enumKeyCreator: PedometerStepKind.from, creator: PedometerReading.fromRawPointer, iterableIid: '{098f29cb-bc91-5639-a541-d5a4811ec35b}')"));
+    });
   });
 
   group('iid', () {
@@ -206,129 +219,171 @@ void main() {
     });
   });
 
-  test('shortName', () {
-    final calendarFactory = MetadataStore.getMetadataForType(
-        'Windows.Globalization.ICalendarFactory')!;
-    expect(
-        calendarFactory
-            .findMethod('CreateCalendar')!
-            .returnType
-            .typeIdentifier
-            .shortName,
-        equals('Calendar'));
+  group('shortName', () {
+    test('1', () {
+      final typeDef = MetadataStore.getMetadataForType(
+          'Windows.Globalization.ICalendarFactory')!;
+      expect(
+          typeDef
+              .findMethod('CreateCalendar')!
+              .returnType
+              .typeIdentifier
+              .shortName,
+          equals('Calendar'));
+    });
 
-    final propertyValueStatics = MetadataStore.getMetadataForType(
-        'Windows.Foundation.IPropertyValueStatics')!;
-    expect(
-        propertyValueStatics
-            .findMethod('CreateGuid')!
-            .parameters
-            .first
-            .typeIdentifier
-            .shortName,
-        equals('Guid'));
-    expect(
-        propertyValueStatics
-            .findMethod('CreatePoint')!
-            .parameters
-            .first
-            .typeIdentifier
-            .shortName,
-        equals('Point'));
-    expect(
-        propertyValueStatics
-            .findMethod('CreateTimeSpan')!
-            .parameters
-            .first
-            .typeIdentifier
-            .shortName,
-        equals('Duration'));
+    test('2', () {
+      final typeDef = MetadataStore.getMetadataForType(
+          'Windows.Foundation.IPropertyValueStatics')!;
+      expect(
+          typeDef
+              .findMethod('CreateGuid')!
+              .parameters
+              .first
+              .typeIdentifier
+              .shortName,
+          equals('Guid'));
+      expect(
+          typeDef
+              .findMethod('CreatePoint')!
+              .parameters
+              .first
+              .typeIdentifier
+              .shortName,
+          equals('Point'));
+      expect(
+          typeDef
+              .findMethod('CreateTimeSpan')!
+              .parameters
+              .first
+              .typeIdentifier
+              .shortName,
+          equals('Duration'));
+    });
 
-    final jsonObject =
-        MetadataStore.getMetadataForType('Windows.Data.Json.JsonObject')!;
-    expect(jsonObject.interfaces[2].typeSpec!.shortName,
-        equals('IMap<String, IJsonValue?>'));
-    expect(jsonObject.interfaces[3].typeSpec!.shortName,
-        equals('IIterable<IKeyValuePair<String, IJsonValue?>>'));
+    test('3', () {
+      final typeDef = MetadataStore.getMetadataForType(
+          'Windows.Devices.Power.IBatteryReport')!;
+      expect(
+          typeDef
+              .findMethod('get_ChargeRateInMilliwatts')!
+              .returnType
+              .typeIdentifier
+              .shortName,
+          equals('IReference<int>'));
+    });
 
-    final propertySet = MetadataStore.getMetadataForType(
-        'Windows.Foundation.Collections.PropertySet')!;
-    expect(
-        propertySet
-            .findMethod('Insert')!
-            .parameters
-            .last
-            .typeIdentifier
-            .shortName,
-        equals('Object'));
+    test('4', () {
+      final typeDef = MetadataStore.getMetadataForType(
+          'Windows.Devices.Geolocation.IGeolocatorStatics2')!;
+      expect(
+          typeDef
+              .findMethod('get_DefaultGeoposition')!
+              .returnType
+              .typeIdentifier
+              .shortName,
+          equals('IReference<BasicGeoposition>'));
+    });
 
-    final phoneNumberFormatterStatics = MetadataStore.getMetadataForType(
-        'Windows.Globalization.PhoneNumberFormatting.IPhoneNumberFormatterStatics')!;
-    expect(
-        phoneNumberFormatterStatics
-            .findMethod('TryCreate')!
-            .parameters
-            .last
-            .typeIdentifier
-            .shortName,
-        equals('PhoneNumberFormatter'));
+    test('5', () {
+      final typeDef =
+          MetadataStore.getMetadataForType('Windows.Data.Json.JsonObject')!;
+      expect(typeDef.interfaces[2].typeSpec!.shortName,
+          equals('IMap<String, IJsonValue?>'));
+      expect(typeDef.interfaces[3].typeSpec!.shortName,
+          equals('IIterable<IKeyValuePair<String, IJsonValue?>>'));
+    });
 
-    final stringMap = MetadataStore.getMetadataForType(
-        'Windows.Foundation.Collections.StringMap')!;
-    expect(stringMap.interfaces[0].typeSpec!.shortName,
-        equals('IMap<String, String>'));
-    expect(stringMap.interfaces[1].typeSpec!.shortName,
-        equals('IIterable<IKeyValuePair<String, String>>'));
-    expect(stringMap.interfaces[2].typeSpec!.shortName,
-        equals('IObservableMap<String, String>'));
-    expect(stringMap.findMethod('First')!.returnType.typeIdentifier.shortName,
-        equals('IIterator<IKeyValuePair<String, String>>'));
-    expect(stringMap.findMethod('GetView')!.returnType.typeIdentifier.shortName,
-        equals('IMapView<String, String>'));
+    test('6', () {
+      final typeDef = MetadataStore.getMetadataForType(
+          'Windows.Foundation.Collections.PropertySet')!;
+      expect(
+          typeDef
+              .findMethod('Insert')!
+              .parameters
+              .last
+              .typeIdentifier
+              .shortName,
+          equals('Object'));
+    });
 
-    final fileOpenPicker = MetadataStore.getMetadataForType(
-        'Windows.Storage.Pickers.IFileOpenPicker')!;
-    expect(
-        fileOpenPicker
-            .findMethod('get_FileTypeFilter')!
-            .returnType
-            .typeIdentifier
-            .shortName,
-        equals('IVector<String>'));
-    expect(
-        fileOpenPicker
-            .findMethod('PickSingleFileAsync')!
-            .returnType
-            .typeIdentifier
-            .shortName,
-        equals('IAsyncOperation<StorageFile?>'));
-    expect(
-        fileOpenPicker
-            .findMethod('PickMultipleFilesAsync')!
-            .returnType
-            .typeIdentifier
-            .shortName,
-        equals('IAsyncOperation<IVectorView<StorageFile>>'));
+    test('7', () {
+      final typeDef = MetadataStore.getMetadataForType(
+          'Windows.Globalization.PhoneNumberFormatting.IPhoneNumberFormatterStatics')!;
+      expect(
+          typeDef
+              .findMethod('TryCreate')!
+              .parameters
+              .last
+              .typeIdentifier
+              .shortName,
+          equals('PhoneNumberFormatter'));
+    });
 
-    final storageFileQueryResult2 = MetadataStore.getMetadataForType(
-        'Windows.Storage.Search.IStorageFileQueryResult2')!;
-    expect(
-        storageFileQueryResult2
-            .findMethod('GetMatchingPropertiesWithRanges')!
-            .returnType
-            .typeIdentifier
-            .shortName,
-        equals('IMap<String, IVectorView<TextSegment>?>'));
+    test('8', () {
+      final typeDef = MetadataStore.getMetadataForType(
+          'Windows.Foundation.Collections.StringMap')!;
+      expect(typeDef.interfaces[0].typeSpec!.shortName,
+          equals('IMap<String, String>'));
+      expect(typeDef.interfaces[1].typeSpec!.shortName,
+          equals('IIterable<IKeyValuePair<String, String>>'));
+      expect(typeDef.interfaces[2].typeSpec!.shortName,
+          equals('IObservableMap<String, String>'));
+      expect(typeDef.findMethod('First')!.returnType.typeIdentifier.shortName,
+          equals('IIterator<IKeyValuePair<String, String>>'));
+      expect(typeDef.findMethod('GetView')!.returnType.typeIdentifier.shortName,
+          equals('IMapView<String, String>'));
+    });
 
-    final pedometer2 = MetadataStore.getMetadataForType(
-        'Windows.Devices.Sensors.IPedometer2')!;
-    expect(
-        pedometer2
-            .findMethod('GetCurrentReadings')!
-            .returnType
-            .typeIdentifier
-            .shortName,
-        equals('IMapView<PedometerStepKind, PedometerReading?>'));
+    test('9', () {
+      final typeDef = MetadataStore.getMetadataForType(
+          'Windows.Storage.Pickers.IFileOpenPicker')!;
+      expect(
+          typeDef
+              .findMethod('get_FileTypeFilter')!
+              .returnType
+              .typeIdentifier
+              .shortName,
+          equals('IVector<String>'));
+      expect(
+          typeDef
+              .findMethod('PickSingleFileAsync')!
+              .returnType
+              .typeIdentifier
+              .shortName,
+          equals('IAsyncOperation<StorageFile?>'));
+      expect(
+          typeDef
+              .findMethod('PickMultipleFilesAsync')!
+              .returnType
+              .typeIdentifier
+              .shortName,
+          equals('IAsyncOperation<IVectorView<StorageFile>>'));
+    });
+
+    test('10', () {
+      final typeDef = MetadataStore.getMetadataForType(
+          'Windows.Storage.Search.IStorageFileQueryResult2')!;
+      expect(
+          typeDef
+              .findMethod('GetMatchingPropertiesWithRanges')!
+              .returnType
+              .typeIdentifier
+              .shortName,
+          equals('IMap<String, IVectorView<TextSegment>?>'));
+    });
+
+    test('11', () {
+      final typeDef = MetadataStore.getMetadataForType(
+          'Windows.Devices.Sensors.IPedometer2')!;
+      expect(
+          typeDef
+              .findMethod('GetCurrentReadings')!
+              .returnType
+              .typeIdentifier
+              .shortName,
+          equals('IMapView<PedometerStepKind, PedometerReading?>'));
+    });
   });
 
   group('signature', () {
