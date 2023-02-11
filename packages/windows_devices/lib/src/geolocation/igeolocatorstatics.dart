@@ -52,7 +52,8 @@ class IGeolocatorStatics extends IInspectable {
 
     final asyncOperation =
         IAsyncOperation<GeolocationAccessStatus>.fromRawPointer(retValuePtr,
-            enumCreator: GeolocationAccessStatus.from, intType: Int32);
+            enumCreator: GeolocationAccessStatus.from,
+            intType: WinRTIntType.int32);
     completeAsyncOperation(
         asyncOperation, completer, asyncOperation.getResults);
 

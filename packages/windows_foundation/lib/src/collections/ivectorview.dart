@@ -2,16 +2,14 @@
 // details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-// ignore_for_file: non_constant_identifier_names
-
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
 
+import '../../internal.dart';
 import '../helpers.dart';
 import '../iinspectable.dart';
-import '../internal/vector_helper.dart';
 import '../types.dart';
 import '../uri.dart' as winrt_uri;
 import '../winrt_enum.dart';
@@ -21,339 +19,81 @@ import 'iiterator.dart';
 /// Represents an immutable view into a vector.
 ///
 /// {@category interface}
-class IVectorView<T> extends IInspectable implements IIterable<T> {
+abstract class IVectorView<T> extends IInspectable implements IIterable<T> {
   // vtable begins at 6, is 4 entries long.
-  final String _iterableIid;
-  final T Function(Pointer<COMObject>)? _creator;
-  final T Function(int)? _enumCreator;
-  final Type? _intType;
+  IVectorView(super.ptr);
 
-  /// Creates an instance of [IVectorView] using the given [ptr] and [iterableIid].
+  /// Creates an instance of [IVectorView] from the given [ptr] and
+  /// [iterableIid].
   ///
   /// [iterableIid] must be the IID of the `IIterable<T>` interface (e.g.
   /// `'{9ac00304-83ea-5688-87b6-ae38aab65d0b}'`).
   ///
-  /// [T] must be of type `int`, `Uri`, `String`, `WinRT` class/interface (e.g.
-  /// `HostName`, `StorageFile`) or `WinRTEnum` (e.g. `DeviceClass`).
+  /// [T] must be of type `int`, `Uri`, `String`, `IInspectable` (e.g.
+  /// `StorageFile`) or `WinRTEnum` (e.g. `DeviceClass`).
   ///
-  /// [intType] must be specified if [T] is `int`. Supported types are: [Int16],
-  /// [Int32], [Int64], [Uint8], [Uint16], [Uint32], [Uint64].
+  /// [intType] must be specified if [T] is `int`. Supported types are:
+  /// [WinRTIntType.int16], [WinRTIntType.int32], [WinRTIntType.int64],
+  /// [WinRTIntType.uint8], [WinRTIntType.uint16], [WinRTIntType.uint32],
+  /// [WinRTIntType.uint64].
   /// ```dart
-  /// final vectorView = IVectorView<int>.fromRawPointer(ptr, intType: Uint64,
+  /// final vectorView = IVectorView<int>.fromRawPointer(ptr,
+  ///     intType: WinRTIntType.uint64,
   ///     iterableIid: '{4b3a3229-7995-5f3c-b248-6c1f7e664f01}');
   /// ```
   ///
-  /// [creator] must be specified if [T] is a `WinRT` class/interface.
+  /// [creator] must be specified if [T] is `IInspectable`.
   /// ```dart
   /// final vectorView = IVectorView<StorageFile>.fromRawPointer(ptr,
-  ///    creator: StorageFile.fromRawPointer,
-  ///    iterableIid: '{9ac00304-83ea-5688-87b6-ae38aab65d0b}');
+  ///     creator: StorageFile.fromRawPointer,
+  ///     iterableIid: '{9ac00304-83ea-5688-87b6-ae38aab65d0b}');
   /// ```
   ///
-  /// [enumCreator] and [intType] must be specified if [T] is a `WinRTEnum`.
+  /// [enumCreator] and [intType] must be specified if [T] is `WinRTEnum`.
   /// ```dart
   /// final vectorView = IVectorView<DeviceClass>.fromRawPointer(ptr,
-  ///     enumCreator: DeviceClass.from, intType: Int32,
+  ///     enumCreator: DeviceClass.from, intType: WinRTIntType.int32,
   ///     iterableIid: '{47d4be05-58f1-522e-81c6-975eb4131bb9}');
   /// ```
-  IVectorView.fromRawPointer(
-    super.ptr, {
+  factory IVectorView.fromRawPointer(
+    Pointer<COMObject> ptr, {
     required String iterableIid,
     T Function(Pointer<COMObject>)? creator,
     T Function(int)? enumCreator,
-    Type? intType,
-  })  : _iterableIid = iterableIid,
-        _creator = creator,
-        _enumCreator = enumCreator,
-        _intType = intType {
-    if (!isSameType<T, int>() &&
-        !isSameType<T, Uri>() &&
-        !isSameType<T, String>() &&
-        !isSubtypeOfInspectable<T>() &&
-        !isSubtypeOfWinRTEnum<T>()) {
-      throw ArgumentError.value(T, 'T', 'Unsupported type');
+    WinRTIntType? intType,
+  }) {
+    if (isSubtypeOfInspectable<T>()) {
+      if (creator == null) throw ArgumentError.notNull('creator');
+      return _IVectorViewInspectable.fromRawPointer(ptr, creator, iterableIid);
     }
 
-    if (isSameType<T, int>() && intType == null) {
-      throw ArgumentError.notNull('intType');
+    if (T == int) {
+      if (intType == null) throw ArgumentError.notNull('intType');
+      return _IVectorViewInt.fromRawPointer(ptr, intType, iterableIid)
+          as IVectorView<T>;
     }
 
-    if (isSubtypeOfInspectable<T>() && creator == null) {
-      throw ArgumentError.notNull('creator');
+    if (T == String) {
+      return _IVectorViewString.fromRawPointer(ptr, iterableIid)
+          as IVectorView<T>;
+    }
+
+    if (T == Uri) {
+      return _IVectorViewUri.fromRawPointer(ptr, iterableIid) as IVectorView<T>;
     }
 
     if (isSubtypeOfWinRTEnum<T>()) {
       if (enumCreator == null) throw ArgumentError.notNull('enumCreator');
       if (intType == null) throw ArgumentError.notNull('intType');
+      return _IVectorViewEnum.fromRawPointer(
+          ptr, enumCreator, intType, iterableIid);
     }
 
-    if (intType != null && !supportedIntTypes.contains(intType)) {
-      throw ArgumentError.value(intType, 'intType', 'Unsupported type');
-    }
+    throw ArgumentError.value(T, 'T', 'Unsupported type');
   }
 
   /// Returns the item at the specified index in the vector view.
-  T getAt(int index) {
-    if (isSameType<T, int>()) return _getAt_int(index) as T;
-    if (isSameType<T, Uri>()) return _getAt_Uri(index) as T;
-    if (isSameType<T, String>()) return _getAt_String(index) as T;
-    if (isSubtypeOfWinRTEnum<T>()) return _enumCreator!(_getAt_int(index));
-    return _creator!(_getAt_COMObject(index));
-  }
-
-  Pointer<COMObject> _getAt_COMObject(int index) {
-    final retValuePtr = calloc<COMObject>();
-
-    final hr =
-        ptr.ref.vtable
-                .elementAt(6)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                Pointer, Uint32, Pointer<COMObject>)>>>()
-                .value
-                .asFunction<int Function(Pointer, int, Pointer<COMObject>)>()(
-            ptr.ref.lpVtbl, index, retValuePtr);
-
-    if (FAILED(hr)) {
-      free(retValuePtr);
-      throw WindowsException(hr);
-    }
-
-    return retValuePtr;
-  }
-
-  int _getAt_int(int index) {
-    switch (_intType) {
-      case Int16:
-        return _getAt_Int16(index);
-      case Int64:
-        return _getAt_Int64(index);
-      case Uint8:
-        return _getAt_Uint8(index);
-      case Uint16:
-        return _getAt_Uint16(index);
-      case Uint32:
-        return _getAt_Uint32(index);
-      case Uint64:
-        return _getAt_Uint64(index);
-      default:
-        return _getAt_Int32(index);
-    }
-  }
-
-  int _getAt_Int16(int index) {
-    final retValuePtr = calloc<Int16>();
-
-    try {
-      final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(Pointer, Uint32, Pointer<Int16>)>>>()
-              .value
-              .asFunction<int Function(Pointer, int, Pointer<Int16>)>()(
-          ptr.ref.lpVtbl, index, retValuePtr);
-
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      return retValuePtr.value;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  int _getAt_Int32(int index) {
-    final retValuePtr = calloc<Int32>();
-
-    try {
-      final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(Pointer, Uint32, Pointer<Int32>)>>>()
-              .value
-              .asFunction<int Function(Pointer, int, Pointer<Int32>)>()(
-          ptr.ref.lpVtbl, index, retValuePtr);
-
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      return retValuePtr.value;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  int _getAt_Int64(int index) {
-    final retValuePtr = calloc<Int64>();
-
-    try {
-      final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(Pointer, Uint32, Pointer<Int64>)>>>()
-              .value
-              .asFunction<int Function(Pointer, int, Pointer<Int64>)>()(
-          ptr.ref.lpVtbl, index, retValuePtr);
-
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      return retValuePtr.value;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  int _getAt_Uint8(int index) {
-    final retValuePtr = calloc<Uint8>();
-
-    try {
-      final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(Pointer, Uint32, Pointer<Uint8>)>>>()
-              .value
-              .asFunction<int Function(Pointer, int, Pointer<Uint8>)>()(
-          ptr.ref.lpVtbl, index, retValuePtr);
-
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      return retValuePtr.value;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  int _getAt_Uint16(int index) {
-    final retValuePtr = calloc<Uint16>();
-
-    try {
-      final hr =
-          ptr.ref.vtable
-                  .elementAt(6)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(
-                                  Pointer, Uint32, Pointer<Uint16>)>>>()
-                  .value
-                  .asFunction<int Function(Pointer, int, Pointer<Uint16>)>()(
-              ptr.ref.lpVtbl, index, retValuePtr);
-
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      return retValuePtr.value;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  int _getAt_Uint32(int index) {
-    final retValuePtr = calloc<Uint32>();
-
-    try {
-      final hr =
-          ptr.ref.vtable
-                  .elementAt(6)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(
-                                  Pointer, Uint32, Pointer<Uint32>)>>>()
-                  .value
-                  .asFunction<int Function(Pointer, int, Pointer<Uint32>)>()(
-              ptr.ref.lpVtbl, index, retValuePtr);
-
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      return retValuePtr.value;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  int _getAt_Uint64(int index) {
-    final retValuePtr = calloc<Uint64>();
-
-    try {
-      final hr =
-          ptr.ref.vtable
-                  .elementAt(6)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(
-                                  Pointer, Uint32, Pointer<Uint64>)>>>()
-                  .value
-                  .asFunction<int Function(Pointer, int, Pointer<Uint64>)>()(
-              ptr.ref.lpVtbl, index, retValuePtr);
-
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      return retValuePtr.value;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  Uri _getAt_Uri(int index) {
-    final retValuePtr = calloc<COMObject>();
-
-    final hr =
-        ptr.ref.vtable
-                .elementAt(6)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                Pointer, Uint32, Pointer<COMObject>)>>>()
-                .value
-                .asFunction<int Function(Pointer, int, Pointer<COMObject>)>()(
-            ptr.ref.lpVtbl, index, retValuePtr);
-
-    if (FAILED(hr)) {
-      free(retValuePtr);
-      throw WindowsException(hr);
-    }
-
-    final winrtUri = winrt_uri.Uri.fromRawPointer(retValuePtr);
-    final uriAsString = winrtUri.toString();
-    winrtUri.release();
-
-    return Uri.parse(uriAsString);
-  }
-
-  String _getAt_String(int index) {
-    final retValuePtr = calloc<HSTRING>();
-
-    try {
-      final hr =
-          ptr.ref.vtable
-                  .elementAt(6)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(
-                                  Pointer, Uint32, Pointer<HSTRING>)>>>()
-                  .value
-                  .asFunction<int Function(Pointer, int, Pointer<HSTRING>)>()(
-              ptr.ref.lpVtbl, index, retValuePtr);
-
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      return retValuePtr.toDartString();
-    } finally {
-      WindowsDeleteString(retValuePtr.value);
-      free(retValuePtr);
-    }
-  }
+  T getAt(int index);
 
   /// Gets the number of items in the vector view.
   int get size {
@@ -381,99 +121,255 @@ class IVectorView<T> extends IInspectable implements IIterable<T> {
   /// Retrieves the index of a specified item in the vector view.
   ///
   /// Does not work for `Uri` [value]s.
-  bool indexOf(T value, Pointer<Uint32> index) {
-    if (isSameType<T, int>()) return _indexOf_int(value as int, index);
-    if (isSameType<T, Uri>()) return _indexOf_Uri(value as Uri, index);
-    if (isSameType<T, String>()) return _indexOf_String(value as String, index);
-    if (isSubtypeOfWinRTEnum<T>()) {
-      return _indexOf_enum(value as WinRTEnum, index);
+  bool indexOf(T value, Pointer<Uint32> index);
+
+  /// Retrieves multiple items from the vector view beginning at the given
+  /// index.
+  int getMany(int startIndex, int capacity, Pointer<NativeType> value);
+
+  @override
+  IIterator<T> first();
+
+  /// Creates an unmodifiable [List] from the current [IVectorView] instance.
+  List<T> toList();
+}
+
+class _IVectorViewEnum<T> extends IVectorView<T> {
+  _IVectorViewEnum.fromRawPointer(
+      super.ptr, this.enumCreator, this.intType, this.iterableIid);
+
+  final T Function(int) enumCreator;
+  final WinRTIntType intType;
+  final String iterableIid;
+
+  @override
+  T getAt(int index) => enumCreator(_getAtInt(ptr, intType, index));
+
+  @override
+  bool indexOf(T value, Pointer<Uint32> index) =>
+      _indexOfInt(ptr, intType, (value as WinRTEnum).value, index);
+
+  @override
+  int getMany(int startIndex, int capacity, Pointer<NativeType> value) =>
+      _getManyInt(ptr, intType, startIndex, capacity, value);
+
+  late final _iIterable = IIterable<T>.fromRawPointer(toInterface(iterableIid),
+      enumCreator: enumCreator, intType: intType);
+
+  @override
+  IIterator<T> first() => _iIterable.first();
+
+  @override
+  List<T> toList() {
+    if (size == 0) return List.unmodifiable(<T>[]);
+
+    // The only valid types for enums are Int32 or UInt32.
+    // See https://docs.microsoft.com/en-us/uwp/winrt-cref/winrt-type-system#enums
+    switch (intType) {
+      case WinRTIntType.uint32:
+        final pArray = calloc<Uint32>(size);
+        try {
+          getMany(0, size, pArray);
+          return List.unmodifiable(
+              pArray.toList(length: size).map(enumCreator));
+        } finally {
+          free(pArray);
+        }
+      default:
+        final pArray = calloc<Int32>(size);
+        try {
+          getMany(0, size, pArray);
+          return List.unmodifiable(
+              pArray.toList(length: size).map(enumCreator));
+        } finally {
+          free(pArray);
+        }
+    }
+  }
+}
+
+class _IVectorViewInspectable<T> extends IVectorView<T> {
+  _IVectorViewInspectable.fromRawPointer(
+      super.ptr, this.creator, this.iterableIid);
+
+  final T Function(Pointer<COMObject>) creator;
+  final String iterableIid;
+
+  @override
+  T getAt(int index) {
+    final retValuePtr = calloc<COMObject>();
+
+    final hr =
+        ptr.ref.vtable
+                .elementAt(6)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                Pointer, Uint32, Pointer<COMObject>)>>>()
+                .value
+                .asFunction<int Function(Pointer, int, Pointer<COMObject>)>()(
+            ptr.ref.lpVtbl, index, retValuePtr);
+
+    if (FAILED(hr)) {
+      free(retValuePtr);
+      throw WindowsException(hr);
     }
 
-    return _indexOf_COMObject(value, index);
+    return creator(retValuePtr);
   }
 
-  bool _indexOf_COMObject(T value, Pointer<Uint32> index) {
-    final retValuePtr = calloc<Bool>();
+  @override
+  bool indexOf(T value, Pointer<Uint32> index) =>
+      _indexOfCOMObject(ptr, (value as IInspectable).ptr, index);
+
+  @override
+  int getMany(int startIndex, int capacity, Pointer<NativeType> value) =>
+      _getManyCOMObject(ptr, startIndex, capacity, value.cast());
+
+  late final _iIterable =
+      IIterable<T>.fromRawPointer(toInterface(iterableIid), creator: creator);
+
+  @override
+  IIterator<T> first() => _iIterable.first();
+
+  @override
+  List<T> toList() {
+    if (size == 0) return List.unmodifiable(<T>[]);
+
+    final pArray = calloc<COMObject>(size);
+    try {
+      getMany(0, size, pArray);
+      return List.unmodifiable(pArray.toList(creator, length: size));
+    } finally {
+      free(pArray);
+    }
+  }
+}
+
+class _IVectorViewInt extends IVectorView<int> {
+  _IVectorViewInt.fromRawPointer(super.ptr, this.intType, this.iterableIid);
+
+  final WinRTIntType intType;
+  final String iterableIid;
+
+  @override
+  int getAt(int index) => _getAtInt(ptr, intType, index);
+
+  @override
+  bool indexOf(int value, Pointer<Uint32> index) =>
+      _indexOfInt(ptr, intType, value, index);
+
+  @override
+  int getMany(int startIndex, int capacity, Pointer<NativeType> value) =>
+      _getManyInt(ptr, intType, startIndex, capacity, value);
+
+  late final _iIterable =
+      IIterable<int>.fromRawPointer(toInterface(iterableIid), intType: intType);
+
+  @override
+  IIterator<int> first() => _iIterable.first();
+
+  @override
+  List<int> toList() {
+    if (size == 0) return List.unmodifiable(<int>[]);
+
+    switch (intType) {
+      case WinRTIntType.int16:
+        final pArray = calloc<Int16>(size);
+        try {
+          getMany(0, size, pArray);
+          return List.unmodifiable(pArray.toList(length: size));
+        } finally {
+          free(pArray);
+        }
+      case WinRTIntType.int64:
+        final pArray = calloc<Int64>(size);
+        try {
+          getMany(0, size, pArray);
+          return List.unmodifiable(pArray.toList(length: size));
+        } finally {
+          free(pArray);
+        }
+      case WinRTIntType.uint8:
+        final pArray = calloc<Uint8>(size);
+        try {
+          getMany(0, size, pArray);
+          return List.unmodifiable(pArray.toList(length: size));
+        } finally {
+          free(pArray);
+        }
+      case WinRTIntType.uint16:
+        final pArray = calloc<Uint16>(size);
+        try {
+          getMany(0, size, pArray);
+          return List.unmodifiable(pArray.toList(length: size));
+        } finally {
+          free(pArray);
+        }
+      case WinRTIntType.uint32:
+        final pArray = calloc<Uint32>(size);
+        try {
+          getMany(0, size, pArray);
+          return List.unmodifiable(pArray.toList(length: size));
+        } finally {
+          free(pArray);
+        }
+      case WinRTIntType.uint64:
+        final pArray = calloc<Uint64>(size);
+        try {
+          getMany(0, size, pArray);
+          return List.unmodifiable(pArray.toList(length: size));
+        } finally {
+          free(pArray);
+        }
+      default:
+        final pArray = calloc<Int32>(size);
+        try {
+          getMany(0, size, pArray);
+          return List.unmodifiable(pArray.toList(length: size));
+        } finally {
+          free(pArray);
+        }
+    }
+  }
+}
+
+class _IVectorViewString extends IVectorView<String> {
+  _IVectorViewString.fromRawPointer(super.ptr, this.iterableIid);
+
+  final String iterableIid;
+
+  @override
+  String getAt(int index) {
+    final retValuePtr = calloc<HSTRING>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(8)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(Pointer, LPVTBL, Pointer<Uint32>,
-                              Pointer<Bool>)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      Pointer, LPVTBL, Pointer<Uint32>, Pointer<Bool>)>()(
-          ptr.ref.lpVtbl,
-          (value as IInspectable).ptr.ref.lpVtbl,
-          index,
-          retValuePtr);
+      final hr =
+          ptr.ref.vtable
+                  .elementAt(6)
+                  .cast<
+                      Pointer<
+                          NativeFunction<
+                              HRESULT Function(
+                                  Pointer, Uint32, Pointer<HSTRING>)>>>()
+                  .value
+                  .asFunction<int Function(Pointer, int, Pointer<HSTRING>)>()(
+              ptr.ref.lpVtbl, index, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return retValuePtr.toDartString();
     } finally {
+      WindowsDeleteString(retValuePtr.value);
       free(retValuePtr);
     }
   }
 
-  bool _indexOf_enum(WinRTEnum value, Pointer<Uint32> index) {
-    switch (_intType) {
-      case Uint32:
-        return _indexOf_Uint32(value.value, index);
-      default:
-        return _indexOf_Int32(value.value, index);
-    }
-  }
-
-  bool _indexOf_int(int value, Pointer<Uint32> index) {
-    switch (_intType) {
-      case Int16:
-        return _indexOf_Int16(value, index);
-      case Int64:
-        return _indexOf_Int64(value, index);
-      case Uint8:
-        return _indexOf_Uint8(value, index);
-      case Uint16:
-        return _indexOf_Uint16(value, index);
-      case Uint32:
-        return _indexOf_Uint32(value, index);
-      case Uint64:
-        return _indexOf_Uint64(value, index);
-      default:
-        return _indexOf_Int32(value, index);
-    }
-  }
-
-  bool _indexOf_Int16(int value, Pointer<Uint32> index) {
+  @override
+  bool indexOf(String value, Pointer<Uint32> index) {
     final retValuePtr = calloc<Bool>();
-
-    try {
-      final hr = ptr.ref.vtable
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          Pointer, Int16, Pointer<Uint32>, Pointer<Bool>)>>>()
-          .value
-          .asFunction<
-              int Function(Pointer, int, Pointer<Uint32>,
-                  Pointer<Bool>)>()(ptr.ref.lpVtbl, value, index, retValuePtr);
-
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      return retValuePtr.value;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  bool _indexOf_Int32(int value, Pointer<Uint32> index) {
-    final retValuePtr = calloc<Bool>();
+    final hValue = convertToHString(value);
 
     try {
       final hr = ptr.ref.vtable
@@ -486,31 +382,34 @@ class IVectorView<T> extends IInspectable implements IIterable<T> {
           .value
           .asFunction<
               int Function(Pointer, int, Pointer<Uint32>,
-                  Pointer<Bool>)>()(ptr.ref.lpVtbl, value, index, retValuePtr);
+                  Pointer<Bool>)>()(ptr.ref.lpVtbl, hValue, index, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
       return retValuePtr.value;
     } finally {
       free(retValuePtr);
+      WindowsDeleteString(hValue);
     }
   }
 
-  bool _indexOf_Int64(int value, Pointer<Uint32> index) {
-    final retValuePtr = calloc<Bool>();
+  @override
+  int getMany(int startIndex, int capacity, Pointer<NativeType> value) {
+    final retValuePtr = calloc<Uint32>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          Pointer, Int64, Pointer<Uint32>, Pointer<Bool>)>>>()
-          .value
-          .asFunction<
-              int Function(Pointer, int, Pointer<Uint32>,
-                  Pointer<Bool>)>()(ptr.ref.lpVtbl, value, index, retValuePtr);
+              .elementAt(9)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(Pointer, Uint32, Uint32,
+                              Pointer<HSTRING>, Pointer<Uint32>)>>>()
+              .value
+              .asFunction<
+                  int Function(
+                      Pointer, int, int, Pointer<HSTRING>, Pointer<Uint32>)>()(
+          ptr.ref.lpVtbl, startIndex, capacity, value.cast(), retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -520,103 +419,61 @@ class IVectorView<T> extends IInspectable implements IIterable<T> {
     }
   }
 
-  bool _indexOf_Uint8(int value, Pointer<Uint32> index) {
-    final retValuePtr = calloc<Bool>();
+  late final _iIterable =
+      IIterable<String>.fromRawPointer(toInterface(iterableIid));
 
+  @override
+  IIterator<String> first() => _iIterable.first();
+
+  @override
+  List<String> toList() {
+    if (size == 0) return List.unmodifiable(<String>[]);
+
+    final pArray = calloc<HSTRING>(size);
     try {
-      final hr = ptr.ref.vtable
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          Pointer, Uint8, Pointer<Uint32>, Pointer<Bool>)>>>()
-          .value
-          .asFunction<
-              int Function(Pointer, int, Pointer<Uint32>,
-                  Pointer<Bool>)>()(ptr.ref.lpVtbl, value, index, retValuePtr);
-
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      return retValuePtr.value;
+      getMany(0, size, pArray);
+      return List.unmodifiable(pArray.toList(length: size));
     } finally {
-      free(retValuePtr);
+      free(pArray);
     }
   }
+}
 
-  bool _indexOf_Uint16(int value, Pointer<Uint32> index) {
-    final retValuePtr = calloc<Bool>();
+class _IVectorViewUri extends IVectorView<Uri> {
+  _IVectorViewUri.fromRawPointer(super.ptr, this.iterableIid);
 
-    try {
-      final hr = ptr.ref.vtable
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          Pointer, Uint16, Pointer<Uint32>, Pointer<Bool>)>>>()
-          .value
-          .asFunction<
-              int Function(Pointer, int, Pointer<Uint32>,
-                  Pointer<Bool>)>()(ptr.ref.lpVtbl, value, index, retValuePtr);
+  final String iterableIid;
 
-      if (FAILED(hr)) throw WindowsException(hr);
+  @override
+  Uri getAt(int index) {
+    final retValuePtr = calloc<COMObject>();
 
-      return retValuePtr.value;
-    } finally {
+    final hr =
+        ptr.ref.vtable
+                .elementAt(6)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                Pointer, Uint32, Pointer<COMObject>)>>>()
+                .value
+                .asFunction<int Function(Pointer, int, Pointer<COMObject>)>()(
+            ptr.ref.lpVtbl, index, retValuePtr);
+
+    if (FAILED(hr)) {
       free(retValuePtr);
+      throw WindowsException(hr);
     }
+
+    final winrtUri = winrt_uri.Uri.fromRawPointer(retValuePtr);
+    final uriAsString = winrtUri.toString();
+    winrtUri.release();
+
+    return Uri.parse(uriAsString);
   }
 
-  bool _indexOf_Uint32(int value, Pointer<Uint32> index) {
-    final retValuePtr = calloc<Bool>();
-
-    try {
-      final hr = ptr.ref.vtable
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          Pointer, Uint32, Pointer<Uint32>, Pointer<Bool>)>>>()
-          .value
-          .asFunction<
-              int Function(Pointer, int, Pointer<Uint32>,
-                  Pointer<Bool>)>()(ptr.ref.lpVtbl, value, index, retValuePtr);
-
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      return retValuePtr.value;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  bool _indexOf_Uint64(int value, Pointer<Uint32> index) {
-    final retValuePtr = calloc<Bool>();
-
-    try {
-      final hr = ptr.ref.vtable
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          Pointer, Uint64, Pointer<Uint32>, Pointer<Bool>)>>>()
-          .value
-          .asFunction<
-              int Function(Pointer, int, Pointer<Uint32>,
-                  Pointer<Bool>)>()(ptr.ref.lpVtbl, value, index, retValuePtr);
-
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      return retValuePtr.value;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  bool _indexOf_Uri(Uri value, Pointer<Uint32> index) {
+  @override
+  bool indexOf(Uri value, Pointer<Uint32> index) {
     final retValuePtr = calloc<Bool>();
     final winrtUri = winrt_uri.Uri.createUri(value.toString());
 
@@ -643,318 +500,650 @@ class IVectorView<T> extends IInspectable implements IIterable<T> {
     }
   }
 
-  bool _indexOf_String(String value, Pointer<Uint32> index) {
-    final retValuePtr = calloc<Bool>();
-    final hValue = convertToHString(value);
+  @override
+  int getMany(int startIndex, int capacity, Pointer<NativeType> value) =>
+      _getManyCOMObject(ptr, startIndex, capacity, value.cast());
 
-    try {
-      final hr = ptr.ref.vtable
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          Pointer, Int32, Pointer<Uint32>, Pointer<Bool>)>>>()
-          .value
-          .asFunction<
-              int Function(Pointer, int, Pointer<Uint32>,
-                  Pointer<Bool>)>()(ptr.ref.lpVtbl, hValue, index, retValuePtr);
-
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      return retValuePtr.value;
-    } finally {
-      free(retValuePtr);
-      WindowsDeleteString(hValue);
-    }
-  }
-
-  /// Retrieves multiple items from the vector view beginning at the given
-  /// index.
-  int getMany(int startIndex, int capacity, Pointer<NativeType> value) {
-    if (isSameType<T, int>() || isSubtypeOfWinRTEnum<T>()) {
-      return _getMany_int(startIndex, capacity, value.cast());
-    }
-
-    if (isSameType<T, String>()) {
-      return _getMany_String(startIndex, capacity, value.cast());
-    }
-
-    return _getMany_COMObject(startIndex, capacity, value.cast());
-  }
-
-  int _getMany_COMObject(
-      int startIndex, int capacity, Pointer<COMObject> value) {
-    final retValuePtr = calloc<Uint32>();
-
-    try {
-      final hr = ptr.ref.vtable
-              .elementAt(9)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(Pointer, Uint32, Uint32,
-                              Pointer<COMObject>, Pointer<Uint32>)>>>()
-              .value
-              .asFunction<
-                  int Function(Pointer, int, int, Pointer<COMObject>,
-                      Pointer<Uint32>)>()(
-          ptr.ref.lpVtbl, startIndex, capacity, value, retValuePtr);
-
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      return retValuePtr.value;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  int _getMany_int(int startIndex, int capacity, Pointer<NativeType> value) {
-    switch (_intType) {
-      case Int16:
-        return _getMany_Int16(startIndex, capacity, value.cast());
-      case Int64:
-        return _getMany_Int64(startIndex, capacity, value.cast());
-      case Uint8:
-        return _getMany_Uint8(startIndex, capacity, value.cast());
-      case Uint16:
-        return _getMany_Uint16(startIndex, capacity, value.cast());
-      case Uint32:
-        return _getMany_Uint32(startIndex, capacity, value.cast());
-      case Uint64:
-        return _getMany_Uint64(startIndex, capacity, value.cast());
-      default:
-        return _getMany_Int32(startIndex, capacity, value.cast());
-    }
-  }
-
-  int _getMany_Int16(int startIndex, int capacity, Pointer<Int16> value) {
-    final retValuePtr = calloc<Uint32>();
-
-    try {
-      final hr =
-          ptr.ref.lpVtbl.value
-                  .elementAt(9)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(Pointer, Uint32, Uint32,
-                                  Pointer<Int16>, Pointer<Uint32>)>>>()
-                  .value
-                  .asFunction<
-                      int Function(Pointer, int, int, Pointer<Int16>,
-                          Pointer<Uint32>)>()(
-              ptr.ref.lpVtbl, startIndex, capacity, value, retValuePtr);
-
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      return retValuePtr.value;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  int _getMany_Int32(int startIndex, int capacity, Pointer<Int32> value) {
-    final retValuePtr = calloc<Uint32>();
-
-    try {
-      final hr =
-          ptr.ref.lpVtbl.value
-                  .elementAt(9)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(Pointer, Uint32, Uint32,
-                                  Pointer<Int32>, Pointer<Uint32>)>>>()
-                  .value
-                  .asFunction<
-                      int Function(Pointer, int, int, Pointer<Int32>,
-                          Pointer<Uint32>)>()(
-              ptr.ref.lpVtbl, startIndex, capacity, value, retValuePtr);
-
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      return retValuePtr.value;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  int _getMany_Int64(int startIndex, int capacity, Pointer<Int64> value) {
-    final retValuePtr = calloc<Uint32>();
-
-    try {
-      final hr =
-          ptr.ref.lpVtbl.value
-                  .elementAt(9)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(Pointer, Uint32, Uint32,
-                                  Pointer<Int64>, Pointer<Uint32>)>>>()
-                  .value
-                  .asFunction<
-                      int Function(Pointer, int, int, Pointer<Int64>,
-                          Pointer<Uint32>)>()(
-              ptr.ref.lpVtbl, startIndex, capacity, value, retValuePtr);
-
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      return retValuePtr.value;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  int _getMany_Uint8(int startIndex, int capacity, Pointer<Uint8> value) {
-    final retValuePtr = calloc<Uint32>();
-
-    try {
-      final hr =
-          ptr.ref.lpVtbl.value
-                  .elementAt(9)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(Pointer, Uint32, Uint32,
-                                  Pointer<Uint8>, Pointer<Uint32>)>>>()
-                  .value
-                  .asFunction<
-                      int Function(Pointer, int, int, Pointer<Uint8>,
-                          Pointer<Uint32>)>()(
-              ptr.ref.lpVtbl, startIndex, capacity, value, retValuePtr);
-
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      return retValuePtr.value;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  int _getMany_Uint16(int startIndex, int capacity, Pointer<Uint16> value) {
-    final retValuePtr = calloc<Uint32>();
-
-    try {
-      final hr =
-          ptr.ref.lpVtbl.value
-                  .elementAt(9)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(Pointer, Uint32, Uint32,
-                                  Pointer<Uint16>, Pointer<Uint32>)>>>()
-                  .value
-                  .asFunction<
-                      int Function(Pointer, int, int, Pointer<Uint16>,
-                          Pointer<Uint32>)>()(
-              ptr.ref.lpVtbl, startIndex, capacity, value, retValuePtr);
-
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      return retValuePtr.value;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  int _getMany_Uint32(int startIndex, int capacity, Pointer<Uint32> value) {
-    final retValuePtr = calloc<Uint32>();
-
-    try {
-      final hr =
-          ptr.ref.lpVtbl.value
-                  .elementAt(9)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(Pointer, Uint32, Uint32,
-                                  Pointer<Uint32>, Pointer<Uint32>)>>>()
-                  .value
-                  .asFunction<
-                      int Function(Pointer, int, int, Pointer<Uint32>,
-                          Pointer<Uint32>)>()(
-              ptr.ref.lpVtbl, startIndex, capacity, value, retValuePtr);
-
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      return retValuePtr.value;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  int _getMany_Uint64(int startIndex, int capacity, Pointer<Uint64> value) {
-    final retValuePtr = calloc<Uint32>();
-
-    try {
-      final hr =
-          ptr.ref.lpVtbl.value
-                  .elementAt(9)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(Pointer, Uint32, Uint32,
-                                  Pointer<Uint64>, Pointer<Uint32>)>>>()
-                  .value
-                  .asFunction<
-                      int Function(Pointer, int, int, Pointer<Uint64>,
-                          Pointer<Uint32>)>()(
-              ptr.ref.lpVtbl, startIndex, capacity, value, retValuePtr);
-
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      return retValuePtr.value;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  int _getMany_String(int startIndex, int capacity, Pointer<Int32> value) {
-    final retValuePtr = calloc<Uint32>();
-
-    try {
-      final hr =
-          ptr.ref.vtable
-                  .elementAt(9)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(Pointer, Uint32, Uint32,
-                                  Pointer<Int32>, Pointer<Uint32>)>>>()
-                  .value
-                  .asFunction<
-                      int Function(Pointer, int, int, Pointer<Int32>,
-                          Pointer<Uint32>)>()(
-              ptr.ref.lpVtbl, startIndex, capacity, value, retValuePtr);
-
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      return retValuePtr.value;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  /// Creates an unmodifiable [List] from the current [IVectorView] instance.
-  List<T> toList() {
-    if (size == 0) return List.unmodifiable(<T>[]);
-    return VectorHelper(
-      _creator,
-      _enumCreator,
-      _intType,
-      getMany,
-      size,
-    ).toList();
-  }
-
-  late final _iIterable = IIterable<T>.fromRawPointer(
-    toInterface(_iterableIid),
-    creator: _creator,
-    enumCreator: _enumCreator,
-    intType: _intType,
-  );
+  late final _iIterable =
+      IIterable<Uri>.fromRawPointer(toInterface(iterableIid));
 
   @override
-  IIterator<T> first() => _iIterable.first();
+  IIterator<Uri> first() => _iIterable.first();
+
+  @override
+  List<Uri> toList() {
+    if (size == 0) return List.unmodifiable(<Uri>[]);
+
+    final pArray = calloc<COMObject>(size);
+    try {
+      getMany(0, size, pArray);
+      return List.unmodifiable(pArray
+          .toList(winrt_uri.Uri.fromRawPointer, length: size)
+          .map((e) => Uri.parse(e.toString())));
+    } finally {
+      free(pArray);
+    }
+  }
+}
+
+int _getAtInt(Pointer<COMObject> ptr, WinRTIntType intType, int index) {
+  switch (intType) {
+    case WinRTIntType.int16:
+      return _getAtInt16(ptr, index);
+    case WinRTIntType.int64:
+      return _getAtInt64(ptr, index);
+    case WinRTIntType.uint8:
+      return _getAtUint8(ptr, index);
+    case WinRTIntType.uint16:
+      return _getAtUint16(ptr, index);
+    case WinRTIntType.uint32:
+      return _getAtUint32(ptr, index);
+    case WinRTIntType.uint64:
+      return _getAtUint64(ptr, index);
+    default:
+      return _getAtInt32(ptr, index);
+  }
+}
+
+int _getAtInt16(Pointer<COMObject> ptr, int index) {
+  final retValuePtr = calloc<Int16>();
+
+  try {
+    final hr = ptr.ref.vtable
+            .elementAt(6)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(Pointer, Uint32, Pointer<Int16>)>>>()
+            .value
+            .asFunction<int Function(Pointer, int, Pointer<Int16>)>()(
+        ptr.ref.lpVtbl, index, retValuePtr);
+
+    if (FAILED(hr)) throw WindowsException(hr);
+
+    return retValuePtr.value;
+  } finally {
+    free(retValuePtr);
+  }
+}
+
+int _getAtInt32(Pointer<COMObject> ptr, int index) {
+  final retValuePtr = calloc<Int32>();
+
+  try {
+    final hr = ptr.ref.vtable
+            .elementAt(6)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(Pointer, Uint32, Pointer<Int32>)>>>()
+            .value
+            .asFunction<int Function(Pointer, int, Pointer<Int32>)>()(
+        ptr.ref.lpVtbl, index, retValuePtr);
+
+    if (FAILED(hr)) throw WindowsException(hr);
+
+    return retValuePtr.value;
+  } finally {
+    free(retValuePtr);
+  }
+}
+
+int _getAtInt64(Pointer<COMObject> ptr, int index) {
+  final retValuePtr = calloc<Int64>();
+
+  try {
+    final hr = ptr.ref.vtable
+            .elementAt(6)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(Pointer, Uint32, Pointer<Int64>)>>>()
+            .value
+            .asFunction<int Function(Pointer, int, Pointer<Int64>)>()(
+        ptr.ref.lpVtbl, index, retValuePtr);
+
+    if (FAILED(hr)) throw WindowsException(hr);
+
+    return retValuePtr.value;
+  } finally {
+    free(retValuePtr);
+  }
+}
+
+int _getAtUint8(Pointer<COMObject> ptr, int index) {
+  final retValuePtr = calloc<Uint8>();
+
+  try {
+    final hr = ptr.ref.vtable
+            .elementAt(6)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(Pointer, Uint32, Pointer<Uint8>)>>>()
+            .value
+            .asFunction<int Function(Pointer, int, Pointer<Uint8>)>()(
+        ptr.ref.lpVtbl, index, retValuePtr);
+
+    if (FAILED(hr)) throw WindowsException(hr);
+
+    return retValuePtr.value;
+  } finally {
+    free(retValuePtr);
+  }
+}
+
+int _getAtUint16(Pointer<COMObject> ptr, int index) {
+  final retValuePtr = calloc<Uint16>();
+
+  try {
+    final hr = ptr.ref.vtable
+            .elementAt(6)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(Pointer, Uint32, Pointer<Uint16>)>>>()
+            .value
+            .asFunction<int Function(Pointer, int, Pointer<Uint16>)>()(
+        ptr.ref.lpVtbl, index, retValuePtr);
+
+    if (FAILED(hr)) throw WindowsException(hr);
+
+    return retValuePtr.value;
+  } finally {
+    free(retValuePtr);
+  }
+}
+
+int _getAtUint32(Pointer<COMObject> ptr, int index) {
+  final retValuePtr = calloc<Uint32>();
+
+  try {
+    final hr = ptr.ref.vtable
+            .elementAt(6)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(Pointer, Uint32, Pointer<Uint32>)>>>()
+            .value
+            .asFunction<int Function(Pointer, int, Pointer<Uint32>)>()(
+        ptr.ref.lpVtbl, index, retValuePtr);
+
+    if (FAILED(hr)) throw WindowsException(hr);
+
+    return retValuePtr.value;
+  } finally {
+    free(retValuePtr);
+  }
+}
+
+int _getAtUint64(Pointer<COMObject> ptr, int index) {
+  final retValuePtr = calloc<Uint64>();
+
+  try {
+    final hr = ptr.ref.vtable
+            .elementAt(6)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(Pointer, Uint32, Pointer<Uint64>)>>>()
+            .value
+            .asFunction<int Function(Pointer, int, Pointer<Uint64>)>()(
+        ptr.ref.lpVtbl, index, retValuePtr);
+
+    if (FAILED(hr)) throw WindowsException(hr);
+
+    return retValuePtr.value;
+  } finally {
+    free(retValuePtr);
+  }
+}
+
+bool _indexOfCOMObject(
+    Pointer<COMObject> ptr, Pointer<COMObject> value, Pointer<Uint32> index) {
+  final retValuePtr = calloc<Bool>();
+
+  try {
+    final hr = ptr.ref.vtable
+            .elementAt(8)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(Pointer, LPVTBL, Pointer<Uint32>,
+                            Pointer<Bool>)>>>()
+            .value
+            .asFunction<
+                int Function(
+                    Pointer, LPVTBL, Pointer<Uint32>, Pointer<Bool>)>()(
+        ptr.ref.lpVtbl, value.ref.lpVtbl, index, retValuePtr);
+
+    if (FAILED(hr)) throw WindowsException(hr);
+
+    return retValuePtr.value;
+  } finally {
+    free(retValuePtr);
+  }
+}
+
+bool _indexOfInt(Pointer<COMObject> ptr, WinRTIntType intType, int value,
+    Pointer<Uint32> index) {
+  switch (intType) {
+    case WinRTIntType.int16:
+      return _indexOfInt16(ptr, value, index);
+    case WinRTIntType.int64:
+      return _indexOfInt64(ptr, value, index);
+    case WinRTIntType.uint8:
+      return _indexOfUint8(ptr, value, index);
+    case WinRTIntType.uint16:
+      return _indexOfUint16(ptr, value, index);
+    case WinRTIntType.uint32:
+      return _indexOfUint32(ptr, value, index);
+    case WinRTIntType.uint64:
+      return _indexOfUint64(ptr, value, index);
+    default:
+      return _indexOfInt32(ptr, value, index);
+  }
+}
+
+bool _indexOfInt16(Pointer<COMObject> ptr, int value, Pointer<Uint32> index) {
+  final retValuePtr = calloc<Bool>();
+
+  try {
+    final hr = ptr.ref.vtable
+            .elementAt(8)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            Pointer, Int16, Pointer<Uint32>, Pointer<Bool>)>>>()
+            .value
+            .asFunction<
+                int Function(Pointer, int, Pointer<Uint32>, Pointer<Bool>)>()(
+        ptr.ref.lpVtbl, value, index, retValuePtr);
+
+    if (FAILED(hr)) throw WindowsException(hr);
+
+    return retValuePtr.value;
+  } finally {
+    free(retValuePtr);
+  }
+}
+
+bool _indexOfInt32(Pointer<COMObject> ptr, int value, Pointer<Uint32> index) {
+  final retValuePtr = calloc<Bool>();
+
+  try {
+    final hr = ptr.ref.vtable
+            .elementAt(8)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            Pointer, Int32, Pointer<Uint32>, Pointer<Bool>)>>>()
+            .value
+            .asFunction<
+                int Function(Pointer, int, Pointer<Uint32>, Pointer<Bool>)>()(
+        ptr.ref.lpVtbl, value, index, retValuePtr);
+
+    if (FAILED(hr)) throw WindowsException(hr);
+
+    return retValuePtr.value;
+  } finally {
+    free(retValuePtr);
+  }
+}
+
+bool _indexOfInt64(Pointer<COMObject> ptr, int value, Pointer<Uint32> index) {
+  final retValuePtr = calloc<Bool>();
+
+  try {
+    final hr = ptr.ref.vtable
+            .elementAt(8)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            Pointer, Int64, Pointer<Uint32>, Pointer<Bool>)>>>()
+            .value
+            .asFunction<
+                int Function(Pointer, int, Pointer<Uint32>, Pointer<Bool>)>()(
+        ptr.ref.lpVtbl, value, index, retValuePtr);
+
+    if (FAILED(hr)) throw WindowsException(hr);
+
+    return retValuePtr.value;
+  } finally {
+    free(retValuePtr);
+  }
+}
+
+bool _indexOfUint8(Pointer<COMObject> ptr, int value, Pointer<Uint32> index) {
+  final retValuePtr = calloc<Bool>();
+
+  try {
+    final hr = ptr.ref.vtable
+            .elementAt(8)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            Pointer, Uint8, Pointer<Uint32>, Pointer<Bool>)>>>()
+            .value
+            .asFunction<
+                int Function(Pointer, int, Pointer<Uint32>, Pointer<Bool>)>()(
+        ptr.ref.lpVtbl, value, index, retValuePtr);
+
+    if (FAILED(hr)) throw WindowsException(hr);
+
+    return retValuePtr.value;
+  } finally {
+    free(retValuePtr);
+  }
+}
+
+bool _indexOfUint16(Pointer<COMObject> ptr, int value, Pointer<Uint32> index) {
+  final retValuePtr = calloc<Bool>();
+
+  try {
+    final hr = ptr.ref.vtable
+        .elementAt(8)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(
+                        Pointer, Uint16, Pointer<Uint32>, Pointer<Bool>)>>>()
+        .value
+        .asFunction<
+            int Function(Pointer, int, Pointer<Uint32>,
+                Pointer<Bool>)>()(ptr.ref.lpVtbl, value, index, retValuePtr);
+
+    if (FAILED(hr)) throw WindowsException(hr);
+
+    return retValuePtr.value;
+  } finally {
+    free(retValuePtr);
+  }
+}
+
+bool _indexOfUint32(Pointer<COMObject> ptr, int value, Pointer<Uint32> index) {
+  final retValuePtr = calloc<Bool>();
+
+  try {
+    final hr = ptr.ref.vtable
+        .elementAt(8)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(
+                        Pointer, Uint32, Pointer<Uint32>, Pointer<Bool>)>>>()
+        .value
+        .asFunction<
+            int Function(Pointer, int, Pointer<Uint32>,
+                Pointer<Bool>)>()(ptr.ref.lpVtbl, value, index, retValuePtr);
+
+    if (FAILED(hr)) throw WindowsException(hr);
+
+    return retValuePtr.value;
+  } finally {
+    free(retValuePtr);
+  }
+}
+
+bool _indexOfUint64(Pointer<COMObject> ptr, int value, Pointer<Uint32> index) {
+  final retValuePtr = calloc<Bool>();
+
+  try {
+    final hr = ptr.ref.vtable
+        .elementAt(8)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(
+                        Pointer, Uint64, Pointer<Uint32>, Pointer<Bool>)>>>()
+        .value
+        .asFunction<
+            int Function(Pointer, int, Pointer<Uint32>,
+                Pointer<Bool>)>()(ptr.ref.lpVtbl, value, index, retValuePtr);
+
+    if (FAILED(hr)) throw WindowsException(hr);
+
+    return retValuePtr.value;
+  } finally {
+    free(retValuePtr);
+  }
+}
+
+int _getManyCOMObject(Pointer<COMObject> ptr, int startIndex, int capacity,
+    Pointer<COMObject> value) {
+  final retValuePtr = calloc<Uint32>();
+
+  try {
+    final hr = ptr.ref.vtable
+            .elementAt(9)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(Pointer, Uint32, Uint32,
+                            Pointer<COMObject>, Pointer<Uint32>)>>>()
+            .value
+            .asFunction<
+                int Function(
+                    Pointer, int, int, Pointer<COMObject>, Pointer<Uint32>)>()(
+        ptr.ref.lpVtbl, startIndex, capacity, value, retValuePtr);
+
+    if (FAILED(hr)) throw WindowsException(hr);
+
+    return retValuePtr.value;
+  } finally {
+    free(retValuePtr);
+  }
+}
+
+int _getManyInt(Pointer<COMObject> ptr, WinRTIntType intType, int startIndex,
+    int capacity, Pointer<NativeType> value) {
+  switch (intType) {
+    case WinRTIntType.int16:
+      return _getManyInt16(ptr, startIndex, capacity, value.cast());
+    case WinRTIntType.int64:
+      return _getManyInt64(ptr, startIndex, capacity, value.cast());
+    case WinRTIntType.uint8:
+      return _getManyUint8(ptr, startIndex, capacity, value.cast());
+    case WinRTIntType.uint16:
+      return _getManyUint16(ptr, startIndex, capacity, value.cast());
+    case WinRTIntType.uint32:
+      return _getManyUint32(ptr, startIndex, capacity, value.cast());
+    case WinRTIntType.uint64:
+      return _getManyUint64(ptr, startIndex, capacity, value.cast());
+    default:
+      return _getManyInt32(ptr, startIndex, capacity, value.cast());
+  }
+}
+
+int _getManyInt16(Pointer<COMObject> ptr, int startIndex, int capacity,
+    Pointer<Int16> value) {
+  final retValuePtr = calloc<Uint32>();
+
+  try {
+    final hr =
+        ptr.ref.lpVtbl.value
+                .elementAt(9)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(Pointer, Uint32, Uint32,
+                                Pointer<Int16>, Pointer<Uint32>)>>>()
+                .value
+                .asFunction<
+                    int Function(
+                        Pointer, int, int, Pointer<Int16>, Pointer<Uint32>)>()(
+            ptr.ref.lpVtbl, startIndex, capacity, value, retValuePtr);
+
+    if (FAILED(hr)) throw WindowsException(hr);
+
+    return retValuePtr.value;
+  } finally {
+    free(retValuePtr);
+  }
+}
+
+int _getManyInt32(Pointer<COMObject> ptr, int startIndex, int capacity,
+    Pointer<Int32> value) {
+  final retValuePtr = calloc<Uint32>();
+
+  try {
+    final hr =
+        ptr.ref.lpVtbl.value
+                .elementAt(9)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(Pointer, Uint32, Uint32,
+                                Pointer<Int32>, Pointer<Uint32>)>>>()
+                .value
+                .asFunction<
+                    int Function(
+                        Pointer, int, int, Pointer<Int32>, Pointer<Uint32>)>()(
+            ptr.ref.lpVtbl, startIndex, capacity, value, retValuePtr);
+
+    if (FAILED(hr)) throw WindowsException(hr);
+
+    return retValuePtr.value;
+  } finally {
+    free(retValuePtr);
+  }
+}
+
+int _getManyInt64(Pointer<COMObject> ptr, int startIndex, int capacity,
+    Pointer<Int64> value) {
+  final retValuePtr = calloc<Uint32>();
+
+  try {
+    final hr =
+        ptr.ref.lpVtbl.value
+                .elementAt(9)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(Pointer, Uint32, Uint32,
+                                Pointer<Int64>, Pointer<Uint32>)>>>()
+                .value
+                .asFunction<
+                    int Function(
+                        Pointer, int, int, Pointer<Int64>, Pointer<Uint32>)>()(
+            ptr.ref.lpVtbl, startIndex, capacity, value, retValuePtr);
+
+    if (FAILED(hr)) throw WindowsException(hr);
+
+    return retValuePtr.value;
+  } finally {
+    free(retValuePtr);
+  }
+}
+
+int _getManyUint8(Pointer<COMObject> ptr, int startIndex, int capacity,
+    Pointer<Uint8> value) {
+  final retValuePtr = calloc<Uint32>();
+
+  try {
+    final hr =
+        ptr.ref.lpVtbl.value
+                .elementAt(9)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(Pointer, Uint32, Uint32,
+                                Pointer<Uint8>, Pointer<Uint32>)>>>()
+                .value
+                .asFunction<
+                    int Function(
+                        Pointer, int, int, Pointer<Uint8>, Pointer<Uint32>)>()(
+            ptr.ref.lpVtbl, startIndex, capacity, value, retValuePtr);
+
+    if (FAILED(hr)) throw WindowsException(hr);
+
+    return retValuePtr.value;
+  } finally {
+    free(retValuePtr);
+  }
+}
+
+int _getManyUint16(Pointer<COMObject> ptr, int startIndex, int capacity,
+    Pointer<Uint16> value) {
+  final retValuePtr = calloc<Uint32>();
+
+  try {
+    final hr =
+        ptr.ref.lpVtbl.value
+                .elementAt(9)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(Pointer, Uint32, Uint32,
+                                Pointer<Uint16>, Pointer<Uint32>)>>>()
+                .value
+                .asFunction<
+                    int Function(
+                        Pointer, int, int, Pointer<Uint16>, Pointer<Uint32>)>()(
+            ptr.ref.lpVtbl, startIndex, capacity, value, retValuePtr);
+
+    if (FAILED(hr)) throw WindowsException(hr);
+
+    return retValuePtr.value;
+  } finally {
+    free(retValuePtr);
+  }
+}
+
+int _getManyUint32(Pointer<COMObject> ptr, int startIndex, int capacity,
+    Pointer<Uint32> value) {
+  final retValuePtr = calloc<Uint32>();
+
+  try {
+    final hr =
+        ptr.ref.lpVtbl.value
+                .elementAt(9)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(Pointer, Uint32, Uint32,
+                                Pointer<Uint32>, Pointer<Uint32>)>>>()
+                .value
+                .asFunction<
+                    int Function(
+                        Pointer, int, int, Pointer<Uint32>, Pointer<Uint32>)>()(
+            ptr.ref.lpVtbl, startIndex, capacity, value, retValuePtr);
+
+    if (FAILED(hr)) throw WindowsException(hr);
+
+    return retValuePtr.value;
+  } finally {
+    free(retValuePtr);
+  }
+}
+
+int _getManyUint64(Pointer<COMObject> ptr, int startIndex, int capacity,
+    Pointer<Uint64> value) {
+  final retValuePtr = calloc<Uint32>();
+
+  try {
+    final hr =
+        ptr.ref.lpVtbl.value
+                .elementAt(9)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(Pointer, Uint32, Uint32,
+                                Pointer<Uint64>, Pointer<Uint32>)>>>()
+                .value
+                .asFunction<
+                    int Function(
+                        Pointer, int, int, Pointer<Uint64>, Pointer<Uint32>)>()(
+            ptr.ref.lpVtbl, startIndex, capacity, value, retValuePtr);
+
+    if (FAILED(hr)) throw WindowsException(hr);
+
+    return retValuePtr.value;
+  } finally {
+    free(retValuePtr);
+  }
 }

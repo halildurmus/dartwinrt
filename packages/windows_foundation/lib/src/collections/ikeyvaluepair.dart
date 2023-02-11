@@ -2,18 +2,15 @@
 // details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-// ignore_for_file: non_constant_identifier_names
-
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
 
+import '../../internal.dart';
 import '../helpers.dart';
 import '../iinspectable.dart';
-import '../internal/ipropertyvalue_helpers.dart';
-import '../internal/map_helpers.dart';
-import '../ipropertyvalue.dart';
+import '../types.dart';
 
 /// Represents a key-value pair.
 ///
@@ -22,91 +19,114 @@ import '../ipropertyvalue.dart';
 /// interface.
 ///
 /// {@category interface}
-class IKeyValuePair<K, V> extends IInspectable {
+abstract class IKeyValuePair<K, V> extends IInspectable {
   // vtable begins at 6, is 2 entries long.
-  final V Function(Pointer<COMObject>)? _creator;
-  final K Function(int)? _enumKeyCreator;
-  final V Function(int)? _enumCreator;
+  IKeyValuePair(super.ptr);
 
-  /// Creates an instance of [IKeyValuePair] using the given [ptr].
+  /// Creates an instance of [IKeyValuePair] from the given [ptr].
   ///
-  /// [K] must be of type `Guid`, `int`, `Object`, `String`, or `WinRTEnum`
-  /// (e.g. `PedometerStepKind`).
+  /// [K] must be of type `Guid`, `int`, `String`, or `WinRTEnum` (e.g.
+  /// `PedometerStepKind`).
   ///
-  /// [V] must be of type `Object`, `String`, or `WinRT` class/interface (e.g.
-  /// `ProductLicense`, `IJsonValue`).
+  /// [V] must be of type `Object?`, `String`, or `IInspectable?` (e.g.
+  /// `IJsonValue?`).
   ///
-  /// [creator] must be specified if [V] is a `WinRT` class/interface.
+  /// [creator] must be specified if [V] is `IInspectable?`.
   /// ```dart
-  /// final keyValuePair =
-  ///     IKeyValuePair<String, IJsonValue?>.fromRawPointer(ptr,
-  ///         creator: IJsonValue.fromRawPointer);
+  /// final keyValuePair = IKeyValuePair<String, IJsonValue?>.fromRawPointer
+  ///     (ptr, creator: IJsonValue.fromRawPointer);
   /// ```
   ///
-  /// [enumCreator] must be specified if [V] is a `WinRTEnum` type.
+  /// [enumKeyCreator] must be specified if [K] is `WinRTEnum`.
+  /// ```dart
+  /// final keyValuePair =
+  ///     IKeyValuePair<PedometerStepKind, PedometerReading?>.fromRawPointer
+  ///         (ptr, enumKeyCreator: PedometerStepKind.from,
+  ///         creator: PedometerReading.fromRawPointer);
+  /// ```
+  ///
+  /// [enumCreator] must be specified if [V] is `WinRTEnum`.
   /// ```dart
   /// final keyValuePair =
   ///     IKeyValuePair<String, ChatMessageStatus>.fromRawPointer(ptr,
   ///         enumCreator: ChatMessageStatus.from);
   /// ```
-  IKeyValuePair.fromRawPointer(
-    super.ptr, {
+  factory IKeyValuePair.fromRawPointer(
+    Pointer<COMObject> ptr, {
     V Function(Pointer<COMObject>)? creator,
     K Function(int)? enumKeyCreator,
     V Function(int)? enumCreator,
-  })  : _creator = creator,
-        _enumKeyCreator = enumKeyCreator,
-        _enumCreator = enumCreator {
-    if (!isSupportedKeyValuePair<K, V>()) {
-      throw ArgumentError('Unsupported key-value pair: IKeyValuePair<$K, $V>');
+    WinRTIntType? intType,
+  }) {
+    if (K == Guid) {
+      if (isSubtypeOfInspectable<V>()) {
+        if (creator == null) throw ArgumentError.notNull('creator');
+        return _IKeyValuePairGuidInspectable<V>.fromRawPointer(ptr, creator)
+            as IKeyValuePair<K, V>;
+      }
+
+      if (isNullableObjectType<V>()) {
+        return _IKeyValuePairGuidObject.fromRawPointer(ptr)
+            as IKeyValuePair<K, V>;
+      }
     }
 
-    if (isSubtypeOfInspectable<V>() && creator == null) {
-      throw ArgumentError.notNull('creator');
+    if (K == int && isSubtypeOfInspectable<V>()) {
+      if (creator == null) throw ArgumentError.notNull('creator');
+      return _IKeyValuePairIntInspectable<V>.fromRawPointer(ptr, creator)
+          as IKeyValuePair<K, V>;
     }
 
-    if (isSubtypeOfWinRTEnum<K>() && enumKeyCreator == null) {
-      throw ArgumentError.notNull('enumKeyCreator');
+    if (K == String) {
+      if (V == String) {
+        return _IKeyValuePairStringString.fromRawPointer(ptr)
+            as IKeyValuePair<K, V>;
+      }
+
+      if (isSubtypeOfInspectable<V>()) {
+        if (creator == null) throw ArgumentError.notNull('creator');
+        return _IKeyValuePairStringInspectable<V>.fromRawPointer(ptr, creator)
+            as IKeyValuePair<K, V>;
+      }
+
+      if (isSubtypeOfWinRTEnum<V>()) {
+        if (enumCreator == null) throw ArgumentError.notNull('enumCreator');
+        return _IKeyValuePairStringEnum<V>.fromRawPointer(ptr, enumCreator)
+            as IKeyValuePair<K, V>;
+      }
+
+      if (isNullableObjectType<V>()) {
+        return _IKeyValuePairStringObject.fromRawPointer(ptr)
+            as IKeyValuePair<K, V>;
+      }
     }
 
-    if (isSubtypeOfWinRTEnum<V>() && enumCreator == null) {
-      throw ArgumentError.notNull('enumCreator');
+    if (isSubtypeOfWinRTEnum<K>() && isSubtypeOfInspectable<V>()) {
+      if (enumKeyCreator == null) throw ArgumentError.notNull('enumKeyCreator');
+      if (creator == null) throw ArgumentError.notNull('creator');
+      return _IKeyValuePairEnumInspectable.fromRawPointer(
+          ptr, creator, enumKeyCreator);
     }
+
+    throw UnsupportedError('Unsupported key-value pair: ($K, $V)');
   }
 
   /// Gets the key of the key-value pair.
+  K get key;
+
+  /// Gets the value of the key-value pair.
+  V get value;
+}
+
+class _IKeyValuePairEnumInspectable<K, V> extends IKeyValuePair<K, V> {
+  _IKeyValuePairEnumInspectable.fromRawPointer(
+      super.ptr, this.creator, this.enumKeyCreator);
+
+  final V Function(Pointer<COMObject>) creator;
+  final K Function(int) enumKeyCreator;
+
+  @override
   K get key {
-    if (isSameType<K, Guid>()) return _key_Guid as K;
-    if (isSameType<K, int>()) return _key_Uint32 as K;
-    if (isSameType<K, String>()) return _key_String as K;
-    if (isSubtypeOfWinRTEnum<K>()) return _enumKeyCreator!(_key_enum);
-
-    return _key_Object;
-  }
-
-  Guid get _key_Guid {
-    final retValuePtr = calloc<GUID>();
-
-    try {
-      final hr = ptr.ref.lpVtbl.value
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<HRESULT Function(Pointer, Pointer<GUID>)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  Pointer, Pointer<GUID>)>()(ptr.ref.lpVtbl, retValuePtr);
-
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      return retValuePtr.toDartGuid();
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  int get _key_enum {
     final retValuePtr = calloc<Int32>();
 
     try {
@@ -122,13 +142,53 @@ class IKeyValuePair<K, V> extends IInspectable {
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return enumKeyCreator(retValuePtr.value);
     } finally {
       free(retValuePtr);
     }
   }
 
-  int get _key_Uint32 {
+  @override
+  V get value {
+    final retVal = _valueCOMObject(ptr);
+    if (retVal == null) return null as V;
+    return creator(retVal);
+  }
+}
+
+class _IKeyValuePairGuidInspectable<V> extends IKeyValuePair<Guid, V> {
+  _IKeyValuePairGuidInspectable.fromRawPointer(super.ptr, this.creator);
+
+  final V Function(Pointer<COMObject>) creator;
+
+  @override
+  Guid get key => _keyGuid(ptr);
+
+  @override
+  V get value {
+    final retVal = _valueCOMObject(ptr);
+    if (retVal == null) return null as V;
+    return creator(retVal);
+  }
+}
+
+class _IKeyValuePairGuidObject extends IKeyValuePair<Guid, Object?> {
+  _IKeyValuePairGuidObject.fromRawPointer(super.ptr);
+
+  @override
+  Guid get key => _keyGuid(ptr);
+
+  @override
+  Object? get value => _valueObject(ptr);
+}
+
+class _IKeyValuePairIntInspectable<V> extends IKeyValuePair<int, V> {
+  _IKeyValuePairIntInspectable.fromRawPointer(super.ptr, this.creator);
+
+  final V Function(Pointer<COMObject>) creator;
+
+  @override
+  int get key {
     final retValuePtr = calloc<Uint32>();
 
     try {
@@ -150,86 +210,24 @@ class IKeyValuePair<K, V> extends IInspectable {
     }
   }
 
-  String get _key_String {
-    final retValuePtr = calloc<HSTRING>();
-
-    try {
-      final hr = ptr.ref.lpVtbl.value
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(Pointer, Pointer<HSTRING>)>>>()
-              .value
-              .asFunction<int Function(Pointer, Pointer<HSTRING>)>()(
-          ptr.ref.lpVtbl, retValuePtr);
-
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      return retValuePtr.toDartString();
-    } finally {
-      WindowsDeleteString(retValuePtr.value);
-      free(retValuePtr);
-    }
-  }
-
-  K get _key_Object {
-    final retValuePtr = calloc<COMObject>();
-
-    final hr = ptr.ref.lpVtbl.value
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(Pointer, Pointer<COMObject>)>>>()
-            .value
-            .asFunction<int Function(Pointer, Pointer<COMObject>)>()(
-        ptr.ref.lpVtbl, retValuePtr);
-
-    if (FAILED(hr)) {
-      free(retValuePtr);
-      throw WindowsException(hr);
-    }
-
-    return IPropertyValue.fromRawPointer(retValuePtr).value as K;
-  }
-
-  /// Gets the value of the key-value pair.
+  @override
   V get value {
-    if (isSameType<V, String>()) return _value_String as V;
-    if (isSubtypeOfInspectable<V>()) return _value_COMObject;
-    if (isSubtypeOfWinRTEnum<V>()) return _value_enum;
-
-    return _value_Object as V;
+    final retVal = _valueCOMObject(ptr);
+    if (retVal == null) return null as V;
+    return creator(retVal);
   }
+}
 
-  V get _value_COMObject {
-    final retValuePtr = calloc<COMObject>();
+class _IKeyValuePairStringEnum<V> extends IKeyValuePair<String, V> {
+  _IKeyValuePairStringEnum.fromRawPointer(super.ptr, this.enumCreator);
 
-    final hr = ptr.ref.lpVtbl.value
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(Pointer, Pointer<COMObject>)>>>()
-            .value
-            .asFunction<int Function(Pointer, Pointer<COMObject>)>()(
-        ptr.ref.lpVtbl, retValuePtr);
+  final V Function(int) enumCreator;
 
-    if (FAILED(hr)) {
-      free(retValuePtr);
-      throw WindowsException(hr);
-    }
+  @override
+  String get key => _keyString(ptr);
 
-    if (retValuePtr.ref.lpVtbl == nullptr) {
-      free(retValuePtr);
-      return null as V;
-    }
-
-    return _creator!(retValuePtr);
-  }
-
-  V get _value_enum {
+  @override
+  V get value {
     final retValuePtr = calloc<Int32>();
 
     try {
@@ -245,39 +243,47 @@ class IKeyValuePair<K, V> extends IInspectable {
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return _enumCreator!(retValuePtr.value);
+      return enumCreator(retValuePtr.value);
     } finally {
       free(retValuePtr);
     }
   }
+}
 
-  Object? get _value_Object {
-    final retValuePtr = calloc<COMObject>();
+class _IKeyValuePairStringInspectable<V> extends IKeyValuePair<String, V> {
+  _IKeyValuePairStringInspectable.fromRawPointer(super.ptr, this.creator);
 
-    final hr = ptr.ref.lpVtbl.value
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(Pointer, Pointer<COMObject>)>>>()
-            .value
-            .asFunction<int Function(Pointer, Pointer<COMObject>)>()(
-        ptr.ref.lpVtbl, retValuePtr);
+  final V Function(Pointer<COMObject>) creator;
 
-    if (FAILED(hr)) {
-      free(retValuePtr);
-      throw WindowsException(hr);
-    }
+  @override
+  String get key => _keyString(ptr);
 
-    if (retValuePtr.ref.lpVtbl == nullptr) {
-      free(retValuePtr);
-      return null;
-    }
-
-    return IPropertyValue.fromRawPointer(retValuePtr).value;
+  @override
+  V get value {
+    final retVal = _valueCOMObject(ptr);
+    if (retVal == null) return null as V;
+    return creator(retVal);
   }
+}
 
-  String get _value_String {
+class _IKeyValuePairStringObject extends IKeyValuePair<String, Object?> {
+  _IKeyValuePairStringObject.fromRawPointer(super.ptr);
+
+  @override
+  String get key => _keyString(ptr);
+
+  @override
+  Object? get value => _valueObject(ptr);
+}
+
+class _IKeyValuePairStringString extends IKeyValuePair<String, String> {
+  _IKeyValuePairStringString.fromRawPointer(super.ptr);
+
+  @override
+  String get key => _keyString(ptr);
+
+  @override
+  String get value {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -299,4 +305,100 @@ class IKeyValuePair<K, V> extends IInspectable {
       free(retValuePtr);
     }
   }
+}
+
+Guid _keyGuid(Pointer<COMObject> ptr) {
+  final retValuePtr = calloc<GUID>();
+
+  try {
+    final hr = ptr.ref.lpVtbl.value
+        .elementAt(6)
+        .cast<
+            Pointer<NativeFunction<HRESULT Function(Pointer, Pointer<GUID>)>>>()
+        .value
+        .asFunction<
+            int Function(
+                Pointer, Pointer<GUID>)>()(ptr.ref.lpVtbl, retValuePtr);
+
+    if (FAILED(hr)) throw WindowsException(hr);
+
+    return retValuePtr.toDartGuid();
+  } finally {
+    free(retValuePtr);
+  }
+}
+
+String _keyString(Pointer<COMObject> ptr) {
+  final retValuePtr = calloc<HSTRING>();
+
+  try {
+    final hr = ptr.ref.lpVtbl.value
+        .elementAt(6)
+        .cast<
+            Pointer<
+                NativeFunction<HRESULT Function(Pointer, Pointer<HSTRING>)>>>()
+        .value
+        .asFunction<
+            int Function(
+                Pointer, Pointer<HSTRING>)>()(ptr.ref.lpVtbl, retValuePtr);
+
+    if (FAILED(hr)) throw WindowsException(hr);
+
+    return retValuePtr.toDartString();
+  } finally {
+    WindowsDeleteString(retValuePtr.value);
+    free(retValuePtr);
+  }
+}
+
+Pointer<COMObject>? _valueCOMObject(Pointer<COMObject> ptr) {
+  final retValuePtr = calloc<COMObject>();
+
+  final hr = ptr.ref.lpVtbl.value
+      .elementAt(7)
+      .cast<
+          Pointer<
+              NativeFunction<HRESULT Function(Pointer, Pointer<COMObject>)>>>()
+      .value
+      .asFunction<
+          int Function(
+              Pointer, Pointer<COMObject>)>()(ptr.ref.lpVtbl, retValuePtr);
+
+  if (FAILED(hr)) {
+    free(retValuePtr);
+    throw WindowsException(hr);
+  }
+
+  if (retValuePtr.ref.lpVtbl == nullptr) {
+    free(retValuePtr);
+    return null;
+  }
+
+  return retValuePtr;
+}
+
+Object? _valueObject(Pointer<COMObject> ptr) {
+  final retValuePtr = calloc<COMObject>();
+
+  final hr = ptr.ref.lpVtbl.value
+      .elementAt(7)
+      .cast<
+          Pointer<
+              NativeFunction<HRESULT Function(Pointer, Pointer<COMObject>)>>>()
+      .value
+      .asFunction<
+          int Function(
+              Pointer, Pointer<COMObject>)>()(ptr.ref.lpVtbl, retValuePtr);
+
+  if (FAILED(hr)) {
+    free(retValuePtr);
+    throw WindowsException(hr);
+  }
+
+  if (retValuePtr.ref.lpVtbl == nullptr) {
+    free(retValuePtr);
+    return null;
+  }
+
+  return IPropertyValue.fromRawPointer(retValuePtr).value;
 }

@@ -14,8 +14,6 @@ export 'src/internal/hstring_array.dart';
 export 'src/internal/iids.dart';
 export 'src/internal/int_array.dart';
 export 'src/internal/ipropertyvalue_helpers.dart';
-export 'src/internal/map_helpers.dart';
-export 'src/internal/vector_helper.dart';
 export 'src/ipropertyvalue.dart';
 export 'src/ireference.dart';
 export 'src/propertyvalue.dart';

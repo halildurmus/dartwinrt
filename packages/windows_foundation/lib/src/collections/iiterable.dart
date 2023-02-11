@@ -2,16 +2,14 @@
 // details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-// ignore_for_file: non_constant_identifier_names
-
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
 
-import '../helpers.dart';
 import '../iinspectable.dart';
-import '../internal/vector_helper.dart';
+import '../types.dart';
+import '../winrt_enum.dart';
 import 'iiterator.dart';
 
 /// Exposes an iterator that supports simple iteration over a collection of a
@@ -22,61 +20,52 @@ class IIterable<T> extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   final T Function(Pointer<COMObject>)? _creator;
   final T Function(int)? _enumCreator;
-  final Type? _intType;
+  final WinRTIntType? _intType;
 
-  /// Creates an instance of [IIterable] using the given [ptr].
+  /// Creates an instance of [IIterable] from the given [ptr].
   ///
-  /// [T] must be of type `int`, `String`, `Uri`, `WinRT` class/interface (e.g.
-  /// `HostName`, `StorageFile`) or `WinRTEnum` (e.g. `DeviceClass`).
+  /// [T] must be of type `int`, `String`, `Uri`, `IInspectable` (e.g.
+  /// `StorageFile`) or `WinRTEnum` (e.g. `DeviceClass`).
   ///
-  /// [intType] must be specified if [T] is `int`. Supported types are: [Int16],
-  /// [Int32], [Int64], [Uint8], [Uint16], [Uint32], [Uint64].
+  /// [intType] must be specified if [T] is `int`. Supported types are:
+  /// [WinRTIntType.int16], [WinRTIntType.int32], [WinRTIntType.int64],
+  /// [WinRTIntType.uint8], [WinRTIntType.uint16], [WinRTIntType.uint32],
+  /// [WinRTIntType.uint64].
   /// ```dart
-  /// final iterable = IIterable<int>.fromRawPointer(ptr, intType: Uint64);
+  /// final iterable =
+  ///     IIterable<int>.fromRawPointer(ptr, intType: WinRTIntType.uint64);
   /// ```
   ///
-  /// [creator] must be specified if [T] is a `WinRT` class/interface.
+  /// [creator] must be specified if [T] is `IInspectable`.
   /// ```dart
   /// final iterable = IIterable<StorageFile>.fromRawPointer(ptr,
-  ///    creator: StorageFile.fromRawPointer);
+  ///     creator: StorageFile.fromRawPointer);
   /// ```
   ///
-  /// [enumCreator] and [intType] must be specified if [T] is a `WinRTEnum`.
+  /// [enumCreator] and [intType] must be specified if [T] is `WinRTEnum`.
   /// ```dart
   /// final iterable = IIterable<DeviceClass>.fromRawPointer(ptr,
-  ///     enumCreator: DeviceClass.from, intType: Int32);
+  ///     enumCreator: DeviceClass.from, intType: WinRTIntType.int32);
   /// ```
   IIterable.fromRawPointer(
     super.ptr, {
     T Function(Pointer<COMObject>)? creator,
     T Function(int)? enumCreator,
-    Type? intType,
+    WinRTIntType? intType,
   })  : _creator = creator,
         _enumCreator = enumCreator,
         _intType = intType {
-    if (!isSameType<T, int>() &&
-        !isSameType<T, String>() &&
-        !isSameType<T, Uri>() &&
-        !isSubtypeOfInspectable<T>() &&
-        !isSubtypeOfWinRTEnum<T>()) {
-      throw ArgumentError.value(T, 'T', 'Unsupported type');
-    }
-
-    if (isSameType<T, int>() && intType == null) {
+    if (intType == null && this is IIterable<int>) {
       throw ArgumentError.notNull('intType');
     }
 
-    if (isSubtypeOfInspectable<T>() && creator == null) {
+    if (creator == null && this is IIterable<IInspectable>) {
       throw ArgumentError.notNull('creator');
     }
 
-    if (isSubtypeOfWinRTEnum<T>()) {
+    if (this is IIterable<WinRTEnum>) {
       if (enumCreator == null) throw ArgumentError.notNull('enumCreator');
       if (intType == null) throw ArgumentError.notNull('intType');
-    }
-
-    if (intType != null && !supportedIntTypes.contains(intType)) {
-      throw ArgumentError.value(intType, 'intType', 'Unsupported type');
     }
   }
 
@@ -99,11 +88,7 @@ class IIterable<T> extends IInspectable {
       throw WindowsException(hr);
     }
 
-    return IIterator.fromRawPointer(
-      retValuePtr,
-      creator: _creator,
-      enumCreator: _enumCreator,
-      intType: _intType,
-    );
+    return IIterator.fromRawPointer(retValuePtr,
+        creator: _creator, enumCreator: _enumCreator, intType: _intType);
   }
 }

@@ -128,21 +128,21 @@ void _initializeMTA() {
 /// Determines whether [S] is the same type as [T].
 ///
 /// ```dart
-/// isSameType<String, String>(); // true
-/// isSameType<String?, String>(); // false
+/// isSameType<bool?, bool?>(); // true
+/// isSameType<String, String?>(); // false
 /// ```
 bool isSameType<S, T>() {
   void func<X extends S>() {}
   return func is void Function<X extends T>();
 }
 
-/// Determines whether [S] is the same type as [T] or [T?].
+/// Determines whether [T] is `Object?`.
 ///
 /// ```dart
-/// isSimilarType<String?, String>(); // true
-/// isSimilarType<String?, String?>(); // true
+/// isNullableObjectType<Object?>(); // true
+/// isNullableObjectType<Object>(); // false
 /// ```
-bool isSimilarType<S, T>() => isSameType<S, T>() || isSameType<S, T?>();
+bool isNullableObjectType<T>() => isSameType<T, Object?>();
 
 /// Determines whether [S] is a subtype of [T] or [T?].
 ///
@@ -152,10 +152,10 @@ bool isSimilarType<S, T>() => isSameType<S, T>() || isSameType<S, T?>();
 /// ```
 bool isSubtype<S, T>() => <S>[] is List<T> || <S>[] is List<T?>;
 
-/// Determines whether [T] is a subtype of `IInspectable`.
+/// Determines whether [T] is a subtype of [IInspectable].
 ///
 /// ```dart
-/// isSubtypeOfInspectable<FileOpenPicker>(); // true
+/// isSubtypeOfInspectable<StorageFile>(); // true
 /// isSubtypeOfInspectable<INetwork>(); // false
 /// ```
 bool isSubtypeOfInspectable<T>() => isSubtype<T, IInspectable>();
