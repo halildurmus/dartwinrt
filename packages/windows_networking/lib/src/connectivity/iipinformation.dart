@@ -78,7 +78,7 @@ class IIPInformation extends IInspectable {
       return null;
     }
 
-    final reference = IReference<int>.fromRawPointer(retValuePtr,
+    final reference = IReference<int?>.fromRawPointer(retValuePtr,
         referenceIid: '{e5198cc8-2873-55f5-b0a1-84ff9e4aad62}');
     final value = reference.value;
     reference.release();
