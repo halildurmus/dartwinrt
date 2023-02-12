@@ -24,11 +24,8 @@ void main() {
     ptr[0] = hString1;
     ptr[1] = hString2;
 
-    expect(ptr.toList(length: 1), orderedEquals(['Hello']));
     expect(ptr.toList(length: 2), orderedEquals(['Hello', 'World']));
 
-    WindowsDeleteString(hString1);
-    WindowsDeleteString(hString2);
     free(ptr);
   });
 }

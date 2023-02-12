@@ -523,7 +523,7 @@ extension PointListHelpers on List<Point> {
 
 extension RectHelpers on Rect {
   /// Returns the IID of `IReference<Rect>`.
-  String get referenceIid => IID_IReferenceArray_Rect;
+  String get referenceIid => IID_IReference_Rect;
 
   /// Converts the value to an [IPropertyValue].
   IPropertyValue toPropertyValue() => PropertyValue.createRect(this);
