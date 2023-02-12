@@ -32,13 +32,9 @@ abstract class IVector<T> extends IInspectable implements IIterable<T> {
   /// [T] must be of type `int`, `String`, `Uri`, `IInspectable` (e.g.
   /// `StorageFile`) or `WinRTEnum` (e.g. `DeviceClass`).
   ///
-  /// [intType] must be specified if [T] is `int`. Supported types are:
-  /// [WinRTIntType.int16], [WinRTIntType.int32], [WinRTIntType.int64],
-  /// [WinRTIntType.uint8], [WinRTIntType.uint16], [WinRTIntType.uint32],
-  /// [WinRTIntType.uint64].
+  /// [intType] must be specified if [T] is `int`.
   /// ```dart
-  /// final vector =
-  ///     IVector<int>.fromRawPointer(ptr, intType: WinRTIntType.uint64);
+  /// final vector = IVector<int>.fromRawPointer(ptr, intType: IntType.uint64);
   /// ```
   ///
   /// [creator] must be specified if [T] is `IInspectable`.
@@ -59,7 +55,7 @@ abstract class IVector<T> extends IInspectable implements IIterable<T> {
     required String iterableIid,
     T Function(Pointer<COMObject>)? creator,
     T Function(int)? enumCreator,
-    WinRTIntType? intType,
+    IntType? intType,
   }) {
     if (isSubtypeOfInspectable<T>()) {
       if (creator == null) throw ArgumentError.notNull('creator');
@@ -187,7 +183,7 @@ class _IVectorEnum<T> extends IVector<T> {
 
   final T Function(int) enumCreator;
   final String iterableIid;
-  final intType = WinRTIntType.int32;
+  final intType = IntType.int32;
 
   @override
   T getAt(int index) => enumCreator(_getAtInt(ptr, intType, index));
@@ -265,7 +261,7 @@ class _IVectorFlagsEnum<T> extends IVector<T> {
 
   final T Function(int) enumCreator;
   final String iterableIid;
-  final intType = WinRTIntType.uint32;
+  final intType = IntType.uint32;
 
   @override
   T getAt(int index) => enumCreator(_getAtInt(ptr, intType, index));
@@ -477,7 +473,7 @@ class _IVectorInspectable<T> extends IVector<T> {
 class _IVectorInt extends IVector<int> {
   _IVectorInt.fromRawPointer(super.ptr, this.intType, this.iterableIid);
 
-  final WinRTIntType intType;
+  final IntType intType;
   final String iterableIid;
 
   @override
@@ -518,7 +514,7 @@ class _IVectorInt extends IVector<int> {
     if (size == 0) return List.unmodifiable(<int>[]);
 
     switch (intType) {
-      case WinRTIntType.int16:
+      case IntType.int16:
         final pArray = calloc<Int16>(size);
         try {
           getMany(0, size, pArray);
@@ -526,7 +522,7 @@ class _IVectorInt extends IVector<int> {
         } finally {
           free(pArray);
         }
-      case WinRTIntType.int64:
+      case IntType.int64:
         final pArray = calloc<Int64>(size);
         try {
           getMany(0, size, pArray);
@@ -534,7 +530,7 @@ class _IVectorInt extends IVector<int> {
         } finally {
           free(pArray);
         }
-      case WinRTIntType.uint8:
+      case IntType.uint8:
         final pArray = calloc<Uint8>(size);
         try {
           getMany(0, size, pArray);
@@ -542,7 +538,7 @@ class _IVectorInt extends IVector<int> {
         } finally {
           free(pArray);
         }
-      case WinRTIntType.uint16:
+      case IntType.uint16:
         final pArray = calloc<Uint16>(size);
         try {
           getMany(0, size, pArray);
@@ -550,7 +546,7 @@ class _IVectorInt extends IVector<int> {
         } finally {
           free(pArray);
         }
-      case WinRTIntType.uint32:
+      case IntType.uint32:
         final pArray = calloc<Uint32>(size);
         try {
           getMany(0, size, pArray);
@@ -558,7 +554,7 @@ class _IVectorInt extends IVector<int> {
         } finally {
           free(pArray);
         }
-      case WinRTIntType.uint64:
+      case IntType.uint64:
         final pArray = calloc<Uint64>(size);
         try {
           getMany(0, size, pArray);
@@ -957,19 +953,19 @@ class _IVectorUri extends IVector<Uri> {
   }
 }
 
-int _getAtInt(Pointer<COMObject> ptr, WinRTIntType intType, int index) {
+int _getAtInt(Pointer<COMObject> ptr, IntType intType, int index) {
   switch (intType) {
-    case WinRTIntType.int16:
+    case IntType.int16:
       return _getAtInt16(ptr, index);
-    case WinRTIntType.int64:
+    case IntType.int64:
       return _getAtInt64(ptr, index);
-    case WinRTIntType.uint8:
+    case IntType.uint8:
       return _getAtUint8(ptr, index);
-    case WinRTIntType.uint16:
+    case IntType.uint16:
       return _getAtUint16(ptr, index);
-    case WinRTIntType.uint32:
+    case IntType.uint32:
       return _getAtUint32(ptr, index);
-    case WinRTIntType.uint64:
+    case IntType.uint64:
       return _getAtUint64(ptr, index);
     default:
       return _getAtInt32(ptr, index);
@@ -1135,7 +1131,7 @@ List<T> _getView<T>(
   String iterableIid, {
   T Function(Pointer<COMObject>)? creator,
   T Function(int)? enumCreator,
-  WinRTIntType? intType,
+  IntType? intType,
 }) {
   final retValuePtr = calloc<COMObject>();
 
@@ -1196,20 +1192,20 @@ bool _indexOfCOMObject(
   }
 }
 
-bool _indexOfInt(Pointer<COMObject> ptr, WinRTIntType intType, int value,
-    Pointer<Uint32> index) {
+bool _indexOfInt(
+    Pointer<COMObject> ptr, IntType intType, int value, Pointer<Uint32> index) {
   switch (intType) {
-    case WinRTIntType.int16:
+    case IntType.int16:
       return _indexOfInt16(ptr, value, index);
-    case WinRTIntType.int64:
+    case IntType.int64:
       return _indexOfInt64(ptr, value, index);
-    case WinRTIntType.uint8:
+    case IntType.uint8:
       return _indexOfUint8(ptr, value, index);
-    case WinRTIntType.uint16:
+    case IntType.uint16:
       return _indexOfUint16(ptr, value, index);
-    case WinRTIntType.uint32:
+    case IntType.uint32:
       return _indexOfUint32(ptr, value, index);
-    case WinRTIntType.uint64:
+    case IntType.uint64:
       return _indexOfUint64(ptr, value, index);
     default:
       return _indexOfInt32(ptr, value, index);
@@ -1384,20 +1380,19 @@ bool _indexOfUint64(Pointer<COMObject> ptr, int value, Pointer<Uint32> index) {
   }
 }
 
-void _setAtInt(
-    Pointer<COMObject> ptr, WinRTIntType intType, int index, int value) {
+void _setAtInt(Pointer<COMObject> ptr, IntType intType, int index, int value) {
   switch (intType) {
-    case WinRTIntType.int16:
+    case IntType.int16:
       return _setAtInt16(ptr, index, value);
-    case WinRTIntType.int64:
+    case IntType.int64:
       return _setAtInt64(ptr, index, value);
-    case WinRTIntType.uint8:
+    case IntType.uint8:
       return _setAtUint8(ptr, index, value);
-    case WinRTIntType.uint16:
+    case IntType.uint16:
       return _setAtUint16(ptr, index, value);
-    case WinRTIntType.uint32:
+    case IntType.uint32:
       return _setAtUint32(ptr, index, value);
-    case WinRTIntType.uint64:
+    case IntType.uint64:
       return _setAtUint64(ptr, index, value);
     default:
       return _setAtInt32(ptr, index, value);
@@ -1485,19 +1480,19 @@ void _setAtUint64(Pointer<COMObject> ptr, int index, int value) {
 }
 
 void _insertAtInt(
-    Pointer<COMObject> ptr, WinRTIntType intType, int index, int value) {
+    Pointer<COMObject> ptr, IntType intType, int index, int value) {
   switch (intType) {
-    case WinRTIntType.int16:
+    case IntType.int16:
       return _insertAtInt16(ptr, index, value);
-    case WinRTIntType.int64:
+    case IntType.int64:
       return _insertAtInt64(ptr, index, value);
-    case WinRTIntType.uint8:
+    case IntType.uint8:
       return _insertAtUint8(ptr, index, value);
-    case WinRTIntType.uint16:
+    case IntType.uint16:
       return _insertAtUint16(ptr, index, value);
-    case WinRTIntType.uint32:
+    case IntType.uint32:
       return _insertAtUint32(ptr, index, value);
-    case WinRTIntType.uint64:
+    case IntType.uint64:
       return _insertAtUint64(ptr, index, value);
     default:
       return _insertAtInt32(ptr, index, value);
@@ -1584,19 +1579,19 @@ void _insertAtUint64(Pointer<COMObject> ptr, int index, int value) {
   if (FAILED(hr)) throw WindowsException(hr);
 }
 
-void _appendInt(Pointer<COMObject> ptr, WinRTIntType intType, int value) {
+void _appendInt(Pointer<COMObject> ptr, IntType intType, int value) {
   switch (intType) {
-    case WinRTIntType.int16:
+    case IntType.int16:
       return _appendInt16(ptr, value);
-    case WinRTIntType.int64:
+    case IntType.int64:
       return _appendInt64(ptr, value);
-    case WinRTIntType.uint8:
+    case IntType.uint8:
       return _appendUint8(ptr, value);
-    case WinRTIntType.uint16:
+    case IntType.uint16:
       return _appendUint16(ptr, value);
-    case WinRTIntType.uint32:
+    case IntType.uint32:
       return _appendUint32(ptr, value);
-    case WinRTIntType.uint64:
+    case IntType.uint64:
       return _appendUint64(ptr, value);
     default:
       return _appendInt32(ptr, value);
@@ -1699,20 +1694,20 @@ int _getManyCOMObject(Pointer<COMObject> ptr, int startIndex, int capacity,
   }
 }
 
-int _getManyInt(Pointer<COMObject> ptr, WinRTIntType intType, int startIndex,
+int _getManyInt(Pointer<COMObject> ptr, IntType intType, int startIndex,
     int capacity, Pointer<NativeType> value) {
   switch (intType) {
-    case WinRTIntType.int16:
+    case IntType.int16:
       return _getManyInt16(ptr, startIndex, capacity, value.cast());
-    case WinRTIntType.int64:
+    case IntType.int64:
       return _getManyInt64(ptr, startIndex, capacity, value.cast());
-    case WinRTIntType.uint8:
+    case IntType.uint8:
       return _getManyUint8(ptr, startIndex, capacity, value.cast());
-    case WinRTIntType.uint16:
+    case IntType.uint16:
       return _getManyUint16(ptr, startIndex, capacity, value.cast());
-    case WinRTIntType.uint32:
+    case IntType.uint32:
       return _getManyUint32(ptr, startIndex, capacity, value.cast());
-    case WinRTIntType.uint64:
+    case IntType.uint64:
       return _getManyUint64(ptr, startIndex, capacity, value.cast());
     default:
       return _getManyInt32(ptr, startIndex, capacity, value.cast());
@@ -1908,20 +1903,19 @@ int _getManyUint64(Pointer<COMObject> ptr, int startIndex, int capacity,
   }
 }
 
-void _replaceAllInt(
-    Pointer<COMObject> ptr, WinRTIntType intType, List<int> value) {
+void _replaceAllInt(Pointer<COMObject> ptr, IntType intType, List<int> value) {
   switch (intType) {
-    case WinRTIntType.int16:
+    case IntType.int16:
       return _replaceAllInt16(ptr, value);
-    case WinRTIntType.int64:
+    case IntType.int64:
       return _replaceAllInt64(ptr, value);
-    case WinRTIntType.uint8:
+    case IntType.uint8:
       return _replaceAllUint8(ptr, value);
-    case WinRTIntType.uint16:
+    case IntType.uint16:
       return _replaceAllUint16(ptr, value);
-    case WinRTIntType.uint32:
+    case IntType.uint32:
       return _replaceAllUint32(ptr, value);
-    case WinRTIntType.uint64:
+    case IntType.uint64:
       return _replaceAllUint64(ptr, value);
     default:
       return _replaceAllInt32(ptr, value);

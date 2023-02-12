@@ -524,7 +524,7 @@ class _IMapGuidInspectable<V> extends IMap<Guid, V> {
               .asFunction<int Function(Pointer, GUID, LPVTBL, Pointer<Bool>)>()(
           ptr.ref.lpVtbl,
           nativeGuidPtr.ref,
-          value == null ? nullptr : boxValue(value).ref.lpVtbl,
+          value?.intoBox().ref.lpVtbl ?? nullptr,
           retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
@@ -644,7 +644,7 @@ class _IMapGuidObject extends IMap<Guid, Object?> {
               .asFunction<int Function(Pointer, GUID, LPVTBL, Pointer<Bool>)>()(
           ptr.ref.lpVtbl,
           nativeGuidPtr.ref,
-          value == null ? nullptr : boxValue(value).ref.lpVtbl,
+          value?.intoBox().ref.lpVtbl ?? nullptr,
           retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
@@ -1056,7 +1056,7 @@ class _IMapStringInspectable<V> extends IMap<String, V> {
               .asFunction<int Function(Pointer, int, LPVTBL, Pointer<Bool>)>()(
           ptr.ref.lpVtbl,
           hKey,
-          value == null ? nullptr : boxValue(value).ref.lpVtbl,
+          value?.intoBox().ref.lpVtbl ?? nullptr,
           retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
@@ -1181,7 +1181,7 @@ class _IMapStringObject extends IMap<String, Object?> {
               .asFunction<int Function(Pointer, int, LPVTBL, Pointer<Bool>)>()(
           ptr.ref.lpVtbl,
           hKey,
-          value == null ? nullptr : boxValue(value).ref.lpVtbl,
+          value?.intoBox().ref.lpVtbl ?? nullptr,
           retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);

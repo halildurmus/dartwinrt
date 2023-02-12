@@ -72,13 +72,8 @@ class IGeolocatorWithScalarAccuracy extends IInspectable
             .cast<
                 Pointer<NativeFunction<HRESULT Function(Pointer, LPVTBL value)>>>()
             .value
-            .asFunction<int Function(Pointer, LPVTBL value)>()(
-        ptr.ref.lpVtbl,
-        value == null
-            ? nullptr
-            : boxValue(value, convertToIReference: true, nativeType: Uint32)
-                .ref
-                .lpVtbl);
+            .asFunction<int Function(Pointer, LPVTBL value)>()(ptr.ref.lpVtbl,
+        value?.toReference(IntType.uint32).ptr.ref.lpVtbl ?? nullptr);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }

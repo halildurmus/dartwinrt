@@ -25,7 +25,7 @@ void main() {
     final pv = PropertyValue.createUInt8(30);
     expect(pv.type, equals(PropertyType.uint8));
     expect(pv.getUInt8(), equals(30));
-
+    expect(pv.value, equals(30));
     pv.release();
   });
 
@@ -47,7 +47,7 @@ void main() {
     expect(newArray.value[2], equals(30));
     expect(newArray.value[3], equals(40));
     expect(newArray.value[4], equals(50));
-
+    expect(pv.value, equals([10, 20, 30, 40, 50]));
     pv.release();
   });
 
@@ -55,7 +55,7 @@ void main() {
     final pv = PropertyValue.createUInt16(65534);
     expect(pv.type, equals(PropertyType.uint16));
     expect(pv.getUInt16(), equals(65534));
-
+    expect(pv.value, equals(65534));
     pv.release();
   });
 
@@ -77,7 +77,7 @@ void main() {
     expect(newArray.value[2], equals(300));
     expect(newArray.value[3], equals(400));
     expect(newArray.value[4], equals(500));
-
+    expect(pv.value, equals([100, 200, 300, 400, 500]));
     pv.release();
   });
 
@@ -85,7 +85,7 @@ void main() {
     final pv = PropertyValue.createGuid(Guid.parse(IID_IAsyncInfo));
     expect(pv.type, equals(PropertyType.guid));
     expect(pv.getGuid().toString(), equals(IID_IAsyncInfo));
-
+    expect(pv.value?.toString(), equals(IID_IAsyncInfo));
     pv.release();
   });
 
@@ -105,7 +105,21 @@ void main() {
     expect(newArray.value[0].toString(), equals(IID_IAsyncAction));
     expect(newArray.value[1].toString(), equals(IID_IAsyncInfo));
     expect(newArray.value[2].toString(), equals(IID_IClosable));
+    expect(
+        pv.value,
+        equals([
+          Guid.parse(IID_IAsyncAction),
+          Guid.parse(IID_IAsyncInfo),
+          Guid.parse(IID_IClosable)
+        ]));
+    pv.release();
+  });
 
+  test('String', () {
+    final pv = PropertyValue.createString('Hello World');
+    expect(pv.type, equals(PropertyType.string));
+    expect(pv.getString(), equals('Hello World'));
+    expect(pv.value, equals('Hello World'));
     pv.release();
   });
 
@@ -114,7 +128,6 @@ void main() {
     final pv = PropertyValue.createInspectable(stringMap.ptr);
     expect(getClassName(IInspectable(pv)),
         equals('Windows.Foundation.Collections.StringMap'));
-
     stringMap.release();
   });
 

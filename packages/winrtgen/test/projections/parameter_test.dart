@@ -125,6 +125,20 @@ void main() {
       expect(parameter.type.exposedType, equals('IStorageFile?'));
     });
 
+    test('projects IReference<BluetoothLEAdvertisementFlags?>', () {
+      final methodProjection = MethodProjection.fromTypeAndMethodName(
+          'Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisement',
+          'put_Flags');
+      final parameter = methodProjection.parameters.first;
+      expect(parameter, isA<ReferenceParameterProjection>());
+      expect(parameter.preamble, isEmpty);
+      expect(parameter.postamble, isEmpty);
+      expect(parameter.localIdentifier,
+          equals('value?.toReference().ptr.ref.lpVtbl ?? nullptr'));
+      // expect(
+      //     parameter.type.exposedType, equals('BluetoothLEAdvertisementFlags?'));
+    });
+
     test('projects Object', () {
       final methodProjection = MethodProjection.fromTypeAndMethodName(
           'Windows.Foundation.Collections.PropertySet', 'Insert');
@@ -133,7 +147,7 @@ void main() {
       expect(parameter.preamble, isEmpty);
       expect(parameter.postamble, isEmpty);
       expect(parameter.localIdentifier,
-          equals('value == null ? nullptr : boxValue(value).ref.lpVtbl'));
+          equals('value?.intoBox().ref.lpVtbl ?? nullptr'));
       expect(parameter.type.exposedType, equals('Object?'));
     });
 

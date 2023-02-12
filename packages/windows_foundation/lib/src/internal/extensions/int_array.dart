@@ -14,8 +14,7 @@ extension Uint8Helper on Pointer<Uint8> {
   ///
   /// [length] must not be greater than the number of elements stored inside the
   /// `Pointer<Uint8>`.
-  List<int> toList({int length = 1}) =>
-      Uint8List.fromList(this.asTypedList(length));
+  List<int> toList({int length = 1}) => Uint8List.fromList(asTypedList(length));
 }
 
 extension Int16Helper on Pointer<Int16> {
@@ -25,8 +24,7 @@ extension Int16Helper on Pointer<Int16> {
   ///
   /// [length] must not be greater than the number of elements stored inside the
   /// `Pointer<Int16>`.
-  List<int> toList({int length = 1}) =>
-      Int16List.fromList(this.asTypedList(length));
+  List<int> toList({int length = 1}) => Int16List.fromList(asTypedList(length));
 }
 
 extension UInt16Helper on Pointer<Uint16> {
@@ -37,7 +35,7 @@ extension UInt16Helper on Pointer<Uint16> {
   /// [length] must not be greater than the number of elements stored inside the
   /// `Pointer<Uint16>`.
   List<int> toList({int length = 1}) =>
-      Uint16List.fromList(this.asTypedList(length));
+      Uint16List.fromList(asTypedList(length));
 }
 
 extension Int32Helper on Pointer<Int32> {
@@ -47,8 +45,7 @@ extension Int32Helper on Pointer<Int32> {
   ///
   /// [length] must not be greater than the number of elements stored inside the
   /// `Pointer<Int32>`.
-  List<int> toList({int length = 1}) =>
-      Int32List.fromList(this.asTypedList(length));
+  List<int> toList({int length = 1}) => Int32List.fromList(asTypedList(length));
 }
 
 extension UInt32Helper on Pointer<Uint32> {
@@ -59,7 +56,7 @@ extension UInt32Helper on Pointer<Uint32> {
   /// [length] must not be greater than the number of elements stored inside the
   /// `Pointer<Uint32>`.
   List<int> toList({int length = 1}) =>
-      Uint32List.fromList(this.asTypedList(length));
+      Uint32List.fromList(asTypedList(length));
 }
 
 extension Int64Helper on Pointer<Int64> {
@@ -69,8 +66,7 @@ extension Int64Helper on Pointer<Int64> {
   ///
   /// [length] must not be greater than the number of elements stored inside the
   /// `Pointer<Int64>`.
-  List<int> toList({int length = 1}) =>
-      Int64List.fromList(this.asTypedList(length));
+  List<int> toList({int length = 1}) => Int64List.fromList(asTypedList(length));
 }
 
 extension UInt64Helper on Pointer<Uint64> {
@@ -81,5 +77,5 @@ extension UInt64Helper on Pointer<Uint64> {
   /// [length] must not be greater than the number of elements stored inside the
   /// `Pointer<Uint64>`.
   List<int> toList({int length = 1}) =>
-      Uint64List.fromList(this.asTypedList(length));
+      Uint64List.fromList(asTypedList(length));
 }

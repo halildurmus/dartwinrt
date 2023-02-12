@@ -20,20 +20,17 @@ class IIterable<T> extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   final T Function(Pointer<COMObject>)? _creator;
   final T Function(int)? _enumCreator;
-  final WinRTIntType? _intType;
+  final IntType? _intType;
 
   /// Creates an instance of [IIterable] from the given [ptr].
   ///
   /// [T] must be of type `int`, `String`, `Uri`, `IInspectable` (e.g.
   /// `StorageFile`) or `WinRTEnum` (e.g. `DeviceClass`).
   ///
-  /// [intType] must be specified if [T] is `int`. Supported types are:
-  /// [WinRTIntType.int16], [WinRTIntType.int32], [WinRTIntType.int64],
-  /// [WinRTIntType.uint8], [WinRTIntType.uint16], [WinRTIntType.uint32],
-  /// [WinRTIntType.uint64].
+  /// [intType] must be specified if [T] is `int`.
   /// ```dart
   /// final iterable =
-  ///     IIterable<int>.fromRawPointer(ptr, intType: WinRTIntType.uint64);
+  ///     IIterable<int>.fromRawPointer(ptr, intType: IntType.uint64);
   /// ```
   ///
   /// [creator] must be specified if [T] is `IInspectable`.
@@ -51,7 +48,7 @@ class IIterable<T> extends IInspectable {
     super.ptr, {
     T Function(Pointer<COMObject>)? creator,
     T Function(int)? enumCreator,
-    WinRTIntType? intType,
+    IntType? intType,
   })  : _creator = creator,
         _enumCreator = enumCreator,
         _intType = intType {

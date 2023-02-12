@@ -39,7 +39,7 @@ abstract class MethodProjection {
   /// Projections for the parameters of the method.
   final List<ParameterProjection> parameters;
 
-  /// Projection for the return type.
+  /// Type projection of the return type.
   final TypeProjection returnType;
 
   /// Returns the appropriate method projection for the [method] based on the

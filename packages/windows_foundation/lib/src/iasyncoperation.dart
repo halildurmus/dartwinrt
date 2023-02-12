@@ -27,12 +27,10 @@ abstract class IAsyncOperation<TResult> extends IInspectable
   /// `Uri`, `IInspectable?` (e.g. `StorageFile?`, `IBuffer?`) or `WinRTEnum`
   /// (e.g. `LaunchUriStatus`).
   ///
-  /// [intType] must be specified if [TResult] is `int`. Supported types are:
-  /// [WinRTIntType.int32], [WinRTIntType.int64], [WinRTIntType.uint32],
-  /// [WinRTIntType.uint64].
+  /// [intType] must be specified if [TResult] is `int`.
   /// ```dart
   /// final asyncOperation = IAsyncOperation<int>.fromRawPointer(ptr,
-  ///     intType: WinRTIntType.uint64);
+  ///     intType: IntType.uint64);
   /// ```
   ///
   /// [creator] must be specified if [TResult] is `IInspectable?`.
@@ -51,7 +49,7 @@ abstract class IAsyncOperation<TResult> extends IInspectable
     Pointer<COMObject> ptr, {
     TResult Function(Pointer<COMObject>)? creator,
     TResult Function(int)? enumCreator,
-    WinRTIntType? intType,
+    IntType? intType,
   }) {
     if (TResult == bool) {
       return _IAsyncOperationBool.fromRawPointer(ptr)
@@ -304,16 +302,16 @@ class _IAsyncOperationInspectable<T> extends IAsyncOperation<T> {
 class _IAsyncOperationInt extends IAsyncOperation<int> {
   _IAsyncOperationInt.fromRawPointer(super.ptr, this.intType);
 
-  final WinRTIntType intType;
+  final IntType intType;
 
   @override
   int getResults() {
     switch (intType) {
-      case WinRTIntType.int64:
+      case IntType.int64:
         return _getResultsInt64();
-      case WinRTIntType.uint32:
+      case IntType.uint32:
         return _getResultsUint32();
-      case WinRTIntType.uint64:
+      case IntType.uint64:
         return _getResultsUint64();
       default:
         return _getResultsInt32();

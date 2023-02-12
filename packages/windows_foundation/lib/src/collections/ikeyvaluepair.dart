@@ -56,7 +56,7 @@ abstract class IKeyValuePair<K, V> extends IInspectable {
     V Function(Pointer<COMObject>)? creator,
     K Function(int)? enumKeyCreator,
     V Function(int)? enumCreator,
-    WinRTIntType? intType,
+    IntType? intType,
   }) {
     if (K == Guid) {
       if (isSubtypeOfInspectable<V>()) {
