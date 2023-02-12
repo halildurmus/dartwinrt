@@ -133,7 +133,7 @@ void main() {
       expect(parameter.preamble, isEmpty);
       expect(parameter.postamble, isEmpty);
       expect(parameter.localIdentifier,
-          equals('value == null ? nullptr : boxValue(value).ref.lpVtbl'));
+          equals('value?.box().ref.lpVtbl ?? nullptr'));
       expect(parameter.type.exposedType, equals('Object?'));
     });
 
