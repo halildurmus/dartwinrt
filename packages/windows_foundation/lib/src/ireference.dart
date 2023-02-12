@@ -52,7 +52,7 @@ abstract class IReference<T> extends IInspectable {
     }
 
     if (isSameType<T, Duration?>()) {
-      return IReferenceDuration.fromRawPointer(ptr) as IReference<T>;
+      return _IReferenceDuration.fromRawPointer(ptr) as IReference<T>;
     }
 
     if (isSameType<T, Guid?>()) {
@@ -61,6 +61,10 @@ abstract class IReference<T> extends IInspectable {
 
     if (isSameType<T, int?>()) {
       return _IReferenceInt.fromRawPointer(ptr, referenceIid) as IReference<T>;
+    }
+
+    if (isSameType<T, String?>()) {
+      return _IReferenceString.fromRawPointer(ptr) as IReference<T>;
     }
 
     if (isSubtypeOfStruct<T>()) {
@@ -163,7 +167,7 @@ class _IReferenceDouble extends IReference<double?> {
     switch (referenceIid) {
       case IID_IReference_Double:
         return _getDouble();
-      case IID_IReference_Float:
+      case IID_IReference_Single:
         return _getFloat();
       default:
         throw UnsupportedError('Unsupported IReference IID: $referenceIid');
@@ -215,8 +219,8 @@ class _IReferenceDouble extends IReference<double?> {
   }
 }
 
-class IReferenceDuration extends IReference<Duration?> {
-  IReferenceDuration.fromRawPointer(super.ptr);
+class _IReferenceDuration extends IReference<Duration?> {
+  _IReferenceDuration.fromRawPointer(super.ptr);
 
   @override
   Duration? get value {
@@ -290,34 +294,14 @@ class _IReferenceInt extends IReference<int?> {
         return _getInt64();
       case IID_IReference_Uint8:
         return _getUint8();
+      case IID_IReference_Uint16:
+        return _getUint16();
       case IID_IReference_Uint32:
         return _getUint32();
       case IID_IReference_Uint64:
         return _getUint64();
       default:
         throw UnsupportedError('Unsupported IReference IID: $referenceIid');
-    }
-  }
-
-  int _getUint8() {
-    final retValuePtr = calloc<Uint8>();
-
-    try {
-      final hr = ptr.ref.vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<HRESULT Function(Pointer, Pointer<Uint8>)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  Pointer, Pointer<Uint8>)>()(ptr.ref.lpVtbl, retValuePtr);
-
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      return retValuePtr.value;
-    } finally {
-      free(retValuePtr);
     }
   }
 
@@ -365,28 +349,6 @@ class _IReferenceInt extends IReference<int?> {
     }
   }
 
-  int _getUint32() {
-    final retValuePtr = calloc<Uint32>();
-
-    try {
-      final hr = ptr.ref.vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<HRESULT Function(Pointer, Pointer<Uint32>)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  Pointer, Pointer<Uint32>)>()(ptr.ref.lpVtbl, retValuePtr);
-
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      return retValuePtr.value;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
   int _getInt64() {
     final retValuePtr = calloc<Int64>();
 
@@ -400,6 +362,72 @@ class _IReferenceInt extends IReference<int?> {
           .asFunction<
               int Function(
                   Pointer, Pointer<Int64>)>()(ptr.ref.lpVtbl, retValuePtr);
+
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      return retValuePtr.value;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  int _getUint8() {
+    final retValuePtr = calloc<Uint8>();
+
+    try {
+      final hr = ptr.ref.vtable
+          .elementAt(6)
+          .cast<
+              Pointer<
+                  NativeFunction<HRESULT Function(Pointer, Pointer<Uint8>)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  Pointer, Pointer<Uint8>)>()(ptr.ref.lpVtbl, retValuePtr);
+
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      return retValuePtr.value;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  int _getUint16() {
+    final retValuePtr = calloc<Uint16>();
+
+    try {
+      final hr = ptr.ref.vtable
+          .elementAt(6)
+          .cast<
+              Pointer<
+                  NativeFunction<HRESULT Function(Pointer, Pointer<Uint16>)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  Pointer, Pointer<Uint16>)>()(ptr.ref.lpVtbl, retValuePtr);
+
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      return retValuePtr.value;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  int _getUint32() {
+    final retValuePtr = calloc<Uint32>();
+
+    try {
+      final hr = ptr.ref.vtable
+          .elementAt(6)
+          .cast<
+              Pointer<
+                  NativeFunction<HRESULT Function(Pointer, Pointer<Uint32>)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  Pointer, Pointer<Uint32>)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -502,6 +530,36 @@ class _IReferenceSize extends IReference<Size?> {
     if (FAILED(hr)) throw WindowsException(hr);
 
     return retValuePtr.ref;
+  }
+}
+
+class _IReferenceString extends IReference<String?> {
+  _IReferenceString.fromRawPointer(super.ptr);
+
+  @override
+  String? get value {
+    if (ptr.ref.isNull) return null;
+
+    final retValuePtr = calloc<HSTRING>();
+
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(6)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(Pointer, Pointer<HSTRING>)>>>()
+              .value
+              .asFunction<int Function(Pointer, Pointer<HSTRING>)>()(
+          ptr.ref.lpVtbl, retValuePtr);
+
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      return retValuePtr.toDartString();
+    } finally {
+      WindowsDeleteString(retValuePtr.value);
+      free(retValuePtr);
+    }
   }
 }
 
