@@ -8,9 +8,15 @@ import 'dart:io';
 
 import 'package:dart_style/dart_style.dart';
 import 'package:test/test.dart';
+import 'package:win32/win32.dart';
 import 'package:winrtgen/winrtgen.dart';
 
 void main() {
+  if (!isWindowsRuntimeAvailable()) {
+    print('Skipping tests because Windows Runtime is not available.');
+    return;
+  }
+
   test('Windows Runtime golden', () {
     const type = 'Windows.Globalization.ICalendar';
     final dartClass = InterfaceProjection.from(type).toString();

@@ -5,9 +5,15 @@
 @TestOn('windows')
 
 import 'package:test/test.dart';
+import 'package:win32/win32.dart';
 import 'package:winrtgen/winrtgen.dart';
 
 void main() {
+  if (!isWindowsRuntimeAvailable()) {
+    print('Skipping tests because Windows Runtime is not available.');
+    return;
+  }
+
   group('SetterProjection', () {
     test('projects something', () {
       final output = SetterProjection.fromTypeAndMethodName(

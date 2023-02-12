@@ -14,84 +14,87 @@ import 'package:windows_foundation/windows_foundation.dart';
 import 'package:windows_networking/windows_networking.dart';
 
 void main() {
-  if (isWindowsRuntimeAvailable()) {
-    group('IVectorView<HostName>', () {
-      late Arena allocator;
-      late IVectorView<HostName> vectorView;
-
-      IVectorView<HostName> getHostNames(Pointer<COMObject> ptr) {
-        final retValuePtr = calloc<COMObject>();
-
-        final hr = ptr.ref.vtable
-                .elementAt(9)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(Pointer, Pointer<COMObject>)>>>()
-                .value
-                .asFunction<int Function(Pointer, Pointer<COMObject>)>()(
-            ptr.ref.lpVtbl, retValuePtr);
-
-        if (FAILED(hr)) throw WindowsException(hr);
-
-        return IVectorView.fromRawPointer(retValuePtr,
-            creator: HostName.fromRawPointer,
-            iterableIid: IID_IIterable_HostName);
-      }
-
-      setUp(() {
-        allocator = Arena();
-        final object = createActivationFactory(
-            'Windows.Networking.Connectivity.NetworkInformation',
-            '{5074f851-950d-4165-9c15-365619481eea}' // IID_INetworkInformationStatics,
-            );
-        vectorView = getHostNames(object);
-      });
-
-      test('getAt throws exception if the index is out of bounds', () {
-        expect(() => vectorView.getAt(20), throwsException);
-      });
-
-      test('getAt returns elements', () {
-        final hostName = vectorView.getAt(0);
-        expect(hostName.displayName, isNotEmpty);
-      });
-
-      test('indexOf finds element', () {
-        final pIndex = allocator<Uint32>();
-        final hostName = vectorView.getAt(0);
-        final containsElement = vectorView.indexOf(hostName, pIndex);
-        expect(containsElement, isTrue);
-        expect(pIndex.value, greaterThanOrEqualTo(0));
-      });
-
-      test('getMany returns elements starting from index 0', () {
-        final pCOMObject = allocator<COMObject>(vectorView.size);
-        expect(vectorView.getMany(0, vectorView.size, pCOMObject),
-            greaterThanOrEqualTo(1));
-      });
-
-      test('toList', () {
-        final list = vectorView.toList();
-        expect(list.length, greaterThanOrEqualTo(1));
-        expect(() => list..clear(), throwsUnsupportedError);
-      });
-
-      test('first', () {
-        final list = vectorView.toList();
-        final iterator = vectorView.first();
-
-        for (var i = 0; i < list.length; i++) {
-          expect(iterator.hasCurrent, isTrue);
-          expect(iterator.current.rawName, equals(list[i].rawName));
-          // moveNext() should return true except for the last iteration
-          expect(iterator.moveNext(), i < list.length - 1);
-        }
-      });
-
-      tearDown(() {
-        allocator.releaseAll(reuse: true);
-      });
-    });
+  if (!isWindowsRuntimeAvailable()) {
+    print('Skipping tests because Windows Runtime is not available.');
+    return;
   }
+
+  group('IVectorView<HostName>', () {
+    late Arena allocator;
+    late IVectorView<HostName> vectorView;
+
+    IVectorView<HostName> getHostNames(Pointer<COMObject> ptr) {
+      final retValuePtr = calloc<COMObject>();
+
+      final hr = ptr.ref.vtable
+              .elementAt(9)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(Pointer, Pointer<COMObject>)>>>()
+              .value
+              .asFunction<int Function(Pointer, Pointer<COMObject>)>()(
+          ptr.ref.lpVtbl, retValuePtr);
+
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      return IVectorView.fromRawPointer(retValuePtr,
+          creator: HostName.fromRawPointer,
+          iterableIid: IID_IIterable_HostName);
+    }
+
+    setUp(() {
+      allocator = Arena();
+      final object = createActivationFactory(
+          'Windows.Networking.Connectivity.NetworkInformation',
+          '{5074f851-950d-4165-9c15-365619481eea}' // IID_INetworkInformationStatics,
+          );
+      vectorView = getHostNames(object);
+    });
+
+    test('getAt throws exception if the index is out of bounds', () {
+      expect(() => vectorView.getAt(20), throwsException);
+    });
+
+    test('getAt returns elements', () {
+      final hostName = vectorView.getAt(0);
+      expect(hostName.displayName, isNotEmpty);
+    });
+
+    test('indexOf finds element', () {
+      final pIndex = allocator<Uint32>();
+      final hostName = vectorView.getAt(0);
+      final containsElement = vectorView.indexOf(hostName, pIndex);
+      expect(containsElement, isTrue);
+      expect(pIndex.value, greaterThanOrEqualTo(0));
+    });
+
+    test('getMany returns elements starting from index 0', () {
+      final pCOMObject = allocator<COMObject>(vectorView.size);
+      expect(vectorView.getMany(0, vectorView.size, pCOMObject),
+          greaterThanOrEqualTo(1));
+    });
+
+    test('toList', () {
+      final list = vectorView.toList();
+      expect(list.length, greaterThanOrEqualTo(1));
+      expect(() => list..clear(), throwsUnsupportedError);
+    });
+
+    test('first', () {
+      final list = vectorView.toList();
+      final iterator = vectorView.first();
+
+      for (var i = 0; i < list.length; i++) {
+        expect(iterator.hasCurrent, isTrue);
+        expect(iterator.current.rawName, equals(list[i].rawName));
+        // moveNext() should return true except for the last iteration
+        expect(iterator.moveNext(), i < list.length - 1);
+      }
+    });
+
+    tearDown(() {
+      allocator.releaseAll(reuse: true);
+    });
+  });
 }
