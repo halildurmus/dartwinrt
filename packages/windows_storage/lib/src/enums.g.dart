@@ -13,7 +13,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// Describes the attributes of a file or folder.
 ///
 /// {@category enum}
-class FileAttributes extends WinRTEnum {
+class FileAttributes extends WinRTFlagsEnum<FileAttributes> {
   const FileAttributes(super.value, {super.name});
 
   factory FileAttributes.from(int value) => FileAttributes.values
@@ -36,26 +36,13 @@ class FileAttributes extends WinRTEnum {
     locallyIncomplete
   ];
 
+  @override
   FileAttributes operator &(FileAttributes other) =>
       FileAttributes(value & other.value);
 
+  @override
   FileAttributes operator |(FileAttributes other) =>
       FileAttributes(value | other.value);
-
-  /// Determines whether one or more bit fields are set in the current enum
-  /// value.
-  ///
-  /// ```dart
-  /// final fileAttributes = FileAttributes.readOnly | FileAttributes.archive;
-  /// fileAttributes.hasFlag(FileAttributes.readOnly)); // `true`
-  /// fileAttributes.hasFlag(FileAttributes.temporary)); // `false`
-  /// fileAttributes.hasFlag(
-  ///     FileAttributes.readOnly | FileAttributes.archive)); // `true`
-  /// ```
-  bool hasFlag(FileAttributes flag) {
-    if (value != 0 && flag.value == 0) return false;
-    return value & flag.value == flag.value;
-  }
 }
 
 /// Specifies what to do if a file or folder with the specified name already
@@ -102,7 +89,7 @@ enum StorageDeleteOption implements WinRTEnum {
 /// a file or a folder.
 ///
 /// {@category enum}
-class StorageItemTypes extends WinRTEnum {
+class StorageItemTypes extends WinRTFlagsEnum<StorageItemTypes> {
   const StorageItemTypes(super.value, {super.name});
 
   factory StorageItemTypes.from(int value) =>
@@ -115,24 +102,11 @@ class StorageItemTypes extends WinRTEnum {
 
   static const List<StorageItemTypes> values = [none, file, folder];
 
+  @override
   StorageItemTypes operator &(StorageItemTypes other) =>
       StorageItemTypes(value & other.value);
 
+  @override
   StorageItemTypes operator |(StorageItemTypes other) =>
       StorageItemTypes(value | other.value);
-
-  /// Determines whether one or more bit fields are set in the current enum
-  /// value.
-  ///
-  /// ```dart
-  /// final fileAttributes = FileAttributes.readOnly | FileAttributes.archive;
-  /// fileAttributes.hasFlag(FileAttributes.readOnly)); // `true`
-  /// fileAttributes.hasFlag(FileAttributes.temporary)); // `false`
-  /// fileAttributes.hasFlag(
-  ///     FileAttributes.readOnly | FileAttributes.archive)); // `true`
-  /// ```
-  bool hasFlag(StorageItemTypes flag) {
-    if (value != 0 && flag.value == 0) return false;
-    return value & flag.value == flag.value;
-  }
 }

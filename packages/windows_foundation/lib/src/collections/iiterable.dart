@@ -42,10 +42,10 @@ class IIterable<T> extends IInspectable {
   ///     creator: StorageFile.fromRawPointer);
   /// ```
   ///
-  /// [enumCreator] and [intType] must be specified if [T] is `WinRTEnum`.
+  /// [enumCreator] must be specified if [T] is `WinRTEnum`.
   /// ```dart
   /// final iterable = IIterable<DeviceClass>.fromRawPointer(ptr,
-  ///     enumCreator: DeviceClass.from, intType: WinRTIntType.int32);
+  ///     enumCreator: DeviceClass.from);
   /// ```
   IIterable.fromRawPointer(
     super.ptr, {
@@ -63,9 +63,8 @@ class IIterable<T> extends IInspectable {
       throw ArgumentError.notNull('creator');
     }
 
-    if (this is IIterable<WinRTEnum>) {
-      if (enumCreator == null) throw ArgumentError.notNull('enumCreator');
-      if (intType == null) throw ArgumentError.notNull('intType');
+    if (enumCreator == null && this is IIterable<WinRTEnum>) {
+      throw ArgumentError.notNull('enumCreator');
     }
   }
 

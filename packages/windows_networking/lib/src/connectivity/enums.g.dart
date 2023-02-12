@@ -13,7 +13,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// Defines the network connection types.
 ///
 /// {@category enum}
-class NetworkTypes extends WinRTEnum {
+class NetworkTypes extends WinRTFlagsEnum<NetworkTypes> {
   const NetworkTypes(super.value, {super.name});
 
   factory NetworkTypes.from(int value) => NetworkTypes.values
@@ -25,24 +25,11 @@ class NetworkTypes extends WinRTEnum {
 
   static const List<NetworkTypes> values = [none, internet, privateNetwork];
 
+  @override
   NetworkTypes operator &(NetworkTypes other) =>
       NetworkTypes(value & other.value);
 
+  @override
   NetworkTypes operator |(NetworkTypes other) =>
       NetworkTypes(value | other.value);
-
-  /// Determines whether one or more bit fields are set in the current enum
-  /// value.
-  ///
-  /// ```dart
-  /// final fileAttributes = FileAttributes.readOnly | FileAttributes.archive;
-  /// fileAttributes.hasFlag(FileAttributes.readOnly)); // `true`
-  /// fileAttributes.hasFlag(FileAttributes.temporary)); // `false`
-  /// fileAttributes.hasFlag(
-  ///     FileAttributes.readOnly | FileAttributes.archive)); // `true`
-  /// ```
-  bool hasFlag(NetworkTypes flag) {
-    if (value != 0 && flag.value == 0) return false;
-    return value & flag.value == flag.value;
-  }
 }

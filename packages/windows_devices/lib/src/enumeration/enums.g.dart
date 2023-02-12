@@ -38,7 +38,8 @@ enum DeviceClass implements WinRTEnum {
 /// object.
 ///
 /// {@category enum}
-class DevicePickerDisplayStatusOptions extends WinRTEnum {
+class DevicePickerDisplayStatusOptions
+    extends WinRTFlagsEnum<DevicePickerDisplayStatusOptions> {
   const DevicePickerDisplayStatusOptions(super.value, {super.name});
 
   factory DevicePickerDisplayStatusOptions.from(int value) =>
@@ -61,26 +62,13 @@ class DevicePickerDisplayStatusOptions extends WinRTEnum {
     showRetryButton
   ];
 
+  @override
   DevicePickerDisplayStatusOptions operator &(
           DevicePickerDisplayStatusOptions other) =>
       DevicePickerDisplayStatusOptions(value & other.value);
 
+  @override
   DevicePickerDisplayStatusOptions operator |(
           DevicePickerDisplayStatusOptions other) =>
       DevicePickerDisplayStatusOptions(value | other.value);
-
-  /// Determines whether one or more bit fields are set in the current enum
-  /// value.
-  ///
-  /// ```dart
-  /// final fileAttributes = FileAttributes.readOnly | FileAttributes.archive;
-  /// fileAttributes.hasFlag(FileAttributes.readOnly)); // `true`
-  /// fileAttributes.hasFlag(FileAttributes.temporary)); // `false`
-  /// fileAttributes.hasFlag(
-  ///     FileAttributes.readOnly | FileAttributes.archive)); // `true`
-  /// ```
-  bool hasFlag(DevicePickerDisplayStatusOptions flag) {
-    if (value != 0 && flag.value == 0) return false;
-    return value & flag.value == flag.value;
-  }
 }

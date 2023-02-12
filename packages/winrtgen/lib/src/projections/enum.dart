@@ -117,7 +117,8 @@ class FlagsEnumProjection extends EnumProjection {
   }
 
   @override
-  String get classDeclaration => 'class $enumName extends WinRTEnum {';
+  String get classDeclaration =>
+      'class $enumName extends WinRTFlagsEnum<$enumName> {';
 
   @override
   String get constructor => 'const $enumName(super.value, {super.name});';
@@ -144,30 +145,15 @@ class FlagsEnumProjection extends EnumProjection {
   }
 
   String get andOperator => '''
-    $enumName operator &($enumName other) =>
-        $enumName(value & other.value);
+  @override
+  $enumName operator &($enumName other) =>
+      $enumName(value & other.value);
 ''';
 
   String get orOperator => '''
-    $enumName operator |($enumName other) =>
-        $enumName(value | other.value);
-''';
-
-  String get hasFlag => '''
-    /// Determines whether one or more bit fields are set in the current enum
-    /// value.
-    ///
-    /// ```dart
-    /// final fileAttributes = FileAttributes.readOnly | FileAttributes.archive;
-    /// fileAttributes.hasFlag(FileAttributes.readOnly)); // `true`
-    /// fileAttributes.hasFlag(FileAttributes.temporary)); // `false`
-    /// fileAttributes.hasFlag(
-    ///     FileAttributes.readOnly | FileAttributes.archive)); // `true`
-    /// ```
-    bool hasFlag($enumName flag) {
-      if (value != 0 && flag.value == 0) return false;
-      return value & flag.value == flag.value;
-    }
+  @override
+  $enumName operator |($enumName other) =>
+      $enumName(value | other.value);
 ''';
 
   @override
@@ -185,8 +171,6 @@ $classDeclaration
   $andOperator
 
   $orOperator
-
-  $hasFlag
 }
 ''';
 }

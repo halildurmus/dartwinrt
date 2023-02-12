@@ -87,6 +87,12 @@ abstract class IMapView<K, V> extends IInspectable
 
       if (isSubtypeOfWinRTEnum<V>()) {
         if (enumCreator == null) throw ArgumentError.notNull('enumCreator');
+
+        if (isSubtypeOfWinRTFlagsEnum<V>()) {
+          return _IMapViewStringFlagsEnum<V>.fromRawPointer(
+              ptr, enumCreator, iterableIid) as IMapView<K, V>;
+        }
+
         return _IMapViewStringEnum<V>.fromRawPointer(
             ptr, enumCreator, iterableIid) as IMapView<K, V>;
       }
@@ -100,6 +106,12 @@ abstract class IMapView<K, V> extends IInspectable
     if (isSubtypeOfWinRTEnum<K>() && isSubtypeOfInspectable<V>()) {
       if (enumKeyCreator == null) throw ArgumentError.notNull('enumKeyCreator');
       if (creator == null) throw ArgumentError.notNull('creator');
+
+      if (isSubtypeOfWinRTFlagsEnum<K>()) {
+        return _IMapViewFlagsEnumInspectable<K, V>.fromRawPointer(
+            ptr, creator, enumKeyCreator, iterableIid);
+      }
+
       return _IMapViewEnumInspectable.fromRawPointer(
           ptr, creator, enumKeyCreator, iterableIid);
     }
@@ -161,6 +173,8 @@ abstract class IMapView<K, V> extends IInspectable
 }
 
 class _IMapViewEnumInspectable<K, V> extends IMapView<K, V> {
+  _IMapViewEnumInspectable(
+      super.ptr, this.creator, this.enumKeyCreator, this.iterableIid);
   _IMapViewEnumInspectable.fromRawPointer(
       super.ptr, this.creator, this.enumKeyCreator, this.iterableIid);
 
@@ -234,6 +248,64 @@ class _IMapViewEnumInspectable<K, V> extends IMapView<K, V> {
   @override
   Map<K, V> toMap() =>
       size == 0 ? Map.unmodifiable({}) : _toMap(first(), length: size);
+}
+
+class _IMapViewFlagsEnumInspectable<K, V>
+    extends _IMapViewEnumInspectable<K, V> {
+  _IMapViewFlagsEnumInspectable.fromRawPointer(
+      super.ptr, super.creator, super.enumKeyCreator, super.iterableIid);
+
+  @override
+  V lookup(K key) {
+    final retValuePtr = calloc<COMObject>();
+
+    final hr =
+        ptr.ref.lpVtbl.value
+                .elementAt(6)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                Pointer, Uint32, Pointer<COMObject>)>>>()
+                .value
+                .asFunction<int Function(Pointer, int, Pointer<COMObject>)>()(
+            ptr.ref.lpVtbl, (key as WinRTEnum).value, retValuePtr);
+
+    if (FAILED(hr)) {
+      free(retValuePtr);
+      throw WindowsException(hr);
+    }
+
+    if (retValuePtr.ref.isNull) {
+      free(retValuePtr);
+      return null as V;
+    }
+
+    return creator(retValuePtr);
+  }
+
+  @override
+  bool hasKey(K value) {
+    final retValuePtr = calloc<Bool>();
+
+    try {
+      final hr = ptr.ref.lpVtbl.value
+              .elementAt(8)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(Pointer, Uint32, Pointer<Bool>)>>>()
+              .value
+              .asFunction<int Function(Pointer, int, Pointer<Bool>)>()(
+          ptr.ref.lpVtbl, (value as WinRTEnum).value, retValuePtr);
+
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      return retValuePtr.value;
+    } finally {
+      free(retValuePtr);
+    }
+  }
 }
 
 class _IMapViewGuidInspectable<V> extends IMapView<Guid, V> {
@@ -421,6 +493,7 @@ class _IMapViewIntInspectable<V> extends IMapView<int, V> {
 }
 
 class _IMapViewStringEnum<V> extends IMapView<String, V> {
+  _IMapViewStringEnum(super.ptr, this.enumCreator, this.iterableIid);
   _IMapViewStringEnum.fromRawPointer(
       super.ptr, this.enumCreator, this.iterableIid);
 
@@ -471,6 +544,38 @@ class _IMapViewStringEnum<V> extends IMapView<String, V> {
   Map<String, V> toMap() => size == 0
       ? Map.unmodifiable({})
       : _toMap(first(), length: size, creator: _iterableCreator);
+}
+
+class _IMapViewStringFlagsEnum<V> extends _IMapViewStringEnum<V> {
+  _IMapViewStringFlagsEnum.fromRawPointer(
+      super.ptr, super.enumCreator, super.iterableIid);
+
+  @override
+  V lookup(String key) {
+    final retValuePtr = calloc<Uint32>();
+    final hKey = convertToHString(key);
+
+    try {
+      final hr =
+          ptr.ref.lpVtbl.value
+                  .elementAt(6)
+                  .cast<
+                      Pointer<
+                          NativeFunction<
+                              HRESULT Function(
+                                  Pointer, HSTRING, Pointer<Uint32>)>>>()
+                  .value
+                  .asFunction<int Function(Pointer, int, Pointer<Uint32>)>()(
+              ptr.ref.lpVtbl, hKey, retValuePtr);
+
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      return enumCreator(retValuePtr.value);
+    } finally {
+      WindowsDeleteString(hKey);
+      free(retValuePtr);
+    }
+  }
 }
 
 class _IMapViewStringInspectable<V> extends IMapView<String, V> {

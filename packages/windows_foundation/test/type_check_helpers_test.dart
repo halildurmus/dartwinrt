@@ -50,4 +50,9 @@ void main() {
     expect(isSubtypeOfWinRTEnum<AsyncStatus>(), isTrue);
     expect(isSubtypeOfWinRTEnum<IAsyncAction>(), isFalse);
   });
+
+  test('isSubtypeOfWinRTFlagsEnum', () {
+    expect(isSubtypeOfWinRTFlagsEnum<WinRTFlagsEnum<dynamic>>(), isTrue);
+    expect(isSubtypeOfWinRTFlagsEnum<AsyncStatus>(), isFalse);
+  });
 }
