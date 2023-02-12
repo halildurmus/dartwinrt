@@ -59,10 +59,7 @@ class IGeolocatorStatics2 extends IInspectable {
                 Pointer<NativeFunction<HRESULT Function(Pointer, LPVTBL value)>>>()
             .value
             .asFunction<int Function(Pointer, LPVTBL value)>()(
-        ptr.ref.lpVtbl,
-        value == null
-            ? nullptr
-            : boxValue(value, convertToIReference: true).ref.lpVtbl);
+        ptr.ref.lpVtbl, value?.toReference().ptr.ref.lpVtbl ?? nullptr);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }

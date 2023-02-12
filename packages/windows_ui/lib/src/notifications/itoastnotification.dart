@@ -57,14 +57,13 @@ class IToastNotification extends IInspectable {
 
   set expirationTime(DateTime? value) {
     final hr = ptr.ref.vtable
-            .elementAt(7)
-            .cast<Pointer<NativeFunction<HRESULT Function(Pointer, LPVTBL)>>>()
-            .value
-            .asFunction<int Function(Pointer, LPVTBL)>()(
-        ptr.ref.lpVtbl,
-        value == null
-            ? nullptr
-            : boxValue(value, convertToIReference: true).ref.lpVtbl);
+        .elementAt(7)
+        .cast<Pointer<NativeFunction<HRESULT Function(Pointer, LPVTBL)>>>()
+        .value
+        .asFunction<int Function(Pointer, LPVTBL)>()(
+      ptr.ref.lpVtbl,
+      value?.toReference().ptr.ref.lpVtbl ?? nullptr,
+    );
 
     if (FAILED(hr)) throw WindowsException(hr);
   }

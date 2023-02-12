@@ -8,6 +8,7 @@ library internal;
 export 'src/iasyncaction.dart';
 export 'src/iasyncinfo.dart';
 export 'src/iasyncoperation.dart';
+export 'src/internal/extensions/box_helpers.dart';
 export 'src/internal/extensions/comobject_array.dart';
 export 'src/internal/extensions/hstring_array.dart';
 export 'src/internal/extensions/int_array.dart';

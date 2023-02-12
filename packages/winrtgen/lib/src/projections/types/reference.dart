@@ -23,30 +23,6 @@ mixin _ReferenceProjection on MethodProjection {
   String get referenceTypeArgFromParameter =>
       typeArguments(parameters.first.type.typeIdentifier.name);
 
-  /// Method call to `boxValue` function.
-  ///
-  /// `IReference<T>` parameters (exposed as nullable Dart primitives) must be
-  /// passed to WinRT APIs as `IReference` interfaces by calling the `boxValue`
-  /// function with the `convertToIReference` flag set to `true`.
-  String get boxValueMethodCall {
-    final typeProjection =
-        TypeProjection(parameters.first.type.typeIdentifier.typeArg!);
-    final args = <String>['convertToIReference: true'];
-
-    // If the nullable parameter is an enum, a double or an int, its native
-    // type (e.g. Double, Float, Int32, Uint32) must be passed in the `nativeType`
-    // parameter so that the 'boxValue' function can use the appropriate native
-    // type for the parameter
-    if (typeProjection.isWinRTEnum ||
-        ['double', 'int'].contains(typeProjection.exposedType)) {
-      args.add('nativeType: ${typeProjection.nativeType}');
-    }
-
-    return typeProjection.isWinRTEnum
-        ? 'boxValue(value?.value, ${args.join(', ')})'
-        : 'boxValue(value, ${args.join(', ')})';
-  }
-
   /// The constructor arguments passed to the constructor of `IReference`.
   String get referenceConstructorArgs {
     final typeProjection = TypeProjection(returnType.typeIdentifier.typeArg!);
@@ -144,7 +120,7 @@ class ReferenceSetterProjection extends SetterProjection
   @override
   String get methodProjection => '''
   set $camelCasedName($referenceTypeArgFromParameter value) {
-    ${ffiCall(params: 'value == null ? nullptr : $boxValueMethodCall.ref.lpVtbl')}
+    ${ffiCall(params: _referenceParam(parameter.type.typeIdentifier.typeArg!))}
   }
 ''';
 }
@@ -160,26 +136,17 @@ class ReferenceParameterProjection extends ParameterProjection {
   String get postamble => '';
 
   @override
-  String get localIdentifier {
-    // IReference<T> parameters must be passed to WinRT APIs as 'IReference'
-    // interfaces by calling the 'boxValue' function with the
-    // 'convertToIReference' flag set to true
-    final typeProjection = TypeProjection(type.typeIdentifier.typeArg!);
-    final args = <String>['convertToIReference: true'];
+  String get localIdentifier => _referenceParam(type.typeIdentifier.typeArg!);
+}
 
-    // If the nullable parameter is an enum, a double or an int, its native
-    // type (e.g. Double, Float, Int32, Uint32) must be passed in the
-    // `nativeType` parameter so that the 'boxValue' function can use the
-    // appropriate native type for the parameter
-    if (typeProjection.isWinRTEnum ||
-        ['double', 'int'].contains(typeProjection.exposedType)) {
-      args.add('nativeType: ${typeProjection.nativeType}');
-    }
-
-    final valueArg = typeProjection.isWinRTEnum ? '$name.value' : name;
-    return '''
-        $name == null
-            ? nullptr
-            : boxValue($valueArg, ${args.join(', ')}).ref.lpVtbl''';
+String _referenceParam(TypeIdentifier typeIdentifier) {
+  final typeProjection = TypeProjection(typeIdentifier);
+  var type = '';
+  if (typeProjection.exposedType == 'double') {
+    type = 'DoubleType.${typeProjection.nativeType.toLowerCase()}';
+  } else if (typeProjection.exposedType == 'int') {
+    type = 'IntType.${typeProjection.nativeType.toLowerCase()}';
   }
+
+  return 'value?.toReference($type).ptr.ref.lpVtbl ?? nullptr';
 }
