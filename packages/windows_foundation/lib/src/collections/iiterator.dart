@@ -25,13 +25,10 @@ abstract class IIterator<T> extends IInspectable {
   /// [T] must be of type `int`, `String`, `Uri`, `IInspectable`(e.g.
   /// `StorageFile`) or `WinRTEnum` (e.g. `DeviceClass`).
   ///
-  /// [intType] must be specified if [T] is `int`. Supported types are:
-  /// [WinRTIntType.int16], [WinRTIntType.int32], [WinRTIntType.int64],
-  /// [WinRTIntType.uint8], [WinRTIntType.uint16], [WinRTIntType.uint32],
-  /// [WinRTIntType.uint64].
+  /// [intType] must be specified if [T] is `int`.
   /// ```dart
   /// final iterator =
-  ///     IIterator<int>.fromRawPointer(ptr, intType: WinRTIntType.uint64);
+  ///     IIterator<int>.fromRawPointer(ptr, intType: IntType.uint64);
   /// ```
   ///
   /// [creator] must be specified if [T] is `IInspectable`.
@@ -49,7 +46,7 @@ abstract class IIterator<T> extends IInspectable {
     Pointer<COMObject> ptr, {
     T Function(Pointer<COMObject>)? creator,
     T Function(int)? enumCreator,
-    WinRTIntType? intType,
+    IntType? intType,
   }) {
     if (T == int) {
       if (intType == null) throw ArgumentError.notNull('intType');
@@ -142,7 +139,7 @@ class _IIteratorEnum<T> extends IIterator<T> {
 
   final T Function(int) enumCreator;
 
-  WinRTIntType get intType => WinRTIntType.int32;
+  IntType get intType => IntType.int32;
 
   @override
   T get current => enumCreator(_currentInt(ptr, intType));
@@ -156,7 +153,7 @@ class _IIteratorFlagsEnum<T> extends _IIteratorEnum<T> {
   _IIteratorFlagsEnum.fromRawPointer(super.ptr, super.enumCreator);
 
   @override
-  WinRTIntType get intType => WinRTIntType.uint32;
+  IntType get intType => IntType.uint32;
 }
 
 class _IIteratorInspectable<T> extends IIterator<T> {
@@ -194,7 +191,7 @@ class _IIteratorInspectable<T> extends IIterator<T> {
 class _IIteratorInt extends IIterator<int> {
   _IIteratorInt.fromRawPointer(super.ptr, this.intType);
 
-  final WinRTIntType intType;
+  final IntType intType;
 
   @override
   int get current => _currentInt(ptr, intType);
@@ -292,19 +289,19 @@ class _IIteratorUri extends IIterator<Uri> {
       _getManyCOMObject(ptr, capacity, value.cast());
 }
 
-int _currentInt(Pointer<COMObject> ptr, WinRTIntType intType) {
+int _currentInt(Pointer<COMObject> ptr, IntType intType) {
   switch (intType) {
-    case WinRTIntType.int16:
+    case IntType.int16:
       return _currentInt16(ptr);
-    case WinRTIntType.int64:
+    case IntType.int64:
       return _currentInt64(ptr);
-    case WinRTIntType.uint8:
+    case IntType.uint8:
       return _currentUint8(ptr);
-    case WinRTIntType.uint16:
+    case IntType.uint16:
       return _currentUint16(ptr);
-    case WinRTIntType.uint32:
+    case IntType.uint32:
       return _currentUint32(ptr);
-    case WinRTIntType.uint64:
+    case IntType.uint64:
       return _currentUint64(ptr);
     default:
       return _currentInt32(ptr);
@@ -491,20 +488,20 @@ int _getManyCOMObject(
   }
 }
 
-int _getManyInt(Pointer<COMObject> ptr, WinRTIntType intType, int capacity,
+int _getManyInt(Pointer<COMObject> ptr, IntType intType, int capacity,
     Pointer<NativeType> value) {
   switch (intType) {
-    case WinRTIntType.int16:
+    case IntType.int16:
       return _getManyInt16(ptr, capacity, value.cast());
-    case WinRTIntType.int64:
+    case IntType.int64:
       return _getManyInt64(ptr, capacity, value.cast());
-    case WinRTIntType.uint8:
+    case IntType.uint8:
       return _getManyUint8(ptr, capacity, value.cast());
-    case WinRTIntType.uint16:
+    case IntType.uint16:
       return _getManyUint16(ptr, capacity, value.cast());
-    case WinRTIntType.uint32:
+    case IntType.uint32:
       return _getManyUint32(ptr, capacity, value.cast());
-    case WinRTIntType.uint64:
+    case IntType.uint64:
       return _getManyUint64(ptr, capacity, value.cast());
     default:
       return _getManyInt32(ptr, capacity, value.cast());

@@ -65,7 +65,7 @@ mixin _AsyncOperationProjection on MethodProjection {
     // that the IAsyncOperation implementation can use the appropriate native
     // integer type
     final intType = asyncOperationTypeArg == 'int'
-        ? 'WinRTIntType.${typeProjection.nativeType.toLowerCase()}'
+        ? 'IntType.${typeProjection.nativeType.toLowerCase()}'
         : null;
 
     final args = <String>[];

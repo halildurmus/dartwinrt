@@ -11,12 +11,25 @@ typedef LPVTBL = Pointer<Pointer<IntPtr>>;
 ///
 /// WinRT type system does not support Int8 types.
 /// See https://docs.microsoft.com/en-us/uwp/winrt-cref/winrt-type-system#fundamental-types
-enum WinRTIntType {
+enum IntType {
+  /// A 16-bit signed integer.
   int16,
+
+  /// A 32-bit signed integer.
   int32,
+
+  /// A 64-bit signed integer.
   int64,
+
+  /// A 8-bit unsigned integer.
   uint8,
+
+  /// A 16-bit unsigned integer.
   uint16,
+
+  /// A 32-bit unsigned integer.
   uint32,
+
+  /// A 64-bit unsigned integer.
   uint64,
 }

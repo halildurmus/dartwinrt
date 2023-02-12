@@ -35,7 +35,7 @@ mixin _VectorProjection on MethodProjection {
     // that the IVector and IVectorView implementations can use the appropriate
     // native integer type
     final intType = vectorTypeArg == 'int'
-        ? 'WinRTIntType.${typeProjection.nativeType.toLowerCase()}'
+        ? 'IntType.${typeProjection.nativeType.toLowerCase()}'
         : null;
 
     final args = <String>["iterableIid: '$iterableIid'"];

@@ -49,6 +49,6 @@ class IPrinting3DMultiplePropertyMaterial extends IInspectable {
 
     return IVector.fromRawPointer(retValuePtr,
         iterableIid: '{421d4b91-b13b-5f37-ae54-b5249bd80539}',
-        intType: WinRTIntType.uint32);
+        intType: IntType.uint32);
   }
 }
