@@ -338,7 +338,7 @@ class IPropertyValueStatics extends IInspectable {
             .value
             .asFunction<
                 int Function(Pointer, LPVTBL value, Pointer<COMObject>)>()(
-        ptr.ref.lpVtbl, value?.box().ref.lpVtbl ?? nullptr, retValuePtr);
+        ptr.ref.lpVtbl, value?.intoBox().ref.lpVtbl ?? nullptr, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);

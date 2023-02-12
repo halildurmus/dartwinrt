@@ -91,7 +91,7 @@ class ObjectSetterProjection extends SetterProjection with _ObjectProjection {
   @override
   String get methodProjection => '''
   set $camelCasedName(Object? value) {
-    ${ffiCall(params: 'value?.box().ref.lpVtbl ?? nullptr')}
+    ${ffiCall(params: 'value?.intoBox().ref.lpVtbl ?? nullptr')}
   }
 ''';
 }
@@ -107,5 +107,5 @@ class ObjectParameterProjection extends ParameterProjection {
   String get postamble => '';
 
   @override
-  String get localIdentifier => '$name?.box().ref.lpVtbl ?? nullptr';
+  String get localIdentifier => '$name?.intoBox().ref.lpVtbl ?? nullptr';
 }
