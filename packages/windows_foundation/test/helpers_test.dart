@@ -14,6 +14,11 @@ import 'package:windows_foundation/windows_foundation.dart';
 // Test the WinRT helper functions to make sure everything is working correctly.
 
 void main() {
+  if (!isWindowsRuntimeAvailable()) {
+    print('Skipping tests because Windows Runtime is not available.');
+    return;
+  }
+
   test('isNull', () {
     final ptr = calloc<COMObject>();
 

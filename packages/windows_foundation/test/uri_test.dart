@@ -12,37 +12,40 @@ import 'package:windows_foundation/uri.dart' as winrt_uri;
 // working correctly.
 
 void main() {
-  if (isWindowsRuntimeAvailable()) {
-    test('createUri', () {
-      final uri = Uri.parse(
-          'https://www.example.com:443/path/to/file.html?q1=v1&q2=v2#fragment');
-      final winrtUri = winrt_uri.Uri.createUri(uri.toString());
-      expect(winrtUri.rawUri, equals(uri.toString()));
-      expect(winrtUri.absoluteUri, equals(uri.toString()));
-      expect(winrtUri.absoluteCanonicalUri, equals(uri.toString()));
-      expect(winrtUri.displayIri, equals(uri.toString()));
-      expect(winrtUri.displayUri, equals(uri.toString()));
-      expect(winrtUri.toString(), equals(uri.toString()));
-      expect(winrtUri.schemeName, equals('https'));
-      expect(winrtUri.host, equals('www.example.com'));
-      expect(winrtUri.domain, equals('example.com'));
-      expect(winrtUri.port, equals(443));
-      expect(winrtUri.userName, isEmpty);
-      expect(winrtUri.password, isEmpty);
-      expect(winrtUri.path, equals('/path/to/file.html'));
-      expect(winrtUri.extension, equals('.html'));
-      expect(winrtUri.query, equals('?q1=v1&q2=v2'));
-      final queryParsed = winrtUri.queryParsed;
-      expect(queryParsed!.size, equals(2));
-      final queryParameters = queryParsed.toList();
-      expect(queryParameters.length, equals(2));
-      expect(queryParameters.first.name, equals('q1'));
-      expect(queryParameters.first.value, equals('v1'));
-      expect(queryParameters.last.name, equals('q2'));
-      expect(queryParameters.last.value, equals('v2'));
-      expect(winrtUri.fragment, equals('#fragment'));
-
-      winrtUri.release();
-    });
+  if (!isWindowsRuntimeAvailable()) {
+    print('Skipping tests because Windows Runtime is not available.');
+    return;
   }
+
+  test('createUri', () {
+    final uri = Uri.parse(
+        'https://www.example.com:443/path/to/file.html?q1=v1&q2=v2#fragment');
+    final winrtUri = winrt_uri.Uri.createUri(uri.toString());
+    expect(winrtUri.rawUri, equals(uri.toString()));
+    expect(winrtUri.absoluteUri, equals(uri.toString()));
+    expect(winrtUri.absoluteCanonicalUri, equals(uri.toString()));
+    expect(winrtUri.displayIri, equals(uri.toString()));
+    expect(winrtUri.displayUri, equals(uri.toString()));
+    expect(winrtUri.toString(), equals(uri.toString()));
+    expect(winrtUri.schemeName, equals('https'));
+    expect(winrtUri.host, equals('www.example.com'));
+    expect(winrtUri.domain, equals('example.com'));
+    expect(winrtUri.port, equals(443));
+    expect(winrtUri.userName, isEmpty);
+    expect(winrtUri.password, isEmpty);
+    expect(winrtUri.path, equals('/path/to/file.html'));
+    expect(winrtUri.extension, equals('.html'));
+    expect(winrtUri.query, equals('?q1=v1&q2=v2'));
+    final queryParsed = winrtUri.queryParsed;
+    expect(queryParsed!.size, equals(2));
+    final queryParameters = queryParsed.toList();
+    expect(queryParameters.length, equals(2));
+    expect(queryParameters.first.name, equals('q1'));
+    expect(queryParameters.first.value, equals('v1'));
+    expect(queryParameters.last.name, equals('q2'));
+    expect(queryParameters.last.value, equals('v2'));
+    expect(winrtUri.fragment, equals('#fragment'));
+
+    winrtUri.release();
+  });
 }

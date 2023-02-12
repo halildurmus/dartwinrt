@@ -5,6 +5,7 @@
 @TestOn('windows')
 
 import 'package:test/test.dart';
+import 'package:win32/win32.dart';
 import 'package:winmd/winmd.dart';
 import 'package:winrtgen/winrtgen.dart';
 
@@ -128,7 +129,7 @@ void main() {
               .toString(),
           equals('{098f29cb-bc91-5639-a541-d5a4811ec35b}'));
     });
-  });
+  }, skip: !isWindowsRuntimeAvailable());
 
   group('iterableIidFromVectorTypeIdentifier', () {
     test('returns the IID of IIterable<String>', () {
@@ -154,7 +155,7 @@ void main() {
               .toString(),
           equals('{9e5f3ed0-cf1c-5d38-832c-acea6164bf5c}'));
     });
-  });
+  }, skip: !isWindowsRuntimeAvailable());
 
   test('lastComponent', () {
     expect(lastComponent('Windows.Globalization.Calendar'), equals('Calendar'));
