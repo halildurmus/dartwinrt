@@ -29,7 +29,7 @@ extension COMObjectHelper on Pointer<COMObject> {
     final list = <T>[];
 
     for (var i = 0; i < length; i++) {
-      final objectPtr = this.elementAt(i);
+      final objectPtr = elementAt(i);
       if (objectPtr.ref.isNull) break;
       // Move each element to a newly allocated pointer so that it can be
       // freed properly.
