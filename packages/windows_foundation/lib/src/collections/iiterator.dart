@@ -40,10 +40,10 @@ abstract class IIterator<T> extends IInspectable {
   ///     creator: StorageFile.fromRawPointer);
   /// ```
   ///
-  /// [enumCreator] and [intType] must be specified if [T] is `WinRTEnum`.
+  /// [enumCreator] must be specified if [T] is `WinRTEnum`.
   /// ```dart
   /// final iterator = IIterator<DeviceClass>.fromRawPointer(ptr,
-  ///     enumCreator: DeviceClass.from, intType: WinRTIntType.int32);
+  ///     enumCreator: DeviceClass.from);
   /// ```
   factory IIterator.fromRawPointer(
     Pointer<COMObject> ptr, {
@@ -71,8 +71,12 @@ abstract class IIterator<T> extends IInspectable {
 
     if (isSubtypeOfWinRTEnum<T>()) {
       if (enumCreator == null) throw ArgumentError.notNull('enumCreator');
-      if (intType == null) throw ArgumentError.notNull('intType');
-      return _IIteratorEnum.fromRawPointer(ptr, enumCreator, intType);
+
+      if (isSubtypeOfWinRTFlagsEnum<T>()) {
+        return _IIteratorFlagsEnum.fromRawPointer(ptr, enumCreator);
+      }
+
+      return _IIteratorEnum.fromRawPointer(ptr, enumCreator);
     }
 
     throw ArgumentError.value(T, 'T', 'Unsupported type');
@@ -133,10 +137,12 @@ abstract class IIterator<T> extends IInspectable {
 }
 
 class _IIteratorEnum<T> extends IIterator<T> {
-  _IIteratorEnum.fromRawPointer(super.ptr, this.enumCreator, this.intType);
+  _IIteratorEnum(super.ptr, this.enumCreator);
+  _IIteratorEnum.fromRawPointer(super.ptr, this.enumCreator);
 
   final T Function(int) enumCreator;
-  final WinRTIntType intType;
+
+  WinRTIntType get intType => WinRTIntType.int32;
 
   @override
   T get current => enumCreator(_currentInt(ptr, intType));
@@ -144,6 +150,13 @@ class _IIteratorEnum<T> extends IIterator<T> {
   @override
   int getMany(int capacity, Pointer<NativeType> value) =>
       _getManyInt(ptr, intType, capacity, value);
+}
+
+class _IIteratorFlagsEnum<T> extends _IIteratorEnum<T> {
+  _IIteratorFlagsEnum.fromRawPointer(super.ptr, super.enumCreator);
+
+  @override
+  WinRTIntType get intType => WinRTIntType.uint32;
 }
 
 class _IIteratorInspectable<T> extends IIterator<T> {

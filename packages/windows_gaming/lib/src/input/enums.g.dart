@@ -98,7 +98,7 @@ enum GameControllerButtonLabel implements WinRTEnum {
 /// Specifies the button type.
 ///
 /// {@category enum}
-class GamepadButtons extends WinRTEnum {
+class GamepadButtons extends WinRTFlagsEnum<GamepadButtons> {
   const GamepadButtons(super.value, {super.name});
 
   factory GamepadButtons.from(int value) => GamepadButtons.values
@@ -146,24 +146,11 @@ class GamepadButtons extends WinRTEnum {
     paddle4
   ];
 
+  @override
   GamepadButtons operator &(GamepadButtons other) =>
       GamepadButtons(value & other.value);
 
+  @override
   GamepadButtons operator |(GamepadButtons other) =>
       GamepadButtons(value | other.value);
-
-  /// Determines whether one or more bit fields are set in the current enum
-  /// value.
-  ///
-  /// ```dart
-  /// final fileAttributes = FileAttributes.readOnly | FileAttributes.archive;
-  /// fileAttributes.hasFlag(FileAttributes.readOnly)); // `true`
-  /// fileAttributes.hasFlag(FileAttributes.temporary)); // `false`
-  /// fileAttributes.hasFlag(
-  ///     FileAttributes.readOnly | FileAttributes.archive)); // `true`
-  /// ```
-  bool hasFlag(GamepadButtons flag) {
-    if (value != 0 && flag.value == 0) return false;
-    return value & flag.value == flag.value;
-  }
 }

@@ -42,10 +42,10 @@ abstract class IAsyncOperation<TResult> extends IInspectable
   ///     creator: StorageFile.fromRawPointer);
   /// ```
   ///
-  /// [enumCreator] and [intType] must be specified if [TResult] is `WinRTEnum`.
+  /// [enumCreator] must be specified if [TResult] is `WinRTEnum`.
   /// ```dart
   /// final asyncOperation = IAsyncOperation<LaunchUriStatus>.fromRawPointer
-  ///     (ptr, enumCreator: LaunchUriStatus.from, intType: WinRTIntType.int32);
+  ///     (ptr, enumCreator: LaunchUriStatus.from);
   /// ```
   factory IAsyncOperation.fromRawPointer(
     Pointer<COMObject> ptr, {
@@ -91,8 +91,12 @@ abstract class IAsyncOperation<TResult> extends IInspectable
 
     if (isSubtypeOfWinRTEnum<TResult>()) {
       if (enumCreator == null) throw ArgumentError.notNull('enumCreator');
-      if (intType == null) throw ArgumentError.notNull('intType');
-      return _IAsyncOperationEnum.fromRawPointer(ptr, enumCreator, intType);
+
+      if (isSubtypeOfWinRTFlagsEnum<TResult>()) {
+        return _IAsyncOperationFlagsEnum.fromRawPointer(ptr, enumCreator);
+      }
+
+      return _IAsyncOperationEnum.fromRawPointer(ptr, enumCreator);
     }
 
     throw ArgumentError.value(TResult, 'TResult', 'Unsupported type');
@@ -180,23 +184,12 @@ class _IAsyncOperationBool extends IAsyncOperation<bool> {
 }
 
 class _IAsyncOperationEnum<T> extends IAsyncOperation<T> {
-  _IAsyncOperationEnum.fromRawPointer(
-      super.ptr, this.enumCreator, this.intType);
+  _IAsyncOperationEnum.fromRawPointer(super.ptr, this.enumCreator);
 
   final T Function(int) enumCreator;
-  final WinRTIntType intType;
 
   @override
   T getResults() {
-    switch (intType) {
-      case WinRTIntType.uint32:
-        return enumCreator(_getResultsUint32());
-      default:
-        return enumCreator(_getResultsInt32());
-    }
-  }
-
-  int _getResultsInt32() {
     final retValuePtr = calloc<Int32>();
 
     try {
@@ -212,13 +205,20 @@ class _IAsyncOperationEnum<T> extends IAsyncOperation<T> {
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return enumCreator(retValuePtr.value);
     } finally {
       free(retValuePtr);
     }
   }
+}
 
-  int _getResultsUint32() {
+class _IAsyncOperationFlagsEnum<T> extends IAsyncOperation<T> {
+  _IAsyncOperationFlagsEnum.fromRawPointer(super.ptr, this.enumCreator);
+
+  final T Function(int) enumCreator;
+
+  @override
+  T getResults() {
     final retValuePtr = calloc<Uint32>();
 
     try {
@@ -234,7 +234,7 @@ class _IAsyncOperationEnum<T> extends IAsyncOperation<T> {
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return enumCreator(retValuePtr.value);
     } finally {
       free(retValuePtr);
     }

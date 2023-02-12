@@ -48,10 +48,10 @@ abstract class IVector<T> extends IInspectable implements IIterable<T> {
   ///     iterableIid: '{9ac00304-83ea-5688-87b6-ae38aab65d0b}');
   /// ```
   ///
-  /// [enumCreator] and [intType] must be specified if [T] is `WinRTEnum`.
+  /// [enumCreator] must be specified if [T] is `WinRTEnum`.
   /// ```dart
   /// final vector = IVector<DeviceClass>.fromRawPointer(ptr,
-  ///     enumCreator: DeviceClass.from, intType: WinRTIntType.int32,
+  ///     enumCreator: DeviceClass.from,
   ///     iterableIid: '{47d4be05-58f1-522e-81c6-975eb4131bb9}');
   /// ```
   factory IVector.fromRawPointer(
@@ -82,9 +82,12 @@ abstract class IVector<T> extends IInspectable implements IIterable<T> {
 
     if (isSubtypeOfWinRTEnum<T>()) {
       if (enumCreator == null) throw ArgumentError.notNull('enumCreator');
-      if (intType == null) throw ArgumentError.notNull('intType');
-      return _IVectorEnum.fromRawPointer(
-          ptr, enumCreator, intType, iterableIid);
+
+      if (isSubtypeOfWinRTFlagsEnum<T>()) {
+        return _IVectorFlagsEnum.fromRawPointer(ptr, enumCreator, iterableIid);
+      }
+
+      return _IVectorEnum.fromRawPointer(ptr, enumCreator, iterableIid);
     }
 
     throw ArgumentError.value(T, 'T', 'Unsupported type');
@@ -180,12 +183,11 @@ abstract class IVector<T> extends IInspectable implements IIterable<T> {
 }
 
 class _IVectorEnum<T> extends IVector<T> {
-  _IVectorEnum.fromRawPointer(
-      super.ptr, this.enumCreator, this.intType, this.iterableIid);
+  _IVectorEnum.fromRawPointer(super.ptr, this.enumCreator, this.iterableIid);
 
   final T Function(int) enumCreator;
-  final WinRTIntType intType;
   final String iterableIid;
+  final intType = WinRTIntType.int32;
 
   @override
   T getAt(int index) => enumCreator(_getAtInt(ptr, intType, index));
@@ -215,15 +217,92 @@ class _IVectorEnum<T> extends IVector<T> {
 
   @override
   void replaceAll(List<T> value) {
-    switch (intType) {
-      case WinRTIntType.uint32:
-        final pArray = calloc<Uint32>(value.length);
-        for (var i = 0; i < value.length; i++) {
-          pArray[i] = (value.elementAt(i) as WinRTEnum).value;
-        }
+    final pArray = calloc<Int32>(value.length);
+    for (var i = 0; i < value.length; i++) {
+      pArray[i] = (value.elementAt(i) as WinRTEnum).value;
+    }
 
-        try {
-          final hr = ptr.ref.vtable
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(17)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(Pointer, Uint32, Pointer<Int32>)>>>()
+              .value
+              .asFunction<int Function(Pointer, int, Pointer<Int32>)>()(
+          ptr.ref.lpVtbl, value.length, pArray);
+
+      if (FAILED(hr)) throw WindowsException(hr);
+    } finally {
+      free(pArray);
+    }
+  }
+
+  late final _iIterable = IIterable<T>.fromRawPointer(toInterface(iterableIid),
+      enumCreator: enumCreator);
+
+  @override
+  IIterator<T> first() => _iIterable.first();
+
+  @override
+  List<T> toList() {
+    if (size == 0) return List.unmodifiable(<T>[]);
+
+    final pArray = calloc<Int32>(size);
+    try {
+      getMany(0, size, pArray);
+      return List.unmodifiable(pArray.toList(length: size).map(enumCreator));
+    } finally {
+      free(pArray);
+    }
+  }
+}
+
+class _IVectorFlagsEnum<T> extends IVector<T> {
+  _IVectorFlagsEnum.fromRawPointer(
+      super.ptr, this.enumCreator, this.iterableIid);
+
+  final T Function(int) enumCreator;
+  final String iterableIid;
+  final intType = WinRTIntType.uint32;
+
+  @override
+  T getAt(int index) => enumCreator(_getAtInt(ptr, intType, index));
+
+  @override
+  List<T> getView() =>
+      _getView(ptr, iterableIid, enumCreator: enumCreator, intType: intType);
+
+  @override
+  bool indexOf(T value, Pointer<Uint32> index) =>
+      _indexOfInt(ptr, intType, (value as WinRTEnum).value, index);
+
+  @override
+  void setAt(int index, T value) =>
+      _setAtInt(ptr, intType, index, (value as WinRTEnum).value);
+
+  @override
+  void insertAt(int index, T value) =>
+      _insertAtInt(ptr, intType, index, (value as WinRTEnum).value);
+
+  @override
+  void append(T value) => _appendInt(ptr, intType, (value as WinRTEnum).value);
+
+  @override
+  int getMany(int startIndex, int capacity, Pointer<NativeType> value) =>
+      _getManyInt(ptr, intType, startIndex, capacity, value);
+
+  @override
+  void replaceAll(List<T> value) {
+    final pArray = calloc<Uint32>(value.length);
+    for (var i = 0; i < value.length; i++) {
+      pArray[i] = (value.elementAt(i) as WinRTEnum).value;
+    }
+
+    try {
+      final hr =
+          ptr.ref.vtable
                   .elementAt(17)
                   .cast<
                       Pointer<
@@ -234,39 +313,14 @@ class _IVectorEnum<T> extends IVector<T> {
                   .asFunction<int Function(Pointer, int, Pointer<Uint32>)>()(
               ptr.ref.lpVtbl, value.length, pArray);
 
-          if (FAILED(hr)) throw WindowsException(hr);
-        } finally {
-          free(pArray);
-        }
-        break;
-      default:
-        final pArray = calloc<Int32>(value.length);
-        for (var i = 0; i < value.length; i++) {
-          pArray[i] = (value.elementAt(i) as WinRTEnum).value;
-        }
-
-        try {
-          final hr =
-              ptr.ref.vtable
-                      .elementAt(17)
-                      .cast<
-                          Pointer<
-                              NativeFunction<
-                                  HRESULT Function(
-                                      Pointer, Uint32, Pointer<Int32>)>>>()
-                      .value
-                      .asFunction<int Function(Pointer, int, Pointer<Int32>)>()(
-                  ptr.ref.lpVtbl, value.length, pArray);
-
-          if (FAILED(hr)) throw WindowsException(hr);
-        } finally {
-          free(pArray);
-        }
+      if (FAILED(hr)) throw WindowsException(hr);
+    } finally {
+      free(pArray);
     }
   }
 
   late final _iIterable = IIterable<T>.fromRawPointer(toInterface(iterableIid),
-      enumCreator: enumCreator, intType: intType);
+      enumCreator: enumCreator);
 
   @override
   IIterator<T> first() => _iIterable.first();
@@ -275,27 +329,12 @@ class _IVectorEnum<T> extends IVector<T> {
   List<T> toList() {
     if (size == 0) return List.unmodifiable(<T>[]);
 
-    // The only valid types for enums are Int32 or UInt32.
-    // See https://docs.microsoft.com/en-us/uwp/winrt-cref/winrt-type-system#enums
-    switch (intType) {
-      case WinRTIntType.uint32:
-        final pArray = calloc<Uint32>(size);
-        try {
-          getMany(0, size, pArray);
-          return List.unmodifiable(
-              pArray.toList(length: size).map(enumCreator));
-        } finally {
-          free(pArray);
-        }
-      default:
-        final pArray = calloc<Int32>(size);
-        try {
-          getMany(0, size, pArray);
-          return List.unmodifiable(
-              pArray.toList(length: size).map(enumCreator));
-        } finally {
-          free(pArray);
-        }
+    final pArray = calloc<Uint32>(size);
+    try {
+      getMany(0, size, pArray);
+      return List.unmodifiable(pArray.toList(length: size).map(enumCreator));
+    } finally {
+      free(pArray);
     }
   }
 }

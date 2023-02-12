@@ -91,6 +91,12 @@ abstract class IKeyValuePair<K, V> extends IInspectable {
 
       if (isSubtypeOfWinRTEnum<V>()) {
         if (enumCreator == null) throw ArgumentError.notNull('enumCreator');
+
+        if (isSubtypeOfWinRTFlagsEnum<V>()) {
+          return _IKeyValuePairStringFlagsEnum<V>.fromRawPointer(
+              ptr, enumCreator) as IKeyValuePair<K, V>;
+        }
+
         return _IKeyValuePairStringEnum<V>.fromRawPointer(ptr, enumCreator)
             as IKeyValuePair<K, V>;
       }
@@ -104,6 +110,12 @@ abstract class IKeyValuePair<K, V> extends IInspectable {
     if (isSubtypeOfWinRTEnum<K>() && isSubtypeOfInspectable<V>()) {
       if (enumKeyCreator == null) throw ArgumentError.notNull('enumKeyCreator');
       if (creator == null) throw ArgumentError.notNull('creator');
+
+      if (isSubtypeOfWinRTFlagsEnum<K>()) {
+        return _IKeyValuePairFlagsEnumInspectable.fromRawPointer(
+            ptr, creator, enumKeyCreator);
+      }
+
       return _IKeyValuePairEnumInspectable.fromRawPointer(
           ptr, creator, enumKeyCreator);
     }
@@ -119,6 +131,7 @@ abstract class IKeyValuePair<K, V> extends IInspectable {
 }
 
 class _IKeyValuePairEnumInspectable<K, V> extends IKeyValuePair<K, V> {
+  _IKeyValuePairEnumInspectable(super.ptr, this.creator, this.enumKeyCreator);
   _IKeyValuePairEnumInspectable.fromRawPointer(
       super.ptr, this.creator, this.enumKeyCreator);
 
@@ -153,6 +166,35 @@ class _IKeyValuePairEnumInspectable<K, V> extends IKeyValuePair<K, V> {
     final retVal = _valueCOMObject(ptr);
     if (retVal == null) return null as V;
     return creator(retVal);
+  }
+}
+
+class _IKeyValuePairFlagsEnumInspectable<K, V>
+    extends _IKeyValuePairEnumInspectable<K, V> {
+  _IKeyValuePairFlagsEnumInspectable.fromRawPointer(
+      super.ptr, super.creator, super.enumKeyCreator);
+
+  @override
+  K get key {
+    final retValuePtr = calloc<Uint32>();
+
+    try {
+      final hr = ptr.ref.lpVtbl.value
+          .elementAt(6)
+          .cast<
+              Pointer<
+                  NativeFunction<HRESULT Function(Pointer, Pointer<Uint32>)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  Pointer, Pointer<Uint32>)>()(ptr.ref.lpVtbl, retValuePtr);
+
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      return enumKeyCreator(retValuePtr.value);
+    } finally {
+      free(retValuePtr);
+    }
   }
 }
 
@@ -219,6 +261,7 @@ class _IKeyValuePairIntInspectable<V> extends IKeyValuePair<int, V> {
 }
 
 class _IKeyValuePairStringEnum<V> extends IKeyValuePair<String, V> {
+  _IKeyValuePairStringEnum(super.ptr, this.enumCreator);
   _IKeyValuePairStringEnum.fromRawPointer(super.ptr, this.enumCreator);
 
   final V Function(int) enumCreator;
@@ -240,6 +283,33 @@ class _IKeyValuePairStringEnum<V> extends IKeyValuePair<String, V> {
           .asFunction<
               int Function(
                   Pointer, Pointer<Int32>)>()(ptr.ref.lpVtbl, retValuePtr);
+
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      return enumCreator(retValuePtr.value);
+    } finally {
+      free(retValuePtr);
+    }
+  }
+}
+
+class _IKeyValuePairStringFlagsEnum<V> extends _IKeyValuePairStringEnum<V> {
+  _IKeyValuePairStringFlagsEnum.fromRawPointer(super.ptr, super.enumCreator);
+
+  @override
+  V get value {
+    final retValuePtr = calloc<Uint32>();
+
+    try {
+      final hr = ptr.ref.lpVtbl.value
+          .elementAt(7)
+          .cast<
+              Pointer<
+                  NativeFunction<HRESULT Function(Pointer, Pointer<Uint32>)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  Pointer, Pointer<Uint32>)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 

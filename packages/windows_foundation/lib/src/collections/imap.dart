@@ -139,6 +139,12 @@ abstract class IMap<K, V> extends IInspectable
 
       if (isSubtypeOfWinRTEnum<V>()) {
         if (enumCreator == null) throw ArgumentError.notNull('enumCreator');
+
+        if (isSubtypeOfWinRTFlagsEnum<V>()) {
+          return _IMapStringFlagsEnum<V>.fromRawPointer(
+              ptr, enumCreator, iterableIid) as IMap<K, V>;
+        }
+
         return _IMapStringEnum<V>.fromRawPointer(ptr, enumCreator, iterableIid)
             as IMap<K, V>;
       }
@@ -151,6 +157,12 @@ abstract class IMap<K, V> extends IInspectable
     if (isSubtypeOfWinRTEnum<K>() && isSubtypeOfInspectable<V>()) {
       if (enumKeyCreator == null) throw ArgumentError.notNull('enumKeyCreator');
       if (creator == null) throw ArgumentError.notNull('creator');
+
+      if (isSubtypeOfWinRTFlagsEnum<K>()) {
+        return _IMapFlagsEnumInspectable<K, V>.fromRawPointer(
+            ptr, creator, enumKeyCreator, iterableIid);
+      }
+
       return _IMapEnumInspectable.fromRawPointer(
           ptr, creator, enumKeyCreator, iterableIid);
     }
@@ -215,6 +227,8 @@ abstract class IMap<K, V> extends IInspectable
 }
 
 class _IMapEnumInspectable<K, V> extends IMap<K, V> {
+  _IMapEnumInspectable(
+      super.ptr, this.creator, this.enumKeyCreator, this.iterableIid);
   _IMapEnumInspectable.fromRawPointer(
       super.ptr, this.creator, this.enumKeyCreator, this.iterableIid);
 
@@ -331,6 +345,102 @@ class _IMapEnumInspectable<K, V> extends IMap<K, V> {
   @override
   Map<K, V> toMap() =>
       size == 0 ? Map.unmodifiable({}) : _toMap(first(), length: size);
+}
+
+class _IMapFlagsEnumInspectable<K, V> extends _IMapEnumInspectable<K, V> {
+  _IMapFlagsEnumInspectable.fromRawPointer(
+      super.ptr, super.creator, super.enumKeyCreator, super.iterableIid);
+
+  @override
+  V lookup(K key) {
+    final retValuePtr = calloc<COMObject>();
+
+    final hr =
+        ptr.ref.lpVtbl.value
+                .elementAt(6)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                Pointer, Uint32, Pointer<COMObject>)>>>()
+                .value
+                .asFunction<int Function(Pointer, int, Pointer<COMObject>)>()(
+            ptr.ref.lpVtbl, (key as WinRTEnum).value, retValuePtr);
+
+    if (FAILED(hr)) {
+      free(retValuePtr);
+      throw WindowsException(hr);
+    }
+
+    if (retValuePtr.ref.isNull) {
+      free(retValuePtr);
+      return null as V;
+    }
+
+    return creator(retValuePtr);
+  }
+
+  @override
+  bool hasKey(K value) {
+    final retValuePtr = calloc<Bool>();
+
+    try {
+      final hr = ptr.ref.lpVtbl.value
+              .elementAt(8)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(Pointer, Uint32, Pointer<Bool>)>>>()
+              .value
+              .asFunction<int Function(Pointer, int, Pointer<Bool>)>()(
+          ptr.ref.lpVtbl, (value as WinRTEnum).value, retValuePtr);
+
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      return retValuePtr.value;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  @override
+  bool insert(K key, V value) {
+    final retValuePtr = calloc<Bool>();
+
+    try {
+      final hr = ptr.ref.lpVtbl.value
+              .elementAt(10)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              Pointer, Uint32, LPVTBL, Pointer<Bool>)>>>()
+              .value
+              .asFunction<int Function(Pointer, int, LPVTBL, Pointer<Bool>)>()(
+          ptr.ref.lpVtbl,
+          (key as WinRTEnum).value,
+          (value as IInspectable).ptr.ref.lpVtbl,
+          retValuePtr);
+
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      return retValuePtr.value;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  @override
+  void remove(K key) {
+    final hr = ptr.ref.lpVtbl.value
+            .elementAt(11)
+            .cast<Pointer<NativeFunction<HRESULT Function(Pointer, Uint32)>>>()
+            .value
+            .asFunction<int Function(Pointer, int)>()(
+        ptr.ref.lpVtbl, (key as WinRTEnum).value);
+
+    if (FAILED(hr)) throw WindowsException(hr);
+  }
 }
 
 class _IMapGuidInspectable<V> extends IMap<Guid, V> {
@@ -684,6 +794,7 @@ class _IMapIntInspectable<V> extends IMap<int, V> {
 }
 
 class _IMapStringEnum<V> extends IMap<String, V> {
+  _IMapStringEnum(super.ptr, this.enumCreator, this.iterableIid);
   _IMapStringEnum.fromRawPointer(super.ptr, this.enumCreator, this.iterableIid);
 
   final V Function(int) enumCreator;
@@ -802,6 +913,64 @@ class _IMapStringEnum<V> extends IMap<String, V> {
   Map<String, V> toMap() => size == 0
       ? Map.unmodifiable({})
       : _toMap(first(), length: size, creator: _iterableCreator);
+}
+
+class _IMapStringFlagsEnum<V> extends _IMapStringEnum<V> {
+  _IMapStringFlagsEnum.fromRawPointer(
+      super.ptr, super.enumCreator, super.iterableIid);
+
+  @override
+  V lookup(String key) {
+    final retValuePtr = calloc<Uint32>();
+    final hKey = convertToHString(key);
+
+    try {
+      final hr =
+          ptr.ref.lpVtbl.value
+                  .elementAt(6)
+                  .cast<
+                      Pointer<
+                          NativeFunction<
+                              HRESULT Function(
+                                  Pointer, HSTRING, Pointer<Uint32>)>>>()
+                  .value
+                  .asFunction<int Function(Pointer, int, Pointer<Uint32>)>()(
+              ptr.ref.lpVtbl, hKey, retValuePtr);
+
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      return enumCreator(retValuePtr.value);
+    } finally {
+      WindowsDeleteString(hKey);
+      free(retValuePtr);
+    }
+  }
+
+  @override
+  bool insert(String key, V value) {
+    final retValuePtr = calloc<Bool>();
+    final hKey = convertToHString(key);
+
+    try {
+      final hr = ptr.ref.lpVtbl.value
+              .elementAt(10)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              Pointer, HSTRING, Uint32, Pointer<Bool>)>>>()
+              .value
+              .asFunction<int Function(Pointer, int, int, Pointer<Bool>)>()(
+          ptr.ref.lpVtbl, hKey, (value as WinRTEnum).value, retValuePtr);
+
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      return retValuePtr.value;
+    } finally {
+      WindowsDeleteString(hKey);
+      free(retValuePtr);
+    }
+  }
 }
 
 class _IMapStringInspectable<V> extends IMap<String, V> {

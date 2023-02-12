@@ -49,10 +49,10 @@ abstract class IVectorView<T> extends IInspectable implements IIterable<T> {
   ///     iterableIid: '{9ac00304-83ea-5688-87b6-ae38aab65d0b}');
   /// ```
   ///
-  /// [enumCreator] and [intType] must be specified if [T] is `WinRTEnum`.
+  /// [enumCreator] must be specified if [T] is `WinRTEnum`.
   /// ```dart
   /// final vectorView = IVectorView<DeviceClass>.fromRawPointer(ptr,
-  ///     enumCreator: DeviceClass.from, intType: WinRTIntType.int32,
+  ///     enumCreator: DeviceClass.from,
   ///     iterableIid: '{47d4be05-58f1-522e-81c6-975eb4131bb9}');
   /// ```
   factory IVectorView.fromRawPointer(
@@ -84,9 +84,13 @@ abstract class IVectorView<T> extends IInspectable implements IIterable<T> {
 
     if (isSubtypeOfWinRTEnum<T>()) {
       if (enumCreator == null) throw ArgumentError.notNull('enumCreator');
-      if (intType == null) throw ArgumentError.notNull('intType');
-      return _IVectorViewEnum.fromRawPointer(
-          ptr, enumCreator, intType, iterableIid);
+
+      if (isSubtypeOfWinRTFlagsEnum<T>()) {
+        return _IVectorViewFlagsEnum.fromRawPointer(
+            ptr, enumCreator, iterableIid);
+      }
+
+      return _IVectorViewEnum.fromRawPointer(ptr, enumCreator, iterableIid);
     }
 
     throw ArgumentError.value(T, 'T', 'Unsupported type');
@@ -136,11 +140,11 @@ abstract class IVectorView<T> extends IInspectable implements IIterable<T> {
 
 class _IVectorViewEnum<T> extends IVectorView<T> {
   _IVectorViewEnum.fromRawPointer(
-      super.ptr, this.enumCreator, this.intType, this.iterableIid);
+      super.ptr, this.enumCreator, this.iterableIid);
 
   final T Function(int) enumCreator;
-  final WinRTIntType intType;
   final String iterableIid;
+  final intType = WinRTIntType.int32;
 
   @override
   T getAt(int index) => enumCreator(_getAtInt(ptr, intType, index));
@@ -163,27 +167,51 @@ class _IVectorViewEnum<T> extends IVectorView<T> {
   List<T> toList() {
     if (size == 0) return List.unmodifiable(<T>[]);
 
-    // The only valid types for enums are Int32 or UInt32.
-    // See https://docs.microsoft.com/en-us/uwp/winrt-cref/winrt-type-system#enums
-    switch (intType) {
-      case WinRTIntType.uint32:
-        final pArray = calloc<Uint32>(size);
-        try {
-          getMany(0, size, pArray);
-          return List.unmodifiable(
-              pArray.toList(length: size).map(enumCreator));
-        } finally {
-          free(pArray);
-        }
-      default:
-        final pArray = calloc<Int32>(size);
-        try {
-          getMany(0, size, pArray);
-          return List.unmodifiable(
-              pArray.toList(length: size).map(enumCreator));
-        } finally {
-          free(pArray);
-        }
+    final pArray = calloc<Int32>(size);
+    try {
+      getMany(0, size, pArray);
+      return List.unmodifiable(pArray.toList(length: size).map(enumCreator));
+    } finally {
+      free(pArray);
+    }
+  }
+}
+
+class _IVectorViewFlagsEnum<T> extends IVectorView<T> {
+  _IVectorViewFlagsEnum.fromRawPointer(
+      super.ptr, this.enumCreator, this.iterableIid);
+
+  final T Function(int) enumCreator;
+  final String iterableIid;
+  final intType = WinRTIntType.uint32;
+
+  @override
+  T getAt(int index) => enumCreator(_getAtInt(ptr, intType, index));
+
+  @override
+  bool indexOf(T value, Pointer<Uint32> index) =>
+      _indexOfInt(ptr, intType, (value as WinRTEnum).value, index);
+
+  @override
+  int getMany(int startIndex, int capacity, Pointer<NativeType> value) =>
+      _getManyInt(ptr, intType, startIndex, capacity, value);
+
+  late final _iIterable = IIterable<T>.fromRawPointer(toInterface(iterableIid),
+      enumCreator: enumCreator, intType: intType);
+
+  @override
+  IIterator<T> first() => _iIterable.first();
+
+  @override
+  List<T> toList() {
+    if (size == 0) return List.unmodifiable(<T>[]);
+
+    final pArray = calloc<Uint32>(size);
+    try {
+      getMany(0, size, pArray);
+      return List.unmodifiable(pArray.toList(length: size).map(enumCreator));
+    } finally {
+      free(pArray);
     }
   }
 }

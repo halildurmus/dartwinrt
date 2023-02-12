@@ -57,3 +57,11 @@ bool isSubtypeOfStruct<T>() => isSubtype<T, Struct>();
 /// isSubtypeOfWinRTEnum<FileAttributes>(); // true
 /// ```
 bool isSubtypeOfWinRTEnum<T>() => isSubtype<T, WinRTEnum>();
+
+/// Determines whether [T] is a subtype of [WinRTEnum].
+///
+/// ```dart
+/// isSubtypeOfWinRTFlagsEnum<FileAttributes>(); // true
+/// isSubtypeOfWinRTFlagsEnum<AsyncStatus>(); // false
+/// ```
+bool isSubtypeOfWinRTFlagsEnum<T>() => isSubtype<T, WinRTFlagsEnum<dynamic>>();

@@ -103,8 +103,10 @@ void main() {
     });
 
     test('has correct class declaration', () {
-      expect(fileAttributesProjection.classDeclaration,
-          equals('class FileAttributes extends WinRTEnum {'));
+      expect(
+          fileAttributesProjection.classDeclaration,
+          equals(
+              'class FileAttributes extends WinRTFlagsEnum<FileAttributes> {'));
     });
 
     test('has correct identifiers', () {

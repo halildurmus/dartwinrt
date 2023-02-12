@@ -13,3 +13,39 @@ abstract class WinRTEnum {
   String toString() =>
       _name != null ? '$runtimeType.$_name' : '$runtimeType(value: $value)';
 }
+
+/// The base class that all WinRT Flags enumerations implement.
+abstract class WinRTFlagsEnum<T extends WinRTEnum> extends WinRTEnum {
+  const WinRTFlagsEnum(super.value, {super.name});
+
+  /// Bit-wise and operator.
+  ///
+  /// ```dart
+  /// FileAttributes.readOnly & FileAttributes.archive // 1 & 32 -> 0
+  /// FileAttributes.archive & FileAttributes.archive // 32 & 32 -> 32
+  /// ```
+  T operator &(T other);
+
+  /// Bit-wise or operator.
+  ///
+  /// ```dart
+  /// FileAttributes.readOnly | FileAttributes.archive // 1 | 32 -> 33
+  /// FileAttributes.archive | FileAttributes.archive // 32 | 32 -> 32
+  /// ```
+  T operator |(T other);
+
+  /// Determines whether one or more bit fields are set in the current enum
+  /// value.
+  ///
+  /// ```dart
+  /// final fileAttributes = FileAttributes.readOnly | FileAttributes.archive;
+  /// fileAttributes.hasFlag(FileAttributes.readOnly)); // `true`
+  /// fileAttributes.hasFlag(FileAttributes.temporary)); // `false`
+  /// fileAttributes.hasFlag(
+  ///     FileAttributes.readOnly | FileAttributes.archive)); // `true`
+  /// ```
+  bool hasFlag(T flag) {
+    if (value != 0 && flag.value == 0) return false;
+    return value & flag.value == flag.value;
+  }
+}
