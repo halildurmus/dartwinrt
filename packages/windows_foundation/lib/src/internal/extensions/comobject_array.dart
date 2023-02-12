@@ -9,15 +9,14 @@ import 'dart:ffi';
 import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
 
-import '../helpers.dart';
+import '../../helpers.dart';
 
-extension COMObjectPointer on Pointer<COMObject> {
+extension COMObjectHelper on Pointer<COMObject> {
   /// Creates a [List] from `Pointer<COMObject>`.
   ///
-  /// [T] must be a `WinRT` class/interface (e.g. `HostName`, `ICalendar`).
+  /// [T] must be `IInspectable` (e.g. `HostName`).
   ///
-  /// [creator] must be specified for [T] (e.g. `HostName.fromRawPointer`,
-  /// `ICalendar.fromRawPointer`).
+  /// [creator] must be specified for [T] (e.g. `HostName.fromRawPointer`).
   ///
   /// [length] must not be greater than the number of elements stored inside the
   /// `Pointer<COMObject>`.

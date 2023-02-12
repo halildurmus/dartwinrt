@@ -14,10 +14,10 @@ import '../ipropertyvalue.dart';
 import '../ireference.dart';
 import '../propertyvalue.dart';
 import '../structs.g.dart';
-import 'comobject_pointer.dart';
-import 'hstring_array.dart';
+import 'extensions/comobject_array.dart';
+import 'extensions/hstring_array.dart';
+import 'extensions/int_array.dart';
 import 'iids.dart';
-import 'int_array.dart';
 
 extension IPropertyValueHelper on IPropertyValue {
   /// Gets the type that is represented as an [IPropertyValue].
