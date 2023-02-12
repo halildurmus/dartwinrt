@@ -30,7 +30,7 @@ abstract class ParameterProjection {
   /// The name of the parameter.
   final String name;
 
-  /// The type of the parameter.
+  /// The type projection of the parameter.
   final TypeProjection type;
 
   /// Returns the appropriate projection for the parameter.
