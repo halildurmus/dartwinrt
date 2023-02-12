@@ -7,6 +7,15 @@ import 'dart:ffi';
 /// Alias for a Pointer to COM vtable.
 typedef LPVTBL = Pointer<Pointer<IntPtr>>;
 
+/// Represents the double types supported by WinRT type system.
+enum DoubleType {
+  /// A 32-bit floating point number.
+  double,
+
+  /// A 64-bit floating point number.
+  single,
+}
+
 /// Represents the integer types supported by WinRT type system.
 ///
 /// WinRT type system does not support Int8 types.
