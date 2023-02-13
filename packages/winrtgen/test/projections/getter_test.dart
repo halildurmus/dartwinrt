@@ -56,6 +56,7 @@ void main() {
       final projection = GetterProjection.fromTypeAndMethodName(
           'Windows.Globalization.ICalendar', 'get_IsDaylightSavingTime');
       expect(projection, isA<DefaultGetterProjection>());
+      expect(projection.returnType, equals('bool'));
       expect(projection.nativePrototype,
           equals('HRESULT Function(Pointer, Pointer<Bool>)'));
       expect(projection.dartPrototype,
@@ -68,6 +69,7 @@ void main() {
       final projection = GetterProjection.fromTypeAndMethodName(
           'Windows.Foundation.IUriRuntimeClass', 'get_QueryParsed');
       expect(projection, isA<ClassGetterProjection>());
+      expect(projection.returnType, equals('WwwFormUrlDecoder?'));
       expect(projection.nativePrototype,
           equals('HRESULT Function(Pointer, Pointer<COMObject>)'));
       expect(projection.dartPrototype,
@@ -81,6 +83,7 @@ void main() {
           'Windows.Storage.FileProperties.IBasicProperties',
           'get_DateModified');
       expect(projection, isA<DateTimeGetterProjection>());
+      expect(projection.returnType, equals('DateTime'));
       expect(projection.nativePrototype,
           equals('HRESULT Function(Pointer, Pointer<Uint64>)'));
       expect(projection.dartPrototype,
@@ -92,6 +95,8 @@ void main() {
       final projection = GetterProjection.fromTypeAndMethodName(
           'Windows.Foundation.IAsyncAction', 'get_Completed');
       expect(projection, isA<DelegateGetterProjection>());
+      expect(projection.returnType,
+          equals('Pointer<NativeFunction<AsyncActionCompletedHandler>>'));
       expect(
           projection.nativePrototype,
           equals(
@@ -110,6 +115,7 @@ void main() {
       final projection = GetterProjection.fromTypeAndMethodName(
           'Windows.Devices.Geolocation.IGeocoordinate', 'get_Latitude');
       expect(projection, isA<DefaultGetterProjection>());
+      expect(projection.returnType, equals('double'));
       expect(projection.nativePrototype,
           equals('HRESULT Function(Pointer, Pointer<Double>)'));
       expect(projection.dartPrototype,
@@ -122,6 +128,7 @@ void main() {
           'Windows.System.Power.IPowerManagerStatics',
           'get_RemainingDischargeTime');
       expect(projection, isA<DurationGetterProjection>());
+      expect(projection.returnType, equals('Duration'));
       expect(projection.nativePrototype,
           equals('HRESULT Function(Pointer, Pointer<Uint64>)'));
       expect(projection.dartPrototype,
@@ -134,6 +141,7 @@ void main() {
       final projection = GetterProjection.fromTypeAndMethodName(
           'Windows.Storage.Pickers.IFileOpenPicker', 'get_ViewMode');
       expect(projection, isA<EnumGetterProjection>());
+      expect(projection.returnType, equals('PickerViewMode'));
       expect(projection.nativePrototype,
           equals('HRESULT Function(Pointer, Pointer<Int32>)'));
       expect(projection.dartPrototype,
@@ -147,6 +155,7 @@ void main() {
           'Windows.Networking.Connectivity.INetworkAdapter',
           'get_NetworkAdapterId');
       expect(projection, isA<GuidGetterProjection>());
+      expect(projection.returnType, equals('Guid'));
       expect(projection.nativePrototype,
           equals('HRESULT Function(Pointer, Pointer<GUID>)'));
       expect(projection.dartPrototype,
@@ -158,6 +167,7 @@ void main() {
       final projection = GetterProjection.fromTypeAndMethodName(
           'Windows.Globalization.ICalendar', 'get_NumberOfDaysInThisMonth');
       expect(projection, isA<DefaultGetterProjection>());
+      expect(projection.returnType, equals('int'));
       expect(projection.nativePrototype,
           equals('HRESULT Function(Pointer, Pointer<Int32>)'));
       expect(projection.dartPrototype,
@@ -170,6 +180,7 @@ void main() {
       final projection = GetterProjection.fromTypeAndMethodName(
           'Windows.Data.Xml.Dom.IXmlNode', 'get_FirstChild');
       expect(projection, isA<InterfaceGetterProjection>());
+      expect(projection.returnType, equals('IXmlNode?'));
       expect(projection.nativePrototype,
           equals('HRESULT Function(Pointer, Pointer<COMObject>)'));
       expect(projection.dartPrototype,
@@ -181,6 +192,7 @@ void main() {
       final projection = GetterProjection.fromTypeAndMethodName(
           'Windows.UI.Notifications.INotificationData', 'get_Values');
       expect(projection, isA<MapGetterProjection>());
+      expect(projection.returnType, equals('IMap<String, String>'));
       expect(projection.nativePrototype,
           equals('HRESULT Function(Pointer, Pointer<COMObject>)'));
       expect(projection.dartPrototype,
@@ -195,6 +207,7 @@ void main() {
       final projection = GetterProjection.fromTypeAndMethodName(
           'Windows.Devices.Enumeration.IDeviceInformation', 'get_Properties');
       expect(projection, isA<MapViewGetterProjection>());
+      expect(projection.returnType, equals('Map<String, Object?>'));
       expect(projection.nativePrototype,
           equals('HRESULT Function(Pointer, Pointer<COMObject>)'));
       expect(projection.dartPrototype,
@@ -209,6 +222,7 @@ void main() {
       final projection = GetterProjection.fromTypeAndMethodName(
           'Windows.UI.Notifications.IToastNotification', 'get_ExpirationTime');
       expect(projection, isA<ReferenceGetterProjection>());
+      expect(projection.returnType, equals('DateTime?'));
       expect(projection.nativePrototype,
           equals('HRESULT Function(Pointer, Pointer<COMObject>)'));
       expect(projection.dartPrototype,
@@ -223,6 +237,7 @@ void main() {
       final projection = GetterProjection.fromTypeAndMethodName(
           'Windows.Storage.Pickers.IFileOpenPicker', 'get_FileTypeFilter');
       expect(projection, isA<VectorGetterProjection>());
+      expect(projection.returnType, equals('IVector<String>'));
       expect(projection.nativePrototype,
           equals('HRESULT Function(Pointer, Pointer<COMObject>)'));
       expect(projection.dartPrototype,
@@ -237,6 +252,7 @@ void main() {
       final projection = GetterProjection.fromTypeAndMethodName(
           'Windows.Globalization.ICalendar', 'get_Languages');
       expect(projection, isA<VectorViewGetterProjection>());
+      expect(projection.returnType, equals('List<String>'));
       expect(projection.nativePrototype,
           equals('HRESULT Function(Pointer, Pointer<COMObject>)'));
       expect(projection.dartPrototype,
@@ -250,6 +266,7 @@ void main() {
       final projection = GetterProjection.fromTypeAndMethodName(
           'Windows.Data.Xml.Dom.IXmlNode', 'get_LocalName');
       expect(projection, isA<ObjectGetterProjection>());
+      expect(projection.returnType, equals('Object?'));
       expect(projection.nativePrototype,
           equals('HRESULT Function(Pointer, Pointer<COMObject>)'));
       expect(projection.dartPrototype,
@@ -263,6 +280,7 @@ void main() {
       final projection = GetterProjection.fromTypeAndMethodName(
           'Windows.Globalization.ICalendar', 'get_NumeralSystem');
       expect(projection, isA<StringGetterProjection>());
+      expect(projection.returnType, equals('String'));
       expect(projection.nativePrototype,
           equals('HRESULT Function(Pointer, Pointer<IntPtr>)'));
       expect(projection.dartPrototype,
@@ -274,6 +292,7 @@ void main() {
       final projection = GetterProjection.fromTypeAndMethodName(
           'Windows.Devices.Geolocation.IGeopoint', 'get_Position');
       expect(projection, isA<StructGetterProjection>());
+      expect(projection.returnType, equals('BasicGeoposition'));
       expect(projection.nativePrototype,
           equals('HRESULT Function(Pointer, Pointer<BasicGeoposition>)'));
       expect(projection.dartPrototype,
@@ -286,6 +305,7 @@ void main() {
       final projection = GetterProjection.fromTypeAndMethodName(
           'Windows.System.ILauncherOptions', 'get_FallbackUri');
       expect(projection, isA<UriGetterProjection>());
+      expect(projection.returnType, equals('Uri?'));
       expect(projection.nativePrototype,
           equals('HRESULT Function(Pointer, Pointer<COMObject>)'));
       expect(projection.dartPrototype,
