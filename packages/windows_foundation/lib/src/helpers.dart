@@ -11,7 +11,7 @@ import 'package:win32/win32.dart';
 
 import 'iinspectable.dart';
 
-extension NullCheckHelper on COMObject {
+extension NullPointerCheckHelper on COMObject {
   /// Whether the [lpVtbl] pointer is null.
   bool get isNull => lpVtbl.address == 0;
 }

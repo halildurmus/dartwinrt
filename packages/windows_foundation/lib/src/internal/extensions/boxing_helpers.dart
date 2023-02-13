@@ -16,14 +16,14 @@ import '../../types.dart';
 import '../../winrt_enum.dart';
 import '../iids.dart';
 
-extension BoxValueHelper on Object {
+extension IntoBoxHelper on Object {
   /// Boxes the value so that it can be passed to the WinRT APIs that take
   /// `IPropertyValue` as a parameter.
   ///
-  /// [doubleType] is used to specify the type of the double value. The default
-  /// is [DoubleType.double].
+  /// [doubleType] is used to specify the type of the `double` value. The
+  /// default is [DoubleType.double].
   ///
-  /// [intType] is used to specify the type of the int value. The default is
+  /// [intType] is used to specify the type of the `int` value. The default is
   /// [IntType.int32].
   Pointer<COMObject> intoBox({
     DoubleType doubleType = DoubleType.double,
