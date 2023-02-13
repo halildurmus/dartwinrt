@@ -47,7 +47,7 @@ void main() {
           .firstWhere((m) => m.name == 'get_DesiredAccuracy');
       expect(
           geolocatorProjection.importForTypeDef(
-              methodProjection.returnType.typeIdentifier.type!),
+              methodProjection.returnTypeProjection.typeIdentifier.type!),
           equals('enums.g.dart'));
     });
 
@@ -99,7 +99,7 @@ void main() {
         .firstWhere((m) => m.name == 'get_DesiredAccuracy');
     expect(
         geolocatorProjection.importForTypeIdentifier(
-            methodProjection.returnType.typeIdentifier),
+            methodProjection.returnTypeProjection.typeIdentifier),
         equals('enums.g.dart'));
   });
 

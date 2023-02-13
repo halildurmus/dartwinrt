@@ -25,7 +25,7 @@ abstract class MethodProjection {
         parameters = method.isGetProperty
             ? const []
             : method.parameters.map(ParameterProjection.create).toList(),
-        returnType = TypeProjection(method.returnType.typeIdentifier);
+        returnTypeProjection = TypeProjection(method.returnType.typeIdentifier);
 
   /// The retrieved Windows metadata for the method or property.
   final Method method;
@@ -40,7 +40,7 @@ abstract class MethodProjection {
   final List<ParameterProjection> parameters;
 
   /// Type projection of the return type.
-  final TypeProjection returnType;
+  final TypeProjection returnTypeProjection;
 
   /// Returns the appropriate method projection for the [method] based on the
   /// return type.
@@ -134,6 +134,9 @@ abstract class MethodProjection {
   String get methodParams =>
       parameters.map((param) => param.paramProjection).join(', ');
 
+  /// The return type of the method (e.g. `String`).
+  String get returnType => returnTypeProjection.dartType;
+
   /// A shortened version of the method declaration for use in factory
   /// constructors, static methods, and method forwarders.
   ///   e.g. `void setDateTime(DateTime value)` or `void setToNow()` (method)
@@ -166,25 +169,25 @@ abstract class MethodProjection {
   String get identifiers => [
         'ptr.ref.lpVtbl',
         ...parameters.map((param) => param.localIdentifier),
-        if (!returnType.isVoid) 'retValuePtr',
+        if (!returnTypeProjection.isVoid) 'retValuePtr',
       ].join(', ');
 
   String get nativeParams => [
         'Pointer',
         ...parameters.map((param) => param.ffiProjection),
-        if (!returnType.isVoid)
-          returnType.dartType == 'Pointer<COMObject>'
+        if (!returnTypeProjection.isVoid)
+          returnTypeProjection.dartType == 'Pointer<COMObject>'
               ? 'Pointer<COMObject>'
-              : 'Pointer<${returnType.nativeType}>',
+              : 'Pointer<${returnTypeProjection.nativeType}>',
       ].join(', ');
 
   String get dartParams => [
         'Pointer',
         ...parameters.map((param) => param.dartProjection),
-        if (!returnType.isVoid)
-          returnType.dartType == 'Pointer<COMObject>'
+        if (!returnTypeProjection.isVoid)
+          returnTypeProjection.dartType == 'Pointer<COMObject>'
               ? 'Pointer<COMObject>'
-              : 'Pointer<${returnType.nativeType}>',
+              : 'Pointer<${returnTypeProjection.nativeType}>',
       ].join(', ');
 
   String ffiCall({String params = '', bool freeRetValOnFailure = false}) {
@@ -205,7 +208,7 @@ abstract class MethodProjection {
     ].join('\n');
   }
 
-  /// The projection for the method.
+  /// The projection of the method.
   String get methodProjection;
 
   @override

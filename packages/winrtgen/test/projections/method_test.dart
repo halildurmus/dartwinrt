@@ -42,6 +42,7 @@ void main() {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Foundation.IPropertyValue', 'GetBoolean');
       expect(projection, isA<DefaultMethodProjection>());
+      expect(projection.returnType, equals('bool'));
       expect(projection.nativePrototype,
           equals('HRESULT Function(Pointer, Pointer<Bool>)'));
       expect(projection.dartPrototype,
@@ -53,6 +54,7 @@ void main() {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Globalization.ICalendar', 'Clone');
       expect(projection, isA<ClassMethodProjection>());
+      expect(projection.returnType, equals('Calendar?'));
       expect(projection.nativePrototype,
           equals('HRESULT Function(Pointer, Pointer<COMObject>)'));
       expect(projection.dartPrototype,
@@ -64,6 +66,7 @@ void main() {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Globalization.ICalendar', 'GetDateTime');
       expect(projection, isA<DateTimeMethodProjection>());
+      expect(projection.returnType, equals('DateTime'));
       expect(projection.nativePrototype,
           equals('HRESULT Function(Pointer, Pointer<Uint64>)'));
       expect(projection.dartPrototype,
@@ -75,6 +78,7 @@ void main() {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Foundation.IPropertyValue', 'GetDouble');
       expect(projection, isA<DefaultMethodProjection>());
+      expect(projection.returnType, equals('double'));
       expect(projection.nativePrototype,
           equals('HRESULT Function(Pointer, Pointer<Double>)'));
       expect(projection.dartPrototype,
@@ -86,6 +90,7 @@ void main() {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Foundation.IPropertyValue', 'GetTimeSpan');
       expect(projection, isA<DurationMethodProjection>());
+      expect(projection.returnType, equals('Duration'));
       expect(projection.nativePrototype,
           equals('HRESULT Function(Pointer, Pointer<Uint64>)'));
       expect(projection.dartPrototype,
@@ -97,6 +102,7 @@ void main() {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Data.Json.IJsonErrorStatics2', 'GetJsonStatus');
       expect(projection, isA<EnumMethodProjection>());
+      expect(projection.returnType, equals('JsonErrorStatus'));
       expect(projection.nativePrototype,
           equals('HRESULT Function(Pointer, Int32 hresult, Pointer<Int32>)'));
       expect(projection.dartPrototype,
@@ -109,6 +115,7 @@ void main() {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Foundation.IPropertyValue', 'GetGuid');
       expect(projection, isA<GuidMethodProjection>());
+      expect(projection.returnType, equals('Guid'));
       expect(projection.nativePrototype,
           equals('HRESULT Function(Pointer, Pointer<GUID>)'));
       expect(projection.dartPrototype,
@@ -120,6 +127,7 @@ void main() {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Foundation.IPropertyValue', 'GetInt32');
       expect(projection, isA<DefaultMethodProjection>());
+      expect(projection.returnType, equals('int'));
       expect(projection.nativePrototype,
           equals('HRESULT Function(Pointer, Pointer<Int32>)'));
       expect(projection.dartPrototype,
@@ -131,6 +139,8 @@ void main() {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Foundation.Collections.StringMap', 'First');
       expect(projection, isA<InterfaceMethodProjection>());
+      expect(projection.returnType,
+          equals('IIterator<IKeyValuePair<String, String>>'));
       expect(projection.nativePrototype,
           equals('HRESULT Function(Pointer, Pointer<COMObject>)'));
       expect(projection.dartPrototype,
@@ -143,6 +153,7 @@ void main() {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Storage.IStorageItem', 'DeleteAsyncOverloadDefaultOptions');
       expect(projection, isA<AsyncActionMethodProjection>());
+      expect(projection.returnType, equals('Future<void>'));
       expect(projection.nativePrototype,
           equals('HRESULT Function(Pointer, Pointer<COMObject>)'));
       expect(projection.dartPrototype,
@@ -155,6 +166,7 @@ void main() {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Storage.Pickers.IFileOpenPicker', 'PickSingleFileAsync');
       expect(projection, isA<AsyncOperationMethodProjection>());
+      expect(projection.returnType, equals('Future<StorageFile?>'));
       expect(projection.nativePrototype,
           equals('HRESULT Function(Pointer, Pointer<COMObject>)'));
       expect(projection.dartPrototype,
@@ -168,6 +180,8 @@ void main() {
           'Windows.Storage.Search.StorageFileQueryResult',
           'GetMatchingPropertiesWithRanges');
       expect(projection, isA<MapMethodProjection>());
+      expect(projection.returnType,
+          equals('IMap<String, IVectorView<TextSegment>?>'));
       expect(projection.nativePrototype,
           equals('HRESULT Function(Pointer, LPVTBL file, Pointer<COMObject>)'));
       expect(projection.dartPrototype,
@@ -182,6 +196,7 @@ void main() {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Foundation.Collections.StringMap', 'GetView');
       expect(projection, isA<MapViewMethodProjection>());
+      expect(projection.returnType, equals('Map<String, String>'));
       expect(projection.nativePrototype,
           equals('HRESULT Function(Pointer, Pointer<COMObject>)'));
       expect(projection.dartPrototype,
@@ -194,6 +209,7 @@ void main() {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Networking.Connectivity.ConnectionProfile', 'GetSignalBars');
       expect(projection, isA<ReferenceMethodProjection>());
+      expect(projection.returnType, equals('int?'));
       expect(projection.nativePrototype,
           equals('HRESULT Function(Pointer, Pointer<COMObject>)'));
       expect(projection.dartPrototype,
@@ -206,6 +222,8 @@ void main() {
           'Windows.Networking.BackgroundTransfer.IDownloadOperation3',
           'GetDownloadedRanges');
       expect(projection, isA<VectorMethodProjection>());
+      expect(projection.returnType,
+          equals('IVector<BackgroundTransferFileRange>'));
       expect(projection.nativePrototype,
           equals('HRESULT Function(Pointer, Pointer<COMObject>)'));
       expect(projection.dartPrototype,
@@ -218,6 +236,7 @@ void main() {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Globalization.ApplicationLanguages', 'GetLanguagesForUser');
       expect(projection, isA<VectorViewMethodProjection>());
+      expect(projection.returnType, equals('List<String>'));
       expect(projection.nativePrototype,
           equals('HRESULT Function(Pointer, LPVTBL user, Pointer<COMObject>)'));
       expect(projection.dartPrototype,
@@ -230,6 +249,7 @@ void main() {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Foundation.Collections.PropertySet', 'Lookup');
       expect(projection, isA<ObjectMethodProjection>());
+      expect(projection.returnType, equals('Object?'));
       expect(projection.nativePrototype,
           equals('HRESULT Function(Pointer, IntPtr key, Pointer<COMObject>)'));
       expect(projection.dartPrototype,
@@ -241,6 +261,7 @@ void main() {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Globalization.ICalendar', 'GetCalendarSystem');
       expect(projection, isA<StringMethodProjection>());
+      expect(projection.returnType, equals('String'));
       expect(projection.nativePrototype,
           equals('HRESULT Function(Pointer, Pointer<IntPtr>)'));
       expect(projection.dartPrototype,
@@ -252,6 +273,7 @@ void main() {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Foundation.IPropertyValue', 'GetPoint');
       expect(projection, isA<StructMethodProjection>());
+      expect(projection.returnType, equals('Point'));
       expect(projection.nativePrototype,
           equals('HRESULT Function(Pointer, Pointer<Point>)'));
       expect(projection.dartPrototype,
@@ -264,6 +286,7 @@ void main() {
           'Windows.Security.Authentication.Web.WebAuthenticationBroker',
           'GetCurrentApplicationCallbackUri');
       expect(projection, isA<UriMethodProjection>());
+      expect(projection.returnType, equals('Uri?'));
       expect(projection.nativePrototype,
           equals('HRESULT Function(Pointer, Pointer<COMObject>)'));
       expect(projection.dartPrototype,
@@ -277,6 +300,7 @@ void main() {
           'Windows.Globalization.PhoneNumberFormatting.IPhoneNumberFormatterStatics',
           'TryCreate');
       expect(projection, isA<VoidMethodProjection>());
+      expect(projection.returnType, equals('void'));
       expect(
           projection.nativePrototype,
           equals(

@@ -7,8 +7,14 @@ import '../method.dart';
 import '../parameter.dart';
 import '../setter.dart';
 
+mixin _DateTimeProjection on MethodProjection {
+  @override
+  String get returnType => 'DateTime';
+}
+
 /// Method projection for methods that return a `DateTime`.
-class DateTimeMethodProjection extends MethodProjection {
+class DateTimeMethodProjection extends MethodProjection
+    with _DateTimeProjection {
   DateTimeMethodProjection(super.method, super.vtableOffset);
 
   // In WinRT, DateTime is represented as a 64-bit signed integer that
@@ -17,7 +23,7 @@ class DateTimeMethodProjection extends MethodProjection {
   // Calendar).
   @override
   String get methodProjection => '''
-  DateTime $camelCasedName($methodParams) {
+  $returnType $camelCasedName($methodParams) {
     final retValuePtr = calloc<Uint64>();
     $parametersPreamble
 
@@ -35,12 +41,13 @@ class DateTimeMethodProjection extends MethodProjection {
 }
 
 /// Getter projection for `DateTime` getters.
-class DateTimeGetterProjection extends GetterProjection {
+class DateTimeGetterProjection extends GetterProjection
+    with _DateTimeProjection {
   DateTimeGetterProjection(super.method, super.vtableOffset);
 
   @override
   String get methodProjection => '''
-  DateTime get $camelCasedName {
+  $returnType get $camelCasedName {
     final retValuePtr = calloc<Uint64>();
 
     try {
@@ -61,7 +68,7 @@ class DateTimeSetterProjection extends SetterProjection {
 
   @override
   String get methodProjection => '''
-  set $camelCasedName(DateTime value) {
+  set $camelCasedName(${parameter.type} value) {
     final dateTimeOffset =
         value.difference(DateTime.utc(1601, 01, 01)).inMicroseconds * 10;
 
@@ -73,6 +80,9 @@ class DateTimeSetterProjection extends SetterProjection {
 /// Parameter projection for `DateTime` parameters.
 class DateTimeParameterProjection extends ParameterProjection {
   DateTimeParameterProjection(super.parameter);
+
+  @override
+  String get type => 'DateTime';
 
   @override
   String get preamble => '''

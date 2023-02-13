@@ -21,10 +21,10 @@ void main() {
           'GetNationalDirectDialingPrefixForRegion');
       final parameter = methodProjection.parameters.last;
       expect(parameter, isA<DefaultParameterProjection>());
+      expect(parameter.type, equals('bool'));
       expect(parameter.preamble, isEmpty);
       expect(parameter.postamble, isEmpty);
       expect(parameter.localIdentifier, equals('stripNonDigit'));
-      expect(parameter.type.exposedType, equals('bool'));
     });
 
     test('projects class', () {
@@ -32,11 +32,11 @@ void main() {
           'Windows.Globalization.ICalendar', 'Compare');
       final parameter = methodProjection.parameters.first;
       expect(parameter, isA<ClassParameterProjection>());
+      expect(parameter.type, equals('Calendar?'));
       expect(parameter.preamble, isEmpty);
       expect(parameter.postamble, isEmpty);
       expect(parameter.localIdentifier,
           equals('other == null ? nullptr : other.ptr.ref.lpVtbl'));
-      expect(parameter.type.exposedType, equals('Calendar?'));
     });
 
     test('projects DateTime', () {
@@ -44,6 +44,7 @@ void main() {
           'Windows.Globalization.ICalendar', 'SetDateTime');
       final parameter = methodProjection.parameters.first;
       expect(parameter, isA<DateTimeParameterProjection>());
+      expect(parameter.type, equals('DateTime'));
       expect(
         parameter.preamble,
         equalsIgnoringWhitespace('final valueDateTime = '
@@ -51,7 +52,6 @@ void main() {
       );
       expect(parameter.postamble, isEmpty);
       expect(parameter.localIdentifier, equals('valueDateTime'));
-      expect(parameter.type.exposedType, equals('DateTime'));
     });
 
     test('projects double', () {
@@ -59,10 +59,10 @@ void main() {
           'Windows.Foundation.IPropertyValueStatics', 'CreateDouble');
       final parameter = methodProjection.parameters.first;
       expect(parameter, isA<DefaultParameterProjection>());
+      expect(parameter.type, equals('double'));
       expect(parameter.preamble, isEmpty);
       expect(parameter.postamble, isEmpty);
       expect(parameter.localIdentifier, equals('value'));
-      expect(parameter.type.exposedType, equals('double'));
     });
 
     test('projects Duration', () {
@@ -70,11 +70,11 @@ void main() {
           'Windows.Foundation.IPropertyValueStatics', 'CreateTimeSpan');
       final parameter = methodProjection.parameters.first;
       expect(parameter, isA<DurationParameterProjection>());
+      expect(parameter.type, equals('Duration'));
       expect(parameter.preamble,
           equals('final valueDuration = value.inMicroseconds * 10;'));
       expect(parameter.postamble, isEmpty);
       expect(parameter.localIdentifier, equals('valueDuration'));
-      expect(parameter.type.exposedType, equals('Duration'));
     });
 
     test('projects enum', () {
@@ -82,10 +82,10 @@ void main() {
           'Windows.Storage.IStorageItem', 'DeleteAsync');
       final parameter = methodProjection.parameters.first;
       expect(parameter, isA<EnumParameterProjection>());
+      expect(parameter.type, equals('StorageDeleteOption'));
       expect(parameter.preamble, isEmpty);
       expect(parameter.postamble, isEmpty);
       expect(parameter.localIdentifier, equals('option.value'));
-      expect(parameter.type.exposedType, equals('StorageDeleteOption'));
     });
 
     test('projects Guid', () {
@@ -93,11 +93,11 @@ void main() {
           'Windows.Foundation.IPropertyValueStatics', 'CreateGuid');
       final parameter = methodProjection.parameters.first;
       expect(parameter, isA<GuidParameterProjection>());
+      expect(parameter.type, equals('Guid'));
       expect(parameter.preamble,
           equals('final valueNativeGuidPtr = value.toNativeGUID();'));
       expect(parameter.postamble, equals('free(valueNativeGuidPtr);'));
       expect(parameter.localIdentifier, equals('valueNativeGuidPtr.ref'));
-      expect(parameter.type.exposedType, equals('Guid'));
     });
 
     test('projects int', () {
@@ -105,10 +105,10 @@ void main() {
           'Windows.Foundation.IPropertyValueStatics', 'CreateInt32');
       final parameter = methodProjection.parameters.first;
       expect(parameter, isA<DefaultParameterProjection>());
+      expect(parameter.type, equals('int'));
       expect(parameter.preamble, isEmpty);
       expect(parameter.postamble, isEmpty);
       expect(parameter.localIdentifier, equals('value'));
-      expect(parameter.type.exposedType, equals('int'));
     });
 
     test('projects interface', () {
@@ -116,13 +116,13 @@ void main() {
           'Windows.Storage.IStorageFile', 'CopyAndReplaceAsync');
       final parameter = methodProjection.parameters.first;
       expect(parameter, isA<InterfaceParameterProjection>());
+      expect(parameter.type, equals('IStorageFile?'));
       expect(parameter.preamble, isEmpty);
       expect(parameter.postamble, isEmpty);
       expect(
           parameter.localIdentifier,
           equals(
               'fileToReplace == null ? nullptr : fileToReplace.ptr.ref.lpVtbl'));
-      expect(parameter.type.exposedType, equals('IStorageFile?'));
     });
 
     test('projects IReference<BluetoothLEAdvertisementFlags?>', () {
@@ -131,12 +131,26 @@ void main() {
           'put_Flags');
       final parameter = methodProjection.parameters.first;
       expect(parameter, isA<ReferenceParameterProjection>());
+      expect(parameter.type, equals('BluetoothLEAdvertisementFlags?'));
       expect(parameter.preamble, isEmpty);
       expect(parameter.postamble, isEmpty);
       expect(parameter.localIdentifier,
           equals('value?.toReference().ptr.ref.lpVtbl ?? nullptr'));
-      // expect(
-      //     parameter.type.exposedType, equals('BluetoothLEAdvertisementFlags?'));
+    });
+
+    test('projects IReference<int?>', () {
+      final methodProjection = MethodProjection.fromTypeAndMethodName(
+          'Windows.Devices.Geolocation.IGeolocatorWithScalarAccuracy',
+          'put_DesiredAccuracyInMeters');
+      final parameter = methodProjection.parameters.first;
+      expect(parameter, isA<ReferenceParameterProjection>());
+      expect(parameter.type, equals('int?'));
+      expect(parameter.preamble, isEmpty);
+      expect(parameter.postamble, isEmpty);
+      expect(
+          parameter.localIdentifier,
+          equals(
+              'value?.toReference(IntType.uint32).ptr.ref.lpVtbl ?? nullptr'));
     });
 
     test('projects Object', () {
@@ -144,11 +158,11 @@ void main() {
           'Windows.Foundation.Collections.PropertySet', 'Insert');
       final parameter = methodProjection.parameters.last;
       expect(parameter, isA<ObjectParameterProjection>());
+      expect(parameter.type, equals('Object?'));
       expect(parameter.preamble, isEmpty);
       expect(parameter.postamble, isEmpty);
       expect(parameter.localIdentifier,
           equals('value?.intoBox().ref.lpVtbl ?? nullptr'));
-      expect(parameter.type.exposedType, equals('Object?'));
     });
 
     test('projects pointer', () {
@@ -156,10 +170,10 @@ void main() {
           'Windows.Storage.Pickers.FileExtensionVector', 'IndexOf');
       final parameter = methodProjection.parameters.last;
       expect(parameter, isA<DefaultParameterProjection>());
+      expect(parameter.type, equals('Pointer<Uint32>'));
       expect(parameter.preamble, isEmpty);
       expect(parameter.postamble, isEmpty);
       expect(parameter.localIdentifier, equals('index'));
-      expect(parameter.type.exposedType, equals('Pointer<Uint32>'));
     });
 
     test('projects simpleArray', () {
@@ -167,10 +181,10 @@ void main() {
           'Windows.Storage.Pickers.FileExtensionVector', 'GetMany');
       final parameter = methodProjection.parameters.last;
       expect(parameter, isA<DefaultParameterProjection>());
+      expect(parameter.type, equals('Pointer<IntPtr>'));
       expect(parameter.preamble, isEmpty);
       expect(parameter.postamble, isEmpty);
       expect(parameter.localIdentifier, equals('value'));
-      expect(parameter.type.exposedType, equals('Pointer<IntPtr>'));
     });
 
     test('projects String', () {
@@ -178,22 +192,22 @@ void main() {
           'Windows.Globalization.ICalendar', 'ChangeCalendarSystem');
       final parameter = methodProjection.parameters.first;
       expect(parameter, isA<StringParameterProjection>());
+      expect(parameter.type, equals('String'));
       expect(parameter.preamble,
           equals('final valueHString = convertToHString(value);'));
       expect(parameter.postamble, equals('WindowsDeleteString(valueHString);'));
       expect(parameter.localIdentifier, equals('valueHString'));
-      expect(parameter.type.exposedType, equals('String'));
     });
 
     test('projects struct', () {
       final methodProjection = MethodProjection.fromTypeAndMethodName(
           'Windows.Foundation.IPropertyValueStatics', 'CreatePoint');
       final parameter = methodProjection.parameters.first;
-      expect(parameter, isA<DefaultParameterProjection>());
+      expect(parameter, isA<StructParameterProjection>());
+      expect(parameter.type, equals('Point'));
       expect(parameter.preamble, isEmpty);
       expect(parameter.postamble, isEmpty);
       expect(parameter.localIdentifier, equals('value'));
-      expect(parameter.type.exposedType, equals('Point'));
     });
 
     test('projects Uri', () {
@@ -201,6 +215,7 @@ void main() {
           'Windows.System.ILauncherStatics', 'LaunchUriAsync');
       final parameter = methodProjection.parameters.first;
       expect(parameter, isA<UriParameterProjection>());
+      expect(parameter.type, equals('Uri?'));
       expect(
           parameter.preamble,
           equals(
@@ -208,7 +223,6 @@ void main() {
       expect(parameter.postamble, equals('uriUri?.release();'));
       expect(parameter.localIdentifier,
           equals('uriUri == null ? nullptr : uriUri.ptr.ref.lpVtbl'));
-      expect(parameter.type.exposedType, equals('Uri?'));
     });
   });
 }

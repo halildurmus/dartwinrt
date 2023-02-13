@@ -12,8 +12,11 @@ class AsyncActionMethodProjection extends MethodProjection {
   AsyncActionMethodProjection(super.method, super.vtableOffset);
 
   @override
+  String get returnType => 'Future<void>';
+
+  @override
   String get methodProjection => '''
-  Future<void> $camelCasedName($methodParams) {
+  $returnType $camelCasedName($methodParams) {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<void>();
     $parametersPreamble
@@ -32,34 +35,40 @@ class AsyncActionMethodProjection extends MethodProjection {
 
 mixin _AsyncOperationProjection on MethodProjection {
   /// The type argument of `IAsyncOperation`, as represented in the
-  /// [returnType]'s [TypeIdentifier] (e.g. `bool`, `String`, `StorageFile?`).
+  /// [returnTypeProjection]'s `TypeIdentifier` (e.g. `bool`, `String`,
+  /// `StorageFile?`).
   String get asyncOperationTypeArg =>
-      typeArguments(returnType.typeIdentifier.name);
+      typeArguments(returnTypeProjection.typeIdentifier.shortName);
 
-  String get futureTypeArg {
-    if (asyncOperationTypeArg.startsWith('IMapView')) {
-      // e.g. return Map<String, String> instead of IMapView<String, String>
-      return asyncOperationTypeArg.replaceFirst('IMapView', 'Map');
-    } else if (asyncOperationTypeArg.startsWith('IVectorView')) {
-      // e.g. return List<String> instead of IVectorView<String>
-      return asyncOperationTypeArg.replaceFirst('IVectorView', 'List');
-    } else if (asyncOperationTypeArg.startsWith('IReference')) {
-      // e.g. return Duration? instead of IReference<Duration>?
-      return nullable(typeArguments(asyncOperationTypeArg));
+  String get completerTypeArg {
+    final typeArg = asyncOperationTypeArg;
+    if (typeArg.startsWith('IMapView')) {
+      // e.g. Map<String, String> instead of IMapView<String, String>
+      return typeArg.replaceFirst('IMapView', 'Map');
+    } else if (typeArg.startsWith('IVectorView')) {
+      // e.g. List<String> instead of IVectorView<String>
+      return typeArg.replaceFirst('IVectorView', 'List');
+    } else if (typeArg.startsWith('IReference')) {
+      // e.g. Duration? instead of IReference<Duration?>
+      return typeArguments(typeArg);
     }
 
-    return asyncOperationTypeArg;
+    return typeArg;
   }
+
+  @override
+  String get returnType => 'Future<$completerTypeArg>';
 
   /// The constructor arguments passed to the constructor of `IAsyncOperation`.
   String get asyncOperationConstructorArgs {
-    final typeProjection = TypeProjection(returnType.typeIdentifier.typeArg!);
+    final typeProjection =
+        TypeProjection(returnTypeProjection.typeIdentifier.typeArg!);
 
     // If the type argument is an enum or a WinRT object (e.g. StorageFile), the
     // constructor of that class must be passed in the 'enumCreator' parameter
     // for enums, 'creator' parameter for WinRT objects so that the
     // IAsyncOperation implementation can instantiate the object.
-    final creator = returnType.typeIdentifier.typeArg!.creator;
+    final creator = returnTypeProjection.typeIdentifier.typeArg!.creator;
 
     // If the type argument is an int, 'intType' parameter must be specified so
     // that the IAsyncOperation implementation can use the appropriate native
@@ -103,9 +112,9 @@ class AsyncOperationMethodProjection extends MethodProjection
 
   @override
   String get methodProjection => '''
-  Future<$futureTypeArg> $camelCasedName($methodParams) {
+  $returnType $camelCasedName($methodParams) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<$futureTypeArg>();
+    final completer = Completer<$completerTypeArg>();
     $parametersPreamble
 
     ${ffiCall(freeRetValOnFailure: true)}

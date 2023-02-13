@@ -11,7 +11,8 @@ mixin _ObjectProjection on MethodProjection {
   bool get isMethodFromPropertyValueStatics =>
       method.parent.name == 'Windows.Foundation.IPropertyValueStatics';
 
-  String get methodReturnType {
+  @override
+  String get returnType {
     // IPropertyValueStatics' methods return 'IInspectable' in WinMD. Normally
     // we expose them as 'Object?' and return the underlying value they carry
     // (e.g. String, bool). However, since these methods are used to box values,
@@ -51,7 +52,7 @@ class ObjectMethodProjection extends MethodProjection with _ObjectProjection {
 
   @override
   String get methodProjection => '''
-  $methodReturnType $camelCasedName($methodParams) {
+  $returnType $camelCasedName($methodParams) {
     final retValuePtr = calloc<COMObject>();
     $parametersPreamble
 
@@ -72,7 +73,7 @@ class ObjectGetterProjection extends GetterProjection with _ObjectProjection {
 
   @override
   String get methodProjection => '''
-  Object? get $camelCasedName {
+  $returnType get $camelCasedName {
     final retValuePtr = calloc<COMObject>();
 
     ${ffiCall(freeRetValOnFailure: true)}
@@ -90,7 +91,7 @@ class ObjectSetterProjection extends SetterProjection with _ObjectProjection {
 
   @override
   String get methodProjection => '''
-  set $camelCasedName(Object? value) {
+  set $camelCasedName(${parameter.type} value) {
     ${ffiCall(params: 'value?.intoBox().ref.lpVtbl ?? nullptr')}
   }
 ''';
@@ -99,6 +100,9 @@ class ObjectSetterProjection extends SetterProjection with _ObjectProjection {
 /// Parameter projection for `Object` parameters.
 class ObjectParameterProjection extends ParameterProjection {
   ObjectParameterProjection(super.parameter);
+
+  @override
+  String get type => 'Object?';
 
   @override
   String get preamble => '';

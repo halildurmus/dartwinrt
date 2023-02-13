@@ -9,21 +9,13 @@ import '../models/models.dart';
 import '../utils.dart';
 
 class TypeTuple {
-  const TypeTuple(
-    this.nativeType,
-    this.dartType, {
-    String? exposedType,
-    this.attribute,
-  }) : exposedType = exposedType ?? dartType;
+  const TypeTuple(this.nativeType, this.dartType, {this.attribute});
 
   /// The type, as represented in the native function (e.g. `Uint64`)
   final String nativeType;
 
   /// The type, as represented in the Dart function (e.g. `int`)
   final String dartType;
-
-  /// The type, as represented in a method projection (e.g. `DateTime`)
-  final String exposedType;
 
   /// The type, as represented as a struct attribute (e.g. `@Uint64()`)
   final String? attribute;
@@ -48,15 +40,15 @@ const baseNativeMapping = <BaseType, TypeTuple>{
 };
 
 const specialTypes = <String, TypeTuple>{
-  'System.Guid': TypeTuple('GUID', 'GUID', exposedType: 'Guid'),
-  'Windows.Foundation.DateTime': TypeTuple('Uint64', 'int',
-      exposedType: 'DateTime', attribute: '@Uint64()'),
+  'System.Guid': TypeTuple('GUID', 'GUID'),
+  'Windows.Foundation.DateTime':
+      TypeTuple('Uint64', 'int', attribute: '@Uint64()'),
   'Windows.Foundation.EventRegistrationToken':
       TypeTuple('IntPtr', 'int', attribute: '@IntPtr()'),
   'Windows.Foundation.HResult':
       TypeTuple('Int32', 'int', attribute: '@Int32()'),
-  'Windows.Foundation.TimeSpan': TypeTuple('Uint64', 'int',
-      exposedType: 'Duration', attribute: '@Uint64()'),
+  'Windows.Foundation.TimeSpan':
+      TypeTuple('Uint64', 'int', attribute: '@Uint64()'),
 };
 
 class TypeProjection {
@@ -78,9 +70,6 @@ class TypeProjection {
 
   /// The type, as represented as a struct attribute (e.g. `@Uint64()`)
   String get attribute => projection.attribute ?? '';
-
-  /// The type, as represented in a method declaration (e.g. `DateTime`)
-  String get exposedType => projection.exposedType;
 
   /// The projection type of this type (e.g. `ProjectionType.dateTime`).
   ProjectionType get projectionType => ProjectionType.from(this);
@@ -155,8 +144,7 @@ class TypeProjection {
   bool get isWinRTStruct => isWinRT && (typeIdentifier.type?.isStruct ?? false);
 
   TypeTuple unwrapDelegate() {
-    final delegateName =
-        outerType(stripGenerics(lastComponent(typeIdentifier.name)));
+    final delegateName = outerType(typeIdentifier.shortName);
     return TypeTuple('Pointer<NativeFunction<$delegateName>>',
         'Pointer<NativeFunction<$delegateName>>');
   }
@@ -167,17 +155,12 @@ class TypeProjection {
       throw Exception('Enum $typeIdentifier is missing value__ field');
     }
 
-    final enumName = typeIdentifier.type!.shortName;
-    switch (fieldType.baseType) {
-      case BaseType.int32Type:
-        return TypeTuple('Int32', 'int',
-            exposedType: enumName, attribute: '@Int32()');
-      case BaseType.uint32Type:
-        return TypeTuple('Uint32', 'int',
-            exposedType: enumName, attribute: '@Uint32()');
-      default:
-        throw Exception('Enum $typeIdentifier has unsupported underlying type');
+    final typeTuple = baseNativeMapping[fieldType.baseType];
+    if (typeTuple == null) {
+      throw Exception('Enum $typeIdentifier has unsupported underlying type');
     }
+
+    return typeTuple;
   }
 
   /// Takes a type such as `pointerTypeModifier` -> `BaseType.Uint32` and
@@ -197,8 +180,7 @@ class TypeProjection {
     final baseType = typeIdentifier.typeArg?.baseType;
     switch (baseType) {
       case BaseType.classTypeModifier:
-        return TypeTuple('Pointer<COMObject>', 'Pointer<COMObject>',
-            exposedType: typeIdentifier.typeArg!.shortName);
+        return const TypeTuple('Pointer<COMObject>', 'Pointer<COMObject>');
       case BaseType.simpleArrayType:
         // This form is used in WinRT methods when the caller receives an array
         // that was allocated by the method. In this style, the array size
@@ -272,10 +254,7 @@ class TypeProjection {
     if (isSimpleArray) return unwrapSimpleArrayType(typeIdentifier);
 
     // Strings in WinRT are defined as HSTRING which corresponding to IntPtr
-    if (isString) {
-      return const TypeTuple('IntPtr', 'int',
-          attribute: '@IntPtr()', exposedType: 'String');
-    }
+    if (isString) return baseNativeMapping[BaseType.intPtrType]!;
 
     // Could be a WinRT struct like BasicGeoposition
     if (isWinRTStruct) return unwrapStruct();
@@ -286,9 +265,7 @@ class TypeProjection {
       // LPVTBL is an alias for a Pointer to COM vtable (i.e.
       // Pointer<Pointer<IntPtr>>).
       final type = isParameter ? 'LPVTBL' : 'Pointer<COMObject>';
-      final exposedType =
-          isObject ? 'Object?' : nullable(typeIdentifier.shortName);
-      return TypeTuple(type, type, exposedType: exposedType);
+      return TypeTuple(type, type);
     }
 
     throw Exception('Type information missing for $typeIdentifier.');

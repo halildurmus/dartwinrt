@@ -8,6 +8,9 @@ import '../parameter.dart';
 import '../setter.dart';
 
 mixin _UriProjection on MethodProjection {
+  @override
+  String get returnType => 'Uri?';
+
   String get nullCheck => '''
     if (retValuePtr.ref.isNull) {
       free(retValuePtr);
@@ -22,7 +25,7 @@ class UriMethodProjection extends MethodProjection with _UriProjection {
 
   @override
   String get methodProjection => '''
-  Uri? $camelCasedName($methodParams) {
+  $returnType $camelCasedName($methodParams) {
     final retValuePtr = calloc<COMObject>();
     $parametersPreamble
 
@@ -47,7 +50,7 @@ class UriGetterProjection extends GetterProjection with _UriProjection {
 
   @override
   String get methodProjection => '''
-  Uri? get $camelCasedName {
+  $returnType get $camelCasedName {
     final retValuePtr = calloc<COMObject>();
 
     ${ffiCall(freeRetValOnFailure: true)}
@@ -69,7 +72,7 @@ class UriSetterProjection extends SetterProjection {
 
   @override
   String get methodProjection => '''
-  set $camelCasedName(Uri? value) {
+  set $camelCasedName(${parameter.type} value) {
     final winrtUri =
         value == null ? null : winrt_uri.Uri.createUri(value.toString());
 
@@ -85,6 +88,9 @@ class UriSetterProjection extends SetterProjection {
 /// Parameter projection for `Uri` parameters.
 class UriParameterProjection extends ParameterProjection {
   UriParameterProjection(super.parameter);
+
+  @override
+  String get type => 'Uri?';
 
   @override
   String get preamble => 'final ${name}Uri = $name == null ? null : '

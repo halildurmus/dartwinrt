@@ -18,50 +18,44 @@ void main() {
     test('DateTime types are projected correctly', () {
       final methodProjection = MethodProjection.fromTypeAndMethodName(
           'Windows.Globalization.ICalendar', 'GetDateTime');
-      final typeProjection = methodProjection.returnType;
+      final typeProjection = methodProjection.returnTypeProjection;
       expect(typeProjection.dartType, equals('int'));
       expect(typeProjection.nativeType, equals('Uint64'));
-      expect(typeProjection.exposedType, equals('DateTime'));
     });
 
     test('EventRegistrationToken types are projected correctly', () {
       final methodProjection = MethodProjection.fromTypeAndMethodName(
           'Windows.UI.Notifications.IToastNotification', 'remove_Dismissed');
-      final typeProjection = methodProjection.parameters.first.type;
+      final typeProjection = methodProjection.parameters.first.typeProjection;
       expect(typeProjection.dartType, equals('int'));
       expect(typeProjection.nativeType, equals('IntPtr'));
-      expect(typeProjection.exposedType, equals('int'));
     });
 
     test('HResult types are projected correctly', () {
       final methodProjection = MethodProjection.fromTypeAndMethodName(
           'Windows.Foundation.IAsyncInfo', 'get_ErrorCode');
-      final typeProjection = methodProjection.returnType;
+      final typeProjection = methodProjection.returnTypeProjection;
       expect(typeProjection.dartType, equals('int'));
       expect(typeProjection.nativeType, equals('Int32'));
-      expect(typeProjection.exposedType, equals('int'));
     });
 
     test('TimeSpan types are projected correctly', () {
       final methodProjection = MethodProjection.fromTypeAndMethodName(
           'Windows.Foundation.IPropertyValue', 'GetTimeSpan');
-      final typeProjection = methodProjection.returnType;
+      final typeProjection = methodProjection.returnTypeProjection;
       expect(typeProjection.dartType, equals('int'));
       expect(typeProjection.nativeType, equals('Uint64'));
-      expect(typeProjection.exposedType, equals('Duration'));
     });
   });
 
   test('Delegate types are projected correctly', () {
     final methodProjection = MethodProjection.fromTypeAndMethodName(
         'Windows.UI.Notifications.IToastNotification', 'add_Activated');
-    final typeProjection = methodProjection.parameters.first.type;
+    final typeProjection = methodProjection.parameters.first.typeProjection;
     // TypedEventHandler<ToastNotification, object>
     expect(typeProjection.dartType,
         equals('Pointer<NativeFunction<TypedEventHandler>>'));
     expect(typeProjection.nativeType,
-        equals('Pointer<NativeFunction<TypedEventHandler>>'));
-    expect(typeProjection.exposedType,
         equals('Pointer<NativeFunction<TypedEventHandler>>'));
   });
 
@@ -72,13 +66,13 @@ void main() {
 
     final valueSizeParam = methodProjection.parameters.first;
     expect(valueSizeParam.name, equals('__valueSize'));
-    final valueSizeParamProjection = valueSizeParam.type;
+    final valueSizeParamProjection = valueSizeParam.typeProjection;
     expect(valueSizeParamProjection.dartType, equals('int'));
     expect(valueSizeParamProjection.nativeType, equals('Uint32'));
 
     final valueParam = methodProjection.parameters.last;
     expect(valueParam.name, equals('value'));
-    final valueParamProjection = valueParam.type;
+    final valueParamProjection = valueParam.typeProjection;
     expect(valueParamProjection.dartType, equals('Pointer<Uint8>'));
     expect(valueParamProjection.nativeType, equals('Pointer<Uint8>'));
   });
@@ -94,13 +88,13 @@ void main() {
 
     final valueSizeParam = methodProjection.parameters.first;
     expect(valueSizeParam.name, equals('__valueSize'));
-    final valueSizeParamProjection = valueSizeParam.type;
+    final valueSizeParamProjection = valueSizeParam.typeProjection;
     expect(valueSizeParamProjection.dartType, equals('Pointer<Uint32>'));
     expect(valueSizeParamProjection.nativeType, equals('Pointer<Uint32>'));
 
     final valueParam = methodProjection.parameters.last;
     expect(valueParam.name, equals('value'));
-    final valueParamProjection = valueParam.type;
+    final valueParamProjection = valueParam.typeProjection;
     expect(
         valueParamProjection.dartType, equals('Pointer<Pointer<COMObject>>'));
     expect(
@@ -118,13 +112,13 @@ void main() {
 
     final valueSizeParam = methodProjection.parameters.first;
     expect(valueSizeParam.name, equals('__valueSize'));
-    final valueSizeParamProjection = valueSizeParam.type;
+    final valueSizeParamProjection = valueSizeParam.typeProjection;
     expect(valueSizeParamProjection.dartType, equals('Pointer<Uint32>'));
     expect(valueSizeParamProjection.nativeType, equals('Pointer<Uint32>'));
 
     final valueParam = methodProjection.parameters.last;
     expect(valueParam.name, equals('value'));
-    final valueParamProjection = valueParam.type;
+    final valueParamProjection = valueParam.typeProjection;
     expect(valueParamProjection.dartType, equals('Pointer<Pointer<Uint8>>'));
     expect(valueParamProjection.nativeType, equals('Pointer<Pointer<Uint8>>'));
   });

@@ -4,6 +4,7 @@
 
 import '../getter.dart';
 import '../method.dart';
+import '../parameter.dart';
 import '../setter.dart';
 
 /// Method projection for methods that return a WinRT struct (e.g. `Point`).
@@ -12,8 +13,8 @@ class StructMethodProjection extends MethodProjection {
 
   @override
   String get methodProjection => '''
-  ${returnType.dartType} $camelCasedName($methodParams) {
-    final retValuePtr = calloc<${returnType.nativeType}>();
+  $returnType $camelCasedName($methodParams) {
+    final retValuePtr = calloc<${returnTypeProjection.nativeType}>();
     $parametersPreamble
 
     ${ffiCall()}
@@ -29,8 +30,8 @@ class StructGetterProjection extends GetterProjection {
 
   @override
   String get methodProjection => '''
-  ${returnType.dartType} get $camelCasedName {
-    final retValuePtr = calloc<${returnType.nativeType}>();
+  $returnType get $camelCasedName {
+    final retValuePtr = calloc<${returnTypeProjection.nativeType}>();
 
     ${ffiCall()}
 
@@ -45,8 +46,22 @@ class StructSetterProjection extends SetterProjection {
 
   @override
   String get methodProjection => '''
-  set $camelCasedName(${parameter.type.dartType} value) {
+  set $camelCasedName(${parameter.type} value) {
     ${ffiCall(params: 'value')}
   }
 ''';
+}
+
+/// Parameter projection for WinRT struct parameters.
+class StructParameterProjection extends ParameterProjection {
+  StructParameterProjection(super.parameter);
+
+  @override
+  String get preamble => '';
+
+  @override
+  String get postamble => '';
+
+  @override
+  String get localIdentifier => identifier;
 }

@@ -2,6 +2,7 @@
 // details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
+import '../../extensions/extensions.dart';
 import '../../utils.dart';
 import '../getter.dart';
 import '../method.dart';
@@ -9,20 +10,22 @@ import '../parameter.dart';
 import '../setter.dart';
 
 mixin _ClassProjection on MethodProjection {
-  String get methodReturnType {
-    final typeIdentifierName = lastComponent(returnType.typeIdentifier.name);
+  @override
+  String get returnType {
+    final className = returnTypeProjection.typeIdentifier.shortName;
 
     // Factory interface methods (constructors) cannot return null.
     final factoryInterfacePattern = RegExp(r'^I\w+Factory\d{0,2}$');
-    if (factoryInterfacePattern.hasMatch(lastComponent(method.parent.name))) {
-      return typeIdentifierName;
+    if (factoryInterfacePattern.hasMatch(method.parent.shortName)) {
+      return className;
     }
 
-    return nullable(typeIdentifierName);
+    // Otherwise, the type must be nullable.
+    return nullable(className);
   }
 
   String get nullCheck {
-    if (!methodReturnType.endsWith('?')) return '';
+    if (!returnType.endsWith('?')) return '';
     return '''
     if (retValuePtr.ref.isNull) {
       free(retValuePtr);
@@ -32,8 +35,8 @@ mixin _ClassProjection on MethodProjection {
   }
 
   String get returnStatement {
-    final returnType = stripQuestionMarkSuffix(methodReturnType);
-    return 'return $returnType.fromRawPointer(retValuePtr);';
+    final className = stripQuestionMarkSuffix(returnType);
+    return 'return $className.fromRawPointer(retValuePtr);';
   }
 }
 
@@ -43,7 +46,7 @@ class ClassMethodProjection extends MethodProjection with _ClassProjection {
 
   @override
   String get methodProjection => '''
-  $methodReturnType $camelCasedName($methodParams) {
+  $returnType $camelCasedName($methodParams) {
     final retValuePtr = calloc<COMObject>();
     $parametersPreamble
 
@@ -64,7 +67,7 @@ class ClassGetterProjection extends GetterProjection with _ClassProjection {
 
   @override
   String get methodProjection => '''
-  $methodReturnType get $camelCasedName {
+  $returnType get $camelCasedName {
     final retValuePtr = calloc<COMObject>();
 
     ${ffiCall(freeRetValOnFailure: true)}
@@ -82,7 +85,7 @@ class ClassSetterProjection extends SetterProjection with _ClassProjection {
 
   @override
   String get methodProjection => '''
-  set $camelCasedName(${parameter.type.exposedType} value) {
+  set $camelCasedName(${parameter.type} value) {
     ${ffiCall(params: 'value == null ? nullptr : value.ptr.ref.lpVtbl')}
   }
 ''';
@@ -93,6 +96,22 @@ class ClassParameterProjection extends ParameterProjection {
   ClassParameterProjection(super.parameter);
 
   @override
+  String get type {
+    final className = typeProjection.typeIdentifier.shortName;
+    // TODO: Reconsider this in the future.
+    if (typeProjection.isReferenceType) return className;
+
+    // Parameters of factory interface methods (constructors) cannot be null.
+    final factoryInterfacePattern = RegExp(r'^I\w+Factory\d{0,2}$');
+    if (factoryInterfacePattern.hasMatch(method.parent.shortName)) {
+      return className;
+    }
+
+    // Otherwise, the type must be nullable.
+    return nullable(className);
+  }
+
+  @override
   String get preamble => '';
 
   @override
@@ -100,9 +119,11 @@ class ClassParameterProjection extends ParameterProjection {
 
   @override
   String get localIdentifier {
-    if (type.isReferenceType || type.isSimpleArray) return '$identifier.ptr';
+    if (typeProjection.isReferenceType || typeProjection.isSimpleArray) {
+      return '$identifier.ptr';
+    }
 
-    return paramType.endsWith('?')
+    return type.endsWith('?')
         ? '$name == null ? nullptr : $name.ptr.ref.lpVtbl'
         : '$name.ptr.ref.lpVtbl';
   }
