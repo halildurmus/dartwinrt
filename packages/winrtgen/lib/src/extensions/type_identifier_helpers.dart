@@ -14,19 +14,17 @@ import 'typedef_helpers.dart';
 /// Parses the argument to be passed to the `creator` parameter from a generic
 /// [typeIdentifier].
 String _parseGenericTypeIdentifierCreator(TypeIdentifier typeIdentifier) {
-  final typeIdentifierName =
-      stripGenerics(lastComponent(outerType(typeIdentifier.name)));
+  final shortName = outerType(typeIdentifier.shortName);
   final args = <String>['ptr'];
 
   // Handle enum key type argument in IKeyValuePair, IMap, IMapView interfaces
-  if (['IKeyValuePair', 'IMap', 'IMapView'].contains(typeIdentifierName) &&
+  if (['IKeyValuePair', 'IMap', 'IMapView'].contains(shortName) &&
       (typeIdentifier.typeArg!.type?.isEnum ?? false)) {
     final enumKeyCreator = typeIdentifier.typeArg!.creator;
     args.add('enumKeyCreator: $enumKeyCreator');
   }
 
-  final typeArg = ['IKeyValuePair', 'IMap', 'IMapView']
-          .contains(typeIdentifierName)
+  final typeArg = ['IKeyValuePair', 'IMap', 'IMapView'].contains(shortName)
       // Skip over to the value typeArg since the `creator` parameter does not
       // need to be created for the key typeArg of the above types.
       ? typeIdentifier.typeArg!.typeArg!
@@ -40,17 +38,17 @@ String _parseGenericTypeIdentifierCreator(TypeIdentifier typeIdentifier) {
     args.add('$creatorParamName: $creator');
   }
 
-  if (['IVector', 'IVectorView'].contains(typeIdentifierName)) {
+  if (['IVector', 'IVectorView'].contains(shortName)) {
     args.add("iterableIid: '${iterableIidFromVectorType(typeIdentifier)}'");
-  } else if (['IMap', 'IMapView'].contains(typeIdentifierName)) {
+  } else if (['IMap', 'IMapView'].contains(shortName)) {
     args.add("iterableIid: '${iterableIidFromMapType(typeIdentifier)}'");
-  } else if (typeIdentifierName == 'IReference') {
+  } else if (shortName == 'IReference') {
     final referenceArgSignature = typeIdentifier.typeArg!.signature;
     final referenceSignature =
         'pinterface($IID_IReference;$referenceArgSignature)';
     args.add("referenceIid: '${iidFromSignature(referenceSignature)}'");
   } else {
-    if (creator == null) return '$typeIdentifierName.fromRawPointer';
+    if (creator == null) return '$shortName.fromRawPointer';
   }
 
   // e.g. IIterable<int>, IVector<int>, IVectorView<int>
@@ -61,12 +59,12 @@ String _parseGenericTypeIdentifierCreator(TypeIdentifier typeIdentifier) {
   }
 
   return '(Pointer<COMObject> ptr) => '
-      '$typeIdentifierName.fromRawPointer(${args.join(', ')})';
+      '$shortName.fromRawPointer(${args.join(', ')})';
 }
 
 /// Unpack a nested [typeIdentifier] into a single name.
 String _parseGenericTypeIdentifierName(TypeIdentifier typeIdentifier) {
-  final parentTypeName = stripGenerics(lastComponent(typeIdentifier.name));
+  final shortName = stripGenerics(lastComponent(typeIdentifier.name));
 
   if (typeIdentifier.type?.genericParams.length == 2) {
     final secondArgIsPotentiallyNullable = [
@@ -86,10 +84,10 @@ String _parseGenericTypeIdentifierName(TypeIdentifier typeIdentifier) {
       questionMark = secondArgIsNullable ? '?' : '';
     }
 
-    return '$parentTypeName<$firstArg, $secondArg$questionMark>';
+    return '$shortName<$firstArg, $secondArg$questionMark>';
   }
 
-  if (parentTypeName == 'IAsyncOperation') {
+  if (shortName == 'IAsyncOperation') {
     final typeArg = typeIdentifier.typeArg!.shortName;
     final typeProjection = TypeProjection(typeIdentifier.typeArg!);
     final typeArgIsNullable =
@@ -103,13 +101,13 @@ String _parseGenericTypeIdentifierName(TypeIdentifier typeIdentifier) {
     return 'IAsyncOperation<$typeArg$questionMark>';
   }
 
-  if (parentTypeName == 'IReference') {
+  if (shortName == 'IReference') {
     final typeArg = typeIdentifier.typeArg!.shortName;
     // Mark typeArg as nullable as all IReference types are nullable.
     return 'IReference<$typeArg?>';
   }
 
-  return '$parentTypeName<${typeIdentifier.typeArg!.shortName}>';
+  return '$shortName<${typeIdentifier.typeArg!.shortName}>';
 }
 
 extension TypeIdentifierHelpers on TypeIdentifier {
@@ -117,10 +115,11 @@ extension TypeIdentifierHelpers on TypeIdentifier {
   /// defined in this TypeIdentifier.
   String? get creator {
     final typeProjection = TypeProjection(this);
-    if (typeProjection.isGuid ||
-        typeProjection.isWinRTStruct ||
-        ['bool', 'DateTime', 'double', 'Duration', 'int', 'String', 'Uri']
-            .contains(typeProjection.exposedType)) {
+    if (!typeProjection.isWinRTEnum &&
+        (typeProjection.isDartPrimitive ||
+            typeProjection.isGuid ||
+            typeProjection.isUri ||
+            typeProjection.isWinRTStruct)) {
       return null;
     }
 
