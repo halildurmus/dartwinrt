@@ -9,8 +9,11 @@ class VoidMethodProjection extends MethodProjection {
   VoidMethodProjection(super.method, super.vtableOffset);
 
   @override
+  String get returnType => 'void';
+
+  @override
   String get methodProjection => '''
-  void $camelCasedName($methodParams) {
+  $returnType $camelCasedName($methodParams) {
     $parametersPreamble
 
     ${ffiCall()}

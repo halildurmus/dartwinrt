@@ -19,7 +19,8 @@ abstract class ParameterProjection {
   ParameterProjection(this.parameter)
       : method = parameter.parent,
         name = parameter.name,
-        type = TypeProjection(parameter.typeIdentifier, isParameter: true);
+        typeProjection =
+            TypeProjection(parameter.typeIdentifier, isParameter: true);
 
   /// The retrieved Windows metadata for the parameter.
   final Parameter parameter;
@@ -31,7 +32,7 @@ abstract class ParameterProjection {
   final String name;
 
   /// The type projection of the parameter.
-  final TypeProjection type;
+  final TypeProjection typeProjection;
 
   /// Returns the appropriate projection for the parameter.
   factory ParameterProjection.create(Parameter parameter) {
@@ -61,52 +62,28 @@ abstract class ParameterProjection {
         return ReferenceParameterProjection(parameter);
       case ProjectionType.string:
         return StringParameterProjection(parameter);
+      case ProjectionType.struct:
+        return StructParameterProjection(parameter);
       case ProjectionType.uri:
         return UriParameterProjection(parameter);
       case ProjectionType.dartPrimitive:
       case ProjectionType.delegate:
       case ProjectionType.pointer:
       case ProjectionType.simpleArray:
-      case ProjectionType.struct:
         return DefaultParameterProjection(parameter);
       default:
         throw UnsupportedError('Unsupported parameter type: $projectedType');
     }
   }
 
-  String get ffiProjection => '${type.nativeType} $identifier';
+  String get ffiProjection => '${typeProjection.nativeType} $identifier';
 
-  String get dartProjection => '${type.dartType} $identifier';
+  String get dartProjection => '${typeProjection.dartType} $identifier';
 
-  String get paramType {
-    final exposedType = type.exposedType;
-    if (!exposedType.endsWith('?')) return exposedType;
+  String get paramProjection => '$type $identifier';
 
-    // Parameters of factory interface methods (constructors) can't be nullable.
-    final factoryInterfacePattern = RegExp(r'^I\w+Factory\d{0,2}$');
-    if (factoryInterfacePattern.hasMatch(lastComponent(method.parent.name))) {
-      return stripQuestionMarkSuffix(exposedType);
-    }
-
-    // IIterable.First() cannot return null.
-    if (method.name == 'First' &&
-        (method.parent.interfaces.any((element) =>
-            element.typeSpec?.name.endsWith('IIterable`1') ?? false))) {
-      return stripQuestionMarkSuffix(exposedType);
-    }
-
-    // IVector(View).GetAt() cannot return null.
-    if (method.name == 'GetAt' &&
-        (method.parent.interfaces.any((element) =>
-            (element.typeSpec?.name.endsWith('IVector`1') ?? false) ||
-            (element.typeSpec?.name.endsWith('IVectorView`1') ?? false)))) {
-      return stripQuestionMarkSuffix(exposedType);
-    }
-
-    return exposedType;
-  }
-
-  String get paramProjection => '$paramType $identifier';
+  /// The type of the parameter (e.g. `String`).
+  String get type => typeProjection.dartType;
 
   /// The name of the parameter that is safe to use as a Dart identifier.
   String get identifier => safeIdentifierForString(name);
@@ -127,5 +104,5 @@ abstract class ParameterProjection {
   String get localIdentifier;
 
   @override
-  String toString() => '$name (${type.nativeType})';
+  String toString() => '$name (${typeProjection.nativeType})';
 }

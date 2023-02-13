@@ -7,13 +7,19 @@ import '../method.dart';
 import '../parameter.dart';
 import '../setter.dart';
 
+mixin _DurationProjection on MethodProjection {
+  @override
+  String get returnType => 'Duration';
+}
+
 /// Method projection for methods that return a `Duration`.
-class DurationMethodProjection extends MethodProjection {
+class DurationMethodProjection extends MethodProjection
+    with _DurationProjection {
   DurationMethodProjection(super.method, super.vtableOffset);
 
   @override
   String get methodProjection => '''
-  Duration $camelCasedName($methodParams) {
+  $returnType $camelCasedName($methodParams) {
     final retValuePtr = calloc<Uint64>();
     $parametersPreamble
 
@@ -30,12 +36,13 @@ class DurationMethodProjection extends MethodProjection {
 }
 
 /// Getter projection for `Duration` getters.
-class DurationGetterProjection extends GetterProjection {
+class DurationGetterProjection extends GetterProjection
+    with _DurationProjection {
   DurationGetterProjection(super.method, super.vtableOffset);
 
   @override
   String get methodProjection => '''
-  Duration get $camelCasedName {
+  $returnType get $camelCasedName {
     final retValuePtr = calloc<Uint64>();
 
     try {
@@ -55,7 +62,7 @@ class DurationSetterProjection extends SetterProjection {
 
   @override
   String get methodProjection => '''
-  set $camelCasedName(Duration value) {
+  set $camelCasedName(${parameter.type} value) {
     final duration = value.inMicroseconds * 10;
 
     ${ffiCall(params: 'duration')}
@@ -66,6 +73,9 @@ class DurationSetterProjection extends SetterProjection {
 /// Parameter projection for `Duration` parameters.
 class DurationParameterProjection extends ParameterProjection {
   DurationParameterProjection(super.parameter);
+
+  @override
+  String get type => 'Duration';
 
   @override
   String get preamble => 'final ${name}Duration = $name.inMicroseconds * 10;';

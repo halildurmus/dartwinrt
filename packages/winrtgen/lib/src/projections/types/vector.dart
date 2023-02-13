@@ -12,24 +12,28 @@ import '../type.dart';
 
 mixin _VectorProjection on MethodProjection {
   /// The type argument of `IVector` and `IVectorView`, as represented in the
-  /// [returnType]'s [TypeIdentifier] (e.g. `int`, `String`, `StorageFile`).
-  String get vectorTypeArg => typeArguments(returnType.typeIdentifier.name);
+  /// [returnTypeProjection]'s [TypeIdentifier] (e.g. `int`, `String`,
+  /// `StorageFile`).
+  String get vectorTypeArg =>
+      typeArguments(returnTypeProjection.typeIdentifier.name);
 
   /// The constructor arguments passed to the constructors of `IVector` and
   /// `IVectorView`.
   String get vectorConstructorArgs {
-    final typeProjection = TypeProjection(returnType.typeIdentifier.typeArg!);
+    final typeProjection =
+        TypeProjection(returnTypeProjection.typeIdentifier.typeArg!);
 
     // If the type argument is an enum or a WinRT object (e.g. StorageFile), the
     // constructor of that class must be passed in the 'enumCreator' parameter
     // for enums, 'creator' parameter for WinRT objects so that the IVector and
     // IVectorView implementations can instantiate the object
-    final creator = returnType.typeIdentifier.typeArg!.creator;
+    final creator = returnTypeProjection.typeIdentifier.typeArg!.creator;
 
     // The IID for IIterable<T> must be passed in the 'iterableIid' parameter so
     // that the IVector and IVectorView implementations can use the correct IID
     // when instantiating the IIterable object
-    final iterableIid = iterableIidFromVectorType(returnType.typeIdentifier);
+    final iterableIid =
+        iterableIidFromVectorType(returnTypeProjection.typeIdentifier);
 
     // If the type argument is an int, 'intType' parameter must be specified so
     // that the IVector and IVectorView implementations can use the appropriate
@@ -57,8 +61,11 @@ class VectorMethodProjection extends MethodProjection with _VectorProjection {
   VectorMethodProjection(super.method, super.vtableOffset);
 
   @override
+  String get returnType => 'IVector<$vectorTypeArg>';
+
+  @override
   String get methodProjection => '''
-  IVector<$vectorTypeArg> $camelCasedName($methodParams) {
+  $returnType $camelCasedName($methodParams) {
     final retValuePtr = calloc<COMObject>();
     $parametersPreamble
 
@@ -76,8 +83,11 @@ class VectorGetterProjection extends GetterProjection with _VectorProjection {
   VectorGetterProjection(super.method, super.vtableOffset);
 
   @override
+  String get returnType => 'IVector<$vectorTypeArg>';
+
+  @override
   String get methodProjection => '''
-  IVector<$vectorTypeArg> get $camelCasedName {
+  $returnType get $camelCasedName {
     final retValuePtr = calloc<COMObject>();
 
     ${ffiCall(freeRetValOnFailure: true)}
@@ -94,8 +104,11 @@ class VectorViewMethodProjection extends MethodProjection
   VectorViewMethodProjection(super.method, super.vtableOffset);
 
   @override
+  String get returnType => 'List<$vectorTypeArg>';
+
+  @override
   String get methodProjection => '''
-  List<$vectorTypeArg> $camelCasedName($methodParams) {
+  $returnType $camelCasedName($methodParams) {
     final retValuePtr = calloc<COMObject>();
     $parametersPreamble
 
@@ -119,8 +132,11 @@ class VectorViewGetterProjection extends GetterProjection
   VectorViewGetterProjection(super.method, super.vtableOffset);
 
   @override
+  String get returnType => 'List<$vectorTypeArg>';
+
+  @override
   String get methodProjection => '''
-  List<$vectorTypeArg> get $camelCasedName {
+  $returnType get $camelCasedName {
     final retValuePtr = calloc<COMObject>();
 
     ${ffiCall(freeRetValOnFailure: true)}

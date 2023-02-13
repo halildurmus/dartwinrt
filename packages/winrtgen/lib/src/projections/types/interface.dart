@@ -2,6 +2,7 @@
 // details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
+import '../../extensions/extensions.dart';
 import '../../utils.dart';
 import '../getter.dart';
 import '../method.dart';
@@ -9,23 +10,24 @@ import '../parameter.dart';
 import '../setter.dart';
 
 mixin _InterfaceProjection on MethodProjection {
-  String get methodReturnType {
-    final typeIdentifierName = lastComponent(returnType.typeIdentifier.name);
+  @override
+  String get returnType {
+    final interfaceName = returnTypeProjection.typeIdentifier.shortName;
     // TODO: Remove this once methods that return IAsyncActionWithProgress and
     // IAsyncOperationWithProgress delegates are supported.
-    if (typeIdentifierName.startsWith('IAsync')) return 'Pointer<COMObject>';
+    if (interfaceName.startsWith('IAsync')) return 'Pointer<COMObject>';
 
     // Factory interface methods (constructors) cannot return null.
     final factoryInterfacePattern = RegExp(r'^I\w+Factory\d{0,2}$');
-    if (factoryInterfacePattern.hasMatch(lastComponent(method.parent.name))) {
-      return typeIdentifierName;
+    if (factoryInterfacePattern.hasMatch(method.parent.shortName)) {
+      return interfaceName;
     }
 
     // IIterable.First() cannot return null.
     if (method.name == 'First' &&
         (method.parent.interfaces.any((element) =>
             element.typeSpec?.name.endsWith('IIterable`1') ?? false))) {
-      return typeIdentifierName;
+      return interfaceName;
     }
 
     // IVector(View).GetAt() cannot return null.
@@ -33,14 +35,14 @@ mixin _InterfaceProjection on MethodProjection {
         (method.parent.interfaces.any((element) =>
             (element.typeSpec?.name.endsWith('IVector`1') ?? false) ||
             (element.typeSpec?.name.endsWith('IVectorView`1') ?? false)))) {
-      return typeIdentifierName;
+      return interfaceName;
     }
 
-    return nullable(typeIdentifierName);
+    return nullable(interfaceName);
   }
 
   String get nullCheck {
-    if (!methodReturnType.endsWith('?')) return '';
+    if (!returnType.endsWith('?')) return '';
     return '''
     if (retValuePtr.ref.isNull) {
       free(retValuePtr);
@@ -50,9 +52,9 @@ mixin _InterfaceProjection on MethodProjection {
   }
 
   String get returnStatement {
-    if (methodReturnType == 'Pointer<COMObject>') return 'return retValuePtr;';
-    final returnType = stripQuestionMarkSuffix(methodReturnType);
-    return 'return $returnType.fromRawPointer(retValuePtr);';
+    if (returnType == 'Pointer<COMObject>') return 'return retValuePtr;';
+    final interfaceName = stripQuestionMarkSuffix(returnType);
+    return 'return $interfaceName.fromRawPointer(retValuePtr);';
   }
 }
 
@@ -64,7 +66,7 @@ class InterfaceMethodProjection extends MethodProjection
 
   @override
   String get methodProjection => '''
-  $methodReturnType $camelCasedName($methodParams) {
+  $returnType $camelCasedName($methodParams) {
     final retValuePtr = calloc<COMObject>();
     $parametersPreamble
 
@@ -86,7 +88,7 @@ class InterfaceGetterProjection extends GetterProjection
 
   @override
   String get methodProjection => '''
-  $methodReturnType get $camelCasedName {
+  $returnType get $camelCasedName {
     final retValuePtr = calloc<COMObject>();
 
     ${ffiCall(freeRetValOnFailure: true)}
@@ -105,7 +107,7 @@ class InterfaceSetterProjection extends SetterProjection
 
   @override
   String get methodProjection => '''
-  set $camelCasedName(${parameter.type.exposedType} value) {
+  set $camelCasedName(${parameter.type} value) {
     ${ffiCall(params: 'value == null ? nullptr : value.ptr.ref.lpVtbl')}
   }
 ''';
@@ -116,6 +118,22 @@ class InterfaceParameterProjection extends ParameterProjection {
   InterfaceParameterProjection(super.parameter);
 
   @override
+  String get type {
+    final shortName = typeProjection.typeIdentifier.shortName;
+    // TODO: Reconsider this in the future.
+    if (typeProjection.isReferenceType) return shortName;
+
+    // Parameters of factory interface methods (constructors) cannot be null.
+    final factoryInterfacePattern = RegExp(r'^I\w+Factory\d{0,2}$');
+    if (factoryInterfacePattern.hasMatch(method.parent.shortName)) {
+      return shortName;
+    }
+
+    // Otherwise, the parameter must be nullable.
+    return nullable(shortName);
+  }
+
+  @override
   String get preamble => '';
 
   @override
@@ -123,11 +141,11 @@ class InterfaceParameterProjection extends ParameterProjection {
 
   @override
   String get localIdentifier {
-    if (type.isReferenceType || type.isSimpleArray) {
-      return paramType == 'Pointer<COMObject>' ? identifier : '$identifier.ptr';
+    if (typeProjection.isReferenceType || typeProjection.isSimpleArray) {
+      return type == 'Pointer<COMObject>' ? identifier : '$identifier.ptr';
     }
 
-    return paramType.endsWith('?')
+    return type.endsWith('?')
         ? '$name == null ? nullptr : $name.ptr.ref.lpVtbl'
         : '$name.ptr.ref.lpVtbl';
   }

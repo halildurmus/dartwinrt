@@ -36,7 +36,7 @@ class InterfaceProjection {
   }
 
   /// Returns the shorter name of the [typeDef] (e.g. `IAsyncInfo`, `Calendar`).
-  String get shortName => stripGenerics(lastComponent(typeDef.name));
+  String get shortName => outerType(typeDef.shortName);
 
   /// Returns the path to the folder where the current interface is located
   /// (e.g. `windows_storage/lib/src/pickers` for

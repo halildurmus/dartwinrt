@@ -7,13 +7,18 @@ import '../method.dart';
 import '../parameter.dart';
 import '../setter.dart';
 
+mixin _GuidProjection on MethodProjection {
+  @override
+  String get returnType => 'Guid';
+}
+
 /// Method projection for methods that return a `Guid`.
-class GuidMethodProjection extends MethodProjection {
+class GuidMethodProjection extends MethodProjection with _GuidProjection {
   GuidMethodProjection(super.method, super.vtableOffset);
 
   @override
   String get methodProjection => '''
-  Guid $camelCasedName($methodParams) {
+  $returnType $camelCasedName($methodParams) {
     final retValuePtr = calloc<GUID>();
     $parametersPreamble
 
@@ -30,12 +35,12 @@ class GuidMethodProjection extends MethodProjection {
 }
 
 /// Getter projection for `Guid` getters.
-class GuidGetterProjection extends GetterProjection {
+class GuidGetterProjection extends GetterProjection with _GuidProjection {
   GuidGetterProjection(super.method, super.vtableOffset);
 
   @override
   String get methodProjection => '''
-  Guid get $camelCasedName {
+  $returnType get $camelCasedName {
     final retValuePtr = calloc<GUID>();
 
     try {
@@ -55,7 +60,7 @@ class GuidSetterProjection extends SetterProjection {
 
   @override
   String get methodProjection => '''
-  set $camelCasedName(Guid value) {
+  set $camelCasedName(${parameter.type} value) {
     final nativeGuidPtr = value.toNativeGUID();
 
     try {
@@ -70,6 +75,9 @@ class GuidSetterProjection extends SetterProjection {
 /// Parameter projection for `Guid` parameters.
 class GuidParameterProjection extends ParameterProjection {
   GuidParameterProjection(super.parameter);
+
+  @override
+  String get type => 'Guid';
 
   @override
   String get preamble => 'final ${name}NativeGuidPtr = $name.toNativeGUID();';

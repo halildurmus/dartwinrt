@@ -13,8 +13,8 @@ class DelegateMethodProjection extends MethodProjection {
 
   @override
   String get methodProjection => '''
-  ${returnType.dartType} $camelCasedName($methodParams) {
-    final retValuePtr = calloc<${returnType.nativeType}>();
+  $returnType $camelCasedName($methodParams) {
+    final retValuePtr = calloc<${returnTypeProjection.nativeType}>();
     $parametersPreamble
 
     try {
@@ -35,8 +35,8 @@ class DelegateGetterProjection extends GetterProjection {
 
   @override
   String get methodProjection => '''
-  ${returnType.dartType} get $camelCasedName {
-    final retValuePtr = calloc<${returnType.nativeType}>();
+  $returnType get $camelCasedName {
+    final retValuePtr = calloc<${returnTypeProjection.nativeType}>();
 
     try {
       ${ffiCall()}
@@ -55,7 +55,7 @@ class DelegateSetterProjection extends SetterProjection {
 
   @override
   String get methodProjection => '''
-  set $camelCasedName(${parameter.type.dartType} value) {
+  set $camelCasedName(${parameter.type} value) {
     ${ffiCall(params: 'value')}
   }
 ''';

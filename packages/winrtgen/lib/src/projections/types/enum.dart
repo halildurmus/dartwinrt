@@ -2,25 +2,31 @@
 // details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
+import '../../extensions/extensions.dart';
 import '../getter.dart';
 import '../method.dart';
 import '../parameter.dart';
 import '../setter.dart';
 
+mixin _EnumProjection on MethodProjection {
+  @override
+  String get returnType => returnTypeProjection.typeIdentifier.type!.shortName;
+}
+
 /// Method projection for methods that return a WinRT enum (e.g. `AsyncStatus`).
-class EnumMethodProjection extends MethodProjection {
+class EnumMethodProjection extends MethodProjection with _EnumProjection {
   EnumMethodProjection(super.method, super.vtableOffset);
 
   @override
   String get methodProjection => '''
-  ${returnType.exposedType} $camelCasedName($methodParams) {
-    final retValuePtr = calloc<${returnType.nativeType}>();
+  $returnType $camelCasedName($methodParams) {
+    final retValuePtr = calloc<${returnTypeProjection.nativeType}>();
     $parametersPreamble
 
     try {
       ${ffiCall()}
 
-      return ${returnType.exposedType}.from(retValuePtr.value);
+      return $returnType.from(retValuePtr.value);
     } finally {
       $parametersPostamble
       free(retValuePtr);
@@ -30,18 +36,18 @@ class EnumMethodProjection extends MethodProjection {
 }
 
 /// Getter projection for WinRT enum getters.
-class EnumGetterProjection extends GetterProjection {
+class EnumGetterProjection extends GetterProjection with _EnumProjection {
   EnumGetterProjection(super.method, super.vtableOffset);
 
   @override
   String get methodProjection => '''
-  ${returnType.exposedType} get $camelCasedName {
-    final retValuePtr = calloc<${returnType.nativeType}>();
+  $returnType get $camelCasedName {
+    final retValuePtr = calloc<${returnTypeProjection.nativeType}>();
 
     try {
       ${ffiCall()}
 
-      return ${returnType.exposedType}.from(retValuePtr.value);
+      return $returnType.from(retValuePtr.value);
     } finally {
       free(retValuePtr);
     }
@@ -55,7 +61,7 @@ class EnumSetterProjection extends SetterProjection {
 
   @override
   String get methodProjection => '''
-  set $camelCasedName(${parameter.type.exposedType} value) {
+  set $camelCasedName(${parameter.type} value) {
     ${ffiCall(params: 'value.value')}
   }
 ''';
@@ -64,6 +70,9 @@ class EnumSetterProjection extends SetterProjection {
 /// Parameter projection for WinRT enum parameters.
 class EnumParameterProjection extends ParameterProjection {
   EnumParameterProjection(super.parameter);
+
+  @override
+  String get type => typeProjection.typeIdentifier.type!.shortName;
 
   @override
   String get preamble => '';
