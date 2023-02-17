@@ -22,10 +22,10 @@ abstract class SetterProjection extends PropertyProjection {
   /// Returns the appropriate setter projection for the [method] based on the
   /// parameter type.
   factory SetterProjection.create(Method method, int vtableOffset) {
-    final projectedType =
+    final projectionType =
         TypeProjection(method.parameters.first.typeIdentifier).projectionType;
 
-    switch (projectedType) {
+    switch (projectionType) {
       case ProjectionType.class_:
         return ClassSetterProjection(method, vtableOffset);
       case ProjectionType.interface:
@@ -53,7 +53,7 @@ abstract class SetterProjection extends PropertyProjection {
       case ProjectionType.dartPrimitive:
         return DefaultSetterProjection(method, vtableOffset);
       default:
-        throw UnsupportedError('Unsupported setter type: $projectedType');
+        throw UnsupportedError('Unsupported setter type: $projectionType');
     }
   }
 

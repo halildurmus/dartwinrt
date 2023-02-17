@@ -273,238 +273,229 @@ class PropertyValue extends IInspectable {
     }
   }
 
-  static IPropertyValue createUInt8Array(int valueSize, Pointer<Uint8> value) {
+  static IPropertyValue createUInt8Array(List<int> value) {
     final activationFactoryPtr =
         createActivationFactory(_className, IID_IPropertyValueStatics);
     final object = IPropertyValueStatics.fromRawPointer(activationFactoryPtr);
 
     try {
-      return object.createUInt8Array(valueSize, value);
+      return object.createUInt8Array(value);
     } finally {
       object.release();
     }
   }
 
-  static IPropertyValue createInt16Array(int valueSize, Pointer<Int16> value) {
+  static IPropertyValue createInt16Array(List<int> value) {
     final activationFactoryPtr =
         createActivationFactory(_className, IID_IPropertyValueStatics);
     final object = IPropertyValueStatics.fromRawPointer(activationFactoryPtr);
 
     try {
-      return object.createInt16Array(valueSize, value);
+      return object.createInt16Array(value);
     } finally {
       object.release();
     }
   }
 
-  static IPropertyValue createUInt16Array(
-      int valueSize, Pointer<Uint16> value) {
+  static IPropertyValue createUInt16Array(List<int> value) {
     final activationFactoryPtr =
         createActivationFactory(_className, IID_IPropertyValueStatics);
     final object = IPropertyValueStatics.fromRawPointer(activationFactoryPtr);
 
     try {
-      return object.createUInt16Array(valueSize, value);
+      return object.createUInt16Array(value);
     } finally {
       object.release();
     }
   }
 
-  static IPropertyValue createInt32Array(int valueSize, Pointer<Int32> value) {
+  static IPropertyValue createInt32Array(List<int> value) {
     final activationFactoryPtr =
         createActivationFactory(_className, IID_IPropertyValueStatics);
     final object = IPropertyValueStatics.fromRawPointer(activationFactoryPtr);
 
     try {
-      return object.createInt32Array(valueSize, value);
+      return object.createInt32Array(value);
     } finally {
       object.release();
     }
   }
 
-  static IPropertyValue createUInt32Array(
-      int valueSize, Pointer<Uint32> value) {
+  static IPropertyValue createUInt32Array(List<int> value) {
     final activationFactoryPtr =
         createActivationFactory(_className, IID_IPropertyValueStatics);
     final object = IPropertyValueStatics.fromRawPointer(activationFactoryPtr);
 
     try {
-      return object.createUInt32Array(valueSize, value);
+      return object.createUInt32Array(value);
     } finally {
       object.release();
     }
   }
 
-  static IPropertyValue createInt64Array(int valueSize, Pointer<Int64> value) {
+  static IPropertyValue createInt64Array(List<int> value) {
     final activationFactoryPtr =
         createActivationFactory(_className, IID_IPropertyValueStatics);
     final object = IPropertyValueStatics.fromRawPointer(activationFactoryPtr);
 
     try {
-      return object.createInt64Array(valueSize, value);
+      return object.createInt64Array(value);
     } finally {
       object.release();
     }
   }
 
-  static IPropertyValue createUInt64Array(
-      int valueSize, Pointer<Uint64> value) {
+  static IPropertyValue createUInt64Array(List<int> value) {
     final activationFactoryPtr =
         createActivationFactory(_className, IID_IPropertyValueStatics);
     final object = IPropertyValueStatics.fromRawPointer(activationFactoryPtr);
 
     try {
-      return object.createUInt64Array(valueSize, value);
+      return object.createUInt64Array(value);
     } finally {
       object.release();
     }
   }
 
-  static IPropertyValue createSingleArray(int valueSize, Pointer<Float> value) {
+  static IPropertyValue createSingleArray(List<double> value) {
     final activationFactoryPtr =
         createActivationFactory(_className, IID_IPropertyValueStatics);
     final object = IPropertyValueStatics.fromRawPointer(activationFactoryPtr);
 
     try {
-      return object.createSingleArray(valueSize, value);
+      return object.createSingleArray(value);
     } finally {
       object.release();
     }
   }
 
-  static IPropertyValue createDoubleArray(
-      int valueSize, Pointer<Double> value) {
+  static IPropertyValue createDoubleArray(List<double> value) {
     final activationFactoryPtr =
         createActivationFactory(_className, IID_IPropertyValueStatics);
     final object = IPropertyValueStatics.fromRawPointer(activationFactoryPtr);
 
     try {
-      return object.createDoubleArray(valueSize, value);
+      return object.createDoubleArray(value);
     } finally {
       object.release();
     }
   }
 
-  static IPropertyValue createChar16Array(
-      int valueSize, Pointer<Uint16> value) {
+  static IPropertyValue createChar16Array(List<int> value) {
     final activationFactoryPtr =
         createActivationFactory(_className, IID_IPropertyValueStatics);
     final object = IPropertyValueStatics.fromRawPointer(activationFactoryPtr);
 
     try {
-      return object.createChar16Array(valueSize, value);
+      return object.createChar16Array(value);
     } finally {
       object.release();
     }
   }
 
-  static IPropertyValue createBooleanArray(int valueSize, Pointer<Bool> value) {
+  static IPropertyValue createBooleanArray(List<bool> value) {
     final activationFactoryPtr =
         createActivationFactory(_className, IID_IPropertyValueStatics);
     final object = IPropertyValueStatics.fromRawPointer(activationFactoryPtr);
 
     try {
-      return object.createBooleanArray(valueSize, value);
+      return object.createBooleanArray(value);
     } finally {
       object.release();
     }
   }
 
-  static IPropertyValue createStringArray(
-      int valueSize, Pointer<IntPtr> value) {
+  static IPropertyValue createStringArray(List<String> value) {
     final activationFactoryPtr =
         createActivationFactory(_className, IID_IPropertyValueStatics);
     final object = IPropertyValueStatics.fromRawPointer(activationFactoryPtr);
 
     try {
-      return object.createStringArray(valueSize, value);
+      return object.createStringArray(value);
     } finally {
       object.release();
     }
   }
 
-  static IPropertyValue createInspectableArray(
-      int valueSize, Pointer<COMObject> value) {
+  static IPropertyValue createInspectableArray(List<Object?> value) {
     final activationFactoryPtr =
         createActivationFactory(_className, IID_IPropertyValueStatics);
     final object = IPropertyValueStatics.fromRawPointer(activationFactoryPtr);
 
     try {
-      return object.createInspectableArray(valueSize, value);
+      return object.createInspectableArray(value);
     } finally {
       object.release();
     }
   }
 
-  static IPropertyValue createGuidArray(int valueSize, Pointer<GUID> value) {
+  static IPropertyValue createGuidArray(List<Guid> value) {
     final activationFactoryPtr =
         createActivationFactory(_className, IID_IPropertyValueStatics);
     final object = IPropertyValueStatics.fromRawPointer(activationFactoryPtr);
 
     try {
-      return object.createGuidArray(valueSize, value);
+      return object.createGuidArray(value);
     } finally {
       object.release();
     }
   }
 
-  static IPropertyValue createDateTimeArray(
-      int valueSize, Pointer<Uint64> value) {
+  static IPropertyValue createDateTimeArray(List<DateTime> value) {
     final activationFactoryPtr =
         createActivationFactory(_className, IID_IPropertyValueStatics);
     final object = IPropertyValueStatics.fromRawPointer(activationFactoryPtr);
 
     try {
-      return object.createDateTimeArray(valueSize, value);
+      return object.createDateTimeArray(value);
     } finally {
       object.release();
     }
   }
 
-  static IPropertyValue createTimeSpanArray(
-      int valueSize, Pointer<Uint64> value) {
+  static IPropertyValue createTimeSpanArray(List<Duration> value) {
     final activationFactoryPtr =
         createActivationFactory(_className, IID_IPropertyValueStatics);
     final object = IPropertyValueStatics.fromRawPointer(activationFactoryPtr);
 
     try {
-      return object.createTimeSpanArray(valueSize, value);
+      return object.createTimeSpanArray(value);
     } finally {
       object.release();
     }
   }
 
-  static IPropertyValue createPointArray(int valueSize, Pointer<Point> value) {
+  static IPropertyValue createPointArray(List<Point> value) {
     final activationFactoryPtr =
         createActivationFactory(_className, IID_IPropertyValueStatics);
     final object = IPropertyValueStatics.fromRawPointer(activationFactoryPtr);
 
     try {
-      return object.createPointArray(valueSize, value);
+      return object.createPointArray(value);
     } finally {
       object.release();
     }
   }
 
-  static IPropertyValue createSizeArray(int valueSize, Pointer<Size> value) {
+  static IPropertyValue createSizeArray(List<Size> value) {
     final activationFactoryPtr =
         createActivationFactory(_className, IID_IPropertyValueStatics);
     final object = IPropertyValueStatics.fromRawPointer(activationFactoryPtr);
 
     try {
-      return object.createSizeArray(valueSize, value);
+      return object.createSizeArray(value);
     } finally {
       object.release();
     }
   }
 
-  static IPropertyValue createRectArray(int valueSize, Pointer<Rect> value) {
+  static IPropertyValue createRectArray(List<Rect> value) {
     final activationFactoryPtr =
         createActivationFactory(_className, IID_IPropertyValueStatics);
     final object = IPropertyValueStatics.fromRawPointer(activationFactoryPtr);
 
     try {
-      return object.createRectArray(valueSize, value);
+      return object.createRectArray(value);
     } finally {
       object.release();
     }

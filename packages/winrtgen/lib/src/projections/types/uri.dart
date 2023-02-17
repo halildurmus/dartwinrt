@@ -6,6 +6,7 @@ import '../getter.dart';
 import '../method.dart';
 import '../parameter.dart';
 import '../setter.dart';
+import 'default.dart';
 
 mixin _UriProjection on MethodProjection {
   @override
@@ -102,4 +103,44 @@ class UriParameterProjection extends ParameterProjection {
   @override
   String get localIdentifier =>
       '${name}Uri == null ? nullptr : ${name}Uri.ptr.ref.lpVtbl';
+}
+
+/// Parameter projection for `List<Uri>` parameters.
+class UriListParameterProjection extends DefaultListParameterProjection {
+  UriListParameterProjection(super.parameter);
+
+  @override
+  String get type => 'List<Uri>';
+
+  @override
+  String get passArrayPreamble => '''
+    final pArray = calloc<COMObject>(value.length);
+    for (var i = 0; i < value.length; i++) {
+      final winrtUri = winrt_uri.Uri.createUri(value.elementAt(i).toString());
+      pArray[i] = winrtUri.ptr.ref;
+    }
+''';
+
+  @override
+  String get receiveArrayPreamble => '''
+    final pValueSize = calloc<Uint32>();
+    final pArray = calloc<Pointer<COMObject>>();
+''';
+
+  @override
+  String get fillArrayPostamble => '''
+    value.addAll(pArray
+        .toList(winrt_uri.Uri.fromRawPointer, length: valueSize)
+        .map((winrtUri) => Uri.parse(winrtUri.toString())));
+    free(pArray);
+''';
+
+  @override
+  String get receiveArrayPostamble => '''
+    value.addAll(pArray.value
+        .toList(winrt_uri.Uri.fromRawPointer, length: pValueSize.value)
+        .map((winrtUri) => Uri.parse(winrtUri.toString())));
+    free(pValueSize);
+    free(pArray);
+''';
 }

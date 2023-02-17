@@ -6,6 +6,7 @@ import '../getter.dart';
 import '../method.dart';
 import '../parameter.dart';
 import '../setter.dart';
+import 'default.dart';
 
 mixin _DateTimeProjection on MethodProjection {
   @override
@@ -94,4 +95,36 @@ class DateTimeParameterProjection extends ParameterProjection {
 
   @override
   String get localIdentifier => '${name}DateTime';
+}
+
+/// Parameter projection for `List<DateTime>` parameters.
+class DateTimeListParameterProjection extends DefaultListParameterProjection {
+  DateTimeListParameterProjection(super.parameter);
+
+  @override
+  String get type => 'List<DateTime>';
+
+  @override
+  String get passArrayPreamble => '''
+    final pArray = calloc<Uint64>(value.length);
+    for (var i = 0; i < value.length; i++) {
+      pArray[i] = value.elementAt(i)
+          .difference(DateTime.utc(1601, 01, 01)).inMicroseconds * 10;
+    }
+''';
+
+  @override
+  String get fillArrayPostamble => '''
+    value.addAll(pArray.toList(length: value.length).map((value) =>
+        DateTime.utc(1601, 01, 01).add(Duration(microseconds: value ~/ 10))));
+    free(pArray);
+''';
+
+  @override
+  String get receiveArrayPostamble => '''
+    value.addAll(pArray.value.toList(length: pValueSize.value).map((value) =>
+        DateTime.utc(1601, 01, 01).add(Duration(microseconds: value ~/ 10))));
+    free(pValueSize);
+    free(pArray);
+''';
 }

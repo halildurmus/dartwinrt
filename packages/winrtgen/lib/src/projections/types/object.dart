@@ -6,6 +6,7 @@ import '../getter.dart';
 import '../method.dart';
 import '../parameter.dart';
 import '../setter.dart';
+import 'default.dart';
 
 mixin _ObjectProjection on MethodProjection {
   bool get isMethodFromPropertyValueStatics =>
@@ -112,4 +113,43 @@ class ObjectParameterProjection extends ParameterProjection {
 
   @override
   String get localIdentifier => '$name?.intoBox().ref.lpVtbl ?? nullptr';
+}
+
+/// Parameter projection for `List<Object?>` parameters.
+class ObjectListParameterProjection extends DefaultListParameterProjection {
+  ObjectListParameterProjection(super.parameter);
+
+  @override
+  String get type => 'List<Object?>';
+
+  @override
+  String get passArrayPreamble => '''
+    final pArray = calloc<COMObject>(value.length);
+    for (var i = 0; i < value.length; i++) {
+      pArray[i] = value.elementAt(i)?.intoBox().ref ?? PropertyValue.createEmpty().ref;
+    }
+''';
+
+  @override
+  String get receiveArrayPreamble => '''
+    final pValueSize = calloc<Uint32>();
+    final pArray = calloc<Pointer<COMObject>>();
+''';
+
+  @override
+  String get fillArrayPostamble => '''
+    value.addAll(pArray.value
+        .toList(IPropertyValue.fromRawPointer, length: pValueSize.value)
+        .map((e) => e.value));
+    free(pArray);
+''';
+
+  @override
+  String get receiveArrayPostamble => '''
+    value.addAll(pArray.value
+        .toList(IPropertyValue.fromRawPointer, length: pValueSize.value)
+        .map((e) => e.value));
+    free(pValueSize);
+    free(pArray);
+''';
 }

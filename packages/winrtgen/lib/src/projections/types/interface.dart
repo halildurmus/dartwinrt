@@ -8,6 +8,7 @@ import '../getter.dart';
 import '../method.dart';
 import '../parameter.dart';
 import '../setter.dart';
+import 'default.dart';
 
 mixin _InterfaceProjection on MethodProjection {
   @override
@@ -149,4 +150,43 @@ class InterfaceParameterProjection extends ParameterProjection {
         ? '$name == null ? nullptr : $name.ptr.ref.lpVtbl'
         : '$name.ptr.ref.lpVtbl';
   }
+}
+
+/// Parameter projection for `List<T extends IInspectable>` parameters.
+class InterfaceListParameterProjection extends DefaultListParameterProjection {
+  InterfaceListParameterProjection(super.parameter);
+
+  String get shortName => typeArgProjection.typeIdentifier.shortName;
+
+  @override
+  String get type => 'List<$shortName>';
+
+  @override
+  String get passArrayPreamble => '''
+    final pArray = calloc<COMObject>(value.length);
+    for (var i = 0; i < value.length; i++) {
+      pArray[i] = value.elementAt(i).ptr.ref;
+    }
+''';
+
+  @override
+  String get receiveArrayPreamble => '''
+    final pValueSize = calloc<Uint32>();
+    final pArray = calloc<Pointer<COMObject>>();
+''';
+
+  @override
+  String get fillArrayPostamble => '''
+    value.addAll(pArray
+        .toList($shortName.fromRawPointer, length: valueSize));
+    free(pArray);
+''';
+
+  @override
+  String get receiveArrayPostamble => '''
+    value.addAll(pArray.value
+        .toList($shortName.fromRawPointer, length: pValueSize.value));
+    free(pValueSize);
+    free(pArray);
+''';
 }

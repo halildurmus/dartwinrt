@@ -4,7 +4,6 @@
 
 import 'dart:ffi';
 
-import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
 
 import '../../iinspectable.dart';
@@ -87,19 +86,7 @@ extension BoolListHelpers on List<bool> {
   String get referenceArrayIid => IID_IReferenceArray_bool;
 
   /// Converts the value to an [IPropertyValue].
-  IPropertyValue toPropertyValue() {
-    final pArray = calloc<Bool>(length);
-
-    try {
-      for (var i = 0; i < length; i++) {
-        pArray[i] = elementAt(i);
-      }
-
-      return PropertyValue.createBooleanArray(length, pArray);
-    } finally {
-      free(pArray);
-    }
-  }
+  IPropertyValue toPropertyValue() => PropertyValue.createBooleanArray(this);
 }
 
 extension DoubleHelpers on double {
@@ -150,29 +137,9 @@ extension DoubleListHelpers on List<double> {
   IPropertyValue toPropertyValue(DoubleType type) {
     switch (type) {
       case DoubleType.double:
-        final pArray = calloc<Double>(length);
-
-        try {
-          for (var i = 0; i < length; i++) {
-            pArray[i] = elementAt(i);
-          }
-
-          return PropertyValue.createDoubleArray(length, pArray);
-        } finally {
-          free(pArray);
-        }
+        return PropertyValue.createDoubleArray(this);
       case DoubleType.single:
-        final pArray = calloc<Float>(length);
-
-        try {
-          for (var i = 0; i < length; i++) {
-            pArray[i] = elementAt(i);
-          }
-
-          return PropertyValue.createSingleArray(length, pArray);
-        } finally {
-          free(pArray);
-        }
+        return PropertyValue.createSingleArray(this);
     }
   }
 }
@@ -201,22 +168,7 @@ extension DateTimeListHelpers on List<DateTime> {
   String get referenceArrayIid => IID_IReferenceArray_DateTime;
 
   /// Converts the value to an [IPropertyValue].
-  IPropertyValue toPropertyValue() {
-    final pArray = calloc<Uint64>(length);
-
-    try {
-      for (var i = 0; i < length; i++) {
-        final value =
-            elementAt(i).difference(DateTime.utc(1601, 01, 01)).inMicroseconds *
-                10;
-        pArray[i] = value;
-      }
-
-      return PropertyValue.createDateTimeArray(length, pArray);
-    } finally {
-      free(pArray);
-    }
-  }
+  IPropertyValue toPropertyValue() => PropertyValue.createDateTimeArray(this);
 }
 
 extension DurationHelpers on Duration {
@@ -243,19 +195,7 @@ extension DurationListHelpers on List<Duration> {
   String get referenceArrayIid => IID_IReferenceArray_Duration;
 
   /// Converts the value to an [IPropertyValue].
-  IPropertyValue toPropertyValue() {
-    final pArray = calloc<Uint64>(length);
-
-    try {
-      for (var i = 0; i < length; i++) {
-        pArray[i] = elementAt(i).inMicroseconds * 10;
-      }
-
-      return PropertyValue.createTimeSpanArray(length, pArray);
-    } finally {
-      free(pArray);
-    }
-  }
+  IPropertyValue toPropertyValue() => PropertyValue.createTimeSpanArray(this);
 }
 
 extension GuidHelpers on Guid {
@@ -282,19 +222,7 @@ extension GuidListHelpers on List<Guid> {
   String get referenceArrayIid => IID_IReferenceArray_Guid;
 
   /// Converts the value to an [IPropertyValue].
-  IPropertyValue toPropertyValue() {
-    final pArray = calloc<GUID>(length);
-
-    try {
-      for (var i = 0; i < length; i++) {
-        pArray.elementAt(i).ref.setGUID(elementAt(i).toString());
-      }
-
-      return PropertyValue.createGuidArray(length, pArray);
-    } finally {
-      free(pArray);
-    }
-  }
+  IPropertyValue toPropertyValue() => PropertyValue.createGuidArray(this);
 }
 
 extension InspectableListHelpers<T extends IInspectable> on List<T> {
@@ -302,19 +230,8 @@ extension InspectableListHelpers<T extends IInspectable> on List<T> {
   String get referenceArrayIid => IID_IReferenceArray_Object;
 
   /// Converts the value to an [IPropertyValue].
-  IPropertyValue toPropertyValue() {
-    final pArray = calloc<COMObject>(length);
-
-    try {
-      for (var i = 0; i < length; i++) {
-        pArray[i] = elementAt(i).ptr.ref;
-      }
-
-      return PropertyValue.createInspectableArray(length, pArray);
-    } finally {
-      free(pArray);
-    }
-  }
+  IPropertyValue toPropertyValue() =>
+      PropertyValue.createInspectableArray(this);
 }
 
 extension IntHelpers on int {
@@ -395,89 +312,19 @@ extension IntListHelpers on List<int> {
   IPropertyValue toPropertyValue(IntType type) {
     switch (type) {
       case IntType.int16:
-        final pArray = calloc<Int16>(length);
-
-        try {
-          for (var i = 0; i < length; i++) {
-            pArray[i] = elementAt(i);
-          }
-
-          return PropertyValue.createInt16Array(length, pArray);
-        } finally {
-          free(pArray);
-        }
+        return PropertyValue.createInt16Array(this);
       case IntType.int32:
-        final pArray = calloc<Int32>(length);
-
-        try {
-          for (var i = 0; i < length; i++) {
-            pArray[i] = elementAt(i);
-          }
-
-          return PropertyValue.createInt32Array(length, pArray);
-        } finally {
-          free(pArray);
-        }
+        return PropertyValue.createInt32Array(this);
       case IntType.int64:
-        final pArray = calloc<Int64>(length);
-
-        try {
-          for (var i = 0; i < length; i++) {
-            pArray[i] = elementAt(i);
-          }
-
-          return PropertyValue.createInt64Array(length, pArray);
-        } finally {
-          free(pArray);
-        }
+        return PropertyValue.createInt64Array(this);
       case IntType.uint8:
-        final pArray = calloc<Uint8>(length);
-
-        try {
-          for (var i = 0; i < length; i++) {
-            pArray[i] = elementAt(i);
-          }
-
-          return PropertyValue.createUInt8Array(length, pArray);
-        } finally {
-          free(pArray);
-        }
+        return PropertyValue.createUInt8Array(this);
       case IntType.uint16:
-        final pArray = calloc<Uint16>(length);
-
-        try {
-          for (var i = 0; i < length; i++) {
-            pArray[i] = elementAt(i);
-          }
-
-          return PropertyValue.createUInt16Array(length, pArray);
-        } finally {
-          free(pArray);
-        }
+        return PropertyValue.createUInt16Array(this);
       case IntType.uint32:
-        final pArray = calloc<Uint32>(length);
-
-        try {
-          for (var i = 0; i < length; i++) {
-            pArray[i] = elementAt(i);
-          }
-
-          return PropertyValue.createUInt32Array(length, pArray);
-        } finally {
-          free(pArray);
-        }
+        return PropertyValue.createUInt32Array(this);
       case IntType.uint64:
-        final pArray = calloc<Uint64>(length);
-
-        try {
-          for (var i = 0; i < length; i++) {
-            pArray[i] = elementAt(i);
-          }
-
-          return PropertyValue.createUInt64Array(length, pArray);
-        } finally {
-          free(pArray);
-        }
+        return PropertyValue.createUInt64Array(this);
     }
   }
 }
@@ -506,19 +353,7 @@ extension PointListHelpers on List<Point> {
   String get referenceArrayIid => IID_IReferenceArray_Point;
 
   /// Converts the value to an [IPropertyValue].
-  IPropertyValue toPropertyValue() {
-    final pArray = calloc<Point>(length);
-
-    try {
-      for (var i = 0; i < length; i++) {
-        pArray[i] = elementAt(i);
-      }
-
-      return PropertyValue.createPointArray(length, pArray);
-    } finally {
-      free(pArray);
-    }
-  }
+  IPropertyValue toPropertyValue() => PropertyValue.createPointArray(this);
 }
 
 extension RectHelpers on Rect {
@@ -545,19 +380,7 @@ extension RectListHelpers on List<Rect> {
   String get referenceArrayIid => IID_IReferenceArray_Rect;
 
   /// Converts the value to an [IPropertyValue].
-  IPropertyValue toPropertyValue() {
-    final pArray = calloc<Rect>(length);
-
-    try {
-      for (var i = 0; i < length; i++) {
-        pArray[i] = elementAt(i);
-      }
-
-      return PropertyValue.createRectArray(length, pArray);
-    } finally {
-      free(pArray);
-    }
-  }
+  IPropertyValue toPropertyValue() => PropertyValue.createRectArray(this);
 }
 
 extension SizeHelpers on Size {
@@ -584,19 +407,7 @@ extension SizeListHelpers on List<Size> {
   String get referenceArrayIid => IID_IReferenceArray_Size;
 
   /// Converts the value to an [IPropertyValue].
-  IPropertyValue toPropertyValue() {
-    final pArray = calloc<Size>(length);
-
-    try {
-      for (var i = 0; i < length; i++) {
-        pArray[i] = elementAt(i);
-      }
-
-      return PropertyValue.createSizeArray(length, pArray);
-    } finally {
-      free(pArray);
-    }
-  }
+  IPropertyValue toPropertyValue() => PropertyValue.createSizeArray(this);
 }
 
 extension StringHelpers on String {
@@ -623,22 +434,7 @@ extension StringListHelpers on List<String> {
   String get referenceArrayIid => IID_IReferenceArray_String;
 
   /// Converts the value to an [IPropertyValue].
-  IPropertyValue toPropertyValue() {
-    final pArray = calloc<HSTRING>(length);
-    final handles = <int>[];
-
-    try {
-      for (var i = 0; i < length; i++) {
-        pArray[i] = convertToHString(elementAt(i));
-        handles.add(pArray[i]);
-      }
-
-      return PropertyValue.createStringArray(length, pArray);
-    } finally {
-      handles.forEach(WindowsDeleteString);
-      free(pArray);
-    }
-  }
+  IPropertyValue toPropertyValue() => PropertyValue.createStringArray(this);
 }
 
 extension StructHelper on Struct {
