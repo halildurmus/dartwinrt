@@ -10,7 +10,6 @@ import 'package:ffi/ffi.dart';
 import 'package:test/test.dart';
 import 'package:win32/win32.dart';
 import 'package:windows_foundation/internal.dart';
-import 'package:windows_foundation/uri.dart' as winrt_uri;
 import 'package:windows_foundation/windows_foundation.dart';
 
 // Exhaustively test the WinRT collection interfaces to make sure constructors,
@@ -885,42 +884,32 @@ void main() {
     });
 
     test('getMany returns 0 if the vector is empty', () {
-      final pCOMObject = allocator<COMObject>();
-      expect(vector.getMany(0, 1, pCOMObject), equals(0));
+      expect(vector.getMany(0, 1, []), equals(0));
     });
 
     test('getMany returns elements starting from index 0', () {
-      final pCOMObject = allocator<COMObject>(3);
+      final list = <Uri>[];
 
       vector
         ..append(Uri.parse('https://dart.dev/overview'))
         ..append(Uri.parse('https://dart.dev/docs'))
         ..append(Uri.parse('https://flutter.dev/development'));
-      expect(vector.getMany(0, 3, pCOMObject), equals(3));
-
-      final list = pCOMObject.toList(winrt_uri.Uri.fromRawPointer, length: 3);
-      expect(list.first.toString(), equals('https://dart.dev/overview'));
-      expect(list.elementAt(1).toString(), equals('https://dart.dev/docs'));
-      expect(list.last.toString(), equals('https://flutter.dev/development'));
+      expect(vector.getMany(0, 3, list), equals(3));
+      expect(list[0].toString(), equals('https://dart.dev/overview'));
+      expect(list[1].toString(), equals('https://dart.dev/docs'));
+      expect(list[2].toString(), equals('https://flutter.dev/development'));
     });
 
     test('getMany returns elements starting from index 1', () {
-      final pCOMObject = allocator<COMObject>(2);
+      final list = <Uri>[];
 
       vector
         ..append(Uri.parse('https://dart.dev/overview'))
         ..append(Uri.parse('https://dart.dev/docs'))
         ..append(Uri.parse('https://flutter.dev/development'));
-      expect(vector.getMany(1, 2, pCOMObject), equals(2));
-
-      final firstElement = calloc<COMObject>()
-        ..ref = pCOMObject.elementAt(0).ref;
-      final secondElement = calloc<COMObject>()
-        ..ref = pCOMObject.elementAt(1).ref;
-      expect(winrt_uri.Uri.fromRawPointer(firstElement).toString(),
-          equals('https://dart.dev/docs'));
-      expect(winrt_uri.Uri.fromRawPointer(secondElement).toString(),
-          equals('https://flutter.dev/development'));
+      expect(vector.getMany(1, 2, list), equals(2));
+      expect(list[0].toString(), equals('https://dart.dev/docs'));
+      expect(list[1].toString(), equals('https://flutter.dev/development'));
     });
 
     test('replaceAll', () {

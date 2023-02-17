@@ -6,6 +6,7 @@
 
 import 'package:test/test.dart';
 import 'package:win32/win32.dart';
+import 'package:winmd/winmd.dart';
 import 'package:winrtgen/winrtgen.dart';
 
 void main() {
@@ -21,7 +22,7 @@ void main() {
           'TryCreate');
       final paramProjection = methodProjection.parameters.last;
       expect(ProjectionType.from(paramProjection.typeProjection),
-          equals(ProjectionType.class_));
+          equals(ProjectionType.inspectable));
     });
 
     test('returns pointer type', () {
@@ -60,6 +61,38 @@ void main() {
           'Windows.Foundation.IAsyncInfo', 'get_Status');
       expect(ProjectionType.from(methodProjection.returnTypeProjection),
           equals(ProjectionType.enum_));
+    });
+
+    test('returns genericEnum (1)', () {
+      final typeIdentifier = TypeIdentifier(BaseType.classVariableTypeModifier,
+          name: TypeArg.winrtEnum.name);
+      final typeProjection = TypeProjection(typeIdentifier);
+      expect(ProjectionType.from(typeProjection),
+          equals(ProjectionType.genericEnum));
+    });
+
+    test('returns genericEnum (2)', () {
+      final typeIdentifier = TypeIdentifier(BaseType.classVariableTypeModifier,
+          name: TypeArg.winrtFlagsEnum.name);
+      final typeProjection = TypeProjection(typeIdentifier);
+      expect(ProjectionType.from(typeProjection),
+          equals(ProjectionType.genericEnum));
+    });
+
+    test('returns genericInspectable (1)', () {
+      final typeIdentifier = TypeIdentifier(BaseType.classVariableTypeModifier,
+          name: TypeArg.inspectable.name);
+      final typeProjection = TypeProjection(typeIdentifier);
+      expect(ProjectionType.from(typeProjection),
+          equals(ProjectionType.genericInspectable));
+    });
+
+    test('returns genericInspectable (2)', () {
+      final typeIdentifier = TypeIdentifier(BaseType.classVariableTypeModifier,
+          name: TypeArg.nullableInspectable.name);
+      final typeProjection = TypeProjection(typeIdentifier);
+      expect(ProjectionType.from(typeProjection),
+          equals(ProjectionType.genericInspectable));
     });
 
     test('returns guid type', () {
@@ -162,13 +195,6 @@ void main() {
           equals(ProjectionType.dartPrimitive));
     });
 
-    test('returns class type', () {
-      final methodProjection = MethodProjection.fromTypeAndMethodName(
-          'Windows.Globalization.ICalendar', 'Clone');
-      expect(ProjectionType.from(methodProjection.returnTypeProjection),
-          equals(ProjectionType.class_));
-    });
-
     test('returns delegate type', () {
       final methodProjection = MethodProjection.fromTypeAndMethodName(
           'Windows.Foundation.IAsyncAction', 'get_Completed');
@@ -176,11 +202,18 @@ void main() {
           equals(ProjectionType.delegate));
     });
 
-    test('returns interface type', () {
+    test('returns inspectable type (1) - (WinRT class)', () {
+      final methodProjection = MethodProjection.fromTypeAndMethodName(
+          'Windows.Globalization.ICalendar', 'Clone');
+      expect(ProjectionType.from(methodProjection.returnTypeProjection),
+          equals(ProjectionType.inspectable));
+    });
+
+    test('returns inspectable type (2) - (WinRT interface)', () {
       final methodProjection = MethodProjection.fromTypeAndMethodName(
           'Windows.Data.Json.JsonArray', 'GetAt');
       expect(ProjectionType.from(methodProjection.returnTypeProjection),
-          equals(ProjectionType.interface));
+          equals(ProjectionType.inspectable));
     });
 
     test('returns struct type', () {

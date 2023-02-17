@@ -13,12 +13,12 @@ import 'type.dart';
 /// Fields are a tuple of a type and a name.
 class StructFieldProjection {
   StructFieldProjection(this.field)
-      : fieldName = safeIdentifierForString(field.name.toCamelCase());
+      : fieldName = safeIdentifierForString(field.name.toCamelCase()),
+        typeProjection = TypeProjection(field.typeIdentifier);
 
   final Field field;
   final String fieldName;
-
-  TypeProjection get typeProjection => TypeProjection(field.typeIdentifier);
+  final TypeProjection typeProjection;
 
   String get attribute => typeProjection.attribute;
 
@@ -26,7 +26,7 @@ class StructFieldProjection {
 
   @override
   String toString() => '''
-  ${typeProjection.attribute}
+  $attribute
   external $dartType $fieldName;
 ''';
 }
@@ -34,11 +34,13 @@ class StructFieldProjection {
 /// Represents a Dart projection of a WinRT struct typedef.
 class StructProjection {
   StructProjection(this.typeDef, {this.comment = '', String? structName})
-      : structName = structName ?? typeDef.shortName;
+      : structName = structName ?? typeDef.shortName,
+        fields = typeDef.fields.map(StructFieldProjection.new).toList();
 
   final TypeDef typeDef;
   final String comment;
   final String structName;
+  final List<StructFieldProjection> fields;
 
   /// Attempts to create a [StructProjection] from [fullyQualifiedType] by
   /// searching its [TypeDef].
@@ -69,9 +71,6 @@ class StructProjection {
   }
 
   String get classDeclaration => 'class $structName extends Struct {';
-
-  List<StructFieldProjection> get fields =>
-      typeDef.fields.map(StructFieldProjection.new).toList();
 
   @override
   String toString() => '''

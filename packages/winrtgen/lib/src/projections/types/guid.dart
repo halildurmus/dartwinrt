@@ -61,7 +61,7 @@ class GuidSetterProjection extends SetterProjection {
 
   @override
   String get methodProjection => '''
-  set $camelCasedName(${parameter.type} value) {
+  set $camelCasedName(${param.type} value) {
     final nativeGuidPtr = value.toNativeGUID();
 
     try {
@@ -105,12 +105,10 @@ class GuidListParameterProjection extends DefaultListParameterProjection {
       final nativeGuidPtr = value.elementAt(i).toNativeGUID();
       pArray[i] = nativeGuidPtr.ref;
       nativeGuids.add(nativeGuidPtr);
-    }
-''';
+    }''';
 
   @override
   String get passArrayPostamble => '''
     nativeGuids.forEach(free);
-    free(pArray);
-''';
+    free(pArray);''';
 }

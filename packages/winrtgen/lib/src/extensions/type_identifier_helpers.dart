@@ -24,6 +24,15 @@ String _parseGenericTypeIdentifierCreator(TypeIdentifier typeIdentifier) {
     args.add('enumKeyCreator: $enumKeyCreator');
   }
 
+  // Handle int key type argument in IKeyValuePair, IMap, IMapView interfaces
+  if (['IKeyValuePair', 'IMap', 'IMapView'].contains(shortName) &&
+      (typeIdentifier.typeArg!.baseType == BaseType.int32Type ||
+          typeIdentifier.typeArg!.baseType == BaseType.uint32Type)) {
+    final typeProjection = TypeProjection(typeIdentifier.typeArg!);
+    final intType = 'IntType.${typeProjection.nativeType.toLowerCase()}';
+    args.add('intType: $intType');
+  }
+
   final typeArg = ['IKeyValuePair', 'IMap', 'IMapView'].contains(shortName)
       // Skip over to the value typeArg since the `creator` parameter does not
       // need to be created for the key typeArg of the above types.
@@ -140,6 +149,13 @@ extension TypeIdentifierHelpers on TypeIdentifier {
 
   /// Returns the IID of this TypeIdentifier.
   Guid get iid => iidFromSignature(signature);
+
+  bool get isClassVariableType =>
+      baseType == BaseType.classVariableTypeModifier;
+
+  bool get isGenericType => baseType == BaseType.genericTypeModifier;
+
+  bool get isSimpleArrayType => baseType == BaseType.simpleArrayType;
 
   /// Returns the shorter name of the type defined in this TypeIdentifier (e.g.
   /// `ICalendar`, `IMap<String, String>`).

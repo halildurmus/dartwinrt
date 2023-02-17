@@ -67,13 +67,12 @@ void main() {
     });
 
     test('getMany returns elements starting from index 0', () {
-      final pHString = allocator<HSTRING>(vectorView.size);
-
-      expect(vectorView.getMany(0, vectorView.size, pHString),
+      final list = <String>[];
+      expect(vectorView.getMany(0, vectorView.size, list),
           greaterThanOrEqualTo(1));
       // Should be something like en-US
-      expect(convertFromHString(pHString[0])[2], equals('-'));
-      expect(convertFromHString(pHString[0]).length, equals(5));
+      expect(list[0][2], equals('-'));
+      expect(list[0].length, equals(5));
     });
 
     test('toList', () {

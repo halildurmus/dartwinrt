@@ -63,7 +63,7 @@ class DurationSetterProjection extends SetterProjection {
 
   @override
   String get methodProjection => '''
-  set $camelCasedName(${parameter.type} value) {
+  set $camelCasedName(${param.type} value) {
     final duration = value.inMicroseconds * 10;
 
     ${ffiCall(params: 'duration')}
@@ -100,16 +100,16 @@ class DurationListParameterProjection extends DefaultListParameterProjection {
     final pArray = calloc<Uint64>(value.length);
     for (var i = 0; i < value.length; i++) {
       pArray[i] = value.elementAt(i).inMicroseconds * 10;
-    }
-''';
+    }''';
 
   @override
   String get fillArrayPostamble => '''
-    value.addAll(pArray
-        .toList(length: value.length)
-        .map((value) => Duration(microseconds: value ~/ 10)));
-    free(pArray);
-''';
+    if (retValuePtr.value > 0) {
+      value.addAll(pArray
+          .toList(length: value.length)
+          .map((value) => Duration(microseconds: value ~/ 10)));
+    }
+    free(pArray);''';
 
   @override
   String get receiveArrayPostamble => '''
@@ -117,6 +117,5 @@ class DurationListParameterProjection extends DefaultListParameterProjection {
         .toList(length: pValueSize.value)
         .map((value) => Duration(microseconds: value ~/ 10)));
     free(pValueSize);
-    free(pArray);
-''';
+    free(pArray);''';
 }

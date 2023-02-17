@@ -53,7 +53,7 @@ void main() {
     test('projects class', () {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Globalization.ICalendar', 'Clone');
-      expect(projection, isA<ClassMethodProjection>());
+      expect(projection, isA<InspectableMethodProjection>());
       expect(projection.returnType, equals('Calendar?'));
       expect(projection.nativePrototype,
           equals('HRESULT Function(Pointer, Pointer<COMObject>)'));
@@ -138,7 +138,7 @@ void main() {
     test('projects interface', () {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Foundation.Collections.StringMap', 'First');
-      expect(projection, isA<InterfaceMethodProjection>());
+      expect(projection, isA<InspectableMethodProjection>());
       expect(projection.returnType,
           equals('IIterator<IKeyValuePair<String, String>>'));
       expect(projection.nativePrototype,

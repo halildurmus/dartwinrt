@@ -43,8 +43,8 @@ void main() {
     reference.release();
   });
 
-  test('IReference<double?> (Single)', () {
-    final reference = 3.0.toReference(DoubleType.single);
+  test('IReference<double?> (Float)', () {
+    final reference = 3.0.toReference(DoubleType.float);
     expect(reference.value, isNotNull);
     expect(reference.value, equals(3.0));
     reference.release();

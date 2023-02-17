@@ -12,6 +12,6 @@ void main() {
     expect('IPAddress'.toCamelCase(), equals('ipAddress'));
     expect('UInt32'.toCamelCase(), equals('uint32'));
     expect('X'.toCamelCase(), equals('x'));
-    expect(''.toCamelCase(), equals(''));
+    expect(''.toCamelCase(), isEmpty);
   });
 }

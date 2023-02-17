@@ -3,14 +3,14 @@
 // BSD-style license that can be found in the LICENSE file.
 
 export 'async.dart';
-export 'class.dart';
 export 'datetime.dart';
 export 'default.dart';
 export 'delegate.dart';
 export 'duration.dart';
 export 'enum.dart';
+export 'generic.dart';
 export 'guid.dart';
-export 'interface.dart';
+export 'inspectable.dart';
 export 'map.dart';
 export 'object.dart';
 export 'reference.dart';

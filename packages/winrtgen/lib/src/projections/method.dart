@@ -47,22 +47,17 @@ abstract class MethodProjection {
   factory MethodProjection.create(Method method, int vtableOffset) {
     final projectionType =
         TypeProjection(method.returnType.typeIdentifier).projectionType;
-    if (projectionType == ProjectionType.uri &&
-        methodBelongsToUriRuntimeClass(method)) {
-      return InterfaceMethodProjection(method, vtableOffset);
-    }
-
     switch (projectionType) {
       case ProjectionType.asyncAction:
         return AsyncActionMethodProjection(method, vtableOffset);
+      case ProjectionType.asyncActionWithProgress:
+        return InspectableMethodProjection(method, vtableOffset);
       case ProjectionType.asyncOperation:
         return AsyncOperationMethodProjection(method, vtableOffset);
-      case ProjectionType.class_:
-        return ClassMethodProjection(method, vtableOffset);
-      case ProjectionType.asyncActionWithProgress:
       case ProjectionType.asyncOperationWithProgress:
-      case ProjectionType.interface:
-        return InterfaceMethodProjection(method, vtableOffset);
+        return InspectableMethodProjection(method, vtableOffset);
+      case ProjectionType.dartPrimitive:
+        return DefaultMethodProjection(method, vtableOffset);
       case ProjectionType.dateTime:
         return DateTimeMethodProjection(method, vtableOffset);
       case ProjectionType.delegate:
@@ -71,8 +66,14 @@ abstract class MethodProjection {
         return DurationMethodProjection(method, vtableOffset);
       case ProjectionType.enum_:
         return EnumMethodProjection(method, vtableOffset);
+      case ProjectionType.genericEnum:
+        return GenericEnumMethodProjection(method, vtableOffset);
+      case ProjectionType.genericInspectable:
+        return GenericInspectableMethodProjection(method, vtableOffset);
       case ProjectionType.guid:
         return GuidMethodProjection(method, vtableOffset);
+      case ProjectionType.inspectable:
+        return InspectableMethodProjection(method, vtableOffset);
       case ProjectionType.map:
         return MapMethodProjection(method, vtableOffset);
       case ProjectionType.mapView:
@@ -93,10 +94,8 @@ abstract class MethodProjection {
         return VectorViewMethodProjection(method, vtableOffset);
       case ProjectionType.void_:
         return VoidMethodProjection(method, vtableOffset);
-      case ProjectionType.dartPrimitive:
-        return DefaultMethodProjection(method, vtableOffset);
       default:
-        throw UnsupportedError('Unsupported method type: $projectionType');
+        throw UnsupportedError('Unsupported projection type: $projectionType');
     }
   }
 
@@ -130,21 +129,29 @@ abstract class MethodProjection {
   /// of making it easier to avoid name conflicts.
   String get camelCasedName => safeIdentifierForString(name.toCamelCase());
 
-  /// The parameters exposed by a projected Dart method.
-  String get methodParams => parameters
-      .where((param) {
-        // Hide the __valueSize parameter on PassArray style as we project it
-        // differently. See DefaultListParameterProjection class for more.
-        if (param.parameter.name == '__valueSize') {
-          return param.parameter.isOutParam &&
-              param.parameter.typeIdentifier.baseType !=
-                  BaseType.pointerTypeModifier;
+  /// The parameters, with the exception of some `__valueSize` parameters.
+  Iterable<ParameterProjection> get _params {
+    return parameters.where((param) {
+      // Exclude the __valueSize parameter on FillArray and PassArray styles as
+      // simpleArray params are projected as List.
+      // See DefaultListParameterProjection class.
+      if (param.parameter.name == '__valueSize') {
+        if (param.parameter.isInParam ||
+            (param.parameter.isOutParam &&
+                param.parameter.typeIdentifier.baseType ==
+                    BaseType.pointerTypeModifier)) {
+          return false;
         }
+      }
 
-        return true;
-      })
-      .map((param) => param.paramProjection)
-      .join(', ');
+      return true;
+    });
+  }
+
+  /// The parameters exposed by a projected Dart method (e.g. `int age`,
+  /// `int index, String value`).
+  String get methodParams =>
+      _params.map((param) => param.paramProjection).join(', ');
 
   /// The return type of the method (e.g. `String`).
   String get returnType => returnTypeProjection.dartType;
@@ -162,18 +169,8 @@ abstract class MethodProjection {
   ///   e.g. `period` or `second` (get property)
   ///   e.g. `second = value` (set property)
   String get shortForm {
-    final paramIdentifiers = parameters
-        .where((param) {
-          if (param.parameter.name == '__valueSize') {
-            return param.parameter.isOutParam &&
-                param.parameter.typeIdentifier.baseType !=
-                    BaseType.pointerTypeModifier;
-          }
-
-          return true;
-        })
-        .map((param) => param.identifier)
-        .join(', ');
+    final paramIdentifiers =
+        _params.map((param) => param.identifier).join(', ');
     return '$camelCasedName($paramIdentifiers)';
   }
 
@@ -193,20 +190,7 @@ abstract class MethodProjection {
   /// function.
   String get identifiers => [
         'ptr.ref.lpVtbl',
-        ...parameters.map((param) {
-          // Handle simpleArrayType identifiers differently as they are exposed
-          // as List<T> (see DefaultListParameterProjection class).
-          if (param.parameter.name == '__valueSize') {
-            if (param.parameter.isInParam) return 'value.length';
-            if (param.parameter.isOutParam &&
-                param.parameter.typeIdentifier.baseType ==
-                    BaseType.pointerTypeModifier) {
-              return 'pValueSize';
-            }
-          }
-
-          return param.localIdentifier;
-        }),
+        ...parameters.map((param) => param.localIdentifier),
         if (!returnTypeProjection.isVoid) 'retValuePtr',
       ].join(', ');
 

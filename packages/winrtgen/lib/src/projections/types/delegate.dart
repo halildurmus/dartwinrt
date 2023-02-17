@@ -55,7 +55,7 @@ class DelegateSetterProjection extends SetterProjection {
 
   @override
   String get methodProjection => '''
-  set $camelCasedName(${parameter.type} value) {
+  set $camelCasedName(${param.type} value) {
     ${ffiCall(params: 'value')}
   }
 ''';

@@ -49,7 +49,7 @@ void main() {
       expect(calendarProjection.shortName, equals('Calendar'));
     });
 
-    test('has correct inheritance chain 1', () {
+    test('has correct inheritance chain (1)', () {
       expect(calendarProjection.inheritsFrom,
           equals('ICalendar, ITimeZoneOnCalendar'));
       expect(
@@ -71,7 +71,7 @@ void main() {
       );
     });
 
-    test('has correct inheritance chain 2', () {
+    test('has correct inheritance chain (2)', () {
       final projection =
           ClassProjection.from('Windows.Foundation.PropertyValue');
       expect(projection.inheritsFrom, isEmpty);
@@ -83,7 +83,8 @@ void main() {
     });
 
     if (windowsBuildNumber >= 18362) {
-      test('has correct inheritance chain 3 (ignores excluded interfaces)', () {
+      test('has correct inheritance chain (3) (ignores excluded interfaces)',
+          () {
         final projection =
             ClassProjection.from('Windows.Storage.Pickers.FileOpenPicker');
         // IFileOpenPicker2 and IFileOpenPickerStatics and

@@ -69,7 +69,7 @@ class DateTimeSetterProjection extends SetterProjection {
 
   @override
   String get methodProjection => '''
-  set $camelCasedName(${parameter.type} value) {
+  set $camelCasedName(${param.type} value) {
     final dateTimeOffset =
         value.difference(DateTime.utc(1601, 01, 01)).inMicroseconds * 10;
 
@@ -110,21 +110,20 @@ class DateTimeListParameterProjection extends DefaultListParameterProjection {
     for (var i = 0; i < value.length; i++) {
       pArray[i] = value.elementAt(i)
           .difference(DateTime.utc(1601, 01, 01)).inMicroseconds * 10;
-    }
-''';
+    }''';
 
   @override
   String get fillArrayPostamble => '''
-    value.addAll(pArray.toList(length: value.length).map((value) =>
-        DateTime.utc(1601, 01, 01).add(Duration(microseconds: value ~/ 10))));
-    free(pArray);
-''';
+    if (retValuePtr.value > 0) {
+      value.addAll(pArray.toList(length: value.length).map((value) =>
+          DateTime.utc(1601, 01, 01).add(Duration(microseconds: value ~/ 10))));
+    }
+    free(pArray);''';
 
   @override
   String get receiveArrayPostamble => '''
     value.addAll(pArray.value.toList(length: pValueSize.value).map((value) =>
         DateTime.utc(1601, 01, 01).add(Duration(microseconds: value ~/ 10))));
     free(pValueSize);
-    free(pArray);
-''';
+    free(pArray);''';
 }

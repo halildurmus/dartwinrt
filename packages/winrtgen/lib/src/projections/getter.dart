@@ -16,14 +16,11 @@ abstract class GetterProjection extends PropertyProjection {
   /// Returns the appropriate getter projection for the [method] based on the
   /// return type.
   factory GetterProjection.create(Method method, int vtableOffset) {
-    final projectedType =
+    final projectionType =
         TypeProjection(method.returnType.typeIdentifier).projectionType;
-
-    switch (projectedType) {
-      case ProjectionType.class_:
-        return ClassGetterProjection(method, vtableOffset);
-      case ProjectionType.interface:
-        return InterfaceGetterProjection(method, vtableOffset);
+    switch (projectionType) {
+      case ProjectionType.dartPrimitive:
+        return DefaultGetterProjection(method, vtableOffset);
       case ProjectionType.dateTime:
         return DateTimeGetterProjection(method, vtableOffset);
       case ProjectionType.delegate:
@@ -32,8 +29,14 @@ abstract class GetterProjection extends PropertyProjection {
         return DurationGetterProjection(method, vtableOffset);
       case ProjectionType.enum_:
         return EnumGetterProjection(method, vtableOffset);
+      case ProjectionType.genericEnum:
+        return GenericEnumGetterProjection(method, vtableOffset);
+      case ProjectionType.genericInspectable:
+        return GenericInspectableGetterProjection(method, vtableOffset);
       case ProjectionType.guid:
         return GuidGetterProjection(method, vtableOffset);
+      case ProjectionType.inspectable:
+        return InspectableGetterProjection(method, vtableOffset);
       case ProjectionType.map:
         return MapGetterProjection(method, vtableOffset);
       case ProjectionType.mapView:
@@ -52,10 +55,8 @@ abstract class GetterProjection extends PropertyProjection {
         return VectorGetterProjection(method, vtableOffset);
       case ProjectionType.vectorView:
         return VectorViewGetterProjection(method, vtableOffset);
-      case ProjectionType.dartPrimitive:
-        return DefaultGetterProjection(method, vtableOffset);
       default:
-        throw UnsupportedError('Unsupported getter type: $projectedType');
+        throw UnsupportedError('Unsupported projection type: $projectionType');
     }
   }
 

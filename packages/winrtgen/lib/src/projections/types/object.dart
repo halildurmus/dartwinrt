@@ -92,7 +92,7 @@ class ObjectSetterProjection extends SetterProjection with _ObjectProjection {
 
   @override
   String get methodProjection => '''
-  set $camelCasedName(${parameter.type} value) {
+  set $camelCasedName(${param.type} value) {
     ${ffiCall(params: 'value?.intoBox().ref.lpVtbl ?? nullptr')}
   }
 ''';
@@ -123,26 +123,29 @@ class ObjectListParameterProjection extends DefaultListParameterProjection {
   String get type => 'List<Object?>';
 
   @override
+  String get fillArrayPreamble =>
+      'final pArray = calloc<COMObject>(valueSize);';
+
+  @override
   String get passArrayPreamble => '''
     final pArray = calloc<COMObject>(value.length);
     for (var i = 0; i < value.length; i++) {
       pArray[i] = value.elementAt(i)?.intoBox().ref ?? PropertyValue.createEmpty().ref;
-    }
-''';
+    }''';
 
   @override
   String get receiveArrayPreamble => '''
     final pValueSize = calloc<Uint32>();
-    final pArray = calloc<Pointer<COMObject>>();
-''';
+    final pArray = calloc<Pointer<COMObject>>();''';
 
   @override
   String get fillArrayPostamble => '''
-    value.addAll(pArray.value
-        .toList(IPropertyValue.fromRawPointer, length: pValueSize.value)
-        .map((e) => e.value));
-    free(pArray);
-''';
+    if (retValuePtr.value > 0) {
+      value.addAll(pArray.value
+          .toList(IPropertyValue.fromRawPointer, length: pValueSize.value)
+          .map((e) => e.value));
+    }
+    free(pArray);''';
 
   @override
   String get receiveArrayPostamble => '''
@@ -150,6 +153,5 @@ class ObjectListParameterProjection extends DefaultListParameterProjection {
         .toList(IPropertyValue.fromRawPointer, length: pValueSize.value)
         .map((e) => e.value));
     free(pValueSize);
-    free(pArray);
-''';
+    free(pArray);''';
 }

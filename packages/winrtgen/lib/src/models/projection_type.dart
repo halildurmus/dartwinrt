@@ -16,14 +16,15 @@ enum ProjectionType {
   asyncActionWithProgress,
   asyncOperation,
   asyncOperationWithProgress,
-  class_,
   dartPrimitive,
   dateTime,
   delegate,
   duration,
   enum_,
+  genericEnum,
+  genericInspectable,
   guid,
-  interface,
+  inspectable,
   map,
   mapView,
   object,
@@ -40,9 +41,14 @@ enum ProjectionType {
   /// Returns the appropriate [ProjectionType] for the [type].
   factory ProjectionType.from(TypeProjection type) {
     if (type.isReferenceType) {
-      // Return the wrapped type's projection type.
       final typeProjection = TypeProjection(type.typeIdentifier.typeArg!);
       return typeProjection.projectionType;
+    }
+
+    if (type.isClassVariableType) {
+      return type.genericTypeArg.isEnum
+          ? ProjectionType.genericEnum
+          : ProjectionType.genericInspectable;
     }
 
     if (type.isPointer) return ProjectionType.pointer;
@@ -62,9 +68,12 @@ enum ProjectionType {
     if (type.isVectorView) return ProjectionType.vectorView;
     if (type.isVoid) return ProjectionType.void_;
     if (type.isDartPrimitive) return ProjectionType.dartPrimitive;
-    if (type.isWinRTClass) return ProjectionType.class_;
+
+    if (type.isWinRTClass || type.isWinRTInterface) {
+      return ProjectionType.inspectable;
+    }
+
     if (type.isWinRTDelegate) return ProjectionType.delegate;
-    if (type.isWinRTInterface) return ProjectionType.interface;
     if (type.isWinRTStruct) return ProjectionType.struct;
     if (type.isObject) return ProjectionType.object;
 

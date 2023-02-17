@@ -67,7 +67,7 @@ class StringSetterProjection extends SetterProjection {
 
   @override
   String get methodProjection => '''
-  set $camelCasedName(${parameter.type} value) {
+  set $camelCasedName(${param.type} value) {
     final hstr = convertToHString(value);
 
     try {
@@ -110,12 +110,10 @@ class StringListParameterProjection extends DefaultListParameterProjection {
     for (var i = 0; i < value.length; i++) {
       pArray[i] = convertToHString(value.elementAt(i));
       handles.add(pArray[i]);
-    }
-''';
+    }''';
 
   @override
   String get passArrayPostamble => '''
     handles.forEach(WindowsDeleteString);
-    free(pArray);
-''';
+    free(pArray);''';
 }

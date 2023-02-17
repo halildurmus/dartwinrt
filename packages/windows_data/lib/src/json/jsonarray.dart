@@ -142,7 +142,7 @@ class JsonArray extends IInspectable
   void clear() => _iVector.clear();
 
   @override
-  int getMany(int startIndex, int valueSize, Pointer<NativeType> value) =>
+  int getMany(int startIndex, int valueSize, List<IJsonValue> value) =>
       _iVector.getMany(startIndex, valueSize, value);
 
   @override

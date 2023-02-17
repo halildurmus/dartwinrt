@@ -11,6 +11,8 @@ import '../internal.dart';
 import 'exports.g.dart';
 import 'uri.dart' as winrt_uri;
 
+part 'iasyncoperation_part.dart';
+
 /// Represents an asynchronous operation, which returns a result upon
 /// completion. This is the return type for many Windows Runtime asynchronous
 /// methods that have results but don't report progress.
@@ -19,13 +21,21 @@ import 'uri.dart' as winrt_uri;
 abstract class IAsyncOperation<TResult> extends IInspectable
     implements IAsyncInfo {
   // vtable begins at 6, is 3 entries long.
-  IAsyncOperation(super.ptr);
+  IAsyncOperation(
+    super.ptr, {
+    TResult Function(Pointer<COMObject>)? creator,
+    TResult Function(int)? enumCreator,
+  })  : _creator = creator,
+        _enumCreator = enumCreator;
+
+  final TResult Function(Pointer<COMObject>)? _creator;
+  final TResult Function(int)? _enumCreator;
 
   /// Creates an instance of [IAsyncOperation] from the given `ptr`.
   ///
   /// [TResult] must be of type `bool`, `Guid`, `int`, `Object?`, `String`,
-  /// `Uri`, `IInspectable?` (e.g. `StorageFile?`, `IBuffer?`) or `WinRTEnum`
-  /// (e.g. `LaunchUriStatus`).
+  /// `Uri?`, `IInspectable?` (e.g. `StorageFile?`) or `WinRTEnum` (e.g.
+  /// `LaunchUriStatus`).
   ///
   /// [intType] must be specified if [TResult] is `int`.
   /// ```dart
@@ -63,13 +73,34 @@ abstract class IAsyncOperation<TResult> extends IInspectable
 
     if (isSubtypeOfInspectable<TResult>()) {
       if (creator == null) throw ArgumentError.notNull('creator');
-      return _IAsyncOperationInspectable.fromRawPointer(ptr, creator);
+      return _IAsyncOperationIInspectable.fromRawPointer(ptr, creator: creator);
     }
 
     if (TResult == int) {
       if (intType == null) throw ArgumentError.notNull('intType');
-      return _IAsyncOperationInt.fromRawPointer(ptr, intType)
-          as IAsyncOperation<TResult>;
+      switch (intType) {
+        case IntType.int16:
+          return _IAsyncOperationInt16.fromRawPointer(ptr)
+              as IAsyncOperation<TResult>;
+        case IntType.int32:
+          return _IAsyncOperationInt32.fromRawPointer(ptr)
+              as IAsyncOperation<TResult>;
+        case IntType.int64:
+          return _IAsyncOperationInt64.fromRawPointer(ptr)
+              as IAsyncOperation<TResult>;
+        case IntType.uint8:
+          return _IAsyncOperationUint8.fromRawPointer(ptr)
+              as IAsyncOperation<TResult>;
+        case IntType.uint16:
+          return _IAsyncOperationUint16.fromRawPointer(ptr)
+              as IAsyncOperation<TResult>;
+        case IntType.uint32:
+          return _IAsyncOperationUint32.fromRawPointer(ptr)
+              as IAsyncOperation<TResult>;
+        case IntType.uint64:
+          return _IAsyncOperationUint64.fromRawPointer(ptr)
+              as IAsyncOperation<TResult>;
+      }
     }
 
     if (isNullableObjectType<TResult>()) {
@@ -91,10 +122,12 @@ abstract class IAsyncOperation<TResult> extends IInspectable
       if (enumCreator == null) throw ArgumentError.notNull('enumCreator');
 
       if (isSubtypeOfWinRTFlagsEnum<TResult>()) {
-        return _IAsyncOperationFlagsEnum.fromRawPointer(ptr, enumCreator);
+        return _IAsyncOperationWinRTFlagsEnum.fromRawPointer(ptr,
+            enumCreator: enumCreator);
       }
 
-      return _IAsyncOperationEnum.fromRawPointer(ptr, enumCreator);
+      return _IAsyncOperationWinRTEnum.fromRawPointer(ptr,
+          enumCreator: enumCreator);
     }
 
     throw ArgumentError.value(TResult, 'TResult', 'Unsupported type');
@@ -152,347 +185,4 @@ abstract class IAsyncOperation<TResult> extends IInspectable
 
   @override
   void close() => _iAsyncInfo.close();
-}
-
-class _IAsyncOperationBool extends IAsyncOperation<bool> {
-  _IAsyncOperationBool.fromRawPointer(super.ptr);
-
-  @override
-  bool getResults() {
-    final retValuePtr = calloc<Bool>();
-
-    try {
-      final hr = ptr.ref.lpVtbl.value
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<HRESULT Function(Pointer, Pointer<Bool>)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  Pointer, Pointer<Bool>)>()(ptr.ref.lpVtbl, retValuePtr);
-
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      return retValuePtr.value;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-}
-
-class _IAsyncOperationEnum<T> extends IAsyncOperation<T> {
-  _IAsyncOperationEnum.fromRawPointer(super.ptr, this.enumCreator);
-
-  final T Function(int) enumCreator;
-
-  @override
-  T getResults() {
-    final retValuePtr = calloc<Int32>();
-
-    try {
-      final hr = ptr.ref.lpVtbl.value
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<HRESULT Function(Pointer, Pointer<Int32>)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  Pointer, Pointer<Int32>)>()(ptr.ref.lpVtbl, retValuePtr);
-
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      return enumCreator(retValuePtr.value);
-    } finally {
-      free(retValuePtr);
-    }
-  }
-}
-
-class _IAsyncOperationFlagsEnum<T> extends IAsyncOperation<T> {
-  _IAsyncOperationFlagsEnum.fromRawPointer(super.ptr, this.enumCreator);
-
-  final T Function(int) enumCreator;
-
-  @override
-  T getResults() {
-    final retValuePtr = calloc<Uint32>();
-
-    try {
-      final hr = ptr.ref.lpVtbl.value
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<HRESULT Function(Pointer, Pointer<Uint32>)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  Pointer, Pointer<Uint32>)>()(ptr.ref.lpVtbl, retValuePtr);
-
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      return enumCreator(retValuePtr.value);
-    } finally {
-      free(retValuePtr);
-    }
-  }
-}
-
-class _IAsyncOperationGuid extends IAsyncOperation<Guid> {
-  _IAsyncOperationGuid.fromRawPointer(super.ptr);
-
-  @override
-  Guid getResults() {
-    final retValuePtr = calloc<GUID>();
-
-    try {
-      final hr = ptr.ref.lpVtbl.value
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<HRESULT Function(Pointer, Pointer<GUID>)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  Pointer, Pointer<GUID>)>()(ptr.ref.lpVtbl, retValuePtr);
-
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      return retValuePtr.toDartGuid();
-    } finally {
-      free(retValuePtr);
-    }
-  }
-}
-
-class _IAsyncOperationInspectable<T> extends IAsyncOperation<T> {
-  _IAsyncOperationInspectable.fromRawPointer(super.ptr, this.creator);
-
-  final T Function(Pointer<COMObject>) creator;
-
-  @override
-  T getResults() {
-    final retValuePtr = calloc<COMObject>();
-
-    final hr = ptr.ref.lpVtbl.value
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(Pointer, Pointer<COMObject>)>>>()
-            .value
-            .asFunction<int Function(Pointer, Pointer<COMObject>)>()(
-        ptr.ref.lpVtbl, retValuePtr);
-
-    if (FAILED(hr)) {
-      free(retValuePtr);
-      throw WindowsException(hr);
-    }
-
-    if (retValuePtr.ref.isNull) {
-      free(retValuePtr);
-      return null as T;
-    }
-
-    return creator(retValuePtr);
-  }
-}
-
-class _IAsyncOperationInt extends IAsyncOperation<int> {
-  _IAsyncOperationInt.fromRawPointer(super.ptr, this.intType);
-
-  final IntType intType;
-
-  @override
-  int getResults() {
-    switch (intType) {
-      case IntType.int64:
-        return _getResultsInt64();
-      case IntType.uint32:
-        return _getResultsUint32();
-      case IntType.uint64:
-        return _getResultsUint64();
-      default:
-        return _getResultsInt32();
-    }
-  }
-
-  int _getResultsInt32() {
-    final retValuePtr = calloc<Int32>();
-    try {
-      final hr = ptr.ref.lpVtbl.value
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<HRESULT Function(Pointer, Pointer<Int32>)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  Pointer, Pointer<Int32>)>()(ptr.ref.lpVtbl, retValuePtr);
-
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      return retValuePtr.value;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  int _getResultsInt64() {
-    final retValuePtr = calloc<Int64>();
-    try {
-      final hr = ptr.ref.lpVtbl.value
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<HRESULT Function(Pointer, Pointer<Int64>)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  Pointer, Pointer<Int64>)>()(ptr.ref.lpVtbl, retValuePtr);
-
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      return retValuePtr.value;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  int _getResultsUint32() {
-    final retValuePtr = calloc<Uint32>();
-    try {
-      final hr = ptr.ref.lpVtbl.value
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<HRESULT Function(Pointer, Pointer<Uint32>)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  Pointer, Pointer<Uint32>)>()(ptr.ref.lpVtbl, retValuePtr);
-
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      return retValuePtr.value;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  int _getResultsUint64() {
-    final retValuePtr = calloc<Uint64>();
-    try {
-      final hr = ptr.ref.lpVtbl.value
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<HRESULT Function(Pointer, Pointer<Uint64>)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  Pointer, Pointer<Uint64>)>()(ptr.ref.lpVtbl, retValuePtr);
-
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      return retValuePtr.value;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-}
-
-class _IAsyncOperationObject extends IAsyncOperation<Object?> {
-  _IAsyncOperationObject.fromRawPointer(super.ptr);
-
-  @override
-  Object? getResults() {
-    final retValuePtr = calloc<COMObject>();
-
-    final hr = ptr.ref.lpVtbl.value
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(Pointer, Pointer<COMObject>)>>>()
-            .value
-            .asFunction<int Function(Pointer, Pointer<COMObject>)>()(
-        ptr.ref.lpVtbl, retValuePtr);
-
-    if (FAILED(hr)) {
-      free(retValuePtr);
-      throw WindowsException(hr);
-    }
-
-    if (retValuePtr.ref.isNull) {
-      free(retValuePtr);
-      return null;
-    }
-
-    return IPropertyValue.fromRawPointer(retValuePtr).value;
-  }
-}
-
-class _IAsyncOperationString extends IAsyncOperation<String> {
-  _IAsyncOperationString.fromRawPointer(super.ptr);
-
-  @override
-  String getResults() {
-    final retValuePtr = calloc<HSTRING>();
-
-    try {
-      final hr = ptr.ref.lpVtbl.value
-              .elementAt(8)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(Pointer, Pointer<HSTRING>)>>>()
-              .value
-              .asFunction<int Function(Pointer, Pointer<HSTRING>)>()(
-          ptr.ref.lpVtbl, retValuePtr);
-
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      return retValuePtr.toDartString();
-    } finally {
-      WindowsDeleteString(retValuePtr.value);
-      free(retValuePtr);
-    }
-  }
-}
-
-class _IAsyncOperationUri extends IAsyncOperation<Uri?> {
-  _IAsyncOperationUri.fromRawPointer(super.ptr);
-
-  @override
-  Uri? getResults() {
-    final retValuePtr = calloc<COMObject>();
-
-    final hr = ptr.ref.lpVtbl.value
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(Pointer, Pointer<COMObject>)>>>()
-            .value
-            .asFunction<int Function(Pointer, Pointer<COMObject>)>()(
-        ptr.ref.lpVtbl, retValuePtr);
-
-    if (FAILED(hr)) {
-      free(retValuePtr);
-      throw WindowsException(hr);
-    }
-
-    if (retValuePtr.ref.isNull) {
-      free(retValuePtr);
-      return null;
-    }
-
-    final winrtUri = winrt_uri.Uri.fromRawPointer(retValuePtr);
-    final uriAsString = winrtUri.toString();
-    winrtUri.release();
-
-    return Uri.parse(uriAsString);
-  }
 }

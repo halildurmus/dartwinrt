@@ -70,8 +70,8 @@ void main() {
     });
 
     test('getMany returns elements starting from index 0', () {
-      final pCOMObject = allocator<COMObject>(vectorView.size);
-      expect(vectorView.getMany(0, vectorView.size, pCOMObject),
+      final list = <HostName>[];
+      expect(vectorView.getMany(0, vectorView.size, list),
           greaterThanOrEqualTo(1));
     });
 

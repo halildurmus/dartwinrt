@@ -115,17 +115,17 @@ class ReferenceSetterProjection extends SetterProjection
   @override
   String get methodProjection {
     final projection =
-        TypeProjection(parameter.typeProjection.typeIdentifier.typeArg!);
+        TypeProjection(param.typeProjection.typeIdentifier.typeArg!);
     var arg = '';
-    if (parameter.type == 'double?') {
+    if (param.type == 'double?') {
       arg = 'DoubleType.${projection.nativeType.toLowerCase()}';
-    } else if (parameter.type == 'int?') {
+    } else if (param.type == 'int?') {
       arg = 'IntType.${projection.nativeType.toLowerCase()}';
     }
 
     final identifier = 'value?.toReference($arg).ptr.ref.lpVtbl ?? nullptr';
     return '''
-  set $camelCasedName(${parameter.type} value) {
+  set $camelCasedName(${param.type} value) {
     ${ffiCall(params: identifier)}
   }
 ''';

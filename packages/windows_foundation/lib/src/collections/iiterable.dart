@@ -24,8 +24,8 @@ class IIterable<T> extends IInspectable {
 
   /// Creates an instance of [IIterable] from the given [ptr].
   ///
-  /// [T] must be of type `int`, `String`, `Uri`, `IInspectable` (e.g.
-  /// `StorageFile`) or `WinRTEnum` (e.g. `DeviceClass`).
+  /// [T] must be of type `bool`, `Guid`, `int`, `String`, `Uri`,
+  /// `IInspectable` (e.g.`StorageFile`) or `WinRTEnum` (e.g. `DeviceClass`).
   ///
   /// [intType] must be specified if [T] is `int`.
   /// ```dart
