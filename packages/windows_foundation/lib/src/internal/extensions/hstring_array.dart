@@ -22,10 +22,8 @@ extension HStringHelper on Pointer<HSTRING> {
     final list = <String>[];
     for (var i = 0; i < length; i++) {
       final element = this[i];
-      if (element != 0) {
-        list.add(convertFromHString(this[i]));
-        WindowsDeleteString(this[i]);
-      }
+      list.add(convertFromHString(element));
+      WindowsDeleteString(element);
     }
 
     return list;
