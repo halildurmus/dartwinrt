@@ -69,11 +69,7 @@ void main() {
     });
 
     test('fromMap', () {
-      map = IMap.fromMap({
-        'key1': StringMap(),
-        'key2': 259,
-        'key3': 'strVal',
-      });
+      map = IMap.fromMap({'key1': StringMap(), 'key2': 259, 'key3': 'strVal'});
 
       final stringMapVal = map.lookup('key1');
       expect(stringMapVal, isA<IInspectable>());
@@ -161,9 +157,9 @@ void main() {
       expect(guidList.first.toString(), equals(IID_ISpVoice));
 
       final stringMapListVal = map.lookup('key18');
-      expect(stringMapListVal, isA<List<IInspectable>>());
-      final stringMapList = stringMapListVal as List<IInspectable>;
-      expect(getClassName(stringMapList.first),
+      expect(stringMapListVal, isA<List<Object?>>());
+      final stringMapList = stringMapListVal as List<Object?>;
+      expect(getClassName(stringMapList.first as IInspectable),
           equals('Windows.Foundation.Collections.StringMap'));
 
       expect(map.lookup('key19'), equals([2022, -2022]));
