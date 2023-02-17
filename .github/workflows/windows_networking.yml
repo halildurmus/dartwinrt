@@ -3,20 +3,20 @@ name: windows_networking
 on:
   pull_request:
     paths:
-      - ".github/workflows/windows_networking.yaml"
-      - "packages/windows_networking/example/**"
-      - "packages/windows_networking/lib/**"
-      - "packages/windows_networking/test/**"
-      - "packages/windows_networking/pubspec.yaml"
+      - '.github/workflows/windows_networking.yaml'
+      - 'packages/windows_networking/example/**'
+      - 'packages/windows_networking/lib/**'
+      - 'packages/windows_networking/test/**'
+      - 'packages/windows_networking/pubspec.yaml'
   push:
     branches:
       - main
     paths:
-      - ".github/workflows/windows_networking.yaml"
-      - "packages/windows_networking/example/**"
-      - "packages/windows_networking/lib/**"
-      - "packages/windows_networking/test/**"
-      - "packages/windows_networking/pubspec.yaml"
+      - '.github/workflows/windows_networking.yaml'
+      - 'packages/windows_networking/example/**'
+      - 'packages/windows_networking/lib/**'
+      - 'packages/windows_networking/test/**'
+      - 'packages/windows_networking/pubspec.yaml'
 
 jobs:
   build:

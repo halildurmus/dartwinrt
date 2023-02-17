@@ -3,20 +3,20 @@ name: windows_graphics
 on:
   pull_request:
     paths:
-      - ".github/workflows/windows_graphics.yaml"
-      - "packages/windows_graphics/example/**"
-      - "packages/windows_graphics/lib/**"
-      - "packages/windows_graphics/test/**"
-      - "packages/windows_graphics/pubspec.yaml"
+      - '.github/workflows/windows_graphics.yaml'
+      - 'packages/windows_graphics/example/**'
+      - 'packages/windows_graphics/lib/**'
+      - 'packages/windows_graphics/test/**'
+      - 'packages/windows_graphics/pubspec.yaml'
   push:
     branches:
       - main
     paths:
-      - ".github/workflows/windows_graphics.yaml"
-      - "packages/windows_graphics/example/**"
-      - "packages/windows_graphics/lib/**"
-      - "packages/windows_graphics/test/**"
-      - "packages/windows_graphics/pubspec.yaml"
+      - '.github/workflows/windows_graphics.yaml'
+      - 'packages/windows_graphics/example/**'
+      - 'packages/windows_graphics/lib/**'
+      - 'packages/windows_graphics/test/**'
+      - 'packages/windows_graphics/pubspec.yaml'
 
 jobs:
   build:

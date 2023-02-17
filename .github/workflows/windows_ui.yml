@@ -3,20 +3,20 @@ name: windows_ui
 on:
   pull_request:
     paths:
-      - ".github/workflows/windows_ui.yaml"
-      - "packages/windows_ui/example/**"
-      - "packages/windows_ui/lib/**"
-      - "packages/windows_ui/test/**"
-      - "packages/windows_ui/pubspec.yaml"
+      - '.github/workflows/windows_ui.yaml'
+      - 'packages/windows_ui/example/**'
+      - 'packages/windows_ui/lib/**'
+      - 'packages/windows_ui/test/**'
+      - 'packages/windows_ui/pubspec.yaml'
   push:
     branches:
       - main
     paths:
-      - ".github/workflows/windows_ui.yaml"
-      - "packages/windows_ui/example/**"
-      - "packages/windows_ui/lib/**"
-      - "packages/windows_ui/test/**"
-      - "packages/windows_ui/pubspec.yaml"
+      - '.github/workflows/windows_ui.yaml'
+      - 'packages/windows_ui/example/**'
+      - 'packages/windows_ui/lib/**'
+      - 'packages/windows_ui/test/**'
+      - 'packages/windows_ui/pubspec.yaml'
 
 jobs:
   build:

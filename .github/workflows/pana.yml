@@ -6,7 +6,7 @@ on:
       dart_sdk:
         required: false
         type: string
-        default: "stable"
+        default: 'stable'
       min_score:
         required: false
         type: number
@@ -17,11 +17,11 @@ on:
       runs_on:
         required: false
         type: string
-        default: "ubuntu-latest"
+        default: 'ubuntu-latest'
       working_directory:
         required: false
         type: string
-        default: "."
+        default: '.'
 
 jobs:
   build:

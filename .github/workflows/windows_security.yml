@@ -3,20 +3,20 @@ name: windows_security
 on:
   pull_request:
     paths:
-      - ".github/workflows/windows_security.yaml"
-      - "packages/windows_security/example/**"
-      - "packages/windows_security/lib/**"
-      - "packages/windows_security/test/**"
-      - "packages/windows_security/pubspec.yaml"
+      - '.github/workflows/windows_security.yaml'
+      - 'packages/windows_security/example/**'
+      - 'packages/windows_security/lib/**'
+      - 'packages/windows_security/test/**'
+      - 'packages/windows_security/pubspec.yaml'
   push:
     branches:
       - main
     paths:
-      - ".github/workflows/windows_security.yaml"
-      - "packages/windows_security/example/**"
-      - "packages/windows_security/lib/**"
-      - "packages/windows_security/test/**"
-      - "packages/windows_security/pubspec.yaml"
+      - '.github/workflows/windows_security.yaml'
+      - 'packages/windows_security/example/**'
+      - 'packages/windows_security/lib/**'
+      - 'packages/windows_security/test/**'
+      - 'packages/windows_security/pubspec.yaml'
 
 jobs:
   build:

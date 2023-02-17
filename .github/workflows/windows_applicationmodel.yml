@@ -3,20 +3,20 @@ name: windows_applicationmodel
 on:
   pull_request:
     paths:
-      - ".github/workflows/windows_applicationmodel.yaml"
-      - "packages/windows_applicationmodel/example/**"
-      - "packages/windows_applicationmodel/lib/**"
-      - "packages/windows_applicationmodel/test/**"
-      - "packages/windows_applicationmodel/pubspec.yaml"
+      - '.github/workflows/windows_applicationmodel.yaml'
+      - 'packages/windows_applicationmodel/example/**'
+      - 'packages/windows_applicationmodel/lib/**'
+      - 'packages/windows_applicationmodel/test/**'
+      - 'packages/windows_applicationmodel/pubspec.yaml'
   push:
     branches:
       - main
     paths:
-      - ".github/workflows/windows_applicationmodel.yaml"
-      - "packages/windows_applicationmodel/example/**"
-      - "packages/windows_applicationmodel/lib/**"
-      - "packages/windows_applicationmodel/test/**"
-      - "packages/windows_applicationmodel/pubspec.yaml"
+      - '.github/workflows/windows_applicationmodel.yaml'
+      - 'packages/windows_applicationmodel/example/**'
+      - 'packages/windows_applicationmodel/lib/**'
+      - 'packages/windows_applicationmodel/test/**'
+      - 'packages/windows_applicationmodel/pubspec.yaml'
 
 jobs:
   build:
