@@ -58,7 +58,7 @@ jobs:
         run: dart analyze --fatal-infos --fatal-warnings ${{inputs.analyze_directories}}
 
       - name: 📒 Check API Reference Documentation
-        run: dart doc --dry-run --validate-links
+        run: dart doc --validate-links
 
       - name: 🧪 Run Tests
         run: dart test
