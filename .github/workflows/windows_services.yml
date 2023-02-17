@@ -3,20 +3,20 @@ name: windows_services
 on:
   pull_request:
     paths:
-      - ".github/workflows/windows_services.yaml"
-      - "packages/windows_services/example/**"
-      - "packages/windows_services/lib/**"
-      - "packages/windows_services/test/**"
-      - "packages/windows_services/pubspec.yaml"
+      - '.github/workflows/windows_services.yaml'
+      - 'packages/windows_services/example/**'
+      - 'packages/windows_services/lib/**'
+      - 'packages/windows_services/test/**'
+      - 'packages/windows_services/pubspec.yaml'
   push:
     branches:
       - main
     paths:
-      - ".github/workflows/windows_services.yaml"
-      - "packages/windows_services/example/**"
-      - "packages/windows_services/lib/**"
-      - "packages/windows_services/test/**"
-      - "packages/windows_services/pubspec.yaml"
+      - '.github/workflows/windows_services.yaml'
+      - 'packages/windows_services/example/**'
+      - 'packages/windows_services/lib/**'
+      - 'packages/windows_services/test/**'
+      - 'packages/windows_services/pubspec.yaml'
 
 jobs:
   build:

@@ -3,20 +3,20 @@ name: windows_globalization
 on:
   pull_request:
     paths:
-      - ".github/workflows/windows_globalization.yaml"
-      - "packages/windows_globalization/example/**"
-      - "packages/windows_globalization/lib/**"
-      - "packages/windows_globalization/test/**"
-      - "packages/windows_globalization/pubspec.yaml"
+      - '.github/workflows/windows_globalization.yaml'
+      - 'packages/windows_globalization/example/**'
+      - 'packages/windows_globalization/lib/**'
+      - 'packages/windows_globalization/test/**'
+      - 'packages/windows_globalization/pubspec.yaml'
   push:
     branches:
       - main
     paths:
-      - ".github/workflows/windows_globalization.yaml"
-      - "packages/windows_globalization/example/**"
-      - "packages/windows_globalization/lib/**"
-      - "packages/windows_globalization/test/**"
-      - "packages/windows_globalization/pubspec.yaml"
+      - '.github/workflows/windows_globalization.yaml'
+      - 'packages/windows_globalization/example/**'
+      - 'packages/windows_globalization/lib/**'
+      - 'packages/windows_globalization/test/**'
+      - 'packages/windows_globalization/pubspec.yaml'
 
 jobs:
   build:

@@ -3,20 +3,20 @@ name: windows_gaming
 on:
   pull_request:
     paths:
-      - ".github/workflows/windows_gaming.yaml"
-      - "packages/windows_gaming/example/**"
-      - "packages/windows_gaming/lib/**"
-      - "packages/windows_gaming/test/**"
-      - "packages/windows_gaming/pubspec.yaml"
+      - '.github/workflows/windows_gaming.yaml'
+      - 'packages/windows_gaming/example/**'
+      - 'packages/windows_gaming/lib/**'
+      - 'packages/windows_gaming/test/**'
+      - 'packages/windows_gaming/pubspec.yaml'
   push:
     branches:
       - main
     paths:
-      - ".github/workflows/windows_gaming.yaml"
-      - "packages/windows_gaming/example/**"
-      - "packages/windows_gaming/lib/**"
-      - "packages/windows_gaming/test/**"
-      - "packages/windows_gaming/pubspec.yaml"
+      - '.github/workflows/windows_gaming.yaml'
+      - 'packages/windows_gaming/example/**'
+      - 'packages/windows_gaming/lib/**'
+      - 'packages/windows_gaming/test/**'
+      - 'packages/windows_gaming/pubspec.yaml'
 
 jobs:
   build:

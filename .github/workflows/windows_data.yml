@@ -3,20 +3,20 @@ name: windows_data
 on:
   pull_request:
     paths:
-      - ".github/workflows/windows_data.yaml"
-      - "packages/windows_data/example/**"
-      - "packages/windows_data/lib/**"
-      - "packages/windows_data/test/**"
-      - "packages/windows_data/pubspec.yaml"
+      - '.github/workflows/windows_data.yaml'
+      - 'packages/windows_data/example/**'
+      - 'packages/windows_data/lib/**'
+      - 'packages/windows_data/test/**'
+      - 'packages/windows_data/pubspec.yaml'
   push:
     branches:
       - main
     paths:
-      - ".github/workflows/windows_data.yaml"
-      - "packages/windows_data/example/**"
-      - "packages/windows_data/lib/**"
-      - "packages/windows_data/test/**"
-      - "packages/windows_data/pubspec.yaml"
+      - '.github/workflows/windows_data.yaml'
+      - 'packages/windows_data/example/**'
+      - 'packages/windows_data/lib/**'
+      - 'packages/windows_data/test/**'
+      - 'packages/windows_data/pubspec.yaml'
 
 jobs:
   build:

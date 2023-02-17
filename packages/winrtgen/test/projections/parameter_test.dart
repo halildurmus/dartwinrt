@@ -176,15 +176,60 @@ void main() {
       expect(parameter.localIdentifier, equals('index'));
     });
 
-    test('projects simpleArray', () {
+    test('projects List<String> (FillArray)', () {
       final methodProjection = MethodProjection.fromTypeAndMethodName(
           'Windows.Storage.Pickers.FileExtensionVector', 'GetMany');
       final parameter = methodProjection.parameters.last;
-      expect(parameter, isA<DefaultParameterProjection>());
-      expect(parameter.type, equals('Pointer<IntPtr>'));
-      expect(parameter.preamble, isEmpty);
-      expect(parameter.postamble, isEmpty);
-      expect(parameter.localIdentifier, equals('value'));
+      expect(parameter, isA<DefaultListParameterProjection>());
+      expect(parameter.type, equals('List<String>'));
+      expect(parameter.preamble,
+          equals('final pArray = calloc<IntPtr>(valueSize);'));
+      expect(
+          parameter.postamble,
+          equalsIgnoringWhitespace(
+              'value.addAll(pArray.toList(length: valueSize));\n'
+              'free(pArray);'));
+      expect(parameter.localIdentifier, equals('pArray'));
+    });
+
+    test('projects List<String> (PassArray)', () {
+      final methodProjection = MethodProjection.fromTypeAndMethodName(
+          'Windows.Storage.Pickers.FileExtensionVector', 'ReplaceAll');
+      final parameter = methodProjection.parameters.last;
+      expect(parameter, isA<DefaultListParameterProjection>());
+      expect(parameter.type, equals('List<String>'));
+      expect(
+          parameter.preamble,
+          equalsIgnoringWhitespace('final handles = <int>[];\n'
+              'final pArray = calloc<HSTRING>(value.length);\n'
+              'for (var i = 0; i < value.length; i++) {\n'
+              '  pArray[i] = convertToHString(value.elementAt(i));\n'
+              '  handles.add(pArray[i]);\n'
+              '}'));
+      expect(
+          parameter.postamble,
+          equalsIgnoringWhitespace('handles.forEach(WindowsDeleteString);\n'
+              'free(pArray);'));
+      expect(parameter.localIdentifier, equals('pArray'));
+    });
+
+    test('projects List<String> (ReceiveArray)', () {
+      final methodProjection = MethodProjection.fromTypeAndMethodName(
+          'Windows.Foundation.IPropertyValue', 'GetStringArray');
+      final parameter = methodProjection.parameters.last;
+      expect(parameter, isA<DefaultListParameterProjection>());
+      expect(parameter.type, equals('List<String>'));
+      expect(
+          parameter.preamble,
+          equalsIgnoringWhitespace('final pValueSize = calloc<Uint32>();\n'
+              'final pArray = calloc<Pointer<IntPtr>>();'));
+      expect(
+          parameter.postamble,
+          equalsIgnoringWhitespace(
+              'value.addAll(pArray.value.toList(length: pValueSize.value));\n'
+              'free(pValueSize);\n'
+              'free(pArray);'));
+      expect(parameter.localIdentifier, equals('pArray'));
     });
 
     test('projects String', () {

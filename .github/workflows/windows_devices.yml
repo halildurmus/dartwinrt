@@ -3,20 +3,20 @@ name: windows_devices
 on:
   pull_request:
     paths:
-      - ".github/workflows/windows_devices.yaml"
-      - "packages/windows_devices/example/**"
-      - "packages/windows_devices/lib/**"
-      - "packages/windows_devices/test/**"
-      - "packages/windows_devices/pubspec.yaml"
+      - '.github/workflows/windows_devices.yaml'
+      - 'packages/windows_devices/example/**'
+      - 'packages/windows_devices/lib/**'
+      - 'packages/windows_devices/test/**'
+      - 'packages/windows_devices/pubspec.yaml'
   push:
     branches:
       - main
     paths:
-      - ".github/workflows/windows_devices.yaml"
-      - "packages/windows_devices/example/**"
-      - "packages/windows_devices/lib/**"
-      - "packages/windows_devices/test/**"
-      - "packages/windows_devices/pubspec.yaml"
+      - '.github/workflows/windows_devices.yaml'
+      - 'packages/windows_devices/example/**'
+      - 'packages/windows_devices/lib/**'
+      - 'packages/windows_devices/test/**'
+      - 'packages/windows_devices/pubspec.yaml'
 
 jobs:
   build:

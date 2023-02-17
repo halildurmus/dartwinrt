@@ -165,9 +165,9 @@ void main() {
 
       final stringableListVal =
           map.lookup(Guid.parse(IID_IAppxManifestReader5));
-      expect(stringableListVal, isA<List<IInspectable>>());
-      final stringableList = stringableListVal as List<IInspectable>;
-      expect(getClassName(stringableList.first),
+      expect(stringableListVal, isA<List<Object?>>());
+      final stringableList = stringableListVal as List<Object?>;
+      expect(getClassName(stringableList.first as IInspectable),
           equals('Windows.Foundation.Collections.StringMap'));
 
       expect(map.lookup(Guid.parse(IID_IAppxManifestReader6)),

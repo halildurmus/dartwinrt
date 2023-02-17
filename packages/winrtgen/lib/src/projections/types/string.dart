@@ -6,6 +6,7 @@ import '../getter.dart';
 import '../method.dart';
 import '../parameter.dart';
 import '../setter.dart';
+import 'default.dart';
 
 mixin _StringProjection on MethodProjection {
   @override
@@ -93,4 +94,28 @@ class StringParameterProjection extends ParameterProjection {
 
   @override
   String get localIdentifier => '${name}HString';
+}
+
+/// Parameter projection for `List<String>` parameters.
+class StringListParameterProjection extends DefaultListParameterProjection {
+  StringListParameterProjection(super.parameter);
+
+  @override
+  String get type => 'List<String>';
+
+  @override
+  String get passArrayPreamble => '''
+    final handles = <int>[];
+    final pArray = calloc<HSTRING>(value.length);
+    for (var i = 0; i < value.length; i++) {
+      pArray[i] = convertToHString(value.elementAt(i));
+      handles.add(pArray[i]);
+    }
+''';
+
+  @override
+  String get passArrayPostamble => '''
+    handles.forEach(WindowsDeleteString);
+    free(pArray);
+''';
 }

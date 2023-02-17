@@ -6,6 +6,7 @@ import '../getter.dart';
 import '../method.dart';
 import '../parameter.dart';
 import '../setter.dart';
+import 'default.dart';
 
 mixin _DurationProjection on MethodProjection {
   @override
@@ -85,4 +86,37 @@ class DurationParameterProjection extends ParameterProjection {
 
   @override
   String get localIdentifier => '${name}Duration';
+}
+
+/// Parameter projection for `List<Duration>` parameters.
+class DurationListParameterProjection extends DefaultListParameterProjection {
+  DurationListParameterProjection(super.parameter);
+
+  @override
+  String get type => 'List<Duration>';
+
+  @override
+  String get passArrayPreamble => '''
+    final pArray = calloc<Uint64>(value.length);
+    for (var i = 0; i < value.length; i++) {
+      pArray[i] = value.elementAt(i).inMicroseconds * 10;
+    }
+''';
+
+  @override
+  String get fillArrayPostamble => '''
+    value.addAll(pArray
+        .toList(length: value.length)
+        .map((value) => Duration(microseconds: value ~/ 10)));
+    free(pArray);
+''';
+
+  @override
+  String get receiveArrayPostamble => '''
+    value.addAll(pArray.value
+        .toList(length: pValueSize.value)
+        .map((value) => Duration(microseconds: value ~/ 10)));
+    free(pValueSize);
+    free(pArray);
+''';
 }

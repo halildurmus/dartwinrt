@@ -464,7 +464,10 @@ class IPropertyValue extends IInspectable {
     return retValuePtr.ref;
   }
 
-  void getUInt8Array(Pointer<Uint32> valueSize, Pointer<Pointer<Uint8>> value) {
+  void getUInt8Array(List<int> value) {
+    final pValueSize = calloc<Uint32>();
+    final pArray = calloc<Pointer<Uint8>>();
+
     final hr = ptr.ref.vtable
             .elementAt(26)
             .cast<
@@ -476,12 +479,19 @@ class IPropertyValue extends IInspectable {
             .asFunction<
                 int Function(Pointer, Pointer<Uint32> valueSize,
                     Pointer<Pointer<Uint8>> value)>()(
-        ptr.ref.lpVtbl, valueSize, value);
+        ptr.ref.lpVtbl, pValueSize, pArray);
 
     if (FAILED(hr)) throw WindowsException(hr);
+
+    value.addAll(pArray.value.toList(length: pValueSize.value));
+    free(pValueSize);
+    free(pArray);
   }
 
-  void getInt16Array(Pointer<Uint32> valueSize, Pointer<Pointer<Int16>> value) {
+  void getInt16Array(List<int> value) {
+    final pValueSize = calloc<Uint32>();
+    final pArray = calloc<Pointer<Int16>>();
+
     final hr = ptr.ref.vtable
             .elementAt(27)
             .cast<
@@ -493,13 +503,19 @@ class IPropertyValue extends IInspectable {
             .asFunction<
                 int Function(Pointer, Pointer<Uint32> valueSize,
                     Pointer<Pointer<Int16>> value)>()(
-        ptr.ref.lpVtbl, valueSize, value);
+        ptr.ref.lpVtbl, pValueSize, pArray);
 
     if (FAILED(hr)) throw WindowsException(hr);
+
+    value.addAll(pArray.value.toList(length: pValueSize.value));
+    free(pValueSize);
+    free(pArray);
   }
 
-  void getUInt16Array(
-      Pointer<Uint32> valueSize, Pointer<Pointer<Uint16>> value) {
+  void getUInt16Array(List<int> value) {
+    final pValueSize = calloc<Uint32>();
+    final pArray = calloc<Pointer<Uint16>>();
+
     final hr = ptr.ref.vtable
             .elementAt(28)
             .cast<
@@ -511,12 +527,19 @@ class IPropertyValue extends IInspectable {
             .asFunction<
                 int Function(Pointer, Pointer<Uint32> valueSize,
                     Pointer<Pointer<Uint16>> value)>()(
-        ptr.ref.lpVtbl, valueSize, value);
+        ptr.ref.lpVtbl, pValueSize, pArray);
 
     if (FAILED(hr)) throw WindowsException(hr);
+
+    value.addAll(pArray.value.toList(length: pValueSize.value));
+    free(pValueSize);
+    free(pArray);
   }
 
-  void getInt32Array(Pointer<Uint32> valueSize, Pointer<Pointer<Int32>> value) {
+  void getInt32Array(List<int> value) {
+    final pValueSize = calloc<Uint32>();
+    final pArray = calloc<Pointer<Int32>>();
+
     final hr = ptr.ref.vtable
             .elementAt(29)
             .cast<
@@ -528,13 +551,19 @@ class IPropertyValue extends IInspectable {
             .asFunction<
                 int Function(Pointer, Pointer<Uint32> valueSize,
                     Pointer<Pointer<Int32>> value)>()(
-        ptr.ref.lpVtbl, valueSize, value);
+        ptr.ref.lpVtbl, pValueSize, pArray);
 
     if (FAILED(hr)) throw WindowsException(hr);
+
+    value.addAll(pArray.value.toList(length: pValueSize.value));
+    free(pValueSize);
+    free(pArray);
   }
 
-  void getUInt32Array(
-      Pointer<Uint32> valueSize, Pointer<Pointer<Uint32>> value) {
+  void getUInt32Array(List<int> value) {
+    final pValueSize = calloc<Uint32>();
+    final pArray = calloc<Pointer<Uint32>>();
+
     final hr = ptr.ref.vtable
             .elementAt(30)
             .cast<
@@ -546,12 +575,19 @@ class IPropertyValue extends IInspectable {
             .asFunction<
                 int Function(Pointer, Pointer<Uint32> valueSize,
                     Pointer<Pointer<Uint32>> value)>()(
-        ptr.ref.lpVtbl, valueSize, value);
+        ptr.ref.lpVtbl, pValueSize, pArray);
 
     if (FAILED(hr)) throw WindowsException(hr);
+
+    value.addAll(pArray.value.toList(length: pValueSize.value));
+    free(pValueSize);
+    free(pArray);
   }
 
-  void getInt64Array(Pointer<Uint32> valueSize, Pointer<Pointer<Int64>> value) {
+  void getInt64Array(List<int> value) {
+    final pValueSize = calloc<Uint32>();
+    final pArray = calloc<Pointer<Int64>>();
+
     final hr = ptr.ref.vtable
             .elementAt(31)
             .cast<
@@ -563,13 +599,19 @@ class IPropertyValue extends IInspectable {
             .asFunction<
                 int Function(Pointer, Pointer<Uint32> valueSize,
                     Pointer<Pointer<Int64>> value)>()(
-        ptr.ref.lpVtbl, valueSize, value);
+        ptr.ref.lpVtbl, pValueSize, pArray);
 
     if (FAILED(hr)) throw WindowsException(hr);
+
+    value.addAll(pArray.value.toList(length: pValueSize.value));
+    free(pValueSize);
+    free(pArray);
   }
 
-  void getUInt64Array(
-      Pointer<Uint32> valueSize, Pointer<Pointer<Uint64>> value) {
+  void getUInt64Array(List<int> value) {
+    final pValueSize = calloc<Uint32>();
+    final pArray = calloc<Pointer<Uint64>>();
+
     final hr = ptr.ref.vtable
             .elementAt(32)
             .cast<
@@ -581,13 +623,19 @@ class IPropertyValue extends IInspectable {
             .asFunction<
                 int Function(Pointer, Pointer<Uint32> valueSize,
                     Pointer<Pointer<Uint64>> value)>()(
-        ptr.ref.lpVtbl, valueSize, value);
+        ptr.ref.lpVtbl, pValueSize, pArray);
 
     if (FAILED(hr)) throw WindowsException(hr);
+
+    value.addAll(pArray.value.toList(length: pValueSize.value));
+    free(pValueSize);
+    free(pArray);
   }
 
-  void getSingleArray(
-      Pointer<Uint32> valueSize, Pointer<Pointer<Float>> value) {
+  void getSingleArray(List<double> value) {
+    final pValueSize = calloc<Uint32>();
+    final pArray = calloc<Pointer<Float>>();
+
     final hr = ptr.ref.vtable
             .elementAt(33)
             .cast<
@@ -599,13 +647,19 @@ class IPropertyValue extends IInspectable {
             .asFunction<
                 int Function(Pointer, Pointer<Uint32> valueSize,
                     Pointer<Pointer<Float>> value)>()(
-        ptr.ref.lpVtbl, valueSize, value);
+        ptr.ref.lpVtbl, pValueSize, pArray);
 
     if (FAILED(hr)) throw WindowsException(hr);
+
+    value.addAll(pArray.value.toList(length: pValueSize.value));
+    free(pValueSize);
+    free(pArray);
   }
 
-  void getDoubleArray(
-      Pointer<Uint32> valueSize, Pointer<Pointer<Double>> value) {
+  void getDoubleArray(List<double> value) {
+    final pValueSize = calloc<Uint32>();
+    final pArray = calloc<Pointer<Double>>();
+
     final hr = ptr.ref.vtable
             .elementAt(34)
             .cast<
@@ -617,13 +671,19 @@ class IPropertyValue extends IInspectable {
             .asFunction<
                 int Function(Pointer, Pointer<Uint32> valueSize,
                     Pointer<Pointer<Double>> value)>()(
-        ptr.ref.lpVtbl, valueSize, value);
+        ptr.ref.lpVtbl, pValueSize, pArray);
 
     if (FAILED(hr)) throw WindowsException(hr);
+
+    value.addAll(pArray.value.toList(length: pValueSize.value));
+    free(pValueSize);
+    free(pArray);
   }
 
-  void getChar16Array(
-      Pointer<Uint32> valueSize, Pointer<Pointer<Uint16>> value) {
+  void getChar16Array(List<int> value) {
+    final pValueSize = calloc<Uint32>();
+    final pArray = calloc<Pointer<Uint16>>();
+
     final hr = ptr.ref.vtable
             .elementAt(35)
             .cast<
@@ -635,13 +695,19 @@ class IPropertyValue extends IInspectable {
             .asFunction<
                 int Function(Pointer, Pointer<Uint32> valueSize,
                     Pointer<Pointer<Uint16>> value)>()(
-        ptr.ref.lpVtbl, valueSize, value);
+        ptr.ref.lpVtbl, pValueSize, pArray);
 
     if (FAILED(hr)) throw WindowsException(hr);
+
+    value.addAll(pArray.value.toList(length: pValueSize.value));
+    free(pValueSize);
+    free(pArray);
   }
 
-  void getBooleanArray(
-      Pointer<Uint32> valueSize, Pointer<Pointer<Bool>> value) {
+  void getBooleanArray(List<bool> value) {
+    final pValueSize = calloc<Uint32>();
+    final pArray = calloc<Pointer<Bool>>();
+
     final hr = ptr.ref.vtable
             .elementAt(36)
             .cast<
@@ -653,13 +719,19 @@ class IPropertyValue extends IInspectable {
             .asFunction<
                 int Function(Pointer, Pointer<Uint32> valueSize,
                     Pointer<Pointer<Bool>> value)>()(
-        ptr.ref.lpVtbl, valueSize, value);
+        ptr.ref.lpVtbl, pValueSize, pArray);
 
     if (FAILED(hr)) throw WindowsException(hr);
+
+    value.addAll(pArray.value.toList(length: pValueSize.value));
+    free(pValueSize);
+    free(pArray);
   }
 
-  void getStringArray(
-      Pointer<Uint32> valueSize, Pointer<Pointer<IntPtr>> value) {
+  void getStringArray(List<String> value) {
+    final pValueSize = calloc<Uint32>();
+    final pArray = calloc<Pointer<IntPtr>>();
+
     final hr = ptr.ref.vtable
             .elementAt(37)
             .cast<
@@ -671,13 +743,19 @@ class IPropertyValue extends IInspectable {
             .asFunction<
                 int Function(Pointer, Pointer<Uint32> valueSize,
                     Pointer<Pointer<IntPtr>> value)>()(
-        ptr.ref.lpVtbl, valueSize, value);
+        ptr.ref.lpVtbl, pValueSize, pArray);
 
     if (FAILED(hr)) throw WindowsException(hr);
+
+    value.addAll(pArray.value.toList(length: pValueSize.value));
+    free(pValueSize);
+    free(pArray);
   }
 
-  void getInspectableArray(
-      Pointer<Uint32> valueSize, Pointer<Pointer<COMObject>> value) {
+  void getInspectableArray(List<Object?> value) {
+    final pValueSize = calloc<Uint32>();
+    final pArray = calloc<Pointer<COMObject>>();
+
     final hr = ptr.ref.vtable
             .elementAt(38)
             .cast<
@@ -689,12 +767,21 @@ class IPropertyValue extends IInspectable {
             .asFunction<
                 int Function(Pointer, Pointer<Uint32> valueSize,
                     Pointer<Pointer<COMObject>> value)>()(
-        ptr.ref.lpVtbl, valueSize, value);
+        ptr.ref.lpVtbl, pValueSize, pArray);
 
     if (FAILED(hr)) throw WindowsException(hr);
+
+    value.addAll(pArray.value
+        .toList(IPropertyValue.fromRawPointer, length: pValueSize.value)
+        .map((e) => e.value));
+    free(pValueSize);
+    free(pArray);
   }
 
-  void getGuidArray(Pointer<Uint32> valueSize, Pointer<Pointer<GUID>> value) {
+  void getGuidArray(List<Guid> value) {
+    final pValueSize = calloc<Uint32>();
+    final pArray = calloc<Pointer<GUID>>();
+
     final hr = ptr.ref.vtable
             .elementAt(39)
             .cast<
@@ -706,13 +793,19 @@ class IPropertyValue extends IInspectable {
             .asFunction<
                 int Function(Pointer, Pointer<Uint32> valueSize,
                     Pointer<Pointer<GUID>> value)>()(
-        ptr.ref.lpVtbl, valueSize, value);
+        ptr.ref.lpVtbl, pValueSize, pArray);
 
     if (FAILED(hr)) throw WindowsException(hr);
+
+    value.addAll(pArray.value.toList(length: pValueSize.value));
+    free(pValueSize);
+    free(pArray);
   }
 
-  void getDateTimeArray(
-      Pointer<Uint32> valueSize, Pointer<Pointer<Uint64>> value) {
+  void getDateTimeArray(List<DateTime> value) {
+    final pValueSize = calloc<Uint32>();
+    final pArray = calloc<Pointer<Uint64>>();
+
     final hr = ptr.ref.vtable
             .elementAt(40)
             .cast<
@@ -724,13 +817,20 @@ class IPropertyValue extends IInspectable {
             .asFunction<
                 int Function(Pointer, Pointer<Uint32> valueSize,
                     Pointer<Pointer<Uint64>> value)>()(
-        ptr.ref.lpVtbl, valueSize, value);
+        ptr.ref.lpVtbl, pValueSize, pArray);
 
     if (FAILED(hr)) throw WindowsException(hr);
+
+    value.addAll(pArray.value.toList(length: pValueSize.value).map((value) =>
+        DateTime.utc(1601, 01, 01).add(Duration(microseconds: value ~/ 10))));
+    free(pValueSize);
+    free(pArray);
   }
 
-  void getTimeSpanArray(
-      Pointer<Uint32> valueSize, Pointer<Pointer<Uint64>> value) {
+  void getTimeSpanArray(List<Duration> value) {
+    final pValueSize = calloc<Uint32>();
+    final pArray = calloc<Pointer<Uint64>>();
+
     final hr = ptr.ref.vtable
             .elementAt(41)
             .cast<
@@ -742,12 +842,21 @@ class IPropertyValue extends IInspectable {
             .asFunction<
                 int Function(Pointer, Pointer<Uint32> valueSize,
                     Pointer<Pointer<Uint64>> value)>()(
-        ptr.ref.lpVtbl, valueSize, value);
+        ptr.ref.lpVtbl, pValueSize, pArray);
 
     if (FAILED(hr)) throw WindowsException(hr);
+
+    value.addAll(pArray.value
+        .toList(length: pValueSize.value)
+        .map((value) => Duration(microseconds: value ~/ 10)));
+    free(pValueSize);
+    free(pArray);
   }
 
-  void getPointArray(Pointer<Uint32> valueSize, Pointer<Pointer<Point>> value) {
+  void getPointArray(List<Point> value) {
+    final pValueSize = calloc<Uint32>();
+    final pArray = calloc<Pointer<Point>>();
+
     final hr = ptr.ref.vtable
             .elementAt(42)
             .cast<
@@ -759,12 +868,19 @@ class IPropertyValue extends IInspectable {
             .asFunction<
                 int Function(Pointer, Pointer<Uint32> valueSize,
                     Pointer<Pointer<Point>> value)>()(
-        ptr.ref.lpVtbl, valueSize, value);
+        ptr.ref.lpVtbl, pValueSize, pArray);
 
     if (FAILED(hr)) throw WindowsException(hr);
+
+    value.addAll(pArray.value.toList(length: pValueSize.value));
+    free(pValueSize);
+    free(pArray);
   }
 
-  void getSizeArray(Pointer<Uint32> valueSize, Pointer<Pointer<Size>> value) {
+  void getSizeArray(List<Size> value) {
+    final pValueSize = calloc<Uint32>();
+    final pArray = calloc<Pointer<Size>>();
+
     final hr = ptr.ref.vtable
             .elementAt(43)
             .cast<
@@ -776,12 +892,19 @@ class IPropertyValue extends IInspectable {
             .asFunction<
                 int Function(Pointer, Pointer<Uint32> valueSize,
                     Pointer<Pointer<Size>> value)>()(
-        ptr.ref.lpVtbl, valueSize, value);
+        ptr.ref.lpVtbl, pValueSize, pArray);
 
     if (FAILED(hr)) throw WindowsException(hr);
+
+    value.addAll(pArray.value.toList(length: pValueSize.value));
+    free(pValueSize);
+    free(pArray);
   }
 
-  void getRectArray(Pointer<Uint32> valueSize, Pointer<Pointer<Rect>> value) {
+  void getRectArray(List<Rect> value) {
+    final pValueSize = calloc<Uint32>();
+    final pArray = calloc<Pointer<Rect>>();
+
     final hr = ptr.ref.vtable
             .elementAt(44)
             .cast<
@@ -793,8 +916,12 @@ class IPropertyValue extends IInspectable {
             .asFunction<
                 int Function(Pointer, Pointer<Uint32> valueSize,
                     Pointer<Pointer<Rect>> value)>()(
-        ptr.ref.lpVtbl, valueSize, value);
+        ptr.ref.lpVtbl, pValueSize, pArray);
 
     if (FAILED(hr)) throw WindowsException(hr);
+
+    value.addAll(pArray.value.toList(length: pValueSize.value));
+    free(pValueSize);
+    free(pArray);
   }
 }

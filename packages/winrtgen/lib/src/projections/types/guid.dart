@@ -6,6 +6,7 @@ import '../getter.dart';
 import '../method.dart';
 import '../parameter.dart';
 import '../setter.dart';
+import 'default.dart';
 
 mixin _GuidProjection on MethodProjection {
   @override
@@ -87,4 +88,29 @@ class GuidParameterProjection extends ParameterProjection {
 
   @override
   String get localIdentifier => '${name}NativeGuidPtr.ref';
+}
+
+/// Parameter projection for `List<Guid>` parameters.
+class GuidListParameterProjection extends DefaultListParameterProjection {
+  GuidListParameterProjection(super.parameter);
+
+  @override
+  String get type => 'List<Guid>';
+
+  @override
+  String get passArrayPreamble => '''
+    final nativeGuids = <Pointer<GUID>>[];
+    final pArray = calloc<GUID>(value.length);
+    for (var i = 0; i < value.length; i++) {
+      final nativeGuidPtr = value.elementAt(i).toNativeGUID();
+      pArray[i] = nativeGuidPtr.ref;
+      nativeGuids.add(nativeGuidPtr);
+    }
+''';
+
+  @override
+  String get passArrayPostamble => '''
+    nativeGuids.forEach(free);
+    free(pArray);
+''';
 }

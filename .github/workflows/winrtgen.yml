@@ -3,22 +3,22 @@ name: winrtgen
 on:
   pull_request:
     paths:
-      - ".github/workflows/winrtgen.yaml"
-      - "packages/winrtgen/bin/**"
-      - "packages/winrtgen/example/**"
-      - "packages/winrtgen/lib/**"
-      - "packages/winrtgen/test/**"
-      - "packages/winrtgen/pubspec.yaml"
+      - '.github/workflows/winrtgen.yaml'
+      - 'packages/winrtgen/bin/**'
+      - 'packages/winrtgen/example/**'
+      - 'packages/winrtgen/lib/**'
+      - 'packages/winrtgen/test/**'
+      - 'packages/winrtgen/pubspec.yaml'
   push:
     branches:
       - main
     paths:
-      - ".github/workflows/winrtgen.yaml"
-      - "packages/winrtgen/bin/**"
-      - "packages/winrtgen/example/**"
-      - "packages/winrtgen/lib/**"
-      - "packages/winrtgen/test/**"
-      - "packages/winrtgen/pubspec.yaml"
+      - '.github/workflows/winrtgen.yaml'
+      - 'packages/winrtgen/bin/**'
+      - 'packages/winrtgen/example/**'
+      - 'packages/winrtgen/lib/**'
+      - 'packages/winrtgen/test/**'
+      - 'packages/winrtgen/pubspec.yaml'
 
 jobs:
   build:

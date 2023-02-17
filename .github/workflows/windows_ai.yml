@@ -3,20 +3,20 @@ name: windows_ai
 on:
   pull_request:
     paths:
-      - ".github/workflows/windows_ai.yaml"
-      - "packages/windows_ai/example/**"
-      - "packages/windows_ai/lib/**"
-      - "packages/windows_ai/test/**"
-      - "packages/windows_ai/pubspec.yaml"
+      - '.github/workflows/windows_ai.yaml'
+      - 'packages/windows_ai/example/**'
+      - 'packages/windows_ai/lib/**'
+      - 'packages/windows_ai/test/**'
+      - 'packages/windows_ai/pubspec.yaml'
   push:
     branches:
       - main
     paths:
-      - ".github/workflows/windows_ai.yaml"
-      - "packages/windows_ai/example/**"
-      - "packages/windows_ai/lib/**"
-      - "packages/windows_ai/test/**"
-      - "packages/windows_ai/pubspec.yaml"
+      - '.github/workflows/windows_ai.yaml'
+      - 'packages/windows_ai/example/**'
+      - 'packages/windows_ai/lib/**'
+      - 'packages/windows_ai/test/**'
+      - 'packages/windows_ai/pubspec.yaml'
 
 jobs:
   build:

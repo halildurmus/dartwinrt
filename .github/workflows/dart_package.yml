@@ -6,23 +6,23 @@ on:
       analyze_directories:
         required: false
         type: string
-        default: "lib test"
+        default: 'lib test'
       dart_sdk:
         required: false
         type: string
-        default: "stable"
+        default: 'stable'
       runs_on:
         required: false
         type: string
-        default: "ubuntu-latest"
+        default: 'ubuntu-latest'
       setup:
         required: false
         type: string
-        default: ""
+        default: ''
       working_directory:
         required: false
         type: string
-        default: "."
+        default: '.'
 
 jobs:
   build:
@@ -58,7 +58,7 @@ jobs:
         run: dart analyze --fatal-infos --fatal-warnings ${{inputs.analyze_directories}}
 
       - name: 📒 Check API Reference Documentation
-        run: dart doc --dry-run --validate-links
+        run: dart doc --validate-links
 
       - name: 🧪 Run Tests
         run: dart test

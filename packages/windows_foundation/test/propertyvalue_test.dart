@@ -4,9 +4,6 @@
 
 @TestOn('windows')
 
-import 'dart:ffi';
-
-import 'package:ffi/ffi.dart';
 import 'package:test/test.dart';
 import 'package:win32/win32.dart';
 import 'package:windows_foundation/internal.dart';
@@ -30,23 +27,18 @@ void main() {
   });
 
   test('UInt8Array', () {
-    final array = calloc<Uint8>(5);
-    for (var idx = 0; idx < 5; idx++) {
-      array[idx] = (10 * idx) + 10;
-    }
-    final pv = PropertyValue.createUInt8Array(5, array);
+    final list = <int>[for (var i = 0; i < 5; i++) (10 * i) + 10];
+    final pv = PropertyValue.createUInt8Array(list);
     expect(pv.type, equals(PropertyType.uint8Array));
 
-    final arraySize = calloc<Uint32>();
-    final newArray = calloc<Pointer<Uint8>>();
-
-    pv.getUInt8Array(arraySize, newArray);
-    expect(arraySize.value, equals(5));
-    expect(newArray.value[0], equals(10));
-    expect(newArray.value[1], equals(20));
-    expect(newArray.value[2], equals(30));
-    expect(newArray.value[3], equals(40));
-    expect(newArray.value[4], equals(50));
+    final newList = <int>[];
+    pv.getUInt8Array(newList);
+    expect(newList.length, equals(5));
+    expect(newList[0], equals(10));
+    expect(newList[1], equals(20));
+    expect(newList[2], equals(30));
+    expect(newList[3], equals(40));
+    expect(newList[4], equals(50));
     expect(pv.value, equals([10, 20, 30, 40, 50]));
     pv.release();
   });
@@ -60,23 +52,18 @@ void main() {
   });
 
   test('UInt16Array', () {
-    final array = calloc<Uint16>(5);
-    for (var idx = 0; idx < 5; idx++) {
-      array[idx] = (100 * idx) + 100;
-    }
-    final pv = PropertyValue.createUInt16Array(5, array);
+    final list = <int>[for (var i = 0; i < 5; i++) (100 * i) + 100];
+    final pv = PropertyValue.createUInt16Array(list);
     expect(pv.type, equals(PropertyType.uint16Array));
 
-    final arraySize = calloc<Uint32>();
-    final newArray = calloc<Pointer<Uint16>>();
-
-    pv.getUInt16Array(arraySize, newArray);
-    expect(arraySize.value, equals(5));
-    expect(newArray.value[0], equals(100));
-    expect(newArray.value[1], equals(200));
-    expect(newArray.value[2], equals(300));
-    expect(newArray.value[3], equals(400));
-    expect(newArray.value[4], equals(500));
+    final newList = <int>[];
+    pv.getUInt16Array(newList);
+    expect(newList.length, equals(5));
+    expect(newList[0], equals(100));
+    expect(newList[1], equals(200));
+    expect(newList[2], equals(300));
+    expect(newList[3], equals(400));
+    expect(newList[4], equals(500));
     expect(pv.value, equals([100, 200, 300, 400, 500]));
     pv.release();
   });
@@ -90,21 +77,20 @@ void main() {
   });
 
   test('GuidArray', () {
-    final array = calloc<GUID>(3);
-    array[0].setGUID(IID_IAsyncAction);
-    array[1].setGUID(IID_IAsyncInfo);
-    array[2].setGUID(IID_IClosable);
-    final pv = PropertyValue.createGuidArray(3, array);
+    final list = <Guid>[
+      Guid.parse(IID_IAsyncAction),
+      Guid.parse(IID_IAsyncInfo),
+      Guid.parse(IID_IClosable)
+    ];
+    final pv = PropertyValue.createGuidArray(list);
     expect(pv.type, equals(PropertyType.guidArray));
 
-    final arraySize = calloc<Uint32>();
-    final newArray = calloc<Pointer<GUID>>();
-
-    pv.getGuidArray(arraySize, newArray);
-    expect(arraySize.value, equals(3));
-    expect(newArray.value[0].toString(), equals(IID_IAsyncAction));
-    expect(newArray.value[1].toString(), equals(IID_IAsyncInfo));
-    expect(newArray.value[2].toString(), equals(IID_IClosable));
+    final newList = <Guid>[];
+    pv.getGuidArray(newList);
+    expect(newList.length, equals(3));
+    expect(newList[0].toString(), equals(IID_IAsyncAction));
+    expect(newList[1].toString(), equals(IID_IAsyncInfo));
+    expect(newList[2].toString(), equals(IID_IClosable));
     expect(
         pv.value,
         equals([
@@ -132,31 +118,20 @@ void main() {
   });
 
   test('InspectableArray', () {
-    final stringMap = StringMap();
-    final propertySet = PropertySet();
-    final array = calloc<COMObject>(2);
-    array[0] = stringMap.ptr.ref;
-    array[1] = propertySet.ptr.ref;
-    final pv = PropertyValue.createInspectableArray(2, array);
+    final list = <Object?>[5, true, null, StringMap(), PropertySet()];
+    final pv = PropertyValue.createInspectableArray(list);
     expect(pv.type, equals(PropertyType.inspectableArray));
 
-    final arraySize = calloc<Uint32>();
-    final newArray = calloc<Pointer<COMObject>>();
-
-    pv.getInspectableArray(arraySize, newArray);
-    expect(arraySize.value, equals(2));
-    final list = newArray.value.toList(IInspectable.new, length: 2);
-    final firstElement = list.first;
-    final lastElement = list.last;
-    expect(getClassName(firstElement),
+    final newList = <Object?>[];
+    pv.getInspectableArray(newList);
+    expect(newList.length, equals(5));
+    expect(newList[0], equals(5));
+    expect(newList[1], isTrue);
+    expect(newList[2], isNull);
+    expect(getClassName(newList[3] as IInspectable),
         equals('Windows.Foundation.Collections.StringMap'));
-    expect(getClassName(lastElement),
+    expect(getClassName(newList[4] as IInspectable),
         equals('Windows.Foundation.Collections.PropertySet'));
-
-    lastElement.release();
-    firstElement.release();
-    free(newArray);
     pv.release();
-    free(array);
   });
 }

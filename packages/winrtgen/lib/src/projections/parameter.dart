@@ -36,14 +36,44 @@ abstract class ParameterProjection {
 
   /// Returns the appropriate projection for the parameter.
   factory ParameterProjection.create(Parameter parameter) {
-    final projectedType =
+    final projectionType =
         TypeProjection(parameter.typeIdentifier).projectionType;
-    if (projectedType == ProjectionType.uri &&
+    if (projectionType == ProjectionType.uri &&
         methodBelongsToUriRuntimeClass(parameter.parent)) {
       return InterfaceParameterProjection(parameter);
     }
 
-    switch (projectedType) {
+    if (projectionType == ProjectionType.simpleArray) {
+      final wrappedType = TypeProjection(parameter.typeIdentifier.baseType ==
+                  BaseType.referenceTypeModifier
+              ? parameter.typeIdentifier.typeArg!.typeArg!
+              : parameter.typeIdentifier.typeArg!)
+          .projectionType;
+      switch (wrappedType) {
+        case ProjectionType.dateTime:
+          return DateTimeListParameterProjection(parameter);
+        case ProjectionType.duration:
+          return DurationListParameterProjection(parameter);
+        case ProjectionType.guid:
+          return GuidListParameterProjection(parameter);
+        case ProjectionType.class_:
+        case ProjectionType.interface:
+          return InterfaceListParameterProjection(parameter);
+        case ProjectionType.object:
+          return ObjectListParameterProjection(parameter);
+        case ProjectionType.string:
+          return StringListParameterProjection(parameter);
+        case ProjectionType.uri:
+          return UriListParameterProjection(parameter);
+        case ProjectionType.dartPrimitive:
+        case ProjectionType.struct:
+          return DefaultListParameterProjection(parameter);
+        default:
+          throw UnsupportedError('Unsupported parameter type: $wrappedType');
+      }
+    }
+
+    switch (projectionType) {
       case ProjectionType.class_:
         return ClassParameterProjection(parameter);
       case ProjectionType.interface:
@@ -69,10 +99,9 @@ abstract class ParameterProjection {
       case ProjectionType.dartPrimitive:
       case ProjectionType.delegate:
       case ProjectionType.pointer:
-      case ProjectionType.simpleArray:
         return DefaultParameterProjection(parameter);
       default:
-        throw UnsupportedError('Unsupported parameter type: $projectedType');
+        throw UnsupportedError('Unsupported parameter type: $projectionType');
     }
   }
 

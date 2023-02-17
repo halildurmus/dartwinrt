@@ -3,20 +3,20 @@ name: windows_storage
 on:
   pull_request:
     paths:
-      - ".github/workflows/windows_storage.yaml"
-      - "packages/windows_storage/example/**"
-      - "packages/windows_storage/lib/**"
-      - "packages/windows_storage/test/**"
-      - "packages/windows_storage/pubspec.yaml"
+      - '.github/workflows/windows_storage.yaml'
+      - 'packages/windows_storage/example/**'
+      - 'packages/windows_storage/lib/**'
+      - 'packages/windows_storage/test/**'
+      - 'packages/windows_storage/pubspec.yaml'
   push:
     branches:
       - main
     paths:
-      - ".github/workflows/windows_storage.yaml"
-      - "packages/windows_storage/example/**"
-      - "packages/windows_storage/lib/**"
-      - "packages/windows_storage/test/**"
-      - "packages/windows_storage/pubspec.yaml"
+      - '.github/workflows/windows_storage.yaml'
+      - 'packages/windows_storage/example/**'
+      - 'packages/windows_storage/lib/**'
+      - 'packages/windows_storage/test/**'
+      - 'packages/windows_storage/pubspec.yaml'
 
 jobs:
   build:
