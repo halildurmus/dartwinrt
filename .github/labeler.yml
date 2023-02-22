@@ -55,27 +55,32 @@
 'p: winrtgen':
   - packages/winrtgen/**/*
 
-chore:
-  - all: ['packages/*/CHANGELOG.md', 'packages/*/pubspec.yaml']
+# The matchers below are not working as intended.
+# There is an open PR (https://github.com/actions/labeler/pull/487) that adds
+# 'allofany' matcher to the labeler. We should change the 'all' matchers below
+# to 'allOfAny' if it lands.
 
-ci:
-  - all:
-      [
-        '.github/dependabot.yml',
-        '.github/labeler.yml',
-        '.github/workflows/*.yml',
-      ]
+# chore:
+#   - all: ['packages/*/CHANGELOG.md', 'packages/*/pubspec.yaml']
 
-documentation:
-  - all:
-      [
-        'README.md',
-        'doc/*.md',
-        'packages/README.md',
-        'packages/*/README.md',
-        'packages/*/example/README.md',
-        'tool/README.md',
-      ]
+# ci:
+#   - all:
+#       [
+#         '.github/dependabot.yml',
+#         '.github/labeler.yml',
+#         '.github/workflows/*.yml',
+#       ]
+
+# documentation:
+#   - all:
+#       [
+#         'README.md',
+#         'doc/*.md',
+#         'packages/README.md',
+#         'packages/*/README.md',
+#         'packages/*/example/README.md',
+#         'tool/README.md',
+#       ]
 
 test:
   - all: ['packages/*/test/*_test.dart']
