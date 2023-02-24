@@ -11,6 +11,7 @@ export 'src/extensions/extensions.dart';
 export 'src/models/models.dart';
 export 'src/projections/class.dart';
 export 'src/projections/enum.dart';
+export 'src/projections/generic_interface.dart';
 export 'src/projections/getter.dart';
 export 'src/projections/interface.dart';
 export 'src/projections/method.dart';

@@ -83,7 +83,8 @@ class IWwwFormUrlDecoderRuntimeClass extends IInspectable
       _iVectorView.indexOf(value, index);
 
   @override
-  int getMany(int startIndex, int valueSize, Pointer<NativeType> value) =>
+  int getMany(
+          int startIndex, int valueSize, List<IWwwFormUrlDecoderEntry> value) =>
       _iVectorView.getMany(startIndex, valueSize, value);
 
   @override

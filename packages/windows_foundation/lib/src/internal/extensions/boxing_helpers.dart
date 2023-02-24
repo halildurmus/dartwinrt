@@ -95,8 +95,8 @@ extension DoubleHelpers on double {
     switch (type) {
       case DoubleType.double:
         return IID_IReference_Double;
-      case DoubleType.single:
-        return IID_IReference_Single;
+      case DoubleType.float:
+        return IID_IReference_Float;
     }
   }
 
@@ -105,7 +105,7 @@ extension DoubleHelpers on double {
     switch (type) {
       case DoubleType.double:
         return PropertyValue.createDouble(this);
-      case DoubleType.single:
+      case DoubleType.float:
         return PropertyValue.createSingle(this);
     }
   }
@@ -128,8 +128,8 @@ extension DoubleListHelpers on List<double> {
     switch (type) {
       case DoubleType.double:
         return IID_IReferenceArray_Double;
-      case DoubleType.single:
-        return IID_IReferenceArray_Single;
+      case DoubleType.float:
+        return IID_IReferenceArray_Float;
     }
   }
 
@@ -138,7 +138,7 @@ extension DoubleListHelpers on List<double> {
     switch (type) {
       case DoubleType.double:
         return PropertyValue.createDoubleArray(this);
-      case DoubleType.single:
+      case DoubleType.float:
         return PropertyValue.createSingleArray(this);
     }
   }

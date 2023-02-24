@@ -10,11 +10,15 @@ import '../utils.dart';
 /// Represents a Dart projection of a WinRT enumeration typedef.
 class EnumProjection {
   EnumProjection(this.typeDef, {this.comment = '', String? enumName})
-      : enumName = enumName ?? typeDef.shortName;
+      : enumName = enumName ?? typeDef.shortName,
+        // The first field is always the special field value__
+        fields = typeDef.fields.skip(1).toList()
+          ..sort((a, b) => a.value.compareTo(b.value));
 
   final TypeDef typeDef;
   final String comment;
   final String enumName;
+  final List<Field> fields;
 
   /// Returns the appropriate enum projection for the [typeDef] depending on
   /// whether it has the `System.FlagsAttribute` attribute.
@@ -54,10 +58,6 @@ class EnumProjection {
   }
 
   String get classDeclaration => 'enum $enumName implements WinRTEnum {';
-
-  // The first field is always the special field value__
-  List<Field> get fields => typeDef.fields.skip(1).toList()
-    ..sort((a, b) => a.value.compareTo(b.value));
 
   String safeIdentifier(String name) =>
       safeIdentifierForString(name.toCamelCase());

@@ -136,39 +136,19 @@ class MethodForwardersProjection {
     final methods = <String>[];
 
     for (final methodProjection in methodProjections) {
-      if (['IMap', 'IMapView'].contains(shortInterfaceName)) {
-        // Use custom forwarder for Insert to make its value parameter nullable
-        if (methodProjection.name == 'Insert') {
-          // To insert null values in JsonObject, JsonValue.createNullValue()
-          // needs to be used. jsonObjectInsertForwarder() passes
-          // JsonValue.createNullValue() if the value argument is null.
-          if (interfaceProjection.shortName == 'JsonObject') {
-            methods.add(jsonObjectInsertForwarder());
-            continue;
-          }
-
-          methods.add(mapInsertForwarder(methodProjection.shortForm));
-          continue;
-        }
-
-        // Use custom forwarder for Lookup to make its return type nullable.
-        if (methodProjection.name == 'Lookup') {
-          methods.add(mapLookupForwarder(methodProjection.shortForm));
-          continue;
-        }
+      if (interfaceProjection.shortName == 'JsonObject' &&
+          methodProjection.name == 'Insert') {
+        // To insert null values in JsonObject, JsonValue.createNullValue()
+        // needs to be used. jsonObjectInsertForwarder() passes
+        // JsonValue.createNullValue() if the value argument is null.
+        methods.add(jsonObjectInsertForwarder());
+        continue;
       }
 
       if (['IVector', 'IVectorView'].contains(shortInterfaceName)) {
         // Use custom forwarder for Append to make its parameter non-nullable.
         if (methodProjection.name == 'Append') {
           methods.add(vectorAppendForwarder());
-          continue;
-        }
-
-        // Use custom forwarder for GetMany to change the type of the value
-        // parameter to Pointer<NativeType>.
-        if (methodProjection.name == 'GetMany') {
-          methods.add(vectorGetManyForwarder(methodProjection.shortForm));
           continue;
         }
 
@@ -183,13 +163,6 @@ class MethodForwardersProjection {
         // non-nullable.
         if (methodProjection.name == 'InsertAt') {
           methods.add(vectorInsertAtForwarder());
-          continue;
-        }
-
-        // Use custom forwarder for ReplaceAll to change the type of the value
-        // parameter to List<...>.
-        if (methodProjection.name == 'ReplaceAll') {
-          methods.add(vectorReplaceAllForwarder());
           continue;
         }
 
@@ -236,38 +209,10 @@ class MethodForwardersProjection {
 ''';
   }
 
-  String mapInsertForwarder(String methodShortForm) {
-    final keyType = typeArgs.split(', ')[0];
-    final valueType = typeArgs.split(', ')[1];
-    return '''
-  @override
-  bool insert($keyType key, $valueType value) => $fieldIdentifier.$methodShortForm;
-''';
-  }
-
-  String mapLookupForwarder(String methodShortForm) {
-    final keyType = typeArgs.split(', ')[0];
-    final returnType = typeArgs.split(', ')[1];
-    return '''
-  @override
-  $returnType lookup($keyType key) => $fieldIdentifier.$methodShortForm;
-''';
-  }
-
   String vectorAppendForwarder() => '''
   @override
   void append(${stripQuestionMarkSuffix(typeArgs)} value) =>
       $fieldIdentifier.append(value);
-''';
-
-  // Pointer<NativeType> is used as the value parameter's type since the getMany
-  // function in IVector and IVectorView implementations also use it this way in
-  // order to handle various types such as Pointer<Int32> and
-  // Pointer<COMObject>.
-  String vectorGetManyForwarder(String methodShortForm) => '''
-  @override
-  int getMany(int startIndex, int valueSize, Pointer<NativeType> value) =>
-      $fieldIdentifier.$methodShortForm;
 ''';
 
   String vectorIndexOfForwarder() => '''
@@ -280,11 +225,6 @@ class MethodForwardersProjection {
   @override
   void insertAt(int index, ${stripQuestionMarkSuffix(typeArgs)} value) =>
       $fieldIdentifier.insertAt(index, value);
-''';
-
-  String vectorReplaceAllForwarder() => '''
-  @override
-  void replaceAll(List<$typeArgs> value) => $fieldIdentifier.replaceAll(value);
 ''';
 
   String vectorSetAtForwarder() => '''

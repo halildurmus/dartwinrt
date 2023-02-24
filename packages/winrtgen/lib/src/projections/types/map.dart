@@ -37,6 +37,13 @@ mixin _MapProjection on MethodProjection {
     final creator =
         returnTypeProjection.typeIdentifier.typeArg!.typeArg!.creator;
 
+    // If the key type argument is an int, 'intType' parameter must be specified
+    // so that the IMap and IMapView implementations can use the appropriate
+    // native integer type
+    final intType = mapTypeArgs.split(', ')[0] == 'int'
+        ? 'IntType.${keyArgTypeProjection.nativeType.toLowerCase()}'
+        : null;
+
     // The IID for IIterable<IKeyValuePair<K, V>> must be passed in the
     // 'iterableIid' parameter so that the 'IMap' and 'IMapView' implementations
     // can use the correct IID when instantiating the IIterable object
@@ -51,6 +58,9 @@ mixin _MapProjection on MethodProjection {
       args.add('enumCreator: $creator');
     } else if (creator != null) {
       args.add('creator: $creator');
+    }
+    if (intType != null) {
+      args.add('intType: $intType');
     }
 
     return ', ${args.join(', ')}';

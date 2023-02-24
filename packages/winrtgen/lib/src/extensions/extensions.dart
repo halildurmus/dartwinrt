@@ -5,5 +5,7 @@
 export 'base_type_helpers.dart';
 export 'camel_case.dart';
 export 'import_helpers.dart';
+export 'method_helpers.dart';
+export 'parameter_helpers.dart';
 export 'type_identifier_helpers.dart';
 export 'typedef_helpers.dart';

@@ -58,7 +58,7 @@ class DefaultSetterProjection extends SetterProjection {
 
   @override
   String get methodProjection => '''
-  set $camelCasedName(${parameter.type} value) {
+  set $camelCasedName(${param.type} value) {
     ${ffiCall(params: 'value')}
   }
 ''';
@@ -75,7 +75,20 @@ class DefaultParameterProjection extends ParameterProjection {
   String get postamble => '';
 
   @override
-  String get localIdentifier => identifier;
+  String get localIdentifier {
+    // Handle the __valueSize identifier specially as simpleArray params
+    // are projected as List.
+    // See DefaultListParameterProjection class below.
+    if (parameter.name == '__valueSize') {
+      if (parameter.isInParam) return 'value.length';
+      if (parameter.isOutParam &&
+          parameter.typeIdentifier.baseType == BaseType.pointerTypeModifier) {
+        return 'pValueSize';
+      }
+    }
+
+    return identifier;
+  }
 }
 
 /// Default parameter projection for `List<T>` parameters (defined as
@@ -112,26 +125,24 @@ class DefaultListParameterProjection extends ParameterProjection {
     final pArray = calloc<${typeArgProjection.nativeType}>(value.length);
     for (var i = 0; i < value.length; i++) {
       pArray[i] = value.elementAt(i);
-    }
-''';
+    }''';
 
   String get receiveArrayPreamble => '''
     final pValueSize = calloc<Uint32>();
-    final pArray = calloc<Pointer<${typeArgProjection.nativeType}>>();
-''';
+    final pArray = calloc<Pointer<${typeArgProjection.nativeType}>>();''';
 
   String get fillArrayPostamble => '''
-    value.addAll(pArray.toList(length: valueSize));
-    free(pArray);
-''';
+    if (retValuePtr.value > 0) {
+      value.addAll(pArray.toList(length: valueSize));
+    }
+    free(pArray);''';
 
   String get passArrayPostamble => 'free(pArray);';
 
   String get receiveArrayPostamble => '''
     value.addAll(pArray.value.toList(length: pValueSize.value));
     free(pValueSize);
-    free(pArray);
-''';
+    free(pArray);''';
 
   @override
   String get preamble {

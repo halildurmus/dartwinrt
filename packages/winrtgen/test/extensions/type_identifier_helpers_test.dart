@@ -16,7 +16,7 @@ void main() {
   }
 
   group('creator', () {
-    test('1', () {
+    test('(1)', () {
       final typeDef = MetadataStore.getMetadataForType(
           'Windows.Globalization.ICalendarFactory')!;
       expect(
@@ -28,7 +28,7 @@ void main() {
           equals('Calendar.fromRawPointer'));
     });
 
-    test('2', () {
+    test('(2)', () {
       final typeDef = MetadataStore.getMetadataForType(
           'Windows.Foundation.IPropertyValueStatics')!;
       expect(
@@ -57,7 +57,7 @@ void main() {
           isNull);
     });
 
-    test('3', () {
+    test('(3)', () {
       final typeDef =
           MetadataStore.getMetadataForType('Windows.Data.Json.JsonObject')!;
       expect(
@@ -70,7 +70,7 @@ void main() {
               '(Pointer<COMObject> ptr) => IIterable.fromRawPointer(ptr, creator: (Pointer<COMObject> ptr) => IKeyValuePair.fromRawPointer(ptr, creator: IJsonValue.fromRawPointer))'));
     });
 
-    test('4', () {
+    test('(4)', () {
       final typeDef = MetadataStore.getMetadataForType(
           'Windows.Foundation.Collections.PropertySet')!;
       expect(
@@ -78,7 +78,7 @@ void main() {
           isNull);
     });
 
-    test('5', () {
+    test('(5)', () {
       final typeDef = MetadataStore.getMetadataForType(
           'Windows.Globalization.PhoneNumberFormatting.IPhoneNumberFormatterStatics')!;
       expect(
@@ -91,7 +91,7 @@ void main() {
           equals('PhoneNumberFormatter.fromRawPointer'));
     });
 
-    test('6', () {
+    test('(6)', () {
       final typeDef = MetadataStore.getMetadataForType(
           'Windows.Foundation.Collections.StringMap')!;
       expect(
@@ -114,7 +114,7 @@ void main() {
               "(Pointer<COMObject> ptr) => IMapView.fromRawPointer(ptr, iterableIid: '{e9bdaaf0-cbf6-5c72-be90-29cbf3a1319b}')"));
     });
 
-    test('7', () {
+    test('(7)', () {
       final fileOpenPicker = MetadataStore.getMetadataForType(
           'Windows.Storage.Pickers.IFileOpenPicker')!;
       expect(
@@ -143,7 +143,7 @@ void main() {
               "(Pointer<COMObject> ptr) => IAsyncOperation.fromRawPointer(ptr, creator: (Pointer<COMObject> ptr) => IVectorView.fromRawPointer(ptr, creator: StorageFile.fromRawPointer, iterableIid: '{9ac00304-83ea-5688-87b6-ae38aab65d0b}'))"));
     });
 
-    test('8', () {
+    test('(8)', () {
       final storageFileQueryResult2 = MetadataStore.getMetadataForType(
           'Windows.Storage.Search.IStorageFileQueryResult2')!;
       expect(
@@ -156,7 +156,7 @@ void main() {
               "(Pointer<COMObject> ptr) => IMap.fromRawPointer(ptr, creator: (Pointer<COMObject> ptr) => IVectorView.fromRawPointer(ptr, iterableIid: '{5498f4f3-cee4-5b72-9729-815c4ad7b9dc}'), iterableIid: '{f819a276-b3f5-54d4-b8fd-c9adb7f700e3}')"));
     });
 
-    test('9', () {
+    test('(9)', () {
       final pedometer2 = MetadataStore.getMetadataForType(
           'Windows.Devices.Sensors.IPedometer2')!;
       expect(
@@ -226,7 +226,7 @@ void main() {
   });
 
   group('shortName', () {
-    test('1', () {
+    test('(1)', () {
       final typeDef = MetadataStore.getMetadataForType(
           'Windows.Globalization.ICalendarFactory')!;
       expect(
@@ -238,7 +238,7 @@ void main() {
           equals('Calendar'));
     });
 
-    test('2', () {
+    test('(2)', () {
       final typeDef = MetadataStore.getMetadataForType(
           'Windows.Foundation.IPropertyValueStatics')!;
       expect(
@@ -267,7 +267,7 @@ void main() {
           equals('Duration'));
     });
 
-    test('3', () {
+    test('(3)', () {
       final typeDef = MetadataStore.getMetadataForType(
           'Windows.Devices.Power.IBatteryReport')!;
       expect(
@@ -279,7 +279,7 @@ void main() {
           equals('IReference<int?>'));
     });
 
-    test('4', () {
+    test('(4)', () {
       final typeDef = MetadataStore.getMetadataForType(
           'Windows.Devices.Geolocation.IGeolocatorStatics2')!;
       expect(
@@ -291,7 +291,7 @@ void main() {
           equals('IReference<BasicGeoposition?>'));
     });
 
-    test('5', () {
+    test('(5)', () {
       final typeDef =
           MetadataStore.getMetadataForType('Windows.Data.Json.JsonObject')!;
       expect(typeDef.interfaces[2].typeSpec!.shortName,
@@ -300,7 +300,7 @@ void main() {
           equals('IIterable<IKeyValuePair<String, IJsonValue?>>'));
     });
 
-    test('6', () {
+    test('(6)', () {
       final typeDef = MetadataStore.getMetadataForType(
           'Windows.Foundation.Collections.PropertySet')!;
       expect(
@@ -313,7 +313,7 @@ void main() {
           equals('Object'));
     });
 
-    test('7', () {
+    test('(7)', () {
       final typeDef = MetadataStore.getMetadataForType(
           'Windows.Globalization.PhoneNumberFormatting.IPhoneNumberFormatterStatics')!;
       expect(
@@ -326,7 +326,7 @@ void main() {
           equals('PhoneNumberFormatter'));
     });
 
-    test('8', () {
+    test('(8)', () {
       final typeDef = MetadataStore.getMetadataForType(
           'Windows.Foundation.Collections.StringMap')!;
       expect(typeDef.interfaces[0].typeSpec!.shortName,
@@ -341,7 +341,7 @@ void main() {
           equals('IMapView<String, String>'));
     });
 
-    test('9', () {
+    test('(9)', () {
       final typeDef = MetadataStore.getMetadataForType(
           'Windows.Storage.Pickers.IFileOpenPicker')!;
       expect(
@@ -367,7 +367,7 @@ void main() {
           equals('IAsyncOperation<IVectorView<StorageFile>>'));
     });
 
-    test('10', () {
+    test('(10)', () {
       final typeDef = MetadataStore.getMetadataForType(
           'Windows.Storage.Search.IStorageFileQueryResult2')!;
       expect(
@@ -379,7 +379,7 @@ void main() {
           equals('IMap<String, IVectorView<TextSegment>?>'));
     });
 
-    test('11', () {
+    test('(11)', () {
       final typeDef = MetadataStore.getMetadataForType(
           'Windows.Devices.Sensors.IPedometer2')!;
       expect(

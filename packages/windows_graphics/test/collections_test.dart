@@ -187,38 +187,34 @@ void main() {
     });
 
     test('getMany returns 0 if the vector is empty', () {
-      final pUint32 = allocator<Uint32>();
-
-      expect(vector.getMany(0, 1, pUint32), equals(0));
+      expect(vector.getMany(0, 1, []), equals(0));
     });
 
     test('getMany returns elements starting from index 0', () {
-      final pUint32 = allocator<Uint32>(3);
+      final list = <int>[];
 
       vector
         ..append(5)
         ..append(259)
         ..append(666);
-      expect(vector.getMany(0, 3, pUint32), equals(3));
-      final list = pUint32.asTypedList(vector.size);
+      expect(vector.getMany(0, 3, list), equals(3));
       expect(list.length, equals(3));
-      expect(list.elementAt(0), equals(5));
-      expect(list.elementAt(1), equals(259));
-      expect(list.elementAt(2), equals(666));
+      expect(list[0], equals(5));
+      expect(list[1], equals(259));
+      expect(list[2], equals(666));
     });
 
     test('getMany returns elements starting from index 1', () {
-      final pUint32 = allocator<Uint32>(2);
+      final list = <int>[];
 
       vector
         ..append(5)
         ..append(259)
         ..append(666);
-      expect(vector.getMany(1, 2, pUint32), equals(2));
-      final list = pUint32.asTypedList(2);
+      expect(vector.getMany(1, 2, list), equals(2));
       expect(list.length, equals(2));
-      expect(list.elementAt(0), equals(259));
-      expect(list.elementAt(1), equals(666));
+      expect(list[0], equals(259));
+      expect(list[1], equals(666));
     });
 
     test('replaceAll', () {

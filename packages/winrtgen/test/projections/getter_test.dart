@@ -68,7 +68,7 @@ void main() {
     test('projects class', () {
       final projection = GetterProjection.fromTypeAndMethodName(
           'Windows.Foundation.IUriRuntimeClass', 'get_QueryParsed');
-      expect(projection, isA<ClassGetterProjection>());
+      expect(projection, isA<InspectableGetterProjection>());
       expect(projection.returnType, equals('WwwFormUrlDecoder?'));
       expect(projection.nativePrototype,
           equals('HRESULT Function(Pointer, Pointer<COMObject>)'));
@@ -179,7 +179,7 @@ void main() {
     test('projects interface', () {
       final projection = GetterProjection.fromTypeAndMethodName(
           'Windows.Data.Xml.Dom.IXmlNode', 'get_FirstChild');
-      expect(projection, isA<InterfaceGetterProjection>());
+      expect(projection, isA<InspectableGetterProjection>());
       expect(projection.returnType, equals('IXmlNode?'));
       expect(projection.nativePrototype,
           equals('HRESULT Function(Pointer, Pointer<COMObject>)'));

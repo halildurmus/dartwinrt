@@ -35,73 +35,73 @@ abstract class ParameterProjection {
   final TypeProjection typeProjection;
 
   /// Returns the appropriate projection for the parameter.
-  factory ParameterProjection.create(Parameter parameter) {
-    final projectionType =
-        TypeProjection(parameter.typeIdentifier).projectionType;
-    if (projectionType == ProjectionType.uri &&
-        methodBelongsToUriRuntimeClass(parameter.parent)) {
-      return InterfaceParameterProjection(parameter);
-    }
-
-    if (projectionType == ProjectionType.simpleArray) {
-      final wrappedType = TypeProjection(parameter.typeIdentifier.baseType ==
-                  BaseType.referenceTypeModifier
-              ? parameter.typeIdentifier.typeArg!.typeArg!
-              : parameter.typeIdentifier.typeArg!)
-          .projectionType;
-      switch (wrappedType) {
-        case ProjectionType.dateTime:
-          return DateTimeListParameterProjection(parameter);
-        case ProjectionType.duration:
-          return DurationListParameterProjection(parameter);
-        case ProjectionType.guid:
-          return GuidListParameterProjection(parameter);
-        case ProjectionType.class_:
-        case ProjectionType.interface:
-          return InterfaceListParameterProjection(parameter);
-        case ProjectionType.object:
-          return ObjectListParameterProjection(parameter);
-        case ProjectionType.string:
-          return StringListParameterProjection(parameter);
-        case ProjectionType.uri:
-          return UriListParameterProjection(parameter);
-        case ProjectionType.dartPrimitive:
-        case ProjectionType.struct:
-          return DefaultListParameterProjection(parameter);
-        default:
-          throw UnsupportedError('Unsupported parameter type: $wrappedType');
-      }
-    }
-
+  factory ParameterProjection.create(Parameter param) {
+    final projectionType = TypeProjection(param.typeIdentifier).projectionType;
     switch (projectionType) {
-      case ProjectionType.class_:
-        return ClassParameterProjection(parameter);
-      case ProjectionType.interface:
-        return InterfaceParameterProjection(parameter);
-      case ProjectionType.dateTime:
-        return DateTimeParameterProjection(parameter);
-      case ProjectionType.duration:
-        return DurationParameterProjection(parameter);
-      case ProjectionType.enum_:
-        return EnumParameterProjection(parameter);
-      case ProjectionType.guid:
-        return GuidParameterProjection(parameter);
-      case ProjectionType.object:
-        return ObjectParameterProjection(parameter);
-      case ProjectionType.reference:
-        return ReferenceParameterProjection(parameter);
-      case ProjectionType.string:
-        return StringParameterProjection(parameter);
-      case ProjectionType.struct:
-        return StructParameterProjection(parameter);
-      case ProjectionType.uri:
-        return UriParameterProjection(parameter);
       case ProjectionType.dartPrimitive:
       case ProjectionType.delegate:
       case ProjectionType.pointer:
-        return DefaultParameterProjection(parameter);
+        return DefaultParameterProjection(param);
+      case ProjectionType.dateTime:
+        return DateTimeParameterProjection(param);
+      case ProjectionType.duration:
+        return DurationParameterProjection(param);
+      case ProjectionType.enum_:
+        return EnumParameterProjection(param);
+      case ProjectionType.genericEnum:
+        return GenericEnumParameterProjection(param);
+      case ProjectionType.genericInspectable:
+        return GenericInspectableParameterProjection(param);
+      case ProjectionType.guid:
+        return GuidParameterProjection(param);
+      case ProjectionType.inspectable:
+        return InspectableParameterProjection(param);
+      case ProjectionType.object:
+        return ObjectParameterProjection(param);
+      case ProjectionType.reference:
+        return ReferenceParameterProjection(param);
+      case ProjectionType.simpleArray:
+        return _projectSimpleArrayParam(param);
+      case ProjectionType.string:
+        return StringParameterProjection(param);
+      case ProjectionType.struct:
+        return StructParameterProjection(param);
+      case ProjectionType.uri:
+        return UriParameterProjection(param);
       default:
-        throw UnsupportedError('Unsupported parameter type: $projectionType');
+        throw UnsupportedError('Unsupported projection type: $projectionType');
+    }
+  }
+
+  static ParameterProjection _projectSimpleArrayParam(Parameter param) {
+    final type = param.typeIdentifier;
+    final projectionType = type.baseType == BaseType.referenceTypeModifier
+        ? TypeProjection(type.typeArg!.typeArg!).projectionType
+        : TypeProjection(type.typeArg!).projectionType;
+    switch (projectionType) {
+      case ProjectionType.dateTime:
+        return DateTimeListParameterProjection(param);
+      case ProjectionType.duration:
+        return DurationListParameterProjection(param);
+      case ProjectionType.genericEnum:
+        return GenericEnumListParameterProjection(param);
+      case ProjectionType.genericInspectable:
+        return GenericInspectableListParameterProjection(param);
+      case ProjectionType.guid:
+        return GuidListParameterProjection(param);
+      case ProjectionType.inspectable:
+        return InspectableListParameterProjection(param);
+      case ProjectionType.object:
+        return ObjectListParameterProjection(param);
+      case ProjectionType.string:
+        return StringListParameterProjection(param);
+      case ProjectionType.uri:
+        return UriListParameterProjection(param);
+      case ProjectionType.dartPrimitive:
+      case ProjectionType.struct:
+        return DefaultListParameterProjection(param);
+      default:
+        throw UnsupportedError('Unsupported projection type: $projectionType');
     }
   }
 

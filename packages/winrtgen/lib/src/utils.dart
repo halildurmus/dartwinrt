@@ -127,16 +127,6 @@ Guid iterableIidFromVectorType(TypeIdentifier typeIdentifier) {
 String lastComponent(String fullyQualifiedType) =>
     fullyQualifiedType.split('.').last;
 
-/// Whether the method belongs to `IUriRuntimeClass` or
-/// `IUriRuntimeClassFactory`.
-///
-/// Used to determine whether the method return type or parameter should be
-/// exposed as WinRT `Uri` or dart:core's `Uri`.
-bool methodBelongsToUriRuntimeClass(Method method) => [
-      'Windows.Foundation.IUriRuntimeClass',
-      'Windows.Foundation.IUriRuntimeClassFactory'
-    ].contains(method.parent.name);
-
 /// Add the `?` suffix to the [type] (e.g. `StorageFile` -> `StorageFile?`).
 String nullable(String type) => type.endsWith('?') ? type : '$type?';
 

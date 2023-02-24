@@ -12,24 +12,19 @@ import 'type.dart';
 import 'types/types.dart';
 
 abstract class SetterProjection extends PropertyProjection {
-  SetterProjection(super.method, super.vtableOffset) {
-    parameter = parameters.first;
-  }
+  SetterProjection(super.method, super.vtableOffset);
 
   /// [ParameterProjection] for the parameter of the method.
-  late final ParameterProjection parameter;
+  ParameterProjection get param => parameters.first;
 
   /// Returns the appropriate setter projection for the [method] based on the
   /// parameter type.
   factory SetterProjection.create(Method method, int vtableOffset) {
     final projectionType =
         TypeProjection(method.parameters.first.typeIdentifier).projectionType;
-
     switch (projectionType) {
-      case ProjectionType.class_:
-        return ClassSetterProjection(method, vtableOffset);
-      case ProjectionType.interface:
-        return InterfaceSetterProjection(method, vtableOffset);
+      case ProjectionType.dartPrimitive:
+        return DefaultSetterProjection(method, vtableOffset);
       case ProjectionType.dateTime:
         return DateTimeSetterProjection(method, vtableOffset);
       case ProjectionType.delegate:
@@ -40,6 +35,8 @@ abstract class SetterProjection extends PropertyProjection {
         return EnumSetterProjection(method, vtableOffset);
       case ProjectionType.guid:
         return GuidSetterProjection(method, vtableOffset);
+      case ProjectionType.inspectable:
+        return InspectableSetterProjection(method, vtableOffset);
       case ProjectionType.object:
         return ObjectSetterProjection(method, vtableOffset);
       case ProjectionType.reference:
@@ -50,10 +47,8 @@ abstract class SetterProjection extends PropertyProjection {
         return StructSetterProjection(method, vtableOffset);
       case ProjectionType.uri:
         return UriSetterProjection(method, vtableOffset);
-      case ProjectionType.dartPrimitive:
-        return DefaultSetterProjection(method, vtableOffset);
       default:
-        throw UnsupportedError('Unsupported setter type: $projectionType');
+        throw UnsupportedError('Unsupported projection type: $projectionType');
     }
   }
 

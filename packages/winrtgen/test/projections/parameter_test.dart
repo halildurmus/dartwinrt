@@ -31,7 +31,7 @@ void main() {
       final methodProjection = MethodProjection.fromTypeAndMethodName(
           'Windows.Globalization.ICalendar', 'Compare');
       final parameter = methodProjection.parameters.first;
-      expect(parameter, isA<ClassParameterProjection>());
+      expect(parameter, isA<InspectableParameterProjection>());
       expect(parameter.type, equals('Calendar?'));
       expect(parameter.preamble, isEmpty);
       expect(parameter.postamble, isEmpty);
@@ -115,7 +115,7 @@ void main() {
       final methodProjection = MethodProjection.fromTypeAndMethodName(
           'Windows.Storage.IStorageFile', 'CopyAndReplaceAsync');
       final parameter = methodProjection.parameters.first;
-      expect(parameter, isA<InterfaceParameterProjection>());
+      expect(parameter, isA<InspectableParameterProjection>());
       expect(parameter.type, equals('IStorageFile?'));
       expect(parameter.preamble, isEmpty);
       expect(parameter.postamble, isEmpty);
@@ -186,8 +186,9 @@ void main() {
           equals('final pArray = calloc<IntPtr>(valueSize);'));
       expect(
           parameter.postamble,
-          equalsIgnoringWhitespace(
+          equalsIgnoringWhitespace('if (retValuePtr.value > 0) {\n'
               'value.addAll(pArray.toList(length: valueSize));\n'
+              '}\n'
               'free(pArray);'));
       expect(parameter.localIdentifier, equals('pArray'));
     });

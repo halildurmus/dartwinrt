@@ -85,6 +85,9 @@ class TypeProjection {
   bool get isBaseType =>
       baseNativeMapping.keys.contains(typeIdentifier.baseType);
 
+  bool get isClassVariableType =>
+      typeIdentifier.baseType == BaseType.classVariableTypeModifier;
+
   bool get isDartPrimitive =>
       ['bool', 'double', 'int', 'void'].contains(dartType);
 
@@ -236,6 +239,22 @@ class TypeProjection {
     return _projection!;
   }
 
+  TypeArg get genericTypeArg {
+    assert(typeIdentifier.baseType == BaseType.classVariableTypeModifier);
+    return TypeArg.from(typeIdentifier.name);
+  }
+
+  TypeTuple unwrapGenericTypeArg() {
+    if (genericTypeArg.isEnum) {
+      return baseNativeMapping[genericTypeArg == TypeArg.winrtEnum
+          ? BaseType.int32Type
+          : BaseType.uint32Type]!;
+    }
+
+    final type = isParameter ? 'LPVTBL' : 'Pointer<COMObject>';
+    return TypeTuple(type, type);
+  }
+
   TypeTuple projectType() {
     // Could be an intrinsic base type (e.g. Int32)
     if (isBaseType) return baseNativeMapping[typeIdentifier.baseType]!;
@@ -267,6 +286,9 @@ class TypeProjection {
       final type = isParameter ? 'LPVTBL' : 'Pointer<COMObject>';
       return TypeTuple(type, type);
     }
+
+    // Handle generic type argument (e.g. TypeArg.inspectable)
+    if (isClassVariableType) return unwrapGenericTypeArg();
 
     throw Exception('Type information missing for $typeIdentifier.');
   }

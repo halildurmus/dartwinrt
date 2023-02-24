@@ -10,10 +10,14 @@ typedef LPVTBL = Pointer<Pointer<IntPtr>>;
 /// Represents the double types supported by WinRT type system.
 enum DoubleType {
   /// A 32-bit floating point number.
-  double,
+  double('Double'),
 
   /// A 64-bit floating point number.
-  single,
+  float('Float');
+
+  final String name;
+
+  const DoubleType(this.name);
 }
 
 /// Represents the integer types supported by WinRT type system.
@@ -22,23 +26,27 @@ enum DoubleType {
 /// See https://docs.microsoft.com/en-us/uwp/winrt-cref/winrt-type-system#fundamental-types
 enum IntType {
   /// A 16-bit signed integer.
-  int16,
+  int16('Int16'),
 
   /// A 32-bit signed integer.
-  int32,
+  int32('Int32'),
 
   /// A 64-bit signed integer.
-  int64,
+  int64('Int64'),
 
   /// A 8-bit unsigned integer.
-  uint8,
+  uint8('Uint8'),
 
   /// A 16-bit unsigned integer.
-  uint16,
+  uint16('Uint16'),
 
   /// A 32-bit unsigned integer.
-  uint32,
+  uint32('Uint32'),
 
   /// A 64-bit unsigned integer.
-  uint64,
+  uint64('Uint64');
+
+  final String name;
+
+  const IntType(this.name);
 }

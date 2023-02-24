@@ -2,6 +2,17 @@
 // details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
+/// Methods to exclude when generating the concrete classes for WinRT generic
+/// interfaces.
+const excludedMethodsInConcreteClasses = <String, Set<String>>{
+  // Excluded methods from the IMap interface
+  'Windows.Foundation.Collections.IMap`2': {'GetView'},
+  // Excluded methods from the IMapView interface
+  'Windows.Foundation.Collections.IMapView`2': {'Split'},
+  // Excluded methods from the IVector interface
+  'Windows.Foundation.Collections.IVector`1': {'GetView'},
+};
+
 /// Files to exclude from packages when generating the package export files.
 const excludedPackageFiles = <String, Set<String>>{
   // Excluded files in the 'windows_foundation' package

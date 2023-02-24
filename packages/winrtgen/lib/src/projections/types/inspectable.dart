@@ -10,7 +10,7 @@ import '../parameter.dart';
 import '../setter.dart';
 import 'default.dart';
 
-mixin _InterfaceProjection on MethodProjection {
+mixin _InspectableProjection on MethodProjection {
   @override
   String get returnType {
     final interfaceName = returnTypeProjection.typeIdentifier.shortName;
@@ -59,11 +59,11 @@ mixin _InterfaceProjection on MethodProjection {
   }
 }
 
-/// Method projection for methods that return a WinRT interface (e.g.
-/// `ICalendar`).
-class InterfaceMethodProjection extends MethodProjection
-    with _InterfaceProjection {
-  InterfaceMethodProjection(super.method, super.vtableOffset);
+/// Method projection for methods that return a WinRT class (e.g. `Calendar`) or
+/// interface (e.g. `ICalendar`).
+class InspectableMethodProjection extends MethodProjection
+    with _InspectableProjection {
+  InspectableMethodProjection(super.method, super.vtableOffset);
 
   @override
   String get methodProjection => '''
@@ -82,10 +82,10 @@ class InterfaceMethodProjection extends MethodProjection
 ''';
 }
 
-/// Getter projection for WinRT interface getters.
-class InterfaceGetterProjection extends GetterProjection
-    with _InterfaceProjection {
-  InterfaceGetterProjection(super.method, super.vtableOffset);
+/// Getter projection for WinRT class/interface getters.
+class InspectableGetterProjection extends GetterProjection
+    with _InspectableProjection {
+  InspectableGetterProjection(super.method, super.vtableOffset);
 
   @override
   String get methodProjection => '''
@@ -101,22 +101,22 @@ class InterfaceGetterProjection extends GetterProjection
 ''';
 }
 
-/// Setter projection for WinRT interface setters.
-class InterfaceSetterProjection extends SetterProjection
-    with _InterfaceProjection {
-  InterfaceSetterProjection(super.method, super.vtableOffset);
+/// Setter projection for WinRT class/interface setters.
+class InspectableSetterProjection extends SetterProjection
+    with _InspectableProjection {
+  InspectableSetterProjection(super.method, super.vtableOffset);
 
   @override
   String get methodProjection => '''
-  set $camelCasedName(${parameter.type} value) {
+  set $camelCasedName(${param.type} value) {
     ${ffiCall(params: 'value == null ? nullptr : value.ptr.ref.lpVtbl')}
   }
 ''';
 }
 
-/// Parameter projection for WinRT interface parameters.
-class InterfaceParameterProjection extends ParameterProjection {
-  InterfaceParameterProjection(super.parameter);
+/// Parameter projection for WinRT class/interface parameters.
+class InspectableParameterProjection extends ParameterProjection {
+  InspectableParameterProjection(super.parameter);
 
   @override
   String get type {
@@ -153,8 +153,9 @@ class InterfaceParameterProjection extends ParameterProjection {
 }
 
 /// Parameter projection for `List<T extends IInspectable>` parameters.
-class InterfaceListParameterProjection extends DefaultListParameterProjection {
-  InterfaceListParameterProjection(super.parameter);
+class InspectableListParameterProjection
+    extends DefaultListParameterProjection {
+  InspectableListParameterProjection(super.parameter);
 
   String get shortName => typeArgProjection.typeIdentifier.shortName;
 
@@ -162,31 +163,33 @@ class InterfaceListParameterProjection extends DefaultListParameterProjection {
   String get type => 'List<$shortName>';
 
   @override
+  String get fillArrayPreamble =>
+      'final pArray = calloc<COMObject>(valueSize);';
+
+  @override
   String get passArrayPreamble => '''
     final pArray = calloc<COMObject>(value.length);
     for (var i = 0; i < value.length; i++) {
       pArray[i] = value.elementAt(i).ptr.ref;
-    }
-''';
+    }''';
 
   @override
   String get receiveArrayPreamble => '''
     final pValueSize = calloc<Uint32>();
-    final pArray = calloc<Pointer<COMObject>>();
-''';
+    final pArray = calloc<Pointer<COMObject>>();''';
 
   @override
   String get fillArrayPostamble => '''
-    value.addAll(pArray
-        .toList($shortName.fromRawPointer, length: valueSize));
-    free(pArray);
-''';
+    if (retValuePtr.value > 0) {
+      value.addAll(pArray
+          .toList($shortName.fromRawPointer, length: valueSize));
+    }
+    free(pArray);''';
 
   @override
   String get receiveArrayPostamble => '''
     value.addAll(pArray.value
         .toList($shortName.fromRawPointer, length: pValueSize.value));
     free(pValueSize);
-    free(pArray);
-''';
+    free(pArray);''';
 }

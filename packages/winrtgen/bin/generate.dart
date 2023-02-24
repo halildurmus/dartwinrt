@@ -72,6 +72,30 @@ void generateClassesAndInterfaces(Map<String, String> types) {
   }
 }
 
+void generateConcreteClassesForGenericInterfaces(
+    List<GenericType> genericTypes) {
+  for (final genericType in genericTypes) {
+    final type = genericType.fullyQualifiedType;
+    final projections = <GenericInterfaceProjection>[
+      if (genericType is GenericTypeWithOneTypeArg)
+        for (final typeArg in genericType.typeArgs)
+          GenericInterfaceProjection.from(type, typeArg)
+      else if (genericType is GenericTypeWithTwoTypeArgs)
+        for (final args in genericType.typeArgs)
+          GenericInterfaceProjection.from(type, args.typeArg1, args.typeArg2)
+    ];
+
+    final fileName = stripGenerics(lastComponent(type).toLowerCase());
+    final path = '${relativeFolderPathFromType(type)}/${fileName}_part.dart';
+    final content = [
+      classFileHeader,
+      "part of '$fileName.dart';",
+      projections.join('\n')
+    ].join('\n');
+    writeToFile(path, content);
+  }
+}
+
 void generateEnumerations(Map<String, String> enums) {
   final namespaceGroups = groupTypesByParentNamespace(enums.keys);
 
@@ -130,15 +154,6 @@ void generateStructs(Map<String, String> structs) {
   }
 }
 
-const packageNames = <String>{
-  'windows_ai', 'windows_applicationmodel', 'windows_data', //
-  'windows_devices', 'windows_foundation', 'windows_gaming', //
-  'windows_globalization', 'windows_graphics', 'windows_management', //
-  'windows_media', 'windows_networking', 'windows_perception', //
-  'windows_security', 'windows_services', 'windows_storage', //
-  'windows_system', 'windows_ui', 'windows_web', //
-};
-
 void generatePackageExports() {
   for (final packageName in packageNames) {
     final packagePath = '../$packageName/lib/src/';
@@ -151,6 +166,9 @@ void generatePackageExports() {
       if (packageName == 'windows_foundation') {
         // Skip internally used files
         if (file.path.contains(r'internal\')) continue;
+
+        // Skip generated part files
+        if (file.path.endsWith('_part.dart')) continue;
       }
 
       final fileName = file.uri.pathSegments.last; // e.g. calendar.dart
@@ -188,6 +206,9 @@ void main() {
   final typesToGenerate = loadMap('classes_and_interfaces.json');
   saveMap(typesToGenerate, 'classes_and_interfaces.json');
   generateClassesAndInterfaces(typesToGenerate);
+
+  print('Generating concrete classes for WinRT generic interfaces...');
+  generateConcreteClassesForGenericInterfaces(genericTypesWithTypeArgs);
 
   print('Generating WinRT enumerations...');
   final enumsToGenerate = loadMap('enums.json');

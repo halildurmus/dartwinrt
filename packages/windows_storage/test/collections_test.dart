@@ -187,34 +187,32 @@ void main() {
     });
 
     test('getMany returns 0 if the vector is empty', () {
-      final pHString = allocator<HSTRING>();
-
-      expect(vector.getMany(0, 1, pHString), equals(0));
+      expect(vector.getMany(0, 1, []), equals(0));
     });
 
     test('getMany returns elements starting from index 0', () {
-      final pHString = allocator<HSTRING>(3);
+      final list = <String>[];
 
       vector
         ..append('.jpg')
         ..append('.jpeg')
         ..append('.png');
-      expect(vector.getMany(0, 3, pHString), equals(3));
-      expect(convertFromHString(pHString[0]), equals('.jpg'));
-      expect(convertFromHString(pHString[1]), equals('.jpeg'));
-      expect(convertFromHString(pHString[2]), equals('.png'));
+      expect(vector.getMany(0, 3, list), equals(3));
+      expect(list[0], equals('.jpg'));
+      expect(list[1], equals('.jpeg'));
+      expect(list[2], equals('.png'));
     });
 
     test('getMany returns elements starting from index 1', () {
-      final pHString = allocator<HSTRING>(2);
+      final list = <String>[];
 
       vector
         ..append('.jpg')
         ..append('.jpeg')
         ..append('.png');
-      expect(vector.getMany(1, 2, pHString), equals(2));
-      expect(convertFromHString(pHString[0]), equals('.jpeg'));
-      expect(convertFromHString(pHString[1]), equals('.png'));
+      expect(vector.getMany(1, 2, list), equals(2));
+      expect(list[0], equals('.jpeg'));
+      expect(list[1], equals('.png'));
     });
 
     test('replaceAll', () {
