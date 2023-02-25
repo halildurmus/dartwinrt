@@ -134,14 +134,23 @@ void _initializeMTA() {
 /// {@category enum}
 enum TrustLevel {
   /// The component has access to resources that are not protected.
-  baseTrust,
+  baseTrust(0),
 
   /// The component has access to resources requested in the app manifest and
   /// approved by the user.
-  partialTrust,
+  partialTrust(1),
 
   /// The component requires the full privileges of the user.
-  fullTrust
+  fullTrust(2);
+
+  final int value;
+
+  const TrustLevel(this.value);
+
+  factory TrustLevel.from(int value) =>
+      TrustLevel.values.firstWhere((e) => e.value == value,
+          orElse: () => throw ArgumentError.value(
+              value, 'value', 'No enum value with that value'));
 }
 
 /// Returns the interface IIDs that are implemented by the Windows Runtime
@@ -194,8 +203,9 @@ String getClassName(IInspectable object) {
 
     if (FAILED(hr)) throw WindowsException(hr);
 
-    return convertFromHString(hClassName.value);
+    return hClassName.toDartString();
   } finally {
+    WindowsDeleteString(hClassName.value);
     free(hClassName);
   }
 }
@@ -217,16 +227,7 @@ TrustLevel getTrustLevel(IInspectable object) {
 
     if (FAILED(hr)) throw WindowsException(hr);
 
-    switch (pTrustLevel.value) {
-      case 0:
-        return TrustLevel.baseTrust;
-      case 1:
-        return TrustLevel.partialTrust;
-      case 2:
-        return TrustLevel.fullTrust;
-      default:
-        throw ArgumentError('GetTrustLevel returned an unexpected value.');
-    }
+    return TrustLevel.from(pTrustLevel.value);
   } finally {
     free(pTrustLevel);
   }
