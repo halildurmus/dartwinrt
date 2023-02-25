@@ -29,6 +29,63 @@ enum NotificationMirroring implements WinRTEnum {
               value, 'value', 'No enum value with that value'));
 }
 
+/// Specifies the limitations on tile or toast notification display.
+///
+/// {@category enum}
+enum NotificationSetting implements WinRTEnum {
+  enabled(0),
+  disabledForApplication(1),
+  disabledForUser(2),
+  disabledByGroupPolicy(3),
+  disabledByManifest(4);
+
+  @override
+  final int value;
+
+  const NotificationSetting(this.value);
+
+  factory NotificationSetting.from(int value) =>
+      NotificationSetting.values.firstWhere((e) => e.value == value,
+          orElse: () => throw ArgumentError.value(
+              value, 'value', 'No enum value with that value'));
+}
+
+/// Describes the results of a notification update.
+///
+/// {@category enum}
+enum NotificationUpdateResult implements WinRTEnum {
+  succeeded(0),
+  failed(1),
+  notificationNotFound(2);
+
+  @override
+  final int value;
+
+  const NotificationUpdateResult(this.value);
+
+  factory NotificationUpdateResult.from(int value) =>
+      NotificationUpdateResult.values.firstWhere((e) => e.value == value,
+          orElse: () => throw ArgumentError.value(
+              value, 'value', 'No enum value with that value'));
+}
+
+/// {@category enum}
+enum ToastNotificationMode implements WinRTEnum {
+  unrestricted(0),
+  priorityOnly(1),
+  alarmsOnly(2);
+
+  @override
+  final int value;
+
+  const ToastNotificationMode(this.value);
+
+  factory ToastNotificationMode.from(int value) =>
+      ToastNotificationMode.values.firstWhere((e) => e.value == value,
+          orElse: () => throw ArgumentError.value(
+              value, 'value', 'No enum value with that value'));
+}
+
 /// Specifies the priority of a ToastNotification.
 ///
 /// {@category enum}

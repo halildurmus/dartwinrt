@@ -13,25 +13,25 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
-import 'package:windows_data/windows_data.dart';
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
+import 'package:windows_system/windows_system.dart';
 
-import 'enums.g.dart';
+import 'toastnotificationhistory.dart';
 import 'toastnotifier.dart';
 
 /// @nodoc
-const IID_IToastNotificationManagerStatics =
-    '{50ac103f-d235-4598-bbef-98fe4d1a3ad4}';
+const IID_IToastNotificationManagerForUser =
+    '{79ab57f6-43fe-487b-8a7f-99567200ae94}';
 
 /// {@category interface}
-class IToastNotificationManagerStatics extends IInspectable {
-  // vtable begins at 6, is 3 entries long.
-  IToastNotificationManagerStatics.fromRawPointer(super.ptr);
+class IToastNotificationManagerForUser extends IInspectable {
+  // vtable begins at 6, is 4 entries long.
+  IToastNotificationManagerForUser.fromRawPointer(super.ptr);
 
-  factory IToastNotificationManagerStatics.from(IInspectable interface) =>
-      IToastNotificationManagerStatics.fromRawPointer(
-          interface.toInterface(IID_IToastNotificationManagerStatics));
+  factory IToastNotificationManagerForUser.from(IInspectable interface) =>
+      IToastNotificationManagerForUser.fromRawPointer(
+          interface.toInterface(IID_IToastNotificationManagerForUser));
 
   ToastNotifier? createToastNotifier() {
     final retValuePtr = calloc<COMObject>();
@@ -90,19 +90,18 @@ class IToastNotificationManagerStatics extends IInspectable {
     return ToastNotifier.fromRawPointer(retValuePtr);
   }
 
-  XmlDocument? getTemplateContent(ToastTemplateType type) {
+  ToastNotificationHistory? get history {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            LPVTBL, Int32 type, Pointer<COMObject>)>>>()
-            .value
-            .asFunction<int Function(LPVTBL, int type, Pointer<COMObject>)>()(
-        ptr.ref.lpVtbl, type.value, retValuePtr);
+        .elementAt(8)
+        .cast<
+            Pointer<
+                NativeFunction<HRESULT Function(LPVTBL, Pointer<COMObject>)>>>()
+        .value
+        .asFunction<
+            int Function(
+                LPVTBL, Pointer<COMObject>)>()(ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -114,6 +113,32 @@ class IToastNotificationManagerStatics extends IInspectable {
       return null;
     }
 
-    return XmlDocument.fromRawPointer(retValuePtr);
+    return ToastNotificationHistory.fromRawPointer(retValuePtr);
+  }
+
+  User? get user {
+    final retValuePtr = calloc<COMObject>();
+
+    final hr = ptr.ref.vtable
+        .elementAt(9)
+        .cast<
+            Pointer<
+                NativeFunction<HRESULT Function(LPVTBL, Pointer<COMObject>)>>>()
+        .value
+        .asFunction<
+            int Function(
+                LPVTBL, Pointer<COMObject>)>()(ptr.ref.lpVtbl, retValuePtr);
+
+    if (FAILED(hr)) {
+      free(retValuePtr);
+      throw WindowsException(hr);
+    }
+
+    if (retValuePtr.ref.isNull) {
+      free(retValuePtr);
+      return null;
+    }
+
+    return User.fromRawPointer(retValuePtr);
   }
 }

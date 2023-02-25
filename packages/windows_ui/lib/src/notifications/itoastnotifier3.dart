@@ -16,31 +16,40 @@ import 'package:win32/win32.dart';
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
+import 'toastnotifier.dart';
+
 /// @nodoc
-const IID_IToastNotification6 = '{43ebfe53-89ae-5c1e-a279-3aecfe9b6f54}';
+const IID_IToastNotifier3 = '{ae75a04a-3b0c-51ad-b7e8-b08ab6052549}';
 
 /// {@category interface}
-class IToastNotification6 extends IInspectable {
+class IToastNotifier3 extends IInspectable {
   // vtable begins at 6, is 2 entries long.
-  IToastNotification6.fromRawPointer(super.ptr);
+  IToastNotifier3.fromRawPointer(super.ptr);
 
-  factory IToastNotification6.from(IInspectable interface) =>
-      IToastNotification6.fromRawPointer(
-          interface.toInterface(IID_IToastNotification6));
+  factory IToastNotifier3.from(IInspectable interface) =>
+      IToastNotifier3.fromRawPointer(
+          interface.toInterface(IID_IToastNotifier3));
 
-  bool get expiresOnReboot {
-    final retValuePtr = calloc<Bool>();
+  int add_ScheduledToastNotificationShowing(
+      Pointer<NativeFunction<TypedEventHandler>> handler) {
+    final retValuePtr = calloc<IntPtr>();
 
     try {
       final hr = ptr.ref.vtable
           .elementAt(6)
           .cast<
               Pointer<
-                  NativeFunction<HRESULT Function(LPVTBL, Pointer<Bool>)>>>()
+                  NativeFunction<
+                      HRESULT Function(
+                          LPVTBL,
+                          Pointer<NativeFunction<TypedEventHandler>> handler,
+                          Pointer<IntPtr>)>>>()
           .value
           .asFunction<
               int Function(
-                  LPVTBL, Pointer<Bool>)>()(ptr.ref.lpVtbl, retValuePtr);
+                  LPVTBL,
+                  Pointer<NativeFunction<TypedEventHandler>> handler,
+                  Pointer<IntPtr>)>()(ptr.ref.lpVtbl, handler, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -50,12 +59,12 @@ class IToastNotification6 extends IInspectable {
     }
   }
 
-  set expiresOnReboot(bool value) {
+  void remove_ScheduledToastNotificationShowing(int token) {
     final hr = ptr.ref.vtable
         .elementAt(7)
-        .cast<Pointer<NativeFunction<HRESULT Function(LPVTBL, Bool value)>>>()
+        .cast<Pointer<NativeFunction<HRESULT Function(LPVTBL, IntPtr token)>>>()
         .value
-        .asFunction<int Function(LPVTBL, bool value)>()(ptr.ref.lpVtbl, value);
+        .asFunction<int Function(LPVTBL, int token)>()(ptr.ref.lpVtbl, token);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }

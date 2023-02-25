@@ -59,6 +59,15 @@
     "Windows.Storage.Streams.IBuffer": "Represents a referenced array of bytes used by byte stream read and write interfaces. Buffer is the class implementation of this interface.",
     "Windows.Storage.UserDataPaths": "Returns full paths for common user data folders. User data folders are based on the KNOWNFOLDERID naming pattern.",
     "Windows.System.Power.PowerManager": "Provides access to information about a device's battery and power supply status.",
+    "Windows.System.UserWatcher": "Provides events that fire during enumeration of users, when the collection of users changes, or when a user's authentication status changes.",
     "Windows.UI.Notifications.NotificationData": "Stores data for display in a toast notification.",
+    "Windows.UI.Notifications.ScheduledToastNotification": "Contains the XML that defines the toast notification that will display at the scheduled time.",
+    "Windows.UI.Notifications.ToastCollection": "Represents a group of notifications for a particular app.",
+    "Windows.UI.Notifications.ToastCollectionManager": "Provides methods for creating, retrieving, updating, and removing ToastCollection objects.",
+    "Windows.UI.Notifications.ToastNotification": "Defines the content, associated metadata and events, and expiration time of a toast notification.",
+    "Windows.UI.Notifications.ToastNotificationHistory": "Manages the toast notifications for an app including the ability the clear all toast history and removing individual toasts.",
+    "Windows.UI.Notifications.ToastNotificationManager": "Creates ToastNotifier objects that you use to raise toast notifications. This class also provides access to the XML content of the system-provided toast templates so that you can customize that content for use in your notifications.",
+    "Windows.UI.Notifications.ToastNotificationManagerForUser": "Creates ToastNotifier objects that you use to raise toast notifications for the bound user. This class also provides access to the XML content of the system-provided toast templates so that you can customize that content for use in your notifications.",
+    "Windows.UI.Notifications.ToastNotifier": "Raises a toast notification to the specific app to which the ToastNotifier is bound. This class also lets you schedule and remove toast notifications.",
     "Windows.UI.ViewManagement.UISettings": "Contains a set of common app user interface settings and operations."
 }

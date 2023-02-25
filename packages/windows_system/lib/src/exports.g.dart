@@ -4,6 +4,9 @@
 
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
+export 'enums.g.dart';
+export 'iuserwatcher.dart';
 export 'power/enums.g.dart';
 export 'power/powermanager.dart';
 export 'user.dart';
+export 'userwatcher.dart';

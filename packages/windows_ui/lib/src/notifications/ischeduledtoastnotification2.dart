@@ -17,16 +17,17 @@ import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// @nodoc
-const IID_IToastNotification2 = '{9dfb9fd1-143a-490e-90bf-b9fba7132de7}';
+const IID_IScheduledToastNotification2 =
+    '{a66ea09c-31b4-43b0-b5dd-7a40e85363b1}';
 
 /// {@category interface}
-class IToastNotification2 extends IInspectable {
+class IScheduledToastNotification2 extends IInspectable {
   // vtable begins at 6, is 6 entries long.
-  IToastNotification2.fromRawPointer(super.ptr);
+  IScheduledToastNotification2.fromRawPointer(super.ptr);
 
-  factory IToastNotification2.from(IInspectable interface) =>
-      IToastNotification2.fromRawPointer(
-          interface.toInterface(IID_IToastNotification2));
+  factory IScheduledToastNotification2.from(IInspectable interface) =>
+      IScheduledToastNotification2.fromRawPointer(
+          interface.toInterface(IID_IScheduledToastNotification2));
 
   set tag(String value) {
     final hstr = convertToHString(value);

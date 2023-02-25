@@ -14,38 +14,45 @@ import 'dart:ffi';
 import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
 import 'package:windows_foundation/internal.dart';
+import 'package:windows_foundation/uri.dart' as winrt_uri;
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// @nodoc
-const IID_IToastNotification2 = '{9dfb9fd1-143a-490e-90bf-b9fba7132de7}';
+const IID_IToastCollection = '{0a8bc3b0-e0be-4858-bc2a-89dfe0b32863}';
 
 /// {@category interface}
-class IToastNotification2 extends IInspectable {
-  // vtable begins at 6, is 6 entries long.
-  IToastNotification2.fromRawPointer(super.ptr);
+class IToastCollection extends IInspectable {
+  // vtable begins at 6, is 7 entries long.
+  IToastCollection.fromRawPointer(super.ptr);
 
-  factory IToastNotification2.from(IInspectable interface) =>
-      IToastNotification2.fromRawPointer(
-          interface.toInterface(IID_IToastNotification2));
+  factory IToastCollection.from(IInspectable interface) =>
+      IToastCollection.fromRawPointer(
+          interface.toInterface(IID_IToastCollection));
 
-  set tag(String value) {
-    final hstr = convertToHString(value);
+  String get id {
+    final retValuePtr = calloc<HSTRING>();
 
     try {
       final hr = ptr.ref.vtable
           .elementAt(6)
           .cast<
-              Pointer<NativeFunction<HRESULT Function(LPVTBL, IntPtr value)>>>()
+              Pointer<
+                  NativeFunction<HRESULT Function(LPVTBL, Pointer<IntPtr>)>>>()
           .value
-          .asFunction<int Function(LPVTBL, int value)>()(ptr.ref.lpVtbl, hstr);
+          .asFunction<
+              int Function(
+                  LPVTBL, Pointer<IntPtr>)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
+
+      return retValuePtr.toDartString();
     } finally {
-      WindowsDeleteString(hstr);
+      WindowsDeleteString(retValuePtr.value);
+      free(retValuePtr);
     }
   }
 
-  String get tag {
+  String get displayName {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -68,7 +75,7 @@ class IToastNotification2 extends IInspectable {
     }
   }
 
-  set group(String value) {
+  set displayName(String value) {
     final hstr = convertToHString(value);
 
     try {
@@ -85,7 +92,7 @@ class IToastNotification2 extends IInspectable {
     }
   }
 
-  String get group {
+  String get launchArgs {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -108,35 +115,69 @@ class IToastNotification2 extends IInspectable {
     }
   }
 
-  set suppressPopup(bool value) {
-    final hr = ptr.ref.vtable
-        .elementAt(10)
-        .cast<Pointer<NativeFunction<HRESULT Function(LPVTBL, Bool value)>>>()
-        .value
-        .asFunction<int Function(LPVTBL, bool value)>()(ptr.ref.lpVtbl, value);
-
-    if (FAILED(hr)) throw WindowsException(hr);
-  }
-
-  bool get suppressPopup {
-    final retValuePtr = calloc<Bool>();
+  set launchArgs(String value) {
+    final hstr = convertToHString(value);
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(11)
+          .elementAt(10)
           .cast<
-              Pointer<
-                  NativeFunction<HRESULT Function(LPVTBL, Pointer<Bool>)>>>()
+              Pointer<NativeFunction<HRESULT Function(LPVTBL, IntPtr value)>>>()
           .value
-          .asFunction<
-              int Function(
-                  LPVTBL, Pointer<Bool>)>()(ptr.ref.lpVtbl, retValuePtr);
+          .asFunction<int Function(LPVTBL, int value)>()(ptr.ref.lpVtbl, hstr);
 
       if (FAILED(hr)) throw WindowsException(hr);
-
-      return retValuePtr.value;
     } finally {
+      WindowsDeleteString(hstr);
+    }
+  }
+
+  Uri? get icon {
+    final retValuePtr = calloc<COMObject>();
+
+    final hr = ptr.ref.vtable
+        .elementAt(11)
+        .cast<
+            Pointer<
+                NativeFunction<HRESULT Function(LPVTBL, Pointer<COMObject>)>>>()
+        .value
+        .asFunction<
+            int Function(
+                LPVTBL, Pointer<COMObject>)>()(ptr.ref.lpVtbl, retValuePtr);
+
+    if (FAILED(hr)) {
       free(retValuePtr);
+      throw WindowsException(hr);
+    }
+
+    if (retValuePtr.ref.isNull) {
+      free(retValuePtr);
+      return null;
+    }
+
+    final winrtUri = winrt_uri.Uri.fromRawPointer(retValuePtr);
+    final uriAsString = winrtUri.toString();
+    winrtUri.release();
+
+    return Uri.parse(uriAsString);
+  }
+
+  set icon(Uri? value) {
+    final winrtUri =
+        value == null ? null : winrt_uri.Uri.createUri(value.toString());
+
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(12)
+              .cast<
+                  Pointer<NativeFunction<HRESULT Function(LPVTBL, LPVTBL value)>>>()
+              .value
+              .asFunction<int Function(LPVTBL, LPVTBL value)>()(
+          ptr.ref.lpVtbl, winrtUri == null ? nullptr : winrtUri.ptr.ref.lpVtbl);
+
+      if (FAILED(hr)) throw WindowsException(hr);
+    } finally {
+      winrtUri?.release();
     }
   }
 }
