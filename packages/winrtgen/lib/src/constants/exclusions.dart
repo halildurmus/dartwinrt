@@ -67,9 +67,6 @@ const excludedClassesAndInterfaces = <String>{
 
   //   Requires WinRT delegate support
   'Windows.Storage.ApplicationData',
-
-  //   Requires WinRT event support
-  'Windows.Networking.Connectivity.INetworkInformationStatics',
 };
 
 /// WinRT interfaces to exclude when generating an interface's inherited

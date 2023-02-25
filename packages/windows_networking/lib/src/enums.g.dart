@@ -10,6 +10,34 @@
 
 import 'package:windows_foundation/windows_foundation.dart';
 
+/// Options for how a list of EndpointPair objects is sorted.
+///
+/// {@category enum}
+class HostNameSortOptions extends WinRTFlagsEnum<HostNameSortOptions> {
+  const HostNameSortOptions(super.value, {super.name});
+
+  factory HostNameSortOptions.from(int value) =>
+      HostNameSortOptions.values.firstWhere((e) => e.value == value,
+          orElse: () => HostNameSortOptions(value));
+
+  static const none = HostNameSortOptions(0, name: 'none');
+  static const optimizeForLongConnections =
+      HostNameSortOptions(2, name: 'optimizeForLongConnections');
+
+  static const List<HostNameSortOptions> values = [
+    none,
+    optimizeForLongConnections
+  ];
+
+  @override
+  HostNameSortOptions operator &(HostNameSortOptions other) =>
+      HostNameSortOptions(value & other.value);
+
+  @override
+  HostNameSortOptions operator |(HostNameSortOptions other) =>
+      HostNameSortOptions(value | other.value);
+}
+
 /// The type of a HostName object.
 ///
 /// {@category enum}

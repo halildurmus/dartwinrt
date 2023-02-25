@@ -18,5 +18,7 @@ typedef EventHandler = Void Function(
     Pointer<COMObject> sender, Pointer<COMObject> args);
 typedef MapChangedEventHandler = Void Function(
     Pointer<COMObject> sender, Pointer<COMObject> args);
+typedef NetworkStatusChangedEventHandler = Void Function(
+    Pointer<COMObject> sender);
 typedef TypedEventHandler = Void Function(
     Pointer<COMObject> sender, Pointer<COMObject> args);
