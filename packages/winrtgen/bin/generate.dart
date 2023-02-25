@@ -26,7 +26,7 @@ void writeToFile(String path, String content) {
   }
 }
 
-void generateClassesAndInterfaces(Map<String, String> types) {
+void generateObjects(Map<String, String> types) {
   // Catalog all the types we need to generate: the types themselves and their
   // dependencies
   final typesAndDependencies = <String>{};
@@ -55,7 +55,7 @@ void generateClassesAndInterfaces(Map<String, String> types) {
     // Remove generic interfaces as they are projected manually
     ..removeWhere((type) => type.isEmpty)
     // Remove excluded WinRT types
-    ..removeWhere((type) => excludedClassesAndInterfaces.contains(type));
+    ..removeWhere((type) => excludedObjects.contains(type));
 
   // Generate the type projection for each type
   for (final type in typesAndDependencies) {
@@ -202,10 +202,10 @@ void generatePackageExports() {
 }
 
 void main() {
-  print('Generating WinRT classes and interfaces...');
-  final typesToGenerate = loadMap('classes_and_interfaces.json');
-  saveMap(typesToGenerate, 'classes_and_interfaces.json');
-  generateClassesAndInterfaces(typesToGenerate);
+  print('Generating WinRT objects...');
+  final objectsToGenerate = loadMap('objects.json');
+  saveMap(objectsToGenerate, 'objects.json');
+  generateObjects(objectsToGenerate);
 
   print('Generating concrete classes for WinRT generic interfaces...');
   generateConcreteClassesForGenericInterfaces(genericTypesWithTypeArgs);

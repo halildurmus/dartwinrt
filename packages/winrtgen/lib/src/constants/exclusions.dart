@@ -40,8 +40,8 @@ const excludedPackageFiles = <String, Set<String>>{
   },
 };
 
-/// WinRT classes and interfaces to exclude from code generation.
-const excludedClassesAndInterfaces = <String>{
+/// WinRT objects to exclude from code generation.
+const excludedObjects = <String>{
   ...excludedInterfacesInInherits,
   ...excludedStaticInterfaces,
 
