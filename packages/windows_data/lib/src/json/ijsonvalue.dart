@@ -39,11 +39,11 @@ class IJsonValue extends IInspectable {
           .elementAt(6)
           .cast<
               Pointer<
-                  NativeFunction<HRESULT Function(Pointer, Pointer<Int32>)>>>()
+                  NativeFunction<HRESULT Function(LPVTBL, Pointer<Int32>)>>>()
           .value
           .asFunction<
               int Function(
-                  Pointer, Pointer<Int32>)>()(ptr.ref.lpVtbl, retValuePtr);
+                  LPVTBL, Pointer<Int32>)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -61,11 +61,11 @@ class IJsonValue extends IInspectable {
           .elementAt(7)
           .cast<
               Pointer<
-                  NativeFunction<HRESULT Function(Pointer, Pointer<IntPtr>)>>>()
+                  NativeFunction<HRESULT Function(LPVTBL, Pointer<IntPtr>)>>>()
           .value
           .asFunction<
               int Function(
-                  Pointer, Pointer<IntPtr>)>()(ptr.ref.lpVtbl, retValuePtr);
+                  LPVTBL, Pointer<IntPtr>)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -84,11 +84,11 @@ class IJsonValue extends IInspectable {
           .elementAt(8)
           .cast<
               Pointer<
-                  NativeFunction<HRESULT Function(Pointer, Pointer<IntPtr>)>>>()
+                  NativeFunction<HRESULT Function(LPVTBL, Pointer<IntPtr>)>>>()
           .value
           .asFunction<
               int Function(
-                  Pointer, Pointer<IntPtr>)>()(ptr.ref.lpVtbl, retValuePtr);
+                  LPVTBL, Pointer<IntPtr>)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -107,11 +107,11 @@ class IJsonValue extends IInspectable {
           .elementAt(9)
           .cast<
               Pointer<
-                  NativeFunction<HRESULT Function(Pointer, Pointer<Double>)>>>()
+                  NativeFunction<HRESULT Function(LPVTBL, Pointer<Double>)>>>()
           .value
           .asFunction<
               int Function(
-                  Pointer, Pointer<Double>)>()(ptr.ref.lpVtbl, retValuePtr);
+                  LPVTBL, Pointer<Double>)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -129,11 +129,11 @@ class IJsonValue extends IInspectable {
           .elementAt(10)
           .cast<
               Pointer<
-                  NativeFunction<HRESULT Function(Pointer, Pointer<Bool>)>>>()
+                  NativeFunction<HRESULT Function(LPVTBL, Pointer<Bool>)>>>()
           .value
           .asFunction<
               int Function(
-                  Pointer, Pointer<Bool>)>()(ptr.ref.lpVtbl, retValuePtr);
+                  LPVTBL, Pointer<Bool>)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -147,14 +147,14 @@ class IJsonValue extends IInspectable {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-            .elementAt(11)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(Pointer, Pointer<COMObject>)>>>()
-            .value
-            .asFunction<int Function(Pointer, Pointer<COMObject>)>()(
-        ptr.ref.lpVtbl, retValuePtr);
+        .elementAt(11)
+        .cast<
+            Pointer<
+                NativeFunction<HRESULT Function(LPVTBL, Pointer<COMObject>)>>>()
+        .value
+        .asFunction<
+            int Function(
+                LPVTBL, Pointer<COMObject>)>()(ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -173,14 +173,14 @@ class IJsonValue extends IInspectable {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-            .elementAt(12)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(Pointer, Pointer<COMObject>)>>>()
-            .value
-            .asFunction<int Function(Pointer, Pointer<COMObject>)>()(
-        ptr.ref.lpVtbl, retValuePtr);
+        .elementAt(12)
+        .cast<
+            Pointer<
+                NativeFunction<HRESULT Function(LPVTBL, Pointer<COMObject>)>>>()
+        .value
+        .asFunction<
+            int Function(
+                LPVTBL, Pointer<COMObject>)>()(ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);

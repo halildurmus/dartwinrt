@@ -21,7 +21,6 @@ import 'helpers.dart';
 import 'iinspectable.dart';
 import 'ipropertyvaluestatics.dart';
 import 'structs.g.dart';
-import 'types.dart';
 
 /// Represents a value in a property store (such as a [PropertySet]
 /// instance).

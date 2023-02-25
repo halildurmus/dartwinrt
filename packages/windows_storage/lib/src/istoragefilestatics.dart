@@ -40,9 +40,9 @@ class IStorageFileStatics extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            Pointer, IntPtr path, Pointer<COMObject>)>>>()
+                            LPVTBL, IntPtr path, Pointer<COMObject>)>>>()
             .value
-            .asFunction<int Function(Pointer, int path, Pointer<COMObject>)>()(
+            .asFunction<int Function(LPVTBL, int path, Pointer<COMObject>)>()(
         ptr.ref.lpVtbl, pathHString, retValuePtr);
 
     if (FAILED(hr)) {
@@ -72,10 +72,9 @@ class IStorageFileStatics extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            Pointer, LPVTBL uri, Pointer<COMObject>)>>>()
+                            LPVTBL, LPVTBL uri, Pointer<COMObject>)>>>()
             .value
-            .asFunction<
-                int Function(Pointer, LPVTBL uri, Pointer<COMObject>)>()(
+            .asFunction<int Function(LPVTBL, LPVTBL uri, Pointer<COMObject>)>()(
         ptr.ref.lpVtbl, uriUri.ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {

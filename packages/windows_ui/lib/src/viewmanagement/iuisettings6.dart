@@ -40,13 +40,13 @@ class IUISettings6 extends IInspectable {
               Pointer<
                   NativeFunction<
                       HRESULT Function(
-                          Pointer,
+                          LPVTBL,
                           Pointer<NativeFunction<TypedEventHandler>> handler,
                           Pointer<IntPtr>)>>>()
           .value
           .asFunction<
               int Function(
-                  Pointer,
+                  LPVTBL,
                   Pointer<NativeFunction<TypedEventHandler>> handler,
                   Pointer<IntPtr>)>()(ptr.ref.lpVtbl, handler, retValuePtr);
 
@@ -61,10 +61,9 @@ class IUISettings6 extends IInspectable {
   void remove_AnimationsEnabledChanged(int token) {
     final hr = ptr.ref.vtable
         .elementAt(7)
-        .cast<
-            Pointer<NativeFunction<HRESULT Function(Pointer, IntPtr token)>>>()
+        .cast<Pointer<NativeFunction<HRESULT Function(LPVTBL, IntPtr token)>>>()
         .value
-        .asFunction<int Function(Pointer, int token)>()(ptr.ref.lpVtbl, token);
+        .asFunction<int Function(LPVTBL, int token)>()(ptr.ref.lpVtbl, token);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
@@ -80,13 +79,13 @@ class IUISettings6 extends IInspectable {
               Pointer<
                   NativeFunction<
                       HRESULT Function(
-                          Pointer,
+                          LPVTBL,
                           Pointer<NativeFunction<TypedEventHandler>> handler,
                           Pointer<IntPtr>)>>>()
           .value
           .asFunction<
               int Function(
-                  Pointer,
+                  LPVTBL,
                   Pointer<NativeFunction<TypedEventHandler>> handler,
                   Pointer<IntPtr>)>()(ptr.ref.lpVtbl, handler, retValuePtr);
 
@@ -101,10 +100,9 @@ class IUISettings6 extends IInspectable {
   void remove_MessageDurationChanged(int token) {
     final hr = ptr.ref.vtable
         .elementAt(9)
-        .cast<
-            Pointer<NativeFunction<HRESULT Function(Pointer, IntPtr token)>>>()
+        .cast<Pointer<NativeFunction<HRESULT Function(LPVTBL, IntPtr token)>>>()
         .value
-        .asFunction<int Function(Pointer, int token)>()(ptr.ref.lpVtbl, token);
+        .asFunction<int Function(LPVTBL, int token)>()(ptr.ref.lpVtbl, token);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }

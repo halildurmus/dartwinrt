@@ -40,11 +40,11 @@ class IGeopointFactory extends IInspectable {
         .cast<
             Pointer<
                 NativeFunction<
-                    HRESULT Function(Pointer, BasicGeoposition position,
+                    HRESULT Function(LPVTBL, BasicGeoposition position,
                         Pointer<COMObject>)>>>()
         .value
         .asFunction<
-            int Function(Pointer, BasicGeoposition position,
+            int Function(LPVTBL, BasicGeoposition position,
                 Pointer<COMObject>)>()(ptr.ref.lpVtbl, position, retValuePtr);
 
     if (FAILED(hr)) {
@@ -66,13 +66,13 @@ class IGeopointFactory extends IInspectable {
                     Pointer<
                         NativeFunction<
                             HRESULT Function(
-                                Pointer,
+                                LPVTBL,
                                 BasicGeoposition position,
                                 Int32 altitudeReferenceSystem,
                                 Pointer<COMObject>)>>>()
                 .value
                 .asFunction<
-                    int Function(Pointer, BasicGeoposition position,
+                    int Function(LPVTBL, BasicGeoposition position,
                         int altitudeReferenceSystem, Pointer<COMObject>)>()(
             ptr.ref.lpVtbl,
             position,
@@ -99,7 +99,7 @@ class IGeopointFactory extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            Pointer,
+                            LPVTBL,
                             BasicGeoposition position,
                             Int32 altitudeReferenceSystem,
                             Uint32 spatialReferenceId,
@@ -107,7 +107,7 @@ class IGeopointFactory extends IInspectable {
             .value
             .asFunction<
                 int Function(
-                    Pointer,
+                    LPVTBL,
                     BasicGeoposition position,
                     int altitudeReferenceSystem,
                     int spatialReferenceId,

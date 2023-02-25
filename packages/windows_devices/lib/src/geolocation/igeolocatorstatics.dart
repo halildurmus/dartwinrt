@@ -36,14 +36,14 @@ class IGeolocatorStatics extends IInspectable {
     final completer = Completer<GeolocationAccessStatus>();
 
     final hr = ptr.ref.vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(Pointer, Pointer<COMObject>)>>>()
-            .value
-            .asFunction<int Function(Pointer, Pointer<COMObject>)>()(
-        ptr.ref.lpVtbl, retValuePtr);
+        .elementAt(6)
+        .cast<
+            Pointer<
+                NativeFunction<HRESULT Function(LPVTBL, Pointer<COMObject>)>>>()
+        .value
+        .asFunction<
+            int Function(
+                LPVTBL, Pointer<COMObject>)>()(ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -71,10 +71,10 @@ class IGeolocatorStatics extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            Pointer, Uint64 startTime, Pointer<COMObject>)>>>()
+                            LPVTBL, Uint64 startTime, Pointer<COMObject>)>>>()
             .value
             .asFunction<
-                int Function(Pointer, int startTime, Pointer<COMObject>)>()(
+                int Function(LPVTBL, int startTime, Pointer<COMObject>)>()(
         ptr.ref.lpVtbl, startTimeDateTime, retValuePtr);
 
     if (FAILED(hr)) {
@@ -108,11 +108,11 @@ class IGeolocatorStatics extends IInspectable {
                 .cast<
                     Pointer<
                         NativeFunction<
-                            HRESULT Function(Pointer, Uint64 startTime,
+                            HRESULT Function(LPVTBL, Uint64 startTime,
                                 Uint64 duration, Pointer<COMObject>)>>>()
                 .value
                 .asFunction<
-                    int Function(Pointer, int startTime, int duration,
+                    int Function(LPVTBL, int startTime, int duration,
                         Pointer<COMObject>)>()(
             ptr.ref.lpVtbl, startTimeDateTime, durationDuration, retValuePtr);
 

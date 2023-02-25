@@ -39,12 +39,12 @@ class IPhoneNumberFormatterStatics extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(Pointer, IntPtr regionCode,
+                        HRESULT Function(LPVTBL, IntPtr regionCode,
                             Pointer<COMObject> phoneNumber)>>>()
             .value
             .asFunction<
                 int Function(
-                    Pointer, int regionCode, Pointer<COMObject> phoneNumber)>()(
+                    LPVTBL, int regionCode, Pointer<COMObject> phoneNumber)>()(
         ptr.ref.lpVtbl, regionCodeHString, phoneNumber.ptr);
 
     if (FAILED(hr)) throw WindowsException(hr);
@@ -63,10 +63,10 @@ class IPhoneNumberFormatterStatics extends IInspectable {
                   Pointer<
                       NativeFunction<
                           HRESULT Function(
-                              Pointer, IntPtr regionCode, Pointer<Int32>)>>>()
+                              LPVTBL, IntPtr regionCode, Pointer<Int32>)>>>()
               .value
               .asFunction<
-                  int Function(Pointer, int regionCode, Pointer<Int32>)>()(
+                  int Function(LPVTBL, int regionCode, Pointer<Int32>)>()(
           ptr.ref.lpVtbl, regionCodeHString, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
@@ -89,11 +89,11 @@ class IPhoneNumberFormatterStatics extends IInspectable {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(Pointer, IntPtr regionCode,
+                          HRESULT Function(LPVTBL, IntPtr regionCode,
                               Bool stripNonDigit, Pointer<IntPtr>)>>>()
               .value
               .asFunction<
-                  int Function(Pointer, int regionCode, bool stripNonDigit,
+                  int Function(LPVTBL, int regionCode, bool stripNonDigit,
                       Pointer<IntPtr>)>()(
           ptr.ref.lpVtbl, regionCodeHString, stripNonDigit, retValuePtr);
 
@@ -119,9 +119,9 @@ class IPhoneNumberFormatterStatics extends IInspectable {
                   Pointer<
                       NativeFunction<
                           HRESULT Function(
-                              Pointer, IntPtr number, Pointer<IntPtr>)>>>()
+                              LPVTBL, IntPtr number, Pointer<IntPtr>)>>>()
               .value
-              .asFunction<int Function(Pointer, int number, Pointer<IntPtr>)>()(
+              .asFunction<int Function(LPVTBL, int number, Pointer<IntPtr>)>()(
           ptr.ref.lpVtbl, numberHString, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);

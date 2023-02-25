@@ -237,11 +237,11 @@ abstract class IMap<K, V> extends IInspectable
           .elementAt(7)
           .cast<
               Pointer<
-                  NativeFunction<HRESULT Function(Pointer, Pointer<Uint32>)>>>()
+                  NativeFunction<HRESULT Function(LPVTBL, Pointer<Uint32>)>>>()
           .value
           .asFunction<
               int Function(
-                  Pointer, Pointer<Uint32>)>()(ptr.ref.lpVtbl, retValuePtr);
+                  LPVTBL, Pointer<Uint32>)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -259,14 +259,14 @@ abstract class IMap<K, V> extends IInspectable
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-            .elementAt(9)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(Pointer, Pointer<COMObject>)>>>()
-            .value
-            .asFunction<int Function(Pointer, Pointer<COMObject>)>()(
-        ptr.ref.lpVtbl, retValuePtr);
+        .elementAt(9)
+        .cast<
+            Pointer<
+                NativeFunction<HRESULT Function(LPVTBL, Pointer<COMObject>)>>>()
+        .value
+        .asFunction<
+            int Function(
+                LPVTBL, Pointer<COMObject>)>()(ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -295,9 +295,9 @@ abstract class IMap<K, V> extends IInspectable
   void clear() {
     final hr = ptr.ref.lpVtbl.value
         .elementAt(12)
-        .cast<Pointer<NativeFunction<HRESULT Function(Pointer)>>>()
+        .cast<Pointer<NativeFunction<HRESULT Function(LPVTBL)>>>()
         .value
-        .asFunction<int Function(Pointer)>()(ptr.ref.lpVtbl);
+        .asFunction<int Function(LPVTBL)>()(ptr.ref.lpVtbl);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }

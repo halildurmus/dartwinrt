@@ -19,7 +19,6 @@ import 'callbacks.dart';
 import 'collections/iiterator.dart';
 import 'helpers.dart';
 import 'iinspectable.dart';
-import 'types.dart';
 
 /// @nodoc
 const IID_IUriRuntimeClassWithAbsoluteCanonicalUri =
@@ -43,11 +42,11 @@ class IUriRuntimeClassWithAbsoluteCanonicalUri extends IInspectable {
           .elementAt(6)
           .cast<
               Pointer<
-                  NativeFunction<HRESULT Function(Pointer, Pointer<IntPtr>)>>>()
+                  NativeFunction<HRESULT Function(LPVTBL, Pointer<IntPtr>)>>>()
           .value
           .asFunction<
               int Function(
-                  Pointer, Pointer<IntPtr>)>()(ptr.ref.lpVtbl, retValuePtr);
+                  LPVTBL, Pointer<IntPtr>)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -66,11 +65,11 @@ class IUriRuntimeClassWithAbsoluteCanonicalUri extends IInspectable {
           .elementAt(7)
           .cast<
               Pointer<
-                  NativeFunction<HRESULT Function(Pointer, Pointer<IntPtr>)>>>()
+                  NativeFunction<HRESULT Function(LPVTBL, Pointer<IntPtr>)>>>()
           .value
           .asFunction<
               int Function(
-                  Pointer, Pointer<IntPtr>)>()(ptr.ref.lpVtbl, retValuePtr);
+                  LPVTBL, Pointer<IntPtr>)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 

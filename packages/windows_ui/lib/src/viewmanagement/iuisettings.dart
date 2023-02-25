@@ -38,11 +38,11 @@ class IUISettings extends IInspectable {
           .elementAt(6)
           .cast<
               Pointer<
-                  NativeFunction<HRESULT Function(Pointer, Pointer<Int32>)>>>()
+                  NativeFunction<HRESULT Function(LPVTBL, Pointer<Int32>)>>>()
           .value
           .asFunction<
               int Function(
-                  Pointer, Pointer<Int32>)>()(ptr.ref.lpVtbl, retValuePtr);
+                  LPVTBL, Pointer<Int32>)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -58,11 +58,10 @@ class IUISettings extends IInspectable {
     final hr = ptr.ref.vtable
         .elementAt(7)
         .cast<
-            Pointer<NativeFunction<HRESULT Function(Pointer, Pointer<Size>)>>>()
+            Pointer<NativeFunction<HRESULT Function(LPVTBL, Pointer<Size>)>>>()
         .value
         .asFunction<
-            int Function(
-                Pointer, Pointer<Size>)>()(ptr.ref.lpVtbl, retValuePtr);
+            int Function(LPVTBL, Pointer<Size>)>()(ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) throw WindowsException(hr);
 
@@ -75,11 +74,10 @@ class IUISettings extends IInspectable {
     final hr = ptr.ref.vtable
         .elementAt(8)
         .cast<
-            Pointer<NativeFunction<HRESULT Function(Pointer, Pointer<Size>)>>>()
+            Pointer<NativeFunction<HRESULT Function(LPVTBL, Pointer<Size>)>>>()
         .value
         .asFunction<
-            int Function(
-                Pointer, Pointer<Size>)>()(ptr.ref.lpVtbl, retValuePtr);
+            int Function(LPVTBL, Pointer<Size>)>()(ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) throw WindowsException(hr);
 
@@ -92,11 +90,10 @@ class IUISettings extends IInspectable {
     final hr = ptr.ref.vtable
         .elementAt(9)
         .cast<
-            Pointer<NativeFunction<HRESULT Function(Pointer, Pointer<Size>)>>>()
+            Pointer<NativeFunction<HRESULT Function(LPVTBL, Pointer<Size>)>>>()
         .value
         .asFunction<
-            int Function(
-                Pointer, Pointer<Size>)>()(ptr.ref.lpVtbl, retValuePtr);
+            int Function(LPVTBL, Pointer<Size>)>()(ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) throw WindowsException(hr);
 
@@ -109,11 +106,10 @@ class IUISettings extends IInspectable {
     final hr = ptr.ref.vtable
         .elementAt(10)
         .cast<
-            Pointer<NativeFunction<HRESULT Function(Pointer, Pointer<Size>)>>>()
+            Pointer<NativeFunction<HRESULT Function(LPVTBL, Pointer<Size>)>>>()
         .value
         .asFunction<
-            int Function(
-                Pointer, Pointer<Size>)>()(ptr.ref.lpVtbl, retValuePtr);
+            int Function(LPVTBL, Pointer<Size>)>()(ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) throw WindowsException(hr);
 
@@ -128,11 +124,11 @@ class IUISettings extends IInspectable {
           .elementAt(11)
           .cast<
               Pointer<
-                  NativeFunction<HRESULT Function(Pointer, Pointer<Uint32>)>>>()
+                  NativeFunction<HRESULT Function(LPVTBL, Pointer<Uint32>)>>>()
           .value
           .asFunction<
               int Function(
-                  Pointer, Pointer<Uint32>)>()(ptr.ref.lpVtbl, retValuePtr);
+                  LPVTBL, Pointer<Uint32>)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -150,11 +146,11 @@ class IUISettings extends IInspectable {
           .elementAt(12)
           .cast<
               Pointer<
-                  NativeFunction<HRESULT Function(Pointer, Pointer<Bool>)>>>()
+                  NativeFunction<HRESULT Function(LPVTBL, Pointer<Bool>)>>>()
           .value
           .asFunction<
               int Function(
-                  Pointer, Pointer<Bool>)>()(ptr.ref.lpVtbl, retValuePtr);
+                  LPVTBL, Pointer<Bool>)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -172,11 +168,11 @@ class IUISettings extends IInspectable {
           .elementAt(13)
           .cast<
               Pointer<
-                  NativeFunction<HRESULT Function(Pointer, Pointer<Bool>)>>>()
+                  NativeFunction<HRESULT Function(LPVTBL, Pointer<Bool>)>>>()
           .value
           .asFunction<
               int Function(
-                  Pointer, Pointer<Bool>)>()(ptr.ref.lpVtbl, retValuePtr);
+                  LPVTBL, Pointer<Bool>)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -194,11 +190,11 @@ class IUISettings extends IInspectable {
           .elementAt(14)
           .cast<
               Pointer<
-                  NativeFunction<HRESULT Function(Pointer, Pointer<Uint32>)>>>()
+                  NativeFunction<HRESULT Function(LPVTBL, Pointer<Uint32>)>>>()
           .value
           .asFunction<
               int Function(
-                  Pointer, Pointer<Uint32>)>()(ptr.ref.lpVtbl, retValuePtr);
+                  LPVTBL, Pointer<Uint32>)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -216,11 +212,11 @@ class IUISettings extends IInspectable {
           .elementAt(15)
           .cast<
               Pointer<
-                  NativeFunction<HRESULT Function(Pointer, Pointer<Uint32>)>>>()
+                  NativeFunction<HRESULT Function(LPVTBL, Pointer<Uint32>)>>>()
           .value
           .asFunction<
               int Function(
-                  Pointer, Pointer<Uint32>)>()(ptr.ref.lpVtbl, retValuePtr);
+                  LPVTBL, Pointer<Uint32>)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -238,11 +234,11 @@ class IUISettings extends IInspectable {
           .elementAt(16)
           .cast<
               Pointer<
-                  NativeFunction<HRESULT Function(Pointer, Pointer<Uint32>)>>>()
+                  NativeFunction<HRESULT Function(LPVTBL, Pointer<Uint32>)>>>()
           .value
           .asFunction<
               int Function(
-                  Pointer, Pointer<Uint32>)>()(ptr.ref.lpVtbl, retValuePtr);
+                  LPVTBL, Pointer<Uint32>)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -260,11 +256,11 @@ class IUISettings extends IInspectable {
           .elementAt(17)
           .cast<
               Pointer<
-                  NativeFunction<HRESULT Function(Pointer, Pointer<Uint32>)>>>()
+                  NativeFunction<HRESULT Function(LPVTBL, Pointer<Uint32>)>>>()
           .value
           .asFunction<
               int Function(
-                  Pointer, Pointer<Uint32>)>()(ptr.ref.lpVtbl, retValuePtr);
+                  LPVTBL, Pointer<Uint32>)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -283,10 +279,10 @@ class IUISettings extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            Pointer, Int32 desiredElement, Pointer<Color>)>>>()
+                            LPVTBL, Int32 desiredElement, Pointer<Color>)>>>()
             .value
             .asFunction<
-                int Function(Pointer, int desiredElement, Pointer<Color>)>()(
+                int Function(LPVTBL, int desiredElement, Pointer<Color>)>()(
         ptr.ref.lpVtbl, desiredElement.value, retValuePtr);
 
     if (FAILED(hr)) throw WindowsException(hr);

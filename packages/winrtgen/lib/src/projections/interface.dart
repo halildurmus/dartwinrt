@@ -94,7 +94,6 @@ const IID_$shortName = '${typeDef.guid}';
           relativePathTo('windows_foundation/lib/src/callbacks.dart'),
           relativePathTo('windows_foundation/lib/src/helpers.dart'),
           relativePathTo('windows_foundation/lib/src/iinspectable.dart'),
-          relativePathTo('windows_foundation/lib/src/types.dart'),
           relativePathTo(
               'windows_foundation/lib/src/collections/iiterator.dart'),
         ] else ...[

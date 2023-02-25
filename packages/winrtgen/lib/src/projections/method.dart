@@ -195,7 +195,7 @@ abstract class MethodProjection {
       ].join(', ');
 
   String get nativeParams => [
-        'Pointer',
+        'LPVTBL',
         ...parameters.map((param) => param.ffiProjection),
         if (!returnTypeProjection.isVoid)
           returnTypeProjection.dartType == 'Pointer<COMObject>'
@@ -204,7 +204,7 @@ abstract class MethodProjection {
       ].join(', ');
 
   String get dartParams => [
-        'Pointer',
+        'LPVTBL',
         ...parameters.map((param) => param.dartProjection),
         if (!returnTypeProjection.isVoid)
           returnTypeProjection.dartType == 'Pointer<COMObject>'

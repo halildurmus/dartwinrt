@@ -38,10 +38,10 @@ class IToastNotificationFactory extends IInspectable {
   //               Pointer<
   //                   NativeFunction<
   //                       HRESULT Function(
-  //                           Pointer, LPVTBL content, Pointer<COMObject>)>>>()
+  //                           LPVTBL, LPVTBL content, Pointer<COMObject>)>>>()
   //           .value
   //           .asFunction<
-  //               int Function(Pointer, LPVTBL content, Pointer<COMObject>)>()(
+  //               int Function(LPVTBL, LPVTBL content, Pointer<COMObject>)>()(
   //       ptr.ref.lpVtbl, content.ptr.ref.lpVtbl, retValuePtr);
 
   //   if (FAILED(hr)) {

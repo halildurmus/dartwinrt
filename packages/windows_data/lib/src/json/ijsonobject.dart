@@ -43,9 +43,9 @@ class IJsonObject extends IInspectable implements IJsonValue {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            Pointer, IntPtr name, Pointer<COMObject>)>>>()
+                            LPVTBL, IntPtr name, Pointer<COMObject>)>>>()
             .value
-            .asFunction<int Function(Pointer, int name, Pointer<COMObject>)>()(
+            .asFunction<int Function(LPVTBL, int name, Pointer<COMObject>)>()(
         ptr.ref.lpVtbl, nameHString, retValuePtr);
 
     if (FAILED(hr)) {
@@ -66,19 +66,17 @@ class IJsonObject extends IInspectable implements IJsonValue {
   void setNamedValue(String name, IJsonValue? value) {
     final nameHString = convertToHString(name);
 
-    final hr =
-        ptr.ref.vtable
-                .elementAt(7)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                Pointer, IntPtr name, LPVTBL value)>>>()
-                .value
-                .asFunction<int Function(Pointer, int name, LPVTBL value)>()(
-            ptr.ref.lpVtbl,
-            nameHString,
-            value == null ? nullptr : value.ptr.ref.lpVtbl);
+    final hr = ptr.ref.vtable
+            .elementAt(7)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(LPVTBL, IntPtr name, LPVTBL value)>>>()
+            .value
+            .asFunction<int Function(LPVTBL, int name, LPVTBL value)>()(
+        ptr.ref.lpVtbl,
+        nameHString,
+        value == null ? nullptr : value.ptr.ref.lpVtbl);
 
     if (FAILED(hr)) throw WindowsException(hr);
 
@@ -95,9 +93,9 @@ class IJsonObject extends IInspectable implements IJsonValue {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            Pointer, IntPtr name, Pointer<COMObject>)>>>()
+                            LPVTBL, IntPtr name, Pointer<COMObject>)>>>()
             .value
-            .asFunction<int Function(Pointer, int name, Pointer<COMObject>)>()(
+            .asFunction<int Function(LPVTBL, int name, Pointer<COMObject>)>()(
         ptr.ref.lpVtbl, nameHString, retValuePtr);
 
     if (FAILED(hr)) {
@@ -125,9 +123,9 @@ class IJsonObject extends IInspectable implements IJsonValue {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            Pointer, IntPtr name, Pointer<COMObject>)>>>()
+                            LPVTBL, IntPtr name, Pointer<COMObject>)>>>()
             .value
-            .asFunction<int Function(Pointer, int name, Pointer<COMObject>)>()(
+            .asFunction<int Function(LPVTBL, int name, Pointer<COMObject>)>()(
         ptr.ref.lpVtbl, nameHString, retValuePtr);
 
     if (FAILED(hr)) {
@@ -156,9 +154,9 @@ class IJsonObject extends IInspectable implements IJsonValue {
                   Pointer<
                       NativeFunction<
                           HRESULT Function(
-                              Pointer, IntPtr name, Pointer<IntPtr>)>>>()
+                              LPVTBL, IntPtr name, Pointer<IntPtr>)>>>()
               .value
-              .asFunction<int Function(Pointer, int name, Pointer<IntPtr>)>()(
+              .asFunction<int Function(LPVTBL, int name, Pointer<IntPtr>)>()(
           ptr.ref.lpVtbl, nameHString, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
@@ -182,9 +180,9 @@ class IJsonObject extends IInspectable implements IJsonValue {
                   Pointer<
                       NativeFunction<
                           HRESULT Function(
-                              Pointer, IntPtr name, Pointer<Double>)>>>()
+                              LPVTBL, IntPtr name, Pointer<Double>)>>>()
               .value
-              .asFunction<int Function(Pointer, int name, Pointer<Double>)>()(
+              .asFunction<int Function(LPVTBL, int name, Pointer<Double>)>()(
           ptr.ref.lpVtbl, nameHString, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
@@ -208,9 +206,9 @@ class IJsonObject extends IInspectable implements IJsonValue {
                       Pointer<
                           NativeFunction<
                               HRESULT Function(
-                                  Pointer, IntPtr name, Pointer<Bool>)>>>()
+                                  LPVTBL, IntPtr name, Pointer<Bool>)>>>()
                   .value
-                  .asFunction<int Function(Pointer, int name, Pointer<Bool>)>()(
+                  .asFunction<int Function(LPVTBL, int name, Pointer<Bool>)>()(
               ptr.ref.lpVtbl, nameHString, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);

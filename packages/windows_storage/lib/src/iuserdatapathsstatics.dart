@@ -40,10 +40,10 @@ class IUserDataPathsStatics extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            Pointer, LPVTBL user, Pointer<COMObject>)>>>()
+                            LPVTBL, LPVTBL user, Pointer<COMObject>)>>>()
             .value
             .asFunction<
-                int Function(Pointer, LPVTBL user, Pointer<COMObject>)>()(
+                int Function(LPVTBL, LPVTBL user, Pointer<COMObject>)>()(
         ptr.ref.lpVtbl,
         user == null ? nullptr : user.ptr.ref.lpVtbl,
         retValuePtr);
@@ -65,14 +65,14 @@ class IUserDataPathsStatics extends IInspectable {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(Pointer, Pointer<COMObject>)>>>()
-            .value
-            .asFunction<int Function(Pointer, Pointer<COMObject>)>()(
-        ptr.ref.lpVtbl, retValuePtr);
+        .elementAt(7)
+        .cast<
+            Pointer<
+                NativeFunction<HRESULT Function(LPVTBL, Pointer<COMObject>)>>>()
+        .value
+        .asFunction<
+            int Function(
+                LPVTBL, Pointer<COMObject>)>()(ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);

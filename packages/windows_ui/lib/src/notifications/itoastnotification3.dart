@@ -36,11 +36,11 @@ class IToastNotification3 extends IInspectable {
           .elementAt(6)
           .cast<
               Pointer<
-                  NativeFunction<HRESULT Function(Pointer, Pointer<Int32>)>>>()
+                  NativeFunction<HRESULT Function(LPVTBL, Pointer<Int32>)>>>()
           .value
           .asFunction<
               int Function(
-                  Pointer, Pointer<Int32>)>()(ptr.ref.lpVtbl, retValuePtr);
+                  LPVTBL, Pointer<Int32>)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -53,9 +53,9 @@ class IToastNotification3 extends IInspectable {
   set notificationMirroring(NotificationMirroring value) {
     final hr = ptr.ref.vtable
         .elementAt(7)
-        .cast<Pointer<NativeFunction<HRESULT Function(Pointer, Int32)>>>()
+        .cast<Pointer<NativeFunction<HRESULT Function(LPVTBL, Int32)>>>()
         .value
-        .asFunction<int Function(Pointer, int)>()(ptr.ref.lpVtbl, value.value);
+        .asFunction<int Function(LPVTBL, int)>()(ptr.ref.lpVtbl, value.value);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
@@ -68,11 +68,11 @@ class IToastNotification3 extends IInspectable {
           .elementAt(8)
           .cast<
               Pointer<
-                  NativeFunction<HRESULT Function(Pointer, Pointer<IntPtr>)>>>()
+                  NativeFunction<HRESULT Function(LPVTBL, Pointer<IntPtr>)>>>()
           .value
           .asFunction<
               int Function(
-                  Pointer, Pointer<IntPtr>)>()(ptr.ref.lpVtbl, retValuePtr);
+                  LPVTBL, Pointer<IntPtr>)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -89,9 +89,9 @@ class IToastNotification3 extends IInspectable {
     try {
       final hr = ptr.ref.vtable
           .elementAt(9)
-          .cast<Pointer<NativeFunction<HRESULT Function(Pointer, IntPtr)>>>()
+          .cast<Pointer<NativeFunction<HRESULT Function(LPVTBL, IntPtr)>>>()
           .value
-          .asFunction<int Function(Pointer, int)>()(ptr.ref.lpVtbl, hstr);
+          .asFunction<int Function(LPVTBL, int)>()(ptr.ref.lpVtbl, hstr);
 
       if (FAILED(hr)) throw WindowsException(hr);
     } finally {

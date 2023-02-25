@@ -19,7 +19,6 @@ import 'callbacks.dart';
 import 'collections/iiterator.dart';
 import 'helpers.dart';
 import 'iinspectable.dart';
-import 'types.dart';
 
 /// @nodoc
 const IID_IUriEscapeStatics = '{c1d432ba-c824-4452-a7fd-512bc3bbe9a1}';
@@ -44,10 +43,10 @@ class IUriEscapeStatics extends IInspectable {
                   Pointer<
                       NativeFunction<
                           HRESULT Function(
-                              Pointer, IntPtr toUnescape, Pointer<IntPtr>)>>>()
+                              LPVTBL, IntPtr toUnescape, Pointer<IntPtr>)>>>()
               .value
               .asFunction<
-                  int Function(Pointer, int toUnescape, Pointer<IntPtr>)>()(
+                  int Function(LPVTBL, int toUnescape, Pointer<IntPtr>)>()(
           ptr.ref.lpVtbl, toUnescapeHString, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
@@ -71,10 +70,10 @@ class IUriEscapeStatics extends IInspectable {
                   Pointer<
                       NativeFunction<
                           HRESULT Function(
-                              Pointer, IntPtr toEscape, Pointer<IntPtr>)>>>()
+                              LPVTBL, IntPtr toEscape, Pointer<IntPtr>)>>>()
               .value
               .asFunction<
-                  int Function(Pointer, int toEscape, Pointer<IntPtr>)>()(
+                  int Function(LPVTBL, int toEscape, Pointer<IntPtr>)>()(
           ptr.ref.lpVtbl, toEscapeHString, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);

@@ -20,7 +20,6 @@ import 'collections/iiterator.dart';
 import 'helpers.dart';
 import 'iinspectable.dart';
 import 'iwwwformurldecoderentry.dart';
-import 'types.dart';
 
 /// Represents a name-value pair in a URL query string.
 ///

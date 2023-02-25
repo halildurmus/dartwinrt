@@ -51,9 +51,9 @@ void main() {
           'Windows.UI.Notifications.IToastNotification2', 'put_SuppressPopup');
       expect(projection, isA<DefaultSetterProjection>());
       expect(projection.nativePrototype,
-          equals('HRESULT Function(Pointer, Bool value)'));
-      expect(projection.dartPrototype,
-          equals('int Function(Pointer, bool value)'));
+          equals('HRESULT Function(LPVTBL, Bool value)'));
+      expect(
+          projection.dartPrototype, equals('int Function(LPVTBL, bool value)'));
       expect(
           projection.shortDeclaration, equals('set suppressPopup(bool value)'));
     });
@@ -63,9 +63,9 @@ void main() {
           'Windows.UI.Notifications.IToastNotification4', 'put_Data');
       expect(projection, isA<InspectableSetterProjection>());
       expect(projection.nativePrototype,
-          equalsIgnoringWhitespace('HRESULT Function(Pointer, LPVTBL value)'));
+          equalsIgnoringWhitespace('HRESULT Function(LPVTBL, LPVTBL value)'));
       expect(projection.dartPrototype,
-          equalsIgnoringWhitespace('int Function(Pointer, LPVTBL value)'));
+          equalsIgnoringWhitespace('int Function(LPVTBL, LPVTBL value)'));
       expect(projection.shortDeclaration,
           equals('set data(NotificationData? value)'));
     });
@@ -75,9 +75,9 @@ void main() {
           'Windows.Storage.FileProperties.ImageProperties', 'put_DateTaken');
       expect(projection, isA<DateTimeSetterProjection>());
       expect(projection.nativePrototype,
-          equals('HRESULT Function(Pointer, Uint64 value)'));
+          equals('HRESULT Function(LPVTBL, Uint64 value)'));
       expect(
-          projection.dartPrototype, equals('int Function(Pointer, int value)'));
+          projection.dartPrototype, equals('int Function(LPVTBL, int value)'));
       expect(
           projection.shortDeclaration, equals('set dateTaken(DateTime value)'));
     });
@@ -89,11 +89,11 @@ void main() {
       expect(
           projection.nativePrototype,
           equals(
-              'HRESULT Function(Pointer, Pointer<NativeFunction<AsyncActionCompletedHandler>> handler)'));
+              'HRESULT Function(LPVTBL, Pointer<NativeFunction<AsyncActionCompletedHandler>> handler)'));
       expect(
           projection.dartPrototype,
           equals(
-              'int Function(Pointer, Pointer<NativeFunction<AsyncActionCompletedHandler>> handler)'));
+              'int Function(LPVTBL, Pointer<NativeFunction<AsyncActionCompletedHandler>> handler)'));
       expect(
           projection.shortDeclaration,
           equals(
@@ -105,9 +105,9 @@ void main() {
           'Windows.Devices.Geolocation.IGeolocator', 'put_MovementThreshold');
       expect(projection, isA<DefaultSetterProjection>());
       expect(projection.nativePrototype,
-          equals('HRESULT Function(Pointer, Double value)'));
+          equals('HRESULT Function(LPVTBL, Double value)'));
       expect(projection.dartPrototype,
-          equals('int Function(Pointer, double value)'));
+          equals('int Function(LPVTBL, double value)'));
       expect(projection.shortDeclaration,
           equals('set movementThreshold(double value)'));
     });
@@ -117,9 +117,9 @@ void main() {
           'Windows.Media.Playback.MediaPlaybackSession', 'put_Position');
       expect(projection, isA<DurationSetterProjection>());
       expect(projection.nativePrototype,
-          equals('HRESULT Function(Pointer, Uint64 value)'));
+          equals('HRESULT Function(LPVTBL, Uint64 value)'));
       expect(
-          projection.dartPrototype, equals('int Function(Pointer, int value)'));
+          projection.dartPrototype, equals('int Function(LPVTBL, int value)'));
       expect(
           projection.shortDeclaration, equals('set position(Duration value)'));
     });
@@ -129,9 +129,9 @@ void main() {
           'Windows.Storage.Pickers.IFileOpenPicker', 'put_ViewMode');
       expect(projection, isA<EnumSetterProjection>());
       expect(projection.nativePrototype,
-          equals('HRESULT Function(Pointer, Int32 value)'));
+          equals('HRESULT Function(LPVTBL, Int32 value)'));
       expect(
-          projection.dartPrototype, equals('int Function(Pointer, int value)'));
+          projection.dartPrototype, equals('int Function(LPVTBL, int value)'));
       expect(projection.shortDeclaration,
           equals('set viewMode(PickerViewMode value)'));
     });
@@ -141,9 +141,9 @@ void main() {
           'Windows.Data.Pdf.IPdfPageRenderOptions', 'put_BitmapEncoderId');
       expect(projection, isA<GuidSetterProjection>());
       expect(projection.nativePrototype,
-          equals('HRESULT Function(Pointer, GUID value)'));
-      expect(projection.dartPrototype,
-          equals('int Function(Pointer, GUID value)'));
+          equals('HRESULT Function(LPVTBL, GUID value)'));
+      expect(
+          projection.dartPrototype, equals('int Function(LPVTBL, GUID value)'));
       expect(projection.shortDeclaration,
           equals('set bitmapEncoderId(Guid value)'));
     });
@@ -153,9 +153,9 @@ void main() {
           'Windows.Globalization.ICalendar', 'put_Era');
       expect(projection, isA<DefaultSetterProjection>());
       expect(projection.nativePrototype,
-          equals('HRESULT Function(Pointer, Int32 value)'));
+          equals('HRESULT Function(LPVTBL, Int32 value)'));
       expect(
-          projection.dartPrototype, equals('int Function(Pointer, int value)'));
+          projection.dartPrototype, equals('int Function(LPVTBL, int value)'));
       expect(projection.shortDeclaration, equals('set era(int value)'));
     });
 
@@ -165,9 +165,9 @@ void main() {
           'put_TargetFile');
       expect(projection, isA<InspectableSetterProjection>());
       expect(projection.nativePrototype,
-          equalsIgnoringWhitespace('HRESULT Function(Pointer, LPVTBL value)'));
+          equalsIgnoringWhitespace('HRESULT Function(LPVTBL, LPVTBL value)'));
       expect(projection.dartPrototype,
-          equalsIgnoringWhitespace('int Function(Pointer, LPVTBL value)'));
+          equalsIgnoringWhitespace('int Function(LPVTBL, LPVTBL value)'));
       expect(projection.shortDeclaration,
           equals('set targetFile(IStorageFile? value)'));
     });
@@ -177,9 +177,9 @@ void main() {
           'Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisement',
           'put_Flags');
       expect(projection.nativePrototype,
-          equalsIgnoringWhitespace('HRESULT Function(Pointer, LPVTBL value)'));
+          equalsIgnoringWhitespace('HRESULT Function(LPVTBL, LPVTBL value)'));
       expect(projection.dartPrototype,
-          equalsIgnoringWhitespace('int Function(Pointer, LPVTBL value)'));
+          equalsIgnoringWhitespace('int Function(LPVTBL, LPVTBL value)'));
       expect(projection.shortDeclaration,
           equals('set flags(BluetoothLEAdvertisementFlags? value)'));
     });
@@ -189,9 +189,9 @@ void main() {
           'Windows.Data.Xml.Dom.IXmlNode', 'put_NodeValue');
       expect(projection, isA<ObjectSetterProjection>());
       expect(projection.nativePrototype,
-          equalsIgnoringWhitespace('HRESULT Function(Pointer, LPVTBL value)'));
+          equalsIgnoringWhitespace('HRESULT Function(LPVTBL, LPVTBL value)'));
       expect(projection.dartPrototype,
-          equalsIgnoringWhitespace('int Function(Pointer, LPVTBL value)'));
+          equalsIgnoringWhitespace('int Function(LPVTBL, LPVTBL value)'));
       expect(
           projection.shortDeclaration, equals('set nodeValue(Object? value)'));
     });
@@ -201,9 +201,9 @@ void main() {
           'Windows.Globalization.ICalendar', 'put_NumeralSystem');
       expect(projection, isA<StringSetterProjection>());
       expect(projection.nativePrototype,
-          equalsIgnoringWhitespace('HRESULT Function(Pointer, IntPtr value)'));
+          equalsIgnoringWhitespace('HRESULT Function(LPVTBL, IntPtr value)'));
       expect(projection.dartPrototype,
-          equalsIgnoringWhitespace('int Function(Pointer, int value)'));
+          equalsIgnoringWhitespace('int Function(LPVTBL, int value)'));
       expect(projection.shortDeclaration,
           equals('set numeralSystem(String value)'));
     });
@@ -215,11 +215,11 @@ void main() {
       expect(
           projection.nativePrototype,
           equalsIgnoringWhitespace(
-              'HRESULT Function(Pointer, GamepadVibration value)'));
+              'HRESULT Function(LPVTBL, GamepadVibration value)'));
       expect(
           projection.dartPrototype,
           equalsIgnoringWhitespace(
-              'int Function(Pointer, GamepadVibration value)'));
+              'int Function(LPVTBL, GamepadVibration value)'));
       expect(projection.shortDeclaration,
           equals('set vibration(GamepadVibration value)'));
     });
@@ -229,9 +229,9 @@ void main() {
           'Windows.System.ILauncherOptions', 'put_FallbackUri');
       expect(projection, isA<UriSetterProjection>());
       expect(projection.nativePrototype,
-          equals('HRESULT Function(Pointer, LPVTBL value)'));
+          equals('HRESULT Function(LPVTBL, LPVTBL value)'));
       expect(projection.dartPrototype,
-          equals('int Function(Pointer, LPVTBL value)'));
+          equals('int Function(LPVTBL, LPVTBL value)'));
       expect(
           projection.shortDeclaration, equals('set fallbackUri(Uri? value)'));
     });

@@ -24,11 +24,11 @@ class _IReferenceBool extends IReference<bool?> {
           .elementAt(6)
           .cast<
               Pointer<
-                  NativeFunction<HRESULT Function(Pointer, Pointer<Bool>)>>>()
+                  NativeFunction<HRESULT Function(LPVTBL, Pointer<Bool>)>>>()
           .value
           .asFunction<
               int Function(
-                  Pointer, Pointer<Bool>)>()(ptr.ref.lpVtbl, retValuePtr);
+                  LPVTBL, Pointer<Bool>)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -53,11 +53,11 @@ class _IReferenceDateTime extends IReference<DateTime?> {
           .elementAt(6)
           .cast<
               Pointer<
-                  NativeFunction<HRESULT Function(Pointer, Pointer<Uint64>)>>>()
+                  NativeFunction<HRESULT Function(LPVTBL, Pointer<Uint64>)>>>()
           .value
           .asFunction<
               int Function(
-                  Pointer, Pointer<Uint64>)>()(ptr.ref.lpVtbl, retValuePtr);
+                  LPVTBL, Pointer<Uint64>)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -83,11 +83,11 @@ class _IReferenceDouble extends IReference<double?> {
           .elementAt(6)
           .cast<
               Pointer<
-                  NativeFunction<HRESULT Function(Pointer, Pointer<Double>)>>>()
+                  NativeFunction<HRESULT Function(LPVTBL, Pointer<Double>)>>>()
           .value
           .asFunction<
               int Function(
-                  Pointer, Pointer<Double>)>()(ptr.ref.lpVtbl, retValuePtr);
+                  LPVTBL, Pointer<Double>)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -112,11 +112,11 @@ class _IReferenceDuration extends IReference<Duration?> {
           .elementAt(6)
           .cast<
               Pointer<
-                  NativeFunction<HRESULT Function(Pointer, Pointer<Uint64>)>>>()
+                  NativeFunction<HRESULT Function(LPVTBL, Pointer<Uint64>)>>>()
           .value
           .asFunction<
               int Function(
-                  Pointer, Pointer<Uint64>)>()(ptr.ref.lpVtbl, retValuePtr);
+                  LPVTBL, Pointer<Uint64>)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -141,11 +141,11 @@ class _IReferenceFloat extends IReference<double?> {
           .elementAt(6)
           .cast<
               Pointer<
-                  NativeFunction<HRESULT Function(Pointer, Pointer<Float>)>>>()
+                  NativeFunction<HRESULT Function(LPVTBL, Pointer<Float>)>>>()
           .value
           .asFunction<
               int Function(
-                  Pointer, Pointer<Float>)>()(ptr.ref.lpVtbl, retValuePtr);
+                  LPVTBL, Pointer<Float>)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -170,11 +170,11 @@ class _IReferenceGuid extends IReference<Guid?> {
           .elementAt(6)
           .cast<
               Pointer<
-                  NativeFunction<HRESULT Function(Pointer, Pointer<GUID>)>>>()
+                  NativeFunction<HRESULT Function(LPVTBL, Pointer<GUID>)>>>()
           .value
           .asFunction<
               int Function(
-                  Pointer, Pointer<GUID>)>()(ptr.ref.lpVtbl, retValuePtr);
+                  LPVTBL, Pointer<GUID>)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -199,11 +199,11 @@ class _IReferenceInt16 extends IReference<int?> {
           .elementAt(6)
           .cast<
               Pointer<
-                  NativeFunction<HRESULT Function(Pointer, Pointer<Int16>)>>>()
+                  NativeFunction<HRESULT Function(LPVTBL, Pointer<Int16>)>>>()
           .value
           .asFunction<
               int Function(
-                  Pointer, Pointer<Int16>)>()(ptr.ref.lpVtbl, retValuePtr);
+                  LPVTBL, Pointer<Int16>)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -228,11 +228,11 @@ class _IReferenceInt32 extends IReference<int?> {
           .elementAt(6)
           .cast<
               Pointer<
-                  NativeFunction<HRESULT Function(Pointer, Pointer<Int32>)>>>()
+                  NativeFunction<HRESULT Function(LPVTBL, Pointer<Int32>)>>>()
           .value
           .asFunction<
               int Function(
-                  Pointer, Pointer<Int32>)>()(ptr.ref.lpVtbl, retValuePtr);
+                  LPVTBL, Pointer<Int32>)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -257,11 +257,11 @@ class _IReferenceInt64 extends IReference<int?> {
           .elementAt(6)
           .cast<
               Pointer<
-                  NativeFunction<HRESULT Function(Pointer, Pointer<Int64>)>>>()
+                  NativeFunction<HRESULT Function(LPVTBL, Pointer<Int64>)>>>()
           .value
           .asFunction<
               int Function(
-                  Pointer, Pointer<Int64>)>()(ptr.ref.lpVtbl, retValuePtr);
+                  LPVTBL, Pointer<Int64>)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -284,12 +284,11 @@ class _IReferencePoint extends IReference<Point?> {
     final hr = ptr.ref.vtable
         .elementAt(6)
         .cast<
-            Pointer<
-                NativeFunction<HRESULT Function(Pointer, Pointer<Point>)>>>()
+            Pointer<NativeFunction<HRESULT Function(LPVTBL, Pointer<Point>)>>>()
         .value
         .asFunction<
             int Function(
-                Pointer, Pointer<Point>)>()(ptr.ref.lpVtbl, retValuePtr);
+                LPVTBL, Pointer<Point>)>()(ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) throw WindowsException(hr);
 
@@ -309,11 +308,10 @@ class _IReferenceRect extends IReference<Rect?> {
     final hr = ptr.ref.vtable
         .elementAt(6)
         .cast<
-            Pointer<NativeFunction<HRESULT Function(Pointer, Pointer<Rect>)>>>()
+            Pointer<NativeFunction<HRESULT Function(LPVTBL, Pointer<Rect>)>>>()
         .value
         .asFunction<
-            int Function(
-                Pointer, Pointer<Rect>)>()(ptr.ref.lpVtbl, retValuePtr);
+            int Function(LPVTBL, Pointer<Rect>)>()(ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) throw WindowsException(hr);
 
@@ -333,11 +331,10 @@ class _IReferenceSize extends IReference<Size?> {
     final hr = ptr.ref.vtable
         .elementAt(6)
         .cast<
-            Pointer<NativeFunction<HRESULT Function(Pointer, Pointer<Size>)>>>()
+            Pointer<NativeFunction<HRESULT Function(LPVTBL, Pointer<Size>)>>>()
         .value
         .asFunction<
-            int Function(
-                Pointer, Pointer<Size>)>()(ptr.ref.lpVtbl, retValuePtr);
+            int Function(LPVTBL, Pointer<Size>)>()(ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) throw WindowsException(hr);
 
@@ -359,11 +356,11 @@ class _IReferenceString extends IReference<String?> {
           .elementAt(6)
           .cast<
               Pointer<
-                  NativeFunction<HRESULT Function(Pointer, Pointer<IntPtr>)>>>()
+                  NativeFunction<HRESULT Function(LPVTBL, Pointer<IntPtr>)>>>()
           .value
           .asFunction<
               int Function(
-                  Pointer, Pointer<IntPtr>)>()(ptr.ref.lpVtbl, retValuePtr);
+                  LPVTBL, Pointer<IntPtr>)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -389,11 +386,11 @@ class _IReferenceUint8 extends IReference<int?> {
           .elementAt(6)
           .cast<
               Pointer<
-                  NativeFunction<HRESULT Function(Pointer, Pointer<Uint8>)>>>()
+                  NativeFunction<HRESULT Function(LPVTBL, Pointer<Uint8>)>>>()
           .value
           .asFunction<
               int Function(
-                  Pointer, Pointer<Uint8>)>()(ptr.ref.lpVtbl, retValuePtr);
+                  LPVTBL, Pointer<Uint8>)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -418,11 +415,11 @@ class _IReferenceUint16 extends IReference<int?> {
           .elementAt(6)
           .cast<
               Pointer<
-                  NativeFunction<HRESULT Function(Pointer, Pointer<Uint16>)>>>()
+                  NativeFunction<HRESULT Function(LPVTBL, Pointer<Uint16>)>>>()
           .value
           .asFunction<
               int Function(
-                  Pointer, Pointer<Uint16>)>()(ptr.ref.lpVtbl, retValuePtr);
+                  LPVTBL, Pointer<Uint16>)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -447,11 +444,11 @@ class _IReferenceUint32 extends IReference<int?> {
           .elementAt(6)
           .cast<
               Pointer<
-                  NativeFunction<HRESULT Function(Pointer, Pointer<Uint32>)>>>()
+                  NativeFunction<HRESULT Function(LPVTBL, Pointer<Uint32>)>>>()
           .value
           .asFunction<
               int Function(
-                  Pointer, Pointer<Uint32>)>()(ptr.ref.lpVtbl, retValuePtr);
+                  LPVTBL, Pointer<Uint32>)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -476,11 +473,11 @@ class _IReferenceUint64 extends IReference<int?> {
           .elementAt(6)
           .cast<
               Pointer<
-                  NativeFunction<HRESULT Function(Pointer, Pointer<Uint64>)>>>()
+                  NativeFunction<HRESULT Function(LPVTBL, Pointer<Uint64>)>>>()
           .value
           .asFunction<
               int Function(
-                  Pointer, Pointer<Uint64>)>()(ptr.ref.lpVtbl, retValuePtr);
+                  LPVTBL, Pointer<Uint64>)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -505,11 +502,11 @@ class _IReferenceWinRTEnum<T> extends IReference<T> {
           .elementAt(6)
           .cast<
               Pointer<
-                  NativeFunction<HRESULT Function(Pointer, Pointer<Int32>)>>>()
+                  NativeFunction<HRESULT Function(LPVTBL, Pointer<Int32>)>>>()
           .value
           .asFunction<
               int Function(
-                  Pointer, Pointer<Int32>)>()(ptr.ref.lpVtbl, retValuePtr);
+                  LPVTBL, Pointer<Int32>)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -534,11 +531,11 @@ class _IReferenceWinRTFlagsEnum<T> extends IReference<T> {
           .elementAt(6)
           .cast<
               Pointer<
-                  NativeFunction<HRESULT Function(Pointer, Pointer<Uint32>)>>>()
+                  NativeFunction<HRESULT Function(LPVTBL, Pointer<Uint32>)>>>()
           .value
           .asFunction<
               int Function(
-                  Pointer, Pointer<Uint32>)>()(ptr.ref.lpVtbl, retValuePtr);
+                  LPVTBL, Pointer<Uint32>)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 

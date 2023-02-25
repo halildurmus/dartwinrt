@@ -34,19 +34,18 @@ class IHostNameStatics extends IInspectable {
     final value2HString = convertToHString(value2);
 
     try {
-      final hr =
-          ptr.ref.vtable
-                  .elementAt(6)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(Pointer, IntPtr value1,
-                                  IntPtr value2, Pointer<Int32>)>>>()
-                  .value
-                  .asFunction<
-                      int Function(
-                          Pointer, int value1, int value2, Pointer<Int32>)>()(
-              ptr.ref.lpVtbl, value1HString, value2HString, retValuePtr);
+      final hr = ptr.ref.vtable
+              .elementAt(6)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(LPVTBL, IntPtr value1, IntPtr value2,
+                              Pointer<Int32>)>>>()
+              .value
+              .asFunction<
+                  int Function(
+                      LPVTBL, int value1, int value2, Pointer<Int32>)>()(
+          ptr.ref.lpVtbl, value1HString, value2HString, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 

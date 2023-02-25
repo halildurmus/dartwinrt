@@ -18,16 +18,17 @@ class _IVectorBool extends IVector<bool> {
     final retValuePtr = calloc<Bool>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              Pointer, Uint32 index, Pointer<Bool>)>>>()
-              .value
-              .asFunction<int Function(Pointer, int index, Pointer<Bool>)>()(
-          ptr.ref.lpVtbl, index, retValuePtr);
+      final hr =
+          ptr.ref.vtable
+                  .elementAt(6)
+                  .cast<
+                      Pointer<
+                          NativeFunction<
+                              HRESULT Function(
+                                  LPVTBL, Uint32 index, Pointer<Bool>)>>>()
+                  .value
+                  .asFunction<int Function(LPVTBL, int index, Pointer<Bool>)>()(
+              ptr.ref.lpVtbl, index, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -47,11 +48,11 @@ class _IVectorBool extends IVector<bool> {
           .cast<
               Pointer<
                   NativeFunction<
-                      HRESULT Function(Pointer, Bool value,
+                      HRESULT Function(LPVTBL, Bool value,
                           Pointer<Uint32> index, Pointer<Bool>)>>>()
           .value
           .asFunction<
-              int Function(Pointer, bool value, Pointer<Uint32> index,
+              int Function(LPVTBL, bool value, Pointer<Uint32> index,
                   Pointer<Bool>)>()(ptr.ref.lpVtbl, value, index, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
@@ -69,9 +70,9 @@ class _IVectorBool extends IVector<bool> {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(Pointer, Uint32 index, Bool value)>>>()
+                        HRESULT Function(LPVTBL, Uint32 index, Bool value)>>>()
             .value
-            .asFunction<int Function(Pointer, int index, bool value)>()(
+            .asFunction<int Function(LPVTBL, int index, bool value)>()(
         ptr.ref.lpVtbl, index, value);
 
     if (FAILED(hr)) throw WindowsException(hr);
@@ -84,9 +85,9 @@ class _IVectorBool extends IVector<bool> {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(Pointer, Uint32 index, Bool value)>>>()
+                        HRESULT Function(LPVTBL, Uint32 index, Bool value)>>>()
             .value
-            .asFunction<int Function(Pointer, int index, bool value)>()(
+            .asFunction<int Function(LPVTBL, int index, bool value)>()(
         ptr.ref.lpVtbl, index, value);
 
     if (FAILED(hr)) throw WindowsException(hr);
@@ -96,9 +97,9 @@ class _IVectorBool extends IVector<bool> {
   void append(bool value) {
     final hr = ptr.ref.vtable
         .elementAt(13)
-        .cast<Pointer<NativeFunction<HRESULT Function(Pointer, Bool value)>>>()
+        .cast<Pointer<NativeFunction<HRESULT Function(LPVTBL, Bool value)>>>()
         .value
-        .asFunction<int Function(Pointer, bool value)>()(ptr.ref.lpVtbl, value);
+        .asFunction<int Function(LPVTBL, bool value)>()(ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
@@ -116,14 +117,14 @@ class _IVectorBool extends IVector<bool> {
                   Pointer<
                       NativeFunction<
                           HRESULT Function(
-                              Pointer,
+                              LPVTBL,
                               Uint32 startIndex,
                               Uint32 valueSize,
                               Pointer<Bool> value,
                               Pointer<Uint32>)>>>()
               .value
               .asFunction<
-                  int Function(Pointer, int startIndex, int valueSize,
+                  int Function(LPVTBL, int startIndex, int valueSize,
                       Pointer<Bool> value, Pointer<Uint32>)>()(
           ptr.ref.lpVtbl, startIndex, valueSize, pArray, retValuePtr);
 
@@ -152,10 +153,10 @@ class _IVectorBool extends IVector<bool> {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            Pointer, Uint32 valueSize, Pointer<Bool> value)>>>()
+                            LPVTBL, Uint32 valueSize, Pointer<Bool> value)>>>()
             .value
             .asFunction<
-                int Function(Pointer, int valueSize, Pointer<Bool> value)>()(
+                int Function(LPVTBL, int valueSize, Pointer<Bool> value)>()(
         ptr.ref.lpVtbl, value.length, pArray);
 
     if (FAILED(hr)) throw WindowsException(hr);
@@ -172,16 +173,17 @@ class _IVectorGuid extends IVector<Guid> {
     final retValuePtr = calloc<GUID>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              Pointer, Uint32 index, Pointer<GUID>)>>>()
-              .value
-              .asFunction<int Function(Pointer, int index, Pointer<GUID>)>()(
-          ptr.ref.lpVtbl, index, retValuePtr);
+      final hr =
+          ptr.ref.vtable
+                  .elementAt(6)
+                  .cast<
+                      Pointer<
+                          NativeFunction<
+                              HRESULT Function(
+                                  LPVTBL, Uint32 index, Pointer<GUID>)>>>()
+                  .value
+                  .asFunction<int Function(LPVTBL, int index, Pointer<GUID>)>()(
+              ptr.ref.lpVtbl, index, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -202,11 +204,11 @@ class _IVectorGuid extends IVector<Guid> {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(Pointer, GUID value,
+                          HRESULT Function(LPVTBL, GUID value,
                               Pointer<Uint32> index, Pointer<Bool>)>>>()
               .value
               .asFunction<
-                  int Function(Pointer, GUID value, Pointer<Uint32> index,
+                  int Function(LPVTBL, GUID value, Pointer<Uint32> index,
                       Pointer<Bool>)>()(
           ptr.ref.lpVtbl, valueNativeGuidPtr.ref, index, retValuePtr);
 
@@ -229,9 +231,9 @@ class _IVectorGuid extends IVector<Guid> {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(Pointer, Uint32 index, GUID value)>>>()
+                        HRESULT Function(LPVTBL, Uint32 index, GUID value)>>>()
             .value
-            .asFunction<int Function(Pointer, int index, GUID value)>()(
+            .asFunction<int Function(LPVTBL, int index, GUID value)>()(
         ptr.ref.lpVtbl, index, valueNativeGuidPtr.ref);
 
     if (FAILED(hr)) throw WindowsException(hr);
@@ -248,9 +250,9 @@ class _IVectorGuid extends IVector<Guid> {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(Pointer, Uint32 index, GUID value)>>>()
+                        HRESULT Function(LPVTBL, Uint32 index, GUID value)>>>()
             .value
-            .asFunction<int Function(Pointer, int index, GUID value)>()(
+            .asFunction<int Function(LPVTBL, int index, GUID value)>()(
         ptr.ref.lpVtbl, index, valueNativeGuidPtr.ref);
 
     if (FAILED(hr)) throw WindowsException(hr);
@@ -264,11 +266,11 @@ class _IVectorGuid extends IVector<Guid> {
 
     final hr = ptr.ref.vtable
         .elementAt(13)
-        .cast<Pointer<NativeFunction<HRESULT Function(Pointer, GUID value)>>>()
+        .cast<Pointer<NativeFunction<HRESULT Function(LPVTBL, GUID value)>>>()
         .value
         .asFunction<
             int Function(
-                Pointer, GUID value)>()(ptr.ref.lpVtbl, valueNativeGuidPtr.ref);
+                LPVTBL, GUID value)>()(ptr.ref.lpVtbl, valueNativeGuidPtr.ref);
 
     if (FAILED(hr)) throw WindowsException(hr);
 
@@ -288,14 +290,14 @@ class _IVectorGuid extends IVector<Guid> {
                   Pointer<
                       NativeFunction<
                           HRESULT Function(
-                              Pointer,
+                              LPVTBL,
                               Uint32 startIndex,
                               Uint32 valueSize,
                               Pointer<GUID> value,
                               Pointer<Uint32>)>>>()
               .value
               .asFunction<
-                  int Function(Pointer, int startIndex, int valueSize,
+                  int Function(LPVTBL, int startIndex, int valueSize,
                       Pointer<GUID> value, Pointer<Uint32>)>()(
           ptr.ref.lpVtbl, startIndex, valueSize, pArray, retValuePtr);
 
@@ -327,10 +329,10 @@ class _IVectorGuid extends IVector<Guid> {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            Pointer, Uint32 valueSize, Pointer<GUID> value)>>>()
+                            LPVTBL, Uint32 valueSize, Pointer<GUID> value)>>>()
             .value
             .asFunction<
-                int Function(Pointer, int valueSize, Pointer<GUID> value)>()(
+                int Function(LPVTBL, int valueSize, Pointer<GUID> value)>()(
         ptr.ref.lpVtbl, value.length, pArray);
 
     if (FAILED(hr)) throw WindowsException(hr);
@@ -354,9 +356,9 @@ class _IVectorIInspectable<T> extends IVector<T> {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            Pointer, Uint32 index, Pointer<COMObject>)>>>()
+                            LPVTBL, Uint32 index, Pointer<COMObject>)>>>()
             .value
-            .asFunction<int Function(Pointer, int index, Pointer<COMObject>)>()(
+            .asFunction<int Function(LPVTBL, int index, Pointer<COMObject>)>()(
         ptr.ref.lpVtbl, index, retValuePtr);
 
     if (FAILED(hr)) {
@@ -377,11 +379,11 @@ class _IVectorIInspectable<T> extends IVector<T> {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(Pointer, LPVTBL value,
+                          HRESULT Function(LPVTBL, LPVTBL value,
                               Pointer<Uint32> index, Pointer<Bool>)>>>()
               .value
               .asFunction<
-                  int Function(Pointer, LPVTBL value, Pointer<Uint32> index,
+                  int Function(LPVTBL, LPVTBL value, Pointer<Uint32> index,
                       Pointer<Bool>)>()(ptr.ref.lpVtbl,
           (value as IInspectable).ptr.ref.lpVtbl, index, retValuePtr);
 
@@ -402,9 +404,9 @@ class _IVectorIInspectable<T> extends IVector<T> {
                     Pointer<
                         NativeFunction<
                             HRESULT Function(
-                                Pointer, Uint32 index, LPVTBL value)>>>()
+                                LPVTBL, Uint32 index, LPVTBL value)>>>()
                 .value
-                .asFunction<int Function(Pointer, int index, LPVTBL value)>()(
+                .asFunction<int Function(LPVTBL, int index, LPVTBL value)>()(
             ptr.ref.lpVtbl, index, (value as IInspectable).ptr.ref.lpVtbl);
 
     if (FAILED(hr)) throw WindowsException(hr);
@@ -419,9 +421,9 @@ class _IVectorIInspectable<T> extends IVector<T> {
                     Pointer<
                         NativeFunction<
                             HRESULT Function(
-                                Pointer, Uint32 index, LPVTBL value)>>>()
+                                LPVTBL, Uint32 index, LPVTBL value)>>>()
                 .value
-                .asFunction<int Function(Pointer, int index, LPVTBL value)>()(
+                .asFunction<int Function(LPVTBL, int index, LPVTBL value)>()(
             ptr.ref.lpVtbl, index, (value as IInspectable).ptr.ref.lpVtbl);
 
     if (FAILED(hr)) throw WindowsException(hr);
@@ -429,13 +431,15 @@ class _IVectorIInspectable<T> extends IVector<T> {
 
   @override
   void append(T value) {
-    final hr = ptr.ref.vtable
-            .elementAt(13)
-            .cast<
-                Pointer<NativeFunction<HRESULT Function(Pointer, LPVTBL value)>>>()
-            .value
-            .asFunction<int Function(Pointer, LPVTBL value)>()(
-        ptr.ref.lpVtbl, (value as IInspectable).ptr.ref.lpVtbl);
+    final hr =
+        ptr.ref.vtable
+                .elementAt(13)
+                .cast<
+                    Pointer<
+                        NativeFunction<HRESULT Function(LPVTBL, LPVTBL value)>>>()
+                .value
+                .asFunction<int Function(LPVTBL, LPVTBL value)>()(
+            ptr.ref.lpVtbl, (value as IInspectable).ptr.ref.lpVtbl);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
@@ -453,14 +457,14 @@ class _IVectorIInspectable<T> extends IVector<T> {
                   Pointer<
                       NativeFunction<
                           HRESULT Function(
-                              Pointer,
+                              LPVTBL,
                               Uint32 startIndex,
                               Uint32 valueSize,
                               Pointer<COMObject> value,
                               Pointer<Uint32>)>>>()
               .value
               .asFunction<
-                  int Function(Pointer, int startIndex, int valueSize,
+                  int Function(LPVTBL, int startIndex, int valueSize,
                       Pointer<COMObject> value, Pointer<Uint32>)>()(
           ptr.ref.lpVtbl, startIndex, valueSize, pArray, retValuePtr);
 
@@ -488,12 +492,12 @@ class _IVectorIInspectable<T> extends IVector<T> {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(Pointer, Uint32 valueSize,
+                        HRESULT Function(LPVTBL, Uint32 valueSize,
                             Pointer<COMObject> value)>>>()
             .value
             .asFunction<
                 int Function(
-                    Pointer, int valueSize, Pointer<COMObject> value)>()(
+                    LPVTBL, int valueSize, Pointer<COMObject> value)>()(
         ptr.ref.lpVtbl, value.length, pArray);
 
     if (FAILED(hr)) throw WindowsException(hr);
@@ -517,9 +521,9 @@ class _IVectorInt16 extends IVector<int> {
                   Pointer<
                       NativeFunction<
                           HRESULT Function(
-                              Pointer, Uint32 index, Pointer<Int16>)>>>()
+                              LPVTBL, Uint32 index, Pointer<Int16>)>>>()
               .value
-              .asFunction<int Function(Pointer, int index, Pointer<Int16>)>()(
+              .asFunction<int Function(LPVTBL, int index, Pointer<Int16>)>()(
           ptr.ref.lpVtbl, index, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
@@ -540,11 +544,11 @@ class _IVectorInt16 extends IVector<int> {
           .cast<
               Pointer<
                   NativeFunction<
-                      HRESULT Function(Pointer, Int16 value,
+                      HRESULT Function(LPVTBL, Int16 value,
                           Pointer<Uint32> index, Pointer<Bool>)>>>()
           .value
           .asFunction<
-              int Function(Pointer, int value, Pointer<Uint32> index,
+              int Function(LPVTBL, int value, Pointer<Uint32> index,
                   Pointer<Bool>)>()(ptr.ref.lpVtbl, value, index, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
@@ -557,34 +561,30 @@ class _IVectorInt16 extends IVector<int> {
 
   @override
   void setAt(int index, int value) {
-    final hr =
-        ptr.ref.vtable
-                .elementAt(10)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                Pointer, Uint32 index, Int16 value)>>>()
-                .value
-                .asFunction<int Function(Pointer, int index, int value)>()(
-            ptr.ref.lpVtbl, index, value);
+    final hr = ptr.ref.vtable
+            .elementAt(10)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(LPVTBL, Uint32 index, Int16 value)>>>()
+            .value
+            .asFunction<int Function(LPVTBL, int index, int value)>()(
+        ptr.ref.lpVtbl, index, value);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
   @override
   void insertAt(int index, int value) {
-    final hr =
-        ptr.ref.vtable
-                .elementAt(11)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                Pointer, Uint32 index, Int16 value)>>>()
-                .value
-                .asFunction<int Function(Pointer, int index, int value)>()(
-            ptr.ref.lpVtbl, index, value);
+    final hr = ptr.ref.vtable
+            .elementAt(11)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(LPVTBL, Uint32 index, Int16 value)>>>()
+            .value
+            .asFunction<int Function(LPVTBL, int index, int value)>()(
+        ptr.ref.lpVtbl, index, value);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
@@ -593,9 +593,9 @@ class _IVectorInt16 extends IVector<int> {
   void append(int value) {
     final hr = ptr.ref.vtable
         .elementAt(13)
-        .cast<Pointer<NativeFunction<HRESULT Function(Pointer, Int16 value)>>>()
+        .cast<Pointer<NativeFunction<HRESULT Function(LPVTBL, Int16 value)>>>()
         .value
-        .asFunction<int Function(Pointer, int value)>()(ptr.ref.lpVtbl, value);
+        .asFunction<int Function(LPVTBL, int value)>()(ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
@@ -613,14 +613,14 @@ class _IVectorInt16 extends IVector<int> {
                   Pointer<
                       NativeFunction<
                           HRESULT Function(
-                              Pointer,
+                              LPVTBL,
                               Uint32 startIndex,
                               Uint32 valueSize,
                               Pointer<Int16> value,
                               Pointer<Uint32>)>>>()
               .value
               .asFunction<
-                  int Function(Pointer, int startIndex, int valueSize,
+                  int Function(LPVTBL, int startIndex, int valueSize,
                       Pointer<Int16> value, Pointer<Uint32>)>()(
           ptr.ref.lpVtbl, startIndex, valueSize, pArray, retValuePtr);
 
@@ -644,16 +644,16 @@ class _IVectorInt16 extends IVector<int> {
     }
 
     final hr = ptr.ref.vtable
-        .elementAt(17)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        Pointer, Uint32 valueSize, Pointer<Int16> value)>>>()
-        .value
-        .asFunction<
-            int Function(Pointer, int valueSize,
-                Pointer<Int16> value)>()(ptr.ref.lpVtbl, value.length, pArray);
+            .elementAt(17)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            LPVTBL, Uint32 valueSize, Pointer<Int16> value)>>>()
+            .value
+            .asFunction<
+                int Function(LPVTBL, int valueSize, Pointer<Int16> value)>()(
+        ptr.ref.lpVtbl, value.length, pArray);
 
     if (FAILED(hr)) throw WindowsException(hr);
 
@@ -676,9 +676,9 @@ class _IVectorInt32 extends IVector<int> {
                   Pointer<
                       NativeFunction<
                           HRESULT Function(
-                              Pointer, Uint32 index, Pointer<Int32>)>>>()
+                              LPVTBL, Uint32 index, Pointer<Int32>)>>>()
               .value
-              .asFunction<int Function(Pointer, int index, Pointer<Int32>)>()(
+              .asFunction<int Function(LPVTBL, int index, Pointer<Int32>)>()(
           ptr.ref.lpVtbl, index, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
@@ -699,11 +699,11 @@ class _IVectorInt32 extends IVector<int> {
           .cast<
               Pointer<
                   NativeFunction<
-                      HRESULT Function(Pointer, Int32 value,
+                      HRESULT Function(LPVTBL, Int32 value,
                           Pointer<Uint32> index, Pointer<Bool>)>>>()
           .value
           .asFunction<
-              int Function(Pointer, int value, Pointer<Uint32> index,
+              int Function(LPVTBL, int value, Pointer<Uint32> index,
                   Pointer<Bool>)>()(ptr.ref.lpVtbl, value, index, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
@@ -716,34 +716,30 @@ class _IVectorInt32 extends IVector<int> {
 
   @override
   void setAt(int index, int value) {
-    final hr =
-        ptr.ref.vtable
-                .elementAt(10)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                Pointer, Uint32 index, Int32 value)>>>()
-                .value
-                .asFunction<int Function(Pointer, int index, int value)>()(
-            ptr.ref.lpVtbl, index, value);
+    final hr = ptr.ref.vtable
+            .elementAt(10)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(LPVTBL, Uint32 index, Int32 value)>>>()
+            .value
+            .asFunction<int Function(LPVTBL, int index, int value)>()(
+        ptr.ref.lpVtbl, index, value);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
   @override
   void insertAt(int index, int value) {
-    final hr =
-        ptr.ref.vtable
-                .elementAt(11)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                Pointer, Uint32 index, Int32 value)>>>()
-                .value
-                .asFunction<int Function(Pointer, int index, int value)>()(
-            ptr.ref.lpVtbl, index, value);
+    final hr = ptr.ref.vtable
+            .elementAt(11)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(LPVTBL, Uint32 index, Int32 value)>>>()
+            .value
+            .asFunction<int Function(LPVTBL, int index, int value)>()(
+        ptr.ref.lpVtbl, index, value);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
@@ -752,9 +748,9 @@ class _IVectorInt32 extends IVector<int> {
   void append(int value) {
     final hr = ptr.ref.vtable
         .elementAt(13)
-        .cast<Pointer<NativeFunction<HRESULT Function(Pointer, Int32 value)>>>()
+        .cast<Pointer<NativeFunction<HRESULT Function(LPVTBL, Int32 value)>>>()
         .value
-        .asFunction<int Function(Pointer, int value)>()(ptr.ref.lpVtbl, value);
+        .asFunction<int Function(LPVTBL, int value)>()(ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
@@ -772,14 +768,14 @@ class _IVectorInt32 extends IVector<int> {
                   Pointer<
                       NativeFunction<
                           HRESULT Function(
-                              Pointer,
+                              LPVTBL,
                               Uint32 startIndex,
                               Uint32 valueSize,
                               Pointer<Int32> value,
                               Pointer<Uint32>)>>>()
               .value
               .asFunction<
-                  int Function(Pointer, int startIndex, int valueSize,
+                  int Function(LPVTBL, int startIndex, int valueSize,
                       Pointer<Int32> value, Pointer<Uint32>)>()(
           ptr.ref.lpVtbl, startIndex, valueSize, pArray, retValuePtr);
 
@@ -803,16 +799,16 @@ class _IVectorInt32 extends IVector<int> {
     }
 
     final hr = ptr.ref.vtable
-        .elementAt(17)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        Pointer, Uint32 valueSize, Pointer<Int32> value)>>>()
-        .value
-        .asFunction<
-            int Function(Pointer, int valueSize,
-                Pointer<Int32> value)>()(ptr.ref.lpVtbl, value.length, pArray);
+            .elementAt(17)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            LPVTBL, Uint32 valueSize, Pointer<Int32> value)>>>()
+            .value
+            .asFunction<
+                int Function(LPVTBL, int valueSize, Pointer<Int32> value)>()(
+        ptr.ref.lpVtbl, value.length, pArray);
 
     if (FAILED(hr)) throw WindowsException(hr);
 
@@ -835,9 +831,9 @@ class _IVectorInt64 extends IVector<int> {
                   Pointer<
                       NativeFunction<
                           HRESULT Function(
-                              Pointer, Uint32 index, Pointer<Int64>)>>>()
+                              LPVTBL, Uint32 index, Pointer<Int64>)>>>()
               .value
-              .asFunction<int Function(Pointer, int index, Pointer<Int64>)>()(
+              .asFunction<int Function(LPVTBL, int index, Pointer<Int64>)>()(
           ptr.ref.lpVtbl, index, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
@@ -858,11 +854,11 @@ class _IVectorInt64 extends IVector<int> {
           .cast<
               Pointer<
                   NativeFunction<
-                      HRESULT Function(Pointer, Int64 value,
+                      HRESULT Function(LPVTBL, Int64 value,
                           Pointer<Uint32> index, Pointer<Bool>)>>>()
           .value
           .asFunction<
-              int Function(Pointer, int value, Pointer<Uint32> index,
+              int Function(LPVTBL, int value, Pointer<Uint32> index,
                   Pointer<Bool>)>()(ptr.ref.lpVtbl, value, index, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
@@ -875,34 +871,30 @@ class _IVectorInt64 extends IVector<int> {
 
   @override
   void setAt(int index, int value) {
-    final hr =
-        ptr.ref.vtable
-                .elementAt(10)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                Pointer, Uint32 index, Int64 value)>>>()
-                .value
-                .asFunction<int Function(Pointer, int index, int value)>()(
-            ptr.ref.lpVtbl, index, value);
+    final hr = ptr.ref.vtable
+            .elementAt(10)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(LPVTBL, Uint32 index, Int64 value)>>>()
+            .value
+            .asFunction<int Function(LPVTBL, int index, int value)>()(
+        ptr.ref.lpVtbl, index, value);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
   @override
   void insertAt(int index, int value) {
-    final hr =
-        ptr.ref.vtable
-                .elementAt(11)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                Pointer, Uint32 index, Int64 value)>>>()
-                .value
-                .asFunction<int Function(Pointer, int index, int value)>()(
-            ptr.ref.lpVtbl, index, value);
+    final hr = ptr.ref.vtable
+            .elementAt(11)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(LPVTBL, Uint32 index, Int64 value)>>>()
+            .value
+            .asFunction<int Function(LPVTBL, int index, int value)>()(
+        ptr.ref.lpVtbl, index, value);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
@@ -911,9 +903,9 @@ class _IVectorInt64 extends IVector<int> {
   void append(int value) {
     final hr = ptr.ref.vtable
         .elementAt(13)
-        .cast<Pointer<NativeFunction<HRESULT Function(Pointer, Int64 value)>>>()
+        .cast<Pointer<NativeFunction<HRESULT Function(LPVTBL, Int64 value)>>>()
         .value
-        .asFunction<int Function(Pointer, int value)>()(ptr.ref.lpVtbl, value);
+        .asFunction<int Function(LPVTBL, int value)>()(ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
@@ -931,14 +923,14 @@ class _IVectorInt64 extends IVector<int> {
                   Pointer<
                       NativeFunction<
                           HRESULT Function(
-                              Pointer,
+                              LPVTBL,
                               Uint32 startIndex,
                               Uint32 valueSize,
                               Pointer<Int64> value,
                               Pointer<Uint32>)>>>()
               .value
               .asFunction<
-                  int Function(Pointer, int startIndex, int valueSize,
+                  int Function(LPVTBL, int startIndex, int valueSize,
                       Pointer<Int64> value, Pointer<Uint32>)>()(
           ptr.ref.lpVtbl, startIndex, valueSize, pArray, retValuePtr);
 
@@ -962,16 +954,16 @@ class _IVectorInt64 extends IVector<int> {
     }
 
     final hr = ptr.ref.vtable
-        .elementAt(17)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        Pointer, Uint32 valueSize, Pointer<Int64> value)>>>()
-        .value
-        .asFunction<
-            int Function(Pointer, int valueSize,
-                Pointer<Int64> value)>()(ptr.ref.lpVtbl, value.length, pArray);
+            .elementAt(17)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            LPVTBL, Uint32 valueSize, Pointer<Int64> value)>>>()
+            .value
+            .asFunction<
+                int Function(LPVTBL, int valueSize, Pointer<Int64> value)>()(
+        ptr.ref.lpVtbl, value.length, pArray);
 
     if (FAILED(hr)) throw WindowsException(hr);
 
@@ -993,9 +985,9 @@ class _IVectorString extends IVector<String> {
                   Pointer<
                       NativeFunction<
                           HRESULT Function(
-                              Pointer, Uint32 index, Pointer<IntPtr>)>>>()
+                              LPVTBL, Uint32 index, Pointer<IntPtr>)>>>()
               .value
-              .asFunction<int Function(Pointer, int index, Pointer<IntPtr>)>()(
+              .asFunction<int Function(LPVTBL, int index, Pointer<IntPtr>)>()(
           ptr.ref.lpVtbl, index, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
@@ -1018,11 +1010,11 @@ class _IVectorString extends IVector<String> {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(Pointer, IntPtr value,
+                          HRESULT Function(LPVTBL, IntPtr value,
                               Pointer<Uint32> index, Pointer<Bool>)>>>()
               .value
               .asFunction<
-                  int Function(Pointer, int value, Pointer<Uint32> index,
+                  int Function(LPVTBL, int value, Pointer<Uint32> index,
                       Pointer<Bool>)>()(
           ptr.ref.lpVtbl, valueHString, index, retValuePtr);
 
@@ -1047,9 +1039,9 @@ class _IVectorString extends IVector<String> {
                     Pointer<
                         NativeFunction<
                             HRESULT Function(
-                                Pointer, Uint32 index, IntPtr value)>>>()
+                                LPVTBL, Uint32 index, IntPtr value)>>>()
                 .value
-                .asFunction<int Function(Pointer, int index, int value)>()(
+                .asFunction<int Function(LPVTBL, int index, int value)>()(
             ptr.ref.lpVtbl, index, valueHString);
 
     if (FAILED(hr)) throw WindowsException(hr);
@@ -1068,9 +1060,9 @@ class _IVectorString extends IVector<String> {
                     Pointer<
                         NativeFunction<
                             HRESULT Function(
-                                Pointer, Uint32 index, IntPtr value)>>>()
+                                LPVTBL, Uint32 index, IntPtr value)>>>()
                 .value
-                .asFunction<int Function(Pointer, int index, int value)>()(
+                .asFunction<int Function(LPVTBL, int index, int value)>()(
             ptr.ref.lpVtbl, index, valueHString);
 
     if (FAILED(hr)) throw WindowsException(hr);
@@ -1084,11 +1076,10 @@ class _IVectorString extends IVector<String> {
 
     final hr = ptr.ref.vtable
         .elementAt(13)
-        .cast<
-            Pointer<NativeFunction<HRESULT Function(Pointer, IntPtr value)>>>()
+        .cast<Pointer<NativeFunction<HRESULT Function(LPVTBL, IntPtr value)>>>()
         .value
         .asFunction<
-            int Function(Pointer, int value)>()(ptr.ref.lpVtbl, valueHString);
+            int Function(LPVTBL, int value)>()(ptr.ref.lpVtbl, valueHString);
 
     if (FAILED(hr)) throw WindowsException(hr);
 
@@ -1108,14 +1099,14 @@ class _IVectorString extends IVector<String> {
                   Pointer<
                       NativeFunction<
                           HRESULT Function(
-                              Pointer,
+                              LPVTBL,
                               Uint32 startIndex,
                               Uint32 valueSize,
                               Pointer<IntPtr> value,
                               Pointer<Uint32>)>>>()
               .value
               .asFunction<
-                  int Function(Pointer, int startIndex, int valueSize,
+                  int Function(LPVTBL, int startIndex, int valueSize,
                       Pointer<IntPtr> value, Pointer<Uint32>)>()(
           ptr.ref.lpVtbl, startIndex, valueSize, pArray, retValuePtr);
 
@@ -1146,10 +1137,10 @@ class _IVectorString extends IVector<String> {
             Pointer<
                 NativeFunction<
                     HRESULT Function(
-                        Pointer, Uint32 valueSize, Pointer<IntPtr> value)>>>()
+                        LPVTBL, Uint32 valueSize, Pointer<IntPtr> value)>>>()
         .value
         .asFunction<
-            int Function(Pointer, int valueSize,
+            int Function(LPVTBL, int valueSize,
                 Pointer<IntPtr> value)>()(ptr.ref.lpVtbl, value.length, pArray);
 
     if (FAILED(hr)) throw WindowsException(hr);
@@ -1174,9 +1165,9 @@ class _IVectorUint8 extends IVector<int> {
                   Pointer<
                       NativeFunction<
                           HRESULT Function(
-                              Pointer, Uint32 index, Pointer<Uint8>)>>>()
+                              LPVTBL, Uint32 index, Pointer<Uint8>)>>>()
               .value
-              .asFunction<int Function(Pointer, int index, Pointer<Uint8>)>()(
+              .asFunction<int Function(LPVTBL, int index, Pointer<Uint8>)>()(
           ptr.ref.lpVtbl, index, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
@@ -1197,11 +1188,11 @@ class _IVectorUint8 extends IVector<int> {
           .cast<
               Pointer<
                   NativeFunction<
-                      HRESULT Function(Pointer, Uint8 value,
+                      HRESULT Function(LPVTBL, Uint8 value,
                           Pointer<Uint32> index, Pointer<Bool>)>>>()
           .value
           .asFunction<
-              int Function(Pointer, int value, Pointer<Uint32> index,
+              int Function(LPVTBL, int value, Pointer<Uint32> index,
                   Pointer<Bool>)>()(ptr.ref.lpVtbl, value, index, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
@@ -1214,34 +1205,30 @@ class _IVectorUint8 extends IVector<int> {
 
   @override
   void setAt(int index, int value) {
-    final hr =
-        ptr.ref.vtable
-                .elementAt(10)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                Pointer, Uint32 index, Uint8 value)>>>()
-                .value
-                .asFunction<int Function(Pointer, int index, int value)>()(
-            ptr.ref.lpVtbl, index, value);
+    final hr = ptr.ref.vtable
+            .elementAt(10)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(LPVTBL, Uint32 index, Uint8 value)>>>()
+            .value
+            .asFunction<int Function(LPVTBL, int index, int value)>()(
+        ptr.ref.lpVtbl, index, value);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
   @override
   void insertAt(int index, int value) {
-    final hr =
-        ptr.ref.vtable
-                .elementAt(11)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                Pointer, Uint32 index, Uint8 value)>>>()
-                .value
-                .asFunction<int Function(Pointer, int index, int value)>()(
-            ptr.ref.lpVtbl, index, value);
+    final hr = ptr.ref.vtable
+            .elementAt(11)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(LPVTBL, Uint32 index, Uint8 value)>>>()
+            .value
+            .asFunction<int Function(LPVTBL, int index, int value)>()(
+        ptr.ref.lpVtbl, index, value);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
@@ -1250,9 +1237,9 @@ class _IVectorUint8 extends IVector<int> {
   void append(int value) {
     final hr = ptr.ref.vtable
         .elementAt(13)
-        .cast<Pointer<NativeFunction<HRESULT Function(Pointer, Uint8 value)>>>()
+        .cast<Pointer<NativeFunction<HRESULT Function(LPVTBL, Uint8 value)>>>()
         .value
-        .asFunction<int Function(Pointer, int value)>()(ptr.ref.lpVtbl, value);
+        .asFunction<int Function(LPVTBL, int value)>()(ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
@@ -1270,14 +1257,14 @@ class _IVectorUint8 extends IVector<int> {
                   Pointer<
                       NativeFunction<
                           HRESULT Function(
-                              Pointer,
+                              LPVTBL,
                               Uint32 startIndex,
                               Uint32 valueSize,
                               Pointer<Uint8> value,
                               Pointer<Uint32>)>>>()
               .value
               .asFunction<
-                  int Function(Pointer, int startIndex, int valueSize,
+                  int Function(LPVTBL, int startIndex, int valueSize,
                       Pointer<Uint8> value, Pointer<Uint32>)>()(
           ptr.ref.lpVtbl, startIndex, valueSize, pArray, retValuePtr);
 
@@ -1301,16 +1288,16 @@ class _IVectorUint8 extends IVector<int> {
     }
 
     final hr = ptr.ref.vtable
-        .elementAt(17)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        Pointer, Uint32 valueSize, Pointer<Uint8> value)>>>()
-        .value
-        .asFunction<
-            int Function(Pointer, int valueSize,
-                Pointer<Uint8> value)>()(ptr.ref.lpVtbl, value.length, pArray);
+            .elementAt(17)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            LPVTBL, Uint32 valueSize, Pointer<Uint8> value)>>>()
+            .value
+            .asFunction<
+                int Function(LPVTBL, int valueSize, Pointer<Uint8> value)>()(
+        ptr.ref.lpVtbl, value.length, pArray);
 
     if (FAILED(hr)) throw WindowsException(hr);
 
@@ -1333,9 +1320,9 @@ class _IVectorUint16 extends IVector<int> {
                   Pointer<
                       NativeFunction<
                           HRESULT Function(
-                              Pointer, Uint32 index, Pointer<Uint16>)>>>()
+                              LPVTBL, Uint32 index, Pointer<Uint16>)>>>()
               .value
-              .asFunction<int Function(Pointer, int index, Pointer<Uint16>)>()(
+              .asFunction<int Function(LPVTBL, int index, Pointer<Uint16>)>()(
           ptr.ref.lpVtbl, index, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
@@ -1356,11 +1343,11 @@ class _IVectorUint16 extends IVector<int> {
           .cast<
               Pointer<
                   NativeFunction<
-                      HRESULT Function(Pointer, Uint16 value,
+                      HRESULT Function(LPVTBL, Uint16 value,
                           Pointer<Uint32> index, Pointer<Bool>)>>>()
           .value
           .asFunction<
-              int Function(Pointer, int value, Pointer<Uint32> index,
+              int Function(LPVTBL, int value, Pointer<Uint32> index,
                   Pointer<Bool>)>()(ptr.ref.lpVtbl, value, index, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
@@ -1380,9 +1367,9 @@ class _IVectorUint16 extends IVector<int> {
                     Pointer<
                         NativeFunction<
                             HRESULT Function(
-                                Pointer, Uint32 index, Uint16 value)>>>()
+                                LPVTBL, Uint32 index, Uint16 value)>>>()
                 .value
-                .asFunction<int Function(Pointer, int index, int value)>()(
+                .asFunction<int Function(LPVTBL, int index, int value)>()(
             ptr.ref.lpVtbl, index, value);
 
     if (FAILED(hr)) throw WindowsException(hr);
@@ -1397,9 +1384,9 @@ class _IVectorUint16 extends IVector<int> {
                     Pointer<
                         NativeFunction<
                             HRESULT Function(
-                                Pointer, Uint32 index, Uint16 value)>>>()
+                                LPVTBL, Uint32 index, Uint16 value)>>>()
                 .value
-                .asFunction<int Function(Pointer, int index, int value)>()(
+                .asFunction<int Function(LPVTBL, int index, int value)>()(
             ptr.ref.lpVtbl, index, value);
 
     if (FAILED(hr)) throw WindowsException(hr);
@@ -1409,10 +1396,9 @@ class _IVectorUint16 extends IVector<int> {
   void append(int value) {
     final hr = ptr.ref.vtable
         .elementAt(13)
-        .cast<
-            Pointer<NativeFunction<HRESULT Function(Pointer, Uint16 value)>>>()
+        .cast<Pointer<NativeFunction<HRESULT Function(LPVTBL, Uint16 value)>>>()
         .value
-        .asFunction<int Function(Pointer, int value)>()(ptr.ref.lpVtbl, value);
+        .asFunction<int Function(LPVTBL, int value)>()(ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
@@ -1430,14 +1416,14 @@ class _IVectorUint16 extends IVector<int> {
                   Pointer<
                       NativeFunction<
                           HRESULT Function(
-                              Pointer,
+                              LPVTBL,
                               Uint32 startIndex,
                               Uint32 valueSize,
                               Pointer<Uint16> value,
                               Pointer<Uint32>)>>>()
               .value
               .asFunction<
-                  int Function(Pointer, int startIndex, int valueSize,
+                  int Function(LPVTBL, int startIndex, int valueSize,
                       Pointer<Uint16> value, Pointer<Uint32>)>()(
           ptr.ref.lpVtbl, startIndex, valueSize, pArray, retValuePtr);
 
@@ -1466,10 +1452,10 @@ class _IVectorUint16 extends IVector<int> {
             Pointer<
                 NativeFunction<
                     HRESULT Function(
-                        Pointer, Uint32 valueSize, Pointer<Uint16> value)>>>()
+                        LPVTBL, Uint32 valueSize, Pointer<Uint16> value)>>>()
         .value
         .asFunction<
-            int Function(Pointer, int valueSize,
+            int Function(LPVTBL, int valueSize,
                 Pointer<Uint16> value)>()(ptr.ref.lpVtbl, value.length, pArray);
 
     if (FAILED(hr)) throw WindowsException(hr);
@@ -1493,9 +1479,9 @@ class _IVectorUint32 extends IVector<int> {
                   Pointer<
                       NativeFunction<
                           HRESULT Function(
-                              Pointer, Uint32 index, Pointer<Uint32>)>>>()
+                              LPVTBL, Uint32 index, Pointer<Uint32>)>>>()
               .value
-              .asFunction<int Function(Pointer, int index, Pointer<Uint32>)>()(
+              .asFunction<int Function(LPVTBL, int index, Pointer<Uint32>)>()(
           ptr.ref.lpVtbl, index, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
@@ -1516,11 +1502,11 @@ class _IVectorUint32 extends IVector<int> {
           .cast<
               Pointer<
                   NativeFunction<
-                      HRESULT Function(Pointer, Uint32 value,
+                      HRESULT Function(LPVTBL, Uint32 value,
                           Pointer<Uint32> index, Pointer<Bool>)>>>()
           .value
           .asFunction<
-              int Function(Pointer, int value, Pointer<Uint32> index,
+              int Function(LPVTBL, int value, Pointer<Uint32> index,
                   Pointer<Bool>)>()(ptr.ref.lpVtbl, value, index, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
@@ -1540,9 +1526,9 @@ class _IVectorUint32 extends IVector<int> {
                     Pointer<
                         NativeFunction<
                             HRESULT Function(
-                                Pointer, Uint32 index, Uint32 value)>>>()
+                                LPVTBL, Uint32 index, Uint32 value)>>>()
                 .value
-                .asFunction<int Function(Pointer, int index, int value)>()(
+                .asFunction<int Function(LPVTBL, int index, int value)>()(
             ptr.ref.lpVtbl, index, value);
 
     if (FAILED(hr)) throw WindowsException(hr);
@@ -1557,9 +1543,9 @@ class _IVectorUint32 extends IVector<int> {
                     Pointer<
                         NativeFunction<
                             HRESULT Function(
-                                Pointer, Uint32 index, Uint32 value)>>>()
+                                LPVTBL, Uint32 index, Uint32 value)>>>()
                 .value
-                .asFunction<int Function(Pointer, int index, int value)>()(
+                .asFunction<int Function(LPVTBL, int index, int value)>()(
             ptr.ref.lpVtbl, index, value);
 
     if (FAILED(hr)) throw WindowsException(hr);
@@ -1569,10 +1555,9 @@ class _IVectorUint32 extends IVector<int> {
   void append(int value) {
     final hr = ptr.ref.vtable
         .elementAt(13)
-        .cast<
-            Pointer<NativeFunction<HRESULT Function(Pointer, Uint32 value)>>>()
+        .cast<Pointer<NativeFunction<HRESULT Function(LPVTBL, Uint32 value)>>>()
         .value
-        .asFunction<int Function(Pointer, int value)>()(ptr.ref.lpVtbl, value);
+        .asFunction<int Function(LPVTBL, int value)>()(ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
@@ -1590,14 +1575,14 @@ class _IVectorUint32 extends IVector<int> {
                   Pointer<
                       NativeFunction<
                           HRESULT Function(
-                              Pointer,
+                              LPVTBL,
                               Uint32 startIndex,
                               Uint32 valueSize,
                               Pointer<Uint32> value,
                               Pointer<Uint32>)>>>()
               .value
               .asFunction<
-                  int Function(Pointer, int startIndex, int valueSize,
+                  int Function(LPVTBL, int startIndex, int valueSize,
                       Pointer<Uint32> value, Pointer<Uint32>)>()(
           ptr.ref.lpVtbl, startIndex, valueSize, pArray, retValuePtr);
 
@@ -1626,10 +1611,10 @@ class _IVectorUint32 extends IVector<int> {
             Pointer<
                 NativeFunction<
                     HRESULT Function(
-                        Pointer, Uint32 valueSize, Pointer<Uint32> value)>>>()
+                        LPVTBL, Uint32 valueSize, Pointer<Uint32> value)>>>()
         .value
         .asFunction<
-            int Function(Pointer, int valueSize,
+            int Function(LPVTBL, int valueSize,
                 Pointer<Uint32> value)>()(ptr.ref.lpVtbl, value.length, pArray);
 
     if (FAILED(hr)) throw WindowsException(hr);
@@ -1653,9 +1638,9 @@ class _IVectorUint64 extends IVector<int> {
                   Pointer<
                       NativeFunction<
                           HRESULT Function(
-                              Pointer, Uint32 index, Pointer<Uint64>)>>>()
+                              LPVTBL, Uint32 index, Pointer<Uint64>)>>>()
               .value
-              .asFunction<int Function(Pointer, int index, Pointer<Uint64>)>()(
+              .asFunction<int Function(LPVTBL, int index, Pointer<Uint64>)>()(
           ptr.ref.lpVtbl, index, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
@@ -1676,11 +1661,11 @@ class _IVectorUint64 extends IVector<int> {
           .cast<
               Pointer<
                   NativeFunction<
-                      HRESULT Function(Pointer, Uint64 value,
+                      HRESULT Function(LPVTBL, Uint64 value,
                           Pointer<Uint32> index, Pointer<Bool>)>>>()
           .value
           .asFunction<
-              int Function(Pointer, int value, Pointer<Uint32> index,
+              int Function(LPVTBL, int value, Pointer<Uint32> index,
                   Pointer<Bool>)>()(ptr.ref.lpVtbl, value, index, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
@@ -1700,9 +1685,9 @@ class _IVectorUint64 extends IVector<int> {
                     Pointer<
                         NativeFunction<
                             HRESULT Function(
-                                Pointer, Uint32 index, Uint64 value)>>>()
+                                LPVTBL, Uint32 index, Uint64 value)>>>()
                 .value
-                .asFunction<int Function(Pointer, int index, int value)>()(
+                .asFunction<int Function(LPVTBL, int index, int value)>()(
             ptr.ref.lpVtbl, index, value);
 
     if (FAILED(hr)) throw WindowsException(hr);
@@ -1717,9 +1702,9 @@ class _IVectorUint64 extends IVector<int> {
                     Pointer<
                         NativeFunction<
                             HRESULT Function(
-                                Pointer, Uint32 index, Uint64 value)>>>()
+                                LPVTBL, Uint32 index, Uint64 value)>>>()
                 .value
-                .asFunction<int Function(Pointer, int index, int value)>()(
+                .asFunction<int Function(LPVTBL, int index, int value)>()(
             ptr.ref.lpVtbl, index, value);
 
     if (FAILED(hr)) throw WindowsException(hr);
@@ -1729,10 +1714,9 @@ class _IVectorUint64 extends IVector<int> {
   void append(int value) {
     final hr = ptr.ref.vtable
         .elementAt(13)
-        .cast<
-            Pointer<NativeFunction<HRESULT Function(Pointer, Uint64 value)>>>()
+        .cast<Pointer<NativeFunction<HRESULT Function(LPVTBL, Uint64 value)>>>()
         .value
-        .asFunction<int Function(Pointer, int value)>()(ptr.ref.lpVtbl, value);
+        .asFunction<int Function(LPVTBL, int value)>()(ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
@@ -1750,14 +1734,14 @@ class _IVectorUint64 extends IVector<int> {
                   Pointer<
                       NativeFunction<
                           HRESULT Function(
-                              Pointer,
+                              LPVTBL,
                               Uint32 startIndex,
                               Uint32 valueSize,
                               Pointer<Uint64> value,
                               Pointer<Uint32>)>>>()
               .value
               .asFunction<
-                  int Function(Pointer, int startIndex, int valueSize,
+                  int Function(LPVTBL, int startIndex, int valueSize,
                       Pointer<Uint64> value, Pointer<Uint32>)>()(
           ptr.ref.lpVtbl, startIndex, valueSize, pArray, retValuePtr);
 
@@ -1786,10 +1770,10 @@ class _IVectorUint64 extends IVector<int> {
             Pointer<
                 NativeFunction<
                     HRESULT Function(
-                        Pointer, Uint32 valueSize, Pointer<Uint64> value)>>>()
+                        LPVTBL, Uint32 valueSize, Pointer<Uint64> value)>>>()
         .value
         .asFunction<
-            int Function(Pointer, int valueSize,
+            int Function(LPVTBL, int valueSize,
                 Pointer<Uint64> value)>()(ptr.ref.lpVtbl, value.length, pArray);
 
     if (FAILED(hr)) throw WindowsException(hr);
@@ -1811,9 +1795,9 @@ class _IVectorUri extends IVector<Uri> {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            Pointer, Uint32 index, Pointer<COMObject>)>>>()
+                            LPVTBL, Uint32 index, Pointer<COMObject>)>>>()
             .value
-            .asFunction<int Function(Pointer, int index, Pointer<COMObject>)>()(
+            .asFunction<int Function(LPVTBL, int index, Pointer<COMObject>)>()(
         ptr.ref.lpVtbl, index, retValuePtr);
 
     if (FAILED(hr)) {
@@ -1839,11 +1823,11 @@ class _IVectorUri extends IVector<Uri> {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(Pointer, LPVTBL value,
+                          HRESULT Function(LPVTBL, LPVTBL value,
                               Pointer<Uint32> index, Pointer<Bool>)>>>()
               .value
               .asFunction<
-                  int Function(Pointer, LPVTBL value, Pointer<Uint32> index,
+                  int Function(LPVTBL, LPVTBL value, Pointer<Uint32> index,
                       Pointer<Bool>)>()(
           ptr.ref.lpVtbl, valueUri.ptr.ref.lpVtbl, index, retValuePtr);
 
@@ -1868,9 +1852,9 @@ class _IVectorUri extends IVector<Uri> {
                     Pointer<
                         NativeFunction<
                             HRESULT Function(
-                                Pointer, Uint32 index, LPVTBL value)>>>()
+                                LPVTBL, Uint32 index, LPVTBL value)>>>()
                 .value
-                .asFunction<int Function(Pointer, int index, LPVTBL value)>()(
+                .asFunction<int Function(LPVTBL, int index, LPVTBL value)>()(
             ptr.ref.lpVtbl, index, valueUri.ptr.ref.lpVtbl);
 
     if (FAILED(hr)) throw WindowsException(hr);
@@ -1889,9 +1873,9 @@ class _IVectorUri extends IVector<Uri> {
                     Pointer<
                         NativeFunction<
                             HRESULT Function(
-                                Pointer, Uint32 index, LPVTBL value)>>>()
+                                LPVTBL, Uint32 index, LPVTBL value)>>>()
                 .value
-                .asFunction<int Function(Pointer, int index, LPVTBL value)>()(
+                .asFunction<int Function(LPVTBL, int index, LPVTBL value)>()(
             ptr.ref.lpVtbl, index, valueUri.ptr.ref.lpVtbl);
 
     if (FAILED(hr)) throw WindowsException(hr);
@@ -1905,11 +1889,10 @@ class _IVectorUri extends IVector<Uri> {
 
     final hr = ptr.ref.vtable
         .elementAt(13)
-        .cast<
-            Pointer<NativeFunction<HRESULT Function(Pointer, LPVTBL value)>>>()
+        .cast<Pointer<NativeFunction<HRESULT Function(LPVTBL, LPVTBL value)>>>()
         .value
         .asFunction<
-            int Function(Pointer,
+            int Function(LPVTBL,
                 LPVTBL value)>()(ptr.ref.lpVtbl, valueUri.ptr.ref.lpVtbl);
 
     if (FAILED(hr)) throw WindowsException(hr);
@@ -1930,14 +1913,14 @@ class _IVectorUri extends IVector<Uri> {
                   Pointer<
                       NativeFunction<
                           HRESULT Function(
-                              Pointer,
+                              LPVTBL,
                               Uint32 startIndex,
                               Uint32 valueSize,
                               Pointer<COMObject> value,
                               Pointer<Uint32>)>>>()
               .value
               .asFunction<
-                  int Function(Pointer, int startIndex, int valueSize,
+                  int Function(LPVTBL, int startIndex, int valueSize,
                       Pointer<COMObject> value, Pointer<Uint32>)>()(
           ptr.ref.lpVtbl, startIndex, valueSize, pArray, retValuePtr);
 
@@ -1968,12 +1951,12 @@ class _IVectorUri extends IVector<Uri> {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(Pointer, Uint32 valueSize,
+                        HRESULT Function(LPVTBL, Uint32 valueSize,
                             Pointer<COMObject> value)>>>()
             .value
             .asFunction<
                 int Function(
-                    Pointer, int valueSize, Pointer<COMObject> value)>()(
+                    LPVTBL, int valueSize, Pointer<COMObject> value)>()(
         ptr.ref.lpVtbl, value.length, pArray);
 
     if (FAILED(hr)) throw WindowsException(hr);
@@ -1997,9 +1980,9 @@ class _IVectorWinRTEnum<T> extends IVector<T> {
                   Pointer<
                       NativeFunction<
                           HRESULT Function(
-                              Pointer, Uint32 index, Pointer<Int32>)>>>()
+                              LPVTBL, Uint32 index, Pointer<Int32>)>>>()
               .value
-              .asFunction<int Function(Pointer, int index, Pointer<Int32>)>()(
+              .asFunction<int Function(LPVTBL, int index, Pointer<Int32>)>()(
           ptr.ref.lpVtbl, index, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
@@ -2020,11 +2003,11 @@ class _IVectorWinRTEnum<T> extends IVector<T> {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(Pointer, Int32 value,
+                          HRESULT Function(LPVTBL, Int32 value,
                               Pointer<Uint32> index, Pointer<Bool>)>>>()
               .value
               .asFunction<
-                  int Function(Pointer, int value, Pointer<Uint32> index,
+                  int Function(LPVTBL, int value, Pointer<Uint32> index,
                       Pointer<Bool>)>()(
           ptr.ref.lpVtbl, (value as WinRTEnum).value, index, retValuePtr);
 
@@ -2038,34 +2021,30 @@ class _IVectorWinRTEnum<T> extends IVector<T> {
 
   @override
   void setAt(int index, T value) {
-    final hr =
-        ptr.ref.vtable
-                .elementAt(10)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                Pointer, Uint32 index, Int32 value)>>>()
-                .value
-                .asFunction<int Function(Pointer, int index, int value)>()(
-            ptr.ref.lpVtbl, index, (value as WinRTEnum).value);
+    final hr = ptr.ref.vtable
+            .elementAt(10)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(LPVTBL, Uint32 index, Int32 value)>>>()
+            .value
+            .asFunction<int Function(LPVTBL, int index, int value)>()(
+        ptr.ref.lpVtbl, index, (value as WinRTEnum).value);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
   @override
   void insertAt(int index, T value) {
-    final hr =
-        ptr.ref.vtable
-                .elementAt(11)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                Pointer, Uint32 index, Int32 value)>>>()
-                .value
-                .asFunction<int Function(Pointer, int index, int value)>()(
-            ptr.ref.lpVtbl, index, (value as WinRTEnum).value);
+    final hr = ptr.ref.vtable
+            .elementAt(11)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(LPVTBL, Uint32 index, Int32 value)>>>()
+            .value
+            .asFunction<int Function(LPVTBL, int index, int value)>()(
+        ptr.ref.lpVtbl, index, (value as WinRTEnum).value);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
@@ -2074,10 +2053,10 @@ class _IVectorWinRTEnum<T> extends IVector<T> {
   void append(T value) {
     final hr = ptr.ref.vtable
         .elementAt(13)
-        .cast<Pointer<NativeFunction<HRESULT Function(Pointer, Int32 value)>>>()
+        .cast<Pointer<NativeFunction<HRESULT Function(LPVTBL, Int32 value)>>>()
         .value
         .asFunction<
-            int Function(Pointer,
+            int Function(LPVTBL,
                 int value)>()(ptr.ref.lpVtbl, (value as WinRTEnum).value);
 
     if (FAILED(hr)) throw WindowsException(hr);
@@ -2096,14 +2075,14 @@ class _IVectorWinRTEnum<T> extends IVector<T> {
                   Pointer<
                       NativeFunction<
                           HRESULT Function(
-                              Pointer,
+                              LPVTBL,
                               Uint32 startIndex,
                               Uint32 valueSize,
                               Pointer<Int32> value,
                               Pointer<Uint32>)>>>()
               .value
               .asFunction<
-                  int Function(Pointer, int startIndex, int valueSize,
+                  int Function(LPVTBL, int startIndex, int valueSize,
                       Pointer<Int32> value, Pointer<Uint32>)>()(
           ptr.ref.lpVtbl, startIndex, valueSize, pArray, retValuePtr);
 
@@ -2127,16 +2106,16 @@ class _IVectorWinRTEnum<T> extends IVector<T> {
     }
 
     final hr = ptr.ref.vtable
-        .elementAt(17)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        Pointer, Uint32 valueSize, Pointer<Int32> value)>>>()
-        .value
-        .asFunction<
-            int Function(Pointer, int valueSize,
-                Pointer<Int32> value)>()(ptr.ref.lpVtbl, value.length, pArray);
+            .elementAt(17)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            LPVTBL, Uint32 valueSize, Pointer<Int32> value)>>>()
+            .value
+            .asFunction<
+                int Function(LPVTBL, int valueSize, Pointer<Int32> value)>()(
+        ptr.ref.lpVtbl, value.length, pArray);
 
     if (FAILED(hr)) throw WindowsException(hr);
 
@@ -2159,9 +2138,9 @@ class _IVectorWinRTFlagsEnum<T> extends IVector<T> {
                   Pointer<
                       NativeFunction<
                           HRESULT Function(
-                              Pointer, Uint32 index, Pointer<Uint32>)>>>()
+                              LPVTBL, Uint32 index, Pointer<Uint32>)>>>()
               .value
-              .asFunction<int Function(Pointer, int index, Pointer<Uint32>)>()(
+              .asFunction<int Function(LPVTBL, int index, Pointer<Uint32>)>()(
           ptr.ref.lpVtbl, index, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
@@ -2182,11 +2161,11 @@ class _IVectorWinRTFlagsEnum<T> extends IVector<T> {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(Pointer, Uint32 value,
+                          HRESULT Function(LPVTBL, Uint32 value,
                               Pointer<Uint32> index, Pointer<Bool>)>>>()
               .value
               .asFunction<
-                  int Function(Pointer, int value, Pointer<Uint32> index,
+                  int Function(LPVTBL, int value, Pointer<Uint32> index,
                       Pointer<Bool>)>()(
           ptr.ref.lpVtbl, (value as WinRTEnum).value, index, retValuePtr);
 
@@ -2207,9 +2186,9 @@ class _IVectorWinRTFlagsEnum<T> extends IVector<T> {
                     Pointer<
                         NativeFunction<
                             HRESULT Function(
-                                Pointer, Uint32 index, Uint32 value)>>>()
+                                LPVTBL, Uint32 index, Uint32 value)>>>()
                 .value
-                .asFunction<int Function(Pointer, int index, int value)>()(
+                .asFunction<int Function(LPVTBL, int index, int value)>()(
             ptr.ref.lpVtbl, index, (value as WinRTEnum).value);
 
     if (FAILED(hr)) throw WindowsException(hr);
@@ -2224,9 +2203,9 @@ class _IVectorWinRTFlagsEnum<T> extends IVector<T> {
                     Pointer<
                         NativeFunction<
                             HRESULT Function(
-                                Pointer, Uint32 index, Uint32 value)>>>()
+                                LPVTBL, Uint32 index, Uint32 value)>>>()
                 .value
-                .asFunction<int Function(Pointer, int index, int value)>()(
+                .asFunction<int Function(LPVTBL, int index, int value)>()(
             ptr.ref.lpVtbl, index, (value as WinRTEnum).value);
 
     if (FAILED(hr)) throw WindowsException(hr);
@@ -2236,11 +2215,10 @@ class _IVectorWinRTFlagsEnum<T> extends IVector<T> {
   void append(T value) {
     final hr = ptr.ref.vtable
         .elementAt(13)
-        .cast<
-            Pointer<NativeFunction<HRESULT Function(Pointer, Uint32 value)>>>()
+        .cast<Pointer<NativeFunction<HRESULT Function(LPVTBL, Uint32 value)>>>()
         .value
         .asFunction<
-            int Function(Pointer,
+            int Function(LPVTBL,
                 int value)>()(ptr.ref.lpVtbl, (value as WinRTEnum).value);
 
     if (FAILED(hr)) throw WindowsException(hr);
@@ -2259,14 +2237,14 @@ class _IVectorWinRTFlagsEnum<T> extends IVector<T> {
                   Pointer<
                       NativeFunction<
                           HRESULT Function(
-                              Pointer,
+                              LPVTBL,
                               Uint32 startIndex,
                               Uint32 valueSize,
                               Pointer<Uint32> value,
                               Pointer<Uint32>)>>>()
               .value
               .asFunction<
-                  int Function(Pointer, int startIndex, int valueSize,
+                  int Function(LPVTBL, int startIndex, int valueSize,
                       Pointer<Uint32> value, Pointer<Uint32>)>()(
           ptr.ref.lpVtbl, startIndex, valueSize, pArray, retValuePtr);
 
@@ -2295,10 +2273,10 @@ class _IVectorWinRTFlagsEnum<T> extends IVector<T> {
             Pointer<
                 NativeFunction<
                     HRESULT Function(
-                        Pointer, Uint32 valueSize, Pointer<Uint32> value)>>>()
+                        LPVTBL, Uint32 valueSize, Pointer<Uint32> value)>>>()
         .value
         .asFunction<
-            int Function(Pointer, int valueSize,
+            int Function(LPVTBL, int valueSize,
                 Pointer<Uint32> value)>()(ptr.ref.lpVtbl, value.length, pArray);
 
     if (FAILED(hr)) throw WindowsException(hr);

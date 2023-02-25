@@ -44,9 +44,9 @@ void main() {
       expect(projection, isA<DefaultMethodProjection>());
       expect(projection.returnType, equals('bool'));
       expect(projection.nativePrototype,
-          equals('HRESULT Function(Pointer, Pointer<Bool>)'));
+          equals('HRESULT Function(LPVTBL, Pointer<Bool>)'));
       expect(projection.dartPrototype,
-          equals('int Function(Pointer, Pointer<Bool>)'));
+          equals('int Function(LPVTBL, Pointer<Bool>)'));
       expect(projection.shortDeclaration, equals('bool getBoolean()'));
     });
 
@@ -56,9 +56,9 @@ void main() {
       expect(projection, isA<InspectableMethodProjection>());
       expect(projection.returnType, equals('Calendar?'));
       expect(projection.nativePrototype,
-          equals('HRESULT Function(Pointer, Pointer<COMObject>)'));
+          equals('HRESULT Function(LPVTBL, Pointer<COMObject>)'));
       expect(projection.dartPrototype,
-          equals('int Function(Pointer, Pointer<COMObject>)'));
+          equals('int Function(LPVTBL, Pointer<COMObject>)'));
       expect(projection.shortDeclaration, equals('Calendar? clone()'));
     });
 
@@ -68,9 +68,9 @@ void main() {
       expect(projection, isA<DateTimeMethodProjection>());
       expect(projection.returnType, equals('DateTime'));
       expect(projection.nativePrototype,
-          equals('HRESULT Function(Pointer, Pointer<Uint64>)'));
+          equals('HRESULT Function(LPVTBL, Pointer<Uint64>)'));
       expect(projection.dartPrototype,
-          equals('int Function(Pointer, Pointer<Uint64>)'));
+          equals('int Function(LPVTBL, Pointer<Uint64>)'));
       expect(projection.shortDeclaration, equals('DateTime getDateTime()'));
     });
 
@@ -80,9 +80,9 @@ void main() {
       expect(projection, isA<DefaultMethodProjection>());
       expect(projection.returnType, equals('double'));
       expect(projection.nativePrototype,
-          equals('HRESULT Function(Pointer, Pointer<Double>)'));
+          equals('HRESULT Function(LPVTBL, Pointer<Double>)'));
       expect(projection.dartPrototype,
-          equals('int Function(Pointer, Pointer<Double>)'));
+          equals('int Function(LPVTBL, Pointer<Double>)'));
       expect(projection.shortDeclaration, equals('double getDouble()'));
     });
 
@@ -92,9 +92,9 @@ void main() {
       expect(projection, isA<DurationMethodProjection>());
       expect(projection.returnType, equals('Duration'));
       expect(projection.nativePrototype,
-          equals('HRESULT Function(Pointer, Pointer<Uint64>)'));
+          equals('HRESULT Function(LPVTBL, Pointer<Uint64>)'));
       expect(projection.dartPrototype,
-          equals('int Function(Pointer, Pointer<Uint64>)'));
+          equals('int Function(LPVTBL, Pointer<Uint64>)'));
       expect(projection.shortDeclaration, equals('Duration getTimeSpan()'));
     });
 
@@ -104,9 +104,9 @@ void main() {
       expect(projection, isA<EnumMethodProjection>());
       expect(projection.returnType, equals('JsonErrorStatus'));
       expect(projection.nativePrototype,
-          equals('HRESULT Function(Pointer, Int32 hresult, Pointer<Int32>)'));
+          equals('HRESULT Function(LPVTBL, Int32 hresult, Pointer<Int32>)'));
       expect(projection.dartPrototype,
-          equals('int Function(Pointer, int hresult, Pointer<Int32>)'));
+          equals('int Function(LPVTBL, int hresult, Pointer<Int32>)'));
       expect(projection.shortDeclaration,
           equals('JsonErrorStatus getJsonStatus(int hresult)'));
     });
@@ -117,9 +117,9 @@ void main() {
       expect(projection, isA<GuidMethodProjection>());
       expect(projection.returnType, equals('Guid'));
       expect(projection.nativePrototype,
-          equals('HRESULT Function(Pointer, Pointer<GUID>)'));
+          equals('HRESULT Function(LPVTBL, Pointer<GUID>)'));
       expect(projection.dartPrototype,
-          equals('int Function(Pointer, Pointer<GUID>)'));
+          equals('int Function(LPVTBL, Pointer<GUID>)'));
       expect(projection.shortDeclaration, equals('Guid getGuid()'));
     });
 
@@ -129,9 +129,9 @@ void main() {
       expect(projection, isA<DefaultMethodProjection>());
       expect(projection.returnType, equals('int'));
       expect(projection.nativePrototype,
-          equals('HRESULT Function(Pointer, Pointer<Int32>)'));
+          equals('HRESULT Function(LPVTBL, Pointer<Int32>)'));
       expect(projection.dartPrototype,
-          equals('int Function(Pointer, Pointer<Int32>)'));
+          equals('int Function(LPVTBL, Pointer<Int32>)'));
       expect(projection.shortDeclaration, equals('int getInt32()'));
     });
 
@@ -142,9 +142,9 @@ void main() {
       expect(projection.returnType,
           equals('IIterator<IKeyValuePair<String, String>>'));
       expect(projection.nativePrototype,
-          equals('HRESULT Function(Pointer, Pointer<COMObject>)'));
+          equals('HRESULT Function(LPVTBL, Pointer<COMObject>)'));
       expect(projection.dartPrototype,
-          equals('int Function(Pointer, Pointer<COMObject>)'));
+          equals('int Function(LPVTBL, Pointer<COMObject>)'));
       expect(projection.shortDeclaration,
           equals('IIterator<IKeyValuePair<String, String>> first()'));
     });
@@ -155,9 +155,9 @@ void main() {
       expect(projection, isA<AsyncActionMethodProjection>());
       expect(projection.returnType, equals('Future<void>'));
       expect(projection.nativePrototype,
-          equals('HRESULT Function(Pointer, Pointer<COMObject>)'));
+          equals('HRESULT Function(LPVTBL, Pointer<COMObject>)'));
       expect(projection.dartPrototype,
-          equals('int Function(Pointer, Pointer<COMObject>)'));
+          equals('int Function(LPVTBL, Pointer<COMObject>)'));
       expect(projection.shortDeclaration,
           equals('Future<void> deleteAsyncOverloadDefaultOptions()'));
     });
@@ -168,9 +168,9 @@ void main() {
       expect(projection, isA<AsyncOperationMethodProjection>());
       expect(projection.returnType, equals('Future<StorageFile?>'));
       expect(projection.nativePrototype,
-          equals('HRESULT Function(Pointer, Pointer<COMObject>)'));
+          equals('HRESULT Function(LPVTBL, Pointer<COMObject>)'));
       expect(projection.dartPrototype,
-          equals('int Function(Pointer, Pointer<COMObject>)'));
+          equals('int Function(LPVTBL, Pointer<COMObject>)'));
       expect(projection.shortDeclaration,
           equals('Future<StorageFile?> pickSingleFileAsync()'));
     });
@@ -183,9 +183,9 @@ void main() {
       expect(projection.returnType,
           equals('IMap<String, IVectorView<TextSegment>?>'));
       expect(projection.nativePrototype,
-          equals('HRESULT Function(Pointer, LPVTBL file, Pointer<COMObject>)'));
+          equals('HRESULT Function(LPVTBL, LPVTBL file, Pointer<COMObject>)'));
       expect(projection.dartPrototype,
-          equals('int Function(Pointer, LPVTBL file, Pointer<COMObject>)'));
+          equals('int Function(LPVTBL, LPVTBL file, Pointer<COMObject>)'));
       expect(
           projection.shortDeclaration,
           equals(
@@ -198,9 +198,9 @@ void main() {
       expect(projection, isA<MapViewMethodProjection>());
       expect(projection.returnType, equals('Map<String, String>'));
       expect(projection.nativePrototype,
-          equals('HRESULT Function(Pointer, Pointer<COMObject>)'));
+          equals('HRESULT Function(LPVTBL, Pointer<COMObject>)'));
       expect(projection.dartPrototype,
-          equals('int Function(Pointer, Pointer<COMObject>)'));
+          equals('int Function(LPVTBL, Pointer<COMObject>)'));
       expect(
           projection.shortDeclaration, equals('Map<String, String> getView()'));
     });
@@ -211,9 +211,9 @@ void main() {
       expect(projection, isA<ReferenceMethodProjection>());
       expect(projection.returnType, equals('int?'));
       expect(projection.nativePrototype,
-          equals('HRESULT Function(Pointer, Pointer<COMObject>)'));
+          equals('HRESULT Function(LPVTBL, Pointer<COMObject>)'));
       expect(projection.dartPrototype,
-          equals('int Function(Pointer, Pointer<COMObject>)'));
+          equals('int Function(LPVTBL, Pointer<COMObject>)'));
       expect(projection.shortDeclaration, equals('int? getSignalBars()'));
     });
 
@@ -225,9 +225,9 @@ void main() {
       expect(projection.returnType,
           equals('IVector<BackgroundTransferFileRange>'));
       expect(projection.nativePrototype,
-          equals('HRESULT Function(Pointer, Pointer<COMObject>)'));
+          equals('HRESULT Function(LPVTBL, Pointer<COMObject>)'));
       expect(projection.dartPrototype,
-          equals('int Function(Pointer, Pointer<COMObject>)'));
+          equals('int Function(LPVTBL, Pointer<COMObject>)'));
       expect(projection.shortDeclaration,
           equals('IVector<BackgroundTransferFileRange> getDownloadedRanges()'));
     });
@@ -238,9 +238,9 @@ void main() {
       expect(projection, isA<VectorViewMethodProjection>());
       expect(projection.returnType, equals('List<String>'));
       expect(projection.nativePrototype,
-          equals('HRESULT Function(Pointer, LPVTBL user, Pointer<COMObject>)'));
+          equals('HRESULT Function(LPVTBL, LPVTBL user, Pointer<COMObject>)'));
       expect(projection.dartPrototype,
-          equals('int Function(Pointer, LPVTBL user, Pointer<COMObject>)'));
+          equals('int Function(LPVTBL, LPVTBL user, Pointer<COMObject>)'));
       expect(projection.shortDeclaration,
           equals('List<String> getLanguagesForUser(User? user)'));
     });
@@ -251,9 +251,9 @@ void main() {
       expect(projection, isA<ObjectMethodProjection>());
       expect(projection.returnType, equals('Object?'));
       expect(projection.nativePrototype,
-          equals('HRESULT Function(Pointer, IntPtr key, Pointer<COMObject>)'));
+          equals('HRESULT Function(LPVTBL, IntPtr key, Pointer<COMObject>)'));
       expect(projection.dartPrototype,
-          equals('int Function(Pointer, int key, Pointer<COMObject>)'));
+          equals('int Function(LPVTBL, int key, Pointer<COMObject>)'));
       expect(projection.shortDeclaration, equals('Object? lookup(String key)'));
     });
 
@@ -263,9 +263,9 @@ void main() {
       expect(projection, isA<StringMethodProjection>());
       expect(projection.returnType, equals('String'));
       expect(projection.nativePrototype,
-          equals('HRESULT Function(Pointer, Pointer<IntPtr>)'));
+          equals('HRESULT Function(LPVTBL, Pointer<IntPtr>)'));
       expect(projection.dartPrototype,
-          equals('int Function(Pointer, Pointer<IntPtr>)'));
+          equals('int Function(LPVTBL, Pointer<IntPtr>)'));
       expect(projection.shortDeclaration, equals('String getCalendarSystem()'));
     });
 
@@ -275,9 +275,9 @@ void main() {
       expect(projection, isA<StructMethodProjection>());
       expect(projection.returnType, equals('Point'));
       expect(projection.nativePrototype,
-          equals('HRESULT Function(Pointer, Pointer<Point>)'));
+          equals('HRESULT Function(LPVTBL, Pointer<Point>)'));
       expect(projection.dartPrototype,
-          equals('int Function(Pointer, Pointer<Point>)'));
+          equals('int Function(LPVTBL, Pointer<Point>)'));
       expect(projection.shortDeclaration, equals('Point getPoint()'));
     });
 
@@ -288,9 +288,9 @@ void main() {
       expect(projection, isA<UriMethodProjection>());
       expect(projection.returnType, equals('Uri?'));
       expect(projection.nativePrototype,
-          equals('HRESULT Function(Pointer, Pointer<COMObject>)'));
+          equals('HRESULT Function(LPVTBL, Pointer<COMObject>)'));
       expect(projection.dartPrototype,
-          equals('int Function(Pointer, Pointer<COMObject>)'));
+          equals('int Function(LPVTBL, Pointer<COMObject>)'));
       expect(projection.shortDeclaration,
           equals('Uri? getCurrentApplicationCallbackUri()'));
     });
@@ -304,11 +304,11 @@ void main() {
       expect(
           projection.nativePrototype,
           equals(
-              'HRESULT Function(Pointer, IntPtr regionCode, Pointer<COMObject> phoneNumber)'));
+              'HRESULT Function(LPVTBL, IntPtr regionCode, Pointer<COMObject> phoneNumber)'));
       expect(
           projection.dartPrototype,
           equals(
-              'int Function(Pointer, int regionCode, Pointer<COMObject> phoneNumber)'));
+              'int Function(LPVTBL, int regionCode, Pointer<COMObject> phoneNumber)'));
       expect(
           projection.shortDeclaration,
           equals(

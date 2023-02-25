@@ -40,12 +40,12 @@ class IGamepadStatics2 extends IInspectable implements IGamepadStatics {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(Pointer, LPVTBL gameController,
+                        HRESULT Function(LPVTBL, LPVTBL gameController,
                             Pointer<COMObject>)>>>()
             .value
             .asFunction<
                 int Function(
-                    Pointer, LPVTBL gameController, Pointer<COMObject>)>()(
+                    LPVTBL, LPVTBL gameController, Pointer<COMObject>)>()(
         ptr.ref.lpVtbl,
         gameController == null ? nullptr : gameController.ptr.ref.lpVtbl,
         retValuePtr);

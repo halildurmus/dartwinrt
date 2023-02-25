@@ -24,7 +24,6 @@ import 'iuriescapestatics.dart';
 import 'iuriruntimeclass.dart';
 import 'iuriruntimeclassfactory.dart';
 import 'iuriruntimeclasswithabsolutecanonicaluri.dart';
-import 'types.dart';
 import 'wwwformurldecoder.dart';
 
 /// Defines an object that represents a Uniform Resource Identifier (URI)

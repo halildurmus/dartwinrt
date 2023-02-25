@@ -36,14 +36,14 @@ class INetworkInformationStatics extends IInspectable {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(Pointer, Pointer<COMObject>)>>>()
-            .value
-            .asFunction<int Function(Pointer, Pointer<COMObject>)>()(
-        ptr.ref.lpVtbl, retValuePtr);
+        .elementAt(6)
+        .cast<
+            Pointer<
+                NativeFunction<HRESULT Function(LPVTBL, Pointer<COMObject>)>>>()
+        .value
+        .asFunction<
+            int Function(
+                LPVTBL, Pointer<COMObject>)>()(ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -57,14 +57,14 @@ class INetworkInformationStatics extends IInspectable {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(Pointer, Pointer<COMObject>)>>>()
-            .value
-            .asFunction<int Function(Pointer, Pointer<COMObject>)>()(
-        ptr.ref.lpVtbl, retValuePtr);
+        .elementAt(7)
+        .cast<
+            Pointer<
+                NativeFunction<HRESULT Function(LPVTBL, Pointer<COMObject>)>>>()
+        .value
+        .asFunction<
+            int Function(
+                LPVTBL, Pointer<COMObject>)>()(ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -78,14 +78,14 @@ class INetworkInformationStatics extends IInspectable {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(Pointer, Pointer<COMObject>)>>>()
-            .value
-            .asFunction<int Function(Pointer, Pointer<COMObject>)>()(
-        ptr.ref.lpVtbl, retValuePtr);
+        .elementAt(8)
+        .cast<
+            Pointer<
+                NativeFunction<HRESULT Function(LPVTBL, Pointer<COMObject>)>>>()
+        .value
+        .asFunction<
+            int Function(
+                LPVTBL, Pointer<COMObject>)>()(ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -99,14 +99,14 @@ class INetworkInformationStatics extends IInspectable {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-            .elementAt(9)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(Pointer, Pointer<COMObject>)>>>()
-            .value
-            .asFunction<int Function(Pointer, Pointer<COMObject>)>()(
-        ptr.ref.lpVtbl, retValuePtr);
+        .elementAt(9)
+        .cast<
+            Pointer<
+                NativeFunction<HRESULT Function(LPVTBL, Pointer<COMObject>)>>>()
+        .value
+        .asFunction<
+            int Function(
+                LPVTBL, Pointer<COMObject>)>()(ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -132,10 +132,9 @@ class INetworkInformationStatics extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            Pointer, LPVTBL uri, Pointer<COMObject>)>>>()
+                            LPVTBL, LPVTBL uri, Pointer<COMObject>)>>>()
             .value
-            .asFunction<
-                int Function(Pointer, LPVTBL uri, Pointer<COMObject>)>()(
+            .asFunction<int Function(LPVTBL, LPVTBL uri, Pointer<COMObject>)>()(
         ptr.ref.lpVtbl, uriUri.ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
@@ -159,11 +158,11 @@ class INetworkInformationStatics extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(Pointer, LPVTBL destinationList,
+                        HRESULT Function(LPVTBL, LPVTBL destinationList,
                             Uint32 sortOptions, Pointer<COMObject>)>>>()
             .value
             .asFunction<
-                int Function(Pointer, LPVTBL destinationList, int sortOptions,
+                int Function(LPVTBL, LPVTBL destinationList, int sortOptions,
                     Pointer<COMObject>)>()(
         ptr.ref.lpVtbl, destinationList.ref.lpVtbl, sortOptions, retValuePtr);
 
@@ -187,7 +186,7 @@ class INetworkInformationStatics extends IInspectable {
   //                 Pointer<
   //                     NativeFunction<
   //                         HRESULT Function(
-  //                             Pointer,
+  //                             LPVTBL,
   //                             Pointer<
   //                                     NativeFunction<
   //                                         NetworkStatusChangedEventHandler>>
@@ -196,7 +195,7 @@ class INetworkInformationStatics extends IInspectable {
   //             .value
   //             .asFunction<
   //                 int Function(
-  //                     Pointer,
+  //                     LPVTBL,
   //                     Pointer<NativeFunction<NetworkStatusChangedEventHandler>>
   //                         networkStatusHandler,
   //                     Pointer<IntPtr>)>()(
@@ -216,9 +215,9 @@ class INetworkInformationStatics extends IInspectable {
   //           .cast<
   //               Pointer<
   //                   NativeFunction<
-  //                       HRESULT Function(Pointer, IntPtr eventCookie)>>>()
+  //                       HRESULT Function(LPVTBL, IntPtr eventCookie)>>>()
   //           .value
-  //           .asFunction<int Function(Pointer, int eventCookie)>()(
+  //           .asFunction<int Function(LPVTBL, int eventCookie)>()(
   //       ptr.ref.lpVtbl, eventCookie);
 
   //   if (FAILED(hr)) throw WindowsException(hr);

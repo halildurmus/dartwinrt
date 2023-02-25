@@ -40,10 +40,10 @@ class IUISettings3 extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            Pointer, Int32 desiredColor, Pointer<Color>)>>>()
+                            LPVTBL, Int32 desiredColor, Pointer<Color>)>>>()
             .value
             .asFunction<
-                int Function(Pointer, int desiredColor, Pointer<Color>)>()(
+                int Function(LPVTBL, int desiredColor, Pointer<Color>)>()(
         ptr.ref.lpVtbl, desiredColor.value, retValuePtr);
 
     if (FAILED(hr)) throw WindowsException(hr);
@@ -62,13 +62,13 @@ class IUISettings3 extends IInspectable {
               Pointer<
                   NativeFunction<
                       HRESULT Function(
-                          Pointer,
+                          LPVTBL,
                           Pointer<NativeFunction<TypedEventHandler>> handler,
                           Pointer<IntPtr>)>>>()
           .value
           .asFunction<
               int Function(
-                  Pointer,
+                  LPVTBL,
                   Pointer<NativeFunction<TypedEventHandler>> handler,
                   Pointer<IntPtr>)>()(ptr.ref.lpVtbl, handler, retValuePtr);
 
@@ -84,10 +84,9 @@ class IUISettings3 extends IInspectable {
     final hr = ptr.ref.vtable
         .elementAt(8)
         .cast<
-            Pointer<NativeFunction<HRESULT Function(Pointer, IntPtr cookie)>>>()
+            Pointer<NativeFunction<HRESULT Function(LPVTBL, IntPtr cookie)>>>()
         .value
-        .asFunction<
-            int Function(Pointer, int cookie)>()(ptr.ref.lpVtbl, cookie);
+        .asFunction<int Function(LPVTBL, int cookie)>()(ptr.ref.lpVtbl, cookie);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }

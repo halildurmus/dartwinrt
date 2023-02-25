@@ -20,7 +20,6 @@ import 'collections/iiterator.dart';
 import 'helpers.dart';
 import 'iinspectable.dart';
 import 'structs.g.dart';
-import 'types.dart';
 
 /// @nodoc
 const IID_IPropertyValueStatics = '{629bdbc8-d932-4ff4-96b9-8d96c5c1e858}';
@@ -38,14 +37,14 @@ class IPropertyValueStatics extends IInspectable {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(Pointer, Pointer<COMObject>)>>>()
-            .value
-            .asFunction<int Function(Pointer, Pointer<COMObject>)>()(
-        ptr.ref.lpVtbl, retValuePtr);
+        .elementAt(6)
+        .cast<
+            Pointer<
+                NativeFunction<HRESULT Function(LPVTBL, Pointer<COMObject>)>>>()
+        .value
+        .asFunction<
+            int Function(
+                LPVTBL, Pointer<COMObject>)>()(ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -64,9 +63,9 @@ class IPropertyValueStatics extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            Pointer, Uint8 value, Pointer<COMObject>)>>>()
+                            LPVTBL, Uint8 value, Pointer<COMObject>)>>>()
             .value
-            .asFunction<int Function(Pointer, int value, Pointer<COMObject>)>()(
+            .asFunction<int Function(LPVTBL, int value, Pointer<COMObject>)>()(
         ptr.ref.lpVtbl, value, retValuePtr);
 
     if (FAILED(hr)) {
@@ -86,9 +85,9 @@ class IPropertyValueStatics extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            Pointer, Int16 value, Pointer<COMObject>)>>>()
+                            LPVTBL, Int16 value, Pointer<COMObject>)>>>()
             .value
-            .asFunction<int Function(Pointer, int value, Pointer<COMObject>)>()(
+            .asFunction<int Function(LPVTBL, int value, Pointer<COMObject>)>()(
         ptr.ref.lpVtbl, value, retValuePtr);
 
     if (FAILED(hr)) {
@@ -108,9 +107,9 @@ class IPropertyValueStatics extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            Pointer, Uint16 value, Pointer<COMObject>)>>>()
+                            LPVTBL, Uint16 value, Pointer<COMObject>)>>>()
             .value
-            .asFunction<int Function(Pointer, int value, Pointer<COMObject>)>()(
+            .asFunction<int Function(LPVTBL, int value, Pointer<COMObject>)>()(
         ptr.ref.lpVtbl, value, retValuePtr);
 
     if (FAILED(hr)) {
@@ -130,9 +129,9 @@ class IPropertyValueStatics extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            Pointer, Int32 value, Pointer<COMObject>)>>>()
+                            LPVTBL, Int32 value, Pointer<COMObject>)>>>()
             .value
-            .asFunction<int Function(Pointer, int value, Pointer<COMObject>)>()(
+            .asFunction<int Function(LPVTBL, int value, Pointer<COMObject>)>()(
         ptr.ref.lpVtbl, value, retValuePtr);
 
     if (FAILED(hr)) {
@@ -152,9 +151,9 @@ class IPropertyValueStatics extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            Pointer, Uint32 value, Pointer<COMObject>)>>>()
+                            LPVTBL, Uint32 value, Pointer<COMObject>)>>>()
             .value
-            .asFunction<int Function(Pointer, int value, Pointer<COMObject>)>()(
+            .asFunction<int Function(LPVTBL, int value, Pointer<COMObject>)>()(
         ptr.ref.lpVtbl, value, retValuePtr);
 
     if (FAILED(hr)) {
@@ -174,9 +173,9 @@ class IPropertyValueStatics extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            Pointer, Int64 value, Pointer<COMObject>)>>>()
+                            LPVTBL, Int64 value, Pointer<COMObject>)>>>()
             .value
-            .asFunction<int Function(Pointer, int value, Pointer<COMObject>)>()(
+            .asFunction<int Function(LPVTBL, int value, Pointer<COMObject>)>()(
         ptr.ref.lpVtbl, value, retValuePtr);
 
     if (FAILED(hr)) {
@@ -196,9 +195,9 @@ class IPropertyValueStatics extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            Pointer, Uint64 value, Pointer<COMObject>)>>>()
+                            LPVTBL, Uint64 value, Pointer<COMObject>)>>>()
             .value
-            .asFunction<int Function(Pointer, int value, Pointer<COMObject>)>()(
+            .asFunction<int Function(LPVTBL, int value, Pointer<COMObject>)>()(
         ptr.ref.lpVtbl, value, retValuePtr);
 
     if (FAILED(hr)) {
@@ -218,10 +217,10 @@ class IPropertyValueStatics extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            Pointer, Float value, Pointer<COMObject>)>>>()
+                            LPVTBL, Float value, Pointer<COMObject>)>>>()
             .value
             .asFunction<
-                int Function(Pointer, double value, Pointer<COMObject>)>()(
+                int Function(LPVTBL, double value, Pointer<COMObject>)>()(
         ptr.ref.lpVtbl, value, retValuePtr);
 
     if (FAILED(hr)) {
@@ -241,10 +240,10 @@ class IPropertyValueStatics extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            Pointer, Double value, Pointer<COMObject>)>>>()
+                            LPVTBL, Double value, Pointer<COMObject>)>>>()
             .value
             .asFunction<
-                int Function(Pointer, double value, Pointer<COMObject>)>()(
+                int Function(LPVTBL, double value, Pointer<COMObject>)>()(
         ptr.ref.lpVtbl, value, retValuePtr);
 
     if (FAILED(hr)) {
@@ -264,9 +263,9 @@ class IPropertyValueStatics extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            Pointer, Uint16 value, Pointer<COMObject>)>>>()
+                            LPVTBL, Uint16 value, Pointer<COMObject>)>>>()
             .value
-            .asFunction<int Function(Pointer, int value, Pointer<COMObject>)>()(
+            .asFunction<int Function(LPVTBL, int value, Pointer<COMObject>)>()(
         ptr.ref.lpVtbl, value, retValuePtr);
 
     if (FAILED(hr)) {
@@ -286,10 +285,9 @@ class IPropertyValueStatics extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            Pointer, Bool value, Pointer<COMObject>)>>>()
+                            LPVTBL, Bool value, Pointer<COMObject>)>>>()
             .value
-            .asFunction<
-                int Function(Pointer, bool value, Pointer<COMObject>)>()(
+            .asFunction<int Function(LPVTBL, bool value, Pointer<COMObject>)>()(
         ptr.ref.lpVtbl, value, retValuePtr);
 
     if (FAILED(hr)) {
@@ -310,9 +308,9 @@ class IPropertyValueStatics extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            Pointer, IntPtr value, Pointer<COMObject>)>>>()
+                            LPVTBL, IntPtr value, Pointer<COMObject>)>>>()
             .value
-            .asFunction<int Function(Pointer, int value, Pointer<COMObject>)>()(
+            .asFunction<int Function(LPVTBL, int value, Pointer<COMObject>)>()(
         ptr.ref.lpVtbl, valueHString, retValuePtr);
 
     if (FAILED(hr)) {
@@ -334,10 +332,10 @@ class IPropertyValueStatics extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            Pointer, LPVTBL value, Pointer<COMObject>)>>>()
+                            LPVTBL, LPVTBL value, Pointer<COMObject>)>>>()
             .value
             .asFunction<
-                int Function(Pointer, LPVTBL value, Pointer<COMObject>)>()(
+                int Function(LPVTBL, LPVTBL value, Pointer<COMObject>)>()(
         ptr.ref.lpVtbl, value?.intoBox().ref.lpVtbl ?? nullptr, retValuePtr);
 
     if (FAILED(hr)) {
@@ -358,10 +356,9 @@ class IPropertyValueStatics extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            Pointer, GUID value, Pointer<COMObject>)>>>()
+                            LPVTBL, GUID value, Pointer<COMObject>)>>>()
             .value
-            .asFunction<
-                int Function(Pointer, GUID value, Pointer<COMObject>)>()(
+            .asFunction<int Function(LPVTBL, GUID value, Pointer<COMObject>)>()(
         ptr.ref.lpVtbl, valueNativeGuidPtr.ref, retValuePtr);
 
     if (FAILED(hr)) {
@@ -385,9 +382,9 @@ class IPropertyValueStatics extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            Pointer, Uint64 value, Pointer<COMObject>)>>>()
+                            LPVTBL, Uint64 value, Pointer<COMObject>)>>>()
             .value
-            .asFunction<int Function(Pointer, int value, Pointer<COMObject>)>()(
+            .asFunction<int Function(LPVTBL, int value, Pointer<COMObject>)>()(
         ptr.ref.lpVtbl, valueDateTime, retValuePtr);
 
     if (FAILED(hr)) {
@@ -408,9 +405,9 @@ class IPropertyValueStatics extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            Pointer, Uint64 value, Pointer<COMObject>)>>>()
+                            LPVTBL, Uint64 value, Pointer<COMObject>)>>>()
             .value
-            .asFunction<int Function(Pointer, int value, Pointer<COMObject>)>()(
+            .asFunction<int Function(LPVTBL, int value, Pointer<COMObject>)>()(
         ptr.ref.lpVtbl, valueDuration, retValuePtr);
 
     if (FAILED(hr)) {
@@ -430,10 +427,10 @@ class IPropertyValueStatics extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            Pointer, Point value, Pointer<COMObject>)>>>()
+                            LPVTBL, Point value, Pointer<COMObject>)>>>()
             .value
             .asFunction<
-                int Function(Pointer, Point value, Pointer<COMObject>)>()(
+                int Function(LPVTBL, Point value, Pointer<COMObject>)>()(
         ptr.ref.lpVtbl, value, retValuePtr);
 
     if (FAILED(hr)) {
@@ -453,10 +450,9 @@ class IPropertyValueStatics extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            Pointer, Size value, Pointer<COMObject>)>>>()
+                            LPVTBL, Size value, Pointer<COMObject>)>>>()
             .value
-            .asFunction<
-                int Function(Pointer, Size value, Pointer<COMObject>)>()(
+            .asFunction<int Function(LPVTBL, Size value, Pointer<COMObject>)>()(
         ptr.ref.lpVtbl, value, retValuePtr);
 
     if (FAILED(hr)) {
@@ -476,10 +472,9 @@ class IPropertyValueStatics extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            Pointer, Rect value, Pointer<COMObject>)>>>()
+                            LPVTBL, Rect value, Pointer<COMObject>)>>>()
             .value
-            .asFunction<
-                int Function(Pointer, Rect value, Pointer<COMObject>)>()(
+            .asFunction<int Function(LPVTBL, Rect value, Pointer<COMObject>)>()(
         ptr.ref.lpVtbl, value, retValuePtr);
 
     if (FAILED(hr)) {
@@ -503,11 +498,11 @@ class IPropertyValueStatics extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(Pointer, Uint32 valueSize,
+                        HRESULT Function(LPVTBL, Uint32 valueSize,
                             Pointer<Uint8> value, Pointer<COMObject>)>>>()
             .value
             .asFunction<
-                int Function(Pointer, int valueSize, Pointer<Uint8> value,
+                int Function(LPVTBL, int valueSize, Pointer<Uint8> value,
                     Pointer<COMObject>)>()(
         ptr.ref.lpVtbl, value.length, pArray, retValuePtr);
 
@@ -534,11 +529,11 @@ class IPropertyValueStatics extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(Pointer, Uint32 valueSize,
+                        HRESULT Function(LPVTBL, Uint32 valueSize,
                             Pointer<Int16> value, Pointer<COMObject>)>>>()
             .value
             .asFunction<
-                int Function(Pointer, int valueSize, Pointer<Int16> value,
+                int Function(LPVTBL, int valueSize, Pointer<Int16> value,
                     Pointer<COMObject>)>()(
         ptr.ref.lpVtbl, value.length, pArray, retValuePtr);
 
@@ -565,11 +560,11 @@ class IPropertyValueStatics extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(Pointer, Uint32 valueSize,
+                        HRESULT Function(LPVTBL, Uint32 valueSize,
                             Pointer<Uint16> value, Pointer<COMObject>)>>>()
             .value
             .asFunction<
-                int Function(Pointer, int valueSize, Pointer<Uint16> value,
+                int Function(LPVTBL, int valueSize, Pointer<Uint16> value,
                     Pointer<COMObject>)>()(
         ptr.ref.lpVtbl, value.length, pArray, retValuePtr);
 
@@ -596,11 +591,11 @@ class IPropertyValueStatics extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(Pointer, Uint32 valueSize,
+                        HRESULT Function(LPVTBL, Uint32 valueSize,
                             Pointer<Int32> value, Pointer<COMObject>)>>>()
             .value
             .asFunction<
-                int Function(Pointer, int valueSize, Pointer<Int32> value,
+                int Function(LPVTBL, int valueSize, Pointer<Int32> value,
                     Pointer<COMObject>)>()(
         ptr.ref.lpVtbl, value.length, pArray, retValuePtr);
 
@@ -627,11 +622,11 @@ class IPropertyValueStatics extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(Pointer, Uint32 valueSize,
+                        HRESULT Function(LPVTBL, Uint32 valueSize,
                             Pointer<Uint32> value, Pointer<COMObject>)>>>()
             .value
             .asFunction<
-                int Function(Pointer, int valueSize, Pointer<Uint32> value,
+                int Function(LPVTBL, int valueSize, Pointer<Uint32> value,
                     Pointer<COMObject>)>()(
         ptr.ref.lpVtbl, value.length, pArray, retValuePtr);
 
@@ -658,11 +653,11 @@ class IPropertyValueStatics extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(Pointer, Uint32 valueSize,
+                        HRESULT Function(LPVTBL, Uint32 valueSize,
                             Pointer<Int64> value, Pointer<COMObject>)>>>()
             .value
             .asFunction<
-                int Function(Pointer, int valueSize, Pointer<Int64> value,
+                int Function(LPVTBL, int valueSize, Pointer<Int64> value,
                     Pointer<COMObject>)>()(
         ptr.ref.lpVtbl, value.length, pArray, retValuePtr);
 
@@ -689,11 +684,11 @@ class IPropertyValueStatics extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(Pointer, Uint32 valueSize,
+                        HRESULT Function(LPVTBL, Uint32 valueSize,
                             Pointer<Uint64> value, Pointer<COMObject>)>>>()
             .value
             .asFunction<
-                int Function(Pointer, int valueSize, Pointer<Uint64> value,
+                int Function(LPVTBL, int valueSize, Pointer<Uint64> value,
                     Pointer<COMObject>)>()(
         ptr.ref.lpVtbl, value.length, pArray, retValuePtr);
 
@@ -720,11 +715,11 @@ class IPropertyValueStatics extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(Pointer, Uint32 valueSize,
+                        HRESULT Function(LPVTBL, Uint32 valueSize,
                             Pointer<Float> value, Pointer<COMObject>)>>>()
             .value
             .asFunction<
-                int Function(Pointer, int valueSize, Pointer<Float> value,
+                int Function(LPVTBL, int valueSize, Pointer<Float> value,
                     Pointer<COMObject>)>()(
         ptr.ref.lpVtbl, value.length, pArray, retValuePtr);
 
@@ -751,11 +746,11 @@ class IPropertyValueStatics extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(Pointer, Uint32 valueSize,
+                        HRESULT Function(LPVTBL, Uint32 valueSize,
                             Pointer<Double> value, Pointer<COMObject>)>>>()
             .value
             .asFunction<
-                int Function(Pointer, int valueSize, Pointer<Double> value,
+                int Function(LPVTBL, int valueSize, Pointer<Double> value,
                     Pointer<COMObject>)>()(
         ptr.ref.lpVtbl, value.length, pArray, retValuePtr);
 
@@ -782,11 +777,11 @@ class IPropertyValueStatics extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(Pointer, Uint32 valueSize,
+                        HRESULT Function(LPVTBL, Uint32 valueSize,
                             Pointer<Uint16> value, Pointer<COMObject>)>>>()
             .value
             .asFunction<
-                int Function(Pointer, int valueSize, Pointer<Uint16> value,
+                int Function(LPVTBL, int valueSize, Pointer<Uint16> value,
                     Pointer<COMObject>)>()(
         ptr.ref.lpVtbl, value.length, pArray, retValuePtr);
 
@@ -813,11 +808,11 @@ class IPropertyValueStatics extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(Pointer, Uint32 valueSize,
+                        HRESULT Function(LPVTBL, Uint32 valueSize,
                             Pointer<Bool> value, Pointer<COMObject>)>>>()
             .value
             .asFunction<
-                int Function(Pointer, int valueSize, Pointer<Bool> value,
+                int Function(LPVTBL, int valueSize, Pointer<Bool> value,
                     Pointer<COMObject>)>()(
         ptr.ref.lpVtbl, value.length, pArray, retValuePtr);
 
@@ -846,11 +841,11 @@ class IPropertyValueStatics extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(Pointer, Uint32 valueSize,
+                        HRESULT Function(LPVTBL, Uint32 valueSize,
                             Pointer<IntPtr> value, Pointer<COMObject>)>>>()
             .value
             .asFunction<
-                int Function(Pointer, int valueSize, Pointer<IntPtr> value,
+                int Function(LPVTBL, int valueSize, Pointer<IntPtr> value,
                     Pointer<COMObject>)>()(
         ptr.ref.lpVtbl, value.length, pArray, retValuePtr);
 
@@ -879,11 +874,11 @@ class IPropertyValueStatics extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(Pointer, Uint32 valueSize,
+                        HRESULT Function(LPVTBL, Uint32 valueSize,
                             Pointer<COMObject> value, Pointer<COMObject>)>>>()
             .value
             .asFunction<
-                int Function(Pointer, int valueSize, Pointer<COMObject> value,
+                int Function(LPVTBL, int valueSize, Pointer<COMObject> value,
                     Pointer<COMObject>)>()(
         ptr.ref.lpVtbl, value.length, pArray, retValuePtr);
 
@@ -913,11 +908,11 @@ class IPropertyValueStatics extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(Pointer, Uint32 valueSize,
+                        HRESULT Function(LPVTBL, Uint32 valueSize,
                             Pointer<GUID> value, Pointer<COMObject>)>>>()
             .value
             .asFunction<
-                int Function(Pointer, int valueSize, Pointer<GUID> value,
+                int Function(LPVTBL, int valueSize, Pointer<GUID> value,
                     Pointer<COMObject>)>()(
         ptr.ref.lpVtbl, value.length, pArray, retValuePtr);
 
@@ -949,11 +944,11 @@ class IPropertyValueStatics extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(Pointer, Uint32 valueSize,
+                        HRESULT Function(LPVTBL, Uint32 valueSize,
                             Pointer<Uint64> value, Pointer<COMObject>)>>>()
             .value
             .asFunction<
-                int Function(Pointer, int valueSize, Pointer<Uint64> value,
+                int Function(LPVTBL, int valueSize, Pointer<Uint64> value,
                     Pointer<COMObject>)>()(
         ptr.ref.lpVtbl, value.length, pArray, retValuePtr);
 
@@ -980,11 +975,11 @@ class IPropertyValueStatics extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(Pointer, Uint32 valueSize,
+                        HRESULT Function(LPVTBL, Uint32 valueSize,
                             Pointer<Uint64> value, Pointer<COMObject>)>>>()
             .value
             .asFunction<
-                int Function(Pointer, int valueSize, Pointer<Uint64> value,
+                int Function(LPVTBL, int valueSize, Pointer<Uint64> value,
                     Pointer<COMObject>)>()(
         ptr.ref.lpVtbl, value.length, pArray, retValuePtr);
 
@@ -1011,11 +1006,11 @@ class IPropertyValueStatics extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(Pointer, Uint32 valueSize,
+                        HRESULT Function(LPVTBL, Uint32 valueSize,
                             Pointer<Point> value, Pointer<COMObject>)>>>()
             .value
             .asFunction<
-                int Function(Pointer, int valueSize, Pointer<Point> value,
+                int Function(LPVTBL, int valueSize, Pointer<Point> value,
                     Pointer<COMObject>)>()(
         ptr.ref.lpVtbl, value.length, pArray, retValuePtr);
 
@@ -1042,11 +1037,11 @@ class IPropertyValueStatics extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(Pointer, Uint32 valueSize,
+                        HRESULT Function(LPVTBL, Uint32 valueSize,
                             Pointer<Size> value, Pointer<COMObject>)>>>()
             .value
             .asFunction<
-                int Function(Pointer, int valueSize, Pointer<Size> value,
+                int Function(LPVTBL, int valueSize, Pointer<Size> value,
                     Pointer<COMObject>)>()(
         ptr.ref.lpVtbl, value.length, pArray, retValuePtr);
 
@@ -1073,11 +1068,11 @@ class IPropertyValueStatics extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(Pointer, Uint32 valueSize,
+                        HRESULT Function(LPVTBL, Uint32 valueSize,
                             Pointer<Rect> value, Pointer<COMObject>)>>>()
             .value
             .asFunction<
-                int Function(Pointer, int valueSize, Pointer<Rect> value,
+                int Function(LPVTBL, int valueSize, Pointer<Rect> value,
                     Pointer<COMObject>)>()(
         ptr.ref.lpVtbl, value.length, pArray, retValuePtr);
 

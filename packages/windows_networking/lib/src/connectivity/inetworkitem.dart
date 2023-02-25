@@ -37,11 +37,11 @@ class INetworkItem extends IInspectable {
           .elementAt(6)
           .cast<
               Pointer<
-                  NativeFunction<HRESULT Function(Pointer, Pointer<GUID>)>>>()
+                  NativeFunction<HRESULT Function(LPVTBL, Pointer<GUID>)>>>()
           .value
           .asFunction<
               int Function(
-                  Pointer, Pointer<GUID>)>()(ptr.ref.lpVtbl, retValuePtr);
+                  LPVTBL, Pointer<GUID>)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -59,11 +59,11 @@ class INetworkItem extends IInspectable {
           .elementAt(7)
           .cast<
               Pointer<
-                  NativeFunction<HRESULT Function(Pointer, Pointer<Uint32>)>>>()
+                  NativeFunction<HRESULT Function(LPVTBL, Pointer<Uint32>)>>>()
           .value
           .asFunction<
               int Function(
-                  Pointer, Pointer<Uint32>)>()(ptr.ref.lpVtbl, retValuePtr);
+                  LPVTBL, Pointer<Uint32>)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
