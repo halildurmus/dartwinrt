@@ -8,14 +8,13 @@ import '../parameter.dart';
 import '../setter.dart';
 import 'default.dart';
 
-mixin _DateTimeProjection on MethodProjection {
+mixin _DateTimeMixin on MethodProjection {
   @override
   String get returnType => 'DateTime';
 }
 
 /// Method projection for methods that return a `DateTime`.
-class DateTimeMethodProjection extends MethodProjection
-    with _DateTimeProjection {
+class DateTimeMethodProjection extends MethodProjection with _DateTimeMixin {
   DateTimeMethodProjection(super.method, super.vtableOffset);
 
   // In WinRT, DateTime is represented as a 64-bit signed integer that
@@ -42,8 +41,7 @@ class DateTimeMethodProjection extends MethodProjection
 }
 
 /// Getter projection for `DateTime` getters.
-class DateTimeGetterProjection extends GetterProjection
-    with _DateTimeProjection {
+class DateTimeGetterProjection extends GetterProjection with _DateTimeMixin {
   DateTimeGetterProjection(super.method, super.vtableOffset);
 
   @override

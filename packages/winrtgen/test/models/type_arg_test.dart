@@ -29,12 +29,11 @@ void main() {
     });
 
     test('returns the appropriate TypeArg (3)', () {
-      expect(TypeArg.from('IInspectable'), equals(TypeArg.inspectable));
+      expect(TypeArg.from('Inspectable'), equals(TypeArg.inspectable));
     });
 
     test('returns the appropriate TypeArg (4)', () {
-      expect(
-          TypeArg.from('IInspectable?'), equals(TypeArg.nullableInspectable));
+      expect(TypeArg.from('Inspectable?'), equals(TypeArg.nullableInspectable));
     });
 
     test('returns the appropriate TypeArg (5)', () {

@@ -194,8 +194,8 @@ class _IVectorViewGuid extends IVectorView<Guid> {
   }
 }
 
-class _IVectorViewIInspectable<T> extends IVectorView<T> {
-  _IVectorViewIInspectable.fromRawPointer(super.ptr,
+class _IVectorViewInspectable<T> extends IVectorView<T> {
+  _IVectorViewInspectable.fromRawPointer(super.ptr,
       {required super.iterableIid, super.creator});
 
   @override

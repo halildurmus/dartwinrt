@@ -50,12 +50,10 @@ abstract class ParameterProjection {
         return EnumParameterProjection(param);
       case ProjectionType.genericEnum:
         return GenericEnumParameterProjection(param);
-      case ProjectionType.genericInspectable:
-        return GenericInspectableParameterProjection(param);
+      case ProjectionType.genericObject:
+        return GenericObjectParameterProjection(param);
       case ProjectionType.guid:
         return GuidParameterProjection(param);
-      case ProjectionType.inspectable:
-        return InspectableParameterProjection(param);
       case ProjectionType.object:
         return ObjectParameterProjection(param);
       case ProjectionType.reference:
@@ -85,12 +83,10 @@ abstract class ParameterProjection {
         return DurationListParameterProjection(param);
       case ProjectionType.genericEnum:
         return GenericEnumListParameterProjection(param);
-      case ProjectionType.genericInspectable:
-        return GenericInspectableListParameterProjection(param);
+      case ProjectionType.genericObject:
+        return GenericObjectListParameterProjection(param);
       case ProjectionType.guid:
         return GuidListParameterProjection(param);
-      case ProjectionType.inspectable:
-        return InspectableListParameterProjection(param);
       case ProjectionType.object:
         return ObjectListParameterProjection(param);
       case ProjectionType.string:

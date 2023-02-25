@@ -31,7 +31,7 @@ void main() {
       final methodProjection = MethodProjection.fromTypeAndMethodName(
           'Windows.Globalization.ICalendar', 'Compare');
       final parameter = methodProjection.parameters.first;
-      expect(parameter, isA<InspectableParameterProjection>());
+      expect(parameter, isA<ObjectParameterProjection>());
       expect(parameter.type, equals('Calendar?'));
       expect(parameter.preamble, isEmpty);
       expect(parameter.postamble, isEmpty);
@@ -115,7 +115,7 @@ void main() {
       final methodProjection = MethodProjection.fromTypeAndMethodName(
           'Windows.Storage.IStorageFile', 'CopyAndReplaceAsync');
       final parameter = methodProjection.parameters.first;
-      expect(parameter, isA<InspectableParameterProjection>());
+      expect(parameter, isA<ObjectParameterProjection>());
       expect(parameter.type, equals('IStorageFile?'));
       expect(parameter.preamble, isEmpty);
       expect(parameter.postamble, isEmpty);

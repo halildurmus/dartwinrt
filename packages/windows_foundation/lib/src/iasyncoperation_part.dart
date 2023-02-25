@@ -145,8 +145,8 @@ class _IAsyncOperationInt64 extends IAsyncOperation<int> {
   }
 }
 
-class _IAsyncOperationIInspectable<TResult> extends IAsyncOperation<TResult> {
-  _IAsyncOperationIInspectable.fromRawPointer(super.ptr, {super.creator});
+class _IAsyncOperationInspectable<TResult> extends IAsyncOperation<TResult> {
+  _IAsyncOperationInspectable.fromRawPointer(super.ptr, {super.creator});
 
   @override
   TResult getResults() {

@@ -103,7 +103,7 @@ class TypeProjection {
   bool get isMapView =>
       typeIdentifier.type?.name.endsWith('IMapView`2') ?? false;
 
-  bool get isObject => typeIdentifier.baseType == BaseType.objectType;
+  bool get isObjectType => typeIdentifier.baseType == BaseType.objectType;
 
   bool get isPointer => typeIdentifier.baseType == BaseType.pointerTypeModifier;
 
@@ -143,6 +143,8 @@ class TypeProjection {
 
   bool get isWinRTInterface =>
       isWinRT && (typeIdentifier.type?.isInterface ?? false);
+
+  bool get isWinRTObject => isWinRTClass || isWinRTInterface || isObjectType;
 
   bool get isWinRTStruct => isWinRT && (typeIdentifier.type?.isStruct ?? false);
 
@@ -279,8 +281,8 @@ class TypeProjection {
     if (isWinRTStruct) return unwrapStruct();
 
     // Could be a WinRT class (e.g. Calendar), interface (e.g. ICalendar), or
-    // an object
-    if (isWinRTClass || isWinRTInterface || isObject) {
+    // boxed value
+    if (isWinRTObject) {
       // LPVTBL is an alias for a Pointer to COM vtable (i.e.
       // Pointer<Pointer<IntPtr>>).
       final type = isParameter ? 'LPVTBL' : 'Pointer<COMObject>';

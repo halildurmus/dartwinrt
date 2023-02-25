@@ -11,7 +11,7 @@ import '../parameter.dart';
 import '../setter.dart';
 import '../type.dart';
 
-mixin _ReferenceProjection on MethodProjection {
+mixin _ReferenceMixin on MethodProjection {
   @override
   String get returnType =>
       typeArguments(returnTypeProjection.typeIdentifier.shortName);
@@ -57,8 +57,7 @@ mixin _ReferenceProjection on MethodProjection {
 
 /// Method projection for methods that return an `IReference<T?>` (exposed as
 /// `T?`).
-class ReferenceMethodProjection extends MethodProjection
-    with _ReferenceProjection {
+class ReferenceMethodProjection extends MethodProjection with _ReferenceMixin {
   ReferenceMethodProjection(super.method, super.vtableOffset);
 
   @override
@@ -84,8 +83,7 @@ class ReferenceMethodProjection extends MethodProjection
 }
 
 /// Getter projection for `IReference<T?>` (exposed as `T?`) getters.
-class ReferenceGetterProjection extends GetterProjection
-    with _ReferenceProjection {
+class ReferenceGetterProjection extends GetterProjection with _ReferenceMixin {
   ReferenceGetterProjection(super.method, super.vtableOffset);
 
   @override
@@ -108,8 +106,7 @@ class ReferenceGetterProjection extends GetterProjection
 }
 
 /// Setter projection for `IReference<T?>` (exposed as `T?`) setters.
-class ReferenceSetterProjection extends SetterProjection
-    with _ReferenceProjection {
+class ReferenceSetterProjection extends SetterProjection with _ReferenceMixin {
   ReferenceSetterProjection(super.method, super.vtableOffset);
 
   @override

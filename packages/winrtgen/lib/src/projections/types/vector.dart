@@ -10,7 +10,7 @@ import '../getter.dart';
 import '../method.dart';
 import '../type.dart';
 
-mixin _VectorProjection on MethodProjection {
+mixin _VectorMixin on MethodProjection {
   /// The type argument of `IVector` and `IVectorView`, as represented in the
   /// [returnTypeProjection]'s [TypeIdentifier] (e.g. `int`, `String`,
   /// `StorageFile`).
@@ -57,7 +57,7 @@ mixin _VectorProjection on MethodProjection {
 }
 
 /// Method projection for methods that return an `IVector<T>`.
-class VectorMethodProjection extends MethodProjection with _VectorProjection {
+class VectorMethodProjection extends MethodProjection with _VectorMixin {
   VectorMethodProjection(super.method, super.vtableOffset);
 
   @override
@@ -79,7 +79,7 @@ class VectorMethodProjection extends MethodProjection with _VectorProjection {
 }
 
 /// Getter projection for `IVector<T>` getters.
-class VectorGetterProjection extends GetterProjection with _VectorProjection {
+class VectorGetterProjection extends GetterProjection with _VectorMixin {
   VectorGetterProjection(super.method, super.vtableOffset);
 
   @override
@@ -99,8 +99,7 @@ class VectorGetterProjection extends GetterProjection with _VectorProjection {
 
 /// Method projection for methods that return an `IVectorView<T>` (exposed as
 /// `List<T>`).
-class VectorViewMethodProjection extends MethodProjection
-    with _VectorProjection {
+class VectorViewMethodProjection extends MethodProjection with _VectorMixin {
   VectorViewMethodProjection(super.method, super.vtableOffset);
 
   @override
@@ -127,8 +126,7 @@ class VectorViewMethodProjection extends MethodProjection
 }
 
 /// Getter projection for `IVectorView<T>` (exposed as `List<T>`) getters.
-class VectorViewGetterProjection extends GetterProjection
-    with _VectorProjection {
+class VectorViewGetterProjection extends GetterProjection with _VectorMixin {
   VectorViewGetterProjection(super.method, super.vtableOffset);
 
   @override

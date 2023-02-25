@@ -83,7 +83,7 @@ abstract class IIterator<T> extends IInspectable {
 
     if (isSubtypeOfInspectable<T>()) {
       if (creator == null) throw ArgumentError.notNull('creator');
-      return _IIteratorIInspectable.fromRawPointer(ptr, creator: creator);
+      return _IIteratorInspectable.fromRawPointer(ptr, creator: creator);
     }
 
     if (T == String) {

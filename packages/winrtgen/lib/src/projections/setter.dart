@@ -35,8 +35,6 @@ abstract class SetterProjection extends PropertyProjection {
         return EnumSetterProjection(method, vtableOffset);
       case ProjectionType.guid:
         return GuidSetterProjection(method, vtableOffset);
-      case ProjectionType.inspectable:
-        return InspectableSetterProjection(method, vtableOffset);
       case ProjectionType.object:
         return ObjectSetterProjection(method, vtableOffset);
       case ProjectionType.reference:
