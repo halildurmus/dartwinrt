@@ -16,22 +16,20 @@ import 'package:win32/win32.dart';
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
-import 'enums.g.dart';
-import 'notificationdata.dart';
-
 /// @nodoc
-const IID_IToastNotification4 = '{15154935-28ea-4727-88e9-c58680e2d118}';
+const IID_IScheduledToastNotification4 =
+    '{1d4761fd-bdef-4e4a-96be-0101369b58d2}';
 
 /// {@category interface}
-class IToastNotification4 extends IInspectable {
-  // vtable begins at 6, is 4 entries long.
-  IToastNotification4.fromRawPointer(super.ptr);
+class IScheduledToastNotification4 extends IInspectable {
+  // vtable begins at 6, is 2 entries long.
+  IScheduledToastNotification4.fromRawPointer(super.ptr);
 
-  factory IToastNotification4.from(IInspectable interface) =>
-      IToastNotification4.fromRawPointer(
-          interface.toInterface(IID_IToastNotification4));
+  factory IScheduledToastNotification4.from(IInspectable interface) =>
+      IScheduledToastNotification4.fromRawPointer(
+          interface.toInterface(IID_IScheduledToastNotification4));
 
-  NotificationData? get data {
+  DateTime? get expirationTime {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -54,10 +52,15 @@ class IToastNotification4 extends IInspectable {
       return null;
     }
 
-    return NotificationData.fromRawPointer(retValuePtr);
+    final reference = IReference<DateTime?>.fromRawPointer(retValuePtr,
+        referenceIid: '{5541d8a7-497c-5aa4-86fc-7713adbf2a2c}');
+    final value = reference.value;
+    reference.release();
+
+    return value;
   }
 
-  set data(NotificationData? value) {
+  set expirationTime(DateTime? value) {
     final hr =
         ptr.ref.vtable
                 .elementAt(7)
@@ -66,40 +69,7 @@ class IToastNotification4 extends IInspectable {
                         NativeFunction<HRESULT Function(LPVTBL, LPVTBL value)>>>()
                 .value
                 .asFunction<int Function(LPVTBL, LPVTBL value)>()(
-            ptr.ref.lpVtbl, value == null ? nullptr : value.ptr.ref.lpVtbl);
-
-    if (FAILED(hr)) throw WindowsException(hr);
-  }
-
-  ToastNotificationPriority get priority {
-    final retValuePtr = calloc<Int32>();
-
-    try {
-      final hr = ptr.ref.vtable
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<HRESULT Function(LPVTBL, Pointer<Int32>)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  LPVTBL, Pointer<Int32>)>()(ptr.ref.lpVtbl, retValuePtr);
-
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      return ToastNotificationPriority.from(retValuePtr.value);
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  set priority(ToastNotificationPriority value) {
-    final hr = ptr.ref.vtable
-        .elementAt(9)
-        .cast<Pointer<NativeFunction<HRESULT Function(LPVTBL, Int32 value)>>>()
-        .value
-        .asFunction<
-            int Function(LPVTBL, int value)>()(ptr.ref.lpVtbl, value.value);
+            ptr.ref.lpVtbl, value?.toReference().ptr.ref.lpVtbl ?? nullptr);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }

@@ -19,16 +19,17 @@ import 'package:windows_foundation/windows_foundation.dart';
 import 'enums.g.dart';
 
 /// @nodoc
-const IID_IToastNotification3 = '{31e8aed8-8141-4f99-bc0a-c4ed21297d77}';
+const IID_IScheduledToastNotification3 =
+    '{98429e8b-bd32-4a3b-9d15-22aea49462a1}';
 
 /// {@category interface}
-class IToastNotification3 extends IInspectable {
+class IScheduledToastNotification3 extends IInspectable {
   // vtable begins at 6, is 4 entries long.
-  IToastNotification3.fromRawPointer(super.ptr);
+  IScheduledToastNotification3.fromRawPointer(super.ptr);
 
-  factory IToastNotification3.from(IInspectable interface) =>
-      IToastNotification3.fromRawPointer(
-          interface.toInterface(IID_IToastNotification3));
+  factory IScheduledToastNotification3.from(IInspectable interface) =>
+      IScheduledToastNotification3.fromRawPointer(
+          interface.toInterface(IID_IScheduledToastNotification3));
 
   NotificationMirroring get notificationMirroring {
     final retValuePtr = calloc<Int32>();

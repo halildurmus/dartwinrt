@@ -13,27 +13,24 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
-import 'package:windows_data/windows_data.dart';
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
-import 'enums.g.dart';
-import 'toastnotifier.dart';
+import 'toastnotification.dart';
 
 /// @nodoc
-const IID_IToastNotificationManagerStatics =
-    '{50ac103f-d235-4598-bbef-98fe4d1a3ad4}';
+const IID_IToastNotificationHistory2 = '{3bc3d253-2f31-4092-9129-8ad5abf067da}';
 
 /// {@category interface}
-class IToastNotificationManagerStatics extends IInspectable {
-  // vtable begins at 6, is 3 entries long.
-  IToastNotificationManagerStatics.fromRawPointer(super.ptr);
+class IToastNotificationHistory2 extends IInspectable {
+  // vtable begins at 6, is 2 entries long.
+  IToastNotificationHistory2.fromRawPointer(super.ptr);
 
-  factory IToastNotificationManagerStatics.from(IInspectable interface) =>
-      IToastNotificationManagerStatics.fromRawPointer(
-          interface.toInterface(IID_IToastNotificationManagerStatics));
+  factory IToastNotificationHistory2.from(IInspectable interface) =>
+      IToastNotificationHistory2.fromRawPointer(
+          interface.toInterface(IID_IToastNotificationHistory2));
 
-  ToastNotifier? createToastNotifier() {
+  List<ToastNotification> getHistory() {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -51,15 +48,17 @@ class IToastNotificationManagerStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
-      free(retValuePtr);
-      return null;
-    }
+    final vectorView = IVectorView<ToastNotification>.fromRawPointer(
+        retValuePtr,
+        iterableIid: '{52c9428b-d37a-554d-bf55-b8685d5f552d}',
+        creator: ToastNotification.fromRawPointer);
+    final list = vectorView.toList();
+    vectorView.release();
 
-    return ToastNotifier.fromRawPointer(retValuePtr);
+    return list;
   }
 
-  ToastNotifier? createToastNotifierWithId(String applicationId) {
+  List<ToastNotification> getHistoryWithId(String applicationId) {
     final retValuePtr = calloc<COMObject>();
     final applicationIdHString = convertToHString(applicationId);
 
@@ -80,40 +79,15 @@ class IToastNotificationManagerStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
+    final vectorView = IVectorView<ToastNotification>.fromRawPointer(
+        retValuePtr,
+        iterableIid: '{52c9428b-d37a-554d-bf55-b8685d5f552d}',
+        creator: ToastNotification.fromRawPointer);
+    final list = vectorView.toList();
+    vectorView.release();
+
     WindowsDeleteString(applicationIdHString);
 
-    if (retValuePtr.ref.isNull) {
-      free(retValuePtr);
-      return null;
-    }
-
-    return ToastNotifier.fromRawPointer(retValuePtr);
-  }
-
-  XmlDocument? getTemplateContent(ToastTemplateType type) {
-    final retValuePtr = calloc<COMObject>();
-
-    final hr = ptr.ref.vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            LPVTBL, Int32 type, Pointer<COMObject>)>>>()
-            .value
-            .asFunction<int Function(LPVTBL, int type, Pointer<COMObject>)>()(
-        ptr.ref.lpVtbl, type.value, retValuePtr);
-
-    if (FAILED(hr)) {
-      free(retValuePtr);
-      throw WindowsException(hr);
-    }
-
-    if (retValuePtr.ref.isNull) {
-      free(retValuePtr);
-      return null;
-    }
-
-    return XmlDocument.fromRawPointer(retValuePtr);
+    return list;
   }
 }
