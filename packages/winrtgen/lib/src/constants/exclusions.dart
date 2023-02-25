@@ -70,10 +70,6 @@ const excludedClassesAndInterfaces = <String>{
 
   //   Requires WinRT event support
   'Windows.Networking.Connectivity.INetworkInformationStatics',
-
-  //   Requires XmlDocument support
-  'Windows.UI.Notifications.IToastNotificationManagerStatics',
-  'Windows.UI.Notifications.ToastNotification',
 };
 
 /// WinRT interfaces to exclude when generating an interface's inherited
