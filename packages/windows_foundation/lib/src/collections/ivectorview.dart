@@ -87,7 +87,7 @@ abstract class IVectorView<T> extends IInspectable implements IIterable<T> {
 
     if (isSubtypeOfInspectable<T>()) {
       if (creator == null) throw ArgumentError.notNull('creator');
-      return _IVectorViewIInspectable.fromRawPointer(ptr,
+      return _IVectorViewInspectable.fromRawPointer(ptr,
           creator: creator, iterableIid: iterableIid);
     }
 

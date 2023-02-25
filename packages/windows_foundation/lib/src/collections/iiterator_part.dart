@@ -128,8 +128,8 @@ class _IIteratorGuid extends IIterator<Guid> {
   }
 }
 
-class _IIteratorIInspectable<T> extends IIterator<T> {
-  _IIteratorIInspectable.fromRawPointer(super.ptr, {super.creator});
+class _IIteratorInspectable<T> extends IIterator<T> {
+  _IIteratorInspectable.fromRawPointer(super.ptr, {super.creator});
 
   @override
   T get current {

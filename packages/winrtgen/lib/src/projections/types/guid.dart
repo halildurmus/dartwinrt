@@ -8,13 +8,13 @@ import '../parameter.dart';
 import '../setter.dart';
 import 'default.dart';
 
-mixin _GuidProjection on MethodProjection {
+mixin _GuidMixin on MethodProjection {
   @override
   String get returnType => 'Guid';
 }
 
 /// Method projection for methods that return a `Guid`.
-class GuidMethodProjection extends MethodProjection with _GuidProjection {
+class GuidMethodProjection extends MethodProjection with _GuidMixin {
   GuidMethodProjection(super.method, super.vtableOffset);
 
   @override
@@ -36,7 +36,7 @@ class GuidMethodProjection extends MethodProjection with _GuidProjection {
 }
 
 /// Getter projection for `Guid` getters.
-class GuidGetterProjection extends GetterProjection with _GuidProjection {
+class GuidGetterProjection extends GetterProjection with _GuidMixin {
   GuidGetterProjection(super.method, super.vtableOffset);
 
   @override

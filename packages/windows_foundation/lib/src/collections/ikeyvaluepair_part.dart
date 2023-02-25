@@ -10,8 +10,8 @@
 
 part of 'ikeyvaluepair.dart';
 
-class _IKeyValuePairGuidIInspectable<V> extends IKeyValuePair<Guid, V> {
-  _IKeyValuePairGuidIInspectable.fromRawPointer(super.ptr, {super.creator});
+class _IKeyValuePairGuidInspectable<V> extends IKeyValuePair<Guid, V> {
+  _IKeyValuePairGuidInspectable.fromRawPointer(super.ptr, {super.creator});
 
   @override
   Guid get key {
@@ -118,8 +118,8 @@ class _IKeyValuePairGuidObject extends IKeyValuePair<Guid, Object?> {
   }
 }
 
-class _IKeyValuePairInt16IInspectable<V> extends IKeyValuePair<int, V> {
-  _IKeyValuePairInt16IInspectable.fromRawPointer(super.ptr, {super.creator});
+class _IKeyValuePairInt16Inspectable<V> extends IKeyValuePair<int, V> {
+  _IKeyValuePairInt16Inspectable.fromRawPointer(super.ptr, {super.creator});
 
   @override
   int get key {
@@ -172,8 +172,8 @@ class _IKeyValuePairInt16IInspectable<V> extends IKeyValuePair<int, V> {
   }
 }
 
-class _IKeyValuePairInt32IInspectable<V> extends IKeyValuePair<int, V> {
-  _IKeyValuePairInt32IInspectable.fromRawPointer(super.ptr, {super.creator});
+class _IKeyValuePairInt32Inspectable<V> extends IKeyValuePair<int, V> {
+  _IKeyValuePairInt32Inspectable.fromRawPointer(super.ptr, {super.creator});
 
   @override
   int get key {
@@ -226,8 +226,8 @@ class _IKeyValuePairInt32IInspectable<V> extends IKeyValuePair<int, V> {
   }
 }
 
-class _IKeyValuePairInt64IInspectable<V> extends IKeyValuePair<int, V> {
-  _IKeyValuePairInt64IInspectable.fromRawPointer(super.ptr, {super.creator});
+class _IKeyValuePairInt64Inspectable<V> extends IKeyValuePair<int, V> {
+  _IKeyValuePairInt64Inspectable.fromRawPointer(super.ptr, {super.creator});
 
   @override
   int get key {
@@ -280,8 +280,8 @@ class _IKeyValuePairInt64IInspectable<V> extends IKeyValuePair<int, V> {
   }
 }
 
-class _IKeyValuePairStringIInspectable<V> extends IKeyValuePair<String, V> {
-  _IKeyValuePairStringIInspectable.fromRawPointer(super.ptr, {super.creator});
+class _IKeyValuePairStringInspectable<V> extends IKeyValuePair<String, V> {
+  _IKeyValuePairStringInspectable.fromRawPointer(super.ptr, {super.creator});
 
   @override
   String get key {
@@ -545,8 +545,8 @@ class _IKeyValuePairStringWinRTFlagsEnum<V> extends IKeyValuePair<String, V> {
   }
 }
 
-class _IKeyValuePairUint8IInspectable<V> extends IKeyValuePair<int, V> {
-  _IKeyValuePairUint8IInspectable.fromRawPointer(super.ptr, {super.creator});
+class _IKeyValuePairUint8Inspectable<V> extends IKeyValuePair<int, V> {
+  _IKeyValuePairUint8Inspectable.fromRawPointer(super.ptr, {super.creator});
 
   @override
   int get key {
@@ -599,8 +599,8 @@ class _IKeyValuePairUint8IInspectable<V> extends IKeyValuePair<int, V> {
   }
 }
 
-class _IKeyValuePairUint16IInspectable<V> extends IKeyValuePair<int, V> {
-  _IKeyValuePairUint16IInspectable.fromRawPointer(super.ptr, {super.creator});
+class _IKeyValuePairUint16Inspectable<V> extends IKeyValuePair<int, V> {
+  _IKeyValuePairUint16Inspectable.fromRawPointer(super.ptr, {super.creator});
 
   @override
   int get key {
@@ -653,8 +653,8 @@ class _IKeyValuePairUint16IInspectable<V> extends IKeyValuePair<int, V> {
   }
 }
 
-class _IKeyValuePairUint32IInspectable<V> extends IKeyValuePair<int, V> {
-  _IKeyValuePairUint32IInspectable.fromRawPointer(super.ptr, {super.creator});
+class _IKeyValuePairUint32Inspectable<V> extends IKeyValuePair<int, V> {
+  _IKeyValuePairUint32Inspectable.fromRawPointer(super.ptr, {super.creator});
 
   @override
   int get key {
@@ -707,8 +707,8 @@ class _IKeyValuePairUint32IInspectable<V> extends IKeyValuePair<int, V> {
   }
 }
 
-class _IKeyValuePairUint64IInspectable<V> extends IKeyValuePair<int, V> {
-  _IKeyValuePairUint64IInspectable.fromRawPointer(super.ptr, {super.creator});
+class _IKeyValuePairUint64Inspectable<V> extends IKeyValuePair<int, V> {
+  _IKeyValuePairUint64Inspectable.fromRawPointer(super.ptr, {super.creator});
 
   @override
   int get key {
@@ -761,8 +761,8 @@ class _IKeyValuePairUint64IInspectable<V> extends IKeyValuePair<int, V> {
   }
 }
 
-class _IKeyValuePairWinRTEnumIInspectable<K, V> extends IKeyValuePair<K, V> {
-  _IKeyValuePairWinRTEnumIInspectable.fromRawPointer(super.ptr,
+class _IKeyValuePairWinRTEnumInspectable<K, V> extends IKeyValuePair<K, V> {
+  _IKeyValuePairWinRTEnumInspectable.fromRawPointer(super.ptr,
       {super.enumKeyCreator, super.creator});
 
   @override
@@ -816,9 +816,9 @@ class _IKeyValuePairWinRTEnumIInspectable<K, V> extends IKeyValuePair<K, V> {
   }
 }
 
-class _IKeyValuePairWinRTFlagsEnumIInspectable<K, V>
+class _IKeyValuePairWinRTFlagsEnumInspectable<K, V>
     extends IKeyValuePair<K, V> {
-  _IKeyValuePairWinRTFlagsEnumIInspectable.fromRawPointer(super.ptr,
+  _IKeyValuePairWinRTFlagsEnumInspectable.fromRawPointer(super.ptr,
       {super.enumKeyCreator, super.creator});
 
   @override

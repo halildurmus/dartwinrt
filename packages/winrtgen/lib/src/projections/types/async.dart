@@ -33,7 +33,7 @@ class AsyncActionMethodProjection extends MethodProjection {
 ''';
 }
 
-mixin _AsyncOperationProjection on MethodProjection {
+mixin _AsyncOperationMixin on MethodProjection {
   /// The type argument of `IAsyncOperation`, as represented in the
   /// [returnTypeProjection]'s `TypeIdentifier` (e.g. `bool`, `String`,
   /// `StorageFile?`).
@@ -107,7 +107,7 @@ mixin _AsyncOperationProjection on MethodProjection {
 
 /// Method projection for methods that return `IAsyncOperation<TResult>`.
 class AsyncOperationMethodProjection extends MethodProjection
-    with _AsyncOperationProjection {
+    with _AsyncOperationMixin {
   AsyncOperationMethodProjection(super.method, super.vtableOffset);
 
   @override

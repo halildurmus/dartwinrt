@@ -73,7 +73,7 @@ abstract class IAsyncOperation<TResult> extends IInspectable
 
     if (isSubtypeOfInspectable<TResult>()) {
       if (creator == null) throw ArgumentError.notNull('creator');
-      return _IAsyncOperationIInspectable.fromRawPointer(ptr, creator: creator);
+      return _IAsyncOperationInspectable.fromRawPointer(ptr, creator: creator);
     }
 
     if (TResult == int) {

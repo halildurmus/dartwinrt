@@ -10,7 +10,6 @@ export 'duration.dart';
 export 'enum.dart';
 export 'generic.dart';
 export 'guid.dart';
-export 'inspectable.dart';
 export 'map.dart';
 export 'object.dart';
 export 'reference.dart';

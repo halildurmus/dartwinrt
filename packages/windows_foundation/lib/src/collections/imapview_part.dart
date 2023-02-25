@@ -10,8 +10,8 @@
 
 part of 'imapview.dart';
 
-class _IMapViewGuidIInspectable<V> extends IMapView<Guid, V> {
-  _IMapViewGuidIInspectable.fromRawPointer(super.ptr,
+class _IMapViewGuidInspectable<V> extends IMapView<Guid, V> {
+  _IMapViewGuidInspectable.fromRawPointer(super.ptr,
       {required super.iterableIid, super.creator});
 
   @override
@@ -135,8 +135,8 @@ class _IMapViewGuidObject extends IMapView<Guid, Object?> {
   }
 }
 
-class _IMapViewInt16IInspectable<V> extends IMapView<int, V> {
-  _IMapViewInt16IInspectable.fromRawPointer(super.ptr,
+class _IMapViewInt16Inspectable<V> extends IMapView<int, V> {
+  _IMapViewInt16Inspectable.fromRawPointer(super.ptr,
       {required super.iterableIid, super.intType, super.creator});
 
   @override
@@ -193,8 +193,8 @@ class _IMapViewInt16IInspectable<V> extends IMapView<int, V> {
   }
 }
 
-class _IMapViewInt32IInspectable<V> extends IMapView<int, V> {
-  _IMapViewInt32IInspectable.fromRawPointer(super.ptr,
+class _IMapViewInt32Inspectable<V> extends IMapView<int, V> {
+  _IMapViewInt32Inspectable.fromRawPointer(super.ptr,
       {required super.iterableIid, super.intType, super.creator});
 
   @override
@@ -251,8 +251,8 @@ class _IMapViewInt32IInspectable<V> extends IMapView<int, V> {
   }
 }
 
-class _IMapViewInt64IInspectable<V> extends IMapView<int, V> {
-  _IMapViewInt64IInspectable.fromRawPointer(super.ptr,
+class _IMapViewInt64Inspectable<V> extends IMapView<int, V> {
+  _IMapViewInt64Inspectable.fromRawPointer(super.ptr,
       {required super.iterableIid, super.intType, super.creator});
 
   @override
@@ -309,8 +309,8 @@ class _IMapViewInt64IInspectable<V> extends IMapView<int, V> {
   }
 }
 
-class _IMapViewStringIInspectable<V> extends IMapView<String, V> {
-  _IMapViewStringIInspectable.fromRawPointer(super.ptr,
+class _IMapViewStringInspectable<V> extends IMapView<String, V> {
+  _IMapViewStringInspectable.fromRawPointer(super.ptr,
       {required super.iterableIid, super.creator});
 
   @override
@@ -611,8 +611,8 @@ class _IMapViewStringWinRTFlagsEnum<V> extends IMapView<String, V> {
   }
 }
 
-class _IMapViewUint8IInspectable<V> extends IMapView<int, V> {
-  _IMapViewUint8IInspectable.fromRawPointer(super.ptr,
+class _IMapViewUint8Inspectable<V> extends IMapView<int, V> {
+  _IMapViewUint8Inspectable.fromRawPointer(super.ptr,
       {required super.iterableIid, super.intType, super.creator});
 
   @override
@@ -669,8 +669,8 @@ class _IMapViewUint8IInspectable<V> extends IMapView<int, V> {
   }
 }
 
-class _IMapViewUint16IInspectable<V> extends IMapView<int, V> {
-  _IMapViewUint16IInspectable.fromRawPointer(super.ptr,
+class _IMapViewUint16Inspectable<V> extends IMapView<int, V> {
+  _IMapViewUint16Inspectable.fromRawPointer(super.ptr,
       {required super.iterableIid, super.intType, super.creator});
 
   @override
@@ -727,8 +727,8 @@ class _IMapViewUint16IInspectable<V> extends IMapView<int, V> {
   }
 }
 
-class _IMapViewUint32IInspectable<V> extends IMapView<int, V> {
-  _IMapViewUint32IInspectable.fromRawPointer(super.ptr,
+class _IMapViewUint32Inspectable<V> extends IMapView<int, V> {
+  _IMapViewUint32Inspectable.fromRawPointer(super.ptr,
       {required super.iterableIid, super.intType, super.creator});
 
   @override
@@ -785,8 +785,8 @@ class _IMapViewUint32IInspectable<V> extends IMapView<int, V> {
   }
 }
 
-class _IMapViewUint64IInspectable<V> extends IMapView<int, V> {
-  _IMapViewUint64IInspectable.fromRawPointer(super.ptr,
+class _IMapViewUint64Inspectable<V> extends IMapView<int, V> {
+  _IMapViewUint64Inspectable.fromRawPointer(super.ptr,
       {required super.iterableIid, super.intType, super.creator});
 
   @override
@@ -843,8 +843,8 @@ class _IMapViewUint64IInspectable<V> extends IMapView<int, V> {
   }
 }
 
-class _IMapViewWinRTEnumIInspectable<K, V> extends IMapView<K, V> {
-  _IMapViewWinRTEnumIInspectable.fromRawPointer(super.ptr,
+class _IMapViewWinRTEnumInspectable<K, V> extends IMapView<K, V> {
+  _IMapViewWinRTEnumInspectable.fromRawPointer(super.ptr,
       {required super.iterableIid, super.enumKeyCreator, super.creator});
 
   @override
@@ -903,8 +903,8 @@ class _IMapViewWinRTEnumIInspectable<K, V> extends IMapView<K, V> {
   }
 }
 
-class _IMapViewWinRTFlagsEnumIInspectable<K, V> extends IMapView<K, V> {
-  _IMapViewWinRTFlagsEnumIInspectable.fromRawPointer(super.ptr,
+class _IMapViewWinRTFlagsEnumInspectable<K, V> extends IMapView<K, V> {
+  _IMapViewWinRTFlagsEnumInspectable.fromRawPointer(super.ptr,
       {required super.iterableIid, super.enumKeyCreator, super.creator});
 
   @override

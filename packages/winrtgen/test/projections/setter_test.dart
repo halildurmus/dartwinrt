@@ -61,7 +61,7 @@ void main() {
     test('projects class', () {
       final projection = SetterProjection.fromTypeAndMethodName(
           'Windows.UI.Notifications.IToastNotification4', 'put_Data');
-      expect(projection, isA<InspectableSetterProjection>());
+      expect(projection, isA<ObjectSetterProjection>());
       expect(projection.nativePrototype,
           equalsIgnoringWhitespace('HRESULT Function(LPVTBL, LPVTBL value)'));
       expect(projection.dartPrototype,
@@ -163,7 +163,7 @@ void main() {
       final projection = SetterProjection.fromTypeAndMethodName(
           'Windows.Storage.Pickers.Provider.ITargetFileRequest',
           'put_TargetFile');
-      expect(projection, isA<InspectableSetterProjection>());
+      expect(projection, isA<ObjectSetterProjection>());
       expect(projection.nativePrototype,
           equalsIgnoringWhitespace('HRESULT Function(LPVTBL, LPVTBL value)'));
       expect(projection.dartPrototype,

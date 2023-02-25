@@ -275,7 +275,7 @@ class GenericInterfaceProjection extends InterfaceProjection {
           .map((method) {
             var shortDeclaration = method.shortDeclaration;
             final isGenericGetter = method is GenericEnumGetterProjection ||
-                method is GenericInspectableGetterProjection;
+                method is GenericObjectGetterProjection;
             final returnType = method.returnType;
             // Make the return type nullable if it is not generic
             if (!isGenericGetter) {

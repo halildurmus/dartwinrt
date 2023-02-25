@@ -51,11 +51,11 @@ abstract class MethodProjection {
       case ProjectionType.asyncAction:
         return AsyncActionMethodProjection(method, vtableOffset);
       case ProjectionType.asyncActionWithProgress:
-        return InspectableMethodProjection(method, vtableOffset);
+        return ObjectMethodProjection(method, vtableOffset);
       case ProjectionType.asyncOperation:
         return AsyncOperationMethodProjection(method, vtableOffset);
       case ProjectionType.asyncOperationWithProgress:
-        return InspectableMethodProjection(method, vtableOffset);
+        return ObjectMethodProjection(method, vtableOffset);
       case ProjectionType.dartPrimitive:
         return DefaultMethodProjection(method, vtableOffset);
       case ProjectionType.dateTime:
@@ -68,12 +68,10 @@ abstract class MethodProjection {
         return EnumMethodProjection(method, vtableOffset);
       case ProjectionType.genericEnum:
         return GenericEnumMethodProjection(method, vtableOffset);
-      case ProjectionType.genericInspectable:
-        return GenericInspectableMethodProjection(method, vtableOffset);
+      case ProjectionType.genericObject:
+        return GenericObjectMethodProjection(method, vtableOffset);
       case ProjectionType.guid:
         return GuidMethodProjection(method, vtableOffset);
-      case ProjectionType.inspectable:
-        return InspectableMethodProjection(method, vtableOffset);
       case ProjectionType.map:
         return MapMethodProjection(method, vtableOffset);
       case ProjectionType.mapView:

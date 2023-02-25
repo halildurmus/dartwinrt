@@ -85,7 +85,7 @@ abstract class IVector<T> extends IInspectable implements IIterable<T> {
 
     if (isSubtypeOfInspectable<T>()) {
       if (creator == null) throw ArgumentError.notNull('creator');
-      return _IVectorIInspectable.fromRawPointer(ptr,
+      return _IVectorInspectable.fromRawPointer(ptr,
           creator: creator, iterableIid: iterableIid);
     }
 

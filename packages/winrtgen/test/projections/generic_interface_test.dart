@@ -176,7 +176,7 @@ void main() {
         final projection = GenericInterfaceProjection.from(
             'Windows.Foundation.IAsyncOperation`1',
             TypeArg.nullableInspectable);
-        expect(projection.className, equals('_IAsyncOperationIInspectable'));
+        expect(projection.className, equals('_IAsyncOperationInspectable'));
       });
 
       test('(3)', () {
@@ -184,7 +184,7 @@ void main() {
             'Windows.Foundation.Collections.IMap`2',
             TypeArg.string,
             TypeArg.nullableInspectable);
-        expect(projection.className, equals('_IMapStringIInspectable'));
+        expect(projection.className, equals('_IMapStringInspectable'));
       });
     });
 
@@ -201,7 +201,7 @@ void main() {
         expect(
             projection.classDeclaration,
             equals(
-                'class _IAsyncOperationIInspectable<TResult> extends IAsyncOperation<TResult>'));
+                'class _IAsyncOperationInspectable<TResult> extends IAsyncOperation<TResult>'));
       });
 
       test('(3)', () {
@@ -219,7 +219,7 @@ void main() {
             TypeArg.string,
             TypeArg.nullableInspectable);
         expect(projection.classDeclaration,
-            equals('class _IMapStringIInspectable<V> extends IMap<String, V>'));
+            equals('class _IMapStringInspectable<V> extends IMap<String, V>'));
       });
 
       test('(5)', () {
@@ -245,7 +245,7 @@ void main() {
         expect(
             projection.namedConstructor,
             equals(
-                '_IAsyncOperationIInspectable.fromRawPointer(super.ptr, {super.creator});'));
+                '_IAsyncOperationInspectable.fromRawPointer(super.ptr, {super.creator});'));
       });
 
       test('(3)', () {
@@ -276,7 +276,7 @@ void main() {
         expect(
             projection.namedConstructor,
             equals(
-                '_IMapStringIInspectable.fromRawPointer(super.ptr, {required super.iterableIid, super.creator});'));
+                '_IMapStringInspectable.fromRawPointer(super.ptr, {required super.iterableIid, super.creator});'));
       });
 
       test('(6)', () {
@@ -287,7 +287,7 @@ void main() {
         expect(
             projection.namedConstructor,
             equals(
-                '_IMapWinRTEnumIInspectable.fromRawPointer(super.ptr, {required super.iterableIid, super.enumKeyCreator, super.creator});'));
+                '_IMapWinRTEnumInspectable.fromRawPointer(super.ptr, {required super.iterableIid, super.enumKeyCreator, super.creator});'));
       });
     });
 

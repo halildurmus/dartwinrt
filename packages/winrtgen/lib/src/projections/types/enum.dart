@@ -8,13 +8,13 @@ import '../method.dart';
 import '../parameter.dart';
 import '../setter.dart';
 
-mixin _EnumProjection on MethodProjection {
+mixin _EnumMixin on MethodProjection {
   @override
   String get returnType => returnTypeProjection.typeIdentifier.type!.shortName;
 }
 
 /// Method projection for methods that return a WinRT enum (e.g. `AsyncStatus`).
-class EnumMethodProjection extends MethodProjection with _EnumProjection {
+class EnumMethodProjection extends MethodProjection with _EnumMixin {
   EnumMethodProjection(super.method, super.vtableOffset);
 
   @override
@@ -36,7 +36,7 @@ class EnumMethodProjection extends MethodProjection with _EnumProjection {
 }
 
 /// Getter projection for WinRT enum getters.
-class EnumGetterProjection extends GetterProjection with _EnumProjection {
+class EnumGetterProjection extends GetterProjection with _EnumMixin {
   EnumGetterProjection(super.method, super.vtableOffset);
 
   @override

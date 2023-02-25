@@ -8,14 +8,13 @@ import '../parameter.dart';
 import '../setter.dart';
 import 'default.dart';
 
-mixin _DurationProjection on MethodProjection {
+mixin _DurationMixin on MethodProjection {
   @override
   String get returnType => 'Duration';
 }
 
 /// Method projection for methods that return a `Duration`.
-class DurationMethodProjection extends MethodProjection
-    with _DurationProjection {
+class DurationMethodProjection extends MethodProjection with _DurationMixin {
   DurationMethodProjection(super.method, super.vtableOffset);
 
   @override
@@ -37,8 +36,7 @@ class DurationMethodProjection extends MethodProjection
 }
 
 /// Getter projection for `Duration` getters.
-class DurationGetterProjection extends GetterProjection
-    with _DurationProjection {
+class DurationGetterProjection extends GetterProjection with _DurationMixin {
   DurationGetterProjection(super.method, super.vtableOffset);
 
   @override

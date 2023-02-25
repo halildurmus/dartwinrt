@@ -21,7 +21,7 @@ bool _methodBelongsToUriRuntimeClass(Method method) => [
       'Windows.Foundation.IUriRuntimeClassFactory'
     ].contains(method.parent.name);
 
-mixin _UriProjection on MethodProjection {
+mixin _UriMixin on MethodProjection {
   bool get isNullable {
     // Factory interface methods (constructors) cannot return null.
     final factoryInterfacePattern = RegExp(r'^I\w+Factory\d{0,2}$');
@@ -61,7 +61,7 @@ mixin _UriProjection on MethodProjection {
 }
 
 /// Method projection for methods that return an `Uri`.
-class UriMethodProjection extends MethodProjection with _UriProjection {
+class UriMethodProjection extends MethodProjection with _UriMixin {
   UriMethodProjection(super.method, super.vtableOffset);
 
   @override
@@ -84,7 +84,7 @@ class UriMethodProjection extends MethodProjection with _UriProjection {
 }
 
 /// Getter projection for `Uri` getters.
-class UriGetterProjection extends GetterProjection with _UriProjection {
+class UriGetterProjection extends GetterProjection with _UriMixin {
   UriGetterProjection(super.method, super.vtableOffset);
 
   @override

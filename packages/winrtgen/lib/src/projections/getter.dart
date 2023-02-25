@@ -31,12 +31,10 @@ abstract class GetterProjection extends PropertyProjection {
         return EnumGetterProjection(method, vtableOffset);
       case ProjectionType.genericEnum:
         return GenericEnumGetterProjection(method, vtableOffset);
-      case ProjectionType.genericInspectable:
-        return GenericInspectableGetterProjection(method, vtableOffset);
+      case ProjectionType.genericObject:
+        return GenericObjectGetterProjection(method, vtableOffset);
       case ProjectionType.guid:
         return GuidGetterProjection(method, vtableOffset);
-      case ProjectionType.inspectable:
-        return InspectableGetterProjection(method, vtableOffset);
       case ProjectionType.map:
         return MapGetterProjection(method, vtableOffset);
       case ProjectionType.mapView:

@@ -8,13 +8,13 @@ import '../parameter.dart';
 import '../setter.dart';
 import 'default.dart';
 
-mixin _StringProjection on MethodProjection {
+mixin _StringMixin on MethodProjection {
   @override
   String get returnType => 'String';
 }
 
 /// Method projection for methods that return a `String`.
-class StringMethodProjection extends MethodProjection with _StringProjection {
+class StringMethodProjection extends MethodProjection with _StringMixin {
   StringMethodProjection(super.method, super.vtableOffset);
 
   @override
@@ -41,7 +41,7 @@ class StringMethodProjection extends MethodProjection with _StringProjection {
 }
 
 /// Getter projection for `String` getters.
-class StringGetterProjection extends GetterProjection with _StringProjection {
+class StringGetterProjection extends GetterProjection with _StringMixin {
   StringGetterProjection(super.method, super.vtableOffset);
 
   @override

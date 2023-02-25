@@ -10,7 +10,7 @@ import '../getter.dart';
 import '../method.dart';
 import '../type.dart';
 
-mixin _MapProjection on MethodProjection {
+mixin _MapMixin on MethodProjection {
   /// The type arguments of `IMap` and `IMapView`, as represented in the
   /// [returnTypeProjection]'s [TypeIdentifier] (e.g. `String, Object?`,
   /// `String, String?`).
@@ -68,7 +68,7 @@ mixin _MapProjection on MethodProjection {
 }
 
 /// Method projection for methods that return an `IMap<K, V>`.
-class MapMethodProjection extends MethodProjection with _MapProjection {
+class MapMethodProjection extends MethodProjection with _MapMixin {
   MapMethodProjection(super.method, super.vtableOffset);
 
   @override
@@ -90,7 +90,7 @@ class MapMethodProjection extends MethodProjection with _MapProjection {
 }
 
 /// Getter projection for `IMap<K, V>` getters.
-class MapGetterProjection extends GetterProjection with _MapProjection {
+class MapGetterProjection extends GetterProjection with _MapMixin {
   MapGetterProjection(super.method, super.vtableOffset);
 
   @override
@@ -110,7 +110,7 @@ class MapGetterProjection extends GetterProjection with _MapProjection {
 
 /// Method projection for methods that return an `IMapView<K, V>` (exposed as
 /// `Map<K, V>`).
-class MapViewMethodProjection extends MethodProjection with _MapProjection {
+class MapViewMethodProjection extends MethodProjection with _MapMixin {
   MapViewMethodProjection(super.method, super.vtableOffset);
 
   @override
@@ -135,7 +135,7 @@ class MapViewMethodProjection extends MethodProjection with _MapProjection {
 }
 
 /// Getter projection for `IMapView<K, V>` (exposed as `Map<K, V>`) getters.
-class MapViewGetterProjection extends GetterProjection with _MapProjection {
+class MapViewGetterProjection extends GetterProjection with _MapMixin {
   MapViewGetterProjection(super.method, super.vtableOffset);
 
   @override
