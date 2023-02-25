@@ -1,0 +1,63 @@
+// Copyright (c) 2023, the dartwinrt authors. Please see the AUTHORS file for
+// details. All rights reserved. Use of this source code is governed by a
+// BSD-style license that can be found in the LICENSE file.
+
+// THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
+
+// ignore_for_file: constant_identifier_names, non_constant_identifier_names
+// ignore_for_file: no_leading_underscores_for_local_identifiers
+// ignore_for_file: unused_import
+
+import 'dart:async';
+import 'dart:ffi';
+
+import 'package:ffi/ffi.dart';
+import 'package:win32/win32.dart';
+import 'package:windows_foundation/internal.dart';
+import 'package:windows_foundation/windows_foundation.dart';
+
+import 'ixmlnode.dart';
+import 'ixmlnodelist.dart';
+
+/// Describes a collection of nodes.
+///
+/// {@category class}
+class XmlNodeList extends IInspectable
+    implements IXmlNodeList, IVectorView<IXmlNode>, IIterable<IXmlNode> {
+  XmlNodeList.fromRawPointer(super.ptr);
+
+  // IXmlNodeList methods
+  late final _iXmlNodeList = IXmlNodeList.from(this);
+
+  @override
+  int get length => _iXmlNodeList.length;
+
+  @override
+  IXmlNode? item(int index) => _iXmlNodeList.item(index);
+
+  // IVectorView<IXmlNode> methods
+  late final _iVectorView = IVectorView<IXmlNode>.fromRawPointer(
+      toInterface('{139d959e-e7b5-5cb6-a596-4b544478da9b}'),
+      creator: IXmlNode.fromRawPointer,
+      iterableIid: '{f1146ffc-8c92-56e8-93f1-711f86722633}');
+
+  @override
+  IXmlNode getAt(int index) => _iVectorView.getAt(index);
+
+  @override
+  int get size => _iVectorView.size;
+
+  @override
+  bool indexOf(IXmlNode value, Pointer<Uint32> index) =>
+      _iVectorView.indexOf(value, index);
+
+  @override
+  int getMany(int startIndex, int valueSize, List<IXmlNode> value) =>
+      _iVectorView.getMany(startIndex, valueSize, value);
+
+  @override
+  IIterator<IXmlNode> first() => _iVectorView.first();
+
+  @override
+  List<IXmlNode> toList() => _iVectorView.toList();
+}
