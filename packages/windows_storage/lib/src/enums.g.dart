@@ -10,6 +10,46 @@
 
 import 'package:windows_foundation/windows_foundation.dart';
 
+/// Specifies what to do if a file or folder with the specified name already
+/// exists in the current folder when you create a new file or folder.
+///
+/// {@category enum}
+enum CreationCollisionOption implements WinRTEnum {
+  generateUniqueName(0),
+  replaceExisting(1),
+  failIfExists(2),
+  openIfExists(3);
+
+  @override
+  final int value;
+
+  const CreationCollisionOption(this.value);
+
+  factory CreationCollisionOption.from(int value) =>
+      CreationCollisionOption.values.firstWhere((e) => e.value == value,
+          orElse: () => throw ArgumentError.value(
+              value, 'value', 'No enum value with that value'));
+}
+
+/// Specifies whether to access a file in read-only mode or in read/write
+/// mode.
+///
+/// {@category enum}
+enum FileAccessMode implements WinRTEnum {
+  read(0),
+  readWrite(1);
+
+  @override
+  final int value;
+
+  const FileAccessMode(this.value);
+
+  factory FileAccessMode.from(int value) =>
+      FileAccessMode.values.firstWhere((e) => e.value == value,
+          orElse: () => throw ArgumentError.value(
+              value, 'value', 'No enum value with that value'));
+}
+
 /// Describes the attributes of a file or folder.
 ///
 /// {@category enum}

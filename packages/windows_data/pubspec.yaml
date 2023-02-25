@@ -21,6 +21,8 @@ dependencies:
       ref: dev
   windows_foundation:
     path: ../windows_foundation
+  windows_storage:
+    path: ../windows_storage
 
 dev_dependencies:
   test: ^1.22.1
