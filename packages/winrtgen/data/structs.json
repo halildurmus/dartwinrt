@@ -13,5 +13,6 @@
     "Windows.Foundation.Size": "Describes the width and height of an object.",
     "Windows.Gaming.Input.GamepadReading": "Represents the current state of the gamepad.",
     "Windows.Gaming.Input.GamepadVibration": "Describes the gamepad motor speed.",
+    "Windows.Networking.Connectivity.NetworkUsageStates": "Defines the desired state of the connection profile for which usage data is returned by the method GetNetworkUsageAsync.",
     "Windows.UI.Color": "Describes a color in terms of alpha, red, green, and blue channels."
 }
