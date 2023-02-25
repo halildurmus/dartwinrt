@@ -39,12 +39,12 @@ class IStorageItemExtraProperties extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(Pointer, LPVTBL propertiesToRetrieve,
+                        HRESULT Function(LPVTBL, LPVTBL propertiesToRetrieve,
                             Pointer<COMObject>)>>>()
             .value
             .asFunction<
-                int Function(Pointer, LPVTBL propertiesToRetrieve,
-                    Pointer<COMObject>)>()(
+                int Function(
+                    LPVTBL, LPVTBL propertiesToRetrieve, Pointer<COMObject>)>()(
         ptr.ref.lpVtbl,
         propertiesToRetrieve == null
             ? nullptr
@@ -76,12 +76,12 @@ class IStorageItemExtraProperties extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(Pointer, LPVTBL propertiesToSave,
+                        HRESULT Function(LPVTBL, LPVTBL propertiesToSave,
                             Pointer<COMObject>)>>>()
             .value
             .asFunction<
                 int Function(
-                    Pointer, LPVTBL propertiesToSave, Pointer<COMObject>)>()(
+                    LPVTBL, LPVTBL propertiesToSave, Pointer<COMObject>)>()(
         ptr.ref.lpVtbl,
         propertiesToSave == null ? nullptr : propertiesToSave.ptr.ref.lpVtbl,
         retValuePtr);
@@ -102,14 +102,14 @@ class IStorageItemExtraProperties extends IInspectable {
     final completer = Completer<void>();
 
     final hr = ptr.ref.vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(Pointer, Pointer<COMObject>)>>>()
-            .value
-            .asFunction<int Function(Pointer, Pointer<COMObject>)>()(
-        ptr.ref.lpVtbl, retValuePtr);
+        .elementAt(8)
+        .cast<
+            Pointer<
+                NativeFunction<HRESULT Function(LPVTBL, Pointer<COMObject>)>>>()
+        .value
+        .asFunction<
+            int Function(
+                LPVTBL, Pointer<COMObject>)>()(ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);

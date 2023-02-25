@@ -37,11 +37,11 @@ class IUISettings5 extends IInspectable {
           .elementAt(6)
           .cast<
               Pointer<
-                  NativeFunction<HRESULT Function(Pointer, Pointer<Bool>)>>>()
+                  NativeFunction<HRESULT Function(LPVTBL, Pointer<Bool>)>>>()
           .value
           .asFunction<
               int Function(
-                  Pointer, Pointer<Bool>)>()(ptr.ref.lpVtbl, retValuePtr);
+                  LPVTBL, Pointer<Bool>)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -62,13 +62,13 @@ class IUISettings5 extends IInspectable {
               Pointer<
                   NativeFunction<
                       HRESULT Function(
-                          Pointer,
+                          LPVTBL,
                           Pointer<NativeFunction<TypedEventHandler>> handler,
                           Pointer<IntPtr>)>>>()
           .value
           .asFunction<
               int Function(
-                  Pointer,
+                  LPVTBL,
                   Pointer<NativeFunction<TypedEventHandler>> handler,
                   Pointer<IntPtr>)>()(ptr.ref.lpVtbl, handler, retValuePtr);
 
@@ -83,10 +83,9 @@ class IUISettings5 extends IInspectable {
   void remove_AutoHideScrollBarsChanged(int token) {
     final hr = ptr.ref.vtable
         .elementAt(8)
-        .cast<
-            Pointer<NativeFunction<HRESULT Function(Pointer, IntPtr token)>>>()
+        .cast<Pointer<NativeFunction<HRESULT Function(LPVTBL, IntPtr token)>>>()
         .value
-        .asFunction<int Function(Pointer, int token)>()(ptr.ref.lpVtbl, token);
+        .asFunction<int Function(LPVTBL, int token)>()(ptr.ref.lpVtbl, token);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }

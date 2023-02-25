@@ -33,14 +33,14 @@ class IToastNotificationManagerStatics extends IInspectable {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(Pointer, Pointer<COMObject>)>>>()
-            .value
-            .asFunction<int Function(Pointer, Pointer<COMObject>)>()(
-        ptr.ref.lpVtbl, retValuePtr);
+        .elementAt(6)
+        .cast<
+            Pointer<
+                NativeFunction<HRESULT Function(LPVTBL, Pointer<COMObject>)>>>()
+        .value
+        .asFunction<
+            int Function(
+                LPVTBL, Pointer<COMObject>)>()(ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -59,11 +59,11 @@ class IToastNotificationManagerStatics extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(Pointer, IntPtr applicationId,
+                        HRESULT Function(LPVTBL, IntPtr applicationId,
                             Pointer<COMObject>)>>>()
             .value
             .asFunction<
-                int Function(Pointer, int applicationId, Pointer<COMObject>)>()(
+                int Function(LPVTBL, int applicationId, Pointer<COMObject>)>()(
         ptr.ref.lpVtbl, applicationIdHString, retValuePtr);
 
     if (FAILED(hr)) {
@@ -83,9 +83,9 @@ class IToastNotificationManagerStatics extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            Pointer, Int32 type, Pointer<COMObject>)>>>()
+                            LPVTBL, Int32 type, Pointer<COMObject>)>>>()
             .value
-            .asFunction<int Function(Pointer, int type, Pointer<COMObject>)>()(
+            .asFunction<int Function(LPVTBL, int type, Pointer<COMObject>)>()(
         ptr.ref.lpVtbl, type.value, retValuePtr);
 
     if (FAILED(hr)) {

@@ -137,9 +137,9 @@ abstract class IAsyncOperation<TResult> extends IInspectable
   set completed(Pointer<NativeFunction<AsyncOperationCompletedHandler>> value) {
     final hr = ptr.ref.lpVtbl.value
         .elementAt(6)
-        .cast<Pointer<NativeFunction<HRESULT Function(Pointer, Pointer)>>>()
+        .cast<Pointer<NativeFunction<HRESULT Function(LPVTBL, Pointer)>>>()
         .value
-        .asFunction<int Function(Pointer, Pointer)>()(ptr.ref.lpVtbl, value);
+        .asFunction<int Function(LPVTBL, Pointer)>()(ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
@@ -152,10 +152,10 @@ abstract class IAsyncOperation<TResult> extends IInspectable
     try {
       final hr = ptr.ref.lpVtbl.value
           .elementAt(7)
-          .cast<Pointer<NativeFunction<HRESULT Function(Pointer, Pointer)>>>()
+          .cast<Pointer<NativeFunction<HRESULT Function(LPVTBL, Pointer)>>>()
           .value
           .asFunction<
-              int Function(Pointer, Pointer)>()(ptr.ref.lpVtbl, retValuePtr);
+              int Function(LPVTBL, Pointer)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 

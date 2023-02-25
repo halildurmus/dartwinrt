@@ -38,11 +38,11 @@ class IStorageFile extends IInspectable implements IStorageItem {
           .elementAt(6)
           .cast<
               Pointer<
-                  NativeFunction<HRESULT Function(Pointer, Pointer<IntPtr>)>>>()
+                  NativeFunction<HRESULT Function(LPVTBL, Pointer<IntPtr>)>>>()
           .value
           .asFunction<
               int Function(
-                  Pointer, Pointer<IntPtr>)>()(ptr.ref.lpVtbl, retValuePtr);
+                  LPVTBL, Pointer<IntPtr>)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -61,11 +61,11 @@ class IStorageFile extends IInspectable implements IStorageItem {
           .elementAt(7)
           .cast<
               Pointer<
-                  NativeFunction<HRESULT Function(Pointer, Pointer<IntPtr>)>>>()
+                  NativeFunction<HRESULT Function(LPVTBL, Pointer<IntPtr>)>>>()
           .value
           .asFunction<
               int Function(
-                  Pointer, Pointer<IntPtr>)>()(ptr.ref.lpVtbl, retValuePtr);
+                  LPVTBL, Pointer<IntPtr>)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -85,12 +85,12 @@ class IStorageFile extends IInspectable implements IStorageItem {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(Pointer, LPVTBL fileToReplace,
+                        HRESULT Function(LPVTBL, LPVTBL fileToReplace,
                             Pointer<COMObject>)>>>()
             .value
             .asFunction<
                 int Function(
-                    Pointer, LPVTBL fileToReplace, Pointer<COMObject>)>()(
+                    LPVTBL, LPVTBL fileToReplace, Pointer<COMObject>)>()(
         ptr.ref.lpVtbl, fileToReplace.ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
@@ -113,12 +113,12 @@ class IStorageFile extends IInspectable implements IStorageItem {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(Pointer, LPVTBL fileToReplace,
+                        HRESULT Function(LPVTBL, LPVTBL fileToReplace,
                             Pointer<COMObject>)>>>()
             .value
             .asFunction<
                 int Function(
-                    Pointer, LPVTBL fileToReplace, Pointer<COMObject>)>()(
+                    LPVTBL, LPVTBL fileToReplace, Pointer<COMObject>)>()(
         ptr.ref.lpVtbl, fileToReplace.ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {

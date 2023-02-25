@@ -19,7 +19,6 @@ import 'callbacks.dart';
 import 'collections/iiterator.dart';
 import 'helpers.dart';
 import 'iinspectable.dart';
-import 'types.dart';
 import 'uri.dart';
 
 /// @nodoc
@@ -44,9 +43,9 @@ class IUriRuntimeClassFactory extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            Pointer, IntPtr uri, Pointer<COMObject>)>>>()
+                            LPVTBL, IntPtr uri, Pointer<COMObject>)>>>()
             .value
-            .asFunction<int Function(Pointer, int uri, Pointer<COMObject>)>()(
+            .asFunction<int Function(LPVTBL, int uri, Pointer<COMObject>)>()(
         ptr.ref.lpVtbl, uriHString, retValuePtr);
 
     if (FAILED(hr)) {
@@ -64,18 +63,19 @@ class IUriRuntimeClassFactory extends IInspectable {
     final baseUriHString = convertToHString(baseUri);
     final relativeUriHString = convertToHString(relativeUri);
 
-    final hr = ptr.ref.vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(Pointer, IntPtr baseUri,
-                            IntPtr relativeUri, Pointer<COMObject>)>>>()
-            .value
-            .asFunction<
-                int Function(Pointer, int baseUri, int relativeUri,
-                    Pointer<COMObject>)>()(
-        ptr.ref.lpVtbl, baseUriHString, relativeUriHString, retValuePtr);
+    final hr =
+        ptr.ref.vtable
+                .elementAt(7)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(LPVTBL, IntPtr baseUri,
+                                IntPtr relativeUri, Pointer<COMObject>)>>>()
+                .value
+                .asFunction<
+                    int Function(LPVTBL, int baseUri, int relativeUri,
+                        Pointer<COMObject>)>()(
+            ptr.ref.lpVtbl, baseUriHString, relativeUriHString, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);

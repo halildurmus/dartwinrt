@@ -41,9 +41,9 @@ class IJsonArray extends IInspectable implements IJsonValue {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            Pointer, Uint32 index, Pointer<COMObject>)>>>()
+                            LPVTBL, Uint32 index, Pointer<COMObject>)>>>()
             .value
-            .asFunction<int Function(Pointer, int index, Pointer<COMObject>)>()(
+            .asFunction<int Function(LPVTBL, int index, Pointer<COMObject>)>()(
         ptr.ref.lpVtbl, index, retValuePtr);
 
     if (FAILED(hr)) {
@@ -68,9 +68,9 @@ class IJsonArray extends IInspectable implements IJsonValue {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            Pointer, Uint32 index, Pointer<COMObject>)>>>()
+                            LPVTBL, Uint32 index, Pointer<COMObject>)>>>()
             .value
-            .asFunction<int Function(Pointer, int index, Pointer<COMObject>)>()(
+            .asFunction<int Function(LPVTBL, int index, Pointer<COMObject>)>()(
         ptr.ref.lpVtbl, index, retValuePtr);
 
     if (FAILED(hr)) {
@@ -96,9 +96,9 @@ class IJsonArray extends IInspectable implements IJsonValue {
                   Pointer<
                       NativeFunction<
                           HRESULT Function(
-                              Pointer, Uint32 index, Pointer<IntPtr>)>>>()
+                              LPVTBL, Uint32 index, Pointer<IntPtr>)>>>()
               .value
-              .asFunction<int Function(Pointer, int index, Pointer<IntPtr>)>()(
+              .asFunction<int Function(LPVTBL, int index, Pointer<IntPtr>)>()(
           ptr.ref.lpVtbl, index, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
@@ -120,9 +120,9 @@ class IJsonArray extends IInspectable implements IJsonValue {
                   Pointer<
                       NativeFunction<
                           HRESULT Function(
-                              Pointer, Uint32 index, Pointer<Double>)>>>()
+                              LPVTBL, Uint32 index, Pointer<Double>)>>>()
               .value
-              .asFunction<int Function(Pointer, int index, Pointer<Double>)>()(
+              .asFunction<int Function(LPVTBL, int index, Pointer<Double>)>()(
           ptr.ref.lpVtbl, index, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
@@ -137,16 +137,17 @@ class IJsonArray extends IInspectable implements IJsonValue {
     final retValuePtr = calloc<Bool>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(10)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              Pointer, Uint32 index, Pointer<Bool>)>>>()
-              .value
-              .asFunction<int Function(Pointer, int index, Pointer<Bool>)>()(
-          ptr.ref.lpVtbl, index, retValuePtr);
+      final hr =
+          ptr.ref.vtable
+                  .elementAt(10)
+                  .cast<
+                      Pointer<
+                          NativeFunction<
+                              HRESULT Function(
+                                  LPVTBL, Uint32 index, Pointer<Bool>)>>>()
+                  .value
+                  .asFunction<int Function(LPVTBL, int index, Pointer<Bool>)>()(
+              ptr.ref.lpVtbl, index, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 

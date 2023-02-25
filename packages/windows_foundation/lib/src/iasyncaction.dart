@@ -21,7 +21,6 @@ import 'enums.g.dart';
 import 'helpers.dart';
 import 'iasyncinfo.dart';
 import 'iinspectable.dart';
-import 'types.dart';
 
 /// @nodoc
 const IID_IAsyncAction = '{5a648006-843a-4da9-865b-9d26e5dfad7b}';
@@ -45,13 +44,13 @@ class IAsyncAction extends IInspectable implements IAsyncInfo {
             Pointer<
                 NativeFunction<
                     HRESULT Function(
-                        Pointer,
+                        LPVTBL,
                         Pointer<NativeFunction<AsyncActionCompletedHandler>>
                             handler)>>>()
         .value
         .asFunction<
             int Function(
-                Pointer,
+                LPVTBL,
                 Pointer<NativeFunction<AsyncActionCompletedHandler>>
                     handler)>()(ptr.ref.lpVtbl, value);
 
@@ -69,7 +68,7 @@ class IAsyncAction extends IInspectable implements IAsyncInfo {
                   Pointer<
                       NativeFunction<
                           HRESULT Function(
-                              Pointer,
+                              LPVTBL,
                               Pointer<
                                   Pointer<
                                       NativeFunction<
@@ -77,7 +76,7 @@ class IAsyncAction extends IInspectable implements IAsyncInfo {
               .value
               .asFunction<
                   int Function(
-                      Pointer,
+                      LPVTBL,
                       Pointer<
                           Pointer<
                               NativeFunction<AsyncActionCompletedHandler>>>)>()(
@@ -94,9 +93,9 @@ class IAsyncAction extends IInspectable implements IAsyncInfo {
   void getResults() {
     final hr = ptr.ref.vtable
         .elementAt(8)
-        .cast<Pointer<NativeFunction<HRESULT Function(Pointer)>>>()
+        .cast<Pointer<NativeFunction<HRESULT Function(LPVTBL)>>>()
         .value
-        .asFunction<int Function(Pointer)>()(ptr.ref.lpVtbl);
+        .asFunction<int Function(LPVTBL)>()(ptr.ref.lpVtbl);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }

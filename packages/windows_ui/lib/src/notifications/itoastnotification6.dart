@@ -34,11 +34,11 @@ class IToastNotification6 extends IInspectable {
           .elementAt(6)
           .cast<
               Pointer<
-                  NativeFunction<HRESULT Function(Pointer, Pointer<Bool>)>>>()
+                  NativeFunction<HRESULT Function(LPVTBL, Pointer<Bool>)>>>()
           .value
           .asFunction<
               int Function(
-                  Pointer, Pointer<Bool>)>()(ptr.ref.lpVtbl, retValuePtr);
+                  LPVTBL, Pointer<Bool>)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -51,9 +51,9 @@ class IToastNotification6 extends IInspectable {
   set expiresOnReboot(bool value) {
     final hr = ptr.ref.vtable
         .elementAt(7)
-        .cast<Pointer<NativeFunction<HRESULT Function(Pointer, Bool)>>>()
+        .cast<Pointer<NativeFunction<HRESULT Function(LPVTBL, Bool)>>>()
         .value
-        .asFunction<int Function(Pointer, bool)>()(ptr.ref.lpVtbl, value);
+        .asFunction<int Function(LPVTBL, bool)>()(ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }

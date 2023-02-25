@@ -40,12 +40,12 @@ class IGamepadStatics extends IInspectable {
               Pointer<
                   NativeFunction<
                       HRESULT Function(
-                          Pointer,
+                          LPVTBL,
                           Pointer<NativeFunction<EventHandler>> value,
                           Pointer<IntPtr>)>>>()
           .value
           .asFunction<
-              int Function(Pointer, Pointer<NativeFunction<EventHandler>> value,
+              int Function(LPVTBL, Pointer<NativeFunction<EventHandler>> value,
                   Pointer<IntPtr>)>()(ptr.ref.lpVtbl, value, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
@@ -59,10 +59,9 @@ class IGamepadStatics extends IInspectable {
   void remove_GamepadAdded(int token) {
     final hr = ptr.ref.vtable
         .elementAt(7)
-        .cast<
-            Pointer<NativeFunction<HRESULT Function(Pointer, IntPtr token)>>>()
+        .cast<Pointer<NativeFunction<HRESULT Function(LPVTBL, IntPtr token)>>>()
         .value
-        .asFunction<int Function(Pointer, int token)>()(ptr.ref.lpVtbl, token);
+        .asFunction<int Function(LPVTBL, int token)>()(ptr.ref.lpVtbl, token);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
@@ -77,12 +76,12 @@ class IGamepadStatics extends IInspectable {
               Pointer<
                   NativeFunction<
                       HRESULT Function(
-                          Pointer,
+                          LPVTBL,
                           Pointer<NativeFunction<EventHandler>> value,
                           Pointer<IntPtr>)>>>()
           .value
           .asFunction<
-              int Function(Pointer, Pointer<NativeFunction<EventHandler>> value,
+              int Function(LPVTBL, Pointer<NativeFunction<EventHandler>> value,
                   Pointer<IntPtr>)>()(ptr.ref.lpVtbl, value, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
@@ -96,10 +95,9 @@ class IGamepadStatics extends IInspectable {
   void remove_GamepadRemoved(int token) {
     final hr = ptr.ref.vtable
         .elementAt(9)
-        .cast<
-            Pointer<NativeFunction<HRESULT Function(Pointer, IntPtr token)>>>()
+        .cast<Pointer<NativeFunction<HRESULT Function(LPVTBL, IntPtr token)>>>()
         .value
-        .asFunction<int Function(Pointer, int token)>()(ptr.ref.lpVtbl, token);
+        .asFunction<int Function(LPVTBL, int token)>()(ptr.ref.lpVtbl, token);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
@@ -108,14 +106,14 @@ class IGamepadStatics extends IInspectable {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-            .elementAt(10)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(Pointer, Pointer<COMObject>)>>>()
-            .value
-            .asFunction<int Function(Pointer, Pointer<COMObject>)>()(
-        ptr.ref.lpVtbl, retValuePtr);
+        .elementAt(10)
+        .cast<
+            Pointer<
+                NativeFunction<HRESULT Function(LPVTBL, Pointer<COMObject>)>>>()
+        .value
+        .asFunction<
+            int Function(
+                LPVTBL, Pointer<COMObject>)>()(ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);

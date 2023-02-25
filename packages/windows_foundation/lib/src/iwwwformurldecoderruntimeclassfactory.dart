@@ -19,7 +19,6 @@ import 'callbacks.dart';
 import 'collections/iiterator.dart';
 import 'helpers.dart';
 import 'iinspectable.dart';
-import 'types.dart';
 import 'wwwformurldecoder.dart';
 
 /// @nodoc
@@ -45,9 +44,9 @@ class IWwwFormUrlDecoderRuntimeClassFactory extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            Pointer, IntPtr query, Pointer<COMObject>)>>>()
+                            LPVTBL, IntPtr query, Pointer<COMObject>)>>>()
             .value
-            .asFunction<int Function(Pointer, int query, Pointer<COMObject>)>()(
+            .asFunction<int Function(LPVTBL, int query, Pointer<COMObject>)>()(
         ptr.ref.lpVtbl, queryHString, retValuePtr);
 
     if (FAILED(hr)) {

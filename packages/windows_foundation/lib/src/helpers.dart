@@ -11,11 +11,6 @@ import 'package:win32/win32.dart';
 
 import 'iinspectable.dart';
 
-extension NullPointerCheckHelper on COMObject {
-  /// Whether the [lpVtbl] pointer is null.
-  bool get isNull => lpVtbl.address == 0;
-}
-
 extension WinRTStringConversion on Pointer<HSTRING> {
   /// Gets the Dart string at the handle pointed to by this object.
   String toDartString() => convertFromHString(value);
@@ -167,11 +162,11 @@ List<String> getInterfaces(IInspectable object) {
             .cast<
                 Pointer<
                     NativeFunction<
-                        Int32 Function(Pointer, Pointer<Uint32> iidCount,
+                        Int32 Function(LPVTBL, Pointer<Uint32> iidCount,
                             Pointer<Pointer<GUID>> iids)>>>()
             .value
             .asFunction<
-                int Function(Pointer, Pointer<Uint32> iidCount,
+                int Function(LPVTBL, Pointer<Uint32> iidCount,
                     Pointer<Pointer<GUID>> iids)>()(
         object.ptr.ref.lpVtbl, pIIDCount, pIIDs);
 
@@ -196,9 +191,9 @@ String getClassName(IInspectable object) {
             .cast<
                 Pointer<
                     NativeFunction<
-                        Int32 Function(Pointer, Pointer<IntPtr> className)>>>()
+                        Int32 Function(LPVTBL, Pointer<IntPtr> className)>>>()
             .value
-            .asFunction<int Function(Pointer, Pointer<IntPtr> className)>()(
+            .asFunction<int Function(LPVTBL, Pointer<IntPtr> className)>()(
         object.ptr.ref.lpVtbl, hClassName);
 
     if (FAILED(hr)) throw WindowsException(hr);
@@ -220,9 +215,9 @@ TrustLevel getTrustLevel(IInspectable object) {
             .cast<
                 Pointer<
                     NativeFunction<
-                        Int32 Function(Pointer, Pointer<Int32> trustLevel)>>>()
+                        Int32 Function(LPVTBL, Pointer<Int32> trustLevel)>>>()
             .value
-            .asFunction<int Function(Pointer, Pointer<Int32> trustLevel)>()(
+            .asFunction<int Function(LPVTBL, Pointer<Int32> trustLevel)>()(
         object.ptr.ref.lpVtbl, pTrustLevel);
 
     if (FAILED(hr)) throw WindowsException(hr);

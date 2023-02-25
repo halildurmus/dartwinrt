@@ -33,14 +33,14 @@ class IToastNotification4 extends IInspectable {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(Pointer, Pointer<COMObject>)>>>()
-            .value
-            .asFunction<int Function(Pointer, Pointer<COMObject>)>()(
-        ptr.ref.lpVtbl, retValuePtr);
+        .elementAt(6)
+        .cast<
+            Pointer<
+                NativeFunction<HRESULT Function(LPVTBL, Pointer<COMObject>)>>>()
+        .value
+        .asFunction<
+            int Function(
+                LPVTBL, Pointer<COMObject>)>()(ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -58,9 +58,9 @@ class IToastNotification4 extends IInspectable {
   set data(NotificationData? value) {
     final hr = ptr.ref.vtable
             .elementAt(7)
-            .cast<Pointer<NativeFunction<HRESULT Function(Pointer, LPVTBL)>>>()
+            .cast<Pointer<NativeFunction<HRESULT Function(LPVTBL, LPVTBL)>>>()
             .value
-            .asFunction<int Function(Pointer, LPVTBL)>()(
+            .asFunction<int Function(LPVTBL, LPVTBL)>()(
         ptr.ref.lpVtbl, value == null ? nullptr : value.ptr.ref.lpVtbl);
 
     if (FAILED(hr)) throw WindowsException(hr);
@@ -74,11 +74,11 @@ class IToastNotification4 extends IInspectable {
           .elementAt(8)
           .cast<
               Pointer<
-                  NativeFunction<HRESULT Function(Pointer, Pointer<Int32>)>>>()
+                  NativeFunction<HRESULT Function(LPVTBL, Pointer<Int32>)>>>()
           .value
           .asFunction<
               int Function(
-                  Pointer, Pointer<Int32>)>()(ptr.ref.lpVtbl, retValuePtr);
+                  LPVTBL, Pointer<Int32>)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -91,9 +91,9 @@ class IToastNotification4 extends IInspectable {
   set priority(ToastNotificationPriority value) {
     final hr = ptr.ref.vtable
         .elementAt(9)
-        .cast<Pointer<NativeFunction<HRESULT Function(Pointer, Int32)>>>()
+        .cast<Pointer<NativeFunction<HRESULT Function(LPVTBL, Int32)>>>()
         .value
-        .asFunction<int Function(Pointer, int)>()(ptr.ref.lpVtbl, value.value);
+        .asFunction<int Function(LPVTBL, int)>()(ptr.ref.lpVtbl, value.value);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }

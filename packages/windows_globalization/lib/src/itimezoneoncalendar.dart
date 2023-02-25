@@ -36,11 +36,11 @@ class ITimeZoneOnCalendar extends IInspectable {
           .elementAt(6)
           .cast<
               Pointer<
-                  NativeFunction<HRESULT Function(Pointer, Pointer<IntPtr>)>>>()
+                  NativeFunction<HRESULT Function(LPVTBL, Pointer<IntPtr>)>>>()
           .value
           .asFunction<
               int Function(
-                  Pointer, Pointer<IntPtr>)>()(ptr.ref.lpVtbl, retValuePtr);
+                  LPVTBL, Pointer<IntPtr>)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -58,11 +58,11 @@ class ITimeZoneOnCalendar extends IInspectable {
         .elementAt(7)
         .cast<
             Pointer<
-                NativeFunction<HRESULT Function(Pointer, IntPtr timeZoneId)>>>()
+                NativeFunction<HRESULT Function(LPVTBL, IntPtr timeZoneId)>>>()
         .value
         .asFunction<
             int Function(
-                Pointer, int timeZoneId)>()(ptr.ref.lpVtbl, timeZoneIdHString);
+                LPVTBL, int timeZoneId)>()(ptr.ref.lpVtbl, timeZoneIdHString);
 
     if (FAILED(hr)) throw WindowsException(hr);
 
@@ -77,11 +77,11 @@ class ITimeZoneOnCalendar extends IInspectable {
           .elementAt(8)
           .cast<
               Pointer<
-                  NativeFunction<HRESULT Function(Pointer, Pointer<IntPtr>)>>>()
+                  NativeFunction<HRESULT Function(LPVTBL, Pointer<IntPtr>)>>>()
           .value
           .asFunction<
               int Function(
-                  Pointer, Pointer<IntPtr>)>()(ptr.ref.lpVtbl, retValuePtr);
+                  LPVTBL, Pointer<IntPtr>)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -102,10 +102,10 @@ class ITimeZoneOnCalendar extends IInspectable {
                   Pointer<
                       NativeFunction<
                           HRESULT Function(
-                              Pointer, Int32 idealLength, Pointer<IntPtr>)>>>()
+                              LPVTBL, Int32 idealLength, Pointer<IntPtr>)>>>()
               .value
               .asFunction<
-                  int Function(Pointer, int idealLength, Pointer<IntPtr>)>()(
+                  int Function(LPVTBL, int idealLength, Pointer<IntPtr>)>()(
           ptr.ref.lpVtbl, idealLength, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);

@@ -184,11 +184,11 @@ abstract class IMapView<K, V> extends IInspectable
           .elementAt(7)
           .cast<
               Pointer<
-                  NativeFunction<HRESULT Function(Pointer, Pointer<Uint32>)>>>()
+                  NativeFunction<HRESULT Function(LPVTBL, Pointer<Uint32>)>>>()
           .value
           .asFunction<
               int Function(
-                  Pointer, Pointer<Uint32>)>()(ptr.ref.lpVtbl, retValuePtr);
+                  LPVTBL, Pointer<Uint32>)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -204,16 +204,16 @@ abstract class IMapView<K, V> extends IInspectable
   /// Splits the map view into two views.
   void split(IMapView<K, V> first, IMapView<K, V> second) {
     final hr = ptr.ref.lpVtbl.value
-        .elementAt(9)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        Pointer, Pointer<COMObject>, Pointer<COMObject>)>>>()
-        .value
-        .asFunction<
-            int Function(Pointer, Pointer<COMObject>,
-                Pointer<COMObject>)>()(ptr.ref.lpVtbl, first.ptr, second.ptr);
+            .elementAt(9)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            LPVTBL, Pointer<COMObject>, Pointer<COMObject>)>>>()
+            .value
+            .asFunction<
+                int Function(LPVTBL, Pointer<COMObject>, Pointer<COMObject>)>()(
+        ptr.ref.lpVtbl, first.ptr, second.ptr);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }

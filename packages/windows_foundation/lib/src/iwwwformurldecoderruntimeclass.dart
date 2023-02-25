@@ -22,7 +22,6 @@ import 'collections/ivectorview.dart';
 import 'helpers.dart';
 import 'iinspectable.dart';
 import 'iwwwformurldecoderentry.dart';
-import 'types.dart';
 
 /// @nodoc
 const IID_IWwwFormUrlDecoderRuntimeClass =
@@ -51,9 +50,9 @@ class IWwwFormUrlDecoderRuntimeClass extends IInspectable
                   Pointer<
                       NativeFunction<
                           HRESULT Function(
-                              Pointer, IntPtr name, Pointer<IntPtr>)>>>()
+                              LPVTBL, IntPtr name, Pointer<IntPtr>)>>>()
               .value
-              .asFunction<int Function(Pointer, int name, Pointer<IntPtr>)>()(
+              .asFunction<int Function(LPVTBL, int name, Pointer<IntPtr>)>()(
           ptr.ref.lpVtbl, nameHString, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
