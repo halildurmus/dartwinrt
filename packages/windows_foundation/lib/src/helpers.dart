@@ -19,8 +19,9 @@ extension WinRTStringConversion on Pointer<HSTRING> {
 /// Creates a WinRT object.
 ///
 /// ```dart
-/// final object = createObject('Windows.Globalization.Calendar', IID_ICalendar);
-/// final calendar = ICalendar.fromRawPointer(object);
+/// final objectPtr = createObject(
+///     'Windows.Globalization.Calendar', IID_ICalendar);
+/// final calendar = ICalendar.fromRawPointer(objectPtr);
 /// ```
 Pointer<COMObject> createObject(String className, String iid) {
   // Activates the specified Windows Runtime class
