@@ -77,6 +77,8 @@
     "Windows.Storage.FileProperties.VideoProperties": "Provides access to the video-related properties of an item (like a file or folder).",
     "Windows.Storage.KnownFolders": "Provides access to common locations that contain user content. This includes content from a user's local libraries (such as Documents, Pictures, Music, and Videos), HomeGroup, removable devices, and media server devices.",
     "Windows.Storage.Pickers.FileOpenPicker": "Represents a UI element that lets the user choose and open files. In a desktop app, before using an instance of this class in a way that displays UI, you'll need to associate the object with its owner's window handle.",
+    "Windows.Storage.Pickers.FileSavePicker": "Represents a file picker that lets the user choose the file name, extension, and storage location for a file.",
+    "Windows.Storage.Pickers.FolderPicker": "Represents a UI element that lets the user choose folders.",
     "Windows.Storage.Search.QueryOptions": "Specifies the parameters of a search query for enumerating the contents of storage folders.",
     "Windows.Storage.Search.StorageFileQueryResult": "Provides access to the results of a query of the files in the location that is represented by a StorageFolder object. You can use StorageFileQueryResult to enumerate the files in that StorageFolder location.",
     "Windows.Storage.Search.StorageFolderQueryResult": "Provides access to the results of a query that lists the folder (or file groups) in the folder being queried (which is represented by a StorageFolder). You can use a StorageFolderQueryResult to enumerate folders or file groups in that folder.",
