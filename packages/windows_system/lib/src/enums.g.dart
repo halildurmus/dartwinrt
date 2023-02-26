@@ -29,6 +29,28 @@ enum UserAgeConsentGroup implements WinRTEnum {
               value, 'value', 'No enum value with that value'));
 }
 
+/// Specifies the result of a call to CheckUserAgeConsentGroupAsync,
+/// querying for a user's membership in a specified UserAgeConsentGroup.
+///
+/// {@category enum}
+enum UserAgeConsentResult implements WinRTEnum {
+  notEnforced(0),
+  included(1),
+  notIncluded(2),
+  unknown(3),
+  ambiguous(4);
+
+  @override
+  final int value;
+
+  const UserAgeConsentResult(this.value);
+
+  factory UserAgeConsentResult.from(int value) =>
+      UserAgeConsentResult.values.firstWhere((e) => e.value == value,
+          orElse: () => throw ArgumentError.value(
+              value, 'value', 'No enum value with that value'));
+}
+
 /// Represents the authentication status of a user.
 ///
 /// {@category enum}

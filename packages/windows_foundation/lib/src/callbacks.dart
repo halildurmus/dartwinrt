@@ -20,5 +20,7 @@ typedef MapChangedEventHandler = Void Function(
     Pointer<COMObject> sender, Pointer<COMObject> args);
 typedef NetworkStatusChangedEventHandler = Void Function(
     Pointer<COMObject> sender);
+typedef StreamedFileDataRequestedHandler = Void Function(
+    Pointer<COMObject> stream);
 typedef TypedEventHandler = Void Function(
     Pointer<COMObject> sender, Pointer<COMObject> args);

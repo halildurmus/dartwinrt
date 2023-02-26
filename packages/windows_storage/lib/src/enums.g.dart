@@ -85,6 +85,61 @@ class FileAttributes extends WinRTFlagsEnum<FileAttributes> {
       FileAttributes(value | other.value);
 }
 
+/// Provides values that identify storage folders.
+///
+/// {@category enum}
+enum KnownFolderId implements WinRTEnum {
+  appCaptures(0),
+  cameraRoll(1),
+  documentsLibrary(2),
+  homeGroup(3),
+  mediaServerDevices(4),
+  musicLibrary(5),
+  objects3D(6),
+  picturesLibrary(7),
+  playlists(8),
+  recordedCalls(9),
+  removableDevices(10),
+  savedPictures(11),
+  screenshots(12),
+  videosLibrary(13),
+  allAppMods(14),
+  currentAppMods(15),
+  downloadsFolder(16);
+
+  @override
+  final int value;
+
+  const KnownFolderId(this.value);
+
+  factory KnownFolderId.from(int value) =>
+      KnownFolderId.values.firstWhere((e) => e.value == value,
+          orElse: () => throw ArgumentError.value(
+              value, 'value', 'No enum value with that value'));
+}
+
+/// Describes a known folder's access to a single capability.
+///
+/// {@category enum}
+enum KnownFoldersAccessStatus implements WinRTEnum {
+  deniedBySystem(0),
+  notDeclaredByApp(1),
+  deniedByUser(2),
+  userPromptRequired(3),
+  allowed(4),
+  allowedPerAppFolder(5);
+
+  @override
+  final int value;
+
+  const KnownFoldersAccessStatus(this.value);
+
+  factory KnownFoldersAccessStatus.from(int value) =>
+      KnownFoldersAccessStatus.values.firstWhere((e) => e.value == value,
+          orElse: () => throw ArgumentError.value(
+              value, 'value', 'No enum value with that value'));
+}
+
 /// Specifies what to do if a file or folder with the specified name already
 /// exists in the current folder when you copy, move, or rename a file or
 /// folder.
@@ -149,4 +204,61 @@ class StorageItemTypes extends WinRTFlagsEnum<StorageItemTypes> {
   @override
   StorageItemTypes operator |(StorageItemTypes other) =>
       StorageItemTypes(value | other.value);
+}
+
+/// Describes the type of change that occurred to the storage library item.
+///
+/// {@category enum}
+enum StorageLibraryChangeType implements WinRTEnum {
+  created(0),
+  deleted(1),
+  movedOrRenamed(2),
+  contentsChanged(3),
+  movedOutOfLibrary(4),
+  movedIntoLibrary(5),
+  contentsReplaced(6),
+  indexingStatusChanged(7),
+  encryptionChanged(8),
+  changeTrackingLost(9);
+
+  @override
+  final int value;
+
+  const StorageLibraryChangeType(this.value);
+
+  factory StorageLibraryChangeType.from(int value) =>
+      StorageLibraryChangeType.values.firstWhere((e) => e.value == value,
+          orElse: () => throw ArgumentError.value(
+              value, 'value', 'No enum value with that value'));
+}
+
+/// Provides options to use when opening a file.
+///
+/// {@category enum}
+class StorageOpenOptions extends WinRTFlagsEnum<StorageOpenOptions> {
+  const StorageOpenOptions(super.value, {super.name});
+
+  factory StorageOpenOptions.from(int value) =>
+      StorageOpenOptions.values.firstWhere((e) => e.value == value,
+          orElse: () => StorageOpenOptions(value));
+
+  static const none = StorageOpenOptions(0, name: 'none');
+  static const allowOnlyReaders =
+      StorageOpenOptions(1, name: 'allowOnlyReaders');
+  static const allowReadersAndWriters =
+      StorageOpenOptions(2, name: 'allowReadersAndWriters');
+
+  static const List<StorageOpenOptions> values = [
+    none,
+    allowOnlyReaders,
+    allowReadersAndWriters
+  ];
+
+  @override
+  StorageOpenOptions operator &(StorageOpenOptions other) =>
+      StorageOpenOptions(value & other.value);
+
+  @override
+  StorageOpenOptions operator |(StorageOpenOptions other) =>
+      StorageOpenOptions(value | other.value);
 }
