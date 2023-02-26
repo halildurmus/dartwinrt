@@ -20,6 +20,8 @@ dependencies:
     git:
       url: https://github.com/timsneath/win32.git
       ref: dev
+  windows_data:
+    path: ../windows_data
   windows_foundation:
     path: ../windows_foundation
   windows_system:

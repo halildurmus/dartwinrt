@@ -12,7 +12,7 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart';
+import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -21,8 +21,6 @@ import 'ibuffer.dart';
 /// @nodoc
 const IID_IOutputStream = '{905a0fe6-bc53-11df-8c49-001e4fc686da}';
 
-/// Represents a sequential stream of bytes to be written.
-///
 /// {@category interface}
 class IOutputStream extends IInspectable implements IClosable {
   // vtable begins at 6, is 2 entries long.

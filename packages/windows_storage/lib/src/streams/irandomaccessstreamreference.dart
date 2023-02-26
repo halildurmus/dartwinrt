@@ -12,7 +12,7 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart';
+import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -22,9 +22,6 @@ import 'irandomaccessstreamwithcontenttype.dart';
 const IID_IRandomAccessStreamReference =
     '{33ee3134-1dd6-4e3a-8067-d1c162e8642b}';
 
-/// Enables a Windows Runtime component to provide access to an encapsulated
-/// stream.
-///
 /// {@category interface}
 class IRandomAccessStreamReference extends IInspectable {
   // vtable begins at 6, is 1 entries long.

@@ -12,7 +12,7 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart';
+import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -28,8 +28,6 @@ import 'xmlnodelist.dart';
 /// @nodoc
 const IID_IXmlText = '{f931a4cb-308d-4760-a1d5-43b67450ac7e}';
 
-/// Represents the text content of an element or attribute.
-///
 /// {@category interface}
 class IXmlText extends IInspectable
     implements

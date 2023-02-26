@@ -12,7 +12,7 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart';
+import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -22,9 +22,6 @@ import 'fileproperties/basicproperties.dart';
 /// @nodoc
 const IID_IStorageItem = '{4207a996-ca2f-42f7-bde8-8b10457a7f30}';
 
-/// Manipulates storage items (files and folders) and their contents, and
-/// provides information about them.
-///
 /// {@category interface}
 class IStorageItem extends IInspectable {
   // vtable begins at 6, is 10 entries long.
