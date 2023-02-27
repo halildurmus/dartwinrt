@@ -60,11 +60,6 @@ const excludedObjects = <String>{
   // generate them automatically after making appropriate changes to the
   // generation script:
 
-  // TODO(halildurmus): Remove this from excludes once we have a use for it.
-  //   DevicePicker has too many dependencies. Do not generate it for the time
-  //   being as it is only used for testing purposes anyway.
-  'Windows.Devices.Enumeration.DevicePicker',
-
   //   Requires WinRT delegate support
   'Windows.Storage.ApplicationData',
 };

@@ -4,4 +4,7 @@
 
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
+export 'background/devicewatchertrigger.dart';
+export 'background/ibackgroundtrigger.dart';
+export 'background/idevicewatchertrigger.dart';
 export 'enums.g.dart';

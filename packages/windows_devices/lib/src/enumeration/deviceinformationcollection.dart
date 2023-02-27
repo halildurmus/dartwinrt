@@ -1,0 +1,53 @@
+// Copyright (c) 2023, the dartwinrt authors. Please see the AUTHORS file for
+// details. All rights reserved. Use of this source code is governed by a
+// BSD-style license that can be found in the LICENSE file.
+
+// THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
+
+// ignore_for_file: constant_identifier_names, non_constant_identifier_names
+// ignore_for_file: no_leading_underscores_for_local_identifiers
+// ignore_for_file: unused_import
+
+import 'dart:async';
+import 'dart:ffi';
+
+import 'package:ffi/ffi.dart';
+import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:windows_foundation/internal.dart';
+import 'package:windows_foundation/windows_foundation.dart';
+
+import 'deviceinformation.dart';
+
+/// Represents a collection of DeviceInformation objects.
+///
+/// {@category class}
+class DeviceInformationCollection extends IInspectable
+    implements IVectorView<DeviceInformation>, IIterable<DeviceInformation> {
+  DeviceInformationCollection.fromRawPointer(super.ptr);
+
+  // IVectorView<DeviceInformation> methods
+  late final _iVectorView = IVectorView<DeviceInformation>.fromRawPointer(
+      toInterface('{e170688f-3495-5bf6-aab5-9cac17e0f10f}'),
+      creator: DeviceInformation.fromRawPointer,
+      iterableIid: '{dd9f8a5d-ec98-5f4b-a3ea-9c8b5ad53c4b}');
+
+  @override
+  DeviceInformation getAt(int index) => _iVectorView.getAt(index);
+
+  @override
+  int get size => _iVectorView.size;
+
+  @override
+  bool indexOf(DeviceInformation value, Pointer<Uint32> index) =>
+      _iVectorView.indexOf(value, index);
+
+  @override
+  int getMany(int startIndex, int valueSize, List<DeviceInformation> value) =>
+      _iVectorView.getMany(startIndex, valueSize, value);
+
+  @override
+  IIterator<DeviceInformation> first() => _iVectorView.first();
+
+  @override
+  List<DeviceInformation> toList() => _iVectorView.toList();
+}
