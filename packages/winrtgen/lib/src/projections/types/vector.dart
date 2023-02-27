@@ -54,18 +54,13 @@ mixin _VectorMixin on MethodProjection {
 
     return ', ${args.join(', ')}';
   }
-}
-
-/// Method projection for methods that return an `IVector<T>`.
-class VectorMethodProjection extends MethodProjection with _VectorMixin {
-  VectorMethodProjection(super.method, super.vtableOffset);
 
   @override
   String get returnType => 'IVector<$vectorTypeArg>';
 
   @override
-  String get methodProjection => '''
-  $returnType $camelCasedName($methodParams) {
+  String get methodDeclaration => '''
+  $methodHeader {
     final retValuePtr = calloc<COMObject>();
     $parametersPreamble
 
@@ -78,26 +73,17 @@ class VectorMethodProjection extends MethodProjection with _VectorMixin {
 ''';
 }
 
+/// Method projection for methods that return `IVector<T>`.
+class VectorMethodProjection extends MethodProjection with _VectorMixin {
+  VectorMethodProjection(super.method, super.vtableOffset);
+}
+
 /// Getter projection for `IVector<T>` getters.
 class VectorGetterProjection extends GetterProjection with _VectorMixin {
   VectorGetterProjection(super.method, super.vtableOffset);
-
-  @override
-  String get returnType => 'IVector<$vectorTypeArg>';
-
-  @override
-  String get methodProjection => '''
-  $returnType get $camelCasedName {
-    final retValuePtr = calloc<COMObject>();
-
-    ${ffiCall(freeRetValOnFailure: true)}
-
-    return IVector.fromRawPointer(retValuePtr$vectorConstructorArgs);
-  }
-''';
 }
 
-/// Method projection for methods that return an `IVectorView<T>` (exposed as
+/// Method projection for methods that return `IVectorView<T>` (exposed as
 /// `List<T>`).
 class VectorViewMethodProjection extends MethodProjection with _VectorMixin {
   VectorViewMethodProjection(super.method, super.vtableOffset);
@@ -106,8 +92,8 @@ class VectorViewMethodProjection extends MethodProjection with _VectorMixin {
   String get returnType => 'List<$vectorTypeArg>';
 
   @override
-  String get methodProjection => '''
-  $returnType $camelCasedName($methodParams) {
+  String get methodDeclaration => '''
+  $methodHeader {
     final retValuePtr = calloc<COMObject>();
     $parametersPreamble
 
@@ -133,8 +119,8 @@ class VectorViewGetterProjection extends GetterProjection with _VectorMixin {
   String get returnType => 'List<$vectorTypeArg>';
 
   @override
-  String get methodProjection => '''
-  $returnType get $camelCasedName {
+  String get methodDeclaration => '''
+  $methodHeader {
     final retValuePtr = calloc<COMObject>();
 
     ${ffiCall(freeRetValOnFailure: true)}

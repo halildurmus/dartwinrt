@@ -40,14 +40,13 @@ class IPhoneNumberFormatter extends IInspectable {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(
-                              LPVTBL, LPVTBL number, Pointer<IntPtr>)>>>()
+                          HRESULT Function(LPVTBL lpVtbl, LPVTBL number,
+                              Pointer<IntPtr> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(LPVTBL, LPVTBL number, Pointer<IntPtr>)>()(
-          ptr.ref.lpVtbl,
-          number == null ? nullptr : number.ptr.ref.lpVtbl,
-          retValuePtr);
+                  int Function(LPVTBL lpVtbl, LPVTBL number,
+                      Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl,
+          number == null ? nullptr : number.ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -63,21 +62,25 @@ class IPhoneNumberFormatter extends IInspectable {
     final retValuePtr = calloc<HSTRING>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(LPVTBL, LPVTBL number,
-                              Int32 numberFormat, Pointer<IntPtr>)>>>()
-              .value
-              .asFunction<
-                  int Function(LPVTBL, LPVTBL number, int numberFormat,
-                      Pointer<IntPtr>)>()(
-          ptr.ref.lpVtbl,
-          number == null ? nullptr : number.ptr.ref.lpVtbl,
-          numberFormat.value,
-          retValuePtr);
+      final hr =
+          ptr.ref.vtable
+                  .elementAt(7)
+                  .cast<
+                      Pointer<
+                          NativeFunction<
+                              HRESULT Function(
+                                  LPVTBL lpVtbl,
+                                  LPVTBL number,
+                                  Int32 numberFormat,
+                                  Pointer<IntPtr> retValuePtr)>>>()
+                  .value
+                  .asFunction<
+                      int Function(LPVTBL lpVtbl, LPVTBL number,
+                          int numberFormat, Pointer<IntPtr> retValuePtr)>()(
+              ptr.ref.lpVtbl,
+              number == null ? nullptr : number.ptr.ref.lpVtbl,
+              numberFormat.value,
+              retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -98,10 +101,12 @@ class IPhoneNumberFormatter extends IInspectable {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(
-                              LPVTBL, IntPtr number, Pointer<IntPtr>)>>>()
+                          HRESULT Function(LPVTBL lpVtbl, IntPtr number,
+                              Pointer<IntPtr> retValuePtr)>>>()
               .value
-              .asFunction<int Function(LPVTBL, int number, Pointer<IntPtr>)>()(
+              .asFunction<
+                  int Function(LPVTBL lpVtbl, int number,
+                      Pointer<IntPtr> retValuePtr)>()(
           ptr.ref.lpVtbl, numberHString, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
@@ -124,10 +129,12 @@ class IPhoneNumberFormatter extends IInspectable {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(
-                              LPVTBL, IntPtr number, Pointer<IntPtr>)>>>()
+                          HRESULT Function(LPVTBL lpVtbl, IntPtr number,
+                              Pointer<IntPtr> retValuePtr)>>>()
               .value
-              .asFunction<int Function(LPVTBL, int number, Pointer<IntPtr>)>()(
+              .asFunction<
+                  int Function(LPVTBL lpVtbl, int number,
+                      Pointer<IntPtr> retValuePtr)>()(
           ptr.ref.lpVtbl, numberHString, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
@@ -150,10 +157,12 @@ class IPhoneNumberFormatter extends IInspectable {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(
-                              LPVTBL, IntPtr number, Pointer<IntPtr>)>>>()
+                          HRESULT Function(LPVTBL lpVtbl, IntPtr number,
+                              Pointer<IntPtr> retValuePtr)>>>()
               .value
-              .asFunction<int Function(LPVTBL, int number, Pointer<IntPtr>)>()(
+              .asFunction<
+                  int Function(LPVTBL lpVtbl, int number,
+                      Pointer<IntPtr> retValuePtr)>()(
           ptr.ref.lpVtbl, numberHString, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);

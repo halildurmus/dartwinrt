@@ -57,7 +57,7 @@ class EnumProjection {
     return docComment;
   }
 
-  String get classDeclaration => 'enum $enumName implements WinRTEnum {';
+  String get classHeader => 'enum $enumName implements WinRTEnum';
 
   String safeIdentifier(String name) =>
       safeIdentifierForString(name.toCamelCase());
@@ -83,7 +83,7 @@ class EnumProjection {
   @override
   String toString() => '''
     $classPreamble
-    $classDeclaration
+    $classHeader {
       ${identifiers.join(',\n')};
 
       $valueField
@@ -117,8 +117,7 @@ class FlagsEnumProjection extends EnumProjection {
   }
 
   @override
-  String get classDeclaration =>
-      'class $enumName extends WinRTFlagsEnum<$enumName> {';
+  String get classHeader => 'class $enumName extends WinRTFlagsEnum<$enumName>';
 
   @override
   String get constructor => 'const $enumName(super.value, {super.name});';
@@ -159,7 +158,7 @@ class FlagsEnumProjection extends EnumProjection {
   @override
   String toString() => '''
 $classPreamble
-$classDeclaration
+$classHeader {
   $constructor
 
   $factoryConstructor

@@ -36,14 +36,16 @@ class IStorageQueryResultBase extends IInspectable {
     final completer = Completer<int>();
 
     final hr = ptr.ref.vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<HRESULT Function(LPVTBL, Pointer<COMObject>)>>>()
-        .value
-        .asFunction<
-            int Function(
-                LPVTBL, Pointer<COMObject>)>()(ptr.ref.lpVtbl, retValuePtr);
+            .elementAt(6)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>>>()
+            .value
+            .asFunction<
+                int Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -62,14 +64,16 @@ class IStorageQueryResultBase extends IInspectable {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-        .elementAt(7)
-        .cast<
-            Pointer<
-                NativeFunction<HRESULT Function(LPVTBL, Pointer<COMObject>)>>>()
-        .value
-        .asFunction<
-            int Function(
-                LPVTBL, Pointer<COMObject>)>()(ptr.ref.lpVtbl, retValuePtr);
+            .elementAt(7)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>>>()
+            .value
+            .asFunction<
+                int Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -93,11 +97,12 @@ class IStorageQueryResultBase extends IInspectable {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(
-                              LPVTBL, LPVTBL handler, Pointer<IntPtr>)>>>()
+                          HRESULT Function(LPVTBL lpVtbl, LPVTBL handler,
+                              Pointer<IntPtr> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(LPVTBL, LPVTBL handler, Pointer<IntPtr>)>()(
+                  int Function(LPVTBL lpVtbl, LPVTBL handler,
+                      Pointer<IntPtr> retValuePtr)>()(
           ptr.ref.lpVtbl, handler.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
@@ -110,14 +115,14 @@ class IStorageQueryResultBase extends IInspectable {
 
   void remove_ContentsChanged(int eventCookie) {
     final hr = ptr.ref.vtable
-        .elementAt(9)
-        .cast<
-            Pointer<
-                NativeFunction<HRESULT Function(LPVTBL, IntPtr eventCookie)>>>()
-        .value
-        .asFunction<
-            int Function(
-                LPVTBL, int eventCookie)>()(ptr.ref.lpVtbl, eventCookie);
+            .elementAt(9)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(LPVTBL lpVtbl, IntPtr eventCookie)>>>()
+            .value
+            .asFunction<int Function(LPVTBL lpVtbl, int eventCookie)>()(
+        ptr.ref.lpVtbl, eventCookie);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
@@ -131,12 +136,12 @@ class IStorageQueryResultBase extends IInspectable {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(LPVTBL, LPVTBL changedHandler,
-                              Pointer<IntPtr>)>>>()
+                          HRESULT Function(LPVTBL lpVtbl, LPVTBL changedHandler,
+                              Pointer<IntPtr> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(
-                      LPVTBL, LPVTBL changedHandler, Pointer<IntPtr>)>()(
+                  int Function(LPVTBL lpVtbl, LPVTBL changedHandler,
+                      Pointer<IntPtr> retValuePtr)>()(
           ptr.ref.lpVtbl, changedHandler.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
@@ -149,14 +154,14 @@ class IStorageQueryResultBase extends IInspectable {
 
   void remove_OptionsChanged(int eventCookie) {
     final hr = ptr.ref.vtable
-        .elementAt(11)
-        .cast<
-            Pointer<
-                NativeFunction<HRESULT Function(LPVTBL, IntPtr eventCookie)>>>()
-        .value
-        .asFunction<
-            int Function(
-                LPVTBL, int eventCookie)>()(ptr.ref.lpVtbl, eventCookie);
+            .elementAt(11)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(LPVTBL lpVtbl, IntPtr eventCookie)>>>()
+            .value
+            .asFunction<int Function(LPVTBL lpVtbl, int eventCookie)>()(
+        ptr.ref.lpVtbl, eventCookie);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
@@ -170,11 +175,12 @@ class IStorageQueryResultBase extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(
-                            LPVTBL, LPVTBL value, Pointer<COMObject>)>>>()
+                        HRESULT Function(LPVTBL lpVtbl, LPVTBL value,
+                            Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL, LPVTBL value, Pointer<COMObject>)>()(
+                int Function(LPVTBL lpVtbl, LPVTBL value,
+                    Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, value?.intoBox().ref.lpVtbl ?? nullptr, retValuePtr);
 
     if (FAILED(hr)) {
@@ -194,14 +200,16 @@ class IStorageQueryResultBase extends IInspectable {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-        .elementAt(13)
-        .cast<
-            Pointer<
-                NativeFunction<HRESULT Function(LPVTBL, Pointer<COMObject>)>>>()
-        .value
-        .asFunction<
-            int Function(
-                LPVTBL, Pointer<COMObject>)>()(ptr.ref.lpVtbl, retValuePtr);
+            .elementAt(13)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>>>()
+            .value
+            .asFunction<
+                int Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -217,16 +225,19 @@ class IStorageQueryResultBase extends IInspectable {
   }
 
   void applyNewQueryOptions(QueryOptions? newQueryOptions) {
-    final hr = ptr.ref.vtable
-            .elementAt(14)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(LPVTBL, LPVTBL newQueryOptions)>>>()
-            .value
-            .asFunction<int Function(LPVTBL, LPVTBL newQueryOptions)>()(
-        ptr.ref.lpVtbl,
-        newQueryOptions == null ? nullptr : newQueryOptions.ptr.ref.lpVtbl);
+    final hr =
+        ptr.ref.vtable
+                .elementAt(14)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                LPVTBL lpVtbl, LPVTBL newQueryOptions)>>>()
+                .value
+                .asFunction<
+                    int Function(LPVTBL lpVtbl, LPVTBL newQueryOptions)>()(
+            ptr.ref.lpVtbl,
+            newQueryOptions == null ? nullptr : newQueryOptions.ptr.ref.lpVtbl);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }

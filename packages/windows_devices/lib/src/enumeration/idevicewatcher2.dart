@@ -35,22 +35,25 @@ class IDeviceWatcher2 extends IInspectable {
       IIterable<DeviceWatcherEventKind>? requestedEventKinds) {
     final retValuePtr = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(LPVTBL, LPVTBL requestedEventKinds,
-                            Pointer<COMObject>)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    LPVTBL, LPVTBL requestedEventKinds, Pointer<COMObject>)>()(
-        ptr.ref.lpVtbl,
-        requestedEventKinds == null
-            ? nullptr
-            : requestedEventKinds.ptr.ref.lpVtbl,
-        retValuePtr);
+    final hr =
+        ptr.ref.vtable
+                .elementAt(6)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                LPVTBL lpVtbl,
+                                LPVTBL requestedEventKinds,
+                                Pointer<COMObject> retValuePtr)>>>()
+                .value
+                .asFunction<
+                    int Function(LPVTBL lpVtbl, LPVTBL requestedEventKinds,
+                        Pointer<COMObject> retValuePtr)>()(
+            ptr.ref.lpVtbl,
+            requestedEventKinds == null
+                ? nullptr
+                : requestedEventKinds.ptr.ref.lpVtbl,
+            retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);

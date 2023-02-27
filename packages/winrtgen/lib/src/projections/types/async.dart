@@ -7,7 +7,7 @@ import '../../utils.dart';
 import '../method.dart';
 import '../type.dart';
 
-/// Method projection for methods that return an `IAsyncAction`.
+/// Method projection for methods that return `IAsyncAction`.
 class AsyncActionMethodProjection extends MethodProjection {
   AsyncActionMethodProjection(super.method, super.vtableOffset);
 
@@ -15,8 +15,8 @@ class AsyncActionMethodProjection extends MethodProjection {
   String get returnType => 'Future<void>';
 
   @override
-  String get methodProjection => '''
-  $returnType $camelCasedName($methodParams) {
+  String get methodDeclaration => '''
+  $methodHeader {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<void>();
     $parametersPreamble
@@ -55,9 +55,6 @@ mixin _AsyncOperationMixin on MethodProjection {
 
     return typeArg;
   }
-
-  @override
-  String get returnType => 'Future<$completerTypeArg>';
 
   /// The constructor arguments passed to the constructor of `IAsyncOperation`.
   String get asyncOperationConstructorArgs {
@@ -103,16 +100,13 @@ mixin _AsyncOperationMixin on MethodProjection {
 
     return 'asyncOperation.getResults';
   }
-}
-
-/// Method projection for methods that return `IAsyncOperation<TResult>`.
-class AsyncOperationMethodProjection extends MethodProjection
-    with _AsyncOperationMixin {
-  AsyncOperationMethodProjection(super.method, super.vtableOffset);
 
   @override
-  String get methodProjection => '''
-  $returnType $camelCasedName($methodParams) {
+  String get returnType => 'Future<$completerTypeArg>';
+
+  @override
+  String get methodDeclaration => '''
+  $methodHeader {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<$completerTypeArg>();
     $parametersPreamble
@@ -128,4 +122,10 @@ class AsyncOperationMethodProjection extends MethodProjection
     return completer.future;
   }
 ''';
+}
+
+/// Method projection for methods that return `IAsyncOperation<TResult>`.
+class AsyncOperationMethodProjection extends MethodProjection
+    with _AsyncOperationMixin {
+  AsyncOperationMethodProjection(super.method, super.vtableOffset);
 }

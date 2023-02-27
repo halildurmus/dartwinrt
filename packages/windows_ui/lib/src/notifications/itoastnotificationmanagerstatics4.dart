@@ -41,14 +41,13 @@ class IToastNotificationManagerStatics4 extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(
-                            LPVTBL, LPVTBL user, Pointer<COMObject>)>>>()
+                        HRESULT Function(LPVTBL lpVtbl, LPVTBL user,
+                            Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL, LPVTBL user, Pointer<COMObject>)>()(
-        ptr.ref.lpVtbl,
-        user == null ? nullptr : user.ptr.ref.lpVtbl,
-        retValuePtr);
+                int Function(LPVTBL lpVtbl, LPVTBL user,
+                    Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl,
+        user == null ? nullptr : user.ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -66,10 +65,13 @@ class IToastNotificationManagerStatics4 extends IInspectable {
   void configureNotificationMirroring(NotificationMirroring value) {
     final hr = ptr.ref.vtable
         .elementAt(7)
-        .cast<Pointer<NativeFunction<HRESULT Function(LPVTBL, Int32 value)>>>()
+        .cast<
+            Pointer<
+                NativeFunction<HRESULT Function(LPVTBL lpVtbl, Int32 value)>>>()
         .value
         .asFunction<
-            int Function(LPVTBL, int value)>()(ptr.ref.lpVtbl, value.value);
+            int Function(
+                LPVTBL lpVtbl, int value)>()(ptr.ref.lpVtbl, value.value);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }

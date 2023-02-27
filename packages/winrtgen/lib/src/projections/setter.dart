@@ -4,11 +4,11 @@
 
 import 'package:winmd/winmd.dart';
 
+import '../extensions/extensions.dart';
 import '../models/models.dart';
 import 'method.dart';
 import 'parameter.dart';
 import 'property.dart';
-import 'type.dart';
 import 'types/types.dart';
 
 abstract class SetterProjection extends PropertyProjection {
@@ -20,8 +20,7 @@ abstract class SetterProjection extends PropertyProjection {
   /// Returns the appropriate setter projection for the [method] based on the
   /// parameter type.
   factory SetterProjection.create(Method method, int vtableOffset) {
-    final projectionType =
-        TypeProjection(method.parameters.first.typeIdentifier).projectionType;
+    final projectionType = method.parameters.first.projectionType;
     switch (projectionType) {
       case ProjectionType.dartPrimitive:
         return DefaultSetterProjection(method, vtableOffset);

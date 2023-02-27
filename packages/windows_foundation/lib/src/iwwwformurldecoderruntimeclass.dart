@@ -48,10 +48,12 @@ class IWwwFormUrlDecoderRuntimeClass extends IInspectable
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(
-                              LPVTBL, IntPtr name, Pointer<IntPtr>)>>>()
+                          HRESULT Function(LPVTBL lpVtbl, IntPtr name,
+                              Pointer<IntPtr> retValuePtr)>>>()
               .value
-              .asFunction<int Function(LPVTBL, int name, Pointer<IntPtr>)>()(
+              .asFunction<
+                  int Function(
+                      LPVTBL lpVtbl, int name, Pointer<IntPtr> retValuePtr)>()(
           ptr.ref.lpVtbl, nameHString, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);

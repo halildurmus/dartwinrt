@@ -35,17 +35,21 @@ class IGeopointFactory extends IInspectable {
   Geopoint create(BasicGeoposition position) {
     final retValuePtr = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(LPVTBL, BasicGeoposition position,
-                        Pointer<COMObject>)>>>()
-        .value
-        .asFunction<
-            int Function(LPVTBL, BasicGeoposition position,
-                Pointer<COMObject>)>()(ptr.ref.lpVtbl, position, retValuePtr);
+    final hr =
+        ptr.ref.vtable
+                .elementAt(6)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                LPVTBL lpVtbl,
+                                BasicGeoposition position,
+                                Pointer<COMObject> retValuePtr)>>>()
+                .value
+                .asFunction<
+                    int Function(LPVTBL lpVtbl, BasicGeoposition position,
+                        Pointer<COMObject> retValuePtr)>()(
+            ptr.ref.lpVtbl, position, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -59,25 +63,24 @@ class IGeopointFactory extends IInspectable {
       AltitudeReferenceSystem altitudeReferenceSystem) {
     final retValuePtr = calloc<COMObject>();
 
-    final hr =
-        ptr.ref.vtable
-                .elementAt(7)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                LPVTBL,
-                                BasicGeoposition position,
-                                Int32 altitudeReferenceSystem,
-                                Pointer<COMObject>)>>>()
-                .value
-                .asFunction<
-                    int Function(LPVTBL, BasicGeoposition position,
-                        int altitudeReferenceSystem, Pointer<COMObject>)>()(
-            ptr.ref.lpVtbl,
-            position,
-            altitudeReferenceSystem.value,
-            retValuePtr);
+    final hr = ptr.ref.vtable
+            .elementAt(7)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            LPVTBL lpVtbl,
+                            BasicGeoposition position,
+                            Int32 altitudeReferenceSystem,
+                            Pointer<COMObject> retValuePtr)>>>()
+            .value
+            .asFunction<
+                int Function(
+                    LPVTBL lpVtbl,
+                    BasicGeoposition position,
+                    int altitudeReferenceSystem,
+                    Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl, position, altitudeReferenceSystem.value, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -99,19 +102,19 @@ class IGeopointFactory extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            LPVTBL,
+                            LPVTBL lpVtbl,
                             BasicGeoposition position,
                             Int32 altitudeReferenceSystem,
                             Uint32 spatialReferenceId,
-                            Pointer<COMObject>)>>>()
+                            Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
                 int Function(
-                    LPVTBL,
+                    LPVTBL lpVtbl,
                     BasicGeoposition position,
                     int altitudeReferenceSystem,
                     int spatialReferenceId,
-                    Pointer<COMObject>)>()(ptr.ref.lpVtbl, position,
+                    Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, position,
         altitudeReferenceSystem.value, spatialReferenceId, retValuePtr);
 
     if (FAILED(hr)) {

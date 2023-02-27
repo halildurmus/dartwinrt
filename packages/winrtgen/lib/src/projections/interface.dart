@@ -128,11 +128,11 @@ const IID_$shortName = '${typeDef.guid}';
     ).join('\n');
   }
 
-  String get implementsClause =>
-      inheritsFrom.isNotEmpty ? 'implements $inheritsFrom ' : '';
-
-  String get classDeclaration =>
-      'class $shortName extends IInspectable $implementsClause{';
+  String get classHeader {
+    final implementsClause =
+        inheritsFrom.isNotEmpty ? ' implements $inheritsFrom' : '';
+    return 'class $shortName extends IInspectable$implementsClause';
+  }
 
   String get namedConstructor => '$shortName.fromRawPointer(super.ptr);';
 
@@ -195,7 +195,7 @@ $importHeader
 $iidConstant
 
 $classPreamble
-$classDeclaration
+$classHeader {
   // vtable begins at $vtableStart, is ${methodProjections.length} entries long.
   $namedConstructor
 

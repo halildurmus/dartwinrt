@@ -13,9 +13,7 @@ extension TypeDefHelpers on TypeDef {
   /// TypeDef (e.g. `Windows.Foundation.Calendar`,
   /// Windows.Foundation.IReference`1).
   String get fullyQualifiedName =>
-      typeSpec?.baseType == BaseType.genericTypeModifier
-          ? typeSpec!.type!.name
-          : name;
+      typeSpec?.isGenericType ?? false ? typeSpec!.type!.name : name;
 
   /// Returns the IID of the type defined in this TypeDef.
   Guid get iid => iidFromSignature(signature);
@@ -34,7 +32,7 @@ extension TypeDefHelpers on TypeDef {
 
   /// Returns the shorter name of the type defined in this TypeDef (e.g.
   /// `ICalendar`, `IVector` , `IMap<String, String>`).
-  String get shortName => typeSpec?.baseType == BaseType.genericTypeModifier
+  String get shortName => typeSpec?.isGenericType ?? false
       ? typeSpec!.shortName
       : stripGenerics(lastComponent(name));
 

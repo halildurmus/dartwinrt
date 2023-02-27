@@ -181,14 +181,16 @@ abstract class IMapView<K, V> extends IInspectable
 
     try {
       final hr = ptr.ref.lpVtbl.value
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<HRESULT Function(LPVTBL, Pointer<Uint32>)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  LPVTBL, Pointer<Uint32>)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(7)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              LPVTBL lpVtbl, Pointer<Uint32> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(LPVTBL lpVtbl, Pointer<Uint32> retValuePtr)>()(
+          ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -208,11 +210,12 @@ abstract class IMapView<K, V> extends IInspectable
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(
-                            LPVTBL, Pointer<COMObject>, Pointer<COMObject>)>>>()
+                        HRESULT Function(LPVTBL lpVtbl, Pointer<COMObject>,
+                            Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL, Pointer<COMObject>, Pointer<COMObject>)>()(
+                int Function(LPVTBL lpVtbl, Pointer<COMObject>,
+                    Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, first.ptr, second.ptr);
 
     if (FAILED(hr)) throw WindowsException(hr);

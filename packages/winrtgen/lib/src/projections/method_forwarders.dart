@@ -23,8 +23,7 @@ class MethodForwardersProjection {
   final InterfaceProjection interfaceProjection;
 
   /// Whether the [interface] is a generic interface.
-  bool get isGenericInterface =>
-      interface.typeSpec?.baseType == BaseType.genericTypeModifier;
+  bool get isGenericInterface => interface.typeSpec?.isGenericType ?? false;
 
   /// The shorter [interface] name without type arguments (e.g. `IMap`,
   /// `ICalendar`).
@@ -188,12 +187,12 @@ class MethodForwardersProjection {
 
   String defaultForwarder(MethodProjection methodProjection) {
     // e.g. `int get Second` or `void addHours(int hours)`
-    final declaration = methodProjection.shortDeclaration;
+    final methodHeader = methodProjection.methodHeader;
     final overrideAnnotation =
-        declaration.contains('@override') ? '' : '@override';
+        methodHeader.contains('@override') ? '' : '@override';
     return '''
   $overrideAnnotation
-  $declaration => $fieldIdentifier.${methodProjection.shortForm};
+  $methodHeader => $fieldIdentifier.${methodProjection.shortForm};
 ''';
   }
 

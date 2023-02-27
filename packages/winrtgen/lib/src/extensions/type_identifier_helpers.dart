@@ -155,7 +155,17 @@ extension TypeIdentifierHelpers on TypeIdentifier {
 
   bool get isGenericType => baseType == BaseType.genericTypeModifier;
 
+  bool get isObjectType => baseType == BaseType.objectType;
+
+  bool get isPointerType => baseType == BaseType.pointerTypeModifier;
+
+  bool get isReferenceType => baseType == BaseType.referenceTypeModifier;
+
   bool get isSimpleArrayType => baseType == BaseType.simpleArrayType;
+
+  bool get isStringType => baseType == BaseType.stringType;
+
+  bool get isValueType => baseType == BaseType.valueTypeModifier;
 
   /// Returns the shorter name of the type defined in this TypeIdentifier (e.g.
   /// `ICalendar`, `IMap<String, String>`).
@@ -181,7 +191,7 @@ extension TypeIdentifierHelpers on TypeIdentifier {
 
   /// Returns the type signature of this TypeIdentifier.
   String get signature {
-    if (baseType == BaseType.genericTypeModifier) {
+    if (isGenericType) {
       if (type!.genericParams.length == 2) {
         final firstArgSignature = typeArg!.signature;
         final secondArgSignature = typeArg!.typeArg!.signature;

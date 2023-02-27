@@ -42,10 +42,12 @@ class IWwwFormUrlDecoderRuntimeClassFactory extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(
-                            LPVTBL, IntPtr query, Pointer<COMObject>)>>>()
+                        HRESULT Function(LPVTBL lpVtbl, IntPtr query,
+                            Pointer<COMObject> retValuePtr)>>>()
             .value
-            .asFunction<int Function(LPVTBL, int query, Pointer<COMObject>)>()(
+            .asFunction<
+                int Function(LPVTBL lpVtbl, int query,
+                    Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, queryHString, retValuePtr);
 
     if (FAILED(hr)) {

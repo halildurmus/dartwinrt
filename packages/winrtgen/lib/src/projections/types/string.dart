@@ -11,18 +11,13 @@ import 'default.dart';
 mixin _StringMixin on MethodProjection {
   @override
   String get returnType => 'String';
-}
-
-/// Method projection for methods that return a `String`.
-class StringMethodProjection extends MethodProjection with _StringMixin {
-  StringMethodProjection(super.method, super.vtableOffset);
 
   @override
-  String get methodProjection {
+  String get methodDeclaration {
     final overrideAnnotation = camelCasedName == 'toString' ? '@override' : '';
     return '''
   $overrideAnnotation
-  $returnType $camelCasedName($methodParams) {
+  $methodHeader {
     final retValuePtr = calloc<HSTRING>();
     $parametersPreamble
 
@@ -40,25 +35,14 @@ class StringMethodProjection extends MethodProjection with _StringMixin {
   }
 }
 
+/// Method projection for methods that return `String`.
+class StringMethodProjection extends MethodProjection with _StringMixin {
+  StringMethodProjection(super.method, super.vtableOffset);
+}
+
 /// Getter projection for `String` getters.
 class StringGetterProjection extends GetterProjection with _StringMixin {
   StringGetterProjection(super.method, super.vtableOffset);
-
-  @override
-  String get methodProjection => '''
-  $returnType get $camelCasedName {
-    final retValuePtr = calloc<HSTRING>();
-
-    try {
-      ${ffiCall()}
-
-      return retValuePtr.toDartString();
-    } finally {
-      WindowsDeleteString(retValuePtr.value);
-      free(retValuePtr);
-    }
-  }
-''';
 }
 
 /// Setter projection for `String` setters.
@@ -66,8 +50,8 @@ class StringSetterProjection extends SetterProjection {
   StringSetterProjection(super.method, super.vtableOffset);
 
   @override
-  String get methodProjection => '''
-  set $camelCasedName(${param.type} value) {
+  String get methodDeclaration => '''
+  $methodHeader {
     final hstr = convertToHString(value);
 
     try {

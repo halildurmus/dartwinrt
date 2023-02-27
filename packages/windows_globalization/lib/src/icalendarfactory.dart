@@ -38,11 +38,12 @@ class ICalendarFactory extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(
-                            LPVTBL, LPVTBL languages, Pointer<COMObject>)>>>()
+                        HRESULT Function(LPVTBL lpVtbl, LPVTBL languages,
+                            Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL, LPVTBL languages, Pointer<COMObject>)>()(
+                int Function(LPVTBL lpVtbl, LPVTBL languages,
+                    Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, languages.ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
@@ -60,27 +61,26 @@ class ICalendarFactory extends IInspectable {
     final calendarHString = convertToHString(calendar);
     final clockHString = convertToHString(clock);
 
-    final hr =
-        ptr.ref.vtable
-                .elementAt(7)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                LPVTBL,
-                                LPVTBL languages,
-                                IntPtr calendar,
-                                IntPtr clock,
-                                Pointer<COMObject>)>>>()
-                .value
-                .asFunction<
-                    int Function(LPVTBL, LPVTBL languages, int calendar,
-                        int clock, Pointer<COMObject>)>()(
-            ptr.ref.lpVtbl,
-            languages.ptr.ref.lpVtbl,
-            calendarHString,
-            clockHString,
-            retValuePtr);
+    final hr = ptr.ref.vtable
+            .elementAt(7)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            LPVTBL lpVtbl,
+                            LPVTBL languages,
+                            IntPtr calendar,
+                            IntPtr clock,
+                            Pointer<COMObject> retValuePtr)>>>()
+            .value
+            .asFunction<
+                int Function(LPVTBL lpVtbl, LPVTBL languages, int calendar,
+                    int clock, Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl,
+        languages.ptr.ref.lpVtbl,
+        calendarHString,
+        clockHString,
+        retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);

@@ -43,11 +43,12 @@ class IDeviceInformationStatics extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(
-                            LPVTBL, IntPtr deviceId, Pointer<COMObject>)>>>()
+                        HRESULT Function(LPVTBL lpVtbl, IntPtr deviceId,
+                            Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL, int deviceId, Pointer<COMObject>)>()(
+                int Function(LPVTBL lpVtbl, int deviceId,
+                    Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, deviceIdHString, retValuePtr);
 
     if (FAILED(hr)) {
@@ -72,27 +73,29 @@ class IDeviceInformationStatics extends IInspectable {
     final completer = Completer<DeviceInformation?>();
     final deviceIdHString = convertToHString(deviceId);
 
-    final hr =
-        ptr.ref.vtable
-                .elementAt(7)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                LPVTBL,
-                                IntPtr deviceId,
-                                LPVTBL additionalProperties,
-                                Pointer<COMObject>)>>>()
-                .value
-                .asFunction<
-                    int Function(LPVTBL, int deviceId,
-                        LPVTBL additionalProperties, Pointer<COMObject>)>()(
-            ptr.ref.lpVtbl,
-            deviceIdHString,
-            additionalProperties == null
-                ? nullptr
-                : additionalProperties.ptr.ref.lpVtbl,
-            retValuePtr);
+    final hr = ptr.ref.vtable
+            .elementAt(7)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            LPVTBL lpVtbl,
+                            IntPtr deviceId,
+                            LPVTBL additionalProperties,
+                            Pointer<COMObject> retValuePtr)>>>()
+            .value
+            .asFunction<
+                int Function(
+                    LPVTBL lpVtbl,
+                    int deviceId,
+                    LPVTBL additionalProperties,
+                    Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl,
+        deviceIdHString,
+        additionalProperties == null
+            ? nullptr
+            : additionalProperties.ptr.ref.lpVtbl,
+        retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -115,14 +118,16 @@ class IDeviceInformationStatics extends IInspectable {
     final completer = Completer<DeviceInformationCollection?>();
 
     final hr = ptr.ref.vtable
-        .elementAt(8)
-        .cast<
-            Pointer<
-                NativeFunction<HRESULT Function(LPVTBL, Pointer<COMObject>)>>>()
-        .value
-        .asFunction<
-            int Function(
-                LPVTBL, Pointer<COMObject>)>()(ptr.ref.lpVtbl, retValuePtr);
+            .elementAt(8)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>>>()
+            .value
+            .asFunction<
+                int Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -149,11 +154,12 @@ class IDeviceInformationStatics extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(
-                            LPVTBL, Int32 deviceClass, Pointer<COMObject>)>>>()
+                        HRESULT Function(LPVTBL lpVtbl, Int32 deviceClass,
+                            Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL, int deviceClass, Pointer<COMObject>)>()(
+                int Function(LPVTBL lpVtbl, int deviceClass,
+                    Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, deviceClass.value, retValuePtr);
 
     if (FAILED(hr)) {
@@ -181,11 +187,12 @@ class IDeviceInformationStatics extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(
-                            LPVTBL, IntPtr aqsFilter, Pointer<COMObject>)>>>()
+                        HRESULT Function(LPVTBL lpVtbl, IntPtr aqsFilter,
+                            Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL, int aqsFilter, Pointer<COMObject>)>()(
+                int Function(LPVTBL lpVtbl, int aqsFilter,
+                    Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, aqsFilterHString, retValuePtr);
 
     if (FAILED(hr)) {
@@ -212,27 +219,29 @@ class IDeviceInformationStatics extends IInspectable {
     final completer = Completer<DeviceInformationCollection?>();
     final aqsFilterHString = convertToHString(aqsFilter);
 
-    final hr =
-        ptr.ref.vtable
-                .elementAt(11)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                LPVTBL,
-                                IntPtr aqsFilter,
-                                LPVTBL additionalProperties,
-                                Pointer<COMObject>)>>>()
-                .value
-                .asFunction<
-                    int Function(LPVTBL, int aqsFilter,
-                        LPVTBL additionalProperties, Pointer<COMObject>)>()(
-            ptr.ref.lpVtbl,
-            aqsFilterHString,
-            additionalProperties == null
-                ? nullptr
-                : additionalProperties.ptr.ref.lpVtbl,
-            retValuePtr);
+    final hr = ptr.ref.vtable
+            .elementAt(11)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            LPVTBL lpVtbl,
+                            IntPtr aqsFilter,
+                            LPVTBL additionalProperties,
+                            Pointer<COMObject> retValuePtr)>>>()
+            .value
+            .asFunction<
+                int Function(
+                    LPVTBL lpVtbl,
+                    int aqsFilter,
+                    LPVTBL additionalProperties,
+                    Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl,
+        aqsFilterHString,
+        additionalProperties == null
+            ? nullptr
+            : additionalProperties.ptr.ref.lpVtbl,
+        retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -255,14 +264,16 @@ class IDeviceInformationStatics extends IInspectable {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-        .elementAt(12)
-        .cast<
-            Pointer<
-                NativeFunction<HRESULT Function(LPVTBL, Pointer<COMObject>)>>>()
-        .value
-        .asFunction<
-            int Function(
-                LPVTBL, Pointer<COMObject>)>()(ptr.ref.lpVtbl, retValuePtr);
+            .elementAt(12)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>>>()
+            .value
+            .asFunction<
+                int Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -285,11 +296,12 @@ class IDeviceInformationStatics extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(
-                            LPVTBL, Int32 deviceClass, Pointer<COMObject>)>>>()
+                        HRESULT Function(LPVTBL lpVtbl, Int32 deviceClass,
+                            Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL, int deviceClass, Pointer<COMObject>)>()(
+                int Function(LPVTBL lpVtbl, int deviceClass,
+                    Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, deviceClass.value, retValuePtr);
 
     if (FAILED(hr)) {
@@ -314,11 +326,12 @@ class IDeviceInformationStatics extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(
-                            LPVTBL, IntPtr aqsFilter, Pointer<COMObject>)>>>()
+                        HRESULT Function(LPVTBL lpVtbl, IntPtr aqsFilter,
+                            Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL, int aqsFilter, Pointer<COMObject>)>()(
+                int Function(LPVTBL lpVtbl, int aqsFilter,
+                    Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, aqsFilterHString, retValuePtr);
 
     if (FAILED(hr)) {
@@ -341,27 +354,29 @@ class IDeviceInformationStatics extends IInspectable {
     final retValuePtr = calloc<COMObject>();
     final aqsFilterHString = convertToHString(aqsFilter);
 
-    final hr =
-        ptr.ref.vtable
-                .elementAt(15)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                LPVTBL,
-                                IntPtr aqsFilter,
-                                LPVTBL additionalProperties,
-                                Pointer<COMObject>)>>>()
-                .value
-                .asFunction<
-                    int Function(LPVTBL, int aqsFilter,
-                        LPVTBL additionalProperties, Pointer<COMObject>)>()(
-            ptr.ref.lpVtbl,
-            aqsFilterHString,
-            additionalProperties == null
-                ? nullptr
-                : additionalProperties.ptr.ref.lpVtbl,
-            retValuePtr);
+    final hr = ptr.ref.vtable
+            .elementAt(15)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            LPVTBL lpVtbl,
+                            IntPtr aqsFilter,
+                            LPVTBL additionalProperties,
+                            Pointer<COMObject> retValuePtr)>>>()
+            .value
+            .asFunction<
+                int Function(
+                    LPVTBL lpVtbl,
+                    int aqsFilter,
+                    LPVTBL additionalProperties,
+                    Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl,
+        aqsFilterHString,
+        additionalProperties == null
+            ? nullptr
+            : additionalProperties.ptr.ref.lpVtbl,
+        retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);

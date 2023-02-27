@@ -34,22 +34,26 @@ class IStorageItemExtraProperties extends IInspectable {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<IMap<String, Object?>>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(LPVTBL, LPVTBL propertiesToRetrieve,
-                            Pointer<COMObject>)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    LPVTBL, LPVTBL propertiesToRetrieve, Pointer<COMObject>)>()(
-        ptr.ref.lpVtbl,
-        propertiesToRetrieve == null
-            ? nullptr
-            : propertiesToRetrieve.ptr.ref.lpVtbl,
-        retValuePtr);
+    final hr =
+        ptr
+                .ref.vtable
+                .elementAt(6)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                LPVTBL lpVtbl,
+                                LPVTBL propertiesToRetrieve,
+                                Pointer<COMObject> retValuePtr)>>>()
+                .value
+                .asFunction<
+                    int Function(LPVTBL lpVtbl, LPVTBL propertiesToRetrieve,
+                        Pointer<COMObject> retValuePtr)>()(
+            ptr.ref.lpVtbl,
+            propertiesToRetrieve == null
+                ? nullptr
+                : propertiesToRetrieve.ptr.ref.lpVtbl,
+            retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -76,12 +80,12 @@ class IStorageItemExtraProperties extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL, LPVTBL propertiesToSave,
-                            Pointer<COMObject>)>>>()
+                        HRESULT Function(LPVTBL lpVtbl, LPVTBL propertiesToSave,
+                            Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(
-                    LPVTBL, LPVTBL propertiesToSave, Pointer<COMObject>)>()(
+                int Function(LPVTBL lpVtbl, LPVTBL propertiesToSave,
+                    Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl,
         propertiesToSave == null ? nullptr : propertiesToSave.ptr.ref.lpVtbl,
         retValuePtr);
@@ -102,14 +106,16 @@ class IStorageItemExtraProperties extends IInspectable {
     final completer = Completer<void>();
 
     final hr = ptr.ref.vtable
-        .elementAt(8)
-        .cast<
-            Pointer<
-                NativeFunction<HRESULT Function(LPVTBL, Pointer<COMObject>)>>>()
-        .value
-        .asFunction<
-            int Function(
-                LPVTBL, Pointer<COMObject>)>()(ptr.ref.lpVtbl, retValuePtr);
+            .elementAt(8)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>>>()
+            .value
+            .asFunction<
+                int Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);

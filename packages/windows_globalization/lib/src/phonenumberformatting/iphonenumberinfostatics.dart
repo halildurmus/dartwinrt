@@ -36,22 +36,24 @@ class IPhoneNumberInfoStatics extends IInspectable {
     final inputHString = convertToHString(input);
 
     try {
-      final hr =
-          ptr.ref.vtable
-                  .elementAt(6)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(
-                                  LPVTBL,
-                                  IntPtr input,
-                                  Pointer<COMObject> phoneNumber,
-                                  Pointer<Int32>)>>>()
-                  .value
-                  .asFunction<
-                      int Function(LPVTBL, int input,
-                          Pointer<COMObject> phoneNumber, Pointer<Int32>)>()(
-              ptr.ref.lpVtbl, inputHString, phoneNumber.ptr, retValuePtr);
+      final hr = ptr.ref.vtable
+              .elementAt(6)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              LPVTBL lpVtbl,
+                              IntPtr input,
+                              Pointer<COMObject> phoneNumber,
+                              Pointer<Int32> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(
+                      LPVTBL lpVtbl,
+                      int input,
+                      Pointer<COMObject> phoneNumber,
+                      Pointer<Int32> retValuePtr)>()(
+          ptr.ref.lpVtbl, inputHString, phoneNumber.ptr, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -70,27 +72,26 @@ class IPhoneNumberInfoStatics extends IInspectable {
     final regionCodeHString = convertToHString(regionCode);
 
     try {
-      final hr =
-          ptr.ref.vtable
-                  .elementAt(7)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(
-                                  LPVTBL,
-                                  IntPtr input,
-                                  IntPtr regionCode,
-                                  Pointer<COMObject> phoneNumber,
-                                  Pointer<Int32>)>>>()
-                  .value
-                  .asFunction<
-                      int Function(LPVTBL, int input, int regionCode,
-                          Pointer<COMObject> phoneNumber, Pointer<Int32>)>()(
-              ptr.ref.lpVtbl,
-              inputHString,
-              regionCodeHString,
-              phoneNumber.ptr,
-              retValuePtr);
+      final hr = ptr.ref.vtable
+              .elementAt(7)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              LPVTBL lpVtbl,
+                              IntPtr input,
+                              IntPtr regionCode,
+                              Pointer<COMObject> phoneNumber,
+                              Pointer<Int32> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(
+                      LPVTBL lpVtbl,
+                      int input,
+                      int regionCode,
+                      Pointer<COMObject> phoneNumber,
+                      Pointer<Int32> retValuePtr)>()(ptr.ref.lpVtbl,
+          inputHString, regionCodeHString, phoneNumber.ptr, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 

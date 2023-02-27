@@ -93,7 +93,7 @@ $header
 $importHeader
 
 $classPreamble
-$classDeclaration
+$classHeader {
   $defaultConstructor
   $namedConstructor
 

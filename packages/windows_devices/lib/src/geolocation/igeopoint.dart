@@ -39,9 +39,12 @@ class IGeopoint extends IInspectable implements IGeoshape {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL, Pointer<BasicGeoposition>)>>>()
+                        HRESULT Function(LPVTBL lpVtbl,
+                            Pointer<BasicGeoposition> retValuePtr)>>>()
             .value
-            .asFunction<int Function(LPVTBL, Pointer<BasicGeoposition>)>()(
+            .asFunction<
+                int Function(
+                    LPVTBL lpVtbl, Pointer<BasicGeoposition> retValuePtr)>()(
         ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) throw WindowsException(hr);

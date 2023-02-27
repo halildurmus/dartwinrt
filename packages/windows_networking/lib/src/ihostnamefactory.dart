@@ -39,11 +39,12 @@ class IHostNameFactory extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(
-                            LPVTBL, IntPtr hostName, Pointer<COMObject>)>>>()
+                        HRESULT Function(LPVTBL lpVtbl, IntPtr hostName,
+                            Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL, int hostName, Pointer<COMObject>)>()(
+                int Function(LPVTBL lpVtbl, int hostName,
+                    Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, hostNameHString, retValuePtr);
 
     if (FAILED(hr)) {

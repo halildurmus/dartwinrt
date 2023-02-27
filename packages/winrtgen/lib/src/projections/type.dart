@@ -52,9 +52,8 @@ const specialTypes = <String, TypeTuple>{
 
 class TypeProjection {
   TypeProjection(TypeIdentifier ti, {this.isParameter = false})
-      : typeIdentifier = ti.baseType == BaseType.genericTypeModifier
-            ? ti.copyWith(name: ti.shortName)
-            : ti;
+      : typeIdentifier =
+            ti.isGenericType ? ti.copyWith(name: ti.shortName) : ti;
 
   final TypeIdentifier typeIdentifier;
 
@@ -84,16 +83,14 @@ class TypeProjection {
   bool get isBaseType =>
       baseNativeMapping.keys.contains(typeIdentifier.baseType);
 
-  bool get isClassVariableType =>
-      typeIdentifier.baseType == BaseType.classVariableTypeModifier;
+  bool get isClassVariableType => typeIdentifier.isClassVariableType;
 
   bool get isDartPrimitive =>
       ['bool', 'double', 'int', 'void'].contains(dartType);
 
   bool get isDateTime => typeIdentifier.name == 'Windows.Foundation.DateTime';
 
-  bool get isGenericType =>
-      typeIdentifier.baseType == BaseType.genericTypeModifier;
+  bool get isGenericType => typeIdentifier.isGenericType;
 
   bool get isGuid => dartType == 'GUID';
 
@@ -102,27 +99,26 @@ class TypeProjection {
   bool get isMapView =>
       typeIdentifier.type?.name.endsWith('IMapView`2') ?? false;
 
-  bool get isObjectType => typeIdentifier.baseType == BaseType.objectType;
+  bool get isObjectType => typeIdentifier.isObjectType;
 
-  bool get isPointer => typeIdentifier.baseType == BaseType.pointerTypeModifier;
+  bool get isPointer => typeIdentifier.isPointerType;
 
   bool get isReference =>
       typeIdentifier.type?.name.endsWith('IReference`1') ?? false;
 
-  bool get isReferenceType =>
-      typeIdentifier.baseType == BaseType.referenceTypeModifier;
+  bool get isReferenceType => typeIdentifier.isReferenceType;
 
-  bool get isSimpleArray => typeIdentifier.baseType == BaseType.simpleArrayType;
+  bool get isSimpleArray => typeIdentifier.isSimpleArrayType;
 
   bool get isSpecialType => specialTypes.keys.contains(typeIdentifier.name);
 
-  bool get isString => typeIdentifier.baseType == BaseType.stringType;
+  bool get isString => typeIdentifier.isStringType;
 
   bool get isTimeSpan => typeIdentifier.name == 'Windows.Foundation.TimeSpan';
 
   bool get isUri => typeIdentifier.name == 'Windows.Foundation.Uri';
 
-  bool get isValueType => typeIdentifier.baseType == BaseType.valueTypeModifier;
+  bool get isValueType => typeIdentifier.isValueType;
 
   bool get isVector => typeIdentifier.type?.name.endsWith('IVector`1') ?? false;
 
@@ -235,7 +231,7 @@ class TypeProjection {
   }
 
   TypeArg get genericTypeArg {
-    assert(typeIdentifier.baseType == BaseType.classVariableTypeModifier);
+    assert(typeIdentifier.isClassVariableType);
     return TypeArg.from(typeIdentifier.name);
   }
 

@@ -43,13 +43,13 @@ class IXmlDocumentStatics extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(
-                            LPVTBL, LPVTBL uri, Pointer<COMObject>)>>>()
+                        HRESULT Function(LPVTBL lpVtbl, LPVTBL uri,
+                            Pointer<COMObject> retValuePtr)>>>()
             .value
-            .asFunction<int Function(LPVTBL, LPVTBL uri, Pointer<COMObject>)>()(
-        ptr.ref.lpVtbl,
-        uriUri == null ? nullptr : uriUri.ptr.ref.lpVtbl,
-        retValuePtr);
+            .asFunction<
+                int Function(LPVTBL lpVtbl, LPVTBL uri,
+                    Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl,
+        uriUri == null ? nullptr : uriUri.ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -73,22 +73,24 @@ class IXmlDocumentStatics extends IInspectable {
     final completer = Completer<XmlDocument?>();
     final uriUri = uri == null ? null : winrt_uri.Uri.createUri(uri.toString());
 
-    final hr =
-        ptr.ref.vtable
-                .elementAt(7)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(LPVTBL, LPVTBL uri,
-                                LPVTBL loadSettings, Pointer<COMObject>)>>>()
-                .value
-                .asFunction<
-                    int Function(LPVTBL, LPVTBL uri, LPVTBL loadSettings,
-                        Pointer<COMObject>)>()(
-            ptr.ref.lpVtbl,
-            uriUri == null ? nullptr : uriUri.ptr.ref.lpVtbl,
-            loadSettings == null ? nullptr : loadSettings.ptr.ref.lpVtbl,
-            retValuePtr);
+    final hr = ptr.ref.vtable
+            .elementAt(7)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            LPVTBL lpVtbl,
+                            LPVTBL uri,
+                            LPVTBL loadSettings,
+                            Pointer<COMObject> retValuePtr)>>>()
+            .value
+            .asFunction<
+                int Function(LPVTBL lpVtbl, LPVTBL uri, LPVTBL loadSettings,
+                    Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl,
+        uriUri == null ? nullptr : uriUri.ptr.ref.lpVtbl,
+        loadSettings == null ? nullptr : loadSettings.ptr.ref.lpVtbl,
+        retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -115,14 +117,13 @@ class IXmlDocumentStatics extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(
-                            LPVTBL, LPVTBL file, Pointer<COMObject>)>>>()
+                        HRESULT Function(LPVTBL lpVtbl, LPVTBL file,
+                            Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL, LPVTBL file, Pointer<COMObject>)>()(
-        ptr.ref.lpVtbl,
-        file == null ? nullptr : file.ptr.ref.lpVtbl,
-        retValuePtr);
+                int Function(LPVTBL lpVtbl, LPVTBL file,
+                    Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl,
+        file == null ? nullptr : file.ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -143,22 +144,24 @@ class IXmlDocumentStatics extends IInspectable {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<XmlDocument?>();
 
-    final hr =
-        ptr.ref.vtable
-                .elementAt(9)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(LPVTBL, LPVTBL file,
-                                LPVTBL loadSettings, Pointer<COMObject>)>>>()
-                .value
-                .asFunction<
-                    int Function(LPVTBL, LPVTBL file, LPVTBL loadSettings,
-                        Pointer<COMObject>)>()(
-            ptr.ref.lpVtbl,
-            file == null ? nullptr : file.ptr.ref.lpVtbl,
-            loadSettings == null ? nullptr : loadSettings.ptr.ref.lpVtbl,
-            retValuePtr);
+    final hr = ptr.ref.vtable
+            .elementAt(9)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            LPVTBL lpVtbl,
+                            LPVTBL file,
+                            LPVTBL loadSettings,
+                            Pointer<COMObject> retValuePtr)>>>()
+            .value
+            .asFunction<
+                int Function(LPVTBL lpVtbl, LPVTBL file, LPVTBL loadSettings,
+                    Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl,
+        file == null ? nullptr : file.ptr.ref.lpVtbl,
+        loadSettings == null ? nullptr : loadSettings.ptr.ref.lpVtbl,
+        retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);

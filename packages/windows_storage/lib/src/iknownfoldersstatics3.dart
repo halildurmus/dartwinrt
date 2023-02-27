@@ -42,12 +42,12 @@ class IKnownFoldersStatics3 extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL, LPVTBL user, Int32 folderId,
-                            Pointer<COMObject>)>>>()
+                        HRESULT Function(LPVTBL lpVtbl, LPVTBL user, Int32 folderId,
+                            Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(
-                    LPVTBL, LPVTBL user, int folderId, Pointer<COMObject>)>()(
+                int Function(LPVTBL lpVtbl, LPVTBL user, int folderId,
+                    Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl,
         user == null ? nullptr : user.ptr.ref.lpVtbl,
         folderId.value,

@@ -65,18 +65,13 @@ mixin _MapMixin on MethodProjection {
 
     return ', ${args.join(', ')}';
   }
-}
-
-/// Method projection for methods that return an `IMap<K, V>`.
-class MapMethodProjection extends MethodProjection with _MapMixin {
-  MapMethodProjection(super.method, super.vtableOffset);
 
   @override
   String get returnType => 'IMap<$mapTypeArgs>';
 
   @override
-  String get methodProjection => '''
-  $returnType $camelCasedName($methodParams) {
+  String get methodDeclaration => '''
+  $methodHeader {
     final retValuePtr = calloc<COMObject>();
     $parametersPreamble
 
@@ -89,26 +84,17 @@ class MapMethodProjection extends MethodProjection with _MapMixin {
 ''';
 }
 
+/// Method projection for methods that return `IMap<K, V>`.
+class MapMethodProjection extends MethodProjection with _MapMixin {
+  MapMethodProjection(super.method, super.vtableOffset);
+}
+
 /// Getter projection for `IMap<K, V>` getters.
 class MapGetterProjection extends GetterProjection with _MapMixin {
   MapGetterProjection(super.method, super.vtableOffset);
-
-  @override
-  String get returnType => 'IMap<$mapTypeArgs>';
-
-  @override
-  String get methodProjection => '''
-  $returnType get $camelCasedName {
-    final retValuePtr = calloc<COMObject>();
-
-    ${ffiCall(freeRetValOnFailure: true)}
-
-    return IMap.fromRawPointer(retValuePtr$mapConstructorArgs);
-  }
-''';
 }
 
-/// Method projection for methods that return an `IMapView<K, V>` (exposed as
+/// Method projection for methods that return `IMapView<K, V>` (exposed as
 /// `Map<K, V>`).
 class MapViewMethodProjection extends MethodProjection with _MapMixin {
   MapViewMethodProjection(super.method, super.vtableOffset);
@@ -117,8 +103,8 @@ class MapViewMethodProjection extends MethodProjection with _MapMixin {
   String get returnType => 'Map<$mapTypeArgs>';
 
   @override
-  String get methodProjection => '''
-  $returnType $camelCasedName($methodParams) {
+  String get methodDeclaration => '''
+  $methodHeader {
     final retValuePtr = calloc<COMObject>();
     $parametersPreamble
 
@@ -142,8 +128,8 @@ class MapViewGetterProjection extends GetterProjection with _MapMixin {
   String get returnType => 'Map<$mapTypeArgs>';
 
   @override
-  String get methodProjection => '''
-  $returnType get $camelCasedName {
+  String get methodDeclaration => '''
+  $methodHeader {
     final retValuePtr = calloc<COMObject>();
 
     ${ffiCall(freeRetValOnFailure: true)}

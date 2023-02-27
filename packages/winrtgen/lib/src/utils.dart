@@ -273,3 +273,10 @@ String wrapCommentText(String inputText, [int wrapLength = 76]) {
   outputText.write(textLine);
   return outputText.toString().trimRight();
 }
+
+/// Wrap a [type] in a `Pointer` if it isn't already wrapped.
+///
+/// For example, `Int32` should become `Pointer<Int32>` whereas
+/// `Pointer<COMObject>` should remain as is.
+String wrapWithPointer(String type) =>
+    type.startsWith('Pointer<') ? type : 'Pointer<$type>';

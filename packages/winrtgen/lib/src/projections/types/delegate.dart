@@ -7,14 +7,10 @@ import '../method.dart';
 import '../parameter.dart';
 import '../setter.dart';
 
-/// Method projection for methods that return WinRT delegate (e.g.
-/// `AsyncActionCompletedHandler`).
-class DelegateMethodProjection extends MethodProjection {
-  DelegateMethodProjection(super.method, super.vtableOffset);
-
+mixin _DelegateMixin on MethodProjection {
   @override
-  String get methodProjection => '''
-  $returnType $camelCasedName($parameters) {
+  String get methodDeclaration => '''
+  $methodHeader {
     final retValuePtr = calloc<COMObject>();
     $parametersPreamble
 
@@ -27,29 +23,26 @@ class DelegateMethodProjection extends MethodProjection {
 ''';
 }
 
+/// Method projection for methods that return WinRT delegate (e.g.
+/// `AsyncActionCompletedHandler`).
+class DelegateMethodProjection extends MethodProjection with _DelegateMixin {
+  DelegateMethodProjection(super.method, super.vtableOffset);
+}
+
 /// Getter projection for WinRT delegate getters.
-class DelegateGetterProjection extends GetterProjection {
+class DelegateGetterProjection extends GetterProjection with _DelegateMixin {
   DelegateGetterProjection(super.method, super.vtableOffset);
-
-  @override
-  String get methodProjection => '''
-  $returnType get $camelCasedName {
-    final retValuePtr = calloc<COMObject>();
-
-    ${ffiCall(freeRetValOnFailure: true)}
-
-    return retValuePtr;
-  }
-''';
 }
 
 /// Setter projection for WinRT delegate setters.
 class DelegateSetterProjection extends SetterProjection {
   DelegateSetterProjection(super.method, super.vtableOffset);
 
+  String get type => '';
+
   @override
-  String get methodProjection => '''
-  set $camelCasedName(${param.type} value) {
+  String get methodDeclaration => '''
+  $methodHeader {
     ${ffiCall(params: 'value.ref.lpVtbl')}
   }
 ''';

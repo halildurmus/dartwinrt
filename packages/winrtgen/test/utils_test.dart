@@ -303,4 +303,9 @@ void main() {
     expect(wrapCommentText('This is a short string', 200),
         equals('/// This is a short string'));
   });
+
+  test('wrapWithPointer', () {
+    expect(wrapWithPointer('Int32'), equals('Pointer<Int32>'));
+    expect(wrapWithPointer('Pointer<COMObject>'), equals('Pointer<COMObject>'));
+  });
 }

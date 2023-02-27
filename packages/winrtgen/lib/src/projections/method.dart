@@ -7,8 +7,10 @@ import 'package:winmd/winmd.dart';
 import '../extensions/extensions.dart';
 import '../models/models.dart';
 import '../utils.dart';
+import 'getter.dart';
 import 'interface.dart';
 import 'parameter.dart';
+import 'setter.dart';
 import 'type.dart';
 import 'types/types.dart';
 
@@ -45,8 +47,7 @@ abstract class MethodProjection {
   /// Returns the appropriate method projection for the [method] based on the
   /// return type.
   factory MethodProjection.create(Method method, int vtableOffset) {
-    final projectionType =
-        TypeProjection(method.returnType.typeIdentifier).projectionType;
+    final projectionType = method.projectionType;
     switch (projectionType) {
       case ProjectionType.asyncAction:
         return AsyncActionMethodProjection(method, vtableOffset);
@@ -154,12 +155,23 @@ abstract class MethodProjection {
   /// The return type of the method (e.g. `String`).
   String get returnType => returnTypeProjection.dartType;
 
-  /// A shortened version of the method declaration for use in factory
-  /// constructors, static methods, and method forwarders.
+  /// The header of the method.
   ///   e.g. `void setDateTime(DateTime value)` or `void setToNow()` (method)
-  ///   e.g. `int get period` or `int get second` (get property)
-  ///   e.g. `set second(int value)` (set property)
-  String get shortDeclaration => toString().split('{').first.trim();
+  ///   e.g. `int get second` (getter)
+  ///   e.g. `set second(int value)` (setter)
+  String get methodHeader {
+    if (this is GetterProjection) return '$returnType get $camelCasedName';
+
+    // Type promotion doesn't work for `this`.
+    // TODO: Remove when https://github.com/dart-lang/language/issues/926 is
+    // fixed
+    final self = this;
+    if (self is SetterProjection) {
+      return 'set $camelCasedName(${self.param.type} value)';
+    }
+
+    return '$returnType $camelCasedName($methodParams)';
+  }
 
   /// A shortened version of the method for use in factory constructors, static
   /// methods, and method forwarders.
@@ -167,16 +179,19 @@ abstract class MethodProjection {
   ///   e.g. `period` or `second` (get property)
   ///   e.g. `second = value` (set property)
   String get shortForm {
-    final paramIdentifiers =
-        _params.map((param) => param.identifier).join(', ');
-    return '$camelCasedName($paramIdentifiers)';
+    final identifiers = _params.map((param) => param.identifier).join(', ');
+    return '$camelCasedName($identifiers)';
   }
 
-  String get parametersPreamble =>
-      parameters.map((param) => param.preamble).join('\n');
+  String get parametersPreamble {
+    if (this is GetterProjection || this is SetterProjection) return '';
+    return parameters.map((param) => param.preamble).join('\n');
+  }
 
-  String get parametersPostamble =>
-      parameters.map((param) => param.postamble).join('\n');
+  String get parametersPostamble {
+    if (this is GetterProjection || this is SetterProjection) return '';
+    return parameters.map((param) => param.postamble).join('\n');
+  }
 
   // WinRT methods always return an HRESULT
   String get nativePrototype => 'HRESULT Function($nativeParams)';
@@ -193,21 +208,17 @@ abstract class MethodProjection {
       ].join(', ');
 
   String get nativeParams => [
-        'LPVTBL',
+        'LPVTBL lpVtbl',
         ...parameters.map((param) => param.ffiProjection),
         if (!returnTypeProjection.isVoid)
-          returnTypeProjection.dartType == 'Pointer<COMObject>'
-              ? 'Pointer<COMObject>'
-              : 'Pointer<${returnTypeProjection.nativeType}>',
+          '${wrapWithPointer(returnTypeProjection.nativeType)} retValuePtr',
       ].join(', ');
 
   String get dartParams => [
-        'LPVTBL',
+        'LPVTBL lpVtbl',
         ...parameters.map((param) => param.dartProjection),
         if (!returnTypeProjection.isVoid)
-          returnTypeProjection.dartType == 'Pointer<COMObject>'
-              ? 'Pointer<COMObject>'
-              : 'Pointer<${returnTypeProjection.nativeType}>',
+          '${wrapWithPointer(returnTypeProjection.nativeType)} retValuePtr',
       ].join(', ');
 
   String ffiCall({String params = '', bool freeRetValOnFailure = false}) {
@@ -216,10 +227,10 @@ abstract class MethodProjection {
     return [
       '''
     final hr = ptr.ref.vtable
-      .elementAt($vtableOffset)
-      .cast<Pointer<NativeFunction<$nativePrototype>>>()
-      .value
-      .asFunction<$dartPrototype>()($identifiers);
+        .elementAt($vtableOffset)
+        .cast<Pointer<NativeFunction<$nativePrototype>>>()
+        .value
+        .asFunction<$dartPrototype>()($identifiers);
 ''',
       if (freeRetValOnFailure)
         'if (FAILED(hr)) { free(retValuePtr); throw WindowsException(hr); }'
@@ -228,13 +239,12 @@ abstract class MethodProjection {
     ].join('\n');
   }
 
-  /// The projection of the method.
-  String get methodProjection;
+  String get methodDeclaration;
 
   @override
   String toString() {
     try {
-      return methodProjection;
+      return methodDeclaration;
     } on Exception {
       // Print an error if we're unable to project a method, but don't
       // completely bail out. The rest may be useful.

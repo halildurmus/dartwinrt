@@ -4,19 +4,17 @@
 
 import 'package:winmd/winmd.dart';
 
+import '../../extensions/extensions.dart';
 import '../getter.dart';
 import '../method.dart';
 import '../parameter.dart';
 import '../setter.dart';
 import '../type.dart';
 
-/// Default method projection for methods.
-class DefaultMethodProjection extends MethodProjection {
-  DefaultMethodProjection(super.method, super.vtableOffset);
-
+mixin _DefaultMixin on MethodProjection {
   @override
-  String get methodProjection => '''
-  $returnType $camelCasedName($methodParams) {
+  String get methodDeclaration => '''
+  $methodHeader {
     final retValuePtr = calloc<${returnTypeProjection.nativeType}>();
     $parametersPreamble
 
@@ -32,24 +30,14 @@ class DefaultMethodProjection extends MethodProjection {
 ''';
 }
 
+/// Default method projection for methods.
+class DefaultMethodProjection extends MethodProjection with _DefaultMixin {
+  DefaultMethodProjection(super.method, super.vtableOffset);
+}
+
 /// Default getter projection for getters.
-class DefaultGetterProjection extends GetterProjection {
+class DefaultGetterProjection extends GetterProjection with _DefaultMixin {
   DefaultGetterProjection(super.method, super.vtableOffset);
-
-  @override
-  String get methodProjection => '''
-  $returnType get $camelCasedName {
-    final retValuePtr = calloc<${returnTypeProjection.nativeType}>();
-
-    try {
-      ${ffiCall()}
-
-      return retValuePtr.value;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-''';
 }
 
 /// Default setter projection for setters.
@@ -57,8 +45,8 @@ class DefaultSetterProjection extends SetterProjection {
   DefaultSetterProjection(super.method, super.vtableOffset);
 
   @override
-  String get methodProjection => '''
-  set $camelCasedName(${param.type} value) {
+  String get methodDeclaration => '''
+  $methodHeader {
     ${ffiCall(params: 'value')}
   }
 ''';
@@ -81,8 +69,7 @@ class DefaultParameterProjection extends ParameterProjection {
     // See DefaultListParameterProjection class below.
     if (parameter.name == '__valueSize') {
       if (parameter.isInParam) return 'value.length';
-      if (parameter.isOutParam &&
-          parameter.typeIdentifier.baseType == BaseType.pointerTypeModifier) {
+      if (parameter.isOutParam && parameter.typeIdentifier.isPointerType) {
         return 'pValueSize';
       }
     }
@@ -98,7 +85,7 @@ class DefaultListParameterProjection extends ParameterProjection {
       : valueSizeParam = parameter.parent.parameters
             .firstWhere((p) => p.name == '__valueSize'),
         typeArgProjection = TypeProjection(
-            parameter.typeIdentifier.baseType == BaseType.referenceTypeModifier
+            parameter.typeIdentifier.isReferenceType
                 ? parameter.typeIdentifier.typeArg!.typeArg!
                 : parameter.typeIdentifier.typeArg!);
 
@@ -106,14 +93,12 @@ class DefaultListParameterProjection extends ParameterProjection {
   final TypeProjection typeArgProjection;
 
   bool get isFillArrayStyleParam =>
-      valueSizeParam.isOutParam &&
-      valueSizeParam.typeIdentifier.baseType != BaseType.pointerTypeModifier;
+      valueSizeParam.isOutParam && !valueSizeParam.typeIdentifier.isPointerType;
 
   bool get isPassArrayStyleParam => valueSizeParam.isInParam;
 
   bool get isReceiveArrayStyleParam =>
-      valueSizeParam.isOutParam &&
-      valueSizeParam.typeIdentifier.baseType == BaseType.pointerTypeModifier;
+      valueSizeParam.isOutParam && valueSizeParam.typeIdentifier.isPointerType;
 
   @override
   String get type => 'List<${typeArgProjection.dartType}>';
@@ -140,7 +125,9 @@ class DefaultListParameterProjection extends ParameterProjection {
   String get passArrayPostamble => 'free(pArray);';
 
   String get receiveArrayPostamble => '''
-    value.addAll(pArray.value.toList(length: pValueSize.value));
+    if (pValueSize.value > 0) {
+      value.addAll(pArray.value.toList(length: pValueSize.value));
+    }
     free(pValueSize);
     free(pArray);''';
 

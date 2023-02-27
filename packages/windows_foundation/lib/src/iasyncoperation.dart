@@ -136,10 +136,14 @@ abstract class IAsyncOperation<TResult> extends IInspectable
   /// Sets the method that handles the operation completed notification.
   set completed(Pointer<COMObject> value) {
     final hr = ptr.ref.lpVtbl.value
-        .elementAt(6)
-        .cast<Pointer<NativeFunction<HRESULT Function(LPVTBL, Pointer)>>>()
-        .value
-        .asFunction<int Function(LPVTBL, Pointer)>()(ptr.ref.lpVtbl, value);
+            .elementAt(6)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(LPVTBL lpVtbl, LPVTBL value)>>>()
+            .value
+            .asFunction<int Function(LPVTBL lpVtbl, LPVTBL value)>()(
+        ptr.ref.lpVtbl, value.ref.lpVtbl);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
@@ -149,14 +153,16 @@ abstract class IAsyncOperation<TResult> extends IInspectable
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.lpVtbl.value
-        .elementAt(7)
-        .cast<
-            Pointer<
-                NativeFunction<HRESULT Function(LPVTBL, Pointer<COMObject>)>>>()
-        .value
-        .asFunction<
-            int Function(
-                LPVTBL, Pointer<COMObject>)>()(ptr.ref.lpVtbl, retValuePtr);
+            .elementAt(7)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>>>()
+            .value
+            .asFunction<
+                int Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) throw WindowsException(hr);
 

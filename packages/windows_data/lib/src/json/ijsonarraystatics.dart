@@ -39,10 +39,12 @@ class IJsonArrayStatics extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(
-                            LPVTBL, IntPtr input, Pointer<COMObject>)>>>()
+                        HRESULT Function(LPVTBL lpVtbl, IntPtr input,
+                            Pointer<COMObject> retValuePtr)>>>()
             .value
-            .asFunction<int Function(LPVTBL, int input, Pointer<COMObject>)>()(
+            .asFunction<
+                int Function(LPVTBL lpVtbl, int input,
+                    Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, inputHString, retValuePtr);
 
     if (FAILED(hr)) {
@@ -70,12 +72,15 @@ class IJsonArrayStatics extends IInspectable {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(LPVTBL, IntPtr input,
-                              Pointer<COMObject> result, Pointer<Bool>)>>>()
+                          HRESULT Function(
+                              LPVTBL lpVtbl,
+                              IntPtr input,
+                              Pointer<COMObject> result,
+                              Pointer<Bool> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(LPVTBL, int input, Pointer<COMObject> result,
-                      Pointer<Bool>)>()(
+                  int Function(LPVTBL lpVtbl, int input,
+                      Pointer<COMObject> result, Pointer<Bool> retValuePtr)>()(
           ptr.ref.lpVtbl, inputHString, result.ptr, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);

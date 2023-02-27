@@ -35,9 +35,11 @@ class IStorageLibraryChangeTracker2 extends IInspectable {
     final hr = ptr.ref.vtable
             .elementAt(6)
             .cast<
-                Pointer<NativeFunction<HRESULT Function(LPVTBL, LPVTBL options)>>>()
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(LPVTBL lpVtbl, LPVTBL options)>>>()
             .value
-            .asFunction<int Function(LPVTBL, LPVTBL options)>()(
+            .asFunction<int Function(LPVTBL lpVtbl, LPVTBL options)>()(
         ptr.ref.lpVtbl, options == null ? nullptr : options.ptr.ref.lpVtbl);
 
     if (FAILED(hr)) throw WindowsException(hr);
@@ -46,9 +48,9 @@ class IStorageLibraryChangeTracker2 extends IInspectable {
   void disable() {
     final hr = ptr.ref.vtable
         .elementAt(7)
-        .cast<Pointer<NativeFunction<HRESULT Function(LPVTBL)>>>()
+        .cast<Pointer<NativeFunction<HRESULT Function(LPVTBL lpVtbl)>>>()
         .value
-        .asFunction<int Function(LPVTBL)>()(ptr.ref.lpVtbl);
+        .asFunction<int Function(LPVTBL lpVtbl)>()(ptr.ref.lpVtbl);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }

@@ -34,7 +34,6 @@ extension ImportHelpers on InterfaceProjection {
       return relativePathTo('${folderFromType(type)}/structs.g.dart');
     }
 
-    // TODO: Add support for these as they occur.
     print('Unable to get import for typeDef: $typeDef');
     return '';
   }

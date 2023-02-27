@@ -40,10 +40,12 @@ class IStorageFolderStatics extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(
-                            LPVTBL, IntPtr path, Pointer<COMObject>)>>>()
+                        HRESULT Function(LPVTBL lpVtbl, IntPtr path,
+                            Pointer<COMObject> retValuePtr)>>>()
             .value
-            .asFunction<int Function(LPVTBL, int path, Pointer<COMObject>)>()(
+            .asFunction<
+                int Function(
+                    LPVTBL lpVtbl, int path, Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, pathHString, retValuePtr);
 
     if (FAILED(hr)) {

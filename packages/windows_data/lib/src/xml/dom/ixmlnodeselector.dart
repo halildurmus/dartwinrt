@@ -40,10 +40,12 @@ class IXmlNodeSelector extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(
-                            LPVTBL, IntPtr xpath, Pointer<COMObject>)>>>()
+                        HRESULT Function(LPVTBL lpVtbl, IntPtr xpath,
+                            Pointer<COMObject> retValuePtr)>>>()
             .value
-            .asFunction<int Function(LPVTBL, int xpath, Pointer<COMObject>)>()(
+            .asFunction<
+                int Function(LPVTBL lpVtbl, int xpath,
+                    Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, xpathHString, retValuePtr);
 
     if (FAILED(hr)) {
@@ -70,10 +72,12 @@ class IXmlNodeSelector extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(
-                            LPVTBL, IntPtr xpath, Pointer<COMObject>)>>>()
+                        HRESULT Function(LPVTBL lpVtbl, IntPtr xpath,
+                            Pointer<COMObject> retValuePtr)>>>()
             .value
-            .asFunction<int Function(LPVTBL, int xpath, Pointer<COMObject>)>()(
+            .asFunction<
+                int Function(LPVTBL lpVtbl, int xpath,
+                    Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, xpathHString, retValuePtr);
 
     if (FAILED(hr)) {
@@ -101,13 +105,19 @@ class IXmlNodeSelector extends IInspectable {
                 .cast<
                     Pointer<
                         NativeFunction<
-                            HRESULT Function(LPVTBL, IntPtr xpath,
-                                LPVTBL namespaces, Pointer<COMObject>)>>>()
+                            HRESULT Function(
+                                LPVTBL lpVtbl,
+                                IntPtr xpath,
+                                LPVTBL namespaces,
+                                Pointer<COMObject> retValuePtr)>>>()
                 .value
                 .asFunction<
-                    int Function(LPVTBL, int xpath, LPVTBL namespaces,
-                        Pointer<COMObject>)>()(ptr.ref.lpVtbl, xpathHString,
-            namespaces?.intoBox().ref.lpVtbl ?? nullptr, retValuePtr);
+                    int Function(LPVTBL lpVtbl, int xpath, LPVTBL namespaces,
+                        Pointer<COMObject> retValuePtr)>()(
+            ptr.ref.lpVtbl,
+            xpathHString,
+            namespaces?.intoBox().ref.lpVtbl ?? nullptr,
+            retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -134,13 +144,19 @@ class IXmlNodeSelector extends IInspectable {
                 .cast<
                     Pointer<
                         NativeFunction<
-                            HRESULT Function(LPVTBL, IntPtr xpath,
-                                LPVTBL namespaces, Pointer<COMObject>)>>>()
+                            HRESULT Function(
+                                LPVTBL lpVtbl,
+                                IntPtr xpath,
+                                LPVTBL namespaces,
+                                Pointer<COMObject> retValuePtr)>>>()
                 .value
                 .asFunction<
-                    int Function(LPVTBL, int xpath, LPVTBL namespaces,
-                        Pointer<COMObject>)>()(ptr.ref.lpVtbl, xpathHString,
-            namespaces?.intoBox().ref.lpVtbl ?? nullptr, retValuePtr);
+                    int Function(LPVTBL lpVtbl, int xpath, LPVTBL namespaces,
+                        Pointer<COMObject> retValuePtr)>()(
+            ptr.ref.lpVtbl,
+            xpathHString,
+            namespaces?.intoBox().ref.lpVtbl ?? nullptr,
+            retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);

@@ -32,31 +32,35 @@ class IToastNotifier extends IInspectable {
       IToastNotifier.fromRawPointer(interface.toInterface(IID_IToastNotifier));
 
   void show(ToastNotification? notification) {
-    final hr = ptr.ref.vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(LPVTBL, LPVTBL notification)>>>()
-            .value
-            .asFunction<int Function(LPVTBL, LPVTBL notification)>()(
-        ptr.ref.lpVtbl,
-        notification == null ? nullptr : notification.ptr.ref.lpVtbl);
+    final hr =
+        ptr.ref.vtable
+                .elementAt(6)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                LPVTBL lpVtbl, LPVTBL notification)>>>()
+                .value
+                .asFunction<int Function(LPVTBL lpVtbl, LPVTBL notification)>()(
+            ptr.ref.lpVtbl,
+            notification == null ? nullptr : notification.ptr.ref.lpVtbl);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
   void hide(ToastNotification? notification) {
-    final hr = ptr.ref.vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(LPVTBL, LPVTBL notification)>>>()
-            .value
-            .asFunction<int Function(LPVTBL, LPVTBL notification)>()(
-        ptr.ref.lpVtbl,
-        notification == null ? nullptr : notification.ptr.ref.lpVtbl);
+    final hr =
+        ptr.ref.vtable
+                .elementAt(7)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                LPVTBL lpVtbl, LPVTBL notification)>>>()
+                .value
+                .asFunction<int Function(LPVTBL lpVtbl, LPVTBL notification)>()(
+            ptr.ref.lpVtbl,
+            notification == null ? nullptr : notification.ptr.ref.lpVtbl);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
@@ -66,14 +70,16 @@ class IToastNotifier extends IInspectable {
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<HRESULT Function(LPVTBL, Pointer<Int32>)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  LPVTBL, Pointer<Int32>)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(8)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              LPVTBL lpVtbl, Pointer<Int32> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(LPVTBL lpVtbl, Pointer<Int32> retValuePtr)>()(
+          ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -84,31 +90,37 @@ class IToastNotifier extends IInspectable {
   }
 
   void addToSchedule(ScheduledToastNotification? scheduledToast) {
-    final hr = ptr.ref.vtable
-            .elementAt(9)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(LPVTBL, LPVTBL scheduledToast)>>>()
-            .value
-            .asFunction<int Function(LPVTBL, LPVTBL scheduledToast)>()(
-        ptr.ref.lpVtbl,
-        scheduledToast == null ? nullptr : scheduledToast.ptr.ref.lpVtbl);
+    final hr =
+        ptr.ref.vtable
+                .elementAt(9)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                LPVTBL lpVtbl, LPVTBL scheduledToast)>>>()
+                .value
+                .asFunction<
+                    int Function(LPVTBL lpVtbl, LPVTBL scheduledToast)>()(
+            ptr.ref.lpVtbl,
+            scheduledToast == null ? nullptr : scheduledToast.ptr.ref.lpVtbl);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
   void removeFromSchedule(ScheduledToastNotification? scheduledToast) {
-    final hr = ptr.ref.vtable
-            .elementAt(10)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(LPVTBL, LPVTBL scheduledToast)>>>()
-            .value
-            .asFunction<int Function(LPVTBL, LPVTBL scheduledToast)>()(
-        ptr.ref.lpVtbl,
-        scheduledToast == null ? nullptr : scheduledToast.ptr.ref.lpVtbl);
+    final hr =
+        ptr.ref.vtable
+                .elementAt(10)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                LPVTBL lpVtbl, LPVTBL scheduledToast)>>>()
+                .value
+                .asFunction<
+                    int Function(LPVTBL lpVtbl, LPVTBL scheduledToast)>()(
+            ptr.ref.lpVtbl,
+            scheduledToast == null ? nullptr : scheduledToast.ptr.ref.lpVtbl);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
@@ -117,14 +129,16 @@ class IToastNotifier extends IInspectable {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-        .elementAt(11)
-        .cast<
-            Pointer<
-                NativeFunction<HRESULT Function(LPVTBL, Pointer<COMObject>)>>>()
-        .value
-        .asFunction<
-            int Function(
-                LPVTBL, Pointer<COMObject>)>()(ptr.ref.lpVtbl, retValuePtr);
+            .elementAt(11)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>>>()
+            .value
+            .asFunction<
+                int Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);

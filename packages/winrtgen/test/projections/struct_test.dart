@@ -41,8 +41,7 @@ void main() {
     });
 
     test('has correct class declaration', () {
-      expect(rectProjection.classDeclaration,
-          equals('class Rect extends Struct {'));
+      expect(rectProjection.classHeader, equals('class Rect extends Struct'));
     });
 
     test('has correct number of fields', () {

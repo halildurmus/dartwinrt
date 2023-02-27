@@ -70,12 +70,12 @@ class StructProjection {
     return docComment;
   }
 
-  String get classDeclaration => 'class $structName extends Struct {';
+  String get classHeader => 'class $structName extends Struct';
 
   @override
   String toString() => '''
 $classPreamble
-$classDeclaration
+$classHeader {
   ${fields.join('\n')}
 }
 ''';

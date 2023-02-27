@@ -53,16 +53,10 @@ mixin _ReferenceMixin on MethodProjection {
       return null;
     }
 ''';
-}
-
-/// Method projection for methods that return an `IReference<T?>` (exposed as
-/// `T?`).
-class ReferenceMethodProjection extends MethodProjection with _ReferenceMixin {
-  ReferenceMethodProjection(super.method, super.vtableOffset);
 
   @override
-  String get methodProjection => '''
-  $returnType $camelCasedName($methodParams) {
+  String get methodDeclaration => '''
+  $methodHeader {
     final retValuePtr = calloc<COMObject>();
     $parametersPreamble
 
@@ -82,27 +76,15 @@ class ReferenceMethodProjection extends MethodProjection with _ReferenceMixin {
 ''';
 }
 
+/// Method projection for methods that return `IReference<T?>` (exposed as
+/// `T?`).
+class ReferenceMethodProjection extends MethodProjection with _ReferenceMixin {
+  ReferenceMethodProjection(super.method, super.vtableOffset);
+}
+
 /// Getter projection for `IReference<T?>` (exposed as `T?`) getters.
 class ReferenceGetterProjection extends GetterProjection with _ReferenceMixin {
   ReferenceGetterProjection(super.method, super.vtableOffset);
-
-  @override
-  String get methodProjection => '''
-  $returnType get $camelCasedName {
-    final retValuePtr = calloc<COMObject>();
-
-    ${ffiCall(freeRetValOnFailure: true)}
-
-    $nullCheck
-
-    final reference = IReference<$returnType>.fromRawPointer
-        (retValuePtr$referenceConstructorArgs);
-    final value = reference.value;
-    reference.release();
-
-    return value;
-  }
-''';
 }
 
 /// Setter projection for `IReference<T?>` (exposed as `T?`) setters.
@@ -110,19 +92,13 @@ class ReferenceSetterProjection extends SetterProjection with _ReferenceMixin {
   ReferenceSetterProjection(super.method, super.vtableOffset);
 
   @override
-  String get methodProjection {
+  String get methodDeclaration {
     final projection =
         TypeProjection(param.typeProjection.typeIdentifier.typeArg!);
-    var arg = '';
-    if (param.type == 'double?') {
-      arg = 'DoubleType.${projection.nativeType.toLowerCase()}';
-    } else if (param.type == 'int?') {
-      arg = 'IntType.${projection.nativeType.toLowerCase()}';
-    }
-
+    final arg = _toReferenceArgument(projection, param.type);
     final identifier = 'value?.toReference($arg).ptr.ref.lpVtbl ?? nullptr';
     return '''
-  set $camelCasedName(${param.type} value) {
+  $methodHeader {
     ${ffiCall(params: identifier)}
   }
 ''';
@@ -145,13 +121,17 @@ class ReferenceParameterProjection extends ParameterProjection {
   @override
   String get localIdentifier {
     final projection = TypeProjection(typeProjection.typeIdentifier.typeArg!);
-    var arg = '';
-    if (type == 'double?') {
-      arg = 'DoubleType.${projection.nativeType.toLowerCase()}';
-    } else if (type == 'int?') {
-      arg = 'IntType.${projection.nativeType.toLowerCase()}';
-    }
-
+    final arg = _toReferenceArgument(projection, type);
     return 'value?.toReference($arg).ptr.ref.lpVtbl ?? nullptr';
   }
+}
+
+String _toReferenceArgument(TypeProjection projection, String type) {
+  if (type == 'double?') {
+    return 'DoubleType.${projection.nativeType.toLowerCase()}';
+  } else if (type == 'int?') {
+    return 'IntType.${projection.nativeType.toLowerCase()}';
+  }
+
+  return '';
 }

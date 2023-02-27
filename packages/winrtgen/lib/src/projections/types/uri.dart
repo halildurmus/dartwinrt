@@ -58,15 +58,10 @@ mixin _UriMixin on MethodProjection {
   String get returnStatement => _methodBelongsToUriRuntimeClass(method)
       ? 'return Uri.fromRawPointer(retValuePtr);'
       : 'return Uri.parse(uriAsString);';
-}
-
-/// Method projection for methods that return an `Uri`.
-class UriMethodProjection extends MethodProjection with _UriMixin {
-  UriMethodProjection(super.method, super.vtableOffset);
 
   @override
-  String get methodProjection => '''
-  $returnType $camelCasedName($methodParams) {
+  String get methodDeclaration => '''
+  $methodHeader {
     final retValuePtr = calloc<COMObject>();
     $parametersPreamble
 
@@ -83,24 +78,14 @@ class UriMethodProjection extends MethodProjection with _UriMixin {
 ''';
 }
 
+/// Method projection for methods that return `Uri`.
+class UriMethodProjection extends MethodProjection with _UriMixin {
+  UriMethodProjection(super.method, super.vtableOffset);
+}
+
 /// Getter projection for `Uri` getters.
 class UriGetterProjection extends GetterProjection with _UriMixin {
   UriGetterProjection(super.method, super.vtableOffset);
-
-  @override
-  String get methodProjection => '''
-  $returnType get $camelCasedName {
-    final retValuePtr = calloc<COMObject>();
-
-    ${ffiCall(freeRetValOnFailure: true)}
-
-    $nullCheck
-
-    $winrtUriToDartUriConvertsion
-
-    $returnStatement
-  }
-''';
 }
 
 /// Setter projection for `Uri` setters.
@@ -108,8 +93,8 @@ class UriSetterProjection extends SetterProjection {
   UriSetterProjection(super.method, super.vtableOffset);
 
   @override
-  String get methodProjection => '''
-  set $camelCasedName(${param.type} value) {
+  String get methodDeclaration => '''
+  $methodHeader {
     final winrtUri =
         value == null ? null : winrt_uri.Uri.createUri(value.toString());
 

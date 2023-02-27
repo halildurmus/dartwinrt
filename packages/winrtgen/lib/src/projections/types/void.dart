@@ -12,8 +12,8 @@ class VoidMethodProjection extends MethodProjection {
   String get returnType => 'void';
 
   @override
-  String get methodProjection => '''
-  $returnType $camelCasedName($methodParams) {
+  String get methodDeclaration => '''
+  $methodHeader {
     $parametersPreamble
 
     ${ffiCall()}

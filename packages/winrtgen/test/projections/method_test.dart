@@ -44,10 +44,10 @@ void main() {
       expect(projection, isA<DefaultMethodProjection>());
       expect(projection.returnType, equals('bool'));
       expect(projection.nativePrototype,
-          equals('HRESULT Function(LPVTBL, Pointer<Bool>)'));
+          equals('HRESULT Function(LPVTBL lpVtbl, Pointer<Bool> retValuePtr)'));
       expect(projection.dartPrototype,
-          equals('int Function(LPVTBL, Pointer<Bool>)'));
-      expect(projection.shortDeclaration, equals('bool getBoolean()'));
+          equals('int Function(LPVTBL lpVtbl, Pointer<Bool> retValuePtr)'));
+      expect(projection.methodHeader, equals('bool getBoolean()'));
     });
 
     test('projects class', () {
@@ -55,11 +55,15 @@ void main() {
           'Windows.Globalization.ICalendar', 'Clone');
       expect(projection, isA<ObjectMethodProjection>());
       expect(projection.returnType, equals('Calendar?'));
-      expect(projection.nativePrototype,
-          equals('HRESULT Function(LPVTBL, Pointer<COMObject>)'));
-      expect(projection.dartPrototype,
-          equals('int Function(LPVTBL, Pointer<COMObject>)'));
-      expect(projection.shortDeclaration, equals('Calendar? clone()'));
+      expect(
+          projection.nativePrototype,
+          equals(
+              'HRESULT Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)'));
+      expect(
+          projection.dartPrototype,
+          equals(
+              'int Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)'));
+      expect(projection.methodHeader, equals('Calendar? clone()'));
     });
 
     test('returns a DateTime', () {
@@ -67,11 +71,13 @@ void main() {
           'Windows.Globalization.ICalendar', 'GetDateTime');
       expect(projection, isA<DateTimeMethodProjection>());
       expect(projection.returnType, equals('DateTime'));
-      expect(projection.nativePrototype,
-          equals('HRESULT Function(LPVTBL, Pointer<Uint64>)'));
+      expect(
+          projection.nativePrototype,
+          equals(
+              'HRESULT Function(LPVTBL lpVtbl, Pointer<Uint64> retValuePtr)'));
       expect(projection.dartPrototype,
-          equals('int Function(LPVTBL, Pointer<Uint64>)'));
-      expect(projection.shortDeclaration, equals('DateTime getDateTime()'));
+          equals('int Function(LPVTBL lpVtbl, Pointer<Uint64> retValuePtr)'));
+      expect(projection.methodHeader, equals('DateTime getDateTime()'));
     });
 
     test('projects double', () {
@@ -79,11 +85,13 @@ void main() {
           'Windows.Foundation.IPropertyValue', 'GetDouble');
       expect(projection, isA<DefaultMethodProjection>());
       expect(projection.returnType, equals('double'));
-      expect(projection.nativePrototype,
-          equals('HRESULT Function(LPVTBL, Pointer<Double>)'));
+      expect(
+          projection.nativePrototype,
+          equals(
+              'HRESULT Function(LPVTBL lpVtbl, Pointer<Double> retValuePtr)'));
       expect(projection.dartPrototype,
-          equals('int Function(LPVTBL, Pointer<Double>)'));
-      expect(projection.shortDeclaration, equals('double getDouble()'));
+          equals('int Function(LPVTBL lpVtbl, Pointer<Double> retValuePtr)'));
+      expect(projection.methodHeader, equals('double getDouble()'));
     });
 
     test('projects Duration', () {
@@ -91,11 +99,13 @@ void main() {
           'Windows.Foundation.IPropertyValue', 'GetTimeSpan');
       expect(projection, isA<DurationMethodProjection>());
       expect(projection.returnType, equals('Duration'));
-      expect(projection.nativePrototype,
-          equals('HRESULT Function(LPVTBL, Pointer<Uint64>)'));
+      expect(
+          projection.nativePrototype,
+          equals(
+              'HRESULT Function(LPVTBL lpVtbl, Pointer<Uint64> retValuePtr)'));
       expect(projection.dartPrototype,
-          equals('int Function(LPVTBL, Pointer<Uint64>)'));
-      expect(projection.shortDeclaration, equals('Duration getTimeSpan()'));
+          equals('int Function(LPVTBL lpVtbl, Pointer<Uint64> retValuePtr)'));
+      expect(projection.methodHeader, equals('Duration getTimeSpan()'));
     });
 
     test('projects enum', () {
@@ -103,11 +113,15 @@ void main() {
           'Windows.Data.Json.IJsonErrorStatics2', 'GetJsonStatus');
       expect(projection, isA<EnumMethodProjection>());
       expect(projection.returnType, equals('JsonErrorStatus'));
-      expect(projection.nativePrototype,
-          equals('HRESULT Function(LPVTBL, Int32 hresult, Pointer<Int32>)'));
-      expect(projection.dartPrototype,
-          equals('int Function(LPVTBL, int hresult, Pointer<Int32>)'));
-      expect(projection.shortDeclaration,
+      expect(
+          projection.nativePrototype,
+          equals(
+              'HRESULT Function(LPVTBL lpVtbl, Int32 hresult, Pointer<Int32> retValuePtr)'));
+      expect(
+          projection.dartPrototype,
+          equals(
+              'int Function(LPVTBL lpVtbl, int hresult, Pointer<Int32> retValuePtr)'));
+      expect(projection.methodHeader,
           equals('JsonErrorStatus getJsonStatus(int hresult)'));
     });
 
@@ -117,10 +131,10 @@ void main() {
       expect(projection, isA<GuidMethodProjection>());
       expect(projection.returnType, equals('Guid'));
       expect(projection.nativePrototype,
-          equals('HRESULT Function(LPVTBL, Pointer<GUID>)'));
+          equals('HRESULT Function(LPVTBL lpVtbl, Pointer<GUID> retValuePtr)'));
       expect(projection.dartPrototype,
-          equals('int Function(LPVTBL, Pointer<GUID>)'));
-      expect(projection.shortDeclaration, equals('Guid getGuid()'));
+          equals('int Function(LPVTBL lpVtbl, Pointer<GUID> retValuePtr)'));
+      expect(projection.methodHeader, equals('Guid getGuid()'));
     });
 
     test('projects int', () {
@@ -128,11 +142,13 @@ void main() {
           'Windows.Foundation.IPropertyValue', 'GetInt32');
       expect(projection, isA<DefaultMethodProjection>());
       expect(projection.returnType, equals('int'));
-      expect(projection.nativePrototype,
-          equals('HRESULT Function(LPVTBL, Pointer<Int32>)'));
+      expect(
+          projection.nativePrototype,
+          equals(
+              'HRESULT Function(LPVTBL lpVtbl, Pointer<Int32> retValuePtr)'));
       expect(projection.dartPrototype,
-          equals('int Function(LPVTBL, Pointer<Int32>)'));
-      expect(projection.shortDeclaration, equals('int getInt32()'));
+          equals('int Function(LPVTBL lpVtbl, Pointer<Int32> retValuePtr)'));
+      expect(projection.methodHeader, equals('int getInt32()'));
     });
 
     test('projects interface', () {
@@ -141,11 +157,15 @@ void main() {
       expect(projection, isA<ObjectMethodProjection>());
       expect(projection.returnType,
           equals('IIterator<IKeyValuePair<String, String>>'));
-      expect(projection.nativePrototype,
-          equals('HRESULT Function(LPVTBL, Pointer<COMObject>)'));
-      expect(projection.dartPrototype,
-          equals('int Function(LPVTBL, Pointer<COMObject>)'));
-      expect(projection.shortDeclaration,
+      expect(
+          projection.nativePrototype,
+          equals(
+              'HRESULT Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)'));
+      expect(
+          projection.dartPrototype,
+          equals(
+              'int Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)'));
+      expect(projection.methodHeader,
           equals('IIterator<IKeyValuePair<String, String>> first()'));
     });
 
@@ -154,11 +174,15 @@ void main() {
           'Windows.Storage.IStorageItem', 'DeleteAsyncOverloadDefaultOptions');
       expect(projection, isA<AsyncActionMethodProjection>());
       expect(projection.returnType, equals('Future<void>'));
-      expect(projection.nativePrototype,
-          equals('HRESULT Function(LPVTBL, Pointer<COMObject>)'));
-      expect(projection.dartPrototype,
-          equals('int Function(LPVTBL, Pointer<COMObject>)'));
-      expect(projection.shortDeclaration,
+      expect(
+          projection.nativePrototype,
+          equals(
+              'HRESULT Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)'));
+      expect(
+          projection.dartPrototype,
+          equals(
+              'int Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)'));
+      expect(projection.methodHeader,
           equals('Future<void> deleteAsyncOverloadDefaultOptions()'));
     });
 
@@ -167,11 +191,15 @@ void main() {
           'Windows.Storage.Pickers.IFileOpenPicker', 'PickSingleFileAsync');
       expect(projection, isA<AsyncOperationMethodProjection>());
       expect(projection.returnType, equals('Future<StorageFile?>'));
-      expect(projection.nativePrototype,
-          equals('HRESULT Function(LPVTBL, Pointer<COMObject>)'));
-      expect(projection.dartPrototype,
-          equals('int Function(LPVTBL, Pointer<COMObject>)'));
-      expect(projection.shortDeclaration,
+      expect(
+          projection.nativePrototype,
+          equals(
+              'HRESULT Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)'));
+      expect(
+          projection.dartPrototype,
+          equals(
+              'int Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)'));
+      expect(projection.methodHeader,
           equals('Future<StorageFile?> pickSingleFileAsync()'));
     });
 
@@ -182,12 +210,16 @@ void main() {
       expect(projection, isA<MapMethodProjection>());
       expect(projection.returnType,
           equals('IMap<String, IVectorView<TextSegment>?>'));
-      expect(projection.nativePrototype,
-          equals('HRESULT Function(LPVTBL, LPVTBL file, Pointer<COMObject>)'));
-      expect(projection.dartPrototype,
-          equals('int Function(LPVTBL, LPVTBL file, Pointer<COMObject>)'));
       expect(
-          projection.shortDeclaration,
+          projection.nativePrototype,
+          equals(
+              'HRESULT Function(LPVTBL lpVtbl, LPVTBL file, Pointer<COMObject> retValuePtr)'));
+      expect(
+          projection.dartPrototype,
+          equals(
+              'int Function(LPVTBL lpVtbl, LPVTBL file, Pointer<COMObject> retValuePtr)'));
+      expect(
+          projection.methodHeader,
           equals(
               'IMap<String, IVectorView<TextSegment>?> getMatchingPropertiesWithRanges(StorageFile? file)'));
     });
@@ -197,12 +229,15 @@ void main() {
           'Windows.Foundation.Collections.StringMap', 'GetView');
       expect(projection, isA<MapViewMethodProjection>());
       expect(projection.returnType, equals('Map<String, String>'));
-      expect(projection.nativePrototype,
-          equals('HRESULT Function(LPVTBL, Pointer<COMObject>)'));
-      expect(projection.dartPrototype,
-          equals('int Function(LPVTBL, Pointer<COMObject>)'));
       expect(
-          projection.shortDeclaration, equals('Map<String, String> getView()'));
+          projection.nativePrototype,
+          equals(
+              'HRESULT Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)'));
+      expect(
+          projection.dartPrototype,
+          equals(
+              'int Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)'));
+      expect(projection.methodHeader, equals('Map<String, String> getView()'));
     });
 
     test('projects IReference<int?>', () {
@@ -210,11 +245,15 @@ void main() {
           'Windows.Networking.Connectivity.ConnectionProfile', 'GetSignalBars');
       expect(projection, isA<ReferenceMethodProjection>());
       expect(projection.returnType, equals('int?'));
-      expect(projection.nativePrototype,
-          equals('HRESULT Function(LPVTBL, Pointer<COMObject>)'));
-      expect(projection.dartPrototype,
-          equals('int Function(LPVTBL, Pointer<COMObject>)'));
-      expect(projection.shortDeclaration, equals('int? getSignalBars()'));
+      expect(
+          projection.nativePrototype,
+          equals(
+              'HRESULT Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)'));
+      expect(
+          projection.dartPrototype,
+          equals(
+              'int Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)'));
+      expect(projection.methodHeader, equals('int? getSignalBars()'));
     });
 
     test('projects IVector<BackgroundTransferFileRange>', () {
@@ -224,11 +263,15 @@ void main() {
       expect(projection, isA<VectorMethodProjection>());
       expect(projection.returnType,
           equals('IVector<BackgroundTransferFileRange>'));
-      expect(projection.nativePrototype,
-          equals('HRESULT Function(LPVTBL, Pointer<COMObject>)'));
-      expect(projection.dartPrototype,
-          equals('int Function(LPVTBL, Pointer<COMObject>)'));
-      expect(projection.shortDeclaration,
+      expect(
+          projection.nativePrototype,
+          equals(
+              'HRESULT Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)'));
+      expect(
+          projection.dartPrototype,
+          equals(
+              'int Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)'));
+      expect(projection.methodHeader,
           equals('IVector<BackgroundTransferFileRange> getDownloadedRanges()'));
     });
 
@@ -237,11 +280,15 @@ void main() {
           'Windows.Globalization.ApplicationLanguages', 'GetLanguagesForUser');
       expect(projection, isA<VectorViewMethodProjection>());
       expect(projection.returnType, equals('List<String>'));
-      expect(projection.nativePrototype,
-          equals('HRESULT Function(LPVTBL, LPVTBL user, Pointer<COMObject>)'));
-      expect(projection.dartPrototype,
-          equals('int Function(LPVTBL, LPVTBL user, Pointer<COMObject>)'));
-      expect(projection.shortDeclaration,
+      expect(
+          projection.nativePrototype,
+          equals(
+              'HRESULT Function(LPVTBL lpVtbl, LPVTBL user, Pointer<COMObject> retValuePtr)'));
+      expect(
+          projection.dartPrototype,
+          equals(
+              'int Function(LPVTBL lpVtbl, LPVTBL user, Pointer<COMObject> retValuePtr)'));
+      expect(projection.methodHeader,
           equals('List<String> getLanguagesForUser(User? user)'));
     });
 
@@ -250,11 +297,15 @@ void main() {
           'Windows.Foundation.Collections.PropertySet', 'Lookup');
       expect(projection, isA<ObjectMethodProjection>());
       expect(projection.returnType, equals('Object?'));
-      expect(projection.nativePrototype,
-          equals('HRESULT Function(LPVTBL, IntPtr key, Pointer<COMObject>)'));
-      expect(projection.dartPrototype,
-          equals('int Function(LPVTBL, int key, Pointer<COMObject>)'));
-      expect(projection.shortDeclaration, equals('Object? lookup(String key)'));
+      expect(
+          projection.nativePrototype,
+          equals(
+              'HRESULT Function(LPVTBL lpVtbl, IntPtr key, Pointer<COMObject> retValuePtr)'));
+      expect(
+          projection.dartPrototype,
+          equals(
+              'int Function(LPVTBL lpVtbl, int key, Pointer<COMObject> retValuePtr)'));
+      expect(projection.methodHeader, equals('Object? lookup(String key)'));
     });
 
     test('projects String', () {
@@ -262,11 +313,13 @@ void main() {
           'Windows.Globalization.ICalendar', 'GetCalendarSystem');
       expect(projection, isA<StringMethodProjection>());
       expect(projection.returnType, equals('String'));
-      expect(projection.nativePrototype,
-          equals('HRESULT Function(LPVTBL, Pointer<IntPtr>)'));
+      expect(
+          projection.nativePrototype,
+          equals(
+              'HRESULT Function(LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)'));
       expect(projection.dartPrototype,
-          equals('int Function(LPVTBL, Pointer<IntPtr>)'));
-      expect(projection.shortDeclaration, equals('String getCalendarSystem()'));
+          equals('int Function(LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)'));
+      expect(projection.methodHeader, equals('String getCalendarSystem()'));
     });
 
     test('projects struct', () {
@@ -274,11 +327,13 @@ void main() {
           'Windows.Foundation.IPropertyValue', 'GetPoint');
       expect(projection, isA<StructMethodProjection>());
       expect(projection.returnType, equals('Point'));
-      expect(projection.nativePrototype,
-          equals('HRESULT Function(LPVTBL, Pointer<Point>)'));
+      expect(
+          projection.nativePrototype,
+          equals(
+              'HRESULT Function(LPVTBL lpVtbl, Pointer<Point> retValuePtr)'));
       expect(projection.dartPrototype,
-          equals('int Function(LPVTBL, Pointer<Point>)'));
-      expect(projection.shortDeclaration, equals('Point getPoint()'));
+          equals('int Function(LPVTBL lpVtbl, Pointer<Point> retValuePtr)'));
+      expect(projection.methodHeader, equals('Point getPoint()'));
     });
 
     test('projects Uri', () {
@@ -287,11 +342,15 @@ void main() {
           'GetCurrentApplicationCallbackUri');
       expect(projection, isA<UriMethodProjection>());
       expect(projection.returnType, equals('Uri?'));
-      expect(projection.nativePrototype,
-          equals('HRESULT Function(LPVTBL, Pointer<COMObject>)'));
-      expect(projection.dartPrototype,
-          equals('int Function(LPVTBL, Pointer<COMObject>)'));
-      expect(projection.shortDeclaration,
+      expect(
+          projection.nativePrototype,
+          equals(
+              'HRESULT Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)'));
+      expect(
+          projection.dartPrototype,
+          equals(
+              'int Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)'));
+      expect(projection.methodHeader,
           equals('Uri? getCurrentApplicationCallbackUri()'));
     });
 
@@ -304,13 +363,13 @@ void main() {
       expect(
           projection.nativePrototype,
           equals(
-              'HRESULT Function(LPVTBL, IntPtr regionCode, Pointer<COMObject> phoneNumber)'));
+              'HRESULT Function(LPVTBL lpVtbl, IntPtr regionCode, Pointer<COMObject> phoneNumber)'));
       expect(
           projection.dartPrototype,
           equals(
-              'int Function(LPVTBL, int regionCode, Pointer<COMObject> phoneNumber)'));
+              'int Function(LPVTBL lpVtbl, int regionCode, Pointer<COMObject> phoneNumber)'));
       expect(
-          projection.shortDeclaration,
+          projection.methodHeader,
           equals(
               'void tryCreate(String regionCode, PhoneNumberFormatter phoneNumber)'));
     });

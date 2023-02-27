@@ -4,10 +4,10 @@
 
 import 'package:winmd/winmd.dart';
 
+import '../extensions/extensions.dart';
 import '../models/models.dart';
 import 'method.dart';
 import 'property.dart';
-import 'type.dart';
 import 'types/types.dart';
 
 abstract class GetterProjection extends PropertyProjection {
@@ -16,8 +16,7 @@ abstract class GetterProjection extends PropertyProjection {
   /// Returns the appropriate getter projection for the [method] based on the
   /// return type.
   factory GetterProjection.create(Method method, int vtableOffset) {
-    final projectionType =
-        TypeProjection(method.returnType.typeIdentifier).projectionType;
+    final projectionType = method.projectionType;
     switch (projectionType) {
       case ProjectionType.dartPrimitive:
         return DefaultGetterProjection(method, vtableOffset);
