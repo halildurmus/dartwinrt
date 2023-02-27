@@ -72,25 +72,21 @@ class IUserWatcher extends IInspectable {
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
-  int add_Added(Pointer<NativeFunction<TypedEventHandler>> handler) {
+  int add_Added(Pointer<COMObject> handler) {
     final retValuePtr = calloc<IntPtr>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(9)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          LPVTBL,
-                          Pointer<NativeFunction<TypedEventHandler>> handler,
-                          Pointer<IntPtr>)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  LPVTBL,
-                  Pointer<NativeFunction<TypedEventHandler>> handler,
-                  Pointer<IntPtr>)>()(ptr.ref.lpVtbl, handler, retValuePtr);
+              .elementAt(9)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              LPVTBL, LPVTBL handler, Pointer<IntPtr>)>>>()
+              .value
+              .asFunction<
+                  int Function(LPVTBL, LPVTBL handler, Pointer<IntPtr>)>()(
+          ptr.ref.lpVtbl, handler.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -110,25 +106,21 @@ class IUserWatcher extends IInspectable {
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
-  int add_Removed(Pointer<NativeFunction<TypedEventHandler>> handler) {
+  int add_Removed(Pointer<COMObject> handler) {
     final retValuePtr = calloc<IntPtr>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(11)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          LPVTBL,
-                          Pointer<NativeFunction<TypedEventHandler>> handler,
-                          Pointer<IntPtr>)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  LPVTBL,
-                  Pointer<NativeFunction<TypedEventHandler>> handler,
-                  Pointer<IntPtr>)>()(ptr.ref.lpVtbl, handler, retValuePtr);
+              .elementAt(11)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              LPVTBL, LPVTBL handler, Pointer<IntPtr>)>>>()
+              .value
+              .asFunction<
+                  int Function(LPVTBL, LPVTBL handler, Pointer<IntPtr>)>()(
+          ptr.ref.lpVtbl, handler.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -148,25 +140,21 @@ class IUserWatcher extends IInspectable {
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
-  int add_Updated(Pointer<NativeFunction<TypedEventHandler>> handler) {
+  int add_Updated(Pointer<COMObject> handler) {
     final retValuePtr = calloc<IntPtr>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(13)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          LPVTBL,
-                          Pointer<NativeFunction<TypedEventHandler>> handler,
-                          Pointer<IntPtr>)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  LPVTBL,
-                  Pointer<NativeFunction<TypedEventHandler>> handler,
-                  Pointer<IntPtr>)>()(ptr.ref.lpVtbl, handler, retValuePtr);
+              .elementAt(13)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              LPVTBL, LPVTBL handler, Pointer<IntPtr>)>>>()
+              .value
+              .asFunction<
+                  int Function(LPVTBL, LPVTBL handler, Pointer<IntPtr>)>()(
+          ptr.ref.lpVtbl, handler.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -186,26 +174,21 @@ class IUserWatcher extends IInspectable {
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
-  int add_AuthenticationStatusChanged(
-      Pointer<NativeFunction<TypedEventHandler>> handler) {
+  int add_AuthenticationStatusChanged(Pointer<COMObject> handler) {
     final retValuePtr = calloc<IntPtr>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(15)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          LPVTBL,
-                          Pointer<NativeFunction<TypedEventHandler>> handler,
-                          Pointer<IntPtr>)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  LPVTBL,
-                  Pointer<NativeFunction<TypedEventHandler>> handler,
-                  Pointer<IntPtr>)>()(ptr.ref.lpVtbl, handler, retValuePtr);
+              .elementAt(15)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              LPVTBL, LPVTBL handler, Pointer<IntPtr>)>>>()
+              .value
+              .asFunction<
+                  int Function(LPVTBL, LPVTBL handler, Pointer<IntPtr>)>()(
+          ptr.ref.lpVtbl, handler.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -225,26 +208,21 @@ class IUserWatcher extends IInspectable {
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
-  int add_AuthenticationStatusChanging(
-      Pointer<NativeFunction<TypedEventHandler>> handler) {
+  int add_AuthenticationStatusChanging(Pointer<COMObject> handler) {
     final retValuePtr = calloc<IntPtr>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(17)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          LPVTBL,
-                          Pointer<NativeFunction<TypedEventHandler>> handler,
-                          Pointer<IntPtr>)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  LPVTBL,
-                  Pointer<NativeFunction<TypedEventHandler>> handler,
-                  Pointer<IntPtr>)>()(ptr.ref.lpVtbl, handler, retValuePtr);
+              .elementAt(17)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              LPVTBL, LPVTBL handler, Pointer<IntPtr>)>>>()
+              .value
+              .asFunction<
+                  int Function(LPVTBL, LPVTBL handler, Pointer<IntPtr>)>()(
+          ptr.ref.lpVtbl, handler.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -264,26 +242,21 @@ class IUserWatcher extends IInspectable {
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
-  int add_EnumerationCompleted(
-      Pointer<NativeFunction<TypedEventHandler>> handler) {
+  int add_EnumerationCompleted(Pointer<COMObject> handler) {
     final retValuePtr = calloc<IntPtr>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(19)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          LPVTBL,
-                          Pointer<NativeFunction<TypedEventHandler>> handler,
-                          Pointer<IntPtr>)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  LPVTBL,
-                  Pointer<NativeFunction<TypedEventHandler>> handler,
-                  Pointer<IntPtr>)>()(ptr.ref.lpVtbl, handler, retValuePtr);
+              .elementAt(19)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              LPVTBL, LPVTBL handler, Pointer<IntPtr>)>>>()
+              .value
+              .asFunction<
+                  int Function(LPVTBL, LPVTBL handler, Pointer<IntPtr>)>()(
+          ptr.ref.lpVtbl, handler.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -303,25 +276,21 @@ class IUserWatcher extends IInspectable {
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
-  int add_Stopped(Pointer<NativeFunction<TypedEventHandler>> handler) {
+  int add_Stopped(Pointer<COMObject> handler) {
     final retValuePtr = calloc<IntPtr>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(21)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          LPVTBL,
-                          Pointer<NativeFunction<TypedEventHandler>> handler,
-                          Pointer<IntPtr>)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  LPVTBL,
-                  Pointer<NativeFunction<TypedEventHandler>> handler,
-                  Pointer<IntPtr>)>()(ptr.ref.lpVtbl, handler, retValuePtr);
+              .elementAt(21)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              LPVTBL, LPVTBL handler, Pointer<IntPtr>)>>>()
+              .value
+              .asFunction<
+                  int Function(LPVTBL, LPVTBL handler, Pointer<IntPtr>)>()(
+          ptr.ref.lpVtbl, handler.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 

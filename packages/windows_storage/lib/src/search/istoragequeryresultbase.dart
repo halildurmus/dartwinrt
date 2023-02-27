@@ -84,25 +84,21 @@ class IStorageQueryResultBase extends IInspectable {
     return StorageFolder.fromRawPointer(retValuePtr);
   }
 
-  int add_ContentsChanged(Pointer<NativeFunction<TypedEventHandler>> handler) {
+  int add_ContentsChanged(Pointer<COMObject> handler) {
     final retValuePtr = calloc<IntPtr>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          LPVTBL,
-                          Pointer<NativeFunction<TypedEventHandler>> handler,
-                          Pointer<IntPtr>)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  LPVTBL,
-                  Pointer<NativeFunction<TypedEventHandler>> handler,
-                  Pointer<IntPtr>)>()(ptr.ref.lpVtbl, handler, retValuePtr);
+              .elementAt(8)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              LPVTBL, LPVTBL handler, Pointer<IntPtr>)>>>()
+              .value
+              .asFunction<
+                  int Function(LPVTBL, LPVTBL handler, Pointer<IntPtr>)>()(
+          ptr.ref.lpVtbl, handler.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -126,8 +122,7 @@ class IStorageQueryResultBase extends IInspectable {
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
-  int add_OptionsChanged(
-      Pointer<NativeFunction<TypedEventHandler>> changedHandler) {
+  int add_OptionsChanged(Pointer<COMObject> changedHandler) {
     final retValuePtr = calloc<IntPtr>();
 
     try {
@@ -136,18 +131,13 @@ class IStorageQueryResultBase extends IInspectable {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(
-                              LPVTBL,
-                              Pointer<NativeFunction<TypedEventHandler>>
-                                  changedHandler,
+                          HRESULT Function(LPVTBL, LPVTBL changedHandler,
                               Pointer<IntPtr>)>>>()
               .value
               .asFunction<
                   int Function(
-                      LPVTBL,
-                      Pointer<NativeFunction<TypedEventHandler>> changedHandler,
-                      Pointer<IntPtr>)>()(
-          ptr.ref.lpVtbl, changedHandler, retValuePtr);
+                      LPVTBL, LPVTBL changedHandler, Pointer<IntPtr>)>()(
+          ptr.ref.lpVtbl, changedHandler.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 

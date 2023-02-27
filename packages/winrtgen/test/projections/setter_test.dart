@@ -86,18 +86,12 @@ void main() {
       final projection = SetterProjection.fromTypeAndMethodName(
           'Windows.Foundation.IAsyncAction', 'put_Completed');
       expect(projection, isA<DelegateSetterProjection>());
-      expect(
-          projection.nativePrototype,
-          equals(
-              'HRESULT Function(LPVTBL, Pointer<NativeFunction<AsyncActionCompletedHandler>> handler)'));
-      expect(
-          projection.dartPrototype,
-          equals(
-              'int Function(LPVTBL, Pointer<NativeFunction<AsyncActionCompletedHandler>> handler)'));
-      expect(
-          projection.shortDeclaration,
-          equals(
-              'set completed(Pointer<NativeFunction<AsyncActionCompletedHandler>> value)'));
+      expect(projection.nativePrototype,
+          equals('HRESULT Function(LPVTBL, LPVTBL handler)'));
+      expect(projection.dartPrototype,
+          equals('int Function(LPVTBL, LPVTBL handler)'));
+      expect(projection.shortDeclaration,
+          equals('set completed(Pointer<COMObject> value)'));
     });
 
     test('projects double', () {

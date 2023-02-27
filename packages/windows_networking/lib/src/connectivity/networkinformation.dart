@@ -117,9 +117,7 @@ class NetworkInformation extends IInspectable {
     }
   }
 
-  static int add_NetworkStatusChanged(
-      Pointer<NativeFunction<NetworkStatusChangedEventHandler>>
-          networkStatusHandler) {
+  static int add_NetworkStatusChanged(Pointer<COMObject> networkStatusHandler) {
     final activationFactoryPtr =
         createActivationFactory(_className, IID_INetworkInformationStatics);
     final object =

@@ -95,20 +95,13 @@ void main() {
       final projection = GetterProjection.fromTypeAndMethodName(
           'Windows.Foundation.IAsyncAction', 'get_Completed');
       expect(projection, isA<DelegateGetterProjection>());
-      expect(projection.returnType,
-          equals('Pointer<NativeFunction<AsyncActionCompletedHandler>>'));
-      expect(
-          projection.nativePrototype,
-          equals(
-              'HRESULT Function(LPVTBL, Pointer<Pointer<NativeFunction<AsyncActionCompletedHandler>>>)'));
-      expect(
-          projection.dartPrototype,
-          equals(
-              'int Function(LPVTBL, Pointer<Pointer<NativeFunction<AsyncActionCompletedHandler>>>)'));
-      expect(
-          projection.shortDeclaration,
-          equals(
-              'Pointer<NativeFunction<AsyncActionCompletedHandler>> get completed'));
+      expect(projection.returnType, equals('Pointer<COMObject>'));
+      expect(projection.nativePrototype,
+          equals('HRESULT Function(LPVTBL, Pointer<COMObject>)'));
+      expect(projection.dartPrototype,
+          equals('int Function(LPVTBL, Pointer<COMObject>)'));
+      expect(projection.shortDeclaration,
+          equals('Pointer<COMObject> get completed'));
     });
 
     test('projects double', () {

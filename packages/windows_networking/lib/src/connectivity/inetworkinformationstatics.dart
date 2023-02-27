@@ -213,9 +213,7 @@ class INetworkInformationStatics extends IInspectable {
     return list;
   }
 
-  int add_NetworkStatusChanged(
-      Pointer<NativeFunction<NetworkStatusChangedEventHandler>>
-          networkStatusHandler) {
+  int add_NetworkStatusChanged(Pointer<COMObject> networkStatusHandler) {
     final retValuePtr = calloc<IntPtr>();
 
     try {
@@ -224,21 +222,13 @@ class INetworkInformationStatics extends IInspectable {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(
-                              LPVTBL,
-                              Pointer<
-                                      NativeFunction<
-                                          NetworkStatusChangedEventHandler>>
-                                  networkStatusHandler,
+                          HRESULT Function(LPVTBL, LPVTBL networkStatusHandler,
                               Pointer<IntPtr>)>>>()
               .value
               .asFunction<
                   int Function(
-                      LPVTBL,
-                      Pointer<NativeFunction<NetworkStatusChangedEventHandler>>
-                          networkStatusHandler,
-                      Pointer<IntPtr>)>()(
-          ptr.ref.lpVtbl, networkStatusHandler, retValuePtr);
+                      LPVTBL, LPVTBL networkStatusHandler, Pointer<IntPtr>)>()(
+          ptr.ref.lpVtbl, networkStatusHandler.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 

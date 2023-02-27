@@ -90,7 +90,7 @@ class StorageFile extends IInspectable
 
   static Future<StorageFile?> createStreamedFileAsync(
       String displayNameWithExtension,
-      Pointer<NativeFunction<StreamedFileDataRequestedHandler>> dataRequested,
+      Pointer<COMObject> dataRequested,
       IRandomAccessStreamReference? thumbnail) {
     final activationFactoryPtr =
         createActivationFactory(_className, IID_IStorageFileStatics);
@@ -106,7 +106,7 @@ class StorageFile extends IInspectable
 
   static Future<StorageFile?> replaceWithStreamedFileAsync(
       IStorageFile? fileToReplace,
-      Pointer<NativeFunction<StreamedFileDataRequestedHandler>> dataRequested,
+      Pointer<COMObject> dataRequested,
       IRandomAccessStreamReference? thumbnail) {
     final activationFactoryPtr =
         createActivationFactory(_className, IID_IStorageFileStatics);

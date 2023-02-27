@@ -91,7 +91,6 @@ const IID_$shortName = '${typeDef.guid}';
         'package:win32/win32.dart',
         if (packageName == 'windows_foundation') ...[
           relativePathTo('windows_foundation/lib/internal.dart'),
-          relativePathTo('windows_foundation/lib/src/callbacks.dart'),
           relativePathTo('windows_foundation/lib/src/helpers.dart'),
           relativePathTo('windows_foundation/lib/src/iinspectable.dart'),
           relativePathTo(

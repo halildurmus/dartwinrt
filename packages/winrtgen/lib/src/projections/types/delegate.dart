@@ -4,27 +4,25 @@
 
 import '../getter.dart';
 import '../method.dart';
+import '../parameter.dart';
 import '../setter.dart';
 
-/// Method projection for methods that return a WinRT delegate (e.g.
+/// Method projection for methods that return WinRT delegate (e.g.
 /// `AsyncActionCompletedHandler`).
 class DelegateMethodProjection extends MethodProjection {
   DelegateMethodProjection(super.method, super.vtableOffset);
 
   @override
   String get methodProjection => '''
-  $returnType $camelCasedName($methodParams) {
-    final retValuePtr = calloc<${returnTypeProjection.nativeType}>();
+  $returnType $camelCasedName($parameters) {
+    final retValuePtr = calloc<COMObject>();
     $parametersPreamble
 
-    try {
-      ${ffiCall()}
+    ${ffiCall(freeRetValOnFailure: true)}
 
-      return retValuePtr.value;
-    } finally {
-      $parametersPostamble
-      free(retValuePtr);
-    }
+    $parametersPostamble
+
+    return retValuePtr;
   }
 ''';
 }
@@ -36,15 +34,11 @@ class DelegateGetterProjection extends GetterProjection {
   @override
   String get methodProjection => '''
   $returnType get $camelCasedName {
-    final retValuePtr = calloc<${returnTypeProjection.nativeType}>();
+    final retValuePtr = calloc<COMObject>();
 
-    try {
-      ${ffiCall()}
+    ${ffiCall(freeRetValOnFailure: true)}
 
-      return retValuePtr.value;
-    } finally {
-      free(retValuePtr);
-    }
+    return retValuePtr;
   }
 ''';
 }
@@ -56,7 +50,24 @@ class DelegateSetterProjection extends SetterProjection {
   @override
   String get methodProjection => '''
   set $camelCasedName(${param.type} value) {
-    ${ffiCall(params: 'value')}
+    ${ffiCall(params: 'value.ref.lpVtbl')}
   }
 ''';
+}
+
+/// Parameter projection for WinRT delegate parameters.
+class DelegateParameterProjection extends ParameterProjection {
+  DelegateParameterProjection(super.parameter);
+
+  @override
+  String get type => 'Pointer<COMObject>';
+
+  @override
+  String get preamble => '';
+
+  @override
+  String get postamble => '';
+
+  @override
+  String get localIdentifier => '$identifier.ref.lpVtbl';
 }

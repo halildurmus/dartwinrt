@@ -101,7 +101,7 @@ class IStorageFileStatics extends IInspectable {
 
   Future<StorageFile?> createStreamedFileAsync(
       String displayNameWithExtension,
-      Pointer<NativeFunction<StreamedFileDataRequestedHandler>> dataRequested,
+      Pointer<COMObject> dataRequested,
       IRandomAccessStreamReference? thumbnail) {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<StorageFile?>();
@@ -116,10 +116,7 @@ class IStorageFileStatics extends IInspectable {
                         HRESULT Function(
                             LPVTBL,
                             IntPtr displayNameWithExtension,
-                            Pointer<
-                                    NativeFunction<
-                                        StreamedFileDataRequestedHandler>>
-                                dataRequested,
+                            LPVTBL dataRequested,
                             LPVTBL thumbnail,
                             Pointer<COMObject>)>>>()
             .value
@@ -127,13 +124,12 @@ class IStorageFileStatics extends IInspectable {
                 int Function(
                     LPVTBL,
                     int displayNameWithExtension,
-                    Pointer<NativeFunction<StreamedFileDataRequestedHandler>>
-                        dataRequested,
+                    LPVTBL dataRequested,
                     LPVTBL thumbnail,
                     Pointer<COMObject>)>()(
         ptr.ref.lpVtbl,
         displayNameWithExtensionHString,
-        dataRequested,
+        dataRequested.ref.lpVtbl,
         thumbnail == null ? nullptr : thumbnail.ptr.ref.lpVtbl,
         retValuePtr);
 
@@ -155,7 +151,7 @@ class IStorageFileStatics extends IInspectable {
 
   Future<StorageFile?> replaceWithStreamedFileAsync(
       IStorageFile? fileToReplace,
-      Pointer<NativeFunction<StreamedFileDataRequestedHandler>> dataRequested,
+      Pointer<COMObject> dataRequested,
       IRandomAccessStreamReference? thumbnail) {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<StorageFile?>();
@@ -168,24 +164,16 @@ class IStorageFileStatics extends IInspectable {
                         HRESULT Function(
                             LPVTBL,
                             LPVTBL fileToReplace,
-                            Pointer<
-                                    NativeFunction<
-                                        StreamedFileDataRequestedHandler>>
-                                dataRequested,
+                            LPVTBL dataRequested,
                             LPVTBL thumbnail,
                             Pointer<COMObject>)>>>()
             .value
             .asFunction<
-                int Function(
-                    LPVTBL,
-                    LPVTBL fileToReplace,
-                    Pointer<NativeFunction<StreamedFileDataRequestedHandler>>
-                        dataRequested,
-                    LPVTBL thumbnail,
-                    Pointer<COMObject>)>()(
+                int Function(LPVTBL, LPVTBL fileToReplace, LPVTBL dataRequested,
+                    LPVTBL thumbnail, Pointer<COMObject>)>()(
         ptr.ref.lpVtbl,
         fileToReplace == null ? nullptr : fileToReplace.ptr.ref.lpVtbl,
-        dataRequested,
+        dataRequested.ref.lpVtbl,
         thumbnail == null ? nullptr : thumbnail.ptr.ref.lpVtbl,
         retValuePtr);
 

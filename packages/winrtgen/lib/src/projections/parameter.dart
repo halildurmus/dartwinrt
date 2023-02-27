@@ -39,11 +39,12 @@ abstract class ParameterProjection {
     final projectionType = TypeProjection(param.typeIdentifier).projectionType;
     switch (projectionType) {
       case ProjectionType.dartPrimitive:
-      case ProjectionType.delegate:
       case ProjectionType.pointer:
         return DefaultParameterProjection(param);
       case ProjectionType.dateTime:
         return DateTimeParameterProjection(param);
+      case ProjectionType.delegate:
+        return DelegateParameterProjection(param);
       case ProjectionType.duration:
         return DurationParameterProjection(param);
       case ProjectionType.enum_:

@@ -41,8 +41,7 @@ class PowerManager extends IInspectable {
     }
   }
 
-  static int add_EnergySaverStatusChanged(
-      Pointer<NativeFunction<EventHandler>> handler) {
+  static int add_EnergySaverStatusChanged(Pointer<COMObject> handler) {
     final activationFactoryPtr =
         createActivationFactory(_className, IID_IPowerManagerStatics);
     final object = IPowerManagerStatics.fromRawPointer(activationFactoryPtr);
@@ -78,8 +77,7 @@ class PowerManager extends IInspectable {
     }
   }
 
-  static int add_BatteryStatusChanged(
-      Pointer<NativeFunction<EventHandler>> handler) {
+  static int add_BatteryStatusChanged(Pointer<COMObject> handler) {
     final activationFactoryPtr =
         createActivationFactory(_className, IID_IPowerManagerStatics);
     final object = IPowerManagerStatics.fromRawPointer(activationFactoryPtr);
@@ -115,8 +113,7 @@ class PowerManager extends IInspectable {
     }
   }
 
-  static int add_PowerSupplyStatusChanged(
-      Pointer<NativeFunction<EventHandler>> handler) {
+  static int add_PowerSupplyStatusChanged(Pointer<COMObject> handler) {
     final activationFactoryPtr =
         createActivationFactory(_className, IID_IPowerManagerStatics);
     final object = IPowerManagerStatics.fromRawPointer(activationFactoryPtr);
@@ -152,8 +149,7 @@ class PowerManager extends IInspectable {
     }
   }
 
-  static int add_RemainingChargePercentChanged(
-      Pointer<NativeFunction<EventHandler>> handler) {
+  static int add_RemainingChargePercentChanged(Pointer<COMObject> handler) {
     final activationFactoryPtr =
         createActivationFactory(_className, IID_IPowerManagerStatics);
     final object = IPowerManagerStatics.fromRawPointer(activationFactoryPtr);
@@ -189,8 +185,7 @@ class PowerManager extends IInspectable {
     }
   }
 
-  static int add_RemainingDischargeTimeChanged(
-      Pointer<NativeFunction<EventHandler>> handler) {
+  static int add_RemainingDischargeTimeChanged(Pointer<COMObject> handler) {
     final activationFactoryPtr =
         createActivationFactory(_className, IID_IPowerManagerStatics);
     final object = IPowerManagerStatics.fromRawPointer(activationFactoryPtr);

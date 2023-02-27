@@ -6,7 +6,6 @@ import 'package:winmd/winmd.dart';
 
 import '../extensions/extensions.dart';
 import '../models/models.dart';
-import '../utils.dart';
 
 class TypeTuple {
   const TypeTuple(this.nativeType, this.dartType, {this.attribute});
@@ -148,12 +147,6 @@ class TypeProjection {
 
   bool get isWinRTStruct => isWinRT && (typeIdentifier.type?.isStruct ?? false);
 
-  TypeTuple unwrapDelegate() {
-    final delegateName = outerType(typeIdentifier.shortName);
-    return TypeTuple('Pointer<NativeFunction<$delegateName>>',
-        'Pointer<NativeFunction<$delegateName>>');
-  }
-
   TypeTuple unwrapEnum() {
     final fieldType = typeIdentifier.type?.findField('value__')?.typeIdentifier;
     if (fieldType == null) {
@@ -264,9 +257,6 @@ class TypeProjection {
     // Could be a GUID or other special type that we want to custom-map
     if (isSpecialType) return specialTypes[typeIdentifier.name]!;
 
-    // Could be a WinRT delegate like AsyncActionCompletedHandler
-    if (isWinRTDelegate) return unwrapDelegate();
-
     // Could be a WinRT enum like AsyncStatus
     if (isWinRTEnum) return unwrapEnum();
 
@@ -280,9 +270,9 @@ class TypeProjection {
     // Could be a WinRT struct like BasicGeoposition
     if (isWinRTStruct) return unwrapStruct();
 
-    // Could be a WinRT class (e.g. Calendar), interface (e.g. ICalendar), or
-    // boxed value
-    if (isWinRTObject) {
+    // Could be a WinRT delegate (e.g. AsyncActionCompletedHandler), class (e.g.
+    // Calendar), interface (e.g. ICalendar), or boxed value
+    if (isWinRTDelegate || isWinRTObject) {
       // LPVTBL is an alias for a Pointer to COM vtable (i.e.
       // Pointer<Pointer<IntPtr>>).
       final type = isParameter ? 'LPVTBL' : 'Pointer<COMObject>';

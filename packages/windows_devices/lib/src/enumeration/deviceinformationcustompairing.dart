@@ -53,8 +53,7 @@ class DeviceInformationCustomPairing extends IInspectable
           pairingKindsSupported, minProtectionLevel, devicePairingSettings);
 
   @override
-  int add_PairingRequested(
-          Pointer<NativeFunction<TypedEventHandler>> handler) =>
+  int add_PairingRequested(Pointer<COMObject> handler) =>
       _iDeviceInformationCustomPairing.add_PairingRequested(handler);
 
   @override

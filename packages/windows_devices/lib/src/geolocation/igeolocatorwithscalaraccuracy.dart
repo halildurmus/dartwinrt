@@ -116,7 +116,7 @@ class IGeolocatorWithScalarAccuracy extends IInspectable
       _iGeolocator.getGeopositionAsyncWithAgeAndTimeout(maximumAge, timeout);
 
   @override
-  int add_PositionChanged(Pointer<NativeFunction<TypedEventHandler>> handler) =>
+  int add_PositionChanged(Pointer<COMObject> handler) =>
       _iGeolocator.add_PositionChanged(handler);
 
   @override
@@ -124,7 +124,7 @@ class IGeolocatorWithScalarAccuracy extends IInspectable
       _iGeolocator.remove_PositionChanged(token);
 
   @override
-  int add_StatusChanged(Pointer<NativeFunction<TypedEventHandler>> handler) =>
+  int add_StatusChanged(Pointer<COMObject> handler) =>
       _iGeolocator.add_StatusChanged(handler);
 
   @override

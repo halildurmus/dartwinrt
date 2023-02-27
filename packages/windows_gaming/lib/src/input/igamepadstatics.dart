@@ -30,23 +30,21 @@ class IGamepadStatics extends IInspectable {
       IGamepadStatics.fromRawPointer(
           interface.toInterface(IID_IGamepadStatics));
 
-  int add_GamepadAdded(Pointer<NativeFunction<EventHandler>> value) {
+  int add_GamepadAdded(Pointer<COMObject> value) {
     final retValuePtr = calloc<IntPtr>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          LPVTBL,
-                          Pointer<NativeFunction<EventHandler>> value,
-                          Pointer<IntPtr>)>>>()
-          .value
-          .asFunction<
-              int Function(LPVTBL, Pointer<NativeFunction<EventHandler>> value,
-                  Pointer<IntPtr>)>()(ptr.ref.lpVtbl, value, retValuePtr);
+              .elementAt(6)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              LPVTBL, LPVTBL value, Pointer<IntPtr>)>>>()
+              .value
+              .asFunction<
+                  int Function(LPVTBL, LPVTBL value, Pointer<IntPtr>)>()(
+          ptr.ref.lpVtbl, value.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -66,23 +64,21 @@ class IGamepadStatics extends IInspectable {
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
-  int add_GamepadRemoved(Pointer<NativeFunction<EventHandler>> value) {
+  int add_GamepadRemoved(Pointer<COMObject> value) {
     final retValuePtr = calloc<IntPtr>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          LPVTBL,
-                          Pointer<NativeFunction<EventHandler>> value,
-                          Pointer<IntPtr>)>>>()
-          .value
-          .asFunction<
-              int Function(LPVTBL, Pointer<NativeFunction<EventHandler>> value,
-                  Pointer<IntPtr>)>()(ptr.ref.lpVtbl, value, retValuePtr);
+              .elementAt(8)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              LPVTBL, LPVTBL value, Pointer<IntPtr>)>>>()
+              .value
+              .asFunction<
+                  int Function(LPVTBL, LPVTBL value, Pointer<IntPtr>)>()(
+          ptr.ref.lpVtbl, value.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 

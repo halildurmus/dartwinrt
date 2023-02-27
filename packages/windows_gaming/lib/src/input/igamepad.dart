@@ -86,7 +86,7 @@ class IGamepad extends IInspectable implements IGameController {
   late final _iGameController = IGameController.from(this);
 
   @override
-  int add_HeadsetConnected(Pointer<NativeFunction<TypedEventHandler>> value) =>
+  int add_HeadsetConnected(Pointer<COMObject> value) =>
       _iGameController.add_HeadsetConnected(value);
 
   @override
@@ -94,8 +94,7 @@ class IGamepad extends IInspectable implements IGameController {
       _iGameController.remove_HeadsetConnected(token);
 
   @override
-  int add_HeadsetDisconnected(
-          Pointer<NativeFunction<TypedEventHandler>> value) =>
+  int add_HeadsetDisconnected(Pointer<COMObject> value) =>
       _iGameController.add_HeadsetDisconnected(value);
 
   @override
@@ -103,7 +102,7 @@ class IGamepad extends IInspectable implements IGameController {
       _iGameController.remove_HeadsetDisconnected(token);
 
   @override
-  int add_UserChanged(Pointer<NativeFunction<TypedEventHandler>> value) =>
+  int add_UserChanged(Pointer<COMObject> value) =>
       _iGameController.add_UserChanged(value);
 
   @override

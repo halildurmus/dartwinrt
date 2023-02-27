@@ -52,26 +52,21 @@ class IPowerManagerStatics extends IInspectable {
     }
   }
 
-  int add_EnergySaverStatusChanged(
-      Pointer<NativeFunction<EventHandler>> handler) {
+  int add_EnergySaverStatusChanged(Pointer<COMObject> handler) {
     final retValuePtr = calloc<IntPtr>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          LPVTBL,
-                          Pointer<NativeFunction<EventHandler>> handler,
-                          Pointer<IntPtr>)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  LPVTBL,
-                  Pointer<NativeFunction<EventHandler>> handler,
-                  Pointer<IntPtr>)>()(ptr.ref.lpVtbl, handler, retValuePtr);
+              .elementAt(7)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              LPVTBL, LPVTBL handler, Pointer<IntPtr>)>>>()
+              .value
+              .asFunction<
+                  int Function(LPVTBL, LPVTBL handler, Pointer<IntPtr>)>()(
+          ptr.ref.lpVtbl, handler.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -113,25 +108,21 @@ class IPowerManagerStatics extends IInspectable {
     }
   }
 
-  int add_BatteryStatusChanged(Pointer<NativeFunction<EventHandler>> handler) {
+  int add_BatteryStatusChanged(Pointer<COMObject> handler) {
     final retValuePtr = calloc<IntPtr>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(10)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          LPVTBL,
-                          Pointer<NativeFunction<EventHandler>> handler,
-                          Pointer<IntPtr>)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  LPVTBL,
-                  Pointer<NativeFunction<EventHandler>> handler,
-                  Pointer<IntPtr>)>()(ptr.ref.lpVtbl, handler, retValuePtr);
+              .elementAt(10)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              LPVTBL, LPVTBL handler, Pointer<IntPtr>)>>>()
+              .value
+              .asFunction<
+                  int Function(LPVTBL, LPVTBL handler, Pointer<IntPtr>)>()(
+          ptr.ref.lpVtbl, handler.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -173,26 +164,21 @@ class IPowerManagerStatics extends IInspectable {
     }
   }
 
-  int add_PowerSupplyStatusChanged(
-      Pointer<NativeFunction<EventHandler>> handler) {
+  int add_PowerSupplyStatusChanged(Pointer<COMObject> handler) {
     final retValuePtr = calloc<IntPtr>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(13)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          LPVTBL,
-                          Pointer<NativeFunction<EventHandler>> handler,
-                          Pointer<IntPtr>)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  LPVTBL,
-                  Pointer<NativeFunction<EventHandler>> handler,
-                  Pointer<IntPtr>)>()(ptr.ref.lpVtbl, handler, retValuePtr);
+              .elementAt(13)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              LPVTBL, LPVTBL handler, Pointer<IntPtr>)>>>()
+              .value
+              .asFunction<
+                  int Function(LPVTBL, LPVTBL handler, Pointer<IntPtr>)>()(
+          ptr.ref.lpVtbl, handler.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -234,26 +220,21 @@ class IPowerManagerStatics extends IInspectable {
     }
   }
 
-  int add_RemainingChargePercentChanged(
-      Pointer<NativeFunction<EventHandler>> handler) {
+  int add_RemainingChargePercentChanged(Pointer<COMObject> handler) {
     final retValuePtr = calloc<IntPtr>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(16)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          LPVTBL,
-                          Pointer<NativeFunction<EventHandler>> handler,
-                          Pointer<IntPtr>)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  LPVTBL,
-                  Pointer<NativeFunction<EventHandler>> handler,
-                  Pointer<IntPtr>)>()(ptr.ref.lpVtbl, handler, retValuePtr);
+              .elementAt(16)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              LPVTBL, LPVTBL handler, Pointer<IntPtr>)>>>()
+              .value
+              .asFunction<
+                  int Function(LPVTBL, LPVTBL handler, Pointer<IntPtr>)>()(
+          ptr.ref.lpVtbl, handler.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -295,26 +276,21 @@ class IPowerManagerStatics extends IInspectable {
     }
   }
 
-  int add_RemainingDischargeTimeChanged(
-      Pointer<NativeFunction<EventHandler>> handler) {
+  int add_RemainingDischargeTimeChanged(Pointer<COMObject> handler) {
     final retValuePtr = calloc<IntPtr>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(19)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          LPVTBL,
-                          Pointer<NativeFunction<EventHandler>> handler,
-                          Pointer<IntPtr>)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  LPVTBL,
-                  Pointer<NativeFunction<EventHandler>> handler,
-                  Pointer<IntPtr>)>()(ptr.ref.lpVtbl, handler, retValuePtr);
+              .elementAt(19)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              LPVTBL, LPVTBL handler, Pointer<IntPtr>)>>>()
+              .value
+              .asFunction<
+                  int Function(LPVTBL, LPVTBL handler, Pointer<IntPtr>)>()(
+          ptr.ref.lpVtbl, handler.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 

@@ -9,7 +9,6 @@ import 'dart:ffi';
 import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
 
-import '../callbacks.dart';
 import '../iinspectable.dart';
 
 /// Notifies listeners of dynamic changes to a map, such as when items are added
@@ -20,7 +19,7 @@ class IObservableMap<K, V> extends IInspectable {
   // vtable begins at 6, is 2 entries long.
   IObservableMap.fromRawPointer(super.ptr);
 
-  int add_MapChanged(Pointer<NativeFunction<MapChangedEventHandler>> vhnd) {
+  int add_MapChanged(Pointer<COMObject> vhnd) {
     final retValuePtr = calloc<IntPtr>();
 
     try {
@@ -29,13 +28,11 @@ class IObservableMap<K, V> extends IInspectable {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(LPVTBL, Pointer<COMObject> vhnd,
-                              Pointer<IntPtr>)>>>()
+                          HRESULT Function(
+                              LPVTBL, LPVTBL vhnd, Pointer<IntPtr>)>>>()
               .value
-              .asFunction<
-                  int Function(
-                      LPVTBL, Pointer<COMObject> vhnd, Pointer<IntPtr>)>()(
-          ptr.ref.lpVtbl, vhnd.cast<Pointer<COMObject>>().value, retValuePtr);
+              .asFunction<int Function(LPVTBL, LPVTBL vhnd, Pointer<IntPtr>)>()(
+          ptr.ref.lpVtbl, vhnd.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
