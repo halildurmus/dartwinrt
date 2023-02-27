@@ -42,7 +42,7 @@ class Gamepad extends IInspectable
   static const _className = 'Windows.Gaming.Input.Gamepad';
 
   // IGamepadStatics methods
-  static int add_GamepadAdded(Pointer<NativeFunction<EventHandler>> value) {
+  static int add_GamepadAdded(Pointer<COMObject> value) {
     final activationFactoryPtr =
         createActivationFactory(_className, IID_IGamepadStatics);
     final object = IGamepadStatics.fromRawPointer(activationFactoryPtr);
@@ -66,7 +66,7 @@ class Gamepad extends IInspectable
     }
   }
 
-  static int add_GamepadRemoved(Pointer<NativeFunction<EventHandler>> value) {
+  static int add_GamepadRemoved(Pointer<COMObject> value) {
     final activationFactoryPtr =
         createActivationFactory(_className, IID_IGamepadStatics);
     final object = IGamepadStatics.fromRawPointer(activationFactoryPtr);
@@ -131,7 +131,7 @@ class Gamepad extends IInspectable
   late final _iGameController = IGameController.from(this);
 
   @override
-  int add_HeadsetConnected(Pointer<NativeFunction<TypedEventHandler>> value) =>
+  int add_HeadsetConnected(Pointer<COMObject> value) =>
       _iGameController.add_HeadsetConnected(value);
 
   @override
@@ -139,8 +139,7 @@ class Gamepad extends IInspectable
       _iGameController.remove_HeadsetConnected(token);
 
   @override
-  int add_HeadsetDisconnected(
-          Pointer<NativeFunction<TypedEventHandler>> value) =>
+  int add_HeadsetDisconnected(Pointer<COMObject> value) =>
       _iGameController.add_HeadsetDisconnected(value);
 
   @override
@@ -148,7 +147,7 @@ class Gamepad extends IInspectable
       _iGameController.remove_HeadsetDisconnected(token);
 
   @override
-  int add_UserChanged(Pointer<NativeFunction<TypedEventHandler>> value) =>
+  int add_UserChanged(Pointer<COMObject> value) =>
       _iGameController.add_UserChanged(value);
 
   @override

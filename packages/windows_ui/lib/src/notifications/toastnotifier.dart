@@ -75,8 +75,7 @@ class ToastNotifier extends IInspectable
   late final _iToastNotifier3 = IToastNotifier3.from(this);
 
   @override
-  int add_ScheduledToastNotificationShowing(
-          Pointer<NativeFunction<TypedEventHandler>> handler) =>
+  int add_ScheduledToastNotificationShowing(Pointer<COMObject> handler) =>
       _iToastNotifier3.add_ScheduledToastNotificationShowing(handler);
 
   @override

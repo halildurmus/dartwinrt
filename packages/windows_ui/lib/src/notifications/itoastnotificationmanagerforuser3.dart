@@ -54,26 +54,21 @@ class IToastNotificationManagerForUser3 extends IInspectable {
     }
   }
 
-  int add_NotificationModeChanged(
-      Pointer<NativeFunction<TypedEventHandler>> handler) {
+  int add_NotificationModeChanged(Pointer<COMObject> handler) {
     final retValuePtr = calloc<IntPtr>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          LPVTBL,
-                          Pointer<NativeFunction<TypedEventHandler>> handler,
-                          Pointer<IntPtr>)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  LPVTBL,
-                  Pointer<NativeFunction<TypedEventHandler>> handler,
-                  Pointer<IntPtr>)>()(ptr.ref.lpVtbl, handler, retValuePtr);
+              .elementAt(7)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              LPVTBL, LPVTBL handler, Pointer<IntPtr>)>>>()
+              .value
+              .asFunction<
+                  int Function(LPVTBL, LPVTBL handler, Pointer<IntPtr>)>()(
+          ptr.ref.lpVtbl, handler.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 

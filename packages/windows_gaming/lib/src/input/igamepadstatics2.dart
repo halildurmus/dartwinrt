@@ -67,7 +67,7 @@ class IGamepadStatics2 extends IInspectable implements IGamepadStatics {
   late final _iGamepadStatics = IGamepadStatics.from(this);
 
   @override
-  int add_GamepadAdded(Pointer<NativeFunction<EventHandler>> value) =>
+  int add_GamepadAdded(Pointer<COMObject> value) =>
       _iGamepadStatics.add_GamepadAdded(value);
 
   @override
@@ -75,7 +75,7 @@ class IGamepadStatics2 extends IInspectable implements IGamepadStatics {
       _iGamepadStatics.remove_GamepadAdded(token);
 
   @override
-  int add_GamepadRemoved(Pointer<NativeFunction<EventHandler>> value) =>
+  int add_GamepadRemoved(Pointer<COMObject> value) =>
       _iGamepadStatics.add_GamepadRemoved(value);
 
   @override

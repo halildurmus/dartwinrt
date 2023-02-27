@@ -91,8 +91,7 @@ class UISettings extends IInspectable
   double get textScaleFactor => _iUISettings2.textScaleFactor;
 
   @override
-  int add_TextScaleFactorChanged(
-          Pointer<NativeFunction<TypedEventHandler>> handler) =>
+  int add_TextScaleFactorChanged(Pointer<COMObject> handler) =>
       _iUISettings2.add_TextScaleFactorChanged(handler);
 
   @override
@@ -107,8 +106,7 @@ class UISettings extends IInspectable
       _iUISettings3.getColorValue(desiredColor);
 
   @override
-  int add_ColorValuesChanged(
-          Pointer<NativeFunction<TypedEventHandler>> handler) =>
+  int add_ColorValuesChanged(Pointer<COMObject> handler) =>
       _iUISettings3.add_ColorValuesChanged(handler);
 
   @override
@@ -122,8 +120,7 @@ class UISettings extends IInspectable
   bool get advancedEffectsEnabled => _iUISettings4.advancedEffectsEnabled;
 
   @override
-  int add_AdvancedEffectsEnabledChanged(
-          Pointer<NativeFunction<TypedEventHandler>> handler) =>
+  int add_AdvancedEffectsEnabledChanged(Pointer<COMObject> handler) =>
       _iUISettings4.add_AdvancedEffectsEnabledChanged(handler);
 
   @override
@@ -137,8 +134,7 @@ class UISettings extends IInspectable
   bool get autoHideScrollBars => _iUISettings5.autoHideScrollBars;
 
   @override
-  int add_AutoHideScrollBarsChanged(
-          Pointer<NativeFunction<TypedEventHandler>> handler) =>
+  int add_AutoHideScrollBarsChanged(Pointer<COMObject> handler) =>
       _iUISettings5.add_AutoHideScrollBarsChanged(handler);
 
   @override
@@ -149,8 +145,7 @@ class UISettings extends IInspectable
   late final _iUISettings6 = IUISettings6.from(this);
 
   @override
-  int add_AnimationsEnabledChanged(
-          Pointer<NativeFunction<TypedEventHandler>> handler) =>
+  int add_AnimationsEnabledChanged(Pointer<COMObject> handler) =>
       _iUISettings6.add_AnimationsEnabledChanged(handler);
 
   @override
@@ -158,8 +153,7 @@ class UISettings extends IInspectable
       _iUISettings6.remove_AnimationsEnabledChanged(token);
 
   @override
-  int add_MessageDurationChanged(
-          Pointer<NativeFunction<TypedEventHandler>> handler) =>
+  int add_MessageDurationChanged(Pointer<COMObject> handler) =>
       _iUISettings6.add_MessageDurationChanged(handler);
 
   @override

@@ -92,8 +92,7 @@ class ToastNotificationManagerForUser extends IInspectable
       _iToastNotificationManagerForUser3.notificationMode;
 
   @override
-  int add_NotificationModeChanged(
-          Pointer<NativeFunction<TypedEventHandler>> handler) =>
+  int add_NotificationModeChanged(Pointer<COMObject> handler) =>
       _iToastNotificationManagerForUser3.add_NotificationModeChanged(handler);
 
   @override

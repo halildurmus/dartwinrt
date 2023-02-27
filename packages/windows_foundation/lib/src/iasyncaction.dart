@@ -15,7 +15,6 @@ import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart' hide DocumentProperties;
 
 import '../internal.dart';
-import 'callbacks.dart';
 import 'collections/iiterator.dart';
 import 'enums.g.dart';
 import 'helpers.dart';
@@ -37,57 +36,38 @@ class IAsyncAction extends IInspectable implements IAsyncInfo {
   factory IAsyncAction.from(IInspectable interface) =>
       IAsyncAction.fromRawPointer(interface.toInterface(IID_IAsyncAction));
 
-  set completed(Pointer<NativeFunction<AsyncActionCompletedHandler>> value) {
+  set completed(Pointer<COMObject> value) {
     final hr = ptr.ref.vtable
         .elementAt(6)
         .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        LPVTBL,
-                        Pointer<NativeFunction<AsyncActionCompletedHandler>>
-                            handler)>>>()
+            Pointer<NativeFunction<HRESULT Function(LPVTBL, LPVTBL handler)>>>()
         .value
         .asFunction<
             int Function(
-                LPVTBL,
-                Pointer<NativeFunction<AsyncActionCompletedHandler>>
-                    handler)>()(ptr.ref.lpVtbl, value);
+                LPVTBL, LPVTBL handler)>()(ptr.ref.lpVtbl, value.ref.lpVtbl);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
-  Pointer<NativeFunction<AsyncActionCompletedHandler>> get completed {
-    final retValuePtr =
-        calloc<Pointer<NativeFunction<AsyncActionCompletedHandler>>>();
+  Pointer<COMObject> get completed {
+    final retValuePtr = calloc<COMObject>();
 
-    try {
-      final hr = ptr.ref.vtable
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              LPVTBL,
-                              Pointer<
-                                  Pointer<
-                                      NativeFunction<
-                                          AsyncActionCompletedHandler>>>)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      LPVTBL,
-                      Pointer<
-                          Pointer<
-                              NativeFunction<AsyncActionCompletedHandler>>>)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+    final hr = ptr.ref.vtable
+        .elementAt(7)
+        .cast<
+            Pointer<
+                NativeFunction<HRESULT Function(LPVTBL, Pointer<COMObject>)>>>()
+        .value
+        .asFunction<
+            int Function(
+                LPVTBL, Pointer<COMObject>)>()(ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      return retValuePtr.value;
-    } finally {
+    if (FAILED(hr)) {
       free(retValuePtr);
+      throw WindowsException(hr);
     }
+
+    return retValuePtr;
   }
 
   void getResults() {

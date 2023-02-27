@@ -15,7 +15,6 @@ import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart' hide DocumentProperties;
 
 import '../internal.dart';
-import 'callbacks.dart';
 import 'collections/iiterator.dart';
 import 'helpers.dart';
 import 'iinspectable.dart';

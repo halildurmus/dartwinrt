@@ -69,7 +69,7 @@ class ToastNotification extends IInspectable
   DateTime? get expirationTime => _iToastNotification.expirationTime;
 
   @override
-  int add_Dismissed(Pointer<NativeFunction<TypedEventHandler>> handler) =>
+  int add_Dismissed(Pointer<COMObject> handler) =>
       _iToastNotification.add_Dismissed(handler);
 
   @override
@@ -77,7 +77,7 @@ class ToastNotification extends IInspectable
       _iToastNotification.remove_Dismissed(token);
 
   @override
-  int add_Activated(Pointer<NativeFunction<TypedEventHandler>> handler) =>
+  int add_Activated(Pointer<COMObject> handler) =>
       _iToastNotification.add_Activated(handler);
 
   @override
@@ -85,7 +85,7 @@ class ToastNotification extends IInspectable
       _iToastNotification.remove_Activated(token);
 
   @override
-  int add_Failed(Pointer<NativeFunction<TypedEventHandler>> handler) =>
+  int add_Failed(Pointer<COMObject> handler) =>
       _iToastNotification.add_Failed(handler);
 
   @override

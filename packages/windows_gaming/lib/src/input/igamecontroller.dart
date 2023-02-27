@@ -31,25 +31,21 @@ class IGameController extends IInspectable {
       IGameController.fromRawPointer(
           interface.toInterface(IID_IGameController));
 
-  int add_HeadsetConnected(Pointer<NativeFunction<TypedEventHandler>> value) {
+  int add_HeadsetConnected(Pointer<COMObject> value) {
     final retValuePtr = calloc<IntPtr>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          LPVTBL,
-                          Pointer<NativeFunction<TypedEventHandler>> value,
-                          Pointer<IntPtr>)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  LPVTBL,
-                  Pointer<NativeFunction<TypedEventHandler>> value,
-                  Pointer<IntPtr>)>()(ptr.ref.lpVtbl, value, retValuePtr);
+              .elementAt(6)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              LPVTBL, LPVTBL value, Pointer<IntPtr>)>>>()
+              .value
+              .asFunction<
+                  int Function(LPVTBL, LPVTBL value, Pointer<IntPtr>)>()(
+          ptr.ref.lpVtbl, value.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -69,26 +65,21 @@ class IGameController extends IInspectable {
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
-  int add_HeadsetDisconnected(
-      Pointer<NativeFunction<TypedEventHandler>> value) {
+  int add_HeadsetDisconnected(Pointer<COMObject> value) {
     final retValuePtr = calloc<IntPtr>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          LPVTBL,
-                          Pointer<NativeFunction<TypedEventHandler>> value,
-                          Pointer<IntPtr>)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  LPVTBL,
-                  Pointer<NativeFunction<TypedEventHandler>> value,
-                  Pointer<IntPtr>)>()(ptr.ref.lpVtbl, value, retValuePtr);
+              .elementAt(8)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              LPVTBL, LPVTBL value, Pointer<IntPtr>)>>>()
+              .value
+              .asFunction<
+                  int Function(LPVTBL, LPVTBL value, Pointer<IntPtr>)>()(
+          ptr.ref.lpVtbl, value.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -108,25 +99,21 @@ class IGameController extends IInspectable {
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
-  int add_UserChanged(Pointer<NativeFunction<TypedEventHandler>> value) {
+  int add_UserChanged(Pointer<COMObject> value) {
     final retValuePtr = calloc<IntPtr>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(10)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          LPVTBL,
-                          Pointer<NativeFunction<TypedEventHandler>> value,
-                          Pointer<IntPtr>)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  LPVTBL,
-                  Pointer<NativeFunction<TypedEventHandler>> value,
-                  Pointer<IntPtr>)>()(ptr.ref.lpVtbl, value, retValuePtr);
+              .elementAt(10)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              LPVTBL, LPVTBL value, Pointer<IntPtr>)>>>()
+              .value
+              .asFunction<
+                  int Function(LPVTBL, LPVTBL value, Pointer<IntPtr>)>()(
+          ptr.ref.lpVtbl, value.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 

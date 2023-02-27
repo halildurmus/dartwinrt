@@ -36,29 +36,28 @@ class DeviceWatcher extends IInspectable
   late final _iDeviceWatcher = IDeviceWatcher.from(this);
 
   @override
-  int add_Added(Pointer<NativeFunction<TypedEventHandler>> handler) =>
+  int add_Added(Pointer<COMObject> handler) =>
       _iDeviceWatcher.add_Added(handler);
 
   @override
   void remove_Added(int token) => _iDeviceWatcher.remove_Added(token);
 
   @override
-  int add_Updated(Pointer<NativeFunction<TypedEventHandler>> handler) =>
+  int add_Updated(Pointer<COMObject> handler) =>
       _iDeviceWatcher.add_Updated(handler);
 
   @override
   void remove_Updated(int token) => _iDeviceWatcher.remove_Updated(token);
 
   @override
-  int add_Removed(Pointer<NativeFunction<TypedEventHandler>> handler) =>
+  int add_Removed(Pointer<COMObject> handler) =>
       _iDeviceWatcher.add_Removed(handler);
 
   @override
   void remove_Removed(int token) => _iDeviceWatcher.remove_Removed(token);
 
   @override
-  int add_EnumerationCompleted(
-          Pointer<NativeFunction<TypedEventHandler>> handler) =>
+  int add_EnumerationCompleted(Pointer<COMObject> handler) =>
       _iDeviceWatcher.add_EnumerationCompleted(handler);
 
   @override
@@ -66,7 +65,7 @@ class DeviceWatcher extends IInspectable
       _iDeviceWatcher.remove_EnumerationCompleted(token);
 
   @override
-  int add_Stopped(Pointer<NativeFunction<TypedEventHandler>> handler) =>
+  int add_Stopped(Pointer<COMObject> handler) =>
       _iDeviceWatcher.add_Stopped(handler);
 
   @override

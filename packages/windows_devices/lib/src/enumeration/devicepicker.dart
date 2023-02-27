@@ -46,7 +46,7 @@ class DevicePicker extends IInspectable implements IDevicePicker {
   IVector<String> get requestedProperties => _iDevicePicker.requestedProperties;
 
   @override
-  int add_DeviceSelected(Pointer<NativeFunction<TypedEventHandler>> handler) =>
+  int add_DeviceSelected(Pointer<COMObject> handler) =>
       _iDevicePicker.add_DeviceSelected(handler);
 
   @override
@@ -54,8 +54,7 @@ class DevicePicker extends IInspectable implements IDevicePicker {
       _iDevicePicker.remove_DeviceSelected(token);
 
   @override
-  int add_DisconnectButtonClicked(
-          Pointer<NativeFunction<TypedEventHandler>> handler) =>
+  int add_DisconnectButtonClicked(Pointer<COMObject> handler) =>
       _iDevicePicker.add_DisconnectButtonClicked(handler);
 
   @override
@@ -63,8 +62,7 @@ class DevicePicker extends IInspectable implements IDevicePicker {
       _iDevicePicker.remove_DisconnectButtonClicked(token);
 
   @override
-  int add_DevicePickerDismissed(
-          Pointer<NativeFunction<TypedEventHandler>> handler) =>
+  int add_DevicePickerDismissed(Pointer<COMObject> handler) =>
       _iDevicePicker.add_DevicePickerDismissed(handler);
 
   @override

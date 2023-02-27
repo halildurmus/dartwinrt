@@ -40,29 +40,27 @@ class UserWatcher extends IInspectable implements IUserWatcher {
   void stop() => _iUserWatcher.stop();
 
   @override
-  int add_Added(Pointer<NativeFunction<TypedEventHandler>> handler) =>
-      _iUserWatcher.add_Added(handler);
+  int add_Added(Pointer<COMObject> handler) => _iUserWatcher.add_Added(handler);
 
   @override
   void remove_Added(int token) => _iUserWatcher.remove_Added(token);
 
   @override
-  int add_Removed(Pointer<NativeFunction<TypedEventHandler>> handler) =>
+  int add_Removed(Pointer<COMObject> handler) =>
       _iUserWatcher.add_Removed(handler);
 
   @override
   void remove_Removed(int token) => _iUserWatcher.remove_Removed(token);
 
   @override
-  int add_Updated(Pointer<NativeFunction<TypedEventHandler>> handler) =>
+  int add_Updated(Pointer<COMObject> handler) =>
       _iUserWatcher.add_Updated(handler);
 
   @override
   void remove_Updated(int token) => _iUserWatcher.remove_Updated(token);
 
   @override
-  int add_AuthenticationStatusChanged(
-          Pointer<NativeFunction<TypedEventHandler>> handler) =>
+  int add_AuthenticationStatusChanged(Pointer<COMObject> handler) =>
       _iUserWatcher.add_AuthenticationStatusChanged(handler);
 
   @override
@@ -70,8 +68,7 @@ class UserWatcher extends IInspectable implements IUserWatcher {
       _iUserWatcher.remove_AuthenticationStatusChanged(token);
 
   @override
-  int add_AuthenticationStatusChanging(
-          Pointer<NativeFunction<TypedEventHandler>> handler) =>
+  int add_AuthenticationStatusChanging(Pointer<COMObject> handler) =>
       _iUserWatcher.add_AuthenticationStatusChanging(handler);
 
   @override
@@ -79,8 +76,7 @@ class UserWatcher extends IInspectable implements IUserWatcher {
       _iUserWatcher.remove_AuthenticationStatusChanging(token);
 
   @override
-  int add_EnumerationCompleted(
-          Pointer<NativeFunction<TypedEventHandler>> handler) =>
+  int add_EnumerationCompleted(Pointer<COMObject> handler) =>
       _iUserWatcher.add_EnumerationCompleted(handler);
 
   @override
@@ -88,7 +84,7 @@ class UserWatcher extends IInspectable implements IUserWatcher {
       _iUserWatcher.remove_EnumerationCompleted(token);
 
   @override
-  int add_Stopped(Pointer<NativeFunction<TypedEventHandler>> handler) =>
+  int add_Stopped(Pointer<COMObject> handler) =>
       _iUserWatcher.add_Stopped(handler);
 
   @override

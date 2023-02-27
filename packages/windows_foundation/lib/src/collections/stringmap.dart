@@ -15,7 +15,6 @@ import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart' hide DocumentProperties;
 
 import '../../internal.dart';
-import '../callbacks.dart';
 import '../helpers.dart';
 import '../iinspectable.dart';
 import 'iiterable.dart';
@@ -75,7 +74,7 @@ class StringMap extends IInspectable
       toInterface('{1e036276-2f60-55f6-b7f3-f86079e6900b}'));
 
   @override
-  int add_MapChanged(Pointer<NativeFunction<MapChangedEventHandler>> vhnd) =>
+  int add_MapChanged(Pointer<COMObject> vhnd) =>
       _iObservableMap.add_MapChanged(vhnd);
 
   @override

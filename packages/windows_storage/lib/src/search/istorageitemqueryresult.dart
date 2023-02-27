@@ -109,7 +109,7 @@ class IStorageItemQueryResult extends IInspectable
   StorageFolder? get folder => _iStorageQueryResultBase.folder;
 
   @override
-  int add_ContentsChanged(Pointer<NativeFunction<TypedEventHandler>> handler) =>
+  int add_ContentsChanged(Pointer<COMObject> handler) =>
       _iStorageQueryResultBase.add_ContentsChanged(handler);
 
   @override
@@ -117,8 +117,7 @@ class IStorageItemQueryResult extends IInspectable
       _iStorageQueryResultBase.remove_ContentsChanged(eventCookie);
 
   @override
-  int add_OptionsChanged(
-          Pointer<NativeFunction<TypedEventHandler>> changedHandler) =>
+  int add_OptionsChanged(Pointer<COMObject> changedHandler) =>
       _iStorageQueryResultBase.add_OptionsChanged(changedHandler);
 
   @override
