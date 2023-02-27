@@ -2,21 +2,30 @@
 // details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-// ignore_for_file: unused_import
+// THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
+
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
 // ignore_for_file: no_leading_underscores_for_local_identifiers
+// ignore_for_file: unused_import
 
+import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart';
+import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 import 'package:windows_ui/windows_ui.dart';
 
+import 'deviceinformation.dart';
+import 'devicepickerappearance.dart';
 import 'devicepickerfilter.dart';
 import 'enums.g.dart';
 import 'idevicepicker.dart';
 
+/// Represents a picker flyout that contains a list of devices for the user
+/// to choose from.
+///
 /// {@category class}
 class DevicePicker extends IInspectable implements IDevicePicker {
   DevicePicker() : super(activateClass(_className));
@@ -28,10 +37,10 @@ class DevicePicker extends IInspectable implements IDevicePicker {
   late final _iDevicePicker = IDevicePicker.from(this);
 
   @override
-  DevicePickerFilter get filter => _iDevicePicker.filter;
+  DevicePickerFilter? get filter => _iDevicePicker.filter;
 
   @override
-  Pointer<COMObject> get appearance => _iDevicePicker.appearance;
+  DevicePickerAppearance? get appearance => _iDevicePicker.appearance;
 
   @override
   IVector<String> get requestedProperties => _iDevicePicker.requestedProperties;
@@ -70,11 +79,11 @@ class DevicePicker extends IInspectable implements IDevicePicker {
       _iDevicePicker.showWithPlacement(selection, placement);
 
   @override
-  Pointer<COMObject> pickSingleDeviceAsync(Rect selection) =>
+  Future<DeviceInformation?> pickSingleDeviceAsync(Rect selection) =>
       _iDevicePicker.pickSingleDeviceAsync(selection);
 
   @override
-  Pointer<COMObject> pickSingleDeviceAsyncWithPlacement(
+  Future<DeviceInformation?> pickSingleDeviceAsyncWithPlacement(
           Rect selection, Placement placement) =>
       _iDevicePicker.pickSingleDeviceAsyncWithPlacement(selection, placement);
 
@@ -82,7 +91,7 @@ class DevicePicker extends IInspectable implements IDevicePicker {
   void hide() => _iDevicePicker.hide();
 
   @override
-  void setDisplayStatus(Pointer<COMObject> device, String status,
+  void setDisplayStatus(DeviceInformation? device, String status,
           DevicePickerDisplayStatusOptions options) =>
       _iDevicePicker.setDisplayStatus(device, status, options);
 }

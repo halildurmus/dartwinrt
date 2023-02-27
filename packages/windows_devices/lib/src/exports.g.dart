@@ -4,11 +4,37 @@
 
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
+export 'enumeration/deviceinformation.dart';
+export 'enumeration/deviceinformationcollection.dart';
+export 'enumeration/deviceinformationcustompairing.dart';
+export 'enumeration/deviceinformationpairing.dart';
+export 'enumeration/deviceinformationupdate.dart';
+export 'enumeration/devicepairingresult.dart';
 export 'enumeration/devicepicker.dart';
+export 'enumeration/devicepickerappearance.dart';
 export 'enumeration/devicepickerfilter.dart';
+export 'enumeration/devicethumbnail.dart';
+export 'enumeration/deviceunpairingresult.dart';
+export 'enumeration/devicewatcher.dart';
+export 'enumeration/enclosurelocation.dart';
 export 'enumeration/enums.g.dart';
+export 'enumeration/ideviceinformation.dart';
+export 'enumeration/ideviceinformation2.dart';
+export 'enumeration/ideviceinformationcustompairing.dart';
+export 'enumeration/ideviceinformationpairing.dart';
+export 'enumeration/ideviceinformationpairing2.dart';
+export 'enumeration/ideviceinformationupdate.dart';
+export 'enumeration/ideviceinformationupdate2.dart';
+export 'enumeration/idevicepairingresult.dart';
+export 'enumeration/idevicepairingsettings.dart';
 export 'enumeration/idevicepicker.dart';
+export 'enumeration/idevicepickerappearance.dart';
 export 'enumeration/idevicepickerfilter.dart';
+export 'enumeration/ideviceunpairingresult.dart';
+export 'enumeration/idevicewatcher.dart';
+export 'enumeration/idevicewatcher2.dart';
+export 'enumeration/ienclosurelocation.dart';
+export 'enumeration/ienclosurelocation2.dart';
 export 'geolocation/civicaddress.dart';
 export 'geolocation/enums.g.dart';
 export 'geolocation/geocoordinate.dart';

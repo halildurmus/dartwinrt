@@ -27,7 +27,7 @@ void main() {
     setUp(() {
       allocator = Arena();
       picker = DevicePicker();
-      pickerFilter = picker.filter;
+      pickerFilter = picker.filter!;
       vector = pickerFilter.supportedDeviceClasses;
     });
 

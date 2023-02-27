@@ -2,17 +2,24 @@
 // details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-// ignore_for_file: unused_import
+// THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
+
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
 // ignore_for_file: no_leading_underscores_for_local_identifiers
+// ignore_for_file: unused_import
 
+import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart';
+import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 import 'package:windows_ui/windows_ui.dart';
 
+import 'deviceinformation.dart';
+import 'devicepicker.dart';
+import 'devicepickerappearance.dart';
 import 'devicepickerfilter.dart';
 import 'enums.g.dart';
 
@@ -27,7 +34,7 @@ class IDevicePicker extends IInspectable {
   factory IDevicePicker.from(IInspectable interface) =>
       IDevicePicker.fromRawPointer(interface.toInterface(IID_IDevicePicker));
 
-  DevicePickerFilter get filter {
+  DevicePickerFilter? get filter {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -40,12 +47,20 @@ class IDevicePicker extends IInspectable {
             int Function(
                 LPVTBL, Pointer<COMObject>)>()(ptr.ref.lpVtbl, retValuePtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) {
+      free(retValuePtr);
+      throw WindowsException(hr);
+    }
+
+    if (retValuePtr.ref.isNull) {
+      free(retValuePtr);
+      return null;
+    }
 
     return DevicePickerFilter.fromRawPointer(retValuePtr);
   }
 
-  Pointer<COMObject> get appearance {
+  DevicePickerAppearance? get appearance {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -58,9 +73,17 @@ class IDevicePicker extends IInspectable {
             int Function(
                 LPVTBL, Pointer<COMObject>)>()(ptr.ref.lpVtbl, retValuePtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) {
+      free(retValuePtr);
+      throw WindowsException(hr);
+    }
 
-    return retValuePtr;
+    if (retValuePtr.ref.isNull) {
+      free(retValuePtr);
+      return null;
+    }
+
+    return DevicePickerAppearance.fromRawPointer(retValuePtr);
   }
 
   IVector<String> get requestedProperties {
@@ -76,7 +99,10 @@ class IDevicePicker extends IInspectable {
             int Function(
                 LPVTBL, Pointer<COMObject>)>()(ptr.ref.lpVtbl, retValuePtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) {
+      free(retValuePtr);
+      throw WindowsException(hr);
+    }
 
     return IVector.fromRawPointer(retValuePtr,
         iterableIid: '{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}');
@@ -225,8 +251,9 @@ class IDevicePicker extends IInspectable {
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
-  Pointer<COMObject> pickSingleDeviceAsync(Rect selection) {
+  Future<DeviceInformation?> pickSingleDeviceAsync(Rect selection) {
     final retValuePtr = calloc<COMObject>();
+    final completer = Completer<DeviceInformation?>();
 
     final hr = ptr.ref.vtable
             .elementAt(17)
@@ -240,14 +267,24 @@ class IDevicePicker extends IInspectable {
                 int Function(LPVTBL, Rect selection, Pointer<COMObject>)>()(
         ptr.ref.lpVtbl, selection, retValuePtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) {
+      free(retValuePtr);
+      throw WindowsException(hr);
+    }
 
-    return retValuePtr;
+    final asyncOperation = IAsyncOperation<DeviceInformation?>.fromRawPointer(
+        retValuePtr,
+        creator: DeviceInformation.fromRawPointer);
+    completeAsyncOperation(
+        asyncOperation, completer, asyncOperation.getResults);
+
+    return completer.future;
   }
 
-  Pointer<COMObject> pickSingleDeviceAsyncWithPlacement(
+  Future<DeviceInformation?> pickSingleDeviceAsyncWithPlacement(
       Rect selection, Placement placement) {
     final retValuePtr = calloc<COMObject>();
+    final completer = Completer<DeviceInformation?>();
 
     final hr =
         ptr.ref.vtable
@@ -263,9 +300,18 @@ class IDevicePicker extends IInspectable {
                         Pointer<COMObject>)>()(
             ptr.ref.lpVtbl, selection, placement.value, retValuePtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) {
+      free(retValuePtr);
+      throw WindowsException(hr);
+    }
 
-    return retValuePtr;
+    final asyncOperation = IAsyncOperation<DeviceInformation?>.fromRawPointer(
+        retValuePtr,
+        creator: DeviceInformation.fromRawPointer);
+    completeAsyncOperation(
+        asyncOperation, completer, asyncOperation.getResults);
+
+    return completer.future;
   }
 
   void hide() {
@@ -278,7 +324,7 @@ class IDevicePicker extends IInspectable {
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
-  void setDisplayStatus(Pointer<COMObject> device, String status,
+  void setDisplayStatus(DeviceInformation? device, String status,
       DevicePickerDisplayStatusOptions options) {
     final statusHString = convertToHString(status);
 
@@ -292,7 +338,10 @@ class IDevicePicker extends IInspectable {
             .value
             .asFunction<
                 int Function(LPVTBL, LPVTBL device, int status, int options)>()(
-        ptr.ref.lpVtbl, device.ref.lpVtbl, statusHString, options.value);
+        ptr.ref.lpVtbl,
+        device == null ? nullptr : device.ptr.ref.lpVtbl,
+        statusHString,
+        options.value);
 
     if (FAILED(hr)) throw WindowsException(hr);
 
