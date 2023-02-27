@@ -2,9 +2,169 @@
 // details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
+// THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
+
+// ignore_for_file: constant_identifier_names, non_constant_identifier_names
+// ignore_for_file: no_leading_underscores_for_local_identifiers
+// ignore_for_file: unused_import
+
+import 'dart:async';
+import 'dart:ffi';
+
+import 'package:ffi/ffi.dart';
+import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
-// TODO: Generate this class
-class ConnectionProfile extends IInspectable {
+import 'attributednetworkusage.dart';
+import 'connectioncost.dart';
+import 'connectivityinterval.dart';
+import 'dataplanstatus.dart';
+import 'datausage.dart';
+import 'enums.g.dart';
+import 'iconnectionprofile.dart';
+import 'iconnectionprofile2.dart';
+import 'iconnectionprofile3.dart';
+import 'iconnectionprofile4.dart';
+import 'iconnectionprofile5.dart';
+import 'iconnectionprofile6.dart';
+import 'networkadapter.dart';
+import 'networksecuritysettings.dart';
+import 'networkusage.dart';
+import 'providernetworkusage.dart';
+import 'structs.g.dart';
+import 'wlanconnectionprofiledetails.dart';
+import 'wwanconnectionprofiledetails.dart';
+
+/// Represents a network connection, which includes either the currently
+/// connected network or prior network connections. Provides information
+/// about the connection status and connectivity statistics.
+///
+/// {@category class}
+class ConnectionProfile extends IInspectable
+    implements
+        IConnectionProfile,
+        IConnectionProfile2,
+        IConnectionProfile3,
+        IConnectionProfile4,
+        IConnectionProfile5,
+        IConnectionProfile6 {
   ConnectionProfile.fromRawPointer(super.ptr);
+
+  // IConnectionProfile methods
+  late final _iConnectionProfile = IConnectionProfile.from(this);
+
+  @override
+  String get profileName => _iConnectionProfile.profileName;
+
+  @override
+  NetworkConnectivityLevel getNetworkConnectivityLevel() =>
+      _iConnectionProfile.getNetworkConnectivityLevel();
+
+  @override
+  List<String> getNetworkNames() => _iConnectionProfile.getNetworkNames();
+
+  @override
+  ConnectionCost? getConnectionCost() =>
+      _iConnectionProfile.getConnectionCost();
+
+  @override
+  DataPlanStatus? getDataPlanStatus() =>
+      _iConnectionProfile.getDataPlanStatus();
+
+  @override
+  NetworkAdapter? get networkAdapter => _iConnectionProfile.networkAdapter;
+
+  @override
+  DataUsage? getLocalUsage(DateTime StartTime, DateTime EndTime) =>
+      _iConnectionProfile.getLocalUsage(StartTime, EndTime);
+
+  @override
+  DataUsage? getLocalUsagePerRoamingStates(
+          DateTime StartTime, DateTime EndTime, RoamingStates States) =>
+      _iConnectionProfile.getLocalUsagePerRoamingStates(
+          StartTime, EndTime, States);
+
+  @override
+  NetworkSecuritySettings? get networkSecuritySettings =>
+      _iConnectionProfile.networkSecuritySettings;
+
+  // IConnectionProfile2 methods
+  late final _iConnectionProfile2 = IConnectionProfile2.from(this);
+
+  @override
+  bool get isWwanConnectionProfile =>
+      _iConnectionProfile2.isWwanConnectionProfile;
+
+  @override
+  bool get isWlanConnectionProfile =>
+      _iConnectionProfile2.isWlanConnectionProfile;
+
+  @override
+  WwanConnectionProfileDetails? get wwanConnectionProfileDetails =>
+      _iConnectionProfile2.wwanConnectionProfileDetails;
+
+  @override
+  WlanConnectionProfileDetails? get wlanConnectionProfileDetails =>
+      _iConnectionProfile2.wlanConnectionProfileDetails;
+
+  @override
+  Guid? get serviceProviderGuid => _iConnectionProfile2.serviceProviderGuid;
+
+  @override
+  int? getSignalBars() => _iConnectionProfile2.getSignalBars();
+
+  @override
+  DomainConnectivityLevel getDomainConnectivityLevel() =>
+      _iConnectionProfile2.getDomainConnectivityLevel();
+
+  @override
+  Future<List<NetworkUsage>> getNetworkUsageAsync(
+          DateTime startTime,
+          DateTime endTime,
+          DataUsageGranularity granularity,
+          NetworkUsageStates states) =>
+      _iConnectionProfile2.getNetworkUsageAsync(
+          startTime, endTime, granularity, states);
+
+  @override
+  Future<List<ConnectivityInterval>> getConnectivityIntervalsAsync(
+          DateTime startTime, DateTime endTime, NetworkUsageStates states) =>
+      _iConnectionProfile2.getConnectivityIntervalsAsync(
+          startTime, endTime, states);
+
+  // IConnectionProfile3 methods
+  late final _iConnectionProfile3 = IConnectionProfile3.from(this);
+
+  @override
+  Future<List<AttributedNetworkUsage>> getAttributedNetworkUsageAsync(
+          DateTime startTime, DateTime endTime, NetworkUsageStates states) =>
+      _iConnectionProfile3.getAttributedNetworkUsageAsync(
+          startTime, endTime, states);
+
+  // IConnectionProfile4 methods
+  late final _iConnectionProfile4 = IConnectionProfile4.from(this);
+
+  @override
+  Future<List<ProviderNetworkUsage>> getProviderNetworkUsageAsync(
+          DateTime startTime, DateTime endTime, NetworkUsageStates states) =>
+      _iConnectionProfile4.getProviderNetworkUsageAsync(
+          startTime, endTime, states);
+
+  // IConnectionProfile5 methods
+  late final _iConnectionProfile5 = IConnectionProfile5.from(this);
+
+  @override
+  bool get canDelete => _iConnectionProfile5.canDelete;
+
+  @override
+  Future<ConnectionProfileDeleteStatus> tryDeleteAsync() =>
+      _iConnectionProfile5.tryDeleteAsync();
+
+  // IConnectionProfile6 methods
+  late final _iConnectionProfile6 = IConnectionProfile6.from(this);
+
+  @override
+  bool isDomainAuthenticatedBy(DomainAuthenticationKind kind) =>
+      _iConnectionProfile6.isDomainAuthenticatedBy(kind);
 }
