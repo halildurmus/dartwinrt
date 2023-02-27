@@ -42,12 +42,14 @@ class IStorageProvider2 extends IInspectable implements IStorageProvider {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL, IntPtr propertyCanonicalName,
-                            Pointer<COMObject>)>>>()
+                        HRESULT Function(
+                            LPVTBL lpVtbl,
+                            IntPtr propertyCanonicalName,
+                            Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(
-                    LPVTBL, int propertyCanonicalName, Pointer<COMObject>)>()(
+                int Function(LPVTBL lpVtbl, int propertyCanonicalName,
+                    Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, propertyCanonicalNameHString, retValuePtr);
 
     if (FAILED(hr)) {

@@ -35,9 +35,11 @@ class IXmlDocumentIO2 extends IInspectable {
     final hr = ptr.ref.vtable
             .elementAt(6)
             .cast<
-                Pointer<NativeFunction<HRESULT Function(LPVTBL, LPVTBL buffer)>>>()
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(LPVTBL lpVtbl, LPVTBL buffer)>>>()
             .value
-            .asFunction<int Function(LPVTBL, LPVTBL buffer)>()(
+            .asFunction<int Function(LPVTBL lpVtbl, LPVTBL buffer)>()(
         ptr.ref.lpVtbl, buffer == null ? nullptr : buffer.ptr.ref.lpVtbl);
 
     if (FAILED(hr)) throw WindowsException(hr);
@@ -50,11 +52,12 @@ class IXmlDocumentIO2 extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(
-                            LPVTBL, LPVTBL buffer, LPVTBL loadSettings)>>>()
+                        HRESULT Function(LPVTBL lpVtbl, LPVTBL buffer,
+                            LPVTBL loadSettings)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL, LPVTBL buffer, LPVTBL loadSettings)>()(
+                int Function(
+                    LPVTBL lpVtbl, LPVTBL buffer, LPVTBL loadSettings)>()(
         ptr.ref.lpVtbl,
         buffer == null ? nullptr : buffer.ptr.ref.lpVtbl,
         loadSettings == null ? nullptr : loadSettings.ptr.ref.lpVtbl);

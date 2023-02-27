@@ -108,6 +108,7 @@ abstract class IReference<T> extends IInspectable {
       // Since the PropertyValue does not support creating an `IReference`
       // object for them, we need to create our own IReference<T> (and possibly
       // IPropertyValue) implementations for them.
+
       throw ArgumentError.value(T, 'T', 'Unsupported type');
     }
 

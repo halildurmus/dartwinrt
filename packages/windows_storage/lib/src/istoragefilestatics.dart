@@ -43,10 +43,12 @@ class IStorageFileStatics extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(
-                            LPVTBL, IntPtr path, Pointer<COMObject>)>>>()
+                        HRESULT Function(LPVTBL lpVtbl, IntPtr path,
+                            Pointer<COMObject> retValuePtr)>>>()
             .value
-            .asFunction<int Function(LPVTBL, int path, Pointer<COMObject>)>()(
+            .asFunction<
+                int Function(
+                    LPVTBL lpVtbl, int path, Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, pathHString, retValuePtr);
 
     if (FAILED(hr)) {
@@ -75,13 +77,13 @@ class IStorageFileStatics extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(
-                            LPVTBL, LPVTBL uri, Pointer<COMObject>)>>>()
+                        HRESULT Function(LPVTBL lpVtbl, LPVTBL uri,
+                            Pointer<COMObject> retValuePtr)>>>()
             .value
-            .asFunction<int Function(LPVTBL, LPVTBL uri, Pointer<COMObject>)>()(
-        ptr.ref.lpVtbl,
-        uriUri == null ? nullptr : uriUri.ptr.ref.lpVtbl,
-        retValuePtr);
+            .asFunction<
+                int Function(LPVTBL lpVtbl, LPVTBL uri,
+                    Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl,
+        uriUri == null ? nullptr : uriUri.ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -114,19 +116,19 @@ class IStorageFileStatics extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            LPVTBL,
+                            LPVTBL lpVtbl,
                             IntPtr displayNameWithExtension,
                             LPVTBL dataRequested,
                             LPVTBL thumbnail,
-                            Pointer<COMObject>)>>>()
+                            Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
                 int Function(
-                    LPVTBL,
+                    LPVTBL lpVtbl,
                     int displayNameWithExtension,
                     LPVTBL dataRequested,
                     LPVTBL thumbnail,
-                    Pointer<COMObject>)>()(
+                    Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl,
         displayNameWithExtensionHString,
         dataRequested.ref.lpVtbl,
@@ -162,15 +164,19 @@ class IStorageFileStatics extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            LPVTBL,
+                            LPVTBL lpVtbl,
                             LPVTBL fileToReplace,
                             LPVTBL dataRequested,
                             LPVTBL thumbnail,
-                            Pointer<COMObject>)>>>()
+                            Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL, LPVTBL fileToReplace, LPVTBL dataRequested,
-                    LPVTBL thumbnail, Pointer<COMObject>)>()(
+                int Function(
+                    LPVTBL lpVtbl,
+                    LPVTBL fileToReplace,
+                    LPVTBL dataRequested,
+                    LPVTBL thumbnail,
+                    Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl,
         fileToReplace == null ? nullptr : fileToReplace.ptr.ref.lpVtbl,
         dataRequested.ref.lpVtbl,
@@ -201,27 +207,30 @@ class IStorageFileStatics extends IInspectable {
         convertToHString(displayNameWithExtension);
     final uriUri = uri == null ? null : winrt_uri.Uri.createUri(uri.toString());
 
-    final hr =
-        ptr.ref.vtable
-                .elementAt(10)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                LPVTBL,
-                                IntPtr displayNameWithExtension,
-                                LPVTBL uri,
-                                LPVTBL thumbnail,
-                                Pointer<COMObject>)>>>()
-                .value
-                .asFunction<
-                    int Function(LPVTBL, int displayNameWithExtension,
-                        LPVTBL uri, LPVTBL thumbnail, Pointer<COMObject>)>()(
-            ptr.ref.lpVtbl,
-            displayNameWithExtensionHString,
-            uriUri == null ? nullptr : uriUri.ptr.ref.lpVtbl,
-            thumbnail == null ? nullptr : thumbnail.ptr.ref.lpVtbl,
-            retValuePtr);
+    final hr = ptr.ref.vtable
+            .elementAt(10)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            LPVTBL lpVtbl,
+                            IntPtr displayNameWithExtension,
+                            LPVTBL uri,
+                            LPVTBL thumbnail,
+                            Pointer<COMObject> retValuePtr)>>>()
+            .value
+            .asFunction<
+                int Function(
+                    LPVTBL lpVtbl,
+                    int displayNameWithExtension,
+                    LPVTBL uri,
+                    LPVTBL thumbnail,
+                    Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl,
+        displayNameWithExtensionHString,
+        uriUri == null ? nullptr : uriUri.ptr.ref.lpVtbl,
+        thumbnail == null ? nullptr : thumbnail.ptr.ref.lpVtbl,
+        retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -249,27 +258,26 @@ class IStorageFileStatics extends IInspectable {
 
     final uriUri = uri == null ? null : winrt_uri.Uri.createUri(uri.toString());
 
-    final hr =
-        ptr.ref.vtable
-                .elementAt(11)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                LPVTBL,
-                                LPVTBL fileToReplace,
-                                LPVTBL uri,
-                                LPVTBL thumbnail,
-                                Pointer<COMObject>)>>>()
-                .value
-                .asFunction<
-                    int Function(LPVTBL, LPVTBL fileToReplace, LPVTBL uri,
-                        LPVTBL thumbnail, Pointer<COMObject>)>()(
-            ptr.ref.lpVtbl,
-            fileToReplace == null ? nullptr : fileToReplace.ptr.ref.lpVtbl,
-            uriUri == null ? nullptr : uriUri.ptr.ref.lpVtbl,
-            thumbnail == null ? nullptr : thumbnail.ptr.ref.lpVtbl,
-            retValuePtr);
+    final hr = ptr.ref.vtable
+            .elementAt(11)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            LPVTBL lpVtbl,
+                            LPVTBL fileToReplace,
+                            LPVTBL uri,
+                            LPVTBL thumbnail,
+                            Pointer<COMObject> retValuePtr)>>>()
+            .value
+            .asFunction<
+                int Function(LPVTBL lpVtbl, LPVTBL fileToReplace, LPVTBL uri,
+                    LPVTBL thumbnail, Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl,
+        fileToReplace == null ? nullptr : fileToReplace.ptr.ref.lpVtbl,
+        uriUri == null ? nullptr : uriUri.ptr.ref.lpVtbl,
+        thumbnail == null ? nullptr : thumbnail.ptr.ref.lpVtbl,
+        retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);

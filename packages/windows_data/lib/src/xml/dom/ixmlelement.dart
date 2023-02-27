@@ -42,14 +42,16 @@ class IXmlElement extends IInspectable
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<HRESULT Function(LPVTBL, Pointer<IntPtr>)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  LPVTBL, Pointer<IntPtr>)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(6)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>()(
+          ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -70,11 +72,12 @@ class IXmlElement extends IInspectable
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(LPVTBL, IntPtr attributeName,
-                              Pointer<IntPtr>)>>>()
+                          HRESULT Function(LPVTBL lpVtbl, IntPtr attributeName,
+                              Pointer<IntPtr> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(LPVTBL, int attributeName, Pointer<IntPtr>)>()(
+                  int Function(LPVTBL lpVtbl, int attributeName,
+                      Pointer<IntPtr> retValuePtr)>()(
           ptr.ref.lpVtbl, attributeNameHString, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
@@ -96,11 +99,12 @@ class IXmlElement extends IInspectable
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL, IntPtr attributeName,
+                        HRESULT Function(LPVTBL lpVtbl, IntPtr attributeName,
                             IntPtr attributeValue)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL, int attributeName, int attributeValue)>()(
+                int Function(
+                    LPVTBL lpVtbl, int attributeName, int attributeValue)>()(
         ptr.ref.lpVtbl, attributeNameHString, attributeValueHString);
 
     if (FAILED(hr)) throw WindowsException(hr);
@@ -112,15 +116,17 @@ class IXmlElement extends IInspectable
   void removeAttribute(String attributeName) {
     final attributeNameHString = convertToHString(attributeName);
 
-    final hr = ptr.ref.vtable
-            .elementAt(9)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(LPVTBL, IntPtr attributeName)>>>()
-            .value
-            .asFunction<int Function(LPVTBL, int attributeName)>()(
-        ptr.ref.lpVtbl, attributeNameHString);
+    final hr =
+        ptr.ref.vtable
+                .elementAt(9)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                LPVTBL lpVtbl, IntPtr attributeName)>>>()
+                .value
+                .asFunction<int Function(LPVTBL lpVtbl, int attributeName)>()(
+            ptr.ref.lpVtbl, attributeNameHString);
 
     if (FAILED(hr)) throw WindowsException(hr);
 
@@ -136,11 +142,12 @@ class IXmlElement extends IInspectable
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL, IntPtr attributeName,
-                            Pointer<COMObject>)>>>()
+                        HRESULT Function(LPVTBL lpVtbl, IntPtr attributeName,
+                            Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL, int attributeName, Pointer<COMObject>)>()(
+                int Function(LPVTBL lpVtbl, int attributeName,
+                    Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, attributeNameHString, retValuePtr);
 
     if (FAILED(hr)) {
@@ -166,12 +173,12 @@ class IXmlElement extends IInspectable
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL, LPVTBL newAttribute,
-                            Pointer<COMObject>)>>>()
+                        HRESULT Function(LPVTBL lpVtbl, LPVTBL newAttribute,
+                            Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(
-                    LPVTBL, LPVTBL newAttribute, Pointer<COMObject>)>()(
+                int Function(LPVTBL lpVtbl, LPVTBL newAttribute,
+                    Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl,
         newAttribute == null ? nullptr : newAttribute.ptr.ref.lpVtbl,
         retValuePtr);
@@ -197,12 +204,12 @@ class IXmlElement extends IInspectable
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL, LPVTBL attributeNode,
-                            Pointer<COMObject>)>>>()
+                        HRESULT Function(LPVTBL lpVtbl, LPVTBL attributeNode,
+                            Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(
-                    LPVTBL, LPVTBL attributeNode, Pointer<COMObject>)>()(
+                int Function(LPVTBL lpVtbl, LPVTBL attributeNode,
+                    Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl,
         attributeNode == null ? nullptr : attributeNode.ptr.ref.lpVtbl,
         retValuePtr);
@@ -229,11 +236,12 @@ class IXmlElement extends IInspectable
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(
-                            LPVTBL, IntPtr tagName, Pointer<COMObject>)>>>()
+                        HRESULT Function(LPVTBL lpVtbl, IntPtr tagName,
+                            Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL, int tagName, Pointer<COMObject>)>()(
+                int Function(LPVTBL lpVtbl, int tagName,
+                    Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, tagNameHString, retValuePtr);
 
     if (FAILED(hr)) {
@@ -261,12 +269,12 @@ class IXmlElement extends IInspectable
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL, LPVTBL namespaceUri,
+                        HRESULT Function(LPVTBL lpVtbl, LPVTBL namespaceUri,
                             IntPtr qualifiedName, IntPtr value)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL, LPVTBL namespaceUri, int qualifiedName,
-                    int value)>()(
+                int Function(LPVTBL lpVtbl, LPVTBL namespaceUri,
+                    int qualifiedName, int value)>()(
         ptr.ref.lpVtbl,
         namespaceUri?.intoBox().ref.lpVtbl ?? nullptr,
         qualifiedNameHString,
@@ -284,21 +292,25 @@ class IXmlElement extends IInspectable
     final localNameHString = convertToHString(localName);
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(15)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(LPVTBL, LPVTBL namespaceUri,
-                              IntPtr localName, Pointer<IntPtr>)>>>()
-              .value
-              .asFunction<
-                  int Function(LPVTBL, LPVTBL namespaceUri, int localName,
-                      Pointer<IntPtr>)>()(
-          ptr.ref.lpVtbl,
-          namespaceUri?.intoBox().ref.lpVtbl ?? nullptr,
-          localNameHString,
-          retValuePtr);
+      final hr =
+          ptr.ref.vtable
+                  .elementAt(15)
+                  .cast<
+                      Pointer<
+                          NativeFunction<
+                              HRESULT Function(
+                                  LPVTBL lpVtbl,
+                                  LPVTBL namespaceUri,
+                                  IntPtr localName,
+                                  Pointer<IntPtr> retValuePtr)>>>()
+                  .value
+                  .asFunction<
+                      int Function(LPVTBL lpVtbl, LPVTBL namespaceUri,
+                          int localName, Pointer<IntPtr> retValuePtr)>()(
+              ptr.ref.lpVtbl,
+              namespaceUri?.intoBox().ref.lpVtbl ?? nullptr,
+              localNameHString,
+              retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -318,11 +330,12 @@ class IXmlElement extends IInspectable
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(
-                            LPVTBL, LPVTBL namespaceUri, IntPtr localName)>>>()
+                        HRESULT Function(LPVTBL lpVtbl, LPVTBL namespaceUri,
+                            IntPtr localName)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL, LPVTBL namespaceUri, int localName)>()(
+                int Function(
+                    LPVTBL lpVtbl, LPVTBL namespaceUri, int localName)>()(
         ptr.ref.lpVtbl,
         namespaceUri?.intoBox().ref.lpVtbl ?? nullptr,
         localNameHString);
@@ -340,12 +353,12 @@ class IXmlElement extends IInspectable
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL, LPVTBL newAttribute,
-                            Pointer<COMObject>)>>>()
+                        HRESULT Function(LPVTBL lpVtbl, LPVTBL newAttribute,
+                            Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(
-                    LPVTBL, LPVTBL newAttribute, Pointer<COMObject>)>()(
+                int Function(LPVTBL lpVtbl, LPVTBL newAttribute,
+                    Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl,
         newAttribute == null ? nullptr : newAttribute.ptr.ref.lpVtbl,
         retValuePtr);
@@ -368,21 +381,25 @@ class IXmlElement extends IInspectable
 
     final localNameHString = convertToHString(localName);
 
-    final hr = ptr.ref.vtable
-            .elementAt(18)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(LPVTBL, LPVTBL namespaceUri,
-                            IntPtr localName, Pointer<COMObject>)>>>()
-            .value
-            .asFunction<
-                int Function(LPVTBL, LPVTBL namespaceUri, int localName,
-                    Pointer<COMObject>)>()(
-        ptr.ref.lpVtbl,
-        namespaceUri?.intoBox().ref.lpVtbl ?? nullptr,
-        localNameHString,
-        retValuePtr);
+    final hr =
+        ptr.ref.vtable
+                .elementAt(18)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                LPVTBL lpVtbl,
+                                LPVTBL namespaceUri,
+                                IntPtr localName,
+                                Pointer<COMObject> retValuePtr)>>>()
+                .value
+                .asFunction<
+                    int Function(LPVTBL lpVtbl, LPVTBL namespaceUri,
+                        int localName, Pointer<COMObject> retValuePtr)>()(
+            ptr.ref.lpVtbl,
+            namespaceUri?.intoBox().ref.lpVtbl ?? nullptr,
+            localNameHString,
+            retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);

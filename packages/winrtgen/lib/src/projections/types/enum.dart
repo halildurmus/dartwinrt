@@ -11,15 +11,10 @@ import '../setter.dart';
 mixin _EnumMixin on MethodProjection {
   @override
   String get returnType => returnTypeProjection.typeIdentifier.type!.shortName;
-}
-
-/// Method projection for methods that return a WinRT enum (e.g. `AsyncStatus`).
-class EnumMethodProjection extends MethodProjection with _EnumMixin {
-  EnumMethodProjection(super.method, super.vtableOffset);
 
   @override
-  String get methodProjection => '''
-  $returnType $camelCasedName($methodParams) {
+  String get methodDeclaration => '''
+  $methodHeader {
     final retValuePtr = calloc<${returnTypeProjection.nativeType}>();
     $parametersPreamble
 
@@ -35,24 +30,14 @@ class EnumMethodProjection extends MethodProjection with _EnumMixin {
 ''';
 }
 
+/// Method projection for methods that return WinRT enum (e.g. `AsyncStatus`).
+class EnumMethodProjection extends MethodProjection with _EnumMixin {
+  EnumMethodProjection(super.method, super.vtableOffset);
+}
+
 /// Getter projection for WinRT enum getters.
 class EnumGetterProjection extends GetterProjection with _EnumMixin {
   EnumGetterProjection(super.method, super.vtableOffset);
-
-  @override
-  String get methodProjection => '''
-  $returnType get $camelCasedName {
-    final retValuePtr = calloc<${returnTypeProjection.nativeType}>();
-
-    try {
-      ${ffiCall()}
-
-      return $returnType.from(retValuePtr.value);
-    } finally {
-      free(retValuePtr);
-    }
-  }
-''';
 }
 
 /// Setter projection for WinRT enum setters.
@@ -60,8 +45,8 @@ class EnumSetterProjection extends SetterProjection {
   EnumSetterProjection(super.method, super.vtableOffset);
 
   @override
-  String get methodProjection => '''
-  set $camelCasedName(${param.type} value) {
+  String get methodDeclaration => '''
+  $methodHeader {
     ${ffiCall(params: 'value.value')}
   }
 ''';

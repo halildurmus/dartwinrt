@@ -39,12 +39,12 @@ class IHostNameStatics extends IInspectable {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(LPVTBL, IntPtr value1, IntPtr value2,
-                              Pointer<Int32>)>>>()
+                          HRESULT Function(LPVTBL lpVtbl, IntPtr value1,
+                              IntPtr value2, Pointer<Int32> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(
-                      LPVTBL, int value1, int value2, Pointer<Int32>)>()(
+                  int Function(LPVTBL lpVtbl, int value1, int value2,
+                      Pointer<Int32> retValuePtr)>()(
           ptr.ref.lpVtbl, value1HString, value2HString, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);

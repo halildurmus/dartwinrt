@@ -190,7 +190,7 @@ void main() {
 
     group('has correct class declaration', () {
       test('(1)', () {
-        expect(asyncOperationBoolProjection.classDeclaration,
+        expect(asyncOperationBoolProjection.classHeader,
             equals('class _IAsyncOperationBool extends IAsyncOperation<bool>'));
       });
 
@@ -199,7 +199,7 @@ void main() {
             'Windows.Foundation.IAsyncOperation`1',
             TypeArg.nullableInspectable);
         expect(
-            projection.classDeclaration,
+            projection.classHeader,
             equals(
                 'class _IAsyncOperationInspectable<TResult> extends IAsyncOperation<TResult>'));
       });
@@ -208,7 +208,7 @@ void main() {
         final projection = GenericInterfaceProjection.from(
             'Windows.Foundation.IAsyncOperation`1', TypeArg.winrtEnum);
         expect(
-            projection.classDeclaration,
+            projection.classHeader,
             equals(
                 'class _IAsyncOperationWinRTEnum<TResult> extends IAsyncOperation<TResult>'));
       });
@@ -218,7 +218,7 @@ void main() {
             'Windows.Foundation.Collections.IMap`2',
             TypeArg.string,
             TypeArg.nullableInspectable);
-        expect(projection.classDeclaration,
+        expect(projection.classHeader,
             equals('class _IMapStringInspectable<V> extends IMap<String, V>'));
       });
 
@@ -227,7 +227,7 @@ void main() {
             'Windows.Foundation.Collections.IMap`2',
             TypeArg.guid,
             TypeArg.nullableObject);
-        expect(projection.classDeclaration,
+        expect(projection.classHeader,
             equals('class _IMapGuidObject extends IMap<Guid, Object?>'));
       });
     });

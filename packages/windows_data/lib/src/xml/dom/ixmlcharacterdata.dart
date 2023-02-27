@@ -42,14 +42,16 @@ class IXmlCharacterData extends IInspectable
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<HRESULT Function(LPVTBL, Pointer<IntPtr>)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  LPVTBL, Pointer<IntPtr>)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(6)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>()(
+          ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -65,11 +67,14 @@ class IXmlCharacterData extends IInspectable
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(7)
-          .cast<
-              Pointer<NativeFunction<HRESULT Function(LPVTBL, IntPtr value)>>>()
-          .value
-          .asFunction<int Function(LPVTBL, int value)>()(ptr.ref.lpVtbl, hstr);
+              .elementAt(7)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(LPVTBL lpVtbl, IntPtr value)>>>()
+              .value
+              .asFunction<int Function(LPVTBL lpVtbl, int value)>()(
+          ptr.ref.lpVtbl, hstr);
 
       if (FAILED(hr)) throw WindowsException(hr);
     } finally {
@@ -82,14 +87,16 @@ class IXmlCharacterData extends IInspectable
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<HRESULT Function(LPVTBL, Pointer<Uint32>)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  LPVTBL, Pointer<Uint32>)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(8)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              LPVTBL lpVtbl, Pointer<Uint32> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(LPVTBL lpVtbl, Pointer<Uint32> retValuePtr)>()(
+          ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -108,12 +115,12 @@ class IXmlCharacterData extends IInspectable
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(LPVTBL, Uint32 offset, Uint32 count,
-                              Pointer<IntPtr>)>>>()
+                          HRESULT Function(LPVTBL lpVtbl, Uint32 offset,
+                              Uint32 count, Pointer<IntPtr> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(
-                      LPVTBL, int offset, int count, Pointer<IntPtr>)>()(
+                  int Function(LPVTBL lpVtbl, int offset, int count,
+                      Pointer<IntPtr> retValuePtr)>()(
           ptr.ref.lpVtbl, offset, count, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
@@ -130,10 +137,13 @@ class IXmlCharacterData extends IInspectable
 
     final hr = ptr.ref.vtable
         .elementAt(10)
-        .cast<Pointer<NativeFunction<HRESULT Function(LPVTBL, IntPtr data)>>>()
+        .cast<
+            Pointer<
+                NativeFunction<HRESULT Function(LPVTBL lpVtbl, IntPtr data)>>>()
         .value
         .asFunction<
-            int Function(LPVTBL, int data)>()(ptr.ref.lpVtbl, dataHString);
+            int Function(
+                LPVTBL lpVtbl, int data)>()(ptr.ref.lpVtbl, dataHString);
 
     if (FAILED(hr)) throw WindowsException(hr);
 
@@ -143,17 +153,16 @@ class IXmlCharacterData extends IInspectable
   void insertData(int offset, String data) {
     final dataHString = convertToHString(data);
 
-    final hr =
-        ptr.ref.vtable
-                .elementAt(11)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                LPVTBL, Uint32 offset, IntPtr data)>>>()
-                .value
-                .asFunction<int Function(LPVTBL, int offset, int data)>()(
-            ptr.ref.lpVtbl, offset, dataHString);
+    final hr = ptr.ref.vtable
+            .elementAt(11)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            LPVTBL lpVtbl, Uint32 offset, IntPtr data)>>>()
+            .value
+            .asFunction<int Function(LPVTBL lpVtbl, int offset, int data)>()(
+        ptr.ref.lpVtbl, offset, dataHString);
 
     if (FAILED(hr)) throw WindowsException(hr);
 
@@ -161,17 +170,16 @@ class IXmlCharacterData extends IInspectable
   }
 
   void deleteData(int offset, int count) {
-    final hr =
-        ptr.ref.vtable
-                .elementAt(12)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                LPVTBL, Uint32 offset, Uint32 count)>>>()
-                .value
-                .asFunction<int Function(LPVTBL, int offset, int count)>()(
-            ptr.ref.lpVtbl, offset, count);
+    final hr = ptr.ref.vtable
+            .elementAt(12)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            LPVTBL lpVtbl, Uint32 offset, Uint32 count)>>>()
+            .value
+            .asFunction<int Function(LPVTBL lpVtbl, int offset, int count)>()(
+        ptr.ref.lpVtbl, offset, count);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
@@ -184,11 +192,11 @@ class IXmlCharacterData extends IInspectable
         .cast<
             Pointer<
                 NativeFunction<
-                    HRESULT Function(
-                        LPVTBL, Uint32 offset, Uint32 count, IntPtr data)>>>()
+                    HRESULT Function(LPVTBL lpVtbl, Uint32 offset, Uint32 count,
+                        IntPtr data)>>>()
         .value
         .asFunction<
-            int Function(LPVTBL, int offset, int count,
+            int Function(LPVTBL lpVtbl, int offset, int count,
                 int data)>()(ptr.ref.lpVtbl, offset, count, dataHString);
 
     if (FAILED(hr)) throw WindowsException(hr);

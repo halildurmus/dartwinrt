@@ -41,22 +41,24 @@ class IJsonObjectWithDefaultValues extends IInspectable
     final retValuePtr = calloc<COMObject>();
     final nameHString = convertToHString(name);
 
-    final hr =
-        ptr.ref.vtable
-                .elementAt(6)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(LPVTBL, IntPtr name,
-                                LPVTBL defaultValue, Pointer<COMObject>)>>>()
-                .value
-                .asFunction<
-                    int Function(LPVTBL, int name, LPVTBL defaultValue,
-                        Pointer<COMObject>)>()(
-            ptr.ref.lpVtbl,
-            nameHString,
-            defaultValue == null ? nullptr : defaultValue.ptr.ref.lpVtbl,
-            retValuePtr);
+    final hr = ptr.ref.vtable
+            .elementAt(6)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            LPVTBL lpVtbl,
+                            IntPtr name,
+                            LPVTBL defaultValue,
+                            Pointer<COMObject> retValuePtr)>>>()
+            .value
+            .asFunction<
+                int Function(LPVTBL lpVtbl, int name, LPVTBL defaultValue,
+                    Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl,
+        nameHString,
+        defaultValue == null ? nullptr : defaultValue.ptr.ref.lpVtbl,
+        retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -77,22 +79,24 @@ class IJsonObjectWithDefaultValues extends IInspectable
     final retValuePtr = calloc<COMObject>();
     final nameHString = convertToHString(name);
 
-    final hr =
-        ptr.ref.vtable
-                .elementAt(7)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(LPVTBL, IntPtr name,
-                                LPVTBL defaultValue, Pointer<COMObject>)>>>()
-                .value
-                .asFunction<
-                    int Function(LPVTBL, int name, LPVTBL defaultValue,
-                        Pointer<COMObject>)>()(
-            ptr.ref.lpVtbl,
-            nameHString,
-            defaultValue == null ? nullptr : defaultValue.ptr.ref.lpVtbl,
-            retValuePtr);
+    final hr = ptr.ref.vtable
+            .elementAt(7)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            LPVTBL lpVtbl,
+                            IntPtr name,
+                            LPVTBL defaultValue,
+                            Pointer<COMObject> retValuePtr)>>>()
+            .value
+            .asFunction<
+                int Function(LPVTBL lpVtbl, int name, LPVTBL defaultValue,
+                    Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl,
+        nameHString,
+        defaultValue == null ? nullptr : defaultValue.ptr.ref.lpVtbl,
+        retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -121,12 +125,15 @@ class IJsonObjectWithDefaultValues extends IInspectable
                   .cast<
                       Pointer<
                           NativeFunction<
-                              HRESULT Function(LPVTBL, IntPtr name,
-                                  IntPtr defaultValue, Pointer<IntPtr>)>>>()
+                              HRESULT Function(
+                                  LPVTBL lpVtbl,
+                                  IntPtr name,
+                                  IntPtr defaultValue,
+                                  Pointer<IntPtr> retValuePtr)>>>()
                   .value
                   .asFunction<
-                      int Function(LPVTBL, int name, int defaultValue,
-                          Pointer<IntPtr>)>()(
+                      int Function(LPVTBL lpVtbl, int name, int defaultValue,
+                          Pointer<IntPtr> retValuePtr)>()(
               ptr.ref.lpVtbl, nameHString, defaultValueHString, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
@@ -144,22 +151,24 @@ class IJsonObjectWithDefaultValues extends IInspectable
     final retValuePtr = calloc<COMObject>();
     final nameHString = convertToHString(name);
 
-    final hr =
-        ptr.ref.vtable
-                .elementAt(9)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(LPVTBL, IntPtr name,
-                                LPVTBL defaultValue, Pointer<COMObject>)>>>()
-                .value
-                .asFunction<
-                    int Function(LPVTBL, int name, LPVTBL defaultValue,
-                        Pointer<COMObject>)>()(
-            ptr.ref.lpVtbl,
-            nameHString,
-            defaultValue == null ? nullptr : defaultValue.ptr.ref.lpVtbl,
-            retValuePtr);
+    final hr = ptr.ref.vtable
+            .elementAt(9)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            LPVTBL lpVtbl,
+                            IntPtr name,
+                            LPVTBL defaultValue,
+                            Pointer<COMObject> retValuePtr)>>>()
+            .value
+            .asFunction<
+                int Function(LPVTBL lpVtbl, int name, LPVTBL defaultValue,
+                    Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl,
+        nameHString,
+        defaultValue == null ? nullptr : defaultValue.ptr.ref.lpVtbl,
+        retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -187,12 +196,15 @@ class IJsonObjectWithDefaultValues extends IInspectable
                   .cast<
                       Pointer<
                           NativeFunction<
-                              HRESULT Function(LPVTBL, IntPtr name,
-                                  Double defaultValue, Pointer<Double>)>>>()
+                              HRESULT Function(
+                                  LPVTBL lpVtbl,
+                                  IntPtr name,
+                                  Double defaultValue,
+                                  Pointer<Double> retValuePtr)>>>()
                   .value
                   .asFunction<
-                      int Function(LPVTBL, int name, double defaultValue,
-                          Pointer<Double>)>()(
+                      int Function(LPVTBL lpVtbl, int name, double defaultValue,
+                          Pointer<Double> retValuePtr)>()(
               ptr.ref.lpVtbl, nameHString, defaultValue, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
@@ -210,19 +222,18 @@ class IJsonObjectWithDefaultValues extends IInspectable
     final nameHString = convertToHString(name);
 
     try {
-      final hr =
-          ptr.ref.vtable
-                  .elementAt(11)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(LPVTBL, IntPtr name,
-                                  Bool defaultValue, Pointer<Bool>)>>>()
-                  .value
-                  .asFunction<
-                      int Function(LPVTBL, int name, bool defaultValue,
-                          Pointer<Bool>)>()(
-              ptr.ref.lpVtbl, nameHString, defaultValue, retValuePtr);
+      final hr = ptr.ref.vtable
+              .elementAt(11)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(LPVTBL lpVtbl, IntPtr name,
+                              Bool defaultValue, Pointer<Bool> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(LPVTBL lpVtbl, int name, bool defaultValue,
+                      Pointer<Bool> retValuePtr)>()(
+          ptr.ref.lpVtbl, nameHString, defaultValue, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 

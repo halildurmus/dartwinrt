@@ -4,7 +4,14 @@
 
 import 'package:winmd/winmd.dart';
 
+import '../models/projection_type.dart';
+import '../projections/type.dart';
+
 extension MethodHelpers on Method {
   /// Returns a copy of this method.
   Method clone() => Method.fromToken(scope, token);
+
+  /// Returns the appropriate [ProjectionType] for this method.
+  ProjectionType get projectionType =>
+      TypeProjection(returnType.typeIdentifier).projectionType;
 }

@@ -36,14 +36,16 @@ class IGeolocator extends IInspectable {
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<HRESULT Function(LPVTBL, Pointer<Int32>)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  LPVTBL, Pointer<Int32>)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(6)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              LPVTBL lpVtbl, Pointer<Int32> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(LPVTBL lpVtbl, Pointer<Int32> retValuePtr)>()(
+          ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -56,10 +58,13 @@ class IGeolocator extends IInspectable {
   set desiredAccuracy(PositionAccuracy value) {
     final hr = ptr.ref.vtable
         .elementAt(7)
-        .cast<Pointer<NativeFunction<HRESULT Function(LPVTBL, Int32 value)>>>()
+        .cast<
+            Pointer<
+                NativeFunction<HRESULT Function(LPVTBL lpVtbl, Int32 value)>>>()
         .value
         .asFunction<
-            int Function(LPVTBL, int value)>()(ptr.ref.lpVtbl, value.value);
+            int Function(
+                LPVTBL lpVtbl, int value)>()(ptr.ref.lpVtbl, value.value);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
@@ -69,14 +74,16 @@ class IGeolocator extends IInspectable {
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<HRESULT Function(LPVTBL, Pointer<Double>)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  LPVTBL, Pointer<Double>)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(8)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              LPVTBL lpVtbl, Pointer<Double> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(LPVTBL lpVtbl, Pointer<Double> retValuePtr)>()(
+          ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -88,11 +95,14 @@ class IGeolocator extends IInspectable {
 
   set movementThreshold(double value) {
     final hr = ptr.ref.vtable
-        .elementAt(9)
-        .cast<Pointer<NativeFunction<HRESULT Function(LPVTBL, Double value)>>>()
-        .value
-        .asFunction<
-            int Function(LPVTBL, double value)>()(ptr.ref.lpVtbl, value);
+            .elementAt(9)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(LPVTBL lpVtbl, Double value)>>>()
+            .value
+            .asFunction<int Function(LPVTBL lpVtbl, double value)>()(
+        ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
@@ -102,14 +112,16 @@ class IGeolocator extends IInspectable {
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(10)
-          .cast<
-              Pointer<
-                  NativeFunction<HRESULT Function(LPVTBL, Pointer<Uint32>)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  LPVTBL, Pointer<Uint32>)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(10)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              LPVTBL lpVtbl, Pointer<Uint32> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(LPVTBL lpVtbl, Pointer<Uint32> retValuePtr)>()(
+          ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -121,10 +133,14 @@ class IGeolocator extends IInspectable {
 
   set reportInterval(int value) {
     final hr = ptr.ref.vtable
-        .elementAt(11)
-        .cast<Pointer<NativeFunction<HRESULT Function(LPVTBL, Uint32 value)>>>()
-        .value
-        .asFunction<int Function(LPVTBL, int value)>()(ptr.ref.lpVtbl, value);
+            .elementAt(11)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(LPVTBL lpVtbl, Uint32 value)>>>()
+            .value
+            .asFunction<int Function(LPVTBL lpVtbl, int value)>()(
+        ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
@@ -134,14 +150,16 @@ class IGeolocator extends IInspectable {
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(12)
-          .cast<
-              Pointer<
-                  NativeFunction<HRESULT Function(LPVTBL, Pointer<Int32>)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  LPVTBL, Pointer<Int32>)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(12)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              LPVTBL lpVtbl, Pointer<Int32> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(LPVTBL lpVtbl, Pointer<Int32> retValuePtr)>()(
+          ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -156,14 +174,16 @@ class IGeolocator extends IInspectable {
     final completer = Completer<Geoposition?>();
 
     final hr = ptr.ref.vtable
-        .elementAt(13)
-        .cast<
-            Pointer<
-                NativeFunction<HRESULT Function(LPVTBL, Pointer<COMObject>)>>>()
-        .value
-        .asFunction<
-            int Function(
-                LPVTBL, Pointer<COMObject>)>()(ptr.ref.lpVtbl, retValuePtr);
+            .elementAt(13)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>>>()
+            .value
+            .asFunction<
+                int Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -186,19 +206,18 @@ class IGeolocator extends IInspectable {
     final maximumAgeDuration = maximumAge.inMicroseconds * 10;
     final timeoutDuration = timeout.inMicroseconds * 10;
 
-    final hr =
-        ptr.ref.vtable
-                .elementAt(14)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(LPVTBL, Uint64 maximumAge,
-                                Uint64 timeout, Pointer<COMObject>)>>>()
-                .value
-                .asFunction<
-                    int Function(LPVTBL, int maximumAge, int timeout,
-                        Pointer<COMObject>)>()(
-            ptr.ref.lpVtbl, maximumAgeDuration, timeoutDuration, retValuePtr);
+    final hr = ptr.ref.vtable
+            .elementAt(14)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(LPVTBL lpVtbl, Uint64 maximumAge,
+                            Uint64 timeout, Pointer<COMObject> retValuePtr)>>>()
+            .value
+            .asFunction<
+                int Function(LPVTBL lpVtbl, int maximumAge, int timeout,
+                    Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl, maximumAgeDuration, timeoutDuration, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -223,11 +242,12 @@ class IGeolocator extends IInspectable {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(
-                              LPVTBL, LPVTBL handler, Pointer<IntPtr>)>>>()
+                          HRESULT Function(LPVTBL lpVtbl, LPVTBL handler,
+                              Pointer<IntPtr> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(LPVTBL, LPVTBL handler, Pointer<IntPtr>)>()(
+                  int Function(LPVTBL lpVtbl, LPVTBL handler,
+                      Pointer<IntPtr> retValuePtr)>()(
           ptr.ref.lpVtbl, handler.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
@@ -240,10 +260,14 @@ class IGeolocator extends IInspectable {
 
   void remove_PositionChanged(int token) {
     final hr = ptr.ref.vtable
-        .elementAt(16)
-        .cast<Pointer<NativeFunction<HRESULT Function(LPVTBL, IntPtr token)>>>()
-        .value
-        .asFunction<int Function(LPVTBL, int token)>()(ptr.ref.lpVtbl, token);
+            .elementAt(16)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(LPVTBL lpVtbl, IntPtr token)>>>()
+            .value
+            .asFunction<int Function(LPVTBL lpVtbl, int token)>()(
+        ptr.ref.lpVtbl, token);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
@@ -257,11 +281,12 @@ class IGeolocator extends IInspectable {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(
-                              LPVTBL, LPVTBL handler, Pointer<IntPtr>)>>>()
+                          HRESULT Function(LPVTBL lpVtbl, LPVTBL handler,
+                              Pointer<IntPtr> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(LPVTBL, LPVTBL handler, Pointer<IntPtr>)>()(
+                  int Function(LPVTBL lpVtbl, LPVTBL handler,
+                      Pointer<IntPtr> retValuePtr)>()(
           ptr.ref.lpVtbl, handler.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
@@ -274,10 +299,14 @@ class IGeolocator extends IInspectable {
 
   void remove_StatusChanged(int token) {
     final hr = ptr.ref.vtable
-        .elementAt(18)
-        .cast<Pointer<NativeFunction<HRESULT Function(LPVTBL, IntPtr token)>>>()
-        .value
-        .asFunction<int Function(LPVTBL, int token)>()(ptr.ref.lpVtbl, token);
+            .elementAt(18)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(LPVTBL lpVtbl, IntPtr token)>>>()
+            .value
+            .asFunction<int Function(LPVTBL lpVtbl, int token)>()(
+        ptr.ref.lpVtbl, token);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }

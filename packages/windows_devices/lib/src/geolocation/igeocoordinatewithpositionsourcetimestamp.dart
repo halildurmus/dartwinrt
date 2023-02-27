@@ -34,14 +34,16 @@ class IGeocoordinateWithPositionSourceTimestamp extends IInspectable {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<HRESULT Function(LPVTBL, Pointer<COMObject>)>>>()
-        .value
-        .asFunction<
-            int Function(
-                LPVTBL, Pointer<COMObject>)>()(ptr.ref.lpVtbl, retValuePtr);
+            .elementAt(6)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>>>()
+            .value
+            .asFunction<
+                int Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);

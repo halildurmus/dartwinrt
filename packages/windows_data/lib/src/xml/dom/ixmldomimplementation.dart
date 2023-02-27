@@ -33,19 +33,21 @@ class IXmlDomImplementation extends IInspectable {
     final featureHString = convertToHString(feature);
 
     try {
-      final hr =
-          ptr.ref.vtable
-                  .elementAt(6)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(LPVTBL, IntPtr feature,
-                                  LPVTBL version, Pointer<Bool>)>>>()
-                  .value
-                  .asFunction<
-                      int Function(LPVTBL, int feature, LPVTBL version,
-                          Pointer<Bool>)>()(ptr.ref.lpVtbl, featureHString,
-              version?.intoBox().ref.lpVtbl ?? nullptr, retValuePtr);
+      final hr = ptr.ref.vtable
+              .elementAt(6)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(LPVTBL lpVtbl, IntPtr feature,
+                              LPVTBL version, Pointer<Bool> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(LPVTBL lpVtbl, int feature, LPVTBL version,
+                      Pointer<Bool> retValuePtr)>()(
+          ptr.ref.lpVtbl,
+          featureHString,
+          version?.intoBox().ref.lpVtbl ?? nullptr,
+          retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 

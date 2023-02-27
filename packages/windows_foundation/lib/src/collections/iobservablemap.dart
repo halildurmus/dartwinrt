@@ -28,10 +28,12 @@ class IObservableMap<K, V> extends IInspectable {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(
-                              LPVTBL, LPVTBL vhnd, Pointer<IntPtr>)>>>()
+                          HRESULT Function(LPVTBL lpVtbl, LPVTBL vhnd,
+                              Pointer<IntPtr> retValuePtr)>>>()
               .value
-              .asFunction<int Function(LPVTBL, LPVTBL vhnd, Pointer<IntPtr>)>()(
+              .asFunction<
+                  int Function(LPVTBL lpVtbl, LPVTBL vhnd,
+                      Pointer<IntPtr> retValuePtr)>()(
           ptr.ref.lpVtbl, vhnd.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
@@ -44,10 +46,14 @@ class IObservableMap<K, V> extends IInspectable {
 
   void remove_MapChanged(int token) {
     final hr = ptr.ref.vtable
-        .elementAt(7)
-        .cast<Pointer<NativeFunction<HRESULT Function(LPVTBL, IntPtr token)>>>()
-        .value
-        .asFunction<int Function(LPVTBL, int token)>()(ptr.ref.lpVtbl, token);
+            .elementAt(7)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(LPVTBL lpVtbl, IntPtr token)>>>()
+            .value
+            .asFunction<int Function(LPVTBL lpVtbl, int token)>()(
+        ptr.ref.lpVtbl, token);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }

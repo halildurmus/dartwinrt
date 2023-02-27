@@ -40,14 +40,13 @@ class IToastCollectionManager extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(
-                            LPVTBL, LPVTBL collection, Pointer<COMObject>)>>>()
+                        HRESULT Function(LPVTBL lpVtbl, LPVTBL collection,
+                            Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL, LPVTBL collection, Pointer<COMObject>)>()(
-        ptr.ref.lpVtbl,
-        collection == null ? nullptr : collection.ptr.ref.lpVtbl,
-        retValuePtr);
+                int Function(LPVTBL lpVtbl, LPVTBL collection,
+                    Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl,
+        collection == null ? nullptr : collection.ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -65,14 +64,16 @@ class IToastCollectionManager extends IInspectable {
     final completer = Completer<List<ToastCollection>>();
 
     final hr = ptr.ref.vtable
-        .elementAt(7)
-        .cast<
-            Pointer<
-                NativeFunction<HRESULT Function(LPVTBL, Pointer<COMObject>)>>>()
-        .value
-        .asFunction<
-            int Function(
-                LPVTBL, Pointer<COMObject>)>()(ptr.ref.lpVtbl, retValuePtr);
+            .elementAt(7)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>>>()
+            .value
+            .asFunction<
+                int Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -101,11 +102,12 @@ class IToastCollectionManager extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL, IntPtr collectionId,
-                            Pointer<COMObject>)>>>()
+                        HRESULT Function(LPVTBL lpVtbl, IntPtr collectionId,
+                            Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL, int collectionId, Pointer<COMObject>)>()(
+                int Function(LPVTBL lpVtbl, int collectionId,
+                    Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, collectionIdHString, retValuePtr);
 
     if (FAILED(hr)) {
@@ -134,11 +136,12 @@ class IToastCollectionManager extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL, IntPtr collectionId,
-                            Pointer<COMObject>)>>>()
+                        HRESULT Function(LPVTBL lpVtbl, IntPtr collectionId,
+                            Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL, int collectionId, Pointer<COMObject>)>()(
+                int Function(LPVTBL lpVtbl, int collectionId,
+                    Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, collectionIdHString, retValuePtr);
 
     if (FAILED(hr)) {
@@ -159,14 +162,16 @@ class IToastCollectionManager extends IInspectable {
     final completer = Completer<void>();
 
     final hr = ptr.ref.vtable
-        .elementAt(10)
-        .cast<
-            Pointer<
-                NativeFunction<HRESULT Function(LPVTBL, Pointer<COMObject>)>>>()
-        .value
-        .asFunction<
-            int Function(
-                LPVTBL, Pointer<COMObject>)>()(ptr.ref.lpVtbl, retValuePtr);
+            .elementAt(10)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>>>()
+            .value
+            .asFunction<
+                int Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -183,14 +188,16 @@ class IToastCollectionManager extends IInspectable {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-        .elementAt(11)
-        .cast<
-            Pointer<
-                NativeFunction<HRESULT Function(LPVTBL, Pointer<COMObject>)>>>()
-        .value
-        .asFunction<
-            int Function(
-                LPVTBL, Pointer<COMObject>)>()(ptr.ref.lpVtbl, retValuePtr);
+            .elementAt(11)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>>>()
+            .value
+            .asFunction<
+                int Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -210,14 +217,16 @@ class IToastCollectionManager extends IInspectable {
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(12)
-          .cast<
-              Pointer<
-                  NativeFunction<HRESULT Function(LPVTBL, Pointer<IntPtr>)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  LPVTBL, Pointer<IntPtr>)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(12)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>()(
+          ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 

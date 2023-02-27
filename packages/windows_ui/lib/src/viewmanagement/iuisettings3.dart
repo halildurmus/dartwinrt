@@ -39,11 +39,12 @@ class IUISettings3 extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(
-                            LPVTBL, Int32 desiredColor, Pointer<Color>)>>>()
+                        HRESULT Function(LPVTBL lpVtbl, Int32 desiredColor,
+                            Pointer<Color> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL, int desiredColor, Pointer<Color>)>()(
+                int Function(LPVTBL lpVtbl, int desiredColor,
+                    Pointer<Color> retValuePtr)>()(
         ptr.ref.lpVtbl, desiredColor.value, retValuePtr);
 
     if (FAILED(hr)) throw WindowsException(hr);
@@ -60,11 +61,12 @@ class IUISettings3 extends IInspectable {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(
-                              LPVTBL, LPVTBL handler, Pointer<IntPtr>)>>>()
+                          HRESULT Function(LPVTBL lpVtbl, LPVTBL handler,
+                              Pointer<IntPtr> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(LPVTBL, LPVTBL handler, Pointer<IntPtr>)>()(
+                  int Function(LPVTBL lpVtbl, LPVTBL handler,
+                      Pointer<IntPtr> retValuePtr)>()(
           ptr.ref.lpVtbl, handler.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
@@ -77,11 +79,14 @@ class IUISettings3 extends IInspectable {
 
   void remove_ColorValuesChanged(int cookie) {
     final hr = ptr.ref.vtable
-        .elementAt(8)
-        .cast<
-            Pointer<NativeFunction<HRESULT Function(LPVTBL, IntPtr cookie)>>>()
-        .value
-        .asFunction<int Function(LPVTBL, int cookie)>()(ptr.ref.lpVtbl, cookie);
+            .elementAt(8)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(LPVTBL lpVtbl, IntPtr cookie)>>>()
+            .value
+            .asFunction<int Function(LPVTBL lpVtbl, int cookie)>()(
+        ptr.ref.lpVtbl, cookie);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }

@@ -28,7 +28,7 @@ class FactoryConstructorsProjection {
     final methods = <String>[];
 
     for (final method in methodProjections) {
-      final className = method.shortDeclaration.split(' ').first;
+      final className = method.methodHeader.split(' ').first;
       methods.add('''
   factory $className.${method.camelCasedName}(${method.methodParams}) {
     final activationFactoryPtr =

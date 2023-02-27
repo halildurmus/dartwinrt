@@ -57,8 +57,8 @@ void main() {
     });
 
     test('has correct class declaration', () {
-      expect(asyncStatusProjection.classDeclaration,
-          equals('enum AsyncStatus implements WinRTEnum {'));
+      expect(asyncStatusProjection.classHeader,
+          equals('enum AsyncStatus implements WinRTEnum'));
     });
 
     test('has correct number of identifiers', () {
@@ -110,9 +110,9 @@ void main() {
 
     test('has correct class declaration', () {
       expect(
-          fileAttributesProjection.classDeclaration,
+          fileAttributesProjection.classHeader,
           equals(
-              'class FileAttributes extends WinRTFlagsEnum<FileAttributes> {'));
+              'class FileAttributes extends WinRTFlagsEnum<FileAttributes>'));
     });
 
     test('has correct identifiers', () {

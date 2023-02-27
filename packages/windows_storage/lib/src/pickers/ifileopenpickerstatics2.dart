@@ -39,14 +39,13 @@ class IFileOpenPickerStatics2 extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(
-                            LPVTBL, LPVTBL user, Pointer<COMObject>)>>>()
+                        HRESULT Function(LPVTBL lpVtbl, LPVTBL user,
+                            Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL, LPVTBL user, Pointer<COMObject>)>()(
-        ptr.ref.lpVtbl,
-        user == null ? nullptr : user.ptr.ref.lpVtbl,
-        retValuePtr);
+                int Function(LPVTBL lpVtbl, LPVTBL user,
+                    Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl,
+        user == null ? nullptr : user.ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);

@@ -47,9 +47,8 @@ void main() {
 
     test('has correct inheritance chain 1', () {
       expect(calendarProjection.inheritsFrom, isEmpty);
-      expect(calendarProjection.implementsClause, isEmpty);
-      expect(calendarProjection.classDeclaration,
-          equals('class ICalendar extends IInspectable {'));
+      expect(calendarProjection.classHeader,
+          equals('class ICalendar extends IInspectable'));
       expect(calendarProjection.interfaceImports, isEmpty);
     });
 
@@ -57,12 +56,10 @@ void main() {
       final projection =
           InterfaceProjection.from('Windows.Gaming.Input.IGamepad');
       expect(projection.inheritsFrom, equals('IGameController'));
-      expect(projection.implementsClause,
-          equalsIgnoringWhitespace('implements IGameController'));
       expect(
-        projection.classDeclaration,
+        projection.classHeader,
         equals('class IGamepad extends IInspectable '
-            'implements IGameController {'),
+            'implements IGameController'),
       );
       expect(projection.interfaceImports,
           unorderedEquals(['igamecontroller.dart']));
@@ -77,14 +74,9 @@ void main() {
         equals('INumberFormatterOptions, INumberFormatter, INumberParser'),
       );
       expect(
-        projection.implementsClause,
-        equalsIgnoringWhitespace(
-            'implements INumberFormatterOptions, INumberFormatter, INumberParser'),
-      );
-      expect(
-        projection.classDeclaration,
+        projection.classHeader,
         equals('class ICurrencyFormatter extends IInspectable implements '
-            'INumberFormatterOptions, INumberFormatter, INumberParser {'),
+            'INumberFormatterOptions, INumberFormatter, INumberParser'),
       );
       expect(
         projection.interfaceImports,

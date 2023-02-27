@@ -35,14 +35,16 @@ class IXmlNodeList extends IInspectable
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<HRESULT Function(LPVTBL, Pointer<Uint32>)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  LPVTBL, Pointer<Uint32>)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(6)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              LPVTBL lpVtbl, Pointer<Uint32> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(LPVTBL lpVtbl, Pointer<Uint32> retValuePtr)>()(
+          ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -60,10 +62,12 @@ class IXmlNodeList extends IInspectable
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(
-                            LPVTBL, Uint32 index, Pointer<COMObject>)>>>()
+                        HRESULT Function(LPVTBL lpVtbl, Uint32 index,
+                            Pointer<COMObject> retValuePtr)>>>()
             .value
-            .asFunction<int Function(LPVTBL, int index, Pointer<COMObject>)>()(
+            .asFunction<
+                int Function(LPVTBL lpVtbl, int index,
+                    Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, index, retValuePtr);
 
     if (FAILED(hr)) {

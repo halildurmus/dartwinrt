@@ -20,16 +20,10 @@ mixin _GenericEnumMixin on MethodProjection {
         returnTypeProjection.typeIdentifier.genericParameterSequence!;
     return method.parent.genericParams[genericParamSequence].name;
   }
-}
-
-/// Method projection for generic methods that return a WinRT enum.
-class GenericEnumMethodProjection extends MethodProjection
-    with _GenericEnumMixin {
-  GenericEnumMethodProjection(super.method, super.vtableOffset);
 
   @override
-  String get methodProjection => '''
-  $returnType $camelCasedName($methodParams) {
+  String get methodDeclaration => '''
+  $methodHeader {
     final retValuePtr = calloc<${returnTypeProjection.nativeType}>();
     $parametersPreamble
 
@@ -45,25 +39,16 @@ class GenericEnumMethodProjection extends MethodProjection
 ''';
 }
 
+/// Method projection for generic methods that return WinRT enum.
+class GenericEnumMethodProjection extends MethodProjection
+    with _GenericEnumMixin {
+  GenericEnumMethodProjection(super.method, super.vtableOffset);
+}
+
 /// Getter projection for generic getters that return a WinRT enum.
 class GenericEnumGetterProjection extends GetterProjection
     with _GenericEnumMixin {
   GenericEnumGetterProjection(super.method, super.vtableOffset);
-
-  @override
-  String get methodProjection => '''
-  $returnType get $camelCasedName {
-    final retValuePtr = calloc<${returnTypeProjection.nativeType}>();
-
-    try {
-      ${ffiCall()}
-
-      return $enumCreator(retValuePtr.value);
-    } finally {
-      free(retValuePtr);
-    }
-  }
-''';
 }
 
 /// Parameter projection for `T extends WinRTEnum` parameters.
@@ -134,17 +119,10 @@ mixin _GenericObjectMixin on MethodProjection {
     }
 '''
       : '';
-}
-
-/// Method projection for generic methods that return a WinRT class or
-/// interface.
-class GenericObjectMethodProjection extends MethodProjection
-    with _GenericObjectMixin {
-  GenericObjectMethodProjection(super.method, super.vtableOffset);
 
   @override
-  String get methodProjection => '''
-  $returnType $camelCasedName($methodParams) {
+  String get methodDeclaration => '''
+  $methodHeader {
     final retValuePtr = calloc<COMObject>();
     $parametersPreamble
 
@@ -159,24 +137,18 @@ class GenericObjectMethodProjection extends MethodProjection
 ''';
 }
 
+/// Method projection for generic methods that return WinRT class or
+/// interface.
+class GenericObjectMethodProjection extends MethodProjection
+    with _GenericObjectMixin {
+  GenericObjectMethodProjection(super.method, super.vtableOffset);
+}
+
 /// Getter projection for generic getters that return a WinRT class or
 /// interface.
 class GenericObjectGetterProjection extends GetterProjection
     with _GenericObjectMixin {
   GenericObjectGetterProjection(super.method, super.vtableOffset);
-
-  @override
-  String get methodProjection => '''
-  $typeParameter get $camelCasedName {
-    final retValuePtr = calloc<COMObject>();
-
-    ${ffiCall(freeRetValOnFailure: true)}
-
-    $nullCheck
-
-    return _creator!(retValuePtr);
-  }
-''';
 }
 
 /// Parameter projection for `T extends IInspectable` parameters.

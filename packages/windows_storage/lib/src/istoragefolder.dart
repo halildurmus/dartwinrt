@@ -44,11 +44,12 @@ class IStorageFolder extends IInspectable implements IStorageItem {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(
-                            LPVTBL, IntPtr desiredName, Pointer<COMObject>)>>>()
+                        HRESULT Function(LPVTBL lpVtbl, IntPtr desiredName,
+                            Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL, int desiredName, Pointer<COMObject>)>()(
+                int Function(LPVTBL lpVtbl, int desiredName,
+                    Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, desiredNameHString, retValuePtr);
 
     if (FAILED(hr)) {
@@ -73,19 +74,18 @@ class IStorageFolder extends IInspectable implements IStorageItem {
     final completer = Completer<StorageFile?>();
     final desiredNameHString = convertToHString(desiredName);
 
-    final hr =
-        ptr.ref.vtable
-                .elementAt(7)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(LPVTBL, IntPtr desiredName,
-                                Int32 options, Pointer<COMObject>)>>>()
-                .value
-                .asFunction<
-                    int Function(LPVTBL, int desiredName, int options,
-                        Pointer<COMObject>)>()(
-            ptr.ref.lpVtbl, desiredNameHString, options.value, retValuePtr);
+    final hr = ptr.ref.vtable
+            .elementAt(7)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(LPVTBL lpVtbl, IntPtr desiredName,
+                            Int32 options, Pointer<COMObject> retValuePtr)>>>()
+            .value
+            .asFunction<
+                int Function(LPVTBL lpVtbl, int desiredName, int options,
+                    Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl, desiredNameHString, options.value, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -114,11 +114,12 @@ class IStorageFolder extends IInspectable implements IStorageItem {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(
-                            LPVTBL, IntPtr desiredName, Pointer<COMObject>)>>>()
+                        HRESULT Function(LPVTBL lpVtbl, IntPtr desiredName,
+                            Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL, int desiredName, Pointer<COMObject>)>()(
+                int Function(LPVTBL lpVtbl, int desiredName,
+                    Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, desiredNameHString, retValuePtr);
 
     if (FAILED(hr)) {
@@ -143,19 +144,18 @@ class IStorageFolder extends IInspectable implements IStorageItem {
     final completer = Completer<StorageFolder?>();
     final desiredNameHString = convertToHString(desiredName);
 
-    final hr =
-        ptr.ref.vtable
-                .elementAt(9)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(LPVTBL, IntPtr desiredName,
-                                Int32 options, Pointer<COMObject>)>>>()
-                .value
-                .asFunction<
-                    int Function(LPVTBL, int desiredName, int options,
-                        Pointer<COMObject>)>()(
-            ptr.ref.lpVtbl, desiredNameHString, options.value, retValuePtr);
+    final hr = ptr.ref.vtable
+            .elementAt(9)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(LPVTBL lpVtbl, IntPtr desiredName,
+                            Int32 options, Pointer<COMObject> retValuePtr)>>>()
+            .value
+            .asFunction<
+                int Function(LPVTBL lpVtbl, int desiredName, int options,
+                    Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl, desiredNameHString, options.value, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -183,10 +183,12 @@ class IStorageFolder extends IInspectable implements IStorageItem {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(
-                            LPVTBL, IntPtr name, Pointer<COMObject>)>>>()
+                        HRESULT Function(LPVTBL lpVtbl, IntPtr name,
+                            Pointer<COMObject> retValuePtr)>>>()
             .value
-            .asFunction<int Function(LPVTBL, int name, Pointer<COMObject>)>()(
+            .asFunction<
+                int Function(
+                    LPVTBL lpVtbl, int name, Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, nameHString, retValuePtr);
 
     if (FAILED(hr)) {
@@ -215,10 +217,12 @@ class IStorageFolder extends IInspectable implements IStorageItem {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(
-                            LPVTBL, IntPtr name, Pointer<COMObject>)>>>()
+                        HRESULT Function(LPVTBL lpVtbl, IntPtr name,
+                            Pointer<COMObject> retValuePtr)>>>()
             .value
-            .asFunction<int Function(LPVTBL, int name, Pointer<COMObject>)>()(
+            .asFunction<
+                int Function(
+                    LPVTBL lpVtbl, int name, Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, nameHString, retValuePtr);
 
     if (FAILED(hr)) {
@@ -247,10 +251,12 @@ class IStorageFolder extends IInspectable implements IStorageItem {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(
-                            LPVTBL, IntPtr name, Pointer<COMObject>)>>>()
+                        HRESULT Function(LPVTBL lpVtbl, IntPtr name,
+                            Pointer<COMObject> retValuePtr)>>>()
             .value
-            .asFunction<int Function(LPVTBL, int name, Pointer<COMObject>)>()(
+            .asFunction<
+                int Function(
+                    LPVTBL lpVtbl, int name, Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, nameHString, retValuePtr);
 
     if (FAILED(hr)) {
@@ -274,14 +280,16 @@ class IStorageFolder extends IInspectable implements IStorageItem {
     final completer = Completer<List<StorageFile>>();
 
     final hr = ptr.ref.vtable
-        .elementAt(13)
-        .cast<
-            Pointer<
-                NativeFunction<HRESULT Function(LPVTBL, Pointer<COMObject>)>>>()
-        .value
-        .asFunction<
-            int Function(
-                LPVTBL, Pointer<COMObject>)>()(ptr.ref.lpVtbl, retValuePtr);
+            .elementAt(13)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>>>()
+            .value
+            .asFunction<
+                int Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -306,14 +314,16 @@ class IStorageFolder extends IInspectable implements IStorageItem {
     final completer = Completer<List<StorageFolder>>();
 
     final hr = ptr.ref.vtable
-        .elementAt(14)
-        .cast<
-            Pointer<
-                NativeFunction<HRESULT Function(LPVTBL, Pointer<COMObject>)>>>()
-        .value
-        .asFunction<
-            int Function(
-                LPVTBL, Pointer<COMObject>)>()(ptr.ref.lpVtbl, retValuePtr);
+            .elementAt(14)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>>>()
+            .value
+            .asFunction<
+                int Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -336,14 +346,16 @@ class IStorageFolder extends IInspectable implements IStorageItem {
     final completer = Completer<List<IStorageItem>>();
 
     final hr = ptr.ref.vtable
-        .elementAt(15)
-        .cast<
-            Pointer<
-                NativeFunction<HRESULT Function(LPVTBL, Pointer<COMObject>)>>>()
-        .value
-        .asFunction<
-            int Function(
-                LPVTBL, Pointer<COMObject>)>()(ptr.ref.lpVtbl, retValuePtr);
+            .elementAt(15)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>>>()
+            .value
+            .asFunction<
+                int Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);

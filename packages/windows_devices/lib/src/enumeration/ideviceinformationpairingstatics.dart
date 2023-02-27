@@ -41,12 +41,14 @@ class IDeviceInformationPairingStatics extends IInspectable {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(LPVTBL, Uint32 pairingKindsSupported,
-                              Pointer<Bool>)>>>()
+                          HRESULT Function(
+                              LPVTBL lpVtbl,
+                              Uint32 pairingKindsSupported,
+                              Pointer<Bool> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(
-                      LPVTBL, int pairingKindsSupported, Pointer<Bool>)>()(
+                  int Function(LPVTBL lpVtbl, int pairingKindsSupported,
+                      Pointer<Bool> retValuePtr)>()(
           ptr.ref.lpVtbl, pairingKindsSupported.value, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);

@@ -53,13 +53,9 @@ void main() {
       expect(calendarProjection.inheritsFrom,
           equals('ICalendar, ITimeZoneOnCalendar'));
       expect(
-          calendarProjection.implementsClause,
-          equalsIgnoringWhitespace(
-              'implements ICalendar, ITimeZoneOnCalendar'));
-      expect(
-          calendarProjection.classDeclaration,
+          calendarProjection.classHeader,
           equals('class Calendar extends IInspectable '
-              'implements ICalendar, ITimeZoneOnCalendar {'));
+              'implements ICalendar, ITimeZoneOnCalendar'));
       expect(
         calendarProjection.interfaceImports,
         unorderedEquals([
@@ -75,9 +71,8 @@ void main() {
       final projection =
           ClassProjection.from('Windows.Foundation.PropertyValue');
       expect(projection.inheritsFrom, isEmpty);
-      expect(projection.implementsClause, isEmpty);
-      expect(projection.classDeclaration,
-          equals('class PropertyValue extends IInspectable {'));
+      expect(projection.classHeader,
+          equals('class PropertyValue extends IInspectable'));
       expect(projection.interfaceImports,
           unorderedEquals(['ipropertyvaluestatics.dart']));
     });
@@ -92,13 +87,9 @@ void main() {
         expect(projection.inheritsFrom,
             equals('IFileOpenPicker, IFileOpenPicker3'));
         expect(
-            projection.implementsClause,
-            equalsIgnoringWhitespace(
-                'implements IFileOpenPicker, IFileOpenPicker3'));
-        expect(
-            projection.classDeclaration,
+            projection.classHeader,
             equals('class FileOpenPicker extends IInspectable '
-                'implements IFileOpenPicker, IFileOpenPicker3 {'));
+                'implements IFileOpenPicker, IFileOpenPicker3'));
         expect(
           projection.interfaceImports,
           unorderedEquals([

@@ -86,16 +86,10 @@ mixin _ObjectMixin on MethodProjection {
     final interfaceName = stripQuestionMarkSuffix(returnType);
     return 'return $interfaceName.fromRawPointer(retValuePtr);';
   }
-}
-
-/// Method projection for methods that return a WinRT class (e.g. `Calendar`),
-/// interface (e.g. `ICalendar`), or `boxed` value.
-class ObjectMethodProjection extends MethodProjection with _ObjectMixin {
-  ObjectMethodProjection(super.method, super.vtableOffset);
 
   @override
-  String get methodProjection => '''
-  $returnType $camelCasedName($methodParams) {
+  String get methodDeclaration => '''
+  $methodHeader {
     final retValuePtr = calloc<COMObject>();
     $parametersPreamble
 
@@ -110,39 +104,28 @@ class ObjectMethodProjection extends MethodProjection with _ObjectMixin {
 ''';
 }
 
+/// Method projection for methods that return WinRT class (e.g. `Calendar`),
+/// interface (e.g. `ICalendar`), or `boxed` value.
+class ObjectMethodProjection extends MethodProjection with _ObjectMixin {
+  ObjectMethodProjection(super.method, super.vtableOffset);
+}
+
 /// Getter projection for WinRT class, interface, or `boxed` value getters.
 class ObjectGetterProjection extends GetterProjection with _ObjectMixin {
   ObjectGetterProjection(super.method, super.vtableOffset);
-
-  @override
-  String get methodProjection => '''
-  $returnType get $camelCasedName {
-    final retValuePtr = calloc<COMObject>();
-
-    ${ffiCall(freeRetValOnFailure: true)}
-
-    $nullCheck
-
-    $returnStatement
-  }
-''';
 }
 
 /// Setter projection for WinRT class, interface, or `boxed` value setters.
 class ObjectSetterProjection extends SetterProjection with _ObjectMixin {
   ObjectSetterProjection(super.method, super.vtableOffset);
 
-  String get identifier {
-    if (param.typeProjection.isObjectType) {
-      return 'value?.intoBox().ref.lpVtbl ?? nullptr';
-    }
-
-    return 'value == null ? nullptr : value.ptr.ref.lpVtbl';
-  }
+  String get identifier => param.typeProjection.isObjectType
+      ? 'value?.intoBox().ref.lpVtbl ?? nullptr'
+      : 'value == null ? nullptr : value.ptr.ref.lpVtbl';
 
   @override
-  String get methodProjection => '''
-  set $camelCasedName(${param.type} value) {
+  String get methodDeclaration => '''
+  $methodHeader {
     ${ffiCall(params: identifier)}
   }
 ''';

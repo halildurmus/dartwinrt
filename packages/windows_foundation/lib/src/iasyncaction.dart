@@ -38,13 +38,14 @@ class IAsyncAction extends IInspectable implements IAsyncInfo {
 
   set completed(Pointer<COMObject> value) {
     final hr = ptr.ref.vtable
-        .elementAt(6)
-        .cast<
-            Pointer<NativeFunction<HRESULT Function(LPVTBL, LPVTBL handler)>>>()
-        .value
-        .asFunction<
-            int Function(
-                LPVTBL, LPVTBL handler)>()(ptr.ref.lpVtbl, value.ref.lpVtbl);
+            .elementAt(6)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(LPVTBL lpVtbl, LPVTBL handler)>>>()
+            .value
+            .asFunction<int Function(LPVTBL lpVtbl, LPVTBL handler)>()(
+        ptr.ref.lpVtbl, value.ref.lpVtbl);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
@@ -53,14 +54,16 @@ class IAsyncAction extends IInspectable implements IAsyncInfo {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-        .elementAt(7)
-        .cast<
-            Pointer<
-                NativeFunction<HRESULT Function(LPVTBL, Pointer<COMObject>)>>>()
-        .value
-        .asFunction<
-            int Function(
-                LPVTBL, Pointer<COMObject>)>()(ptr.ref.lpVtbl, retValuePtr);
+            .elementAt(7)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>>>()
+            .value
+            .asFunction<
+                int Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -73,9 +76,9 @@ class IAsyncAction extends IInspectable implements IAsyncInfo {
   void getResults() {
     final hr = ptr.ref.vtable
         .elementAt(8)
-        .cast<Pointer<NativeFunction<HRESULT Function(LPVTBL)>>>()
+        .cast<Pointer<NativeFunction<HRESULT Function(LPVTBL lpVtbl)>>>()
         .value
-        .asFunction<int Function(LPVTBL)>()(ptr.ref.lpVtbl);
+        .asFunction<int Function(LPVTBL lpVtbl)>()(ptr.ref.lpVtbl);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }

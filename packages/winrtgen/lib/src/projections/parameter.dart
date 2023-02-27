@@ -4,6 +4,7 @@
 
 import 'package:winmd/winmd.dart';
 
+import '../extensions/extensions.dart';
 import '../models/models.dart';
 import '../utils.dart';
 import 'type.dart';
@@ -36,7 +37,7 @@ abstract class ParameterProjection {
 
   /// Returns the appropriate projection for the parameter.
   factory ParameterProjection.create(Parameter param) {
-    final projectionType = TypeProjection(param.typeIdentifier).projectionType;
+    final projectionType = param.projectionType;
     switch (projectionType) {
       case ProjectionType.dartPrimitive:
       case ProjectionType.pointer:
@@ -73,10 +74,10 @@ abstract class ParameterProjection {
   }
 
   static ParameterProjection _projectSimpleArrayParam(Parameter param) {
-    final type = param.typeIdentifier;
-    final projectionType = type.baseType == BaseType.referenceTypeModifier
-        ? TypeProjection(type.typeArg!.typeArg!).projectionType
-        : TypeProjection(type.typeArg!).projectionType;
+    final typeIdentifier = param.typeIdentifier;
+    final projectionType = typeIdentifier.isReferenceType
+        ? TypeProjection(typeIdentifier.typeArg!.typeArg!).projectionType
+        : TypeProjection(typeIdentifier.typeArg!).projectionType;
     switch (projectionType) {
       case ProjectionType.dateTime:
         return DateTimeListParameterProjection(param);
@@ -129,6 +130,7 @@ abstract class ParameterProjection {
   /// call (e.g. `today` -> `todayDateTime`)
   String get localIdentifier;
 
+  // TODO: Handle exceptions
   @override
   String toString() => '$name (${typeProjection.nativeType})';
 }

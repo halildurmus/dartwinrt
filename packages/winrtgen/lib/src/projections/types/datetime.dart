@@ -11,19 +11,14 @@ import 'default.dart';
 mixin _DateTimeMixin on MethodProjection {
   @override
   String get returnType => 'DateTime';
-}
-
-/// Method projection for methods that return a `DateTime`.
-class DateTimeMethodProjection extends MethodProjection with _DateTimeMixin {
-  DateTimeMethodProjection(super.method, super.vtableOffset);
 
   // In WinRT, DateTime is represented as a 64-bit signed integer that
   // represents a point in time as the number of 100-nanosecond intervals prior
   // to or after midnight on January 1, 1601 (according to the Gregorian
   // Calendar).
   @override
-  String get methodProjection => '''
-  $returnType $camelCasedName($methodParams) {
+  String get methodDeclaration => '''
+  $methodHeader {
     final retValuePtr = calloc<Uint64>();
     $parametersPreamble
 
@@ -40,25 +35,14 @@ class DateTimeMethodProjection extends MethodProjection with _DateTimeMixin {
 ''';
 }
 
+/// Method projection for methods that return `DateTime`.
+class DateTimeMethodProjection extends MethodProjection with _DateTimeMixin {
+  DateTimeMethodProjection(super.method, super.vtableOffset);
+}
+
 /// Getter projection for `DateTime` getters.
 class DateTimeGetterProjection extends GetterProjection with _DateTimeMixin {
   DateTimeGetterProjection(super.method, super.vtableOffset);
-
-  @override
-  String get methodProjection => '''
-  $returnType get $camelCasedName {
-    final retValuePtr = calloc<Uint64>();
-
-    try {
-      ${ffiCall()}
-
-      return DateTime.utc(1601, 01, 01)
-          .add(Duration(microseconds: retValuePtr.value ~/ 10));
-    } finally {
-      free(retValuePtr);
-    }
-  }
-''';
 }
 
 /// Setter projection for `DateTime` setters.
@@ -66,8 +50,8 @@ class DateTimeSetterProjection extends SetterProjection {
   DateTimeSetterProjection(super.method, super.vtableOffset);
 
   @override
-  String get methodProjection => '''
-  set $camelCasedName(${param.type} value) {
+  String get methodDeclaration => '''
+  $methodHeader {
     final dateTimeOffset =
         value.difference(DateTime.utc(1601, 01, 01)).inMicroseconds * 10;
 

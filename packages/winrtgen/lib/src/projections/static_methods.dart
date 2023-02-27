@@ -32,7 +32,7 @@ class StaticMethodsProjection {
       final returnStatement =
           method.method.isSetProperty ? statement : 'return $statement';
       methods.add('''
-  static ${method.shortDeclaration} {
+  static ${method.methodHeader} {
     final activationFactoryPtr =
         createActivationFactory(_className, IID_$shortName);
     final object =

@@ -39,22 +39,27 @@ class IToastNotifier2 extends IInspectable {
     final groupHString = convertToHString(group);
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(LPVTBL, LPVTBL data, IntPtr tag,
-                              IntPtr group, Pointer<Int32>)>>>()
-              .value
-              .asFunction<
-                  int Function(LPVTBL, LPVTBL data, int tag, int group,
-                      Pointer<Int32>)>()(
-          ptr.ref.lpVtbl,
-          data == null ? nullptr : data.ptr.ref.lpVtbl,
-          tagHString,
-          groupHString,
-          retValuePtr);
+      final hr =
+          ptr.ref.vtable
+                  .elementAt(6)
+                  .cast<
+                      Pointer<
+                          NativeFunction<
+                              HRESULT Function(
+                                  LPVTBL lpVtbl,
+                                  LPVTBL data,
+                                  IntPtr tag,
+                                  IntPtr group,
+                                  Pointer<Int32> retValuePtr)>>>()
+                  .value
+                  .asFunction<
+                      int Function(LPVTBL lpVtbl, LPVTBL data, int tag,
+                          int group, Pointer<Int32> retValuePtr)>()(
+              ptr.ref.lpVtbl,
+              data == null ? nullptr : data.ptr.ref.lpVtbl,
+              tagHString,
+              groupHString,
+              retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -72,20 +77,22 @@ class IToastNotifier2 extends IInspectable {
     final tagHString = convertToHString(tag);
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(LPVTBL, LPVTBL data, IntPtr tag,
-                              Pointer<Int32>)>>>()
-              .value
-              .asFunction<
-                  int Function(LPVTBL, LPVTBL data, int tag, Pointer<Int32>)>()(
-          ptr.ref.lpVtbl,
-          data == null ? nullptr : data.ptr.ref.lpVtbl,
-          tagHString,
-          retValuePtr);
+      final hr =
+          ptr.ref.vtable
+                  .elementAt(7)
+                  .cast<
+                      Pointer<
+                          NativeFunction<
+                              HRESULT Function(LPVTBL lpVtbl, LPVTBL data,
+                                  IntPtr tag, Pointer<Int32> retValuePtr)>>>()
+                  .value
+                  .asFunction<
+                      int Function(LPVTBL lpVtbl, LPVTBL data, int tag,
+                          Pointer<Int32> retValuePtr)>()(
+              ptr.ref.lpVtbl,
+              data == null ? nullptr : data.ptr.ref.lpVtbl,
+              tagHString,
+              retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 

@@ -34,17 +34,18 @@ class IConnectionProfile6 extends IInspectable {
     final retValuePtr = calloc<Bool>();
 
     try {
-      final hr =
-          ptr.ref.vtable
-                  .elementAt(6)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(
-                                  LPVTBL, Int32 kind, Pointer<Bool>)>>>()
-                  .value
-                  .asFunction<int Function(LPVTBL, int kind, Pointer<Bool>)>()(
-              ptr.ref.lpVtbl, kind.value, retValuePtr);
+      final hr = ptr.ref.vtable
+              .elementAt(6)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(LPVTBL lpVtbl, Int32 kind,
+                              Pointer<Bool> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(
+                      LPVTBL lpVtbl, int kind, Pointer<Bool> retValuePtr)>()(
+          ptr.ref.lpVtbl, kind.value, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 

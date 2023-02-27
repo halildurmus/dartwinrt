@@ -41,10 +41,12 @@ class IUriRuntimeClassFactory extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(
-                            LPVTBL, IntPtr uri, Pointer<COMObject>)>>>()
+                        HRESULT Function(LPVTBL lpVtbl, IntPtr uri,
+                            Pointer<COMObject> retValuePtr)>>>()
             .value
-            .asFunction<int Function(LPVTBL, int uri, Pointer<COMObject>)>()(
+            .asFunction<
+                int Function(
+                    LPVTBL lpVtbl, int uri, Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, uriHString, retValuePtr);
 
     if (FAILED(hr)) {
@@ -68,12 +70,15 @@ class IUriRuntimeClassFactory extends IInspectable {
                 .cast<
                     Pointer<
                         NativeFunction<
-                            HRESULT Function(LPVTBL, IntPtr baseUri,
-                                IntPtr relativeUri, Pointer<COMObject>)>>>()
+                            HRESULT Function(
+                                LPVTBL lpVtbl,
+                                IntPtr baseUri,
+                                IntPtr relativeUri,
+                                Pointer<COMObject> retValuePtr)>>>()
                 .value
                 .asFunction<
-                    int Function(LPVTBL, int baseUri, int relativeUri,
-                        Pointer<COMObject>)>()(
+                    int Function(LPVTBL lpVtbl, int baseUri, int relativeUri,
+                        Pointer<COMObject> retValuePtr)>()(
             ptr.ref.lpVtbl, baseUriHString, relativeUriHString, retValuePtr);
 
     if (FAILED(hr)) {

@@ -37,14 +37,16 @@ class IStorageItem2 extends IInspectable implements IStorageItem {
     final completer = Completer<StorageFolder?>();
 
     final hr = ptr.ref.vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<HRESULT Function(LPVTBL, Pointer<COMObject>)>>>()
-        .value
-        .asFunction<
-            int Function(
-                LPVTBL, Pointer<COMObject>)>()(ptr.ref.lpVtbl, retValuePtr);
+            .elementAt(6)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>>>()
+            .value
+            .asFunction<
+                int Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -64,20 +66,20 @@ class IStorageItem2 extends IInspectable implements IStorageItem {
     final retValuePtr = calloc<Bool>();
 
     try {
-      final hr =
-          ptr.ref.vtable
-                  .elementAt(7)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(
-                                  LPVTBL, LPVTBL item, Pointer<Bool>)>>>()
-                  .value
-                  .asFunction<
-                      int Function(LPVTBL, LPVTBL item, Pointer<Bool>)>()(
-              ptr.ref.lpVtbl,
-              item == null ? nullptr : item.ptr.ref.lpVtbl,
-              retValuePtr);
+      final hr = ptr.ref.vtable
+              .elementAt(7)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(LPVTBL lpVtbl, LPVTBL item,
+                              Pointer<Bool> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(
+                      LPVTBL lpVtbl, LPVTBL item, Pointer<Bool> retValuePtr)>()(
+          ptr.ref.lpVtbl,
+          item == null ? nullptr : item.ptr.ref.lpVtbl,
+          retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 

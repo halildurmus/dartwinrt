@@ -35,19 +35,21 @@ class IQueryOptionsFactory extends IInspectable {
       CommonFileQuery query, IIterable<String> fileTypeFilter) {
     final retValuePtr = calloc<COMObject>();
 
-    final hr =
-        ptr.ref.vtable
-                .elementAt(6)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(LPVTBL, Int32 query,
-                                LPVTBL fileTypeFilter, Pointer<COMObject>)>>>()
-                .value
-                .asFunction<
-                    int Function(LPVTBL, int query, LPVTBL fileTypeFilter,
-                        Pointer<COMObject>)>()(ptr.ref.lpVtbl, query.value,
-            fileTypeFilter.ptr.ref.lpVtbl, retValuePtr);
+    final hr = ptr.ref.vtable
+            .elementAt(6)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            LPVTBL lpVtbl,
+                            Int32 query,
+                            LPVTBL fileTypeFilter,
+                            Pointer<COMObject> retValuePtr)>>>()
+            .value
+            .asFunction<
+                int Function(LPVTBL lpVtbl, int query, LPVTBL fileTypeFilter,
+                    Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl,
+        query.value, fileTypeFilter.ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -65,10 +67,12 @@ class IQueryOptionsFactory extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(
-                            LPVTBL, Int32 query, Pointer<COMObject>)>>>()
+                        HRESULT Function(LPVTBL lpVtbl, Int32 query,
+                            Pointer<COMObject> retValuePtr)>>>()
             .value
-            .asFunction<int Function(LPVTBL, int query, Pointer<COMObject>)>()(
+            .asFunction<
+                int Function(LPVTBL lpVtbl, int query,
+                    Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, query.value, retValuePtr);
 
     if (FAILED(hr)) {

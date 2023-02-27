@@ -36,14 +36,16 @@ class IFileSavePicker extends IInspectable {
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<HRESULT Function(LPVTBL, Pointer<IntPtr>)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  LPVTBL, Pointer<IntPtr>)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(6)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>()(
+          ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -59,11 +61,14 @@ class IFileSavePicker extends IInspectable {
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(7)
-          .cast<
-              Pointer<NativeFunction<HRESULT Function(LPVTBL, IntPtr value)>>>()
-          .value
-          .asFunction<int Function(LPVTBL, int value)>()(ptr.ref.lpVtbl, hstr);
+              .elementAt(7)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(LPVTBL lpVtbl, IntPtr value)>>>()
+              .value
+              .asFunction<int Function(LPVTBL lpVtbl, int value)>()(
+          ptr.ref.lpVtbl, hstr);
 
       if (FAILED(hr)) throw WindowsException(hr);
     } finally {
@@ -76,14 +81,16 @@ class IFileSavePicker extends IInspectable {
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<HRESULT Function(LPVTBL, Pointer<Int32>)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  LPVTBL, Pointer<Int32>)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(8)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              LPVTBL lpVtbl, Pointer<Int32> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(LPVTBL lpVtbl, Pointer<Int32> retValuePtr)>()(
+          ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -96,10 +103,13 @@ class IFileSavePicker extends IInspectable {
   set suggestedStartLocation(PickerLocationId value) {
     final hr = ptr.ref.vtable
         .elementAt(9)
-        .cast<Pointer<NativeFunction<HRESULT Function(LPVTBL, Int32 value)>>>()
+        .cast<
+            Pointer<
+                NativeFunction<HRESULT Function(LPVTBL lpVtbl, Int32 value)>>>()
         .value
         .asFunction<
-            int Function(LPVTBL, int value)>()(ptr.ref.lpVtbl, value.value);
+            int Function(
+                LPVTBL lpVtbl, int value)>()(ptr.ref.lpVtbl, value.value);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
@@ -109,14 +119,16 @@ class IFileSavePicker extends IInspectable {
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(10)
-          .cast<
-              Pointer<
-                  NativeFunction<HRESULT Function(LPVTBL, Pointer<IntPtr>)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  LPVTBL, Pointer<IntPtr>)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(10)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>()(
+          ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -132,11 +144,14 @@ class IFileSavePicker extends IInspectable {
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(11)
-          .cast<
-              Pointer<NativeFunction<HRESULT Function(LPVTBL, IntPtr value)>>>()
-          .value
-          .asFunction<int Function(LPVTBL, int value)>()(ptr.ref.lpVtbl, hstr);
+              .elementAt(11)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(LPVTBL lpVtbl, IntPtr value)>>>()
+              .value
+              .asFunction<int Function(LPVTBL lpVtbl, int value)>()(
+          ptr.ref.lpVtbl, hstr);
 
       if (FAILED(hr)) throw WindowsException(hr);
     } finally {
@@ -148,14 +163,16 @@ class IFileSavePicker extends IInspectable {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-        .elementAt(12)
-        .cast<
-            Pointer<
-                NativeFunction<HRESULT Function(LPVTBL, Pointer<COMObject>)>>>()
-        .value
-        .asFunction<
-            int Function(
-                LPVTBL, Pointer<COMObject>)>()(ptr.ref.lpVtbl, retValuePtr);
+            .elementAt(12)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>>>()
+            .value
+            .asFunction<
+                int Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -173,14 +190,16 @@ class IFileSavePicker extends IInspectable {
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(13)
-          .cast<
-              Pointer<
-                  NativeFunction<HRESULT Function(LPVTBL, Pointer<IntPtr>)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  LPVTBL, Pointer<IntPtr>)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(13)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>()(
+          ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -196,11 +215,14 @@ class IFileSavePicker extends IInspectable {
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(14)
-          .cast<
-              Pointer<NativeFunction<HRESULT Function(LPVTBL, IntPtr value)>>>()
-          .value
-          .asFunction<int Function(LPVTBL, int value)>()(ptr.ref.lpVtbl, hstr);
+              .elementAt(14)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(LPVTBL lpVtbl, IntPtr value)>>>()
+              .value
+              .asFunction<int Function(LPVTBL lpVtbl, int value)>()(
+          ptr.ref.lpVtbl, hstr);
 
       if (FAILED(hr)) throw WindowsException(hr);
     } finally {
@@ -212,14 +234,16 @@ class IFileSavePicker extends IInspectable {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-        .elementAt(15)
-        .cast<
-            Pointer<
-                NativeFunction<HRESULT Function(LPVTBL, Pointer<COMObject>)>>>()
-        .value
-        .asFunction<
-            int Function(
-                LPVTBL, Pointer<COMObject>)>()(ptr.ref.lpVtbl, retValuePtr);
+            .elementAt(15)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>>>()
+            .value
+            .asFunction<
+                int Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -235,15 +259,15 @@ class IFileSavePicker extends IInspectable {
   }
 
   set suggestedSaveFile(StorageFile? value) {
-    final hr =
-        ptr.ref.vtable
-                .elementAt(16)
-                .cast<
-                    Pointer<
-                        NativeFunction<HRESULT Function(LPVTBL, LPVTBL value)>>>()
-                .value
-                .asFunction<int Function(LPVTBL, LPVTBL value)>()(
-            ptr.ref.lpVtbl, value == null ? nullptr : value.ptr.ref.lpVtbl);
+    final hr = ptr.ref.vtable
+            .elementAt(16)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(LPVTBL lpVtbl, LPVTBL value)>>>()
+            .value
+            .asFunction<int Function(LPVTBL lpVtbl, LPVTBL value)>()(
+        ptr.ref.lpVtbl, value == null ? nullptr : value.ptr.ref.lpVtbl);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
@@ -253,14 +277,16 @@ class IFileSavePicker extends IInspectable {
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(17)
-          .cast<
-              Pointer<
-                  NativeFunction<HRESULT Function(LPVTBL, Pointer<IntPtr>)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  LPVTBL, Pointer<IntPtr>)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(17)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>()(
+          ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -276,11 +302,14 @@ class IFileSavePicker extends IInspectable {
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(18)
-          .cast<
-              Pointer<NativeFunction<HRESULT Function(LPVTBL, IntPtr value)>>>()
-          .value
-          .asFunction<int Function(LPVTBL, int value)>()(ptr.ref.lpVtbl, hstr);
+              .elementAt(18)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(LPVTBL lpVtbl, IntPtr value)>>>()
+              .value
+              .asFunction<int Function(LPVTBL lpVtbl, int value)>()(
+          ptr.ref.lpVtbl, hstr);
 
       if (FAILED(hr)) throw WindowsException(hr);
     } finally {
@@ -293,14 +322,16 @@ class IFileSavePicker extends IInspectable {
     final completer = Completer<StorageFile?>();
 
     final hr = ptr.ref.vtable
-        .elementAt(19)
-        .cast<
-            Pointer<
-                NativeFunction<HRESULT Function(LPVTBL, Pointer<COMObject>)>>>()
-        .value
-        .asFunction<
-            int Function(
-                LPVTBL, Pointer<COMObject>)>()(ptr.ref.lpVtbl, retValuePtr);
+            .elementAt(19)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>>>()
+            .value
+            .asFunction<
+                int Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);

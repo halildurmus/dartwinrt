@@ -40,27 +40,26 @@ class IConnectionProfile3 extends IInspectable {
     final endTimeDateTime =
         endTime.difference(DateTime.utc(1601, 01, 01)).inMicroseconds * 10;
 
-    final hr =
-        ptr.ref.vtable
-                .elementAt(6)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                LPVTBL,
-                                Uint64 startTime,
-                                Uint64 endTime,
-                                NetworkUsageStates states,
-                                Pointer<COMObject>)>>>()
-                .value
-                .asFunction<
-                    int Function(LPVTBL, int startTime, int endTime,
-                        NetworkUsageStates states, Pointer<COMObject>)>()(
-            ptr.ref.lpVtbl,
-            startTimeDateTime,
-            endTimeDateTime,
-            states,
-            retValuePtr);
+    final hr = ptr.ref.vtable
+            .elementAt(6)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            LPVTBL lpVtbl,
+                            Uint64 startTime,
+                            Uint64 endTime,
+                            NetworkUsageStates states,
+                            Pointer<COMObject> retValuePtr)>>>()
+            .value
+            .asFunction<
+                int Function(
+                    LPVTBL lpVtbl,
+                    int startTime,
+                    int endTime,
+                    NetworkUsageStates states,
+                    Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl,
+        startTimeDateTime, endTimeDateTime, states, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);

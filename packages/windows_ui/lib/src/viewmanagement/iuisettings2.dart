@@ -34,14 +34,16 @@ class IUISettings2 extends IInspectable {
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<HRESULT Function(LPVTBL, Pointer<Double>)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  LPVTBL, Pointer<Double>)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(6)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              LPVTBL lpVtbl, Pointer<Double> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(LPVTBL lpVtbl, Pointer<Double> retValuePtr)>()(
+          ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -60,11 +62,12 @@ class IUISettings2 extends IInspectable {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(
-                              LPVTBL, LPVTBL handler, Pointer<IntPtr>)>>>()
+                          HRESULT Function(LPVTBL lpVtbl, LPVTBL handler,
+                              Pointer<IntPtr> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(LPVTBL, LPVTBL handler, Pointer<IntPtr>)>()(
+                  int Function(LPVTBL lpVtbl, LPVTBL handler,
+                      Pointer<IntPtr> retValuePtr)>()(
           ptr.ref.lpVtbl, handler.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
@@ -77,11 +80,14 @@ class IUISettings2 extends IInspectable {
 
   void remove_TextScaleFactorChanged(int cookie) {
     final hr = ptr.ref.vtable
-        .elementAt(8)
-        .cast<
-            Pointer<NativeFunction<HRESULT Function(LPVTBL, IntPtr cookie)>>>()
-        .value
-        .asFunction<int Function(LPVTBL, int cookie)>()(ptr.ref.lpVtbl, cookie);
+            .elementAt(8)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(LPVTBL lpVtbl, IntPtr cookie)>>>()
+            .value
+            .asFunction<int Function(LPVTBL lpVtbl, int cookie)>()(
+        ptr.ref.lpVtbl, cookie);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }

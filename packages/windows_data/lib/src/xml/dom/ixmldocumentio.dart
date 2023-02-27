@@ -35,10 +35,12 @@ class IXmlDocumentIO extends IInspectable {
 
     final hr = ptr.ref.vtable
         .elementAt(6)
-        .cast<Pointer<NativeFunction<HRESULT Function(LPVTBL, IntPtr xml)>>>()
+        .cast<
+            Pointer<
+                NativeFunction<HRESULT Function(LPVTBL lpVtbl, IntPtr xml)>>>()
         .value
         .asFunction<
-            int Function(LPVTBL, int xml)>()(ptr.ref.lpVtbl, xmlHString);
+            int Function(LPVTBL lpVtbl, int xml)>()(ptr.ref.lpVtbl, xmlHString);
 
     if (FAILED(hr)) throw WindowsException(hr);
 
@@ -54,9 +56,10 @@ class IXmlDocumentIO extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            LPVTBL, IntPtr xml, LPVTBL loadSettings)>>>()
+                            LPVTBL lpVtbl, IntPtr xml, LPVTBL loadSettings)>>>()
             .value
-            .asFunction<int Function(LPVTBL, int xml, LPVTBL loadSettings)>()(
+            .asFunction<
+                int Function(LPVTBL lpVtbl, int xml, LPVTBL loadSettings)>()(
         ptr.ref.lpVtbl,
         xmlHString,
         loadSettings == null ? nullptr : loadSettings.ptr.ref.lpVtbl);
@@ -75,14 +78,13 @@ class IXmlDocumentIO extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(
-                            LPVTBL, LPVTBL file, Pointer<COMObject>)>>>()
+                        HRESULT Function(LPVTBL lpVtbl, LPVTBL file,
+                            Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL, LPVTBL file, Pointer<COMObject>)>()(
-        ptr.ref.lpVtbl,
-        file == null ? nullptr : file.ptr.ref.lpVtbl,
-        retValuePtr);
+                int Function(LPVTBL lpVtbl, LPVTBL file,
+                    Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl,
+        file == null ? nullptr : file.ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);

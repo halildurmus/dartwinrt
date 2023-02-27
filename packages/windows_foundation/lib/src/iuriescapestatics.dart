@@ -41,11 +41,12 @@ class IUriEscapeStatics extends IInspectable {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(
-                              LPVTBL, IntPtr toUnescape, Pointer<IntPtr>)>>>()
+                          HRESULT Function(LPVTBL lpVtbl, IntPtr toUnescape,
+                              Pointer<IntPtr> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(LPVTBL, int toUnescape, Pointer<IntPtr>)>()(
+                  int Function(LPVTBL lpVtbl, int toUnescape,
+                      Pointer<IntPtr> retValuePtr)>()(
           ptr.ref.lpVtbl, toUnescapeHString, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
@@ -68,11 +69,12 @@ class IUriEscapeStatics extends IInspectable {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(
-                              LPVTBL, IntPtr toEscape, Pointer<IntPtr>)>>>()
+                          HRESULT Function(LPVTBL lpVtbl, IntPtr toEscape,
+                              Pointer<IntPtr> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(LPVTBL, int toEscape, Pointer<IntPtr>)>()(
+                  int Function(LPVTBL lpVtbl, int toEscape,
+                      Pointer<IntPtr> retValuePtr)>()(
           ptr.ref.lpVtbl, toEscapeHString, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);

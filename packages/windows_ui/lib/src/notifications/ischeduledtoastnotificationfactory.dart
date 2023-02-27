@@ -44,12 +44,15 @@ class IScheduledToastNotificationFactory extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL, LPVTBL content,
-                            Uint64 deliveryTime, Pointer<COMObject>)>>>()
+                        HRESULT Function(
+                            LPVTBL lpVtbl,
+                            LPVTBL content,
+                            Uint64 deliveryTime,
+                            Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL, LPVTBL content, int deliveryTime,
-                    Pointer<COMObject>)>()(ptr.ref.lpVtbl,
+                int Function(LPVTBL lpVtbl, LPVTBL content, int deliveryTime,
+                    Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl,
         content.ptr.ref.lpVtbl, deliveryTimeDateTime, retValuePtr);
 
     if (FAILED(hr)) {
@@ -77,21 +80,21 @@ class IScheduledToastNotificationFactory extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            LPVTBL,
+                            LPVTBL lpVtbl,
                             LPVTBL content,
                             Uint64 deliveryTime,
                             Uint64 snoozeInterval,
                             Uint32 maximumSnoozeCount,
-                            Pointer<COMObject>)>>>()
+                            Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
                 int Function(
-                    LPVTBL,
+                    LPVTBL lpVtbl,
                     LPVTBL content,
                     int deliveryTime,
                     int snoozeInterval,
                     int maximumSnoozeCount,
-                    Pointer<COMObject>)>()(
+                    Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl,
         content.ptr.ref.lpVtbl,
         deliveryTimeDateTime,

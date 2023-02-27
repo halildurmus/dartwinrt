@@ -36,14 +36,16 @@ class IXmlNamedNodeMap extends IInspectable
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<HRESULT Function(LPVTBL, Pointer<Uint32>)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  LPVTBL, Pointer<Uint32>)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(6)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              LPVTBL lpVtbl, Pointer<Uint32> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(LPVTBL lpVtbl, Pointer<Uint32> retValuePtr)>()(
+          ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -61,10 +63,12 @@ class IXmlNamedNodeMap extends IInspectable
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(
-                            LPVTBL, Uint32 index, Pointer<COMObject>)>>>()
+                        HRESULT Function(LPVTBL lpVtbl, Uint32 index,
+                            Pointer<COMObject> retValuePtr)>>>()
             .value
-            .asFunction<int Function(LPVTBL, int index, Pointer<COMObject>)>()(
+            .asFunction<
+                int Function(LPVTBL lpVtbl, int index,
+                    Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, index, retValuePtr);
 
     if (FAILED(hr)) {
@@ -89,10 +93,12 @@ class IXmlNamedNodeMap extends IInspectable
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(
-                            LPVTBL, IntPtr name, Pointer<COMObject>)>>>()
+                        HRESULT Function(LPVTBL lpVtbl, IntPtr name,
+                            Pointer<COMObject> retValuePtr)>>>()
             .value
-            .asFunction<int Function(LPVTBL, int name, Pointer<COMObject>)>()(
+            .asFunction<
+                int Function(
+                    LPVTBL lpVtbl, int name, Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, nameHString, retValuePtr);
 
     if (FAILED(hr)) {
@@ -118,14 +124,13 @@ class IXmlNamedNodeMap extends IInspectable
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(
-                            LPVTBL, LPVTBL node, Pointer<COMObject>)>>>()
+                        HRESULT Function(LPVTBL lpVtbl, LPVTBL node,
+                            Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL, LPVTBL node, Pointer<COMObject>)>()(
-        ptr.ref.lpVtbl,
-        node == null ? nullptr : node.ptr.ref.lpVtbl,
-        retValuePtr);
+                int Function(LPVTBL lpVtbl, LPVTBL node,
+                    Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl,
+        node == null ? nullptr : node.ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -149,10 +154,12 @@ class IXmlNamedNodeMap extends IInspectable
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(
-                            LPVTBL, IntPtr name, Pointer<COMObject>)>>>()
+                        HRESULT Function(LPVTBL lpVtbl, IntPtr name,
+                            Pointer<COMObject> retValuePtr)>>>()
             .value
-            .asFunction<int Function(LPVTBL, int name, Pointer<COMObject>)>()(
+            .asFunction<
+                int Function(
+                    LPVTBL lpVtbl, int name, Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, nameHString, retValuePtr);
 
     if (FAILED(hr)) {
@@ -175,22 +182,21 @@ class IXmlNamedNodeMap extends IInspectable
 
     final nameHString = convertToHString(name);
 
-    final hr =
-        ptr.ref.vtable
-                .elementAt(11)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(LPVTBL, LPVTBL namespaceUri,
-                                IntPtr name, Pointer<COMObject>)>>>()
-                .value
-                .asFunction<
-                    int Function(LPVTBL, LPVTBL namespaceUri, int name,
-                        Pointer<COMObject>)>()(
-            ptr.ref.lpVtbl,
-            namespaceUri?.intoBox().ref.lpVtbl ?? nullptr,
-            nameHString,
-            retValuePtr);
+    final hr = ptr.ref.vtable
+            .elementAt(11)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(LPVTBL lpVtbl, LPVTBL namespaceUri,
+                            IntPtr name, Pointer<COMObject> retValuePtr)>>>()
+            .value
+            .asFunction<
+                int Function(LPVTBL lpVtbl, LPVTBL namespaceUri, int name,
+                    Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl,
+        namespaceUri?.intoBox().ref.lpVtbl ?? nullptr,
+        nameHString,
+        retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -212,22 +218,21 @@ class IXmlNamedNodeMap extends IInspectable
 
     final nameHString = convertToHString(name);
 
-    final hr =
-        ptr.ref.vtable
-                .elementAt(12)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(LPVTBL, LPVTBL namespaceUri,
-                                IntPtr name, Pointer<COMObject>)>>>()
-                .value
-                .asFunction<
-                    int Function(LPVTBL, LPVTBL namespaceUri, int name,
-                        Pointer<COMObject>)>()(
-            ptr.ref.lpVtbl,
-            namespaceUri?.intoBox().ref.lpVtbl ?? nullptr,
-            nameHString,
-            retValuePtr);
+    final hr = ptr.ref.vtable
+            .elementAt(12)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(LPVTBL lpVtbl, LPVTBL namespaceUri,
+                            IntPtr name, Pointer<COMObject> retValuePtr)>>>()
+            .value
+            .asFunction<
+                int Function(LPVTBL lpVtbl, LPVTBL namespaceUri, int name,
+                    Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl,
+        namespaceUri?.intoBox().ref.lpVtbl ?? nullptr,
+        nameHString,
+        retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -252,14 +257,13 @@ class IXmlNamedNodeMap extends IInspectable
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(
-                            LPVTBL, LPVTBL node, Pointer<COMObject>)>>>()
+                        HRESULT Function(LPVTBL lpVtbl, LPVTBL node,
+                            Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL, LPVTBL node, Pointer<COMObject>)>()(
-        ptr.ref.lpVtbl,
-        node == null ? nullptr : node.ptr.ref.lpVtbl,
-        retValuePtr);
+                int Function(LPVTBL lpVtbl, LPVTBL node,
+                    Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl,
+        node == null ? nullptr : node.ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);

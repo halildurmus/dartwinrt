@@ -36,19 +36,18 @@ class IStorageFile2 extends IInspectable {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<IRandomAccessStream?>();
 
-    final hr =
-        ptr.ref.vtable
-                .elementAt(6)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(LPVTBL, Int32 accessMode,
-                                Uint32 options, Pointer<COMObject>)>>>()
-                .value
-                .asFunction<
-                    int Function(LPVTBL, int accessMode, int options,
-                        Pointer<COMObject>)>()(
-            ptr.ref.lpVtbl, accessMode.value, options.value, retValuePtr);
+    final hr = ptr.ref.vtable
+            .elementAt(6)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(LPVTBL lpVtbl, Int32 accessMode,
+                            Uint32 options, Pointer<COMObject> retValuePtr)>>>()
+            .value
+            .asFunction<
+                int Function(LPVTBL lpVtbl, int accessMode, int options,
+                    Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl, accessMode.value, options.value, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -74,11 +73,12 @@ class IStorageFile2 extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(
-                            LPVTBL, Uint32 options, Pointer<COMObject>)>>>()
+                        HRESULT Function(LPVTBL lpVtbl, Uint32 options,
+                            Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL, int options, Pointer<COMObject>)>()(
+                int Function(LPVTBL lpVtbl, int options,
+                    Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, options.value, retValuePtr);
 
     if (FAILED(hr)) {

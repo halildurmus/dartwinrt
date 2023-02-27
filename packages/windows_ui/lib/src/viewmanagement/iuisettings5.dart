@@ -34,14 +34,16 @@ class IUISettings5 extends IInspectable {
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<HRESULT Function(LPVTBL, Pointer<Bool>)>>>()
-          .value
-          .asFunction<
-              int Function(
-                  LPVTBL, Pointer<Bool>)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(6)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              LPVTBL lpVtbl, Pointer<Bool> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(LPVTBL lpVtbl, Pointer<Bool> retValuePtr)>()(
+          ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -60,11 +62,12 @@ class IUISettings5 extends IInspectable {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(
-                              LPVTBL, LPVTBL handler, Pointer<IntPtr>)>>>()
+                          HRESULT Function(LPVTBL lpVtbl, LPVTBL handler,
+                              Pointer<IntPtr> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(LPVTBL, LPVTBL handler, Pointer<IntPtr>)>()(
+                  int Function(LPVTBL lpVtbl, LPVTBL handler,
+                      Pointer<IntPtr> retValuePtr)>()(
           ptr.ref.lpVtbl, handler.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
@@ -77,10 +80,14 @@ class IUISettings5 extends IInspectable {
 
   void remove_AutoHideScrollBarsChanged(int token) {
     final hr = ptr.ref.vtable
-        .elementAt(8)
-        .cast<Pointer<NativeFunction<HRESULT Function(LPVTBL, IntPtr token)>>>()
-        .value
-        .asFunction<int Function(LPVTBL, int token)>()(ptr.ref.lpVtbl, token);
+            .elementAt(8)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(LPVTBL lpVtbl, IntPtr token)>>>()
+            .value
+            .asFunction<int Function(LPVTBL lpVtbl, int token)>()(
+        ptr.ref.lpVtbl, token);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }

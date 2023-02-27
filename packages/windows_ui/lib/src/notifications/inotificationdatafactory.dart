@@ -40,13 +40,19 @@ class INotificationDataFactory extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL, LPVTBL initialValues,
-                            Uint32 sequenceNumber, Pointer<COMObject>)>>>()
+                        HRESULT Function(
+                            LPVTBL lpVtbl,
+                            LPVTBL initialValues,
+                            Uint32 sequenceNumber,
+                            Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL, LPVTBL initialValues, int sequenceNumber,
-                    Pointer<COMObject>)>()(ptr.ref.lpVtbl,
-        initialValues.ptr.ref.lpVtbl, sequenceNumber, retValuePtr);
+                int Function(LPVTBL lpVtbl, LPVTBL initialValues,
+                    int sequenceNumber, Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl,
+        initialValues.ptr.ref.lpVtbl,
+        sequenceNumber,
+        retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -65,12 +71,12 @@ class INotificationDataFactory extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL, LPVTBL initialValues,
-                            Pointer<COMObject>)>>>()
+                        HRESULT Function(LPVTBL lpVtbl, LPVTBL initialValues,
+                            Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(
-                    LPVTBL, LPVTBL initialValues, Pointer<COMObject>)>()(
+                int Function(LPVTBL lpVtbl, LPVTBL initialValues,
+                    Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, initialValues.ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {

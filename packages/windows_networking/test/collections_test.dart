@@ -31,9 +31,12 @@ void main() {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(LPVTBL, Pointer<COMObject>)>>>()
+                          HRESULT Function(LPVTBL lpVtbl,
+                              Pointer<COMObject> retValuePtr)>>>()
               .value
-              .asFunction<int Function(LPVTBL, Pointer<COMObject>)>()(
+              .asFunction<
+                  int Function(
+                      LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>()(
           ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);

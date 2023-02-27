@@ -39,10 +39,12 @@ class IJsonValueStatics extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(
-                            LPVTBL, IntPtr input, Pointer<COMObject>)>>>()
+                        HRESULT Function(LPVTBL lpVtbl, IntPtr input,
+                            Pointer<COMObject> retValuePtr)>>>()
             .value
-            .asFunction<int Function(LPVTBL, int input, Pointer<COMObject>)>()(
+            .asFunction<
+                int Function(LPVTBL lpVtbl, int input,
+                    Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, inputHString, retValuePtr);
 
     if (FAILED(hr)) {
@@ -70,12 +72,15 @@ class IJsonValueStatics extends IInspectable {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(LPVTBL, IntPtr input,
-                              Pointer<COMObject> result, Pointer<Bool>)>>>()
+                          HRESULT Function(
+                              LPVTBL lpVtbl,
+                              IntPtr input,
+                              Pointer<COMObject> result,
+                              Pointer<Bool> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(LPVTBL, int input, Pointer<COMObject> result,
-                      Pointer<Bool>)>()(
+                  int Function(LPVTBL lpVtbl, int input,
+                      Pointer<COMObject> result, Pointer<Bool> retValuePtr)>()(
           ptr.ref.lpVtbl, inputHString, result.ptr, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
@@ -96,10 +101,12 @@ class IJsonValueStatics extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(
-                            LPVTBL, Bool input, Pointer<COMObject>)>>>()
+                        HRESULT Function(LPVTBL lpVtbl, Bool input,
+                            Pointer<COMObject> retValuePtr)>>>()
             .value
-            .asFunction<int Function(LPVTBL, bool input, Pointer<COMObject>)>()(
+            .asFunction<
+                int Function(LPVTBL lpVtbl, bool input,
+                    Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, input, retValuePtr);
 
     if (FAILED(hr)) {
@@ -123,11 +130,12 @@ class IJsonValueStatics extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(
-                            LPVTBL, Double input, Pointer<COMObject>)>>>()
+                        HRESULT Function(LPVTBL lpVtbl, Double input,
+                            Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL, double input, Pointer<COMObject>)>()(
+                int Function(LPVTBL lpVtbl, double input,
+                    Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, input, retValuePtr);
 
     if (FAILED(hr)) {
@@ -152,10 +160,12 @@ class IJsonValueStatics extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(
-                            LPVTBL, IntPtr input, Pointer<COMObject>)>>>()
+                        HRESULT Function(LPVTBL lpVtbl, IntPtr input,
+                            Pointer<COMObject> retValuePtr)>>>()
             .value
-            .asFunction<int Function(LPVTBL, int input, Pointer<COMObject>)>()(
+            .asFunction<
+                int Function(LPVTBL lpVtbl, int input,
+                    Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, inputHString, retValuePtr);
 
     if (FAILED(hr)) {

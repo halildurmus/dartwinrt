@@ -226,8 +226,9 @@ void main() {
               'final pArray = calloc<Pointer<IntPtr>>();'));
       expect(
           parameter.postamble,
-          equalsIgnoringWhitespace(
+          equalsIgnoringWhitespace('if (pValueSize.value > 0) {\n'
               'value.addAll(pArray.value.toList(length: pValueSize.value));\n'
+              '}\n'
               'free(pValueSize);\n'
               'free(pArray);'));
       expect(parameter.localIdentifier, equals('pArray'));

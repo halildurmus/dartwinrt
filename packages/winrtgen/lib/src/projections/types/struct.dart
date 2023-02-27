@@ -7,13 +7,10 @@ import '../method.dart';
 import '../parameter.dart';
 import '../setter.dart';
 
-/// Method projection for methods that return a WinRT struct (e.g. `Point`).
-class StructMethodProjection extends MethodProjection {
-  StructMethodProjection(super.method, super.vtableOffset);
-
+mixin _StructMixin on MethodProjection {
   @override
-  String get methodProjection => '''
-  $returnType $camelCasedName($methodParams) {
+  String get methodDeclaration => '''
+  $methodHeader {
     final retValuePtr = calloc<${returnTypeProjection.nativeType}>();
     $parametersPreamble
 
@@ -24,20 +21,14 @@ class StructMethodProjection extends MethodProjection {
 ''';
 }
 
+/// Method projection for methods that return WinRT struct (e.g. `Point`).
+class StructMethodProjection extends MethodProjection with _StructMixin {
+  StructMethodProjection(super.method, super.vtableOffset);
+}
+
 /// Getter projection for WinRT struct getters.
-class StructGetterProjection extends GetterProjection {
+class StructGetterProjection extends GetterProjection with _StructMixin {
   StructGetterProjection(super.method, super.vtableOffset);
-
-  @override
-  String get methodProjection => '''
-  $returnType get $camelCasedName {
-    final retValuePtr = calloc<${returnTypeProjection.nativeType}>();
-
-    ${ffiCall()}
-
-    return retValuePtr.ref;
-  }
-''';
 }
 
 /// Setter projection for WinRT struct setters.
@@ -45,8 +36,8 @@ class StructSetterProjection extends SetterProjection {
   StructSetterProjection(super.method, super.vtableOffset);
 
   @override
-  String get methodProjection => '''
-  set $camelCasedName(${param.type} value) {
+  String get methodDeclaration => '''
+  $methodHeader {
     ${ffiCall(params: 'value')}
   }
 ''';

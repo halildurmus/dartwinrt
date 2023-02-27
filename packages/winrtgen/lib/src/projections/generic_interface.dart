@@ -88,7 +88,7 @@ class GenericInterfaceProjection extends InterfaceProjection {
         }
       }).join(', ');
 
-  /// The generic type parameters that are used in the class declaration (e.g.
+  /// The generic type parameters that are used in the class header (e.g.
   /// `<K, V>`, `<T>`).
   String get typeParams {
     final params = typeDef.genericParams
@@ -110,7 +110,7 @@ class GenericInterfaceProjection extends InterfaceProjection {
   }
 
   @override
-  String get classDeclaration =>
+  String get classHeader =>
       'class $className$typeParams extends $shortName<$formattedTypeArgs>';
 
   @override
@@ -273,21 +273,21 @@ class GenericInterfaceProjection extends InterfaceProjection {
     if (shortName == 'IReference') {
       return methodProjections
           .map((method) {
-            var shortDeclaration = method.shortDeclaration;
+            var methodHeader = method.methodHeader;
             final isGenericGetter = method is GenericEnumGetterProjection ||
                 method is GenericObjectGetterProjection;
             final returnType = method.returnType;
             // Make the return type nullable if it is not generic
             if (!isGenericGetter) {
-              shortDeclaration =
-                  shortDeclaration.replaceFirst(returnType, '$returnType?');
+              methodHeader =
+                  methodHeader.replaceFirst(returnType, '$returnType?');
             }
             final nullCheck =
                 'if(_isNull) return null${isGenericGetter ? ' as $returnType' : ''};';
             final rest =
                 method.toString().substring(method.toString().indexOf('{') + 1);
             // Insert a null check at the top before the FFI call
-            return '$shortDeclaration {\n$nullCheck\n$rest';
+            return '$methodHeader {\n$nullCheck\n$rest';
           })
           .map((method) => '@override\n$method')
           .join('\n');
@@ -298,7 +298,7 @@ class GenericInterfaceProjection extends InterfaceProjection {
 
   @override
   String toString() => '''
-  $classDeclaration {
+  $classHeader {
   $namedConstructor
 
   $formattedMethodProjections

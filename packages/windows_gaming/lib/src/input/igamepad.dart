@@ -40,9 +40,12 @@ class IGamepad extends IInspectable implements IGameController {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL, Pointer<GamepadVibration>)>>>()
+                        HRESULT Function(LPVTBL lpVtbl,
+                            Pointer<GamepadVibration> retValuePtr)>>>()
             .value
-            .asFunction<int Function(LPVTBL, Pointer<GamepadVibration>)>()(
+            .asFunction<
+                int Function(
+                    LPVTBL lpVtbl, Pointer<GamepadVibration> retValuePtr)>()(
         ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) throw WindowsException(hr);
@@ -52,14 +55,15 @@ class IGamepad extends IInspectable implements IGameController {
 
   set vibration(GamepadVibration value) {
     final hr = ptr.ref.vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(LPVTBL, GamepadVibration value)>>>()
-            .value
-            .asFunction<int Function(LPVTBL, GamepadVibration value)>()(
-        ptr.ref.lpVtbl, value);
+        .elementAt(7)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(LPVTBL lpVtbl, GamepadVibration value)>>>()
+        .value
+        .asFunction<
+            int Function(LPVTBL lpVtbl,
+                GamepadVibration value)>()(ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
@@ -72,9 +76,12 @@ class IGamepad extends IInspectable implements IGameController {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL, Pointer<GamepadReading>)>>>()
+                        HRESULT Function(LPVTBL lpVtbl,
+                            Pointer<GamepadReading> retValuePtr)>>>()
             .value
-            .asFunction<int Function(LPVTBL, Pointer<GamepadReading>)>()(
+            .asFunction<
+                int Function(
+                    LPVTBL lpVtbl, Pointer<GamepadReading> retValuePtr)>()(
         ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) throw WindowsException(hr);

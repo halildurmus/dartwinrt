@@ -44,11 +44,12 @@ class IToastNotificationManagerForUser2 extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL, IntPtr collectionId,
-                            Pointer<COMObject>)>>>()
+                        HRESULT Function(LPVTBL lpVtbl, IntPtr collectionId,
+                            Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL, int collectionId, Pointer<COMObject>)>()(
+                int Function(LPVTBL lpVtbl, int collectionId,
+                    Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, collectionIdHString, retValuePtr);
 
     if (FAILED(hr)) {
@@ -78,11 +79,12 @@ class IToastNotificationManagerForUser2 extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL, IntPtr collectionId,
-                            Pointer<COMObject>)>>>()
+                        HRESULT Function(LPVTBL lpVtbl, IntPtr collectionId,
+                            Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL, int collectionId, Pointer<COMObject>)>()(
+                int Function(LPVTBL lpVtbl, int collectionId,
+                    Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, collectionIdHString, retValuePtr);
 
     if (FAILED(hr)) {
@@ -105,14 +107,16 @@ class IToastNotificationManagerForUser2 extends IInspectable {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-        .elementAt(8)
-        .cast<
-            Pointer<
-                NativeFunction<HRESULT Function(LPVTBL, Pointer<COMObject>)>>>()
-        .value
-        .asFunction<
-            int Function(
-                LPVTBL, Pointer<COMObject>)>()(ptr.ref.lpVtbl, retValuePtr);
+            .elementAt(8)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>>>()
+            .value
+            .asFunction<
+                int Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -136,10 +140,12 @@ class IToastNotificationManagerForUser2 extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(
-                            LPVTBL, IntPtr appId, Pointer<COMObject>)>>>()
+                        HRESULT Function(LPVTBL lpVtbl, IntPtr appId,
+                            Pointer<COMObject> retValuePtr)>>>()
             .value
-            .asFunction<int Function(LPVTBL, int appId, Pointer<COMObject>)>()(
+            .asFunction<
+                int Function(LPVTBL lpVtbl, int appId,
+                    Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, appIdHString, retValuePtr);
 
     if (FAILED(hr)) {
