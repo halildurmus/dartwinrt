@@ -49,6 +49,7 @@
     "Windows.Media.MediaProperties.MediaPropertySet": "Represents a set of media properties.",
     "Windows.Networking.Connectivity.AttributedNetworkUsage": "Provides access to property values containing information on current usage of the attributed network connection.",
     "Windows.Networking.Connectivity.ConnectionCost": "Provides access to property values that indicate the current cost of a network connection.",
+    "Windows.Networking.Connectivity.ConnectionProfile": "Represents a network connection, which includes either the currently connected network or prior network connections. Provides information about the connection status and connectivity statistics.",
     "Windows.Networking.Connectivity.ConnectionProfileFilter": "The ConnectionProfileFilter class defines a set of properties that are used to improve the relevance of FindConnectionProfilesAsync results.",
     "Windows.Networking.Connectivity.ConnectivityInterval": "Provides the start time and duration for an established or prior connection.",
     "Windows.Networking.Connectivity.DataPlanStatus": "Represents the current status information for the data plan associated with a connection.",
