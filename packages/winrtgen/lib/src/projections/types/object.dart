@@ -62,7 +62,7 @@ mixin _ObjectMixin on MethodProjection {
   }
 
   String get nullCheck {
-    if (!returnType.endsWith('?')) return '';
+    if (!isNullable) return '';
     return '''
     if (retValuePtr.ref.isNull) {
       free(retValuePtr);

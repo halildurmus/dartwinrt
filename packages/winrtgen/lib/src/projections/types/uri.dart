@@ -22,6 +22,7 @@ bool _methodBelongsToUriRuntimeClass(Method method) => [
     ].contains(method.parent.name);
 
 mixin _UriMixin on MethodProjection {
+  @override
   bool get isNullable {
     // Factory interface methods (constructors) cannot return null.
     final factoryInterfacePattern = RegExp(r'^I\w+Factory\d{0,2}$');
@@ -111,6 +112,7 @@ class UriSetterProjection extends SetterProjection {
 class UriParameterProjection extends ParameterProjection {
   UriParameterProjection(super.parameter);
 
+  @override
   bool get isNullable =>
       !method.parent.name.endsWith('IIterator`1') &&
       !method.parent.name.endsWith('IVector`1') &&

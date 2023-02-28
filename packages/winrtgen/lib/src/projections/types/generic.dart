@@ -99,6 +99,7 @@ class GenericEnumListParameterProjection
 }
 
 mixin _GenericObjectMixin on MethodProjection {
+  @override
   bool get isNullable =>
       returnTypeProjection.genericTypeArg == TypeArg.nullableInspectable;
 
