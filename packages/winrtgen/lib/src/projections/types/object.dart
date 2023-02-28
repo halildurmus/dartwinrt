@@ -62,7 +62,7 @@ mixin _ObjectMixin on MethodProjection {
   }
 
   String get nullCheck {
-    if (!returnType.endsWith('?')) return '';
+    if (!isNullable) return '';
     return '''
     if (retValuePtr.ref.isNull) {
       free(retValuePtr);
@@ -155,25 +155,38 @@ class ObjectParameterProjection extends ParameterProjection {
   }
 
   @override
-  String get preamble => '';
-
-  @override
-  String get postamble => '';
-
-  @override
-  String get localIdentifier {
+  String get preamble {
+    final String expression;
     if (typeProjection.isObjectType) {
-      return '$name?.intoBox().ref.lpVtbl ?? nullptr';
+      expression = '$name?.intoBox().ref.lpVtbl ?? nullptr';
+    } else if (typeProjection.isReferenceType || typeProjection.isSimpleArray) {
+      expression =
+          type == 'Pointer<COMObject>' ? identifier : '$identifier.ptr';
+    } else if (type.startsWith('IIterable<')) {
+      final iid = typeProjection.typeIdentifier.iid;
+      final nullCheck = isNullable ? '$name == null ? nullptr : ' : '';
+      expression =
+          "${nullCheck}IInspectable($name.toInterface('$iid')).ptr.ref.lpVtbl";
+    } else {
+      expression = isNullable
+          ? '$name == null ? nullptr : $name.ptr.ref.lpVtbl'
+          : '$name.ptr.ref.lpVtbl';
     }
 
-    if (typeProjection.isReferenceType || typeProjection.isSimpleArray) {
-      return type == 'Pointer<COMObject>' ? identifier : '$identifier.ptr';
-    }
-
-    return type.endsWith('?')
-        ? '$name == null ? nullptr : $name.ptr.ref.lpVtbl'
-        : '$name.ptr.ref.lpVtbl';
+    return 'final ${name}Ptr = $expression;';
   }
+
+  @override
+  String get postamble {
+    if (type.startsWith('IIterable<')) {
+      return isNullable ? '$name?.release();' : '$name.release();';
+    }
+
+    return '';
+  }
+
+  @override
+  String get localIdentifier => '${name}Ptr';
 }
 
 /// Parameter projection for `List<T extends IInspectable>` or `List<Object?>`

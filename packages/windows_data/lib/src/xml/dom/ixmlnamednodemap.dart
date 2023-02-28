@@ -118,6 +118,7 @@ class IXmlNamedNodeMap extends IInspectable
 
   IXmlNode? setNamedItem(IXmlNode? node) {
     final retValuePtr = calloc<COMObject>();
+    final nodePtr = node == null ? nullptr : node.ptr.ref.lpVtbl;
 
     final hr = ptr.ref.vtable
             .elementAt(9)
@@ -129,8 +130,8 @@ class IXmlNamedNodeMap extends IInspectable
             .value
             .asFunction<
                 int Function(LPVTBL lpVtbl, LPVTBL node,
-                    Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl,
-        node == null ? nullptr : node.ptr.ref.lpVtbl, retValuePtr);
+                    Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl, nodePtr, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -179,7 +180,7 @@ class IXmlNamedNodeMap extends IInspectable
 
   IXmlNode? getNamedItemNS(Object? namespaceUri, String name) {
     final retValuePtr = calloc<COMObject>();
-
+    final namespaceUriPtr = namespaceUri?.intoBox().ref.lpVtbl ?? nullptr;
     final nameHString = convertToHString(name);
 
     final hr = ptr.ref.vtable
@@ -193,10 +194,7 @@ class IXmlNamedNodeMap extends IInspectable
             .asFunction<
                 int Function(LPVTBL lpVtbl, LPVTBL namespaceUri, int name,
                     Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl,
-        namespaceUri?.intoBox().ref.lpVtbl ?? nullptr,
-        nameHString,
-        retValuePtr);
+        ptr.ref.lpVtbl, namespaceUriPtr, nameHString, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -215,7 +213,7 @@ class IXmlNamedNodeMap extends IInspectable
 
   IXmlNode? removeNamedItemNS(Object? namespaceUri, String name) {
     final retValuePtr = calloc<COMObject>();
-
+    final namespaceUriPtr = namespaceUri?.intoBox().ref.lpVtbl ?? nullptr;
     final nameHString = convertToHString(name);
 
     final hr = ptr.ref.vtable
@@ -229,10 +227,7 @@ class IXmlNamedNodeMap extends IInspectable
             .asFunction<
                 int Function(LPVTBL lpVtbl, LPVTBL namespaceUri, int name,
                     Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl,
-        namespaceUri?.intoBox().ref.lpVtbl ?? nullptr,
-        nameHString,
-        retValuePtr);
+        ptr.ref.lpVtbl, namespaceUriPtr, nameHString, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -251,6 +246,7 @@ class IXmlNamedNodeMap extends IInspectable
 
   IXmlNode? setNamedItemNS(IXmlNode? node) {
     final retValuePtr = calloc<COMObject>();
+    final nodePtr = node == null ? nullptr : node.ptr.ref.lpVtbl;
 
     final hr = ptr.ref.vtable
             .elementAt(13)
@@ -262,8 +258,8 @@ class IXmlNamedNodeMap extends IInspectable
             .value
             .asFunction<
                 int Function(LPVTBL lpVtbl, LPVTBL node,
-                    Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl,
-        node == null ? nullptr : node.ptr.ref.lpVtbl, retValuePtr);
+                    Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl, nodePtr, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);

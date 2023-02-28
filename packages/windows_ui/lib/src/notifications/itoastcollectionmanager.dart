@@ -34,6 +34,8 @@ class IToastCollectionManager extends IInspectable {
   Future<void> saveToastCollectionAsync(ToastCollection? collection) {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<void>();
+    final collectionPtr =
+        collection == null ? nullptr : collection.ptr.ref.lpVtbl;
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -45,8 +47,8 @@ class IToastCollectionManager extends IInspectable {
             .value
             .asFunction<
                 int Function(LPVTBL lpVtbl, LPVTBL collection,
-                    Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl,
-        collection == null ? nullptr : collection.ptr.ref.lpVtbl, retValuePtr);
+                    Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl, collectionPtr, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);

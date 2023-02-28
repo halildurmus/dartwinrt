@@ -155,6 +155,9 @@ abstract class MethodProjection {
   /// The return type of the method (e.g. `String`).
   String get returnType => returnTypeProjection.dartType;
 
+  /// Whether the return type of the method is nullable.
+  bool get isNullable => returnType.endsWith('?');
+
   /// The header of the method.
   ///   e.g. `void setDateTime(DateTime value)` or `void setToNow()` (method)
   ///   e.g. `int get second` (getter)

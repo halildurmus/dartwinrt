@@ -112,6 +112,9 @@ abstract class ParameterProjection {
   /// The type of the parameter (e.g. `String`).
   String get type => typeProjection.dartType;
 
+  /// Whether the type of the parameter is nullable.
+  bool get isNullable => type.endsWith('?');
+
   /// The name of the parameter that is safe to use as a Dart identifier.
   String get identifier => safeIdentifierForString(name);
 

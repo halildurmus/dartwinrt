@@ -35,7 +35,7 @@ class IStorageFolderStatics2 extends IInspectable {
       User? user, String path) {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<StorageFolder?>();
-
+    final userPtr = user == null ? nullptr : user.ptr.ref.lpVtbl;
     final pathHString = convertToHString(path);
 
     final hr = ptr.ref.vtable
@@ -48,8 +48,8 @@ class IStorageFolderStatics2 extends IInspectable {
             .value
             .asFunction<
                 int Function(LPVTBL lpVtbl, LPVTBL user, int path,
-                    Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl,
-        user == null ? nullptr : user.ptr.ref.lpVtbl, pathHString, retValuePtr);
+                    Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl, userPtr, pathHString, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);

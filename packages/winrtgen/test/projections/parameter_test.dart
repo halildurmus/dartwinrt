@@ -33,10 +33,12 @@ void main() {
       final parameter = methodProjection.parameters.first;
       expect(parameter, isA<ObjectParameterProjection>());
       expect(parameter.type, equals('Calendar?'));
-      expect(parameter.preamble, isEmpty);
+      expect(
+          parameter.preamble,
+          equals(
+              'final otherPtr = other == null ? nullptr : other.ptr.ref.lpVtbl;'));
       expect(parameter.postamble, isEmpty);
-      expect(parameter.localIdentifier,
-          equals('other == null ? nullptr : other.ptr.ref.lpVtbl'));
+      expect(parameter.localIdentifier, equals('otherPtr'));
     });
 
     test('projects DateTime', () {
@@ -117,12 +119,28 @@ void main() {
       final parameter = methodProjection.parameters.first;
       expect(parameter, isA<ObjectParameterProjection>());
       expect(parameter.type, equals('IStorageFile?'));
-      expect(parameter.preamble, isEmpty);
-      expect(parameter.postamble, isEmpty);
       expect(
-          parameter.localIdentifier,
+          parameter.preamble,
           equals(
-              'fileToReplace == null ? nullptr : fileToReplace.ptr.ref.lpVtbl'));
+              'final fileToReplacePtr = fileToReplace == null ? nullptr : fileToReplace.ptr.ref.lpVtbl;'));
+      expect(parameter.postamble, isEmpty);
+      expect(parameter.localIdentifier, equals('fileToReplacePtr'));
+    });
+
+    test('projects IIterable<IKeyValuePair<String, Object?>>?', () {
+      final methodProjection = MethodProjection.fromTypeAndMethodName(
+          'Windows.Storage.FileProperties.IStorageItemExtraProperties',
+          'SavePropertiesAsync');
+      final parameter = methodProjection.parameters.first;
+      expect(parameter, isA<ObjectParameterProjection>());
+      expect(
+          parameter.type, equals('IIterable<IKeyValuePair<String, Object?>>?'));
+      expect(
+          parameter.preamble,
+          equals(
+              "final propertiesToSavePtr = propertiesToSave == null ? nullptr : IInspectable(propertiesToSave.toInterface('{fe2f3d47-5d47-5499-8374-430c7cda0204}')).ptr.ref.lpVtbl;"));
+      expect(parameter.postamble, equals('propertiesToSave?.release();'));
+      expect(parameter.localIdentifier, equals('propertiesToSavePtr'));
     });
 
     test('projects IReference<BluetoothLEAdvertisementFlags?>', () {
@@ -159,10 +177,10 @@ void main() {
       final parameter = methodProjection.parameters.last;
       expect(parameter, isA<ObjectParameterProjection>());
       expect(parameter.type, equals('Object?'));
-      expect(parameter.preamble, isEmpty);
+      expect(parameter.preamble,
+          equals('final valuePtr = value?.intoBox().ref.lpVtbl ?? nullptr;'));
       expect(parameter.postamble, isEmpty);
-      expect(parameter.localIdentifier,
-          equals('value?.intoBox().ref.lpVtbl ?? nullptr'));
+      expect(parameter.localIdentifier, equals('valuePtr'));
     });
 
     test('projects pointer', () {

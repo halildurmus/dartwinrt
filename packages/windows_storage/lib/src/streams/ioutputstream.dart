@@ -31,6 +31,7 @@ class IOutputStream extends IInspectable implements IClosable {
 
   Pointer<COMObject> writeAsync(IBuffer? buffer) {
     final retValuePtr = calloc<COMObject>();
+    final bufferPtr = buffer == null ? nullptr : buffer.ptr.ref.lpVtbl;
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -42,8 +43,8 @@ class IOutputStream extends IInspectable implements IClosable {
             .value
             .asFunction<
                 int Function(LPVTBL lpVtbl, LPVTBL buffer,
-                    Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl,
-        buffer == null ? nullptr : buffer.ptr.ref.lpVtbl, retValuePtr);
+                    Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl, bufferPtr, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);

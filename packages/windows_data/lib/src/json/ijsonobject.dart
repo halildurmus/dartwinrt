@@ -67,6 +67,7 @@ class IJsonObject extends IInspectable implements IJsonValue {
 
   void setNamedValue(String name, IJsonValue? value) {
     final nameHString = convertToHString(name);
+    final valuePtr = value == null ? nullptr : value.ptr.ref.lpVtbl;
 
     final hr = ptr.ref.vtable
             .elementAt(7)
@@ -77,9 +78,7 @@ class IJsonObject extends IInspectable implements IJsonValue {
                             LPVTBL lpVtbl, IntPtr name, LPVTBL value)>>>()
             .value
             .asFunction<int Function(LPVTBL lpVtbl, int name, LPVTBL value)>()(
-        ptr.ref.lpVtbl,
-        nameHString,
-        value == null ? nullptr : value.ptr.ref.lpVtbl);
+        ptr.ref.lpVtbl, nameHString, valuePtr);
 
     if (FAILED(hr)) throw WindowsException(hr);
 

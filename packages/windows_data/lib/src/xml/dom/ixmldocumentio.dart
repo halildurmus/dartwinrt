@@ -49,6 +49,8 @@ class IXmlDocumentIO extends IInspectable {
 
   void loadXmlWithSettings(String xml, XmlLoadSettings? loadSettings) {
     final xmlHString = convertToHString(xml);
+    final loadSettingsPtr =
+        loadSettings == null ? nullptr : loadSettings.ptr.ref.lpVtbl;
 
     final hr = ptr.ref.vtable
             .elementAt(7)
@@ -60,9 +62,7 @@ class IXmlDocumentIO extends IInspectable {
             .value
             .asFunction<
                 int Function(LPVTBL lpVtbl, int xml, LPVTBL loadSettings)>()(
-        ptr.ref.lpVtbl,
-        xmlHString,
-        loadSettings == null ? nullptr : loadSettings.ptr.ref.lpVtbl);
+        ptr.ref.lpVtbl, xmlHString, loadSettingsPtr);
 
     if (FAILED(hr)) throw WindowsException(hr);
 
@@ -72,6 +72,7 @@ class IXmlDocumentIO extends IInspectable {
   Future<void> saveToFileAsync(IStorageFile? file) {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<void>();
+    final filePtr = file == null ? nullptr : file.ptr.ref.lpVtbl;
 
     final hr = ptr.ref.vtable
             .elementAt(8)
@@ -83,8 +84,8 @@ class IXmlDocumentIO extends IInspectable {
             .value
             .asFunction<
                 int Function(LPVTBL lpVtbl, LPVTBL file,
-                    Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl,
-        file == null ? nullptr : file.ptr.ref.lpVtbl, retValuePtr);
+                    Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl, filePtr, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);

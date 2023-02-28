@@ -33,6 +33,7 @@ class IPhoneNumberFormatter extends IInspectable {
 
   String format(PhoneNumberInfo? number) {
     final retValuePtr = calloc<HSTRING>();
+    final numberPtr = number == null ? nullptr : number.ptr.ref.lpVtbl;
 
     try {
       final hr = ptr.ref.vtable
@@ -45,8 +46,8 @@ class IPhoneNumberFormatter extends IInspectable {
               .value
               .asFunction<
                   int Function(LPVTBL lpVtbl, LPVTBL number,
-                      Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl,
-          number == null ? nullptr : number.ptr.ref.lpVtbl, retValuePtr);
+                      Pointer<IntPtr> retValuePtr)>()(
+          ptr.ref.lpVtbl, numberPtr, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -60,6 +61,7 @@ class IPhoneNumberFormatter extends IInspectable {
   String formatWithOutputFormat(
       PhoneNumberInfo? number, PhoneNumberFormat numberFormat) {
     final retValuePtr = calloc<HSTRING>();
+    final numberPtr = number == null ? nullptr : number.ptr.ref.lpVtbl;
 
     try {
       final hr =
@@ -77,10 +79,7 @@ class IPhoneNumberFormatter extends IInspectable {
                   .asFunction<
                       int Function(LPVTBL lpVtbl, LPVTBL number,
                           int numberFormat, Pointer<IntPtr> retValuePtr)>()(
-              ptr.ref.lpVtbl,
-              number == null ? nullptr : number.ptr.ref.lpVtbl,
-              numberFormat.value,
-              retValuePtr);
+              ptr.ref.lpVtbl, numberPtr, numberFormat.value, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 

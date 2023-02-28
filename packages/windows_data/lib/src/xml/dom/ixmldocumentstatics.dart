@@ -72,6 +72,8 @@ class IXmlDocumentStatics extends IInspectable {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<XmlDocument?>();
     final uriUri = uri == null ? null : winrt_uri.Uri.createUri(uri.toString());
+    final loadSettingsPtr =
+        loadSettings == null ? nullptr : loadSettings.ptr.ref.lpVtbl;
 
     final hr = ptr.ref.vtable
             .elementAt(7)
@@ -89,7 +91,7 @@ class IXmlDocumentStatics extends IInspectable {
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl,
         uriUri == null ? nullptr : uriUri.ptr.ref.lpVtbl,
-        loadSettings == null ? nullptr : loadSettings.ptr.ref.lpVtbl,
+        loadSettingsPtr,
         retValuePtr);
 
     if (FAILED(hr)) {
@@ -111,6 +113,7 @@ class IXmlDocumentStatics extends IInspectable {
   Future<XmlDocument?> loadFromFileAsync(IStorageFile? file) {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<XmlDocument?>();
+    final filePtr = file == null ? nullptr : file.ptr.ref.lpVtbl;
 
     final hr = ptr.ref.vtable
             .elementAt(8)
@@ -122,8 +125,8 @@ class IXmlDocumentStatics extends IInspectable {
             .value
             .asFunction<
                 int Function(LPVTBL lpVtbl, LPVTBL file,
-                    Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl,
-        file == null ? nullptr : file.ptr.ref.lpVtbl, retValuePtr);
+                    Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl, filePtr, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -143,6 +146,9 @@ class IXmlDocumentStatics extends IInspectable {
       IStorageFile? file, XmlLoadSettings? loadSettings) {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<XmlDocument?>();
+    final filePtr = file == null ? nullptr : file.ptr.ref.lpVtbl;
+    final loadSettingsPtr =
+        loadSettings == null ? nullptr : loadSettings.ptr.ref.lpVtbl;
 
     final hr = ptr.ref.vtable
             .elementAt(9)
@@ -158,10 +164,7 @@ class IXmlDocumentStatics extends IInspectable {
             .asFunction<
                 int Function(LPVTBL lpVtbl, LPVTBL file, LPVTBL loadSettings,
                     Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl,
-        file == null ? nullptr : file.ptr.ref.lpVtbl,
-        loadSettings == null ? nullptr : loadSettings.ptr.ref.lpVtbl,
-        retValuePtr);
+        ptr.ref.lpVtbl, filePtr, loadSettingsPtr, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);

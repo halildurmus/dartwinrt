@@ -35,6 +35,12 @@ class IQueryOptionsFactory extends IInspectable {
       CommonFileQuery query, IIterable<String> fileTypeFilter) {
     final retValuePtr = calloc<COMObject>();
 
+    final fileTypeFilterPtr = IInspectable(fileTypeFilter
+            .toInterface('{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'))
+        .ptr
+        .ref
+        .lpVtbl;
+
     final hr = ptr.ref.vtable
             .elementAt(6)
             .cast<
@@ -48,13 +54,15 @@ class IQueryOptionsFactory extends IInspectable {
             .value
             .asFunction<
                 int Function(LPVTBL lpVtbl, int query, LPVTBL fileTypeFilter,
-                    Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl,
-        query.value, fileTypeFilter.ptr.ref.lpVtbl, retValuePtr);
+                    Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl, query.value, fileTypeFilterPtr, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
+
+    fileTypeFilter.release();
 
     return QueryOptions.fromRawPointer(retValuePtr);
   }

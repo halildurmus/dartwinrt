@@ -196,6 +196,7 @@ class _IMapGuidObject extends IMap<Guid, Object?> {
   bool insert(Guid key, Object? value) {
     final retValuePtr = calloc<Bool>();
     final keyNativeGuidPtr = key.toNativeGUID();
+    final valuePtr = value?.intoBox().ref.lpVtbl ?? nullptr;
 
     try {
       final hr =
@@ -210,10 +211,7 @@ class _IMapGuidObject extends IMap<Guid, Object?> {
                   .asFunction<
                       int Function(LPVTBL lpVtbl, GUID key, LPVTBL value,
                           Pointer<Bool> retValuePtr)>()(
-              ptr.ref.lpVtbl,
-              keyNativeGuidPtr.ref,
-              value?.intoBox().ref.lpVtbl ?? nullptr,
-              retValuePtr);
+              ptr.ref.lpVtbl, keyNativeGuidPtr.ref, valuePtr, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -733,6 +731,7 @@ class _IMapStringObject extends IMap<String, Object?> {
   bool insert(String key, Object? value) {
     final retValuePtr = calloc<Bool>();
     final keyHString = convertToHString(key);
+    final valuePtr = value?.intoBox().ref.lpVtbl ?? nullptr;
 
     try {
       final hr =
@@ -746,8 +745,8 @@ class _IMapStringObject extends IMap<String, Object?> {
                   .value
                   .asFunction<
                       int Function(LPVTBL lpVtbl, int key, LPVTBL value,
-                          Pointer<Bool> retValuePtr)>()(ptr.ref.lpVtbl,
-              keyHString, value?.intoBox().ref.lpVtbl ?? nullptr, retValuePtr);
+                          Pointer<Bool> retValuePtr)>()(
+              ptr.ref.lpVtbl, keyHString, valuePtr, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 

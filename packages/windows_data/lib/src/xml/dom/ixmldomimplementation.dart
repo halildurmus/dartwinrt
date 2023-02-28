@@ -31,6 +31,7 @@ class IXmlDomImplementation extends IInspectable {
   bool hasFeature(String feature, Object? version) {
     final retValuePtr = calloc<Bool>();
     final featureHString = convertToHString(feature);
+    final versionPtr = version?.intoBox().ref.lpVtbl ?? nullptr;
 
     try {
       final hr = ptr.ref.vtable
@@ -44,10 +45,7 @@ class IXmlDomImplementation extends IInspectable {
               .asFunction<
                   int Function(LPVTBL lpVtbl, int feature, LPVTBL version,
                       Pointer<Bool> retValuePtr)>()(
-          ptr.ref.lpVtbl,
-          featureHString,
-          version?.intoBox().ref.lpVtbl ?? nullptr,
-          retValuePtr);
+          ptr.ref.lpVtbl, featureHString, versionPtr, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 

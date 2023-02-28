@@ -33,6 +33,7 @@ class IToastNotificationFactory extends IInspectable {
 
   ToastNotification createToastNotification(XmlDocument content) {
     final retValuePtr = calloc<COMObject>();
+    final contentPtr = content.ptr.ref.lpVtbl;
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -45,7 +46,7 @@ class IToastNotificationFactory extends IInspectable {
             .asFunction<
                 int Function(LPVTBL lpVtbl, LPVTBL content,
                     Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, content.ptr.ref.lpVtbl, retValuePtr);
+        ptr.ref.lpVtbl, contentPtr, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);

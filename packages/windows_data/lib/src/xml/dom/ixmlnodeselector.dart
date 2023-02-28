@@ -98,6 +98,7 @@ class IXmlNodeSelector extends IInspectable {
   IXmlNode? selectSingleNodeNS(String xpath, Object? namespaces) {
     final retValuePtr = calloc<COMObject>();
     final xpathHString = convertToHString(xpath);
+    final namespacesPtr = namespaces?.intoBox().ref.lpVtbl ?? nullptr;
 
     final hr =
         ptr.ref.vtable
@@ -114,10 +115,7 @@ class IXmlNodeSelector extends IInspectable {
                 .asFunction<
                     int Function(LPVTBL lpVtbl, int xpath, LPVTBL namespaces,
                         Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl,
-            xpathHString,
-            namespaces?.intoBox().ref.lpVtbl ?? nullptr,
-            retValuePtr);
+            ptr.ref.lpVtbl, xpathHString, namespacesPtr, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -137,6 +135,7 @@ class IXmlNodeSelector extends IInspectable {
   XmlNodeList? selectNodesNS(String xpath, Object? namespaces) {
     final retValuePtr = calloc<COMObject>();
     final xpathHString = convertToHString(xpath);
+    final namespacesPtr = namespaces?.intoBox().ref.lpVtbl ?? nullptr;
 
     final hr =
         ptr.ref.vtable
@@ -153,10 +152,7 @@ class IXmlNodeSelector extends IInspectable {
                 .asFunction<
                     int Function(LPVTBL lpVtbl, int xpath, LPVTBL namespaces,
                         Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl,
-            xpathHString,
-            namespaces?.intoBox().ref.lpVtbl ?? nullptr,
-            retValuePtr);
+            ptr.ref.lpVtbl, xpathHString, namespacesPtr, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);

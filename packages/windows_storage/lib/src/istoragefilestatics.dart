@@ -110,6 +110,8 @@ class IStorageFileStatics extends IInspectable {
     final displayNameWithExtensionHString =
         convertToHString(displayNameWithExtension);
 
+    final thumbnailPtr = thumbnail == null ? nullptr : thumbnail.ptr.ref.lpVtbl;
+
     final hr = ptr.ref.vtable
             .elementAt(8)
             .cast<
@@ -132,7 +134,7 @@ class IStorageFileStatics extends IInspectable {
         ptr.ref.lpVtbl,
         displayNameWithExtensionHString,
         dataRequested.ref.lpVtbl,
-        thumbnail == null ? nullptr : thumbnail.ptr.ref.lpVtbl,
+        thumbnailPtr,
         retValuePtr);
 
     if (FAILED(hr)) {
@@ -157,6 +159,10 @@ class IStorageFileStatics extends IInspectable {
       IRandomAccessStreamReference? thumbnail) {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<StorageFile?>();
+    final fileToReplacePtr =
+        fileToReplace == null ? nullptr : fileToReplace.ptr.ref.lpVtbl;
+
+    final thumbnailPtr = thumbnail == null ? nullptr : thumbnail.ptr.ref.lpVtbl;
 
     final hr = ptr.ref.vtable
             .elementAt(9)
@@ -176,12 +182,8 @@ class IStorageFileStatics extends IInspectable {
                     LPVTBL fileToReplace,
                     LPVTBL dataRequested,
                     LPVTBL thumbnail,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl,
-        fileToReplace == null ? nullptr : fileToReplace.ptr.ref.lpVtbl,
-        dataRequested.ref.lpVtbl,
-        thumbnail == null ? nullptr : thumbnail.ptr.ref.lpVtbl,
-        retValuePtr);
+                    Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl,
+        fileToReplacePtr, dataRequested.ref.lpVtbl, thumbnailPtr, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -206,6 +208,7 @@ class IStorageFileStatics extends IInspectable {
     final displayNameWithExtensionHString =
         convertToHString(displayNameWithExtension);
     final uriUri = uri == null ? null : winrt_uri.Uri.createUri(uri.toString());
+    final thumbnailPtr = thumbnail == null ? nullptr : thumbnail.ptr.ref.lpVtbl;
 
     final hr = ptr.ref.vtable
             .elementAt(10)
@@ -229,7 +232,7 @@ class IStorageFileStatics extends IInspectable {
         ptr.ref.lpVtbl,
         displayNameWithExtensionHString,
         uriUri == null ? nullptr : uriUri.ptr.ref.lpVtbl,
-        thumbnail == null ? nullptr : thumbnail.ptr.ref.lpVtbl,
+        thumbnailPtr,
         retValuePtr);
 
     if (FAILED(hr)) {
@@ -255,8 +258,10 @@ class IStorageFileStatics extends IInspectable {
       IRandomAccessStreamReference? thumbnail) {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<StorageFile?>();
-
+    final fileToReplacePtr =
+        fileToReplace == null ? nullptr : fileToReplace.ptr.ref.lpVtbl;
     final uriUri = uri == null ? null : winrt_uri.Uri.createUri(uri.toString());
+    final thumbnailPtr = thumbnail == null ? nullptr : thumbnail.ptr.ref.lpVtbl;
 
     final hr = ptr.ref.vtable
             .elementAt(11)
@@ -274,9 +279,9 @@ class IStorageFileStatics extends IInspectable {
                 int Function(LPVTBL lpVtbl, LPVTBL fileToReplace, LPVTBL uri,
                     LPVTBL thumbnail, Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl,
-        fileToReplace == null ? nullptr : fileToReplace.ptr.ref.lpVtbl,
+        fileToReplacePtr,
         uriUri == null ? nullptr : uriUri.ptr.ref.lpVtbl,
-        thumbnail == null ? nullptr : thumbnail.ptr.ref.lpVtbl,
+        thumbnailPtr,
         retValuePtr);
 
     if (FAILED(hr)) {

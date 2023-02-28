@@ -34,6 +34,7 @@ class IPhoneNumberInfoStatics extends IInspectable {
   PhoneNumberParseResult tryParse(String input, PhoneNumberInfo phoneNumber) {
     final retValuePtr = calloc<Int32>();
     final inputHString = convertToHString(input);
+    final phoneNumberPtr = phoneNumber.ptr;
 
     try {
       final hr = ptr.ref.vtable
@@ -53,7 +54,7 @@ class IPhoneNumberInfoStatics extends IInspectable {
                       int input,
                       Pointer<COMObject> phoneNumber,
                       Pointer<Int32> retValuePtr)>()(
-          ptr.ref.lpVtbl, inputHString, phoneNumber.ptr, retValuePtr);
+          ptr.ref.lpVtbl, inputHString, phoneNumberPtr, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -70,6 +71,7 @@ class IPhoneNumberInfoStatics extends IInspectable {
     final retValuePtr = calloc<Int32>();
     final inputHString = convertToHString(input);
     final regionCodeHString = convertToHString(regionCode);
+    final phoneNumberPtr = phoneNumber.ptr;
 
     try {
       final hr = ptr.ref.vtable
@@ -91,7 +93,7 @@ class IPhoneNumberInfoStatics extends IInspectable {
                       int regionCode,
                       Pointer<COMObject> phoneNumber,
                       Pointer<Int32> retValuePtr)>()(ptr.ref.lpVtbl,
-          inputHString, regionCodeHString, phoneNumber.ptr, retValuePtr);
+          inputHString, regionCodeHString, phoneNumberPtr, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 

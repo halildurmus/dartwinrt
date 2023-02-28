@@ -167,6 +167,8 @@ class IXmlElement extends IInspectable
 
   XmlAttribute? setAttributeNode(XmlAttribute? newAttribute) {
     final retValuePtr = calloc<COMObject>();
+    final newAttributePtr =
+        newAttribute == null ? nullptr : newAttribute.ptr.ref.lpVtbl;
 
     final hr = ptr.ref.vtable
             .elementAt(11)
@@ -179,9 +181,7 @@ class IXmlElement extends IInspectable
             .asFunction<
                 int Function(LPVTBL lpVtbl, LPVTBL newAttribute,
                     Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl,
-        newAttribute == null ? nullptr : newAttribute.ptr.ref.lpVtbl,
-        retValuePtr);
+        ptr.ref.lpVtbl, newAttributePtr, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -198,6 +198,8 @@ class IXmlElement extends IInspectable
 
   XmlAttribute? removeAttributeNode(XmlAttribute? attributeNode) {
     final retValuePtr = calloc<COMObject>();
+    final attributeNodePtr =
+        attributeNode == null ? nullptr : attributeNode.ptr.ref.lpVtbl;
 
     final hr = ptr.ref.vtable
             .elementAt(12)
@@ -210,9 +212,7 @@ class IXmlElement extends IInspectable
             .asFunction<
                 int Function(LPVTBL lpVtbl, LPVTBL attributeNode,
                     Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl,
-        attributeNode == null ? nullptr : attributeNode.ptr.ref.lpVtbl,
-        retValuePtr);
+        ptr.ref.lpVtbl, attributeNodePtr, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -261,6 +261,7 @@ class IXmlElement extends IInspectable
 
   void setAttributeNS(
       Object? namespaceUri, String qualifiedName, String value) {
+    final namespaceUriPtr = namespaceUri?.intoBox().ref.lpVtbl ?? nullptr;
     final qualifiedNameHString = convertToHString(qualifiedName);
     final valueHString = convertToHString(value);
 
@@ -275,10 +276,7 @@ class IXmlElement extends IInspectable
             .asFunction<
                 int Function(LPVTBL lpVtbl, LPVTBL namespaceUri,
                     int qualifiedName, int value)>()(
-        ptr.ref.lpVtbl,
-        namespaceUri?.intoBox().ref.lpVtbl ?? nullptr,
-        qualifiedNameHString,
-        valueHString);
+        ptr.ref.lpVtbl, namespaceUriPtr, qualifiedNameHString, valueHString);
 
     if (FAILED(hr)) throw WindowsException(hr);
 
@@ -288,7 +286,7 @@ class IXmlElement extends IInspectable
 
   String getAttributeNS(Object? namespaceUri, String localName) {
     final retValuePtr = calloc<HSTRING>();
-
+    final namespaceUriPtr = namespaceUri?.intoBox().ref.lpVtbl ?? nullptr;
     final localNameHString = convertToHString(localName);
 
     try {
@@ -307,10 +305,7 @@ class IXmlElement extends IInspectable
                   .asFunction<
                       int Function(LPVTBL lpVtbl, LPVTBL namespaceUri,
                           int localName, Pointer<IntPtr> retValuePtr)>()(
-              ptr.ref.lpVtbl,
-              namespaceUri?.intoBox().ref.lpVtbl ?? nullptr,
-              localNameHString,
-              retValuePtr);
+              ptr.ref.lpVtbl, namespaceUriPtr, localNameHString, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -323,6 +318,7 @@ class IXmlElement extends IInspectable
   }
 
   void removeAttributeNS(Object? namespaceUri, String localName) {
+    final namespaceUriPtr = namespaceUri?.intoBox().ref.lpVtbl ?? nullptr;
     final localNameHString = convertToHString(localName);
 
     final hr = ptr.ref.vtable
@@ -336,9 +332,7 @@ class IXmlElement extends IInspectable
             .asFunction<
                 int Function(
                     LPVTBL lpVtbl, LPVTBL namespaceUri, int localName)>()(
-        ptr.ref.lpVtbl,
-        namespaceUri?.intoBox().ref.lpVtbl ?? nullptr,
-        localNameHString);
+        ptr.ref.lpVtbl, namespaceUriPtr, localNameHString);
 
     if (FAILED(hr)) throw WindowsException(hr);
 
@@ -347,6 +341,8 @@ class IXmlElement extends IInspectable
 
   XmlAttribute? setAttributeNodeNS(XmlAttribute? newAttribute) {
     final retValuePtr = calloc<COMObject>();
+    final newAttributePtr =
+        newAttribute == null ? nullptr : newAttribute.ptr.ref.lpVtbl;
 
     final hr = ptr.ref.vtable
             .elementAt(17)
@@ -359,9 +355,7 @@ class IXmlElement extends IInspectable
             .asFunction<
                 int Function(LPVTBL lpVtbl, LPVTBL newAttribute,
                     Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl,
-        newAttribute == null ? nullptr : newAttribute.ptr.ref.lpVtbl,
-        retValuePtr);
+        ptr.ref.lpVtbl, newAttributePtr, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -378,7 +372,7 @@ class IXmlElement extends IInspectable
 
   XmlAttribute? getAttributeNodeNS(Object? namespaceUri, String localName) {
     final retValuePtr = calloc<COMObject>();
-
+    final namespaceUriPtr = namespaceUri?.intoBox().ref.lpVtbl ?? nullptr;
     final localNameHString = convertToHString(localName);
 
     final hr =
@@ -396,10 +390,7 @@ class IXmlElement extends IInspectable
                 .asFunction<
                     int Function(LPVTBL lpVtbl, LPVTBL namespaceUri,
                         int localName, Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl,
-            namespaceUri?.intoBox().ref.lpVtbl ?? nullptr,
-            localNameHString,
-            retValuePtr);
+            ptr.ref.lpVtbl, namespaceUriPtr, localNameHString, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);

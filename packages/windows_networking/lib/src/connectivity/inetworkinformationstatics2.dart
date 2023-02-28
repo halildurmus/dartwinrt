@@ -36,6 +36,8 @@ class INetworkInformationStatics2 extends IInspectable {
       ConnectionProfileFilter? pProfileFilter) {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<List<ConnectionProfile>>();
+    final pProfileFilterPtr =
+        pProfileFilter == null ? nullptr : pProfileFilter.ptr.ref.lpVtbl;
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -48,9 +50,7 @@ class INetworkInformationStatics2 extends IInspectable {
             .asFunction<
                 int Function(LPVTBL lpVtbl, LPVTBL pProfileFilter,
                     Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl,
-        pProfileFilter == null ? nullptr : pProfileFilter.ptr.ref.lpVtbl,
-        retValuePtr);
+        ptr.ref.lpVtbl, pProfileFilterPtr, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);

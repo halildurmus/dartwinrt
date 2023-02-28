@@ -33,10 +33,16 @@ class IStorageItemExtraProperties extends IInspectable {
       IIterable<String>? propertiesToRetrieve) {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<IMap<String, Object?>>();
+    final propertiesToRetrievePtr = propertiesToRetrieve == null
+        ? nullptr
+        : IInspectable(propertiesToRetrieve
+                .toInterface('{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'))
+            .ptr
+            .ref
+            .lpVtbl;
 
     final hr =
-        ptr
-                .ref.vtable
+        ptr.ref.vtable
                 .elementAt(6)
                 .cast<
                     Pointer<
@@ -49,16 +55,14 @@ class IStorageItemExtraProperties extends IInspectable {
                 .asFunction<
                     int Function(LPVTBL lpVtbl, LPVTBL propertiesToRetrieve,
                         Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl,
-            propertiesToRetrieve == null
-                ? nullptr
-                : propertiesToRetrieve.ptr.ref.lpVtbl,
-            retValuePtr);
+            ptr.ref.lpVtbl, propertiesToRetrievePtr, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
+
+    propertiesToRetrieve?.release();
 
     final asyncOperation =
         IAsyncOperation<IMap<String, Object?>>.fromRawPointer(retValuePtr,
@@ -74,6 +78,13 @@ class IStorageItemExtraProperties extends IInspectable {
       IIterable<IKeyValuePair<String, Object?>>? propertiesToSave) {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<void>();
+    final propertiesToSavePtr = propertiesToSave == null
+        ? nullptr
+        : IInspectable(propertiesToSave
+                .toInterface('{fe2f3d47-5d47-5499-8374-430c7cda0204}'))
+            .ptr
+            .ref
+            .lpVtbl;
 
     final hr = ptr.ref.vtable
             .elementAt(7)
@@ -86,14 +97,14 @@ class IStorageItemExtraProperties extends IInspectable {
             .asFunction<
                 int Function(LPVTBL lpVtbl, LPVTBL propertiesToSave,
                     Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl,
-        propertiesToSave == null ? nullptr : propertiesToSave.ptr.ref.lpVtbl,
-        retValuePtr);
+        ptr.ref.lpVtbl, propertiesToSavePtr, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
+
+    propertiesToSave?.release();
 
     final asyncAction = IAsyncAction.fromRawPointer(retValuePtr);
     completeAsyncAction(asyncAction, completer);

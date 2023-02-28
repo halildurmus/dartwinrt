@@ -92,6 +92,10 @@ class IDeviceInformationPairing2 extends IInspectable {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<DevicePairingResult?>();
 
+    final devicePairingSettingsPtr = devicePairingSettings == null
+        ? nullptr
+        : devicePairingSettings.ptr.ref.lpVtbl;
+
     final hr = ptr.ref.vtable
             .elementAt(8)
             .cast<
@@ -108,13 +112,8 @@ class IDeviceInformationPairing2 extends IInspectable {
                     LPVTBL lpVtbl,
                     int minProtectionLevel,
                     LPVTBL devicePairingSettings,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl,
-        minProtectionLevel.value,
-        devicePairingSettings == null
-            ? nullptr
-            : devicePairingSettings.ptr.ref.lpVtbl,
-        retValuePtr);
+                    Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl,
+        minProtectionLevel.value, devicePairingSettingsPtr, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);

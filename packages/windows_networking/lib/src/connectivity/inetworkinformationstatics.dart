@@ -190,6 +190,13 @@ class INetworkInformationStatics extends IInspectable {
       IIterable<EndpointPair>? destinationList,
       HostNameSortOptions sortOptions) {
     final retValuePtr = calloc<COMObject>();
+    final destinationListPtr = destinationList == null
+        ? nullptr
+        : IInspectable(destinationList
+                .toInterface('{d7ec83c4-a17b-51bf-8997-aa33b9102dc9}'))
+            .ptr
+            .ref
+            .lpVtbl;
 
     final hr =
         ptr.ref.vtable
@@ -206,10 +213,7 @@ class INetworkInformationStatics extends IInspectable {
                 .asFunction<
                     int Function(LPVTBL lpVtbl, LPVTBL destinationList,
                         int sortOptions, Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl,
-            destinationList == null ? nullptr : destinationList.ptr.ref.lpVtbl,
-            sortOptions.value,
-            retValuePtr);
+            ptr.ref.lpVtbl, destinationListPtr, sortOptions.value, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -221,6 +225,8 @@ class INetworkInformationStatics extends IInspectable {
         creator: EndpointPair.fromRawPointer);
     final list = vectorView.toList();
     vectorView.release();
+
+    destinationList?.release();
 
     return list;
   }

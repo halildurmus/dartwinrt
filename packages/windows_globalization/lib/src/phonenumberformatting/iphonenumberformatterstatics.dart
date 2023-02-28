@@ -33,6 +33,7 @@ class IPhoneNumberFormatterStatics extends IInspectable {
 
   void tryCreate(String regionCode, PhoneNumberFormatter phoneNumber) {
     final regionCodeHString = convertToHString(regionCode);
+    final phoneNumberPtr = phoneNumber.ptr;
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -45,7 +46,7 @@ class IPhoneNumberFormatterStatics extends IInspectable {
             .asFunction<
                 int Function(LPVTBL lpVtbl, int regionCode,
                     Pointer<COMObject> phoneNumber)>()(
-        ptr.ref.lpVtbl, regionCodeHString, phoneNumber.ptr);
+        ptr.ref.lpVtbl, regionCodeHString, phoneNumberPtr);
 
     if (FAILED(hr)) throw WindowsException(hr);
 

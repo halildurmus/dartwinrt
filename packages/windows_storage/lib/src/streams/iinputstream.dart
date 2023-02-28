@@ -33,6 +33,7 @@ class IInputStream extends IInspectable implements IClosable {
   Pointer<COMObject> readAsync(
       IBuffer? buffer, int count, InputStreamOptions options) {
     final retValuePtr = calloc<COMObject>();
+    final bufferPtr = buffer == null ? nullptr : buffer.ptr.ref.lpVtbl;
 
     final hr =
         ptr.ref.vtable
@@ -50,11 +51,7 @@ class IInputStream extends IInspectable implements IClosable {
                 .asFunction<
                     int Function(LPVTBL lpVtbl, LPVTBL buffer, int count,
                         int options, Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl,
-            buffer == null ? nullptr : buffer.ptr.ref.lpVtbl,
-            count,
-            options.value,
-            retValuePtr);
+            ptr.ref.lpVtbl, bufferPtr, count, options.value, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);

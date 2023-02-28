@@ -32,6 +32,11 @@ class ICalendarFactory extends IInspectable {
 
   Calendar createCalendarDefaultCalendarAndClock(IIterable<String> languages) {
     final retValuePtr = calloc<COMObject>();
+    final languagesPtr = IInspectable(
+            languages.toInterface('{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'))
+        .ptr
+        .ref
+        .lpVtbl;
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -44,12 +49,14 @@ class ICalendarFactory extends IInspectable {
             .asFunction<
                 int Function(LPVTBL lpVtbl, LPVTBL languages,
                     Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, languages.ptr.ref.lpVtbl, retValuePtr);
+        ptr.ref.lpVtbl, languagesPtr, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
+
+    languages.release();
 
     return Calendar.fromRawPointer(retValuePtr);
   }
@@ -57,7 +64,11 @@ class ICalendarFactory extends IInspectable {
   Calendar createCalendar(
       IIterable<String> languages, String calendar, String clock) {
     final retValuePtr = calloc<COMObject>();
-
+    final languagesPtr = IInspectable(
+            languages.toInterface('{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'))
+        .ptr
+        .ref
+        .lpVtbl;
     final calendarHString = convertToHString(calendar);
     final clockHString = convertToHString(clock);
 
@@ -77,7 +88,7 @@ class ICalendarFactory extends IInspectable {
                 int Function(LPVTBL lpVtbl, LPVTBL languages, int calendar,
                     int clock, Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl,
-        languages.ptr.ref.lpVtbl,
+        languagesPtr,
         calendarHString,
         clockHString,
         retValuePtr);
@@ -87,6 +98,7 @@ class ICalendarFactory extends IInspectable {
       throw WindowsException(hr);
     }
 
+    languages.release();
     WindowsDeleteString(calendarHString);
     WindowsDeleteString(clockHString);
 

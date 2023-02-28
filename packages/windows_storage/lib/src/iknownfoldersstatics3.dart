@@ -36,6 +36,7 @@ class IKnownFoldersStatics3 extends IInspectable {
       User? user, KnownFolderId folderId) {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<StorageFolder?>();
+    final userPtr = user == null ? nullptr : user.ptr.ref.lpVtbl;
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -48,10 +49,7 @@ class IKnownFoldersStatics3 extends IInspectable {
             .asFunction<
                 int Function(LPVTBL lpVtbl, LPVTBL user, int folderId,
                     Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl,
-        user == null ? nullptr : user.ptr.ref.lpVtbl,
-        folderId.value,
-        retValuePtr);
+        ptr.ref.lpVtbl, userPtr, folderId.value, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);

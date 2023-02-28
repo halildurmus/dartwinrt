@@ -402,6 +402,14 @@ class IQueryOptions extends IInspectable {
 
   void setPropertyPrefetch(PropertyPrefetchOptions options,
       IIterable<String>? propertiesToRetrieve) {
+    final propertiesToRetrievePtr = propertiesToRetrieve == null
+        ? nullptr
+        : IInspectable(propertiesToRetrieve
+                .toInterface('{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'))
+            .ptr
+            .ref
+            .lpVtbl;
+
     final hr = ptr.ref.vtable
             .elementAt(23)
             .cast<
@@ -413,12 +421,10 @@ class IQueryOptions extends IInspectable {
             .asFunction<
                 int Function(
                     LPVTBL lpVtbl, int options, LPVTBL propertiesToRetrieve)>()(
-        ptr.ref.lpVtbl,
-        options.value,
-        propertiesToRetrieve == null
-            ? nullptr
-            : propertiesToRetrieve.ptr.ref.lpVtbl);
+        ptr.ref.lpVtbl, options.value, propertiesToRetrievePtr);
 
     if (FAILED(hr)) throw WindowsException(hr);
+
+    propertiesToRetrieve?.release();
   }
 }

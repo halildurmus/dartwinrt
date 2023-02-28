@@ -169,6 +169,7 @@ class IStorageQueryResultBase extends IInspectable {
   Future<int> findStartIndexAsync(Object? value) {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<int>();
+    final valuePtr = value?.intoBox().ref.lpVtbl ?? nullptr;
 
     final hr = ptr.ref.vtable
             .elementAt(12)
@@ -181,7 +182,7 @@ class IStorageQueryResultBase extends IInspectable {
             .asFunction<
                 int Function(LPVTBL lpVtbl, LPVTBL value,
                     Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, value?.intoBox().ref.lpVtbl ?? nullptr, retValuePtr);
+        ptr.ref.lpVtbl, valuePtr, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -225,19 +226,19 @@ class IStorageQueryResultBase extends IInspectable {
   }
 
   void applyNewQueryOptions(QueryOptions? newQueryOptions) {
-    final hr =
-        ptr.ref.vtable
-                .elementAt(14)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                LPVTBL lpVtbl, LPVTBL newQueryOptions)>>>()
-                .value
-                .asFunction<
-                    int Function(LPVTBL lpVtbl, LPVTBL newQueryOptions)>()(
-            ptr.ref.lpVtbl,
-            newQueryOptions == null ? nullptr : newQueryOptions.ptr.ref.lpVtbl);
+    final newQueryOptionsPtr =
+        newQueryOptions == null ? nullptr : newQueryOptions.ptr.ref.lpVtbl;
+
+    final hr = ptr.ref.vtable
+        .elementAt(14)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(LPVTBL lpVtbl, LPVTBL newQueryOptions)>>>()
+        .value
+        .asFunction<
+            int Function(LPVTBL lpVtbl,
+                LPVTBL newQueryOptions)>()(ptr.ref.lpVtbl, newQueryOptionsPtr);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }

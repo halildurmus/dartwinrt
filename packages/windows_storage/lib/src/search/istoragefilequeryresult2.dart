@@ -38,6 +38,7 @@ class IStorageFileQueryResult2 extends IInspectable
   IMap<String, IVectorView<TextSegment>?> getMatchingPropertiesWithRanges(
       StorageFile? file) {
     final retValuePtr = calloc<COMObject>();
+    final filePtr = file == null ? nullptr : file.ptr.ref.lpVtbl;
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -49,8 +50,8 @@ class IStorageFileQueryResult2 extends IInspectable
             .value
             .asFunction<
                 int Function(LPVTBL lpVtbl, LPVTBL file,
-                    Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl,
-        file == null ? nullptr : file.ptr.ref.lpVtbl, retValuePtr);
+                    Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl, filePtr, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
