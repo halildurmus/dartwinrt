@@ -29,7 +29,7 @@ class IToastNotificationHistory extends IInspectable {
           interface.toInterface(IID_IToastNotificationHistory));
 
   void removeGroup(String group) {
-    final groupHString = convertToHString(group);
+    final groupHString = group.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -47,8 +47,8 @@ class IToastNotificationHistory extends IInspectable {
   }
 
   void removeGroupWithId(String group, String applicationId) {
-    final groupHString = convertToHString(group);
-    final applicationIdHString = convertToHString(applicationId);
+    final groupHString = group.toHString();
+    final applicationIdHString = applicationId.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(7)
@@ -69,9 +69,9 @@ class IToastNotificationHistory extends IInspectable {
   }
 
   void removeGroupedTagWithId(String tag, String group, String applicationId) {
-    final tagHString = convertToHString(tag);
-    final groupHString = convertToHString(group);
-    final applicationIdHString = convertToHString(applicationId);
+    final tagHString = tag.toHString();
+    final groupHString = group.toHString();
+    final applicationIdHString = applicationId.toHString();
 
     final hr =
         ptr.ref.vtable
@@ -95,8 +95,8 @@ class IToastNotificationHistory extends IInspectable {
   }
 
   void removeGroupedTag(String tag, String group) {
-    final tagHString = convertToHString(tag);
-    final groupHString = convertToHString(group);
+    final tagHString = tag.toHString();
+    final groupHString = group.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(9)
@@ -116,7 +116,7 @@ class IToastNotificationHistory extends IInspectable {
   }
 
   void remove(String tag) {
-    final tagHString = convertToHString(tag);
+    final tagHString = tag.toHString();
 
     final hr = ptr.ref.vtable
         .elementAt(10)
@@ -143,7 +143,7 @@ class IToastNotificationHistory extends IInspectable {
   }
 
   void clearWithId(String applicationId) {
-    final applicationIdHString = convertToHString(applicationId);
+    final applicationIdHString = applicationId.toHString();
 
     final hr =
         ptr.ref.vtable

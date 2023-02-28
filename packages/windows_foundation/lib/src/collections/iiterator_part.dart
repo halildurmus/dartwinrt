@@ -740,11 +740,11 @@ class _IIteratorUri extends IIterator<Uri> {
       throw WindowsException(hr);
     }
 
-    final winrtUri = winrt_uri.Uri.fromRawPointer(retValuePtr);
-    final uriAsString = winrtUri.toString();
+    final winrtUri = retValuePtr.toWinRTUri();
+    final dartUri = winrtUri.toDartUri();
     winrtUri.release();
 
-    return Uri.parse(uriAsString);
+    return dartUri;
   }
 
   @override
@@ -775,9 +775,7 @@ class _IIteratorUri extends IIterator<Uri> {
       return retValuePtr.value;
     } finally {
       if (retValuePtr.value > 0) {
-        value.addAll(pArray
-            .toList(winrt_uri.Uri.fromRawPointer, length: valueSize)
-            .map((winrtUri) => Uri.parse(winrtUri.toString())));
+        value.addAll(pArray.toDartUriList(length: valueSize));
       }
       free(pArray);
       free(retValuePtr);

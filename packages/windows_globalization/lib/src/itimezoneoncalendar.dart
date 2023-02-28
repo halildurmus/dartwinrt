@@ -54,7 +54,7 @@ class ITimeZoneOnCalendar extends IInspectable {
   }
 
   void changeTimeZone(String timeZoneId) {
-    final timeZoneIdHString = convertToHString(timeZoneId);
+    final timeZoneIdHString = timeZoneId.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(7)

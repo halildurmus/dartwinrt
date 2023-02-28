@@ -64,8 +64,6 @@ class IGeolocatorStatics extends IInspectable {
   Future<List<Geoposition>> getGeopositionHistoryAsync(DateTime startTime) {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<List<Geoposition>>();
-    final startTimeDateTime =
-        startTime.difference(DateTime.utc(1601, 01, 01)).inMicroseconds * 10;
 
     final hr = ptr.ref.vtable
             .elementAt(7)
@@ -78,7 +76,7 @@ class IGeolocatorStatics extends IInspectable {
             .asFunction<
                 int Function(LPVTBL lpVtbl, int startTime,
                     Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, startTimeDateTime, retValuePtr);
+        ptr.ref.lpVtbl, startTime.toWinRTDateTime(), retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -101,9 +99,6 @@ class IGeolocatorStatics extends IInspectable {
       DateTime startTime, Duration duration) {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<List<Geoposition>>();
-    final startTimeDateTime =
-        startTime.difference(DateTime.utc(1601, 01, 01)).inMicroseconds * 10;
-    final durationDuration = duration.inMicroseconds * 10;
 
     final hr = ptr.ref.vtable
             .elementAt(8)
@@ -115,8 +110,8 @@ class IGeolocatorStatics extends IInspectable {
             .value
             .asFunction<
                 int Function(LPVTBL lpVtbl, int startTime, int duration,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, startTimeDateTime, durationDuration, retValuePtr);
+                    Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl,
+        startTime.toWinRTDateTime(), duration.toWinRTDuration(), retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);

@@ -39,7 +39,7 @@ class IJsonObjectWithDefaultValues extends IInspectable
 
   JsonValue? getNamedValueOrDefault(String name, JsonValue? defaultValue) {
     final retValuePtr = calloc<COMObject>();
-    final nameHString = convertToHString(name);
+    final nameHString = name.toHString();
     final defaultValuePtr =
         defaultValue == null ? nullptr : defaultValue.ptr.ref.lpVtbl;
 
@@ -76,7 +76,7 @@ class IJsonObjectWithDefaultValues extends IInspectable
 
   JsonObject? getNamedObjectOrDefault(String name, JsonObject? defaultValue) {
     final retValuePtr = calloc<COMObject>();
-    final nameHString = convertToHString(name);
+    final nameHString = name.toHString();
     final defaultValuePtr =
         defaultValue == null ? nullptr : defaultValue.ptr.ref.lpVtbl;
 
@@ -113,8 +113,8 @@ class IJsonObjectWithDefaultValues extends IInspectable
 
   String getNamedStringOrDefault(String name, String defaultValue) {
     final retValuePtr = calloc<HSTRING>();
-    final nameHString = convertToHString(name);
-    final defaultValueHString = convertToHString(defaultValue);
+    final nameHString = name.toHString();
+    final defaultValueHString = defaultValue.toHString();
 
     try {
       final hr =
@@ -147,7 +147,7 @@ class IJsonObjectWithDefaultValues extends IInspectable
 
   JsonArray? getNamedArrayOrDefault(String name, JsonArray? defaultValue) {
     final retValuePtr = calloc<COMObject>();
-    final nameHString = convertToHString(name);
+    final nameHString = name.toHString();
     final defaultValuePtr =
         defaultValue == null ? nullptr : defaultValue.ptr.ref.lpVtbl;
 
@@ -184,7 +184,7 @@ class IJsonObjectWithDefaultValues extends IInspectable
 
   double getNamedNumberOrDefault(String name, double defaultValue) {
     final retValuePtr = calloc<Double>();
-    final nameHString = convertToHString(name);
+    final nameHString = name.toHString();
 
     try {
       final hr =
@@ -216,7 +216,7 @@ class IJsonObjectWithDefaultValues extends IInspectable
 
   bool getNamedBooleanOrDefault(String name, bool defaultValue) {
     final retValuePtr = calloc<Bool>();
-    final nameHString = convertToHString(name);
+    final nameHString = name.toHString();
 
     try {
       final hr = ptr.ref.vtable

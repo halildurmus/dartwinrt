@@ -94,7 +94,7 @@ class IToastNotification3 extends IInspectable {
   }
 
   set remoteId(String value) {
-    final hstr = convertToHString(value);
+    final hString = value.toHString();
 
     try {
       final hr = ptr.ref.vtable
@@ -105,11 +105,11 @@ class IToastNotification3 extends IInspectable {
                           HRESULT Function(LPVTBL lpVtbl, IntPtr value)>>>()
               .value
               .asFunction<int Function(LPVTBL lpVtbl, int value)>()(
-          ptr.ref.lpVtbl, hstr);
+          ptr.ref.lpVtbl, hString);
 
       if (FAILED(hr)) throw WindowsException(hr);
     } finally {
-      WindowsDeleteString(hstr);
+      WindowsDeleteString(hString);
     }
   }
 }

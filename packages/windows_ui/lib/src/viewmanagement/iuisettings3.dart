@@ -47,7 +47,10 @@ class IUISettings3 extends IInspectable {
                     Pointer<Color> retValuePtr)>()(
         ptr.ref.lpVtbl, desiredColor.value, retValuePtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) {
+      free(retValuePtr);
+      throw WindowsException(hr);
+    }
 
     return retValuePtr.ref;
   }

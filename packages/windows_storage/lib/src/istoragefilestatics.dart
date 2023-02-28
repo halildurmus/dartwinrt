@@ -14,7 +14,6 @@ import 'dart:ffi';
 import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
-import 'package:windows_foundation/uri.dart' as winrt_uri;
 import 'package:windows_foundation/windows_foundation.dart';
 
 import 'istoragefile.dart';
@@ -36,7 +35,7 @@ class IStorageFileStatics extends IInspectable {
   Future<StorageFile?> getFileFromPathAsync(String path) {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<StorageFile?>();
-    final pathHString = convertToHString(path);
+    final pathHString = path.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -70,7 +69,7 @@ class IStorageFileStatics extends IInspectable {
   Future<StorageFile?> getFileFromApplicationUriAsync(Uri? uri) {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<StorageFile?>();
-    final uriUri = uri == null ? null : winrt_uri.Uri.createUri(uri.toString());
+    final uriUri = uri?.toWinRTUri();
 
     final hr = ptr.ref.vtable
             .elementAt(7)
@@ -108,7 +107,7 @@ class IStorageFileStatics extends IInspectable {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<StorageFile?>();
     final displayNameWithExtensionHString =
-        convertToHString(displayNameWithExtension);
+        displayNameWithExtension.toHString();
 
     final thumbnailPtr = thumbnail == null ? nullptr : thumbnail.ptr.ref.lpVtbl;
 
@@ -206,8 +205,8 @@ class IStorageFileStatics extends IInspectable {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<StorageFile?>();
     final displayNameWithExtensionHString =
-        convertToHString(displayNameWithExtension);
-    final uriUri = uri == null ? null : winrt_uri.Uri.createUri(uri.toString());
+        displayNameWithExtension.toHString();
+    final uriUri = uri?.toWinRTUri();
     final thumbnailPtr = thumbnail == null ? nullptr : thumbnail.ptr.ref.lpVtbl;
 
     final hr = ptr.ref.vtable
@@ -260,7 +259,7 @@ class IStorageFileStatics extends IInspectable {
     final completer = Completer<StorageFile?>();
     final fileToReplacePtr =
         fileToReplace == null ? nullptr : fileToReplace.ptr.ref.lpVtbl;
-    final uriUri = uri == null ? null : winrt_uri.Uri.createUri(uri.toString());
+    final uriUri = uri?.toWinRTUri();
     final thumbnailPtr = thumbnail == null ? nullptr : thumbnail.ptr.ref.lpVtbl;
 
     final hr = ptr.ref.vtable

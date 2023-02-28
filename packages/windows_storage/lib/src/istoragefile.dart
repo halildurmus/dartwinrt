@@ -197,7 +197,7 @@ class IStorageFile extends IInspectable
     final completer = Completer<StorageFile?>();
     final destinationFolderPtr =
         destinationFolder == null ? nullptr : destinationFolder.ptr.ref.lpVtbl;
-    final desiredNewNameHString = convertToHString(desiredNewName);
+    final desiredNewNameHString = desiredNewName.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(11)
@@ -240,7 +240,7 @@ class IStorageFile extends IInspectable
     final completer = Completer<StorageFile?>();
     final destinationFolderPtr =
         destinationFolder == null ? nullptr : destinationFolder.ptr.ref.lpVtbl;
-    final desiredNewNameHString = convertToHString(desiredNewName);
+    final desiredNewNameHString = desiredNewName.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(12)
@@ -349,7 +349,7 @@ class IStorageFile extends IInspectable
     final completer = Completer<void>();
     final destinationFolderPtr =
         destinationFolder == null ? nullptr : destinationFolder.ptr.ref.lpVtbl;
-    final desiredNewNameHString = convertToHString(desiredNewName);
+    final desiredNewNameHString = desiredNewName.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(15)
@@ -389,7 +389,7 @@ class IStorageFile extends IInspectable
     final completer = Completer<void>();
     final destinationFolderPtr =
         destinationFolder == null ? nullptr : destinationFolder.ptr.ref.lpVtbl;
-    final desiredNewNameHString = convertToHString(desiredNewName);
+    final desiredNewNameHString = desiredNewName.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(16)

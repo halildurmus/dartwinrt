@@ -40,7 +40,7 @@ class IWwwFormUrlDecoderRuntimeClass extends IInspectable
 
   String getFirstValueByName(String name) {
     final retValuePtr = calloc<HSTRING>();
-    final nameHString = convertToHString(name);
+    final nameHString = name.toHString();
 
     try {
       final hr = ptr.ref.vtable

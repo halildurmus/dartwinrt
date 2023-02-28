@@ -33,7 +33,7 @@ class IStorageFolder2 extends IInspectable {
   Future<IStorageItem?> tryGetItemAsync(String name) {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<IStorageItem?>();
-    final nameHString = convertToHString(name);
+    final nameHString = name.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(6)

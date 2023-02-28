@@ -36,7 +36,7 @@ class IDeviceInformationStatics extends IInspectable {
   Future<DeviceInformation?> createFromIdAsync(String deviceId) {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<DeviceInformation?>();
-    final deviceIdHString = convertToHString(deviceId);
+    final deviceIdHString = deviceId.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -71,7 +71,7 @@ class IDeviceInformationStatics extends IInspectable {
       String deviceId, IIterable<String>? additionalProperties) {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<DeviceInformation?>();
-    final deviceIdHString = convertToHString(deviceId);
+    final deviceIdHString = deviceId.toHString();
     final additionalPropertiesPtr = additionalProperties == null
         ? nullptr
         : IInspectable(additionalProperties
@@ -183,7 +183,7 @@ class IDeviceInformationStatics extends IInspectable {
   Future<DeviceInformationCollection?> findAllAsyncAqsFilter(String aqsFilter) {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<DeviceInformationCollection?>();
-    final aqsFilterHString = convertToHString(aqsFilter);
+    final aqsFilterHString = aqsFilter.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(10)
@@ -220,7 +220,7 @@ class IDeviceInformationStatics extends IInspectable {
           String aqsFilter, IIterable<String>? additionalProperties) {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<DeviceInformationCollection?>();
-    final aqsFilterHString = convertToHString(aqsFilter);
+    final aqsFilterHString = aqsFilter.toHString();
     final additionalPropertiesPtr = additionalProperties == null
         ? nullptr
         : IInspectable(additionalProperties
@@ -325,7 +325,7 @@ class IDeviceInformationStatics extends IInspectable {
 
   DeviceWatcher? createWatcherAqsFilter(String aqsFilter) {
     final retValuePtr = calloc<COMObject>();
-    final aqsFilterHString = convertToHString(aqsFilter);
+    final aqsFilterHString = aqsFilter.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(14)
@@ -358,7 +358,7 @@ class IDeviceInformationStatics extends IInspectable {
   DeviceWatcher? createWatcherAqsFilterAndAdditionalProperties(
       String aqsFilter, IIterable<String>? additionalProperties) {
     final retValuePtr = calloc<COMObject>();
-    final aqsFilterHString = convertToHString(aqsFilter);
+    final aqsFilterHString = aqsFilter.toHString();
     final additionalPropertiesPtr = additionalProperties == null
         ? nullptr
         : IInspectable(additionalProperties

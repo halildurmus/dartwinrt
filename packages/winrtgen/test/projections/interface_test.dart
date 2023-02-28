@@ -141,20 +141,5 @@ void main() {
       expect(calendarProjection.methodProjections.last.name,
           equals('get_IsDaylightSavingTime'));
     });
-
-    test('imports WinRT Uri with winrt_uri prefix', () {
-      final projection =
-          InterfaceProjection.from('Windows.System.ILauncherOptions');
-      expect(
-        projection.importHeader,
-        contains("import 'package:windows_foundation/uri.dart' as winrt_uri;"),
-      );
-    });
-
-    test('imports WinRT Uri without any prefix', () {
-      final projection =
-          InterfaceProjection.from('Windows.Foundation.IUriRuntimeClass');
-      expect(projection.importHeader, contains("import 'uri.dart';"));
-    });
   });
 }

@@ -132,7 +132,7 @@ class ICalendar extends IInspectable {
   }
 
   set numeralSystem(String value) {
-    final hstr = convertToHString(value);
+    final hString = value.toHString();
 
     try {
       final hr = ptr.ref.vtable
@@ -143,11 +143,11 @@ class ICalendar extends IInspectable {
                           HRESULT Function(LPVTBL lpVtbl, IntPtr value)>>>()
               .value
               .asFunction<int Function(LPVTBL lpVtbl, int value)>()(
-          ptr.ref.lpVtbl, hstr);
+          ptr.ref.lpVtbl, hString);
 
       if (FAILED(hr)) throw WindowsException(hr);
     } finally {
-      WindowsDeleteString(hstr);
+      WindowsDeleteString(hString);
     }
   }
 
@@ -177,7 +177,7 @@ class ICalendar extends IInspectable {
   }
 
   void changeCalendarSystem(String value) {
-    final valueHString = convertToHString(value);
+    final valueHString = value.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(13)
@@ -220,7 +220,7 @@ class ICalendar extends IInspectable {
   }
 
   void changeClock(String value) {
-    final valueHString = convertToHString(value);
+    final valueHString = value.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(15)
@@ -255,17 +255,13 @@ class ICalendar extends IInspectable {
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return DateTime.utc(1601, 01, 01)
-          .add(Duration(microseconds: retValuePtr.value ~/ 10));
+      return retValuePtr.toDartDateTime();
     } finally {
       free(retValuePtr);
     }
   }
 
   void setDateTime(DateTime value) {
-    final valueDateTime =
-        value.difference(DateTime.utc(1601, 01, 01)).inMicroseconds * 10;
-
     final hr = ptr.ref.vtable
         .elementAt(17)
         .cast<
@@ -273,8 +269,8 @@ class ICalendar extends IInspectable {
                 NativeFunction<HRESULT Function(LPVTBL lpVtbl, Int64 value)>>>()
         .value
         .asFunction<
-            int Function(
-                LPVTBL lpVtbl, int value)>()(ptr.ref.lpVtbl, valueDateTime);
+            int Function(LPVTBL lpVtbl,
+                int value)>()(ptr.ref.lpVtbl, value.toWinRTDateTime());
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
@@ -1930,8 +1926,6 @@ class ICalendar extends IInspectable {
 
   int compareDateTime(DateTime other) {
     final retValuePtr = calloc<Int32>();
-    final otherDateTime =
-        other.difference(DateTime.utc(1601, 01, 01)).inMicroseconds * 10;
 
     try {
       final hr = ptr.ref.vtable
@@ -1945,7 +1939,7 @@ class ICalendar extends IInspectable {
               .asFunction<
                   int Function(
                       LPVTBL lpVtbl, int other, Pointer<Int32> retValuePtr)>()(
-          ptr.ref.lpVtbl, otherDateTime, retValuePtr);
+          ptr.ref.lpVtbl, other.toWinRTDateTime(), retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 

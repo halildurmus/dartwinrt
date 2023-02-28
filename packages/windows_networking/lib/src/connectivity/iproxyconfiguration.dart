@@ -14,7 +14,6 @@ import 'dart:ffi';
 import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
-import 'package:windows_foundation/uri.dart' as winrt_uri;
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// @nodoc

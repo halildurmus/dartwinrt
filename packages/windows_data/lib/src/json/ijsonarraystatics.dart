@@ -32,7 +32,7 @@ class IJsonArrayStatics extends IInspectable {
 
   JsonArray? parse(String input) {
     final retValuePtr = calloc<COMObject>();
-    final inputHString = convertToHString(input);
+    final inputHString = input.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -64,7 +64,7 @@ class IJsonArrayStatics extends IInspectable {
 
   bool tryParse(String input, JsonArray result) {
     final retValuePtr = calloc<Bool>();
-    final inputHString = convertToHString(input);
+    final inputHString = input.toHString();
     final resultPtr = result.ptr;
 
     try {

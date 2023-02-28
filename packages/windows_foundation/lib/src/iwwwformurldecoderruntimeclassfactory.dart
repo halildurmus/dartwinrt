@@ -35,7 +35,7 @@ class IWwwFormUrlDecoderRuntimeClassFactory extends IInspectable {
 
   WwwFormUrlDecoder createWwwFormUrlDecoder(String query) {
     final retValuePtr = calloc<COMObject>();
-    final queryHString = convertToHString(query);
+    final queryHString = query.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(6)

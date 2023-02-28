@@ -10,11 +10,7 @@ import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
 
 import 'iinspectable.dart';
-
-extension WinRTStringConversion on Pointer<HSTRING> {
-  /// Gets the Dart string at the handle pointed to by this object.
-  String toDartString() => convertFromHString(value);
-}
+import 'internal/extensions/extensions.dart';
 
 /// Creates a WinRT object.
 ///
@@ -45,7 +41,7 @@ Pointer<COMObject> createObject(String className, String iid) {
 Pointer<COMObject> activateClass(String className,
     {Allocator allocator = calloc}) {
   // Create a HSTRING representing the object
-  final hClassName = convertToHString(className);
+  final hClassName = className.toHString();
   final inspectablePtr = allocator<COMObject>();
 
   try {
@@ -85,7 +81,7 @@ Pointer<COMObject> activateClass(String className,
 Pointer<COMObject> createActivationFactory(String className, String iid,
     {Allocator allocator = calloc}) {
   // Create a HSTRING representing the object
-  final hClassName = convertToHString(className);
+  final hClassName = className.toHString();
   final pIID = GUIDFromString(iid);
   final activationFactoryPtr = allocator<COMObject>();
 

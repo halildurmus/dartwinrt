@@ -18,8 +18,8 @@ void main() {
   }
 
   test('HSTRING array to List<String>', () {
-    final hString1 = convertToHString('Hello');
-    final hString2 = convertToHString('World');
+    final hString1 = 'Hello'.toHString();
+    final hString2 = 'World'.toHString();
     final ptr = calloc<HSTRING>(2);
     ptr[0] = hString1;
     ptr[1] = hString2;

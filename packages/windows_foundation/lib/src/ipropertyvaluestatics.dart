@@ -321,7 +321,7 @@ class IPropertyValueStatics extends IInspectable {
 
   IPropertyValue createString(String value) {
     final retValuePtr = calloc<COMObject>();
-    final valueHString = convertToHString(value);
+    final valueHString = value.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(18)
@@ -400,8 +400,6 @@ class IPropertyValueStatics extends IInspectable {
 
   IPropertyValue createDateTime(DateTime value) {
     final retValuePtr = calloc<COMObject>();
-    final valueDateTime =
-        value.difference(DateTime.utc(1601, 01, 01)).inMicroseconds * 10;
 
     final hr = ptr.ref.vtable
             .elementAt(21)
@@ -414,7 +412,7 @@ class IPropertyValueStatics extends IInspectable {
             .asFunction<
                 int Function(LPVTBL lpVtbl, int value,
                     Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, valueDateTime, retValuePtr);
+        ptr.ref.lpVtbl, value.toWinRTDateTime(), retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -426,7 +424,6 @@ class IPropertyValueStatics extends IInspectable {
 
   IPropertyValue createTimeSpan(Duration value) {
     final retValuePtr = calloc<COMObject>();
-    final valueDuration = value.inMicroseconds * 10;
 
     final hr = ptr.ref.vtable
             .elementAt(22)
@@ -439,7 +436,7 @@ class IPropertyValueStatics extends IInspectable {
             .asFunction<
                 int Function(LPVTBL lpVtbl, int value,
                     Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, valueDuration, retValuePtr);
+        ptr.ref.lpVtbl, value.toWinRTDuration(), retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -901,7 +898,7 @@ class IPropertyValueStatics extends IInspectable {
     final handles = <int>[];
     final pArray = calloc<HSTRING>(value.length);
     for (var i = 0; i < value.length; i++) {
-      pArray[i] = convertToHString(value.elementAt(i));
+      pArray[i] = value.elementAt(i).toHString();
       handles.add(pArray[i]);
     }
 
@@ -1013,11 +1010,7 @@ class IPropertyValueStatics extends IInspectable {
 
     final pArray = calloc<Int64>(value.length);
     for (var i = 0; i < value.length; i++) {
-      pArray[i] = value
-              .elementAt(i)
-              .difference(DateTime.utc(1601, 01, 01))
-              .inMicroseconds *
-          10;
+      pArray[i] = value.elementAt(i).toWinRTDateTime();
     }
 
     final hr = ptr.ref.vtable
@@ -1051,7 +1044,7 @@ class IPropertyValueStatics extends IInspectable {
 
     final pArray = calloc<Int64>(value.length);
     for (var i = 0; i < value.length; i++) {
-      pArray[i] = value.elementAt(i).inMicroseconds * 10;
+      pArray[i] = value.elementAt(i).toWinRTDuration();
     }
 
     final hr = ptr.ref.vtable

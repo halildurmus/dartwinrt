@@ -6,7 +6,7 @@
 
 import 'dart:ffi';
 
-extension BoolHelper on Pointer<Bool> {
+extension BoolArrayToListConversion on Pointer<Bool> {
   /// Creates a [List] from `Pointer<Bool>`.
   ///
   /// [length] must not be greater than the number of elements stored inside the

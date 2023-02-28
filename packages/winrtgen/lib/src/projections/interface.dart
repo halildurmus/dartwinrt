@@ -107,8 +107,8 @@ const IID_$shortName = '${typeDef.guid}';
         ..removeWhere((import) => import.endsWith('eventargs.dart'));
 
   String get importHeader {
-    final useImportAliasForWinRTUri =
-        !['IUriRuntimeClass', 'IUriRuntimeClassFactory'].contains(shortName);
+    // final useImportAliasForWinRTUri =
+    //     !['IUriRuntimeClass', 'IUriRuntimeClassFactory'].contains(shortName);
 
     return sortImports(
       imports.map((import) {
@@ -118,10 +118,10 @@ const IID_$shortName = '${typeDef.guid}';
           return "import '$import' hide DocumentProperties;";
         }
 
-        if (useImportAliasForWinRTUri && import.endsWith('/uri.dart')) {
-          // Use import alias to avoid conflict with the dart:core's Uri.
-          return "import 'package:windows_foundation/uri.dart' as winrt_uri;";
-        }
+        // if (useImportAliasForWinRTUri && import.endsWith('/uri.dart')) {
+        //   // Use import alias to avoid conflict with the dart:core's Uri.
+        //   return "import 'package:windows_foundation/uri.dart' as winrt_uri;";
+        // }
 
         return "import '$import';";
       }).toList(),

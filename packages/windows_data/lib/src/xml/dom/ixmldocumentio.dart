@@ -31,7 +31,7 @@ class IXmlDocumentIO extends IInspectable {
       IXmlDocumentIO.fromRawPointer(interface.toInterface(IID_IXmlDocumentIO));
 
   void loadXml(String xml) {
-    final xmlHString = convertToHString(xml);
+    final xmlHString = xml.toHString();
 
     final hr = ptr.ref.vtable
         .elementAt(6)
@@ -48,7 +48,7 @@ class IXmlDocumentIO extends IInspectable {
   }
 
   void loadXmlWithSettings(String xml, XmlLoadSettings? loadSettings) {
-    final xmlHString = convertToHString(xml);
+    final xmlHString = xml.toHString();
     final loadSettingsPtr =
         loadSettings == null ? nullptr : loadSettings.ptr.ref.lpVtbl;
 

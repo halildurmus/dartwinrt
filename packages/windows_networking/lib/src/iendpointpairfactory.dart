@@ -38,9 +38,9 @@ class IEndpointPairFactory extends IInspectable {
       String remoteServiceName) {
     final retValuePtr = calloc<COMObject>();
     final localHostNamePtr = localHostName.ptr.ref.lpVtbl;
-    final localServiceNameHString = convertToHString(localServiceName);
+    final localServiceNameHString = localServiceName.toHString();
     final remoteHostNamePtr = remoteHostName.ptr.ref.lpVtbl;
-    final remoteServiceNameHString = convertToHString(remoteServiceName);
+    final remoteServiceNameHString = remoteServiceName.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(6)

@@ -92,7 +92,7 @@ class IPhoneNumberFormatter extends IInspectable {
 
   String formatPartialString(String number) {
     final retValuePtr = calloc<HSTRING>();
-    final numberHString = convertToHString(number);
+    final numberHString = number.toHString();
 
     try {
       final hr = ptr.ref.vtable
@@ -120,7 +120,7 @@ class IPhoneNumberFormatter extends IInspectable {
 
   String formatString(String number) {
     final retValuePtr = calloc<HSTRING>();
-    final numberHString = convertToHString(number);
+    final numberHString = number.toHString();
 
     try {
       final hr = ptr.ref.vtable
@@ -148,7 +148,7 @@ class IPhoneNumberFormatter extends IInspectable {
 
   String formatStringWithLeftToRightMarkers(String number) {
     final retValuePtr = calloc<HSTRING>();
-    final numberHString = convertToHString(number);
+    final numberHString = number.toHString();
 
     try {
       final hr = ptr.ref.vtable

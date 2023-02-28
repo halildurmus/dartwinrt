@@ -30,8 +30,8 @@ class IHostNameStatics extends IInspectable {
 
   int compare(String value1, String value2) {
     final retValuePtr = calloc<Int32>();
-    final value1HString = convertToHString(value1);
-    final value2HString = convertToHString(value2);
+    final value1HString = value1.toHString();
+    final value2HString = value2.toHString();
 
     try {
       final hr = ptr.ref.vtable

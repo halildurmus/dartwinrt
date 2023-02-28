@@ -62,7 +62,7 @@ class IToastNotificationHistory2 extends IInspectable {
 
   List<ToastNotification> getHistoryWithId(String applicationId) {
     final retValuePtr = calloc<COMObject>();
-    final applicationIdHString = convertToHString(applicationId);
+    final applicationIdHString = applicationId.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(7)

@@ -6,7 +6,7 @@
 
 import 'dart:ffi';
 
-extension DoubleHelper on Pointer<Double> {
+extension DoubleArrayToListConversion on Pointer<Double> {
   /// Creates a [List] from `Pointer<Double>`.
   ///
   /// [length] must not be greater than the number of elements stored inside the
@@ -20,7 +20,7 @@ extension DoubleHelper on Pointer<Double> {
       [for (var i = 0; i < length; i++) this[i]];
 }
 
-extension FloatHelper on Pointer<Float> {
+extension FloatArrayToListConversion on Pointer<Float> {
   /// Creates a [List] from `Pointer<Float>`.
   ///
   /// [length] must not be greater than the number of elements stored inside the

@@ -65,7 +65,7 @@ class IDeviceInformationStatics2 extends IInspectable {
       DeviceInformationKind kind) {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<DeviceInformation?>();
-    final deviceIdHString = convertToHString(deviceId);
+    final deviceIdHString = deviceId.toHString();
     final additionalPropertiesPtr = additionalProperties == null
         ? nullptr
         : IInspectable(additionalProperties
@@ -117,7 +117,7 @@ class IDeviceInformationStatics2 extends IInspectable {
           IIterable<String>? additionalProperties, DeviceInformationKind kind) {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<DeviceInformationCollection?>();
-    final aqsFilterHString = convertToHString(aqsFilter);
+    final aqsFilterHString = aqsFilter.toHString();
     final additionalPropertiesPtr = additionalProperties == null
         ? nullptr
         : IInspectable(additionalProperties
@@ -170,7 +170,7 @@ class IDeviceInformationStatics2 extends IInspectable {
       IIterable<String>? additionalProperties,
       DeviceInformationKind kind) {
     final retValuePtr = calloc<COMObject>();
-    final aqsFilterHString = convertToHString(aqsFilter);
+    final aqsFilterHString = aqsFilter.toHString();
     final additionalPropertiesPtr = additionalProperties == null
         ? nullptr
         : IInspectable(additionalProperties

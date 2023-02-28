@@ -64,7 +64,7 @@ class IXmlElement extends IInspectable
 
   String getAttribute(String attributeName) {
     final retValuePtr = calloc<HSTRING>();
-    final attributeNameHString = convertToHString(attributeName);
+    final attributeNameHString = attributeName.toHString();
 
     try {
       final hr = ptr.ref.vtable
@@ -91,8 +91,8 @@ class IXmlElement extends IInspectable
   }
 
   void setAttribute(String attributeName, String attributeValue) {
-    final attributeNameHString = convertToHString(attributeName);
-    final attributeValueHString = convertToHString(attributeValue);
+    final attributeNameHString = attributeName.toHString();
+    final attributeValueHString = attributeValue.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(8)
@@ -114,7 +114,7 @@ class IXmlElement extends IInspectable
   }
 
   void removeAttribute(String attributeName) {
-    final attributeNameHString = convertToHString(attributeName);
+    final attributeNameHString = attributeName.toHString();
 
     final hr =
         ptr.ref.vtable
@@ -135,7 +135,7 @@ class IXmlElement extends IInspectable
 
   XmlAttribute? getAttributeNode(String attributeName) {
     final retValuePtr = calloc<COMObject>();
-    final attributeNameHString = convertToHString(attributeName);
+    final attributeNameHString = attributeName.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(10)
@@ -229,7 +229,7 @@ class IXmlElement extends IInspectable
 
   XmlNodeList? getElementsByTagName(String tagName) {
     final retValuePtr = calloc<COMObject>();
-    final tagNameHString = convertToHString(tagName);
+    final tagNameHString = tagName.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(13)
@@ -262,8 +262,8 @@ class IXmlElement extends IInspectable
   void setAttributeNS(
       Object? namespaceUri, String qualifiedName, String value) {
     final namespaceUriPtr = namespaceUri?.intoBox().ref.lpVtbl ?? nullptr;
-    final qualifiedNameHString = convertToHString(qualifiedName);
-    final valueHString = convertToHString(value);
+    final qualifiedNameHString = qualifiedName.toHString();
+    final valueHString = value.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(14)
@@ -287,7 +287,7 @@ class IXmlElement extends IInspectable
   String getAttributeNS(Object? namespaceUri, String localName) {
     final retValuePtr = calloc<HSTRING>();
     final namespaceUriPtr = namespaceUri?.intoBox().ref.lpVtbl ?? nullptr;
-    final localNameHString = convertToHString(localName);
+    final localNameHString = localName.toHString();
 
     try {
       final hr =
@@ -319,7 +319,7 @@ class IXmlElement extends IInspectable
 
   void removeAttributeNS(Object? namespaceUri, String localName) {
     final namespaceUriPtr = namespaceUri?.intoBox().ref.lpVtbl ?? nullptr;
-    final localNameHString = convertToHString(localName);
+    final localNameHString = localName.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(16)
@@ -373,7 +373,7 @@ class IXmlElement extends IInspectable
   XmlAttribute? getAttributeNodeNS(Object? namespaceUri, String localName) {
     final retValuePtr = calloc<COMObject>();
     final namespaceUriPtr = namespaceUri?.intoBox().ref.lpVtbl ?? nullptr;
-    final localNameHString = convertToHString(localName);
+    final localNameHString = localName.toHString();
 
     final hr =
         ptr.ref.vtable

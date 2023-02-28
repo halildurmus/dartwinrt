@@ -70,8 +70,7 @@ class IBasicProperties extends IInspectable {
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return DateTime.utc(1601, 01, 01)
-          .add(Duration(microseconds: retValuePtr.value ~/ 10));
+      return retValuePtr.toDartDateTime();
     } finally {
       free(retValuePtr);
     }
@@ -95,8 +94,7 @@ class IBasicProperties extends IInspectable {
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return DateTime.utc(1601, 01, 01)
-          .add(Duration(microseconds: retValuePtr.value ~/ 10));
+      return retValuePtr.toDartDateTime();
     } finally {
       free(retValuePtr);
     }

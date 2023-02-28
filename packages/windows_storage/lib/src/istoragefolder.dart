@@ -37,7 +37,7 @@ class IStorageFolder extends IInspectable implements IStorageItem {
       String desiredName) {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<StorageFile?>();
-    final desiredNameHString = convertToHString(desiredName);
+    final desiredNameHString = desiredName.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -72,7 +72,7 @@ class IStorageFolder extends IInspectable implements IStorageItem {
       String desiredName, CreationCollisionOption options) {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<StorageFile?>();
-    final desiredNameHString = convertToHString(desiredName);
+    final desiredNameHString = desiredName.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(7)
@@ -107,7 +107,7 @@ class IStorageFolder extends IInspectable implements IStorageItem {
       String desiredName) {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<StorageFolder?>();
-    final desiredNameHString = convertToHString(desiredName);
+    final desiredNameHString = desiredName.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(8)
@@ -142,7 +142,7 @@ class IStorageFolder extends IInspectable implements IStorageItem {
       String desiredName, CreationCollisionOption options) {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<StorageFolder?>();
-    final desiredNameHString = convertToHString(desiredName);
+    final desiredNameHString = desiredName.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(9)
@@ -176,7 +176,7 @@ class IStorageFolder extends IInspectable implements IStorageItem {
   Future<StorageFile?> getFileAsync(String name) {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<StorageFile?>();
-    final nameHString = convertToHString(name);
+    final nameHString = name.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(10)
@@ -210,7 +210,7 @@ class IStorageFolder extends IInspectable implements IStorageItem {
   Future<StorageFolder?> getFolderAsync(String name) {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<StorageFolder?>();
-    final nameHString = convertToHString(name);
+    final nameHString = name.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(11)
@@ -244,7 +244,7 @@ class IStorageFolder extends IInspectable implements IStorageItem {
   Future<IStorageItem?> getItemAsync(String name) {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<IStorageItem?>();
-    final nameHString = convertToHString(name);
+    final nameHString = name.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(12)

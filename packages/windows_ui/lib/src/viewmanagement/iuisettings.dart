@@ -69,7 +69,10 @@ class IUISettings extends IInspectable {
                 int Function(LPVTBL lpVtbl, Pointer<Size> retValuePtr)>()(
         ptr.ref.lpVtbl, retValuePtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) {
+      free(retValuePtr);
+      throw WindowsException(hr);
+    }
 
     return retValuePtr.ref;
   }
@@ -89,7 +92,10 @@ class IUISettings extends IInspectable {
                 int Function(LPVTBL lpVtbl, Pointer<Size> retValuePtr)>()(
         ptr.ref.lpVtbl, retValuePtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) {
+      free(retValuePtr);
+      throw WindowsException(hr);
+    }
 
     return retValuePtr.ref;
   }
@@ -109,7 +115,10 @@ class IUISettings extends IInspectable {
                 int Function(LPVTBL lpVtbl, Pointer<Size> retValuePtr)>()(
         ptr.ref.lpVtbl, retValuePtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) {
+      free(retValuePtr);
+      throw WindowsException(hr);
+    }
 
     return retValuePtr.ref;
   }
@@ -129,7 +138,10 @@ class IUISettings extends IInspectable {
                 int Function(LPVTBL lpVtbl, Pointer<Size> retValuePtr)>()(
         ptr.ref.lpVtbl, retValuePtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) {
+      free(retValuePtr);
+      throw WindowsException(hr);
+    }
 
     return retValuePtr.ref;
   }
@@ -318,7 +330,10 @@ class IUISettings extends IInspectable {
                     Pointer<Color> retValuePtr)>()(
         ptr.ref.lpVtbl, desiredElement.value, retValuePtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) {
+      free(retValuePtr);
+      throw WindowsException(hr);
+    }
 
     return retValuePtr.ref;
   }

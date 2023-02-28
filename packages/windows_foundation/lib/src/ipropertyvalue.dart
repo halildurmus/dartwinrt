@@ -413,8 +413,7 @@ class IPropertyValue extends IInspectable {
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return DateTime.utc(1601, 01, 01)
-          .add(Duration(microseconds: retValuePtr.value ~/ 10));
+      return retValuePtr.toDartDateTime();
     } finally {
       free(retValuePtr);
     }
@@ -438,7 +437,7 @@ class IPropertyValue extends IInspectable {
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return Duration(microseconds: retValuePtr.value ~/ 10);
+      return retValuePtr.toDartDuration();
     } finally {
       free(retValuePtr);
     }
@@ -459,7 +458,10 @@ class IPropertyValue extends IInspectable {
                 int Function(LPVTBL lpVtbl, Pointer<Point> retValuePtr)>()(
         ptr.ref.lpVtbl, retValuePtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) {
+      free(retValuePtr);
+      throw WindowsException(hr);
+    }
 
     return retValuePtr.ref;
   }
@@ -479,7 +481,10 @@ class IPropertyValue extends IInspectable {
                 int Function(LPVTBL lpVtbl, Pointer<Size> retValuePtr)>()(
         ptr.ref.lpVtbl, retValuePtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) {
+      free(retValuePtr);
+      throw WindowsException(hr);
+    }
 
     return retValuePtr.ref;
   }
@@ -499,7 +504,10 @@ class IPropertyValue extends IInspectable {
                 int Function(LPVTBL lpVtbl, Pointer<Rect> retValuePtr)>()(
         ptr.ref.lpVtbl, retValuePtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) {
+      free(retValuePtr);
+      throw WindowsException(hr);
+    }
 
     return retValuePtr.ref;
   }
@@ -932,8 +940,9 @@ class IPropertyValue extends IInspectable {
 
     if (FAILED(hr)) throw WindowsException(hr);
 
-    value.addAll(pArray.value.toList(length: pValueSize.value).map((value) =>
-        DateTime.utc(1601, 01, 01).add(Duration(microseconds: value ~/ 10))));
+    value.addAll(pArray.value
+        .toList(length: pValueSize.value)
+        .map((value) => value.toDartDateTime()));
     free(pValueSize);
     free(pArray);
   }
@@ -962,7 +971,7 @@ class IPropertyValue extends IInspectable {
 
     value.addAll(pArray.value
         .toList(length: pValueSize.value)
-        .map((value) => Duration(microseconds: value ~/ 10)));
+        .map((value) => value.toDartDuration()));
     free(pValueSize);
     free(pArray);
   }

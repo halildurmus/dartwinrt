@@ -93,7 +93,7 @@ class INetworkUsage extends IInspectable {
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return Duration(microseconds: retValuePtr.value ~/ 10);
+      return retValuePtr.toDartDuration();
     } finally {
       free(retValuePtr);
     }

@@ -96,8 +96,7 @@ class IPedometerReading extends IInspectable {
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return DateTime.utc(1601, 01, 01)
-          .add(Duration(microseconds: retValuePtr.value ~/ 10));
+      return retValuePtr.toDartDateTime();
     } finally {
       free(retValuePtr);
     }
@@ -121,7 +120,7 @@ class IPedometerReading extends IInspectable {
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return Duration(microseconds: retValuePtr.value ~/ 10);
+      return retValuePtr.toDartDuration();
     } finally {
       free(retValuePtr);
     }

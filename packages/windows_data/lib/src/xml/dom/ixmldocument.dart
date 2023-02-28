@@ -132,7 +132,7 @@ class IXmlDocument extends IInspectable
 
   XmlElement? createElement(String tagName) {
     final retValuePtr = calloc<COMObject>();
-    final tagNameHString = convertToHString(tagName);
+    final tagNameHString = tagName.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(9)
@@ -192,7 +192,7 @@ class IXmlDocument extends IInspectable
 
   XmlText? createTextNode(String data) {
     final retValuePtr = calloc<COMObject>();
-    final dataHString = convertToHString(data);
+    final dataHString = data.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(11)
@@ -224,7 +224,7 @@ class IXmlDocument extends IInspectable
 
   XmlComment? createComment(String data) {
     final retValuePtr = calloc<COMObject>();
-    final dataHString = convertToHString(data);
+    final dataHString = data.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(12)
@@ -257,8 +257,8 @@ class IXmlDocument extends IInspectable
   XmlProcessingInstruction? createProcessingInstruction(
       String target, String data) {
     final retValuePtr = calloc<COMObject>();
-    final targetHString = convertToHString(target);
-    final dataHString = convertToHString(data);
+    final targetHString = target.toHString();
+    final dataHString = data.toHString();
 
     final hr =
         ptr.ref.vtable
@@ -292,7 +292,7 @@ class IXmlDocument extends IInspectable
 
   XmlAttribute? createAttribute(String name) {
     final retValuePtr = calloc<COMObject>();
-    final nameHString = convertToHString(name);
+    final nameHString = name.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(14)
@@ -324,7 +324,7 @@ class IXmlDocument extends IInspectable
 
   XmlEntityReference? createEntityReference(String name) {
     final retValuePtr = calloc<COMObject>();
-    final nameHString = convertToHString(name);
+    final nameHString = name.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(15)
@@ -356,7 +356,7 @@ class IXmlDocument extends IInspectable
 
   XmlNodeList? getElementsByTagName(String tagName) {
     final retValuePtr = calloc<COMObject>();
-    final tagNameHString = convertToHString(tagName);
+    final tagNameHString = tagName.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(16)
@@ -388,7 +388,7 @@ class IXmlDocument extends IInspectable
 
   XmlCDataSection? createCDataSection(String data) {
     final retValuePtr = calloc<COMObject>();
-    final dataHString = convertToHString(data);
+    final dataHString = data.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(17)
@@ -446,7 +446,7 @@ class IXmlDocument extends IInspectable
   XmlAttribute? createAttributeNS(Object? namespaceUri, String qualifiedName) {
     final retValuePtr = calloc<COMObject>();
     final namespaceUriPtr = namespaceUri?.intoBox().ref.lpVtbl ?? nullptr;
-    final qualifiedNameHString = convertToHString(qualifiedName);
+    final qualifiedNameHString = qualifiedName.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(19)
@@ -482,7 +482,7 @@ class IXmlDocument extends IInspectable
   XmlElement? createElementNS(Object? namespaceUri, String qualifiedName) {
     final retValuePtr = calloc<COMObject>();
     final namespaceUriPtr = namespaceUri?.intoBox().ref.lpVtbl ?? nullptr;
-    final qualifiedNameHString = convertToHString(qualifiedName);
+    final qualifiedNameHString = qualifiedName.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(20)
@@ -517,7 +517,7 @@ class IXmlDocument extends IInspectable
 
   XmlElement? getElementById(String elementId) {
     final retValuePtr = calloc<COMObject>();
-    final elementIdHString = convertToHString(elementId);
+    final elementIdHString = elementId.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(21)

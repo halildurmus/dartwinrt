@@ -38,27 +38,28 @@ mixin _UriMixin on MethodProjection {
   @override
   String get returnType => 'Uri${isNullable ? '?' : ''}';
 
-  String get nullCheck => isNullable
-      ? '''
+  String get nullCheck {
+    if (!isNullable) return '';
+    return '''
     if (retValuePtr.ref.isNull) {
       free(retValuePtr);
       return null;
     }
-'''
-      : '';
-
-  String get winrtUriToDartUriConvertsion =>
-      _methodBelongsToUriRuntimeClass(method)
-          ? ''
-          : '''
-    final winrtUri = winrt_uri.Uri.fromRawPointer(retValuePtr);
-    final uriAsString = winrtUri.toString();
-    winrtUri.release();
 ''';
+  }
 
-  String get returnStatement => _methodBelongsToUriRuntimeClass(method)
-      ? 'return Uri.fromRawPointer(retValuePtr);'
-      : 'return Uri.parse(uriAsString);';
+  String get returnStatement {
+    if (_methodBelongsToUriRuntimeClass(method)) {
+      return 'return Uri.fromRawPointer(retValuePtr);';
+    }
+
+    return '''
+    final winrtUri = retValuePtr.toWinRTUri();
+    final dartUri = winrtUri.toDartUri();
+    winrtUri.release();
+
+    return dartUri;''';
+  }
 
   @override
   String get methodDeclaration => '''
@@ -71,8 +72,6 @@ mixin _UriMixin on MethodProjection {
     $parametersPostamble
 
     $nullCheck
-
-    $winrtUriToDartUriConvertsion
 
     $returnStatement
   }
@@ -96,8 +95,7 @@ class UriSetterProjection extends SetterProjection {
   @override
   String get methodDeclaration => '''
   $methodHeader {
-    final winrtUri =
-        value == null ? null : winrt_uri.Uri.createUri(value.toString());
+    final winrtUri = value?.toWinRTUri();
 
     try {
       ${ffiCall(params: 'winrtUri == null ? nullptr : winrtUri.ptr.ref.lpVtbl')}
@@ -124,10 +122,9 @@ class UriParameterProjection extends ParameterProjection {
   @override
   String get preamble {
     if (_methodBelongsToUriRuntimeClass(method)) return '';
-    return isNullable
-        ? 'final ${name}Uri = $name == null ? null : '
-            'winrt_uri.Uri.createUri($name.toString());'
-        : 'final ${name}Uri = winrt_uri.Uri.createUri($name.toString());';
+    final expression =
+        isNullable ? '$identifier?.toWinRTUri()' : '$identifier.toWinRTUri()';
+    return 'final ${name}Uri = $expression;';
   }
 
   @override
@@ -138,11 +135,11 @@ class UriParameterProjection extends ParameterProjection {
 
   @override
   String get localIdentifier {
-    final variableName =
-        _methodBelongsToUriRuntimeClass(method) ? name : '${name}Uri';
+    final winrtUri =
+        _methodBelongsToUriRuntimeClass(method) ? identifier : '${name}Uri';
     return isNullable
-        ? '$variableName == null ? nullptr : $variableName.ptr.ref.lpVtbl'
-        : '$variableName.ptr.ref.lpVtbl';
+        ? '$winrtUri == null ? nullptr : $winrtUri.ptr.ref.lpVtbl'
+        : '$winrtUri.ptr.ref.lpVtbl';
   }
 }
 
@@ -161,7 +158,7 @@ class UriListParameterProjection extends DefaultListParameterProjection {
   String get passArrayPreamble => '''
     final pArray = calloc<COMObject>(value.length);
     for (var i = 0; i < value.length; i++) {
-      final winrtUri = winrt_uri.Uri.createUri(value.elementAt(i).toString());
+      final winrtUri = value.elementAt(i).toWinRTUri();
       pArray[i] = winrtUri.ptr.ref;
     }''';
 
@@ -173,17 +170,13 @@ class UriListParameterProjection extends DefaultListParameterProjection {
   @override
   String get fillArrayPostamble => '''
     if (retValuePtr.value > 0) {
-      value.addAll(pArray
-          .toList(winrt_uri.Uri.fromRawPointer, length: valueSize)
-          .map((winrtUri) => Uri.parse(winrtUri.toString())));
+      value.addAll(pArray.toDartUriList(length: valueSize));
     }
     free(pArray);''';
 
   @override
   String get receiveArrayPostamble => '''
-    value.addAll(pArray.value
-        .toList(winrt_uri.Uri.fromRawPointer, length: pValueSize.value)
-        .map((winrtUri) => Uri.parse(winrtUri.toString())));
+    value.addAll(pArray.value.toDartUriList(length: pValueSize.value));
     free(pValueSize);
     free(pArray);''';
 }

@@ -8,7 +8,7 @@ import 'dart:ffi';
 
 import '../../structs.g.dart';
 
-extension RectHelper on Pointer<Rect> {
+extension RectArrayToListConversion on Pointer<Rect> {
   /// Creates a [List] from `Pointer<Rect>`.
   ///
   /// [length] must not be greater than the number of elements stored inside the

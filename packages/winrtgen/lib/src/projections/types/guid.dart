@@ -66,7 +66,8 @@ class GuidParameterProjection extends ParameterProjection {
   String get type => 'Guid';
 
   @override
-  String get preamble => 'final ${name}NativeGuidPtr = $name.toNativeGUID();';
+  String get preamble =>
+      'final ${name}NativeGuidPtr = $identifier.toNativeGUID();';
 
   @override
   String get postamble => 'free(${name}NativeGuidPtr);';

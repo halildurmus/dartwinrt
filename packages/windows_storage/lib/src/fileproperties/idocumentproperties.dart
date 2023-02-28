@@ -81,7 +81,7 @@ class IDocumentProperties extends IInspectable
   }
 
   set title(String value) {
-    final hstr = convertToHString(value);
+    final hString = value.toHString();
 
     try {
       final hr = ptr.ref.vtable
@@ -92,11 +92,11 @@ class IDocumentProperties extends IInspectable
                           HRESULT Function(LPVTBL lpVtbl, IntPtr value)>>>()
               .value
               .asFunction<int Function(LPVTBL lpVtbl, int value)>()(
-          ptr.ref.lpVtbl, hstr);
+          ptr.ref.lpVtbl, hString);
 
       if (FAILED(hr)) throw WindowsException(hr);
     } finally {
-      WindowsDeleteString(hstr);
+      WindowsDeleteString(hString);
     }
   }
 
@@ -150,7 +150,7 @@ class IDocumentProperties extends IInspectable
   }
 
   set comment(String value) {
-    final hstr = convertToHString(value);
+    final hString = value.toHString();
 
     try {
       final hr = ptr.ref.vtable
@@ -161,11 +161,11 @@ class IDocumentProperties extends IInspectable
                           HRESULT Function(LPVTBL lpVtbl, IntPtr value)>>>()
               .value
               .asFunction<int Function(LPVTBL lpVtbl, int value)>()(
-          ptr.ref.lpVtbl, hstr);
+          ptr.ref.lpVtbl, hString);
 
       if (FAILED(hr)) throw WindowsException(hr);
     } finally {
-      WindowsDeleteString(hstr);
+      WindowsDeleteString(hString);
     }
   }
 
