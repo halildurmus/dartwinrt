@@ -9,7 +9,6 @@ import 'package:win32/win32.dart';
 import 'package:windows_media/windows_media.dart';
 
 import '../../internal.dart';
-import '../helpers.dart';
 import '../iinspectable.dart';
 import '../types.dart';
 import '../winrt_enum.dart';

@@ -76,8 +76,7 @@ class IScheduledToastNotification extends IInspectable {
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return DateTime.utc(1601, 01, 01)
-          .add(Duration(microseconds: retValuePtr.value ~/ 10));
+      return retValuePtr.toDartDateTime();
     } finally {
       free(retValuePtr);
     }
@@ -141,7 +140,7 @@ class IScheduledToastNotification extends IInspectable {
   }
 
   set id(String value) {
-    final hstr = convertToHString(value);
+    final hString = value.toHString();
 
     try {
       final hr = ptr.ref.vtable
@@ -152,11 +151,11 @@ class IScheduledToastNotification extends IInspectable {
                           HRESULT Function(LPVTBL lpVtbl, IntPtr value)>>>()
               .value
               .asFunction<int Function(LPVTBL lpVtbl, int value)>()(
-          ptr.ref.lpVtbl, hstr);
+          ptr.ref.lpVtbl, hString);
 
       if (FAILED(hr)) throw WindowsException(hr);
     } finally {
-      WindowsDeleteString(hstr);
+      WindowsDeleteString(hString);
     }
   }
 

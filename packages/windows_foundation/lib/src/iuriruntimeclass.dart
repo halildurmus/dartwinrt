@@ -438,7 +438,7 @@ class IUriRuntimeClass extends IInspectable {
 
   Uri? combineUri(String relativeUri) {
     final retValuePtr = calloc<COMObject>();
-    final relativeUriHString = convertToHString(relativeUri);
+    final relativeUriHString = relativeUri.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(22)

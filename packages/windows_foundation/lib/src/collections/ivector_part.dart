@@ -1067,7 +1067,7 @@ class _IVectorString extends IVector<String> {
   @override
   bool indexOf(String value, Pointer<Uint32> index) {
     final retValuePtr = calloc<Bool>();
-    final valueHString = convertToHString(value);
+    final valueHString = value.toHString();
 
     try {
       final hr =
@@ -1099,7 +1099,7 @@ class _IVectorString extends IVector<String> {
 
   @override
   void setAt(int index, String value) {
-    final valueHString = convertToHString(value);
+    final valueHString = value.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(10)
@@ -1119,7 +1119,7 @@ class _IVectorString extends IVector<String> {
 
   @override
   void insertAt(int index, String value) {
-    final valueHString = convertToHString(value);
+    final valueHString = value.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(11)
@@ -1139,7 +1139,7 @@ class _IVectorString extends IVector<String> {
 
   @override
   void append(String value) {
-    final valueHString = convertToHString(value);
+    final valueHString = value.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(13)
@@ -1197,7 +1197,7 @@ class _IVectorString extends IVector<String> {
     final handles = <int>[];
     final pArray = calloc<HSTRING>(value.length);
     for (var i = 0; i < value.length; i++) {
-      pArray[i] = convertToHString(value.elementAt(i));
+      pArray[i] = value.elementAt(i).toHString();
       handles.add(pArray[i]);
     }
 
@@ -1916,17 +1916,17 @@ class _IVectorUri extends IVector<Uri> {
       throw WindowsException(hr);
     }
 
-    final winrtUri = winrt_uri.Uri.fromRawPointer(retValuePtr);
-    final uriAsString = winrtUri.toString();
+    final winrtUri = retValuePtr.toWinRTUri();
+    final dartUri = winrtUri.toDartUri();
     winrtUri.release();
 
-    return Uri.parse(uriAsString);
+    return dartUri;
   }
 
   @override
   bool indexOf(Uri value, Pointer<Uint32> index) {
     final retValuePtr = calloc<Bool>();
-    final valueUri = winrt_uri.Uri.createUri(value.toString());
+    final valueUri = value.toWinRTUri();
 
     try {
       final hr =
@@ -1958,7 +1958,7 @@ class _IVectorUri extends IVector<Uri> {
 
   @override
   void setAt(int index, Uri value) {
-    final valueUri = winrt_uri.Uri.createUri(value.toString());
+    final valueUri = value.toWinRTUri();
 
     final hr = ptr.ref.vtable
             .elementAt(10)
@@ -1978,7 +1978,7 @@ class _IVectorUri extends IVector<Uri> {
 
   @override
   void insertAt(int index, Uri value) {
-    final valueUri = winrt_uri.Uri.createUri(value.toString());
+    final valueUri = value.toWinRTUri();
 
     final hr = ptr.ref.vtable
             .elementAt(11)
@@ -1998,7 +1998,7 @@ class _IVectorUri extends IVector<Uri> {
 
   @override
   void append(Uri value) {
-    final valueUri = winrt_uri.Uri.createUri(value.toString());
+    final valueUri = value.toWinRTUri();
 
     final hr = ptr.ref.vtable
             .elementAt(13)
@@ -2044,9 +2044,7 @@ class _IVectorUri extends IVector<Uri> {
       return retValuePtr.value;
     } finally {
       if (retValuePtr.value > 0) {
-        value.addAll(pArray
-            .toList(winrt_uri.Uri.fromRawPointer, length: valueSize)
-            .map((winrtUri) => Uri.parse(winrtUri.toString())));
+        value.addAll(pArray.toDartUriList(length: valueSize));
       }
       free(pArray);
       free(retValuePtr);
@@ -2057,7 +2055,7 @@ class _IVectorUri extends IVector<Uri> {
   void replaceAll(List<Uri> value) {
     final pArray = calloc<COMObject>(value.length);
     for (var i = 0; i < value.length; i++) {
-      final winrtUri = winrt_uri.Uri.createUri(value.elementAt(i).toString());
+      final winrtUri = value.elementAt(i).toWinRTUri();
       pArray[i] = winrtUri.ptr.ref;
     }
 

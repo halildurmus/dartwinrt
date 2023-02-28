@@ -52,12 +52,12 @@ class StringSetterProjection extends SetterProjection {
   @override
   String get methodDeclaration => '''
   $methodHeader {
-    final hstr = convertToHString(value);
+    final hString = value.toHString();
 
     try {
-      ${ffiCall(params: 'hstr')}
+      ${ffiCall(params: 'hString')}
     } finally {
-      WindowsDeleteString(hstr);
+      WindowsDeleteString(hString);
     }
   }
 ''';
@@ -71,7 +71,7 @@ class StringParameterProjection extends ParameterProjection {
   String get type => 'String';
 
   @override
-  String get preamble => 'final ${name}HString = convertToHString($name);';
+  String get preamble => 'final ${name}HString = $identifier.toHString();';
 
   @override
   String get postamble => 'WindowsDeleteString(${name}HString);';
@@ -92,7 +92,7 @@ class StringListParameterProjection extends DefaultListParameterProjection {
     final handles = <int>[];
     final pArray = calloc<HSTRING>(value.length);
     for (var i = 0; i < value.length; i++) {
-      pArray[i] = convertToHString(value.elementAt(i));
+      pArray[i] = value.elementAt(i).toHString();
       handles.add(pArray[i]);
     }''';
 

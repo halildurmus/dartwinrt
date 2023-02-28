@@ -35,7 +35,7 @@ class IJsonObject extends IInspectable implements IJsonValue {
 
   JsonValue? getNamedValue(String name) {
     final retValuePtr = calloc<COMObject>();
-    final nameHString = convertToHString(name);
+    final nameHString = name.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -66,7 +66,7 @@ class IJsonObject extends IInspectable implements IJsonValue {
   }
 
   void setNamedValue(String name, IJsonValue? value) {
-    final nameHString = convertToHString(name);
+    final nameHString = name.toHString();
     final valuePtr = value == null ? nullptr : value.ptr.ref.lpVtbl;
 
     final hr = ptr.ref.vtable
@@ -87,7 +87,7 @@ class IJsonObject extends IInspectable implements IJsonValue {
 
   JsonObject? getNamedObject(String name) {
     final retValuePtr = calloc<COMObject>();
-    final nameHString = convertToHString(name);
+    final nameHString = name.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(8)
@@ -119,7 +119,7 @@ class IJsonObject extends IInspectable implements IJsonValue {
 
   JsonArray? getNamedArray(String name) {
     final retValuePtr = calloc<COMObject>();
-    final nameHString = convertToHString(name);
+    final nameHString = name.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(9)
@@ -151,7 +151,7 @@ class IJsonObject extends IInspectable implements IJsonValue {
 
   String getNamedString(String name) {
     final retValuePtr = calloc<HSTRING>();
-    final nameHString = convertToHString(name);
+    final nameHString = name.toHString();
 
     try {
       final hr = ptr.ref.vtable
@@ -179,7 +179,7 @@ class IJsonObject extends IInspectable implements IJsonValue {
 
   double getNamedNumber(String name) {
     final retValuePtr = calloc<Double>();
-    final nameHString = convertToHString(name);
+    final nameHString = name.toHString();
 
     try {
       final hr = ptr.ref.vtable
@@ -206,7 +206,7 @@ class IJsonObject extends IInspectable implements IJsonValue {
 
   bool getNamedBoolean(String name) {
     final retValuePtr = calloc<Bool>();
-    final nameHString = convertToHString(name);
+    final nameHString = name.toHString();
 
     try {
       final hr = ptr.ref.vtable

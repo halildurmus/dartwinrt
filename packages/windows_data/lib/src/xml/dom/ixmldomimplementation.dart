@@ -30,7 +30,7 @@ class IXmlDomImplementation extends IInspectable {
 
   bool hasFeature(String feature, Object? version) {
     final retValuePtr = calloc<Bool>();
-    final featureHString = convertToHString(feature);
+    final featureHString = feature.toHString();
     final versionPtr = version?.intoBox().ref.lpVtbl ?? nullptr;
 
     try {

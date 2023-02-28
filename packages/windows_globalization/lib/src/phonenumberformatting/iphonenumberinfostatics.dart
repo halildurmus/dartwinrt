@@ -33,7 +33,7 @@ class IPhoneNumberInfoStatics extends IInspectable {
 
   PhoneNumberParseResult tryParse(String input, PhoneNumberInfo phoneNumber) {
     final retValuePtr = calloc<Int32>();
-    final inputHString = convertToHString(input);
+    final inputHString = input.toHString();
     final phoneNumberPtr = phoneNumber.ptr;
 
     try {
@@ -69,8 +69,8 @@ class IPhoneNumberInfoStatics extends IInspectable {
   PhoneNumberParseResult tryParseWithRegion(
       String input, String regionCode, PhoneNumberInfo phoneNumber) {
     final retValuePtr = calloc<Int32>();
-    final inputHString = convertToHString(input);
-    final regionCodeHString = convertToHString(regionCode);
+    final inputHString = input.toHString();
+    final regionCodeHString = regionCode.toHString();
     final phoneNumberPtr = phoneNumber.ptr;
 
     try {

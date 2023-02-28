@@ -36,8 +36,6 @@ class IScheduledToastNotificationFactory extends IInspectable {
       XmlDocument content, DateTime deliveryTime) {
     final retValuePtr = calloc<COMObject>();
     final contentPtr = content.ptr.ref.lpVtbl;
-    final deliveryTimeDateTime =
-        deliveryTime.difference(DateTime.utc(1601, 01, 01)).inMicroseconds * 10;
 
     final hr =
         ptr.ref.vtable
@@ -54,7 +52,10 @@ class IScheduledToastNotificationFactory extends IInspectable {
                 .asFunction<
                     int Function(LPVTBL lpVtbl, LPVTBL content,
                         int deliveryTime, Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl, contentPtr, deliveryTimeDateTime, retValuePtr);
+            ptr.ref.lpVtbl,
+            contentPtr,
+            deliveryTime.toWinRTDateTime(),
+            retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -71,9 +72,6 @@ class IScheduledToastNotificationFactory extends IInspectable {
       int maximumSnoozeCount) {
     final retValuePtr = calloc<COMObject>();
     final contentPtr = content.ptr.ref.lpVtbl;
-    final deliveryTimeDateTime =
-        deliveryTime.difference(DateTime.utc(1601, 01, 01)).inMicroseconds * 10;
-    final snoozeIntervalDuration = snoozeInterval.inMicroseconds * 10;
 
     final hr = ptr.ref.vtable
             .elementAt(7)
@@ -98,8 +96,8 @@ class IScheduledToastNotificationFactory extends IInspectable {
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl,
         contentPtr,
-        deliveryTimeDateTime,
-        snoozeIntervalDuration,
+        deliveryTime.toWinRTDateTime(),
+        snoozeInterval.toWinRTDuration(),
         maximumSnoozeCount,
         retValuePtr);
 

@@ -27,16 +27,6 @@ void main() {
     free(ptr);
   });
 
-  test('toDartString', () {
-    final hString = convertToHString('Hello, world!');
-    final ptr = calloc<HSTRING>()..value = hString;
-
-    expect(ptr.toDartString(), 'Hello, world!');
-
-    WindowsDeleteString(hString);
-    free(ptr);
-  });
-
   test('getInterfaces', () {
     const iids = [
       '{f6d1f700-49c2-52ae-8154-826f9908773c}', // IMap<String, String>

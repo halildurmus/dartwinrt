@@ -94,7 +94,7 @@ class IFolderPicker extends IInspectable {
   }
 
   set settingsIdentifier(String value) {
-    final hstr = convertToHString(value);
+    final hString = value.toHString();
 
     try {
       final hr = ptr.ref.vtable
@@ -105,11 +105,11 @@ class IFolderPicker extends IInspectable {
                           HRESULT Function(LPVTBL lpVtbl, IntPtr value)>>>()
               .value
               .asFunction<int Function(LPVTBL lpVtbl, int value)>()(
-          ptr.ref.lpVtbl, hstr);
+          ptr.ref.lpVtbl, hString);
 
       if (FAILED(hr)) throw WindowsException(hr);
     } finally {
-      WindowsDeleteString(hstr);
+      WindowsDeleteString(hString);
     }
   }
 
@@ -177,7 +177,7 @@ class IFolderPicker extends IInspectable {
   }
 
   set commitButtonText(String value) {
-    final hstr = convertToHString(value);
+    final hString = value.toHString();
 
     try {
       final hr = ptr.ref.vtable
@@ -188,11 +188,11 @@ class IFolderPicker extends IInspectable {
                           HRESULT Function(LPVTBL lpVtbl, IntPtr value)>>>()
               .value
               .asFunction<int Function(LPVTBL lpVtbl, int value)>()(
-          ptr.ref.lpVtbl, hstr);
+          ptr.ref.lpVtbl, hString);
 
       if (FAILED(hr)) throw WindowsException(hr);
     } finally {
-      WindowsDeleteString(hstr);
+      WindowsDeleteString(hString);
     }
   }
 

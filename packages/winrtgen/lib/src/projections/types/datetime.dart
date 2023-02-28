@@ -12,10 +12,6 @@ mixin _DateTimeMixin on MethodProjection {
   @override
   String get returnType => 'DateTime';
 
-  // In WinRT, DateTime is represented as a 64-bit signed integer that
-  // represents a point in time as the number of 100-nanosecond intervals prior
-  // to or after midnight on January 1, 1601 (according to the Gregorian
-  // Calendar).
   @override
   String get methodDeclaration => '''
   $methodHeader {
@@ -25,8 +21,7 @@ mixin _DateTimeMixin on MethodProjection {
     try {
       ${ffiCall()}
 
-      return DateTime.utc(1601, 01, 01)
-          .add(Duration(microseconds: retValuePtr.value ~/ 10));
+      return retValuePtr.toDartDateTime();
     } finally {
       $parametersPostamble
       free(retValuePtr);
@@ -52,10 +47,7 @@ class DateTimeSetterProjection extends SetterProjection {
   @override
   String get methodDeclaration => '''
   $methodHeader {
-    final dateTimeOffset =
-        value.difference(DateTime.utc(1601, 01, 01)).inMicroseconds * 10;
-
-    ${ffiCall(params: 'dateTimeOffset')}
+    ${ffiCall(params: 'value.toWinRTDateTime()')}
   }
 ''';
 }
@@ -68,15 +60,13 @@ class DateTimeParameterProjection extends ParameterProjection {
   String get type => 'DateTime';
 
   @override
-  String get preamble => '''
-  final ${name}DateTime =
-      $name.difference(DateTime.utc(1601, 01, 01)).inMicroseconds * 10;''';
+  String get preamble => '';
 
   @override
   String get postamble => '';
 
   @override
-  String get localIdentifier => '${name}DateTime';
+  String get localIdentifier => '$identifier.toWinRTDateTime()';
 }
 
 /// Parameter projection for `List<DateTime>` parameters.
@@ -90,22 +80,23 @@ class DateTimeListParameterProjection extends DefaultListParameterProjection {
   String get passArrayPreamble => '''
     final pArray = calloc<Int64>(value.length);
     for (var i = 0; i < value.length; i++) {
-      pArray[i] = value.elementAt(i)
-          .difference(DateTime.utc(1601, 01, 01)).inMicroseconds * 10;
+      pArray[i] = value.elementAt(i).toWinRTDateTime();
     }''';
 
   @override
   String get fillArrayPostamble => '''
     if (retValuePtr.value > 0) {
-      value.addAll(pArray.toList(length: value.length).map((value) =>
-          DateTime.utc(1601, 01, 01).add(Duration(microseconds: value ~/ 10))));
+    value.addAll(pArray
+        .toList(length: value.length)
+        .map((value) => value.toDartDateTime()));
     }
     free(pArray);''';
 
   @override
   String get receiveArrayPostamble => '''
-    value.addAll(pArray.value.toList(length: pValueSize.value).map((value) =>
-        DateTime.utc(1601, 01, 01).add(Duration(microseconds: value ~/ 10))));
+    value.addAll(pArray.value
+        .toList(length: pValueSize.value)
+        .map((value) => value.toDartDateTime()));
     free(pValueSize);
     free(pArray);''';
 }

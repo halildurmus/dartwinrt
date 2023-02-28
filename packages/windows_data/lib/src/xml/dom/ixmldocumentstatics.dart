@@ -14,7 +14,6 @@ import 'dart:ffi';
 import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
-import 'package:windows_foundation/uri.dart' as winrt_uri;
 import 'package:windows_foundation/windows_foundation.dart';
 import 'package:windows_storage/windows_storage.dart';
 
@@ -36,7 +35,7 @@ class IXmlDocumentStatics extends IInspectable {
   Future<XmlDocument?> loadFromUriAsync(Uri? uri) {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<XmlDocument?>();
-    final uriUri = uri == null ? null : winrt_uri.Uri.createUri(uri.toString());
+    final uriUri = uri?.toWinRTUri();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -71,7 +70,7 @@ class IXmlDocumentStatics extends IInspectable {
       Uri? uri, XmlLoadSettings? loadSettings) {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<XmlDocument?>();
-    final uriUri = uri == null ? null : winrt_uri.Uri.createUri(uri.toString());
+    final uriUri = uri?.toWinRTUri();
     final loadSettingsPtr =
         loadSettings == null ? nullptr : loadSettings.ptr.ref.lpVtbl;
 

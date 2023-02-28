@@ -33,7 +33,7 @@ class IUriEscapeStatics extends IInspectable {
 
   String unescapeComponent(String toUnescape) {
     final retValuePtr = calloc<HSTRING>();
-    final toUnescapeHString = convertToHString(toUnescape);
+    final toUnescapeHString = toUnescape.toHString();
 
     try {
       final hr = ptr.ref.vtable
@@ -61,7 +61,7 @@ class IUriEscapeStatics extends IInspectable {
 
   String escapeComponent(String toEscape) {
     final retValuePtr = calloc<HSTRING>();
-    final toEscapeHString = convertToHString(toEscape);
+    final toEscapeHString = toEscape.toHString();
 
     try {
       final hr = ptr.ref.vtable

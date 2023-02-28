@@ -63,7 +63,7 @@ class IXmlCharacterData extends IInspectable
   }
 
   set data(String value) {
-    final hstr = convertToHString(value);
+    final hString = value.toHString();
 
     try {
       final hr = ptr.ref.vtable
@@ -74,11 +74,11 @@ class IXmlCharacterData extends IInspectable
                           HRESULT Function(LPVTBL lpVtbl, IntPtr value)>>>()
               .value
               .asFunction<int Function(LPVTBL lpVtbl, int value)>()(
-          ptr.ref.lpVtbl, hstr);
+          ptr.ref.lpVtbl, hString);
 
       if (FAILED(hr)) throw WindowsException(hr);
     } finally {
-      WindowsDeleteString(hstr);
+      WindowsDeleteString(hString);
     }
   }
 
@@ -133,7 +133,7 @@ class IXmlCharacterData extends IInspectable
   }
 
   void appendData(String data) {
-    final dataHString = convertToHString(data);
+    final dataHString = data.toHString();
 
     final hr = ptr.ref.vtable
         .elementAt(10)
@@ -151,7 +151,7 @@ class IXmlCharacterData extends IInspectable
   }
 
   void insertData(int offset, String data) {
-    final dataHString = convertToHString(data);
+    final dataHString = data.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(11)
@@ -185,7 +185,7 @@ class IXmlCharacterData extends IInspectable
   }
 
   void replaceData(int offset, int count, String data) {
-    final dataHString = convertToHString(data);
+    final dataHString = data.toHString();
 
     final hr = ptr.ref.vtable
         .elementAt(13)

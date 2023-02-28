@@ -203,8 +203,6 @@ class IGeolocator extends IInspectable {
       Duration maximumAge, Duration timeout) {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<Geoposition?>();
-    final maximumAgeDuration = maximumAge.inMicroseconds * 10;
-    final timeoutDuration = timeout.inMicroseconds * 10;
 
     final hr = ptr.ref.vtable
             .elementAt(14)
@@ -216,8 +214,8 @@ class IGeolocator extends IInspectable {
             .value
             .asFunction<
                 int Function(LPVTBL lpVtbl, int maximumAge, int timeout,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, maximumAgeDuration, timeoutDuration, retValuePtr);
+                    Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl,
+        maximumAge.toWinRTDuration(), timeout.toWinRTDuration(), retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);

@@ -8,7 +8,9 @@ import 'dart:ffi';
 
 import 'package:win32/win32.dart';
 
-extension HStringHelper on Pointer<HSTRING> {
+import 'string_conversions.dart';
+
+extension HStringArrayToListConversion on Pointer<HSTRING> {
   /// Creates a [List] from `Pointer<HSTRING>`.
   ///
   /// [length] must not be greater than the number of elements stored inside the
@@ -22,7 +24,7 @@ extension HStringHelper on Pointer<HSTRING> {
     final list = <String>[];
     for (var i = 0; i < length; i++) {
       final element = this[i];
-      list.add(convertFromHString(element));
+      list.add(element.toDartString());
       WindowsDeleteString(element);
     }
 

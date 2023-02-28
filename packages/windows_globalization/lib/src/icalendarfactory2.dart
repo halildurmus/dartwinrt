@@ -38,9 +38,9 @@ class ICalendarFactory2 extends IInspectable {
         .ptr
         .ref
         .lpVtbl;
-    final calendarHString = convertToHString(calendar);
-    final clockHString = convertToHString(clock);
-    final timeZoneIdHString = convertToHString(timeZoneId);
+    final calendarHString = calendar.toHString();
+    final clockHString = clock.toHString();
+    final timeZoneIdHString = timeZoneId.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(6)

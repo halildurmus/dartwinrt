@@ -158,19 +158,19 @@ class ObjectParameterProjection extends ParameterProjection {
   String get preamble {
     final String expression;
     if (typeProjection.isObjectType) {
-      expression = '$name?.intoBox().ref.lpVtbl ?? nullptr';
+      expression = '$identifier?.intoBox().ref.lpVtbl ?? nullptr';
     } else if (typeProjection.isReferenceType || typeProjection.isSimpleArray) {
       expression =
           type == 'Pointer<COMObject>' ? identifier : '$identifier.ptr';
     } else if (type.startsWith('IIterable<')) {
       final iid = typeProjection.typeIdentifier.iid;
-      final nullCheck = isNullable ? '$name == null ? nullptr : ' : '';
+      final nullCheck = isNullable ? '$identifier == null ? nullptr : ' : '';
       expression =
-          "${nullCheck}IInspectable($name.toInterface('$iid')).ptr.ref.lpVtbl";
+          "${nullCheck}IInspectable($identifier.toInterface('$iid')).ptr.ref.lpVtbl";
     } else {
       expression = isNullable
-          ? '$name == null ? nullptr : $name.ptr.ref.lpVtbl'
-          : '$name.ptr.ref.lpVtbl';
+          ? '$identifier == null ? nullptr : $identifier.ptr.ref.lpVtbl'
+          : '$identifier.ptr.ref.lpVtbl';
     }
 
     return 'final ${name}Ptr = $expression;';
@@ -179,7 +179,7 @@ class ObjectParameterProjection extends ParameterProjection {
   @override
   String get postamble {
     if (type.startsWith('IIterable<')) {
-      return isNullable ? '$name?.release();' : '$name.release();';
+      return isNullable ? '$identifier?.release();' : '$identifier.release();';
     }
 
     return '';

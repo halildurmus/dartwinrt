@@ -55,7 +55,7 @@ class IDevicePickerAppearance extends IInspectable {
   }
 
   set title(String value) {
-    final hstr = convertToHString(value);
+    final hString = value.toHString();
 
     try {
       final hr = ptr.ref.vtable
@@ -66,11 +66,11 @@ class IDevicePickerAppearance extends IInspectable {
                           HRESULT Function(LPVTBL lpVtbl, IntPtr value)>>>()
               .value
               .asFunction<int Function(LPVTBL lpVtbl, int value)>()(
-          ptr.ref.lpVtbl, hstr);
+          ptr.ref.lpVtbl, hString);
 
       if (FAILED(hr)) throw WindowsException(hr);
     } finally {
-      WindowsDeleteString(hstr);
+      WindowsDeleteString(hString);
     }
   }
 
@@ -89,7 +89,10 @@ class IDevicePickerAppearance extends IInspectable {
                 int Function(LPVTBL lpVtbl, Pointer<Color> retValuePtr)>()(
         ptr.ref.lpVtbl, retValuePtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) {
+      free(retValuePtr);
+      throw WindowsException(hr);
+    }
 
     return retValuePtr.ref;
   }
@@ -122,7 +125,10 @@ class IDevicePickerAppearance extends IInspectable {
                 int Function(LPVTBL lpVtbl, Pointer<Color> retValuePtr)>()(
         ptr.ref.lpVtbl, retValuePtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) {
+      free(retValuePtr);
+      throw WindowsException(hr);
+    }
 
     return retValuePtr.ref;
   }
@@ -155,7 +161,10 @@ class IDevicePickerAppearance extends IInspectable {
                 int Function(LPVTBL lpVtbl, Pointer<Color> retValuePtr)>()(
         ptr.ref.lpVtbl, retValuePtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) {
+      free(retValuePtr);
+      throw WindowsException(hr);
+    }
 
     return retValuePtr.ref;
   }
@@ -188,7 +197,10 @@ class IDevicePickerAppearance extends IInspectable {
                 int Function(LPVTBL lpVtbl, Pointer<Color> retValuePtr)>()(
         ptr.ref.lpVtbl, retValuePtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) {
+      free(retValuePtr);
+      throw WindowsException(hr);
+    }
 
     return retValuePtr.ref;
   }
@@ -221,7 +233,10 @@ class IDevicePickerAppearance extends IInspectable {
                 int Function(LPVTBL lpVtbl, Pointer<Color> retValuePtr)>()(
         ptr.ref.lpVtbl, retValuePtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) {
+      free(retValuePtr);
+      throw WindowsException(hr);
+    }
 
     return retValuePtr.ref;
   }
@@ -254,7 +269,10 @@ class IDevicePickerAppearance extends IInspectable {
                 int Function(LPVTBL lpVtbl, Pointer<Color> retValuePtr)>()(
         ptr.ref.lpVtbl, retValuePtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) {
+      free(retValuePtr);
+      throw WindowsException(hr);
+    }
 
     return retValuePtr.ref;
   }

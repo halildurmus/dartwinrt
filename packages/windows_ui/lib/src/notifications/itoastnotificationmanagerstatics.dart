@@ -63,7 +63,7 @@ class IToastNotificationManagerStatics extends IInspectable {
 
   ToastNotifier? createToastNotifierWithId(String applicationId) {
     final retValuePtr = calloc<COMObject>();
-    final applicationIdHString = convertToHString(applicationId);
+    final applicationIdHString = applicationId.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(7)

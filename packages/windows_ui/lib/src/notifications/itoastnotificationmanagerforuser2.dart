@@ -37,7 +37,7 @@ class IToastNotificationManagerForUser2 extends IInspectable {
       String collectionId) {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<ToastNotifier?>();
-    final collectionIdHString = convertToHString(collectionId);
+    final collectionIdHString = collectionId.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -72,7 +72,7 @@ class IToastNotificationManagerForUser2 extends IInspectable {
       String collectionId) {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<ToastNotificationHistory?>();
-    final collectionIdHString = convertToHString(collectionId);
+    final collectionIdHString = collectionId.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(7)
@@ -133,7 +133,7 @@ class IToastNotificationManagerForUser2 extends IInspectable {
 
   ToastCollectionManager? getToastCollectionManagerWithAppId(String appId) {
     final retValuePtr = calloc<COMObject>();
-    final appIdHString = convertToHString(appId);
+    final appIdHString = appId.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(9)

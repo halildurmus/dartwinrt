@@ -112,17 +112,13 @@ class IImageProperties extends IInspectable
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return DateTime.utc(1601, 01, 01)
-          .add(Duration(microseconds: retValuePtr.value ~/ 10));
+      return retValuePtr.toDartDateTime();
     } finally {
       free(retValuePtr);
     }
   }
 
   set dateTaken(DateTime value) {
-    final dateTimeOffset =
-        value.difference(DateTime.utc(1601, 01, 01)).inMicroseconds * 10;
-
     final hr = ptr.ref.vtable
         .elementAt(10)
         .cast<
@@ -130,8 +126,8 @@ class IImageProperties extends IInspectable
                 NativeFunction<HRESULT Function(LPVTBL lpVtbl, Int64 value)>>>()
         .value
         .asFunction<
-            int Function(
-                LPVTBL lpVtbl, int value)>()(ptr.ref.lpVtbl, dateTimeOffset);
+            int Function(LPVTBL lpVtbl,
+                int value)>()(ptr.ref.lpVtbl, value.toWinRTDateTime());
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
@@ -210,7 +206,7 @@ class IImageProperties extends IInspectable
   }
 
   set title(String value) {
-    final hstr = convertToHString(value);
+    final hString = value.toHString();
 
     try {
       final hr = ptr.ref.vtable
@@ -221,11 +217,11 @@ class IImageProperties extends IInspectable
                           HRESULT Function(LPVTBL lpVtbl, IntPtr value)>>>()
               .value
               .asFunction<int Function(LPVTBL lpVtbl, int value)>()(
-          ptr.ref.lpVtbl, hstr);
+          ptr.ref.lpVtbl, hString);
 
       if (FAILED(hr)) throw WindowsException(hr);
     } finally {
-      WindowsDeleteString(hstr);
+      WindowsDeleteString(hString);
     }
   }
 
@@ -321,7 +317,7 @@ class IImageProperties extends IInspectable
   }
 
   set cameraManufacturer(String value) {
-    final hstr = convertToHString(value);
+    final hString = value.toHString();
 
     try {
       final hr = ptr.ref.vtable
@@ -332,11 +328,11 @@ class IImageProperties extends IInspectable
                           HRESULT Function(LPVTBL lpVtbl, IntPtr value)>>>()
               .value
               .asFunction<int Function(LPVTBL lpVtbl, int value)>()(
-          ptr.ref.lpVtbl, hstr);
+          ptr.ref.lpVtbl, hString);
 
       if (FAILED(hr)) throw WindowsException(hr);
     } finally {
-      WindowsDeleteString(hstr);
+      WindowsDeleteString(hString);
     }
   }
 
@@ -366,7 +362,7 @@ class IImageProperties extends IInspectable
   }
 
   set cameraModel(String value) {
-    final hstr = convertToHString(value);
+    final hString = value.toHString();
 
     try {
       final hr = ptr.ref.vtable
@@ -377,11 +373,11 @@ class IImageProperties extends IInspectable
                           HRESULT Function(LPVTBL lpVtbl, IntPtr value)>>>()
               .value
               .asFunction<int Function(LPVTBL lpVtbl, int value)>()(
-          ptr.ref.lpVtbl, hstr);
+          ptr.ref.lpVtbl, hString);
 
       if (FAILED(hr)) throw WindowsException(hr);
     } finally {
-      WindowsDeleteString(hstr);
+      WindowsDeleteString(hString);
     }
   }
 

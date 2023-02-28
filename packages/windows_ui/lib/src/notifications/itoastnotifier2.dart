@@ -35,8 +35,8 @@ class IToastNotifier2 extends IInspectable {
       NotificationData? data, String tag, String group) {
     final retValuePtr = calloc<Int32>();
     final dataPtr = data == null ? nullptr : data.ptr.ref.lpVtbl;
-    final tagHString = convertToHString(tag);
-    final groupHString = convertToHString(group);
+    final tagHString = tag.toHString();
+    final groupHString = group.toHString();
 
     try {
       final hr =
@@ -70,7 +70,7 @@ class IToastNotifier2 extends IInspectable {
   NotificationUpdateResult updateWithTag(NotificationData? data, String tag) {
     final retValuePtr = calloc<Int32>();
     final dataPtr = data == null ? nullptr : data.ptr.ref.lpVtbl;
-    final tagHString = convertToHString(tag);
+    final tagHString = tag.toHString();
 
     try {
       final hr =

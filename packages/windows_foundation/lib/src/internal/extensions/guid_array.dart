@@ -8,7 +8,7 @@ import 'dart:ffi';
 
 import 'package:win32/win32.dart';
 
-extension GuidHelper on Pointer<GUID> {
+extension GuidArrayToListConversion on Pointer<GUID> {
   /// Creates a [List] from `Pointer<GUID>`.
   ///
   /// [length] must not be greater than the number of elements stored inside the

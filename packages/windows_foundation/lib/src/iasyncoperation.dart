@@ -9,7 +9,6 @@ import 'package:win32/win32.dart';
 
 import '../internal.dart';
 import 'exports.g.dart';
-import 'uri.dart' as winrt_uri;
 
 part 'iasyncoperation_part.dart';
 

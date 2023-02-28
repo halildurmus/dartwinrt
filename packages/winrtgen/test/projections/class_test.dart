@@ -239,13 +239,5 @@ void main() {
           calendarProjection.methodForwarders.last.methodProjections.last.name,
           equals('TimeZoneAsString'));
     });
-
-    test('imports WinRT Uri with winrt_uri prefix', () {
-      final projection = ClassProjection.from('Windows.System.Launcher');
-      expect(
-        projection.importHeader,
-        contains("import 'package:windows_foundation/uri.dart' as winrt_uri;"),
-      );
-    });
   });
 }

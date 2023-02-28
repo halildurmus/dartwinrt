@@ -341,7 +341,7 @@ class IDevicePicker extends IInspectable {
   void setDisplayStatus(DeviceInformation? device, String status,
       DevicePickerDisplayStatusOptions options) {
     final devicePtr = device == null ? nullptr : device.ptr.ref.lpVtbl;
-    final statusHString = convertToHString(status);
+    final statusHString = status.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(20)

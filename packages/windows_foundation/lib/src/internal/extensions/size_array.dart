@@ -8,7 +8,7 @@ import 'dart:ffi';
 
 import '../../structs.g.dart';
 
-extension SizeHelper on Pointer<Size> {
+extension SizeArrayToListConversion on Pointer<Size> {
   /// Creates a [List] from `Pointer<Size>`.
   ///
   /// [length] must not be greater than the number of elements stored inside the

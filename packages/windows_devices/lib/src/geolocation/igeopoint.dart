@@ -47,7 +47,10 @@ class IGeopoint extends IInspectable implements IGeoshape {
                     LPVTBL lpVtbl, Pointer<BasicGeoposition> retValuePtr)>()(
         ptr.ref.lpVtbl, retValuePtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) {
+      free(retValuePtr);
+      throw WindowsException(hr);
+    }
 
     return retValuePtr.ref;
   }

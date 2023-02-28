@@ -34,7 +34,7 @@ class IUriRuntimeClassFactory extends IInspectable {
 
   Uri createUri(String uri) {
     final retValuePtr = calloc<COMObject>();
-    final uriHString = convertToHString(uri);
+    final uriHString = uri.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -61,8 +61,8 @@ class IUriRuntimeClassFactory extends IInspectable {
 
   Uri createWithRelativeUri(String baseUri, String relativeUri) {
     final retValuePtr = calloc<COMObject>();
-    final baseUriHString = convertToHString(baseUri);
-    final relativeUriHString = convertToHString(relativeUri);
+    final baseUriHString = baseUri.toHString();
+    final relativeUriHString = relativeUri.toHString();
 
     final hr =
         ptr.ref.vtable

@@ -5,10 +5,14 @@
 export 'bool_array.dart';
 export 'boxing_helpers.dart';
 export 'comobject_array.dart';
+export 'datetime_conversions.dart';
 export 'double_array.dart';
+export 'duration_conversions.dart';
 export 'guid_array.dart';
 export 'hstring_array.dart';
 export 'int_array.dart';
 export 'point_array.dart';
 export 'rect_array.dart';
 export 'size_array.dart';
+export 'string_conversions.dart';
+export 'uri_conversions.dart';

@@ -33,7 +33,7 @@ class IXmlNodeSelector extends IInspectable {
 
   IXmlNode? selectSingleNode(String xpath) {
     final retValuePtr = calloc<COMObject>();
-    final xpathHString = convertToHString(xpath);
+    final xpathHString = xpath.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -65,7 +65,7 @@ class IXmlNodeSelector extends IInspectable {
 
   XmlNodeList? selectNodes(String xpath) {
     final retValuePtr = calloc<COMObject>();
-    final xpathHString = convertToHString(xpath);
+    final xpathHString = xpath.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(7)
@@ -97,7 +97,7 @@ class IXmlNodeSelector extends IInspectable {
 
   IXmlNode? selectSingleNodeNS(String xpath, Object? namespaces) {
     final retValuePtr = calloc<COMObject>();
-    final xpathHString = convertToHString(xpath);
+    final xpathHString = xpath.toHString();
     final namespacesPtr = namespaces?.intoBox().ref.lpVtbl ?? nullptr;
 
     final hr =
@@ -134,7 +134,7 @@ class IXmlNodeSelector extends IInspectable {
 
   XmlNodeList? selectNodesNS(String xpath, Object? namespaces) {
     final retValuePtr = calloc<COMObject>();
-    final xpathHString = convertToHString(xpath);
+    final xpathHString = xpath.toHString();
     final namespacesPtr = namespaces?.intoBox().ref.lpVtbl ?? nullptr;
 
     final hr =

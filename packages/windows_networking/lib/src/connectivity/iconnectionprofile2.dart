@@ -236,10 +236,6 @@ class IConnectionProfile2 extends IInspectable {
       NetworkUsageStates states) {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<List<NetworkUsage>>();
-    final startTimeDateTime =
-        startTime.difference(DateTime.utc(1601, 01, 01)).inMicroseconds * 10;
-    final endTimeDateTime =
-        endTime.difference(DateTime.utc(1601, 01, 01)).inMicroseconds * 10;
 
     final hr = ptr.ref.vtable
             .elementAt(13)
@@ -263,8 +259,8 @@ class IConnectionProfile2 extends IInspectable {
                     NetworkUsageStates states,
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl,
-        startTimeDateTime,
-        endTimeDateTime,
+        startTime.toWinRTDateTime(),
+        endTime.toWinRTDateTime(),
         granularity.value,
         states,
         retValuePtr);
@@ -289,10 +285,6 @@ class IConnectionProfile2 extends IInspectable {
       DateTime startTime, DateTime endTime, NetworkUsageStates states) {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<List<ConnectivityInterval>>();
-    final startTimeDateTime =
-        startTime.difference(DateTime.utc(1601, 01, 01)).inMicroseconds * 10;
-    final endTimeDateTime =
-        endTime.difference(DateTime.utc(1601, 01, 01)).inMicroseconds * 10;
 
     final hr = ptr.ref.vtable
             .elementAt(14)
@@ -312,8 +304,12 @@ class IConnectionProfile2 extends IInspectable {
                     int startTime,
                     int endTime,
                     NetworkUsageStates states,
-                    Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl,
-        startTimeDateTime, endTimeDateTime, states, retValuePtr);
+                    Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl,
+        startTime.toWinRTDateTime(),
+        endTime.toWinRTDateTime(),
+        states,
+        retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);

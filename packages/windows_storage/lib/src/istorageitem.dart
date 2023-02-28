@@ -33,7 +33,7 @@ class IStorageItem extends IInspectable {
   Future<void> renameAsyncOverloadDefaultOptions(String desiredName) {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<void>();
-    final desiredNameHString = convertToHString(desiredName);
+    final desiredNameHString = desiredName.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -64,7 +64,7 @@ class IStorageItem extends IInspectable {
   Future<void> renameAsync(String desiredName, NameCollisionOption option) {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<void>();
-    final desiredNameHString = convertToHString(desiredName);
+    final desiredNameHString = desiredName.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(7)
@@ -269,8 +269,7 @@ class IStorageItem extends IInspectable {
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return DateTime.utc(1601, 01, 01)
-          .add(Duration(microseconds: retValuePtr.value ~/ 10));
+      return retValuePtr.toDartDateTime();
     } finally {
       free(retValuePtr);
     }

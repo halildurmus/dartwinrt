@@ -18,15 +18,15 @@ void main() {
   }
 
   test('createUri', () {
-    final uri = Uri.parse(
+    final dartUri = Uri.parse(
         'https://www.example.com:443/path/to/file.html?q1=v1&q2=v2#fragment');
-    final winrtUri = winrt_uri.Uri.createUri(uri.toString());
-    expect(winrtUri.rawUri, equals(uri.toString()));
-    expect(winrtUri.absoluteUri, equals(uri.toString()));
-    expect(winrtUri.absoluteCanonicalUri, equals(uri.toString()));
-    expect(winrtUri.displayIri, equals(uri.toString()));
-    expect(winrtUri.displayUri, equals(uri.toString()));
-    expect(winrtUri.toString(), equals(uri.toString()));
+    final winrtUri = winrt_uri.Uri.createUri(dartUri.toString());
+    expect(winrtUri.rawUri, equals(dartUri.toString()));
+    expect(winrtUri.absoluteUri, equals(dartUri.toString()));
+    expect(winrtUri.absoluteCanonicalUri, equals(dartUri.toString()));
+    expect(winrtUri.displayIri, equals(dartUri.toString()));
+    expect(winrtUri.displayUri, equals(dartUri.toString()));
+    expect(winrtUri.toString(), equals(dartUri.toString()));
     expect(winrtUri.schemeName, equals('https'));
     expect(winrtUri.host, equals('www.example.com'));
     expect(winrtUri.domain, equals('example.com'));

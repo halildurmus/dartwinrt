@@ -14,7 +14,6 @@ import 'dart:ffi';
 import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
-import 'package:windows_foundation/uri.dart' as winrt_uri;
 import 'package:windows_foundation/windows_foundation.dart';
 
 import 'toastcollection.dart';
@@ -34,11 +33,10 @@ class IToastCollectionFactory extends IInspectable {
   ToastCollection createInstance(String collectionId, String displayName,
       String launchArgs, Uri? iconUri) {
     final retValuePtr = calloc<COMObject>();
-    final collectionIdHString = convertToHString(collectionId);
-    final displayNameHString = convertToHString(displayName);
-    final launchArgsHString = convertToHString(launchArgs);
-    final iconUriUri =
-        iconUri == null ? null : winrt_uri.Uri.createUri(iconUri.toString());
+    final collectionIdHString = collectionId.toHString();
+    final displayNameHString = displayName.toHString();
+    final launchArgsHString = launchArgs.toHString();
+    final iconUriUri = iconUri?.toWinRTUri();
 
     final hr = ptr.ref.vtable
             .elementAt(6)

@@ -8,7 +8,7 @@ import 'dart:ffi';
 
 import '../../structs.g.dart';
 
-extension PointHelper on Pointer<Point> {
+extension PointArrayToListConversion on Pointer<Point> {
   /// Creates a [List] from `Pointer<Point>`.
   ///
   /// [length] must not be greater than the number of elements stored inside the

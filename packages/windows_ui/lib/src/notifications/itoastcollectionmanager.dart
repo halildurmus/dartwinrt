@@ -97,7 +97,7 @@ class IToastCollectionManager extends IInspectable {
   Future<ToastCollection?> getToastCollectionAsync(String collectionId) {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<ToastCollection?>();
-    final collectionIdHString = convertToHString(collectionId);
+    final collectionIdHString = collectionId.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(8)
@@ -131,7 +131,7 @@ class IToastCollectionManager extends IInspectable {
   Future<void> removeToastCollectionAsync(String collectionId) {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<void>();
-    final collectionIdHString = convertToHString(collectionId);
+    final collectionIdHString = collectionId.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(9)

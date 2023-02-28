@@ -48,7 +48,10 @@ class IGamepad extends IInspectable implements IGameController {
                     LPVTBL lpVtbl, Pointer<GamepadVibration> retValuePtr)>()(
         ptr.ref.lpVtbl, retValuePtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) {
+      free(retValuePtr);
+      throw WindowsException(hr);
+    }
 
     return retValuePtr.ref;
   }
@@ -84,7 +87,10 @@ class IGamepad extends IInspectable implements IGameController {
                     LPVTBL lpVtbl, Pointer<GamepadReading> retValuePtr)>()(
         ptr.ref.lpVtbl, retValuePtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) {
+      free(retValuePtr);
+      throw WindowsException(hr);
+    }
 
     return retValuePtr.ref;
   }

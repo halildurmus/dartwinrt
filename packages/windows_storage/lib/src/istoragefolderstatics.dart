@@ -33,7 +33,7 @@ class IStorageFolderStatics extends IInspectable {
   Future<StorageFolder?> getFolderFromPathAsync(String path) {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<StorageFolder?>();
-    final pathHString = convertToHString(path);
+    final pathHString = path.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(6)

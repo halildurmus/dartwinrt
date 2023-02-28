@@ -628,7 +628,7 @@ class _IVectorViewString extends IVectorView<String> {
   @override
   bool indexOf(String value, Pointer<Uint32> index) {
     final retValuePtr = calloc<Bool>();
-    final valueHString = convertToHString(value);
+    final valueHString = value.toHString();
 
     try {
       final hr =
@@ -1108,17 +1108,17 @@ class _IVectorViewUri extends IVectorView<Uri> {
       throw WindowsException(hr);
     }
 
-    final winrtUri = winrt_uri.Uri.fromRawPointer(retValuePtr);
-    final uriAsString = winrtUri.toString();
+    final winrtUri = retValuePtr.toWinRTUri();
+    final dartUri = winrtUri.toDartUri();
     winrtUri.release();
 
-    return Uri.parse(uriAsString);
+    return dartUri;
   }
 
   @override
   bool indexOf(Uri value, Pointer<Uint32> index) {
     final retValuePtr = calloc<Bool>();
-    final valueUri = winrt_uri.Uri.createUri(value.toString());
+    final valueUri = value.toWinRTUri();
 
     try {
       final hr =
@@ -1177,9 +1177,7 @@ class _IVectorViewUri extends IVectorView<Uri> {
       return retValuePtr.value;
     } finally {
       if (retValuePtr.value > 0) {
-        value.addAll(pArray
-            .toList(winrt_uri.Uri.fromRawPointer, length: valueSize)
-            .map((winrtUri) => Uri.parse(winrtUri.toString())));
+        value.addAll(pArray.toDartUriList(length: valueSize));
       }
       free(pArray);
       free(retValuePtr);

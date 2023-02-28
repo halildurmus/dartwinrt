@@ -47,13 +47,9 @@ void main() {
       final parameter = methodProjection.parameters.first;
       expect(parameter, isA<DateTimeParameterProjection>());
       expect(parameter.type, equals('DateTime'));
-      expect(
-        parameter.preamble,
-        equalsIgnoringWhitespace('final valueDateTime = '
-            'value.difference(DateTime.utc(1601, 01, 01)).inMicroseconds * 10;'),
-      );
+      expect(parameter.preamble, isEmpty);
       expect(parameter.postamble, isEmpty);
-      expect(parameter.localIdentifier, equals('valueDateTime'));
+      expect(parameter.localIdentifier, equals('value.toWinRTDateTime()'));
     });
 
     test('projects double', () {
@@ -73,10 +69,9 @@ void main() {
       final parameter = methodProjection.parameters.first;
       expect(parameter, isA<DurationParameterProjection>());
       expect(parameter.type, equals('Duration'));
-      expect(parameter.preamble,
-          equals('final valueDuration = value.inMicroseconds * 10;'));
+      expect(parameter.preamble, isEmpty);
       expect(parameter.postamble, isEmpty);
-      expect(parameter.localIdentifier, equals('valueDuration'));
+      expect(parameter.localIdentifier, equals('value.toWinRTDuration()'));
     });
 
     test('projects enum', () {
@@ -222,7 +217,7 @@ void main() {
           equalsIgnoringWhitespace('final handles = <int>[];\n'
               'final pArray = calloc<HSTRING>(value.length);\n'
               'for (var i = 0; i < value.length; i++) {\n'
-              '  pArray[i] = convertToHString(value.elementAt(i));\n'
+              '  pArray[i] = value.elementAt(i).toHString();\n'
               '  handles.add(pArray[i]);\n'
               '}'));
       expect(
@@ -259,7 +254,7 @@ void main() {
       expect(parameter, isA<StringParameterProjection>());
       expect(parameter.type, equals('String'));
       expect(parameter.preamble,
-          equals('final valueHString = convertToHString(value);'));
+          equals('final valueHString = value.toHString();'));
       expect(parameter.postamble, equals('WindowsDeleteString(valueHString);'));
       expect(parameter.localIdentifier, equals('valueHString'));
     });
@@ -281,10 +276,7 @@ void main() {
       final parameter = methodProjection.parameters.first;
       expect(parameter, isA<UriParameterProjection>());
       expect(parameter.type, equals('Uri?'));
-      expect(
-          parameter.preamble,
-          equals(
-              'final uriUri = uri == null ? null : winrt_uri.Uri.createUri(uri.toString());'));
+      expect(parameter.preamble, equals('final uriUri = uri?.toWinRTUri();'));
       expect(parameter.postamble, equals('uriUri?.release();'));
       expect(parameter.localIdentifier,
           equals('uriUri == null ? nullptr : uriUri.ptr.ref.lpVtbl'));

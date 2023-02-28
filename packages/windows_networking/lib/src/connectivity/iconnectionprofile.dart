@@ -198,10 +198,6 @@ class IConnectionProfile extends IInspectable {
 
   DataUsage? getLocalUsage(DateTime StartTime, DateTime EndTime) {
     final retValuePtr = calloc<COMObject>();
-    final StartTimeDateTime =
-        StartTime.difference(DateTime.utc(1601, 01, 01)).inMicroseconds * 10;
-    final EndTimeDateTime =
-        EndTime.difference(DateTime.utc(1601, 01, 01)).inMicroseconds * 10;
 
     final hr = ptr.ref.vtable
             .elementAt(12)
@@ -213,8 +209,8 @@ class IConnectionProfile extends IInspectable {
             .value
             .asFunction<
                 int Function(LPVTBL lpVtbl, int StartTime, int EndTime,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, StartTimeDateTime, EndTimeDateTime, retValuePtr);
+                    Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl,
+        StartTime.toWinRTDateTime(), EndTime.toWinRTDateTime(), retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -232,10 +228,6 @@ class IConnectionProfile extends IInspectable {
   DataUsage? getLocalUsagePerRoamingStates(
       DateTime StartTime, DateTime EndTime, RoamingStates States) {
     final retValuePtr = calloc<COMObject>();
-    final StartTimeDateTime =
-        StartTime.difference(DateTime.utc(1601, 01, 01)).inMicroseconds * 10;
-    final EndTimeDateTime =
-        EndTime.difference(DateTime.utc(1601, 01, 01)).inMicroseconds * 10;
 
     final hr = ptr.ref.vtable
             .elementAt(13)
@@ -253,8 +245,8 @@ class IConnectionProfile extends IInspectable {
                 int Function(LPVTBL lpVtbl, int StartTime, int EndTime,
                     int States, Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl,
-        StartTimeDateTime,
-        EndTimeDateTime,
+        StartTime.toWinRTDateTime(),
+        EndTime.toWinRTDateTime(),
         States.value,
         retValuePtr);
 

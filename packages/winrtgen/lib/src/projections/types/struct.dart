@@ -14,7 +14,7 @@ mixin _StructMixin on MethodProjection {
     final retValuePtr = calloc<${returnTypeProjection.nativeType}>();
     $parametersPreamble
 
-    ${ffiCall()}
+    ${ffiCall(freeRetValOnFailure: true)}
 
     return retValuePtr.ref;
   }

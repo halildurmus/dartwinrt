@@ -34,8 +34,7 @@ class IStorageProvider2 extends IInspectable implements IStorageProvider {
       String propertyCanonicalName) {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<bool>();
-    final propertyCanonicalNameHString =
-        convertToHString(propertyCanonicalName);
+    final propertyCanonicalNameHString = propertyCanonicalName.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(6)

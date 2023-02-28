@@ -86,7 +86,7 @@ class IXmlNamedNodeMap extends IInspectable
 
   IXmlNode? getNamedItem(String name) {
     final retValuePtr = calloc<COMObject>();
-    final nameHString = convertToHString(name);
+    final nameHString = name.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(8)
@@ -148,7 +148,7 @@ class IXmlNamedNodeMap extends IInspectable
 
   IXmlNode? removeNamedItem(String name) {
     final retValuePtr = calloc<COMObject>();
-    final nameHString = convertToHString(name);
+    final nameHString = name.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(10)
@@ -181,7 +181,7 @@ class IXmlNamedNodeMap extends IInspectable
   IXmlNode? getNamedItemNS(Object? namespaceUri, String name) {
     final retValuePtr = calloc<COMObject>();
     final namespaceUriPtr = namespaceUri?.intoBox().ref.lpVtbl ?? nullptr;
-    final nameHString = convertToHString(name);
+    final nameHString = name.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(11)
@@ -214,7 +214,7 @@ class IXmlNamedNodeMap extends IInspectable
   IXmlNode? removeNamedItemNS(Object? namespaceUri, String name) {
     final retValuePtr = calloc<COMObject>();
     final namespaceUriPtr = namespaceUri?.intoBox().ref.lpVtbl ?? nullptr;
-    final nameHString = convertToHString(name);
+    final nameHString = name.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(12)

@@ -32,7 +32,7 @@ class IHostNameFactory extends IInspectable {
 
   HostName createHostName(String hostName) {
     final retValuePtr = calloc<COMObject>();
-    final hostNameHString = convertToHString(hostName);
+    final hostNameHString = hostName.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(6)

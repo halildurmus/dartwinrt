@@ -14,7 +14,6 @@ import 'dart:ffi';
 import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
-import 'package:windows_foundation/uri.dart' as winrt_uri;
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// @nodoc
@@ -80,7 +79,7 @@ class IToastCollection extends IInspectable {
   }
 
   set displayName(String value) {
-    final hstr = convertToHString(value);
+    final hString = value.toHString();
 
     try {
       final hr = ptr.ref.vtable
@@ -91,11 +90,11 @@ class IToastCollection extends IInspectable {
                           HRESULT Function(LPVTBL lpVtbl, IntPtr value)>>>()
               .value
               .asFunction<int Function(LPVTBL lpVtbl, int value)>()(
-          ptr.ref.lpVtbl, hstr);
+          ptr.ref.lpVtbl, hString);
 
       if (FAILED(hr)) throw WindowsException(hr);
     } finally {
-      WindowsDeleteString(hstr);
+      WindowsDeleteString(hString);
     }
   }
 
@@ -125,7 +124,7 @@ class IToastCollection extends IInspectable {
   }
 
   set launchArgs(String value) {
-    final hstr = convertToHString(value);
+    final hString = value.toHString();
 
     try {
       final hr = ptr.ref.vtable
@@ -136,11 +135,11 @@ class IToastCollection extends IInspectable {
                           HRESULT Function(LPVTBL lpVtbl, IntPtr value)>>>()
               .value
               .asFunction<int Function(LPVTBL lpVtbl, int value)>()(
-          ptr.ref.lpVtbl, hstr);
+          ptr.ref.lpVtbl, hString);
 
       if (FAILED(hr)) throw WindowsException(hr);
     } finally {
-      WindowsDeleteString(hstr);
+      WindowsDeleteString(hString);
     }
   }
 
@@ -169,16 +168,15 @@ class IToastCollection extends IInspectable {
       return null;
     }
 
-    final winrtUri = winrt_uri.Uri.fromRawPointer(retValuePtr);
-    final uriAsString = winrtUri.toString();
+    final winrtUri = retValuePtr.toWinRTUri();
+    final dartUri = winrtUri.toDartUri();
     winrtUri.release();
 
-    return Uri.parse(uriAsString);
+    return dartUri;
   }
 
   set icon(Uri? value) {
-    final winrtUri =
-        value == null ? null : winrt_uri.Uri.createUri(value.toString());
+    final winrtUri = value?.toWinRTUri();
 
     try {
       final hr = ptr.ref.vtable

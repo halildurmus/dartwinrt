@@ -65,8 +65,7 @@ class _IReferenceDateTime extends IReference<DateTime?> {
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return DateTime.utc(1601, 01, 01)
-          .add(Duration(microseconds: retValuePtr.value ~/ 10));
+      return retValuePtr.toDartDateTime();
     } finally {
       free(retValuePtr);
     }
@@ -128,7 +127,7 @@ class _IReferenceDuration extends IReference<Duration?> {
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return Duration(microseconds: retValuePtr.value ~/ 10);
+      return retValuePtr.toDartDuration();
     } finally {
       free(retValuePtr);
     }
@@ -311,7 +310,10 @@ class _IReferencePoint extends IReference<Point?> {
                 int Function(LPVTBL lpVtbl, Pointer<Point> retValuePtr)>()(
         ptr.ref.lpVtbl, retValuePtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) {
+      free(retValuePtr);
+      throw WindowsException(hr);
+    }
 
     return retValuePtr.ref;
   }
@@ -338,7 +340,10 @@ class _IReferenceRect extends IReference<Rect?> {
                 int Function(LPVTBL lpVtbl, Pointer<Rect> retValuePtr)>()(
         ptr.ref.lpVtbl, retValuePtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) {
+      free(retValuePtr);
+      throw WindowsException(hr);
+    }
 
     return retValuePtr.ref;
   }
@@ -365,7 +370,10 @@ class _IReferenceSize extends IReference<Size?> {
                 int Function(LPVTBL lpVtbl, Pointer<Size> retValuePtr)>()(
         ptr.ref.lpVtbl, retValuePtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) {
+      free(retValuePtr);
+      throw WindowsException(hr);
+    }
 
     return retValuePtr.ref;
   }

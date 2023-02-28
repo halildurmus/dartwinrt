@@ -9,7 +9,10 @@ import 'dart:ffi';
 import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
 
-extension COMObjectHelper on Pointer<COMObject> {
+import '../../uri.dart' as winrt_uri;
+import 'uri_conversions.dart';
+
+extension COMObjectArrayToListConversion on Pointer<COMObject> {
   /// Creates a [List] from `Pointer<COMObject>`.
   ///
   /// [T] must be `IInspectable` (e.g. `HostName`).
@@ -36,4 +39,9 @@ extension COMObjectHelper on Pointer<COMObject> {
 
     return list;
   }
+
+  List<Uri> toDartUriList({int length = 1}) =>
+      toList(winrt_uri.Uri.fromRawPointer, length: length)
+          .map((winrtUri) => winrtUri.toDartUri())
+          .toList();
 }

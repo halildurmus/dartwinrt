@@ -12,8 +12,6 @@ mixin _DurationMixin on MethodProjection {
   @override
   String get returnType => 'Duration';
 
-  // In WinRT, Duration is represented as a time period expressed in
-  // 100-nanosecond units.
   @override
   String get methodDeclaration => '''
   $methodHeader {
@@ -23,7 +21,7 @@ mixin _DurationMixin on MethodProjection {
     try {
       ${ffiCall()}
 
-      return Duration(microseconds: retValuePtr.value ~/ 10);
+      return retValuePtr.toDartDuration();
     } finally {
       $parametersPostamble
       free(retValuePtr);
@@ -49,9 +47,7 @@ class DurationSetterProjection extends SetterProjection {
   @override
   String get methodDeclaration => '''
   $methodHeader {
-    final duration = value.inMicroseconds * 10;
-
-    ${ffiCall(params: 'duration')}
+    ${ffiCall(params: 'value.toWinRTDuration()')}
   }
 ''';
 }
@@ -64,13 +60,13 @@ class DurationParameterProjection extends ParameterProjection {
   String get type => 'Duration';
 
   @override
-  String get preamble => 'final ${name}Duration = $name.inMicroseconds * 10;';
+  String get preamble => '';
 
   @override
   String get postamble => '';
 
   @override
-  String get localIdentifier => '${name}Duration';
+  String get localIdentifier => '$identifier.toWinRTDuration()';
 }
 
 /// Parameter projection for `List<Duration>` parameters.
@@ -84,7 +80,7 @@ class DurationListParameterProjection extends DefaultListParameterProjection {
   String get passArrayPreamble => '''
     final pArray = calloc<Int64>(value.length);
     for (var i = 0; i < value.length; i++) {
-      pArray[i] = value.elementAt(i).inMicroseconds * 10;
+      pArray[i] = value.elementAt(i).toWinRTDuration();
     }''';
 
   @override
@@ -92,7 +88,7 @@ class DurationListParameterProjection extends DefaultListParameterProjection {
     if (retValuePtr.value > 0) {
       value.addAll(pArray
           .toList(length: value.length)
-          .map((value) => Duration(microseconds: value ~/ 10)));
+          .map((value) => value.toDartDuration()));
     }
     free(pArray);''';
 
@@ -100,7 +96,7 @@ class DurationListParameterProjection extends DefaultListParameterProjection {
   String get receiveArrayPostamble => '''
     value.addAll(pArray.value
         .toList(length: pValueSize.value)
-        .map((value) => Duration(microseconds: value ~/ 10)));
+        .map((value) => value.toDartDuration()));
     free(pValueSize);
     free(pArray);''';
 }

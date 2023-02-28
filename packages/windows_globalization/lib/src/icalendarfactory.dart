@@ -69,8 +69,8 @@ class ICalendarFactory extends IInspectable {
         .ptr
         .ref
         .lpVtbl;
-    final calendarHString = convertToHString(calendar);
-    final clockHString = convertToHString(clock);
+    final calendarHString = calendar.toHString();
+    final clockHString = clock.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(7)

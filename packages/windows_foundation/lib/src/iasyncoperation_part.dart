@@ -250,11 +250,11 @@ class _IAsyncOperationUri extends IAsyncOperation<Uri?> {
       return null;
     }
 
-    final winrtUri = winrt_uri.Uri.fromRawPointer(retValuePtr);
-    final uriAsString = winrtUri.toString();
+    final winrtUri = retValuePtr.toWinRTUri();
+    final dartUri = winrtUri.toDartUri();
     winrtUri.release();
 
-    return Uri.parse(uriAsString);
+    return dartUri;
   }
 }
 

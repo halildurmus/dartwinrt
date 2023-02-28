@@ -32,7 +32,7 @@ class IPhoneNumberFormatterStatics extends IInspectable {
           interface.toInterface(IID_IPhoneNumberFormatterStatics));
 
   void tryCreate(String regionCode, PhoneNumberFormatter phoneNumber) {
-    final regionCodeHString = convertToHString(regionCode);
+    final regionCodeHString = regionCode.toHString();
     final phoneNumberPtr = phoneNumber.ptr;
 
     final hr = ptr.ref.vtable
@@ -55,7 +55,7 @@ class IPhoneNumberFormatterStatics extends IInspectable {
 
   int getCountryCodeForRegion(String regionCode) {
     final retValuePtr = calloc<Int32>();
-    final regionCodeHString = convertToHString(regionCode);
+    final regionCodeHString = regionCode.toHString();
 
     try {
       final hr = ptr.ref.vtable
@@ -83,7 +83,7 @@ class IPhoneNumberFormatterStatics extends IInspectable {
   String getNationalDirectDialingPrefixForRegion(
       String regionCode, bool stripNonDigit) {
     final retValuePtr = calloc<HSTRING>();
-    final regionCodeHString = convertToHString(regionCode);
+    final regionCodeHString = regionCode.toHString();
 
     try {
       final hr =
@@ -116,7 +116,7 @@ class IPhoneNumberFormatterStatics extends IInspectable {
 
   String wrapWithLeftToRightMarkers(String number) {
     final retValuePtr = calloc<HSTRING>();
-    final numberHString = convertToHString(number);
+    final numberHString = number.toHString();
 
     try {
       final hr = ptr.ref.vtable

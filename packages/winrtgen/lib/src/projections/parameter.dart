@@ -133,7 +133,6 @@ abstract class ParameterProjection {
   /// call (e.g. `today` -> `todayDateTime`)
   String get localIdentifier;
 
-  // TODO: Handle exceptions
   @override
-  String toString() => '$name (${typeProjection.nativeType})';
+  String toString() => '$identifier (${typeProjection.nativeType})';
 }

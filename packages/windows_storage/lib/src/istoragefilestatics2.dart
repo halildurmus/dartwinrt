@@ -35,7 +35,7 @@ class IStorageFileStatics2 extends IInspectable {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<StorageFile?>();
     final userPtr = user == null ? nullptr : user.ptr.ref.lpVtbl;
-    final pathHString = convertToHString(path);
+    final pathHString = path.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(6)

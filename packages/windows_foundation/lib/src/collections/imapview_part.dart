@@ -331,7 +331,7 @@ class _IMapViewStringInspectable<V> extends IMapView<String, V> {
   @override
   V lookup(String key) {
     final retValuePtr = calloc<COMObject>();
-    final keyHString = convertToHString(key);
+    final keyHString = key.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -364,7 +364,7 @@ class _IMapViewStringInspectable<V> extends IMapView<String, V> {
   @override
   bool hasKey(String key) {
     final retValuePtr = calloc<Bool>();
-    final keyHString = convertToHString(key);
+    final keyHString = key.toHString();
 
     try {
       final hr = ptr.ref.vtable
@@ -396,7 +396,7 @@ class _IMapViewStringObject extends IMapView<String, Object?> {
   @override
   Object? lookup(String key) {
     final retValuePtr = calloc<COMObject>();
-    final keyHString = convertToHString(key);
+    final keyHString = key.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -429,7 +429,7 @@ class _IMapViewStringObject extends IMapView<String, Object?> {
   @override
   bool hasKey(String key) {
     final retValuePtr = calloc<Bool>();
-    final keyHString = convertToHString(key);
+    final keyHString = key.toHString();
 
     try {
       final hr = ptr.ref.vtable
@@ -461,7 +461,7 @@ class _IMapViewStringString extends IMapView<String, String> {
   @override
   String lookup(String key) {
     final retValuePtr = calloc<HSTRING>();
-    final keyHString = convertToHString(key);
+    final keyHString = key.toHString();
 
     try {
       final hr = ptr.ref.vtable
@@ -490,7 +490,7 @@ class _IMapViewStringString extends IMapView<String, String> {
   @override
   bool hasKey(String key) {
     final retValuePtr = calloc<Bool>();
-    final keyHString = convertToHString(key);
+    final keyHString = key.toHString();
 
     try {
       final hr = ptr.ref.vtable
@@ -523,7 +523,7 @@ class _IMapViewStringWinRTEnum<V> extends IMapView<String, V> {
   @override
   V lookup(String key) {
     final retValuePtr = calloc<Int32>();
-    final keyHString = convertToHString(key);
+    final keyHString = key.toHString();
 
     try {
       final hr = ptr.ref.vtable
@@ -551,7 +551,7 @@ class _IMapViewStringWinRTEnum<V> extends IMapView<String, V> {
   @override
   bool hasKey(String key) {
     final retValuePtr = calloc<Bool>();
-    final keyHString = convertToHString(key);
+    final keyHString = key.toHString();
 
     try {
       final hr = ptr.ref.vtable
@@ -584,7 +584,7 @@ class _IMapViewStringWinRTFlagsEnum<V> extends IMapView<String, V> {
   @override
   V lookup(String key) {
     final retValuePtr = calloc<Uint32>();
-    final keyHString = convertToHString(key);
+    final keyHString = key.toHString();
 
     try {
       final hr = ptr.ref.vtable
@@ -612,7 +612,7 @@ class _IMapViewStringWinRTFlagsEnum<V> extends IMapView<String, V> {
   @override
   bool hasKey(String key) {
     final retValuePtr = calloc<Bool>();
-    final keyHString = convertToHString(key);
+    final keyHString = key.toHString();
 
     try {
       final hr = ptr.ref.vtable

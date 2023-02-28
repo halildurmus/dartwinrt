@@ -32,7 +32,7 @@ class IPhoneNumberInfoFactory extends IInspectable {
 
   PhoneNumberInfo create(String number) {
     final retValuePtr = calloc<COMObject>();
-    final numberHString = convertToHString(number);
+    final numberHString = number.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
