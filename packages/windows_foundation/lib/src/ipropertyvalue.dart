@@ -396,7 +396,7 @@ class IPropertyValue extends IInspectable {
   }
 
   DateTime getDateTime() {
-    final retValuePtr = calloc<Uint64>();
+    final retValuePtr = calloc<Int64>();
 
     try {
       final hr = ptr.ref.vtable
@@ -405,10 +405,10 @@ class IPropertyValue extends IInspectable {
                   Pointer<
                       NativeFunction<
                           HRESULT Function(
-                              LPVTBL lpVtbl, Pointer<Uint64> retValuePtr)>>>()
+                              LPVTBL lpVtbl, Pointer<Int64> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(LPVTBL lpVtbl, Pointer<Uint64> retValuePtr)>()(
+                  int Function(LPVTBL lpVtbl, Pointer<Int64> retValuePtr)>()(
           ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
@@ -421,7 +421,7 @@ class IPropertyValue extends IInspectable {
   }
 
   Duration getTimeSpan() {
-    final retValuePtr = calloc<Uint64>();
+    final retValuePtr = calloc<Int64>();
 
     try {
       final hr = ptr.ref.vtable
@@ -430,10 +430,10 @@ class IPropertyValue extends IInspectable {
                   Pointer<
                       NativeFunction<
                           HRESULT Function(
-                              LPVTBL lpVtbl, Pointer<Uint64> retValuePtr)>>>()
+                              LPVTBL lpVtbl, Pointer<Int64> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(LPVTBL lpVtbl, Pointer<Uint64> retValuePtr)>()(
+                  int Function(LPVTBL lpVtbl, Pointer<Int64> retValuePtr)>()(
           ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
@@ -912,7 +912,7 @@ class IPropertyValue extends IInspectable {
 
   void getDateTimeArray(List<DateTime> value) {
     final pValueSize = calloc<Uint32>();
-    final pArray = calloc<Pointer<Uint64>>();
+    final pArray = calloc<Pointer<Int64>>();
 
     final hr =
         ptr.ref.vtable
@@ -923,11 +923,11 @@ class IPropertyValue extends IInspectable {
                             HRESULT Function(
                                 LPVTBL lpVtbl,
                                 Pointer<Uint32> valueSize,
-                                Pointer<Pointer<Uint64>> value)>>>()
+                                Pointer<Pointer<Int64>> value)>>>()
                 .value
                 .asFunction<
                     int Function(LPVTBL lpVtbl, Pointer<Uint32> valueSize,
-                        Pointer<Pointer<Uint64>> value)>()(
+                        Pointer<Pointer<Int64>> value)>()(
             ptr.ref.lpVtbl, pValueSize, pArray);
 
     if (FAILED(hr)) throw WindowsException(hr);
@@ -940,7 +940,7 @@ class IPropertyValue extends IInspectable {
 
   void getTimeSpanArray(List<Duration> value) {
     final pValueSize = calloc<Uint32>();
-    final pArray = calloc<Pointer<Uint64>>();
+    final pArray = calloc<Pointer<Int64>>();
 
     final hr =
         ptr.ref.vtable
@@ -951,11 +951,11 @@ class IPropertyValue extends IInspectable {
                             HRESULT Function(
                                 LPVTBL lpVtbl,
                                 Pointer<Uint32> valueSize,
-                                Pointer<Pointer<Uint64>> value)>>>()
+                                Pointer<Pointer<Int64>> value)>>>()
                 .value
                 .asFunction<
                     int Function(LPVTBL lpVtbl, Pointer<Uint32> valueSize,
-                        Pointer<Pointer<Uint64>> value)>()(
+                        Pointer<Pointer<Int64>> value)>()(
             ptr.ref.lpVtbl, pValueSize, pArray);
 
     if (FAILED(hr)) throw WindowsException(hr);

@@ -95,7 +95,7 @@ class IImageProperties extends IInspectable
   }
 
   DateTime get dateTaken {
-    final retValuePtr = calloc<Uint64>();
+    final retValuePtr = calloc<Int64>();
 
     try {
       final hr = ptr.ref.vtable
@@ -104,10 +104,10 @@ class IImageProperties extends IInspectable
                   Pointer<
                       NativeFunction<
                           HRESULT Function(
-                              LPVTBL lpVtbl, Pointer<Uint64> retValuePtr)>>>()
+                              LPVTBL lpVtbl, Pointer<Int64> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(LPVTBL lpVtbl, Pointer<Uint64> retValuePtr)>()(
+                  int Function(LPVTBL lpVtbl, Pointer<Int64> retValuePtr)>()(
           ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
@@ -124,14 +124,14 @@ class IImageProperties extends IInspectable
         value.difference(DateTime.utc(1601, 01, 01)).inMicroseconds * 10;
 
     final hr = ptr.ref.vtable
-            .elementAt(10)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, Uint64 value)>>>()
-            .value
-            .asFunction<int Function(LPVTBL lpVtbl, int value)>()(
-        ptr.ref.lpVtbl, dateTimeOffset);
+        .elementAt(10)
+        .cast<
+            Pointer<
+                NativeFunction<HRESULT Function(LPVTBL lpVtbl, Int64 value)>>>()
+        .value
+        .asFunction<
+            int Function(
+                LPVTBL lpVtbl, int value)>()(ptr.ref.lpVtbl, dateTimeOffset);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }

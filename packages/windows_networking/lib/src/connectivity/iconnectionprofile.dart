@@ -208,8 +208,8 @@ class IConnectionProfile extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, Uint64 StartTime,
-                            Uint64 EndTime, Pointer<COMObject> retValuePtr)>>>()
+                        HRESULT Function(LPVTBL lpVtbl, Int64 StartTime,
+                            Int64 EndTime, Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
                 int Function(LPVTBL lpVtbl, int StartTime, int EndTime,
@@ -244,8 +244,8 @@ class IConnectionProfile extends IInspectable {
                     NativeFunction<
                         HRESULT Function(
                             LPVTBL lpVtbl,
-                            Uint64 StartTime,
-                            Uint64 EndTime,
+                            Int64 StartTime,
+                            Int64 EndTime,
                             Uint32 States,
                             Pointer<COMObject> retValuePtr)>>>()
             .value

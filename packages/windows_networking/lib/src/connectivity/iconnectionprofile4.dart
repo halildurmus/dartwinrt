@@ -47,8 +47,8 @@ class IConnectionProfile4 extends IInspectable {
                     NativeFunction<
                         HRESULT Function(
                             LPVTBL lpVtbl,
-                            Uint64 startTime,
-                            Uint64 endTime,
+                            Int64 startTime,
+                            Int64 endTime,
                             NetworkUsageStates states,
                             Pointer<COMObject> retValuePtr)>>>()
             .value

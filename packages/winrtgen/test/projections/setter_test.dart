@@ -74,7 +74,7 @@ void main() {
           'Windows.Storage.FileProperties.ImageProperties', 'put_DateTaken');
       expect(projection, isA<DateTimeSetterProjection>());
       expect(projection.nativePrototype,
-          equals('HRESULT Function(LPVTBL lpVtbl, Uint64 value)'));
+          equals('HRESULT Function(LPVTBL lpVtbl, Int64 value)'));
       expect(projection.dartPrototype,
           equals('int Function(LPVTBL lpVtbl, int value)'));
       expect(projection.methodHeader, equals('set dateTaken(DateTime value)'));
@@ -109,7 +109,7 @@ void main() {
           'Windows.Media.Playback.MediaPlaybackSession', 'put_Position');
       expect(projection, isA<DurationSetterProjection>());
       expect(projection.nativePrototype,
-          equals('HRESULT Function(LPVTBL lpVtbl, Uint64 value)'));
+          equals('HRESULT Function(LPVTBL lpVtbl, Int64 value)'));
       expect(projection.dartPrototype,
           equals('int Function(LPVTBL lpVtbl, int value)'));
       expect(projection.methodHeader, equals('set position(Duration value)'));

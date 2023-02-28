@@ -10,13 +10,13 @@ import '../models/models.dart';
 class TypeTuple {
   const TypeTuple(this.nativeType, this.dartType, {this.attribute});
 
-  /// The type, as represented in the native function (e.g. `Uint64`)
+  /// The type, as represented in the native function (e.g. `Int64`)
   final String nativeType;
 
   /// The type, as represented in the Dart function (e.g. `int`)
   final String dartType;
 
-  /// The type, as represented as a struct attribute (e.g. `@Uint64()`)
+  /// The type, as represented as a struct attribute (e.g. `@Int64()`)
   final String? attribute;
 }
 
@@ -41,13 +41,13 @@ const baseNativeMapping = <BaseType, TypeTuple>{
 const specialTypes = <String, TypeTuple>{
   'System.Guid': TypeTuple('GUID', 'GUID'),
   'Windows.Foundation.DateTime':
-      TypeTuple('Uint64', 'int', attribute: '@Uint64()'),
+      TypeTuple('Int64', 'int', attribute: '@Int64()'),
   'Windows.Foundation.EventRegistrationToken':
       TypeTuple('IntPtr', 'int', attribute: '@IntPtr()'),
   'Windows.Foundation.HResult':
       TypeTuple('Int32', 'int', attribute: '@Int32()'),
   'Windows.Foundation.TimeSpan':
-      TypeTuple('Uint64', 'int', attribute: '@Uint64()'),
+      TypeTuple('Int64', 'int', attribute: '@Int64()'),
 };
 
 class TypeProjection {
@@ -60,13 +60,13 @@ class TypeProjection {
   /// Whether this type belongs to a parameter.
   final bool isParameter;
 
-  /// The type, as represented in the native function (e.g. `Uint64`)
+  /// The type, as represented in the native function (e.g. `Int64`)
   String get nativeType => projection.nativeType;
 
   /// The type, as represented in the Dart function (e.g. `int`)
   String get dartType => projection.dartType;
 
-  /// The type, as represented as a struct attribute (e.g. `@Uint64()`)
+  /// The type, as represented as a struct attribute (e.g. `@Int64()`)
   String get attribute => projection.attribute ?? '';
 
   /// The projection type of this type (e.g. `ProjectionType.dateTime`).

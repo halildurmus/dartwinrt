@@ -39,21 +39,22 @@ class IScheduledToastNotificationFactory extends IInspectable {
     final deliveryTimeDateTime =
         deliveryTime.difference(DateTime.utc(1601, 01, 01)).inMicroseconds * 10;
 
-    final hr = ptr.ref.vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            LPVTBL lpVtbl,
-                            LPVTBL content,
-                            Uint64 deliveryTime,
-                            Pointer<COMObject> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(LPVTBL lpVtbl, LPVTBL content, int deliveryTime,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, contentPtr, deliveryTimeDateTime, retValuePtr);
+    final hr =
+        ptr.ref.vtable
+                .elementAt(6)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                LPVTBL lpVtbl,
+                                LPVTBL content,
+                                Int64 deliveryTime,
+                                Pointer<COMObject> retValuePtr)>>>()
+                .value
+                .asFunction<
+                    int Function(LPVTBL lpVtbl, LPVTBL content,
+                        int deliveryTime, Pointer<COMObject> retValuePtr)>()(
+            ptr.ref.lpVtbl, contentPtr, deliveryTimeDateTime, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -82,8 +83,8 @@ class IScheduledToastNotificationFactory extends IInspectable {
                         HRESULT Function(
                             LPVTBL lpVtbl,
                             LPVTBL content,
-                            Uint64 deliveryTime,
-                            Uint64 snoozeInterval,
+                            Int64 deliveryTime,
+                            Int64 snoozeInterval,
                             Uint32 maximumSnoozeCount,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
