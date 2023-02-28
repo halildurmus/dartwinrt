@@ -408,7 +408,7 @@ class IPropertyValueStatics extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, Uint64 value,
+                        HRESULT Function(LPVTBL lpVtbl, Int64 value,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
@@ -433,7 +433,7 @@ class IPropertyValueStatics extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, Uint64 value,
+                        HRESULT Function(LPVTBL lpVtbl, Int64 value,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
@@ -1011,7 +1011,7 @@ class IPropertyValueStatics extends IInspectable {
   IPropertyValue createDateTimeArray(List<DateTime> value) {
     final retValuePtr = calloc<COMObject>();
 
-    final pArray = calloc<Uint64>(value.length);
+    final pArray = calloc<Int64>(value.length);
     for (var i = 0; i < value.length; i++) {
       pArray[i] = value
               .elementAt(i)
@@ -1028,12 +1028,12 @@ class IPropertyValueStatics extends IInspectable {
                         HRESULT Function(
                             LPVTBL lpVtbl,
                             Uint32 valueSize,
-                            Pointer<Uint64> value,
+                            Pointer<Int64> value,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL lpVtbl, int valueSize,
-                    Pointer<Uint64> value, Pointer<COMObject> retValuePtr)>()(
+                int Function(LPVTBL lpVtbl, int valueSize, Pointer<Int64> value,
+                    Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, value.length, pArray, retValuePtr);
 
     if (FAILED(hr)) {
@@ -1049,7 +1049,7 @@ class IPropertyValueStatics extends IInspectable {
   IPropertyValue createTimeSpanArray(List<Duration> value) {
     final retValuePtr = calloc<COMObject>();
 
-    final pArray = calloc<Uint64>(value.length);
+    final pArray = calloc<Int64>(value.length);
     for (var i = 0; i < value.length; i++) {
       pArray[i] = value.elementAt(i).inMicroseconds * 10;
     }
@@ -1062,12 +1062,12 @@ class IPropertyValueStatics extends IInspectable {
                         HRESULT Function(
                             LPVTBL lpVtbl,
                             Uint32 valueSize,
-                            Pointer<Uint64> value,
+                            Pointer<Int64> value,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL lpVtbl, int valueSize,
-                    Pointer<Uint64> value, Pointer<COMObject> retValuePtr)>()(
+                int Function(LPVTBL lpVtbl, int valueSize, Pointer<Int64> value,
+                    Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, value.length, pArray, retValuePtr);
 
     if (FAILED(hr)) {

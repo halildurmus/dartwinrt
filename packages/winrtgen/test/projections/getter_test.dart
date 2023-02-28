@@ -90,9 +90,9 @@ void main() {
       expect(
           projection.nativePrototype,
           equals(
-              'HRESULT Function(LPVTBL lpVtbl, Pointer<Uint64> retValuePtr)'));
+              'HRESULT Function(LPVTBL lpVtbl, Pointer<Int64> retValuePtr)'));
       expect(projection.dartPrototype,
-          equals('int Function(LPVTBL lpVtbl, Pointer<Uint64> retValuePtr)'));
+          equals('int Function(LPVTBL lpVtbl, Pointer<Int64> retValuePtr)'));
       expect(projection.methodHeader, equals('DateTime get dateModified'));
     });
 
@@ -136,9 +136,9 @@ void main() {
       expect(
           projection.nativePrototype,
           equals(
-              'HRESULT Function(LPVTBL lpVtbl, Pointer<Uint64> retValuePtr)'));
+              'HRESULT Function(LPVTBL lpVtbl, Pointer<Int64> retValuePtr)'));
       expect(projection.dartPrototype,
-          equals('int Function(LPVTBL lpVtbl, Pointer<Uint64> retValuePtr)'));
+          equals('int Function(LPVTBL lpVtbl, Pointer<Int64> retValuePtr)'));
       expect(projection.methodHeader,
           equals('Duration get remainingDischargeTime'));
     });

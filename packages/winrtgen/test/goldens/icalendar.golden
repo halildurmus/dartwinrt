@@ -238,7 +238,7 @@ class ICalendar extends IInspectable {
   }
 
   DateTime getDateTime() {
-    final retValuePtr = calloc<Uint64>();
+    final retValuePtr = calloc<Int64>();
 
     try {
       final hr = ptr.ref.vtable
@@ -247,10 +247,10 @@ class ICalendar extends IInspectable {
                   Pointer<
                       NativeFunction<
                           HRESULT Function(
-                              LPVTBL lpVtbl, Pointer<Uint64> retValuePtr)>>>()
+                              LPVTBL lpVtbl, Pointer<Int64> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(LPVTBL lpVtbl, Pointer<Uint64> retValuePtr)>()(
+                  int Function(LPVTBL lpVtbl, Pointer<Int64> retValuePtr)>()(
           ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
@@ -267,14 +267,14 @@ class ICalendar extends IInspectable {
         value.difference(DateTime.utc(1601, 01, 01)).inMicroseconds * 10;
 
     final hr = ptr.ref.vtable
-            .elementAt(17)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, Uint64 value)>>>()
-            .value
-            .asFunction<int Function(LPVTBL lpVtbl, int value)>()(
-        ptr.ref.lpVtbl, valueDateTime);
+        .elementAt(17)
+        .cast<
+            Pointer<
+                NativeFunction<HRESULT Function(LPVTBL lpVtbl, Int64 value)>>>()
+        .value
+        .asFunction<
+            int Function(
+                LPVTBL lpVtbl, int value)>()(ptr.ref.lpVtbl, valueDateTime);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
@@ -1939,7 +1939,7 @@ class ICalendar extends IInspectable {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(LPVTBL lpVtbl, Uint64 other,
+                          HRESULT Function(LPVTBL lpVtbl, Int64 other,
                               Pointer<Int32> retValuePtr)>>>()
               .value
               .asFunction<

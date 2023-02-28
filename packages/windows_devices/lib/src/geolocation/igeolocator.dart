@@ -211,8 +211,8 @@ class IGeolocator extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, Uint64 maximumAge,
-                            Uint64 timeout, Pointer<COMObject> retValuePtr)>>>()
+                        HRESULT Function(LPVTBL lpVtbl, Int64 maximumAge,
+                            Int64 timeout, Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
                 int Function(LPVTBL lpVtbl, int maximumAge, int timeout,

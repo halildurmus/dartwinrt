@@ -20,7 +20,7 @@ void main() {
           'Windows.Globalization.ICalendar', 'GetDateTime');
       final typeProjection = methodProjection.returnTypeProjection;
       expect(typeProjection.dartType, equals('int'));
-      expect(typeProjection.nativeType, equals('Uint64'));
+      expect(typeProjection.nativeType, equals('Int64'));
     });
 
     test('EventRegistrationToken types are projected correctly', () {
@@ -44,7 +44,7 @@ void main() {
           'Windows.Foundation.IPropertyValue', 'GetTimeSpan');
       final typeProjection = methodProjection.returnTypeProjection;
       expect(typeProjection.dartType, equals('int'));
-      expect(typeProjection.nativeType, equals('Uint64'));
+      expect(typeProjection.nativeType, equals('Int64'));
     });
   });
 

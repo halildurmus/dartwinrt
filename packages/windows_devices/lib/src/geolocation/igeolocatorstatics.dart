@@ -72,7 +72,7 @@ class IGeolocatorStatics extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, Uint64 startTime,
+                        HRESULT Function(LPVTBL lpVtbl, Int64 startTime,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
@@ -105,22 +105,18 @@ class IGeolocatorStatics extends IInspectable {
         startTime.difference(DateTime.utc(1601, 01, 01)).inMicroseconds * 10;
     final durationDuration = duration.inMicroseconds * 10;
 
-    final hr =
-        ptr.ref.vtable
-                .elementAt(8)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                LPVTBL lpVtbl,
-                                Uint64 startTime,
-                                Uint64 duration,
-                                Pointer<COMObject> retValuePtr)>>>()
-                .value
-                .asFunction<
-                    int Function(LPVTBL lpVtbl, int startTime, int duration,
-                        Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl, startTimeDateTime, durationDuration, retValuePtr);
+    final hr = ptr.ref.vtable
+            .elementAt(8)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(LPVTBL lpVtbl, Int64 startTime,
+                            Int64 duration, Pointer<COMObject> retValuePtr)>>>()
+            .value
+            .asFunction<
+                int Function(LPVTBL lpVtbl, int startTime, int duration,
+                    Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl, startTimeDateTime, durationDuration, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);

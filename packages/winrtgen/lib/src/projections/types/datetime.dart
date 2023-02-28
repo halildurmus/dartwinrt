@@ -19,7 +19,7 @@ mixin _DateTimeMixin on MethodProjection {
   @override
   String get methodDeclaration => '''
   $methodHeader {
-    final retValuePtr = calloc<Uint64>();
+    final retValuePtr = calloc<${returnTypeProjection.nativeType}>();
     $parametersPreamble
 
     try {
@@ -88,7 +88,7 @@ class DateTimeListParameterProjection extends DefaultListParameterProjection {
 
   @override
   String get passArrayPreamble => '''
-    final pArray = calloc<Uint64>(value.length);
+    final pArray = calloc<Int64>(value.length);
     for (var i = 0; i < value.length; i++) {
       pArray[i] = value.elementAt(i)
           .difference(DateTime.utc(1601, 01, 01)).inMicroseconds * 10;

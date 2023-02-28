@@ -76,7 +76,7 @@ class INetworkUsage extends IInspectable {
   }
 
   Duration get connectionDuration {
-    final retValuePtr = calloc<Uint64>();
+    final retValuePtr = calloc<Int64>();
 
     try {
       final hr = ptr.ref.vtable
@@ -85,10 +85,10 @@ class INetworkUsage extends IInspectable {
                   Pointer<
                       NativeFunction<
                           HRESULT Function(
-                              LPVTBL lpVtbl, Pointer<Uint64> retValuePtr)>>>()
+                              LPVTBL lpVtbl, Pointer<Int64> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(LPVTBL lpVtbl, Pointer<Uint64> retValuePtr)>()(
+                  int Function(LPVTBL lpVtbl, Pointer<Int64> retValuePtr)>()(
           ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);

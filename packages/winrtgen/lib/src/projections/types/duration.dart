@@ -12,10 +12,12 @@ mixin _DurationMixin on MethodProjection {
   @override
   String get returnType => 'Duration';
 
+  // In WinRT, Duration is represented as a time period expressed in
+  // 100-nanosecond units.
   @override
   String get methodDeclaration => '''
   $methodHeader {
-    final retValuePtr = calloc<Uint64>();
+    final retValuePtr = calloc<${returnTypeProjection.nativeType}>();
     $parametersPreamble
 
     try {
@@ -80,7 +82,7 @@ class DurationListParameterProjection extends DefaultListParameterProjection {
 
   @override
   String get passArrayPreamble => '''
-    final pArray = calloc<Uint64>(value.length);
+    final pArray = calloc<Int64>(value.length);
     for (var i = 0; i < value.length; i++) {
       pArray[i] = value.elementAt(i).inMicroseconds * 10;
     }''';
