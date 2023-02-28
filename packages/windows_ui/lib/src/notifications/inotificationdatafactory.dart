@@ -34,6 +34,11 @@ class INotificationDataFactory extends IInspectable {
       IIterable<IKeyValuePair<String, String>> initialValues,
       int sequenceNumber) {
     final retValuePtr = calloc<COMObject>();
+    final initialValuesPtr = IInspectable(
+            initialValues.toInterface('{e9bdaaf0-cbf6-5c72-be90-29cbf3a1319b}'))
+        .ptr
+        .ref
+        .lpVtbl;
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -49,15 +54,14 @@ class INotificationDataFactory extends IInspectable {
             .asFunction<
                 int Function(LPVTBL lpVtbl, LPVTBL initialValues,
                     int sequenceNumber, Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl,
-        initialValues.ptr.ref.lpVtbl,
-        sequenceNumber,
-        retValuePtr);
+        ptr.ref.lpVtbl, initialValuesPtr, sequenceNumber, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
+
+    initialValues.release();
 
     return NotificationData.fromRawPointer(retValuePtr);
   }
@@ -65,6 +69,11 @@ class INotificationDataFactory extends IInspectable {
   NotificationData createNotificationDataWithValues(
       IIterable<IKeyValuePair<String, String>> initialValues) {
     final retValuePtr = calloc<COMObject>();
+    final initialValuesPtr = IInspectable(
+            initialValues.toInterface('{e9bdaaf0-cbf6-5c72-be90-29cbf3a1319b}'))
+        .ptr
+        .ref
+        .lpVtbl;
 
     final hr = ptr.ref.vtable
             .elementAt(7)
@@ -77,12 +86,14 @@ class INotificationDataFactory extends IInspectable {
             .asFunction<
                 int Function(LPVTBL lpVtbl, LPVTBL initialValues,
                     Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, initialValues.ptr.ref.lpVtbl, retValuePtr);
+        ptr.ref.lpVtbl, initialValuesPtr, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
+
+    initialValues.release();
 
     return NotificationData.fromRawPointer(retValuePtr);
   }

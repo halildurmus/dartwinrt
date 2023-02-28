@@ -32,6 +32,8 @@ class IXmlDocumentIO2 extends IInspectable {
           interface.toInterface(IID_IXmlDocumentIO2));
 
   void loadXmlFromBuffer(IBuffer? buffer) {
+    final bufferPtr = buffer == null ? nullptr : buffer.ptr.ref.lpVtbl;
+
     final hr = ptr.ref.vtable
             .elementAt(6)
             .cast<
@@ -40,13 +42,17 @@ class IXmlDocumentIO2 extends IInspectable {
                         HRESULT Function(LPVTBL lpVtbl, LPVTBL buffer)>>>()
             .value
             .asFunction<int Function(LPVTBL lpVtbl, LPVTBL buffer)>()(
-        ptr.ref.lpVtbl, buffer == null ? nullptr : buffer.ptr.ref.lpVtbl);
+        ptr.ref.lpVtbl, bufferPtr);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
   void loadXmlFromBufferWithSettings(
       IBuffer? buffer, XmlLoadSettings? loadSettings) {
+    final bufferPtr = buffer == null ? nullptr : buffer.ptr.ref.lpVtbl;
+    final loadSettingsPtr =
+        loadSettings == null ? nullptr : loadSettings.ptr.ref.lpVtbl;
+
     final hr = ptr.ref.vtable
             .elementAt(7)
             .cast<
@@ -58,9 +64,7 @@ class IXmlDocumentIO2 extends IInspectable {
             .asFunction<
                 int Function(
                     LPVTBL lpVtbl, LPVTBL buffer, LPVTBL loadSettings)>()(
-        ptr.ref.lpVtbl,
-        buffer == null ? nullptr : buffer.ptr.ref.lpVtbl,
-        loadSettings == null ? nullptr : loadSettings.ptr.ref.lpVtbl);
+        ptr.ref.lpVtbl, bufferPtr, loadSettingsPtr);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }

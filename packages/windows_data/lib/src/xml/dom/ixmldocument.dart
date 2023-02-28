@@ -445,7 +445,7 @@ class IXmlDocument extends IInspectable
 
   XmlAttribute? createAttributeNS(Object? namespaceUri, String qualifiedName) {
     final retValuePtr = calloc<COMObject>();
-
+    final namespaceUriPtr = namespaceUri?.intoBox().ref.lpVtbl ?? nullptr;
     final qualifiedNameHString = convertToHString(qualifiedName);
 
     final hr = ptr.ref.vtable
@@ -462,10 +462,7 @@ class IXmlDocument extends IInspectable
             .asFunction<
                 int Function(LPVTBL lpVtbl, LPVTBL namespaceUri,
                     int qualifiedName, Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl,
-        namespaceUri?.intoBox().ref.lpVtbl ?? nullptr,
-        qualifiedNameHString,
-        retValuePtr);
+        ptr.ref.lpVtbl, namespaceUriPtr, qualifiedNameHString, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -484,7 +481,7 @@ class IXmlDocument extends IInspectable
 
   XmlElement? createElementNS(Object? namespaceUri, String qualifiedName) {
     final retValuePtr = calloc<COMObject>();
-
+    final namespaceUriPtr = namespaceUri?.intoBox().ref.lpVtbl ?? nullptr;
     final qualifiedNameHString = convertToHString(qualifiedName);
 
     final hr = ptr.ref.vtable
@@ -501,10 +498,7 @@ class IXmlDocument extends IInspectable
             .asFunction<
                 int Function(LPVTBL lpVtbl, LPVTBL namespaceUri,
                     int qualifiedName, Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl,
-        namespaceUri?.intoBox().ref.lpVtbl ?? nullptr,
-        qualifiedNameHString,
-        retValuePtr);
+        ptr.ref.lpVtbl, namespaceUriPtr, qualifiedNameHString, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -555,6 +549,7 @@ class IXmlDocument extends IInspectable
 
   IXmlNode? importNode(IXmlNode? node, bool deep) {
     final retValuePtr = calloc<COMObject>();
+    final nodePtr = node == null ? nullptr : node.ptr.ref.lpVtbl;
 
     final hr = ptr.ref.vtable
             .elementAt(22)
@@ -566,8 +561,8 @@ class IXmlDocument extends IInspectable
             .value
             .asFunction<
                 int Function(LPVTBL lpVtbl, LPVTBL node, bool deep,
-                    Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl,
-        node == null ? nullptr : node.ptr.ref.lpVtbl, deep, retValuePtr);
+                    Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl, nodePtr, deep, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);

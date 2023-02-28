@@ -32,6 +32,8 @@ class IStorageLibraryChangeTracker2 extends IInspectable {
           interface.toInterface(IID_IStorageLibraryChangeTracker2));
 
   void enableWithOptions(StorageLibraryChangeTrackerOptions? options) {
+    final optionsPtr = options == null ? nullptr : options.ptr.ref.lpVtbl;
+
     final hr = ptr.ref.vtable
             .elementAt(6)
             .cast<
@@ -40,7 +42,7 @@ class IStorageLibraryChangeTracker2 extends IInspectable {
                         HRESULT Function(LPVTBL lpVtbl, LPVTBL options)>>>()
             .value
             .asFunction<int Function(LPVTBL lpVtbl, LPVTBL options)>()(
-        ptr.ref.lpVtbl, options == null ? nullptr : options.ptr.ref.lpVtbl);
+        ptr.ref.lpVtbl, optionsPtr);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }

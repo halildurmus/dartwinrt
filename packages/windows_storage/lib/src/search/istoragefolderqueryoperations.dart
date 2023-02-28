@@ -128,6 +128,8 @@ class IStorageFolderQueryOperations extends IInspectable {
   StorageFileQueryResult? createFileQueryWithOptions(
       QueryOptions? queryOptions) {
     final retValuePtr = calloc<COMObject>();
+    final queryOptionsPtr =
+        queryOptions == null ? nullptr : queryOptions.ptr.ref.lpVtbl;
 
     final hr = ptr.ref.vtable
             .elementAt(9)
@@ -140,9 +142,7 @@ class IStorageFolderQueryOperations extends IInspectable {
             .asFunction<
                 int Function(LPVTBL lpVtbl, LPVTBL queryOptions,
                     Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl,
-        queryOptions == null ? nullptr : queryOptions.ptr.ref.lpVtbl,
-        retValuePtr);
+        ptr.ref.lpVtbl, queryOptionsPtr, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -217,6 +217,8 @@ class IStorageFolderQueryOperations extends IInspectable {
   StorageFolderQueryResult? createFolderQueryWithOptions(
       QueryOptions? queryOptions) {
     final retValuePtr = calloc<COMObject>();
+    final queryOptionsPtr =
+        queryOptions == null ? nullptr : queryOptions.ptr.ref.lpVtbl;
 
     final hr = ptr.ref.vtable
             .elementAt(12)
@@ -229,9 +231,7 @@ class IStorageFolderQueryOperations extends IInspectable {
             .asFunction<
                 int Function(LPVTBL lpVtbl, LPVTBL queryOptions,
                     Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl,
-        queryOptions == null ? nullptr : queryOptions.ptr.ref.lpVtbl,
-        retValuePtr);
+        ptr.ref.lpVtbl, queryOptionsPtr, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -277,6 +277,8 @@ class IStorageFolderQueryOperations extends IInspectable {
   StorageItemQueryResult? createItemQueryWithOptions(
       QueryOptions? queryOptions) {
     final retValuePtr = calloc<COMObject>();
+    final queryOptionsPtr =
+        queryOptions == null ? nullptr : queryOptions.ptr.ref.lpVtbl;
 
     final hr = ptr.ref.vtable
             .elementAt(14)
@@ -289,9 +291,7 @@ class IStorageFolderQueryOperations extends IInspectable {
             .asFunction<
                 int Function(LPVTBL lpVtbl, LPVTBL queryOptions,
                     Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl,
-        queryOptions == null ? nullptr : queryOptions.ptr.ref.lpVtbl,
-        retValuePtr);
+        ptr.ref.lpVtbl, queryOptionsPtr, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -499,6 +499,8 @@ class IStorageFolderQueryOperations extends IInspectable {
 
   bool areQueryOptionsSupported(QueryOptions? queryOptions) {
     final retValuePtr = calloc<Bool>();
+    final queryOptionsPtr =
+        queryOptions == null ? nullptr : queryOptions.ptr.ref.lpVtbl;
 
     try {
       final hr = ptr.ref.vtable
@@ -512,9 +514,7 @@ class IStorageFolderQueryOperations extends IInspectable {
               .asFunction<
                   int Function(LPVTBL lpVtbl, LPVTBL queryOptions,
                       Pointer<Bool> retValuePtr)>()(
-          ptr.ref.lpVtbl,
-          queryOptions == null ? nullptr : queryOptions.ptr.ref.lpVtbl,
-          retValuePtr);
+          ptr.ref.lpVtbl, queryOptionsPtr, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 

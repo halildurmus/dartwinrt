@@ -64,6 +64,7 @@ class IStorageItem2 extends IInspectable implements IStorageItem {
 
   bool isEqual(IStorageItem? item) {
     final retValuePtr = calloc<Bool>();
+    final itemPtr = item == null ? nullptr : item.ptr.ref.lpVtbl;
 
     try {
       final hr = ptr.ref.vtable
@@ -77,9 +78,7 @@ class IStorageItem2 extends IInspectable implements IStorageItem {
               .asFunction<
                   int Function(
                       LPVTBL lpVtbl, LPVTBL item, Pointer<Bool> retValuePtr)>()(
-          ptr.ref.lpVtbl,
-          item == null ? nullptr : item.ptr.ref.lpVtbl,
-          retValuePtr);
+          ptr.ref.lpVtbl, itemPtr, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 

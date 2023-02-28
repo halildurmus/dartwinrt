@@ -33,7 +33,11 @@ class ICalendarFactory2 extends IInspectable {
   Calendar createCalendarWithTimeZone(IIterable<String> languages,
       String calendar, String clock, String timeZoneId) {
     final retValuePtr = calloc<COMObject>();
-
+    final languagesPtr = IInspectable(
+            languages.toInterface('{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'))
+        .ptr
+        .ref
+        .lpVtbl;
     final calendarHString = convertToHString(calendar);
     final clockHString = convertToHString(clock);
     final timeZoneIdHString = convertToHString(timeZoneId);
@@ -60,7 +64,7 @@ class ICalendarFactory2 extends IInspectable {
                     int timeZoneId,
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl,
-        languages.ptr.ref.lpVtbl,
+        languagesPtr,
         calendarHString,
         clockHString,
         timeZoneIdHString,
@@ -71,6 +75,7 @@ class ICalendarFactory2 extends IInspectable {
       throw WindowsException(hr);
     }
 
+    languages.release();
     WindowsDeleteString(calendarHString);
     WindowsDeleteString(clockHString);
     WindowsDeleteString(timeZoneIdHString);

@@ -204,6 +204,8 @@ class IPhoneNumberInfo extends IInspectable {
 
   PhoneNumberMatchResult checkNumberMatch(PhoneNumberInfo? otherNumber) {
     final retValuePtr = calloc<Int32>();
+    final otherNumberPtr =
+        otherNumber == null ? nullptr : otherNumber.ptr.ref.lpVtbl;
 
     try {
       final hr = ptr.ref.vtable
@@ -217,9 +219,7 @@ class IPhoneNumberInfo extends IInspectable {
               .asFunction<
                   int Function(LPVTBL lpVtbl, LPVTBL otherNumber,
                       Pointer<Int32> retValuePtr)>()(
-          ptr.ref.lpVtbl,
-          otherNumber == null ? nullptr : otherNumber.ptr.ref.lpVtbl,
-          retValuePtr);
+          ptr.ref.lpVtbl, otherNumberPtr, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 

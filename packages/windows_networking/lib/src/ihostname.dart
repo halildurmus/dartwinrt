@@ -160,6 +160,7 @@ class IHostName extends IInspectable {
 
   bool isEqual(HostName? hostName) {
     final retValuePtr = calloc<Bool>();
+    final hostNamePtr = hostName == null ? nullptr : hostName.ptr.ref.lpVtbl;
 
     try {
       final hr = ptr.ref.vtable
@@ -172,8 +173,8 @@ class IHostName extends IInspectable {
               .value
               .asFunction<
                   int Function(LPVTBL lpVtbl, LPVTBL hostName,
-                      Pointer<Bool> retValuePtr)>()(ptr.ref.lpVtbl,
-          hostName == null ? nullptr : hostName.ptr.ref.lpVtbl, retValuePtr);
+                      Pointer<Bool> retValuePtr)>()(
+          ptr.ref.lpVtbl, hostNamePtr, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 

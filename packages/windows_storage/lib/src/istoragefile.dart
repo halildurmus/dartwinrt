@@ -158,6 +158,8 @@ class IStorageFile extends IInspectable
       IStorageFolder? destinationFolder) {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<StorageFile?>();
+    final destinationFolderPtr =
+        destinationFolder == null ? nullptr : destinationFolder.ptr.ref.lpVtbl;
 
     final hr =
         ptr.ref.vtable
@@ -173,11 +175,7 @@ class IStorageFile extends IInspectable
                 .asFunction<
                     int Function(LPVTBL lpVtbl, LPVTBL destinationFolder,
                         Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl,
-            destinationFolder == null
-                ? nullptr
-                : destinationFolder.ptr.ref.lpVtbl,
-            retValuePtr);
+            ptr.ref.lpVtbl, destinationFolderPtr, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -197,7 +195,8 @@ class IStorageFile extends IInspectable
       IStorageFolder? destinationFolder, String desiredNewName) {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<StorageFile?>();
-
+    final destinationFolderPtr =
+        destinationFolder == null ? nullptr : destinationFolder.ptr.ref.lpVtbl;
     final desiredNewNameHString = convertToHString(desiredNewName);
 
     final hr = ptr.ref.vtable
@@ -215,7 +214,7 @@ class IStorageFile extends IInspectable
                 int Function(LPVTBL lpVtbl, LPVTBL destinationFolder,
                     int desiredNewName, Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl,
-        destinationFolder == null ? nullptr : destinationFolder.ptr.ref.lpVtbl,
+        destinationFolderPtr,
         desiredNewNameHString,
         retValuePtr);
 
@@ -239,7 +238,8 @@ class IStorageFile extends IInspectable
       String desiredNewName, NameCollisionOption option) {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<StorageFile?>();
-
+    final destinationFolderPtr =
+        destinationFolder == null ? nullptr : destinationFolder.ptr.ref.lpVtbl;
     final desiredNewNameHString = convertToHString(desiredNewName);
 
     final hr = ptr.ref.vtable
@@ -260,12 +260,8 @@ class IStorageFile extends IInspectable
                     LPVTBL destinationFolder,
                     int desiredNewName,
                     int option,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl,
-        destinationFolder == null ? nullptr : destinationFolder.ptr.ref.lpVtbl,
-        desiredNewNameHString,
-        option.value,
-        retValuePtr);
+                    Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl,
+        destinationFolderPtr, desiredNewNameHString, option.value, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -286,6 +282,8 @@ class IStorageFile extends IInspectable
   Future<void> copyAndReplaceAsync(IStorageFile? fileToReplace) {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<void>();
+    final fileToReplacePtr =
+        fileToReplace == null ? nullptr : fileToReplace.ptr.ref.lpVtbl;
 
     final hr = ptr.ref.vtable
             .elementAt(13)
@@ -298,9 +296,7 @@ class IStorageFile extends IInspectable
             .asFunction<
                 int Function(LPVTBL lpVtbl, LPVTBL fileToReplace,
                     Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl,
-        fileToReplace == null ? nullptr : fileToReplace.ptr.ref.lpVtbl,
-        retValuePtr);
+        ptr.ref.lpVtbl, fileToReplacePtr, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -317,6 +313,8 @@ class IStorageFile extends IInspectable
       IStorageFolder? destinationFolder) {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<void>();
+    final destinationFolderPtr =
+        destinationFolder == null ? nullptr : destinationFolder.ptr.ref.lpVtbl;
 
     final hr =
         ptr.ref.vtable
@@ -332,11 +330,7 @@ class IStorageFile extends IInspectable
                 .asFunction<
                     int Function(LPVTBL lpVtbl, LPVTBL destinationFolder,
                         Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl,
-            destinationFolder == null
-                ? nullptr
-                : destinationFolder.ptr.ref.lpVtbl,
-            retValuePtr);
+            ptr.ref.lpVtbl, destinationFolderPtr, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -353,7 +347,8 @@ class IStorageFile extends IInspectable
       IStorageFolder? destinationFolder, String desiredNewName) {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<void>();
-
+    final destinationFolderPtr =
+        destinationFolder == null ? nullptr : destinationFolder.ptr.ref.lpVtbl;
     final desiredNewNameHString = convertToHString(desiredNewName);
 
     final hr = ptr.ref.vtable
@@ -371,7 +366,7 @@ class IStorageFile extends IInspectable
                 int Function(LPVTBL lpVtbl, LPVTBL destinationFolder,
                     int desiredNewName, Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl,
-        destinationFolder == null ? nullptr : destinationFolder.ptr.ref.lpVtbl,
+        destinationFolderPtr,
         desiredNewNameHString,
         retValuePtr);
 
@@ -392,7 +387,8 @@ class IStorageFile extends IInspectable
       String desiredNewName, NameCollisionOption option) {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<void>();
-
+    final destinationFolderPtr =
+        destinationFolder == null ? nullptr : destinationFolder.ptr.ref.lpVtbl;
     final desiredNewNameHString = convertToHString(desiredNewName);
 
     final hr = ptr.ref.vtable
@@ -413,12 +409,8 @@ class IStorageFile extends IInspectable
                     LPVTBL destinationFolder,
                     int desiredNewName,
                     int option,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl,
-        destinationFolder == null ? nullptr : destinationFolder.ptr.ref.lpVtbl,
-        desiredNewNameHString,
-        option.value,
-        retValuePtr);
+                    Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl,
+        destinationFolderPtr, desiredNewNameHString, option.value, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -436,6 +428,8 @@ class IStorageFile extends IInspectable
   Future<void> moveAndReplaceAsync(IStorageFile? fileToReplace) {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<void>();
+    final fileToReplacePtr =
+        fileToReplace == null ? nullptr : fileToReplace.ptr.ref.lpVtbl;
 
     final hr = ptr.ref.vtable
             .elementAt(17)
@@ -448,9 +442,7 @@ class IStorageFile extends IInspectable
             .asFunction<
                 int Function(LPVTBL lpVtbl, LPVTBL fileToReplace,
                     Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl,
-        fileToReplace == null ? nullptr : fileToReplace.ptr.ref.lpVtbl,
-        retValuePtr);
+        ptr.ref.lpVtbl, fileToReplacePtr, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);

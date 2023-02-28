@@ -34,7 +34,7 @@ class IToastNotifier2 extends IInspectable {
   NotificationUpdateResult updateWithTagAndGroup(
       NotificationData? data, String tag, String group) {
     final retValuePtr = calloc<Int32>();
-
+    final dataPtr = data == null ? nullptr : data.ptr.ref.lpVtbl;
     final tagHString = convertToHString(tag);
     final groupHString = convertToHString(group);
 
@@ -55,11 +55,7 @@ class IToastNotifier2 extends IInspectable {
                   .asFunction<
                       int Function(LPVTBL lpVtbl, LPVTBL data, int tag,
                           int group, Pointer<Int32> retValuePtr)>()(
-              ptr.ref.lpVtbl,
-              data == null ? nullptr : data.ptr.ref.lpVtbl,
-              tagHString,
-              groupHString,
-              retValuePtr);
+              ptr.ref.lpVtbl, dataPtr, tagHString, groupHString, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -73,7 +69,7 @@ class IToastNotifier2 extends IInspectable {
 
   NotificationUpdateResult updateWithTag(NotificationData? data, String tag) {
     final retValuePtr = calloc<Int32>();
-
+    final dataPtr = data == null ? nullptr : data.ptr.ref.lpVtbl;
     final tagHString = convertToHString(tag);
 
     try {
@@ -89,10 +85,7 @@ class IToastNotifier2 extends IInspectable {
                   .asFunction<
                       int Function(LPVTBL lpVtbl, LPVTBL data, int tag,
                           Pointer<Int32> retValuePtr)>()(
-              ptr.ref.lpVtbl,
-              data == null ? nullptr : data.ptr.ref.lpVtbl,
-              tagHString,
-              retValuePtr);
+              ptr.ref.lpVtbl, dataPtr, tagHString, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 

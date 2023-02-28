@@ -34,6 +34,13 @@ class IDeviceWatcher2 extends IInspectable {
   DeviceWatcherTrigger? getBackgroundTrigger(
       IIterable<DeviceWatcherEventKind>? requestedEventKinds) {
     final retValuePtr = calloc<COMObject>();
+    final requestedEventKindsPtr = requestedEventKinds == null
+        ? nullptr
+        : IInspectable(requestedEventKinds
+                .toInterface('{f04365ab-d3f3-5f85-a7da-dc19cff73d86}'))
+            .ptr
+            .ref
+            .lpVtbl;
 
     final hr =
         ptr.ref.vtable
@@ -49,16 +56,14 @@ class IDeviceWatcher2 extends IInspectable {
                 .asFunction<
                     int Function(LPVTBL lpVtbl, LPVTBL requestedEventKinds,
                         Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl,
-            requestedEventKinds == null
-                ? nullptr
-                : requestedEventKinds.ptr.ref.lpVtbl,
-            retValuePtr);
+            ptr.ref.lpVtbl, requestedEventKindsPtr, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
+
+    requestedEventKinds?.release();
 
     if (retValuePtr.ref.isNull) {
       free(retValuePtr);

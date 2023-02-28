@@ -187,6 +187,9 @@ class IDeviceInformation extends IInspectable {
   }
 
   void update(DeviceInformationUpdate? updateInfo) {
+    final updateInfoPtr =
+        updateInfo == null ? nullptr : updateInfo.ptr.ref.lpVtbl;
+
     final hr = ptr.ref.vtable
             .elementAt(12)
             .cast<
@@ -195,8 +198,7 @@ class IDeviceInformation extends IInspectable {
                         HRESULT Function(LPVTBL lpVtbl, LPVTBL updateInfo)>>>()
             .value
             .asFunction<int Function(LPVTBL lpVtbl, LPVTBL updateInfo)>()(
-        ptr.ref.lpVtbl,
-        updateInfo == null ? nullptr : updateInfo.ptr.ref.lpVtbl);
+        ptr.ref.lpVtbl, updateInfoPtr);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }

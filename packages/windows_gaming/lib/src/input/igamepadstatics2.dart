@@ -34,6 +34,8 @@ class IGamepadStatics2 extends IInspectable implements IGamepadStatics {
 
   Gamepad? fromGameController(IGameController? gameController) {
     final retValuePtr = calloc<COMObject>();
+    final gameControllerPtr =
+        gameController == null ? nullptr : gameController.ptr.ref.lpVtbl;
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -46,9 +48,7 @@ class IGamepadStatics2 extends IInspectable implements IGamepadStatics {
             .asFunction<
                 int Function(LPVTBL lpVtbl, LPVTBL gameController,
                     Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl,
-        gameController == null ? nullptr : gameController.ptr.ref.lpVtbl,
-        retValuePtr);
+        ptr.ref.lpVtbl, gameControllerPtr, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);

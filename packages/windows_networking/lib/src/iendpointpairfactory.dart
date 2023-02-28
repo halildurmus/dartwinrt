@@ -37,9 +37,9 @@ class IEndpointPairFactory extends IInspectable {
       HostName remoteHostName,
       String remoteServiceName) {
     final retValuePtr = calloc<COMObject>();
-
+    final localHostNamePtr = localHostName.ptr.ref.lpVtbl;
     final localServiceNameHString = convertToHString(localServiceName);
-
+    final remoteHostNamePtr = remoteHostName.ptr.ref.lpVtbl;
     final remoteServiceNameHString = convertToHString(remoteServiceName);
 
     final hr = ptr.ref.vtable
@@ -64,9 +64,9 @@ class IEndpointPairFactory extends IInspectable {
                     int remoteServiceName,
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl,
-        localHostName.ptr.ref.lpVtbl,
+        localHostNamePtr,
         localServiceNameHString,
-        remoteHostName.ptr.ref.lpVtbl,
+        remoteHostNamePtr,
         remoteServiceNameHString,
         retValuePtr);
 

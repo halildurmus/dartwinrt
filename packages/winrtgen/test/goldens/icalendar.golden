@@ -1904,6 +1904,7 @@ class ICalendar extends IInspectable {
 
   int compare(Calendar? other) {
     final retValuePtr = calloc<Int32>();
+    final otherPtr = other == null ? nullptr : other.ptr.ref.lpVtbl;
 
     try {
       final hr = ptr.ref.vtable
@@ -1916,8 +1917,8 @@ class ICalendar extends IInspectable {
               .value
               .asFunction<
                   int Function(LPVTBL lpVtbl, LPVTBL other,
-                      Pointer<Int32> retValuePtr)>()(ptr.ref.lpVtbl,
-          other == null ? nullptr : other.ptr.ref.lpVtbl, retValuePtr);
+                      Pointer<Int32> retValuePtr)>()(
+          ptr.ref.lpVtbl, otherPtr, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -1955,6 +1956,8 @@ class ICalendar extends IInspectable {
   }
 
   void copyTo(Calendar? other) {
+    final otherPtr = other == null ? nullptr : other.ptr.ref.lpVtbl;
+
     final hr = ptr.ref.vtable
             .elementAt(95)
             .cast<
@@ -1963,7 +1966,7 @@ class ICalendar extends IInspectable {
                         HRESULT Function(LPVTBL lpVtbl, LPVTBL other)>>>()
             .value
             .asFunction<int Function(LPVTBL lpVtbl, LPVTBL other)>()(
-        ptr.ref.lpVtbl, other == null ? nullptr : other.ptr.ref.lpVtbl);
+        ptr.ref.lpVtbl, otherPtr);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }

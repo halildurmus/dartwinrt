@@ -340,6 +340,7 @@ class IDevicePicker extends IInspectable {
 
   void setDisplayStatus(DeviceInformation? device, String status,
       DevicePickerDisplayStatusOptions options) {
+    final devicePtr = device == null ? nullptr : device.ptr.ref.lpVtbl;
     final statusHString = convertToHString(status);
 
     final hr = ptr.ref.vtable
@@ -353,10 +354,7 @@ class IDevicePicker extends IInspectable {
             .asFunction<
                 int Function(
                     LPVTBL lpVtbl, LPVTBL device, int status, int options)>()(
-        ptr.ref.lpVtbl,
-        device == null ? nullptr : device.ptr.ref.lpVtbl,
-        statusHString,
-        options.value);
+        ptr.ref.lpVtbl, devicePtr, statusHString, options.value);
 
     if (FAILED(hr)) throw WindowsException(hr);
 

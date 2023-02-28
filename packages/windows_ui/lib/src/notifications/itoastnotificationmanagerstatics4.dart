@@ -35,6 +35,7 @@ class IToastNotificationManagerStatics4 extends IInspectable {
 
   ToastNotificationManagerForUser? getForUser(User? user) {
     final retValuePtr = calloc<COMObject>();
+    final userPtr = user == null ? nullptr : user.ptr.ref.lpVtbl;
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -46,8 +47,8 @@ class IToastNotificationManagerStatics4 extends IInspectable {
             .value
             .asFunction<
                 int Function(LPVTBL lpVtbl, LPVTBL user,
-                    Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl,
-        user == null ? nullptr : user.ptr.ref.lpVtbl, retValuePtr);
+                    Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl, userPtr, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);

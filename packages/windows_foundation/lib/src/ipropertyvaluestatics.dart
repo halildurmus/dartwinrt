@@ -348,6 +348,7 @@ class IPropertyValueStatics extends IInspectable {
 
   Pointer<COMObject> createInspectable(Object? value) {
     final retValuePtr = calloc<COMObject>();
+    final valuePtr = value?.intoBox().ref.lpVtbl ?? nullptr;
 
     final hr = ptr.ref.vtable
             .elementAt(19)
@@ -360,7 +361,7 @@ class IPropertyValueStatics extends IInspectable {
             .asFunction<
                 int Function(LPVTBL lpVtbl, LPVTBL value,
                     Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, value?.intoBox().ref.lpVtbl ?? nullptr, retValuePtr);
+        ptr.ref.lpVtbl, valuePtr, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);

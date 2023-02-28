@@ -40,6 +40,8 @@ class IJsonObjectWithDefaultValues extends IInspectable
   JsonValue? getNamedValueOrDefault(String name, JsonValue? defaultValue) {
     final retValuePtr = calloc<COMObject>();
     final nameHString = convertToHString(name);
+    final defaultValuePtr =
+        defaultValue == null ? nullptr : defaultValue.ptr.ref.lpVtbl;
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -55,10 +57,7 @@ class IJsonObjectWithDefaultValues extends IInspectable
             .asFunction<
                 int Function(LPVTBL lpVtbl, int name, LPVTBL defaultValue,
                     Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl,
-        nameHString,
-        defaultValue == null ? nullptr : defaultValue.ptr.ref.lpVtbl,
-        retValuePtr);
+        ptr.ref.lpVtbl, nameHString, defaultValuePtr, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -78,6 +77,8 @@ class IJsonObjectWithDefaultValues extends IInspectable
   JsonObject? getNamedObjectOrDefault(String name, JsonObject? defaultValue) {
     final retValuePtr = calloc<COMObject>();
     final nameHString = convertToHString(name);
+    final defaultValuePtr =
+        defaultValue == null ? nullptr : defaultValue.ptr.ref.lpVtbl;
 
     final hr = ptr.ref.vtable
             .elementAt(7)
@@ -93,10 +94,7 @@ class IJsonObjectWithDefaultValues extends IInspectable
             .asFunction<
                 int Function(LPVTBL lpVtbl, int name, LPVTBL defaultValue,
                     Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl,
-        nameHString,
-        defaultValue == null ? nullptr : defaultValue.ptr.ref.lpVtbl,
-        retValuePtr);
+        ptr.ref.lpVtbl, nameHString, defaultValuePtr, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -150,6 +148,8 @@ class IJsonObjectWithDefaultValues extends IInspectable
   JsonArray? getNamedArrayOrDefault(String name, JsonArray? defaultValue) {
     final retValuePtr = calloc<COMObject>();
     final nameHString = convertToHString(name);
+    final defaultValuePtr =
+        defaultValue == null ? nullptr : defaultValue.ptr.ref.lpVtbl;
 
     final hr = ptr.ref.vtable
             .elementAt(9)
@@ -165,10 +165,7 @@ class IJsonObjectWithDefaultValues extends IInspectable
             .asFunction<
                 int Function(LPVTBL lpVtbl, int name, LPVTBL defaultValue,
                     Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl,
-        nameHString,
-        defaultValue == null ? nullptr : defaultValue.ptr.ref.lpVtbl,
-        retValuePtr);
+        ptr.ref.lpVtbl, nameHString, defaultValuePtr, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);

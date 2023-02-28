@@ -65,6 +65,7 @@ class IJsonArrayStatics extends IInspectable {
   bool tryParse(String input, JsonArray result) {
     final retValuePtr = calloc<Bool>();
     final inputHString = convertToHString(input);
+    final resultPtr = result.ptr;
 
     try {
       final hr = ptr.ref.vtable
@@ -81,7 +82,7 @@ class IJsonArrayStatics extends IInspectable {
               .asFunction<
                   int Function(LPVTBL lpVtbl, int input,
                       Pointer<COMObject> result, Pointer<Bool> retValuePtr)>()(
-          ptr.ref.lpVtbl, inputHString, result.ptr, retValuePtr);
+          ptr.ref.lpVtbl, inputHString, resultPtr, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
