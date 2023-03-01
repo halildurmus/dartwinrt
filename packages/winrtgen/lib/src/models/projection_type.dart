@@ -2,6 +2,7 @@
 // details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
+import '../extensions/extensions.dart';
 import '../projections/type.dart';
 
 /// Represents the projection type of a WinRT type.
@@ -17,22 +18,31 @@ enum ProjectionType {
   asyncOperation,
   asyncOperationWithProgress,
   dartPrimitive,
+  dartPrimitiveList,
   dateTime,
+  dateTimeList,
   delegate,
   duration,
+  durationList,
   enum_,
   genericEnum,
+  genericEnumList,
   genericObject,
+  genericObjectList,
   guid,
+  guidList,
   map,
   mapView,
   object,
+  objectList,
   pointer,
   reference,
-  simpleArray,
   string,
+  stringList,
   struct,
+  structList,
   uri,
+  uriList,
   vector,
   vectorView,
   void_;
@@ -50,8 +60,39 @@ enum ProjectionType {
           : ProjectionType.genericObject;
     }
 
+    if (type.isSimpleArray) {
+      final typeIdentifier = type.typeIdentifier;
+      final projectionType = typeIdentifier.isReferenceType
+          ? TypeProjection(typeIdentifier.typeArg!.typeArg!).projectionType
+          : TypeProjection(typeIdentifier.typeArg!).projectionType;
+      switch (projectionType) {
+        case ProjectionType.dartPrimitive:
+          return ProjectionType.dartPrimitiveList;
+        case ProjectionType.dateTime:
+          return ProjectionType.dateTimeList;
+        case ProjectionType.duration:
+          return ProjectionType.durationList;
+        case ProjectionType.genericEnum:
+          return ProjectionType.genericEnumList;
+        case ProjectionType.genericObject:
+          return ProjectionType.genericObjectList;
+        case ProjectionType.guid:
+          return ProjectionType.guidList;
+        case ProjectionType.object:
+          return ProjectionType.objectList;
+        case ProjectionType.string:
+          return ProjectionType.stringList;
+        case ProjectionType.struct:
+          return ProjectionType.structList;
+        case ProjectionType.uri:
+          return ProjectionType.uriList;
+        default:
+          throw UnsupportedError(
+              'Unsupported projection type: $projectionType');
+      }
+    }
+
     if (type.isPointer) return ProjectionType.pointer;
-    if (type.isSimpleArray) return ProjectionType.simpleArray;
     if (type.isDateTime) return ProjectionType.dateTime;
     if (type.isTimeSpan) return ProjectionType.duration;
     if (type.isWinRTEnum) return ProjectionType.enum_;
