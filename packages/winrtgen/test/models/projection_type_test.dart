@@ -39,25 +39,33 @@ void main() {
           equals(ProjectionType.asyncOperation));
     });
 
-    test('returns Dart primitive (bool) type', () {
+    test('returns dartPrimitive (bool) type', () {
       final methodProjection = MethodProjection.fromTypeAndMethodName(
           'Windows.Globalization.ICalendar', 'get_IsDaylightSavingTime');
       expect(ProjectionType.from(methodProjection.returnTypeProjection),
           equals(ProjectionType.dartPrimitive));
     });
 
-    test('returns Dart primitive (double) type', () {
+    test('returns dartPrimitive (double) type', () {
       final methodProjection = MethodProjection.fromTypeAndMethodName(
           'Windows.Devices.Geolocation.IGeocoordinate', 'get_Latitude');
       expect(ProjectionType.from(methodProjection.returnTypeProjection),
           equals(ProjectionType.dartPrimitive));
     });
 
-    test('returns Dart primitive (int) type', () {
+    test('returns dartPrimitive (int) type', () {
       final methodProjection = MethodProjection.fromTypeAndMethodName(
           'Windows.Globalization.ICalendar', 'get_Year');
       expect(ProjectionType.from(methodProjection.returnTypeProjection),
           equals(ProjectionType.dartPrimitive));
+    });
+
+    test('returns dartPrimitiveList type', () {
+      final methodProjection = MethodProjection.fromTypeAndMethodName(
+          'Windows.Foundation.IPropertyValue', 'GetInt32Array');
+      final paramProjection = methodProjection.parameters.last;
+      expect(ProjectionType.from(paramProjection.typeProjection),
+          equals(ProjectionType.dartPrimitiveList));
     });
 
     test('returns dateTime type', () {
@@ -65,6 +73,14 @@ void main() {
           'Windows.Globalization.ICalendar', 'GetDateTime');
       expect(ProjectionType.from(methodProjection.returnTypeProjection),
           equals(ProjectionType.dateTime));
+    });
+
+    test('returns dateTimeList type', () {
+      final methodProjection = MethodProjection.fromTypeAndMethodName(
+          'Windows.Foundation.IPropertyValue', 'GetDateTimeArray');
+      final paramProjection = methodProjection.parameters.last;
+      expect(ProjectionType.from(paramProjection.typeProjection),
+          equals(ProjectionType.dateTimeList));
     });
 
     test('returns delegate type', () {
@@ -82,7 +98,15 @@ void main() {
           equals(ProjectionType.duration));
     });
 
-    test('returns enum type', () {
+    test('returns durationList type', () {
+      final methodProjection = MethodProjection.fromTypeAndMethodName(
+          'Windows.Foundation.IPropertyValue', 'GetTimeSpanArray');
+      final paramProjection = methodProjection.parameters.last;
+      expect(ProjectionType.from(paramProjection.typeProjection),
+          equals(ProjectionType.durationList));
+    });
+
+    test('returns enum_ type', () {
       final methodProjection = MethodProjection.fromTypeAndMethodName(
           'Windows.Foundation.IAsyncInfo', 'get_Status');
       expect(ProjectionType.from(methodProjection.returnTypeProjection),
@@ -129,6 +153,14 @@ void main() {
           equals(ProjectionType.guid));
     });
 
+    test('returns guidList type', () {
+      final methodProjection = MethodProjection.fromTypeAndMethodName(
+          'Windows.Foundation.IPropertyValue', 'GetGuidArray');
+      final paramProjection = methodProjection.parameters.last;
+      expect(ProjectionType.from(paramProjection.typeProjection),
+          equals(ProjectionType.guidList));
+    });
+
     test('returns map type', () {
       final methodProjection = MethodProjection.fromTypeAndMethodName(
           'Windows.UI.Notifications.INotificationData', 'get_Values');
@@ -157,6 +189,14 @@ void main() {
           equals(ProjectionType.object));
     });
 
+    test('returns objectList type', () {
+      final methodProjection = MethodProjection.fromTypeAndMethodName(
+          'Windows.Foundation.WwwFormUrlDecoder', 'GetMany');
+      final paramProjection = methodProjection.parameters.last;
+      expect(ProjectionType.from(paramProjection.typeProjection),
+          equals(ProjectionType.objectList));
+    });
+
     test('returns pointer type', () {
       final methodProjection = MethodProjection.fromTypeAndMethodName(
           'Windows.Foundation.IPropertyValue', 'GetInt32Array');
@@ -173,14 +213,6 @@ void main() {
           equals(ProjectionType.reference));
     });
 
-    test('returns simpleArray type', () {
-      final methodProjection = MethodProjection.fromTypeAndMethodName(
-          'Windows.Foundation.WwwFormUrlDecoder', 'GetMany');
-      final paramProjection = methodProjection.parameters.last;
-      expect(ProjectionType.from(paramProjection.typeProjection),
-          equals(ProjectionType.simpleArray));
-    });
-
     test('returns string type', () {
       final methodProjection = MethodProjection.fromTypeAndMethodName(
           'Windows.Globalization.ICalendar', 'get_NumeralSystem');
@@ -188,11 +220,27 @@ void main() {
           equals(ProjectionType.string));
     });
 
+    test('returns stringList type', () {
+      final methodProjection = MethodProjection.fromTypeAndMethodName(
+          'Windows.Foundation.IPropertyValue', 'GetStringArray');
+      final paramProjection = methodProjection.parameters.last;
+      expect(ProjectionType.from(paramProjection.typeProjection),
+          equals(ProjectionType.stringList));
+    });
+
     test('returns struct type', () {
       final methodProjection = MethodProjection.fromTypeAndMethodName(
           'Windows.UI.ViewManagement.IUISettings3', 'GetColorValue');
       expect(ProjectionType.from(methodProjection.returnTypeProjection),
           equals(ProjectionType.struct));
+    });
+
+    test('returns structList type', () {
+      final methodProjection = MethodProjection.fromTypeAndMethodName(
+          'Windows.Foundation.IPropertyValue', 'GetSizeArray');
+      final paramProjection = methodProjection.parameters.last;
+      expect(ProjectionType.from(paramProjection.typeProjection),
+          equals(ProjectionType.structList));
     });
 
     test('returns uri type', () {
@@ -216,7 +264,7 @@ void main() {
           equals(ProjectionType.vectorView));
     });
 
-    test('returns void type', () {
+    test('returns void_ type', () {
       final methodProjection = MethodProjection.fromTypeAndMethodName(
           'Windows.Globalization.ICalendar', 'SetToMin');
       expect(ProjectionType.from(methodProjection.returnTypeProjection),
