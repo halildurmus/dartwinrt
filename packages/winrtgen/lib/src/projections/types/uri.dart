@@ -88,6 +88,42 @@ class UriGetterProjection extends GetterProjection with _UriMixin {
   UriGetterProjection(super.method, super.vtableOffset);
 }
 
+mixin _UriListMixin on MethodProjection {
+  @override
+  String get returnType => 'List<Uri>';
+
+  @override
+  String get methodDeclaration => '''
+  $methodHeader {
+    final pValueSize = calloc<Uint32>();
+    final retValuePtr = calloc<Pointer<COMObject>>();
+    $parametersPreamble
+
+    try {
+      ${ffiCall()}
+
+      return retValuePtr.value
+        .toList(winrt_uri.Uri.fromRawPointer, length: pValueSize.value)
+        .map((winrtUri) => Uri.parse(winrtUri.toString()));
+    } finally {
+      $parametersPostamble
+      free(pValueSize);
+      free(retValuePtr);
+    }
+  }
+''';
+}
+
+/// Method projection for methods that return `List<Uri>`.
+class UriListMethodProjection extends MethodProjection with _UriListMixin {
+  UriListMethodProjection(super.method, super.vtableOffset);
+}
+
+/// Getter projection for `List<Uri>` getters.
+class UriListGetterProjection extends GetterProjection with _UriListMixin {
+  UriListGetterProjection(super.method, super.vtableOffset);
+}
+
 /// Setter projection for `Uri` setters.
 class UriSetterProjection extends SetterProjection {
   UriSetterProjection(super.method, super.vtableOffset);

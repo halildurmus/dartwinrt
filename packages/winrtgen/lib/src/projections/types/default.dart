@@ -40,6 +40,47 @@ class DefaultGetterProjection extends GetterProjection with _DefaultMixin {
   DefaultGetterProjection(super.method, super.vtableOffset);
 }
 
+mixin _DefaultListMixin on MethodProjection {
+  late final typeArgProjection = TypeProjection(
+      method.returnType.typeIdentifier.isReferenceType
+          ? method.returnType.typeIdentifier.typeArg!.typeArg!
+          : method.returnType.typeIdentifier.typeArg!);
+
+  @override
+  String get returnType => 'List<${typeArgProjection.dartType}>';
+
+  @override
+  String get methodDeclaration => '''
+  $methodHeader {
+    final pValueSize = calloc<Uint32>();
+    final retValuePtr = calloc<${typeArgProjection.nativeType}>();
+    $parametersPreamble
+
+    try {
+      ${ffiCall()}
+
+      return retValuePtr.value.toList(length: pValueSize.value);
+    } finally {
+      $parametersPostamble
+      free(pValueSize);
+      free(retValuePtr);
+    }
+  }
+''';
+}
+
+/// Default method projection for methods that return `List`.
+class DefaultListMethodProjection extends MethodProjection
+    with _DefaultListMixin {
+  DefaultListMethodProjection(super.method, super.vtableOffset);
+}
+
+/// Default getter projection for `List` getters.
+class DefaultListGetterProjection extends GetterProjection
+    with _DefaultListMixin {
+  DefaultListGetterProjection(super.method, super.vtableOffset);
+}
+
 /// Default setter projection for setters.
 class DefaultSetterProjection extends SetterProjection {
   DefaultSetterProjection(super.method, super.vtableOffset);

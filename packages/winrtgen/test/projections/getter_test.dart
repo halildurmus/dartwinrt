@@ -312,6 +312,23 @@ void main() {
           contains('return IPropertyValue.fromRawPointer(retValuePtr).value;'));
     });
 
+    test('projects List<String>', () {
+      final projection = GetterProjection.fromTypeAndMethodName(
+          'Windows.ApplicationModel.AppInfo', 'get_SupportedFileExtensions');
+      expect(projection, isA<StringListGetterProjection>());
+      expect(projection.returnType, equals('List<String>'));
+      expect(
+          projection.nativePrototype,
+          equals(
+              'HRESULT Function(LPVTBL lpVtbl, Pointer<Uint32> valueSize, Pointer<IntPtr> retValuePtr)'));
+      expect(
+          projection.dartPrototype,
+          equals(
+              'int Function(LPVTBL lpVtbl, Pointer<Uint32> valueSize, Pointer<IntPtr> retValuePtr)'));
+      expect(projection.methodHeader,
+          equals('List<String> get supportedFileExtensions'));
+    });
+
     test('projects String', () {
       final projection = GetterProjection.fromTypeAndMethodName(
           'Windows.Globalization.ICalendar', 'get_NumeralSystem');

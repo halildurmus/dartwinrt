@@ -20,12 +20,19 @@ abstract class GetterProjection extends PropertyProjection {
     switch (projectionType) {
       case ProjectionType.dartPrimitive:
         return DefaultGetterProjection(method, vtableOffset);
+      case ProjectionType.dartPrimitiveList:
+      case ProjectionType.structList:
+        return DefaultListGetterProjection(method, vtableOffset);
       case ProjectionType.dateTime:
         return DateTimeGetterProjection(method, vtableOffset);
+      case ProjectionType.dateTimeList:
+        return DateTimeListGetterProjection(method, vtableOffset);
       case ProjectionType.delegate:
         return DelegateGetterProjection(method, vtableOffset);
       case ProjectionType.duration:
         return DurationGetterProjection(method, vtableOffset);
+      case ProjectionType.durationList:
+        return DurationListGetterProjection(method, vtableOffset);
       case ProjectionType.enum_:
         return EnumGetterProjection(method, vtableOffset);
       case ProjectionType.genericEnum:
@@ -34,20 +41,28 @@ abstract class GetterProjection extends PropertyProjection {
         return GenericObjectGetterProjection(method, vtableOffset);
       case ProjectionType.guid:
         return GuidGetterProjection(method, vtableOffset);
+      case ProjectionType.guidList:
+        return GuidListGetterProjection(method, vtableOffset);
       case ProjectionType.map:
         return MapGetterProjection(method, vtableOffset);
       case ProjectionType.mapView:
         return MapViewGetterProjection(method, vtableOffset);
       case ProjectionType.object:
         return ObjectGetterProjection(method, vtableOffset);
+      case ProjectionType.objectList:
+        return ObjectListGetterProjection(method, vtableOffset);
       case ProjectionType.reference:
         return ReferenceGetterProjection(method, vtableOffset);
       case ProjectionType.string:
         return StringGetterProjection(method, vtableOffset);
+      case ProjectionType.stringList:
+        return StringListGetterProjection(method, vtableOffset);
       case ProjectionType.struct:
         return StructGetterProjection(method, vtableOffset);
       case ProjectionType.uri:
         return UriGetterProjection(method, vtableOffset);
+      case ProjectionType.uriList:
+        return UriListGetterProjection(method, vtableOffset);
       case ProjectionType.vector:
         return VectorGetterProjection(method, vtableOffset);
       case ProjectionType.vectorView:

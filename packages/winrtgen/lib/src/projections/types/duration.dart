@@ -40,6 +40,44 @@ class DurationGetterProjection extends GetterProjection with _DurationMixin {
   DurationGetterProjection(super.method, super.vtableOffset);
 }
 
+mixin _DurationListMixin on MethodProjection {
+  @override
+  String get returnType => 'List<Duration>';
+
+  @override
+  String get methodDeclaration => '''
+  $methodHeader {
+    final pValueSize = calloc<Uint32>();
+    final retValuePtr = calloc<Pointer<Uint64>>();
+    $parametersPreamble
+
+    try {
+      ${ffiCall()}
+
+      return retValuePtr.value
+        .toList(length: pValueSize.value)
+        .map((value) => Duration(microseconds: value ~/ 10));
+    } finally {
+      $parametersPostamble
+      free(pValueSize);
+      free(retValuePtr);
+    }
+  }
+''';
+}
+
+/// Method projection for methods that return `List<Duration>`.
+class DurationListMethodProjection extends MethodProjection
+    with _DurationListMixin {
+  DurationListMethodProjection(super.method, super.vtableOffset);
+}
+
+/// Getter projection for `List<Duration>` getters.
+class DurationListGetterProjection extends GetterProjection
+    with _DurationListMixin {
+  DurationListGetterProjection(super.method, super.vtableOffset);
+}
+
 /// Setter projection for `Duration` setters.
 class DurationSetterProjection extends SetterProjection {
   DurationSetterProjection(super.method, super.vtableOffset);

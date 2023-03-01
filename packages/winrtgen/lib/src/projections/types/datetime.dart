@@ -40,6 +40,43 @@ class DateTimeGetterProjection extends GetterProjection with _DateTimeMixin {
   DateTimeGetterProjection(super.method, super.vtableOffset);
 }
 
+mixin _DateTimeListMixin on MethodProjection {
+  @override
+  String get returnType => 'List<DateTime>';
+
+  @override
+  String get methodDeclaration => '''
+  $methodHeader {
+    final pValueSize = calloc<Uint32>();
+    final retValuePtr = calloc<Pointer<Uint64>>();
+    $parametersPreamble
+
+    try {
+      ${ffiCall()}
+
+      return retValuePtr.value.toList(length: pValueSize.value).map((value) =>
+          DateTime.utc(1601, 01, 01).add(Duration(microseconds: value ~/ 10)));
+    } finally {
+      $parametersPostamble
+      free(pValueSize);
+      free(retValuePtr);
+    }
+  }
+''';
+}
+
+/// Method projection for methods that return `List<DateTime>`.
+class DateTimeListMethodProjection extends MethodProjection
+    with _DateTimeListMixin {
+  DateTimeListMethodProjection(super.method, super.vtableOffset);
+}
+
+/// Getter projection for `List<DateTime>` getters.
+class DateTimeListGetterProjection extends GetterProjection
+    with _DateTimeListMixin {
+  DateTimeListGetterProjection(super.method, super.vtableOffset);
+}
+
 /// Setter projection for `DateTime` setters.
 class DateTimeSetterProjection extends SetterProjection {
   DateTimeSetterProjection(super.method, super.vtableOffset);

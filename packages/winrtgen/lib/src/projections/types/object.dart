@@ -8,6 +8,7 @@ import '../getter.dart';
 import '../method.dart';
 import '../parameter.dart';
 import '../setter.dart';
+import '../type.dart';
 import 'default.dart';
 
 mixin _ObjectMixin on MethodProjection {
@@ -113,6 +114,65 @@ class ObjectMethodProjection extends MethodProjection with _ObjectMixin {
 /// Getter projection for WinRT class, interface, or `boxed` value getters.
 class ObjectGetterProjection extends GetterProjection with _ObjectMixin {
   ObjectGetterProjection(super.method, super.vtableOffset);
+}
+
+mixin _ObjectListMixin on MethodProjection {
+  late final typeArgProjection = TypeProjection(
+      method.returnType.typeIdentifier.isReferenceType
+          ? method.returnType.typeIdentifier.typeArg!.typeArg!
+          : method.returnType.typeIdentifier.typeArg!);
+
+  String get shortName => typeArgProjection.typeIdentifier.shortName;
+
+  @override
+  String get returnType =>
+      typeArgProjection.isObjectType ? 'List<Object?>' : 'List<$shortName>';
+
+  String get returnStatement {
+    if (typeArgProjection.isObjectType) {
+      return '''
+      return retValuePtr.value
+          .toList(IPropertyValue.fromRawPointer, length: pValueSize.value)
+          .map((e) => e.value);''';
+    }
+
+    return '''
+      return retValuePtr.value
+          .toList($shortName.fromRawPointer, length: pValueSize.value);''';
+  }
+
+  @override
+  String get methodDeclaration => '''
+  $methodHeader {
+    final pValueSize = calloc<Uint32>();
+    final retValuePtr = calloc<Pointer<COMObject>>();
+    $parametersPreamble
+
+    try {
+      ${ffiCall()}
+
+      $returnStatement
+    } finally {
+      $parametersPostamble
+      free(pValueSize);
+      free(retValuePtr);
+    }
+  }
+''';
+}
+
+/// Method projection for methods that return `List` of WinRT class,
+/// interface, or `boxed` value.
+class ObjectListMethodProjection extends MethodProjection
+    with _ObjectListMixin {
+  ObjectListMethodProjection(super.method, super.vtableOffset);
+}
+
+/// Getter projection for getters that return a `List` of WinRT class,
+/// interface, or `boxed` value.
+class ObjectListGetterProjection extends GetterProjection
+    with _ObjectListMixin {
+  ObjectListGetterProjection(super.method, super.vtableOffset);
 }
 
 /// Setter projection for WinRT class, interface, or `boxed` value setters.

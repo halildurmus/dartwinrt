@@ -40,6 +40,40 @@ class GuidGetterProjection extends GetterProjection with _GuidMixin {
   GuidGetterProjection(super.method, super.vtableOffset);
 }
 
+mixin _GuidListMixin on MethodProjection {
+  @override
+  String get returnType => 'List<Guid>';
+
+  @override
+  String get methodDeclaration => '''
+  $methodHeader {
+    final pValueSize = calloc<Uint32>();
+    final retValuePtr = calloc<Pointer<GUID>>();
+    $parametersPreamble
+
+    try {
+      ${ffiCall()}
+
+      return retValuePtr.value.toList(length: pValueSize.value);
+    } finally {
+      $parametersPostamble
+      free(pValueSize);
+      free(retValuePtr);
+    }
+  }
+''';
+}
+
+/// Method projection for methods that return `List<Guid>`.
+class GuidListMethodProjection extends MethodProjection with _GuidListMixin {
+  GuidListMethodProjection(super.method, super.vtableOffset);
+}
+
+/// Getter projection for `List<Guid>` getters.
+class GuidListGetterProjection extends GetterProjection with _GuidListMixin {
+  GuidListGetterProjection(super.method, super.vtableOffset);
+}
+
 /// Setter projection for `Guid` setters.
 class GuidSetterProjection extends SetterProjection {
   GuidSetterProjection(super.method, super.vtableOffset);

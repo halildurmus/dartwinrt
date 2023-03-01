@@ -45,6 +45,42 @@ class StringGetterProjection extends GetterProjection with _StringMixin {
   StringGetterProjection(super.method, super.vtableOffset);
 }
 
+mixin _StringListMixin on MethodProjection {
+  @override
+  String get returnType => 'List<String>';
+
+  @override
+  String get methodDeclaration => '''
+  $methodHeader {
+    final pValueSize = calloc<Uint32>();
+    final retValuePtr = calloc<Pointer<HSTRING>>();
+    $parametersPreamble
+
+    try {
+      ${ffiCall()}
+
+      return retValuePtr.value.toList(length: pValueSize.value);
+    } finally {
+      $parametersPostamble
+      free(pValueSize);
+      free(retValuePtr);
+    }
+  }
+''';
+}
+
+/// Method projection for methods that return `List<String>`.
+class StringListMethodProjection extends MethodProjection
+    with _StringListMixin {
+  StringListMethodProjection(super.method, super.vtableOffset);
+}
+
+/// Getter projection for `List<String>` getters.
+class StringListGetterProjection extends GetterProjection
+    with _StringListMixin {
+  StringListGetterProjection(super.method, super.vtableOffset);
+}
+
 /// Setter projection for `String` setters.
 class StringSetterProjection extends SetterProjection {
   StringSetterProjection(super.method, super.vtableOffset);
