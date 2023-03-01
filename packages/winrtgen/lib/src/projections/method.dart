@@ -59,12 +59,19 @@ abstract class MethodProjection {
         return ObjectMethodProjection(method, vtableOffset);
       case ProjectionType.dartPrimitive:
         return DefaultMethodProjection(method, vtableOffset);
+      case ProjectionType.dartPrimitiveList:
+      case ProjectionType.structList:
+        return DefaultListMethodProjection(method, vtableOffset);
       case ProjectionType.dateTime:
         return DateTimeMethodProjection(method, vtableOffset);
+      case ProjectionType.dateTimeList:
+        return DateTimeListMethodProjection(method, vtableOffset);
       case ProjectionType.delegate:
         return DelegateMethodProjection(method, vtableOffset);
       case ProjectionType.duration:
         return DurationMethodProjection(method, vtableOffset);
+      case ProjectionType.durationList:
+        return DurationListMethodProjection(method, vtableOffset);
       case ProjectionType.enum_:
         return EnumMethodProjection(method, vtableOffset);
       case ProjectionType.genericEnum:
@@ -73,20 +80,28 @@ abstract class MethodProjection {
         return GenericObjectMethodProjection(method, vtableOffset);
       case ProjectionType.guid:
         return GuidMethodProjection(method, vtableOffset);
+      case ProjectionType.guidList:
+        return GuidListMethodProjection(method, vtableOffset);
       case ProjectionType.map:
         return MapMethodProjection(method, vtableOffset);
       case ProjectionType.mapView:
         return MapViewMethodProjection(method, vtableOffset);
       case ProjectionType.object:
         return ObjectMethodProjection(method, vtableOffset);
+      case ProjectionType.objectList:
+        return ObjectListMethodProjection(method, vtableOffset);
       case ProjectionType.reference:
         return ReferenceMethodProjection(method, vtableOffset);
       case ProjectionType.string:
         return StringMethodProjection(method, vtableOffset);
+      case ProjectionType.stringList:
+        return StringListMethodProjection(method, vtableOffset);
       case ProjectionType.struct:
         return StructMethodProjection(method, vtableOffset);
       case ProjectionType.uri:
         return UriMethodProjection(method, vtableOffset);
+      case ProjectionType.uriList:
+        return UriListMethodProjection(method, vtableOffset);
       case ProjectionType.vector:
         return VectorMethodProjection(method, vtableOffset);
       case ProjectionType.vectorView:
@@ -207,12 +222,14 @@ abstract class MethodProjection {
   String get identifiers => [
         'ptr.ref.lpVtbl',
         ...parameters.map((param) => param.localIdentifier),
+        if (returnTypeProjection.isSimpleArray) 'pValueSize',
         if (!returnTypeProjection.isVoid) 'retValuePtr',
       ].join(', ');
 
   String get nativeParams => [
         'LPVTBL lpVtbl',
         ...parameters.map((param) => param.ffiProjection),
+        if (returnTypeProjection.isSimpleArray) 'Pointer<Uint32> valueSize',
         if (!returnTypeProjection.isVoid)
           '${wrapWithPointer(returnTypeProjection.nativeType)} retValuePtr',
       ].join(', ');
@@ -220,6 +237,7 @@ abstract class MethodProjection {
   String get dartParams => [
         'LPVTBL lpVtbl',
         ...parameters.map((param) => param.dartProjection),
+        if (returnTypeProjection.isSimpleArray) 'Pointer<Uint32> valueSize',
         if (!returnTypeProjection.isVoid)
           '${wrapWithPointer(returnTypeProjection.nativeType)} retValuePtr',
       ].join(', ');

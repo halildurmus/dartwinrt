@@ -8,11 +8,15 @@ import 'package:test/test.dart';
 import 'package:win32/win32.dart';
 import 'package:winrtgen/winrtgen.dart';
 
+import '../helpers.dart';
+
 void main() {
   if (!isWindowsRuntimeAvailable()) {
     print('Skipping tests because Windows Runtime is not available.');
     return;
   }
+
+  final windowsBuildNumber = getWindowsBuildNumber();
 
   group('GetterProjection', () {
     test('projects something', () {
@@ -311,6 +315,25 @@ void main() {
       expect(projection.toString(),
           contains('return IPropertyValue.fromRawPointer(retValuePtr).value;'));
     });
+
+    if (windowsBuildNumber >= 20348) {
+      test('projects List<String>', () {
+        final projection = GetterProjection.fromTypeAndMethodName(
+            'Windows.ApplicationModel.AppInfo', 'get_SupportedFileExtensions');
+        expect(projection, isA<StringListGetterProjection>());
+        expect(projection.returnType, equals('List<String>'));
+        expect(
+            projection.nativePrototype,
+            equals(
+                'HRESULT Function(LPVTBL lpVtbl, Pointer<Uint32> valueSize, Pointer<IntPtr> retValuePtr)'));
+        expect(
+            projection.dartPrototype,
+            equals(
+                'int Function(LPVTBL lpVtbl, Pointer<Uint32> valueSize, Pointer<IntPtr> retValuePtr)'));
+        expect(projection.methodHeader,
+            equals('List<String> get supportedFileExtensions'));
+      });
+    }
 
     test('projects String', () {
       final projection = GetterProjection.fromTypeAndMethodName(
