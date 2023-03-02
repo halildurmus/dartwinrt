@@ -3,6 +3,7 @@
 // BSD-style license that can be found in the LICENSE file.
 
 export 'attributes.dart';
+export 'bad_identifier_names.dart';
 export 'exclusions.dart';
 export 'generic_types.dart';
 export 'headers.dart';

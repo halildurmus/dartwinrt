@@ -42,7 +42,7 @@ mixin _VectorMixin on MethodProjection {
         ? 'IntType.${typeProjection.nativeType.toLowerCase()}'
         : null;
 
-    final args = <String>["iterableIid: '$iterableIid'"];
+    final args = <String>["iterableIid: ${quote(iterableIid)}"];
     if (typeProjection.isWinRTEnum) {
       args.add('enumCreator: $creator');
     } else if (creator != null) {

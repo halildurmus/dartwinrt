@@ -50,7 +50,7 @@ mixin _MapMixin on MethodProjection {
     final iterableIid =
         iterableIidFromMapType(returnTypeProjection.typeIdentifier);
 
-    final args = <String>["iterableIid: '$iterableIid'"];
+    final args = <String>["iterableIid: ${quote(iterableIid)}"];
     if (keyArgTypeProjection.isWinRTEnum) {
       args.add('enumKeyCreator: $enumKeyCreator');
     }

@@ -16,25 +16,6 @@ import 'package:winmd/winmd.dart';
 import 'constants/constants.dart';
 import 'extensions/extensions.dart';
 
-/// A list of all words that should not be used as identifiers.
-const badIdentifierNames = <String>{..._dartReservedWords, ..._dartTypes};
-
-/// Reserved words in the Dart language that can never be used as identifiers.
-/// Keywords are from https://dart.dev/guides/language/language-tour#keywords.
-const _dartReservedWords = <String>{
-  // Contextual keywords and built-in identifiers are not included here, since
-  // they can be used as valid identifiers in most places.
-  'assert', 'break', 'case', 'catch', 'class', 'const', 'continue', 'default',
-  'do', 'else', 'enum', 'extends', 'false', 'final', 'finally', 'for', 'if',
-  'in', 'is', 'new', 'null', 'rethrow', 'return', 'super', 'switch', 'this',
-  'throw', 'true', 'try', 'var', 'void', 'while', 'with',
-};
-
-/// Dart intrinsic types that will cause problems if used as identifiers.
-const _dartTypes = <String>{
-  'int', 'double', 'String', 'bool', 'List', 'Set', 'Map', //
-};
-
 /// Converts a [fullyQualifiedType] (e.g. `Windows.Globalization.Calendar`) and
 /// returns the matching file name (e.g. `calendar.dart`).
 String fileNameFromType(String fullyQualifiedType) =>
@@ -56,7 +37,7 @@ String folderFromType(String fullyQualifiedType) {
 ///
 /// This is hardcoded as the value {11f47ad5-7b73-42c0-abae-878b1e16adee} in
 /// https://learn.microsoft.com/en-us/uwp/winrt-cref/winrt-type-system
-const wrtPinterfaceNamespace = <int>[
+const _wrtPinterfaceNamespace = <int>[
   0x11, 0xf4, 0x7a, 0xd5,
   0x7b, 0x73,
   0x42, 0xc0,
@@ -73,15 +54,15 @@ const wrtPinterfaceNamespace = <int>[
 /// Converts it to a unique IID for the resultant type, using an algorithm
 /// defined here:
 /// https://learn.microsoft.com/en-us/uwp/winrt-cref/winrt-type-system#guid-generation-for-parameterized-types
-Guid iidFromSignature(String signature) {
+String iidFromSignature(String signature) {
   if (signature.startsWith('{') &&
       signature.endsWith('}') &&
       signature.length == 38) {
-    return Guid.parse(signature);
+    return signature;
   }
 
   final signatureInBytes = const Utf8Encoder().convert(signature);
-  final data = <int>[...wrtPinterfaceNamespace, ...signatureInBytes];
+  final data = <int>[..._wrtPinterfaceNamespace, ...signatureInBytes];
   final sha1Hash = sha1.convert(data);
   final sha1Bytes = Uint8List.fromList(sha1Hash.bytes).buffer.asByteData();
 
@@ -90,12 +71,13 @@ Guid iidFromSignature(String signature) {
   final thirdPart = (sha1Bytes.getUint16(6) & 0x0FFF) | 0x5000;
   final fourthPart = (sha1Bytes.getUint64(8, Endian.little) & ~0xC0) | 0x80;
 
-  return Guid.fromComponents(firstPart, secondPart, thirdPart, fourthPart);
+  return Guid.fromComponents(firstPart, secondPart, thirdPart, fourthPart)
+      .toString();
 }
 
 /// Returns the `IIterable<IKeyValuePair<K, V>>` IID for the given `IMap` or
 /// `IMapView` [typeIdentifier].
-Guid iterableIidFromMapType(TypeIdentifier typeIdentifier) {
+String iterableIidFromMapType(TypeIdentifier typeIdentifier) {
   if (!['IMap', 'IMapView'].contains(outerType(typeIdentifier.shortName))) {
     throw ArgumentError("Expected an 'IMap' or 'IMapView' type identifier.");
   }
@@ -105,12 +87,12 @@ Guid iterableIidFromMapType(TypeIdentifier typeIdentifier) {
   final kvpSignature =
       'pinterface($IID_IKeyValuePair;$kvpKeyArgSignature;$kvpValueArgSignature)';
   final iterableSignature = 'pinterface($IID_IIterable;$kvpSignature)';
-  return iidFromSignature(iterableSignature);
+  return iidFromSignature(iterableSignature).toString();
 }
 
 /// Returns the `IIterable<T>` IID for the given `IVector` or `IVectorView`
 /// [typeIdentifier].
-Guid iterableIidFromVectorType(TypeIdentifier typeIdentifier) {
+String iterableIidFromVectorType(TypeIdentifier typeIdentifier) {
   if (!['IVector', 'IVectorView']
       .contains(outerType(typeIdentifier.shortName))) {
     throw ArgumentError(
@@ -119,7 +101,7 @@ Guid iterableIidFromVectorType(TypeIdentifier typeIdentifier) {
 
   final iterableArgSignature = typeIdentifier.typeArg!.signature;
   final iterableSignature = 'pinterface($IID_IIterable;$iterableArgSignature)';
-  return iidFromSignature(iterableSignature);
+  return iidFromSignature(iterableSignature).toString();
 }
 
 /// Return the final component of a fully qualified name (e.g.
@@ -246,8 +228,7 @@ String typeArguments(String type) => !type.contains('<')
 /// that are duplicated.
 String uniquelyNameMethod(Method method) {
   // Is it a WinRT method overloaded with a name provided by the metadata?
-  final overloadName =
-      method.attributeAsString('Windows.Foundation.Metadata.OverloadAttribute');
+  final overloadName = method.attributeAsString(overloadAttribute);
   if (overloadName.isNotEmpty) return overloadName;
   // Otherwise the original name is fine.
   return method.name;

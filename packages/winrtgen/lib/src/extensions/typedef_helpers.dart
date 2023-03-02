@@ -2,7 +2,6 @@
 // details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-import 'package:win32/win32.dart';
 import 'package:winmd/winmd.dart';
 
 import '../utils.dart';
@@ -16,7 +15,7 @@ extension TypeDefHelpers on TypeDef {
       typeSpec?.isGenericType ?? false ? typeSpec!.type!.name : name;
 
   /// Returns the IID of the type defined in this TypeDef.
-  Guid get iid => iidFromSignature(signature);
+  String get iid => iidFromSignature(signature);
 
   /// Returns the package import for the type defined in this TypeDef (e.g.
   /// `package:windows_globalization/windows_globalization.dart` for
