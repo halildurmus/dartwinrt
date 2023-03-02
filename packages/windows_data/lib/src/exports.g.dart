@@ -12,7 +12,7 @@ export 'json/ijsonvalue.dart';
 export 'json/jsonarray.dart';
 export 'json/jsonobject.dart';
 export 'json/jsonvalue.dart';
-export 'text/structs.g.dart';
+export 'text/textsegment.dart';
 export 'xml/dom/enums.g.dart';
 export 'xml/dom/ixmlattribute.dart';
 export 'xml/dom/ixmlcdatasection.dart';

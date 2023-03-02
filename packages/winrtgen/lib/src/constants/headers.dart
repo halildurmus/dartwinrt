@@ -18,13 +18,6 @@ $copyrightHeader
 // ignore_for_file: unused_import
 ''';
 
-const exportsFileHeader = '''
-$copyrightHeader
-
-// THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
-
-''';
-
 const enumsFileHeader = '''
 $copyrightHeader
 
@@ -37,7 +30,14 @@ $copyrightHeader
 
 ''';
 
-const structsFileHeader = '''
+const exportsFileHeader = '''
+$copyrightHeader
+
+// THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
+
+''';
+
+const nativeStructsFileHeader = '''
 $copyrightHeader
 
 // Dart representations of common structs used in the Windows Runtime APIs.
@@ -45,4 +45,11 @@ $copyrightHeader
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 import 'dart:ffi';
+''';
+
+const structFileHeader = '''
+$copyrightHeader
+
+// THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
+
 ''';

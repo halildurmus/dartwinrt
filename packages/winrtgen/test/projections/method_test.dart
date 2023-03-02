@@ -342,9 +342,11 @@ void main() {
       expect(
           projection.nativePrototype,
           equals(
-              'HRESULT Function(LPVTBL lpVtbl, Pointer<Point> retValuePtr)'));
-      expect(projection.dartPrototype,
-          equals('int Function(LPVTBL lpVtbl, Pointer<Point> retValuePtr)'));
+              'HRESULT Function(LPVTBL lpVtbl, Pointer<NativePoint> retValuePtr)'));
+      expect(
+          projection.dartPrototype,
+          equals(
+              'int Function(LPVTBL lpVtbl, Pointer<NativePoint> retValuePtr)'));
       expect(projection.methodHeader, equals('Point getPoint()'));
     });
 

@@ -16,7 +16,7 @@ import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
-import '../structs.g.dart';
+import '../color.dart';
 import 'enums.g.dart';
 
 /// @nodoc
@@ -55,95 +55,103 @@ class IUISettings extends IInspectable {
   }
 
   Size get cursorSize {
-    final retValuePtr = calloc<Size>();
+    final retValuePtr = calloc<NativeSize>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            LPVTBL lpVtbl, Pointer<Size> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(LPVTBL lpVtbl, Pointer<Size> retValuePtr)>()(
-        ptr.ref.lpVtbl, retValuePtr);
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(7)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(LPVTBL lpVtbl,
+                              Pointer<NativeSize> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(
+                      LPVTBL lpVtbl, Pointer<NativeSize> retValuePtr)>()(
+          ptr.ref.lpVtbl, retValuePtr);
 
-    if (FAILED(hr)) {
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      return retValuePtr.toDart();
+    } finally {
       free(retValuePtr);
-      throw WindowsException(hr);
     }
-
-    return retValuePtr.ref;
   }
 
   Size get scrollBarSize {
-    final retValuePtr = calloc<Size>();
+    final retValuePtr = calloc<NativeSize>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            LPVTBL lpVtbl, Pointer<Size> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(LPVTBL lpVtbl, Pointer<Size> retValuePtr)>()(
-        ptr.ref.lpVtbl, retValuePtr);
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(8)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(LPVTBL lpVtbl,
+                              Pointer<NativeSize> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(
+                      LPVTBL lpVtbl, Pointer<NativeSize> retValuePtr)>()(
+          ptr.ref.lpVtbl, retValuePtr);
 
-    if (FAILED(hr)) {
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      return retValuePtr.toDart();
+    } finally {
       free(retValuePtr);
-      throw WindowsException(hr);
     }
-
-    return retValuePtr.ref;
   }
 
   Size get scrollBarArrowSize {
-    final retValuePtr = calloc<Size>();
+    final retValuePtr = calloc<NativeSize>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(9)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            LPVTBL lpVtbl, Pointer<Size> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(LPVTBL lpVtbl, Pointer<Size> retValuePtr)>()(
-        ptr.ref.lpVtbl, retValuePtr);
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(9)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(LPVTBL lpVtbl,
+                              Pointer<NativeSize> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(
+                      LPVTBL lpVtbl, Pointer<NativeSize> retValuePtr)>()(
+          ptr.ref.lpVtbl, retValuePtr);
 
-    if (FAILED(hr)) {
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      return retValuePtr.toDart();
+    } finally {
       free(retValuePtr);
-      throw WindowsException(hr);
     }
-
-    return retValuePtr.ref;
   }
 
   Size get scrollBarThumbBoxSize {
-    final retValuePtr = calloc<Size>();
+    final retValuePtr = calloc<NativeSize>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(10)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            LPVTBL lpVtbl, Pointer<Size> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(LPVTBL lpVtbl, Pointer<Size> retValuePtr)>()(
-        ptr.ref.lpVtbl, retValuePtr);
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(10)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(LPVTBL lpVtbl,
+                              Pointer<NativeSize> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(
+                      LPVTBL lpVtbl, Pointer<NativeSize> retValuePtr)>()(
+          ptr.ref.lpVtbl, retValuePtr);
 
-    if (FAILED(hr)) {
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      return retValuePtr.toDart();
+    } finally {
       free(retValuePtr);
-      throw WindowsException(hr);
     }
-
-    return retValuePtr.ref;
   }
 
   int get messageDuration {
@@ -315,26 +323,27 @@ class IUISettings extends IInspectable {
   }
 
   Color uiElementColor(UIElementType desiredElement) {
-    final retValuePtr = calloc<Color>();
+    final retValuePtr = calloc<NativeColor>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(18)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, Int32 desiredElement,
-                            Pointer<Color> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(LPVTBL lpVtbl, int desiredElement,
-                    Pointer<Color> retValuePtr)>()(
-        ptr.ref.lpVtbl, desiredElement.value, retValuePtr);
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(18)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(LPVTBL lpVtbl, Int32 desiredElement,
+                              Pointer<NativeColor> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(LPVTBL lpVtbl, int desiredElement,
+                      Pointer<NativeColor> retValuePtr)>()(
+          ptr.ref.lpVtbl, desiredElement.value, retValuePtr);
 
-    if (FAILED(hr)) {
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      return retValuePtr.toDart();
+    } finally {
       free(retValuePtr);
-      throw WindowsException(hr);
     }
-
-    return retValuePtr.ref;
   }
 }

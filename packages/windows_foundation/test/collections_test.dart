@@ -23,23 +23,9 @@ void main() {
 
   group('IMap<String, Object?> (PropertySet)', () {
     late IMap<String, Object?> map;
-    late Arena allocator;
 
     setUp(() {
-      allocator = Arena();
       final guid = Guid.parse(IID_ISpVoice);
-      final pPoint = allocator<Point>()
-        ..ref.x = 3
-        ..ref.y = -3;
-      final pRect = allocator<Rect>()
-        ..ref.height = 100
-        ..ref.width = 200
-        ..ref.x = 2
-        ..ref.y = -2;
-      final pSize = allocator<Size>()
-        ..ref.height = 1500
-        ..ref.width = 300;
-
       map = IMap.empty()
         ..insert('key1', null)
         ..insert('key2', StringMap())
@@ -49,9 +35,9 @@ void main() {
         ..insert('key6', const Duration(seconds: 30))
         ..insert('key7', guid)
         ..insert('key8', 259)
-        ..insert('key9', pPoint.ref)
-        ..insert('key10', pRect.ref)
-        ..insert('key11', pSize.ref)
+        ..insert('key9', Point(3, -3))
+        ..insert('key10', Rect(2, -2, 200, 100))
+        ..insert('key11', Size(300, 1500))
         ..insert('key12', 'strVal')
         ..insert('key13', [true, false])
         ..insert('key14',
@@ -61,9 +47,9 @@ void main() {
         ..insert('key17', [guid])
         ..insert('key18', [StringMap()])
         ..insert('key19', [2022, -2022])
-        ..insert('key20', [pPoint.ref])
-        ..insert('key21', [pRect.ref])
-        ..insert('key22', [pSize.ref])
+        ..insert('key20', [Point(3, -3)])
+        ..insert('key21', [Rect(2, -2, 200, 100)])
+        ..insert('key22', [Size(300, 1500)])
         ..insert('key23', ['str1', 'str2']);
     });
 
@@ -267,32 +253,17 @@ void main() {
 
     tearDown(() {
       map.release();
-      allocator.releaseAll(reuse: true);
     });
   });
 
   group('IMap<String, Object?> (ValueSet)', () {
     late IMap<String, Object?> map;
-    late Arena allocator;
 
     setUp(() {
-      allocator = Arena();
       final guid = Guid.parse(IID_ISpVoice);
       final valueSet = ValueSet()
         ..insert('key1', null)
         ..insert('key2', 'strVal');
-      final pPoint = allocator<Point>()
-        ..ref.x = 3
-        ..ref.y = -3;
-      final pRect = allocator<Rect>()
-        ..ref.height = 100
-        ..ref.width = 200
-        ..ref.x = 2
-        ..ref.y = -2;
-      final pSize = allocator<Size>()
-        ..ref.height = 1500
-        ..ref.width = 300;
-
       map = ValueSet()
         ..insert('key1', null)
         ..insert('key2', valueSet)
@@ -302,9 +273,9 @@ void main() {
         ..insert('key6', const Duration(seconds: 30))
         ..insert('key7', guid)
         ..insert('key8', 259)
-        ..insert('key9', pPoint.ref)
-        ..insert('key10', pRect.ref)
-        ..insert('key11', pSize.ref)
+        ..insert('key9', Point(3, -3))
+        ..insert('key10', Rect(2, -2, 200, 100))
+        ..insert('key11', Size(300, 1500))
         ..insert('key12', 'strVal')
         ..insert('key13', [true, false])
         ..insert('key14',
@@ -313,9 +284,9 @@ void main() {
         ..insert('key16', const [Duration(hours: 1), Duration(minutes: 60)])
         ..insert('key17', [guid])
         ..insert('key18', [2022, -2022])
-        ..insert('key19', [pPoint.ref])
-        ..insert('key20', [pRect.ref])
-        ..insert('key21', [pSize.ref])
+        ..insert('key19', [Point(3, -3)])
+        ..insert('key20', [Rect(2, -2, 200, 100)])
+        ..insert('key21', [Size(300, 1500)])
         ..insert('key22', ['str1', 'str2']);
     });
 
@@ -509,7 +480,6 @@ void main() {
 
     tearDown(() {
       map.release();
-      allocator.releaseAll(reuse: true);
     });
   });
 

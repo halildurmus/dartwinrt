@@ -10,7 +10,9 @@ import '../enums.g.dart';
 import '../helpers.dart';
 import '../iinspectable.dart';
 import '../ipropertyvalue.dart';
-import '../structs.g.dart';
+import '../point.dart';
+import '../rect.dart';
+import '../size.dart';
 
 extension IPropertyValueHelper on IPropertyValue {
   /// Gets the type that is represented as an [IPropertyValue].

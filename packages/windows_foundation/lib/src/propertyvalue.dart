@@ -19,7 +19,9 @@ import 'collections/iiterator.dart';
 import 'helpers.dart';
 import 'iinspectable.dart';
 import 'ipropertyvaluestatics.dart';
-import 'structs.g.dart';
+import 'point.dart';
+import 'rect.dart';
+import 'size.dart';
 
 /// Represents a value in a property store (such as a [PropertySet]
 /// instance).

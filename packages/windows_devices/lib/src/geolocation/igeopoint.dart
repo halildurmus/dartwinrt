@@ -16,9 +16,9 @@ import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
+import 'basicgeoposition.dart';
 import 'enums.g.dart';
 import 'igeoshape.dart';
-import 'structs.g.dart';
 
 /// @nodoc
 const IID_IGeopoint = '{6bfa00eb-e56e-49bb-9caf-cbaa78a8bcef}';
@@ -32,27 +32,28 @@ class IGeopoint extends IInspectable implements IGeoshape {
       IGeopoint.fromRawPointer(interface.toInterface(IID_IGeopoint));
 
   BasicGeoposition get position {
-    final retValuePtr = calloc<BasicGeoposition>();
+    final retValuePtr = calloc<NativeBasicGeoposition>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl,
-                            Pointer<BasicGeoposition> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    LPVTBL lpVtbl, Pointer<BasicGeoposition> retValuePtr)>()(
-        ptr.ref.lpVtbl, retValuePtr);
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(6)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(LPVTBL lpVtbl,
+                              Pointer<NativeBasicGeoposition> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(LPVTBL lpVtbl,
+                      Pointer<NativeBasicGeoposition> retValuePtr)>()(
+          ptr.ref.lpVtbl, retValuePtr);
 
-    if (FAILED(hr)) {
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      return retValuePtr.toDart();
+    } finally {
       free(retValuePtr);
-      throw WindowsException(hr);
     }
-
-    return retValuePtr.ref;
   }
 
   // IGeoshape methods

@@ -18,10 +18,11 @@ import 'package:windows_foundation/windows_foundation.dart';
 import 'package:windows_system/windows_system.dart';
 
 import 'enums.g.dart';
+import 'gamepadreading.dart';
+import 'gamepadvibration.dart';
 import 'headset.dart';
 import 'igamecontroller.dart';
 import 'igamepad.dart';
-import 'structs.g.dart';
 
 /// @nodoc
 const IID_IGamepad2 = '{3c1689bd-5915-4245-b0c0-c89fae0308ff}';

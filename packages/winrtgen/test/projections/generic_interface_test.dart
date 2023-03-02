@@ -188,7 +188,7 @@ void main() {
       });
     });
 
-    group('has correct class declaration', () {
+    group('has correct class header', () {
       test('(1)', () {
         expect(asyncOperationBoolProjection.classHeader,
             equals('class _IAsyncOperationBool extends IAsyncOperation<bool>'));

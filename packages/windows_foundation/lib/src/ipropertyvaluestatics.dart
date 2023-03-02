@@ -18,7 +18,9 @@ import '../internal.dart';
 import 'collections/iiterator.dart';
 import 'helpers.dart';
 import 'iinspectable.dart';
-import 'structs.g.dart';
+import 'point.dart';
+import 'rect.dart';
+import 'size.dart';
 
 /// @nodoc
 const IID_IPropertyValueStatics = '{629bdbc8-d932-4ff4-96b9-8d96c5c1e858}';
@@ -448,72 +450,81 @@ class IPropertyValueStatics extends IInspectable {
 
   IPropertyValue createPoint(Point value) {
     final retValuePtr = calloc<COMObject>();
+    final valueNativeStructPtr = value.toNative();
 
     final hr = ptr.ref.vtable
             .elementAt(23)
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, Point value,
+                        HRESULT Function(LPVTBL lpVtbl, NativePoint value,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL lpVtbl, Point value,
+                int Function(LPVTBL lpVtbl, NativePoint value,
                     Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, value, retValuePtr);
+        ptr.ref.lpVtbl, valueNativeStructPtr.ref, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
+
+    free(valueNativeStructPtr);
 
     return IPropertyValue.fromRawPointer(retValuePtr);
   }
 
   IPropertyValue createSize(Size value) {
     final retValuePtr = calloc<COMObject>();
+    final valueNativeStructPtr = value.toNative();
 
     final hr = ptr.ref.vtable
             .elementAt(24)
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, Size value,
+                        HRESULT Function(LPVTBL lpVtbl, NativeSize value,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL lpVtbl, Size value,
+                int Function(LPVTBL lpVtbl, NativeSize value,
                     Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, value, retValuePtr);
+        ptr.ref.lpVtbl, valueNativeStructPtr.ref, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
+
+    free(valueNativeStructPtr);
 
     return IPropertyValue.fromRawPointer(retValuePtr);
   }
 
   IPropertyValue createRect(Rect value) {
     final retValuePtr = calloc<COMObject>();
+    final valueNativeStructPtr = value.toNative();
 
     final hr = ptr.ref.vtable
             .elementAt(25)
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, Rect value,
+                        HRESULT Function(LPVTBL lpVtbl, NativeRect value,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL lpVtbl, Rect value,
+                int Function(LPVTBL lpVtbl, NativeRect value,
                     Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, value, retValuePtr);
+        ptr.ref.lpVtbl, valueNativeStructPtr.ref, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
+
+    free(valueNativeStructPtr);
 
     return IPropertyValue.fromRawPointer(retValuePtr);
   }
@@ -1076,9 +1087,12 @@ class IPropertyValueStatics extends IInspectable {
   IPropertyValue createPointArray(List<Point> value) {
     final retValuePtr = calloc<COMObject>();
 
-    final pArray = calloc<Point>(value.length);
+    final nativeStructPtrs = <Pointer<NativePoint>>[];
+    final pArray = calloc<NativePoint>(value.length);
     for (var i = 0; i < value.length; i++) {
-      pArray[i] = value.elementAt(i);
+      final nativeStructPtr = value.elementAt(i).toNative();
+      pArray[i] = nativeStructPtr.ref;
+      nativeStructPtrs.add(nativeStructPtr);
     }
 
     final hr = ptr.ref.vtable
@@ -1089,11 +1103,14 @@ class IPropertyValueStatics extends IInspectable {
                         HRESULT Function(
                             LPVTBL lpVtbl,
                             Uint32 valueSize,
-                            Pointer<Point> value,
+                            Pointer<NativePoint> value,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL lpVtbl, int valueSize, Pointer<Point> value,
+                int Function(
+                    LPVTBL lpVtbl,
+                    int valueSize,
+                    Pointer<NativePoint> value,
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, value.length, pArray, retValuePtr);
 
@@ -1102,6 +1119,7 @@ class IPropertyValueStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
+    nativeStructPtrs.forEach(free);
     free(pArray);
 
     return IPropertyValue.fromRawPointer(retValuePtr);
@@ -1110,9 +1128,12 @@ class IPropertyValueStatics extends IInspectable {
   IPropertyValue createSizeArray(List<Size> value) {
     final retValuePtr = calloc<COMObject>();
 
-    final pArray = calloc<Size>(value.length);
+    final nativeStructPtrs = <Pointer<NativeSize>>[];
+    final pArray = calloc<NativeSize>(value.length);
     for (var i = 0; i < value.length; i++) {
-      pArray[i] = value.elementAt(i);
+      final nativeStructPtr = value.elementAt(i).toNative();
+      pArray[i] = nativeStructPtr.ref;
+      nativeStructPtrs.add(nativeStructPtr);
     }
 
     final hr = ptr.ref.vtable
@@ -1123,11 +1144,14 @@ class IPropertyValueStatics extends IInspectable {
                         HRESULT Function(
                             LPVTBL lpVtbl,
                             Uint32 valueSize,
-                            Pointer<Size> value,
+                            Pointer<NativeSize> value,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL lpVtbl, int valueSize, Pointer<Size> value,
+                int Function(
+                    LPVTBL lpVtbl,
+                    int valueSize,
+                    Pointer<NativeSize> value,
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, value.length, pArray, retValuePtr);
 
@@ -1136,6 +1160,7 @@ class IPropertyValueStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
+    nativeStructPtrs.forEach(free);
     free(pArray);
 
     return IPropertyValue.fromRawPointer(retValuePtr);
@@ -1144,9 +1169,12 @@ class IPropertyValueStatics extends IInspectable {
   IPropertyValue createRectArray(List<Rect> value) {
     final retValuePtr = calloc<COMObject>();
 
-    final pArray = calloc<Rect>(value.length);
+    final nativeStructPtrs = <Pointer<NativeRect>>[];
+    final pArray = calloc<NativeRect>(value.length);
     for (var i = 0; i < value.length; i++) {
-      pArray[i] = value.elementAt(i);
+      final nativeStructPtr = value.elementAt(i).toNative();
+      pArray[i] = nativeStructPtr.ref;
+      nativeStructPtrs.add(nativeStructPtr);
     }
 
     final hr = ptr.ref.vtable
@@ -1157,11 +1185,14 @@ class IPropertyValueStatics extends IInspectable {
                         HRESULT Function(
                             LPVTBL lpVtbl,
                             Uint32 valueSize,
-                            Pointer<Rect> value,
+                            Pointer<NativeRect> value,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL lpVtbl, int valueSize, Pointer<Rect> value,
+                int Function(
+                    LPVTBL lpVtbl,
+                    int valueSize,
+                    Pointer<NativeRect> value,
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, value.length, pArray, retValuePtr);
 
@@ -1170,6 +1201,7 @@ class IPropertyValueStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
+    nativeStructPtrs.forEach(free);
     free(pArray);
 
     return IPropertyValue.fromRawPointer(retValuePtr);

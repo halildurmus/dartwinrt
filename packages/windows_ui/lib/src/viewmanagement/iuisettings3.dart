@@ -16,7 +16,7 @@ import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
-import '../structs.g.dart';
+import '../color.dart';
 import 'enums.g.dart';
 import 'uisettings.dart';
 
@@ -32,27 +32,28 @@ class IUISettings3 extends IInspectable {
       IUISettings3.fromRawPointer(interface.toInterface(IID_IUISettings3));
 
   Color getColorValue(UIColorType desiredColor) {
-    final retValuePtr = calloc<Color>();
+    final retValuePtr = calloc<NativeColor>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, Int32 desiredColor,
-                            Pointer<Color> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(LPVTBL lpVtbl, int desiredColor,
-                    Pointer<Color> retValuePtr)>()(
-        ptr.ref.lpVtbl, desiredColor.value, retValuePtr);
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(6)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(LPVTBL lpVtbl, Int32 desiredColor,
+                              Pointer<NativeColor> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(LPVTBL lpVtbl, int desiredColor,
+                      Pointer<NativeColor> retValuePtr)>()(
+          ptr.ref.lpVtbl, desiredColor.value, retValuePtr);
 
-    if (FAILED(hr)) {
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      return retValuePtr.toDart();
+    } finally {
       free(retValuePtr);
-      throw WindowsException(hr);
     }
-
-    return retValuePtr.ref;
   }
 
   int add_ColorValuesChanged(Pointer<COMObject> handler) {

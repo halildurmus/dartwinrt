@@ -25,13 +25,9 @@ extension ImportHelpers on InterfaceProjection {
       return relativePathTo('${folderFromType(type)}/enums.g.dart');
     }
 
-    if (typeDef.isClass || typeDef.isInterface) {
+    if (typeDef.isClass || typeDef.isInterface || typeDef.isStruct) {
       return relativePathTo(
           '${folderFromType(type)}/${fileNameFromType(type)}');
-    }
-
-    if (typeDef.isStruct) {
-      return relativePathTo('${folderFromType(type)}/structs.g.dart');
     }
 
     print('Unable to get import for typeDef: $typeDef');

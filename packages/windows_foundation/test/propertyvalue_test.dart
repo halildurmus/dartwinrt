@@ -69,7 +69,8 @@ void main() {
   });
 
   test('Guid', () {
-    final pv = PropertyValue.createGuid(Guid.parse(IID_IAsyncInfo));
+    final guid = Guid.parse(IID_IAsyncInfo);
+    final pv = PropertyValue.createGuid(guid);
     expect(pv.type, equals(PropertyType.guid));
     expect(pv.getGuid().toString(), equals(IID_IAsyncInfo));
     expect(pv.value?.toString(), equals(IID_IAsyncInfo));
@@ -98,6 +99,15 @@ void main() {
           Guid.parse(IID_IAsyncInfo),
           Guid.parse(IID_IClosable)
         ]));
+    pv.release();
+  });
+
+  test('Point', () {
+    final point = Point(10, 20);
+    final pv = PropertyValue.createPoint(point);
+    expect(pv.type, equals(PropertyType.point));
+    expect(pv.getPoint(), equals(point));
+    expect(pv.value, equals(point));
     pv.release();
   });
 

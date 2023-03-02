@@ -4,11 +4,8 @@
 
 @TestOn('windows')
 
-import 'dart:ffi';
-
-import 'package:ffi/ffi.dart';
 import 'package:test/test.dart';
-import 'package:win32/win32.dart';
+import 'package:win32/win32.dart' hide POINT, RECT, SIZE;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 import 'package:windows_media/windows_media.dart';
@@ -21,22 +18,8 @@ void main() {
 
   group('IMap<Guid, Object?> (MediaPropertySet)', () {
     late IMap<Guid, Object?> map;
-    late Arena allocator;
 
     setUp(() {
-      allocator = Arena();
-      final pPoint = allocator<Point>()
-        ..ref.x = 3
-        ..ref.y = -3;
-      final pRect = allocator<Rect>()
-        ..ref.height = 100
-        ..ref.width = 200
-        ..ref.x = 2
-        ..ref.y = -2;
-      final pSize = allocator<Size>()
-        ..ref.height = 1500
-        ..ref.width = 300;
-
       map = MediaPropertySet()
         ..insert(Guid.parse(IID_IClosable), null)
         ..insert(Guid.parse(IID_IStringable), StringMap())
@@ -46,9 +29,9 @@ void main() {
         ..insert(Guid.parse(IID_IShellLink), const Duration(seconds: 30))
         ..insert(Guid.parse(IID_IShellService), Guid.parse(IID_ISpVoice))
         ..insert(Guid.parse(IID_IShellFolder), 259)
-        ..insert(Guid.parse(IID_IShellItem), pPoint.ref)
-        ..insert(Guid.parse(IID_IShellItem2), pRect.ref)
-        ..insert(Guid.parse(IID_IShellItemArray), pSize.ref)
+        ..insert(Guid.parse(IID_IShellItem), Point(3, -3))
+        ..insert(Guid.parse(IID_IShellItem2), Rect(2, -2, 200, 100))
+        ..insert(Guid.parse(IID_IShellItemArray), Size(300, 1500))
         ..insert(Guid.parse(IID_IShellItemFilter), 'strVal')
         ..insert(Guid.parse(IID_IUnknown), [true, false])
         ..insert(Guid.parse(IID_IAppxManifestReader),
@@ -60,9 +43,10 @@ void main() {
             Guid.parse(IID_IAppxManifestReader4), [Guid.parse(IID_IShellItem)])
         ..insert(Guid.parse(IID_IAppxManifestReader5), [StringMap()])
         ..insert(Guid.parse(IID_IAppxManifestReader6), [2022, -2022])
-        ..insert(Guid.parse(IID_IAppxManifestReader7), [pPoint.ref])
-        ..insert(Guid.parse(IID_IAppxManifestProperties), [pRect.ref])
-        ..insert(Guid.parse(IID_IAppxManifestPackageId), [pSize.ref])
+        ..insert(Guid.parse(IID_IAppxManifestReader7), [Point(3, -3)])
+        ..insert(
+            Guid.parse(IID_IAppxManifestProperties), [Rect(2, -2, 200, 100)])
+        ..insert(Guid.parse(IID_IAppxManifestPackageId), [Size(300, 1500)])
         ..insert(Guid.parse(IID_IAppxFile), ['str1', 'str2']);
     });
 
@@ -291,7 +275,6 @@ void main() {
 
     tearDown(() {
       map.release();
-      allocator.releaseAll(reuse: true);
     });
   });
 }

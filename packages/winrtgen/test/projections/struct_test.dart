@@ -14,6 +14,20 @@ void main() {
     return;
   }
 
+  group('NativeStructProjection', () {
+    test('projects something', () {
+      final output =
+          NativeStructProjection.from('Windows.Foundation.Rect').toString();
+      expect(output, isNotEmpty);
+      expect(output, contains('NativeRect'));
+    });
+
+    test('from factory constructor throws if type is not found', () {
+      expect(() => NativeStructProjection.from('Windows.Foo.Bar'),
+          throwsA(isA<Exception>()));
+    });
+  });
+
   group('StructProjection', () {
     test('projects something', () {
       final output =
@@ -25,6 +39,44 @@ void main() {
     test('from factory constructor throws if type is not found', () {
       expect(() => StructProjection.from('Windows.Foo.Bar'),
           throwsA(isA<Exception>()));
+    });
+  });
+
+  group('WinRT native struct', () {
+    final rectProjection =
+        NativeStructProjection.from('Windows.Foundation.Rect');
+
+    test('has correct struct name', () {
+      expect(rectProjection.structName, equals('NativeRect'));
+    });
+
+    test('has correct class header', () {
+      expect(rectProjection.classHeader,
+          equals('class NativeRect extends Struct'));
+    });
+
+    test('has correct number of fields', () {
+      expect(rectProjection.fieldProjections.length, equals(4));
+    });
+
+    test('has correct first field', () {
+      final fieldProjection = rectProjection.fieldProjections.first;
+      expect(fieldProjection.attribute, equals('@Float()'));
+      expect(fieldProjection.dartType, equals('double'));
+      expect(fieldProjection.fieldName, equals('x'));
+      expect(fieldProjection.isDeprecated, isFalse);
+      expect(
+          fieldProjection.toString(), equals('@Float()\nexternal double x;\n'));
+    });
+
+    test('has correct last field', () {
+      final fieldProjection = rectProjection.fieldProjections.last;
+      expect(fieldProjection.attribute, equals('@Float()'));
+      expect(fieldProjection.dartType, equals('double'));
+      expect(fieldProjection.fieldName, equals('height'));
+      expect(fieldProjection.isDeprecated, isFalse);
+      expect(fieldProjection.toString(),
+          equals('@Float()\nexternal double height;\n'));
     });
   });
 
@@ -40,19 +92,34 @@ void main() {
       expect(rectProjection.structName, equals('Rect'));
     });
 
-    test('has correct class declaration', () {
-      expect(rectProjection.classHeader, equals('class Rect extends Struct'));
+    test('has correct class header', () {
+      expect(rectProjection.classHeader,
+          equals('class Rect implements WinRTStruct'));
     });
 
-    test('has correct number of fields', () {
-      expect(rectProjection.fields.length, equals(4));
+    test('has correct constructor', () {
+      expect(rectProjection.constructor,
+          equals('Rect(this.x, this.y, this.width, this.height);'));
     });
 
-    test('has correct first field', () {
-      final fieldProjection = rectProjection.fields.first;
-      expect(fieldProjection.attribute, equals('@Float()'));
+    test('has correct number of instance variables', () {
+      expect(rectProjection.fieldProjections.length, equals(4));
+    });
+
+    test('has correct first instance variable', () {
+      final fieldProjection = rectProjection.fieldProjections.first;
       expect(fieldProjection.dartType, equals('double'));
       expect(fieldProjection.fieldName, equals('x'));
+      expect(fieldProjection.isDeprecated, isFalse);
+      expect(fieldProjection.toString(), equals('final double x;'));
+    });
+
+    test('has correct last instance variable', () {
+      final fieldProjection = rectProjection.fieldProjections.last;
+      expect(fieldProjection.dartType, equals('double'));
+      expect(fieldProjection.fieldName, equals('height'));
+      expect(fieldProjection.isDeprecated, isFalse);
+      expect(fieldProjection.toString(), equals('final double height;'));
     });
   });
 }

@@ -39,12 +39,6 @@ void main() {
     expect(isSubtypeOfInspectable<INetwork>(), isFalse);
   });
 
-  test('isSubtypeOfStruct', () {
-    expect(isSubtypeOfStruct<GUID>(), isTrue);
-    expect(isSubtypeOfStruct<Guid>(), isFalse);
-    expect(isSubtypeOfStruct<Point>(), isTrue);
-  });
-
   test('isSubtypeOfWinRTEnum', () {
     expect(isSubtypeOfWinRTEnum<WinRTEnum>(), isTrue);
     expect(isSubtypeOfWinRTEnum<AsyncStatus>(), isTrue);
@@ -54,5 +48,11 @@ void main() {
   test('isSubtypeOfWinRTFlagsEnum', () {
     expect(isSubtypeOfWinRTFlagsEnum<WinRTFlagsEnum<dynamic>>(), isTrue);
     expect(isSubtypeOfWinRTFlagsEnum<AsyncStatus>(), isFalse);
+  });
+
+  test('isSubtypeOfWinRTStruct', () {
+    expect(isSubtypeOfWinRTStruct<Point>(), isTrue);
+    expect(isSubtypeOfWinRTStruct<Guid>(), isFalse);
+    expect(isSubtypeOfWinRTStruct<Rect>(), isTrue);
   });
 }

@@ -2,21 +2,31 @@
 // details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
+import '../../extensions/extensions.dart';
 import '../getter.dart';
 import '../method.dart';
 import '../parameter.dart';
 import '../setter.dart';
+import 'default.dart';
 
 mixin _StructMixin on MethodProjection {
+  @override
+  String get returnType => returnTypeProjection.typeIdentifier.shortName;
+
   @override
   String get methodDeclaration => '''
   $methodHeader {
     final retValuePtr = calloc<${returnTypeProjection.nativeType}>();
     $parametersPreamble
 
-    ${ffiCall(freeRetValOnFailure: true)}
+    try {
+      ${ffiCall()}
 
-    return retValuePtr.ref;
+      return retValuePtr.toDart();
+    } finally {
+      $parametersPostamble
+      free(retValuePtr);
+    }
   }
 ''';
 }
@@ -35,10 +45,18 @@ class StructGetterProjection extends GetterProjection with _StructMixin {
 class StructSetterProjection extends SetterProjection {
   StructSetterProjection(super.method, super.vtableOffset);
 
+  String get dartType => param.typeProjection.typeIdentifier.shortName;
+
   @override
   String get methodDeclaration => '''
   $methodHeader {
-    ${ffiCall(params: 'value')}
+    final nativeStructPtr = value.toNative();
+
+    try {
+      ${ffiCall(params: 'nativeStructPtr.ref')}
+    } finally {
+      free(nativeStructPtr);
+    }
   }
 ''';
 }
@@ -48,11 +66,40 @@ class StructParameterProjection extends ParameterProjection {
   StructParameterProjection(super.parameter);
 
   @override
-  String get preamble => '';
+  String get type => typeProjection.typeIdentifier.shortName;
 
   @override
-  String get postamble => '';
+  String get preamble =>
+      'final ${name}NativeStructPtr = $identifier.toNative();';
 
   @override
-  String get localIdentifier => identifier;
+  String get postamble => 'free(${name}NativeStructPtr);';
+
+  @override
+  String get localIdentifier => '${name}NativeStructPtr.ref';
+}
+
+/// Parameter projection for `List<T extends WinRTStruct>` parameters.
+class StructListParameterProjection extends DefaultListParameterProjection {
+  StructListParameterProjection(super.parameter);
+
+  String get nativeStructName => typeArgProjection.nativeType;
+
+  @override
+  String get type => 'List<${typeArgProjection.typeIdentifier.shortName}>';
+
+  @override
+  String get passArrayPreamble => '''
+    final nativeStructPtrs = <Pointer<$nativeStructName>>[];
+    final pArray = calloc<$nativeStructName>(value.length);
+    for (var i = 0; i < value.length; i++) {
+      final nativeStructPtr = value.elementAt(i).toNative();
+      pArray[i] = nativeStructPtr.ref;
+      nativeStructPtrs.add(nativeStructPtr);
+    }''';
+
+  @override
+  String get passArrayPostamble => '''
+    nativeStructPtrs.forEach(free);
+    free(pArray);''';
 }

@@ -212,14 +212,14 @@ class TypeProjection {
 
   /// Takes a type such as `valueTypeModifier` ->
   /// `Windows.Devices.Geolocation.BasicGeoposition` and converts it to
-  /// `BasicGeoposition`.
+  /// `NativeBasicGeoposition`.
   TypeTuple unwrapStruct() {
     final structType = typeIdentifier.type;
     if (structType == null) {
       throw Exception('Struct type missing for $typeIdentifier.');
     }
 
-    final structName = structType.shortName;
+    final structName = 'Native${structType.shortName}';
     return TypeTuple(structName, structName);
   }
 

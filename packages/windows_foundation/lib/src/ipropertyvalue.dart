@@ -19,7 +19,9 @@ import 'collections/iiterator.dart';
 import 'enums.g.dart';
 import 'helpers.dart';
 import 'iinspectable.dart';
-import 'structs.g.dart';
+import 'point.dart';
+import 'rect.dart';
+import 'size.dart';
 
 /// @nodoc
 const IID_IPropertyValue = '{4bd682dd-7554-40e9-9a9b-82654ede7e62}';
@@ -444,72 +446,78 @@ class IPropertyValue extends IInspectable {
   }
 
   Point getPoint() {
-    final retValuePtr = calloc<Point>();
+    final retValuePtr = calloc<NativePoint>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(23)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            LPVTBL lpVtbl, Pointer<Point> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(LPVTBL lpVtbl, Pointer<Point> retValuePtr)>()(
-        ptr.ref.lpVtbl, retValuePtr);
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(23)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(LPVTBL lpVtbl,
+                              Pointer<NativePoint> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(
+                      LPVTBL lpVtbl, Pointer<NativePoint> retValuePtr)>()(
+          ptr.ref.lpVtbl, retValuePtr);
 
-    if (FAILED(hr)) {
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      return retValuePtr.toDart();
+    } finally {
       free(retValuePtr);
-      throw WindowsException(hr);
     }
-
-    return retValuePtr.ref;
   }
 
   Size getSize() {
-    final retValuePtr = calloc<Size>();
+    final retValuePtr = calloc<NativeSize>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(24)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            LPVTBL lpVtbl, Pointer<Size> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(LPVTBL lpVtbl, Pointer<Size> retValuePtr)>()(
-        ptr.ref.lpVtbl, retValuePtr);
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(24)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(LPVTBL lpVtbl,
+                              Pointer<NativeSize> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(
+                      LPVTBL lpVtbl, Pointer<NativeSize> retValuePtr)>()(
+          ptr.ref.lpVtbl, retValuePtr);
 
-    if (FAILED(hr)) {
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      return retValuePtr.toDart();
+    } finally {
       free(retValuePtr);
-      throw WindowsException(hr);
     }
-
-    return retValuePtr.ref;
   }
 
   Rect getRect() {
-    final retValuePtr = calloc<Rect>();
+    final retValuePtr = calloc<NativeRect>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(25)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            LPVTBL lpVtbl, Pointer<Rect> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(LPVTBL lpVtbl, Pointer<Rect> retValuePtr)>()(
-        ptr.ref.lpVtbl, retValuePtr);
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(25)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(LPVTBL lpVtbl,
+                              Pointer<NativeRect> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(
+                      LPVTBL lpVtbl, Pointer<NativeRect> retValuePtr)>()(
+          ptr.ref.lpVtbl, retValuePtr);
 
-    if (FAILED(hr)) {
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      return retValuePtr.toDart();
+    } finally {
       free(retValuePtr);
-      throw WindowsException(hr);
     }
-
-    return retValuePtr.ref;
   }
 
   void getUInt8Array(List<int> value) {
@@ -978,7 +986,7 @@ class IPropertyValue extends IInspectable {
 
   void getPointArray(List<Point> value) {
     final pValueSize = calloc<Uint32>();
-    final pArray = calloc<Pointer<Point>>();
+    final pArray = calloc<Pointer<NativePoint>>();
 
     final hr =
         ptr.ref.vtable
@@ -989,11 +997,11 @@ class IPropertyValue extends IInspectable {
                             HRESULT Function(
                                 LPVTBL lpVtbl,
                                 Pointer<Uint32> valueSize,
-                                Pointer<Pointer<Point>> value)>>>()
+                                Pointer<Pointer<NativePoint>> value)>>>()
                 .value
                 .asFunction<
                     int Function(LPVTBL lpVtbl, Pointer<Uint32> valueSize,
-                        Pointer<Pointer<Point>> value)>()(
+                        Pointer<Pointer<NativePoint>> value)>()(
             ptr.ref.lpVtbl, pValueSize, pArray);
 
     if (FAILED(hr)) throw WindowsException(hr);
@@ -1007,7 +1015,7 @@ class IPropertyValue extends IInspectable {
 
   void getSizeArray(List<Size> value) {
     final pValueSize = calloc<Uint32>();
-    final pArray = calloc<Pointer<Size>>();
+    final pArray = calloc<Pointer<NativeSize>>();
 
     final hr =
         ptr.ref.vtable
@@ -1018,11 +1026,11 @@ class IPropertyValue extends IInspectable {
                             HRESULT Function(
                                 LPVTBL lpVtbl,
                                 Pointer<Uint32> valueSize,
-                                Pointer<Pointer<Size>> value)>>>()
+                                Pointer<Pointer<NativeSize>> value)>>>()
                 .value
                 .asFunction<
                     int Function(LPVTBL lpVtbl, Pointer<Uint32> valueSize,
-                        Pointer<Pointer<Size>> value)>()(
+                        Pointer<Pointer<NativeSize>> value)>()(
             ptr.ref.lpVtbl, pValueSize, pArray);
 
     if (FAILED(hr)) throw WindowsException(hr);
@@ -1036,7 +1044,7 @@ class IPropertyValue extends IInspectable {
 
   void getRectArray(List<Rect> value) {
     final pValueSize = calloc<Uint32>();
-    final pArray = calloc<Pointer<Rect>>();
+    final pArray = calloc<Pointer<NativeRect>>();
 
     final hr =
         ptr.ref.vtable
@@ -1047,11 +1055,11 @@ class IPropertyValue extends IInspectable {
                             HRESULT Function(
                                 LPVTBL lpVtbl,
                                 Pointer<Uint32> valueSize,
-                                Pointer<Pointer<Rect>> value)>>>()
+                                Pointer<Pointer<NativeRect>> value)>>>()
                 .value
                 .asFunction<
                     int Function(LPVTBL lpVtbl, Pointer<Uint32> valueSize,
-                        Pointer<Pointer<Rect>> value)>()(
+                        Pointer<Pointer<NativeRect>> value)>()(
             ptr.ref.lpVtbl, pValueSize, pArray);
 
     if (FAILED(hr)) throw WindowsException(hr);

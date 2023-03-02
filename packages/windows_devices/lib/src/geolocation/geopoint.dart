@@ -16,11 +16,11 @@ import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
+import 'basicgeoposition.dart';
 import 'enums.g.dart';
 import 'igeopoint.dart';
 import 'igeopointfactory.dart';
 import 'igeoshape.dart';
-import 'structs.g.dart';
 
 /// Describes a geographic point.
 ///

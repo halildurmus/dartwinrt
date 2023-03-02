@@ -17,9 +17,10 @@ import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 import 'package:windows_system/windows_system.dart';
 
+import 'gamepadreading.dart';
+import 'gamepadvibration.dart';
 import 'headset.dart';
 import 'igamecontroller.dart';
-import 'structs.g.dart';
 
 /// @nodoc
 const IID_IGamepad = '{bc7bb43c-0a69-3903-9e9d-a50f86a45de5}';
@@ -33,66 +34,75 @@ class IGamepad extends IInspectable implements IGameController {
       IGamepad.fromRawPointer(interface.toInterface(IID_IGamepad));
 
   GamepadVibration get vibration {
-    final retValuePtr = calloc<GamepadVibration>();
+    final retValuePtr = calloc<NativeGamepadVibration>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl,
-                            Pointer<GamepadVibration> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    LPVTBL lpVtbl, Pointer<GamepadVibration> retValuePtr)>()(
-        ptr.ref.lpVtbl, retValuePtr);
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(6)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(LPVTBL lpVtbl,
+                              Pointer<NativeGamepadVibration> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(LPVTBL lpVtbl,
+                      Pointer<NativeGamepadVibration> retValuePtr)>()(
+          ptr.ref.lpVtbl, retValuePtr);
 
-    if (FAILED(hr)) {
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      return retValuePtr.toDart();
+    } finally {
       free(retValuePtr);
-      throw WindowsException(hr);
     }
-
-    return retValuePtr.ref;
   }
 
   set vibration(GamepadVibration value) {
-    final hr = ptr.ref.vtable
-        .elementAt(7)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(LPVTBL lpVtbl, GamepadVibration value)>>>()
-        .value
-        .asFunction<
-            int Function(LPVTBL lpVtbl,
-                GamepadVibration value)>()(ptr.ref.lpVtbl, value);
+    final nativeStructPtr = value.toNative();
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(7)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              LPVTBL lpVtbl, NativeGamepadVibration value)>>>()
+              .value
+              .asFunction<
+                  int Function(LPVTBL lpVtbl, NativeGamepadVibration value)>()(
+          ptr.ref.lpVtbl, nativeStructPtr.ref);
+
+      if (FAILED(hr)) throw WindowsException(hr);
+    } finally {
+      free(nativeStructPtr);
+    }
   }
 
   GamepadReading getCurrentReading() {
-    final retValuePtr = calloc<GamepadReading>();
+    final retValuePtr = calloc<NativeGamepadReading>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl,
-                            Pointer<GamepadReading> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    LPVTBL lpVtbl, Pointer<GamepadReading> retValuePtr)>()(
-        ptr.ref.lpVtbl, retValuePtr);
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(8)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(LPVTBL lpVtbl,
+                              Pointer<NativeGamepadReading> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(LPVTBL lpVtbl,
+                      Pointer<NativeGamepadReading> retValuePtr)>()(
+          ptr.ref.lpVtbl, retValuePtr);
 
-    if (FAILED(hr)) {
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      return retValuePtr.toDart();
+    } finally {
       free(retValuePtr);
-      throw WindowsException(hr);
     }
-
-    return retValuePtr.ref;
   }
 
   // IGameController methods

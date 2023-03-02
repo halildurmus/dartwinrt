@@ -13,6 +13,7 @@ import '../iasyncinfo.dart';
 import '../iasyncoperation.dart';
 import '../iinspectable.dart';
 import '../winrt_enum.dart';
+import '../winrt_struct.dart';
 
 /// Completes the given [completer] when [asyncAction] completes.
 void completeAsyncAction(
@@ -102,14 +103,6 @@ bool isSubtype<S, T>() => <S>[] is List<T> || <S>[] is List<T?>;
 /// ```
 bool isSubtypeOfInspectable<T>() => isSubtype<T, IInspectable>();
 
-/// Determines whether [T] is a subtype of [Struct].
-///
-/// ```dart
-/// isSubtypeOfStruct<Point>(); // true
-/// isSubtypeOfStruct<GUID>(); // true
-/// ```
-bool isSubtypeOfStruct<T>() => isSubtype<T, Struct>();
-
 /// Determines whether [T] is a subtype of [WinRTEnum].
 ///
 /// ```dart
@@ -125,3 +118,11 @@ bool isSubtypeOfWinRTEnum<T>() => isSubtype<T, WinRTEnum>();
 /// isSubtypeOfWinRTFlagsEnum<AsyncStatus>(); // false
 /// ```
 bool isSubtypeOfWinRTFlagsEnum<T>() => isSubtype<T, WinRTFlagsEnum<dynamic>>();
+
+/// Determines whether [T] is a subtype of [Struct].
+///
+/// ```dart
+/// isSubtypeOfWinRTStruct<Point>(); // true
+/// isSubtypeOfWinRTStruct<Rect>(); // true
+/// ```
+bool isSubtypeOfWinRTStruct<T>() => isSubtype<T, WinRTStruct>();

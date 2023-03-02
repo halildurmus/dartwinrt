@@ -16,8 +16,8 @@ import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
+import 'networkusagestates.dart';
 import 'providernetworkusage.dart';
-import 'structs.g.dart';
 
 /// @nodoc
 const IID_IConnectionProfile4 = '{7a2d42cd-81e0-4ae6-abed-ab9ca13eb714}';
@@ -36,6 +36,8 @@ class IConnectionProfile4 extends IInspectable {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<List<ProviderNetworkUsage>>();
 
+    final statesNativeStructPtr = states.toNative();
+
     final hr = ptr.ref.vtable
             .elementAt(6)
             .cast<
@@ -45,7 +47,7 @@ class IConnectionProfile4 extends IInspectable {
                             LPVTBL lpVtbl,
                             Int64 startTime,
                             Int64 endTime,
-                            NetworkUsageStates states,
+                            NativeNetworkUsageStates states,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
@@ -53,18 +55,20 @@ class IConnectionProfile4 extends IInspectable {
                     LPVTBL lpVtbl,
                     int startTime,
                     int endTime,
-                    NetworkUsageStates states,
+                    NativeNetworkUsageStates states,
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl,
         startTime.toWinRTDateTime(),
         endTime.toWinRTDateTime(),
-        states,
+        statesNativeStructPtr.ref,
         retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
+
+    free(statesNativeStructPtr);
 
     final asyncOperation =
         IAsyncOperation<IVectorView<ProviderNetworkUsage>>.fromRawPointer(
