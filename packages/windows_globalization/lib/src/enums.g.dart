@@ -7,6 +7,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names
+// ignore_for_file: deprecated_member_use_from_same_package
 
 import 'package:windows_foundation/windows_foundation.dart';
 

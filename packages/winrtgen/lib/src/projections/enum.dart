@@ -4,8 +4,30 @@
 
 import 'package:winmd/winmd.dart';
 
+import '../constants/attributes.dart';
 import '../extensions/extensions.dart';
 import '../utils.dart';
+
+/// An enum identifier.
+///
+/// Enum identifiers are a tuple of a name and a value.
+class EnumIdentifierProjection {
+  EnumIdentifierProjection(this.field)
+      : identifierName = safeIdentifierForString(field.name.toCamelCase()),
+        identifierValue = field.value,
+        isDeprecated = field.isDeprecated;
+
+  final Field field;
+  final String identifierName;
+  final int identifierValue;
+  final bool isDeprecated;
+
+  @override
+  String toString() => [
+        if (isDeprecated) field.deprecatedAnnotation,
+        '$identifierName($identifierValue)'
+      ].join('\n');
+}
 
 /// Represents a Dart projection of a WinRT enumeration typedef.
 class EnumProjection {
@@ -13,17 +35,19 @@ class EnumProjection {
       : enumName = enumName ?? typeDef.shortName,
         // The first field is always the special field value__
         fields = typeDef.fields.skip(1).toList()
-          ..sort((a, b) => a.value.compareTo(b.value));
+          ..sort((a, b) => a.value.compareTo(b.value)),
+        isDeprecated = typeDef.isDeprecated;
 
   final TypeDef typeDef;
   final String comment;
   final String enumName;
   final List<Field> fields;
+  final bool isDeprecated;
 
   /// Returns the appropriate enum projection for the [typeDef] depending on
   /// whether it has the `System.FlagsAttribute` attribute.
   factory EnumProjection.create(TypeDef typeDef, {String comment = ''}) {
-    final isFlagsEnum = typeDef.existsAttribute('System.FlagsAttribute');
+    final isFlagsEnum = typeDef.existsAttribute(flagsAttribute);
     return isFlagsEnum
         ? FlagsEnumProjection(typeDef, comment: comment)
         : EnumProjection(typeDef, comment: comment);
@@ -57,14 +81,13 @@ class EnumProjection {
     return docComment;
   }
 
-  String get classHeader => 'enum $enumName implements WinRTEnum';
+  String get classHeader => [
+        if (isDeprecated) typeDef.deprecatedAnnotation,
+        'enum $enumName implements WinRTEnum'
+      ].join('\n');
 
-  String safeIdentifier(String name) =>
-      safeIdentifierForString(name.toCamelCase());
-
-  List<String> get identifiers => fields
-      .map((field) => '${safeIdentifier(field.name)}(${field.value})')
-      .toList();
+  List<EnumIdentifierProjection> get identifiers =>
+      fields.map(EnumIdentifierProjection.new).toList();
 
   String get valueField => '''
     @override
@@ -95,6 +118,20 @@ class EnumProjection {
 ''';
 }
 
+/// A static enum constant.
+class StaticEnumConstantProjection extends EnumIdentifierProjection {
+  StaticEnumConstantProjection(super.field, this.enumName);
+
+  final String enumName;
+
+  @override
+  String toString() => [
+        if (isDeprecated) field.deprecatedAnnotation,
+        'static const $identifierName = $enumName($identifierValue, '
+            'name: ${quote(identifierName)});'
+      ].join('\n');
+}
+
 /// Represents a Dart projection of a WinRT Flags enumeration typedef.
 class FlagsEnumProjection extends EnumProjection {
   FlagsEnumProjection(super.typeDef, {super.comment, super.enumName});
@@ -117,7 +154,10 @@ class FlagsEnumProjection extends EnumProjection {
   }
 
   @override
-  String get classHeader => 'class $enumName extends WinRTFlagsEnum<$enumName>';
+  String get classHeader => [
+        if (isDeprecated) typeDef.deprecatedAnnotation,
+        'class $enumName extends WinRTFlagsEnum<$enumName>'
+      ].join('\n');
 
   @override
   String get constructor => 'const $enumName(super.value, {super.name});';
@@ -129,17 +169,14 @@ class FlagsEnumProjection extends EnumProjection {
             orElse: () => $enumName(value));
 ''';
 
-  @override
-  List<String> get identifiers {
-    return fields.map((field) {
-      final identifier = safeIdentifier(field.name);
-      return "static const $identifier = $enumName(${field.value}, name: '$identifier');";
-    }).toList();
-  }
+  List<StaticEnumConstantProjection> get staticEnumConstants => fields
+      .map((field) => StaticEnumConstantProjection(field, enumName))
+      .toList();
 
-  String get values {
-    final fieldNames =
-        fields.map((field) => safeIdentifier(field.name)).join(',');
+  String get valuesConstant {
+    final fieldNames = fields
+        .map((field) => safeIdentifierForString(field.name.toCamelCase()))
+        .join(',');
     return 'static const List<$enumName> values = [$fieldNames];';
   }
 
@@ -163,9 +200,9 @@ $classHeader {
 
   $factoryConstructor
 
-  ${identifiers.join()}
+  ${staticEnumConstants.join()}
 
-  $values
+  $valuesConstant
 
   $andOperator
 

@@ -33,36 +33,36 @@ void main() {
 
   group('iid', () {
     test('returns the IID of IMap<String, String>', () {
-      expect(stringMapTypeDef.interfaces[0].iid.toString(),
+      expect(stringMapTypeDef.interfaces[0].iid,
           equals('{f6d1f700-49c2-52ae-8154-826f9908773c}'));
     });
 
     test('returns the IID of IIterable<IKeyValuePair<String, String>>', () {
-      expect(stringMapTypeDef.interfaces[1].iid.toString(),
+      expect(stringMapTypeDef.interfaces[1].iid,
           equals('{e9bdaaf0-cbf6-5c72-be90-29cbf3a1319b}'));
     });
 
     test('returns the IID of IObservableMap<String, Object>', () {
       final typeDef = MetadataStore.getMetadataForType(
           'Windows.Foundation.Collections.IPropertySet')!;
-      expect(typeDef.interfaces[0].iid.toString(),
+      expect(typeDef.interfaces[0].iid,
           equals('{236aac9d-fb12-5c4d-a41c-9e445fb4d7ec}'));
     });
 
     test('returns the IID of IMap<Guid, Object>', () {
       final typeDef = MetadataStore.getMetadataForType(
           'Windows.Media.MediaProperties.MediaPropertySet')!;
-      expect(typeDef.interfaces[0].iid.toString(),
+      expect(typeDef.interfaces[0].iid,
           equals('{5ee3189c-7dbf-5998-ad07-5414fb82567c}'));
     });
 
     test('returns the IID of IMap<String, IJsonValue>', () {
-      expect(jsonObjectTypeDef.interfaces[2].iid.toString(),
+      expect(jsonObjectTypeDef.interfaces[2].iid,
           equals('{c9d9a725-786b-5113-b4b7-9b61764c220b}'));
     });
 
     test('returns the IID of IIterable<IKeyValuePair<String, IJsonValue>>', () {
-      expect(jsonObjectTypeDef.interfaces[3].iid.toString(),
+      expect(jsonObjectTypeDef.interfaces[3].iid,
           equals('{dfabb6e1-0411-5a8f-aa87-354e7110f099}'));
     });
   });

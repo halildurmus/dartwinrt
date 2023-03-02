@@ -2,7 +2,6 @@
 // details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-import 'package:win32/win32.dart';
 import 'package:winmd/winmd.dart';
 
 import '../constants/constants.dart';
@@ -48,14 +47,17 @@ String _parseGenericTypeIdentifierCreator(TypeIdentifier typeIdentifier) {
   }
 
   if (['IVector', 'IVectorView'].contains(shortName)) {
-    args.add("iterableIid: '${iterableIidFromVectorType(typeIdentifier)}'");
+    final iid = iterableIidFromVectorType(typeIdentifier);
+    args.add("iterableIid: ${quote(iid)}");
   } else if (['IMap', 'IMapView'].contains(shortName)) {
-    args.add("iterableIid: '${iterableIidFromMapType(typeIdentifier)}'");
+    final iid = iterableIidFromMapType(typeIdentifier);
+    args.add("iterableIid: ${quote(iid)}");
   } else if (shortName == 'IReference') {
     final referenceArgSignature = typeIdentifier.typeArg!.signature;
     final referenceSignature =
         'pinterface($IID_IReference;$referenceArgSignature)';
-    args.add("referenceIid: '${iidFromSignature(referenceSignature)}'");
+    final iid = iidFromSignature(referenceSignature);
+    args.add("referenceIid: ${quote(iid)}");
   } else {
     if (creator == null) return '$shortName.fromRawPointer';
   }
@@ -148,7 +150,7 @@ extension TypeIdentifierHelpers on TypeIdentifier {
   }
 
   /// Returns the IID of this TypeIdentifier.
-  Guid get iid => iidFromSignature(signature);
+  String get iid => iidFromSignature(signature);
 
   bool get isClassVariableType =>
       baseType == BaseType.classVariableTypeModifier;
@@ -216,7 +218,7 @@ extension TypeIdentifierHelpers on TypeIdentifier {
     }
 
     if (typeProjection.isWinRTEnum) {
-      final isFlagsEnum = type!.existsAttribute('System.FlagsAttribute');
+      final isFlagsEnum = type!.existsAttribute(flagsAttribute);
       final enumSignature = isFlagsEnum ? 'u4' : 'i4';
       return 'enum($name;$enumSignature)';
     }

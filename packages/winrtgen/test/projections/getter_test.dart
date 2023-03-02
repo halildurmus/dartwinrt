@@ -50,6 +50,16 @@ void main() {
       expect(projection.camelCasedName, equals('ipInformation'));
     });
 
+    test('annotated with @Deprecated', () {
+      final projection = GetterProjection.fromTypeAndMethodName(
+          'Windows.Devices.Geolocation.IGeocoordinate', 'get_Latitude');
+      expect(projection.method.isDeprecated, isTrue);
+      expect(
+          projection.toString(),
+          contains("@Deprecated('Latitude may be altered or unavailable after "
+              "Windows 8.1. Instead, use Point.Position.Latitude')"));
+    });
+
     test('has correct shortForm', () {
       final projection = GetterProjection.fromTypeAndMethodName(
           'Windows.Globalization.ICalendar', 'get_NumeralSystem');

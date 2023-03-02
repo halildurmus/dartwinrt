@@ -42,9 +42,10 @@ class ClassProjection extends InterfaceProjection {
         ...staticInterfaces.map(fileNameFromType),
       };
 
+  /// Whether the class is an activatable runtime class.
   bool get isActivatable => typeDef.customAttributes
-      .where((element) => element.name.endsWith('ActivatableAttribute'))
-      .where((element) => element.parameters.length == 2)
+      .where((attribute) => attribute.name == activatableAttribute)
+      .where((attribute) => attribute.parameters.length == 2)
       .isNotEmpty;
 
   String get defaultConstructor =>
@@ -57,9 +58,9 @@ class ClassProjection extends InterfaceProjection {
       : '';
 
   List<String> get factoryInterfaces => typeDef.customAttributes
-      .where((element) => element.name.endsWith('ActivatableAttribute'))
-      .where((element) => element.parameters.length == 3)
-      .map((element) => element.parameters.first.value as String)
+      .where((attribute) => attribute.name == activatableAttribute)
+      .where((attribute) => attribute.parameters.length == 3)
+      .map((attribute) => attribute.parameters.first.value as String)
       .toList()
     ..sort();
 
@@ -72,9 +73,9 @@ class ClassProjection extends InterfaceProjection {
       factoryInterfaces.map(FactoryConstructorsProjection.new).toList();
 
   List<String> get staticInterfaces => typeDef.customAttributes
-      .where((element) => element.name.endsWith('StaticAttribute'))
-      .where((element) => element.parameters.length == 3)
-      .map((element) => element.parameters.first.value as String)
+      .where((attribute) => attribute.name == staticAttribute)
+      .where((attribute) => attribute.parameters.length == 3)
+      .map((attribute) => attribute.parameters.first.value as String)
       .toList()
     ..removeWhere(excludedStaticInterfaces.contains)
     ..sort();

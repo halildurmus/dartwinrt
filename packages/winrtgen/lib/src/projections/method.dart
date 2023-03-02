@@ -265,7 +265,10 @@ abstract class MethodProjection {
   @override
   String toString() {
     try {
-      return methodDeclaration;
+      return [
+        if (method.isDeprecated) method.deprecatedAnnotation,
+        methodDeclaration
+      ].join('\n');
     } on Exception {
       // Print an error if we're unable to project a method, but don't
       // completely bail out. The rest may be useful.

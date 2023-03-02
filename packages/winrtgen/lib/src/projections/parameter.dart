@@ -103,7 +103,7 @@ abstract class ParameterProjection {
   bool get isNullable => type.endsWith('?');
 
   /// The name of the parameter that is safe to use as a Dart identifier.
-  String get identifier => safeIdentifierForString(name);
+  String get identifier => safeIdentifierForString(name.toCamelCase());
 
   /// Code to be inserted prior to the function call to set up the variable
   /// conversion.

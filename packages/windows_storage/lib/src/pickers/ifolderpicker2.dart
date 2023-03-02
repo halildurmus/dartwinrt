@@ -55,6 +55,7 @@ class IFolderPicker2 extends IInspectable {
     return ValueSet.fromRawPointer(retValuePtr);
   }
 
+  @Deprecated('Instead, use PickSingleFolderAsync')
   void pickFolderAndContinue() {
     final hr = ptr.ref.vtable
         .elementAt(7)

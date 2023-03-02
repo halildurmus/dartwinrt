@@ -53,6 +53,7 @@ class FolderPicker extends IInspectable
   @override
   ValueSet? get continuationData => _iFolderPicker2.continuationData;
 
+  @Deprecated('Instead, use PickSingleFolderAsync')
   @override
   void pickFolderAndContinue() => _iFolderPicker2.pickFolderAndContinue();
 

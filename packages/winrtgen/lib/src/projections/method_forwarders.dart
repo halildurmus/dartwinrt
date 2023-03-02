@@ -4,6 +4,7 @@
 
 import 'package:winmd/winmd.dart';
 
+import '../constants/attributes.dart';
 import '../extensions/extensions.dart';
 import '../utils.dart';
 import 'class.dart';
@@ -67,18 +68,18 @@ class MethodForwardersProjection {
   String? get iterableIidArgument {
     if (!isGenericInterface) return null;
     if (['IMap', 'IMapView'].contains(shortInterfaceName)) {
-      return "iterableIid: "
-          "'${iterableIidFromMapType(interface.typeSpec!)}'";
+      final iid = iterableIidFromMapType(interface.typeSpec!);
+      return 'iterableIid: ${quote(iid)}';
     } else if (['IVector', 'IVectorView'].contains(shortInterfaceName)) {
-      return "iterableIid: "
-          "'${iterableIidFromVectorType(interface.typeSpec!)}'";
+      final iid = iterableIidFromVectorType(interface.typeSpec!);
+      return 'iterableIid: ${quote(iid)}';
     }
     return null;
   }
 
   String get interfaceInstantiation {
     if (!isGenericInterface) return '$shortInterfaceName.from(this);';
-    final iid = "'${interface.iid}'";
+    final iid = quote(interface.iid);
     return '${interface.shortName}.fromRawPointer(toInterface($iid)$constructorArgs);';
   }
 
@@ -103,13 +104,12 @@ class MethodForwardersProjection {
     if (projections.isNotEmpty) return projections;
 
     final String classTypeName;
-    const exclusiveToAttr = 'Windows.Foundation.Metadata.ExclusiveToAttribute';
 
     // Try to find the class that implements the interface through the
     // 'ExclusiveToAttribute'.
-    if (interfaceProjection.typeDef.existsAttribute(exclusiveToAttr)) {
+    if (interfaceProjection.typeDef.existsAttribute(exclusiveToAttribute)) {
       classTypeName = interfaceProjection.typeDef
-          .findAttribute(exclusiveToAttr)!
+          .findAttribute(exclusiveToAttribute)!
           .parameters
           .first
           .value
@@ -188,12 +188,16 @@ class MethodForwardersProjection {
   String defaultForwarder(MethodProjection methodProjection) {
     // e.g. `int get Second` or `void addHours(int hours)`
     final methodHeader = methodProjection.methodHeader;
+    final deprecatedAnnotation = methodProjection.method.isDeprecated
+        ? methodProjection.method.deprecatedAnnotation
+        : null;
     final overrideAnnotation =
-        methodHeader.contains('@override') ? '' : '@override';
-    return '''
-  $overrideAnnotation
-  $methodHeader => $fieldIdentifier.${methodProjection.shortForm};
-''';
+        !methodHeader.contains('@override') ? '@override' : null;
+    return [
+      if (deprecatedAnnotation != null) deprecatedAnnotation,
+      if (overrideAnnotation != null) overrideAnnotation,
+      '$methodHeader => $fieldIdentifier.${methodProjection.shortForm};\n'
+    ].join('\n');
   }
 
   // Custom method forwarders

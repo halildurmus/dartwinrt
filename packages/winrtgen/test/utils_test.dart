@@ -197,6 +197,10 @@ void main() {
         equals('Windows.Devices.Display.Core'));
   });
 
+  test('quote', () {
+    expect(quote('foo'), equals("'foo'"));
+  });
+
   test('relativeFolderPathFromType', () {
     expect(relativeFolderPathFromType('Windows.Globalization.Calendar'),
         equals('../../packages/windows_globalization/lib/src'));

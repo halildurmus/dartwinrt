@@ -196,7 +196,9 @@ class IConnectionProfile extends IInspectable {
     return NetworkAdapter.fromRawPointer(retValuePtr);
   }
 
-  DataUsage? getLocalUsage(DateTime StartTime, DateTime EndTime) {
+  @Deprecated(
+      'GetLocalUsage may be altered or unavailable for releases after Windows 8.1. Instead, use GetNetworkUsageAsync.')
+  DataUsage? getLocalUsage(DateTime startTime, DateTime endTime) {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -204,13 +206,13 @@ class IConnectionProfile extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, Int64 StartTime,
-                            Int64 EndTime, Pointer<COMObject> retValuePtr)>>>()
+                        HRESULT Function(LPVTBL lpVtbl, Int64 startTime,
+                            Int64 endTime, Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL lpVtbl, int StartTime, int EndTime,
+                int Function(LPVTBL lpVtbl, int startTime, int endTime,
                     Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl,
-        StartTime.toWinRTDateTime(), EndTime.toWinRTDateTime(), retValuePtr);
+        startTime.toWinRTDateTime(), endTime.toWinRTDateTime(), retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -225,8 +227,10 @@ class IConnectionProfile extends IInspectable {
     return DataUsage.fromRawPointer(retValuePtr);
   }
 
+  @Deprecated(
+      'GetLocalUsage may be altered or unavailable for releases after Windows 8.1. Instead, use GetNetworkUsageAsync.')
   DataUsage? getLocalUsagePerRoamingStates(
-      DateTime StartTime, DateTime EndTime, RoamingStates States) {
+      DateTime startTime, DateTime endTime, RoamingStates states) {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -236,18 +240,18 @@ class IConnectionProfile extends IInspectable {
                     NativeFunction<
                         HRESULT Function(
                             LPVTBL lpVtbl,
-                            Int64 StartTime,
-                            Int64 EndTime,
-                            Uint32 States,
+                            Int64 startTime,
+                            Int64 endTime,
+                            Uint32 states,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL lpVtbl, int StartTime, int EndTime,
-                    int States, Pointer<COMObject> retValuePtr)>()(
+                int Function(LPVTBL lpVtbl, int startTime, int endTime,
+                    int states, Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl,
-        StartTime.toWinRTDateTime(),
-        EndTime.toWinRTDateTime(),
-        States.value,
+        startTime.toWinRTDateTime(),
+        endTime.toWinRTDateTime(),
+        states.value,
         retValuePtr);
 
     if (FAILED(hr)) {

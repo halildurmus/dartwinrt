@@ -49,6 +49,16 @@ void main() {
       expect(calendarProjection.shortName, equals('Calendar'));
     });
 
+    test('annotated with @Deprecated', () {
+      final projection =
+          ClassProjection.from('Windows.Networking.Connectivity.DataUsage');
+      expect(projection.isDeprecated, isTrue);
+      expect(
+          projection.classHeader,
+          contains("@Deprecated('DataUsage may be altered or unavailable for "
+              "releases after Windows 8.1. Instead, use NetworkUsage.')"));
+    });
+
     test('has correct inheritance chain (1)', () {
       expect(calendarProjection.inheritsFrom,
           equals('ICalendar, ITimeZoneOnCalendar'));

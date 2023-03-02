@@ -22,8 +22,8 @@ void main() async {
 
     if (location != null) {
       final coordinate = location.coordinate!;
-      print('Current location: (${coordinate.latitude}, '
-          '${coordinate.longitude})');
+      print('Current location: (${coordinate.point?.position.latitude}, '
+          '${coordinate.point?.position.longitude})');
       print('Location accuracy: ±${coordinate.accuracy} meters');
       print('Current heading: ${coordinate.heading ?? 'N/A'}');
       final positionSource = coordinate.positionSource;

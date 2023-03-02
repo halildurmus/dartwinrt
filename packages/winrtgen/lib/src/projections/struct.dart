@@ -14,33 +14,38 @@ import 'type.dart';
 class StructFieldProjection {
   StructFieldProjection(this.field)
       : fieldName = safeIdentifierForString(field.name.toCamelCase()),
+        isDeprecated = field.isDeprecated,
         typeProjection = TypeProjection(field.typeIdentifier);
 
   final Field field;
   final String fieldName;
   final TypeProjection typeProjection;
+  final bool isDeprecated;
 
   String get attribute => typeProjection.attribute;
 
   String get dartType => typeProjection.dartType;
 
   @override
-  String toString() => '''
-  $attribute
-  external $dartType $fieldName;
-''';
+  String toString() => [
+        if (isDeprecated) field.deprecatedAnnotation,
+        attribute,
+        'external $dartType $fieldName;\n'
+      ].join('\n');
 }
 
 /// Represents a Dart projection of a WinRT struct typedef.
 class StructProjection {
   StructProjection(this.typeDef, {this.comment = '', String? structName})
       : structName = structName ?? typeDef.shortName,
-        fields = typeDef.fields.map(StructFieldProjection.new).toList();
+        fields = typeDef.fields.map(StructFieldProjection.new).toList(),
+        isDeprecated = typeDef.isDeprecated;
 
   final TypeDef typeDef;
   final String comment;
   final String structName;
   final List<StructFieldProjection> fields;
+  final bool isDeprecated;
 
   /// Attempts to create a [StructProjection] from [fullyQualifiedType] by
   /// searching its [TypeDef].
@@ -70,7 +75,10 @@ class StructProjection {
     return docComment;
   }
 
-  String get classHeader => 'class $structName extends Struct';
+  String get classHeader => [
+        if (isDeprecated) typeDef.deprecatedAnnotation,
+        'class $structName extends Struct'
+      ].join('\n');
 
   @override
   String toString() => '''

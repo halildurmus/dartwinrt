@@ -39,7 +39,7 @@ mixin _ReferenceMixin on MethodProjection {
         'pinterface($IID_IReference;$referenceArgSignature)';
     final referenceIid = iidFromSignature(referenceSignature);
 
-    final args = <String>["referenceIid: '$referenceIid'"];
+    final args = <String>["referenceIid: ${quote(referenceIid)}"];
     if (enumCreator != null) {
       args.add('enumCreator: $enumCreator');
     }
