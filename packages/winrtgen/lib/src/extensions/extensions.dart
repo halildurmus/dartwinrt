@@ -4,6 +4,7 @@
 
 export 'base_type_helpers.dart';
 export 'camel_case_conversion.dart';
+export 'custom_attributes_mixin_helpers.dart';
 export 'import_helpers.dart';
 export 'method_helpers.dart';
 export 'parameter_helpers.dart';

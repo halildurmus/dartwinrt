@@ -20,6 +20,8 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IDataUsage = '{c1431dd3-b146-4d39-b959-0c69b096c512}';
 
 /// {@category interface}
+@Deprecated(
+    'IDataUsage may be altered or unavailable for releases after Windows 8.1. Instead, use INetworkUsage.')
 class IDataUsage extends IInspectable {
   // vtable begins at 6, is 2 entries long.
   IDataUsage.fromRawPointer(super.ptr);
@@ -27,6 +29,8 @@ class IDataUsage extends IInspectable {
   factory IDataUsage.from(IInspectable interface) =>
       IDataUsage.fromRawPointer(interface.toInterface(IID_IDataUsage));
 
+  @Deprecated(
+      'IDataUsage may be altered or unavailable for releases after Windows 8.1. Instead, use INetworkUsage.')
   int get bytesSent {
     final retValuePtr = calloc<Uint64>();
 
@@ -51,6 +55,8 @@ class IDataUsage extends IInspectable {
     }
   }
 
+  @Deprecated(
+      'IDataUsage may be altered or unavailable for releases after Windows 8.1. Instead, use INetworkUsage.')
   int get bytesReceived {
     final retValuePtr = calloc<Uint64>();
 

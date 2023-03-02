@@ -13,10 +13,12 @@ import 'method_forwarders.dart';
 import 'setter.dart';
 
 class InterfaceProjection {
-  InterfaceProjection(this.typeDef, {this.comment = ''});
+  InterfaceProjection(this.typeDef, {this.comment = ''})
+      : isDeprecated = typeDef.isDeprecated;
 
   final TypeDef typeDef;
   final String comment;
+  final bool isDeprecated;
 
   /// Attempts to create an [InterfaceProjection] from [fullyQualifiedType] by
   /// searching its [TypeDef].
@@ -121,9 +123,13 @@ const IID_$shortName = '${typeDef.guid}';
   }
 
   String get classHeader {
+    final deprecatedAnnotation = typeDef.deprecatedAnnotation;
     final implementsClause =
         inheritsFrom.isNotEmpty ? ' implements $inheritsFrom' : '';
-    return 'class $shortName extends IInspectable$implementsClause';
+    return [
+      if (isDeprecated) deprecatedAnnotation,
+      'class $shortName extends IInspectable$implementsClause'
+    ].join('\n');
   }
 
   String get namedConstructor => '$shortName.fromRawPointer(super.ptr);';

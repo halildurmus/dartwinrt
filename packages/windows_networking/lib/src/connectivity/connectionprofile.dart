@@ -75,15 +75,19 @@ class ConnectionProfile extends IInspectable
   @override
   NetworkAdapter? get networkAdapter => _iConnectionProfile.networkAdapter;
 
+  @Deprecated(
+      'GetLocalUsage may be altered or unavailable for releases after Windows 8.1. Instead, use GetNetworkUsageAsync.')
   @override
-  DataUsage? getLocalUsage(DateTime StartTime, DateTime EndTime) =>
-      _iConnectionProfile.getLocalUsage(StartTime, EndTime);
+  DataUsage? getLocalUsage(DateTime startTime, DateTime endTime) =>
+      _iConnectionProfile.getLocalUsage(startTime, endTime);
 
+  @Deprecated(
+      'GetLocalUsage may be altered or unavailable for releases after Windows 8.1. Instead, use GetNetworkUsageAsync.')
   @override
   DataUsage? getLocalUsagePerRoamingStates(
-          DateTime StartTime, DateTime EndTime, RoamingStates States) =>
+          DateTime startTime, DateTime endTime, RoamingStates states) =>
       _iConnectionProfile.getLocalUsagePerRoamingStates(
-          StartTime, EndTime, States);
+          startTime, endTime, states);
 
   @override
   NetworkSecuritySettings? get networkSecuritySettings =>
