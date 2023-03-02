@@ -145,6 +145,9 @@ String packageNameFromType(String fullyQualifiedType) =>
 String parentNamespace(String fullyQualifiedType) =>
     (fullyQualifiedType.split('.')..removeLast()).join('.');
 
+/// Wrap a [s] in single quotes (e.g. `foo` -> `'foo'`).
+String quote(String s) => "'$s'";
+
 /// Converts a [fullyQualifiedType] (e.g.
 /// `Windows.Storage.Pickers.FileOpenPicker`) and returns the relative path from
 /// the `dartwinrt/tools` folder to matching folder path  (e.g.
