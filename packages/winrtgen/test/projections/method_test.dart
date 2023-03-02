@@ -38,6 +38,18 @@ void main() {
       expect(projection.camelCasedName, equals('uiElementColor'));
     });
 
+    test('annotated with @Deprecated', () {
+      final projection = MethodProjection.fromTypeAndMethodName(
+          'Windows.Networking.Connectivity.IConnectionProfile',
+          'GetLocalUsage');
+      expect(projection.method.isDeprecated, isTrue);
+      expect(
+          projection.toString(),
+          contains("@Deprecated('GetLocalUsage may be altered or unavailable "
+              "for releases after Windows 8.1. Instead, use "
+              "GetNetworkUsageAsync.')"));
+    });
+
     test('projects bool', () {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Foundation.IPropertyValue', 'GetBoolean');

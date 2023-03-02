@@ -56,6 +56,16 @@ void main() {
       expect(asyncStatusProjection.enumName, equals('AsyncStatus'));
     });
 
+    test('annotated with @Deprecated', () {
+      final projection =
+          EnumProjection.from('Windows.System.UserProfile.AccountPictureKind');
+      expect(
+          projection.classHeader,
+          contains(
+              "@Deprecated('Use User instead of UserInformation. For more info,"
+              " see MSDN.')"));
+    });
+
     test('has correct class declaration', () {
       expect(asyncStatusProjection.classHeader,
           equals('enum AsyncStatus implements WinRTEnum'));
@@ -66,31 +76,38 @@ void main() {
     });
 
     test('has correct identifiers', () {
-      expect(
-          asyncStatusProjection.identifiers,
-          orderedEquals([
-            'started(0)',
-            'completed(1)',
-            'canceled(2)',
-            'error(3)',
-          ]));
+      final identifiers = asyncStatusProjection.identifiers;
+      expect(identifiers[0].toString(), equals('started(0)'));
+      expect(identifiers[1].toString(), equals('completed(1)'));
+      expect(identifiers[2].toString(), equals('canceled(2)'));
+      expect(identifiers[3].toString(), equals('error(3)'));
     });
 
     test('identifiers are correctly converted to lowercase', () {
       final projection =
           EnumProjection.from('Windows.Devices.Geolocation.PositionSource');
+      final identifiers = projection.identifiers;
+      expect(identifiers[0].toString(), equals('cellular(0)'));
+      expect(identifiers[1].toString(), equals('satellite(1)'));
+      expect(identifiers[2].toString(), equals('wifi(2)'));
+      expect(identifiers[3].toString(), equals('ipAddress(3)'));
+      expect(identifiers[4].toString(), equals('unknown(4)'));
+      expect(identifiers[5].toString(), equals('default_(5)'));
+      expect(identifiers[6].toString(), equals('obfuscated(6)'));
+    });
+
+    test('identifier annotated with @Deprecated', () {
+      final projection =
+          EnumProjection.from('Windows.Media.Render.AudioRenderCategory');
+      final backgroundCapableMedia = projection.identifiers.firstWhere(
+          (identifier) =>
+              identifier.identifierName == 'backgroundCapableMedia');
+      expect(backgroundCapableMedia.isDeprecated, isTrue);
       expect(
-        projection.identifiers,
-        orderedEquals([
-          'cellular(0)',
-          'satellite(1)',
-          'wifi(2)',
-          'ipAddress(3)',
-          'unknown(4)',
-          'default_(5)',
-          'obfuscated(6)'
-        ]),
-      );
+          backgroundCapableMedia.toString(),
+          contains(
+              "@Deprecated('BackgroundCapableMedia is deprecated and might not "
+              "work on all platforms. For more info, see MSDN.')"));
     });
   });
 
@@ -108,6 +125,17 @@ void main() {
       expect(fileAttributesProjection.enumName, equals('FileAttributes'));
     });
 
+    test('annotated with @Deprecated', () {
+      final projection = FlagsEnumProjection.from(
+          'Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorDeviceCapabilities');
+      expect(
+          projection.classHeader,
+          contains(
+              "@Deprecated('SecondaryAuthenticationFactorDeviceCapabilities is "
+              "deprecated and might not work on all platforms. For more info, "
+              "see MSDN.')"));
+    });
+
     test('has correct class declaration', () {
       expect(
           fileAttributesProjection.classHeader,
@@ -115,18 +143,56 @@ void main() {
               'class FileAttributes extends WinRTFlagsEnum<FileAttributes>'));
     });
 
-    test('has correct identifiers', () {
+    test('has correct number of static enum constants', () {
+      expect(fileAttributesProjection.staticEnumConstants.length, equals(6));
+    });
+
+    test('has correct static enum constants', () {
+      final staticEnumConstants = fileAttributesProjection.staticEnumConstants;
+      expect(staticEnumConstants[0].toString(),
+          equals("static const normal = FileAttributes(0, name: 'normal');"));
       expect(
-        fileAttributesProjection.identifiers,
-        orderedEquals([
-          "static const normal = FileAttributes(0, name: 'normal');",
-          "static const readOnly = FileAttributes(1, name: 'readOnly');",
-          "static const directory = FileAttributes(16, name: 'directory');",
-          "static const archive = FileAttributes(32, name: 'archive');",
-          "static const temporary = FileAttributes(256, name: 'temporary');",
-          "static const locallyIncomplete = FileAttributes(512, name: 'locallyIncomplete');",
-        ]),
+          staticEnumConstants[1].toString(),
+          equals(
+              "static const readOnly = FileAttributes(1, name: 'readOnly');"));
+      expect(
+          staticEnumConstants[2].toString(),
+          equals(
+              "static const directory = FileAttributes(16, name: 'directory');"));
+      expect(
+          staticEnumConstants[3].toString(),
+          equals(
+              "static const archive = FileAttributes(32, name: 'archive');"));
+      expect(
+          staticEnumConstants[4].toString(),
+          equals(
+              "static const temporary = FileAttributes(256, name: 'temporary');"));
+      expect(
+          staticEnumConstants[5].toString(),
+          equals(
+              "static const locallyIncomplete = FileAttributes(512, name: 'locallyIncomplete');"));
+    });
+
+    test('has correct values constant', () {
+      expect(
+        fileAttributesProjection.valuesConstant,
+        equals('static const List<FileAttributes> values = '
+            '[normal,readOnly,directory,archive,temporary,locallyIncomplete];'),
       );
+    });
+
+    test('static enum constant annotated with @Deprecated', () {
+      final projection = FlagsEnumProjection.from(
+          'Windows.Networking.Sockets.SocketProtectionLevel');
+      final ssl = projection.staticEnumConstants
+          .firstWhere((enumConstant) => enumConstant.identifierName == 'ssl');
+      expect(ssl.isDeprecated, isTrue);
+      expect(
+          ssl.toString(),
+          contains(
+              "@Deprecated('Ssl may result in insecure connections and may be "
+              "altered or unavailable for releases after Windows 8.1. Instead, "
+              "use one of the TLS SocketProtectionLevel values.')"));
     });
   });
 }
