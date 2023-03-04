@@ -19,6 +19,8 @@ import 'package:windows_foundation/windows_foundation.dart';
 import 'package:windows_system/windows_system.dart';
 
 import 'enums.g.dart';
+import 'gamepadreading.dart';
+import 'gamepadvibration.dart';
 import 'headset.dart';
 import 'igamecontroller.dart';
 import 'igamecontrollerbatteryinfo.dart';
@@ -26,7 +28,6 @@ import 'igamepad.dart';
 import 'igamepad2.dart';
 import 'igamepadstatics.dart';
 import 'igamepadstatics2.dart';
-import 'structs.g.dart';
 
 /// Represents a gamepad.
 ///

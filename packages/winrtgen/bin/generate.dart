@@ -133,25 +133,24 @@ void generateEnumerations(Map<String, String> enums) {
 }
 
 void generateStructs(Map<String, String> structs) {
-  final namespaceGroups = groupTypesByParentNamespace(structs.keys);
+  final nativeStructProjections = <NativeStructProjection>[];
 
-  for (final namespaceGroup in namespaceGroups) {
-    final projections = <StructProjection>[];
+  for (final type in structs.keys) {
+    final nativeStructProjection = NativeStructProjection.from(type);
+    nativeStructProjections.add(nativeStructProjection);
 
-    for (final type in namespaceGroup.types) {
-      final projection =
-          StructProjection.from(type, comment: structs[type] ?? '');
-      projections.add(projection);
-    }
-
-    projections.sort((a, b) =>
-        lastComponent(a.structName).compareTo(lastComponent(b.structName)));
-
-    final path =
-        '${relativeFolderPathFromType(namespaceGroup.types.first)}/structs.g.dart';
-    final content = [structsFileHeader, ...projections].join();
+    final structProjection =
+        StructProjection.from(type, comment: structs[type] ?? '');
+    final fileName = stripGenerics(lastComponent(type)).toLowerCase();
+    final path = '${relativeFolderPathFromType(type)}/$fileName.dart';
+    final content = structProjection.toString();
     writeToFile(path, content);
   }
+
+  final path =
+      '../../packages/windows_foundation/lib/src/internal/native_structs.g.dart';
+  final content = [nativeStructsFileHeader, ...nativeStructProjections].join();
+  writeToFile(path, content);
 }
 
 void generatePackageExports() {

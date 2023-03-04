@@ -4,9 +4,6 @@
 
 @TestOn('windows')
 
-import 'dart:ffi';
-
-import 'package:ffi/ffi.dart';
 import 'package:test/test.dart';
 import 'package:win32/win32.dart';
 import 'package:windows_foundation/internal.dart';
@@ -114,43 +111,29 @@ void main() {
   });
 
   test('IReference<Point?>', () {
-    final pointPtr = calloc<Point>()
-      ..ref.x = 50
-      ..ref.y = 100;
-    final reference = pointPtr.ref.toReference();
+    final reference = Point(50, 100).toReference();
     expect(reference.value, isNotNull);
     expect(reference.value?.x, equals(50));
     expect(reference.value?.y, equals(100));
     reference.release();
-    free(pointPtr);
   });
 
   test('IReference<Rect?>', () {
-    final rectPtr = calloc<Rect>()
-      ..ref.height = 200
-      ..ref.width = 100
-      ..ref.x = 50
-      ..ref.y = 100;
-    final reference = rectPtr.ref.toReference();
+    final reference = Rect(50, 100, 200, 100).toReference();
     expect(reference.value, isNotNull);
-    expect(reference.value?.height, equals(200));
-    expect(reference.value?.width, equals(100));
+    expect(reference.value?.height, equals(100));
+    expect(reference.value?.width, equals(200));
     expect(reference.value?.x, equals(50));
     expect(reference.value?.y, equals(100));
     reference.release();
-    free(rectPtr);
   });
 
   test('IReference<Size?>', () {
-    final sizePtr = calloc<Size>()
-      ..ref.height = 200
-      ..ref.width = 100;
-    final reference = sizePtr.ref.toReference();
+    final reference = Size(100, 200).toReference();
     expect(reference.value, isNotNull);
     expect(reference.value?.height, equals(200));
     expect(reference.value?.width, equals(100));
     reference.release();
-    free(sizePtr);
   });
 
   test('IReference<String?>', () {

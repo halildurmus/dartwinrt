@@ -19,7 +19,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 import 'connectivityinterval.dart';
 import 'enums.g.dart';
 import 'networkusage.dart';
-import 'structs.g.dart';
+import 'networkusagestates.dart';
 import 'wlanconnectionprofiledetails.dart';
 import 'wwanconnectionprofiledetails.dart';
 
@@ -237,6 +237,8 @@ class IConnectionProfile2 extends IInspectable {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<List<NetworkUsage>>();
 
+    final statesNativeStructPtr = states.toNative();
+
     final hr = ptr.ref.vtable
             .elementAt(13)
             .cast<
@@ -247,7 +249,7 @@ class IConnectionProfile2 extends IInspectable {
                             Int64 startTime,
                             Int64 endTime,
                             Int32 granularity,
-                            NetworkUsageStates states,
+                            NativeNetworkUsageStates states,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
@@ -256,19 +258,21 @@ class IConnectionProfile2 extends IInspectable {
                     int startTime,
                     int endTime,
                     int granularity,
-                    NetworkUsageStates states,
+                    NativeNetworkUsageStates states,
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl,
         startTime.toWinRTDateTime(),
         endTime.toWinRTDateTime(),
         granularity.value,
-        states,
+        statesNativeStructPtr.ref,
         retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
+
+    free(statesNativeStructPtr);
 
     final asyncOperation =
         IAsyncOperation<IVectorView<NetworkUsage>>.fromRawPointer(retValuePtr,
@@ -286,6 +290,8 @@ class IConnectionProfile2 extends IInspectable {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<List<ConnectivityInterval>>();
 
+    final statesNativeStructPtr = states.toNative();
+
     final hr = ptr.ref.vtable
             .elementAt(14)
             .cast<
@@ -295,7 +301,7 @@ class IConnectionProfile2 extends IInspectable {
                             LPVTBL lpVtbl,
                             Int64 startTime,
                             Int64 endTime,
-                            NetworkUsageStates states,
+                            NativeNetworkUsageStates states,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
@@ -303,18 +309,20 @@ class IConnectionProfile2 extends IInspectable {
                     LPVTBL lpVtbl,
                     int startTime,
                     int endTime,
-                    NetworkUsageStates states,
+                    NativeNetworkUsageStates states,
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl,
         startTime.toWinRTDateTime(),
         endTime.toWinRTDateTime(),
-        states,
+        statesNativeStructPtr.ref,
         retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
+
+    free(statesNativeStructPtr);
 
     final asyncOperation =
         IAsyncOperation<IVectorView<ConnectivityInterval>>.fromRawPointer(

@@ -202,10 +202,12 @@ void main() {
       final projection = SetterProjection.fromTypeAndMethodName(
           'Windows.Gaming.Input.IGamepad', 'put_Vibration');
       expect(projection, isA<StructSetterProjection>());
-      expect(projection.nativePrototype,
-          equals('HRESULT Function(LPVTBL lpVtbl, GamepadVibration value)'));
+      expect(
+          projection.nativePrototype,
+          equals(
+              'HRESULT Function(LPVTBL lpVtbl, NativeGamepadVibration value)'));
       expect(projection.dartPrototype,
-          equals('int Function(LPVTBL lpVtbl, GamepadVibration value)'));
+          equals('int Function(LPVTBL lpVtbl, NativeGamepadVibration value)'));
       expect(projection.methodHeader,
           equals('set vibration(GamepadVibration value)'));
     });

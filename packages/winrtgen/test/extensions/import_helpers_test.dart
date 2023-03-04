@@ -90,7 +90,7 @@ void main() {
       final typeDef = MetadataStore.getMetadataForType(
           'Windows.Devices.Geolocation.BasicGeoposition')!;
       expect(geolocatorProjection.importForTypeDef(typeDef),
-          equals('structs.g.dart'));
+          equals('basicgeoposition.dart'));
     });
   });
 
@@ -123,7 +123,7 @@ void main() {
         'geoposition.dart',
         'positionchangedeventargs.dart',
         'statuschangedeventargs.dart',
-        'structs.g.dart'
+        'basicgeoposition.dart'
       ]),
     );
   });

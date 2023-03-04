@@ -16,9 +16,9 @@ import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
+import 'basicgeoposition.dart';
 import 'enums.g.dart';
 import 'geopoint.dart';
-import 'structs.g.dart';
 
 /// @nodoc
 const IID_IGeopointFactory = '{db6b8d33-76bd-4e30-8af7-a844dc37b7a0}';
@@ -34,27 +34,29 @@ class IGeopointFactory extends IInspectable {
 
   Geopoint create(BasicGeoposition position) {
     final retValuePtr = calloc<COMObject>();
+    final positionNativeStructPtr = position.toNative();
 
-    final hr =
-        ptr.ref.vtable
-                .elementAt(6)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                LPVTBL lpVtbl,
-                                BasicGeoposition position,
-                                Pointer<COMObject> retValuePtr)>>>()
-                .value
-                .asFunction<
-                    int Function(LPVTBL lpVtbl, BasicGeoposition position,
-                        Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl, position, retValuePtr);
+    final hr = ptr.ref.vtable
+            .elementAt(6)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            LPVTBL lpVtbl,
+                            NativeBasicGeoposition position,
+                            Pointer<COMObject> retValuePtr)>>>()
+            .value
+            .asFunction<
+                int Function(LPVTBL lpVtbl, NativeBasicGeoposition position,
+                    Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl, positionNativeStructPtr.ref, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
+
+    free(positionNativeStructPtr);
 
     return Geopoint.fromRawPointer(retValuePtr);
   }
@@ -62,6 +64,7 @@ class IGeopointFactory extends IInspectable {
   Geopoint createWithAltitudeReferenceSystem(BasicGeoposition position,
       AltitudeReferenceSystem altitudeReferenceSystem) {
     final retValuePtr = calloc<COMObject>();
+    final positionNativeStructPtr = position.toNative();
 
     final hr = ptr.ref.vtable
             .elementAt(7)
@@ -70,22 +73,27 @@ class IGeopointFactory extends IInspectable {
                     NativeFunction<
                         HRESULT Function(
                             LPVTBL lpVtbl,
-                            BasicGeoposition position,
+                            NativeBasicGeoposition position,
                             Int32 altitudeReferenceSystem,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
                 int Function(
                     LPVTBL lpVtbl,
-                    BasicGeoposition position,
+                    NativeBasicGeoposition position,
                     int altitudeReferenceSystem,
                     Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, position, altitudeReferenceSystem.value, retValuePtr);
+        ptr.ref.lpVtbl,
+        positionNativeStructPtr.ref,
+        altitudeReferenceSystem.value,
+        retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
+
+    free(positionNativeStructPtr);
 
     return Geopoint.fromRawPointer(retValuePtr);
   }
@@ -95,6 +103,7 @@ class IGeopointFactory extends IInspectable {
       AltitudeReferenceSystem altitudeReferenceSystem,
       int spatialReferenceId) {
     final retValuePtr = calloc<COMObject>();
+    final positionNativeStructPtr = position.toNative();
 
     final hr = ptr.ref.vtable
             .elementAt(8)
@@ -103,7 +112,7 @@ class IGeopointFactory extends IInspectable {
                     NativeFunction<
                         HRESULT Function(
                             LPVTBL lpVtbl,
-                            BasicGeoposition position,
+                            NativeBasicGeoposition position,
                             Int32 altitudeReferenceSystem,
                             Uint32 spatialReferenceId,
                             Pointer<COMObject> retValuePtr)>>>()
@@ -111,16 +120,22 @@ class IGeopointFactory extends IInspectable {
             .asFunction<
                 int Function(
                     LPVTBL lpVtbl,
-                    BasicGeoposition position,
+                    NativeBasicGeoposition position,
                     int altitudeReferenceSystem,
                     int spatialReferenceId,
-                    Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, position,
-        altitudeReferenceSystem.value, spatialReferenceId, retValuePtr);
+                    Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl,
+        positionNativeStructPtr.ref,
+        altitudeReferenceSystem.value,
+        spatialReferenceId,
+        retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
+
+    free(positionNativeStructPtr);
 
     return Geopoint.fromRawPointer(retValuePtr);
   }

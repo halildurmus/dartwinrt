@@ -9,10 +9,13 @@ import 'package:win32/win32.dart';
 import '../../iinspectable.dart';
 import '../../ipropertyvalue.dart';
 import '../../ireference.dart';
+import '../../point.dart';
 import '../../propertyvalue.dart';
-import '../../structs.g.dart';
+import '../../rect.dart';
+import '../../size.dart';
 import '../../types.dart';
 import '../../winrt_enum.dart';
+import '../../winrt_struct.dart';
 import '../iids.dart';
 
 extension IntoBoxHelper on Object {
@@ -440,15 +443,15 @@ extension StringListHelpers on List<String> {
   IPropertyValue toPropertyValue() => PropertyValue.createStringArray(this);
 }
 
-extension StructHelper on Struct {
-  // TODO: Boxing structs are not supported yet (except for Guid, Point, Rect,
-  // and Size).
+extension WinRTEnumHelper on WinRTEnum {
+  // TODO: Boxing enums are not supported yet.
   IReference<dynamic> toReference() =>
       throw UnsupportedError('Cannot box value of type $runtimeType');
 }
 
-extension WinRTEnumHelper on WinRTEnum {
-  // TODO: Boxing enums are not supported yet.
+extension WinRTStructHelper on WinRTStruct {
+  // TODO: Boxing structs are not supported yet (except for Guid, Point, Rect,
+  // and Size).
   IReference<dynamic> toReference() =>
       throw UnsupportedError('Cannot box value of type $runtimeType');
 }

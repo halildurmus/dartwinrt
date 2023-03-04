@@ -265,9 +265,10 @@ void main() {
       final parameter = methodProjection.parameters.first;
       expect(parameter, isA<StructParameterProjection>());
       expect(parameter.type, equals('Point'));
-      expect(parameter.preamble, isEmpty);
-      expect(parameter.postamble, isEmpty);
-      expect(parameter.localIdentifier, equals('value'));
+      expect(parameter.preamble,
+          equals('final valueNativeStructPtr = value.toNative();'));
+      expect(parameter.postamble, equals('free(valueNativeStructPtr);'));
+      expect(parameter.localIdentifier, equals('valueNativeStructPtr.ref'));
     });
 
     test('projects Uri', () {

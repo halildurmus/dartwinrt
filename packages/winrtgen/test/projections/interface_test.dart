@@ -104,13 +104,6 @@ void main() {
           calendarProjection.importHeader, contains("import 'enums.g.dart';"));
     });
 
-    test('imports structs.g.dart', () {
-      final projection =
-          InterfaceProjection.from('Windows.Gaming.Input.IGamepad');
-      expect(projection.imports, contains('structs.g.dart'));
-      expect(projection.importHeader, contains("import 'structs.g.dart';"));
-    });
-
     test('imports are meaningful', () {
       expect(
         calendarProjection.imports,

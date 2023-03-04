@@ -232,56 +232,71 @@ class IDevicePicker extends IInspectable {
   }
 
   void show(Rect selection) {
-    final hr = ptr.ref.vtable
-            .elementAt(15)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, Rect selection)>>>()
-            .value
-            .asFunction<int Function(LPVTBL lpVtbl, Rect selection)>()(
-        ptr.ref.lpVtbl, selection);
+    final selectionNativeStructPtr = selection.toNative();
+
+    final hr =
+        ptr.ref.vtable
+                .elementAt(15)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                LPVTBL lpVtbl, NativeRect selection)>>>()
+                .value
+                .asFunction<
+                    int Function(LPVTBL lpVtbl, NativeRect selection)>()(
+            ptr.ref.lpVtbl, selectionNativeStructPtr.ref);
 
     if (FAILED(hr)) throw WindowsException(hr);
+
+    free(selectionNativeStructPtr);
   }
 
   void showWithPlacement(Rect selection, Placement placement) {
+    final selectionNativeStructPtr = selection.toNative();
+
     final hr = ptr.ref.vtable
             .elementAt(16)
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(
-                            LPVTBL lpVtbl, Rect selection, Int32 placement)>>>()
+                        HRESULT Function(LPVTBL lpVtbl, NativeRect selection,
+                            Int32 placement)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL lpVtbl, Rect selection, int placement)>()(
-        ptr.ref.lpVtbl, selection, placement.value);
+                int Function(
+                    LPVTBL lpVtbl, NativeRect selection, int placement)>()(
+        ptr.ref.lpVtbl, selectionNativeStructPtr.ref, placement.value);
 
     if (FAILED(hr)) throw WindowsException(hr);
+
+    free(selectionNativeStructPtr);
   }
 
   Future<DeviceInformation?> pickSingleDeviceAsync(Rect selection) {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<DeviceInformation?>();
+    final selectionNativeStructPtr = selection.toNative();
 
     final hr = ptr.ref.vtable
             .elementAt(17)
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, Rect selection,
+                        HRESULT Function(LPVTBL lpVtbl, NativeRect selection,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL lpVtbl, Rect selection,
+                int Function(LPVTBL lpVtbl, NativeRect selection,
                     Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, selection, retValuePtr);
+        ptr.ref.lpVtbl, selectionNativeStructPtr.ref, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
+
+    free(selectionNativeStructPtr);
 
     final asyncOperation = IAsyncOperation<DeviceInformation?>.fromRawPointer(
         retValuePtr,
@@ -296,6 +311,7 @@ class IDevicePicker extends IInspectable {
       Rect selection, Placement placement) {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<DeviceInformation?>();
+    final selectionNativeStructPtr = selection.toNative();
 
     final hr =
         ptr.ref.vtable
@@ -305,19 +321,24 @@ class IDevicePicker extends IInspectable {
                         NativeFunction<
                             HRESULT Function(
                                 LPVTBL lpVtbl,
-                                Rect selection,
+                                NativeRect selection,
                                 Int32 placement,
                                 Pointer<COMObject> retValuePtr)>>>()
                 .value
                 .asFunction<
-                    int Function(LPVTBL lpVtbl, Rect selection, int placement,
-                        Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl, selection, placement.value, retValuePtr);
+                    int Function(LPVTBL lpVtbl, NativeRect selection,
+                        int placement, Pointer<COMObject> retValuePtr)>()(
+            ptr.ref.lpVtbl,
+            selectionNativeStructPtr.ref,
+            placement.value,
+            retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
+
+    free(selectionNativeStructPtr);
 
     final asyncOperation = IAsyncOperation<DeviceInformation?>.fromRawPointer(
         retValuePtr,

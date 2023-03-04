@@ -5,7 +5,7 @@
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart';
+import 'package:win32/win32.dart' hide DocumentProperties, POINT, RECT, SIZE;
 
 import '../internal.dart';
 import 'exports.g.dart';
@@ -93,7 +93,18 @@ abstract class IReference<T> extends IInspectable {
       return _IReferenceString.fromRawPointer(ptr) as IReference<T>;
     }
 
-    if (isSubtypeOfStruct<T>()) {
+    if (isSubtypeOfWinRTEnum<T>()) {
+      if (enumCreator == null) throw ArgumentError.notNull('enumCreator');
+
+      if (isSubtypeOfWinRTFlagsEnum<T>()) {
+        return _IReferenceWinRTFlagsEnum.fromRawPointer(ptr,
+            enumCreator: enumCreator);
+      }
+
+      return _IReferenceWinRTEnum.fromRawPointer(ptr, enumCreator: enumCreator);
+    }
+
+    if (isSubtypeOfWinRTStruct<T>()) {
       if (isSameType<T, Point?>()) {
         return _IReferencePoint.fromRawPointer(ptr) as IReference<T>;
       }
@@ -110,17 +121,6 @@ abstract class IReference<T> extends IInspectable {
       // IPropertyValue) implementations for them.
 
       throw ArgumentError.value(T, 'T', 'Unsupported type');
-    }
-
-    if (isSubtypeOfWinRTEnum<T>()) {
-      if (enumCreator == null) throw ArgumentError.notNull('enumCreator');
-
-      if (isSubtypeOfWinRTFlagsEnum<T>()) {
-        return _IReferenceWinRTFlagsEnum.fromRawPointer(ptr,
-            enumCreator: enumCreator);
-      }
-
-      return _IReferenceWinRTEnum.fromRawPointer(ptr, enumCreator: enumCreator);
     }
 
     throw ArgumentError.value(T, 'T', 'Unsupported type');

@@ -75,218 +75,284 @@ class IDevicePickerAppearance extends IInspectable {
   }
 
   Color get foregroundColor {
-    final retValuePtr = calloc<Color>();
+    final retValuePtr = calloc<NativeColor>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            LPVTBL lpVtbl, Pointer<Color> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(LPVTBL lpVtbl, Pointer<Color> retValuePtr)>()(
-        ptr.ref.lpVtbl, retValuePtr);
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(8)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(LPVTBL lpVtbl,
+                              Pointer<NativeColor> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(
+                      LPVTBL lpVtbl, Pointer<NativeColor> retValuePtr)>()(
+          ptr.ref.lpVtbl, retValuePtr);
 
-    if (FAILED(hr)) {
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      return retValuePtr.toDart();
+    } finally {
       free(retValuePtr);
-      throw WindowsException(hr);
     }
-
-    return retValuePtr.ref;
   }
 
   set foregroundColor(Color value) {
-    final hr = ptr.ref.vtable
-        .elementAt(9)
-        .cast<
-            Pointer<
-                NativeFunction<HRESULT Function(LPVTBL lpVtbl, Color value)>>>()
-        .value
-        .asFunction<
-            int Function(LPVTBL lpVtbl, Color value)>()(ptr.ref.lpVtbl, value);
+    final nativeStructPtr = value.toNative();
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    try {
+      final hr =
+          ptr.ref.vtable
+                  .elementAt(9)
+                  .cast<
+                      Pointer<
+                          NativeFunction<
+                              HRESULT Function(
+                                  LPVTBL lpVtbl, NativeColor value)>>>()
+                  .value
+                  .asFunction<int Function(LPVTBL lpVtbl, NativeColor value)>()(
+              ptr.ref.lpVtbl, nativeStructPtr.ref);
+
+      if (FAILED(hr)) throw WindowsException(hr);
+    } finally {
+      free(nativeStructPtr);
+    }
   }
 
   Color get backgroundColor {
-    final retValuePtr = calloc<Color>();
+    final retValuePtr = calloc<NativeColor>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(10)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            LPVTBL lpVtbl, Pointer<Color> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(LPVTBL lpVtbl, Pointer<Color> retValuePtr)>()(
-        ptr.ref.lpVtbl, retValuePtr);
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(10)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(LPVTBL lpVtbl,
+                              Pointer<NativeColor> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(
+                      LPVTBL lpVtbl, Pointer<NativeColor> retValuePtr)>()(
+          ptr.ref.lpVtbl, retValuePtr);
 
-    if (FAILED(hr)) {
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      return retValuePtr.toDart();
+    } finally {
       free(retValuePtr);
-      throw WindowsException(hr);
     }
-
-    return retValuePtr.ref;
   }
 
   set backgroundColor(Color value) {
-    final hr = ptr.ref.vtable
-        .elementAt(11)
-        .cast<
-            Pointer<
-                NativeFunction<HRESULT Function(LPVTBL lpVtbl, Color value)>>>()
-        .value
-        .asFunction<
-            int Function(LPVTBL lpVtbl, Color value)>()(ptr.ref.lpVtbl, value);
+    final nativeStructPtr = value.toNative();
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    try {
+      final hr =
+          ptr.ref.vtable
+                  .elementAt(11)
+                  .cast<
+                      Pointer<
+                          NativeFunction<
+                              HRESULT Function(
+                                  LPVTBL lpVtbl, NativeColor value)>>>()
+                  .value
+                  .asFunction<int Function(LPVTBL lpVtbl, NativeColor value)>()(
+              ptr.ref.lpVtbl, nativeStructPtr.ref);
+
+      if (FAILED(hr)) throw WindowsException(hr);
+    } finally {
+      free(nativeStructPtr);
+    }
   }
 
   Color get accentColor {
-    final retValuePtr = calloc<Color>();
+    final retValuePtr = calloc<NativeColor>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(12)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            LPVTBL lpVtbl, Pointer<Color> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(LPVTBL lpVtbl, Pointer<Color> retValuePtr)>()(
-        ptr.ref.lpVtbl, retValuePtr);
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(12)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(LPVTBL lpVtbl,
+                              Pointer<NativeColor> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(
+                      LPVTBL lpVtbl, Pointer<NativeColor> retValuePtr)>()(
+          ptr.ref.lpVtbl, retValuePtr);
 
-    if (FAILED(hr)) {
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      return retValuePtr.toDart();
+    } finally {
       free(retValuePtr);
-      throw WindowsException(hr);
     }
-
-    return retValuePtr.ref;
   }
 
   set accentColor(Color value) {
-    final hr = ptr.ref.vtable
-        .elementAt(13)
-        .cast<
-            Pointer<
-                NativeFunction<HRESULT Function(LPVTBL lpVtbl, Color value)>>>()
-        .value
-        .asFunction<
-            int Function(LPVTBL lpVtbl, Color value)>()(ptr.ref.lpVtbl, value);
+    final nativeStructPtr = value.toNative();
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    try {
+      final hr =
+          ptr.ref.vtable
+                  .elementAt(13)
+                  .cast<
+                      Pointer<
+                          NativeFunction<
+                              HRESULT Function(
+                                  LPVTBL lpVtbl, NativeColor value)>>>()
+                  .value
+                  .asFunction<int Function(LPVTBL lpVtbl, NativeColor value)>()(
+              ptr.ref.lpVtbl, nativeStructPtr.ref);
+
+      if (FAILED(hr)) throw WindowsException(hr);
+    } finally {
+      free(nativeStructPtr);
+    }
   }
 
   Color get selectedForegroundColor {
-    final retValuePtr = calloc<Color>();
+    final retValuePtr = calloc<NativeColor>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(14)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            LPVTBL lpVtbl, Pointer<Color> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(LPVTBL lpVtbl, Pointer<Color> retValuePtr)>()(
-        ptr.ref.lpVtbl, retValuePtr);
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(14)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(LPVTBL lpVtbl,
+                              Pointer<NativeColor> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(
+                      LPVTBL lpVtbl, Pointer<NativeColor> retValuePtr)>()(
+          ptr.ref.lpVtbl, retValuePtr);
 
-    if (FAILED(hr)) {
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      return retValuePtr.toDart();
+    } finally {
       free(retValuePtr);
-      throw WindowsException(hr);
     }
-
-    return retValuePtr.ref;
   }
 
   set selectedForegroundColor(Color value) {
-    final hr = ptr.ref.vtable
-        .elementAt(15)
-        .cast<
-            Pointer<
-                NativeFunction<HRESULT Function(LPVTBL lpVtbl, Color value)>>>()
-        .value
-        .asFunction<
-            int Function(LPVTBL lpVtbl, Color value)>()(ptr.ref.lpVtbl, value);
+    final nativeStructPtr = value.toNative();
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    try {
+      final hr =
+          ptr.ref.vtable
+                  .elementAt(15)
+                  .cast<
+                      Pointer<
+                          NativeFunction<
+                              HRESULT Function(
+                                  LPVTBL lpVtbl, NativeColor value)>>>()
+                  .value
+                  .asFunction<int Function(LPVTBL lpVtbl, NativeColor value)>()(
+              ptr.ref.lpVtbl, nativeStructPtr.ref);
+
+      if (FAILED(hr)) throw WindowsException(hr);
+    } finally {
+      free(nativeStructPtr);
+    }
   }
 
   Color get selectedBackgroundColor {
-    final retValuePtr = calloc<Color>();
+    final retValuePtr = calloc<NativeColor>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(16)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            LPVTBL lpVtbl, Pointer<Color> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(LPVTBL lpVtbl, Pointer<Color> retValuePtr)>()(
-        ptr.ref.lpVtbl, retValuePtr);
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(16)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(LPVTBL lpVtbl,
+                              Pointer<NativeColor> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(
+                      LPVTBL lpVtbl, Pointer<NativeColor> retValuePtr)>()(
+          ptr.ref.lpVtbl, retValuePtr);
 
-    if (FAILED(hr)) {
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      return retValuePtr.toDart();
+    } finally {
       free(retValuePtr);
-      throw WindowsException(hr);
     }
-
-    return retValuePtr.ref;
   }
 
   set selectedBackgroundColor(Color value) {
-    final hr = ptr.ref.vtable
-        .elementAt(17)
-        .cast<
-            Pointer<
-                NativeFunction<HRESULT Function(LPVTBL lpVtbl, Color value)>>>()
-        .value
-        .asFunction<
-            int Function(LPVTBL lpVtbl, Color value)>()(ptr.ref.lpVtbl, value);
+    final nativeStructPtr = value.toNative();
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    try {
+      final hr =
+          ptr.ref.vtable
+                  .elementAt(17)
+                  .cast<
+                      Pointer<
+                          NativeFunction<
+                              HRESULT Function(
+                                  LPVTBL lpVtbl, NativeColor value)>>>()
+                  .value
+                  .asFunction<int Function(LPVTBL lpVtbl, NativeColor value)>()(
+              ptr.ref.lpVtbl, nativeStructPtr.ref);
+
+      if (FAILED(hr)) throw WindowsException(hr);
+    } finally {
+      free(nativeStructPtr);
+    }
   }
 
   Color get selectedAccentColor {
-    final retValuePtr = calloc<Color>();
+    final retValuePtr = calloc<NativeColor>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(18)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            LPVTBL lpVtbl, Pointer<Color> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(LPVTBL lpVtbl, Pointer<Color> retValuePtr)>()(
-        ptr.ref.lpVtbl, retValuePtr);
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(18)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(LPVTBL lpVtbl,
+                              Pointer<NativeColor> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(
+                      LPVTBL lpVtbl, Pointer<NativeColor> retValuePtr)>()(
+          ptr.ref.lpVtbl, retValuePtr);
 
-    if (FAILED(hr)) {
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      return retValuePtr.toDart();
+    } finally {
       free(retValuePtr);
-      throw WindowsException(hr);
     }
-
-    return retValuePtr.ref;
   }
 
   set selectedAccentColor(Color value) {
-    final hr = ptr.ref.vtable
-        .elementAt(19)
-        .cast<
-            Pointer<
-                NativeFunction<HRESULT Function(LPVTBL lpVtbl, Color value)>>>()
-        .value
-        .asFunction<
-            int Function(LPVTBL lpVtbl, Color value)>()(ptr.ref.lpVtbl, value);
+    final nativeStructPtr = value.toNative();
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    try {
+      final hr =
+          ptr.ref.vtable
+                  .elementAt(19)
+                  .cast<
+                      Pointer<
+                          NativeFunction<
+                              HRESULT Function(
+                                  LPVTBL lpVtbl, NativeColor value)>>>()
+                  .value
+                  .asFunction<int Function(LPVTBL lpVtbl, NativeColor value)>()(
+              ptr.ref.lpVtbl, nativeStructPtr.ref);
+
+      if (FAILED(hr)) throw WindowsException(hr);
+    } finally {
+      free(nativeStructPtr);
+    }
   }
 }

@@ -43,7 +43,6 @@ abstract class ParameterProjection {
       case ProjectionType.pointer:
         return DefaultParameterProjection(param);
       case ProjectionType.dartPrimitiveList:
-      case ProjectionType.structList:
         return DefaultListParameterProjection(param);
       case ProjectionType.dateTime:
         return DateTimeParameterProjection(param);
@@ -81,6 +80,8 @@ abstract class ParameterProjection {
         return StringListParameterProjection(param);
       case ProjectionType.struct:
         return StructParameterProjection(param);
+      case ProjectionType.structList:
+        return StructListParameterProjection(param);
       case ProjectionType.uri:
         return UriParameterProjection(param);
       case ProjectionType.uriList:

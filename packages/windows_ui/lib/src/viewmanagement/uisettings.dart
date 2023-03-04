@@ -16,7 +16,7 @@ import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
-import '../structs.g.dart';
+import '../color.dart';
 import 'enums.g.dart';
 import 'iuisettings.dart';
 import 'iuisettings2.dart';

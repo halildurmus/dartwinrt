@@ -18,7 +18,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 import '../fileproperties/enums.g.dart';
 import 'enums.g.dart';
-import 'structs.g.dart';
+import 'sortentry.dart';
 
 /// @nodoc
 const IID_IQueryOptions = '{1e5e46ee-0f45-4838-a8e9-d0479d446c30}';

@@ -31,8 +31,8 @@ import 'iconnectionprofile6.dart';
 import 'networkadapter.dart';
 import 'networksecuritysettings.dart';
 import 'networkusage.dart';
+import 'networkusagestates.dart';
 import 'providernetworkusage.dart';
-import 'structs.g.dart';
 import 'wlanconnectionprofiledetails.dart';
 import 'wwanconnectionprofiledetails.dart';
 

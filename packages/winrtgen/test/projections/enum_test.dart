@@ -70,7 +70,7 @@ void main() {
               " see MSDN.')"));
     });
 
-    test('has correct class declaration', () {
+    test('has correct class header', () {
       expect(asyncStatusProjection.classHeader,
           equals('enum AsyncStatus implements WinRTEnum'));
     });
@@ -142,7 +142,7 @@ void main() {
       });
     }
 
-    test('has correct class declaration', () {
+    test('has correct class header', () {
       expect(
           fileAttributesProjection.classHeader,
           equals(

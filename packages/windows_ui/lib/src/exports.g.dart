@@ -4,6 +4,7 @@
 
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
+export 'color.dart';
 export 'notifications/enums.g.dart';
 export 'notifications/inotificationdata.dart';
 export 'notifications/ischeduledtoastnotification.dart';
@@ -35,7 +36,6 @@ export 'notifications/toastnotificationmanager.dart';
 export 'notifications/toastnotificationmanagerforuser.dart';
 export 'notifications/toastnotifier.dart';
 export 'popups/enums.g.dart';
-export 'structs.g.dart';
 export 'viewmanagement/enums.g.dart';
 export 'viewmanagement/iuisettings.dart';
 export 'viewmanagement/iuisettings2.dart';

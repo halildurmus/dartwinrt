@@ -367,11 +367,11 @@ void main() {
       expect(
           projection.nativePrototype,
           equals(
-              'HRESULT Function(LPVTBL lpVtbl, Pointer<BasicGeoposition> retValuePtr)'));
+              'HRESULT Function(LPVTBL lpVtbl, Pointer<NativeBasicGeoposition> retValuePtr)'));
       expect(
           projection.dartPrototype,
           equals(
-              'int Function(LPVTBL lpVtbl, Pointer<BasicGeoposition> retValuePtr)'));
+              'int Function(LPVTBL lpVtbl, Pointer<NativeBasicGeoposition> retValuePtr)'));
       expect(projection.methodHeader, equals('BasicGeoposition get position'));
     });
 

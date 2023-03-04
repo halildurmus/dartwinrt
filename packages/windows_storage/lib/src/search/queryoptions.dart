@@ -21,7 +21,7 @@ import 'enums.g.dart';
 import 'iqueryoptions.dart';
 import 'iqueryoptionsfactory.dart';
 import 'iqueryoptionswithproviderfilter.dart';
-import 'structs.g.dart';
+import 'sortentry.dart';
 
 /// Specifies the parameters of a search query for enumerating the contents
 /// of storage folders.

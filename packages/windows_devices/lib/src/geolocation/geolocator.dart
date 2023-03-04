@@ -16,6 +16,7 @@ import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
+import 'basicgeoposition.dart';
 import 'enums.g.dart';
 import 'geoposition.dart';
 import 'igeolocator.dart';
@@ -23,7 +24,6 @@ import 'igeolocator2.dart';
 import 'igeolocatorstatics.dart';
 import 'igeolocatorstatics2.dart';
 import 'igeolocatorwithscalaraccuracy.dart';
-import 'structs.g.dart';
 
 /// Provides access to the current geographic location.
 ///
