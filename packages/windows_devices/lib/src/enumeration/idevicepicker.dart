@@ -20,8 +20,8 @@ import 'package:windows_ui/windows_ui.dart';
 import 'deviceinformation.dart';
 import 'devicepicker.dart';
 import 'devicepickerappearance.dart';
+import 'devicepickerdisplaystatusoptions.dart';
 import 'devicepickerfilter.dart';
-import 'enums.g.dart';
 
 /// @nodoc
 const IID_IDevicePicker = '{84997aa2-034a-4440-8813-7d0bd479bf5a}';

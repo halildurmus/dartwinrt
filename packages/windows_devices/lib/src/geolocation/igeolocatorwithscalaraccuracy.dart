@@ -16,10 +16,11 @@ import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
-import 'enums.g.dart';
 import 'geolocator.dart';
 import 'geoposition.dart';
 import 'igeolocator.dart';
+import 'positionaccuracy.dart';
+import 'positionstatus.dart';
 
 /// @nodoc
 const IID_IGeolocatorWithScalarAccuracy =

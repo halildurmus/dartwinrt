@@ -16,7 +16,9 @@ import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
-import 'enums.g.dart';
+import 'batterystatus.dart';
+import 'energysaverstatus.dart';
+import 'powersupplystatus.dart';
 
 /// @nodoc
 const IID_IPowerManagerStatics = '{1394825d-62ce-4364-98d5-aa28c7fbd15b}';

@@ -16,7 +16,7 @@ import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
-import 'enums.g.dart';
+import 'networktypes.dart';
 
 /// @nodoc
 const IID_INetworkItem = '{01bc4d39-f5e0-4567-a28c-42080c831b2b}';

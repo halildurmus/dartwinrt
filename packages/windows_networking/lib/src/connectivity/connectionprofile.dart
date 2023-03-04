@@ -18,10 +18,13 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 import 'attributednetworkusage.dart';
 import 'connectioncost.dart';
+import 'connectionprofiledeletestatus.dart';
 import 'connectivityinterval.dart';
 import 'dataplanstatus.dart';
 import 'datausage.dart';
-import 'enums.g.dart';
+import 'datausagegranularity.dart';
+import 'domainauthenticationkind.dart';
+import 'domainconnectivitylevel.dart';
 import 'iconnectionprofile.dart';
 import 'iconnectionprofile2.dart';
 import 'iconnectionprofile3.dart';
@@ -29,10 +32,12 @@ import 'iconnectionprofile4.dart';
 import 'iconnectionprofile5.dart';
 import 'iconnectionprofile6.dart';
 import 'networkadapter.dart';
+import 'networkconnectivitylevel.dart';
 import 'networksecuritysettings.dart';
 import 'networkusage.dart';
 import 'networkusagestates.dart';
 import 'providernetworkusage.dart';
+import 'roamingstates.dart';
 import 'wlanconnectionprofiledetails.dart';
 import 'wwanconnectionprofiledetails.dart';
 

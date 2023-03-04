@@ -17,13 +17,15 @@ import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
 import 'basicgeoposition.dart';
-import 'enums.g.dart';
+import 'geolocationaccessstatus.dart';
 import 'geoposition.dart';
 import 'igeolocator.dart';
 import 'igeolocator2.dart';
 import 'igeolocatorstatics.dart';
 import 'igeolocatorstatics2.dart';
 import 'igeolocatorwithscalaraccuracy.dart';
+import 'positionaccuracy.dart';
+import 'positionstatus.dart';
 
 /// Provides access to the current geographic location.
 ///

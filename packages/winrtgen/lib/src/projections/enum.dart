@@ -4,7 +4,7 @@
 
 import 'package:winmd/winmd.dart';
 
-import '../constants/attributes.dart';
+import '../constants/constants.dart';
 import '../extensions/extensions.dart';
 import '../utils.dart';
 
@@ -69,6 +69,32 @@ class EnumProjection {
     return EnumProjection.create(typeDef, comment: comment);
   }
 
+  String get header => enumFileHeader;
+
+  /// Returns the package name for the [typeDef] (e.g. `windows_foundation`
+  /// for `Windows.Foundation.Point`).
+  String get packageName => typeDef.packageName;
+
+  /// Returns the path to the folder where the current class is located (e.g.
+  /// `windows_foundation/lib/src` for `Windows.Foundation.Point`).
+  String get currentFolderPath => folderFromType(typeDef.name);
+
+  /// Converts [path] to an equivalent relative path from the
+  /// [currentFolderPath].
+  String relativePathTo(String path) =>
+      relativePath(path, start: currentFolderPath);
+
+  Set<String> get imports => {
+        if (packageName == 'windows_foundation')
+          relativePathTo('windows_foundation/lib/src/winrt_enum.dart')
+        else
+          'package:windows_foundation/windows_foundation.dart'
+      };
+
+  String get importHeader =>
+      sortImports(imports.map((import) => "import '$import';").toList())
+          .join('\n');
+
   String get category => 'enum';
 
   String get classPreamble {
@@ -105,16 +131,19 @@ class EnumProjection {
 
   @override
   String toString() => '''
-    $classPreamble
-    $classHeader {
-      ${identifiers.join(',\n')};
+$header
+$importHeader
 
-      $valueField
+$classPreamble
+$classHeader {
+  ${identifiers.join(',\n')};
 
-      $constructor
+  $valueField
 
-      $factoryConstructor
-    }
+  $constructor
+
+  $factoryConstructor
+}
 ''';
 }
 
@@ -194,6 +223,9 @@ class FlagsEnumProjection extends EnumProjection {
 
   @override
   String toString() => '''
+$header
+$importHeader
+
 $classPreamble
 $classHeader {
   $constructor

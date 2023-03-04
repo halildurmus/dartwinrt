@@ -16,11 +16,15 @@ import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
-import 'enums.g.dart';
+import 'fileaccessmode.dart';
+import 'fileattributes.dart';
 import 'fileproperties/basicproperties.dart';
 import 'istoragefolder.dart';
 import 'istorageitem.dart';
+import 'namecollisionoption.dart';
+import 'storagedeleteoption.dart';
 import 'storagefile.dart';
+import 'storageitemtypes.dart';
 import 'storagestreamtransaction.dart';
 import 'streams/iinputstream.dart';
 import 'streams/iinputstreamreference.dart';

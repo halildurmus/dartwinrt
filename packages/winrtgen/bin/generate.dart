@@ -97,37 +97,11 @@ void generateConcreteClassesForGenericInterfaces(
 }
 
 void generateEnumerations(Map<String, String> enums) {
-  final namespaceGroups = groupTypesByParentNamespace(enums.keys);
-
-  for (final namespaceGroup in namespaceGroups) {
-    final projections = <EnumProjection>[];
-    final firstType = namespaceGroup.types.first;
-    final packageName = packageNameFromType(firstType);
-
-    for (final type in namespaceGroup.types) {
-      final typeDef = MetadataStore.getMetadataForType(type);
-      if (typeDef == null) throw Exception("Can't find $type");
-      final projection =
-          EnumProjection.create(typeDef, comment: enums[type] ?? '');
-      projections.add(projection);
-    }
-
-    projections.sort((a, b) =>
-        lastComponent(a.enumName).compareTo(lastComponent(b.enumName)));
-
-    final String winrtEnumImport;
-    if (packageName == 'windows_foundation') {
-      final filePath = relativePath(
-          'windows_foundation/lib/src/winrt_enum.dart',
-          start: folderFromType(firstType));
-      winrtEnumImport = "import '$filePath';";
-    } else {
-      winrtEnumImport =
-          "import 'package:windows_foundation/windows_foundation.dart';";
-    }
-
-    final path = '${relativeFolderPathFromType(firstType)}/enums.g.dart';
-    final content = [enumsFileHeader, winrtEnumImport, ...projections].join();
+  for (final type in enums.keys) {
+    final projection = EnumProjection.from(type, comment: enums[type] ?? '');
+    final fileName = stripGenerics(lastComponent(type)).toLowerCase();
+    final path = '${relativeFolderPathFromType(type)}/$fileName.dart';
+    final content = projection.toString();
     writeToFile(path, content);
   }
 }

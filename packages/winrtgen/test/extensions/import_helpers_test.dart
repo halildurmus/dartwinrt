@@ -48,7 +48,7 @@ void main() {
       expect(
           geolocatorProjection.importForTypeDef(
               methodProjection.returnTypeProjection.typeIdentifier.type!),
-          equals('enums.g.dart'));
+          equals('positionaccuracy.dart'));
     });
 
     test('returns package import for WinRT class', () {
@@ -100,7 +100,7 @@ void main() {
     expect(
         geolocatorProjection.importForTypeIdentifier(
             methodProjection.returnTypeProjection.typeIdentifier),
-        equals('enums.g.dart'));
+        equals('positionaccuracy.dart'));
   });
 
   test('importsForInheritedInterfaces', () {
@@ -118,7 +118,9 @@ void main() {
     expect(
       geolocatorProjection.importsForTypes,
       unorderedEquals([
-        'enums.g.dart',
+        'geolocationaccessstatus.dart',
+        'positionaccuracy.dart',
+        'positionstatus.dart',
         'package:windows_foundation/windows_foundation.dart',
         'geoposition.dart',
         'positionchangedeventargs.dart',

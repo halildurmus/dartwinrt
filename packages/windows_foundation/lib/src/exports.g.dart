@@ -4,6 +4,7 @@
 
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
+export 'asyncstatus.dart';
 export 'collections/iiterable.dart';
 export 'collections/iiterator.dart';
 export 'collections/ikeyvaluepair.dart';
@@ -16,7 +17,6 @@ export 'collections/ivectorview.dart';
 export 'collections/propertyset.dart';
 export 'collections/stringmap.dart';
 export 'collections/valueset.dart';
-export 'enums.g.dart';
 export 'helpers.dart';
 export 'iclosable.dart';
 export 'iinspectable.dart';
@@ -30,6 +30,7 @@ export 'numerics/vector2.dart';
 export 'numerics/vector3.dart';
 export 'numerics/vector4.dart';
 export 'point.dart';
+export 'propertytype.dart';
 export 'rect.dart';
 export 'size.dart';
 export 'types.dart';

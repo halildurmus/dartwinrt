@@ -16,10 +16,10 @@ import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
-import 'enums.g.dart';
 import 'ibuffer.dart';
 import 'icontenttypeprovider.dart';
 import 'iinputstream.dart';
+import 'inputstreamoptions.dart';
 import 'ioutputstream.dart';
 import 'irandomaccessstream.dart';
 

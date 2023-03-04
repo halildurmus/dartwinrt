@@ -16,8 +16,9 @@ import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
-import 'enums.g.dart';
 import 'istorageitem.dart';
+import 'storageitemtypes.dart';
+import 'storagelibrarychangetype.dart';
 
 /// @nodoc
 const IID_IStorageLibraryChange = '{00980b23-2be2-4909-aa48-159f5203a51e}';

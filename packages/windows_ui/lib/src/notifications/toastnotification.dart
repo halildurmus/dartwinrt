@@ -17,7 +17,6 @@ import 'package:windows_data/windows_data.dart';
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
-import 'enums.g.dart';
 import 'itoastnotification.dart';
 import 'itoastnotification2.dart';
 import 'itoastnotification3.dart';
@@ -25,6 +24,8 @@ import 'itoastnotification4.dart';
 import 'itoastnotification6.dart';
 import 'itoastnotificationfactory.dart';
 import 'notificationdata.dart';
+import 'notificationmirroring.dart';
+import 'toastnotificationpriority.dart';
 
 /// Defines the content, associated metadata and events, and expiration time
 /// of a toast notification.

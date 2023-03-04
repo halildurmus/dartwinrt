@@ -4,6 +4,5 @@
 
 export 'generic_type.dart';
 export 'load_json.dart';
-export 'namespace_group.dart';
 export 'projection_type.dart';
 export 'type_arg.dart';

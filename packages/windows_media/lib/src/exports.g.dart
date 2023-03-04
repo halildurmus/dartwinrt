@@ -5,4 +5,4 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 export 'mediaproperties/mediapropertyset.dart';
-export 'speechsynthesis/enums.g.dart';
+export 'speechsynthesis/voicegender.dart';

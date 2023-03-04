@@ -16,11 +16,12 @@ import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
-import 'enums.g.dart';
 import 'itoastnotifier.dart';
 import 'itoastnotifier2.dart';
 import 'itoastnotifier3.dart';
 import 'notificationdata.dart';
+import 'notificationsetting.dart';
+import 'notificationupdateresult.dart';
 import 'scheduledtoastnotification.dart';
 import 'toastnotification.dart';
 

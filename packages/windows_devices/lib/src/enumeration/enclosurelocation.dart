@@ -16,9 +16,9 @@ import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
-import 'enums.g.dart';
 import 'ienclosurelocation.dart';
 import 'ienclosurelocation2.dart';
+import 'panel.dart';
 
 /// Describes the physical location of a device in its enclosure.
 ///

@@ -17,7 +17,8 @@ import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
 import 'connectivityinterval.dart';
-import 'enums.g.dart';
+import 'datausagegranularity.dart';
+import 'domainconnectivitylevel.dart';
 import 'networkusage.dart';
 import 'networkusagestates.dart';
 import 'wlanconnectionprofiledetails.dart';

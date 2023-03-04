@@ -16,7 +16,8 @@ import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
-import 'enums.g.dart';
+import 'altitudereferencesystem.dart';
+import 'geoshapetype.dart';
 
 /// @nodoc
 const IID_IGeoshape = '{c99ca2af-c729-43c1-8fab-d6dec914df7e}';

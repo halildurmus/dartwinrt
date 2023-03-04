@@ -19,8 +19,8 @@ import 'package:windows_ui/windows_ui.dart';
 
 import 'deviceinformation.dart';
 import 'devicepickerappearance.dart';
+import 'devicepickerdisplaystatusoptions.dart';
 import 'devicepickerfilter.dart';
-import 'enums.g.dart';
 import 'idevicepicker.dart';
 
 /// Represents a picker flyout that contains a list of devices for the user

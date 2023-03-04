@@ -17,7 +17,7 @@ import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
 import 'connectivity/ipinformation.dart';
-import 'enums.g.dart';
+import 'hostnametype.dart';
 import 'ihostname.dart';
 import 'ihostnamefactory.dart';
 import 'ihostnamestatics.dart';

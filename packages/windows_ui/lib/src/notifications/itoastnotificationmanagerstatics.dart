@@ -17,8 +17,8 @@ import 'package:windows_data/windows_data.dart';
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
-import 'enums.g.dart';
 import 'toastnotifier.dart';
+import 'toasttemplatetype.dart';
 
 /// @nodoc
 const IID_IToastNotificationManagerStatics =

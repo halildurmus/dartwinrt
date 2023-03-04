@@ -16,8 +16,8 @@ import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
-import 'enums.g.dart';
 import 'ibuffer.dart';
+import 'inputstreamoptions.dart';
 
 /// @nodoc
 const IID_IInputStream = '{905a0fe2-bc53-11df-8c49-001e4fc686da}';

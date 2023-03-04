@@ -16,9 +16,11 @@ import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
-import 'enums.g.dart';
 import 'iwwanconnectionprofiledetails.dart';
 import 'iwwanconnectionprofiledetails2.dart';
+import 'wwandataclass.dart';
+import 'wwannetworkipkind.dart';
+import 'wwannetworkregistrationstate.dart';
 
 /// Used to access information specific to a WWAN connection.
 ///

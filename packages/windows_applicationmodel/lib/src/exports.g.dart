@@ -7,4 +7,4 @@
 export 'background/devicewatchertrigger.dart';
 export 'background/ibackgroundtrigger.dart';
 export 'background/idevicewatchertrigger.dart';
-export 'enums.g.dart';
+export 'startuptaskstate.dart';

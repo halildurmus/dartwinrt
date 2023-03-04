@@ -17,7 +17,7 @@ import 'package:windows_applicationmodel/windows_applicationmodel.dart';
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
-import 'enums.g.dart';
+import 'devicewatchereventkind.dart';
 
 /// @nodoc
 const IID_IDeviceWatcher2 = '{ff08456e-ed14-49e9-9a69-8117c54ae971}';

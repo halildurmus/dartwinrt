@@ -16,15 +16,15 @@ import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
-import '../streams/enums.g.dart';
 import '../streams/ibuffer.dart';
 import '../streams/icontenttypeprovider.dart';
 import '../streams/iinputstream.dart';
+import '../streams/inputstreamoptions.dart';
 import '../streams/ioutputstream.dart';
 import '../streams/irandomaccessstream.dart';
 import '../streams/irandomaccessstreamwithcontenttype.dart';
-import 'enums.g.dart';
 import 'ithumbnailproperties.dart';
+import 'thumbnailtype.dart';
 
 /// Represents the thumbnail image associated with a system resource (like a
 /// file or folder).

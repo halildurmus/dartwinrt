@@ -16,9 +16,9 @@ import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
-import 'enums.g.dart';
 import 'iconnectioncost.dart';
 import 'iconnectioncost2.dart';
+import 'networkcosttype.dart';
 
 /// Provides access to property values that indicate the current cost of a
 /// network connection.

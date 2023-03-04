@@ -16,10 +16,10 @@ import 'package:win32/win32.dart' hide DocumentProperties;
 
 import '../internal.dart';
 import 'collections/iiterator.dart';
-import 'enums.g.dart';
 import 'helpers.dart';
 import 'iinspectable.dart';
 import 'point.dart';
+import 'propertytype.dart';
 import 'rect.dart';
 import 'size.dart';
 

@@ -4,8 +4,9 @@
 
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
-export 'input/enums.g.dart';
+export 'input/gamecontrollerbuttonlabel.dart';
 export 'input/gamepad.dart';
+export 'input/gamepadbuttons.dart';
 export 'input/gamepadreading.dart';
 export 'input/gamepadvibration.dart';
 export 'input/headset.dart';

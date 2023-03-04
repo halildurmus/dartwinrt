@@ -16,8 +16,8 @@ import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
-import 'enums.g.dart';
 import 'notificationdata.dart';
+import 'notificationupdateresult.dart';
 
 /// @nodoc
 const IID_IToastNotifier2 = '{354389c6-7c01-4bd5-9c20-604340cd2b74}';

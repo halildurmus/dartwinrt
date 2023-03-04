@@ -16,8 +16,8 @@ import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
+import 'devicepairingprotectionlevel.dart';
 import 'devicepairingresult.dart';
-import 'enums.g.dart';
 
 /// @nodoc
 const IID_IDeviceInformationPairing = '{2c4769f5-f684-40d5-8469-e8dbaab70485}';

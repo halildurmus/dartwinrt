@@ -15,8 +15,8 @@ import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart' hide DocumentProperties;
 
 import '../internal.dart';
+import 'asyncstatus.dart';
 import 'collections/iiterator.dart';
-import 'enums.g.dart';
 import 'helpers.dart';
 import 'iinspectable.dart';
 

@@ -16,8 +16,9 @@ import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
+import 'altitudereferencesystem.dart';
 import 'basicgeoposition.dart';
-import 'enums.g.dart';
+import 'geoshapetype.dart';
 import 'igeoshape.dart';
 
 /// @nodoc

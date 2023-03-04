@@ -17,7 +17,7 @@ import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 import 'package:windows_system/windows_system.dart';
 
-import 'enums.g.dart';
+import 'notificationmirroring.dart';
 import 'toastnotificationmanagerforuser.dart';
 
 /// @nodoc

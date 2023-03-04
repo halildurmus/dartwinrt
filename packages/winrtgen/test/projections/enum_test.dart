@@ -50,6 +50,15 @@ void main() {
     final asyncStatusProjection =
         EnumProjection.from('Windows.Foundation.AsyncStatus');
 
+    test('has copyright header', () {
+      expect(asyncStatusProjection.header, contains(copyrightHeader));
+    });
+
+    test('imports are meaningful', () {
+      expect(
+          asyncStatusProjection.imports, unorderedEquals(['winrt_enum.dart']));
+    });
+
     test('includes correct dartdoc category comment', () {
       expect(asyncStatusProjection.category, equals('enum'));
       expect(
@@ -118,6 +127,17 @@ void main() {
   group('WinRT Flags enum', () {
     final fileAttributesProjection =
         FlagsEnumProjection.from('Windows.Storage.FileAttributes');
+
+    test('has copyright header', () {
+      expect(fileAttributesProjection.header, contains(copyrightHeader));
+    });
+
+    test('imports are meaningful', () {
+      expect(
+          fileAttributesProjection.imports,
+          unorderedEquals(
+              ['package:windows_foundation/windows_foundation.dart']));
+    });
 
     test('includes correct dartdoc category comment', () {
       expect(fileAttributesProjection.category, equals('enum'));

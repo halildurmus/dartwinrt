@@ -17,8 +17,8 @@ import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
 import '../endpointpair.dart';
-import '../enums.g.dart';
 import '../hostname.dart';
+import '../hostnamesortoptions.dart';
 import 'connectionprofile.dart';
 import 'connectionprofilefilter.dart';
 import 'inetworkinformationstatics.dart';

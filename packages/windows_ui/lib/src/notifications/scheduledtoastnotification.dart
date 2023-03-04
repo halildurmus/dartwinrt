@@ -17,12 +17,12 @@ import 'package:windows_data/windows_data.dart';
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
-import 'enums.g.dart';
 import 'ischeduledtoastnotification.dart';
 import 'ischeduledtoastnotification2.dart';
 import 'ischeduledtoastnotification3.dart';
 import 'ischeduledtoastnotification4.dart';
 import 'ischeduledtoastnotificationfactory.dart';
+import 'notificationmirroring.dart';
 
 /// Contains the XML that defines the toast notification that will display
 /// at the scheduled time.

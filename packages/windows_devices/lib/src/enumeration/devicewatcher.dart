@@ -19,7 +19,8 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 import 'deviceinformation.dart';
 import 'deviceinformationupdate.dart';
-import 'enums.g.dart';
+import 'devicewatchereventkind.dart';
+import 'devicewatcherstatus.dart';
 import 'idevicewatcher.dart';
 import 'idevicewatcher2.dart';
 

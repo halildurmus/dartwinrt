@@ -17,7 +17,8 @@ import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
 import '../storagefile.dart';
-import 'enums.g.dart';
+import 'pickerlocationid.dart';
+import 'pickerviewmode.dart';
 
 /// @nodoc
 const IID_IFileOpenPicker = '{2ca8278a-12c5-4c5f-8977-94547793c241}';

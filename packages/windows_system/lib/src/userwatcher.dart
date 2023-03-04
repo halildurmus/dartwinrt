@@ -16,8 +16,8 @@ import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
-import 'enums.g.dart';
 import 'iuserwatcher.dart';
+import 'userwatcherstatus.dart';
 
 /// Provides events that fire during enumeration of users, when the
 /// collection of users changes, or when a user's authentication status

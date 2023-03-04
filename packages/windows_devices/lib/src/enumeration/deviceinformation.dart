@@ -16,13 +16,14 @@ import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
+import 'deviceclass.dart';
 import 'deviceinformationcollection.dart';
+import 'deviceinformationkind.dart';
 import 'deviceinformationpairing.dart';
 import 'deviceinformationupdate.dart';
 import 'devicethumbnail.dart';
 import 'devicewatcher.dart';
 import 'enclosurelocation.dart';
-import 'enums.g.dart';
 import 'ideviceinformation.dart';
 import 'ideviceinformation2.dart';
 import 'ideviceinformationstatics.dart';

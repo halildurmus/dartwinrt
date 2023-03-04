@@ -17,9 +17,10 @@ import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
 import 'deviceinformationcustompairing.dart';
+import 'devicepairingkinds.dart';
+import 'devicepairingprotectionlevel.dart';
 import 'devicepairingresult.dart';
 import 'deviceunpairingresult.dart';
-import 'enums.g.dart';
 import 'ideviceinformationpairing.dart';
 import 'ideviceinformationpairing2.dart';
 import 'ideviceinformationpairingstatics.dart';

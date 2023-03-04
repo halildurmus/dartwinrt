@@ -16,7 +16,6 @@ import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
-import 'enums.g.dart';
 import 'geocoordinatesatellitedata.dart';
 import 'geopoint.dart';
 import 'igeocoordinate.dart';
@@ -24,6 +23,7 @@ import 'igeocoordinatewithpoint.dart';
 import 'igeocoordinatewithpositiondata.dart';
 import 'igeocoordinatewithpositionsourcetimestamp.dart';
 import 'igeocoordinatewithremotesource.dart';
+import 'positionsource.dart';
 
 /// Contains the information for identifying a geographic location.
 ///

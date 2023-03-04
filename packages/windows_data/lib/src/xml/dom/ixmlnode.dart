@@ -16,9 +16,9 @@ import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
-import 'enums.g.dart';
 import 'ixmlnodeselector.dart';
 import 'ixmlnodeserializer.dart';
+import 'nodetype.dart';
 import 'xmldocument.dart';
 import 'xmlnamednodemap.dart';
 import 'xmlnodelist.dart';

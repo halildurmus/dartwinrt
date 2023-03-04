@@ -18,14 +18,15 @@ import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 import 'package:windows_system/windows_system.dart';
 
-import 'enums.g.dart';
 import 'itoastnotificationmanagerstatics.dart';
 import 'itoastnotificationmanagerstatics2.dart';
 import 'itoastnotificationmanagerstatics4.dart';
 import 'itoastnotificationmanagerstatics5.dart';
+import 'notificationmirroring.dart';
 import 'toastnotificationhistory.dart';
 import 'toastnotificationmanagerforuser.dart';
 import 'toastnotifier.dart';
+import 'toasttemplatetype.dart';
 
 /// Creates ToastNotifier objects that you use to raise toast notifications.
 /// This class also provides access to the XML content of the
