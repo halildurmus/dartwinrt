@@ -19,7 +19,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 import 'deviceinformation.dart';
 import 'deviceinformationupdate.dart';
 import 'devicewatcher.dart';
-import 'enums.g.dart';
+import 'devicewatcherstatus.dart';
 
 /// @nodoc
 const IID_IDeviceWatcher = '{c9eab97d-8f6b-4f96-a9f4-abc814e22271}';

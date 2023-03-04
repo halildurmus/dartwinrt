@@ -17,7 +17,6 @@ import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 import 'package:windows_system/windows_system.dart';
 
-import 'enums.g.dart';
 import 'iknownfolderscamerarollstatics.dart';
 import 'iknownfoldersplaylistsstatics.dart';
 import 'iknownfolderssavedpicturesstatics.dart';
@@ -25,6 +24,8 @@ import 'iknownfoldersstatics.dart';
 import 'iknownfoldersstatics2.dart';
 import 'iknownfoldersstatics3.dart';
 import 'iknownfoldersstatics4.dart';
+import 'knownfolderid.dart';
+import 'knownfoldersaccessstatus.dart';
 import 'storagefolder.dart';
 
 /// Provides access to common locations that contain user content. This

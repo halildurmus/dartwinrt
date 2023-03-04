@@ -4,6 +4,6 @@
 
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
-export 'printing/enums.g.dart';
+export 'printing/printcolormode.dart';
 export 'printing3d/iprinting3dmultiplepropertymaterial.dart';
 export 'printing3d/printing3dmultiplepropertymaterial.dart';

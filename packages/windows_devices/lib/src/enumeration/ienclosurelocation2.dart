@@ -16,8 +16,8 @@ import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
-import 'enums.g.dart';
 import 'ienclosurelocation.dart';
+import 'panel.dart';
 
 /// @nodoc
 const IID_IEnclosureLocation2 = '{2885995b-e07d-485d-8a9e-bdf29aef4f66}';

@@ -16,10 +16,11 @@ import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
+import 'deviceclass.dart';
 import 'deviceinformation.dart';
 import 'deviceinformationcollection.dart';
+import 'deviceinformationkind.dart';
 import 'devicewatcher.dart';
-import 'enums.g.dart';
 
 /// @nodoc
 const IID_IDeviceInformationStatics2 = '{493b4f34-a84f-45fd-9167-15d1cb1bd1f9}';

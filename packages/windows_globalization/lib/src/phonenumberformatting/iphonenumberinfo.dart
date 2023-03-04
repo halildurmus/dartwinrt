@@ -16,8 +16,9 @@ import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
-import 'enums.g.dart';
 import 'phonenumberinfo.dart';
+import 'phonenumbermatchresult.dart';
+import 'predictedphonenumberkind.dart';
 
 /// @nodoc
 const IID_IPhoneNumberInfo = '{1c7ce4dd-c8b4-4ea3-9aef-b342e2c5b417}';

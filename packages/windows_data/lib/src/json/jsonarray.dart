@@ -16,11 +16,11 @@ import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
-import 'enums.g.dart';
 import 'ijsonarray.dart';
 import 'ijsonarraystatics.dart';
 import 'ijsonvalue.dart';
 import 'jsonobject.dart';
+import 'jsonvaluetype.dart';
 
 /// Represents a JSON array.
 ///

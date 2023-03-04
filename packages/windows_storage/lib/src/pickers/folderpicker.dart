@@ -18,11 +18,12 @@ import 'package:windows_foundation/windows_foundation.dart';
 import 'package:windows_system/windows_system.dart';
 
 import '../storagefolder.dart';
-import 'enums.g.dart';
 import 'ifolderpicker.dart';
 import 'ifolderpicker2.dart';
 import 'ifolderpicker3.dart';
 import 'ifolderpickerstatics.dart';
+import 'pickerlocationid.dart';
+import 'pickerviewmode.dart';
 
 /// Represents a UI element that lets the user choose folders.
 ///

@@ -7,7 +7,7 @@ import 'dart:ffi';
 
 import 'package:win32/win32.dart';
 
-import '../enums.g.dart';
+import '../asyncstatus.dart';
 import '../iasyncaction.dart';
 import '../iasyncinfo.dart';
 import '../iasyncoperation.dart';

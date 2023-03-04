@@ -17,12 +17,12 @@ import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 import 'package:windows_system/windows_system.dart';
 
-import 'enums.g.dart';
 import 'itoastnotificationmanagerforuser.dart';
 import 'itoastnotificationmanagerforuser2.dart';
 import 'itoastnotificationmanagerforuser3.dart';
 import 'toastcollectionmanager.dart';
 import 'toastnotificationhistory.dart';
+import 'toastnotificationmode.dart';
 import 'toastnotifier.dart';
 
 /// Creates ToastNotifier objects that you use to raise toast notifications

@@ -16,9 +16,10 @@ import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
-import 'fileproperties/enums.g.dart';
 import 'fileproperties/storageitemcontentproperties.dart';
 import 'fileproperties/storageitemthumbnail.dart';
+import 'fileproperties/thumbnailmode.dart';
+import 'fileproperties/thumbnailoptions.dart';
 
 /// @nodoc
 const IID_IStorageItemProperties = '{86664478-8029-46fe-a789-1c2f3e2ffb5c}';

@@ -16,8 +16,8 @@ import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
-import 'enums.g.dart';
 import 'istorageitemextraproperties.dart';
+import 'photoorientation.dart';
 
 /// @nodoc
 const IID_IImageProperties = '{523c9424-fcff-4275-afee-ecdb9ab47973}';

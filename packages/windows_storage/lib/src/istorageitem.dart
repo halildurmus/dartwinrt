@@ -16,8 +16,11 @@ import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
-import 'enums.g.dart';
+import 'fileattributes.dart';
 import 'fileproperties/basicproperties.dart';
+import 'namecollisionoption.dart';
+import 'storagedeleteoption.dart';
+import 'storageitemtypes.dart';
 
 /// @nodoc
 const IID_IStorageItem = '{4207a996-ca2f-42f7-bde8-8b10457a7f30}';

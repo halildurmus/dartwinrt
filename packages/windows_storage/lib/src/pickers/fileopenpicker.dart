@@ -18,10 +18,11 @@ import 'package:windows_foundation/windows_foundation.dart';
 import 'package:windows_system/windows_system.dart';
 
 import '../storagefile.dart';
-import 'enums.g.dart';
 import 'ifileopenpicker.dart';
 import 'ifileopenpicker3.dart';
 import 'ifileopenpickerstatics2.dart';
+import 'pickerlocationid.dart';
+import 'pickerviewmode.dart';
 
 /// Represents a UI element that lets the user choose and open files. In a
 /// desktop app, before using an instance of this class in a way that

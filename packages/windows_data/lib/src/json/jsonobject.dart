@@ -16,13 +16,13 @@ import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
-import 'enums.g.dart';
 import 'ijsonobject.dart';
 import 'ijsonobjectstatics.dart';
 import 'ijsonobjectwithdefaultvalues.dart';
 import 'ijsonvalue.dart';
 import 'jsonarray.dart';
 import 'jsonvalue.dart';
+import 'jsonvaluetype.dart';
 
 /// Represents a JSON object containing a collection of name and [JsonValue]
 /// pairs.

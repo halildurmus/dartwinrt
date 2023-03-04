@@ -111,12 +111,6 @@ void main() {
       });
     }
 
-    test('imports enums.g.dart', () {
-      expect(calendarProjection.imports, contains('enums.g.dart'));
-      expect(
-          calendarProjection.importHeader, contains("import 'enums.g.dart';"));
-    });
-
     test('imports are meaningful', () {
       expect(
         calendarProjection.imports,
@@ -127,7 +121,7 @@ void main() {
           'package:win32/win32.dart',
           'package:windows_foundation/internal.dart',
           'package:windows_foundation/windows_foundation.dart',
-          'enums.g.dart',
+          'dayofweek.dart',
           'icalendar.dart',
           'icalendarfactory.dart',
           'icalendarfactory2.dart',

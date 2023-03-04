@@ -18,12 +18,12 @@ import 'package:windows_foundation/windows_foundation.dart';
 import 'package:windows_system/windows_system.dart';
 
 import '../storagefile.dart';
-import 'enums.g.dart';
 import 'ifilesavepicker.dart';
 import 'ifilesavepicker2.dart';
 import 'ifilesavepicker3.dart';
 import 'ifilesavepicker4.dart';
 import 'ifilesavepickerstatics.dart';
+import 'pickerlocationid.dart';
 
 /// Represents a file picker that lets the user choose the file name,
 /// extension, and storage location for a file.

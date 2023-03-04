@@ -17,8 +17,8 @@ import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
 import 'connectivity/ipinformation.dart';
-import 'enums.g.dart';
 import 'hostname.dart';
+import 'hostnametype.dart';
 
 /// @nodoc
 const IID_IHostName = '{bf8ecaad-ed96-49a7-9084-d416cae88dcb}';

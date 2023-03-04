@@ -16,8 +16,8 @@ import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
-import 'enums.g.dart';
 import 'istorageitemextraproperties.dart';
+import 'videoorientation.dart';
 
 /// @nodoc
 const IID_IVideoProperties = '{719ae507-68de-4db8-97de-49998c059f2f}';

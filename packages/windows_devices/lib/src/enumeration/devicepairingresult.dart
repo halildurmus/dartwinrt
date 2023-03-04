@@ -16,7 +16,8 @@ import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
-import 'enums.g.dart';
+import 'devicepairingprotectionlevel.dart';
+import 'devicepairingresultstatus.dart';
 import 'idevicepairingresult.dart';
 
 /// Contains information about the result of attempting to pair a device.

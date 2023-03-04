@@ -17,7 +17,7 @@ import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
 import '../storagefile.dart';
-import 'enums.g.dart';
+import 'pickerlocationid.dart';
 
 /// @nodoc
 const IID_IFileSavePicker = '{3286ffcb-617f-4cc5-af6a-b3fdf29ad145}';

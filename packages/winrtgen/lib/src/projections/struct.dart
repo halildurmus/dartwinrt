@@ -110,6 +110,8 @@ class StructProjection extends NativeStructProjection {
     return StructProjection(typeDef, comment: comment, structName: structName);
   }
 
+  String get header => structFileHeader;
+
   /// Returns the package name for the [typeDef] (e.g. `windows_foundation`
   /// for `Windows.Foundation.Point`).
   String get packageName => typeDef.packageName;

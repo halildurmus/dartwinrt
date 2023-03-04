@@ -19,9 +19,10 @@ import 'package:windows_foundation/windows_foundation.dart';
 import 'connectioncost.dart';
 import 'dataplanstatus.dart';
 import 'datausage.dart';
-import 'enums.g.dart';
 import 'networkadapter.dart';
+import 'networkconnectivitylevel.dart';
 import 'networksecuritysettings.dart';
+import 'roamingstates.dart';
 
 /// @nodoc
 const IID_IConnectionProfile = '{71ba143c-598e-49d0-84eb-8febaedcc195}';

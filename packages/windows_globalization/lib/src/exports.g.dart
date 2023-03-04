@@ -5,11 +5,14 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 export 'calendar.dart';
-export 'enums.g.dart';
+export 'dayofweek.dart';
 export 'icalendar.dart';
 export 'itimezoneoncalendar.dart';
-export 'phonenumberformatting/enums.g.dart';
 export 'phonenumberformatting/iphonenumberformatter.dart';
 export 'phonenumberformatting/iphonenumberinfo.dart';
+export 'phonenumberformatting/phonenumberformat.dart';
 export 'phonenumberformatting/phonenumberformatter.dart';
 export 'phonenumberformatting/phonenumberinfo.dart';
+export 'phonenumberformatting/phonenumbermatchresult.dart';
+export 'phonenumberformatting/phonenumberparseresult.dart';
+export 'phonenumberformatting/predictedphonenumberkind.dart';

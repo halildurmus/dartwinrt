@@ -16,9 +16,10 @@ import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
-import 'enums.g.dart';
 import 'istorageitem.dart';
 import 'istoragelibrarychange.dart';
+import 'storageitemtypes.dart';
+import 'storagelibrarychangetype.dart';
 
 /// Represents a change to an item in a storage library such as the
 /// documents, music, or video library.

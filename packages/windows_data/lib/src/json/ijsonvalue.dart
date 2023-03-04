@@ -16,9 +16,9 @@ import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
-import 'enums.g.dart';
 import 'jsonarray.dart';
 import 'jsonobject.dart';
+import 'jsonvaluetype.dart';
 
 /// @nodoc
 const IID_IJsonValue = '{a3219ecb-f0b3-4dcd-beee-19d48cd3ed1e}';

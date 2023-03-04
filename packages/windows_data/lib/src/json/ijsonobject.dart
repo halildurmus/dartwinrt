@@ -16,11 +16,11 @@ import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
-import 'enums.g.dart';
 import 'ijsonvalue.dart';
 import 'jsonarray.dart';
 import 'jsonobject.dart';
 import 'jsonvalue.dart';
+import 'jsonvaluetype.dart';
 
 /// @nodoc
 const IID_IJsonObject = '{064e24dd-29c2-4f83-9ac1-9ee11578beb3}';

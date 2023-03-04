@@ -16,7 +16,7 @@ import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
-import 'enums.g.dart';
+import 'networkcosttype.dart';
 
 /// @nodoc
 const IID_IConnectionProfileFilter = '{204c7cc8-bd2d-4e8d-a4b3-455ec337388a}';

@@ -16,12 +16,12 @@ import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
-import 'enums.g.dart';
 import 'ijsonvalue.dart';
 import 'ijsonvaluestatics.dart';
 import 'ijsonvaluestatics2.dart';
 import 'jsonarray.dart';
 import 'jsonobject.dart';
+import 'jsonvaluetype.dart';
 
 /// Implements the [IJsonValue] interface which represents a JSON value.
 ///

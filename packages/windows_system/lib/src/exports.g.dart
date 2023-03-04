@@ -4,9 +4,16 @@
 
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
-export 'enums.g.dart';
 export 'iuserwatcher.dart';
-export 'power/enums.g.dart';
+export 'power/batterystatus.dart';
+export 'power/energysaverstatus.dart';
 export 'power/powermanager.dart';
+export 'power/powersupplystatus.dart';
 export 'user.dart';
+export 'userageconsentgroup.dart';
+export 'userageconsentresult.dart';
+export 'userauthenticationstatus.dart';
+export 'userpicturesize.dart';
+export 'usertype.dart';
 export 'userwatcher.dart';
+export 'userwatcherstatus.dart';

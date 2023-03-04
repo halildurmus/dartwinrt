@@ -20,12 +20,10 @@ extension ImportHelpers on InterfaceProjection {
     if (packageName != typeDef.packageName) return typeDef.packageImport;
 
     // Otherwise, return relative import for that file
-
-    if (typeDef.isEnum) {
-      return relativePathTo('${folderFromType(type)}/enums.g.dart');
-    }
-
-    if (typeDef.isClass || typeDef.isInterface || typeDef.isStruct) {
+    if (typeDef.isClass ||
+        typeDef.isEnum ||
+        typeDef.isInterface ||
+        typeDef.isStruct) {
       return relativePathTo(
           '${folderFromType(type)}/${fileNameFromType(type)}');
     }

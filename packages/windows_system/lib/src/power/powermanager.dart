@@ -16,8 +16,10 @@ import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
-import 'enums.g.dart';
+import 'batterystatus.dart';
+import 'energysaverstatus.dart';
 import 'ipowermanagerstatics.dart';
+import 'powersupplystatus.dart';
 
 /// Provides access to information about a device's battery and power supply
 /// status.

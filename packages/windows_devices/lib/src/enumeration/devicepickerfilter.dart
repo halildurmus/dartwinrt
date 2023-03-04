@@ -16,7 +16,7 @@ import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
-import 'enums.g.dart';
+import 'deviceclass.dart';
 import 'idevicepickerfilter.dart';
 
 /// Represents the filter used to determine which devices to show in the

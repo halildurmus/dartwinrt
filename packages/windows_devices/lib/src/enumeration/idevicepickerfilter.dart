@@ -16,7 +16,7 @@ import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
-import 'enums.g.dart';
+import 'deviceclass.dart';
 
 /// @nodoc
 const IID_IDevicePickerFilter = '{91db92a2-57cb-48f1-9b59-a59b7a1f02a2}';

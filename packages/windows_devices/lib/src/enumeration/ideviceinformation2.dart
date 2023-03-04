@@ -16,8 +16,8 @@ import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
+import 'deviceinformationkind.dart';
 import 'deviceinformationpairing.dart';
-import 'enums.g.dart';
 
 /// @nodoc
 const IID_IDeviceInformation2 = '{f156a638-7997-48d9-a10c-269d46533f48}';

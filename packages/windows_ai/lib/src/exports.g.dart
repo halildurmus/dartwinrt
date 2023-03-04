@@ -4,4 +4,4 @@
 
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
-export 'machinelearning/enums.g.dart';
+export 'machinelearning/tensorkind.dart';

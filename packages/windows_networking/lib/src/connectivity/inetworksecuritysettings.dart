@@ -16,7 +16,8 @@ import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
-import 'enums.g.dart';
+import 'networkauthenticationtype.dart';
+import 'networkencryptiontype.dart';
 
 /// @nodoc
 const IID_INetworkSecuritySettings = '{7ca07e8d-917b-4b5f-b84d-28f7a5ac5402}';

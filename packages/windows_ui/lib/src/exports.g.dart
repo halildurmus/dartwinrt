@@ -5,7 +5,6 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 export 'color.dart';
-export 'notifications/enums.g.dart';
 export 'notifications/inotificationdata.dart';
 export 'notifications/ischeduledtoastnotification.dart';
 export 'notifications/ischeduledtoastnotification2.dart';
@@ -27,6 +26,9 @@ export 'notifications/itoastnotifier.dart';
 export 'notifications/itoastnotifier2.dart';
 export 'notifications/itoastnotifier3.dart';
 export 'notifications/notificationdata.dart';
+export 'notifications/notificationmirroring.dart';
+export 'notifications/notificationsetting.dart';
+export 'notifications/notificationupdateresult.dart';
 export 'notifications/scheduledtoastnotification.dart';
 export 'notifications/toastcollection.dart';
 export 'notifications/toastcollectionmanager.dart';
@@ -34,13 +36,18 @@ export 'notifications/toastnotification.dart';
 export 'notifications/toastnotificationhistory.dart';
 export 'notifications/toastnotificationmanager.dart';
 export 'notifications/toastnotificationmanagerforuser.dart';
+export 'notifications/toastnotificationmode.dart';
+export 'notifications/toastnotificationpriority.dart';
 export 'notifications/toastnotifier.dart';
-export 'popups/enums.g.dart';
-export 'viewmanagement/enums.g.dart';
+export 'notifications/toasttemplatetype.dart';
+export 'popups/placement.dart';
+export 'viewmanagement/handpreference.dart';
 export 'viewmanagement/iuisettings.dart';
 export 'viewmanagement/iuisettings2.dart';
 export 'viewmanagement/iuisettings3.dart';
 export 'viewmanagement/iuisettings4.dart';
 export 'viewmanagement/iuisettings5.dart';
 export 'viewmanagement/iuisettings6.dart';
+export 'viewmanagement/uicolortype.dart';
+export 'viewmanagement/uielementtype.dart';
 export 'viewmanagement/uisettings.dart';

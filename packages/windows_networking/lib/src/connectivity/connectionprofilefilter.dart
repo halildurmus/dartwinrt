@@ -17,10 +17,10 @@ import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 import 'package:windows_storage/windows_storage.dart';
 
-import 'enums.g.dart';
 import 'iconnectionprofilefilter.dart';
 import 'iconnectionprofilefilter2.dart';
 import 'iconnectionprofilefilter3.dart';
+import 'networkcosttype.dart';
 
 /// The ConnectionProfileFilter class defines a set of properties that are
 /// used to improve the relevance of FindConnectionProfilesAsync results.

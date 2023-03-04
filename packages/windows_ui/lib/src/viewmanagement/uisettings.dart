@@ -17,13 +17,15 @@ import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
 import '../color.dart';
-import 'enums.g.dart';
+import 'handpreference.dart';
 import 'iuisettings.dart';
 import 'iuisettings2.dart';
 import 'iuisettings3.dart';
 import 'iuisettings4.dart';
 import 'iuisettings5.dart';
 import 'iuisettings6.dart';
+import 'uicolortype.dart';
+import 'uielementtype.dart';
 
 /// Contains a set of common app user interface settings and operations.
 ///

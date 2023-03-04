@@ -16,9 +16,9 @@ import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
-import 'enums.g.dart';
 import 'istorageitemextraproperties.dart';
 import 'ivideoproperties.dart';
+import 'videoorientation.dart';
 
 /// Provides access to the video-related properties of an item (like a file
 /// or folder).

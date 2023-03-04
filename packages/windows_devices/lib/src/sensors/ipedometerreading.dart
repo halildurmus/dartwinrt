@@ -16,7 +16,7 @@ import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
-import 'enums.g.dart';
+import 'pedometerstepkind.dart';
 
 /// @nodoc
 const IID_IPedometerReading = '{2245dcf4-a8e1-432f-896a-be0dd9b02d24}';

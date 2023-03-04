@@ -17,7 +17,7 @@ import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
 import 'calendar.dart';
-import 'enums.g.dart';
+import 'dayofweek.dart';
 
 /// @nodoc
 const IID_ICalendar = '{ca30221d-86d9-40fb-a26b-d44eb7cf08ea}';

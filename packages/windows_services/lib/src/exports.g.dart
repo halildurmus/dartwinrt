@@ -4,4 +4,4 @@
 
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
-export 'maps/enums.g.dart';
+export 'maps/maplocationdesiredaccuracy.dart';

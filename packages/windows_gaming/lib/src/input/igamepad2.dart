@@ -17,7 +17,8 @@ import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 import 'package:windows_system/windows_system.dart';
 
-import 'enums.g.dart';
+import 'gamecontrollerbuttonlabel.dart';
+import 'gamepadbuttons.dart';
 import 'gamepadreading.dart';
 import 'gamepadvibration.dart';
 import 'headset.dart';

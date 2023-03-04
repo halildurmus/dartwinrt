@@ -4,16 +4,16 @@
 
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
-export 'json/enums.g.dart';
 export 'json/ijsonarray.dart';
 export 'json/ijsonobject.dart';
 export 'json/ijsonobjectwithdefaultvalues.dart';
 export 'json/ijsonvalue.dart';
 export 'json/jsonarray.dart';
+export 'json/jsonerrorstatus.dart';
 export 'json/jsonobject.dart';
 export 'json/jsonvalue.dart';
+export 'json/jsonvaluetype.dart';
 export 'text/textsegment.dart';
-export 'xml/dom/enums.g.dart';
 export 'xml/dom/ixmlattribute.dart';
 export 'xml/dom/ixmlcdatasection.dart';
 export 'xml/dom/ixmlcharacterdata.dart';
@@ -34,6 +34,7 @@ export 'xml/dom/ixmlnodeselector.dart';
 export 'xml/dom/ixmlnodeserializer.dart';
 export 'xml/dom/ixmlprocessinginstruction.dart';
 export 'xml/dom/ixmltext.dart';
+export 'xml/dom/nodetype.dart';
 export 'xml/dom/xmlattribute.dart';
 export 'xml/dom/xmlcdatasection.dart';
 export 'xml/dom/xmlcomment.dart';

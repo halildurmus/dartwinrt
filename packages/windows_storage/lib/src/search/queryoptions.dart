@@ -16,8 +16,14 @@ import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
-import '../fileproperties/enums.g.dart';
-import 'enums.g.dart';
+import '../fileproperties/propertyprefetchoptions.dart';
+import '../fileproperties/thumbnailmode.dart';
+import '../fileproperties/thumbnailoptions.dart';
+import 'commonfilequery.dart';
+import 'commonfolderquery.dart';
+import 'datestackoption.dart';
+import 'folderdepth.dart';
+import 'indexeroption.dart';
 import 'iqueryoptions.dart';
 import 'iqueryoptionsfactory.dart';
 import 'iqueryoptionswithproviderfilter.dart';

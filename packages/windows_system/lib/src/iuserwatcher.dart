@@ -16,8 +16,8 @@ import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
-import 'enums.g.dart';
 import 'userwatcher.dart';
+import 'userwatcherstatus.dart';
 
 /// @nodoc
 const IID_IUserWatcher = '{155eb23b-242a-45e0-a2e9-3171fc6a7fbb}';

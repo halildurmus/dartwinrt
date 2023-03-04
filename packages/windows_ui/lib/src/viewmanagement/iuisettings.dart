@@ -17,7 +17,8 @@ import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
 import '../color.dart';
-import 'enums.g.dart';
+import 'handpreference.dart';
+import 'uielementtype.dart';
 
 /// @nodoc
 const IID_IUISettings = '{85361600-1c63-4627-bcb1-3a89e0bc9c55}';

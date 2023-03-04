@@ -17,7 +17,7 @@ import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
 import '../color.dart';
-import 'enums.g.dart';
+import 'uicolortype.dart';
 import 'uisettings.dart';
 
 /// @nodoc

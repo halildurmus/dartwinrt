@@ -4,4 +4,4 @@
 
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
-export 'spatial/enums.g.dart';
+export 'spatial/spatiallocatability.dart';

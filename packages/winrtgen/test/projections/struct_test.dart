@@ -83,6 +83,21 @@ void main() {
   group('WinRT struct', () {
     final rectProjection = StructProjection.from('Windows.Foundation.Rect');
 
+    test('has copyright header', () {
+      expect(rectProjection.header, contains(copyrightHeader));
+    });
+
+    test('imports are meaningful', () {
+      expect(
+          rectProjection.imports,
+          unorderedEquals([
+            'dart:ffi',
+            'package:ffi/ffi.dart',
+            '../internal.dart',
+            'winrt_struct.dart'
+          ]));
+    });
+
     test('includes correct dartdoc category comment', () {
       expect(rectProjection.category, equals('struct'));
       expect(rectProjection.classPreamble, equals('/// {@category struct}'));

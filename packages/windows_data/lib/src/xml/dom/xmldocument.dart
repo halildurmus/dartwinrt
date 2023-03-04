@@ -17,7 +17,6 @@ import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 import 'package:windows_storage/windows_storage.dart';
 
-import 'enums.g.dart';
 import 'ixmldocument.dart';
 import 'ixmldocumentio.dart';
 import 'ixmldocumentio2.dart';
@@ -25,6 +24,7 @@ import 'ixmldocumentstatics.dart';
 import 'ixmlnode.dart';
 import 'ixmlnodeselector.dart';
 import 'ixmlnodeserializer.dart';
+import 'nodetype.dart';
 import 'xmlattribute.dart';
 import 'xmlcdatasection.dart';
 import 'xmlcomment.dart';

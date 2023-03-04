@@ -16,10 +16,12 @@ import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
-import 'enums.g.dart';
 import 'iphonenumberinfo.dart';
 import 'iphonenumberinfofactory.dart';
 import 'iphonenumberinfostatics.dart';
+import 'phonenumbermatchresult.dart';
+import 'phonenumberparseresult.dart';
+import 'predictedphonenumberkind.dart';
 
 /// Information about a phone number.
 ///

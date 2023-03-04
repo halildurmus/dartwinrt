@@ -16,7 +16,7 @@ import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
-import 'enums.g.dart';
+import 'thumbnailtype.dart';
 
 /// @nodoc
 const IID_IThumbnailProperties = '{693dd42f-dbe7-49b5-b3b3-2893ac5d3423}';
