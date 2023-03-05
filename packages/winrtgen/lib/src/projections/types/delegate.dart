@@ -38,8 +38,6 @@ class DelegateGetterProjection extends GetterProjection with _DelegateMixin {
 class DelegateSetterProjection extends SetterProjection {
   DelegateSetterProjection(super.method, super.vtableOffset);
 
-  String get type => '';
-
   @override
   String get methodDeclaration => '''
   $methodHeader {
@@ -54,12 +52,6 @@ class DelegateParameterProjection extends ParameterProjection {
 
   @override
   String get type => 'Pointer<COMObject>';
-
-  @override
-  String get preamble => '';
-
-  @override
-  String get postamble => '';
 
   @override
   String get localIdentifier => '$identifier.ref.lpVtbl';

@@ -72,7 +72,6 @@ class _IVectorViewBool extends IVectorView<bool> {
   @override
   int getMany(int startIndex, int valueSize, List<bool> value) {
     final retValuePtr = calloc<Uint32>();
-
     final pArray = calloc<Bool>(valueSize);
 
     try {
@@ -163,7 +162,6 @@ class _IVectorViewGuid extends IVectorView<Guid> {
       return retValuePtr.value;
     } finally {
       free(valueNativeGuidPtr);
-
       free(retValuePtr);
     }
   }
@@ -171,7 +169,6 @@ class _IVectorViewGuid extends IVectorView<Guid> {
   @override
   int getMany(int startIndex, int valueSize, List<Guid> value) {
     final retValuePtr = calloc<Uint32>();
-
     final pArray = calloc<GUID>(valueSize);
 
     try {
@@ -270,7 +267,6 @@ class _IVectorViewInspectable<T> extends IVectorView<T> {
   @override
   int getMany(int startIndex, int valueSize, List<T> value) {
     final retValuePtr = calloc<Uint32>();
-
     final pArray = calloc<COMObject>(valueSize);
 
     try {
@@ -367,7 +363,6 @@ class _IVectorViewInt16 extends IVectorView<int> {
   @override
   int getMany(int startIndex, int valueSize, List<int> value) {
     final retValuePtr = calloc<Uint32>();
-
     final pArray = calloc<Int16>(valueSize);
 
     try {
@@ -464,7 +459,6 @@ class _IVectorViewInt32 extends IVectorView<int> {
   @override
   int getMany(int startIndex, int valueSize, List<int> value) {
     final retValuePtr = calloc<Uint32>();
-
     final pArray = calloc<Int32>(valueSize);
 
     try {
@@ -561,7 +555,6 @@ class _IVectorViewInt64 extends IVectorView<int> {
   @override
   int getMany(int startIndex, int valueSize, List<int> value) {
     final retValuePtr = calloc<Uint32>();
-
     final pArray = calloc<Int64>(valueSize);
 
     try {
@@ -653,7 +646,6 @@ class _IVectorViewString extends IVectorView<String> {
       return retValuePtr.value;
     } finally {
       WindowsDeleteString(valueHString);
-
       free(retValuePtr);
     }
   }
@@ -661,7 +653,6 @@ class _IVectorViewString extends IVectorView<String> {
   @override
   int getMany(int startIndex, int valueSize, List<String> value) {
     final retValuePtr = calloc<Uint32>();
-
     final pArray = calloc<IntPtr>(valueSize);
 
     try {
@@ -758,7 +749,6 @@ class _IVectorViewUint8 extends IVectorView<int> {
   @override
   int getMany(int startIndex, int valueSize, List<int> value) {
     final retValuePtr = calloc<Uint32>();
-
     final pArray = calloc<Uint8>(valueSize);
 
     try {
@@ -855,7 +845,6 @@ class _IVectorViewUint16 extends IVectorView<int> {
   @override
   int getMany(int startIndex, int valueSize, List<int> value) {
     final retValuePtr = calloc<Uint32>();
-
     final pArray = calloc<Uint16>(valueSize);
 
     try {
@@ -952,7 +941,6 @@ class _IVectorViewUint32 extends IVectorView<int> {
   @override
   int getMany(int startIndex, int valueSize, List<int> value) {
     final retValuePtr = calloc<Uint32>();
-
     final pArray = calloc<Uint32>(valueSize);
 
     try {
@@ -1049,7 +1037,6 @@ class _IVectorViewUint64 extends IVectorView<int> {
   @override
   int getMany(int startIndex, int valueSize, List<int> value) {
     final retValuePtr = calloc<Uint32>();
-
     final pArray = calloc<Uint64>(valueSize);
 
     try {
@@ -1143,7 +1130,6 @@ class _IVectorViewUri extends IVectorView<Uri> {
       return retValuePtr.value;
     } finally {
       valueUri.release();
-
       free(retValuePtr);
     }
   }
@@ -1151,7 +1137,6 @@ class _IVectorViewUri extends IVectorView<Uri> {
   @override
   int getMany(int startIndex, int valueSize, List<Uri> value) {
     final retValuePtr = calloc<Uint32>();
-
     final pArray = calloc<COMObject>(valueSize);
 
     try {
@@ -1248,7 +1233,6 @@ class _IVectorViewWinRTEnum<T> extends IVectorView<T> {
   @override
   int getMany(int startIndex, int valueSize, List<T> value) {
     final retValuePtr = calloc<Uint32>();
-
     final pArray = calloc<Int32>(valueSize);
 
     try {
@@ -1345,7 +1329,6 @@ class _IVectorViewWinRTFlagsEnum<T> extends IVectorView<T> {
   @override
   int getMany(int startIndex, int valueSize, List<T> value) {
     final retValuePtr = calloc<Uint32>();
-
     final pArray = calloc<Uint32>(valueSize);
 
     try {

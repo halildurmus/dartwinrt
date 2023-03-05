@@ -98,12 +98,6 @@ class DefaultParameterProjection extends ParameterProjection {
   DefaultParameterProjection(super.parameter);
 
   @override
-  String get preamble => '';
-
-  @override
-  String get postamble => '';
-
-  @override
   String get localIdentifier {
     // Handle the __valueSize identifier specially as simpleArray params
     // are projected as List.

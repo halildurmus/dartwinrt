@@ -76,7 +76,6 @@ class IEndpointPairFactory extends IInspectable {
     }
 
     WindowsDeleteString(localServiceNameHString);
-
     WindowsDeleteString(remoteServiceNameHString);
 
     return EndpointPair.fromRawPointer(retValuePtr);

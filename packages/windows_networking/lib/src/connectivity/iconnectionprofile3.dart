@@ -35,7 +35,6 @@ class IConnectionProfile3 extends IInspectable {
       DateTime startTime, DateTime endTime, NetworkUsageStates states) {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<List<AttributedNetworkUsage>>();
-
     final statesNativeStructPtr = states.toNative();
 
     final hr = ptr.ref.vtable

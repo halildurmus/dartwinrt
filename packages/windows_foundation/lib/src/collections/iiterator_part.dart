@@ -41,7 +41,6 @@ class _IIteratorBool extends IIterator<bool> {
   @override
   int getMany(int valueSize, List<bool> value) {
     final retValuePtr = calloc<Uint32>();
-
     final pArray = calloc<Bool>(valueSize);
 
     try {
@@ -106,7 +105,6 @@ class _IIteratorGuid extends IIterator<Guid> {
   @override
   int getMany(int valueSize, List<Guid> value) {
     final retValuePtr = calloc<Uint32>();
-
     final pArray = calloc<GUID>(valueSize);
 
     try {
@@ -170,7 +168,6 @@ class _IIteratorInspectable<T> extends IIterator<T> {
   @override
   int getMany(int valueSize, List<T> value) {
     final retValuePtr = calloc<Uint32>();
-
     final pArray = calloc<COMObject>(valueSize);
 
     try {
@@ -234,7 +231,6 @@ class _IIteratorInt16 extends IIterator<int> {
   @override
   int getMany(int valueSize, List<int> value) {
     final retValuePtr = calloc<Uint32>();
-
     final pArray = calloc<Int16>(valueSize);
 
     try {
@@ -298,7 +294,6 @@ class _IIteratorInt32 extends IIterator<int> {
   @override
   int getMany(int valueSize, List<int> value) {
     final retValuePtr = calloc<Uint32>();
-
     final pArray = calloc<Int32>(valueSize);
 
     try {
@@ -362,7 +357,6 @@ class _IIteratorInt64 extends IIterator<int> {
   @override
   int getMany(int valueSize, List<int> value) {
     final retValuePtr = calloc<Uint32>();
-
     final pArray = calloc<Int64>(valueSize);
 
     try {
@@ -427,7 +421,6 @@ class _IIteratorString extends IIterator<String> {
   @override
   int getMany(int valueSize, List<String> value) {
     final retValuePtr = calloc<Uint32>();
-
     final pArray = calloc<IntPtr>(valueSize);
 
     try {
@@ -491,7 +484,6 @@ class _IIteratorUint8 extends IIterator<int> {
   @override
   int getMany(int valueSize, List<int> value) {
     final retValuePtr = calloc<Uint32>();
-
     final pArray = calloc<Uint8>(valueSize);
 
     try {
@@ -555,7 +547,6 @@ class _IIteratorUint16 extends IIterator<int> {
   @override
   int getMany(int valueSize, List<int> value) {
     final retValuePtr = calloc<Uint32>();
-
     final pArray = calloc<Uint16>(valueSize);
 
     try {
@@ -619,7 +610,6 @@ class _IIteratorUint32 extends IIterator<int> {
   @override
   int getMany(int valueSize, List<int> value) {
     final retValuePtr = calloc<Uint32>();
-
     final pArray = calloc<Uint32>(valueSize);
 
     try {
@@ -683,7 +673,6 @@ class _IIteratorUint64 extends IIterator<int> {
   @override
   int getMany(int valueSize, List<int> value) {
     final retValuePtr = calloc<Uint32>();
-
     final pArray = calloc<Uint64>(valueSize);
 
     try {
@@ -750,7 +739,6 @@ class _IIteratorUri extends IIterator<Uri> {
   @override
   int getMany(int valueSize, List<Uri> value) {
     final retValuePtr = calloc<Uint32>();
-
     final pArray = calloc<COMObject>(valueSize);
 
     try {
@@ -814,7 +802,6 @@ class _IIteratorWinRTEnum<T> extends IIterator<T> {
   @override
   int getMany(int valueSize, List<T> value) {
     final retValuePtr = calloc<Uint32>();
-
     final pArray = calloc<Int32>(valueSize);
 
     try {
@@ -878,7 +865,6 @@ class _IIteratorWinRTFlagsEnum<T> extends IIterator<T> {
   @override
   int getMany(int valueSize, List<T> value) {
     final retValuePtr = calloc<Uint32>();
-
     final pArray = calloc<Uint32>(valueSize);
 
     try {

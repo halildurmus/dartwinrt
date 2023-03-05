@@ -209,7 +209,6 @@ class IJsonObjectWithDefaultValues extends IInspectable
       return retValuePtr.value;
     } finally {
       WindowsDeleteString(nameHString);
-
       free(retValuePtr);
     }
   }
@@ -237,7 +236,6 @@ class IJsonObjectWithDefaultValues extends IInspectable
       return retValuePtr.value;
     } finally {
       WindowsDeleteString(nameHString);
-
       free(retValuePtr);
     }
   }

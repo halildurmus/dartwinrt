@@ -203,12 +203,18 @@ abstract class MethodProjection {
 
   String get parametersPreamble {
     if (this is GetterProjection || this is SetterProjection) return '';
-    return parameters.map((param) => param.preamble).join('\n');
+    return parameters
+        .where((param) => param.preamble.isNotEmpty)
+        .map((param) => param.preamble)
+        .join('\n');
   }
 
   String get parametersPostamble {
     if (this is GetterProjection || this is SetterProjection) return '';
-    return parameters.map((param) => param.postamble).join('\n');
+    return parameters
+        .where((param) => param.postamble.isNotEmpty)
+        .map((param) => param.postamble)
+        .join('\n');
   }
 
   // WinRT methods always return an HRESULT

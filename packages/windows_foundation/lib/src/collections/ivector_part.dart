@@ -118,7 +118,6 @@ class _IVectorBool extends IVector<bool> {
   @override
   int getMany(int startIndex, int valueSize, List<bool> value) {
     final retValuePtr = calloc<Uint32>();
-
     final pArray = calloc<Bool>(valueSize);
 
     try {
@@ -233,7 +232,6 @@ class _IVectorGuid extends IVector<Guid> {
       return retValuePtr.value;
     } finally {
       free(valueNativeGuidPtr);
-
       free(retValuePtr);
     }
   }
@@ -300,7 +298,6 @@ class _IVectorGuid extends IVector<Guid> {
   @override
   int getMany(int startIndex, int valueSize, List<Guid> value) {
     final retValuePtr = calloc<Uint32>();
-
     final pArray = calloc<GUID>(valueSize);
 
     try {
@@ -474,7 +471,6 @@ class _IVectorInspectable<T> extends IVector<T> {
   @override
   int getMany(int startIndex, int valueSize, List<T> value) {
     final retValuePtr = calloc<Uint32>();
-
     final pArray = calloc<COMObject>(valueSize);
 
     try {
@@ -642,7 +638,6 @@ class _IVectorInt16 extends IVector<int> {
   @override
   int getMany(int startIndex, int valueSize, List<int> value) {
     final retValuePtr = calloc<Uint32>();
-
     final pArray = calloc<Int16>(valueSize);
 
     try {
@@ -809,7 +804,6 @@ class _IVectorInt32 extends IVector<int> {
   @override
   int getMany(int startIndex, int valueSize, List<int> value) {
     final retValuePtr = calloc<Uint32>();
-
     final pArray = calloc<Int32>(valueSize);
 
     try {
@@ -976,7 +970,6 @@ class _IVectorInt64 extends IVector<int> {
   @override
   int getMany(int startIndex, int valueSize, List<int> value) {
     final retValuePtr = calloc<Uint32>();
-
     final pArray = calloc<Int64>(valueSize);
 
     try {
@@ -1092,7 +1085,6 @@ class _IVectorString extends IVector<String> {
       return retValuePtr.value;
     } finally {
       WindowsDeleteString(valueHString);
-
       free(retValuePtr);
     }
   }
@@ -1159,7 +1151,6 @@ class _IVectorString extends IVector<String> {
   @override
   int getMany(int startIndex, int valueSize, List<String> value) {
     final retValuePtr = calloc<Uint32>();
-
     final pArray = calloc<IntPtr>(valueSize);
 
     try {
@@ -1329,7 +1320,6 @@ class _IVectorUint8 extends IVector<int> {
   @override
   int getMany(int startIndex, int valueSize, List<int> value) {
     final retValuePtr = calloc<Uint32>();
-
     final pArray = calloc<Uint8>(valueSize);
 
     try {
@@ -1497,7 +1487,6 @@ class _IVectorUint16 extends IVector<int> {
   @override
   int getMany(int startIndex, int valueSize, List<int> value) {
     final retValuePtr = calloc<Uint32>();
-
     final pArray = calloc<Uint16>(valueSize);
 
     try {
@@ -1665,7 +1654,6 @@ class _IVectorUint32 extends IVector<int> {
   @override
   int getMany(int startIndex, int valueSize, List<int> value) {
     final retValuePtr = calloc<Uint32>();
-
     final pArray = calloc<Uint32>(valueSize);
 
     try {
@@ -1833,7 +1821,6 @@ class _IVectorUint64 extends IVector<int> {
   @override
   int getMany(int startIndex, int valueSize, List<int> value) {
     final retValuePtr = calloc<Uint32>();
-
     final pArray = calloc<Uint64>(valueSize);
 
     try {
@@ -1951,7 +1938,6 @@ class _IVectorUri extends IVector<Uri> {
       return retValuePtr.value;
     } finally {
       valueUri.release();
-
       free(retValuePtr);
     }
   }
@@ -2018,7 +2004,6 @@ class _IVectorUri extends IVector<Uri> {
   @override
   int getMany(int startIndex, int valueSize, List<Uri> value) {
     final retValuePtr = calloc<Uint32>();
-
     final pArray = calloc<COMObject>(valueSize);
 
     try {
@@ -2188,7 +2173,6 @@ class _IVectorWinRTEnum<T> extends IVector<T> {
   @override
   int getMany(int startIndex, int valueSize, List<T> value) {
     final retValuePtr = calloc<Uint32>();
-
     final pArray = calloc<Int32>(valueSize);
 
     try {
@@ -2356,7 +2340,6 @@ class _IVectorWinRTFlagsEnum<T> extends IVector<T> {
   @override
   int getMany(int startIndex, int valueSize, List<T> value) {
     final retValuePtr = calloc<Uint32>();
-
     final pArray = calloc<Uint32>(valueSize);
 
     try {

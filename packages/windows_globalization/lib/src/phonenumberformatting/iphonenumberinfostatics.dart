@@ -61,7 +61,6 @@ class IPhoneNumberInfoStatics extends IInspectable {
       return PhoneNumberParseResult.from(retValuePtr.value);
     } finally {
       WindowsDeleteString(inputHString);
-
       free(retValuePtr);
     }
   }
@@ -101,7 +100,6 @@ class IPhoneNumberInfoStatics extends IInspectable {
     } finally {
       WindowsDeleteString(inputHString);
       WindowsDeleteString(regionCodeHString);
-
       free(retValuePtr);
     }
   }

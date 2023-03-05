@@ -97,12 +97,6 @@ class DateTimeParameterProjection extends ParameterProjection {
   String get type => 'DateTime';
 
   @override
-  String get preamble => '';
-
-  @override
-  String get postamble => '';
-
-  @override
   String get localIdentifier => '$identifier.toWinRTDateTime()';
 }
 
