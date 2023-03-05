@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -33,10 +32,10 @@ class IPhoneNumberInfoStatics extends IInspectable {
 
   PhoneNumberParseResult tryParse(String input, PhoneNumberInfo phoneNumber) {
     final retValuePtr = calloc<Int32>();
-    final inputHString = input.toHString();
-    final phoneNumberPtr = phoneNumber.ptr;
 
     try {
+      final inputHString = input.toHString();
+
       final hr = ptr.ref.vtable
               .elementAt(6)
               .cast<
@@ -54,13 +53,14 @@ class IPhoneNumberInfoStatics extends IInspectable {
                       int input,
                       Pointer<COMObject> phoneNumber,
                       Pointer<Int32> retValuePtr)>()(
-          ptr.ref.lpVtbl, inputHString, phoneNumberPtr, retValuePtr);
+          ptr.ref.lpVtbl, inputHString, phoneNumber.ptr, retValuePtr);
+
+      WindowsDeleteString(inputHString);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
       return PhoneNumberParseResult.from(retValuePtr.value);
     } finally {
-      WindowsDeleteString(inputHString);
       free(retValuePtr);
     }
   }
@@ -68,11 +68,11 @@ class IPhoneNumberInfoStatics extends IInspectable {
   PhoneNumberParseResult tryParseWithRegion(
       String input, String regionCode, PhoneNumberInfo phoneNumber) {
     final retValuePtr = calloc<Int32>();
-    final inputHString = input.toHString();
-    final regionCodeHString = regionCode.toHString();
-    final phoneNumberPtr = phoneNumber.ptr;
 
     try {
+      final inputHString = input.toHString();
+      final regionCodeHString = regionCode.toHString();
+
       final hr = ptr.ref.vtable
               .elementAt(7)
               .cast<
@@ -92,14 +92,15 @@ class IPhoneNumberInfoStatics extends IInspectable {
                       int regionCode,
                       Pointer<COMObject> phoneNumber,
                       Pointer<Int32> retValuePtr)>()(ptr.ref.lpVtbl,
-          inputHString, regionCodeHString, phoneNumberPtr, retValuePtr);
+          inputHString, regionCodeHString, phoneNumber.ptr, retValuePtr);
+
+      WindowsDeleteString(inputHString);
+      WindowsDeleteString(regionCodeHString);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
       return PhoneNumberParseResult.from(retValuePtr.value);
     } finally {
-      WindowsDeleteString(inputHString);
-      WindowsDeleteString(regionCodeHString);
       free(retValuePtr);
     }
   }

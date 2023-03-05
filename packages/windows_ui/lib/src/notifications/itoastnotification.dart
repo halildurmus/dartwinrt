@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -100,10 +99,7 @@ class IToastNotification extends IInspectable {
 
     final reference = IReference<DateTime?>.fromRawPointer(retValuePtr,
         referenceIid: '{5541d8a7-497c-5aa4-86fc-7713adbf2a2c}');
-    final value = reference.value;
-    reference.release();
-
-    return value;
+    return reference.value;
   }
 
   int add_Dismissed(Pointer<COMObject> handler) {

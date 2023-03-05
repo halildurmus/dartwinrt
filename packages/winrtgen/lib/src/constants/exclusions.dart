@@ -29,6 +29,8 @@ const excludedPackageFiles = <String, Set<String>>{
     'propertyvalue.dart',
     'ireference.dart',
 
+    'iunknown.dart',
+
     // Windows.Foundation.Uri files
     'iuriruntimeclass.dart',
     'iuriruntimeclasswithabsolutecanonicaluri.dart',

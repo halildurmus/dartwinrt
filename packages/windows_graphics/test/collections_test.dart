@@ -258,8 +258,6 @@ void main() {
     });
 
     tearDown(() {
-      vector.release();
-      material.release();
       allocator.releaseAll(reuse: true);
     });
   });

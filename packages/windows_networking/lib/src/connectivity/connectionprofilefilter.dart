@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -37,7 +36,6 @@ class ConnectionProfileFilter extends IInspectable
   static const _className =
       'Windows.Networking.Connectivity.ConnectionProfileFilter';
 
-  // IConnectionProfileFilter methods
   late final _iConnectionProfileFilter = IConnectionProfileFilter.from(this);
 
   @override
@@ -78,7 +76,6 @@ class ConnectionProfileFilter extends IInspectable
   Guid? get serviceProviderGuid =>
       _iConnectionProfileFilter.serviceProviderGuid;
 
-  // IConnectionProfileFilter2 methods
   late final _iConnectionProfileFilter2 = IConnectionProfileFilter2.from(this);
 
   @override
@@ -105,7 +102,6 @@ class ConnectionProfileFilter extends IInspectable
   @override
   IBuffer? get rawData => _iConnectionProfileFilter2.rawData;
 
-  // IConnectionProfileFilter3 methods
   late final _iConnectionProfileFilter3 = IConnectionProfileFilter3.from(this);
 
   @override

@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -62,17 +61,17 @@ class IConnectionProfile3 extends IInspectable {
         statesNativeStructPtr.ref,
         retValuePtr);
 
+    free(statesNativeStructPtr);
+
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
 
-    free(statesNativeStructPtr);
-
     final asyncOperation =
         IAsyncOperation<IVectorView<AttributedNetworkUsage>>.fromRawPointer(
             retValuePtr,
-            creator: (Pointer<COMObject> ptr) => IVectorView.fromRawPointer(ptr,
+            creator: (ptr) => IVectorView.fromRawPointer(ptr,
                 creator: AttributedNetworkUsage.fromRawPointer,
                 iterableIid: '{d061dcb9-6854-5ef9-8e03-008a7a704c48}'));
     completeAsyncOperation(

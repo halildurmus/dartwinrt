@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -83,7 +82,6 @@ class IXmlNodeList extends IInspectable
     return IXmlNode.fromRawPointer(retValuePtr);
   }
 
-  // IVectorView<IXmlNode> methods
   late final _iVectorView = IVectorView<IXmlNode>.fromRawPointer(
       toInterface('{139d959e-e7b5-5cb6-a596-4b544478da9b}'),
       creator: IXmlNode.fromRawPointer,

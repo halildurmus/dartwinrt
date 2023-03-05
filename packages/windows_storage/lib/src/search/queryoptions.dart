@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -40,33 +39,17 @@ class QueryOptions extends IInspectable
 
   static const _className = 'Windows.Storage.Search.QueryOptions';
 
-  // IQueryOptionsFactory methods
   factory QueryOptions.createCommonFileQuery(
-      CommonFileQuery query, IIterable<String> fileTypeFilter) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IQueryOptionsFactory);
-    final object = IQueryOptionsFactory.fromRawPointer(activationFactoryPtr);
+          CommonFileQuery query, IIterable<String> fileTypeFilter) =>
+      createActivationFactory(IQueryOptionsFactory.fromRawPointer, _className,
+              IID_IQueryOptionsFactory)
+          .createCommonFileQuery(query, fileTypeFilter);
 
-    try {
-      return object.createCommonFileQuery(query, fileTypeFilter);
-    } finally {
-      object.release();
-    }
-  }
+  factory QueryOptions.createCommonFolderQuery(CommonFolderQuery query) =>
+      createActivationFactory(IQueryOptionsFactory.fromRawPointer, _className,
+              IID_IQueryOptionsFactory)
+          .createCommonFolderQuery(query);
 
-  factory QueryOptions.createCommonFolderQuery(CommonFolderQuery query) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IQueryOptionsFactory);
-    final object = IQueryOptionsFactory.fromRawPointer(activationFactoryPtr);
-
-    try {
-      return object.createCommonFolderQuery(query);
-    } finally {
-      object.release();
-    }
-  }
-
-  // IQueryOptions methods
   late final _iQueryOptions = IQueryOptions.from(this);
 
   @override
@@ -129,7 +112,6 @@ class QueryOptions extends IInspectable
           IIterable<String>? propertiesToRetrieve) =>
       _iQueryOptions.setPropertyPrefetch(options, propertiesToRetrieve);
 
-  // IQueryOptionsWithProviderFilter methods
   late final _iQueryOptionsWithProviderFilter =
       IQueryOptionsWithProviderFilter.from(this);
 

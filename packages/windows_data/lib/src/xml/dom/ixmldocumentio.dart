@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -42,9 +41,9 @@ class IXmlDocumentIO extends IInspectable {
         .asFunction<
             int Function(LPVTBL lpVtbl, int xml)>()(ptr.ref.lpVtbl, xmlHString);
 
-    if (FAILED(hr)) throw WindowsException(hr);
-
     WindowsDeleteString(xmlHString);
+
+    if (FAILED(hr)) throw WindowsException(hr);
   }
 
   void loadXmlWithSettings(String xml, XmlLoadSettings? loadSettings) {
@@ -64,9 +63,9 @@ class IXmlDocumentIO extends IInspectable {
                 int Function(LPVTBL lpVtbl, int xml, LPVTBL loadSettings)>()(
         ptr.ref.lpVtbl, xmlHString, loadSettingsPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
-
     WindowsDeleteString(xmlHString);
+
+    if (FAILED(hr)) throw WindowsException(hr);
   }
 
   Future<void> saveToFileAsync(IStorageFile? file) {

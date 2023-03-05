@@ -31,7 +31,5 @@ void main() {
     expect(winrtUri.schemeName, equals('https'));
     expect(winrtUri.host, equals('www.example.com'));
     expect(winrtUri.path, equals('/path/to/file.html'));
-
-    winrtUri.release();
   });
 }

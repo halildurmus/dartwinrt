@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -540,13 +539,13 @@ class IPropertyValue extends IInspectable {
                         Pointer<Pointer<Uint8>> value)>()(
             ptr.ref.lpVtbl, pValueSize, pArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
-
     if (pValueSize.value > 0) {
       value.addAll(pArray.value.toList(length: pValueSize.value));
     }
     free(pValueSize);
     free(pArray);
+
+    if (FAILED(hr)) throw WindowsException(hr);
   }
 
   void getInt16Array(List<int> value) {
@@ -569,13 +568,13 @@ class IPropertyValue extends IInspectable {
                         Pointer<Pointer<Int16>> value)>()(
             ptr.ref.lpVtbl, pValueSize, pArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
-
     if (pValueSize.value > 0) {
       value.addAll(pArray.value.toList(length: pValueSize.value));
     }
     free(pValueSize);
     free(pArray);
+
+    if (FAILED(hr)) throw WindowsException(hr);
   }
 
   void getUInt16Array(List<int> value) {
@@ -598,13 +597,13 @@ class IPropertyValue extends IInspectable {
                         Pointer<Pointer<Uint16>> value)>()(
             ptr.ref.lpVtbl, pValueSize, pArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
-
     if (pValueSize.value > 0) {
       value.addAll(pArray.value.toList(length: pValueSize.value));
     }
     free(pValueSize);
     free(pArray);
+
+    if (FAILED(hr)) throw WindowsException(hr);
   }
 
   void getInt32Array(List<int> value) {
@@ -627,13 +626,13 @@ class IPropertyValue extends IInspectable {
                         Pointer<Pointer<Int32>> value)>()(
             ptr.ref.lpVtbl, pValueSize, pArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
-
     if (pValueSize.value > 0) {
       value.addAll(pArray.value.toList(length: pValueSize.value));
     }
     free(pValueSize);
     free(pArray);
+
+    if (FAILED(hr)) throw WindowsException(hr);
   }
 
   void getUInt32Array(List<int> value) {
@@ -656,13 +655,13 @@ class IPropertyValue extends IInspectable {
                         Pointer<Pointer<Uint32>> value)>()(
             ptr.ref.lpVtbl, pValueSize, pArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
-
     if (pValueSize.value > 0) {
       value.addAll(pArray.value.toList(length: pValueSize.value));
     }
     free(pValueSize);
     free(pArray);
+
+    if (FAILED(hr)) throw WindowsException(hr);
   }
 
   void getInt64Array(List<int> value) {
@@ -685,13 +684,13 @@ class IPropertyValue extends IInspectable {
                         Pointer<Pointer<Int64>> value)>()(
             ptr.ref.lpVtbl, pValueSize, pArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
-
     if (pValueSize.value > 0) {
       value.addAll(pArray.value.toList(length: pValueSize.value));
     }
     free(pValueSize);
     free(pArray);
+
+    if (FAILED(hr)) throw WindowsException(hr);
   }
 
   void getUInt64Array(List<int> value) {
@@ -714,13 +713,13 @@ class IPropertyValue extends IInspectable {
                         Pointer<Pointer<Uint64>> value)>()(
             ptr.ref.lpVtbl, pValueSize, pArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
-
     if (pValueSize.value > 0) {
       value.addAll(pArray.value.toList(length: pValueSize.value));
     }
     free(pValueSize);
     free(pArray);
+
+    if (FAILED(hr)) throw WindowsException(hr);
   }
 
   void getSingleArray(List<double> value) {
@@ -743,13 +742,13 @@ class IPropertyValue extends IInspectable {
                         Pointer<Pointer<Float>> value)>()(
             ptr.ref.lpVtbl, pValueSize, pArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
-
     if (pValueSize.value > 0) {
       value.addAll(pArray.value.toList(length: pValueSize.value));
     }
     free(pValueSize);
     free(pArray);
+
+    if (FAILED(hr)) throw WindowsException(hr);
   }
 
   void getDoubleArray(List<double> value) {
@@ -772,13 +771,13 @@ class IPropertyValue extends IInspectable {
                         Pointer<Pointer<Double>> value)>()(
             ptr.ref.lpVtbl, pValueSize, pArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
-
     if (pValueSize.value > 0) {
       value.addAll(pArray.value.toList(length: pValueSize.value));
     }
     free(pValueSize);
     free(pArray);
+
+    if (FAILED(hr)) throw WindowsException(hr);
   }
 
   void getChar16Array(List<int> value) {
@@ -801,13 +800,13 @@ class IPropertyValue extends IInspectable {
                         Pointer<Pointer<Uint16>> value)>()(
             ptr.ref.lpVtbl, pValueSize, pArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
-
     if (pValueSize.value > 0) {
       value.addAll(pArray.value.toList(length: pValueSize.value));
     }
     free(pValueSize);
     free(pArray);
+
+    if (FAILED(hr)) throw WindowsException(hr);
   }
 
   void getBooleanArray(List<bool> value) {
@@ -830,13 +829,13 @@ class IPropertyValue extends IInspectable {
                         Pointer<Pointer<Bool>> value)>()(
             ptr.ref.lpVtbl, pValueSize, pArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
-
     if (pValueSize.value > 0) {
       value.addAll(pArray.value.toList(length: pValueSize.value));
     }
     free(pValueSize);
     free(pArray);
+
+    if (FAILED(hr)) throw WindowsException(hr);
   }
 
   void getStringArray(List<String> value) {
@@ -859,13 +858,13 @@ class IPropertyValue extends IInspectable {
                         Pointer<Pointer<IntPtr>> value)>()(
             ptr.ref.lpVtbl, pValueSize, pArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
-
     if (pValueSize.value > 0) {
       value.addAll(pArray.value.toList(length: pValueSize.value));
     }
     free(pValueSize);
     free(pArray);
+
+    if (FAILED(hr)) throw WindowsException(hr);
   }
 
   void getInspectableArray(List<Object?> value) {
@@ -888,13 +887,13 @@ class IPropertyValue extends IInspectable {
                         Pointer<Pointer<COMObject>> value)>()(
             ptr.ref.lpVtbl, pValueSize, pArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
-
     value.addAll(pArray.value
         .toList(IPropertyValue.fromRawPointer, length: pValueSize.value)
         .map((e) => e.value));
     free(pValueSize);
     free(pArray);
+
+    if (FAILED(hr)) throw WindowsException(hr);
   }
 
   void getGuidArray(List<Guid> value) {
@@ -917,13 +916,13 @@ class IPropertyValue extends IInspectable {
                         Pointer<Pointer<GUID>> value)>()(
             ptr.ref.lpVtbl, pValueSize, pArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
-
     if (pValueSize.value > 0) {
       value.addAll(pArray.value.toList(length: pValueSize.value));
     }
     free(pValueSize);
     free(pArray);
+
+    if (FAILED(hr)) throw WindowsException(hr);
   }
 
   void getDateTimeArray(List<DateTime> value) {
@@ -946,13 +945,13 @@ class IPropertyValue extends IInspectable {
                         Pointer<Pointer<Int64>> value)>()(
             ptr.ref.lpVtbl, pValueSize, pArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
-
     value.addAll(pArray.value
         .toList(length: pValueSize.value)
         .map((value) => value.toDartDateTime()));
     free(pValueSize);
     free(pArray);
+
+    if (FAILED(hr)) throw WindowsException(hr);
   }
 
   void getTimeSpanArray(List<Duration> value) {
@@ -975,13 +974,13 @@ class IPropertyValue extends IInspectable {
                         Pointer<Pointer<Int64>> value)>()(
             ptr.ref.lpVtbl, pValueSize, pArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
-
     value.addAll(pArray.value
         .toList(length: pValueSize.value)
         .map((value) => value.toDartDuration()));
     free(pValueSize);
     free(pArray);
+
+    if (FAILED(hr)) throw WindowsException(hr);
   }
 
   void getPointArray(List<Point> value) {
@@ -1004,13 +1003,13 @@ class IPropertyValue extends IInspectable {
                         Pointer<Pointer<NativePoint>> value)>()(
             ptr.ref.lpVtbl, pValueSize, pArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
-
     if (pValueSize.value > 0) {
       value.addAll(pArray.value.toList(length: pValueSize.value));
     }
     free(pValueSize);
     free(pArray);
+
+    if (FAILED(hr)) throw WindowsException(hr);
   }
 
   void getSizeArray(List<Size> value) {
@@ -1033,13 +1032,13 @@ class IPropertyValue extends IInspectable {
                         Pointer<Pointer<NativeSize>> value)>()(
             ptr.ref.lpVtbl, pValueSize, pArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
-
     if (pValueSize.value > 0) {
       value.addAll(pArray.value.toList(length: pValueSize.value));
     }
     free(pValueSize);
     free(pArray);
+
+    if (FAILED(hr)) throw WindowsException(hr);
   }
 
   void getRectArray(List<Rect> value) {
@@ -1062,12 +1061,12 @@ class IPropertyValue extends IInspectable {
                         Pointer<Pointer<NativeRect>> value)>()(
             ptr.ref.lpVtbl, pValueSize, pArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
-
     if (pValueSize.value > 0) {
       value.addAll(pArray.value.toList(length: pValueSize.value));
     }
     free(pValueSize);
     free(pArray);
+
+    if (FAILED(hr)) throw WindowsException(hr);
   }
 }

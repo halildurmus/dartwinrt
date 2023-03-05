@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -40,57 +39,25 @@ class Uri extends IInspectable
 
   static const _className = 'Windows.Foundation.Uri';
 
-  // IUriRuntimeClassFactory methods
-  factory Uri.createUri(String uri) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IUriRuntimeClassFactory);
-    final object = IUriRuntimeClassFactory.fromRawPointer(activationFactoryPtr);
+  factory Uri.createUri(String uri) => createActivationFactory(
+          IUriRuntimeClassFactory.fromRawPointer,
+          _className,
+          IID_IUriRuntimeClassFactory)
+      .createUri(uri);
 
-    try {
-      return object.createUri(uri);
-    } finally {
-      object.release();
-    }
-  }
+  factory Uri.createWithRelativeUri(String baseUri, String relativeUri) =>
+      createActivationFactory(IUriRuntimeClassFactory.fromRawPointer,
+              _className, IID_IUriRuntimeClassFactory)
+          .createWithRelativeUri(baseUri, relativeUri);
 
-  factory Uri.createWithRelativeUri(String baseUri, String relativeUri) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IUriRuntimeClassFactory);
-    final object = IUriRuntimeClassFactory.fromRawPointer(activationFactoryPtr);
+  static String unescapeComponent(String toUnescape) => createActivationFactory(
+          IUriEscapeStatics.fromRawPointer, _className, IID_IUriEscapeStatics)
+      .unescapeComponent(toUnescape);
 
-    try {
-      return object.createWithRelativeUri(baseUri, relativeUri);
-    } finally {
-      object.release();
-    }
-  }
+  static String escapeComponent(String toEscape) => createActivationFactory(
+          IUriEscapeStatics.fromRawPointer, _className, IID_IUriEscapeStatics)
+      .escapeComponent(toEscape);
 
-  // IUriEscapeStatics methods
-  static String unescapeComponent(String toUnescape) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IUriEscapeStatics);
-    final object = IUriEscapeStatics.fromRawPointer(activationFactoryPtr);
-
-    try {
-      return object.unescapeComponent(toUnescape);
-    } finally {
-      object.release();
-    }
-  }
-
-  static String escapeComponent(String toEscape) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IUriEscapeStatics);
-    final object = IUriEscapeStatics.fromRawPointer(activationFactoryPtr);
-
-    try {
-      return object.escapeComponent(toEscape);
-    } finally {
-      object.release();
-    }
-  }
-
-  // IUriRuntimeClass methods
   late final _iUriRuntimeClass = IUriRuntimeClass.from(this);
 
   @override
@@ -145,7 +112,6 @@ class Uri extends IInspectable
   Uri? combineUri(String relativeUri) =>
       _iUriRuntimeClass.combineUri(relativeUri);
 
-  // IUriRuntimeClassWithAbsoluteCanonicalUri methods
   late final _iUriRuntimeClassWithAbsoluteCanonicalUri =
       IUriRuntimeClassWithAbsoluteCanonicalUri.from(this);
 
@@ -156,7 +122,6 @@ class Uri extends IInspectable
   @override
   String get displayIri => _iUriRuntimeClassWithAbsoluteCanonicalUri.displayIri;
 
-  // IStringable methods
   late final _iStringable = IStringable.from(this);
 
   @override

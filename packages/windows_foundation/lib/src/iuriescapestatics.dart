@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -33,9 +32,10 @@ class IUriEscapeStatics extends IInspectable {
 
   String unescapeComponent(String toUnescape) {
     final retValuePtr = calloc<HSTRING>();
-    final toUnescapeHString = toUnescape.toHString();
 
     try {
+      final toUnescapeHString = toUnescape.toHString();
+
       final hr = ptr.ref.vtable
               .elementAt(6)
               .cast<
@@ -49,11 +49,12 @@ class IUriEscapeStatics extends IInspectable {
                       Pointer<IntPtr> retValuePtr)>()(
           ptr.ref.lpVtbl, toUnescapeHString, retValuePtr);
 
+      WindowsDeleteString(toUnescapeHString);
+
       if (FAILED(hr)) throw WindowsException(hr);
 
       return retValuePtr.toDartString();
     } finally {
-      WindowsDeleteString(toUnescapeHString);
       WindowsDeleteString(retValuePtr.value);
       free(retValuePtr);
     }
@@ -61,9 +62,10 @@ class IUriEscapeStatics extends IInspectable {
 
   String escapeComponent(String toEscape) {
     final retValuePtr = calloc<HSTRING>();
-    final toEscapeHString = toEscape.toHString();
 
     try {
+      final toEscapeHString = toEscape.toHString();
+
       final hr = ptr.ref.vtable
               .elementAt(7)
               .cast<
@@ -77,11 +79,12 @@ class IUriEscapeStatics extends IInspectable {
                       Pointer<IntPtr> retValuePtr)>()(
           ptr.ref.lpVtbl, toEscapeHString, retValuePtr);
 
+      WindowsDeleteString(toEscapeHString);
+
       if (FAILED(hr)) throw WindowsException(hr);
 
       return retValuePtr.toDartString();
     } finally {
-      WindowsDeleteString(toEscapeHString);
       WindowsDeleteString(retValuePtr.value);
       free(retValuePtr);
     }

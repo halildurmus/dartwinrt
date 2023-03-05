@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -30,184 +29,84 @@ class PowerManager extends IInspectable {
 
   static const _className = 'Windows.System.Power.PowerManager';
 
-  // IPowerManagerStatics methods
-  static EnergySaverStatus get energySaverStatus {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IPowerManagerStatics);
-    final object = IPowerManagerStatics.fromRawPointer(activationFactoryPtr);
+  static EnergySaverStatus get energySaverStatus => createActivationFactory(
+          IPowerManagerStatics.fromRawPointer,
+          _className,
+          IID_IPowerManagerStatics)
+      .energySaverStatus;
 
-    try {
-      return object.energySaverStatus;
-    } finally {
-      object.release();
-    }
-  }
+  static int add_EnergySaverStatusChanged(Pointer<COMObject> handler) =>
+      createActivationFactory(IPowerManagerStatics.fromRawPointer, _className,
+              IID_IPowerManagerStatics)
+          .add_EnergySaverStatusChanged(handler);
 
-  static int add_EnergySaverStatusChanged(Pointer<COMObject> handler) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IPowerManagerStatics);
-    final object = IPowerManagerStatics.fromRawPointer(activationFactoryPtr);
+  static void remove_EnergySaverStatusChanged(int token) =>
+      createActivationFactory(IPowerManagerStatics.fromRawPointer, _className,
+              IID_IPowerManagerStatics)
+          .remove_EnergySaverStatusChanged(token);
 
-    try {
-      return object.add_EnergySaverStatusChanged(handler);
-    } finally {
-      object.release();
-    }
-  }
+  static BatteryStatus get batteryStatus => createActivationFactory(
+          IPowerManagerStatics.fromRawPointer,
+          _className,
+          IID_IPowerManagerStatics)
+      .batteryStatus;
 
-  static void remove_EnergySaverStatusChanged(int token) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IPowerManagerStatics);
-    final object = IPowerManagerStatics.fromRawPointer(activationFactoryPtr);
+  static int add_BatteryStatusChanged(Pointer<COMObject> handler) =>
+      createActivationFactory(IPowerManagerStatics.fromRawPointer, _className,
+              IID_IPowerManagerStatics)
+          .add_BatteryStatusChanged(handler);
 
-    try {
-      return object.remove_EnergySaverStatusChanged(token);
-    } finally {
-      object.release();
-    }
-  }
+  static void remove_BatteryStatusChanged(int token) => createActivationFactory(
+          IPowerManagerStatics.fromRawPointer,
+          _className,
+          IID_IPowerManagerStatics)
+      .remove_BatteryStatusChanged(token);
 
-  static BatteryStatus get batteryStatus {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IPowerManagerStatics);
-    final object = IPowerManagerStatics.fromRawPointer(activationFactoryPtr);
+  static PowerSupplyStatus get powerSupplyStatus => createActivationFactory(
+          IPowerManagerStatics.fromRawPointer,
+          _className,
+          IID_IPowerManagerStatics)
+      .powerSupplyStatus;
 
-    try {
-      return object.batteryStatus;
-    } finally {
-      object.release();
-    }
-  }
+  static int add_PowerSupplyStatusChanged(Pointer<COMObject> handler) =>
+      createActivationFactory(IPowerManagerStatics.fromRawPointer, _className,
+              IID_IPowerManagerStatics)
+          .add_PowerSupplyStatusChanged(handler);
 
-  static int add_BatteryStatusChanged(Pointer<COMObject> handler) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IPowerManagerStatics);
-    final object = IPowerManagerStatics.fromRawPointer(activationFactoryPtr);
+  static void remove_PowerSupplyStatusChanged(int token) =>
+      createActivationFactory(IPowerManagerStatics.fromRawPointer, _className,
+              IID_IPowerManagerStatics)
+          .remove_PowerSupplyStatusChanged(token);
 
-    try {
-      return object.add_BatteryStatusChanged(handler);
-    } finally {
-      object.release();
-    }
-  }
+  static int get remainingChargePercent => createActivationFactory(
+          IPowerManagerStatics.fromRawPointer,
+          _className,
+          IID_IPowerManagerStatics)
+      .remainingChargePercent;
 
-  static void remove_BatteryStatusChanged(int token) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IPowerManagerStatics);
-    final object = IPowerManagerStatics.fromRawPointer(activationFactoryPtr);
+  static int add_RemainingChargePercentChanged(Pointer<COMObject> handler) =>
+      createActivationFactory(IPowerManagerStatics.fromRawPointer, _className,
+              IID_IPowerManagerStatics)
+          .add_RemainingChargePercentChanged(handler);
 
-    try {
-      return object.remove_BatteryStatusChanged(token);
-    } finally {
-      object.release();
-    }
-  }
+  static void remove_RemainingChargePercentChanged(int token) =>
+      createActivationFactory(IPowerManagerStatics.fromRawPointer, _className,
+              IID_IPowerManagerStatics)
+          .remove_RemainingChargePercentChanged(token);
 
-  static PowerSupplyStatus get powerSupplyStatus {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IPowerManagerStatics);
-    final object = IPowerManagerStatics.fromRawPointer(activationFactoryPtr);
+  static Duration get remainingDischargeTime => createActivationFactory(
+          IPowerManagerStatics.fromRawPointer,
+          _className,
+          IID_IPowerManagerStatics)
+      .remainingDischargeTime;
 
-    try {
-      return object.powerSupplyStatus;
-    } finally {
-      object.release();
-    }
-  }
+  static int add_RemainingDischargeTimeChanged(Pointer<COMObject> handler) =>
+      createActivationFactory(IPowerManagerStatics.fromRawPointer, _className,
+              IID_IPowerManagerStatics)
+          .add_RemainingDischargeTimeChanged(handler);
 
-  static int add_PowerSupplyStatusChanged(Pointer<COMObject> handler) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IPowerManagerStatics);
-    final object = IPowerManagerStatics.fromRawPointer(activationFactoryPtr);
-
-    try {
-      return object.add_PowerSupplyStatusChanged(handler);
-    } finally {
-      object.release();
-    }
-  }
-
-  static void remove_PowerSupplyStatusChanged(int token) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IPowerManagerStatics);
-    final object = IPowerManagerStatics.fromRawPointer(activationFactoryPtr);
-
-    try {
-      return object.remove_PowerSupplyStatusChanged(token);
-    } finally {
-      object.release();
-    }
-  }
-
-  static int get remainingChargePercent {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IPowerManagerStatics);
-    final object = IPowerManagerStatics.fromRawPointer(activationFactoryPtr);
-
-    try {
-      return object.remainingChargePercent;
-    } finally {
-      object.release();
-    }
-  }
-
-  static int add_RemainingChargePercentChanged(Pointer<COMObject> handler) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IPowerManagerStatics);
-    final object = IPowerManagerStatics.fromRawPointer(activationFactoryPtr);
-
-    try {
-      return object.add_RemainingChargePercentChanged(handler);
-    } finally {
-      object.release();
-    }
-  }
-
-  static void remove_RemainingChargePercentChanged(int token) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IPowerManagerStatics);
-    final object = IPowerManagerStatics.fromRawPointer(activationFactoryPtr);
-
-    try {
-      return object.remove_RemainingChargePercentChanged(token);
-    } finally {
-      object.release();
-    }
-  }
-
-  static Duration get remainingDischargeTime {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IPowerManagerStatics);
-    final object = IPowerManagerStatics.fromRawPointer(activationFactoryPtr);
-
-    try {
-      return object.remainingDischargeTime;
-    } finally {
-      object.release();
-    }
-  }
-
-  static int add_RemainingDischargeTimeChanged(Pointer<COMObject> handler) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IPowerManagerStatics);
-    final object = IPowerManagerStatics.fromRawPointer(activationFactoryPtr);
-
-    try {
-      return object.add_RemainingDischargeTimeChanged(handler);
-    } finally {
-      object.release();
-    }
-  }
-
-  static void remove_RemainingDischargeTimeChanged(int token) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IPowerManagerStatics);
-    final object = IPowerManagerStatics.fromRawPointer(activationFactoryPtr);
-
-    try {
-      return object.remove_RemainingDischargeTimeChanged(token);
-    } finally {
-      object.release();
-    }
-  }
+  static void remove_RemainingDischargeTimeChanged(int token) =>
+      createActivationFactory(IPowerManagerStatics.fromRawPointer, _className,
+              IID_IPowerManagerStatics)
+          .remove_RemainingDischargeTimeChanged(token);
 }

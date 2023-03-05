@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -51,12 +50,12 @@ class IDeviceInformationStatics extends IInspectable {
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, deviceIdHString, retValuePtr);
 
+    WindowsDeleteString(deviceIdHString);
+
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
-
-    WindowsDeleteString(deviceIdHString);
 
     final asyncOperation = IAsyncOperation<DeviceInformation?>.fromRawPointer(
         retValuePtr,
@@ -99,13 +98,12 @@ class IDeviceInformationStatics extends IInspectable {
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, deviceIdHString, additionalPropertiesPtr, retValuePtr);
 
+    WindowsDeleteString(deviceIdHString);
+
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
-
-    WindowsDeleteString(deviceIdHString);
-    additionalProperties?.release();
 
     final asyncOperation = IAsyncOperation<DeviceInformation?>.fromRawPointer(
         retValuePtr,
@@ -198,12 +196,12 @@ class IDeviceInformationStatics extends IInspectable {
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, aqsFilterHString, retValuePtr);
 
+    WindowsDeleteString(aqsFilterHString);
+
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
-
-    WindowsDeleteString(aqsFilterHString);
 
     final asyncOperation =
         IAsyncOperation<DeviceInformationCollection?>.fromRawPointer(
@@ -248,13 +246,12 @@ class IDeviceInformationStatics extends IInspectable {
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, aqsFilterHString, additionalPropertiesPtr, retValuePtr);
 
+    WindowsDeleteString(aqsFilterHString);
+
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
-
-    WindowsDeleteString(aqsFilterHString);
-    additionalProperties?.release();
 
     final asyncOperation =
         IAsyncOperation<DeviceInformationCollection?>.fromRawPointer(
@@ -340,12 +337,12 @@ class IDeviceInformationStatics extends IInspectable {
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, aqsFilterHString, retValuePtr);
 
+    WindowsDeleteString(aqsFilterHString);
+
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
-
-    WindowsDeleteString(aqsFilterHString);
 
     if (retValuePtr.ref.isNull) {
       free(retValuePtr);
@@ -386,13 +383,12 @@ class IDeviceInformationStatics extends IInspectable {
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, aqsFilterHString, additionalPropertiesPtr, retValuePtr);
 
+    WindowsDeleteString(aqsFilterHString);
+
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
-
-    WindowsDeleteString(aqsFilterHString);
-    additionalProperties?.release();
 
     if (retValuePtr.ref.isNull) {
       free(retValuePtr);

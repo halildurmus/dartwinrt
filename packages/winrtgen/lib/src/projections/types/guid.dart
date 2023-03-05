@@ -16,14 +16,12 @@ mixin _GuidMixin on MethodProjection {
   String get methodDeclaration => '''
   $methodHeader {
     final retValuePtr = calloc<GUID>();
-    $parametersPreamble
 
     try {
       ${ffiCall()}
 
       return retValuePtr.toDartGuid();
     } finally {
-      $parametersPostamble
       free(retValuePtr);
     }
   }
@@ -49,14 +47,12 @@ mixin _GuidListMixin on MethodProjection {
   $methodHeader {
     final pValueSize = calloc<Uint32>();
     final retValuePtr = calloc<Pointer<GUID>>();
-    $parametersPreamble
 
     try {
       ${ffiCall()}
 
       return retValuePtr.value.toList(length: pValueSize.value);
     } finally {
-      $parametersPostamble
       free(pValueSize);
       free(retValuePtr);
     }
@@ -84,7 +80,7 @@ class GuidSetterProjection extends SetterProjection {
     final nativeGuidPtr = value.toNativeGUID();
 
     try {
-      ${ffiCall(params: 'nativeGuidPtr.ref')}
+      ${ffiCall(identifier: 'nativeGuidPtr.ref')}
     } finally {
       free(nativeGuidPtr);
     }

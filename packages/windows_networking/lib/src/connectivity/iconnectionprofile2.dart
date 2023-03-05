@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -167,10 +166,7 @@ class IConnectionProfile2 extends IInspectable {
 
     final reference = IReference<Guid?>.fromRawPointer(retValuePtr,
         referenceIid: '{7d50f649-632c-51f9-849a-ee49428933ea}');
-    final value = reference.value;
-    reference.release();
-
-    return value;
+    return reference.value;
   }
 
   int? getSignalBars() {
@@ -200,10 +196,7 @@ class IConnectionProfile2 extends IInspectable {
 
     final reference = IReference<int?>.fromRawPointer(retValuePtr,
         referenceIid: '{e5198cc8-2873-55f5-b0a1-84ff9e4aad62}');
-    final value = reference.value;
-    reference.release();
-
-    return value;
+    return reference.value;
   }
 
   DomainConnectivityLevel getDomainConnectivityLevel() {
@@ -267,16 +260,16 @@ class IConnectionProfile2 extends IInspectable {
         statesNativeStructPtr.ref,
         retValuePtr);
 
+    free(statesNativeStructPtr);
+
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
 
-    free(statesNativeStructPtr);
-
     final asyncOperation =
         IAsyncOperation<IVectorView<NetworkUsage>>.fromRawPointer(retValuePtr,
-            creator: (Pointer<COMObject> ptr) => IVectorView.fromRawPointer(ptr,
+            creator: (ptr) => IVectorView.fromRawPointer(ptr,
                 creator: NetworkUsage.fromRawPointer,
                 iterableIid: '{dd2656b1-8360-5772-b272-c47f7f0fc7a6}'));
     completeAsyncOperation(
@@ -316,17 +309,17 @@ class IConnectionProfile2 extends IInspectable {
         statesNativeStructPtr.ref,
         retValuePtr);
 
+    free(statesNativeStructPtr);
+
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
 
-    free(statesNativeStructPtr);
-
     final asyncOperation =
         IAsyncOperation<IVectorView<ConnectivityInterval>>.fromRawPointer(
             retValuePtr,
-            creator: (Pointer<COMObject> ptr) => IVectorView.fromRawPointer(ptr,
+            creator: (ptr) => IVectorView.fromRawPointer(ptr,
                 creator: ConnectivityInterval.fromRawPointer,
                 iterableIid: '{58051a8b-b259-5414-9b9a-caa0789e833e}'));
     completeAsyncOperation(

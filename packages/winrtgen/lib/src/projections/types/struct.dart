@@ -17,14 +17,12 @@ mixin _StructMixin on MethodProjection {
   String get methodDeclaration => '''
   $methodHeader {
     final retValuePtr = calloc<${returnTypeProjection.nativeType}>();
-    $parametersPreamble
 
     try {
       ${ffiCall()}
 
       return retValuePtr.toDart();
     } finally {
-      $parametersPostamble
       free(retValuePtr);
     }
   }
@@ -53,7 +51,7 @@ class StructSetterProjection extends SetterProjection {
     final nativeStructPtr = value.toNative();
 
     try {
-      ${ffiCall(params: 'nativeStructPtr.ref')}
+      ${ffiCall(identifier: 'nativeStructPtr.ref')}
     } finally {
       free(nativeStructPtr);
     }

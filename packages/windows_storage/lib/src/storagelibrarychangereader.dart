@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -28,7 +27,6 @@ class StorageLibraryChangeReader extends IInspectable
     implements IStorageLibraryChangeReader, IStorageLibraryChangeReader2 {
   StorageLibraryChangeReader.fromRawPointer(super.ptr);
 
-  // IStorageLibraryChangeReader methods
   late final _iStorageLibraryChangeReader =
       IStorageLibraryChangeReader.from(this);
 
@@ -40,7 +38,6 @@ class StorageLibraryChangeReader extends IInspectable
   Future<void> acceptChangesAsync() =>
       _iStorageLibraryChangeReader.acceptChangesAsync();
 
-  // IStorageLibraryChangeReader2 methods
   late final _iStorageLibraryChangeReader2 =
       IStorageLibraryChangeReader2.from(this);
 

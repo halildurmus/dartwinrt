@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -29,7 +28,6 @@ class WwanConnectionProfileDetails extends IInspectable
     implements IWwanConnectionProfileDetails, IWwanConnectionProfileDetails2 {
   WwanConnectionProfileDetails.fromRawPointer(super.ptr);
 
-  // IWwanConnectionProfileDetails methods
   late final _iWwanConnectionProfileDetails =
       IWwanConnectionProfileDetails.from(this);
 
@@ -47,7 +45,6 @@ class WwanConnectionProfileDetails extends IInspectable
   WwanDataClass getCurrentDataClass() =>
       _iWwanConnectionProfileDetails.getCurrentDataClass();
 
-  // IWwanConnectionProfileDetails2 methods
   late final _iWwanConnectionProfileDetails2 =
       IWwanConnectionProfileDetails2.from(this);
 

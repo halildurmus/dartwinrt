@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -67,34 +66,17 @@ class StorageFolder extends IInspectable
 
   static const _className = 'Windows.Storage.StorageFolder';
 
-  // IStorageFolderStatics methods
-  static Future<StorageFolder?> getFolderFromPathAsync(String path) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IStorageFolderStatics);
-    final object = IStorageFolderStatics.fromRawPointer(activationFactoryPtr);
+  static Future<StorageFolder?> getFolderFromPathAsync(String path) =>
+      createActivationFactory(IStorageFolderStatics.fromRawPointer, _className,
+              IID_IStorageFolderStatics)
+          .getFolderFromPathAsync(path);
 
-    try {
-      return object.getFolderFromPathAsync(path);
-    } finally {
-      object.release();
-    }
-  }
-
-  // IStorageFolderStatics2 methods
   static Future<StorageFolder?> getFolderFromPathForUserAsync(
-      User? user, String path) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IStorageFolderStatics2);
-    final object = IStorageFolderStatics2.fromRawPointer(activationFactoryPtr);
+          User? user, String path) =>
+      createActivationFactory(IStorageFolderStatics2.fromRawPointer, _className,
+              IID_IStorageFolderStatics2)
+          .getFolderFromPathForUserAsync(user, path);
 
-    try {
-      return object.getFolderFromPathForUserAsync(user, path);
-    } finally {
-      object.release();
-    }
-  }
-
-  // IStorageFolder methods
   late final _iStorageFolder = IStorageFolder.from(this);
 
   @override
@@ -143,7 +125,6 @@ class StorageFolder extends IInspectable
   Future<List<IStorageItem>> getItemsAsyncOverloadDefaultStartAndCount() =>
       _iStorageFolder.getItemsAsyncOverloadDefaultStartAndCount();
 
-  // IStorageItem methods
   late final _iStorageItem = IStorageItem.from(this);
 
   @override
@@ -181,7 +162,6 @@ class StorageFolder extends IInspectable
   @override
   bool isOfType(StorageItemTypes type) => _iStorageItem.isOfType(type);
 
-  // IStorageFolderQueryOperations methods
   late final _iStorageFolderQueryOperations =
       IStorageFolderQueryOperations.from(this);
 
@@ -266,7 +246,6 @@ class StorageFolder extends IInspectable
   bool isCommonFileQuerySupported(CommonFileQuery query) =>
       _iStorageFolderQueryOperations.isCommonFileQuerySupported(query);
 
-  // IStorageItemProperties methods
   late final _iStorageItemProperties = IStorageItemProperties.from(this);
 
   @override
@@ -299,7 +278,6 @@ class StorageFolder extends IInspectable
   StorageItemContentProperties? get properties =>
       _iStorageItemProperties.properties;
 
-  // IStorageItemProperties2 methods
   late final _iStorageItemProperties2 = IStorageItemProperties2.from(this);
 
   @override
@@ -324,7 +302,6 @@ class StorageFolder extends IInspectable
       _iStorageItemProperties2.getScaledImageAsThumbnailAsync(
           mode, requestedSize, options);
 
-  // IStorageItem2 methods
   late final _iStorageItem2 = IStorageItem2.from(this);
 
   @override
@@ -333,21 +310,18 @@ class StorageFolder extends IInspectable
   @override
   bool isEqual(IStorageItem? item) => _iStorageItem2.isEqual(item);
 
-  // IStorageFolder2 methods
   late final _iStorageFolder2 = IStorageFolder2.from(this);
 
   @override
   Future<IStorageItem?> tryGetItemAsync(String name) =>
       _iStorageFolder2.tryGetItemAsync(name);
 
-  // IStorageItemPropertiesWithProvider methods
   late final _iStorageItemPropertiesWithProvider =
       IStorageItemPropertiesWithProvider.from(this);
 
   @override
   StorageProvider? get provider => _iStorageItemPropertiesWithProvider.provider;
 
-  // IStorageFolder3 methods
   late final _iStorageFolder3 = IStorageFolder3.from(this);
 
   @override

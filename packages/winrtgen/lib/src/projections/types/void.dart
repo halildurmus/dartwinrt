@@ -14,11 +14,7 @@ class VoidMethodProjection extends MethodProjection {
   @override
   String get methodDeclaration => '''
   $methodHeader {
-    $parametersPreamble
-
     ${ffiCall()}
-
-    $parametersPostamble
   }
 ''';
 }

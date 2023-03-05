@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -205,10 +204,11 @@ class IPhoneNumberInfo extends IInspectable {
 
   PhoneNumberMatchResult checkNumberMatch(PhoneNumberInfo? otherNumber) {
     final retValuePtr = calloc<Int32>();
-    final otherNumberPtr =
-        otherNumber == null ? nullptr : otherNumber.ptr.ref.lpVtbl;
 
     try {
+      final otherNumberPtr =
+          otherNumber == null ? nullptr : otherNumber.ptr.ref.lpVtbl;
+
       final hr = ptr.ref.vtable
               .elementAt(13)
               .cast<

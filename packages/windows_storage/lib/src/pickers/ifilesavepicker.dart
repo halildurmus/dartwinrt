@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -181,7 +180,7 @@ class IFileSavePicker extends IInspectable {
 
     return IMap.fromRawPointer(retValuePtr,
         iterableIid: '{4fed2669-d0d3-59f6-91d9-95902d728d6a}',
-        creator: (Pointer<COMObject> ptr) => IVector.fromRawPointer(ptr,
+        creator: (ptr) => IVector.fromRawPointer(ptr,
             iterableIid: '{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'));
   }
 

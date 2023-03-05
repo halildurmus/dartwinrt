@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -246,13 +245,11 @@ class IRandomAccessStream extends IInspectable
     }
   }
 
-  // IClosable methods
   late final _iClosable = IClosable.from(this);
 
   @override
   void close() => _iClosable.close();
 
-  // IInputStream methods
   late final _iInputStream = IInputStream.from(this);
 
   @override
@@ -260,7 +257,6 @@ class IRandomAccessStream extends IInspectable
           IBuffer? buffer, int count, InputStreamOptions options) =>
       _iInputStream.readAsync(buffer, count, options);
 
-  // IOutputStream methods
   late final _iOutputStream = IOutputStream.from(this);
 
   @override

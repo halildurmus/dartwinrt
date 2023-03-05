@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -85,7 +84,7 @@ class IToastCollectionManager extends IInspectable {
     final asyncOperation =
         IAsyncOperation<IVectorView<ToastCollection>>.fromRawPointer(
             retValuePtr,
-            creator: (Pointer<COMObject> ptr) => IVectorView.fromRawPointer(ptr,
+            creator: (ptr) => IVectorView.fromRawPointer(ptr,
                 creator: ToastCollection.fromRawPointer,
                 iterableIid: '{8928d527-db5d-5a10-ae9b-430fa0906e74}'));
     completeAsyncOperation(
@@ -112,12 +111,12 @@ class IToastCollectionManager extends IInspectable {
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, collectionIdHString, retValuePtr);
 
+    WindowsDeleteString(collectionIdHString);
+
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
-
-    WindowsDeleteString(collectionIdHString);
 
     final asyncOperation = IAsyncOperation<ToastCollection?>.fromRawPointer(
         retValuePtr,
@@ -146,12 +145,12 @@ class IToastCollectionManager extends IInspectable {
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, collectionIdHString, retValuePtr);
 
+    WindowsDeleteString(collectionIdHString);
+
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
-
-    WindowsDeleteString(collectionIdHString);
 
     final asyncAction = IAsyncAction.fromRawPointer(retValuePtr);
     completeAsyncAction(asyncAction, completer);

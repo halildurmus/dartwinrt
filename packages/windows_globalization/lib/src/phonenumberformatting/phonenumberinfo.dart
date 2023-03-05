@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -33,47 +32,24 @@ class PhoneNumberInfo extends IInspectable
   static const _className =
       'Windows.Globalization.PhoneNumberFormatting.PhoneNumberInfo';
 
-  // IPhoneNumberInfoFactory methods
-  factory PhoneNumberInfo.create(String number) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IPhoneNumberInfoFactory);
-    final object = IPhoneNumberInfoFactory.fromRawPointer(activationFactoryPtr);
+  factory PhoneNumberInfo.create(String number) => createActivationFactory(
+          IPhoneNumberInfoFactory.fromRawPointer,
+          _className,
+          IID_IPhoneNumberInfoFactory)
+      .create(number);
 
-    try {
-      return object.create(number);
-    } finally {
-      object.release();
-    }
-  }
-
-  // IPhoneNumberInfoStatics methods
   static PhoneNumberParseResult tryParse(
-      String input, PhoneNumberInfo phoneNumber) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IPhoneNumberInfoStatics);
-    final object = IPhoneNumberInfoStatics.fromRawPointer(activationFactoryPtr);
-
-    try {
-      return object.tryParse(input, phoneNumber);
-    } finally {
-      object.release();
-    }
-  }
+          String input, PhoneNumberInfo phoneNumber) =>
+      createActivationFactory(IPhoneNumberInfoStatics.fromRawPointer,
+              _className, IID_IPhoneNumberInfoStatics)
+          .tryParse(input, phoneNumber);
 
   static PhoneNumberParseResult tryParseWithRegion(
-      String input, String regionCode, PhoneNumberInfo phoneNumber) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IPhoneNumberInfoStatics);
-    final object = IPhoneNumberInfoStatics.fromRawPointer(activationFactoryPtr);
+          String input, String regionCode, PhoneNumberInfo phoneNumber) =>
+      createActivationFactory(IPhoneNumberInfoStatics.fromRawPointer,
+              _className, IID_IPhoneNumberInfoStatics)
+          .tryParseWithRegion(input, regionCode, phoneNumber);
 
-    try {
-      return object.tryParseWithRegion(input, regionCode, phoneNumber);
-    } finally {
-      object.release();
-    }
-  }
-
-  // IPhoneNumberInfo methods
   late final _iPhoneNumberInfo = IPhoneNumberInfo.from(this);
 
   @override
@@ -106,7 +82,6 @@ class PhoneNumberInfo extends IInspectable
   PhoneNumberMatchResult checkNumberMatch(PhoneNumberInfo? otherNumber) =>
       _iPhoneNumberInfo.checkNumberMatch(otherNumber);
 
-  // IStringable methods
   late final _iStringable = IStringable.from(this);
 
   @override

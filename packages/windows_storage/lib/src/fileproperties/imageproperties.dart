@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -28,7 +27,6 @@ class ImageProperties extends IInspectable
     implements IImageProperties, IStorageItemExtraProperties {
   ImageProperties.fromRawPointer(super.ptr);
 
-  // IImageProperties methods
   late final _iImageProperties = IImageProperties.from(this);
 
   @override
@@ -83,7 +81,6 @@ class ImageProperties extends IInspectable
   @override
   List<String> get peopleNames => _iImageProperties.peopleNames;
 
-  // IStorageItemExtraProperties methods
   late final _iStorageItemExtraProperties =
       IStorageItemExtraProperties.from(this);
 

@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -37,40 +36,20 @@ class DeviceInformationPairing extends IInspectable
   static const _className =
       'Windows.Devices.Enumeration.DeviceInformationPairing';
 
-  // IDeviceInformationPairingStatics methods
   static bool tryRegisterForAllInboundPairingRequests(
-      DevicePairingKinds pairingKindsSupported) {
-    final activationFactoryPtr = createActivationFactory(
-        _className, IID_IDeviceInformationPairingStatics);
-    final object =
-        IDeviceInformationPairingStatics.fromRawPointer(activationFactoryPtr);
-
-    try {
-      return object
+          DevicePairingKinds pairingKindsSupported) =>
+      createActivationFactory(IDeviceInformationPairingStatics.fromRawPointer,
+              _className, IID_IDeviceInformationPairingStatics)
           .tryRegisterForAllInboundPairingRequests(pairingKindsSupported);
-    } finally {
-      object.release();
-    }
-  }
 
-  // IDeviceInformationPairingStatics2 methods
   static bool tryRegisterForAllInboundPairingRequestsWithProtectionLevel(
-      DevicePairingKinds pairingKindsSupported,
-      DevicePairingProtectionLevel minProtectionLevel) {
-    final activationFactoryPtr = createActivationFactory(
-        _className, IID_IDeviceInformationPairingStatics2);
-    final object =
-        IDeviceInformationPairingStatics2.fromRawPointer(activationFactoryPtr);
+          DevicePairingKinds pairingKindsSupported,
+          DevicePairingProtectionLevel minProtectionLevel) =>
+      createActivationFactory(IDeviceInformationPairingStatics2.fromRawPointer,
+              _className, IID_IDeviceInformationPairingStatics2)
+          .tryRegisterForAllInboundPairingRequestsWithProtectionLevel(
+              pairingKindsSupported, minProtectionLevel);
 
-    try {
-      return object.tryRegisterForAllInboundPairingRequestsWithProtectionLevel(
-          pairingKindsSupported, minProtectionLevel);
-    } finally {
-      object.release();
-    }
-  }
-
-  // IDeviceInformationPairing methods
   late final _iDeviceInformationPairing = IDeviceInformationPairing.from(this);
 
   @override
@@ -89,7 +68,6 @@ class DeviceInformationPairing extends IInspectable
       _iDeviceInformationPairing
           .pairWithProtectionLevelAsync(minProtectionLevel);
 
-  // IDeviceInformationPairing2 methods
   late final _iDeviceInformationPairing2 =
       IDeviceInformationPairing2.from(this);
 

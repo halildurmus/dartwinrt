@@ -21,7 +21,6 @@ void main() {
     final reference = true.toReference();
     expect(reference.value, isNotNull);
     expect(reference.value, isTrue);
-    reference.release();
   });
 
   test('IReference<DateTime?>', () {
@@ -30,84 +29,72 @@ void main() {
     expect(reference.value, isNotNull);
     expect(reference.value!.millisecondsSinceEpoch,
         dateTime.millisecondsSinceEpoch);
-    reference.release();
   });
 
   test('IReference<double?> (Double)', () {
     final reference = 3.0.toReference(DoubleType.double);
     expect(reference.value, isNotNull);
     expect(reference.value, equals(3.0));
-    reference.release();
   });
 
   test('IReference<double?> (Float)', () {
     final reference = 3.0.toReference(DoubleType.float);
     expect(reference.value, isNotNull);
     expect(reference.value, equals(3.0));
-    reference.release();
   });
 
   test('IReference<Duration?>', () {
     final reference = const Duration(seconds: 30).toReference();
     expect(reference.value, isNotNull);
     expect(reference.value?.inSeconds, equals(30));
-    reference.release();
   });
 
   test('IReference<Guid?>', () {
     final reference = Guid.parse(IID_IAsyncInfo).toReference();
     expect(reference.value, isNotNull);
     expect(reference.value?.toString(), equals(IID_IAsyncInfo));
-    reference.release();
   });
 
   test('IReference<int?> (Int16)', () {
     final reference = 16.toReference(IntType.int16);
     expect(reference.value, isNotNull);
     expect(reference.value, equals(16));
-    reference.release();
   });
 
   test('IReference<int?> (Int32)', () {
     final reference = 32.toReference(IntType.int32);
     expect(reference.value, isNotNull);
     expect(reference.value, equals(32));
-    reference.release();
   });
 
   test('IReference<int?> (Int64)', () {
     final reference = 64.toReference(IntType.int64);
     expect(reference.value, isNotNull);
     expect(reference.value, equals(64));
-    reference.release();
   });
 
   test('IReference<int?> (Uint8)', () {
     final reference = 8.toReference(IntType.uint8);
     expect(reference.value, isNotNull);
     expect(reference.value, equals(8));
-    reference.release();
   });
 
   test('IReference<int?> (Uint16)', () {
     final reference = 16.toReference(IntType.uint16);
     expect(reference.value, isNotNull);
     expect(reference.value, equals(16));
-    reference.release();
   });
 
   test('IReference<int?> (Uint32)', () {
     final reference = 32.toReference(IntType.uint32);
     expect(reference.value, isNotNull);
     expect(reference.value, equals(32));
-    reference.release();
   });
 
   test('IReference<int?> (Uint64)', () {
     final reference = 64.toReference(IntType.uint64);
     expect(reference.value, isNotNull);
     expect(reference.value, equals(64));
-    reference.release();
   });
 
   test('IReference<Point?>', () {
@@ -115,7 +102,6 @@ void main() {
     expect(reference.value, isNotNull);
     expect(reference.value?.x, equals(50));
     expect(reference.value?.y, equals(100));
-    reference.release();
   });
 
   test('IReference<Rect?>', () {
@@ -125,7 +111,6 @@ void main() {
     expect(reference.value?.width, equals(200));
     expect(reference.value?.x, equals(50));
     expect(reference.value?.y, equals(100));
-    reference.release();
   });
 
   test('IReference<Size?>', () {
@@ -133,13 +118,11 @@ void main() {
     expect(reference.value, isNotNull);
     expect(reference.value?.height, equals(200));
     expect(reference.value?.width, equals(100));
-    reference.release();
   });
 
   test('IReference<String?>', () {
     final reference = 'Hello World'.toReference();
     expect(reference.value, isNotNull);
     expect(reference.value, equals('Hello World'));
-    reference.release();
   });
 }

@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 part of 'imap.dart';
 
@@ -32,12 +31,12 @@ class _IMapGuidInspectable<V> extends IMap<Guid, V> {
                     LPVTBL lpVtbl, GUID key, Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, keyNativeGuidPtr.ref, retValuePtr);
 
+    free(keyNativeGuidPtr);
+
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
-
-    free(keyNativeGuidPtr);
 
     if (retValuePtr.ref.isNull) {
       free(retValuePtr);
@@ -50,9 +49,10 @@ class _IMapGuidInspectable<V> extends IMap<Guid, V> {
   @override
   bool hasKey(Guid key) {
     final retValuePtr = calloc<Bool>();
-    final keyNativeGuidPtr = key.toNativeGUID();
 
     try {
+      final keyNativeGuidPtr = key.toNativeGUID();
+
       final hr = ptr.ref.vtable
               .elementAt(8)
               .cast<
@@ -66,11 +66,12 @@ class _IMapGuidInspectable<V> extends IMap<Guid, V> {
                       LPVTBL lpVtbl, GUID key, Pointer<Bool> retValuePtr)>()(
           ptr.ref.lpVtbl, keyNativeGuidPtr.ref, retValuePtr);
 
+      free(keyNativeGuidPtr);
+
       if (FAILED(hr)) throw WindowsException(hr);
 
       return retValuePtr.value;
     } finally {
-      free(keyNativeGuidPtr);
       free(retValuePtr);
     }
   }
@@ -78,9 +79,10 @@ class _IMapGuidInspectable<V> extends IMap<Guid, V> {
   @override
   bool insert(Guid key, V value) {
     final retValuePtr = calloc<Bool>();
-    final keyNativeGuidPtr = key.toNativeGUID();
 
     try {
+      final keyNativeGuidPtr = key.toNativeGUID();
+
       final hr =
           ptr.ref.vtable
                   .elementAt(10)
@@ -98,11 +100,12 @@ class _IMapGuidInspectable<V> extends IMap<Guid, V> {
               (value as IInspectable).ptr.ref.lpVtbl,
               retValuePtr);
 
+      free(keyNativeGuidPtr);
+
       if (FAILED(hr)) throw WindowsException(hr);
 
       return retValuePtr.value;
     } finally {
-      free(keyNativeGuidPtr);
       free(retValuePtr);
     }
   }
@@ -121,9 +124,9 @@ class _IMapGuidInspectable<V> extends IMap<Guid, V> {
             int Function(LPVTBL lpVtbl,
                 GUID key)>()(ptr.ref.lpVtbl, keyNativeGuidPtr.ref);
 
-    if (FAILED(hr)) throw WindowsException(hr);
-
     free(keyNativeGuidPtr);
+
+    if (FAILED(hr)) throw WindowsException(hr);
   }
 }
 
@@ -148,12 +151,12 @@ class _IMapGuidObject extends IMap<Guid, Object?> {
                     LPVTBL lpVtbl, GUID key, Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, keyNativeGuidPtr.ref, retValuePtr);
 
+    free(keyNativeGuidPtr);
+
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
-
-    free(keyNativeGuidPtr);
 
     if (retValuePtr.ref.isNull) {
       free(retValuePtr);
@@ -166,9 +169,10 @@ class _IMapGuidObject extends IMap<Guid, Object?> {
   @override
   bool hasKey(Guid key) {
     final retValuePtr = calloc<Bool>();
-    final keyNativeGuidPtr = key.toNativeGUID();
 
     try {
+      final keyNativeGuidPtr = key.toNativeGUID();
+
       final hr = ptr.ref.vtable
               .elementAt(8)
               .cast<
@@ -182,11 +186,12 @@ class _IMapGuidObject extends IMap<Guid, Object?> {
                       LPVTBL lpVtbl, GUID key, Pointer<Bool> retValuePtr)>()(
           ptr.ref.lpVtbl, keyNativeGuidPtr.ref, retValuePtr);
 
+      free(keyNativeGuidPtr);
+
       if (FAILED(hr)) throw WindowsException(hr);
 
       return retValuePtr.value;
     } finally {
-      free(keyNativeGuidPtr);
       free(retValuePtr);
     }
   }
@@ -194,10 +199,11 @@ class _IMapGuidObject extends IMap<Guid, Object?> {
   @override
   bool insert(Guid key, Object? value) {
     final retValuePtr = calloc<Bool>();
-    final keyNativeGuidPtr = key.toNativeGUID();
-    final valuePtr = value?.intoBox().ref.lpVtbl ?? nullptr;
 
     try {
+      final keyNativeGuidPtr = key.toNativeGUID();
+      final valuePtr = value?.intoBox().ptr.ref.lpVtbl ?? nullptr;
+
       final hr =
           ptr.ref.vtable
                   .elementAt(10)
@@ -212,11 +218,12 @@ class _IMapGuidObject extends IMap<Guid, Object?> {
                           Pointer<Bool> retValuePtr)>()(
               ptr.ref.lpVtbl, keyNativeGuidPtr.ref, valuePtr, retValuePtr);
 
+      free(keyNativeGuidPtr);
+
       if (FAILED(hr)) throw WindowsException(hr);
 
       return retValuePtr.value;
     } finally {
-      free(keyNativeGuidPtr);
       free(retValuePtr);
     }
   }
@@ -235,9 +242,9 @@ class _IMapGuidObject extends IMap<Guid, Object?> {
             int Function(LPVTBL lpVtbl,
                 GUID key)>()(ptr.ref.lpVtbl, keyNativeGuidPtr.ref);
 
-    if (FAILED(hr)) throw WindowsException(hr);
-
     free(keyNativeGuidPtr);
+
+    if (FAILED(hr)) throw WindowsException(hr);
   }
 }
 
@@ -569,12 +576,12 @@ class _IMapStringInspectable<V> extends IMap<String, V> {
                     LPVTBL lpVtbl, int key, Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, keyHString, retValuePtr);
 
+    WindowsDeleteString(keyHString);
+
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
-
-    WindowsDeleteString(keyHString);
 
     if (retValuePtr.ref.isNull) {
       free(retValuePtr);
@@ -587,9 +594,10 @@ class _IMapStringInspectable<V> extends IMap<String, V> {
   @override
   bool hasKey(String key) {
     final retValuePtr = calloc<Bool>();
-    final keyHString = key.toHString();
 
     try {
+      final keyHString = key.toHString();
+
       final hr = ptr.ref.vtable
               .elementAt(8)
               .cast<
@@ -603,11 +611,12 @@ class _IMapStringInspectable<V> extends IMap<String, V> {
                       LPVTBL lpVtbl, int key, Pointer<Bool> retValuePtr)>()(
           ptr.ref.lpVtbl, keyHString, retValuePtr);
 
+      WindowsDeleteString(keyHString);
+
       if (FAILED(hr)) throw WindowsException(hr);
 
       return retValuePtr.value;
     } finally {
-      WindowsDeleteString(keyHString);
       free(retValuePtr);
     }
   }
@@ -615,9 +624,10 @@ class _IMapStringInspectable<V> extends IMap<String, V> {
   @override
   bool insert(String key, V value) {
     final retValuePtr = calloc<Bool>();
-    final keyHString = key.toHString();
 
     try {
+      final keyHString = key.toHString();
+
       final hr =
           ptr.ref.vtable
                   .elementAt(10)
@@ -632,11 +642,12 @@ class _IMapStringInspectable<V> extends IMap<String, V> {
                           Pointer<Bool> retValuePtr)>()(ptr.ref.lpVtbl,
               keyHString, (value as IInspectable).ptr.ref.lpVtbl, retValuePtr);
 
+      WindowsDeleteString(keyHString);
+
       if (FAILED(hr)) throw WindowsException(hr);
 
       return retValuePtr.value;
     } finally {
-      WindowsDeleteString(keyHString);
       free(retValuePtr);
     }
   }
@@ -654,9 +665,9 @@ class _IMapStringInspectable<V> extends IMap<String, V> {
         .asFunction<
             int Function(LPVTBL lpVtbl, int key)>()(ptr.ref.lpVtbl, keyHString);
 
-    if (FAILED(hr)) throw WindowsException(hr);
-
     WindowsDeleteString(keyHString);
+
+    if (FAILED(hr)) throw WindowsException(hr);
   }
 }
 
@@ -681,12 +692,12 @@ class _IMapStringObject extends IMap<String, Object?> {
                     LPVTBL lpVtbl, int key, Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, keyHString, retValuePtr);
 
+    WindowsDeleteString(keyHString);
+
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
-
-    WindowsDeleteString(keyHString);
 
     if (retValuePtr.ref.isNull) {
       free(retValuePtr);
@@ -699,9 +710,10 @@ class _IMapStringObject extends IMap<String, Object?> {
   @override
   bool hasKey(String key) {
     final retValuePtr = calloc<Bool>();
-    final keyHString = key.toHString();
 
     try {
+      final keyHString = key.toHString();
+
       final hr = ptr.ref.vtable
               .elementAt(8)
               .cast<
@@ -715,11 +727,12 @@ class _IMapStringObject extends IMap<String, Object?> {
                       LPVTBL lpVtbl, int key, Pointer<Bool> retValuePtr)>()(
           ptr.ref.lpVtbl, keyHString, retValuePtr);
 
+      WindowsDeleteString(keyHString);
+
       if (FAILED(hr)) throw WindowsException(hr);
 
       return retValuePtr.value;
     } finally {
-      WindowsDeleteString(keyHString);
       free(retValuePtr);
     }
   }
@@ -727,10 +740,11 @@ class _IMapStringObject extends IMap<String, Object?> {
   @override
   bool insert(String key, Object? value) {
     final retValuePtr = calloc<Bool>();
-    final keyHString = key.toHString();
-    final valuePtr = value?.intoBox().ref.lpVtbl ?? nullptr;
 
     try {
+      final keyHString = key.toHString();
+      final valuePtr = value?.intoBox().ptr.ref.lpVtbl ?? nullptr;
+
       final hr =
           ptr.ref.vtable
                   .elementAt(10)
@@ -745,11 +759,12 @@ class _IMapStringObject extends IMap<String, Object?> {
                           Pointer<Bool> retValuePtr)>()(
               ptr.ref.lpVtbl, keyHString, valuePtr, retValuePtr);
 
+      WindowsDeleteString(keyHString);
+
       if (FAILED(hr)) throw WindowsException(hr);
 
       return retValuePtr.value;
     } finally {
-      WindowsDeleteString(keyHString);
       free(retValuePtr);
     }
   }
@@ -767,9 +782,9 @@ class _IMapStringObject extends IMap<String, Object?> {
         .asFunction<
             int Function(LPVTBL lpVtbl, int key)>()(ptr.ref.lpVtbl, keyHString);
 
-    if (FAILED(hr)) throw WindowsException(hr);
-
     WindowsDeleteString(keyHString);
+
+    if (FAILED(hr)) throw WindowsException(hr);
   }
 }
 
@@ -779,9 +794,10 @@ class _IMapStringString extends IMap<String, String> {
   @override
   String lookup(String key) {
     final retValuePtr = calloc<HSTRING>();
-    final keyHString = key.toHString();
 
     try {
+      final keyHString = key.toHString();
+
       final hr = ptr.ref.vtable
               .elementAt(6)
               .cast<
@@ -795,11 +811,12 @@ class _IMapStringString extends IMap<String, String> {
                       LPVTBL lpVtbl, int key, Pointer<IntPtr> retValuePtr)>()(
           ptr.ref.lpVtbl, keyHString, retValuePtr);
 
+      WindowsDeleteString(keyHString);
+
       if (FAILED(hr)) throw WindowsException(hr);
 
       return retValuePtr.toDartString();
     } finally {
-      WindowsDeleteString(keyHString);
       WindowsDeleteString(retValuePtr.value);
       free(retValuePtr);
     }
@@ -808,9 +825,10 @@ class _IMapStringString extends IMap<String, String> {
   @override
   bool hasKey(String key) {
     final retValuePtr = calloc<Bool>();
-    final keyHString = key.toHString();
 
     try {
+      final keyHString = key.toHString();
+
       final hr = ptr.ref.vtable
               .elementAt(8)
               .cast<
@@ -824,11 +842,12 @@ class _IMapStringString extends IMap<String, String> {
                       LPVTBL lpVtbl, int key, Pointer<Bool> retValuePtr)>()(
           ptr.ref.lpVtbl, keyHString, retValuePtr);
 
+      WindowsDeleteString(keyHString);
+
       if (FAILED(hr)) throw WindowsException(hr);
 
       return retValuePtr.value;
     } finally {
-      WindowsDeleteString(keyHString);
       free(retValuePtr);
     }
   }
@@ -836,10 +855,11 @@ class _IMapStringString extends IMap<String, String> {
   @override
   bool insert(String key, String value) {
     final retValuePtr = calloc<Bool>();
-    final keyHString = key.toHString();
-    final valueHString = value.toHString();
 
     try {
+      final keyHString = key.toHString();
+      final valueHString = value.toHString();
+
       final hr =
           ptr.ref.vtable
                   .elementAt(10)
@@ -854,12 +874,13 @@ class _IMapStringString extends IMap<String, String> {
                           Pointer<Bool> retValuePtr)>()(
               ptr.ref.lpVtbl, keyHString, valueHString, retValuePtr);
 
+      WindowsDeleteString(keyHString);
+      WindowsDeleteString(valueHString);
+
       if (FAILED(hr)) throw WindowsException(hr);
 
       return retValuePtr.value;
     } finally {
-      WindowsDeleteString(keyHString);
-      WindowsDeleteString(valueHString);
       free(retValuePtr);
     }
   }
@@ -877,9 +898,9 @@ class _IMapStringString extends IMap<String, String> {
         .asFunction<
             int Function(LPVTBL lpVtbl, int key)>()(ptr.ref.lpVtbl, keyHString);
 
-    if (FAILED(hr)) throw WindowsException(hr);
-
     WindowsDeleteString(keyHString);
+
+    if (FAILED(hr)) throw WindowsException(hr);
   }
 }
 
@@ -890,9 +911,10 @@ class _IMapStringWinRTEnum<V> extends IMap<String, V> {
   @override
   V lookup(String key) {
     final retValuePtr = calloc<Int32>();
-    final keyHString = key.toHString();
 
     try {
+      final keyHString = key.toHString();
+
       final hr = ptr.ref.vtable
               .elementAt(6)
               .cast<
@@ -906,11 +928,12 @@ class _IMapStringWinRTEnum<V> extends IMap<String, V> {
                       LPVTBL lpVtbl, int key, Pointer<Int32> retValuePtr)>()(
           ptr.ref.lpVtbl, keyHString, retValuePtr);
 
+      WindowsDeleteString(keyHString);
+
       if (FAILED(hr)) throw WindowsException(hr);
 
       return _enumCreator!(retValuePtr.value);
     } finally {
-      WindowsDeleteString(keyHString);
       free(retValuePtr);
     }
   }
@@ -918,9 +941,10 @@ class _IMapStringWinRTEnum<V> extends IMap<String, V> {
   @override
   bool hasKey(String key) {
     final retValuePtr = calloc<Bool>();
-    final keyHString = key.toHString();
 
     try {
+      final keyHString = key.toHString();
+
       final hr = ptr.ref.vtable
               .elementAt(8)
               .cast<
@@ -934,11 +958,12 @@ class _IMapStringWinRTEnum<V> extends IMap<String, V> {
                       LPVTBL lpVtbl, int key, Pointer<Bool> retValuePtr)>()(
           ptr.ref.lpVtbl, keyHString, retValuePtr);
 
+      WindowsDeleteString(keyHString);
+
       if (FAILED(hr)) throw WindowsException(hr);
 
       return retValuePtr.value;
     } finally {
-      WindowsDeleteString(keyHString);
       free(retValuePtr);
     }
   }
@@ -946,9 +971,10 @@ class _IMapStringWinRTEnum<V> extends IMap<String, V> {
   @override
   bool insert(String key, V value) {
     final retValuePtr = calloc<Bool>();
-    final keyHString = key.toHString();
 
     try {
+      final keyHString = key.toHString();
+
       final hr =
           ptr.ref.vtable
                   .elementAt(10)
@@ -963,11 +989,12 @@ class _IMapStringWinRTEnum<V> extends IMap<String, V> {
                           Pointer<Bool> retValuePtr)>()(ptr.ref.lpVtbl,
               keyHString, (value as WinRTEnum).value, retValuePtr);
 
+      WindowsDeleteString(keyHString);
+
       if (FAILED(hr)) throw WindowsException(hr);
 
       return retValuePtr.value;
     } finally {
-      WindowsDeleteString(keyHString);
       free(retValuePtr);
     }
   }
@@ -985,9 +1012,9 @@ class _IMapStringWinRTEnum<V> extends IMap<String, V> {
         .asFunction<
             int Function(LPVTBL lpVtbl, int key)>()(ptr.ref.lpVtbl, keyHString);
 
-    if (FAILED(hr)) throw WindowsException(hr);
-
     WindowsDeleteString(keyHString);
+
+    if (FAILED(hr)) throw WindowsException(hr);
   }
 }
 
@@ -998,9 +1025,10 @@ class _IMapStringWinRTFlagsEnum<V> extends IMap<String, V> {
   @override
   V lookup(String key) {
     final retValuePtr = calloc<Uint32>();
-    final keyHString = key.toHString();
 
     try {
+      final keyHString = key.toHString();
+
       final hr = ptr.ref.vtable
               .elementAt(6)
               .cast<
@@ -1014,11 +1042,12 @@ class _IMapStringWinRTFlagsEnum<V> extends IMap<String, V> {
                       LPVTBL lpVtbl, int key, Pointer<Uint32> retValuePtr)>()(
           ptr.ref.lpVtbl, keyHString, retValuePtr);
 
+      WindowsDeleteString(keyHString);
+
       if (FAILED(hr)) throw WindowsException(hr);
 
       return _enumCreator!(retValuePtr.value);
     } finally {
-      WindowsDeleteString(keyHString);
       free(retValuePtr);
     }
   }
@@ -1026,9 +1055,10 @@ class _IMapStringWinRTFlagsEnum<V> extends IMap<String, V> {
   @override
   bool hasKey(String key) {
     final retValuePtr = calloc<Bool>();
-    final keyHString = key.toHString();
 
     try {
+      final keyHString = key.toHString();
+
       final hr = ptr.ref.vtable
               .elementAt(8)
               .cast<
@@ -1042,11 +1072,12 @@ class _IMapStringWinRTFlagsEnum<V> extends IMap<String, V> {
                       LPVTBL lpVtbl, int key, Pointer<Bool> retValuePtr)>()(
           ptr.ref.lpVtbl, keyHString, retValuePtr);
 
+      WindowsDeleteString(keyHString);
+
       if (FAILED(hr)) throw WindowsException(hr);
 
       return retValuePtr.value;
     } finally {
-      WindowsDeleteString(keyHString);
       free(retValuePtr);
     }
   }
@@ -1054,9 +1085,10 @@ class _IMapStringWinRTFlagsEnum<V> extends IMap<String, V> {
   @override
   bool insert(String key, V value) {
     final retValuePtr = calloc<Bool>();
-    final keyHString = key.toHString();
 
     try {
+      final keyHString = key.toHString();
+
       final hr =
           ptr.ref.vtable
                   .elementAt(10)
@@ -1071,11 +1103,12 @@ class _IMapStringWinRTFlagsEnum<V> extends IMap<String, V> {
                           Pointer<Bool> retValuePtr)>()(ptr.ref.lpVtbl,
               keyHString, (value as WinRTEnum).value, retValuePtr);
 
+      WindowsDeleteString(keyHString);
+
       if (FAILED(hr)) throw WindowsException(hr);
 
       return retValuePtr.value;
     } finally {
-      WindowsDeleteString(keyHString);
       free(retValuePtr);
     }
   }
@@ -1093,9 +1126,9 @@ class _IMapStringWinRTFlagsEnum<V> extends IMap<String, V> {
         .asFunction<
             int Function(LPVTBL lpVtbl, int key)>()(ptr.ref.lpVtbl, keyHString);
 
-    if (FAILED(hr)) throw WindowsException(hr);
-
     WindowsDeleteString(keyHString);
+
+    if (FAILED(hr)) throw WindowsException(hr);
   }
 }
 

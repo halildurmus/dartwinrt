@@ -69,8 +69,7 @@ String _parseGenericTypeIdentifierCreator(TypeIdentifier typeIdentifier) {
     args.add('intType: $intType');
   }
 
-  return '(Pointer<COMObject> ptr) => '
-      '$shortName.fromRawPointer(${args.join(', ')})';
+  return '(ptr) => $shortName.fromRawPointer(${args.join(', ')})';
 }
 
 /// Unpack a nested [typeIdentifier] into a single name.

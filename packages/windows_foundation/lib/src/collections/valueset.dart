@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -43,7 +42,6 @@ class ValueSet extends IInspectable
 
   static const _className = 'Windows.Foundation.Collections.ValueSet';
 
-  // IObservableMap<String, Object?> methods
   late final _iObservableMap = IObservableMap<String, Object?>.fromRawPointer(
       toInterface('{236aac9d-fb12-5c4d-a41c-9e445fb4d7ec}'));
 
@@ -54,7 +52,6 @@ class ValueSet extends IInspectable
   @override
   void remove_MapChanged(int token) => _iObservableMap.remove_MapChanged(token);
 
-  // IMap<String, Object?> methods
   late final _iMap = IMap<String, Object?>.fromRawPointer(
       toInterface('{1b0d3570-0877-5ec2-8a2c-3b9539506aca}'),
       iterableIid: '{fe2f3d47-5d47-5499-8374-430c7cda0204}');

@@ -19,11 +19,7 @@ class AsyncActionMethodProjection extends MethodProjection {
   $methodHeader {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<void>();
-    $parametersPreamble
-
     ${ffiCall(freeRetValOnFailure: true)}
-
-    $parametersPostamble
 
     final asyncAction = IAsyncAction.fromRawPointer(retValuePtr);
     completeAsyncAction(asyncAction, completer);
@@ -109,11 +105,7 @@ mixin _AsyncOperationMixin on MethodProjection {
   $methodHeader {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<$completerTypeArg>();
-    $parametersPreamble
-
     ${ffiCall(freeRetValOnFailure: true)}
-
-    $parametersPostamble
 
     final asyncOperation = IAsyncOperation<$asyncOperationTypeArg>
             .fromRawPointer(retValuePtr$asyncOperationConstructorArgs);

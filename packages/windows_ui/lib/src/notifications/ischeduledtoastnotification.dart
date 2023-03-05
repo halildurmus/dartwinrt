@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -109,10 +108,7 @@ class IScheduledToastNotification extends IInspectable {
 
     final reference = IReference<Duration?>.fromRawPointer(retValuePtr,
         referenceIid: '{604d0c4c-91de-5c2a-935f-362f13eaf800}');
-    final value = reference.value;
-    reference.release();
-
-    return value;
+    return reference.value;
   }
 
   int get maximumSnoozeCount {

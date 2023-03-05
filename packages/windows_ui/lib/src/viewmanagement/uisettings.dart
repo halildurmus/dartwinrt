@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -43,7 +42,6 @@ class UISettings extends IInspectable
 
   static const _className = 'Windows.UI.ViewManagement.UISettings';
 
-  // IUISettings methods
   late final _iUISettings = IUISettings.from(this);
 
   @override
@@ -86,7 +84,6 @@ class UISettings extends IInspectable
   Color uiElementColor(UIElementType desiredElement) =>
       _iUISettings.uiElementColor(desiredElement);
 
-  // IUISettings2 methods
   late final _iUISettings2 = IUISettings2.from(this);
 
   @override
@@ -100,7 +97,6 @@ class UISettings extends IInspectable
   void remove_TextScaleFactorChanged(int cookie) =>
       _iUISettings2.remove_TextScaleFactorChanged(cookie);
 
-  // IUISettings3 methods
   late final _iUISettings3 = IUISettings3.from(this);
 
   @override
@@ -115,7 +111,6 @@ class UISettings extends IInspectable
   void remove_ColorValuesChanged(int cookie) =>
       _iUISettings3.remove_ColorValuesChanged(cookie);
 
-  // IUISettings4 methods
   late final _iUISettings4 = IUISettings4.from(this);
 
   @override
@@ -129,7 +124,6 @@ class UISettings extends IInspectable
   void remove_AdvancedEffectsEnabledChanged(int cookie) =>
       _iUISettings4.remove_AdvancedEffectsEnabledChanged(cookie);
 
-  // IUISettings5 methods
   late final _iUISettings5 = IUISettings5.from(this);
 
   @override
@@ -143,7 +137,6 @@ class UISettings extends IInspectable
   void remove_AutoHideScrollBarsChanged(int token) =>
       _iUISettings5.remove_AutoHideScrollBarsChanged(token);
 
-  // IUISettings6 methods
   late final _iUISettings6 = IUISettings6.from(this);
 
   @override

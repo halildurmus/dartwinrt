@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -26,7 +25,6 @@ class MediaPropertySet extends IInspectable
 
   static const _className = 'Windows.Media.MediaProperties.MediaPropertySet';
 
-  // IMap<Guid, Object?> methods
   late final _iMap = IMap<Guid, Object?>.fromRawPointer(
       toInterface('{5ee3189c-7dbf-5998-ad07-5414fb82567c}'),
       iterableIid: '{f3b20528-e3b3-5331-b2d0-0c2623aee785}');

@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -27,7 +26,6 @@ class DeviceInformationUpdate extends IInspectable
     implements IDeviceInformationUpdate, IDeviceInformationUpdate2 {
   DeviceInformationUpdate.fromRawPointer(super.ptr);
 
-  // IDeviceInformationUpdate methods
   late final _iDeviceInformationUpdate = IDeviceInformationUpdate.from(this);
 
   @override
@@ -36,7 +34,6 @@ class DeviceInformationUpdate extends IInspectable
   @override
   Map<String, Object?> get properties => _iDeviceInformationUpdate.properties;
 
-  // IDeviceInformationUpdate2 methods
   late final _iDeviceInformationUpdate2 = IDeviceInformationUpdate2.from(this);
 
   @override

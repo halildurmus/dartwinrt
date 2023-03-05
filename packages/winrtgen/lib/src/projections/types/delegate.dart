@@ -12,11 +12,7 @@ mixin _DelegateMixin on MethodProjection {
   String get methodDeclaration => '''
   $methodHeader {
     final retValuePtr = calloc<COMObject>();
-    $parametersPreamble
-
     ${ffiCall(freeRetValOnFailure: true)}
-
-    $parametersPostamble
 
     return retValuePtr;
   }
@@ -41,7 +37,7 @@ class DelegateSetterProjection extends SetterProjection {
   @override
   String get methodDeclaration => '''
   $methodHeader {
-    ${ffiCall(params: 'value.ref.lpVtbl')}
+    ${ffiCall(identifier: 'value.ref.lpVtbl')}
   }
 ''';
 }

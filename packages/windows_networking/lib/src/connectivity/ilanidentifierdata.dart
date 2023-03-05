@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -75,9 +74,6 @@ class ILanIdentifierData extends IInspectable {
     final vectorView = IVectorView<int>.fromRawPointer(retValuePtr,
         iterableIid: '{88318266-f3fd-50fc-8f08-b823a41b60c1}',
         intType: IntType.uint8);
-    final list = vectorView.toList();
-    vectorView.release();
-
-    return list;
+    return vectorView.toList();
   }
 }

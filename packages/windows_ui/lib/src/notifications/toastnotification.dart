@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -42,21 +41,11 @@ class ToastNotification extends IInspectable
 
   static const _className = 'Windows.UI.Notifications.ToastNotification';
 
-  // IToastNotificationFactory methods
-  factory ToastNotification.createToastNotification(XmlDocument content) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IToastNotificationFactory);
-    final object =
-        IToastNotificationFactory.fromRawPointer(activationFactoryPtr);
+  factory ToastNotification.createToastNotification(XmlDocument content) =>
+      createActivationFactory(IToastNotificationFactory.fromRawPointer,
+              _className, IID_IToastNotificationFactory)
+          .createToastNotification(content);
 
-    try {
-      return object.createToastNotification(content);
-    } finally {
-      object.release();
-    }
-  }
-
-  // IToastNotification methods
   late final _iToastNotification = IToastNotification.from(this);
 
   @override
@@ -92,7 +81,6 @@ class ToastNotification extends IInspectable
   @override
   void remove_Failed(int token) => _iToastNotification.remove_Failed(token);
 
-  // IToastNotification2 methods
   late final _iToastNotification2 = IToastNotification2.from(this);
 
   @override
@@ -113,7 +101,6 @@ class ToastNotification extends IInspectable
   @override
   bool get suppressPopup => _iToastNotification2.suppressPopup;
 
-  // IToastNotification3 methods
   late final _iToastNotification3 = IToastNotification3.from(this);
 
   @override
@@ -130,7 +117,6 @@ class ToastNotification extends IInspectable
   @override
   set remoteId(String value) => _iToastNotification3.remoteId = value;
 
-  // IToastNotification4 methods
   late final _iToastNotification4 = IToastNotification4.from(this);
 
   @override
@@ -146,7 +132,6 @@ class ToastNotification extends IInspectable
   set priority(ToastNotificationPriority value) =>
       _iToastNotification4.priority = value;
 
-  // IToastNotification6 methods
   late final _iToastNotification6 = IToastNotification6.from(this);
 
   @override

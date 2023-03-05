@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -50,10 +49,7 @@ class IProxyConfiguration extends IInspectable {
 
     final vectorView = IVectorView<Uri>.fromRawPointer(retValuePtr,
         iterableIid: '{b0d63b78-78ad-5e31-b6d8-e32a0e16c447}');
-    final list = vectorView.toList();
-    vectorView.release();
-
-    return list;
+    return vectorView.toList();
   }
 
   bool get canConnectDirectly {

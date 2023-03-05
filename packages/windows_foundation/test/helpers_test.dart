@@ -8,7 +8,8 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 import 'package:test/test.dart';
-import 'package:win32/win32.dart';
+import 'package:win32/win32.dart' hide IUnknown;
+import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
 // Test the WinRT helper functions to make sure everything is working correctly.
@@ -21,9 +22,7 @@ void main() {
 
   test('isNull', () {
     final ptr = calloc<COMObject>();
-
     expect(ptr.ref.isNull, isTrue);
-
     free(ptr);
   });
 
@@ -34,36 +33,33 @@ void main() {
       '{1e036276-2f60-55f6-b7f3-f86079e6900b}', // IObservableMap<String, String>
       '{00000038-0000-0000-c000-000000000046}' // IWeakReferenceSource
     ];
-
     final stringMap = StringMap();
     expect(getInterfaces(stringMap), equals(iids));
-
-    stringMap.release();
   });
 
   test('getClassName', () {
     const stringMapClassName = 'Windows.Foundation.Collections.StringMap';
-
     final stringMap = StringMap();
     expect(getClassName(stringMap), equals(stringMapClassName));
-
-    stringMap.release();
   });
 
   test('getTrustLevel of base trust class', () {
     final stringMap = StringMap();
     expect(getTrustLevel(stringMap), equals(TrustLevel.baseTrust));
-
-    stringMap.release();
   });
 
   test('getTrustLevel of partial trust class', () {
     const className = 'Windows.Storage.Pickers.FileOpenPicker';
+    final inspectable = IInspectable(activateClass(className));
+    expect(getTrustLevel(inspectable), equals(TrustLevel.partialTrust));
+  });
 
-    final object = createObject(className, IID_IInspectable);
-    final inspectableObject = IInspectable(object);
-    expect(getTrustLevel(inspectableObject), equals(TrustLevel.partialTrust));
-
-    inspectableObject.release();
+  test('refCount', () {
+    final propertySet = PropertySet()..detach();
+    expect(refCount(propertySet), 1);
+    propertySet.addRef();
+    expect(refCount(propertySet), 2);
+    propertySet.release();
+    expect(refCount(propertySet), 1);
   });
 }

@@ -92,11 +92,7 @@ mixin _ObjectMixin on MethodProjection {
   String get methodDeclaration => '''
   $methodHeader {
     final retValuePtr = calloc<COMObject>();
-    $parametersPreamble
-
     ${ffiCall(freeRetValOnFailure: true)}
-
-    $parametersPostamble
 
     $nullCheck
 
@@ -146,14 +142,12 @@ mixin _ObjectListMixin on MethodProjection {
   $methodHeader {
     final pValueSize = calloc<Uint32>();
     final retValuePtr = calloc<Pointer<COMObject>>();
-    $parametersPreamble
 
     try {
       ${ffiCall()}
 
       $returnStatement
     } finally {
-      $parametersPostamble
       free(pValueSize);
       free(retValuePtr);
     }
@@ -180,13 +174,13 @@ class ObjectSetterProjection extends SetterProjection with _ObjectMixin {
   ObjectSetterProjection(super.method, super.vtableOffset);
 
   String get identifier => param.typeProjection.isObjectType
-      ? 'value?.intoBox().ref.lpVtbl ?? nullptr'
+      ? 'value?.intoBox().ptr.ref.lpVtbl ?? nullptr'
       : 'value == null ? nullptr : value.ptr.ref.lpVtbl';
 
   @override
   String get methodDeclaration => '''
   $methodHeader {
-    ${ffiCall(params: identifier)}
+    ${ffiCall(identifier: identifier)}
   }
 ''';
 }
@@ -216,12 +210,13 @@ class ObjectParameterProjection extends ParameterProjection {
 
   @override
   String get preamble {
+    if (typeProjection.isReferenceType || typeProjection.isSimpleArray) {
+      return '';
+    }
+
     final String expression;
     if (typeProjection.isObjectType) {
-      expression = '$identifier?.intoBox().ref.lpVtbl ?? nullptr';
-    } else if (typeProjection.isReferenceType || typeProjection.isSimpleArray) {
-      expression =
-          type == 'Pointer<COMObject>' ? identifier : '$identifier.ptr';
+      expression = '$identifier?.intoBox().ptr.ref.lpVtbl ?? nullptr';
     } else if (type.startsWith('IIterable<')) {
       final iid = typeProjection.typeIdentifier.iid;
       final nullCheck = isNullable ? '$identifier == null ? nullptr : ' : '';
@@ -237,16 +232,13 @@ class ObjectParameterProjection extends ParameterProjection {
   }
 
   @override
-  String get postamble {
-    if (type.startsWith('IIterable<')) {
-      return isNullable ? '$identifier?.release();' : '$identifier.release();';
+  String get localIdentifier {
+    if (typeProjection.isReferenceType || typeProjection.isSimpleArray) {
+      return type == 'Pointer<COMObject>' ? identifier : '$identifier.ptr';
     }
 
-    return '';
+    return '${name}Ptr';
   }
-
-  @override
-  String get localIdentifier => '${name}Ptr';
 }
 
 /// Parameter projection for `List<T extends IInspectable>` or `List<Object?>`
@@ -271,7 +263,7 @@ class ObjectListParameterProjection extends DefaultListParameterProjection {
     final pArray = calloc<COMObject>(value.length);
     for (var i = 0; i < value.length; i++) {''',
       if (typeArgProjection.isObjectType)
-        'pArray[i] = value.elementAt(i)?.intoBox().ref ?? PropertyValue.createEmpty().ref;'
+        'pArray[i] = value.elementAt(i)?.intoBox().ptr.ref ?? PropertyValue.createEmpty().ref;'
       else
         'pArray[i] = value.elementAt(i).ptr.ref;',
       '}'

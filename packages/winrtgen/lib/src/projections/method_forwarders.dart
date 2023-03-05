@@ -259,7 +259,6 @@ class MethodForwardersProjection {
   String toString() {
     if (methodProjections.isEmpty) return '';
     return '''
-  // ${interface.shortName} methods
   late final $fieldIdentifier = $interfaceInstantiation
 
   ${methods.join('\n')}

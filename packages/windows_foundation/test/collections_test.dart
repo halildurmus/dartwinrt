@@ -250,10 +250,6 @@ void main() {
       expect(iterator.current.value, equals('icalendar'));
       expect(iterator.moveNext(), isFalse);
     });
-
-    tearDown(() {
-      map.release();
-    });
   });
 
   group('IMap<String, Object?> (ValueSet)', () {
@@ -477,10 +473,6 @@ void main() {
       expect(iterator.current.value, equals('icalendar'));
       expect(iterator.moveNext(), isFalse);
     });
-
-    tearDown(() {
-      map.release();
-    });
   });
 
   group('IMap<String, String> (StringMap)', () {
@@ -583,14 +575,17 @@ void main() {
     test('first', () {
       final iterator = map.first();
       expect(iterator.hasCurrent, isTrue);
-      expect(iterator.current.key, equals('key3'));
-      expect(iterator.current.value, equals('value3'));
+      var current = iterator.current;
+      expect(current.key, equals('key3'));
+      expect(current.value, equals('value3'));
       expect(iterator.moveNext(), isTrue);
-      expect(iterator.current.key, equals('key2'));
-      expect(iterator.current.value, isEmpty);
+      current = iterator.current;
+      expect(current.key, equals('key2'));
+      expect(current.value, isEmpty);
       expect(iterator.moveNext(), isTrue);
-      expect(iterator.current.key, equals('key1'));
-      expect(iterator.current.value, equals('value1'));
+      current = iterator.current;
+      expect(current.key, equals('key1'));
+      expect(current.value, equals('value1'));
       expect(iterator.moveNext(), isFalse);
     });
   });
@@ -707,10 +702,10 @@ void main() {
     setUp(() {
       // ignore: constant_identifier_names
       const IID_IVpnPlugInProfile = '{0EDF0DA4-4F00-4589-8D7B-4BF988F6542C}';
-      final object = createObject(
+      final object = createObject(IInspectable.new,
           'Windows.Networking.Vpn.VpnPlugInProfile', IID_IVpnPlugInProfile);
       allocator = Arena();
-      vector = getServerUris(object);
+      vector = getServerUris(object.ptr);
     });
 
     test('getAt fails if the vector is empty', () {

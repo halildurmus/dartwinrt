@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -33,7 +32,6 @@ class XmlElement extends IInspectable
     implements IXmlElement, IXmlNode, IXmlNodeSerializer, IXmlNodeSelector {
   XmlElement.fromRawPointer(super.ptr);
 
-  // IXmlElement methods
   late final _iXmlElement = IXmlElement.from(this);
 
   @override
@@ -88,7 +86,6 @@ class XmlElement extends IInspectable
   XmlAttribute? getAttributeNodeNS(Object? namespaceUri, String localName) =>
       _iXmlElement.getAttributeNodeNS(namespaceUri, localName);
 
-  // IXmlNode methods
   late final _iXmlNode = IXmlNode.from(this);
 
   @override
@@ -163,7 +160,6 @@ class XmlElement extends IInspectable
   @override
   set prefix(Object? value) => _iXmlNode.prefix = value;
 
-  // IXmlNodeSerializer methods
   late final _iXmlNodeSerializer = IXmlNodeSerializer.from(this);
 
   @override
@@ -175,7 +171,6 @@ class XmlElement extends IInspectable
   @override
   set innerText(String value) => _iXmlNodeSerializer.innerText = value;
 
-  // IXmlNodeSelector methods
   late final _iXmlNodeSelector = IXmlNodeSelector.from(this);
 
   @override

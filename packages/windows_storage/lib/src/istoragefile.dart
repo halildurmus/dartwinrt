@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -222,12 +221,12 @@ class IStorageFile extends IInspectable
         desiredNewNameHString,
         retValuePtr);
 
+    WindowsDeleteString(desiredNewNameHString);
+
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
-
-    WindowsDeleteString(desiredNewNameHString);
 
     final asyncOperation = IAsyncOperation<StorageFile?>.fromRawPointer(
         retValuePtr,
@@ -267,12 +266,12 @@ class IStorageFile extends IInspectable
                     Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl,
         destinationFolderPtr, desiredNewNameHString, option.value, retValuePtr);
 
+    WindowsDeleteString(desiredNewNameHString);
+
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
-
-    WindowsDeleteString(desiredNewNameHString);
 
     final asyncOperation = IAsyncOperation<StorageFile?>.fromRawPointer(
         retValuePtr,
@@ -374,12 +373,12 @@ class IStorageFile extends IInspectable
         desiredNewNameHString,
         retValuePtr);
 
+    WindowsDeleteString(desiredNewNameHString);
+
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
-
-    WindowsDeleteString(desiredNewNameHString);
 
     final asyncAction = IAsyncAction.fromRawPointer(retValuePtr);
     completeAsyncAction(asyncAction, completer);
@@ -416,12 +415,12 @@ class IStorageFile extends IInspectable
                     Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl,
         destinationFolderPtr, desiredNewNameHString, option.value, retValuePtr);
 
+    WindowsDeleteString(desiredNewNameHString);
+
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
-
-    WindowsDeleteString(desiredNewNameHString);
 
     final asyncAction = IAsyncAction.fromRawPointer(retValuePtr);
     completeAsyncAction(asyncAction, completer);
@@ -459,7 +458,6 @@ class IStorageFile extends IInspectable
     return completer.future;
   }
 
-  // IStorageItem methods
   late final _iStorageItem = IStorageItem.from(this);
 
   @override
@@ -497,7 +495,6 @@ class IStorageFile extends IInspectable
   @override
   bool isOfType(StorageItemTypes type) => _iStorageItem.isOfType(type);
 
-  // IRandomAccessStreamReference methods
   late final _iRandomAccessStreamReference =
       IRandomAccessStreamReference.from(this);
 
@@ -505,7 +502,6 @@ class IStorageFile extends IInspectable
   Future<IRandomAccessStreamWithContentType?> openReadAsync() =>
       _iRandomAccessStreamReference.openReadAsync();
 
-  // IInputStreamReference methods
   late final _iInputStreamReference = IInputStreamReference.from(this);
 
   @override

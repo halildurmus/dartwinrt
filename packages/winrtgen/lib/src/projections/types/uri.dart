@@ -55,21 +55,15 @@ mixin _UriMixin on MethodProjection {
 
     return '''
     final winrtUri = retValuePtr.toWinRTUri();
-    final dartUri = winrtUri.toDartUri();
-    winrtUri.release();
-
-    return dartUri;''';
+    return winrtUri.toDartUri();''';
   }
 
   @override
   String get methodDeclaration => '''
   $methodHeader {
     final retValuePtr = calloc<COMObject>();
-    $parametersPreamble
 
     ${ffiCall(freeRetValOnFailure: true)}
-
-    $parametersPostamble
 
     $nullCheck
 
@@ -97,7 +91,6 @@ mixin _UriListMixin on MethodProjection {
   $methodHeader {
     final pValueSize = calloc<Uint32>();
     final retValuePtr = calloc<Pointer<COMObject>>();
-    $parametersPreamble
 
     try {
       ${ffiCall()}
@@ -106,7 +99,6 @@ mixin _UriListMixin on MethodProjection {
         .toList(winrt_uri.Uri.fromRawPointer, length: pValueSize.value)
         .map((winrtUri) => Uri.parse(winrtUri.toString()));
     } finally {
-      $parametersPostamble
       free(pValueSize);
       free(retValuePtr);
     }
@@ -132,12 +124,7 @@ class UriSetterProjection extends SetterProjection {
   String get methodDeclaration => '''
   $methodHeader {
     final winrtUri = value?.toWinRTUri();
-
-    try {
-      ${ffiCall(params: 'winrtUri == null ? nullptr : winrtUri.ptr.ref.lpVtbl')}
-    } finally {
-      winrtUri?.release();
-    }
+    ${ffiCall(identifier: 'winrtUri == null ? nullptr : winrtUri.ptr.ref.lpVtbl')}
   }
 ''';
 }
@@ -161,12 +148,6 @@ class UriParameterProjection extends ParameterProjection {
     final expression =
         isNullable ? '$identifier?.toWinRTUri()' : '$identifier.toWinRTUri()';
     return 'final ${name}Uri = $expression;';
-  }
-
-  @override
-  String get postamble {
-    if (_methodBelongsToUriRuntimeClass(method)) return '';
-    return isNullable ? '${name}Uri?.release();' : '${name}Uri.release();';
   }
 
   @override

@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -61,7 +60,7 @@ class IStorageFolderQueryResult extends IInspectable
 
     final asyncOperation =
         IAsyncOperation<IVectorView<StorageFolder>>.fromRawPointer(retValuePtr,
-            creator: (Pointer<COMObject> ptr) => IVectorView.fromRawPointer(ptr,
+            creator: (ptr) => IVectorView.fromRawPointer(ptr,
                 creator: StorageFolder.fromRawPointer,
                 iterableIid: '{4669befc-ae5c-52b1-8a97-5466ce61e94e}'));
     completeAsyncOperation(
@@ -93,7 +92,7 @@ class IStorageFolderQueryResult extends IInspectable
 
     final asyncOperation =
         IAsyncOperation<IVectorView<StorageFolder>>.fromRawPointer(retValuePtr,
-            creator: (Pointer<COMObject> ptr) => IVectorView.fromRawPointer(ptr,
+            creator: (ptr) => IVectorView.fromRawPointer(ptr,
                 creator: StorageFolder.fromRawPointer,
                 iterableIid: '{4669befc-ae5c-52b1-8a97-5466ce61e94e}'));
     completeAsyncOperation(
@@ -102,7 +101,6 @@ class IStorageFolderQueryResult extends IInspectable
     return completer.future;
   }
 
-  // IStorageQueryResultBase methods
   late final _iStorageQueryResultBase = IStorageQueryResultBase.from(this);
 
   @override

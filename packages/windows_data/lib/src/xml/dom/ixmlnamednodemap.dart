@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -101,12 +100,12 @@ class IXmlNamedNodeMap extends IInspectable
                     LPVTBL lpVtbl, int name, Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, nameHString, retValuePtr);
 
+    WindowsDeleteString(nameHString);
+
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
-
-    WindowsDeleteString(nameHString);
 
     if (retValuePtr.ref.isNull) {
       free(retValuePtr);
@@ -163,12 +162,12 @@ class IXmlNamedNodeMap extends IInspectable
                     LPVTBL lpVtbl, int name, Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, nameHString, retValuePtr);
 
+    WindowsDeleteString(nameHString);
+
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
-
-    WindowsDeleteString(nameHString);
 
     if (retValuePtr.ref.isNull) {
       free(retValuePtr);
@@ -180,7 +179,7 @@ class IXmlNamedNodeMap extends IInspectable
 
   IXmlNode? getNamedItemNS(Object? namespaceUri, String name) {
     final retValuePtr = calloc<COMObject>();
-    final namespaceUriPtr = namespaceUri?.intoBox().ref.lpVtbl ?? nullptr;
+    final namespaceUriPtr = namespaceUri?.intoBox().ptr.ref.lpVtbl ?? nullptr;
     final nameHString = name.toHString();
 
     final hr = ptr.ref.vtable
@@ -196,12 +195,12 @@ class IXmlNamedNodeMap extends IInspectable
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, namespaceUriPtr, nameHString, retValuePtr);
 
+    WindowsDeleteString(nameHString);
+
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
-
-    WindowsDeleteString(nameHString);
 
     if (retValuePtr.ref.isNull) {
       free(retValuePtr);
@@ -213,7 +212,7 @@ class IXmlNamedNodeMap extends IInspectable
 
   IXmlNode? removeNamedItemNS(Object? namespaceUri, String name) {
     final retValuePtr = calloc<COMObject>();
-    final namespaceUriPtr = namespaceUri?.intoBox().ref.lpVtbl ?? nullptr;
+    final namespaceUriPtr = namespaceUri?.intoBox().ptr.ref.lpVtbl ?? nullptr;
     final nameHString = name.toHString();
 
     final hr = ptr.ref.vtable
@@ -229,12 +228,12 @@ class IXmlNamedNodeMap extends IInspectable
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, namespaceUriPtr, nameHString, retValuePtr);
 
+    WindowsDeleteString(nameHString);
+
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
-
-    WindowsDeleteString(nameHString);
 
     if (retValuePtr.ref.isNull) {
       free(retValuePtr);
@@ -274,7 +273,6 @@ class IXmlNamedNodeMap extends IInspectable
     return IXmlNode.fromRawPointer(retValuePtr);
   }
 
-  // IVectorView<IXmlNode> methods
   late final _iVectorView = IVectorView<IXmlNode>.fromRawPointer(
       toInterface('{139d959e-e7b5-5cb6-a596-4b544478da9b}'),
       creator: IXmlNode.fromRawPointer,

@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -70,10 +69,7 @@ class IConnectionProfileFilter2 extends IInspectable {
 
     final reference = IReference<bool?>.fromRawPointer(retValuePtr,
         referenceIid: '{3c00fd60-2950-5939-a21a-2d12c5a01b8a}');
-    final value = reference.value;
-    reference.release();
-
-    return value;
+    return reference.value;
   }
 
   set isOverDataLimit(bool? value) {
@@ -117,10 +113,7 @@ class IConnectionProfileFilter2 extends IInspectable {
 
     final reference = IReference<bool?>.fromRawPointer(retValuePtr,
         referenceIid: '{3c00fd60-2950-5939-a21a-2d12c5a01b8a}');
-    final value = reference.value;
-    reference.release();
-
-    return value;
+    return reference.value;
   }
 
   set isBackgroundDataUsageRestricted(bool? value) {
@@ -164,10 +157,7 @@ class IConnectionProfileFilter2 extends IInspectable {
 
     final reference = IReference<bool?>.fromRawPointer(retValuePtr,
         referenceIid: '{3c00fd60-2950-5939-a21a-2d12c5a01b8a}');
-    final value = reference.value;
-    reference.release();
-
-    return value;
+    return reference.value;
   }
 
   IBuffer? get rawData {

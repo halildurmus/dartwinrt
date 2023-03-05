@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -56,58 +55,28 @@ class XmlDocument extends IInspectable
 
   static const _className = 'Windows.Data.Xml.Dom.XmlDocument';
 
-  // IXmlDocumentStatics methods
-  static Future<XmlDocument?> loadFromUriAsync(Uri? uri) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IXmlDocumentStatics);
-    final object = IXmlDocumentStatics.fromRawPointer(activationFactoryPtr);
-
-    try {
-      return object.loadFromUriAsync(uri);
-    } finally {
-      object.release();
-    }
-  }
+  static Future<XmlDocument?> loadFromUriAsync(Uri? uri) =>
+      createActivationFactory(IXmlDocumentStatics.fromRawPointer, _className,
+              IID_IXmlDocumentStatics)
+          .loadFromUriAsync(uri);
 
   static Future<XmlDocument?> loadFromUriWithSettingsAsync(
-      Uri? uri, XmlLoadSettings? loadSettings) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IXmlDocumentStatics);
-    final object = IXmlDocumentStatics.fromRawPointer(activationFactoryPtr);
+          Uri? uri, XmlLoadSettings? loadSettings) =>
+      createActivationFactory(IXmlDocumentStatics.fromRawPointer, _className,
+              IID_IXmlDocumentStatics)
+          .loadFromUriWithSettingsAsync(uri, loadSettings);
 
-    try {
-      return object.loadFromUriWithSettingsAsync(uri, loadSettings);
-    } finally {
-      object.release();
-    }
-  }
-
-  static Future<XmlDocument?> loadFromFileAsync(IStorageFile? file) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IXmlDocumentStatics);
-    final object = IXmlDocumentStatics.fromRawPointer(activationFactoryPtr);
-
-    try {
-      return object.loadFromFileAsync(file);
-    } finally {
-      object.release();
-    }
-  }
+  static Future<XmlDocument?> loadFromFileAsync(IStorageFile? file) =>
+      createActivationFactory(IXmlDocumentStatics.fromRawPointer, _className,
+              IID_IXmlDocumentStatics)
+          .loadFromFileAsync(file);
 
   static Future<XmlDocument?> loadFromFileWithSettingsAsync(
-      IStorageFile? file, XmlLoadSettings? loadSettings) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IXmlDocumentStatics);
-    final object = IXmlDocumentStatics.fromRawPointer(activationFactoryPtr);
+          IStorageFile? file, XmlLoadSettings? loadSettings) =>
+      createActivationFactory(IXmlDocumentStatics.fromRawPointer, _className,
+              IID_IXmlDocumentStatics)
+          .loadFromFileWithSettingsAsync(file, loadSettings);
 
-    try {
-      return object.loadFromFileWithSettingsAsync(file, loadSettings);
-    } finally {
-      object.release();
-    }
-  }
-
-  // IXmlDocument methods
   late final _iXmlDocument = IXmlDocument.from(this);
 
   @override
@@ -173,7 +142,6 @@ class XmlDocument extends IInspectable
   IXmlNode? importNode(IXmlNode? node, bool deep) =>
       _iXmlDocument.importNode(node, deep);
 
-  // IXmlNode methods
   late final _iXmlNode = IXmlNode.from(this);
 
   @override
@@ -248,7 +216,6 @@ class XmlDocument extends IInspectable
   @override
   set prefix(Object? value) => _iXmlNode.prefix = value;
 
-  // IXmlNodeSerializer methods
   late final _iXmlNodeSerializer = IXmlNodeSerializer.from(this);
 
   @override
@@ -260,7 +227,6 @@ class XmlDocument extends IInspectable
   @override
   set innerText(String value) => _iXmlNodeSerializer.innerText = value;
 
-  // IXmlNodeSelector methods
   late final _iXmlNodeSelector = IXmlNodeSelector.from(this);
 
   @override
@@ -279,7 +245,6 @@ class XmlDocument extends IInspectable
   XmlNodeList? selectNodesNS(String xpath, Object? namespaces) =>
       _iXmlNodeSelector.selectNodesNS(xpath, namespaces);
 
-  // IXmlDocumentIO methods
   late final _iXmlDocumentIO = IXmlDocumentIO.from(this);
 
   @override
@@ -293,7 +258,6 @@ class XmlDocument extends IInspectable
   Future<void> saveToFileAsync(IStorageFile? file) =>
       _iXmlDocumentIO.saveToFileAsync(file);
 
-  // IXmlDocumentIO2 methods
   late final _iXmlDocumentIO2 = IXmlDocumentIO2.from(this);
 
   @override

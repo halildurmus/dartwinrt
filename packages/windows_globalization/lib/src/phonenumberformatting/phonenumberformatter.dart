@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -32,62 +31,27 @@ class PhoneNumberFormatter extends IInspectable
   static const _className =
       'Windows.Globalization.PhoneNumberFormatting.PhoneNumberFormatter';
 
-  // IPhoneNumberFormatterStatics methods
-  static void tryCreate(String regionCode, PhoneNumberFormatter phoneNumber) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IPhoneNumberFormatterStatics);
-    final object =
-        IPhoneNumberFormatterStatics.fromRawPointer(activationFactoryPtr);
+  static void tryCreate(String regionCode, PhoneNumberFormatter phoneNumber) =>
+      createActivationFactory(IPhoneNumberFormatterStatics.fromRawPointer,
+              _className, IID_IPhoneNumberFormatterStatics)
+          .tryCreate(regionCode, phoneNumber);
 
-    try {
-      return object.tryCreate(regionCode, phoneNumber);
-    } finally {
-      object.release();
-    }
-  }
-
-  static int getCountryCodeForRegion(String regionCode) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IPhoneNumberFormatterStatics);
-    final object =
-        IPhoneNumberFormatterStatics.fromRawPointer(activationFactoryPtr);
-
-    try {
-      return object.getCountryCodeForRegion(regionCode);
-    } finally {
-      object.release();
-    }
-  }
+  static int getCountryCodeForRegion(String regionCode) =>
+      createActivationFactory(IPhoneNumberFormatterStatics.fromRawPointer,
+              _className, IID_IPhoneNumberFormatterStatics)
+          .getCountryCodeForRegion(regionCode);
 
   static String getNationalDirectDialingPrefixForRegion(
-      String regionCode, bool stripNonDigit) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IPhoneNumberFormatterStatics);
-    final object =
-        IPhoneNumberFormatterStatics.fromRawPointer(activationFactoryPtr);
+          String regionCode, bool stripNonDigit) =>
+      createActivationFactory(IPhoneNumberFormatterStatics.fromRawPointer,
+              _className, IID_IPhoneNumberFormatterStatics)
+          .getNationalDirectDialingPrefixForRegion(regionCode, stripNonDigit);
 
-    try {
-      return object.getNationalDirectDialingPrefixForRegion(
-          regionCode, stripNonDigit);
-    } finally {
-      object.release();
-    }
-  }
+  static String wrapWithLeftToRightMarkers(String number) =>
+      createActivationFactory(IPhoneNumberFormatterStatics.fromRawPointer,
+              _className, IID_IPhoneNumberFormatterStatics)
+          .wrapWithLeftToRightMarkers(number);
 
-  static String wrapWithLeftToRightMarkers(String number) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IPhoneNumberFormatterStatics);
-    final object =
-        IPhoneNumberFormatterStatics.fromRawPointer(activationFactoryPtr);
-
-    try {
-      return object.wrapWithLeftToRightMarkers(number);
-    } finally {
-      object.release();
-    }
-  }
-
-  // IPhoneNumberFormatter methods
   late final _iPhoneNumberFormatter = IPhoneNumberFormatter.from(this);
 
   @override

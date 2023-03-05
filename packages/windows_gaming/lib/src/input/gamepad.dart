@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -43,81 +42,33 @@ class Gamepad extends IInspectable
 
   static const _className = 'Windows.Gaming.Input.Gamepad';
 
-  // IGamepadStatics methods
-  static int add_GamepadAdded(Pointer<COMObject> value) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IGamepadStatics);
-    final object = IGamepadStatics.fromRawPointer(activationFactoryPtr);
+  static int add_GamepadAdded(Pointer<COMObject> value) =>
+      createActivationFactory(
+              IGamepadStatics.fromRawPointer, _className, IID_IGamepadStatics)
+          .add_GamepadAdded(value);
 
-    try {
-      return object.add_GamepadAdded(value);
-    } finally {
-      object.release();
-    }
-  }
+  static void remove_GamepadAdded(int token) => createActivationFactory(
+          IGamepadStatics.fromRawPointer, _className, IID_IGamepadStatics)
+      .remove_GamepadAdded(token);
 
-  static void remove_GamepadAdded(int token) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IGamepadStatics);
-    final object = IGamepadStatics.fromRawPointer(activationFactoryPtr);
+  static int add_GamepadRemoved(Pointer<COMObject> value) =>
+      createActivationFactory(
+              IGamepadStatics.fromRawPointer, _className, IID_IGamepadStatics)
+          .add_GamepadRemoved(value);
 
-    try {
-      return object.remove_GamepadAdded(token);
-    } finally {
-      object.release();
-    }
-  }
+  static void remove_GamepadRemoved(int token) => createActivationFactory(
+          IGamepadStatics.fromRawPointer, _className, IID_IGamepadStatics)
+      .remove_GamepadRemoved(token);
 
-  static int add_GamepadRemoved(Pointer<COMObject> value) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IGamepadStatics);
-    final object = IGamepadStatics.fromRawPointer(activationFactoryPtr);
+  static List<Gamepad> get gamepads => createActivationFactory(
+          IGamepadStatics.fromRawPointer, _className, IID_IGamepadStatics)
+      .gamepads;
 
-    try {
-      return object.add_GamepadRemoved(value);
-    } finally {
-      object.release();
-    }
-  }
+  static Gamepad? fromGameController(IGameController? gameController) =>
+      createActivationFactory(
+              IGamepadStatics2.fromRawPointer, _className, IID_IGamepadStatics2)
+          .fromGameController(gameController);
 
-  static void remove_GamepadRemoved(int token) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IGamepadStatics);
-    final object = IGamepadStatics.fromRawPointer(activationFactoryPtr);
-
-    try {
-      return object.remove_GamepadRemoved(token);
-    } finally {
-      object.release();
-    }
-  }
-
-  static List<Gamepad> get gamepads {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IGamepadStatics);
-    final object = IGamepadStatics.fromRawPointer(activationFactoryPtr);
-
-    try {
-      return object.gamepads;
-    } finally {
-      object.release();
-    }
-  }
-
-  // IGamepadStatics2 methods
-  static Gamepad? fromGameController(IGameController? gameController) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IGamepadStatics2);
-    final object = IGamepadStatics2.fromRawPointer(activationFactoryPtr);
-
-    try {
-      return object.fromGameController(gameController);
-    } finally {
-      object.release();
-    }
-  }
-
-  // IGamepad methods
   late final _iGamepad = IGamepad.from(this);
 
   @override
@@ -129,7 +80,6 @@ class Gamepad extends IInspectable
   @override
   GamepadReading getCurrentReading() => _iGamepad.getCurrentReading();
 
-  // IGameController methods
   late final _iGameController = IGameController.from(this);
 
   @override
@@ -165,14 +115,12 @@ class Gamepad extends IInspectable
   @override
   User? get user => _iGameController.user;
 
-  // IGamepad2 methods
   late final _iGamepad2 = IGamepad2.from(this);
 
   @override
   GameControllerButtonLabel getButtonLabel(GamepadButtons button) =>
       _iGamepad2.getButtonLabel(button);
 
-  // IGameControllerBatteryInfo methods
   late final _iGameControllerBatteryInfo =
       IGameControllerBatteryInfo.from(this);
 

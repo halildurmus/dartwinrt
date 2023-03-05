@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -342,7 +341,7 @@ class IStorageFolderQueryOperations extends IInspectable {
     final asyncOperation =
         IAsyncOperation<IVectorView<StorageFile>>.fromRawPointer(
             retValuePtr,
-            creator: (Pointer<COMObject> ptr) => IVectorView.fromRawPointer(ptr,
+            creator: (ptr) => IVectorView.fromRawPointer(ptr,
                 creator: StorageFile.fromRawPointer,
                 iterableIid: '{9ac00304-83ea-5688-87b6-ae38aab65d0b}'));
     completeAsyncOperation(
@@ -377,7 +376,7 @@ class IStorageFolderQueryOperations extends IInspectable {
     final asyncOperation =
         IAsyncOperation<IVectorView<StorageFile>>.fromRawPointer(
             retValuePtr,
-            creator: (Pointer<COMObject> ptr) => IVectorView.fromRawPointer(ptr,
+            creator: (ptr) => IVectorView.fromRawPointer(ptr,
                 creator: StorageFile.fromRawPointer,
                 iterableIid: '{9ac00304-83ea-5688-87b6-ae38aab65d0b}'));
     completeAsyncOperation(
@@ -419,7 +418,7 @@ class IStorageFolderQueryOperations extends IInspectable {
 
     final asyncOperation =
         IAsyncOperation<IVectorView<StorageFolder>>.fromRawPointer(retValuePtr,
-            creator: (Pointer<COMObject> ptr) => IVectorView.fromRawPointer(ptr,
+            creator: (ptr) => IVectorView.fromRawPointer(ptr,
                 creator: StorageFolder.fromRawPointer,
                 iterableIid: '{4669befc-ae5c-52b1-8a97-5466ce61e94e}'));
     completeAsyncOperation(
@@ -453,7 +452,7 @@ class IStorageFolderQueryOperations extends IInspectable {
 
     final asyncOperation =
         IAsyncOperation<IVectorView<StorageFolder>>.fromRawPointer(retValuePtr,
-            creator: (Pointer<COMObject> ptr) => IVectorView.fromRawPointer(ptr,
+            creator: (ptr) => IVectorView.fromRawPointer(ptr,
                 creator: StorageFolder.fromRawPointer,
                 iterableIid: '{4669befc-ae5c-52b1-8a97-5466ce61e94e}'));
     completeAsyncOperation(
@@ -490,7 +489,7 @@ class IStorageFolderQueryOperations extends IInspectable {
 
     final asyncOperation =
         IAsyncOperation<IVectorView<IStorageItem>>.fromRawPointer(retValuePtr,
-            creator: (Pointer<COMObject> ptr) => IVectorView.fromRawPointer(ptr,
+            creator: (ptr) => IVectorView.fromRawPointer(ptr,
                 creator: IStorageItem.fromRawPointer,
                 iterableIid: '{bb8b8418-65d1-544b-b083-6d172f568c73}'));
     completeAsyncOperation(
@@ -501,10 +500,11 @@ class IStorageFolderQueryOperations extends IInspectable {
 
   bool areQueryOptionsSupported(QueryOptions? queryOptions) {
     final retValuePtr = calloc<Bool>();
-    final queryOptionsPtr =
-        queryOptions == null ? nullptr : queryOptions.ptr.ref.lpVtbl;
 
     try {
+      final queryOptionsPtr =
+          queryOptions == null ? nullptr : queryOptions.ptr.ref.lpVtbl;
+
       final hr = ptr.ref.vtable
               .elementAt(20)
               .cast<

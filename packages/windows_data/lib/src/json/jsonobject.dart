@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -41,32 +40,15 @@ class JsonObject extends IInspectable
 
   static const _className = 'Windows.Data.Json.JsonObject';
 
-  // IJsonObjectStatics methods
-  static JsonObject? parse(String input) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IJsonObjectStatics);
-    final object = IJsonObjectStatics.fromRawPointer(activationFactoryPtr);
+  static JsonObject? parse(String input) => createActivationFactory(
+          IJsonObjectStatics.fromRawPointer, _className, IID_IJsonObjectStatics)
+      .parse(input);
 
-    try {
-      return object.parse(input);
-    } finally {
-      object.release();
-    }
-  }
+  static bool tryParse(String input, JsonObject result) =>
+      createActivationFactory(IJsonObjectStatics.fromRawPointer, _className,
+              IID_IJsonObjectStatics)
+          .tryParse(input, result);
 
-  static bool tryParse(String input, JsonObject result) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IJsonObjectStatics);
-    final object = IJsonObjectStatics.fromRawPointer(activationFactoryPtr);
-
-    try {
-      return object.tryParse(input, result);
-    } finally {
-      object.release();
-    }
-  }
-
-  // IJsonObject methods
   late final _iJsonObject = IJsonObject.from(this);
 
   @override
@@ -91,7 +73,6 @@ class JsonObject extends IInspectable
   @override
   bool getNamedBoolean(String name) => _iJsonObject.getNamedBoolean(name);
 
-  // IJsonValue methods
   late final _iJsonValue = IJsonValue.from(this);
 
   @override
@@ -115,7 +96,6 @@ class JsonObject extends IInspectable
   @override
   JsonObject? getObject() => _iJsonValue.getObject();
 
-  // IMap<String, IJsonValue?> methods
   late final _iMap = IMap<String, IJsonValue?>.fromRawPointer(
       toInterface('{c9d9a725-786b-5113-b4b7-9b61764c220b}'),
       creator: IJsonValue.fromRawPointer,
@@ -149,7 +129,6 @@ class JsonObject extends IInspectable
   @override
   Map<String, IJsonValue?> toMap() => _iMap.toMap();
 
-  // IJsonObjectWithDefaultValues methods
   late final _iJsonObjectWithDefaultValues =
       IJsonObjectWithDefaultValues.from(this);
 
@@ -178,7 +157,6 @@ class JsonObject extends IInspectable
       _iJsonObjectWithDefaultValues.getNamedBooleanOrDefault(
           name, defaultValue);
 
-  // IStringable methods
   late final _iStringable = IStringable.from(this);
 
   @override

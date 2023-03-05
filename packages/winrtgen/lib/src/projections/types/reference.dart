@@ -58,20 +58,13 @@ mixin _ReferenceMixin on MethodProjection {
   String get methodDeclaration => '''
   $methodHeader {
     final retValuePtr = calloc<COMObject>();
-    $parametersPreamble
-
     ${ffiCall(freeRetValOnFailure: true)}
 
     $nullCheck
 
     final reference = IReference<$returnType>.fromRawPointer
         (retValuePtr$referenceConstructorArgs);
-    final value = reference.value;
-    reference.release();
-
-    $parametersPostamble
-
-    return value;
+    return reference.value;
   }
 ''';
 }
@@ -99,7 +92,7 @@ class ReferenceSetterProjection extends SetterProjection with _ReferenceMixin {
     final identifier = 'value?.toReference($arg).ptr.ref.lpVtbl ?? nullptr';
     return '''
   $methodHeader {
-    ${ffiCall(params: identifier)}
+    ${ffiCall(identifier: identifier)}
   }
 ''';
   }

@@ -10,9 +10,9 @@ import 'package:windows_storage/windows_storage.dart';
 
 void main() async {
   final picker = FileOpenPicker()
+    ..fileTypeFilter.append('*') // Allow all file types
     ..suggestedStartLocation = PickerLocationId.desktop
     ..viewMode = PickerViewMode.thumbnail;
-  final filters = picker.fileTypeFilter..append('*'); // Allow all file types
 
   final hwnd = GetConsoleWindow(); // Use GetShellWindow() for Flutter apps
   // Initialize the FileOpenPicker with the window handle (HWND).
@@ -31,7 +31,4 @@ void main() async {
   } else {
     print('No file is selected!');
   }
-
-  filters.release();
-  picker.release();
 }

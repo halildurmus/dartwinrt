@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -35,20 +34,12 @@ class FolderPicker extends IInspectable
 
   static const _className = 'Windows.Storage.Pickers.FolderPicker';
 
-  // IFolderPickerStatics methods
-  static FolderPicker? createForUser(User? user) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IFolderPickerStatics);
-    final object = IFolderPickerStatics.fromRawPointer(activationFactoryPtr);
+  static FolderPicker? createForUser(User? user) => createActivationFactory(
+          IFolderPickerStatics.fromRawPointer,
+          _className,
+          IID_IFolderPickerStatics)
+      .createForUser(user);
 
-    try {
-      return object.createForUser(user);
-    } finally {
-      object.release();
-    }
-  }
-
-  // IFolderPicker2 methods
   late final _iFolderPicker2 = IFolderPicker2.from(this);
 
   @override
@@ -58,7 +49,6 @@ class FolderPicker extends IInspectable
   @override
   void pickFolderAndContinue() => _iFolderPicker2.pickFolderAndContinue();
 
-  // IFolderPicker methods
   late final _iFolderPicker = IFolderPicker.from(this);
 
   @override
@@ -95,7 +85,6 @@ class FolderPicker extends IInspectable
   Future<StorageFolder?> pickSingleFolderAsync() =>
       _iFolderPicker.pickSingleFolderAsync();
 
-  // IFolderPicker3 methods
   late final _iFolderPicker3 = IFolderPicker3.from(this);
 
   @override

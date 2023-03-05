@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -37,7 +36,6 @@ class StorageFileQueryResult extends IInspectable
         IStorageFileQueryResult2 {
   StorageFileQueryResult.fromRawPointer(super.ptr);
 
-  // IStorageFileQueryResult methods
   late final _iStorageFileQueryResult = IStorageFileQueryResult.from(this);
 
   @override
@@ -49,7 +47,6 @@ class StorageFileQueryResult extends IInspectable
   Future<List<StorageFile>> getFilesAsyncDefaultStartAndCount() =>
       _iStorageFileQueryResult.getFilesAsyncDefaultStartAndCount();
 
-  // IStorageQueryResultBase methods
   late final _iStorageQueryResultBase = IStorageQueryResultBase.from(this);
 
   @override
@@ -87,7 +84,6 @@ class StorageFileQueryResult extends IInspectable
   void applyNewQueryOptions(QueryOptions? newQueryOptions) =>
       _iStorageQueryResultBase.applyNewQueryOptions(newQueryOptions);
 
-  // IStorageFileQueryResult2 methods
   late final _iStorageFileQueryResult2 = IStorageFileQueryResult2.from(this);
 
   @override

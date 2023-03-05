@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -147,12 +146,12 @@ class IXmlDocument extends IInspectable
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, tagNameHString, retValuePtr);
 
+    WindowsDeleteString(tagNameHString);
+
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
-
-    WindowsDeleteString(tagNameHString);
 
     if (retValuePtr.ref.isNull) {
       free(retValuePtr);
@@ -207,12 +206,12 @@ class IXmlDocument extends IInspectable
                     LPVTBL lpVtbl, int data, Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, dataHString, retValuePtr);
 
+    WindowsDeleteString(dataHString);
+
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
-
-    WindowsDeleteString(dataHString);
 
     if (retValuePtr.ref.isNull) {
       free(retValuePtr);
@@ -239,12 +238,12 @@ class IXmlDocument extends IInspectable
                     LPVTBL lpVtbl, int data, Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, dataHString, retValuePtr);
 
+    WindowsDeleteString(dataHString);
+
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
-
-    WindowsDeleteString(dataHString);
 
     if (retValuePtr.ref.isNull) {
       free(retValuePtr);
@@ -274,13 +273,13 @@ class IXmlDocument extends IInspectable
                         Pointer<COMObject> retValuePtr)>()(
             ptr.ref.lpVtbl, targetHString, dataHString, retValuePtr);
 
+    WindowsDeleteString(targetHString);
+    WindowsDeleteString(dataHString);
+
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
-
-    WindowsDeleteString(targetHString);
-    WindowsDeleteString(dataHString);
 
     if (retValuePtr.ref.isNull) {
       free(retValuePtr);
@@ -307,12 +306,12 @@ class IXmlDocument extends IInspectable
                     LPVTBL lpVtbl, int name, Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, nameHString, retValuePtr);
 
+    WindowsDeleteString(nameHString);
+
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
-
-    WindowsDeleteString(nameHString);
 
     if (retValuePtr.ref.isNull) {
       free(retValuePtr);
@@ -339,12 +338,12 @@ class IXmlDocument extends IInspectable
                     LPVTBL lpVtbl, int name, Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, nameHString, retValuePtr);
 
+    WindowsDeleteString(nameHString);
+
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
-
-    WindowsDeleteString(nameHString);
 
     if (retValuePtr.ref.isNull) {
       free(retValuePtr);
@@ -371,12 +370,12 @@ class IXmlDocument extends IInspectable
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, tagNameHString, retValuePtr);
 
+    WindowsDeleteString(tagNameHString);
+
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
-
-    WindowsDeleteString(tagNameHString);
 
     if (retValuePtr.ref.isNull) {
       free(retValuePtr);
@@ -403,12 +402,12 @@ class IXmlDocument extends IInspectable
                     LPVTBL lpVtbl, int data, Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, dataHString, retValuePtr);
 
+    WindowsDeleteString(dataHString);
+
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
-
-    WindowsDeleteString(dataHString);
 
     if (retValuePtr.ref.isNull) {
       free(retValuePtr);
@@ -445,7 +444,7 @@ class IXmlDocument extends IInspectable
 
   XmlAttribute? createAttributeNS(Object? namespaceUri, String qualifiedName) {
     final retValuePtr = calloc<COMObject>();
-    final namespaceUriPtr = namespaceUri?.intoBox().ref.lpVtbl ?? nullptr;
+    final namespaceUriPtr = namespaceUri?.intoBox().ptr.ref.lpVtbl ?? nullptr;
     final qualifiedNameHString = qualifiedName.toHString();
 
     final hr = ptr.ref.vtable
@@ -464,12 +463,12 @@ class IXmlDocument extends IInspectable
                     int qualifiedName, Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, namespaceUriPtr, qualifiedNameHString, retValuePtr);
 
+    WindowsDeleteString(qualifiedNameHString);
+
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
-
-    WindowsDeleteString(qualifiedNameHString);
 
     if (retValuePtr.ref.isNull) {
       free(retValuePtr);
@@ -481,7 +480,7 @@ class IXmlDocument extends IInspectable
 
   XmlElement? createElementNS(Object? namespaceUri, String qualifiedName) {
     final retValuePtr = calloc<COMObject>();
-    final namespaceUriPtr = namespaceUri?.intoBox().ref.lpVtbl ?? nullptr;
+    final namespaceUriPtr = namespaceUri?.intoBox().ptr.ref.lpVtbl ?? nullptr;
     final qualifiedNameHString = qualifiedName.toHString();
 
     final hr = ptr.ref.vtable
@@ -500,12 +499,12 @@ class IXmlDocument extends IInspectable
                     int qualifiedName, Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, namespaceUriPtr, qualifiedNameHString, retValuePtr);
 
+    WindowsDeleteString(qualifiedNameHString);
+
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
-
-    WindowsDeleteString(qualifiedNameHString);
 
     if (retValuePtr.ref.isNull) {
       free(retValuePtr);
@@ -532,12 +531,12 @@ class IXmlDocument extends IInspectable
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, elementIdHString, retValuePtr);
 
+    WindowsDeleteString(elementIdHString);
+
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
-
-    WindowsDeleteString(elementIdHString);
 
     if (retValuePtr.ref.isNull) {
       free(retValuePtr);
@@ -577,7 +576,6 @@ class IXmlDocument extends IInspectable
     return IXmlNode.fromRawPointer(retValuePtr);
   }
 
-  // IXmlNode methods
   late final _iXmlNode = IXmlNode.from(this);
 
   @override
@@ -652,7 +650,6 @@ class IXmlDocument extends IInspectable
   @override
   set prefix(Object? value) => _iXmlNode.prefix = value;
 
-  // IXmlNodeSelector methods
   late final _iXmlNodeSelector = IXmlNodeSelector.from(this);
 
   @override
@@ -671,7 +668,6 @@ class IXmlDocument extends IInspectable
   XmlNodeList? selectNodesNS(String xpath, Object? namespaces) =>
       _iXmlNodeSelector.selectNodesNS(xpath, namespaces);
 
-  // IXmlNodeSerializer methods
   late final _iXmlNodeSerializer = IXmlNodeSerializer.from(this);
 
   @override

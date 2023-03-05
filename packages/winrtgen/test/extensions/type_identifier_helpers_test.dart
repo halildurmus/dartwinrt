@@ -63,11 +63,11 @@ void main() {
       expect(
           typeDef.interfaces[2].typeSpec!.creator,
           equals(
-              "(Pointer<COMObject> ptr) => IMap.fromRawPointer(ptr, creator: IJsonValue.fromRawPointer, iterableIid: '{dfabb6e1-0411-5a8f-aa87-354e7110f099}')"));
+              "(ptr) => IMap.fromRawPointer(ptr, creator: IJsonValue.fromRawPointer, iterableIid: '{dfabb6e1-0411-5a8f-aa87-354e7110f099}')"));
       expect(
           typeDef.interfaces[3].typeSpec!.creator,
           equals(
-              '(Pointer<COMObject> ptr) => IIterable.fromRawPointer(ptr, creator: (Pointer<COMObject> ptr) => IKeyValuePair.fromRawPointer(ptr, creator: IJsonValue.fromRawPointer))'));
+              '(ptr) => IIterable.fromRawPointer(ptr, creator: (ptr) => IKeyValuePair.fromRawPointer(ptr, creator: IJsonValue.fromRawPointer))'));
     });
 
     test('(4)', () {
@@ -97,21 +97,21 @@ void main() {
       expect(
           typeDef.interfaces[0].typeSpec!.creator,
           equals(
-              "(Pointer<COMObject> ptr) => IMap.fromRawPointer(ptr, iterableIid: '{e9bdaaf0-cbf6-5c72-be90-29cbf3a1319b}')"));
+              "(ptr) => IMap.fromRawPointer(ptr, iterableIid: '{e9bdaaf0-cbf6-5c72-be90-29cbf3a1319b}')"));
       expect(
           typeDef.interfaces[1].typeSpec!.creator,
           equals(
-              '(Pointer<COMObject> ptr) => IIterable.fromRawPointer(ptr, creator: IKeyValuePair.fromRawPointer)'));
+              '(ptr) => IIterable.fromRawPointer(ptr, creator: IKeyValuePair.fromRawPointer)'));
       expect(typeDef.interfaces[2].typeSpec!.creator,
           equals('IObservableMap.fromRawPointer'));
       expect(
           typeDef.findMethod('First')!.returnType.typeIdentifier.creator,
           equals(
-              '(Pointer<COMObject> ptr) => IIterator.fromRawPointer(ptr, creator: IKeyValuePair.fromRawPointer)'));
+              '(ptr) => IIterator.fromRawPointer(ptr, creator: IKeyValuePair.fromRawPointer)'));
       expect(
           typeDef.findMethod('GetView')!.returnType.typeIdentifier.creator,
           equals(
-              "(Pointer<COMObject> ptr) => IMapView.fromRawPointer(ptr, iterableIid: '{e9bdaaf0-cbf6-5c72-be90-29cbf3a1319b}')"));
+              "(ptr) => IMapView.fromRawPointer(ptr, iterableIid: '{e9bdaaf0-cbf6-5c72-be90-29cbf3a1319b}')"));
     });
 
     test('(7)', () {
@@ -124,7 +124,7 @@ void main() {
               .typeIdentifier
               .creator,
           equals(
-              "(Pointer<COMObject> ptr) => IVector.fromRawPointer(ptr, iterableIid: '{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}')"));
+              "(ptr) => IVector.fromRawPointer(ptr, iterableIid: '{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}')"));
       expect(
           fileOpenPicker
               .findMethod('PickSingleFileAsync')!
@@ -132,7 +132,7 @@ void main() {
               .typeIdentifier
               .creator,
           equals(
-              '(Pointer<COMObject> ptr) => IAsyncOperation.fromRawPointer(ptr, creator: StorageFile.fromRawPointer)'));
+              '(ptr) => IAsyncOperation.fromRawPointer(ptr, creator: StorageFile.fromRawPointer)'));
       expect(
           fileOpenPicker
               .findMethod('PickMultipleFilesAsync')!
@@ -140,7 +140,7 @@ void main() {
               .typeIdentifier
               .creator,
           equals(
-              "(Pointer<COMObject> ptr) => IAsyncOperation.fromRawPointer(ptr, creator: (Pointer<COMObject> ptr) => IVectorView.fromRawPointer(ptr, creator: StorageFile.fromRawPointer, iterableIid: '{9ac00304-83ea-5688-87b6-ae38aab65d0b}'))"));
+              "(ptr) => IAsyncOperation.fromRawPointer(ptr, creator: (ptr) => IVectorView.fromRawPointer(ptr, creator: StorageFile.fromRawPointer, iterableIid: '{9ac00304-83ea-5688-87b6-ae38aab65d0b}'))"));
     });
 
     test('(8)', () {
@@ -153,7 +153,7 @@ void main() {
               .typeIdentifier
               .creator,
           equals(
-              "(Pointer<COMObject> ptr) => IMap.fromRawPointer(ptr, creator: (Pointer<COMObject> ptr) => IVectorView.fromRawPointer(ptr, iterableIid: '{5498f4f3-cee4-5b72-9729-815c4ad7b9dc}'), iterableIid: '{f819a276-b3f5-54d4-b8fd-c9adb7f700e3}')"));
+              "(ptr) => IMap.fromRawPointer(ptr, creator: (ptr) => IVectorView.fromRawPointer(ptr, iterableIid: '{5498f4f3-cee4-5b72-9729-815c4ad7b9dc}'), iterableIid: '{f819a276-b3f5-54d4-b8fd-c9adb7f700e3}')"));
     });
 
     test('(9)', () {
@@ -166,7 +166,7 @@ void main() {
               .typeIdentifier
               .creator,
           equals(
-              "(Pointer<COMObject> ptr) => IMapView.fromRawPointer(ptr, enumKeyCreator: PedometerStepKind.from, creator: PedometerReading.fromRawPointer, iterableIid: '{098f29cb-bc91-5639-a541-d5a4811ec35b}')"));
+              "(ptr) => IMapView.fromRawPointer(ptr, enumKeyCreator: PedometerStepKind.from, creator: PedometerReading.fromRawPointer, iterableIid: '{098f29cb-bc91-5639-a541-d5a4811ec35b}')"));
     });
   });
 

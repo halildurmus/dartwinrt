@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -59,12 +58,12 @@ class IJsonObjectWithDefaultValues extends IInspectable
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, nameHString, defaultValuePtr, retValuePtr);
 
+    WindowsDeleteString(nameHString);
+
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
-
-    WindowsDeleteString(nameHString);
 
     if (retValuePtr.ref.isNull) {
       free(retValuePtr);
@@ -96,12 +95,12 @@ class IJsonObjectWithDefaultValues extends IInspectable
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, nameHString, defaultValuePtr, retValuePtr);
 
+    WindowsDeleteString(nameHString);
+
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
-
-    WindowsDeleteString(nameHString);
 
     if (retValuePtr.ref.isNull) {
       free(retValuePtr);
@@ -113,10 +112,11 @@ class IJsonObjectWithDefaultValues extends IInspectable
 
   String getNamedStringOrDefault(String name, String defaultValue) {
     final retValuePtr = calloc<HSTRING>();
-    final nameHString = name.toHString();
-    final defaultValueHString = defaultValue.toHString();
 
     try {
+      final nameHString = name.toHString();
+      final defaultValueHString = defaultValue.toHString();
+
       final hr =
           ptr.ref.vtable
                   .elementAt(8)
@@ -134,12 +134,13 @@ class IJsonObjectWithDefaultValues extends IInspectable
                           Pointer<IntPtr> retValuePtr)>()(
               ptr.ref.lpVtbl, nameHString, defaultValueHString, retValuePtr);
 
+      WindowsDeleteString(nameHString);
+      WindowsDeleteString(defaultValueHString);
+
       if (FAILED(hr)) throw WindowsException(hr);
 
       return retValuePtr.toDartString();
     } finally {
-      WindowsDeleteString(nameHString);
-      WindowsDeleteString(defaultValueHString);
       WindowsDeleteString(retValuePtr.value);
       free(retValuePtr);
     }
@@ -167,12 +168,12 @@ class IJsonObjectWithDefaultValues extends IInspectable
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, nameHString, defaultValuePtr, retValuePtr);
 
+    WindowsDeleteString(nameHString);
+
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
-
-    WindowsDeleteString(nameHString);
 
     if (retValuePtr.ref.isNull) {
       free(retValuePtr);
@@ -184,9 +185,10 @@ class IJsonObjectWithDefaultValues extends IInspectable
 
   double getNamedNumberOrDefault(String name, double defaultValue) {
     final retValuePtr = calloc<Double>();
-    final nameHString = name.toHString();
 
     try {
+      final nameHString = name.toHString();
+
       final hr =
           ptr.ref.vtable
                   .elementAt(10)
@@ -204,20 +206,22 @@ class IJsonObjectWithDefaultValues extends IInspectable
                           Pointer<Double> retValuePtr)>()(
               ptr.ref.lpVtbl, nameHString, defaultValue, retValuePtr);
 
+      WindowsDeleteString(nameHString);
+
       if (FAILED(hr)) throw WindowsException(hr);
 
       return retValuePtr.value;
     } finally {
-      WindowsDeleteString(nameHString);
       free(retValuePtr);
     }
   }
 
   bool getNamedBooleanOrDefault(String name, bool defaultValue) {
     final retValuePtr = calloc<Bool>();
-    final nameHString = name.toHString();
 
     try {
+      final nameHString = name.toHString();
+
       final hr = ptr.ref.vtable
               .elementAt(11)
               .cast<
@@ -231,16 +235,16 @@ class IJsonObjectWithDefaultValues extends IInspectable
                       Pointer<Bool> retValuePtr)>()(
           ptr.ref.lpVtbl, nameHString, defaultValue, retValuePtr);
 
+      WindowsDeleteString(nameHString);
+
       if (FAILED(hr)) throw WindowsException(hr);
 
       return retValuePtr.value;
     } finally {
-      WindowsDeleteString(nameHString);
       free(retValuePtr);
     }
   }
 
-  // IJsonObject methods
   late final _iJsonObject = IJsonObject.from(this);
 
   @override
@@ -265,7 +269,6 @@ class IJsonObjectWithDefaultValues extends IInspectable
   @override
   bool getNamedBoolean(String name) => _iJsonObject.getNamedBoolean(name);
 
-  // IJsonValue methods
   late final _iJsonValue = IJsonValue.from(this);
 
   @override

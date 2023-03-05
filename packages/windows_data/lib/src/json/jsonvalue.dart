@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -31,81 +30,31 @@ class JsonValue extends IInspectable implements IJsonValue, IStringable {
 
   static const _className = 'Windows.Data.Json.JsonValue';
 
-  // IJsonValueStatics methods
-  static JsonValue? parse(String input) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IJsonValueStatics);
-    final object = IJsonValueStatics.fromRawPointer(activationFactoryPtr);
+  static JsonValue? parse(String input) => createActivationFactory(
+          IJsonValueStatics.fromRawPointer, _className, IID_IJsonValueStatics)
+      .parse(input);
 
-    try {
-      return object.parse(input);
-    } finally {
-      object.release();
-    }
-  }
+  static bool tryParse(String input, JsonValue result) =>
+      createActivationFactory(IJsonValueStatics.fromRawPointer, _className,
+              IID_IJsonValueStatics)
+          .tryParse(input, result);
 
-  static bool tryParse(String input, JsonValue result) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IJsonValueStatics);
-    final object = IJsonValueStatics.fromRawPointer(activationFactoryPtr);
+  static JsonValue? createBooleanValue(bool input) => createActivationFactory(
+          IJsonValueStatics.fromRawPointer, _className, IID_IJsonValueStatics)
+      .createBooleanValue(input);
 
-    try {
-      return object.tryParse(input, result);
-    } finally {
-      object.release();
-    }
-  }
+  static JsonValue? createNumberValue(double input) => createActivationFactory(
+          IJsonValueStatics.fromRawPointer, _className, IID_IJsonValueStatics)
+      .createNumberValue(input);
 
-  static JsonValue? createBooleanValue(bool input) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IJsonValueStatics);
-    final object = IJsonValueStatics.fromRawPointer(activationFactoryPtr);
+  static JsonValue? createStringValue(String input) => createActivationFactory(
+          IJsonValueStatics.fromRawPointer, _className, IID_IJsonValueStatics)
+      .createStringValue(input);
 
-    try {
-      return object.createBooleanValue(input);
-    } finally {
-      object.release();
-    }
-  }
+  static JsonValue? createNullValue() => createActivationFactory(
+          IJsonValueStatics2.fromRawPointer, _className, IID_IJsonValueStatics2)
+      .createNullValue();
 
-  static JsonValue? createNumberValue(double input) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IJsonValueStatics);
-    final object = IJsonValueStatics.fromRawPointer(activationFactoryPtr);
-
-    try {
-      return object.createNumberValue(input);
-    } finally {
-      object.release();
-    }
-  }
-
-  static JsonValue? createStringValue(String input) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IJsonValueStatics);
-    final object = IJsonValueStatics.fromRawPointer(activationFactoryPtr);
-
-    try {
-      return object.createStringValue(input);
-    } finally {
-      object.release();
-    }
-  }
-
-  // IJsonValueStatics2 methods
-  static JsonValue? createNullValue() {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IJsonValueStatics2);
-    final object = IJsonValueStatics2.fromRawPointer(activationFactoryPtr);
-
-    try {
-      return object.createNullValue();
-    } finally {
-      object.release();
-    }
-  }
-
-  // IJsonValue methods
   late final _iJsonValue = IJsonValue.from(this);
 
   @override
@@ -129,7 +78,6 @@ class JsonValue extends IInspectable implements IJsonValue, IStringable {
   @override
   JsonObject? getObject() => _iJsonValue.getObject();
 
-  // IStringable methods
   late final _iStringable = IStringable.from(this);
 
   @override

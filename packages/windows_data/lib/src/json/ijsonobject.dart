@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -50,12 +49,12 @@ class IJsonObject extends IInspectable implements IJsonValue {
                     LPVTBL lpVtbl, int name, Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, nameHString, retValuePtr);
 
+    WindowsDeleteString(nameHString);
+
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
-
-    WindowsDeleteString(nameHString);
 
     if (retValuePtr.ref.isNull) {
       free(retValuePtr);
@@ -80,9 +79,9 @@ class IJsonObject extends IInspectable implements IJsonValue {
             .asFunction<int Function(LPVTBL lpVtbl, int name, LPVTBL value)>()(
         ptr.ref.lpVtbl, nameHString, valuePtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
-
     WindowsDeleteString(nameHString);
+
+    if (FAILED(hr)) throw WindowsException(hr);
   }
 
   JsonObject? getNamedObject(String name) {
@@ -102,12 +101,12 @@ class IJsonObject extends IInspectable implements IJsonValue {
                     LPVTBL lpVtbl, int name, Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, nameHString, retValuePtr);
 
+    WindowsDeleteString(nameHString);
+
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
-
-    WindowsDeleteString(nameHString);
 
     if (retValuePtr.ref.isNull) {
       free(retValuePtr);
@@ -134,12 +133,12 @@ class IJsonObject extends IInspectable implements IJsonValue {
                     LPVTBL lpVtbl, int name, Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, nameHString, retValuePtr);
 
+    WindowsDeleteString(nameHString);
+
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
-
-    WindowsDeleteString(nameHString);
 
     if (retValuePtr.ref.isNull) {
       free(retValuePtr);
@@ -151,9 +150,10 @@ class IJsonObject extends IInspectable implements IJsonValue {
 
   String getNamedString(String name) {
     final retValuePtr = calloc<HSTRING>();
-    final nameHString = name.toHString();
 
     try {
+      final nameHString = name.toHString();
+
       final hr = ptr.ref.vtable
               .elementAt(10)
               .cast<
@@ -167,11 +167,12 @@ class IJsonObject extends IInspectable implements IJsonValue {
                       LPVTBL lpVtbl, int name, Pointer<IntPtr> retValuePtr)>()(
           ptr.ref.lpVtbl, nameHString, retValuePtr);
 
+      WindowsDeleteString(nameHString);
+
       if (FAILED(hr)) throw WindowsException(hr);
 
       return retValuePtr.toDartString();
     } finally {
-      WindowsDeleteString(nameHString);
       WindowsDeleteString(retValuePtr.value);
       free(retValuePtr);
     }
@@ -179,9 +180,10 @@ class IJsonObject extends IInspectable implements IJsonValue {
 
   double getNamedNumber(String name) {
     final retValuePtr = calloc<Double>();
-    final nameHString = name.toHString();
 
     try {
+      final nameHString = name.toHString();
+
       final hr = ptr.ref.vtable
               .elementAt(11)
               .cast<
@@ -195,20 +197,22 @@ class IJsonObject extends IInspectable implements IJsonValue {
                       LPVTBL lpVtbl, int name, Pointer<Double> retValuePtr)>()(
           ptr.ref.lpVtbl, nameHString, retValuePtr);
 
+      WindowsDeleteString(nameHString);
+
       if (FAILED(hr)) throw WindowsException(hr);
 
       return retValuePtr.value;
     } finally {
-      WindowsDeleteString(nameHString);
       free(retValuePtr);
     }
   }
 
   bool getNamedBoolean(String name) {
     final retValuePtr = calloc<Bool>();
-    final nameHString = name.toHString();
 
     try {
+      final nameHString = name.toHString();
+
       final hr = ptr.ref.vtable
               .elementAt(12)
               .cast<
@@ -222,16 +226,16 @@ class IJsonObject extends IInspectable implements IJsonValue {
                       LPVTBL lpVtbl, int name, Pointer<Bool> retValuePtr)>()(
           ptr.ref.lpVtbl, nameHString, retValuePtr);
 
+      WindowsDeleteString(nameHString);
+
       if (FAILED(hr)) throw WindowsException(hr);
 
       return retValuePtr.value;
     } finally {
-      WindowsDeleteString(nameHString);
       free(retValuePtr);
     }
   }
 
-  // IJsonValue methods
   late final _iJsonValue = IJsonValue.from(this);
 
   @override

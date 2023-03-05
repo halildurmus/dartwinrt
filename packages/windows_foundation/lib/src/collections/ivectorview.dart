@@ -187,6 +187,7 @@ abstract class IVectorView<T> extends IInspectable implements IIterable<T> {
   /// Creates an unmodifiable [List] from the current [IVectorView] instance.
   List<T> toList() {
     if (size == 0) return List.unmodifiable(<T>[]);
+
     final list = <T>[];
     getMany(0, size, list);
     return List.unmodifiable(list);

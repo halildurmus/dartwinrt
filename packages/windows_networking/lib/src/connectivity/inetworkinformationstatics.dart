@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -59,10 +58,7 @@ class INetworkInformationStatics extends IInspectable {
         retValuePtr,
         iterableIid: '{34dabef9-87d0-5b1c-a7ac-9d290adeb0c8}',
         creator: ConnectionProfile.fromRawPointer);
-    final list = vectorView.toList();
-    vectorView.release();
-
-    return list;
+    return vectorView.toList();
   }
 
   ConnectionProfile? getInternetConnectionProfile() {
@@ -116,10 +112,7 @@ class INetworkInformationStatics extends IInspectable {
     final vectorView = IVectorView<LanIdentifier>.fromRawPointer(retValuePtr,
         iterableIid: '{accef3cd-5d92-5c01-8ac4-79fe74cd733e}',
         creator: LanIdentifier.fromRawPointer);
-    final list = vectorView.toList();
-    vectorView.release();
-
-    return list;
+    return vectorView.toList();
   }
 
   List<HostName> getHostNames() {
@@ -145,10 +138,7 @@ class INetworkInformationStatics extends IInspectable {
     final vectorView = IVectorView<HostName>.fromRawPointer(retValuePtr,
         iterableIid: '{9e5f3ed0-cf1c-5d38-832c-acea6164bf5c}',
         creator: HostName.fromRawPointer);
-    final list = vectorView.toList();
-    vectorView.release();
-
-    return list;
+    return vectorView.toList();
   }
 
   Future<ProxyConfiguration?> getProxyConfigurationAsync(Uri? uri) {
@@ -173,8 +163,6 @@ class INetworkInformationStatics extends IInspectable {
       free(retValuePtr);
       throw WindowsException(hr);
     }
-
-    uriUri?.release();
 
     final asyncOperation = IAsyncOperation<ProxyConfiguration?>.fromRawPointer(
         retValuePtr,
@@ -222,12 +210,7 @@ class INetworkInformationStatics extends IInspectable {
     final vectorView = IVectorView<EndpointPair>.fromRawPointer(retValuePtr,
         iterableIid: '{d7ec83c4-a17b-51bf-8997-aa33b9102dc9}',
         creator: EndpointPair.fromRawPointer);
-    final list = vectorView.toList();
-    vectorView.release();
-
-    destinationList?.release();
-
-    return list;
+    return vectorView.toList();
   }
 
   int add_NetworkStatusChanged(Pointer<COMObject> networkStatusHandler) {

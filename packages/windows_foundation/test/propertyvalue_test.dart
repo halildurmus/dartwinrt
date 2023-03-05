@@ -23,7 +23,6 @@ void main() {
     expect(pv.type, equals(PropertyType.uint8));
     expect(pv.getUInt8(), equals(30));
     expect(pv.value, equals(30));
-    pv.release();
   });
 
   test('UInt8Array', () {
@@ -40,7 +39,6 @@ void main() {
     expect(newList[3], equals(40));
     expect(newList[4], equals(50));
     expect(pv.value, equals([10, 20, 30, 40, 50]));
-    pv.release();
   });
 
   test('UInt16', () {
@@ -48,7 +46,6 @@ void main() {
     expect(pv.type, equals(PropertyType.uint16));
     expect(pv.getUInt16(), equals(65534));
     expect(pv.value, equals(65534));
-    pv.release();
   });
 
   test('UInt16Array', () {
@@ -65,7 +62,6 @@ void main() {
     expect(newList[3], equals(400));
     expect(newList[4], equals(500));
     expect(pv.value, equals([100, 200, 300, 400, 500]));
-    pv.release();
   });
 
   test('Guid', () {
@@ -74,7 +70,6 @@ void main() {
     expect(pv.type, equals(PropertyType.guid));
     expect(pv.getGuid().toString(), equals(IID_IAsyncInfo));
     expect(pv.value?.toString(), equals(IID_IAsyncInfo));
-    pv.release();
   });
 
   test('GuidArray', () {
@@ -99,7 +94,6 @@ void main() {
           Guid.parse(IID_IAsyncInfo),
           Guid.parse(IID_IClosable)
         ]));
-    pv.release();
   });
 
   test('Point', () {
@@ -108,7 +102,6 @@ void main() {
     expect(pv.type, equals(PropertyType.point));
     expect(pv.getPoint(), equals(point));
     expect(pv.value, equals(point));
-    pv.release();
   });
 
   test('String', () {
@@ -116,7 +109,6 @@ void main() {
     expect(pv.type, equals(PropertyType.string));
     expect(pv.getString(), equals('Hello World'));
     expect(pv.value, equals('Hello World'));
-    pv.release();
   });
 
   test('Inspectable', () {
@@ -124,7 +116,6 @@ void main() {
     final pv = PropertyValue.createInspectable(stringMap.ptr);
     expect(getClassName(IInspectable(pv)),
         equals('Windows.Foundation.Collections.StringMap'));
-    stringMap.release();
   });
 
   test('InspectableArray', () {
@@ -142,6 +133,5 @@ void main() {
         equals('Windows.Foundation.Collections.StringMap'));
     expect(getClassName(newList[4] as IInspectable),
         equals('Windows.Foundation.Collections.PropertySet'));
-    pv.release();
   });
 }

@@ -11,6 +11,8 @@ export 'duration_conversions.dart';
 export 'guid_array.dart';
 export 'hstring_array.dart';
 export 'int_array.dart';
+export 'ipropertyvalue_helpers.dart';
+export 'iunknown_helpers.dart';
 export 'point_array.dart';
 export 'rect_array.dart';
 export 'size_array.dart';
