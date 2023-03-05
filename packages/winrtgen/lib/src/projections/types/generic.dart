@@ -60,12 +60,6 @@ class GenericEnumParameterProjection extends ParameterProjection {
       .genericParams[parameter.typeIdentifier.genericParameterSequence!].name;
 
   @override
-  String get preamble => '';
-
-  @override
-  String get postamble => '';
-
-  @override
   String get localIdentifier => '($identifier as WinRTEnum).value';
 }
 

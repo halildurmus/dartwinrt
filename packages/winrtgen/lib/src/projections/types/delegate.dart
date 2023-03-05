@@ -38,8 +38,6 @@ class DelegateGetterProjection extends GetterProjection with _DelegateMixin {
 class DelegateSetterProjection extends SetterProjection {
   DelegateSetterProjection(super.method, super.vtableOffset);
 
-  String get type => '';
-
   @override
   String get methodDeclaration => '''
   $methodHeader {
