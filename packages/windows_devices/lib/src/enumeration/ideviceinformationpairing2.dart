@@ -91,7 +91,6 @@ class IDeviceInformationPairing2 extends IInspectable {
       IDevicePairingSettings? devicePairingSettings) {
     final retValuePtr = calloc<COMObject>();
     final completer = Completer<DevicePairingResult?>();
-
     final devicePairingSettingsPtr = devicePairingSettings == null
         ? nullptr
         : devicePairingSettings.ptr.ref.lpVtbl;

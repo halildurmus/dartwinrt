@@ -56,11 +56,5 @@ class DelegateParameterProjection extends ParameterProjection {
   String get type => 'Pointer<COMObject>';
 
   @override
-  String get preamble => '';
-
-  @override
-  String get postamble => '';
-
-  @override
   String get localIdentifier => '$identifier.ref.lpVtbl';
 }

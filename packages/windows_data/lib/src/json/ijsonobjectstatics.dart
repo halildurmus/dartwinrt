@@ -89,7 +89,6 @@ class IJsonObjectStatics extends IInspectable {
       return retValuePtr.value;
     } finally {
       WindowsDeleteString(inputHString);
-
       free(retValuePtr);
     }
   }

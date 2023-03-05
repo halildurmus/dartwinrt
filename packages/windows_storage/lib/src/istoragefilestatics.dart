@@ -108,7 +108,6 @@ class IStorageFileStatics extends IInspectable {
     final completer = Completer<StorageFile?>();
     final displayNameWithExtensionHString =
         displayNameWithExtension.toHString();
-
     final thumbnailPtr = thumbnail == null ? nullptr : thumbnail.ptr.ref.lpVtbl;
 
     final hr = ptr.ref.vtable
@@ -160,7 +159,6 @@ class IStorageFileStatics extends IInspectable {
     final completer = Completer<StorageFile?>();
     final fileToReplacePtr =
         fileToReplace == null ? nullptr : fileToReplace.ptr.ref.lpVtbl;
-
     final thumbnailPtr = thumbnail == null ? nullptr : thumbnail.ptr.ref.lpVtbl;
 
     final hr = ptr.ref.vtable

@@ -111,15 +111,15 @@ abstract class ParameterProjection {
   ///
   /// Any preamble that allocates memory should have a matching postamble that
   /// frees the memory.
-  String get preamble;
+  String get preamble => '';
 
   /// Code to be inserted prior to the function call to tear down allocated
   /// memory.
-  String get postamble;
+  String get postamble => '';
 
   /// The name of the converted variable that should be passed inside the method
   /// call (e.g. `today` -> `todayDateTime`)
-  String get localIdentifier;
+  String get localIdentifier => identifier;
 
   @override
   String toString() => '$identifier (${typeProjection.nativeType})';

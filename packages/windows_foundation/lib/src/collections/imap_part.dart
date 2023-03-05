@@ -103,7 +103,6 @@ class _IMapGuidInspectable<V> extends IMap<Guid, V> {
       return retValuePtr.value;
     } finally {
       free(keyNativeGuidPtr);
-
       free(retValuePtr);
     }
   }
@@ -218,7 +217,6 @@ class _IMapGuidObject extends IMap<Guid, Object?> {
       return retValuePtr.value;
     } finally {
       free(keyNativeGuidPtr);
-
       free(retValuePtr);
     }
   }
@@ -639,7 +637,6 @@ class _IMapStringInspectable<V> extends IMap<String, V> {
       return retValuePtr.value;
     } finally {
       WindowsDeleteString(keyHString);
-
       free(retValuePtr);
     }
   }
@@ -753,7 +750,6 @@ class _IMapStringObject extends IMap<String, Object?> {
       return retValuePtr.value;
     } finally {
       WindowsDeleteString(keyHString);
-
       free(retValuePtr);
     }
   }
@@ -972,7 +968,6 @@ class _IMapStringWinRTEnum<V> extends IMap<String, V> {
       return retValuePtr.value;
     } finally {
       WindowsDeleteString(keyHString);
-
       free(retValuePtr);
     }
   }
@@ -1081,7 +1076,6 @@ class _IMapStringWinRTFlagsEnum<V> extends IMap<String, V> {
       return retValuePtr.value;
     } finally {
       WindowsDeleteString(keyHString);
-
       free(retValuePtr);
     }
   }

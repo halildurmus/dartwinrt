@@ -108,7 +108,6 @@ class IPhoneNumberFormatterStatics extends IInspectable {
       return retValuePtr.toDartString();
     } finally {
       WindowsDeleteString(regionCodeHString);
-
       WindowsDeleteString(retValuePtr.value);
       free(retValuePtr);
     }

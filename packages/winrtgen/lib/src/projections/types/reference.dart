@@ -113,12 +113,6 @@ class ReferenceParameterProjection extends ParameterProjection {
   String get type => typeArguments(typeProjection.typeIdentifier.shortName);
 
   @override
-  String get preamble => '';
-
-  @override
-  String get postamble => '';
-
-  @override
   String get localIdentifier {
     final projection = TypeProjection(typeProjection.typeIdentifier.typeArg!);
     final arg = _toReferenceArgument(projection, type);

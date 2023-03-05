@@ -35,7 +35,6 @@ class IQueryOptionsFactory extends IInspectable {
   QueryOptions createCommonFileQuery(
       CommonFileQuery query, IIterable<String> fileTypeFilter) {
     final retValuePtr = calloc<COMObject>();
-
     final fileTypeFilterPtr = IInspectable(fileTypeFilter
             .toInterface('{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'))
         .ptr

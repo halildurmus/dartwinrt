@@ -98,12 +98,6 @@ class DurationParameterProjection extends ParameterProjection {
   String get type => 'Duration';
 
   @override
-  String get preamble => '';
-
-  @override
-  String get postamble => '';
-
-  @override
   String get localIdentifier => '$identifier.toWinRTDuration()';
 }
 

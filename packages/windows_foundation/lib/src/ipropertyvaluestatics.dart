@@ -531,7 +531,6 @@ class IPropertyValueStatics extends IInspectable {
 
   IPropertyValue createUInt8Array(List<int> value) {
     final retValuePtr = calloc<COMObject>();
-
     final pArray = calloc<Uint8>(value.length);
     for (var i = 0; i < value.length; i++) {
       pArray[i] = value.elementAt(i);
@@ -565,7 +564,6 @@ class IPropertyValueStatics extends IInspectable {
 
   IPropertyValue createInt16Array(List<int> value) {
     final retValuePtr = calloc<COMObject>();
-
     final pArray = calloc<Int16>(value.length);
     for (var i = 0; i < value.length; i++) {
       pArray[i] = value.elementAt(i);
@@ -599,7 +597,6 @@ class IPropertyValueStatics extends IInspectable {
 
   IPropertyValue createUInt16Array(List<int> value) {
     final retValuePtr = calloc<COMObject>();
-
     final pArray = calloc<Uint16>(value.length);
     for (var i = 0; i < value.length; i++) {
       pArray[i] = value.elementAt(i);
@@ -633,7 +630,6 @@ class IPropertyValueStatics extends IInspectable {
 
   IPropertyValue createInt32Array(List<int> value) {
     final retValuePtr = calloc<COMObject>();
-
     final pArray = calloc<Int32>(value.length);
     for (var i = 0; i < value.length; i++) {
       pArray[i] = value.elementAt(i);
@@ -667,7 +663,6 @@ class IPropertyValueStatics extends IInspectable {
 
   IPropertyValue createUInt32Array(List<int> value) {
     final retValuePtr = calloc<COMObject>();
-
     final pArray = calloc<Uint32>(value.length);
     for (var i = 0; i < value.length; i++) {
       pArray[i] = value.elementAt(i);
@@ -701,7 +696,6 @@ class IPropertyValueStatics extends IInspectable {
 
   IPropertyValue createInt64Array(List<int> value) {
     final retValuePtr = calloc<COMObject>();
-
     final pArray = calloc<Int64>(value.length);
     for (var i = 0; i < value.length; i++) {
       pArray[i] = value.elementAt(i);
@@ -735,7 +729,6 @@ class IPropertyValueStatics extends IInspectable {
 
   IPropertyValue createUInt64Array(List<int> value) {
     final retValuePtr = calloc<COMObject>();
-
     final pArray = calloc<Uint64>(value.length);
     for (var i = 0; i < value.length; i++) {
       pArray[i] = value.elementAt(i);
@@ -769,7 +762,6 @@ class IPropertyValueStatics extends IInspectable {
 
   IPropertyValue createSingleArray(List<double> value) {
     final retValuePtr = calloc<COMObject>();
-
     final pArray = calloc<Float>(value.length);
     for (var i = 0; i < value.length; i++) {
       pArray[i] = value.elementAt(i);
@@ -803,7 +795,6 @@ class IPropertyValueStatics extends IInspectable {
 
   IPropertyValue createDoubleArray(List<double> value) {
     final retValuePtr = calloc<COMObject>();
-
     final pArray = calloc<Double>(value.length);
     for (var i = 0; i < value.length; i++) {
       pArray[i] = value.elementAt(i);
@@ -837,7 +828,6 @@ class IPropertyValueStatics extends IInspectable {
 
   IPropertyValue createChar16Array(List<int> value) {
     final retValuePtr = calloc<COMObject>();
-
     final pArray = calloc<Uint16>(value.length);
     for (var i = 0; i < value.length; i++) {
       pArray[i] = value.elementAt(i);
@@ -871,7 +861,6 @@ class IPropertyValueStatics extends IInspectable {
 
   IPropertyValue createBooleanArray(List<bool> value) {
     final retValuePtr = calloc<COMObject>();
-
     final pArray = calloc<Bool>(value.length);
     for (var i = 0; i < value.length; i++) {
       pArray[i] = value.elementAt(i);
@@ -905,7 +894,6 @@ class IPropertyValueStatics extends IInspectable {
 
   IPropertyValue createStringArray(List<String> value) {
     final retValuePtr = calloc<COMObject>();
-
     final handles = <int>[];
     final pArray = calloc<HSTRING>(value.length);
     for (var i = 0; i < value.length; i++) {
@@ -942,7 +930,6 @@ class IPropertyValueStatics extends IInspectable {
 
   IPropertyValue createInspectableArray(List<Object?> value) {
     final retValuePtr = calloc<COMObject>();
-
     final pArray = calloc<COMObject>(value.length);
     for (var i = 0; i < value.length; i++) {
       pArray[i] =
@@ -980,7 +967,6 @@ class IPropertyValueStatics extends IInspectable {
 
   IPropertyValue createGuidArray(List<Guid> value) {
     final retValuePtr = calloc<COMObject>();
-
     final nativeGuids = <Pointer<GUID>>[];
     final pArray = calloc<GUID>(value.length);
     for (var i = 0; i < value.length; i++) {
@@ -1018,7 +1004,6 @@ class IPropertyValueStatics extends IInspectable {
 
   IPropertyValue createDateTimeArray(List<DateTime> value) {
     final retValuePtr = calloc<COMObject>();
-
     final pArray = calloc<Int64>(value.length);
     for (var i = 0; i < value.length; i++) {
       pArray[i] = value.elementAt(i).toWinRTDateTime();
@@ -1052,7 +1037,6 @@ class IPropertyValueStatics extends IInspectable {
 
   IPropertyValue createTimeSpanArray(List<Duration> value) {
     final retValuePtr = calloc<COMObject>();
-
     final pArray = calloc<Int64>(value.length);
     for (var i = 0; i < value.length; i++) {
       pArray[i] = value.elementAt(i).toWinRTDuration();
@@ -1086,7 +1070,6 @@ class IPropertyValueStatics extends IInspectable {
 
   IPropertyValue createPointArray(List<Point> value) {
     final retValuePtr = calloc<COMObject>();
-
     final nativeStructPtrs = <Pointer<NativePoint>>[];
     final pArray = calloc<NativePoint>(value.length);
     for (var i = 0; i < value.length; i++) {
@@ -1127,7 +1110,6 @@ class IPropertyValueStatics extends IInspectable {
 
   IPropertyValue createSizeArray(List<Size> value) {
     final retValuePtr = calloc<COMObject>();
-
     final nativeStructPtrs = <Pointer<NativeSize>>[];
     final pArray = calloc<NativeSize>(value.length);
     for (var i = 0; i < value.length; i++) {
@@ -1168,7 +1150,6 @@ class IPropertyValueStatics extends IInspectable {
 
   IPropertyValue createRectArray(List<Rect> value) {
     final retValuePtr = calloc<COMObject>();
-
     final nativeStructPtrs = <Pointer<NativeRect>>[];
     final pArray = calloc<NativeRect>(value.length);
     for (var i = 0; i < value.length; i++) {

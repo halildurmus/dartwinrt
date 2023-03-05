@@ -52,7 +52,6 @@ class IXmlDomImplementation extends IInspectable {
       return retValuePtr.value;
     } finally {
       WindowsDeleteString(featureHString);
-
       free(retValuePtr);
     }
   }
