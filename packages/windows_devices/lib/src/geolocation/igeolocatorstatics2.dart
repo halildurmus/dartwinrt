@@ -23,10 +23,10 @@ const IID_IGeolocatorStatics2 = '{993011a2-fa1c-4631-a71d-0dbeb1250d9c}';
 /// {@category interface}
 class IGeolocatorStatics2 extends IInspectable {
   // vtable begins at 6, is 3 entries long.
-  IGeolocatorStatics2.fromRawPointer(super.ptr);
+  IGeolocatorStatics2.fromPtr(super.ptr);
 
   factory IGeolocatorStatics2.from(IInspectable interface) =>
-      IGeolocatorStatics2.fromRawPointer(
+      IGeolocatorStatics2.fromPtr(
           interface.toInterface(IID_IGeolocatorStatics2));
 
   bool get isDefaultGeopositionRecommended {
@@ -92,7 +92,7 @@ class IGeolocatorStatics2 extends IInspectable {
       return null;
     }
 
-    final reference = IReference<BasicGeoposition?>.fromRawPointer(retValuePtr,
+    final reference = IReference<BasicGeoposition?>.fromPtr(retValuePtr,
         referenceIid: '{e4d5dda6-f57c-57cc-b67f-2939a901dabe}');
     return reference.value;
   }

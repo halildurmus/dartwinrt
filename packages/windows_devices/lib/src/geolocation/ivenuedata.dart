@@ -21,10 +21,10 @@ const IID_IVenueData = '{66f39187-60e3-4b2f-b527-4f53f1c3c677}';
 /// {@category interface}
 class IVenueData extends IInspectable {
   // vtable begins at 6, is 2 entries long.
-  IVenueData.fromRawPointer(super.ptr);
+  IVenueData.fromPtr(super.ptr);
 
   factory IVenueData.from(IInspectable interface) =>
-      IVenueData.fromRawPointer(interface.toInterface(IID_IVenueData));
+      IVenueData.fromPtr(interface.toInterface(IID_IVenueData));
 
   String get id {
     final retValuePtr = calloc<HSTRING>();

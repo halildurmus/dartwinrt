@@ -34,7 +34,7 @@ class XmlProcessingInstruction extends IInspectable
         IXmlNode,
         IXmlNodeSerializer,
         IXmlNodeSelector {
-  XmlProcessingInstruction.fromRawPointer(super.ptr);
+  XmlProcessingInstruction.fromPtr(super.ptr);
 
   late final _iXmlProcessingInstruction = IXmlProcessingInstruction.from(this);
 

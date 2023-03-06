@@ -26,10 +26,10 @@ const IID_IKnownFoldersStatics4 = '{1722e6bf-9ff9-4b21-bed5-90ecb13a192e}';
 /// {@category interface}
 class IKnownFoldersStatics4 extends IInspectable {
   // vtable begins at 6, is 3 entries long.
-  IKnownFoldersStatics4.fromRawPointer(super.ptr);
+  IKnownFoldersStatics4.fromPtr(super.ptr);
 
   factory IKnownFoldersStatics4.from(IInspectable interface) =>
-      IKnownFoldersStatics4.fromRawPointer(
+      IKnownFoldersStatics4.fromPtr(
           interface.toInterface(IID_IKnownFoldersStatics4));
 
   Future<KnownFoldersAccessStatus> requestAccessAsync(KnownFolderId folderId) {
@@ -54,9 +54,9 @@ class IKnownFoldersStatics4 extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation =
-        IAsyncOperation<KnownFoldersAccessStatus>.fromRawPointer(retValuePtr,
-            enumCreator: KnownFoldersAccessStatus.from);
+    final asyncOperation = IAsyncOperation<KnownFoldersAccessStatus>.fromPtr(
+        retValuePtr,
+        enumCreator: KnownFoldersAccessStatus.from);
     completeAsyncOperation(
         asyncOperation, completer, asyncOperation.getResults);
 
@@ -87,9 +87,9 @@ class IKnownFoldersStatics4 extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation =
-        IAsyncOperation<KnownFoldersAccessStatus>.fromRawPointer(retValuePtr,
-            enumCreator: KnownFoldersAccessStatus.from);
+    final asyncOperation = IAsyncOperation<KnownFoldersAccessStatus>.fromPtr(
+        retValuePtr,
+        enumCreator: KnownFoldersAccessStatus.from);
     completeAsyncOperation(
         asyncOperation, completer, asyncOperation.getResults);
 
@@ -118,9 +118,8 @@ class IKnownFoldersStatics4 extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<StorageFolder?>.fromRawPointer(
-        retValuePtr,
-        creator: StorageFolder.fromRawPointer);
+    final asyncOperation = IAsyncOperation<StorageFolder?>.fromPtr(retValuePtr,
+        creator: StorageFolder.fromPtr);
     completeAsyncOperation(
         asyncOperation, completer, asyncOperation.getResults);
 

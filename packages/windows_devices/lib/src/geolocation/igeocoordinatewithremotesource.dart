@@ -22,10 +22,10 @@ const IID_IGeocoordinateWithRemoteSource =
 /// {@category interface}
 class IGeocoordinateWithRemoteSource extends IInspectable {
   // vtable begins at 6, is 1 entries long.
-  IGeocoordinateWithRemoteSource.fromRawPointer(super.ptr);
+  IGeocoordinateWithRemoteSource.fromPtr(super.ptr);
 
   factory IGeocoordinateWithRemoteSource.from(IInspectable interface) =>
-      IGeocoordinateWithRemoteSource.fromRawPointer(
+      IGeocoordinateWithRemoteSource.fromPtr(
           interface.toInterface(IID_IGeocoordinateWithRemoteSource));
 
   bool get isRemoteSource {

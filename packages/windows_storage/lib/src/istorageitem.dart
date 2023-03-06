@@ -27,10 +27,10 @@ const IID_IStorageItem = '{4207a996-ca2f-42f7-bde8-8b10457a7f30}';
 /// {@category interface}
 class IStorageItem extends IInspectable {
   // vtable begins at 6, is 10 entries long.
-  IStorageItem.fromRawPointer(super.ptr);
+  IStorageItem.fromPtr(super.ptr);
 
   factory IStorageItem.from(IInspectable interface) =>
-      IStorageItem.fromRawPointer(interface.toInterface(IID_IStorageItem));
+      IStorageItem.fromPtr(interface.toInterface(IID_IStorageItem));
 
   Future<void> renameAsyncOverloadDefaultOptions(String desiredName) {
     final retValuePtr = calloc<COMObject>();
@@ -57,7 +57,7 @@ class IStorageItem extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncAction = IAsyncAction.fromRawPointer(retValuePtr);
+    final asyncAction = IAsyncAction.fromPtr(retValuePtr);
     completeAsyncAction(asyncAction, completer);
 
     return completer.future;
@@ -88,7 +88,7 @@ class IStorageItem extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncAction = IAsyncAction.fromRawPointer(retValuePtr);
+    final asyncAction = IAsyncAction.fromPtr(retValuePtr);
     completeAsyncAction(asyncAction, completer);
 
     return completer.future;
@@ -115,7 +115,7 @@ class IStorageItem extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncAction = IAsyncAction.fromRawPointer(retValuePtr);
+    final asyncAction = IAsyncAction.fromPtr(retValuePtr);
     completeAsyncAction(asyncAction, completer);
 
     return completer.future;
@@ -143,7 +143,7 @@ class IStorageItem extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncAction = IAsyncAction.fromRawPointer(retValuePtr);
+    final asyncAction = IAsyncAction.fromPtr(retValuePtr);
     completeAsyncAction(asyncAction, completer);
 
     return completer.future;
@@ -170,9 +170,9 @@ class IStorageItem extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<BasicProperties?>.fromRawPointer(
+    final asyncOperation = IAsyncOperation<BasicProperties?>.fromPtr(
         retValuePtr,
-        creator: BasicProperties.fromRawPointer);
+        creator: BasicProperties.fromPtr);
     completeAsyncOperation(
         asyncOperation, completer, asyncOperation.getResults);
 

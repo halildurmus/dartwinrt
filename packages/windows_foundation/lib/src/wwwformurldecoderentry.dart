@@ -24,7 +24,7 @@ import 'iwwwformurldecoderentry.dart';
 /// {@category class}
 class WwwFormUrlDecoderEntry extends IInspectable
     implements IWwwFormUrlDecoderEntry {
-  WwwFormUrlDecoderEntry.fromRawPointer(super.ptr);
+  WwwFormUrlDecoderEntry.fromPtr(super.ptr);
 
   late final _iWwwFormUrlDecoderEntry = IWwwFormUrlDecoderEntry.from(this);
 

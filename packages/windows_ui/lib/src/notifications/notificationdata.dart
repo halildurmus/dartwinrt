@@ -23,22 +23,22 @@ import 'inotificationdatafactory.dart';
 /// {@category class}
 class NotificationData extends IInspectable implements INotificationData {
   NotificationData() : super(activateClass(_className));
-  NotificationData.fromRawPointer(super.ptr);
+  NotificationData.fromPtr(super.ptr);
 
   static const _className = 'Windows.UI.Notifications.NotificationData';
 
   factory NotificationData.createNotificationDataWithValuesAndSequenceNumber(
           IIterable<IKeyValuePair<String, String>> initialValues,
           int sequenceNumber) =>
-      createActivationFactory(INotificationDataFactory.fromRawPointer,
-              _className, IID_INotificationDataFactory)
+      createActivationFactory(INotificationDataFactory.fromPtr, _className,
+              IID_INotificationDataFactory)
           .createNotificationDataWithValuesAndSequenceNumber(
               initialValues, sequenceNumber);
 
   factory NotificationData.createNotificationDataWithValues(
           IIterable<IKeyValuePair<String, String>> initialValues) =>
-      createActivationFactory(INotificationDataFactory.fromRawPointer,
-              _className, IID_INotificationDataFactory)
+      createActivationFactory(INotificationDataFactory.fromPtr, _className,
+              IID_INotificationDataFactory)
           .createNotificationDataWithValues(initialValues);
 
   late final _iNotificationData = INotificationData.from(this);

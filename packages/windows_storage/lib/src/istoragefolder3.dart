@@ -23,11 +23,10 @@ const IID_IStorageFolder3 = '{9f617899-bde1-4124-aeb3-b06ad96f98d4}';
 /// {@category interface}
 class IStorageFolder3 extends IInspectable {
   // vtable begins at 6, is 1 entries long.
-  IStorageFolder3.fromRawPointer(super.ptr);
+  IStorageFolder3.fromPtr(super.ptr);
 
   factory IStorageFolder3.from(IInspectable interface) =>
-      IStorageFolder3.fromRawPointer(
-          interface.toInterface(IID_IStorageFolder3));
+      IStorageFolder3.fromPtr(interface.toInterface(IID_IStorageFolder3));
 
   StorageLibraryChangeTracker? tryGetChangeTracker() {
     final retValuePtr = calloc<COMObject>();
@@ -54,6 +53,6 @@ class IStorageFolder3 extends IInspectable {
       return null;
     }
 
-    return StorageLibraryChangeTracker.fromRawPointer(retValuePtr);
+    return StorageLibraryChangeTracker.fromPtr(retValuePtr);
   }
 }

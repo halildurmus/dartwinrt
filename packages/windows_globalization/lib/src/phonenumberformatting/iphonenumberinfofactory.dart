@@ -23,10 +23,10 @@ const IID_IPhoneNumberInfoFactory = '{8202b964-adaa-4cff-8fcf-17e7516a28ff}';
 /// {@category interface}
 class IPhoneNumberInfoFactory extends IInspectable {
   // vtable begins at 6, is 1 entries long.
-  IPhoneNumberInfoFactory.fromRawPointer(super.ptr);
+  IPhoneNumberInfoFactory.fromPtr(super.ptr);
 
   factory IPhoneNumberInfoFactory.from(IInspectable interface) =>
-      IPhoneNumberInfoFactory.fromRawPointer(
+      IPhoneNumberInfoFactory.fromPtr(
           interface.toInterface(IID_IPhoneNumberInfoFactory));
 
   PhoneNumberInfo create(String number) {
@@ -53,6 +53,6 @@ class IPhoneNumberInfoFactory extends IInspectable {
       throw WindowsException(hr);
     }
 
-    return PhoneNumberInfo.fromRawPointer(retValuePtr);
+    return PhoneNumberInfo.fromPtr(retValuePtr);
   }
 }

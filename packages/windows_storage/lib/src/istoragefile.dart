@@ -41,10 +41,10 @@ class IStorageFile extends IInspectable
         IRandomAccessStreamReference,
         IInputStreamReference {
   // vtable begins at 6, is 12 entries long.
-  IStorageFile.fromRawPointer(super.ptr);
+  IStorageFile.fromPtr(super.ptr);
 
   factory IStorageFile.from(IInspectable interface) =>
-      IStorageFile.fromRawPointer(interface.toInterface(IID_IStorageFile));
+      IStorageFile.fromPtr(interface.toInterface(IID_IStorageFile));
 
   String get fileType {
     final retValuePtr = calloc<HSTRING>();
@@ -118,9 +118,9 @@ class IStorageFile extends IInspectable
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<IRandomAccessStream?>.fromRawPointer(
+    final asyncOperation = IAsyncOperation<IRandomAccessStream?>.fromPtr(
         retValuePtr,
-        creator: IRandomAccessStream.fromRawPointer);
+        creator: IRandomAccessStream.fromPtr);
     completeAsyncOperation(
         asyncOperation, completer, asyncOperation.getResults);
 
@@ -148,9 +148,9 @@ class IStorageFile extends IInspectable
       throw WindowsException(hr);
     }
 
-    final asyncOperation =
-        IAsyncOperation<StorageStreamTransaction?>.fromRawPointer(retValuePtr,
-            creator: StorageStreamTransaction.fromRawPointer);
+    final asyncOperation = IAsyncOperation<StorageStreamTransaction?>.fromPtr(
+        retValuePtr,
+        creator: StorageStreamTransaction.fromPtr);
     completeAsyncOperation(
         asyncOperation, completer, asyncOperation.getResults);
 
@@ -185,9 +185,8 @@ class IStorageFile extends IInspectable
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<StorageFile?>.fromRawPointer(
-        retValuePtr,
-        creator: StorageFile.fromRawPointer);
+    final asyncOperation = IAsyncOperation<StorageFile?>.fromPtr(retValuePtr,
+        creator: StorageFile.fromPtr);
     completeAsyncOperation(
         asyncOperation, completer, asyncOperation.getResults);
 
@@ -228,9 +227,8 @@ class IStorageFile extends IInspectable
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<StorageFile?>.fromRawPointer(
-        retValuePtr,
-        creator: StorageFile.fromRawPointer);
+    final asyncOperation = IAsyncOperation<StorageFile?>.fromPtr(retValuePtr,
+        creator: StorageFile.fromPtr);
     completeAsyncOperation(
         asyncOperation, completer, asyncOperation.getResults);
 
@@ -273,9 +271,8 @@ class IStorageFile extends IInspectable
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<StorageFile?>.fromRawPointer(
-        retValuePtr,
-        creator: StorageFile.fromRawPointer);
+    final asyncOperation = IAsyncOperation<StorageFile?>.fromPtr(retValuePtr,
+        creator: StorageFile.fromPtr);
     completeAsyncOperation(
         asyncOperation, completer, asyncOperation.getResults);
 
@@ -306,7 +303,7 @@ class IStorageFile extends IInspectable
       throw WindowsException(hr);
     }
 
-    final asyncAction = IAsyncAction.fromRawPointer(retValuePtr);
+    final asyncAction = IAsyncAction.fromPtr(retValuePtr);
     completeAsyncAction(asyncAction, completer);
 
     return completer.future;
@@ -340,7 +337,7 @@ class IStorageFile extends IInspectable
       throw WindowsException(hr);
     }
 
-    final asyncAction = IAsyncAction.fromRawPointer(retValuePtr);
+    final asyncAction = IAsyncAction.fromPtr(retValuePtr);
     completeAsyncAction(asyncAction, completer);
 
     return completer.future;
@@ -380,7 +377,7 @@ class IStorageFile extends IInspectable
       throw WindowsException(hr);
     }
 
-    final asyncAction = IAsyncAction.fromRawPointer(retValuePtr);
+    final asyncAction = IAsyncAction.fromPtr(retValuePtr);
     completeAsyncAction(asyncAction, completer);
 
     return completer.future;
@@ -422,7 +419,7 @@ class IStorageFile extends IInspectable
       throw WindowsException(hr);
     }
 
-    final asyncAction = IAsyncAction.fromRawPointer(retValuePtr);
+    final asyncAction = IAsyncAction.fromPtr(retValuePtr);
     completeAsyncAction(asyncAction, completer);
 
     return completer.future;
@@ -452,7 +449,7 @@ class IStorageFile extends IInspectable
       throw WindowsException(hr);
     }
 
-    final asyncAction = IAsyncAction.fromRawPointer(retValuePtr);
+    final asyncAction = IAsyncAction.fromPtr(retValuePtr);
     completeAsyncAction(asyncAction, completer);
 
     return completer.future;

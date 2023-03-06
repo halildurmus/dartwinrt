@@ -24,10 +24,10 @@ const IID_IToastNotificationManagerStatics5 =
 /// {@category interface}
 class IToastNotificationManagerStatics5 extends IInspectable {
   // vtable begins at 6, is 1 entries long.
-  IToastNotificationManagerStatics5.fromRawPointer(super.ptr);
+  IToastNotificationManagerStatics5.fromPtr(super.ptr);
 
   factory IToastNotificationManagerStatics5.from(IInspectable interface) =>
-      IToastNotificationManagerStatics5.fromRawPointer(
+      IToastNotificationManagerStatics5.fromPtr(
           interface.toInterface(IID_IToastNotificationManagerStatics5));
 
   ToastNotificationManagerForUser? getDefault() {
@@ -55,6 +55,6 @@ class IToastNotificationManagerStatics5 extends IInspectable {
       return null;
     }
 
-    return ToastNotificationManagerForUser.fromRawPointer(retValuePtr);
+    return ToastNotificationManagerForUser.fromPtr(retValuePtr);
   }
 }

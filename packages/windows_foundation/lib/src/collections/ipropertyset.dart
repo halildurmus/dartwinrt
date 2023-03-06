@@ -35,12 +35,12 @@ class IPropertySet extends IInspectable
         IMap<String, Object?>,
         IIterable<IKeyValuePair<String, Object?>> {
   // vtable begins at 6, is 0 entries long.
-  IPropertySet.fromRawPointer(super.ptr);
+  IPropertySet.fromPtr(super.ptr);
 
   factory IPropertySet.from(IInspectable interface) =>
-      IPropertySet.fromRawPointer(interface.toInterface(IID_IPropertySet));
+      IPropertySet.fromPtr(interface.toInterface(IID_IPropertySet));
 
-  late final _iObservableMap = IObservableMap<String, Object?>.fromRawPointer(
+  late final _iObservableMap = IObservableMap<String, Object?>.fromPtr(
       toInterface('{236aac9d-fb12-5c4d-a41c-9e445fb4d7ec}'));
 
   @override
@@ -50,7 +50,7 @@ class IPropertySet extends IInspectable
   @override
   void remove_MapChanged(int token) => _iObservableMap.remove_MapChanged(token);
 
-  late final _iMap = IMap<String, Object?>.fromRawPointer(
+  late final _iMap = IMap<String, Object?>.fromPtr(
       toInterface('{1b0d3570-0877-5ec2-8a2c-3b9539506aca}'),
       iterableIid: '{fe2f3d47-5d47-5499-8374-430c7cda0204}');
 

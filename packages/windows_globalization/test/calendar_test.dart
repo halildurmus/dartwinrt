@@ -443,7 +443,7 @@ void main() {
     // test('createCalendarWithTimeZone constructor', () {
     //   final pickerPtr = CreateObject(
     //       'Windows.Storage.Pickers.FileOpenPicker', IID_IFileOpenPicker);
-    //   final picker = IFileOpenPicker.fromRawPointer(pickerPtr);
+    //   final picker = IFileOpenPicker.fromPtr(pickerPtr);
     //   final languages = picker.fileTypeFilter..replaceAll(['en-US', 'en-GB']);
 
     //   const IID_Iterable = '{E2FCC7C1-3BFC-5A0B-B2B0-72E769D1CB7E}';

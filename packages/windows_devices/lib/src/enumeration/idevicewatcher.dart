@@ -26,10 +26,10 @@ const IID_IDeviceWatcher = '{c9eab97d-8f6b-4f96-a9f4-abc814e22271}';
 /// {@category interface}
 class IDeviceWatcher extends IInspectable {
   // vtable begins at 6, is 13 entries long.
-  IDeviceWatcher.fromRawPointer(super.ptr);
+  IDeviceWatcher.fromPtr(super.ptr);
 
   factory IDeviceWatcher.from(IInspectable interface) =>
-      IDeviceWatcher.fromRawPointer(interface.toInterface(IID_IDeviceWatcher));
+      IDeviceWatcher.fromPtr(interface.toInterface(IID_IDeviceWatcher));
 
   int add_Added(Pointer<COMObject> handler) {
     final retValuePtr = calloc<IntPtr>();

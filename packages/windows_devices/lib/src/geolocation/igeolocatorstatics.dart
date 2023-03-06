@@ -24,11 +24,10 @@ const IID_IGeolocatorStatics = '{9a8e7571-2df5-4591-9f87-eb5fd894e9b7}';
 /// {@category interface}
 class IGeolocatorStatics extends IInspectable {
   // vtable begins at 6, is 3 entries long.
-  IGeolocatorStatics.fromRawPointer(super.ptr);
+  IGeolocatorStatics.fromPtr(super.ptr);
 
   factory IGeolocatorStatics.from(IInspectable interface) =>
-      IGeolocatorStatics.fromRawPointer(
-          interface.toInterface(IID_IGeolocatorStatics));
+      IGeolocatorStatics.fromPtr(interface.toInterface(IID_IGeolocatorStatics));
 
   Future<GeolocationAccessStatus> requestAccessAsync() {
     final retValuePtr = calloc<COMObject>();
@@ -51,9 +50,9 @@ class IGeolocatorStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation =
-        IAsyncOperation<GeolocationAccessStatus>.fromRawPointer(retValuePtr,
-            enumCreator: GeolocationAccessStatus.from);
+    final asyncOperation = IAsyncOperation<GeolocationAccessStatus>.fromPtr(
+        retValuePtr,
+        enumCreator: GeolocationAccessStatus.from);
     completeAsyncOperation(
         asyncOperation, completer, asyncOperation.getResults);
 
@@ -82,12 +81,11 @@ class IGeolocatorStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation =
-        IAsyncOperation<IVectorView<Geoposition>>.fromRawPointer(
-            retValuePtr,
-            creator: (ptr) => IVectorView.fromRawPointer(ptr,
-                creator: Geoposition.fromRawPointer,
-                iterableIid: '{135ed72d-75b1-5881-be41-6ffeaa202044}'));
+    final asyncOperation = IAsyncOperation<IVectorView<Geoposition>>.fromPtr(
+        retValuePtr,
+        creator: (ptr) => IVectorView.fromPtr(ptr,
+            creator: Geoposition.fromPtr,
+            iterableIid: '{135ed72d-75b1-5881-be41-6ffeaa202044}'));
     completeAsyncOperation(
         asyncOperation, completer, () => asyncOperation.getResults().toList());
 
@@ -117,12 +115,11 @@ class IGeolocatorStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation =
-        IAsyncOperation<IVectorView<Geoposition>>.fromRawPointer(
-            retValuePtr,
-            creator: (ptr) => IVectorView.fromRawPointer(ptr,
-                creator: Geoposition.fromRawPointer,
-                iterableIid: '{135ed72d-75b1-5881-be41-6ffeaa202044}'));
+    final asyncOperation = IAsyncOperation<IVectorView<Geoposition>>.fromPtr(
+        retValuePtr,
+        creator: (ptr) => IVectorView.fromPtr(ptr,
+            creator: Geoposition.fromPtr,
+            iterableIid: '{135ed72d-75b1-5881-be41-6ffeaa202044}'));
     completeAsyncOperation(
         asyncOperation, completer, () => asyncOperation.getResults().toList());
 

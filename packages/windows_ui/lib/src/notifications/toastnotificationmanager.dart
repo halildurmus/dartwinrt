@@ -34,44 +34,44 @@ import 'toasttemplatetype.dart';
 ///
 /// {@category class}
 class ToastNotificationManager extends IInspectable {
-  ToastNotificationManager.fromRawPointer(super.ptr);
+  ToastNotificationManager.fromPtr(super.ptr);
 
   static const _className = 'Windows.UI.Notifications.ToastNotificationManager';
 
   static ToastNotifier? createToastNotifier() => createActivationFactory(
-          IToastNotificationManagerStatics.fromRawPointer,
+          IToastNotificationManagerStatics.fromPtr,
           _className,
           IID_IToastNotificationManagerStatics)
       .createToastNotifier();
 
   static ToastNotifier? createToastNotifierWithId(String applicationId) =>
-      createActivationFactory(IToastNotificationManagerStatics.fromRawPointer,
+      createActivationFactory(IToastNotificationManagerStatics.fromPtr,
               _className, IID_IToastNotificationManagerStatics)
           .createToastNotifierWithId(applicationId);
 
   static XmlDocument? getTemplateContent(ToastTemplateType type) =>
-      createActivationFactory(IToastNotificationManagerStatics.fromRawPointer,
+      createActivationFactory(IToastNotificationManagerStatics.fromPtr,
               _className, IID_IToastNotificationManagerStatics)
           .getTemplateContent(type);
 
   static ToastNotificationHistory? get history => createActivationFactory(
-          IToastNotificationManagerStatics2.fromRawPointer,
+          IToastNotificationManagerStatics2.fromPtr,
           _className,
           IID_IToastNotificationManagerStatics2)
       .history;
 
   static ToastNotificationManagerForUser? getForUser(User? user) =>
-      createActivationFactory(IToastNotificationManagerStatics4.fromRawPointer,
+      createActivationFactory(IToastNotificationManagerStatics4.fromPtr,
               _className, IID_IToastNotificationManagerStatics4)
           .getForUser(user);
 
   static void configureNotificationMirroring(NotificationMirroring value) =>
-      createActivationFactory(IToastNotificationManagerStatics4.fromRawPointer,
+      createActivationFactory(IToastNotificationManagerStatics4.fromPtr,
               _className, IID_IToastNotificationManagerStatics4)
           .configureNotificationMirroring(value);
 
   static ToastNotificationManagerForUser? getDefault() =>
-      createActivationFactory(IToastNotificationManagerStatics5.fromRawPointer,
+      createActivationFactory(IToastNotificationManagerStatics5.fromPtr,
               _className, IID_IToastNotificationManagerStatics5)
           .getDefault();
 }

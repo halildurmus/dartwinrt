@@ -27,10 +27,10 @@ const IID_IDeviceInformationStatics2 = '{493b4f34-a84f-45fd-9167-15d1cb1bd1f9}';
 /// {@category interface}
 class IDeviceInformationStatics2 extends IInspectable {
   // vtable begins at 6, is 4 entries long.
-  IDeviceInformationStatics2.fromRawPointer(super.ptr);
+  IDeviceInformationStatics2.fromPtr(super.ptr);
 
   factory IDeviceInformationStatics2.from(IInspectable interface) =>
-      IDeviceInformationStatics2.fromRawPointer(
+      IDeviceInformationStatics2.fromPtr(
           interface.toInterface(IID_IDeviceInformationStatics2));
 
   String getAqsFilterFromDeviceClass(DeviceClass deviceClass) {
@@ -102,9 +102,9 @@ class IDeviceInformationStatics2 extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<DeviceInformation?>.fromRawPointer(
+    final asyncOperation = IAsyncOperation<DeviceInformation?>.fromPtr(
         retValuePtr,
-        creator: DeviceInformation.fromRawPointer);
+        creator: DeviceInformation.fromPtr);
     completeAsyncOperation(
         asyncOperation, completer, asyncOperation.getResults);
 
@@ -154,9 +154,8 @@ class IDeviceInformationStatics2 extends IInspectable {
     }
 
     final asyncOperation =
-        IAsyncOperation<DeviceInformationCollection?>.fromRawPointer(
-            retValuePtr,
-            creator: DeviceInformationCollection.fromRawPointer);
+        IAsyncOperation<DeviceInformationCollection?>.fromPtr(retValuePtr,
+            creator: DeviceInformationCollection.fromPtr);
     completeAsyncOperation(
         asyncOperation, completer, asyncOperation.getResults);
 
@@ -210,6 +209,6 @@ class IDeviceInformationStatics2 extends IInspectable {
       return null;
     }
 
-    return DeviceWatcher.fromRawPointer(retValuePtr);
+    return DeviceWatcher.fromPtr(retValuePtr);
   }
 }

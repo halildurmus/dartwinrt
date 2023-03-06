@@ -30,7 +30,7 @@ import 'idevicewatcher2.dart';
 /// {@category class}
 class DeviceWatcher extends IInspectable
     implements IDeviceWatcher, IDeviceWatcher2 {
-  DeviceWatcher.fromRawPointer(super.ptr);
+  DeviceWatcher.fromPtr(super.ptr);
 
   late final _iDeviceWatcher = IDeviceWatcher.from(this);
 

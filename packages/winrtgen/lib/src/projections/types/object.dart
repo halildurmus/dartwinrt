@@ -77,15 +77,15 @@ mixin _ObjectMixin on MethodProjection {
       if (isMethodFromPropertyValueStatics) {
         return ['CreateEmpty', 'CreateInspectable'].contains(method.name)
             ? 'return retValuePtr;'
-            : 'return IPropertyValue.fromRawPointer(retValuePtr);';
+            : 'return IPropertyValue.fromPtr(retValuePtr);';
       }
 
-      return 'return IPropertyValue.fromRawPointer(retValuePtr).value;';
+      return 'return IPropertyValue.fromPtr(retValuePtr).value;';
     }
 
     if (returnType == 'Pointer<COMObject>') return 'return retValuePtr;';
     final interfaceName = stripQuestionMarkSuffix(returnType);
-    return 'return $interfaceName.fromRawPointer(retValuePtr);';
+    return 'return $interfaceName.fromPtr(retValuePtr);';
   }
 
   @override
@@ -128,13 +128,13 @@ mixin _ObjectListMixin on MethodProjection {
     if (typeArgProjection.isObjectType) {
       return '''
       return retValuePtr.value
-          .toList(IPropertyValue.fromRawPointer, length: pValueSize.value)
+          .toList(IPropertyValue.fromPtr, length: pValueSize.value)
           .map((e) => e.value);''';
     }
 
     return '''
       return retValuePtr.value
-          .toList($shortName.fromRawPointer, length: pValueSize.value);''';
+          .toList($shortName.fromPtr, length: pValueSize.value);''';
   }
 
   @override
@@ -282,12 +282,12 @@ class ObjectListParameterProjection extends DefaultListParameterProjection {
       if (typeArgProjection.isObjectType)
         '''
       value.addAll(pArray.value
-          .toList(IPropertyValue.fromRawPointer, length: pValueSize.value)
+          .toList(IPropertyValue.fromPtr, length: pValueSize.value)
           .map((e) => e.value));'''
       else
         '''
       value.addAll(pArray
-          .toList($shortName.fromRawPointer, length: valueSize));''',
+          .toList($shortName.fromPtr, length: valueSize));''',
       '}',
       'free(pArray);',
     ].join('\n');
@@ -299,12 +299,12 @@ class ObjectListParameterProjection extends DefaultListParameterProjection {
       if (typeArgProjection.isObjectType)
         '''
     value.addAll(pArray.value
-        .toList(IPropertyValue.fromRawPointer, length: pValueSize.value)
+        .toList(IPropertyValue.fromPtr, length: pValueSize.value)
         .map((e) => e.value));'''
       else
         '''
     value.addAll(pArray.value
-        .toList($shortName.fromRawPointer, length: pValueSize.value));''',
+        .toList($shortName.fromPtr, length: pValueSize.value));''',
       'free(pValueSize);',
       'free(pArray);',
     ].join('\n');

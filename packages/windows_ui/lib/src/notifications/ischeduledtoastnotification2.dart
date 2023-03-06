@@ -22,10 +22,10 @@ const IID_IScheduledToastNotification2 =
 /// {@category interface}
 class IScheduledToastNotification2 extends IInspectable {
   // vtable begins at 6, is 6 entries long.
-  IScheduledToastNotification2.fromRawPointer(super.ptr);
+  IScheduledToastNotification2.fromPtr(super.ptr);
 
   factory IScheduledToastNotification2.from(IInspectable interface) =>
-      IScheduledToastNotification2.fromRawPointer(
+      IScheduledToastNotification2.fromPtr(
           interface.toInterface(IID_IScheduledToastNotification2));
 
   set tag(String value) {

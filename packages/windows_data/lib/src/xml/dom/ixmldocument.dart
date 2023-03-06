@@ -40,10 +40,10 @@ const IID_IXmlDocument = '{f7f3a506-1e87-42d6-bcfb-b8c809fa5494}';
 class IXmlDocument extends IInspectable
     implements IXmlNode, IXmlNodeSelector, IXmlNodeSerializer {
   // vtable begins at 6, is 17 entries long.
-  IXmlDocument.fromRawPointer(super.ptr);
+  IXmlDocument.fromPtr(super.ptr);
 
   factory IXmlDocument.from(IInspectable interface) =>
-      IXmlDocument.fromRawPointer(interface.toInterface(IID_IXmlDocument));
+      IXmlDocument.fromPtr(interface.toInterface(IID_IXmlDocument));
 
   XmlDocumentType? get doctype {
     final retValuePtr = calloc<COMObject>();
@@ -70,7 +70,7 @@ class IXmlDocument extends IInspectable
       return null;
     }
 
-    return XmlDocumentType.fromRawPointer(retValuePtr);
+    return XmlDocumentType.fromPtr(retValuePtr);
   }
 
   XmlDomImplementation? get implementation {
@@ -98,7 +98,7 @@ class IXmlDocument extends IInspectable
       return null;
     }
 
-    return XmlDomImplementation.fromRawPointer(retValuePtr);
+    return XmlDomImplementation.fromPtr(retValuePtr);
   }
 
   XmlElement? get documentElement {
@@ -126,7 +126,7 @@ class IXmlDocument extends IInspectable
       return null;
     }
 
-    return XmlElement.fromRawPointer(retValuePtr);
+    return XmlElement.fromPtr(retValuePtr);
   }
 
   XmlElement? createElement(String tagName) {
@@ -158,7 +158,7 @@ class IXmlDocument extends IInspectable
       return null;
     }
 
-    return XmlElement.fromRawPointer(retValuePtr);
+    return XmlElement.fromPtr(retValuePtr);
   }
 
   XmlDocumentFragment? createDocumentFragment() {
@@ -186,7 +186,7 @@ class IXmlDocument extends IInspectable
       return null;
     }
 
-    return XmlDocumentFragment.fromRawPointer(retValuePtr);
+    return XmlDocumentFragment.fromPtr(retValuePtr);
   }
 
   XmlText? createTextNode(String data) {
@@ -218,7 +218,7 @@ class IXmlDocument extends IInspectable
       return null;
     }
 
-    return XmlText.fromRawPointer(retValuePtr);
+    return XmlText.fromPtr(retValuePtr);
   }
 
   XmlComment? createComment(String data) {
@@ -250,7 +250,7 @@ class IXmlDocument extends IInspectable
       return null;
     }
 
-    return XmlComment.fromRawPointer(retValuePtr);
+    return XmlComment.fromPtr(retValuePtr);
   }
 
   XmlProcessingInstruction? createProcessingInstruction(
@@ -286,7 +286,7 @@ class IXmlDocument extends IInspectable
       return null;
     }
 
-    return XmlProcessingInstruction.fromRawPointer(retValuePtr);
+    return XmlProcessingInstruction.fromPtr(retValuePtr);
   }
 
   XmlAttribute? createAttribute(String name) {
@@ -318,7 +318,7 @@ class IXmlDocument extends IInspectable
       return null;
     }
 
-    return XmlAttribute.fromRawPointer(retValuePtr);
+    return XmlAttribute.fromPtr(retValuePtr);
   }
 
   XmlEntityReference? createEntityReference(String name) {
@@ -350,7 +350,7 @@ class IXmlDocument extends IInspectable
       return null;
     }
 
-    return XmlEntityReference.fromRawPointer(retValuePtr);
+    return XmlEntityReference.fromPtr(retValuePtr);
   }
 
   XmlNodeList? getElementsByTagName(String tagName) {
@@ -382,7 +382,7 @@ class IXmlDocument extends IInspectable
       return null;
     }
 
-    return XmlNodeList.fromRawPointer(retValuePtr);
+    return XmlNodeList.fromPtr(retValuePtr);
   }
 
   XmlCDataSection? createCDataSection(String data) {
@@ -414,7 +414,7 @@ class IXmlDocument extends IInspectable
       return null;
     }
 
-    return XmlCDataSection.fromRawPointer(retValuePtr);
+    return XmlCDataSection.fromPtr(retValuePtr);
   }
 
   String get documentUri {
@@ -475,7 +475,7 @@ class IXmlDocument extends IInspectable
       return null;
     }
 
-    return XmlAttribute.fromRawPointer(retValuePtr);
+    return XmlAttribute.fromPtr(retValuePtr);
   }
 
   XmlElement? createElementNS(Object? namespaceUri, String qualifiedName) {
@@ -511,7 +511,7 @@ class IXmlDocument extends IInspectable
       return null;
     }
 
-    return XmlElement.fromRawPointer(retValuePtr);
+    return XmlElement.fromPtr(retValuePtr);
   }
 
   XmlElement? getElementById(String elementId) {
@@ -543,7 +543,7 @@ class IXmlDocument extends IInspectable
       return null;
     }
 
-    return XmlElement.fromRawPointer(retValuePtr);
+    return XmlElement.fromPtr(retValuePtr);
   }
 
   IXmlNode? importNode(IXmlNode? node, bool deep) {
@@ -573,7 +573,7 @@ class IXmlDocument extends IInspectable
       return null;
     }
 
-    return IXmlNode.fromRawPointer(retValuePtr);
+    return IXmlNode.fromPtr(retValuePtr);
   }
 
   late final _iXmlNode = IXmlNode.from(this);

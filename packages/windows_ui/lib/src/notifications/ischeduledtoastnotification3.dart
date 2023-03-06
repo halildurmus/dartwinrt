@@ -24,10 +24,10 @@ const IID_IScheduledToastNotification3 =
 /// {@category interface}
 class IScheduledToastNotification3 extends IInspectable {
   // vtable begins at 6, is 4 entries long.
-  IScheduledToastNotification3.fromRawPointer(super.ptr);
+  IScheduledToastNotification3.fromPtr(super.ptr);
 
   factory IScheduledToastNotification3.from(IInspectable interface) =>
-      IScheduledToastNotification3.fromRawPointer(
+      IScheduledToastNotification3.fromPtr(
           interface.toInterface(IID_IScheduledToastNotification3));
 
   NotificationMirroring get notificationMirroring {

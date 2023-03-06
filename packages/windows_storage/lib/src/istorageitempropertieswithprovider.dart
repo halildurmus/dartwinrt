@@ -30,10 +30,10 @@ const IID_IStorageItemPropertiesWithProvider =
 class IStorageItemPropertiesWithProvider extends IInspectable
     implements IStorageItemProperties {
   // vtable begins at 6, is 1 entries long.
-  IStorageItemPropertiesWithProvider.fromRawPointer(super.ptr);
+  IStorageItemPropertiesWithProvider.fromPtr(super.ptr);
 
   factory IStorageItemPropertiesWithProvider.from(IInspectable interface) =>
-      IStorageItemPropertiesWithProvider.fromRawPointer(
+      IStorageItemPropertiesWithProvider.fromPtr(
           interface.toInterface(IID_IStorageItemPropertiesWithProvider));
 
   StorageProvider? get provider {
@@ -61,7 +61,7 @@ class IStorageItemPropertiesWithProvider extends IInspectable
       return null;
     }
 
-    return StorageProvider.fromRawPointer(retValuePtr);
+    return StorageProvider.fromPtr(retValuePtr);
   }
 
   late final _iStorageItemProperties = IStorageItemProperties.from(this);

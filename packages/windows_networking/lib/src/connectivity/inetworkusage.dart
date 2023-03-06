@@ -21,10 +21,10 @@ const IID_INetworkUsage = '{49da8fce-9985-4927-bf5b-072b5c65f8d9}';
 /// {@category interface}
 class INetworkUsage extends IInspectable {
   // vtable begins at 6, is 3 entries long.
-  INetworkUsage.fromRawPointer(super.ptr);
+  INetworkUsage.fromPtr(super.ptr);
 
   factory INetworkUsage.from(IInspectable interface) =>
-      INetworkUsage.fromRawPointer(interface.toInterface(IID_INetworkUsage));
+      INetworkUsage.fromPtr(interface.toInterface(IID_INetworkUsage));
 
   int get bytesSent {
     final retValuePtr = calloc<Uint64>();

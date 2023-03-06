@@ -22,11 +22,10 @@ const IID_IFileOpenPicker3 = '{d9a5c5b3-c5dc-5b98-bd80-a8d0ca0584d8}';
 /// {@category interface}
 class IFileOpenPicker3 extends IInspectable {
   // vtable begins at 6, is 1 entries long.
-  IFileOpenPicker3.fromRawPointer(super.ptr);
+  IFileOpenPicker3.fromPtr(super.ptr);
 
   factory IFileOpenPicker3.from(IInspectable interface) =>
-      IFileOpenPicker3.fromRawPointer(
-          interface.toInterface(IID_IFileOpenPicker3));
+      IFileOpenPicker3.fromPtr(interface.toInterface(IID_IFileOpenPicker3));
 
   User? get user {
     final retValuePtr = calloc<COMObject>();
@@ -53,6 +52,6 @@ class IFileOpenPicker3 extends IInspectable {
       return null;
     }
 
-    return User.fromRawPointer(retValuePtr);
+    return User.fromPtr(retValuePtr);
   }
 }

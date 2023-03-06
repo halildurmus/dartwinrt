@@ -27,10 +27,10 @@ const IID_IStorageItemQueryResult = '{e8948079-9d58-47b8-b2b2-41b07f4795f9}';
 class IStorageItemQueryResult extends IInspectable
     implements IStorageQueryResultBase {
   // vtable begins at 6, is 2 entries long.
-  IStorageItemQueryResult.fromRawPointer(super.ptr);
+  IStorageItemQueryResult.fromPtr(super.ptr);
 
   factory IStorageItemQueryResult.from(IInspectable interface) =>
-      IStorageItemQueryResult.fromRawPointer(
+      IStorageItemQueryResult.fromPtr(
           interface.toInterface(IID_IStorageItemQueryResult));
 
   Future<List<IStorageItem>> getItemsAsync(
@@ -59,11 +59,11 @@ class IStorageItemQueryResult extends IInspectable
       throw WindowsException(hr);
     }
 
-    final asyncOperation =
-        IAsyncOperation<IVectorView<IStorageItem>>.fromRawPointer(retValuePtr,
-            creator: (ptr) => IVectorView.fromRawPointer(ptr,
-                creator: IStorageItem.fromRawPointer,
-                iterableIid: '{bb8b8418-65d1-544b-b083-6d172f568c73}'));
+    final asyncOperation = IAsyncOperation<IVectorView<IStorageItem>>.fromPtr(
+        retValuePtr,
+        creator: (ptr) => IVectorView.fromPtr(ptr,
+            creator: IStorageItem.fromPtr,
+            iterableIid: '{bb8b8418-65d1-544b-b083-6d172f568c73}'));
     completeAsyncOperation(
         asyncOperation, completer, () => asyncOperation.getResults().toList());
 
@@ -91,11 +91,11 @@ class IStorageItemQueryResult extends IInspectable
       throw WindowsException(hr);
     }
 
-    final asyncOperation =
-        IAsyncOperation<IVectorView<IStorageItem>>.fromRawPointer(retValuePtr,
-            creator: (ptr) => IVectorView.fromRawPointer(ptr,
-                creator: IStorageItem.fromRawPointer,
-                iterableIid: '{bb8b8418-65d1-544b-b083-6d172f568c73}'));
+    final asyncOperation = IAsyncOperation<IVectorView<IStorageItem>>.fromPtr(
+        retValuePtr,
+        creator: (ptr) => IVectorView.fromPtr(ptr,
+            creator: IStorageItem.fromPtr,
+            iterableIid: '{bb8b8418-65d1-544b-b083-6d172f568c73}'));
     completeAsyncOperation(
         asyncOperation, completer, () => asyncOperation.getResults().toList());
 

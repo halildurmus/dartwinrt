@@ -24,10 +24,10 @@ const IID_IUserWatcher = '{155eb23b-242a-45e0-a2e9-3171fc6a7fbb}';
 /// {@category interface}
 class IUserWatcher extends IInspectable {
   // vtable begins at 6, is 17 entries long.
-  IUserWatcher.fromRawPointer(super.ptr);
+  IUserWatcher.fromPtr(super.ptr);
 
   factory IUserWatcher.from(IInspectable interface) =>
-      IUserWatcher.fromRawPointer(interface.toInterface(IID_IUserWatcher));
+      IUserWatcher.fromPtr(interface.toInterface(IID_IUserWatcher));
 
   UserWatcherStatus get status {
     final retValuePtr = calloc<Int32>();

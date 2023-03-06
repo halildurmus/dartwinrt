@@ -32,8 +32,7 @@ void main() {
   });
 
   test('Format a US number', () {
-    final usFormatter =
-        PhoneNumberFormatter.fromRawPointer(calloc<COMObject>());
+    final usFormatter = PhoneNumberFormatter.fromPtr(calloc<COMObject>());
     PhoneNumberFormatter.tryCreate('US', usFormatter);
     final phone = usFormatter.formatString('4255550123');
     expect(phone, equals('(425) 555-0123'));
@@ -42,8 +41,7 @@ void main() {
   test('Create a formatter for a different region code', () {
     // Generated from UK "numbers for use in TV and radio drama"
     // https://www.ofcom.org.uk/phones-telecoms-and-internet/information-for-industry/numbering/numbers-for-drama
-    final ukFormatter =
-        PhoneNumberFormatter.fromRawPointer(calloc<COMObject>());
+    final ukFormatter = PhoneNumberFormatter.fromPtr(calloc<COMObject>());
     PhoneNumberFormatter.tryCreate('GB', ukFormatter);
     final london = ukFormatter.formatString('02079460123');
     expect(london, equals('020 7946 0123'));

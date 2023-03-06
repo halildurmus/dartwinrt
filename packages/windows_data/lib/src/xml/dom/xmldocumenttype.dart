@@ -33,7 +33,7 @@ class XmlDocumentType extends IInspectable
         IXmlNode,
         IXmlNodeSerializer,
         IXmlNodeSelector {
-  XmlDocumentType.fromRawPointer(super.ptr);
+  XmlDocumentType.fromPtr(super.ptr);
 
   late final _iXmlDocumentType = IXmlDocumentType.from(this);
 

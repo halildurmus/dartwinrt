@@ -25,7 +25,7 @@ import 'toastnotification.dart';
 /// {@category class}
 class ToastNotificationHistory extends IInspectable
     implements IToastNotificationHistory2, IToastNotificationHistory {
-  ToastNotificationHistory.fromRawPointer(super.ptr);
+  ToastNotificationHistory.fromPtr(super.ptr);
 
   late final _iToastNotificationHistory2 =
       IToastNotificationHistory2.from(this);

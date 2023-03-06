@@ -34,7 +34,7 @@ class Geocoordinate extends IInspectable
         IGeocoordinateWithPoint,
         IGeocoordinateWithPositionSourceTimestamp,
         IGeocoordinateWithRemoteSource {
-  Geocoordinate.fromRawPointer(super.ptr);
+  Geocoordinate.fromPtr(super.ptr);
 
   late final _iGeocoordinate = IGeocoordinate.from(this);
 

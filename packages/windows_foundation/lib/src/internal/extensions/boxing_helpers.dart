@@ -80,7 +80,7 @@ extension BoolHelpers on bool {
   /// Converts the value to an [IReference].
   IReference<bool?> toReference() {
     final propertyValue = toPropertyValue();
-    final reference = IReference<bool?>.fromRawPointer(
+    final reference = IReference<bool?>.fromPtr(
         propertyValue.toInterface(referenceIid),
         referenceIid: referenceIid);
     return reference;
@@ -120,7 +120,7 @@ extension DoubleHelpers on double {
   IReference<double?> toReference(DoubleType type) {
     final propertyValue = toPropertyValue(type);
     final iid = referenceIid(type);
-    final reference = IReference<double?>.fromRawPointer(
+    final reference = IReference<double?>.fromPtr(
         propertyValue.toInterface(iid),
         referenceIid: iid);
     return reference;
@@ -160,7 +160,7 @@ extension DateTimeHelpers on DateTime {
   IReference<DateTime?> toReference() {
     final propertyValue = toPropertyValue();
     final iid = referenceIid;
-    final reference = IReference<DateTime?>.fromRawPointer(
+    final reference = IReference<DateTime?>.fromPtr(
         propertyValue.toInterface(iid),
         referenceIid: iid);
     return reference;
@@ -186,7 +186,7 @@ extension DurationHelpers on Duration {
   IReference<Duration?> toReference() {
     final propertyValue = toPropertyValue();
     final iid = referenceIid;
-    final reference = IReference<Duration?>.fromRawPointer(
+    final reference = IReference<Duration?>.fromPtr(
         propertyValue.toInterface(iid),
         referenceIid: iid);
     return reference;
@@ -212,8 +212,7 @@ extension GuidHelpers on Guid {
   IReference<Guid?> toReference() {
     final propertyValue = toPropertyValue();
     final iid = referenceIid;
-    final reference = IReference<Guid?>.fromRawPointer(
-        propertyValue.toInterface(iid),
+    final reference = IReference<Guid?>.fromPtr(propertyValue.toInterface(iid),
         referenceIid: iid);
     return reference;
   }
@@ -281,8 +280,7 @@ extension IntHelpers on int {
   IReference<int?> toReference(IntType type) {
     final propertyValue = toPropertyValue(type);
     final iid = referenceIid(type);
-    final reference = IReference<int?>.fromRawPointer(
-        propertyValue.toInterface(iid),
+    final reference = IReference<int?>.fromPtr(propertyValue.toInterface(iid),
         referenceIid: iid);
     return reference;
   }
@@ -341,8 +339,7 @@ extension PointHelpers on Point {
   IReference<Point?> toReference() {
     final propertyValue = toPropertyValue();
     final iid = referenceIid;
-    final reference = IReference<Point?>.fromRawPointer(
-        propertyValue.toInterface(iid),
+    final reference = IReference<Point?>.fromPtr(propertyValue.toInterface(iid),
         referenceIid: iid);
     return reference;
   }
@@ -367,8 +364,7 @@ extension RectHelpers on Rect {
   IReference<Rect?> toReference() {
     final propertyValue = toPropertyValue();
     final iid = referenceIid;
-    final reference = IReference<Rect?>.fromRawPointer(
-        propertyValue.toInterface(iid),
+    final reference = IReference<Rect?>.fromPtr(propertyValue.toInterface(iid),
         referenceIid: iid);
     return reference;
   }
@@ -393,8 +389,7 @@ extension SizeHelpers on Size {
   IReference<Size?> toReference() {
     final propertyValue = toPropertyValue();
     final iid = referenceIid;
-    final reference = IReference<Size?>.fromRawPointer(
-        propertyValue.toInterface(iid),
+    final reference = IReference<Size?>.fromPtr(propertyValue.toInterface(iid),
         referenceIid: iid);
     return reference;
   }
@@ -419,7 +414,7 @@ extension StringHelpers on String {
   IReference<String?> toReference() {
     final propertyValue = toPropertyValue();
     final iid = referenceIid;
-    final reference = IReference<String?>.fromRawPointer(
+    final reference = IReference<String?>.fromPtr(
         propertyValue.toInterface(iid),
         referenceIid: iid);
     return reference;

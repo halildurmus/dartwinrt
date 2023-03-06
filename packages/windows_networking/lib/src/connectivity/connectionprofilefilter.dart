@@ -31,7 +31,7 @@ class ConnectionProfileFilter extends IInspectable
         IConnectionProfileFilter2,
         IConnectionProfileFilter3 {
   ConnectionProfileFilter() : super(activateClass(_className));
-  ConnectionProfileFilter.fromRawPointer(super.ptr);
+  ConnectionProfileFilter.fromPtr(super.ptr);
 
   static const _className =
       'Windows.Networking.Connectivity.ConnectionProfileFilter';

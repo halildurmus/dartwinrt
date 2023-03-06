@@ -37,11 +37,10 @@ class IXmlCDataSection extends IInspectable
         IXmlNodeSelector,
         IXmlNodeSerializer {
   // vtable begins at 6, is 0 entries long.
-  IXmlCDataSection.fromRawPointer(super.ptr);
+  IXmlCDataSection.fromPtr(super.ptr);
 
   factory IXmlCDataSection.from(IInspectable interface) =>
-      IXmlCDataSection.fromRawPointer(
-          interface.toInterface(IID_IXmlCDataSection));
+      IXmlCDataSection.fromPtr(interface.toInterface(IID_IXmlCDataSection));
 
   late final _iXmlText = IXmlText.from(this);
 

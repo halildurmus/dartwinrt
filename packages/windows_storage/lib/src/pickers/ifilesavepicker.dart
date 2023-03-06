@@ -24,11 +24,10 @@ const IID_IFileSavePicker = '{3286ffcb-617f-4cc5-af6a-b3fdf29ad145}';
 /// {@category interface}
 class IFileSavePicker extends IInspectable {
   // vtable begins at 6, is 14 entries long.
-  IFileSavePicker.fromRawPointer(super.ptr);
+  IFileSavePicker.fromPtr(super.ptr);
 
   factory IFileSavePicker.from(IInspectable interface) =>
-      IFileSavePicker.fromRawPointer(
-          interface.toInterface(IID_IFileSavePicker));
+      IFileSavePicker.fromPtr(interface.toInterface(IID_IFileSavePicker));
 
   String get settingsIdentifier {
     final retValuePtr = calloc<HSTRING>();
@@ -178,9 +177,9 @@ class IFileSavePicker extends IInspectable {
       throw WindowsException(hr);
     }
 
-    return IMap.fromRawPointer(retValuePtr,
+    return IMap.fromPtr(retValuePtr,
         iterableIid: '{4fed2669-d0d3-59f6-91d9-95902d728d6a}',
-        creator: (ptr) => IVector.fromRawPointer(ptr,
+        creator: (ptr) => IVector.fromPtr(ptr,
             iterableIid: '{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'));
   }
 
@@ -254,7 +253,7 @@ class IFileSavePicker extends IInspectable {
       return null;
     }
 
-    return StorageFile.fromRawPointer(retValuePtr);
+    return StorageFile.fromPtr(retValuePtr);
   }
 
   set suggestedSaveFile(StorageFile? value) {
@@ -337,9 +336,8 @@ class IFileSavePicker extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<StorageFile?>.fromRawPointer(
-        retValuePtr,
-        creator: StorageFile.fromRawPointer);
+    final asyncOperation = IAsyncOperation<StorageFile?>.fromPtr(retValuePtr,
+        creator: StorageFile.fromPtr);
     completeAsyncOperation(
         asyncOperation, completer, asyncOperation.getResults);
 

@@ -3,7 +3,6 @@
 // BSD-style license that can be found in the LICENSE file.
 
 import 'dart:async';
-import 'dart:ffi';
 
 import 'package:win32/win32.dart';
 
@@ -109,7 +108,7 @@ bool isSubtypeOfInspectable<T>() => isSubtype<T, IInspectable>();
 /// ```
 bool isSubtypeOfWinRTEnum<T>() => isSubtype<T, WinRTEnum>();
 
-/// Determines whether [T] is a subtype of [WinRTEnum].
+/// Determines whether [T] is a subtype of [WinRTFlagsEnum].
 ///
 /// ```dart
 /// isSubtypeOfWinRTFlagsEnum<FileAttributes>(); // true
@@ -117,7 +116,7 @@ bool isSubtypeOfWinRTEnum<T>() => isSubtype<T, WinRTEnum>();
 /// ```
 bool isSubtypeOfWinRTFlagsEnum<T>() => isSubtype<T, WinRTFlagsEnum<dynamic>>();
 
-/// Determines whether [T] is a subtype of [Struct].
+/// Determines whether [T] is a subtype of [WinRTStruct].
 ///
 /// ```dart
 /// isSubtypeOfWinRTStruct<Point>(); // true

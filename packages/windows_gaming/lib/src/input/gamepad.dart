@@ -38,35 +38,35 @@ class Gamepad extends IInspectable
         IGameController,
         IGamepad2,
         IGameControllerBatteryInfo {
-  Gamepad.fromRawPointer(super.ptr);
+  Gamepad.fromPtr(super.ptr);
 
   static const _className = 'Windows.Gaming.Input.Gamepad';
 
   static int add_GamepadAdded(Pointer<COMObject> value) =>
       createActivationFactory(
-              IGamepadStatics.fromRawPointer, _className, IID_IGamepadStatics)
+              IGamepadStatics.fromPtr, _className, IID_IGamepadStatics)
           .add_GamepadAdded(value);
 
   static void remove_GamepadAdded(int token) => createActivationFactory(
-          IGamepadStatics.fromRawPointer, _className, IID_IGamepadStatics)
+          IGamepadStatics.fromPtr, _className, IID_IGamepadStatics)
       .remove_GamepadAdded(token);
 
   static int add_GamepadRemoved(Pointer<COMObject> value) =>
       createActivationFactory(
-              IGamepadStatics.fromRawPointer, _className, IID_IGamepadStatics)
+              IGamepadStatics.fromPtr, _className, IID_IGamepadStatics)
           .add_GamepadRemoved(value);
 
   static void remove_GamepadRemoved(int token) => createActivationFactory(
-          IGamepadStatics.fromRawPointer, _className, IID_IGamepadStatics)
+          IGamepadStatics.fromPtr, _className, IID_IGamepadStatics)
       .remove_GamepadRemoved(token);
 
   static List<Gamepad> get gamepads => createActivationFactory(
-          IGamepadStatics.fromRawPointer, _className, IID_IGamepadStatics)
+          IGamepadStatics.fromPtr, _className, IID_IGamepadStatics)
       .gamepads;
 
   static Gamepad? fromGameController(IGameController? gameController) =>
       createActivationFactory(
-              IGamepadStatics2.fromRawPointer, _className, IID_IGamepadStatics2)
+              IGamepadStatics2.fromPtr, _className, IID_IGamepadStatics2)
           .fromGameController(gameController);
 
   late final _iGamepad = IGamepad.from(this);

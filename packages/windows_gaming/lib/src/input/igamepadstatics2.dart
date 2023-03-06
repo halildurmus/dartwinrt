@@ -25,11 +25,10 @@ const IID_IGamepadStatics2 = '{42676dc5-0856-47c4-9213-b395504c3a3c}';
 /// {@category interface}
 class IGamepadStatics2 extends IInspectable implements IGamepadStatics {
   // vtable begins at 6, is 1 entries long.
-  IGamepadStatics2.fromRawPointer(super.ptr);
+  IGamepadStatics2.fromPtr(super.ptr);
 
   factory IGamepadStatics2.from(IInspectable interface) =>
-      IGamepadStatics2.fromRawPointer(
-          interface.toInterface(IID_IGamepadStatics2));
+      IGamepadStatics2.fromPtr(interface.toInterface(IID_IGamepadStatics2));
 
   Gamepad? fromGameController(IGameController? gameController) {
     final retValuePtr = calloc<COMObject>();
@@ -59,7 +58,7 @@ class IGamepadStatics2 extends IInspectable implements IGamepadStatics {
       return null;
     }
 
-    return Gamepad.fromRawPointer(retValuePtr);
+    return Gamepad.fromPtr(retValuePtr);
   }
 
   late final _iGamepadStatics = IGamepadStatics.from(this);

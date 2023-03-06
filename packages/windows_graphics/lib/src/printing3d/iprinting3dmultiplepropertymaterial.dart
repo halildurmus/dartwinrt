@@ -22,10 +22,10 @@ const IID_IPrinting3DMultiplePropertyMaterial =
 /// {@category interface}
 class IPrinting3DMultiplePropertyMaterial extends IInspectable {
   // vtable begins at 6, is 1 entries long.
-  IPrinting3DMultiplePropertyMaterial.fromRawPointer(super.ptr);
+  IPrinting3DMultiplePropertyMaterial.fromPtr(super.ptr);
 
   factory IPrinting3DMultiplePropertyMaterial.from(IInspectable interface) =>
-      IPrinting3DMultiplePropertyMaterial.fromRawPointer(
+      IPrinting3DMultiplePropertyMaterial.fromPtr(
           interface.toInterface(IID_IPrinting3DMultiplePropertyMaterial));
 
   IVector<int> get materialIndices {
@@ -48,7 +48,7 @@ class IPrinting3DMultiplePropertyMaterial extends IInspectable {
       throw WindowsException(hr);
     }
 
-    return IVector.fromRawPointer(retValuePtr,
+    return IVector.fromPtr(retValuePtr,
         iterableIid: '{421d4b91-b13b-5f37-ae54-b5249bd80539}',
         intType: IntType.uint32);
   }

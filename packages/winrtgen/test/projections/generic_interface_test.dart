@@ -235,7 +235,7 @@ void main() {
     group('has correct named constructor', () {
       test('(1)', () {
         expect(asyncOperationBoolProjection.namedConstructor,
-            equals('_IAsyncOperationBool.fromRawPointer(super.ptr);'));
+            equals('_IAsyncOperationBool.fromPtr(super.ptr);'));
       });
 
       test('(2)', () {
@@ -245,7 +245,7 @@ void main() {
         expect(
             projection.namedConstructor,
             equals(
-                '_IAsyncOperationInspectable.fromRawPointer(super.ptr, {super.creator});'));
+                '_IAsyncOperationInspectable.fromPtr(super.ptr, {super.creator});'));
       });
 
       test('(3)', () {
@@ -254,7 +254,7 @@ void main() {
         expect(
             projection.namedConstructor,
             equals(
-                '_IAsyncOperationWinRTEnum.fromRawPointer(super.ptr, {super.enumCreator});'));
+                '_IAsyncOperationWinRTEnum.fromPtr(super.ptr, {super.enumCreator});'));
       });
 
       test('(4)', () {
@@ -265,7 +265,7 @@ void main() {
         expect(
             projection.namedConstructor,
             equals(
-                '_IMapStringObject.fromRawPointer(super.ptr, {required super.iterableIid});'));
+                '_IMapStringObject.fromPtr(super.ptr, {required super.iterableIid});'));
       });
 
       test('(5)', () {
@@ -276,7 +276,7 @@ void main() {
         expect(
             projection.namedConstructor,
             equals(
-                '_IMapStringInspectable.fromRawPointer(super.ptr, {required super.iterableIid, super.creator});'));
+                '_IMapStringInspectable.fromPtr(super.ptr, {required super.iterableIid, super.creator});'));
       });
 
       test('(6)', () {
@@ -287,7 +287,7 @@ void main() {
         expect(
             projection.namedConstructor,
             equals(
-                '_IMapWinRTEnumInspectable.fromRawPointer(super.ptr, {required super.iterableIid, super.enumKeyCreator, super.creator});'));
+                '_IMapWinRTEnumInspectable.fromPtr(super.ptr, {required super.iterableIid, super.enumKeyCreator, super.creator});'));
       });
     });
 

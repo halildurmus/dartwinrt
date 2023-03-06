@@ -29,10 +29,10 @@ const IID_IRandomAccessStream = '{905a0fe1-bc53-11df-8c49-001e4fc686da}';
 class IRandomAccessStream extends IInspectable
     implements IClosable, IInputStream, IOutputStream {
   // vtable begins at 6, is 9 entries long.
-  IRandomAccessStream.fromRawPointer(super.ptr);
+  IRandomAccessStream.fromPtr(super.ptr);
 
   factory IRandomAccessStream.from(IInspectable interface) =>
-      IRandomAccessStream.fromRawPointer(
+      IRandomAccessStream.fromPtr(
           interface.toInterface(IID_IRandomAccessStream));
 
   int get size {
@@ -99,7 +99,7 @@ class IRandomAccessStream extends IInspectable
       return null;
     }
 
-    return IInputStream.fromRawPointer(retValuePtr);
+    return IInputStream.fromPtr(retValuePtr);
   }
 
   IOutputStream? getOutputStreamAt(int position) {
@@ -128,7 +128,7 @@ class IRandomAccessStream extends IInspectable
       return null;
     }
 
-    return IOutputStream.fromRawPointer(retValuePtr);
+    return IOutputStream.fromPtr(retValuePtr);
   }
 
   int get position {
@@ -194,7 +194,7 @@ class IRandomAccessStream extends IInspectable
       return null;
     }
 
-    return IRandomAccessStream.fromRawPointer(retValuePtr);
+    return IRandomAccessStream.fromPtr(retValuePtr);
   }
 
   bool get canRead {

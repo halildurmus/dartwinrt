@@ -24,11 +24,10 @@ const IID_IXmlDocumentIO2 = '{5d034661-7bd8-4ad5-9ebf-81e6347263b1}';
 /// {@category interface}
 class IXmlDocumentIO2 extends IInspectable {
   // vtable begins at 6, is 2 entries long.
-  IXmlDocumentIO2.fromRawPointer(super.ptr);
+  IXmlDocumentIO2.fromPtr(super.ptr);
 
   factory IXmlDocumentIO2.from(IInspectable interface) =>
-      IXmlDocumentIO2.fromRawPointer(
-          interface.toInterface(IID_IXmlDocumentIO2));
+      IXmlDocumentIO2.fromPtr(interface.toInterface(IID_IXmlDocumentIO2));
 
   void loadXmlFromBuffer(IBuffer? buffer) {
     final bufferPtr = buffer == null ? nullptr : buffer.ptr.ref.lpVtbl;

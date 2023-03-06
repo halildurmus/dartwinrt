@@ -24,7 +24,7 @@ import 'iendpointpairfactory.dart';
 ///
 /// {@category class}
 class EndpointPair extends IInspectable implements IEndpointPair {
-  EndpointPair.fromRawPointer(super.ptr);
+  EndpointPair.fromPtr(super.ptr);
 
   static const _className = 'Windows.Networking.EndpointPair';
 
@@ -33,7 +33,7 @@ class EndpointPair extends IInspectable implements IEndpointPair {
           String localServiceName,
           HostName remoteHostName,
           String remoteServiceName) =>
-      createActivationFactory(IEndpointPairFactory.fromRawPointer, _className,
+      createActivationFactory(IEndpointPairFactory.fromPtr, _className,
               IID_IEndpointPairFactory)
           .createEndpointPair(localHostName, localServiceName, remoteHostName,
               remoteServiceName);

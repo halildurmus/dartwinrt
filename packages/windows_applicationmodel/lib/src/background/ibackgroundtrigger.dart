@@ -21,9 +21,8 @@ const IID_IBackgroundTrigger = '{84b3a058-6027-4b87-9790-bdf3f757dbd7}';
 /// {@category interface}
 class IBackgroundTrigger extends IInspectable {
   // vtable begins at 6, is 0 entries long.
-  IBackgroundTrigger.fromRawPointer(super.ptr);
+  IBackgroundTrigger.fromPtr(super.ptr);
 
   factory IBackgroundTrigger.from(IInspectable interface) =>
-      IBackgroundTrigger.fromRawPointer(
-          interface.toInterface(IID_IBackgroundTrigger));
+      IBackgroundTrigger.fromPtr(interface.toInterface(IID_IBackgroundTrigger));
 }

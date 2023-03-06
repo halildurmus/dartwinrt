@@ -35,10 +35,10 @@ class IXmlText extends IInspectable
         IXmlNodeSelector,
         IXmlNodeSerializer {
   // vtable begins at 6, is 1 entries long.
-  IXmlText.fromRawPointer(super.ptr);
+  IXmlText.fromPtr(super.ptr);
 
   factory IXmlText.from(IInspectable interface) =>
-      IXmlText.fromRawPointer(interface.toInterface(IID_IXmlText));
+      IXmlText.fromPtr(interface.toInterface(IID_IXmlText));
 
   IXmlText? splitText(int offset) {
     final retValuePtr = calloc<COMObject>();
@@ -66,7 +66,7 @@ class IXmlText extends IInspectable
       return null;
     }
 
-    return IXmlText.fromRawPointer(retValuePtr);
+    return IXmlText.fromPtr(retValuePtr);
   }
 
   late final _iXmlCharacterData = IXmlCharacterData.from(this);

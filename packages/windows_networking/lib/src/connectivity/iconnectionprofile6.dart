@@ -23,10 +23,10 @@ const IID_IConnectionProfile6 = '{dc27dfe2-7a6f-5d0e-9589-2fe2e5b6f9aa}';
 /// {@category interface}
 class IConnectionProfile6 extends IInspectable {
   // vtable begins at 6, is 1 entries long.
-  IConnectionProfile6.fromRawPointer(super.ptr);
+  IConnectionProfile6.fromPtr(super.ptr);
 
   factory IConnectionProfile6.from(IInspectable interface) =>
-      IConnectionProfile6.fromRawPointer(
+      IConnectionProfile6.fromPtr(
           interface.toInterface(IID_IConnectionProfile6));
 
   bool isDomainAuthenticatedBy(DomainAuthenticationKind kind) {

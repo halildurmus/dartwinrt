@@ -25,10 +25,10 @@ const IID_IScheduledToastNotificationFactory =
 /// {@category interface}
 class IScheduledToastNotificationFactory extends IInspectable {
   // vtable begins at 6, is 2 entries long.
-  IScheduledToastNotificationFactory.fromRawPointer(super.ptr);
+  IScheduledToastNotificationFactory.fromPtr(super.ptr);
 
   factory IScheduledToastNotificationFactory.from(IInspectable interface) =>
-      IScheduledToastNotificationFactory.fromRawPointer(
+      IScheduledToastNotificationFactory.fromPtr(
           interface.toInterface(IID_IScheduledToastNotificationFactory));
 
   ScheduledToastNotification createScheduledToastNotification(
@@ -61,7 +61,7 @@ class IScheduledToastNotificationFactory extends IInspectable {
       throw WindowsException(hr);
     }
 
-    return ScheduledToastNotification.fromRawPointer(retValuePtr);
+    return ScheduledToastNotification.fromPtr(retValuePtr);
   }
 
   ScheduledToastNotification createScheduledToastNotificationRecurring(
@@ -105,6 +105,6 @@ class IScheduledToastNotificationFactory extends IInspectable {
       throw WindowsException(hr);
     }
 
-    return ScheduledToastNotification.fromRawPointer(retValuePtr);
+    return ScheduledToastNotification.fromPtr(retValuePtr);
   }
 }

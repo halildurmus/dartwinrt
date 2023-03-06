@@ -23,10 +23,10 @@ const IID_IConnectionProfile5 = '{85361ec7-9c73-4be0-8f14-578eec71ee0e}';
 /// {@category interface}
 class IConnectionProfile5 extends IInspectable {
   // vtable begins at 6, is 2 entries long.
-  IConnectionProfile5.fromRawPointer(super.ptr);
+  IConnectionProfile5.fromPtr(super.ptr);
 
   factory IConnectionProfile5.from(IInspectable interface) =>
-      IConnectionProfile5.fromRawPointer(
+      IConnectionProfile5.fromPtr(
           interface.toInterface(IID_IConnectionProfile5));
 
   bool get canDelete {
@@ -75,8 +75,7 @@ class IConnectionProfile5 extends IInspectable {
     }
 
     final asyncOperation =
-        IAsyncOperation<ConnectionProfileDeleteStatus>.fromRawPointer(
-            retValuePtr,
+        IAsyncOperation<ConnectionProfileDeleteStatus>.fromPtr(retValuePtr,
             enumCreator: ConnectionProfileDeleteStatus.from);
     completeAsyncOperation(
         asyncOperation, completer, asyncOperation.getResults);

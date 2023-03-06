@@ -26,10 +26,10 @@ const IID_IGeopoint = '{6bfa00eb-e56e-49bb-9caf-cbaa78a8bcef}';
 /// {@category interface}
 class IGeopoint extends IInspectable implements IGeoshape {
   // vtable begins at 6, is 1 entries long.
-  IGeopoint.fromRawPointer(super.ptr);
+  IGeopoint.fromPtr(super.ptr);
 
   factory IGeopoint.from(IInspectable interface) =>
-      IGeopoint.fromRawPointer(interface.toInterface(IID_IGeopoint));
+      IGeopoint.fromPtr(interface.toInterface(IID_IGeopoint));
 
   BasicGeoposition get position {
     final retValuePtr = calloc<NativeBasicGeoposition>();

@@ -22,10 +22,10 @@ const IID_IGameControllerBatteryInfo = '{dcecc681-3963-4da6-955d-553f3b6f6161}';
 /// {@category interface}
 class IGameControllerBatteryInfo extends IInspectable {
   // vtable begins at 6, is 1 entries long.
-  IGameControllerBatteryInfo.fromRawPointer(super.ptr);
+  IGameControllerBatteryInfo.fromPtr(super.ptr);
 
   factory IGameControllerBatteryInfo.from(IInspectable interface) =>
-      IGameControllerBatteryInfo.fromRawPointer(
+      IGameControllerBatteryInfo.fromPtr(
           interface.toInterface(IID_IGameControllerBatteryInfo));
 
   BatteryReport? tryGetBatteryReport() {
@@ -53,6 +53,6 @@ class IGameControllerBatteryInfo extends IInspectable {
       return null;
     }
 
-    return BatteryReport.fromRawPointer(retValuePtr);
+    return BatteryReport.fromPtr(retValuePtr);
   }
 }

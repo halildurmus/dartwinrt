@@ -24,10 +24,10 @@ const IID_ICalendar = '{ca30221d-86d9-40fb-a26b-d44eb7cf08ea}';
 /// {@category interface}
 class ICalendar extends IInspectable {
   // vtable begins at 6, is 98 entries long.
-  ICalendar.fromRawPointer(super.ptr);
+  ICalendar.fromPtr(super.ptr);
 
   factory ICalendar.from(IInspectable interface) =>
-      ICalendar.fromRawPointer(interface.toInterface(IID_ICalendar));
+      ICalendar.fromPtr(interface.toInterface(IID_ICalendar));
 
   Calendar? clone() {
     final retValuePtr = calloc<COMObject>();
@@ -54,7 +54,7 @@ class ICalendar extends IInspectable {
       return null;
     }
 
-    return Calendar.fromRawPointer(retValuePtr);
+    return Calendar.fromPtr(retValuePtr);
   }
 
   void setToMin() {
@@ -97,7 +97,7 @@ class ICalendar extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final vectorView = IVectorView<String>.fromRawPointer(retValuePtr,
+    final vectorView = IVectorView<String>.fromPtr(retValuePtr,
         iterableIid: '{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}');
     return vectorView.toList();
   }

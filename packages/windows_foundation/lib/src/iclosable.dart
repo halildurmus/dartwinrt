@@ -26,10 +26,10 @@ const IID_IClosable = '{30d5a829-7fa4-4026-83bb-d75bae4ea99e}';
 /// {@category interface}
 class IClosable extends IInspectable {
   // vtable begins at 6, is 1 entries long.
-  IClosable.fromRawPointer(super.ptr);
+  IClosable.fromPtr(super.ptr);
 
   factory IClosable.from(IInspectable interface) =>
-      IClosable.fromRawPointer(interface.toInterface(IID_IClosable));
+      IClosable.fromPtr(interface.toInterface(IID_IClosable));
 
   void close() {
     final hr = ptr.ref.vtable

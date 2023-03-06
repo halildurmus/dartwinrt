@@ -25,10 +25,10 @@ const IID_IUISettings = '{85361600-1c63-4627-bcb1-3a89e0bc9c55}';
 /// {@category interface}
 class IUISettings extends IInspectable {
   // vtable begins at 6, is 13 entries long.
-  IUISettings.fromRawPointer(super.ptr);
+  IUISettings.fromPtr(super.ptr);
 
   factory IUISettings.from(IInspectable interface) =>
-      IUISettings.fromRawPointer(interface.toInterface(IID_IUISettings));
+      IUISettings.fromPtr(interface.toInterface(IID_IUISettings));
 
   HandPreference get handPreference {
     final retValuePtr = calloc<Int32>();

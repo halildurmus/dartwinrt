@@ -24,10 +24,10 @@ const IID_IStorageFileStatics2 = '{5c76a781-212e-4af9-8f04-740cae108974}';
 /// {@category interface}
 class IStorageFileStatics2 extends IInspectable {
   // vtable begins at 6, is 1 entries long.
-  IStorageFileStatics2.fromRawPointer(super.ptr);
+  IStorageFileStatics2.fromPtr(super.ptr);
 
   factory IStorageFileStatics2.from(IInspectable interface) =>
-      IStorageFileStatics2.fromRawPointer(
+      IStorageFileStatics2.fromPtr(
           interface.toInterface(IID_IStorageFileStatics2));
 
   Future<StorageFile?> getFileFromPathForUserAsync(User? user, String path) {
@@ -56,9 +56,8 @@ class IStorageFileStatics2 extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<StorageFile?>.fromRawPointer(
-        retValuePtr,
-        creator: StorageFile.fromRawPointer);
+    final asyncOperation = IAsyncOperation<StorageFile?>.fromPtr(retValuePtr,
+        creator: StorageFile.fromPtr);
     completeAsyncOperation(
         asyncOperation, completer, asyncOperation.getResults);
 

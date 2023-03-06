@@ -23,11 +23,10 @@ const IID_IJsonValueStatics2 = '{1d9ecbe4-3fe8-4335-8392-93d8e36865f0}';
 /// {@category interface}
 class IJsonValueStatics2 extends IInspectable {
   // vtable begins at 6, is 1 entries long.
-  IJsonValueStatics2.fromRawPointer(super.ptr);
+  IJsonValueStatics2.fromPtr(super.ptr);
 
   factory IJsonValueStatics2.from(IInspectable interface) =>
-      IJsonValueStatics2.fromRawPointer(
-          interface.toInterface(IID_IJsonValueStatics2));
+      IJsonValueStatics2.fromPtr(interface.toInterface(IID_IJsonValueStatics2));
 
   JsonValue? createNullValue() {
     final retValuePtr = calloc<COMObject>();
@@ -54,6 +53,6 @@ class IJsonValueStatics2 extends IInspectable {
       return null;
     }
 
-    return JsonValue.fromRawPointer(retValuePtr);
+    return JsonValue.fromPtr(retValuePtr);
   }
 }

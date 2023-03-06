@@ -62,18 +62,18 @@ class StorageFolder extends IInspectable
         IStorageFolder2,
         IStorageItemPropertiesWithProvider,
         IStorageFolder3 {
-  StorageFolder.fromRawPointer(super.ptr);
+  StorageFolder.fromPtr(super.ptr);
 
   static const _className = 'Windows.Storage.StorageFolder';
 
   static Future<StorageFolder?> getFolderFromPathAsync(String path) =>
-      createActivationFactory(IStorageFolderStatics.fromRawPointer, _className,
+      createActivationFactory(IStorageFolderStatics.fromPtr, _className,
               IID_IStorageFolderStatics)
           .getFolderFromPathAsync(path);
 
   static Future<StorageFolder?> getFolderFromPathForUserAsync(
           User? user, String path) =>
-      createActivationFactory(IStorageFolderStatics2.fromRawPointer, _className,
+      createActivationFactory(IStorageFolderStatics2.fromPtr, _className,
               IID_IStorageFolderStatics2)
           .getFolderFromPathForUserAsync(user, path);
 

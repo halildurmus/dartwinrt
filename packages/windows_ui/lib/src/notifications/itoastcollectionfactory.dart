@@ -23,10 +23,10 @@ const IID_IToastCollectionFactory = '{164dd3d7-73c4-44f7-b4ff-fb6d4bf1f4c6}';
 /// {@category interface}
 class IToastCollectionFactory extends IInspectable {
   // vtable begins at 6, is 1 entries long.
-  IToastCollectionFactory.fromRawPointer(super.ptr);
+  IToastCollectionFactory.fromPtr(super.ptr);
 
   factory IToastCollectionFactory.from(IInspectable interface) =>
-      IToastCollectionFactory.fromRawPointer(
+      IToastCollectionFactory.fromPtr(
           interface.toInterface(IID_IToastCollectionFactory));
 
   ToastCollection createInstance(String collectionId, String displayName,
@@ -74,6 +74,6 @@ class IToastCollectionFactory extends IInspectable {
       throw WindowsException(hr);
     }
 
-    return ToastCollection.fromRawPointer(retValuePtr);
+    return ToastCollection.fromPtr(retValuePtr);
   }
 }

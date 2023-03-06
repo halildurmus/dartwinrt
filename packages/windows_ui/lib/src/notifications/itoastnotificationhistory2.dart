@@ -23,10 +23,10 @@ const IID_IToastNotificationHistory2 = '{3bc3d253-2f31-4092-9129-8ad5abf067da}';
 /// {@category interface}
 class IToastNotificationHistory2 extends IInspectable {
   // vtable begins at 6, is 2 entries long.
-  IToastNotificationHistory2.fromRawPointer(super.ptr);
+  IToastNotificationHistory2.fromPtr(super.ptr);
 
   factory IToastNotificationHistory2.from(IInspectable interface) =>
-      IToastNotificationHistory2.fromRawPointer(
+      IToastNotificationHistory2.fromPtr(
           interface.toInterface(IID_IToastNotificationHistory2));
 
   List<ToastNotification> getHistory() {
@@ -49,10 +49,9 @@ class IToastNotificationHistory2 extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final vectorView = IVectorView<ToastNotification>.fromRawPointer(
-        retValuePtr,
+    final vectorView = IVectorView<ToastNotification>.fromPtr(retValuePtr,
         iterableIid: '{52c9428b-d37a-554d-bf55-b8685d5f552d}',
-        creator: ToastNotification.fromRawPointer);
+        creator: ToastNotification.fromPtr);
     return vectorView.toList();
   }
 
@@ -80,10 +79,9 @@ class IToastNotificationHistory2 extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final vectorView = IVectorView<ToastNotification>.fromRawPointer(
-        retValuePtr,
+    final vectorView = IVectorView<ToastNotification>.fromPtr(retValuePtr,
         iterableIid: '{52c9428b-d37a-554d-bf55-b8685d5f552d}',
-        creator: ToastNotification.fromRawPointer);
+        creator: ToastNotification.fromPtr);
     return vectorView.toList();
   }
 }

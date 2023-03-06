@@ -23,10 +23,10 @@ const IID_IUISettings2 = '{bad82401-2721-44f9-bb91-2bb228be442f}';
 /// {@category interface}
 class IUISettings2 extends IInspectable {
   // vtable begins at 6, is 3 entries long.
-  IUISettings2.fromRawPointer(super.ptr);
+  IUISettings2.fromPtr(super.ptr);
 
   factory IUISettings2.from(IInspectable interface) =>
-      IUISettings2.fromRawPointer(interface.toInterface(IID_IUISettings2));
+      IUISettings2.fromPtr(interface.toInterface(IID_IUISettings2));
 
   double get textScaleFactor {
     final retValuePtr = calloc<Double>();

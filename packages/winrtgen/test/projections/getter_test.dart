@@ -323,7 +323,7 @@ void main() {
               'int Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)'));
       expect(projection.methodHeader, equals('Object? get localName'));
       expect(projection.toString(),
-          contains('return IPropertyValue.fromRawPointer(retValuePtr).value;'));
+          contains('return IPropertyValue.fromPtr(retValuePtr).value;'));
     });
 
     if (windowsBuildNumber >= 20348) {

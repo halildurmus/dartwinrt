@@ -23,10 +23,10 @@ const IID_IStorageStreamTransaction = '{f67cf363-a53d-4d94-ae2c-67232d93acdd}';
 /// {@category interface}
 class IStorageStreamTransaction extends IInspectable implements IClosable {
   // vtable begins at 6, is 2 entries long.
-  IStorageStreamTransaction.fromRawPointer(super.ptr);
+  IStorageStreamTransaction.fromPtr(super.ptr);
 
   factory IStorageStreamTransaction.from(IInspectable interface) =>
-      IStorageStreamTransaction.fromRawPointer(
+      IStorageStreamTransaction.fromPtr(
           interface.toInterface(IID_IStorageStreamTransaction));
 
   IRandomAccessStream? get stream {
@@ -54,7 +54,7 @@ class IStorageStreamTransaction extends IInspectable implements IClosable {
       return null;
     }
 
-    return IRandomAccessStream.fromRawPointer(retValuePtr);
+    return IRandomAccessStream.fromPtr(retValuePtr);
   }
 
   Future<void> commitAsync() {
@@ -78,7 +78,7 @@ class IStorageStreamTransaction extends IInspectable implements IClosable {
       throw WindowsException(hr);
     }
 
-    final asyncAction = IAsyncAction.fromRawPointer(retValuePtr);
+    final asyncAction = IAsyncAction.fromPtr(retValuePtr);
     completeAsyncAction(asyncAction, completer);
 
     return completer.future;

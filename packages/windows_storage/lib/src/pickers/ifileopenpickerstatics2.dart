@@ -24,10 +24,10 @@ const IID_IFileOpenPickerStatics2 = '{e8917415-eddd-5c98-b6f3-366fdfcad392}';
 /// {@category interface}
 class IFileOpenPickerStatics2 extends IInspectable {
   // vtable begins at 6, is 1 entries long.
-  IFileOpenPickerStatics2.fromRawPointer(super.ptr);
+  IFileOpenPickerStatics2.fromPtr(super.ptr);
 
   factory IFileOpenPickerStatics2.from(IInspectable interface) =>
-      IFileOpenPickerStatics2.fromRawPointer(
+      IFileOpenPickerStatics2.fromPtr(
           interface.toInterface(IID_IFileOpenPickerStatics2));
 
   FileOpenPicker? createForUser(User? user) {
@@ -57,6 +57,6 @@ class IFileOpenPickerStatics2 extends IInspectable {
       return null;
     }
 
-    return FileOpenPicker.fromRawPointer(retValuePtr);
+    return FileOpenPicker.fromPtr(retValuePtr);
   }
 }

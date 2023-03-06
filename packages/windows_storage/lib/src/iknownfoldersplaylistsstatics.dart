@@ -24,10 +24,10 @@ const IID_IKnownFoldersPlaylistsStatics =
 /// {@category interface}
 class IKnownFoldersPlaylistsStatics extends IInspectable {
   // vtable begins at 6, is 1 entries long.
-  IKnownFoldersPlaylistsStatics.fromRawPointer(super.ptr);
+  IKnownFoldersPlaylistsStatics.fromPtr(super.ptr);
 
   factory IKnownFoldersPlaylistsStatics.from(IInspectable interface) =>
-      IKnownFoldersPlaylistsStatics.fromRawPointer(
+      IKnownFoldersPlaylistsStatics.fromPtr(
           interface.toInterface(IID_IKnownFoldersPlaylistsStatics));
 
   StorageFolder? get playlists {
@@ -55,6 +55,6 @@ class IKnownFoldersPlaylistsStatics extends IInspectable {
       return null;
     }
 
-    return StorageFolder.fromRawPointer(retValuePtr);
+    return StorageFolder.fromPtr(retValuePtr);
   }
 }

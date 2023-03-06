@@ -31,10 +31,10 @@ const IID_IAsyncInfo = '{00000036-0000-0000-c000-000000000046}';
 /// {@category interface}
 class IAsyncInfo extends IInspectable {
   // vtable begins at 6, is 5 entries long.
-  IAsyncInfo.fromRawPointer(super.ptr);
+  IAsyncInfo.fromPtr(super.ptr);
 
   factory IAsyncInfo.from(IInspectable interface) =>
-      IAsyncInfo.fromRawPointer(interface.toInterface(IID_IAsyncInfo));
+      IAsyncInfo.fromPtr(interface.toInterface(IID_IAsyncInfo));
 
   int get id {
     final retValuePtr = calloc<Uint32>();

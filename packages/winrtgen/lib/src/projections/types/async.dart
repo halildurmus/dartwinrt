@@ -21,7 +21,7 @@ class AsyncActionMethodProjection extends MethodProjection {
     final completer = Completer<void>();
     ${ffiCall(freeRetValOnFailure: true)}
 
-    final asyncAction = IAsyncAction.fromRawPointer(retValuePtr);
+    final asyncAction = IAsyncAction.fromPtr(retValuePtr);
     completeAsyncAction(asyncAction, completer);
 
     return completer.future;
@@ -108,7 +108,7 @@ mixin _AsyncOperationMixin on MethodProjection {
     ${ffiCall(freeRetValOnFailure: true)}
 
     final asyncOperation = IAsyncOperation<$asyncOperationTypeArg>
-            .fromRawPointer(retValuePtr$asyncOperationConstructorArgs);
+            .fromPtr(retValuePtr$asyncOperationConstructorArgs);
     completeAsyncOperation(asyncOperation, completer, $onCompletedCallback);
 
     return completer.future;

@@ -28,8 +28,7 @@ void main() {
 
     test('toInterface works', () {
       final uri = winrt_uri.Uri.createUri('https://dart.dev/');
-      final stringable =
-          IStringable.fromRawPointer(uri.toInterface(IID_IStringable));
+      final stringable = IStringable.fromPtr(uri.toInterface(IID_IStringable));
       expect(stringable.toString(), equals('https://dart.dev/'));
     });
 

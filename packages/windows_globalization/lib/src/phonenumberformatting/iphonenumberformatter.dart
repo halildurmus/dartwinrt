@@ -24,10 +24,10 @@ const IID_IPhoneNumberFormatter = '{1556b49e-bad4-4b4a-900d-4407adb7c981}';
 /// {@category interface}
 class IPhoneNumberFormatter extends IInspectable {
   // vtable begins at 6, is 5 entries long.
-  IPhoneNumberFormatter.fromRawPointer(super.ptr);
+  IPhoneNumberFormatter.fromPtr(super.ptr);
 
   factory IPhoneNumberFormatter.from(IInspectable interface) =>
-      IPhoneNumberFormatter.fromRawPointer(
+      IPhoneNumberFormatter.fromPtr(
           interface.toInterface(IID_IPhoneNumberFormatter));
 
   String format(PhoneNumberInfo? number) {

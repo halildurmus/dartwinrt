@@ -24,11 +24,10 @@ const IID_IGameController = '{1baf6522-5f64-42c5-8267-b9fe2215bfbd}';
 /// {@category interface}
 class IGameController extends IInspectable {
   // vtable begins at 6, is 9 entries long.
-  IGameController.fromRawPointer(super.ptr);
+  IGameController.fromPtr(super.ptr);
 
   factory IGameController.from(IInspectable interface) =>
-      IGameController.fromRawPointer(
-          interface.toInterface(IID_IGameController));
+      IGameController.fromPtr(interface.toInterface(IID_IGameController));
 
   int add_HeadsetConnected(Pointer<COMObject> value) {
     final retValuePtr = calloc<IntPtr>();
@@ -172,7 +171,7 @@ class IGameController extends IInspectable {
       return null;
     }
 
-    return Headset.fromRawPointer(retValuePtr);
+    return Headset.fromPtr(retValuePtr);
   }
 
   bool get isWireless {
@@ -224,6 +223,6 @@ class IGameController extends IInspectable {
       return null;
     }
 
-    return User.fromRawPointer(retValuePtr);
+    return User.fromPtr(retValuePtr);
   }
 }

@@ -21,10 +21,10 @@ const IID_IToastNotification6 = '{43ebfe53-89ae-5c1e-a279-3aecfe9b6f54}';
 /// {@category interface}
 class IToastNotification6 extends IInspectable {
   // vtable begins at 6, is 2 entries long.
-  IToastNotification6.fromRawPointer(super.ptr);
+  IToastNotification6.fromPtr(super.ptr);
 
   factory IToastNotification6.from(IInspectable interface) =>
-      IToastNotification6.fromRawPointer(
+      IToastNotification6.fromPtr(
           interface.toInterface(IID_IToastNotification6));
 
   bool get expiresOnReboot {

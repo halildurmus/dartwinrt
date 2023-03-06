@@ -21,11 +21,10 @@ const IID_IXmlNodeSerializer = '{5cc5b382-e6dd-4991-abef-06d8d2e7bd0c}';
 /// {@category interface}
 class IXmlNodeSerializer extends IInspectable {
   // vtable begins at 6, is 3 entries long.
-  IXmlNodeSerializer.fromRawPointer(super.ptr);
+  IXmlNodeSerializer.fromPtr(super.ptr);
 
   factory IXmlNodeSerializer.from(IInspectable interface) =>
-      IXmlNodeSerializer.fromRawPointer(
-          interface.toInterface(IID_IXmlNodeSerializer));
+      IXmlNodeSerializer.fromPtr(interface.toInterface(IID_IXmlNodeSerializer));
 
   String getXml() {
     final retValuePtr = calloc<HSTRING>();

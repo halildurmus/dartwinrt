@@ -23,7 +23,7 @@ import 'ideviceunpairingresult.dart';
 /// {@category class}
 class DeviceUnpairingResult extends IInspectable
     implements IDeviceUnpairingResult {
-  DeviceUnpairingResult.fromRawPointer(super.ptr);
+  DeviceUnpairingResult.fromPtr(super.ptr);
 
   late final _iDeviceUnpairingResult = IDeviceUnpairingResult.from(this);
 

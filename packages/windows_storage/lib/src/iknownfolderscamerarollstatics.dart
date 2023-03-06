@@ -24,10 +24,10 @@ const IID_IKnownFoldersCameraRollStatics =
 /// {@category interface}
 class IKnownFoldersCameraRollStatics extends IInspectable {
   // vtable begins at 6, is 1 entries long.
-  IKnownFoldersCameraRollStatics.fromRawPointer(super.ptr);
+  IKnownFoldersCameraRollStatics.fromPtr(super.ptr);
 
   factory IKnownFoldersCameraRollStatics.from(IInspectable interface) =>
-      IKnownFoldersCameraRollStatics.fromRawPointer(
+      IKnownFoldersCameraRollStatics.fromPtr(
           interface.toInterface(IID_IKnownFoldersCameraRollStatics));
 
   StorageFolder? get cameraRoll {
@@ -55,6 +55,6 @@ class IKnownFoldersCameraRollStatics extends IInspectable {
       return null;
     }
 
-    return StorageFolder.fromRawPointer(retValuePtr);
+    return StorageFolder.fromPtr(retValuePtr);
   }
 }

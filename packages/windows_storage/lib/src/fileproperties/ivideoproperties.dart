@@ -25,11 +25,10 @@ const IID_IVideoProperties = '{719ae507-68de-4db8-97de-49998c059f2f}';
 class IVideoProperties extends IInspectable
     implements IStorageItemExtraProperties {
   // vtable begins at 6, is 21 entries long.
-  IVideoProperties.fromRawPointer(super.ptr);
+  IVideoProperties.fromPtr(super.ptr);
 
   factory IVideoProperties.from(IInspectable interface) =>
-      IVideoProperties.fromRawPointer(
-          interface.toInterface(IID_IVideoProperties));
+      IVideoProperties.fromPtr(interface.toInterface(IID_IVideoProperties));
 
   int get rating {
     final retValuePtr = calloc<Uint32>();
@@ -89,7 +88,7 @@ class IVideoProperties extends IInspectable
       throw WindowsException(hr);
     }
 
-    return IVector.fromRawPointer(retValuePtr,
+    return IVector.fromPtr(retValuePtr,
         iterableIid: '{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}');
   }
 
@@ -190,7 +189,7 @@ class IVideoProperties extends IInspectable
       return null;
     }
 
-    final reference = IReference<double?>.fromRawPointer(retValuePtr,
+    final reference = IReference<double?>.fromPtr(retValuePtr,
         referenceIid: '{2f2d6c29-5473-5f3e-92e7-96572bb990e2}');
     return reference.value;
   }
@@ -220,7 +219,7 @@ class IVideoProperties extends IInspectable
       return null;
     }
 
-    final reference = IReference<double?>.fromRawPointer(retValuePtr,
+    final reference = IReference<double?>.fromPtr(retValuePtr,
         referenceIid: '{2f2d6c29-5473-5f3e-92e7-96572bb990e2}');
     return reference.value;
   }
@@ -335,7 +334,7 @@ class IVideoProperties extends IInspectable
       throw WindowsException(hr);
     }
 
-    return IVector.fromRawPointer(retValuePtr,
+    return IVector.fromPtr(retValuePtr,
         iterableIid: '{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}');
   }
 
@@ -404,7 +403,7 @@ class IVideoProperties extends IInspectable
       throw WindowsException(hr);
     }
 
-    return IVector.fromRawPointer(retValuePtr,
+    return IVector.fromPtr(retValuePtr,
         iterableIid: '{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}');
   }
 
@@ -490,7 +489,7 @@ class IVideoProperties extends IInspectable
       throw WindowsException(hr);
     }
 
-    return IVector.fromRawPointer(retValuePtr,
+    return IVector.fromPtr(retValuePtr,
         iterableIid: '{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}');
   }
 

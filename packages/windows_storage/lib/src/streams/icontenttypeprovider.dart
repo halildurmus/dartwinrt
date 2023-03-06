@@ -21,10 +21,10 @@ const IID_IContentTypeProvider = '{97d098a5-3b99-4de9-88a5-e11d2f50c795}';
 /// {@category interface}
 class IContentTypeProvider extends IInspectable {
   // vtable begins at 6, is 1 entries long.
-  IContentTypeProvider.fromRawPointer(super.ptr);
+  IContentTypeProvider.fromPtr(super.ptr);
 
   factory IContentTypeProvider.from(IInspectable interface) =>
-      IContentTypeProvider.fromRawPointer(
+      IContentTypeProvider.fromPtr(
           interface.toInterface(IID_IContentTypeProvider));
 
   String get contentType {

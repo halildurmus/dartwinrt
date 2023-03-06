@@ -29,7 +29,7 @@ import 'queryoptions.dart';
 /// {@category class}
 class StorageItemQueryResult extends IInspectable
     implements IStorageItemQueryResult, IStorageQueryResultBase {
-  StorageItemQueryResult.fromRawPointer(super.ptr);
+  StorageItemQueryResult.fromPtr(super.ptr);
 
   late final _iStorageItemQueryResult = IStorageItemQueryResult.from(this);
 

@@ -24,10 +24,10 @@ const IID_IToastCollectionManager = '{2a1821fe-179d-49bc-b79d-a527920d3665}';
 /// {@category interface}
 class IToastCollectionManager extends IInspectable {
   // vtable begins at 6, is 7 entries long.
-  IToastCollectionManager.fromRawPointer(super.ptr);
+  IToastCollectionManager.fromPtr(super.ptr);
 
   factory IToastCollectionManager.from(IInspectable interface) =>
-      IToastCollectionManager.fromRawPointer(
+      IToastCollectionManager.fromPtr(
           interface.toInterface(IID_IToastCollectionManager));
 
   Future<void> saveToastCollectionAsync(ToastCollection? collection) {
@@ -54,7 +54,7 @@ class IToastCollectionManager extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncAction = IAsyncAction.fromRawPointer(retValuePtr);
+    final asyncAction = IAsyncAction.fromPtr(retValuePtr);
     completeAsyncAction(asyncAction, completer);
 
     return completer.future;
@@ -82,10 +82,9 @@ class IToastCollectionManager extends IInspectable {
     }
 
     final asyncOperation =
-        IAsyncOperation<IVectorView<ToastCollection>>.fromRawPointer(
-            retValuePtr,
-            creator: (ptr) => IVectorView.fromRawPointer(ptr,
-                creator: ToastCollection.fromRawPointer,
+        IAsyncOperation<IVectorView<ToastCollection>>.fromPtr(retValuePtr,
+            creator: (ptr) => IVectorView.fromPtr(ptr,
+                creator: ToastCollection.fromPtr,
                 iterableIid: '{8928d527-db5d-5a10-ae9b-430fa0906e74}'));
     completeAsyncOperation(
         asyncOperation, completer, () => asyncOperation.getResults().toList());
@@ -118,9 +117,9 @@ class IToastCollectionManager extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<ToastCollection?>.fromRawPointer(
+    final asyncOperation = IAsyncOperation<ToastCollection?>.fromPtr(
         retValuePtr,
-        creator: ToastCollection.fromRawPointer);
+        creator: ToastCollection.fromPtr);
     completeAsyncOperation(
         asyncOperation, completer, asyncOperation.getResults);
 
@@ -152,7 +151,7 @@ class IToastCollectionManager extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncAction = IAsyncAction.fromRawPointer(retValuePtr);
+    final asyncAction = IAsyncAction.fromPtr(retValuePtr);
     completeAsyncAction(asyncAction, completer);
 
     return completer.future;
@@ -179,7 +178,7 @@ class IToastCollectionManager extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncAction = IAsyncAction.fromRawPointer(retValuePtr);
+    final asyncAction = IAsyncAction.fromPtr(retValuePtr);
     completeAsyncAction(asyncAction, completer);
 
     return completer.future;
@@ -210,7 +209,7 @@ class IToastCollectionManager extends IInspectable {
       return null;
     }
 
-    return User.fromRawPointer(retValuePtr);
+    return User.fromPtr(retValuePtr);
   }
 
   String get appId {

@@ -30,10 +30,10 @@ const IID_IGamepad2 = '{3c1689bd-5915-4245-b0c0-c89fae0308ff}';
 /// {@category interface}
 class IGamepad2 extends IInspectable implements IGamepad, IGameController {
   // vtable begins at 6, is 1 entries long.
-  IGamepad2.fromRawPointer(super.ptr);
+  IGamepad2.fromPtr(super.ptr);
 
   factory IGamepad2.from(IInspectable interface) =>
-      IGamepad2.fromRawPointer(interface.toInterface(IID_IGamepad2));
+      IGamepad2.fromPtr(interface.toInterface(IID_IGamepad2));
 
   GameControllerButtonLabel getButtonLabel(GamepadButtons button) {
     final retValuePtr = calloc<Int32>();

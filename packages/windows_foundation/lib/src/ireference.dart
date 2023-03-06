@@ -32,87 +32,86 @@ abstract class IReference<T> extends IInspectable {
   /// `'{513ef3af-e784-5325-a91e-97c2b8111cf3}'`).
   ///
   /// [T] must be of type `bool`, `DateTime?`, `double?`, `Duration?`, `Guid?`,
-  /// `int?`, `String?`, `Struct?` (e.g. `Point?`), or `WinRTEnum?` (e.g.
+  /// `int?`, `String?`, `WinRTStruct?` (e.g. `Point?`), or `WinRTEnum?` (e.g.
   /// `WebErrorStatus?`).
   ///
   /// [enumCreator] must be specified if [T] is `WinRTEnum?`.
   /// ```dart
-  /// final reference = IReference<WebErrorStatus?>.fromRawPointer(ptr,
+  /// final reference = IReference<WebErrorStatus?>.fromPtr(ptr,
   ///     enumCreator: WebErrorStatus.from);
   /// ```
-  factory IReference.fromRawPointer(
+  factory IReference.fromPtr(
     Pointer<COMObject> ptr, {
     required String referenceIid,
     T Function(int)? enumCreator,
   }) {
     if (isSameType<T, bool?>()) {
-      return _IReferenceBool.fromRawPointer(ptr) as IReference<T>;
+      return _IReferenceBool.fromPtr(ptr) as IReference<T>;
     }
 
     if (isSameType<T, DateTime?>()) {
-      return _IReferenceDateTime.fromRawPointer(ptr) as IReference<T>;
+      return _IReferenceDateTime.fromPtr(ptr) as IReference<T>;
     }
 
     if (isSameType<T, double?>()) {
       switch (referenceIid) {
         case IID_IReference_Double:
-          return _IReferenceDouble.fromRawPointer(ptr) as IReference<T>;
+          return _IReferenceDouble.fromPtr(ptr) as IReference<T>;
         case IID_IReference_Float:
-          return _IReferenceFloat.fromRawPointer(ptr) as IReference<T>;
+          return _IReferenceFloat.fromPtr(ptr) as IReference<T>;
       }
     }
 
     if (isSameType<T, Duration?>()) {
-      return _IReferenceDuration.fromRawPointer(ptr) as IReference<T>;
+      return _IReferenceDuration.fromPtr(ptr) as IReference<T>;
     }
 
     if (isSameType<T, Guid?>()) {
-      return _IReferenceGuid.fromRawPointer(ptr) as IReference<T>;
+      return _IReferenceGuid.fromPtr(ptr) as IReference<T>;
     }
 
     if (isSameType<T, int?>()) {
       switch (referenceIid) {
         case IID_IReference_Int16:
-          return _IReferenceInt16.fromRawPointer(ptr) as IReference<T>;
+          return _IReferenceInt16.fromPtr(ptr) as IReference<T>;
         case IID_IReference_Int32:
-          return _IReferenceInt32.fromRawPointer(ptr) as IReference<T>;
+          return _IReferenceInt32.fromPtr(ptr) as IReference<T>;
         case IID_IReference_Int64:
-          return _IReferenceInt64.fromRawPointer(ptr) as IReference<T>;
+          return _IReferenceInt64.fromPtr(ptr) as IReference<T>;
         case IID_IReference_Uint8:
-          return _IReferenceUint8.fromRawPointer(ptr) as IReference<T>;
+          return _IReferenceUint8.fromPtr(ptr) as IReference<T>;
         case IID_IReference_Uint16:
-          return _IReferenceUint16.fromRawPointer(ptr) as IReference<T>;
+          return _IReferenceUint16.fromPtr(ptr) as IReference<T>;
         case IID_IReference_Uint32:
-          return _IReferenceUint32.fromRawPointer(ptr) as IReference<T>;
+          return _IReferenceUint32.fromPtr(ptr) as IReference<T>;
         case IID_IReference_Uint64:
-          return _IReferenceUint64.fromRawPointer(ptr) as IReference<T>;
+          return _IReferenceUint64.fromPtr(ptr) as IReference<T>;
       }
     }
 
     if (isSameType<T, String?>()) {
-      return _IReferenceString.fromRawPointer(ptr) as IReference<T>;
+      return _IReferenceString.fromPtr(ptr) as IReference<T>;
     }
 
     if (isSubtypeOfWinRTEnum<T>()) {
       if (enumCreator == null) throw ArgumentError.notNull('enumCreator');
 
       if (isSubtypeOfWinRTFlagsEnum<T>()) {
-        return _IReferenceWinRTFlagsEnum.fromRawPointer(ptr,
-            enumCreator: enumCreator);
+        return _IReferenceWinRTFlagsEnum.fromPtr(ptr, enumCreator: enumCreator);
       }
 
-      return _IReferenceWinRTEnum.fromRawPointer(ptr, enumCreator: enumCreator);
+      return _IReferenceWinRTEnum.fromPtr(ptr, enumCreator: enumCreator);
     }
 
     if (isSubtypeOfWinRTStruct<T>()) {
       if (isSameType<T, Point?>()) {
-        return _IReferencePoint.fromRawPointer(ptr) as IReference<T>;
+        return _IReferencePoint.fromPtr(ptr) as IReference<T>;
       }
       if (isSameType<T, Rect?>()) {
-        return _IReferenceRect.fromRawPointer(ptr) as IReference<T>;
+        return _IReferenceRect.fromPtr(ptr) as IReference<T>;
       }
       if (isSameType<T, Size?>()) {
-        return _IReferenceSize.fromRawPointer(ptr) as IReference<T>;
+        return _IReferenceSize.fromPtr(ptr) as IReference<T>;
       }
 
       // TODO: Other structs like BasicGeoposition are not yet supported.

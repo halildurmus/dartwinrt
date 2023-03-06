@@ -23,10 +23,10 @@ const IID_IOutputStream = '{905a0fe6-bc53-11df-8c49-001e4fc686da}';
 /// {@category interface}
 class IOutputStream extends IInspectable implements IClosable {
   // vtable begins at 6, is 2 entries long.
-  IOutputStream.fromRawPointer(super.ptr);
+  IOutputStream.fromPtr(super.ptr);
 
   factory IOutputStream.from(IInspectable interface) =>
-      IOutputStream.fromRawPointer(interface.toInterface(IID_IOutputStream));
+      IOutputStream.fromPtr(interface.toInterface(IID_IOutputStream));
 
   Pointer<COMObject> writeAsync(IBuffer? buffer) {
     final retValuePtr = calloc<COMObject>();
@@ -74,7 +74,7 @@ class IOutputStream extends IInspectable implements IClosable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<bool>.fromRawPointer(retValuePtr);
+    final asyncOperation = IAsyncOperation<bool>.fromPtr(retValuePtr);
     completeAsyncOperation(
         asyncOperation, completer, asyncOperation.getResults);
 

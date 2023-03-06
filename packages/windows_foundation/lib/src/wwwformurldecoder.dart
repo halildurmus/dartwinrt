@@ -32,15 +32,13 @@ class WwwFormUrlDecoder extends IInspectable
         IWwwFormUrlDecoderRuntimeClass,
         IVectorView<IWwwFormUrlDecoderEntry>,
         IIterable<IWwwFormUrlDecoderEntry> {
-  WwwFormUrlDecoder.fromRawPointer(super.ptr);
+  WwwFormUrlDecoder.fromPtr(super.ptr);
 
   static const _className = 'Windows.Foundation.WwwFormUrlDecoder';
 
   factory WwwFormUrlDecoder.createWwwFormUrlDecoder(String query) =>
-      createActivationFactory(
-              IWwwFormUrlDecoderRuntimeClassFactory.fromRawPointer,
-              _className,
-              IID_IWwwFormUrlDecoderRuntimeClassFactory)
+      createActivationFactory(IWwwFormUrlDecoderRuntimeClassFactory.fromPtr,
+              _className, IID_IWwwFormUrlDecoderRuntimeClassFactory)
           .createWwwFormUrlDecoder(query);
 
   late final _iWwwFormUrlDecoderRuntimeClass =
@@ -50,9 +48,9 @@ class WwwFormUrlDecoder extends IInspectable
   String getFirstValueByName(String name) =>
       _iWwwFormUrlDecoderRuntimeClass.getFirstValueByName(name);
 
-  late final _iVectorView = IVectorView<IWwwFormUrlDecoderEntry>.fromRawPointer(
+  late final _iVectorView = IVectorView<IWwwFormUrlDecoderEntry>.fromPtr(
       toInterface('{b1f00d3b-1f06-5117-93ea-2a0d79116701}'),
-      creator: IWwwFormUrlDecoderEntry.fromRawPointer,
+      creator: IWwwFormUrlDecoderEntry.fromPtr,
       iterableIid: '{876be83b-7218-5bfb-a169-83152ef7e146}');
 
   @override

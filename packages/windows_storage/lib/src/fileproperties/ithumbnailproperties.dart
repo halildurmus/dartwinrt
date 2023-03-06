@@ -23,10 +23,10 @@ const IID_IThumbnailProperties = '{693dd42f-dbe7-49b5-b3b3-2893ac5d3423}';
 /// {@category interface}
 class IThumbnailProperties extends IInspectable {
   // vtable begins at 6, is 4 entries long.
-  IThumbnailProperties.fromRawPointer(super.ptr);
+  IThumbnailProperties.fromPtr(super.ptr);
 
   factory IThumbnailProperties.from(IInspectable interface) =>
-      IThumbnailProperties.fromRawPointer(
+      IThumbnailProperties.fromPtr(
           interface.toInterface(IID_IThumbnailProperties));
 
   int get originalWidth {

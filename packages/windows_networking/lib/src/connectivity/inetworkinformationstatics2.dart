@@ -25,10 +25,10 @@ const IID_INetworkInformationStatics2 =
 /// {@category interface}
 class INetworkInformationStatics2 extends IInspectable {
   // vtable begins at 6, is 1 entries long.
-  INetworkInformationStatics2.fromRawPointer(super.ptr);
+  INetworkInformationStatics2.fromPtr(super.ptr);
 
   factory INetworkInformationStatics2.from(IInspectable interface) =>
-      INetworkInformationStatics2.fromRawPointer(
+      INetworkInformationStatics2.fromPtr(
           interface.toInterface(IID_INetworkInformationStatics2));
 
   Future<List<ConnectionProfile>> findConnectionProfilesAsync(
@@ -57,10 +57,9 @@ class INetworkInformationStatics2 extends IInspectable {
     }
 
     final asyncOperation =
-        IAsyncOperation<IVectorView<ConnectionProfile>>.fromRawPointer(
-            retValuePtr,
-            creator: (ptr) => IVectorView.fromRawPointer(ptr,
-                creator: ConnectionProfile.fromRawPointer,
+        IAsyncOperation<IVectorView<ConnectionProfile>>.fromPtr(retValuePtr,
+            creator: (ptr) => IVectorView.fromPtr(ptr,
+                creator: ConnectionProfile.fromPtr,
                 iterableIid: '{34dabef9-87d0-5b1c-a7ac-9d290adeb0c8}'));
     completeAsyncOperation(
         asyncOperation, completer, () => asyncOperation.getResults().toList());

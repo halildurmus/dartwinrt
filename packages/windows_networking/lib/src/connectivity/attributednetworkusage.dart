@@ -24,7 +24,7 @@ import 'iattributednetworkusage.dart';
 /// {@category class}
 class AttributedNetworkUsage extends IInspectable
     implements IAttributedNetworkUsage {
-  AttributedNetworkUsage.fromRawPointer(super.ptr);
+  AttributedNetworkUsage.fromPtr(super.ptr);
 
   late final _iAttributedNetworkUsage = IAttributedNetworkUsage.from(this);
 

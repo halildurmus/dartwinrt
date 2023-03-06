@@ -31,7 +31,7 @@ import 'toastnotification.dart';
 /// {@category class}
 class ToastNotifier extends IInspectable
     implements IToastNotifier, IToastNotifier2, IToastNotifier3 {
-  ToastNotifier.fromRawPointer(super.ptr);
+  ToastNotifier.fromPtr(super.ptr);
 
   late final _iToastNotifier = IToastNotifier.from(this);
 

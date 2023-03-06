@@ -25,10 +25,10 @@ const IID_IPowerManagerStatics = '{1394825d-62ce-4364-98d5-aa28c7fbd15b}';
 /// {@category interface}
 class IPowerManagerStatics extends IInspectable {
   // vtable begins at 6, is 15 entries long.
-  IPowerManagerStatics.fromRawPointer(super.ptr);
+  IPowerManagerStatics.fromPtr(super.ptr);
 
   factory IPowerManagerStatics.from(IInspectable interface) =>
-      IPowerManagerStatics.fromRawPointer(
+      IPowerManagerStatics.fromPtr(
           interface.toInterface(IID_IPowerManagerStatics));
 
   EnergySaverStatus get energySaverStatus {

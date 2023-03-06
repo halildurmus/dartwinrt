@@ -33,10 +33,10 @@ const IID_IStorageFolderQueryOperations =
 /// {@category interface}
 class IStorageFolderQueryOperations extends IInspectable {
   // vtable begins at 6, is 17 entries long.
-  IStorageFolderQueryOperations.fromRawPointer(super.ptr);
+  IStorageFolderQueryOperations.fromPtr(super.ptr);
 
   factory IStorageFolderQueryOperations.from(IInspectable interface) =>
-      IStorageFolderQueryOperations.fromRawPointer(
+      IStorageFolderQueryOperations.fromPtr(
           interface.toInterface(IID_IStorageFolderQueryOperations));
 
   Future<IndexedState> getIndexedStateAsync() {
@@ -60,8 +60,7 @@ class IStorageFolderQueryOperations extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<IndexedState>.fromRawPointer(
-        retValuePtr,
+    final asyncOperation = IAsyncOperation<IndexedState>.fromPtr(retValuePtr,
         enumCreator: IndexedState.from);
     completeAsyncOperation(
         asyncOperation, completer, asyncOperation.getResults);
@@ -94,7 +93,7 @@ class IStorageFolderQueryOperations extends IInspectable {
       return null;
     }
 
-    return StorageFileQueryResult.fromRawPointer(retValuePtr);
+    return StorageFileQueryResult.fromPtr(retValuePtr);
   }
 
   StorageFileQueryResult? createFileQuery(CommonFileQuery query) {
@@ -123,7 +122,7 @@ class IStorageFolderQueryOperations extends IInspectable {
       return null;
     }
 
-    return StorageFileQueryResult.fromRawPointer(retValuePtr);
+    return StorageFileQueryResult.fromPtr(retValuePtr);
   }
 
   StorageFileQueryResult? createFileQueryWithOptions(
@@ -155,7 +154,7 @@ class IStorageFolderQueryOperations extends IInspectable {
       return null;
     }
 
-    return StorageFileQueryResult.fromRawPointer(retValuePtr);
+    return StorageFileQueryResult.fromPtr(retValuePtr);
   }
 
   StorageFolderQueryResult? createFolderQueryOverloadDefault() {
@@ -183,7 +182,7 @@ class IStorageFolderQueryOperations extends IInspectable {
       return null;
     }
 
-    return StorageFolderQueryResult.fromRawPointer(retValuePtr);
+    return StorageFolderQueryResult.fromPtr(retValuePtr);
   }
 
   StorageFolderQueryResult? createFolderQuery(CommonFolderQuery query) {
@@ -212,7 +211,7 @@ class IStorageFolderQueryOperations extends IInspectable {
       return null;
     }
 
-    return StorageFolderQueryResult.fromRawPointer(retValuePtr);
+    return StorageFolderQueryResult.fromPtr(retValuePtr);
   }
 
   StorageFolderQueryResult? createFolderQueryWithOptions(
@@ -244,7 +243,7 @@ class IStorageFolderQueryOperations extends IInspectable {
       return null;
     }
 
-    return StorageFolderQueryResult.fromRawPointer(retValuePtr);
+    return StorageFolderQueryResult.fromPtr(retValuePtr);
   }
 
   StorageItemQueryResult? createItemQuery() {
@@ -272,7 +271,7 @@ class IStorageFolderQueryOperations extends IInspectable {
       return null;
     }
 
-    return StorageItemQueryResult.fromRawPointer(retValuePtr);
+    return StorageItemQueryResult.fromPtr(retValuePtr);
   }
 
   StorageItemQueryResult? createItemQueryWithOptions(
@@ -304,7 +303,7 @@ class IStorageFolderQueryOperations extends IInspectable {
       return null;
     }
 
-    return StorageItemQueryResult.fromRawPointer(retValuePtr);
+    return StorageItemQueryResult.fromPtr(retValuePtr);
   }
 
   Future<List<StorageFile>> getFilesAsync(
@@ -338,12 +337,11 @@ class IStorageFolderQueryOperations extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation =
-        IAsyncOperation<IVectorView<StorageFile>>.fromRawPointer(
-            retValuePtr,
-            creator: (ptr) => IVectorView.fromRawPointer(ptr,
-                creator: StorageFile.fromRawPointer,
-                iterableIid: '{9ac00304-83ea-5688-87b6-ae38aab65d0b}'));
+    final asyncOperation = IAsyncOperation<IVectorView<StorageFile>>.fromPtr(
+        retValuePtr,
+        creator: (ptr) => IVectorView.fromPtr(ptr,
+            creator: StorageFile.fromPtr,
+            iterableIid: '{9ac00304-83ea-5688-87b6-ae38aab65d0b}'));
     completeAsyncOperation(
         asyncOperation, completer, () => asyncOperation.getResults().toList());
 
@@ -373,12 +371,11 @@ class IStorageFolderQueryOperations extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation =
-        IAsyncOperation<IVectorView<StorageFile>>.fromRawPointer(
-            retValuePtr,
-            creator: (ptr) => IVectorView.fromRawPointer(ptr,
-                creator: StorageFile.fromRawPointer,
-                iterableIid: '{9ac00304-83ea-5688-87b6-ae38aab65d0b}'));
+    final asyncOperation = IAsyncOperation<IVectorView<StorageFile>>.fromPtr(
+        retValuePtr,
+        creator: (ptr) => IVectorView.fromPtr(ptr,
+            creator: StorageFile.fromPtr,
+            iterableIid: '{9ac00304-83ea-5688-87b6-ae38aab65d0b}'));
     completeAsyncOperation(
         asyncOperation, completer, () => asyncOperation.getResults().toList());
 
@@ -416,11 +413,11 @@ class IStorageFolderQueryOperations extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation =
-        IAsyncOperation<IVectorView<StorageFolder>>.fromRawPointer(retValuePtr,
-            creator: (ptr) => IVectorView.fromRawPointer(ptr,
-                creator: StorageFolder.fromRawPointer,
-                iterableIid: '{4669befc-ae5c-52b1-8a97-5466ce61e94e}'));
+    final asyncOperation = IAsyncOperation<IVectorView<StorageFolder>>.fromPtr(
+        retValuePtr,
+        creator: (ptr) => IVectorView.fromPtr(ptr,
+            creator: StorageFolder.fromPtr,
+            iterableIid: '{4669befc-ae5c-52b1-8a97-5466ce61e94e}'));
     completeAsyncOperation(
         asyncOperation, completer, () => asyncOperation.getResults().toList());
 
@@ -450,11 +447,11 @@ class IStorageFolderQueryOperations extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation =
-        IAsyncOperation<IVectorView<StorageFolder>>.fromRawPointer(retValuePtr,
-            creator: (ptr) => IVectorView.fromRawPointer(ptr,
-                creator: StorageFolder.fromRawPointer,
-                iterableIid: '{4669befc-ae5c-52b1-8a97-5466ce61e94e}'));
+    final asyncOperation = IAsyncOperation<IVectorView<StorageFolder>>.fromPtr(
+        retValuePtr,
+        creator: (ptr) => IVectorView.fromPtr(ptr,
+            creator: StorageFolder.fromPtr,
+            iterableIid: '{4669befc-ae5c-52b1-8a97-5466ce61e94e}'));
     completeAsyncOperation(
         asyncOperation, completer, () => asyncOperation.getResults().toList());
 
@@ -487,11 +484,11 @@ class IStorageFolderQueryOperations extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation =
-        IAsyncOperation<IVectorView<IStorageItem>>.fromRawPointer(retValuePtr,
-            creator: (ptr) => IVectorView.fromRawPointer(ptr,
-                creator: IStorageItem.fromRawPointer,
-                iterableIid: '{bb8b8418-65d1-544b-b083-6d172f568c73}'));
+    final asyncOperation = IAsyncOperation<IVectorView<IStorageItem>>.fromPtr(
+        retValuePtr,
+        creator: (ptr) => IVectorView.fromPtr(ptr,
+            creator: IStorageItem.fromPtr,
+            iterableIid: '{bb8b8418-65d1-544b-b083-6d172f568c73}'));
     completeAsyncOperation(
         asyncOperation, completer, () => asyncOperation.getResults().toList());
 

@@ -26,10 +26,10 @@ const IID_IStringable = '{96369f54-8eb6-48f0-abce-c1b211e627c3}';
 /// {@category interface}
 class IStringable extends IInspectable {
   // vtable begins at 6, is 1 entries long.
-  IStringable.fromRawPointer(super.ptr);
+  IStringable.fromPtr(super.ptr);
 
   factory IStringable.from(IInspectable interface) =>
-      IStringable.fromRawPointer(interface.toInterface(IID_IStringable));
+      IStringable.fromPtr(interface.toInterface(IID_IStringable));
 
   @override
   String toString() {

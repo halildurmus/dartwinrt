@@ -25,7 +25,7 @@ import 'istorageprovider2.dart';
 /// {@category class}
 class StorageProvider extends IInspectable
     implements IStorageProvider, IStorageProvider2 {
-  StorageProvider.fromRawPointer(super.ptr);
+  StorageProvider.fromPtr(super.ptr);
 
   late final _iStorageProvider = IStorageProvider.from(this);
 

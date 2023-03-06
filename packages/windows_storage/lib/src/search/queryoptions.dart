@@ -35,18 +35,18 @@ import 'sortentry.dart';
 class QueryOptions extends IInspectable
     implements IQueryOptions, IQueryOptionsWithProviderFilter {
   QueryOptions() : super(activateClass(_className));
-  QueryOptions.fromRawPointer(super.ptr);
+  QueryOptions.fromPtr(super.ptr);
 
   static const _className = 'Windows.Storage.Search.QueryOptions';
 
   factory QueryOptions.createCommonFileQuery(
           CommonFileQuery query, IIterable<String> fileTypeFilter) =>
-      createActivationFactory(IQueryOptionsFactory.fromRawPointer, _className,
+      createActivationFactory(IQueryOptionsFactory.fromPtr, _className,
               IID_IQueryOptionsFactory)
           .createCommonFileQuery(query, fileTypeFilter);
 
   factory QueryOptions.createCommonFolderQuery(CommonFolderQuery query) =>
-      createActivationFactory(IQueryOptionsFactory.fromRawPointer, _className,
+      createActivationFactory(IQueryOptionsFactory.fromPtr, _className,
               IID_IQueryOptionsFactory)
           .createCommonFolderQuery(query);
 

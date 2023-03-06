@@ -142,9 +142,9 @@ void main() {
       expect(projection.defaultConstructor, isEmpty);
     });
 
-    test('with fromRawPointer named constructor', () {
+    test('with fromPtr named constructor', () {
       expect(calendarProjection.namedConstructor,
-          equals('Calendar.fromRawPointer(super.ptr);'));
+          equals('Calendar.fromPtr(super.ptr);'));
     });
 
     test('with _className variable', () {

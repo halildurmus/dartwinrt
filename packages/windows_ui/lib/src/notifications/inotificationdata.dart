@@ -21,11 +21,10 @@ const IID_INotificationData = '{9ffd2312-9d6a-4aaf-b6ac-ff17f0c1f280}';
 /// {@category interface}
 class INotificationData extends IInspectable {
   // vtable begins at 6, is 3 entries long.
-  INotificationData.fromRawPointer(super.ptr);
+  INotificationData.fromPtr(super.ptr);
 
   factory INotificationData.from(IInspectable interface) =>
-      INotificationData.fromRawPointer(
-          interface.toInterface(IID_INotificationData));
+      INotificationData.fromPtr(interface.toInterface(IID_INotificationData));
 
   IMap<String, String> get values {
     final retValuePtr = calloc<COMObject>();
@@ -47,7 +46,7 @@ class INotificationData extends IInspectable {
       throw WindowsException(hr);
     }
 
-    return IMap.fromRawPointer(retValuePtr,
+    return IMap.fromPtr(retValuePtr,
         iterableIid: '{e9bdaaf0-cbf6-5c72-be90-29cbf3a1319b}');
   }
 

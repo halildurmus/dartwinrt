@@ -39,7 +39,7 @@ abstract class IMap<K, V> extends IInspectable
         _enumCreator = enumCreator,
         _iterableIid = iterableIid,
         _intType = intType {
-    _iterableCreator = (ptr) => IKeyValuePair<K, V>.fromRawPointer(ptr,
+    _iterableCreator = (ptr) => IKeyValuePair<K, V>.fromPtr(ptr,
         creator: creator,
         enumKeyCreator: enumKeyCreator,
         enumCreator: enumCreator,
@@ -60,23 +60,20 @@ abstract class IMap<K, V> extends IInspectable
   factory IMap.empty() {
     if (K == Guid && isNullableObjectType<V>()) {
       final mediaPropertySet = MediaPropertySet();
-      return IMap.fromRawPointer(
-          mediaPropertySet.toInterface(IID_IMap_Guid_Object),
+      return IMap.fromPtr(mediaPropertySet.toInterface(IID_IMap_Guid_Object),
           iterableIid: IID_IIterable_IKeyValuePair_Guid_Object);
     }
 
     if (K == String) {
       if (V == String) {
         final stringMap = StringMap();
-        return IMap.fromRawPointer(
-            stringMap.toInterface(IID_IMap_String_String),
+        return IMap.fromPtr(stringMap.toInterface(IID_IMap_String_String),
             iterableIid: IID_IIterable_IKeyValuePair_String_String);
       }
 
       if (isNullableObjectType<V>()) {
         final propertySet = PropertySet();
-        return IMap.fromRawPointer(
-            propertySet.toInterface(IID_IMap_String_Object),
+        return IMap.fromPtr(propertySet.toInterface(IID_IMap_String_Object),
             iterableIid: IID_IIterable_IKeyValuePair_String_Object);
       }
     }
@@ -107,18 +104,18 @@ abstract class IMap<K, V> extends IInspectable
   ///
   /// [creator] must be specified if [V] is a `IInspectable?`.
   /// ```dart
-  /// final map = IMap<String, IJsonValue?>.fromRawPointer(ptr,
-  ///     creator: IJsonValue.fromRawPointer,
+  /// final map = IMap<String, IJsonValue?>.fromPtr(ptr,
+  ///     creator: IJsonValue.fromPtr,
   ///     iterableIid: '{dfabb6e1-0411-5a8f-aa87-354e7110f099}');
   /// ```
   ///
   /// [enumCreator] must be specified if [V] is `WinRTEnum`.
   /// ```dart
-  /// final map = IMap<String, ChatMessageStatus>.fromRawPointer(ptr,
+  /// final map = IMap<String, ChatMessageStatus>.fromPtr(ptr,
   ///     enumCreator: ChatMessageStatus.from,
   ///     iterableIid: '{57d87c13-48e9-546f-9b4e-a3906e1e7c24}');
   /// ```
-  factory IMap.fromRawPointer(
+  factory IMap.fromPtr(
     Pointer<COMObject> ptr, {
     required String iterableIid,
     V Function(Pointer<COMObject>)? creator,
@@ -129,12 +126,12 @@ abstract class IMap<K, V> extends IInspectable
     if (K == Guid) {
       if (isSubtypeOfInspectable<V>()) {
         if (creator == null) throw ArgumentError.notNull('creator');
-        return _IMapGuidInspectable<V>.fromRawPointer(ptr,
+        return _IMapGuidInspectable<V>.fromPtr(ptr,
             creator: creator, iterableIid: iterableIid) as IMap<K, V>;
       }
 
       if (isNullableObjectType<V>()) {
-        return _IMapGuidObject.fromRawPointer(ptr, iterableIid: iterableIid)
+        return _IMapGuidObject.fromPtr(ptr, iterableIid: iterableIid)
             as IMap<K, V>;
       }
     }
@@ -144,38 +141,38 @@ abstract class IMap<K, V> extends IInspectable
       if (intType == null) throw ArgumentError.notNull('intType');
       switch (intType) {
         case IntType.int16:
-          return _IMapInt16Inspectable<V>.fromRawPointer(ptr,
+          return _IMapInt16Inspectable<V>.fromPtr(ptr,
               creator: creator, iterableIid: iterableIid) as IMap<K, V>;
         case IntType.int32:
-          return _IMapInt32Inspectable<V>.fromRawPointer(ptr,
+          return _IMapInt32Inspectable<V>.fromPtr(ptr,
               creator: creator, iterableIid: iterableIid) as IMap<K, V>;
         case IntType.int64:
-          return _IMapInt64Inspectable<V>.fromRawPointer(ptr,
+          return _IMapInt64Inspectable<V>.fromPtr(ptr,
               creator: creator, iterableIid: iterableIid) as IMap<K, V>;
         case IntType.uint8:
-          return _IMapUint8Inspectable<V>.fromRawPointer(ptr,
+          return _IMapUint8Inspectable<V>.fromPtr(ptr,
               creator: creator, iterableIid: iterableIid) as IMap<K, V>;
         case IntType.uint16:
-          return _IMapUint16Inspectable<V>.fromRawPointer(ptr,
+          return _IMapUint16Inspectable<V>.fromPtr(ptr,
               creator: creator, iterableIid: iterableIid) as IMap<K, V>;
         case IntType.uint32:
-          return _IMapUint32Inspectable<V>.fromRawPointer(ptr,
+          return _IMapUint32Inspectable<V>.fromPtr(ptr,
               creator: creator, iterableIid: iterableIid) as IMap<K, V>;
         case IntType.uint64:
-          return _IMapUint64Inspectable<V>.fromRawPointer(ptr,
+          return _IMapUint64Inspectable<V>.fromPtr(ptr,
               creator: creator, iterableIid: iterableIid) as IMap<K, V>;
       }
     }
 
     if (K == String) {
       if (V == String) {
-        return _IMapStringString.fromRawPointer(ptr, iterableIid: iterableIid)
+        return _IMapStringString.fromPtr(ptr, iterableIid: iterableIid)
             as IMap<K, V>;
       }
 
       if (isSubtypeOfInspectable<V>()) {
         if (creator == null) throw ArgumentError.notNull('creator');
-        return _IMapStringInspectable<V>.fromRawPointer(ptr,
+        return _IMapStringInspectable<V>.fromPtr(ptr,
             creator: creator, iterableIid: iterableIid) as IMap<K, V>;
       }
 
@@ -183,16 +180,16 @@ abstract class IMap<K, V> extends IInspectable
         if (enumCreator == null) throw ArgumentError.notNull('enumCreator');
 
         if (isSubtypeOfWinRTFlagsEnum<V>()) {
-          return _IMapStringWinRTFlagsEnum<V>.fromRawPointer(ptr,
+          return _IMapStringWinRTFlagsEnum<V>.fromPtr(ptr,
               enumCreator: enumCreator, iterableIid: iterableIid) as IMap<K, V>;
         }
 
-        return _IMapStringWinRTEnum<V>.fromRawPointer(ptr,
+        return _IMapStringWinRTEnum<V>.fromPtr(ptr,
             enumCreator: enumCreator, iterableIid: iterableIid) as IMap<K, V>;
       }
 
       if (isNullableObjectType<V>()) {
-        return _IMapStringObject.fromRawPointer(ptr, iterableIid: iterableIid)
+        return _IMapStringObject.fromPtr(ptr, iterableIid: iterableIid)
             as IMap<K, V>;
       }
     }
@@ -202,13 +199,13 @@ abstract class IMap<K, V> extends IInspectable
       if (creator == null) throw ArgumentError.notNull('creator');
 
       if (isSubtypeOfWinRTFlagsEnum<K>()) {
-        return _IMapWinRTFlagsEnumInspectable<K, V>.fromRawPointer(ptr,
+        return _IMapWinRTFlagsEnumInspectable<K, V>.fromPtr(ptr,
             creator: creator,
             enumKeyCreator: enumKeyCreator,
             iterableIid: iterableIid);
       }
 
-      return _IMapWinRTEnumInspectable.fromRawPointer(ptr,
+      return _IMapWinRTEnumInspectable.fromPtr(ptr,
           creator: creator,
           enumKeyCreator: enumKeyCreator,
           iterableIid: iterableIid);
@@ -269,7 +266,7 @@ abstract class IMap<K, V> extends IInspectable
       throw WindowsException(hr);
     }
 
-    final mapView = IMapView<K, V>.fromRawPointer(retValuePtr,
+    final mapView = IMapView<K, V>.fromPtr(retValuePtr,
         creator: _creator,
         enumKeyCreator: _enumKeyCreator,
         enumCreator: _enumCreator,
@@ -295,7 +292,7 @@ abstract class IMap<K, V> extends IInspectable
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
-  late final _iIterable = IIterable<IKeyValuePair<K, V>>.fromRawPointer(
+  late final _iIterable = IIterable<IKeyValuePair<K, V>>.fromPtr(
       toInterface(_iterableIid),
       creator: _iterableCreator);
 

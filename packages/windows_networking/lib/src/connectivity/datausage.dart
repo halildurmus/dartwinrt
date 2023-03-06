@@ -24,7 +24,7 @@ import 'idatausage.dart';
 @Deprecated(
     'DataUsage may be altered or unavailable for releases after Windows 8.1. Instead, use NetworkUsage.')
 class DataUsage extends IInspectable implements IDataUsage {
-  DataUsage.fromRawPointer(super.ptr);
+  DataUsage.fromPtr(super.ptr);
 
   late final _iDataUsage = IDataUsage.from(this);
 

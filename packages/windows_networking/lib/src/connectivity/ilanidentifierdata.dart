@@ -21,11 +21,10 @@ const IID_ILanIdentifierData = '{a74e83c3-d639-45be-a36a-c4e4aeaf6d9b}';
 /// {@category interface}
 class ILanIdentifierData extends IInspectable {
   // vtable begins at 6, is 2 entries long.
-  ILanIdentifierData.fromRawPointer(super.ptr);
+  ILanIdentifierData.fromPtr(super.ptr);
 
   factory ILanIdentifierData.from(IInspectable interface) =>
-      ILanIdentifierData.fromRawPointer(
-          interface.toInterface(IID_ILanIdentifierData));
+      ILanIdentifierData.fromPtr(interface.toInterface(IID_ILanIdentifierData));
 
   int get type {
     final retValuePtr = calloc<Uint32>();
@@ -71,7 +70,7 @@ class ILanIdentifierData extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final vectorView = IVectorView<int>.fromRawPointer(retValuePtr,
+    final vectorView = IVectorView<int>.fromPtr(retValuePtr,
         iterableIid: '{88318266-f3fd-50fc-8f08-b823a41b60c1}',
         intType: IntType.uint8);
     return vectorView.toList();

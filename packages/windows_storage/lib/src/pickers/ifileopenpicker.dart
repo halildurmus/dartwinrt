@@ -25,11 +25,10 @@ const IID_IFileOpenPicker = '{2ca8278a-12c5-4c5f-8977-94547793c241}';
 /// {@category interface}
 class IFileOpenPicker extends IInspectable {
   // vtable begins at 6, is 11 entries long.
-  IFileOpenPicker.fromRawPointer(super.ptr);
+  IFileOpenPicker.fromPtr(super.ptr);
 
   factory IFileOpenPicker.from(IInspectable interface) =>
-      IFileOpenPicker.fromRawPointer(
-          interface.toInterface(IID_IFileOpenPicker));
+      IFileOpenPicker.fromPtr(interface.toInterface(IID_IFileOpenPicker));
 
   PickerViewMode get viewMode {
     final retValuePtr = calloc<Int32>();
@@ -217,7 +216,7 @@ class IFileOpenPicker extends IInspectable {
       throw WindowsException(hr);
     }
 
-    return IVector.fromRawPointer(retValuePtr,
+    return IVector.fromPtr(retValuePtr,
         iterableIid: '{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}');
   }
 
@@ -242,9 +241,8 @@ class IFileOpenPicker extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<StorageFile?>.fromRawPointer(
-        retValuePtr,
-        creator: StorageFile.fromRawPointer);
+    final asyncOperation = IAsyncOperation<StorageFile?>.fromPtr(retValuePtr,
+        creator: StorageFile.fromPtr);
     completeAsyncOperation(
         asyncOperation, completer, asyncOperation.getResults);
 
@@ -272,12 +270,11 @@ class IFileOpenPicker extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation =
-        IAsyncOperation<IVectorView<StorageFile>>.fromRawPointer(
-            retValuePtr,
-            creator: (ptr) => IVectorView.fromRawPointer(ptr,
-                creator: StorageFile.fromRawPointer,
-                iterableIid: '{9ac00304-83ea-5688-87b6-ae38aab65d0b}'));
+    final asyncOperation = IAsyncOperation<IVectorView<StorageFile>>.fromPtr(
+        retValuePtr,
+        creator: (ptr) => IVectorView.fromPtr(ptr,
+            creator: StorageFile.fromPtr,
+            iterableIid: '{9ac00304-83ea-5688-87b6-ae38aab65d0b}'));
     completeAsyncOperation(
         asyncOperation, completer, () => asyncOperation.getResults().toList());
 

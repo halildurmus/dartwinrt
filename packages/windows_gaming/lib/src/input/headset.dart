@@ -24,7 +24,7 @@ import 'iheadset.dart';
 /// {@category class}
 class Headset extends IInspectable
     implements IHeadset, IGameControllerBatteryInfo {
-  Headset.fromRawPointer(super.ptr);
+  Headset.fromPtr(super.ptr);
 
   late final _iHeadset = IHeadset.from(this);
 

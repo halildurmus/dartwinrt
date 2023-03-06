@@ -29,22 +29,21 @@ class IIterable<T> extends IInspectable {
   ///
   /// [intType] must be specified if [T] is `int`.
   /// ```dart
-  /// final iterable =
-  ///     IIterable<int>.fromRawPointer(ptr, intType: IntType.uint64);
+  /// final iterable = IIterable<int>.fromPtr(ptr, intType: IntType.uint64);
   /// ```
   ///
   /// [creator] must be specified if [T] is `IInspectable`.
   /// ```dart
-  /// final iterable = IIterable<StorageFile>.fromRawPointer(ptr,
-  ///     creator: StorageFile.fromRawPointer);
+  /// final iterable = IIterable<StorageFile>.fromPtr(ptr,
+  ///     creator: StorageFile.fromPtr);
   /// ```
   ///
   /// [enumCreator] must be specified if [T] is `WinRTEnum`.
   /// ```dart
-  /// final iterable = IIterable<DeviceClass>.fromRawPointer(ptr,
+  /// final iterable = IIterable<DeviceClass>.fromPtr(ptr,
   ///     enumCreator: DeviceClass.from);
   /// ```
-  IIterable.fromRawPointer(
+  IIterable.fromPtr(
     super.ptr, {
     T Function(Pointer<COMObject>)? creator,
     T Function(int)? enumCreator,
@@ -86,7 +85,7 @@ class IIterable<T> extends IInspectable {
       throw WindowsException(hr);
     }
 
-    return IIterator.fromRawPointer(retValuePtr,
+    return IIterator.fromPtr(retValuePtr,
         creator: _creator, enumCreator: _enumCreator, intType: _intType);
   }
 }

@@ -23,7 +23,7 @@ import 'streams/irandomaccessstream.dart';
 /// {@category class}
 class StorageStreamTransaction extends IInspectable
     implements IStorageStreamTransaction, IClosable {
-  StorageStreamTransaction.fromRawPointer(super.ptr);
+  StorageStreamTransaction.fromPtr(super.ptr);
 
   late final _iStorageStreamTransaction = IStorageStreamTransaction.from(this);
 

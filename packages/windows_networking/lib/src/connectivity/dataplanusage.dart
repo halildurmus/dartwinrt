@@ -21,7 +21,7 @@ import 'idataplanusage.dart';
 ///
 /// {@category class}
 class DataPlanUsage extends IInspectable implements IDataPlanUsage {
-  DataPlanUsage.fromRawPointer(super.ptr);
+  DataPlanUsage.fromPtr(super.ptr);
 
   late final _iDataPlanUsage = IDataPlanUsage.from(this);
 

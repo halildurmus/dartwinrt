@@ -25,16 +25,16 @@ import 'ihostnamestatics.dart';
 ///
 /// {@category class}
 class HostName extends IInspectable implements IHostName, IStringable {
-  HostName.fromRawPointer(super.ptr);
+  HostName.fromPtr(super.ptr);
 
   static const _className = 'Windows.Networking.HostName';
 
   factory HostName.createHostName(String hostName) => createActivationFactory(
-          IHostNameFactory.fromRawPointer, _className, IID_IHostNameFactory)
+          IHostNameFactory.fromPtr, _className, IID_IHostNameFactory)
       .createHostName(hostName);
 
   static int compare(String value1, String value2) => createActivationFactory(
-          IHostNameStatics.fromRawPointer, _className, IID_IHostNameStatics)
+          IHostNameStatics.fromPtr, _className, IID_IHostNameStatics)
       .compare(value1, value2);
 
   late final _iHostName = IHostName.from(this);

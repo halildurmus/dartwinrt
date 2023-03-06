@@ -22,10 +22,10 @@ const IID_IQueryOptionsWithProviderFilter =
 /// {@category interface}
 class IQueryOptionsWithProviderFilter extends IInspectable {
   // vtable begins at 6, is 1 entries long.
-  IQueryOptionsWithProviderFilter.fromRawPointer(super.ptr);
+  IQueryOptionsWithProviderFilter.fromPtr(super.ptr);
 
   factory IQueryOptionsWithProviderFilter.from(IInspectable interface) =>
-      IQueryOptionsWithProviderFilter.fromRawPointer(
+      IQueryOptionsWithProviderFilter.fromPtr(
           interface.toInterface(IID_IQueryOptionsWithProviderFilter));
 
   IVector<String> get storageProviderIdFilter {
@@ -48,7 +48,7 @@ class IQueryOptionsWithProviderFilter extends IInspectable {
       throw WindowsException(hr);
     }
 
-    return IVector.fromRawPointer(retValuePtr,
+    return IVector.fromPtr(retValuePtr,
         iterableIid: '{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}');
   }
 }

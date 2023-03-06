@@ -24,10 +24,10 @@ const IID_IFolderPickerStatics = '{9be34740-7ca1-5942-a3c8-46f2551ecff3}';
 /// {@category interface}
 class IFolderPickerStatics extends IInspectable {
   // vtable begins at 6, is 1 entries long.
-  IFolderPickerStatics.fromRawPointer(super.ptr);
+  IFolderPickerStatics.fromPtr(super.ptr);
 
   factory IFolderPickerStatics.from(IInspectable interface) =>
-      IFolderPickerStatics.fromRawPointer(
+      IFolderPickerStatics.fromPtr(
           interface.toInterface(IID_IFolderPickerStatics));
 
   FolderPicker? createForUser(User? user) {
@@ -57,6 +57,6 @@ class IFolderPickerStatics extends IInspectable {
       return null;
     }
 
-    return FolderPicker.fromRawPointer(retValuePtr);
+    return FolderPicker.fromPtr(retValuePtr);
   }
 }

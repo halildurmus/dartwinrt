@@ -18,29 +18,26 @@ void main() {
   group('IUnknown', () {
     test('cast works', () {
       final uri = winrt_uri.Uri.createUri('https://dart.dev/');
-      final stringable = uri.cast(IStringable.fromRawPointer, IID_IStringable);
+      final stringable = uri.cast(IStringable.fromPtr, IID_IStringable);
       expect(stringable.toString(), equals('https://dart.dev/'));
     });
 
     test('cast throws', () {
       final stringMap = StringMap();
-      expect(
-          () => stringMap.cast(IPropertySet.fromRawPointer, IID_IPropertySet),
+      expect(() => stringMap.cast(IPropertySet.fromPtr, IID_IPropertySet),
           throwsA(isA<WindowsException>()));
     });
 
     test('tryCast works', () {
       final uri = winrt_uri.Uri.createUri('https://dart.dev/');
-      final stringable =
-          uri.tryCast(IStringable.fromRawPointer, IID_IStringable);
+      final stringable = uri.tryCast(IStringable.fromPtr, IID_IStringable);
       expect(stringable, isNotNull);
       expect(stringable.toString(), equals('https://dart.dev/'));
     });
 
     test('tryCast returns null', () {
       final stringMap = StringMap();
-      expect(stringMap.tryCast(IPropertySet.fromRawPointer, IID_IPropertySet),
-          isNull);
+      expect(stringMap.tryCast(IPropertySet.fromPtr, IID_IPropertySet), isNull);
     });
   });
 }

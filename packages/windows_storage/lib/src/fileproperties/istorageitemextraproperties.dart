@@ -22,10 +22,10 @@ const IID_IStorageItemExtraProperties =
 /// {@category interface}
 class IStorageItemExtraProperties extends IInspectable {
   // vtable begins at 6, is 3 entries long.
-  IStorageItemExtraProperties.fromRawPointer(super.ptr);
+  IStorageItemExtraProperties.fromPtr(super.ptr);
 
   factory IStorageItemExtraProperties.from(IInspectable interface) =>
-      IStorageItemExtraProperties.fromRawPointer(
+      IStorageItemExtraProperties.fromPtr(
           interface.toInterface(IID_IStorageItemExtraProperties));
 
   Future<IMap<String, Object?>> retrievePropertiesAsync(
@@ -61,10 +61,10 @@ class IStorageItemExtraProperties extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation =
-        IAsyncOperation<IMap<String, Object?>>.fromRawPointer(retValuePtr,
-            creator: (ptr) => IMap.fromRawPointer(ptr,
-                iterableIid: '{fe2f3d47-5d47-5499-8374-430c7cda0204}'));
+    final asyncOperation = IAsyncOperation<IMap<String, Object?>>.fromPtr(
+        retValuePtr,
+        creator: (ptr) => IMap.fromPtr(ptr,
+            iterableIid: '{fe2f3d47-5d47-5499-8374-430c7cda0204}'));
     completeAsyncOperation(
         asyncOperation, completer, asyncOperation.getResults);
 
@@ -101,7 +101,7 @@ class IStorageItemExtraProperties extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncAction = IAsyncAction.fromRawPointer(retValuePtr);
+    final asyncAction = IAsyncAction.fromPtr(retValuePtr);
     completeAsyncAction(asyncAction, completer);
 
     return completer.future;
@@ -128,7 +128,7 @@ class IStorageItemExtraProperties extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncAction = IAsyncAction.fromRawPointer(retValuePtr);
+    final asyncAction = IAsyncAction.fromPtr(retValuePtr);
     completeAsyncAction(asyncAction, completer);
 
     return completer.future;

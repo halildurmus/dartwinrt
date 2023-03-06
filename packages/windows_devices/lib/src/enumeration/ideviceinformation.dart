@@ -25,11 +25,10 @@ const IID_IDeviceInformation = '{aba0fb95-4398-489d-8e44-e6130927011f}';
 /// {@category interface}
 class IDeviceInformation extends IInspectable {
   // vtable begins at 6, is 9 entries long.
-  IDeviceInformation.fromRawPointer(super.ptr);
+  IDeviceInformation.fromPtr(super.ptr);
 
   factory IDeviceInformation.from(IInspectable interface) =>
-      IDeviceInformation.fromRawPointer(
-          interface.toInterface(IID_IDeviceInformation));
+      IDeviceInformation.fromPtr(interface.toInterface(IID_IDeviceInformation));
 
   String get id {
     final retValuePtr = calloc<HSTRING>();
@@ -154,7 +153,7 @@ class IDeviceInformation extends IInspectable {
       return null;
     }
 
-    return EnclosureLocation.fromRawPointer(retValuePtr);
+    return EnclosureLocation.fromPtr(retValuePtr);
   }
 
   Map<String, Object?> get properties {
@@ -177,7 +176,7 @@ class IDeviceInformation extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final mapView = IMapView<String, Object?>.fromRawPointer(retValuePtr,
+    final mapView = IMapView<String, Object?>.fromPtr(retValuePtr,
         iterableIid: '{fe2f3d47-5d47-5499-8374-430c7cda0204}');
     return mapView.toMap();
   }
@@ -220,9 +219,9 @@ class IDeviceInformation extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<DeviceThumbnail?>.fromRawPointer(
+    final asyncOperation = IAsyncOperation<DeviceThumbnail?>.fromPtr(
         retValuePtr,
-        creator: DeviceThumbnail.fromRawPointer);
+        creator: DeviceThumbnail.fromPtr);
     completeAsyncOperation(
         asyncOperation, completer, asyncOperation.getResults);
 
@@ -250,9 +249,9 @@ class IDeviceInformation extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<DeviceThumbnail?>.fromRawPointer(
+    final asyncOperation = IAsyncOperation<DeviceThumbnail?>.fromPtr(
         retValuePtr,
-        creator: DeviceThumbnail.fromRawPointer);
+        creator: DeviceThumbnail.fromPtr);
     completeAsyncOperation(
         asyncOperation, completer, asyncOperation.getResults);
 

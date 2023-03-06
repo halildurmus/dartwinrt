@@ -38,7 +38,7 @@ class StorageItemThumbnail extends IInspectable
         IClosable,
         IInputStream,
         IThumbnailProperties {
-  StorageItemThumbnail.fromRawPointer(super.ptr);
+  StorageItemThumbnail.fromPtr(super.ptr);
 
   late final _iContentTypeProvider = IContentTypeProvider.from(this);
 

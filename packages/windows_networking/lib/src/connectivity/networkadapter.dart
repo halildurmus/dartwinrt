@@ -23,7 +23,7 @@ import 'networkitem.dart';
 ///
 /// {@category class}
 class NetworkAdapter extends IInspectable implements INetworkAdapter {
-  NetworkAdapter.fromRawPointer(super.ptr);
+  NetworkAdapter.fromPtr(super.ptr);
 
   late final _iNetworkAdapter = INetworkAdapter.from(this);
 

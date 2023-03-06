@@ -22,14 +22,14 @@ import 'itoastcollectionfactory.dart';
 ///
 /// {@category class}
 class ToastCollection extends IInspectable implements IToastCollection {
-  ToastCollection.fromRawPointer(super.ptr);
+  ToastCollection.fromPtr(super.ptr);
 
   static const _className = 'Windows.UI.Notifications.ToastCollection';
 
   factory ToastCollection.createInstance(String collectionId,
           String displayName, String launchArgs, Uri? iconUri) =>
-      createActivationFactory(IToastCollectionFactory.fromRawPointer,
-              _className, IID_IToastCollectionFactory)
+      createActivationFactory(IToastCollectionFactory.fromPtr, _className,
+              IID_IToastCollectionFactory)
           .createInstance(collectionId, displayName, launchArgs, iconUri);
 
   late final _iToastCollection = IToastCollection.from(this);

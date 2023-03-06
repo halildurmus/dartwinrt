@@ -24,10 +24,10 @@ const IID_IToastNotificationManagerStatics2 =
 /// {@category interface}
 class IToastNotificationManagerStatics2 extends IInspectable {
   // vtable begins at 6, is 1 entries long.
-  IToastNotificationManagerStatics2.fromRawPointer(super.ptr);
+  IToastNotificationManagerStatics2.fromPtr(super.ptr);
 
   factory IToastNotificationManagerStatics2.from(IInspectable interface) =>
-      IToastNotificationManagerStatics2.fromRawPointer(
+      IToastNotificationManagerStatics2.fromPtr(
           interface.toInterface(IID_IToastNotificationManagerStatics2));
 
   ToastNotificationHistory? get history {
@@ -55,6 +55,6 @@ class IToastNotificationManagerStatics2 extends IInspectable {
       return null;
     }
 
-    return ToastNotificationHistory.fromRawPointer(retValuePtr);
+    return ToastNotificationHistory.fromPtr(retValuePtr);
   }
 }

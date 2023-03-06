@@ -21,7 +21,7 @@ import 'icivicaddress.dart';
 ///
 /// {@category class}
 class CivicAddress extends IInspectable implements ICivicAddress {
-  CivicAddress.fromRawPointer(super.ptr);
+  CivicAddress.fromPtr(super.ptr);
 
   late final _iCivicAddress = ICivicAddress.from(this);
 

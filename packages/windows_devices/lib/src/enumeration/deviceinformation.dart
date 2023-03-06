@@ -35,73 +35,73 @@ import 'ideviceinformationstatics2.dart';
 /// {@category class}
 class DeviceInformation extends IInspectable
     implements IDeviceInformation, IDeviceInformation2 {
-  DeviceInformation.fromRawPointer(super.ptr);
+  DeviceInformation.fromPtr(super.ptr);
 
   static const _className = 'Windows.Devices.Enumeration.DeviceInformation';
 
   static Future<DeviceInformation?> createFromIdAsync(String deviceId) =>
-      createActivationFactory(IDeviceInformationStatics.fromRawPointer,
-              _className, IID_IDeviceInformationStatics)
+      createActivationFactory(IDeviceInformationStatics.fromPtr, _className,
+              IID_IDeviceInformationStatics)
           .createFromIdAsync(deviceId);
 
   static Future<DeviceInformation?> createFromIdAsyncAdditionalProperties(
           String deviceId, IIterable<String>? additionalProperties) =>
-      createActivationFactory(IDeviceInformationStatics.fromRawPointer,
-              _className, IID_IDeviceInformationStatics)
+      createActivationFactory(IDeviceInformationStatics.fromPtr, _className,
+              IID_IDeviceInformationStatics)
           .createFromIdAsyncAdditionalProperties(
               deviceId, additionalProperties);
 
   static Future<DeviceInformationCollection?> findAllAsync() =>
-      createActivationFactory(IDeviceInformationStatics.fromRawPointer,
-              _className, IID_IDeviceInformationStatics)
+      createActivationFactory(IDeviceInformationStatics.fromPtr, _className,
+              IID_IDeviceInformationStatics)
           .findAllAsync();
 
   static Future<DeviceInformationCollection?> findAllAsyncDeviceClass(
           DeviceClass deviceClass) =>
-      createActivationFactory(IDeviceInformationStatics.fromRawPointer,
-              _className, IID_IDeviceInformationStatics)
+      createActivationFactory(IDeviceInformationStatics.fromPtr, _className,
+              IID_IDeviceInformationStatics)
           .findAllAsyncDeviceClass(deviceClass);
 
   static Future<DeviceInformationCollection?> findAllAsyncAqsFilter(
           String aqsFilter) =>
-      createActivationFactory(IDeviceInformationStatics.fromRawPointer,
-              _className, IID_IDeviceInformationStatics)
+      createActivationFactory(IDeviceInformationStatics.fromPtr, _className,
+              IID_IDeviceInformationStatics)
           .findAllAsyncAqsFilter(aqsFilter);
 
   static Future<DeviceInformationCollection?>
       findAllAsyncAqsFilterAndAdditionalProperties(
               String aqsFilter, IIterable<String>? additionalProperties) =>
-          createActivationFactory(IDeviceInformationStatics.fromRawPointer,
-                  _className, IID_IDeviceInformationStatics)
+          createActivationFactory(IDeviceInformationStatics.fromPtr, _className,
+                  IID_IDeviceInformationStatics)
               .findAllAsyncAqsFilterAndAdditionalProperties(
                   aqsFilter, additionalProperties);
 
   static DeviceWatcher? createWatcher() => createActivationFactory(
-          IDeviceInformationStatics.fromRawPointer,
+          IDeviceInformationStatics.fromPtr,
           _className,
           IID_IDeviceInformationStatics)
       .createWatcher();
 
   static DeviceWatcher? createWatcherDeviceClass(DeviceClass deviceClass) =>
-      createActivationFactory(IDeviceInformationStatics.fromRawPointer,
-              _className, IID_IDeviceInformationStatics)
+      createActivationFactory(IDeviceInformationStatics.fromPtr, _className,
+              IID_IDeviceInformationStatics)
           .createWatcherDeviceClass(deviceClass);
 
   static DeviceWatcher? createWatcherAqsFilter(String aqsFilter) =>
-      createActivationFactory(IDeviceInformationStatics.fromRawPointer,
-              _className, IID_IDeviceInformationStatics)
+      createActivationFactory(IDeviceInformationStatics.fromPtr, _className,
+              IID_IDeviceInformationStatics)
           .createWatcherAqsFilter(aqsFilter);
 
   static DeviceWatcher? createWatcherAqsFilterAndAdditionalProperties(
           String aqsFilter, IIterable<String>? additionalProperties) =>
-      createActivationFactory(IDeviceInformationStatics.fromRawPointer,
-              _className, IID_IDeviceInformationStatics)
+      createActivationFactory(IDeviceInformationStatics.fromPtr, _className,
+              IID_IDeviceInformationStatics)
           .createWatcherAqsFilterAndAdditionalProperties(
               aqsFilter, additionalProperties);
 
   static String getAqsFilterFromDeviceClass(DeviceClass deviceClass) =>
-      createActivationFactory(IDeviceInformationStatics2.fromRawPointer,
-              _className, IID_IDeviceInformationStatics2)
+      createActivationFactory(IDeviceInformationStatics2.fromPtr, _className,
+              IID_IDeviceInformationStatics2)
           .getAqsFilterFromDeviceClass(deviceClass);
 
   static Future<DeviceInformation?>
@@ -109,7 +109,7 @@ class DeviceInformation extends IInspectable
               String deviceId,
               IIterable<String>? additionalProperties,
               DeviceInformationKind kind) =>
-          createActivationFactory(IDeviceInformationStatics2.fromRawPointer,
+          createActivationFactory(IDeviceInformationStatics2.fromPtr,
                   _className, IID_IDeviceInformationStatics2)
               .createFromIdAsyncWithKindAndAdditionalProperties(
                   deviceId, additionalProperties, kind);
@@ -119,7 +119,7 @@ class DeviceInformation extends IInspectable
               String aqsFilter,
               IIterable<String>? additionalProperties,
               DeviceInformationKind kind) =>
-          createActivationFactory(IDeviceInformationStatics2.fromRawPointer,
+          createActivationFactory(IDeviceInformationStatics2.fromPtr,
                   _className, IID_IDeviceInformationStatics2)
               .findAllAsyncWithKindAqsFilterAndAdditionalProperties(
                   aqsFilter, additionalProperties, kind);
@@ -128,8 +128,8 @@ class DeviceInformation extends IInspectable
           String aqsFilter,
           IIterable<String>? additionalProperties,
           DeviceInformationKind kind) =>
-      createActivationFactory(IDeviceInformationStatics2.fromRawPointer,
-              _className, IID_IDeviceInformationStatics2)
+      createActivationFactory(IDeviceInformationStatics2.fromPtr, _className,
+              IID_IDeviceInformationStatics2)
           .createWatcherWithKindAqsFilterAndAdditionalProperties(
               aqsFilter, additionalProperties, kind);
 

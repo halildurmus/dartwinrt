@@ -31,10 +31,10 @@ class IWwwFormUrlDecoderRuntimeClass extends IInspectable
         IIterable<IWwwFormUrlDecoderEntry>,
         IVectorView<IWwwFormUrlDecoderEntry> {
   // vtable begins at 6, is 1 entries long.
-  IWwwFormUrlDecoderRuntimeClass.fromRawPointer(super.ptr);
+  IWwwFormUrlDecoderRuntimeClass.fromPtr(super.ptr);
 
   factory IWwwFormUrlDecoderRuntimeClass.from(IInspectable interface) =>
-      IWwwFormUrlDecoderRuntimeClass.fromRawPointer(
+      IWwwFormUrlDecoderRuntimeClass.fromPtr(
           interface.toInterface(IID_IWwwFormUrlDecoderRuntimeClass));
 
   String getFirstValueByName(String name) {
@@ -67,9 +67,9 @@ class IWwwFormUrlDecoderRuntimeClass extends IInspectable
     }
   }
 
-  late final _iVectorView = IVectorView<IWwwFormUrlDecoderEntry>.fromRawPointer(
+  late final _iVectorView = IVectorView<IWwwFormUrlDecoderEntry>.fromPtr(
       toInterface('{b1f00d3b-1f06-5117-93ea-2a0d79116701}'),
-      creator: IWwwFormUrlDecoderEntry.fromRawPointer,
+      creator: IWwwFormUrlDecoderEntry.fromPtr,
       iterableIid: '{876be83b-7218-5bfb-a169-83152ef7e146}');
 
   @override

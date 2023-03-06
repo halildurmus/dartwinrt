@@ -32,12 +32,12 @@ import 'pickerviewmode.dart';
 class FileOpenPicker extends IInspectable
     implements IFileOpenPicker, IFileOpenPicker3 {
   FileOpenPicker() : super(activateClass(_className));
-  FileOpenPicker.fromRawPointer(super.ptr);
+  FileOpenPicker.fromPtr(super.ptr);
 
   static const _className = 'Windows.Storage.Pickers.FileOpenPicker';
 
   static FileOpenPicker? createForUser(User? user) => createActivationFactory(
-          IFileOpenPickerStatics2.fromRawPointer,
+          IFileOpenPickerStatics2.fromPtr,
           _className,
           IID_IFileOpenPickerStatics2)
       .createForUser(user);

@@ -28,10 +28,10 @@ const IID_IDevicePicker = '{84997aa2-034a-4440-8813-7d0bd479bf5a}';
 /// {@category interface}
 class IDevicePicker extends IInspectable {
   // vtable begins at 6, is 15 entries long.
-  IDevicePicker.fromRawPointer(super.ptr);
+  IDevicePicker.fromPtr(super.ptr);
 
   factory IDevicePicker.from(IInspectable interface) =>
-      IDevicePicker.fromRawPointer(interface.toInterface(IID_IDevicePicker));
+      IDevicePicker.fromPtr(interface.toInterface(IID_IDevicePicker));
 
   DevicePickerFilter? get filter {
     final retValuePtr = calloc<COMObject>();
@@ -58,7 +58,7 @@ class IDevicePicker extends IInspectable {
       return null;
     }
 
-    return DevicePickerFilter.fromRawPointer(retValuePtr);
+    return DevicePickerFilter.fromPtr(retValuePtr);
   }
 
   DevicePickerAppearance? get appearance {
@@ -86,7 +86,7 @@ class IDevicePicker extends IInspectable {
       return null;
     }
 
-    return DevicePickerAppearance.fromRawPointer(retValuePtr);
+    return DevicePickerAppearance.fromPtr(retValuePtr);
   }
 
   IVector<String> get requestedProperties {
@@ -109,7 +109,7 @@ class IDevicePicker extends IInspectable {
       throw WindowsException(hr);
     }
 
-    return IVector.fromRawPointer(retValuePtr,
+    return IVector.fromPtr(retValuePtr,
         iterableIid: '{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}');
   }
 
@@ -297,9 +297,9 @@ class IDevicePicker extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<DeviceInformation?>.fromRawPointer(
+    final asyncOperation = IAsyncOperation<DeviceInformation?>.fromPtr(
         retValuePtr,
-        creator: DeviceInformation.fromRawPointer);
+        creator: DeviceInformation.fromPtr);
     completeAsyncOperation(
         asyncOperation, completer, asyncOperation.getResults);
 
@@ -339,9 +339,9 @@ class IDevicePicker extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<DeviceInformation?>.fromRawPointer(
+    final asyncOperation = IAsyncOperation<DeviceInformation?>.fromPtr(
         retValuePtr,
-        creator: DeviceInformation.fromRawPointer);
+        creator: DeviceInformation.fromPtr);
     completeAsyncOperation(
         asyncOperation, completer, asyncOperation.getResults);
 

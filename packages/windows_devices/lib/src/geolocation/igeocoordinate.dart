@@ -21,10 +21,10 @@ const IID_IGeocoordinate = '{ee21a3aa-976a-4c70-803d-083ea55bcbc4}';
 /// {@category interface}
 class IGeocoordinate extends IInspectable {
   // vtable begins at 6, is 8 entries long.
-  IGeocoordinate.fromRawPointer(super.ptr);
+  IGeocoordinate.fromPtr(super.ptr);
 
   factory IGeocoordinate.from(IInspectable interface) =>
-      IGeocoordinate.fromRawPointer(interface.toInterface(IID_IGeocoordinate));
+      IGeocoordinate.fromPtr(interface.toInterface(IID_IGeocoordinate));
 
   @Deprecated(
       'Latitude may be altered or unavailable after Windows 8.1. Instead, use Point.Position.Latitude')
@@ -105,7 +105,7 @@ class IGeocoordinate extends IInspectable {
       return null;
     }
 
-    final reference = IReference<double?>.fromRawPointer(retValuePtr,
+    final reference = IReference<double?>.fromPtr(retValuePtr,
         referenceIid: '{2f2d6c29-5473-5f3e-92e7-96572bb990e2}');
     return reference.value;
   }
@@ -159,7 +159,7 @@ class IGeocoordinate extends IInspectable {
       return null;
     }
 
-    final reference = IReference<double?>.fromRawPointer(retValuePtr,
+    final reference = IReference<double?>.fromPtr(retValuePtr,
         referenceIid: '{2f2d6c29-5473-5f3e-92e7-96572bb990e2}');
     return reference.value;
   }
@@ -189,7 +189,7 @@ class IGeocoordinate extends IInspectable {
       return null;
     }
 
-    final reference = IReference<double?>.fromRawPointer(retValuePtr,
+    final reference = IReference<double?>.fromPtr(retValuePtr,
         referenceIid: '{2f2d6c29-5473-5f3e-92e7-96572bb990e2}');
     return reference.value;
   }
@@ -219,7 +219,7 @@ class IGeocoordinate extends IInspectable {
       return null;
     }
 
-    final reference = IReference<double?>.fromRawPointer(retValuePtr,
+    final reference = IReference<double?>.fromPtr(retValuePtr,
         referenceIid: '{2f2d6c29-5473-5f3e-92e7-96572bb990e2}');
     return reference.value;
   }

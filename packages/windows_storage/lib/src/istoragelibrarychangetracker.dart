@@ -24,10 +24,10 @@ const IID_IStorageLibraryChangeTracker =
 /// {@category interface}
 class IStorageLibraryChangeTracker extends IInspectable {
   // vtable begins at 6, is 3 entries long.
-  IStorageLibraryChangeTracker.fromRawPointer(super.ptr);
+  IStorageLibraryChangeTracker.fromPtr(super.ptr);
 
   factory IStorageLibraryChangeTracker.from(IInspectable interface) =>
-      IStorageLibraryChangeTracker.fromRawPointer(
+      IStorageLibraryChangeTracker.fromPtr(
           interface.toInterface(IID_IStorageLibraryChangeTracker));
 
   StorageLibraryChangeReader? getChangeReader() {
@@ -55,7 +55,7 @@ class IStorageLibraryChangeTracker extends IInspectable {
       return null;
     }
 
-    return StorageLibraryChangeReader.fromRawPointer(retValuePtr);
+    return StorageLibraryChangeReader.fromPtr(retValuePtr);
   }
 
   void enable() {

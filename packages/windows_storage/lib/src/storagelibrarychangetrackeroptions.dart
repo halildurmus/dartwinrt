@@ -25,7 +25,7 @@ import 'istoragelibrarychangetrackeroptions.dart';
 class StorageLibraryChangeTrackerOptions extends IInspectable
     implements IStorageLibraryChangeTrackerOptions {
   StorageLibraryChangeTrackerOptions() : super(activateClass(_className));
-  StorageLibraryChangeTrackerOptions.fromRawPointer(super.ptr);
+  StorageLibraryChangeTrackerOptions.fromPtr(super.ptr);
 
   static const _className =
       'Windows.Storage.StorageLibraryChangeTrackerOptions';

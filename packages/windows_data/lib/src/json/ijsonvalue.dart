@@ -25,10 +25,10 @@ const IID_IJsonValue = '{a3219ecb-f0b3-4dcd-beee-19d48cd3ed1e}';
 /// {@category interface}
 class IJsonValue extends IInspectable {
   // vtable begins at 6, is 7 entries long.
-  IJsonValue.fromRawPointer(super.ptr);
+  IJsonValue.fromPtr(super.ptr);
 
   factory IJsonValue.from(IInspectable interface) =>
-      IJsonValue.fromRawPointer(interface.toInterface(IID_IJsonValue));
+      IJsonValue.fromPtr(interface.toInterface(IID_IJsonValue));
 
   JsonValueType get valueType {
     final retValuePtr = calloc<Int32>();
@@ -177,7 +177,7 @@ class IJsonValue extends IInspectable {
       return null;
     }
 
-    return JsonArray.fromRawPointer(retValuePtr);
+    return JsonArray.fromPtr(retValuePtr);
   }
 
   JsonObject? getObject() {
@@ -205,6 +205,6 @@ class IJsonValue extends IInspectable {
       return null;
     }
 
-    return JsonObject.fromRawPointer(retValuePtr);
+    return JsonObject.fromPtr(retValuePtr);
   }
 }

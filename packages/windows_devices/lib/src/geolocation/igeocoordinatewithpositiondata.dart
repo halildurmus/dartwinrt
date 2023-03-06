@@ -27,10 +27,10 @@ const IID_IGeocoordinateWithPositionData =
 class IGeocoordinateWithPositionData extends IInspectable
     implements IGeocoordinate {
   // vtable begins at 6, is 2 entries long.
-  IGeocoordinateWithPositionData.fromRawPointer(super.ptr);
+  IGeocoordinateWithPositionData.fromPtr(super.ptr);
 
   factory IGeocoordinateWithPositionData.from(IInspectable interface) =>
-      IGeocoordinateWithPositionData.fromRawPointer(
+      IGeocoordinateWithPositionData.fromPtr(
           interface.toInterface(IID_IGeocoordinateWithPositionData));
 
   PositionSource get positionSource {
@@ -82,7 +82,7 @@ class IGeocoordinateWithPositionData extends IInspectable
       return null;
     }
 
-    return GeocoordinateSatelliteData.fromRawPointer(retValuePtr);
+    return GeocoordinateSatelliteData.fromPtr(retValuePtr);
   }
 
   late final _iGeocoordinate = IGeocoordinate.from(this);

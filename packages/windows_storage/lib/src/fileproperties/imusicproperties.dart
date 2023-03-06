@@ -24,11 +24,10 @@ const IID_IMusicProperties = '{bc8aab62-66ec-419a-bc5d-ca65a4cb46da}';
 class IMusicProperties extends IInspectable
     implements IStorageItemExtraProperties {
   // vtable begins at 6, is 25 entries long.
-  IMusicProperties.fromRawPointer(super.ptr);
+  IMusicProperties.fromPtr(super.ptr);
 
   factory IMusicProperties.from(IInspectable interface) =>
-      IMusicProperties.fromRawPointer(
-          interface.toInterface(IID_IMusicProperties));
+      IMusicProperties.fromPtr(interface.toInterface(IID_IMusicProperties));
 
   String get album {
     final retValuePtr = calloc<HSTRING>();
@@ -140,7 +139,7 @@ class IMusicProperties extends IInspectable
       throw WindowsException(hr);
     }
 
-    return IVector.fromRawPointer(retValuePtr,
+    return IVector.fromPtr(retValuePtr,
         iterableIid: '{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}');
   }
 
@@ -378,7 +377,7 @@ class IMusicProperties extends IInspectable
       throw WindowsException(hr);
     }
 
-    return IVector.fromRawPointer(retValuePtr,
+    return IVector.fromPtr(retValuePtr,
         iterableIid: '{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}');
   }
 
@@ -402,7 +401,7 @@ class IMusicProperties extends IInspectable
       throw WindowsException(hr);
     }
 
-    return IVector.fromRawPointer(retValuePtr,
+    return IVector.fromPtr(retValuePtr,
         iterableIid: '{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}');
   }
 
@@ -471,7 +470,7 @@ class IMusicProperties extends IInspectable
       throw WindowsException(hr);
     }
 
-    return IVector.fromRawPointer(retValuePtr,
+    return IVector.fromPtr(retValuePtr,
         iterableIid: '{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}');
   }
 
@@ -540,7 +539,7 @@ class IMusicProperties extends IInspectable
       throw WindowsException(hr);
     }
 
-    return IVector.fromRawPointer(retValuePtr,
+    return IVector.fromPtr(retValuePtr,
         iterableIid: '{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}');
   }
 

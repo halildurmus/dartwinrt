@@ -22,10 +22,10 @@ const IID_IStorageLibraryChangeTrackerOptions =
 /// {@category interface}
 class IStorageLibraryChangeTrackerOptions extends IInspectable {
   // vtable begins at 6, is 2 entries long.
-  IStorageLibraryChangeTrackerOptions.fromRawPointer(super.ptr);
+  IStorageLibraryChangeTrackerOptions.fromPtr(super.ptr);
 
   factory IStorageLibraryChangeTrackerOptions.from(IInspectable interface) =>
-      IStorageLibraryChangeTrackerOptions.fromRawPointer(
+      IStorageLibraryChangeTrackerOptions.fromPtr(
           interface.toInterface(IID_IStorageLibraryChangeTrackerOptions));
 
   bool get trackChangeDetails {

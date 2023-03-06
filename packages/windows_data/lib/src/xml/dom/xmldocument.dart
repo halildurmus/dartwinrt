@@ -51,30 +51,30 @@ class XmlDocument extends IInspectable
         IXmlDocumentIO,
         IXmlDocumentIO2 {
   XmlDocument() : super(activateClass(_className));
-  XmlDocument.fromRawPointer(super.ptr);
+  XmlDocument.fromPtr(super.ptr);
 
   static const _className = 'Windows.Data.Xml.Dom.XmlDocument';
 
   static Future<XmlDocument?> loadFromUriAsync(Uri? uri) =>
-      createActivationFactory(IXmlDocumentStatics.fromRawPointer, _className,
-              IID_IXmlDocumentStatics)
+      createActivationFactory(
+              IXmlDocumentStatics.fromPtr, _className, IID_IXmlDocumentStatics)
           .loadFromUriAsync(uri);
 
   static Future<XmlDocument?> loadFromUriWithSettingsAsync(
           Uri? uri, XmlLoadSettings? loadSettings) =>
-      createActivationFactory(IXmlDocumentStatics.fromRawPointer, _className,
-              IID_IXmlDocumentStatics)
+      createActivationFactory(
+              IXmlDocumentStatics.fromPtr, _className, IID_IXmlDocumentStatics)
           .loadFromUriWithSettingsAsync(uri, loadSettings);
 
   static Future<XmlDocument?> loadFromFileAsync(IStorageFile? file) =>
-      createActivationFactory(IXmlDocumentStatics.fromRawPointer, _className,
-              IID_IXmlDocumentStatics)
+      createActivationFactory(
+              IXmlDocumentStatics.fromPtr, _className, IID_IXmlDocumentStatics)
           .loadFromFileAsync(file);
 
   static Future<XmlDocument?> loadFromFileWithSettingsAsync(
           IStorageFile? file, XmlLoadSettings? loadSettings) =>
-      createActivationFactory(IXmlDocumentStatics.fromRawPointer, _className,
-              IID_IXmlDocumentStatics)
+      createActivationFactory(
+              IXmlDocumentStatics.fromPtr, _className, IID_IXmlDocumentStatics)
           .loadFromFileWithSettingsAsync(file, loadSettings);
 
   late final _iXmlDocument = IXmlDocument.from(this);

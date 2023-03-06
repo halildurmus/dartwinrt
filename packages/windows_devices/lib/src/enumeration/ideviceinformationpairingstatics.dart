@@ -24,10 +24,10 @@ const IID_IDeviceInformationPairingStatics =
 /// {@category interface}
 class IDeviceInformationPairingStatics extends IInspectable {
   // vtable begins at 6, is 1 entries long.
-  IDeviceInformationPairingStatics.fromRawPointer(super.ptr);
+  IDeviceInformationPairingStatics.fromPtr(super.ptr);
 
   factory IDeviceInformationPairingStatics.from(IInspectable interface) =>
-      IDeviceInformationPairingStatics.fromRawPointer(
+      IDeviceInformationPairingStatics.fromPtr(
           interface.toInterface(IID_IDeviceInformationPairingStatics));
 
   bool tryRegisterForAllInboundPairingRequests(

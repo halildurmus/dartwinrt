@@ -30,7 +30,7 @@ import 'xmlnodelist.dart';
 /// {@category class}
 class XmlAttribute extends IInspectable
     implements IXmlAttribute, IXmlNode, IXmlNodeSerializer, IXmlNodeSelector {
-  XmlAttribute.fromRawPointer(super.ptr);
+  XmlAttribute.fromPtr(super.ptr);
 
   late final _iXmlAttribute = IXmlAttribute.from(this);
 

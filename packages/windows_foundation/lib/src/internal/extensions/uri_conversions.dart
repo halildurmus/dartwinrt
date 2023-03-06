@@ -10,7 +10,7 @@ import '../../uri.dart' as winrt_uri;
 
 extension COMObjectPointerToWinRTUriConversion on Pointer<COMObject> {
   /// Creates a WinRT Uri from this Pointer.
-  winrt_uri.Uri toWinRTUri() => winrt_uri.Uri.fromRawPointer(this);
+  winrt_uri.Uri toWinRTUri() => winrt_uri.Uri.fromPtr(this);
 }
 
 extension DartUriToWinRTUriConversion on Uri {

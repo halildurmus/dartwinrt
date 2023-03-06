@@ -26,7 +26,7 @@ import 'storagelibrarychangetrackeroptions.dart';
 /// {@category class}
 class StorageLibraryChangeTracker extends IInspectable
     implements IStorageLibraryChangeTracker, IStorageLibraryChangeTracker2 {
-  StorageLibraryChangeTracker.fromRawPointer(super.ptr);
+  StorageLibraryChangeTracker.fromPtr(super.ptr);
 
   late final _iStorageLibraryChangeTracker =
       IStorageLibraryChangeTracker.from(this);

@@ -24,11 +24,10 @@ const IID_IXmlNamedNodeMap = '{b3a69eb0-aab0-4b82-a6fa-b1453f7c021b}';
 class IXmlNamedNodeMap extends IInspectable
     implements IVectorView<IXmlNode>, IIterable<IXmlNode> {
   // vtable begins at 6, is 8 entries long.
-  IXmlNamedNodeMap.fromRawPointer(super.ptr);
+  IXmlNamedNodeMap.fromPtr(super.ptr);
 
   factory IXmlNamedNodeMap.from(IInspectable interface) =>
-      IXmlNamedNodeMap.fromRawPointer(
-          interface.toInterface(IID_IXmlNamedNodeMap));
+      IXmlNamedNodeMap.fromPtr(interface.toInterface(IID_IXmlNamedNodeMap));
 
   int get length {
     final retValuePtr = calloc<Uint32>();
@@ -80,7 +79,7 @@ class IXmlNamedNodeMap extends IInspectable
       return null;
     }
 
-    return IXmlNode.fromRawPointer(retValuePtr);
+    return IXmlNode.fromPtr(retValuePtr);
   }
 
   IXmlNode? getNamedItem(String name) {
@@ -112,7 +111,7 @@ class IXmlNamedNodeMap extends IInspectable
       return null;
     }
 
-    return IXmlNode.fromRawPointer(retValuePtr);
+    return IXmlNode.fromPtr(retValuePtr);
   }
 
   IXmlNode? setNamedItem(IXmlNode? node) {
@@ -142,7 +141,7 @@ class IXmlNamedNodeMap extends IInspectable
       return null;
     }
 
-    return IXmlNode.fromRawPointer(retValuePtr);
+    return IXmlNode.fromPtr(retValuePtr);
   }
 
   IXmlNode? removeNamedItem(String name) {
@@ -174,7 +173,7 @@ class IXmlNamedNodeMap extends IInspectable
       return null;
     }
 
-    return IXmlNode.fromRawPointer(retValuePtr);
+    return IXmlNode.fromPtr(retValuePtr);
   }
 
   IXmlNode? getNamedItemNS(Object? namespaceUri, String name) {
@@ -207,7 +206,7 @@ class IXmlNamedNodeMap extends IInspectable
       return null;
     }
 
-    return IXmlNode.fromRawPointer(retValuePtr);
+    return IXmlNode.fromPtr(retValuePtr);
   }
 
   IXmlNode? removeNamedItemNS(Object? namespaceUri, String name) {
@@ -240,7 +239,7 @@ class IXmlNamedNodeMap extends IInspectable
       return null;
     }
 
-    return IXmlNode.fromRawPointer(retValuePtr);
+    return IXmlNode.fromPtr(retValuePtr);
   }
 
   IXmlNode? setNamedItemNS(IXmlNode? node) {
@@ -270,12 +269,12 @@ class IXmlNamedNodeMap extends IInspectable
       return null;
     }
 
-    return IXmlNode.fromRawPointer(retValuePtr);
+    return IXmlNode.fromPtr(retValuePtr);
   }
 
-  late final _iVectorView = IVectorView<IXmlNode>.fromRawPointer(
+  late final _iVectorView = IVectorView<IXmlNode>.fromPtr(
       toInterface('{139d959e-e7b5-5cb6-a596-4b544478da9b}'),
-      creator: IXmlNode.fromRawPointer,
+      creator: IXmlNode.fromPtr,
       iterableIid: '{f1146ffc-8c92-56e8-93f1-711f86722633}');
 
   @override

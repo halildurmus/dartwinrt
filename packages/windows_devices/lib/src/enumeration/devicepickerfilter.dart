@@ -24,7 +24,7 @@ import 'idevicepickerfilter.dart';
 ///
 /// {@category class}
 class DevicePickerFilter extends IInspectable implements IDevicePickerFilter {
-  DevicePickerFilter.fromRawPointer(super.ptr);
+  DevicePickerFilter.fromPtr(super.ptr);
 
   late final _iDevicePickerFilter = IDevicePickerFilter.from(this);
 

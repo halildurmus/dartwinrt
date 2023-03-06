@@ -25,10 +25,10 @@ const IID_IHostName = '{bf8ecaad-ed96-49a7-9084-d416cae88dcb}';
 /// {@category interface}
 class IHostName extends IInspectable {
   // vtable begins at 6, is 6 entries long.
-  IHostName.fromRawPointer(super.ptr);
+  IHostName.fromPtr(super.ptr);
 
   factory IHostName.from(IInspectable interface) =>
-      IHostName.fromRawPointer(interface.toInterface(IID_IHostName));
+      IHostName.fromPtr(interface.toInterface(IID_IHostName));
 
   IPInformation? get ipInformation {
     final retValuePtr = calloc<COMObject>();
@@ -55,7 +55,7 @@ class IHostName extends IInspectable {
       return null;
     }
 
-    return IPInformation.fromRawPointer(retValuePtr);
+    return IPInformation.fromPtr(retValuePtr);
   }
 
   String get rawName {

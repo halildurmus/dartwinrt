@@ -32,42 +32,38 @@ import 'positionstatus.dart';
 class Geolocator extends IInspectable
     implements IGeolocator, IGeolocatorWithScalarAccuracy, IGeolocator2 {
   Geolocator() : super(activateClass(_className));
-  Geolocator.fromRawPointer(super.ptr);
+  Geolocator.fromPtr(super.ptr);
 
   static const _className = 'Windows.Devices.Geolocation.Geolocator';
 
   static Future<GeolocationAccessStatus> requestAccessAsync() =>
-      createActivationFactory(IGeolocatorStatics.fromRawPointer, _className,
-              IID_IGeolocatorStatics)
+      createActivationFactory(
+              IGeolocatorStatics.fromPtr, _className, IID_IGeolocatorStatics)
           .requestAccessAsync();
 
   static Future<List<Geoposition>> getGeopositionHistoryAsync(
           DateTime startTime) =>
-      createActivationFactory(IGeolocatorStatics.fromRawPointer, _className,
-              IID_IGeolocatorStatics)
+      createActivationFactory(
+              IGeolocatorStatics.fromPtr, _className, IID_IGeolocatorStatics)
           .getGeopositionHistoryAsync(startTime);
 
   static Future<List<Geoposition>> getGeopositionHistoryWithDurationAsync(
           DateTime startTime, Duration duration) =>
-      createActivationFactory(IGeolocatorStatics.fromRawPointer, _className,
-              IID_IGeolocatorStatics)
+      createActivationFactory(
+              IGeolocatorStatics.fromPtr, _className, IID_IGeolocatorStatics)
           .getGeopositionHistoryWithDurationAsync(startTime, duration);
 
   static bool get isDefaultGeopositionRecommended => createActivationFactory(
-          IGeolocatorStatics2.fromRawPointer,
-          _className,
-          IID_IGeolocatorStatics2)
+          IGeolocatorStatics2.fromPtr, _className, IID_IGeolocatorStatics2)
       .isDefaultGeopositionRecommended;
 
   static set defaultGeoposition(BasicGeoposition? value) =>
-      createActivationFactory(IGeolocatorStatics2.fromRawPointer, _className,
-              IID_IGeolocatorStatics2)
+      createActivationFactory(
+              IGeolocatorStatics2.fromPtr, _className, IID_IGeolocatorStatics2)
           .defaultGeoposition = value;
 
   static BasicGeoposition? get defaultGeoposition => createActivationFactory(
-          IGeolocatorStatics2.fromRawPointer,
-          _className,
-          IID_IGeolocatorStatics2)
+          IGeolocatorStatics2.fromPtr, _className, IID_IGeolocatorStatics2)
       .defaultGeoposition;
 
   late final _iGeolocator = IGeolocator.from(this);

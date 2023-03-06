@@ -23,10 +23,10 @@ const IID_IInputStreamReference = '{43929d18-5ec9-4b5a-919c-4205b0c804b6}';
 /// {@category interface}
 class IInputStreamReference extends IInspectable {
   // vtable begins at 6, is 1 entries long.
-  IInputStreamReference.fromRawPointer(super.ptr);
+  IInputStreamReference.fromPtr(super.ptr);
 
   factory IInputStreamReference.from(IInspectable interface) =>
-      IInputStreamReference.fromRawPointer(
+      IInputStreamReference.fromPtr(
           interface.toInterface(IID_IInputStreamReference));
 
   Future<IInputStream?> openSequentialReadAsync() {
@@ -50,9 +50,8 @@ class IInputStreamReference extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<IInputStream?>.fromRawPointer(
-        retValuePtr,
-        creator: IInputStream.fromRawPointer);
+    final asyncOperation = IAsyncOperation<IInputStream?>.fromPtr(retValuePtr,
+        creator: IInputStream.fromPtr);
     completeAsyncOperation(
         asyncOperation, completer, asyncOperation.getResults);
 

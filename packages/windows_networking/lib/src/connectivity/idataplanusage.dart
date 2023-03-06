@@ -21,10 +21,10 @@ const IID_IDataPlanUsage = '{b921492d-3b44-47ff-b361-be59e69ed1b0}';
 /// {@category interface}
 class IDataPlanUsage extends IInspectable {
   // vtable begins at 6, is 2 entries long.
-  IDataPlanUsage.fromRawPointer(super.ptr);
+  IDataPlanUsage.fromPtr(super.ptr);
 
   factory IDataPlanUsage.from(IInspectable interface) =>
-      IDataPlanUsage.fromRawPointer(interface.toInterface(IID_IDataPlanUsage));
+      IDataPlanUsage.fromPtr(interface.toInterface(IID_IDataPlanUsage));
 
   int get megabytesUsed {
     final retValuePtr = calloc<Uint32>();

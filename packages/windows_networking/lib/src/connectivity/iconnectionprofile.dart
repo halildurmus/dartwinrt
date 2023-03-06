@@ -29,11 +29,10 @@ const IID_IConnectionProfile = '{71ba143c-598e-49d0-84eb-8febaedcc195}';
 /// {@category interface}
 class IConnectionProfile extends IInspectable {
   // vtable begins at 6, is 9 entries long.
-  IConnectionProfile.fromRawPointer(super.ptr);
+  IConnectionProfile.fromPtr(super.ptr);
 
   factory IConnectionProfile.from(IInspectable interface) =>
-      IConnectionProfile.fromRawPointer(
-          interface.toInterface(IID_IConnectionProfile));
+      IConnectionProfile.fromPtr(interface.toInterface(IID_IConnectionProfile));
 
   String get profileName {
     final retValuePtr = calloc<HSTRING>();
@@ -104,7 +103,7 @@ class IConnectionProfile extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final vectorView = IVectorView<String>.fromRawPointer(retValuePtr,
+    final vectorView = IVectorView<String>.fromPtr(retValuePtr,
         iterableIid: '{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}');
     return vectorView.toList();
   }
@@ -134,7 +133,7 @@ class IConnectionProfile extends IInspectable {
       return null;
     }
 
-    return ConnectionCost.fromRawPointer(retValuePtr);
+    return ConnectionCost.fromPtr(retValuePtr);
   }
 
   DataPlanStatus? getDataPlanStatus() {
@@ -162,7 +161,7 @@ class IConnectionProfile extends IInspectable {
       return null;
     }
 
-    return DataPlanStatus.fromRawPointer(retValuePtr);
+    return DataPlanStatus.fromPtr(retValuePtr);
   }
 
   NetworkAdapter? get networkAdapter {
@@ -190,7 +189,7 @@ class IConnectionProfile extends IInspectable {
       return null;
     }
 
-    return NetworkAdapter.fromRawPointer(retValuePtr);
+    return NetworkAdapter.fromPtr(retValuePtr);
   }
 
   @Deprecated(
@@ -221,7 +220,7 @@ class IConnectionProfile extends IInspectable {
       return null;
     }
 
-    return DataUsage.fromRawPointer(retValuePtr);
+    return DataUsage.fromPtr(retValuePtr);
   }
 
   @Deprecated(
@@ -261,7 +260,7 @@ class IConnectionProfile extends IInspectable {
       return null;
     }
 
-    return DataUsage.fromRawPointer(retValuePtr);
+    return DataUsage.fromPtr(retValuePtr);
   }
 
   NetworkSecuritySettings? get networkSecuritySettings {
@@ -289,6 +288,6 @@ class IConnectionProfile extends IInspectable {
       return null;
     }
 
-    return NetworkSecuritySettings.fromRawPointer(retValuePtr);
+    return NetworkSecuritySettings.fromPtr(retValuePtr);
   }
 }

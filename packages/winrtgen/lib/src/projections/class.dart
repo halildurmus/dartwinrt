@@ -128,7 +128,7 @@ class FactoryConstructorProjection {
   String toString() => '''
   factory $className.${method.camelCasedName}(${method.methodParams}) =>
       createActivationFactory(
-              $shortName.fromRawPointer, _className, IID_$shortName)
+              $shortName.fromPtr, _className, IID_$shortName)
           .${method.shortForm};
 ''';
 }
@@ -144,7 +144,7 @@ class StaticMethodProjection {
   String toString() => '''
   static ${method.methodHeader} =>
       createActivationFactory(
-              $shortName.fromRawPointer, _className, IID_$shortName)
+              $shortName.fromPtr, _className, IID_$shortName)
           .${method.shortForm};
 ''';
 }

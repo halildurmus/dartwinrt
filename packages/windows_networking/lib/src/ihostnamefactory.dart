@@ -23,11 +23,10 @@ const IID_IHostNameFactory = '{458c23ed-712f-4576-adf1-c20b2c643558}';
 /// {@category interface}
 class IHostNameFactory extends IInspectable {
   // vtable begins at 6, is 1 entries long.
-  IHostNameFactory.fromRawPointer(super.ptr);
+  IHostNameFactory.fromPtr(super.ptr);
 
   factory IHostNameFactory.from(IInspectable interface) =>
-      IHostNameFactory.fromRawPointer(
-          interface.toInterface(IID_IHostNameFactory));
+      IHostNameFactory.fromPtr(interface.toInterface(IID_IHostNameFactory));
 
   HostName createHostName(String hostName) {
     final retValuePtr = calloc<COMObject>();
@@ -53,6 +52,6 @@ class IHostNameFactory extends IInspectable {
       throw WindowsException(hr);
     }
 
-    return HostName.fromRawPointer(retValuePtr);
+    return HostName.fromPtr(retValuePtr);
   }
 }

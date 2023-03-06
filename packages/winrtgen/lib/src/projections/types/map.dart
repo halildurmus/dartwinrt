@@ -75,7 +75,7 @@ mixin _MapMixin on MethodProjection {
     final retValuePtr = calloc<COMObject>();
     ${ffiCall(freeRetValOnFailure: true)}
 
-    return IMap.fromRawPointer(retValuePtr$mapConstructorArgs);
+    return IMap.fromPtr(retValuePtr$mapConstructorArgs);
   }
 ''';
 }
@@ -104,7 +104,7 @@ class MapViewMethodProjection extends MethodProjection with _MapMixin {
     final retValuePtr = calloc<COMObject>();
     ${ffiCall(freeRetValOnFailure: true)}
 
-    final mapView = IMapView<$mapTypeArgs>.fromRawPointer
+    final mapView = IMapView<$mapTypeArgs>.fromPtr
         (retValuePtr$mapConstructorArgs);
     return mapView.toMap();
   }
@@ -124,7 +124,7 @@ class MapViewGetterProjection extends GetterProjection with _MapMixin {
     final retValuePtr = calloc<COMObject>();
     ${ffiCall(freeRetValOnFailure: true)}
 
-    final mapView = IMapView<$mapTypeArgs>.fromRawPointer
+    final mapView = IMapView<$mapTypeArgs>.fromPtr
         (retValuePtr$mapConstructorArgs);
     return mapView.toMap();
   }

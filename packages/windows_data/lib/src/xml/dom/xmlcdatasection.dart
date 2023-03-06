@@ -37,7 +37,7 @@ class XmlCDataSection extends IInspectable
         IXmlNode,
         IXmlNodeSerializer,
         IXmlNodeSelector {
-  XmlCDataSection.fromRawPointer(super.ptr);
+  XmlCDataSection.fromPtr(super.ptr);
 
   late final _iXmlText = IXmlText.from(this);
 

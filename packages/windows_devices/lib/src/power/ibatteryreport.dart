@@ -22,10 +22,10 @@ const IID_IBatteryReport = '{c9858c3a-4e13-420a-a8d0-24f18f395401}';
 /// {@category interface}
 class IBatteryReport extends IInspectable {
   // vtable begins at 6, is 5 entries long.
-  IBatteryReport.fromRawPointer(super.ptr);
+  IBatteryReport.fromPtr(super.ptr);
 
   factory IBatteryReport.from(IInspectable interface) =>
-      IBatteryReport.fromRawPointer(interface.toInterface(IID_IBatteryReport));
+      IBatteryReport.fromPtr(interface.toInterface(IID_IBatteryReport));
 
   int? get chargeRateInMilliwatts {
     final retValuePtr = calloc<COMObject>();
@@ -52,7 +52,7 @@ class IBatteryReport extends IInspectable {
       return null;
     }
 
-    final reference = IReference<int?>.fromRawPointer(retValuePtr,
+    final reference = IReference<int?>.fromPtr(retValuePtr,
         referenceIid: '{548cefbd-bc8a-5fa0-8df2-957440fc8bf4}');
     return reference.value;
   }
@@ -82,7 +82,7 @@ class IBatteryReport extends IInspectable {
       return null;
     }
 
-    final reference = IReference<int?>.fromRawPointer(retValuePtr,
+    final reference = IReference<int?>.fromPtr(retValuePtr,
         referenceIid: '{548cefbd-bc8a-5fa0-8df2-957440fc8bf4}');
     return reference.value;
   }
@@ -112,7 +112,7 @@ class IBatteryReport extends IInspectable {
       return null;
     }
 
-    final reference = IReference<int?>.fromRawPointer(retValuePtr,
+    final reference = IReference<int?>.fromPtr(retValuePtr,
         referenceIid: '{548cefbd-bc8a-5fa0-8df2-957440fc8bf4}');
     return reference.value;
   }
@@ -142,7 +142,7 @@ class IBatteryReport extends IInspectable {
       return null;
     }
 
-    final reference = IReference<int?>.fromRawPointer(retValuePtr,
+    final reference = IReference<int?>.fromPtr(retValuePtr,
         referenceIid: '{548cefbd-bc8a-5fa0-8df2-957440fc8bf4}');
     return reference.value;
   }

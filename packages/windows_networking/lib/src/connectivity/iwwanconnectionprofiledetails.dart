@@ -25,10 +25,10 @@ const IID_IWwanConnectionProfileDetails =
 /// {@category interface}
 class IWwanConnectionProfileDetails extends IInspectable {
   // vtable begins at 6, is 4 entries long.
-  IWwanConnectionProfileDetails.fromRawPointer(super.ptr);
+  IWwanConnectionProfileDetails.fromPtr(super.ptr);
 
   factory IWwanConnectionProfileDetails.from(IInspectable interface) =>
-      IWwanConnectionProfileDetails.fromRawPointer(
+      IWwanConnectionProfileDetails.fromPtr(
           interface.toInterface(IID_IWwanConnectionProfileDetails));
 
   String get homeProviderId {

@@ -24,10 +24,10 @@ const IID_IXmlNodeList = '{8c60ad77-83a4-4ec1-9c54-7ba429e13da6}';
 class IXmlNodeList extends IInspectable
     implements IVectorView<IXmlNode>, IIterable<IXmlNode> {
   // vtable begins at 6, is 2 entries long.
-  IXmlNodeList.fromRawPointer(super.ptr);
+  IXmlNodeList.fromPtr(super.ptr);
 
   factory IXmlNodeList.from(IInspectable interface) =>
-      IXmlNodeList.fromRawPointer(interface.toInterface(IID_IXmlNodeList));
+      IXmlNodeList.fromPtr(interface.toInterface(IID_IXmlNodeList));
 
   int get length {
     final retValuePtr = calloc<Uint32>();
@@ -79,12 +79,12 @@ class IXmlNodeList extends IInspectable
       return null;
     }
 
-    return IXmlNode.fromRawPointer(retValuePtr);
+    return IXmlNode.fromPtr(retValuePtr);
   }
 
-  late final _iVectorView = IVectorView<IXmlNode>.fromRawPointer(
+  late final _iVectorView = IVectorView<IXmlNode>.fromPtr(
       toInterface('{139d959e-e7b5-5cb6-a596-4b544478da9b}'),
-      creator: IXmlNode.fromRawPointer,
+      creator: IXmlNode.fromPtr,
       iterableIid: '{f1146ffc-8c92-56e8-93f1-711f86722633}');
 
   @override

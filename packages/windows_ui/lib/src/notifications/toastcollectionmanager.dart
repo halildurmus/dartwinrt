@@ -25,7 +25,7 @@ import 'toastcollection.dart';
 /// {@category class}
 class ToastCollectionManager extends IInspectable
     implements IToastCollectionManager {
-  ToastCollectionManager.fromRawPointer(super.ptr);
+  ToastCollectionManager.fromPtr(super.ptr);
 
   late final _iToastCollectionManager = IToastCollectionManager.from(this);
 

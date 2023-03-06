@@ -24,5 +24,5 @@ import 'idevicewatchertrigger.dart';
 /// {@category class}
 class DeviceWatcherTrigger extends IInspectable
     implements IDeviceWatcherTrigger, IBackgroundTrigger {
-  DeviceWatcherTrigger.fromRawPointer(super.ptr);
+  DeviceWatcherTrigger.fromPtr(super.ptr);
 }

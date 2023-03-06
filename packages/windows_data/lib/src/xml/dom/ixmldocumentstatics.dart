@@ -25,10 +25,10 @@ const IID_IXmlDocumentStatics = '{5543d254-d757-4b79-9539-232b18f50bf1}';
 /// {@category interface}
 class IXmlDocumentStatics extends IInspectable {
   // vtable begins at 6, is 4 entries long.
-  IXmlDocumentStatics.fromRawPointer(super.ptr);
+  IXmlDocumentStatics.fromPtr(super.ptr);
 
   factory IXmlDocumentStatics.from(IInspectable interface) =>
-      IXmlDocumentStatics.fromRawPointer(
+      IXmlDocumentStatics.fromPtr(
           interface.toInterface(IID_IXmlDocumentStatics));
 
   Future<XmlDocument?> loadFromUriAsync(Uri? uri) {
@@ -54,9 +54,8 @@ class IXmlDocumentStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<XmlDocument?>.fromRawPointer(
-        retValuePtr,
-        creator: XmlDocument.fromRawPointer);
+    final asyncOperation = IAsyncOperation<XmlDocument?>.fromPtr(retValuePtr,
+        creator: XmlDocument.fromPtr);
     completeAsyncOperation(
         asyncOperation, completer, asyncOperation.getResults);
 
@@ -95,9 +94,8 @@ class IXmlDocumentStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<XmlDocument?>.fromRawPointer(
-        retValuePtr,
-        creator: XmlDocument.fromRawPointer);
+    final asyncOperation = IAsyncOperation<XmlDocument?>.fromPtr(retValuePtr,
+        creator: XmlDocument.fromPtr);
     completeAsyncOperation(
         asyncOperation, completer, asyncOperation.getResults);
 
@@ -127,9 +125,8 @@ class IXmlDocumentStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<XmlDocument?>.fromRawPointer(
-        retValuePtr,
-        creator: XmlDocument.fromRawPointer);
+    final asyncOperation = IAsyncOperation<XmlDocument?>.fromPtr(retValuePtr,
+        creator: XmlDocument.fromPtr);
     completeAsyncOperation(
         asyncOperation, completer, asyncOperation.getResults);
 
@@ -165,9 +162,8 @@ class IXmlDocumentStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<XmlDocument?>.fromRawPointer(
-        retValuePtr,
-        creator: XmlDocument.fromRawPointer);
+    final asyncOperation = IAsyncOperation<XmlDocument?>.fromPtr(retValuePtr,
+        creator: XmlDocument.fromPtr);
     completeAsyncOperation(
         asyncOperation, completer, asyncOperation.getResults);
 

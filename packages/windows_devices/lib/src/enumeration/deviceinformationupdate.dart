@@ -24,7 +24,7 @@ import 'ideviceinformationupdate2.dart';
 /// {@category class}
 class DeviceInformationUpdate extends IInspectable
     implements IDeviceInformationUpdate, IDeviceInformationUpdate2 {
-  DeviceInformationUpdate.fromRawPointer(super.ptr);
+  DeviceInformationUpdate.fromPtr(super.ptr);
 
   late final _iDeviceInformationUpdate = IDeviceInformationUpdate.from(this);
 

@@ -32,11 +32,11 @@ class StringMap extends IInspectable
         IIterable<IKeyValuePair<String, String>>,
         IObservableMap<String, String> {
   StringMap() : super(activateClass(_className));
-  StringMap.fromRawPointer(super.ptr);
+  StringMap.fromPtr(super.ptr);
 
   static const _className = 'Windows.Foundation.Collections.StringMap';
 
-  late final _iMap = IMap<String, String>.fromRawPointer(
+  late final _iMap = IMap<String, String>.fromPtr(
       toInterface('{f6d1f700-49c2-52ae-8154-826f9908773c}'),
       iterableIid: '{e9bdaaf0-cbf6-5c72-be90-29cbf3a1319b}');
 
@@ -67,7 +67,7 @@ class StringMap extends IInspectable
   @override
   Map<String, String> toMap() => _iMap.toMap();
 
-  late final _iObservableMap = IObservableMap<String, String>.fromRawPointer(
+  late final _iObservableMap = IObservableMap<String, String>.fromPtr(
       toInterface('{1e036276-2f60-55f6-b7f3-f86079e6900b}'));
 
   @override

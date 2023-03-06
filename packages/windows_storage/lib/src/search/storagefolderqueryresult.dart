@@ -28,7 +28,7 @@ import 'queryoptions.dart';
 /// {@category class}
 class StorageFolderQueryResult extends IInspectable
     implements IStorageFolderQueryResult, IStorageQueryResultBase {
-  StorageFolderQueryResult.fromRawPointer(super.ptr);
+  StorageFolderQueryResult.fromPtr(super.ptr);
 
   late final _iStorageFolderQueryResult = IStorageFolderQueryResult.from(this);
 

@@ -27,10 +27,10 @@ const IID_IPropertyValueStatics = '{629bdbc8-d932-4ff4-96b9-8d96c5c1e858}';
 /// {@category interface}
 class IPropertyValueStatics extends IInspectable {
   // vtable begins at 6, is 39 entries long.
-  IPropertyValueStatics.fromRawPointer(super.ptr);
+  IPropertyValueStatics.fromPtr(super.ptr);
 
   factory IPropertyValueStatics.from(IInspectable interface) =>
-      IPropertyValueStatics.fromRawPointer(
+      IPropertyValueStatics.fromPtr(
           interface.toInterface(IID_IPropertyValueStatics));
 
   Pointer<COMObject> createEmpty() {
@@ -77,7 +77,7 @@ class IPropertyValueStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    return IPropertyValue.fromRawPointer(retValuePtr);
+    return IPropertyValue.fromPtr(retValuePtr);
   }
 
   IPropertyValue createInt16(int value) {
@@ -101,7 +101,7 @@ class IPropertyValueStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    return IPropertyValue.fromRawPointer(retValuePtr);
+    return IPropertyValue.fromPtr(retValuePtr);
   }
 
   IPropertyValue createUInt16(int value) {
@@ -125,7 +125,7 @@ class IPropertyValueStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    return IPropertyValue.fromRawPointer(retValuePtr);
+    return IPropertyValue.fromPtr(retValuePtr);
   }
 
   IPropertyValue createInt32(int value) {
@@ -149,7 +149,7 @@ class IPropertyValueStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    return IPropertyValue.fromRawPointer(retValuePtr);
+    return IPropertyValue.fromPtr(retValuePtr);
   }
 
   IPropertyValue createUInt32(int value) {
@@ -173,7 +173,7 @@ class IPropertyValueStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    return IPropertyValue.fromRawPointer(retValuePtr);
+    return IPropertyValue.fromPtr(retValuePtr);
   }
 
   IPropertyValue createInt64(int value) {
@@ -197,7 +197,7 @@ class IPropertyValueStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    return IPropertyValue.fromRawPointer(retValuePtr);
+    return IPropertyValue.fromPtr(retValuePtr);
   }
 
   IPropertyValue createUInt64(int value) {
@@ -221,7 +221,7 @@ class IPropertyValueStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    return IPropertyValue.fromRawPointer(retValuePtr);
+    return IPropertyValue.fromPtr(retValuePtr);
   }
 
   IPropertyValue createSingle(double value) {
@@ -245,7 +245,7 @@ class IPropertyValueStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    return IPropertyValue.fromRawPointer(retValuePtr);
+    return IPropertyValue.fromPtr(retValuePtr);
   }
 
   IPropertyValue createDouble(double value) {
@@ -269,7 +269,7 @@ class IPropertyValueStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    return IPropertyValue.fromRawPointer(retValuePtr);
+    return IPropertyValue.fromPtr(retValuePtr);
   }
 
   IPropertyValue createChar16(int value) {
@@ -293,7 +293,7 @@ class IPropertyValueStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    return IPropertyValue.fromRawPointer(retValuePtr);
+    return IPropertyValue.fromPtr(retValuePtr);
   }
 
   IPropertyValue createBoolean(bool value) {
@@ -317,7 +317,7 @@ class IPropertyValueStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    return IPropertyValue.fromRawPointer(retValuePtr);
+    return IPropertyValue.fromPtr(retValuePtr);
   }
 
   IPropertyValue createString(String value) {
@@ -344,7 +344,7 @@ class IPropertyValueStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    return IPropertyValue.fromRawPointer(retValuePtr);
+    return IPropertyValue.fromPtr(retValuePtr);
   }
 
   Pointer<COMObject> createInspectable(Object? value) {
@@ -396,7 +396,7 @@ class IPropertyValueStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    return IPropertyValue.fromRawPointer(retValuePtr);
+    return IPropertyValue.fromPtr(retValuePtr);
   }
 
   IPropertyValue createDateTime(DateTime value) {
@@ -420,7 +420,7 @@ class IPropertyValueStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    return IPropertyValue.fromRawPointer(retValuePtr);
+    return IPropertyValue.fromPtr(retValuePtr);
   }
 
   IPropertyValue createTimeSpan(Duration value) {
@@ -444,7 +444,7 @@ class IPropertyValueStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    return IPropertyValue.fromRawPointer(retValuePtr);
+    return IPropertyValue.fromPtr(retValuePtr);
   }
 
   IPropertyValue createPoint(Point value) {
@@ -471,7 +471,7 @@ class IPropertyValueStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    return IPropertyValue.fromRawPointer(retValuePtr);
+    return IPropertyValue.fromPtr(retValuePtr);
   }
 
   IPropertyValue createSize(Size value) {
@@ -498,7 +498,7 @@ class IPropertyValueStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    return IPropertyValue.fromRawPointer(retValuePtr);
+    return IPropertyValue.fromPtr(retValuePtr);
   }
 
   IPropertyValue createRect(Rect value) {
@@ -525,7 +525,7 @@ class IPropertyValueStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    return IPropertyValue.fromRawPointer(retValuePtr);
+    return IPropertyValue.fromPtr(retValuePtr);
   }
 
   IPropertyValue createUInt8Array(List<int> value) {
@@ -558,7 +558,7 @@ class IPropertyValueStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    return IPropertyValue.fromRawPointer(retValuePtr);
+    return IPropertyValue.fromPtr(retValuePtr);
   }
 
   IPropertyValue createInt16Array(List<int> value) {
@@ -591,7 +591,7 @@ class IPropertyValueStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    return IPropertyValue.fromRawPointer(retValuePtr);
+    return IPropertyValue.fromPtr(retValuePtr);
   }
 
   IPropertyValue createUInt16Array(List<int> value) {
@@ -624,7 +624,7 @@ class IPropertyValueStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    return IPropertyValue.fromRawPointer(retValuePtr);
+    return IPropertyValue.fromPtr(retValuePtr);
   }
 
   IPropertyValue createInt32Array(List<int> value) {
@@ -657,7 +657,7 @@ class IPropertyValueStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    return IPropertyValue.fromRawPointer(retValuePtr);
+    return IPropertyValue.fromPtr(retValuePtr);
   }
 
   IPropertyValue createUInt32Array(List<int> value) {
@@ -690,7 +690,7 @@ class IPropertyValueStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    return IPropertyValue.fromRawPointer(retValuePtr);
+    return IPropertyValue.fromPtr(retValuePtr);
   }
 
   IPropertyValue createInt64Array(List<int> value) {
@@ -723,7 +723,7 @@ class IPropertyValueStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    return IPropertyValue.fromRawPointer(retValuePtr);
+    return IPropertyValue.fromPtr(retValuePtr);
   }
 
   IPropertyValue createUInt64Array(List<int> value) {
@@ -756,7 +756,7 @@ class IPropertyValueStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    return IPropertyValue.fromRawPointer(retValuePtr);
+    return IPropertyValue.fromPtr(retValuePtr);
   }
 
   IPropertyValue createSingleArray(List<double> value) {
@@ -789,7 +789,7 @@ class IPropertyValueStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    return IPropertyValue.fromRawPointer(retValuePtr);
+    return IPropertyValue.fromPtr(retValuePtr);
   }
 
   IPropertyValue createDoubleArray(List<double> value) {
@@ -822,7 +822,7 @@ class IPropertyValueStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    return IPropertyValue.fromRawPointer(retValuePtr);
+    return IPropertyValue.fromPtr(retValuePtr);
   }
 
   IPropertyValue createChar16Array(List<int> value) {
@@ -855,7 +855,7 @@ class IPropertyValueStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    return IPropertyValue.fromRawPointer(retValuePtr);
+    return IPropertyValue.fromPtr(retValuePtr);
   }
 
   IPropertyValue createBooleanArray(List<bool> value) {
@@ -888,7 +888,7 @@ class IPropertyValueStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    return IPropertyValue.fromRawPointer(retValuePtr);
+    return IPropertyValue.fromPtr(retValuePtr);
   }
 
   IPropertyValue createStringArray(List<String> value) {
@@ -924,7 +924,7 @@ class IPropertyValueStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    return IPropertyValue.fromRawPointer(retValuePtr);
+    return IPropertyValue.fromPtr(retValuePtr);
   }
 
   IPropertyValue createInspectableArray(List<Object?> value) {
@@ -961,7 +961,7 @@ class IPropertyValueStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    return IPropertyValue.fromRawPointer(retValuePtr);
+    return IPropertyValue.fromPtr(retValuePtr);
   }
 
   IPropertyValue createGuidArray(List<Guid> value) {
@@ -998,7 +998,7 @@ class IPropertyValueStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    return IPropertyValue.fromRawPointer(retValuePtr);
+    return IPropertyValue.fromPtr(retValuePtr);
   }
 
   IPropertyValue createDateTimeArray(List<DateTime> value) {
@@ -1031,7 +1031,7 @@ class IPropertyValueStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    return IPropertyValue.fromRawPointer(retValuePtr);
+    return IPropertyValue.fromPtr(retValuePtr);
   }
 
   IPropertyValue createTimeSpanArray(List<Duration> value) {
@@ -1064,7 +1064,7 @@ class IPropertyValueStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    return IPropertyValue.fromRawPointer(retValuePtr);
+    return IPropertyValue.fromPtr(retValuePtr);
   }
 
   IPropertyValue createPointArray(List<Point> value) {
@@ -1104,7 +1104,7 @@ class IPropertyValueStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    return IPropertyValue.fromRawPointer(retValuePtr);
+    return IPropertyValue.fromPtr(retValuePtr);
   }
 
   IPropertyValue createSizeArray(List<Size> value) {
@@ -1144,7 +1144,7 @@ class IPropertyValueStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    return IPropertyValue.fromRawPointer(retValuePtr);
+    return IPropertyValue.fromPtr(retValuePtr);
   }
 
   IPropertyValue createRectArray(List<Rect> value) {
@@ -1184,6 +1184,6 @@ class IPropertyValueStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    return IPropertyValue.fromRawPointer(retValuePtr);
+    return IPropertyValue.fromPtr(retValuePtr);
   }
 }

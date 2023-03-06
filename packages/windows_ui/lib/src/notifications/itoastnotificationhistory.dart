@@ -21,10 +21,10 @@ const IID_IToastNotificationHistory = '{5caddc63-01d3-4c97-986f-0533483fee14}';
 /// {@category interface}
 class IToastNotificationHistory extends IInspectable {
   // vtable begins at 6, is 7 entries long.
-  IToastNotificationHistory.fromRawPointer(super.ptr);
+  IToastNotificationHistory.fromPtr(super.ptr);
 
   factory IToastNotificationHistory.from(IInspectable interface) =>
-      IToastNotificationHistory.fromRawPointer(
+      IToastNotificationHistory.fromPtr(
           interface.toInterface(IID_IToastNotificationHistory));
 
   void removeGroup(String group) {

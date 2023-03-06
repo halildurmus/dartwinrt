@@ -25,7 +25,7 @@ import 'photoorientation.dart';
 /// {@category class}
 class ImageProperties extends IInspectable
     implements IImageProperties, IStorageItemExtraProperties {
-  ImageProperties.fromRawPointer(super.ptr);
+  ImageProperties.fromPtr(super.ptr);
 
   late final _iImageProperties = IImageProperties.from(this);
 

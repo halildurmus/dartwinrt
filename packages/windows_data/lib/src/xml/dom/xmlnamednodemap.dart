@@ -23,7 +23,7 @@ import 'ixmlnode.dart';
 /// {@category class}
 class XmlNamedNodeMap extends IInspectable
     implements IXmlNamedNodeMap, IVectorView<IXmlNode>, IIterable<IXmlNode> {
-  XmlNamedNodeMap.fromRawPointer(super.ptr);
+  XmlNamedNodeMap.fromPtr(super.ptr);
 
   late final _iXmlNamedNodeMap = IXmlNamedNodeMap.from(this);
 
@@ -56,9 +56,9 @@ class XmlNamedNodeMap extends IInspectable
   IXmlNode? setNamedItemNS(IXmlNode? node) =>
       _iXmlNamedNodeMap.setNamedItemNS(node);
 
-  late final _iVectorView = IVectorView<IXmlNode>.fromRawPointer(
+  late final _iVectorView = IVectorView<IXmlNode>.fromPtr(
       toInterface('{139d959e-e7b5-5cb6-a596-4b544478da9b}'),
-      creator: IXmlNode.fromRawPointer,
+      creator: IXmlNode.fromPtr,
       iterableIid: '{f1146ffc-8c92-56e8-93f1-711f86722633}');
 
   @override

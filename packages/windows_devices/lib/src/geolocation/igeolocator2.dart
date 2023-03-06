@@ -21,10 +21,10 @@ const IID_IGeolocator2 = '{d1b42e6d-8891-43b4-ad36-27c6fe9a97b1}';
 /// {@category interface}
 class IGeolocator2 extends IInspectable {
   // vtable begins at 6, is 1 entries long.
-  IGeolocator2.fromRawPointer(super.ptr);
+  IGeolocator2.fromPtr(super.ptr);
 
   factory IGeolocator2.from(IInspectable interface) =>
-      IGeolocator2.fromRawPointer(interface.toInterface(IID_IGeolocator2));
+      IGeolocator2.fromPtr(interface.toInterface(IID_IGeolocator2));
 
   void allowFallbackToConsentlessPositions() {
     final hr = ptr.ref.vtable

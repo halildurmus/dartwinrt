@@ -23,11 +23,10 @@ const IID_IStorageFolder2 = '{e827e8b9-08d9-4a8e-a0ac-fe5ed3cbbbd3}';
 /// {@category interface}
 class IStorageFolder2 extends IInspectable {
   // vtable begins at 6, is 1 entries long.
-  IStorageFolder2.fromRawPointer(super.ptr);
+  IStorageFolder2.fromPtr(super.ptr);
 
   factory IStorageFolder2.from(IInspectable interface) =>
-      IStorageFolder2.fromRawPointer(
-          interface.toInterface(IID_IStorageFolder2));
+      IStorageFolder2.fromPtr(interface.toInterface(IID_IStorageFolder2));
 
   Future<IStorageItem?> tryGetItemAsync(String name) {
     final retValuePtr = calloc<COMObject>();
@@ -54,9 +53,8 @@ class IStorageFolder2 extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<IStorageItem?>.fromRawPointer(
-        retValuePtr,
-        creator: IStorageItem.fromRawPointer);
+    final asyncOperation = IAsyncOperation<IStorageItem?>.fromPtr(retValuePtr,
+        creator: IStorageItem.fromPtr);
     completeAsyncOperation(
         asyncOperation, completer, asyncOperation.getResults);
 

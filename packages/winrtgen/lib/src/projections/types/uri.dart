@@ -50,7 +50,7 @@ mixin _UriMixin on MethodProjection {
 
   String get returnStatement {
     if (_methodBelongsToUriRuntimeClass(method)) {
-      return 'return Uri.fromRawPointer(retValuePtr);';
+      return 'return Uri.fromPtr(retValuePtr);';
     }
 
     return '''
@@ -96,7 +96,7 @@ mixin _UriListMixin on MethodProjection {
       ${ffiCall()}
 
       return retValuePtr.value
-        .toList(winrt_uri.Uri.fromRawPointer, length: pValueSize.value)
+        .toList(winrt_uri.Uri.fromPtr, length: pValueSize.value)
         .map((winrtUri) => Uri.parse(winrtUri.toString()));
     } finally {
       free(pValueSize);

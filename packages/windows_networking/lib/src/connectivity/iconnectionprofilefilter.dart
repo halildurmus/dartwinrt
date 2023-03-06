@@ -23,10 +23,10 @@ const IID_IConnectionProfileFilter = '{204c7cc8-bd2d-4e8d-a4b3-455ec337388a}';
 /// {@category interface}
 class IConnectionProfileFilter extends IInspectable {
   // vtable begins at 6, is 10 entries long.
-  IConnectionProfileFilter.fromRawPointer(super.ptr);
+  IConnectionProfileFilter.fromPtr(super.ptr);
 
   factory IConnectionProfileFilter.from(IInspectable interface) =>
-      IConnectionProfileFilter.fromRawPointer(
+      IConnectionProfileFilter.fromPtr(
           interface.toInterface(IID_IConnectionProfileFilter));
 
   set isConnected(bool value) {
@@ -217,7 +217,7 @@ class IConnectionProfileFilter extends IInspectable {
       return null;
     }
 
-    final reference = IReference<Guid?>.fromRawPointer(retValuePtr,
+    final reference = IReference<Guid?>.fromPtr(retValuePtr,
         referenceIid: '{7d50f649-632c-51f9-849a-ee49428933ea}');
     return reference.value;
   }

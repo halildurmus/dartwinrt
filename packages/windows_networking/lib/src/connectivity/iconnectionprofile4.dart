@@ -24,10 +24,10 @@ const IID_IConnectionProfile4 = '{7a2d42cd-81e0-4ae6-abed-ab9ca13eb714}';
 /// {@category interface}
 class IConnectionProfile4 extends IInspectable {
   // vtable begins at 6, is 1 entries long.
-  IConnectionProfile4.fromRawPointer(super.ptr);
+  IConnectionProfile4.fromPtr(super.ptr);
 
   factory IConnectionProfile4.from(IInspectable interface) =>
-      IConnectionProfile4.fromRawPointer(
+      IConnectionProfile4.fromPtr(
           interface.toInterface(IID_IConnectionProfile4));
 
   Future<List<ProviderNetworkUsage>> getProviderNetworkUsageAsync(
@@ -69,10 +69,9 @@ class IConnectionProfile4 extends IInspectable {
     }
 
     final asyncOperation =
-        IAsyncOperation<IVectorView<ProviderNetworkUsage>>.fromRawPointer(
-            retValuePtr,
-            creator: (ptr) => IVectorView.fromRawPointer(ptr,
-                creator: ProviderNetworkUsage.fromRawPointer,
+        IAsyncOperation<IVectorView<ProviderNetworkUsage>>.fromPtr(retValuePtr,
+            creator: (ptr) => IVectorView.fromPtr(ptr,
+                creator: ProviderNetworkUsage.fromPtr,
                 iterableIid: '{f79bc7ba-01df-51ec-bfaf-fd883f698e07}'));
     completeAsyncOperation(
         asyncOperation, completer, () => asyncOperation.getResults().toList());

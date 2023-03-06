@@ -23,11 +23,10 @@ const IID_IEnclosureLocation = '{42340a27-5810-459c-aabb-c65e1f813ecf}';
 /// {@category interface}
 class IEnclosureLocation extends IInspectable {
   // vtable begins at 6, is 3 entries long.
-  IEnclosureLocation.fromRawPointer(super.ptr);
+  IEnclosureLocation.fromPtr(super.ptr);
 
   factory IEnclosureLocation.from(IInspectable interface) =>
-      IEnclosureLocation.fromRawPointer(
-          interface.toInterface(IID_IEnclosureLocation));
+      IEnclosureLocation.fromPtr(interface.toInterface(IID_IEnclosureLocation));
 
   bool get inDock {
     final retValuePtr = calloc<Bool>();

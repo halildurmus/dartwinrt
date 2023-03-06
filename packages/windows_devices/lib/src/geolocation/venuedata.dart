@@ -21,7 +21,7 @@ import 'ivenuedata.dart';
 ///
 /// {@category class}
 class VenueData extends IInspectable implements IVenueData {
-  VenueData.fromRawPointer(super.ptr);
+  VenueData.fromPtr(super.ptr);
 
   late final _iVenueData = IVenueData.from(this);
 

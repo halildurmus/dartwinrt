@@ -28,10 +28,10 @@ const IID_IDeviceInformationCustomPairing =
 /// {@category interface}
 class IDeviceInformationCustomPairing extends IInspectable {
   // vtable begins at 6, is 5 entries long.
-  IDeviceInformationCustomPairing.fromRawPointer(super.ptr);
+  IDeviceInformationCustomPairing.fromPtr(super.ptr);
 
   factory IDeviceInformationCustomPairing.from(IInspectable interface) =>
-      IDeviceInformationCustomPairing.fromRawPointer(
+      IDeviceInformationCustomPairing.fromPtr(
           interface.toInterface(IID_IDeviceInformationCustomPairing));
 
   Future<DevicePairingResult?> pairAsync(
@@ -59,9 +59,9 @@ class IDeviceInformationCustomPairing extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<DevicePairingResult?>.fromRawPointer(
+    final asyncOperation = IAsyncOperation<DevicePairingResult?>.fromPtr(
         retValuePtr,
-        creator: DevicePairingResult.fromRawPointer);
+        creator: DevicePairingResult.fromPtr);
     completeAsyncOperation(
         asyncOperation, completer, asyncOperation.getResults);
 
@@ -98,9 +98,9 @@ class IDeviceInformationCustomPairing extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<DevicePairingResult?>.fromRawPointer(
+    final asyncOperation = IAsyncOperation<DevicePairingResult?>.fromPtr(
         retValuePtr,
-        creator: DevicePairingResult.fromRawPointer);
+        creator: DevicePairingResult.fromPtr);
     completeAsyncOperation(
         asyncOperation, completer, asyncOperation.getResults);
 
@@ -147,9 +147,9 @@ class IDeviceInformationCustomPairing extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<DevicePairingResult?>.fromRawPointer(
+    final asyncOperation = IAsyncOperation<DevicePairingResult?>.fromPtr(
         retValuePtr,
-        creator: DevicePairingResult.fromRawPointer);
+        creator: DevicePairingResult.fromPtr);
     completeAsyncOperation(
         asyncOperation, completer, asyncOperation.getResults);
 

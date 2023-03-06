@@ -23,10 +23,10 @@ const IID_IStorageFolderStatics = '{08f327ff-85d5-48b9-aee9-28511e339f9f}';
 /// {@category interface}
 class IStorageFolderStatics extends IInspectable {
   // vtable begins at 6, is 1 entries long.
-  IStorageFolderStatics.fromRawPointer(super.ptr);
+  IStorageFolderStatics.fromPtr(super.ptr);
 
   factory IStorageFolderStatics.from(IInspectable interface) =>
-      IStorageFolderStatics.fromRawPointer(
+      IStorageFolderStatics.fromPtr(
           interface.toInterface(IID_IStorageFolderStatics));
 
   Future<StorageFolder?> getFolderFromPathAsync(String path) {
@@ -54,9 +54,8 @@ class IStorageFolderStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<StorageFolder?>.fromRawPointer(
-        retValuePtr,
-        creator: StorageFolder.fromRawPointer);
+    final asyncOperation = IAsyncOperation<StorageFolder?>.fromPtr(retValuePtr,
+        creator: StorageFolder.fromPtr);
     completeAsyncOperation(
         asyncOperation, completer, asyncOperation.getResults);
 

@@ -21,10 +21,10 @@ const IID_IFolderPicker2 = '{8eb3ba97-dc85-4616-be94-9660881f2f5d}';
 /// {@category interface}
 class IFolderPicker2 extends IInspectable {
   // vtable begins at 6, is 2 entries long.
-  IFolderPicker2.fromRawPointer(super.ptr);
+  IFolderPicker2.fromPtr(super.ptr);
 
   factory IFolderPicker2.from(IInspectable interface) =>
-      IFolderPicker2.fromRawPointer(interface.toInterface(IID_IFolderPicker2));
+      IFolderPicker2.fromPtr(interface.toInterface(IID_IFolderPicker2));
 
   ValueSet? get continuationData {
     final retValuePtr = calloc<COMObject>();
@@ -51,7 +51,7 @@ class IFolderPicker2 extends IInspectable {
       return null;
     }
 
-    return ValueSet.fromRawPointer(retValuePtr);
+    return ValueSet.fromPtr(retValuePtr);
   }
 
   @Deprecated('Instead, use PickSingleFolderAsync')

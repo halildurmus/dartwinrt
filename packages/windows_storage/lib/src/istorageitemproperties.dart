@@ -26,10 +26,10 @@ const IID_IStorageItemProperties = '{86664478-8029-46fe-a789-1c2f3e2ffb5c}';
 /// {@category interface}
 class IStorageItemProperties extends IInspectable {
   // vtable begins at 6, is 7 entries long.
-  IStorageItemProperties.fromRawPointer(super.ptr);
+  IStorageItemProperties.fromPtr(super.ptr);
 
   factory IStorageItemProperties.from(IInspectable interface) =>
-      IStorageItemProperties.fromRawPointer(
+      IStorageItemProperties.fromPtr(
           interface.toInterface(IID_IStorageItemProperties));
 
   Future<StorageItemThumbnail?>
@@ -55,9 +55,9 @@ class IStorageItemProperties extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation =
-        IAsyncOperation<StorageItemThumbnail?>.fromRawPointer(retValuePtr,
-            creator: StorageItemThumbnail.fromRawPointer);
+    final asyncOperation = IAsyncOperation<StorageItemThumbnail?>.fromPtr(
+        retValuePtr,
+        creator: StorageItemThumbnail.fromPtr);
     completeAsyncOperation(
         asyncOperation, completer, asyncOperation.getResults);
 
@@ -90,9 +90,9 @@ class IStorageItemProperties extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation =
-        IAsyncOperation<StorageItemThumbnail?>.fromRawPointer(retValuePtr,
-            creator: StorageItemThumbnail.fromRawPointer);
+    final asyncOperation = IAsyncOperation<StorageItemThumbnail?>.fromPtr(
+        retValuePtr,
+        creator: StorageItemThumbnail.fromPtr);
     completeAsyncOperation(
         asyncOperation, completer, asyncOperation.getResults);
 
@@ -126,9 +126,9 @@ class IStorageItemProperties extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation =
-        IAsyncOperation<StorageItemThumbnail?>.fromRawPointer(retValuePtr,
-            creator: StorageItemThumbnail.fromRawPointer);
+    final asyncOperation = IAsyncOperation<StorageItemThumbnail?>.fromPtr(
+        retValuePtr,
+        creator: StorageItemThumbnail.fromPtr);
     completeAsyncOperation(
         asyncOperation, completer, asyncOperation.getResults);
 
@@ -235,6 +235,6 @@ class IStorageItemProperties extends IInspectable {
       return null;
     }
 
-    return StorageItemContentProperties.fromRawPointer(retValuePtr);
+    return StorageItemContentProperties.fromPtr(retValuePtr);
   }
 }

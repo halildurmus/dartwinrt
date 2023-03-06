@@ -23,10 +23,10 @@ const IID_IUISettings6 = '{aef19bd7-fe31-5a04-ada4-469aaec6dfa9}';
 /// {@category interface}
 class IUISettings6 extends IInspectable {
   // vtable begins at 6, is 4 entries long.
-  IUISettings6.fromRawPointer(super.ptr);
+  IUISettings6.fromPtr(super.ptr);
 
   factory IUISettings6.from(IInspectable interface) =>
-      IUISettings6.fromRawPointer(interface.toInterface(IID_IUISettings6));
+      IUISettings6.fromPtr(interface.toInterface(IID_IUISettings6));
 
   int add_AnimationsEnabledChanged(Pointer<COMObject> handler) {
     final retValuePtr = calloc<IntPtr>();

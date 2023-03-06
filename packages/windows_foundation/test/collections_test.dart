@@ -300,7 +300,7 @@ void main() {
 
       final valueSetVal = map.lookup('key2');
       expect(valueSetVal, isA<IInspectable>());
-      final valueSet = ValueSet.fromRawPointer(
+      final valueSet = ValueSet.fromPtr(
           (valueSetVal as IInspectable).toInterface(IID_IMap_String_Object));
       expect(getClassName(valueSet),
           equals('Windows.Foundation.Collections.ValueSet'));
@@ -611,7 +611,7 @@ void main() {
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return IMapView.fromRawPointer(retValuePtr,
+      return IMapView.fromPtr(retValuePtr,
           iterableIid: IID_IIterable_IKeyValuePair_String_String);
     }
 
@@ -695,8 +695,7 @@ void main() {
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return IVector.fromRawPointer(retValuePtr,
-          iterableIid: IID_IIterable_Uri);
+      return IVector.fromPtr(retValuePtr, iterableIid: IID_IIterable_Uri);
     }
 
     setUp(() {

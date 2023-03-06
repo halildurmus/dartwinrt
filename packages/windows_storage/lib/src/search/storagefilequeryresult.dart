@@ -34,7 +34,7 @@ class StorageFileQueryResult extends IInspectable
         IStorageFileQueryResult,
         IStorageQueryResultBase,
         IStorageFileQueryResult2 {
-  StorageFileQueryResult.fromRawPointer(super.ptr);
+  StorageFileQueryResult.fromPtr(super.ptr);
 
   late final _iStorageFileQueryResult = IStorageFileQueryResult.from(this);
 
