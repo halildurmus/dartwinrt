@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -34,11 +33,12 @@ class IToastNotifier2 extends IInspectable {
   NotificationUpdateResult updateWithTagAndGroup(
       NotificationData? data, String tag, String group) {
     final retValuePtr = calloc<Int32>();
-    final dataPtr = data == null ? nullptr : data.ptr.ref.lpVtbl;
-    final tagHString = tag.toHString();
-    final groupHString = group.toHString();
 
     try {
+      final dataPtr = data == null ? nullptr : data.ptr.ref.lpVtbl;
+      final tagHString = tag.toHString();
+      final groupHString = group.toHString();
+
       final hr =
           ptr.ref.vtable
                   .elementAt(6)
@@ -57,22 +57,24 @@ class IToastNotifier2 extends IInspectable {
                           int group, Pointer<Int32> retValuePtr)>()(
               ptr.ref.lpVtbl, dataPtr, tagHString, groupHString, retValuePtr);
 
+      WindowsDeleteString(tagHString);
+      WindowsDeleteString(groupHString);
+
       if (FAILED(hr)) throw WindowsException(hr);
 
       return NotificationUpdateResult.from(retValuePtr.value);
     } finally {
-      WindowsDeleteString(tagHString);
-      WindowsDeleteString(groupHString);
       free(retValuePtr);
     }
   }
 
   NotificationUpdateResult updateWithTag(NotificationData? data, String tag) {
     final retValuePtr = calloc<Int32>();
-    final dataPtr = data == null ? nullptr : data.ptr.ref.lpVtbl;
-    final tagHString = tag.toHString();
 
     try {
+      final dataPtr = data == null ? nullptr : data.ptr.ref.lpVtbl;
+      final tagHString = tag.toHString();
+
       final hr =
           ptr.ref.vtable
                   .elementAt(7)
@@ -87,11 +89,12 @@ class IToastNotifier2 extends IInspectable {
                           Pointer<Int32> retValuePtr)>()(
               ptr.ref.lpVtbl, dataPtr, tagHString, retValuePtr);
 
+      WindowsDeleteString(tagHString);
+
       if (FAILED(hr)) throw WindowsException(hr);
 
       return NotificationUpdateResult.from(retValuePtr.value);
     } finally {
-      WindowsDeleteString(tagHString);
       free(retValuePtr);
     }
   }

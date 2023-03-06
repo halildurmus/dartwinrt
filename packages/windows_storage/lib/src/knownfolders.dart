@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -39,220 +38,104 @@ class KnownFolders extends IInspectable {
 
   static const _className = 'Windows.Storage.KnownFolders';
 
-  // IKnownFoldersCameraRollStatics methods
-  static StorageFolder? get cameraRoll {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IKnownFoldersCameraRollStatics);
-    final object =
-        IKnownFoldersCameraRollStatics.fromRawPointer(activationFactoryPtr);
+  static StorageFolder? get cameraRoll => createActivationFactory(
+          IKnownFoldersCameraRollStatics.fromRawPointer,
+          _className,
+          IID_IKnownFoldersCameraRollStatics)
+      .cameraRoll;
 
-    try {
-      return object.cameraRoll;
-    } finally {
-      object.release();
-    }
-  }
+  static StorageFolder? get playlists => createActivationFactory(
+          IKnownFoldersPlaylistsStatics.fromRawPointer,
+          _className,
+          IID_IKnownFoldersPlaylistsStatics)
+      .playlists;
 
-  // IKnownFoldersPlaylistsStatics methods
-  static StorageFolder? get playlists {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IKnownFoldersPlaylistsStatics);
-    final object =
-        IKnownFoldersPlaylistsStatics.fromRawPointer(activationFactoryPtr);
+  static StorageFolder? get savedPictures => createActivationFactory(
+          IKnownFoldersSavedPicturesStatics.fromRawPointer,
+          _className,
+          IID_IKnownFoldersSavedPicturesStatics)
+      .savedPictures;
 
-    try {
-      return object.playlists;
-    } finally {
-      object.release();
-    }
-  }
+  static StorageFolder? get musicLibrary => createActivationFactory(
+          IKnownFoldersStatics.fromRawPointer,
+          _className,
+          IID_IKnownFoldersStatics)
+      .musicLibrary;
 
-  // IKnownFoldersSavedPicturesStatics methods
-  static StorageFolder? get savedPictures {
-    final activationFactoryPtr = createActivationFactory(
-        _className, IID_IKnownFoldersSavedPicturesStatics);
-    final object =
-        IKnownFoldersSavedPicturesStatics.fromRawPointer(activationFactoryPtr);
+  static StorageFolder? get picturesLibrary => createActivationFactory(
+          IKnownFoldersStatics.fromRawPointer,
+          _className,
+          IID_IKnownFoldersStatics)
+      .picturesLibrary;
 
-    try {
-      return object.savedPictures;
-    } finally {
-      object.release();
-    }
-  }
+  static StorageFolder? get videosLibrary => createActivationFactory(
+          IKnownFoldersStatics.fromRawPointer,
+          _className,
+          IID_IKnownFoldersStatics)
+      .videosLibrary;
 
-  // IKnownFoldersStatics methods
-  static StorageFolder? get musicLibrary {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IKnownFoldersStatics);
-    final object = IKnownFoldersStatics.fromRawPointer(activationFactoryPtr);
+  static StorageFolder? get documentsLibrary => createActivationFactory(
+          IKnownFoldersStatics.fromRawPointer,
+          _className,
+          IID_IKnownFoldersStatics)
+      .documentsLibrary;
 
-    try {
-      return object.musicLibrary;
-    } finally {
-      object.release();
-    }
-  }
+  static StorageFolder? get homeGroup => createActivationFactory(
+          IKnownFoldersStatics.fromRawPointer,
+          _className,
+          IID_IKnownFoldersStatics)
+      .homeGroup;
 
-  static StorageFolder? get picturesLibrary {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IKnownFoldersStatics);
-    final object = IKnownFoldersStatics.fromRawPointer(activationFactoryPtr);
+  static StorageFolder? get removableDevices => createActivationFactory(
+          IKnownFoldersStatics.fromRawPointer,
+          _className,
+          IID_IKnownFoldersStatics)
+      .removableDevices;
 
-    try {
-      return object.picturesLibrary;
-    } finally {
-      object.release();
-    }
-  }
+  static StorageFolder? get mediaServerDevices => createActivationFactory(
+          IKnownFoldersStatics.fromRawPointer,
+          _className,
+          IID_IKnownFoldersStatics)
+      .mediaServerDevices;
 
-  static StorageFolder? get videosLibrary {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IKnownFoldersStatics);
-    final object = IKnownFoldersStatics.fromRawPointer(activationFactoryPtr);
+  static StorageFolder? get objects3D => createActivationFactory(
+          IKnownFoldersStatics2.fromRawPointer,
+          _className,
+          IID_IKnownFoldersStatics2)
+      .objects3D;
 
-    try {
-      return object.videosLibrary;
-    } finally {
-      object.release();
-    }
-  }
+  static StorageFolder? get appCaptures => createActivationFactory(
+          IKnownFoldersStatics2.fromRawPointer,
+          _className,
+          IID_IKnownFoldersStatics2)
+      .appCaptures;
 
-  static StorageFolder? get documentsLibrary {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IKnownFoldersStatics);
-    final object = IKnownFoldersStatics.fromRawPointer(activationFactoryPtr);
+  static StorageFolder? get recordedCalls => createActivationFactory(
+          IKnownFoldersStatics2.fromRawPointer,
+          _className,
+          IID_IKnownFoldersStatics2)
+      .recordedCalls;
 
-    try {
-      return object.documentsLibrary;
-    } finally {
-      object.release();
-    }
-  }
-
-  static StorageFolder? get homeGroup {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IKnownFoldersStatics);
-    final object = IKnownFoldersStatics.fromRawPointer(activationFactoryPtr);
-
-    try {
-      return object.homeGroup;
-    } finally {
-      object.release();
-    }
-  }
-
-  static StorageFolder? get removableDevices {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IKnownFoldersStatics);
-    final object = IKnownFoldersStatics.fromRawPointer(activationFactoryPtr);
-
-    try {
-      return object.removableDevices;
-    } finally {
-      object.release();
-    }
-  }
-
-  static StorageFolder? get mediaServerDevices {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IKnownFoldersStatics);
-    final object = IKnownFoldersStatics.fromRawPointer(activationFactoryPtr);
-
-    try {
-      return object.mediaServerDevices;
-    } finally {
-      object.release();
-    }
-  }
-
-  // IKnownFoldersStatics2 methods
-  static StorageFolder? get objects3D {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IKnownFoldersStatics2);
-    final object = IKnownFoldersStatics2.fromRawPointer(activationFactoryPtr);
-
-    try {
-      return object.objects3D;
-    } finally {
-      object.release();
-    }
-  }
-
-  static StorageFolder? get appCaptures {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IKnownFoldersStatics2);
-    final object = IKnownFoldersStatics2.fromRawPointer(activationFactoryPtr);
-
-    try {
-      return object.appCaptures;
-    } finally {
-      object.release();
-    }
-  }
-
-  static StorageFolder? get recordedCalls {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IKnownFoldersStatics2);
-    final object = IKnownFoldersStatics2.fromRawPointer(activationFactoryPtr);
-
-    try {
-      return object.recordedCalls;
-    } finally {
-      object.release();
-    }
-  }
-
-  // IKnownFoldersStatics3 methods
   static Future<StorageFolder?> getFolderForUserAsync(
-      User? user, KnownFolderId folderId) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IKnownFoldersStatics3);
-    final object = IKnownFoldersStatics3.fromRawPointer(activationFactoryPtr);
+          User? user, KnownFolderId folderId) =>
+      createActivationFactory(IKnownFoldersStatics3.fromRawPointer, _className,
+              IID_IKnownFoldersStatics3)
+          .getFolderForUserAsync(user, folderId);
 
-    try {
-      return object.getFolderForUserAsync(user, folderId);
-    } finally {
-      object.release();
-    }
-  }
-
-  // IKnownFoldersStatics4 methods
   static Future<KnownFoldersAccessStatus> requestAccessAsync(
-      KnownFolderId folderId) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IKnownFoldersStatics4);
-    final object = IKnownFoldersStatics4.fromRawPointer(activationFactoryPtr);
-
-    try {
-      return object.requestAccessAsync(folderId);
-    } finally {
-      object.release();
-    }
-  }
+          KnownFolderId folderId) =>
+      createActivationFactory(IKnownFoldersStatics4.fromRawPointer, _className,
+              IID_IKnownFoldersStatics4)
+          .requestAccessAsync(folderId);
 
   static Future<KnownFoldersAccessStatus> requestAccessForUserAsync(
-      User? user, KnownFolderId folderId) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IKnownFoldersStatics4);
-    final object = IKnownFoldersStatics4.fromRawPointer(activationFactoryPtr);
+          User? user, KnownFolderId folderId) =>
+      createActivationFactory(IKnownFoldersStatics4.fromRawPointer, _className,
+              IID_IKnownFoldersStatics4)
+          .requestAccessForUserAsync(user, folderId);
 
-    try {
-      return object.requestAccessForUserAsync(user, folderId);
-    } finally {
-      object.release();
-    }
-  }
-
-  static Future<StorageFolder?> getFolderAsync(KnownFolderId folderId) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IKnownFoldersStatics4);
-    final object = IKnownFoldersStatics4.fromRawPointer(activationFactoryPtr);
-
-    try {
-      return object.getFolderAsync(folderId);
-    } finally {
-      object.release();
-    }
-  }
+  static Future<StorageFolder?> getFolderAsync(KnownFolderId folderId) =>
+      createActivationFactory(IKnownFoldersStatics4.fromRawPointer, _className,
+              IID_IKnownFoldersStatics4)
+          .getFolderAsync(folderId);
 }

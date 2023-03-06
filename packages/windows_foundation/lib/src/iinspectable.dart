@@ -4,7 +4,8 @@
 
 // ignore_for_file: constant_identifier_names
 
-import 'package:win32/win32.dart';
+import 'internal/extensions/extensions.dart';
+import 'iunknown.dart';
 
 /// @nodoc
 const IID_IInspectable = '{af86e2e0-b12d-4c6a-9c5a-d7aa65101e90}';
@@ -14,7 +15,6 @@ const IID_IInspectable = '{af86e2e0-b12d-4c6a-9c5a-d7aa65101e90}';
 /// {@category Interface}
 /// {@category com}
 class IInspectable extends IUnknown {
-  // vtable begins at 3, is 3 entries long.
   IInspectable(super.ptr);
 
   factory IInspectable.from(IUnknown interface) =>

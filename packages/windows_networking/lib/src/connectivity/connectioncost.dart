@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -28,7 +27,6 @@ class ConnectionCost extends IInspectable
     implements IConnectionCost, IConnectionCost2 {
   ConnectionCost.fromRawPointer(super.ptr);
 
-  // IConnectionCost methods
   late final _iConnectionCost = IConnectionCost.from(this);
 
   @override
@@ -43,7 +41,6 @@ class ConnectionCost extends IInspectable
   @override
   bool get approachingDataLimit => _iConnectionCost.approachingDataLimit;
 
-  // IConnectionCost2 methods
   late final _iConnectionCost2 = IConnectionCost2.from(this);
 
   @override

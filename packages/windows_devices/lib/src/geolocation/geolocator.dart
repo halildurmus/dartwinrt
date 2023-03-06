@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -37,83 +36,40 @@ class Geolocator extends IInspectable
 
   static const _className = 'Windows.Devices.Geolocation.Geolocator';
 
-  // IGeolocatorStatics methods
-  static Future<GeolocationAccessStatus> requestAccessAsync() {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IGeolocatorStatics);
-    final object = IGeolocatorStatics.fromRawPointer(activationFactoryPtr);
-
-    try {
-      return object.requestAccessAsync();
-    } finally {
-      object.release();
-    }
-  }
+  static Future<GeolocationAccessStatus> requestAccessAsync() =>
+      createActivationFactory(IGeolocatorStatics.fromRawPointer, _className,
+              IID_IGeolocatorStatics)
+          .requestAccessAsync();
 
   static Future<List<Geoposition>> getGeopositionHistoryAsync(
-      DateTime startTime) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IGeolocatorStatics);
-    final object = IGeolocatorStatics.fromRawPointer(activationFactoryPtr);
-
-    try {
-      return object.getGeopositionHistoryAsync(startTime);
-    } finally {
-      object.release();
-    }
-  }
+          DateTime startTime) =>
+      createActivationFactory(IGeolocatorStatics.fromRawPointer, _className,
+              IID_IGeolocatorStatics)
+          .getGeopositionHistoryAsync(startTime);
 
   static Future<List<Geoposition>> getGeopositionHistoryWithDurationAsync(
-      DateTime startTime, Duration duration) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IGeolocatorStatics);
-    final object = IGeolocatorStatics.fromRawPointer(activationFactoryPtr);
+          DateTime startTime, Duration duration) =>
+      createActivationFactory(IGeolocatorStatics.fromRawPointer, _className,
+              IID_IGeolocatorStatics)
+          .getGeopositionHistoryWithDurationAsync(startTime, duration);
 
-    try {
-      return object.getGeopositionHistoryWithDurationAsync(startTime, duration);
-    } finally {
-      object.release();
-    }
-  }
+  static bool get isDefaultGeopositionRecommended => createActivationFactory(
+          IGeolocatorStatics2.fromRawPointer,
+          _className,
+          IID_IGeolocatorStatics2)
+      .isDefaultGeopositionRecommended;
 
-  // IGeolocatorStatics2 methods
-  static bool get isDefaultGeopositionRecommended {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IGeolocatorStatics2);
-    final object = IGeolocatorStatics2.fromRawPointer(activationFactoryPtr);
+  static set defaultGeoposition(BasicGeoposition? value) =>
+      createActivationFactory(IGeolocatorStatics2.fromRawPointer, _className,
+              IID_IGeolocatorStatics2)
+          .defaultGeoposition = value;
 
-    try {
-      return object.isDefaultGeopositionRecommended;
-    } finally {
-      object.release();
-    }
-  }
+  static BasicGeoposition? get defaultGeoposition => createActivationFactory(
+          IGeolocatorStatics2.fromRawPointer,
+          _className,
+          IID_IGeolocatorStatics2)
+      .defaultGeoposition;
 
-  static set defaultGeoposition(BasicGeoposition? value) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IGeolocatorStatics2);
-    final object = IGeolocatorStatics2.fromRawPointer(activationFactoryPtr);
-
-    try {
-      object.defaultGeoposition = value;
-    } finally {
-      object.release();
-    }
-  }
-
-  static BasicGeoposition? get defaultGeoposition {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IGeolocatorStatics2);
-    final object = IGeolocatorStatics2.fromRawPointer(activationFactoryPtr);
-
-    try {
-      return object.defaultGeoposition;
-    } finally {
-      object.release();
-    }
-  }
-
-  // IGeolocator methods
   late final _iGeolocator = IGeolocator.from(this);
 
   @override
@@ -163,7 +119,6 @@ class Geolocator extends IInspectable
   void remove_StatusChanged(int token) =>
       _iGeolocator.remove_StatusChanged(token);
 
-  // IGeolocatorWithScalarAccuracy methods
   late final _iGeolocatorWithScalarAccuracy =
       IGeolocatorWithScalarAccuracy.from(this);
 
@@ -175,7 +130,6 @@ class Geolocator extends IInspectable
   set desiredAccuracyInMeters(int? value) =>
       _iGeolocatorWithScalarAccuracy.desiredAccuracyInMeters = value;
 
-  // IGeolocator2 methods
   late final _iGeolocator2 = IGeolocator2.from(this);
 
   @override

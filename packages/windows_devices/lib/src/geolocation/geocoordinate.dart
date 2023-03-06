@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -37,7 +36,6 @@ class Geocoordinate extends IInspectable
         IGeocoordinateWithRemoteSource {
   Geocoordinate.fromRawPointer(super.ptr);
 
-  // IGeocoordinate methods
   late final _iGeocoordinate = IGeocoordinate.from(this);
 
   @Deprecated(
@@ -70,7 +68,6 @@ class Geocoordinate extends IInspectable
   @override
   DateTime get timestamp => _iGeocoordinate.timestamp;
 
-  // IGeocoordinateWithPositionData methods
   late final _iGeocoordinateWithPositionData =
       IGeocoordinateWithPositionData.from(this);
 
@@ -82,13 +79,11 @@ class Geocoordinate extends IInspectable
   GeocoordinateSatelliteData? get satelliteData =>
       _iGeocoordinateWithPositionData.satelliteData;
 
-  // IGeocoordinateWithPoint methods
   late final _iGeocoordinateWithPoint = IGeocoordinateWithPoint.from(this);
 
   @override
   Geopoint? get point => _iGeocoordinateWithPoint.point;
 
-  // IGeocoordinateWithPositionSourceTimestamp methods
   late final _iGeocoordinateWithPositionSourceTimestamp =
       IGeocoordinateWithPositionSourceTimestamp.from(this);
 
@@ -96,7 +91,6 @@ class Geocoordinate extends IInspectable
   DateTime? get positionSourceTimestamp =>
       _iGeocoordinateWithPositionSourceTimestamp.positionSourceTimestamp;
 
-  // IGeocoordinateWithRemoteSource methods
   late final _iGeocoordinateWithRemoteSource =
       IGeocoordinateWithRemoteSource.from(this);
 

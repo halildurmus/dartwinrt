@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -30,10 +29,11 @@ class IHostNameStatics extends IInspectable {
 
   int compare(String value1, String value2) {
     final retValuePtr = calloc<Int32>();
-    final value1HString = value1.toHString();
-    final value2HString = value2.toHString();
 
     try {
+      final value1HString = value1.toHString();
+      final value2HString = value2.toHString();
+
       final hr = ptr.ref.vtable
               .elementAt(6)
               .cast<
@@ -47,12 +47,13 @@ class IHostNameStatics extends IInspectable {
                       Pointer<Int32> retValuePtr)>()(
           ptr.ref.lpVtbl, value1HString, value2HString, retValuePtr);
 
+      WindowsDeleteString(value1HString);
+      WindowsDeleteString(value2HString);
+
       if (FAILED(hr)) throw WindowsException(hr);
 
       return retValuePtr.value;
     } finally {
-      WindowsDeleteString(value1HString);
-      WindowsDeleteString(value2HString);
       free(retValuePtr);
     }
   }

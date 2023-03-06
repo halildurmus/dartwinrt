@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -153,9 +152,6 @@ class IToastNotifier extends IInspectable {
         retValuePtr,
         iterableIid: '{7a7b2a51-c182-5846-a861-4f9c036f24ad}',
         creator: ScheduledToastNotification.fromRawPointer);
-    final list = vectorView.toList();
-    vectorView.release();
-
-    return list;
+    return vectorView.toList();
   }
 }

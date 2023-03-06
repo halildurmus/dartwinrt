@@ -16,14 +16,12 @@ mixin _DefaultMixin on MethodProjection {
   String get methodDeclaration => '''
   $methodHeader {
     final retValuePtr = calloc<${returnTypeProjection.nativeType}>();
-    $parametersPreamble
 
     try {
       ${ffiCall()}
 
       return retValuePtr.value;
     } finally {
-      $parametersPostamble
       free(retValuePtr);
     }
   }
@@ -54,14 +52,12 @@ mixin _DefaultListMixin on MethodProjection {
   $methodHeader {
     final pValueSize = calloc<Uint32>();
     final retValuePtr = calloc<${typeArgProjection.nativeType}>();
-    $parametersPreamble
 
     try {
       ${ffiCall()}
 
       return retValuePtr.value.toList(length: pValueSize.value);
     } finally {
-      $parametersPostamble
       free(pValueSize);
       free(retValuePtr);
     }
@@ -88,7 +84,7 @@ class DefaultSetterProjection extends SetterProjection {
   @override
   String get methodDeclaration => '''
   $methodHeader {
-    ${ffiCall(params: 'value')}
+    ${ffiCall(identifier: 'value')}
   }
 ''';
 }

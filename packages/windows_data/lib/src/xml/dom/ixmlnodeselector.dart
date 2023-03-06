@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -48,12 +47,12 @@ class IXmlNodeSelector extends IInspectable {
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, xpathHString, retValuePtr);
 
+    WindowsDeleteString(xpathHString);
+
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
-
-    WindowsDeleteString(xpathHString);
 
     if (retValuePtr.ref.isNull) {
       free(retValuePtr);
@@ -80,12 +79,12 @@ class IXmlNodeSelector extends IInspectable {
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, xpathHString, retValuePtr);
 
+    WindowsDeleteString(xpathHString);
+
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
-
-    WindowsDeleteString(xpathHString);
 
     if (retValuePtr.ref.isNull) {
       free(retValuePtr);
@@ -98,7 +97,7 @@ class IXmlNodeSelector extends IInspectable {
   IXmlNode? selectSingleNodeNS(String xpath, Object? namespaces) {
     final retValuePtr = calloc<COMObject>();
     final xpathHString = xpath.toHString();
-    final namespacesPtr = namespaces?.intoBox().ref.lpVtbl ?? nullptr;
+    final namespacesPtr = namespaces?.intoBox().ptr.ref.lpVtbl ?? nullptr;
 
     final hr =
         ptr.ref.vtable
@@ -117,12 +116,12 @@ class IXmlNodeSelector extends IInspectable {
                         Pointer<COMObject> retValuePtr)>()(
             ptr.ref.lpVtbl, xpathHString, namespacesPtr, retValuePtr);
 
+    WindowsDeleteString(xpathHString);
+
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
-
-    WindowsDeleteString(xpathHString);
 
     if (retValuePtr.ref.isNull) {
       free(retValuePtr);
@@ -135,7 +134,7 @@ class IXmlNodeSelector extends IInspectable {
   XmlNodeList? selectNodesNS(String xpath, Object? namespaces) {
     final retValuePtr = calloc<COMObject>();
     final xpathHString = xpath.toHString();
-    final namespacesPtr = namespaces?.intoBox().ref.lpVtbl ?? nullptr;
+    final namespacesPtr = namespaces?.intoBox().ptr.ref.lpVtbl ?? nullptr;
 
     final hr =
         ptr.ref.vtable
@@ -154,12 +153,12 @@ class IXmlNodeSelector extends IInspectable {
                         Pointer<COMObject> retValuePtr)>()(
             ptr.ref.lpVtbl, xpathHString, namespacesPtr, retValuePtr);
 
+    WindowsDeleteString(xpathHString);
+
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
-
-    WindowsDeleteString(xpathHString);
 
     if (retValuePtr.ref.isNull) {
       free(retValuePtr);

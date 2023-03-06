@@ -248,17 +248,21 @@ abstract class MethodProjection {
           '${wrapWithPointer(returnTypeProjection.nativeType)} retValuePtr',
       ].join(', ');
 
-  String ffiCall({String params = '', bool freeRetValOnFailure = false}) {
-    final identifiers =
-        params.isNotEmpty ? 'ptr.ref.lpVtbl, $params' : this.identifiers;
+  String ffiCall({String identifier = '', bool freeRetValOnFailure = false}) {
+    final identifiers_ =
+        identifier.isNotEmpty ? 'ptr.ref.lpVtbl, $identifier' : identifiers;
     return [
+      parametersPreamble,
+      '',
       '''
     final hr = ptr.ref.vtable
         .elementAt($vtableOffset)
         .cast<Pointer<NativeFunction<$nativePrototype>>>()
         .value
-        .asFunction<$dartPrototype>()($identifiers);
+        .asFunction<$dartPrototype>()($identifiers_);
 ''',
+      parametersPostamble,
+      '',
       if (freeRetValOnFailure)
         'if (FAILED(hr)) { free(retValuePtr); throw WindowsException(hr); }'
       else

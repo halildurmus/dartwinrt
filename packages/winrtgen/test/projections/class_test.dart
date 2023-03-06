@@ -166,51 +166,31 @@ void main() {
       expect(projection.classNameVariable, isEmpty);
     });
 
-    test('has correct number of FactoryConstructorsProjection', () {
-      expect(calendarProjection.factoryConstructors.length, equals(2));
-    });
-
     test('has correct number of factory constructors', () {
-      expect(
-          calendarProjection.factoryConstructors
-              .fold<int>(0, (prev, element) => prev + element.methods.length),
-          equals(3));
+      expect(calendarProjection.factoryConstructors.length, equals(3));
     });
 
     test('has correct first factory constructor', () {
-      expect(
-          calendarProjection
-              .factoryConstructors.first.methodProjections.first.name,
+      expect(calendarProjection.factoryConstructors.first.method.name,
           equals('CreateCalendarDefaultCalendarAndClock'));
     });
 
     test('has correct last factory constructor', () {
-      expect(
-          calendarProjection
-              .factoryConstructors.last.methodProjections.last.name,
+      expect(calendarProjection.factoryConstructors.last.method.name,
           equals('CreateCalendarWithTimeZone'));
     });
 
-    test('has correct number of StaticMethodsProjection', () {
-      expect(geolocatorProjection.staticMethods.length, equals(2));
-    });
-
     test('has correct number of static methods', () {
-      expect(
-          geolocatorProjection.staticMethods
-              .fold<int>(0, (prev, element) => prev + element.methods.length),
-          equals(6));
+      expect(geolocatorProjection.staticMethods.length, equals(6));
     });
 
     test('has correct first static method', () {
-      expect(
-          geolocatorProjection.staticMethods.first.methodProjections.first.name,
+      expect(geolocatorProjection.staticMethods.first.method.name,
           equals('RequestAccessAsync'));
     });
 
     test('has correct last static method', () {
-      expect(
-          geolocatorProjection.staticMethods.last.methodProjections.last.name,
+      expect(geolocatorProjection.staticMethods.last.method.name,
           equals('get_DefaultGeoposition'));
     });
 

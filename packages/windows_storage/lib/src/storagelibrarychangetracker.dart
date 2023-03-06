@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -29,7 +28,6 @@ class StorageLibraryChangeTracker extends IInspectable
     implements IStorageLibraryChangeTracker, IStorageLibraryChangeTracker2 {
   StorageLibraryChangeTracker.fromRawPointer(super.ptr);
 
-  // IStorageLibraryChangeTracker methods
   late final _iStorageLibraryChangeTracker =
       IStorageLibraryChangeTracker.from(this);
 
@@ -43,7 +41,6 @@ class StorageLibraryChangeTracker extends IInspectable
   @override
   void reset() => _iStorageLibraryChangeTracker.reset();
 
-  // IStorageLibraryChangeTracker2 methods
   late final _iStorageLibraryChangeTracker2 =
       IStorageLibraryChangeTracker2.from(this);
 

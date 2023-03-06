@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -29,32 +28,18 @@ class UserDataPaths extends IInspectable implements IUserDataPaths {
 
   static const _className = 'Windows.Storage.UserDataPaths';
 
-  // IUserDataPathsStatics methods
-  static UserDataPaths? getForUser(User? user) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IUserDataPathsStatics);
-    final object = IUserDataPathsStatics.fromRawPointer(activationFactoryPtr);
+  static UserDataPaths? getForUser(User? user) => createActivationFactory(
+          IUserDataPathsStatics.fromRawPointer,
+          _className,
+          IID_IUserDataPathsStatics)
+      .getForUser(user);
 
-    try {
-      return object.getForUser(user);
-    } finally {
-      object.release();
-    }
-  }
+  static UserDataPaths? getDefault() => createActivationFactory(
+          IUserDataPathsStatics.fromRawPointer,
+          _className,
+          IID_IUserDataPathsStatics)
+      .getDefault();
 
-  static UserDataPaths? getDefault() {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IUserDataPathsStatics);
-    final object = IUserDataPathsStatics.fromRawPointer(activationFactoryPtr);
-
-    try {
-      return object.getDefault();
-    } finally {
-      object.release();
-    }
-  }
-
-  // IUserDataPaths methods
   late final _iUserDataPaths = IUserDataPaths.from(this);
 
   @override

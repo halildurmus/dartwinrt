@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -28,38 +27,20 @@ class NotificationData extends IInspectable implements INotificationData {
 
   static const _className = 'Windows.UI.Notifications.NotificationData';
 
-  // INotificationDataFactory methods
   factory NotificationData.createNotificationDataWithValuesAndSequenceNumber(
-      IIterable<IKeyValuePair<String, String>> initialValues,
-      int sequenceNumber) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_INotificationDataFactory);
-    final object =
-        INotificationDataFactory.fromRawPointer(activationFactoryPtr);
-
-    try {
-      return object.createNotificationDataWithValuesAndSequenceNumber(
-          initialValues, sequenceNumber);
-    } finally {
-      object.release();
-    }
-  }
+          IIterable<IKeyValuePair<String, String>> initialValues,
+          int sequenceNumber) =>
+      createActivationFactory(INotificationDataFactory.fromRawPointer,
+              _className, IID_INotificationDataFactory)
+          .createNotificationDataWithValuesAndSequenceNumber(
+              initialValues, sequenceNumber);
 
   factory NotificationData.createNotificationDataWithValues(
-      IIterable<IKeyValuePair<String, String>> initialValues) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_INotificationDataFactory);
-    final object =
-        INotificationDataFactory.fromRawPointer(activationFactoryPtr);
+          IIterable<IKeyValuePair<String, String>> initialValues) =>
+      createActivationFactory(INotificationDataFactory.fromRawPointer,
+              _className, IID_INotificationDataFactory)
+          .createNotificationDataWithValues(initialValues);
 
-    try {
-      return object.createNotificationDataWithValues(initialValues);
-    } finally {
-      object.release();
-    }
-  }
-
-  // INotificationData methods
   late final _iNotificationData = INotificationData.from(this);
 
   @override

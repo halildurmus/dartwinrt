@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -40,9 +39,10 @@ class IWwwFormUrlDecoderRuntimeClass extends IInspectable
 
   String getFirstValueByName(String name) {
     final retValuePtr = calloc<HSTRING>();
-    final nameHString = name.toHString();
 
     try {
+      final nameHString = name.toHString();
+
       final hr = ptr.ref.vtable
               .elementAt(6)
               .cast<
@@ -56,17 +56,17 @@ class IWwwFormUrlDecoderRuntimeClass extends IInspectable
                       LPVTBL lpVtbl, int name, Pointer<IntPtr> retValuePtr)>()(
           ptr.ref.lpVtbl, nameHString, retValuePtr);
 
+      WindowsDeleteString(nameHString);
+
       if (FAILED(hr)) throw WindowsException(hr);
 
       return retValuePtr.toDartString();
     } finally {
-      WindowsDeleteString(nameHString);
       WindowsDeleteString(retValuePtr.value);
       free(retValuePtr);
     }
   }
 
-  // IVectorView<IWwwFormUrlDecoderEntry> methods
   late final _iVectorView = IVectorView<IWwwFormUrlDecoderEntry>.fromRawPointer(
       toInterface('{b1f00d3b-1f06-5117-93ea-2a0d79116701}'),
       creator: IWwwFormUrlDecoderEntry.fromRawPointer,

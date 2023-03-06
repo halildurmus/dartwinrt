@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -60,7 +59,7 @@ class INetworkInformationStatics2 extends IInspectable {
     final asyncOperation =
         IAsyncOperation<IVectorView<ConnectionProfile>>.fromRawPointer(
             retValuePtr,
-            creator: (Pointer<COMObject> ptr) => IVectorView.fromRawPointer(ptr,
+            creator: (ptr) => IVectorView.fromRawPointer(ptr,
                 creator: ConnectionProfile.fromRawPointer,
                 iterableIid: '{34dabef9-87d0-5b1c-a7ac-9d290adeb0c8}'));
     completeAsyncOperation(

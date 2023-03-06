@@ -17,6 +17,7 @@ import '../../types.dart';
 import '../../winrt_enum.dart';
 import '../../winrt_struct.dart';
 import '../iids.dart';
+import 'extensions.dart';
 
 extension IntoBoxHelper on Object {
   /// Boxes the value so that it can be passed to the WinRT APIs that take
@@ -27,7 +28,7 @@ extension IntoBoxHelper on Object {
   ///
   /// [intType] is used to specify the type of the `int` value. The default is
   /// [IntType.int32].
-  Pointer<COMObject> intoBox({
+  IInspectable intoBox({
     DoubleType doubleType = DoubleType.double,
     IntType intType = IntType.int32,
   }) {
@@ -38,30 +39,30 @@ extension IntoBoxHelper on Object {
     // Since an object is a reference type, it is also a valid property value
     // and does not need to be boxed.
     // See https://learn.microsoft.com/en-us/uwp/api/windows.foundation.propertyvalue.createinspectable
-    if (self is Pointer<COMObject>) return self;
-    if (self is IInspectable) return self.ptr;
+    if (self is Pointer<COMObject>) return IInspectable(self)..detach();
+    if (self is IInspectable) return self;
 
-    if (self is bool) return self.toPropertyValue().ptr;
-    if (self is DateTime) return self.toPropertyValue().ptr;
-    if (self is double) return self.toPropertyValue(doubleType).ptr;
-    if (self is Duration) return self.toPropertyValue().ptr;
-    if (self is Guid) return self.toPropertyValue().ptr;
-    if (self is int) return self.toPropertyValue(intType).ptr;
-    if (self is Point) return self.toPropertyValue().ptr;
-    if (self is Rect) return self.toPropertyValue().ptr;
-    if (self is Size) return self.toPropertyValue().ptr;
-    if (self is String) return self.toPropertyValue().ptr;
-    if (self is List<bool>) return self.toPropertyValue().ptr;
-    if (self is List<DateTime>) return self.toPropertyValue().ptr;
-    if (self is List<double>) return self.toPropertyValue(doubleType).ptr;
-    if (self is List<Duration>) return self.toPropertyValue().ptr;
-    if (self is List<Guid>) return self.toPropertyValue().ptr;
-    if (self is List<IInspectable>) return self.toPropertyValue().ptr;
-    if (self is List<int>) return self.toPropertyValue(intType).ptr;
-    if (self is List<Point>) return self.toPropertyValue().ptr;
-    if (self is List<Rect>) return self.toPropertyValue().ptr;
-    if (self is List<Size>) return self.toPropertyValue().ptr;
-    if (self is List<String>) return self.toPropertyValue().ptr;
+    if (self is bool) return self.toPropertyValue();
+    if (self is DateTime) return self.toPropertyValue();
+    if (self is double) return self.toPropertyValue(doubleType);
+    if (self is Duration) return self.toPropertyValue();
+    if (self is Guid) return self.toPropertyValue();
+    if (self is int) return self.toPropertyValue(intType);
+    if (self is Point) return self.toPropertyValue();
+    if (self is Rect) return self.toPropertyValue();
+    if (self is Size) return self.toPropertyValue();
+    if (self is String) return self.toPropertyValue();
+    if (self is List<bool>) return self.toPropertyValue();
+    if (self is List<DateTime>) return self.toPropertyValue();
+    if (self is List<double>) return self.toPropertyValue(doubleType);
+    if (self is List<Duration>) return self.toPropertyValue();
+    if (self is List<Guid>) return self.toPropertyValue();
+    if (self is List<IInspectable>) return self.toPropertyValue();
+    if (self is List<int>) return self.toPropertyValue(intType);
+    if (self is List<Point>) return self.toPropertyValue();
+    if (self is List<Rect>) return self.toPropertyValue();
+    if (self is List<Size>) return self.toPropertyValue();
+    if (self is List<String>) return self.toPropertyValue();
 
     // TODO: Support boxing enums and other structs (e.g. BasicGeoposition)
 
@@ -82,7 +83,6 @@ extension BoolHelpers on bool {
     final reference = IReference<bool?>.fromRawPointer(
         propertyValue.toInterface(referenceIid),
         referenceIid: referenceIid);
-    propertyValue.release();
     return reference;
   }
 }
@@ -123,7 +123,6 @@ extension DoubleHelpers on double {
     final reference = IReference<double?>.fromRawPointer(
         propertyValue.toInterface(iid),
         referenceIid: iid);
-    propertyValue.release();
     return reference;
   }
 }
@@ -164,7 +163,6 @@ extension DateTimeHelpers on DateTime {
     final reference = IReference<DateTime?>.fromRawPointer(
         propertyValue.toInterface(iid),
         referenceIid: iid);
-    propertyValue.release();
     return reference;
   }
 }
@@ -191,7 +189,6 @@ extension DurationHelpers on Duration {
     final reference = IReference<Duration?>.fromRawPointer(
         propertyValue.toInterface(iid),
         referenceIid: iid);
-    propertyValue.release();
     return reference;
   }
 }
@@ -218,7 +215,6 @@ extension GuidHelpers on Guid {
     final reference = IReference<Guid?>.fromRawPointer(
         propertyValue.toInterface(iid),
         referenceIid: iid);
-    propertyValue.release();
     return reference;
   }
 }
@@ -288,7 +284,6 @@ extension IntHelpers on int {
     final reference = IReference<int?>.fromRawPointer(
         propertyValue.toInterface(iid),
         referenceIid: iid);
-    propertyValue.release();
     return reference;
   }
 }
@@ -349,7 +344,6 @@ extension PointHelpers on Point {
     final reference = IReference<Point?>.fromRawPointer(
         propertyValue.toInterface(iid),
         referenceIid: iid);
-    propertyValue.release();
     return reference;
   }
 }
@@ -376,7 +370,6 @@ extension RectHelpers on Rect {
     final reference = IReference<Rect?>.fromRawPointer(
         propertyValue.toInterface(iid),
         referenceIid: iid);
-    propertyValue.release();
     return reference;
   }
 }
@@ -403,7 +396,6 @@ extension SizeHelpers on Size {
     final reference = IReference<Size?>.fromRawPointer(
         propertyValue.toInterface(iid),
         referenceIid: iid);
-    propertyValue.release();
     return reference;
   }
 }
@@ -430,7 +422,6 @@ extension StringHelpers on String {
     final reference = IReference<String?>.fromRawPointer(
         propertyValue.toInterface(iid),
         referenceIid: iid);
-    propertyValue.release();
     return reference;
   }
 }

@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -55,10 +54,7 @@ class IBatteryReport extends IInspectable {
 
     final reference = IReference<int?>.fromRawPointer(retValuePtr,
         referenceIid: '{548cefbd-bc8a-5fa0-8df2-957440fc8bf4}');
-    final value = reference.value;
-    reference.release();
-
-    return value;
+    return reference.value;
   }
 
   int? get designCapacityInMilliwattHours {
@@ -88,10 +84,7 @@ class IBatteryReport extends IInspectable {
 
     final reference = IReference<int?>.fromRawPointer(retValuePtr,
         referenceIid: '{548cefbd-bc8a-5fa0-8df2-957440fc8bf4}');
-    final value = reference.value;
-    reference.release();
-
-    return value;
+    return reference.value;
   }
 
   int? get fullChargeCapacityInMilliwattHours {
@@ -121,10 +114,7 @@ class IBatteryReport extends IInspectable {
 
     final reference = IReference<int?>.fromRawPointer(retValuePtr,
         referenceIid: '{548cefbd-bc8a-5fa0-8df2-957440fc8bf4}');
-    final value = reference.value;
-    reference.release();
-
-    return value;
+    return reference.value;
   }
 
   int? get remainingCapacityInMilliwattHours {
@@ -154,10 +144,7 @@ class IBatteryReport extends IInspectable {
 
     final reference = IReference<int?>.fromRawPointer(retValuePtr,
         referenceIid: '{548cefbd-bc8a-5fa0-8df2-957440fc8bf4}');
-    final value = reference.value;
-    reference.release();
-
-    return value;
+    return reference.value;
   }
 
   BatteryStatus get status {

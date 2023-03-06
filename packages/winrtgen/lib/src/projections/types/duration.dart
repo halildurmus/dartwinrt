@@ -16,14 +16,12 @@ mixin _DurationMixin on MethodProjection {
   String get methodDeclaration => '''
   $methodHeader {
     final retValuePtr = calloc<${returnTypeProjection.nativeType}>();
-    $parametersPreamble
 
     try {
       ${ffiCall()}
 
       return retValuePtr.toDartDuration();
     } finally {
-      $parametersPostamble
       free(retValuePtr);
     }
   }
@@ -49,7 +47,6 @@ mixin _DurationListMixin on MethodProjection {
   $methodHeader {
     final pValueSize = calloc<Uint32>();
     final retValuePtr = calloc<Pointer<Uint64>>();
-    $parametersPreamble
 
     try {
       ${ffiCall()}
@@ -58,7 +55,6 @@ mixin _DurationListMixin on MethodProjection {
         .toList(length: pValueSize.value)
         .map((value) => Duration(microseconds: value ~/ 10));
     } finally {
-      $parametersPostamble
       free(pValueSize);
       free(retValuePtr);
     }
@@ -85,7 +81,7 @@ class DurationSetterProjection extends SetterProjection {
   @override
   String get methodDeclaration => '''
   $methodHeader {
-    ${ffiCall(params: 'value.toWinRTDuration()')}
+    ${ffiCall(identifier: 'value.toWinRTDuration()')}
   }
 ''';
 }

@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -37,7 +36,6 @@ class XmlDocumentFragment extends IInspectable
         IXmlNodeSelector {
   XmlDocumentFragment.fromRawPointer(super.ptr);
 
-  // IXmlNode methods
   late final _iXmlNode = IXmlNode.from(this);
 
   @override
@@ -112,7 +110,6 @@ class XmlDocumentFragment extends IInspectable
   @override
   set prefix(Object? value) => _iXmlNode.prefix = value;
 
-  // IXmlNodeSerializer methods
   late final _iXmlNodeSerializer = IXmlNodeSerializer.from(this);
 
   @override
@@ -124,7 +121,6 @@ class XmlDocumentFragment extends IInspectable
   @override
   set innerText(String value) => _iXmlNodeSerializer.innerText = value;
 
-  // IXmlNodeSelector methods
   late final _iXmlNodeSelector = IXmlNodeSelector.from(this);
 
   @override

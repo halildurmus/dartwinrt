@@ -171,7 +171,6 @@ abstract class IAsyncOperation<TResult> extends IInspectable
   /// Gets the result of the asynchronous operation.
   TResult getResults();
 
-  // IAsyncInfo methods
   late final _iAsyncInfo = IAsyncInfo.from(this);
 
   @override

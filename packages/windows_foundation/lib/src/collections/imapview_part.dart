@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 part of 'imapview.dart';
 
@@ -32,12 +31,12 @@ class _IMapViewGuidInspectable<V> extends IMapView<Guid, V> {
                     LPVTBL lpVtbl, GUID key, Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, keyNativeGuidPtr.ref, retValuePtr);
 
+    free(keyNativeGuidPtr);
+
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
-
-    free(keyNativeGuidPtr);
 
     if (retValuePtr.ref.isNull) {
       free(retValuePtr);
@@ -50,9 +49,10 @@ class _IMapViewGuidInspectable<V> extends IMapView<Guid, V> {
   @override
   bool hasKey(Guid key) {
     final retValuePtr = calloc<Bool>();
-    final keyNativeGuidPtr = key.toNativeGUID();
 
     try {
+      final keyNativeGuidPtr = key.toNativeGUID();
+
       final hr = ptr.ref.vtable
               .elementAt(8)
               .cast<
@@ -66,11 +66,12 @@ class _IMapViewGuidInspectable<V> extends IMapView<Guid, V> {
                       LPVTBL lpVtbl, GUID key, Pointer<Bool> retValuePtr)>()(
           ptr.ref.lpVtbl, keyNativeGuidPtr.ref, retValuePtr);
 
+      free(keyNativeGuidPtr);
+
       if (FAILED(hr)) throw WindowsException(hr);
 
       return retValuePtr.value;
     } finally {
-      free(keyNativeGuidPtr);
       free(retValuePtr);
     }
   }
@@ -97,12 +98,12 @@ class _IMapViewGuidObject extends IMapView<Guid, Object?> {
                     LPVTBL lpVtbl, GUID key, Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, keyNativeGuidPtr.ref, retValuePtr);
 
+    free(keyNativeGuidPtr);
+
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
-
-    free(keyNativeGuidPtr);
 
     if (retValuePtr.ref.isNull) {
       free(retValuePtr);
@@ -115,9 +116,10 @@ class _IMapViewGuidObject extends IMapView<Guid, Object?> {
   @override
   bool hasKey(Guid key) {
     final retValuePtr = calloc<Bool>();
-    final keyNativeGuidPtr = key.toNativeGUID();
 
     try {
+      final keyNativeGuidPtr = key.toNativeGUID();
+
       final hr = ptr.ref.vtable
               .elementAt(8)
               .cast<
@@ -131,11 +133,12 @@ class _IMapViewGuidObject extends IMapView<Guid, Object?> {
                       LPVTBL lpVtbl, GUID key, Pointer<Bool> retValuePtr)>()(
           ptr.ref.lpVtbl, keyNativeGuidPtr.ref, retValuePtr);
 
+      free(keyNativeGuidPtr);
+
       if (FAILED(hr)) throw WindowsException(hr);
 
       return retValuePtr.value;
     } finally {
-      free(keyNativeGuidPtr);
       free(retValuePtr);
     }
   }
@@ -346,12 +349,12 @@ class _IMapViewStringInspectable<V> extends IMapView<String, V> {
                     LPVTBL lpVtbl, int key, Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, keyHString, retValuePtr);
 
+    WindowsDeleteString(keyHString);
+
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
-
-    WindowsDeleteString(keyHString);
 
     if (retValuePtr.ref.isNull) {
       free(retValuePtr);
@@ -364,9 +367,10 @@ class _IMapViewStringInspectable<V> extends IMapView<String, V> {
   @override
   bool hasKey(String key) {
     final retValuePtr = calloc<Bool>();
-    final keyHString = key.toHString();
 
     try {
+      final keyHString = key.toHString();
+
       final hr = ptr.ref.vtable
               .elementAt(8)
               .cast<
@@ -380,11 +384,12 @@ class _IMapViewStringInspectable<V> extends IMapView<String, V> {
                       LPVTBL lpVtbl, int key, Pointer<Bool> retValuePtr)>()(
           ptr.ref.lpVtbl, keyHString, retValuePtr);
 
+      WindowsDeleteString(keyHString);
+
       if (FAILED(hr)) throw WindowsException(hr);
 
       return retValuePtr.value;
     } finally {
-      WindowsDeleteString(keyHString);
       free(retValuePtr);
     }
   }
@@ -411,12 +416,12 @@ class _IMapViewStringObject extends IMapView<String, Object?> {
                     LPVTBL lpVtbl, int key, Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, keyHString, retValuePtr);
 
+    WindowsDeleteString(keyHString);
+
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
-
-    WindowsDeleteString(keyHString);
 
     if (retValuePtr.ref.isNull) {
       free(retValuePtr);
@@ -429,9 +434,10 @@ class _IMapViewStringObject extends IMapView<String, Object?> {
   @override
   bool hasKey(String key) {
     final retValuePtr = calloc<Bool>();
-    final keyHString = key.toHString();
 
     try {
+      final keyHString = key.toHString();
+
       final hr = ptr.ref.vtable
               .elementAt(8)
               .cast<
@@ -445,11 +451,12 @@ class _IMapViewStringObject extends IMapView<String, Object?> {
                       LPVTBL lpVtbl, int key, Pointer<Bool> retValuePtr)>()(
           ptr.ref.lpVtbl, keyHString, retValuePtr);
 
+      WindowsDeleteString(keyHString);
+
       if (FAILED(hr)) throw WindowsException(hr);
 
       return retValuePtr.value;
     } finally {
-      WindowsDeleteString(keyHString);
       free(retValuePtr);
     }
   }
@@ -461,9 +468,10 @@ class _IMapViewStringString extends IMapView<String, String> {
   @override
   String lookup(String key) {
     final retValuePtr = calloc<HSTRING>();
-    final keyHString = key.toHString();
 
     try {
+      final keyHString = key.toHString();
+
       final hr = ptr.ref.vtable
               .elementAt(6)
               .cast<
@@ -477,11 +485,12 @@ class _IMapViewStringString extends IMapView<String, String> {
                       LPVTBL lpVtbl, int key, Pointer<IntPtr> retValuePtr)>()(
           ptr.ref.lpVtbl, keyHString, retValuePtr);
 
+      WindowsDeleteString(keyHString);
+
       if (FAILED(hr)) throw WindowsException(hr);
 
       return retValuePtr.toDartString();
     } finally {
-      WindowsDeleteString(keyHString);
       WindowsDeleteString(retValuePtr.value);
       free(retValuePtr);
     }
@@ -490,9 +499,10 @@ class _IMapViewStringString extends IMapView<String, String> {
   @override
   bool hasKey(String key) {
     final retValuePtr = calloc<Bool>();
-    final keyHString = key.toHString();
 
     try {
+      final keyHString = key.toHString();
+
       final hr = ptr.ref.vtable
               .elementAt(8)
               .cast<
@@ -506,11 +516,12 @@ class _IMapViewStringString extends IMapView<String, String> {
                       LPVTBL lpVtbl, int key, Pointer<Bool> retValuePtr)>()(
           ptr.ref.lpVtbl, keyHString, retValuePtr);
 
+      WindowsDeleteString(keyHString);
+
       if (FAILED(hr)) throw WindowsException(hr);
 
       return retValuePtr.value;
     } finally {
-      WindowsDeleteString(keyHString);
       free(retValuePtr);
     }
   }
@@ -523,9 +534,10 @@ class _IMapViewStringWinRTEnum<V> extends IMapView<String, V> {
   @override
   V lookup(String key) {
     final retValuePtr = calloc<Int32>();
-    final keyHString = key.toHString();
 
     try {
+      final keyHString = key.toHString();
+
       final hr = ptr.ref.vtable
               .elementAt(6)
               .cast<
@@ -539,11 +551,12 @@ class _IMapViewStringWinRTEnum<V> extends IMapView<String, V> {
                       LPVTBL lpVtbl, int key, Pointer<Int32> retValuePtr)>()(
           ptr.ref.lpVtbl, keyHString, retValuePtr);
 
+      WindowsDeleteString(keyHString);
+
       if (FAILED(hr)) throw WindowsException(hr);
 
       return _enumCreator!(retValuePtr.value);
     } finally {
-      WindowsDeleteString(keyHString);
       free(retValuePtr);
     }
   }
@@ -551,9 +564,10 @@ class _IMapViewStringWinRTEnum<V> extends IMapView<String, V> {
   @override
   bool hasKey(String key) {
     final retValuePtr = calloc<Bool>();
-    final keyHString = key.toHString();
 
     try {
+      final keyHString = key.toHString();
+
       final hr = ptr.ref.vtable
               .elementAt(8)
               .cast<
@@ -567,11 +581,12 @@ class _IMapViewStringWinRTEnum<V> extends IMapView<String, V> {
                       LPVTBL lpVtbl, int key, Pointer<Bool> retValuePtr)>()(
           ptr.ref.lpVtbl, keyHString, retValuePtr);
 
+      WindowsDeleteString(keyHString);
+
       if (FAILED(hr)) throw WindowsException(hr);
 
       return retValuePtr.value;
     } finally {
-      WindowsDeleteString(keyHString);
       free(retValuePtr);
     }
   }
@@ -584,9 +599,10 @@ class _IMapViewStringWinRTFlagsEnum<V> extends IMapView<String, V> {
   @override
   V lookup(String key) {
     final retValuePtr = calloc<Uint32>();
-    final keyHString = key.toHString();
 
     try {
+      final keyHString = key.toHString();
+
       final hr = ptr.ref.vtable
               .elementAt(6)
               .cast<
@@ -600,11 +616,12 @@ class _IMapViewStringWinRTFlagsEnum<V> extends IMapView<String, V> {
                       LPVTBL lpVtbl, int key, Pointer<Uint32> retValuePtr)>()(
           ptr.ref.lpVtbl, keyHString, retValuePtr);
 
+      WindowsDeleteString(keyHString);
+
       if (FAILED(hr)) throw WindowsException(hr);
 
       return _enumCreator!(retValuePtr.value);
     } finally {
-      WindowsDeleteString(keyHString);
       free(retValuePtr);
     }
   }
@@ -612,9 +629,10 @@ class _IMapViewStringWinRTFlagsEnum<V> extends IMapView<String, V> {
   @override
   bool hasKey(String key) {
     final retValuePtr = calloc<Bool>();
-    final keyHString = key.toHString();
 
     try {
+      final keyHString = key.toHString();
+
       final hr = ptr.ref.vtable
               .elementAt(8)
               .cast<
@@ -628,11 +646,12 @@ class _IMapViewStringWinRTFlagsEnum<V> extends IMapView<String, V> {
                       LPVTBL lpVtbl, int key, Pointer<Bool> retValuePtr)>()(
           ptr.ref.lpVtbl, keyHString, retValuePtr);
 
+      WindowsDeleteString(keyHString);
+
       if (FAILED(hr)) throw WindowsException(hr);
 
       return retValuePtr.value;
     } finally {
-      WindowsDeleteString(keyHString);
       free(retValuePtr);
     }
   }

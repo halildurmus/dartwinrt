@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -247,9 +246,9 @@ class IDevicePicker extends IInspectable {
                     int Function(LPVTBL lpVtbl, NativeRect selection)>()(
             ptr.ref.lpVtbl, selectionNativeStructPtr.ref);
 
-    if (FAILED(hr)) throw WindowsException(hr);
-
     free(selectionNativeStructPtr);
+
+    if (FAILED(hr)) throw WindowsException(hr);
   }
 
   void showWithPlacement(Rect selection, Placement placement) {
@@ -268,9 +267,9 @@ class IDevicePicker extends IInspectable {
                     LPVTBL lpVtbl, NativeRect selection, int placement)>()(
         ptr.ref.lpVtbl, selectionNativeStructPtr.ref, placement.value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
-
     free(selectionNativeStructPtr);
+
+    if (FAILED(hr)) throw WindowsException(hr);
   }
 
   Future<DeviceInformation?> pickSingleDeviceAsync(Rect selection) {
@@ -291,12 +290,12 @@ class IDevicePicker extends IInspectable {
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, selectionNativeStructPtr.ref, retValuePtr);
 
+    free(selectionNativeStructPtr);
+
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
-
-    free(selectionNativeStructPtr);
 
     final asyncOperation = IAsyncOperation<DeviceInformation?>.fromRawPointer(
         retValuePtr,
@@ -333,12 +332,12 @@ class IDevicePicker extends IInspectable {
             placement.value,
             retValuePtr);
 
+    free(selectionNativeStructPtr);
+
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
-
-    free(selectionNativeStructPtr);
 
     final asyncOperation = IAsyncOperation<DeviceInformation?>.fromRawPointer(
         retValuePtr,
@@ -377,8 +376,8 @@ class IDevicePicker extends IInspectable {
                     LPVTBL lpVtbl, LPVTBL device, int status, int options)>()(
         ptr.ref.lpVtbl, devicePtr, statusHString, options.value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
-
     WindowsDeleteString(statusHString);
+
+    if (FAILED(hr)) throw WindowsException(hr);
   }
 }

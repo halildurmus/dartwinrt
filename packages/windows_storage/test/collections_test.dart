@@ -256,8 +256,6 @@ void main() {
     });
 
     tearDown(() {
-      picker.release();
-      vector.release();
       allocator.releaseAll(reuse: true);
     });
   });

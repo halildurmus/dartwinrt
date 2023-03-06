@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -100,10 +99,7 @@ class ICalendar extends IInspectable {
 
     final vectorView = IVectorView<String>.fromRawPointer(retValuePtr,
         iterableIid: '{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}');
-    final list = vectorView.toList();
-    vectorView.release();
-
-    return list;
+    return vectorView.toList();
   }
 
   String get numeralSystem {
@@ -189,9 +185,9 @@ class ICalendar extends IInspectable {
             .asFunction<int Function(LPVTBL lpVtbl, int value)>()(
         ptr.ref.lpVtbl, valueHString);
 
-    if (FAILED(hr)) throw WindowsException(hr);
-
     WindowsDeleteString(valueHString);
+
+    if (FAILED(hr)) throw WindowsException(hr);
   }
 
   String getClock() {
@@ -232,9 +228,9 @@ class ICalendar extends IInspectable {
             .asFunction<int Function(LPVTBL lpVtbl, int value)>()(
         ptr.ref.lpVtbl, valueHString);
 
-    if (FAILED(hr)) throw WindowsException(hr);
-
     WindowsDeleteString(valueHString);
+
+    if (FAILED(hr)) throw WindowsException(hr);
   }
 
   DateTime getDateTime() {
@@ -1900,9 +1896,10 @@ class ICalendar extends IInspectable {
 
   int compare(Calendar? other) {
     final retValuePtr = calloc<Int32>();
-    final otherPtr = other == null ? nullptr : other.ptr.ref.lpVtbl;
 
     try {
+      final otherPtr = other == null ? nullptr : other.ptr.ref.lpVtbl;
+
       final hr = ptr.ref.vtable
               .elementAt(93)
               .cast<

@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -35,125 +34,54 @@ class NetworkInformation extends IInspectable {
   static const _className =
       'Windows.Networking.Connectivity.NetworkInformation';
 
-  // INetworkInformationStatics methods
-  static List<ConnectionProfile> getConnectionProfiles() {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_INetworkInformationStatics);
-    final object =
-        INetworkInformationStatics.fromRawPointer(activationFactoryPtr);
+  static List<ConnectionProfile> getConnectionProfiles() =>
+      createActivationFactory(INetworkInformationStatics.fromRawPointer,
+              _className, IID_INetworkInformationStatics)
+          .getConnectionProfiles();
 
-    try {
-      return object.getConnectionProfiles();
-    } finally {
-      object.release();
-    }
-  }
+  static ConnectionProfile? getInternetConnectionProfile() =>
+      createActivationFactory(INetworkInformationStatics.fromRawPointer,
+              _className, IID_INetworkInformationStatics)
+          .getInternetConnectionProfile();
 
-  static ConnectionProfile? getInternetConnectionProfile() {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_INetworkInformationStatics);
-    final object =
-        INetworkInformationStatics.fromRawPointer(activationFactoryPtr);
+  static List<LanIdentifier> getLanIdentifiers() => createActivationFactory(
+          INetworkInformationStatics.fromRawPointer,
+          _className,
+          IID_INetworkInformationStatics)
+      .getLanIdentifiers();
 
-    try {
-      return object.getInternetConnectionProfile();
-    } finally {
-      object.release();
-    }
-  }
+  static List<HostName> getHostNames() => createActivationFactory(
+          INetworkInformationStatics.fromRawPointer,
+          _className,
+          IID_INetworkInformationStatics)
+      .getHostNames();
 
-  static List<LanIdentifier> getLanIdentifiers() {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_INetworkInformationStatics);
-    final object =
-        INetworkInformationStatics.fromRawPointer(activationFactoryPtr);
-
-    try {
-      return object.getLanIdentifiers();
-    } finally {
-      object.release();
-    }
-  }
-
-  static List<HostName> getHostNames() {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_INetworkInformationStatics);
-    final object =
-        INetworkInformationStatics.fromRawPointer(activationFactoryPtr);
-
-    try {
-      return object.getHostNames();
-    } finally {
-      object.release();
-    }
-  }
-
-  static Future<ProxyConfiguration?> getProxyConfigurationAsync(Uri? uri) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_INetworkInformationStatics);
-    final object =
-        INetworkInformationStatics.fromRawPointer(activationFactoryPtr);
-
-    try {
-      return object.getProxyConfigurationAsync(uri);
-    } finally {
-      object.release();
-    }
-  }
+  static Future<ProxyConfiguration?> getProxyConfigurationAsync(Uri? uri) =>
+      createActivationFactory(INetworkInformationStatics.fromRawPointer,
+              _className, IID_INetworkInformationStatics)
+          .getProxyConfigurationAsync(uri);
 
   static List<EndpointPair> getSortedEndpointPairs(
-      IIterable<EndpointPair>? destinationList,
-      HostNameSortOptions sortOptions) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_INetworkInformationStatics);
-    final object =
-        INetworkInformationStatics.fromRawPointer(activationFactoryPtr);
+          IIterable<EndpointPair>? destinationList,
+          HostNameSortOptions sortOptions) =>
+      createActivationFactory(INetworkInformationStatics.fromRawPointer,
+              _className, IID_INetworkInformationStatics)
+          .getSortedEndpointPairs(destinationList, sortOptions);
 
-    try {
-      return object.getSortedEndpointPairs(destinationList, sortOptions);
-    } finally {
-      object.release();
-    }
-  }
+  static int add_NetworkStatusChanged(
+          Pointer<COMObject> networkStatusHandler) =>
+      createActivationFactory(INetworkInformationStatics.fromRawPointer,
+              _className, IID_INetworkInformationStatics)
+          .add_NetworkStatusChanged(networkStatusHandler);
 
-  static int add_NetworkStatusChanged(Pointer<COMObject> networkStatusHandler) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_INetworkInformationStatics);
-    final object =
-        INetworkInformationStatics.fromRawPointer(activationFactoryPtr);
+  static void remove_NetworkStatusChanged(int eventCookie) =>
+      createActivationFactory(INetworkInformationStatics.fromRawPointer,
+              _className, IID_INetworkInformationStatics)
+          .remove_NetworkStatusChanged(eventCookie);
 
-    try {
-      return object.add_NetworkStatusChanged(networkStatusHandler);
-    } finally {
-      object.release();
-    }
-  }
-
-  static void remove_NetworkStatusChanged(int eventCookie) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_INetworkInformationStatics);
-    final object =
-        INetworkInformationStatics.fromRawPointer(activationFactoryPtr);
-
-    try {
-      return object.remove_NetworkStatusChanged(eventCookie);
-    } finally {
-      object.release();
-    }
-  }
-
-  // INetworkInformationStatics2 methods
   static Future<List<ConnectionProfile>> findConnectionProfilesAsync(
-      ConnectionProfileFilter? pProfileFilter) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_INetworkInformationStatics2);
-    final object =
-        INetworkInformationStatics2.fromRawPointer(activationFactoryPtr);
-
-    try {
-      return object.findConnectionProfilesAsync(pProfileFilter);
-    } finally {
-      object.release();
-    }
-  }
+          ConnectionProfileFilter? pProfileFilter) =>
+      createActivationFactory(INetworkInformationStatics2.fromRawPointer,
+              _className, IID_INetworkInformationStatics2)
+          .findConnectionProfilesAsync(pProfileFilter);
 }

@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -27,7 +26,6 @@ class DocumentProperties extends IInspectable
     implements IDocumentProperties, IStorageItemExtraProperties {
   DocumentProperties.fromRawPointer(super.ptr);
 
-  // IDocumentProperties methods
   late final _iDocumentProperties = IDocumentProperties.from(this);
 
   @override
@@ -48,7 +46,6 @@ class DocumentProperties extends IInspectable
   @override
   set comment(String value) => _iDocumentProperties.comment = value;
 
-  // IStorageItemExtraProperties methods
   late final _iStorageItemExtraProperties =
       IStorageItemExtraProperties.from(this);
 

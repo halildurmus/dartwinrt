@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -54,10 +53,7 @@ class IToastNotificationHistory2 extends IInspectable {
         retValuePtr,
         iterableIid: '{52c9428b-d37a-554d-bf55-b8685d5f552d}',
         creator: ToastNotification.fromRawPointer);
-    final list = vectorView.toList();
-    vectorView.release();
-
-    return list;
+    return vectorView.toList();
   }
 
   List<ToastNotification> getHistoryWithId(String applicationId) {
@@ -77,6 +73,8 @@ class IToastNotificationHistory2 extends IInspectable {
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, applicationIdHString, retValuePtr);
 
+    WindowsDeleteString(applicationIdHString);
+
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
@@ -86,11 +84,6 @@ class IToastNotificationHistory2 extends IInspectable {
         retValuePtr,
         iterableIid: '{52c9428b-d37a-554d-bf55-b8685d5f552d}',
         creator: ToastNotification.fromRawPointer);
-    final list = vectorView.toList();
-    vectorView.release();
-
-    WindowsDeleteString(applicationIdHString);
-
-    return list;
+    return vectorView.toList();
   }
 }

@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -37,32 +36,15 @@ class JsonArray extends IInspectable
 
   static const _className = 'Windows.Data.Json.JsonArray';
 
-  // IJsonArrayStatics methods
-  static JsonArray? parse(String input) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IJsonArrayStatics);
-    final object = IJsonArrayStatics.fromRawPointer(activationFactoryPtr);
+  static JsonArray? parse(String input) => createActivationFactory(
+          IJsonArrayStatics.fromRawPointer, _className, IID_IJsonArrayStatics)
+      .parse(input);
 
-    try {
-      return object.parse(input);
-    } finally {
-      object.release();
-    }
-  }
+  static bool tryParse(String input, JsonArray result) =>
+      createActivationFactory(IJsonArrayStatics.fromRawPointer, _className,
+              IID_IJsonArrayStatics)
+          .tryParse(input, result);
 
-  static bool tryParse(String input, JsonArray result) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IJsonArrayStatics);
-    final object = IJsonArrayStatics.fromRawPointer(activationFactoryPtr);
-
-    try {
-      return object.tryParse(input, result);
-    } finally {
-      object.release();
-    }
-  }
-
-  // IJsonArray methods
   late final _iJsonArray = IJsonArray.from(this);
 
   @override
@@ -80,7 +62,6 @@ class JsonArray extends IInspectable
   @override
   bool getBooleanAt(int index) => _iJsonArray.getBooleanAt(index);
 
-  // IJsonValue methods
   late final _iJsonValue = IJsonValue.from(this);
 
   @override
@@ -104,7 +85,6 @@ class JsonArray extends IInspectable
   @override
   JsonObject? getObject() => _iJsonValue.getObject();
 
-  // IVector<IJsonValue> methods
   late final _iVector = IVector<IJsonValue>.fromRawPointer(
       toInterface('{d44662bc-dce3-59a8-9272-4b210f33908b}'),
       creator: IJsonValue.fromRawPointer,
@@ -154,7 +134,6 @@ class JsonArray extends IInspectable
   @override
   List<IJsonValue> toList() => _iVector.toList();
 
-  // IStringable methods
   late final _iStringable = IStringable.from(this);
 
   @override

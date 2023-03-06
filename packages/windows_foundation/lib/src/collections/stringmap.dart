@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -37,7 +36,6 @@ class StringMap extends IInspectable
 
   static const _className = 'Windows.Foundation.Collections.StringMap';
 
-  // IMap<String, String> methods
   late final _iMap = IMap<String, String>.fromRawPointer(
       toInterface('{f6d1f700-49c2-52ae-8154-826f9908773c}'),
       iterableIid: '{e9bdaaf0-cbf6-5c72-be90-29cbf3a1319b}');
@@ -69,7 +67,6 @@ class StringMap extends IInspectable
   @override
   Map<String, String> toMap() => _iMap.toMap();
 
-  // IObservableMap<String, String> methods
   late final _iObservableMap = IObservableMap<String, String>.fromRawPointer(
       toInterface('{1e036276-2f60-55f6-b7f3-f86079e6900b}'));
 

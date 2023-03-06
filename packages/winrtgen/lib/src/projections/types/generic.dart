@@ -25,14 +25,12 @@ mixin _GenericEnumMixin on MethodProjection {
   String get methodDeclaration => '''
   $methodHeader {
     final retValuePtr = calloc<${returnTypeProjection.nativeType}>();
-    $parametersPreamble
 
     try {
       ${ffiCall()}
 
       return $enumCreator(retValuePtr.value);
     } finally {
-      $parametersPostamble
       free(retValuePtr);
     }
   }
@@ -119,11 +117,7 @@ mixin _GenericObjectMixin on MethodProjection {
   String get methodDeclaration => '''
   $methodHeader {
     final retValuePtr = calloc<COMObject>();
-    $parametersPreamble
-
     ${ffiCall(freeRetValOnFailure: true)}
-
-    $parametersPostamble
 
     $nullCheck
 

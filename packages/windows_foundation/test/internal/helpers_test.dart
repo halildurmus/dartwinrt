@@ -2,12 +2,44 @@
 // details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
+@TestOn('windows')
+
 import 'package:test/test.dart';
-import 'package:win32/win32.dart';
+import 'package:win32/win32.dart' hide IUnknown;
 import 'package:windows_foundation/internal.dart';
+import 'package:windows_foundation/src/iuriruntimeclassfactory.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
 void main() {
+  if (!isWindowsRuntimeAvailable()) {
+    print('Skipping tests because Windows Runtime is not available.');
+    return;
+  }
+
+  test('activateClass', () {
+    final inspectable =
+        IInspectable(activateClass('Windows.Foundation.Collections.StringMap'));
+    final iids = getInterfaces(inspectable);
+    expect(iids.length, equals(4));
+    expect(iids, contains(IID_IMap_String_String));
+  });
+
+  test('createActivationFactory', () {
+    final classFactory = createActivationFactory(
+        IUriRuntimeClassFactory.fromRawPointer,
+        'Windows.Foundation.Uri',
+        IID_IUriRuntimeClassFactory);
+    final uri = classFactory.createUri('https://dart.dev');
+    expect(getClassName(uri), equals('Windows.Foundation.Uri'));
+  });
+
+  test('createObject', () {
+    final stringMap = createObject(StringMap.fromRawPointer,
+        'Windows.Foundation.Collections.StringMap', IID_IMap_String_String);
+    expect(getClassName(stringMap),
+        equals('Windows.Foundation.Collections.StringMap'));
+  });
+
   test('isNullableObjectType', () {
     expect(isNullableObjectType<Object?>(), isTrue);
     expect(isNullableObjectType<Object>(), isFalse);
@@ -36,7 +68,6 @@ void main() {
     expect(isSubtypeOfInspectable<StringMap>(), isTrue);
     expect(isSubtypeOfInspectable<IAsyncInfo>(), isTrue);
     expect(isSubtypeOfInspectable<IUnknown>(), isFalse);
-    expect(isSubtypeOfInspectable<INetwork>(), isFalse);
   });
 
   test('isSubtypeOfWinRTEnum', () {

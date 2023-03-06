@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -33,9 +32,10 @@ class IPhoneNumberFormatter extends IInspectable {
 
   String format(PhoneNumberInfo? number) {
     final retValuePtr = calloc<HSTRING>();
-    final numberPtr = number == null ? nullptr : number.ptr.ref.lpVtbl;
 
     try {
+      final numberPtr = number == null ? nullptr : number.ptr.ref.lpVtbl;
+
       final hr = ptr.ref.vtable
               .elementAt(6)
               .cast<
@@ -61,9 +61,10 @@ class IPhoneNumberFormatter extends IInspectable {
   String formatWithOutputFormat(
       PhoneNumberInfo? number, PhoneNumberFormat numberFormat) {
     final retValuePtr = calloc<HSTRING>();
-    final numberPtr = number == null ? nullptr : number.ptr.ref.lpVtbl;
 
     try {
+      final numberPtr = number == null ? nullptr : number.ptr.ref.lpVtbl;
+
       final hr =
           ptr.ref.vtable
                   .elementAt(7)
@@ -92,9 +93,10 @@ class IPhoneNumberFormatter extends IInspectable {
 
   String formatPartialString(String number) {
     final retValuePtr = calloc<HSTRING>();
-    final numberHString = number.toHString();
 
     try {
+      final numberHString = number.toHString();
+
       final hr = ptr.ref.vtable
               .elementAt(8)
               .cast<
@@ -108,11 +110,12 @@ class IPhoneNumberFormatter extends IInspectable {
                       Pointer<IntPtr> retValuePtr)>()(
           ptr.ref.lpVtbl, numberHString, retValuePtr);
 
+      WindowsDeleteString(numberHString);
+
       if (FAILED(hr)) throw WindowsException(hr);
 
       return retValuePtr.toDartString();
     } finally {
-      WindowsDeleteString(numberHString);
       WindowsDeleteString(retValuePtr.value);
       free(retValuePtr);
     }
@@ -120,9 +123,10 @@ class IPhoneNumberFormatter extends IInspectable {
 
   String formatString(String number) {
     final retValuePtr = calloc<HSTRING>();
-    final numberHString = number.toHString();
 
     try {
+      final numberHString = number.toHString();
+
       final hr = ptr.ref.vtable
               .elementAt(9)
               .cast<
@@ -136,11 +140,12 @@ class IPhoneNumberFormatter extends IInspectable {
                       Pointer<IntPtr> retValuePtr)>()(
           ptr.ref.lpVtbl, numberHString, retValuePtr);
 
+      WindowsDeleteString(numberHString);
+
       if (FAILED(hr)) throw WindowsException(hr);
 
       return retValuePtr.toDartString();
     } finally {
-      WindowsDeleteString(numberHString);
       WindowsDeleteString(retValuePtr.value);
       free(retValuePtr);
     }
@@ -148,9 +153,10 @@ class IPhoneNumberFormatter extends IInspectable {
 
   String formatStringWithLeftToRightMarkers(String number) {
     final retValuePtr = calloc<HSTRING>();
-    final numberHString = number.toHString();
 
     try {
+      final numberHString = number.toHString();
+
       final hr = ptr.ref.vtable
               .elementAt(10)
               .cast<
@@ -164,11 +170,12 @@ class IPhoneNumberFormatter extends IInspectable {
                       Pointer<IntPtr> retValuePtr)>()(
           ptr.ref.lpVtbl, numberHString, retValuePtr);
 
+      WindowsDeleteString(numberHString);
+
       if (FAILED(hr)) throw WindowsException(hr);
 
       return retValuePtr.toDartString();
     } finally {
-      WindowsDeleteString(numberHString);
       WindowsDeleteString(retValuePtr.value);
       free(retValuePtr);
     }

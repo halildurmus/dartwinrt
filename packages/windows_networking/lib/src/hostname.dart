@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -30,33 +29,14 @@ class HostName extends IInspectable implements IHostName, IStringable {
 
   static const _className = 'Windows.Networking.HostName';
 
-  // IHostNameFactory methods
-  factory HostName.createHostName(String hostName) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IHostNameFactory);
-    final object = IHostNameFactory.fromRawPointer(activationFactoryPtr);
+  factory HostName.createHostName(String hostName) => createActivationFactory(
+          IHostNameFactory.fromRawPointer, _className, IID_IHostNameFactory)
+      .createHostName(hostName);
 
-    try {
-      return object.createHostName(hostName);
-    } finally {
-      object.release();
-    }
-  }
+  static int compare(String value1, String value2) => createActivationFactory(
+          IHostNameStatics.fromRawPointer, _className, IID_IHostNameStatics)
+      .compare(value1, value2);
 
-  // IHostNameStatics methods
-  static int compare(String value1, String value2) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IHostNameStatics);
-    final object = IHostNameStatics.fromRawPointer(activationFactoryPtr);
-
-    try {
-      return object.compare(value1, value2);
-    } finally {
-      object.release();
-    }
-  }
-
-  // IHostName methods
   late final _iHostName = IHostName.from(this);
 
   @override
@@ -77,7 +57,6 @@ class HostName extends IInspectable implements IHostName, IStringable {
   @override
   bool isEqual(HostName? hostName) => _iHostName.isEqual(hostName);
 
-  // IStringable methods
   late final _iStringable = IStringable.from(this);
 
   @override

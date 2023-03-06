@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -68,110 +67,57 @@ class StorageFile extends IInspectable
 
   static const _className = 'Windows.Storage.StorageFile';
 
-  // IStorageFileStatics methods
-  static Future<StorageFile?> getFileFromPathAsync(String path) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IStorageFileStatics);
-    final object = IStorageFileStatics.fromRawPointer(activationFactoryPtr);
+  static Future<StorageFile?> getFileFromPathAsync(String path) =>
+      createActivationFactory(IStorageFileStatics.fromRawPointer, _className,
+              IID_IStorageFileStatics)
+          .getFileFromPathAsync(path);
 
-    try {
-      return object.getFileFromPathAsync(path);
-    } finally {
-      object.release();
-    }
-  }
-
-  static Future<StorageFile?> getFileFromApplicationUriAsync(Uri? uri) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IStorageFileStatics);
-    final object = IStorageFileStatics.fromRawPointer(activationFactoryPtr);
-
-    try {
-      return object.getFileFromApplicationUriAsync(uri);
-    } finally {
-      object.release();
-    }
-  }
+  static Future<StorageFile?> getFileFromApplicationUriAsync(Uri? uri) =>
+      createActivationFactory(IStorageFileStatics.fromRawPointer, _className,
+              IID_IStorageFileStatics)
+          .getFileFromApplicationUriAsync(uri);
 
   static Future<StorageFile?> createStreamedFileAsync(
-      String displayNameWithExtension,
-      Pointer<COMObject> dataRequested,
-      IRandomAccessStreamReference? thumbnail) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IStorageFileStatics);
-    final object = IStorageFileStatics.fromRawPointer(activationFactoryPtr);
-
-    try {
-      return object.createStreamedFileAsync(
-          displayNameWithExtension, dataRequested, thumbnail);
-    } finally {
-      object.release();
-    }
-  }
+          String displayNameWithExtension,
+          Pointer<COMObject> dataRequested,
+          IRandomAccessStreamReference? thumbnail) =>
+      createActivationFactory(IStorageFileStatics.fromRawPointer, _className,
+              IID_IStorageFileStatics)
+          .createStreamedFileAsync(
+              displayNameWithExtension, dataRequested, thumbnail);
 
   static Future<StorageFile?> replaceWithStreamedFileAsync(
-      IStorageFile? fileToReplace,
-      Pointer<COMObject> dataRequested,
-      IRandomAccessStreamReference? thumbnail) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IStorageFileStatics);
-    final object = IStorageFileStatics.fromRawPointer(activationFactoryPtr);
-
-    try {
-      return object.replaceWithStreamedFileAsync(
-          fileToReplace, dataRequested, thumbnail);
-    } finally {
-      object.release();
-    }
-  }
+          IStorageFile? fileToReplace,
+          Pointer<COMObject> dataRequested,
+          IRandomAccessStreamReference? thumbnail) =>
+      createActivationFactory(IStorageFileStatics.fromRawPointer, _className,
+              IID_IStorageFileStatics)
+          .replaceWithStreamedFileAsync(
+              fileToReplace, dataRequested, thumbnail);
 
   static Future<StorageFile?> createStreamedFileFromUriAsync(
-      String displayNameWithExtension,
-      Uri? uri,
-      IRandomAccessStreamReference? thumbnail) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IStorageFileStatics);
-    final object = IStorageFileStatics.fromRawPointer(activationFactoryPtr);
-
-    try {
-      return object.createStreamedFileFromUriAsync(
-          displayNameWithExtension, uri, thumbnail);
-    } finally {
-      object.release();
-    }
-  }
+          String displayNameWithExtension,
+          Uri? uri,
+          IRandomAccessStreamReference? thumbnail) =>
+      createActivationFactory(IStorageFileStatics.fromRawPointer, _className,
+              IID_IStorageFileStatics)
+          .createStreamedFileFromUriAsync(
+              displayNameWithExtension, uri, thumbnail);
 
   static Future<StorageFile?> replaceWithStreamedFileFromUriAsync(
-      IStorageFile? fileToReplace,
-      Uri? uri,
-      IRandomAccessStreamReference? thumbnail) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IStorageFileStatics);
-    final object = IStorageFileStatics.fromRawPointer(activationFactoryPtr);
+          IStorageFile? fileToReplace,
+          Uri? uri,
+          IRandomAccessStreamReference? thumbnail) =>
+      createActivationFactory(IStorageFileStatics.fromRawPointer, _className,
+              IID_IStorageFileStatics)
+          .replaceWithStreamedFileFromUriAsync(fileToReplace, uri, thumbnail);
 
-    try {
-      return object.replaceWithStreamedFileFromUriAsync(
-          fileToReplace, uri, thumbnail);
-    } finally {
-      object.release();
-    }
-  }
-
-  // IStorageFileStatics2 methods
   static Future<StorageFile?> getFileFromPathForUserAsync(
-      User? user, String path) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IStorageFileStatics2);
-    final object = IStorageFileStatics2.fromRawPointer(activationFactoryPtr);
+          User? user, String path) =>
+      createActivationFactory(IStorageFileStatics2.fromRawPointer, _className,
+              IID_IStorageFileStatics2)
+          .getFileFromPathForUserAsync(user, path);
 
-    try {
-      return object.getFileFromPathForUserAsync(user, path);
-    } finally {
-      object.release();
-    }
-  }
-
-  // IStorageFile methods
   late final _iStorageFile = IStorageFile.from(this);
 
   @override
@@ -228,14 +174,12 @@ class StorageFile extends IInspectable
   Future<void> moveAndReplaceAsync(IStorageFile? fileToReplace) =>
       _iStorageFile.moveAndReplaceAsync(fileToReplace);
 
-  // IInputStreamReference methods
   late final _iInputStreamReference = IInputStreamReference.from(this);
 
   @override
   Future<IInputStream?> openSequentialReadAsync() =>
       _iInputStreamReference.openSequentialReadAsync();
 
-  // IRandomAccessStreamReference methods
   late final _iRandomAccessStreamReference =
       IRandomAccessStreamReference.from(this);
 
@@ -243,7 +187,6 @@ class StorageFile extends IInspectable
   Future<IRandomAccessStreamWithContentType?> openReadAsync() =>
       _iRandomAccessStreamReference.openReadAsync();
 
-  // IStorageItem methods
   late final _iStorageItem = IStorageItem.from(this);
 
   @override
@@ -281,7 +224,6 @@ class StorageFile extends IInspectable
   @override
   bool isOfType(StorageItemTypes type) => _iStorageItem.isOfType(type);
 
-  // IStorageItemProperties methods
   late final _iStorageItemProperties = IStorageItemProperties.from(this);
 
   @override
@@ -314,7 +256,6 @@ class StorageFile extends IInspectable
   StorageItemContentProperties? get properties =>
       _iStorageItemProperties.properties;
 
-  // IStorageItemProperties2 methods
   late final _iStorageItemProperties2 = IStorageItemProperties2.from(this);
 
   @override
@@ -339,7 +280,6 @@ class StorageFile extends IInspectable
       _iStorageItemProperties2.getScaledImageAsThumbnailAsync(
           mode, requestedSize, options);
 
-  // IStorageItem2 methods
   late final _iStorageItem2 = IStorageItem2.from(this);
 
   @override
@@ -348,21 +288,18 @@ class StorageFile extends IInspectable
   @override
   bool isEqual(IStorageItem? item) => _iStorageItem2.isEqual(item);
 
-  // IStorageItemPropertiesWithProvider methods
   late final _iStorageItemPropertiesWithProvider =
       IStorageItemPropertiesWithProvider.from(this);
 
   @override
   StorageProvider? get provider => _iStorageItemPropertiesWithProvider.provider;
 
-  // IStorageFilePropertiesWithAvailability methods
   late final _iStorageFilePropertiesWithAvailability =
       IStorageFilePropertiesWithAvailability.from(this);
 
   @override
   bool get isAvailable => _iStorageFilePropertiesWithAvailability.isAvailable;
 
-  // IStorageFile2 methods
   late final _iStorageFile2 = IStorageFile2.from(this);
 
   @override

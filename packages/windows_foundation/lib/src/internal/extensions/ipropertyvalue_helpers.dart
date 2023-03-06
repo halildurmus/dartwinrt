@@ -6,13 +6,13 @@ import 'dart:ffi';
 
 import 'package:win32/win32.dart';
 
-import '../helpers.dart';
-import '../iinspectable.dart';
-import '../ipropertyvalue.dart';
-import '../point.dart';
-import '../propertytype.dart';
-import '../rect.dart';
-import '../size.dart';
+import '../../helpers.dart';
+import '../../iinspectable.dart';
+import '../../ipropertyvalue.dart';
+import '../../point.dart';
+import '../../propertytype.dart';
+import '../../rect.dart';
+import '../../size.dart';
 
 extension IPropertyValueHelper on IPropertyValue {
   /// Gets the type that is represented as an [IPropertyValue].

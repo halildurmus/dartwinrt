@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -47,12 +46,12 @@ class IJsonObjectStatics extends IInspectable {
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, inputHString, retValuePtr);
 
+    WindowsDeleteString(inputHString);
+
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
-
-    WindowsDeleteString(inputHString);
 
     if (retValuePtr.ref.isNull) {
       free(retValuePtr);
@@ -64,10 +63,10 @@ class IJsonObjectStatics extends IInspectable {
 
   bool tryParse(String input, JsonObject result) {
     final retValuePtr = calloc<Bool>();
-    final inputHString = input.toHString();
-    final resultPtr = result.ptr;
 
     try {
+      final inputHString = input.toHString();
+
       final hr = ptr.ref.vtable
               .elementAt(7)
               .cast<
@@ -82,13 +81,14 @@ class IJsonObjectStatics extends IInspectable {
               .asFunction<
                   int Function(LPVTBL lpVtbl, int input,
                       Pointer<COMObject> result, Pointer<Bool> retValuePtr)>()(
-          ptr.ref.lpVtbl, inputHString, resultPtr, retValuePtr);
+          ptr.ref.lpVtbl, inputHString, result.ptr, retValuePtr);
+
+      WindowsDeleteString(inputHString);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
       return retValuePtr.value;
     } finally {
-      WindowsDeleteString(inputHString);
       free(retValuePtr);
     }
   }

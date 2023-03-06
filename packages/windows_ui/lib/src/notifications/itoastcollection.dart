@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -169,29 +168,22 @@ class IToastCollection extends IInspectable {
     }
 
     final winrtUri = retValuePtr.toWinRTUri();
-    final dartUri = winrtUri.toDartUri();
-    winrtUri.release();
-
-    return dartUri;
+    return winrtUri.toDartUri();
   }
 
   set icon(Uri? value) {
     final winrtUri = value?.toWinRTUri();
 
-    try {
-      final hr = ptr.ref.vtable
-              .elementAt(12)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(LPVTBL lpVtbl, LPVTBL value)>>>()
-              .value
-              .asFunction<int Function(LPVTBL lpVtbl, LPVTBL value)>()(
-          ptr.ref.lpVtbl, winrtUri == null ? nullptr : winrtUri.ptr.ref.lpVtbl);
+    final hr = ptr.ref.vtable
+            .elementAt(12)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(LPVTBL lpVtbl, LPVTBL value)>>>()
+            .value
+            .asFunction<int Function(LPVTBL lpVtbl, LPVTBL value)>()(
+        ptr.ref.lpVtbl, winrtUri == null ? nullptr : winrtUri.ptr.ref.lpVtbl);
 
-      if (FAILED(hr)) throw WindowsException(hr);
-    } finally {
-      winrtUri?.release();
-    }
+    if (FAILED(hr)) throw WindowsException(hr);
   }
 }

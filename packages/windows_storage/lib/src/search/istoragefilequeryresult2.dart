@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -60,11 +59,10 @@ class IStorageFileQueryResult2 extends IInspectable
 
     return IMap.fromRawPointer(retValuePtr,
         iterableIid: '{f819a276-b3f5-54d4-b8fd-c9adb7f700e3}',
-        creator: (Pointer<COMObject> ptr) => IVectorView.fromRawPointer(ptr,
+        creator: (ptr) => IVectorView.fromRawPointer(ptr,
             iterableIid: '{5498f4f3-cee4-5b72-9729-815c4ad7b9dc}'));
   }
 
-  // IStorageQueryResultBase methods
   late final _iStorageQueryResultBase = IStorageQueryResultBase.from(this);
 
   @override

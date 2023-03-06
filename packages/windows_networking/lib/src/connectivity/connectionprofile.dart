@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -56,7 +55,6 @@ class ConnectionProfile extends IInspectable
         IConnectionProfile6 {
   ConnectionProfile.fromRawPointer(super.ptr);
 
-  // IConnectionProfile methods
   late final _iConnectionProfile = IConnectionProfile.from(this);
 
   @override
@@ -98,7 +96,6 @@ class ConnectionProfile extends IInspectable
   NetworkSecuritySettings? get networkSecuritySettings =>
       _iConnectionProfile.networkSecuritySettings;
 
-  // IConnectionProfile2 methods
   late final _iConnectionProfile2 = IConnectionProfile2.from(this);
 
   @override
@@ -142,7 +139,6 @@ class ConnectionProfile extends IInspectable
       _iConnectionProfile2.getConnectivityIntervalsAsync(
           startTime, endTime, states);
 
-  // IConnectionProfile3 methods
   late final _iConnectionProfile3 = IConnectionProfile3.from(this);
 
   @override
@@ -151,7 +147,6 @@ class ConnectionProfile extends IInspectable
       _iConnectionProfile3.getAttributedNetworkUsageAsync(
           startTime, endTime, states);
 
-  // IConnectionProfile4 methods
   late final _iConnectionProfile4 = IConnectionProfile4.from(this);
 
   @override
@@ -160,7 +155,6 @@ class ConnectionProfile extends IInspectable
       _iConnectionProfile4.getProviderNetworkUsageAsync(
           startTime, endTime, states);
 
-  // IConnectionProfile5 methods
   late final _iConnectionProfile5 = IConnectionProfile5.from(this);
 
   @override
@@ -170,7 +164,6 @@ class ConnectionProfile extends IInspectable
   Future<ConnectionProfileDeleteStatus> tryDeleteAsync() =>
       _iConnectionProfile5.tryDeleteAsync();
 
-  // IConnectionProfile6 methods
   late final _iConnectionProfile6 = IConnectionProfile6.from(this);
 
   @override

@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -33,7 +32,6 @@ class IPhoneNumberFormatterStatics extends IInspectable {
 
   void tryCreate(String regionCode, PhoneNumberFormatter phoneNumber) {
     final regionCodeHString = regionCode.toHString();
-    final phoneNumberPtr = phoneNumber.ptr;
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -46,18 +44,19 @@ class IPhoneNumberFormatterStatics extends IInspectable {
             .asFunction<
                 int Function(LPVTBL lpVtbl, int regionCode,
                     Pointer<COMObject> phoneNumber)>()(
-        ptr.ref.lpVtbl, regionCodeHString, phoneNumberPtr);
-
-    if (FAILED(hr)) throw WindowsException(hr);
+        ptr.ref.lpVtbl, regionCodeHString, phoneNumber.ptr);
 
     WindowsDeleteString(regionCodeHString);
+
+    if (FAILED(hr)) throw WindowsException(hr);
   }
 
   int getCountryCodeForRegion(String regionCode) {
     final retValuePtr = calloc<Int32>();
-    final regionCodeHString = regionCode.toHString();
 
     try {
+      final regionCodeHString = regionCode.toHString();
+
       final hr = ptr.ref.vtable
               .elementAt(7)
               .cast<
@@ -71,11 +70,12 @@ class IPhoneNumberFormatterStatics extends IInspectable {
                       Pointer<Int32> retValuePtr)>()(
           ptr.ref.lpVtbl, regionCodeHString, retValuePtr);
 
+      WindowsDeleteString(regionCodeHString);
+
       if (FAILED(hr)) throw WindowsException(hr);
 
       return retValuePtr.value;
     } finally {
-      WindowsDeleteString(regionCodeHString);
       free(retValuePtr);
     }
   }
@@ -83,9 +83,10 @@ class IPhoneNumberFormatterStatics extends IInspectable {
   String getNationalDirectDialingPrefixForRegion(
       String regionCode, bool stripNonDigit) {
     final retValuePtr = calloc<HSTRING>();
-    final regionCodeHString = regionCode.toHString();
 
     try {
+      final regionCodeHString = regionCode.toHString();
+
       final hr =
           ptr.ref.vtable
                   .elementAt(8)
@@ -103,11 +104,12 @@ class IPhoneNumberFormatterStatics extends IInspectable {
                           bool stripNonDigit, Pointer<IntPtr> retValuePtr)>()(
               ptr.ref.lpVtbl, regionCodeHString, stripNonDigit, retValuePtr);
 
+      WindowsDeleteString(regionCodeHString);
+
       if (FAILED(hr)) throw WindowsException(hr);
 
       return retValuePtr.toDartString();
     } finally {
-      WindowsDeleteString(regionCodeHString);
       WindowsDeleteString(retValuePtr.value);
       free(retValuePtr);
     }
@@ -115,9 +117,10 @@ class IPhoneNumberFormatterStatics extends IInspectable {
 
   String wrapWithLeftToRightMarkers(String number) {
     final retValuePtr = calloc<HSTRING>();
-    final numberHString = number.toHString();
 
     try {
+      final numberHString = number.toHString();
+
       final hr = ptr.ref.vtable
               .elementAt(9)
               .cast<
@@ -131,11 +134,12 @@ class IPhoneNumberFormatterStatics extends IInspectable {
                       Pointer<IntPtr> retValuePtr)>()(
           ptr.ref.lpVtbl, numberHString, retValuePtr);
 
+      WindowsDeleteString(numberHString);
+
       if (FAILED(hr)) throw WindowsException(hr);
 
       return retValuePtr.toDartString();
     } finally {
-      WindowsDeleteString(numberHString);
       WindowsDeleteString(retValuePtr.value);
       free(retValuePtr);
     }

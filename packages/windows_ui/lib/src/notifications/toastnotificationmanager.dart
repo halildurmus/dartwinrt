@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -39,98 +38,40 @@ class ToastNotificationManager extends IInspectable {
 
   static const _className = 'Windows.UI.Notifications.ToastNotificationManager';
 
-  // IToastNotificationManagerStatics methods
-  static ToastNotifier? createToastNotifier() {
-    final activationFactoryPtr = createActivationFactory(
-        _className, IID_IToastNotificationManagerStatics);
-    final object =
-        IToastNotificationManagerStatics.fromRawPointer(activationFactoryPtr);
+  static ToastNotifier? createToastNotifier() => createActivationFactory(
+          IToastNotificationManagerStatics.fromRawPointer,
+          _className,
+          IID_IToastNotificationManagerStatics)
+      .createToastNotifier();
 
-    try {
-      return object.createToastNotifier();
-    } finally {
-      object.release();
-    }
-  }
+  static ToastNotifier? createToastNotifierWithId(String applicationId) =>
+      createActivationFactory(IToastNotificationManagerStatics.fromRawPointer,
+              _className, IID_IToastNotificationManagerStatics)
+          .createToastNotifierWithId(applicationId);
 
-  static ToastNotifier? createToastNotifierWithId(String applicationId) {
-    final activationFactoryPtr = createActivationFactory(
-        _className, IID_IToastNotificationManagerStatics);
-    final object =
-        IToastNotificationManagerStatics.fromRawPointer(activationFactoryPtr);
+  static XmlDocument? getTemplateContent(ToastTemplateType type) =>
+      createActivationFactory(IToastNotificationManagerStatics.fromRawPointer,
+              _className, IID_IToastNotificationManagerStatics)
+          .getTemplateContent(type);
 
-    try {
-      return object.createToastNotifierWithId(applicationId);
-    } finally {
-      object.release();
-    }
-  }
+  static ToastNotificationHistory? get history => createActivationFactory(
+          IToastNotificationManagerStatics2.fromRawPointer,
+          _className,
+          IID_IToastNotificationManagerStatics2)
+      .history;
 
-  static XmlDocument? getTemplateContent(ToastTemplateType type) {
-    final activationFactoryPtr = createActivationFactory(
-        _className, IID_IToastNotificationManagerStatics);
-    final object =
-        IToastNotificationManagerStatics.fromRawPointer(activationFactoryPtr);
+  static ToastNotificationManagerForUser? getForUser(User? user) =>
+      createActivationFactory(IToastNotificationManagerStatics4.fromRawPointer,
+              _className, IID_IToastNotificationManagerStatics4)
+          .getForUser(user);
 
-    try {
-      return object.getTemplateContent(type);
-    } finally {
-      object.release();
-    }
-  }
+  static void configureNotificationMirroring(NotificationMirroring value) =>
+      createActivationFactory(IToastNotificationManagerStatics4.fromRawPointer,
+              _className, IID_IToastNotificationManagerStatics4)
+          .configureNotificationMirroring(value);
 
-  // IToastNotificationManagerStatics2 methods
-  static ToastNotificationHistory? get history {
-    final activationFactoryPtr = createActivationFactory(
-        _className, IID_IToastNotificationManagerStatics2);
-    final object =
-        IToastNotificationManagerStatics2.fromRawPointer(activationFactoryPtr);
-
-    try {
-      return object.history;
-    } finally {
-      object.release();
-    }
-  }
-
-  // IToastNotificationManagerStatics4 methods
-  static ToastNotificationManagerForUser? getForUser(User? user) {
-    final activationFactoryPtr = createActivationFactory(
-        _className, IID_IToastNotificationManagerStatics4);
-    final object =
-        IToastNotificationManagerStatics4.fromRawPointer(activationFactoryPtr);
-
-    try {
-      return object.getForUser(user);
-    } finally {
-      object.release();
-    }
-  }
-
-  static void configureNotificationMirroring(NotificationMirroring value) {
-    final activationFactoryPtr = createActivationFactory(
-        _className, IID_IToastNotificationManagerStatics4);
-    final object =
-        IToastNotificationManagerStatics4.fromRawPointer(activationFactoryPtr);
-
-    try {
-      return object.configureNotificationMirroring(value);
-    } finally {
-      object.release();
-    }
-  }
-
-  // IToastNotificationManagerStatics5 methods
-  static ToastNotificationManagerForUser? getDefault() {
-    final activationFactoryPtr = createActivationFactory(
-        _className, IID_IToastNotificationManagerStatics5);
-    final object =
-        IToastNotificationManagerStatics5.fromRawPointer(activationFactoryPtr);
-
-    try {
-      return object.getDefault();
-    } finally {
-      object.release();
-    }
-  }
+  static ToastNotificationManagerForUser? getDefault() =>
+      createActivationFactory(IToastNotificationManagerStatics5.fromRawPointer,
+              _className, IID_IToastNotificationManagerStatics5)
+          .getDefault();
 }

@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -41,9 +40,9 @@ class IToastNotificationHistory extends IInspectable {
             .asFunction<int Function(LPVTBL lpVtbl, int group)>()(
         ptr.ref.lpVtbl, groupHString);
 
-    if (FAILED(hr)) throw WindowsException(hr);
-
     WindowsDeleteString(groupHString);
+
+    if (FAILED(hr)) throw WindowsException(hr);
   }
 
   void removeGroupWithId(String group, String applicationId) {
@@ -62,10 +61,10 @@ class IToastNotificationHistory extends IInspectable {
                 int Function(LPVTBL lpVtbl, int group, int applicationId)>()(
         ptr.ref.lpVtbl, groupHString, applicationIdHString);
 
-    if (FAILED(hr)) throw WindowsException(hr);
-
     WindowsDeleteString(groupHString);
     WindowsDeleteString(applicationIdHString);
+
+    if (FAILED(hr)) throw WindowsException(hr);
   }
 
   void removeGroupedTagWithId(String tag, String group, String applicationId) {
@@ -87,11 +86,11 @@ class IToastNotificationHistory extends IInspectable {
                         int applicationId)>()(
             ptr.ref.lpVtbl, tagHString, groupHString, applicationIdHString);
 
-    if (FAILED(hr)) throw WindowsException(hr);
-
     WindowsDeleteString(tagHString);
     WindowsDeleteString(groupHString);
     WindowsDeleteString(applicationIdHString);
+
+    if (FAILED(hr)) throw WindowsException(hr);
   }
 
   void removeGroupedTag(String tag, String group) {
@@ -109,10 +108,10 @@ class IToastNotificationHistory extends IInspectable {
             .asFunction<int Function(LPVTBL lpVtbl, int tag, int group)>()(
         ptr.ref.lpVtbl, tagHString, groupHString);
 
-    if (FAILED(hr)) throw WindowsException(hr);
-
     WindowsDeleteString(tagHString);
     WindowsDeleteString(groupHString);
+
+    if (FAILED(hr)) throw WindowsException(hr);
   }
 
   void remove(String tag) {
@@ -127,9 +126,9 @@ class IToastNotificationHistory extends IInspectable {
         .asFunction<
             int Function(LPVTBL lpVtbl, int tag)>()(ptr.ref.lpVtbl, tagHString);
 
-    if (FAILED(hr)) throw WindowsException(hr);
-
     WindowsDeleteString(tagHString);
+
+    if (FAILED(hr)) throw WindowsException(hr);
   }
 
   void clear() {
@@ -157,8 +156,8 @@ class IToastNotificationHistory extends IInspectable {
                 .asFunction<int Function(LPVTBL lpVtbl, int applicationId)>()(
             ptr.ref.lpVtbl, applicationIdHString);
 
-    if (FAILED(hr)) throw WindowsException(hr);
-
     WindowsDeleteString(applicationIdHString);
+
+    if (FAILED(hr)) throw WindowsException(hr);
   }
 }

@@ -49,10 +49,11 @@ void main() {
     setUp(() {
       allocator = Arena();
       final object = createActivationFactory(
+          IInspectable.new,
           'Windows.Networking.Connectivity.NetworkInformation',
           '{5074f851-950d-4165-9c15-365619481eea}' // IID_INetworkInformationStatics,
           );
-      vectorView = getHostNames(object);
+      vectorView = getHostNames(object.ptr);
     });
 
     test('getAt throws exception if the index is out of bounds', () {

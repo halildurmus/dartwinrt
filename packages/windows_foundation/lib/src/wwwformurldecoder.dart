@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -37,21 +36,13 @@ class WwwFormUrlDecoder extends IInspectable
 
   static const _className = 'Windows.Foundation.WwwFormUrlDecoder';
 
-  // IWwwFormUrlDecoderRuntimeClassFactory methods
-  factory WwwFormUrlDecoder.createWwwFormUrlDecoder(String query) {
-    final activationFactoryPtr = createActivationFactory(
-        _className, IID_IWwwFormUrlDecoderRuntimeClassFactory);
-    final object = IWwwFormUrlDecoderRuntimeClassFactory.fromRawPointer(
-        activationFactoryPtr);
+  factory WwwFormUrlDecoder.createWwwFormUrlDecoder(String query) =>
+      createActivationFactory(
+              IWwwFormUrlDecoderRuntimeClassFactory.fromRawPointer,
+              _className,
+              IID_IWwwFormUrlDecoderRuntimeClassFactory)
+          .createWwwFormUrlDecoder(query);
 
-    try {
-      return object.createWwwFormUrlDecoder(query);
-    } finally {
-      object.release();
-    }
-  }
-
-  // IWwwFormUrlDecoderRuntimeClass methods
   late final _iWwwFormUrlDecoderRuntimeClass =
       IWwwFormUrlDecoderRuntimeClass.from(this);
 
@@ -59,7 +50,6 @@ class WwwFormUrlDecoder extends IInspectable
   String getFirstValueByName(String name) =>
       _iWwwFormUrlDecoderRuntimeClass.getFirstValueByName(name);
 
-  // IVectorView<IWwwFormUrlDecoderEntry> methods
   late final _iVectorView = IVectorView<IWwwFormUrlDecoderEntry>.fromRawPointer(
       toInterface('{b1f00d3b-1f06-5117-93ea-2a0d79116701}'),
       creator: IWwwFormUrlDecoderEntry.fromRawPointer,

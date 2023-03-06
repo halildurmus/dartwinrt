@@ -134,7 +134,7 @@ void main() {
           parameter.preamble,
           equals(
               "final propertiesToSavePtr = propertiesToSave == null ? nullptr : IInspectable(propertiesToSave.toInterface('{fe2f3d47-5d47-5499-8374-430c7cda0204}')).ptr.ref.lpVtbl;"));
-      expect(parameter.postamble, equals('propertiesToSave?.release();'));
+      expect(parameter.postamble, isEmpty);
       expect(parameter.localIdentifier, equals('propertiesToSavePtr'));
     });
 
@@ -172,8 +172,10 @@ void main() {
       final parameter = methodProjection.parameters.last;
       expect(parameter, isA<ObjectParameterProjection>());
       expect(parameter.type, equals('Object?'));
-      expect(parameter.preamble,
-          equals('final valuePtr = value?.intoBox().ref.lpVtbl ?? nullptr;'));
+      expect(
+          parameter.preamble,
+          equals(
+              'final valuePtr = value?.intoBox().ptr.ref.lpVtbl ?? nullptr;'));
       expect(parameter.postamble, isEmpty);
       expect(parameter.localIdentifier, equals('valuePtr'));
     });
@@ -278,7 +280,7 @@ void main() {
       expect(parameter, isA<UriParameterProjection>());
       expect(parameter.type, equals('Uri?'));
       expect(parameter.preamble, equals('final uriUri = uri?.toWinRTUri();'));
-      expect(parameter.postamble, equals('uriUri?.release();'));
+      expect(parameter.postamble, isEmpty);
       expect(parameter.localIdentifier,
           equals('uriUri == null ? nullptr : uriUri.ptr.ref.lpVtbl'));
     });

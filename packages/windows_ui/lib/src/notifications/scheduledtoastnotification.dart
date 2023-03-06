@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -39,40 +38,22 @@ class ScheduledToastNotification extends IInspectable
   static const _className =
       'Windows.UI.Notifications.ScheduledToastNotification';
 
-  // IScheduledToastNotificationFactory methods
   factory ScheduledToastNotification.createScheduledToastNotification(
-      XmlDocument content, DateTime deliveryTime) {
-    final activationFactoryPtr = createActivationFactory(
-        _className, IID_IScheduledToastNotificationFactory);
-    final object =
-        IScheduledToastNotificationFactory.fromRawPointer(activationFactoryPtr);
-
-    try {
-      return object.createScheduledToastNotification(content, deliveryTime);
-    } finally {
-      object.release();
-    }
-  }
+          XmlDocument content, DateTime deliveryTime) =>
+      createActivationFactory(IScheduledToastNotificationFactory.fromRawPointer,
+              _className, IID_IScheduledToastNotificationFactory)
+          .createScheduledToastNotification(content, deliveryTime);
 
   factory ScheduledToastNotification.createScheduledToastNotificationRecurring(
-      XmlDocument content,
-      DateTime deliveryTime,
-      Duration snoozeInterval,
-      int maximumSnoozeCount) {
-    final activationFactoryPtr = createActivationFactory(
-        _className, IID_IScheduledToastNotificationFactory);
-    final object =
-        IScheduledToastNotificationFactory.fromRawPointer(activationFactoryPtr);
+          XmlDocument content,
+          DateTime deliveryTime,
+          Duration snoozeInterval,
+          int maximumSnoozeCount) =>
+      createActivationFactory(IScheduledToastNotificationFactory.fromRawPointer,
+              _className, IID_IScheduledToastNotificationFactory)
+          .createScheduledToastNotificationRecurring(
+              content, deliveryTime, snoozeInterval, maximumSnoozeCount);
 
-    try {
-      return object.createScheduledToastNotificationRecurring(
-          content, deliveryTime, snoozeInterval, maximumSnoozeCount);
-    } finally {
-      object.release();
-    }
-  }
-
-  // IScheduledToastNotification methods
   late final _iScheduledToastNotification =
       IScheduledToastNotification.from(this);
 
@@ -94,7 +75,6 @@ class ScheduledToastNotification extends IInspectable
   @override
   String get id => _iScheduledToastNotification.id;
 
-  // IScheduledToastNotification2 methods
   late final _iScheduledToastNotification2 =
       IScheduledToastNotification2.from(this);
 
@@ -117,7 +97,6 @@ class ScheduledToastNotification extends IInspectable
   @override
   bool get suppressPopup => _iScheduledToastNotification2.suppressPopup;
 
-  // IScheduledToastNotification3 methods
   late final _iScheduledToastNotification3 =
       IScheduledToastNotification3.from(this);
 
@@ -135,7 +114,6 @@ class ScheduledToastNotification extends IInspectable
   @override
   set remoteId(String value) => _iScheduledToastNotification3.remoteId = value;
 
-  // IScheduledToastNotification4 methods
   late final _iScheduledToastNotification4 =
       IScheduledToastNotification4.from(this);
 

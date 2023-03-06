@@ -39,12 +39,11 @@ abstract class IMap<K, V> extends IInspectable
         _enumCreator = enumCreator,
         _iterableIid = iterableIid,
         _intType = intType {
-    _iterableCreator = (Pointer<COMObject> ptr) =>
-        IKeyValuePair<K, V>.fromRawPointer(ptr,
-            creator: creator,
-            enumKeyCreator: enumKeyCreator,
-            enumCreator: enumCreator,
-            intType: intType);
+    _iterableCreator = (ptr) => IKeyValuePair<K, V>.fromRawPointer(ptr,
+        creator: creator,
+        enumKeyCreator: enumKeyCreator,
+        enumCreator: enumCreator,
+        intType: intType);
   }
 
   final String _iterableIid;
@@ -61,29 +60,23 @@ abstract class IMap<K, V> extends IInspectable
   factory IMap.empty() {
     if (K == Guid && isNullableObjectType<V>()) {
       final mediaPropertySet = MediaPropertySet();
-      final mapPtr = mediaPropertySet.toInterface(IID_IMap_Guid_Object);
-      mediaPropertySet.release();
-
-      return IMap.fromRawPointer(mapPtr,
+      return IMap.fromRawPointer(
+          mediaPropertySet.toInterface(IID_IMap_Guid_Object),
           iterableIid: IID_IIterable_IKeyValuePair_Guid_Object);
     }
 
     if (K == String) {
       if (V == String) {
         final stringMap = StringMap();
-        final mapPtr = stringMap.toInterface(IID_IMap_String_String);
-        stringMap.release();
-
-        return IMap.fromRawPointer(mapPtr,
+        return IMap.fromRawPointer(
+            stringMap.toInterface(IID_IMap_String_String),
             iterableIid: IID_IIterable_IKeyValuePair_String_String);
       }
 
       if (isNullableObjectType<V>()) {
         final propertySet = PropertySet();
-        final mapPtr = propertySet.toInterface(IID_IMap_String_Object);
-        propertySet.release();
-
-        return IMap.fromRawPointer(mapPtr,
+        return IMap.fromRawPointer(
+            propertySet.toInterface(IID_IMap_String_Object),
             iterableIid: IID_IIterable_IKeyValuePair_String_Object);
       }
     }
@@ -282,10 +275,7 @@ abstract class IMap<K, V> extends IInspectable
         enumCreator: _enumCreator,
         intType: _intType,
         iterableIid: _iterableIid);
-    final map = mapView.toMap();
-    mapView.release();
-
-    return map;
+    return mapView.toMap();
   }
 
   /// Inserts or replaces an item in the map.
@@ -317,20 +307,10 @@ abstract class IMap<K, V> extends IInspectable
     if (size == 0) return Map.unmodifiable({});
 
     final iterator = first();
-
-    try {
-      final keyValuePairs = <IKeyValuePair<K, V>>[];
-      iterator.getMany(size, keyValuePairs);
-      final map = Map.fromEntries(
-          keyValuePairs.map((kvp) => MapEntry(kvp.key, kvp.value)));
-
-      for (final kvp in keyValuePairs) {
-        kvp.release();
-      }
-
-      return Map.unmodifiable(map);
-    } finally {
-      iterator.release();
-    }
+    final keyValuePairs = <IKeyValuePair<K, V>>[];
+    iterator.getMany(size, keyValuePairs);
+    final map = Map.fromEntries(
+        keyValuePairs.map((kvp) => MapEntry(kvp.key, kvp.value)));
+    return Map.unmodifiable(map);
   }
 }

@@ -33,12 +33,11 @@ abstract class IMapView<K, V> extends IInspectable
   })  : _creator = creator,
         _enumCreator = enumCreator,
         _iterableIid = iterableIid {
-    _iterableCreator = (Pointer<COMObject> ptr) =>
-        IKeyValuePair<K, V>.fromRawPointer(ptr,
-            creator: creator,
-            enumKeyCreator: enumKeyCreator,
-            enumCreator: enumCreator,
-            intType: intType);
+    _iterableCreator = (ptr) => IKeyValuePair<K, V>.fromRawPointer(ptr,
+        creator: creator,
+        enumKeyCreator: enumKeyCreator,
+        enumCreator: enumCreator,
+        intType: intType);
   }
 
   final String _iterableIid;
@@ -230,21 +229,12 @@ abstract class IMapView<K, V> extends IInspectable
   /// Creates an unmodifiable [Map] from the current [IMapView] instance.
   Map<K, V> toMap() {
     if (size == 0) return Map.unmodifiable({});
+
     final iterator = first();
-
-    try {
-      final keyValuePairs = <IKeyValuePair<K, V>>[];
-      iterator.getMany(size, keyValuePairs);
-      final map = Map.fromEntries(
-          keyValuePairs.map((kvp) => MapEntry(kvp.key, kvp.value)));
-
-      for (final kvp in keyValuePairs) {
-        kvp.release();
-      }
-
-      return Map.unmodifiable(map);
-    } finally {
-      iterator.release();
-    }
+    final keyValuePairs = <IKeyValuePair<K, V>>[];
+    iterator.getMany(size, keyValuePairs);
+    final map = Map.fromEntries(
+        keyValuePairs.map((kvp) => MapEntry(kvp.key, kvp.value)));
+    return Map.unmodifiable(map);
   }
 }

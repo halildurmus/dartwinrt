@@ -16,14 +16,12 @@ mixin _DateTimeMixin on MethodProjection {
   String get methodDeclaration => '''
   $methodHeader {
     final retValuePtr = calloc<${returnTypeProjection.nativeType}>();
-    $parametersPreamble
 
     try {
       ${ffiCall()}
 
       return retValuePtr.toDartDateTime();
     } finally {
-      $parametersPostamble
       free(retValuePtr);
     }
   }
@@ -49,7 +47,6 @@ mixin _DateTimeListMixin on MethodProjection {
   $methodHeader {
     final pValueSize = calloc<Uint32>();
     final retValuePtr = calloc<Pointer<Uint64>>();
-    $parametersPreamble
 
     try {
       ${ffiCall()}
@@ -57,7 +54,6 @@ mixin _DateTimeListMixin on MethodProjection {
       return retValuePtr.value.toList(length: pValueSize.value).map((value) =>
           DateTime.utc(1601, 01, 01).add(Duration(microseconds: value ~/ 10)));
     } finally {
-      $parametersPostamble
       free(pValueSize);
       free(retValuePtr);
     }
@@ -84,7 +80,7 @@ class DateTimeSetterProjection extends SetterProjection {
   @override
   String get methodDeclaration => '''
   $methodHeader {
-    ${ffiCall(params: 'value.toWinRTDateTime()')}
+    ${ffiCall(identifier: 'value.toWinRTDateTime()')}
   }
 ''';
 }

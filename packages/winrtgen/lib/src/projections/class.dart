@@ -5,10 +5,10 @@
 import 'package:winmd/winmd.dart';
 
 import '../constants/constants.dart';
+import '../extensions/extensions.dart';
 import '../utils.dart';
-import 'factory_constructors.dart';
 import 'interface.dart';
-import 'static_methods.dart';
+import 'method.dart';
 
 class ClassProjection extends InterfaceProjection {
   ClassProjection(super.typeDef, {super.comment});
@@ -64,13 +64,17 @@ class ClassProjection extends InterfaceProjection {
       .toList()
     ..sort();
 
-  List<FactoryConstructorsProjection>? _factoryConstructors;
+  List<FactoryConstructorProjection>? _factoryConstructors;
 
-  List<FactoryConstructorsProjection> get factoryConstructors =>
+  List<FactoryConstructorProjection> get factoryConstructors =>
       _factoryConstructors ??= _cacheFactoryConstructors();
 
-  List<FactoryConstructorsProjection> _cacheFactoryConstructors() =>
-      factoryInterfaces.map(FactoryConstructorsProjection.new).toList();
+  List<FactoryConstructorProjection> _cacheFactoryConstructors() => [
+        for (final interface in factoryInterfaces)
+          ...InterfaceProjection.from(interface)
+              .methodProjections
+              .map(FactoryConstructorProjection.new)
+      ];
 
   List<String> get staticInterfaces => typeDef.customAttributes
       .where((attribute) => attribute.name == staticAttribute)
@@ -80,13 +84,17 @@ class ClassProjection extends InterfaceProjection {
     ..removeWhere(excludedStaticInterfaces.contains)
     ..sort();
 
-  List<StaticMethodsProjection>? _staticMethods;
+  List<StaticMethodProjection>? _staticMethods;
 
-  List<StaticMethodsProjection> get staticMethods =>
+  List<StaticMethodProjection> get staticMethods =>
       _staticMethods ??= _cacheStaticMethods();
 
-  List<StaticMethodsProjection> _cacheStaticMethods() =>
-      staticInterfaces.map(StaticMethodsProjection.new).toList();
+  List<StaticMethodProjection> _cacheStaticMethods() => [
+        for (final interface in staticInterfaces)
+          ...InterfaceProjection.from(interface)
+              .methodProjections
+              .map(StaticMethodProjection.new)
+      ];
 
   @override
   String toString() => '''
@@ -104,5 +112,39 @@ $classHeader {
   ${staticMethods.join('\n')}
   ${methodForwarders.join('\n')}
 }
+''';
+}
+
+class FactoryConstructorProjection {
+  FactoryConstructorProjection(this.method)
+      : className = method.methodHeader.split(' ').first,
+        shortName = method.method.parent.shortName;
+
+  final MethodProjection method;
+  final String className;
+  final String shortName;
+
+  @override
+  String toString() => '''
+  factory $className.${method.camelCasedName}(${method.methodParams}) =>
+      createActivationFactory(
+              $shortName.fromRawPointer, _className, IID_$shortName)
+          .${method.shortForm};
+''';
+}
+
+class StaticMethodProjection {
+  StaticMethodProjection(this.method)
+      : shortName = method.method.parent.shortName;
+
+  final MethodProjection method;
+  final String shortName;
+
+  @override
+  String toString() => '''
+  static ${method.methodHeader} =>
+      createActivationFactory(
+              $shortName.fromRawPointer, _className, IID_$shortName)
+          .${method.shortForm};
 ''';
 }

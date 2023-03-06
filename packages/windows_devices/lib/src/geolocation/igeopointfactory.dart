@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -51,12 +50,12 @@ class IGeopointFactory extends IInspectable {
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, positionNativeStructPtr.ref, retValuePtr);
 
+    free(positionNativeStructPtr);
+
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
-
-    free(positionNativeStructPtr);
 
     return Geopoint.fromRawPointer(retValuePtr);
   }
@@ -88,12 +87,12 @@ class IGeopointFactory extends IInspectable {
         altitudeReferenceSystem.value,
         retValuePtr);
 
+    free(positionNativeStructPtr);
+
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
-
-    free(positionNativeStructPtr);
 
     return Geopoint.fromRawPointer(retValuePtr);
   }
@@ -130,12 +129,12 @@ class IGeopointFactory extends IInspectable {
         spatialReferenceId,
         retValuePtr);
 
+    free(positionNativeStructPtr);
+
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
-
-    free(positionNativeStructPtr);
 
     return Geopoint.fromRawPointer(retValuePtr);
   }

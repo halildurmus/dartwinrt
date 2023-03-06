@@ -193,10 +193,7 @@ abstract class IVector<T> extends IInspectable implements IIterable<T> {
         enumCreator: _enumCreator,
         intType: _intType,
         iterableIid: _iterableIid);
-    final list = vectorView.toList();
-    vectorView.release();
-
-    return list;
+    return vectorView.toList();
   }
 
   /// Retrieves the index of a specified item in the vector.
@@ -262,6 +259,7 @@ abstract class IVector<T> extends IInspectable implements IIterable<T> {
   /// Creates an unmodifiable [List] from the current [IVector] instance.
   List<T> toList() {
     if (size == 0) return List.unmodifiable(<T>[]);
+
     final list = <T>[];
     getMany(0, size, list);
     return List.unmodifiable(list);

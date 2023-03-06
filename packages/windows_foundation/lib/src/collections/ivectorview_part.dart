@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 part of 'ivectorview.dart';
 
@@ -72,9 +71,10 @@ class _IVectorViewBool extends IVectorView<bool> {
   @override
   int getMany(int startIndex, int valueSize, List<bool> value) {
     final retValuePtr = calloc<Uint32>();
-    final pArray = calloc<Bool>(valueSize);
 
     try {
+      final pArray = calloc<Bool>(valueSize);
+
       final hr = ptr.ref.vtable
               .elementAt(9)
               .cast<
@@ -92,14 +92,15 @@ class _IVectorViewBool extends IVectorView<bool> {
                       Pointer<Bool> value, Pointer<Uint32> retValuePtr)>()(
           ptr.ref.lpVtbl, startIndex, valueSize, pArray, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      return retValuePtr.value;
-    } finally {
       if (retValuePtr.value > 0) {
         value.addAll(pArray.toList(length: valueSize));
       }
       free(pArray);
+
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      return retValuePtr.value;
+    } finally {
       free(retValuePtr);
     }
   }
@@ -137,9 +138,10 @@ class _IVectorViewGuid extends IVectorView<Guid> {
   @override
   bool indexOf(Guid value, Pointer<Uint32> index) {
     final retValuePtr = calloc<Bool>();
-    final valueNativeGuidPtr = value.toNativeGUID();
 
     try {
+      final valueNativeGuidPtr = value.toNativeGUID();
+
       final hr =
           ptr.ref.vtable
                   .elementAt(8)
@@ -157,11 +159,12 @@ class _IVectorViewGuid extends IVectorView<Guid> {
                           Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
               ptr.ref.lpVtbl, valueNativeGuidPtr.ref, index, retValuePtr);
 
+      free(valueNativeGuidPtr);
+
       if (FAILED(hr)) throw WindowsException(hr);
 
       return retValuePtr.value;
     } finally {
-      free(valueNativeGuidPtr);
       free(retValuePtr);
     }
   }
@@ -169,9 +172,10 @@ class _IVectorViewGuid extends IVectorView<Guid> {
   @override
   int getMany(int startIndex, int valueSize, List<Guid> value) {
     final retValuePtr = calloc<Uint32>();
-    final pArray = calloc<GUID>(valueSize);
 
     try {
+      final pArray = calloc<GUID>(valueSize);
+
       final hr = ptr.ref.vtable
               .elementAt(9)
               .cast<
@@ -189,14 +193,15 @@ class _IVectorViewGuid extends IVectorView<Guid> {
                       Pointer<GUID> value, Pointer<Uint32> retValuePtr)>()(
           ptr.ref.lpVtbl, startIndex, valueSize, pArray, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      return retValuePtr.value;
-    } finally {
       if (retValuePtr.value > 0) {
         value.addAll(pArray.toList(length: valueSize));
       }
       free(pArray);
+
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      return retValuePtr.value;
+    } finally {
       free(retValuePtr);
     }
   }
@@ -267,9 +272,10 @@ class _IVectorViewInspectable<T> extends IVectorView<T> {
   @override
   int getMany(int startIndex, int valueSize, List<T> value) {
     final retValuePtr = calloc<Uint32>();
-    final pArray = calloc<COMObject>(valueSize);
 
     try {
+      final pArray = calloc<COMObject>(valueSize);
+
       final hr = ptr.ref.vtable
               .elementAt(9)
               .cast<
@@ -287,14 +293,15 @@ class _IVectorViewInspectable<T> extends IVectorView<T> {
                       Pointer<COMObject> value, Pointer<Uint32> retValuePtr)>()(
           ptr.ref.lpVtbl, startIndex, valueSize, pArray, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      return retValuePtr.value;
-    } finally {
       if (retValuePtr.value > 0) {
         value.addAll(pArray.toList(_creator!, length: valueSize));
       }
       free(pArray);
+
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      return retValuePtr.value;
+    } finally {
       free(retValuePtr);
     }
   }
@@ -363,9 +370,10 @@ class _IVectorViewInt16 extends IVectorView<int> {
   @override
   int getMany(int startIndex, int valueSize, List<int> value) {
     final retValuePtr = calloc<Uint32>();
-    final pArray = calloc<Int16>(valueSize);
 
     try {
+      final pArray = calloc<Int16>(valueSize);
+
       final hr = ptr.ref.vtable
               .elementAt(9)
               .cast<
@@ -383,14 +391,15 @@ class _IVectorViewInt16 extends IVectorView<int> {
                       Pointer<Int16> value, Pointer<Uint32> retValuePtr)>()(
           ptr.ref.lpVtbl, startIndex, valueSize, pArray, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      return retValuePtr.value;
-    } finally {
       if (retValuePtr.value > 0) {
         value.addAll(pArray.toList(length: valueSize));
       }
       free(pArray);
+
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      return retValuePtr.value;
+    } finally {
       free(retValuePtr);
     }
   }
@@ -459,9 +468,10 @@ class _IVectorViewInt32 extends IVectorView<int> {
   @override
   int getMany(int startIndex, int valueSize, List<int> value) {
     final retValuePtr = calloc<Uint32>();
-    final pArray = calloc<Int32>(valueSize);
 
     try {
+      final pArray = calloc<Int32>(valueSize);
+
       final hr = ptr.ref.vtable
               .elementAt(9)
               .cast<
@@ -479,14 +489,15 @@ class _IVectorViewInt32 extends IVectorView<int> {
                       Pointer<Int32> value, Pointer<Uint32> retValuePtr)>()(
           ptr.ref.lpVtbl, startIndex, valueSize, pArray, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      return retValuePtr.value;
-    } finally {
       if (retValuePtr.value > 0) {
         value.addAll(pArray.toList(length: valueSize));
       }
       free(pArray);
+
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      return retValuePtr.value;
+    } finally {
       free(retValuePtr);
     }
   }
@@ -555,9 +566,10 @@ class _IVectorViewInt64 extends IVectorView<int> {
   @override
   int getMany(int startIndex, int valueSize, List<int> value) {
     final retValuePtr = calloc<Uint32>();
-    final pArray = calloc<Int64>(valueSize);
 
     try {
+      final pArray = calloc<Int64>(valueSize);
+
       final hr = ptr.ref.vtable
               .elementAt(9)
               .cast<
@@ -575,14 +587,15 @@ class _IVectorViewInt64 extends IVectorView<int> {
                       Pointer<Int64> value, Pointer<Uint32> retValuePtr)>()(
           ptr.ref.lpVtbl, startIndex, valueSize, pArray, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      return retValuePtr.value;
-    } finally {
       if (retValuePtr.value > 0) {
         value.addAll(pArray.toList(length: valueSize));
       }
       free(pArray);
+
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      return retValuePtr.value;
+    } finally {
       free(retValuePtr);
     }
   }
@@ -621,9 +634,10 @@ class _IVectorViewString extends IVectorView<String> {
   @override
   bool indexOf(String value, Pointer<Uint32> index) {
     final retValuePtr = calloc<Bool>();
-    final valueHString = value.toHString();
 
     try {
+      final valueHString = value.toHString();
+
       final hr =
           ptr.ref.vtable
                   .elementAt(8)
@@ -641,11 +655,12 @@ class _IVectorViewString extends IVectorView<String> {
                           Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
               ptr.ref.lpVtbl, valueHString, index, retValuePtr);
 
+      WindowsDeleteString(valueHString);
+
       if (FAILED(hr)) throw WindowsException(hr);
 
       return retValuePtr.value;
     } finally {
-      WindowsDeleteString(valueHString);
       free(retValuePtr);
     }
   }
@@ -653,9 +668,10 @@ class _IVectorViewString extends IVectorView<String> {
   @override
   int getMany(int startIndex, int valueSize, List<String> value) {
     final retValuePtr = calloc<Uint32>();
-    final pArray = calloc<IntPtr>(valueSize);
 
     try {
+      final pArray = calloc<IntPtr>(valueSize);
+
       final hr = ptr.ref.vtable
               .elementAt(9)
               .cast<
@@ -673,14 +689,15 @@ class _IVectorViewString extends IVectorView<String> {
                       Pointer<IntPtr> value, Pointer<Uint32> retValuePtr)>()(
           ptr.ref.lpVtbl, startIndex, valueSize, pArray, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      return retValuePtr.value;
-    } finally {
       if (retValuePtr.value > 0) {
         value.addAll(pArray.toList(length: valueSize));
       }
       free(pArray);
+
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      return retValuePtr.value;
+    } finally {
       free(retValuePtr);
     }
   }
@@ -749,9 +766,10 @@ class _IVectorViewUint8 extends IVectorView<int> {
   @override
   int getMany(int startIndex, int valueSize, List<int> value) {
     final retValuePtr = calloc<Uint32>();
-    final pArray = calloc<Uint8>(valueSize);
 
     try {
+      final pArray = calloc<Uint8>(valueSize);
+
       final hr = ptr.ref.vtable
               .elementAt(9)
               .cast<
@@ -769,14 +787,15 @@ class _IVectorViewUint8 extends IVectorView<int> {
                       Pointer<Uint8> value, Pointer<Uint32> retValuePtr)>()(
           ptr.ref.lpVtbl, startIndex, valueSize, pArray, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      return retValuePtr.value;
-    } finally {
       if (retValuePtr.value > 0) {
         value.addAll(pArray.toList(length: valueSize));
       }
       free(pArray);
+
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      return retValuePtr.value;
+    } finally {
       free(retValuePtr);
     }
   }
@@ -845,9 +864,10 @@ class _IVectorViewUint16 extends IVectorView<int> {
   @override
   int getMany(int startIndex, int valueSize, List<int> value) {
     final retValuePtr = calloc<Uint32>();
-    final pArray = calloc<Uint16>(valueSize);
 
     try {
+      final pArray = calloc<Uint16>(valueSize);
+
       final hr = ptr.ref.vtable
               .elementAt(9)
               .cast<
@@ -865,14 +885,15 @@ class _IVectorViewUint16 extends IVectorView<int> {
                       Pointer<Uint16> value, Pointer<Uint32> retValuePtr)>()(
           ptr.ref.lpVtbl, startIndex, valueSize, pArray, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      return retValuePtr.value;
-    } finally {
       if (retValuePtr.value > 0) {
         value.addAll(pArray.toList(length: valueSize));
       }
       free(pArray);
+
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      return retValuePtr.value;
+    } finally {
       free(retValuePtr);
     }
   }
@@ -941,9 +962,10 @@ class _IVectorViewUint32 extends IVectorView<int> {
   @override
   int getMany(int startIndex, int valueSize, List<int> value) {
     final retValuePtr = calloc<Uint32>();
-    final pArray = calloc<Uint32>(valueSize);
 
     try {
+      final pArray = calloc<Uint32>(valueSize);
+
       final hr = ptr.ref.vtable
               .elementAt(9)
               .cast<
@@ -961,14 +983,15 @@ class _IVectorViewUint32 extends IVectorView<int> {
                       Pointer<Uint32> value, Pointer<Uint32> retValuePtr)>()(
           ptr.ref.lpVtbl, startIndex, valueSize, pArray, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      return retValuePtr.value;
-    } finally {
       if (retValuePtr.value > 0) {
         value.addAll(pArray.toList(length: valueSize));
       }
       free(pArray);
+
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      return retValuePtr.value;
+    } finally {
       free(retValuePtr);
     }
   }
@@ -1037,9 +1060,10 @@ class _IVectorViewUint64 extends IVectorView<int> {
   @override
   int getMany(int startIndex, int valueSize, List<int> value) {
     final retValuePtr = calloc<Uint32>();
-    final pArray = calloc<Uint64>(valueSize);
 
     try {
+      final pArray = calloc<Uint64>(valueSize);
+
       final hr = ptr.ref.vtable
               .elementAt(9)
               .cast<
@@ -1057,14 +1081,15 @@ class _IVectorViewUint64 extends IVectorView<int> {
                       Pointer<Uint64> value, Pointer<Uint32> retValuePtr)>()(
           ptr.ref.lpVtbl, startIndex, valueSize, pArray, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      return retValuePtr.value;
-    } finally {
       if (retValuePtr.value > 0) {
         value.addAll(pArray.toList(length: valueSize));
       }
       free(pArray);
+
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      return retValuePtr.value;
+    } finally {
       free(retValuePtr);
     }
   }
@@ -1096,18 +1121,16 @@ class _IVectorViewUri extends IVectorView<Uri> {
     }
 
     final winrtUri = retValuePtr.toWinRTUri();
-    final dartUri = winrtUri.toDartUri();
-    winrtUri.release();
-
-    return dartUri;
+    return winrtUri.toDartUri();
   }
 
   @override
   bool indexOf(Uri value, Pointer<Uint32> index) {
     final retValuePtr = calloc<Bool>();
-    final valueUri = value.toWinRTUri();
 
     try {
+      final valueUri = value.toWinRTUri();
+
       final hr =
           ptr.ref.vtable
                   .elementAt(8)
@@ -1129,7 +1152,6 @@ class _IVectorViewUri extends IVectorView<Uri> {
 
       return retValuePtr.value;
     } finally {
-      valueUri.release();
       free(retValuePtr);
     }
   }
@@ -1137,9 +1159,10 @@ class _IVectorViewUri extends IVectorView<Uri> {
   @override
   int getMany(int startIndex, int valueSize, List<Uri> value) {
     final retValuePtr = calloc<Uint32>();
-    final pArray = calloc<COMObject>(valueSize);
 
     try {
+      final pArray = calloc<COMObject>(valueSize);
+
       final hr = ptr.ref.vtable
               .elementAt(9)
               .cast<
@@ -1157,14 +1180,15 @@ class _IVectorViewUri extends IVectorView<Uri> {
                       Pointer<COMObject> value, Pointer<Uint32> retValuePtr)>()(
           ptr.ref.lpVtbl, startIndex, valueSize, pArray, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      return retValuePtr.value;
-    } finally {
       if (retValuePtr.value > 0) {
         value.addAll(pArray.toDartUriList(length: valueSize));
       }
       free(pArray);
+
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      return retValuePtr.value;
+    } finally {
       free(retValuePtr);
     }
   }
@@ -1233,9 +1257,10 @@ class _IVectorViewWinRTEnum<T> extends IVectorView<T> {
   @override
   int getMany(int startIndex, int valueSize, List<T> value) {
     final retValuePtr = calloc<Uint32>();
-    final pArray = calloc<Int32>(valueSize);
 
     try {
+      final pArray = calloc<Int32>(valueSize);
+
       final hr = ptr.ref.vtable
               .elementAt(9)
               .cast<
@@ -1253,14 +1278,15 @@ class _IVectorViewWinRTEnum<T> extends IVectorView<T> {
                       Pointer<Int32> value, Pointer<Uint32> retValuePtr)>()(
           ptr.ref.lpVtbl, startIndex, valueSize, pArray, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      return retValuePtr.value;
-    } finally {
       if (retValuePtr.value > 0) {
         value.addAll(pArray.toList(length: valueSize).map(_enumCreator!));
       }
       free(pArray);
+
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      return retValuePtr.value;
+    } finally {
       free(retValuePtr);
     }
   }
@@ -1329,9 +1355,10 @@ class _IVectorViewWinRTFlagsEnum<T> extends IVectorView<T> {
   @override
   int getMany(int startIndex, int valueSize, List<T> value) {
     final retValuePtr = calloc<Uint32>();
-    final pArray = calloc<Uint32>(valueSize);
 
     try {
+      final pArray = calloc<Uint32>(valueSize);
+
       final hr = ptr.ref.vtable
               .elementAt(9)
               .cast<
@@ -1349,14 +1376,15 @@ class _IVectorViewWinRTFlagsEnum<T> extends IVectorView<T> {
                       Pointer<Uint32> value, Pointer<Uint32> retValuePtr)>()(
           ptr.ref.lpVtbl, startIndex, valueSize, pArray, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      return retValuePtr.value;
-    } finally {
       if (retValuePtr.value > 0) {
         value.addAll(pArray.toList(length: valueSize).map(_enumCreator!));
       }
       free(pArray);
+
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      return retValuePtr.value;
+    } finally {
       free(retValuePtr);
     }
   }

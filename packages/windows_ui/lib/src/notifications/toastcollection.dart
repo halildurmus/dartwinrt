@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -27,22 +26,12 @@ class ToastCollection extends IInspectable implements IToastCollection {
 
   static const _className = 'Windows.UI.Notifications.ToastCollection';
 
-  // IToastCollectionFactory methods
   factory ToastCollection.createInstance(String collectionId,
-      String displayName, String launchArgs, Uri? iconUri) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IToastCollectionFactory);
-    final object = IToastCollectionFactory.fromRawPointer(activationFactoryPtr);
+          String displayName, String launchArgs, Uri? iconUri) =>
+      createActivationFactory(IToastCollectionFactory.fromRawPointer,
+              _className, IID_IToastCollectionFactory)
+          .createInstance(collectionId, displayName, launchArgs, iconUri);
 
-    try {
-      return object.createInstance(
-          collectionId, displayName, launchArgs, iconUri);
-    } finally {
-      object.release();
-    }
-  }
-
-  // IToastCollection methods
   late final _iToastCollection = IToastCollection.from(this);
 
   @override

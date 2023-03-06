@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -40,20 +39,12 @@ class FileSavePicker extends IInspectable
 
   static const _className = 'Windows.Storage.Pickers.FileSavePicker';
 
-  // IFileSavePickerStatics methods
-  static FileSavePicker? createForUser(User? user) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IFileSavePickerStatics);
-    final object = IFileSavePickerStatics.fromRawPointer(activationFactoryPtr);
+  static FileSavePicker? createForUser(User? user) => createActivationFactory(
+          IFileSavePickerStatics.fromRawPointer,
+          _className,
+          IID_IFileSavePickerStatics)
+      .createForUser(user);
 
-    try {
-      return object.createForUser(user);
-    } finally {
-      object.release();
-    }
-  }
-
-  // IFileSavePicker2 methods
   late final _iFileSavePicker2 = IFileSavePicker2.from(this);
 
   @override
@@ -63,7 +54,6 @@ class FileSavePicker extends IInspectable
   @override
   void pickSaveFileAndContinue() => _iFileSavePicker2.pickSaveFileAndContinue();
 
-  // IFileSavePicker3 methods
   late final _iFileSavePicker3 = IFileSavePicker3.from(this);
 
   @override
@@ -72,7 +62,6 @@ class FileSavePicker extends IInspectable
   @override
   set enterpriseId(String value) => _iFileSavePicker3.enterpriseId = value;
 
-  // IFileSavePicker methods
   late final _iFileSavePicker = IFileSavePicker.from(this);
 
   @override
@@ -126,7 +115,6 @@ class FileSavePicker extends IInspectable
   Future<StorageFile?> pickSaveFileAsync() =>
       _iFileSavePicker.pickSaveFileAsync();
 
-  // IFileSavePicker4 methods
   late final _iFileSavePicker4 = IFileSavePicker4.from(this);
 
   @override

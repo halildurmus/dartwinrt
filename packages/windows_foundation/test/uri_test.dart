@@ -36,16 +36,16 @@ void main() {
     expect(winrtUri.path, equals('/path/to/file.html'));
     expect(winrtUri.extension, equals('.html'));
     expect(winrtUri.query, equals('?q1=v1&q2=v2'));
-    final queryParsed = winrtUri.queryParsed;
-    expect(queryParsed!.size, equals(2));
+    final queryParsed = winrtUri.queryParsed!;
+    expect(queryParsed.size, equals(2));
     final queryParameters = queryParsed.toList();
     expect(queryParameters.length, equals(2));
-    expect(queryParameters.first.name, equals('q1'));
-    expect(queryParameters.first.value, equals('v1'));
-    expect(queryParameters.last.name, equals('q2'));
-    expect(queryParameters.last.value, equals('v2'));
+    final firstQueryParam = queryParameters.first;
+    expect(firstQueryParam.name, equals('q1'));
+    expect(firstQueryParam.value, equals('v1'));
+    final lastQueryParam = queryParameters.last;
+    expect(lastQueryParam.name, equals('q2'));
+    expect(lastQueryParam.value, equals('v2'));
     expect(winrtUri.fragment, equals('#fragment'));
-
-    winrtUri.release();
   });
 }

@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -29,25 +28,16 @@ class EndpointPair extends IInspectable implements IEndpointPair {
 
   static const _className = 'Windows.Networking.EndpointPair';
 
-  // IEndpointPairFactory methods
   factory EndpointPair.createEndpointPair(
-      HostName localHostName,
-      String localServiceName,
-      HostName remoteHostName,
-      String remoteServiceName) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IEndpointPairFactory);
-    final object = IEndpointPairFactory.fromRawPointer(activationFactoryPtr);
+          HostName localHostName,
+          String localServiceName,
+          HostName remoteHostName,
+          String remoteServiceName) =>
+      createActivationFactory(IEndpointPairFactory.fromRawPointer, _className,
+              IID_IEndpointPairFactory)
+          .createEndpointPair(localHostName, localServiceName, remoteHostName,
+              remoteServiceName);
 
-    try {
-      return object.createEndpointPair(
-          localHostName, localServiceName, remoteHostName, remoteServiceName);
-    } finally {
-      object.release();
-    }
-  }
-
-  // IEndpointPair methods
   late final _iEndpointPair = IEndpointPair.from(this);
 
   @override

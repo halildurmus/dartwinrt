@@ -33,7 +33,4 @@ void main() {
 
   final dateTime = calendar.getDateTime();
   print(dateTime);
-
-  clonedCalendar.release();
-  calendar.release();
 }

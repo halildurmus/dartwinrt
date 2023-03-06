@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -51,12 +50,12 @@ class IStorageProvider2 extends IInspectable implements IStorageProvider {
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, propertyCanonicalNameHString, retValuePtr);
 
+    WindowsDeleteString(propertyCanonicalNameHString);
+
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
-
-    WindowsDeleteString(propertyCanonicalNameHString);
 
     final asyncOperation = IAsyncOperation<bool>.fromRawPointer(retValuePtr);
     completeAsyncOperation(
@@ -65,7 +64,6 @@ class IStorageProvider2 extends IInspectable implements IStorageProvider {
     return completer.future;
   }
 
-  // IStorageProvider methods
   late final _iStorageProvider = IStorageProvider.from(this);
 
   @override

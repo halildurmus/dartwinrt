@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -32,49 +31,24 @@ class Calendar extends IInspectable implements ICalendar, ITimeZoneOnCalendar {
 
   static const _className = 'Windows.Globalization.Calendar';
 
-  // ICalendarFactory methods
   factory Calendar.createCalendarDefaultCalendarAndClock(
-      IIterable<String> languages) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_ICalendarFactory);
-    final object = ICalendarFactory.fromRawPointer(activationFactoryPtr);
-
-    try {
-      return object.createCalendarDefaultCalendarAndClock(languages);
-    } finally {
-      object.release();
-    }
-  }
+          IIterable<String> languages) =>
+      createActivationFactory(
+              ICalendarFactory.fromRawPointer, _className, IID_ICalendarFactory)
+          .createCalendarDefaultCalendarAndClock(languages);
 
   factory Calendar.createCalendar(
-      IIterable<String> languages, String calendar, String clock) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_ICalendarFactory);
-    final object = ICalendarFactory.fromRawPointer(activationFactoryPtr);
+          IIterable<String> languages, String calendar, String clock) =>
+      createActivationFactory(
+              ICalendarFactory.fromRawPointer, _className, IID_ICalendarFactory)
+          .createCalendar(languages, calendar, clock);
 
-    try {
-      return object.createCalendar(languages, calendar, clock);
-    } finally {
-      object.release();
-    }
-  }
-
-  // ICalendarFactory2 methods
   factory Calendar.createCalendarWithTimeZone(IIterable<String> languages,
-      String calendar, String clock, String timeZoneId) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_ICalendarFactory2);
-    final object = ICalendarFactory2.fromRawPointer(activationFactoryPtr);
+          String calendar, String clock, String timeZoneId) =>
+      createActivationFactory(ICalendarFactory2.fromRawPointer, _className,
+              IID_ICalendarFactory2)
+          .createCalendarWithTimeZone(languages, calendar, clock, timeZoneId);
 
-    try {
-      return object.createCalendarWithTimeZone(
-          languages, calendar, clock, timeZoneId);
-    } finally {
-      object.release();
-    }
-  }
-
-  // ICalendar methods
   late final _iCalendar = ICalendar.from(this);
 
   @override
@@ -386,7 +360,6 @@ class Calendar extends IInspectable implements ICalendar, ITimeZoneOnCalendar {
   @override
   bool get isDaylightSavingTime => _iCalendar.isDaylightSavingTime;
 
-  // ITimeZoneOnCalendar methods
   late final _iTimeZoneOnCalendar = ITimeZoneOnCalendar.from(this);
 
   @override

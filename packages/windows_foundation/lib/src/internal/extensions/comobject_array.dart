@@ -12,7 +12,16 @@ import 'package:win32/win32.dart';
 import '../../uri.dart' as winrt_uri;
 import 'uri_conversions.dart';
 
-extension COMObjectArrayToListConversion on Pointer<COMObject> {
+extension COMObjectArrayHelpers on Pointer<COMObject> {
+  /// Creates a `List<Uri>` from `Pointer<COMObject>`.
+  ///
+  /// [length] must not be greater than the number of elements stored inside the
+  /// `Pointer<COMObject>`.
+  List<Uri> toDartUriList({int length = 1}) =>
+      toList(winrt_uri.Uri.fromRawPointer, length: length)
+          .map((winrtUri) => winrtUri.toDartUri())
+          .toList();
+
   /// Creates a [List] from `Pointer<COMObject>`.
   ///
   /// [T] must be `IInspectable` (e.g. `HostName`).
@@ -39,9 +48,4 @@ extension COMObjectArrayToListConversion on Pointer<COMObject> {
 
     return list;
   }
-
-  List<Uri> toDartUriList({int length = 1}) =>
-      toList(winrt_uri.Uri.fromRawPointer, length: length)
-          .map((winrtUri) => winrtUri.toDartUri())
-          .toList();
 }

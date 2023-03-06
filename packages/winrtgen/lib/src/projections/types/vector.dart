@@ -62,11 +62,7 @@ mixin _VectorMixin on MethodProjection {
   String get methodDeclaration => '''
   $methodHeader {
     final retValuePtr = calloc<COMObject>();
-    $parametersPreamble
-
     ${ffiCall(freeRetValOnFailure: true)}
-
-    $parametersPostamble
 
     return IVector.fromRawPointer(retValuePtr$vectorConstructorArgs);
   }
@@ -95,18 +91,11 @@ class VectorViewMethodProjection extends MethodProjection with _VectorMixin {
   String get methodDeclaration => '''
   $methodHeader {
     final retValuePtr = calloc<COMObject>();
-    $parametersPreamble
-
     ${ffiCall(freeRetValOnFailure: true)}
 
     final vectorView = IVectorView<$vectorTypeArg>.fromRawPointer
         (retValuePtr$vectorConstructorArgs);
-    final list = vectorView.toList();
-    vectorView.release();
-
-    $parametersPostamble
-
-    return list;
+    return vectorView.toList();
   }
 ''';
 }
@@ -122,15 +111,11 @@ class VectorViewGetterProjection extends GetterProjection with _VectorMixin {
   String get methodDeclaration => '''
   $methodHeader {
     final retValuePtr = calloc<COMObject>();
-
     ${ffiCall(freeRetValOnFailure: true)}
 
     final vectorView = IVectorView<$vectorTypeArg>.fromRawPointer
         (retValuePtr$vectorConstructorArgs);
-    final list = vectorView.toList();
-    vectorView.release();
-
-    return list;
+    return vectorView.toList();
   }
 ''';
 }

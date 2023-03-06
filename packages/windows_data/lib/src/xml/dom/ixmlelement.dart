@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -64,9 +63,10 @@ class IXmlElement extends IInspectable
 
   String getAttribute(String attributeName) {
     final retValuePtr = calloc<HSTRING>();
-    final attributeNameHString = attributeName.toHString();
 
     try {
+      final attributeNameHString = attributeName.toHString();
+
       final hr = ptr.ref.vtable
               .elementAt(7)
               .cast<
@@ -80,11 +80,12 @@ class IXmlElement extends IInspectable
                       Pointer<IntPtr> retValuePtr)>()(
           ptr.ref.lpVtbl, attributeNameHString, retValuePtr);
 
+      WindowsDeleteString(attributeNameHString);
+
       if (FAILED(hr)) throw WindowsException(hr);
 
       return retValuePtr.toDartString();
     } finally {
-      WindowsDeleteString(attributeNameHString);
       WindowsDeleteString(retValuePtr.value);
       free(retValuePtr);
     }
@@ -107,10 +108,10 @@ class IXmlElement extends IInspectable
                     LPVTBL lpVtbl, int attributeName, int attributeValue)>()(
         ptr.ref.lpVtbl, attributeNameHString, attributeValueHString);
 
-    if (FAILED(hr)) throw WindowsException(hr);
-
     WindowsDeleteString(attributeNameHString);
     WindowsDeleteString(attributeValueHString);
+
+    if (FAILED(hr)) throw WindowsException(hr);
   }
 
   void removeAttribute(String attributeName) {
@@ -128,9 +129,9 @@ class IXmlElement extends IInspectable
                 .asFunction<int Function(LPVTBL lpVtbl, int attributeName)>()(
             ptr.ref.lpVtbl, attributeNameHString);
 
-    if (FAILED(hr)) throw WindowsException(hr);
-
     WindowsDeleteString(attributeNameHString);
+
+    if (FAILED(hr)) throw WindowsException(hr);
   }
 
   XmlAttribute? getAttributeNode(String attributeName) {
@@ -150,12 +151,12 @@ class IXmlElement extends IInspectable
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, attributeNameHString, retValuePtr);
 
+    WindowsDeleteString(attributeNameHString);
+
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
-
-    WindowsDeleteString(attributeNameHString);
 
     if (retValuePtr.ref.isNull) {
       free(retValuePtr);
@@ -244,12 +245,12 @@ class IXmlElement extends IInspectable
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, tagNameHString, retValuePtr);
 
+    WindowsDeleteString(tagNameHString);
+
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
-
-    WindowsDeleteString(tagNameHString);
 
     if (retValuePtr.ref.isNull) {
       free(retValuePtr);
@@ -261,7 +262,7 @@ class IXmlElement extends IInspectable
 
   void setAttributeNS(
       Object? namespaceUri, String qualifiedName, String value) {
-    final namespaceUriPtr = namespaceUri?.intoBox().ref.lpVtbl ?? nullptr;
+    final namespaceUriPtr = namespaceUri?.intoBox().ptr.ref.lpVtbl ?? nullptr;
     final qualifiedNameHString = qualifiedName.toHString();
     final valueHString = value.toHString();
 
@@ -278,18 +279,19 @@ class IXmlElement extends IInspectable
                     int qualifiedName, int value)>()(
         ptr.ref.lpVtbl, namespaceUriPtr, qualifiedNameHString, valueHString);
 
-    if (FAILED(hr)) throw WindowsException(hr);
-
     WindowsDeleteString(qualifiedNameHString);
     WindowsDeleteString(valueHString);
+
+    if (FAILED(hr)) throw WindowsException(hr);
   }
 
   String getAttributeNS(Object? namespaceUri, String localName) {
     final retValuePtr = calloc<HSTRING>();
-    final namespaceUriPtr = namespaceUri?.intoBox().ref.lpVtbl ?? nullptr;
-    final localNameHString = localName.toHString();
 
     try {
+      final namespaceUriPtr = namespaceUri?.intoBox().ptr.ref.lpVtbl ?? nullptr;
+      final localNameHString = localName.toHString();
+
       final hr =
           ptr.ref.vtable
                   .elementAt(15)
@@ -307,18 +309,19 @@ class IXmlElement extends IInspectable
                           int localName, Pointer<IntPtr> retValuePtr)>()(
               ptr.ref.lpVtbl, namespaceUriPtr, localNameHString, retValuePtr);
 
+      WindowsDeleteString(localNameHString);
+
       if (FAILED(hr)) throw WindowsException(hr);
 
       return retValuePtr.toDartString();
     } finally {
-      WindowsDeleteString(localNameHString);
       WindowsDeleteString(retValuePtr.value);
       free(retValuePtr);
     }
   }
 
   void removeAttributeNS(Object? namespaceUri, String localName) {
-    final namespaceUriPtr = namespaceUri?.intoBox().ref.lpVtbl ?? nullptr;
+    final namespaceUriPtr = namespaceUri?.intoBox().ptr.ref.lpVtbl ?? nullptr;
     final localNameHString = localName.toHString();
 
     final hr = ptr.ref.vtable
@@ -334,9 +337,9 @@ class IXmlElement extends IInspectable
                     LPVTBL lpVtbl, LPVTBL namespaceUri, int localName)>()(
         ptr.ref.lpVtbl, namespaceUriPtr, localNameHString);
 
-    if (FAILED(hr)) throw WindowsException(hr);
-
     WindowsDeleteString(localNameHString);
+
+    if (FAILED(hr)) throw WindowsException(hr);
   }
 
   XmlAttribute? setAttributeNodeNS(XmlAttribute? newAttribute) {
@@ -372,7 +375,7 @@ class IXmlElement extends IInspectable
 
   XmlAttribute? getAttributeNodeNS(Object? namespaceUri, String localName) {
     final retValuePtr = calloc<COMObject>();
-    final namespaceUriPtr = namespaceUri?.intoBox().ref.lpVtbl ?? nullptr;
+    final namespaceUriPtr = namespaceUri?.intoBox().ptr.ref.lpVtbl ?? nullptr;
     final localNameHString = localName.toHString();
 
     final hr =
@@ -392,12 +395,12 @@ class IXmlElement extends IInspectable
                         int localName, Pointer<COMObject> retValuePtr)>()(
             ptr.ref.lpVtbl, namespaceUriPtr, localNameHString, retValuePtr);
 
+    WindowsDeleteString(localNameHString);
+
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
-
-    WindowsDeleteString(localNameHString);
 
     if (retValuePtr.ref.isNull) {
       free(retValuePtr);
@@ -407,7 +410,6 @@ class IXmlElement extends IInspectable
     return XmlAttribute.fromRawPointer(retValuePtr);
   }
 
-  // IXmlNode methods
   late final _iXmlNode = IXmlNode.from(this);
 
   @override
@@ -482,7 +484,6 @@ class IXmlElement extends IInspectable
   @override
   set prefix(Object? value) => _iXmlNode.prefix = value;
 
-  // IXmlNodeSelector methods
   late final _iXmlNodeSelector = IXmlNodeSelector.from(this);
 
   @override
@@ -501,7 +502,6 @@ class IXmlElement extends IInspectable
   XmlNodeList? selectNodesNS(String xpath, Object? namespaces) =>
       _iXmlNodeSelector.selectNodesNS(xpath, namespaces);
 
-  // IXmlNodeSerializer methods
   late final _iXmlNodeSerializer = IXmlNodeSerializer.from(this);
 
   @override

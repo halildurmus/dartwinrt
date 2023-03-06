@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -30,10 +29,11 @@ class IXmlDomImplementation extends IInspectable {
 
   bool hasFeature(String feature, Object? version) {
     final retValuePtr = calloc<Bool>();
-    final featureHString = feature.toHString();
-    final versionPtr = version?.intoBox().ref.lpVtbl ?? nullptr;
 
     try {
+      final featureHString = feature.toHString();
+      final versionPtr = version?.intoBox().ptr.ref.lpVtbl ?? nullptr;
+
       final hr = ptr.ref.vtable
               .elementAt(6)
               .cast<
@@ -47,11 +47,12 @@ class IXmlDomImplementation extends IInspectable {
                       Pointer<Bool> retValuePtr)>()(
           ptr.ref.lpVtbl, featureHString, versionPtr, retValuePtr);
 
+      WindowsDeleteString(featureHString);
+
       if (FAILED(hr)) throw WindowsException(hr);
 
       return retValuePtr.value;
     } finally {
-      WindowsDeleteString(featureHString);
       free(retValuePtr);
     }
   }

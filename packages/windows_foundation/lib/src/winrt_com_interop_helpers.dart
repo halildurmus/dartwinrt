@@ -8,6 +8,7 @@
 import 'package:win32/win32.dart';
 
 import 'iinspectable.dart';
+import 'internal/extensions/extensions.dart';
 
 /// Exposes a method through which a client can provide an owner window to a
 /// Windows Runtime (WinRT) object used in a desktop application.
@@ -34,13 +35,9 @@ class InitializeWithWindow {
   /// ```
   static void initialize(IInspectable target, [int? hwnd]) {
     hwnd ??= GetShellWindow();
-
-    final initializeWithWindow = IInitializeWithWindow.from(target);
-    try {
-      final hr = initializeWithWindow.initialize(hwnd);
-      if (FAILED(hr)) throw WindowsException(hr);
-    } finally {
-      initializeWithWindow.release();
-    }
+    final initializeWithWindow =
+        IInitializeWithWindow(target.toInterface(IID_IInitializeWithWindow));
+    final hr = initializeWithWindow.initialize(hwnd);
+    if (FAILED(hr)) throw WindowsException(hr);
   }
 }

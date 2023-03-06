@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -33,7 +32,6 @@ class DeviceWatcher extends IInspectable
     implements IDeviceWatcher, IDeviceWatcher2 {
   DeviceWatcher.fromRawPointer(super.ptr);
 
-  // IDeviceWatcher methods
   late final _iDeviceWatcher = IDeviceWatcher.from(this);
 
   @override
@@ -81,7 +79,6 @@ class DeviceWatcher extends IInspectable
   @override
   void stop() => _iDeviceWatcher.stop();
 
-  // IDeviceWatcher2 methods
   late final _iDeviceWatcher2 = IDeviceWatcher2.from(this);
 
   @override

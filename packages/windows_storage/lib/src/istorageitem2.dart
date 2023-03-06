@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -67,9 +66,10 @@ class IStorageItem2 extends IInspectable implements IStorageItem {
 
   bool isEqual(IStorageItem? item) {
     final retValuePtr = calloc<Bool>();
-    final itemPtr = item == null ? nullptr : item.ptr.ref.lpVtbl;
 
     try {
+      final itemPtr = item == null ? nullptr : item.ptr.ref.lpVtbl;
+
       final hr = ptr.ref.vtable
               .elementAt(7)
               .cast<
@@ -91,7 +91,6 @@ class IStorageItem2 extends IInspectable implements IStorageItem {
     }
   }
 
-  // IStorageItem methods
   late final _iStorageItem = IStorageItem.from(this);
 
   @override

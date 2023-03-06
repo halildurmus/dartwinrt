@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -56,10 +55,7 @@ class IGeocoordinateSatelliteData extends IInspectable {
 
     final reference = IReference<double?>.fromRawPointer(retValuePtr,
         referenceIid: '{2f2d6c29-5473-5f3e-92e7-96572bb990e2}');
-    final value = reference.value;
-    reference.release();
-
-    return value;
+    return reference.value;
   }
 
   double? get horizontalDilutionOfPrecision {
@@ -89,10 +85,7 @@ class IGeocoordinateSatelliteData extends IInspectable {
 
     final reference = IReference<double?>.fromRawPointer(retValuePtr,
         referenceIid: '{2f2d6c29-5473-5f3e-92e7-96572bb990e2}');
-    final value = reference.value;
-    reference.release();
-
-    return value;
+    return reference.value;
   }
 
   double? get verticalDilutionOfPrecision {
@@ -122,9 +115,6 @@ class IGeocoordinateSatelliteData extends IInspectable {
 
     final reference = IReference<double?>.fromRawPointer(retValuePtr,
         referenceIid: '{2f2d6c29-5473-5f3e-92e7-96572bb990e2}');
-    final value = reference.value;
-    reference.release();
-
-    return value;
+    return reference.value;
   }
 }

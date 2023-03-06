@@ -63,8 +63,6 @@ Future<void> _completeAsyncDelegate<T extends IAsyncInfo, C>(T asyncDelegate,
     }
   } catch (error, stackTrace) {
     completer.completeError(error, stackTrace);
-  } finally {
-    asyncDelegate.release();
   }
 }
 
@@ -99,7 +97,7 @@ bool isSubtype<S, T>() => <S>[] is List<T> || <S>[] is List<T?>;
 ///
 /// ```dart
 /// isSubtypeOfInspectable<StorageFile>(); // true
-/// isSubtypeOfInspectable<INetwork>(); // false
+/// isSubtypeOfInspectable<IUnknown>(); // false
 /// ```
 bool isSubtypeOfInspectable<T>() => isSubtype<T, IInspectable>();
 

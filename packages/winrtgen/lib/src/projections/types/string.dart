@@ -19,14 +19,12 @@ mixin _StringMixin on MethodProjection {
   $overrideAnnotation
   $methodHeader {
     final retValuePtr = calloc<HSTRING>();
-    $parametersPreamble
 
     try {
       ${ffiCall()}
 
       return retValuePtr.toDartString();
     } finally {
-      $parametersPostamble
       WindowsDeleteString(retValuePtr.value);
       free(retValuePtr);
     }
@@ -54,14 +52,12 @@ mixin _StringListMixin on MethodProjection {
   $methodHeader {
     final pValueSize = calloc<Uint32>();
     final retValuePtr = calloc<Pointer<HSTRING>>();
-    $parametersPreamble
 
     try {
       ${ffiCall()}
 
       return retValuePtr.value.toList(length: pValueSize.value);
     } finally {
-      $parametersPostamble
       free(pValueSize);
       free(retValuePtr);
     }
@@ -91,7 +87,7 @@ class StringSetterProjection extends SetterProjection {
     final hString = value.toHString();
 
     try {
-      ${ffiCall(params: 'hString')}
+      ${ffiCall(identifier: 'hString')}
     } finally {
       WindowsDeleteString(hString);
     }

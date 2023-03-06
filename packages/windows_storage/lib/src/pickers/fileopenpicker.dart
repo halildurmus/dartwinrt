@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -37,20 +36,12 @@ class FileOpenPicker extends IInspectable
 
   static const _className = 'Windows.Storage.Pickers.FileOpenPicker';
 
-  // IFileOpenPickerStatics2 methods
-  static FileOpenPicker? createForUser(User? user) {
-    final activationFactoryPtr =
-        createActivationFactory(_className, IID_IFileOpenPickerStatics2);
-    final object = IFileOpenPickerStatics2.fromRawPointer(activationFactoryPtr);
+  static FileOpenPicker? createForUser(User? user) => createActivationFactory(
+          IFileOpenPickerStatics2.fromRawPointer,
+          _className,
+          IID_IFileOpenPickerStatics2)
+      .createForUser(user);
 
-    try {
-      return object.createForUser(user);
-    } finally {
-      object.release();
-    }
-  }
-
-  // IFileOpenPicker methods
   late final _iFileOpenPicker = IFileOpenPicker.from(this);
 
   @override
@@ -92,7 +83,6 @@ class FileOpenPicker extends IInspectable
   Future<List<StorageFile>> pickMultipleFilesAsync() =>
       _iFileOpenPicker.pickMultipleFilesAsync();
 
-  // IFileOpenPicker3 methods
   late final _iFileOpenPicker3 = IFileOpenPicker3.from(this);
 
   @override

@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -25,7 +24,6 @@ class DeviceInformationCollection extends IInspectable
     implements IVectorView<DeviceInformation>, IIterable<DeviceInformation> {
   DeviceInformationCollection.fromRawPointer(super.ptr);
 
-  // IVectorView<DeviceInformation> methods
   late final _iVectorView = IVectorView<DeviceInformation>.fromRawPointer(
       toInterface('{e170688f-3495-5bf6-aab5-9cac17e0f10f}'),
       creator: DeviceInformation.fromRawPointer,

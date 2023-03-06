@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -63,10 +62,7 @@ class IGeolocatorWithScalarAccuracy extends IInspectable
 
     final reference = IReference<int?>.fromRawPointer(retValuePtr,
         referenceIid: '{513ef3af-e784-5325-a91e-97c2b8111cf3}');
-    final value = reference.value;
-    reference.release();
-
-    return value;
+    return reference.value;
   }
 
   set desiredAccuracyInMeters(int? value) {
@@ -84,7 +80,6 @@ class IGeolocatorWithScalarAccuracy extends IInspectable
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
-  // IGeolocator methods
   late final _iGeolocator = IGeolocator.from(this);
 
   @override

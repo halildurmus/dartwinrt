@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -131,9 +130,6 @@ class IGamepadStatics extends IInspectable {
     final vectorView = IVectorView<Gamepad>.fromRawPointer(retValuePtr,
         iterableIid: '{47132ba0-6b17-5cd2-a8bd-b5d3443ccb13}',
         creator: Gamepad.fromRawPointer);
-    final list = vectorView.toList();
-    vectorView.release();
-
-    return list;
+    return vectorView.toList();
   }
 }

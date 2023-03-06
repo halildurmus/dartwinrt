@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -78,7 +77,7 @@ class IXmlNode extends IInspectable
                         HRESULT Function(LPVTBL lpVtbl, LPVTBL value)>>>()
             .value
             .asFunction<int Function(LPVTBL lpVtbl, LPVTBL value)>()(
-        ptr.ref.lpVtbl, value?.intoBox().ref.lpVtbl ?? nullptr);
+        ptr.ref.lpVtbl, value?.intoBox().ptr.ref.lpVtbl ?? nullptr);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
@@ -642,12 +641,11 @@ class IXmlNode extends IInspectable
                         HRESULT Function(LPVTBL lpVtbl, LPVTBL value)>>>()
             .value
             .asFunction<int Function(LPVTBL lpVtbl, LPVTBL value)>()(
-        ptr.ref.lpVtbl, value?.intoBox().ref.lpVtbl ?? nullptr);
+        ptr.ref.lpVtbl, value?.intoBox().ptr.ref.lpVtbl ?? nullptr);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
-  // IXmlNodeSelector methods
   late final _iXmlNodeSelector = IXmlNodeSelector.from(this);
 
   @override
@@ -666,7 +664,6 @@ class IXmlNode extends IInspectable
   XmlNodeList? selectNodesNS(String xpath, Object? namespaces) =>
       _iXmlNodeSelector.selectNodesNS(xpath, namespaces);
 
-  // IXmlNodeSerializer methods
   late final _iXmlNodeSerializer = IXmlNodeSerializer.from(this);
 
   @override

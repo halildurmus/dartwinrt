@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -27,7 +26,6 @@ class EnclosureLocation extends IInspectable
     implements IEnclosureLocation, IEnclosureLocation2 {
   EnclosureLocation.fromRawPointer(super.ptr);
 
-  // IEnclosureLocation methods
   late final _iEnclosureLocation = IEnclosureLocation.from(this);
 
   @override
@@ -39,7 +37,6 @@ class EnclosureLocation extends IInspectable
   @override
   Panel get panel => _iEnclosureLocation.panel;
 
-  // IEnclosureLocation2 methods
   late final _iEnclosureLocation2 = IEnclosureLocation2.from(this);
 
   @override

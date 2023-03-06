@@ -16,14 +16,12 @@ mixin _EnumMixin on MethodProjection {
   String get methodDeclaration => '''
   $methodHeader {
     final retValuePtr = calloc<${returnTypeProjection.nativeType}>();
-    $parametersPreamble
 
     try {
       ${ffiCall()}
 
       return $returnType.from(retValuePtr.value);
     } finally {
-      $parametersPostamble
       free(retValuePtr);
     }
   }
@@ -47,7 +45,7 @@ class EnumSetterProjection extends SetterProjection {
   @override
   String get methodDeclaration => '''
   $methodHeader {
-    ${ffiCall(params: 'value.value')}
+    ${ffiCall(identifier: 'value.value')}
   }
 ''';
 }

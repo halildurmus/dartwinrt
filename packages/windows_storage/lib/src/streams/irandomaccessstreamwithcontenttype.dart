@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -45,7 +44,6 @@ class IRandomAccessStreamWithContentType extends IInspectable
       IRandomAccessStreamWithContentType.fromRawPointer(
           interface.toInterface(IID_IRandomAccessStreamWithContentType));
 
-  // IRandomAccessStream methods
   late final _iRandomAccessStream = IRandomAccessStream.from(this);
 
   @override
@@ -77,13 +75,11 @@ class IRandomAccessStreamWithContentType extends IInspectable
   @override
   bool get canWrite => _iRandomAccessStream.canWrite;
 
-  // IClosable methods
   late final _iClosable = IClosable.from(this);
 
   @override
   void close() => _iClosable.close();
 
-  // IInputStream methods
   late final _iInputStream = IInputStream.from(this);
 
   @override
@@ -91,7 +87,6 @@ class IRandomAccessStreamWithContentType extends IInspectable
           IBuffer? buffer, int count, InputStreamOptions options) =>
       _iInputStream.readAsync(buffer, count, options);
 
-  // IOutputStream methods
   late final _iOutputStream = IOutputStream.from(this);
 
   @override
@@ -101,7 +96,6 @@ class IRandomAccessStreamWithContentType extends IInspectable
   @override
   Future<bool> flushAsync() => _iOutputStream.flushAsync();
 
-  // IContentTypeProvider methods
   late final _iContentTypeProvider = IContentTypeProvider.from(this);
 
   @override

@@ -50,10 +50,8 @@ void main() {
     });
 
     test('basic test', () {
-      final propertyValue = PropertyValue.createString('basic');
-      expect(propertyValue.getString(), equals('basic'));
-
-      propertyValue.release();
+      final propertyValue = PropertyValue.createString('dartwinrt');
+      expect(propertyValue.getString(), equals('dartwinrt'));
     });
   });
 }

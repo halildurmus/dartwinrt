@@ -37,8 +37,6 @@ void main() {
     PhoneNumberFormatter.tryCreate('US', usFormatter);
     final phone = usFormatter.formatString('4255550123');
     expect(phone, equals('(425) 555-0123'));
-
-    usFormatter.release();
   });
 
   test('Create a formatter for a different region code', () {
@@ -51,8 +49,6 @@ void main() {
     expect(london, equals('020 7946 0123'));
     final reading = ukFormatter.formatString('01184960987');
     expect(reading, equals('0118 496 0987'));
-
-    ukFormatter.release();
   });
 
   test('Country codes for regions', () {
@@ -74,9 +70,5 @@ void main() {
         PhoneNumberFormatter.getNationalDirectDialingPrefixForRegion(
             'TZ', true),
         equals('0'));
-  });
-
-  tearDown(() {
-    formatter.release();
   });
 }

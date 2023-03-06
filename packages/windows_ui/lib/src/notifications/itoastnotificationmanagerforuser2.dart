@@ -5,8 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 // ignore_for_file: constant_identifier_names, non_constant_identifier_names
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: unused_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:async';
 import 'dart:ffi';
@@ -52,12 +51,12 @@ class IToastNotificationManagerForUser2 extends IInspectable {
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, collectionIdHString, retValuePtr);
 
+    WindowsDeleteString(collectionIdHString);
+
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
-
-    WindowsDeleteString(collectionIdHString);
 
     final asyncOperation = IAsyncOperation<ToastNotifier?>.fromRawPointer(
         retValuePtr,
@@ -87,12 +86,12 @@ class IToastNotificationManagerForUser2 extends IInspectable {
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, collectionIdHString, retValuePtr);
 
+    WindowsDeleteString(collectionIdHString);
+
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
-
-    WindowsDeleteString(collectionIdHString);
 
     final asyncOperation =
         IAsyncOperation<ToastNotificationHistory?>.fromRawPointer(retValuePtr,
@@ -148,12 +147,12 @@ class IToastNotificationManagerForUser2 extends IInspectable {
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, appIdHString, retValuePtr);
 
+    WindowsDeleteString(appIdHString);
+
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
     }
-
-    WindowsDeleteString(appIdHString);
 
     if (retValuePtr.ref.isNull) {
       free(retValuePtr);
