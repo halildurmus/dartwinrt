@@ -26,7 +26,7 @@ import 'storagelibrarychangetype.dart';
 /// {@category class}
 class StorageLibraryChange extends IInspectable
     implements IStorageLibraryChange {
-  StorageLibraryChange.fromRawPointer(super.ptr);
+  StorageLibraryChange.fromPtr(super.ptr);
 
   late final _iStorageLibraryChange = IStorageLibraryChange.from(this);
 

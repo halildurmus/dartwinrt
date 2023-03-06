@@ -30,10 +30,10 @@ const IID_IPropertyValue = '{4bd682dd-7554-40e9-9a9b-82654ede7e62}';
 /// {@category interface}
 class IPropertyValue extends IInspectable {
   // vtable begins at 6, is 39 entries long.
-  IPropertyValue.fromRawPointer(super.ptr);
+  IPropertyValue.fromPtr(super.ptr);
 
   factory IPropertyValue.from(IInspectable interface) =>
-      IPropertyValue.fromRawPointer(interface.toInterface(IID_IPropertyValue));
+      IPropertyValue.fromPtr(interface.toInterface(IID_IPropertyValue));
 
   PropertyType get type {
     final retValuePtr = calloc<Int32>();
@@ -888,7 +888,7 @@ class IPropertyValue extends IInspectable {
             ptr.ref.lpVtbl, pValueSize, pArray);
 
     value.addAll(pArray.value
-        .toList(IPropertyValue.fromRawPointer, length: pValueSize.value)
+        .toList(IPropertyValue.fromPtr, length: pValueSize.value)
         .map((e) => e.value));
     free(pValueSize);
     free(pArray);

@@ -25,7 +25,7 @@ import 'videoorientation.dart';
 /// {@category class}
 class VideoProperties extends IInspectable
     implements IVideoProperties, IStorageItemExtraProperties {
-  VideoProperties.fromRawPointer(super.ptr);
+  VideoProperties.fromPtr(super.ptr);
 
   late final _iVideoProperties = IVideoProperties.from(this);
 

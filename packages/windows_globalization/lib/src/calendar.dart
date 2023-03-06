@@ -27,26 +27,26 @@ import 'itimezoneoncalendar.dart';
 /// {@category class}
 class Calendar extends IInspectable implements ICalendar, ITimeZoneOnCalendar {
   Calendar() : super(activateClass(_className));
-  Calendar.fromRawPointer(super.ptr);
+  Calendar.fromPtr(super.ptr);
 
   static const _className = 'Windows.Globalization.Calendar';
 
   factory Calendar.createCalendarDefaultCalendarAndClock(
           IIterable<String> languages) =>
       createActivationFactory(
-              ICalendarFactory.fromRawPointer, _className, IID_ICalendarFactory)
+              ICalendarFactory.fromPtr, _className, IID_ICalendarFactory)
           .createCalendarDefaultCalendarAndClock(languages);
 
   factory Calendar.createCalendar(
           IIterable<String> languages, String calendar, String clock) =>
       createActivationFactory(
-              ICalendarFactory.fromRawPointer, _className, IID_ICalendarFactory)
+              ICalendarFactory.fromPtr, _className, IID_ICalendarFactory)
           .createCalendar(languages, calendar, clock);
 
   factory Calendar.createCalendarWithTimeZone(IIterable<String> languages,
           String calendar, String clock, String timeZoneId) =>
-      createActivationFactory(ICalendarFactory2.fromRawPointer, _className,
-              IID_ICalendarFactory2)
+      createActivationFactory(
+              ICalendarFactory2.fromPtr, _className, IID_ICalendarFactory2)
           .createCalendarWithTimeZone(languages, calendar, clock, timeZoneId);
 
   late final _iCalendar = ICalendar.from(this);

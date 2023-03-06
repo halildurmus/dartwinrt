@@ -25,11 +25,10 @@ const IID_IImageProperties = '{523c9424-fcff-4275-afee-ecdb9ab47973}';
 class IImageProperties extends IInspectable
     implements IStorageItemExtraProperties {
   // vtable begins at 6, is 17 entries long.
-  IImageProperties.fromRawPointer(super.ptr);
+  IImageProperties.fromPtr(super.ptr);
 
   factory IImageProperties.from(IInspectable interface) =>
-      IImageProperties.fromRawPointer(
-          interface.toInterface(IID_IImageProperties));
+      IImageProperties.fromPtr(interface.toInterface(IID_IImageProperties));
 
   int get rating {
     final retValuePtr = calloc<Uint32>();
@@ -89,7 +88,7 @@ class IImageProperties extends IInspectable
       throw WindowsException(hr);
     }
 
-    return IVector.fromRawPointer(retValuePtr,
+    return IVector.fromPtr(retValuePtr,
         iterableIid: '{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}');
   }
 
@@ -249,7 +248,7 @@ class IImageProperties extends IInspectable
       return null;
     }
 
-    final reference = IReference<double?>.fromRawPointer(retValuePtr,
+    final reference = IReference<double?>.fromPtr(retValuePtr,
         referenceIid: '{2f2d6c29-5473-5f3e-92e7-96572bb990e2}');
     return reference.value;
   }
@@ -279,7 +278,7 @@ class IImageProperties extends IInspectable
       return null;
     }
 
-    final reference = IReference<double?>.fromRawPointer(retValuePtr,
+    final reference = IReference<double?>.fromPtr(retValuePtr,
         referenceIid: '{2f2d6c29-5473-5f3e-92e7-96572bb990e2}');
     return reference.value;
   }
@@ -418,7 +417,7 @@ class IImageProperties extends IInspectable
       throw WindowsException(hr);
     }
 
-    final vectorView = IVectorView<String>.fromRawPointer(retValuePtr,
+    final vectorView = IVectorView<String>.fromPtr(retValuePtr,
         iterableIid: '{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}');
     return vectorView.toList();
   }

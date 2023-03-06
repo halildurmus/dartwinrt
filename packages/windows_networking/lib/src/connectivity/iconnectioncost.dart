@@ -23,11 +23,10 @@ const IID_IConnectionCost = '{bad7d829-3416-4b10-a202-bac0b075bdae}';
 /// {@category interface}
 class IConnectionCost extends IInspectable {
   // vtable begins at 6, is 4 entries long.
-  IConnectionCost.fromRawPointer(super.ptr);
+  IConnectionCost.fromPtr(super.ptr);
 
   factory IConnectionCost.from(IInspectable interface) =>
-      IConnectionCost.fromRawPointer(
-          interface.toInterface(IID_IConnectionCost));
+      IConnectionCost.fromPtr(interface.toInterface(IID_IConnectionCost));
 
   NetworkCostType get networkCostType {
     final retValuePtr = calloc<Int32>();

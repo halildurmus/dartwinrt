@@ -30,11 +30,10 @@ const IID_IXmlDocumentType = '{f7342425-9781-4964-8e94-9b1c6dfc9bc7}';
 class IXmlDocumentType extends IInspectable
     implements IXmlNode, IXmlNodeSelector, IXmlNodeSerializer {
   // vtable begins at 6, is 3 entries long.
-  IXmlDocumentType.fromRawPointer(super.ptr);
+  IXmlDocumentType.fromPtr(super.ptr);
 
   factory IXmlDocumentType.from(IInspectable interface) =>
-      IXmlDocumentType.fromRawPointer(
-          interface.toInterface(IID_IXmlDocumentType));
+      IXmlDocumentType.fromPtr(interface.toInterface(IID_IXmlDocumentType));
 
   String get name {
     final retValuePtr = calloc<HSTRING>();
@@ -86,7 +85,7 @@ class IXmlDocumentType extends IInspectable
       return null;
     }
 
-    return XmlNamedNodeMap.fromRawPointer(retValuePtr);
+    return XmlNamedNodeMap.fromPtr(retValuePtr);
   }
 
   XmlNamedNodeMap? get notations {
@@ -114,7 +113,7 @@ class IXmlDocumentType extends IInspectable
       return null;
     }
 
-    return XmlNamedNodeMap.fromRawPointer(retValuePtr);
+    return XmlNamedNodeMap.fromPtr(retValuePtr);
   }
 
   late final _iXmlNode = IXmlNode.from(this);

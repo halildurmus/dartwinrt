@@ -26,10 +26,10 @@ const IID_IGeolocator = '{a9c3bf62-4524-4989-8aa9-de019d2e551f}';
 /// {@category interface}
 class IGeolocator extends IInspectable {
   // vtable begins at 6, is 13 entries long.
-  IGeolocator.fromRawPointer(super.ptr);
+  IGeolocator.fromPtr(super.ptr);
 
   factory IGeolocator.from(IInspectable interface) =>
-      IGeolocator.fromRawPointer(interface.toInterface(IID_IGeolocator));
+      IGeolocator.fromPtr(interface.toInterface(IID_IGeolocator));
 
   PositionAccuracy get desiredAccuracy {
     final retValuePtr = calloc<Int32>();
@@ -190,9 +190,8 @@ class IGeolocator extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<Geoposition?>.fromRawPointer(
-        retValuePtr,
-        creator: Geoposition.fromRawPointer);
+    final asyncOperation = IAsyncOperation<Geoposition?>.fromPtr(retValuePtr,
+        creator: Geoposition.fromPtr);
     completeAsyncOperation(
         asyncOperation, completer, asyncOperation.getResults);
 
@@ -222,9 +221,8 @@ class IGeolocator extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<Geoposition?>.fromRawPointer(
-        retValuePtr,
-        creator: Geoposition.fromRawPointer);
+    final asyncOperation = IAsyncOperation<Geoposition?>.fromPtr(retValuePtr,
+        creator: Geoposition.fromPtr);
     completeAsyncOperation(
         asyncOperation, completer, asyncOperation.getResults);
 

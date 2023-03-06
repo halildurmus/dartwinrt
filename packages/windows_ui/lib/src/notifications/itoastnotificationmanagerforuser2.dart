@@ -26,10 +26,10 @@ const IID_IToastNotificationManagerForUser2 =
 /// {@category interface}
 class IToastNotificationManagerForUser2 extends IInspectable {
   // vtable begins at 6, is 4 entries long.
-  IToastNotificationManagerForUser2.fromRawPointer(super.ptr);
+  IToastNotificationManagerForUser2.fromPtr(super.ptr);
 
   factory IToastNotificationManagerForUser2.from(IInspectable interface) =>
-      IToastNotificationManagerForUser2.fromRawPointer(
+      IToastNotificationManagerForUser2.fromPtr(
           interface.toInterface(IID_IToastNotificationManagerForUser2));
 
   Future<ToastNotifier?> getToastNotifierForToastCollectionIdAsync(
@@ -58,9 +58,8 @@ class IToastNotificationManagerForUser2 extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<ToastNotifier?>.fromRawPointer(
-        retValuePtr,
-        creator: ToastNotifier.fromRawPointer);
+    final asyncOperation = IAsyncOperation<ToastNotifier?>.fromPtr(retValuePtr,
+        creator: ToastNotifier.fromPtr);
     completeAsyncOperation(
         asyncOperation, completer, asyncOperation.getResults);
 
@@ -93,9 +92,9 @@ class IToastNotificationManagerForUser2 extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation =
-        IAsyncOperation<ToastNotificationHistory?>.fromRawPointer(retValuePtr,
-            creator: ToastNotificationHistory.fromRawPointer);
+    final asyncOperation = IAsyncOperation<ToastNotificationHistory?>.fromPtr(
+        retValuePtr,
+        creator: ToastNotificationHistory.fromPtr);
     completeAsyncOperation(
         asyncOperation, completer, asyncOperation.getResults);
 
@@ -127,7 +126,7 @@ class IToastNotificationManagerForUser2 extends IInspectable {
       return null;
     }
 
-    return ToastCollectionManager.fromRawPointer(retValuePtr);
+    return ToastCollectionManager.fromPtr(retValuePtr);
   }
 
   ToastCollectionManager? getToastCollectionManagerWithAppId(String appId) {
@@ -159,6 +158,6 @@ class IToastNotificationManagerForUser2 extends IInspectable {
       return null;
     }
 
-    return ToastCollectionManager.fromRawPointer(retValuePtr);
+    return ToastCollectionManager.fromPtr(retValuePtr);
   }
 }

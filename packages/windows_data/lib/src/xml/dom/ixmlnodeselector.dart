@@ -24,11 +24,10 @@ const IID_IXmlNodeSelector = '{63dbba8b-d0db-4fe1-b745-f9433afdc25b}';
 /// {@category interface}
 class IXmlNodeSelector extends IInspectable {
   // vtable begins at 6, is 4 entries long.
-  IXmlNodeSelector.fromRawPointer(super.ptr);
+  IXmlNodeSelector.fromPtr(super.ptr);
 
   factory IXmlNodeSelector.from(IInspectable interface) =>
-      IXmlNodeSelector.fromRawPointer(
-          interface.toInterface(IID_IXmlNodeSelector));
+      IXmlNodeSelector.fromPtr(interface.toInterface(IID_IXmlNodeSelector));
 
   IXmlNode? selectSingleNode(String xpath) {
     final retValuePtr = calloc<COMObject>();
@@ -59,7 +58,7 @@ class IXmlNodeSelector extends IInspectable {
       return null;
     }
 
-    return IXmlNode.fromRawPointer(retValuePtr);
+    return IXmlNode.fromPtr(retValuePtr);
   }
 
   XmlNodeList? selectNodes(String xpath) {
@@ -91,7 +90,7 @@ class IXmlNodeSelector extends IInspectable {
       return null;
     }
 
-    return XmlNodeList.fromRawPointer(retValuePtr);
+    return XmlNodeList.fromPtr(retValuePtr);
   }
 
   IXmlNode? selectSingleNodeNS(String xpath, Object? namespaces) {
@@ -128,7 +127,7 @@ class IXmlNodeSelector extends IInspectable {
       return null;
     }
 
-    return IXmlNode.fromRawPointer(retValuePtr);
+    return IXmlNode.fromPtr(retValuePtr);
   }
 
   XmlNodeList? selectNodesNS(String xpath, Object? namespaces) {
@@ -165,6 +164,6 @@ class IXmlNodeSelector extends IInspectable {
       return null;
     }
 
-    return XmlNodeList.fromRawPointer(retValuePtr);
+    return XmlNodeList.fromPtr(retValuePtr);
   }
 }

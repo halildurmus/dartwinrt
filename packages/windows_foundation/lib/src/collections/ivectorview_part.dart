@@ -10,7 +10,7 @@
 part of 'ivectorview.dart';
 
 class _IVectorViewBool extends IVectorView<bool> {
-  _IVectorViewBool.fromRawPointer(super.ptr, {required super.iterableIid});
+  _IVectorViewBool.fromPtr(super.ptr, {required super.iterableIid});
 
   @override
   bool getAt(int index) {
@@ -107,7 +107,7 @@ class _IVectorViewBool extends IVectorView<bool> {
 }
 
 class _IVectorViewGuid extends IVectorView<Guid> {
-  _IVectorViewGuid.fromRawPointer(super.ptr, {required super.iterableIid});
+  _IVectorViewGuid.fromPtr(super.ptr, {required super.iterableIid});
 
   @override
   Guid getAt(int index) {
@@ -208,7 +208,7 @@ class _IVectorViewGuid extends IVectorView<Guid> {
 }
 
 class _IVectorViewInspectable<T> extends IVectorView<T> {
-  _IVectorViewInspectable.fromRawPointer(super.ptr,
+  _IVectorViewInspectable.fromPtr(super.ptr,
       {required super.iterableIid, super.creator});
 
   @override
@@ -308,7 +308,7 @@ class _IVectorViewInspectable<T> extends IVectorView<T> {
 }
 
 class _IVectorViewInt16 extends IVectorView<int> {
-  _IVectorViewInt16.fromRawPointer(super.ptr,
+  _IVectorViewInt16.fromPtr(super.ptr,
       {required super.iterableIid, super.intType});
 
   @override
@@ -406,7 +406,7 @@ class _IVectorViewInt16 extends IVectorView<int> {
 }
 
 class _IVectorViewInt32 extends IVectorView<int> {
-  _IVectorViewInt32.fromRawPointer(super.ptr,
+  _IVectorViewInt32.fromPtr(super.ptr,
       {required super.iterableIid, super.intType});
 
   @override
@@ -504,7 +504,7 @@ class _IVectorViewInt32 extends IVectorView<int> {
 }
 
 class _IVectorViewInt64 extends IVectorView<int> {
-  _IVectorViewInt64.fromRawPointer(super.ptr,
+  _IVectorViewInt64.fromPtr(super.ptr,
       {required super.iterableIid, super.intType});
 
   @override
@@ -602,7 +602,7 @@ class _IVectorViewInt64 extends IVectorView<int> {
 }
 
 class _IVectorViewString extends IVectorView<String> {
-  _IVectorViewString.fromRawPointer(super.ptr, {required super.iterableIid});
+  _IVectorViewString.fromPtr(super.ptr, {required super.iterableIid});
 
   @override
   String getAt(int index) {
@@ -704,7 +704,7 @@ class _IVectorViewString extends IVectorView<String> {
 }
 
 class _IVectorViewUint8 extends IVectorView<int> {
-  _IVectorViewUint8.fromRawPointer(super.ptr,
+  _IVectorViewUint8.fromPtr(super.ptr,
       {required super.iterableIid, super.intType});
 
   @override
@@ -802,7 +802,7 @@ class _IVectorViewUint8 extends IVectorView<int> {
 }
 
 class _IVectorViewUint16 extends IVectorView<int> {
-  _IVectorViewUint16.fromRawPointer(super.ptr,
+  _IVectorViewUint16.fromPtr(super.ptr,
       {required super.iterableIid, super.intType});
 
   @override
@@ -900,7 +900,7 @@ class _IVectorViewUint16 extends IVectorView<int> {
 }
 
 class _IVectorViewUint32 extends IVectorView<int> {
-  _IVectorViewUint32.fromRawPointer(super.ptr,
+  _IVectorViewUint32.fromPtr(super.ptr,
       {required super.iterableIid, super.intType});
 
   @override
@@ -998,7 +998,7 @@ class _IVectorViewUint32 extends IVectorView<int> {
 }
 
 class _IVectorViewUint64 extends IVectorView<int> {
-  _IVectorViewUint64.fromRawPointer(super.ptr,
+  _IVectorViewUint64.fromPtr(super.ptr,
       {required super.iterableIid, super.intType});
 
   @override
@@ -1096,7 +1096,7 @@ class _IVectorViewUint64 extends IVectorView<int> {
 }
 
 class _IVectorViewUri extends IVectorView<Uri> {
-  _IVectorViewUri.fromRawPointer(super.ptr, {required super.iterableIid});
+  _IVectorViewUri.fromPtr(super.ptr, {required super.iterableIid});
 
   @override
   Uri getAt(int index) {
@@ -1195,7 +1195,7 @@ class _IVectorViewUri extends IVectorView<Uri> {
 }
 
 class _IVectorViewWinRTEnum<T> extends IVectorView<T> {
-  _IVectorViewWinRTEnum.fromRawPointer(super.ptr,
+  _IVectorViewWinRTEnum.fromPtr(super.ptr,
       {required super.iterableIid, super.enumCreator});
 
   @override
@@ -1293,7 +1293,7 @@ class _IVectorViewWinRTEnum<T> extends IVectorView<T> {
 }
 
 class _IVectorViewWinRTFlagsEnum<T> extends IVectorView<T> {
-  _IVectorViewWinRTFlagsEnum.fromRawPointer(super.ptr,
+  _IVectorViewWinRTFlagsEnum.fromPtr(super.ptr,
       {required super.iterableIid, super.enumCreator});
 
   @override

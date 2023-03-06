@@ -22,7 +22,7 @@ import 'iwlanconnectionprofiledetails.dart';
 /// {@category class}
 class WlanConnectionProfileDetails extends IInspectable
     implements IWlanConnectionProfileDetails {
-  WlanConnectionProfileDetails.fromRawPointer(super.ptr);
+  WlanConnectionProfileDetails.fromPtr(super.ptr);
 
   late final _iWlanConnectionProfileDetails =
       IWlanConnectionProfileDetails.from(this);

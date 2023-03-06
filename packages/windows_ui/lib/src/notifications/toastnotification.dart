@@ -37,13 +37,13 @@ class ToastNotification extends IInspectable
         IToastNotification3,
         IToastNotification4,
         IToastNotification6 {
-  ToastNotification.fromRawPointer(super.ptr);
+  ToastNotification.fromPtr(super.ptr);
 
   static const _className = 'Windows.UI.Notifications.ToastNotification';
 
   factory ToastNotification.createToastNotification(XmlDocument content) =>
-      createActivationFactory(IToastNotificationFactory.fromRawPointer,
-              _className, IID_IToastNotificationFactory)
+      createActivationFactory(IToastNotificationFactory.fromPtr, _className,
+              IID_IToastNotificationFactory)
           .createToastNotification(content);
 
   late final _iToastNotification = IToastNotification.from(this);

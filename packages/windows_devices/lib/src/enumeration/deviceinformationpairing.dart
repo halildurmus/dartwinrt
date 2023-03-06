@@ -31,21 +31,21 @@ import 'idevicepairingsettings.dart';
 /// {@category class}
 class DeviceInformationPairing extends IInspectable
     implements IDeviceInformationPairing, IDeviceInformationPairing2 {
-  DeviceInformationPairing.fromRawPointer(super.ptr);
+  DeviceInformationPairing.fromPtr(super.ptr);
 
   static const _className =
       'Windows.Devices.Enumeration.DeviceInformationPairing';
 
   static bool tryRegisterForAllInboundPairingRequests(
           DevicePairingKinds pairingKindsSupported) =>
-      createActivationFactory(IDeviceInformationPairingStatics.fromRawPointer,
+      createActivationFactory(IDeviceInformationPairingStatics.fromPtr,
               _className, IID_IDeviceInformationPairingStatics)
           .tryRegisterForAllInboundPairingRequests(pairingKindsSupported);
 
   static bool tryRegisterForAllInboundPairingRequestsWithProtectionLevel(
           DevicePairingKinds pairingKindsSupported,
           DevicePairingProtectionLevel minProtectionLevel) =>
-      createActivationFactory(IDeviceInformationPairingStatics2.fromRawPointer,
+      createActivationFactory(IDeviceInformationPairingStatics2.fromPtr,
               _className, IID_IDeviceInformationPairingStatics2)
           .tryRegisterForAllInboundPairingRequestsWithProtectionLevel(
               pairingKindsSupported, minProtectionLevel);

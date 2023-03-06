@@ -45,25 +45,24 @@ abstract class IKeyValuePair<K, V> extends IInspectable {
   ///
   /// [creator] must be specified if [V] is `IInspectable?`.
   /// ```dart
-  /// final keyValuePair = IKeyValuePair<String, IJsonValue?>.fromRawPointer
-  ///     (ptr, creator: IJsonValue.fromRawPointer);
+  /// final keyValuePair = IKeyValuePair<String, IJsonValue?>.fromPtr
+  ///     (ptr, creator: IJsonValue.fromPtr);
   /// ```
   ///
   /// [enumKeyCreator] must be specified if [K] is `WinRTEnum`.
   /// ```dart
   /// final keyValuePair =
-  ///     IKeyValuePair<PedometerStepKind, PedometerReading?>.fromRawPointer
+  ///     IKeyValuePair<PedometerStepKind, PedometerReading?>.fromPtr
   ///         (ptr, enumKeyCreator: PedometerStepKind.from,
-  ///         creator: PedometerReading.fromRawPointer);
+  ///         creator: PedometerReading.fromPtr);
   /// ```
   ///
   /// [enumCreator] must be specified if [V] is `WinRTEnum`.
   /// ```dart
-  /// final keyValuePair =
-  ///     IKeyValuePair<String, ChatMessageStatus>.fromRawPointer(ptr,
-  ///         enumCreator: ChatMessageStatus.from);
+  /// final keyValuePair = IKeyValuePair<String, ChatMessageStatus>.fromPtr(ptr,
+  ///     enumCreator: ChatMessageStatus.from);
   /// ```
-  factory IKeyValuePair.fromRawPointer(
+  factory IKeyValuePair.fromPtr(
     Pointer<COMObject> ptr, {
     V Function(Pointer<COMObject>)? creator,
     K Function(int)? enumKeyCreator,
@@ -73,13 +72,12 @@ abstract class IKeyValuePair<K, V> extends IInspectable {
     if (K == Guid) {
       if (isSubtypeOfInspectable<V>()) {
         if (creator == null) throw ArgumentError.notNull('creator');
-        return _IKeyValuePairGuidInspectable<V>.fromRawPointer(ptr,
-            creator: creator) as IKeyValuePair<K, V>;
+        return _IKeyValuePairGuidInspectable<V>.fromPtr(ptr, creator: creator)
+            as IKeyValuePair<K, V>;
       }
 
       if (isNullableObjectType<V>()) {
-        return _IKeyValuePairGuidObject.fromRawPointer(ptr)
-            as IKeyValuePair<K, V>;
+        return _IKeyValuePairGuidObject.fromPtr(ptr) as IKeyValuePair<K, V>;
       }
     }
 
@@ -88,56 +86,54 @@ abstract class IKeyValuePair<K, V> extends IInspectable {
       if (intType == null) throw ArgumentError.notNull('intType');
       switch (intType) {
         case IntType.int16:
-          return _IKeyValuePairInt16Inspectable<V>.fromRawPointer(ptr,
+          return _IKeyValuePairInt16Inspectable<V>.fromPtr(ptr,
               creator: creator) as IKeyValuePair<K, V>;
         case IntType.int32:
-          return _IKeyValuePairInt32Inspectable<V>.fromRawPointer(ptr,
+          return _IKeyValuePairInt32Inspectable<V>.fromPtr(ptr,
               creator: creator) as IKeyValuePair<K, V>;
         case IntType.int64:
-          return _IKeyValuePairInt64Inspectable<V>.fromRawPointer(ptr,
+          return _IKeyValuePairInt64Inspectable<V>.fromPtr(ptr,
               creator: creator) as IKeyValuePair<K, V>;
         case IntType.uint8:
-          return _IKeyValuePairUint8Inspectable<V>.fromRawPointer(ptr,
+          return _IKeyValuePairUint8Inspectable<V>.fromPtr(ptr,
               creator: creator) as IKeyValuePair<K, V>;
         case IntType.uint16:
-          return _IKeyValuePairUint16Inspectable<V>.fromRawPointer(ptr,
+          return _IKeyValuePairUint16Inspectable<V>.fromPtr(ptr,
               creator: creator) as IKeyValuePair<K, V>;
         case IntType.uint32:
-          return _IKeyValuePairUint32Inspectable<V>.fromRawPointer(ptr,
+          return _IKeyValuePairUint32Inspectable<V>.fromPtr(ptr,
               creator: creator) as IKeyValuePair<K, V>;
         case IntType.uint64:
-          return _IKeyValuePairUint64Inspectable<V>.fromRawPointer(ptr,
+          return _IKeyValuePairUint64Inspectable<V>.fromPtr(ptr,
               creator: creator) as IKeyValuePair<K, V>;
       }
     }
 
     if (K == String) {
       if (V == String) {
-        return _IKeyValuePairStringString.fromRawPointer(ptr)
-            as IKeyValuePair<K, V>;
+        return _IKeyValuePairStringString.fromPtr(ptr) as IKeyValuePair<K, V>;
       }
 
       if (isSubtypeOfInspectable<V>()) {
         if (creator == null) throw ArgumentError.notNull('creator');
-        return _IKeyValuePairStringInspectable<V>.fromRawPointer(ptr,
-            creator: creator) as IKeyValuePair<K, V>;
+        return _IKeyValuePairStringInspectable<V>.fromPtr(ptr, creator: creator)
+            as IKeyValuePair<K, V>;
       }
 
       if (isSubtypeOfWinRTEnum<V>()) {
         if (enumCreator == null) throw ArgumentError.notNull('enumCreator');
 
         if (isSubtypeOfWinRTFlagsEnum<V>()) {
-          return _IKeyValuePairStringWinRTFlagsEnum<V>.fromRawPointer(ptr,
+          return _IKeyValuePairStringWinRTFlagsEnum<V>.fromPtr(ptr,
               enumCreator: enumCreator) as IKeyValuePair<K, V>;
         }
 
-        return _IKeyValuePairStringWinRTEnum<V>.fromRawPointer(ptr,
+        return _IKeyValuePairStringWinRTEnum<V>.fromPtr(ptr,
             enumCreator: enumCreator) as IKeyValuePair<K, V>;
       }
 
       if (isNullableObjectType<V>()) {
-        return _IKeyValuePairStringObject.fromRawPointer(ptr)
-            as IKeyValuePair<K, V>;
+        return _IKeyValuePairStringObject.fromPtr(ptr) as IKeyValuePair<K, V>;
       }
     }
 
@@ -146,11 +142,11 @@ abstract class IKeyValuePair<K, V> extends IInspectable {
       if (creator == null) throw ArgumentError.notNull('creator');
 
       if (isSubtypeOfWinRTFlagsEnum<K>()) {
-        return _IKeyValuePairWinRTFlagsEnumInspectable.fromRawPointer(ptr,
+        return _IKeyValuePairWinRTFlagsEnumInspectable.fromPtr(ptr,
             creator: creator, enumKeyCreator: enumKeyCreator);
       }
 
-      return _IKeyValuePairWinRTEnumInspectable.fromRawPointer(ptr,
+      return _IKeyValuePairWinRTEnumInspectable.fromPtr(ptr,
           creator: creator, enumKeyCreator: enumKeyCreator);
     }
 

@@ -35,27 +35,27 @@ class Uri extends IInspectable
         IUriRuntimeClass,
         IUriRuntimeClassWithAbsoluteCanonicalUri,
         IStringable {
-  Uri.fromRawPointer(super.ptr);
+  Uri.fromPtr(super.ptr);
 
   static const _className = 'Windows.Foundation.Uri';
 
   factory Uri.createUri(String uri) => createActivationFactory(
-          IUriRuntimeClassFactory.fromRawPointer,
+          IUriRuntimeClassFactory.fromPtr,
           _className,
           IID_IUriRuntimeClassFactory)
       .createUri(uri);
 
   factory Uri.createWithRelativeUri(String baseUri, String relativeUri) =>
-      createActivationFactory(IUriRuntimeClassFactory.fromRawPointer,
-              _className, IID_IUriRuntimeClassFactory)
+      createActivationFactory(IUriRuntimeClassFactory.fromPtr, _className,
+              IID_IUriRuntimeClassFactory)
           .createWithRelativeUri(baseUri, relativeUri);
 
   static String unescapeComponent(String toUnescape) => createActivationFactory(
-          IUriEscapeStatics.fromRawPointer, _className, IID_IUriEscapeStatics)
+          IUriEscapeStatics.fromPtr, _className, IID_IUriEscapeStatics)
       .unescapeComponent(toUnescape);
 
   static String escapeComponent(String toEscape) => createActivationFactory(
-          IUriEscapeStatics.fromRawPointer, _className, IID_IUriEscapeStatics)
+          IUriEscapeStatics.fromPtr, _className, IID_IUriEscapeStatics)
       .escapeComponent(toEscape);
 
   late final _iUriRuntimeClass = IUriRuntimeClass.from(this);

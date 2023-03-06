@@ -49,7 +49,7 @@ Pointer<COMObject> activateClass(String className,
 /// [className].
 ///
 /// [creator] must be the constructor of the class to be created (e.g.
-/// `ICalendarFactory.fromRawPointer`).
+/// `ICalendarFactory.fromPtr`).
 ///
 /// [className] must be the name of the Windows Runtime class (e.g.
 /// `Windows.Globalization.Calendar`).
@@ -58,10 +58,8 @@ Pointer<COMObject> activateClass(String className,
 /// `IID_ICalendarFactory`).
 ///
 /// ```dart
-/// final calendarFactory  = createActivationFactory(
-///     ICalendarFactory.fromRawPointer,
-///     'Windows.Globalization.Calendar',
-///     IID_ICalendarFactory);
+/// final calendarFactory  = createActivationFactory(ICalendarFactory.fromPtr,
+///     'Windows.Globalization.Calendar', IID_ICalendarFactory);
 /// ```
 T createActivationFactory<T extends IInspectable>(
     T Function(Pointer<COMObject>) creator, String className, String iid) {
@@ -97,7 +95,7 @@ T createActivationFactory<T extends IInspectable>(
 /// Creates a WinRT object.
 ///
 /// [creator] must be the constructor of the class to be created (e.g.
-/// `ICalendar.fromRawPointer`).
+/// `ICalendar.fromPtr`).
 ///
 /// [className] must be an activatable Windows Runtime class (e.g.
 /// `Windows.Globalization.Calendar`).
@@ -105,7 +103,7 @@ T createActivationFactory<T extends IInspectable>(
 /// [iid] must be the IID of the object to be created (e.g. `IID_ICalendar`).
 ///
 /// ```dart
-/// final calendar = createObject(ICalendar.fromRawPointer,
+/// final calendar = createObject(ICalendar.fromPtr,
 ///     'Windows.Globalization.Calendar', IID_ICalendar);
 /// ```
 T createObject<T extends IInspectable>(

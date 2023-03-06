@@ -24,10 +24,10 @@ const IID_IInputStream = '{905a0fe2-bc53-11df-8c49-001e4fc686da}';
 /// {@category interface}
 class IInputStream extends IInspectable implements IClosable {
   // vtable begins at 6, is 1 entries long.
-  IInputStream.fromRawPointer(super.ptr);
+  IInputStream.fromPtr(super.ptr);
 
   factory IInputStream.from(IInspectable interface) =>
-      IInputStream.fromRawPointer(interface.toInterface(IID_IInputStream));
+      IInputStream.fromPtr(interface.toInterface(IID_IInputStream));
 
   Pointer<COMObject> readAsync(
       IBuffer? buffer, int count, InputStreamOptions options) {

@@ -22,10 +22,10 @@ const IID_IWlanConnectionProfileDetails =
 /// {@category interface}
 class IWlanConnectionProfileDetails extends IInspectable {
   // vtable begins at 6, is 1 entries long.
-  IWlanConnectionProfileDetails.fromRawPointer(super.ptr);
+  IWlanConnectionProfileDetails.fromPtr(super.ptr);
 
   factory IWlanConnectionProfileDetails.from(IInspectable interface) =>
-      IWlanConnectionProfileDetails.fromRawPointer(
+      IWlanConnectionProfileDetails.fromPtr(
           interface.toInterface(IID_IWlanConnectionProfileDetails));
 
   String getConnectedSsid() {

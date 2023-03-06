@@ -23,7 +23,7 @@ import 'ixmldomimplementation.dart';
 /// {@category class}
 class XmlDomImplementation extends IInspectable
     implements IXmlDomImplementation {
-  XmlDomImplementation.fromRawPointer(super.ptr);
+  XmlDomImplementation.fromPtr(super.ptr);
 
   late final _iXmlDomImplementation = IXmlDomImplementation.from(this);
 

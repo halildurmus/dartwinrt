@@ -21,10 +21,10 @@ const IID_ICivicAddress = '{a8567a1a-64f4-4d48-bcea-f6b008eca34c}';
 /// {@category interface}
 class ICivicAddress extends IInspectable {
   // vtable begins at 6, is 5 entries long.
-  ICivicAddress.fromRawPointer(super.ptr);
+  ICivicAddress.fromPtr(super.ptr);
 
   factory ICivicAddress.from(IInspectable interface) =>
-      ICivicAddress.fromRawPointer(interface.toInterface(IID_ICivicAddress));
+      ICivicAddress.fromPtr(interface.toInterface(IID_ICivicAddress));
 
   String get country {
     final retValuePtr = calloc<HSTRING>();

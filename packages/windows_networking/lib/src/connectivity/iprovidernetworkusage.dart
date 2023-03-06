@@ -21,10 +21,10 @@ const IID_IProviderNetworkUsage = '{5ec69e04-7931-48c8-b8f3-46300fa42728}';
 /// {@category interface}
 class IProviderNetworkUsage extends IInspectable {
   // vtable begins at 6, is 3 entries long.
-  IProviderNetworkUsage.fromRawPointer(super.ptr);
+  IProviderNetworkUsage.fromPtr(super.ptr);
 
   factory IProviderNetworkUsage.from(IInspectable interface) =>
-      IProviderNetworkUsage.fromRawPointer(
+      IProviderNetworkUsage.fromPtr(
           interface.toInterface(IID_IProviderNetworkUsage));
 
   int get bytesSent {

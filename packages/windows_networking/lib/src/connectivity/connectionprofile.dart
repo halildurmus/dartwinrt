@@ -53,7 +53,7 @@ class ConnectionProfile extends IInspectable
         IConnectionProfile4,
         IConnectionProfile5,
         IConnectionProfile6 {
-  ConnectionProfile.fromRawPointer(super.ptr);
+  ConnectionProfile.fromPtr(super.ptr);
 
   late final _iConnectionProfile = IConnectionProfile.from(this);
 

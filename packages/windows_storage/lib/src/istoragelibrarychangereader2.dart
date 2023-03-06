@@ -22,10 +22,10 @@ const IID_IStorageLibraryChangeReader2 =
 /// {@category interface}
 class IStorageLibraryChangeReader2 extends IInspectable {
   // vtable begins at 6, is 1 entries long.
-  IStorageLibraryChangeReader2.fromRawPointer(super.ptr);
+  IStorageLibraryChangeReader2.fromPtr(super.ptr);
 
   factory IStorageLibraryChangeReader2.from(IInspectable interface) =>
-      IStorageLibraryChangeReader2.fromRawPointer(
+      IStorageLibraryChangeReader2.fromPtr(
           interface.toInterface(IID_IStorageLibraryChangeReader2));
 
   int getLastChangeId() {

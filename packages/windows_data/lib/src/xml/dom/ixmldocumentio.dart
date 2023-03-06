@@ -24,10 +24,10 @@ const IID_IXmlDocumentIO = '{6cd0e74e-ee65-4489-9ebf-ca43e87ba637}';
 /// {@category interface}
 class IXmlDocumentIO extends IInspectable {
   // vtable begins at 6, is 3 entries long.
-  IXmlDocumentIO.fromRawPointer(super.ptr);
+  IXmlDocumentIO.fromPtr(super.ptr);
 
   factory IXmlDocumentIO.from(IInspectable interface) =>
-      IXmlDocumentIO.fromRawPointer(interface.toInterface(IID_IXmlDocumentIO));
+      IXmlDocumentIO.fromPtr(interface.toInterface(IID_IXmlDocumentIO));
 
   void loadXml(String xml) {
     final xmlHString = xml.toHString();
@@ -91,7 +91,7 @@ class IXmlDocumentIO extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncAction = IAsyncAction.fromRawPointer(retValuePtr);
+    final asyncAction = IAsyncAction.fromPtr(retValuePtr);
     completeAsyncAction(asyncAction, completer);
 
     return completer.future;

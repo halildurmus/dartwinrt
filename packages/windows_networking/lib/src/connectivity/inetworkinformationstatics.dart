@@ -28,10 +28,10 @@ const IID_INetworkInformationStatics = '{5074f851-950d-4165-9c15-365619481eea}';
 /// {@category interface}
 class INetworkInformationStatics extends IInspectable {
   // vtable begins at 6, is 8 entries long.
-  INetworkInformationStatics.fromRawPointer(super.ptr);
+  INetworkInformationStatics.fromPtr(super.ptr);
 
   factory INetworkInformationStatics.from(IInspectable interface) =>
-      INetworkInformationStatics.fromRawPointer(
+      INetworkInformationStatics.fromPtr(
           interface.toInterface(IID_INetworkInformationStatics));
 
   List<ConnectionProfile> getConnectionProfiles() {
@@ -54,10 +54,9 @@ class INetworkInformationStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final vectorView = IVectorView<ConnectionProfile>.fromRawPointer(
-        retValuePtr,
+    final vectorView = IVectorView<ConnectionProfile>.fromPtr(retValuePtr,
         iterableIid: '{34dabef9-87d0-5b1c-a7ac-9d290adeb0c8}',
-        creator: ConnectionProfile.fromRawPointer);
+        creator: ConnectionProfile.fromPtr);
     return vectorView.toList();
   }
 
@@ -86,7 +85,7 @@ class INetworkInformationStatics extends IInspectable {
       return null;
     }
 
-    return ConnectionProfile.fromRawPointer(retValuePtr);
+    return ConnectionProfile.fromPtr(retValuePtr);
   }
 
   List<LanIdentifier> getLanIdentifiers() {
@@ -109,9 +108,9 @@ class INetworkInformationStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final vectorView = IVectorView<LanIdentifier>.fromRawPointer(retValuePtr,
+    final vectorView = IVectorView<LanIdentifier>.fromPtr(retValuePtr,
         iterableIid: '{accef3cd-5d92-5c01-8ac4-79fe74cd733e}',
-        creator: LanIdentifier.fromRawPointer);
+        creator: LanIdentifier.fromPtr);
     return vectorView.toList();
   }
 
@@ -135,9 +134,9 @@ class INetworkInformationStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final vectorView = IVectorView<HostName>.fromRawPointer(retValuePtr,
+    final vectorView = IVectorView<HostName>.fromPtr(retValuePtr,
         iterableIid: '{9e5f3ed0-cf1c-5d38-832c-acea6164bf5c}',
-        creator: HostName.fromRawPointer);
+        creator: HostName.fromPtr);
     return vectorView.toList();
   }
 
@@ -164,9 +163,9 @@ class INetworkInformationStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<ProxyConfiguration?>.fromRawPointer(
+    final asyncOperation = IAsyncOperation<ProxyConfiguration?>.fromPtr(
         retValuePtr,
-        creator: ProxyConfiguration.fromRawPointer);
+        creator: ProxyConfiguration.fromPtr);
     completeAsyncOperation(
         asyncOperation, completer, asyncOperation.getResults);
 
@@ -207,9 +206,9 @@ class INetworkInformationStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final vectorView = IVectorView<EndpointPair>.fromRawPointer(retValuePtr,
+    final vectorView = IVectorView<EndpointPair>.fromPtr(retValuePtr,
         iterableIid: '{d7ec83c4-a17b-51bf-8997-aa33b9102dc9}',
-        creator: EndpointPair.fromRawPointer);
+        creator: EndpointPair.fromPtr);
     return vectorView.toList();
   }
 

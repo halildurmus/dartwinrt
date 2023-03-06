@@ -48,25 +48,25 @@ abstract class IVectorView<T> extends IInspectable implements IIterable<T> {
   ///
   /// [intType] must be specified if [T] is `int`.
   /// ```dart
-  /// final vectorView = IVectorView<int>.fromRawPointer(ptr,
+  /// final vectorView = IVectorView<int>.fromPtr(ptr,
   ///     intType: IntType.uint64,
   ///     iterableIid: '{4b3a3229-7995-5f3c-b248-6c1f7e664f01}');
   /// ```
   ///
   /// [creator] must be specified if [T] is `IInspectable`.
   /// ```dart
-  /// final vectorView = IVectorView<StorageFile>.fromRawPointer(ptr,
-  ///     creator: StorageFile.fromRawPointer,
+  /// final vectorView = IVectorView<StorageFile>.fromPtr(ptr,
+  ///     creator: StorageFile.fromPtr,
   ///     iterableIid: '{9ac00304-83ea-5688-87b6-ae38aab65d0b}');
   /// ```
   ///
   /// [enumCreator] must be specified if [T] is `WinRTEnum`.
   /// ```dart
-  /// final vectorView = IVectorView<DeviceClass>.fromRawPointer(ptr,
+  /// final vectorView = IVectorView<DeviceClass>.fromPtr(ptr,
   ///     enumCreator: DeviceClass.from,
   ///     iterableIid: '{47d4be05-58f1-522e-81c6-975eb4131bb9}');
   /// ```
-  factory IVectorView.fromRawPointer(
+  factory IVectorView.fromPtr(
     Pointer<COMObject> ptr, {
     required String iterableIid,
     T Function(Pointer<COMObject>)? creator,
@@ -74,18 +74,18 @@ abstract class IVectorView<T> extends IInspectable implements IIterable<T> {
     IntType? intType,
   }) {
     if (T == bool) {
-      return _IVectorViewBool.fromRawPointer(ptr, iterableIid: iterableIid)
+      return _IVectorViewBool.fromPtr(ptr, iterableIid: iterableIid)
           as IVectorView<T>;
     }
 
     if (T == Guid) {
-      return _IVectorViewGuid.fromRawPointer(ptr, iterableIid: iterableIid)
+      return _IVectorViewGuid.fromPtr(ptr, iterableIid: iterableIid)
           as IVectorView<T>;
     }
 
     if (isSubtypeOfInspectable<T>()) {
       if (creator == null) throw ArgumentError.notNull('creator');
-      return _IVectorViewInspectable.fromRawPointer(ptr,
+      return _IVectorViewInspectable.fromPtr(ptr,
           creator: creator, iterableIid: iterableIid);
     }
 
@@ -93,36 +93,36 @@ abstract class IVectorView<T> extends IInspectable implements IIterable<T> {
       if (intType == null) throw ArgumentError.notNull('intType');
       switch (intType) {
         case IntType.int16:
-          return _IVectorViewInt16.fromRawPointer(ptr,
+          return _IVectorViewInt16.fromPtr(ptr,
               intType: intType, iterableIid: iterableIid) as IVectorView<T>;
         case IntType.int32:
-          return _IVectorViewInt32.fromRawPointer(ptr,
+          return _IVectorViewInt32.fromPtr(ptr,
               intType: intType, iterableIid: iterableIid) as IVectorView<T>;
         case IntType.int64:
-          return _IVectorViewInt64.fromRawPointer(ptr,
+          return _IVectorViewInt64.fromPtr(ptr,
               intType: intType, iterableIid: iterableIid) as IVectorView<T>;
         case IntType.uint8:
-          return _IVectorViewUint8.fromRawPointer(ptr,
+          return _IVectorViewUint8.fromPtr(ptr,
               intType: intType, iterableIid: iterableIid) as IVectorView<T>;
         case IntType.uint16:
-          return _IVectorViewUint16.fromRawPointer(ptr,
+          return _IVectorViewUint16.fromPtr(ptr,
               intType: intType, iterableIid: iterableIid) as IVectorView<T>;
         case IntType.uint32:
-          return _IVectorViewUint32.fromRawPointer(ptr,
+          return _IVectorViewUint32.fromPtr(ptr,
               intType: intType, iterableIid: iterableIid) as IVectorView<T>;
         case IntType.uint64:
-          return _IVectorViewUint64.fromRawPointer(ptr,
+          return _IVectorViewUint64.fromPtr(ptr,
               intType: intType, iterableIid: iterableIid) as IVectorView<T>;
       }
     }
 
     if (T == String) {
-      return _IVectorViewString.fromRawPointer(ptr, iterableIid: iterableIid)
+      return _IVectorViewString.fromPtr(ptr, iterableIid: iterableIid)
           as IVectorView<T>;
     }
 
     if (T == Uri) {
-      return _IVectorViewUri.fromRawPointer(ptr, iterableIid: iterableIid)
+      return _IVectorViewUri.fromPtr(ptr, iterableIid: iterableIid)
           as IVectorView<T>;
     }
 
@@ -130,11 +130,11 @@ abstract class IVectorView<T> extends IInspectable implements IIterable<T> {
       if (enumCreator == null) throw ArgumentError.notNull('enumCreator');
 
       if (isSubtypeOfWinRTFlagsEnum<T>()) {
-        return _IVectorViewWinRTFlagsEnum.fromRawPointer(ptr,
+        return _IVectorViewWinRTFlagsEnum.fromPtr(ptr,
             enumCreator: enumCreator, iterableIid: iterableIid);
       }
 
-      return _IVectorViewWinRTEnum.fromRawPointer(ptr,
+      return _IVectorViewWinRTEnum.fromPtr(ptr,
           enumCreator: enumCreator, iterableIid: iterableIid);
     }
 
@@ -178,7 +178,7 @@ abstract class IVectorView<T> extends IInspectable implements IIterable<T> {
   /// index.
   int getMany(int startIndex, int valueSize, List<T> value);
 
-  late final _iIterable = IIterable<T>.fromRawPointer(toInterface(_iterableIid),
+  late final _iIterable = IIterable<T>.fromPtr(toInterface(_iterableIid),
       creator: _creator, enumCreator: _enumCreator, intType: _intType);
 
   @override

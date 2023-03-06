@@ -21,10 +21,10 @@ const IID_IUserDataPaths = '{f9c53912-abc4-46ff-8a2b-dc9d7fa6e52f}';
 /// {@category interface}
 class IUserDataPaths extends IInspectable {
   // vtable begins at 6, is 19 entries long.
-  IUserDataPaths.fromRawPointer(super.ptr);
+  IUserDataPaths.fromPtr(super.ptr);
 
   factory IUserDataPaths.from(IInspectable interface) =>
-      IUserDataPaths.fromRawPointer(interface.toInterface(IID_IUserDataPaths));
+      IUserDataPaths.fromPtr(interface.toInterface(IID_IUserDataPaths));
 
   String get cameraRoll {
     final retValuePtr = calloc<HSTRING>();

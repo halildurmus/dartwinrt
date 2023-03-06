@@ -23,7 +23,7 @@ import 'pedometerstepkind.dart';
 ///
 /// {@category class}
 class PedometerReading extends IInspectable implements IPedometerReading {
-  PedometerReading.fromRawPointer(super.ptr);
+  PedometerReading.fromPtr(super.ptr);
 
   late final _iPedometerReading = IPedometerReading.from(this);
 

@@ -23,7 +23,7 @@ import 'networkadapter.dart';
 ///
 /// {@category class}
 class IPInformation extends IInspectable implements IIPInformation {
-  IPInformation.fromRawPointer(super.ptr);
+  IPInformation.fromPtr(super.ptr);
 
   late final _iIPInformation = IIPInformation.from(this);
 

@@ -25,10 +25,10 @@ const IID_IKnownFoldersStatics3 = '{c5194341-9742-4ed5-823d-fc1401148764}';
 /// {@category interface}
 class IKnownFoldersStatics3 extends IInspectable {
   // vtable begins at 6, is 1 entries long.
-  IKnownFoldersStatics3.fromRawPointer(super.ptr);
+  IKnownFoldersStatics3.fromPtr(super.ptr);
 
   factory IKnownFoldersStatics3.from(IInspectable interface) =>
-      IKnownFoldersStatics3.fromRawPointer(
+      IKnownFoldersStatics3.fromPtr(
           interface.toInterface(IID_IKnownFoldersStatics3));
 
   Future<StorageFolder?> getFolderForUserAsync(
@@ -55,9 +55,8 @@ class IKnownFoldersStatics3 extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<StorageFolder?>.fromRawPointer(
-        retValuePtr,
-        creator: StorageFolder.fromRawPointer);
+    final asyncOperation = IAsyncOperation<StorageFolder?>.fromPtr(retValuePtr,
+        creator: StorageFolder.fromPtr);
     completeAsyncOperation(
         asyncOperation, completer, asyncOperation.getResults);
 

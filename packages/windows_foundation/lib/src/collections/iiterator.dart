@@ -35,72 +35,70 @@ abstract class IIterator<T> extends IInspectable {
   ///
   /// [intType] must be specified if [T] is `int`.
   /// ```dart
-  /// final iterator =
-  ///     IIterator<int>.fromRawPointer(ptr, intType: IntType.uint64);
+  /// final iterator = IIterator<int>.fromPtr(ptr, intType: IntType.uint64);
   /// ```
   ///
   /// [creator] must be specified if [T] is `IInspectable`.
   /// ```dart
-  /// final iterator = IIterator<StorageFile>.fromRawPointer(ptr,
-  ///     creator: StorageFile.fromRawPointer);
+  /// final iterator = IIterator<StorageFile>.fromPtr(ptr,
+  ///     creator: StorageFile.fromPtr);
   /// ```
   ///
   /// [enumCreator] must be specified if [T] is `WinRTEnum`.
   /// ```dart
-  /// final iterator = IIterator<DeviceClass>.fromRawPointer(ptr,
+  /// final iterator = IIterator<DeviceClass>.fromPtr(ptr,
   ///     enumCreator: DeviceClass.from);
   /// ```
-  factory IIterator.fromRawPointer(
+  factory IIterator.fromPtr(
     Pointer<COMObject> ptr, {
     T Function(Pointer<COMObject>)? creator,
     T Function(int)? enumCreator,
     IntType? intType,
   }) {
-    if (T == bool) return _IIteratorBool.fromRawPointer(ptr) as IIterator<T>;
-    if (T == Guid) return _IIteratorGuid.fromRawPointer(ptr) as IIterator<T>;
+    if (T == bool) return _IIteratorBool.fromPtr(ptr) as IIterator<T>;
+    if (T == Guid) return _IIteratorGuid.fromPtr(ptr) as IIterator<T>;
 
     if (T == int) {
       if (intType == null) throw ArgumentError.notNull('intType');
       switch (intType) {
         case IntType.int16:
-          return _IIteratorInt16.fromRawPointer(ptr) as IIterator<T>;
+          return _IIteratorInt16.fromPtr(ptr) as IIterator<T>;
         case IntType.int32:
-          return _IIteratorInt32.fromRawPointer(ptr) as IIterator<T>;
+          return _IIteratorInt32.fromPtr(ptr) as IIterator<T>;
         case IntType.int64:
-          return _IIteratorInt64.fromRawPointer(ptr) as IIterator<T>;
+          return _IIteratorInt64.fromPtr(ptr) as IIterator<T>;
         case IntType.uint8:
-          return _IIteratorUint8.fromRawPointer(ptr) as IIterator<T>;
+          return _IIteratorUint8.fromPtr(ptr) as IIterator<T>;
         case IntType.uint16:
-          return _IIteratorUint16.fromRawPointer(ptr) as IIterator<T>;
+          return _IIteratorUint16.fromPtr(ptr) as IIterator<T>;
         case IntType.uint32:
-          return _IIteratorUint32.fromRawPointer(ptr) as IIterator<T>;
+          return _IIteratorUint32.fromPtr(ptr) as IIterator<T>;
         case IntType.uint64:
-          return _IIteratorUint64.fromRawPointer(ptr) as IIterator<T>;
+          return _IIteratorUint64.fromPtr(ptr) as IIterator<T>;
       }
     }
 
     if (isSubtypeOfInspectable<T>()) {
       if (creator == null) throw ArgumentError.notNull('creator');
-      return _IIteratorInspectable.fromRawPointer(ptr, creator: creator);
+      return _IIteratorInspectable.fromPtr(ptr, creator: creator);
     }
 
     if (T == String) {
-      return _IIteratorString.fromRawPointer(ptr) as IIterator<T>;
+      return _IIteratorString.fromPtr(ptr) as IIterator<T>;
     }
 
     if (T == Uri) {
-      return _IIteratorUri.fromRawPointer(ptr) as IIterator<T>;
+      return _IIteratorUri.fromPtr(ptr) as IIterator<T>;
     }
 
     if (isSubtypeOfWinRTEnum<T>()) {
       if (enumCreator == null) throw ArgumentError.notNull('enumCreator');
 
       if (isSubtypeOfWinRTFlagsEnum<T>()) {
-        return _IIteratorWinRTFlagsEnum.fromRawPointer(ptr,
-            enumCreator: enumCreator);
+        return _IIteratorWinRTFlagsEnum.fromPtr(ptr, enumCreator: enumCreator);
       }
 
-      return _IIteratorWinRTEnum.fromRawPointer(ptr, enumCreator: enumCreator);
+      return _IIteratorWinRTEnum.fromPtr(ptr, enumCreator: enumCreator);
     }
 
     throw ArgumentError.value(T, 'T', 'Unsupported type');

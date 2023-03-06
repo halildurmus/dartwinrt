@@ -21,11 +21,10 @@ const IID_IConnectionCost2 = '{8e113a05-e209-4549-bb25-5e0db691cb05}';
 /// {@category interface}
 class IConnectionCost2 extends IInspectable {
   // vtable begins at 6, is 1 entries long.
-  IConnectionCost2.fromRawPointer(super.ptr);
+  IConnectionCost2.fromPtr(super.ptr);
 
   factory IConnectionCost2.from(IInspectable interface) =>
-      IConnectionCost2.fromRawPointer(
-          interface.toInterface(IID_IConnectionCost2));
+      IConnectionCost2.fromPtr(interface.toInterface(IID_IConnectionCost2));
 
   bool get backgroundDataUsageRestricted {
     final retValuePtr = calloc<Bool>();

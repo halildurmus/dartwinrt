@@ -24,7 +24,7 @@ import 'userwatcherstatus.dart';
 ///
 /// {@category class}
 class UserWatcher extends IInspectable implements IUserWatcher {
-  UserWatcher.fromRawPointer(super.ptr);
+  UserWatcher.fromPtr(super.ptr);
 
   late final _iUserWatcher = IUserWatcher.from(this);
 

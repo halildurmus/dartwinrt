@@ -23,11 +23,10 @@ const IID_IDataPlanStatus = '{977a8b8c-3885-40f3-8851-42cd2bd568bb}';
 /// {@category interface}
 class IDataPlanStatus extends IInspectable {
   // vtable begins at 6, is 6 entries long.
-  IDataPlanStatus.fromRawPointer(super.ptr);
+  IDataPlanStatus.fromPtr(super.ptr);
 
   factory IDataPlanStatus.from(IInspectable interface) =>
-      IDataPlanStatus.fromRawPointer(
-          interface.toInterface(IID_IDataPlanStatus));
+      IDataPlanStatus.fromPtr(interface.toInterface(IID_IDataPlanStatus));
 
   DataPlanUsage? get dataPlanUsage {
     final retValuePtr = calloc<COMObject>();
@@ -54,7 +53,7 @@ class IDataPlanStatus extends IInspectable {
       return null;
     }
 
-    return DataPlanUsage.fromRawPointer(retValuePtr);
+    return DataPlanUsage.fromPtr(retValuePtr);
   }
 
   int? get dataLimitInMegabytes {
@@ -82,7 +81,7 @@ class IDataPlanStatus extends IInspectable {
       return null;
     }
 
-    final reference = IReference<int?>.fromRawPointer(retValuePtr,
+    final reference = IReference<int?>.fromPtr(retValuePtr,
         referenceIid: '{513ef3af-e784-5325-a91e-97c2b8111cf3}');
     return reference.value;
   }
@@ -112,7 +111,7 @@ class IDataPlanStatus extends IInspectable {
       return null;
     }
 
-    final reference = IReference<int?>.fromRawPointer(retValuePtr,
+    final reference = IReference<int?>.fromPtr(retValuePtr,
         referenceIid: '{6755e376-53bb-568b-a11d-17239868309e}');
     return reference.value;
   }
@@ -142,7 +141,7 @@ class IDataPlanStatus extends IInspectable {
       return null;
     }
 
-    final reference = IReference<int?>.fromRawPointer(retValuePtr,
+    final reference = IReference<int?>.fromPtr(retValuePtr,
         referenceIid: '{6755e376-53bb-568b-a11d-17239868309e}');
     return reference.value;
   }
@@ -172,7 +171,7 @@ class IDataPlanStatus extends IInspectable {
       return null;
     }
 
-    final reference = IReference<DateTime?>.fromRawPointer(retValuePtr,
+    final reference = IReference<DateTime?>.fromPtr(retValuePtr,
         referenceIid: '{5541d8a7-497c-5aa4-86fc-7713adbf2a2c}');
     return reference.value;
   }
@@ -202,7 +201,7 @@ class IDataPlanStatus extends IInspectable {
       return null;
     }
 
-    final reference = IReference<int?>.fromRawPointer(retValuePtr,
+    final reference = IReference<int?>.fromPtr(retValuePtr,
         referenceIid: '{513ef3af-e784-5325-a91e-97c2b8111cf3}');
     return reference.value;
   }

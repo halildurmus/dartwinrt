@@ -28,10 +28,10 @@ const IID_IStorageItemProperties2 = '{8e86a951-04b9-4bd2-929d-fef3f71621d0}';
 class IStorageItemProperties2 extends IInspectable
     implements IStorageItemProperties {
   // vtable begins at 6, is 3 entries long.
-  IStorageItemProperties2.fromRawPointer(super.ptr);
+  IStorageItemProperties2.fromPtr(super.ptr);
 
   factory IStorageItemProperties2.from(IInspectable interface) =>
-      IStorageItemProperties2.fromRawPointer(
+      IStorageItemProperties2.fromPtr(
           interface.toInterface(IID_IStorageItemProperties2));
 
   Future<StorageItemThumbnail?>
@@ -58,9 +58,9 @@ class IStorageItemProperties2 extends IInspectable
       throw WindowsException(hr);
     }
 
-    final asyncOperation =
-        IAsyncOperation<StorageItemThumbnail?>.fromRawPointer(retValuePtr,
-            creator: StorageItemThumbnail.fromRawPointer);
+    final asyncOperation = IAsyncOperation<StorageItemThumbnail?>.fromPtr(
+        retValuePtr,
+        creator: StorageItemThumbnail.fromPtr);
     completeAsyncOperation(
         asyncOperation, completer, asyncOperation.getResults);
 
@@ -94,9 +94,9 @@ class IStorageItemProperties2 extends IInspectable
       throw WindowsException(hr);
     }
 
-    final asyncOperation =
-        IAsyncOperation<StorageItemThumbnail?>.fromRawPointer(retValuePtr,
-            creator: StorageItemThumbnail.fromRawPointer);
+    final asyncOperation = IAsyncOperation<StorageItemThumbnail?>.fromPtr(
+        retValuePtr,
+        creator: StorageItemThumbnail.fromPtr);
     completeAsyncOperation(
         asyncOperation, completer, asyncOperation.getResults);
 
@@ -130,9 +130,9 @@ class IStorageItemProperties2 extends IInspectable
       throw WindowsException(hr);
     }
 
-    final asyncOperation =
-        IAsyncOperation<StorageItemThumbnail?>.fromRawPointer(retValuePtr,
-            creator: StorageItemThumbnail.fromRawPointer);
+    final asyncOperation = IAsyncOperation<StorageItemThumbnail?>.fromPtr(
+        retValuePtr,
+        creator: StorageItemThumbnail.fromPtr);
     completeAsyncOperation(
         asyncOperation, completer, asyncOperation.getResults);
 

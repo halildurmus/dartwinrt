@@ -25,10 +25,10 @@ const IID_IQueryOptionsFactory = '{032e1f8c-a9c1-4e71-8011-0dee9d4811a3}';
 /// {@category interface}
 class IQueryOptionsFactory extends IInspectable {
   // vtable begins at 6, is 2 entries long.
-  IQueryOptionsFactory.fromRawPointer(super.ptr);
+  IQueryOptionsFactory.fromPtr(super.ptr);
 
   factory IQueryOptionsFactory.from(IInspectable interface) =>
-      IQueryOptionsFactory.fromRawPointer(
+      IQueryOptionsFactory.fromPtr(
           interface.toInterface(IID_IQueryOptionsFactory));
 
   QueryOptions createCommonFileQuery(
@@ -61,7 +61,7 @@ class IQueryOptionsFactory extends IInspectable {
       throw WindowsException(hr);
     }
 
-    return QueryOptions.fromRawPointer(retValuePtr);
+    return QueryOptions.fromPtr(retValuePtr);
   }
 
   QueryOptions createCommonFolderQuery(CommonFolderQuery query) {
@@ -85,6 +85,6 @@ class IQueryOptionsFactory extends IInspectable {
       throw WindowsException(hr);
     }
 
-    return QueryOptions.fromRawPointer(retValuePtr);
+    return QueryOptions.fromPtr(retValuePtr);
   }
 }

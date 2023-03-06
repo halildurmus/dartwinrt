@@ -138,10 +138,10 @@ class GenericInterfaceProjection extends InterfaceProjection {
 
     if (constructorArgs.isNotEmpty) {
       final args = constructorArgs.join(', ');
-      return '$className.fromRawPointer(super.ptr, {$args});';
+      return '$className.fromPtr(super.ptr, {$args});';
     }
 
-    return '$className.fromRawPointer(super.ptr);';
+    return '$className.fromPtr(super.ptr);';
   }
 
   void _handleClassVariableReturn(Method method) {

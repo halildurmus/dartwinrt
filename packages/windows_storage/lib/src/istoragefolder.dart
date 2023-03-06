@@ -31,10 +31,10 @@ const IID_IStorageFolder = '{72d1cb78-b3ef-4f75-a80b-6fd9dae2944b}';
 /// {@category interface}
 class IStorageFolder extends IInspectable implements IStorageItem {
   // vtable begins at 6, is 10 entries long.
-  IStorageFolder.fromRawPointer(super.ptr);
+  IStorageFolder.fromPtr(super.ptr);
 
   factory IStorageFolder.from(IInspectable interface) =>
-      IStorageFolder.fromRawPointer(interface.toInterface(IID_IStorageFolder));
+      IStorageFolder.fromPtr(interface.toInterface(IID_IStorageFolder));
 
   Future<StorageFile?> createFileAsyncOverloadDefaultOptions(
       String desiredName) {
@@ -62,9 +62,8 @@ class IStorageFolder extends IInspectable implements IStorageItem {
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<StorageFile?>.fromRawPointer(
-        retValuePtr,
-        creator: StorageFile.fromRawPointer);
+    final asyncOperation = IAsyncOperation<StorageFile?>.fromPtr(retValuePtr,
+        creator: StorageFile.fromPtr);
     completeAsyncOperation(
         asyncOperation, completer, asyncOperation.getResults);
 
@@ -97,9 +96,8 @@ class IStorageFolder extends IInspectable implements IStorageItem {
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<StorageFile?>.fromRawPointer(
-        retValuePtr,
-        creator: StorageFile.fromRawPointer);
+    final asyncOperation = IAsyncOperation<StorageFile?>.fromPtr(retValuePtr,
+        creator: StorageFile.fromPtr);
     completeAsyncOperation(
         asyncOperation, completer, asyncOperation.getResults);
 
@@ -132,9 +130,8 @@ class IStorageFolder extends IInspectable implements IStorageItem {
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<StorageFolder?>.fromRawPointer(
-        retValuePtr,
-        creator: StorageFolder.fromRawPointer);
+    final asyncOperation = IAsyncOperation<StorageFolder?>.fromPtr(retValuePtr,
+        creator: StorageFolder.fromPtr);
     completeAsyncOperation(
         asyncOperation, completer, asyncOperation.getResults);
 
@@ -167,9 +164,8 @@ class IStorageFolder extends IInspectable implements IStorageItem {
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<StorageFolder?>.fromRawPointer(
-        retValuePtr,
-        creator: StorageFolder.fromRawPointer);
+    final asyncOperation = IAsyncOperation<StorageFolder?>.fromPtr(retValuePtr,
+        creator: StorageFolder.fromPtr);
     completeAsyncOperation(
         asyncOperation, completer, asyncOperation.getResults);
 
@@ -201,9 +197,8 @@ class IStorageFolder extends IInspectable implements IStorageItem {
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<StorageFile?>.fromRawPointer(
-        retValuePtr,
-        creator: StorageFile.fromRawPointer);
+    final asyncOperation = IAsyncOperation<StorageFile?>.fromPtr(retValuePtr,
+        creator: StorageFile.fromPtr);
     completeAsyncOperation(
         asyncOperation, completer, asyncOperation.getResults);
 
@@ -235,9 +230,8 @@ class IStorageFolder extends IInspectable implements IStorageItem {
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<StorageFolder?>.fromRawPointer(
-        retValuePtr,
-        creator: StorageFolder.fromRawPointer);
+    final asyncOperation = IAsyncOperation<StorageFolder?>.fromPtr(retValuePtr,
+        creator: StorageFolder.fromPtr);
     completeAsyncOperation(
         asyncOperation, completer, asyncOperation.getResults);
 
@@ -269,9 +263,8 @@ class IStorageFolder extends IInspectable implements IStorageItem {
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<IStorageItem?>.fromRawPointer(
-        retValuePtr,
-        creator: IStorageItem.fromRawPointer);
+    final asyncOperation = IAsyncOperation<IStorageItem?>.fromPtr(retValuePtr,
+        creator: IStorageItem.fromPtr);
     completeAsyncOperation(
         asyncOperation, completer, asyncOperation.getResults);
 
@@ -299,12 +292,11 @@ class IStorageFolder extends IInspectable implements IStorageItem {
       throw WindowsException(hr);
     }
 
-    final asyncOperation =
-        IAsyncOperation<IVectorView<StorageFile>>.fromRawPointer(
-            retValuePtr,
-            creator: (ptr) => IVectorView.fromRawPointer(ptr,
-                creator: StorageFile.fromRawPointer,
-                iterableIid: '{9ac00304-83ea-5688-87b6-ae38aab65d0b}'));
+    final asyncOperation = IAsyncOperation<IVectorView<StorageFile>>.fromPtr(
+        retValuePtr,
+        creator: (ptr) => IVectorView.fromPtr(ptr,
+            creator: StorageFile.fromPtr,
+            iterableIid: '{9ac00304-83ea-5688-87b6-ae38aab65d0b}'));
     completeAsyncOperation(
         asyncOperation, completer, () => asyncOperation.getResults().toList());
 
@@ -333,11 +325,11 @@ class IStorageFolder extends IInspectable implements IStorageItem {
       throw WindowsException(hr);
     }
 
-    final asyncOperation =
-        IAsyncOperation<IVectorView<StorageFolder>>.fromRawPointer(retValuePtr,
-            creator: (ptr) => IVectorView.fromRawPointer(ptr,
-                creator: StorageFolder.fromRawPointer,
-                iterableIid: '{4669befc-ae5c-52b1-8a97-5466ce61e94e}'));
+    final asyncOperation = IAsyncOperation<IVectorView<StorageFolder>>.fromPtr(
+        retValuePtr,
+        creator: (ptr) => IVectorView.fromPtr(ptr,
+            creator: StorageFolder.fromPtr,
+            iterableIid: '{4669befc-ae5c-52b1-8a97-5466ce61e94e}'));
     completeAsyncOperation(
         asyncOperation, completer, () => asyncOperation.getResults().toList());
 
@@ -365,11 +357,11 @@ class IStorageFolder extends IInspectable implements IStorageItem {
       throw WindowsException(hr);
     }
 
-    final asyncOperation =
-        IAsyncOperation<IVectorView<IStorageItem>>.fromRawPointer(retValuePtr,
-            creator: (ptr) => IVectorView.fromRawPointer(ptr,
-                creator: IStorageItem.fromRawPointer,
-                iterableIid: '{bb8b8418-65d1-544b-b083-6d172f568c73}'));
+    final asyncOperation = IAsyncOperation<IVectorView<IStorageItem>>.fromPtr(
+        retValuePtr,
+        creator: (ptr) => IVectorView.fromPtr(ptr,
+            creator: IStorageItem.fromPtr,
+            iterableIid: '{bb8b8418-65d1-544b-b083-6d172f568c73}'));
     completeAsyncOperation(
         asyncOperation, completer, () => asyncOperation.getResults().toList());
 

@@ -23,7 +23,7 @@ import 'idataplanstatus.dart';
 ///
 /// {@category class}
 class DataPlanStatus extends IInspectable implements IDataPlanStatus {
-  DataPlanStatus.fromRawPointer(super.ptr);
+  DataPlanStatus.fromPtr(super.ptr);
 
   late final _iDataPlanStatus = IDataPlanStatus.from(this);
 

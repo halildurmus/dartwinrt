@@ -23,10 +23,10 @@ const IID_IScheduledToastNotification =
 /// {@category interface}
 class IScheduledToastNotification extends IInspectable {
   // vtable begins at 6, is 6 entries long.
-  IScheduledToastNotification.fromRawPointer(super.ptr);
+  IScheduledToastNotification.fromPtr(super.ptr);
 
   factory IScheduledToastNotification.from(IInspectable interface) =>
-      IScheduledToastNotification.fromRawPointer(
+      IScheduledToastNotification.fromPtr(
           interface.toInterface(IID_IScheduledToastNotification));
 
   XmlDocument? get content {
@@ -54,7 +54,7 @@ class IScheduledToastNotification extends IInspectable {
       return null;
     }
 
-    return XmlDocument.fromRawPointer(retValuePtr);
+    return XmlDocument.fromPtr(retValuePtr);
   }
 
   DateTime get deliveryTime {
@@ -106,7 +106,7 @@ class IScheduledToastNotification extends IInspectable {
       return null;
     }
 
-    final reference = IReference<Duration?>.fromRawPointer(retValuePtr,
+    final reference = IReference<Duration?>.fromPtr(retValuePtr,
         referenceIid: '{604d0c4c-91de-5c2a-935f-362f13eaf800}');
     return reference.value;
   }

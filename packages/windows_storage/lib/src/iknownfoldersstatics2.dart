@@ -23,10 +23,10 @@ const IID_IKnownFoldersStatics2 = '{194bd0cd-cf6e-4d07-9d53-e9163a2536e9}';
 /// {@category interface}
 class IKnownFoldersStatics2 extends IInspectable {
   // vtable begins at 6, is 3 entries long.
-  IKnownFoldersStatics2.fromRawPointer(super.ptr);
+  IKnownFoldersStatics2.fromPtr(super.ptr);
 
   factory IKnownFoldersStatics2.from(IInspectable interface) =>
-      IKnownFoldersStatics2.fromRawPointer(
+      IKnownFoldersStatics2.fromPtr(
           interface.toInterface(IID_IKnownFoldersStatics2));
 
   StorageFolder? get objects3D {
@@ -54,7 +54,7 @@ class IKnownFoldersStatics2 extends IInspectable {
       return null;
     }
 
-    return StorageFolder.fromRawPointer(retValuePtr);
+    return StorageFolder.fromPtr(retValuePtr);
   }
 
   StorageFolder? get appCaptures {
@@ -82,7 +82,7 @@ class IKnownFoldersStatics2 extends IInspectable {
       return null;
     }
 
-    return StorageFolder.fromRawPointer(retValuePtr);
+    return StorageFolder.fromPtr(retValuePtr);
   }
 
   StorageFolder? get recordedCalls {
@@ -110,6 +110,6 @@ class IKnownFoldersStatics2 extends IInspectable {
       return null;
     }
 
-    return StorageFolder.fromRawPointer(retValuePtr);
+    return StorageFolder.fromPtr(retValuePtr);
   }
 }

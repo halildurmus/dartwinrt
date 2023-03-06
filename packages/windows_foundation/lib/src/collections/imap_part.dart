@@ -10,7 +10,7 @@
 part of 'imap.dart';
 
 class _IMapGuidInspectable<V> extends IMap<Guid, V> {
-  _IMapGuidInspectable.fromRawPointer(super.ptr,
+  _IMapGuidInspectable.fromPtr(super.ptr,
       {required super.iterableIid, super.creator});
 
   @override
@@ -131,7 +131,7 @@ class _IMapGuidInspectable<V> extends IMap<Guid, V> {
 }
 
 class _IMapGuidObject extends IMap<Guid, Object?> {
-  _IMapGuidObject.fromRawPointer(super.ptr, {required super.iterableIid});
+  _IMapGuidObject.fromPtr(super.ptr, {required super.iterableIid});
 
   @override
   Object? lookup(Guid key) {
@@ -163,7 +163,7 @@ class _IMapGuidObject extends IMap<Guid, Object?> {
       return null;
     }
 
-    return IPropertyValue.fromRawPointer(retValuePtr).value;
+    return IPropertyValue.fromPtr(retValuePtr).value;
   }
 
   @override
@@ -249,7 +249,7 @@ class _IMapGuidObject extends IMap<Guid, Object?> {
 }
 
 class _IMapInt16Inspectable<V> extends IMap<int, V> {
-  _IMapInt16Inspectable.fromRawPointer(super.ptr,
+  _IMapInt16Inspectable.fromPtr(super.ptr,
       {required super.iterableIid, super.intType, super.creator});
 
   @override
@@ -351,7 +351,7 @@ class _IMapInt16Inspectable<V> extends IMap<int, V> {
 }
 
 class _IMapInt32Inspectable<V> extends IMap<int, V> {
-  _IMapInt32Inspectable.fromRawPointer(super.ptr,
+  _IMapInt32Inspectable.fromPtr(super.ptr,
       {required super.iterableIid, super.intType, super.creator});
 
   @override
@@ -453,7 +453,7 @@ class _IMapInt32Inspectable<V> extends IMap<int, V> {
 }
 
 class _IMapInt64Inspectable<V> extends IMap<int, V> {
-  _IMapInt64Inspectable.fromRawPointer(super.ptr,
+  _IMapInt64Inspectable.fromPtr(super.ptr,
       {required super.iterableIid, super.intType, super.creator});
 
   @override
@@ -555,7 +555,7 @@ class _IMapInt64Inspectable<V> extends IMap<int, V> {
 }
 
 class _IMapStringInspectable<V> extends IMap<String, V> {
-  _IMapStringInspectable.fromRawPointer(super.ptr,
+  _IMapStringInspectable.fromPtr(super.ptr,
       {required super.iterableIid, super.creator});
 
   @override
@@ -672,7 +672,7 @@ class _IMapStringInspectable<V> extends IMap<String, V> {
 }
 
 class _IMapStringObject extends IMap<String, Object?> {
-  _IMapStringObject.fromRawPointer(super.ptr, {required super.iterableIid});
+  _IMapStringObject.fromPtr(super.ptr, {required super.iterableIid});
 
   @override
   Object? lookup(String key) {
@@ -704,7 +704,7 @@ class _IMapStringObject extends IMap<String, Object?> {
       return null;
     }
 
-    return IPropertyValue.fromRawPointer(retValuePtr).value;
+    return IPropertyValue.fromPtr(retValuePtr).value;
   }
 
   @override
@@ -789,7 +789,7 @@ class _IMapStringObject extends IMap<String, Object?> {
 }
 
 class _IMapStringString extends IMap<String, String> {
-  _IMapStringString.fromRawPointer(super.ptr, {required super.iterableIid});
+  _IMapStringString.fromPtr(super.ptr, {required super.iterableIid});
 
   @override
   String lookup(String key) {
@@ -905,7 +905,7 @@ class _IMapStringString extends IMap<String, String> {
 }
 
 class _IMapStringWinRTEnum<V> extends IMap<String, V> {
-  _IMapStringWinRTEnum.fromRawPointer(super.ptr,
+  _IMapStringWinRTEnum.fromPtr(super.ptr,
       {required super.iterableIid, super.enumCreator});
 
   @override
@@ -1019,7 +1019,7 @@ class _IMapStringWinRTEnum<V> extends IMap<String, V> {
 }
 
 class _IMapStringWinRTFlagsEnum<V> extends IMap<String, V> {
-  _IMapStringWinRTFlagsEnum.fromRawPointer(super.ptr,
+  _IMapStringWinRTFlagsEnum.fromPtr(super.ptr,
       {required super.iterableIid, super.enumCreator});
 
   @override
@@ -1133,7 +1133,7 @@ class _IMapStringWinRTFlagsEnum<V> extends IMap<String, V> {
 }
 
 class _IMapUint8Inspectable<V> extends IMap<int, V> {
-  _IMapUint8Inspectable.fromRawPointer(super.ptr,
+  _IMapUint8Inspectable.fromPtr(super.ptr,
       {required super.iterableIid, super.intType, super.creator});
 
   @override
@@ -1235,7 +1235,7 @@ class _IMapUint8Inspectable<V> extends IMap<int, V> {
 }
 
 class _IMapUint16Inspectable<V> extends IMap<int, V> {
-  _IMapUint16Inspectable.fromRawPointer(super.ptr,
+  _IMapUint16Inspectable.fromPtr(super.ptr,
       {required super.iterableIid, super.intType, super.creator});
 
   @override
@@ -1337,7 +1337,7 @@ class _IMapUint16Inspectable<V> extends IMap<int, V> {
 }
 
 class _IMapUint32Inspectable<V> extends IMap<int, V> {
-  _IMapUint32Inspectable.fromRawPointer(super.ptr,
+  _IMapUint32Inspectable.fromPtr(super.ptr,
       {required super.iterableIid, super.intType, super.creator});
 
   @override
@@ -1439,7 +1439,7 @@ class _IMapUint32Inspectable<V> extends IMap<int, V> {
 }
 
 class _IMapUint64Inspectable<V> extends IMap<int, V> {
-  _IMapUint64Inspectable.fromRawPointer(super.ptr,
+  _IMapUint64Inspectable.fromPtr(super.ptr,
       {required super.iterableIid, super.intType, super.creator});
 
   @override
@@ -1541,7 +1541,7 @@ class _IMapUint64Inspectable<V> extends IMap<int, V> {
 }
 
 class _IMapWinRTEnumInspectable<K, V> extends IMap<K, V> {
-  _IMapWinRTEnumInspectable.fromRawPointer(super.ptr,
+  _IMapWinRTEnumInspectable.fromPtr(super.ptr,
       {required super.iterableIid, super.enumKeyCreator, super.creator});
 
   @override
@@ -1647,7 +1647,7 @@ class _IMapWinRTEnumInspectable<K, V> extends IMap<K, V> {
 }
 
 class _IMapWinRTFlagsEnumInspectable<K, V> extends IMap<K, V> {
-  _IMapWinRTFlagsEnumInspectable.fromRawPointer(super.ptr,
+  _IMapWinRTFlagsEnumInspectable.fromPtr(super.ptr,
       {required super.iterableIid, super.enumKeyCreator, super.creator});
 
   @override

@@ -26,18 +26,18 @@ import 'igeoshape.dart';
 ///
 /// {@category class}
 class Geopoint extends IInspectable implements IGeopoint, IGeoshape {
-  Geopoint.fromRawPointer(super.ptr);
+  Geopoint.fromPtr(super.ptr);
 
   static const _className = 'Windows.Devices.Geolocation.Geopoint';
 
   factory Geopoint.create(BasicGeoposition position) => createActivationFactory(
-          IGeopointFactory.fromRawPointer, _className, IID_IGeopointFactory)
+          IGeopointFactory.fromPtr, _className, IID_IGeopointFactory)
       .create(position);
 
   factory Geopoint.createWithAltitudeReferenceSystem(BasicGeoposition position,
           AltitudeReferenceSystem altitudeReferenceSystem) =>
       createActivationFactory(
-              IGeopointFactory.fromRawPointer, _className, IID_IGeopointFactory)
+              IGeopointFactory.fromPtr, _className, IID_IGeopointFactory)
           .createWithAltitudeReferenceSystem(position, altitudeReferenceSystem);
 
   factory Geopoint.createWithAltitudeReferenceSystemAndSpatialReferenceId(
@@ -45,7 +45,7 @@ class Geopoint extends IInspectable implements IGeopoint, IGeoshape {
           AltitudeReferenceSystem altitudeReferenceSystem,
           int spatialReferenceId) =>
       createActivationFactory(
-              IGeopointFactory.fromRawPointer, _className, IID_IGeopointFactory)
+              IGeopointFactory.fromPtr, _className, IID_IGeopointFactory)
           .createWithAltitudeReferenceSystemAndSpatialReferenceId(
               position, altitudeReferenceSystem, spatialReferenceId);
 

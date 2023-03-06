@@ -21,11 +21,10 @@ const IID_IStorageProvider = '{e705eed4-d478-47d6-ba46-1a8ebe114a20}';
 /// {@category interface}
 class IStorageProvider extends IInspectable {
   // vtable begins at 6, is 2 entries long.
-  IStorageProvider.fromRawPointer(super.ptr);
+  IStorageProvider.fromPtr(super.ptr);
 
   factory IStorageProvider.from(IInspectable interface) =>
-      IStorageProvider.fromRawPointer(
-          interface.toInterface(IID_IStorageProvider));
+      IStorageProvider.fromPtr(interface.toInterface(IID_IStorageProvider));
 
   String get id {
     final retValuePtr = calloc<HSTRING>();

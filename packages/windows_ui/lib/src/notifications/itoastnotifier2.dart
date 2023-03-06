@@ -24,11 +24,10 @@ const IID_IToastNotifier2 = '{354389c6-7c01-4bd5-9c20-604340cd2b74}';
 /// {@category interface}
 class IToastNotifier2 extends IInspectable {
   // vtable begins at 6, is 2 entries long.
-  IToastNotifier2.fromRawPointer(super.ptr);
+  IToastNotifier2.fromPtr(super.ptr);
 
   factory IToastNotifier2.from(IInspectable interface) =>
-      IToastNotifier2.fromRawPointer(
-          interface.toInterface(IID_IToastNotifier2));
+      IToastNotifier2.fromPtr(interface.toInterface(IID_IToastNotifier2));
 
   NotificationUpdateResult updateWithTagAndGroup(
       NotificationData? data, String tag, String group) {

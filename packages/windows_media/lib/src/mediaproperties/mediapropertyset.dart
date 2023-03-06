@@ -21,11 +21,11 @@ import 'package:windows_foundation/windows_foundation.dart';
 class MediaPropertySet extends IInspectable
     implements IMap<Guid, Object?>, IIterable<IKeyValuePair<Guid, Object?>> {
   MediaPropertySet() : super(activateClass(_className));
-  MediaPropertySet.fromRawPointer(super.ptr);
+  MediaPropertySet.fromPtr(super.ptr);
 
   static const _className = 'Windows.Media.MediaProperties.MediaPropertySet';
 
-  late final _iMap = IMap<Guid, Object?>.fromRawPointer(
+  late final _iMap = IMap<Guid, Object?>.fromPtr(
       toInterface('{5ee3189c-7dbf-5998-ad07-5414fb82567c}'),
       iterableIid: '{f3b20528-e3b3-5331-b2d0-0c2623aee785}');
 

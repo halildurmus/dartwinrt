@@ -30,10 +30,10 @@ const IID_IAsyncAction = '{5a648006-843a-4da9-865b-9d26e5dfad7b}';
 /// {@category interface}
 class IAsyncAction extends IInspectable implements IAsyncInfo {
   // vtable begins at 6, is 3 entries long.
-  IAsyncAction.fromRawPointer(super.ptr);
+  IAsyncAction.fromPtr(super.ptr);
 
   factory IAsyncAction.from(IInspectable interface) =>
-      IAsyncAction.fromRawPointer(interface.toInterface(IID_IAsyncAction));
+      IAsyncAction.fromPtr(interface.toInterface(IID_IAsyncAction));
 
   set completed(Pointer<COMObject> value) {
     final hr = ptr.ref.vtable

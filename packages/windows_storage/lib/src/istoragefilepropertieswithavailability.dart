@@ -22,10 +22,10 @@ const IID_IStorageFilePropertiesWithAvailability =
 /// {@category interface}
 class IStorageFilePropertiesWithAvailability extends IInspectable {
   // vtable begins at 6, is 1 entries long.
-  IStorageFilePropertiesWithAvailability.fromRawPointer(super.ptr);
+  IStorageFilePropertiesWithAvailability.fromPtr(super.ptr);
 
   factory IStorageFilePropertiesWithAvailability.from(IInspectable interface) =>
-      IStorageFilePropertiesWithAvailability.fromRawPointer(
+      IStorageFilePropertiesWithAvailability.fromPtr(
           interface.toInterface(IID_IStorageFilePropertiesWithAvailability));
 
   bool get isAvailable {

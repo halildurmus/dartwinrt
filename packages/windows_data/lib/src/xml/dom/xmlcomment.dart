@@ -35,7 +35,7 @@ class XmlComment extends IInspectable
         IXmlNode,
         IXmlNodeSerializer,
         IXmlNodeSelector {
-  XmlComment.fromRawPointer(super.ptr);
+  XmlComment.fromPtr(super.ptr);
 
   late final _iXmlCharacterData = IXmlCharacterData.from(this);
 

@@ -33,14 +33,14 @@ class ScheduledToastNotification extends IInspectable
         IScheduledToastNotification2,
         IScheduledToastNotification3,
         IScheduledToastNotification4 {
-  ScheduledToastNotification.fromRawPointer(super.ptr);
+  ScheduledToastNotification.fromPtr(super.ptr);
 
   static const _className =
       'Windows.UI.Notifications.ScheduledToastNotification';
 
   factory ScheduledToastNotification.createScheduledToastNotification(
           XmlDocument content, DateTime deliveryTime) =>
-      createActivationFactory(IScheduledToastNotificationFactory.fromRawPointer,
+      createActivationFactory(IScheduledToastNotificationFactory.fromPtr,
               _className, IID_IScheduledToastNotificationFactory)
           .createScheduledToastNotification(content, deliveryTime);
 
@@ -49,7 +49,7 @@ class ScheduledToastNotification extends IInspectable
           DateTime deliveryTime,
           Duration snoozeInterval,
           int maximumSnoozeCount) =>
-      createActivationFactory(IScheduledToastNotificationFactory.fromRawPointer,
+      createActivationFactory(IScheduledToastNotificationFactory.fromPtr,
               _className, IID_IScheduledToastNotificationFactory)
           .createScheduledToastNotificationRecurring(
               content, deliveryTime, snoozeInterval, maximumSnoozeCount);

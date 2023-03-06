@@ -29,10 +29,10 @@ const IID_IConnectionProfile2 = '{e2045145-4c9f-400c-9150-7ec7d6e2888a}';
 /// {@category interface}
 class IConnectionProfile2 extends IInspectable {
   // vtable begins at 6, is 9 entries long.
-  IConnectionProfile2.fromRawPointer(super.ptr);
+  IConnectionProfile2.fromPtr(super.ptr);
 
   factory IConnectionProfile2.from(IInspectable interface) =>
-      IConnectionProfile2.fromRawPointer(
+      IConnectionProfile2.fromPtr(
           interface.toInterface(IID_IConnectionProfile2));
 
   bool get isWwanConnectionProfile {
@@ -108,7 +108,7 @@ class IConnectionProfile2 extends IInspectable {
       return null;
     }
 
-    return WwanConnectionProfileDetails.fromRawPointer(retValuePtr);
+    return WwanConnectionProfileDetails.fromPtr(retValuePtr);
   }
 
   WlanConnectionProfileDetails? get wlanConnectionProfileDetails {
@@ -136,7 +136,7 @@ class IConnectionProfile2 extends IInspectable {
       return null;
     }
 
-    return WlanConnectionProfileDetails.fromRawPointer(retValuePtr);
+    return WlanConnectionProfileDetails.fromPtr(retValuePtr);
   }
 
   Guid? get serviceProviderGuid {
@@ -164,7 +164,7 @@ class IConnectionProfile2 extends IInspectable {
       return null;
     }
 
-    final reference = IReference<Guid?>.fromRawPointer(retValuePtr,
+    final reference = IReference<Guid?>.fromPtr(retValuePtr,
         referenceIid: '{7d50f649-632c-51f9-849a-ee49428933ea}');
     return reference.value;
   }
@@ -194,7 +194,7 @@ class IConnectionProfile2 extends IInspectable {
       return null;
     }
 
-    final reference = IReference<int?>.fromRawPointer(retValuePtr,
+    final reference = IReference<int?>.fromPtr(retValuePtr,
         referenceIid: '{e5198cc8-2873-55f5-b0a1-84ff9e4aad62}');
     return reference.value;
   }
@@ -267,11 +267,11 @@ class IConnectionProfile2 extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation =
-        IAsyncOperation<IVectorView<NetworkUsage>>.fromRawPointer(retValuePtr,
-            creator: (ptr) => IVectorView.fromRawPointer(ptr,
-                creator: NetworkUsage.fromRawPointer,
-                iterableIid: '{dd2656b1-8360-5772-b272-c47f7f0fc7a6}'));
+    final asyncOperation = IAsyncOperation<IVectorView<NetworkUsage>>.fromPtr(
+        retValuePtr,
+        creator: (ptr) => IVectorView.fromPtr(ptr,
+            creator: NetworkUsage.fromPtr,
+            iterableIid: '{dd2656b1-8360-5772-b272-c47f7f0fc7a6}'));
     completeAsyncOperation(
         asyncOperation, completer, () => asyncOperation.getResults().toList());
 
@@ -317,10 +317,9 @@ class IConnectionProfile2 extends IInspectable {
     }
 
     final asyncOperation =
-        IAsyncOperation<IVectorView<ConnectivityInterval>>.fromRawPointer(
-            retValuePtr,
-            creator: (ptr) => IVectorView.fromRawPointer(ptr,
-                creator: ConnectivityInterval.fromRawPointer,
+        IAsyncOperation<IVectorView<ConnectivityInterval>>.fromPtr(retValuePtr,
+            creator: (ptr) => IVectorView.fromPtr(ptr,
+                creator: ConnectivityInterval.fromPtr,
                 iterableIid: '{58051a8b-b259-5414-9b9a-caa0789e833e}'));
     completeAsyncOperation(
         asyncOperation, completer, () => asyncOperation.getResults().toList());

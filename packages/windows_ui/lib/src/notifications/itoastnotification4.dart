@@ -24,10 +24,10 @@ const IID_IToastNotification4 = '{15154935-28ea-4727-88e9-c58680e2d118}';
 /// {@category interface}
 class IToastNotification4 extends IInspectable {
   // vtable begins at 6, is 4 entries long.
-  IToastNotification4.fromRawPointer(super.ptr);
+  IToastNotification4.fromPtr(super.ptr);
 
   factory IToastNotification4.from(IInspectable interface) =>
-      IToastNotification4.fromRawPointer(
+      IToastNotification4.fromPtr(
           interface.toInterface(IID_IToastNotification4));
 
   NotificationData? get data {
@@ -55,7 +55,7 @@ class IToastNotification4 extends IInspectable {
       return null;
     }
 
-    return NotificationData.fromRawPointer(retValuePtr);
+    return NotificationData.fromPtr(retValuePtr);
   }
 
   set data(NotificationData? value) {

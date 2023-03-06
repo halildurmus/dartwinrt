@@ -23,7 +23,7 @@ import 'iconnectivityinterval.dart';
 /// {@category class}
 class ConnectivityInterval extends IInspectable
     implements IConnectivityInterval {
-  ConnectivityInterval.fromRawPointer(super.ptr);
+  ConnectivityInterval.fromPtr(super.ptr);
 
   late final _iConnectivityInterval = IConnectivityInterval.from(this);
 

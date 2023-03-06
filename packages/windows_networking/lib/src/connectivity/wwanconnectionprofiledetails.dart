@@ -26,7 +26,7 @@ import 'wwannetworkregistrationstate.dart';
 /// {@category class}
 class WwanConnectionProfileDetails extends IInspectable
     implements IWwanConnectionProfileDetails, IWwanConnectionProfileDetails2 {
-  WwanConnectionProfileDetails.fromRawPointer(super.ptr);
+  WwanConnectionProfileDetails.fromPtr(super.ptr);
 
   late final _iWwanConnectionProfileDetails =
       IWwanConnectionProfileDetails.from(this);

@@ -22,10 +22,10 @@ const IID_IFolderPicker3 = '{673b1e29-d326-53c0-bd24-a25c714cee36}';
 /// {@category interface}
 class IFolderPicker3 extends IInspectable {
   // vtable begins at 6, is 1 entries long.
-  IFolderPicker3.fromRawPointer(super.ptr);
+  IFolderPicker3.fromPtr(super.ptr);
 
   factory IFolderPicker3.from(IInspectable interface) =>
-      IFolderPicker3.fromRawPointer(interface.toInterface(IID_IFolderPicker3));
+      IFolderPicker3.fromPtr(interface.toInterface(IID_IFolderPicker3));
 
   User? get user {
     final retValuePtr = calloc<COMObject>();
@@ -52,6 +52,6 @@ class IFolderPicker3 extends IInspectable {
       return null;
     }
 
-    return User.fromRawPointer(retValuePtr);
+    return User.fromPtr(retValuePtr);
   }
 }

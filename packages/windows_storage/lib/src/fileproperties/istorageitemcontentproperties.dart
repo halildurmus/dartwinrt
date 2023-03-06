@@ -29,10 +29,10 @@ const IID_IStorageItemContentProperties =
 class IStorageItemContentProperties extends IInspectable
     implements IStorageItemExtraProperties {
   // vtable begins at 6, is 4 entries long.
-  IStorageItemContentProperties.fromRawPointer(super.ptr);
+  IStorageItemContentProperties.fromPtr(super.ptr);
 
   factory IStorageItemContentProperties.from(IInspectable interface) =>
-      IStorageItemContentProperties.fromRawPointer(
+      IStorageItemContentProperties.fromPtr(
           interface.toInterface(IID_IStorageItemContentProperties));
 
   Future<MusicProperties?> getMusicPropertiesAsync() {
@@ -56,9 +56,9 @@ class IStorageItemContentProperties extends IInspectable
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<MusicProperties?>.fromRawPointer(
+    final asyncOperation = IAsyncOperation<MusicProperties?>.fromPtr(
         retValuePtr,
-        creator: MusicProperties.fromRawPointer);
+        creator: MusicProperties.fromPtr);
     completeAsyncOperation(
         asyncOperation, completer, asyncOperation.getResults);
 
@@ -86,9 +86,9 @@ class IStorageItemContentProperties extends IInspectable
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<VideoProperties?>.fromRawPointer(
+    final asyncOperation = IAsyncOperation<VideoProperties?>.fromPtr(
         retValuePtr,
-        creator: VideoProperties.fromRawPointer);
+        creator: VideoProperties.fromPtr);
     completeAsyncOperation(
         asyncOperation, completer, asyncOperation.getResults);
 
@@ -116,9 +116,9 @@ class IStorageItemContentProperties extends IInspectable
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<ImageProperties?>.fromRawPointer(
+    final asyncOperation = IAsyncOperation<ImageProperties?>.fromPtr(
         retValuePtr,
-        creator: ImageProperties.fromRawPointer);
+        creator: ImageProperties.fromPtr);
     completeAsyncOperation(
         asyncOperation, completer, asyncOperation.getResults);
 
@@ -146,9 +146,9 @@ class IStorageItemContentProperties extends IInspectable
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<DocumentProperties?>.fromRawPointer(
+    final asyncOperation = IAsyncOperation<DocumentProperties?>.fromPtr(
         retValuePtr,
-        creator: DocumentProperties.fromRawPointer);
+        creator: DocumentProperties.fromPtr);
     completeAsyncOperation(
         asyncOperation, completer, asyncOperation.getResults);
 

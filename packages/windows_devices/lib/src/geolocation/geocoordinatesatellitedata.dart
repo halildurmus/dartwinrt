@@ -25,7 +25,7 @@ import 'igeocoordinatesatellitedata2.dart';
 /// {@category class}
 class GeocoordinateSatelliteData extends IInspectable
     implements IGeocoordinateSatelliteData, IGeocoordinateSatelliteData2 {
-  GeocoordinateSatelliteData.fromRawPointer(super.ptr);
+  GeocoordinateSatelliteData.fromPtr(super.ptr);
 
   late final _iGeocoordinateSatelliteData =
       IGeocoordinateSatelliteData.from(this);

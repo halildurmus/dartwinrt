@@ -24,7 +24,7 @@ import 'istorageitemextraproperties.dart';
 /// {@category class}
 class MusicProperties extends IInspectable
     implements IMusicProperties, IStorageItemExtraProperties {
-  MusicProperties.fromRawPointer(super.ptr);
+  MusicProperties.fromPtr(super.ptr);
 
   late final _iMusicProperties = IMusicProperties.from(this);
 

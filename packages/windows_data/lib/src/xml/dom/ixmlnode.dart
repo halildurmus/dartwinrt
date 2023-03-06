@@ -35,10 +35,10 @@ const IID_IXmlNode = '{1c741d59-2122-47d5-a856-83f3d4214875}';
 class IXmlNode extends IInspectable
     implements IXmlNodeSelector, IXmlNodeSerializer {
   // vtable begins at 6, is 23 entries long.
-  IXmlNode.fromRawPointer(super.ptr);
+  IXmlNode.fromPtr(super.ptr);
 
   factory IXmlNode.from(IInspectable interface) =>
-      IXmlNode.fromRawPointer(interface.toInterface(IID_IXmlNode));
+      IXmlNode.fromPtr(interface.toInterface(IID_IXmlNode));
 
   Object? get nodeValue {
     final retValuePtr = calloc<COMObject>();
@@ -65,7 +65,7 @@ class IXmlNode extends IInspectable
       return null;
     }
 
-    return IPropertyValue.fromRawPointer(retValuePtr).value;
+    return IPropertyValue.fromPtr(retValuePtr).value;
   }
 
   set nodeValue(Object? value) {
@@ -156,7 +156,7 @@ class IXmlNode extends IInspectable
       return null;
     }
 
-    return IXmlNode.fromRawPointer(retValuePtr);
+    return IXmlNode.fromPtr(retValuePtr);
   }
 
   XmlNodeList? get childNodes {
@@ -184,7 +184,7 @@ class IXmlNode extends IInspectable
       return null;
     }
 
-    return XmlNodeList.fromRawPointer(retValuePtr);
+    return XmlNodeList.fromPtr(retValuePtr);
   }
 
   IXmlNode? get firstChild {
@@ -212,7 +212,7 @@ class IXmlNode extends IInspectable
       return null;
     }
 
-    return IXmlNode.fromRawPointer(retValuePtr);
+    return IXmlNode.fromPtr(retValuePtr);
   }
 
   IXmlNode? get lastChild {
@@ -240,7 +240,7 @@ class IXmlNode extends IInspectable
       return null;
     }
 
-    return IXmlNode.fromRawPointer(retValuePtr);
+    return IXmlNode.fromPtr(retValuePtr);
   }
 
   IXmlNode? get previousSibling {
@@ -268,7 +268,7 @@ class IXmlNode extends IInspectable
       return null;
     }
 
-    return IXmlNode.fromRawPointer(retValuePtr);
+    return IXmlNode.fromPtr(retValuePtr);
   }
 
   IXmlNode? get nextSibling {
@@ -296,7 +296,7 @@ class IXmlNode extends IInspectable
       return null;
     }
 
-    return IXmlNode.fromRawPointer(retValuePtr);
+    return IXmlNode.fromPtr(retValuePtr);
   }
 
   XmlNamedNodeMap? get attributes {
@@ -324,7 +324,7 @@ class IXmlNode extends IInspectable
       return null;
     }
 
-    return XmlNamedNodeMap.fromRawPointer(retValuePtr);
+    return XmlNamedNodeMap.fromPtr(retValuePtr);
   }
 
   bool hasChildNodes() {
@@ -376,7 +376,7 @@ class IXmlNode extends IInspectable
       return null;
     }
 
-    return XmlDocument.fromRawPointer(retValuePtr);
+    return XmlDocument.fromPtr(retValuePtr);
   }
 
   IXmlNode? insertBefore(IXmlNode? newChild, IXmlNode? referenceChild) {
@@ -411,7 +411,7 @@ class IXmlNode extends IInspectable
       return null;
     }
 
-    return IXmlNode.fromRawPointer(retValuePtr);
+    return IXmlNode.fromPtr(retValuePtr);
   }
 
   IXmlNode? replaceChild(IXmlNode? newChild, IXmlNode? referenceChild) {
@@ -446,7 +446,7 @@ class IXmlNode extends IInspectable
       return null;
     }
 
-    return IXmlNode.fromRawPointer(retValuePtr);
+    return IXmlNode.fromPtr(retValuePtr);
   }
 
   IXmlNode? removeChild(IXmlNode? childNode) {
@@ -476,7 +476,7 @@ class IXmlNode extends IInspectable
       return null;
     }
 
-    return IXmlNode.fromRawPointer(retValuePtr);
+    return IXmlNode.fromPtr(retValuePtr);
   }
 
   IXmlNode? appendChild(IXmlNode? newChild) {
@@ -506,7 +506,7 @@ class IXmlNode extends IInspectable
       return null;
     }
 
-    return IXmlNode.fromRawPointer(retValuePtr);
+    return IXmlNode.fromPtr(retValuePtr);
   }
 
   IXmlNode? cloneNode(bool deep) {
@@ -535,7 +535,7 @@ class IXmlNode extends IInspectable
       return null;
     }
 
-    return IXmlNode.fromRawPointer(retValuePtr);
+    return IXmlNode.fromPtr(retValuePtr);
   }
 
   Object? get namespaceUri {
@@ -563,7 +563,7 @@ class IXmlNode extends IInspectable
       return null;
     }
 
-    return IPropertyValue.fromRawPointer(retValuePtr).value;
+    return IPropertyValue.fromPtr(retValuePtr).value;
   }
 
   Object? get localName {
@@ -591,7 +591,7 @@ class IXmlNode extends IInspectable
       return null;
     }
 
-    return IPropertyValue.fromRawPointer(retValuePtr).value;
+    return IPropertyValue.fromPtr(retValuePtr).value;
   }
 
   Object? get prefix {
@@ -619,7 +619,7 @@ class IXmlNode extends IInspectable
       return null;
     }
 
-    return IPropertyValue.fromRawPointer(retValuePtr).value;
+    return IPropertyValue.fromPtr(retValuePtr).value;
   }
 
   void normalize() {

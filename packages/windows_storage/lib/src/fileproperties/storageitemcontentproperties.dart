@@ -28,7 +28,7 @@ import 'videoproperties.dart';
 /// {@category class}
 class StorageItemContentProperties extends IInspectable
     implements IStorageItemContentProperties, IStorageItemExtraProperties {
-  StorageItemContentProperties.fromRawPointer(super.ptr);
+  StorageItemContentProperties.fromPtr(super.ptr);
 
   late final _iStorageItemContentProperties =
       IStorageItemContentProperties.from(this);

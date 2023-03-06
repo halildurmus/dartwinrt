@@ -24,10 +24,10 @@ const IID_IDocumentProperties = '{7eab19bc-1821-4923-b4a9-0aea404d0070}';
 class IDocumentProperties extends IInspectable
     implements IStorageItemExtraProperties {
   // vtable begins at 6, is 6 entries long.
-  IDocumentProperties.fromRawPointer(super.ptr);
+  IDocumentProperties.fromPtr(super.ptr);
 
   factory IDocumentProperties.from(IInspectable interface) =>
-      IDocumentProperties.fromRawPointer(
+      IDocumentProperties.fromPtr(
           interface.toInterface(IID_IDocumentProperties));
 
   IVector<String> get author {
@@ -50,7 +50,7 @@ class IDocumentProperties extends IInspectable
       throw WindowsException(hr);
     }
 
-    return IVector.fromRawPointer(retValuePtr,
+    return IVector.fromPtr(retValuePtr,
         iterableIid: '{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}');
   }
 
@@ -119,7 +119,7 @@ class IDocumentProperties extends IInspectable
       throw WindowsException(hr);
     }
 
-    return IVector.fromRawPointer(retValuePtr,
+    return IVector.fromPtr(retValuePtr,
         iterableIid: '{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}');
   }
 

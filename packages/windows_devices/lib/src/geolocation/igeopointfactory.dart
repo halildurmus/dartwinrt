@@ -25,11 +25,10 @@ const IID_IGeopointFactory = '{db6b8d33-76bd-4e30-8af7-a844dc37b7a0}';
 /// {@category interface}
 class IGeopointFactory extends IInspectable {
   // vtable begins at 6, is 3 entries long.
-  IGeopointFactory.fromRawPointer(super.ptr);
+  IGeopointFactory.fromPtr(super.ptr);
 
   factory IGeopointFactory.from(IInspectable interface) =>
-      IGeopointFactory.fromRawPointer(
-          interface.toInterface(IID_IGeopointFactory));
+      IGeopointFactory.fromPtr(interface.toInterface(IID_IGeopointFactory));
 
   Geopoint create(BasicGeoposition position) {
     final retValuePtr = calloc<COMObject>();
@@ -57,7 +56,7 @@ class IGeopointFactory extends IInspectable {
       throw WindowsException(hr);
     }
 
-    return Geopoint.fromRawPointer(retValuePtr);
+    return Geopoint.fromPtr(retValuePtr);
   }
 
   Geopoint createWithAltitudeReferenceSystem(BasicGeoposition position,
@@ -94,7 +93,7 @@ class IGeopointFactory extends IInspectable {
       throw WindowsException(hr);
     }
 
-    return Geopoint.fromRawPointer(retValuePtr);
+    return Geopoint.fromPtr(retValuePtr);
   }
 
   Geopoint createWithAltitudeReferenceSystemAndSpatialReferenceId(
@@ -136,6 +135,6 @@ class IGeopointFactory extends IInspectable {
       throw WindowsException(hr);
     }
 
-    return Geopoint.fromRawPointer(retValuePtr);
+    return Geopoint.fromPtr(retValuePtr);
   }
 }

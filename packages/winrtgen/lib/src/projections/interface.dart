@@ -132,11 +132,11 @@ const IID_$shortName = '${typeDef.guid}';
     ].join('\n');
   }
 
-  String get namedConstructor => '$shortName.fromRawPointer(super.ptr);';
+  String get namedConstructor => '$shortName.fromPtr(super.ptr);';
 
   String get fromFactoryConstructor => '''
   factory $shortName.from(IInspectable interface) =>
-      $shortName.fromRawPointer(interface.toInterface(IID_$shortName));''';
+      $shortName.fromPtr(interface.toInterface(IID_$shortName));''';
 
   // WinRT interfaces don't inherit in metadata (e.g. IAsyncInfo has no parent),
   // but all WinRT interfaces have a base type of IInspectable as far as the

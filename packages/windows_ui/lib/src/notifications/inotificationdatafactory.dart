@@ -23,10 +23,10 @@ const IID_INotificationDataFactory = '{23c1e33a-1c10-46fb-8040-dec384621cf8}';
 /// {@category interface}
 class INotificationDataFactory extends IInspectable {
   // vtable begins at 6, is 2 entries long.
-  INotificationDataFactory.fromRawPointer(super.ptr);
+  INotificationDataFactory.fromPtr(super.ptr);
 
   factory INotificationDataFactory.from(IInspectable interface) =>
-      INotificationDataFactory.fromRawPointer(
+      INotificationDataFactory.fromPtr(
           interface.toInterface(IID_INotificationDataFactory));
 
   NotificationData createNotificationDataWithValuesAndSequenceNumber(
@@ -60,7 +60,7 @@ class INotificationDataFactory extends IInspectable {
       throw WindowsException(hr);
     }
 
-    return NotificationData.fromRawPointer(retValuePtr);
+    return NotificationData.fromPtr(retValuePtr);
   }
 
   NotificationData createNotificationDataWithValues(
@@ -90,6 +90,6 @@ class INotificationDataFactory extends IInspectable {
       throw WindowsException(hr);
     }
 
-    return NotificationData.fromRawPointer(retValuePtr);
+    return NotificationData.fromPtr(retValuePtr);
   }
 }

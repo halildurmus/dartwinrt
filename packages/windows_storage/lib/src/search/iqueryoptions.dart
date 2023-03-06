@@ -29,10 +29,10 @@ const IID_IQueryOptions = '{1e5e46ee-0f45-4838-a8e9-d0479d446c30}';
 /// {@category interface}
 class IQueryOptions extends IInspectable {
   // vtable begins at 6, is 18 entries long.
-  IQueryOptions.fromRawPointer(super.ptr);
+  IQueryOptions.fromPtr(super.ptr);
 
   factory IQueryOptions.from(IInspectable interface) =>
-      IQueryOptions.fromRawPointer(interface.toInterface(IID_IQueryOptions));
+      IQueryOptions.fromPtr(interface.toInterface(IID_IQueryOptions));
 
   IVector<String> get fileTypeFilter {
     final retValuePtr = calloc<COMObject>();
@@ -54,7 +54,7 @@ class IQueryOptions extends IInspectable {
       throw WindowsException(hr);
     }
 
-    return IVector.fromRawPointer(retValuePtr,
+    return IVector.fromPtr(retValuePtr,
         iterableIid: '{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}');
   }
 
@@ -289,7 +289,7 @@ class IQueryOptions extends IInspectable {
       throw WindowsException(hr);
     }
 
-    return IVector.fromRawPointer(retValuePtr,
+    return IVector.fromPtr(retValuePtr,
         iterableIid: '{35aff6f9-ef75-5280-bb84-a2bf8317cf35}');
   }
 

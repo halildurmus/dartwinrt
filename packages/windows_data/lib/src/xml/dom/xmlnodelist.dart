@@ -23,7 +23,7 @@ import 'ixmlnodelist.dart';
 /// {@category class}
 class XmlNodeList extends IInspectable
     implements IXmlNodeList, IVectorView<IXmlNode>, IIterable<IXmlNode> {
-  XmlNodeList.fromRawPointer(super.ptr);
+  XmlNodeList.fromPtr(super.ptr);
 
   late final _iXmlNodeList = IXmlNodeList.from(this);
 
@@ -33,9 +33,9 @@ class XmlNodeList extends IInspectable
   @override
   IXmlNode? item(int index) => _iXmlNodeList.item(index);
 
-  late final _iVectorView = IVectorView<IXmlNode>.fromRawPointer(
+  late final _iVectorView = IVectorView<IXmlNode>.fromPtr(
       toInterface('{139d959e-e7b5-5cb6-a596-4b544478da9b}'),
-      creator: IXmlNode.fromRawPointer,
+      creator: IXmlNode.fromPtr,
       iterableIid: '{f1146ffc-8c92-56e8-93f1-711f86722633}');
 
   @override

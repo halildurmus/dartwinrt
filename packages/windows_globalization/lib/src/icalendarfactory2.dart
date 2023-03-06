@@ -23,11 +23,10 @@ const IID_ICalendarFactory2 = '{b44b378c-ca7e-4590-9e72-ea2bec1a5115}';
 /// {@category interface}
 class ICalendarFactory2 extends IInspectable {
   // vtable begins at 6, is 1 entries long.
-  ICalendarFactory2.fromRawPointer(super.ptr);
+  ICalendarFactory2.fromPtr(super.ptr);
 
   factory ICalendarFactory2.from(IInspectable interface) =>
-      ICalendarFactory2.fromRawPointer(
-          interface.toInterface(IID_ICalendarFactory2));
+      ICalendarFactory2.fromPtr(interface.toInterface(IID_ICalendarFactory2));
 
   Calendar createCalendarWithTimeZone(IIterable<String> languages,
       String calendar, String clock, String timeZoneId) {
@@ -78,6 +77,6 @@ class ICalendarFactory2 extends IInspectable {
       throw WindowsException(hr);
     }
 
-    return Calendar.fromRawPointer(retValuePtr);
+    return Calendar.fromPtr(retValuePtr);
   }
 }

@@ -25,7 +25,7 @@ import 'lanidentifierdata.dart';
 ///
 /// {@category class}
 class LanIdentifier extends IInspectable implements ILanIdentifier {
-  LanIdentifier.fromRawPointer(super.ptr);
+  LanIdentifier.fromPtr(super.ptr);
 
   late final _iLanIdentifier = ILanIdentifier.from(this);
 

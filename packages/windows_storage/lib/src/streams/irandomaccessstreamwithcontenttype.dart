@@ -38,10 +38,10 @@ class IRandomAccessStreamWithContentType extends IInspectable
         IOutputStream,
         IContentTypeProvider {
   // vtable begins at 6, is 0 entries long.
-  IRandomAccessStreamWithContentType.fromRawPointer(super.ptr);
+  IRandomAccessStreamWithContentType.fromPtr(super.ptr);
 
   factory IRandomAccessStreamWithContentType.from(IInspectable interface) =>
-      IRandomAccessStreamWithContentType.fromRawPointer(
+      IRandomAccessStreamWithContentType.fromPtr(
           interface.toInterface(IID_IRandomAccessStreamWithContentType));
 
   late final _iRandomAccessStream = IRandomAccessStream.from(this);

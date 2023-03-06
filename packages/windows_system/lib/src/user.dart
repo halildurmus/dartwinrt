@@ -6,5 +6,5 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 // TODO: Generate this class
 class User extends IInspectable {
-  User.fromRawPointer(super.ptr);
+  User.fromPtr(super.ptr);
 }

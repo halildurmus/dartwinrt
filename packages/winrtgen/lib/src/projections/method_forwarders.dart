@@ -80,7 +80,7 @@ class MethodForwardersProjection {
   String get interfaceInstantiation {
     if (!isGenericInterface) return '$shortInterfaceName.from(this);';
     final iid = quote(interface.iid);
-    return '${interface.shortName}.fromRawPointer(toInterface($iid)$constructorArgs);';
+    return '${interface.shortName}.fromPtr(toInterface($iid)$constructorArgs);';
   }
 
   /// Tries to find the method projections for the [interface] from the given

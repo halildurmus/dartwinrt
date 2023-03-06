@@ -33,7 +33,7 @@ class XmlEntityReference extends IInspectable
         IXmlNode,
         IXmlNodeSerializer,
         IXmlNodeSelector {
-  XmlEntityReference.fromRawPointer(super.ptr);
+  XmlEntityReference.fromPtr(super.ptr);
 
   late final _iXmlNode = IXmlNode.from(this);
 

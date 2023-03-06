@@ -24,10 +24,10 @@ const IID_IDeviceInformationPairing = '{2c4769f5-f684-40d5-8469-e8dbaab70485}';
 /// {@category interface}
 class IDeviceInformationPairing extends IInspectable {
   // vtable begins at 6, is 4 entries long.
-  IDeviceInformationPairing.fromRawPointer(super.ptr);
+  IDeviceInformationPairing.fromPtr(super.ptr);
 
   factory IDeviceInformationPairing.from(IInspectable interface) =>
-      IDeviceInformationPairing.fromRawPointer(
+      IDeviceInformationPairing.fromPtr(
           interface.toInterface(IID_IDeviceInformationPairing));
 
   bool get isPaired {
@@ -99,9 +99,9 @@ class IDeviceInformationPairing extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<DevicePairingResult?>.fromRawPointer(
+    final asyncOperation = IAsyncOperation<DevicePairingResult?>.fromPtr(
         retValuePtr,
-        creator: DevicePairingResult.fromRawPointer);
+        creator: DevicePairingResult.fromPtr);
     completeAsyncOperation(
         asyncOperation, completer, asyncOperation.getResults);
 
@@ -134,9 +134,9 @@ class IDeviceInformationPairing extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<DevicePairingResult?>.fromRawPointer(
+    final asyncOperation = IAsyncOperation<DevicePairingResult?>.fromPtr(
         retValuePtr,
-        creator: DevicePairingResult.fromRawPointer);
+        creator: DevicePairingResult.fromPtr);
     completeAsyncOperation(
         asyncOperation, completer, asyncOperation.getResults);
 

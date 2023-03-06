@@ -23,10 +23,10 @@ const IID_IEndpointPair = '{33a0aa36-f8fa-4b30-b856-76517c3bd06d}';
 /// {@category interface}
 class IEndpointPair extends IInspectable {
   // vtable begins at 6, is 8 entries long.
-  IEndpointPair.fromRawPointer(super.ptr);
+  IEndpointPair.fromPtr(super.ptr);
 
   factory IEndpointPair.from(IInspectable interface) =>
-      IEndpointPair.fromRawPointer(interface.toInterface(IID_IEndpointPair));
+      IEndpointPair.fromPtr(interface.toInterface(IID_IEndpointPair));
 
   HostName? get localHostName {
     final retValuePtr = calloc<COMObject>();
@@ -53,7 +53,7 @@ class IEndpointPair extends IInspectable {
       return null;
     }
 
-    return HostName.fromRawPointer(retValuePtr);
+    return HostName.fromPtr(retValuePtr);
   }
 
   set localHostName(HostName? value) {
@@ -140,7 +140,7 @@ class IEndpointPair extends IInspectable {
       return null;
     }
 
-    return HostName.fromRawPointer(retValuePtr);
+    return HostName.fromPtr(retValuePtr);
   }
 
   set remoteHostName(HostName? value) {

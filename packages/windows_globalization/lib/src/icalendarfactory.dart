@@ -23,11 +23,10 @@ const IID_ICalendarFactory = '{83f58412-e56b-4c75-a66e-0f63d57758a6}';
 /// {@category interface}
 class ICalendarFactory extends IInspectable {
   // vtable begins at 6, is 2 entries long.
-  ICalendarFactory.fromRawPointer(super.ptr);
+  ICalendarFactory.fromPtr(super.ptr);
 
   factory ICalendarFactory.from(IInspectable interface) =>
-      ICalendarFactory.fromRawPointer(
-          interface.toInterface(IID_ICalendarFactory));
+      ICalendarFactory.fromPtr(interface.toInterface(IID_ICalendarFactory));
 
   Calendar createCalendarDefaultCalendarAndClock(IIterable<String> languages) {
     final retValuePtr = calloc<COMObject>();
@@ -55,7 +54,7 @@ class ICalendarFactory extends IInspectable {
       throw WindowsException(hr);
     }
 
-    return Calendar.fromRawPointer(retValuePtr);
+    return Calendar.fromPtr(retValuePtr);
   }
 
   Calendar createCalendar(
@@ -98,6 +97,6 @@ class ICalendarFactory extends IInspectable {
       throw WindowsException(hr);
     }
 
-    return Calendar.fromRawPointer(retValuePtr);
+    return Calendar.fromPtr(retValuePtr);
   }
 }

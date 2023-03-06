@@ -24,10 +24,10 @@ const IID_IUserDataPathsStatics = '{01b29def-e062-48a1-8b0c-f2c7a9ca56c0}';
 /// {@category interface}
 class IUserDataPathsStatics extends IInspectable {
   // vtable begins at 6, is 2 entries long.
-  IUserDataPathsStatics.fromRawPointer(super.ptr);
+  IUserDataPathsStatics.fromPtr(super.ptr);
 
   factory IUserDataPathsStatics.from(IInspectable interface) =>
-      IUserDataPathsStatics.fromRawPointer(
+      IUserDataPathsStatics.fromPtr(
           interface.toInterface(IID_IUserDataPathsStatics));
 
   UserDataPaths? getForUser(User? user) {
@@ -57,7 +57,7 @@ class IUserDataPathsStatics extends IInspectable {
       return null;
     }
 
-    return UserDataPaths.fromRawPointer(retValuePtr);
+    return UserDataPaths.fromPtr(retValuePtr);
   }
 
   UserDataPaths? getDefault() {
@@ -85,6 +85,6 @@ class IUserDataPathsStatics extends IInspectable {
       return null;
     }
 
-    return UserDataPaths.fromRawPointer(retValuePtr);
+    return UserDataPaths.fromPtr(retValuePtr);
   }
 }

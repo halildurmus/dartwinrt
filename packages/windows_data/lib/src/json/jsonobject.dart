@@ -36,17 +36,17 @@ class JsonObject extends IInspectable
         IJsonObjectWithDefaultValues,
         IStringable {
   JsonObject() : super(activateClass(_className));
-  JsonObject.fromRawPointer(super.ptr);
+  JsonObject.fromPtr(super.ptr);
 
   static const _className = 'Windows.Data.Json.JsonObject';
 
   static JsonObject? parse(String input) => createActivationFactory(
-          IJsonObjectStatics.fromRawPointer, _className, IID_IJsonObjectStatics)
+          IJsonObjectStatics.fromPtr, _className, IID_IJsonObjectStatics)
       .parse(input);
 
   static bool tryParse(String input, JsonObject result) =>
-      createActivationFactory(IJsonObjectStatics.fromRawPointer, _className,
-              IID_IJsonObjectStatics)
+      createActivationFactory(
+              IJsonObjectStatics.fromPtr, _className, IID_IJsonObjectStatics)
           .tryParse(input, result);
 
   late final _iJsonObject = IJsonObject.from(this);
@@ -96,9 +96,9 @@ class JsonObject extends IInspectable
   @override
   JsonObject? getObject() => _iJsonValue.getObject();
 
-  late final _iMap = IMap<String, IJsonValue?>.fromRawPointer(
+  late final _iMap = IMap<String, IJsonValue?>.fromPtr(
       toInterface('{c9d9a725-786b-5113-b4b7-9b61764c220b}'),
-      creator: IJsonValue.fromRawPointer,
+      creator: IJsonValue.fromPtr,
       iterableIid: '{dfabb6e1-0411-5a8f-aa87-354e7110f099}');
 
   @override

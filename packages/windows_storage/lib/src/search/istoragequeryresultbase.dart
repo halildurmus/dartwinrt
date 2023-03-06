@@ -24,10 +24,10 @@ const IID_IStorageQueryResultBase = '{c297d70d-7353-47ab-ba58-8c61425dc54b}';
 /// {@category interface}
 class IStorageQueryResultBase extends IInspectable {
   // vtable begins at 6, is 9 entries long.
-  IStorageQueryResultBase.fromRawPointer(super.ptr);
+  IStorageQueryResultBase.fromPtr(super.ptr);
 
   factory IStorageQueryResultBase.from(IInspectable interface) =>
-      IStorageQueryResultBase.fromRawPointer(
+      IStorageQueryResultBase.fromPtr(
           interface.toInterface(IID_IStorageQueryResultBase));
 
   Future<int> getItemCountAsync() {
@@ -51,8 +51,8 @@ class IStorageQueryResultBase extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<int>.fromRawPointer(retValuePtr,
-        intType: IntType.uint32);
+    final asyncOperation =
+        IAsyncOperation<int>.fromPtr(retValuePtr, intType: IntType.uint32);
     completeAsyncOperation(
         asyncOperation, completer, asyncOperation.getResults);
 
@@ -84,7 +84,7 @@ class IStorageQueryResultBase extends IInspectable {
       return null;
     }
 
-    return StorageFolder.fromRawPointer(retValuePtr);
+    return StorageFolder.fromPtr(retValuePtr);
   }
 
   int add_ContentsChanged(Pointer<COMObject> handler) {
@@ -188,8 +188,8 @@ class IStorageQueryResultBase extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<int>.fromRawPointer(retValuePtr,
-        intType: IntType.uint32);
+    final asyncOperation =
+        IAsyncOperation<int>.fromPtr(retValuePtr, intType: IntType.uint32);
     completeAsyncOperation(
         asyncOperation, completer, asyncOperation.getResults);
 
@@ -221,7 +221,7 @@ class IStorageQueryResultBase extends IInspectable {
       return null;
     }
 
-    return QueryOptions.fromRawPointer(retValuePtr);
+    return QueryOptions.fromPtr(retValuePtr);
   }
 
   void applyNewQueryOptions(QueryOptions? newQueryOptions) {

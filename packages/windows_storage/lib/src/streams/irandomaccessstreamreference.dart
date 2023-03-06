@@ -24,10 +24,10 @@ const IID_IRandomAccessStreamReference =
 /// {@category interface}
 class IRandomAccessStreamReference extends IInspectable {
   // vtable begins at 6, is 1 entries long.
-  IRandomAccessStreamReference.fromRawPointer(super.ptr);
+  IRandomAccessStreamReference.fromPtr(super.ptr);
 
   factory IRandomAccessStreamReference.from(IInspectable interface) =>
-      IRandomAccessStreamReference.fromRawPointer(
+      IRandomAccessStreamReference.fromPtr(
           interface.toInterface(IID_IRandomAccessStreamReference));
 
   Future<IRandomAccessStreamWithContentType?> openReadAsync() {
@@ -52,9 +52,9 @@ class IRandomAccessStreamReference extends IInspectable {
     }
 
     final asyncOperation =
-        IAsyncOperation<IRandomAccessStreamWithContentType?>.fromRawPointer(
+        IAsyncOperation<IRandomAccessStreamWithContentType?>.fromPtr(
             retValuePtr,
-            creator: IRandomAccessStreamWithContentType.fromRawPointer);
+            creator: IRandomAccessStreamWithContentType.fromPtr);
     completeAsyncOperation(
         asyncOperation, completer, asyncOperation.getResults);
 

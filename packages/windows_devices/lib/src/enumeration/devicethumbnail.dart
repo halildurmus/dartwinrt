@@ -27,7 +27,7 @@ class DeviceThumbnail extends IInspectable
         IOutputStream,
         IClosable,
         IInputStream {
-  DeviceThumbnail.fromRawPointer(super.ptr);
+  DeviceThumbnail.fromPtr(super.ptr);
 
   late final _iContentTypeProvider = IContentTypeProvider.from(this);
 

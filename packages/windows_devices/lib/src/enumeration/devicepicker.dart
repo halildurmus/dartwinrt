@@ -28,7 +28,7 @@ import 'idevicepicker.dart';
 /// {@category class}
 class DevicePicker extends IInspectable implements IDevicePicker {
   DevicePicker() : super(activateClass(_className));
-  DevicePicker.fromRawPointer(super.ptr);
+  DevicePicker.fromPtr(super.ptr);
 
   static const _className = 'Windows.Devices.Enumeration.DevicePicker';
 

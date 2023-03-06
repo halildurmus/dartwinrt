@@ -29,59 +29,59 @@ import 'proxyconfiguration.dart';
 ///
 /// {@category class}
 class NetworkInformation extends IInspectable {
-  NetworkInformation.fromRawPointer(super.ptr);
+  NetworkInformation.fromPtr(super.ptr);
 
   static const _className =
       'Windows.Networking.Connectivity.NetworkInformation';
 
   static List<ConnectionProfile> getConnectionProfiles() =>
-      createActivationFactory(INetworkInformationStatics.fromRawPointer,
-              _className, IID_INetworkInformationStatics)
+      createActivationFactory(INetworkInformationStatics.fromPtr, _className,
+              IID_INetworkInformationStatics)
           .getConnectionProfiles();
 
   static ConnectionProfile? getInternetConnectionProfile() =>
-      createActivationFactory(INetworkInformationStatics.fromRawPointer,
-              _className, IID_INetworkInformationStatics)
+      createActivationFactory(INetworkInformationStatics.fromPtr, _className,
+              IID_INetworkInformationStatics)
           .getInternetConnectionProfile();
 
   static List<LanIdentifier> getLanIdentifiers() => createActivationFactory(
-          INetworkInformationStatics.fromRawPointer,
+          INetworkInformationStatics.fromPtr,
           _className,
           IID_INetworkInformationStatics)
       .getLanIdentifiers();
 
   static List<HostName> getHostNames() => createActivationFactory(
-          INetworkInformationStatics.fromRawPointer,
+          INetworkInformationStatics.fromPtr,
           _className,
           IID_INetworkInformationStatics)
       .getHostNames();
 
   static Future<ProxyConfiguration?> getProxyConfigurationAsync(Uri? uri) =>
-      createActivationFactory(INetworkInformationStatics.fromRawPointer,
-              _className, IID_INetworkInformationStatics)
+      createActivationFactory(INetworkInformationStatics.fromPtr, _className,
+              IID_INetworkInformationStatics)
           .getProxyConfigurationAsync(uri);
 
   static List<EndpointPair> getSortedEndpointPairs(
           IIterable<EndpointPair>? destinationList,
           HostNameSortOptions sortOptions) =>
-      createActivationFactory(INetworkInformationStatics.fromRawPointer,
-              _className, IID_INetworkInformationStatics)
+      createActivationFactory(INetworkInformationStatics.fromPtr, _className,
+              IID_INetworkInformationStatics)
           .getSortedEndpointPairs(destinationList, sortOptions);
 
   static int add_NetworkStatusChanged(
           Pointer<COMObject> networkStatusHandler) =>
-      createActivationFactory(INetworkInformationStatics.fromRawPointer,
-              _className, IID_INetworkInformationStatics)
+      createActivationFactory(INetworkInformationStatics.fromPtr, _className,
+              IID_INetworkInformationStatics)
           .add_NetworkStatusChanged(networkStatusHandler);
 
   static void remove_NetworkStatusChanged(int eventCookie) =>
-      createActivationFactory(INetworkInformationStatics.fromRawPointer,
-              _className, IID_INetworkInformationStatics)
+      createActivationFactory(INetworkInformationStatics.fromPtr, _className,
+              IID_INetworkInformationStatics)
           .remove_NetworkStatusChanged(eventCookie);
 
   static Future<List<ConnectionProfile>> findConnectionProfilesAsync(
           ConnectionProfileFilter? pProfileFilter) =>
-      createActivationFactory(INetworkInformationStatics2.fromRawPointer,
-              _className, IID_INetworkInformationStatics2)
+      createActivationFactory(INetworkInformationStatics2.fromPtr, _className,
+              IID_INetworkInformationStatics2)
           .findConnectionProfilesAsync(pProfileFilter);
 }

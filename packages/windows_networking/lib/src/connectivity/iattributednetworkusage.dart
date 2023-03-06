@@ -22,10 +22,10 @@ const IID_IAttributedNetworkUsage = '{f769b039-eca2-45eb-ade1-b0368b756c49}';
 /// {@category interface}
 class IAttributedNetworkUsage extends IInspectable {
   // vtable begins at 6, is 5 entries long.
-  IAttributedNetworkUsage.fromRawPointer(super.ptr);
+  IAttributedNetworkUsage.fromPtr(super.ptr);
 
   factory IAttributedNetworkUsage.from(IInspectable interface) =>
-      IAttributedNetworkUsage.fromRawPointer(
+      IAttributedNetworkUsage.fromPtr(
           interface.toInterface(IID_IAttributedNetworkUsage));
 
   int get bytesSent {
@@ -151,6 +151,6 @@ class IAttributedNetworkUsage extends IInspectable {
       return null;
     }
 
-    return IRandomAccessStreamReference.fromRawPointer(retValuePtr);
+    return IRandomAccessStreamReference.fromPtr(retValuePtr);
   }
 }

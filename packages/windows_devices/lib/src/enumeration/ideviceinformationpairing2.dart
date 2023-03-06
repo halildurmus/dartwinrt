@@ -27,10 +27,10 @@ const IID_IDeviceInformationPairing2 = '{f68612fd-0aee-4328-85cc-1c742bb1790d}';
 /// {@category interface}
 class IDeviceInformationPairing2 extends IInspectable {
   // vtable begins at 6, is 4 entries long.
-  IDeviceInformationPairing2.fromRawPointer(super.ptr);
+  IDeviceInformationPairing2.fromPtr(super.ptr);
 
   factory IDeviceInformationPairing2.from(IInspectable interface) =>
-      IDeviceInformationPairing2.fromRawPointer(
+      IDeviceInformationPairing2.fromPtr(
           interface.toInterface(IID_IDeviceInformationPairing2));
 
   DevicePairingProtectionLevel get protectionLevel {
@@ -82,7 +82,7 @@ class IDeviceInformationPairing2 extends IInspectable {
       return null;
     }
 
-    return DeviceInformationCustomPairing.fromRawPointer(retValuePtr);
+    return DeviceInformationCustomPairing.fromPtr(retValuePtr);
   }
 
   Future<DevicePairingResult?> pairWithProtectionLevelAndSettingsAsync(
@@ -118,9 +118,9 @@ class IDeviceInformationPairing2 extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<DevicePairingResult?>.fromRawPointer(
+    final asyncOperation = IAsyncOperation<DevicePairingResult?>.fromPtr(
         retValuePtr,
-        creator: DevicePairingResult.fromRawPointer);
+        creator: DevicePairingResult.fromPtr);
     completeAsyncOperation(
         asyncOperation, completer, asyncOperation.getResults);
 
@@ -148,9 +148,9 @@ class IDeviceInformationPairing2 extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation =
-        IAsyncOperation<DeviceUnpairingResult?>.fromRawPointer(retValuePtr,
-            creator: DeviceUnpairingResult.fromRawPointer);
+    final asyncOperation = IAsyncOperation<DeviceUnpairingResult?>.fromPtr(
+        retValuePtr,
+        creator: DeviceUnpairingResult.fromPtr);
     completeAsyncOperation(
         asyncOperation, completer, asyncOperation.getResults);
 

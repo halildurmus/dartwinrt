@@ -21,11 +21,10 @@ const IID_IHostNameStatics = '{f68cd4bf-a388-4e8b-91ea-54dd6dd901c0}';
 /// {@category interface}
 class IHostNameStatics extends IInspectable {
   // vtable begins at 6, is 1 entries long.
-  IHostNameStatics.fromRawPointer(super.ptr);
+  IHostNameStatics.fromPtr(super.ptr);
 
   factory IHostNameStatics.from(IInspectable interface) =>
-      IHostNameStatics.fromRawPointer(
-          interface.toInterface(IID_IHostNameStatics));
+      IHostNameStatics.fromPtr(interface.toInterface(IID_IHostNameStatics));
 
   int compare(String value1, String value2) {
     final retValuePtr = calloc<Int32>();

@@ -24,10 +24,10 @@ const IID_IGeoshape = '{c99ca2af-c729-43c1-8fab-d6dec914df7e}';
 /// {@category interface}
 class IGeoshape extends IInspectable {
   // vtable begins at 6, is 3 entries long.
-  IGeoshape.fromRawPointer(super.ptr);
+  IGeoshape.fromPtr(super.ptr);
 
   factory IGeoshape.from(IInspectable interface) =>
-      IGeoshape.fromRawPointer(interface.toInterface(IID_IGeoshape));
+      IGeoshape.fromPtr(interface.toInterface(IID_IGeoshape));
 
   GeoshapeType get geoshapeType {
     final retValuePtr = calloc<Int32>();

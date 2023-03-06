@@ -26,7 +26,7 @@ import 'idevicepairingsettings.dart';
 /// {@category class}
 class DeviceInformationCustomPairing extends IInspectable
     implements IDeviceInformationCustomPairing {
-  DeviceInformationCustomPairing.fromRawPointer(super.ptr);
+  DeviceInformationCustomPairing.fromPtr(super.ptr);
 
   late final _iDeviceInformationCustomPairing =
       IDeviceInformationCustomPairing.from(this);

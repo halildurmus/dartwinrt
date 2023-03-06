@@ -21,10 +21,10 @@ const IID_IToastNotification2 = '{9dfb9fd1-143a-490e-90bf-b9fba7132de7}';
 /// {@category interface}
 class IToastNotification2 extends IInspectable {
   // vtable begins at 6, is 6 entries long.
-  IToastNotification2.fromRawPointer(super.ptr);
+  IToastNotification2.fromPtr(super.ptr);
 
   factory IToastNotification2.from(IInspectable interface) =>
-      IToastNotification2.fromRawPointer(
+      IToastNotification2.fromPtr(
           interface.toInterface(IID_IToastNotification2));
 
   set tag(String value) {

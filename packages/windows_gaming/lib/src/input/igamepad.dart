@@ -27,10 +27,10 @@ const IID_IGamepad = '{bc7bb43c-0a69-3903-9e9d-a50f86a45de5}';
 /// {@category interface}
 class IGamepad extends IInspectable implements IGameController {
   // vtable begins at 6, is 3 entries long.
-  IGamepad.fromRawPointer(super.ptr);
+  IGamepad.fromPtr(super.ptr);
 
   factory IGamepad.from(IInspectable interface) =>
-      IGamepad.fromRawPointer(interface.toInterface(IID_IGamepad));
+      IGamepad.fromPtr(interface.toInterface(IID_IGamepad));
 
   GamepadVibration get vibration {
     final retValuePtr = calloc<NativeGamepadVibration>();

@@ -23,10 +23,10 @@ const IID_IUISettings4 = '{52bb3002-919b-4d6b-9b78-8dd66ff4b93b}';
 /// {@category interface}
 class IUISettings4 extends IInspectable {
   // vtable begins at 6, is 3 entries long.
-  IUISettings4.fromRawPointer(super.ptr);
+  IUISettings4.fromPtr(super.ptr);
 
   factory IUISettings4.from(IInspectable interface) =>
-      IUISettings4.fromRawPointer(interface.toInterface(IID_IUISettings4));
+      IUISettings4.fromPtr(interface.toInterface(IID_IUISettings4));
 
   bool get advancedEffectsEnabled {
     final retValuePtr = calloc<Bool>();

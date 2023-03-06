@@ -26,10 +26,10 @@ const IID_IToastNotificationManagerStatics4 =
 /// {@category interface}
 class IToastNotificationManagerStatics4 extends IInspectable {
   // vtable begins at 6, is 2 entries long.
-  IToastNotificationManagerStatics4.fromRawPointer(super.ptr);
+  IToastNotificationManagerStatics4.fromPtr(super.ptr);
 
   factory IToastNotificationManagerStatics4.from(IInspectable interface) =>
-      IToastNotificationManagerStatics4.fromRawPointer(
+      IToastNotificationManagerStatics4.fromPtr(
           interface.toInterface(IID_IToastNotificationManagerStatics4));
 
   ToastNotificationManagerForUser? getForUser(User? user) {
@@ -59,7 +59,7 @@ class IToastNotificationManagerStatics4 extends IInspectable {
       return null;
     }
 
-    return ToastNotificationManagerForUser.fromRawPointer(retValuePtr);
+    return ToastNotificationManagerForUser.fromPtr(retValuePtr);
   }
 
   void configureNotificationMirroring(NotificationMirroring value) {

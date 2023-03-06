@@ -22,7 +22,7 @@ import 'inetworkusage.dart';
 ///
 /// {@category class}
 class NetworkUsage extends IInspectable implements INetworkUsage {
-  NetworkUsage.fromRawPointer(super.ptr);
+  NetworkUsage.fromPtr(super.ptr);
 
   late final _iNetworkUsage = INetworkUsage.from(this);
 

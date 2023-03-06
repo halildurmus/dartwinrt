@@ -35,7 +35,7 @@ class ToastNotificationManagerForUser extends IInspectable
         IToastNotificationManagerForUser,
         IToastNotificationManagerForUser2,
         IToastNotificationManagerForUser3 {
-  ToastNotificationManagerForUser.fromRawPointer(super.ptr);
+  ToastNotificationManagerForUser.fromPtr(super.ptr);
 
   late final _iToastNotificationManagerForUser =
       IToastNotificationManagerForUser.from(this);

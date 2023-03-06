@@ -24,10 +24,10 @@ const IID_IGeoposition = '{c18d0454-7d41-4ff7-a957-9dffb4ef7f5b}';
 /// {@category interface}
 class IGeoposition extends IInspectable {
   // vtable begins at 6, is 2 entries long.
-  IGeoposition.fromRawPointer(super.ptr);
+  IGeoposition.fromPtr(super.ptr);
 
   factory IGeoposition.from(IInspectable interface) =>
-      IGeoposition.fromRawPointer(interface.toInterface(IID_IGeoposition));
+      IGeoposition.fromPtr(interface.toInterface(IID_IGeoposition));
 
   Geocoordinate? get coordinate {
     final retValuePtr = calloc<COMObject>();
@@ -54,7 +54,7 @@ class IGeoposition extends IInspectable {
       return null;
     }
 
-    return Geocoordinate.fromRawPointer(retValuePtr);
+    return Geocoordinate.fromPtr(retValuePtr);
   }
 
   CivicAddress? get civicAddress {
@@ -82,6 +82,6 @@ class IGeoposition extends IInspectable {
       return null;
     }
 
-    return CivicAddress.fromRawPointer(retValuePtr);
+    return CivicAddress.fromPtr(retValuePtr);
   }
 }

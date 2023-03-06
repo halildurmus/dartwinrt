@@ -23,11 +23,10 @@ const IID_IToastNotifier3 = '{ae75a04a-3b0c-51ad-b7e8-b08ab6052549}';
 /// {@category interface}
 class IToastNotifier3 extends IInspectable {
   // vtable begins at 6, is 2 entries long.
-  IToastNotifier3.fromRawPointer(super.ptr);
+  IToastNotifier3.fromPtr(super.ptr);
 
   factory IToastNotifier3.from(IInspectable interface) =>
-      IToastNotifier3.fromRawPointer(
-          interface.toInterface(IID_IToastNotifier3));
+      IToastNotifier3.fromPtr(interface.toInterface(IID_IToastNotifier3));
 
   int add_ScheduledToastNotificationShowing(Pointer<COMObject> handler) {
     final retValuePtr = calloc<IntPtr>();

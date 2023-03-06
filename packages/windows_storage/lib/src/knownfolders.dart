@@ -34,108 +34,88 @@ import 'storagefolder.dart';
 ///
 /// {@category class}
 class KnownFolders extends IInspectable {
-  KnownFolders.fromRawPointer(super.ptr);
+  KnownFolders.fromPtr(super.ptr);
 
   static const _className = 'Windows.Storage.KnownFolders';
 
   static StorageFolder? get cameraRoll => createActivationFactory(
-          IKnownFoldersCameraRollStatics.fromRawPointer,
+          IKnownFoldersCameraRollStatics.fromPtr,
           _className,
           IID_IKnownFoldersCameraRollStatics)
       .cameraRoll;
 
   static StorageFolder? get playlists => createActivationFactory(
-          IKnownFoldersPlaylistsStatics.fromRawPointer,
+          IKnownFoldersPlaylistsStatics.fromPtr,
           _className,
           IID_IKnownFoldersPlaylistsStatics)
       .playlists;
 
   static StorageFolder? get savedPictures => createActivationFactory(
-          IKnownFoldersSavedPicturesStatics.fromRawPointer,
+          IKnownFoldersSavedPicturesStatics.fromPtr,
           _className,
           IID_IKnownFoldersSavedPicturesStatics)
       .savedPictures;
 
   static StorageFolder? get musicLibrary => createActivationFactory(
-          IKnownFoldersStatics.fromRawPointer,
-          _className,
-          IID_IKnownFoldersStatics)
+          IKnownFoldersStatics.fromPtr, _className, IID_IKnownFoldersStatics)
       .musicLibrary;
 
   static StorageFolder? get picturesLibrary => createActivationFactory(
-          IKnownFoldersStatics.fromRawPointer,
-          _className,
-          IID_IKnownFoldersStatics)
+          IKnownFoldersStatics.fromPtr, _className, IID_IKnownFoldersStatics)
       .picturesLibrary;
 
   static StorageFolder? get videosLibrary => createActivationFactory(
-          IKnownFoldersStatics.fromRawPointer,
-          _className,
-          IID_IKnownFoldersStatics)
+          IKnownFoldersStatics.fromPtr, _className, IID_IKnownFoldersStatics)
       .videosLibrary;
 
   static StorageFolder? get documentsLibrary => createActivationFactory(
-          IKnownFoldersStatics.fromRawPointer,
-          _className,
-          IID_IKnownFoldersStatics)
+          IKnownFoldersStatics.fromPtr, _className, IID_IKnownFoldersStatics)
       .documentsLibrary;
 
   static StorageFolder? get homeGroup => createActivationFactory(
-          IKnownFoldersStatics.fromRawPointer,
-          _className,
-          IID_IKnownFoldersStatics)
+          IKnownFoldersStatics.fromPtr, _className, IID_IKnownFoldersStatics)
       .homeGroup;
 
   static StorageFolder? get removableDevices => createActivationFactory(
-          IKnownFoldersStatics.fromRawPointer,
-          _className,
-          IID_IKnownFoldersStatics)
+          IKnownFoldersStatics.fromPtr, _className, IID_IKnownFoldersStatics)
       .removableDevices;
 
   static StorageFolder? get mediaServerDevices => createActivationFactory(
-          IKnownFoldersStatics.fromRawPointer,
-          _className,
-          IID_IKnownFoldersStatics)
+          IKnownFoldersStatics.fromPtr, _className, IID_IKnownFoldersStatics)
       .mediaServerDevices;
 
   static StorageFolder? get objects3D => createActivationFactory(
-          IKnownFoldersStatics2.fromRawPointer,
-          _className,
-          IID_IKnownFoldersStatics2)
+          IKnownFoldersStatics2.fromPtr, _className, IID_IKnownFoldersStatics2)
       .objects3D;
 
   static StorageFolder? get appCaptures => createActivationFactory(
-          IKnownFoldersStatics2.fromRawPointer,
-          _className,
-          IID_IKnownFoldersStatics2)
+          IKnownFoldersStatics2.fromPtr, _className, IID_IKnownFoldersStatics2)
       .appCaptures;
 
   static StorageFolder? get recordedCalls => createActivationFactory(
-          IKnownFoldersStatics2.fromRawPointer,
-          _className,
-          IID_IKnownFoldersStatics2)
+          IKnownFoldersStatics2.fromPtr, _className, IID_IKnownFoldersStatics2)
       .recordedCalls;
 
   static Future<StorageFolder?> getFolderForUserAsync(
           User? user, KnownFolderId folderId) =>
-      createActivationFactory(IKnownFoldersStatics3.fromRawPointer, _className,
+      createActivationFactory(IKnownFoldersStatics3.fromPtr, _className,
               IID_IKnownFoldersStatics3)
           .getFolderForUserAsync(user, folderId);
 
   static Future<KnownFoldersAccessStatus> requestAccessAsync(
           KnownFolderId folderId) =>
-      createActivationFactory(IKnownFoldersStatics4.fromRawPointer, _className,
+      createActivationFactory(IKnownFoldersStatics4.fromPtr, _className,
               IID_IKnownFoldersStatics4)
           .requestAccessAsync(folderId);
 
   static Future<KnownFoldersAccessStatus> requestAccessForUserAsync(
           User? user, KnownFolderId folderId) =>
-      createActivationFactory(IKnownFoldersStatics4.fromRawPointer, _className,
+      createActivationFactory(IKnownFoldersStatics4.fromPtr, _className,
               IID_IKnownFoldersStatics4)
           .requestAccessForUserAsync(user, folderId);
 
   static Future<StorageFolder?> getFolderAsync(KnownFolderId folderId) =>
-      createActivationFactory(IKnownFoldersStatics4.fromRawPointer, _className,
+      createActivationFactory(IKnownFoldersStatics4.fromPtr, _className,
               IID_IKnownFoldersStatics4)
           .getFolderAsync(folderId);
 }

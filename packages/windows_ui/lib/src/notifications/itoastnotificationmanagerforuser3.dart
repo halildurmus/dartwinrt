@@ -25,10 +25,10 @@ const IID_IToastNotificationManagerForUser3 =
 /// {@category interface}
 class IToastNotificationManagerForUser3 extends IInspectable {
   // vtable begins at 6, is 3 entries long.
-  IToastNotificationManagerForUser3.fromRawPointer(super.ptr);
+  IToastNotificationManagerForUser3.fromPtr(super.ptr);
 
   factory IToastNotificationManagerForUser3.from(IInspectable interface) =>
-      IToastNotificationManagerForUser3.fromRawPointer(
+      IToastNotificationManagerForUser3.fromPtr(
           interface.toInterface(IID_IToastNotificationManagerForUser3));
 
   ToastNotificationMode get notificationMode {

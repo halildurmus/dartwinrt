@@ -25,7 +25,7 @@ import 'istorageitemextraproperties.dart';
 /// {@category class}
 class BasicProperties extends IInspectable
     implements IBasicProperties, IStorageItemExtraProperties {
-  BasicProperties.fromRawPointer(super.ptr);
+  BasicProperties.fromPtr(super.ptr);
 
   late final _iBasicProperties = IBasicProperties.from(this);
 

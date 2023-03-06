@@ -26,10 +26,10 @@ const IID_IStorageFile2 = '{954e4bcf-0a77-42fb-b777-c2ed58a52e44}';
 /// {@category interface}
 class IStorageFile2 extends IInspectable {
   // vtable begins at 6, is 2 entries long.
-  IStorageFile2.fromRawPointer(super.ptr);
+  IStorageFile2.fromPtr(super.ptr);
 
   factory IStorageFile2.from(IInspectable interface) =>
-      IStorageFile2.fromRawPointer(interface.toInterface(IID_IStorageFile2));
+      IStorageFile2.fromPtr(interface.toInterface(IID_IStorageFile2));
 
   Future<IRandomAccessStream?> openWithOptionsAsync(
       FileAccessMode accessMode, StorageOpenOptions options) {
@@ -54,9 +54,9 @@ class IStorageFile2 extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<IRandomAccessStream?>.fromRawPointer(
+    final asyncOperation = IAsyncOperation<IRandomAccessStream?>.fromPtr(
         retValuePtr,
-        creator: IRandomAccessStream.fromRawPointer);
+        creator: IRandomAccessStream.fromPtr);
     completeAsyncOperation(
         asyncOperation, completer, asyncOperation.getResults);
 
@@ -86,9 +86,9 @@ class IStorageFile2 extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation =
-        IAsyncOperation<StorageStreamTransaction?>.fromRawPointer(retValuePtr,
-            creator: StorageStreamTransaction.fromRawPointer);
+    final asyncOperation = IAsyncOperation<StorageStreamTransaction?>.fromPtr(
+        retValuePtr,
+        creator: StorageStreamTransaction.fromPtr);
     completeAsyncOperation(
         asyncOperation, completer, asyncOperation.getResults);
 

@@ -35,12 +35,12 @@ class FileSavePicker extends IInspectable
         IFileSavePicker,
         IFileSavePicker4 {
   FileSavePicker() : super(activateClass(_className));
-  FileSavePicker.fromRawPointer(super.ptr);
+  FileSavePicker.fromPtr(super.ptr);
 
   static const _className = 'Windows.Storage.Pickers.FileSavePicker';
 
   static FileSavePicker? createForUser(User? user) => createActivationFactory(
-          IFileSavePickerStatics.fromRawPointer,
+          IFileSavePickerStatics.fromPtr,
           _className,
           IID_IFileSavePickerStatics)
       .createForUser(user);

@@ -26,10 +26,10 @@ const IID_IStorageFolderQueryResult = '{6654c911-7d66-46fa-aecf-e4a4baa93ab8}';
 class IStorageFolderQueryResult extends IInspectable
     implements IStorageQueryResultBase {
   // vtable begins at 6, is 2 entries long.
-  IStorageFolderQueryResult.fromRawPointer(super.ptr);
+  IStorageFolderQueryResult.fromPtr(super.ptr);
 
   factory IStorageFolderQueryResult.from(IInspectable interface) =>
-      IStorageFolderQueryResult.fromRawPointer(
+      IStorageFolderQueryResult.fromPtr(
           interface.toInterface(IID_IStorageFolderQueryResult));
 
   Future<List<StorageFolder>> getFoldersAsync(
@@ -58,11 +58,11 @@ class IStorageFolderQueryResult extends IInspectable
       throw WindowsException(hr);
     }
 
-    final asyncOperation =
-        IAsyncOperation<IVectorView<StorageFolder>>.fromRawPointer(retValuePtr,
-            creator: (ptr) => IVectorView.fromRawPointer(ptr,
-                creator: StorageFolder.fromRawPointer,
-                iterableIid: '{4669befc-ae5c-52b1-8a97-5466ce61e94e}'));
+    final asyncOperation = IAsyncOperation<IVectorView<StorageFolder>>.fromPtr(
+        retValuePtr,
+        creator: (ptr) => IVectorView.fromPtr(ptr,
+            creator: StorageFolder.fromPtr,
+            iterableIid: '{4669befc-ae5c-52b1-8a97-5466ce61e94e}'));
     completeAsyncOperation(
         asyncOperation, completer, () => asyncOperation.getResults().toList());
 
@@ -90,11 +90,11 @@ class IStorageFolderQueryResult extends IInspectable
       throw WindowsException(hr);
     }
 
-    final asyncOperation =
-        IAsyncOperation<IVectorView<StorageFolder>>.fromRawPointer(retValuePtr,
-            creator: (ptr) => IVectorView.fromRawPointer(ptr,
-                creator: StorageFolder.fromRawPointer,
-                iterableIid: '{4669befc-ae5c-52b1-8a97-5466ce61e94e}'));
+    final asyncOperation = IAsyncOperation<IVectorView<StorageFolder>>.fromPtr(
+        retValuePtr,
+        creator: (ptr) => IVectorView.fromPtr(ptr,
+            creator: StorageFolder.fromPtr,
+            iterableIid: '{4669befc-ae5c-52b1-8a97-5466ce61e94e}'));
     completeAsyncOperation(
         asyncOperation, completer, () => asyncOperation.getResults().toList());
 

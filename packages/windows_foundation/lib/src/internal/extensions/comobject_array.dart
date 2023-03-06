@@ -18,7 +18,7 @@ extension COMObjectArrayHelpers on Pointer<COMObject> {
   /// [length] must not be greater than the number of elements stored inside the
   /// `Pointer<COMObject>`.
   List<Uri> toDartUriList({int length = 1}) =>
-      toList(winrt_uri.Uri.fromRawPointer, length: length)
+      toList(winrt_uri.Uri.fromPtr, length: length)
           .map((winrtUri) => winrtUri.toDartUri())
           .toList();
 
@@ -26,14 +26,14 @@ extension COMObjectArrayHelpers on Pointer<COMObject> {
   ///
   /// [T] must be `IInspectable` (e.g. `HostName`).
   ///
-  /// [creator] must be specified for [T] (e.g. `HostName.fromRawPointer`).
+  /// [creator] must be specified for [T] (e.g. `HostName.fromPtr`).
   ///
   /// [length] must not be greater than the number of elements stored inside the
   /// `Pointer<COMObject>`.
   ///
   /// ```dart
   /// final pComObject = ...
-  /// final list = pComObject.toList(HostName.fromRawPointer, length: 4);
+  /// final list = pComObject.toList(HostName.fromPtr, length: 4);
   /// ```
   List<T> toList<T>(T Function(Pointer<COMObject>) creator, {int length = 1}) {
     final list = <T>[];

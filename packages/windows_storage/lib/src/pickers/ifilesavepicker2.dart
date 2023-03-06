@@ -21,11 +21,10 @@ const IID_IFileSavePicker2 = '{0ec313a2-d24b-449a-8197-e89104fd42cc}';
 /// {@category interface}
 class IFileSavePicker2 extends IInspectable {
   // vtable begins at 6, is 2 entries long.
-  IFileSavePicker2.fromRawPointer(super.ptr);
+  IFileSavePicker2.fromPtr(super.ptr);
 
   factory IFileSavePicker2.from(IInspectable interface) =>
-      IFileSavePicker2.fromRawPointer(
-          interface.toInterface(IID_IFileSavePicker2));
+      IFileSavePicker2.fromPtr(interface.toInterface(IID_IFileSavePicker2));
 
   ValueSet? get continuationData {
     final retValuePtr = calloc<COMObject>();
@@ -52,7 +51,7 @@ class IFileSavePicker2 extends IInspectable {
       return null;
     }
 
-    return ValueSet.fromRawPointer(retValuePtr);
+    return ValueSet.fromPtr(retValuePtr);
   }
 
   @Deprecated('Instead, use PickSaveFileAsync')

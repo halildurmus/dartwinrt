@@ -23,10 +23,10 @@ const IID_ILanIdentifier = '{48aa53aa-1108-4546-a6cb-9a74da4b7ba0}';
 /// {@category interface}
 class ILanIdentifier extends IInspectable {
   // vtable begins at 6, is 3 entries long.
-  ILanIdentifier.fromRawPointer(super.ptr);
+  ILanIdentifier.fromPtr(super.ptr);
 
   factory ILanIdentifier.from(IInspectable interface) =>
-      ILanIdentifier.fromRawPointer(interface.toInterface(IID_ILanIdentifier));
+      ILanIdentifier.fromPtr(interface.toInterface(IID_ILanIdentifier));
 
   LanIdentifierData? get infrastructureId {
     final retValuePtr = calloc<COMObject>();
@@ -53,7 +53,7 @@ class ILanIdentifier extends IInspectable {
       return null;
     }
 
-    return LanIdentifierData.fromRawPointer(retValuePtr);
+    return LanIdentifierData.fromPtr(retValuePtr);
   }
 
   LanIdentifierData? get portId {
@@ -81,7 +81,7 @@ class ILanIdentifier extends IInspectable {
       return null;
     }
 
-    return LanIdentifierData.fromRawPointer(retValuePtr);
+    return LanIdentifierData.fromPtr(retValuePtr);
   }
 
   Guid get networkAdapterId {

@@ -21,11 +21,10 @@ const IID_IFileSavePicker3 = '{698aec69-ba3c-4e51-bd90-4abcbbf4cfaf}';
 /// {@category interface}
 class IFileSavePicker3 extends IInspectable {
   // vtable begins at 6, is 2 entries long.
-  IFileSavePicker3.fromRawPointer(super.ptr);
+  IFileSavePicker3.fromPtr(super.ptr);
 
   factory IFileSavePicker3.from(IInspectable interface) =>
-      IFileSavePicker3.fromRawPointer(
-          interface.toInterface(IID_IFileSavePicker3));
+      IFileSavePicker3.fromPtr(interface.toInterface(IID_IFileSavePicker3));
 
   String get enterpriseId {
     final retValuePtr = calloc<HSTRING>();

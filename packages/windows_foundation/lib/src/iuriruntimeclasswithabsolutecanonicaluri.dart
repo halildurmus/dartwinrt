@@ -25,11 +25,11 @@ const IID_IUriRuntimeClassWithAbsoluteCanonicalUri =
 /// {@category interface}
 class IUriRuntimeClassWithAbsoluteCanonicalUri extends IInspectable {
   // vtable begins at 6, is 2 entries long.
-  IUriRuntimeClassWithAbsoluteCanonicalUri.fromRawPointer(super.ptr);
+  IUriRuntimeClassWithAbsoluteCanonicalUri.fromPtr(super.ptr);
 
   factory IUriRuntimeClassWithAbsoluteCanonicalUri.from(
           IInspectable interface) =>
-      IUriRuntimeClassWithAbsoluteCanonicalUri.fromRawPointer(
+      IUriRuntimeClassWithAbsoluteCanonicalUri.fromPtr(
           interface.toInterface(IID_IUriRuntimeClassWithAbsoluteCanonicalUri));
 
   String get absoluteCanonicalUri {

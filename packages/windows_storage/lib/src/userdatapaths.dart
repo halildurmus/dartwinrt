@@ -24,20 +24,16 @@ import 'iuserdatapathsstatics.dart';
 ///
 /// {@category class}
 class UserDataPaths extends IInspectable implements IUserDataPaths {
-  UserDataPaths.fromRawPointer(super.ptr);
+  UserDataPaths.fromPtr(super.ptr);
 
   static const _className = 'Windows.Storage.UserDataPaths';
 
   static UserDataPaths? getForUser(User? user) => createActivationFactory(
-          IUserDataPathsStatics.fromRawPointer,
-          _className,
-          IID_IUserDataPathsStatics)
+          IUserDataPathsStatics.fromPtr, _className, IID_IUserDataPathsStatics)
       .getForUser(user);
 
   static UserDataPaths? getDefault() => createActivationFactory(
-          IUserDataPathsStatics.fromRawPointer,
-          _className,
-          IID_IUserDataPathsStatics)
+          IUserDataPathsStatics.fromPtr, _className, IID_IUserDataPathsStatics)
       .getDefault();
 
   late final _iUserDataPaths = IUserDataPaths.from(this);

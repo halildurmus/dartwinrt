@@ -21,11 +21,10 @@ const IID_IXmlLoadSettings = '{58aa07a8-fed6-46f7-b4c5-fb1ba72108d6}';
 /// {@category interface}
 class IXmlLoadSettings extends IInspectable {
   // vtable begins at 6, is 10 entries long.
-  IXmlLoadSettings.fromRawPointer(super.ptr);
+  IXmlLoadSettings.fromPtr(super.ptr);
 
   factory IXmlLoadSettings.from(IInspectable interface) =>
-      IXmlLoadSettings.fromRawPointer(
-          interface.toInterface(IID_IXmlLoadSettings));
+      IXmlLoadSettings.fromPtr(interface.toInterface(IID_IXmlLoadSettings));
 
   int get maxElementDepth {
     final retValuePtr = calloc<Uint32>();

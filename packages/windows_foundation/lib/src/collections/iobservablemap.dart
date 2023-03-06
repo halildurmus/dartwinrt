@@ -17,7 +17,7 @@ import '../iinspectable.dart';
 /// {@category interface}
 class IObservableMap<K, V> extends IInspectable {
   // vtable begins at 6, is 2 entries long.
-  IObservableMap.fromRawPointer(super.ptr);
+  IObservableMap.fromPtr(super.ptr);
 
   int add_MapChanged(Pointer<COMObject> vhnd) {
     final retValuePtr = calloc<IntPtr>();

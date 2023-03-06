@@ -23,7 +23,7 @@ import 'idevicepickerappearance.dart';
 /// {@category class}
 class DevicePickerAppearance extends IInspectable
     implements IDevicePickerAppearance {
-  DevicePickerAppearance.fromRawPointer(super.ptr);
+  DevicePickerAppearance.fromPtr(super.ptr);
 
   late final _iDevicePickerAppearance = IDevicePickerAppearance.from(this);
 

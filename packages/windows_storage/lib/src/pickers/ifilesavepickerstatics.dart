@@ -24,10 +24,10 @@ const IID_IFileSavePickerStatics = '{28e3cf9e-961c-5e2c-aed7-e64737f4ce37}';
 /// {@category interface}
 class IFileSavePickerStatics extends IInspectable {
   // vtable begins at 6, is 1 entries long.
-  IFileSavePickerStatics.fromRawPointer(super.ptr);
+  IFileSavePickerStatics.fromPtr(super.ptr);
 
   factory IFileSavePickerStatics.from(IInspectable interface) =>
-      IFileSavePickerStatics.fromRawPointer(
+      IFileSavePickerStatics.fromPtr(
           interface.toInterface(IID_IFileSavePickerStatics));
 
   FileSavePicker? createForUser(User? user) {
@@ -57,6 +57,6 @@ class IFileSavePickerStatics extends IInspectable {
       return null;
     }
 
-    return FileSavePicker.fromRawPointer(retValuePtr);
+    return FileSavePicker.fromPtr(retValuePtr);
   }
 }

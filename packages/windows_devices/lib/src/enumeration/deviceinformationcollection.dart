@@ -22,11 +22,11 @@ import 'deviceinformation.dart';
 /// {@category class}
 class DeviceInformationCollection extends IInspectable
     implements IVectorView<DeviceInformation>, IIterable<DeviceInformation> {
-  DeviceInformationCollection.fromRawPointer(super.ptr);
+  DeviceInformationCollection.fromPtr(super.ptr);
 
-  late final _iVectorView = IVectorView<DeviceInformation>.fromRawPointer(
+  late final _iVectorView = IVectorView<DeviceInformation>.fromPtr(
       toInterface('{e170688f-3495-5bf6-aab5-9cac17e0f10f}'),
-      creator: DeviceInformation.fromRawPointer,
+      creator: DeviceInformation.fromPtr,
       iterableIid: '{dd9f8a5d-ec98-5f4b-a3ea-9c8b5ad53c4b}');
 
   @override

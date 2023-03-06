@@ -26,7 +26,7 @@ void main() {
 
   test('createActivationFactory', () {
     final classFactory = createActivationFactory(
-        IUriRuntimeClassFactory.fromRawPointer,
+        IUriRuntimeClassFactory.fromPtr,
         'Windows.Foundation.Uri',
         IID_IUriRuntimeClassFactory);
     final uri = classFactory.createUri('https://dart.dev');
@@ -34,7 +34,7 @@ void main() {
   });
 
   test('createObject', () {
-    final stringMap = createObject(StringMap.fromRawPointer,
+    final stringMap = createObject(StringMap.fromPtr,
         'Windows.Foundation.Collections.StringMap', IID_IMap_String_String);
     expect(getClassName(stringMap),
         equals('Windows.Foundation.Collections.StringMap'));

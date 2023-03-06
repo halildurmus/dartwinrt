@@ -25,7 +25,7 @@ import 'ixmlloadsettings.dart';
 /// {@category class}
 class XmlLoadSettings extends IInspectable implements IXmlLoadSettings {
   XmlLoadSettings() : super(activateClass(_className));
-  XmlLoadSettings.fromRawPointer(super.ptr);
+  XmlLoadSettings.fromPtr(super.ptr);
 
   static const _className = 'Windows.Data.Xml.Dom.XmlLoadSettings';
 

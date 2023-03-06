@@ -23,7 +23,7 @@ import 'ibatteryreport.dart';
 ///
 /// {@category class}
 class BatteryReport extends IInspectable implements IBatteryReport {
-  BatteryReport.fromRawPointer(super.ptr);
+  BatteryReport.fromPtr(super.ptr);
 
   late final _iBatteryReport = IBatteryReport.from(this);
 

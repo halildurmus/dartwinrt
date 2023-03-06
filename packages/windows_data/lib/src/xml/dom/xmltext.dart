@@ -35,7 +35,7 @@ class XmlText extends IInspectable
         IXmlNode,
         IXmlNodeSerializer,
         IXmlNodeSelector {
-  XmlText.fromRawPointer(super.ptr);
+  XmlText.fromPtr(super.ptr);
 
   late final _iXmlText = IXmlText.from(this);
 

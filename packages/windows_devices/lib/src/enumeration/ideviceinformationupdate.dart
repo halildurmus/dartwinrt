@@ -21,10 +21,10 @@ const IID_IDeviceInformationUpdate = '{8f315305-d972-44b7-a37e-9e822c78213b}';
 /// {@category interface}
 class IDeviceInformationUpdate extends IInspectable {
   // vtable begins at 6, is 2 entries long.
-  IDeviceInformationUpdate.fromRawPointer(super.ptr);
+  IDeviceInformationUpdate.fromPtr(super.ptr);
 
   factory IDeviceInformationUpdate.from(IInspectable interface) =>
-      IDeviceInformationUpdate.fromRawPointer(
+      IDeviceInformationUpdate.fromPtr(
           interface.toInterface(IID_IDeviceInformationUpdate));
 
   String get id {
@@ -72,7 +72,7 @@ class IDeviceInformationUpdate extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final mapView = IMapView<String, Object?>.fromRawPointer(retValuePtr,
+    final mapView = IMapView<String, Object?>.fromPtr(retValuePtr,
         iterableIid: '{fe2f3d47-5d47-5499-8374-430c7cda0204}');
     return mapView.toMap();
   }

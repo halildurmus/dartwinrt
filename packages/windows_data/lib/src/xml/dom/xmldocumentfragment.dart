@@ -34,7 +34,7 @@ class XmlDocumentFragment extends IInspectable
         IXmlNode,
         IXmlNodeSerializer,
         IXmlNodeSelector {
-  XmlDocumentFragment.fromRawPointer(super.ptr);
+  XmlDocumentFragment.fromPtr(super.ptr);
 
   late final _iXmlNode = IXmlNode.from(this);
 

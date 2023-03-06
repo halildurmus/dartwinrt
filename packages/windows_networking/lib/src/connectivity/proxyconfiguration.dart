@@ -21,7 +21,7 @@ import 'iproxyconfiguration.dart';
 ///
 /// {@category class}
 class ProxyConfiguration extends IInspectable implements IProxyConfiguration {
-  ProxyConfiguration.fromRawPointer(super.ptr);
+  ProxyConfiguration.fromPtr(super.ptr);
 
   late final _iProxyConfiguration = IProxyConfiguration.from(this);
 

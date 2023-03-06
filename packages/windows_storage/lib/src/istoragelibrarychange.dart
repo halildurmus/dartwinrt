@@ -25,10 +25,10 @@ const IID_IStorageLibraryChange = '{00980b23-2be2-4909-aa48-159f5203a51e}';
 /// {@category interface}
 class IStorageLibraryChange extends IInspectable {
   // vtable begins at 6, is 5 entries long.
-  IStorageLibraryChange.fromRawPointer(super.ptr);
+  IStorageLibraryChange.fromPtr(super.ptr);
 
   factory IStorageLibraryChange.from(IInspectable interface) =>
-      IStorageLibraryChange.fromRawPointer(
+      IStorageLibraryChange.fromPtr(
           interface.toInterface(IID_IStorageLibraryChange));
 
   StorageLibraryChangeType get changeType {
@@ -151,9 +151,8 @@ class IStorageLibraryChange extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<IStorageItem?>.fromRawPointer(
-        retValuePtr,
-        creator: IStorageItem.fromRawPointer);
+    final asyncOperation = IAsyncOperation<IStorageItem?>.fromPtr(retValuePtr,
+        creator: IStorageItem.fromPtr);
     completeAsyncOperation(
         asyncOperation, completer, asyncOperation.getResults);
 

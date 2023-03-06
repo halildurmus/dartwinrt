@@ -24,10 +24,10 @@ const IID_IBuffer = '{905a0fe0-bc53-11df-8c49-001e4fc686da}';
 /// {@category interface}
 class IBuffer extends IInspectable {
   // vtable begins at 6, is 3 entries long.
-  IBuffer.fromRawPointer(super.ptr);
+  IBuffer.fromPtr(super.ptr);
 
   factory IBuffer.from(IInspectable interface) =>
-      IBuffer.fromRawPointer(interface.toInterface(IID_IBuffer));
+      IBuffer.fromPtr(interface.toInterface(IID_IBuffer));
 
   int get capacity {
     final retValuePtr = calloc<Uint32>();

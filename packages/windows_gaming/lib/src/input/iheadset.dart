@@ -21,10 +21,10 @@ const IID_IHeadset = '{3fd156ef-6925-3fa8-9181-029c5223ae3b}';
 /// {@category interface}
 class IHeadset extends IInspectable {
   // vtable begins at 6, is 2 entries long.
-  IHeadset.fromRawPointer(super.ptr);
+  IHeadset.fromPtr(super.ptr);
 
   factory IHeadset.from(IInspectable interface) =>
-      IHeadset.fromRawPointer(interface.toInterface(IID_IHeadset));
+      IHeadset.fromPtr(interface.toInterface(IID_IHeadset));
 
   String get captureDeviceId {
     final retValuePtr = calloc<HSTRING>();

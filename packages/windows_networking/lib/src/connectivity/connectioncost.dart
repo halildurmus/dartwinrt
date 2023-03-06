@@ -25,7 +25,7 @@ import 'networkcosttype.dart';
 /// {@category class}
 class ConnectionCost extends IInspectable
     implements IConnectionCost, IConnectionCost2 {
-  ConnectionCost.fromRawPointer(super.ptr);
+  ConnectionCost.fromPtr(super.ptr);
 
   late final _iConnectionCost = IConnectionCost.from(this);
 

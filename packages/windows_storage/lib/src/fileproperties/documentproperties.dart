@@ -24,7 +24,7 @@ import 'istorageitemextraproperties.dart';
 /// {@category class}
 class DocumentProperties extends IInspectable
     implements IDocumentProperties, IStorageItemExtraProperties {
-  DocumentProperties.fromRawPointer(super.ptr);
+  DocumentProperties.fromPtr(super.ptr);
 
   late final _iDocumentProperties = IDocumentProperties.from(this);
 

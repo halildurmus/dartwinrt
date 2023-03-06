@@ -26,11 +26,10 @@ const IID_IUriRuntimeClass = '{9e365e57-48b2-4160-956f-c7385120bbfc}';
 /// {@category interface}
 class IUriRuntimeClass extends IInspectable {
   // vtable begins at 6, is 17 entries long.
-  IUriRuntimeClass.fromRawPointer(super.ptr);
+  IUriRuntimeClass.fromPtr(super.ptr);
 
   factory IUriRuntimeClass.from(IInspectable interface) =>
-      IUriRuntimeClass.fromRawPointer(
-          interface.toInterface(IID_IUriRuntimeClass));
+      IUriRuntimeClass.fromPtr(interface.toInterface(IID_IUriRuntimeClass));
 
   String get absoluteUri {
     final retValuePtr = calloc<HSTRING>();
@@ -282,7 +281,7 @@ class IUriRuntimeClass extends IInspectable {
       return null;
     }
 
-    return WwwFormUrlDecoder.fromRawPointer(retValuePtr);
+    return WwwFormUrlDecoder.fromPtr(retValuePtr);
   }
 
   String get rawUri {
@@ -465,6 +464,6 @@ class IUriRuntimeClass extends IInspectable {
       return null;
     }
 
-    return Uri.fromRawPointer(retValuePtr);
+    return Uri.fromPtr(retValuePtr);
   }
 }

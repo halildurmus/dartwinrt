@@ -23,11 +23,10 @@ const IID_IGamepadStatics = '{8bbce529-d49c-39e9-9560-e47dde96b7c8}';
 /// {@category interface}
 class IGamepadStatics extends IInspectable {
   // vtable begins at 6, is 5 entries long.
-  IGamepadStatics.fromRawPointer(super.ptr);
+  IGamepadStatics.fromPtr(super.ptr);
 
   factory IGamepadStatics.from(IInspectable interface) =>
-      IGamepadStatics.fromRawPointer(
-          interface.toInterface(IID_IGamepadStatics));
+      IGamepadStatics.fromPtr(interface.toInterface(IID_IGamepadStatics));
 
   int add_GamepadAdded(Pointer<COMObject> value) {
     final retValuePtr = calloc<IntPtr>();
@@ -127,9 +126,9 @@ class IGamepadStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final vectorView = IVectorView<Gamepad>.fromRawPointer(retValuePtr,
+    final vectorView = IVectorView<Gamepad>.fromPtr(retValuePtr,
         iterableIid: '{47132ba0-6b17-5cd2-a8bd-b5d3443ccb13}',
-        creator: Gamepad.fromRawPointer);
+        creator: Gamepad.fromPtr);
     return vectorView.toList();
   }
 }

@@ -23,10 +23,10 @@ const IID_IIPInformation = '{d85145e0-138f-47d7-9b3a-36bb488cef33}';
 /// {@category interface}
 class IIPInformation extends IInspectable {
   // vtable begins at 6, is 2 entries long.
-  IIPInformation.fromRawPointer(super.ptr);
+  IIPInformation.fromPtr(super.ptr);
 
   factory IIPInformation.from(IInspectable interface) =>
-      IIPInformation.fromRawPointer(interface.toInterface(IID_IIPInformation));
+      IIPInformation.fromPtr(interface.toInterface(IID_IIPInformation));
 
   NetworkAdapter? get networkAdapter {
     final retValuePtr = calloc<COMObject>();
@@ -53,7 +53,7 @@ class IIPInformation extends IInspectable {
       return null;
     }
 
-    return NetworkAdapter.fromRawPointer(retValuePtr);
+    return NetworkAdapter.fromPtr(retValuePtr);
   }
 
   int? get prefixLength {
@@ -81,7 +81,7 @@ class IIPInformation extends IInspectable {
       return null;
     }
 
-    final reference = IReference<int?>.fromRawPointer(retValuePtr,
+    final reference = IReference<int?>.fromPtr(retValuePtr,
         referenceIid: '{e5198cc8-2873-55f5-b0a1-84ff9e4aad62}');
     return reference.value;
   }

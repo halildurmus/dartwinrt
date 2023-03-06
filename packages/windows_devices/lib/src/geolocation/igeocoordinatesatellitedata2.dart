@@ -22,10 +22,10 @@ const IID_IGeocoordinateSatelliteData2 =
 /// {@category interface}
 class IGeocoordinateSatelliteData2 extends IInspectable {
   // vtable begins at 6, is 2 entries long.
-  IGeocoordinateSatelliteData2.fromRawPointer(super.ptr);
+  IGeocoordinateSatelliteData2.fromPtr(super.ptr);
 
   factory IGeocoordinateSatelliteData2.from(IInspectable interface) =>
-      IGeocoordinateSatelliteData2.fromRawPointer(
+      IGeocoordinateSatelliteData2.fromPtr(
           interface.toInterface(IID_IGeocoordinateSatelliteData2));
 
   double? get geometricDilutionOfPrecision {
@@ -53,7 +53,7 @@ class IGeocoordinateSatelliteData2 extends IInspectable {
       return null;
     }
 
-    final reference = IReference<double?>.fromRawPointer(retValuePtr,
+    final reference = IReference<double?>.fromPtr(retValuePtr,
         referenceIid: '{2f2d6c29-5473-5f3e-92e7-96572bb990e2}');
     return reference.value;
   }
@@ -83,7 +83,7 @@ class IGeocoordinateSatelliteData2 extends IInspectable {
       return null;
     }
 
-    final reference = IReference<double?>.fromRawPointer(retValuePtr,
+    final reference = IReference<double?>.fromPtr(retValuePtr,
         referenceIid: '{2f2d6c29-5473-5f3e-92e7-96572bb990e2}');
     return reference.value;
   }

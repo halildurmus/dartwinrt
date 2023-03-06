@@ -53,7 +53,7 @@ class IUnknown {
   /// Casts this COM object to an interface specified in [iid].
   ///
   /// [creator] must be the constructor of the class to be casted to (e.g.
-  /// `ICalendar.fromRawPointer`).
+  /// `ICalendar.fromPtr`).
   ///
   /// Throws a [WindowsException] if the cast fails.
   T cast<T extends IUnknown>(
@@ -63,7 +63,7 @@ class IUnknown {
   /// Tries to cast this COM object to an interface specified in [iid].
   ///
   /// [creator] must be the constructor of the class to be casted to (e.g.
-  /// `ICalendar.fromRawPointer`).
+  /// `ICalendar.fromPtr`).
   ///
   /// Returns `null` if the cast fails.
   T? tryCast<T extends IUnknown>(

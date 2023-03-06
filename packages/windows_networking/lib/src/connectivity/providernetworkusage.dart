@@ -23,7 +23,7 @@ import 'iprovidernetworkusage.dart';
 /// {@category class}
 class ProviderNetworkUsage extends IInspectable
     implements IProviderNetworkUsage {
-  ProviderNetworkUsage.fromRawPointer(super.ptr);
+  ProviderNetworkUsage.fromPtr(super.ptr);
 
   late final _iProviderNetworkUsage = IProviderNetworkUsage.from(this);
 

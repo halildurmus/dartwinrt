@@ -22,10 +22,10 @@ const IID_IDevicePickerAppearance = '{e69a12c6-e627-4ed8-9b6c-460af445e56d}';
 /// {@category interface}
 class IDevicePickerAppearance extends IInspectable {
   // vtable begins at 6, is 14 entries long.
-  IDevicePickerAppearance.fromRawPointer(super.ptr);
+  IDevicePickerAppearance.fromPtr(super.ptr);
 
   factory IDevicePickerAppearance.from(IInspectable interface) =>
-      IDevicePickerAppearance.fromRawPointer(
+      IDevicePickerAppearance.fromPtr(
           interface.toInterface(IID_IDevicePickerAppearance));
 
   String get title {

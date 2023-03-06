@@ -10,7 +10,7 @@
 part of 'iasyncoperation.dart';
 
 class _IAsyncOperationBool extends IAsyncOperation<bool> {
-  _IAsyncOperationBool.fromRawPointer(super.ptr);
+  _IAsyncOperationBool.fromPtr(super.ptr);
 
   @override
   bool getResults() {
@@ -39,7 +39,7 @@ class _IAsyncOperationBool extends IAsyncOperation<bool> {
 }
 
 class _IAsyncOperationGuid extends IAsyncOperation<Guid> {
-  _IAsyncOperationGuid.fromRawPointer(super.ptr);
+  _IAsyncOperationGuid.fromPtr(super.ptr);
 
   @override
   Guid getResults() {
@@ -68,7 +68,7 @@ class _IAsyncOperationGuid extends IAsyncOperation<Guid> {
 }
 
 class _IAsyncOperationInt16 extends IAsyncOperation<int> {
-  _IAsyncOperationInt16.fromRawPointer(super.ptr);
+  _IAsyncOperationInt16.fromPtr(super.ptr);
 
   @override
   int getResults() {
@@ -97,7 +97,7 @@ class _IAsyncOperationInt16 extends IAsyncOperation<int> {
 }
 
 class _IAsyncOperationInt32 extends IAsyncOperation<int> {
-  _IAsyncOperationInt32.fromRawPointer(super.ptr);
+  _IAsyncOperationInt32.fromPtr(super.ptr);
 
   @override
   int getResults() {
@@ -126,7 +126,7 @@ class _IAsyncOperationInt32 extends IAsyncOperation<int> {
 }
 
 class _IAsyncOperationInt64 extends IAsyncOperation<int> {
-  _IAsyncOperationInt64.fromRawPointer(super.ptr);
+  _IAsyncOperationInt64.fromPtr(super.ptr);
 
   @override
   int getResults() {
@@ -155,7 +155,7 @@ class _IAsyncOperationInt64 extends IAsyncOperation<int> {
 }
 
 class _IAsyncOperationInspectable<TResult> extends IAsyncOperation<TResult> {
-  _IAsyncOperationInspectable.fromRawPointer(super.ptr, {super.creator});
+  _IAsyncOperationInspectable.fromPtr(super.ptr, {super.creator});
 
   @override
   TResult getResults() {
@@ -188,7 +188,7 @@ class _IAsyncOperationInspectable<TResult> extends IAsyncOperation<TResult> {
 }
 
 class _IAsyncOperationObject extends IAsyncOperation<Object?> {
-  _IAsyncOperationObject.fromRawPointer(super.ptr);
+  _IAsyncOperationObject.fromPtr(super.ptr);
 
   @override
   Object? getResults() {
@@ -216,12 +216,12 @@ class _IAsyncOperationObject extends IAsyncOperation<Object?> {
       return null;
     }
 
-    return IPropertyValue.fromRawPointer(retValuePtr).value;
+    return IPropertyValue.fromPtr(retValuePtr).value;
   }
 }
 
 class _IAsyncOperationUri extends IAsyncOperation<Uri?> {
-  _IAsyncOperationUri.fromRawPointer(super.ptr);
+  _IAsyncOperationUri.fromPtr(super.ptr);
 
   @override
   Uri? getResults() {
@@ -255,7 +255,7 @@ class _IAsyncOperationUri extends IAsyncOperation<Uri?> {
 }
 
 class _IAsyncOperationString extends IAsyncOperation<String> {
-  _IAsyncOperationString.fromRawPointer(super.ptr);
+  _IAsyncOperationString.fromPtr(super.ptr);
 
   @override
   String getResults() {
@@ -285,7 +285,7 @@ class _IAsyncOperationString extends IAsyncOperation<String> {
 }
 
 class _IAsyncOperationUint8 extends IAsyncOperation<int> {
-  _IAsyncOperationUint8.fromRawPointer(super.ptr);
+  _IAsyncOperationUint8.fromPtr(super.ptr);
 
   @override
   int getResults() {
@@ -314,7 +314,7 @@ class _IAsyncOperationUint8 extends IAsyncOperation<int> {
 }
 
 class _IAsyncOperationUint16 extends IAsyncOperation<int> {
-  _IAsyncOperationUint16.fromRawPointer(super.ptr);
+  _IAsyncOperationUint16.fromPtr(super.ptr);
 
   @override
   int getResults() {
@@ -343,7 +343,7 @@ class _IAsyncOperationUint16 extends IAsyncOperation<int> {
 }
 
 class _IAsyncOperationUint32 extends IAsyncOperation<int> {
-  _IAsyncOperationUint32.fromRawPointer(super.ptr);
+  _IAsyncOperationUint32.fromPtr(super.ptr);
 
   @override
   int getResults() {
@@ -372,7 +372,7 @@ class _IAsyncOperationUint32 extends IAsyncOperation<int> {
 }
 
 class _IAsyncOperationUint64 extends IAsyncOperation<int> {
-  _IAsyncOperationUint64.fromRawPointer(super.ptr);
+  _IAsyncOperationUint64.fromPtr(super.ptr);
 
   @override
   int getResults() {
@@ -401,7 +401,7 @@ class _IAsyncOperationUint64 extends IAsyncOperation<int> {
 }
 
 class _IAsyncOperationWinRTEnum<TResult> extends IAsyncOperation<TResult> {
-  _IAsyncOperationWinRTEnum.fromRawPointer(super.ptr, {super.enumCreator});
+  _IAsyncOperationWinRTEnum.fromPtr(super.ptr, {super.enumCreator});
 
   @override
   TResult getResults() {
@@ -430,7 +430,7 @@ class _IAsyncOperationWinRTEnum<TResult> extends IAsyncOperation<TResult> {
 }
 
 class _IAsyncOperationWinRTFlagsEnum<TResult> extends IAsyncOperation<TResult> {
-  _IAsyncOperationWinRTFlagsEnum.fromRawPointer(super.ptr, {super.enumCreator});
+  _IAsyncOperationWinRTFlagsEnum.fromPtr(super.ptr, {super.enumCreator});
 
   @override
   TResult getResults() {

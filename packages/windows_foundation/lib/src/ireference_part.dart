@@ -10,7 +10,7 @@
 part of 'ireference.dart';
 
 class _IReferenceBool extends IReference<bool?> {
-  _IReferenceBool.fromRawPointer(super.ptr);
+  _IReferenceBool.fromPtr(super.ptr);
 
   @override
   bool? get value {
@@ -41,7 +41,7 @@ class _IReferenceBool extends IReference<bool?> {
 }
 
 class _IReferenceDateTime extends IReference<DateTime?> {
-  _IReferenceDateTime.fromRawPointer(super.ptr);
+  _IReferenceDateTime.fromPtr(super.ptr);
 
   @override
   DateTime? get value {
@@ -72,7 +72,7 @@ class _IReferenceDateTime extends IReference<DateTime?> {
 }
 
 class _IReferenceDouble extends IReference<double?> {
-  _IReferenceDouble.fromRawPointer(super.ptr);
+  _IReferenceDouble.fromPtr(super.ptr);
 
   @override
   double? get value {
@@ -103,7 +103,7 @@ class _IReferenceDouble extends IReference<double?> {
 }
 
 class _IReferenceDuration extends IReference<Duration?> {
-  _IReferenceDuration.fromRawPointer(super.ptr);
+  _IReferenceDuration.fromPtr(super.ptr);
 
   @override
   Duration? get value {
@@ -134,7 +134,7 @@ class _IReferenceDuration extends IReference<Duration?> {
 }
 
 class _IReferenceFloat extends IReference<double?> {
-  _IReferenceFloat.fromRawPointer(super.ptr);
+  _IReferenceFloat.fromPtr(super.ptr);
 
   @override
   double? get value {
@@ -165,7 +165,7 @@ class _IReferenceFloat extends IReference<double?> {
 }
 
 class _IReferenceGuid extends IReference<Guid?> {
-  _IReferenceGuid.fromRawPointer(super.ptr);
+  _IReferenceGuid.fromPtr(super.ptr);
 
   @override
   Guid? get value {
@@ -196,7 +196,7 @@ class _IReferenceGuid extends IReference<Guid?> {
 }
 
 class _IReferenceInt16 extends IReference<int?> {
-  _IReferenceInt16.fromRawPointer(super.ptr);
+  _IReferenceInt16.fromPtr(super.ptr);
 
   @override
   int? get value {
@@ -227,7 +227,7 @@ class _IReferenceInt16 extends IReference<int?> {
 }
 
 class _IReferenceInt32 extends IReference<int?> {
-  _IReferenceInt32.fromRawPointer(super.ptr);
+  _IReferenceInt32.fromPtr(super.ptr);
 
   @override
   int? get value {
@@ -258,7 +258,7 @@ class _IReferenceInt32 extends IReference<int?> {
 }
 
 class _IReferenceInt64 extends IReference<int?> {
-  _IReferenceInt64.fromRawPointer(super.ptr);
+  _IReferenceInt64.fromPtr(super.ptr);
 
   @override
   int? get value {
@@ -289,7 +289,7 @@ class _IReferenceInt64 extends IReference<int?> {
 }
 
 class _IReferencePoint extends IReference<Point?> {
-  _IReferencePoint.fromRawPointer(super.ptr);
+  _IReferencePoint.fromPtr(super.ptr);
 
   @override
   Point? get value {
@@ -321,7 +321,7 @@ class _IReferencePoint extends IReference<Point?> {
 }
 
 class _IReferenceRect extends IReference<Rect?> {
-  _IReferenceRect.fromRawPointer(super.ptr);
+  _IReferenceRect.fromPtr(super.ptr);
 
   @override
   Rect? get value {
@@ -353,7 +353,7 @@ class _IReferenceRect extends IReference<Rect?> {
 }
 
 class _IReferenceSize extends IReference<Size?> {
-  _IReferenceSize.fromRawPointer(super.ptr);
+  _IReferenceSize.fromPtr(super.ptr);
 
   @override
   Size? get value {
@@ -385,7 +385,7 @@ class _IReferenceSize extends IReference<Size?> {
 }
 
 class _IReferenceString extends IReference<String?> {
-  _IReferenceString.fromRawPointer(super.ptr);
+  _IReferenceString.fromPtr(super.ptr);
 
   @override
   String? get value {
@@ -417,7 +417,7 @@ class _IReferenceString extends IReference<String?> {
 }
 
 class _IReferenceUint8 extends IReference<int?> {
-  _IReferenceUint8.fromRawPointer(super.ptr);
+  _IReferenceUint8.fromPtr(super.ptr);
 
   @override
   int? get value {
@@ -448,7 +448,7 @@ class _IReferenceUint8 extends IReference<int?> {
 }
 
 class _IReferenceUint16 extends IReference<int?> {
-  _IReferenceUint16.fromRawPointer(super.ptr);
+  _IReferenceUint16.fromPtr(super.ptr);
 
   @override
   int? get value {
@@ -479,7 +479,7 @@ class _IReferenceUint16 extends IReference<int?> {
 }
 
 class _IReferenceUint32 extends IReference<int?> {
-  _IReferenceUint32.fromRawPointer(super.ptr);
+  _IReferenceUint32.fromPtr(super.ptr);
 
   @override
   int? get value {
@@ -510,7 +510,7 @@ class _IReferenceUint32 extends IReference<int?> {
 }
 
 class _IReferenceUint64 extends IReference<int?> {
-  _IReferenceUint64.fromRawPointer(super.ptr);
+  _IReferenceUint64.fromPtr(super.ptr);
 
   @override
   int? get value {
@@ -541,7 +541,7 @@ class _IReferenceUint64 extends IReference<int?> {
 }
 
 class _IReferenceWinRTEnum<T> extends IReference<T> {
-  _IReferenceWinRTEnum.fromRawPointer(super.ptr, {super.enumCreator});
+  _IReferenceWinRTEnum.fromPtr(super.ptr, {super.enumCreator});
 
   @override
   T get value {
@@ -572,7 +572,7 @@ class _IReferenceWinRTEnum<T> extends IReference<T> {
 }
 
 class _IReferenceWinRTFlagsEnum<T> extends IReference<T> {
-  _IReferenceWinRTFlagsEnum.fromRawPointer(super.ptr, {super.enumCreator});
+  _IReferenceWinRTFlagsEnum.fromPtr(super.ptr, {super.enumCreator});
 
   @override
   T get value {

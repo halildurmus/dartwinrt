@@ -21,10 +21,10 @@ const IID_ITimeZoneOnCalendar = '{bb3c25e5-46cf-4317-a3f5-02621ad54478}';
 /// {@category interface}
 class ITimeZoneOnCalendar extends IInspectable {
   // vtable begins at 6, is 4 entries long.
-  ITimeZoneOnCalendar.fromRawPointer(super.ptr);
+  ITimeZoneOnCalendar.fromPtr(super.ptr);
 
   factory ITimeZoneOnCalendar.from(IInspectable interface) =>
-      ITimeZoneOnCalendar.fromRawPointer(
+      ITimeZoneOnCalendar.fromPtr(
           interface.toInterface(IID_ITimeZoneOnCalendar));
 
   String getTimeZone() {

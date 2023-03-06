@@ -62,7 +62,7 @@ mixin _ReferenceMixin on MethodProjection {
 
     $nullCheck
 
-    final reference = IReference<$returnType>.fromRawPointer
+    final reference = IReference<$returnType>.fromPtr
         (retValuePtr$referenceConstructorArgs);
     return reference.value;
   }

@@ -23,11 +23,10 @@ const IID_IPedometerReading = '{2245dcf4-a8e1-432f-896a-be0dd9b02d24}';
 /// {@category interface}
 class IPedometerReading extends IInspectable {
   // vtable begins at 6, is 4 entries long.
-  IPedometerReading.fromRawPointer(super.ptr);
+  IPedometerReading.fromPtr(super.ptr);
 
   factory IPedometerReading.from(IInspectable interface) =>
-      IPedometerReading.fromRawPointer(
-          interface.toInterface(IID_IPedometerReading));
+      IPedometerReading.fromPtr(interface.toInterface(IID_IPedometerReading));
 
   PedometerStepKind get stepKind {
     final retValuePtr = calloc<Int32>();

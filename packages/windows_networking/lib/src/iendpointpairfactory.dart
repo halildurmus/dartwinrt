@@ -24,10 +24,10 @@ const IID_IEndpointPairFactory = '{b609d971-64e0-442b-aa6f-cc8c8f181f78}';
 /// {@category interface}
 class IEndpointPairFactory extends IInspectable {
   // vtable begins at 6, is 1 entries long.
-  IEndpointPairFactory.fromRawPointer(super.ptr);
+  IEndpointPairFactory.fromPtr(super.ptr);
 
   factory IEndpointPairFactory.from(IInspectable interface) =>
-      IEndpointPairFactory.fromRawPointer(
+      IEndpointPairFactory.fromPtr(
           interface.toInterface(IID_IEndpointPairFactory));
 
   EndpointPair createEndpointPair(
@@ -77,6 +77,6 @@ class IEndpointPairFactory extends IInspectable {
       throw WindowsException(hr);
     }
 
-    return EndpointPair.fromRawPointer(retValuePtr);
+    return EndpointPair.fromPtr(retValuePtr);
   }
 }

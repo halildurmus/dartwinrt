@@ -31,10 +31,10 @@ const IID_IXmlElement = '{2dfb8a1f-6b10-4ef8-9f83-efcce8faec37}';
 class IXmlElement extends IInspectable
     implements IXmlNode, IXmlNodeSelector, IXmlNodeSerializer {
   // vtable begins at 6, is 13 entries long.
-  IXmlElement.fromRawPointer(super.ptr);
+  IXmlElement.fromPtr(super.ptr);
 
   factory IXmlElement.from(IInspectable interface) =>
-      IXmlElement.fromRawPointer(interface.toInterface(IID_IXmlElement));
+      IXmlElement.fromPtr(interface.toInterface(IID_IXmlElement));
 
   String get tagName {
     final retValuePtr = calloc<HSTRING>();
@@ -163,7 +163,7 @@ class IXmlElement extends IInspectable
       return null;
     }
 
-    return XmlAttribute.fromRawPointer(retValuePtr);
+    return XmlAttribute.fromPtr(retValuePtr);
   }
 
   XmlAttribute? setAttributeNode(XmlAttribute? newAttribute) {
@@ -194,7 +194,7 @@ class IXmlElement extends IInspectable
       return null;
     }
 
-    return XmlAttribute.fromRawPointer(retValuePtr);
+    return XmlAttribute.fromPtr(retValuePtr);
   }
 
   XmlAttribute? removeAttributeNode(XmlAttribute? attributeNode) {
@@ -225,7 +225,7 @@ class IXmlElement extends IInspectable
       return null;
     }
 
-    return XmlAttribute.fromRawPointer(retValuePtr);
+    return XmlAttribute.fromPtr(retValuePtr);
   }
 
   XmlNodeList? getElementsByTagName(String tagName) {
@@ -257,7 +257,7 @@ class IXmlElement extends IInspectable
       return null;
     }
 
-    return XmlNodeList.fromRawPointer(retValuePtr);
+    return XmlNodeList.fromPtr(retValuePtr);
   }
 
   void setAttributeNS(
@@ -370,7 +370,7 @@ class IXmlElement extends IInspectable
       return null;
     }
 
-    return XmlAttribute.fromRawPointer(retValuePtr);
+    return XmlAttribute.fromPtr(retValuePtr);
   }
 
   XmlAttribute? getAttributeNodeNS(Object? namespaceUri, String localName) {
@@ -407,7 +407,7 @@ class IXmlElement extends IInspectable
       return null;
     }
 
-    return XmlAttribute.fromRawPointer(retValuePtr);
+    return XmlAttribute.fromPtr(retValuePtr);
   }
 
   late final _iXmlNode = IXmlNode.from(this);

@@ -29,10 +29,10 @@ const IID_IGeolocatorWithScalarAccuracy =
 class IGeolocatorWithScalarAccuracy extends IInspectable
     implements IGeolocator {
   // vtable begins at 6, is 2 entries long.
-  IGeolocatorWithScalarAccuracy.fromRawPointer(super.ptr);
+  IGeolocatorWithScalarAccuracy.fromPtr(super.ptr);
 
   factory IGeolocatorWithScalarAccuracy.from(IInspectable interface) =>
-      IGeolocatorWithScalarAccuracy.fromRawPointer(
+      IGeolocatorWithScalarAccuracy.fromPtr(
           interface.toInterface(IID_IGeolocatorWithScalarAccuracy));
 
   int? get desiredAccuracyInMeters {
@@ -60,7 +60,7 @@ class IGeolocatorWithScalarAccuracy extends IInspectable
       return null;
     }
 
-    final reference = IReference<int?>.fromRawPointer(retValuePtr,
+    final reference = IReference<int?>.fromPtr(retValuePtr,
         referenceIid: '{513ef3af-e784-5325-a91e-97c2b8111cf3}');
     return reference.value;
   }

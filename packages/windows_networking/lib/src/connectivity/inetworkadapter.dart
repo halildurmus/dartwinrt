@@ -24,11 +24,10 @@ const IID_INetworkAdapter = '{3b542e03-5388-496c-a8a3-affd39aec2e6}';
 /// {@category interface}
 class INetworkAdapter extends IInspectable {
   // vtable begins at 6, is 6 entries long.
-  INetworkAdapter.fromRawPointer(super.ptr);
+  INetworkAdapter.fromPtr(super.ptr);
 
   factory INetworkAdapter.from(IInspectable interface) =>
-      INetworkAdapter.fromRawPointer(
-          interface.toInterface(IID_INetworkAdapter));
+      INetworkAdapter.fromPtr(interface.toInterface(IID_INetworkAdapter));
 
   int get outboundMaxBitsPerSecond {
     final retValuePtr = calloc<Uint64>();
@@ -127,7 +126,7 @@ class INetworkAdapter extends IInspectable {
       return null;
     }
 
-    return NetworkItem.fromRawPointer(retValuePtr);
+    return NetworkItem.fromPtr(retValuePtr);
   }
 
   Guid get networkAdapterId {
@@ -175,9 +174,9 @@ class INetworkAdapter extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<ConnectionProfile?>.fromRawPointer(
+    final asyncOperation = IAsyncOperation<ConnectionProfile?>.fromPtr(
         retValuePtr,
-        creator: ConnectionProfile.fromRawPointer);
+        creator: ConnectionProfile.fromPtr);
     completeAsyncOperation(
         asyncOperation, completer, asyncOperation.getResults);
 

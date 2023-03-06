@@ -27,27 +27,27 @@ import 'predictedphonenumberkind.dart';
 /// {@category class}
 class PhoneNumberInfo extends IInspectable
     implements IPhoneNumberInfo, IStringable {
-  PhoneNumberInfo.fromRawPointer(super.ptr);
+  PhoneNumberInfo.fromPtr(super.ptr);
 
   static const _className =
       'Windows.Globalization.PhoneNumberFormatting.PhoneNumberInfo';
 
   factory PhoneNumberInfo.create(String number) => createActivationFactory(
-          IPhoneNumberInfoFactory.fromRawPointer,
+          IPhoneNumberInfoFactory.fromPtr,
           _className,
           IID_IPhoneNumberInfoFactory)
       .create(number);
 
   static PhoneNumberParseResult tryParse(
           String input, PhoneNumberInfo phoneNumber) =>
-      createActivationFactory(IPhoneNumberInfoStatics.fromRawPointer,
-              _className, IID_IPhoneNumberInfoStatics)
+      createActivationFactory(IPhoneNumberInfoStatics.fromPtr, _className,
+              IID_IPhoneNumberInfoStatics)
           .tryParse(input, phoneNumber);
 
   static PhoneNumberParseResult tryParseWithRegion(
           String input, String regionCode, PhoneNumberInfo phoneNumber) =>
-      createActivationFactory(IPhoneNumberInfoStatics.fromRawPointer,
-              _className, IID_IPhoneNumberInfoStatics)
+      createActivationFactory(IPhoneNumberInfoStatics.fromPtr, _className,
+              IID_IPhoneNumberInfoStatics)
           .tryParseWithRegion(input, regionCode, phoneNumber);
 
   late final _iPhoneNumberInfo = IPhoneNumberInfo.from(this);

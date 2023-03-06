@@ -24,10 +24,10 @@ const IID_IWwanConnectionProfileDetails2 =
 /// {@category interface}
 class IWwanConnectionProfileDetails2 extends IInspectable {
   // vtable begins at 6, is 2 entries long.
-  IWwanConnectionProfileDetails2.fromRawPointer(super.ptr);
+  IWwanConnectionProfileDetails2.fromPtr(super.ptr);
 
   factory IWwanConnectionProfileDetails2.from(IInspectable interface) =>
-      IWwanConnectionProfileDetails2.fromRawPointer(
+      IWwanConnectionProfileDetails2.fromPtr(
           interface.toInterface(IID_IWwanConnectionProfileDetails2));
 
   WwanNetworkIPKind get ipKind {
@@ -74,7 +74,7 @@ class IWwanConnectionProfileDetails2 extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final vectorView = IVectorView<Guid>.fromRawPointer(retValuePtr,
+    final vectorView = IVectorView<Guid>.fromPtr(retValuePtr,
         iterableIid: '{f4ca3045-5dd7-54be-982e-d88d8ca0876e}');
     return vectorView.toList();
   }

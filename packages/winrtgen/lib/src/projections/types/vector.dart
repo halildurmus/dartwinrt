@@ -64,7 +64,7 @@ mixin _VectorMixin on MethodProjection {
     final retValuePtr = calloc<COMObject>();
     ${ffiCall(freeRetValOnFailure: true)}
 
-    return IVector.fromRawPointer(retValuePtr$vectorConstructorArgs);
+    return IVector.fromPtr(retValuePtr$vectorConstructorArgs);
   }
 ''';
 }
@@ -93,7 +93,7 @@ class VectorViewMethodProjection extends MethodProjection with _VectorMixin {
     final retValuePtr = calloc<COMObject>();
     ${ffiCall(freeRetValOnFailure: true)}
 
-    final vectorView = IVectorView<$vectorTypeArg>.fromRawPointer
+    final vectorView = IVectorView<$vectorTypeArg>.fromPtr
         (retValuePtr$vectorConstructorArgs);
     return vectorView.toList();
   }
@@ -113,7 +113,7 @@ class VectorViewGetterProjection extends GetterProjection with _VectorMixin {
     final retValuePtr = calloc<COMObject>();
     ${ffiCall(freeRetValOnFailure: true)}
 
-    final vectorView = IVectorView<$vectorTypeArg>.fromRawPointer
+    final vectorView = IVectorView<$vectorTypeArg>.fromPtr
         (retValuePtr$vectorConstructorArgs);
     return vectorView.toList();
   }

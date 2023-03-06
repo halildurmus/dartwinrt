@@ -22,10 +22,10 @@ const IID_IConnectionProfileFilter2 = '{cd068ee1-c3fc-4fad-9ddc-593faa4b7885}';
 /// {@category interface}
 class IConnectionProfileFilter2 extends IInspectable {
   // vtable begins at 6, is 7 entries long.
-  IConnectionProfileFilter2.fromRawPointer(super.ptr);
+  IConnectionProfileFilter2.fromPtr(super.ptr);
 
   factory IConnectionProfileFilter2.from(IInspectable interface) =>
-      IConnectionProfileFilter2.fromRawPointer(
+      IConnectionProfileFilter2.fromPtr(
           interface.toInterface(IID_IConnectionProfileFilter2));
 
   set isRoaming(bool? value) {
@@ -67,7 +67,7 @@ class IConnectionProfileFilter2 extends IInspectable {
       return null;
     }
 
-    final reference = IReference<bool?>.fromRawPointer(retValuePtr,
+    final reference = IReference<bool?>.fromPtr(retValuePtr,
         referenceIid: '{3c00fd60-2950-5939-a21a-2d12c5a01b8a}');
     return reference.value;
   }
@@ -111,7 +111,7 @@ class IConnectionProfileFilter2 extends IInspectable {
       return null;
     }
 
-    final reference = IReference<bool?>.fromRawPointer(retValuePtr,
+    final reference = IReference<bool?>.fromPtr(retValuePtr,
         referenceIid: '{3c00fd60-2950-5939-a21a-2d12c5a01b8a}');
     return reference.value;
   }
@@ -155,7 +155,7 @@ class IConnectionProfileFilter2 extends IInspectable {
       return null;
     }
 
-    final reference = IReference<bool?>.fromRawPointer(retValuePtr,
+    final reference = IReference<bool?>.fromPtr(retValuePtr,
         referenceIid: '{3c00fd60-2950-5939-a21a-2d12c5a01b8a}');
     return reference.value;
   }
@@ -185,6 +185,6 @@ class IConnectionProfileFilter2 extends IInspectable {
       return null;
     }
 
-    return IBuffer.fromRawPointer(retValuePtr);
+    return IBuffer.fromPtr(retValuePtr);
   }
 }

@@ -26,10 +26,10 @@ const IID_IToastNotificationManagerStatics =
 /// {@category interface}
 class IToastNotificationManagerStatics extends IInspectable {
   // vtable begins at 6, is 3 entries long.
-  IToastNotificationManagerStatics.fromRawPointer(super.ptr);
+  IToastNotificationManagerStatics.fromPtr(super.ptr);
 
   factory IToastNotificationManagerStatics.from(IInspectable interface) =>
-      IToastNotificationManagerStatics.fromRawPointer(
+      IToastNotificationManagerStatics.fromPtr(
           interface.toInterface(IID_IToastNotificationManagerStatics));
 
   ToastNotifier? createToastNotifier() {
@@ -57,7 +57,7 @@ class IToastNotificationManagerStatics extends IInspectable {
       return null;
     }
 
-    return ToastNotifier.fromRawPointer(retValuePtr);
+    return ToastNotifier.fromPtr(retValuePtr);
   }
 
   ToastNotifier? createToastNotifierWithId(String applicationId) {
@@ -89,7 +89,7 @@ class IToastNotificationManagerStatics extends IInspectable {
       return null;
     }
 
-    return ToastNotifier.fromRawPointer(retValuePtr);
+    return ToastNotifier.fromPtr(retValuePtr);
   }
 
   XmlDocument? getTemplateContent(ToastTemplateType type) {
@@ -118,6 +118,6 @@ class IToastNotificationManagerStatics extends IInspectable {
       return null;
     }
 
-    return XmlDocument.fromRawPointer(retValuePtr);
+    return XmlDocument.fromPtr(retValuePtr);
   }
 }

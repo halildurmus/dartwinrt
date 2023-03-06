@@ -59,7 +59,7 @@ String _parseGenericTypeIdentifierCreator(TypeIdentifier typeIdentifier) {
     final iid = iidFromSignature(referenceSignature);
     args.add("referenceIid: ${quote(iid)}");
   } else {
-    if (creator == null) return '$shortName.fromRawPointer';
+    if (creator == null) return '$shortName.fromPtr';
   }
 
   // e.g. IIterable<int>, IVector<int>, IVectorView<int>
@@ -69,7 +69,7 @@ String _parseGenericTypeIdentifierCreator(TypeIdentifier typeIdentifier) {
     args.add('intType: $intType');
   }
 
-  return '(ptr) => $shortName.fromRawPointer(${args.join(', ')})';
+  return '(ptr) => $shortName.fromPtr(${args.join(', ')})';
 }
 
 /// Unpack a nested [typeIdentifier] into a single name.
@@ -135,7 +135,7 @@ extension TypeIdentifierHelpers on TypeIdentifier {
 
     switch (baseType) {
       case BaseType.classTypeModifier:
-        return '${lastComponent(name)}.fromRawPointer';
+        return '${lastComponent(name)}.fromPtr';
       case BaseType.genericTypeModifier:
         return _parseGenericTypeIdentifierCreator(this);
       case BaseType.referenceTypeModifier:

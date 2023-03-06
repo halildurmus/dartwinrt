@@ -22,11 +22,11 @@ const IID_IGeocoordinateWithPositionSourceTimestamp =
 /// {@category interface}
 class IGeocoordinateWithPositionSourceTimestamp extends IInspectable {
   // vtable begins at 6, is 1 entries long.
-  IGeocoordinateWithPositionSourceTimestamp.fromRawPointer(super.ptr);
+  IGeocoordinateWithPositionSourceTimestamp.fromPtr(super.ptr);
 
   factory IGeocoordinateWithPositionSourceTimestamp.from(
           IInspectable interface) =>
-      IGeocoordinateWithPositionSourceTimestamp.fromRawPointer(
+      IGeocoordinateWithPositionSourceTimestamp.fromPtr(
           interface.toInterface(IID_IGeocoordinateWithPositionSourceTimestamp));
 
   DateTime? get positionSourceTimestamp {
@@ -54,7 +54,7 @@ class IGeocoordinateWithPositionSourceTimestamp extends IInspectable {
       return null;
     }
 
-    final reference = IReference<DateTime?>.fromRawPointer(retValuePtr,
+    final reference = IReference<DateTime?>.fromPtr(retValuePtr,
         referenceIid: '{5541d8a7-497c-5aa4-86fc-7713adbf2a2c}');
     return reference.value;
   }

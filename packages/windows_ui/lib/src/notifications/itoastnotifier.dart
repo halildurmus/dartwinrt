@@ -25,10 +25,10 @@ const IID_IToastNotifier = '{75927b93-03f3-41ec-91d3-6e5bac1b38e7}';
 /// {@category interface}
 class IToastNotifier extends IInspectable {
   // vtable begins at 6, is 6 entries long.
-  IToastNotifier.fromRawPointer(super.ptr);
+  IToastNotifier.fromPtr(super.ptr);
 
   factory IToastNotifier.from(IInspectable interface) =>
-      IToastNotifier.fromRawPointer(interface.toInterface(IID_IToastNotifier));
+      IToastNotifier.fromPtr(interface.toInterface(IID_IToastNotifier));
 
   void show(ToastNotification? notification) {
     final notificationPtr =
@@ -148,10 +148,10 @@ class IToastNotifier extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final vectorView = IVectorView<ScheduledToastNotification>.fromRawPointer(
+    final vectorView = IVectorView<ScheduledToastNotification>.fromPtr(
         retValuePtr,
         iterableIid: '{7a7b2a51-c182-5846-a861-4f9c036f24ad}',
-        creator: ScheduledToastNotification.fromRawPointer);
+        creator: ScheduledToastNotification.fromPtr);
     return vectorView.toList();
   }
 }

@@ -33,7 +33,7 @@ abstract class IMapView<K, V> extends IInspectable
   })  : _creator = creator,
         _enumCreator = enumCreator,
         _iterableIid = iterableIid {
-    _iterableCreator = (ptr) => IKeyValuePair<K, V>.fromRawPointer(ptr,
+    _iterableCreator = (ptr) => IKeyValuePair<K, V>.fromPtr(ptr,
         creator: creator,
         enumKeyCreator: enumKeyCreator,
         enumCreator: enumCreator,
@@ -58,18 +58,18 @@ abstract class IMapView<K, V> extends IInspectable
   ///
   /// [creator] must be specified if [V] is `IInspectable?`.
   /// ```dart
-  /// final mapView = IMapView<String, IJsonValue?>.fromRawPointer(ptr,
-  ///     creator: IJsonValue.fromRawPointer,
+  /// final mapView = IMapView<String, IJsonValue?>.fromPtr(ptr,
+  ///     creator: IJsonValue.fromPtr,
   ///     iterableIid: '{dfabb6e1-0411-5a8f-aa87-354e7110f099}');
   /// ```
   ///
   /// [enumCreator] must be specified if [V] is `WinRTEnum`.
   /// ```dart
-  /// final mapView = IMapView<String, ChatMessageStatus>.fromRawPointer(ptr,
+  /// final mapView = IMapView<String, ChatMessageStatus>.fromPtr(ptr,
   ///     enumCreator: ChatMessageStatus.from,
   ///     iterableIid: '{57d87c13-48e9-546f-9b4e-a3906e1e7c24}');
   /// ```
-  factory IMapView.fromRawPointer(
+  factory IMapView.fromPtr(
     Pointer<COMObject> ptr, {
     required String iterableIid,
     V Function(Pointer<COMObject>)? creator,
@@ -80,12 +80,12 @@ abstract class IMapView<K, V> extends IInspectable
     if (K == Guid) {
       if (isSubtypeOfInspectable<V>()) {
         if (creator == null) throw ArgumentError.notNull('creator');
-        return _IMapViewGuidInspectable<V>.fromRawPointer(ptr,
+        return _IMapViewGuidInspectable<V>.fromPtr(ptr,
             creator: creator, iterableIid: iterableIid) as IMapView<K, V>;
       }
 
       if (isNullableObjectType<V>()) {
-        return _IMapViewGuidObject.fromRawPointer(ptr, iterableIid: iterableIid)
+        return _IMapViewGuidObject.fromPtr(ptr, iterableIid: iterableIid)
             as IMapView<K, V>;
       }
     }
@@ -95,38 +95,38 @@ abstract class IMapView<K, V> extends IInspectable
       if (intType == null) throw ArgumentError.notNull('intType');
       switch (intType) {
         case IntType.int16:
-          return _IMapViewInt16Inspectable<V>.fromRawPointer(ptr,
+          return _IMapViewInt16Inspectable<V>.fromPtr(ptr,
               creator: creator, iterableIid: iterableIid) as IMapView<K, V>;
         case IntType.int32:
-          return _IMapViewInt32Inspectable<V>.fromRawPointer(ptr,
+          return _IMapViewInt32Inspectable<V>.fromPtr(ptr,
               creator: creator, iterableIid: iterableIid) as IMapView<K, V>;
         case IntType.int64:
-          return _IMapViewInt64Inspectable<V>.fromRawPointer(ptr,
+          return _IMapViewInt64Inspectable<V>.fromPtr(ptr,
               creator: creator, iterableIid: iterableIid) as IMapView<K, V>;
         case IntType.uint8:
-          return _IMapViewUint8Inspectable<V>.fromRawPointer(ptr,
+          return _IMapViewUint8Inspectable<V>.fromPtr(ptr,
               creator: creator, iterableIid: iterableIid) as IMapView<K, V>;
         case IntType.uint16:
-          return _IMapViewUint16Inspectable<V>.fromRawPointer(ptr,
+          return _IMapViewUint16Inspectable<V>.fromPtr(ptr,
               creator: creator, iterableIid: iterableIid) as IMapView<K, V>;
         case IntType.uint32:
-          return _IMapViewUint32Inspectable<V>.fromRawPointer(ptr,
+          return _IMapViewUint32Inspectable<V>.fromPtr(ptr,
               creator: creator, iterableIid: iterableIid) as IMapView<K, V>;
         case IntType.uint64:
-          return _IMapViewUint64Inspectable<V>.fromRawPointer(ptr,
+          return _IMapViewUint64Inspectable<V>.fromPtr(ptr,
               creator: creator, iterableIid: iterableIid) as IMapView<K, V>;
       }
     }
 
     if (K == String) {
       if (V == String) {
-        return _IMapViewStringString.fromRawPointer(ptr,
-            iterableIid: iterableIid) as IMapView<K, V>;
+        return _IMapViewStringString.fromPtr(ptr, iterableIid: iterableIid)
+            as IMapView<K, V>;
       }
 
       if (isSubtypeOfInspectable<V>()) {
         if (creator == null) throw ArgumentError.notNull('creator');
-        return _IMapViewStringInspectable<V>.fromRawPointer(ptr,
+        return _IMapViewStringInspectable<V>.fromPtr(ptr,
             creator: creator, iterableIid: iterableIid) as IMapView<K, V>;
       }
 
@@ -134,19 +134,19 @@ abstract class IMapView<K, V> extends IInspectable
         if (enumCreator == null) throw ArgumentError.notNull('enumCreator');
 
         if (isSubtypeOfWinRTFlagsEnum<V>()) {
-          return _IMapViewStringWinRTFlagsEnum<V>.fromRawPointer(ptr,
+          return _IMapViewStringWinRTFlagsEnum<V>.fromPtr(ptr,
               enumCreator: enumCreator,
               iterableIid: iterableIid) as IMapView<K, V>;
         }
 
-        return _IMapViewStringWinRTEnum<V>.fromRawPointer(ptr,
+        return _IMapViewStringWinRTEnum<V>.fromPtr(ptr,
             enumCreator: enumCreator,
             iterableIid: iterableIid) as IMapView<K, V>;
       }
 
       if (isNullableObjectType<V>()) {
-        return _IMapViewStringObject.fromRawPointer(ptr,
-            iterableIid: iterableIid) as IMapView<K, V>;
+        return _IMapViewStringObject.fromPtr(ptr, iterableIid: iterableIid)
+            as IMapView<K, V>;
       }
     }
 
@@ -155,13 +155,13 @@ abstract class IMapView<K, V> extends IInspectable
       if (creator == null) throw ArgumentError.notNull('creator');
 
       if (isSubtypeOfWinRTFlagsEnum<K>()) {
-        return _IMapViewWinRTFlagsEnumInspectable<K, V>.fromRawPointer(ptr,
+        return _IMapViewWinRTFlagsEnumInspectable<K, V>.fromPtr(ptr,
             creator: creator,
             enumKeyCreator: enumKeyCreator,
             iterableIid: iterableIid);
       }
 
-      return _IMapViewWinRTEnumInspectable.fromRawPointer(ptr,
+      return _IMapViewWinRTEnumInspectable.fromPtr(ptr,
           creator: creator,
           enumKeyCreator: enumKeyCreator,
           iterableIid: iterableIid);
@@ -219,7 +219,7 @@ abstract class IMapView<K, V> extends IInspectable
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
-  late final _iIterable = IIterable<IKeyValuePair<K, V>>.fromRawPointer(
+  late final _iIterable = IIterable<IKeyValuePair<K, V>>.fromPtr(
       toInterface(_iterableIid),
       creator: _iterableCreator);
 

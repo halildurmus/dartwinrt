@@ -21,10 +21,10 @@ const IID_IProxyConfiguration = '{ef3a60b4-9004-4dd6-b7d8-b3e502f4aad0}';
 /// {@category interface}
 class IProxyConfiguration extends IInspectable {
   // vtable begins at 6, is 2 entries long.
-  IProxyConfiguration.fromRawPointer(super.ptr);
+  IProxyConfiguration.fromPtr(super.ptr);
 
   factory IProxyConfiguration.from(IInspectable interface) =>
-      IProxyConfiguration.fromRawPointer(
+      IProxyConfiguration.fromPtr(
           interface.toInterface(IID_IProxyConfiguration));
 
   List<Uri> get proxyUris {
@@ -47,7 +47,7 @@ class IProxyConfiguration extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final vectorView = IVectorView<Uri>.fromRawPointer(retValuePtr,
+    final vectorView = IVectorView<Uri>.fromPtr(retValuePtr,
         iterableIid: '{b0d63b78-78ad-5e31-b6d8-e32a0e16c447}');
     return vectorView.toList();
   }

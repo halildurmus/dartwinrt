@@ -26,33 +26,33 @@ import 'jsonvaluetype.dart';
 ///
 /// {@category class}
 class JsonValue extends IInspectable implements IJsonValue, IStringable {
-  JsonValue.fromRawPointer(super.ptr);
+  JsonValue.fromPtr(super.ptr);
 
   static const _className = 'Windows.Data.Json.JsonValue';
 
   static JsonValue? parse(String input) => createActivationFactory(
-          IJsonValueStatics.fromRawPointer, _className, IID_IJsonValueStatics)
+          IJsonValueStatics.fromPtr, _className, IID_IJsonValueStatics)
       .parse(input);
 
   static bool tryParse(String input, JsonValue result) =>
-      createActivationFactory(IJsonValueStatics.fromRawPointer, _className,
-              IID_IJsonValueStatics)
+      createActivationFactory(
+              IJsonValueStatics.fromPtr, _className, IID_IJsonValueStatics)
           .tryParse(input, result);
 
   static JsonValue? createBooleanValue(bool input) => createActivationFactory(
-          IJsonValueStatics.fromRawPointer, _className, IID_IJsonValueStatics)
+          IJsonValueStatics.fromPtr, _className, IID_IJsonValueStatics)
       .createBooleanValue(input);
 
   static JsonValue? createNumberValue(double input) => createActivationFactory(
-          IJsonValueStatics.fromRawPointer, _className, IID_IJsonValueStatics)
+          IJsonValueStatics.fromPtr, _className, IID_IJsonValueStatics)
       .createNumberValue(input);
 
   static JsonValue? createStringValue(String input) => createActivationFactory(
-          IJsonValueStatics.fromRawPointer, _className, IID_IJsonValueStatics)
+          IJsonValueStatics.fromPtr, _className, IID_IJsonValueStatics)
       .createStringValue(input);
 
   static JsonValue? createNullValue() => createActivationFactory(
-          IJsonValueStatics2.fromRawPointer, _className, IID_IJsonValueStatics2)
+          IJsonValueStatics2.fromPtr, _className, IID_IJsonValueStatics2)
       .createNullValue();
 
   late final _iJsonValue = IJsonValue.from(this);

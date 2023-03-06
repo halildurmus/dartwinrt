@@ -26,10 +26,10 @@ const IID_IWwwFormUrlDecoderRuntimeClassFactory =
 /// {@category interface}
 class IWwwFormUrlDecoderRuntimeClassFactory extends IInspectable {
   // vtable begins at 6, is 1 entries long.
-  IWwwFormUrlDecoderRuntimeClassFactory.fromRawPointer(super.ptr);
+  IWwwFormUrlDecoderRuntimeClassFactory.fromPtr(super.ptr);
 
   factory IWwwFormUrlDecoderRuntimeClassFactory.from(IInspectable interface) =>
-      IWwwFormUrlDecoderRuntimeClassFactory.fromRawPointer(
+      IWwwFormUrlDecoderRuntimeClassFactory.fromPtr(
           interface.toInterface(IID_IWwwFormUrlDecoderRuntimeClassFactory));
 
   WwwFormUrlDecoder createWwwFormUrlDecoder(String query) {
@@ -56,6 +56,6 @@ class IWwwFormUrlDecoderRuntimeClassFactory extends IInspectable {
       throw WindowsException(hr);
     }
 
-    return WwwFormUrlDecoder.fromRawPointer(retValuePtr);
+    return WwwFormUrlDecoder.fromPtr(retValuePtr);
   }
 }

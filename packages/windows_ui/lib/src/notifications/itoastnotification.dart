@@ -24,11 +24,10 @@ const IID_IToastNotification = '{997e2675-059e-4e60-8b06-1760917c8b80}';
 /// {@category interface}
 class IToastNotification extends IInspectable {
   // vtable begins at 6, is 9 entries long.
-  IToastNotification.fromRawPointer(super.ptr);
+  IToastNotification.fromPtr(super.ptr);
 
   factory IToastNotification.from(IInspectable interface) =>
-      IToastNotification.fromRawPointer(
-          interface.toInterface(IID_IToastNotification));
+      IToastNotification.fromPtr(interface.toInterface(IID_IToastNotification));
 
   XmlDocument? get content {
     final retValuePtr = calloc<COMObject>();
@@ -55,7 +54,7 @@ class IToastNotification extends IInspectable {
       return null;
     }
 
-    return XmlDocument.fromRawPointer(retValuePtr);
+    return XmlDocument.fromPtr(retValuePtr);
   }
 
   set expirationTime(DateTime? value) {
@@ -97,7 +96,7 @@ class IToastNotification extends IInspectable {
       return null;
     }
 
-    final reference = IReference<DateTime?>.fromRawPointer(retValuePtr,
+    final reference = IReference<DateTime?>.fromPtr(retValuePtr,
         referenceIid: '{5541d8a7-497c-5aa4-86fc-7713adbf2a2c}');
     return reference.value;
   }

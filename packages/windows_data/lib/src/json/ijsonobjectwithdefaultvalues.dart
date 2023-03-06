@@ -30,10 +30,10 @@ const IID_IJsonObjectWithDefaultValues =
 class IJsonObjectWithDefaultValues extends IInspectable
     implements IJsonObject, IJsonValue {
   // vtable begins at 6, is 6 entries long.
-  IJsonObjectWithDefaultValues.fromRawPointer(super.ptr);
+  IJsonObjectWithDefaultValues.fromPtr(super.ptr);
 
   factory IJsonObjectWithDefaultValues.from(IInspectable interface) =>
-      IJsonObjectWithDefaultValues.fromRawPointer(
+      IJsonObjectWithDefaultValues.fromPtr(
           interface.toInterface(IID_IJsonObjectWithDefaultValues));
 
   JsonValue? getNamedValueOrDefault(String name, JsonValue? defaultValue) {
@@ -70,7 +70,7 @@ class IJsonObjectWithDefaultValues extends IInspectable
       return null;
     }
 
-    return JsonValue.fromRawPointer(retValuePtr);
+    return JsonValue.fromPtr(retValuePtr);
   }
 
   JsonObject? getNamedObjectOrDefault(String name, JsonObject? defaultValue) {
@@ -107,7 +107,7 @@ class IJsonObjectWithDefaultValues extends IInspectable
       return null;
     }
 
-    return JsonObject.fromRawPointer(retValuePtr);
+    return JsonObject.fromPtr(retValuePtr);
   }
 
   String getNamedStringOrDefault(String name, String defaultValue) {
@@ -180,7 +180,7 @@ class IJsonObjectWithDefaultValues extends IInspectable
       return null;
     }
 
-    return JsonArray.fromRawPointer(retValuePtr);
+    return JsonArray.fromPtr(retValuePtr);
   }
 
   double getNamedNumberOrDefault(String name, double defaultValue) {

@@ -25,10 +25,10 @@ const IID_IUriRuntimeClassFactory = '{44a9796f-723e-4fdf-a218-033e75b0c084}';
 /// {@category interface}
 class IUriRuntimeClassFactory extends IInspectable {
   // vtable begins at 6, is 2 entries long.
-  IUriRuntimeClassFactory.fromRawPointer(super.ptr);
+  IUriRuntimeClassFactory.fromPtr(super.ptr);
 
   factory IUriRuntimeClassFactory.from(IInspectable interface) =>
-      IUriRuntimeClassFactory.fromRawPointer(
+      IUriRuntimeClassFactory.fromPtr(
           interface.toInterface(IID_IUriRuntimeClassFactory));
 
   Uri createUri(String uri) {
@@ -56,7 +56,7 @@ class IUriRuntimeClassFactory extends IInspectable {
       throw WindowsException(hr);
     }
 
-    return Uri.fromRawPointer(retValuePtr);
+    return Uri.fromPtr(retValuePtr);
   }
 
   Uri createWithRelativeUri(String baseUri, String relativeUri) {
@@ -90,6 +90,6 @@ class IUriRuntimeClassFactory extends IInspectable {
       throw WindowsException(hr);
     }
 
-    return Uri.fromRawPointer(retValuePtr);
+    return Uri.fromPtr(retValuePtr);
   }
 }

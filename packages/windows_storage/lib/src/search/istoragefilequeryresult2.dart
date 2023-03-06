@@ -28,10 +28,10 @@ const IID_IStorageFileQueryResult2 = '{4e5db9dd-7141-46c4-8be3-e9dc9e27275c}';
 class IStorageFileQueryResult2 extends IInspectable
     implements IStorageQueryResultBase {
   // vtable begins at 6, is 1 entries long.
-  IStorageFileQueryResult2.fromRawPointer(super.ptr);
+  IStorageFileQueryResult2.fromPtr(super.ptr);
 
   factory IStorageFileQueryResult2.from(IInspectable interface) =>
-      IStorageFileQueryResult2.fromRawPointer(
+      IStorageFileQueryResult2.fromPtr(
           interface.toInterface(IID_IStorageFileQueryResult2));
 
   IMap<String, IVectorView<TextSegment>?> getMatchingPropertiesWithRanges(
@@ -57,9 +57,9 @@ class IStorageFileQueryResult2 extends IInspectable
       throw WindowsException(hr);
     }
 
-    return IMap.fromRawPointer(retValuePtr,
+    return IMap.fromPtr(retValuePtr,
         iterableIid: '{f819a276-b3f5-54d4-b8fd-c9adb7f700e3}',
-        creator: (ptr) => IVectorView.fromRawPointer(ptr,
+        creator: (ptr) => IVectorView.fromPtr(ptr,
             iterableIid: '{5498f4f3-cee4-5b72-9729-815c4ad7b9dc}'));
   }
 

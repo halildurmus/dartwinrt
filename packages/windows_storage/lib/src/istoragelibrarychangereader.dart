@@ -24,10 +24,10 @@ const IID_IStorageLibraryChangeReader =
 /// {@category interface}
 class IStorageLibraryChangeReader extends IInspectable {
   // vtable begins at 6, is 2 entries long.
-  IStorageLibraryChangeReader.fromRawPointer(super.ptr);
+  IStorageLibraryChangeReader.fromPtr(super.ptr);
 
   factory IStorageLibraryChangeReader.from(IInspectable interface) =>
-      IStorageLibraryChangeReader.fromRawPointer(
+      IStorageLibraryChangeReader.fromPtr(
           interface.toInterface(IID_IStorageLibraryChangeReader));
 
   Future<List<StorageLibraryChange>> readBatchAsync() {
@@ -52,10 +52,9 @@ class IStorageLibraryChangeReader extends IInspectable {
     }
 
     final asyncOperation =
-        IAsyncOperation<IVectorView<StorageLibraryChange>>.fromRawPointer(
-            retValuePtr,
-            creator: (ptr) => IVectorView.fromRawPointer(ptr,
-                creator: StorageLibraryChange.fromRawPointer,
+        IAsyncOperation<IVectorView<StorageLibraryChange>>.fromPtr(retValuePtr,
+            creator: (ptr) => IVectorView.fromPtr(ptr,
+                creator: StorageLibraryChange.fromPtr,
                 iterableIid: '{87c15dfc-0c5e-518b-9206-97d3d9823c61}'));
     completeAsyncOperation(
         asyncOperation, completer, () => asyncOperation.getResults().toList());
@@ -84,7 +83,7 @@ class IStorageLibraryChangeReader extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncAction = IAsyncAction.fromRawPointer(retValuePtr);
+    final asyncAction = IAsyncAction.fromPtr(retValuePtr);
     completeAsyncAction(asyncAction, completer);
 
     return completer.future;

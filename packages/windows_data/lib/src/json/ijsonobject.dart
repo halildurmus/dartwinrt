@@ -27,10 +27,10 @@ const IID_IJsonObject = '{064e24dd-29c2-4f83-9ac1-9ee11578beb3}';
 /// {@category interface}
 class IJsonObject extends IInspectable implements IJsonValue {
   // vtable begins at 6, is 7 entries long.
-  IJsonObject.fromRawPointer(super.ptr);
+  IJsonObject.fromPtr(super.ptr);
 
   factory IJsonObject.from(IInspectable interface) =>
-      IJsonObject.fromRawPointer(interface.toInterface(IID_IJsonObject));
+      IJsonObject.fromPtr(interface.toInterface(IID_IJsonObject));
 
   JsonValue? getNamedValue(String name) {
     final retValuePtr = calloc<COMObject>();
@@ -61,7 +61,7 @@ class IJsonObject extends IInspectable implements IJsonValue {
       return null;
     }
 
-    return JsonValue.fromRawPointer(retValuePtr);
+    return JsonValue.fromPtr(retValuePtr);
   }
 
   void setNamedValue(String name, IJsonValue? value) {
@@ -113,7 +113,7 @@ class IJsonObject extends IInspectable implements IJsonValue {
       return null;
     }
 
-    return JsonObject.fromRawPointer(retValuePtr);
+    return JsonObject.fromPtr(retValuePtr);
   }
 
   JsonArray? getNamedArray(String name) {
@@ -145,7 +145,7 @@ class IJsonObject extends IInspectable implements IJsonValue {
       return null;
     }
 
-    return JsonArray.fromRawPointer(retValuePtr);
+    return JsonArray.fromPtr(retValuePtr);
   }
 
   String getNamedString(String name) {

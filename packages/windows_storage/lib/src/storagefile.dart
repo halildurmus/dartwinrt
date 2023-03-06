@@ -63,26 +63,26 @@ class StorageFile extends IInspectable
         IStorageItemPropertiesWithProvider,
         IStorageFilePropertiesWithAvailability,
         IStorageFile2 {
-  StorageFile.fromRawPointer(super.ptr);
+  StorageFile.fromPtr(super.ptr);
 
   static const _className = 'Windows.Storage.StorageFile';
 
   static Future<StorageFile?> getFileFromPathAsync(String path) =>
-      createActivationFactory(IStorageFileStatics.fromRawPointer, _className,
-              IID_IStorageFileStatics)
+      createActivationFactory(
+              IStorageFileStatics.fromPtr, _className, IID_IStorageFileStatics)
           .getFileFromPathAsync(path);
 
   static Future<StorageFile?> getFileFromApplicationUriAsync(Uri? uri) =>
-      createActivationFactory(IStorageFileStatics.fromRawPointer, _className,
-              IID_IStorageFileStatics)
+      createActivationFactory(
+              IStorageFileStatics.fromPtr, _className, IID_IStorageFileStatics)
           .getFileFromApplicationUriAsync(uri);
 
   static Future<StorageFile?> createStreamedFileAsync(
           String displayNameWithExtension,
           Pointer<COMObject> dataRequested,
           IRandomAccessStreamReference? thumbnail) =>
-      createActivationFactory(IStorageFileStatics.fromRawPointer, _className,
-              IID_IStorageFileStatics)
+      createActivationFactory(
+              IStorageFileStatics.fromPtr, _className, IID_IStorageFileStatics)
           .createStreamedFileAsync(
               displayNameWithExtension, dataRequested, thumbnail);
 
@@ -90,8 +90,8 @@ class StorageFile extends IInspectable
           IStorageFile? fileToReplace,
           Pointer<COMObject> dataRequested,
           IRandomAccessStreamReference? thumbnail) =>
-      createActivationFactory(IStorageFileStatics.fromRawPointer, _className,
-              IID_IStorageFileStatics)
+      createActivationFactory(
+              IStorageFileStatics.fromPtr, _className, IID_IStorageFileStatics)
           .replaceWithStreamedFileAsync(
               fileToReplace, dataRequested, thumbnail);
 
@@ -99,8 +99,8 @@ class StorageFile extends IInspectable
           String displayNameWithExtension,
           Uri? uri,
           IRandomAccessStreamReference? thumbnail) =>
-      createActivationFactory(IStorageFileStatics.fromRawPointer, _className,
-              IID_IStorageFileStatics)
+      createActivationFactory(
+              IStorageFileStatics.fromPtr, _className, IID_IStorageFileStatics)
           .createStreamedFileFromUriAsync(
               displayNameWithExtension, uri, thumbnail);
 
@@ -108,13 +108,13 @@ class StorageFile extends IInspectable
           IStorageFile? fileToReplace,
           Uri? uri,
           IRandomAccessStreamReference? thumbnail) =>
-      createActivationFactory(IStorageFileStatics.fromRawPointer, _className,
-              IID_IStorageFileStatics)
+      createActivationFactory(
+              IStorageFileStatics.fromPtr, _className, IID_IStorageFileStatics)
           .replaceWithStreamedFileFromUriAsync(fileToReplace, uri, thumbnail);
 
   static Future<StorageFile?> getFileFromPathForUserAsync(
           User? user, String path) =>
-      createActivationFactory(IStorageFileStatics2.fromRawPointer, _className,
+      createActivationFactory(IStorageFileStatics2.fromPtr, _className,
               IID_IStorageFileStatics2)
           .getFileFromPathForUserAsync(user, path);
 

@@ -25,10 +25,10 @@ const IID_IFolderPicker = '{084f7799-f3fb-400a-99b1-7b4a772fd60d}';
 /// {@category interface}
 class IFolderPicker extends IInspectable {
   // vtable begins at 6, is 10 entries long.
-  IFolderPicker.fromRawPointer(super.ptr);
+  IFolderPicker.fromPtr(super.ptr);
 
   factory IFolderPicker.from(IInspectable interface) =>
-      IFolderPicker.fromRawPointer(interface.toInterface(IID_IFolderPicker));
+      IFolderPicker.fromPtr(interface.toInterface(IID_IFolderPicker));
 
   PickerViewMode get viewMode {
     final retValuePtr = calloc<Int32>();
@@ -216,7 +216,7 @@ class IFolderPicker extends IInspectable {
       throw WindowsException(hr);
     }
 
-    return IVector.fromRawPointer(retValuePtr,
+    return IVector.fromPtr(retValuePtr,
         iterableIid: '{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}');
   }
 
@@ -241,9 +241,8 @@ class IFolderPicker extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<StorageFolder?>.fromRawPointer(
-        retValuePtr,
-        creator: StorageFolder.fromRawPointer);
+    final asyncOperation = IAsyncOperation<StorageFolder?>.fromPtr(retValuePtr,
+        creator: StorageFolder.fromPtr);
     completeAsyncOperation(
         asyncOperation, completer, asyncOperation.getResults);
 

@@ -24,10 +24,10 @@ const IID_IDevicePairingResult = '{072b02bf-dd95-4025-9b37-de51adba37b7}';
 /// {@category interface}
 class IDevicePairingResult extends IInspectable {
   // vtable begins at 6, is 2 entries long.
-  IDevicePairingResult.fromRawPointer(super.ptr);
+  IDevicePairingResult.fromPtr(super.ptr);
 
   factory IDevicePairingResult.from(IInspectable interface) =>
-      IDevicePairingResult.fromRawPointer(
+      IDevicePairingResult.fromPtr(
           interface.toInterface(IID_IDevicePairingResult));
 
   DevicePairingResultStatus get status {

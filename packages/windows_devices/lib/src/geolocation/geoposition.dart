@@ -26,7 +26,7 @@ import 'venuedata.dart';
 ///
 /// {@category class}
 class Geoposition extends IInspectable implements IGeoposition, IGeoposition2 {
-  Geoposition.fromRawPointer(super.ptr);
+  Geoposition.fromPtr(super.ptr);
 
   late final _iGeoposition = IGeoposition.from(this);
 

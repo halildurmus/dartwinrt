@@ -24,7 +24,7 @@ import 'panel.dart';
 /// {@category class}
 class EnclosureLocation extends IInspectable
     implements IEnclosureLocation, IEnclosureLocation2 {
-  EnclosureLocation.fromRawPointer(super.ptr);
+  EnclosureLocation.fromPtr(super.ptr);
 
   late final _iEnclosureLocation = IEnclosureLocation.from(this);
 

@@ -32,17 +32,17 @@ class JsonArray extends IInspectable
         IIterable<IJsonValue>,
         IStringable {
   JsonArray() : super(activateClass(_className));
-  JsonArray.fromRawPointer(super.ptr);
+  JsonArray.fromPtr(super.ptr);
 
   static const _className = 'Windows.Data.Json.JsonArray';
 
   static JsonArray? parse(String input) => createActivationFactory(
-          IJsonArrayStatics.fromRawPointer, _className, IID_IJsonArrayStatics)
+          IJsonArrayStatics.fromPtr, _className, IID_IJsonArrayStatics)
       .parse(input);
 
   static bool tryParse(String input, JsonArray result) =>
-      createActivationFactory(IJsonArrayStatics.fromRawPointer, _className,
-              IID_IJsonArrayStatics)
+      createActivationFactory(
+              IJsonArrayStatics.fromPtr, _className, IID_IJsonArrayStatics)
           .tryParse(input, result);
 
   late final _iJsonArray = IJsonArray.from(this);
@@ -85,9 +85,9 @@ class JsonArray extends IInspectable
   @override
   JsonObject? getObject() => _iJsonValue.getObject();
 
-  late final _iVector = IVector<IJsonValue>.fromRawPointer(
+  late final _iVector = IVector<IJsonValue>.fromPtr(
       toInterface('{d44662bc-dce3-59a8-9272-4b210f33908b}'),
-      creator: IJsonValue.fromRawPointer,
+      creator: IJsonValue.fromPtr,
       iterableIid: '{cb0492b6-4113-55cf-b2c5-99eb428ba493}');
 
   @override

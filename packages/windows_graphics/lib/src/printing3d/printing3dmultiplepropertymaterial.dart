@@ -24,7 +24,7 @@ import 'iprinting3dmultiplepropertymaterial.dart';
 class Printing3DMultiplePropertyMaterial extends IInspectable
     implements IPrinting3DMultiplePropertyMaterial {
   Printing3DMultiplePropertyMaterial() : super(activateClass(_className));
-  Printing3DMultiplePropertyMaterial.fromRawPointer(super.ptr);
+  Printing3DMultiplePropertyMaterial.fromPtr(super.ptr);
 
   static const _className =
       'Windows.Graphics.Printing3D.Printing3DMultiplePropertyMaterial';

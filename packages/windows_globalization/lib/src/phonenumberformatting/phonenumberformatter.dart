@@ -26,30 +26,30 @@ import 'phonenumberinfo.dart';
 class PhoneNumberFormatter extends IInspectable
     implements IPhoneNumberFormatter {
   PhoneNumberFormatter() : super(activateClass(_className));
-  PhoneNumberFormatter.fromRawPointer(super.ptr);
+  PhoneNumberFormatter.fromPtr(super.ptr);
 
   static const _className =
       'Windows.Globalization.PhoneNumberFormatting.PhoneNumberFormatter';
 
   static void tryCreate(String regionCode, PhoneNumberFormatter phoneNumber) =>
-      createActivationFactory(IPhoneNumberFormatterStatics.fromRawPointer,
-              _className, IID_IPhoneNumberFormatterStatics)
+      createActivationFactory(IPhoneNumberFormatterStatics.fromPtr, _className,
+              IID_IPhoneNumberFormatterStatics)
           .tryCreate(regionCode, phoneNumber);
 
   static int getCountryCodeForRegion(String regionCode) =>
-      createActivationFactory(IPhoneNumberFormatterStatics.fromRawPointer,
-              _className, IID_IPhoneNumberFormatterStatics)
+      createActivationFactory(IPhoneNumberFormatterStatics.fromPtr, _className,
+              IID_IPhoneNumberFormatterStatics)
           .getCountryCodeForRegion(regionCode);
 
   static String getNationalDirectDialingPrefixForRegion(
           String regionCode, bool stripNonDigit) =>
-      createActivationFactory(IPhoneNumberFormatterStatics.fromRawPointer,
-              _className, IID_IPhoneNumberFormatterStatics)
+      createActivationFactory(IPhoneNumberFormatterStatics.fromPtr, _className,
+              IID_IPhoneNumberFormatterStatics)
           .getNationalDirectDialingPrefixForRegion(regionCode, stripNonDigit);
 
   static String wrapWithLeftToRightMarkers(String number) =>
-      createActivationFactory(IPhoneNumberFormatterStatics.fromRawPointer,
-              _className, IID_IPhoneNumberFormatterStatics)
+      createActivationFactory(IPhoneNumberFormatterStatics.fromPtr, _className,
+              IID_IPhoneNumberFormatterStatics)
           .wrapWithLeftToRightMarkers(number);
 
   late final _iPhoneNumberFormatter = IPhoneNumberFormatter.from(this);

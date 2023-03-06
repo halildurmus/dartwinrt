@@ -21,10 +21,10 @@ const IID_IXmlDomImplementation = '{6de58132-f11d-4fbb-8cc6-583cba93112f}';
 /// {@category interface}
 class IXmlDomImplementation extends IInspectable {
   // vtable begins at 6, is 1 entries long.
-  IXmlDomImplementation.fromRawPointer(super.ptr);
+  IXmlDomImplementation.fromPtr(super.ptr);
 
   factory IXmlDomImplementation.from(IInspectable interface) =>
-      IXmlDomImplementation.fromRawPointer(
+      IXmlDomImplementation.fromPtr(
           interface.toInterface(IID_IXmlDomImplementation));
 
   bool hasFeature(String feature, Object? version) {

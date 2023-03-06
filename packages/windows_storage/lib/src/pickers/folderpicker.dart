@@ -30,14 +30,12 @@ import 'pickerviewmode.dart';
 class FolderPicker extends IInspectable
     implements IFolderPicker2, IFolderPicker, IFolderPicker3 {
   FolderPicker() : super(activateClass(_className));
-  FolderPicker.fromRawPointer(super.ptr);
+  FolderPicker.fromPtr(super.ptr);
 
   static const _className = 'Windows.Storage.Pickers.FolderPicker';
 
   static FolderPicker? createForUser(User? user) => createActivationFactory(
-          IFolderPickerStatics.fromRawPointer,
-          _className,
-          IID_IFolderPickerStatics)
+          IFolderPickerStatics.fromPtr, _className, IID_IFolderPickerStatics)
       .createForUser(user);
 
   late final _iFolderPicker2 = IFolderPicker2.from(this);

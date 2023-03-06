@@ -23,11 +23,10 @@ const IID_IJsonObjectStatics = '{2289f159-54de-45d8-abcc-22603fa066a0}';
 /// {@category interface}
 class IJsonObjectStatics extends IInspectable {
   // vtable begins at 6, is 2 entries long.
-  IJsonObjectStatics.fromRawPointer(super.ptr);
+  IJsonObjectStatics.fromPtr(super.ptr);
 
   factory IJsonObjectStatics.from(IInspectable interface) =>
-      IJsonObjectStatics.fromRawPointer(
-          interface.toInterface(IID_IJsonObjectStatics));
+      IJsonObjectStatics.fromPtr(interface.toInterface(IID_IJsonObjectStatics));
 
   JsonObject? parse(String input) {
     final retValuePtr = calloc<COMObject>();
@@ -58,7 +57,7 @@ class IJsonObjectStatics extends IInspectable {
       return null;
     }
 
-    return JsonObject.fromRawPointer(retValuePtr);
+    return JsonObject.fromPtr(retValuePtr);
   }
 
   bool tryParse(String input, JsonObject result) {

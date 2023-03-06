@@ -23,10 +23,10 @@ const IID_IKnownFoldersStatics = '{5a2a7520-4802-452d-9ad9-4351ada7ec35}';
 /// {@category interface}
 class IKnownFoldersStatics extends IInspectable {
   // vtable begins at 6, is 7 entries long.
-  IKnownFoldersStatics.fromRawPointer(super.ptr);
+  IKnownFoldersStatics.fromPtr(super.ptr);
 
   factory IKnownFoldersStatics.from(IInspectable interface) =>
-      IKnownFoldersStatics.fromRawPointer(
+      IKnownFoldersStatics.fromPtr(
           interface.toInterface(IID_IKnownFoldersStatics));
 
   StorageFolder? get musicLibrary {
@@ -54,7 +54,7 @@ class IKnownFoldersStatics extends IInspectable {
       return null;
     }
 
-    return StorageFolder.fromRawPointer(retValuePtr);
+    return StorageFolder.fromPtr(retValuePtr);
   }
 
   StorageFolder? get picturesLibrary {
@@ -82,7 +82,7 @@ class IKnownFoldersStatics extends IInspectable {
       return null;
     }
 
-    return StorageFolder.fromRawPointer(retValuePtr);
+    return StorageFolder.fromPtr(retValuePtr);
   }
 
   StorageFolder? get videosLibrary {
@@ -110,7 +110,7 @@ class IKnownFoldersStatics extends IInspectable {
       return null;
     }
 
-    return StorageFolder.fromRawPointer(retValuePtr);
+    return StorageFolder.fromPtr(retValuePtr);
   }
 
   StorageFolder? get documentsLibrary {
@@ -138,7 +138,7 @@ class IKnownFoldersStatics extends IInspectable {
       return null;
     }
 
-    return StorageFolder.fromRawPointer(retValuePtr);
+    return StorageFolder.fromPtr(retValuePtr);
   }
 
   StorageFolder? get homeGroup {
@@ -166,7 +166,7 @@ class IKnownFoldersStatics extends IInspectable {
       return null;
     }
 
-    return StorageFolder.fromRawPointer(retValuePtr);
+    return StorageFolder.fromPtr(retValuePtr);
   }
 
   StorageFolder? get removableDevices {
@@ -194,7 +194,7 @@ class IKnownFoldersStatics extends IInspectable {
       return null;
     }
 
-    return StorageFolder.fromRawPointer(retValuePtr);
+    return StorageFolder.fromPtr(retValuePtr);
   }
 
   StorageFolder? get mediaServerDevices {
@@ -222,6 +222,6 @@ class IKnownFoldersStatics extends IInspectable {
       return null;
     }
 
-    return StorageFolder.fromRawPointer(retValuePtr);
+    return StorageFolder.fromPtr(retValuePtr);
   }
 }

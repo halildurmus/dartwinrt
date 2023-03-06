@@ -22,7 +22,7 @@ import 'networktypes.dart';
 ///
 /// {@category class}
 class NetworkItem extends IInspectable implements INetworkItem {
-  NetworkItem.fromRawPointer(super.ptr);
+  NetworkItem.fromPtr(super.ptr);
 
   late final _iNetworkItem = INetworkItem.from(this);
 

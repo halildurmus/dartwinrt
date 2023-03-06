@@ -27,10 +27,10 @@ const IID_IStorageFileQueryResult = '{52fda447-2baa-412c-b29f-d4b1778efa1e}';
 class IStorageFileQueryResult extends IInspectable
     implements IStorageQueryResultBase {
   // vtable begins at 6, is 2 entries long.
-  IStorageFileQueryResult.fromRawPointer(super.ptr);
+  IStorageFileQueryResult.fromPtr(super.ptr);
 
   factory IStorageFileQueryResult.from(IInspectable interface) =>
-      IStorageFileQueryResult.fromRawPointer(
+      IStorageFileQueryResult.fromPtr(
           interface.toInterface(IID_IStorageFileQueryResult));
 
   Future<List<StorageFile>> getFilesAsync(
@@ -59,12 +59,11 @@ class IStorageFileQueryResult extends IInspectable
       throw WindowsException(hr);
     }
 
-    final asyncOperation =
-        IAsyncOperation<IVectorView<StorageFile>>.fromRawPointer(
-            retValuePtr,
-            creator: (ptr) => IVectorView.fromRawPointer(ptr,
-                creator: StorageFile.fromRawPointer,
-                iterableIid: '{9ac00304-83ea-5688-87b6-ae38aab65d0b}'));
+    final asyncOperation = IAsyncOperation<IVectorView<StorageFile>>.fromPtr(
+        retValuePtr,
+        creator: (ptr) => IVectorView.fromPtr(ptr,
+            creator: StorageFile.fromPtr,
+            iterableIid: '{9ac00304-83ea-5688-87b6-ae38aab65d0b}'));
     completeAsyncOperation(
         asyncOperation, completer, () => asyncOperation.getResults().toList());
 
@@ -92,12 +91,11 @@ class IStorageFileQueryResult extends IInspectable
       throw WindowsException(hr);
     }
 
-    final asyncOperation =
-        IAsyncOperation<IVectorView<StorageFile>>.fromRawPointer(
-            retValuePtr,
-            creator: (ptr) => IVectorView.fromRawPointer(ptr,
-                creator: StorageFile.fromRawPointer,
-                iterableIid: '{9ac00304-83ea-5688-87b6-ae38aab65d0b}'));
+    final asyncOperation = IAsyncOperation<IVectorView<StorageFile>>.fromPtr(
+        retValuePtr,
+        creator: (ptr) => IVectorView.fromPtr(ptr,
+            creator: StorageFile.fromPtr,
+            iterableIid: '{9ac00304-83ea-5688-87b6-ae38aab65d0b}'));
     completeAsyncOperation(
         asyncOperation, completer, () => asyncOperation.getResults().toList());
 

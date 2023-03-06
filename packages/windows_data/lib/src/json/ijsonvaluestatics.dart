@@ -23,11 +23,10 @@ const IID_IJsonValueStatics = '{5f6b544a-2f53-48e1-91a3-f78b50a6345c}';
 /// {@category interface}
 class IJsonValueStatics extends IInspectable {
   // vtable begins at 6, is 5 entries long.
-  IJsonValueStatics.fromRawPointer(super.ptr);
+  IJsonValueStatics.fromPtr(super.ptr);
 
   factory IJsonValueStatics.from(IInspectable interface) =>
-      IJsonValueStatics.fromRawPointer(
-          interface.toInterface(IID_IJsonValueStatics));
+      IJsonValueStatics.fromPtr(interface.toInterface(IID_IJsonValueStatics));
 
   JsonValue? parse(String input) {
     final retValuePtr = calloc<COMObject>();
@@ -58,7 +57,7 @@ class IJsonValueStatics extends IInspectable {
       return null;
     }
 
-    return JsonValue.fromRawPointer(retValuePtr);
+    return JsonValue.fromPtr(retValuePtr);
   }
 
   bool tryParse(String input, JsonValue result) {
@@ -119,7 +118,7 @@ class IJsonValueStatics extends IInspectable {
       return null;
     }
 
-    return JsonValue.fromRawPointer(retValuePtr);
+    return JsonValue.fromPtr(retValuePtr);
   }
 
   JsonValue? createNumberValue(double input) {
@@ -148,7 +147,7 @@ class IJsonValueStatics extends IInspectable {
       return null;
     }
 
-    return JsonValue.fromRawPointer(retValuePtr);
+    return JsonValue.fromPtr(retValuePtr);
   }
 
   JsonValue? createStringValue(String input) {
@@ -180,6 +179,6 @@ class IJsonValueStatics extends IInspectable {
       return null;
     }
 
-    return JsonValue.fromRawPointer(retValuePtr);
+    return JsonValue.fromPtr(retValuePtr);
   }
 }

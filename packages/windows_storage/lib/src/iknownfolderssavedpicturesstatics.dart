@@ -24,10 +24,10 @@ const IID_IKnownFoldersSavedPicturesStatics =
 /// {@category interface}
 class IKnownFoldersSavedPicturesStatics extends IInspectable {
   // vtable begins at 6, is 1 entries long.
-  IKnownFoldersSavedPicturesStatics.fromRawPointer(super.ptr);
+  IKnownFoldersSavedPicturesStatics.fromPtr(super.ptr);
 
   factory IKnownFoldersSavedPicturesStatics.from(IInspectable interface) =>
-      IKnownFoldersSavedPicturesStatics.fromRawPointer(
+      IKnownFoldersSavedPicturesStatics.fromPtr(
           interface.toInterface(IID_IKnownFoldersSavedPicturesStatics));
 
   StorageFolder? get savedPictures {
@@ -55,6 +55,6 @@ class IKnownFoldersSavedPicturesStatics extends IInspectable {
       return null;
     }
 
-    return StorageFolder.fromRawPointer(retValuePtr);
+    return StorageFolder.fromPtr(retValuePtr);
   }
 }

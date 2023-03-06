@@ -24,7 +24,7 @@ import 'networkencryptiontype.dart';
 /// {@category class}
 class NetworkSecuritySettings extends IInspectable
     implements INetworkSecuritySettings {
-  NetworkSecuritySettings.fromRawPointer(super.ptr);
+  NetworkSecuritySettings.fromPtr(super.ptr);
 
   late final _iNetworkSecuritySettings = INetworkSecuritySettings.from(this);
 

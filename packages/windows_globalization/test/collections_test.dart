@@ -41,7 +41,7 @@ void main() {
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return IVectorView.fromRawPointer(retValuePtr,
+      return IVectorView.fromPtr(retValuePtr,
           iterableIid: IID_IIterable_String);
     }
 

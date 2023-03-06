@@ -26,10 +26,10 @@ const IID_IToastNotificationManagerForUser =
 /// {@category interface}
 class IToastNotificationManagerForUser extends IInspectable {
   // vtable begins at 6, is 4 entries long.
-  IToastNotificationManagerForUser.fromRawPointer(super.ptr);
+  IToastNotificationManagerForUser.fromPtr(super.ptr);
 
   factory IToastNotificationManagerForUser.from(IInspectable interface) =>
-      IToastNotificationManagerForUser.fromRawPointer(
+      IToastNotificationManagerForUser.fromPtr(
           interface.toInterface(IID_IToastNotificationManagerForUser));
 
   ToastNotifier? createToastNotifier() {
@@ -57,7 +57,7 @@ class IToastNotificationManagerForUser extends IInspectable {
       return null;
     }
 
-    return ToastNotifier.fromRawPointer(retValuePtr);
+    return ToastNotifier.fromPtr(retValuePtr);
   }
 
   ToastNotifier? createToastNotifierWithId(String applicationId) {
@@ -89,7 +89,7 @@ class IToastNotificationManagerForUser extends IInspectable {
       return null;
     }
 
-    return ToastNotifier.fromRawPointer(retValuePtr);
+    return ToastNotifier.fromPtr(retValuePtr);
   }
 
   ToastNotificationHistory? get history {
@@ -117,7 +117,7 @@ class IToastNotificationManagerForUser extends IInspectable {
       return null;
     }
 
-    return ToastNotificationHistory.fromRawPointer(retValuePtr);
+    return ToastNotificationHistory.fromPtr(retValuePtr);
   }
 
   User? get user {
@@ -145,6 +145,6 @@ class IToastNotificationManagerForUser extends IInspectable {
       return null;
     }
 
-    return User.fromRawPointer(retValuePtr);
+    return User.fromPtr(retValuePtr);
   }
 }
