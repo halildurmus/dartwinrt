@@ -6,6 +6,7 @@ import 'package:winmd/winmd.dart';
 
 import '../extensions/extensions.dart';
 import '../models/models.dart';
+import '../utils.dart';
 
 class TypeTuple {
   const TypeTuple(this.nativeType, this.dartType, {this.attribute});
@@ -200,13 +201,8 @@ class TypeProjection {
       throw Exception('Array type missing for $typeIdentifier.');
     }
 
-    final nativeType = TypeProjection(typeArg).nativeType;
-    // If it is already wrapped with 'Pointer', no need to wrap it again.
-    if (nativeType == 'Pointer<COMObject>') {
-      return TypeTuple(nativeType, nativeType);
-    }
-
-    final type = 'Pointer<$nativeType>';
+    final typeArgNativeType = TypeProjection(typeArg).nativeType;
+    final type = wrapWithPointer(typeArgNativeType);
     return TypeTuple(type, type);
   }
 

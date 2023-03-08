@@ -308,6 +308,8 @@ void main() {
 
   test('wrapWithPointer', () {
     expect(wrapWithPointer('Int32'), equals('Pointer<Int32>'));
+    expect(
+        wrapWithPointer('Pointer<Int32>'), equals('Pointer<Pointer<Int32>>'));
     expect(wrapWithPointer('Pointer<COMObject>'), equals('Pointer<COMObject>'));
   });
 }
