@@ -335,11 +335,11 @@ void main() {
         expect(
             projection.nativePrototype,
             equals(
-                'HRESULT Function(LPVTBL lpVtbl, Pointer<Uint32> valueSize, Pointer<IntPtr> retValuePtr)'));
+                'HRESULT Function(LPVTBL lpVtbl, Pointer<Uint32> valueSize, Pointer<Pointer<IntPtr>> retValuePtr)'));
         expect(
             projection.dartPrototype,
             equals(
-                'int Function(LPVTBL lpVtbl, Pointer<Uint32> valueSize, Pointer<IntPtr> retValuePtr)'));
+                'int Function(LPVTBL lpVtbl, Pointer<Uint32> valueSize, Pointer<Pointer<IntPtr>> retValuePtr)'));
         expect(projection.methodHeader,
             equals('List<String> get supportedFileExtensions'));
       });
