@@ -73,6 +73,19 @@ void main() {
       final list = <String>[];
       expect(vectorView.getMany(0, vectorView.size, list),
           greaterThanOrEqualTo(1));
+      expect(list.length, equals(vectorView.size));
+      // Should be something like en-US
+      expect(list[0][2], equals('-'));
+      expect(list[0].length, equals(5));
+    });
+
+    test(
+        'getMany returns all elements if valueSize is greater than the number '
+        'of elements', () {
+      final list = <String>[];
+      expect(vectorView.getMany(0, vectorView.size + 1, list),
+          greaterThanOrEqualTo(1));
+      expect(list.length, equals(vectorView.size));
       // Should be something like en-US
       expect(list[0][2], equals('-'));
       expect(list[0].length, equals(5));

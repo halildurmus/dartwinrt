@@ -149,7 +149,7 @@ class DefaultListParameterProjection extends ParameterProjection {
 
   String get fillArrayPostamble => '''
     if (retValuePtr.value > 0) {
-      value.addAll(pArray.toList(length: valueSize));
+      value.addAll(pArray.toList(length: retValuePtr.value));
     }
     free(pArray);''';
 

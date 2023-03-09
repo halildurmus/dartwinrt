@@ -62,7 +62,7 @@ class _IIteratorBool extends IIterator<bool> {
               ptr.ref.lpVtbl, valueSize, pArray, retValuePtr);
 
       if (retValuePtr.value > 0) {
-        value.addAll(pArray.toList(length: valueSize));
+        value.addAll(pArray.toList(length: retValuePtr.value));
       }
       free(pArray);
 
@@ -128,7 +128,7 @@ class _IIteratorGuid extends IIterator<Guid> {
               ptr.ref.lpVtbl, valueSize, pArray, retValuePtr);
 
       if (retValuePtr.value > 0) {
-        value.addAll(pArray.toList(length: valueSize));
+        value.addAll(pArray.toList(length: retValuePtr.value));
       }
       free(pArray);
 
@@ -192,7 +192,7 @@ class _IIteratorInspectable<T> extends IIterator<T> {
           ptr.ref.lpVtbl, valueSize, pArray, retValuePtr);
 
       if (retValuePtr.value > 0) {
-        value.addAll(pArray.toList(_creator!, length: valueSize));
+        value.addAll(pArray.toList(_creator!, length: retValuePtr.value));
       }
       free(pArray);
 
@@ -257,7 +257,7 @@ class _IIteratorInt16 extends IIterator<int> {
           ptr.ref.lpVtbl, valueSize, pArray, retValuePtr);
 
       if (retValuePtr.value > 0) {
-        value.addAll(pArray.toList(length: valueSize));
+        value.addAll(pArray.toList(length: retValuePtr.value));
       }
       free(pArray);
 
@@ -322,7 +322,7 @@ class _IIteratorInt32 extends IIterator<int> {
           ptr.ref.lpVtbl, valueSize, pArray, retValuePtr);
 
       if (retValuePtr.value > 0) {
-        value.addAll(pArray.toList(length: valueSize));
+        value.addAll(pArray.toList(length: retValuePtr.value));
       }
       free(pArray);
 
@@ -387,7 +387,7 @@ class _IIteratorInt64 extends IIterator<int> {
           ptr.ref.lpVtbl, valueSize, pArray, retValuePtr);
 
       if (retValuePtr.value > 0) {
-        value.addAll(pArray.toList(length: valueSize));
+        value.addAll(pArray.toList(length: retValuePtr.value));
       }
       free(pArray);
 
@@ -453,7 +453,7 @@ class _IIteratorString extends IIterator<String> {
           ptr.ref.lpVtbl, valueSize, pArray, retValuePtr);
 
       if (retValuePtr.value > 0) {
-        value.addAll(pArray.toList(length: valueSize));
+        value.addAll(pArray.toList(length: retValuePtr.value));
       }
       free(pArray);
 
@@ -518,7 +518,7 @@ class _IIteratorUint8 extends IIterator<int> {
           ptr.ref.lpVtbl, valueSize, pArray, retValuePtr);
 
       if (retValuePtr.value > 0) {
-        value.addAll(pArray.toList(length: valueSize));
+        value.addAll(pArray.toList(length: retValuePtr.value));
       }
       free(pArray);
 
@@ -583,7 +583,7 @@ class _IIteratorUint16 extends IIterator<int> {
           ptr.ref.lpVtbl, valueSize, pArray, retValuePtr);
 
       if (retValuePtr.value > 0) {
-        value.addAll(pArray.toList(length: valueSize));
+        value.addAll(pArray.toList(length: retValuePtr.value));
       }
       free(pArray);
 
@@ -648,7 +648,7 @@ class _IIteratorUint32 extends IIterator<int> {
           ptr.ref.lpVtbl, valueSize, pArray, retValuePtr);
 
       if (retValuePtr.value > 0) {
-        value.addAll(pArray.toList(length: valueSize));
+        value.addAll(pArray.toList(length: retValuePtr.value));
       }
       free(pArray);
 
@@ -713,7 +713,7 @@ class _IIteratorUint64 extends IIterator<int> {
           ptr.ref.lpVtbl, valueSize, pArray, retValuePtr);
 
       if (retValuePtr.value > 0) {
-        value.addAll(pArray.toList(length: valueSize));
+        value.addAll(pArray.toList(length: retValuePtr.value));
       }
       free(pArray);
 
@@ -778,7 +778,7 @@ class _IIteratorUri extends IIterator<Uri> {
           ptr.ref.lpVtbl, valueSize, pArray, retValuePtr);
 
       if (retValuePtr.value > 0) {
-        value.addAll(pArray.toDartUriList(length: valueSize));
+        value.addAll(pArray.toDartUriList(length: retValuePtr.value));
       }
       free(pArray);
 
@@ -843,7 +843,8 @@ class _IIteratorWinRTEnum<T> extends IIterator<T> {
           ptr.ref.lpVtbl, valueSize, pArray, retValuePtr);
 
       if (retValuePtr.value > 0) {
-        value.addAll(pArray.toList(length: valueSize).map(_enumCreator!));
+        value.addAll(
+            pArray.toList(length: retValuePtr.value).map(_enumCreator!));
       }
       free(pArray);
 
@@ -908,7 +909,8 @@ class _IIteratorWinRTFlagsEnum<T> extends IIterator<T> {
           ptr.ref.lpVtbl, valueSize, pArray, retValuePtr);
 
       if (retValuePtr.value > 0) {
-        value.addAll(pArray.toList(length: valueSize).map(_enumCreator!));
+        value.addAll(
+            pArray.toList(length: retValuePtr.value).map(_enumCreator!));
       }
       free(pArray);
 

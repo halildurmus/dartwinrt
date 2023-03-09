@@ -187,13 +187,15 @@ class UriListParameterProjection extends DefaultListParameterProjection {
   @override
   String get fillArrayPostamble => '''
     if (retValuePtr.value > 0) {
-      value.addAll(pArray.toDartUriList(length: valueSize));
+      value.addAll(pArray.toDartUriList(length: retValuePtr.value));
     }
     free(pArray);''';
 
   @override
   String get receiveArrayPostamble => '''
-    value.addAll(pArray.value.toDartUriList(length: pValueSize.value));
+    if (pValueSize.value > 0) {
+      value.addAll(pArray.value.toDartUriList(length: pValueSize.value));
+    }
     free(pValueSize);
     free(pArray);''';
 }

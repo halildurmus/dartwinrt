@@ -198,6 +198,23 @@ void main() {
         ..append('.jpeg')
         ..append('.png');
       expect(vector.getMany(0, 3, list), equals(3));
+      expect(list.length, equals(3));
+      expect(list[0], equals('.jpg'));
+      expect(list[1], equals('.jpeg'));
+      expect(list[2], equals('.png'));
+    });
+
+    test(
+        'getMany returns all elements if valueSize is greater than the number '
+        'of elements', () {
+      final list = <String>[];
+
+      vector
+        ..append('.jpg')
+        ..append('.jpeg')
+        ..append('.png');
+      expect(vector.getMany(0, 5, list), equals(3));
+      expect(list.length, equals(3));
       expect(list[0], equals('.jpg'));
       expect(list[1], equals('.jpeg'));
       expect(list[2], equals('.png'));
@@ -211,6 +228,7 @@ void main() {
         ..append('.jpeg')
         ..append('.png');
       expect(vector.getMany(1, 2, list), equals(2));
+      expect(list.length, equals(2));
       expect(list[0], equals('.jpeg'));
       expect(list[1], equals('.png'));
     });

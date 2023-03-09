@@ -115,16 +115,18 @@ class DurationListParameterProjection extends DefaultListParameterProjection {
   String get fillArrayPostamble => '''
     if (retValuePtr.value > 0) {
       value.addAll(pArray
-          .toList(length: value.length)
+          .toList(length: retValuePtr.value)
           .map((value) => value.toDartDuration()));
     }
     free(pArray);''';
 
   @override
   String get receiveArrayPostamble => '''
-    value.addAll(pArray.value
-        .toList(length: pValueSize.value)
-        .map((value) => value.toDartDuration()));
+    if (pValueSize.value > 0) {
+      value.addAll(pArray.value
+          .toList(length: pValueSize.value)
+          .map((value) => value.toDartDuration()));
+    }
     free(pValueSize);
     free(pArray);''';
 }

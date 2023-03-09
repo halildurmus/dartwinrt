@@ -93,7 +93,7 @@ class _IVectorViewBool extends IVectorView<bool> {
           ptr.ref.lpVtbl, startIndex, valueSize, pArray, retValuePtr);
 
       if (retValuePtr.value > 0) {
-        value.addAll(pArray.toList(length: valueSize));
+        value.addAll(pArray.toList(length: retValuePtr.value));
       }
       free(pArray);
 
@@ -194,7 +194,7 @@ class _IVectorViewGuid extends IVectorView<Guid> {
           ptr.ref.lpVtbl, startIndex, valueSize, pArray, retValuePtr);
 
       if (retValuePtr.value > 0) {
-        value.addAll(pArray.toList(length: valueSize));
+        value.addAll(pArray.toList(length: retValuePtr.value));
       }
       free(pArray);
 
@@ -294,7 +294,7 @@ class _IVectorViewInspectable<T> extends IVectorView<T> {
           ptr.ref.lpVtbl, startIndex, valueSize, pArray, retValuePtr);
 
       if (retValuePtr.value > 0) {
-        value.addAll(pArray.toList(_creator!, length: valueSize));
+        value.addAll(pArray.toList(_creator!, length: retValuePtr.value));
       }
       free(pArray);
 
@@ -392,7 +392,7 @@ class _IVectorViewInt16 extends IVectorView<int> {
           ptr.ref.lpVtbl, startIndex, valueSize, pArray, retValuePtr);
 
       if (retValuePtr.value > 0) {
-        value.addAll(pArray.toList(length: valueSize));
+        value.addAll(pArray.toList(length: retValuePtr.value));
       }
       free(pArray);
 
@@ -490,7 +490,7 @@ class _IVectorViewInt32 extends IVectorView<int> {
           ptr.ref.lpVtbl, startIndex, valueSize, pArray, retValuePtr);
 
       if (retValuePtr.value > 0) {
-        value.addAll(pArray.toList(length: valueSize));
+        value.addAll(pArray.toList(length: retValuePtr.value));
       }
       free(pArray);
 
@@ -588,7 +588,7 @@ class _IVectorViewInt64 extends IVectorView<int> {
           ptr.ref.lpVtbl, startIndex, valueSize, pArray, retValuePtr);
 
       if (retValuePtr.value > 0) {
-        value.addAll(pArray.toList(length: valueSize));
+        value.addAll(pArray.toList(length: retValuePtr.value));
       }
       free(pArray);
 
@@ -690,7 +690,7 @@ class _IVectorViewString extends IVectorView<String> {
           ptr.ref.lpVtbl, startIndex, valueSize, pArray, retValuePtr);
 
       if (retValuePtr.value > 0) {
-        value.addAll(pArray.toList(length: valueSize));
+        value.addAll(pArray.toList(length: retValuePtr.value));
       }
       free(pArray);
 
@@ -788,7 +788,7 @@ class _IVectorViewUint8 extends IVectorView<int> {
           ptr.ref.lpVtbl, startIndex, valueSize, pArray, retValuePtr);
 
       if (retValuePtr.value > 0) {
-        value.addAll(pArray.toList(length: valueSize));
+        value.addAll(pArray.toList(length: retValuePtr.value));
       }
       free(pArray);
 
@@ -886,7 +886,7 @@ class _IVectorViewUint16 extends IVectorView<int> {
           ptr.ref.lpVtbl, startIndex, valueSize, pArray, retValuePtr);
 
       if (retValuePtr.value > 0) {
-        value.addAll(pArray.toList(length: valueSize));
+        value.addAll(pArray.toList(length: retValuePtr.value));
       }
       free(pArray);
 
@@ -984,7 +984,7 @@ class _IVectorViewUint32 extends IVectorView<int> {
           ptr.ref.lpVtbl, startIndex, valueSize, pArray, retValuePtr);
 
       if (retValuePtr.value > 0) {
-        value.addAll(pArray.toList(length: valueSize));
+        value.addAll(pArray.toList(length: retValuePtr.value));
       }
       free(pArray);
 
@@ -1082,7 +1082,7 @@ class _IVectorViewUint64 extends IVectorView<int> {
           ptr.ref.lpVtbl, startIndex, valueSize, pArray, retValuePtr);
 
       if (retValuePtr.value > 0) {
-        value.addAll(pArray.toList(length: valueSize));
+        value.addAll(pArray.toList(length: retValuePtr.value));
       }
       free(pArray);
 
@@ -1181,7 +1181,7 @@ class _IVectorViewUri extends IVectorView<Uri> {
           ptr.ref.lpVtbl, startIndex, valueSize, pArray, retValuePtr);
 
       if (retValuePtr.value > 0) {
-        value.addAll(pArray.toDartUriList(length: valueSize));
+        value.addAll(pArray.toDartUriList(length: retValuePtr.value));
       }
       free(pArray);
 
@@ -1279,7 +1279,8 @@ class _IVectorViewWinRTEnum<T> extends IVectorView<T> {
           ptr.ref.lpVtbl, startIndex, valueSize, pArray, retValuePtr);
 
       if (retValuePtr.value > 0) {
-        value.addAll(pArray.toList(length: valueSize).map(_enumCreator!));
+        value.addAll(
+            pArray.toList(length: retValuePtr.value).map(_enumCreator!));
       }
       free(pArray);
 
@@ -1377,7 +1378,8 @@ class _IVectorViewWinRTFlagsEnum<T> extends IVectorView<T> {
           ptr.ref.lpVtbl, startIndex, valueSize, pArray, retValuePtr);
 
       if (retValuePtr.value > 0) {
-        value.addAll(pArray.toList(length: valueSize).map(_enumCreator!));
+        value.addAll(
+            pArray.toList(length: retValuePtr.value).map(_enumCreator!));
       }
       free(pArray);
 
