@@ -207,6 +207,22 @@ void main() {
       expect(list[2], equals(DeviceClass.imageScanner));
     });
 
+    test(
+        'getMany returns all elements if valueSize is greater than the number '
+        'of elements', () {
+      final list = <DeviceClass>[];
+
+      vector
+        ..append(DeviceClass.audioCapture)
+        ..append(DeviceClass.audioRender)
+        ..append(DeviceClass.imageScanner);
+      expect(vector.getMany(0, 5, list), equals(3));
+      expect(list.length, equals(3));
+      expect(list[0], equals(DeviceClass.audioCapture));
+      expect(list[1], equals(DeviceClass.audioRender));
+      expect(list[2], equals(DeviceClass.imageScanner));
+    });
+
     test('getMany returns elements starting from index 1', () {
       final list = <DeviceClass>[];
 

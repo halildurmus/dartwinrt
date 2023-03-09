@@ -113,17 +113,19 @@ class DateTimeListParameterProjection extends DefaultListParameterProjection {
   @override
   String get fillArrayPostamble => '''
     if (retValuePtr.value > 0) {
-    value.addAll(pArray
-        .toList(length: value.length)
-        .map((value) => value.toDartDateTime()));
+      value.addAll(pArray
+          .toList(length: retValuePtr.value)
+          .map((value) => value.toDartDateTime()));
     }
     free(pArray);''';
 
   @override
   String get receiveArrayPostamble => '''
-    value.addAll(pArray.value
-        .toList(length: pValueSize.value)
-        .map((value) => value.toDartDateTime()));
+    if (pValueSize.value > 0) {
+      value.addAll(pArray.value
+          .toList(length: pValueSize.value)
+          .map((value) => value.toDartDateTime()));
+    }
     free(pValueSize);
     free(pArray);''';
 }

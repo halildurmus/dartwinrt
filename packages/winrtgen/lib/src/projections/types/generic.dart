@@ -85,7 +85,7 @@ class GenericEnumListParameterProjection
   @override
   String get fillArrayPostamble => '''
     if (retValuePtr.value > 0) {
-      value.addAll(pArray.toList(length: valueSize).map(_enumCreator!));
+      value.addAll(pArray.toList(length: retValuePtr.value).map(_enumCreator!));
     }
     free(pArray);''';
 }
@@ -179,7 +179,7 @@ class GenericObjectListParameterProjection
   @override
   String get fillArrayPostamble => '''
     if (retValuePtr.value > 0) {
-      value.addAll(pArray.toList(_creator!, length: valueSize));
+      value.addAll(pArray.toList(_creator!, length: retValuePtr.value));
     }
     free(pArray);''';
 }

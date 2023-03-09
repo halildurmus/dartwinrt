@@ -204,6 +204,22 @@ void main() {
       expect(list[2], equals(666));
     });
 
+    test(
+        'getMany returns all elements if valueSize is greater than the number '
+        'of elements', () {
+      final list = <int>[];
+
+      vector
+        ..append(5)
+        ..append(259)
+        ..append(666);
+      expect(vector.getMany(0, 5, list), equals(3));
+      expect(list.length, equals(3));
+      expect(list[0], equals(5));
+      expect(list[1], equals(259));
+      expect(list[2], equals(666));
+    });
+
     test('getMany returns elements starting from index 1', () {
       final list = <int>[];
 

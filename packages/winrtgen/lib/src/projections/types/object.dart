@@ -282,12 +282,12 @@ class ObjectListParameterProjection extends DefaultListParameterProjection {
       if (typeArgProjection.isObjectType)
         '''
       value.addAll(pArray.value
-          .toList(IPropertyValue.fromPtr, length: pValueSize.value)
+          .toList(IPropertyValue.fromPtr, length: retValuePtr.value)
           .map((e) => e.value));'''
       else
         '''
       value.addAll(pArray
-          .toList($shortName.fromPtr, length: valueSize));''',
+          .toList($shortName.fromPtr, length: retValuePtr.value));''',
       '}',
       'free(pArray);',
     ].join('\n');
@@ -296,6 +296,7 @@ class ObjectListParameterProjection extends DefaultListParameterProjection {
   @override
   String get receiveArrayPostamble {
     return [
+      'if (pValueSize.value > 0) {',
       if (typeArgProjection.isObjectType)
         '''
     value.addAll(pArray.value
@@ -305,6 +306,7 @@ class ObjectListParameterProjection extends DefaultListParameterProjection {
         '''
     value.addAll(pArray.value
         .toList($shortName.fromPtr, length: pValueSize.value));''',
+      '}',
       'free(pValueSize);',
       'free(pArray);',
     ].join('\n');

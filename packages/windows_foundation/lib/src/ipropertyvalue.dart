@@ -887,9 +887,11 @@ class IPropertyValue extends IInspectable {
                         Pointer<Pointer<COMObject>> value)>()(
             ptr.ref.lpVtbl, pValueSize, pArray);
 
-    value.addAll(pArray.value
-        .toList(IPropertyValue.fromPtr, length: pValueSize.value)
-        .map((e) => e.value));
+    if (pValueSize.value > 0) {
+      value.addAll(pArray.value
+          .toList(IPropertyValue.fromPtr, length: pValueSize.value)
+          .map((e) => e.value));
+    }
     free(pValueSize);
     free(pArray);
 
@@ -945,9 +947,11 @@ class IPropertyValue extends IInspectable {
                         Pointer<Pointer<Int64>> value)>()(
             ptr.ref.lpVtbl, pValueSize, pArray);
 
-    value.addAll(pArray.value
-        .toList(length: pValueSize.value)
-        .map((value) => value.toDartDateTime()));
+    if (pValueSize.value > 0) {
+      value.addAll(pArray.value
+          .toList(length: pValueSize.value)
+          .map((value) => value.toDartDateTime()));
+    }
     free(pValueSize);
     free(pArray);
 
@@ -974,9 +978,11 @@ class IPropertyValue extends IInspectable {
                         Pointer<Pointer<Int64>> value)>()(
             ptr.ref.lpVtbl, pValueSize, pArray);
 
-    value.addAll(pArray.value
-        .toList(length: pValueSize.value)
-        .map((value) => value.toDartDuration()));
+    if (pValueSize.value > 0) {
+      value.addAll(pArray.value
+          .toList(length: pValueSize.value)
+          .map((value) => value.toDartDuration()));
+    }
     free(pValueSize);
     free(pArray);
 

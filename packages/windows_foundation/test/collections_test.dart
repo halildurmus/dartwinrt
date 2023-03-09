@@ -865,6 +865,23 @@ void main() {
         ..append(Uri.parse('https://dart.dev/docs'))
         ..append(Uri.parse('https://flutter.dev/development'));
       expect(vector.getMany(0, 3, list), equals(3));
+      expect(list.length, equals(3));
+      expect(list[0].toString(), equals('https://dart.dev/overview'));
+      expect(list[1].toString(), equals('https://dart.dev/docs'));
+      expect(list[2].toString(), equals('https://flutter.dev/development'));
+    });
+
+    test(
+        'getMany returns all elements if valueSize is greater than the number '
+        'of elements', () {
+      final list = <Uri>[];
+
+      vector
+        ..append(Uri.parse('https://dart.dev/overview'))
+        ..append(Uri.parse('https://dart.dev/docs'))
+        ..append(Uri.parse('https://flutter.dev/development'));
+      expect(vector.getMany(0, 5, list), equals(3));
+      expect(list.length, equals(3));
       expect(list[0].toString(), equals('https://dart.dev/overview'));
       expect(list[1].toString(), equals('https://dart.dev/docs'));
       expect(list[2].toString(), equals('https://flutter.dev/development'));
@@ -878,6 +895,7 @@ void main() {
         ..append(Uri.parse('https://dart.dev/docs'))
         ..append(Uri.parse('https://flutter.dev/development'));
       expect(vector.getMany(1, 2, list), equals(2));
+      expect(list.length, equals(2));
       expect(list[0].toString(), equals('https://dart.dev/docs'));
       expect(list[1].toString(), equals('https://flutter.dev/development'));
     });

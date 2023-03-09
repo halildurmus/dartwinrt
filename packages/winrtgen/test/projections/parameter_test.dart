@@ -202,7 +202,7 @@ void main() {
       expect(
           parameter.postamble,
           equalsIgnoringWhitespace('if (retValuePtr.value > 0) {\n'
-              'value.addAll(pArray.toList(length: valueSize));\n'
+              'value.addAll(pArray.toList(length: retValuePtr.value));\n'
               '}\n'
               'free(pArray);'));
       expect(parameter.localIdentifier, equals('pArray'));
