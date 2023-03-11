@@ -21,13 +21,8 @@ void main() {
     return;
   }
 
-  late PhoneNumberFormatter formatter;
-
-  setUp(() {
-    formatter = PhoneNumberFormatter();
-  });
-
   test('Formatter is a materialized object', () {
+    final formatter = PhoneNumberFormatter();
     expect(getTrustLevel(formatter), equals(TrustLevel.baseTrust));
     expect(
         getClassName(formatter),

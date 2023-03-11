@@ -12,8 +12,6 @@ import 'package:win32/win32.dart' hide IUnknown;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
-// Test the WinRT helper functions to make sure everything is working correctly.
-
 void main() {
   if (!isWindowsRuntimeAvailable()) {
     print('Skipping tests because Windows Runtime is not available.');
