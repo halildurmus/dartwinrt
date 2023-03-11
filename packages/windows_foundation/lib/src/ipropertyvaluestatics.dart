@@ -931,8 +931,9 @@ class IPropertyValueStatics extends IInspectable {
     final retValuePtr = calloc<COMObject>();
     final pArray = calloc<COMObject>(value.length);
     for (var i = 0; i < value.length; i++) {
-      pArray[i] = value.elementAt(i)?.intoBox().ptr.ref ??
-          PropertyValue.createEmpty().ref;
+      final element = value.elementAt(i);
+      if (element == null) continue;
+      pArray[i] = element.intoBox().ptr.ref;
     }
 
     final hr = ptr.ref.vtable
