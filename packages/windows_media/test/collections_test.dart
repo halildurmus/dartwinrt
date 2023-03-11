@@ -17,44 +17,39 @@ void main() {
   }
 
   group('IMap<Guid, Object?> (MediaPropertySet)', () {
-    late IMap<Guid, Object?> map;
-
-    setUp(() {
-      map = MediaPropertySet()
-        ..insert(Guid.parse(IID_IClosable), null)
-        ..insert(Guid.parse(IID_IStringable), StringMap())
-        ..insert(Guid.parse(IID_IDispatch), true)
-        ..insert(Guid.parse(IID_IPropertySet), DateTime(2022, 7, 11, 17, 30))
-        ..insert(Guid.parse(IID_ISpellChecker), 0.5)
-        ..insert(Guid.parse(IID_IShellLink), const Duration(seconds: 30))
-        ..insert(Guid.parse(IID_IShellService), Guid.parse(IID_ISpVoice))
-        ..insert(Guid.parse(IID_IShellFolder), 259)
-        ..insert(Guid.parse(IID_IShellItem), Point(3, -3))
-        ..insert(Guid.parse(IID_IShellItem2), Rect(2, -2, 200, 100))
-        ..insert(Guid.parse(IID_IShellItemArray), Size(300, 1500))
-        ..insert(Guid.parse(IID_IShellItemFilter), 'strVal')
-        ..insert(Guid.parse(IID_IUnknown), [true, false])
-        ..insert(Guid.parse(IID_IAppxManifestReader),
-            [DateTime(2020, 7, 11, 17, 30), DateTime(2022, 7, 11, 17, 30)])
-        ..insert(Guid.parse(IID_IAppxManifestReader2), [2.5, 0.99])
-        ..insert(Guid.parse(IID_IAppxManifestReader3),
-            const [Duration(hours: 1), Duration(minutes: 60)])
-        ..insert(
-            Guid.parse(IID_IAppxManifestReader4), [Guid.parse(IID_IShellItem)])
-        ..insert(Guid.parse(IID_IAppxManifestReader5), [StringMap()])
-        ..insert(Guid.parse(IID_IAppxManifestReader6), [2022, -2022])
-        ..insert(Guid.parse(IID_IAppxManifestReader7), [Point(3, -3)])
-        ..insert(
-            Guid.parse(IID_IAppxManifestProperties), [Rect(2, -2, 200, 100)])
-        ..insert(Guid.parse(IID_IAppxManifestPackageId), [Size(300, 1500)])
-        ..insert(Guid.parse(IID_IAppxFile), ['str1', 'str2']);
-    });
+    IMap<Guid, Object?> getMap() => MediaPropertySet()
+      ..insert(Guid.parse(IID_IClosable), null)
+      ..insert(Guid.parse(IID_IStringable), StringMap())
+      ..insert(Guid.parse(IID_IDispatch), true)
+      ..insert(Guid.parse(IID_IPropertySet), DateTime(2022, 7, 11, 17, 30))
+      ..insert(Guid.parse(IID_ISpellChecker), 0.5)
+      ..insert(Guid.parse(IID_IShellLink), const Duration(seconds: 30))
+      ..insert(Guid.parse(IID_IShellService), Guid.parse(IID_ISpVoice))
+      ..insert(Guid.parse(IID_IShellFolder), 259)
+      ..insert(Guid.parse(IID_IShellItem), Point(3, -3))
+      ..insert(Guid.parse(IID_IShellItem2), Rect(2, -2, 200, 100))
+      ..insert(Guid.parse(IID_IShellItemArray), Size(300, 1500))
+      ..insert(Guid.parse(IID_IShellItemFilter), 'strVal')
+      ..insert(Guid.parse(IID_IUnknown), [true, false])
+      ..insert(Guid.parse(IID_IAppxManifestReader),
+          [DateTime(2020, 7, 11, 17, 30), DateTime(2022, 7, 11, 17, 30)])
+      ..insert(Guid.parse(IID_IAppxManifestReader2), [2.5, 0.99])
+      ..insert(Guid.parse(IID_IAppxManifestReader3),
+          const [Duration(hours: 1), Duration(minutes: 60)])
+      ..insert(
+          Guid.parse(IID_IAppxManifestReader4), [Guid.parse(IID_IShellItem)])
+      ..insert(Guid.parse(IID_IAppxManifestReader5), [StringMap()])
+      ..insert(Guid.parse(IID_IAppxManifestReader6), [2022, -2022])
+      ..insert(Guid.parse(IID_IAppxManifestReader7), [Point(3, -3)])
+      ..insert(Guid.parse(IID_IAppxManifestProperties), [Rect(2, -2, 200, 100)])
+      ..insert(Guid.parse(IID_IAppxManifestPackageId), [Size(300, 1500)])
+      ..insert(Guid.parse(IID_IAppxFile), ['str1', 'str2']);
 
     test('fromMap', () {
       final stringableGuid = Guid.parse(IID_IStringable);
       final closableGuid = Guid.parse(IID_IClosable);
       final propertyValueGuid = Guid.parse(IID_IPropertyValue);
-      map = IMap.fromMap({
+      final map = IMap<Guid, Object?>.fromMap({
         stringableGuid: StringMap(),
         closableGuid: 259,
         propertyValueGuid: 'strVal',
@@ -69,15 +64,17 @@ void main() {
     });
 
     test('lookup fails if the map is empty', () {
-      map.clear();
+      final map = getMap()..clear();
       expect(() => map.lookup(Guid.parse(IID_IStringable)), throwsException);
     });
 
     test('lookup throws exception if the item does not exists', () {
+      final map = getMap();
       expect(() => map.lookup(Guid.parse(IID_IInspectable)), throwsException);
     });
 
     test('lookup returns items', () {
+      final map = getMap();
       expect(map.lookup(Guid.parse(IID_IClosable)), isNull);
 
       final stringableVal = map.lookup(Guid.parse(IID_IStringable));
@@ -181,16 +178,19 @@ void main() {
     });
 
     test('hasKey finds items', () {
+      final map = getMap();
       expect(map.hasKey(Guid.parse(IID_IDispatch)), isTrue);
       expect(map.hasKey(Guid.parse(IID_IShellLink)), isTrue);
       expect(map.hasKey(Guid.parse(IID_IShellItemFilter)), isTrue);
     });
 
     test('hasKey returns false if the item does not exists', () {
+      final map = getMap();
       expect(map.hasKey(Guid.parse(IID_IInspectable)), isFalse);
     });
 
     test('getView', () {
+      final map = getMap();
       final unmodifiableMap = map.getView();
       expect(unmodifiableMap.length, equals(23));
       expect(() => unmodifiableMap..clear(), throwsUnsupportedError);
@@ -198,6 +198,7 @@ void main() {
 
     test('insert replaces an existing item', () {
       final guid = Guid.parse(IID_IShellItemFilter);
+      final map = getMap();
       expect(map.size, equals(23));
       expect(map.insert(guid, 'strValNew'), isTrue);
       expect(map.size, equals(23));
@@ -206,6 +207,7 @@ void main() {
 
     test('insert inserts a new item', () {
       final guid = Guid.parse(IID_IClassFactory);
+      final map = getMap();
       expect(map.size, equals(23));
       expect(map.insert(guid, 'iclassfactory'), isFalse);
       expect(map.size, equals(24));
@@ -213,19 +215,21 @@ void main() {
     });
 
     test('remove throws exception if the map is empty', () {
-      map.clear();
+      final map = getMap()..clear();
       final guid = Guid.parse(IID_IStringable);
       expect(() => map.remove(guid), throwsException);
     });
 
     test('remove throws exception if the item does not exists', () {
       final guid = Guid.parse(IID_IInspectable);
+      final map = getMap();
       expect(() => map.remove(guid), throwsException);
     });
 
     test('remove', () {
       final guid1 = Guid.parse(IID_IShellFolder);
       final guid2 = Guid.parse(IID_IShellItemFilter);
+      final map = getMap();
       expect(map.size, equals(23));
 
       map.remove(guid1);
@@ -238,6 +242,7 @@ void main() {
     });
 
     test('clear', () {
+      final map = getMap();
       expect(map.size, equals(23));
       map.clear();
       expect(map.size, equals(0));
@@ -247,6 +252,7 @@ void main() {
       final guid1 = Guid.parse(IID_IShellFolder);
       final guid2 = Guid.parse(IID_IShellItemFilter);
       final guid3 = Guid.parse(IID_IAppxManifestReader2);
+      final map = getMap();
       final dartMap = map.toMap();
       expect(dartMap.length, equals(23));
       expect(dartMap[guid1], equals(259));
@@ -258,18 +264,18 @@ void main() {
     test('first', () {
       final stringableGuid = Guid.parse(IID_IStringable);
       final propertyValueGuid = Guid.parse(IID_IPropertyValue);
-      map =
-          IMap.fromMap({stringableGuid: 'istringable', propertyValueGuid: 259});
+      final map = IMap<Guid, Object?>.fromMap(
+          {stringableGuid: 'istringable', propertyValueGuid: 259});
 
       final iterator = map.first();
       expect(iterator.hasCurrent, isTrue);
-      expect(
-          iterator.current.key.toString(), equals(stringableGuid.toString()));
-      expect(iterator.current.value, equals('istringable'));
+      var current = iterator.current;
+      expect(current.key.toString(), equals(stringableGuid.toString()));
+      expect(current.value, equals('istringable'));
       expect(iterator.moveNext(), isTrue);
-      expect(iterator.current.key.toString(),
-          equals(propertyValueGuid.toString()));
-      expect(iterator.current.value, equals(259));
+      current = iterator.current;
+      expect(current.key.toString(), equals(propertyValueGuid.toString()));
+      expect(current.value, equals(259));
       expect(iterator.moveNext(), isFalse);
     });
   });

@@ -19,29 +19,25 @@ void main() {
   }
 
   group('IVector<int>', () {
-    late Printing3DMultiplePropertyMaterial material;
-    late IVector<int> vector;
-    late Arena allocator;
-
-    setUp(() {
-      allocator = Arena();
-      material = Printing3DMultiplePropertyMaterial();
-      vector = material.materialIndices;
-    });
+    IVector<int> getVector() {
+      final material = Printing3DMultiplePropertyMaterial();
+      return material.materialIndices;
+    }
 
     test('getAt fails if the vector is empty', () {
+      final vector = getVector();
       expect(() => vector.getAt(0), throwsException);
     });
 
     test('getAt throws exception if the index is out of bounds', () {
-      vector
+      final vector = getVector()
         ..append(5)
         ..append(259);
       expect(() => vector.getAt(2), throwsException);
     });
 
     test('getAt returns elements', () {
-      vector
+      final vector = getVector()
         ..append(5)
         ..append(259);
       expect(vector.getAt(0), equals(5));
@@ -49,7 +45,7 @@ void main() {
     });
 
     test('getView', () {
-      vector
+      final vector = getVector()
         ..append(5)
         ..append(259);
       final list = vector.getView();
@@ -58,40 +54,45 @@ void main() {
     });
 
     test('indexOf finds element', () {
-      final pIndex = allocator<Uint32>();
+      final pIndex = calloc<Uint32>();
 
-      vector
+      final vector = getVector()
         ..append(5)
         ..append(259);
       final containsElement = vector.indexOf(259, pIndex);
       expect(containsElement, isTrue);
       expect(pIndex.value, equals(1));
+
+      free(pIndex);
     });
 
     test('indexOf returns 0 if the element is not found', () {
-      final pIndex = allocator<Uint32>();
+      final pIndex = calloc<Uint32>();
 
-      vector
+      final vector = getVector()
         ..append(5)
         ..append(259);
       final containsElement = vector.indexOf(666, pIndex);
       expect(containsElement, isFalse);
       expect(pIndex.value, equals(0));
+
+      free(pIndex);
     });
 
     test('setAt throws exception if the vector is empty', () {
+      final vector = getVector();
       expect(() => vector.setAt(0, 5), throwsException);
     });
 
     test('setAt throws exception if the index is out of bounds', () {
-      vector
+      final vector = getVector()
         ..append(5)
         ..append(259);
       expect(() => vector.setAt(3, 666), throwsException);
     });
 
     test('setAt', () {
-      vector
+      final vector = getVector()
         ..append(5)
         ..append(259);
       expect(vector.size, equals(2));
@@ -104,14 +105,14 @@ void main() {
     });
 
     test('insertAt throws exception if the index is out of bounds', () {
-      vector
+      final vector = getVector()
         ..append(5)
         ..append(259);
       expect(() => vector.insertAt(3, 666), throwsException);
     });
 
     test('insertAt', () {
-      vector
+      final vector = getVector()
         ..append(5)
         ..append(259);
       expect(vector.size, equals(2));
@@ -126,18 +127,19 @@ void main() {
     });
 
     test('removeAt throws exception if the vector is empty', () {
+      final vector = getVector();
       expect(() => vector.removeAt(0), throwsException);
     });
 
     test('removeAt throws exception if the index is out of bounds', () {
-      vector
+      final vector = getVector()
         ..append(5)
         ..append(259);
       expect(() => vector.removeAt(3), throwsException);
     });
 
     test('removeAt', () {
-      vector
+      final vector = getVector()
         ..append(5)
         ..append(259)
         ..append(666)
@@ -157,6 +159,7 @@ void main() {
     });
 
     test('append', () {
+      final vector = getVector();
       expect(vector.size, equals(0));
       vector.append(5);
       expect(vector.size, equals(1));
@@ -165,11 +168,12 @@ void main() {
     });
 
     test('removeAtEnd throws exception if the vector is empty', () {
-      expect(() => vector.removeAtEnd(), throwsException);
+      final vector = getVector();
+      expect(vector.removeAtEnd, throwsException);
     });
 
     test('removeAtEnd', () {
-      vector
+      final vector = getVector()
         ..append(5)
         ..append(259);
       expect(vector.size, equals(2));
@@ -178,7 +182,7 @@ void main() {
     });
 
     test('clear', () {
-      vector
+      final vector = getVector()
         ..append(5)
         ..append(259);
       expect(vector.size, equals(2));
@@ -187,13 +191,14 @@ void main() {
     });
 
     test('getMany returns 0 if the vector is empty', () {
+      final vector = getVector();
       expect(vector.getMany(0, 1, []), equals(0));
     });
 
     test('getMany returns elements starting from index 0', () {
       final list = <int>[];
 
-      vector
+      final vector = getVector()
         ..append(5)
         ..append(259)
         ..append(666);
@@ -209,7 +214,7 @@ void main() {
         'of elements', () {
       final list = <int>[];
 
-      vector
+      final vector = getVector()
         ..append(5)
         ..append(259)
         ..append(666);
@@ -223,7 +228,7 @@ void main() {
     test('getMany returns elements starting from index 1', () {
       final list = <int>[];
 
-      vector
+      final vector = getVector()
         ..append(5)
         ..append(259)
         ..append(666);
@@ -234,6 +239,7 @@ void main() {
     });
 
     test('replaceAll', () {
+      final vector = getVector();
       expect(vector.size, equals(0));
       vector.replaceAll([5, 259]);
       expect(vector.size, equals(2));
@@ -246,7 +252,7 @@ void main() {
     });
 
     test('toList', () {
-      vector
+      final vector = getVector()
         ..append(5)
         ..append(259)
         ..append(666);
@@ -259,7 +265,7 @@ void main() {
     });
 
     test('first', () {
-      vector
+      final vector = getVector()
         ..append(5)
         ..append(259)
         ..append(666);
@@ -271,10 +277,6 @@ void main() {
       expect(iterator.moveNext(), isTrue);
       expect(iterator.current, equals(666));
       expect(iterator.moveNext(), isFalse);
-    });
-
-    tearDown(() {
-      allocator.releaseAll(reuse: true);
     });
   });
 }

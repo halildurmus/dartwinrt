@@ -9,9 +9,6 @@ import 'package:win32/win32.dart';
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
-// Test the PropertyValue class to make sure overrides, properties and methods
-// are working correctly.
-
 void main() {
   if (!isWindowsRuntimeAvailable()) {
     print('Skipping tests because Windows Runtime is not available.');

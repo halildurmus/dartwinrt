@@ -19,29 +19,25 @@ void main() {
   }
 
   group('IVector<String>', () {
-    late FileOpenPicker picker;
-    late IVector<String> vector;
-    late Arena allocator;
-
-    setUp(() {
-      allocator = Arena();
-      picker = FileOpenPicker();
-      vector = picker.fileTypeFilter;
-    });
+    IVector<String> getVector() {
+      final picker = FileOpenPicker();
+      return picker.fileTypeFilter;
+    }
 
     test('getAt fails if the vector is empty', () {
+      final vector = getVector();
       expect(() => vector.getAt(0), throwsException);
     });
 
     test('getAt throws exception if the index is out of bounds', () {
-      vector
+      final vector = getVector()
         ..append('.jpg')
         ..append('.jpeg');
       expect(() => vector.getAt(2), throwsException);
     });
 
     test('getAt returns elements', () {
-      vector
+      final vector = getVector()
         ..append('.jpg')
         ..append('.jpeg');
       expect(vector.getAt(0), equals('.jpg'));
@@ -49,7 +45,7 @@ void main() {
     });
 
     test('getView', () {
-      vector
+      final vector = getVector()
         ..append('.jpg')
         ..append('.jpeg');
       final list = vector.getView();
@@ -58,40 +54,45 @@ void main() {
     });
 
     test('indexOf finds element', () {
-      final pIndex = allocator<Uint32>();
+      final pIndex = calloc<Uint32>();
 
-      vector
+      final vector = getVector()
         ..append('.jpg')
         ..append('.jpeg');
       final containsElement = vector.indexOf('.jpeg', pIndex);
       expect(containsElement, isTrue);
       expect(pIndex.value, equals(1));
+
+      free(pIndex);
     });
 
     test('indexOf returns 0 if the element is not found', () {
-      final pIndex = allocator<Uint32>();
+      final pIndex = calloc<Uint32>();
 
-      vector
+      final vector = getVector()
         ..append('.jpg')
         ..append('.jpeg');
       final containsElement = vector.indexOf('.png', pIndex);
       expect(containsElement, isFalse);
       expect(pIndex.value, equals(0));
+
+      free(pIndex);
     });
 
     test('setAt throws exception if the vector is empty', () {
+      final vector = getVector();
       expect(() => vector.setAt(0, '.jpg'), throwsException);
     });
 
     test('setAt throws exception if the index is out of bounds', () {
-      vector
+      final vector = getVector()
         ..append('.jpg')
         ..append('.jpeg');
       expect(() => vector.setAt(3, '.png'), throwsException);
     });
 
     test('setAt', () {
-      vector
+      final vector = getVector()
         ..append('.jpg')
         ..append('.jpeg');
       expect(vector.size, equals(2));
@@ -104,14 +105,14 @@ void main() {
     });
 
     test('insertAt throws exception if the index is out of bounds', () {
-      vector
+      final vector = getVector()
         ..append('.jpg')
         ..append('.jpeg');
       expect(() => vector.insertAt(3, '.png'), throwsException);
     });
 
     test('insertAt', () {
-      vector
+      final vector = getVector()
         ..append('.jpg')
         ..append('.jpeg');
       expect(vector.size, equals(2));
@@ -126,18 +127,19 @@ void main() {
     });
 
     test('removeAt throws exception if the vector is empty', () {
+      final vector = getVector();
       expect(() => vector.removeAt(0), throwsException);
     });
 
     test('removeAt throws exception if the index is out of bounds', () {
-      vector
+      final vector = getVector()
         ..append('.jpg')
         ..append('.jpeg');
       expect(() => vector.removeAt(3), throwsException);
     });
 
     test('removeAt', () {
-      vector
+      final vector = getVector()
         ..append('.jpg')
         ..append('.jpeg')
         ..append('.png')
@@ -157,6 +159,7 @@ void main() {
     });
 
     test('append', () {
+      final vector = getVector();
       expect(vector.size, equals(0));
       vector.append('.jpg');
       expect(vector.size, equals(1));
@@ -165,11 +168,12 @@ void main() {
     });
 
     test('removeAtEnd throws exception if the vector is empty', () {
-      expect(() => vector.removeAtEnd(), throwsException);
+      final vector = getVector();
+      expect(vector.removeAtEnd, throwsException);
     });
 
     test('removeAtEnd', () {
-      vector
+      final vector = getVector()
         ..append('.jpg')
         ..append('.jpeg');
       expect(vector.size, equals(2));
@@ -178,7 +182,7 @@ void main() {
     });
 
     test('clear', () {
-      vector
+      final vector = getVector()
         ..append('.jpg')
         ..append('.jpeg');
       expect(vector.size, equals(2));
@@ -187,13 +191,14 @@ void main() {
     });
 
     test('getMany returns 0 if the vector is empty', () {
+      final vector = getVector();
       expect(vector.getMany(0, 1, []), equals(0));
     });
 
     test('getMany returns elements starting from index 0', () {
       final list = <String>[];
 
-      vector
+      final vector = getVector()
         ..append('.jpg')
         ..append('.jpeg')
         ..append('.png');
@@ -209,7 +214,7 @@ void main() {
         'of elements', () {
       final list = <String>[];
 
-      vector
+      final vector = getVector()
         ..append('.jpg')
         ..append('.jpeg')
         ..append('.png');
@@ -223,7 +228,7 @@ void main() {
     test('getMany returns elements starting from index 1', () {
       final list = <String>[];
 
-      vector
+      final vector = getVector()
         ..append('.jpg')
         ..append('.jpeg')
         ..append('.png');
@@ -234,6 +239,7 @@ void main() {
     });
 
     test('replaceAll', () {
+      final vector = getVector();
       expect(vector.size, equals(0));
       vector.replaceAll(['.jpg', '.jpeg']);
       expect(vector.size, equals(2));
@@ -246,7 +252,7 @@ void main() {
     });
 
     test('toList', () {
-      vector
+      final vector = getVector()
         ..append('.jpg')
         ..append('.jpeg')
         ..append('.png');
@@ -259,22 +265,21 @@ void main() {
     });
 
     test('first', () {
-      vector
+      final vector = getVector()
         ..append('.jpg')
         ..append('.jpeg')
         ..append('.png');
       final iterator = vector.first();
       expect(iterator.hasCurrent, isTrue);
-      expect(iterator.current, equals('.jpg'));
+      var current = iterator.current;
+      expect(current, equals('.jpg'));
       expect(iterator.moveNext(), isTrue);
-      expect(iterator.current, equals('.jpeg'));
+      current = iterator.current;
+      expect(current, equals('.jpeg'));
       expect(iterator.moveNext(), isTrue);
-      expect(iterator.current, equals('.png'));
+      current = iterator.current;
+      expect(current, equals('.png'));
       expect(iterator.moveNext(), isFalse);
-    });
-
-    tearDown(() {
-      allocator.releaseAll(reuse: true);
     });
   });
 }

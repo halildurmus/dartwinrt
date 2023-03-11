@@ -19,31 +19,26 @@ void main() {
   }
 
   group('IVector<DeviceClass>', () {
-    late DevicePicker picker;
-    late DevicePickerFilter pickerFilter;
-    late IVector<DeviceClass> vector;
-    late Arena allocator;
-
-    setUp(() {
-      allocator = Arena();
-      picker = DevicePicker();
-      pickerFilter = picker.filter!;
-      vector = pickerFilter.supportedDeviceClasses;
-    });
+    IVector<DeviceClass> getVector() {
+      final picker = DevicePicker();
+      final pickerFilter = picker.filter!;
+      return pickerFilter.supportedDeviceClasses;
+    }
 
     test('getAt fails if the vector is empty', () {
+      final vector = getVector();
       expect(() => vector.getAt(0), throwsException);
     });
 
     test('getAt throws exception if the index is out of bounds', () {
-      vector
+      final vector = getVector()
         ..append(DeviceClass.audioCapture)
         ..append(DeviceClass.audioRender);
       expect(() => vector.getAt(2), throwsException);
     });
 
     test('getAt returns elements', () {
-      vector
+      final vector = getVector()
         ..append(DeviceClass.audioCapture)
         ..append(DeviceClass.audioRender);
       expect(vector.getAt(0), equals(DeviceClass.audioCapture));
@@ -51,7 +46,7 @@ void main() {
     });
 
     test('getView', () {
-      vector
+      final vector = getVector()
         ..append(DeviceClass.audioCapture)
         ..append(DeviceClass.audioRender);
       final list = vector.getView();
@@ -60,40 +55,45 @@ void main() {
     });
 
     test('indexOf finds element', () {
-      final pIndex = allocator<Uint32>();
+      final pIndex = calloc<Uint32>();
 
-      vector
+      final vector = getVector()
         ..append(DeviceClass.audioCapture)
         ..append(DeviceClass.audioRender);
       final containsElement = vector.indexOf(DeviceClass.audioRender, pIndex);
       expect(containsElement, isTrue);
       expect(pIndex.value, equals(1));
+
+      free(pIndex);
     });
 
     test('indexOf returns 0 if the element is not found', () {
-      final pIndex = allocator<Uint32>();
+      final pIndex = calloc<Uint32>();
 
-      vector
+      final vector = getVector()
         ..append(DeviceClass.audioCapture)
         ..append(DeviceClass.audioRender);
       final containsElement = vector.indexOf(DeviceClass.imageScanner, pIndex);
       expect(containsElement, isFalse);
       expect(pIndex.value, equals(0));
+
+      free(pIndex);
     });
 
     test('setAt throws exception if the vector is empty', () {
+      final vector = getVector();
       expect(() => vector.setAt(0, DeviceClass.audioCapture), throwsException);
     });
 
     test('setAt throws exception if the index is out of bounds', () {
-      vector
+      final vector = getVector()
         ..append(DeviceClass.audioCapture)
         ..append(DeviceClass.audioRender);
       expect(() => vector.setAt(3, DeviceClass.imageScanner), throwsException);
     });
 
     test('setAt', () {
-      vector
+      final vector = getVector()
         ..append(DeviceClass.audioCapture)
         ..append(DeviceClass.audioRender);
       expect(vector.size, equals(2));
@@ -106,7 +106,7 @@ void main() {
     });
 
     test('insertAt throws exception if the index is out of bounds', () {
-      vector
+      final vector = getVector()
         ..append(DeviceClass.audioCapture)
         ..append(DeviceClass.audioRender);
       expect(
@@ -114,7 +114,7 @@ void main() {
     });
 
     test('insertAt', () {
-      vector
+      final vector = getVector()
         ..append(DeviceClass.audioCapture)
         ..append(DeviceClass.audioRender);
       expect(vector.size, equals(2));
@@ -129,18 +129,19 @@ void main() {
     });
 
     test('removeAt throws exception if the vector is empty', () {
+      final vector = getVector();
       expect(() => vector.removeAt(0), throwsException);
     });
 
     test('removeAt throws exception if the index is out of bounds', () {
-      vector
+      final vector = getVector()
         ..append(DeviceClass.audioCapture)
         ..append(DeviceClass.audioRender);
       expect(() => vector.removeAt(3), throwsException);
     });
 
     test('removeAt', () {
-      vector
+      final vector = getVector()
         ..append(DeviceClass.audioCapture)
         ..append(DeviceClass.audioRender)
         ..append(DeviceClass.imageScanner)
@@ -160,6 +161,7 @@ void main() {
     });
 
     test('append', () {
+      final vector = getVector();
       expect(vector.size, equals(0));
       vector.append(DeviceClass.audioCapture);
       expect(vector.size, equals(1));
@@ -168,11 +170,12 @@ void main() {
     });
 
     test('removeAtEnd throws exception if the vector is empty', () {
-      expect(() => vector.removeAtEnd(), throwsException);
+      final vector = getVector();
+      expect(vector.removeAtEnd, throwsException);
     });
 
     test('removeAtEnd', () {
-      vector
+      final vector = getVector()
         ..append(DeviceClass.audioCapture)
         ..append(DeviceClass.audioRender);
       expect(vector.size, equals(2));
@@ -181,7 +184,7 @@ void main() {
     });
 
     test('clear', () {
-      vector
+      final vector = getVector()
         ..append(DeviceClass.audioCapture)
         ..append(DeviceClass.audioRender);
       expect(vector.size, equals(2));
@@ -190,13 +193,14 @@ void main() {
     });
 
     test('getMany returns 0 if the vector is empty', () {
+      final vector = getVector();
       expect(vector.getMany(0, 1, []), equals(0));
     });
 
     test('getMany returns elements starting from index 0', () {
       final list = <DeviceClass>[];
 
-      vector
+      final vector = getVector()
         ..append(DeviceClass.audioCapture)
         ..append(DeviceClass.audioRender)
         ..append(DeviceClass.imageScanner);
@@ -212,7 +216,7 @@ void main() {
         'of elements', () {
       final list = <DeviceClass>[];
 
-      vector
+      final vector = getVector()
         ..append(DeviceClass.audioCapture)
         ..append(DeviceClass.audioRender)
         ..append(DeviceClass.imageScanner);
@@ -226,7 +230,7 @@ void main() {
     test('getMany returns elements starting from index 1', () {
       final list = <DeviceClass>[];
 
-      vector
+      final vector = getVector()
         ..append(DeviceClass.audioCapture)
         ..append(DeviceClass.audioRender)
         ..append(DeviceClass.imageScanner);
@@ -237,6 +241,7 @@ void main() {
     });
 
     test('replaceAll', () {
+      final vector = getVector();
       expect(vector.size, equals(0));
       vector.replaceAll([DeviceClass.audioCapture, DeviceClass.audioRender]);
       expect(vector.size, equals(2));
@@ -249,7 +254,7 @@ void main() {
     });
 
     test('toList', () {
-      vector
+      final vector = getVector()
         ..append(DeviceClass.audioCapture)
         ..append(DeviceClass.audioRender)
         ..append(DeviceClass.imageScanner);
@@ -262,7 +267,7 @@ void main() {
     });
 
     test('first', () {
-      vector
+      final vector = getVector()
         ..append(DeviceClass.audioCapture)
         ..append(DeviceClass.audioRender)
         ..append(DeviceClass.imageScanner);
@@ -274,10 +279,6 @@ void main() {
       expect(iterator.moveNext(), isTrue);
       expect(iterator.current, equals(DeviceClass.imageScanner));
       expect(iterator.moveNext(), isFalse);
-    });
-
-    tearDown(() {
-      allocator.releaseAll(reuse: true);
     });
   });
 }

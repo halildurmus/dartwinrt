@@ -22,11 +22,9 @@ void main() {
   }
 
   group('IMap<String, Object?> (PropertySet)', () {
-    late IMap<String, Object?> map;
-
-    setUp(() {
+    IMap<String, Object?> getMap() {
       final guid = Guid.parse(IID_ISpVoice);
-      map = IMap.empty()
+      return IMap.empty()
         ..insert('key1', null)
         ..insert('key2', StringMap())
         ..insert('key3', true)
@@ -51,10 +49,11 @@ void main() {
         ..insert('key21', [Rect(2, -2, 200, 100)])
         ..insert('key22', [Size(300, 1500)])
         ..insert('key23', ['str1', 'str2']);
-    });
+    }
 
     test('fromMap', () {
-      map = IMap.fromMap({'key1': StringMap(), 'key2': 259, 'key3': 'strVal'});
+      final map = IMap<String, Object?>.fromMap(
+          {'key1': StringMap(), 'key2': 259, 'key3': 'strVal'});
 
       final stringMapVal = map.lookup('key1');
       expect(stringMapVal, isA<IInspectable>());
@@ -65,15 +64,17 @@ void main() {
     });
 
     test('lookup fails if the map is empty', () {
-      map.clear();
+      final map = getMap()..clear();
       expect(() => map.lookup('key1'), throwsException);
     });
 
     test('lookup throws exception if the item does not exists', () {
+      final map = getMap();
       expect(() => map.lookup('key0'), throwsException);
     });
 
     test('lookup returns items', () {
+      final map = getMap();
       expect(map.lookup('key1'), isNull);
 
       final stringMapVal = map.lookup('key2');
@@ -173,22 +174,26 @@ void main() {
     });
 
     test('hasKey finds items', () {
+      final map = getMap();
       expect(map.hasKey('key1'), isTrue);
       expect(map.hasKey('key11'), isTrue);
       expect(map.hasKey('key23'), isTrue);
     });
 
     test('hasKey returns false if the item does not exists', () {
+      final map = getMap();
       expect(map.hasKey('key0'), isFalse);
     });
 
     test('getView', () {
+      final map = getMap();
       final unmodifiableMap = map.getView();
       expect(unmodifiableMap.length, equals(23));
       expect(() => unmodifiableMap..clear(), throwsUnsupportedError);
     });
 
     test('insert replaces an existing item', () {
+      final map = getMap();
       expect(map.size, equals(23));
       expect(map.insert('key12', 'strValNew'), isTrue);
       expect(map.size, equals(23));
@@ -196,6 +201,7 @@ void main() {
     });
 
     test('insert inserts a new item', () {
+      final map = getMap();
       expect(map.size, equals(23));
       expect(map.insert('key24', null), isFalse);
       expect(map.size, equals(24));
@@ -203,15 +209,17 @@ void main() {
     });
 
     test('remove throws exception if the map is empty', () {
-      map.clear();
+      final map = getMap()..clear();
       expect(() => map.remove('key1'), throwsException);
     });
 
     test('remove throws exception if the item does not exists', () {
+      final map = getMap();
       expect(() => map.remove('key0'), throwsException);
     });
 
     test('remove', () {
+      final map = getMap();
       expect(map.size, equals(23));
 
       map.remove('key1');
@@ -224,12 +232,14 @@ void main() {
     });
 
     test('clear', () {
+      final map = getMap();
       expect(map.size, equals(23));
       map.clear();
       expect(map.size, equals(0));
     });
 
     test('toMap', () {
+      final map = getMap();
       final dartMap = map.toMap();
       expect(dartMap.length, equals(23));
       expect(dartMap['key8'], equals(259));
@@ -239,28 +249,29 @@ void main() {
     });
 
     test('first', () {
-      map = IMap.fromMap({'key1': 'icalendar', 'key2': 259});
+      final map =
+          IMap<String, Object?>.fromMap({'key1': 'icalendar', 'key2': 259});
 
       final iterator = map.first();
       expect(iterator.hasCurrent, isTrue);
-      expect(iterator.current.key, equals('key2'));
-      expect(iterator.current.value, equals(259));
+      var current = iterator.current;
+      expect(current.key, equals('key2'));
+      expect(current.value, equals(259));
       expect(iterator.moveNext(), isTrue);
-      expect(iterator.current.key, equals('key1'));
-      expect(iterator.current.value, equals('icalendar'));
+      current = iterator.current;
+      expect(current.key, equals('key1'));
+      expect(current.value, equals('icalendar'));
       expect(iterator.moveNext(), isFalse);
     });
   });
 
   group('IMap<String, Object?> (ValueSet)', () {
-    late IMap<String, Object?> map;
-
-    setUp(() {
+    IMap<String, Object?> getMap() {
       final guid = Guid.parse(IID_ISpVoice);
       final valueSet = ValueSet()
         ..insert('key1', null)
         ..insert('key2', 'strVal');
-      map = ValueSet()
+      return ValueSet()
         ..insert('key1', null)
         ..insert('key2', valueSet)
         ..insert('key3', true)
@@ -284,18 +295,20 @@ void main() {
         ..insert('key20', [Rect(2, -2, 200, 100)])
         ..insert('key21', [Size(300, 1500)])
         ..insert('key22', ['str1', 'str2']);
-    });
+    }
 
     test('lookup fails if the map is empty', () {
-      map.clear();
+      final map = getMap()..clear();
       expect(() => map.lookup('key1'), throwsException);
     });
 
     test('lookup throws exception if the item does not exists', () {
+      final map = getMap();
       expect(() => map.lookup('key0'), throwsException);
     });
 
     test('lookup returns items', () {
+      final map = getMap();
       expect(map.lookup('key1'), isNull);
 
       final valueSetVal = map.lookup('key2');
@@ -394,22 +407,26 @@ void main() {
     });
 
     test('hasKey finds items', () {
+      final map = getMap();
       expect(map.hasKey('key1'), isTrue);
       expect(map.hasKey('key11'), isTrue);
       expect(map.hasKey('key22'), isTrue);
     });
 
     test('hasKey returns false if the item does not exists', () {
+      final map = getMap();
       expect(map.hasKey('key0'), isFalse);
     });
 
     test('getView', () {
+      final map = getMap();
       final unmodifiableMap = map.getView();
       expect(unmodifiableMap.length, equals(22));
       expect(() => unmodifiableMap..clear(), throwsUnsupportedError);
     });
 
     test('insert replaces an existing item', () {
+      final map = getMap();
       expect(map.size, equals(22));
       expect(map.insert('key12', 'strValNew'), isTrue);
       expect(map.size, equals(22));
@@ -417,6 +434,7 @@ void main() {
     });
 
     test('insert inserts a new item', () {
+      final map = getMap();
       expect(map.size, equals(22));
       expect(map.insert('key23', null), isFalse);
       expect(map.size, equals(23));
@@ -424,15 +442,17 @@ void main() {
     });
 
     test('remove throws exception if the map is empty', () {
-      map.clear();
+      final map = getMap()..clear();
       expect(() => map.remove('key1'), throwsException);
     });
 
     test('remove throws exception if the item does not exists', () {
+      final map = getMap();
       expect(() => map.remove('key0'), throwsException);
     });
 
     test('remove', () {
+      final map = getMap();
       expect(map.size, equals(22));
 
       map.remove('key1');
@@ -445,12 +465,14 @@ void main() {
     });
 
     test('clear', () {
+      final map = getMap();
       expect(map.size, equals(22));
       map.clear();
       expect(map.size, equals(0));
     });
 
     test('toMap', () {
+      final map = getMap();
       final dartMap = map.toMap();
       expect(dartMap.length, equals(22));
       expect(dartMap['key8'], equals(259));
@@ -460,7 +482,7 @@ void main() {
     });
 
     test('first', () {
-      map = ValueSet()
+      final map = ValueSet()
         ..insert('key1', 'icalendar')
         ..insert('key2', 259);
 
@@ -476,54 +498,57 @@ void main() {
   });
 
   group('IMap<String, String> (StringMap)', () {
-    late IMap<String, String> map;
-
-    setUp(() {
-      map = IMap.empty()
-        ..insert('key1', 'value1')
-        ..insert('key2', '')
-        ..insert('key3', 'value3');
-    });
+    IMap<String, String> getMap() => IMap.empty()
+      ..insert('key1', 'value1')
+      ..insert('key2', '')
+      ..insert('key3', 'value3');
 
     test('fromMap', () {
-      map = IMap.fromMap({'key1': 'value1', 'key2': '', 'key3': 'value3'});
+      final map =
+          IMap.fromMap({'key1': 'value1', 'key2': '', 'key3': 'value3'});
       expect(map.lookup('key1'), equals('value1'));
       expect(map.lookup('key2'), isEmpty);
       expect(map.lookup('key3'), equals('value3'));
     });
 
     test('lookup fails if the map is empty', () {
-      map.clear();
+      final map = getMap()..clear();
       expect(() => map.lookup('key1'), throwsException);
     });
 
     test('lookup throws exception if the item does not exists', () {
+      final map = getMap();
       expect(() => map.lookup('key4'), throwsException);
     });
 
     test('lookup returns items', () {
+      final map = getMap();
       expect(map.lookup('key1'), equals('value1'));
       expect(map.lookup('key2'), isEmpty);
       expect(map.lookup('key3'), equals('value3'));
     });
 
     test('hasKey finds items', () {
+      final map = getMap();
       expect(map.hasKey('key1'), isTrue);
       expect(map.hasKey('key2'), isTrue);
       expect(map.hasKey('key3'), isTrue);
     });
 
     test('hasKey returns false if the item does not exists', () {
+      final map = getMap();
       expect(map.hasKey('key4'), isFalse);
     });
 
     test('getView', () {
+      final map = getMap();
       final unmodifiableMap = map.getView();
       expect(unmodifiableMap.length, equals(3));
       expect(() => unmodifiableMap..clear(), throwsUnsupportedError);
     });
 
     test('insert replaces an existing item', () {
+      final map = getMap();
       expect(map.size, equals(3));
       expect(map.insert('key1', 'value1New'), isTrue);
       expect(map.size, equals(3));
@@ -531,6 +556,7 @@ void main() {
     });
 
     test('insert inserts a new item', () {
+      final map = getMap();
       expect(map.size, equals(3));
       expect(map.insert('key4', 'value4'), isFalse);
       expect(map.size, equals(4));
@@ -538,15 +564,17 @@ void main() {
     });
 
     test('remove throws exception if the map is empty', () {
-      map.clear();
+      final map = getMap()..clear();
       expect(() => map.remove('key0'), throwsException);
     });
 
     test('remove throws exception if the item does not exists', () {
+      final map = getMap();
       expect(() => map.remove('key4'), throwsException);
     });
 
     test('remove', () {
+      final map = getMap();
       expect(map.size, equals(3));
       map.remove('key1');
       expect(map.size, equals(2));
@@ -558,12 +586,14 @@ void main() {
     });
 
     test('clear', () {
+      final map = getMap();
       expect(map.size, equals(3));
       map.clear();
       expect(map.size, equals(0));
     });
 
     test('toMap', () {
+      final map = getMap();
       final dartMap = map.toMap();
       expect(dartMap.length, equals(3));
       expect(dartMap['key1'], equals('value1'));
@@ -573,6 +603,7 @@ void main() {
     });
 
     test('first', () {
+      final map = getMap();
       final iterator = map.first();
       expect(iterator.hasCurrent, isTrue);
       var current = iterator.current;
@@ -591,8 +622,6 @@ void main() {
   });
 
   group('IMapView<String, String> (StringMap)', () {
-    late IMapView<String, String> mapView;
-
     IMapView<String, String> getView(Pointer<COMObject> ptr) {
       final retValuePtr = calloc<COMObject>();
 
@@ -615,41 +644,46 @@ void main() {
           iterableIid: IID_IIterable_IKeyValuePair_String_String);
     }
 
-    setUp(() {
+    IMapView<String, String> getMapView() {
       final map = IMap<String, String>.empty()
         ..insert('key1', 'value1')
         ..insert('key2', '')
         ..insert('key3', 'value3');
-      mapView = getView(map.ptr);
-    });
+      return getView(map.ptr);
+    }
 
     test('lookup fails if the map is empty', () {
       final map = IMap<String, String>.empty();
-      mapView = getView(map.ptr);
+      final mapView = getView(map.ptr);
       expect(() => mapView.lookup('key1'), throwsException);
     });
 
     test('lookup throws exception if the item does not exists', () {
+      final mapView = getMapView();
       expect(() => mapView.lookup('key4'), throwsException);
     });
 
     test('lookup returns items', () {
+      final mapView = getMapView();
       expect(mapView.lookup('key1'), equals('value1'));
       expect(mapView.lookup('key2'), isEmpty);
       expect(mapView.lookup('key3'), equals('value3'));
     });
 
     test('hasKey finds items', () {
+      final mapView = getMapView();
       expect(mapView.hasKey('key1'), isTrue);
       expect(mapView.hasKey('key2'), isTrue);
       expect(mapView.hasKey('key3'), isTrue);
     });
 
     test('hasKey returns false if the item does not exists', () {
+      final mapView = getMapView();
       expect(mapView.hasKey('key4'), isFalse);
     });
 
     test('toMap', () {
+      final mapView = getMapView();
       final dartMap = mapView.toMap();
       expect(dartMap.length, equals(3));
       expect(dartMap['key1'], equals('value1'));
@@ -659,24 +693,25 @@ void main() {
     });
 
     test('first', () {
+      final mapView = getMapView();
       final iterator = mapView.first();
       expect(iterator.hasCurrent, isTrue);
-      expect(iterator.current.key, equals('key3'));
-      expect(iterator.current.value, equals('value3'));
+      var current = iterator.current;
+      expect(current.key, equals('key3'));
+      expect(current.value, equals('value3'));
       expect(iterator.moveNext(), isTrue);
-      expect(iterator.current.key, equals('key2'));
-      expect(iterator.current.value, isEmpty);
+      current = iterator.current;
+      expect(current.key, equals('key2'));
+      expect(current.value, isEmpty);
       expect(iterator.moveNext(), isTrue);
-      expect(iterator.current.key, equals('key1'));
-      expect(iterator.current.value, equals('value1'));
+      current = iterator.current;
+      expect(current.key, equals('key1'));
+      expect(current.value, equals('value1'));
       expect(iterator.moveNext(), isFalse);
     });
   });
 
   group('IVector<Uri>', () {
-    late IVector<Uri> vector;
-    late Arena allocator;
-
     IVector<Uri> getServerUris(Pointer<COMObject> ptr) {
       final retValuePtr = calloc<COMObject>();
 
@@ -698,28 +733,28 @@ void main() {
       return IVector.fromPtr(retValuePtr, iterableIid: IID_IIterable_Uri);
     }
 
-    setUp(() {
+    IVector<Uri> getVector() {
       // ignore: constant_identifier_names
-      const IID_IVpnPlugInProfile = '{0EDF0DA4-4F00-4589-8D7B-4BF988F6542C}';
+      const IID_IVpnPlugInProfile = '{0edf0da4-4f00-4589-8d7b-4bf988f6542c}';
       final object = createObject(IInspectable.new,
           'Windows.Networking.Vpn.VpnPlugInProfile', IID_IVpnPlugInProfile);
-      allocator = Arena();
-      vector = getServerUris(object.ptr);
-    });
+      return getServerUris(object.ptr);
+    }
 
     test('getAt fails if the vector is empty', () {
+      final vector = getVector();
       expect(() => vector.getAt(0), throwsException);
     });
 
     test('getAt throws exception if the index is out of bounds', () {
-      vector
+      final vector = getVector()
         ..append(Uri.parse('https://dart.dev/overview'))
         ..append(Uri.parse('https://dart.dev/docs'));
       expect(() => vector.getAt(2), throwsException);
     });
 
     test('getAt returns elements', () {
-      vector
+      final vector = getVector()
         ..append(Uri.parse('https://dart.dev/overview'))
         ..append(Uri.parse('https://dart.dev/docs'));
       expect(vector.getAt(0), equals(Uri.parse('https://dart.dev/overview')));
@@ -727,7 +762,7 @@ void main() {
     });
 
     test('getView', () {
-      vector
+      final vector = getVector()
         ..append(Uri.parse('https://dart.dev/overview'))
         ..append(Uri.parse('https://dart.dev/docs'));
       final list = vector.getView();
@@ -736,12 +771,13 @@ void main() {
     });
 
     test('setAt throws exception if the vector is empty', () {
+      final vector = getVector();
       expect(() => vector.setAt(0, Uri.parse('https://dart.dev/overview')),
           throwsException);
     });
 
     test('setAt throws exception if the index is out of bounds', () {
-      vector
+      final vector = getVector()
         ..append(Uri.parse('https://dart.dev/overview'))
         ..append(Uri.parse('https://dart.dev/docs'));
       expect(
@@ -750,7 +786,7 @@ void main() {
     });
 
     test('setAt', () {
-      vector
+      final vector = getVector()
         ..append(Uri.parse('https://dart.dev/overview'))
         ..append(Uri.parse('https://dart.dev/docs'));
       expect(vector.size, equals(2));
@@ -765,7 +801,7 @@ void main() {
     });
 
     test('insertAt throws exception if the index is out of bounds', () {
-      vector
+      final vector = getVector()
         ..append(Uri.parse('https://dart.dev/overview'))
         ..append(Uri.parse('https://dart.dev/docs'));
       expect(
@@ -775,7 +811,7 @@ void main() {
     });
 
     test('insertAt', () {
-      vector
+      final vector = getVector()
         ..append(Uri.parse('https://dart.dev/overview'))
         ..append(Uri.parse('https://dart.dev/docs'));
       expect(vector.size, equals(2));
@@ -792,18 +828,19 @@ void main() {
     });
 
     test('removeAt throws exception if the vector is empty', () {
+      final vector = getVector();
       expect(() => vector.removeAt(0), throwsException);
     });
 
     test('removeAt throws exception if the index is out of bounds', () {
-      vector
+      final vector = getVector()
         ..append(Uri.parse('https://dart.dev/overview'))
         ..append(Uri.parse('https://dart.dev/docs'));
       expect(() => vector.removeAt(3), throwsException);
     });
 
     test('removeAt', () {
-      vector
+      final vector = getVector()
         ..append(Uri.parse('https://dart.dev/overview'))
         ..append(Uri.parse('https://dart.dev/docs'))
         ..append(Uri.parse('https://flutter.dev/development'))
@@ -824,6 +861,7 @@ void main() {
     });
 
     test('append', () {
+      final vector = getVector();
       expect(vector.size, equals(0));
       vector.append(Uri.parse('https://dart.dev/overview'));
       expect(vector.size, equals(1));
@@ -832,11 +870,12 @@ void main() {
     });
 
     test('removeAtEnd throws exception if the vector is empty', () {
-      expect(() => vector.removeAtEnd(), throwsException);
+      final vector = getVector();
+      expect(vector.removeAtEnd, throwsException);
     });
 
     test('removeAtEnd', () {
-      vector
+      final vector = getVector()
         ..append(Uri.parse('https://dart.dev/overview'))
         ..append(Uri.parse('https://dart.dev/docs'));
       expect(vector.size, equals(2));
@@ -845,7 +884,7 @@ void main() {
     });
 
     test('clear', () {
-      vector
+      final vector = getVector()
         ..append(Uri.parse('https://dart.dev/overview'))
         ..append(Uri.parse('https://dart.dev/docs'));
       expect(vector.size, equals(2));
@@ -854,13 +893,14 @@ void main() {
     });
 
     test('getMany returns 0 if the vector is empty', () {
+      final vector = getVector();
       expect(vector.getMany(0, 1, []), equals(0));
     });
 
     test('getMany returns elements starting from index 0', () {
       final list = <Uri>[];
 
-      vector
+      final vector = getVector()
         ..append(Uri.parse('https://dart.dev/overview'))
         ..append(Uri.parse('https://dart.dev/docs'))
         ..append(Uri.parse('https://flutter.dev/development'));
@@ -876,7 +916,7 @@ void main() {
         'of elements', () {
       final list = <Uri>[];
 
-      vector
+      final vector = getVector()
         ..append(Uri.parse('https://dart.dev/overview'))
         ..append(Uri.parse('https://dart.dev/docs'))
         ..append(Uri.parse('https://flutter.dev/development'));
@@ -890,7 +930,7 @@ void main() {
     test('getMany returns elements starting from index 1', () {
       final list = <Uri>[];
 
-      vector
+      final vector = getVector()
         ..append(Uri.parse('https://dart.dev/overview'))
         ..append(Uri.parse('https://dart.dev/docs'))
         ..append(Uri.parse('https://flutter.dev/development'));
@@ -901,6 +941,7 @@ void main() {
     });
 
     test('replaceAll', () {
+      final vector = getVector();
       expect(vector.size, equals(0));
       vector.replaceAll([
         Uri.parse('https://dart.dev/overview'),
@@ -921,7 +962,7 @@ void main() {
     });
 
     test('toList', () {
-      vector
+      final vector = getVector()
         ..append(Uri.parse('https://dart.dev/overview'))
         ..append(Uri.parse('https://dart.dev/docs'))
         ..append(Uri.parse('https://flutter.dev/development'));
@@ -935,7 +976,7 @@ void main() {
     });
 
     test('first', () {
-      vector
+      final vector = getVector()
         ..append(Uri.parse('https://dart.dev/overview'))
         ..append(Uri.parse('https://dart.dev/docs'))
         ..append(Uri.parse('https://flutter.dev/development'));
@@ -948,10 +989,6 @@ void main() {
       expect(iterator.current,
           equals(Uri.parse('https://flutter.dev/development')));
       expect(iterator.moveNext(), isFalse);
-    });
-
-    tearDown(() {
-      allocator.releaseAll(reuse: true);
     });
   });
 }

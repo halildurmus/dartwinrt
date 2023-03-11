@@ -19,16 +19,14 @@ void main() {
   }
 
   group('Calendar', () {
-    late Calendar calendar;
-
-    setUp(() => calendar = Calendar());
-
     test('is a materialized object', () {
+      final calendar = Calendar();
       expect(getTrustLevel(calendar), equals(TrustLevel.baseTrust));
       expect(getClassName(calendar), equals('Windows.Globalization.Calendar'));
     });
 
     test('clone', () {
+      final calendar = Calendar();
       final calendar2 = calendar.clone()!;
 
       expect(getClassName(calendar2), equals('Windows.Globalization.Calendar'));
@@ -36,29 +34,34 @@ void main() {
     });
 
     test('setToMin', () {
+      final calendar = Calendar();
       final today = calendar.clone()!;
       calendar.setToMin();
       expect(calendar.compare(today), isNegative);
     });
 
     test('setToMax', () {
+      final calendar = Calendar();
       final today = calendar.clone()!;
       calendar.setToMax();
       expect(calendar.compare(today), isPositive);
     });
 
     test('languages', () {
+      final calendar = Calendar();
       final languages = calendar.languages;
       expect(languages.length, isPositive);
       expect(languages.first, contains('-')); // e.g. en-US
     });
 
     test('numeralSystem getter', () {
+      final calendar = Calendar();
       // Examples: Arab, ArabExt, Bali, Beng, Cham, etc.
       expect(calendar.numeralSystem.length, greaterThan(3));
     });
 
     test('numeralSystem setter', () {
+      final calendar = Calendar();
       final arabicNumerals = '٠١٢٣٤٥٦٧٨٩'.split('');
       calendar.numeralSystem = 'arab';
       final date = calendar.monthAsPaddedNumericString(2);
@@ -68,28 +71,31 @@ void main() {
     });
 
     test('getCalendarSystem', () {
+      final calendar = Calendar();
       // Examples: GregorianCalendar, JapaneseCalendar etc.
       final calendarSystem = calendar.getCalendarSystem();
       expect(calendarSystem, endsWith('Calendar'));
     });
 
     test('changeCalendarSystem', () {
-      calendar.changeCalendarSystem('GregorianCalendar');
+      final calendar = Calendar()..changeCalendarSystem('GregorianCalendar');
       expect(calendar.era, equals(1));
     });
 
     test('getClock', () {
+      final calendar = Calendar();
       // Examples: 12HourClock, 24HourClock
       final clock = calendar.getClock();
       expect(clock, endsWith('Clock'));
     });
 
     test('changeClock', () {
-      calendar.changeClock('12HourClock');
+      final calendar = Calendar()..changeClock('12HourClock');
       expect(calendar.hour, inInclusiveRange(1, 12));
     });
 
     test('getDateTime', () {
+      final calendar = Calendar();
       final winrtDate = calendar.getDateTime();
       final dartDate = DateTime.now().toUtc();
 
@@ -102,6 +108,7 @@ void main() {
     });
 
     test('setDateTime', () {
+      final calendar = Calendar();
       final dartDate = DateTime.utc(2017, 9, 7, 17, 30);
       calendar.setDateTime(dartDate);
       final winrtDate = calendar.getDateTime();
@@ -113,7 +120,7 @@ void main() {
     });
 
     test('setToNow', () {
-      calendar.changeCalendarSystem('GregorianCalendar');
+      final calendar = Calendar()..changeCalendarSystem('GregorianCalendar');
       final dartDate = DateTime.utc(2017, 9, 7, 17, 30);
       calendar
         ..setDateTime(dartDate) // set to a known time
@@ -123,7 +130,7 @@ void main() {
     });
 
     test('firstEra', () {
-      calendar.changeCalendarSystem('GregorianCalendar');
+      final calendar = Calendar()..changeCalendarSystem('GregorianCalendar');
 
       // Per Microsoft docs, the WinRT implementation only recognizes the
       // current era (A.D.). See:
@@ -132,7 +139,7 @@ void main() {
     });
 
     test('lastEra', () {
-      calendar.changeCalendarSystem('GregorianCalendar');
+      final calendar = Calendar()..changeCalendarSystem('GregorianCalendar');
       expect(calendar.firstEra, equals(1));
       expect(calendar.lastEra, equals(1));
 
@@ -145,23 +152,23 @@ void main() {
     });
 
     test('numberOfEras', () {
-      calendar.changeCalendarSystem('GregorianCalendar');
+      final calendar = Calendar()..changeCalendarSystem('GregorianCalendar');
       expect(calendar.numberOfEras, equals(1));
     });
 
     test('era getter', () {
-      calendar.changeCalendarSystem('GregorianCalendar');
+      final calendar = Calendar()..changeCalendarSystem('GregorianCalendar');
       expect(calendar.era, equals(1));
     });
 
     test('era setter', () {
       // Set an invalid era.
-      calendar.changeCalendarSystem('GregorianCalendar');
+      final calendar = Calendar()..changeCalendarSystem('GregorianCalendar');
       expect(() => calendar.era = 2, throwsA(isA<WindowsException>()));
     });
 
     test('addEras', () {
-      calendar
+      final calendar = Calendar()
         ..changeCalendarSystem('JapaneseCalendar')
         ..era = 1 // 明治 (Meiji)
         ..addEras(3); // 平成 (Heisei)
@@ -169,12 +176,12 @@ void main() {
     });
 
     test('eraAsFullString (GregorianCalendar)', () {
-      calendar.changeCalendarSystem('GregorianCalendar');
+      final calendar = Calendar()..changeCalendarSystem('GregorianCalendar');
       expect(calendar.eraAsFullString(), equals('A.D.'));
     });
 
     test('eraAsFullString (JapaneseCalendar)', () {
-      calendar
+      final calendar = Calendar()
         ..changeCalendarSystem('JapaneseCalendar')
         ..era = 1 // 明治 (Meiji)
         ..addEras(3); // 平成 (Heisei)
@@ -182,149 +189,164 @@ void main() {
     });
 
     test('eraAsString', () {
-      calendar
+      final calendar = Calendar()
         ..changeCalendarSystem('JapaneseCalendar')
         ..era = 1; // 明治 (Meiji)
       expect(calendar.eraAsString(1), equals('明'));
     });
 
     test('firstYearInThisEra', () {
-      calendar.changeCalendarSystem('HebrewCalendar');
+      final calendar = Calendar()..changeCalendarSystem('HebrewCalendar');
       expect(calendar.firstYearInThisEra, equals(5343));
     });
 
     test('lastYearInThisEra', () {
-      calendar.changeCalendarSystem('GregorianCalendar');
+      final calendar = Calendar()..changeCalendarSystem('GregorianCalendar');
       expect(calendar.lastYearInThisEra, equals(9999));
     });
 
     test('numberOfYearsInThisEra', () {
-      calendar
+      final calendar = Calendar()
         ..changeCalendarSystem('JapaneseCalendar')
         ..era = 3; // 昭和 (Showa)
       expect(calendar.numberOfYearsInThisEra, equals(64));
     });
 
     test('year getter', () {
-      calendar.changeCalendarSystem('GregorianCalendar');
+      final calendar = Calendar()..changeCalendarSystem('GregorianCalendar');
       expect(calendar.year, greaterThanOrEqualTo(2021));
     });
 
     test('day getter', () {
+      final calendar = Calendar();
       expect(calendar.day, inInclusiveRange(1, 31));
     });
 
     test('day setter', () {
-      calendar.day = 13;
+      final calendar = Calendar()..day = 13;
       expect(calendar.day, equals(13));
     });
 
     test('dayOfWeek getter', () {
+      final calendar = Calendar();
       expect(calendar.dayOfWeek.value, inInclusiveRange(0, 6));
     });
 
     test('firstDayInThisMonth getter', () {
-      calendar.changeCalendarSystem('GregorianCalendar');
+      final calendar = Calendar()..changeCalendarSystem('GregorianCalendar');
       expect(calendar.firstDayInThisMonth, equals(1));
     });
 
     test('firstHourInThisPeriod getter', () {
-      calendar.changeClock('12HourClock');
+      final calendar = Calendar()..changeClock('12HourClock');
       expect(calendar.firstHourInThisPeriod, isIn([0, 12]));
     });
 
     test('firstMinuteInThisHour getter', () {
+      final calendar = Calendar();
       expect(calendar.firstMinuteInThisHour, equals(0));
     });
 
     test('firstMonthInThisYear getter', () {
+      final calendar = Calendar();
       expect(calendar.firstMonthInThisYear, equals(1));
     });
 
     test('firstSecondInThisMinute getter', () {
+      final calendar = Calendar();
       expect(calendar.firstSecondInThisMinute, equals(0));
     });
 
     test('hour getter', () {
+      final calendar = Calendar();
       expect(calendar.hour, inInclusiveRange(0, 23));
     });
 
     test('isDaylightSavingTime getter', () {
+      final calendar = Calendar();
       expect(() => calendar.isDaylightSavingTime, returnsNormally);
     });
 
     test('lastDayInThisMonth getter', () {
-      calendar.changeCalendarSystem('GregorianCalendar');
+      final calendar = Calendar()..changeCalendarSystem('GregorianCalendar');
       expect(calendar.lastDayInThisMonth, isIn([28, 29, 30, 31]));
     });
 
     test('lastHourInThisPeriod getter', () {
-      calendar.changeClock('12HourClock');
+      final calendar = Calendar()..changeClock('12HourClock');
       expect(calendar.lastHourInThisPeriod, equals(11));
     });
 
     test('lastMinuteInThisHour getter', () {
-      calendar.changeClock('12HourClock');
+      final calendar = Calendar()..changeClock('12HourClock');
       expect(calendar.lastMinuteInThisHour, equals(59));
     });
 
     test('lastMonthInThisYear getter', () {
-      calendar.changeCalendarSystem('GregorianCalendar');
+      final calendar = Calendar()..changeCalendarSystem('GregorianCalendar');
       expect(calendar.lastMonthInThisYear, equals(12));
     });
 
     test('lastPeriodInThisDay getter', () {
-      calendar.changeClock('12HourClock');
+      final calendar = Calendar()..changeClock('12HourClock');
       expect(calendar.lastPeriodInThisDay, equals(2));
     });
 
     test('lastSecondInThisMinute getter', () {
+      final calendar = Calendar();
       expect(calendar.lastSecondInThisMinute, equals(59));
     });
 
     test('minute getter', () {
+      final calendar = Calendar();
       expect(calendar.minute, inInclusiveRange(0, 59));
     });
 
     test('month getter', () {
+      final calendar = Calendar();
       expect(calendar.month, inInclusiveRange(1, 12));
     });
 
     test('nanosecond getter', () {
+      final calendar = Calendar();
       expect(calendar.nanosecond, isPositive);
     });
 
     test('numberOfDaysInThisMonth getter', () {
-      calendar.changeCalendarSystem('GregorianCalendar');
+      final calendar = Calendar()..changeCalendarSystem('GregorianCalendar');
       expect(calendar.numberOfDaysInThisMonth, isIn([28, 29, 30, 31]));
     });
 
     test('numberOfHoursInThisPeriod', () {
-      calendar.changeClock('24HourClock');
+      final calendar = Calendar()..changeClock('24HourClock');
       // Two days of the year don't have 24 hours in time zones that observe
       // daylight saving time.
       expect(calendar.numberOfHoursInThisPeriod, isIn([23, 24, 25]));
     });
 
     test('numberOfMinutesInThisHour getter', () {
+      final calendar = Calendar();
       expect(calendar.numberOfMinutesInThisHour, equals(60));
     });
 
     test('numberOfMonthsInThisYear getter', () {
+      final calendar = Calendar();
       expect(calendar.numberOfMonthsInThisYear, equals(12));
     });
 
     test('numberOfPeriodsInThisDay getter', () {
-      calendar.changeClock('24HourClock');
+      final calendar = Calendar()..changeClock('24HourClock');
       expect(calendar.numberOfPeriodsInThisDay, equals(1));
     });
 
     test('numberOfSecondsInThisMinute getter', () {
+      final calendar = Calendar();
       // Allow for a leap second
       expect(calendar.numberOfSecondsInThisMinute, closeTo(60, 1));
     });
 
     test('resolvedLanguage getter', () {
+      final calendar = Calendar();
       final resolvedLanguage = calendar.resolvedLanguage;
 
       // Should be something like en-US
@@ -333,19 +355,21 @@ void main() {
     });
 
     test('period getter', () {
-      calendar.changeClock('12HourClock');
+      final calendar = Calendar()..changeClock('12HourClock');
       expect(calendar.period, isIn([1, 2]));
     });
 
     test('second getter', () {
+      final calendar = Calendar();
       expect(calendar.second, inInclusiveRange(0, 59));
     });
 
-    test('Day of week for current month is the same across Dart and WinRT', () {
+    test('day of week for current month is the same across Dart and WinRT', () {
       // Dart day of week goes [1..7] for [Mon..Sun]
       final date = DateTime.now();
       final firstOfMonth = date.add(Duration(days: -date.day + 1));
       final dartDay = firstOfMonth.weekday == 7 ? 0 : firstOfMonth.weekday;
+      final calendar = Calendar();
 
       // WinRT day of week goes [0..6] for [Sun..Sat]
       calendar.addDays(-calendar.day + 1);
@@ -355,13 +379,13 @@ void main() {
     });
 
     test('addYears', () {
-      calendar.addYears(10);
+      final calendar = Calendar()..addYears(10);
       expect(calendar.year, greaterThanOrEqualTo(2031));
     });
 
     test('addYears 2', () {
       // These tests will start failing in 2100 :)
-      calendar.addYears(-100);
+      final calendar = Calendar()..addYears(-100);
       expect(calendar.year, inInclusiveRange(1921, 2000));
       calendar.addYears(-100);
       expect(calendar.year, inInclusiveRange(1821, 1900));
@@ -369,7 +393,8 @@ void main() {
       expect(calendar.year, inInclusiveRange(1721, 1800));
     });
 
-    test('Compare equality', () {
+    test('compare equality', () {
+      final calendar = Calendar();
       final original = calendar.clone()!;
       calendar
         ..addDays(1)
@@ -378,7 +403,8 @@ void main() {
       expect(compare, isZero);
     });
 
-    test('Compare positive', () {
+    test('compare positive', () {
+      final calendar = Calendar();
       final original = calendar.clone()!;
       calendar
         ..addDays(2)
@@ -387,7 +413,8 @@ void main() {
       expect(compare, isPositive);
     });
 
-    test('Compare negative', () {
+    test('compare negative', () {
+      final calendar = Calendar();
       final original = calendar.clone()!;
       calendar
         ..addDays(2)
@@ -400,6 +427,7 @@ void main() {
       // Repeat to ensure that this doesn't fail because of some kind of memory
       // issue.
       for (var i = 0; i < 10000; i++) {
+        final calendar = Calendar();
         final month = calendar.monthAsFullString();
         expect(
             month,
@@ -424,6 +452,7 @@ void main() {
       // Repeat to ensure that this doesn't fail because of some kind of memory
       // issue.
       for (var i = 0; i < 10000; i++) {
+        final calendar = Calendar();
         final month = calendar.monthAsString(3);
         expect(
             month,
