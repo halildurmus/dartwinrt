@@ -9,7 +9,9 @@ import 'dart:ffi';
 import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
 
+import '../../ipropertyvalue.dart';
 import '../../uri.dart' as winrt_uri;
+import 'ipropertyvalue_helpers.dart';
 import 'uri_conversions.dart';
 
 extension COMObjectArrayHelpers on Pointer<COMObject> {
@@ -44,6 +46,30 @@ extension COMObjectArrayHelpers on Pointer<COMObject> {
       // freed properly.
       final newObjectPtr = calloc<COMObject>()..ref = objectPtr.ref;
       list.add(creator(newObjectPtr));
+    }
+
+    return list;
+  }
+
+  /// Creates a `List<Object?>` from `Pointer<COMObject>`.
+  ///
+  /// [length] must not be greater than the number of elements stored inside the
+  /// `Pointer<COMObject>`.
+  List<Object?> toObjectList({int length = 1}) {
+    final list = <Object?>[];
+
+    for (var i = 0; i < length; i++) {
+      final objectPtr = elementAt(i);
+      if (objectPtr.ref.isNull) {
+        list.add(null);
+        continue;
+      }
+
+      // Move each element to a newly allocated pointer so that it can be
+      // freed properly.
+      final newObjectPtr = calloc<COMObject>()..ref = objectPtr.ref;
+      final propertyValue = IPropertyValue.fromPtr(newObjectPtr);
+      list.add(propertyValue.value);
     }
 
     return list;

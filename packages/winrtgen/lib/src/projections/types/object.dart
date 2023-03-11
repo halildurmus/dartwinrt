@@ -126,10 +126,7 @@ mixin _ObjectListMixin on MethodProjection {
 
   String get returnStatement {
     if (typeArgProjection.isObjectType) {
-      return '''
-      return retValuePtr.value
-          .toList(IPropertyValue.fromPtr, length: pValueSize.value)
-          .map((e) => e.value);''';
+      return 'return retValuePtr.value.toObjectList(length: pValueSize.value);';
     }
 
     return '''
@@ -263,7 +260,10 @@ class ObjectListParameterProjection extends DefaultListParameterProjection {
     final pArray = calloc<COMObject>(value.length);
     for (var i = 0; i < value.length; i++) {''',
       if (typeArgProjection.isObjectType)
-        'pArray[i] = value.elementAt(i)?.intoBox().ptr.ref ?? PropertyValue.createEmpty().ref;'
+        '''
+    final element = value.elementAt(i);
+    if (element == null) continue;
+    pArray[i] = element.intoBox().ptr.ref;'''
       else
         'pArray[i] = value.elementAt(i).ptr.ref;',
       '}'
@@ -280,10 +280,7 @@ class ObjectListParameterProjection extends DefaultListParameterProjection {
     return [
       'if (retValuePtr.value > 0) {',
       if (typeArgProjection.isObjectType)
-        '''
-      value.addAll(pArray.value
-          .toList(IPropertyValue.fromPtr, length: retValuePtr.value)
-          .map((e) => e.value));'''
+        'value.addAll(pArray.toObjectList(length: retValuePtr.value));'
       else
         '''
       value.addAll(pArray
@@ -298,10 +295,7 @@ class ObjectListParameterProjection extends DefaultListParameterProjection {
     return [
       'if (pValueSize.value > 0) {',
       if (typeArgProjection.isObjectType)
-        '''
-    value.addAll(pArray.value
-        .toList(IPropertyValue.fromPtr, length: pValueSize.value)
-        .map((e) => e.value));'''
+        'value.addAll(pArray.value.toObjectList(length: pValueSize.value));'
       else
         '''
     value.addAll(pArray.value

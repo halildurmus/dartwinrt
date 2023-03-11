@@ -888,9 +888,7 @@ class IPropertyValue extends IInspectable {
             ptr.ref.lpVtbl, pValueSize, pArray);
 
     if (pValueSize.value > 0) {
-      value.addAll(pArray.value
-          .toList(IPropertyValue.fromPtr, length: pValueSize.value)
-          .map((e) => e.value));
+      value.addAll(pArray.value.toObjectList(length: pValueSize.value));
     }
     free(pValueSize);
     free(pArray);
