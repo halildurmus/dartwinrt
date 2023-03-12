@@ -8,14 +8,6 @@
 
 import 'dart:ffi';
 
-class NativeTextSegment extends Struct {
-  @Uint32()
-  external int startPosition;
-
-  @Uint32()
-  external int length;
-}
-
 class NativeBasicGeoposition extends Struct {
   @Double()
   external double latitude;
@@ -25,6 +17,60 @@ class NativeBasicGeoposition extends Struct {
 
   @Double()
   external double altitude;
+}
+
+class NativeColor extends Struct {
+  @Uint8()
+  external int a;
+
+  @Uint8()
+  external int r;
+
+  @Uint8()
+  external int g;
+
+  @Uint8()
+  external int b;
+}
+
+class NativeGamepadReading extends Struct {
+  @Uint64()
+  external int timestamp;
+
+  @Uint32()
+  external int buttons;
+
+  @Double()
+  external double leftTrigger;
+
+  @Double()
+  external double rightTrigger;
+
+  @Double()
+  external double leftThumbstickX;
+
+  @Double()
+  external double leftThumbstickY;
+
+  @Double()
+  external double rightThumbstickX;
+
+  @Double()
+  external double rightThumbstickY;
+}
+
+class NativeGamepadVibration extends Struct {
+  @Double()
+  external double leftMotor;
+
+  @Double()
+  external double rightMotor;
+
+  @Double()
+  external double leftTrigger;
+
+  @Double()
+  external double rightTrigger;
 }
 
 class NativeMatrix3x2 extends Struct {
@@ -97,11 +143,27 @@ class NativeMatrix4x4 extends Struct {
   external double m44;
 }
 
+class NativeNetworkUsageStates extends Struct {
+  @Int32()
+  external int roaming;
+
+  @Int32()
+  external int shared;
+}
+
 class NativePlane extends Struct {
   external NativeVector3 normal;
 
   @Float()
   external double d;
+}
+
+class NativePoint extends Struct {
+  @Float()
+  external double x;
+
+  @Float()
+  external double y;
 }
 
 class NativeQuaternion extends Struct {
@@ -124,6 +186,44 @@ class NativeRational extends Struct {
 
   @Uint32()
   external int denominator;
+}
+
+class NativeRect extends Struct {
+  @Float()
+  external double x;
+
+  @Float()
+  external double y;
+
+  @Float()
+  external double width;
+
+  @Float()
+  external double height;
+}
+
+class NativeSize extends Struct {
+  @Float()
+  external double width;
+
+  @Float()
+  external double height;
+}
+
+class NativeSortEntry extends Struct {
+  @IntPtr()
+  external int propertyName;
+
+  @Bool()
+  external bool ascendingOrder;
+}
+
+class NativeTextSegment extends Struct {
+  @Uint32()
+  external int startPosition;
+
+  @Uint32()
+  external int length;
 }
 
 class NativeVector2 extends Struct {
@@ -157,104 +257,4 @@ class NativeVector4 extends Struct {
 
   @Float()
   external double w;
-}
-
-class NativePoint extends Struct {
-  @Float()
-  external double x;
-
-  @Float()
-  external double y;
-}
-
-class NativeRect extends Struct {
-  @Float()
-  external double x;
-
-  @Float()
-  external double y;
-
-  @Float()
-  external double width;
-
-  @Float()
-  external double height;
-}
-
-class NativeSize extends Struct {
-  @Float()
-  external double width;
-
-  @Float()
-  external double height;
-}
-
-class NativeGamepadReading extends Struct {
-  @Uint64()
-  external int timestamp;
-
-  @Uint32()
-  external int buttons;
-
-  @Double()
-  external double leftTrigger;
-
-  @Double()
-  external double rightTrigger;
-
-  @Double()
-  external double leftThumbstickX;
-
-  @Double()
-  external double leftThumbstickY;
-
-  @Double()
-  external double rightThumbstickX;
-
-  @Double()
-  external double rightThumbstickY;
-}
-
-class NativeGamepadVibration extends Struct {
-  @Double()
-  external double leftMotor;
-
-  @Double()
-  external double rightMotor;
-
-  @Double()
-  external double leftTrigger;
-
-  @Double()
-  external double rightTrigger;
-}
-
-class NativeNetworkUsageStates extends Struct {
-  @Int32()
-  external int roaming;
-
-  @Int32()
-  external int shared;
-}
-
-class NativeSortEntry extends Struct {
-  @IntPtr()
-  external int propertyName;
-
-  @Bool()
-  external bool ascendingOrder;
-}
-
-class NativeColor extends Struct {
-  @Uint8()
-  external int a;
-
-  @Uint8()
-  external int r;
-
-  @Uint8()
-  external int g;
-
-  @Uint8()
-  external int b;
 }

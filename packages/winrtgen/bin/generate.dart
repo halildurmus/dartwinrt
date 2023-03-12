@@ -2,6 +2,7 @@
 // details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
+import 'dart:collection';
 import 'dart:io';
 
 import 'package:dart_style/dart_style.dart';
@@ -107,7 +108,8 @@ void generateEnumerations(Map<String, String> enums) {
 }
 
 void generateStructs(Map<String, String> structs) {
-  final nativeStructProjections = <NativeStructProjection>[];
+  final nativeStructProjections = SplayTreeSet<NativeStructProjection>(
+      (a, b) => a.typeDef.shortName.compareTo(b.typeDef.shortName));
 
   for (final type in structs.keys) {
     final nativeStructProjection = NativeStructProjection.from(type);
