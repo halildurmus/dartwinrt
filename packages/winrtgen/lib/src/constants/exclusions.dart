@@ -26,10 +26,14 @@ const excludedPackageFiles = <String, Set<String>>{
 
     // Fully wrapped by projection
     'ipropertyvalue.dart',
-    'propertyvalue.dart',
     'ireference.dart',
+    'propertyvalue.dart',
 
     'iunknown.dart',
+
+    // Internally used enums
+    'asyncstatus.dart',
+    'propertytype.dart',
 
     // Windows.Foundation.Uri files
     'iuriruntimeclass.dart',
