@@ -57,6 +57,7 @@
     "Windows.Gaming.Input.Gamepad": "Represents a gamepad.",
     "Windows.Gaming.Input.Headset": "Contains information about an audio headset attached to a gamepad.",
     "Windows.Globalization.Calendar": "Manipulates the representation of a `DateTime` within a given calendar and clock.",
+    "Windows.Globalization.DateTimeFormatting.DateTimeFormatter": "Formats dates and times.",
     "Windows.Globalization.NumberFormatting.CurrencyFormatter": "Formats and parses currencies.",
     "Windows.Globalization.NumberFormatting.DecimalFormatter": "Formats and parses decimal numbers.",
     "Windows.Globalization.NumberFormatting.INumberRounder": "An interface that returns rounded results for provided numbers of several data types.",
