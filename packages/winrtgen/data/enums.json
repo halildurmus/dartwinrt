@@ -26,6 +26,8 @@
     "Windows.Gaming.Input.GameControllerButtonLabel": "Label that appears on the physical controller button.",
     "Windows.Gaming.Input.GamepadButtons": "Specifies the button type.",
     "Windows.Globalization.DayOfWeek": "Identifies the day of the week.",
+    "Windows.Globalization.NumberFormatting.CurrencyFormatterMode": "Specifies the use of symbols or codes when currency is formatted.",
+    "Windows.Globalization.NumberFormatting.RoundingAlgorithm": "Specifies the algorithm used to round numbers.",
     "Windows.Globalization.PhoneNumberFormatting.PhoneNumberFormat": "Lists phone number formats supported by this API.",
     "Windows.Globalization.PhoneNumberFormatting.PhoneNumberMatchResult": "The result of calling the PhoneNumberInfo.CheckNumberMatch method.",
     "Windows.Globalization.PhoneNumberFormatting.PhoneNumberParseResult": "Describes the results of trying to parse a string into a phone number.",
