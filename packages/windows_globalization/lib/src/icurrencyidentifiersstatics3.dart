@@ -28,7 +28,7 @@ class ICurrencyIdentifiersStatics3 extends IInspectable {
       ICurrencyIdentifiersStatics3.fromPtr(
           interface.toInterface(IID_ICurrencyIdentifiersStatics3));
 
-  String get mRU {
+  String get mru {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -53,7 +53,7 @@ class ICurrencyIdentifiersStatics3 extends IInspectable {
     }
   }
 
-  String get sSP {
+  String get ssp {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -78,7 +78,7 @@ class ICurrencyIdentifiersStatics3 extends IInspectable {
     }
   }
 
-  String get sTN {
+  String get stn {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -103,7 +103,7 @@ class ICurrencyIdentifiersStatics3 extends IInspectable {
     }
   }
 
-  String get vES {
+  String get ves {
     final retValuePtr = calloc<HSTRING>();
 
     try {

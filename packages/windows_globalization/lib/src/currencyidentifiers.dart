@@ -28,65 +28,65 @@ class CurrencyIdentifiers extends IInspectable {
 
   static const _className = 'Windows.Globalization.CurrencyIdentifiers';
 
-  static String get aED => createActivationFactory(
+  static String get aed => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .aED;
+      .aed;
 
-  static String get aFN => createActivationFactory(
+  static String get afn => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .aFN;
+      .afn;
 
-  static String get aLL => createActivationFactory(
+  static String get all => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .aLL;
+      .all;
 
-  static String get aMD => createActivationFactory(
+  static String get amd => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .aMD;
+      .amd;
 
-  static String get aNG => createActivationFactory(
+  static String get ang => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .aNG;
+      .ang;
 
-  static String get aOA => createActivationFactory(
+  static String get aoa => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .aOA;
+      .aoa;
 
-  static String get aRS => createActivationFactory(
+  static String get ars => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .aRS;
+      .ars;
 
-  static String get aUD => createActivationFactory(
+  static String get aud => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .aUD;
+      .aud;
 
-  static String get aWG => createActivationFactory(
+  static String get awg => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .aWG;
+      .awg;
 
-  static String get aZN => createActivationFactory(
+  static String get azn => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .aZN;
+      .azn;
 
   static String get bAM => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
@@ -94,909 +94,909 @@ class CurrencyIdentifiers extends IInspectable {
           IID_ICurrencyIdentifiersStatics)
       .bAM;
 
-  static String get bBD => createActivationFactory(
+  static String get bbd => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .bBD;
+      .bbd;
 
-  static String get bDT => createActivationFactory(
+  static String get bdt => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .bDT;
+      .bdt;
 
-  static String get bGN => createActivationFactory(
+  static String get bgn => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .bGN;
+      .bgn;
 
-  static String get bHD => createActivationFactory(
+  static String get bhd => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .bHD;
+      .bhd;
 
-  static String get bIF => createActivationFactory(
+  static String get bif => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .bIF;
+      .bif;
 
-  static String get bMD => createActivationFactory(
+  static String get bmd => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .bMD;
+      .bmd;
 
-  static String get bND => createActivationFactory(
+  static String get bnd => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .bND;
+      .bnd;
 
-  static String get bOB => createActivationFactory(
+  static String get bob => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .bOB;
+      .bob;
 
-  static String get bRL => createActivationFactory(
+  static String get brl => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .bRL;
+      .brl;
 
-  static String get bSD => createActivationFactory(
+  static String get bsd => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .bSD;
+      .bsd;
 
-  static String get bTN => createActivationFactory(
+  static String get btn => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .bTN;
+      .btn;
 
-  static String get bWP => createActivationFactory(
+  static String get bwp => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .bWP;
+      .bwp;
 
-  static String get bYR => createActivationFactory(
+  static String get byr => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .bYR;
+      .byr;
 
-  static String get bZD => createActivationFactory(
+  static String get bzd => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .bZD;
+      .bzd;
 
-  static String get cAD => createActivationFactory(
+  static String get cad => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .cAD;
+      .cad;
 
-  static String get cDF => createActivationFactory(
+  static String get cdf => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .cDF;
+      .cdf;
 
-  static String get cHF => createActivationFactory(
+  static String get chf => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .cHF;
+      .chf;
 
-  static String get cLP => createActivationFactory(
+  static String get clp => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .cLP;
+      .clp;
 
-  static String get cNY => createActivationFactory(
+  static String get cny => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .cNY;
+      .cny;
 
-  static String get cOP => createActivationFactory(
+  static String get cop => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .cOP;
+      .cop;
 
-  static String get cRC => createActivationFactory(
+  static String get crc => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .cRC;
+      .crc;
 
-  static String get cUP => createActivationFactory(
+  static String get cup => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .cUP;
+      .cup;
 
-  static String get cVE => createActivationFactory(
+  static String get cve => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .cVE;
+      .cve;
 
-  static String get cZK => createActivationFactory(
+  static String get czk => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .cZK;
+      .czk;
 
-  static String get dJF => createActivationFactory(
+  static String get djf => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .dJF;
+      .djf;
 
-  static String get dKK => createActivationFactory(
+  static String get dkk => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .dKK;
+      .dkk;
 
-  static String get dOP => createActivationFactory(
+  static String get dop => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .dOP;
+      .dop;
 
-  static String get dZD => createActivationFactory(
+  static String get dzd => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .dZD;
+      .dzd;
 
-  static String get eGP => createActivationFactory(
+  static String get egp => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .eGP;
+      .egp;
 
-  static String get eRN => createActivationFactory(
+  static String get ern => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .eRN;
+      .ern;
 
-  static String get eTB => createActivationFactory(
+  static String get etb => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .eTB;
+      .etb;
 
-  static String get eUR => createActivationFactory(
+  static String get eur => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .eUR;
+      .eur;
 
-  static String get fJD => createActivationFactory(
+  static String get fjd => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .fJD;
+      .fjd;
 
-  static String get fKP => createActivationFactory(
+  static String get fkp => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .fKP;
+      .fkp;
 
-  static String get gBP => createActivationFactory(
+  static String get gbp => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .gBP;
+      .gbp;
 
-  static String get gEL => createActivationFactory(
+  static String get gel => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .gEL;
+      .gel;
 
-  static String get gHS => createActivationFactory(
+  static String get ghs => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .gHS;
+      .ghs;
 
-  static String get gIP => createActivationFactory(
+  static String get gip => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .gIP;
+      .gip;
 
-  static String get gMD => createActivationFactory(
+  static String get gmd => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .gMD;
+      .gmd;
 
-  static String get gNF => createActivationFactory(
+  static String get gnf => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .gNF;
+      .gnf;
 
-  static String get gTQ => createActivationFactory(
+  static String get gtq => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .gTQ;
+      .gtq;
 
-  static String get gYD => createActivationFactory(
+  static String get gyd => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .gYD;
+      .gyd;
 
-  static String get hKD => createActivationFactory(
+  static String get hkd => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .hKD;
+      .hkd;
 
-  static String get hNL => createActivationFactory(
+  static String get hnl => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .hNL;
+      .hnl;
 
-  static String get hrK => createActivationFactory(
+  static String get hrk => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .hrK;
+      .hrk;
 
-  static String get hTG => createActivationFactory(
+  static String get htg => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .hTG;
+      .htg;
 
-  static String get hUF => createActivationFactory(
+  static String get huf => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .hUF;
+      .huf;
 
-  static String get iDR => createActivationFactory(
+  static String get idr => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .iDR;
+      .idr;
 
-  static String get iLS => createActivationFactory(
+  static String get ils => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .iLS;
+      .ils;
 
-  static String get iNR => createActivationFactory(
+  static String get inr => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .iNR;
+      .inr;
 
-  static String get iQD => createActivationFactory(
+  static String get iqd => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .iQD;
+      .iqd;
 
-  static String get iRR => createActivationFactory(
+  static String get irr => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .iRR;
+      .irr;
 
-  static String get iSK => createActivationFactory(
+  static String get isk => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .iSK;
+      .isk;
 
-  static String get jMD => createActivationFactory(
+  static String get jmd => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .jMD;
+      .jmd;
 
-  static String get jOD => createActivationFactory(
+  static String get jod => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .jOD;
+      .jod;
 
-  static String get jPY => createActivationFactory(
+  static String get jpy => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .jPY;
+      .jpy;
 
-  static String get kES => createActivationFactory(
+  static String get kes => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .kES;
+      .kes;
 
-  static String get kGS => createActivationFactory(
+  static String get kgs => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .kGS;
+      .kgs;
 
-  static String get kHR => createActivationFactory(
+  static String get khr => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .kHR;
+      .khr;
 
-  static String get kMF => createActivationFactory(
+  static String get kmf => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .kMF;
+      .kmf;
 
-  static String get kPW => createActivationFactory(
+  static String get kpw => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .kPW;
+      .kpw;
 
-  static String get kRW => createActivationFactory(
+  static String get krw => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .kRW;
+      .krw;
 
-  static String get kWD => createActivationFactory(
+  static String get kwd => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .kWD;
+      .kwd;
 
-  static String get kYD => createActivationFactory(
+  static String get kyd => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .kYD;
+      .kyd;
 
-  static String get kZT => createActivationFactory(
+  static String get kzt => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .kZT;
+      .kzt;
 
-  static String get lAK => createActivationFactory(
+  static String get lak => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .lAK;
+      .lak;
 
-  static String get lBP => createActivationFactory(
+  static String get lbp => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .lBP;
+      .lbp;
 
-  static String get lKR => createActivationFactory(
+  static String get lkr => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .lKR;
+      .lkr;
 
-  static String get lRD => createActivationFactory(
+  static String get lrd => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .lRD;
+      .lrd;
 
-  static String get lSL => createActivationFactory(
+  static String get lsl => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .lSL;
+      .lsl;
 
-  static String get lTL => createActivationFactory(
+  static String get ltl => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .lTL;
+      .ltl;
 
-  static String get lVL => createActivationFactory(
+  static String get lvl => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .lVL;
+      .lvl;
 
-  static String get lYD => createActivationFactory(
+  static String get lyd => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .lYD;
+      .lyd;
 
-  static String get mAD => createActivationFactory(
+  static String get mad => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .mAD;
+      .mad;
 
-  static String get mDL => createActivationFactory(
+  static String get mdl => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .mDL;
+      .mdl;
 
-  static String get mGA => createActivationFactory(
+  static String get mga => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .mGA;
+      .mga;
 
-  static String get mKD => createActivationFactory(
+  static String get mkd => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .mKD;
+      .mkd;
 
-  static String get mMK => createActivationFactory(
+  static String get mmk => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .mMK;
+      .mmk;
 
-  static String get mNT => createActivationFactory(
+  static String get mnt => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .mNT;
+      .mnt;
 
-  static String get mOP => createActivationFactory(
+  static String get mop => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .mOP;
+      .mop;
 
-  static String get mRO => createActivationFactory(
+  static String get mro => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .mRO;
+      .mro;
 
-  static String get mUR => createActivationFactory(
+  static String get mur => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .mUR;
+      .mur;
 
-  static String get mVR => createActivationFactory(
+  static String get mvr => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .mVR;
+      .mvr;
 
-  static String get mWK => createActivationFactory(
+  static String get mwk => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .mWK;
+      .mwk;
 
-  static String get mXN => createActivationFactory(
+  static String get mxn => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .mXN;
+      .mxn;
 
-  static String get mYR => createActivationFactory(
+  static String get myr => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .mYR;
+      .myr;
 
-  static String get mZN => createActivationFactory(
+  static String get mzn => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .mZN;
+      .mzn;
 
-  static String get nAD => createActivationFactory(
+  static String get nad => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .nAD;
+      .nad;
 
-  static String get nGN => createActivationFactory(
+  static String get ngn => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .nGN;
+      .ngn;
 
-  static String get nIO => createActivationFactory(
+  static String get nio => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .nIO;
+      .nio;
 
-  static String get nOK => createActivationFactory(
+  static String get nok => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .nOK;
+      .nok;
 
-  static String get nPR => createActivationFactory(
+  static String get npr => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .nPR;
+      .npr;
 
-  static String get nZD => createActivationFactory(
+  static String get nzd => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .nZD;
+      .nzd;
 
-  static String get oMR => createActivationFactory(
+  static String get omr => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .oMR;
+      .omr;
 
-  static String get pAB => createActivationFactory(
+  static String get pab => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .pAB;
+      .pab;
 
-  static String get pEN => createActivationFactory(
+  static String get pen => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .pEN;
+      .pen;
 
-  static String get pGK => createActivationFactory(
+  static String get pgk => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .pGK;
+      .pgk;
 
-  static String get pHP => createActivationFactory(
+  static String get php => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .pHP;
+      .php;
 
-  static String get pKR => createActivationFactory(
+  static String get pkr => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .pKR;
+      .pkr;
 
-  static String get pLN => createActivationFactory(
+  static String get pln => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .pLN;
+      .pln;
 
-  static String get pYG => createActivationFactory(
+  static String get pyg => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .pYG;
+      .pyg;
 
-  static String get qAR => createActivationFactory(
+  static String get qar => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .qAR;
+      .qar;
 
-  static String get rON => createActivationFactory(
+  static String get ron => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .rON;
+      .ron;
 
-  static String get rSD => createActivationFactory(
+  static String get rsd => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .rSD;
+      .rsd;
 
-  static String get rUB => createActivationFactory(
+  static String get rub => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .rUB;
+      .rub;
 
-  static String get rWF => createActivationFactory(
+  static String get rwf => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .rWF;
+      .rwf;
 
-  static String get sAR => createActivationFactory(
+  static String get sar => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .sAR;
+      .sar;
 
-  static String get sBD => createActivationFactory(
+  static String get sbd => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .sBD;
+      .sbd;
 
-  static String get sCR => createActivationFactory(
+  static String get scr => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .sCR;
+      .scr;
 
-  static String get sDG => createActivationFactory(
+  static String get sdg => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .sDG;
+      .sdg;
 
-  static String get sEK => createActivationFactory(
+  static String get sek => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .sEK;
+      .sek;
 
-  static String get sGD => createActivationFactory(
+  static String get sgd => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .sGD;
+      .sgd;
 
-  static String get sHP => createActivationFactory(
+  static String get shp => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .sHP;
+      .shp;
 
-  static String get sLL => createActivationFactory(
+  static String get sll => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .sLL;
+      .sll;
 
-  static String get sOS => createActivationFactory(
+  static String get sos => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .sOS;
+      .sos;
 
-  static String get sRD => createActivationFactory(
+  static String get srd => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .sRD;
+      .srd;
 
-  static String get sTD => createActivationFactory(
+  static String get std => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .sTD;
+      .std;
 
-  static String get sYP => createActivationFactory(
+  static String get syp => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .sYP;
+      .syp;
 
-  static String get sZL => createActivationFactory(
+  static String get szl => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .sZL;
+      .szl;
 
-  static String get tHB => createActivationFactory(
+  static String get thb => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .tHB;
+      .thb;
 
-  static String get tJS => createActivationFactory(
+  static String get tjs => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .tJS;
+      .tjs;
 
-  static String get tMT => createActivationFactory(
+  static String get tmt => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .tMT;
+      .tmt;
 
-  static String get tND => createActivationFactory(
+  static String get tnd => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .tND;
+      .tnd;
 
-  static String get tOP => createActivationFactory(
+  static String get top => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .tOP;
+      .top;
 
-  static String get tRY => createActivationFactory(
+  static String get try_ => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .tRY;
+      .try_;
 
-  static String get tTD => createActivationFactory(
+  static String get ttd => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .tTD;
+      .ttd;
 
-  static String get tWD => createActivationFactory(
+  static String get twd => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .tWD;
+      .twd;
 
-  static String get tZS => createActivationFactory(
+  static String get tzs => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .tZS;
+      .tzs;
 
-  static String get uAH => createActivationFactory(
+  static String get uah => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .uAH;
+      .uah;
 
-  static String get uGX => createActivationFactory(
+  static String get ugx => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .uGX;
+      .ugx;
 
-  static String get uSD => createActivationFactory(
+  static String get usd => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .uSD;
+      .usd;
 
-  static String get uYU => createActivationFactory(
+  static String get uyu => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .uYU;
+      .uyu;
 
-  static String get uZS => createActivationFactory(
+  static String get uzs => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .uZS;
+      .uzs;
 
-  static String get vEF => createActivationFactory(
+  static String get vef => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .vEF;
+      .vef;
 
-  static String get vND => createActivationFactory(
+  static String get vnd => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .vND;
+      .vnd;
 
-  static String get vUV => createActivationFactory(
+  static String get vuv => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .vUV;
+      .vuv;
 
-  static String get wST => createActivationFactory(
+  static String get wst => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .wST;
+      .wst;
 
-  static String get xAF => createActivationFactory(
+  static String get xaf => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .xAF;
+      .xaf;
 
-  static String get xCD => createActivationFactory(
+  static String get xcd => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .xCD;
+      .xcd;
 
-  static String get xOF => createActivationFactory(
+  static String get xof => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .xOF;
+      .xof;
 
-  static String get xPF => createActivationFactory(
+  static String get xpf => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .xPF;
+      .xpf;
 
-  static String get xXX => createActivationFactory(
+  static String get xxx => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .xXX;
+      .xxx;
 
-  static String get yER => createActivationFactory(
+  static String get yer => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .yER;
+      .yer;
 
-  static String get zAR => createActivationFactory(
+  static String get zar => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .zAR;
+      .zar;
 
-  static String get zMW => createActivationFactory(
+  static String get zmw => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .zMW;
+      .zmw;
 
-  static String get zWL => createActivationFactory(
+  static String get zwl => createActivationFactory(
           ICurrencyIdentifiersStatics.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics)
-      .zWL;
+      .zwl;
 
-  static String get bYN => createActivationFactory(
+  static String get byn => createActivationFactory(
           ICurrencyIdentifiersStatics2.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics2)
-      .bYN;
+      .byn;
 
-  static String get mRU => createActivationFactory(
+  static String get mru => createActivationFactory(
           ICurrencyIdentifiersStatics3.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics3)
-      .mRU;
+      .mru;
 
-  static String get sSP => createActivationFactory(
+  static String get ssp => createActivationFactory(
           ICurrencyIdentifiersStatics3.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics3)
-      .sSP;
+      .ssp;
 
-  static String get sTN => createActivationFactory(
+  static String get stn => createActivationFactory(
           ICurrencyIdentifiersStatics3.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics3)
-      .sTN;
+      .stn;
 
-  static String get vES => createActivationFactory(
+  static String get ves => createActivationFactory(
           ICurrencyIdentifiersStatics3.fromPtr,
           _className,
           IID_ICurrencyIdentifiersStatics3)
-      .vES;
+      .ves;
 }

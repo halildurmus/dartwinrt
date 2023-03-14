@@ -28,7 +28,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
       ICurrencyIdentifiersStatics.fromPtr(
           interface.toInterface(IID_ICurrencyIdentifiersStatics));
 
-  String get aED {
+  String get aed {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -53,7 +53,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get aFN {
+  String get afn {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -78,7 +78,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get aLL {
+  String get all {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -103,7 +103,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get aMD {
+  String get amd {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -128,7 +128,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get aNG {
+  String get ang {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -153,7 +153,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get aOA {
+  String get aoa {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -178,7 +178,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get aRS {
+  String get ars {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -203,7 +203,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get aUD {
+  String get aud {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -228,7 +228,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get aWG {
+  String get awg {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -253,7 +253,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get aZN {
+  String get azn {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -303,7 +303,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get bBD {
+  String get bbd {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -328,7 +328,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get bDT {
+  String get bdt {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -353,7 +353,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get bGN {
+  String get bgn {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -378,7 +378,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get bHD {
+  String get bhd {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -403,7 +403,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get bIF {
+  String get bif {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -428,7 +428,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get bMD {
+  String get bmd {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -453,7 +453,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get bND {
+  String get bnd {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -478,7 +478,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get bOB {
+  String get bob {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -503,7 +503,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get bRL {
+  String get brl {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -528,7 +528,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get bSD {
+  String get bsd {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -553,7 +553,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get bTN {
+  String get btn {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -578,7 +578,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get bWP {
+  String get bwp {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -603,7 +603,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get bYR {
+  String get byr {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -628,7 +628,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get bZD {
+  String get bzd {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -653,7 +653,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get cAD {
+  String get cad {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -678,7 +678,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get cDF {
+  String get cdf {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -703,7 +703,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get cHF {
+  String get chf {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -728,7 +728,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get cLP {
+  String get clp {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -753,7 +753,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get cNY {
+  String get cny {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -778,7 +778,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get cOP {
+  String get cop {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -803,7 +803,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get cRC {
+  String get crc {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -828,7 +828,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get cUP {
+  String get cup {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -853,7 +853,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get cVE {
+  String get cve {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -878,7 +878,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get cZK {
+  String get czk {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -903,7 +903,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get dJF {
+  String get djf {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -928,7 +928,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get dKK {
+  String get dkk {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -953,7 +953,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get dOP {
+  String get dop {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -978,7 +978,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get dZD {
+  String get dzd {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -1003,7 +1003,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get eGP {
+  String get egp {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -1028,7 +1028,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get eRN {
+  String get ern {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -1053,7 +1053,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get eTB {
+  String get etb {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -1078,7 +1078,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get eUR {
+  String get eur {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -1103,7 +1103,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get fJD {
+  String get fjd {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -1128,7 +1128,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get fKP {
+  String get fkp {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -1153,7 +1153,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get gBP {
+  String get gbp {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -1178,7 +1178,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get gEL {
+  String get gel {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -1203,7 +1203,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get gHS {
+  String get ghs {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -1228,7 +1228,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get gIP {
+  String get gip {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -1253,7 +1253,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get gMD {
+  String get gmd {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -1278,7 +1278,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get gNF {
+  String get gnf {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -1303,7 +1303,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get gTQ {
+  String get gtq {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -1328,7 +1328,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get gYD {
+  String get gyd {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -1353,7 +1353,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get hKD {
+  String get hkd {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -1378,7 +1378,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get hNL {
+  String get hnl {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -1403,7 +1403,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get hrK {
+  String get hrk {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -1428,7 +1428,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get hTG {
+  String get htg {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -1453,7 +1453,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get hUF {
+  String get huf {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -1478,7 +1478,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get iDR {
+  String get idr {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -1503,7 +1503,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get iLS {
+  String get ils {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -1528,7 +1528,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get iNR {
+  String get inr {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -1553,7 +1553,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get iQD {
+  String get iqd {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -1578,7 +1578,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get iRR {
+  String get irr {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -1603,7 +1603,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get iSK {
+  String get isk {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -1628,7 +1628,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get jMD {
+  String get jmd {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -1653,7 +1653,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get jOD {
+  String get jod {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -1678,7 +1678,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get jPY {
+  String get jpy {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -1703,7 +1703,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get kES {
+  String get kes {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -1728,7 +1728,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get kGS {
+  String get kgs {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -1753,7 +1753,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get kHR {
+  String get khr {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -1778,7 +1778,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get kMF {
+  String get kmf {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -1803,7 +1803,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get kPW {
+  String get kpw {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -1828,7 +1828,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get kRW {
+  String get krw {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -1853,7 +1853,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get kWD {
+  String get kwd {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -1878,7 +1878,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get kYD {
+  String get kyd {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -1903,7 +1903,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get kZT {
+  String get kzt {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -1928,7 +1928,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get lAK {
+  String get lak {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -1953,7 +1953,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get lBP {
+  String get lbp {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -1978,7 +1978,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get lKR {
+  String get lkr {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -2003,7 +2003,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get lRD {
+  String get lrd {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -2028,7 +2028,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get lSL {
+  String get lsl {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -2053,7 +2053,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get lTL {
+  String get ltl {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -2078,7 +2078,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get lVL {
+  String get lvl {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -2103,7 +2103,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get lYD {
+  String get lyd {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -2128,7 +2128,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get mAD {
+  String get mad {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -2153,7 +2153,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get mDL {
+  String get mdl {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -2178,7 +2178,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get mGA {
+  String get mga {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -2203,7 +2203,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get mKD {
+  String get mkd {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -2228,7 +2228,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get mMK {
+  String get mmk {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -2253,7 +2253,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get mNT {
+  String get mnt {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -2278,7 +2278,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get mOP {
+  String get mop {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -2303,7 +2303,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get mRO {
+  String get mro {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -2328,7 +2328,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get mUR {
+  String get mur {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -2353,7 +2353,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get mVR {
+  String get mvr {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -2378,7 +2378,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get mWK {
+  String get mwk {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -2403,7 +2403,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get mXN {
+  String get mxn {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -2428,7 +2428,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get mYR {
+  String get myr {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -2453,7 +2453,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get mZN {
+  String get mzn {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -2478,7 +2478,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get nAD {
+  String get nad {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -2503,7 +2503,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get nGN {
+  String get ngn {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -2528,7 +2528,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get nIO {
+  String get nio {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -2553,7 +2553,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get nOK {
+  String get nok {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -2578,7 +2578,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get nPR {
+  String get npr {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -2603,7 +2603,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get nZD {
+  String get nzd {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -2628,7 +2628,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get oMR {
+  String get omr {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -2653,7 +2653,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get pAB {
+  String get pab {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -2678,7 +2678,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get pEN {
+  String get pen {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -2703,7 +2703,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get pGK {
+  String get pgk {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -2728,7 +2728,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get pHP {
+  String get php {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -2753,7 +2753,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get pKR {
+  String get pkr {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -2778,7 +2778,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get pLN {
+  String get pln {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -2803,7 +2803,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get pYG {
+  String get pyg {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -2828,7 +2828,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get qAR {
+  String get qar {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -2853,7 +2853,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get rON {
+  String get ron {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -2878,7 +2878,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get rSD {
+  String get rsd {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -2903,7 +2903,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get rUB {
+  String get rub {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -2928,7 +2928,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get rWF {
+  String get rwf {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -2953,7 +2953,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get sAR {
+  String get sar {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -2978,7 +2978,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get sBD {
+  String get sbd {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -3003,7 +3003,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get sCR {
+  String get scr {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -3028,7 +3028,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get sDG {
+  String get sdg {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -3053,7 +3053,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get sEK {
+  String get sek {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -3078,7 +3078,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get sGD {
+  String get sgd {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -3103,7 +3103,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get sHP {
+  String get shp {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -3128,7 +3128,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get sLL {
+  String get sll {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -3153,7 +3153,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get sOS {
+  String get sos {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -3178,7 +3178,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get sRD {
+  String get srd {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -3203,7 +3203,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get sTD {
+  String get std {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -3228,7 +3228,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get sYP {
+  String get syp {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -3253,7 +3253,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get sZL {
+  String get szl {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -3278,7 +3278,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get tHB {
+  String get thb {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -3303,7 +3303,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get tJS {
+  String get tjs {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -3328,7 +3328,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get tMT {
+  String get tmt {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -3353,7 +3353,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get tND {
+  String get tnd {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -3378,7 +3378,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get tOP {
+  String get top {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -3403,7 +3403,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get tRY {
+  String get try_ {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -3428,7 +3428,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get tTD {
+  String get ttd {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -3453,7 +3453,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get tWD {
+  String get twd {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -3478,7 +3478,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get tZS {
+  String get tzs {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -3503,7 +3503,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get uAH {
+  String get uah {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -3528,7 +3528,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get uGX {
+  String get ugx {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -3553,7 +3553,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get uSD {
+  String get usd {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -3578,7 +3578,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get uYU {
+  String get uyu {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -3603,7 +3603,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get uZS {
+  String get uzs {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -3628,7 +3628,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get vEF {
+  String get vef {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -3653,7 +3653,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get vND {
+  String get vnd {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -3678,7 +3678,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get vUV {
+  String get vuv {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -3703,7 +3703,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get wST {
+  String get wst {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -3728,7 +3728,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get xAF {
+  String get xaf {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -3753,7 +3753,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get xCD {
+  String get xcd {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -3778,7 +3778,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get xOF {
+  String get xof {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -3803,7 +3803,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get xPF {
+  String get xpf {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -3828,7 +3828,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get xXX {
+  String get xxx {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -3853,7 +3853,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get yER {
+  String get yer {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -3878,7 +3878,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get zAR {
+  String get zar {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -3903,7 +3903,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get zMW {
+  String get zmw {
     final retValuePtr = calloc<HSTRING>();
 
     try {
@@ -3928,7 +3928,7 @@ class ICurrencyIdentifiersStatics extends IInspectable {
     }
   }
 
-  String get zWL {
+  String get zwl {
     final retValuePtr = calloc<HSTRING>();
 
     try {
