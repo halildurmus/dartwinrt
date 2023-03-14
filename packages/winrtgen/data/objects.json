@@ -57,6 +57,8 @@
     "Windows.Gaming.Input.Gamepad": "Represents a gamepad.",
     "Windows.Gaming.Input.Headset": "Contains information about an audio headset attached to a gamepad.",
     "Windows.Globalization.Calendar": "Manipulates the representation of a `DateTime` within a given calendar and clock.",
+    "Windows.Globalization.Collation.CharacterGrouping": "A container for character group information. Characters are grouped in an index that enables an application to determine where the grouping boundaries are.",
+    "Windows.Globalization.Collation.CharacterGroupings": "Contains the set of character groups and the functionality to get the label for any given string.",
     "Windows.Globalization.DateTimeFormatting.DateTimeFormatter": "Formats dates and times.",
     "Windows.Globalization.NumberFormatting.CurrencyFormatter": "Formats and parses currencies.",
     "Windows.Globalization.NumberFormatting.DecimalFormatter": "Formats and parses decimal numbers.",

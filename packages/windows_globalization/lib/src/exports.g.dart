@@ -5,6 +5,10 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 export 'calendar.dart';
+export 'collation/charactergrouping.dart';
+export 'collation/charactergroupings.dart';
+export 'collation/icharactergrouping.dart';
+export 'collation/icharactergroupings.dart';
 export 'datetimeformatting/datetimeformatter.dart';
 export 'datetimeformatting/dayformat.dart';
 export 'datetimeformatting/dayofweekformat.dart';
