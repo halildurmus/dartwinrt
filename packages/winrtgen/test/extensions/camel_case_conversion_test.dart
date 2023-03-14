@@ -9,6 +9,8 @@ void main() {
   test('toCamelCase', () {
     expect('TitleCase'.toCamelCase(), equals('titleCase'));
     expect('camelCase'.toCamelCase(), equals('camelCase'));
+    expect('TRY'.toCamelCase(), equals('try'));
+    expect('USD'.toCamelCase(), equals('usd'));
     expect('IPAddress'.toCamelCase(), equals('ipAddress'));
     expect('UInt32'.toCamelCase(), equals('uint32'));
     expect('X'.toCamelCase(), equals('x'));

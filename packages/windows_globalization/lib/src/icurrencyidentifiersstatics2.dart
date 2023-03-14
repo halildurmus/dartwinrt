@@ -28,7 +28,7 @@ class ICurrencyIdentifiersStatics2 extends IInspectable {
       ICurrencyIdentifiersStatics2.fromPtr(
           interface.toInterface(IID_ICurrencyIdentifiersStatics2));
 
-  String get bYN {
+  String get byn {
     final retValuePtr = calloc<HSTRING>();
 
     try {
