@@ -33,6 +33,7 @@
     "Windows.Globalization.DateTimeFormatting.SecondFormat": "Specifies the intended format for the second in a DateTimeFormatter object.",
     "Windows.Globalization.DateTimeFormatting.YearFormat": "Specifies the intended format for the year in a DateTimeFormatter object.",
     "Windows.Globalization.DayOfWeek": "Identifies the day of the week.",
+    "Windows.Globalization.LanguageLayoutDirection": "Defines constants that specify the content layout direction (for text and UI elements) most appropriate for a language.",
     "Windows.Globalization.NumberFormatting.CurrencyFormatterMode": "Specifies the use of symbols or codes when currency is formatted.",
     "Windows.Globalization.NumberFormatting.RoundingAlgorithm": "Specifies the algorithm used to round numbers.",
     "Windows.Globalization.PhoneNumberFormatting.PhoneNumberFormat": "Lists phone number formats supported by this API.",
