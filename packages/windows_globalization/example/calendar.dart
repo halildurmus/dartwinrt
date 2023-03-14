@@ -25,10 +25,10 @@ void main() {
 
   print('Languages: ${calendar.languages}\n');
 
-  calendar.changeCalendarSystem('JapaneseCalendar');
+  calendar.changeCalendarSystem(CalendarIdentifiers.japanese);
   print(calendarData(calendar));
 
-  calendar.changeCalendarSystem('HebrewCalendar');
+  calendar.changeCalendarSystem(CalendarIdentifiers.hebrew);
   print(calendarData(calendar));
 
   final dateTime = calendar.getDateTime();

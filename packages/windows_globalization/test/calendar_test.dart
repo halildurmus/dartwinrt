@@ -78,7 +78,8 @@ void main() {
     });
 
     test('changeCalendarSystem', () {
-      final calendar = Calendar()..changeCalendarSystem('GregorianCalendar');
+      final calendar = Calendar()
+        ..changeCalendarSystem(CalendarIdentifiers.gregorian);
       expect(calendar.era, equals(1));
     });
 
@@ -90,7 +91,7 @@ void main() {
     });
 
     test('changeClock', () {
-      final calendar = Calendar()..changeClock('12HourClock');
+      final calendar = Calendar()..changeClock(ClockIdentifiers.twelveHour);
       expect(calendar.hour, inInclusiveRange(1, 12));
     });
 
@@ -120,7 +121,8 @@ void main() {
     });
 
     test('setToNow', () {
-      final calendar = Calendar()..changeCalendarSystem('GregorianCalendar');
+      final calendar = Calendar()
+        ..changeCalendarSystem(CalendarIdentifiers.gregorian);
       final dartDate = DateTime.utc(2017, 9, 7, 17, 30);
       calendar
         ..setDateTime(dartDate) // set to a known time
@@ -130,7 +132,8 @@ void main() {
     });
 
     test('firstEra', () {
-      final calendar = Calendar()..changeCalendarSystem('GregorianCalendar');
+      final calendar = Calendar()
+        ..changeCalendarSystem(CalendarIdentifiers.gregorian);
 
       // Per Microsoft docs, the WinRT implementation only recognizes the
       // current era (A.D.). See:
@@ -139,50 +142,55 @@ void main() {
     });
 
     test('lastEra', () {
-      final calendar = Calendar()..changeCalendarSystem('GregorianCalendar');
+      final calendar = Calendar()
+        ..changeCalendarSystem(CalendarIdentifiers.gregorian);
       expect(calendar.firstEra, equals(1));
       expect(calendar.lastEra, equals(1));
 
       // Most systems should be in the Reiwa (令和) era, but a system without
       // the calendar update will be in the Heisei (平成) era. In either event,
       // there should be at least four Japanese eras registered by WinRT.
-      calendar.changeCalendarSystem('JapaneseCalendar');
+      calendar.changeCalendarSystem(CalendarIdentifiers.japanese);
       expect(calendar.firstEra, equals(1));
       expect(calendar.lastEra, greaterThanOrEqualTo(4));
     });
 
     test('numberOfEras', () {
-      final calendar = Calendar()..changeCalendarSystem('GregorianCalendar');
+      final calendar = Calendar()
+        ..changeCalendarSystem(CalendarIdentifiers.gregorian);
       expect(calendar.numberOfEras, equals(1));
     });
 
     test('era getter', () {
-      final calendar = Calendar()..changeCalendarSystem('GregorianCalendar');
+      final calendar = Calendar()
+        ..changeCalendarSystem(CalendarIdentifiers.gregorian);
       expect(calendar.era, equals(1));
     });
 
     test('era setter', () {
       // Set an invalid era.
-      final calendar = Calendar()..changeCalendarSystem('GregorianCalendar');
+      final calendar = Calendar()
+        ..changeCalendarSystem(CalendarIdentifiers.gregorian);
       expect(() => calendar.era = 2, throwsA(isA<WindowsException>()));
     });
 
     test('addEras', () {
       final calendar = Calendar()
-        ..changeCalendarSystem('JapaneseCalendar')
+        ..changeCalendarSystem(CalendarIdentifiers.japanese)
         ..era = 1 // 明治 (Meiji)
         ..addEras(3); // 平成 (Heisei)
       expect(calendar.era, equals(4));
     });
 
     test('eraAsFullString (GregorianCalendar)', () {
-      final calendar = Calendar()..changeCalendarSystem('GregorianCalendar');
+      final calendar = Calendar()
+        ..changeCalendarSystem(CalendarIdentifiers.gregorian);
       expect(calendar.eraAsFullString(), equals('A.D.'));
     });
 
     test('eraAsFullString (JapaneseCalendar)', () {
       final calendar = Calendar()
-        ..changeCalendarSystem('JapaneseCalendar')
+        ..changeCalendarSystem(CalendarIdentifiers.japanese)
         ..era = 1 // 明治 (Meiji)
         ..addEras(3); // 平成 (Heisei)
       expect(calendar.eraAsFullString(), equals('平成'));
@@ -190,30 +198,33 @@ void main() {
 
     test('eraAsString', () {
       final calendar = Calendar()
-        ..changeCalendarSystem('JapaneseCalendar')
+        ..changeCalendarSystem(CalendarIdentifiers.japanese)
         ..era = 1; // 明治 (Meiji)
       expect(calendar.eraAsString(1), equals('明'));
     });
 
     test('firstYearInThisEra', () {
-      final calendar = Calendar()..changeCalendarSystem('HebrewCalendar');
+      final calendar = Calendar()
+        ..changeCalendarSystem(CalendarIdentifiers.hebrew);
       expect(calendar.firstYearInThisEra, equals(5343));
     });
 
     test('lastYearInThisEra', () {
-      final calendar = Calendar()..changeCalendarSystem('GregorianCalendar');
+      final calendar = Calendar()
+        ..changeCalendarSystem(CalendarIdentifiers.gregorian);
       expect(calendar.lastYearInThisEra, equals(9999));
     });
 
     test('numberOfYearsInThisEra', () {
       final calendar = Calendar()
-        ..changeCalendarSystem('JapaneseCalendar')
+        ..changeCalendarSystem(CalendarIdentifiers.japanese)
         ..era = 3; // 昭和 (Showa)
       expect(calendar.numberOfYearsInThisEra, equals(64));
     });
 
     test('year getter', () {
-      final calendar = Calendar()..changeCalendarSystem('GregorianCalendar');
+      final calendar = Calendar()
+        ..changeCalendarSystem(CalendarIdentifiers.gregorian);
       expect(calendar.year, greaterThanOrEqualTo(2021));
     });
 
@@ -233,12 +244,13 @@ void main() {
     });
 
     test('firstDayInThisMonth getter', () {
-      final calendar = Calendar()..changeCalendarSystem('GregorianCalendar');
+      final calendar = Calendar()
+        ..changeCalendarSystem(CalendarIdentifiers.gregorian);
       expect(calendar.firstDayInThisMonth, equals(1));
     });
 
     test('firstHourInThisPeriod getter', () {
-      final calendar = Calendar()..changeClock('12HourClock');
+      final calendar = Calendar()..changeClock(ClockIdentifiers.twelveHour);
       expect(calendar.firstHourInThisPeriod, isIn([0, 12]));
     });
 
@@ -268,27 +280,29 @@ void main() {
     });
 
     test('lastDayInThisMonth getter', () {
-      final calendar = Calendar()..changeCalendarSystem('GregorianCalendar');
+      final calendar = Calendar()
+        ..changeCalendarSystem(CalendarIdentifiers.gregorian);
       expect(calendar.lastDayInThisMonth, isIn([28, 29, 30, 31]));
     });
 
     test('lastHourInThisPeriod getter', () {
-      final calendar = Calendar()..changeClock('12HourClock');
+      final calendar = Calendar()..changeClock(ClockIdentifiers.twelveHour);
       expect(calendar.lastHourInThisPeriod, equals(11));
     });
 
     test('lastMinuteInThisHour getter', () {
-      final calendar = Calendar()..changeClock('12HourClock');
+      final calendar = Calendar()..changeClock(ClockIdentifiers.twelveHour);
       expect(calendar.lastMinuteInThisHour, equals(59));
     });
 
     test('lastMonthInThisYear getter', () {
-      final calendar = Calendar()..changeCalendarSystem('GregorianCalendar');
+      final calendar = Calendar()
+        ..changeCalendarSystem(CalendarIdentifiers.gregorian);
       expect(calendar.lastMonthInThisYear, equals(12));
     });
 
     test('lastPeriodInThisDay getter', () {
-      final calendar = Calendar()..changeClock('12HourClock');
+      final calendar = Calendar()..changeClock(ClockIdentifiers.twelveHour);
       expect(calendar.lastPeriodInThisDay, equals(2));
     });
 
@@ -313,12 +327,13 @@ void main() {
     });
 
     test('numberOfDaysInThisMonth getter', () {
-      final calendar = Calendar()..changeCalendarSystem('GregorianCalendar');
+      final calendar = Calendar()
+        ..changeCalendarSystem(CalendarIdentifiers.gregorian);
       expect(calendar.numberOfDaysInThisMonth, isIn([28, 29, 30, 31]));
     });
 
     test('numberOfHoursInThisPeriod', () {
-      final calendar = Calendar()..changeClock('24HourClock');
+      final calendar = Calendar()..changeClock(ClockIdentifiers.twentyFourHour);
       // Two days of the year don't have 24 hours in time zones that observe
       // daylight saving time.
       expect(calendar.numberOfHoursInThisPeriod, isIn([23, 24, 25]));
@@ -335,7 +350,7 @@ void main() {
     });
 
     test('numberOfPeriodsInThisDay getter', () {
-      final calendar = Calendar()..changeClock('24HourClock');
+      final calendar = Calendar()..changeClock(ClockIdentifiers.twentyFourHour);
       expect(calendar.numberOfPeriodsInThisDay, equals(1));
     });
 
@@ -355,7 +370,7 @@ void main() {
     });
 
     test('period getter', () {
-      final calendar = Calendar()..changeClock('12HourClock');
+      final calendar = Calendar()..changeClock(ClockIdentifiers.twelveHour);
       expect(calendar.period, isIn([1, 2]));
     });
 
