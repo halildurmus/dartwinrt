@@ -5,6 +5,16 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 export 'calendar.dart';
+export 'datetimeformatting/datetimeformatter.dart';
+export 'datetimeformatting/dayformat.dart';
+export 'datetimeformatting/dayofweekformat.dart';
+export 'datetimeformatting/hourformat.dart';
+export 'datetimeformatting/idatetimeformatter.dart';
+export 'datetimeformatting/idatetimeformatter2.dart';
+export 'datetimeformatting/minuteformat.dart';
+export 'datetimeformatting/monthformat.dart';
+export 'datetimeformatting/secondformat.dart';
+export 'datetimeformatting/yearformat.dart';
 export 'dayofweek.dart';
 export 'icalendar.dart';
 export 'itimezoneoncalendar.dart';
