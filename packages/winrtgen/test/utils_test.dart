@@ -101,7 +101,7 @@ void main() {
     });
   });
 
-  group('iterableIidFromMapTypeIdentifier', () {
+  group('iterableIidFromMapType', () {
     test(
         'returns the IID of IIterable<IKeyValuePair<String, IVectorView<TextSegment>>>',
         () {
@@ -131,7 +131,7 @@ void main() {
     });
   }, skip: !isWindowsRuntimeAvailable());
 
-  group('iterableIidFromVectorTypeIdentifier', () {
+  group('iterableIidFromVectorType', () {
     test('returns the IID of IIterable<String>', () {
       final typeDef = MetadataStore.getMetadataForType(
           'Windows.Storage.Pickers.IFileOpenPicker')!;
@@ -292,16 +292,12 @@ void main() {
 
   test('wrapCommentText', () {
     expect(wrapCommentText('', 12), isEmpty);
-
     expect(wrapCommentText('This is a short string', 8),
         equals('/// This\n/// is a\n/// short\n/// string'));
-
     expect(wrapCommentText('This is a short string', 12),
         equals('/// This is\n/// a short\n/// string'));
-
     expect(wrapCommentText('This is a short string', 20),
         equals('/// This is a short\n/// string'));
-
     expect(wrapCommentText('This is a short string', 200),
         equals('/// This is a short string'));
   });
