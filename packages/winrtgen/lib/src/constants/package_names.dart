@@ -12,5 +12,5 @@ const packageNames = <String>{
   'windows_globalization', 'windows_graphics', 'windows_management', //
   'windows_media', 'windows_networking', 'windows_perception', //
   'windows_security', 'windows_services', 'windows_storage', //
-  'windows_system', 'windows_ui', 'windows_web', //
+  'windows_system', 'windows_ui', 'windows_web'
 };

@@ -21,25 +21,15 @@ final _mapTypeArgs = <TypeArgPair>[
   TypeArgPair(TypeArg.uint32, TypeArg.nullableInspectable),
   TypeArgPair(TypeArg.uint64, TypeArg.nullableInspectable),
   TypeArgPair(TypeArg.winrtEnum, TypeArg.nullableInspectable),
-  TypeArgPair(TypeArg.winrtFlagsEnum, TypeArg.nullableInspectable),
+  TypeArgPair(TypeArg.winrtFlagsEnum, TypeArg.nullableInspectable)
 ];
 
 /// The common type arguments for `IIterator`, `IVector`, and `IVectorView`.
 final _vectorTypeArgs = <TypeArg>[
-  TypeArg.bool_,
-  TypeArg.guid,
-  TypeArg.inspectable,
-  TypeArg.int16,
-  TypeArg.int32,
-  TypeArg.int64,
-  TypeArg.string,
-  TypeArg.uint8,
-  TypeArg.uint16,
-  TypeArg.uint32,
-  TypeArg.uint64,
-  TypeArg.uri,
-  TypeArg.winrtEnum,
-  TypeArg.winrtFlagsEnum,
+  TypeArg.bool_, TypeArg.guid, TypeArg.inspectable, TypeArg.int16, //
+  TypeArg.int32, TypeArg.int64, TypeArg.string, TypeArg.uint8, //
+  TypeArg.uint16, TypeArg.uint32, TypeArg.uint64, TypeArg.uri, //
+  TypeArg.winrtEnum, TypeArg.winrtFlagsEnum
 ];
 
 /// WinRT generic types with their [TypeArg]s.
@@ -48,42 +38,19 @@ final _vectorTypeArgs = <TypeArg>[
 /// classes.
 final genericTypesWithTypeArgs = <GenericType>[
   GenericTypeWithOneTypeArg('Windows.Foundation.IAsyncOperation`1', [
-    TypeArg.bool_,
-    TypeArg.guid,
-    TypeArg.int16,
-    TypeArg.int32,
-    TypeArg.int64,
-    TypeArg.nullableInspectable,
-    TypeArg.nullableObject,
-    TypeArg.nullableUri,
-    TypeArg.string,
-    TypeArg.uint8,
-    TypeArg.uint16,
-    TypeArg.uint32,
-    TypeArg.uint64,
-    TypeArg.winrtEnum,
-    TypeArg.winrtFlagsEnum,
+    TypeArg.bool_, TypeArg.guid, TypeArg.int16, TypeArg.int32, TypeArg.int64, //
+    TypeArg.nullableInspectable, TypeArg.nullableObject, TypeArg.nullableUri, //
+    TypeArg.string, TypeArg.uint8, TypeArg.uint16, TypeArg.uint32, //
+    TypeArg.uint64, TypeArg.winrtEnum, TypeArg.winrtFlagsEnum
   ]),
   GenericTypeWithOneTypeArg('Windows.Foundation.IReference`1', [
-    TypeArg.nullableBool,
-    TypeArg.nullableDateTime,
-    TypeArg.nullableDouble,
-    TypeArg.nullableDuration,
-    TypeArg.nullableFloat,
-    TypeArg.nullableGuid,
-    TypeArg.nullableInt16,
-    TypeArg.nullableInt32,
-    TypeArg.nullableInt64,
-    TypeArg.nullablePoint,
-    TypeArg.nullableRect,
-    TypeArg.nullableSize,
-    TypeArg.nullableString,
-    TypeArg.nullableUint8,
-    TypeArg.nullableUint16,
-    TypeArg.nullableUint32,
-    TypeArg.nullableUint64,
-    TypeArg.winrtEnum,
-    TypeArg.winrtFlagsEnum,
+    TypeArg.nullableBool, TypeArg.nullableDateTime, TypeArg.nullableDouble, //
+    TypeArg.nullableDuration, TypeArg.nullableFloat, TypeArg.nullableGuid, //
+    TypeArg.nullableInt16, TypeArg.nullableInt32, TypeArg.nullableInt64, //
+    TypeArg.nullablePoint, TypeArg.nullableRect, TypeArg.nullableSize, //
+    TypeArg.nullableString, TypeArg.nullableUint8, TypeArg.nullableUint16, //
+    TypeArg.nullableUint32, TypeArg.nullableUint64, TypeArg.winrtEnum, //
+    TypeArg.winrtFlagsEnum
   ]),
   GenericTypeWithOneTypeArg(
       'Windows.Foundation.Collections.IIterator`1', _vectorTypeArgs),

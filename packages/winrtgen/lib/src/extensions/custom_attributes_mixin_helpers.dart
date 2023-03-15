@@ -5,6 +5,7 @@
 import 'package:winmd/winmd.dart';
 
 import '../constants/constants.dart';
+import '../utils.dart';
 
 extension CustomAttributesMixinHelpers on CustomAttributesMixin {
   /// Returns the deprecated annotation for this object if it has a
@@ -14,7 +15,7 @@ extension CustomAttributesMixinHelpers on CustomAttributesMixin {
   String get deprecatedAnnotation {
     if (!isDeprecated) return '';
     final deprecationMessage = attributeAsString(deprecatedAttribute);
-    return "@Deprecated('$deprecationMessage')";
+    return '@Deprecated(${quote(deprecationMessage)})';
   }
 
   /// Whether this object has a `DeprecatedAttribute`.
