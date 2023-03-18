@@ -1,5 +1,6 @@
 @echo off
 
+if "%1"=="-h" goto help
 if "%1"=="--help" goto help
 
 echo Loading...
