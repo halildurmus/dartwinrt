@@ -1,4 +1,4 @@
-This folder contains utilities to help with developing the dartwinrt package.
+This folder contains utilities to help with developing the `dartwinrt`.
 
 # Code-generation tools
 
@@ -18,7 +18,7 @@ Not every WinRT API is projected. The JSON files in the
 
 Instead of manually editing the JSON files mentioned above, you should call
 `add_type.cmd` from the project root with the appropriate arguments to add
-itself and its dependencies (if any) into the JSON files.
+the type and its dependencies (if any) into the JSON files.
 
 For example, to add a WinRT object such as `Windows.Storage.StorageFile`, use
 `-o` or `--object` option with the type:
