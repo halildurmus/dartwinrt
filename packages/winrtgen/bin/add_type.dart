@@ -263,6 +263,17 @@ Future<String> getDocumentationComment(String fullyQualifiedType) async {
 }
 
 Future<void> addEnum(String type) async {
+  try {
+    final typeDef = MetadataStore.getMetadataForType(type);
+    if (!(typeDef?.isEnum ?? false)) {
+      print('`$type` is not a WinRT enum!');
+      return;
+    }
+  } catch (e) {
+    print('`$type` is not found in Windows Metadata!');
+    return;
+  }
+
   final enumsToGenerate = loadMap('enums.json');
   if (enumsToGenerate.keys.contains(type)) {
     print('`$type` already exists in `data\\enums.json`!');
@@ -279,6 +290,22 @@ Future<void> addEnum(String type) async {
 }
 
 Future<void> addObject(String type) async {
+  try {
+    final typeDef = MetadataStore.getMetadataForType(type);
+    if (type.contains('`')) {
+      print('`$type` is a generic type! Generic types cannot be generated.');
+      return;
+    }
+
+    if (!(typeDef?.isClass ?? false) && !(typeDef?.isInterface ?? false)) {
+      print('`$type` is not a WinRT object!');
+      return;
+    }
+  } catch (e) {
+    print('`$type` is not found in Windows Metadata!');
+    return;
+  }
+
   final dependencies = getAllDependenciesOf(type);
   print(dependencies);
 
@@ -325,6 +352,17 @@ Future<void> addObject(String type) async {
 }
 
 Future<void> addStruct(String type) async {
+  try {
+    final typeDef = MetadataStore.getMetadataForType(type);
+    if (!(typeDef?.isStruct ?? false)) {
+      print('`$type` is not a WinRT struct!');
+      return;
+    }
+  } catch (e) {
+    print('`$type` is not found in Windows Metadata!');
+    return;
+  }
+
   final structsToGenerate = loadMap('structs.json');
   if (structsToGenerate.keys.contains(type)) {
     print('`$type` already exists in `data\\structs.json`!');
