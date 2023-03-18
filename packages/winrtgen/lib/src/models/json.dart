@@ -6,7 +6,7 @@ import 'dart:collection';
 import 'dart:convert';
 import 'dart:io';
 
-/// Loads a map from a JSON file.
+/// Loads a [Map] from a JSON file.
 Map<String, String> loadMap(String filename) {
   final jsonString = File('data/$filename').readAsStringSync();
   final decoded = json.decode(jsonString) as Map<String, dynamic>;
