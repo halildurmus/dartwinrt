@@ -186,8 +186,8 @@ class UriListParameterProjection extends DefaultListParameterProjection {
 
   @override
   String get fillArrayPostamble => '''
-    if (retValuePtr.value > 0) {
-      value.addAll(pArray.toDartUriList(length: retValuePtr.value));
+    if ($fillArraySizeVariable > 0) {
+      value.addAll(pArray.toDartUriList(length: $fillArraySizeVariable));
     }
     free(pArray);''';
 

@@ -168,6 +168,8 @@ extension TypeIdentifierHelpers on TypeIdentifier {
 
   bool get isValueType => baseType == BaseType.valueTypeModifier;
 
+  bool get isVoidType => baseType == BaseType.voidType;
+
   /// Returns the shorter name of the type defined in this TypeIdentifier (e.g.
   /// `ICalendar`, `IMap<String, String>`).
   String get shortName {

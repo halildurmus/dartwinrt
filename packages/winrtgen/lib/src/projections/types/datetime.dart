@@ -112,9 +112,9 @@ class DateTimeListParameterProjection extends DefaultListParameterProjection {
 
   @override
   String get fillArrayPostamble => '''
-    if (retValuePtr.value > 0) {
+    if ($fillArraySizeVariable > 0) {
       value.addAll(pArray
-          .toList(length: retValuePtr.value)
+          .toList(length: $fillArraySizeVariable)
           .map((value) => value.toDartDateTime()));
     }
     free(pArray);''';
