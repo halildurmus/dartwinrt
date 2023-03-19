@@ -166,32 +166,7 @@ void main() {
               'value?.toReference(IntType.uint32).ptr.ref.lpVtbl ?? nullptr'));
     });
 
-    test('projects Object', () {
-      final methodProjection = MethodProjection.fromTypeAndMethodName(
-          'Windows.Foundation.Collections.PropertySet', 'Insert');
-      final parameter = methodProjection.parameters.last;
-      expect(parameter, isA<ObjectParameterProjection>());
-      expect(parameter.type, equals('Object?'));
-      expect(
-          parameter.preamble,
-          equals(
-              'final valuePtr = value?.intoBox().ptr.ref.lpVtbl ?? nullptr;'));
-      expect(parameter.postamble, isEmpty);
-      expect(parameter.localIdentifier, equals('valuePtr'));
-    });
-
-    test('projects pointer', () {
-      final methodProjection = MethodProjection.fromTypeAndMethodName(
-          'Windows.Storage.Pickers.FileExtensionVector', 'IndexOf');
-      final parameter = methodProjection.parameters.last;
-      expect(parameter, isA<DefaultParameterProjection>());
-      expect(parameter.type, equals('Pointer<Uint32>'));
-      expect(parameter.preamble, isEmpty);
-      expect(parameter.postamble, isEmpty);
-      expect(parameter.localIdentifier, equals('index'));
-    });
-
-    test('projects List<String> (FillArray)', () {
+    test('projects List<String> (FillArray - getMany)', () {
       final methodProjection = MethodProjection.fromTypeAndMethodName(
           'Windows.Storage.Pickers.FileExtensionVector', 'GetMany');
       final parameter = methodProjection.parameters.last;
@@ -203,6 +178,23 @@ void main() {
           parameter.postamble,
           equalsIgnoringWhitespace('if (retValuePtr.value > 0) {\n'
               'value.addAll(pArray.toList(length: retValuePtr.value));\n'
+              '}\n'
+              'free(pArray);'));
+      expect(parameter.localIdentifier, equals('pArray'));
+    });
+
+    test('projects List<String> (FillArray - readBytes)', () {
+      final methodProjection = MethodProjection.fromTypeAndMethodName(
+          'Windows.Storage.Streams.DataReader', 'ReadBytes');
+      final parameter = methodProjection.parameters.last;
+      expect(parameter, isA<DefaultListParameterProjection>());
+      expect(parameter.type, equals('List<int>'));
+      expect(parameter.preamble,
+          equals('final pArray = calloc<Uint8>(valueSize);'));
+      expect(
+          parameter.postamble,
+          equalsIgnoringWhitespace('if (valueSize > 0) {\n'
+              'value.addAll(pArray.toList(length: valueSize));\n'
               '}\n'
               'free(pArray);'));
       expect(parameter.localIdentifier, equals('pArray'));
@@ -247,6 +239,31 @@ void main() {
               'free(pValueSize);\n'
               'free(pArray);'));
       expect(parameter.localIdentifier, equals('pArray'));
+    });
+
+    test('projects Object', () {
+      final methodProjection = MethodProjection.fromTypeAndMethodName(
+          'Windows.Foundation.Collections.PropertySet', 'Insert');
+      final parameter = methodProjection.parameters.last;
+      expect(parameter, isA<ObjectParameterProjection>());
+      expect(parameter.type, equals('Object?'));
+      expect(
+          parameter.preamble,
+          equals(
+              'final valuePtr = value?.intoBox().ptr.ref.lpVtbl ?? nullptr;'));
+      expect(parameter.postamble, isEmpty);
+      expect(parameter.localIdentifier, equals('valuePtr'));
+    });
+
+    test('projects pointer', () {
+      final methodProjection = MethodProjection.fromTypeAndMethodName(
+          'Windows.Storage.Pickers.FileExtensionVector', 'IndexOf');
+      final parameter = methodProjection.parameters.last;
+      expect(parameter, isA<DefaultParameterProjection>());
+      expect(parameter.type, equals('Pointer<Uint32>'));
+      expect(parameter.preamble, isEmpty);
+      expect(parameter.postamble, isEmpty);
+      expect(parameter.localIdentifier, equals('index'));
     });
 
     test('projects String', () {

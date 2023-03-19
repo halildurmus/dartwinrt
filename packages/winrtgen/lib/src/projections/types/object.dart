@@ -277,17 +277,14 @@ class ObjectListParameterProjection extends DefaultListParameterProjection {
 
   @override
   String get fillArrayPostamble {
-    return [
-      'if (retValuePtr.value > 0) {',
-      if (typeArgProjection.isObjectType)
-        'value.addAll(pArray.toObjectList(length: retValuePtr.value));'
-      else
-        '''
-      value.addAll(pArray
-          .toList($shortName.fromPtr, length: retValuePtr.value));''',
-      '}',
-      'free(pArray);',
-    ].join('\n');
+    final addAll = typeArgProjection.isObjectType
+        ? 'value.addAll(pArray.toObjectList(length: $fillArraySizeVariable));'
+        : 'value.addAll(pArray.toList($shortName.fromPtr, length: $fillArraySizeVariable));';
+    return '''
+    if ($fillArraySizeVariable > 0) {
+      $addAll
+    }
+    free(pArray);''';
   }
 
   @override

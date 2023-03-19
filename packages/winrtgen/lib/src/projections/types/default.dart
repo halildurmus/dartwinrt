@@ -131,6 +131,20 @@ class DefaultListParameterProjection extends ParameterProjection {
   bool get isReceiveArrayStyleParam =>
       valueSizeParam.isOutParam && valueSizeParam.typeIdentifier.isPointerType;
 
+  /// Whether the method this parameter belongs to returns `void`.
+  bool get isVoidMethod =>
+      parameter.parent.returnType.typeIdentifier.isVoidType;
+
+  /// Returns the name of the variable to use as the array size.
+  ///
+  /// On `void` methods (e.g. `DataReader.readBytes`), `valueSize` parameter
+  /// from the method is used.
+  ///
+  /// On non-void methods (e.g. `IVector.getMany`), the number of items that
+  /// were retrieved is returned so `retValuePtr.value` is used instead.
+  String get fillArraySizeVariable =>
+      isVoidMethod ? 'valueSize' : 'retValuePtr.value';
+
   @override
   String get type => 'List<${typeArgProjection.dartType}>';
 
@@ -148,8 +162,8 @@ class DefaultListParameterProjection extends ParameterProjection {
     final pArray = calloc<Pointer<${typeArgProjection.nativeType}>>();''';
 
   String get fillArrayPostamble => '''
-    if (retValuePtr.value > 0) {
-      value.addAll(pArray.toList(length: retValuePtr.value));
+    if ($fillArraySizeVariable > 0) {
+      value.addAll(pArray.toList(length: $fillArraySizeVariable));
     }
     free(pArray);''';
 
