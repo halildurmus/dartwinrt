@@ -32,7 +32,6 @@ class IRandomAccessStreamReference extends IInspectable {
 
   Future<IRandomAccessStreamWithContentType?> openReadAsync() {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<IRandomAccessStreamWithContentType?>();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -55,9 +54,6 @@ class IRandomAccessStreamReference extends IInspectable {
         IAsyncOperation<IRandomAccessStreamWithContentType?>.fromPtr(
             retValuePtr,
             creator: IRandomAccessStreamWithContentType.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 }

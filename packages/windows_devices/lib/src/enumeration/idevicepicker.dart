@@ -274,7 +274,6 @@ class IDevicePicker extends IInspectable {
 
   Future<DeviceInformation?> pickSingleDeviceAsync(Rect selection) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<DeviceInformation?>();
     final selectionNativeStructPtr = selection.toNative();
 
     final hr = ptr.ref.vtable
@@ -300,16 +299,12 @@ class IDevicePicker extends IInspectable {
     final asyncOperation = IAsyncOperation<DeviceInformation?>.fromPtr(
         retValuePtr,
         creator: DeviceInformation.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<DeviceInformation?> pickSingleDeviceAsyncWithPlacement(
       Rect selection, Placement placement) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<DeviceInformation?>();
     final selectionNativeStructPtr = selection.toNative();
 
     final hr =
@@ -342,10 +337,7 @@ class IDevicePicker extends IInspectable {
     final asyncOperation = IAsyncOperation<DeviceInformation?>.fromPtr(
         retValuePtr,
         creator: DeviceInformation.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   void hide() {

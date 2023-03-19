@@ -32,7 +32,6 @@ class IStorageQueryResultBase extends IInspectable {
 
   Future<int> getItemCountAsync() {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<int>();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -53,10 +52,7 @@ class IStorageQueryResultBase extends IInspectable {
 
     final asyncOperation =
         IAsyncOperation<int>.fromPtr(retValuePtr, intType: IntType.uint32);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   StorageFolder? get folder {
@@ -167,7 +163,6 @@ class IStorageQueryResultBase extends IInspectable {
 
   Future<int> findStartIndexAsync(Object? value) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<int>();
     final valuePtr = value?.intoBox().ptr.ref.lpVtbl ?? nullptr;
 
     final hr = ptr.ref.vtable
@@ -190,10 +185,7 @@ class IStorageQueryResultBase extends IInspectable {
 
     final asyncOperation =
         IAsyncOperation<int>.fromPtr(retValuePtr, intType: IntType.uint32);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   QueryOptions? getCurrentQueryOptions() {

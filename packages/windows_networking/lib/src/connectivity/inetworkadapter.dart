@@ -155,7 +155,6 @@ class INetworkAdapter extends IInspectable {
 
   Future<ConnectionProfile?> getConnectedProfileAsync() {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<ConnectionProfile?>();
 
     final hr = ptr.ref.vtable
             .elementAt(11)
@@ -177,9 +176,6 @@ class INetworkAdapter extends IInspectable {
     final asyncOperation = IAsyncOperation<ConnectionProfile?>.fromPtr(
         retValuePtr,
         creator: ConnectionProfile.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 }

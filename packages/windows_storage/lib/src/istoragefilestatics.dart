@@ -33,7 +33,6 @@ class IStorageFileStatics extends IInspectable {
 
   Future<StorageFile?> getFileFromPathAsync(String path) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<StorageFile?>();
     final pathHString = path.toHString();
 
     final hr = ptr.ref.vtable
@@ -58,15 +57,11 @@ class IStorageFileStatics extends IInspectable {
 
     final asyncOperation = IAsyncOperation<StorageFile?>.fromPtr(retValuePtr,
         creator: StorageFile.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<StorageFile?> getFileFromApplicationUriAsync(Uri? uri) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<StorageFile?>();
     final uriUri = uri?.toWinRTUri();
 
     final hr = ptr.ref.vtable
@@ -89,10 +84,7 @@ class IStorageFileStatics extends IInspectable {
 
     final asyncOperation = IAsyncOperation<StorageFile?>.fromPtr(retValuePtr,
         creator: StorageFile.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<StorageFile?> createStreamedFileAsync(
@@ -100,7 +92,6 @@ class IStorageFileStatics extends IInspectable {
       Pointer<COMObject> dataRequested,
       IRandomAccessStreamReference? thumbnail) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<StorageFile?>();
     final displayNameWithExtensionHString =
         displayNameWithExtension.toHString();
     final thumbnailPtr = thumbnail == null ? nullptr : thumbnail.ptr.ref.lpVtbl;
@@ -139,10 +130,7 @@ class IStorageFileStatics extends IInspectable {
 
     final asyncOperation = IAsyncOperation<StorageFile?>.fromPtr(retValuePtr,
         creator: StorageFile.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<StorageFile?> replaceWithStreamedFileAsync(
@@ -150,7 +138,6 @@ class IStorageFileStatics extends IInspectable {
       Pointer<COMObject> dataRequested,
       IRandomAccessStreamReference? thumbnail) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<StorageFile?>();
     final fileToReplacePtr =
         fileToReplace == null ? nullptr : fileToReplace.ptr.ref.lpVtbl;
     final thumbnailPtr = thumbnail == null ? nullptr : thumbnail.ptr.ref.lpVtbl;
@@ -183,10 +170,7 @@ class IStorageFileStatics extends IInspectable {
 
     final asyncOperation = IAsyncOperation<StorageFile?>.fromPtr(retValuePtr,
         creator: StorageFile.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<StorageFile?> createStreamedFileFromUriAsync(
@@ -194,7 +178,6 @@ class IStorageFileStatics extends IInspectable {
       Uri? uri,
       IRandomAccessStreamReference? thumbnail) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<StorageFile?>();
     final displayNameWithExtensionHString =
         displayNameWithExtension.toHString();
     final uriUri = uri?.toWinRTUri();
@@ -234,10 +217,7 @@ class IStorageFileStatics extends IInspectable {
 
     final asyncOperation = IAsyncOperation<StorageFile?>.fromPtr(retValuePtr,
         creator: StorageFile.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<StorageFile?> replaceWithStreamedFileFromUriAsync(
@@ -245,7 +225,6 @@ class IStorageFileStatics extends IInspectable {
       Uri? uri,
       IRandomAccessStreamReference? thumbnail) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<StorageFile?>();
     final fileToReplacePtr =
         fileToReplace == null ? nullptr : fileToReplace.ptr.ref.lpVtbl;
     final uriUri = uri?.toWinRTUri();
@@ -279,9 +258,6 @@ class IStorageFileStatics extends IInspectable {
 
     final asyncOperation = IAsyncOperation<StorageFile?>.fromPtr(retValuePtr,
         creator: StorageFile.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 }

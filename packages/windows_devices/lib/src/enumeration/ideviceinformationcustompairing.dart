@@ -37,7 +37,6 @@ class IDeviceInformationCustomPairing extends IInspectable {
   Future<DevicePairingResult?> pairAsync(
       DevicePairingKinds pairingKindsSupported) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<DevicePairingResult?>();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -62,17 +61,13 @@ class IDeviceInformationCustomPairing extends IInspectable {
     final asyncOperation = IAsyncOperation<DevicePairingResult?>.fromPtr(
         retValuePtr,
         creator: DevicePairingResult.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<DevicePairingResult?> pairWithProtectionLevelAsync(
       DevicePairingKinds pairingKindsSupported,
       DevicePairingProtectionLevel minProtectionLevel) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<DevicePairingResult?>();
 
     final hr = ptr.ref.vtable
             .elementAt(7)
@@ -101,10 +96,7 @@ class IDeviceInformationCustomPairing extends IInspectable {
     final asyncOperation = IAsyncOperation<DevicePairingResult?>.fromPtr(
         retValuePtr,
         creator: DevicePairingResult.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<DevicePairingResult?> pairWithProtectionLevelAndSettingsAsync(
@@ -112,7 +104,6 @@ class IDeviceInformationCustomPairing extends IInspectable {
       DevicePairingProtectionLevel minProtectionLevel,
       IDevicePairingSettings? devicePairingSettings) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<DevicePairingResult?>();
     final devicePairingSettingsPtr = devicePairingSettings == null
         ? nullptr
         : devicePairingSettings.ptr.ref.lpVtbl;
@@ -150,10 +141,7 @@ class IDeviceInformationCustomPairing extends IInspectable {
     final asyncOperation = IAsyncOperation<DevicePairingResult?>.fromPtr(
         retValuePtr,
         creator: DevicePairingResult.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   int add_PairingRequested(Pointer<COMObject> handler) {

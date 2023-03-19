@@ -31,7 +31,6 @@ class IStorageItemExtraProperties extends IInspectable {
   Future<IMap<String, Object?>> retrievePropertiesAsync(
       IIterable<String>? propertiesToRetrieve) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<IMap<String, Object?>>();
     final propertiesToRetrievePtr = propertiesToRetrieve == null
         ? nullptr
         : IInspectable(propertiesToRetrieve
@@ -65,16 +64,12 @@ class IStorageItemExtraProperties extends IInspectable {
         retValuePtr,
         creator: (ptr) => IMap.fromPtr(ptr,
             iterableIid: '{fe2f3d47-5d47-5499-8374-430c7cda0204}'));
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<void> savePropertiesAsync(
       IIterable<IKeyValuePair<String, Object?>>? propertiesToSave) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<void>();
     final propertiesToSavePtr = propertiesToSave == null
         ? nullptr
         : IInspectable(propertiesToSave
@@ -101,15 +96,11 @@ class IStorageItemExtraProperties extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncAction = IAsyncAction.fromPtr(retValuePtr);
-    completeAsyncAction(asyncAction, completer);
-
-    return completer.future;
+    return IAsyncAction.fromPtr(retValuePtr).toFuture();
   }
 
   Future<void> savePropertiesAsyncOverloadDefault() {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<void>();
 
     final hr = ptr.ref.vtable
             .elementAt(8)
@@ -128,9 +119,6 @@ class IStorageItemExtraProperties extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncAction = IAsyncAction.fromPtr(retValuePtr);
-    completeAsyncAction(asyncAction, completer);
-
-    return completer.future;
+    return IAsyncAction.fromPtr(retValuePtr).toFuture();
   }
 }

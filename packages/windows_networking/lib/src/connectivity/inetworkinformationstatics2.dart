@@ -34,7 +34,6 @@ class INetworkInformationStatics2 extends IInspectable {
   Future<List<ConnectionProfile>> findConnectionProfilesAsync(
       ConnectionProfileFilter? pProfileFilter) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<List<ConnectionProfile>>();
     final pProfileFilterPtr =
         pProfileFilter == null ? nullptr : pProfileFilter.ptr.ref.lpVtbl;
 
@@ -61,9 +60,6 @@ class INetworkInformationStatics2 extends IInspectable {
             creator: (ptr) => IVectorView.fromPtr(ptr,
                 creator: ConnectionProfile.fromPtr,
                 iterableIid: '{34dabef9-87d0-5b1c-a7ac-9d290adeb0c8}'));
-    completeAsyncOperation(
-        asyncOperation, completer, () => asyncOperation.getResults().toList());
-
-    return completer.future;
+    return asyncOperation.toFuture(() => asyncOperation.getResults().toList());
   }
 }

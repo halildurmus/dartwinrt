@@ -55,7 +55,6 @@ class IOutputStream extends IInspectable implements IClosable {
 
   Future<bool> flushAsync() {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<bool>();
 
     final hr = ptr.ref.vtable
             .elementAt(7)
@@ -75,10 +74,7 @@ class IOutputStream extends IInspectable implements IClosable {
     }
 
     final asyncOperation = IAsyncOperation<bool>.fromPtr(retValuePtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   late final _iClosable = IClosable.from(this);

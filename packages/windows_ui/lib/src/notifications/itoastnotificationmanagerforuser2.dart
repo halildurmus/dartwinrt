@@ -35,7 +35,6 @@ class IToastNotificationManagerForUser2 extends IInspectable {
   Future<ToastNotifier?> getToastNotifierForToastCollectionIdAsync(
       String collectionId) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<ToastNotifier?>();
     final collectionIdHString = collectionId.toHString();
 
     final hr = ptr.ref.vtable
@@ -60,16 +59,12 @@ class IToastNotificationManagerForUser2 extends IInspectable {
 
     final asyncOperation = IAsyncOperation<ToastNotifier?>.fromPtr(retValuePtr,
         creator: ToastNotifier.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<ToastNotificationHistory?> getHistoryForToastCollectionIdAsync(
       String collectionId) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<ToastNotificationHistory?>();
     final collectionIdHString = collectionId.toHString();
 
     final hr = ptr.ref.vtable
@@ -95,10 +90,7 @@ class IToastNotificationManagerForUser2 extends IInspectable {
     final asyncOperation = IAsyncOperation<ToastNotificationHistory?>.fromPtr(
         retValuePtr,
         creator: ToastNotificationHistory.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   ToastCollectionManager? getToastCollectionManager() {

@@ -64,7 +64,6 @@ class IDeviceInformationStatics2 extends IInspectable {
       IIterable<String>? additionalProperties,
       DeviceInformationKind kind) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<DeviceInformation?>();
     final deviceIdHString = deviceId.toHString();
     final additionalPropertiesPtr = additionalProperties == null
         ? nullptr
@@ -105,17 +104,13 @@ class IDeviceInformationStatics2 extends IInspectable {
     final asyncOperation = IAsyncOperation<DeviceInformation?>.fromPtr(
         retValuePtr,
         creator: DeviceInformation.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<DeviceInformationCollection?>
       findAllAsyncWithKindAqsFilterAndAdditionalProperties(String aqsFilter,
           IIterable<String>? additionalProperties, DeviceInformationKind kind) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<DeviceInformationCollection?>();
     final aqsFilterHString = aqsFilter.toHString();
     final additionalPropertiesPtr = additionalProperties == null
         ? nullptr
@@ -156,10 +151,7 @@ class IDeviceInformationStatics2 extends IInspectable {
     final asyncOperation =
         IAsyncOperation<DeviceInformationCollection?>.fromPtr(retValuePtr,
             creator: DeviceInformationCollection.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   DeviceWatcher? createWatcherWithKindAqsFilterAndAdditionalProperties(

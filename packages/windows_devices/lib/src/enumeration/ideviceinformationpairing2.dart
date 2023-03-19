@@ -89,7 +89,6 @@ class IDeviceInformationPairing2 extends IInspectable {
       DevicePairingProtectionLevel minProtectionLevel,
       IDevicePairingSettings? devicePairingSettings) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<DevicePairingResult?>();
     final devicePairingSettingsPtr = devicePairingSettings == null
         ? nullptr
         : devicePairingSettings.ptr.ref.lpVtbl;
@@ -121,15 +120,11 @@ class IDeviceInformationPairing2 extends IInspectable {
     final asyncOperation = IAsyncOperation<DevicePairingResult?>.fromPtr(
         retValuePtr,
         creator: DevicePairingResult.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<DeviceUnpairingResult?> unpairAsync() {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<DeviceUnpairingResult?>();
 
     final hr = ptr.ref.vtable
             .elementAt(9)
@@ -151,9 +146,6 @@ class IDeviceInformationPairing2 extends IInspectable {
     final asyncOperation = IAsyncOperation<DeviceUnpairingResult?>.fromPtr(
         retValuePtr,
         creator: DeviceUnpairingResult.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 }

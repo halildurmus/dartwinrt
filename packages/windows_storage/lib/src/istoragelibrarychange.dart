@@ -132,7 +132,6 @@ class IStorageLibraryChange extends IInspectable {
 
   Future<IStorageItem?> getStorageItemAsync() {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<IStorageItem?>();
 
     final hr = ptr.ref.vtable
             .elementAt(10)
@@ -153,9 +152,6 @@ class IStorageLibraryChange extends IInspectable {
 
     final asyncOperation = IAsyncOperation<IStorageItem?>.fromPtr(retValuePtr,
         creator: IStorageItem.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 }

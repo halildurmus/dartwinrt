@@ -36,7 +36,6 @@ class IStorageItem2 extends IInspectable implements IStorageItem {
 
   Future<StorageFolder?> getParentAsync() {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<StorageFolder?>();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -57,10 +56,7 @@ class IStorageItem2 extends IInspectable implements IStorageItem {
 
     final asyncOperation = IAsyncOperation<StorageFolder?>.fromPtr(retValuePtr,
         creator: StorageFolder.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   bool isEqual(IStorageItem? item) {

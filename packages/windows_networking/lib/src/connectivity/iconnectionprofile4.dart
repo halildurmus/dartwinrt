@@ -33,7 +33,6 @@ class IConnectionProfile4 extends IInspectable {
   Future<List<ProviderNetworkUsage>> getProviderNetworkUsageAsync(
       DateTime startTime, DateTime endTime, NetworkUsageStates states) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<List<ProviderNetworkUsage>>();
     final statesNativeStructPtr = states.toNative();
 
     final hr = ptr.ref.vtable
@@ -73,9 +72,6 @@ class IConnectionProfile4 extends IInspectable {
             creator: (ptr) => IVectorView.fromPtr(ptr,
                 creator: ProviderNetworkUsage.fromPtr,
                 iterableIid: '{f79bc7ba-01df-51ec-bfaf-fd883f698e07}'));
-    completeAsyncOperation(
-        asyncOperation, completer, () => asyncOperation.getResults().toList());
-
-    return completer.future;
+    return asyncOperation.toFuture(() => asyncOperation.getResults().toList());
   }
 }

@@ -137,7 +137,6 @@ class INetworkOperatorTetheringManager extends IInspectable {
   Future<void> configureAccessPointAsync(
       NetworkOperatorTetheringAccessPointConfiguration? configuration) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<void>();
     final configurationPtr =
         configuration == null ? nullptr : configuration.ptr.ref.lpVtbl;
 
@@ -159,15 +158,11 @@ class INetworkOperatorTetheringManager extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncAction = IAsyncAction.fromPtr(retValuePtr);
-    completeAsyncAction(asyncAction, completer);
-
-    return completer.future;
+    return IAsyncAction.fromPtr(retValuePtr).toFuture();
   }
 
   Future<NetworkOperatorTetheringOperationResult?> startTetheringAsync() {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<NetworkOperatorTetheringOperationResult?>();
 
     final hr = ptr.ref.vtable
             .elementAt(11)
@@ -190,15 +185,11 @@ class INetworkOperatorTetheringManager extends IInspectable {
         IAsyncOperation<NetworkOperatorTetheringOperationResult?>.fromPtr(
             retValuePtr,
             creator: NetworkOperatorTetheringOperationResult.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<NetworkOperatorTetheringOperationResult?> stopTetheringAsync() {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<NetworkOperatorTetheringOperationResult?>();
 
     final hr = ptr.ref.vtable
             .elementAt(12)
@@ -221,9 +212,6 @@ class INetworkOperatorTetheringManager extends IInspectable {
         IAsyncOperation<NetworkOperatorTetheringOperationResult?>.fromPtr(
             retValuePtr,
             creator: NetworkOperatorTetheringOperationResult.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 }

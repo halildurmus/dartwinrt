@@ -33,7 +33,6 @@ class IXmlDocumentStatics extends IInspectable {
 
   Future<XmlDocument?> loadFromUriAsync(Uri? uri) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<XmlDocument?>();
     final uriUri = uri?.toWinRTUri();
 
     final hr = ptr.ref.vtable
@@ -56,16 +55,12 @@ class IXmlDocumentStatics extends IInspectable {
 
     final asyncOperation = IAsyncOperation<XmlDocument?>.fromPtr(retValuePtr,
         creator: XmlDocument.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<XmlDocument?> loadFromUriWithSettingsAsync(
       Uri? uri, XmlLoadSettings? loadSettings) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<XmlDocument?>();
     final uriUri = uri?.toWinRTUri();
     final loadSettingsPtr =
         loadSettings == null ? nullptr : loadSettings.ptr.ref.lpVtbl;
@@ -96,15 +91,11 @@ class IXmlDocumentStatics extends IInspectable {
 
     final asyncOperation = IAsyncOperation<XmlDocument?>.fromPtr(retValuePtr,
         creator: XmlDocument.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<XmlDocument?> loadFromFileAsync(IStorageFile? file) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<XmlDocument?>();
     final filePtr = file == null ? nullptr : file.ptr.ref.lpVtbl;
 
     final hr = ptr.ref.vtable
@@ -127,16 +118,12 @@ class IXmlDocumentStatics extends IInspectable {
 
     final asyncOperation = IAsyncOperation<XmlDocument?>.fromPtr(retValuePtr,
         creator: XmlDocument.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<XmlDocument?> loadFromFileWithSettingsAsync(
       IStorageFile? file, XmlLoadSettings? loadSettings) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<XmlDocument?>();
     final filePtr = file == null ? nullptr : file.ptr.ref.lpVtbl;
     final loadSettingsPtr =
         loadSettings == null ? nullptr : loadSettings.ptr.ref.lpVtbl;
@@ -164,9 +151,6 @@ class IXmlDocumentStatics extends IInspectable {
 
     final asyncOperation = IAsyncOperation<XmlDocument?>.fromPtr(retValuePtr,
         creator: XmlDocument.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 }

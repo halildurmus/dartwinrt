@@ -31,7 +31,6 @@ class IInputStreamReference extends IInspectable {
 
   Future<IInputStream?> openSequentialReadAsync() {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<IInputStream?>();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -52,9 +51,6 @@ class IInputStreamReference extends IInspectable {
 
     final asyncOperation = IAsyncOperation<IInputStream?>.fromPtr(retValuePtr,
         creator: IInputStream.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 }

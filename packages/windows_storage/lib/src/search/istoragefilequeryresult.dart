@@ -36,7 +36,6 @@ class IStorageFileQueryResult extends IInspectable
   Future<List<StorageFile>> getFilesAsync(
       int startIndex, int maxNumberOfItems) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<List<StorageFile>>();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -64,15 +63,11 @@ class IStorageFileQueryResult extends IInspectable
         creator: (ptr) => IVectorView.fromPtr(ptr,
             creator: StorageFile.fromPtr,
             iterableIid: '{9ac00304-83ea-5688-87b6-ae38aab65d0b}'));
-    completeAsyncOperation(
-        asyncOperation, completer, () => asyncOperation.getResults().toList());
-
-    return completer.future;
+    return asyncOperation.toFuture(() => asyncOperation.getResults().toList());
   }
 
   Future<List<StorageFile>> getFilesAsyncDefaultStartAndCount() {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<List<StorageFile>>();
 
     final hr = ptr.ref.vtable
             .elementAt(7)
@@ -96,10 +91,7 @@ class IStorageFileQueryResult extends IInspectable
         creator: (ptr) => IVectorView.fromPtr(ptr,
             creator: StorageFile.fromPtr,
             iterableIid: '{9ac00304-83ea-5688-87b6-ae38aab65d0b}'));
-    completeAsyncOperation(
-        asyncOperation, completer, () => asyncOperation.getResults().toList());
-
-    return completer.future;
+    return asyncOperation.toFuture(() => asyncOperation.getResults().toList());
   }
 
   late final _iStorageQueryResultBase = IStorageQueryResultBase.from(this);
