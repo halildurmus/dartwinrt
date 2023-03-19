@@ -200,7 +200,6 @@ class IDeviceInformation extends IInspectable {
 
   Future<DeviceThumbnail?> getThumbnailAsync() {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<DeviceThumbnail?>();
 
     final hr = ptr.ref.vtable
             .elementAt(13)
@@ -222,15 +221,11 @@ class IDeviceInformation extends IInspectable {
     final asyncOperation = IAsyncOperation<DeviceThumbnail?>.fromPtr(
         retValuePtr,
         creator: DeviceThumbnail.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<DeviceThumbnail?> getGlyphThumbnailAsync() {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<DeviceThumbnail?>();
 
     final hr = ptr.ref.vtable
             .elementAt(14)
@@ -252,9 +247,6 @@ class IDeviceInformation extends IInspectable {
     final asyncOperation = IAsyncOperation<DeviceThumbnail?>.fromPtr(
         retValuePtr,
         creator: DeviceThumbnail.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 }

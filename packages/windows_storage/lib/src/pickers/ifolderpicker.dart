@@ -222,7 +222,6 @@ class IFolderPicker extends IInspectable {
 
   Future<StorageFolder?> pickSingleFolderAsync() {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<StorageFolder?>();
 
     final hr = ptr.ref.vtable
             .elementAt(15)
@@ -243,9 +242,6 @@ class IFolderPicker extends IInspectable {
 
     final asyncOperation = IAsyncOperation<StorageFolder?>.fromPtr(retValuePtr,
         creator: StorageFolder.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 }

@@ -80,7 +80,6 @@ class IDeviceInformationPairing extends IInspectable {
 
   Future<DevicePairingResult?> pairAsync() {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<DevicePairingResult?>();
 
     final hr = ptr.ref.vtable
             .elementAt(8)
@@ -102,16 +101,12 @@ class IDeviceInformationPairing extends IInspectable {
     final asyncOperation = IAsyncOperation<DevicePairingResult?>.fromPtr(
         retValuePtr,
         creator: DevicePairingResult.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<DevicePairingResult?> pairWithProtectionLevelAsync(
       DevicePairingProtectionLevel minProtectionLevel) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<DevicePairingResult?>();
 
     final hr =
         ptr.ref.vtable
@@ -137,9 +132,6 @@ class IDeviceInformationPairing extends IInspectable {
     final asyncOperation = IAsyncOperation<DevicePairingResult?>.fromPtr(
         retValuePtr,
         creator: DevicePairingResult.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 }

@@ -35,7 +35,6 @@ class IStorageItemProperties extends IInspectable {
   Future<StorageItemThumbnail?>
       getThumbnailAsyncOverloadDefaultSizeDefaultOptions(ThumbnailMode mode) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<StorageItemThumbnail?>();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -58,16 +57,12 @@ class IStorageItemProperties extends IInspectable {
     final asyncOperation = IAsyncOperation<StorageItemThumbnail?>.fromPtr(
         retValuePtr,
         creator: StorageItemThumbnail.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<StorageItemThumbnail?> getThumbnailAsyncOverloadDefaultOptions(
       ThumbnailMode mode, int requestedSize) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<StorageItemThumbnail?>();
 
     final hr = ptr.ref.vtable
             .elementAt(7)
@@ -93,16 +88,12 @@ class IStorageItemProperties extends IInspectable {
     final asyncOperation = IAsyncOperation<StorageItemThumbnail?>.fromPtr(
         retValuePtr,
         creator: StorageItemThumbnail.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<StorageItemThumbnail?> getThumbnailAsync(
       ThumbnailMode mode, int requestedSize, ThumbnailOptions options) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<StorageItemThumbnail?>();
 
     final hr = ptr.ref.vtable
             .elementAt(8)
@@ -129,10 +120,7 @@ class IStorageItemProperties extends IInspectable {
     final asyncOperation = IAsyncOperation<StorageItemThumbnail?>.fromPtr(
         retValuePtr,
         creator: StorageItemThumbnail.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   String get displayName {

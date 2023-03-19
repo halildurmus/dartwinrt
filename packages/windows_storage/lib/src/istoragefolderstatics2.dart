@@ -33,7 +33,6 @@ class IStorageFolderStatics2 extends IInspectable {
   Future<StorageFolder?> getFolderFromPathForUserAsync(
       User? user, String path) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<StorageFolder?>();
     final userPtr = user == null ? nullptr : user.ptr.ref.lpVtbl;
     final pathHString = path.toHString();
 
@@ -59,9 +58,6 @@ class IStorageFolderStatics2 extends IInspectable {
 
     final asyncOperation = IAsyncOperation<StorageFolder?>.fromPtr(retValuePtr,
         creator: StorageFolder.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 }

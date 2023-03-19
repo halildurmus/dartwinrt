@@ -31,7 +31,6 @@ class IStorageProvider2 extends IInspectable implements IStorageProvider {
   Future<bool> isPropertySupportedForPartialFileAsync(
       String propertyCanonicalName) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<bool>();
     final propertyCanonicalNameHString = propertyCanonicalName.toHString();
 
     final hr = ptr.ref.vtable
@@ -57,10 +56,7 @@ class IStorageProvider2 extends IInspectable implements IStorageProvider {
     }
 
     final asyncOperation = IAsyncOperation<bool>.fromPtr(retValuePtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   late final _iStorageProvider = IStorageProvider.from(this);

@@ -34,7 +34,6 @@ class IStorageItem extends IInspectable {
 
   Future<void> renameAsyncOverloadDefaultOptions(String desiredName) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<void>();
     final desiredNameHString = desiredName.toHString();
 
     final hr = ptr.ref.vtable
@@ -57,15 +56,11 @@ class IStorageItem extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncAction = IAsyncAction.fromPtr(retValuePtr);
-    completeAsyncAction(asyncAction, completer);
-
-    return completer.future;
+    return IAsyncAction.fromPtr(retValuePtr).toFuture();
   }
 
   Future<void> renameAsync(String desiredName, NameCollisionOption option) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<void>();
     final desiredNameHString = desiredName.toHString();
 
     final hr = ptr.ref.vtable
@@ -88,15 +83,11 @@ class IStorageItem extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncAction = IAsyncAction.fromPtr(retValuePtr);
-    completeAsyncAction(asyncAction, completer);
-
-    return completer.future;
+    return IAsyncAction.fromPtr(retValuePtr).toFuture();
   }
 
   Future<void> deleteAsyncOverloadDefaultOptions() {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<void>();
 
     final hr = ptr.ref.vtable
             .elementAt(8)
@@ -115,15 +106,11 @@ class IStorageItem extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncAction = IAsyncAction.fromPtr(retValuePtr);
-    completeAsyncAction(asyncAction, completer);
-
-    return completer.future;
+    return IAsyncAction.fromPtr(retValuePtr).toFuture();
   }
 
   Future<void> deleteAsync(StorageDeleteOption option) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<void>();
 
     final hr = ptr.ref.vtable
             .elementAt(9)
@@ -143,15 +130,11 @@ class IStorageItem extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncAction = IAsyncAction.fromPtr(retValuePtr);
-    completeAsyncAction(asyncAction, completer);
-
-    return completer.future;
+    return IAsyncAction.fromPtr(retValuePtr).toFuture();
   }
 
   Future<BasicProperties?> getBasicPropertiesAsync() {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<BasicProperties?>();
 
     final hr = ptr.ref.vtable
             .elementAt(10)
@@ -173,10 +156,7 @@ class IStorageItem extends IInspectable {
     final asyncOperation = IAsyncOperation<BasicProperties?>.fromPtr(
         retValuePtr,
         creator: BasicProperties.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   String get name {

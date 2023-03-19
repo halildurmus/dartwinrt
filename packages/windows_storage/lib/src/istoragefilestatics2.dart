@@ -32,7 +32,6 @@ class IStorageFileStatics2 extends IInspectable {
 
   Future<StorageFile?> getFileFromPathForUserAsync(User? user, String path) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<StorageFile?>();
     final userPtr = user == null ? nullptr : user.ptr.ref.lpVtbl;
     final pathHString = path.toHString();
 
@@ -58,9 +57,6 @@ class IStorageFileStatics2 extends IInspectable {
 
     final asyncOperation = IAsyncOperation<StorageFile?>.fromPtr(retValuePtr,
         creator: StorageFile.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 }

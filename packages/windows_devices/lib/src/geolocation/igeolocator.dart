@@ -171,7 +171,6 @@ class IGeolocator extends IInspectable {
 
   Future<Geoposition?> getGeopositionAsync() {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<Geoposition?>();
 
     final hr = ptr.ref.vtable
             .elementAt(13)
@@ -192,16 +191,12 @@ class IGeolocator extends IInspectable {
 
     final asyncOperation = IAsyncOperation<Geoposition?>.fromPtr(retValuePtr,
         creator: Geoposition.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<Geoposition?> getGeopositionAsyncWithAgeAndTimeout(
       Duration maximumAge, Duration timeout) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<Geoposition?>();
 
     final hr = ptr.ref.vtable
             .elementAt(14)
@@ -223,10 +218,7 @@ class IGeolocator extends IInspectable {
 
     final asyncOperation = IAsyncOperation<Geoposition?>.fromPtr(retValuePtr,
         creator: Geoposition.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   int add_PositionChanged(Pointer<COMObject> handler) {

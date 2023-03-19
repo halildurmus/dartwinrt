@@ -20,13 +20,9 @@ class AsyncActionMethodProjection extends MethodProjection {
   String get methodDeclaration => '''
   $methodHeader {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<void>();
     ${ffiCall(freeRetValOnFailure: true)}
 
-    final asyncAction = IAsyncAction.fromPtr(retValuePtr);
-    completeAsyncAction(asyncAction, completer);
-
-    return completer.future;
+    return IAsyncAction.fromPtr(retValuePtr).toFuture();
   }
 ''';
 }
@@ -53,10 +49,9 @@ mixin _AsyncOperationMixin on MethodProjection {
   /// The type argument of `IAsyncOperation`, as represented in the
   /// [returnTypeProjection]'s `TypeIdentifier` (e.g. `bool`, `String`,
   /// `StorageFile?`).
-  String get asyncOperationTypeArg => typeArguments(typeIdentifier.shortName);
+  String get typeArg => typeArguments(typeIdentifier.shortName);
 
-  String get completerTypeArg {
-    final typeArg = asyncOperationTypeArg;
+  String get formattedTypeArg {
     if (typeArg.startsWith('IMapView')) {
       // e.g. Map<String, String> instead of IMapView<String, String>
       return typeArg.replaceFirst('IMapView', 'Map');
@@ -72,7 +67,7 @@ mixin _AsyncOperationMixin on MethodProjection {
   }
 
   /// The constructor arguments passed to the constructor of `IAsyncOperation`.
-  String get asyncOperationConstructorArgs {
+  String get constructorArgs {
     final typeProjection = TypeProjection(typeIdentifier.typeArg!);
 
     // If the type argument is an enum or a WinRT object (e.g. StorageFile), the
@@ -84,7 +79,7 @@ mixin _AsyncOperationMixin on MethodProjection {
     // If the type argument is an int, 'intType' parameter must be specified so
     // that the IAsyncOperation implementation can use the appropriate native
     // integer type
-    final intType = asyncOperationTypeArg == 'int'
+    final intType = typeArg == 'int'
         ? 'IntType.${typeProjection.nativeType.toLowerCase()}'
         : null;
 
@@ -104,11 +99,11 @@ mixin _AsyncOperationMixin on MethodProjection {
   /// The function to call when completing the completer after the asynchronous
   /// operation has successfully completed.
   String get onCompletedCallback {
-    if (asyncOperationTypeArg.startsWith('IMapView')) {
+    if (typeArg.startsWith('IMapView')) {
       return '() => asyncOperation.getResults().toMap()';
-    } else if (asyncOperationTypeArg.startsWith('IVectorView')) {
+    } else if (typeArg.startsWith('IVectorView')) {
       return '() => asyncOperation.getResults().toList()';
-    } else if (asyncOperationTypeArg.startsWith('IReference')) {
+    } else if (typeArg.startsWith('IReference')) {
       return '() => asyncOperation.getResults()?.value';
     }
 
@@ -116,20 +111,17 @@ mixin _AsyncOperationMixin on MethodProjection {
   }
 
   @override
-  String get returnType => 'Future<$completerTypeArg>';
+  String get returnType => 'Future<$formattedTypeArg>';
 
   @override
   String get methodDeclaration => '''
   $methodHeader {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<$completerTypeArg>();
     ${ffiCall(freeRetValOnFailure: true)}
 
-    final asyncOperation = IAsyncOperation<$asyncOperationTypeArg>
-            .fromPtr(retValuePtr$asyncOperationConstructorArgs);
-    completeAsyncOperation(asyncOperation, completer, $onCompletedCallback);
-
-    return completer.future;
+    final asyncOperation =
+        IAsyncOperation<$typeArg>.fromPtr(retValuePtr$constructorArgs);
+    return asyncOperation.toFuture($onCompletedCallback);
   }
 ''';
 }

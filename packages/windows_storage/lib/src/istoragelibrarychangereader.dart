@@ -32,7 +32,6 @@ class IStorageLibraryChangeReader extends IInspectable {
 
   Future<List<StorageLibraryChange>> readBatchAsync() {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<List<StorageLibraryChange>>();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -56,15 +55,11 @@ class IStorageLibraryChangeReader extends IInspectable {
             creator: (ptr) => IVectorView.fromPtr(ptr,
                 creator: StorageLibraryChange.fromPtr,
                 iterableIid: '{87c15dfc-0c5e-518b-9206-97d3d9823c61}'));
-    completeAsyncOperation(
-        asyncOperation, completer, () => asyncOperation.getResults().toList());
-
-    return completer.future;
+    return asyncOperation.toFuture(() => asyncOperation.getResults().toList());
   }
 
   Future<void> acceptChangesAsync() {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<void>();
 
     final hr = ptr.ref.vtable
             .elementAt(7)
@@ -83,9 +78,6 @@ class IStorageLibraryChangeReader extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncAction = IAsyncAction.fromPtr(retValuePtr);
-    completeAsyncAction(asyncAction, completer);
-
-    return completer.future;
+    return IAsyncAction.fromPtr(retValuePtr).toFuture();
   }
 }

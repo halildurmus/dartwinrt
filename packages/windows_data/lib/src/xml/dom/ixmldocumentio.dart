@@ -70,7 +70,6 @@ class IXmlDocumentIO extends IInspectable {
 
   Future<void> saveToFileAsync(IStorageFile? file) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<void>();
     final filePtr = file == null ? nullptr : file.ptr.ref.lpVtbl;
 
     final hr = ptr.ref.vtable
@@ -91,9 +90,6 @@ class IXmlDocumentIO extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncAction = IAsyncAction.fromPtr(retValuePtr);
-    completeAsyncAction(asyncAction, completer);
-
-    return completer.future;
+    return IAsyncAction.fromPtr(retValuePtr).toFuture();
   }
 }

@@ -37,7 +37,6 @@ class IStorageItemContentProperties extends IInspectable
 
   Future<MusicProperties?> getMusicPropertiesAsync() {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<MusicProperties?>();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -59,15 +58,11 @@ class IStorageItemContentProperties extends IInspectable
     final asyncOperation = IAsyncOperation<MusicProperties?>.fromPtr(
         retValuePtr,
         creator: MusicProperties.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<VideoProperties?> getVideoPropertiesAsync() {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<VideoProperties?>();
 
     final hr = ptr.ref.vtable
             .elementAt(7)
@@ -89,15 +84,11 @@ class IStorageItemContentProperties extends IInspectable
     final asyncOperation = IAsyncOperation<VideoProperties?>.fromPtr(
         retValuePtr,
         creator: VideoProperties.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<ImageProperties?> getImagePropertiesAsync() {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<ImageProperties?>();
 
     final hr = ptr.ref.vtable
             .elementAt(8)
@@ -119,15 +110,11 @@ class IStorageItemContentProperties extends IInspectable
     final asyncOperation = IAsyncOperation<ImageProperties?>.fromPtr(
         retValuePtr,
         creator: ImageProperties.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<DocumentProperties?> getDocumentPropertiesAsync() {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<DocumentProperties?>();
 
     final hr = ptr.ref.vtable
             .elementAt(9)
@@ -149,10 +136,7 @@ class IStorageItemContentProperties extends IInspectable
     final asyncOperation = IAsyncOperation<DocumentProperties?>.fromPtr(
         retValuePtr,
         creator: DocumentProperties.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   late final _iStorageItemExtraProperties =

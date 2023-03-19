@@ -32,7 +32,6 @@ class IToastCollectionManager extends IInspectable {
 
   Future<void> saveToastCollectionAsync(ToastCollection? collection) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<void>();
     final collectionPtr =
         collection == null ? nullptr : collection.ptr.ref.lpVtbl;
 
@@ -54,15 +53,11 @@ class IToastCollectionManager extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncAction = IAsyncAction.fromPtr(retValuePtr);
-    completeAsyncAction(asyncAction, completer);
-
-    return completer.future;
+    return IAsyncAction.fromPtr(retValuePtr).toFuture();
   }
 
   Future<List<ToastCollection>> findAllToastCollectionsAsync() {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<List<ToastCollection>>();
 
     final hr = ptr.ref.vtable
             .elementAt(7)
@@ -86,15 +81,11 @@ class IToastCollectionManager extends IInspectable {
             creator: (ptr) => IVectorView.fromPtr(ptr,
                 creator: ToastCollection.fromPtr,
                 iterableIid: '{8928d527-db5d-5a10-ae9b-430fa0906e74}'));
-    completeAsyncOperation(
-        asyncOperation, completer, () => asyncOperation.getResults().toList());
-
-    return completer.future;
+    return asyncOperation.toFuture(() => asyncOperation.getResults().toList());
   }
 
   Future<ToastCollection?> getToastCollectionAsync(String collectionId) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<ToastCollection?>();
     final collectionIdHString = collectionId.toHString();
 
     final hr = ptr.ref.vtable
@@ -120,15 +111,11 @@ class IToastCollectionManager extends IInspectable {
     final asyncOperation = IAsyncOperation<ToastCollection?>.fromPtr(
         retValuePtr,
         creator: ToastCollection.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<void> removeToastCollectionAsync(String collectionId) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<void>();
     final collectionIdHString = collectionId.toHString();
 
     final hr = ptr.ref.vtable
@@ -151,15 +138,11 @@ class IToastCollectionManager extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncAction = IAsyncAction.fromPtr(retValuePtr);
-    completeAsyncAction(asyncAction, completer);
-
-    return completer.future;
+    return IAsyncAction.fromPtr(retValuePtr).toFuture();
   }
 
   Future<void> removeAllToastCollectionsAsync() {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<void>();
 
     final hr = ptr.ref.vtable
             .elementAt(10)
@@ -178,10 +161,7 @@ class IToastCollectionManager extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncAction = IAsyncAction.fromPtr(retValuePtr);
-    completeAsyncAction(asyncAction, completer);
-
-    return completer.future;
+    return IAsyncAction.fromPtr(retValuePtr).toFuture();
   }
 
   User? get user {

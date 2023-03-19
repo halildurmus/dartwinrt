@@ -39,7 +39,6 @@ class IStorageFolder extends IInspectable implements IStorageItem {
   Future<StorageFile?> createFileAsyncOverloadDefaultOptions(
       String desiredName) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<StorageFile?>();
     final desiredNameHString = desiredName.toHString();
 
     final hr = ptr.ref.vtable
@@ -64,16 +63,12 @@ class IStorageFolder extends IInspectable implements IStorageItem {
 
     final asyncOperation = IAsyncOperation<StorageFile?>.fromPtr(retValuePtr,
         creator: StorageFile.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<StorageFile?> createFileAsync(
       String desiredName, CreationCollisionOption options) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<StorageFile?>();
     final desiredNameHString = desiredName.toHString();
 
     final hr = ptr.ref.vtable
@@ -98,16 +93,12 @@ class IStorageFolder extends IInspectable implements IStorageItem {
 
     final asyncOperation = IAsyncOperation<StorageFile?>.fromPtr(retValuePtr,
         creator: StorageFile.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<StorageFolder?> createFolderAsyncOverloadDefaultOptions(
       String desiredName) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<StorageFolder?>();
     final desiredNameHString = desiredName.toHString();
 
     final hr = ptr.ref.vtable
@@ -132,16 +123,12 @@ class IStorageFolder extends IInspectable implements IStorageItem {
 
     final asyncOperation = IAsyncOperation<StorageFolder?>.fromPtr(retValuePtr,
         creator: StorageFolder.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<StorageFolder?> createFolderAsync(
       String desiredName, CreationCollisionOption options) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<StorageFolder?>();
     final desiredNameHString = desiredName.toHString();
 
     final hr = ptr.ref.vtable
@@ -166,15 +153,11 @@ class IStorageFolder extends IInspectable implements IStorageItem {
 
     final asyncOperation = IAsyncOperation<StorageFolder?>.fromPtr(retValuePtr,
         creator: StorageFolder.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<StorageFile?> getFileAsync(String name) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<StorageFile?>();
     final nameHString = name.toHString();
 
     final hr = ptr.ref.vtable
@@ -199,15 +182,11 @@ class IStorageFolder extends IInspectable implements IStorageItem {
 
     final asyncOperation = IAsyncOperation<StorageFile?>.fromPtr(retValuePtr,
         creator: StorageFile.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<StorageFolder?> getFolderAsync(String name) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<StorageFolder?>();
     final nameHString = name.toHString();
 
     final hr = ptr.ref.vtable
@@ -232,15 +211,11 @@ class IStorageFolder extends IInspectable implements IStorageItem {
 
     final asyncOperation = IAsyncOperation<StorageFolder?>.fromPtr(retValuePtr,
         creator: StorageFolder.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<IStorageItem?> getItemAsync(String name) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<IStorageItem?>();
     final nameHString = name.toHString();
 
     final hr = ptr.ref.vtable
@@ -265,15 +240,11 @@ class IStorageFolder extends IInspectable implements IStorageItem {
 
     final asyncOperation = IAsyncOperation<IStorageItem?>.fromPtr(retValuePtr,
         creator: IStorageItem.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<List<StorageFile>> getFilesAsyncOverloadDefaultOptionsStartAndCount() {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<List<StorageFile>>();
 
     final hr = ptr.ref.vtable
             .elementAt(13)
@@ -297,16 +268,12 @@ class IStorageFolder extends IInspectable implements IStorageItem {
         creator: (ptr) => IVectorView.fromPtr(ptr,
             creator: StorageFile.fromPtr,
             iterableIid: '{9ac00304-83ea-5688-87b6-ae38aab65d0b}'));
-    completeAsyncOperation(
-        asyncOperation, completer, () => asyncOperation.getResults().toList());
-
-    return completer.future;
+    return asyncOperation.toFuture(() => asyncOperation.getResults().toList());
   }
 
   Future<List<StorageFolder>>
       getFoldersAsyncOverloadDefaultOptionsStartAndCount() {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<List<StorageFolder>>();
 
     final hr = ptr.ref.vtable
             .elementAt(14)
@@ -330,15 +297,11 @@ class IStorageFolder extends IInspectable implements IStorageItem {
         creator: (ptr) => IVectorView.fromPtr(ptr,
             creator: StorageFolder.fromPtr,
             iterableIid: '{4669befc-ae5c-52b1-8a97-5466ce61e94e}'));
-    completeAsyncOperation(
-        asyncOperation, completer, () => asyncOperation.getResults().toList());
-
-    return completer.future;
+    return asyncOperation.toFuture(() => asyncOperation.getResults().toList());
   }
 
   Future<List<IStorageItem>> getItemsAsyncOverloadDefaultStartAndCount() {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<List<IStorageItem>>();
 
     final hr = ptr.ref.vtable
             .elementAt(15)
@@ -362,10 +325,7 @@ class IStorageFolder extends IInspectable implements IStorageItem {
         creator: (ptr) => IVectorView.fromPtr(ptr,
             creator: IStorageItem.fromPtr,
             iterableIid: '{bb8b8418-65d1-544b-b083-6d172f568c73}'));
-    completeAsyncOperation(
-        asyncOperation, completer, () => asyncOperation.getResults().toList());
-
-    return completer.future;
+    return asyncOperation.toFuture(() => asyncOperation.getResults().toList());
   }
 
   late final _iStorageItem = IStorageItem.from(this);

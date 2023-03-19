@@ -222,7 +222,6 @@ class IFileOpenPicker extends IInspectable {
 
   Future<StorageFile?> pickSingleFileAsync() {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<StorageFile?>();
 
     final hr = ptr.ref.vtable
             .elementAt(15)
@@ -243,15 +242,11 @@ class IFileOpenPicker extends IInspectable {
 
     final asyncOperation = IAsyncOperation<StorageFile?>.fromPtr(retValuePtr,
         creator: StorageFile.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<List<StorageFile>> pickMultipleFilesAsync() {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<List<StorageFile>>();
 
     final hr = ptr.ref.vtable
             .elementAt(16)
@@ -275,9 +270,6 @@ class IFileOpenPicker extends IInspectable {
         creator: (ptr) => IVectorView.fromPtr(ptr,
             creator: StorageFile.fromPtr,
             iterableIid: '{9ac00304-83ea-5688-87b6-ae38aab65d0b}'));
-    completeAsyncOperation(
-        asyncOperation, completer, () => asyncOperation.getResults().toList());
-
-    return completer.future;
+    return asyncOperation.toFuture(() => asyncOperation.getResults().toList());
   }
 }

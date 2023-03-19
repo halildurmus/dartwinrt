@@ -34,7 +34,6 @@ class IKnownFoldersStatics4 extends IInspectable {
 
   Future<KnownFoldersAccessStatus> requestAccessAsync(KnownFolderId folderId) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<KnownFoldersAccessStatus>();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -57,16 +56,12 @@ class IKnownFoldersStatics4 extends IInspectable {
     final asyncOperation = IAsyncOperation<KnownFoldersAccessStatus>.fromPtr(
         retValuePtr,
         enumCreator: KnownFoldersAccessStatus.from);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<KnownFoldersAccessStatus> requestAccessForUserAsync(
       User? user, KnownFolderId folderId) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<KnownFoldersAccessStatus>();
     final userPtr = user == null ? nullptr : user.ptr.ref.lpVtbl;
 
     final hr = ptr.ref.vtable
@@ -90,15 +85,11 @@ class IKnownFoldersStatics4 extends IInspectable {
     final asyncOperation = IAsyncOperation<KnownFoldersAccessStatus>.fromPtr(
         retValuePtr,
         enumCreator: KnownFoldersAccessStatus.from);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<StorageFolder?> getFolderAsync(KnownFolderId folderId) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<StorageFolder?>();
 
     final hr = ptr.ref.vtable
             .elementAt(8)
@@ -120,9 +111,6 @@ class IKnownFoldersStatics4 extends IInspectable {
 
     final asyncOperation = IAsyncOperation<StorageFolder?>.fromPtr(retValuePtr,
         creator: StorageFolder.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 }

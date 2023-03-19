@@ -38,7 +38,6 @@ class IStorageItemProperties2 extends IInspectable
       getScaledImageAsThumbnailAsyncOverloadDefaultSizeDefaultOptions(
           ThumbnailMode mode) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<StorageItemThumbnail?>();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -61,17 +60,13 @@ class IStorageItemProperties2 extends IInspectable
     final asyncOperation = IAsyncOperation<StorageItemThumbnail?>.fromPtr(
         retValuePtr,
         creator: StorageItemThumbnail.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<StorageItemThumbnail?>
       getScaledImageAsThumbnailAsyncOverloadDefaultOptions(
           ThumbnailMode mode, int requestedSize) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<StorageItemThumbnail?>();
 
     final hr = ptr.ref.vtable
             .elementAt(7)
@@ -97,16 +92,12 @@ class IStorageItemProperties2 extends IInspectable
     final asyncOperation = IAsyncOperation<StorageItemThumbnail?>.fromPtr(
         retValuePtr,
         creator: StorageItemThumbnail.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<StorageItemThumbnail?> getScaledImageAsThumbnailAsync(
       ThumbnailMode mode, int requestedSize, ThumbnailOptions options) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<StorageItemThumbnail?>();
 
     final hr = ptr.ref.vtable
             .elementAt(8)
@@ -133,10 +124,7 @@ class IStorageItemProperties2 extends IInspectable
     final asyncOperation = IAsyncOperation<StorageItemThumbnail?>.fromPtr(
         retValuePtr,
         creator: StorageItemThumbnail.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   late final _iStorageItemProperties = IStorageItemProperties.from(this);

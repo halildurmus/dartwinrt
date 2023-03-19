@@ -317,7 +317,6 @@ class IFileSavePicker extends IInspectable {
 
   Future<StorageFile?> pickSaveFileAsync() {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<StorageFile?>();
 
     final hr = ptr.ref.vtable
             .elementAt(19)
@@ -338,9 +337,6 @@ class IFileSavePicker extends IInspectable {
 
     final asyncOperation = IAsyncOperation<StorageFile?>.fromPtr(retValuePtr,
         creator: StorageFile.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 }

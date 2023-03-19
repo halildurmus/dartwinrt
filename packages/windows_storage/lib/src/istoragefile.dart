@@ -98,7 +98,6 @@ class IStorageFile extends IInspectable
 
   Future<IRandomAccessStream?> openAsync(FileAccessMode accessMode) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<IRandomAccessStream?>();
 
     final hr = ptr.ref.vtable
             .elementAt(8)
@@ -121,15 +120,11 @@ class IStorageFile extends IInspectable
     final asyncOperation = IAsyncOperation<IRandomAccessStream?>.fromPtr(
         retValuePtr,
         creator: IRandomAccessStream.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<StorageStreamTransaction?> openTransactedWriteAsync() {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<StorageStreamTransaction?>();
 
     final hr = ptr.ref.vtable
             .elementAt(9)
@@ -151,16 +146,12 @@ class IStorageFile extends IInspectable
     final asyncOperation = IAsyncOperation<StorageStreamTransaction?>.fromPtr(
         retValuePtr,
         creator: StorageStreamTransaction.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<StorageFile?> copyOverloadDefaultNameAndOptions(
       IStorageFolder? destinationFolder) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<StorageFile?>();
     final destinationFolderPtr =
         destinationFolder == null ? nullptr : destinationFolder.ptr.ref.lpVtbl;
 
@@ -187,16 +178,12 @@ class IStorageFile extends IInspectable
 
     final asyncOperation = IAsyncOperation<StorageFile?>.fromPtr(retValuePtr,
         creator: StorageFile.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<StorageFile?> copyOverloadDefaultOptions(
       IStorageFolder? destinationFolder, String desiredNewName) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<StorageFile?>();
     final destinationFolderPtr =
         destinationFolder == null ? nullptr : destinationFolder.ptr.ref.lpVtbl;
     final desiredNewNameHString = desiredNewName.toHString();
@@ -229,16 +216,12 @@ class IStorageFile extends IInspectable
 
     final asyncOperation = IAsyncOperation<StorageFile?>.fromPtr(retValuePtr,
         creator: StorageFile.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<StorageFile?> copyOverload(IStorageFolder? destinationFolder,
       String desiredNewName, NameCollisionOption option) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<StorageFile?>();
     final destinationFolderPtr =
         destinationFolder == null ? nullptr : destinationFolder.ptr.ref.lpVtbl;
     final desiredNewNameHString = desiredNewName.toHString();
@@ -273,15 +256,11 @@ class IStorageFile extends IInspectable
 
     final asyncOperation = IAsyncOperation<StorageFile?>.fromPtr(retValuePtr,
         creator: StorageFile.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<void> copyAndReplaceAsync(IStorageFile? fileToReplace) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<void>();
     final fileToReplacePtr =
         fileToReplace == null ? nullptr : fileToReplace.ptr.ref.lpVtbl;
 
@@ -303,16 +282,12 @@ class IStorageFile extends IInspectable
       throw WindowsException(hr);
     }
 
-    final asyncAction = IAsyncAction.fromPtr(retValuePtr);
-    completeAsyncAction(asyncAction, completer);
-
-    return completer.future;
+    return IAsyncAction.fromPtr(retValuePtr).toFuture();
   }
 
   Future<void> moveOverloadDefaultNameAndOptions(
       IStorageFolder? destinationFolder) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<void>();
     final destinationFolderPtr =
         destinationFolder == null ? nullptr : destinationFolder.ptr.ref.lpVtbl;
 
@@ -337,16 +312,12 @@ class IStorageFile extends IInspectable
       throw WindowsException(hr);
     }
 
-    final asyncAction = IAsyncAction.fromPtr(retValuePtr);
-    completeAsyncAction(asyncAction, completer);
-
-    return completer.future;
+    return IAsyncAction.fromPtr(retValuePtr).toFuture();
   }
 
   Future<void> moveOverloadDefaultOptions(
       IStorageFolder? destinationFolder, String desiredNewName) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<void>();
     final destinationFolderPtr =
         destinationFolder == null ? nullptr : destinationFolder.ptr.ref.lpVtbl;
     final desiredNewNameHString = desiredNewName.toHString();
@@ -377,16 +348,12 @@ class IStorageFile extends IInspectable
       throw WindowsException(hr);
     }
 
-    final asyncAction = IAsyncAction.fromPtr(retValuePtr);
-    completeAsyncAction(asyncAction, completer);
-
-    return completer.future;
+    return IAsyncAction.fromPtr(retValuePtr).toFuture();
   }
 
   Future<void> moveOverload(IStorageFolder? destinationFolder,
       String desiredNewName, NameCollisionOption option) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<void>();
     final destinationFolderPtr =
         destinationFolder == null ? nullptr : destinationFolder.ptr.ref.lpVtbl;
     final desiredNewNameHString = desiredNewName.toHString();
@@ -419,15 +386,11 @@ class IStorageFile extends IInspectable
       throw WindowsException(hr);
     }
 
-    final asyncAction = IAsyncAction.fromPtr(retValuePtr);
-    completeAsyncAction(asyncAction, completer);
-
-    return completer.future;
+    return IAsyncAction.fromPtr(retValuePtr).toFuture();
   }
 
   Future<void> moveAndReplaceAsync(IStorageFile? fileToReplace) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<void>();
     final fileToReplacePtr =
         fileToReplace == null ? nullptr : fileToReplace.ptr.ref.lpVtbl;
 
@@ -449,10 +412,7 @@ class IStorageFile extends IInspectable
       throw WindowsException(hr);
     }
 
-    final asyncAction = IAsyncAction.fromPtr(retValuePtr);
-    completeAsyncAction(asyncAction, completer);
-
-    return completer.future;
+    return IAsyncAction.fromPtr(retValuePtr).toFuture();
   }
 
   late final _iStorageItem = IStorageItem.from(this);

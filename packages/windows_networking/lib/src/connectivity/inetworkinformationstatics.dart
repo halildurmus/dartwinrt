@@ -142,7 +142,6 @@ class INetworkInformationStatics extends IInspectable {
 
   Future<ProxyConfiguration?> getProxyConfigurationAsync(Uri? uri) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<ProxyConfiguration?>();
     final uriUri = uri?.toWinRTUri();
 
     final hr = ptr.ref.vtable
@@ -166,10 +165,7 @@ class INetworkInformationStatics extends IInspectable {
     final asyncOperation = IAsyncOperation<ProxyConfiguration?>.fromPtr(
         retValuePtr,
         creator: ProxyConfiguration.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   List<EndpointPair> getSortedEndpointPairs(

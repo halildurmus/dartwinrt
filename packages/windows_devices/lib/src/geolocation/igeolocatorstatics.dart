@@ -31,7 +31,6 @@ class IGeolocatorStatics extends IInspectable {
 
   Future<GeolocationAccessStatus> requestAccessAsync() {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<GeolocationAccessStatus>();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -53,15 +52,11 @@ class IGeolocatorStatics extends IInspectable {
     final asyncOperation = IAsyncOperation<GeolocationAccessStatus>.fromPtr(
         retValuePtr,
         enumCreator: GeolocationAccessStatus.from);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<List<Geoposition>> getGeopositionHistoryAsync(DateTime startTime) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<List<Geoposition>>();
 
     final hr = ptr.ref.vtable
             .elementAt(7)
@@ -86,16 +81,12 @@ class IGeolocatorStatics extends IInspectable {
         creator: (ptr) => IVectorView.fromPtr(ptr,
             creator: Geoposition.fromPtr,
             iterableIid: '{135ed72d-75b1-5881-be41-6ffeaa202044}'));
-    completeAsyncOperation(
-        asyncOperation, completer, () => asyncOperation.getResults().toList());
-
-    return completer.future;
+    return asyncOperation.toFuture(() => asyncOperation.getResults().toList());
   }
 
   Future<List<Geoposition>> getGeopositionHistoryWithDurationAsync(
       DateTime startTime, Duration duration) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<List<Geoposition>>();
 
     final hr = ptr.ref.vtable
             .elementAt(8)
@@ -120,9 +111,6 @@ class IGeolocatorStatics extends IInspectable {
         creator: (ptr) => IVectorView.fromPtr(ptr,
             creator: Geoposition.fromPtr,
             iterableIid: '{135ed72d-75b1-5881-be41-6ffeaa202044}'));
-    completeAsyncOperation(
-        asyncOperation, completer, () => asyncOperation.getResults().toList());
-
-    return completer.future;
+    return asyncOperation.toFuture(() => asyncOperation.getResults().toList());
   }
 }

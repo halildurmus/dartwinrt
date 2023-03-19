@@ -41,7 +41,6 @@ class IStorageFolderQueryOperations extends IInspectable {
 
   Future<IndexedState> getIndexedStateAsync() {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<IndexedState>();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -62,10 +61,7 @@ class IStorageFolderQueryOperations extends IInspectable {
 
     final asyncOperation = IAsyncOperation<IndexedState>.fromPtr(retValuePtr,
         enumCreator: IndexedState.from);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   StorageFileQueryResult? createFileQueryOverloadDefault() {
@@ -309,7 +305,6 @@ class IStorageFolderQueryOperations extends IInspectable {
   Future<List<StorageFile>> getFilesAsync(
       CommonFileQuery query, int startIndex, int maxItemsToRetrieve) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<List<StorageFile>>();
 
     final hr = ptr.ref.vtable
             .elementAt(15)
@@ -342,16 +337,12 @@ class IStorageFolderQueryOperations extends IInspectable {
         creator: (ptr) => IVectorView.fromPtr(ptr,
             creator: StorageFile.fromPtr,
             iterableIid: '{9ac00304-83ea-5688-87b6-ae38aab65d0b}'));
-    completeAsyncOperation(
-        asyncOperation, completer, () => asyncOperation.getResults().toList());
-
-    return completer.future;
+    return asyncOperation.toFuture(() => asyncOperation.getResults().toList());
   }
 
   Future<List<StorageFile>> getFilesAsyncOverloadDefaultStartAndCount(
       CommonFileQuery query) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<List<StorageFile>>();
 
     final hr = ptr.ref.vtable
             .elementAt(16)
@@ -376,16 +367,12 @@ class IStorageFolderQueryOperations extends IInspectable {
         creator: (ptr) => IVectorView.fromPtr(ptr,
             creator: StorageFile.fromPtr,
             iterableIid: '{9ac00304-83ea-5688-87b6-ae38aab65d0b}'));
-    completeAsyncOperation(
-        asyncOperation, completer, () => asyncOperation.getResults().toList());
-
-    return completer.future;
+    return asyncOperation.toFuture(() => asyncOperation.getResults().toList());
   }
 
   Future<List<StorageFolder>> getFoldersAsync(
       CommonFolderQuery query, int startIndex, int maxItemsToRetrieve) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<List<StorageFolder>>();
 
     final hr = ptr.ref.vtable
             .elementAt(17)
@@ -418,16 +405,12 @@ class IStorageFolderQueryOperations extends IInspectable {
         creator: (ptr) => IVectorView.fromPtr(ptr,
             creator: StorageFolder.fromPtr,
             iterableIid: '{4669befc-ae5c-52b1-8a97-5466ce61e94e}'));
-    completeAsyncOperation(
-        asyncOperation, completer, () => asyncOperation.getResults().toList());
-
-    return completer.future;
+    return asyncOperation.toFuture(() => asyncOperation.getResults().toList());
   }
 
   Future<List<StorageFolder>> getFoldersAsyncOverloadDefaultStartAndCount(
       CommonFolderQuery query) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<List<StorageFolder>>();
 
     final hr = ptr.ref.vtable
             .elementAt(18)
@@ -452,16 +435,12 @@ class IStorageFolderQueryOperations extends IInspectable {
         creator: (ptr) => IVectorView.fromPtr(ptr,
             creator: StorageFolder.fromPtr,
             iterableIid: '{4669befc-ae5c-52b1-8a97-5466ce61e94e}'));
-    completeAsyncOperation(
-        asyncOperation, completer, () => asyncOperation.getResults().toList());
-
-    return completer.future;
+    return asyncOperation.toFuture(() => asyncOperation.getResults().toList());
   }
 
   Future<List<IStorageItem>> getItemsAsync(
       int startIndex, int maxItemsToRetrieve) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<List<IStorageItem>>();
 
     final hr = ptr.ref.vtable
             .elementAt(19)
@@ -489,10 +468,7 @@ class IStorageFolderQueryOperations extends IInspectable {
         creator: (ptr) => IVectorView.fromPtr(ptr,
             creator: IStorageItem.fromPtr,
             iterableIid: '{bb8b8418-65d1-544b-b083-6d172f568c73}'));
-    completeAsyncOperation(
-        asyncOperation, completer, () => asyncOperation.getResults().toList());
-
-    return completer.future;
+    return asyncOperation.toFuture(() => asyncOperation.getResults().toList());
   }
 
   bool areQueryOptionsSupported(QueryOptions? queryOptions) {

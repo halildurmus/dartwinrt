@@ -229,7 +229,6 @@ class IConnectionProfile2 extends IInspectable {
       DataUsageGranularity granularity,
       NetworkUsageStates states) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<List<NetworkUsage>>();
     final statesNativeStructPtr = states.toNative();
 
     final hr = ptr.ref.vtable
@@ -272,16 +271,12 @@ class IConnectionProfile2 extends IInspectable {
         creator: (ptr) => IVectorView.fromPtr(ptr,
             creator: NetworkUsage.fromPtr,
             iterableIid: '{dd2656b1-8360-5772-b272-c47f7f0fc7a6}'));
-    completeAsyncOperation(
-        asyncOperation, completer, () => asyncOperation.getResults().toList());
-
-    return completer.future;
+    return asyncOperation.toFuture(() => asyncOperation.getResults().toList());
   }
 
   Future<List<ConnectivityInterval>> getConnectivityIntervalsAsync(
       DateTime startTime, DateTime endTime, NetworkUsageStates states) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<List<ConnectivityInterval>>();
     final statesNativeStructPtr = states.toNative();
 
     final hr = ptr.ref.vtable
@@ -321,9 +316,6 @@ class IConnectionProfile2 extends IInspectable {
             creator: (ptr) => IVectorView.fromPtr(ptr,
                 creator: ConnectivityInterval.fromPtr,
                 iterableIid: '{58051a8b-b259-5414-9b9a-caa0789e833e}'));
-    completeAsyncOperation(
-        asyncOperation, completer, () => asyncOperation.getResults().toList());
-
-    return completer.future;
+    return asyncOperation.toFuture(() => asyncOperation.getResults().toList());
   }
 }

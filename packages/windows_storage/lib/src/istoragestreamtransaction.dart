@@ -59,7 +59,6 @@ class IStorageStreamTransaction extends IInspectable implements IClosable {
 
   Future<void> commitAsync() {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<void>();
 
     final hr = ptr.ref.vtable
             .elementAt(7)
@@ -78,10 +77,7 @@ class IStorageStreamTransaction extends IInspectable implements IClosable {
       throw WindowsException(hr);
     }
 
-    final asyncAction = IAsyncAction.fromPtr(retValuePtr);
-    completeAsyncAction(asyncAction, completer);
-
-    return completer.future;
+    return IAsyncAction.fromPtr(retValuePtr).toFuture();
   }
 
   late final _iClosable = IClosable.from(this);

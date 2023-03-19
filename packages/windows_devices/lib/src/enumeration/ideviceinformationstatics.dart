@@ -34,7 +34,6 @@ class IDeviceInformationStatics extends IInspectable {
 
   Future<DeviceInformation?> createFromIdAsync(String deviceId) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<DeviceInformation?>();
     final deviceIdHString = deviceId.toHString();
 
     final hr = ptr.ref.vtable
@@ -60,16 +59,12 @@ class IDeviceInformationStatics extends IInspectable {
     final asyncOperation = IAsyncOperation<DeviceInformation?>.fromPtr(
         retValuePtr,
         creator: DeviceInformation.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<DeviceInformation?> createFromIdAsyncAdditionalProperties(
       String deviceId, IIterable<String>? additionalProperties) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<DeviceInformation?>();
     final deviceIdHString = deviceId.toHString();
     final additionalPropertiesPtr = additionalProperties == null
         ? nullptr
@@ -108,15 +103,11 @@ class IDeviceInformationStatics extends IInspectable {
     final asyncOperation = IAsyncOperation<DeviceInformation?>.fromPtr(
         retValuePtr,
         creator: DeviceInformation.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<DeviceInformationCollection?> findAllAsync() {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<DeviceInformationCollection?>();
 
     final hr = ptr.ref.vtable
             .elementAt(8)
@@ -138,16 +129,12 @@ class IDeviceInformationStatics extends IInspectable {
     final asyncOperation =
         IAsyncOperation<DeviceInformationCollection?>.fromPtr(retValuePtr,
             creator: DeviceInformationCollection.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<DeviceInformationCollection?> findAllAsyncDeviceClass(
       DeviceClass deviceClass) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<DeviceInformationCollection?>();
 
     final hr = ptr.ref.vtable
             .elementAt(9)
@@ -170,15 +157,11 @@ class IDeviceInformationStatics extends IInspectable {
     final asyncOperation =
         IAsyncOperation<DeviceInformationCollection?>.fromPtr(retValuePtr,
             creator: DeviceInformationCollection.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<DeviceInformationCollection?> findAllAsyncAqsFilter(String aqsFilter) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<DeviceInformationCollection?>();
     final aqsFilterHString = aqsFilter.toHString();
 
     final hr = ptr.ref.vtable
@@ -204,17 +187,13 @@ class IDeviceInformationStatics extends IInspectable {
     final asyncOperation =
         IAsyncOperation<DeviceInformationCollection?>.fromPtr(retValuePtr,
             creator: DeviceInformationCollection.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<DeviceInformationCollection?>
       findAllAsyncAqsFilterAndAdditionalProperties(
           String aqsFilter, IIterable<String>? additionalProperties) {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<DeviceInformationCollection?>();
     final aqsFilterHString = aqsFilter.toHString();
     final additionalPropertiesPtr = additionalProperties == null
         ? nullptr
@@ -253,10 +232,7 @@ class IDeviceInformationStatics extends IInspectable {
     final asyncOperation =
         IAsyncOperation<DeviceInformationCollection?>.fromPtr(retValuePtr,
             creator: DeviceInformationCollection.fromPtr);
-    completeAsyncOperation(
-        asyncOperation, completer, asyncOperation.getResults);
-
-    return completer.future;
+    return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   DeviceWatcher? createWatcher() {

@@ -65,7 +65,6 @@ class INetworkOperatorTetheringManagerStatics4 extends IInspectable {
 
   Future<void> enableNoConnectionsTimeoutAsync() {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<void>();
 
     final hr = ptr.ref.vtable
             .elementAt(8)
@@ -84,10 +83,7 @@ class INetworkOperatorTetheringManagerStatics4 extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncAction = IAsyncAction.fromPtr(retValuePtr);
-    completeAsyncAction(asyncAction, completer);
-
-    return completer.future;
+    return IAsyncAction.fromPtr(retValuePtr).toFuture();
   }
 
   void disableNoConnectionsTimeout() {
@@ -102,7 +98,6 @@ class INetworkOperatorTetheringManagerStatics4 extends IInspectable {
 
   Future<void> disableNoConnectionsTimeoutAsync() {
     final retValuePtr = calloc<COMObject>();
-    final completer = Completer<void>();
 
     final hr = ptr.ref.vtable
             .elementAt(10)
@@ -121,9 +116,6 @@ class INetworkOperatorTetheringManagerStatics4 extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncAction = IAsyncAction.fromPtr(retValuePtr);
-    completeAsyncAction(asyncAction, completer);
-
-    return completer.future;
+    return IAsyncAction.fromPtr(retValuePtr).toFuture();
   }
 }
