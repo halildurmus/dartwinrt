@@ -181,7 +181,7 @@ void main() {
           equals('IIterator<IKeyValuePair<String, String>> first()'));
     });
 
-    test('projects IAsyncAction', () {
+    test('projects IAsyncAction (1)', () {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Storage.IStorageItem', 'DeleteAsyncOverloadDefaultOptions');
       expect(projection, isA<AsyncActionMethodProjection>());
@@ -198,7 +198,25 @@ void main() {
           equals('Future<void> deleteAsyncOverloadDefaultOptions()'));
     });
 
-    test('projects IAsyncOperation<StorageFile?>', () {
+    test('projects IAsyncAction (2)', () {
+      final projection = MethodProjection.fromTypeAndMethodName(
+          'Windows.Security.Authentication.OnlineId.OnlineIdAuthenticator',
+          'SignOutUserAsync');
+      expect(projection, isA<AsyncActionMethodProjection>());
+      expect(projection.returnType, equals('Future<void>'));
+      expect(
+          projection.nativePrototype,
+          equals(
+              'HRESULT Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)'));
+      expect(
+          projection.dartPrototype,
+          equals(
+              'int Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)'));
+      expect(
+          projection.methodHeader, equals('Future<void> signOutUserAsync()'));
+    });
+
+    test('projects IAsyncOperation (1)', () {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Storage.Pickers.IFileOpenPicker', 'PickSingleFileAsync');
       expect(projection, isA<AsyncOperationMethodProjection>());
@@ -215,7 +233,24 @@ void main() {
           equals('Future<StorageFile?> pickSingleFileAsync()'));
     });
 
-    test('projects IMap<String, IVectorView<TextSegment>?>', () {
+    test('projects IAsyncOperation (2)', () {
+      final projection = MethodProjection.fromTypeAndMethodName(
+          'Windows.Storage.Streams.DataReader', 'LoadAsync');
+      expect(projection, isA<AsyncOperationMethodProjection>());
+      expect(projection.returnType, equals('Future<int>'));
+      expect(
+          projection.nativePrototype,
+          equals(
+              'HRESULT Function(LPVTBL lpVtbl, Uint32 count, Pointer<COMObject> retValuePtr)'));
+      expect(
+          projection.dartPrototype,
+          equals(
+              'int Function(LPVTBL lpVtbl, int count, Pointer<COMObject> retValuePtr)'));
+      expect(
+          projection.methodHeader, equals('Future<int> loadAsync(int count)'));
+    });
+
+    test('projects IMap', () {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Storage.Search.StorageFileQueryResult',
           'GetMatchingPropertiesWithRanges');
@@ -236,7 +271,7 @@ void main() {
               'IMap<String, IVectorView<TextSegment>?> getMatchingPropertiesWithRanges(StorageFile? file)'));
     });
 
-    test('projects IMapView<String, String>', () {
+    test('projects IMapView', () {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Foundation.Collections.StringMap', 'GetView');
       expect(projection, isA<MapViewMethodProjection>());
@@ -252,7 +287,7 @@ void main() {
       expect(projection.methodHeader, equals('Map<String, String> getView()'));
     });
 
-    test('projects IReference<int?>', () {
+    test('projects IReference', () {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Networking.Connectivity.ConnectionProfile', 'GetSignalBars');
       expect(projection, isA<ReferenceMethodProjection>());
@@ -268,7 +303,7 @@ void main() {
       expect(projection.methodHeader, equals('int? getSignalBars()'));
     });
 
-    test('projects IVector<BackgroundTransferFileRange>', () {
+    test('projects IVector', () {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Networking.BackgroundTransfer.IDownloadOperation3',
           'GetDownloadedRanges');
@@ -287,7 +322,7 @@ void main() {
           equals('IVector<BackgroundTransferFileRange> getDownloadedRanges()'));
     });
 
-    test('projects IVectorView<String>', () {
+    test('projects IVectorView', () {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Globalization.ApplicationLanguages', 'GetLanguagesForUser');
       expect(projection, isA<VectorViewMethodProjection>());

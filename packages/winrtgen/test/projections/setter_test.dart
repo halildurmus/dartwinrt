@@ -163,7 +163,7 @@ void main() {
           equals('set targetFile(IStorageFile? value)'));
     });
 
-    test('projects IReference<BluetoothLEAdvertisementFlags?>', () {
+    test('projects IReference', () {
       final projection = SetterProjection.fromTypeAndMethodName(
           'Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisement',
           'put_Flags');

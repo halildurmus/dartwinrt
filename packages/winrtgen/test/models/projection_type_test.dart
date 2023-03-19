@@ -25,16 +25,31 @@ void main() {
           equals(ProjectionType.object));
     });
 
-    test('returns asyncAction type', () {
+    test('returns asyncAction type (1)', () {
       final methodProjection = MethodProjection.fromTypeAndMethodName(
           'Windows.Storage.IStorageItem', 'DeleteAsync');
       expect(ProjectionType.from(methodProjection.returnTypeProjection),
           equals(ProjectionType.asyncAction));
     });
 
-    test('returns asyncOperation type', () {
+    test('returns asyncAction type (2)', () {
+      final methodProjection = MethodProjection.fromTypeAndMethodName(
+          'Windows.Security.Authentication.OnlineId.OnlineIdAuthenticator',
+          'SignOutUserAsync');
+      expect(ProjectionType.from(methodProjection.returnTypeProjection),
+          equals(ProjectionType.asyncAction));
+    });
+
+    test('returns asyncOperation type (1)', () {
       final methodProjection = MethodProjection.fromTypeAndMethodName(
           'Windows.Storage.Pickers.IFileOpenPicker', 'PickSingleFileAsync');
+      expect(ProjectionType.from(methodProjection.returnTypeProjection),
+          equals(ProjectionType.asyncOperation));
+    });
+
+    test('returns asyncOperation type (2)', () {
+      final methodProjection = MethodProjection.fromTypeAndMethodName(
+          'Windows.Storage.Streams.DataReader', 'LoadAsync');
       expect(ProjectionType.from(methodProjection.returnTypeProjection),
           equals(ProjectionType.asyncOperation));
     });
