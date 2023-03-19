@@ -42,9 +42,11 @@ class MethodForwardersProjection {
     if (!isGenericInterface) return null;
     final creatorArg = creatorArgument;
     final iterableIidArg = iterableIidArgument;
+    final intTypeArg = intTypeArgument;
     final args = <String>[
       if (creatorArg != null) creatorArg,
-      if (iterableIidArg != null) iterableIidArg
+      if (iterableIidArg != null) iterableIidArg,
+      if (intTypeArg != null) intTypeArg
     ];
     return args.isEmpty ? '' : ', ${args.join(', ')}';
   }
@@ -73,6 +75,15 @@ class MethodForwardersProjection {
     } else if (['IVector', 'IVectorView'].contains(shortInterfaceName)) {
       final iid = iterableIidFromVectorType(interface.typeSpec!);
       return 'iterableIid: ${quote(iid)}';
+    }
+    return null;
+  }
+
+  String? get intTypeArgument {
+    if (!isGenericInterface) return null;
+    if (['int', 'int?'].contains(typeArgs)) {
+      final typeArgProjection = TypeProjection(interface.typeSpec!.typeArg!);
+      return 'intType: IntType.${typeArgProjection.nativeType.toLowerCase()}';
     }
     return null;
   }
