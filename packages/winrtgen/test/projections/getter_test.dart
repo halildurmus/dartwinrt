@@ -215,7 +215,7 @@ void main() {
       expect(projection.methodHeader, equals('IXmlNode? get firstChild'));
     });
 
-    test('projects IMap<String, String>', () {
+    test('projects IMap', () {
       final projection = GetterProjection.fromTypeAndMethodName(
           'Windows.UI.Notifications.INotificationData', 'get_Values');
       expect(projection, isA<MapGetterProjection>());
@@ -234,7 +234,7 @@ void main() {
           contains("iterableIid: '{e9bdaaf0-cbf6-5c72-be90-29cbf3a1319b}'"));
     });
 
-    test('projects IMapView<String, Object?>', () {
+    test('projects IMapView', () {
       final projection = GetterProjection.fromTypeAndMethodName(
           'Windows.Devices.Enumeration.IDeviceInformation', 'get_Properties');
       expect(projection, isA<MapViewGetterProjection>());
@@ -253,7 +253,7 @@ void main() {
           contains("iterableIid: '{fe2f3d47-5d47-5499-8374-430c7cda0204}'"));
     });
 
-    test('projects IReference<DateTime?>', () {
+    test('projects IReference', () {
       final projection = GetterProjection.fromTypeAndMethodName(
           'Windows.UI.Notifications.IToastNotification', 'get_ExpirationTime');
       expect(projection, isA<ReferenceGetterProjection>());
@@ -271,7 +271,7 @@ void main() {
           contains("referenceIid: '{5541d8a7-497c-5aa4-86fc-7713adbf2a2c}'"));
     });
 
-    test('projects IVector<String>', () {
+    test('projects IVector', () {
       final projection = GetterProjection.fromTypeAndMethodName(
           'Windows.Storage.Pickers.IFileOpenPicker', 'get_FileTypeFilter');
       expect(projection, isA<VectorGetterProjection>());
@@ -290,7 +290,7 @@ void main() {
           contains("iterableIid: '{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'"));
     });
 
-    test('projects IVectorView<String>', () {
+    test('projects IVectorView', () {
       final projection = GetterProjection.fromTypeAndMethodName(
           'Windows.Globalization.ICalendar', 'get_Languages');
       expect(projection, isA<VectorViewGetterProjection>());

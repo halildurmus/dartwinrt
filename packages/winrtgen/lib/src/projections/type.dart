@@ -76,10 +76,17 @@ class TypeProjection {
   // Type matcher properties
 
   bool get isAsyncAction =>
-      typeIdentifier.name == 'Windows.Foundation.IAsyncAction';
+      typeIdentifier.name == 'Windows.Foundation.IAsyncAction' ||
+      (typeIdentifier.type?.interfaces
+              .any((interface) => interface.name.endsWith('IAsyncAction')) ??
+          false);
 
   bool get isAsyncOperation =>
-      typeIdentifier.type?.name.endsWith('IAsyncOperation`1') ?? false;
+      (typeIdentifier.type?.name.endsWith('IAsyncOperation`1') ?? false) ||
+      (typeIdentifier.type?.interfaces.any((interface) =>
+              interface.typeSpec?.name.endsWith('IAsyncOperation`1') ??
+              false) ??
+          false);
 
   bool get isBaseType =>
       baseNativeMapping.keys.contains(typeIdentifier.baseType);

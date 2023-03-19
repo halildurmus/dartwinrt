@@ -2,6 +2,8 @@
 // details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
+import 'package:winmd/winmd.dart';
+
 import '../../extensions/extensions.dart';
 import '../../utils.dart';
 import '../method.dart';
@@ -30,11 +32,28 @@ class AsyncActionMethodProjection extends MethodProjection {
 }
 
 mixin _AsyncOperationMixin on MethodProjection {
+  /// Whether the method returns a type like `DataReaderLoadOperation`.
+  bool get isSubtypeOfAsyncOperation =>
+      returnTypeProjection.typeIdentifier.type?.interfaces.any((interface) =>
+          interface.typeSpec?.name.endsWith('IAsyncOperation`1') ?? false) ??
+      false;
+
+  TypeIdentifier get typeIdentifier {
+    if (isSubtypeOfAsyncOperation) {
+      final typeDef = MetadataStore.getMetadataForType(
+          returnTypeProjection.typeIdentifier.name)!;
+      return typeDef.interfaces
+          .firstWhere((interface) =>
+              interface.typeSpec!.name.endsWith('IAsyncOperation`1'))
+          .typeSpec!;
+    }
+    return returnTypeProjection.typeIdentifier;
+  }
+
   /// The type argument of `IAsyncOperation`, as represented in the
   /// [returnTypeProjection]'s `TypeIdentifier` (e.g. `bool`, `String`,
   /// `StorageFile?`).
-  String get asyncOperationTypeArg =>
-      typeArguments(returnTypeProjection.typeIdentifier.shortName);
+  String get asyncOperationTypeArg => typeArguments(typeIdentifier.shortName);
 
   String get completerTypeArg {
     final typeArg = asyncOperationTypeArg;
@@ -54,14 +73,13 @@ mixin _AsyncOperationMixin on MethodProjection {
 
   /// The constructor arguments passed to the constructor of `IAsyncOperation`.
   String get asyncOperationConstructorArgs {
-    final typeProjection =
-        TypeProjection(returnTypeProjection.typeIdentifier.typeArg!);
+    final typeProjection = TypeProjection(typeIdentifier.typeArg!);
 
     // If the type argument is an enum or a WinRT object (e.g. StorageFile), the
     // constructor of that class must be passed in the 'enumCreator' parameter
     // for enums, 'creator' parameter for WinRT objects so that the
     // IAsyncOperation implementation can instantiate the object.
-    final creator = returnTypeProjection.typeIdentifier.typeArg!.creator;
+    final creator = typeIdentifier.typeArg!.creator;
 
     // If the type argument is an int, 'intType' parameter must be specified so
     // that the IAsyncOperation implementation can use the appropriate native
