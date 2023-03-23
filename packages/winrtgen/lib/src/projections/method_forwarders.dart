@@ -188,9 +188,22 @@ class MethodForwardersProjection {
     }
 
     if (['IMap', 'IMapView'].contains(shortInterfaceName)) {
-      methods.add(mapPostamble());
+      methods.addAll([
+        mapFirstForwarder(),
+        mapToMapForwarder(),
+        mapSubscriptAccessOperatorForwarder(),
+        if (shortInterfaceName == 'IMap')
+          mapSubscriptAssignmentOperatorForwarder()
+      ]);
     } else if (['IVector', 'IVectorView'].contains(shortInterfaceName)) {
-      methods.add(vectorPostamble());
+      methods.addAll([
+        vectorFirstForwarder(),
+        vectorToListForwarder(),
+        vectorSubscriptAccessOperatorForwarder(),
+        if (shortInterfaceName == 'IVector')
+          vectorSubscriptAssignmentOperatorForwarder(),
+        vectorAddOperatorForwarder()
+      ]);
     }
 
     return methods;
@@ -223,6 +236,35 @@ class MethodForwardersProjection {
 ''';
   }
 
+  String mapFirstForwarder() => '''
+  @override
+  IIterator<IKeyValuePair<$typeArgs>> first() => $fieldIdentifier.first();
+''';
+
+  String mapToMapForwarder() => '''
+  @override
+  Map<$typeArgs> toMap() => $fieldIdentifier.toMap();
+''';
+
+  String mapSubscriptAccessOperatorForwarder() {
+    final keyType = typeArgs.split(', ')[0];
+    final valueType = typeArgs.split(', ')[1];
+    return '''
+  @override
+  $valueType operator []($keyType key) => $fieldIdentifier[key];
+  ''';
+  }
+
+  String mapSubscriptAssignmentOperatorForwarder() {
+    final keyType = typeArgs.split(', ')[0];
+    final valueType = typeArgs.split(', ')[1];
+    return '''
+  @override
+  void operator []=($keyType key, $valueType value) =>
+      $fieldIdentifier[key] = value;
+  ''';
+  }
+
   String vectorAppendForwarder() => '''
   @override
   void append(${stripQuestionMarkSuffix(typeArgs)} value) =>
@@ -247,23 +289,32 @@ class MethodForwardersProjection {
       $fieldIdentifier.setAt(index, value);
 ''';
 
-  /// Method forwarders for IIterable's `first()` and IMap/IMapView's `toMap()`.
-  String mapPostamble() => '''
-  @override
-  IIterator<IKeyValuePair<$typeArgs>> first() => $fieldIdentifier.first();
-
-  @override
-  Map<$typeArgs> toMap() => $fieldIdentifier.toMap();
-''';
-
-  /// Method forwarders for IIterable's `first()` and Vector/VectorView's
-  /// `toList()`.
-  String vectorPostamble() => '''
+  String vectorFirstForwarder() => '''
   @override
   IIterator<$typeArgs> first() => $fieldIdentifier.first();
+''';
 
+  String vectorToListForwarder() => '''
   @override
   List<$typeArgs> toList() => $fieldIdentifier.toList();
+''';
+
+  String vectorSubscriptAccessOperatorForwarder() => '''
+  @override
+  ${stripQuestionMarkSuffix(typeArgs)} operator [](int index) =>
+      $fieldIdentifier[index];
+''';
+
+  String vectorSubscriptAssignmentOperatorForwarder() => '''
+  @override
+  void operator []=(int index, ${stripQuestionMarkSuffix(typeArgs)} value) =>
+      $fieldIdentifier[index] = value;
+''';
+
+  String vectorAddOperatorForwarder() => '''
+  @override
+  List<$typeArgs> operator +(List<${stripQuestionMarkSuffix(typeArgs)}> other) =>
+      toList() + other;
 ''';
 
   @override

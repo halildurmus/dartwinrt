@@ -67,6 +67,12 @@ class StringMap extends IInspectable
   @override
   Map<String, String> toMap() => _iMap.toMap();
 
+  @override
+  String operator [](String key) => _iMap[key];
+
+  @override
+  void operator []=(String key, String value) => _iMap[key] = value;
+
   late final _iObservableMap = IObservableMap<String, String>.fromPtr(
       toInterface('{1e036276-2f60-55f6-b7f3-f86079e6900b}'));
 

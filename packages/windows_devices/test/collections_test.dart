@@ -280,5 +280,38 @@ void main() {
       expect(iterator.current, equals(DeviceClass.imageScanner));
       expect(iterator.moveNext(), isFalse);
     });
+
+    test('operator []', () {
+      final vector = getVector()
+        ..append(DeviceClass.audioCapture)
+        ..append(DeviceClass.audioRender)
+        ..append(DeviceClass.imageScanner);
+      expect(vector[0], equals(DeviceClass.audioCapture));
+      expect(vector[1], equals(DeviceClass.audioRender));
+      expect(vector[2], equals(DeviceClass.imageScanner));
+    });
+
+    test('operator []=', () {
+      final vector = getVector()
+        ..append(DeviceClass.audioCapture)
+        ..append(DeviceClass.audioRender)
+        ..append(DeviceClass.imageScanner);
+      vector[1] = DeviceClass.location;
+      expect(vector.getAt(1), equals(DeviceClass.location));
+    });
+
+    test('operator +', () {
+      final vector = getVector()..append(DeviceClass.audioCapture);
+      final list = [DeviceClass.audioRender, DeviceClass.imageScanner];
+      final newList = vector + list;
+      expect(newList.length, equals(3));
+      expect(
+          newList,
+          orderedEquals([
+            DeviceClass.audioCapture,
+            DeviceClass.audioRender,
+            DeviceClass.imageScanner
+          ]));
+    });
   });
 }

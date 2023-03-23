@@ -261,4 +261,34 @@ abstract class IVector<T> extends IInspectable implements IIterable<T> {
     getMany(0, size, list);
     return List.unmodifiable(list);
   }
+
+  /// The object at the given [index] in the list.
+  ///
+  /// The [index] must be a valid index of this list, which means that `index`
+  /// must be non-negative and less than [size].
+  T operator [](int index) {
+    if (index < 0 || index >= size) {
+      throw RangeError.range(index, 0, size - 1, 'index');
+    }
+    return getAt(index);
+  }
+
+  /// Sets the value at the given [index] in the list to [value].
+  ///
+  /// The [index] must be a valid index of this list, which means that `index`
+  /// must be non-negative and less than [size].
+  void operator []=(int index, T value) {
+    if (index < 0 || index >= size) {
+      throw RangeError.range(index, 0, size - 1, 'index');
+    }
+    setAt(index, value);
+  }
+
+  /// Returns the concatenation of this list and [other].
+  ///
+  /// Returns a new list containing the elements of this list followed by
+  /// the elements of [other].
+  ///
+  /// The default behavior is to return a normal growable list.
+  List<T> operator +(List<T> other) => toList() + other;
 }

@@ -73,4 +73,12 @@ class WwwFormUrlDecoder extends IInspectable
 
   @override
   List<IWwwFormUrlDecoderEntry> toList() => _iVectorView.toList();
+
+  @override
+  IWwwFormUrlDecoderEntry operator [](int index) => _iVectorView[index];
+
+  @override
+  List<IWwwFormUrlDecoderEntry> operator +(
+          List<IWwwFormUrlDecoderEntry> other) =>
+      toList() + other;
 }

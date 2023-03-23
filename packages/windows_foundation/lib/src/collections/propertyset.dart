@@ -79,4 +79,10 @@ class PropertySet extends IInspectable
 
   @override
   Map<String, Object?> toMap() => _iMap.toMap();
+
+  @override
+  Object? operator [](String key) => _iMap[key];
+
+  @override
+  void operator []=(String key, Object? value) => _iMap[key] = value;
 }

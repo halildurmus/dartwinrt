@@ -263,6 +263,28 @@ void main() {
       expect(current.value, equals('icalendar'));
       expect(iterator.moveNext(), isFalse);
     });
+
+    test('operator []', () {
+      final map = getMap();
+      expect(map['key1'], isNull);
+      expect(map['key3'], isTrue);
+      expect(map['key5'], equals(0.5));
+    });
+
+    test('operator []=', () {
+      final map = getMap();
+
+      // Replace an existing item.
+      expect(map.size, equals(23));
+      map['key5'] = null;
+      expect(map.size, equals(23));
+      expect(map.lookup('key5'), isNull);
+
+      // Insert a new item.
+      map['key24'] = 24;
+      expect(map.size, equals(24));
+      expect(map.lookup('key24'), equals(24));
+    });
   });
 
   group('IMap<String, Object?> (ValueSet)', () {
@@ -495,6 +517,28 @@ void main() {
       expect(iterator.current.value, equals('icalendar'));
       expect(iterator.moveNext(), isFalse);
     });
+
+    test('operator []', () {
+      final map = getMap();
+      expect(map['key1'], isNull);
+      expect(map['key3'], isTrue);
+      expect(map['key5'], equals(0.5));
+    });
+
+    test('operator []=', () {
+      final map = getMap();
+
+      // Replace an existing item.
+      expect(map.size, equals(22));
+      map['key5'] = null;
+      expect(map.size, equals(22));
+      expect(map.lookup('key5'), isNull);
+
+      // Insert a new item.
+      map['key23'] = 23;
+      expect(map.size, equals(23));
+      expect(map.lookup('key23'), equals(23));
+    });
   });
 
   group('IMap<String, String> (StringMap)', () {
@@ -619,6 +663,28 @@ void main() {
       expect(current.value, equals('value1'));
       expect(iterator.moveNext(), isFalse);
     });
+
+    test('operator []', () {
+      final map = getMap();
+      expect(map['key1'], equals('value1'));
+      expect(map['key2'], isEmpty);
+      expect(map['key3'], equals('value3'));
+    });
+
+    test('operator []=', () {
+      final map = getMap();
+
+      // Replace an existing item.
+      expect(map.size, equals(3));
+      map['key3'] = 'newValue3';
+      expect(map.size, equals(3));
+      expect(map.lookup('key3'), equals('newValue3'));
+
+      // Insert a new item.
+      map['key4'] = 'value4';
+      expect(map.size, equals(4));
+      expect(map.lookup('key4'), equals('value4'));
+    });
   });
 
   group('IMapView<String, String> (StringMap)', () {
@@ -708,6 +774,13 @@ void main() {
       expect(current.key, equals('key1'));
       expect(current.value, equals('value1'));
       expect(iterator.moveNext(), isFalse);
+    });
+
+    test('operator []', () {
+      final map = getMapView();
+      expect(map['key1'], equals('value1'));
+      expect(map['key2'], isEmpty);
+      expect(map['key3'], equals('value3'));
     });
   });
 
@@ -989,6 +1062,38 @@ void main() {
       expect(iterator.current,
           equals(Uri.parse('https://flutter.dev/development')));
       expect(iterator.moveNext(), isFalse);
+    });
+
+    test('operator []', () {
+      final vector = getVector()
+        ..append(Uri.parse('https://dart.dev/overview'))
+        ..append(Uri.parse('https://dart.dev/docs'))
+        ..append(Uri.parse('https://flutter.dev/development'));
+      expect(vector[0], equals(Uri.parse('https://dart.dev/overview')));
+      expect(vector[1], equals(Uri.parse('https://dart.dev/docs')));
+      expect(vector[2], equals(Uri.parse('https://flutter.dev/development')));
+    });
+
+    test('operator []=', () {
+      final vector = getVector()
+        ..append(Uri.parse('https://dart.dev/overview'))
+        ..append(Uri.parse('https://dart.dev/docs'))
+        ..append(Uri.parse('https://flutter.dev/development'));
+      vector[1] = Uri.parse('https://dart.dev/tutorials');
+      expect(vector[1], equals(Uri.parse('https://dart.dev/tutorials')));
+    });
+
+    test('operator +', () {
+      final vector = getVector()..append(Uri.parse('https://dart.dev/docs'));
+      final list = [Uri.parse('https://dart.dev/tutorials')];
+      final newList = vector + list;
+      expect(newList.length, equals(2));
+      expect(
+          newList,
+          orderedEquals([
+            Uri.parse('https://dart.dev/docs'),
+            Uri.parse('https://dart.dev/tutorials')
+          ]));
     });
   });
 }

@@ -278,5 +278,30 @@ void main() {
       expect(current.value, equals(259));
       expect(iterator.moveNext(), isFalse);
     });
+
+    test('operator []', () {
+      final map = getMap();
+      expect(map[Guid.parse(IID_IClosable)], isNull);
+      expect(map[Guid.parse(IID_IDispatch)], isTrue);
+      expect(map[Guid.parse(IID_IShellItemFilter)], equals('strVal'));
+    });
+
+    test('operator []=', () {
+      final map = getMap();
+
+      // Replace an existing item.
+      final guid1 = Guid.parse(IID_IShellItemFilter);
+      expect(map.size, equals(23));
+      map[guid1] = 'strValNew';
+      expect(map.size, equals(23));
+      expect(map.lookup(guid1), equals('strValNew'));
+
+      // Insert a new item.
+      final guid2 = Guid.parse(IID_IClassFactory);
+      expect(map.size, equals(23));
+      map[guid2] = 'iclassfactory';
+      expect(map.size, equals(24));
+      expect(map.lookup(guid2), equals('iclassfactory'));
+    });
   });
 }

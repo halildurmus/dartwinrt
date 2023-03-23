@@ -160,5 +160,32 @@ void main() {
       expect(current.value?.getString(), equals('strVal'));
       expect(iterator.moveNext(), isFalse);
     });
+
+    test('operator []', () {
+      final map = getMap();
+      expect(
+          map['key1']?.stringify(),
+          equals(
+              '{"key1":"strVal","key2":97,"key3":false,"key4":[1,2,3],"key5":null}'));
+      expect(map['key2']?.getBoolean(), isTrue);
+      expect(map['key3']?.getNumber(), equals(2022));
+      expect(map['key4']?.getString(), equals('strVal'));
+      expect(map['key5']?.valueType, equals(JsonValueType.null_));
+    });
+
+    test('operator []=', () {
+      final map = getMap();
+
+      // Replace an existing item.
+      expect(map.size, equals(5));
+      map['key4'] = JsonValue.createStringValue('strValNew');
+      expect(map.size, equals(5));
+      expect(map.lookup('key4')?.getString(), equals('strValNew'));
+
+      // Insert a new item.
+      map['key6'] = JsonValue.parse('{"hello": "world"}');
+      expect(map.size, equals(6));
+      expect(map.lookup('key6')?.stringify(), equals('{"hello":"world"}'));
+    });
   });
 }

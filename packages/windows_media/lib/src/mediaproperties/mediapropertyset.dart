@@ -55,4 +55,10 @@ class MediaPropertySet extends IInspectable
 
   @override
   Map<Guid, Object?> toMap() => _iMap.toMap();
+
+  @override
+  Object? operator [](Guid key) => _iMap[key];
+
+  @override
+  void operator []=(Guid key, Object? value) => _iMap[key] = value;
 }

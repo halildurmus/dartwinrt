@@ -48,4 +48,11 @@ class DeviceInformationCollection extends IInspectable
 
   @override
   List<DeviceInformation> toList() => _iVectorView.toList();
+
+  @override
+  DeviceInformation operator [](int index) => _iVectorView[index];
+
+  @override
+  List<DeviceInformation> operator +(List<DeviceInformation> other) =>
+      toList() + other;
 }

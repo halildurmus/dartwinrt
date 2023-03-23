@@ -278,5 +278,32 @@ void main() {
       expect(iterator.current, equals(666));
       expect(iterator.moveNext(), isFalse);
     });
+
+    test('operator []', () {
+      final vector = getVector()
+        ..append(5)
+        ..append(259)
+        ..append(666);
+      expect(vector[0], equals(5));
+      expect(vector[1], equals(259));
+      expect(vector[2], equals(666));
+    });
+
+    test('operator []=', () {
+      final vector = getVector()
+        ..append(5)
+        ..append(259)
+        ..append(666);
+      vector[1] = 11811;
+      expect(vector.getAt(1), equals(11811));
+    });
+
+    test('operator +', () {
+      final vector = getVector()..append(259);
+      final list = [11811, 32367];
+      final newList = vector + list;
+      expect(newList.length, equals(3));
+      expect(newList, orderedEquals([259, 11811, 32367]));
+    });
   });
 }

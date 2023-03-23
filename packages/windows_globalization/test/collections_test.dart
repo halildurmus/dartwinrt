@@ -118,5 +118,20 @@ void main() {
         expect(iterator.moveNext(), i < list.length - 1);
       }
     });
+
+    test('operator []', () {
+      final vector = getVectorView();
+      // Should be something like en-US
+      expect(vector[0][2], equals('-'));
+    });
+
+    test('operator +', () {
+      final vector = getVectorView();
+      final list = ['tr-TR'];
+      final newList = vector + list;
+      expect(newList.length, equals(vector.size + 1));
+      expect(newList.first[2], equals('-'));
+      expect(newList.last, equals('tr-TR'));
+    });
   });
 }

@@ -237,4 +237,7 @@ abstract class IMapView<K, V> extends IInspectable
         keyValuePairs.map((kvp) => MapEntry(kvp.key, kvp.value)));
     return Map.unmodifiable(map);
   }
+
+  /// The value for the given [key], or `null` if [key] is not in the map.
+  V operator [](K key) => lookup(key);
 }
