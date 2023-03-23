@@ -4,7 +4,6 @@ on:
   pull_request:
     paths:
       - '.github/workflows/windows_perception.yaml'
-      - 'packages/windows_perception/example/**'
       - 'packages/windows_perception/lib/**'
       - 'packages/windows_perception/test/**'
       - 'packages/windows_perception/pubspec.yaml'
@@ -13,7 +12,6 @@ on:
       - main
     paths:
       - '.github/workflows/windows_perception.yaml'
-      - 'packages/windows_perception/example/**'
       - 'packages/windows_perception/lib/**'
       - 'packages/windows_perception/test/**'
       - 'packages/windows_perception/pubspec.yaml'

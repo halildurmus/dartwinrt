@@ -4,7 +4,6 @@ on:
   pull_request:
     paths:
       - '.github/workflows/windows_data.yaml'
-      - 'packages/windows_data/example/**'
       - 'packages/windows_data/lib/**'
       - 'packages/windows_data/test/**'
       - 'packages/windows_data/pubspec.yaml'
@@ -13,7 +12,6 @@ on:
       - main
     paths:
       - '.github/workflows/windows_data.yaml'
-      - 'packages/windows_data/example/**'
       - 'packages/windows_data/lib/**'
       - 'packages/windows_data/test/**'
       - 'packages/windows_data/pubspec.yaml'

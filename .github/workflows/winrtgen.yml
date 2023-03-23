@@ -4,8 +4,6 @@ on:
   pull_request:
     paths:
       - '.github/workflows/winrtgen.yaml'
-      - 'packages/winrtgen/bin/**'
-      - 'packages/winrtgen/example/**'
       - 'packages/winrtgen/lib/**'
       - 'packages/winrtgen/test/**'
       - 'packages/winrtgen/pubspec.yaml'
@@ -14,8 +12,6 @@ on:
       - main
     paths:
       - '.github/workflows/winrtgen.yaml'
-      - 'packages/winrtgen/bin/**'
-      - 'packages/winrtgen/example/**'
       - 'packages/winrtgen/lib/**'
       - 'packages/winrtgen/test/**'
       - 'packages/winrtgen/pubspec.yaml'

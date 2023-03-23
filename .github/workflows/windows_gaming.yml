@@ -4,7 +4,6 @@ on:
   pull_request:
     paths:
       - '.github/workflows/windows_gaming.yaml'
-      - 'packages/windows_gaming/example/**'
       - 'packages/windows_gaming/lib/**'
       - 'packages/windows_gaming/test/**'
       - 'packages/windows_gaming/pubspec.yaml'
@@ -13,7 +12,6 @@ on:
       - main
     paths:
       - '.github/workflows/windows_gaming.yaml'
-      - 'packages/windows_gaming/example/**'
       - 'packages/windows_gaming/lib/**'
       - 'packages/windows_gaming/test/**'
       - 'packages/windows_gaming/pubspec.yaml'
