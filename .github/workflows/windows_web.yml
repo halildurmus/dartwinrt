@@ -4,7 +4,6 @@ on:
   pull_request:
     paths:
       - '.github/workflows/windows_web.yaml'
-      - 'packages/windows_web/example/**'
       - 'packages/windows_web/lib/**'
       - 'packages/windows_web/test/**'
       - 'packages/windows_web/pubspec.yaml'
@@ -13,7 +12,6 @@ on:
       - main
     paths:
       - '.github/workflows/windows_web.yaml'
-      - 'packages/windows_web/example/**'
       - 'packages/windows_web/lib/**'
       - 'packages/windows_web/test/**'
       - 'packages/windows_web/pubspec.yaml'

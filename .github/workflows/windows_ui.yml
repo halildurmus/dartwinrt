@@ -4,7 +4,6 @@ on:
   pull_request:
     paths:
       - '.github/workflows/windows_ui.yaml'
-      - 'packages/windows_ui/example/**'
       - 'packages/windows_ui/lib/**'
       - 'packages/windows_ui/test/**'
       - 'packages/windows_ui/pubspec.yaml'
@@ -13,7 +12,6 @@ on:
       - main
     paths:
       - '.github/workflows/windows_ui.yaml'
-      - 'packages/windows_ui/example/**'
       - 'packages/windows_ui/lib/**'
       - 'packages/windows_ui/test/**'
       - 'packages/windows_ui/pubspec.yaml'

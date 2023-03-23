@@ -4,7 +4,6 @@ on:
   pull_request:
     paths:
       - '.github/workflows/windows_graphics.yaml'
-      - 'packages/windows_graphics/example/**'
       - 'packages/windows_graphics/lib/**'
       - 'packages/windows_graphics/test/**'
       - 'packages/windows_graphics/pubspec.yaml'
@@ -13,7 +12,6 @@ on:
       - main
     paths:
       - '.github/workflows/windows_graphics.yaml'
-      - 'packages/windows_graphics/example/**'
       - 'packages/windows_graphics/lib/**'
       - 'packages/windows_graphics/test/**'
       - 'packages/windows_graphics/pubspec.yaml'

@@ -4,7 +4,6 @@ on:
   pull_request:
     paths:
       - '.github/workflows/windows_foundation.yaml'
-      - 'packages/windows_foundation/example/**'
       - 'packages/windows_foundation/lib/**'
       - 'packages/windows_foundation/test/**'
       - 'packages/windows_foundation/pubspec.yaml'
@@ -13,7 +12,6 @@ on:
       - main
     paths:
       - '.github/workflows/windows_foundation.yaml'
-      - 'packages/windows_foundation/example/**'
       - 'packages/windows_foundation/lib/**'
       - 'packages/windows_foundation/test/**'
       - 'packages/windows_foundation/pubspec.yaml'
