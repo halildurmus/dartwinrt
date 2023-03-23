@@ -54,7 +54,7 @@ class ClassProjection extends InterfaceProjection {
   String get classNameVariable => (isActivatable ||
           factoryInterfaces.isNotEmpty ||
           staticInterfaces.isNotEmpty)
-      ? "static const _className = '${typeDef.name}';"
+      ? 'static const _className = ${quote(typeDef.name)};'
       : '';
 
   List<String> get factoryInterfaces => typeDef.customAttributes

@@ -218,7 +218,7 @@ class ObjectParameterProjection extends ParameterProjection {
       final iid = typeProjection.typeIdentifier.iid;
       final nullCheck = isNullable ? '$identifier == null ? nullptr : ' : '';
       expression =
-          "${nullCheck}IInspectable($identifier.toInterface('$iid')).ptr.ref.lpVtbl";
+          '${nullCheck}IInspectable($identifier.toInterface(${quote(iid)})).ptr.ref.lpVtbl';
     } else {
       expression = isNullable
           ? '$identifier == null ? nullptr : $identifier.ptr.ref.lpVtbl'

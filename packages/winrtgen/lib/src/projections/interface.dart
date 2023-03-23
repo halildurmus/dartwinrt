@@ -57,7 +57,7 @@ class InterfaceProjection {
 
   String get iidConstant => '''
 /// @nodoc
-const IID_$shortName = '${typeDef.guid}';
+const IID_$shortName = ${quote(typeDef.guid ?? '')};
 ''';
 
   String get category => 'interface';
@@ -114,10 +114,10 @@ const IID_$shortName = '${typeDef.guid}';
         if (import == 'package:win32/win32.dart') {
           // Hide DocumentProperties to avoid conflicts with a class of the same
           // name in the windows_storage package.
-          return "import '$import' hide DocumentProperties;";
+          return "import ${quote(import)} hide DocumentProperties;";
         }
 
-        return "import '$import';";
+        return "import ${quote(import)};";
       }).toList(),
     ).join('\n');
   }
