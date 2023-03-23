@@ -92,7 +92,7 @@ class EnumProjection {
       };
 
   String get importHeader =>
-      sortImports(imports.map((import) => "import '$import';").toList())
+      sortImports(imports.map((import) => "import ${quote(import)};").toList())
           .join('\n');
 
   String get category => 'enum';
