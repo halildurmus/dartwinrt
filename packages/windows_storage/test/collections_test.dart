@@ -281,5 +281,38 @@ void main() {
       expect(current, equals('.png'));
       expect(iterator.moveNext(), isFalse);
     });
+
+    test('operator []', () {
+      final vector = getVector()
+        ..append('.jpg')
+        ..append('.jpeg')
+        ..append('.png');
+      expect(vector[0], equals('.jpg'));
+      expect(vector[1], equals('.jpeg'));
+      expect(vector[2], equals('.png'));
+    });
+
+    test('operator []=', () {
+      final vector = getVector()
+        ..append('.jpg')
+        ..append('.jpeg')
+        ..append('.png');
+      vector[1] = '.gif';
+      expect(vector.getAt(1), equals('.gif'));
+    });
+
+    test('operator +', () {
+      final vector = getVector()..append('.jpg');
+      final list = ['.jpeg', '.png'];
+      final newList = vector + list;
+      expect(newList.length, equals(3));
+      expect(
+          newList,
+          orderedEquals([
+            '.jpg',
+            '.jpeg',
+            '.png',
+          ]));
+    });
   });
 }

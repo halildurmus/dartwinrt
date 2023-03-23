@@ -310,4 +310,13 @@ abstract class IMap<K, V> extends IInspectable
         keyValuePairs.map((kvp) => MapEntry(kvp.key, kvp.value)));
     return Map.unmodifiable(map);
   }
+
+  /// The value for the given [key], or `null` if [key] is not in the map.
+  V operator [](K key) => lookup(key);
+
+  /// Associates the [key] with the given [value].
+  ///
+  /// If the key was already in the map, its associated value is changed.
+  /// Otherwise the key/value pair is added to the map.
+  void operator []=(K key, V value) => insert(key, value);
 }

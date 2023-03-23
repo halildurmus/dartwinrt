@@ -84,4 +84,11 @@ class ICharacterGroupings extends IInspectable
 
   @override
   List<CharacterGrouping> toList() => _iVectorView.toList();
+
+  @override
+  CharacterGrouping operator [](int index) => _iVectorView[index];
+
+  @override
+  List<CharacterGrouping> operator +(List<CharacterGrouping> other) =>
+      toList() + other;
 }

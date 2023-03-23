@@ -134,6 +134,15 @@ class JsonArray extends IInspectable
   @override
   List<IJsonValue> toList() => _iVector.toList();
 
+  @override
+  IJsonValue operator [](int index) => _iVector[index];
+
+  @override
+  void operator []=(int index, IJsonValue value) => _iVector[index] = value;
+
+  @override
+  List<IJsonValue> operator +(List<IJsonValue> other) => toList() + other;
+
   late final _iStringable = IStringable.from(this);
 
   @override

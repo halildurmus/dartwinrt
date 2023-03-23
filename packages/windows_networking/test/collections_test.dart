@@ -111,5 +111,19 @@ void main() {
         expect(iterator.moveNext(), i < list.length - 1);
       }
     });
+
+    test('operator []', () {
+      final vector = getVectorView();
+      expect(vector[0].displayName, isNotEmpty);
+    });
+
+    test('operator +', () {
+      final vector = getVectorView();
+      final list = [HostName.createHostName('test')];
+      final newList = vector + list;
+      expect(newList.length, equals(vector.size + 1));
+      expect(newList.first.displayName, isNotEmpty);
+      expect(newList.last.displayName, equals('test'));
+    });
   });
 }

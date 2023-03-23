@@ -80,4 +80,10 @@ class XmlNamedNodeMap extends IInspectable
 
   @override
   List<IXmlNode> toList() => _iVectorView.toList();
+
+  @override
+  IXmlNode operator [](int index) => _iVectorView[index];
+
+  @override
+  List<IXmlNode> operator +(List<IXmlNode> other) => toList() + other;
 }

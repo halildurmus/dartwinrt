@@ -129,6 +129,12 @@ class JsonObject extends IInspectable
   @override
   Map<String, IJsonValue?> toMap() => _iMap.toMap();
 
+  @override
+  IJsonValue? operator [](String key) => _iMap[key];
+
+  @override
+  void operator []=(String key, IJsonValue? value) => _iMap[key] = value;
+
   late final _iJsonObjectWithDefaultValues =
       IJsonObjectWithDefaultValues.from(this);
 
