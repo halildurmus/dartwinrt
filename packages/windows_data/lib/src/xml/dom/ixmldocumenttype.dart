@@ -60,7 +60,7 @@ class IXmlDocumentType extends IInspectable
     }
   }
 
-  XmlNamedNodeMap? get entities {
+  XmlNamedNodeMap get entities {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -80,15 +80,10 @@ class IXmlDocumentType extends IInspectable
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
-      free(retValuePtr);
-      return null;
-    }
-
     return XmlNamedNodeMap.fromPtr(retValuePtr);
   }
 
-  XmlNamedNodeMap? get notations {
+  XmlNamedNodeMap get notations {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -106,11 +101,6 @@ class IXmlDocumentType extends IInspectable
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
-    }
-
-    if (retValuePtr.ref.isNull) {
-      free(retValuePtr);
-      return null;
     }
 
     return XmlNamedNodeMap.fromPtr(retValuePtr);
@@ -134,7 +124,7 @@ class IXmlDocumentType extends IInspectable
   IXmlNode? get parentNode => _iXmlNode.parentNode;
 
   @override
-  XmlNodeList? get childNodes => _iXmlNode.childNodes;
+  XmlNodeList get childNodes => _iXmlNode.childNodes;
 
   @override
   IXmlNode? get firstChild => _iXmlNode.firstChild;
@@ -149,7 +139,7 @@ class IXmlDocumentType extends IInspectable
   IXmlNode? get nextSibling => _iXmlNode.nextSibling;
 
   @override
-  XmlNamedNodeMap? get attributes => _iXmlNode.attributes;
+  XmlNamedNodeMap get attributes => _iXmlNode.attributes;
 
   @override
   bool hasChildNodes() => _iXmlNode.hasChildNodes();
@@ -197,15 +187,14 @@ class IXmlDocumentType extends IInspectable
       _iXmlNodeSelector.selectSingleNode(xpath);
 
   @override
-  XmlNodeList? selectNodes(String xpath) =>
-      _iXmlNodeSelector.selectNodes(xpath);
+  XmlNodeList selectNodes(String xpath) => _iXmlNodeSelector.selectNodes(xpath);
 
   @override
   IXmlNode? selectSingleNodeNS(String xpath, Object? namespaces) =>
       _iXmlNodeSelector.selectSingleNodeNS(xpath, namespaces);
 
   @override
-  XmlNodeList? selectNodesNS(String xpath, Object? namespaces) =>
+  XmlNodeList selectNodesNS(String xpath, Object? namespaces) =>
       _iXmlNodeSelector.selectNodesNS(xpath, namespaces);
 
   late final _iXmlNodeSerializer = IXmlNodeSerializer.from(this);

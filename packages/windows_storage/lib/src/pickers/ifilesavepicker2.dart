@@ -26,7 +26,7 @@ class IFileSavePicker2 extends IInspectable {
   factory IFileSavePicker2.from(IInspectable interface) =>
       IFileSavePicker2.fromPtr(interface.toInterface(IID_IFileSavePicker2));
 
-  ValueSet? get continuationData {
+  ValueSet get continuationData {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -44,11 +44,6 @@ class IFileSavePicker2 extends IInspectable {
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
-    }
-
-    if (retValuePtr.ref.isNull) {
-      free(retValuePtr);
-      return null;
     }
 
     return ValueSet.fromPtr(retValuePtr);

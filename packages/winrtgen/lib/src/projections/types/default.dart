@@ -39,8 +39,8 @@ class DefaultGetterProjection extends GetterProjection with _DefaultMixin {
 }
 
 mixin _DefaultListMixin on MethodProjection {
-  late final typeArgProjection = TypeProjection(
-      method.returnType.typeIdentifier.isReferenceType
+  TypeProjection get typeArgProjection =>
+      TypeProjection(method.returnType.typeIdentifier.isReferenceType
           ? method.returnType.typeIdentifier.typeArg!.typeArg!
           : method.returnType.typeIdentifier.typeArg!);
 

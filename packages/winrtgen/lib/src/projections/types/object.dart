@@ -33,33 +33,33 @@ mixin _ObjectMixin on MethodProjection {
       return 'Object?';
     }
 
-    final interfaceName = returnTypeProjection.typeIdentifier.shortName;
+    final shortName = returnTypeProjection.typeIdentifier.shortName;
     // TODO: Remove this once methods that return IAsyncActionWithProgress and
     // IAsyncOperationWithProgress delegates are supported.
-    if (interfaceName.startsWith('IAsync')) return 'Pointer<COMObject>';
+    if (shortName.startsWith('IAsync')) return 'Pointer<COMObject>';
 
     // Factory interface methods (constructors) cannot return null.
-    final factoryInterfacePattern = RegExp(r'^I\w+Factory\d{0,2}$');
-    if (factoryInterfacePattern.hasMatch(method.parent.shortName)) {
-      return interfaceName;
+    if (method.parent.isFactoryInterface) return shortName;
+
+    // Methods that return collection interfaces cannot return null.
+    if (method.returnType.typeIdentifier.type?.isCollectionObject ?? false) {
+      return shortName;
     }
 
     // IIterable.First() cannot return null.
-    if (method.name == 'First' &&
-        (method.parent.interfaces.any((element) =>
-            element.typeSpec?.name.endsWith('IIterable`1') ?? false))) {
-      return interfaceName;
+    if (method.name == 'First' && method.parent.isCollectionObject) {
+      return shortName;
     }
 
     // IVector(View).GetAt() cannot return null.
     if (method.name == 'GetAt' &&
-        (method.parent.interfaces.any((element) =>
-            (element.typeSpec?.name.endsWith('IVector`1') ?? false) ||
-            (element.typeSpec?.name.endsWith('IVectorView`1') ?? false)))) {
-      return interfaceName;
+        (method.parent.interfaces.any((interface) =>
+            (interface.typeSpec?.name.endsWith('IVector`1') ?? false) ||
+            (interface.typeSpec?.name.endsWith('IVectorView`1') ?? false)))) {
+      return shortName;
     }
 
-    return nullable(interfaceName);
+    return nullable(shortName);
   }
 
   String get nullCheck {
@@ -113,8 +113,8 @@ class ObjectGetterProjection extends GetterProjection with _ObjectMixin {
 }
 
 mixin _ObjectListMixin on MethodProjection {
-  late final typeArgProjection = TypeProjection(
-      method.returnType.typeIdentifier.isReferenceType
+  TypeProjection get typeArgProjection =>
+      TypeProjection(method.returnType.typeIdentifier.isReferenceType
           ? method.returnType.typeIdentifier.typeArg!.typeArg!
           : method.returnType.typeIdentifier.typeArg!);
 
@@ -196,8 +196,10 @@ class ObjectParameterProjection extends ParameterProjection {
     if (typeProjection.isReferenceType) return shortName;
 
     // Parameters of factory interface methods (constructors) cannot be null.
-    final factoryInterfacePattern = RegExp(r'^I\w+Factory\d{0,2}$');
-    if (factoryInterfacePattern.hasMatch(method.parent.shortName)) {
+    if (method.parent.isFactoryInterface) return shortName;
+
+    // Collection interface parameters cannot be null.
+    if (typeProjection.typeIdentifier.type?.isCollectionObject ?? false) {
       return shortName;
     }
 

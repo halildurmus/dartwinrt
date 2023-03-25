@@ -106,7 +106,7 @@ class IDeviceInformationStatics extends IInspectable {
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
-  Future<DeviceInformationCollection?> findAllAsync() {
+  Future<DeviceInformationCollection> findAllAsync() {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -126,13 +126,13 @@ class IDeviceInformationStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation =
-        IAsyncOperation<DeviceInformationCollection?>.fromPtr(retValuePtr,
-            creator: DeviceInformationCollection.fromPtr);
+    final asyncOperation = IAsyncOperation<DeviceInformationCollection>.fromPtr(
+        retValuePtr,
+        creator: DeviceInformationCollection.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
-  Future<DeviceInformationCollection?> findAllAsyncDeviceClass(
+  Future<DeviceInformationCollection> findAllAsyncDeviceClass(
       DeviceClass deviceClass) {
     final retValuePtr = calloc<COMObject>();
 
@@ -154,13 +154,13 @@ class IDeviceInformationStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation =
-        IAsyncOperation<DeviceInformationCollection?>.fromPtr(retValuePtr,
-            creator: DeviceInformationCollection.fromPtr);
+    final asyncOperation = IAsyncOperation<DeviceInformationCollection>.fromPtr(
+        retValuePtr,
+        creator: DeviceInformationCollection.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
-  Future<DeviceInformationCollection?> findAllAsyncAqsFilter(String aqsFilter) {
+  Future<DeviceInformationCollection> findAllAsyncAqsFilter(String aqsFilter) {
     final retValuePtr = calloc<COMObject>();
     final aqsFilterHString = aqsFilter.toHString();
 
@@ -184,13 +184,13 @@ class IDeviceInformationStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation =
-        IAsyncOperation<DeviceInformationCollection?>.fromPtr(retValuePtr,
-            creator: DeviceInformationCollection.fromPtr);
+    final asyncOperation = IAsyncOperation<DeviceInformationCollection>.fromPtr(
+        retValuePtr,
+        creator: DeviceInformationCollection.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
-  Future<DeviceInformationCollection?>
+  Future<DeviceInformationCollection>
       findAllAsyncAqsFilterAndAdditionalProperties(
           String aqsFilter, IIterable<String>? additionalProperties) {
     final retValuePtr = calloc<COMObject>();
@@ -229,9 +229,9 @@ class IDeviceInformationStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation =
-        IAsyncOperation<DeviceInformationCollection?>.fromPtr(retValuePtr,
-            creator: DeviceInformationCollection.fromPtr);
+    final asyncOperation = IAsyncOperation<DeviceInformationCollection>.fromPtr(
+        retValuePtr,
+        creator: DeviceInformationCollection.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 

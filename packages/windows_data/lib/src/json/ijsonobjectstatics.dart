@@ -28,7 +28,7 @@ class IJsonObjectStatics extends IInspectable {
   factory IJsonObjectStatics.from(IInspectable interface) =>
       IJsonObjectStatics.fromPtr(interface.toInterface(IID_IJsonObjectStatics));
 
-  JsonObject? parse(String input) {
+  JsonObject parse(String input) {
     final retValuePtr = calloc<COMObject>();
     final inputHString = input.toHString();
 
@@ -50,11 +50,6 @@ class IJsonObjectStatics extends IInspectable {
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
-    }
-
-    if (retValuePtr.ref.isNull) {
-      free(retValuePtr);
-      return null;
     }
 
     return JsonObject.fromPtr(retValuePtr);

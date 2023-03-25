@@ -11,6 +11,9 @@ import '../method.dart';
 import '../type.dart';
 
 mixin _MapMixin on MethodProjection {
+  List<TypeIdentifier> get typeArgs =>
+      returnTypeProjection.typeIdentifier.typeArgs;
+
   /// The type arguments of `IMap` and `IMapView`, as represented in the
   /// [returnTypeProjection]'s [TypeIdentifier] (e.g. `String, Object?`,
   /// `String, String?`).
@@ -20,22 +23,19 @@ mixin _MapMixin on MethodProjection {
   /// The constructor arguments passed to the constructors of `IMap` and
   /// `IMapView`.
   String get mapConstructorArgs {
-    final keyArgTypeProjection =
-        TypeProjection(returnTypeProjection.typeIdentifier.typeArg!);
-    final valueArgTypeProjection =
-        TypeProjection(returnTypeProjection.typeIdentifier.typeArg!.typeArg!);
+    final keyArgTypeProjection = TypeProjection(typeArgs.first);
+    final valueArgTypeProjection = TypeProjection(typeArgs.last);
 
     // If the type argument is an enum, the constructor of that class must be
     // passed in the 'enumKeyCreator' parameter for enum, so that the 'IMap' and
     // 'IMapView' implementations can instantiate the enum.
-    final enumKeyCreator = returnTypeProjection.typeIdentifier.typeArg!.creator;
+    final enumKeyCreator = typeArgs.first.creator;
 
     // If the type argument is an enum, a WinRT object (e.g. IJsonValue), the
     // constructor of that class must be passed in the 'enumCreator' parameter
     // for enum, 'creator' parameter for WinRT object so that the 'IMap' and
     // 'IMapView' implementations can instantiate the object
-    final creator =
-        returnTypeProjection.typeIdentifier.typeArg!.typeArg!.creator;
+    final creator = typeArgs.last.creator;
 
     // If the key type argument is an int, 'intType' parameter must be specified
     // so that the IMap and IMapView implementations can use the appropriate

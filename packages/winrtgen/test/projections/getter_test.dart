@@ -82,7 +82,7 @@ void main() {
       final projection = GetterProjection.fromTypeAndMethodName(
           'Windows.Foundation.IUriRuntimeClass', 'get_QueryParsed');
       expect(projection, isA<ObjectGetterProjection>());
-      expect(projection.returnType, equals('WwwFormUrlDecoder?'));
+      expect(projection.returnType, equals('WwwFormUrlDecoder'));
       expect(
           projection.nativePrototype,
           equals(
@@ -91,8 +91,8 @@ void main() {
           projection.dartPrototype,
           equals(
               'int Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)'));
-      expect(projection.methodHeader,
-          equals('WwwFormUrlDecoder? get queryParsed'));
+      expect(
+          projection.methodHeader, equals('WwwFormUrlDecoder get queryParsed'));
     });
 
     test('projects DateTime', () {

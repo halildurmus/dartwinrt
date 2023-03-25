@@ -87,7 +87,7 @@ class StorageFileQueryResult extends IInspectable
   late final _iStorageFileQueryResult2 = IStorageFileQueryResult2.from(this);
 
   @override
-  IMap<String, IVectorView<TextSegment>?> getMatchingPropertiesWithRanges(
+  IMap<String, IVectorView<TextSegment>> getMatchingPropertiesWithRanges(
           StorageFile? file) =>
       _iStorageFileQueryResult2.getMatchingPropertiesWithRanges(file);
 }

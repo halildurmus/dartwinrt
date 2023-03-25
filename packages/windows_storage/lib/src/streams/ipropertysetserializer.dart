@@ -32,10 +32,9 @@ class IPropertySetSerializer extends IInspectable {
       IPropertySetSerializer.fromPtr(
           interface.toInterface(IID_IPropertySetSerializer));
 
-  IBuffer? serialize(IPropertySet? propertySet) {
+  IBuffer? serialize(IPropertySet propertySet) {
     final retValuePtr = calloc<COMObject>();
-    final propertySetPtr =
-        propertySet == null ? nullptr : propertySet.ptr.ref.lpVtbl;
+    final propertySetPtr = propertySet.ptr.ref.lpVtbl;
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -63,9 +62,8 @@ class IPropertySetSerializer extends IInspectable {
     return IBuffer.fromPtr(retValuePtr);
   }
 
-  void deserialize(IPropertySet? propertySet, IBuffer? buffer) {
-    final propertySetPtr =
-        propertySet == null ? nullptr : propertySet.ptr.ref.lpVtbl;
+  void deserialize(IPropertySet propertySet, IBuffer? buffer) {
+    final propertySetPtr = propertySet.ptr.ref.lpVtbl;
     final bufferPtr = buffer == null ? nullptr : buffer.ptr.ref.lpVtbl;
 
     final hr = ptr.ref.vtable

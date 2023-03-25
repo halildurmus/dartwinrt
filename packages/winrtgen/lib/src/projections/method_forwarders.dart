@@ -53,11 +53,12 @@ class MethodForwardersProjection {
 
   String? get creatorArgument {
     if (!isGenericInterface) return null;
-    // Use the value typeArg to parse the creator argument on IMap and IMapView
-    // interfaces as it is not required for the key typeArg.
+    final typeArgs = interface.typeSpec!.typeArgs;
+    // Use the value (last) typeArg to parse the creator argument as it is not
+    // required for the key (first) typeArg.
     final typeArg = ['IMap', 'IMapView'].contains(shortInterfaceName)
-        ? interface.typeSpec!.typeArg!.typeArg!
-        : interface.typeSpec!.typeArg!;
+        ? typeArgs.last
+        : typeArgs.first;
     final creator = typeArg.creator;
     if (creator == null) return null;
 
