@@ -28,7 +28,7 @@ class IJsonArrayStatics extends IInspectable {
   factory IJsonArrayStatics.from(IInspectable interface) =>
       IJsonArrayStatics.fromPtr(interface.toInterface(IID_IJsonArrayStatics));
 
-  JsonArray? parse(String input) {
+  JsonArray parse(String input) {
     final retValuePtr = calloc<COMObject>();
     final inputHString = input.toHString();
 
@@ -50,11 +50,6 @@ class IJsonArrayStatics extends IInspectable {
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
-    }
-
-    if (retValuePtr.ref.isNull) {
-      free(retValuePtr);
-      return null;
     }
 
     return JsonArray.fromPtr(retValuePtr);

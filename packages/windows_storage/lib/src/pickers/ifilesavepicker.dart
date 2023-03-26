@@ -157,7 +157,7 @@ class IFileSavePicker extends IInspectable {
     }
   }
 
-  IMap<String, IVector<String>?> get fileTypeChoices {
+  IMap<String, IVector<String>> get fileTypeChoices {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable

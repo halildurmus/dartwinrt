@@ -34,7 +34,7 @@ class IStorageFileQueryResult2 extends IInspectable
       IStorageFileQueryResult2.fromPtr(
           interface.toInterface(IID_IStorageFileQueryResult2));
 
-  IMap<String, IVectorView<TextSegment>?> getMatchingPropertiesWithRanges(
+  IMap<String, IVectorView<TextSegment>> getMatchingPropertiesWithRanges(
       StorageFile? file) {
     final retValuePtr = calloc<COMObject>();
     final filePtr = file == null ? nullptr : file.ptr.ref.lpVtbl;

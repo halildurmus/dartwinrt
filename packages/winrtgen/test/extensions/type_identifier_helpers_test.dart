@@ -376,7 +376,7 @@ void main() {
               .returnType
               .typeIdentifier
               .shortName,
-          equals('IMap<String, IVectorView<TextSegment>?>'));
+          equals('IMap<String, IVectorView<TextSegment>>'));
     });
 
     test('(11)', () {
@@ -390,6 +390,27 @@ void main() {
               .shortName,
           equals('IMapView<PedometerStepKind, PedometerReading?>'));
     });
+
+    test('(12)', () {
+      final typeDef = MetadataStore.getMetadataForType(
+          'Windows.Devices.Enumeration.DeviceThumbnail')!;
+      expect(
+          typeDef.findMethod('ReadAsync')!.returnType.typeIdentifier.shortName,
+          equals('IAsyncOperationWithProgress<IBuffer?, int>'));
+    });
+
+    test('(13)', () {
+      final typeDef = MetadataStore.getMetadataForType(
+          'Windows.Devices.Sms.GetSmsMessagesOperation')!;
+      expect(
+          typeDef
+              .findMethod('get_Progress')!
+              .returnType
+              .typeIdentifier
+              .shortName,
+          equals(
+              'AsyncOperationProgressHandler<IVectorView<ISmsMessage>, int>'));
+    }, skip: 'https://github.com/timsneath/winmd/issues/71');
   });
 
   group('signature', () {
@@ -507,5 +528,94 @@ void main() {
           equals(
               'pinterface({e480ce40-a338-4ada-adcf-272272e48cb9};enum(Windows.Devices.Sensors.PedometerStepKind;i4);rc(Windows.Devices.Sensors.PedometerReading;{2245dcf4-a8e1-432f-896a-be0dd9b02d24}))'));
     });
+  });
+
+  group('typeArgs', () {
+    test('(1)', () {
+      final typeDef = MetadataStore.getMetadataForType(
+          'Windows.Devices.Power.IBatteryReport')!;
+      // IReference<int?>
+      final typeArgs = typeDef
+          .findMethod('get_ChargeRateInMilliwatts')!
+          .returnType
+          .typeIdentifier
+          .typeArgs;
+      expect(typeArgs.length, equals(1));
+      expect(typeArgs.first.baseType, equals(BaseType.int32Type));
+    });
+
+    test('(2)', () {
+      final typeDef =
+          MetadataStore.getMetadataForType('Windows.Data.Json.JsonObject')!;
+      // IIterable<IKeyValuePair<String, IJsonValue?>>
+      final typeArgs1 = typeDef.interfaces[3].typeSpec!.typeArgs;
+      expect(typeArgs1.length, equals(1));
+      expect(typeArgs1.first.baseType, equals(BaseType.genericTypeModifier));
+      expect(typeArgs1.first.name, endsWith('IKeyValuePair`2'));
+
+      // IKeyValuePair<String, IJsonValue?>
+      final typeArgs2 = typeArgs1.first.typeArgs;
+      expect(typeArgs2.length, equals(2));
+      expect(typeArgs2.first.baseType, equals(BaseType.stringType));
+      expect(typeArgs2.last.baseType, equals(BaseType.classTypeModifier));
+      expect(typeArgs2.last.name, endsWith('IJsonValue'));
+    });
+
+    test('(3)', () {
+      final typeDef = MetadataStore.getMetadataForType(
+          'Windows.Storage.Pickers.IFileOpenPicker')!;
+      // IAsyncOperation<IVectorView<StorageFile>>
+      final typeArgs = typeDef
+          .findMethod('PickMultipleFilesAsync')!
+          .returnType
+          .typeIdentifier
+          .typeArgs;
+      expect(typeArgs.length, equals(1));
+      expect(typeArgs.first.baseType, equals(BaseType.genericTypeModifier));
+      expect(typeArgs.first.name, endsWith('IVectorView`1'));
+      expect(
+          typeArgs.first.typeArg?.baseType, equals(BaseType.classTypeModifier));
+      expect(typeArgs.first.typeArg!.name, endsWith('StorageFile'));
+    });
+
+    test('(4)', () {
+      final typeDef = MetadataStore.getMetadataForType(
+          'Windows.Storage.Search.IStorageFileQueryResult2')!;
+      // IMap<String, IVectorView<TextSegment>>
+      final typeArgs = typeDef
+          .findMethod('GetMatchingPropertiesWithRanges')!
+          .returnType
+          .typeIdentifier
+          .typeArgs;
+      expect(typeArgs.length, equals(2));
+      expect(typeArgs.first.baseType, equals(BaseType.stringType));
+      expect(typeArgs.first.typeArg, isNull);
+      expect(typeArgs.last.baseType, equals(BaseType.genericTypeModifier));
+      expect(typeArgs.last.name, endsWith('IVectorView`1'));
+      expect(
+          typeArgs.last.typeArg?.baseType, equals(BaseType.valueTypeModifier));
+      expect(typeArgs.last.typeArg!.name, endsWith('TextSegment'));
+      expect(typeArgs.last.typeArg!.typeArg, isNull);
+    });
+
+    test('(5)', () {
+      final typeDef = MetadataStore.getMetadataForType(
+          'Windows.Devices.Sms.GetSmsMessagesOperation')!;
+      // AsyncOperationProgressHandler<IVectorView<ISmsMessage>, int>
+      final typeArgs = typeDef
+          .findMethod('get_Progress')!
+          .returnType
+          .typeIdentifier
+          .typeArgs;
+      expect(typeArgs.length, equals(2));
+      expect(typeArgs.first.baseType, equals(BaseType.genericTypeModifier));
+      expect(typeArgs.first.name, endsWith('IVectorView`1'));
+      expect(
+          typeArgs.first.typeArg?.baseType, equals(BaseType.classTypeModifier));
+      expect(typeArgs.first.typeArg!.name, endsWith('ISmsMessage'));
+      expect(typeArgs.first.typeArg!.typeArg, isNull);
+      expect(typeArgs.last.baseType, equals(BaseType.int32Type));
+      expect(typeArgs.last.typeArg, isNull);
+    }, skip: 'https://github.com/timsneath/winmd/issues/71');
   });
 }

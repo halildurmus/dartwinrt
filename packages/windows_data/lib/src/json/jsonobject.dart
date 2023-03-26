@@ -40,7 +40,7 @@ class JsonObject extends IInspectable
 
   static const _className = 'Windows.Data.Json.JsonObject';
 
-  static JsonObject? parse(String input) => createActivationFactory(
+  static JsonObject parse(String input) => createActivationFactory(
           IJsonObjectStatics.fromPtr, _className, IID_IJsonObjectStatics)
       .parse(input);
 
@@ -59,10 +59,10 @@ class JsonObject extends IInspectable
       _iJsonObject.setNamedValue(name, value);
 
   @override
-  JsonObject? getNamedObject(String name) => _iJsonObject.getNamedObject(name);
+  JsonObject getNamedObject(String name) => _iJsonObject.getNamedObject(name);
 
   @override
-  JsonArray? getNamedArray(String name) => _iJsonObject.getNamedArray(name);
+  JsonArray getNamedArray(String name) => _iJsonObject.getNamedArray(name);
 
   @override
   String getNamedString(String name) => _iJsonObject.getNamedString(name);
@@ -91,10 +91,10 @@ class JsonObject extends IInspectable
   bool getBoolean() => _iJsonValue.getBoolean();
 
   @override
-  JsonArray? getArray() => _iJsonValue.getArray();
+  JsonArray getArray() => _iJsonValue.getArray();
 
   @override
-  JsonObject? getObject() => _iJsonValue.getObject();
+  JsonObject getObject() => _iJsonValue.getObject();
 
   late final _iMap = IMap<String, IJsonValue?>.fromPtr(
       toInterface('{c9d9a725-786b-5113-b4b7-9b61764c220b}'),
@@ -143,7 +143,7 @@ class JsonObject extends IInspectable
       _iJsonObjectWithDefaultValues.getNamedValueOrDefault(name, defaultValue);
 
   @override
-  JsonObject? getNamedObjectOrDefault(String name, JsonObject? defaultValue) =>
+  JsonObject getNamedObjectOrDefault(String name, JsonObject defaultValue) =>
       _iJsonObjectWithDefaultValues.getNamedObjectOrDefault(name, defaultValue);
 
   @override
@@ -151,7 +151,7 @@ class JsonObject extends IInspectable
       _iJsonObjectWithDefaultValues.getNamedStringOrDefault(name, defaultValue);
 
   @override
-  JsonArray? getNamedArrayOrDefault(String name, JsonArray? defaultValue) =>
+  JsonArray getNamedArrayOrDefault(String name, JsonArray defaultValue) =>
       _iJsonObjectWithDefaultValues.getNamedArrayOrDefault(name, defaultValue);
 
   @override

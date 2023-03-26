@@ -17,6 +17,17 @@ extension TypeDefHelpers on TypeDef {
   /// Returns the IID of the type defined in this TypeDef.
   String get iid => iidFromSignature(signature);
 
+  /// Returns `true` if the type defined in this TypeDef is a collection object,
+  /// i.e. implements `IIterable` (e.g. `JsonObject`, `XmlNamedNodeMap`, `IMap`,
+  /// `IVector` etc.).
+  bool get isCollectionObject => interfaces.any(
+      (interface) => interface.typeSpec?.name.endsWith('IIterable`1') ?? false);
+
+  /// Returns `true` if the type defined in this TypeDef is a factory interface
+  /// (e.g. `ICalendarFactory`).
+  bool get isFactoryInterface =>
+      RegExp(r'^I\w+Factory\d{0,2}$').hasMatch(shortName);
+
   /// Returns the package import for the type defined in this TypeDef (e.g.
   /// `package:windows_globalization/windows_globalization.dart` for
   /// `Windows.Globalization.Calendar`).

@@ -82,10 +82,11 @@ String iterableIidFromMapType(TypeIdentifier typeIdentifier) {
     throw ArgumentError("Expected an 'IMap' or 'IMapView' type identifier.");
   }
 
-  final kvpKeyArgSignature = typeIdentifier.typeArg!.signature;
-  final kvpValueArgSignature = typeIdentifier.typeArg!.typeArg!.signature;
+  final typeArgs = typeIdentifier.typeArgs;
+  final keyArgSignature = typeArgs.first.signature;
+  final valueArgSignature = typeArgs.last.signature;
   final kvpSignature =
-      'pinterface($IID_IKeyValuePair;$kvpKeyArgSignature;$kvpValueArgSignature)';
+      'pinterface($IID_IKeyValuePair;$keyArgSignature;$valueArgSignature)';
   final iterableSignature = 'pinterface($IID_IIterable;$kvpSignature)';
   return iidFromSignature(iterableSignature).toString();
 }

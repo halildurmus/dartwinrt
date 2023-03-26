@@ -90,7 +90,7 @@ class XmlText extends IInspectable
   IXmlNode? get parentNode => _iXmlNode.parentNode;
 
   @override
-  XmlNodeList? get childNodes => _iXmlNode.childNodes;
+  XmlNodeList get childNodes => _iXmlNode.childNodes;
 
   @override
   IXmlNode? get firstChild => _iXmlNode.firstChild;
@@ -105,7 +105,7 @@ class XmlText extends IInspectable
   IXmlNode? get nextSibling => _iXmlNode.nextSibling;
 
   @override
-  XmlNamedNodeMap? get attributes => _iXmlNode.attributes;
+  XmlNamedNodeMap get attributes => _iXmlNode.attributes;
 
   @override
   bool hasChildNodes() => _iXmlNode.hasChildNodes();
@@ -164,14 +164,13 @@ class XmlText extends IInspectable
       _iXmlNodeSelector.selectSingleNode(xpath);
 
   @override
-  XmlNodeList? selectNodes(String xpath) =>
-      _iXmlNodeSelector.selectNodes(xpath);
+  XmlNodeList selectNodes(String xpath) => _iXmlNodeSelector.selectNodes(xpath);
 
   @override
   IXmlNode? selectSingleNodeNS(String xpath, Object? namespaces) =>
       _iXmlNodeSelector.selectSingleNodeNS(xpath, namespaces);
 
   @override
-  XmlNodeList? selectNodesNS(String xpath, Object? namespaces) =>
+  XmlNodeList selectNodesNS(String xpath, Object? namespaces) =>
       _iXmlNodeSelector.selectNodesNS(xpath, namespaces);
 }

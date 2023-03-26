@@ -256,7 +256,7 @@ void main() {
           'GetMatchingPropertiesWithRanges');
       expect(projection, isA<MapMethodProjection>());
       expect(projection.returnType,
-          equals('IMap<String, IVectorView<TextSegment>?>'));
+          equals('IMap<String, IVectorView<TextSegment>>'));
       expect(
           projection.nativePrototype,
           equals(
@@ -268,7 +268,7 @@ void main() {
       expect(
           projection.methodHeader,
           equals(
-              'IMap<String, IVectorView<TextSegment>?> getMatchingPropertiesWithRanges(StorageFile? file)'));
+              'IMap<String, IVectorView<TextSegment>> getMatchingPropertiesWithRanges(StorageFile? file)'));
     });
 
     test('projects IMapView', () {

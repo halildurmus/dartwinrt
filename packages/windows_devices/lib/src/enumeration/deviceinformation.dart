@@ -51,24 +51,24 @@ class DeviceInformation extends IInspectable
           .createFromIdAsyncAdditionalProperties(
               deviceId, additionalProperties);
 
-  static Future<DeviceInformationCollection?> findAllAsync() =>
+  static Future<DeviceInformationCollection> findAllAsync() =>
       createActivationFactory(IDeviceInformationStatics.fromPtr, _className,
               IID_IDeviceInformationStatics)
           .findAllAsync();
 
-  static Future<DeviceInformationCollection?> findAllAsyncDeviceClass(
+  static Future<DeviceInformationCollection> findAllAsyncDeviceClass(
           DeviceClass deviceClass) =>
       createActivationFactory(IDeviceInformationStatics.fromPtr, _className,
               IID_IDeviceInformationStatics)
           .findAllAsyncDeviceClass(deviceClass);
 
-  static Future<DeviceInformationCollection?> findAllAsyncAqsFilter(
+  static Future<DeviceInformationCollection> findAllAsyncAqsFilter(
           String aqsFilter) =>
       createActivationFactory(IDeviceInformationStatics.fromPtr, _className,
               IID_IDeviceInformationStatics)
           .findAllAsyncAqsFilter(aqsFilter);
 
-  static Future<DeviceInformationCollection?>
+  static Future<DeviceInformationCollection>
       findAllAsyncAqsFilterAndAdditionalProperties(
               String aqsFilter, IIterable<String>? additionalProperties) =>
           createActivationFactory(IDeviceInformationStatics.fromPtr, _className,
@@ -114,7 +114,7 @@ class DeviceInformation extends IInspectable
               .createFromIdAsyncWithKindAndAdditionalProperties(
                   deviceId, additionalProperties, kind);
 
-  static Future<DeviceInformationCollection?>
+  static Future<DeviceInformationCollection>
       findAllAsyncWithKindAqsFilterAndAdditionalProperties(
               String aqsFilter,
               IIterable<String>? additionalProperties,

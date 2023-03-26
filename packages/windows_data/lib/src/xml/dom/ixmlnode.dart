@@ -159,7 +159,7 @@ class IXmlNode extends IInspectable
     return IXmlNode.fromPtr(retValuePtr);
   }
 
-  XmlNodeList? get childNodes {
+  XmlNodeList get childNodes {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -177,11 +177,6 @@ class IXmlNode extends IInspectable
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
-    }
-
-    if (retValuePtr.ref.isNull) {
-      free(retValuePtr);
-      return null;
     }
 
     return XmlNodeList.fromPtr(retValuePtr);
@@ -299,7 +294,7 @@ class IXmlNode extends IInspectable
     return IXmlNode.fromPtr(retValuePtr);
   }
 
-  XmlNamedNodeMap? get attributes {
+  XmlNamedNodeMap get attributes {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -317,11 +312,6 @@ class IXmlNode extends IInspectable
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
-    }
-
-    if (retValuePtr.ref.isNull) {
-      free(retValuePtr);
-      return null;
     }
 
     return XmlNamedNodeMap.fromPtr(retValuePtr);
@@ -653,15 +643,14 @@ class IXmlNode extends IInspectable
       _iXmlNodeSelector.selectSingleNode(xpath);
 
   @override
-  XmlNodeList? selectNodes(String xpath) =>
-      _iXmlNodeSelector.selectNodes(xpath);
+  XmlNodeList selectNodes(String xpath) => _iXmlNodeSelector.selectNodes(xpath);
 
   @override
   IXmlNode? selectSingleNodeNS(String xpath, Object? namespaces) =>
       _iXmlNodeSelector.selectSingleNodeNS(xpath, namespaces);
 
   @override
-  XmlNodeList? selectNodesNS(String xpath, Object? namespaces) =>
+  XmlNodeList selectNodesNS(String xpath, Object? namespaces) =>
       _iXmlNodeSelector.selectNodesNS(xpath, namespaces);
 
   late final _iXmlNodeSerializer = IXmlNodeSerializer.from(this);

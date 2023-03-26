@@ -84,7 +84,7 @@ class IJsonObject extends IInspectable implements IJsonValue {
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
-  JsonObject? getNamedObject(String name) {
+  JsonObject getNamedObject(String name) {
     final retValuePtr = calloc<COMObject>();
     final nameHString = name.toHString();
 
@@ -108,15 +108,10 @@ class IJsonObject extends IInspectable implements IJsonValue {
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
-      free(retValuePtr);
-      return null;
-    }
-
     return JsonObject.fromPtr(retValuePtr);
   }
 
-  JsonArray? getNamedArray(String name) {
+  JsonArray getNamedArray(String name) {
     final retValuePtr = calloc<COMObject>();
     final nameHString = name.toHString();
 
@@ -138,11 +133,6 @@ class IJsonObject extends IInspectable implements IJsonValue {
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
-    }
-
-    if (retValuePtr.ref.isNull) {
-      free(retValuePtr);
-      return null;
     }
 
     return JsonArray.fromPtr(retValuePtr);
@@ -254,8 +244,8 @@ class IJsonObject extends IInspectable implements IJsonValue {
   bool getBoolean() => _iJsonValue.getBoolean();
 
   @override
-  JsonArray? getArray() => _iJsonValue.getArray();
+  JsonArray getArray() => _iJsonValue.getArray();
 
   @override
-  JsonObject? getObject() => _iJsonValue.getObject();
+  JsonObject getObject() => _iJsonValue.getObject();
 }

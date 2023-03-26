@@ -25,11 +25,9 @@ mixin _UriMixin on MethodProjection {
   @override
   bool get isNullable {
     // Factory interface methods (constructors) cannot return null.
-    final factoryInterfacePattern = RegExp(r'^I\w+Factory\d{0,2}$');
-    if (factoryInterfacePattern.hasMatch(method.parent.shortName)) {
-      return false;
-    }
+    if (method.parent.isFactoryInterface) return false;
 
+    // Methods of IIterator, IVector, and IVectorView cannot return null.
     return !method.parent.name.endsWith('IIterator`1') &&
         !method.parent.name.endsWith('IVector`1') &&
         !method.parent.name.endsWith('IVectorView`1');

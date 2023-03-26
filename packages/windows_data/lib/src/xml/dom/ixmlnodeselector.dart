@@ -61,7 +61,7 @@ class IXmlNodeSelector extends IInspectable {
     return IXmlNode.fromPtr(retValuePtr);
   }
 
-  XmlNodeList? selectNodes(String xpath) {
+  XmlNodeList selectNodes(String xpath) {
     final retValuePtr = calloc<COMObject>();
     final xpathHString = xpath.toHString();
 
@@ -83,11 +83,6 @@ class IXmlNodeSelector extends IInspectable {
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
-    }
-
-    if (retValuePtr.ref.isNull) {
-      free(retValuePtr);
-      return null;
     }
 
     return XmlNodeList.fromPtr(retValuePtr);
@@ -130,7 +125,7 @@ class IXmlNodeSelector extends IInspectable {
     return IXmlNode.fromPtr(retValuePtr);
   }
 
-  XmlNodeList? selectNodesNS(String xpath, Object? namespaces) {
+  XmlNodeList selectNodesNS(String xpath, Object? namespaces) {
     final retValuePtr = calloc<COMObject>();
     final xpathHString = xpath.toHString();
     final namespacesPtr = namespaces?.intoBox().ptr.ref.lpVtbl ?? nullptr;
@@ -157,11 +152,6 @@ class IXmlNodeSelector extends IInspectable {
     if (FAILED(hr)) {
       free(retValuePtr);
       throw WindowsException(hr);
-    }
-
-    if (retValuePtr.ref.isNull) {
-      free(retValuePtr);
-      return null;
     }
 
     return XmlNodeList.fromPtr(retValuePtr);

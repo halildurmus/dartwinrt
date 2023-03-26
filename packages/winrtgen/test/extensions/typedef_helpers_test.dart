@@ -67,6 +67,21 @@ void main() {
     });
   });
 
+  test('isCollectionObject', () {
+    expect(jsonObjectTypeDef.isCollectionObject, isTrue);
+    expect(mapViewTypeDef.isCollectionObject, isTrue);
+    expect(stringMapTypeDef.isCollectionObject, isTrue);
+  });
+
+  test('isFactoryInterface', () {
+    final typeDef1 = MetadataStore.getMetadataForType(
+        'Windows.Globalization.ICalendarFactory')!;
+    final typeDef2 = MetadataStore.getMetadataForType(
+        'Windows.Globalization.ICalendarFactory2')!;
+    expect(typeDef1.isFactoryInterface, isTrue);
+    expect(typeDef2.isFactoryInterface, isTrue);
+  });
+
   test('packageImport', () {
     expect(calendarTypeDef.packageImport,
         equals('package:windows_globalization/windows_globalization.dart'));
