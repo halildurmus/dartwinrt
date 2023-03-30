@@ -516,6 +516,19 @@ void main() {
               'pinterface({9fc2b0bb-e446-44e2-aa61-9cab8f636af2};pinterface({61c17706-2d65-11e0-9ae8-d48564015472};struct(Windows.Foundation.TimeSpan;i8)))'));
     });
 
+    test('returns the signature of IMap<String, IVectorView<TextSegment>>', () {
+      final typeDef = MetadataStore.getMetadataForType(
+          'Windows.Storage.Search.IStorageFileQueryResult2')!;
+      expect(
+          typeDef
+              .findMethod('GetMatchingPropertiesWithRanges')!
+              .returnType
+              .typeIdentifier
+              .signature,
+          equals(
+              'pinterface({3c2925fe-8519-45c1-aa79-197b6718c1c1};string;pinterface({bbe1fa4c-b0e3-4583-baef-1f1b2e483e56};struct(Windows.Data.Text.TextSegment;u4;u4)))'));
+    });
+
     test(
         'returns the signature of IMapView<PedometerStepKind, PedometerReading>',
         () {
@@ -528,6 +541,21 @@ void main() {
           equals(
               'pinterface({e480ce40-a338-4ada-adcf-272272e48cb9};enum(Windows.Devices.Sensors.PedometerStepKind;i4);rc(Windows.Devices.Sensors.PedometerReading;{2245dcf4-a8e1-432f-896a-be0dd9b02d24}))'));
     });
+
+    // TODO: Enable this test when a new version of winmd is released.
+    // test(
+    //     'returns the signature of AsyncOperationProgressHandler<IVectorView<ISmsMessage>, int>',
+    //     () {
+    //   final typeDef = MetadataStore.getMetadataForType(
+    //       'Windows.Devices.Sms.GetSmsMessagesOperation')!;
+    //   expect(
+    //       typeDef
+    //           .findMethod('get_Progress')!
+    //           .returnType
+    //           .typeIdentifier
+    //           .signature,
+    //       equals('pinterface()'));
+    // });
   });
 
   group('typeArgs', () {
