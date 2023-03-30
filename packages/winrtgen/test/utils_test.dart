@@ -266,6 +266,8 @@ void main() {
   });
 
   test('stripGenerics', () {
+    expect(stripGenerics('IAsyncOperation`1<IVector`1<String>>'),
+        equals('IAsyncOperation<IVector<String>>'));
     expect(stripGenerics('TypedEventHandler`2'), equals('TypedEventHandler'));
     expect(stripGenerics('LicenseChangedEventHandler'),
         equals('LicenseChangedEventHandler'));

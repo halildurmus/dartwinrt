@@ -84,16 +84,9 @@ extension TypeIdentifierHelpers on TypeIdentifier {
   /// Returns the type signature of this TypeIdentifier.
   String get signature {
     if (isGenericType) {
-      final signatures = <String>[];
-      var currTypeArg = typeArg!;
-
-      for (var i = 0; i < type!.genericParams.length; i++) {
-        signatures.add(currTypeArg.signature);
-        if (i < type!.genericParams.length - 1) {
-          currTypeArg = currTypeArg.typeArg!;
-        }
-      }
-
+      final signatures = <String>[
+        for (final typeArg in typeArgs) typeArg.signature
+      ];
       return 'pinterface(${type!.guid};${signatures.join(';')})';
     }
 

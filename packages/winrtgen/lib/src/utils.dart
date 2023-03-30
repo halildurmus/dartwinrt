@@ -202,11 +202,7 @@ List<String> sortImports(List<String> importLines) {
 }
 
 /// Take a [name] like IVector`1 and return IVector.
-String stripGenerics(String name) {
-  final backtickIndex = name.indexOf('`');
-  if (backtickIndex == -1) return name;
-  return name.substring(0, backtickIndex);
-}
+String stripGenerics(String name) => name.replaceAll(RegExp(r'(`\d+)'), '');
 
 /// Take a [name] like `__valueSize` and return `valueSize`.
 String stripLeadingUnderscores(String name) =>
@@ -235,18 +231,18 @@ String uniquelyNameMethod(Method method) {
   return method.name;
 }
 
-/// Take an [inputText] and turn it into a multi-line doc comment.
-String wrapCommentText(String inputText, [int wrapLength = 76]) {
-  if (inputText.isEmpty) return '';
+/// Take a [commentText] and turn it into a multi-line doc comment.
+String wrapCommentText(String commentText, [int wrapLength = 76]) {
+  if (commentText.isEmpty) return '';
 
-  final words = inputText.split(' ');
+  final words = commentText.split(' ');
   final textLine = StringBuffer('///');
-  final outputText = StringBuffer();
+  final wrappedText = StringBuffer();
 
   for (final word in words) {
     if ((textLine.length + word.length) >= wrapLength) {
       textLine.write('\n');
-      outputText.write(textLine);
+      wrappedText.write(textLine);
       textLine
         ..clear()
         ..write('/// $word');
@@ -255,8 +251,8 @@ String wrapCommentText(String inputText, [int wrapLength = 76]) {
     }
   }
 
-  outputText.write(textLine);
-  return outputText.toString().trimRight();
+  wrappedText.write(textLine);
+  return wrappedText.toString().trimRight();
 }
 
 /// Wrap a [type] in a `Pointer` if it isn't `Pointer<COMObject>`.
