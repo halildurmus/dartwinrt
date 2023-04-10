@@ -9,7 +9,6 @@ import 'dart:ffi';
 import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart' hide IUnknown;
 
-import 'iinspectable.dart';
 import 'internal/extensions/extensions.dart';
 
 /// Activates the specified Windows Runtime class in the [className] and returns
@@ -122,114 +121,6 @@ void _initializeMTA() {
     if (FAILED(hr)) throw WindowsException(hr);
   } finally {
     free(pCookie);
-  }
-}
-
-/// Represents the trust level of an activatable class.
-///
-/// {@category enum}
-enum TrustLevel {
-  /// The component has access to resources that are not protected.
-  baseTrust(0),
-
-  /// The component has access to resources requested in the app manifest and
-  /// approved by the user.
-  partialTrust(1),
-
-  /// The component requires the full privileges of the user.
-  fullTrust(2);
-
-  final int value;
-
-  const TrustLevel(this.value);
-
-  factory TrustLevel.from(int value) =>
-      TrustLevel.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
-}
-
-/// Returns the interface IIDs that are implemented by the Windows Runtime
-/// [object].
-///
-/// The `IUnknown` and `IInspectable` interfaces are excluded.
-List<String> getInterfaces(IInspectable object) {
-  final pIIDCount = calloc<Uint32>();
-  final pIIDs = calloc<Pointer<GUID>>();
-
-  try {
-    final hr = object.ptr.ref.vtable
-            .elementAt(3)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        Int32 Function(LPVTBL lpVtbl, Pointer<Uint32> iidCount,
-                            Pointer<Pointer<GUID>> iids)>>>()
-            .value
-            .asFunction<
-                int Function(LPVTBL lpVtbl, Pointer<Uint32> iidCount,
-                    Pointer<Pointer<GUID>> iids)>()(
-        object.ptr.ref.lpVtbl, pIIDCount, pIIDs);
-
-    if (FAILED(hr)) throw WindowsException(hr);
-
-    return [
-      for (var i = 0; i < pIIDCount.value; i++) pIIDs.value[i].toString()
-    ];
-  } finally {
-    free(pIIDCount);
-    free(pIIDs);
-  }
-}
-
-/// Gets the fully qualified name of the Windows Runtime [object].
-String getClassName(IInspectable object) {
-  final hClassName = calloc<HSTRING>();
-
-  try {
-    final hr = object.ptr.ref.vtable
-            .elementAt(4)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        Int32 Function(
-                            LPVTBL lpVtbl, Pointer<IntPtr> className)>>>()
-            .value
-            .asFunction<
-                int Function(LPVTBL lpVtbl, Pointer<IntPtr> className)>()(
-        object.ptr.ref.lpVtbl, hClassName);
-
-    if (FAILED(hr)) throw WindowsException(hr);
-
-    return hClassName.toDartString();
-  } finally {
-    WindowsDeleteString(hClassName.value);
-    free(hClassName);
-  }
-}
-
-/// Gets the trust level of the Windows Runtime [object].
-TrustLevel getTrustLevel(IInspectable object) {
-  final pTrustLevel = calloc<Int32>();
-
-  try {
-    final hr = object.ptr.ref.vtable
-            .elementAt(5)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        Int32 Function(
-                            LPVTBL lpVtbl, Pointer<Int32> trustLevel)>>>()
-            .value
-            .asFunction<
-                int Function(LPVTBL lpVtbl, Pointer<Int32> trustLevel)>()(
-        object.ptr.ref.lpVtbl, pTrustLevel);
-
-    if (FAILED(hr)) throw WindowsException(hr);
-
-    return TrustLevel.from(pTrustLevel.value);
-  } finally {
-    free(pTrustLevel);
   }
 }
 

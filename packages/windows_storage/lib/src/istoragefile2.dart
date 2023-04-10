@@ -40,11 +40,11 @@ class IStorageFile2 extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, Int32 accessMode,
+                        HRESULT Function(VTablePointer lpVtbl, Int32 accessMode,
                             Uint32 options, Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL lpVtbl, int accessMode, int options,
+                int Function(VTablePointer lpVtbl, int accessMode, int options,
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, accessMode.value, options.value, retValuePtr);
 
@@ -68,11 +68,11 @@ class IStorageFile2 extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, Uint32 options,
+                        HRESULT Function(VTablePointer lpVtbl, Uint32 options,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL lpVtbl, int options,
+                int Function(VTablePointer lpVtbl, int options,
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, options.value, retValuePtr);
 

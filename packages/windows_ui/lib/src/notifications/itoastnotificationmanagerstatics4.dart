@@ -36,18 +36,21 @@ class IToastNotificationManagerStatics4 extends IInspectable {
     final retValuePtr = calloc<COMObject>();
     final userPtr = user == null ? nullptr : user.ptr.ref.lpVtbl;
 
-    final hr = ptr.ref.vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, LPVTBL user,
-                            Pointer<COMObject> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(LPVTBL lpVtbl, LPVTBL user,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, userPtr, retValuePtr);
+    final hr =
+        ptr.ref.vtable
+                .elementAt(6)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                VTablePointer lpVtbl,
+                                VTablePointer user,
+                                Pointer<COMObject> retValuePtr)>>>()
+                .value
+                .asFunction<
+                    int Function(VTablePointer lpVtbl, VTablePointer user,
+                        Pointer<COMObject> retValuePtr)>()(
+            ptr.ref.lpVtbl, userPtr, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -64,14 +67,14 @@ class IToastNotificationManagerStatics4 extends IInspectable {
 
   void configureNotificationMirroring(NotificationMirroring value) {
     final hr = ptr.ref.vtable
-        .elementAt(7)
-        .cast<
-            Pointer<
-                NativeFunction<HRESULT Function(LPVTBL lpVtbl, Int32 value)>>>()
-        .value
-        .asFunction<
-            int Function(
-                LPVTBL lpVtbl, int value)>()(ptr.ref.lpVtbl, value.value);
+            .elementAt(7)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(VTablePointer lpVtbl, Int32 value)>>>()
+            .value
+            .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
+        ptr.ref.lpVtbl, value.value);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }

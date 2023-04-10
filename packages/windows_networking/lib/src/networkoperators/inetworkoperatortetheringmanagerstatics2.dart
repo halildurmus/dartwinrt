@@ -45,11 +45,13 @@ class INetworkOperatorTetheringManagerStatics2 extends IInspectable {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(LPVTBL lpVtbl, LPVTBL profile,
+                          HRESULT Function(
+                              VTablePointer lpVtbl,
+                              VTablePointer profile,
                               Pointer<Int32> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(LPVTBL lpVtbl, LPVTBL profile,
+                  int Function(VTablePointer lpVtbl, VTablePointer profile,
                       Pointer<Int32> retValuePtr)>()(
           ptr.ref.lpVtbl, profilePtr, retValuePtr);
 
@@ -71,11 +73,13 @@ class INetworkOperatorTetheringManagerStatics2 extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, LPVTBL profile,
+                        HRESULT Function(
+                            VTablePointer lpVtbl,
+                            VTablePointer profile,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL lpVtbl, LPVTBL profile,
+                int Function(VTablePointer lpVtbl, VTablePointer profile,
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, profilePtr, retValuePtr);
 

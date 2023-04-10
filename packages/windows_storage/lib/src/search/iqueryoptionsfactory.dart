@@ -46,13 +46,16 @@ class IQueryOptionsFactory extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            LPVTBL lpVtbl,
+                            VTablePointer lpVtbl,
                             Int32 query,
-                            LPVTBL fileTypeFilter,
+                            VTablePointer fileTypeFilter,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL lpVtbl, int query, LPVTBL fileTypeFilter,
+                int Function(
+                    VTablePointer lpVtbl,
+                    int query,
+                    VTablePointer fileTypeFilter,
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, query.value, fileTypeFilterPtr, retValuePtr);
 
@@ -72,11 +75,11 @@ class IQueryOptionsFactory extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, Int32 query,
+                        HRESULT Function(VTablePointer lpVtbl, Int32 query,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL lpVtbl, int query,
+                int Function(VTablePointer lpVtbl, int query,
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, query.value, retValuePtr);
 

@@ -129,9 +129,11 @@ abstract class IAsyncOperation<TResult> extends IInspectable
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, LPVTBL value)>>>()
+                        HRESULT Function(
+                            VTablePointer lpVtbl, VTablePointer value)>>>()
             .value
-            .asFunction<int Function(LPVTBL lpVtbl, LPVTBL value)>()(
+            .asFunction<
+                int Function(VTablePointer lpVtbl, VTablePointer value)>()(
         ptr.ref.lpVtbl, value.ref.lpVtbl);
 
     if (FAILED(hr)) throw WindowsException(hr);
@@ -142,16 +144,16 @@ abstract class IAsyncOperation<TResult> extends IInspectable
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.lpVtbl.value
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, retValuePtr);
+        .elementAt(7)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl,
+                        Pointer<COMObject> retValuePtr)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl,
+                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) throw WindowsException(hr);
 

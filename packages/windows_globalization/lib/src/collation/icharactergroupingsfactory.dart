@@ -38,11 +38,11 @@ class ICharacterGroupingsFactory extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, IntPtr language,
+                        HRESULT Function(VTablePointer lpVtbl, IntPtr language,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL lpVtbl, int language,
+                int Function(VTablePointer lpVtbl, int language,
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, languageHString, retValuePtr);
 

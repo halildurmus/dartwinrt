@@ -37,18 +37,21 @@ class IDeviceInformationStatics2 extends IInspectable {
     final retValuePtr = calloc<HSTRING>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(LPVTBL lpVtbl, Int32 deviceClass,
-                              Pointer<IntPtr> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(LPVTBL lpVtbl, int deviceClass,
-                      Pointer<IntPtr> retValuePtr)>()(
-          ptr.ref.lpVtbl, deviceClass.value, retValuePtr);
+      final hr =
+          ptr.ref.vtable
+                  .elementAt(6)
+                  .cast<
+                      Pointer<
+                          NativeFunction<
+                              HRESULT Function(
+                                  VTablePointer lpVtbl,
+                                  Int32 deviceClass,
+                                  Pointer<IntPtr> retValuePtr)>>>()
+                  .value
+                  .asFunction<
+                      int Function(VTablePointer lpVtbl, int deviceClass,
+                          Pointer<IntPtr> retValuePtr)>()(
+              ptr.ref.lpVtbl, deviceClass.value, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -79,17 +82,17 @@ class IDeviceInformationStatics2 extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            LPVTBL lpVtbl,
+                            VTablePointer lpVtbl,
                             IntPtr deviceId,
-                            LPVTBL additionalProperties,
+                            VTablePointer additionalProperties,
                             Int32 kind,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
                 int Function(
-                    LPVTBL lpVtbl,
+                    VTablePointer lpVtbl,
                     int deviceId,
-                    LPVTBL additionalProperties,
+                    VTablePointer additionalProperties,
                     int kind,
                     Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl,
         deviceIdHString, additionalPropertiesPtr, kind.value, retValuePtr);
@@ -126,17 +129,17 @@ class IDeviceInformationStatics2 extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            LPVTBL lpVtbl,
+                            VTablePointer lpVtbl,
                             IntPtr aqsFilter,
-                            LPVTBL additionalProperties,
+                            VTablePointer additionalProperties,
                             Int32 kind,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
                 int Function(
-                    LPVTBL lpVtbl,
+                    VTablePointer lpVtbl,
                     int aqsFilter,
-                    LPVTBL additionalProperties,
+                    VTablePointer additionalProperties,
                     int kind,
                     Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl,
         aqsFilterHString, additionalPropertiesPtr, kind.value, retValuePtr);
@@ -174,17 +177,17 @@ class IDeviceInformationStatics2 extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            LPVTBL lpVtbl,
+                            VTablePointer lpVtbl,
                             IntPtr aqsFilter,
-                            LPVTBL additionalProperties,
+                            VTablePointer additionalProperties,
                             Int32 kind,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
                 int Function(
-                    LPVTBL lpVtbl,
+                    VTablePointer lpVtbl,
                     int aqsFilter,
-                    LPVTBL additionalProperties,
+                    VTablePointer additionalProperties,
                     int kind,
                     Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl,
         aqsFilterHString, additionalPropertiesPtr, kind.value, retValuePtr);

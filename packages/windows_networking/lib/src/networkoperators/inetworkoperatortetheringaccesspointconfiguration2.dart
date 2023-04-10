@@ -40,12 +40,12 @@ class INetworkOperatorTetheringAccessPointConfiguration2 extends IInspectable {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(LPVTBL lpVtbl, Int32 band,
+                          HRESULT Function(VTablePointer lpVtbl, Int32 band,
                               Pointer<Bool> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(
-                      LPVTBL lpVtbl, int band, Pointer<Bool> retValuePtr)>()(
+                  int Function(VTablePointer lpVtbl, int band,
+                      Pointer<Bool> retValuePtr)>()(
           ptr.ref.lpVtbl, band.value, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
@@ -64,12 +64,12 @@ class INetworkOperatorTetheringAccessPointConfiguration2 extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, Int32 band,
+                        HRESULT Function(VTablePointer lpVtbl, Int32 band,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(
-                    LPVTBL lpVtbl, int band, Pointer<COMObject> retValuePtr)>()(
+                int Function(VTablePointer lpVtbl, int band,
+                    Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, band.value, retValuePtr);
 
     if (FAILED(hr)) {
@@ -86,16 +86,16 @@ class INetworkOperatorTetheringAccessPointConfiguration2 extends IInspectable {
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(8)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              LPVTBL lpVtbl, Pointer<Int32> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(LPVTBL lpVtbl, Pointer<Int32> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          .elementAt(8)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Int32> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<Int32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -107,14 +107,14 @@ class INetworkOperatorTetheringAccessPointConfiguration2 extends IInspectable {
 
   set band(TetheringWiFiBand value) {
     final hr = ptr.ref.vtable
-        .elementAt(9)
-        .cast<
-            Pointer<
-                NativeFunction<HRESULT Function(LPVTBL lpVtbl, Int32 value)>>>()
-        .value
-        .asFunction<
-            int Function(
-                LPVTBL lpVtbl, int value)>()(ptr.ref.lpVtbl, value.value);
+            .elementAt(9)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(VTablePointer lpVtbl, Int32 value)>>>()
+            .value
+            .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
+        ptr.ref.lpVtbl, value.value);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }

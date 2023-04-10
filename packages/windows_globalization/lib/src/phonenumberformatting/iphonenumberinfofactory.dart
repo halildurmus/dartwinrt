@@ -38,11 +38,11 @@ class IPhoneNumberInfoFactory extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, IntPtr number,
+                        HRESULT Function(VTablePointer lpVtbl, IntPtr number,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL lpVtbl, int number,
+                int Function(VTablePointer lpVtbl, int number,
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, numberHString, retValuePtr);
 

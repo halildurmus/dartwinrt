@@ -16,7 +16,6 @@ import 'package:win32/win32.dart' hide DocumentProperties;
 import '../internal.dart';
 import 'collections/iiterator.dart';
 import 'helpers.dart';
-import 'iinspectable.dart';
 import 'wwwformurldecoder.dart';
 
 /// @nodoc
@@ -41,11 +40,11 @@ class IWwwFormUrlDecoderRuntimeClassFactory extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, IntPtr query,
+                        HRESULT Function(VTablePointer lpVtbl, IntPtr query,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL lpVtbl, int query,
+                int Function(VTablePointer lpVtbl, int query,
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, queryHString, retValuePtr);
 

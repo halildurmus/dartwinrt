@@ -16,7 +16,6 @@ import 'package:win32/win32.dart' hide DocumentProperties;
 import '../internal.dart';
 import 'collections/iiterator.dart';
 import 'helpers.dart';
-import 'iinspectable.dart';
 
 /// @nodoc
 const IID_IClosable = '{30d5a829-7fa4-4026-83bb-d75bae4ea99e}';
@@ -34,9 +33,9 @@ class IClosable extends IInspectable {
   void close() {
     final hr = ptr.ref.vtable
         .elementAt(6)
-        .cast<Pointer<NativeFunction<HRESULT Function(LPVTBL lpVtbl)>>>()
+        .cast<Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>>()
         .value
-        .asFunction<int Function(LPVTBL lpVtbl)>()(ptr.ref.lpVtbl);
+        .asFunction<int Function(VTablePointer lpVtbl)>()(ptr.ref.lpVtbl);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }

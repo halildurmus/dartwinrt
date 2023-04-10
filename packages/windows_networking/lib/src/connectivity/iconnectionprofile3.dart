@@ -41,7 +41,7 @@ class IConnectionProfile3 extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            LPVTBL lpVtbl,
+                            VTablePointer lpVtbl,
                             Int64 startTime,
                             Int64 endTime,
                             NativeNetworkUsageStates states,
@@ -49,7 +49,7 @@ class IConnectionProfile3 extends IInspectable {
             .value
             .asFunction<
                 int Function(
-                    LPVTBL lpVtbl,
+                    VTablePointer lpVtbl,
                     int startTime,
                     int endTime,
                     NativeNetworkUsageStates states,

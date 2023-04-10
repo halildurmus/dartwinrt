@@ -44,12 +44,12 @@ class IGamepad2 extends IInspectable implements IGamepad, IGameController {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(LPVTBL lpVtbl, Uint32 button,
+                          HRESULT Function(VTablePointer lpVtbl, Uint32 button,
                               Pointer<Int32> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(
-                      LPVTBL lpVtbl, int button, Pointer<Int32> retValuePtr)>()(
+                  int Function(VTablePointer lpVtbl, int button,
+                      Pointer<Int32> retValuePtr)>()(
           ptr.ref.lpVtbl, button.value, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);

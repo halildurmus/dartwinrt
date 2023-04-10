@@ -16,7 +16,6 @@ import 'package:win32/win32.dart' hide DocumentProperties;
 import '../internal.dart';
 import 'collections/iiterator.dart';
 import 'helpers.dart';
-import 'iinspectable.dart';
 
 /// @nodoc
 const IID_IUriEscapeStatics = '{c1d432ba-c824-4452-a7fd-512bc3bbe9a1}';
@@ -35,18 +34,21 @@ class IUriEscapeStatics extends IInspectable {
     try {
       final toUnescapeHString = toUnescape.toHString();
 
-      final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(LPVTBL lpVtbl, IntPtr toUnescape,
-                              Pointer<IntPtr> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(LPVTBL lpVtbl, int toUnescape,
-                      Pointer<IntPtr> retValuePtr)>()(
-          ptr.ref.lpVtbl, toUnescapeHString, retValuePtr);
+      final hr =
+          ptr.ref.vtable
+                  .elementAt(6)
+                  .cast<
+                      Pointer<
+                          NativeFunction<
+                              HRESULT Function(
+                                  VTablePointer lpVtbl,
+                                  IntPtr toUnescape,
+                                  Pointer<IntPtr> retValuePtr)>>>()
+                  .value
+                  .asFunction<
+                      int Function(VTablePointer lpVtbl, int toUnescape,
+                          Pointer<IntPtr> retValuePtr)>()(
+              ptr.ref.lpVtbl, toUnescapeHString, retValuePtr);
 
       WindowsDeleteString(toUnescapeHString);
 
@@ -70,11 +72,11 @@ class IUriEscapeStatics extends IInspectable {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(LPVTBL lpVtbl, IntPtr toEscape,
+                          HRESULT Function(VTablePointer lpVtbl, IntPtr toEscape,
                               Pointer<IntPtr> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(LPVTBL lpVtbl, int toEscape,
+                  int Function(VTablePointer lpVtbl, int toEscape,
                       Pointer<IntPtr> retValuePtr)>()(
           ptr.ref.lpVtbl, toEscapeHString, retValuePtr);
 

@@ -37,12 +37,12 @@ class IStorageFolder2 extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, IntPtr name,
+                        HRESULT Function(VTablePointer lpVtbl, IntPtr name,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(
-                    LPVTBL lpVtbl, int name, Pointer<COMObject> retValuePtr)>()(
+                int Function(VTablePointer lpVtbl, int name,
+                    Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, nameHString, retValuePtr);
 
     WindowsDeleteString(nameHString);

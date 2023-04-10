@@ -16,7 +16,6 @@ import 'package:win32/win32.dart' hide DocumentProperties;
 import '../internal.dart';
 import 'collections/iiterator.dart';
 import 'helpers.dart';
-import 'iinspectable.dart';
 import 'uri.dart';
 
 /// @nodoc
@@ -41,12 +40,12 @@ class IUriRuntimeClassFactory extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, IntPtr uri,
+                        HRESULT Function(VTablePointer lpVtbl, IntPtr uri,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(
-                    LPVTBL lpVtbl, int uri, Pointer<COMObject> retValuePtr)>()(
+                int Function(VTablePointer lpVtbl, int uri,
+                    Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, uriHString, retValuePtr);
 
     WindowsDeleteString(uriHString);
@@ -72,14 +71,14 @@ class IUriRuntimeClassFactory extends IInspectable {
                     Pointer<
                         NativeFunction<
                             HRESULT Function(
-                                LPVTBL lpVtbl,
+                                VTablePointer lpVtbl,
                                 IntPtr baseUri,
                                 IntPtr relativeUri,
                                 Pointer<COMObject> retValuePtr)>>>()
                 .value
                 .asFunction<
-                    int Function(LPVTBL lpVtbl, int baseUri, int relativeUri,
-                        Pointer<COMObject> retValuePtr)>()(
+                    int Function(VTablePointer lpVtbl, int baseUri,
+                        int relativeUri, Pointer<COMObject> retValuePtr)>()(
             ptr.ref.lpVtbl, baseUriHString, relativeUriHString, retValuePtr);
 
     WindowsDeleteString(baseUriHString);

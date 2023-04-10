@@ -16,6 +16,5 @@ export 'src/internal/iids.dart';
 export 'src/internal/native_structs.g.dart';
 export 'src/ipropertyvalue.dart';
 export 'src/ireference.dart';
-export 'src/iunknown.dart';
 export 'src/propertytype.dart';
 export 'src/propertyvalue.dart';

@@ -71,10 +71,14 @@ void main() {
           'Windows.Globalization.ICalendar', 'get_IsDaylightSavingTime');
       expect(projection, isA<DefaultGetterProjection>());
       expect(projection.returnType, equals('bool'));
-      expect(projection.nativePrototype,
-          equals('HRESULT Function(LPVTBL lpVtbl, Pointer<Bool> retValuePtr)'));
-      expect(projection.dartPrototype,
-          equals('int Function(LPVTBL lpVtbl, Pointer<Bool> retValuePtr)'));
+      expect(
+          projection.nativePrototype,
+          equals(
+              'HRESULT Function(VTablePointer lpVtbl, Pointer<Bool> retValuePtr)'));
+      expect(
+          projection.dartPrototype,
+          equals(
+              'int Function(VTablePointer lpVtbl, Pointer<Bool> retValuePtr)'));
       expect(projection.methodHeader, equals('bool get isDaylightSavingTime'));
     });
 
@@ -86,11 +90,11 @@ void main() {
       expect(
           projection.nativePrototype,
           equals(
-              'HRESULT Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)'));
+              'HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)'));
       expect(
           projection.dartPrototype,
           equals(
-              'int Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)'));
+              'int Function(VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)'));
       expect(
           projection.methodHeader, equals('WwwFormUrlDecoder get queryParsed'));
     });
@@ -104,9 +108,11 @@ void main() {
       expect(
           projection.nativePrototype,
           equals(
-              'HRESULT Function(LPVTBL lpVtbl, Pointer<Int64> retValuePtr)'));
-      expect(projection.dartPrototype,
-          equals('int Function(LPVTBL lpVtbl, Pointer<Int64> retValuePtr)'));
+              'HRESULT Function(VTablePointer lpVtbl, Pointer<Int64> retValuePtr)'));
+      expect(
+          projection.dartPrototype,
+          equals(
+              'int Function(VTablePointer lpVtbl, Pointer<Int64> retValuePtr)'));
       expect(projection.methodHeader, equals('DateTime get dateModified'));
     });
 
@@ -118,11 +124,11 @@ void main() {
       expect(
           projection.nativePrototype,
           equals(
-              'HRESULT Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)'));
+              'HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)'));
       expect(
           projection.dartPrototype,
           equals(
-              'int Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)'));
+              'int Function(VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)'));
       expect(
           projection.methodHeader, equals('Pointer<COMObject> get completed'));
     });
@@ -135,9 +141,11 @@ void main() {
       expect(
           projection.nativePrototype,
           equals(
-              'HRESULT Function(LPVTBL lpVtbl, Pointer<Double> retValuePtr)'));
-      expect(projection.dartPrototype,
-          equals('int Function(LPVTBL lpVtbl, Pointer<Double> retValuePtr)'));
+              'HRESULT Function(VTablePointer lpVtbl, Pointer<Double> retValuePtr)'));
+      expect(
+          projection.dartPrototype,
+          equals(
+              'int Function(VTablePointer lpVtbl, Pointer<Double> retValuePtr)'));
       expect(projection.methodHeader, equals('double get latitude'));
     });
 
@@ -150,9 +158,11 @@ void main() {
       expect(
           projection.nativePrototype,
           equals(
-              'HRESULT Function(LPVTBL lpVtbl, Pointer<Int64> retValuePtr)'));
-      expect(projection.dartPrototype,
-          equals('int Function(LPVTBL lpVtbl, Pointer<Int64> retValuePtr)'));
+              'HRESULT Function(VTablePointer lpVtbl, Pointer<Int64> retValuePtr)'));
+      expect(
+          projection.dartPrototype,
+          equals(
+              'int Function(VTablePointer lpVtbl, Pointer<Int64> retValuePtr)'));
       expect(projection.methodHeader,
           equals('Duration get remainingDischargeTime'));
     });
@@ -165,9 +175,11 @@ void main() {
       expect(
           projection.nativePrototype,
           equals(
-              'HRESULT Function(LPVTBL lpVtbl, Pointer<Int32> retValuePtr)'));
-      expect(projection.dartPrototype,
-          equals('int Function(LPVTBL lpVtbl, Pointer<Int32> retValuePtr)'));
+              'HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> retValuePtr)'));
+      expect(
+          projection.dartPrototype,
+          equals(
+              'int Function(VTablePointer lpVtbl, Pointer<Int32> retValuePtr)'));
       expect(projection.methodHeader, equals('PickerViewMode get viewMode'));
     });
 
@@ -177,10 +189,14 @@ void main() {
           'get_NetworkAdapterId');
       expect(projection, isA<GuidGetterProjection>());
       expect(projection.returnType, equals('Guid'));
-      expect(projection.nativePrototype,
-          equals('HRESULT Function(LPVTBL lpVtbl, Pointer<GUID> retValuePtr)'));
-      expect(projection.dartPrototype,
-          equals('int Function(LPVTBL lpVtbl, Pointer<GUID> retValuePtr)'));
+      expect(
+          projection.nativePrototype,
+          equals(
+              'HRESULT Function(VTablePointer lpVtbl, Pointer<GUID> retValuePtr)'));
+      expect(
+          projection.dartPrototype,
+          equals(
+              'int Function(VTablePointer lpVtbl, Pointer<GUID> retValuePtr)'));
       expect(projection.methodHeader, equals('Guid get networkAdapterId'));
     });
 
@@ -192,9 +208,11 @@ void main() {
       expect(
           projection.nativePrototype,
           equals(
-              'HRESULT Function(LPVTBL lpVtbl, Pointer<Int32> retValuePtr)'));
-      expect(projection.dartPrototype,
-          equals('int Function(LPVTBL lpVtbl, Pointer<Int32> retValuePtr)'));
+              'HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> retValuePtr)'));
+      expect(
+          projection.dartPrototype,
+          equals(
+              'int Function(VTablePointer lpVtbl, Pointer<Int32> retValuePtr)'));
       expect(
           projection.methodHeader, equals('int get numberOfDaysInThisMonth'));
     });
@@ -207,11 +225,11 @@ void main() {
       expect(
           projection.nativePrototype,
           equals(
-              'HRESULT Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)'));
+              'HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)'));
       expect(
           projection.dartPrototype,
           equals(
-              'int Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)'));
+              'int Function(VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)'));
       expect(projection.methodHeader, equals('IXmlNode? get firstChild'));
     });
 
@@ -223,11 +241,11 @@ void main() {
       expect(
           projection.nativePrototype,
           equals(
-              'HRESULT Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)'));
+              'HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)'));
       expect(
           projection.dartPrototype,
           equals(
-              'int Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)'));
+              'int Function(VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)'));
       expect(
           projection.methodHeader, equals('IMap<String, String> get values'));
       expect(projection.toString(),
@@ -242,11 +260,11 @@ void main() {
       expect(
           projection.nativePrototype,
           equals(
-              'HRESULT Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)'));
+              'HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)'));
       expect(
           projection.dartPrototype,
           equals(
-              'int Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)'));
+              'int Function(VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)'));
       expect(projection.methodHeader,
           equals('Map<String, Object?> get properties'));
       expect(projection.toString(),
@@ -261,11 +279,11 @@ void main() {
       expect(
           projection.nativePrototype,
           equals(
-              'HRESULT Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)'));
+              'HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)'));
       expect(
           projection.dartPrototype,
           equals(
-              'int Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)'));
+              'int Function(VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)'));
       expect(projection.methodHeader, equals('DateTime? get expirationTime'));
       expect(projection.toString(),
           contains("referenceIid: '{5541d8a7-497c-5aa4-86fc-7713adbf2a2c}'"));
@@ -279,11 +297,11 @@ void main() {
       expect(
           projection.nativePrototype,
           equals(
-              'HRESULT Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)'));
+              'HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)'));
       expect(
           projection.dartPrototype,
           equals(
-              'int Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)'));
+              'int Function(VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)'));
       expect(projection.methodHeader,
           equals('IVector<String> get fileTypeFilter'));
       expect(projection.toString(),
@@ -298,11 +316,11 @@ void main() {
       expect(
           projection.nativePrototype,
           equals(
-              'HRESULT Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)'));
+              'HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)'));
       expect(
           projection.dartPrototype,
           equals(
-              'int Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)'));
+              'int Function(VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)'));
       expect(projection.methodHeader, equals('List<String> get languages'));
       expect(projection.toString(),
           contains("iterableIid: '{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'"));
@@ -316,11 +334,11 @@ void main() {
       expect(
           projection.nativePrototype,
           equals(
-              'HRESULT Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)'));
+              'HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)'));
       expect(
           projection.dartPrototype,
           equals(
-              'int Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)'));
+              'int Function(VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)'));
       expect(projection.methodHeader, equals('Object? get localName'));
       expect(projection.toString(),
           contains('return IPropertyValue.fromPtr(retValuePtr).value;'));
@@ -335,11 +353,11 @@ void main() {
         expect(
             projection.nativePrototype,
             equals(
-                'HRESULT Function(LPVTBL lpVtbl, Pointer<Uint32> valueSize, Pointer<Pointer<IntPtr>> retValuePtr)'));
+                'HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize, Pointer<Pointer<IntPtr>> retValuePtr)'));
         expect(
             projection.dartPrototype,
             equals(
-                'int Function(LPVTBL lpVtbl, Pointer<Uint32> valueSize, Pointer<Pointer<IntPtr>> retValuePtr)'));
+                'int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize, Pointer<Pointer<IntPtr>> retValuePtr)'));
         expect(projection.methodHeader,
             equals('List<String> get supportedFileExtensions'));
       });
@@ -353,9 +371,11 @@ void main() {
       expect(
           projection.nativePrototype,
           equals(
-              'HRESULT Function(LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)'));
-      expect(projection.dartPrototype,
-          equals('int Function(LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)'));
+              'HRESULT Function(VTablePointer lpVtbl, Pointer<IntPtr> retValuePtr)'));
+      expect(
+          projection.dartPrototype,
+          equals(
+              'int Function(VTablePointer lpVtbl, Pointer<IntPtr> retValuePtr)'));
       expect(projection.methodHeader, equals('String get numeralSystem'));
     });
 
@@ -367,11 +387,11 @@ void main() {
       expect(
           projection.nativePrototype,
           equals(
-              'HRESULT Function(LPVTBL lpVtbl, Pointer<NativeBasicGeoposition> retValuePtr)'));
+              'HRESULT Function(VTablePointer lpVtbl, Pointer<NativeBasicGeoposition> retValuePtr)'));
       expect(
           projection.dartPrototype,
           equals(
-              'int Function(LPVTBL lpVtbl, Pointer<NativeBasicGeoposition> retValuePtr)'));
+              'int Function(VTablePointer lpVtbl, Pointer<NativeBasicGeoposition> retValuePtr)'));
       expect(projection.methodHeader, equals('BasicGeoposition get position'));
     });
 
@@ -383,11 +403,11 @@ void main() {
       expect(
           projection.nativePrototype,
           equals(
-              'HRESULT Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)'));
+              'HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)'));
       expect(
           projection.dartPrototype,
           equals(
-              'int Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)'));
+              'int Function(VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)'));
       expect(projection.methodHeader, equals('Uri? get fallbackUri'));
     });
   });

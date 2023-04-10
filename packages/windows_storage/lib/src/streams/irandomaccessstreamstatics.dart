@@ -37,22 +37,24 @@ class IRandomAccessStreamStatics extends IInspectable {
     final destinationPtr =
         destination == null ? nullptr : destination.ptr.ref.lpVtbl;
 
-    final hr =
-        ptr.ref.vtable
-                .elementAt(6)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                LPVTBL lpVtbl,
-                                LPVTBL source,
-                                LPVTBL destination,
-                                Pointer<COMObject> retValuePtr)>>>()
-                .value
-                .asFunction<
-                    int Function(LPVTBL lpVtbl, LPVTBL source,
-                        LPVTBL destination, Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl, sourcePtr, destinationPtr, retValuePtr);
+    final hr = ptr.ref.vtable
+            .elementAt(6)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            VTablePointer lpVtbl,
+                            VTablePointer source,
+                            VTablePointer destination,
+                            Pointer<COMObject> retValuePtr)>>>()
+            .value
+            .asFunction<
+                int Function(
+                    VTablePointer lpVtbl,
+                    VTablePointer source,
+                    VTablePointer destination,
+                    Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl, sourcePtr, destinationPtr, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -75,15 +77,19 @@ class IRandomAccessStreamStatics extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            LPVTBL lpVtbl,
-                            LPVTBL source,
-                            LPVTBL destination,
+                            VTablePointer lpVtbl,
+                            VTablePointer source,
+                            VTablePointer destination,
                             Uint64 bytesToCopy,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL lpVtbl, LPVTBL source, LPVTBL destination,
-                    int bytesToCopy, Pointer<COMObject> retValuePtr)>()(
+                int Function(
+                    VTablePointer lpVtbl,
+                    VTablePointer source,
+                    VTablePointer destination,
+                    int bytesToCopy,
+                    Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, sourcePtr, destinationPtr, bytesToCopy, retValuePtr);
 
     if (FAILED(hr)) {
@@ -101,22 +107,24 @@ class IRandomAccessStreamStatics extends IInspectable {
     final destinationPtr =
         destination == null ? nullptr : destination.ptr.ref.lpVtbl;
 
-    final hr =
-        ptr.ref.vtable
-                .elementAt(8)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                LPVTBL lpVtbl,
-                                LPVTBL source,
-                                LPVTBL destination,
-                                Pointer<COMObject> retValuePtr)>>>()
-                .value
-                .asFunction<
-                    int Function(LPVTBL lpVtbl, LPVTBL source,
-                        LPVTBL destination, Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl, sourcePtr, destinationPtr, retValuePtr);
+    final hr = ptr.ref.vtable
+            .elementAt(8)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            VTablePointer lpVtbl,
+                            VTablePointer source,
+                            VTablePointer destination,
+                            Pointer<COMObject> retValuePtr)>>>()
+            .value
+            .asFunction<
+                int Function(
+                    VTablePointer lpVtbl,
+                    VTablePointer source,
+                    VTablePointer destination,
+                    Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl, sourcePtr, destinationPtr, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);

@@ -34,18 +34,21 @@ class IUISettings3 extends IInspectable {
     final retValuePtr = calloc<NativeColor>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(LPVTBL lpVtbl, Int32 desiredColor,
-                              Pointer<NativeColor> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(LPVTBL lpVtbl, int desiredColor,
-                      Pointer<NativeColor> retValuePtr)>()(
-          ptr.ref.lpVtbl, desiredColor.value, retValuePtr);
+      final hr =
+          ptr.ref.vtable
+                  .elementAt(6)
+                  .cast<
+                      Pointer<
+                          NativeFunction<
+                              HRESULT Function(
+                                  VTablePointer lpVtbl,
+                                  Int32 desiredColor,
+                                  Pointer<NativeColor> retValuePtr)>>>()
+                  .value
+                  .asFunction<
+                      int Function(VTablePointer lpVtbl, int desiredColor,
+                          Pointer<NativeColor> retValuePtr)>()(
+              ptr.ref.lpVtbl, desiredColor.value, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -64,11 +67,13 @@ class IUISettings3 extends IInspectable {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(LPVTBL lpVtbl, LPVTBL handler,
+                          HRESULT Function(
+                              VTablePointer lpVtbl,
+                              VTablePointer handler,
                               Pointer<IntPtr> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(LPVTBL lpVtbl, LPVTBL handler,
+                  int Function(VTablePointer lpVtbl, VTablePointer handler,
                       Pointer<IntPtr> retValuePtr)>()(
           ptr.ref.lpVtbl, handler.ref.lpVtbl, retValuePtr);
 
@@ -81,15 +86,17 @@ class IUISettings3 extends IInspectable {
   }
 
   void remove_ColorValuesChanged(int cookie) {
-    final hr = ptr.ref.vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, IntPtr cookie)>>>()
-            .value
-            .asFunction<int Function(LPVTBL lpVtbl, int cookie)>()(
-        ptr.ref.lpVtbl, cookie);
+    final hr =
+        ptr.ref.vtable
+                .elementAt(8)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                VTablePointer lpVtbl, IntPtr cookie)>>>()
+                .value
+                .asFunction<int Function(VTablePointer lpVtbl, int cookie)>()(
+            ptr.ref.lpVtbl, cookie);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }

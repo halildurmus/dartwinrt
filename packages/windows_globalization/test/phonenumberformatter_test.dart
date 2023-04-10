@@ -9,7 +9,6 @@ import 'dart:ffi';
 import 'package:ffi/ffi.dart';
 import 'package:test/test.dart';
 import 'package:win32/win32.dart';
-import 'package:windows_foundation/windows_foundation.dart';
 import 'package:windows_globalization/windows_globalization.dart';
 
 // Test the WinRT PhoneNumberFormatter class to make sure overrides, properties

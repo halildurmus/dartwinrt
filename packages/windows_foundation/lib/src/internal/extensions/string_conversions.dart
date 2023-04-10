@@ -2,14 +2,7 @@
 // details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-import 'dart:ffi';
-
 import 'package:win32/win32.dart';
-
-extension HStringPointerToDartStringConversion on Pointer<HSTRING> {
-  /// Gets the Dart String at the handle pointed to by this Pointer.
-  String toDartString() => value.toDartString();
-}
 
 extension IntToDartStringConversion on int {
   /// Gets the Dart String at this handle.

@@ -34,23 +34,22 @@ class IInputStream extends IInspectable implements IClosable {
     final retValuePtr = calloc<COMObject>();
     final bufferPtr = buffer == null ? nullptr : buffer.ptr.ref.lpVtbl;
 
-    final hr =
-        ptr.ref.vtable
-                .elementAt(6)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                LPVTBL lpVtbl,
-                                LPVTBL buffer,
-                                Uint32 count,
-                                Uint32 options,
-                                Pointer<COMObject> retValuePtr)>>>()
-                .value
-                .asFunction<
-                    int Function(LPVTBL lpVtbl, LPVTBL buffer, int count,
-                        int options, Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl, bufferPtr, count, options.value, retValuePtr);
+    final hr = ptr.ref.vtable
+            .elementAt(6)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            VTablePointer lpVtbl,
+                            VTablePointer buffer,
+                            Uint32 count,
+                            Uint32 options,
+                            Pointer<COMObject> retValuePtr)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, VTablePointer buffer,
+                    int count, int options, Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl, bufferPtr, count, options.value, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);

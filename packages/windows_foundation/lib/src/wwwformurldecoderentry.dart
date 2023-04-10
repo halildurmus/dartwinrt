@@ -16,7 +16,6 @@ import 'package:win32/win32.dart' hide DocumentProperties;
 import '../internal.dart';
 import 'collections/iiterator.dart';
 import 'helpers.dart';
-import 'iinspectable.dart';
 import 'iwwwformurldecoderentry.dart';
 
 /// Represents a name-value pair in a URL query string.

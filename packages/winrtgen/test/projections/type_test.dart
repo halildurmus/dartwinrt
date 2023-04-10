@@ -53,8 +53,8 @@ void main() {
         'Windows.UI.Notifications.IToastNotification', 'add_Activated');
     final typeProjection = methodProjection.parameters.first.typeProjection;
     // TypedEventHandler<ToastNotification, object>
-    expect(typeProjection.dartType, equals('LPVTBL'));
-    expect(typeProjection.nativeType, equals('LPVTBL'));
+    expect(typeProjection.dartType, equals('VTablePointer'));
+    expect(typeProjection.nativeType, equals('VTablePointer'));
   });
 
   test('Simple array types are projected correctly', () {

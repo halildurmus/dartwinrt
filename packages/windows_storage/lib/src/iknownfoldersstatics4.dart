@@ -40,11 +40,11 @@ class IKnownFoldersStatics4 extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, Int32 folderId,
+                        HRESULT Function(VTablePointer lpVtbl, Int32 folderId,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL lpVtbl, int folderId,
+                int Function(VTablePointer lpVtbl, int folderId,
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, folderId.value, retValuePtr);
 
@@ -64,18 +64,22 @@ class IKnownFoldersStatics4 extends IInspectable {
     final retValuePtr = calloc<COMObject>();
     final userPtr = user == null ? nullptr : user.ptr.ref.lpVtbl;
 
-    final hr = ptr.ref.vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, LPVTBL user, Int32 folderId,
-                            Pointer<COMObject> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(LPVTBL lpVtbl, LPVTBL user, int folderId,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, userPtr, folderId.value, retValuePtr);
+    final hr =
+        ptr.ref.vtable
+                .elementAt(7)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                VTablePointer lpVtbl,
+                                VTablePointer user,
+                                Int32 folderId,
+                                Pointer<COMObject> retValuePtr)>>>()
+                .value
+                .asFunction<
+                    int Function(VTablePointer lpVtbl, VTablePointer user,
+                        int folderId, Pointer<COMObject> retValuePtr)>()(
+            ptr.ref.lpVtbl, userPtr, folderId.value, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -96,11 +100,11 @@ class IKnownFoldersStatics4 extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, Int32 folderId,
+                        HRESULT Function(VTablePointer lpVtbl, Int32 folderId,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL lpVtbl, int folderId,
+                int Function(VTablePointer lpVtbl, int folderId,
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, folderId.value, retValuePtr);
 

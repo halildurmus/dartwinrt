@@ -33,18 +33,21 @@ class IPhoneNumberFormatterStatics extends IInspectable {
   void tryCreate(String regionCode, PhoneNumberFormatter phoneNumber) {
     final regionCodeHString = regionCode.toHString();
 
-    final hr = ptr.ref.vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, IntPtr regionCode,
-                            Pointer<COMObject> phoneNumber)>>>()
-            .value
-            .asFunction<
-                int Function(LPVTBL lpVtbl, int regionCode,
-                    Pointer<COMObject> phoneNumber)>()(
-        ptr.ref.lpVtbl, regionCodeHString, phoneNumber.ptr);
+    final hr =
+        ptr.ref.vtable
+                .elementAt(6)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                VTablePointer lpVtbl,
+                                IntPtr regionCode,
+                                Pointer<COMObject> phoneNumber)>>>()
+                .value
+                .asFunction<
+                    int Function(VTablePointer lpVtbl, int regionCode,
+                        Pointer<COMObject> phoneNumber)>()(
+            ptr.ref.lpVtbl, regionCodeHString, phoneNumber.ptr);
 
     WindowsDeleteString(regionCodeHString);
 
@@ -57,18 +60,21 @@ class IPhoneNumberFormatterStatics extends IInspectable {
     try {
       final regionCodeHString = regionCode.toHString();
 
-      final hr = ptr.ref.vtable
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(LPVTBL lpVtbl, IntPtr regionCode,
-                              Pointer<Int32> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(LPVTBL lpVtbl, int regionCode,
-                      Pointer<Int32> retValuePtr)>()(
-          ptr.ref.lpVtbl, regionCodeHString, retValuePtr);
+      final hr =
+          ptr.ref.vtable
+                  .elementAt(7)
+                  .cast<
+                      Pointer<
+                          NativeFunction<
+                              HRESULT Function(
+                                  VTablePointer lpVtbl,
+                                  IntPtr regionCode,
+                                  Pointer<Int32> retValuePtr)>>>()
+                  .value
+                  .asFunction<
+                      int Function(VTablePointer lpVtbl, int regionCode,
+                          Pointer<Int32> retValuePtr)>()(
+              ptr.ref.lpVtbl, regionCodeHString, retValuePtr);
 
       WindowsDeleteString(regionCodeHString);
 
@@ -94,13 +100,13 @@ class IPhoneNumberFormatterStatics extends IInspectable {
                       Pointer<
                           NativeFunction<
                               HRESULT Function(
-                                  LPVTBL lpVtbl,
+                                  VTablePointer lpVtbl,
                                   IntPtr regionCode,
                                   Bool stripNonDigit,
                                   Pointer<IntPtr> retValuePtr)>>>()
                   .value
                   .asFunction<
-                      int Function(LPVTBL lpVtbl, int regionCode,
+                      int Function(VTablePointer lpVtbl, int regionCode,
                           bool stripNonDigit, Pointer<IntPtr> retValuePtr)>()(
               ptr.ref.lpVtbl, regionCodeHString, stripNonDigit, retValuePtr);
 
@@ -126,11 +132,11 @@ class IPhoneNumberFormatterStatics extends IInspectable {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(LPVTBL lpVtbl, IntPtr number,
+                          HRESULT Function(VTablePointer lpVtbl, IntPtr number,
                               Pointer<IntPtr> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(LPVTBL lpVtbl, int number,
+                  int Function(VTablePointer lpVtbl, int number,
                       Pointer<IntPtr> retValuePtr)>()(
           ptr.ref.lpVtbl, numberHString, retValuePtr);
 

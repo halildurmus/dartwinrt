@@ -44,12 +44,12 @@ class IDeviceInformationCustomPairing extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            LPVTBL lpVtbl,
+                            VTablePointer lpVtbl,
                             Uint32 pairingKindsSupported,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL lpVtbl, int pairingKindsSupported,
+                int Function(VTablePointer lpVtbl, int pairingKindsSupported,
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, pairingKindsSupported.value, retValuePtr);
 
@@ -75,13 +75,13 @@ class IDeviceInformationCustomPairing extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            LPVTBL lpVtbl,
+                            VTablePointer lpVtbl,
                             Uint32 pairingKindsSupported,
                             Int32 minProtectionLevel,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL lpVtbl, int pairingKindsSupported,
+                int Function(VTablePointer lpVtbl, int pairingKindsSupported,
                     int minProtectionLevel, Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl,
         pairingKindsSupported.value,
@@ -114,18 +114,18 @@ class IDeviceInformationCustomPairing extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            LPVTBL lpVtbl,
+                            VTablePointer lpVtbl,
                             Uint32 pairingKindsSupported,
                             Int32 minProtectionLevel,
-                            LPVTBL devicePairingSettings,
+                            VTablePointer devicePairingSettings,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
                 int Function(
-                    LPVTBL lpVtbl,
+                    VTablePointer lpVtbl,
                     int pairingKindsSupported,
                     int minProtectionLevel,
-                    LPVTBL devicePairingSettings,
+                    VTablePointer devicePairingSettings,
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl,
         pairingKindsSupported.value,
@@ -153,11 +153,13 @@ class IDeviceInformationCustomPairing extends IInspectable {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(LPVTBL lpVtbl, LPVTBL handler,
+                          HRESULT Function(
+                              VTablePointer lpVtbl,
+                              VTablePointer handler,
                               Pointer<IntPtr> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(LPVTBL lpVtbl, LPVTBL handler,
+                  int Function(VTablePointer lpVtbl, VTablePointer handler,
                       Pointer<IntPtr> retValuePtr)>()(
           ptr.ref.lpVtbl, handler.ref.lpVtbl, retValuePtr);
 
@@ -170,15 +172,17 @@ class IDeviceInformationCustomPairing extends IInspectable {
   }
 
   void remove_PairingRequested(int token) {
-    final hr = ptr.ref.vtable
-            .elementAt(10)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, IntPtr token)>>>()
-            .value
-            .asFunction<int Function(LPVTBL lpVtbl, int token)>()(
-        ptr.ref.lpVtbl, token);
+    final hr =
+        ptr.ref.vtable
+                .elementAt(10)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                VTablePointer lpVtbl, IntPtr token)>>>()
+                .value
+                .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
+            ptr.ref.lpVtbl, token);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }

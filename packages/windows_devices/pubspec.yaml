@@ -20,7 +20,7 @@ dependencies:
   win32:
     git:
       url: https://github.com/timsneath/win32.git
-      ref: dev
+      ref: main
   windows_applicationmodel:
     path: ../windows_applicationmodel
   windows_foundation:

@@ -41,11 +41,13 @@ class IPropertySetSerializer extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, LPVTBL propertySet,
+                        HRESULT Function(
+                            VTablePointer lpVtbl,
+                            VTablePointer propertySet,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL lpVtbl, LPVTBL propertySet,
+                int Function(VTablePointer lpVtbl, VTablePointer propertySet,
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, propertySetPtr, retValuePtr);
 
@@ -66,17 +68,21 @@ class IPropertySetSerializer extends IInspectable {
     final propertySetPtr = propertySet.ptr.ref.lpVtbl;
     final bufferPtr = buffer == null ? nullptr : buffer.ptr.ref.lpVtbl;
 
-    final hr = ptr.ref.vtable
-        .elementAt(7)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(
-                        LPVTBL lpVtbl, LPVTBL propertySet, LPVTBL buffer)>>>()
-        .value
-        .asFunction<
-            int Function(LPVTBL lpVtbl, LPVTBL propertySet,
-                LPVTBL buffer)>()(ptr.ref.lpVtbl, propertySetPtr, bufferPtr);
+    final hr =
+        ptr.ref.vtable
+                .elementAt(7)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                VTablePointer lpVtbl,
+                                VTablePointer propertySet,
+                                VTablePointer buffer)>>>()
+                .value
+                .asFunction<
+                    int Function(VTablePointer lpVtbl,
+                        VTablePointer propertySet, VTablePointer buffer)>()(
+            ptr.ref.lpVtbl, propertySetPtr, bufferPtr);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }

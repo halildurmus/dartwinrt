@@ -245,7 +245,7 @@ class TypeProjection {
           : BaseType.uint32Type]!;
     }
 
-    final type = isParameter ? 'LPVTBL' : 'Pointer<COMObject>';
+    final type = isParameter ? 'VTablePointer' : 'Pointer<COMObject>';
     return TypeTuple(type, type);
   }
 
@@ -272,9 +272,9 @@ class TypeProjection {
     // Could be a WinRT delegate (e.g. AsyncActionCompletedHandler), class (e.g.
     // Calendar), interface (e.g. ICalendar), or boxed value
     if (isWinRTDelegate || isWinRTObject) {
-      // LPVTBL is an alias for a Pointer to COM vtable (i.e.
-      // Pointer<Pointer<IntPtr>>).
-      final type = isParameter ? 'LPVTBL' : 'Pointer<COMObject>';
+      // VTablePointer is a type alias that represents a Pointer to the
+      // COM v-table (i.e. Pointer<Pointer<IntPtr>>).
+      final type = isParameter ? 'VTablePointer' : 'Pointer<COMObject>';
       return TypeTuple(type, type);
     }
 

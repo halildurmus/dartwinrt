@@ -5,7 +5,7 @@
 @TestOn('windows')
 
 import 'package:test/test.dart';
-import 'package:win32/win32.dart' hide IID_IUnknown, POINT, RECT, SIZE;
+import 'package:win32/win32.dart';
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 import 'package:windows_media/windows_media.dart';

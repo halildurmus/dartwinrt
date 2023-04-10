@@ -40,15 +40,18 @@ class IDateTimeFormatter2 extends IInspectable {
                       Pointer<
                           NativeFunction<
                               HRESULT Function(
-                                  LPVTBL lpVtbl,
+                                  VTablePointer lpVtbl,
                                   Int64 datetime,
                                   IntPtr timeZoneId,
                                   Pointer<IntPtr> retValuePtr)>>>()
                   .value
                   .asFunction<
-                      int Function(LPVTBL lpVtbl, int datetime, int timeZoneId,
-                          Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl,
-              datetime.toWinRTDateTime(), timeZoneIdHString, retValuePtr);
+                      int Function(VTablePointer lpVtbl, int datetime,
+                          int timeZoneId, Pointer<IntPtr> retValuePtr)>()(
+              ptr.ref.lpVtbl,
+              datetime.toWinRTDateTime(),
+              timeZoneIdHString,
+              retValuePtr);
 
       WindowsDeleteString(timeZoneIdHString);
 

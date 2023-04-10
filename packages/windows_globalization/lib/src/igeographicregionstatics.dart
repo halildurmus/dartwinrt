@@ -39,12 +39,12 @@ class IGeographicRegionStatics extends IInspectable {
                   Pointer<
                       NativeFunction<
                           HRESULT Function(
-                              LPVTBL lpVtbl,
+                              VTablePointer lpVtbl,
                               IntPtr geographicRegionCode,
                               Pointer<Bool> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(LPVTBL lpVtbl, int geographicRegionCode,
+                  int Function(VTablePointer lpVtbl, int geographicRegionCode,
                       Pointer<Bool> retValuePtr)>()(
           ptr.ref.lpVtbl, geographicRegionCodeHString, retValuePtr);
 

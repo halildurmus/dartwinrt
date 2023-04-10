@@ -17,7 +17,6 @@ import '../internal.dart';
 import 'collections/iiterator.dart';
 import 'helpers.dart';
 import 'iclosable.dart';
-import 'iinspectable.dart';
 import 'imemorybuffer.dart';
 import 'imemorybufferfactory.dart';
 import 'imemorybufferreference.dart';

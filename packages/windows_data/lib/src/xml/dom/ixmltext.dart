@@ -48,11 +48,11 @@ class IXmlText extends IInspectable
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, Uint32 offset,
+                        HRESULT Function(VTablePointer lpVtbl, Uint32 offset,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL lpVtbl, int offset,
+                int Function(VTablePointer lpVtbl, int offset,
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, offset, retValuePtr);
 

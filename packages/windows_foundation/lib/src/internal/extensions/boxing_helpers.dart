@@ -6,7 +6,6 @@ import 'dart:ffi';
 
 import 'package:win32/win32.dart';
 
-import '../../iinspectable.dart';
 import '../../ipropertyvalue.dart';
 import '../../ireference.dart';
 import '../../point.dart';
@@ -17,7 +16,6 @@ import '../../types.dart';
 import '../../winrt_enum.dart';
 import '../../winrt_struct.dart';
 import '../iids.dart';
-import 'extensions.dart';
 
 extension IntoBoxHelper on Object {
   /// Boxes the value so that it can be passed to the WinRT APIs that take

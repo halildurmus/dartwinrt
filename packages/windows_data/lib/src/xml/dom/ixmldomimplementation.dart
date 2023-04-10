@@ -34,18 +34,22 @@ class IXmlDomImplementation extends IInspectable {
       final featureHString = feature.toHString();
       final versionPtr = version?.intoBox().ptr.ref.lpVtbl ?? nullptr;
 
-      final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(LPVTBL lpVtbl, IntPtr feature,
-                              LPVTBL version, Pointer<Bool> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(LPVTBL lpVtbl, int feature, LPVTBL version,
-                      Pointer<Bool> retValuePtr)>()(
-          ptr.ref.lpVtbl, featureHString, versionPtr, retValuePtr);
+      final hr =
+          ptr.ref.vtable
+                  .elementAt(6)
+                  .cast<
+                      Pointer<
+                          NativeFunction<
+                              HRESULT Function(
+                                  VTablePointer lpVtbl,
+                                  IntPtr feature,
+                                  VTablePointer version,
+                                  Pointer<Bool> retValuePtr)>>>()
+                  .value
+                  .asFunction<
+                      int Function(VTablePointer lpVtbl, int feature,
+                          VTablePointer version, Pointer<Bool> retValuePtr)>()(
+              ptr.ref.lpVtbl, featureHString, versionPtr, retValuePtr);
 
       WindowsDeleteString(featureHString);
 

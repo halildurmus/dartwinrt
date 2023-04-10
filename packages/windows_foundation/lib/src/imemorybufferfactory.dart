@@ -16,7 +16,6 @@ import 'package:win32/win32.dart' hide DocumentProperties;
 import '../internal.dart';
 import 'collections/iiterator.dart';
 import 'helpers.dart';
-import 'iinspectable.dart';
 import 'memorybuffer.dart';
 
 /// @nodoc
@@ -39,11 +38,11 @@ class IMemoryBufferFactory extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, Uint32 capacity,
+                        HRESULT Function(VTablePointer lpVtbl, Uint32 capacity,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL lpVtbl, int capacity,
+                int Function(VTablePointer lpVtbl, int capacity,
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, capacity, retValuePtr);
 

@@ -32,18 +32,21 @@ class ILanguageFactory extends IInspectable {
     final retValuePtr = calloc<COMObject>();
     final languageTagHString = languageTag.toHString();
 
-    final hr = ptr.ref.vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, IntPtr languageTag,
-                            Pointer<COMObject> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(LPVTBL lpVtbl, int languageTag,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, languageTagHString, retValuePtr);
+    final hr =
+        ptr.ref.vtable
+                .elementAt(6)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                VTablePointer lpVtbl,
+                                IntPtr languageTag,
+                                Pointer<COMObject> retValuePtr)>>>()
+                .value
+                .asFunction<
+                    int Function(VTablePointer lpVtbl, int languageTag,
+                        Pointer<COMObject> retValuePtr)>()(
+            ptr.ref.lpVtbl, languageTagHString, retValuePtr);
 
     WindowsDeleteString(languageTagHString);
 

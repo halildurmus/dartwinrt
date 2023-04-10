@@ -40,21 +40,22 @@ class IDeviceWatcher2 extends IInspectable {
             .ref
             .lpVtbl;
 
-    final hr =
-        ptr.ref.vtable
-                .elementAt(6)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                LPVTBL lpVtbl,
-                                LPVTBL requestedEventKinds,
-                                Pointer<COMObject> retValuePtr)>>>()
-                .value
-                .asFunction<
-                    int Function(LPVTBL lpVtbl, LPVTBL requestedEventKinds,
-                        Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl, requestedEventKindsPtr, retValuePtr);
+    final hr = ptr.ref.vtable
+            .elementAt(6)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            VTablePointer lpVtbl,
+                            VTablePointer requestedEventKinds,
+                            Pointer<COMObject> retValuePtr)>>>()
+            .value
+            .asFunction<
+                int Function(
+                    VTablePointer lpVtbl,
+                    VTablePointer requestedEventKinds,
+                    Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl, requestedEventKindsPtr, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);

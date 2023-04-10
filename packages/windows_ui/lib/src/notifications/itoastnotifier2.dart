@@ -38,23 +38,22 @@ class IToastNotifier2 extends IInspectable {
       final tagHString = tag.toHString();
       final groupHString = group.toHString();
 
-      final hr =
-          ptr.ref.vtable
-                  .elementAt(6)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(
-                                  LPVTBL lpVtbl,
-                                  LPVTBL data,
-                                  IntPtr tag,
-                                  IntPtr group,
-                                  Pointer<Int32> retValuePtr)>>>()
-                  .value
-                  .asFunction<
-                      int Function(LPVTBL lpVtbl, LPVTBL data, int tag,
-                          int group, Pointer<Int32> retValuePtr)>()(
-              ptr.ref.lpVtbl, dataPtr, tagHString, groupHString, retValuePtr);
+      final hr = ptr.ref.vtable
+              .elementAt(6)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl,
+                              VTablePointer data,
+                              IntPtr tag,
+                              IntPtr group,
+                              Pointer<Int32> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, VTablePointer data,
+                      int tag, int group, Pointer<Int32> retValuePtr)>()(
+          ptr.ref.lpVtbl, dataPtr, tagHString, groupHString, retValuePtr);
 
       WindowsDeleteString(tagHString);
       WindowsDeleteString(groupHString);
@@ -80,12 +79,15 @@ class IToastNotifier2 extends IInspectable {
                   .cast<
                       Pointer<
                           NativeFunction<
-                              HRESULT Function(LPVTBL lpVtbl, LPVTBL data,
-                                  IntPtr tag, Pointer<Int32> retValuePtr)>>>()
+                              HRESULT Function(
+                                  VTablePointer lpVtbl,
+                                  VTablePointer data,
+                                  IntPtr tag,
+                                  Pointer<Int32> retValuePtr)>>>()
                   .value
                   .asFunction<
-                      int Function(LPVTBL lpVtbl, LPVTBL data, int tag,
-                          Pointer<Int32> retValuePtr)>()(
+                      int Function(VTablePointer lpVtbl, VTablePointer data,
+                          int tag, Pointer<Int32> retValuePtr)>()(
               ptr.ref.lpVtbl, dataPtr, tagHString, retValuePtr);
 
       WindowsDeleteString(tagHString);

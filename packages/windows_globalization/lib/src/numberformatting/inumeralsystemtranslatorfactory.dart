@@ -43,11 +43,13 @@ class INumeralSystemTranslatorFactory extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, LPVTBL languages,
+                        HRESULT Function(
+                            VTablePointer lpVtbl,
+                            VTablePointer languages,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL lpVtbl, LPVTBL languages,
+                int Function(VTablePointer lpVtbl, VTablePointer languages,
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, languagesPtr, retValuePtr);
 

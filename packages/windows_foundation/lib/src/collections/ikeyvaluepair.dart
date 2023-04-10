@@ -8,7 +8,6 @@ import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
 
 import '../../internal.dart';
-import '../iinspectable.dart';
 import '../types.dart';
 
 part 'ikeyvaluepair_part.dart';

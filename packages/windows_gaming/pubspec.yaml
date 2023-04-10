@@ -18,7 +18,7 @@ dependencies:
   win32:
     git:
       url: https://github.com/timsneath/win32.git
-      ref: dev
+      ref: main
   windows_devices:
     path: ../windows_devices
   windows_foundation:

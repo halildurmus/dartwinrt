@@ -40,12 +40,14 @@ class IGeopointFactory extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            LPVTBL lpVtbl,
+                            VTablePointer lpVtbl,
                             NativeBasicGeoposition position,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL lpVtbl, NativeBasicGeoposition position,
+                int Function(
+                    VTablePointer lpVtbl,
+                    NativeBasicGeoposition position,
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, positionNativeStructPtr.ref, retValuePtr);
 
@@ -70,14 +72,14 @@ class IGeopointFactory extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            LPVTBL lpVtbl,
+                            VTablePointer lpVtbl,
                             NativeBasicGeoposition position,
                             Int32 altitudeReferenceSystem,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
                 int Function(
-                    LPVTBL lpVtbl,
+                    VTablePointer lpVtbl,
                     NativeBasicGeoposition position,
                     int altitudeReferenceSystem,
                     Pointer<COMObject> retValuePtr)>()(
@@ -109,7 +111,7 @@ class IGeopointFactory extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            LPVTBL lpVtbl,
+                            VTablePointer lpVtbl,
                             NativeBasicGeoposition position,
                             Int32 altitudeReferenceSystem,
                             Uint32 spatialReferenceId,
@@ -117,7 +119,7 @@ class IGeopointFactory extends IInspectable {
             .value
             .asFunction<
                 int Function(
-                    LPVTBL lpVtbl,
+                    VTablePointer lpVtbl,
                     NativeBasicGeoposition position,
                     int altitudeReferenceSystem,
                     int spatialReferenceId,

@@ -94,7 +94,6 @@ const IID_$shortName = ${quote(typeDef.guid ?? '')};
         if (packageName == 'windows_foundation') ...[
           relativePathTo('windows_foundation/lib/internal.dart'),
           relativePathTo('windows_foundation/lib/src/helpers.dart'),
-          relativePathTo('windows_foundation/lib/src/iinspectable.dart'),
           relativePathTo(
               'windows_foundation/lib/src/collections/iiterator.dart'),
         ] else ...[

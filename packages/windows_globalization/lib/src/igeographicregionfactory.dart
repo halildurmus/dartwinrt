@@ -33,21 +33,20 @@ class IGeographicRegionFactory extends IInspectable {
     final retValuePtr = calloc<COMObject>();
     final geographicRegionCodeHString = geographicRegionCode.toHString();
 
-    final hr =
-        ptr.ref.vtable
-                .elementAt(6)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                LPVTBL lpVtbl,
-                                IntPtr geographicRegionCode,
-                                Pointer<COMObject> retValuePtr)>>>()
-                .value
-                .asFunction<
-                    int Function(LPVTBL lpVtbl, int geographicRegionCode,
-                        Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl, geographicRegionCodeHString, retValuePtr);
+    final hr = ptr.ref.vtable
+            .elementAt(6)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            VTablePointer lpVtbl,
+                            IntPtr geographicRegionCode,
+                            Pointer<COMObject> retValuePtr)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, int geographicRegionCode,
+                    Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl, geographicRegionCodeHString, retValuePtr);
 
     WindowsDeleteString(geographicRegionCodeHString);
 

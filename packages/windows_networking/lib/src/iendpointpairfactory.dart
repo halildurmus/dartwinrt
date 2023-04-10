@@ -47,19 +47,19 @@ class IEndpointPairFactory extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            LPVTBL lpVtbl,
-                            LPVTBL localHostName,
+                            VTablePointer lpVtbl,
+                            VTablePointer localHostName,
                             IntPtr localServiceName,
-                            LPVTBL remoteHostName,
+                            VTablePointer remoteHostName,
                             IntPtr remoteServiceName,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
                 int Function(
-                    LPVTBL lpVtbl,
-                    LPVTBL localHostName,
+                    VTablePointer lpVtbl,
+                    VTablePointer localHostName,
                     int localServiceName,
-                    LPVTBL remoteHostName,
+                    VTablePointer remoteHostName,
                     int remoteServiceName,
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl,
