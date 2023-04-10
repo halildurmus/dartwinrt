@@ -4,8 +4,8 @@ description: Provides access to hostnames and endpoints used by network apps,
   information for established network connections.
 version: 0.0.1
 homepage: https://dartwinrt.dev
-repository: https://github.com/halildurmus/dartwinrt
-issue_tracker: https://github.com/halildurmus/dartwinrt/issues?q=is%3Aopen+is%3Aissue+label%3A%22p%3A+windows_networking%22
+repository: https://github.com/dart-windows/dartwinrt
+issue_tracker: https://github.com/dart-windows/dartwinrt/issues?q=is%3Aopen+is%3Aissue+label%3A%22p%3A+windows_networking%22
 publish_to: none # TODO: Remove this
 
 environment:

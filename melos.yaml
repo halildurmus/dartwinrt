@@ -1,5 +1,5 @@
 name: dartwinrt
-repository: https://github.com/halildurmus/dartwinrt
+repository: https://github.com/dart-windows/dartwinrt
 
 packages:
   - packages/*
