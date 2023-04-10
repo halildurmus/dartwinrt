@@ -41,13 +41,13 @@ class ICurrencyAmountFactory extends IInspectable {
                     Pointer<
                         NativeFunction<
                             HRESULT Function(
-                                LPVTBL lpVtbl,
+                                VTablePointer lpVtbl,
                                 IntPtr amount,
                                 IntPtr currency,
                                 Pointer<COMObject> retValuePtr)>>>()
                 .value
                 .asFunction<
-                    int Function(LPVTBL lpVtbl, int amount, int currency,
+                    int Function(VTablePointer lpVtbl, int amount, int currency,
                         Pointer<COMObject> retValuePtr)>()(
             ptr.ref.lpVtbl, amountHString, currencyHString, retValuePtr);
 

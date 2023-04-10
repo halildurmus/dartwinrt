@@ -16,7 +16,6 @@ import 'package:win32/win32.dart' hide DocumentProperties;
 import '../internal.dart';
 import 'collections/iiterator.dart';
 import 'helpers.dart';
-import 'iinspectable.dart';
 import 'istringable.dart';
 import 'iuriescapestatics.dart';
 import 'iuriruntimeclass.dart';

@@ -33,18 +33,21 @@ class ICurrencyFormatterFactory extends IInspectable {
     final retValuePtr = calloc<COMObject>();
     final currencyCodeHString = currencyCode.toHString();
 
-    final hr = ptr.ref.vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, IntPtr currencyCode,
-                            Pointer<COMObject> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(LPVTBL lpVtbl, int currencyCode,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, currencyCodeHString, retValuePtr);
+    final hr =
+        ptr.ref.vtable
+                .elementAt(6)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                VTablePointer lpVtbl,
+                                IntPtr currencyCode,
+                                Pointer<COMObject> retValuePtr)>>>()
+                .value
+                .asFunction<
+                    int Function(VTablePointer lpVtbl, int currencyCode,
+                        Pointer<COMObject> retValuePtr)>()(
+            ptr.ref.lpVtbl, currencyCodeHString, retValuePtr);
 
     WindowsDeleteString(currencyCodeHString);
 
@@ -73,15 +76,19 @@ class ICurrencyFormatterFactory extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            LPVTBL lpVtbl,
+                            VTablePointer lpVtbl,
                             IntPtr currencyCode,
-                            LPVTBL languages,
+                            VTablePointer languages,
                             IntPtr geographicRegion,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL lpVtbl, int currencyCode, LPVTBL languages,
-                    int geographicRegion, Pointer<COMObject> retValuePtr)>()(
+                int Function(
+                    VTablePointer lpVtbl,
+                    int currencyCode,
+                    VTablePointer languages,
+                    int geographicRegion,
+                    Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl,
         currencyCodeHString,
         languagesPtr,

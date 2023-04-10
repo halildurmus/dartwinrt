@@ -33,9 +33,11 @@ class IConnectionProfileFilter3 extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, LPVTBL value)>>>()
+                        HRESULT Function(
+                            VTablePointer lpVtbl, VTablePointer value)>>>()
             .value
-            .asFunction<int Function(LPVTBL lpVtbl, LPVTBL value)>()(
+            .asFunction<
+                int Function(VTablePointer lpVtbl, VTablePointer value)>()(
         ptr.ref.lpVtbl, value?.toReference().ptr.ref.lpVtbl ?? nullptr);
 
     if (FAILED(hr)) throw WindowsException(hr);
@@ -45,16 +47,16 @@ class IConnectionProfileFilter3 extends IInspectable {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, retValuePtr);
+        .elementAt(7)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl,
+                        Pointer<COMObject> retValuePtr)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl,
+                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);

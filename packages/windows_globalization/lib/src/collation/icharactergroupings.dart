@@ -41,12 +41,12 @@ class ICharacterGroupings extends IInspectable
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(LPVTBL lpVtbl, IntPtr text,
+                          HRESULT Function(VTablePointer lpVtbl, IntPtr text,
                               Pointer<IntPtr> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(
-                      LPVTBL lpVtbl, int text, Pointer<IntPtr> retValuePtr)>()(
+                  int Function(VTablePointer lpVtbl, int text,
+                      Pointer<IntPtr> retValuePtr)>()(
           ptr.ref.lpVtbl, textHString, retValuePtr);
 
       WindowsDeleteString(textHString);

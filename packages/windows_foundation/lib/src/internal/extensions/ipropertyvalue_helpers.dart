@@ -6,8 +6,6 @@ import 'dart:ffi';
 
 import 'package:win32/win32.dart';
 
-import '../../helpers.dart';
-import '../../iinspectable.dart';
 import '../../ipropertyvalue.dart';
 import '../../point.dart';
 import '../../propertytype.dart';

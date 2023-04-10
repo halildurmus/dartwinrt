@@ -43,20 +43,20 @@ class IToastCollectionFactory extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            LPVTBL lpVtbl,
+                            VTablePointer lpVtbl,
                             IntPtr collectionId,
                             IntPtr displayName,
                             IntPtr launchArgs,
-                            LPVTBL iconUri,
+                            VTablePointer iconUri,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
                 int Function(
-                    LPVTBL lpVtbl,
+                    VTablePointer lpVtbl,
                     int collectionId,
                     int displayName,
                     int launchArgs,
-                    LPVTBL iconUri,
+                    VTablePointer iconUri,
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl,
         collectionIdHString,

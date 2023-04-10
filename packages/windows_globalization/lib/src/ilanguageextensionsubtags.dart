@@ -36,11 +36,11 @@ class ILanguageExtensionSubtags extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, IntPtr singleton,
+                        HRESULT Function(VTablePointer lpVtbl, IntPtr singleton,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL lpVtbl, int singleton,
+                int Function(VTablePointer lpVtbl, int singleton,
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, singletonHString, retValuePtr);
 

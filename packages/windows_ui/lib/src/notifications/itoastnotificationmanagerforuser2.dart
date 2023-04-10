@@ -37,18 +37,21 @@ class IToastNotificationManagerForUser2 extends IInspectable {
     final retValuePtr = calloc<COMObject>();
     final collectionIdHString = collectionId.toHString();
 
-    final hr = ptr.ref.vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, IntPtr collectionId,
-                            Pointer<COMObject> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(LPVTBL lpVtbl, int collectionId,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, collectionIdHString, retValuePtr);
+    final hr =
+        ptr.ref.vtable
+                .elementAt(6)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                VTablePointer lpVtbl,
+                                IntPtr collectionId,
+                                Pointer<COMObject> retValuePtr)>>>()
+                .value
+                .asFunction<
+                    int Function(VTablePointer lpVtbl, int collectionId,
+                        Pointer<COMObject> retValuePtr)>()(
+            ptr.ref.lpVtbl, collectionIdHString, retValuePtr);
 
     WindowsDeleteString(collectionIdHString);
 
@@ -67,18 +70,21 @@ class IToastNotificationManagerForUser2 extends IInspectable {
     final retValuePtr = calloc<COMObject>();
     final collectionIdHString = collectionId.toHString();
 
-    final hr = ptr.ref.vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, IntPtr collectionId,
-                            Pointer<COMObject> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(LPVTBL lpVtbl, int collectionId,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, collectionIdHString, retValuePtr);
+    final hr =
+        ptr.ref.vtable
+                .elementAt(7)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                VTablePointer lpVtbl,
+                                IntPtr collectionId,
+                                Pointer<COMObject> retValuePtr)>>>()
+                .value
+                .asFunction<
+                    int Function(VTablePointer lpVtbl, int collectionId,
+                        Pointer<COMObject> retValuePtr)>()(
+            ptr.ref.lpVtbl, collectionIdHString, retValuePtr);
 
     WindowsDeleteString(collectionIdHString);
 
@@ -97,16 +103,16 @@ class IToastNotificationManagerForUser2 extends IInspectable {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, retValuePtr);
+        .elementAt(8)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl,
+                        Pointer<COMObject> retValuePtr)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl,
+                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -130,11 +136,11 @@ class IToastNotificationManagerForUser2 extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, IntPtr appId,
+                        HRESULT Function(VTablePointer lpVtbl, IntPtr appId,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL lpVtbl, int appId,
+                int Function(VTablePointer lpVtbl, int appId,
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, appIdHString, retValuePtr);
 

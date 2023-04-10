@@ -42,11 +42,13 @@ class INetworkInformationStatics2 extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, LPVTBL pProfileFilter,
+                        HRESULT Function(
+                            VTablePointer lpVtbl,
+                            VTablePointer pProfileFilter,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL lpVtbl, LPVTBL pProfileFilter,
+                int Function(VTablePointer lpVtbl, VTablePointer pProfileFilter,
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, pProfileFilterPtr, retValuePtr);
 

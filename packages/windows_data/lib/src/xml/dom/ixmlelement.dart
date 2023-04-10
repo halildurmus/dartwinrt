@@ -41,16 +41,16 @@ class IXmlElement extends IInspectable
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          .elementAt(6)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          Pointer<IntPtr> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -72,11 +72,13 @@ class IXmlElement extends IInspectable
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(LPVTBL lpVtbl, IntPtr attributeName,
+                          HRESULT Function(
+                              VTablePointer lpVtbl,
+                              IntPtr attributeName,
                               Pointer<IntPtr> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(LPVTBL lpVtbl, int attributeName,
+                  int Function(VTablePointer lpVtbl, int attributeName,
                       Pointer<IntPtr> retValuePtr)>()(
           ptr.ref.lpVtbl, attributeNameHString, retValuePtr);
 
@@ -95,18 +97,19 @@ class IXmlElement extends IInspectable
     final attributeNameHString = attributeName.toHString();
     final attributeValueHString = attributeValue.toHString();
 
-    final hr = ptr.ref.vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, IntPtr attributeName,
-                            IntPtr attributeValue)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    LPVTBL lpVtbl, int attributeName, int attributeValue)>()(
-        ptr.ref.lpVtbl, attributeNameHString, attributeValueHString);
+    final hr =
+        ptr.ref.vtable
+                .elementAt(8)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(VTablePointer lpVtbl,
+                                IntPtr attributeName, IntPtr attributeValue)>>>()
+                .value
+                .asFunction<
+                    int Function(VTablePointer lpVtbl, int attributeName,
+                        int attributeValue)>()(
+            ptr.ref.lpVtbl, attributeNameHString, attributeValueHString);
 
     WindowsDeleteString(attributeNameHString);
     WindowsDeleteString(attributeValueHString);
@@ -117,17 +120,17 @@ class IXmlElement extends IInspectable
   void removeAttribute(String attributeName) {
     final attributeNameHString = attributeName.toHString();
 
-    final hr =
-        ptr.ref.vtable
-                .elementAt(9)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                LPVTBL lpVtbl, IntPtr attributeName)>>>()
-                .value
-                .asFunction<int Function(LPVTBL lpVtbl, int attributeName)>()(
-            ptr.ref.lpVtbl, attributeNameHString);
+    final hr = ptr.ref.vtable
+            .elementAt(9)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            VTablePointer lpVtbl, IntPtr attributeName)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, int attributeName)>()(
+        ptr.ref.lpVtbl, attributeNameHString);
 
     WindowsDeleteString(attributeNameHString);
 
@@ -138,18 +141,21 @@ class IXmlElement extends IInspectable
     final retValuePtr = calloc<COMObject>();
     final attributeNameHString = attributeName.toHString();
 
-    final hr = ptr.ref.vtable
-            .elementAt(10)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, IntPtr attributeName,
-                            Pointer<COMObject> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(LPVTBL lpVtbl, int attributeName,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, attributeNameHString, retValuePtr);
+    final hr =
+        ptr.ref.vtable
+                .elementAt(10)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                VTablePointer lpVtbl,
+                                IntPtr attributeName,
+                                Pointer<COMObject> retValuePtr)>>>()
+                .value
+                .asFunction<
+                    int Function(VTablePointer lpVtbl, int attributeName,
+                        Pointer<COMObject> retValuePtr)>()(
+            ptr.ref.lpVtbl, attributeNameHString, retValuePtr);
 
     WindowsDeleteString(attributeNameHString);
 
@@ -176,11 +182,13 @@ class IXmlElement extends IInspectable
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, LPVTBL newAttribute,
+                        HRESULT Function(
+                            VTablePointer lpVtbl,
+                            VTablePointer newAttribute,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL lpVtbl, LPVTBL newAttribute,
+                int Function(VTablePointer lpVtbl, VTablePointer newAttribute,
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, newAttributePtr, retValuePtr);
 
@@ -207,11 +215,13 @@ class IXmlElement extends IInspectable
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, LPVTBL attributeNode,
+                        HRESULT Function(
+                            VTablePointer lpVtbl,
+                            VTablePointer attributeNode,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL lpVtbl, LPVTBL attributeNode,
+                int Function(VTablePointer lpVtbl, VTablePointer attributeNode,
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, attributeNodePtr, retValuePtr);
 
@@ -237,11 +247,11 @@ class IXmlElement extends IInspectable
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, IntPtr tagName,
+                        HRESULT Function(VTablePointer lpVtbl, IntPtr tagName,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL lpVtbl, int tagName,
+                int Function(VTablePointer lpVtbl, int tagName,
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, tagNameHString, retValuePtr);
 
@@ -266,11 +276,14 @@ class IXmlElement extends IInspectable
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, LPVTBL namespaceUri,
-                            IntPtr qualifiedName, IntPtr value)>>>()
+                        HRESULT Function(
+                            VTablePointer lpVtbl,
+                            VTablePointer namespaceUri,
+                            IntPtr qualifiedName,
+                            IntPtr value)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL lpVtbl, LPVTBL namespaceUri,
+                int Function(VTablePointer lpVtbl, VTablePointer namespaceUri,
                     int qualifiedName, int value)>()(
         ptr.ref.lpVtbl, namespaceUriPtr, qualifiedNameHString, valueHString);
 
@@ -287,22 +300,21 @@ class IXmlElement extends IInspectable
       final namespaceUriPtr = namespaceUri?.intoBox().ptr.ref.lpVtbl ?? nullptr;
       final localNameHString = localName.toHString();
 
-      final hr =
-          ptr.ref.vtable
-                  .elementAt(15)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(
-                                  LPVTBL lpVtbl,
-                                  LPVTBL namespaceUri,
-                                  IntPtr localName,
-                                  Pointer<IntPtr> retValuePtr)>>>()
-                  .value
-                  .asFunction<
-                      int Function(LPVTBL lpVtbl, LPVTBL namespaceUri,
-                          int localName, Pointer<IntPtr> retValuePtr)>()(
-              ptr.ref.lpVtbl, namespaceUriPtr, localNameHString, retValuePtr);
+      final hr = ptr.ref.vtable
+              .elementAt(15)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl,
+                              VTablePointer namespaceUri,
+                              IntPtr localName,
+                              Pointer<IntPtr> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, VTablePointer namespaceUri,
+                      int localName, Pointer<IntPtr> retValuePtr)>()(
+          ptr.ref.lpVtbl, namespaceUriPtr, localNameHString, retValuePtr);
 
       WindowsDeleteString(localNameHString);
 
@@ -324,12 +336,12 @@ class IXmlElement extends IInspectable
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, LPVTBL namespaceUri,
-                            IntPtr localName)>>>()
+                        HRESULT Function(VTablePointer lpVtbl,
+                            VTablePointer namespaceUri, IntPtr localName)>>>()
             .value
             .asFunction<
-                int Function(
-                    LPVTBL lpVtbl, LPVTBL namespaceUri, int localName)>()(
+                int Function(VTablePointer lpVtbl, VTablePointer namespaceUri,
+                    int localName)>()(
         ptr.ref.lpVtbl, namespaceUriPtr, localNameHString);
 
     WindowsDeleteString(localNameHString);
@@ -347,11 +359,13 @@ class IXmlElement extends IInspectable
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, LPVTBL newAttribute,
+                        HRESULT Function(
+                            VTablePointer lpVtbl,
+                            VTablePointer newAttribute,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL lpVtbl, LPVTBL newAttribute,
+                int Function(VTablePointer lpVtbl, VTablePointer newAttribute,
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, newAttributePtr, retValuePtr);
 
@@ -373,22 +387,21 @@ class IXmlElement extends IInspectable
     final namespaceUriPtr = namespaceUri?.intoBox().ptr.ref.lpVtbl ?? nullptr;
     final localNameHString = localName.toHString();
 
-    final hr =
-        ptr.ref.vtable
-                .elementAt(18)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                LPVTBL lpVtbl,
-                                LPVTBL namespaceUri,
-                                IntPtr localName,
-                                Pointer<COMObject> retValuePtr)>>>()
-                .value
-                .asFunction<
-                    int Function(LPVTBL lpVtbl, LPVTBL namespaceUri,
-                        int localName, Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl, namespaceUriPtr, localNameHString, retValuePtr);
+    final hr = ptr.ref.vtable
+            .elementAt(18)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            VTablePointer lpVtbl,
+                            VTablePointer namespaceUri,
+                            IntPtr localName,
+                            Pointer<COMObject> retValuePtr)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, VTablePointer namespaceUri,
+                    int localName, Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl, namespaceUriPtr, localNameHString, retValuePtr);
 
     WindowsDeleteString(localNameHString);
 

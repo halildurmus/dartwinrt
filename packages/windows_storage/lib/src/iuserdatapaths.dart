@@ -31,16 +31,16 @@ class IUserDataPaths extends IInspectable {
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          .elementAt(6)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          Pointer<IntPtr> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -56,16 +56,16 @@ class IUserDataPaths extends IInspectable {
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          .elementAt(7)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          Pointer<IntPtr> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -81,16 +81,16 @@ class IUserDataPaths extends IInspectable {
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(8)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          .elementAt(8)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          Pointer<IntPtr> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -106,16 +106,16 @@ class IUserDataPaths extends IInspectable {
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(9)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          .elementAt(9)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          Pointer<IntPtr> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -131,16 +131,16 @@ class IUserDataPaths extends IInspectable {
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(10)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          .elementAt(10)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          Pointer<IntPtr> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -156,16 +156,16 @@ class IUserDataPaths extends IInspectable {
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(11)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          .elementAt(11)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          Pointer<IntPtr> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -181,16 +181,16 @@ class IUserDataPaths extends IInspectable {
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(12)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          .elementAt(12)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          Pointer<IntPtr> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -206,16 +206,16 @@ class IUserDataPaths extends IInspectable {
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(13)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          .elementAt(13)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          Pointer<IntPtr> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -231,16 +231,16 @@ class IUserDataPaths extends IInspectable {
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(14)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          .elementAt(14)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          Pointer<IntPtr> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -256,16 +256,16 @@ class IUserDataPaths extends IInspectable {
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(15)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          .elementAt(15)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          Pointer<IntPtr> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -281,16 +281,16 @@ class IUserDataPaths extends IInspectable {
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(16)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          .elementAt(16)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          Pointer<IntPtr> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -306,16 +306,16 @@ class IUserDataPaths extends IInspectable {
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(17)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          .elementAt(17)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          Pointer<IntPtr> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -331,16 +331,16 @@ class IUserDataPaths extends IInspectable {
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(18)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          .elementAt(18)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          Pointer<IntPtr> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -356,16 +356,16 @@ class IUserDataPaths extends IInspectable {
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(19)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          .elementAt(19)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          Pointer<IntPtr> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -381,16 +381,16 @@ class IUserDataPaths extends IInspectable {
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(20)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          .elementAt(20)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          Pointer<IntPtr> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -406,16 +406,16 @@ class IUserDataPaths extends IInspectable {
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(21)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          .elementAt(21)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          Pointer<IntPtr> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -431,16 +431,16 @@ class IUserDataPaths extends IInspectable {
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(22)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          .elementAt(22)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          Pointer<IntPtr> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -456,16 +456,16 @@ class IUserDataPaths extends IInspectable {
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(23)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          .elementAt(23)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          Pointer<IntPtr> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -481,16 +481,16 @@ class IUserDataPaths extends IInspectable {
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(24)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          .elementAt(24)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          Pointer<IntPtr> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 

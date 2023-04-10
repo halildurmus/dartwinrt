@@ -18,16 +18,16 @@ class _IIteratorBool extends IIterator<bool> {
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              LPVTBL lpVtbl, Pointer<Bool> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(LPVTBL lpVtbl, Pointer<Bool> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          .elementAt(6)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Bool> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<Bool> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -51,13 +51,13 @@ class _IIteratorBool extends IIterator<bool> {
                       Pointer<
                           NativeFunction<
                               HRESULT Function(
-                                  LPVTBL lpVtbl,
+                                  VTablePointer lpVtbl,
                                   Uint32 valueSize,
                                   Pointer<Bool> value,
                                   Pointer<Uint32> retValuePtr)>>>()
                   .value
                   .asFunction<
-                      int Function(LPVTBL lpVtbl, int valueSize,
+                      int Function(VTablePointer lpVtbl, int valueSize,
                           Pointer<Bool> value, Pointer<Uint32> retValuePtr)>()(
               ptr.ref.lpVtbl, valueSize, pArray, retValuePtr);
 
@@ -84,16 +84,16 @@ class _IIteratorGuid extends IIterator<Guid> {
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              LPVTBL lpVtbl, Pointer<GUID> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(LPVTBL lpVtbl, Pointer<GUID> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          .elementAt(6)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<GUID> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<GUID> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -117,13 +117,13 @@ class _IIteratorGuid extends IIterator<Guid> {
                       Pointer<
                           NativeFunction<
                               HRESULT Function(
-                                  LPVTBL lpVtbl,
+                                  VTablePointer lpVtbl,
                                   Uint32 valueSize,
                                   Pointer<GUID> value,
                                   Pointer<Uint32> retValuePtr)>>>()
                   .value
                   .asFunction<
-                      int Function(LPVTBL lpVtbl, int valueSize,
+                      int Function(VTablePointer lpVtbl, int valueSize,
                           Pointer<GUID> value, Pointer<Uint32> retValuePtr)>()(
               ptr.ref.lpVtbl, valueSize, pArray, retValuePtr);
 
@@ -149,16 +149,16 @@ class _IIteratorInspectable<T> extends IIterator<T> {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, retValuePtr);
+        .elementAt(6)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl,
+                        Pointer<COMObject> retValuePtr)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl,
+                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -181,13 +181,13 @@ class _IIteratorInspectable<T> extends IIterator<T> {
                   Pointer<
                       NativeFunction<
                           HRESULT Function(
-                              LPVTBL lpVtbl,
+                              VTablePointer lpVtbl,
                               Uint32 valueSize,
                               Pointer<COMObject> value,
                               Pointer<Uint32> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(LPVTBL lpVtbl, int valueSize,
+                  int Function(VTablePointer lpVtbl, int valueSize,
                       Pointer<COMObject> value, Pointer<Uint32> retValuePtr)>()(
           ptr.ref.lpVtbl, valueSize, pArray, retValuePtr);
 
@@ -214,16 +214,16 @@ class _IIteratorInt16 extends IIterator<int> {
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              LPVTBL lpVtbl, Pointer<Int16> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(LPVTBL lpVtbl, Pointer<Int16> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          .elementAt(6)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Int16> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<Int16> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -246,13 +246,13 @@ class _IIteratorInt16 extends IIterator<int> {
                   Pointer<
                       NativeFunction<
                           HRESULT Function(
-                              LPVTBL lpVtbl,
+                              VTablePointer lpVtbl,
                               Uint32 valueSize,
                               Pointer<Int16> value,
                               Pointer<Uint32> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(LPVTBL lpVtbl, int valueSize,
+                  int Function(VTablePointer lpVtbl, int valueSize,
                       Pointer<Int16> value, Pointer<Uint32> retValuePtr)>()(
           ptr.ref.lpVtbl, valueSize, pArray, retValuePtr);
 
@@ -279,16 +279,16 @@ class _IIteratorInt32 extends IIterator<int> {
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              LPVTBL lpVtbl, Pointer<Int32> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(LPVTBL lpVtbl, Pointer<Int32> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          .elementAt(6)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Int32> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<Int32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -311,13 +311,13 @@ class _IIteratorInt32 extends IIterator<int> {
                   Pointer<
                       NativeFunction<
                           HRESULT Function(
-                              LPVTBL lpVtbl,
+                              VTablePointer lpVtbl,
                               Uint32 valueSize,
                               Pointer<Int32> value,
                               Pointer<Uint32> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(LPVTBL lpVtbl, int valueSize,
+                  int Function(VTablePointer lpVtbl, int valueSize,
                       Pointer<Int32> value, Pointer<Uint32> retValuePtr)>()(
           ptr.ref.lpVtbl, valueSize, pArray, retValuePtr);
 
@@ -344,16 +344,16 @@ class _IIteratorInt64 extends IIterator<int> {
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              LPVTBL lpVtbl, Pointer<Int64> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(LPVTBL lpVtbl, Pointer<Int64> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          .elementAt(6)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Int64> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<Int64> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -376,13 +376,13 @@ class _IIteratorInt64 extends IIterator<int> {
                   Pointer<
                       NativeFunction<
                           HRESULT Function(
-                              LPVTBL lpVtbl,
+                              VTablePointer lpVtbl,
                               Uint32 valueSize,
                               Pointer<Int64> value,
                               Pointer<Uint32> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(LPVTBL lpVtbl, int valueSize,
+                  int Function(VTablePointer lpVtbl, int valueSize,
                       Pointer<Int64> value, Pointer<Uint32> retValuePtr)>()(
           ptr.ref.lpVtbl, valueSize, pArray, retValuePtr);
 
@@ -409,16 +409,16 @@ class _IIteratorString extends IIterator<String> {
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          .elementAt(6)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          Pointer<IntPtr> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -442,13 +442,13 @@ class _IIteratorString extends IIterator<String> {
                   Pointer<
                       NativeFunction<
                           HRESULT Function(
-                              LPVTBL lpVtbl,
+                              VTablePointer lpVtbl,
                               Uint32 valueSize,
                               Pointer<IntPtr> value,
                               Pointer<Uint32> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(LPVTBL lpVtbl, int valueSize,
+                  int Function(VTablePointer lpVtbl, int valueSize,
                       Pointer<IntPtr> value, Pointer<Uint32> retValuePtr)>()(
           ptr.ref.lpVtbl, valueSize, pArray, retValuePtr);
 
@@ -475,16 +475,16 @@ class _IIteratorUint8 extends IIterator<int> {
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              LPVTBL lpVtbl, Pointer<Uint8> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(LPVTBL lpVtbl, Pointer<Uint8> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          .elementAt(6)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Uint8> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<Uint8> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -507,13 +507,13 @@ class _IIteratorUint8 extends IIterator<int> {
                   Pointer<
                       NativeFunction<
                           HRESULT Function(
-                              LPVTBL lpVtbl,
+                              VTablePointer lpVtbl,
                               Uint32 valueSize,
                               Pointer<Uint8> value,
                               Pointer<Uint32> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(LPVTBL lpVtbl, int valueSize,
+                  int Function(VTablePointer lpVtbl, int valueSize,
                       Pointer<Uint8> value, Pointer<Uint32> retValuePtr)>()(
           ptr.ref.lpVtbl, valueSize, pArray, retValuePtr);
 
@@ -540,16 +540,16 @@ class _IIteratorUint16 extends IIterator<int> {
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              LPVTBL lpVtbl, Pointer<Uint16> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(LPVTBL lpVtbl, Pointer<Uint16> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          .elementAt(6)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          Pointer<Uint16> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<Uint16> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -572,13 +572,13 @@ class _IIteratorUint16 extends IIterator<int> {
                   Pointer<
                       NativeFunction<
                           HRESULT Function(
-                              LPVTBL lpVtbl,
+                              VTablePointer lpVtbl,
                               Uint32 valueSize,
                               Pointer<Uint16> value,
                               Pointer<Uint32> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(LPVTBL lpVtbl, int valueSize,
+                  int Function(VTablePointer lpVtbl, int valueSize,
                       Pointer<Uint16> value, Pointer<Uint32> retValuePtr)>()(
           ptr.ref.lpVtbl, valueSize, pArray, retValuePtr);
 
@@ -605,16 +605,16 @@ class _IIteratorUint32 extends IIterator<int> {
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              LPVTBL lpVtbl, Pointer<Uint32> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(LPVTBL lpVtbl, Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          .elementAt(6)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          Pointer<Uint32> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<Uint32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -637,13 +637,13 @@ class _IIteratorUint32 extends IIterator<int> {
                   Pointer<
                       NativeFunction<
                           HRESULT Function(
-                              LPVTBL lpVtbl,
+                              VTablePointer lpVtbl,
                               Uint32 valueSize,
                               Pointer<Uint32> value,
                               Pointer<Uint32> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(LPVTBL lpVtbl, int valueSize,
+                  int Function(VTablePointer lpVtbl, int valueSize,
                       Pointer<Uint32> value, Pointer<Uint32> retValuePtr)>()(
           ptr.ref.lpVtbl, valueSize, pArray, retValuePtr);
 
@@ -670,16 +670,16 @@ class _IIteratorUint64 extends IIterator<int> {
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              LPVTBL lpVtbl, Pointer<Uint64> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(LPVTBL lpVtbl, Pointer<Uint64> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          .elementAt(6)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          Pointer<Uint64> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<Uint64> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -702,13 +702,13 @@ class _IIteratorUint64 extends IIterator<int> {
                   Pointer<
                       NativeFunction<
                           HRESULT Function(
-                              LPVTBL lpVtbl,
+                              VTablePointer lpVtbl,
                               Uint32 valueSize,
                               Pointer<Uint64> value,
                               Pointer<Uint32> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(LPVTBL lpVtbl, int valueSize,
+                  int Function(VTablePointer lpVtbl, int valueSize,
                       Pointer<Uint64> value, Pointer<Uint32> retValuePtr)>()(
           ptr.ref.lpVtbl, valueSize, pArray, retValuePtr);
 
@@ -734,16 +734,16 @@ class _IIteratorUri extends IIterator<Uri> {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, retValuePtr);
+        .elementAt(6)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl,
+                        Pointer<COMObject> retValuePtr)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl,
+                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -767,13 +767,13 @@ class _IIteratorUri extends IIterator<Uri> {
                   Pointer<
                       NativeFunction<
                           HRESULT Function(
-                              LPVTBL lpVtbl,
+                              VTablePointer lpVtbl,
                               Uint32 valueSize,
                               Pointer<COMObject> value,
                               Pointer<Uint32> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(LPVTBL lpVtbl, int valueSize,
+                  int Function(VTablePointer lpVtbl, int valueSize,
                       Pointer<COMObject> value, Pointer<Uint32> retValuePtr)>()(
           ptr.ref.lpVtbl, valueSize, pArray, retValuePtr);
 
@@ -800,16 +800,16 @@ class _IIteratorWinRTEnum<T> extends IIterator<T> {
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              LPVTBL lpVtbl, Pointer<Int32> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(LPVTBL lpVtbl, Pointer<Int32> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          .elementAt(6)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Int32> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<Int32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -832,13 +832,13 @@ class _IIteratorWinRTEnum<T> extends IIterator<T> {
                   Pointer<
                       NativeFunction<
                           HRESULT Function(
-                              LPVTBL lpVtbl,
+                              VTablePointer lpVtbl,
                               Uint32 valueSize,
                               Pointer<Int32> value,
                               Pointer<Uint32> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(LPVTBL lpVtbl, int valueSize,
+                  int Function(VTablePointer lpVtbl, int valueSize,
                       Pointer<Int32> value, Pointer<Uint32> retValuePtr)>()(
           ptr.ref.lpVtbl, valueSize, pArray, retValuePtr);
 
@@ -866,16 +866,16 @@ class _IIteratorWinRTFlagsEnum<T> extends IIterator<T> {
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              LPVTBL lpVtbl, Pointer<Uint32> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(LPVTBL lpVtbl, Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          .elementAt(6)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          Pointer<Uint32> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<Uint32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -898,13 +898,13 @@ class _IIteratorWinRTFlagsEnum<T> extends IIterator<T> {
                   Pointer<
                       NativeFunction<
                           HRESULT Function(
-                              LPVTBL lpVtbl,
+                              VTablePointer lpVtbl,
                               Uint32 valueSize,
                               Pointer<Uint32> value,
                               Pointer<Uint32> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(LPVTBL lpVtbl, int valueSize,
+                  int Function(VTablePointer lpVtbl, int valueSize,
                       Pointer<Uint32> value, Pointer<Uint32> retValuePtr)>()(
           ptr.ref.lpVtbl, valueSize, pArray, retValuePtr);
 

@@ -233,7 +233,7 @@ abstract class MethodProjection {
       ].join(', ');
 
   String get nativeParams => [
-        'LPVTBL lpVtbl',
+        'VTablePointer lpVtbl',
         ...parameters.map((param) => param.ffiProjection),
         if (returnTypeProjection.isSimpleArray) 'Pointer<Uint32> valueSize',
         if (!returnTypeProjection.isVoid)
@@ -241,7 +241,7 @@ abstract class MethodProjection {
       ].join(', ');
 
   String get dartParams => [
-        'LPVTBL lpVtbl',
+        'VTablePointer lpVtbl',
         ...parameters.map((param) => param.dartProjection),
         if (returnTypeProjection.isSimpleArray) 'Pointer<Uint32> valueSize',
         if (!returnTypeProjection.isVoid)

@@ -44,12 +44,12 @@ class IStorageItemProperties2 extends IInspectable
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, Int32 mode,
+                        HRESULT Function(VTablePointer lpVtbl, Int32 mode,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(
-                    LPVTBL lpVtbl, int mode, Pointer<COMObject> retValuePtr)>()(
+                int Function(VTablePointer lpVtbl, int mode,
+                    Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, mode.value, retValuePtr);
 
     if (FAILED(hr)) {
@@ -74,13 +74,13 @@ class IStorageItemProperties2 extends IInspectable
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            LPVTBL lpVtbl,
+                            VTablePointer lpVtbl,
                             Int32 mode,
                             Uint32 requestedSize,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL lpVtbl, int mode, int requestedSize,
+                int Function(VTablePointer lpVtbl, int mode, int requestedSize,
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, mode.value, requestedSize, retValuePtr);
 
@@ -105,14 +105,14 @@ class IStorageItemProperties2 extends IInspectable
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            LPVTBL lpVtbl,
+                            VTablePointer lpVtbl,
                             Int32 mode,
                             Uint32 requestedSize,
                             Uint32 options,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL lpVtbl, int mode, int requestedSize,
+                int Function(VTablePointer lpVtbl, int mode, int requestedSize,
                     int options, Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, mode.value, requestedSize, options.value, retValuePtr);
 

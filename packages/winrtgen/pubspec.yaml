@@ -40,13 +40,13 @@ dependencies:
   win32:
     git:
       url: https://github.com/timsneath/win32.git
-      ref: dev
+      ref: main
 
 dependency_overrides:
   win32:
     git:
       url: https://github.com/timsneath/win32.git
-      ref: dev
+      ref: main
 
 dev_dependencies:
   # Running the test suite.

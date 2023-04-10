@@ -37,9 +37,11 @@ class IXmlDocumentIO2 extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, LPVTBL buffer)>>>()
+                        HRESULT Function(
+                            VTablePointer lpVtbl, VTablePointer buffer)>>>()
             .value
-            .asFunction<int Function(LPVTBL lpVtbl, LPVTBL buffer)>()(
+            .asFunction<
+                int Function(VTablePointer lpVtbl, VTablePointer buffer)>()(
         ptr.ref.lpVtbl, bufferPtr);
 
     if (FAILED(hr)) throw WindowsException(hr);
@@ -51,18 +53,21 @@ class IXmlDocumentIO2 extends IInspectable {
     final loadSettingsPtr =
         loadSettings == null ? nullptr : loadSettings.ptr.ref.lpVtbl;
 
-    final hr = ptr.ref.vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, LPVTBL buffer,
-                            LPVTBL loadSettings)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    LPVTBL lpVtbl, LPVTBL buffer, LPVTBL loadSettings)>()(
-        ptr.ref.lpVtbl, bufferPtr, loadSettingsPtr);
+    final hr =
+        ptr.ref.vtable
+                .elementAt(7)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                VTablePointer lpVtbl,
+                                VTablePointer buffer,
+                                VTablePointer loadSettings)>>>()
+                .value
+                .asFunction<
+                    int Function(VTablePointer lpVtbl, VTablePointer buffer,
+                        VTablePointer loadSettings)>()(
+            ptr.ref.lpVtbl, bufferPtr, loadSettingsPtr);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }

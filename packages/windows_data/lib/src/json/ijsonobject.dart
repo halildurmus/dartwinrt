@@ -41,12 +41,12 @@ class IJsonObject extends IInspectable implements IJsonValue {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, IntPtr name,
+                        HRESULT Function(VTablePointer lpVtbl, IntPtr name,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(
-                    LPVTBL lpVtbl, int name, Pointer<COMObject> retValuePtr)>()(
+                int Function(VTablePointer lpVtbl, int name,
+                    Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, nameHString, retValuePtr);
 
     WindowsDeleteString(nameHString);
@@ -69,15 +69,16 @@ class IJsonObject extends IInspectable implements IJsonValue {
     final valuePtr = value == null ? nullptr : value.ptr.ref.lpVtbl;
 
     final hr = ptr.ref.vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            LPVTBL lpVtbl, IntPtr name, LPVTBL value)>>>()
-            .value
-            .asFunction<int Function(LPVTBL lpVtbl, int name, LPVTBL value)>()(
-        ptr.ref.lpVtbl, nameHString, valuePtr);
+        .elementAt(7)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl, IntPtr name,
+                        VTablePointer value)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl, int name,
+                VTablePointer value)>()(ptr.ref.lpVtbl, nameHString, valuePtr);
 
     WindowsDeleteString(nameHString);
 
@@ -93,12 +94,12 @@ class IJsonObject extends IInspectable implements IJsonValue {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, IntPtr name,
+                        HRESULT Function(VTablePointer lpVtbl, IntPtr name,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(
-                    LPVTBL lpVtbl, int name, Pointer<COMObject> retValuePtr)>()(
+                int Function(VTablePointer lpVtbl, int name,
+                    Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, nameHString, retValuePtr);
 
     WindowsDeleteString(nameHString);
@@ -120,12 +121,12 @@ class IJsonObject extends IInspectable implements IJsonValue {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, IntPtr name,
+                        HRESULT Function(VTablePointer lpVtbl, IntPtr name,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(
-                    LPVTBL lpVtbl, int name, Pointer<COMObject> retValuePtr)>()(
+                int Function(VTablePointer lpVtbl, int name,
+                    Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, nameHString, retValuePtr);
 
     WindowsDeleteString(nameHString);
@@ -149,12 +150,12 @@ class IJsonObject extends IInspectable implements IJsonValue {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(LPVTBL lpVtbl, IntPtr name,
+                          HRESULT Function(VTablePointer lpVtbl, IntPtr name,
                               Pointer<IntPtr> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(
-                      LPVTBL lpVtbl, int name, Pointer<IntPtr> retValuePtr)>()(
+                  int Function(VTablePointer lpVtbl, int name,
+                      Pointer<IntPtr> retValuePtr)>()(
           ptr.ref.lpVtbl, nameHString, retValuePtr);
 
       WindowsDeleteString(nameHString);
@@ -179,12 +180,12 @@ class IJsonObject extends IInspectable implements IJsonValue {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(LPVTBL lpVtbl, IntPtr name,
+                          HRESULT Function(VTablePointer lpVtbl, IntPtr name,
                               Pointer<Double> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(
-                      LPVTBL lpVtbl, int name, Pointer<Double> retValuePtr)>()(
+                  int Function(VTablePointer lpVtbl, int name,
+                      Pointer<Double> retValuePtr)>()(
           ptr.ref.lpVtbl, nameHString, retValuePtr);
 
       WindowsDeleteString(nameHString);
@@ -208,12 +209,12 @@ class IJsonObject extends IInspectable implements IJsonValue {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(LPVTBL lpVtbl, IntPtr name,
+                          HRESULT Function(VTablePointer lpVtbl, IntPtr name,
                               Pointer<Bool> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(
-                      LPVTBL lpVtbl, int name, Pointer<Bool> retValuePtr)>()(
+                  int Function(VTablePointer lpVtbl, int name,
+                      Pointer<Bool> retValuePtr)>()(
           ptr.ref.lpVtbl, nameHString, retValuePtr);
 
       WindowsDeleteString(nameHString);

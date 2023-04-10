@@ -38,12 +38,12 @@ class INumberRounder extends IInspectable {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(LPVTBL lpVtbl, Int32 value,
+                          HRESULT Function(VTablePointer lpVtbl, Int32 value,
                               Pointer<Int32> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(
-                      LPVTBL lpVtbl, int value, Pointer<Int32> retValuePtr)>()(
+                  int Function(VTablePointer lpVtbl, int value,
+                      Pointer<Int32> retValuePtr)>()(
           ptr.ref.lpVtbl, value, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
@@ -63,12 +63,12 @@ class INumberRounder extends IInspectable {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(LPVTBL lpVtbl, Uint32 value,
+                          HRESULT Function(VTablePointer lpVtbl, Uint32 value,
                               Pointer<Uint32> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(
-                      LPVTBL lpVtbl, int value, Pointer<Uint32> retValuePtr)>()(
+                  int Function(VTablePointer lpVtbl, int value,
+                      Pointer<Uint32> retValuePtr)>()(
           ptr.ref.lpVtbl, value, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
@@ -88,12 +88,12 @@ class INumberRounder extends IInspectable {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(LPVTBL lpVtbl, Int64 value,
+                          HRESULT Function(VTablePointer lpVtbl, Int64 value,
                               Pointer<Int64> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(
-                      LPVTBL lpVtbl, int value, Pointer<Int64> retValuePtr)>()(
+                  int Function(VTablePointer lpVtbl, int value,
+                      Pointer<Int64> retValuePtr)>()(
           ptr.ref.lpVtbl, value, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
@@ -113,12 +113,12 @@ class INumberRounder extends IInspectable {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(LPVTBL lpVtbl, Uint64 value,
+                          HRESULT Function(VTablePointer lpVtbl, Uint64 value,
                               Pointer<Uint64> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(
-                      LPVTBL lpVtbl, int value, Pointer<Uint64> retValuePtr)>()(
+                  int Function(VTablePointer lpVtbl, int value,
+                      Pointer<Uint64> retValuePtr)>()(
           ptr.ref.lpVtbl, value, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
@@ -138,11 +138,11 @@ class INumberRounder extends IInspectable {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(LPVTBL lpVtbl, Float value,
+                          HRESULT Function(VTablePointer lpVtbl, Float value,
                               Pointer<Float> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(LPVTBL lpVtbl, double value,
+                  int Function(VTablePointer lpVtbl, double value,
                       Pointer<Float> retValuePtr)>()(
           ptr.ref.lpVtbl, value, retValuePtr);
 
@@ -163,11 +163,11 @@ class INumberRounder extends IInspectable {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(LPVTBL lpVtbl, Double value,
+                          HRESULT Function(VTablePointer lpVtbl, Double value,
                               Pointer<Double> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(LPVTBL lpVtbl, double value,
+                  int Function(VTablePointer lpVtbl, double value,
                       Pointer<Double> retValuePtr)>()(
           ptr.ref.lpVtbl, value, retValuePtr);
 

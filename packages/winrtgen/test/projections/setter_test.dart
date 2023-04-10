@@ -51,9 +51,9 @@ void main() {
           'Windows.UI.Notifications.IToastNotification2', 'put_SuppressPopup');
       expect(projection, isA<DefaultSetterProjection>());
       expect(projection.nativePrototype,
-          equals('HRESULT Function(LPVTBL lpVtbl, Bool value)'));
+          equals('HRESULT Function(VTablePointer lpVtbl, Bool value)'));
       expect(projection.dartPrototype,
-          equals('int Function(LPVTBL lpVtbl, bool value)'));
+          equals('int Function(VTablePointer lpVtbl, bool value)'));
       expect(projection.methodHeader, equals('set suppressPopup(bool value)'));
     });
 
@@ -61,10 +61,12 @@ void main() {
       final projection = SetterProjection.fromTypeAndMethodName(
           'Windows.UI.Notifications.IToastNotification4', 'put_Data');
       expect(projection, isA<ObjectSetterProjection>());
-      expect(projection.nativePrototype,
-          equals('HRESULT Function(LPVTBL lpVtbl, LPVTBL value)'));
+      expect(
+          projection.nativePrototype,
+          equals(
+              'HRESULT Function(VTablePointer lpVtbl, VTablePointer value)'));
       expect(projection.dartPrototype,
-          equals('int Function(LPVTBL lpVtbl, LPVTBL value)'));
+          equals('int Function(VTablePointer lpVtbl, VTablePointer value)'));
       expect(
           projection.methodHeader, equals('set data(NotificationData? value)'));
     });
@@ -74,9 +76,9 @@ void main() {
           'Windows.Storage.FileProperties.ImageProperties', 'put_DateTaken');
       expect(projection, isA<DateTimeSetterProjection>());
       expect(projection.nativePrototype,
-          equals('HRESULT Function(LPVTBL lpVtbl, Int64 value)'));
+          equals('HRESULT Function(VTablePointer lpVtbl, Int64 value)'));
       expect(projection.dartPrototype,
-          equals('int Function(LPVTBL lpVtbl, int value)'));
+          equals('int Function(VTablePointer lpVtbl, int value)'));
       expect(projection.methodHeader, equals('set dateTaken(DateTime value)'));
     });
 
@@ -84,10 +86,12 @@ void main() {
       final projection = SetterProjection.fromTypeAndMethodName(
           'Windows.Foundation.IAsyncAction', 'put_Completed');
       expect(projection, isA<DelegateSetterProjection>());
-      expect(projection.nativePrototype,
-          equals('HRESULT Function(LPVTBL lpVtbl, LPVTBL handler)'));
+      expect(
+          projection.nativePrototype,
+          equals(
+              'HRESULT Function(VTablePointer lpVtbl, VTablePointer handler)'));
       expect(projection.dartPrototype,
-          equals('int Function(LPVTBL lpVtbl, LPVTBL handler)'));
+          equals('int Function(VTablePointer lpVtbl, VTablePointer handler)'));
       expect(projection.methodHeader,
           equals('set completed(Pointer<COMObject> value)'));
     });
@@ -97,9 +101,9 @@ void main() {
           'Windows.Devices.Geolocation.IGeolocator', 'put_MovementThreshold');
       expect(projection, isA<DefaultSetterProjection>());
       expect(projection.nativePrototype,
-          equals('HRESULT Function(LPVTBL lpVtbl, Double value)'));
+          equals('HRESULT Function(VTablePointer lpVtbl, Double value)'));
       expect(projection.dartPrototype,
-          equals('int Function(LPVTBL lpVtbl, double value)'));
+          equals('int Function(VTablePointer lpVtbl, double value)'));
       expect(projection.methodHeader,
           equals('set movementThreshold(double value)'));
     });
@@ -109,9 +113,9 @@ void main() {
           'Windows.Media.Playback.MediaPlaybackSession', 'put_Position');
       expect(projection, isA<DurationSetterProjection>());
       expect(projection.nativePrototype,
-          equals('HRESULT Function(LPVTBL lpVtbl, Int64 value)'));
+          equals('HRESULT Function(VTablePointer lpVtbl, Int64 value)'));
       expect(projection.dartPrototype,
-          equals('int Function(LPVTBL lpVtbl, int value)'));
+          equals('int Function(VTablePointer lpVtbl, int value)'));
       expect(projection.methodHeader, equals('set position(Duration value)'));
     });
 
@@ -120,9 +124,9 @@ void main() {
           'Windows.Storage.Pickers.IFileOpenPicker', 'put_ViewMode');
       expect(projection, isA<EnumSetterProjection>());
       expect(projection.nativePrototype,
-          equals('HRESULT Function(LPVTBL lpVtbl, Int32 value)'));
+          equals('HRESULT Function(VTablePointer lpVtbl, Int32 value)'));
       expect(projection.dartPrototype,
-          equals('int Function(LPVTBL lpVtbl, int value)'));
+          equals('int Function(VTablePointer lpVtbl, int value)'));
       expect(projection.methodHeader,
           equals('set viewMode(PickerViewMode value)'));
     });
@@ -132,9 +136,9 @@ void main() {
           'Windows.Data.Pdf.IPdfPageRenderOptions', 'put_BitmapEncoderId');
       expect(projection, isA<GuidSetterProjection>());
       expect(projection.nativePrototype,
-          equals('HRESULT Function(LPVTBL lpVtbl, GUID value)'));
+          equals('HRESULT Function(VTablePointer lpVtbl, GUID value)'));
       expect(projection.dartPrototype,
-          equals('int Function(LPVTBL lpVtbl, GUID value)'));
+          equals('int Function(VTablePointer lpVtbl, GUID value)'));
       expect(
           projection.methodHeader, equals('set bitmapEncoderId(Guid value)'));
     });
@@ -144,9 +148,9 @@ void main() {
           'Windows.Globalization.ICalendar', 'put_Era');
       expect(projection, isA<DefaultSetterProjection>());
       expect(projection.nativePrototype,
-          equals('HRESULT Function(LPVTBL lpVtbl, Int32 value)'));
+          equals('HRESULT Function(VTablePointer lpVtbl, Int32 value)'));
       expect(projection.dartPrototype,
-          equals('int Function(LPVTBL lpVtbl, int value)'));
+          equals('int Function(VTablePointer lpVtbl, int value)'));
       expect(projection.methodHeader, equals('set era(int value)'));
     });
 
@@ -155,10 +159,12 @@ void main() {
           'Windows.Storage.Pickers.Provider.ITargetFileRequest',
           'put_TargetFile');
       expect(projection, isA<ObjectSetterProjection>());
-      expect(projection.nativePrototype,
-          equals('HRESULT Function(LPVTBL lpVtbl, LPVTBL value)'));
+      expect(
+          projection.nativePrototype,
+          equals(
+              'HRESULT Function(VTablePointer lpVtbl, VTablePointer value)'));
       expect(projection.dartPrototype,
-          equals('int Function(LPVTBL lpVtbl, LPVTBL value)'));
+          equals('int Function(VTablePointer lpVtbl, VTablePointer value)'));
       expect(projection.methodHeader,
           equals('set targetFile(IStorageFile? value)'));
     });
@@ -167,10 +173,12 @@ void main() {
       final projection = SetterProjection.fromTypeAndMethodName(
           'Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisement',
           'put_Flags');
-      expect(projection.nativePrototype,
-          equals('HRESULT Function(LPVTBL lpVtbl, LPVTBL value)'));
+      expect(
+          projection.nativePrototype,
+          equals(
+              'HRESULT Function(VTablePointer lpVtbl, VTablePointer value)'));
       expect(projection.dartPrototype,
-          equals('int Function(LPVTBL lpVtbl, LPVTBL value)'));
+          equals('int Function(VTablePointer lpVtbl, VTablePointer value)'));
       expect(projection.methodHeader,
           equals('set flags(BluetoothLEAdvertisementFlags? value)'));
     });
@@ -179,10 +187,12 @@ void main() {
       final projection = SetterProjection.fromTypeAndMethodName(
           'Windows.Data.Xml.Dom.IXmlNode', 'put_NodeValue');
       expect(projection, isA<ObjectSetterProjection>());
-      expect(projection.nativePrototype,
-          equals('HRESULT Function(LPVTBL lpVtbl, LPVTBL value)'));
+      expect(
+          projection.nativePrototype,
+          equals(
+              'HRESULT Function(VTablePointer lpVtbl, VTablePointer value)'));
       expect(projection.dartPrototype,
-          equals('int Function(LPVTBL lpVtbl, LPVTBL value)'));
+          equals('int Function(VTablePointer lpVtbl, VTablePointer value)'));
       expect(projection.methodHeader, equals('set nodeValue(Object? value)'));
     });
 
@@ -191,9 +201,9 @@ void main() {
           'Windows.Globalization.ICalendar', 'put_NumeralSystem');
       expect(projection, isA<StringSetterProjection>());
       expect(projection.nativePrototype,
-          equals('HRESULT Function(LPVTBL lpVtbl, IntPtr value)'));
+          equals('HRESULT Function(VTablePointer lpVtbl, IntPtr value)'));
       expect(projection.dartPrototype,
-          equals('int Function(LPVTBL lpVtbl, int value)'));
+          equals('int Function(VTablePointer lpVtbl, int value)'));
       expect(
           projection.methodHeader, equals('set numeralSystem(String value)'));
     });
@@ -205,9 +215,11 @@ void main() {
       expect(
           projection.nativePrototype,
           equals(
-              'HRESULT Function(LPVTBL lpVtbl, NativeGamepadVibration value)'));
-      expect(projection.dartPrototype,
-          equals('int Function(LPVTBL lpVtbl, NativeGamepadVibration value)'));
+              'HRESULT Function(VTablePointer lpVtbl, NativeGamepadVibration value)'));
+      expect(
+          projection.dartPrototype,
+          equals(
+              'int Function(VTablePointer lpVtbl, NativeGamepadVibration value)'));
       expect(projection.methodHeader,
           equals('set vibration(GamepadVibration value)'));
     });
@@ -216,10 +228,12 @@ void main() {
       final projection = SetterProjection.fromTypeAndMethodName(
           'Windows.System.ILauncherOptions', 'put_FallbackUri');
       expect(projection, isA<UriSetterProjection>());
-      expect(projection.nativePrototype,
-          equals('HRESULT Function(LPVTBL lpVtbl, LPVTBL value)'));
+      expect(
+          projection.nativePrototype,
+          equals(
+              'HRESULT Function(VTablePointer lpVtbl, VTablePointer value)'));
       expect(projection.dartPrototype,
-          equals('int Function(LPVTBL lpVtbl, LPVTBL value)'));
+          equals('int Function(VTablePointer lpVtbl, VTablePointer value)'));
       expect(projection.methodHeader, equals('set fallbackUri(Uri? value)'));
     });
   });

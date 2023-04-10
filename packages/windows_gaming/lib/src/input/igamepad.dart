@@ -41,11 +41,11 @@ class IGamepad extends IInspectable implements IGameController {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(LPVTBL lpVtbl,
+                          HRESULT Function(VTablePointer lpVtbl,
                               Pointer<NativeGamepadVibration> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(LPVTBL lpVtbl,
+                  int Function(VTablePointer lpVtbl,
                       Pointer<NativeGamepadVibration> retValuePtr)>()(
           ptr.ref.lpVtbl, retValuePtr);
 
@@ -66,11 +66,12 @@ class IGamepad extends IInspectable implements IGameController {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(
-                              LPVTBL lpVtbl, NativeGamepadVibration value)>>>()
+                          HRESULT Function(VTablePointer lpVtbl,
+                              NativeGamepadVibration value)>>>()
               .value
               .asFunction<
-                  int Function(LPVTBL lpVtbl, NativeGamepadVibration value)>()(
+                  int Function(
+                      VTablePointer lpVtbl, NativeGamepadVibration value)>()(
           ptr.ref.lpVtbl, nativeStructPtr.ref);
 
       if (FAILED(hr)) throw WindowsException(hr);
@@ -88,11 +89,11 @@ class IGamepad extends IInspectable implements IGameController {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(LPVTBL lpVtbl,
+                          HRESULT Function(VTablePointer lpVtbl,
                               Pointer<NativeGamepadReading> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(LPVTBL lpVtbl,
+                  int Function(VTablePointer lpVtbl,
                       Pointer<NativeGamepadReading> retValuePtr)>()(
           ptr.ref.lpVtbl, retValuePtr);
 

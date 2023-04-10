@@ -18,7 +18,6 @@ import 'collections/iiterable.dart';
 import 'collections/iiterator.dart';
 import 'collections/ivectorview.dart';
 import 'helpers.dart';
-import 'iinspectable.dart';
 import 'iwwwformurldecoderentry.dart';
 
 /// @nodoc
@@ -48,12 +47,12 @@ class IWwwFormUrlDecoderRuntimeClass extends IInspectable
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(LPVTBL lpVtbl, IntPtr name,
+                          HRESULT Function(VTablePointer lpVtbl, IntPtr name,
                               Pointer<IntPtr> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(
-                      LPVTBL lpVtbl, int name, Pointer<IntPtr> retValuePtr)>()(
+                  int Function(VTablePointer lpVtbl, int name,
+                      Pointer<IntPtr> retValuePtr)>()(
           ptr.ref.lpVtbl, nameHString, retValuePtr);
 
       WindowsDeleteString(nameHString);

@@ -42,11 +42,13 @@ class ILanguageStatics3 extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, LPVTBL languageTags,
+                        HRESULT Function(
+                            VTablePointer lpVtbl,
+                            VTablePointer languageTags,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL lpVtbl, LPVTBL languageTags,
+                int Function(VTablePointer lpVtbl, VTablePointer languageTags,
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, languageTagsPtr, retValuePtr);
 

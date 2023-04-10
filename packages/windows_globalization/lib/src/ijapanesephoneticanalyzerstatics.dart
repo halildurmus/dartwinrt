@@ -39,11 +39,11 @@ class IJapanesePhoneticAnalyzerStatics extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, IntPtr input,
+                        HRESULT Function(VTablePointer lpVtbl, IntPtr input,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL lpVtbl, int input,
+                int Function(VTablePointer lpVtbl, int input,
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, inputHString, retValuePtr);
 
@@ -65,19 +65,18 @@ class IJapanesePhoneticAnalyzerStatics extends IInspectable {
     final retValuePtr = calloc<COMObject>();
     final inputHString = input.toHString();
 
-    final hr =
-        ptr.ref.vtable
-                .elementAt(7)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(LPVTBL lpVtbl, IntPtr input,
-                                Bool monoRuby, Pointer<COMObject> retValuePtr)>>>()
-                .value
-                .asFunction<
-                    int Function(LPVTBL lpVtbl, int input, bool monoRuby,
-                        Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl, inputHString, monoRuby, retValuePtr);
+    final hr = ptr.ref.vtable
+            .elementAt(7)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(VTablePointer lpVtbl, IntPtr input,
+                            Bool monoRuby, Pointer<COMObject> retValuePtr)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, int input, bool monoRuby,
+                    Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl, inputHString, monoRuby, retValuePtr);
 
     WindowsDeleteString(inputHString);
 

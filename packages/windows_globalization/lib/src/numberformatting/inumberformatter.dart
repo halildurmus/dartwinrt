@@ -35,12 +35,12 @@ class INumberFormatter extends IInspectable {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(LPVTBL lpVtbl, Int64 value,
+                          HRESULT Function(VTablePointer lpVtbl, Int64 value,
                               Pointer<IntPtr> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(
-                      LPVTBL lpVtbl, int value, Pointer<IntPtr> retValuePtr)>()(
+                  int Function(VTablePointer lpVtbl, int value,
+                      Pointer<IntPtr> retValuePtr)>()(
           ptr.ref.lpVtbl, value, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
@@ -61,12 +61,12 @@ class INumberFormatter extends IInspectable {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(LPVTBL lpVtbl, Uint64 value,
+                          HRESULT Function(VTablePointer lpVtbl, Uint64 value,
                               Pointer<IntPtr> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(
-                      LPVTBL lpVtbl, int value, Pointer<IntPtr> retValuePtr)>()(
+                  int Function(VTablePointer lpVtbl, int value,
+                      Pointer<IntPtr> retValuePtr)>()(
           ptr.ref.lpVtbl, value, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
@@ -87,11 +87,11 @@ class INumberFormatter extends IInspectable {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(LPVTBL lpVtbl, Double value,
+                          HRESULT Function(VTablePointer lpVtbl, Double value,
                               Pointer<IntPtr> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(LPVTBL lpVtbl, double value,
+                  int Function(VTablePointer lpVtbl, double value,
                       Pointer<IntPtr> retValuePtr)>()(
           ptr.ref.lpVtbl, value, retValuePtr);
 

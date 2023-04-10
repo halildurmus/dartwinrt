@@ -33,18 +33,21 @@ class IDataReaderStatics extends IInspectable {
     final retValuePtr = calloc<COMObject>();
     final bufferPtr = buffer == null ? nullptr : buffer.ptr.ref.lpVtbl;
 
-    final hr = ptr.ref.vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, LPVTBL buffer,
-                            Pointer<COMObject> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(LPVTBL lpVtbl, LPVTBL buffer,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, bufferPtr, retValuePtr);
+    final hr =
+        ptr.ref.vtable
+                .elementAt(6)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                VTablePointer lpVtbl,
+                                VTablePointer buffer,
+                                Pointer<COMObject> retValuePtr)>>>()
+                .value
+                .asFunction<
+                    int Function(VTablePointer lpVtbl, VTablePointer buffer,
+                        Pointer<COMObject> retValuePtr)>()(
+            ptr.ref.lpVtbl, bufferPtr, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);

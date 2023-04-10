@@ -38,11 +38,11 @@ class IXmlNodeSelector extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, IntPtr xpath,
+                        HRESULT Function(VTablePointer lpVtbl, IntPtr xpath,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL lpVtbl, int xpath,
+                int Function(VTablePointer lpVtbl, int xpath,
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, xpathHString, retValuePtr);
 
@@ -70,11 +70,11 @@ class IXmlNodeSelector extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, IntPtr xpath,
+                        HRESULT Function(VTablePointer lpVtbl, IntPtr xpath,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL lpVtbl, int xpath,
+                int Function(VTablePointer lpVtbl, int xpath,
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, xpathHString, retValuePtr);
 
@@ -93,22 +93,24 @@ class IXmlNodeSelector extends IInspectable {
     final xpathHString = xpath.toHString();
     final namespacesPtr = namespaces?.intoBox().ptr.ref.lpVtbl ?? nullptr;
 
-    final hr =
-        ptr.ref.vtable
-                .elementAt(8)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                LPVTBL lpVtbl,
-                                IntPtr xpath,
-                                LPVTBL namespaces,
-                                Pointer<COMObject> retValuePtr)>>>()
-                .value
-                .asFunction<
-                    int Function(LPVTBL lpVtbl, int xpath, LPVTBL namespaces,
-                        Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl, xpathHString, namespacesPtr, retValuePtr);
+    final hr = ptr.ref.vtable
+            .elementAt(8)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            VTablePointer lpVtbl,
+                            IntPtr xpath,
+                            VTablePointer namespaces,
+                            Pointer<COMObject> retValuePtr)>>>()
+            .value
+            .asFunction<
+                int Function(
+                    VTablePointer lpVtbl,
+                    int xpath,
+                    VTablePointer namespaces,
+                    Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl, xpathHString, namespacesPtr, retValuePtr);
 
     WindowsDeleteString(xpathHString);
 
@@ -130,22 +132,24 @@ class IXmlNodeSelector extends IInspectable {
     final xpathHString = xpath.toHString();
     final namespacesPtr = namespaces?.intoBox().ptr.ref.lpVtbl ?? nullptr;
 
-    final hr =
-        ptr.ref.vtable
-                .elementAt(9)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                LPVTBL lpVtbl,
-                                IntPtr xpath,
-                                LPVTBL namespaces,
-                                Pointer<COMObject> retValuePtr)>>>()
-                .value
-                .asFunction<
-                    int Function(LPVTBL lpVtbl, int xpath, LPVTBL namespaces,
-                        Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl, xpathHString, namespacesPtr, retValuePtr);
+    final hr = ptr.ref.vtable
+            .elementAt(9)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            VTablePointer lpVtbl,
+                            IntPtr xpath,
+                            VTablePointer namespaces,
+                            Pointer<COMObject> retValuePtr)>>>()
+            .value
+            .asFunction<
+                int Function(
+                    VTablePointer lpVtbl,
+                    int xpath,
+                    VTablePointer namespaces,
+                    Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl, xpathHString, namespacesPtr, retValuePtr);
 
     WindowsDeleteString(xpathHString);
 

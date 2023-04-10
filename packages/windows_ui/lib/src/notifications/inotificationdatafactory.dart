@@ -45,13 +45,13 @@ class INotificationDataFactory extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            LPVTBL lpVtbl,
-                            LPVTBL initialValues,
+                            VTablePointer lpVtbl,
+                            VTablePointer initialValues,
                             Uint32 sequenceNumber,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL lpVtbl, LPVTBL initialValues,
+                int Function(VTablePointer lpVtbl, VTablePointer initialValues,
                     int sequenceNumber, Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, initialValuesPtr, sequenceNumber, retValuePtr);
 
@@ -77,11 +77,13 @@ class INotificationDataFactory extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, LPVTBL initialValues,
+                        HRESULT Function(
+                            VTablePointer lpVtbl,
+                            VTablePointer initialValues,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL lpVtbl, LPVTBL initialValues,
+                int Function(VTablePointer lpVtbl, VTablePointer initialValues,
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, initialValuesPtr, retValuePtr);
 

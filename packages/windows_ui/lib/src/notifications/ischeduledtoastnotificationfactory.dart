@@ -36,25 +36,24 @@ class IScheduledToastNotificationFactory extends IInspectable {
     final retValuePtr = calloc<COMObject>();
     final contentPtr = content.ptr.ref.lpVtbl;
 
-    final hr =
-        ptr.ref.vtable
-                .elementAt(6)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                LPVTBL lpVtbl,
-                                LPVTBL content,
-                                Int64 deliveryTime,
-                                Pointer<COMObject> retValuePtr)>>>()
-                .value
-                .asFunction<
-                    int Function(LPVTBL lpVtbl, LPVTBL content,
-                        int deliveryTime, Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl,
-            contentPtr,
-            deliveryTime.toWinRTDateTime(),
-            retValuePtr);
+    final hr = ptr.ref.vtable
+            .elementAt(6)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            VTablePointer lpVtbl,
+                            VTablePointer content,
+                            Int64 deliveryTime,
+                            Pointer<COMObject> retValuePtr)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, VTablePointer content,
+                    int deliveryTime, Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl,
+        contentPtr,
+        deliveryTime.toWinRTDateTime(),
+        retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -78,8 +77,8 @@ class IScheduledToastNotificationFactory extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            LPVTBL lpVtbl,
-                            LPVTBL content,
+                            VTablePointer lpVtbl,
+                            VTablePointer content,
                             Int64 deliveryTime,
                             Int64 snoozeInterval,
                             Uint32 maximumSnoozeCount,
@@ -87,8 +86,8 @@ class IScheduledToastNotificationFactory extends IInspectable {
             .value
             .asFunction<
                 int Function(
-                    LPVTBL lpVtbl,
-                    LPVTBL content,
+                    VTablePointer lpVtbl,
+                    VTablePointer content,
                     int deliveryTime,
                     int snoozeInterval,
                     int maximumSnoozeCount,

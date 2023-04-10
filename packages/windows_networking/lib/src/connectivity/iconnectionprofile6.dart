@@ -38,12 +38,12 @@ class IConnectionProfile6 extends IInspectable {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(LPVTBL lpVtbl, Int32 kind,
+                          HRESULT Function(VTablePointer lpVtbl, Int32 kind,
                               Pointer<Bool> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(
-                      LPVTBL lpVtbl, int kind, Pointer<Bool> retValuePtr)>()(
+                  int Function(VTablePointer lpVtbl, int kind,
+                      Pointer<Bool> retValuePtr)>()(
           ptr.ref.lpVtbl, kind.value, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);

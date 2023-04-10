@@ -16,7 +16,6 @@ import 'package:win32/win32.dart' hide DocumentProperties;
 import '../internal.dart';
 import 'collections/iiterator.dart';
 import 'helpers.dart';
-import 'iinspectable.dart';
 
 /// @nodoc
 const IID_IWwwFormUrlDecoderEntry = '{125e7431-f678-4e8e-b670-20a9b06c512d}';
@@ -35,16 +34,16 @@ class IWwwFormUrlDecoderEntry extends IInspectable {
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          .elementAt(6)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          Pointer<IntPtr> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -60,16 +59,16 @@ class IWwwFormUrlDecoderEntry extends IInspectable {
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          .elementAt(7)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          Pointer<IntPtr> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 

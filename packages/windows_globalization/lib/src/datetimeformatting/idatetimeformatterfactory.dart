@@ -45,11 +45,13 @@ class IDateTimeFormatterFactory extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, IntPtr formatTemplate,
+                        HRESULT Function(
+                            VTablePointer lpVtbl,
+                            IntPtr formatTemplate,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL lpVtbl, int formatTemplate,
+                int Function(VTablePointer lpVtbl, int formatTemplate,
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, formatTemplateHString, retValuePtr);
 
@@ -73,22 +75,21 @@ class IDateTimeFormatterFactory extends IInspectable {
         .ref
         .lpVtbl;
 
-    final hr =
-        ptr.ref.vtable
-                .elementAt(7)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                LPVTBL lpVtbl,
-                                IntPtr formatTemplate,
-                                LPVTBL languages,
-                                Pointer<COMObject> retValuePtr)>>>()
-                .value
-                .asFunction<
-                    int Function(LPVTBL lpVtbl, int formatTemplate,
-                        LPVTBL languages, Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl, formatTemplateHString, languagesPtr, retValuePtr);
+    final hr = ptr.ref.vtable
+            .elementAt(7)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            VTablePointer lpVtbl,
+                            IntPtr formatTemplate,
+                            VTablePointer languages,
+                            Pointer<COMObject> retValuePtr)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, int formatTemplate,
+                    VTablePointer languages, Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl, formatTemplateHString, languagesPtr, retValuePtr);
 
     WindowsDeleteString(formatTemplateHString);
 
@@ -123,9 +124,9 @@ class IDateTimeFormatterFactory extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            LPVTBL lpVtbl,
+                            VTablePointer lpVtbl,
                             IntPtr formatTemplate,
-                            LPVTBL languages,
+                            VTablePointer languages,
                             IntPtr geographicRegion,
                             IntPtr calendar,
                             IntPtr clock,
@@ -133,9 +134,9 @@ class IDateTimeFormatterFactory extends IInspectable {
             .value
             .asFunction<
                 int Function(
-                    LPVTBL lpVtbl,
+                    VTablePointer lpVtbl,
                     int formatTemplate,
-                    LPVTBL languages,
+                    VTablePointer languages,
                     int geographicRegion,
                     int calendar,
                     int clock,
@@ -174,7 +175,7 @@ class IDateTimeFormatterFactory extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            LPVTBL lpVtbl,
+                            VTablePointer lpVtbl,
                             Int32 yearFormat,
                             Int32 monthFormat,
                             Int32 dayFormat,
@@ -183,7 +184,7 @@ class IDateTimeFormatterFactory extends IInspectable {
             .value
             .asFunction<
                 int Function(
-                    LPVTBL lpVtbl,
+                    VTablePointer lpVtbl,
                     int yearFormat,
                     int monthFormat,
                     int dayFormat,
@@ -214,20 +215,20 @@ class IDateTimeFormatterFactory extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            LPVTBL lpVtbl,
+                            VTablePointer lpVtbl,
                             Int32 hourFormat,
                             Int32 minuteFormat,
                             Int32 secondFormat,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL lpVtbl, int hourFormat, int minuteFormat,
-                    int secondFormat, Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl,
-        hourFormat.value,
-        minuteFormat.value,
-        secondFormat.value,
-        retValuePtr);
+                int Function(
+                    VTablePointer lpVtbl,
+                    int hourFormat,
+                    int minuteFormat,
+                    int secondFormat,
+                    Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl,
+        hourFormat.value, minuteFormat.value, secondFormat.value, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -259,7 +260,7 @@ class IDateTimeFormatterFactory extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            LPVTBL lpVtbl,
+                            VTablePointer lpVtbl,
                             Int32 yearFormat,
                             Int32 monthFormat,
                             Int32 dayFormat,
@@ -267,12 +268,12 @@ class IDateTimeFormatterFactory extends IInspectable {
                             Int32 hourFormat,
                             Int32 minuteFormat,
                             Int32 secondFormat,
-                            LPVTBL languages,
+                            VTablePointer languages,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
                 int Function(
-                    LPVTBL lpVtbl,
+                    VTablePointer lpVtbl,
                     int yearFormat,
                     int monthFormat,
                     int dayFormat,
@@ -280,7 +281,7 @@ class IDateTimeFormatterFactory extends IInspectable {
                     int hourFormat,
                     int minuteFormat,
                     int secondFormat,
-                    LPVTBL languages,
+                    VTablePointer languages,
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl,
         yearFormat.value,
@@ -329,7 +330,7 @@ class IDateTimeFormatterFactory extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            LPVTBL lpVtbl,
+                            VTablePointer lpVtbl,
                             Int32 yearFormat,
                             Int32 monthFormat,
                             Int32 dayFormat,
@@ -337,7 +338,7 @@ class IDateTimeFormatterFactory extends IInspectable {
                             Int32 hourFormat,
                             Int32 minuteFormat,
                             Int32 secondFormat,
-                            LPVTBL languages,
+                            VTablePointer languages,
                             IntPtr geographicRegion,
                             IntPtr calendar,
                             IntPtr clock,
@@ -345,7 +346,7 @@ class IDateTimeFormatterFactory extends IInspectable {
             .value
             .asFunction<
                 int Function(
-                    LPVTBL lpVtbl,
+                    VTablePointer lpVtbl,
                     int yearFormat,
                     int monthFormat,
                     int dayFormat,
@@ -353,7 +354,7 @@ class IDateTimeFormatterFactory extends IInspectable {
                     int hourFormat,
                     int minuteFormat,
                     int secondFormat,
-                    LPVTBL languages,
+                    VTablePointer languages,
                     int geographicRegion,
                     int calendar,
                     int clock,

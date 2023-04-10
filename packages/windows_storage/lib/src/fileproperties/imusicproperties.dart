@@ -34,16 +34,16 @@ class IMusicProperties extends IInspectable
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          .elementAt(6)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          Pointer<IntPtr> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -58,15 +58,17 @@ class IMusicProperties extends IInspectable
     final hString = value.toHString();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(LPVTBL lpVtbl, IntPtr value)>>>()
-              .value
-              .asFunction<int Function(LPVTBL lpVtbl, int value)>()(
-          ptr.ref.lpVtbl, hString);
+      final hr =
+          ptr.ref.vtable
+                  .elementAt(7)
+                  .cast<
+                      Pointer<
+                          NativeFunction<
+                              HRESULT Function(
+                                  VTablePointer lpVtbl, IntPtr value)>>>()
+                  .value
+                  .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
+              ptr.ref.lpVtbl, hString);
 
       if (FAILED(hr)) throw WindowsException(hr);
     } finally {
@@ -79,16 +81,16 @@ class IMusicProperties extends IInspectable
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(8)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          .elementAt(8)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          Pointer<IntPtr> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -103,15 +105,17 @@ class IMusicProperties extends IInspectable
     final hString = value.toHString();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(9)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(LPVTBL lpVtbl, IntPtr value)>>>()
-              .value
-              .asFunction<int Function(LPVTBL lpVtbl, int value)>()(
-          ptr.ref.lpVtbl, hString);
+      final hr =
+          ptr.ref.vtable
+                  .elementAt(9)
+                  .cast<
+                      Pointer<
+                          NativeFunction<
+                              HRESULT Function(
+                                  VTablePointer lpVtbl, IntPtr value)>>>()
+                  .value
+                  .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
+              ptr.ref.lpVtbl, hString);
 
       if (FAILED(hr)) throw WindowsException(hr);
     } finally {
@@ -123,16 +127,16 @@ class IMusicProperties extends IInspectable
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-            .elementAt(10)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, retValuePtr);
+        .elementAt(10)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl,
+                        Pointer<COMObject> retValuePtr)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl,
+                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -148,16 +152,16 @@ class IMusicProperties extends IInspectable
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(11)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              LPVTBL lpVtbl, Pointer<Uint32> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(LPVTBL lpVtbl, Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          .elementAt(11)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          Pointer<Uint32> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<Uint32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -168,15 +172,17 @@ class IMusicProperties extends IInspectable
   }
 
   set trackNumber(int value) {
-    final hr = ptr.ref.vtable
-            .elementAt(12)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, Uint32 value)>>>()
-            .value
-            .asFunction<int Function(LPVTBL lpVtbl, int value)>()(
-        ptr.ref.lpVtbl, value);
+    final hr =
+        ptr.ref.vtable
+                .elementAt(12)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                VTablePointer lpVtbl, Uint32 value)>>>()
+                .value
+                .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
+            ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
@@ -186,16 +192,16 @@ class IMusicProperties extends IInspectable
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(13)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          .elementAt(13)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          Pointer<IntPtr> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -210,15 +216,17 @@ class IMusicProperties extends IInspectable
     final hString = value.toHString();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(14)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(LPVTBL lpVtbl, IntPtr value)>>>()
-              .value
-              .asFunction<int Function(LPVTBL lpVtbl, int value)>()(
-          ptr.ref.lpVtbl, hString);
+      final hr =
+          ptr.ref.vtable
+                  .elementAt(14)
+                  .cast<
+                      Pointer<
+                          NativeFunction<
+                              HRESULT Function(
+                                  VTablePointer lpVtbl, IntPtr value)>>>()
+                  .value
+                  .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
+              ptr.ref.lpVtbl, hString);
 
       if (FAILED(hr)) throw WindowsException(hr);
     } finally {
@@ -231,16 +239,16 @@ class IMusicProperties extends IInspectable
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(15)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              LPVTBL lpVtbl, Pointer<Uint32> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(LPVTBL lpVtbl, Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          .elementAt(15)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          Pointer<Uint32> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<Uint32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -251,15 +259,17 @@ class IMusicProperties extends IInspectable
   }
 
   set rating(int value) {
-    final hr = ptr.ref.vtable
-            .elementAt(16)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, Uint32 value)>>>()
-            .value
-            .asFunction<int Function(LPVTBL lpVtbl, int value)>()(
-        ptr.ref.lpVtbl, value);
+    final hr =
+        ptr.ref.vtable
+                .elementAt(16)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                VTablePointer lpVtbl, Uint32 value)>>>()
+                .value
+                .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
+            ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
@@ -269,16 +279,16 @@ class IMusicProperties extends IInspectable
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(17)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              LPVTBL lpVtbl, Pointer<Int64> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(LPVTBL lpVtbl, Pointer<Int64> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          .elementAt(17)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Int64> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<Int64> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -293,16 +303,16 @@ class IMusicProperties extends IInspectable
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(18)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              LPVTBL lpVtbl, Pointer<Uint32> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(LPVTBL lpVtbl, Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          .elementAt(18)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          Pointer<Uint32> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<Uint32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -317,16 +327,16 @@ class IMusicProperties extends IInspectable
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(19)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          .elementAt(19)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          Pointer<IntPtr> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -341,15 +351,17 @@ class IMusicProperties extends IInspectable
     final hString = value.toHString();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(20)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(LPVTBL lpVtbl, IntPtr value)>>>()
-              .value
-              .asFunction<int Function(LPVTBL lpVtbl, int value)>()(
-          ptr.ref.lpVtbl, hString);
+      final hr =
+          ptr.ref.vtable
+                  .elementAt(20)
+                  .cast<
+                      Pointer<
+                          NativeFunction<
+                              HRESULT Function(
+                                  VTablePointer lpVtbl, IntPtr value)>>>()
+                  .value
+                  .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
+              ptr.ref.lpVtbl, hString);
 
       if (FAILED(hr)) throw WindowsException(hr);
     } finally {
@@ -361,16 +373,16 @@ class IMusicProperties extends IInspectable
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-            .elementAt(21)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, retValuePtr);
+        .elementAt(21)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl,
+                        Pointer<COMObject> retValuePtr)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl,
+                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -385,16 +397,16 @@ class IMusicProperties extends IInspectable
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-            .elementAt(22)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, retValuePtr);
+        .elementAt(22)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl,
+                        Pointer<COMObject> retValuePtr)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl,
+                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -410,16 +422,16 @@ class IMusicProperties extends IInspectable
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(23)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          .elementAt(23)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          Pointer<IntPtr> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -434,15 +446,17 @@ class IMusicProperties extends IInspectable
     final hString = value.toHString();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(24)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(LPVTBL lpVtbl, IntPtr value)>>>()
-              .value
-              .asFunction<int Function(LPVTBL lpVtbl, int value)>()(
-          ptr.ref.lpVtbl, hString);
+      final hr =
+          ptr.ref.vtable
+                  .elementAt(24)
+                  .cast<
+                      Pointer<
+                          NativeFunction<
+                              HRESULT Function(
+                                  VTablePointer lpVtbl, IntPtr value)>>>()
+                  .value
+                  .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
+              ptr.ref.lpVtbl, hString);
 
       if (FAILED(hr)) throw WindowsException(hr);
     } finally {
@@ -454,16 +468,16 @@ class IMusicProperties extends IInspectable
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-            .elementAt(25)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, retValuePtr);
+        .elementAt(25)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl,
+                        Pointer<COMObject> retValuePtr)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl,
+                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -479,16 +493,16 @@ class IMusicProperties extends IInspectable
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(26)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          .elementAt(26)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          Pointer<IntPtr> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -503,15 +517,17 @@ class IMusicProperties extends IInspectable
     final hString = value.toHString();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(27)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(LPVTBL lpVtbl, IntPtr value)>>>()
-              .value
-              .asFunction<int Function(LPVTBL lpVtbl, int value)>()(
-          ptr.ref.lpVtbl, hString);
+      final hr =
+          ptr.ref.vtable
+                  .elementAt(27)
+                  .cast<
+                      Pointer<
+                          NativeFunction<
+                              HRESULT Function(
+                                  VTablePointer lpVtbl, IntPtr value)>>>()
+                  .value
+                  .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
+              ptr.ref.lpVtbl, hString);
 
       if (FAILED(hr)) throw WindowsException(hr);
     } finally {
@@ -523,16 +539,16 @@ class IMusicProperties extends IInspectable
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-            .elementAt(28)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, retValuePtr);
+        .elementAt(28)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl,
+                        Pointer<COMObject> retValuePtr)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl,
+                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -548,16 +564,16 @@ class IMusicProperties extends IInspectable
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(29)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              LPVTBL lpVtbl, Pointer<Uint32> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(LPVTBL lpVtbl, Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          .elementAt(29)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          Pointer<Uint32> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<Uint32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -568,15 +584,17 @@ class IMusicProperties extends IInspectable
   }
 
   set year(int value) {
-    final hr = ptr.ref.vtable
-            .elementAt(30)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, Uint32 value)>>>()
-            .value
-            .asFunction<int Function(LPVTBL lpVtbl, int value)>()(
-        ptr.ref.lpVtbl, value);
+    final hr =
+        ptr.ref.vtable
+                .elementAt(30)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                VTablePointer lpVtbl, Uint32 value)>>>()
+                .value
+                .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
+            ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }

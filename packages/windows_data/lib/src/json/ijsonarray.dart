@@ -39,11 +39,11 @@ class IJsonArray extends IInspectable implements IJsonValue {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, Uint32 index,
+                        HRESULT Function(VTablePointer lpVtbl, Uint32 index,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL lpVtbl, int index,
+                int Function(VTablePointer lpVtbl, int index,
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, index, retValuePtr);
 
@@ -63,11 +63,11 @@ class IJsonArray extends IInspectable implements IJsonValue {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, Uint32 index,
+                        HRESULT Function(VTablePointer lpVtbl, Uint32 index,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL lpVtbl, int index,
+                int Function(VTablePointer lpVtbl, int index,
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, index, retValuePtr);
 
@@ -88,12 +88,12 @@ class IJsonArray extends IInspectable implements IJsonValue {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(LPVTBL lpVtbl, Uint32 index,
+                          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
                               Pointer<IntPtr> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(
-                      LPVTBL lpVtbl, int index, Pointer<IntPtr> retValuePtr)>()(
+                  int Function(VTablePointer lpVtbl, int index,
+                      Pointer<IntPtr> retValuePtr)>()(
           ptr.ref.lpVtbl, index, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
@@ -114,12 +114,12 @@ class IJsonArray extends IInspectable implements IJsonValue {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(LPVTBL lpVtbl, Uint32 index,
+                          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
                               Pointer<Double> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(
-                      LPVTBL lpVtbl, int index, Pointer<Double> retValuePtr)>()(
+                  int Function(VTablePointer lpVtbl, int index,
+                      Pointer<Double> retValuePtr)>()(
           ptr.ref.lpVtbl, index, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
@@ -139,12 +139,12 @@ class IJsonArray extends IInspectable implements IJsonValue {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(LPVTBL lpVtbl, Uint32 index,
+                          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
                               Pointer<Bool> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(
-                      LPVTBL lpVtbl, int index, Pointer<Bool> retValuePtr)>()(
+                  int Function(VTablePointer lpVtbl, int index,
+                      Pointer<Bool> retValuePtr)>()(
           ptr.ref.lpVtbl, index, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);

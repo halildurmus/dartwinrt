@@ -45,13 +45,13 @@ class IDecimalFormatterFactory extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            LPVTBL lpVtbl,
-                            LPVTBL languages,
+                            VTablePointer lpVtbl,
+                            VTablePointer languages,
                             IntPtr geographicRegion,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL lpVtbl, LPVTBL languages,
+                int Function(VTablePointer lpVtbl, VTablePointer languages,
                     int geographicRegion, Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, languagesPtr, geographicRegionHString, retValuePtr);
 

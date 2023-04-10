@@ -36,16 +36,16 @@ class IToastNotificationManagerForUser3 extends IInspectable {
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              LPVTBL lpVtbl, Pointer<Int32> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(LPVTBL lpVtbl, Pointer<Int32> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          .elementAt(6)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Int32> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<Int32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -64,11 +64,13 @@ class IToastNotificationManagerForUser3 extends IInspectable {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(LPVTBL lpVtbl, LPVTBL handler,
+                          HRESULT Function(
+                              VTablePointer lpVtbl,
+                              VTablePointer handler,
                               Pointer<IntPtr> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(LPVTBL lpVtbl, LPVTBL handler,
+                  int Function(VTablePointer lpVtbl, VTablePointer handler,
                       Pointer<IntPtr> retValuePtr)>()(
           ptr.ref.lpVtbl, handler.ref.lpVtbl, retValuePtr);
 
@@ -81,15 +83,17 @@ class IToastNotificationManagerForUser3 extends IInspectable {
   }
 
   void remove_NotificationModeChanged(int token) {
-    final hr = ptr.ref.vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, IntPtr token)>>>()
-            .value
-            .asFunction<int Function(LPVTBL lpVtbl, int token)>()(
-        ptr.ref.lpVtbl, token);
+    final hr =
+        ptr.ref.vtable
+                .elementAt(8)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                VTablePointer lpVtbl, IntPtr token)>>>()
+                .value
+                .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
+            ptr.ref.lpVtbl, token);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }

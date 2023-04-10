@@ -214,22 +214,22 @@ void main() {
   });
 
   test('relativePath', () {
-    expect(relativePath('helpers.dart', start: 'winrt/foundation'),
-        equals('../../helpers.dart'));
     expect(
-        relativePath('winrt/globalization/calendar.dart',
-            start: 'winrt/globalization'),
-        equals('calendar.dart'));
-    expect(relativePath('com/iinspectable.dart', start: 'winrt/storage'),
-        equals('../../com/iinspectable.dart'));
+        relativePath('windows_foundation/lib/src/helpers.dart',
+            start: 'windows_foundation/lib/src/collections'),
+        equals('../helpers.dart'));
     expect(
-        relativePath('winrt/foundation/collections/ivector.dart',
-            start: 'winrt/globalization'),
-        equals('../foundation/collections/ivector.dart'));
+        relativePath('windows_foundation/lib/src/collections/iiterator.dart',
+            start: 'windows_foundation/lib/src'),
+        equals('collections/iiterator.dart'));
+    expect(
+        relativePath('windows_foundation/lib/internal.dart',
+            start: 'windows_foundation/lib/src'),
+        equals('../internal.dart'));
     expect(
         relativePath(
-            'winrt/globalization/phonenumberformatting/phonenumberformatter.dart',
-            start: 'winrt/globalization'),
+            'windows_globalization/lib/src/phonenumberformatting/phonenumberformatter.dart',
+            start: 'windows_globalization/lib/src'),
         equals('phonenumberformatting/phonenumberformatter.dart'));
   });
 

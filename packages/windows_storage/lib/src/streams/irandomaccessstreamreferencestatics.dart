@@ -36,18 +36,21 @@ class IRandomAccessStreamReferenceStatics extends IInspectable {
     final retValuePtr = calloc<COMObject>();
     final filePtr = file == null ? nullptr : file.ptr.ref.lpVtbl;
 
-    final hr = ptr.ref.vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, LPVTBL file,
-                            Pointer<COMObject> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(LPVTBL lpVtbl, LPVTBL file,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, filePtr, retValuePtr);
+    final hr =
+        ptr.ref.vtable
+                .elementAt(6)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                VTablePointer lpVtbl,
+                                VTablePointer file,
+                                Pointer<COMObject> retValuePtr)>>>()
+                .value
+                .asFunction<
+                    int Function(VTablePointer lpVtbl, VTablePointer file,
+                        Pointer<COMObject> retValuePtr)>()(
+            ptr.ref.lpVtbl, filePtr, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -66,18 +69,21 @@ class IRandomAccessStreamReferenceStatics extends IInspectable {
     final retValuePtr = calloc<COMObject>();
     final uriUri = uri?.toWinRTUri();
 
-    final hr = ptr.ref.vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, LPVTBL uri,
-                            Pointer<COMObject> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(LPVTBL lpVtbl, LPVTBL uri,
-                    Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl,
-        uriUri == null ? nullptr : uriUri.ptr.ref.lpVtbl, retValuePtr);
+    final hr =
+        ptr.ref.vtable
+                .elementAt(7)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                VTablePointer lpVtbl,
+                                VTablePointer uri,
+                                Pointer<COMObject> retValuePtr)>>>()
+                .value
+                .asFunction<
+                    int Function(VTablePointer lpVtbl, VTablePointer uri,
+                        Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl,
+            uriUri == null ? nullptr : uriUri.ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -96,18 +102,21 @@ class IRandomAccessStreamReferenceStatics extends IInspectable {
     final retValuePtr = calloc<COMObject>();
     final streamPtr = stream == null ? nullptr : stream.ptr.ref.lpVtbl;
 
-    final hr = ptr.ref.vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, LPVTBL stream,
-                            Pointer<COMObject> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(LPVTBL lpVtbl, LPVTBL stream,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, streamPtr, retValuePtr);
+    final hr =
+        ptr.ref.vtable
+                .elementAt(8)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                VTablePointer lpVtbl,
+                                VTablePointer stream,
+                                Pointer<COMObject> retValuePtr)>>>()
+                .value
+                .asFunction<
+                    int Function(VTablePointer lpVtbl, VTablePointer stream,
+                        Pointer<COMObject> retValuePtr)>()(
+            ptr.ref.lpVtbl, streamPtr, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);

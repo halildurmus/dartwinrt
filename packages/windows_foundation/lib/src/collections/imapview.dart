@@ -8,7 +8,6 @@ import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
 
 import '../../internal.dart';
-import '../iinspectable.dart';
 import '../types.dart';
 import '../winrt_enum.dart';
 import 'iiterable.dart';
@@ -179,16 +178,16 @@ abstract class IMapView<K, V> extends IInspectable
 
     try {
       final hr = ptr.ref.lpVtbl.value
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              LPVTBL lpVtbl, Pointer<Uint32> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(LPVTBL lpVtbl, Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          .elementAt(7)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          Pointer<Uint32> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<Uint32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -203,18 +202,21 @@ abstract class IMapView<K, V> extends IInspectable
 
   /// Splits the map view into two views.
   void split(IMapView<K, V> first, IMapView<K, V> second) {
-    final hr = ptr.ref.lpVtbl.value
-            .elementAt(9)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, Pointer<COMObject>,
-                            Pointer<COMObject> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(LPVTBL lpVtbl, Pointer<COMObject>,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, first.ptr, second.ptr);
+    final hr =
+        ptr.ref.lpVtbl.value
+                .elementAt(9)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                VTablePointer lpVtbl,
+                                Pointer<COMObject>,
+                                Pointer<COMObject> retValuePtr)>>>()
+                .value
+                .asFunction<
+                    int Function(VTablePointer lpVtbl, Pointer<COMObject>,
+                        Pointer<COMObject> retValuePtr)>()(
+            ptr.ref.lpVtbl, first.ptr, second.ptr);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }

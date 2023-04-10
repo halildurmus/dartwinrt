@@ -35,12 +35,12 @@ class INumberParser extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, IntPtr text,
+                        HRESULT Function(VTablePointer lpVtbl, IntPtr text,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(
-                    LPVTBL lpVtbl, int text, Pointer<COMObject> retValuePtr)>()(
+                int Function(VTablePointer lpVtbl, int text,
+                    Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, textHString, retValuePtr);
 
     WindowsDeleteString(textHString);
@@ -69,12 +69,12 @@ class INumberParser extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, IntPtr text,
+                        HRESULT Function(VTablePointer lpVtbl, IntPtr text,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(
-                    LPVTBL lpVtbl, int text, Pointer<COMObject> retValuePtr)>()(
+                int Function(VTablePointer lpVtbl, int text,
+                    Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, textHString, retValuePtr);
 
     WindowsDeleteString(textHString);
@@ -103,12 +103,12 @@ class INumberParser extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, IntPtr text,
+                        HRESULT Function(VTablePointer lpVtbl, IntPtr text,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(
-                    LPVTBL lpVtbl, int text, Pointer<COMObject> retValuePtr)>()(
+                int Function(VTablePointer lpVtbl, int text,
+                    Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, textHString, retValuePtr);
 
     WindowsDeleteString(textHString);

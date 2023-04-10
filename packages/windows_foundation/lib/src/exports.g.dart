@@ -18,7 +18,6 @@ export 'collections/stringmap.dart';
 export 'collections/valueset.dart';
 export 'helpers.dart';
 export 'iclosable.dart';
-export 'iinspectable.dart';
 export 'imemorybuffer.dart';
 export 'imemorybufferreference.dart';
 export 'istringable.dart';

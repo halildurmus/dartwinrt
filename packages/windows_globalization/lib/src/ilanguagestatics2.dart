@@ -32,18 +32,21 @@ class ILanguageStatics2 extends IInspectable {
     try {
       final languageTagHString = languageTag.toHString();
 
-      final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(LPVTBL lpVtbl, IntPtr languageTag,
-                              Pointer<Bool> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(LPVTBL lpVtbl, int languageTag,
-                      Pointer<Bool> retValuePtr)>()(
-          ptr.ref.lpVtbl, languageTagHString, retValuePtr);
+      final hr =
+          ptr.ref.vtable
+                  .elementAt(6)
+                  .cast<
+                      Pointer<
+                          NativeFunction<
+                              HRESULT Function(
+                                  VTablePointer lpVtbl,
+                                  IntPtr languageTag,
+                                  Pointer<Bool> retValuePtr)>>>()
+                  .value
+                  .asFunction<
+                      int Function(VTablePointer lpVtbl, int languageTag,
+                          Pointer<Bool> retValuePtr)>()(
+              ptr.ref.lpVtbl, languageTagHString, retValuePtr);
 
       WindowsDeleteString(languageTagHString);
 

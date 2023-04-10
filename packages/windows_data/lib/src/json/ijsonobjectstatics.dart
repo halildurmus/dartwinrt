@@ -37,11 +37,11 @@ class IJsonObjectStatics extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, IntPtr input,
+                        HRESULT Function(VTablePointer lpVtbl, IntPtr input,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL lpVtbl, int input,
+                int Function(VTablePointer lpVtbl, int input,
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, inputHString, retValuePtr);
 
@@ -67,13 +67,13 @@ class IJsonObjectStatics extends IInspectable {
                   Pointer<
                       NativeFunction<
                           HRESULT Function(
-                              LPVTBL lpVtbl,
+                              VTablePointer lpVtbl,
                               IntPtr input,
                               Pointer<COMObject> result,
                               Pointer<Bool> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(LPVTBL lpVtbl, int input,
+                  int Function(VTablePointer lpVtbl, int input,
                       Pointer<COMObject> result, Pointer<Bool> retValuePtr)>()(
           ptr.ref.lpVtbl, inputHString, result.ptr, retValuePtr);
 

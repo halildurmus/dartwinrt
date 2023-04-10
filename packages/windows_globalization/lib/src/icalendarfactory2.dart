@@ -46,8 +46,8 @@ class ICalendarFactory2 extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            LPVTBL lpVtbl,
-                            LPVTBL languages,
+                            VTablePointer lpVtbl,
+                            VTablePointer languages,
                             IntPtr calendar,
                             IntPtr clock,
                             IntPtr timeZoneId,
@@ -55,8 +55,8 @@ class ICalendarFactory2 extends IInspectable {
             .value
             .asFunction<
                 int Function(
-                    LPVTBL lpVtbl,
-                    LPVTBL languages,
+                    VTablePointer lpVtbl,
+                    VTablePointer languages,
                     int calendar,
                     int clock,
                     int timeZoneId,

@@ -30,15 +30,17 @@ class IToastNotificationHistory extends IInspectable {
   void removeGroup(String group) {
     final groupHString = group.toHString();
 
-    final hr = ptr.ref.vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, IntPtr group)>>>()
-            .value
-            .asFunction<int Function(LPVTBL lpVtbl, int group)>()(
-        ptr.ref.lpVtbl, groupHString);
+    final hr =
+        ptr.ref.vtable
+                .elementAt(6)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                VTablePointer lpVtbl, IntPtr group)>>>()
+                .value
+                .asFunction<int Function(VTablePointer lpVtbl, int group)>()(
+            ptr.ref.lpVtbl, groupHString);
 
     WindowsDeleteString(groupHString);
 
@@ -54,11 +56,12 @@ class IToastNotificationHistory extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, IntPtr group,
+                        HRESULT Function(VTablePointer lpVtbl, IntPtr group,
                             IntPtr applicationId)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL lpVtbl, int group, int applicationId)>()(
+                int Function(
+                    VTablePointer lpVtbl, int group, int applicationId)>()(
         ptr.ref.lpVtbl, groupHString, applicationIdHString);
 
     WindowsDeleteString(groupHString);
@@ -72,19 +75,18 @@ class IToastNotificationHistory extends IInspectable {
     final groupHString = group.toHString();
     final applicationIdHString = applicationId.toHString();
 
-    final hr =
-        ptr.ref.vtable
-                .elementAt(8)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(LPVTBL lpVtbl, IntPtr tag,
-                                IntPtr group, IntPtr applicationId)>>>()
-                .value
-                .asFunction<
-                    int Function(LPVTBL lpVtbl, int tag, int group,
-                        int applicationId)>()(
-            ptr.ref.lpVtbl, tagHString, groupHString, applicationIdHString);
+    final hr = ptr.ref.vtable
+            .elementAt(8)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(VTablePointer lpVtbl, IntPtr tag,
+                            IntPtr group, IntPtr applicationId)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, int tag, int group,
+                    int applicationId)>()(
+        ptr.ref.lpVtbl, tagHString, groupHString, applicationIdHString);
 
     WindowsDeleteString(tagHString);
     WindowsDeleteString(groupHString);
@@ -103,9 +105,10 @@ class IToastNotificationHistory extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            LPVTBL lpVtbl, IntPtr tag, IntPtr group)>>>()
+                            VTablePointer lpVtbl, IntPtr tag, IntPtr group)>>>()
             .value
-            .asFunction<int Function(LPVTBL lpVtbl, int tag, int group)>()(
+            .asFunction<
+                int Function(VTablePointer lpVtbl, int tag, int group)>()(
         ptr.ref.lpVtbl, tagHString, groupHString);
 
     WindowsDeleteString(tagHString);
@@ -118,13 +121,14 @@ class IToastNotificationHistory extends IInspectable {
     final tagHString = tag.toHString();
 
     final hr = ptr.ref.vtable
-        .elementAt(10)
-        .cast<
-            Pointer<
-                NativeFunction<HRESULT Function(LPVTBL lpVtbl, IntPtr tag)>>>()
-        .value
-        .asFunction<
-            int Function(LPVTBL lpVtbl, int tag)>()(ptr.ref.lpVtbl, tagHString);
+            .elementAt(10)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(VTablePointer lpVtbl, IntPtr tag)>>>()
+            .value
+            .asFunction<int Function(VTablePointer lpVtbl, int tag)>()(
+        ptr.ref.lpVtbl, tagHString);
 
     WindowsDeleteString(tagHString);
 
@@ -134,9 +138,9 @@ class IToastNotificationHistory extends IInspectable {
   void clear() {
     final hr = ptr.ref.vtable
         .elementAt(11)
-        .cast<Pointer<NativeFunction<HRESULT Function(LPVTBL lpVtbl)>>>()
+        .cast<Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>>()
         .value
-        .asFunction<int Function(LPVTBL lpVtbl)>()(ptr.ref.lpVtbl);
+        .asFunction<int Function(VTablePointer lpVtbl)>()(ptr.ref.lpVtbl);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
@@ -144,17 +148,17 @@ class IToastNotificationHistory extends IInspectable {
   void clearWithId(String applicationId) {
     final applicationIdHString = applicationId.toHString();
 
-    final hr =
-        ptr.ref.vtable
-                .elementAt(12)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                LPVTBL lpVtbl, IntPtr applicationId)>>>()
-                .value
-                .asFunction<int Function(LPVTBL lpVtbl, int applicationId)>()(
-            ptr.ref.lpVtbl, applicationIdHString);
+    final hr = ptr.ref.vtable
+            .elementAt(12)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            VTablePointer lpVtbl, IntPtr applicationId)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, int applicationId)>()(
+        ptr.ref.lpVtbl, applicationIdHString);
 
     WindowsDeleteString(applicationIdHString);
 

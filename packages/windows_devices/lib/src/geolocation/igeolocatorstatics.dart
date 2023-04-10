@@ -33,16 +33,16 @@ class IGeolocatorStatics extends IInspectable {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, retValuePtr);
+        .elementAt(6)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl,
+                        Pointer<COMObject> retValuePtr)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl,
+                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -63,11 +63,11 @@ class IGeolocatorStatics extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, Int64 startTime,
+                        HRESULT Function(VTablePointer lpVtbl, Int64 startTime,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL lpVtbl, int startTime,
+                int Function(VTablePointer lpVtbl, int startTime,
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, startTime.toWinRTDateTime(), retValuePtr);
 
@@ -93,11 +93,11 @@ class IGeolocatorStatics extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, Int64 startTime,
+                        HRESULT Function(VTablePointer lpVtbl, Int64 startTime,
                             Int64 duration, Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL lpVtbl, int startTime, int duration,
+                int Function(VTablePointer lpVtbl, int startTime, int duration,
                     Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl,
         startTime.toWinRTDateTime(), duration.toWinRTDuration(), retValuePtr);
 

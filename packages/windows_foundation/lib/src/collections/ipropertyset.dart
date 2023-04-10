@@ -15,7 +15,6 @@ import 'package:win32/win32.dart' hide DocumentProperties;
 
 import '../../internal.dart';
 import '../helpers.dart';
-import '../iinspectable.dart';
 import 'iiterable.dart';
 import 'iiterator.dart';
 import 'ikeyvaluepair.dart';

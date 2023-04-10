@@ -17,7 +17,6 @@ import '../internal.dart';
 import 'collections/iiterator.dart';
 import 'helpers.dart';
 import 'iclosable.dart';
-import 'iinspectable.dart';
 
 /// @nodoc
 const IID_IMemoryBufferReference = '{fbc4dd29-245b-11e4-af98-689423260cf8}';
@@ -38,16 +37,16 @@ class IMemoryBufferReference extends IInspectable implements IClosable {
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              LPVTBL lpVtbl, Pointer<Uint32> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(LPVTBL lpVtbl, Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          .elementAt(6)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          Pointer<Uint32> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<Uint32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -66,11 +65,13 @@ class IMemoryBufferReference extends IInspectable implements IClosable {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(LPVTBL lpVtbl, LPVTBL handler,
+                          HRESULT Function(
+                              VTablePointer lpVtbl,
+                              VTablePointer handler,
                               Pointer<IntPtr> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(LPVTBL lpVtbl, LPVTBL handler,
+                  int Function(VTablePointer lpVtbl, VTablePointer handler,
                       Pointer<IntPtr> retValuePtr)>()(
           ptr.ref.lpVtbl, handler.ref.lpVtbl, retValuePtr);
 
@@ -83,15 +84,17 @@ class IMemoryBufferReference extends IInspectable implements IClosable {
   }
 
   void remove_Closed(int cookie) {
-    final hr = ptr.ref.vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, IntPtr cookie)>>>()
-            .value
-            .asFunction<int Function(LPVTBL lpVtbl, int cookie)>()(
-        ptr.ref.lpVtbl, cookie);
+    final hr =
+        ptr.ref.vtable
+                .elementAt(8)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                VTablePointer lpVtbl, IntPtr cookie)>>>()
+                .value
+                .asFunction<int Function(VTablePointer lpVtbl, int cookie)>()(
+            ptr.ref.lpVtbl, cookie);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }

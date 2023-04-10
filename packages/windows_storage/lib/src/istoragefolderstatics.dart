@@ -38,12 +38,12 @@ class IStorageFolderStatics extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, IntPtr path,
+                        HRESULT Function(VTablePointer lpVtbl, IntPtr path,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(
-                    LPVTBL lpVtbl, int path, Pointer<COMObject> retValuePtr)>()(
+                int Function(VTablePointer lpVtbl, int path,
+                    Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, pathHString, retValuePtr);
 
     WindowsDeleteString(pathHString);

@@ -18,7 +18,7 @@ dependencies:
   win32:
     git:
       url: https://github.com/timsneath/win32.git
-      ref: dev
+      ref: main
   windows_foundation:
     path: ../windows_foundation
   windows_storage:

@@ -48,13 +48,16 @@ class IJsonObjectWithDefaultValues extends IInspectable
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            LPVTBL lpVtbl,
+                            VTablePointer lpVtbl,
                             IntPtr name,
-                            LPVTBL defaultValue,
+                            VTablePointer defaultValue,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL lpVtbl, int name, LPVTBL defaultValue,
+                int Function(
+                    VTablePointer lpVtbl,
+                    int name,
+                    VTablePointer defaultValue,
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, nameHString, defaultValuePtr, retValuePtr);
 
@@ -84,13 +87,16 @@ class IJsonObjectWithDefaultValues extends IInspectable
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            LPVTBL lpVtbl,
+                            VTablePointer lpVtbl,
                             IntPtr name,
-                            LPVTBL defaultValue,
+                            VTablePointer defaultValue,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL lpVtbl, int name, LPVTBL defaultValue,
+                int Function(
+                    VTablePointer lpVtbl,
+                    int name,
+                    VTablePointer defaultValue,
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, nameHString, defaultValuePtr, retValuePtr);
 
@@ -118,14 +124,14 @@ class IJsonObjectWithDefaultValues extends IInspectable
                       Pointer<
                           NativeFunction<
                               HRESULT Function(
-                                  LPVTBL lpVtbl,
+                                  VTablePointer lpVtbl,
                                   IntPtr name,
                                   IntPtr defaultValue,
                                   Pointer<IntPtr> retValuePtr)>>>()
                   .value
                   .asFunction<
-                      int Function(LPVTBL lpVtbl, int name, int defaultValue,
-                          Pointer<IntPtr> retValuePtr)>()(
+                      int Function(VTablePointer lpVtbl, int name,
+                          int defaultValue, Pointer<IntPtr> retValuePtr)>()(
               ptr.ref.lpVtbl, nameHString, defaultValueHString, retValuePtr);
 
       WindowsDeleteString(nameHString);
@@ -151,13 +157,16 @@ class IJsonObjectWithDefaultValues extends IInspectable
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            LPVTBL lpVtbl,
+                            VTablePointer lpVtbl,
                             IntPtr name,
-                            LPVTBL defaultValue,
+                            VTablePointer defaultValue,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL lpVtbl, int name, LPVTBL defaultValue,
+                int Function(
+                    VTablePointer lpVtbl,
+                    int name,
+                    VTablePointer defaultValue,
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, nameHString, defaultValuePtr, retValuePtr);
 
@@ -184,14 +193,14 @@ class IJsonObjectWithDefaultValues extends IInspectable
                       Pointer<
                           NativeFunction<
                               HRESULT Function(
-                                  LPVTBL lpVtbl,
+                                  VTablePointer lpVtbl,
                                   IntPtr name,
                                   Double defaultValue,
                                   Pointer<Double> retValuePtr)>>>()
                   .value
                   .asFunction<
-                      int Function(LPVTBL lpVtbl, int name, double defaultValue,
-                          Pointer<Double> retValuePtr)>()(
+                      int Function(VTablePointer lpVtbl, int name,
+                          double defaultValue, Pointer<Double> retValuePtr)>()(
               ptr.ref.lpVtbl, nameHString, defaultValue, retValuePtr);
 
       WindowsDeleteString(nameHString);
@@ -215,12 +224,12 @@ class IJsonObjectWithDefaultValues extends IInspectable
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(LPVTBL lpVtbl, IntPtr name,
+                          HRESULT Function(VTablePointer lpVtbl, IntPtr name,
                               Bool defaultValue, Pointer<Bool> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(LPVTBL lpVtbl, int name, bool defaultValue,
-                      Pointer<Bool> retValuePtr)>()(
+                  int Function(VTablePointer lpVtbl, int name,
+                      bool defaultValue, Pointer<Bool> retValuePtr)>()(
           ptr.ref.lpVtbl, nameHString, defaultValue, retValuePtr);
 
       WindowsDeleteString(nameHString);

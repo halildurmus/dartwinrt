@@ -35,16 +35,16 @@ class IFileOpenPicker extends IInspectable {
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              LPVTBL lpVtbl, Pointer<Int32> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(LPVTBL lpVtbl, Pointer<Int32> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          .elementAt(6)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Int32> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<Int32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -56,14 +56,14 @@ class IFileOpenPicker extends IInspectable {
 
   set viewMode(PickerViewMode value) {
     final hr = ptr.ref.vtable
-        .elementAt(7)
-        .cast<
-            Pointer<
-                NativeFunction<HRESULT Function(LPVTBL lpVtbl, Int32 value)>>>()
-        .value
-        .asFunction<
-            int Function(
-                LPVTBL lpVtbl, int value)>()(ptr.ref.lpVtbl, value.value);
+            .elementAt(7)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(VTablePointer lpVtbl, Int32 value)>>>()
+            .value
+            .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
+        ptr.ref.lpVtbl, value.value);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
@@ -73,16 +73,16 @@ class IFileOpenPicker extends IInspectable {
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(8)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          .elementAt(8)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          Pointer<IntPtr> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -97,15 +97,17 @@ class IFileOpenPicker extends IInspectable {
     final hString = value.toHString();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(9)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(LPVTBL lpVtbl, IntPtr value)>>>()
-              .value
-              .asFunction<int Function(LPVTBL lpVtbl, int value)>()(
-          ptr.ref.lpVtbl, hString);
+      final hr =
+          ptr.ref.vtable
+                  .elementAt(9)
+                  .cast<
+                      Pointer<
+                          NativeFunction<
+                              HRESULT Function(
+                                  VTablePointer lpVtbl, IntPtr value)>>>()
+                  .value
+                  .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
+              ptr.ref.lpVtbl, hString);
 
       if (FAILED(hr)) throw WindowsException(hr);
     } finally {
@@ -118,16 +120,16 @@ class IFileOpenPicker extends IInspectable {
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(10)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              LPVTBL lpVtbl, Pointer<Int32> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(LPVTBL lpVtbl, Pointer<Int32> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          .elementAt(10)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Int32> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<Int32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -139,14 +141,14 @@ class IFileOpenPicker extends IInspectable {
 
   set suggestedStartLocation(PickerLocationId value) {
     final hr = ptr.ref.vtable
-        .elementAt(11)
-        .cast<
-            Pointer<
-                NativeFunction<HRESULT Function(LPVTBL lpVtbl, Int32 value)>>>()
-        .value
-        .asFunction<
-            int Function(
-                LPVTBL lpVtbl, int value)>()(ptr.ref.lpVtbl, value.value);
+            .elementAt(11)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(VTablePointer lpVtbl, Int32 value)>>>()
+            .value
+            .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
+        ptr.ref.lpVtbl, value.value);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
@@ -156,16 +158,16 @@ class IFileOpenPicker extends IInspectable {
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(12)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          .elementAt(12)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          Pointer<IntPtr> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -180,15 +182,17 @@ class IFileOpenPicker extends IInspectable {
     final hString = value.toHString();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(13)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(LPVTBL lpVtbl, IntPtr value)>>>()
-              .value
-              .asFunction<int Function(LPVTBL lpVtbl, int value)>()(
-          ptr.ref.lpVtbl, hString);
+      final hr =
+          ptr.ref.vtable
+                  .elementAt(13)
+                  .cast<
+                      Pointer<
+                          NativeFunction<
+                              HRESULT Function(
+                                  VTablePointer lpVtbl, IntPtr value)>>>()
+                  .value
+                  .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
+              ptr.ref.lpVtbl, hString);
 
       if (FAILED(hr)) throw WindowsException(hr);
     } finally {
@@ -200,16 +204,16 @@ class IFileOpenPicker extends IInspectable {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-            .elementAt(14)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, retValuePtr);
+        .elementAt(14)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl,
+                        Pointer<COMObject> retValuePtr)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl,
+                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -224,16 +228,16 @@ class IFileOpenPicker extends IInspectable {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-            .elementAt(15)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, retValuePtr);
+        .elementAt(15)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl,
+                        Pointer<COMObject> retValuePtr)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl,
+                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -249,16 +253,16 @@ class IFileOpenPicker extends IInspectable {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-            .elementAt(16)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, retValuePtr);
+        .elementAt(16)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl,
+                        Pointer<COMObject> retValuePtr)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl,
+                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);

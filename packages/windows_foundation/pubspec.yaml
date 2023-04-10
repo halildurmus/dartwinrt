@@ -19,7 +19,7 @@ dependencies:
   win32:
     git:
       url: https://github.com/timsneath/win32.git
-      ref: dev
+      ref: main
   windows_media:
     path: ../windows_media
 

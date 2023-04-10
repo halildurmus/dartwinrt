@@ -41,18 +41,21 @@ class IStorageFolder extends IInspectable implements IStorageItem {
     final retValuePtr = calloc<COMObject>();
     final desiredNameHString = desiredName.toHString();
 
-    final hr = ptr.ref.vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, IntPtr desiredName,
-                            Pointer<COMObject> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(LPVTBL lpVtbl, int desiredName,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, desiredNameHString, retValuePtr);
+    final hr =
+        ptr.ref.vtable
+                .elementAt(6)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                VTablePointer lpVtbl,
+                                IntPtr desiredName,
+                                Pointer<COMObject> retValuePtr)>>>()
+                .value
+                .asFunction<
+                    int Function(VTablePointer lpVtbl, int desiredName,
+                        Pointer<COMObject> retValuePtr)>()(
+            ptr.ref.lpVtbl, desiredNameHString, retValuePtr);
 
     WindowsDeleteString(desiredNameHString);
 
@@ -71,18 +74,22 @@ class IStorageFolder extends IInspectable implements IStorageItem {
     final retValuePtr = calloc<COMObject>();
     final desiredNameHString = desiredName.toHString();
 
-    final hr = ptr.ref.vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, IntPtr desiredName,
-                            Int32 options, Pointer<COMObject> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(LPVTBL lpVtbl, int desiredName, int options,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, desiredNameHString, options.value, retValuePtr);
+    final hr =
+        ptr.ref.vtable
+                .elementAt(7)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                VTablePointer lpVtbl,
+                                IntPtr desiredName,
+                                Int32 options,
+                                Pointer<COMObject> retValuePtr)>>>()
+                .value
+                .asFunction<
+                    int Function(VTablePointer lpVtbl, int desiredName,
+                        int options, Pointer<COMObject> retValuePtr)>()(
+            ptr.ref.lpVtbl, desiredNameHString, options.value, retValuePtr);
 
     WindowsDeleteString(desiredNameHString);
 
@@ -101,18 +108,21 @@ class IStorageFolder extends IInspectable implements IStorageItem {
     final retValuePtr = calloc<COMObject>();
     final desiredNameHString = desiredName.toHString();
 
-    final hr = ptr.ref.vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, IntPtr desiredName,
-                            Pointer<COMObject> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(LPVTBL lpVtbl, int desiredName,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, desiredNameHString, retValuePtr);
+    final hr =
+        ptr.ref.vtable
+                .elementAt(8)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                VTablePointer lpVtbl,
+                                IntPtr desiredName,
+                                Pointer<COMObject> retValuePtr)>>>()
+                .value
+                .asFunction<
+                    int Function(VTablePointer lpVtbl, int desiredName,
+                        Pointer<COMObject> retValuePtr)>()(
+            ptr.ref.lpVtbl, desiredNameHString, retValuePtr);
 
     WindowsDeleteString(desiredNameHString);
 
@@ -131,18 +141,22 @@ class IStorageFolder extends IInspectable implements IStorageItem {
     final retValuePtr = calloc<COMObject>();
     final desiredNameHString = desiredName.toHString();
 
-    final hr = ptr.ref.vtable
-            .elementAt(9)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, IntPtr desiredName,
-                            Int32 options, Pointer<COMObject> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(LPVTBL lpVtbl, int desiredName, int options,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, desiredNameHString, options.value, retValuePtr);
+    final hr =
+        ptr.ref.vtable
+                .elementAt(9)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                VTablePointer lpVtbl,
+                                IntPtr desiredName,
+                                Int32 options,
+                                Pointer<COMObject> retValuePtr)>>>()
+                .value
+                .asFunction<
+                    int Function(VTablePointer lpVtbl, int desiredName,
+                        int options, Pointer<COMObject> retValuePtr)>()(
+            ptr.ref.lpVtbl, desiredNameHString, options.value, retValuePtr);
 
     WindowsDeleteString(desiredNameHString);
 
@@ -165,12 +179,12 @@ class IStorageFolder extends IInspectable implements IStorageItem {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, IntPtr name,
+                        HRESULT Function(VTablePointer lpVtbl, IntPtr name,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(
-                    LPVTBL lpVtbl, int name, Pointer<COMObject> retValuePtr)>()(
+                int Function(VTablePointer lpVtbl, int name,
+                    Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, nameHString, retValuePtr);
 
     WindowsDeleteString(nameHString);
@@ -194,12 +208,12 @@ class IStorageFolder extends IInspectable implements IStorageItem {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, IntPtr name,
+                        HRESULT Function(VTablePointer lpVtbl, IntPtr name,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(
-                    LPVTBL lpVtbl, int name, Pointer<COMObject> retValuePtr)>()(
+                int Function(VTablePointer lpVtbl, int name,
+                    Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, nameHString, retValuePtr);
 
     WindowsDeleteString(nameHString);
@@ -223,12 +237,12 @@ class IStorageFolder extends IInspectable implements IStorageItem {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, IntPtr name,
+                        HRESULT Function(VTablePointer lpVtbl, IntPtr name,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(
-                    LPVTBL lpVtbl, int name, Pointer<COMObject> retValuePtr)>()(
+                int Function(VTablePointer lpVtbl, int name,
+                    Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, nameHString, retValuePtr);
 
     WindowsDeleteString(nameHString);
@@ -247,16 +261,16 @@ class IStorageFolder extends IInspectable implements IStorageItem {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-            .elementAt(13)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, retValuePtr);
+        .elementAt(13)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl,
+                        Pointer<COMObject> retValuePtr)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl,
+                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -276,16 +290,16 @@ class IStorageFolder extends IInspectable implements IStorageItem {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-            .elementAt(14)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, retValuePtr);
+        .elementAt(14)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl,
+                        Pointer<COMObject> retValuePtr)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl,
+                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -304,16 +318,16 @@ class IStorageFolder extends IInspectable implements IStorageItem {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-            .elementAt(15)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, retValuePtr);
+        .elementAt(15)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl,
+                        Pointer<COMObject> retValuePtr)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl,
+                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);

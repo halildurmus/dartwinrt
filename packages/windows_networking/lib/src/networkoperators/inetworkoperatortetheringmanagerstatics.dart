@@ -38,21 +38,20 @@ class INetworkOperatorTetheringManagerStatics extends IInspectable {
     try {
       final networkAccountIdHString = networkAccountId.toHString();
 
-      final hr =
-          ptr.ref.vtable
-                  .elementAt(6)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(
-                                  LPVTBL lpVtbl,
-                                  IntPtr networkAccountId,
-                                  Pointer<Int32> retValuePtr)>>>()
-                  .value
-                  .asFunction<
-                      int Function(LPVTBL lpVtbl, int networkAccountId,
-                          Pointer<Int32> retValuePtr)>()(
-              ptr.ref.lpVtbl, networkAccountIdHString, retValuePtr);
+      final hr = ptr.ref.vtable
+              .elementAt(6)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl,
+                              IntPtr networkAccountId,
+                              Pointer<Int32> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, int networkAccountId,
+                      Pointer<Int32> retValuePtr)>()(
+          ptr.ref.lpVtbl, networkAccountIdHString, retValuePtr);
 
       WindowsDeleteString(networkAccountIdHString);
 
@@ -74,11 +73,13 @@ class INetworkOperatorTetheringManagerStatics extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, IntPtr networkAccountId,
+                        HRESULT Function(
+                            VTablePointer lpVtbl,
+                            IntPtr networkAccountId,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL lpVtbl, int networkAccountId,
+                int Function(VTablePointer lpVtbl, int networkAccountId,
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, networkAccountIdHString, retValuePtr);
 

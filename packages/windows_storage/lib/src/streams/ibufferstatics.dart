@@ -33,18 +33,21 @@ class IBufferStatics extends IInspectable {
     final retValuePtr = calloc<COMObject>();
     final inputPtr = input == null ? nullptr : input.ptr.ref.lpVtbl;
 
-    final hr = ptr.ref.vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, LPVTBL input,
-                            Pointer<COMObject> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(LPVTBL lpVtbl, LPVTBL input,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, inputPtr, retValuePtr);
+    final hr =
+        ptr.ref.vtable
+                .elementAt(6)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                VTablePointer lpVtbl,
+                                VTablePointer input,
+                                Pointer<COMObject> retValuePtr)>>>()
+                .value
+                .asFunction<
+                    int Function(VTablePointer lpVtbl, VTablePointer input,
+                        Pointer<COMObject> retValuePtr)>()(
+            ptr.ref.lpVtbl, inputPtr, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -63,18 +66,21 @@ class IBufferStatics extends IInspectable {
     final retValuePtr = calloc<COMObject>();
     final inputPtr = input == null ? nullptr : input.ptr.ref.lpVtbl;
 
-    final hr = ptr.ref.vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, LPVTBL input,
-                            Pointer<COMObject> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(LPVTBL lpVtbl, LPVTBL input,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, inputPtr, retValuePtr);
+    final hr =
+        ptr.ref.vtable
+                .elementAt(7)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                VTablePointer lpVtbl,
+                                VTablePointer input,
+                                Pointer<COMObject> retValuePtr)>>>()
+                .value
+                .asFunction<
+                    int Function(VTablePointer lpVtbl, VTablePointer input,
+                        Pointer<COMObject> retValuePtr)>()(
+            ptr.ref.lpVtbl, inputPtr, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);

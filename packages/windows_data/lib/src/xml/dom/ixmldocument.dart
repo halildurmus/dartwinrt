@@ -49,16 +49,16 @@ class IXmlDocument extends IInspectable
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, retValuePtr);
+        .elementAt(6)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl,
+                        Pointer<COMObject> retValuePtr)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl,
+                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -77,16 +77,16 @@ class IXmlDocument extends IInspectable
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, retValuePtr);
+        .elementAt(7)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl,
+                        Pointer<COMObject> retValuePtr)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl,
+                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -105,16 +105,16 @@ class IXmlDocument extends IInspectable
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, retValuePtr);
+        .elementAt(8)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl,
+                        Pointer<COMObject> retValuePtr)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl,
+                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -138,11 +138,11 @@ class IXmlDocument extends IInspectable
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, IntPtr tagName,
+                        HRESULT Function(VTablePointer lpVtbl, IntPtr tagName,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL lpVtbl, int tagName,
+                int Function(VTablePointer lpVtbl, int tagName,
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, tagNameHString, retValuePtr);
 
@@ -165,16 +165,16 @@ class IXmlDocument extends IInspectable
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-            .elementAt(10)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, retValuePtr);
+        .elementAt(10)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl,
+                        Pointer<COMObject> retValuePtr)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl,
+                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -198,12 +198,12 @@ class IXmlDocument extends IInspectable
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, IntPtr data,
+                        HRESULT Function(VTablePointer lpVtbl, IntPtr data,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(
-                    LPVTBL lpVtbl, int data, Pointer<COMObject> retValuePtr)>()(
+                int Function(VTablePointer lpVtbl, int data,
+                    Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, dataHString, retValuePtr);
 
     WindowsDeleteString(dataHString);
@@ -230,12 +230,12 @@ class IXmlDocument extends IInspectable
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, IntPtr data,
+                        HRESULT Function(VTablePointer lpVtbl, IntPtr data,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(
-                    LPVTBL lpVtbl, int data, Pointer<COMObject> retValuePtr)>()(
+                int Function(VTablePointer lpVtbl, int data,
+                    Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, dataHString, retValuePtr);
 
     WindowsDeleteString(dataHString);
@@ -259,19 +259,18 @@ class IXmlDocument extends IInspectable
     final targetHString = target.toHString();
     final dataHString = data.toHString();
 
-    final hr =
-        ptr.ref.vtable
-                .elementAt(13)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(LPVTBL lpVtbl, IntPtr target,
-                                IntPtr data, Pointer<COMObject> retValuePtr)>>>()
-                .value
-                .asFunction<
-                    int Function(LPVTBL lpVtbl, int target, int data,
-                        Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl, targetHString, dataHString, retValuePtr);
+    final hr = ptr.ref.vtable
+            .elementAt(13)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(VTablePointer lpVtbl, IntPtr target,
+                            IntPtr data, Pointer<COMObject> retValuePtr)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, int target, int data,
+                    Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl, targetHString, dataHString, retValuePtr);
 
     WindowsDeleteString(targetHString);
     WindowsDeleteString(dataHString);
@@ -298,12 +297,12 @@ class IXmlDocument extends IInspectable
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, IntPtr name,
+                        HRESULT Function(VTablePointer lpVtbl, IntPtr name,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(
-                    LPVTBL lpVtbl, int name, Pointer<COMObject> retValuePtr)>()(
+                int Function(VTablePointer lpVtbl, int name,
+                    Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, nameHString, retValuePtr);
 
     WindowsDeleteString(nameHString);
@@ -330,12 +329,12 @@ class IXmlDocument extends IInspectable
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, IntPtr name,
+                        HRESULT Function(VTablePointer lpVtbl, IntPtr name,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(
-                    LPVTBL lpVtbl, int name, Pointer<COMObject> retValuePtr)>()(
+                int Function(VTablePointer lpVtbl, int name,
+                    Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, nameHString, retValuePtr);
 
     WindowsDeleteString(nameHString);
@@ -362,11 +361,11 @@ class IXmlDocument extends IInspectable
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, IntPtr tagName,
+                        HRESULT Function(VTablePointer lpVtbl, IntPtr tagName,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL lpVtbl, int tagName,
+                int Function(VTablePointer lpVtbl, int tagName,
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, tagNameHString, retValuePtr);
 
@@ -389,12 +388,12 @@ class IXmlDocument extends IInspectable
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, IntPtr data,
+                        HRESULT Function(VTablePointer lpVtbl, IntPtr data,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(
-                    LPVTBL lpVtbl, int data, Pointer<COMObject> retValuePtr)>()(
+                int Function(VTablePointer lpVtbl, int data,
+                    Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, dataHString, retValuePtr);
 
     WindowsDeleteString(dataHString);
@@ -417,16 +416,16 @@ class IXmlDocument extends IInspectable
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(18)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          .elementAt(18)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          Pointer<IntPtr> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -448,13 +447,13 @@ class IXmlDocument extends IInspectable
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            LPVTBL lpVtbl,
-                            LPVTBL namespaceUri,
+                            VTablePointer lpVtbl,
+                            VTablePointer namespaceUri,
                             IntPtr qualifiedName,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL lpVtbl, LPVTBL namespaceUri,
+                int Function(VTablePointer lpVtbl, VTablePointer namespaceUri,
                     int qualifiedName, Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, namespaceUriPtr, qualifiedNameHString, retValuePtr);
 
@@ -484,13 +483,13 @@ class IXmlDocument extends IInspectable
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            LPVTBL lpVtbl,
-                            LPVTBL namespaceUri,
+                            VTablePointer lpVtbl,
+                            VTablePointer namespaceUri,
                             IntPtr qualifiedName,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL lpVtbl, LPVTBL namespaceUri,
+                int Function(VTablePointer lpVtbl, VTablePointer namespaceUri,
                     int qualifiedName, Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, namespaceUriPtr, qualifiedNameHString, retValuePtr);
 
@@ -518,11 +517,11 @@ class IXmlDocument extends IInspectable
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, IntPtr elementId,
+                        HRESULT Function(VTablePointer lpVtbl, IntPtr elementId,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL lpVtbl, int elementId,
+                int Function(VTablePointer lpVtbl, int elementId,
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, elementIdHString, retValuePtr);
 
@@ -545,18 +544,22 @@ class IXmlDocument extends IInspectable
     final retValuePtr = calloc<COMObject>();
     final nodePtr = node == null ? nullptr : node.ptr.ref.lpVtbl;
 
-    final hr = ptr.ref.vtable
-            .elementAt(22)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, LPVTBL node, Bool deep,
-                            Pointer<COMObject> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(LPVTBL lpVtbl, LPVTBL node, bool deep,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, nodePtr, deep, retValuePtr);
+    final hr =
+        ptr.ref.vtable
+                .elementAt(22)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                VTablePointer lpVtbl,
+                                VTablePointer node,
+                                Bool deep,
+                                Pointer<COMObject> retValuePtr)>>>()
+                .value
+                .asFunction<
+                    int Function(VTablePointer lpVtbl, VTablePointer node,
+                        bool deep, Pointer<COMObject> retValuePtr)>()(
+            ptr.ref.lpVtbl, nodePtr, deep, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);

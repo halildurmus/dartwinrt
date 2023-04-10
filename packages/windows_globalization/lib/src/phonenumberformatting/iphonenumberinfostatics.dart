@@ -42,14 +42,14 @@ class IPhoneNumberInfoStatics extends IInspectable {
                   Pointer<
                       NativeFunction<
                           HRESULT Function(
-                              LPVTBL lpVtbl,
+                              VTablePointer lpVtbl,
                               IntPtr input,
                               Pointer<COMObject> phoneNumber,
                               Pointer<Int32> retValuePtr)>>>()
               .value
               .asFunction<
                   int Function(
-                      LPVTBL lpVtbl,
+                      VTablePointer lpVtbl,
                       int input,
                       Pointer<COMObject> phoneNumber,
                       Pointer<Int32> retValuePtr)>()(
@@ -79,7 +79,7 @@ class IPhoneNumberInfoStatics extends IInspectable {
                   Pointer<
                       NativeFunction<
                           HRESULT Function(
-                              LPVTBL lpVtbl,
+                              VTablePointer lpVtbl,
                               IntPtr input,
                               IntPtr regionCode,
                               Pointer<COMObject> phoneNumber,
@@ -87,7 +87,7 @@ class IPhoneNumberInfoStatics extends IInspectable {
               .value
               .asFunction<
                   int Function(
-                      LPVTBL lpVtbl,
+                      VTablePointer lpVtbl,
                       int input,
                       int regionCode,
                       Pointer<COMObject> phoneNumber,

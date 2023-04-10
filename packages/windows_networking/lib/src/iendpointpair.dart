@@ -32,16 +32,16 @@ class IEndpointPair extends IInspectable {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, retValuePtr);
+        .elementAt(6)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl,
+                        Pointer<COMObject> retValuePtr)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl,
+                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -62,9 +62,11 @@ class IEndpointPair extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, LPVTBL value)>>>()
+                        HRESULT Function(
+                            VTablePointer lpVtbl, VTablePointer value)>>>()
             .value
-            .asFunction<int Function(LPVTBL lpVtbl, LPVTBL value)>()(
+            .asFunction<
+                int Function(VTablePointer lpVtbl, VTablePointer value)>()(
         ptr.ref.lpVtbl, value == null ? nullptr : value.ptr.ref.lpVtbl);
 
     if (FAILED(hr)) throw WindowsException(hr);
@@ -75,16 +77,16 @@ class IEndpointPair extends IInspectable {
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(8)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          .elementAt(8)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          Pointer<IntPtr> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -99,15 +101,17 @@ class IEndpointPair extends IInspectable {
     final hString = value.toHString();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(9)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(LPVTBL lpVtbl, IntPtr value)>>>()
-              .value
-              .asFunction<int Function(LPVTBL lpVtbl, int value)>()(
-          ptr.ref.lpVtbl, hString);
+      final hr =
+          ptr.ref.vtable
+                  .elementAt(9)
+                  .cast<
+                      Pointer<
+                          NativeFunction<
+                              HRESULT Function(
+                                  VTablePointer lpVtbl, IntPtr value)>>>()
+                  .value
+                  .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
+              ptr.ref.lpVtbl, hString);
 
       if (FAILED(hr)) throw WindowsException(hr);
     } finally {
@@ -119,16 +123,16 @@ class IEndpointPair extends IInspectable {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-            .elementAt(10)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, retValuePtr);
+        .elementAt(10)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl,
+                        Pointer<COMObject> retValuePtr)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl,
+                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -149,9 +153,11 @@ class IEndpointPair extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, LPVTBL value)>>>()
+                        HRESULT Function(
+                            VTablePointer lpVtbl, VTablePointer value)>>>()
             .value
-            .asFunction<int Function(LPVTBL lpVtbl, LPVTBL value)>()(
+            .asFunction<
+                int Function(VTablePointer lpVtbl, VTablePointer value)>()(
         ptr.ref.lpVtbl, value == null ? nullptr : value.ptr.ref.lpVtbl);
 
     if (FAILED(hr)) throw WindowsException(hr);
@@ -162,16 +168,16 @@ class IEndpointPair extends IInspectable {
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(12)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(LPVTBL lpVtbl, Pointer<IntPtr> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          .elementAt(12)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          Pointer<IntPtr> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -186,15 +192,17 @@ class IEndpointPair extends IInspectable {
     final hString = value.toHString();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(13)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(LPVTBL lpVtbl, IntPtr value)>>>()
-              .value
-              .asFunction<int Function(LPVTBL lpVtbl, int value)>()(
-          ptr.ref.lpVtbl, hString);
+      final hr =
+          ptr.ref.vtable
+                  .elementAt(13)
+                  .cast<
+                      Pointer<
+                          NativeFunction<
+                              HRESULT Function(
+                                  VTablePointer lpVtbl, IntPtr value)>>>()
+                  .value
+                  .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
+              ptr.ref.lpVtbl, hString);
 
       if (FAILED(hr)) throw WindowsException(hr);
     } finally {

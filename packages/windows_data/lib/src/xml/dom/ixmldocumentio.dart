@@ -33,13 +33,14 @@ class IXmlDocumentIO extends IInspectable {
     final xmlHString = xml.toHString();
 
     final hr = ptr.ref.vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<HRESULT Function(LPVTBL lpVtbl, IntPtr xml)>>>()
-        .value
-        .asFunction<
-            int Function(LPVTBL lpVtbl, int xml)>()(ptr.ref.lpVtbl, xmlHString);
+            .elementAt(6)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(VTablePointer lpVtbl, IntPtr xml)>>>()
+            .value
+            .asFunction<int Function(VTablePointer lpVtbl, int xml)>()(
+        ptr.ref.lpVtbl, xmlHString);
 
     WindowsDeleteString(xmlHString);
 
@@ -56,11 +57,12 @@ class IXmlDocumentIO extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(
-                            LPVTBL lpVtbl, IntPtr xml, LPVTBL loadSettings)>>>()
+                        HRESULT Function(VTablePointer lpVtbl, IntPtr xml,
+                            VTablePointer loadSettings)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL lpVtbl, int xml, LPVTBL loadSettings)>()(
+                int Function(VTablePointer lpVtbl, int xml,
+                    VTablePointer loadSettings)>()(
         ptr.ref.lpVtbl, xmlHString, loadSettingsPtr);
 
     WindowsDeleteString(xmlHString);
@@ -72,18 +74,21 @@ class IXmlDocumentIO extends IInspectable {
     final retValuePtr = calloc<COMObject>();
     final filePtr = file == null ? nullptr : file.ptr.ref.lpVtbl;
 
-    final hr = ptr.ref.vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, LPVTBL file,
-                            Pointer<COMObject> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(LPVTBL lpVtbl, LPVTBL file,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, filePtr, retValuePtr);
+    final hr =
+        ptr.ref.vtable
+                .elementAt(8)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                VTablePointer lpVtbl,
+                                VTablePointer file,
+                                Pointer<COMObject> retValuePtr)>>>()
+                .value
+                .asFunction<
+                    int Function(VTablePointer lpVtbl, VTablePointer file,
+                        Pointer<COMObject> retValuePtr)>()(
+            ptr.ref.lpVtbl, filePtr, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);

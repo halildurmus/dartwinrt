@@ -696,12 +696,12 @@ void main() {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(LPVTBL lpVtbl,
+                          HRESULT Function(VTablePointer lpVtbl,
                               Pointer<COMObject> retValuePtr)>>>()
               .value
               .asFunction<
                   int Function(
-                      LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>()(
+                      VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)>()(
           ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
@@ -793,12 +793,12 @@ void main() {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(LPVTBL lpVtbl,
+                          HRESULT Function(VTablePointer lpVtbl,
                               Pointer<COMObject> retValuePtr)>>>()
               .value
               .asFunction<
                   int Function(
-                      LPVTBL lpVtbl, Pointer<COMObject> retValuePtr)>()(
+                      VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)>()(
           ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);

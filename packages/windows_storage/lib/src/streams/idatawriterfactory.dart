@@ -38,11 +38,13 @@ class IDataWriterFactory extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, LPVTBL outputStream,
+                        HRESULT Function(
+                            VTablePointer lpVtbl,
+                            VTablePointer outputStream,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL lpVtbl, LPVTBL outputStream,
+                int Function(VTablePointer lpVtbl, VTablePointer outputStream,
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, outputStreamPtr, retValuePtr);
 

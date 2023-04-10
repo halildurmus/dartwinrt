@@ -29,9 +29,9 @@ class IGeolocator2 extends IInspectable {
   void allowFallbackToConsentlessPositions() {
     final hr = ptr.ref.vtable
         .elementAt(6)
-        .cast<Pointer<NativeFunction<HRESULT Function(LPVTBL lpVtbl)>>>()
+        .cast<Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>>()
         .value
-        .asFunction<int Function(LPVTBL lpVtbl)>()(ptr.ref.lpVtbl);
+        .asFunction<int Function(VTablePointer lpVtbl)>()(ptr.ref.lpVtbl);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }

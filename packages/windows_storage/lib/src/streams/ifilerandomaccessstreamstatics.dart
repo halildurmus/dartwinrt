@@ -47,14 +47,14 @@ class IFileRandomAccessStreamStatics extends IInspectable {
                     Pointer<
                         NativeFunction<
                             HRESULT Function(
-                                LPVTBL lpVtbl,
+                                VTablePointer lpVtbl,
                                 IntPtr filePath,
                                 Int32 accessMode,
                                 Pointer<COMObject> retValuePtr)>>>()
                 .value
                 .asFunction<
-                    int Function(LPVTBL lpVtbl, int filePath, int accessMode,
-                        Pointer<COMObject> retValuePtr)>()(
+                    int Function(VTablePointer lpVtbl, int filePath,
+                        int accessMode, Pointer<COMObject> retValuePtr)>()(
             ptr.ref.lpVtbl, filePathHString, accessMode.value, retValuePtr);
 
     WindowsDeleteString(filePathHString);
@@ -84,7 +84,7 @@ class IFileRandomAccessStreamStatics extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            LPVTBL lpVtbl,
+                            VTablePointer lpVtbl,
                             IntPtr filePath,
                             Int32 accessMode,
                             Uint32 sharingOptions,
@@ -93,7 +93,7 @@ class IFileRandomAccessStreamStatics extends IInspectable {
             .value
             .asFunction<
                 int Function(
-                    LPVTBL lpVtbl,
+                    VTablePointer lpVtbl,
                     int filePath,
                     int accessMode,
                     int sharingOptions,
@@ -128,11 +128,11 @@ class IFileRandomAccessStreamStatics extends IInspectable {
             .cast<
                 Pointer<
                     NativeFunction<
-                        HRESULT Function(LPVTBL lpVtbl, IntPtr filePath,
+                        HRESULT Function(VTablePointer lpVtbl, IntPtr filePath,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL lpVtbl, int filePath,
+                int Function(VTablePointer lpVtbl, int filePath,
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, filePathHString, retValuePtr);
 
@@ -162,20 +162,20 @@ class IFileRandomAccessStreamStatics extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            LPVTBL lpVtbl,
+                            VTablePointer lpVtbl,
                             IntPtr filePath,
                             Uint32 openOptions,
                             Int32 openDisposition,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL lpVtbl, int filePath, int openOptions,
-                    int openDisposition, Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl,
-        filePathHString,
-        openOptions.value,
-        openDisposition.value,
-        retValuePtr);
+                int Function(
+                    VTablePointer lpVtbl,
+                    int filePath,
+                    int openOptions,
+                    int openDisposition,
+                    Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl,
+        filePathHString, openOptions.value, openDisposition.value, retValuePtr);
 
     WindowsDeleteString(filePathHString);
 
@@ -202,20 +202,20 @@ class IFileRandomAccessStreamStatics extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            LPVTBL lpVtbl,
-                            LPVTBL user,
+                            VTablePointer lpVtbl,
+                            VTablePointer user,
                             IntPtr filePath,
                             Int32 accessMode,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(LPVTBL lpVtbl, LPVTBL user, int filePath,
-                    int accessMode, Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl,
-        userPtr,
-        filePathHString,
-        accessMode.value,
-        retValuePtr);
+                int Function(
+                    VTablePointer lpVtbl,
+                    VTablePointer user,
+                    int filePath,
+                    int accessMode,
+                    Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, userPtr,
+        filePathHString, accessMode.value, retValuePtr);
 
     WindowsDeleteString(filePathHString);
 
@@ -246,8 +246,8 @@ class IFileRandomAccessStreamStatics extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            LPVTBL lpVtbl,
-                            LPVTBL user,
+                            VTablePointer lpVtbl,
+                            VTablePointer user,
                             IntPtr filePath,
                             Int32 accessMode,
                             Uint32 sharingOptions,
@@ -256,8 +256,8 @@ class IFileRandomAccessStreamStatics extends IInspectable {
             .value
             .asFunction<
                 int Function(
-                    LPVTBL lpVtbl,
-                    LPVTBL user,
+                    VTablePointer lpVtbl,
+                    VTablePointer user,
                     int filePath,
                     int accessMode,
                     int sharingOptions,
@@ -297,14 +297,14 @@ class IFileRandomAccessStreamStatics extends IInspectable {
                     Pointer<
                         NativeFunction<
                             HRESULT Function(
-                                LPVTBL lpVtbl,
-                                LPVTBL user,
+                                VTablePointer lpVtbl,
+                                VTablePointer user,
                                 IntPtr filePath,
                                 Pointer<COMObject> retValuePtr)>>>()
                 .value
                 .asFunction<
-                    int Function(LPVTBL lpVtbl, LPVTBL user, int filePath,
-                        Pointer<COMObject> retValuePtr)>()(
+                    int Function(VTablePointer lpVtbl, VTablePointer user,
+                        int filePath, Pointer<COMObject> retValuePtr)>()(
             ptr.ref.lpVtbl, userPtr, filePathHString, retValuePtr);
 
     WindowsDeleteString(filePathHString);
@@ -335,8 +335,8 @@ class IFileRandomAccessStreamStatics extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(
-                            LPVTBL lpVtbl,
-                            LPVTBL user,
+                            VTablePointer lpVtbl,
+                            VTablePointer user,
                             IntPtr filePath,
                             Uint32 openOptions,
                             Int32 openDisposition,
@@ -344,8 +344,8 @@ class IFileRandomAccessStreamStatics extends IInspectable {
             .value
             .asFunction<
                 int Function(
-                    LPVTBL lpVtbl,
-                    LPVTBL user,
+                    VTablePointer lpVtbl,
+                    VTablePointer user,
                     int filePath,
                     int openOptions,
                     int openDisposition,
