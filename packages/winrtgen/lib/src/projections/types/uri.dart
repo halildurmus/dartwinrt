@@ -60,7 +60,6 @@ mixin _UriMixin on MethodProjection {
   String get methodDeclaration => '''
   $methodHeader {
     final retValuePtr = calloc<COMObject>();
-
     ${ffiCall(freeRetValOnFailure: true)}
 
     $nullCheck
