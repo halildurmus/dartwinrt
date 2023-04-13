@@ -405,13 +405,10 @@ void main(List<String> args) async {
     switch (results.options.first) {
       case 'enum':
         await addEnum(results['enum'] as String);
-        break;
       case 'object':
         await addObject(results['object'] as String);
-        break;
       case 'struct':
         await addStruct(results['struct'] as String);
-        break;
       default:
         throw const FormatException();
     }

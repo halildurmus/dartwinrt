@@ -48,69 +48,54 @@ abstract class MethodProjection {
   /// return type.
   factory MethodProjection.create(Method method, int vtableOffset) {
     final projectionType = method.projectionType;
-    switch (projectionType) {
-      case ProjectionType.asyncAction:
-        return AsyncActionMethodProjection(method, vtableOffset);
-      case ProjectionType.asyncActionWithProgress:
-        return ObjectMethodProjection(method, vtableOffset);
-      case ProjectionType.asyncOperation:
-        return AsyncOperationMethodProjection(method, vtableOffset);
-      case ProjectionType.asyncOperationWithProgress:
-        return ObjectMethodProjection(method, vtableOffset);
-      case ProjectionType.dartPrimitive:
-        return DefaultMethodProjection(method, vtableOffset);
-      case ProjectionType.dartPrimitiveList:
-      case ProjectionType.structList:
-        return DefaultListMethodProjection(method, vtableOffset);
-      case ProjectionType.dateTime:
-        return DateTimeMethodProjection(method, vtableOffset);
-      case ProjectionType.dateTimeList:
-        return DateTimeListMethodProjection(method, vtableOffset);
-      case ProjectionType.delegate:
-        return DelegateMethodProjection(method, vtableOffset);
-      case ProjectionType.duration:
-        return DurationMethodProjection(method, vtableOffset);
-      case ProjectionType.durationList:
-        return DurationListMethodProjection(method, vtableOffset);
-      case ProjectionType.enum_:
-        return EnumMethodProjection(method, vtableOffset);
-      case ProjectionType.genericEnum:
-        return GenericEnumMethodProjection(method, vtableOffset);
-      case ProjectionType.genericObject:
-        return GenericObjectMethodProjection(method, vtableOffset);
-      case ProjectionType.guid:
-        return GuidMethodProjection(method, vtableOffset);
-      case ProjectionType.guidList:
-        return GuidListMethodProjection(method, vtableOffset);
-      case ProjectionType.map:
-        return MapMethodProjection(method, vtableOffset);
-      case ProjectionType.mapView:
-        return MapViewMethodProjection(method, vtableOffset);
-      case ProjectionType.object:
-        return ObjectMethodProjection(method, vtableOffset);
-      case ProjectionType.objectList:
-        return ObjectListMethodProjection(method, vtableOffset);
-      case ProjectionType.reference:
-        return ReferenceMethodProjection(method, vtableOffset);
-      case ProjectionType.string:
-        return StringMethodProjection(method, vtableOffset);
-      case ProjectionType.stringList:
-        return StringListMethodProjection(method, vtableOffset);
-      case ProjectionType.struct:
-        return StructMethodProjection(method, vtableOffset);
-      case ProjectionType.uri:
-        return UriMethodProjection(method, vtableOffset);
-      case ProjectionType.uriList:
-        return UriListMethodProjection(method, vtableOffset);
-      case ProjectionType.vector:
-        return VectorMethodProjection(method, vtableOffset);
-      case ProjectionType.vectorView:
-        return VectorViewMethodProjection(method, vtableOffset);
-      case ProjectionType.void_:
-        return VoidMethodProjection(method, vtableOffset);
-      default:
-        throw UnsupportedError('Unsupported projection type: $projectionType');
-    }
+    return switch (projectionType) {
+      ProjectionType.asyncAction =>
+        AsyncActionMethodProjection(method, vtableOffset),
+      ProjectionType.asyncActionWithProgress =>
+        ObjectMethodProjection(method, vtableOffset),
+      ProjectionType.asyncOperation =>
+        AsyncOperationMethodProjection(method, vtableOffset),
+      ProjectionType.asyncOperationWithProgress =>
+        ObjectMethodProjection(method, vtableOffset),
+      ProjectionType.dartPrimitive =>
+        DefaultMethodProjection(method, vtableOffset),
+      ProjectionType.dartPrimitiveList ||
+      ProjectionType.structList =>
+        DefaultListMethodProjection(method, vtableOffset),
+      ProjectionType.dateTime => DateTimeMethodProjection(method, vtableOffset),
+      ProjectionType.dateTimeList =>
+        DateTimeListMethodProjection(method, vtableOffset),
+      ProjectionType.delegate => DelegateMethodProjection(method, vtableOffset),
+      ProjectionType.duration => DurationMethodProjection(method, vtableOffset),
+      ProjectionType.durationList =>
+        DurationListMethodProjection(method, vtableOffset),
+      ProjectionType.enum_ => EnumMethodProjection(method, vtableOffset),
+      ProjectionType.genericEnum =>
+        GenericEnumMethodProjection(method, vtableOffset),
+      ProjectionType.genericObject =>
+        GenericObjectMethodProjection(method, vtableOffset),
+      ProjectionType.guid => GuidMethodProjection(method, vtableOffset),
+      ProjectionType.guidList => GuidListMethodProjection(method, vtableOffset),
+      ProjectionType.map => MapMethodProjection(method, vtableOffset),
+      ProjectionType.mapView => MapViewMethodProjection(method, vtableOffset),
+      ProjectionType.object => ObjectMethodProjection(method, vtableOffset),
+      ProjectionType.objectList =>
+        ObjectListMethodProjection(method, vtableOffset),
+      ProjectionType.reference =>
+        ReferenceMethodProjection(method, vtableOffset),
+      ProjectionType.string => StringMethodProjection(method, vtableOffset),
+      ProjectionType.stringList =>
+        StringListMethodProjection(method, vtableOffset),
+      ProjectionType.struct => StructMethodProjection(method, vtableOffset),
+      ProjectionType.uri => UriMethodProjection(method, vtableOffset),
+      ProjectionType.uriList => UriListMethodProjection(method, vtableOffset),
+      ProjectionType.vector => VectorMethodProjection(method, vtableOffset),
+      ProjectionType.vectorView =>
+        VectorViewMethodProjection(method, vtableOffset),
+      ProjectionType.void_ => VoidMethodProjection(method, vtableOffset),
+      _ =>
+        throw UnsupportedError('Unsupported projection type: $projectionType'),
+    };
   }
 
   /// Attempts to create a [MethodProjection] from [fullyQualifiedType] and
@@ -177,19 +162,12 @@ abstract class MethodProjection {
   ///   e.g. `void setDateTime(DateTime value)` or `void setToNow()` (method)
   ///   e.g. `int get second` (getter)
   ///   e.g. `set second(int value)` (setter)
-  String get methodHeader {
-    if (this is GetterProjection) return '$returnType get $camelCasedName';
-
-    // Type promotion doesn't work for `this`.
-    // TODO: Remove when https://github.com/dart-lang/language/issues/926 is
-    // fixed
-    final self = this;
-    if (self is SetterProjection) {
-      return 'set $camelCasedName(${self.param.type} value)';
-    }
-
-    return '$returnType $camelCasedName($methodParams)';
-  }
+  String get methodHeader => switch (this) {
+        GetterProjection _ => '$returnType get $camelCasedName',
+        final SetterProjection p =>
+          'set $camelCasedName(${p.param.type} value)',
+        MethodProjection _ => '$returnType $camelCasedName($methodParams)'
+      };
 
   /// A shortened version of the method for use in factory constructors, static
   /// methods, and method forwarders.
@@ -201,21 +179,21 @@ abstract class MethodProjection {
     return '$camelCasedName($identifiers)';
   }
 
-  String get parametersPreamble {
-    if (this is GetterProjection || this is SetterProjection) return '';
-    return parameters
-        .where((param) => param.preamble.isNotEmpty)
-        .map((param) => param.preamble)
-        .join('\n');
-  }
+  String get parametersPreamble => switch (this) {
+        GetterProjection _ || SetterProjection _ => '',
+        MethodProjection _ => parameters
+            .where((param) => param.preamble.isNotEmpty)
+            .map((param) => param.preamble)
+            .join('\n'),
+      };
 
-  String get parametersPostamble {
-    if (this is GetterProjection || this is SetterProjection) return '';
-    return parameters
-        .where((param) => param.postamble.isNotEmpty)
-        .map((param) => param.postamble)
-        .join('\n');
-  }
+  String get parametersPostamble => switch (this) {
+        GetterProjection _ || SetterProjection _ => '',
+        MethodProjection _ => parameters
+            .where((param) => param.postamble.isNotEmpty)
+            .map((param) => param.postamble)
+            .join('\n'),
+      };
 
   // WinRT methods always return an HRESULT
   String get nativePrototype => 'HRESULT Function($nativeParams)';

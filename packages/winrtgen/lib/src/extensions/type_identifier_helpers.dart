@@ -22,19 +22,14 @@ extension TypeIdentifierHelpers on TypeIdentifier {
       return null;
     }
 
-    switch (baseType) {
-      case BaseType.classTypeModifier:
-        return '${lastComponent(name)}.fromPtr';
-      case BaseType.genericTypeModifier:
-        return _parseGenericTypeIdentifierCreator(this);
-      case BaseType.referenceTypeModifier:
-        return typeArg!.creator;
-      case BaseType.valueTypeModifier:
-        if (typeProjection.isWinRTEnum) return '${lastComponent(name)}.from';
-        return null;
-      default:
-        return null;
-    }
+    return switch (baseType) {
+      BaseType.classTypeModifier => '${lastComponent(name)}.fromPtr',
+      BaseType.genericTypeModifier => _parseGenericTypeIdentifierCreator(this),
+      BaseType.referenceTypeModifier => typeArg!.creator,
+      BaseType.valueTypeModifier when typeProjection.isWinRTEnum =>
+        '${lastComponent(name)}.from',
+      _ => null,
+    };
   }
 
   /// Returns the IID of this TypeIdentifier.
@@ -62,23 +57,20 @@ extension TypeIdentifierHelpers on TypeIdentifier {
   /// Returns the shorter name of the type defined in this TypeIdentifier (e.g.
   /// `ICalendar`, `IMap<String, String>`).
   String get shortName {
-    switch (baseType) {
-      case BaseType.classTypeModifier:
-      case BaseType.valueTypeModifier:
-        if (name == 'System.Guid') return 'Guid';
-        if (name == 'Windows.Foundation.TimeSpan') return 'Duration';
-        return lastComponent(name);
-      case BaseType.genericTypeModifier:
-        // If the typeIdentifier's name is already parsed, return it as is
-        if (name.contains('<')) return name;
-        return _parseGenericTypeIdentifierName(this);
-      case BaseType.objectType:
-        return 'Object';
-      case BaseType.referenceTypeModifier:
-        return typeArg!.shortName;
-      default:
-        return baseType.dartType;
-    }
+    // If the typeIdentifier's name is already parsed, return it as is
+    if (name.contains('<')) return name;
+
+    if (name == 'Windows.Foundation.TimeSpan') return 'Duration';
+
+    return switch (baseType) {
+      BaseType.classTypeModifier ||
+      BaseType.valueTypeModifier =>
+        lastComponent(name),
+      BaseType.genericTypeModifier => _parseGenericTypeIdentifierName(this),
+      BaseType.objectType => 'Object',
+      BaseType.referenceTypeModifier => typeArg!.shortName,
+      _ => baseType.dartType,
+    };
   }
 
   /// Returns the type signature of this TypeIdentifier.
@@ -235,6 +227,7 @@ String _parseTypeArgName(TypeIdentifier typeIdentifier) {
 String _parseGenericTypeIdentifierName(TypeIdentifier typeIdentifier) {
   final shortName = stripGenerics(lastComponent(typeIdentifier.name));
 
+  // Handle generic types with two type parameters
   if (typeIdentifier.type?.genericParams.length == 2) {
     final firstTypeArgIsPotentiallyNullable = [
       'Windows.Foundation.AsyncOperationProgressHandler`2',
@@ -258,18 +251,14 @@ String _parseGenericTypeIdentifierName(TypeIdentifier typeIdentifier) {
     return '$shortName<$firstTypeArg, $secondTypeArg>';
   }
 
-  switch (shortName) {
-    case 'IAsyncOperation':
-      final typeArg = _parseTypeArgName(typeIdentifier.typeArg!);
-      return 'IAsyncOperation<$typeArg>';
-    case 'IReference':
-      final typeArg = typeIdentifier.typeArg!.shortName;
-      // Mark typeArg as nullable since all IReference types are nullable.
-      return 'IReference<$typeArg?>';
-    default:
-      final typeArg = typeIdentifier.typeArg!.shortName;
-      return '$shortName<$typeArg>';
-  }
+  // Handle generic types with single type parameter
+  return switch (shortName) {
+    'IAsyncOperation' =>
+      'IAsyncOperation<${_parseTypeArgName(typeIdentifier.typeArg!)}>',
+    // Mark typeArg as nullable since all IReference types are nullable.
+    'IReference' => 'IReference<${typeIdentifier.typeArg!.shortName}?>',
+    _ => '$shortName<${typeIdentifier.typeArg!.shortName}>',
+  };
 }
 
 /// Unwraps [typeIdentifiers] into a single TypeIdentifier

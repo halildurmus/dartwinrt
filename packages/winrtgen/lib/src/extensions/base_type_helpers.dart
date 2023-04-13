@@ -6,63 +6,39 @@ import 'package:winmd/winmd.dart';
 
 extension BaseTypeHelpers on BaseType {
   /// Returns the appropriate Dart type name of this BaseType.
-  String get dartType {
-    switch (this) {
-      case BaseType.booleanType:
-        return 'bool';
-      case BaseType.doubleType:
-      case BaseType.floatType:
-        return 'double';
-      case BaseType.int8Type:
-      case BaseType.int16Type:
-      case BaseType.int32Type:
-      case BaseType.int64Type:
-      case BaseType.uint8Type:
-      case BaseType.uint16Type:
-      case BaseType.uint32Type:
-      case BaseType.uint64Type:
-        return 'int';
-      case BaseType.stringType:
-        return 'String';
-      default:
-        throw UnsupportedError('Unsupported base type: $name');
-    }
-  }
+  String get dartType => switch (this) {
+        BaseType.booleanType => 'bool',
+        BaseType.doubleType || BaseType.floatType => 'double',
+        BaseType.int8Type ||
+        BaseType.int16Type ||
+        BaseType.int32Type ||
+        BaseType.int64Type ||
+        BaseType.uint8Type ||
+        BaseType.uint16Type ||
+        BaseType.uint32Type ||
+        BaseType.uint64Type =>
+          'int',
+        BaseType.stringType => 'String',
+        _ => throw UnsupportedError('Unsupported base type: $this'),
+      };
 
   /// Returns the type signature of this BaseType as defined in:
   /// https://learn.microsoft.com/en-us/uwp/winrt-cref/winrt-type-system#guid-generation-for-parameterized-types
-  String get signature {
-    switch (this) {
-      case BaseType.booleanType:
-        return 'b1';
-      case BaseType.charType:
-        return 'c2';
-      case BaseType.doubleType:
-        return 'f8';
-      case BaseType.floatType:
-        return 'f4';
-      case BaseType.int8Type:
-        return 'i1';
-      case BaseType.int16Type:
-        return 'i2';
-      case BaseType.int32Type:
-        return 'i4';
-      case BaseType.int64Type:
-        return 'i8';
-      case BaseType.objectType:
-        return 'cinterface(IInspectable)';
-      case BaseType.stringType:
-        return 'string';
-      case BaseType.uint8Type:
-        return 'u1';
-      case BaseType.uint16Type:
-        return 'u2';
-      case BaseType.uint32Type:
-        return 'u4';
-      case BaseType.uint64Type:
-        return 'u8';
-      default:
-        throw UnsupportedError('Unsupported base type: $name');
-    }
-  }
+  String get signature => switch (this) {
+        BaseType.booleanType => 'b1',
+        BaseType.charType => 'c2',
+        BaseType.doubleType => 'f8',
+        BaseType.floatType => 'f4',
+        BaseType.int8Type => 'i1',
+        BaseType.int16Type => 'i2',
+        BaseType.int32Type => 'i4',
+        BaseType.int64Type => 'i8',
+        BaseType.objectType => 'cinterface(IInspectable)',
+        BaseType.stringType => 'string',
+        BaseType.uint8Type => 'u1',
+        BaseType.uint16Type => 'u2',
+        BaseType.uint32Type => 'u4',
+        BaseType.uint64Type => 'u8',
+        _ => throw UnsupportedError('Unsupported base type: $this')
+      };
 }

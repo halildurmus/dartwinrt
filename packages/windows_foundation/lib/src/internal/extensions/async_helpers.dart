@@ -50,13 +50,10 @@ Future<void> _completeAsyncDelegate<T extends IAsyncInfo, C>(T asyncDelegate,
         break;
       case AsyncStatus.completed:
         onCompleted();
-        break;
       case AsyncStatus.canceled:
         completer.completeError('The async operation canceled!');
-        break;
       case AsyncStatus.error:
         completer.completeError(WindowsException(asyncDelegate.errorCode));
-        break;
     }
   } catch (error, stackTrace) {
     completer.completeError(error, stackTrace);

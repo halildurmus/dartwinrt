@@ -54,39 +54,34 @@ class GenericInterfaceProjection extends InterfaceProjection {
         typeDef, [typeArg1, if (fullyQualifiedType.endsWith('`2')) typeArg2!]);
   }
 
-  String get formattedTypeArgs => typeArgs.map((arg) {
-        switch (arg) {
-          case TypeArg.double:
-          case TypeArg.float:
-            return 'double';
-          case TypeArg.nullableDouble:
-          case TypeArg.nullableFloat:
-            return 'double?';
-          case TypeArg.int16:
-          case TypeArg.int32:
-          case TypeArg.int64:
-          case TypeArg.uint8:
-          case TypeArg.uint16:
-          case TypeArg.uint32:
-          case TypeArg.uint64:
-            return 'int';
-          case TypeArg.nullableInt16:
-          case TypeArg.nullableInt32:
-          case TypeArg.nullableInt64:
-          case TypeArg.nullableUint8:
-          case TypeArg.nullableUint16:
-          case TypeArg.nullableUint32:
-          case TypeArg.nullableUint64:
-            return 'int?';
-          case TypeArg.inspectable:
-          case TypeArg.nullableInspectable:
-          case TypeArg.winrtEnum:
-          case TypeArg.winrtFlagsEnum:
-            return typeDef.genericParams[typeArgs.indexOf(arg)].name;
-          default:
-            return arg.name;
-        }
-      }).join(', ');
+  String _formatTypeArg(TypeArg typeArg) => switch (typeArg) {
+        TypeArg.double || TypeArg.float => 'double',
+        TypeArg.nullableDouble || TypeArg.nullableFloat => 'double?',
+        TypeArg.int16 ||
+        TypeArg.int32 ||
+        TypeArg.int64 ||
+        TypeArg.uint8 ||
+        TypeArg.uint16 ||
+        TypeArg.uint32 ||
+        TypeArg.uint64 =>
+          'int',
+        TypeArg.nullableInt16 ||
+        TypeArg.nullableInt32 ||
+        TypeArg.nullableInt64 ||
+        TypeArg.nullableUint8 ||
+        TypeArg.nullableUint16 ||
+        TypeArg.nullableUint32 ||
+        TypeArg.nullableUint64 =>
+          'int?',
+        TypeArg.inspectable ||
+        TypeArg.nullableInspectable ||
+        TypeArg.winrtEnum ||
+        TypeArg.winrtFlagsEnum =>
+          typeDef.genericParams[typeArgs.indexOf(typeArg)].name,
+        _ => typeArg.name,
+      };
+
+  String get formattedTypeArgs => typeArgs.map(_formatTypeArg).join(', ');
 
   /// The generic type parameters that are used in the class header (e.g.
   /// `<K, V>`, `<T>`).
