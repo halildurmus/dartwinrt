@@ -7,7 +7,7 @@ issue_tracker: https://github.com/dart-windows/dartwinrt/issues?q=is%3Aopen+is%3
 publish_to: none # TODO: Remove this
 
 environment:
-  sdk: '^2.19.4'
+  sdk: '^3.0.0-0'
 
 # Declare that this package only works on Windows.
 platforms:
@@ -27,4 +27,4 @@ dependencies:
     path: ../windows_system
 
 dev_dependencies:
-  test: ^1.22.1
+  test: ^1.24.1
