@@ -136,8 +136,11 @@ extension IPropertyValueHelper on IPropertyValue {
         final list = <int>[];
         getUInt8Array(list);
         return list;
-      default:
-        throw UnsupportedError('Unsupported type: $type');
+      case PropertyType.empty:
+      case PropertyType.inspectable:
+      case PropertyType.otherType:
+      case PropertyType.otherTypeArray:
+        throw UnsupportedError('Unsupported property type: $type');
     }
   }
 }

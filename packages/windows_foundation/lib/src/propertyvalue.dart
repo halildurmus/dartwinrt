@@ -21,7 +21,7 @@ import 'point.dart';
 import 'rect.dart';
 import 'size.dart';
 
-/// Represents a value in a property store (such as a [PropertySet]
+/// Represents a value in a property store (such as a `PropertySet`
 /// instance).
 ///
 /// {@category class}

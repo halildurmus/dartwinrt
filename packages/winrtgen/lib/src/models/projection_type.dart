@@ -65,31 +65,20 @@ enum ProjectionType {
       final projectionType = typeIdentifier.isReferenceType
           ? TypeProjection(typeIdentifier.typeArg!.typeArg!).projectionType
           : TypeProjection(typeIdentifier.typeArg!).projectionType;
-      switch (projectionType) {
-        case ProjectionType.dartPrimitive:
-          return ProjectionType.dartPrimitiveList;
-        case ProjectionType.dateTime:
-          return ProjectionType.dateTimeList;
-        case ProjectionType.duration:
-          return ProjectionType.durationList;
-        case ProjectionType.genericEnum:
-          return ProjectionType.genericEnumList;
-        case ProjectionType.genericObject:
-          return ProjectionType.genericObjectList;
-        case ProjectionType.guid:
-          return ProjectionType.guidList;
-        case ProjectionType.object:
-          return ProjectionType.objectList;
-        case ProjectionType.string:
-          return ProjectionType.stringList;
-        case ProjectionType.struct:
-          return ProjectionType.structList;
-        case ProjectionType.uri:
-          return ProjectionType.uriList;
-        default:
-          throw UnsupportedError(
-              'Unsupported projection type: $projectionType');
-      }
+      return switch (projectionType) {
+        ProjectionType.dartPrimitive => ProjectionType.dartPrimitiveList,
+        ProjectionType.dateTime => ProjectionType.dateTimeList,
+        ProjectionType.duration => ProjectionType.durationList,
+        ProjectionType.genericEnum => ProjectionType.genericEnumList,
+        ProjectionType.genericObject => ProjectionType.genericObjectList,
+        ProjectionType.guid => ProjectionType.guidList,
+        ProjectionType.object => ProjectionType.objectList,
+        ProjectionType.string => ProjectionType.stringList,
+        ProjectionType.struct => ProjectionType.structList,
+        ProjectionType.uri => ProjectionType.uriList,
+        _ => throw UnsupportedError(
+            'Unsupported projection type: $projectionType'),
+      };
     }
 
     if (type.isPointer) return ProjectionType.pointer;

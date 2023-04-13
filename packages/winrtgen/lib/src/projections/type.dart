@@ -180,24 +180,26 @@ class TypeProjection {
 
   TypeTuple unwrapReferenceType() {
     final baseType = typeIdentifier.typeArg?.baseType;
-    switch (baseType) {
-      case BaseType.classTypeModifier:
-        return const TypeTuple('Pointer<COMObject>', 'Pointer<COMObject>');
-      case BaseType.simpleArrayType:
-        // This form is used in WinRT methods when the caller receives an array
-        // that was allocated by the method. In this style, the array size
-        // parameter and the array parameter are both out parameters.
-        // Additionally, the array parameter is passed by reference (that is,
-        // ArrayType**, rather than ArrayType*).
-        final refTuple = unwrapSimpleArrayType(typeIdentifier.typeArg!);
-        return TypeTuple(
-            'Pointer<${refTuple.nativeType}>', 'Pointer<${refTuple.dartType}>');
-      // For example, `bool IndexOf(..., [Out] uint32_t & index)`.
-      case BaseType.uint32Type:
-        return const TypeTuple('Pointer<Uint32>', 'Pointer<Uint32>');
-      default:
-        throw Exception('Could not unwrap reference type of $typeIdentifier');
+    if (baseType == BaseType.classTypeModifier) {
+      return const TypeTuple('Pointer<COMObject>', 'Pointer<COMObject>');
     }
+
+    if (baseType == BaseType.simpleArrayType) {
+      // This form is used in WinRT methods when the caller receives an array
+      // that was allocated by the method. In this style, the array size
+      // parameter and the array parameter are both out parameters.
+      // Additionally, the array parameter is passed by reference (that is,
+      // ArrayType**, rather than ArrayType*).
+      final refTuple = unwrapSimpleArrayType(typeIdentifier.typeArg!);
+      return TypeTuple(
+          'Pointer<${refTuple.nativeType}>', 'Pointer<${refTuple.dartType}>');
+    }
+
+    if (baseType == BaseType.uint32Type) {
+      return const TypeTuple('Pointer<Uint32>', 'Pointer<Uint32>');
+    }
+
+    throw Exception('Could not unwrap reference type of $typeIdentifier');
   }
 
   /// Takes a type such as `simpleArrayType` -> `BaseType.Uint8` and converts

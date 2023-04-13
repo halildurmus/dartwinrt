@@ -81,82 +81,68 @@ enum TypeArg {
       [TypeArg.inspectable, TypeArg.nullableInspectable].contains(this);
 
   /// Returns the appropriate [TypeIdentifier] for this [TypeArg].
-  TypeIdentifier get typeIdentifier {
-    switch (this) {
-      case TypeArg.bool_:
-      case TypeArg.nullableBool:
-        return const TypeIdentifier(BaseType.booleanType);
-      case TypeArg.dateTime:
-      case TypeArg.nullableDateTime:
-        return const TypeIdentifier(BaseType.classTypeModifier,
-            name: 'Windows.Foundation.DateTime');
-      case TypeArg.double:
-      case TypeArg.nullableDouble:
-        return const TypeIdentifier(BaseType.doubleType);
-      case TypeArg.duration:
-      case TypeArg.nullableDuration:
-        return const TypeIdentifier(BaseType.classTypeModifier,
-            name: 'Windows.Foundation.TimeSpan');
-      case TypeArg.float:
-      case TypeArg.nullableFloat:
-        return const TypeIdentifier(BaseType.floatType);
-      case TypeArg.guid:
-      case TypeArg.nullableGuid:
-        return const TypeIdentifier(BaseType.valueTypeModifier,
-            name: 'System.Guid');
-      case TypeArg.int16:
-      case TypeArg.nullableInt16:
-        return const TypeIdentifier(BaseType.int16Type);
-      case TypeArg.int32:
-      case TypeArg.nullableInt32:
-        return const TypeIdentifier(BaseType.int32Type);
-      case TypeArg.int64:
-      case TypeArg.nullableInt64:
-        return const TypeIdentifier(BaseType.int64Type);
-      case TypeArg.object:
-      case TypeArg.nullableObject:
-        return const TypeIdentifier(BaseType.objectType);
-      case TypeArg.point:
-      case TypeArg.nullablePoint:
-        final typeDef =
-            MetadataStore.getMetadataForType('Windows.Foundation.Point')!;
-        return TypeIdentifier(BaseType.classTypeModifier,
-            name: 'Windows.Foundation.Point', type: typeDef);
-      case TypeArg.rect:
-      case TypeArg.nullableRect:
-        final typeDef =
-            MetadataStore.getMetadataForType('Windows.Foundation.Rect')!;
-        return TypeIdentifier(BaseType.classTypeModifier,
-            name: 'Windows.Foundation.Rect', type: typeDef);
-      case TypeArg.size:
-      case TypeArg.nullableSize:
-        final typeDef =
-            MetadataStore.getMetadataForType('Windows.Foundation.Size')!;
-        return TypeIdentifier(BaseType.classTypeModifier,
-            name: 'Windows.Foundation.Size', type: typeDef);
-      case TypeArg.string:
-      case TypeArg.nullableString:
-        return const TypeIdentifier(BaseType.stringType);
-      case TypeArg.uint8:
-      case TypeArg.nullableUint8:
-        return const TypeIdentifier(BaseType.uint8Type);
-      case TypeArg.uint16:
-      case TypeArg.nullableUint16:
-        return const TypeIdentifier(BaseType.uint16Type);
-      case TypeArg.uint32:
-      case TypeArg.nullableUint32:
-        return const TypeIdentifier(BaseType.uint32Type);
-      case TypeArg.uint64:
-      case TypeArg.nullableUint64:
-        return const TypeIdentifier(BaseType.uint64Type);
-      case TypeArg.uri:
-      case TypeArg.nullableUri:
-        final typeDef =
-            MetadataStore.getMetadataForType('Windows.Foundation.Uri')!;
-        return TypeIdentifier(BaseType.classTypeModifier,
-            name: 'Windows.Foundation.Uri', type: typeDef);
-      default:
-        throw UnsupportedError('Unsupported TypeArg: $name');
-    }
-  }
+  TypeIdentifier get typeIdentifier => switch (this) {
+        TypeArg.bool_ ||
+        TypeArg.nullableBool =>
+          const TypeIdentifier(BaseType.booleanType),
+        TypeArg.dateTime || TypeArg.nullableDateTime => const TypeIdentifier(
+            BaseType.classTypeModifier,
+            name: 'Windows.Foundation.DateTime'),
+        TypeArg.double ||
+        TypeArg.nullableDouble =>
+          const TypeIdentifier(BaseType.doubleType),
+        TypeArg.duration || TypeArg.nullableDuration => const TypeIdentifier(
+            BaseType.classTypeModifier,
+            name: 'Windows.Foundation.TimeSpan'),
+        TypeArg.float ||
+        TypeArg.nullableFloat =>
+          const TypeIdentifier(BaseType.floatType),
+        TypeArg.guid ||
+        TypeArg.nullableGuid =>
+          const TypeIdentifier(BaseType.valueTypeModifier, name: 'System.Guid'),
+        TypeArg.int16 ||
+        TypeArg.nullableInt16 =>
+          const TypeIdentifier(BaseType.int16Type),
+        TypeArg.int32 ||
+        TypeArg.nullableInt32 =>
+          const TypeIdentifier(BaseType.int32Type),
+        TypeArg.int64 ||
+        TypeArg.nullableInt64 =>
+          const TypeIdentifier(BaseType.int64Type),
+        TypeArg.object ||
+        TypeArg.nullableObject =>
+          const TypeIdentifier(BaseType.objectType),
+        TypeArg.point || TypeArg.nullablePoint => TypeIdentifier(
+            BaseType.classTypeModifier,
+            name: 'Windows.Foundation.Point',
+            type: MetadataStore.getMetadataForType('Windows.Foundation.Point')),
+        TypeArg.rect || TypeArg.nullableRect => TypeIdentifier(
+            BaseType.classTypeModifier,
+            name: 'Windows.Foundation.Rect',
+            type: MetadataStore.getMetadataForType('Windows.Foundation.Rect')),
+        TypeArg.size || TypeArg.nullableSize => TypeIdentifier(
+            BaseType.classTypeModifier,
+            name: 'Windows.Foundation.Size',
+            type: MetadataStore.getMetadataForType('Windows.Foundation.Size')),
+        TypeArg.string ||
+        TypeArg.nullableString =>
+          const TypeIdentifier(BaseType.stringType),
+        TypeArg.uint8 ||
+        TypeArg.nullableUint8 =>
+          const TypeIdentifier(BaseType.uint8Type),
+        TypeArg.uint16 ||
+        TypeArg.nullableUint16 =>
+          const TypeIdentifier(BaseType.uint16Type),
+        TypeArg.uint32 ||
+        TypeArg.nullableUint32 =>
+          const TypeIdentifier(BaseType.uint32Type),
+        TypeArg.uint64 ||
+        TypeArg.nullableUint64 =>
+          const TypeIdentifier(BaseType.uint64Type),
+        TypeArg.uri || TypeArg.nullableUri => TypeIdentifier(
+            BaseType.classTypeModifier,
+            name: 'Windows.Foundation.Uri',
+            type: MetadataStore.getMetadataForType('Windows.Foundation.Uri')),
+        _ => throw UnsupportedError('Unsupported type arg: $this'),
+      };
 }
