@@ -8,7 +8,7 @@
 
 import 'dart:ffi';
 
-class NativeBasicGeoposition extends Struct {
+final class NativeBasicGeoposition extends Struct {
   @Double()
   external double latitude;
 
@@ -19,7 +19,7 @@ class NativeBasicGeoposition extends Struct {
   external double altitude;
 }
 
-class NativeColor extends Struct {
+final class NativeColor extends Struct {
   @Uint8()
   external int a;
 
@@ -33,7 +33,7 @@ class NativeColor extends Struct {
   external int b;
 }
 
-class NativeGamepadReading extends Struct {
+final class NativeGamepadReading extends Struct {
   @Uint64()
   external int timestamp;
 
@@ -59,7 +59,7 @@ class NativeGamepadReading extends Struct {
   external double rightThumbstickY;
 }
 
-class NativeGamepadVibration extends Struct {
+final class NativeGamepadVibration extends Struct {
   @Double()
   external double leftMotor;
 
@@ -73,7 +73,7 @@ class NativeGamepadVibration extends Struct {
   external double rightTrigger;
 }
 
-class NativeMatrix3x2 extends Struct {
+final class NativeMatrix3x2 extends Struct {
   @Float()
   external double m11;
 
@@ -93,7 +93,7 @@ class NativeMatrix3x2 extends Struct {
   external double m32;
 }
 
-class NativeMatrix4x4 extends Struct {
+final class NativeMatrix4x4 extends Struct {
   @Float()
   external double m11;
 
@@ -143,7 +143,7 @@ class NativeMatrix4x4 extends Struct {
   external double m44;
 }
 
-class NativeNetworkUsageStates extends Struct {
+final class NativeNetworkUsageStates extends Struct {
   @Int32()
   external int roaming;
 
@@ -151,14 +151,14 @@ class NativeNetworkUsageStates extends Struct {
   external int shared;
 }
 
-class NativePlane extends Struct {
+final class NativePlane extends Struct {
   external NativeVector3 normal;
 
   @Float()
   external double d;
 }
 
-class NativePoint extends Struct {
+final class NativePoint extends Struct {
   @Float()
   external double x;
 
@@ -166,7 +166,7 @@ class NativePoint extends Struct {
   external double y;
 }
 
-class NativeQuaternion extends Struct {
+final class NativeQuaternion extends Struct {
   @Float()
   external double x;
 
@@ -180,7 +180,7 @@ class NativeQuaternion extends Struct {
   external double w;
 }
 
-class NativeRational extends Struct {
+final class NativeRational extends Struct {
   @Uint32()
   external int numerator;
 
@@ -188,7 +188,7 @@ class NativeRational extends Struct {
   external int denominator;
 }
 
-class NativeRect extends Struct {
+final class NativeRect extends Struct {
   @Float()
   external double x;
 
@@ -202,7 +202,7 @@ class NativeRect extends Struct {
   external double height;
 }
 
-class NativeSize extends Struct {
+final class NativeSize extends Struct {
   @Float()
   external double width;
 
@@ -210,7 +210,7 @@ class NativeSize extends Struct {
   external double height;
 }
 
-class NativeSortEntry extends Struct {
+final class NativeSortEntry extends Struct {
   @IntPtr()
   external int propertyName;
 
@@ -218,7 +218,7 @@ class NativeSortEntry extends Struct {
   external bool ascendingOrder;
 }
 
-class NativeTextSegment extends Struct {
+final class NativeTextSegment extends Struct {
   @Uint32()
   external int startPosition;
 
@@ -226,7 +226,7 @@ class NativeTextSegment extends Struct {
   external int length;
 }
 
-class NativeVector2 extends Struct {
+final class NativeVector2 extends Struct {
   @Float()
   external double x;
 
@@ -234,7 +234,7 @@ class NativeVector2 extends Struct {
   external double y;
 }
 
-class NativeVector3 extends Struct {
+final class NativeVector3 extends Struct {
   @Float()
   external double x;
 
@@ -245,7 +245,7 @@ class NativeVector3 extends Struct {
   external double z;
 }
 
-class NativeVector4 extends Struct {
+final class NativeVector4 extends Struct {
   @Float()
   external double x;
 

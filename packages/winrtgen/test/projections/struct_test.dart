@@ -52,7 +52,7 @@ void main() {
 
     test('has correct class header', () {
       expect(rectProjection.classHeader,
-          equals('class NativeRect extends Struct'));
+          equals('final class NativeRect extends Struct'));
     });
 
     test('has correct number of fields', () {

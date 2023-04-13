@@ -73,7 +73,7 @@ class NativeStructProjection {
 
   String get classHeader => [
         if (isDeprecated) typeDef.deprecatedAnnotation,
-        'class $structName extends Struct'
+        'final class $structName extends Struct'
       ].join('\n');
 
   List<StructFieldProjection> get fieldProjections =>
