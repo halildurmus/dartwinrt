@@ -26,12 +26,13 @@ jobs:
         include:
           - os: windows-latest
             sdk: main
-          - os: windows-2022
-            sdk: beta
-          - os: windows-2019
-            sdk: stable
-          - os: ubuntu-latest
-            sdk: stable
+          # TODO: Enable after Dart 3.0 is released.
+          # - os: windows-2022
+          #   sdk: beta
+          # - os: windows-2019
+          #   sdk: stable
+          # - os: ubuntu-latest
+          #   sdk: stable
     uses: ./.github/workflows/dart_package.yml
     with:
       analyze_directories: bin example lib test
