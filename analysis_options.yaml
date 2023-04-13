@@ -21,16 +21,19 @@ linter:
     - avoid_returning_null_for_void
     - avoid_shadowing_type_parameters
     - avoid_single_cascade_in_expression_statements
+    - avoid_type_to_string
     - avoid_types_as_parameter_names
     - await_only_futures
     - camel_case_extensions
     - camel_case_types
     - cascade_invocations
+    - comment_references
     - constant_identifier_names
     - control_flow_in_finally
     - curly_braces_in_flow_control_structures
     - depend_on_referenced_packages
     - directives_ordering
+    - discarded_futures
     - empty_catches
     - empty_constructor_bodies
     - empty_statements
@@ -38,11 +41,16 @@ linter:
     - file_names
     - hash_and_equals
     - implementation_imports
+    - implicit_reopen
+    - invalid_case_patterns
     - iterable_contains_unrelated_type
+    - leading_newlines_in_multiline_strings
     - library_names
     - library_prefixes
     - library_private_types_in_public_api
     - list_remove_unrelated_type
+    - literal_only_boolean_expressions
+    - no_default_cases
     - no_duplicate_case_values
     - no_leading_underscores_for_library_prefixes
     - no_leading_underscores_for_local_identifiers
@@ -83,9 +91,11 @@ linter:
     - slash_for_doc_comments
     - sort_child_properties_last
     - sort_unnamed_constructors_first
+    - test_types_in_equals
     - type_init_formals
     - unawaited_futures
     - unnecessary_brace_in_string_interps
+    - unnecessary_breaks
     - unnecessary_const
     - unnecessary_constructor_name
     - unnecessary_getters_setters
@@ -93,6 +103,7 @@ linter:
     - unnecessary_late
     - unnecessary_new
     - unnecessary_null_aware_assignments
+    - unnecessary_null_checks
     - unnecessary_null_in_if_null_operators
     - unnecessary_nullable_for_final_variable_declarations
     - unnecessary_overrides
