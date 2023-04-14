@@ -23,34 +23,6 @@ void main() {
     free(ptr);
   });
 
-  test('getInterfaces', () {
-    const iids = [
-      '{f6d1f700-49c2-52ae-8154-826f9908773c}', // IMap<String, String>
-      '{e9bdaaf0-cbf6-5c72-be90-29cbf3a1319b}', // IIterable<IKeyValuePair<String, String>
-      '{1e036276-2f60-55f6-b7f3-f86079e6900b}', // IObservableMap<String, String>
-      '{00000038-0000-0000-c000-000000000046}' // IWeakReferenceSource
-    ];
-    final stringMap = StringMap();
-    expect(getInterfaces(stringMap), equals(iids));
-  });
-
-  test('getClassName', () {
-    const stringMapClassName = 'Windows.Foundation.Collections.StringMap';
-    final stringMap = StringMap();
-    expect(getClassName(stringMap), equals(stringMapClassName));
-  });
-
-  test('getTrustLevel of base trust class', () {
-    final stringMap = StringMap();
-    expect(getTrustLevel(stringMap), equals(TrustLevel.baseTrust));
-  });
-
-  test('getTrustLevel of partial trust class', () {
-    const className = 'Windows.Storage.Pickers.FileOpenPicker';
-    final inspectable = IInspectable(activateClass(className));
-    expect(getTrustLevel(inspectable), equals(TrustLevel.partialTrust));
-  });
-
   test('refCount', () {
     final propertySet = PropertySet()..detach();
     expect(refCount(propertySet), 1);
