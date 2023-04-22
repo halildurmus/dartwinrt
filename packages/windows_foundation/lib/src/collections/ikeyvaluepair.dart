@@ -83,29 +83,23 @@ abstract class IKeyValuePair<K, V> extends IInspectable {
     if (K == int && isSubtypeOfInspectable<V>()) {
       if (creator == null) throw ArgumentError.notNull('creator');
       if (intType == null) throw ArgumentError.notNull('intType');
-      switch (intType) {
-        case IntType.int16:
-          return _IKeyValuePairInt16Inspectable<V>.fromPtr(ptr,
-              creator: creator) as IKeyValuePair<K, V>;
-        case IntType.int32:
-          return _IKeyValuePairInt32Inspectable<V>.fromPtr(ptr,
-              creator: creator) as IKeyValuePair<K, V>;
-        case IntType.int64:
-          return _IKeyValuePairInt64Inspectable<V>.fromPtr(ptr,
-              creator: creator) as IKeyValuePair<K, V>;
-        case IntType.uint8:
-          return _IKeyValuePairUint8Inspectable<V>.fromPtr(ptr,
-              creator: creator) as IKeyValuePair<K, V>;
-        case IntType.uint16:
-          return _IKeyValuePairUint16Inspectable<V>.fromPtr(ptr,
-              creator: creator) as IKeyValuePair<K, V>;
-        case IntType.uint32:
-          return _IKeyValuePairUint32Inspectable<V>.fromPtr(ptr,
-              creator: creator) as IKeyValuePair<K, V>;
-        case IntType.uint64:
-          return _IKeyValuePairUint64Inspectable<V>.fromPtr(ptr,
-              creator: creator) as IKeyValuePair<K, V>;
-      }
+      final keyValuePair = switch (intType) {
+        IntType.int16 =>
+          _IKeyValuePairInt16Inspectable<V>.fromPtr(ptr, creator: creator),
+        IntType.int32 =>
+          _IKeyValuePairInt32Inspectable<V>.fromPtr(ptr, creator: creator),
+        IntType.int64 =>
+          _IKeyValuePairInt64Inspectable<V>.fromPtr(ptr, creator: creator),
+        IntType.uint8 =>
+          _IKeyValuePairUint8Inspectable<V>.fromPtr(ptr, creator: creator),
+        IntType.uint16 =>
+          _IKeyValuePairUint16Inspectable<V>.fromPtr(ptr, creator: creator),
+        IntType.uint32 =>
+          _IKeyValuePairUint32Inspectable<V>.fromPtr(ptr, creator: creator),
+        IntType.uint64 =>
+          _IKeyValuePairUint64Inspectable<V>.fromPtr(ptr, creator: creator)
+      };
+      return keyValuePair as IKeyValuePair<K, V>;
     }
 
     if (K == String) {

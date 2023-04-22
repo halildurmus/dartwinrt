@@ -59,22 +59,16 @@ abstract class IIterator<T> extends IInspectable {
 
     if (T == int) {
       if (intType == null) throw ArgumentError.notNull('intType');
-      switch (intType) {
-        case IntType.int16:
-          return _IIteratorInt16.fromPtr(ptr) as IIterator<T>;
-        case IntType.int32:
-          return _IIteratorInt32.fromPtr(ptr) as IIterator<T>;
-        case IntType.int64:
-          return _IIteratorInt64.fromPtr(ptr) as IIterator<T>;
-        case IntType.uint8:
-          return _IIteratorUint8.fromPtr(ptr) as IIterator<T>;
-        case IntType.uint16:
-          return _IIteratorUint16.fromPtr(ptr) as IIterator<T>;
-        case IntType.uint32:
-          return _IIteratorUint32.fromPtr(ptr) as IIterator<T>;
-        case IntType.uint64:
-          return _IIteratorUint64.fromPtr(ptr) as IIterator<T>;
-      }
+      final iterator = switch (intType) {
+        IntType.int16 => _IIteratorInt16.fromPtr(ptr),
+        IntType.int32 => _IIteratorInt32.fromPtr(ptr),
+        IntType.int64 => _IIteratorInt64.fromPtr(ptr),
+        IntType.uint8 => _IIteratorUint8.fromPtr(ptr),
+        IntType.uint16 => _IIteratorUint16.fromPtr(ptr),
+        IntType.uint32 => _IIteratorUint32.fromPtr(ptr),
+        IntType.uint64 => _IIteratorUint64.fromPtr(ptr)
+      };
+      return iterator as IIterator<T>;
     }
 
     if (isSubtypeOfInspectable<T>()) {
@@ -82,13 +76,8 @@ abstract class IIterator<T> extends IInspectable {
       return _IIteratorInspectable.fromPtr(ptr, creator: creator);
     }
 
-    if (T == String) {
-      return _IIteratorString.fromPtr(ptr) as IIterator<T>;
-    }
-
-    if (T == Uri) {
-      return _IIteratorUri.fromPtr(ptr) as IIterator<T>;
-    }
+    if (T == String) return _IIteratorString.fromPtr(ptr) as IIterator<T>;
+    if (T == Uri) return _IIteratorUri.fromPtr(ptr) as IIterator<T>;
 
     if (isSubtypeOfWinRTEnum<T>()) {
       if (enumCreator == null) throw ArgumentError.notNull('enumCreator');

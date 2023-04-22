@@ -90,29 +90,23 @@ abstract class IVectorView<T> extends IInspectable implements IIterable<T> {
 
     if (T == int) {
       if (intType == null) throw ArgumentError.notNull('intType');
-      switch (intType) {
-        case IntType.int16:
-          return _IVectorViewInt16.fromPtr(ptr,
-              intType: intType, iterableIid: iterableIid) as IVectorView<T>;
-        case IntType.int32:
-          return _IVectorViewInt32.fromPtr(ptr,
-              intType: intType, iterableIid: iterableIid) as IVectorView<T>;
-        case IntType.int64:
-          return _IVectorViewInt64.fromPtr(ptr,
-              intType: intType, iterableIid: iterableIid) as IVectorView<T>;
-        case IntType.uint8:
-          return _IVectorViewUint8.fromPtr(ptr,
-              intType: intType, iterableIid: iterableIid) as IVectorView<T>;
-        case IntType.uint16:
-          return _IVectorViewUint16.fromPtr(ptr,
-              intType: intType, iterableIid: iterableIid) as IVectorView<T>;
-        case IntType.uint32:
-          return _IVectorViewUint32.fromPtr(ptr,
-              intType: intType, iterableIid: iterableIid) as IVectorView<T>;
-        case IntType.uint64:
-          return _IVectorViewUint64.fromPtr(ptr,
-              intType: intType, iterableIid: iterableIid) as IVectorView<T>;
-      }
+      final vectorView = switch (intType) {
+        IntType.int16 => _IVectorViewInt16.fromPtr(ptr,
+            intType: intType, iterableIid: iterableIid),
+        IntType.int32 => _IVectorViewInt32.fromPtr(ptr,
+            intType: intType, iterableIid: iterableIid),
+        IntType.int64 => _IVectorViewInt64.fromPtr(ptr,
+            intType: intType, iterableIid: iterableIid),
+        IntType.uint8 => _IVectorViewUint8.fromPtr(ptr,
+            intType: intType, iterableIid: iterableIid),
+        IntType.uint16 => _IVectorViewUint16.fromPtr(ptr,
+            intType: intType, iterableIid: iterableIid),
+        IntType.uint32 => _IVectorViewUint32.fromPtr(ptr,
+            intType: intType, iterableIid: iterableIid),
+        IntType.uint64 => _IVectorViewUint64.fromPtr(ptr,
+            intType: intType, iterableIid: iterableIid)
+      };
+      return vectorView as IVectorView<T>;
     }
 
     if (T == String) {

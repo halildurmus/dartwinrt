@@ -95,24 +95,16 @@ extension BoolListHelpers on List<bool> {
 
 extension DoubleHelpers on double {
   /// Returns the IID of `IReference<double>`.
-  String referenceIid(DoubleType type) {
-    switch (type) {
-      case DoubleType.double:
-        return IID_IReference_Double;
-      case DoubleType.float:
-        return IID_IReference_Float;
-    }
-  }
+  String referenceIid(DoubleType type) => switch (type) {
+        DoubleType.double => IID_IReference_Double,
+        DoubleType.float => IID_IReference_Float
+      };
 
   /// Converts the value to an [IPropertyValue].
-  IPropertyValue toPropertyValue(DoubleType type) {
-    switch (type) {
-      case DoubleType.double:
-        return PropertyValue.createDouble(this);
-      case DoubleType.float:
-        return PropertyValue.createSingle(this);
-    }
-  }
+  IPropertyValue toPropertyValue(DoubleType type) => switch (type) {
+        DoubleType.double => PropertyValue.createDouble(this),
+        DoubleType.float => PropertyValue.createSingle(this)
+      };
 
   /// Converts the value to an [IReference].
   IReference<double?> toReference(DoubleType type) {
@@ -127,24 +119,16 @@ extension DoubleHelpers on double {
 
 extension DoubleListHelpers on List<double> {
   /// Returns the IID of `IReferenceArray<double>`.
-  String referenceArrayIid(DoubleType type) {
-    switch (type) {
-      case DoubleType.double:
-        return IID_IReferenceArray_Double;
-      case DoubleType.float:
-        return IID_IReferenceArray_Float;
-    }
-  }
+  String referenceArrayIid(DoubleType type) => switch (type) {
+        DoubleType.double => IID_IReferenceArray_Double,
+        DoubleType.float => IID_IReferenceArray_Float
+      };
 
   /// Converts the value to an [IPropertyValue].
-  IPropertyValue toPropertyValue(DoubleType type) {
-    switch (type) {
-      case DoubleType.double:
-        return PropertyValue.createDoubleArray(this);
-      case DoubleType.float:
-        return PropertyValue.createSingleArray(this);
-    }
-  }
+  IPropertyValue toPropertyValue(DoubleType type) => switch (type) {
+        DoubleType.double => PropertyValue.createDoubleArray(this),
+        DoubleType.float => PropertyValue.createSingleArray(this)
+      };
 }
 
 extension DateTimeHelpers on DateTime {
@@ -235,44 +219,26 @@ extension InspectableListHelpers<T extends IInspectable> on List<T> {
 
 extension IntHelpers on int {
   /// Returns the IID of `IReference<int>`.
-  String referenceIid(IntType type) {
-    switch (type) {
-      case IntType.int16:
-        return IID_IReference_Int16;
-      case IntType.int32:
-        return IID_IReference_Int32;
-      case IntType.int64:
-        return IID_IReference_Int64;
-      case IntType.uint8:
-        return IID_IReference_Uint8;
-      case IntType.uint16:
-        return IID_IReference_Uint16;
-      case IntType.uint32:
-        return IID_IReference_Uint32;
-      case IntType.uint64:
-        return IID_IReference_Uint64;
-    }
-  }
+  String referenceIid(IntType type) => switch (type) {
+        IntType.int16 => IID_IReference_Int16,
+        IntType.int32 => IID_IReference_Int32,
+        IntType.int64 => IID_IReference_Int64,
+        IntType.uint8 => IID_IReference_Uint8,
+        IntType.uint16 => IID_IReference_Uint16,
+        IntType.uint32 => IID_IReference_Uint32,
+        IntType.uint64 => IID_IReference_Uint64
+      };
 
   /// Converts the value to an [IPropertyValue].
-  IPropertyValue toPropertyValue(IntType type) {
-    switch (type) {
-      case IntType.int16:
-        return PropertyValue.createInt16(this);
-      case IntType.int32:
-        return PropertyValue.createInt32(this);
-      case IntType.int64:
-        return PropertyValue.createInt64(this);
-      case IntType.uint8:
-        return PropertyValue.createUInt8(this);
-      case IntType.uint16:
-        return PropertyValue.createUInt16(this);
-      case IntType.uint32:
-        return PropertyValue.createUInt32(this);
-      case IntType.uint64:
-        return PropertyValue.createUInt64(this);
-    }
-  }
+  IPropertyValue toPropertyValue(IntType type) => switch (type) {
+        IntType.int16 => PropertyValue.createInt16(this),
+        IntType.int32 => PropertyValue.createInt32(this),
+        IntType.int64 => PropertyValue.createInt64(this),
+        IntType.uint8 => PropertyValue.createUInt8(this),
+        IntType.uint16 => PropertyValue.createUInt16(this),
+        IntType.uint32 => PropertyValue.createUInt32(this),
+        IntType.uint64 => PropertyValue.createUInt64(this)
+      };
 
   /// Converts the value to an [IReference].
   IReference<int?> toReference(IntType type) {
@@ -286,44 +252,26 @@ extension IntHelpers on int {
 
 extension IntListHelpers on List<int> {
   /// Returns the IID of `IReferenceArray<int>`.
-  String referenceArrayIid(IntType type) {
-    switch (type) {
-      case IntType.int16:
-        return IID_IReferenceArray_Int16;
-      case IntType.int32:
-        return IID_IReferenceArray_Int32;
-      case IntType.int64:
-        return IID_IReferenceArray_Int64;
-      case IntType.uint8:
-        return IID_IReferenceArray_Uint8;
-      case IntType.uint16:
-        return IID_IReferenceArray_Uint16;
-      case IntType.uint32:
-        return IID_IReferenceArray_Uint32;
-      case IntType.uint64:
-        return IID_IReferenceArray_Uint64;
-    }
-  }
+  String referenceArrayIid(IntType type) => switch (type) {
+        IntType.int16 => IID_IReferenceArray_Int16,
+        IntType.int32 => IID_IReferenceArray_Int32,
+        IntType.int64 => IID_IReferenceArray_Int64,
+        IntType.uint8 => IID_IReferenceArray_Uint8,
+        IntType.uint16 => IID_IReferenceArray_Uint16,
+        IntType.uint32 => IID_IReferenceArray_Uint32,
+        IntType.uint64 => IID_IReferenceArray_Uint64
+      };
 
   /// Converts the value to an [IPropertyValue].
-  IPropertyValue toPropertyValue(IntType type) {
-    switch (type) {
-      case IntType.int16:
-        return PropertyValue.createInt16Array(this);
-      case IntType.int32:
-        return PropertyValue.createInt32Array(this);
-      case IntType.int64:
-        return PropertyValue.createInt64Array(this);
-      case IntType.uint8:
-        return PropertyValue.createUInt8Array(this);
-      case IntType.uint16:
-        return PropertyValue.createUInt16Array(this);
-      case IntType.uint32:
-        return PropertyValue.createUInt32Array(this);
-      case IntType.uint64:
-        return PropertyValue.createUInt64Array(this);
-    }
-  }
+  IPropertyValue toPropertyValue(IntType type) => switch (type) {
+        IntType.int16 => PropertyValue.createInt16Array(this),
+        IntType.int32 => PropertyValue.createInt32Array(this),
+        IntType.int64 => PropertyValue.createInt64Array(this),
+        IntType.uint8 => PropertyValue.createUInt8Array(this),
+        IntType.uint16 => PropertyValue.createUInt16Array(this),
+        IntType.uint32 => PropertyValue.createUInt32Array(this),
+        IntType.uint64 => PropertyValue.createUInt64Array(this)
+      };
 }
 
 extension PointHelpers on Point {

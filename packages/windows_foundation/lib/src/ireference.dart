@@ -54,12 +54,13 @@ abstract class IReference<T> extends IInspectable {
     }
 
     if (isSameType<T, double?>()) {
-      switch (referenceIid) {
-        case IID_IReference_Double:
-          return _IReferenceDouble.fromPtr(ptr) as IReference<T>;
-        case IID_IReference_Float:
-          return _IReferenceFloat.fromPtr(ptr) as IReference<T>;
-      }
+      final reference = switch (referenceIid) {
+        IID_IReference_Double => _IReferenceDouble.fromPtr(ptr),
+        IID_IReference_Float => _IReferenceFloat.fromPtr(ptr),
+        _ => throw ArgumentError.value(referenceIid, 'referenceIid',
+            'Invalid IID for IReference<double?>'),
+      };
+      return reference as IReference<T>;
     }
 
     if (isSameType<T, Duration?>()) {
@@ -71,22 +72,18 @@ abstract class IReference<T> extends IInspectable {
     }
 
     if (isSameType<T, int?>()) {
-      switch (referenceIid) {
-        case IID_IReference_Int16:
-          return _IReferenceInt16.fromPtr(ptr) as IReference<T>;
-        case IID_IReference_Int32:
-          return _IReferenceInt32.fromPtr(ptr) as IReference<T>;
-        case IID_IReference_Int64:
-          return _IReferenceInt64.fromPtr(ptr) as IReference<T>;
-        case IID_IReference_Uint8:
-          return _IReferenceUint8.fromPtr(ptr) as IReference<T>;
-        case IID_IReference_Uint16:
-          return _IReferenceUint16.fromPtr(ptr) as IReference<T>;
-        case IID_IReference_Uint32:
-          return _IReferenceUint32.fromPtr(ptr) as IReference<T>;
-        case IID_IReference_Uint64:
-          return _IReferenceUint64.fromPtr(ptr) as IReference<T>;
-      }
+      final reference = switch (referenceIid) {
+        IID_IReference_Int16 => _IReferenceInt16.fromPtr(ptr),
+        IID_IReference_Int32 => _IReferenceInt32.fromPtr(ptr),
+        IID_IReference_Int64 => _IReferenceInt64.fromPtr(ptr),
+        IID_IReference_Uint8 => _IReferenceUint8.fromPtr(ptr),
+        IID_IReference_Uint16 => _IReferenceUint16.fromPtr(ptr),
+        IID_IReference_Uint32 => _IReferenceUint32.fromPtr(ptr),
+        IID_IReference_Uint64 => _IReferenceUint64.fromPtr(ptr),
+        _ => throw ArgumentError.value(
+            referenceIid, 'referenceIid', 'Invalid IID for IReference<int?>'),
+      };
+      return reference as IReference<T>;
     }
 
     if (isSameType<T, String?>()) {

@@ -75,25 +75,16 @@ abstract class IAsyncOperation<TResult> extends IInspectable
 
     if (TResult == int) {
       if (intType == null) throw ArgumentError.notNull('intType');
-      switch (intType) {
-        case IntType.int16:
-          return _IAsyncOperationInt16.fromPtr(ptr) as IAsyncOperation<TResult>;
-        case IntType.int32:
-          return _IAsyncOperationInt32.fromPtr(ptr) as IAsyncOperation<TResult>;
-        case IntType.int64:
-          return _IAsyncOperationInt64.fromPtr(ptr) as IAsyncOperation<TResult>;
-        case IntType.uint8:
-          return _IAsyncOperationUint8.fromPtr(ptr) as IAsyncOperation<TResult>;
-        case IntType.uint16:
-          return _IAsyncOperationUint16.fromPtr(ptr)
-              as IAsyncOperation<TResult>;
-        case IntType.uint32:
-          return _IAsyncOperationUint32.fromPtr(ptr)
-              as IAsyncOperation<TResult>;
-        case IntType.uint64:
-          return _IAsyncOperationUint64.fromPtr(ptr)
-              as IAsyncOperation<TResult>;
-      }
+      final asyncOperation = switch (intType) {
+        IntType.int16 => _IAsyncOperationInt16.fromPtr(ptr),
+        IntType.int32 => _IAsyncOperationInt32.fromPtr(ptr),
+        IntType.int64 => _IAsyncOperationInt64.fromPtr(ptr),
+        IntType.uint8 => _IAsyncOperationUint8.fromPtr(ptr),
+        IntType.uint16 => _IAsyncOperationUint16.fromPtr(ptr),
+        IntType.uint32 => _IAsyncOperationUint32.fromPtr(ptr),
+        IntType.uint64 => _IAsyncOperationUint64.fromPtr(ptr)
+      };
+      return asyncOperation as IAsyncOperation<TResult>;
     }
 
     if (isNullableObjectType<TResult>()) {
