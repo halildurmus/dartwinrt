@@ -86,29 +86,23 @@ abstract class IVector<T> extends IInspectable implements IIterable<T> {
 
     if (T == int) {
       if (intType == null) throw ArgumentError.notNull('intType');
-      switch (intType) {
-        case IntType.int16:
-          return _IVectorInt16.fromPtr(ptr,
-              intType: intType, iterableIid: iterableIid) as IVector<T>;
-        case IntType.int32:
-          return _IVectorInt32.fromPtr(ptr,
-              intType: intType, iterableIid: iterableIid) as IVector<T>;
-        case IntType.int64:
-          return _IVectorInt64.fromPtr(ptr,
-              intType: intType, iterableIid: iterableIid) as IVector<T>;
-        case IntType.uint8:
-          return _IVectorUint8.fromPtr(ptr,
-              intType: intType, iterableIid: iterableIid) as IVector<T>;
-        case IntType.uint16:
-          return _IVectorUint16.fromPtr(ptr,
-              intType: intType, iterableIid: iterableIid) as IVector<T>;
-        case IntType.uint32:
-          return _IVectorUint32.fromPtr(ptr,
-              intType: intType, iterableIid: iterableIid) as IVector<T>;
-        case IntType.uint64:
-          return _IVectorUint64.fromPtr(ptr,
-              intType: intType, iterableIid: iterableIid) as IVector<T>;
-      }
+      final vector = switch (intType) {
+        IntType.int16 => _IVectorInt16.fromPtr(ptr,
+            intType: intType, iterableIid: iterableIid),
+        IntType.int32 => _IVectorInt32.fromPtr(ptr,
+            intType: intType, iterableIid: iterableIid),
+        IntType.int64 => _IVectorInt64.fromPtr(ptr,
+            intType: intType, iterableIid: iterableIid),
+        IntType.uint8 => _IVectorUint8.fromPtr(ptr,
+            intType: intType, iterableIid: iterableIid),
+        IntType.uint16 => _IVectorUint16.fromPtr(ptr,
+            intType: intType, iterableIid: iterableIid),
+        IntType.uint32 => _IVectorUint32.fromPtr(ptr,
+            intType: intType, iterableIid: iterableIid),
+        IntType.uint64 => _IVectorUint64.fromPtr(ptr,
+            intType: intType, iterableIid: iterableIid)
+      };
+      return vector as IVector<T>;
     }
 
     if (T == String) {

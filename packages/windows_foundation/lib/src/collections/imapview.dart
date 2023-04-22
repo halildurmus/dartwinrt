@@ -92,29 +92,23 @@ abstract class IMapView<K, V> extends IInspectable
     if (K == int && isSubtypeOfInspectable<V>()) {
       if (creator == null) throw ArgumentError.notNull('creator');
       if (intType == null) throw ArgumentError.notNull('intType');
-      switch (intType) {
-        case IntType.int16:
-          return _IMapViewInt16Inspectable<V>.fromPtr(ptr,
-              creator: creator, iterableIid: iterableIid) as IMapView<K, V>;
-        case IntType.int32:
-          return _IMapViewInt32Inspectable<V>.fromPtr(ptr,
-              creator: creator, iterableIid: iterableIid) as IMapView<K, V>;
-        case IntType.int64:
-          return _IMapViewInt64Inspectable<V>.fromPtr(ptr,
-              creator: creator, iterableIid: iterableIid) as IMapView<K, V>;
-        case IntType.uint8:
-          return _IMapViewUint8Inspectable<V>.fromPtr(ptr,
-              creator: creator, iterableIid: iterableIid) as IMapView<K, V>;
-        case IntType.uint16:
-          return _IMapViewUint16Inspectable<V>.fromPtr(ptr,
-              creator: creator, iterableIid: iterableIid) as IMapView<K, V>;
-        case IntType.uint32:
-          return _IMapViewUint32Inspectable<V>.fromPtr(ptr,
-              creator: creator, iterableIid: iterableIid) as IMapView<K, V>;
-        case IntType.uint64:
-          return _IMapViewUint64Inspectable<V>.fromPtr(ptr,
-              creator: creator, iterableIid: iterableIid) as IMapView<K, V>;
-      }
+      final mapView = switch (intType) {
+        IntType.int16 => _IMapViewInt16Inspectable<V>.fromPtr(ptr,
+            creator: creator, iterableIid: iterableIid),
+        IntType.int32 => _IMapViewInt32Inspectable<V>.fromPtr(ptr,
+            creator: creator, iterableIid: iterableIid),
+        IntType.int64 => _IMapViewInt64Inspectable<V>.fromPtr(ptr,
+            creator: creator, iterableIid: iterableIid),
+        IntType.uint8 => _IMapViewUint8Inspectable<V>.fromPtr(ptr,
+            creator: creator, iterableIid: iterableIid),
+        IntType.uint16 => _IMapViewUint16Inspectable<V>.fromPtr(ptr,
+            creator: creator, iterableIid: iterableIid),
+        IntType.uint32 => _IMapViewUint32Inspectable<V>.fromPtr(ptr,
+            creator: creator, iterableIid: iterableIid),
+        IntType.uint64 => _IMapViewUint64Inspectable<V>.fromPtr(ptr,
+            creator: creator, iterableIid: iterableIid)
+      };
+      return mapView as IMapView<K, V>;
     }
 
     if (K == String) {

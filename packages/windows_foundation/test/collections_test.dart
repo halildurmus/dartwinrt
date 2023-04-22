@@ -1041,10 +1041,9 @@ void main() {
         ..append(Uri.parse('https://flutter.dev/development'));
       final list = vector.toList();
       expect(list.length, equals(3));
-      expect(list.elementAt(0), equals(Uri.parse('https://dart.dev/overview')));
-      expect(list.elementAt(1), equals(Uri.parse('https://dart.dev/docs')));
-      expect(list.elementAt(2),
-          equals(Uri.parse('https://flutter.dev/development')));
+      expect(list[0], equals(Uri.parse('https://dart.dev/overview')));
+      expect(list[1], equals(Uri.parse('https://dart.dev/docs')));
+      expect(list[2], equals(Uri.parse('https://flutter.dev/development')));
       expect(() => list..clear(), throwsUnsupportedError);
     });
 

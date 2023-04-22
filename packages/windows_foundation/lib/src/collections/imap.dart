@@ -138,29 +138,23 @@ abstract class IMap<K, V> extends IInspectable
     if (K == int && isSubtypeOfInspectable<V>()) {
       if (creator == null) throw ArgumentError.notNull('creator');
       if (intType == null) throw ArgumentError.notNull('intType');
-      switch (intType) {
-        case IntType.int16:
-          return _IMapInt16Inspectable<V>.fromPtr(ptr,
-              creator: creator, iterableIid: iterableIid) as IMap<K, V>;
-        case IntType.int32:
-          return _IMapInt32Inspectable<V>.fromPtr(ptr,
-              creator: creator, iterableIid: iterableIid) as IMap<K, V>;
-        case IntType.int64:
-          return _IMapInt64Inspectable<V>.fromPtr(ptr,
-              creator: creator, iterableIid: iterableIid) as IMap<K, V>;
-        case IntType.uint8:
-          return _IMapUint8Inspectable<V>.fromPtr(ptr,
-              creator: creator, iterableIid: iterableIid) as IMap<K, V>;
-        case IntType.uint16:
-          return _IMapUint16Inspectable<V>.fromPtr(ptr,
-              creator: creator, iterableIid: iterableIid) as IMap<K, V>;
-        case IntType.uint32:
-          return _IMapUint32Inspectable<V>.fromPtr(ptr,
-              creator: creator, iterableIid: iterableIid) as IMap<K, V>;
-        case IntType.uint64:
-          return _IMapUint64Inspectable<V>.fromPtr(ptr,
-              creator: creator, iterableIid: iterableIid) as IMap<K, V>;
-      }
+      final map = switch (intType) {
+        IntType.int16 => _IMapInt16Inspectable<V>.fromPtr(ptr,
+            creator: creator, iterableIid: iterableIid),
+        IntType.int32 => _IMapInt32Inspectable<V>.fromPtr(ptr,
+            creator: creator, iterableIid: iterableIid),
+        IntType.int64 => _IMapInt64Inspectable<V>.fromPtr(ptr,
+            creator: creator, iterableIid: iterableIid),
+        IntType.uint8 => _IMapUint8Inspectable<V>.fromPtr(ptr,
+            creator: creator, iterableIid: iterableIid),
+        IntType.uint16 => _IMapUint16Inspectable<V>.fromPtr(ptr,
+            creator: creator, iterableIid: iterableIid),
+        IntType.uint32 => _IMapUint32Inspectable<V>.fromPtr(ptr,
+            creator: creator, iterableIid: iterableIid),
+        IntType.uint64 => _IMapUint64Inspectable<V>.fromPtr(ptr,
+            creator: creator, iterableIid: iterableIid)
+      };
+      return map as IMap<K, V>;
     }
 
     if (K == String) {
