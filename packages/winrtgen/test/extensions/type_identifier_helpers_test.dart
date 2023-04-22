@@ -482,7 +482,7 @@ void main() {
       final typeDef = MetadataStore.getMetadataForType(
           'Windows.Foundation.Collections.StringMap')!;
       expect(
-          typeDef.interfaces.elementAt(0).typeSpec!.signature,
+          typeDef.interfaces.first.typeSpec!.signature,
           equals(
               'pinterface({3c2925fe-8519-45c1-aa79-197b6718c1c1};string;string)'));
     });
@@ -491,7 +491,7 @@ void main() {
       final typeDef = MetadataStore.getMetadataForType(
           'Windows.Media.MediaProperties.MediaPropertySet')!;
       expect(
-          typeDef.interfaces.elementAt(0).typeSpec!.signature,
+          typeDef.interfaces.first.typeSpec!.signature,
           equals(
               'pinterface({3c2925fe-8519-45c1-aa79-197b6718c1c1};g16;cinterface(IInspectable))'));
     });
@@ -500,7 +500,7 @@ void main() {
       final typeDef = MetadataStore.getMetadataForType(
           'Windows.Media.MediaProperties.MediaPropertySet')!;
       expect(
-          typeDef.interfaces.elementAt(1).typeSpec!.signature,
+          typeDef.interfaces[1].typeSpec!.signature,
           equals(
               'pinterface({faa585ea-6214-4217-afda-7f46de5869b3};pinterface({02b51929-c1c4-4a7e-8940-0312b5c18500};g16;cinterface(IInspectable)))'));
     });

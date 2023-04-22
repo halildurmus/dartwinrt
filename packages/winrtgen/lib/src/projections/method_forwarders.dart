@@ -56,9 +56,10 @@ class MethodForwardersProjection {
     final typeArgs = interface.typeSpec!.typeArgs;
     // Use the value (last) typeArg to parse the creator argument as it is not
     // required for the key (first) typeArg.
-    final typeArg = ['IMap', 'IMapView'].contains(shortInterfaceName)
-        ? typeArgs.last
-        : typeArgs.first;
+    final typeArg = switch (shortInterfaceName) {
+      'IMap' || 'IMapView' => typeArgs.last,
+      _ => typeArgs.first,
+    };
     final creator = typeArg.creator;
     if (creator == null) return null;
 
@@ -70,10 +71,10 @@ class MethodForwardersProjection {
 
   String? get iterableIidArgument {
     if (!isGenericInterface) return null;
-    if (['IMap', 'IMapView'].contains(shortInterfaceName)) {
+    if (shortInterfaceName case 'IMap' || 'IMapView') {
       final iid = iterableIidFromMapType(interface.typeSpec!);
       return 'iterableIid: ${quote(iid)}';
-    } else if (['IVector', 'IVectorView'].contains(shortInterfaceName)) {
+    } else if (shortInterfaceName case 'IVector' || 'IVectorView') {
       final iid = iterableIidFromVectorType(interface.typeSpec!);
       return 'iterableIid: ${quote(iid)}';
     }
@@ -82,7 +83,7 @@ class MethodForwardersProjection {
 
   String? get intTypeArgument {
     if (!isGenericInterface) return null;
-    if (['int', 'int?'].contains(typeArgs)) {
+    if (typeArgs case 'int' || 'int?') {
       final typeArgProjection = TypeProjection(interface.typeSpec!.typeArg!);
       return 'intType: IntType.${typeArgProjection.nativeType.toLowerCase()}';
     }
@@ -156,7 +157,7 @@ class MethodForwardersProjection {
         continue;
       }
 
-      if (['IVector', 'IVectorView'].contains(shortInterfaceName)) {
+      if (shortInterfaceName case 'IVector' || 'IVectorView') {
         // Use custom forwarder for Append to make its parameter non-nullable.
         if (methodProjection.name == 'Append') {
           methods.add(vectorAppendForwarder());
@@ -188,7 +189,7 @@ class MethodForwardersProjection {
       methods.add(defaultForwarder(methodProjection));
     }
 
-    if (['IMap', 'IMapView'].contains(shortInterfaceName)) {
+    if (shortInterfaceName case 'IMap' || 'IMapView') {
       methods.addAll([
         mapFirstForwarder(),
         mapToMapForwarder(),
@@ -196,7 +197,7 @@ class MethodForwardersProjection {
         if (shortInterfaceName == 'IMap')
           mapSubscriptAssignmentOperatorForwarder()
       ]);
-    } else if (['IVector', 'IVectorView'].contains(shortInterfaceName)) {
+    } else if (shortInterfaceName case 'IVector' || 'IVectorView') {
       methods.addAll([
         vectorFirstForwarder(),
         vectorToListForwarder(),

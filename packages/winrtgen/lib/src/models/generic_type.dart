@@ -5,7 +5,7 @@
 import 'type_arg.dart';
 
 /// Represents a WinRT generic type.
-abstract class GenericType {
+sealed class GenericType {
   const GenericType(this.fullyQualifiedType);
 
   final String fullyQualifiedType;
@@ -14,7 +14,7 @@ abstract class GenericType {
 /// Represents a WinRT generic type with one type argument (e.g.
 /// Windows.Foundation.IAsyncOperation`1).
 class GenericTypeWithOneTypeArg extends GenericType {
-  GenericTypeWithOneTypeArg(super.fullyQualifiedType, this.typeArgs);
+  const GenericTypeWithOneTypeArg(super.fullyQualifiedType, this.typeArgs);
 
   /// The type arguments for this generic type (e.g. `TypeArg.bool_`,
   /// `TypeArg.string`).
@@ -24,19 +24,10 @@ class GenericTypeWithOneTypeArg extends GenericType {
 /// Represents a WinRT generic type with two type arguments (e.g.
 /// Windows.Foundation.Collections.IMap`2).
 class GenericTypeWithTwoTypeArgs extends GenericType {
-  GenericTypeWithTwoTypeArgs(super.fullyQualifiedType, this.typeArgs);
+  const GenericTypeWithTwoTypeArgs(super.fullyQualifiedType, this.typeArgs);
 
-  // TODO: Change this to List<(TypeArg, TypeArg)> when Dart supports records.
   /// The type argument pairs for this generic type (e.g.
   /// `TypeArgPair(TypeArg.string, TypeArg.string)`,
   /// `TypeArgPair(TypeArg.string, TypeArg.nullableObject)`).
-  final List<TypeArgPair> typeArgs;
-}
-
-/// Represents a pair of type arguments.
-class TypeArgPair {
-  TypeArgPair(this.typeArg1, this.typeArg2);
-
-  final TypeArg typeArg1;
-  final TypeArg typeArg2;
+  final List<(TypeArg, TypeArg)> typeArgs;
 }

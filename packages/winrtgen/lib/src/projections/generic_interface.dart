@@ -111,20 +111,18 @@ class GenericInterfaceProjection extends InterfaceProjection {
   @override
   String get namedConstructor {
     final constructorArgs = <String>{
-      if (['IMap', 'IMapView', 'IVector', 'IVectorView'].contains(shortName))
+      if (shortName case 'IMap' || 'IMapView' || 'IVector' || 'IVectorView')
         'required super.iterableIid',
       if (typeArgs.length == 2) ...[
         if (typeArgs.first.isEnum) 'super.enumKeyCreator',
-        if (['IMap', 'IMapView', 'IVector', 'IVectorView']
-                .contains(shortName) &&
-            typeArgs.first.isInt)
+        if (shortName case 'IMap' || 'IMapView' || 'IVector' || 'IVectorView'
+            when typeArgs.first.isInt)
           'super.intType',
         if (typeArgs.last.isInspectable) 'super.creator',
         if (typeArgs.last.isEnum) 'super.enumCreator'
       ] else ...[
-        if (['IMap', 'IMapView', 'IVector', 'IVectorView']
-                .contains(shortName) &&
-            typeArgs.first.isInt)
+        if (shortName case 'IMap' || 'IMapView' || 'IVector' || 'IVectorView'
+            when typeArgs.first.isInt)
           'super.intType',
         if (typeArgs.first.isInspectable) 'super.creator',
         if (typeArgs.first.isEnum) 'super.enumCreator'

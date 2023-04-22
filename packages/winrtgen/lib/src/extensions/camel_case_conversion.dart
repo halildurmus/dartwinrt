@@ -2,6 +2,27 @@
 // details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
+extension CamelCaseConversion on String {
+  /// Converts this string to `camelCase`.
+  String toCamelCase() {
+    if (length == 0) return this;
+    if (length == 1) return toLowerCase();
+
+    // e.g. USD -> usd
+    if (_currencyCodes.contains(this)) return toLowerCase();
+
+    for (final acronym in _acronyms) {
+      if (startsWith(acronym)) {
+        // e.g. IPAddress -> ipAddress, UInt32 -> uint32
+        return acronym.toLowerCase() + substring(acronym.length);
+      }
+    }
+
+    // e.g. ICalendar -> iCalendar
+    return substring(0, 1).toLowerCase() + substring(1);
+  }
+}
+
 /// Acronyms that appear in various places in Windows Metadata.
 /// Used in generation script to comply with the Dart style guide.
 /// See https://dart.dev/guides/language/effective-dart/style#do-capitalize-acronyms-and-abbreviations-longer-than-two-letters-like-words
@@ -29,24 +50,3 @@ const _currencyCodes = <String>{
   'USD', 'UYU', 'UZS', 'VEF', 'VND', 'VUV', 'WST', 'XAF', 'XCD', 'XOF', //
   'XPF', 'XXX', 'YER', 'ZAR', 'ZMW', 'ZWL', 'BYN', 'SSP', 'STN', 'VES', 'MRU'
 };
-
-extension CamelCaseConversion on String {
-  /// Converts this string to `camelCase`.
-  String toCamelCase() {
-    if (length == 0) return this;
-    if (length == 1) return toLowerCase();
-
-    // e.g. USD -> usd
-    if (_currencyCodes.contains(this)) return toLowerCase();
-
-    for (final acronym in _acronyms) {
-      if (startsWith(acronym)) {
-        // e.g. IPAddress -> ipAddress, UInt32 -> uint32
-        return acronym.toLowerCase() + substring(acronym.length);
-      }
-    }
-
-    // e.g. ICalendar -> iCalendar
-    return substring(0, 1).toLowerCase() + substring(1);
-  }
-}

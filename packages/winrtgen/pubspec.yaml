@@ -21,7 +21,7 @@ dependencies:
   crypto: ^3.0.2
 
   # For formatting Dart code (APIs for performing dart format).
-  dart_style: ^2.2.4
+  dart_style: ^2.3.0
 
   # Foreign Function Interface extension methods
   ffi: ^2.0.1
@@ -35,7 +35,7 @@ dependencies:
   pool: ^1.5.1
 
   # For working with Windows Metadata (winmd) files
-  winmd: ^2.4.8
+  winmd: ^2.4.9
 
   win32:
     git:

@@ -65,7 +65,6 @@ void generateObjects(Map<String, String> types) {
     final projection = typeDef.isInterface
         ? InterfaceProjection(typeDef, comment: types[type] ?? '')
         : ClassProjection(typeDef, comment: types[type] ?? '');
-
     final fileName = stripGenerics(lastComponent(type)).toLowerCase();
     final path = '${relativeFolderPathFromType(type)}/$fileName.dart';
     final content = projection.toString();
@@ -77,15 +76,13 @@ void generateConcreteClassesForGenericInterfaces(
     List<GenericType> genericTypes) {
   for (final genericType in genericTypes) {
     final type = genericType.fullyQualifiedType;
-    final projections = <GenericInterfaceProjection>[
-      if (genericType is GenericTypeWithOneTypeArg)
-        for (final typeArg in genericType.typeArgs)
-          GenericInterfaceProjection.from(type, typeArg)
-      else if (genericType is GenericTypeWithTwoTypeArgs)
-        for (final args in genericType.typeArgs)
-          GenericInterfaceProjection.from(type, args.typeArg1, args.typeArg2)
-    ];
-
+    final projections = switch (genericType) {
+      final GenericTypeWithOneTypeArg genericType => genericType.typeArgs
+          .map((typeArg) => GenericInterfaceProjection.from(type, typeArg)),
+      final GenericTypeWithTwoTypeArgs genericType => genericType.typeArgs.map(
+          (typeArgs) =>
+              GenericInterfaceProjection.from(type, typeArgs.$1, typeArgs.$2)),
+    };
     final fileName = stripGenerics(lastComponent(type).toLowerCase());
     final path = '${relativeFolderPathFromType(type)}/${fileName}_part.dart';
     final content = [
@@ -114,7 +111,6 @@ void generateStructs(Map<String, String> structs) {
   for (final type in structs.keys) {
     final nativeStructProjection = NativeStructProjection.from(type);
     nativeStructProjections.add(nativeStructProjection);
-
     final structProjection =
         StructProjection.from(type, comment: structs[type] ?? '');
     final fileName = stripGenerics(lastComponent(type)).toLowerCase();
@@ -183,7 +179,7 @@ void main() {
   generateObjects(objectsToGenerate);
 
   print('Generating concrete classes for WinRT generic interfaces...');
-  generateConcreteClassesForGenericInterfaces(genericTypesWithTypeArgs);
+  generateConcreteClassesForGenericInterfaces(genericTypes);
 
   print('Generating WinRT enumerations...');
   final enumsToGenerate = loadMap('enums.json');

@@ -15,7 +15,7 @@ extension TypeIdentifierHelpers on TypeIdentifier {
   /// defined in this TypeIdentifier.
   String? get creator {
     final typeProjection = TypeProjection(this);
-    if ((typeProjection.isDartPrimitive && !typeProjection.isWinRTEnum) ||
+    if (typeProjection.isDartPrimitive ||
         typeProjection.isGuid ||
         typeProjection.isUri ||
         typeProjection.isWinRTStruct) {
@@ -76,9 +76,7 @@ extension TypeIdentifierHelpers on TypeIdentifier {
   /// Returns the type signature of this TypeIdentifier.
   String get signature {
     if (isGenericType) {
-      final signatures = <String>[
-        for (final typeArg in typeArgs) typeArg.signature
-      ];
+      final signatures = typeArgs.map((typeArg) => typeArg.signature);
       return 'pinterface(${type!.guid};${signatures.join(';')})';
     }
 
@@ -143,8 +141,8 @@ extension TypeIdentifierHelpers on TypeIdentifier {
     }
 
     return [
-      unwrapTypeIdentifiers(typeIdentifiersOfFirstArg),
-      unwrapTypeIdentifiers(typeIdentifiersOfSecondArg)
+      _unwrapTypeIdentifiers(typeIdentifiersOfFirstArg),
+      _unwrapTypeIdentifiers(typeIdentifiersOfSecondArg)
     ];
   }
 }
@@ -156,7 +154,7 @@ String _parseGenericTypeIdentifierCreator(TypeIdentifier typeIdentifier) {
   final typeArgs = typeIdentifier.typeArgs;
   final args = <String>['ptr'];
 
-  if (['IKeyValuePair', 'IMap', 'IMapView'].contains(shortName)) {
+  if (shortName case 'IKeyValuePair' || 'IMap' || 'IMapView') {
     // Handle enum key typeArg
     if (typeArgs.first.type?.isEnum ?? false) {
       final enumKeyCreator = typeArgs.first.creator;
@@ -164,8 +162,8 @@ String _parseGenericTypeIdentifierCreator(TypeIdentifier typeIdentifier) {
     }
 
     // Handle int key typeArg
-    if ([BaseType.int32Type, BaseType.uint32Type]
-        .contains(typeArgs.first.baseType)) {
+    if (typeArgs.first.baseType
+        case BaseType.int32Type || BaseType.uint32Type) {
       final typeProjection = TypeProjection(typeArgs.first);
       final intType = 'IntType.${typeProjection.nativeType.toLowerCase()}';
       args.add('intType: $intType');
@@ -174,9 +172,10 @@ String _parseGenericTypeIdentifierCreator(TypeIdentifier typeIdentifier) {
 
   // Use the value (last) typeArg to parse the creator argument since the
   // key (first) typeArg is handled above.
-  final typeArg = ['IKeyValuePair', 'IMap', 'IMapView'].contains(shortName)
-      ? typeArgs.last
-      : typeArgs.first;
+  final typeArg = switch (shortName) {
+    'IKeyValuePair' || 'IMap' || 'IMapView' => typeArgs.last,
+    _ => typeArgs.first,
+  };
   final creator = typeArg.creator;
   if (creator != null) {
     final typeArgIsEnum = typeArg.type?.isEnum ?? false;
@@ -184,10 +183,10 @@ String _parseGenericTypeIdentifierCreator(TypeIdentifier typeIdentifier) {
     args.add('$creatorParamName: $creator');
   }
 
-  if (['IVector', 'IVectorView'].contains(shortName)) {
+  if (shortName case 'IVector' || 'IVectorView') {
     final iid = iterableIidFromVectorType(typeIdentifier);
     args.add("iterableIid: ${quote(iid)}");
-  } else if (['IMap', 'IMapView'].contains(shortName)) {
+  } else if (shortName case 'IMap' || 'IMapView') {
     final iid = iterableIidFromMapType(typeIdentifier);
     args.add("iterableIid: ${quote(iid)}");
   } else if (shortName == 'IReference') {
@@ -212,15 +211,13 @@ String _parseGenericTypeIdentifierCreator(TypeIdentifier typeIdentifier) {
 
 String _parseTypeArgName(TypeIdentifier typeIdentifier) {
   final typeArg = typeIdentifier.shortName;
-  final typeArgIsCollection = typeIdentifier.type?.isCollectionObject ?? false;
-  final typeArgIsNullable =
-      // Collection interfaces cannot return null.
-      !typeArgIsCollection &&
-          // Primitive types cannot return null.
-          !['bool', 'double', 'int', 'String'].contains(typeArg) &&
-          // Value types (enums and structs) cannot return null.
-          !TypeProjection(typeIdentifier).isValueType;
-  return typeArgIsNullable ? nullable(typeArg) : typeArg;
+  // Collection interfaces cannot be null.
+  if (typeIdentifier.type?.isCollectionObject ?? false) return typeArg;
+  // Value types (enums and structs) cannot be null.
+  if (TypeProjection(typeIdentifier).isValueType) return typeArg;
+  // Primitive types cannot be null.
+  if (typeArg case 'bool' || 'double' || 'int' || 'String') return typeArg;
+  return nullable(typeArg);
 }
 
 /// Unpack a nested [typeIdentifier] into a single name.
@@ -229,29 +226,27 @@ String _parseGenericTypeIdentifierName(TypeIdentifier typeIdentifier) {
 
   // Handle generic types with two type parameters
   if (typeIdentifier.type?.genericParams.length == 2) {
-    final firstTypeArgIsPotentiallyNullable = [
-      'Windows.Foundation.AsyncOperationProgressHandler`2',
-      'Windows.Foundation.AsyncOperationWithProgressCompletedHandler`2',
-      'Windows.Foundation.IAsyncOperationWithProgress`2',
-    ].contains(typeIdentifier.type?.name);
-    final secondTypeArgIsPotentiallyNullable = [
-      'Windows.Foundation.Collections.IKeyValuePair`2',
-      'Windows.Foundation.Collections.IMap`2',
-      'Windows.Foundation.Collections.IMapView`2',
-      'Windows.Foundation.Collections.IObservableMap`2',
-      'Windows.Foundation.TypedEventHandler`2',
-    ].contains(typeIdentifier.type?.name);
     final typeArgs = typeIdentifier.typeArgs;
-    final firstTypeArg = firstTypeArgIsPotentiallyNullable
-        ? _parseTypeArgName(typeArgs.first)
-        : typeArgs.first.shortName;
-    final secondTypeArg = secondTypeArgIsPotentiallyNullable
-        ? _parseTypeArgName(typeArgs.last)
-        : typeArgs.last.shortName;
+    final firstTypeArg = switch (typeIdentifier.type?.name) {
+      'Windows.Foundation.AsyncOperationProgressHandler`2' ||
+      'Windows.Foundation.AsyncOperationWithProgressCompletedHandler`2' ||
+      'Windows.Foundation.IAsyncOperationWithProgress`2' =>
+        _parseTypeArgName(typeArgs.first),
+      _ => typeArgs.first.shortName,
+    };
+    final secondTypeArg = switch (typeIdentifier.type?.name) {
+      'Windows.Foundation.Collections.IKeyValuePair`2' ||
+      'Windows.Foundation.Collections.IMap`2' ||
+      'Windows.Foundation.Collections.IMapView`2' ||
+      'Windows.Foundation.Collections.IObservableMap`2' ||
+      'Windows.Foundation.TypedEventHandler`2' =>
+        _parseTypeArgName(typeArgs.last),
+      _ => typeArgs.last.shortName,
+    };
     return '$shortName<$firstTypeArg, $secondTypeArg>';
   }
 
-  // Handle generic types with single type parameter
+  // Handle generic types with one type parameter
   return switch (shortName) {
     'IAsyncOperation' =>
       'IAsyncOperation<${_parseTypeArgName(typeIdentifier.typeArg!)}>',
@@ -262,7 +257,7 @@ String _parseGenericTypeIdentifierName(TypeIdentifier typeIdentifier) {
 }
 
 /// Unwraps [typeIdentifiers] into a single TypeIdentifier
-TypeIdentifier unwrapTypeIdentifiers(List<TypeIdentifier> typeIdentifiers) {
+TypeIdentifier _unwrapTypeIdentifiers(List<TypeIdentifier> typeIdentifiers) {
   var type = typeIdentifiers.last;
   for (var idx = typeIdentifiers.length - 2; idx >= 0; idx--) {
     final newType = typeIdentifiers[idx].copyWith(typeArg: type);
