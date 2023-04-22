@@ -93,8 +93,11 @@ class TypeProjection {
 
   bool get isClassVariableType => typeIdentifier.isClassVariableType;
 
-  bool get isDartPrimitive =>
-      ['bool', 'double', 'int', 'void'].contains(dartType);
+  bool get isDartPrimitive => switch (dartType) {
+        'bool' || 'double' || 'void' => true,
+        'int' when !isWinRTEnum => true,
+        _ => false
+      };
 
   bool get isDateTime => typeIdentifier.name == 'Windows.Foundation.DateTime';
 

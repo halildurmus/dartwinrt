@@ -62,23 +62,30 @@ enum TypeArg {
               name, 'name', 'No enum value with that name'));
 
   /// Whether this is [TypeArg.winrtEnum] or [TypeArg.winrtFlagsEnum].
-  bool get isEnum => [TypeArg.winrtEnum, TypeArg.winrtFlagsEnum].contains(this);
+  bool get isEnum => switch (this) {
+        TypeArg.winrtEnum || TypeArg.winrtFlagsEnum => true,
+        _ => false
+      };
 
   /// Whether this is [TypeArg.int16], [TypeArg.int32], [TypeArg.int64],
   /// [TypeArg.uint8], [TypeArg.uint16], [TypeArg.uint32], or [TypeArg.uint64].
-  bool get isInt => [
-        TypeArg.int16,
-        TypeArg.int32,
-        TypeArg.int64,
-        TypeArg.uint8,
-        TypeArg.uint16,
-        TypeArg.uint32,
-        TypeArg.uint64
-      ].contains(this);
+  bool get isInt => switch (this) {
+        TypeArg.int16 ||
+        TypeArg.int32 ||
+        TypeArg.int64 ||
+        TypeArg.uint8 ||
+        TypeArg.uint16 ||
+        TypeArg.uint32 ||
+        TypeArg.uint64 =>
+          true,
+        _ => false
+      };
 
   /// Whether this is [TypeArg.inspectable] or [TypeArg.nullableInspectable].
-  bool get isInspectable =>
-      [TypeArg.inspectable, TypeArg.nullableInspectable].contains(this);
+  bool get isInspectable => switch (this) {
+        TypeArg.inspectable || TypeArg.nullableInspectable => true,
+        _ => false
+      };
 
   /// Returns the appropriate [TypeIdentifier] for this [TypeArg].
   TypeIdentifier get typeIdentifier => switch (this) {

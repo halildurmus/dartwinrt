@@ -97,7 +97,7 @@ void main() {
   test('shortName', () {
     expect(calendarTypeDef.shortName, equals('Calendar'));
     expect(mapViewTypeDef.shortName, equals('IMapView'));
-    expect(stringMapTypeDef.interfaces.elementAt(0).shortName,
+    expect(stringMapTypeDef.interfaces.first.shortName,
         equals('IMap<String, String>'));
   });
 

@@ -13,7 +13,6 @@ extension ImportHelpers on InterfaceProjection {
   String? importForTypeDef(TypeDef typeDef) {
     final type = typeDef.fullyQualifiedName;
     if (name == type || ignoredTypesInImports.contains(type)) return null;
-
     if (typeDef.isDelegate) return null;
 
     // If the type is in another package, return package import for that package

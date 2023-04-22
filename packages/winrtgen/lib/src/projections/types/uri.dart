@@ -16,10 +16,13 @@ import 'default.dart';
 ///
 /// Used to determine whether the method return type or parameter should be
 /// exposed as WinRT `Uri` or dart:core's `Uri`.
-bool _methodBelongsToUriRuntimeClass(Method method) => [
-      'Windows.Foundation.IUriRuntimeClass',
-      'Windows.Foundation.IUriRuntimeClassFactory'
-    ].contains(method.parent.name);
+bool _methodBelongsToUriRuntimeClass(Method method) =>
+    switch (method.parent.name) {
+      'Windows.Foundation.IUriRuntimeClass' ||
+      'Windows.Foundation.IUriRuntimeClassFactory' =>
+        true,
+      _ => false
+    };
 
 mixin _UriMixin on MethodProjection {
   @override

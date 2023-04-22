@@ -78,7 +78,7 @@ String iidFromSignature(String signature) {
 /// Returns the `IIterable<IKeyValuePair<K, V>>` IID for the given `IMap` or
 /// `IMapView` [typeIdentifier].
 String iterableIidFromMapType(TypeIdentifier typeIdentifier) {
-  if (!['IMap', 'IMapView'].contains(outerType(typeIdentifier.shortName))) {
+  if (outerType(typeIdentifier.shortName) case != 'IMap' && != 'IMapView') {
     throw ArgumentError("Expected an 'IMap' or 'IMapView' type identifier.");
   }
 
@@ -94,8 +94,8 @@ String iterableIidFromMapType(TypeIdentifier typeIdentifier) {
 /// Returns the `IIterable<T>` IID for the given `IVector` or `IVectorView`
 /// [typeIdentifier].
 String iterableIidFromVectorType(TypeIdentifier typeIdentifier) {
-  if (!['IVector', 'IVectorView']
-      .contains(outerType(typeIdentifier.shortName))) {
+  if (outerType(typeIdentifier.shortName)
+      case != 'IVector' && != 'IVectorView') {
     throw ArgumentError(
         "Expected an 'IVector' or 'IVectorView' type identifier.");
   }

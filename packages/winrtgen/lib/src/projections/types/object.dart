@@ -25,9 +25,10 @@ mixin _ObjectMixin on MethodProjection {
       // interface to be returned instead of the underlying value (except for
       // 'CreateEmpty' and 'CreateInspectable' methods).
       if (isMethodFromPropertyValueStatics) {
-        return ['CreateEmpty', 'CreateInspectable'].contains(method.name)
-            ? 'Pointer<COMObject>'
-            : 'IPropertyValue';
+        return switch (method.name) {
+          'CreateEmpty' || 'CreateInspectable' => 'Pointer<COMObject>',
+          _ => 'IPropertyValue'
+        };
       }
 
       return 'Object?';
@@ -75,9 +76,10 @@ mixin _ObjectMixin on MethodProjection {
   String get returnStatement {
     if (returnTypeProjection.isObjectType) {
       if (isMethodFromPropertyValueStatics) {
-        return ['CreateEmpty', 'CreateInspectable'].contains(method.name)
-            ? 'return retValuePtr;'
-            : 'return IPropertyValue.fromPtr(retValuePtr);';
+        return switch (method.name) {
+          'CreateEmpty' || 'CreateInspectable' => 'return retValuePtr;',
+          _ => 'return IPropertyValue.fromPtr(retValuePtr);'
+        };
       }
 
       return 'return IPropertyValue.fromPtr(retValuePtr).value;';
