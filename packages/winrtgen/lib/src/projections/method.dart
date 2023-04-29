@@ -4,6 +4,7 @@
 
 import 'package:winmd/winmd.dart';
 
+import '../exception/exception.dart';
 import '../models/models.dart';
 import '../utilities/utilities.dart';
 import 'getter.dart';
@@ -116,7 +117,9 @@ abstract class MethodProjection {
     final interfaceProjection = InterfaceProjection.from(fullyQualifiedType);
     final methodProjections = interfaceProjection.methodProjections
         .where((methodProjection) => methodProjection.name == methodName);
-    if (methodProjections.isEmpty) throw Exception("Can't find $methodName");
+    if (methodProjections.isEmpty) {
+      throw WinRTGenException("Can't find $methodName");
+    }
     return methodProjections.first;
   }
 

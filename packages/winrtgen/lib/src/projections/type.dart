@@ -157,12 +157,13 @@ class TypeProjection {
   TypeTuple unwrapEnum() {
     final fieldType = typeIdentifier.type?.findField('value__')?.typeIdentifier;
     if (fieldType == null) {
-      throw Exception('Enum $typeIdentifier is missing value__ field');
+      throw WinRTGenException('Enum $typeIdentifier is missing value__ field');
     }
 
     final typeTuple = baseNativeMapping[fieldType.baseType];
     if (typeTuple == null) {
-      throw Exception('Enum $typeIdentifier has unsupported underlying type');
+      throw WinRTGenException(
+          'Enum $typeIdentifier has unsupported underlying type');
     }
 
     return typeTuple;
@@ -194,7 +195,8 @@ class TypeProjection {
           'Pointer<${unwrapSimpleArrayType(typeArg).dartType}>'),
       BaseType.uint32Type =>
         const TypeTuple('Pointer<Uint32>', 'Pointer<Uint32>'),
-      _ => throw Exception('Could not unwrap reference type of $typeIdentifier')
+      _ => throw WinRTGenException(
+          'Could not unwrap reference type of $typeIdentifier')
     };
   }
 
@@ -213,7 +215,7 @@ class TypeProjection {
   TypeTuple unwrapStruct() {
     final structType = typeIdentifier.type;
     if (structType == null) {
-      throw Exception('Struct type missing for $typeIdentifier.');
+      throw WinRTGenException('Struct type missing for $typeIdentifier.');
     }
 
     final structName = 'Native${structType.shortName}';
@@ -277,7 +279,7 @@ class TypeProjection {
     // Handle generic type argument (e.g. TypeArg.inspectable)
     if (isClassVariableType) return unwrapGenericTypeArg();
 
-    throw Exception('Type information missing for $typeIdentifier.');
+    throw WinRTGenException('Type information missing for $typeIdentifier.');
   }
 
   @override
