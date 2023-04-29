@@ -6,7 +6,6 @@
 
 import 'package:test/test.dart';
 import 'package:win32/win32.dart';
-import 'package:winmd/winmd.dart';
 import 'package:winrtgen/winrtgen.dart';
 
 void main() {
@@ -15,14 +14,12 @@ void main() {
     return;
   }
 
-  final calendarTypeDef =
-      MetadataStore.getMetadataForType('Windows.Globalization.Calendar')!;
-  final jsonObjectTypeDef =
-      MetadataStore.getMetadataForType('Windows.Data.Json.JsonObject')!;
-  final mapViewTypeDef = MetadataStore.getMetadataForType(
-      'Windows.Foundation.Collections.IMapView`2')!;
-  final stringMapTypeDef = MetadataStore.getMetadataForType(
-      'Windows.Foundation.Collections.StringMap')!;
+  final calendarTypeDef = getMetadataForType('Windows.Globalization.Calendar');
+  final jsonObjectTypeDef = getMetadataForType('Windows.Data.Json.JsonObject');
+  final mapViewTypeDef =
+      getMetadataForType('Windows.Foundation.Collections.IMapView`2');
+  final stringMapTypeDef =
+      getMetadataForType('Windows.Foundation.Collections.StringMap');
 
   test('fullyQualifiedName', () {
     expect(calendarTypeDef.fullyQualifiedName,
@@ -43,15 +40,15 @@ void main() {
     });
 
     test('returns the IID of IObservableMap<String, Object>', () {
-      final typeDef = MetadataStore.getMetadataForType(
-          'Windows.Foundation.Collections.IPropertySet')!;
+      final typeDef =
+          getMetadataForType('Windows.Foundation.Collections.IPropertySet');
       expect(typeDef.interfaces[0].iid,
           equals('{236aac9d-fb12-5c4d-a41c-9e445fb4d7ec}'));
     });
 
     test('returns the IID of IMap<Guid, Object>', () {
-      final typeDef = MetadataStore.getMetadataForType(
-          'Windows.Media.MediaProperties.MediaPropertySet')!;
+      final typeDef =
+          getMetadataForType('Windows.Media.MediaProperties.MediaPropertySet');
       expect(typeDef.interfaces[0].iid,
           equals('{5ee3189c-7dbf-5998-ad07-5414fb82567c}'));
     });
@@ -74,10 +71,10 @@ void main() {
   });
 
   test('isFactoryInterface', () {
-    final typeDef1 = MetadataStore.getMetadataForType(
-        'Windows.Globalization.ICalendarFactory')!;
-    final typeDef2 = MetadataStore.getMetadataForType(
-        'Windows.Globalization.ICalendarFactory2')!;
+    final typeDef1 =
+        getMetadataForType('Windows.Globalization.ICalendarFactory');
+    final typeDef2 =
+        getMetadataForType('Windows.Globalization.ICalendarFactory2');
     expect(typeDef1.isFactoryInterface, isTrue);
     expect(typeDef2.isFactoryInterface, isTrue);
   });
@@ -103,8 +100,7 @@ void main() {
 
   group('signature', () {
     test('returns the signature of IAsyncAction', () {
-      final typeDef =
-          MetadataStore.getMetadataForType('Windows.Foundation.IAsyncAction')!;
+      final typeDef = getMetadataForType('Windows.Foundation.IAsyncAction');
       expect(
           typeDef.signature, equals('{5a648006-843a-4da9-865b-9d26e5dfad7b}'));
     });

@@ -16,20 +16,23 @@ void main() async {
         ' - Let apps access your location\n'
         ' - Let desktop apps access your location\n\n'
         'Then try this example again.');
-  } else {
-    final locator = Geolocator()..allowFallbackToConsentlessPositions();
-    final location = await locator.getGeopositionAsync();
+    return;
+  }
 
-    if (location != null) {
-      final coordinate = location.coordinate!;
-      print('Current location: (${coordinate.point?.position.latitude}, '
-          '${coordinate.point?.position.longitude})');
-      print('Location accuracy: ±${coordinate.accuracy} meters');
-      print('Current heading: ${coordinate.heading ?? 'N/A'}');
-      final positionSource = coordinate.positionSource;
-      print('Position source: ${positionSource.name}');
+  final locator = Geolocator()..allowFallbackToConsentlessPositions();
+  final location = await locator.getGeopositionAsync();
+  if (location?.coordinate case final coordinate?) {
+    final position = coordinate.point?.position;
+    if (position case BasicGeoposition(:final latitude, :final longitude)) {
+      print('Current location: ($latitude, $longitude)');
     } else {
-      print('No location received.');
+      print('Current location: N/A');
     }
+    print('Location accuracy: ±${coordinate.accuracy} meters');
+    print('Current heading: ${coordinate.heading ?? 'N/A'}');
+    final positionSource = coordinate.positionSource;
+    print('Position source: ${positionSource.name}');
+  } else {
+    print('No location received.');
   }
 }

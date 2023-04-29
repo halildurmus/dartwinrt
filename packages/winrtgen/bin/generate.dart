@@ -6,7 +6,6 @@ import 'dart:collection';
 import 'dart:io';
 
 import 'package:dart_style/dart_style.dart';
-import 'package:winmd/winmd.dart';
 import 'package:winrtgen/winrtgen.dart';
 
 /// Creates a file at the given [path] and writes the formatted [content] to it.
@@ -32,8 +31,7 @@ void generateObjects(Map<String, String> types) {
   // dependencies
   final typesAndDependencies = <String>{};
   for (final type in types.keys) {
-    final typeDef = MetadataStore.getMetadataForType(type);
-    if (typeDef == null) throw Exception("Can't find $type");
+    final typeDef = getMetadataForType(type);
     final projection = typeDef.isInterface
         ? InterfaceProjection(typeDef)
         : ClassProjection(typeDef);
@@ -60,11 +58,11 @@ void generateObjects(Map<String, String> types) {
 
   // Generate the type projection for each type
   for (final type in typesAndDependencies) {
-    final typeDef = MetadataStore.getMetadataForType(type);
-    if (typeDef == null) throw Exception("Can't find $type");
+    final typeDef = getMetadataForType(type);
+    final comment = types[type] ?? '';
     final projection = typeDef.isInterface
-        ? InterfaceProjection(typeDef, comment: types[type] ?? '')
-        : ClassProjection(typeDef, comment: types[type] ?? '');
+        ? InterfaceProjection(typeDef, comment: comment)
+        : ClassProjection(typeDef, comment: comment);
     final fileName = stripGenerics(lastComponent(type)).toLowerCase();
     final path = '${relativeFolderPathFromType(type)}/$fileName.dart';
     final content = projection.toString();
@@ -77,11 +75,10 @@ void generateConcreteClassesForGenericInterfaces(
   for (final genericType in genericTypes) {
     final type = genericType.fullyQualifiedType;
     final projections = switch (genericType) {
-      final GenericTypeWithOneTypeArg genericType => genericType.typeArgs
+      GenericTypeWithOneTypeArg(:final typeArgs) => typeArgs
           .map((typeArg) => GenericInterfaceProjection.from(type, typeArg)),
-      final GenericTypeWithTwoTypeArgs genericType => genericType.typeArgs.map(
-          (typeArgs) =>
-              GenericInterfaceProjection.from(type, typeArgs.$1, typeArgs.$2)),
+      GenericTypeWithTwoTypeArgs(:final typeArgs) => typeArgs.map((typeArgs) =>
+          GenericInterfaceProjection.from(type, typeArgs.$1, typeArgs.$2)),
     };
     final fileName = stripGenerics(lastComponent(type).toLowerCase());
     final path = '${relativeFolderPathFromType(type)}/${fileName}_part.dart';
@@ -152,10 +149,10 @@ void generatePackageExports() {
         continue;
       }
 
-      // Skip factory and statics files
-      final factoryOrStaticsFilePattern =
+      final factoryOrStaticsFileRegExp =
           RegExp(r'\w+(factory\d{0,2}|statics\d{0,2})\.dart');
-      if (factoryOrStaticsFilePattern.hasMatch(fileName)) continue;
+      // Skip factory and statics files
+      if (factoryOrStaticsFileRegExp.hasMatch(fileName)) continue;
 
       // e.g. ..\windows_data\lib\src\json\jsonvalue.dart -> json/jsonvalue.dart
       final filePath =

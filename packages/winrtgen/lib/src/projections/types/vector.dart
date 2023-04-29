@@ -4,8 +4,7 @@
 
 import 'package:winmd/winmd.dart';
 
-import '../../extensions/extensions.dart';
-import '../../utils.dart';
+import '../../utilities/utilities.dart';
 import '../getter.dart';
 import '../method.dart';
 import '../type.dart';
@@ -21,13 +20,13 @@ mixin _VectorMixin on MethodProjection {
   /// `IVectorView`.
   String get vectorConstructorArgs {
     final typeProjection =
-        TypeProjection(returnTypeProjection.typeIdentifier.typeArg!);
+        TypeProjection(returnTypeProjection.typeIdentifier.typeArgs.first);
 
     // If the type argument is an enum or a WinRT object (e.g. StorageFile), the
     // constructor of that class must be passed in the 'enumCreator' parameter
     // for enums, 'creator' parameter for WinRT objects so that the IVector and
     // IVectorView implementations can instantiate the object
-    final creator = returnTypeProjection.typeIdentifier.typeArg!.creator;
+    final creator = returnTypeProjection.typeIdentifier.typeArgs.first.creator;
 
     // The IID for IIterable<T> must be passed in the 'iterableIid' parameter so
     // that the IVector and IVectorView implementations can use the correct IID

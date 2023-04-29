@@ -142,7 +142,9 @@ class _IIteratorGuid extends IIterator<Guid> {
 }
 
 class _IIteratorInspectable<T> extends IIterator<T> {
-  _IIteratorInspectable.fromPtr(super.ptr, {super.creator});
+  _IIteratorInspectable.fromPtr(super.ptr, {required this.creator});
+
+  final T Function(Pointer<COMObject>) creator;
 
   @override
   T get current {
@@ -165,7 +167,7 @@ class _IIteratorInspectable<T> extends IIterator<T> {
       throw WindowsException(hr);
     }
 
-    return _creator!(retValuePtr);
+    return creator(retValuePtr);
   }
 
   @override
@@ -192,7 +194,7 @@ class _IIteratorInspectable<T> extends IIterator<T> {
           ptr.ref.lpVtbl, valueSize, pArray, retValuePtr);
 
       if (retValuePtr.value > 0) {
-        value.addAll(pArray.toList(_creator!, length: retValuePtr.value));
+        value.addAll(pArray.toList(creator, length: retValuePtr.value));
       }
       free(pArray);
 
@@ -792,7 +794,9 @@ class _IIteratorUri extends IIterator<Uri> {
 }
 
 class _IIteratorWinRTEnum<T> extends IIterator<T> {
-  _IIteratorWinRTEnum.fromPtr(super.ptr, {super.enumCreator});
+  _IIteratorWinRTEnum.fromPtr(super.ptr, {required this.enumCreator});
+
+  final T Function(int) enumCreator;
 
   @override
   T get current {
@@ -813,7 +817,7 @@ class _IIteratorWinRTEnum<T> extends IIterator<T> {
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return _enumCreator!(retValuePtr.value);
+      return enumCreator(retValuePtr.value);
     } finally {
       free(retValuePtr);
     }
@@ -843,8 +847,7 @@ class _IIteratorWinRTEnum<T> extends IIterator<T> {
           ptr.ref.lpVtbl, valueSize, pArray, retValuePtr);
 
       if (retValuePtr.value > 0) {
-        value.addAll(
-            pArray.toList(length: retValuePtr.value).map(_enumCreator!));
+        value.addAll(pArray.toList(length: retValuePtr.value).map(enumCreator));
       }
       free(pArray);
 
@@ -858,7 +861,9 @@ class _IIteratorWinRTEnum<T> extends IIterator<T> {
 }
 
 class _IIteratorWinRTFlagsEnum<T> extends IIterator<T> {
-  _IIteratorWinRTFlagsEnum.fromPtr(super.ptr, {super.enumCreator});
+  _IIteratorWinRTFlagsEnum.fromPtr(super.ptr, {required this.enumCreator});
+
+  final T Function(int) enumCreator;
 
   @override
   T get current {
@@ -879,7 +884,7 @@ class _IIteratorWinRTFlagsEnum<T> extends IIterator<T> {
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return _enumCreator!(retValuePtr.value);
+      return enumCreator(retValuePtr.value);
     } finally {
       free(retValuePtr);
     }
@@ -909,8 +914,7 @@ class _IIteratorWinRTFlagsEnum<T> extends IIterator<T> {
           ptr.ref.lpVtbl, valueSize, pArray, retValuePtr);
 
       if (retValuePtr.value > 0) {
-        value.addAll(
-            pArray.toList(length: retValuePtr.value).map(_enumCreator!));
+        value.addAll(pArray.toList(length: retValuePtr.value).map(enumCreator));
       }
       free(pArray);
 

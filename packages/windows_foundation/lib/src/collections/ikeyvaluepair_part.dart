@@ -10,7 +10,9 @@
 part of 'ikeyvaluepair.dart';
 
 class _IKeyValuePairGuidInspectable<V> extends IKeyValuePair<Guid, V> {
-  _IKeyValuePairGuidInspectable.fromPtr(super.ptr, {super.creator});
+  _IKeyValuePairGuidInspectable.fromPtr(super.ptr, {required this.creator});
+
+  final V Function(Pointer<COMObject>) creator;
 
   @override
   Guid get key {
@@ -63,7 +65,7 @@ class _IKeyValuePairGuidInspectable<V> extends IKeyValuePair<Guid, V> {
       return null as V;
     }
 
-    return _creator!(retValuePtr);
+    return creator(retValuePtr);
   }
 }
 
@@ -126,7 +128,9 @@ class _IKeyValuePairGuidObject extends IKeyValuePair<Guid, Object?> {
 }
 
 class _IKeyValuePairInt16Inspectable<V> extends IKeyValuePair<int, V> {
-  _IKeyValuePairInt16Inspectable.fromPtr(super.ptr, {super.creator});
+  _IKeyValuePairInt16Inspectable.fromPtr(super.ptr, {required this.creator});
+
+  final V Function(Pointer<COMObject>) creator;
 
   @override
   int get key {
@@ -179,12 +183,14 @@ class _IKeyValuePairInt16Inspectable<V> extends IKeyValuePair<int, V> {
       return null as V;
     }
 
-    return _creator!(retValuePtr);
+    return creator(retValuePtr);
   }
 }
 
 class _IKeyValuePairInt32Inspectable<V> extends IKeyValuePair<int, V> {
-  _IKeyValuePairInt32Inspectable.fromPtr(super.ptr, {super.creator});
+  _IKeyValuePairInt32Inspectable.fromPtr(super.ptr, {required this.creator});
+
+  final V Function(Pointer<COMObject>) creator;
 
   @override
   int get key {
@@ -237,12 +243,14 @@ class _IKeyValuePairInt32Inspectable<V> extends IKeyValuePair<int, V> {
       return null as V;
     }
 
-    return _creator!(retValuePtr);
+    return creator(retValuePtr);
   }
 }
 
 class _IKeyValuePairInt64Inspectable<V> extends IKeyValuePair<int, V> {
-  _IKeyValuePairInt64Inspectable.fromPtr(super.ptr, {super.creator});
+  _IKeyValuePairInt64Inspectable.fromPtr(super.ptr, {required this.creator});
+
+  final V Function(Pointer<COMObject>) creator;
 
   @override
   int get key {
@@ -295,12 +303,14 @@ class _IKeyValuePairInt64Inspectable<V> extends IKeyValuePair<int, V> {
       return null as V;
     }
 
-    return _creator!(retValuePtr);
+    return creator(retValuePtr);
   }
 }
 
 class _IKeyValuePairStringInspectable<V> extends IKeyValuePair<String, V> {
-  _IKeyValuePairStringInspectable.fromPtr(super.ptr, {super.creator});
+  _IKeyValuePairStringInspectable.fromPtr(super.ptr, {required this.creator});
+
+  final V Function(Pointer<COMObject>) creator;
 
   @override
   String get key {
@@ -354,7 +364,7 @@ class _IKeyValuePairStringInspectable<V> extends IKeyValuePair<String, V> {
       return null as V;
     }
 
-    return _creator!(retValuePtr);
+    return creator(retValuePtr);
   }
 }
 
@@ -474,7 +484,9 @@ class _IKeyValuePairStringString extends IKeyValuePair<String, String> {
 }
 
 class _IKeyValuePairStringWinRTEnum<V> extends IKeyValuePair<String, V> {
-  _IKeyValuePairStringWinRTEnum.fromPtr(super.ptr, {super.enumCreator});
+  _IKeyValuePairStringWinRTEnum.fromPtr(super.ptr, {required this.enumCreator});
+
+  final V Function(int) enumCreator;
 
   @override
   String get key {
@@ -521,7 +533,7 @@ class _IKeyValuePairStringWinRTEnum<V> extends IKeyValuePair<String, V> {
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return _enumCreator!(retValuePtr.value);
+      return enumCreator(retValuePtr.value);
     } finally {
       free(retValuePtr);
     }
@@ -529,7 +541,10 @@ class _IKeyValuePairStringWinRTEnum<V> extends IKeyValuePair<String, V> {
 }
 
 class _IKeyValuePairStringWinRTFlagsEnum<V> extends IKeyValuePair<String, V> {
-  _IKeyValuePairStringWinRTFlagsEnum.fromPtr(super.ptr, {super.enumCreator});
+  _IKeyValuePairStringWinRTFlagsEnum.fromPtr(super.ptr,
+      {required this.enumCreator});
+
+  final V Function(int) enumCreator;
 
   @override
   String get key {
@@ -576,7 +591,7 @@ class _IKeyValuePairStringWinRTFlagsEnum<V> extends IKeyValuePair<String, V> {
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return _enumCreator!(retValuePtr.value);
+      return enumCreator(retValuePtr.value);
     } finally {
       free(retValuePtr);
     }
@@ -584,7 +599,9 @@ class _IKeyValuePairStringWinRTFlagsEnum<V> extends IKeyValuePair<String, V> {
 }
 
 class _IKeyValuePairUint8Inspectable<V> extends IKeyValuePair<int, V> {
-  _IKeyValuePairUint8Inspectable.fromPtr(super.ptr, {super.creator});
+  _IKeyValuePairUint8Inspectable.fromPtr(super.ptr, {required this.creator});
+
+  final V Function(Pointer<COMObject>) creator;
 
   @override
   int get key {
@@ -637,12 +654,14 @@ class _IKeyValuePairUint8Inspectable<V> extends IKeyValuePair<int, V> {
       return null as V;
     }
 
-    return _creator!(retValuePtr);
+    return creator(retValuePtr);
   }
 }
 
 class _IKeyValuePairUint16Inspectable<V> extends IKeyValuePair<int, V> {
-  _IKeyValuePairUint16Inspectable.fromPtr(super.ptr, {super.creator});
+  _IKeyValuePairUint16Inspectable.fromPtr(super.ptr, {required this.creator});
+
+  final V Function(Pointer<COMObject>) creator;
 
   @override
   int get key {
@@ -695,12 +714,14 @@ class _IKeyValuePairUint16Inspectable<V> extends IKeyValuePair<int, V> {
       return null as V;
     }
 
-    return _creator!(retValuePtr);
+    return creator(retValuePtr);
   }
 }
 
 class _IKeyValuePairUint32Inspectable<V> extends IKeyValuePair<int, V> {
-  _IKeyValuePairUint32Inspectable.fromPtr(super.ptr, {super.creator});
+  _IKeyValuePairUint32Inspectable.fromPtr(super.ptr, {required this.creator});
+
+  final V Function(Pointer<COMObject>) creator;
 
   @override
   int get key {
@@ -753,12 +774,14 @@ class _IKeyValuePairUint32Inspectable<V> extends IKeyValuePair<int, V> {
       return null as V;
     }
 
-    return _creator!(retValuePtr);
+    return creator(retValuePtr);
   }
 }
 
 class _IKeyValuePairUint64Inspectable<V> extends IKeyValuePair<int, V> {
-  _IKeyValuePairUint64Inspectable.fromPtr(super.ptr, {super.creator});
+  _IKeyValuePairUint64Inspectable.fromPtr(super.ptr, {required this.creator});
+
+  final V Function(Pointer<COMObject>) creator;
 
   @override
   int get key {
@@ -811,13 +834,16 @@ class _IKeyValuePairUint64Inspectable<V> extends IKeyValuePair<int, V> {
       return null as V;
     }
 
-    return _creator!(retValuePtr);
+    return creator(retValuePtr);
   }
 }
 
 class _IKeyValuePairWinRTEnumInspectable<K, V> extends IKeyValuePair<K, V> {
   _IKeyValuePairWinRTEnumInspectable.fromPtr(super.ptr,
-      {super.enumKeyCreator, super.creator});
+      {required this.enumKeyCreator, required this.creator});
+
+  final K Function(int) enumKeyCreator;
+  final V Function(Pointer<COMObject>) creator;
 
   @override
   K get key {
@@ -838,7 +864,7 @@ class _IKeyValuePairWinRTEnumInspectable<K, V> extends IKeyValuePair<K, V> {
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return _enumKeyCreator!(retValuePtr.value);
+      return enumKeyCreator(retValuePtr.value);
     } finally {
       free(retValuePtr);
     }
@@ -870,14 +896,17 @@ class _IKeyValuePairWinRTEnumInspectable<K, V> extends IKeyValuePair<K, V> {
       return null as V;
     }
 
-    return _creator!(retValuePtr);
+    return creator(retValuePtr);
   }
 }
 
 class _IKeyValuePairWinRTFlagsEnumInspectable<K, V>
     extends IKeyValuePair<K, V> {
   _IKeyValuePairWinRTFlagsEnumInspectable.fromPtr(super.ptr,
-      {super.enumKeyCreator, super.creator});
+      {required this.enumKeyCreator, required this.creator});
+
+  final K Function(int) enumKeyCreator;
+  final V Function(Pointer<COMObject>) creator;
 
   @override
   K get key {
@@ -898,7 +927,7 @@ class _IKeyValuePairWinRTFlagsEnumInspectable<K, V>
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return _enumKeyCreator!(retValuePtr.value);
+      return enumKeyCreator(retValuePtr.value);
     } finally {
       free(retValuePtr);
     }
@@ -930,6 +959,6 @@ class _IKeyValuePairWinRTFlagsEnumInspectable<K, V>
       return null as V;
     }
 
-    return _creator!(retValuePtr);
+    return creator(retValuePtr);
   }
 }

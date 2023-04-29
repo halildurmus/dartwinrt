@@ -20,15 +20,7 @@ part 'iasyncoperation_part.dart';
 abstract class IAsyncOperation<TResult> extends IInspectable
     implements IAsyncInfo {
   // vtable begins at 6, is 3 entries long.
-  IAsyncOperation(
-    super.ptr, {
-    TResult Function(Pointer<COMObject>)? creator,
-    TResult Function(int)? enumCreator,
-  })  : _creator = creator,
-        _enumCreator = enumCreator;
-
-  final TResult Function(Pointer<COMObject>)? _creator;
-  final TResult Function(int)? _enumCreator;
+  IAsyncOperation(super.ptr);
 
   /// Creates an instance of [IAsyncOperation] from the given `ptr`.
   ///

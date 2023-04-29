@@ -4,15 +4,18 @@
 
 import 'package:winmd/winmd.dart';
 
-import '../utils.dart';
+import '../../exception/exception.dart';
+import '../helpers.dart';
 import 'type_identifier_helpers.dart';
 
 extension TypeDefHelpers on TypeDef {
   /// Returns the fully-qualified type name of the type defined in this
   /// TypeDef (e.g. `Windows.Foundation.Calendar`,
   /// Windows.Foundation.IReference`1).
-  String get fullyQualifiedName =>
-      typeSpec?.isGenericType ?? false ? typeSpec!.type!.name : name;
+  String get fullyQualifiedName {
+    if (typeSpec?.type case final type?) return type.name;
+    return name;
+  }
 
   /// Returns the IID of the type defined in this TypeDef.
   String get iid => iidFromSignature(signature);
@@ -40,19 +43,22 @@ extension TypeDefHelpers on TypeDef {
 
   /// Returns the shorter name of the type defined in this TypeDef (e.g.
   /// `ICalendar`, `IVector` , `IMap<String, String>`).
-  String get shortName => typeSpec?.isGenericType ?? false
-      ? typeSpec!.shortName
-      : stripGenerics(lastComponent(name));
+  String get shortName {
+    if (typeSpec case final typeSpec?) return typeSpec.shortName;
+    return stripGenerics(lastComponent(name));
+  }
 
   /// Returns the type signature of this TypeDef.
   String get signature {
-    if (typeSpec != null) return typeSpec!.signature;
+    if (typeSpec case final typeSpec?) return typeSpec.signature;
 
     if (isClass) {
+      assert(interfaces.isNotEmpty);
       final defaultInterfaceSignature = interfaces.first.signature;
       return 'rc($name;$defaultInterfaceSignature)';
     }
 
-    return guid!;
+    if (guid case final guid?) return guid;
+    throw WinRTGenException('TypeDef $name has no Guid');
   }
 }

@@ -4,8 +4,8 @@
 
 import 'package:winmd/winmd.dart';
 
-import '../../extensions/extensions.dart';
-import '../../utils.dart';
+import '../../exception/exception.dart';
+import '../../utilities/utilities.dart';
 import '../method.dart';
 import '../type.dart';
 
@@ -36,12 +36,12 @@ mixin _AsyncOperationMixin on MethodProjection {
 
   TypeIdentifier get typeIdentifier {
     if (isSubtypeOfAsyncOperation) {
-      final typeDef = MetadataStore.getMetadataForType(
-          returnTypeProjection.typeIdentifier.name)!;
-      return typeDef.interfaces
-          .firstWhere((interface) =>
-              interface.typeSpec!.name.endsWith('IAsyncOperation`1'))
-          .typeSpec!;
+      final typeDef =
+          getMetadataForType(returnTypeProjection.typeIdentifier.name);
+      final interface = typeDef.interfaces.firstWhere((interface) =>
+          interface.typeSpec?.name.endsWith('IAsyncOperation`1') ?? false);
+      if (interface.typeSpec case final typeSpec?) return typeSpec;
+      throw WinRTGenException('Type $interface has no TypeSpec.');
     }
     return returnTypeProjection.typeIdentifier;
   }
@@ -68,18 +68,19 @@ mixin _AsyncOperationMixin on MethodProjection {
 
   /// The constructor arguments passed to the constructor of `IAsyncOperation`.
   String get constructorArgs {
-    final typeProjection = TypeProjection(typeIdentifier.typeArg!);
+    final typeArg = dereferenceType(typeIdentifier);
+    final typeProjection = TypeProjection(typeArg);
 
     // If the type argument is an enum or a WinRT object (e.g. StorageFile), the
     // constructor of that class must be passed in the 'enumCreator' parameter
     // for enums, 'creator' parameter for WinRT objects so that the
     // IAsyncOperation implementation can instantiate the object.
-    final creator = typeIdentifier.typeArg!.creator;
+    final creator = typeArg.creator;
 
     // If the type argument is an int, 'intType' parameter must be specified so
     // that the IAsyncOperation implementation can use the appropriate native
     // integer type
-    final intType = typeArg == 'int'
+    final intType = this.typeArg == 'int'
         ? 'IntType.${typeProjection.nativeType.toLowerCase()}'
         : null;
 

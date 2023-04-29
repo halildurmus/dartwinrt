@@ -5,8 +5,7 @@
 import 'package:winmd/winmd.dart';
 
 import '../constants/constants.dart';
-import '../extensions/extensions.dart';
-import '../utils.dart';
+import '../utilities/utilities.dart';
 
 /// An enum identifier.
 ///
@@ -64,8 +63,7 @@ class EnumProjection {
   /// found.
   factory EnumProjection.from(String fullyQualifiedType,
       {String comment = ''}) {
-    final typeDef = MetadataStore.getMetadataForType(fullyQualifiedType);
-    if (typeDef == null) throw Exception("Can't find $fullyQualifiedType");
+    final typeDef = getMetadataForType(fullyQualifiedType);
     return EnumProjection.create(typeDef, comment: comment);
   }
 
@@ -177,8 +175,7 @@ class FlagsEnumProjection extends EnumProjection {
   /// found.
   factory FlagsEnumProjection.from(String fullyQualifiedType,
       {String comment = ''}) {
-    final typeDef = MetadataStore.getMetadataForType(fullyQualifiedType);
-    if (typeDef == null) throw Exception("Can't find $fullyQualifiedType");
+    final typeDef = getMetadataForType(fullyQualifiedType);
     return FlagsEnumProjection(typeDef, comment: comment);
   }
 

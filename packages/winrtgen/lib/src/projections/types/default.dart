@@ -4,7 +4,7 @@
 
 import 'package:winmd/winmd.dart';
 
-import '../../extensions/extensions.dart';
+import '../../utilities/utilities.dart';
 import '../getter.dart';
 import '../method.dart';
 import '../parameter.dart';
@@ -39,10 +39,12 @@ class DefaultGetterProjection extends GetterProjection with _DefaultMixin {
 }
 
 mixin _DefaultListMixin on MethodProjection {
-  TypeProjection get typeArgProjection =>
-      TypeProjection(method.returnType.typeIdentifier.isReferenceType
-          ? method.returnType.typeIdentifier.typeArg!.typeArg!
-          : method.returnType.typeIdentifier.typeArg!);
+  TypeProjection get typeArgProjection {
+    final typeIdentifier = method.returnType.typeIdentifier;
+    return typeIdentifier.isReferenceType
+        ? TypeProjection(dereferenceType(dereferenceType(typeIdentifier)))
+        : TypeProjection(dereferenceType(typeIdentifier));
+  }
 
   @override
   String get returnType => 'List<${typeArgProjection.dartType}>';
@@ -117,8 +119,8 @@ class DefaultListParameterProjection extends ParameterProjection {
             .firstWhere((p) => p.name == '__valueSize'),
         typeArgProjection = TypeProjection(
             parameter.typeIdentifier.isReferenceType
-                ? parameter.typeIdentifier.typeArg!.typeArg!
-                : parameter.typeIdentifier.typeArg!);
+                ? dereferenceType(dereferenceType(parameter.typeIdentifier))
+                : dereferenceType(parameter.typeIdentifier));
 
   final Parameter valueSizeParam;
   final TypeProjection typeArgProjection;

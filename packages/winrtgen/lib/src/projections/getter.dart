@@ -4,8 +4,8 @@
 
 import 'package:winmd/winmd.dart';
 
-import '../extensions/extensions.dart';
 import '../models/models.dart';
+import '../utilities/utilities.dart';
 import 'method.dart';
 import 'property.dart';
 import 'types/types.dart';
@@ -73,8 +73,8 @@ abstract class GetterProjection extends PropertyProjection {
   /// matching [methodName] is found.
   factory GetterProjection.fromTypeAndMethodName(
       String fullyQualifiedType, String methodName) {
-    final getPropertyPattern = RegExp(r'^get(_{1,2})(\w+)$');
-    if (!getPropertyPattern.hasMatch(methodName)) {
+    final getPropertyRegExp = RegExp(r'^get(_{1,2})(\w+)$');
+    if (!getPropertyRegExp.hasMatch(methodName)) {
       throw ArgumentError.value(
           methodName, 'methodName', 'Method name must start with `get_`.');
     }

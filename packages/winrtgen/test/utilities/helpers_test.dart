@@ -6,7 +6,6 @@
 
 import 'package:test/test.dart';
 import 'package:win32/win32.dart';
-import 'package:winmd/winmd.dart';
 import 'package:winrtgen/winrtgen.dart';
 
 void main() {
@@ -24,6 +23,16 @@ void main() {
         equals('windows_storage/lib/src/pickers'));
     expect(folderFromType('Windows.Devices.Geolocation.Geofencing.Geofence'),
         equals('windows_devices/lib/src/geolocation/geofencing'));
+  });
+
+  test('getMetadataForType', () {
+    expect(getMetadataForType('Windows.Globalization.Calendar').name,
+        equals('Windows.Globalization.Calendar'));
+    expect(
+      () => getMetadataForType('Windows.Foo.Bar'),
+      throwsA(isA<WinRTGenException>().having((e) => e.message, 'message',
+          equals("Couldn't find type: Windows.Foo.Bar"))),
+    );
   });
 
   group('iidFromSignature', () {
@@ -101,12 +110,21 @@ void main() {
     });
   });
 
+  test('isValidIID', () {
+    expect(isValidIID('ca30221d-86d9-40fb-a26b-d44eb7cf08ea'), isFalse);
+    expect(isValidIID('{ca30221d-86d9-40fb-a26b-d44eb7cf08ea}'), isTrue);
+    expect(isValidIID('{CA30221D-86D9-40FB-A26B-D44EB7CF08EA}'), isTrue);
+    expect(isValidIID('ca30221d-86d9-40fb-a26b-d44eb7cf08ea}'), isFalse);
+    expect(isValidIID('{ca30221d-86d9-40fb-a26b-d44eb7cf08ea'), isFalse);
+    expect(isValidIID('not an IID'), isFalse);
+  });
+
   group('iterableIidFromMapType', () {
     test(
         'returns the IID of IIterable<IKeyValuePair<String, IVectorView<TextSegment>>>',
         () {
-      final typeDef = MetadataStore.getMetadataForType(
-          'Windows.Storage.Search.IStorageFileQueryResult2')!;
+      final typeDef =
+          getMetadataForType('Windows.Storage.Search.IStorageFileQueryResult2');
       expect(
           iterableIidFromMapType(typeDef
                   .findMethod('GetMatchingPropertiesWithRanges')!
@@ -119,8 +137,7 @@ void main() {
     test(
         'returns the IID of IIterable<IKeyValuePair<PedometerStepKind, PedometerReading>>',
         () {
-      final typeDef = MetadataStore.getMetadataForType(
-          'Windows.Devices.Sensors.IPedometer2')!;
+      final typeDef = getMetadataForType('Windows.Devices.Sensors.IPedometer2');
       expect(
           iterableIidFromMapType(typeDef
                   .findMethod('GetCurrentReadings')!
@@ -133,8 +150,8 @@ void main() {
 
   group('iterableIidFromVectorType', () {
     test('returns the IID of IIterable<String>', () {
-      final typeDef = MetadataStore.getMetadataForType(
-          'Windows.Storage.Pickers.IFileOpenPicker')!;
+      final typeDef =
+          getMetadataForType('Windows.Storage.Pickers.IFileOpenPicker');
       expect(
           iterableIidFromVectorType(typeDef
                   .findMethod('get_FileTypeFilter')!
@@ -145,8 +162,8 @@ void main() {
     });
 
     test('returns the IID of IIterable<HostName>', () {
-      final typeDef = MetadataStore.getMetadataForType(
-          'Windows.Networking.Connectivity.INetworkInformationStatics')!;
+      final typeDef = getMetadataForType(
+          'Windows.Networking.Connectivity.INetworkInformationStatics');
       expect(
           iterableIidFromVectorType(typeDef
                   .findMethod('GetHostNames')!

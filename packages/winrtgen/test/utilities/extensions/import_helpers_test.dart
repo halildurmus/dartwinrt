@@ -6,7 +6,6 @@
 
 import 'package:test/test.dart';
 import 'package:win32/win32.dart';
-import 'package:winmd/winmd.dart';
 import 'package:winrtgen/winrtgen.dart';
 
 void main() {
@@ -20,24 +19,23 @@ void main() {
 
   group('importForTypeDef', () {
     test('returns null for ignored types', () {
-      final tokenTypeDef = MetadataStore.getMetadataForType(
-          'Windows.Foundation.EventRegistrationToken')!;
+      final tokenTypeDef =
+          getMetadataForType('Windows.Foundation.EventRegistrationToken');
       expect(geolocatorProjection.importForTypeDef(tokenTypeDef), isNull);
 
-      final picker2TypeDef = MetadataStore.getMetadataForType(
-          'Windows.Storage.Pickers.IFileOpenPicker2')!;
+      final picker2TypeDef =
+          getMetadataForType('Windows.Storage.Pickers.IFileOpenPicker2');
       expect(geolocatorProjection.importForTypeDef(picker2TypeDef), isNull);
     });
 
     test('returns null for WinRT delegate', () {
-      final typeDef = MetadataStore.getMetadataForType(
-          'Windows.Foundation.TypedEventHandler`2')!;
+      final typeDef =
+          getMetadataForType('Windows.Foundation.TypedEventHandler`2');
       expect(geolocatorProjection.importForTypeDef(typeDef), isNull);
     });
 
     test('returns package import for WinRT enum', () {
-      final typeDef =
-          MetadataStore.getMetadataForType('Windows.Foundation.AsyncStatus')!;
+      final typeDef = getMetadataForType('Windows.Foundation.AsyncStatus');
       expect(geolocatorProjection.importForTypeDef(typeDef),
           equals('package:windows_foundation/windows_foundation.dart'));
     });
@@ -52,22 +50,20 @@ void main() {
     });
 
     test('returns package import for WinRT class', () {
-      final typeDef =
-          MetadataStore.getMetadataForType('Windows.Globalization.Calendar')!;
+      final typeDef = getMetadataForType('Windows.Globalization.Calendar');
       expect(geolocatorProjection.importForTypeDef(typeDef),
           equals('package:windows_globalization/windows_globalization.dart'));
     });
 
     test('returns relative import for WinRT class', () {
-      final typeDef = MetadataStore.getMetadataForType(
-          'Windows.Devices.Geolocation.Geoposition')!;
+      final typeDef =
+          getMetadataForType('Windows.Devices.Geolocation.Geoposition');
       expect(geolocatorProjection.importForTypeDef(typeDef),
           equals('geoposition.dart'));
     });
 
     test('returns package import for WinRT interface', () {
-      final typeDef =
-          MetadataStore.getMetadataForType('Windows.Globalization.ICalendar')!;
+      final typeDef = getMetadataForType('Windows.Globalization.ICalendar');
       expect(geolocatorProjection.importForTypeDef(typeDef),
           equals('package:windows_globalization/windows_globalization.dart'));
     });
@@ -80,15 +76,14 @@ void main() {
     });
 
     test('returns package import for WinRT struct', () {
-      final typeDef =
-          MetadataStore.getMetadataForType('Windows.Foundation.Point')!;
+      final typeDef = getMetadataForType('Windows.Foundation.Point');
       expect(geolocatorProjection.importForTypeDef(typeDef),
           equals('package:windows_foundation/windows_foundation.dart'));
     });
 
     test('returns relative import for WinRT struct', () {
-      final typeDef = MetadataStore.getMetadataForType(
-          'Windows.Devices.Geolocation.BasicGeoposition')!;
+      final typeDef =
+          getMetadataForType('Windows.Devices.Geolocation.BasicGeoposition');
       expect(geolocatorProjection.importForTypeDef(typeDef),
           equals('basicgeoposition.dart'));
     });

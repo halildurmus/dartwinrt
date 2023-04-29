@@ -155,7 +155,9 @@ class _IAsyncOperationInt64 extends IAsyncOperation<int> {
 }
 
 class _IAsyncOperationInspectable<TResult> extends IAsyncOperation<TResult> {
-  _IAsyncOperationInspectable.fromPtr(super.ptr, {super.creator});
+  _IAsyncOperationInspectable.fromPtr(super.ptr, {required this.creator});
+
+  final TResult Function(Pointer<COMObject>) creator;
 
   @override
   TResult getResults() {
@@ -183,7 +185,7 @@ class _IAsyncOperationInspectable<TResult> extends IAsyncOperation<TResult> {
       return null as TResult;
     }
 
-    return _creator!(retValuePtr);
+    return creator(retValuePtr);
   }
 }
 
@@ -401,7 +403,9 @@ class _IAsyncOperationUint64 extends IAsyncOperation<int> {
 }
 
 class _IAsyncOperationWinRTEnum<TResult> extends IAsyncOperation<TResult> {
-  _IAsyncOperationWinRTEnum.fromPtr(super.ptr, {super.enumCreator});
+  _IAsyncOperationWinRTEnum.fromPtr(super.ptr, {required this.enumCreator});
+
+  final TResult Function(int) enumCreator;
 
   @override
   TResult getResults() {
@@ -422,7 +426,7 @@ class _IAsyncOperationWinRTEnum<TResult> extends IAsyncOperation<TResult> {
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return _enumCreator!(retValuePtr.value);
+      return enumCreator(retValuePtr.value);
     } finally {
       free(retValuePtr);
     }
@@ -430,7 +434,10 @@ class _IAsyncOperationWinRTEnum<TResult> extends IAsyncOperation<TResult> {
 }
 
 class _IAsyncOperationWinRTFlagsEnum<TResult> extends IAsyncOperation<TResult> {
-  _IAsyncOperationWinRTFlagsEnum.fromPtr(super.ptr, {super.enumCreator});
+  _IAsyncOperationWinRTFlagsEnum.fromPtr(super.ptr,
+      {required this.enumCreator});
+
+  final TResult Function(int) enumCreator;
 
   @override
   TResult getResults() {
@@ -451,7 +458,7 @@ class _IAsyncOperationWinRTFlagsEnum<TResult> extends IAsyncOperation<TResult> {
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return _enumCreator!(retValuePtr.value);
+      return enumCreator(retValuePtr.value);
     } finally {
       free(retValuePtr);
     }

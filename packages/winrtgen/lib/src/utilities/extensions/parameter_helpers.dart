@@ -4,8 +4,8 @@
 
 import 'package:winmd/winmd.dart';
 
-import '../models/projection_type.dart';
-import '../projections/type.dart';
+import '../../models/projection_type.dart';
+import '../../projections/type.dart';
 import 'type_identifier_helpers.dart';
 
 extension ParameterHelpers on Parameter {

@@ -3,8 +3,7 @@
 // BSD-style license that can be found in the LICENSE file.
 
 import '../../constants/constants.dart';
-import '../../extensions/extensions.dart';
-import '../../utils.dart';
+import '../../utilities/utilities.dart';
 import '../getter.dart';
 import '../method.dart';
 import '../parameter.dart';
@@ -19,7 +18,7 @@ mixin _ReferenceMixin on MethodProjection {
   /// The constructor arguments passed to the constructor of `IReference`.
   String get referenceConstructorArgs {
     final typeProjection =
-        TypeProjection(returnTypeProjection.typeIdentifier.typeArg!);
+        TypeProjection(returnTypeProjection.typeIdentifier.typeArgs.first);
 
     // If the type argument is an enum, the constructor of the enum class must
     // be passed in the 'enumCreator' parameter so that the 'IReference'
@@ -34,7 +33,7 @@ mixin _ReferenceMixin on MethodProjection {
     // To learn know more about how the IID is calculated, please see
     // https://learn.microsoft.com/en-us/uwp/winrt-cref/winrt-type-system#guid-generation-for-parameterized-types
     final referenceArgSignature =
-        returnTypeProjection.typeIdentifier.typeArg!.signature;
+        returnTypeProjection.typeIdentifier.typeArgs.first.signature;
     final referenceSignature =
         'pinterface($IID_IReference;$referenceArgSignature)';
     final referenceIid = iidFromSignature(referenceSignature);
@@ -87,7 +86,7 @@ class ReferenceSetterProjection extends SetterProjection with _ReferenceMixin {
   @override
   String get methodDeclaration {
     final projection =
-        TypeProjection(param.typeProjection.typeIdentifier.typeArg!);
+        TypeProjection(param.typeProjection.typeIdentifier.typeArgs.first);
     final arg = _toReferenceArgument(projection, param.type);
     final identifier = 'value?.toReference($arg).ptr.ref.lpVtbl ?? nullptr';
     return '''
@@ -107,7 +106,8 @@ class ReferenceParameterProjection extends ParameterProjection {
 
   @override
   String get localIdentifier {
-    final projection = TypeProjection(typeProjection.typeIdentifier.typeArg!);
+    final projection =
+        TypeProjection(typeProjection.typeIdentifier.typeArgs.first);
     final arg = _toReferenceArgument(projection, type);
     return 'value?.toReference($arg).ptr.ref.lpVtbl ?? nullptr';
   }

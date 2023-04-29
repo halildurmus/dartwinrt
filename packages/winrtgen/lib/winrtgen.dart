@@ -7,18 +7,7 @@
 library winrtgen;
 
 export 'src/constants/constants.dart';
-export 'src/extensions/extensions.dart';
+export 'src/exception/exception.dart';
 export 'src/models/models.dart';
-export 'src/projections/class.dart';
-export 'src/projections/enum.dart';
-export 'src/projections/generic_interface.dart';
-export 'src/projections/getter.dart';
-export 'src/projections/interface.dart';
-export 'src/projections/method.dart';
-export 'src/projections/parameter.dart';
-export 'src/projections/property.dart';
-export 'src/projections/setter.dart';
-export 'src/projections/struct.dart';
-export 'src/projections/type.dart';
-export 'src/projections/types/types.dart';
-export 'src/utils.dart';
+export 'src/projections/projections.dart';
+export 'src/utilities/utilities.dart';

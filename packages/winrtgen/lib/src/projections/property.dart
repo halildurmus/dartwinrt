@@ -2,8 +2,7 @@
 // details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-import '../extensions/extensions.dart';
-import '../utils.dart';
+import '../utilities/utilities.dart';
 import 'method.dart';
 
 abstract class PropertyProjection extends MethodProjection {

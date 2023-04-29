@@ -2,7 +2,7 @@
 // details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-// Useful utilities
+// Useful helper methods
 
 import 'dart:collection';
 import 'dart:convert';
@@ -13,8 +13,17 @@ import 'package:path/path.dart' as path;
 import 'package:win32/win32.dart';
 import 'package:winmd/winmd.dart';
 
-import 'constants/constants.dart';
+import '../constants/constants.dart';
+import '../exception/exception.dart';
 import 'extensions/extensions.dart';
+
+/// Convert a *typeIdentifier into a typeIdentifier.
+///
+/// Throws a [WinRTGenException] if [typeIdentifier] is cannot be de-referenced.
+TypeIdentifier dereferenceType(TypeIdentifier typeIdentifier) {
+  if (typeIdentifier.typeArg case final typeArg?) return typeArg;
+  throw WinRTGenException('Could not de-reference type $typeIdentifier.');
+}
 
 /// Converts a [fullyQualifiedType] (e.g. `Windows.Globalization.Calendar`) and
 /// returns the matching file name (e.g. `calendar.dart`).
@@ -33,9 +42,21 @@ String folderFromType(String fullyQualifiedType) {
   return '$packageName/lib/src/${segments.join('/').toLowerCase()}';
 }
 
+/// Find a matching typedef, if one exists, for a Windows Runtime [type].
+/// Otherwise, throws a [WinRTGenException].
+TypeDef getMetadataForType(String type) {
+  try {
+    final typeDef = MetadataStore.getMetadataForType(type);
+    if (typeDef == null) throw WinRTGenException("Couldn't find type: $type");
+    return typeDef;
+  } catch (_) {
+    throw WinRTGenException("Couldn't find type: $type");
+  }
+}
+
 /// A byte representation of the pinterface instantiation.
 ///
-/// This is hardcoded as the value {11f47ad5-7b73-42c0-abae-878b1e16adee} in
+/// This is hardcoded as the value `{11f47ad5-7b73-42c0-abae-878b1e16adee}` in
 /// https://learn.microsoft.com/en-us/uwp/winrt-cref/winrt-type-system
 const _wrtPinterfaceNamespace = <int>[
   0x11, 0xf4, 0x7a, 0xd5,
@@ -55,11 +76,7 @@ const _wrtPinterfaceNamespace = <int>[
 /// defined here:
 /// https://learn.microsoft.com/en-us/uwp/winrt-cref/winrt-type-system#guid-generation-for-parameterized-types
 String iidFromSignature(String signature) {
-  if (signature.startsWith('{') &&
-      signature.endsWith('}') &&
-      signature.length == 38) {
-    return signature;
-  }
+  if (isValidIID(signature)) return signature;
 
   final signatureInBytes = const Utf8Encoder().convert(signature);
   final data = <int>[..._wrtPinterfaceNamespace, ...signatureInBytes];
@@ -74,6 +91,11 @@ String iidFromSignature(String signature) {
   return Guid.fromComponents(firstPart, secondPart, thirdPart, fourthPart)
       .toString();
 }
+
+/// Whether the [input] is a valid IID.
+bool isValidIID(String input) =>
+    RegExp(r'^{[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}}$')
+        .hasMatch(input);
 
 /// Returns the `IIterable<IKeyValuePair<K, V>>` IID for the given `IMap` or
 /// `IMapView` [typeIdentifier].
@@ -100,7 +122,7 @@ String iterableIidFromVectorType(TypeIdentifier typeIdentifier) {
         "Expected an 'IVector' or 'IVectorView' type identifier.");
   }
 
-  final iterableArgSignature = typeIdentifier.typeArg!.signature;
+  final iterableArgSignature = typeIdentifier.typeArgs.first.signature;
   final iterableSignature = 'pinterface($IID_IIterable;$iterableArgSignature)';
   return iidFromSignature(iterableSignature).toString();
 }

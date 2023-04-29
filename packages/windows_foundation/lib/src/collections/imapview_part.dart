@@ -11,7 +11,10 @@ part of 'imapview.dart';
 
 class _IMapViewGuidInspectable<V> extends IMapView<Guid, V> {
   _IMapViewGuidInspectable.fromPtr(super.ptr,
-      {required super.iterableIid, super.creator});
+      {required super.iterableIid, required this.creator})
+      : super(creator: creator);
+
+  final V Function(Pointer<COMObject>) creator;
 
   @override
   V lookup(Guid key) {
@@ -43,7 +46,7 @@ class _IMapViewGuidInspectable<V> extends IMapView<Guid, V> {
       return null as V;
     }
 
-    return _creator!(retValuePtr);
+    return creator(retValuePtr);
   }
 
   @override
@@ -146,7 +149,10 @@ class _IMapViewGuidObject extends IMapView<Guid, Object?> {
 
 class _IMapViewInt16Inspectable<V> extends IMapView<int, V> {
   _IMapViewInt16Inspectable.fromPtr(super.ptr,
-      {required super.iterableIid, super.intType, super.creator});
+      {required super.iterableIid, super.intType, required this.creator})
+      : super(creator: creator);
+
+  final V Function(Pointer<COMObject>) creator;
 
   @override
   V lookup(int key) {
@@ -175,7 +181,7 @@ class _IMapViewInt16Inspectable<V> extends IMapView<int, V> {
       return null as V;
     }
 
-    return _creator!(retValuePtr);
+    return creator(retValuePtr);
   }
 
   @override
@@ -207,7 +213,10 @@ class _IMapViewInt16Inspectable<V> extends IMapView<int, V> {
 
 class _IMapViewInt32Inspectable<V> extends IMapView<int, V> {
   _IMapViewInt32Inspectable.fromPtr(super.ptr,
-      {required super.iterableIid, super.intType, super.creator});
+      {required super.iterableIid, super.intType, required this.creator})
+      : super(creator: creator);
+
+  final V Function(Pointer<COMObject>) creator;
 
   @override
   V lookup(int key) {
@@ -236,7 +245,7 @@ class _IMapViewInt32Inspectable<V> extends IMapView<int, V> {
       return null as V;
     }
 
-    return _creator!(retValuePtr);
+    return creator(retValuePtr);
   }
 
   @override
@@ -268,7 +277,10 @@ class _IMapViewInt32Inspectable<V> extends IMapView<int, V> {
 
 class _IMapViewInt64Inspectable<V> extends IMapView<int, V> {
   _IMapViewInt64Inspectable.fromPtr(super.ptr,
-      {required super.iterableIid, super.intType, super.creator});
+      {required super.iterableIid, super.intType, required this.creator})
+      : super(creator: creator);
+
+  final V Function(Pointer<COMObject>) creator;
 
   @override
   V lookup(int key) {
@@ -297,7 +309,7 @@ class _IMapViewInt64Inspectable<V> extends IMapView<int, V> {
       return null as V;
     }
 
-    return _creator!(retValuePtr);
+    return creator(retValuePtr);
   }
 
   @override
@@ -329,7 +341,10 @@ class _IMapViewInt64Inspectable<V> extends IMapView<int, V> {
 
 class _IMapViewStringInspectable<V> extends IMapView<String, V> {
   _IMapViewStringInspectable.fromPtr(super.ptr,
-      {required super.iterableIid, super.creator});
+      {required super.iterableIid, required this.creator})
+      : super(creator: creator);
+
+  final V Function(Pointer<COMObject>) creator;
 
   @override
   V lookup(String key) {
@@ -361,7 +376,7 @@ class _IMapViewStringInspectable<V> extends IMapView<String, V> {
       return null as V;
     }
 
-    return _creator!(retValuePtr);
+    return creator(retValuePtr);
   }
 
   @override
@@ -529,7 +544,10 @@ class _IMapViewStringString extends IMapView<String, String> {
 
 class _IMapViewStringWinRTEnum<V> extends IMapView<String, V> {
   _IMapViewStringWinRTEnum.fromPtr(super.ptr,
-      {required super.iterableIid, super.enumCreator});
+      {required super.iterableIid, required this.enumCreator})
+      : super(enumCreator: enumCreator);
+
+  final V Function(int) enumCreator;
 
   @override
   V lookup(String key) {
@@ -555,7 +573,7 @@ class _IMapViewStringWinRTEnum<V> extends IMapView<String, V> {
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return _enumCreator!(retValuePtr.value);
+      return enumCreator(retValuePtr.value);
     } finally {
       free(retValuePtr);
     }
@@ -594,7 +612,10 @@ class _IMapViewStringWinRTEnum<V> extends IMapView<String, V> {
 
 class _IMapViewStringWinRTFlagsEnum<V> extends IMapView<String, V> {
   _IMapViewStringWinRTFlagsEnum.fromPtr(super.ptr,
-      {required super.iterableIid, super.enumCreator});
+      {required super.iterableIid, required this.enumCreator})
+      : super(enumCreator: enumCreator);
+
+  final V Function(int) enumCreator;
 
   @override
   V lookup(String key) {
@@ -620,7 +641,7 @@ class _IMapViewStringWinRTFlagsEnum<V> extends IMapView<String, V> {
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return _enumCreator!(retValuePtr.value);
+      return enumCreator(retValuePtr.value);
     } finally {
       free(retValuePtr);
     }
@@ -659,7 +680,10 @@ class _IMapViewStringWinRTFlagsEnum<V> extends IMapView<String, V> {
 
 class _IMapViewUint8Inspectable<V> extends IMapView<int, V> {
   _IMapViewUint8Inspectable.fromPtr(super.ptr,
-      {required super.iterableIid, super.intType, super.creator});
+      {required super.iterableIid, super.intType, required this.creator})
+      : super(creator: creator);
+
+  final V Function(Pointer<COMObject>) creator;
 
   @override
   V lookup(int key) {
@@ -688,7 +712,7 @@ class _IMapViewUint8Inspectable<V> extends IMapView<int, V> {
       return null as V;
     }
 
-    return _creator!(retValuePtr);
+    return creator(retValuePtr);
   }
 
   @override
@@ -720,7 +744,10 @@ class _IMapViewUint8Inspectable<V> extends IMapView<int, V> {
 
 class _IMapViewUint16Inspectable<V> extends IMapView<int, V> {
   _IMapViewUint16Inspectable.fromPtr(super.ptr,
-      {required super.iterableIid, super.intType, super.creator});
+      {required super.iterableIid, super.intType, required this.creator})
+      : super(creator: creator);
+
+  final V Function(Pointer<COMObject>) creator;
 
   @override
   V lookup(int key) {
@@ -749,7 +776,7 @@ class _IMapViewUint16Inspectable<V> extends IMapView<int, V> {
       return null as V;
     }
 
-    return _creator!(retValuePtr);
+    return creator(retValuePtr);
   }
 
   @override
@@ -781,7 +808,10 @@ class _IMapViewUint16Inspectable<V> extends IMapView<int, V> {
 
 class _IMapViewUint32Inspectable<V> extends IMapView<int, V> {
   _IMapViewUint32Inspectable.fromPtr(super.ptr,
-      {required super.iterableIid, super.intType, super.creator});
+      {required super.iterableIid, super.intType, required this.creator})
+      : super(creator: creator);
+
+  final V Function(Pointer<COMObject>) creator;
 
   @override
   V lookup(int key) {
@@ -810,7 +840,7 @@ class _IMapViewUint32Inspectable<V> extends IMapView<int, V> {
       return null as V;
     }
 
-    return _creator!(retValuePtr);
+    return creator(retValuePtr);
   }
 
   @override
@@ -842,7 +872,10 @@ class _IMapViewUint32Inspectable<V> extends IMapView<int, V> {
 
 class _IMapViewUint64Inspectable<V> extends IMapView<int, V> {
   _IMapViewUint64Inspectable.fromPtr(super.ptr,
-      {required super.iterableIid, super.intType, super.creator});
+      {required super.iterableIid, super.intType, required this.creator})
+      : super(creator: creator);
+
+  final V Function(Pointer<COMObject>) creator;
 
   @override
   V lookup(int key) {
@@ -871,7 +904,7 @@ class _IMapViewUint64Inspectable<V> extends IMapView<int, V> {
       return null as V;
     }
 
-    return _creator!(retValuePtr);
+    return creator(retValuePtr);
   }
 
   @override
@@ -903,7 +936,13 @@ class _IMapViewUint64Inspectable<V> extends IMapView<int, V> {
 
 class _IMapViewWinRTEnumInspectable<K, V> extends IMapView<K, V> {
   _IMapViewWinRTEnumInspectable.fromPtr(super.ptr,
-      {required super.iterableIid, super.enumKeyCreator, super.creator});
+      {required super.iterableIid,
+      required this.enumKeyCreator,
+      required this.creator})
+      : super(enumKeyCreator: enumKeyCreator, creator: creator);
+
+  final K Function(int) enumKeyCreator;
+  final V Function(Pointer<COMObject>) creator;
 
   @override
   V lookup(K key) {
@@ -932,7 +971,7 @@ class _IMapViewWinRTEnumInspectable<K, V> extends IMapView<K, V> {
       return null as V;
     }
 
-    return _creator!(retValuePtr);
+    return creator(retValuePtr);
   }
 
   @override
@@ -964,7 +1003,13 @@ class _IMapViewWinRTEnumInspectable<K, V> extends IMapView<K, V> {
 
 class _IMapViewWinRTFlagsEnumInspectable<K, V> extends IMapView<K, V> {
   _IMapViewWinRTFlagsEnumInspectable.fromPtr(super.ptr,
-      {required super.iterableIid, super.enumKeyCreator, super.creator});
+      {required super.iterableIid,
+      required this.enumKeyCreator,
+      required this.creator})
+      : super(enumKeyCreator: enumKeyCreator, creator: creator);
+
+  final K Function(int) enumKeyCreator;
+  final V Function(Pointer<COMObject>) creator;
 
   @override
   V lookup(K key) {
@@ -993,7 +1038,7 @@ class _IMapViewWinRTFlagsEnumInspectable<K, V> extends IMapView<K, V> {
       return null as V;
     }
 
-    return _creator!(retValuePtr);
+    return creator(retValuePtr);
   }
 
   @override

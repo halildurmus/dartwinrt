@@ -2,8 +2,7 @@
 // details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-import '../../extensions/extensions.dart';
-import '../../utils.dart';
+import '../../utilities/utilities.dart';
 import '../getter.dart';
 import '../method.dart';
 import '../parameter.dart';
@@ -115,10 +114,12 @@ class ObjectGetterProjection extends GetterProjection with _ObjectMixin {
 }
 
 mixin _ObjectListMixin on MethodProjection {
-  TypeProjection get typeArgProjection =>
-      TypeProjection(method.returnType.typeIdentifier.isReferenceType
-          ? method.returnType.typeIdentifier.typeArg!.typeArg!
-          : method.returnType.typeIdentifier.typeArg!);
+  TypeProjection get typeArgProjection {
+    final typeIdentifier = method.returnType.typeIdentifier;
+    return typeIdentifier.isReferenceType
+        ? TypeProjection(dereferenceType(dereferenceType(typeIdentifier)))
+        : TypeProjection(dereferenceType(typeIdentifier));
+  }
 
   String get shortName => typeArgProjection.typeIdentifier.shortName;
 

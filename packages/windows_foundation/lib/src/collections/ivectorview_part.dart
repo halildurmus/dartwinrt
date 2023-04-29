@@ -217,7 +217,10 @@ class _IVectorViewGuid extends IVectorView<Guid> {
 
 class _IVectorViewInspectable<T> extends IVectorView<T> {
   _IVectorViewInspectable.fromPtr(super.ptr,
-      {required super.iterableIid, super.creator});
+      {required super.iterableIid, required this.creator})
+      : super(creator: creator);
+
+  final T Function(Pointer<COMObject>) creator;
 
   @override
   T getAt(int index) {
@@ -241,7 +244,7 @@ class _IVectorViewInspectable<T> extends IVectorView<T> {
       throw WindowsException(hr);
     }
 
-    return _creator!(retValuePtr);
+    return creator(retValuePtr);
   }
 
   @override
@@ -305,7 +308,7 @@ class _IVectorViewInspectable<T> extends IVectorView<T> {
           ptr.ref.lpVtbl, startIndex, valueSize, pArray, retValuePtr);
 
       if (retValuePtr.value > 0) {
-        value.addAll(pArray.toList(_creator!, length: retValuePtr.value));
+        value.addAll(pArray.toList(creator, length: retValuePtr.value));
       }
       free(pArray);
 
@@ -1242,7 +1245,10 @@ class _IVectorViewUri extends IVectorView<Uri> {
 
 class _IVectorViewWinRTEnum<T> extends IVectorView<T> {
   _IVectorViewWinRTEnum.fromPtr(super.ptr,
-      {required super.iterableIid, super.enumCreator});
+      {required super.iterableIid, required this.enumCreator})
+      : super(enumCreator: enumCreator);
+
+  final T Function(int) enumCreator;
 
   @override
   T getAt(int index) {
@@ -1264,7 +1270,7 @@ class _IVectorViewWinRTEnum<T> extends IVectorView<T> {
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return _enumCreator!(retValuePtr.value);
+      return enumCreator(retValuePtr.value);
     } finally {
       free(retValuePtr);
     }
@@ -1329,8 +1335,7 @@ class _IVectorViewWinRTEnum<T> extends IVectorView<T> {
           ptr.ref.lpVtbl, startIndex, valueSize, pArray, retValuePtr);
 
       if (retValuePtr.value > 0) {
-        value.addAll(
-            pArray.toList(length: retValuePtr.value).map(_enumCreator!));
+        value.addAll(pArray.toList(length: retValuePtr.value).map(enumCreator));
       }
       free(pArray);
 
@@ -1345,7 +1350,10 @@ class _IVectorViewWinRTEnum<T> extends IVectorView<T> {
 
 class _IVectorViewWinRTFlagsEnum<T> extends IVectorView<T> {
   _IVectorViewWinRTFlagsEnum.fromPtr(super.ptr,
-      {required super.iterableIid, super.enumCreator});
+      {required super.iterableIid, required this.enumCreator})
+      : super(enumCreator: enumCreator);
+
+  final T Function(int) enumCreator;
 
   @override
   T getAt(int index) {
@@ -1367,7 +1375,7 @@ class _IVectorViewWinRTFlagsEnum<T> extends IVectorView<T> {
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return _enumCreator!(retValuePtr.value);
+      return enumCreator(retValuePtr.value);
     } finally {
       free(retValuePtr);
     }
@@ -1432,8 +1440,7 @@ class _IVectorViewWinRTFlagsEnum<T> extends IVectorView<T> {
           ptr.ref.lpVtbl, startIndex, valueSize, pArray, retValuePtr);
 
       if (retValuePtr.value > 0) {
-        value.addAll(
-            pArray.toList(length: retValuePtr.value).map(_enumCreator!));
+        value.addAll(pArray.toList(length: retValuePtr.value).map(enumCreator));
       }
       free(pArray);
 

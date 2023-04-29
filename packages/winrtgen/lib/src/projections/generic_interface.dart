@@ -5,14 +5,14 @@
 import 'package:winmd/winmd.dart' hide TypeTuple;
 
 import '../constants/exclusions.dart';
-import '../extensions/extensions.dart';
+import '../exception/exception.dart';
 import '../models/models.dart';
-import '../utils.dart';
+import '../utilities/utilities.dart';
 import 'getter.dart';
 import 'interface.dart';
 import 'method.dart';
 import 'setter.dart';
-import 'types/generic.dart';
+import 'types/types.dart';
 
 class GenericInterfaceProjection extends InterfaceProjection {
   GenericInterfaceProjection._(super.typeDef, this.typeArgs);
@@ -39,19 +39,17 @@ class GenericInterfaceProjection extends InterfaceProjection {
   ///     TypeArg.string, TypeArg.string);
   /// ```
   ///
-  /// Throws an [Exception] if no [TypeDef] matching [fullyQualifiedType] is
+  /// Throws a [WinRTGenException] if no [TypeDef] matching [fullyQualifiedType] is
   /// found.
   factory GenericInterfaceProjection.from(
       String fullyQualifiedType, TypeArg typeArg1,
       [TypeArg? typeArg2]) {
-    if (fullyQualifiedType.endsWith('`2') && typeArg2 == null) {
-      throw ArgumentError.notNull('typeArg2');
+    final typeDef = getMetadataForType(fullyQualifiedType);
+    if (fullyQualifiedType.endsWith('`2')) {
+      if (typeArg2 == null) throw ArgumentError.notNull('typeArg2');
+      return GenericInterfaceProjection._(typeDef, [typeArg1, typeArg2]);
     }
-
-    final typeDef = MetadataStore.getMetadataForType(fullyQualifiedType);
-    if (typeDef == null) throw Exception("Can't find $fullyQualifiedType");
-    return GenericInterfaceProjection._(
-        typeDef, [typeArg1, if (fullyQualifiedType.endsWith('`2')) typeArg2!]);
+    return GenericInterfaceProjection._(typeDef, [typeArg1]);
   }
 
   String _formatTypeArg(TypeArg typeArg) => switch (typeArg) {
@@ -108,38 +106,75 @@ class GenericInterfaceProjection extends InterfaceProjection {
   String get classHeader =>
       'class $className$typeParams extends $shortName<$formattedTypeArgs>';
 
+  Set<String> get _superArguments => switch (shortName) {
+        'IMap' || 'IMapView' || 'IVector' || 'IVectorView' => {
+            if (typeArgs case [final typeArg1, final typeArg2]) ...{
+              if (typeArg1.isEnum) 'enumKeyCreator: enumKeyCreator',
+              if (typeArg2.isInspectable) 'creator: creator',
+              if (typeArg2.isEnum) 'enumCreator: enumCreator'
+            } else if (typeArgs case [final typeArg]) ...{
+              if (typeArg.isInspectable) 'creator: creator',
+              if (typeArg.isEnum) 'enumCreator: enumCreator'
+            }
+          },
+        _ => {}
+      };
+
+  Set<String> get _namedConstructorArgs => {
+        if (shortName case 'IMap' || 'IMapView' || 'IVector' || 'IVectorView')
+          'required super.iterableIid',
+        if (typeArgs case [final typeArg1, final typeArg2]) ...{
+          if (typeArg1.isEnum) 'required this.enumKeyCreator',
+          if (shortName case 'IMap' || 'IMapView' || 'IVector' || 'IVectorView'
+              when typeArg1.isInt)
+            'super.intType',
+          if (typeArg2.isInspectable) 'required this.creator',
+          if (typeArg2.isEnum) 'required this.enumCreator'
+        } else if (typeArgs case [final typeArg]) ...{
+          if (shortName case 'IMap' || 'IMapView' || 'IVector' || 'IVectorView'
+              when typeArg.isInt)
+            'super.intType',
+          if (typeArg.isInspectable) 'required this.creator',
+          if (typeArg.isEnum) 'required this.enumCreator'
+        }
+      };
+
   @override
   String get namedConstructor {
-    final constructorArgs = <String>{
-      if (shortName case 'IMap' || 'IMapView' || 'IVector' || 'IVectorView')
-        'required super.iterableIid',
-      if (typeArgs.length == 2) ...[
-        if (typeArgs.first.isEnum) 'super.enumKeyCreator',
-        if (shortName case 'IMap' || 'IMapView' || 'IVector' || 'IVectorView'
-            when typeArgs.first.isInt)
-          'super.intType',
-        if (typeArgs.last.isInspectable) 'super.creator',
-        if (typeArgs.last.isEnum) 'super.enumCreator'
-      ] else ...[
-        if (shortName case 'IMap' || 'IMapView' || 'IVector' || 'IVectorView'
-            when typeArgs.first.isInt)
-          'super.intType',
-        if (typeArgs.first.isInspectable) 'super.creator',
-        if (typeArgs.first.isEnum) 'super.enumCreator'
-      ]
-    };
+    final namedConstructorArgs = _namedConstructorArgs;
+    if (namedConstructorArgs.isEmpty) return '$className.fromPtr(super.ptr);';
 
-    if (constructorArgs.isNotEmpty) {
-      final args = constructorArgs.join(', ');
-      return '$className.fromPtr(super.ptr, {$args});';
+    final constructorArgs = namedConstructorArgs.join(', ');
+    if (_superArguments.isEmpty) {
+      return '$className.fromPtr(super.ptr, {$constructorArgs});';
     }
 
-    return '$className.fromPtr(super.ptr);';
+    final superArgs = _superArguments.join(', ');
+    return '$className.fromPtr(super.ptr, {$constructorArgs}) : super($superArgs);';
+  }
+
+  Set<String> get fields {
+    final genericParams = typeDef.genericParams;
+    return {
+      if (typeArgs case [final typeArg1, final typeArg2]) ...{
+        if (typeArg1.isEnum)
+          'final ${genericParams[0].name} Function(int) enumKeyCreator;',
+        if (typeArg2.isInspectable)
+          'final ${genericParams[1].name} Function(Pointer<COMObject>) creator;',
+        if (typeArg2.isEnum)
+          'final ${genericParams[1].name} Function(int) enumCreator;'
+      } else if (typeArgs case [final typeArg]) ...{
+        if (typeArg.isInspectable)
+          'final ${genericParams[0].name} Function(Pointer<COMObject>) creator;',
+        if (typeArg.isEnum)
+          'final ${genericParams[0].name} Function(int) enumCreator;'
+      }
+    };
   }
 
   void _handleClassVariableReturn(Method method) {
     final genericParamSequence =
-        method.returnType.typeIdentifier.genericParameterSequence!;
+        method.returnType.typeIdentifier.genericParamSequence;
     final arg = typeArgs[genericParamSequence];
 
     if (arg.isEnum || arg.isInspectable) {
@@ -157,7 +192,7 @@ class GenericInterfaceProjection extends InterfaceProjection {
   void _handleClassVariableParam(Parameter param, Method method) {
     final paramIndex =
         method.parameters.indexWhere((p) => p.name == param.name);
-    final genericParamSequence = param.typeIdentifier.genericParameterSequence!;
+    final genericParamSequence = param.typeIdentifier.genericParamSequence;
     final arg = typeArgs[genericParamSequence];
 
     if (arg.isEnum || arg.isInspectable) {
@@ -170,15 +205,14 @@ class GenericInterfaceProjection extends InterfaceProjection {
   }
 
   void _handleSimpleArrayClassVariableParam(Parameter param, Method method) {
+    final typeArg = dereferenceType(param.typeIdentifier);
     final paramIndex =
         method.parameters.indexWhere((p) => p.name == param.name);
-    final genericParamSequence =
-        param.typeIdentifier.typeArg!.genericParameterSequence!;
+    final genericParamSequence = typeArg.genericParamSequence;
     final arg = typeArgs[genericParamSequence];
-
     if (arg.isEnum || arg.isInspectable) {
-      param.typeIdentifier = param.typeIdentifier.copyWith(
-          typeArg: param.typeIdentifier.typeArg!.copyWith(name: arg.name));
+      param.typeIdentifier = param.typeIdentifier
+          .copyWith(typeArg: typeArg.copyWith(name: arg.name));
       method.parameters[paramIndex] = param;
     } else {
       param.typeIdentifier =
@@ -225,10 +259,11 @@ class GenericInterfaceProjection extends InterfaceProjection {
         if (param.isClassVariableType) {
           _handleClassVariableParam(newParam, newMethod);
           overrideMethod = true;
-        } else if (param.isSimpleArrayType &&
-            param.typeIdentifier.typeArg!.isClassVariableType) {
-          _handleSimpleArrayClassVariableParam(newParam, newMethod);
-          overrideMethod = true;
+        } else if (param.isSimpleArrayType) {
+          if (param.typeIdentifier.typeArg?.isClassVariableType ?? false) {
+            _handleSimpleArrayClassVariableParam(newParam, newMethod);
+            overrideMethod = true;
+          }
         }
       }
 
@@ -293,6 +328,8 @@ class GenericInterfaceProjection extends InterfaceProjection {
   String toString() => '''
   $classHeader {
   $namedConstructor
+
+  ${fields.join('\n')}
 
   $formattedMethodProjections
 }

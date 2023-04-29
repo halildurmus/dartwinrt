@@ -4,9 +4,10 @@
 
 import 'package:winmd/winmd.dart';
 
-import '../constants/constants.dart';
-import '../projections/type.dart';
-import '../utils.dart';
+import '../../constants/constants.dart';
+import '../../exception/exception.dart';
+import '../../projections/projections.dart';
+import '../helpers.dart';
 import 'base_type_helpers.dart';
 import 'typedef_helpers.dart';
 
@@ -25,12 +26,26 @@ extension TypeIdentifierHelpers on TypeIdentifier {
     return switch (baseType) {
       BaseType.classTypeModifier => '${lastComponent(name)}.fromPtr',
       BaseType.genericTypeModifier => _parseGenericTypeIdentifierCreator(this),
-      BaseType.referenceTypeModifier => typeArg!.creator,
+      BaseType.referenceTypeModifier => dereferenceType(this).creator,
       BaseType.valueTypeModifier when typeProjection.isWinRTEnum =>
         '${lastComponent(name)}.from',
       _ => null,
     };
   }
+
+  /// The value identifying the generic parameter sequence, if there is one.
+  ///
+  /// For example, in class `Foo<T, U>`, a property that returns `T` will have a
+  /// returnType with a [TypeIdentifier] that has a genericParameterSequence of
+  /// `0`.
+  ///
+  /// Throws a [WinRTGenException] if this [TypeIdentifier] has no
+  /// [genericParameterSequence].
+  int get genericParamSequence => switch (genericParameterSequence) {
+        final sequence? => sequence,
+        _ => throw WinRTGenException(
+            'Type $this has no genericParameterSequence.'),
+      };
 
   /// Returns the IID of this TypeIdentifier.
   String get iid => iidFromSignature(signature);
@@ -62,51 +77,59 @@ extension TypeIdentifierHelpers on TypeIdentifier {
 
     if (name == 'Windows.Foundation.TimeSpan') return 'Duration';
 
+    if (baseType == BaseType.referenceTypeModifier) {
+      if (typeArg case final typeArg?) return typeArg.shortName;
+      throw WinRTGenException('Reference type missing for $this.');
+    }
+
     return switch (baseType) {
       BaseType.classTypeModifier ||
       BaseType.valueTypeModifier =>
         lastComponent(name),
       BaseType.genericTypeModifier => _parseGenericTypeIdentifierName(this),
       BaseType.objectType => 'Object',
-      BaseType.referenceTypeModifier => typeArg!.shortName,
       _ => baseType.dartType,
     };
   }
 
   /// Returns the type signature of this TypeIdentifier.
   String get signature {
-    if (isGenericType) {
-      final signatures = typeArgs.map((typeArg) => typeArg.signature);
-      return 'pinterface(${type!.guid};${signatures.join(';')})';
-    }
-
     if (name == 'System.Guid') return 'g16';
 
+    final type = this.type;
+    if (type == null) return baseType.signature;
+
+    if (isGenericType) {
+      final signatures = typeArgs.map((typeArg) => typeArg.signature);
+      return 'pinterface(${type.iid};${signatures.join(';')})';
+    }
+
     final typeProjection = TypeProjection(this);
-    if (typeProjection.isWinRTDelegate) return 'delegate(${type!.guid!})';
-    if (typeProjection.isWinRTInterface) return type!.guid!;
+    if (typeProjection.isWinRTDelegate) return 'delegate(${type.iid})';
+    if (typeProjection.isWinRTInterface) return type.iid;
 
     if (typeProjection.isWinRTClass) {
-      final defaultInterface = type!.interfaces.first;
-      final defaultInterfaceSignature = defaultInterface.typeSpec != null
-          ? defaultInterface.typeSpec!.signature
-          : defaultInterface.signature;
+      final defaultInterface = type.interfaces.first;
+      final defaultInterfaceSignature = switch (defaultInterface.typeSpec) {
+        final typeSpec? => typeSpec.signature,
+        _ => defaultInterface.signature,
+      };
       return 'rc($name;$defaultInterfaceSignature)';
     }
 
     if (typeProjection.isWinRTEnum) {
-      final isFlagsEnum = type!.existsAttribute(flagsAttribute);
+      final isFlagsEnum = type.existsAttribute(flagsAttribute);
       final enumSignature = isFlagsEnum ? 'u4' : 'i4';
       return 'enum($name;$enumSignature)';
     }
 
     if (typeProjection.isWinRTStruct) {
       final fieldSignatures =
-          type!.fields.map((field) => field.typeIdentifier.signature);
+          type.fields.map((field) => field.typeIdentifier.signature);
       return 'struct($name;${fieldSignatures.join(';')})';
     }
 
-    return baseType.signature;
+    throw WinRTGenException('Unsupported type: $type');
   }
 
   /// Returns the type arguments of this TypeIdentifier.
@@ -114,23 +137,31 @@ extension TypeIdentifierHelpers on TypeIdentifier {
   /// The TypeIdentifier must be a generic type.
   List<TypeIdentifier> get typeArgs {
     assert(baseType == BaseType.genericTypeModifier);
-    assert(type != null);
 
-    if (type!.genericParams.length == 1) return [typeArg!];
+    final type = this.type;
+    final typeArg = this.typeArg;
+    if (type == null || typeArg == null) return [];
+
+    final genericParams = type.genericParams;
+    if (genericParams case [_]) return [typeArg];
 
     final typeIdentifiersOfFirstArg = <TypeIdentifier>[];
     final typeIdentifiersOfSecondArg = <TypeIdentifier>[];
     var typeIdentifiersOfCurrentArg = typeIdentifiersOfFirstArg;
-    var typeIdentifierCount = type!.genericParams.length - 1;
+    var typeIdentifierCount = genericParams.length - 1;
 
-    var currentTypeIdentifier = typeArg;
+    TypeIdentifier? currentTypeIdentifier = typeArg;
     while (currentTypeIdentifier != null) {
       final typeIdentifier = TypeIdentifier(currentTypeIdentifier.baseType,
           name: currentTypeIdentifier.name, type: currentTypeIdentifier.type);
       typeIdentifiersOfCurrentArg.add(typeIdentifier);
 
       if (currentTypeIdentifier.isGenericType) {
-        typeIdentifierCount += currentTypeIdentifier.type!.genericParams.length;
+        if (currentTypeIdentifier.type case final type?) {
+          typeIdentifierCount += type.genericParams.length;
+        } else {
+          throw WinRTGenException('Type $this has no TypeDef.');
+        }
       }
 
       if (--typeIdentifierCount == 0) {
@@ -190,7 +221,7 @@ String _parseGenericTypeIdentifierCreator(TypeIdentifier typeIdentifier) {
     final iid = iterableIidFromMapType(typeIdentifier);
     args.add("iterableIid: ${quote(iid)}");
   } else if (shortName == 'IReference') {
-    final referenceArgSignature = typeIdentifier.typeArg!.signature;
+    final referenceArgSignature = typeArgs.first.signature;
     final referenceSignature =
         'pinterface($IID_IReference;$referenceArgSignature)';
     final iid = iidFromSignature(referenceSignature);
@@ -201,7 +232,7 @@ String _parseGenericTypeIdentifierCreator(TypeIdentifier typeIdentifier) {
 
   // Hanlde int typeArg in IIterable, IVector and IVectorView interfaces
   if (typeArguments(_parseGenericTypeIdentifierName(typeIdentifier)) == 'int') {
-    final typeProjection = TypeProjection(typeIdentifier.typeArg!);
+    final typeProjection = TypeProjection(typeArgs.first);
     final intType = 'IntType.${typeProjection.nativeType.toLowerCase()}';
     args.add('intType: $intType');
   }
@@ -223,16 +254,18 @@ String _parseTypeArgName(TypeIdentifier typeIdentifier) {
 /// Unpack a nested [typeIdentifier] into a single name.
 String _parseGenericTypeIdentifierName(TypeIdentifier typeIdentifier) {
   final shortName = stripGenerics(lastComponent(typeIdentifier.name));
+  final typeArgs = typeIdentifier.typeArgs;
+  final typeArg1 = typeArgs.first;
 
   // Handle generic types with two type parameters
   if (typeIdentifier.type?.genericParams.length == 2) {
-    final typeArgs = typeIdentifier.typeArgs;
+    final typeArg2 = typeArgs.last;
     final firstTypeArg = switch (typeIdentifier.type?.name) {
       'Windows.Foundation.AsyncOperationProgressHandler`2' ||
       'Windows.Foundation.AsyncOperationWithProgressCompletedHandler`2' ||
       'Windows.Foundation.IAsyncOperationWithProgress`2' =>
-        _parseTypeArgName(typeArgs.first),
-      _ => typeArgs.first.shortName,
+        _parseTypeArgName(typeArg1),
+      _ => typeArg1.shortName,
     };
     final secondTypeArg = switch (typeIdentifier.type?.name) {
       'Windows.Foundation.Collections.IKeyValuePair`2' ||
@@ -240,19 +273,18 @@ String _parseGenericTypeIdentifierName(TypeIdentifier typeIdentifier) {
       'Windows.Foundation.Collections.IMapView`2' ||
       'Windows.Foundation.Collections.IObservableMap`2' ||
       'Windows.Foundation.TypedEventHandler`2' =>
-        _parseTypeArgName(typeArgs.last),
-      _ => typeArgs.last.shortName,
+        _parseTypeArgName(typeArg2),
+      _ => typeArg2.shortName,
     };
     return '$shortName<$firstTypeArg, $secondTypeArg>';
   }
 
   // Handle generic types with one type parameter
   return switch (shortName) {
-    'IAsyncOperation' =>
-      'IAsyncOperation<${_parseTypeArgName(typeIdentifier.typeArg!)}>',
+    'IAsyncOperation' => 'IAsyncOperation<${_parseTypeArgName(typeArg1)}>',
     // Mark typeArg as nullable since all IReference types are nullable.
-    'IReference' => 'IReference<${typeIdentifier.typeArg!.shortName}?>',
-    _ => '$shortName<${typeIdentifier.typeArg!.shortName}>',
+    'IReference' => 'IReference<${typeArg1.shortName}?>',
+    _ => '$shortName<${typeArg1.shortName}>',
   };
 }
 

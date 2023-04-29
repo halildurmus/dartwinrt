@@ -541,7 +541,9 @@ class _IReferenceUint64 extends IReference<int?> {
 }
 
 class _IReferenceWinRTEnum<T> extends IReference<T> {
-  _IReferenceWinRTEnum.fromPtr(super.ptr, {super.enumCreator});
+  _IReferenceWinRTEnum.fromPtr(super.ptr, {required this.enumCreator});
+
+  final T Function(int) enumCreator;
 
   @override
   T get value {
@@ -564,7 +566,7 @@ class _IReferenceWinRTEnum<T> extends IReference<T> {
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return _enumCreator!(retValuePtr.value);
+      return enumCreator(retValuePtr.value);
     } finally {
       free(retValuePtr);
     }
@@ -572,7 +574,9 @@ class _IReferenceWinRTEnum<T> extends IReference<T> {
 }
 
 class _IReferenceWinRTFlagsEnum<T> extends IReference<T> {
-  _IReferenceWinRTFlagsEnum.fromPtr(super.ptr, {super.enumCreator});
+  _IReferenceWinRTFlagsEnum.fromPtr(super.ptr, {required this.enumCreator});
+
+  final T Function(int) enumCreator;
 
   @override
   T get value {
@@ -595,7 +599,7 @@ class _IReferenceWinRTFlagsEnum<T> extends IReference<T> {
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return _enumCreator!(retValuePtr.value);
+      return enumCreator(retValuePtr.value);
     } finally {
       free(retValuePtr);
     }

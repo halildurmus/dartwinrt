@@ -4,8 +4,8 @@
 
 import 'package:winmd/winmd.dart';
 
-import '../models/projection_type.dart';
-import '../projections/type.dart';
+import '../../models/models.dart';
+import '../../projections/projections.dart';
 
 extension MethodHelpers on Method {
   /// Returns a copy of this method.

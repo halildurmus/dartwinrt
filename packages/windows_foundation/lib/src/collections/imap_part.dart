@@ -11,7 +11,10 @@ part of 'imap.dart';
 
 class _IMapGuidInspectable<V> extends IMap<Guid, V> {
   _IMapGuidInspectable.fromPtr(super.ptr,
-      {required super.iterableIid, super.creator});
+      {required super.iterableIid, required this.creator})
+      : super(creator: creator);
+
+  final V Function(Pointer<COMObject>) creator;
 
   @override
   V lookup(Guid key) {
@@ -43,7 +46,7 @@ class _IMapGuidInspectable<V> extends IMap<Guid, V> {
       return null as V;
     }
 
-    return _creator!(retValuePtr);
+    return creator(retValuePtr);
   }
 
   @override
@@ -256,7 +259,10 @@ class _IMapGuidObject extends IMap<Guid, Object?> {
 
 class _IMapInt16Inspectable<V> extends IMap<int, V> {
   _IMapInt16Inspectable.fromPtr(super.ptr,
-      {required super.iterableIid, super.intType, super.creator});
+      {required super.iterableIid, super.intType, required this.creator})
+      : super(creator: creator);
+
+  final V Function(Pointer<COMObject>) creator;
 
   @override
   V lookup(int key) {
@@ -285,7 +291,7 @@ class _IMapInt16Inspectable<V> extends IMap<int, V> {
       return null as V;
     }
 
-    return _creator!(retValuePtr);
+    return creator(retValuePtr);
   }
 
   @override
@@ -365,7 +371,10 @@ class _IMapInt16Inspectable<V> extends IMap<int, V> {
 
 class _IMapInt32Inspectable<V> extends IMap<int, V> {
   _IMapInt32Inspectable.fromPtr(super.ptr,
-      {required super.iterableIid, super.intType, super.creator});
+      {required super.iterableIid, super.intType, required this.creator})
+      : super(creator: creator);
+
+  final V Function(Pointer<COMObject>) creator;
 
   @override
   V lookup(int key) {
@@ -394,7 +403,7 @@ class _IMapInt32Inspectable<V> extends IMap<int, V> {
       return null as V;
     }
 
-    return _creator!(retValuePtr);
+    return creator(retValuePtr);
   }
 
   @override
@@ -474,7 +483,10 @@ class _IMapInt32Inspectable<V> extends IMap<int, V> {
 
 class _IMapInt64Inspectable<V> extends IMap<int, V> {
   _IMapInt64Inspectable.fromPtr(super.ptr,
-      {required super.iterableIid, super.intType, super.creator});
+      {required super.iterableIid, super.intType, required this.creator})
+      : super(creator: creator);
+
+  final V Function(Pointer<COMObject>) creator;
 
   @override
   V lookup(int key) {
@@ -503,7 +515,7 @@ class _IMapInt64Inspectable<V> extends IMap<int, V> {
       return null as V;
     }
 
-    return _creator!(retValuePtr);
+    return creator(retValuePtr);
   }
 
   @override
@@ -583,7 +595,10 @@ class _IMapInt64Inspectable<V> extends IMap<int, V> {
 
 class _IMapStringInspectable<V> extends IMap<String, V> {
   _IMapStringInspectable.fromPtr(super.ptr,
-      {required super.iterableIid, super.creator});
+      {required super.iterableIid, required this.creator})
+      : super(creator: creator);
+
+  final V Function(Pointer<COMObject>) creator;
 
   @override
   V lookup(String key) {
@@ -615,7 +630,7 @@ class _IMapStringInspectable<V> extends IMap<String, V> {
       return null as V;
     }
 
-    return _creator!(retValuePtr);
+    return creator(retValuePtr);
   }
 
   @override
@@ -944,7 +959,10 @@ class _IMapStringString extends IMap<String, String> {
 
 class _IMapStringWinRTEnum<V> extends IMap<String, V> {
   _IMapStringWinRTEnum.fromPtr(super.ptr,
-      {required super.iterableIid, super.enumCreator});
+      {required super.iterableIid, required this.enumCreator})
+      : super(enumCreator: enumCreator);
+
+  final V Function(int) enumCreator;
 
   @override
   V lookup(String key) {
@@ -970,7 +988,7 @@ class _IMapStringWinRTEnum<V> extends IMap<String, V> {
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return _enumCreator!(retValuePtr.value);
+      return enumCreator(retValuePtr.value);
     } finally {
       free(retValuePtr);
     }
@@ -1058,7 +1076,10 @@ class _IMapStringWinRTEnum<V> extends IMap<String, V> {
 
 class _IMapStringWinRTFlagsEnum<V> extends IMap<String, V> {
   _IMapStringWinRTFlagsEnum.fromPtr(super.ptr,
-      {required super.iterableIid, super.enumCreator});
+      {required super.iterableIid, required this.enumCreator})
+      : super(enumCreator: enumCreator);
+
+  final V Function(int) enumCreator;
 
   @override
   V lookup(String key) {
@@ -1084,7 +1105,7 @@ class _IMapStringWinRTFlagsEnum<V> extends IMap<String, V> {
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return _enumCreator!(retValuePtr.value);
+      return enumCreator(retValuePtr.value);
     } finally {
       free(retValuePtr);
     }
@@ -1172,7 +1193,10 @@ class _IMapStringWinRTFlagsEnum<V> extends IMap<String, V> {
 
 class _IMapUint8Inspectable<V> extends IMap<int, V> {
   _IMapUint8Inspectable.fromPtr(super.ptr,
-      {required super.iterableIid, super.intType, super.creator});
+      {required super.iterableIid, super.intType, required this.creator})
+      : super(creator: creator);
+
+  final V Function(Pointer<COMObject>) creator;
 
   @override
   V lookup(int key) {
@@ -1201,7 +1225,7 @@ class _IMapUint8Inspectable<V> extends IMap<int, V> {
       return null as V;
     }
 
-    return _creator!(retValuePtr);
+    return creator(retValuePtr);
   }
 
   @override
@@ -1281,7 +1305,10 @@ class _IMapUint8Inspectable<V> extends IMap<int, V> {
 
 class _IMapUint16Inspectable<V> extends IMap<int, V> {
   _IMapUint16Inspectable.fromPtr(super.ptr,
-      {required super.iterableIid, super.intType, super.creator});
+      {required super.iterableIid, super.intType, required this.creator})
+      : super(creator: creator);
+
+  final V Function(Pointer<COMObject>) creator;
 
   @override
   V lookup(int key) {
@@ -1310,7 +1337,7 @@ class _IMapUint16Inspectable<V> extends IMap<int, V> {
       return null as V;
     }
 
-    return _creator!(retValuePtr);
+    return creator(retValuePtr);
   }
 
   @override
@@ -1390,7 +1417,10 @@ class _IMapUint16Inspectable<V> extends IMap<int, V> {
 
 class _IMapUint32Inspectable<V> extends IMap<int, V> {
   _IMapUint32Inspectable.fromPtr(super.ptr,
-      {required super.iterableIid, super.intType, super.creator});
+      {required super.iterableIid, super.intType, required this.creator})
+      : super(creator: creator);
+
+  final V Function(Pointer<COMObject>) creator;
 
   @override
   V lookup(int key) {
@@ -1419,7 +1449,7 @@ class _IMapUint32Inspectable<V> extends IMap<int, V> {
       return null as V;
     }
 
-    return _creator!(retValuePtr);
+    return creator(retValuePtr);
   }
 
   @override
@@ -1499,7 +1529,10 @@ class _IMapUint32Inspectable<V> extends IMap<int, V> {
 
 class _IMapUint64Inspectable<V> extends IMap<int, V> {
   _IMapUint64Inspectable.fromPtr(super.ptr,
-      {required super.iterableIid, super.intType, super.creator});
+      {required super.iterableIid, super.intType, required this.creator})
+      : super(creator: creator);
+
+  final V Function(Pointer<COMObject>) creator;
 
   @override
   V lookup(int key) {
@@ -1528,7 +1561,7 @@ class _IMapUint64Inspectable<V> extends IMap<int, V> {
       return null as V;
     }
 
-    return _creator!(retValuePtr);
+    return creator(retValuePtr);
   }
 
   @override
@@ -1608,7 +1641,13 @@ class _IMapUint64Inspectable<V> extends IMap<int, V> {
 
 class _IMapWinRTEnumInspectable<K, V> extends IMap<K, V> {
   _IMapWinRTEnumInspectable.fromPtr(super.ptr,
-      {required super.iterableIid, super.enumKeyCreator, super.creator});
+      {required super.iterableIid,
+      required this.enumKeyCreator,
+      required this.creator})
+      : super(enumKeyCreator: enumKeyCreator, creator: creator);
+
+  final K Function(int) enumKeyCreator;
+  final V Function(Pointer<COMObject>) creator;
 
   @override
   V lookup(K key) {
@@ -1637,7 +1676,7 @@ class _IMapWinRTEnumInspectable<K, V> extends IMap<K, V> {
       return null as V;
     }
 
-    return _creator!(retValuePtr);
+    return creator(retValuePtr);
   }
 
   @override
@@ -1717,7 +1756,13 @@ class _IMapWinRTEnumInspectable<K, V> extends IMap<K, V> {
 
 class _IMapWinRTFlagsEnumInspectable<K, V> extends IMap<K, V> {
   _IMapWinRTFlagsEnumInspectable.fromPtr(super.ptr,
-      {required super.iterableIid, super.enumKeyCreator, super.creator});
+      {required super.iterableIid,
+      required this.enumKeyCreator,
+      required this.creator})
+      : super(enumKeyCreator: enumKeyCreator, creator: creator);
+
+  final K Function(int) enumKeyCreator;
+  final V Function(Pointer<COMObject>) creator;
 
   @override
   V lookup(K key) {
@@ -1746,7 +1791,7 @@ class _IMapWinRTFlagsEnumInspectable<K, V> extends IMap<K, V> {
       return null as V;
     }
 
-    return _creator!(retValuePtr);
+    return creator(retValuePtr);
   }
 
   @override

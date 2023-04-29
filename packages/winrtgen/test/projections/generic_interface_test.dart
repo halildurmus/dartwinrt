@@ -245,7 +245,7 @@ void main() {
         expect(
             projection.namedConstructor,
             equals(
-                '_IAsyncOperationInspectable.fromPtr(super.ptr, {super.creator});'));
+                '_IAsyncOperationInspectable.fromPtr(super.ptr, {required this.creator});'));
       });
 
       test('(3)', () {
@@ -254,7 +254,7 @@ void main() {
         expect(
             projection.namedConstructor,
             equals(
-                '_IAsyncOperationWinRTEnum.fromPtr(super.ptr, {super.enumCreator});'));
+                '_IAsyncOperationWinRTEnum.fromPtr(super.ptr, {required this.enumCreator});'));
       });
 
       test('(4)', () {
@@ -276,7 +276,7 @@ void main() {
         expect(
             projection.namedConstructor,
             equals(
-                '_IMapStringInspectable.fromPtr(super.ptr, {required super.iterableIid, super.creator});'));
+                '_IMapStringInspectable.fromPtr(super.ptr, {required super.iterableIid, required this.creator}) : super(creator: creator);'));
       });
 
       test('(6)', () {
@@ -287,7 +287,7 @@ void main() {
         expect(
             projection.namedConstructor,
             equals(
-                '_IMapWinRTEnumInspectable.fromPtr(super.ptr, {required super.iterableIid, super.enumKeyCreator, super.creator});'));
+                '_IMapWinRTEnumInspectable.fromPtr(super.ptr, {required super.iterableIid, required this.enumKeyCreator, required this.creator}) : super(enumKeyCreator: enumKeyCreator, creator: creator);'));
       });
     });
 

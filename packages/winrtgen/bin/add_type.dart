@@ -150,8 +150,7 @@ TypeDependencies dependenciesOf(String type) {
   final structs = SplayTreeSet<String>();
   final ignoredTypes = SplayTreeSet<String>();
 
-  final typeDef = MetadataStore.getMetadataForType(type);
-  if (typeDef == null) throw Exception("Can't find type $type");
+  final typeDef = getMetadataForType(type);
 
   void handleTypeIdentifier(TypeIdentifier typeIdentifier) {
     final typeName = typeIdentifier.name;
@@ -191,10 +190,10 @@ TypeDependencies dependenciesOf(String type) {
       handleTypeIdentifier(param.typeIdentifier);
 
       // Keep unwrapping until there are no types left.
-      var refType = param.typeIdentifier;
-      while (refType.typeArg != null) {
-        refType = refType.typeArg!;
+      var refType = param.typeIdentifier.typeArg;
+      while (refType != null) {
         handleTypeIdentifier(refType);
+        refType = refType.typeArg;
       }
     }
   }
@@ -209,9 +208,12 @@ TypeDependencies dependenciesOf(String type) {
 Set<String> getGeneratedFilePaths() {
   final filePaths = <String>{};
   final packagesDir = Directory.current.parent;
+  final files = packagesDir
+      .listSync(recursive: true, followLinks: false)
+      .whereType<File>();
 
-  for (final entity in packagesDir.listSync(recursive: true)) {
-    if (entity is File && entity.path.endsWith('.dart')) {
+  for (final entity in files) {
+    if (entity.path.endsWith('.dart')) {
       // Skip native_structs.g.dart file
       if (entity.path.endsWith('native_structs.g.dart')) continue;
 
@@ -264,8 +266,8 @@ Future<String> getDocumentationComment(String fullyQualifiedType) async {
 
 Future<void> addEnum(String type) async {
   try {
-    final typeDef = MetadataStore.getMetadataForType(type);
-    if (!(typeDef?.isEnum ?? false)) {
+    final typeDef = getMetadataForType(type);
+    if (!typeDef.isEnum) {
       print('`$type` is not a WinRT enum!');
       return;
     }
@@ -291,13 +293,13 @@ Future<void> addEnum(String type) async {
 
 Future<void> addObject(String type) async {
   try {
-    final typeDef = MetadataStore.getMetadataForType(type);
+    final typeDef = getMetadataForType(type);
     if (type.contains('`')) {
       print('`$type` is a generic type! Generic types cannot be generated.');
       return;
     }
 
-    if (!(typeDef?.isClass ?? false) && !(typeDef?.isInterface ?? false)) {
+    if (!typeDef.isClass && !typeDef.isInterface) {
       print('`$type` is not a WinRT object!');
       return;
     }
@@ -353,8 +355,8 @@ Future<void> addObject(String type) async {
 
 Future<void> addStruct(String type) async {
   try {
-    final typeDef = MetadataStore.getMetadataForType(type);
-    if (!(typeDef?.isStruct ?? false)) {
+    final typeDef = getMetadataForType(type);
+    if (!typeDef.isStruct) {
       print('`$type` is not a WinRT struct!');
       return;
     }
