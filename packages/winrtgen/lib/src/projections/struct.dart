@@ -5,8 +5,7 @@
 import 'package:winmd/winmd.dart';
 
 import '../constants/constants.dart';
-import '../extensions/extensions.dart';
-import '../utils.dart';
+import '../utilities/utilities.dart';
 import 'type.dart';
 
 /// Represents a Dart projection of a struct [Field].
@@ -66,8 +65,7 @@ class NativeStructProjection {
   /// found.
   factory NativeStructProjection.from(String fullyQualifiedType,
       {String? structName}) {
-    final typeDef = MetadataStore.getMetadataForType(fullyQualifiedType);
-    if (typeDef == null) throw Exception("Can't find $fullyQualifiedType");
+    final typeDef = getMetadataForType(fullyQualifiedType);
     return NativeStructProjection(typeDef, structName: structName);
   }
 
@@ -105,8 +103,7 @@ class StructProjection extends NativeStructProjection {
   /// found.
   factory StructProjection.from(String fullyQualifiedType,
       {String comment = '', String? structName}) {
-    final typeDef = MetadataStore.getMetadataForType(fullyQualifiedType);
-    if (typeDef == null) throw Exception("Can't find $fullyQualifiedType");
+    final typeDef = getMetadataForType(fullyQualifiedType);
     return StructProjection(typeDef, comment: comment, structName: structName);
   }
 

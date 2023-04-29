@@ -5,8 +5,7 @@
 import 'package:winmd/winmd.dart';
 
 import '../constants/constants.dart';
-import '../extensions/extensions.dart';
-import '../utils.dart';
+import '../utilities/utilities.dart';
 import 'getter.dart';
 import 'method.dart';
 import 'method_forwarders.dart';
@@ -32,8 +31,7 @@ class InterfaceProjection {
   /// found.
   factory InterfaceProjection.from(String fullyQualifiedType,
       {String comment = ''}) {
-    final typeDef = MetadataStore.getMetadataForType(fullyQualifiedType);
-    if (typeDef == null) throw Exception("Can't find $fullyQualifiedType");
+    final typeDef = getMetadataForType(fullyQualifiedType);
     return InterfaceProjection(typeDef, comment: comment);
   }
 
@@ -57,7 +55,7 @@ class InterfaceProjection {
 
   String get iidConstant => '''
 /// @nodoc
-const IID_$shortName = ${quote(typeDef.guid ?? '')};
+const IID_$shortName = ${quote(typeDef.iid)};
 ''';
 
   String get category => 'interface';

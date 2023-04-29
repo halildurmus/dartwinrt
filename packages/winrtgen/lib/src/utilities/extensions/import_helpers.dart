@@ -4,9 +4,9 @@
 
 import 'package:winmd/winmd.dart';
 
-import '../constants/constants.dart';
-import '../projections/interface.dart';
-import '../utils.dart';
+import '../../constants/constants.dart';
+import '../../projections/projections.dart';
+import '../helpers.dart';
 import 'typedef_helpers.dart';
 
 extension ImportHelpers on InterfaceProjection {
@@ -31,10 +31,12 @@ extension ImportHelpers on InterfaceProjection {
     return '';
   }
 
-  String? importForTypeIdentifier(TypeIdentifier typeIdentifier) =>
-      typeIdentifier.name.startsWith('Windows')
-          ? importForTypeDef(typeIdentifier.type!)
-          : null;
+  String? importForTypeIdentifier(TypeIdentifier typeIdentifier) {
+    if (!typeIdentifier.name.startsWith('Windows')) return null;
+    final type = typeIdentifier.type;
+    if (type == null) return null;
+    return importForTypeDef(type);
+  }
 
   /// Returns imports for [typeDef]'s inherited interfaces.
   Set<String> get importsForInheritedInterfaces {
@@ -76,11 +78,11 @@ extension ImportHelpers on InterfaceProjection {
         if (import != null) imports.add(import);
 
         // Keep unwrapping until there are no types left.
-        var refType = param.typeIdentifier;
-        while (refType.typeArg != null) {
-          refType = refType.typeArg!;
+        var refType = param.typeIdentifier.typeArg;
+        while (refType != null) {
           final import = importForTypeIdentifier(refType);
           if (import != null) imports.add(import);
+          refType = refType.typeArg;
         }
       }
     }

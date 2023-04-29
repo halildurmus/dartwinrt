@@ -4,7 +4,7 @@
 
 import 'package:winmd/winmd.dart';
 
-import '../../extensions/extensions.dart';
+import '../../utilities/utilities.dart';
 import '../getter.dart';
 import '../method.dart';
 import '../parameter.dart';

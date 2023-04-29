@@ -29,9 +29,7 @@ abstract class IMapView<K, V> extends IInspectable
     K Function(int)? enumKeyCreator,
     V Function(int)? enumCreator,
     IntType? intType,
-  })  : _creator = creator,
-        _enumCreator = enumCreator,
-        _iterableIid = iterableIid {
+  }) : _iterableIid = iterableIid {
     _iterableCreator = (ptr) => IKeyValuePair<K, V>.fromPtr(ptr,
         creator: creator,
         enumKeyCreator: enumKeyCreator,
@@ -40,8 +38,6 @@ abstract class IMapView<K, V> extends IInspectable
   }
 
   final String _iterableIid;
-  final V Function(Pointer<COMObject>)? _creator;
-  final V Function(int)? _enumCreator;
   late final IKeyValuePair<K, V> Function(Pointer<COMObject>)? _iterableCreator;
 
   /// Creates an instance of [IMapView] from the given [ptr] and [iterableIid].

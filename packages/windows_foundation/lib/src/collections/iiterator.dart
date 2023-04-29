@@ -17,15 +17,7 @@ part 'iiterator_part.dart';
 /// {@category interface}
 abstract class IIterator<T> extends IInspectable {
   // vtable begins at 6, is 4 entries long.
-  IIterator(
-    super.ptr, {
-    T Function(Pointer<COMObject>)? creator,
-    T Function(int)? enumCreator,
-  })  : _creator = creator,
-        _enumCreator = enumCreator;
-
-  final T Function(Pointer<COMObject>)? _creator;
-  final T Function(int)? _enumCreator;
+  IIterator(super.ptr);
 
   /// Creates an instance of [IIterator] from the given [ptr].
   ///

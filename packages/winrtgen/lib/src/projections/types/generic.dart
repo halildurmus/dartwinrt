@@ -2,7 +2,8 @@
 // details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-import '../../models/type_arg.dart';
+import '../../models/models.dart';
+import '../../utilities/utilities.dart';
 import '../getter.dart';
 import '../method.dart';
 import '../parameter.dart';
@@ -11,13 +12,13 @@ import 'default.dart';
 mixin _GenericEnumMixin on MethodProjection {
   String get enumCreator => method.parent.genericParams.length == 2 &&
           method.parent.genericParams.first.name == returnType
-      ? '_enumKeyCreator!'
-      : '_enumCreator!';
+      ? 'enumKeyCreator'
+      : 'enumCreator';
 
   @override
   String get returnType {
     final genericParamSequence =
-        returnTypeProjection.typeIdentifier.genericParameterSequence!;
+        returnTypeProjection.typeIdentifier.genericParamSequence;
     return method.parent.genericParams[genericParamSequence].name;
   }
 
@@ -54,8 +55,10 @@ class GenericEnumParameterProjection extends ParameterProjection {
   GenericEnumParameterProjection(super.parameter);
 
   @override
-  String get type => method.parent
-      .genericParams[parameter.typeIdentifier.genericParameterSequence!].name;
+  String get type {
+    final genericParamSequence = parameter.typeIdentifier.genericParamSequence;
+    return method.parent.genericParams[genericParamSequence].name;
+  }
 
   @override
   String get localIdentifier => '($identifier as WinRTEnum).value';
@@ -69,7 +72,7 @@ class GenericEnumListParameterProjection
   @override
   String get type {
     final genericParamSequence =
-        typeArgProjection.typeIdentifier.genericParameterSequence!;
+        typeArgProjection.typeIdentifier.genericParamSequence;
     final genericParam = method.parent.genericParams[genericParamSequence].name;
     return 'List<$genericParam>';
   }
@@ -85,7 +88,7 @@ class GenericEnumListParameterProjection
   @override
   String get fillArrayPostamble => '''
     if ($fillArraySizeVariable > 0) {
-      value.addAll(pArray.toList(length: $fillArraySizeVariable).map(_enumCreator!));
+      value.addAll(pArray.toList(length: $fillArraySizeVariable).map(enumCreator));
     }
     free(pArray);''';
 }
@@ -97,7 +100,7 @@ mixin _GenericObjectMixin on MethodProjection {
 
   String get typeParameter {
     final genericParamSequence =
-        returnTypeProjection.typeIdentifier.genericParameterSequence!;
+        returnTypeProjection.typeIdentifier.genericParamSequence;
     return method.parent.genericParams[genericParamSequence].name;
   }
 
@@ -121,7 +124,7 @@ mixin _GenericObjectMixin on MethodProjection {
 
     $nullCheck
 
-    return _creator!(retValuePtr);
+    return creator(retValuePtr);
   }
 ''';
 }
@@ -145,8 +148,10 @@ class GenericObjectParameterProjection extends ParameterProjection {
   GenericObjectParameterProjection(super.parameter);
 
   @override
-  String get type => method.parent
-      .genericParams[parameter.typeIdentifier.genericParameterSequence!].name;
+  String get type {
+    final genericParamSequence = parameter.typeIdentifier.genericParamSequence;
+    return method.parent.genericParams[genericParamSequence].name;
+  }
 
   @override
   String get localIdentifier => '($identifier as IInspectable).ptr.ref.lpVtbl';
@@ -160,7 +165,7 @@ class GenericObjectListParameterProjection
   @override
   String get type {
     final genericParamSequence =
-        typeArgProjection.typeIdentifier.genericParameterSequence!;
+        typeArgProjection.typeIdentifier.genericParamSequence;
     final genericParam = method.parent.genericParams[genericParamSequence].name;
     return 'List<$genericParam>';
   }
@@ -179,7 +184,7 @@ class GenericObjectListParameterProjection
   @override
   String get fillArrayPostamble => '''
     if ($fillArraySizeVariable > 0) {
-      value.addAll(pArray.toList(_creator!, length: $fillArraySizeVariable));
+      value.addAll(pArray.toList(creator, length: $fillArraySizeVariable));
     }
     free(pArray);''';
 }

@@ -18,11 +18,8 @@ part 'ireference_part.dart';
 /// {@category interface}
 abstract class IReference<T> extends IInspectable {
   // vtable begins at 6, is 1 entries long.
-  IReference(super.ptr, {T Function(int)? enumCreator})
-      : _enumCreator = enumCreator,
-        _isNull = ptr.ref.isNull;
+  IReference(super.ptr) : _isNull = ptr.ref.isNull;
 
-  final T Function(int)? _enumCreator;
   final bool _isNull;
 
   /// Creates an instance of [IReference] from the given [ptr] and

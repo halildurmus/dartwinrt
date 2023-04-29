@@ -5,8 +5,7 @@
 import 'package:winmd/winmd.dart';
 
 import '../constants/constants.dart';
-import '../extensions/extensions.dart';
-import '../utils.dart';
+import '../utilities/utilities.dart';
 import 'interface.dart';
 import 'method.dart';
 
@@ -25,8 +24,7 @@ class ClassProjection extends InterfaceProjection {
   /// found.
   factory ClassProjection.from(String fullyQualifiedType,
       {String comment = ''}) {
-    final typeDef = MetadataStore.getMetadataForType(fullyQualifiedType);
-    if (typeDef == null) throw Exception("Can't find $fullyQualifiedType");
+    final typeDef = getMetadataForType(fullyQualifiedType);
     return ClassProjection(typeDef, comment: comment);
   }
 

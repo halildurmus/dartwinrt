@@ -6,7 +6,6 @@
 
 import 'package:test/test.dart';
 import 'package:win32/win32.dart';
-import 'package:winmd/winmd.dart';
 import 'package:winrtgen/winrtgen.dart';
 
 void main() {
@@ -15,8 +14,8 @@ void main() {
     return;
   }
 
-  final geocoordinateTypeDef = MetadataStore.getMetadataForType(
-      'Windows.Devices.Geolocation.IGeocoordinate')!;
+  final geocoordinateTypeDef =
+      getMetadataForType('Windows.Devices.Geolocation.IGeocoordinate');
   final getLatitudeGetter =
       geocoordinateTypeDef.methods.firstWhere((m) => m.name == 'get_Latitude');
 

@@ -5,8 +5,8 @@
 import 'package:winmd/winmd.dart';
 
 import '../constants/attributes.dart';
-import '../extensions/extensions.dart';
-import '../utils.dart';
+import '../exception/exception.dart';
+import '../utilities/utilities.dart';
 import 'class.dart';
 import 'interface.dart';
 import 'method.dart';
@@ -53,7 +53,13 @@ class MethodForwardersProjection {
 
   String? get creatorArgument {
     if (!isGenericInterface) return null;
-    final typeArgs = interface.typeSpec!.typeArgs;
+
+    final typeSpec = interface.typeSpec;
+    if (typeSpec == null) {
+      throw WinRTGenException('Type $interface has no typeSpec.');
+    }
+
+    final typeArgs = typeSpec.typeArgs;
     // Use the value (last) typeArg to parse the creator argument as it is not
     // required for the key (first) typeArg.
     final typeArg = switch (shortInterfaceName) {
@@ -71,23 +77,37 @@ class MethodForwardersProjection {
 
   String? get iterableIidArgument {
     if (!isGenericInterface) return null;
-    if (shortInterfaceName case 'IMap' || 'IMapView') {
-      final iid = iterableIidFromMapType(interface.typeSpec!);
-      return 'iterableIid: ${quote(iid)}';
-    } else if (shortInterfaceName case 'IVector' || 'IVectorView') {
-      final iid = iterableIidFromVectorType(interface.typeSpec!);
-      return 'iterableIid: ${quote(iid)}';
+
+    if (interface.typeSpec case final typeSpec?) {
+      if (shortInterfaceName case 'IMap' || 'IMapView') {
+        final iid = iterableIidFromMapType(typeSpec);
+        return 'iterableIid: ${quote(iid)}';
+      }
+
+      if (shortInterfaceName case 'IVector' || 'IVectorView') {
+        final iid = iterableIidFromVectorType(typeSpec);
+        return 'iterableIid: ${quote(iid)}';
+      }
+
+      return null;
     }
-    return null;
+
+    throw WinRTGenException('Type $interface has no typeSpec.');
   }
 
   String? get intTypeArgument {
     if (!isGenericInterface) return null;
-    if (typeArgs case 'int' || 'int?') {
-      final typeArgProjection = TypeProjection(interface.typeSpec!.typeArg!);
-      return 'intType: IntType.${typeArgProjection.nativeType.toLowerCase()}';
+
+    if (interface.typeSpec case final typeSpec?) {
+      if (typeArgs case 'int' || 'int?') {
+        final typeArg = dereferenceType(typeSpec);
+        final typeArgProjection = TypeProjection(typeArg);
+        return 'intType: IntType.${typeArgProjection.nativeType.toLowerCase()}';
+      }
+      return null;
     }
-    return null;
+
+    throw WinRTGenException('Type $interface has no typeSpec.');
   }
 
   String get interfaceInstantiation {
@@ -99,12 +119,16 @@ class MethodForwardersProjection {
   /// Tries to find the method projections for the [interface] from the given
   /// [methodProjections] by comparing method names.
   List<MethodProjection> _methodProjectionsOfInterface(
-          List<MethodProjection> methodProjections) =>
-      methodProjections
-          .where((methodProjection) => interface.typeSpec!.type!.methods
+      List<MethodProjection> methodProjections) {
+    if (interface.typeSpec?.type case final type?) {
+      return methodProjections
+          .where((methodProjection) => type.methods
               .map((method) => method.name)
               .contains(methodProjection.name))
           .toList();
+    }
+    throw WinRTGenException('Type $interface has no TypeDef.');
+  }
 
   List<MethodProjection> get methodProjections {
     if (!isGenericInterface) {

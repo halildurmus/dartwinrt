@@ -21,18 +21,7 @@ part 'ikeyvaluepair_part.dart';
 /// {@category interface}
 abstract class IKeyValuePair<K, V> extends IInspectable {
   // vtable begins at 6, is 2 entries long.
-  IKeyValuePair(
-    super.ptr, {
-    V Function(Pointer<COMObject>)? creator,
-    K Function(int)? enumKeyCreator,
-    V Function(int)? enumCreator,
-  })  : _creator = creator,
-        _enumKeyCreator = enumKeyCreator,
-        _enumCreator = enumCreator;
-
-  final V Function(Pointer<COMObject>)? _creator;
-  final K Function(int)? _enumKeyCreator;
-  final V Function(int)? _enumCreator;
+  IKeyValuePair(super.ptr);
 
   /// Creates an instance of [IKeyValuePair] from the given [ptr].
   ///

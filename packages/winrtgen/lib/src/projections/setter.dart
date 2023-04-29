@@ -4,8 +4,8 @@
 
 import 'package:winmd/winmd.dart';
 
-import '../extensions/extensions.dart';
 import '../models/models.dart';
+import '../utilities/utilities.dart';
 import 'method.dart';
 import 'parameter.dart';
 import 'property.dart';
@@ -55,8 +55,8 @@ abstract class SetterProjection extends PropertyProjection {
   /// matching [methodName] is found.
   factory SetterProjection.fromTypeAndMethodName(
       String fullyQualifiedType, String methodName) {
-    final setPropertyPattern = RegExp(r'^put(_{1,2})(\w+)$');
-    if (!setPropertyPattern.hasMatch(methodName)) {
+    final setPropertyRegExp = RegExp(r'^put(_{1,2})(\w+)$');
+    if (!setPropertyRegExp.hasMatch(methodName)) {
       throw ArgumentError.value(
           methodName, 'methodName', 'Method name must start with `put_`.');
     }

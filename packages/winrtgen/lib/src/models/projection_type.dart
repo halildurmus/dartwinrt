@@ -2,8 +2,8 @@
 // details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-import '../extensions/extensions.dart';
-import '../projections/type.dart';
+import '../projections/projections.dart';
+import '../utilities/utilities.dart';
 
 /// Represents the projection type of a WinRT type.
 ///
@@ -50,8 +50,8 @@ enum ProjectionType {
   /// Returns the appropriate [ProjectionType] for the [type].
   factory ProjectionType.from(TypeProjection type) {
     if (type.isReferenceType) {
-      final typeProjection = TypeProjection(type.typeIdentifier.typeArg!);
-      return typeProjection.projectionType;
+      return TypeProjection(dereferenceType(type.typeIdentifier))
+          .projectionType;
     }
 
     if (type.isClassVariableType) {
@@ -61,10 +61,12 @@ enum ProjectionType {
     }
 
     if (type.isSimpleArray) {
-      final typeIdentifier = type.typeIdentifier;
-      final projectionType = typeIdentifier.isReferenceType
-          ? TypeProjection(typeIdentifier.typeArg!.typeArg!).projectionType
-          : TypeProjection(typeIdentifier.typeArg!).projectionType;
+      var typeIdentifier = type.typeIdentifier;
+      if (typeIdentifier.isReferenceType) {
+        typeIdentifier = dereferenceType(typeIdentifier);
+      }
+      final projectionType =
+          TypeProjection(dereferenceType(typeIdentifier)).projectionType;
       return switch (projectionType) {
         ProjectionType.dartPrimitive => ProjectionType.dartPrimitiveList,
         ProjectionType.dateTime => ProjectionType.dateTimeList,

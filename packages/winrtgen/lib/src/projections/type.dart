@@ -4,9 +4,9 @@
 
 import 'package:winmd/winmd.dart';
 
-import '../extensions/extensions.dart';
+import '../exception/exception.dart';
 import '../models/models.dart';
-import '../utils.dart';
+import '../utilities/utilities.dart';
 
 class TypeTuple {
   const TypeTuple(this.nativeType, this.dartType, {this.attribute});
@@ -157,12 +157,13 @@ class TypeProjection {
   TypeTuple unwrapEnum() {
     final fieldType = typeIdentifier.type?.findField('value__')?.typeIdentifier;
     if (fieldType == null) {
-      throw Exception('Enum $typeIdentifier is missing value__ field');
+      throw WinRTGenException('Enum $typeIdentifier is missing value__ field');
     }
 
     final typeTuple = baseNativeMapping[fieldType.baseType];
     if (typeTuple == null) {
-      throw Exception('Enum $typeIdentifier has unsupported underlying type');
+      throw WinRTGenException(
+          'Enum $typeIdentifier has unsupported underlying type');
     }
 
     return typeTuple;
@@ -171,48 +172,38 @@ class TypeProjection {
   /// Takes a type such as `pointerTypeModifier` -> `BaseType.Uint32` and
   /// converts it to `Pointer<Uint32>`.
   TypeTuple unwrapPointerType() {
-    final typeArg = typeIdentifier.typeArg;
-    if (typeArg == null) {
-      throw Exception('Pointer type missing for $typeIdentifier.');
+    if (typeIdentifier.typeArg case final typeArg?) {
+      final typeProjection = TypeProjection(typeArg);
+      final type = 'Pointer<${typeProjection.nativeType}>';
+      return TypeTuple(type, type);
     }
-
-    final typeProjection = TypeProjection(typeIdentifier.typeArg!);
-    final type = 'Pointer<${typeProjection.nativeType}>';
-    return TypeTuple(type, type);
+    throw WinRTGenException('Pointer type missing for $typeIdentifier.');
   }
 
   TypeTuple unwrapReferenceType() {
-    final baseType = typeIdentifier.typeArg?.baseType;
-    if (baseType == BaseType.classTypeModifier) {
-      return const TypeTuple('Pointer<COMObject>', 'Pointer<COMObject>');
-    }
-
-    if (baseType == BaseType.simpleArrayType) {
+    final typeArg = dereferenceType(typeIdentifier);
+    return switch (typeArg.baseType) {
+      BaseType.classTypeModifier =>
+        const TypeTuple('Pointer<COMObject>', 'Pointer<COMObject>'),
       // This form is used in WinRT methods when the caller receives an array
       // that was allocated by the method. In this style, the array size
       // parameter and the array parameter are both out parameters.
       // Additionally, the array parameter is passed by reference (that is,
       // ArrayType**, rather than ArrayType*).
-      final refTuple = unwrapSimpleArrayType(typeIdentifier.typeArg!);
-      return TypeTuple(
-          'Pointer<${refTuple.nativeType}>', 'Pointer<${refTuple.dartType}>');
-    }
-
-    if (baseType == BaseType.uint32Type) {
-      return const TypeTuple('Pointer<Uint32>', 'Pointer<Uint32>');
-    }
-
-    throw Exception('Could not unwrap reference type of $typeIdentifier');
+      BaseType.simpleArrayType => TypeTuple(
+          'Pointer<${unwrapSimpleArrayType(typeArg).nativeType}>',
+          'Pointer<${unwrapSimpleArrayType(typeArg).dartType}>'),
+      BaseType.uint32Type =>
+        const TypeTuple('Pointer<Uint32>', 'Pointer<Uint32>'),
+      _ => throw WinRTGenException(
+          'Could not unwrap reference type of $typeIdentifier')
+    };
   }
 
   /// Takes a type such as `simpleArrayType` -> `BaseType.Uint8` and converts
   /// it to `Pointer<Uint8>`.
   TypeTuple unwrapSimpleArrayType(TypeIdentifier typeIdentifier) {
-    final typeArg = typeIdentifier.typeArg;
-    if (typeArg == null) {
-      throw Exception('Array type missing for $typeIdentifier.');
-    }
-
+    final typeArg = dereferenceType(typeIdentifier);
     final typeArgNativeType = TypeProjection(typeArg).nativeType;
     final type = wrapWithPointer(typeArgNativeType);
     return TypeTuple(type, type);
@@ -224,7 +215,7 @@ class TypeProjection {
   TypeTuple unwrapStruct() {
     final structType = typeIdentifier.type;
     if (structType == null) {
-      throw Exception('Struct type missing for $typeIdentifier.');
+      throw WinRTGenException('Struct type missing for $typeIdentifier.');
     }
 
     final structName = 'Native${structType.shortName}';
@@ -234,8 +225,10 @@ class TypeProjection {
   TypeTuple? _projection;
 
   TypeTuple get projection {
-    _projection ??= projectType();
-    return _projection!;
+    var projection = _projection;
+    if (projection != null) return projection;
+    projection = _projection = projectType();
+    return projection;
   }
 
   TypeArg get genericTypeArg {
@@ -286,7 +279,7 @@ class TypeProjection {
     // Handle generic type argument (e.g. TypeArg.inspectable)
     if (isClassVariableType) return unwrapGenericTypeArg();
 
-    throw Exception('Type information missing for $typeIdentifier.');
+    throw WinRTGenException('Type information missing for $typeIdentifier.');
   }
 
   @override

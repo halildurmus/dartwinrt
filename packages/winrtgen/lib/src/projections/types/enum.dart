@@ -2,7 +2,8 @@
 // details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-import '../../extensions/extensions.dart';
+import '../../exception/exception.dart';
+import '../../utilities/utilities.dart';
 import '../getter.dart';
 import '../method.dart';
 import '../parameter.dart';
@@ -10,7 +11,11 @@ import '../setter.dart';
 
 mixin _EnumMixin on MethodProjection {
   @override
-  String get returnType => returnTypeProjection.typeIdentifier.type!.shortName;
+  String get returnType {
+    final typeIdentifier = returnTypeProjection.typeIdentifier;
+    if (typeIdentifier.type case final type?) return type.shortName;
+    throw WinRTGenException('Type $typeIdentifier has no TypeDef.');
+  }
 
   @override
   String get methodDeclaration => '''
@@ -55,7 +60,10 @@ class EnumParameterProjection extends ParameterProjection {
   EnumParameterProjection(super.parameter);
 
   @override
-  String get type => typeProjection.typeIdentifier.type!.shortName;
+  String get type {
+    if (parameter.typeIdentifier.type case final type?) return type.shortName;
+    throw WinRTGenException('Type ${parameter.typeIdentifier} has no TypeDef.');
+  }
 
   @override
   String get localIdentifier => '$identifier.value';

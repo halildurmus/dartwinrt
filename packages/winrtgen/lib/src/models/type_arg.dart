@@ -4,6 +4,8 @@
 
 import 'package:winmd/winmd.dart';
 
+import '../utilities/utilities.dart';
+
 /// Represents a type argument for a generic class.
 ///
 /// Used when generating private concrete classes for the abstract WinRT generic
@@ -122,15 +124,15 @@ enum TypeArg {
         TypeArg.point || TypeArg.nullablePoint => TypeIdentifier(
             BaseType.classTypeModifier,
             name: 'Windows.Foundation.Point',
-            type: MetadataStore.getMetadataForType('Windows.Foundation.Point')),
+            type: getMetadataForType('Windows.Foundation.Point')),
         TypeArg.rect || TypeArg.nullableRect => TypeIdentifier(
             BaseType.classTypeModifier,
             name: 'Windows.Foundation.Rect',
-            type: MetadataStore.getMetadataForType('Windows.Foundation.Rect')),
+            type: getMetadataForType('Windows.Foundation.Rect')),
         TypeArg.size || TypeArg.nullableSize => TypeIdentifier(
             BaseType.classTypeModifier,
             name: 'Windows.Foundation.Size',
-            type: MetadataStore.getMetadataForType('Windows.Foundation.Size')),
+            type: getMetadataForType('Windows.Foundation.Size')),
         TypeArg.string ||
         TypeArg.nullableString =>
           const TypeIdentifier(BaseType.stringType),
@@ -149,7 +151,7 @@ enum TypeArg {
         TypeArg.uri || TypeArg.nullableUri => TypeIdentifier(
             BaseType.classTypeModifier,
             name: 'Windows.Foundation.Uri',
-            type: MetadataStore.getMetadataForType('Windows.Foundation.Uri')),
+            type: getMetadataForType('Windows.Foundation.Uri')),
         _ => throw UnsupportedError('Unsupported type arg: $this'),
       };
 }
