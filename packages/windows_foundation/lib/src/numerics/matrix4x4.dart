@@ -14,7 +14,7 @@ import '../winrt_struct.dart';
 /// Describes a 4*4 floating point matrix.
 ///
 /// {@category struct}
-class Matrix4x4 implements WinRTStruct {
+final class Matrix4x4 implements WinRTStruct {
   Matrix4x4(
       this.m11,
       this.m12,
@@ -75,7 +75,6 @@ class Matrix4x4 implements WinRTStruct {
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-
     return other is Matrix4x4 &&
         m11 == other.m11 &&
         m12 == other.m12 &&

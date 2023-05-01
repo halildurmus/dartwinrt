@@ -9,7 +9,7 @@
 
 part of 'ikeyvaluepair.dart';
 
-class _IKeyValuePairGuidInspectable<V> extends IKeyValuePair<Guid, V> {
+final class _IKeyValuePairGuidInspectable<V> extends IKeyValuePair<Guid, V> {
   _IKeyValuePairGuidInspectable.fromPtr(super.ptr, {required this.creator});
 
   final V Function(Pointer<COMObject>) creator;
@@ -69,7 +69,7 @@ class _IKeyValuePairGuidInspectable<V> extends IKeyValuePair<Guid, V> {
   }
 }
 
-class _IKeyValuePairGuidObject extends IKeyValuePair<Guid, Object?> {
+final class _IKeyValuePairGuidObject extends IKeyValuePair<Guid, Object?> {
   _IKeyValuePairGuidObject.fromPtr(super.ptr);
 
   @override
@@ -127,7 +127,7 @@ class _IKeyValuePairGuidObject extends IKeyValuePair<Guid, Object?> {
   }
 }
 
-class _IKeyValuePairInt16Inspectable<V> extends IKeyValuePair<int, V> {
+final class _IKeyValuePairInt16Inspectable<V> extends IKeyValuePair<int, V> {
   _IKeyValuePairInt16Inspectable.fromPtr(super.ptr, {required this.creator});
 
   final V Function(Pointer<COMObject>) creator;
@@ -187,7 +187,7 @@ class _IKeyValuePairInt16Inspectable<V> extends IKeyValuePair<int, V> {
   }
 }
 
-class _IKeyValuePairInt32Inspectable<V> extends IKeyValuePair<int, V> {
+final class _IKeyValuePairInt32Inspectable<V> extends IKeyValuePair<int, V> {
   _IKeyValuePairInt32Inspectable.fromPtr(super.ptr, {required this.creator});
 
   final V Function(Pointer<COMObject>) creator;
@@ -247,7 +247,7 @@ class _IKeyValuePairInt32Inspectable<V> extends IKeyValuePair<int, V> {
   }
 }
 
-class _IKeyValuePairInt64Inspectable<V> extends IKeyValuePair<int, V> {
+final class _IKeyValuePairInt64Inspectable<V> extends IKeyValuePair<int, V> {
   _IKeyValuePairInt64Inspectable.fromPtr(super.ptr, {required this.creator});
 
   final V Function(Pointer<COMObject>) creator;
@@ -307,7 +307,8 @@ class _IKeyValuePairInt64Inspectable<V> extends IKeyValuePair<int, V> {
   }
 }
 
-class _IKeyValuePairStringInspectable<V> extends IKeyValuePair<String, V> {
+final class _IKeyValuePairStringInspectable<V>
+    extends IKeyValuePair<String, V> {
   _IKeyValuePairStringInspectable.fromPtr(super.ptr, {required this.creator});
 
   final V Function(Pointer<COMObject>) creator;
@@ -368,7 +369,7 @@ class _IKeyValuePairStringInspectable<V> extends IKeyValuePair<String, V> {
   }
 }
 
-class _IKeyValuePairStringObject extends IKeyValuePair<String, Object?> {
+final class _IKeyValuePairStringObject extends IKeyValuePair<String, Object?> {
   _IKeyValuePairStringObject.fromPtr(super.ptr);
 
   @override
@@ -427,7 +428,7 @@ class _IKeyValuePairStringObject extends IKeyValuePair<String, Object?> {
   }
 }
 
-class _IKeyValuePairStringString extends IKeyValuePair<String, String> {
+final class _IKeyValuePairStringString extends IKeyValuePair<String, String> {
   _IKeyValuePairStringString.fromPtr(super.ptr);
 
   @override
@@ -483,7 +484,7 @@ class _IKeyValuePairStringString extends IKeyValuePair<String, String> {
   }
 }
 
-class _IKeyValuePairStringWinRTEnum<V> extends IKeyValuePair<String, V> {
+final class _IKeyValuePairStringWinRTEnum<V> extends IKeyValuePair<String, V> {
   _IKeyValuePairStringWinRTEnum.fromPtr(super.ptr, {required this.enumCreator});
 
   final V Function(int) enumCreator;
@@ -540,7 +541,8 @@ class _IKeyValuePairStringWinRTEnum<V> extends IKeyValuePair<String, V> {
   }
 }
 
-class _IKeyValuePairStringWinRTFlagsEnum<V> extends IKeyValuePair<String, V> {
+final class _IKeyValuePairStringWinRTFlagsEnum<V>
+    extends IKeyValuePair<String, V> {
   _IKeyValuePairStringWinRTFlagsEnum.fromPtr(super.ptr,
       {required this.enumCreator});
 
@@ -598,7 +600,7 @@ class _IKeyValuePairStringWinRTFlagsEnum<V> extends IKeyValuePair<String, V> {
   }
 }
 
-class _IKeyValuePairUint8Inspectable<V> extends IKeyValuePair<int, V> {
+final class _IKeyValuePairUint8Inspectable<V> extends IKeyValuePair<int, V> {
   _IKeyValuePairUint8Inspectable.fromPtr(super.ptr, {required this.creator});
 
   final V Function(Pointer<COMObject>) creator;
@@ -658,7 +660,7 @@ class _IKeyValuePairUint8Inspectable<V> extends IKeyValuePair<int, V> {
   }
 }
 
-class _IKeyValuePairUint16Inspectable<V> extends IKeyValuePair<int, V> {
+final class _IKeyValuePairUint16Inspectable<V> extends IKeyValuePair<int, V> {
   _IKeyValuePairUint16Inspectable.fromPtr(super.ptr, {required this.creator});
 
   final V Function(Pointer<COMObject>) creator;
@@ -718,7 +720,7 @@ class _IKeyValuePairUint16Inspectable<V> extends IKeyValuePair<int, V> {
   }
 }
 
-class _IKeyValuePairUint32Inspectable<V> extends IKeyValuePair<int, V> {
+final class _IKeyValuePairUint32Inspectable<V> extends IKeyValuePair<int, V> {
   _IKeyValuePairUint32Inspectable.fromPtr(super.ptr, {required this.creator});
 
   final V Function(Pointer<COMObject>) creator;
@@ -778,7 +780,7 @@ class _IKeyValuePairUint32Inspectable<V> extends IKeyValuePair<int, V> {
   }
 }
 
-class _IKeyValuePairUint64Inspectable<V> extends IKeyValuePair<int, V> {
+final class _IKeyValuePairUint64Inspectable<V> extends IKeyValuePair<int, V> {
   _IKeyValuePairUint64Inspectable.fromPtr(super.ptr, {required this.creator});
 
   final V Function(Pointer<COMObject>) creator;
@@ -838,7 +840,8 @@ class _IKeyValuePairUint64Inspectable<V> extends IKeyValuePair<int, V> {
   }
 }
 
-class _IKeyValuePairWinRTEnumInspectable<K, V> extends IKeyValuePair<K, V> {
+final class _IKeyValuePairWinRTEnumInspectable<K, V>
+    extends IKeyValuePair<K, V> {
   _IKeyValuePairWinRTEnumInspectable.fromPtr(super.ptr,
       {required this.enumKeyCreator, required this.creator});
 
@@ -900,7 +903,7 @@ class _IKeyValuePairWinRTEnumInspectable<K, V> extends IKeyValuePair<K, V> {
   }
 }
 
-class _IKeyValuePairWinRTFlagsEnumInspectable<K, V>
+final class _IKeyValuePairWinRTFlagsEnumInspectable<K, V>
     extends IKeyValuePair<K, V> {
   _IKeyValuePairWinRTFlagsEnumInspectable.fromPtr(super.ptr,
       {required this.enumKeyCreator, required this.creator});

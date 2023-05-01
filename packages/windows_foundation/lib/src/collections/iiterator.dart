@@ -15,7 +15,7 @@ part 'iiterator_part.dart';
 /// Supports simple iteration over a collection.
 ///
 /// {@category interface}
-abstract class IIterator<T> extends IInspectable {
+abstract interface class IIterator<T> extends IInspectable {
   // vtable begins at 6, is 4 entries long.
   IIterator(super.ptr);
 

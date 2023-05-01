@@ -109,7 +109,7 @@ void main() {
 
     test('has correct class header', () {
       expect(rectProjection.classHeader,
-          equals('class Rect implements WinRTStruct'));
+          equals('final class Rect implements WinRTStruct'));
     });
 
     test('has correct constructor', () {

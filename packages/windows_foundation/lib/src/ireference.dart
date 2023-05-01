@@ -16,7 +16,7 @@ part 'ireference_part.dart';
 /// as property values.
 ///
 /// {@category interface}
-abstract class IReference<T> extends IInspectable {
+abstract interface class IReference<T> extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IReference(super.ptr) : _isNull = ptr.ref.isNull;
 

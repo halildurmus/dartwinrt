@@ -14,7 +14,7 @@ import '../winrt_struct.dart';
 /// Describes a vector of two floating-point components.
 ///
 /// {@category struct}
-class Vector2 implements WinRTStruct {
+final class Vector2 implements WinRTStruct {
   Vector2(this.x, this.y);
 
   final double x;
@@ -31,7 +31,6 @@ class Vector2 implements WinRTStruct {
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-
     return other is Vector2 && x == other.x && y == other.y;
   }
 

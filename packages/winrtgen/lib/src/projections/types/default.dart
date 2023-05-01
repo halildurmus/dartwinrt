@@ -29,12 +29,14 @@ mixin _DefaultMixin on MethodProjection {
 }
 
 /// Default method projection for methods.
-class DefaultMethodProjection extends MethodProjection with _DefaultMixin {
+final class DefaultMethodProjection extends MethodProjection
+    with _DefaultMixin {
   DefaultMethodProjection(super.method, super.vtableOffset);
 }
 
 /// Default getter projection for getters.
-class DefaultGetterProjection extends GetterProjection with _DefaultMixin {
+final class DefaultGetterProjection extends GetterProjection
+    with _DefaultMixin {
   DefaultGetterProjection(super.method, super.vtableOffset);
 }
 
@@ -68,19 +70,19 @@ mixin _DefaultListMixin on MethodProjection {
 }
 
 /// Default method projection for methods that return `List`.
-class DefaultListMethodProjection extends MethodProjection
+final class DefaultListMethodProjection extends MethodProjection
     with _DefaultListMixin {
   DefaultListMethodProjection(super.method, super.vtableOffset);
 }
 
 /// Default getter projection for `List` getters.
-class DefaultListGetterProjection extends GetterProjection
+final class DefaultListGetterProjection extends GetterProjection
     with _DefaultListMixin {
   DefaultListGetterProjection(super.method, super.vtableOffset);
 }
 
 /// Default setter projection for setters.
-class DefaultSetterProjection extends SetterProjection {
+final class DefaultSetterProjection extends SetterProjection {
   DefaultSetterProjection(super.method, super.vtableOffset);
 
   @override
@@ -92,7 +94,7 @@ class DefaultSetterProjection extends SetterProjection {
 }
 
 /// Default parameter projection for parameters.
-class DefaultParameterProjection extends ParameterProjection {
+final class DefaultParameterProjection extends ParameterProjection {
   DefaultParameterProjection(super.parameter);
 
   @override
@@ -113,7 +115,7 @@ class DefaultParameterProjection extends ParameterProjection {
 
 /// Default parameter projection for `List<T>` parameters (defined as
 /// `simpleArrayType` in WinMD).
-class DefaultListParameterProjection extends ParameterProjection {
+base class DefaultListParameterProjection extends ParameterProjection {
   DefaultListParameterProjection(super.parameter)
       : valueSizeParam = parameter.parent.parameters
             .firstWhere((p) => p.name == '__valueSize'),

@@ -10,7 +10,7 @@ import '../method.dart';
 import '../type.dart';
 
 /// Method projection for methods that return `IAsyncAction`.
-class AsyncActionMethodProjection extends MethodProjection {
+final class AsyncActionMethodProjection extends MethodProjection {
   AsyncActionMethodProjection(super.method, super.vtableOffset);
 
   @override
@@ -128,7 +128,7 @@ mixin _AsyncOperationMixin on MethodProjection {
 }
 
 /// Method projection for methods that return `IAsyncOperation<TResult>`.
-class AsyncOperationMethodProjection extends MethodProjection
+final class AsyncOperationMethodProjection extends MethodProjection
     with _AsyncOperationMixin {
   AsyncOperationMethodProjection(super.method, super.vtableOffset);
 }

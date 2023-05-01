@@ -14,7 +14,7 @@ import 'winrt_struct.dart';
 /// Describes the width, height, and point origin of a rectangle.
 ///
 /// {@category struct}
-class Rect implements WinRTStruct {
+final class Rect implements WinRTStruct {
   Rect(this.x, this.y, this.width, this.height);
 
   final double x;
@@ -35,7 +35,6 @@ class Rect implements WinRTStruct {
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-
     return other is Rect &&
         x == other.x &&
         y == other.y &&

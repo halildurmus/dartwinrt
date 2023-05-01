@@ -13,7 +13,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// Describes the gamepad motor speed.
 ///
 /// {@category struct}
-class GamepadVibration implements WinRTStruct {
+final class GamepadVibration implements WinRTStruct {
   GamepadVibration(
       this.leftMotor, this.rightMotor, this.leftTrigger, this.rightTrigger);
 
@@ -35,7 +35,6 @@ class GamepadVibration implements WinRTStruct {
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-
     return other is GamepadVibration &&
         leftMotor == other.leftMotor &&
         rightMotor == other.rightMotor &&

@@ -10,10 +10,10 @@ import '../parameter.dart';
 import 'default.dart';
 
 mixin _GenericEnumMixin on MethodProjection {
-  String get enumCreator => method.parent.genericParams.length == 2 &&
-          method.parent.genericParams.first.name == returnType
-      ? 'enumKeyCreator'
-      : 'enumCreator';
+  String get enumCreator => switch (method.parent.genericParams) {
+        [final param, _] when param.name == returnType => 'enumKeyCreator',
+        _ => 'enumCreator'
+      };
 
   @override
   String get returnType {
@@ -39,19 +39,19 @@ mixin _GenericEnumMixin on MethodProjection {
 }
 
 /// Method projection for generic methods that return WinRT enum.
-class GenericEnumMethodProjection extends MethodProjection
+final class GenericEnumMethodProjection extends MethodProjection
     with _GenericEnumMixin {
   GenericEnumMethodProjection(super.method, super.vtableOffset);
 }
 
 /// Getter projection for generic getters that return a WinRT enum.
-class GenericEnumGetterProjection extends GetterProjection
+final class GenericEnumGetterProjection extends GetterProjection
     with _GenericEnumMixin {
   GenericEnumGetterProjection(super.method, super.vtableOffset);
 }
 
 /// Parameter projection for `T extends WinRTEnum` parameters.
-class GenericEnumParameterProjection extends ParameterProjection {
+final class GenericEnumParameterProjection extends ParameterProjection {
   GenericEnumParameterProjection(super.parameter);
 
   @override
@@ -65,7 +65,7 @@ class GenericEnumParameterProjection extends ParameterProjection {
 }
 
 /// Parameter projection for `List<T extends WinRTEnum>` parameters.
-class GenericEnumListParameterProjection
+final class GenericEnumListParameterProjection
     extends DefaultListParameterProjection {
   GenericEnumListParameterProjection(super.parameter);
 
@@ -129,22 +129,21 @@ mixin _GenericObjectMixin on MethodProjection {
 ''';
 }
 
-/// Method projection for generic methods that return WinRT class or
-/// interface.
-class GenericObjectMethodProjection extends MethodProjection
+/// Method projection for generic methods that return WinRT class or interface.
+final class GenericObjectMethodProjection extends MethodProjection
     with _GenericObjectMixin {
   GenericObjectMethodProjection(super.method, super.vtableOffset);
 }
 
 /// Getter projection for generic getters that return a WinRT class or
 /// interface.
-class GenericObjectGetterProjection extends GetterProjection
+final class GenericObjectGetterProjection extends GetterProjection
     with _GenericObjectMixin {
   GenericObjectGetterProjection(super.method, super.vtableOffset);
 }
 
 /// Parameter projection for `T extends IInspectable` parameters.
-class GenericObjectParameterProjection extends ParameterProjection {
+final class GenericObjectParameterProjection extends ParameterProjection {
   GenericObjectParameterProjection(super.parameter);
 
   @override
@@ -158,7 +157,7 @@ class GenericObjectParameterProjection extends ParameterProjection {
 }
 
 /// Parameter projection for `List<T extends IInspectable>` parameters.
-class GenericObjectListParameterProjection
+final class GenericObjectListParameterProjection
     extends DefaultListParameterProjection {
   GenericObjectListParameterProjection(super.parameter);
 

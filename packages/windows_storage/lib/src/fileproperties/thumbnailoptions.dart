@@ -13,7 +13,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// retrieved.
 ///
 /// {@category enum}
-class ThumbnailOptions extends WinRTFlagsEnum<ThumbnailOptions> {
+final class ThumbnailOptions extends WinRTFlagsEnum<ThumbnailOptions> {
   const ThumbnailOptions(super.value, {super.name});
 
   factory ThumbnailOptions.from(int value) =>

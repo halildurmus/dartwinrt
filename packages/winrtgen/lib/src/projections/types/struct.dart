@@ -30,17 +30,17 @@ mixin _StructMixin on MethodProjection {
 }
 
 /// Method projection for methods that return WinRT struct (e.g. `Point`).
-class StructMethodProjection extends MethodProjection with _StructMixin {
+final class StructMethodProjection extends MethodProjection with _StructMixin {
   StructMethodProjection(super.method, super.vtableOffset);
 }
 
 /// Getter projection for WinRT struct getters.
-class StructGetterProjection extends GetterProjection with _StructMixin {
+final class StructGetterProjection extends GetterProjection with _StructMixin {
   StructGetterProjection(super.method, super.vtableOffset);
 }
 
 /// Setter projection for WinRT struct setters.
-class StructSetterProjection extends SetterProjection {
+final class StructSetterProjection extends SetterProjection {
   StructSetterProjection(super.method, super.vtableOffset);
 
   String get dartType => param.typeProjection.typeIdentifier.shortName;
@@ -60,7 +60,7 @@ class StructSetterProjection extends SetterProjection {
 }
 
 /// Parameter projection for WinRT struct parameters.
-class StructParameterProjection extends ParameterProjection {
+final class StructParameterProjection extends ParameterProjection {
   StructParameterProjection(super.parameter);
 
   @override
@@ -78,7 +78,8 @@ class StructParameterProjection extends ParameterProjection {
 }
 
 /// Parameter projection for `List<T extends WinRTStruct>` parameters.
-class StructListParameterProjection extends DefaultListParameterProjection {
+final class StructListParameterProjection
+    extends DefaultListParameterProjection {
   StructListParameterProjection(super.parameter);
 
   String get nativeStructName => typeArgProjection.nativeType;

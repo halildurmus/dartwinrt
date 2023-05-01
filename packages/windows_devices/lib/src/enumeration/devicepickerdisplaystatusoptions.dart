@@ -13,7 +13,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// object.
 ///
 /// {@category enum}
-class DevicePickerDisplayStatusOptions
+final class DevicePickerDisplayStatusOptions
     extends WinRTFlagsEnum<DevicePickerDisplayStatusOptions> {
   const DevicePickerDisplayStatusOptions(super.value, {super.name});
 

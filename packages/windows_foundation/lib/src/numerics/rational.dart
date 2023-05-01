@@ -14,7 +14,7 @@ import '../winrt_struct.dart';
 /// Describes a number that can be created by the division of 2 integers.
 ///
 /// {@category struct}
-class Rational implements WinRTStruct {
+final class Rational implements WinRTStruct {
   Rational(this.numerator, this.denominator);
 
   final int numerator;
@@ -31,7 +31,6 @@ class Rational implements WinRTStruct {
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-
     return other is Rational &&
         numerator == other.numerator &&
         denominator == other.denominator;

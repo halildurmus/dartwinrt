@@ -190,8 +190,10 @@ void main() {
 
     group('has correct class header', () {
       test('(1)', () {
-        expect(asyncOperationBoolProjection.classHeader,
-            equals('class _IAsyncOperationBool extends IAsyncOperation<bool>'));
+        expect(
+            asyncOperationBoolProjection.classHeader,
+            equals(
+                'final class _IAsyncOperationBool extends IAsyncOperation<bool>'));
       });
 
       test('(2)', () {
@@ -201,7 +203,7 @@ void main() {
         expect(
             projection.classHeader,
             equals(
-                'class _IAsyncOperationInspectable<TResult> extends IAsyncOperation<TResult>'));
+                'final class _IAsyncOperationInspectable<TResult> extends IAsyncOperation<TResult>'));
       });
 
       test('(3)', () {
@@ -210,7 +212,7 @@ void main() {
         expect(
             projection.classHeader,
             equals(
-                'class _IAsyncOperationWinRTEnum<TResult> extends IAsyncOperation<TResult>'));
+                'final class _IAsyncOperationWinRTEnum<TResult> extends IAsyncOperation<TResult>'));
       });
 
       test('(4)', () {
@@ -218,8 +220,10 @@ void main() {
             'Windows.Foundation.Collections.IMap`2',
             TypeArg.string,
             TypeArg.nullableInspectable);
-        expect(projection.classHeader,
-            equals('class _IMapStringInspectable<V> extends IMap<String, V>'));
+        expect(
+            projection.classHeader,
+            equals(
+                'final class _IMapStringInspectable<V> extends IMap<String, V>'));
       });
 
       test('(5)', () {
@@ -228,7 +232,7 @@ void main() {
             TypeArg.guid,
             TypeArg.nullableObject);
         expect(projection.classHeader,
-            equals('class _IMapGuidObject extends IMap<Guid, Object?>'));
+            equals('final class _IMapGuidObject extends IMap<Guid, Object?>'));
       });
     });
 

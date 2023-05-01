@@ -32,9 +32,10 @@ extension IAsyncOperationHelper<T> on IAsyncOperation<T> {
 }
 
 /// Completes the given [completer] by polling [asyncDelegate]'s `status`
-/// property every `1/60` seconds until the [asyncDelegate] completes.
+/// property every `1/60` seconds until the async operation completes.
 ///
-/// [onCompleted] is called when the [asyncDelegate] completes successfully.
+/// The [onCompleted] will only be called if the async operation completes
+/// successfully.
 Future<void> _completeAsyncDelegate<T extends IAsyncInfo, C>(T asyncDelegate,
     Completer<C> completer, void Function() onCompleted) async {
   try {
@@ -44,16 +45,13 @@ Future<void> _completeAsyncDelegate<T extends IAsyncInfo, C>(T asyncDelegate,
           const Duration(microseconds: 1 * 1000 * 1000 ~/ 60));
     }
 
-    switch (asyncDelegate.status) {
-      // This case is handled by the while loop above.
-      case AsyncStatus.started:
-        break;
-      case AsyncStatus.completed:
-        onCompleted();
-      case AsyncStatus.canceled:
-        completer.completeError('The async operation canceled!');
-      case AsyncStatus.error:
-        completer.completeError(WindowsException(asyncDelegate.errorCode));
+    final status = asyncDelegate.status;
+    if (status == AsyncStatus.completed) {
+      onCompleted();
+    } else if (status == AsyncStatus.error) {
+      completer.completeError(WindowsException(asyncDelegate.errorCode));
+    } else if (status == AsyncStatus.canceled) {
+      completer.completeError('The async operation canceled!');
     }
   } catch (error, stackTrace) {
     completer.completeError(error, stackTrace);

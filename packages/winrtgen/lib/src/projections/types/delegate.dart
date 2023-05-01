@@ -21,17 +21,19 @@ mixin _DelegateMixin on MethodProjection {
 
 /// Method projection for methods that return WinRT delegate (e.g.
 /// `AsyncActionCompletedHandler`).
-class DelegateMethodProjection extends MethodProjection with _DelegateMixin {
+final class DelegateMethodProjection extends MethodProjection
+    with _DelegateMixin {
   DelegateMethodProjection(super.method, super.vtableOffset);
 }
 
 /// Getter projection for WinRT delegate getters.
-class DelegateGetterProjection extends GetterProjection with _DelegateMixin {
+final class DelegateGetterProjection extends GetterProjection
+    with _DelegateMixin {
   DelegateGetterProjection(super.method, super.vtableOffset);
 }
 
 /// Setter projection for WinRT delegate setters.
-class DelegateSetterProjection extends SetterProjection {
+final class DelegateSetterProjection extends SetterProjection {
   DelegateSetterProjection(super.method, super.vtableOffset);
 
   @override
@@ -43,7 +45,7 @@ class DelegateSetterProjection extends SetterProjection {
 }
 
 /// Parameter projection for WinRT delegate parameters.
-class DelegateParameterProjection extends ParameterProjection {
+final class DelegateParameterProjection extends ParameterProjection {
   DelegateParameterProjection(super.parameter);
 
   @override

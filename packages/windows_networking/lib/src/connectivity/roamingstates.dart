@@ -11,7 +11,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// Defines the roaming states.
 ///
 /// {@category enum}
-class RoamingStates extends WinRTFlagsEnum<RoamingStates> {
+final class RoamingStates extends WinRTFlagsEnum<RoamingStates> {
   const RoamingStates(super.value, {super.name});
 
   factory RoamingStates.from(int value) => RoamingStates.values

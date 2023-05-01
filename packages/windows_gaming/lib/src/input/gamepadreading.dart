@@ -13,7 +13,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// Represents the current state of the gamepad.
 ///
 /// {@category struct}
-class GamepadReading implements WinRTStruct {
+final class GamepadReading implements WinRTStruct {
   GamepadReading(
       this.timestamp,
       this.buttons,
@@ -50,7 +50,6 @@ class GamepadReading implements WinRTStruct {
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-
     return other is GamepadReading &&
         timestamp == other.timestamp &&
         buttons == other.buttons &&

@@ -14,7 +14,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// that is used to sort query results.
 ///
 /// {@category struct}
-class SortEntry implements WinRTStruct {
+final class SortEntry implements WinRTStruct {
   SortEntry(this.propertyName, this.ascendingOrder);
 
   final int propertyName;
@@ -31,7 +31,6 @@ class SortEntry implements WinRTStruct {
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-
     return other is SortEntry &&
         propertyName == other.propertyName &&
         ascendingOrder == other.ascendingOrder;

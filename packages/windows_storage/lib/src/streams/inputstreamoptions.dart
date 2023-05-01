@@ -11,7 +11,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// Specifies the read options for an input stream.
 ///
 /// {@category enum}
-class InputStreamOptions extends WinRTFlagsEnum<InputStreamOptions> {
+final class InputStreamOptions extends WinRTFlagsEnum<InputStreamOptions> {
   const InputStreamOptions(super.value, {super.name});
 
   factory InputStreamOptions.from(int value) =>

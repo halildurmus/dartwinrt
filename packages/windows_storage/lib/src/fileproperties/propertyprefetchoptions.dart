@@ -11,7 +11,8 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// Indicates a system-defined group of file properties.
 ///
 /// {@category enum}
-class PropertyPrefetchOptions extends WinRTFlagsEnum<PropertyPrefetchOptions> {
+final class PropertyPrefetchOptions
+    extends WinRTFlagsEnum<PropertyPrefetchOptions> {
   const PropertyPrefetchOptions(super.value, {super.name});
 
   factory PropertyPrefetchOptions.from(int value) =>

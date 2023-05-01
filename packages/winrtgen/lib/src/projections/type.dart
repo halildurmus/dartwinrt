@@ -8,7 +8,7 @@ import '../exception/exception.dart';
 import '../models/models.dart';
 import '../utilities/utilities.dart';
 
-class TypeTuple {
+final class TypeTuple {
   const TypeTuple(this.nativeType, this.dartType, {this.attribute});
 
   /// The type, as represented in the native function (e.g. `Int64`)
@@ -51,7 +51,7 @@ const specialTypes = <String, TypeTuple>{
       TypeTuple('Int64', 'int', attribute: '@Int64()'),
 };
 
-class TypeProjection {
+final class TypeProjection {
   TypeProjection(TypeIdentifier ti, {this.isParameter = false})
       : typeIdentifier =
             ti.isGenericType ? ti.copyWith(name: ti.shortName) : ti;

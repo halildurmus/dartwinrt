@@ -104,12 +104,12 @@ mixin _ObjectMixin on MethodProjection {
 
 /// Method projection for methods that return WinRT class (e.g. `Calendar`),
 /// interface (e.g. `ICalendar`), or `boxed` value.
-class ObjectMethodProjection extends MethodProjection with _ObjectMixin {
+final class ObjectMethodProjection extends MethodProjection with _ObjectMixin {
   ObjectMethodProjection(super.method, super.vtableOffset);
 }
 
 /// Getter projection for WinRT class, interface, or `boxed` value getters.
-class ObjectGetterProjection extends GetterProjection with _ObjectMixin {
+final class ObjectGetterProjection extends GetterProjection with _ObjectMixin {
   ObjectGetterProjection(super.method, super.vtableOffset);
 }
 
@@ -157,20 +157,20 @@ mixin _ObjectListMixin on MethodProjection {
 
 /// Method projection for methods that return `List` of WinRT class,
 /// interface, or `boxed` value.
-class ObjectListMethodProjection extends MethodProjection
+final class ObjectListMethodProjection extends MethodProjection
     with _ObjectListMixin {
   ObjectListMethodProjection(super.method, super.vtableOffset);
 }
 
 /// Getter projection for getters that return a `List` of WinRT class,
 /// interface, or `boxed` value.
-class ObjectListGetterProjection extends GetterProjection
+final class ObjectListGetterProjection extends GetterProjection
     with _ObjectListMixin {
   ObjectListGetterProjection(super.method, super.vtableOffset);
 }
 
 /// Setter projection for WinRT class, interface, or `boxed` value setters.
-class ObjectSetterProjection extends SetterProjection with _ObjectMixin {
+final class ObjectSetterProjection extends SetterProjection with _ObjectMixin {
   ObjectSetterProjection(super.method, super.vtableOffset);
 
   String get identifier => param.typeProjection.isObjectType
@@ -187,7 +187,7 @@ class ObjectSetterProjection extends SetterProjection with _ObjectMixin {
 
 /// Parameter projection for WinRT class, interface, or `boxed` value
 /// parameters.
-class ObjectParameterProjection extends ParameterProjection {
+final class ObjectParameterProjection extends ParameterProjection {
   ObjectParameterProjection(super.parameter);
 
   @override
@@ -245,7 +245,8 @@ class ObjectParameterProjection extends ParameterProjection {
 
 /// Parameter projection for `List<T extends IInspectable>` or `List<Object?>`
 /// parameters.
-class ObjectListParameterProjection extends DefaultListParameterProjection {
+final class ObjectListParameterProjection
+    extends DefaultListParameterProjection {
   ObjectListParameterProjection(super.parameter);
 
   String get shortName => typeArgProjection.typeIdentifier.shortName;

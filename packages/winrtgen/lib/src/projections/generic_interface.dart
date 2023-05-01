@@ -14,7 +14,7 @@ import 'method.dart';
 import 'setter.dart';
 import 'types/types.dart';
 
-class GenericInterfaceProjection extends InterfaceProjection {
+final class GenericInterfaceProjection extends InterfaceProjection {
   GenericInterfaceProjection._(super.typeDef, this.typeArgs);
 
   /// The type arguments of the interface (e.g. `[TypeArg.string]`,
@@ -104,7 +104,7 @@ class GenericInterfaceProjection extends InterfaceProjection {
 
   @override
   String get classHeader =>
-      'class $className$typeParams extends $shortName<$formattedTypeArgs>';
+      'final class $className$typeParams extends $shortName<$formattedTypeArgs>';
 
   Set<String> get _superArguments => switch (shortName) {
         'IMap' || 'IMapView' || 'IVector' || 'IVectorView' => {

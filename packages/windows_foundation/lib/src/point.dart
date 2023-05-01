@@ -15,7 +15,7 @@ import 'winrt_struct.dart';
 /// also represent a logical point for certain property usages.
 ///
 /// {@category struct}
-class Point implements WinRTStruct {
+final class Point implements WinRTStruct {
   Point(this.x, this.y);
 
   final double x;
@@ -32,7 +32,6 @@ class Point implements WinRTStruct {
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-
     return other is Point && x == other.x && y == other.y;
   }
 

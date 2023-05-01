@@ -18,7 +18,8 @@ part 'ivectorview_part.dart';
 /// Represents an immutable view into a vector.
 ///
 /// {@category interface}
-abstract class IVectorView<T> extends IInspectable implements IIterable<T> {
+abstract interface class IVectorView<T> extends IInspectable
+    implements IIterable<T> {
   // vtable begins at 6, is 4 entries long.
   IVectorView(
     super.ptr, {
