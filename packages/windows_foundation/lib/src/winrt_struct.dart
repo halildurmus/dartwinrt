@@ -7,7 +7,7 @@ import 'dart:ffi';
 import 'package:ffi/ffi.dart';
 
 /// The base class that all WinRT structs implement.
-abstract class WinRTStruct<T extends Struct> {
+abstract interface class WinRTStruct<T extends Struct> {
   /// Copy the [T] to unmanaged memory and return a pointer to the memory
   /// location.
   ///

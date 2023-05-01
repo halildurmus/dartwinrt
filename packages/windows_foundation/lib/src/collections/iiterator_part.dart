@@ -9,7 +9,7 @@
 
 part of 'iiterator.dart';
 
-class _IIteratorBool extends IIterator<bool> {
+final class _IIteratorBool extends IIterator<bool> {
   _IIteratorBool.fromPtr(super.ptr);
 
   @override
@@ -75,7 +75,7 @@ class _IIteratorBool extends IIterator<bool> {
   }
 }
 
-class _IIteratorGuid extends IIterator<Guid> {
+final class _IIteratorGuid extends IIterator<Guid> {
   _IIteratorGuid.fromPtr(super.ptr);
 
   @override
@@ -141,7 +141,7 @@ class _IIteratorGuid extends IIterator<Guid> {
   }
 }
 
-class _IIteratorInspectable<T> extends IIterator<T> {
+final class _IIteratorInspectable<T> extends IIterator<T> {
   _IIteratorInspectable.fromPtr(super.ptr, {required this.creator});
 
   final T Function(Pointer<COMObject>) creator;
@@ -207,7 +207,7 @@ class _IIteratorInspectable<T> extends IIterator<T> {
   }
 }
 
-class _IIteratorInt16 extends IIterator<int> {
+final class _IIteratorInt16 extends IIterator<int> {
   _IIteratorInt16.fromPtr(super.ptr);
 
   @override
@@ -272,7 +272,7 @@ class _IIteratorInt16 extends IIterator<int> {
   }
 }
 
-class _IIteratorInt32 extends IIterator<int> {
+final class _IIteratorInt32 extends IIterator<int> {
   _IIteratorInt32.fromPtr(super.ptr);
 
   @override
@@ -337,7 +337,7 @@ class _IIteratorInt32 extends IIterator<int> {
   }
 }
 
-class _IIteratorInt64 extends IIterator<int> {
+final class _IIteratorInt64 extends IIterator<int> {
   _IIteratorInt64.fromPtr(super.ptr);
 
   @override
@@ -402,7 +402,7 @@ class _IIteratorInt64 extends IIterator<int> {
   }
 }
 
-class _IIteratorString extends IIterator<String> {
+final class _IIteratorString extends IIterator<String> {
   _IIteratorString.fromPtr(super.ptr);
 
   @override
@@ -468,7 +468,7 @@ class _IIteratorString extends IIterator<String> {
   }
 }
 
-class _IIteratorUint8 extends IIterator<int> {
+final class _IIteratorUint8 extends IIterator<int> {
   _IIteratorUint8.fromPtr(super.ptr);
 
   @override
@@ -533,7 +533,7 @@ class _IIteratorUint8 extends IIterator<int> {
   }
 }
 
-class _IIteratorUint16 extends IIterator<int> {
+final class _IIteratorUint16 extends IIterator<int> {
   _IIteratorUint16.fromPtr(super.ptr);
 
   @override
@@ -598,7 +598,7 @@ class _IIteratorUint16 extends IIterator<int> {
   }
 }
 
-class _IIteratorUint32 extends IIterator<int> {
+final class _IIteratorUint32 extends IIterator<int> {
   _IIteratorUint32.fromPtr(super.ptr);
 
   @override
@@ -663,7 +663,7 @@ class _IIteratorUint32 extends IIterator<int> {
   }
 }
 
-class _IIteratorUint64 extends IIterator<int> {
+final class _IIteratorUint64 extends IIterator<int> {
   _IIteratorUint64.fromPtr(super.ptr);
 
   @override
@@ -728,7 +728,7 @@ class _IIteratorUint64 extends IIterator<int> {
   }
 }
 
-class _IIteratorUri extends IIterator<Uri> {
+final class _IIteratorUri extends IIterator<Uri> {
   _IIteratorUri.fromPtr(super.ptr);
 
   @override
@@ -793,7 +793,7 @@ class _IIteratorUri extends IIterator<Uri> {
   }
 }
 
-class _IIteratorWinRTEnum<T> extends IIterator<T> {
+final class _IIteratorWinRTEnum<T> extends IIterator<T> {
   _IIteratorWinRTEnum.fromPtr(super.ptr, {required this.enumCreator});
 
   final T Function(int) enumCreator;
@@ -860,7 +860,7 @@ class _IIteratorWinRTEnum<T> extends IIterator<T> {
   }
 }
 
-class _IIteratorWinRTFlagsEnum<T> extends IIterator<T> {
+final class _IIteratorWinRTFlagsEnum<T> extends IIterator<T> {
   _IIteratorWinRTFlagsEnum.fromPtr(super.ptr, {required this.enumCreator});
 
   final T Function(int) enumCreator;

@@ -73,12 +73,12 @@ mixin _UriMixin on MethodProjection {
 }
 
 /// Method projection for methods that return `Uri`.
-class UriMethodProjection extends MethodProjection with _UriMixin {
+final class UriMethodProjection extends MethodProjection with _UriMixin {
   UriMethodProjection(super.method, super.vtableOffset);
 }
 
 /// Getter projection for `Uri` getters.
-class UriGetterProjection extends GetterProjection with _UriMixin {
+final class UriGetterProjection extends GetterProjection with _UriMixin {
   UriGetterProjection(super.method, super.vtableOffset);
 }
 
@@ -107,17 +107,19 @@ mixin _UriListMixin on MethodProjection {
 }
 
 /// Method projection for methods that return `List<Uri>`.
-class UriListMethodProjection extends MethodProjection with _UriListMixin {
+final class UriListMethodProjection extends MethodProjection
+    with _UriListMixin {
   UriListMethodProjection(super.method, super.vtableOffset);
 }
 
 /// Getter projection for `List<Uri>` getters.
-class UriListGetterProjection extends GetterProjection with _UriListMixin {
+final class UriListGetterProjection extends GetterProjection
+    with _UriListMixin {
   UriListGetterProjection(super.method, super.vtableOffset);
 }
 
 /// Setter projection for `Uri` setters.
-class UriSetterProjection extends SetterProjection {
+final class UriSetterProjection extends SetterProjection {
   UriSetterProjection(super.method, super.vtableOffset);
 
   @override
@@ -130,7 +132,7 @@ class UriSetterProjection extends SetterProjection {
 }
 
 /// Parameter projection for `Uri` parameters.
-class UriParameterProjection extends ParameterProjection {
+final class UriParameterProjection extends ParameterProjection {
   UriParameterProjection(super.parameter);
 
   @override
@@ -161,7 +163,7 @@ class UriParameterProjection extends ParameterProjection {
 }
 
 /// Parameter projection for `List<Uri>` parameters.
-class UriListParameterProjection extends DefaultListParameterProjection {
+final class UriListParameterProjection extends DefaultListParameterProjection {
   UriListParameterProjection(super.parameter);
 
   @override

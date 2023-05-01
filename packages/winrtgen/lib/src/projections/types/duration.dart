@@ -29,12 +29,14 @@ mixin _DurationMixin on MethodProjection {
 }
 
 /// Method projection for methods that return `Duration`.
-class DurationMethodProjection extends MethodProjection with _DurationMixin {
+final class DurationMethodProjection extends MethodProjection
+    with _DurationMixin {
   DurationMethodProjection(super.method, super.vtableOffset);
 }
 
 /// Getter projection for `Duration` getters.
-class DurationGetterProjection extends GetterProjection with _DurationMixin {
+final class DurationGetterProjection extends GetterProjection
+    with _DurationMixin {
   DurationGetterProjection(super.method, super.vtableOffset);
 }
 
@@ -63,19 +65,19 @@ mixin _DurationListMixin on MethodProjection {
 }
 
 /// Method projection for methods that return `List<Duration>`.
-class DurationListMethodProjection extends MethodProjection
+final class DurationListMethodProjection extends MethodProjection
     with _DurationListMixin {
   DurationListMethodProjection(super.method, super.vtableOffset);
 }
 
 /// Getter projection for `List<Duration>` getters.
-class DurationListGetterProjection extends GetterProjection
+final class DurationListGetterProjection extends GetterProjection
     with _DurationListMixin {
   DurationListGetterProjection(super.method, super.vtableOffset);
 }
 
 /// Setter projection for `Duration` setters.
-class DurationSetterProjection extends SetterProjection {
+final class DurationSetterProjection extends SetterProjection {
   DurationSetterProjection(super.method, super.vtableOffset);
 
   @override
@@ -87,7 +89,7 @@ class DurationSetterProjection extends SetterProjection {
 }
 
 /// Parameter projection for `Duration` parameters.
-class DurationParameterProjection extends ParameterProjection {
+final class DurationParameterProjection extends ParameterProjection {
   DurationParameterProjection(super.parameter);
 
   @override
@@ -98,7 +100,8 @@ class DurationParameterProjection extends ParameterProjection {
 }
 
 /// Parameter projection for `List<Duration>` parameters.
-class DurationListParameterProjection extends DefaultListParameterProjection {
+final class DurationListParameterProjection
+    extends DefaultListParameterProjection {
   DurationListParameterProjection(super.parameter);
 
   @override

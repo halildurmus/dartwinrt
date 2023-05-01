@@ -10,7 +10,7 @@ import '../utilities/utilities.dart';
 /// An enum identifier.
 ///
 /// Enum identifiers are a tuple of a name and a value.
-class EnumIdentifierProjection {
+final class EnumIdentifierProjection {
   EnumIdentifierProjection(this.field)
       : identifierName = safeIdentifierForString(field.name.toCamelCase()),
         identifierValue = field.value,
@@ -29,7 +29,7 @@ class EnumIdentifierProjection {
 }
 
 /// Represents a Dart projection of a WinRT enumeration typedef.
-class EnumProjection {
+final class EnumProjection {
   EnumProjection(this.typeDef, {this.comment = '', String? enumName})
       : enumName = enumName ?? typeDef.shortName,
         // The first field is always the special field value__
@@ -146,7 +146,7 @@ $classHeader {
 }
 
 /// A static enum constant.
-class StaticEnumConstantProjection extends EnumIdentifierProjection {
+final class StaticEnumConstantProjection extends EnumIdentifierProjection {
   StaticEnumConstantProjection(super.field, this.enumName);
 
   final String enumName;
@@ -160,7 +160,7 @@ class StaticEnumConstantProjection extends EnumIdentifierProjection {
 }
 
 /// Represents a Dart projection of a WinRT Flags enumeration typedef.
-class FlagsEnumProjection extends EnumProjection {
+final class FlagsEnumProjection extends EnumProjection {
   FlagsEnumProjection(super.typeDef, {super.comment, super.enumName});
 
   /// Attempts to create a [FlagsEnumProjection] from [fullyQualifiedType] by
@@ -182,7 +182,7 @@ class FlagsEnumProjection extends EnumProjection {
   @override
   String get classHeader => [
         if (isDeprecated) typeDef.deprecatedAnnotation,
-        'class $enumName extends WinRTFlagsEnum<$enumName>'
+        'final class $enumName extends WinRTFlagsEnum<$enumName>'
       ].join('\n');
 
   @override

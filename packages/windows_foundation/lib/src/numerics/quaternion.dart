@@ -15,7 +15,7 @@ import '../winrt_struct.dart';
 /// orientation in space that is based on complex numbers.
 ///
 /// {@category struct}
-class Quaternion implements WinRTStruct {
+final class Quaternion implements WinRTStruct {
   Quaternion(this.x, this.y, this.z, this.w);
 
   final double x;
@@ -36,7 +36,6 @@ class Quaternion implements WinRTStruct {
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-
     return other is Quaternion &&
         x == other.x &&
         y == other.y &&

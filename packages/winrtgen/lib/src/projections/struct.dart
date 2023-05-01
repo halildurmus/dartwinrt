@@ -11,7 +11,7 @@ import 'type.dart';
 /// Represents a Dart projection of a struct [Field].
 ///
 /// Fields are a tuple of a type and a name.
-class StructFieldProjection {
+final class StructFieldProjection {
   StructFieldProjection(this.field)
       : fieldName = safeIdentifierForString(field.name.toCamelCase()),
         isDeprecated = field.isDeprecated,
@@ -34,7 +34,7 @@ class StructFieldProjection {
       ].join('\n');
 }
 
-class StructInstanceVariableProjection extends StructFieldProjection {
+final class StructInstanceVariableProjection extends StructFieldProjection {
   StructInstanceVariableProjection(super.field);
 
   @override
@@ -45,7 +45,7 @@ class StructInstanceVariableProjection extends StructFieldProjection {
 }
 
 /// Represents a Dart projection of a WinRT struct [TypeDef].
-class NativeStructProjection {
+final class NativeStructProjection {
   NativeStructProjection(this.typeDef, {String? structName})
       : isDeprecated = typeDef.isDeprecated,
         structName = structName ?? 'Native${typeDef.shortName}';
@@ -86,7 +86,7 @@ $classHeader {
 }
 
 /// Represents a Dart projection of a WinRT struct [TypeDef] as a Dart class.
-class StructProjection extends NativeStructProjection {
+final class StructProjection extends NativeStructProjection {
   StructProjection(super.typeDef, {this.comment = '', String? structName})
       : super(structName: structName ?? typeDef.shortName);
 
@@ -153,7 +153,7 @@ class StructProjection extends NativeStructProjection {
   @override
   String get classHeader => [
         if (isDeprecated) typeDef.deprecatedAnnotation,
-        'class $structName implements WinRTStruct'
+        'final class $structName implements WinRTStruct'
       ].join('\n');
 
   String get constructor {
@@ -179,7 +179,6 @@ class StructProjection extends NativeStructProjection {
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-
     return other is $structName &&
         ${fieldProjections.map((f) => '${f.fieldName} == other.${f.fieldName}').join(' && ')};
   }

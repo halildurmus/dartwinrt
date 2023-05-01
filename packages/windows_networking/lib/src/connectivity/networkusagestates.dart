@@ -14,7 +14,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// is returned by the method GetNetworkUsageAsync.
 ///
 /// {@category struct}
-class NetworkUsageStates implements WinRTStruct {
+final class NetworkUsageStates implements WinRTStruct {
   NetworkUsageStates(this.roaming, this.shared);
 
   final int roaming;
@@ -31,7 +31,6 @@ class NetworkUsageStates implements WinRTStruct {
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-
     return other is NetworkUsageStates &&
         roaming == other.roaming &&
         shared == other.shared;

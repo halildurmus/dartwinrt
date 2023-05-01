@@ -9,7 +9,7 @@
 
 part of 'imap.dart';
 
-class _IMapGuidInspectable<V> extends IMap<Guid, V> {
+final class _IMapGuidInspectable<V> extends IMap<Guid, V> {
   _IMapGuidInspectable.fromPtr(super.ptr,
       {required super.iterableIid, required this.creator})
       : super(creator: creator);
@@ -136,7 +136,7 @@ class _IMapGuidInspectable<V> extends IMap<Guid, V> {
   }
 }
 
-class _IMapGuidObject extends IMap<Guid, Object?> {
+final class _IMapGuidObject extends IMap<Guid, Object?> {
   _IMapGuidObject.fromPtr(super.ptr, {required super.iterableIid});
 
   @override
@@ -257,7 +257,7 @@ class _IMapGuidObject extends IMap<Guid, Object?> {
   }
 }
 
-class _IMapInt16Inspectable<V> extends IMap<int, V> {
+final class _IMapInt16Inspectable<V> extends IMap<int, V> {
   _IMapInt16Inspectable.fromPtr(super.ptr,
       {required super.iterableIid, super.intType, required this.creator})
       : super(creator: creator);
@@ -369,7 +369,7 @@ class _IMapInt16Inspectable<V> extends IMap<int, V> {
   }
 }
 
-class _IMapInt32Inspectable<V> extends IMap<int, V> {
+final class _IMapInt32Inspectable<V> extends IMap<int, V> {
   _IMapInt32Inspectable.fromPtr(super.ptr,
       {required super.iterableIid, super.intType, required this.creator})
       : super(creator: creator);
@@ -481,7 +481,7 @@ class _IMapInt32Inspectable<V> extends IMap<int, V> {
   }
 }
 
-class _IMapInt64Inspectable<V> extends IMap<int, V> {
+final class _IMapInt64Inspectable<V> extends IMap<int, V> {
   _IMapInt64Inspectable.fromPtr(super.ptr,
       {required super.iterableIid, super.intType, required this.creator})
       : super(creator: creator);
@@ -593,7 +593,7 @@ class _IMapInt64Inspectable<V> extends IMap<int, V> {
   }
 }
 
-class _IMapStringInspectable<V> extends IMap<String, V> {
+final class _IMapStringInspectable<V> extends IMap<String, V> {
   _IMapStringInspectable.fromPtr(super.ptr,
       {required super.iterableIid, required this.creator})
       : super(creator: creator);
@@ -720,7 +720,7 @@ class _IMapStringInspectable<V> extends IMap<String, V> {
   }
 }
 
-class _IMapStringObject extends IMap<String, Object?> {
+final class _IMapStringObject extends IMap<String, Object?> {
   _IMapStringObject.fromPtr(super.ptr, {required super.iterableIid});
 
   @override
@@ -841,7 +841,7 @@ class _IMapStringObject extends IMap<String, Object?> {
   }
 }
 
-class _IMapStringString extends IMap<String, String> {
+final class _IMapStringString extends IMap<String, String> {
   _IMapStringString.fromPtr(super.ptr, {required super.iterableIid});
 
   @override
@@ -957,7 +957,7 @@ class _IMapStringString extends IMap<String, String> {
   }
 }
 
-class _IMapStringWinRTEnum<V> extends IMap<String, V> {
+final class _IMapStringWinRTEnum<V> extends IMap<String, V> {
   _IMapStringWinRTEnum.fromPtr(super.ptr,
       {required super.iterableIid, required this.enumCreator})
       : super(enumCreator: enumCreator);
@@ -1074,7 +1074,7 @@ class _IMapStringWinRTEnum<V> extends IMap<String, V> {
   }
 }
 
-class _IMapStringWinRTFlagsEnum<V> extends IMap<String, V> {
+final class _IMapStringWinRTFlagsEnum<V> extends IMap<String, V> {
   _IMapStringWinRTFlagsEnum.fromPtr(super.ptr,
       {required super.iterableIid, required this.enumCreator})
       : super(enumCreator: enumCreator);
@@ -1191,7 +1191,7 @@ class _IMapStringWinRTFlagsEnum<V> extends IMap<String, V> {
   }
 }
 
-class _IMapUint8Inspectable<V> extends IMap<int, V> {
+final class _IMapUint8Inspectable<V> extends IMap<int, V> {
   _IMapUint8Inspectable.fromPtr(super.ptr,
       {required super.iterableIid, super.intType, required this.creator})
       : super(creator: creator);
@@ -1303,7 +1303,7 @@ class _IMapUint8Inspectable<V> extends IMap<int, V> {
   }
 }
 
-class _IMapUint16Inspectable<V> extends IMap<int, V> {
+final class _IMapUint16Inspectable<V> extends IMap<int, V> {
   _IMapUint16Inspectable.fromPtr(super.ptr,
       {required super.iterableIid, super.intType, required this.creator})
       : super(creator: creator);
@@ -1415,7 +1415,7 @@ class _IMapUint16Inspectable<V> extends IMap<int, V> {
   }
 }
 
-class _IMapUint32Inspectable<V> extends IMap<int, V> {
+final class _IMapUint32Inspectable<V> extends IMap<int, V> {
   _IMapUint32Inspectable.fromPtr(super.ptr,
       {required super.iterableIid, super.intType, required this.creator})
       : super(creator: creator);
@@ -1527,7 +1527,7 @@ class _IMapUint32Inspectable<V> extends IMap<int, V> {
   }
 }
 
-class _IMapUint64Inspectable<V> extends IMap<int, V> {
+final class _IMapUint64Inspectable<V> extends IMap<int, V> {
   _IMapUint64Inspectable.fromPtr(super.ptr,
       {required super.iterableIid, super.intType, required this.creator})
       : super(creator: creator);
@@ -1639,7 +1639,7 @@ class _IMapUint64Inspectable<V> extends IMap<int, V> {
   }
 }
 
-class _IMapWinRTEnumInspectable<K, V> extends IMap<K, V> {
+final class _IMapWinRTEnumInspectable<K, V> extends IMap<K, V> {
   _IMapWinRTEnumInspectable.fromPtr(super.ptr,
       {required super.iterableIid,
       required this.enumKeyCreator,
@@ -1754,7 +1754,7 @@ class _IMapWinRTEnumInspectable<K, V> extends IMap<K, V> {
   }
 }
 
-class _IMapWinRTFlagsEnumInspectable<K, V> extends IMap<K, V> {
+final class _IMapWinRTFlagsEnumInspectable<K, V> extends IMap<K, V> {
   _IMapWinRTFlagsEnumInspectable.fromPtr(super.ptr,
       {required super.iterableIid,
       required this.enumKeyCreator,

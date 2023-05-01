@@ -12,7 +12,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// WWAN network connection.
 ///
 /// {@category enum}
-class WwanDataClass extends WinRTFlagsEnum<WwanDataClass> {
+final class WwanDataClass extends WinRTFlagsEnum<WwanDataClass> {
   const WwanDataClass(super.value, {super.name});
 
   factory WwanDataClass.from(int value) => WwanDataClass.values

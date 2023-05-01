@@ -13,7 +13,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// The basic information to describe a geographic position.
 ///
 /// {@category struct}
-class BasicGeoposition implements WinRTStruct {
+final class BasicGeoposition implements WinRTStruct {
   BasicGeoposition(this.latitude, this.longitude, this.altitude);
 
   final double latitude;
@@ -32,7 +32,6 @@ class BasicGeoposition implements WinRTStruct {
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-
     return other is BasicGeoposition &&
         latitude == other.latitude &&
         longitude == other.longitude &&

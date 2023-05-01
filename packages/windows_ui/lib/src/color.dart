@@ -13,7 +13,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// Describes a color in terms of alpha, red, green, and blue channels.
 ///
 /// {@category struct}
-class Color implements WinRTStruct {
+final class Color implements WinRTStruct {
   Color(this.a, this.r, this.g, this.b);
 
   final int a;
@@ -34,7 +34,6 @@ class Color implements WinRTStruct {
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-
     return other is Color &&
         a == other.a &&
         r == other.r &&

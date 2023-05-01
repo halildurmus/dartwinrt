@@ -19,7 +19,7 @@ part 'ikeyvaluepair_part.dart';
 /// interface.
 ///
 /// {@category interface}
-abstract class IKeyValuePair<K, V> extends IInspectable {
+abstract interface class IKeyValuePair<K, V> extends IInspectable {
   // vtable begins at 6, is 2 entries long.
   IKeyValuePair(super.ptr);
 

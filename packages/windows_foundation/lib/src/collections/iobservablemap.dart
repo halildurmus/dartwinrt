@@ -13,7 +13,7 @@ import 'package:win32/win32.dart';
 /// or removed.
 ///
 /// {@category interface}
-class IObservableMap<K, V> extends IInspectable {
+interface class IObservableMap<K, V> extends IInspectable {
   // vtable begins at 6, is 2 entries long.
   IObservableMap.fromPtr(super.ptr);
 

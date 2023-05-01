@@ -29,12 +29,14 @@ mixin _DateTimeMixin on MethodProjection {
 }
 
 /// Method projection for methods that return `DateTime`.
-class DateTimeMethodProjection extends MethodProjection with _DateTimeMixin {
+final class DateTimeMethodProjection extends MethodProjection
+    with _DateTimeMixin {
   DateTimeMethodProjection(super.method, super.vtableOffset);
 }
 
 /// Getter projection for `DateTime` getters.
-class DateTimeGetterProjection extends GetterProjection with _DateTimeMixin {
+final class DateTimeGetterProjection extends GetterProjection
+    with _DateTimeMixin {
   DateTimeGetterProjection(super.method, super.vtableOffset);
 }
 
@@ -62,19 +64,19 @@ mixin _DateTimeListMixin on MethodProjection {
 }
 
 /// Method projection for methods that return `List<DateTime>`.
-class DateTimeListMethodProjection extends MethodProjection
+final class DateTimeListMethodProjection extends MethodProjection
     with _DateTimeListMixin {
   DateTimeListMethodProjection(super.method, super.vtableOffset);
 }
 
 /// Getter projection for `List<DateTime>` getters.
-class DateTimeListGetterProjection extends GetterProjection
+final class DateTimeListGetterProjection extends GetterProjection
     with _DateTimeListMixin {
   DateTimeListGetterProjection(super.method, super.vtableOffset);
 }
 
 /// Setter projection for `DateTime` setters.
-class DateTimeSetterProjection extends SetterProjection {
+final class DateTimeSetterProjection extends SetterProjection {
   DateTimeSetterProjection(super.method, super.vtableOffset);
 
   @override
@@ -86,7 +88,7 @@ class DateTimeSetterProjection extends SetterProjection {
 }
 
 /// Parameter projection for `DateTime` parameters.
-class DateTimeParameterProjection extends ParameterProjection {
+final class DateTimeParameterProjection extends ParameterProjection {
   DateTimeParameterProjection(super.parameter);
 
   @override
@@ -97,7 +99,8 @@ class DateTimeParameterProjection extends ParameterProjection {
 }
 
 /// Parameter projection for `List<DateTime>` parameters.
-class DateTimeListParameterProjection extends DefaultListParameterProjection {
+final class DateTimeListParameterProjection
+    extends DefaultListParameterProjection {
   DateTimeListParameterProjection(super.parameter);
 
   @override

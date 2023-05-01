@@ -9,7 +9,7 @@
 
 part of 'ivector.dart';
 
-class _IVectorBool extends IVector<bool> {
+final class _IVectorBool extends IVector<bool> {
   _IVectorBool.fromPtr(super.ptr, {required super.iterableIid});
 
   @override
@@ -183,7 +183,7 @@ class _IVectorBool extends IVector<bool> {
   }
 }
 
-class _IVectorGuid extends IVector<Guid> {
+final class _IVectorGuid extends IVector<Guid> {
   _IVectorGuid.fromPtr(super.ptr, {required super.iterableIid});
 
   @override
@@ -377,7 +377,7 @@ class _IVectorGuid extends IVector<Guid> {
   }
 }
 
-class _IVectorInspectable<T> extends IVector<T> {
+final class _IVectorInspectable<T> extends IVector<T> {
   _IVectorInspectable.fromPtr(super.ptr,
       {required super.iterableIid, required this.creator})
       : super(creator: creator);
@@ -561,7 +561,7 @@ class _IVectorInspectable<T> extends IVector<T> {
   }
 }
 
-class _IVectorInt16 extends IVector<int> {
+final class _IVectorInt16 extends IVector<int> {
   _IVectorInt16.fromPtr(super.ptr, {required super.iterableIid, super.intType});
 
   @override
@@ -735,7 +735,7 @@ class _IVectorInt16 extends IVector<int> {
   }
 }
 
-class _IVectorInt32 extends IVector<int> {
+final class _IVectorInt32 extends IVector<int> {
   _IVectorInt32.fromPtr(super.ptr, {required super.iterableIid, super.intType});
 
   @override
@@ -909,7 +909,7 @@ class _IVectorInt32 extends IVector<int> {
   }
 }
 
-class _IVectorInt64 extends IVector<int> {
+final class _IVectorInt64 extends IVector<int> {
   _IVectorInt64.fromPtr(super.ptr, {required super.iterableIid, super.intType});
 
   @override
@@ -1083,7 +1083,7 @@ class _IVectorInt64 extends IVector<int> {
   }
 }
 
-class _IVectorString extends IVector<String> {
+final class _IVectorString extends IVector<String> {
   _IVectorString.fromPtr(super.ptr, {required super.iterableIid});
 
   @override
@@ -1279,7 +1279,7 @@ class _IVectorString extends IVector<String> {
   }
 }
 
-class _IVectorUint8 extends IVector<int> {
+final class _IVectorUint8 extends IVector<int> {
   _IVectorUint8.fromPtr(super.ptr, {required super.iterableIid, super.intType});
 
   @override
@@ -1453,7 +1453,7 @@ class _IVectorUint8 extends IVector<int> {
   }
 }
 
-class _IVectorUint16 extends IVector<int> {
+final class _IVectorUint16 extends IVector<int> {
   _IVectorUint16.fromPtr(super.ptr,
       {required super.iterableIid, super.intType});
 
@@ -1630,7 +1630,7 @@ class _IVectorUint16 extends IVector<int> {
   }
 }
 
-class _IVectorUint32 extends IVector<int> {
+final class _IVectorUint32 extends IVector<int> {
   _IVectorUint32.fromPtr(super.ptr,
       {required super.iterableIid, super.intType});
 
@@ -1807,7 +1807,7 @@ class _IVectorUint32 extends IVector<int> {
   }
 }
 
-class _IVectorUint64 extends IVector<int> {
+final class _IVectorUint64 extends IVector<int> {
   _IVectorUint64.fromPtr(super.ptr,
       {required super.iterableIid, super.intType});
 
@@ -1984,7 +1984,7 @@ class _IVectorUint64 extends IVector<int> {
   }
 }
 
-class _IVectorUri extends IVector<Uri> {
+final class _IVectorUri extends IVector<Uri> {
   _IVectorUri.fromPtr(super.ptr, {required super.iterableIid});
 
   @override
@@ -2171,7 +2171,7 @@ class _IVectorUri extends IVector<Uri> {
   }
 }
 
-class _IVectorWinRTEnum<T> extends IVector<T> {
+final class _IVectorWinRTEnum<T> extends IVector<T> {
   _IVectorWinRTEnum.fromPtr(super.ptr,
       {required super.iterableIid, required this.enumCreator})
       : super(enumCreator: enumCreator);
@@ -2349,7 +2349,7 @@ class _IVectorWinRTEnum<T> extends IVector<T> {
   }
 }
 
-class _IVectorWinRTFlagsEnum<T> extends IVector<T> {
+final class _IVectorWinRTFlagsEnum<T> extends IVector<T> {
   _IVectorWinRTFlagsEnum.fromPtr(super.ptr,
       {required super.iterableIid, required this.enumCreator})
       : super(enumCreator: enumCreator);

@@ -17,7 +17,7 @@ part 'iasyncoperation_part.dart';
 /// methods that have results but don't report progress.
 ///
 /// {@category interface}
-abstract class IAsyncOperation<TResult> extends IInspectable
+abstract interface class IAsyncOperation<TResult> extends IInspectable
     implements IAsyncInfo {
   // vtable begins at 6, is 3 entries long.
   IAsyncOperation(super.ptr);

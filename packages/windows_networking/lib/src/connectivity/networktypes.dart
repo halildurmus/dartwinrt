@@ -11,7 +11,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// Defines the network connection types.
 ///
 /// {@category enum}
-class NetworkTypes extends WinRTFlagsEnum<NetworkTypes> {
+final class NetworkTypes extends WinRTFlagsEnum<NetworkTypes> {
   const NetworkTypes(super.value, {super.name});
 
   factory NetworkTypes.from(int value) => NetworkTypes.values

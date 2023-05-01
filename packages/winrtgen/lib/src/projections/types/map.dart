@@ -80,18 +80,18 @@ mixin _MapMixin on MethodProjection {
 }
 
 /// Method projection for methods that return `IMap<K, V>`.
-class MapMethodProjection extends MethodProjection with _MapMixin {
+final class MapMethodProjection extends MethodProjection with _MapMixin {
   MapMethodProjection(super.method, super.vtableOffset);
 }
 
 /// Getter projection for `IMap<K, V>` getters.
-class MapGetterProjection extends GetterProjection with _MapMixin {
+final class MapGetterProjection extends GetterProjection with _MapMixin {
   MapGetterProjection(super.method, super.vtableOffset);
 }
 
 /// Method projection for methods that return `IMapView<K, V>` (exposed as
 /// `Map<K, V>`).
-class MapViewMethodProjection extends MethodProjection with _MapMixin {
+final class MapViewMethodProjection extends MethodProjection with _MapMixin {
   MapViewMethodProjection(super.method, super.vtableOffset);
 
   @override
@@ -111,7 +111,7 @@ class MapViewMethodProjection extends MethodProjection with _MapMixin {
 }
 
 /// Getter projection for `IMapView<K, V>` (exposed as `Map<K, V>`) getters.
-class MapViewGetterProjection extends GetterProjection with _MapMixin {
+final class MapViewGetterProjection extends GetterProjection with _MapMixin {
   MapViewGetterProjection(super.method, super.vtableOffset);
 
   @override

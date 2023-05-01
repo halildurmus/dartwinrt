@@ -9,7 +9,7 @@
 
 part of 'ivectorview.dart';
 
-class _IVectorViewBool extends IVectorView<bool> {
+final class _IVectorViewBool extends IVectorView<bool> {
   _IVectorViewBool.fromPtr(super.ptr, {required super.iterableIid});
 
   @override
@@ -110,7 +110,7 @@ class _IVectorViewBool extends IVectorView<bool> {
   }
 }
 
-class _IVectorViewGuid extends IVectorView<Guid> {
+final class _IVectorViewGuid extends IVectorView<Guid> {
   _IVectorViewGuid.fromPtr(super.ptr, {required super.iterableIid});
 
   @override
@@ -215,7 +215,7 @@ class _IVectorViewGuid extends IVectorView<Guid> {
   }
 }
 
-class _IVectorViewInspectable<T> extends IVectorView<T> {
+final class _IVectorViewInspectable<T> extends IVectorView<T> {
   _IVectorViewInspectable.fromPtr(super.ptr,
       {required super.iterableIid, required this.creator})
       : super(creator: creator);
@@ -321,7 +321,7 @@ class _IVectorViewInspectable<T> extends IVectorView<T> {
   }
 }
 
-class _IVectorViewInt16 extends IVectorView<int> {
+final class _IVectorViewInt16 extends IVectorView<int> {
   _IVectorViewInt16.fromPtr(super.ptr,
       {required super.iterableIid, super.intType});
 
@@ -423,7 +423,7 @@ class _IVectorViewInt16 extends IVectorView<int> {
   }
 }
 
-class _IVectorViewInt32 extends IVectorView<int> {
+final class _IVectorViewInt32 extends IVectorView<int> {
   _IVectorViewInt32.fromPtr(super.ptr,
       {required super.iterableIid, super.intType});
 
@@ -525,7 +525,7 @@ class _IVectorViewInt32 extends IVectorView<int> {
   }
 }
 
-class _IVectorViewInt64 extends IVectorView<int> {
+final class _IVectorViewInt64 extends IVectorView<int> {
   _IVectorViewInt64.fromPtr(super.ptr,
       {required super.iterableIid, super.intType});
 
@@ -627,7 +627,7 @@ class _IVectorViewInt64 extends IVectorView<int> {
   }
 }
 
-class _IVectorViewString extends IVectorView<String> {
+final class _IVectorViewString extends IVectorView<String> {
   _IVectorViewString.fromPtr(super.ptr, {required super.iterableIid});
 
   @override
@@ -733,7 +733,7 @@ class _IVectorViewString extends IVectorView<String> {
   }
 }
 
-class _IVectorViewUint8 extends IVectorView<int> {
+final class _IVectorViewUint8 extends IVectorView<int> {
   _IVectorViewUint8.fromPtr(super.ptr,
       {required super.iterableIid, super.intType});
 
@@ -835,7 +835,7 @@ class _IVectorViewUint8 extends IVectorView<int> {
   }
 }
 
-class _IVectorViewUint16 extends IVectorView<int> {
+final class _IVectorViewUint16 extends IVectorView<int> {
   _IVectorViewUint16.fromPtr(super.ptr,
       {required super.iterableIid, super.intType});
 
@@ -937,7 +937,7 @@ class _IVectorViewUint16 extends IVectorView<int> {
   }
 }
 
-class _IVectorViewUint32 extends IVectorView<int> {
+final class _IVectorViewUint32 extends IVectorView<int> {
   _IVectorViewUint32.fromPtr(super.ptr,
       {required super.iterableIid, super.intType});
 
@@ -1039,7 +1039,7 @@ class _IVectorViewUint32 extends IVectorView<int> {
   }
 }
 
-class _IVectorViewUint64 extends IVectorView<int> {
+final class _IVectorViewUint64 extends IVectorView<int> {
   _IVectorViewUint64.fromPtr(super.ptr,
       {required super.iterableIid, super.intType});
 
@@ -1141,7 +1141,7 @@ class _IVectorViewUint64 extends IVectorView<int> {
   }
 }
 
-class _IVectorViewUri extends IVectorView<Uri> {
+final class _IVectorViewUri extends IVectorView<Uri> {
   _IVectorViewUri.fromPtr(super.ptr, {required super.iterableIid});
 
   @override
@@ -1243,7 +1243,7 @@ class _IVectorViewUri extends IVectorView<Uri> {
   }
 }
 
-class _IVectorViewWinRTEnum<T> extends IVectorView<T> {
+final class _IVectorViewWinRTEnum<T> extends IVectorView<T> {
   _IVectorViewWinRTEnum.fromPtr(super.ptr,
       {required super.iterableIid, required this.enumCreator})
       : super(enumCreator: enumCreator);
@@ -1348,7 +1348,7 @@ class _IVectorViewWinRTEnum<T> extends IVectorView<T> {
   }
 }
 
-class _IVectorViewWinRTFlagsEnum<T> extends IVectorView<T> {
+final class _IVectorViewWinRTFlagsEnum<T> extends IVectorView<T> {
   _IVectorViewWinRTFlagsEnum.fromPtr(super.ptr,
       {required super.iterableIid, required this.enumCreator})
       : super(enumCreator: enumCreator);

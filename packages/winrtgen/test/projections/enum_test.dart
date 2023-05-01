@@ -166,7 +166,7 @@ void main() {
       expect(
           fileAttributesProjection.classHeader,
           equals(
-              'class FileAttributes extends WinRTFlagsEnum<FileAttributes>'));
+              'final class FileAttributes extends WinRTFlagsEnum<FileAttributes>'));
     });
 
     test('has correct number of static enum constants', () {

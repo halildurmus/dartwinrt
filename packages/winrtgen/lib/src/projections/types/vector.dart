@@ -69,18 +69,19 @@ mixin _VectorMixin on MethodProjection {
 }
 
 /// Method projection for methods that return `IVector<T>`.
-class VectorMethodProjection extends MethodProjection with _VectorMixin {
+final class VectorMethodProjection extends MethodProjection with _VectorMixin {
   VectorMethodProjection(super.method, super.vtableOffset);
 }
 
 /// Getter projection for `IVector<T>` getters.
-class VectorGetterProjection extends GetterProjection with _VectorMixin {
+final class VectorGetterProjection extends GetterProjection with _VectorMixin {
   VectorGetterProjection(super.method, super.vtableOffset);
 }
 
 /// Method projection for methods that return `IVectorView<T>` (exposed as
 /// `List<T>`).
-class VectorViewMethodProjection extends MethodProjection with _VectorMixin {
+final class VectorViewMethodProjection extends MethodProjection
+    with _VectorMixin {
   VectorViewMethodProjection(super.method, super.vtableOffset);
 
   @override
@@ -100,7 +101,8 @@ class VectorViewMethodProjection extends MethodProjection with _VectorMixin {
 }
 
 /// Getter projection for `IVectorView<T>` (exposed as `List<T>`) getters.
-class VectorViewGetterProjection extends GetterProjection with _VectorMixin {
+final class VectorViewGetterProjection extends GetterProjection
+    with _VectorMixin {
   VectorViewGetterProjection(super.method, super.vtableOffset);
 
   @override

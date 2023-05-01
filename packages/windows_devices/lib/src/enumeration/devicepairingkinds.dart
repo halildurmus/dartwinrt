@@ -15,7 +15,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// by the system. In this case, your code will need to respond accordingly.
 ///
 /// {@category enum}
-class DevicePairingKinds extends WinRTFlagsEnum<DevicePairingKinds> {
+final class DevicePairingKinds extends WinRTFlagsEnum<DevicePairingKinds> {
   const DevicePairingKinds(super.value, {super.name});
 
   factory DevicePairingKinds.from(int value) =>

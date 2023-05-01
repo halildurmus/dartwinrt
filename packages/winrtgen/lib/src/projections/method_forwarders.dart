@@ -12,7 +12,7 @@ import 'interface.dart';
 import 'method.dart';
 import 'type.dart';
 
-class MethodForwardersProjection {
+final class MethodForwardersProjection {
   MethodForwardersProjection(this.interface, this.interfaceProjection);
 
   /// The interface typedef that method forwarders are generated from (e.g.

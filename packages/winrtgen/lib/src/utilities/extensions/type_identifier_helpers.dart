@@ -288,7 +288,7 @@ String _parseGenericTypeIdentifierName(TypeIdentifier typeIdentifier) {
   };
 }
 
-/// Unwraps [typeIdentifiers] into a single TypeIdentifier
+/// Unwraps [typeIdentifiers] into a single `TypeIdentifier`.
 TypeIdentifier _unwrapTypeIdentifiers(List<TypeIdentifier> typeIdentifiers) {
   var type = typeIdentifiers.last;
   for (var idx = typeIdentifiers.length - 2; idx >= 0; idx--) {

@@ -16,7 +16,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// SemanticTextQuery.
 ///
 /// {@category struct}
-class TextSegment implements WinRTStruct {
+final class TextSegment implements WinRTStruct {
   TextSegment(this.startPosition, this.length);
 
   final int startPosition;
@@ -33,7 +33,6 @@ class TextSegment implements WinRTStruct {
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-
     return other is TextSegment &&
         startPosition == other.startPosition &&
         length == other.length;

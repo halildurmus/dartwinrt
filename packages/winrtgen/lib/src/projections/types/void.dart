@@ -5,7 +5,7 @@
 import '../method.dart';
 
 /// Method projection for `void` methods.
-class VoidMethodProjection extends MethodProjection {
+final class VoidMethodProjection extends MethodProjection {
   VoidMethodProjection(super.method, super.vtableOffset);
 
   @override

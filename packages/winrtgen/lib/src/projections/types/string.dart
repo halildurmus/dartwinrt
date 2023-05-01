@@ -34,12 +34,12 @@ mixin _StringMixin on MethodProjection {
 }
 
 /// Method projection for methods that return `String`.
-class StringMethodProjection extends MethodProjection with _StringMixin {
+final class StringMethodProjection extends MethodProjection with _StringMixin {
   StringMethodProjection(super.method, super.vtableOffset);
 }
 
 /// Getter projection for `String` getters.
-class StringGetterProjection extends GetterProjection with _StringMixin {
+final class StringGetterProjection extends GetterProjection with _StringMixin {
   StringGetterProjection(super.method, super.vtableOffset);
 }
 
@@ -66,19 +66,19 @@ mixin _StringListMixin on MethodProjection {
 }
 
 /// Method projection for methods that return `List<String>`.
-class StringListMethodProjection extends MethodProjection
+final class StringListMethodProjection extends MethodProjection
     with _StringListMixin {
   StringListMethodProjection(super.method, super.vtableOffset);
 }
 
 /// Getter projection for `List<String>` getters.
-class StringListGetterProjection extends GetterProjection
+final class StringListGetterProjection extends GetterProjection
     with _StringListMixin {
   StringListGetterProjection(super.method, super.vtableOffset);
 }
 
 /// Setter projection for `String` setters.
-class StringSetterProjection extends SetterProjection {
+final class StringSetterProjection extends SetterProjection {
   StringSetterProjection(super.method, super.vtableOffset);
 
   @override
@@ -96,7 +96,7 @@ class StringSetterProjection extends SetterProjection {
 }
 
 /// Parameter projection for `String` parameters.
-class StringParameterProjection extends ParameterProjection {
+final class StringParameterProjection extends ParameterProjection {
   StringParameterProjection(super.parameter);
 
   @override
@@ -113,7 +113,8 @@ class StringParameterProjection extends ParameterProjection {
 }
 
 /// Parameter projection for `List<String>` parameters.
-class StringListParameterProjection extends DefaultListParameterProjection {
+final class StringListParameterProjection
+    extends DefaultListParameterProjection {
   StringListParameterProjection(super.parameter);
 
   @override

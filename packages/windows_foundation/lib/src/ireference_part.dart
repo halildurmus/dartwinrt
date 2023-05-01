@@ -9,7 +9,7 @@
 
 part of 'ireference.dart';
 
-class _IReferenceBool extends IReference<bool?> {
+final class _IReferenceBool extends IReference<bool?> {
   _IReferenceBool.fromPtr(super.ptr);
 
   @override
@@ -40,7 +40,7 @@ class _IReferenceBool extends IReference<bool?> {
   }
 }
 
-class _IReferenceDateTime extends IReference<DateTime?> {
+final class _IReferenceDateTime extends IReference<DateTime?> {
   _IReferenceDateTime.fromPtr(super.ptr);
 
   @override
@@ -71,7 +71,7 @@ class _IReferenceDateTime extends IReference<DateTime?> {
   }
 }
 
-class _IReferenceDouble extends IReference<double?> {
+final class _IReferenceDouble extends IReference<double?> {
   _IReferenceDouble.fromPtr(super.ptr);
 
   @override
@@ -102,7 +102,7 @@ class _IReferenceDouble extends IReference<double?> {
   }
 }
 
-class _IReferenceDuration extends IReference<Duration?> {
+final class _IReferenceDuration extends IReference<Duration?> {
   _IReferenceDuration.fromPtr(super.ptr);
 
   @override
@@ -133,7 +133,7 @@ class _IReferenceDuration extends IReference<Duration?> {
   }
 }
 
-class _IReferenceFloat extends IReference<double?> {
+final class _IReferenceFloat extends IReference<double?> {
   _IReferenceFloat.fromPtr(super.ptr);
 
   @override
@@ -164,7 +164,7 @@ class _IReferenceFloat extends IReference<double?> {
   }
 }
 
-class _IReferenceGuid extends IReference<Guid?> {
+final class _IReferenceGuid extends IReference<Guid?> {
   _IReferenceGuid.fromPtr(super.ptr);
 
   @override
@@ -195,7 +195,7 @@ class _IReferenceGuid extends IReference<Guid?> {
   }
 }
 
-class _IReferenceInt16 extends IReference<int?> {
+final class _IReferenceInt16 extends IReference<int?> {
   _IReferenceInt16.fromPtr(super.ptr);
 
   @override
@@ -226,7 +226,7 @@ class _IReferenceInt16 extends IReference<int?> {
   }
 }
 
-class _IReferenceInt32 extends IReference<int?> {
+final class _IReferenceInt32 extends IReference<int?> {
   _IReferenceInt32.fromPtr(super.ptr);
 
   @override
@@ -257,7 +257,7 @@ class _IReferenceInt32 extends IReference<int?> {
   }
 }
 
-class _IReferenceInt64 extends IReference<int?> {
+final class _IReferenceInt64 extends IReference<int?> {
   _IReferenceInt64.fromPtr(super.ptr);
 
   @override
@@ -288,7 +288,7 @@ class _IReferenceInt64 extends IReference<int?> {
   }
 }
 
-class _IReferencePoint extends IReference<Point?> {
+final class _IReferencePoint extends IReference<Point?> {
   _IReferencePoint.fromPtr(super.ptr);
 
   @override
@@ -320,7 +320,7 @@ class _IReferencePoint extends IReference<Point?> {
   }
 }
 
-class _IReferenceRect extends IReference<Rect?> {
+final class _IReferenceRect extends IReference<Rect?> {
   _IReferenceRect.fromPtr(super.ptr);
 
   @override
@@ -352,7 +352,7 @@ class _IReferenceRect extends IReference<Rect?> {
   }
 }
 
-class _IReferenceSize extends IReference<Size?> {
+final class _IReferenceSize extends IReference<Size?> {
   _IReferenceSize.fromPtr(super.ptr);
 
   @override
@@ -384,7 +384,7 @@ class _IReferenceSize extends IReference<Size?> {
   }
 }
 
-class _IReferenceString extends IReference<String?> {
+final class _IReferenceString extends IReference<String?> {
   _IReferenceString.fromPtr(super.ptr);
 
   @override
@@ -416,7 +416,7 @@ class _IReferenceString extends IReference<String?> {
   }
 }
 
-class _IReferenceUint8 extends IReference<int?> {
+final class _IReferenceUint8 extends IReference<int?> {
   _IReferenceUint8.fromPtr(super.ptr);
 
   @override
@@ -447,7 +447,7 @@ class _IReferenceUint8 extends IReference<int?> {
   }
 }
 
-class _IReferenceUint16 extends IReference<int?> {
+final class _IReferenceUint16 extends IReference<int?> {
   _IReferenceUint16.fromPtr(super.ptr);
 
   @override
@@ -478,7 +478,7 @@ class _IReferenceUint16 extends IReference<int?> {
   }
 }
 
-class _IReferenceUint32 extends IReference<int?> {
+final class _IReferenceUint32 extends IReference<int?> {
   _IReferenceUint32.fromPtr(super.ptr);
 
   @override
@@ -509,7 +509,7 @@ class _IReferenceUint32 extends IReference<int?> {
   }
 }
 
-class _IReferenceUint64 extends IReference<int?> {
+final class _IReferenceUint64 extends IReference<int?> {
   _IReferenceUint64.fromPtr(super.ptr);
 
   @override
@@ -540,7 +540,7 @@ class _IReferenceUint64 extends IReference<int?> {
   }
 }
 
-class _IReferenceWinRTEnum<T> extends IReference<T> {
+final class _IReferenceWinRTEnum<T> extends IReference<T> {
   _IReferenceWinRTEnum.fromPtr(super.ptr, {required this.enumCreator});
 
   final T Function(int) enumCreator;
@@ -573,7 +573,7 @@ class _IReferenceWinRTEnum<T> extends IReference<T> {
   }
 }
 
-class _IReferenceWinRTFlagsEnum<T> extends IReference<T> {
+final class _IReferenceWinRTFlagsEnum<T> extends IReference<T> {
   _IReferenceWinRTFlagsEnum.fromPtr(super.ptr, {required this.enumCreator});
 
   final T Function(int) enumCreator;

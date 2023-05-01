@@ -12,7 +12,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// a file or a folder.
 ///
 /// {@category enum}
-class StorageItemTypes extends WinRTFlagsEnum<StorageItemTypes> {
+final class StorageItemTypes extends WinRTFlagsEnum<StorageItemTypes> {
   const StorageItemTypes(super.value, {super.name});
 
   factory StorageItemTypes.from(int value) =>

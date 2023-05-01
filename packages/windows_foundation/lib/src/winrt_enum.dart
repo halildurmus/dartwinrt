@@ -15,7 +15,7 @@ abstract class WinRTEnum {
 }
 
 /// The base class that all WinRT Flags enumerations implement.
-abstract class WinRTFlagsEnum<T extends WinRTEnum> extends WinRTEnum {
+abstract base class WinRTFlagsEnum<T extends WinRTEnum> extends WinRTEnum {
   const WinRTFlagsEnum(super.value, {super.name});
 
   /// Bit-wise and operator.

@@ -70,17 +70,20 @@ mixin _ReferenceMixin on MethodProjection {
 
 /// Method projection for methods that return `IReference<T?>` (exposed as
 /// `T?`).
-class ReferenceMethodProjection extends MethodProjection with _ReferenceMixin {
+final class ReferenceMethodProjection extends MethodProjection
+    with _ReferenceMixin {
   ReferenceMethodProjection(super.method, super.vtableOffset);
 }
 
 /// Getter projection for `IReference<T?>` (exposed as `T?`) getters.
-class ReferenceGetterProjection extends GetterProjection with _ReferenceMixin {
+final class ReferenceGetterProjection extends GetterProjection
+    with _ReferenceMixin {
   ReferenceGetterProjection(super.method, super.vtableOffset);
 }
 
 /// Setter projection for `IReference<T?>` (exposed as `T?`) setters.
-class ReferenceSetterProjection extends SetterProjection with _ReferenceMixin {
+final class ReferenceSetterProjection extends SetterProjection
+    with _ReferenceMixin {
   ReferenceSetterProjection(super.method, super.vtableOffset);
 
   @override
@@ -98,7 +101,7 @@ class ReferenceSetterProjection extends SetterProjection with _ReferenceMixin {
 }
 
 /// Parameter projection for `IReference<T?>` (exposed as `T?`) parameters.
-class ReferenceParameterProjection extends ParameterProjection {
+final class ReferenceParameterProjection extends ParameterProjection {
   ReferenceParameterProjection(super.parameter);
 
   @override

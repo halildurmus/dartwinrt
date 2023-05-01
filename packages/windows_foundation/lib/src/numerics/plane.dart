@@ -14,7 +14,7 @@ import '../winrt_struct.dart';
 /// Describes a plane (a flat, two-dimensional surface).
 ///
 /// {@category struct}
-class Plane implements WinRTStruct {
+final class Plane implements WinRTStruct {
   Plane(this.normal, this.d);
 
   final NativeVector3 normal;
@@ -31,7 +31,6 @@ class Plane implements WinRTStruct {
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
-
     return other is Plane && normal == other.normal && d == other.d;
   }
 

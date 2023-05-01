@@ -13,7 +13,7 @@ sealed class GenericType {
 
 /// Represents a WinRT generic type with one type argument (e.g.
 /// Windows.Foundation.IAsyncOperation`1).
-class GenericTypeWithOneTypeArg extends GenericType {
+final class GenericTypeWithOneTypeArg extends GenericType {
   const GenericTypeWithOneTypeArg(super.fullyQualifiedType, this.typeArgs);
 
   /// The type arguments for this generic type (e.g. `TypeArg.bool_`,
@@ -23,7 +23,7 @@ class GenericTypeWithOneTypeArg extends GenericType {
 
 /// Represents a WinRT generic type with two type arguments (e.g.
 /// Windows.Foundation.Collections.IMap`2).
-class GenericTypeWithTwoTypeArgs extends GenericType {
+final class GenericTypeWithTwoTypeArgs extends GenericType {
   const GenericTypeWithTwoTypeArgs(super.fullyQualifiedType, this.typeArgs);
 
   /// The type argument pairs for this generic type (e.g.

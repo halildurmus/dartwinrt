@@ -34,17 +34,17 @@ mixin _EnumMixin on MethodProjection {
 }
 
 /// Method projection for methods that return WinRT enum (e.g. `AsyncStatus`).
-class EnumMethodProjection extends MethodProjection with _EnumMixin {
+final class EnumMethodProjection extends MethodProjection with _EnumMixin {
   EnumMethodProjection(super.method, super.vtableOffset);
 }
 
 /// Getter projection for WinRT enum getters.
-class EnumGetterProjection extends GetterProjection with _EnumMixin {
+final class EnumGetterProjection extends GetterProjection with _EnumMixin {
   EnumGetterProjection(super.method, super.vtableOffset);
 }
 
 /// Setter projection for WinRT enum setters.
-class EnumSetterProjection extends SetterProjection {
+final class EnumSetterProjection extends SetterProjection {
   EnumSetterProjection(super.method, super.vtableOffset);
 
   @override
@@ -56,7 +56,7 @@ class EnumSetterProjection extends SetterProjection {
 }
 
 /// Parameter projection for WinRT enum parameters.
-class EnumParameterProjection extends ParameterProjection {
+final class EnumParameterProjection extends ParameterProjection {
   EnumParameterProjection(super.parameter);
 
   @override

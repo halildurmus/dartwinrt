@@ -113,7 +113,7 @@ $classHeader {
 ''';
 }
 
-class FactoryConstructorProjection {
+final class FactoryConstructorProjection {
   FactoryConstructorProjection(this.method)
       : className = method.methodHeader.split(' ').first,
         shortName = method.method.parent.shortName;
@@ -131,7 +131,7 @@ class FactoryConstructorProjection {
 ''';
 }
 
-class StaticMethodProjection {
+final class StaticMethodProjection {
   StaticMethodProjection(this.method)
       : shortName = method.method.parent.shortName;
 

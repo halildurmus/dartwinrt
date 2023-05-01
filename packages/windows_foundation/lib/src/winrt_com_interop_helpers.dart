@@ -11,7 +11,7 @@ import 'package:win32/win32.dart';
 /// Windows Runtime (WinRT) object used in a desktop application.
 ///
 /// {@category class}
-class InitializeWithWindow {
+final class InitializeWithWindow {
   /// Specifies an owner window to be used by a Windows Runtime object that is
   /// used in a desktop app.
   ///

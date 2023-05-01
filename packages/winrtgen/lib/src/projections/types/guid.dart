@@ -29,12 +29,12 @@ mixin _GuidMixin on MethodProjection {
 }
 
 /// Method projection for methods that return `Guid`.
-class GuidMethodProjection extends MethodProjection with _GuidMixin {
+final class GuidMethodProjection extends MethodProjection with _GuidMixin {
   GuidMethodProjection(super.method, super.vtableOffset);
 }
 
 /// Getter projection for `Guid` getters.
-class GuidGetterProjection extends GetterProjection with _GuidMixin {
+final class GuidGetterProjection extends GetterProjection with _GuidMixin {
   GuidGetterProjection(super.method, super.vtableOffset);
 }
 
@@ -61,17 +61,19 @@ mixin _GuidListMixin on MethodProjection {
 }
 
 /// Method projection for methods that return `List<Guid>`.
-class GuidListMethodProjection extends MethodProjection with _GuidListMixin {
+final class GuidListMethodProjection extends MethodProjection
+    with _GuidListMixin {
   GuidListMethodProjection(super.method, super.vtableOffset);
 }
 
 /// Getter projection for `List<Guid>` getters.
-class GuidListGetterProjection extends GetterProjection with _GuidListMixin {
+final class GuidListGetterProjection extends GetterProjection
+    with _GuidListMixin {
   GuidListGetterProjection(super.method, super.vtableOffset);
 }
 
 /// Setter projection for `Guid` setters.
-class GuidSetterProjection extends SetterProjection {
+final class GuidSetterProjection extends SetterProjection {
   GuidSetterProjection(super.method, super.vtableOffset);
 
   @override
@@ -89,7 +91,7 @@ class GuidSetterProjection extends SetterProjection {
 }
 
 /// Parameter projection for `Guid` parameters.
-class GuidParameterProjection extends ParameterProjection {
+final class GuidParameterProjection extends ParameterProjection {
   GuidParameterProjection(super.parameter);
 
   @override
@@ -107,7 +109,7 @@ class GuidParameterProjection extends ParameterProjection {
 }
 
 /// Parameter projection for `List<Guid>` parameters.
-class GuidListParameterProjection extends DefaultListParameterProjection {
+final class GuidListParameterProjection extends DefaultListParameterProjection {
   GuidListParameterProjection(super.parameter);
 
   @override

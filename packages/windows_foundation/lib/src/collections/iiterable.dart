@@ -15,7 +15,7 @@ import 'iiterator.dart';
 /// specified type.
 ///
 /// {@category interface}
-class IIterable<T> extends IInspectable {
+interface class IIterable<T> extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   final T Function(Pointer<COMObject>)? _creator;
   final T Function(int)? _enumCreator;
