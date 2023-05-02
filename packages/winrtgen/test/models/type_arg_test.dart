@@ -96,24 +96,24 @@ void main() {
   });
 
   group('typeIdentifier', () {
-    test('throws UnsupportedError for TypeArg.inspectable', () {
+    test('throws WinRTGenException for TypeArg.inspectable', () {
       expect(() => TypeArg.inspectable.typeIdentifier,
-          throwsA(isA<UnsupportedError>()));
+          throwsA(isA<WinRTGenException>()));
     });
 
-    test('throws UnsupportedError for TypeArg.nullableInspectable', () {
+    test('throws WinRTGenException for TypeArg.nullableInspectable', () {
       expect(() => TypeArg.nullableInspectable.typeIdentifier,
-          throwsA(isA<UnsupportedError>()));
+          throwsA(isA<WinRTGenException>()));
     });
 
-    test('throws UnsupportedError for TypeArg.winrtEnum', () {
+    test('throws WinRTGenException for TypeArg.winrtEnum', () {
       expect(() => TypeArg.winrtEnum.typeIdentifier,
-          throwsA(isA<UnsupportedError>()));
+          throwsA(isA<WinRTGenException>()));
     });
 
-    test('throws UnsupportedError for TypeArg.winrtFlagsEnum', () {
+    test('throws WinRTGenException for TypeArg.winrtFlagsEnum', () {
       expect(() => TypeArg.winrtFlagsEnum.typeIdentifier,
-          throwsA(isA<UnsupportedError>()));
+          throwsA(isA<WinRTGenException>()));
     });
 
     test('returns correct TypeIdentifier for TypeArg.bool', () {

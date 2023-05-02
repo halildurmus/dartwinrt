@@ -78,8 +78,7 @@ extension TypeIdentifierHelpers on TypeIdentifier {
     if (name == 'Windows.Foundation.TimeSpan') return 'Duration';
 
     if (baseType == BaseType.referenceTypeModifier) {
-      if (typeArg case final typeArg?) return typeArg.shortName;
-      throw WinRTGenException('Reference type missing for $this.');
+      return dereferenceType(this).shortName;
     }
 
     return switch (baseType) {
@@ -105,23 +104,21 @@ extension TypeIdentifierHelpers on TypeIdentifier {
     }
 
     final typeProjection = TypeProjection(this);
-    if (typeProjection.isWinRTDelegate) return 'delegate(${type.iid})';
-    if (typeProjection.isWinRTInterface) return type.iid;
 
     if (typeProjection.isWinRTClass) {
-      final defaultInterface = type.interfaces.first;
-      final defaultInterfaceSignature = switch (defaultInterface.typeSpec) {
-        final typeSpec? => typeSpec.signature,
-        _ => defaultInterface.signature,
-      };
+      final defaultInterfaceSignature = type.interfaces.first.signature;
       return 'rc($name;$defaultInterfaceSignature)';
     }
+
+    if (typeProjection.isWinRTDelegate) return type.signature;
 
     if (typeProjection.isWinRTEnum) {
       final isFlagsEnum = type.existsAttribute(flagsAttribute);
       final enumSignature = isFlagsEnum ? 'u4' : 'i4';
       return 'enum($name;$enumSignature)';
     }
+
+    if (typeProjection.isWinRTInterface) return type.signature;
 
     if (typeProjection.isWinRTStruct) {
       final fieldSignatures =

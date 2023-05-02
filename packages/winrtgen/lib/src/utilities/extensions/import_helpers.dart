@@ -12,6 +12,8 @@ import 'typedef_helpers.dart';
 extension ImportHelpers on InterfaceProjection {
   String? importForTypeDef(TypeDef typeDef) {
     final type = typeDef.fullyQualifiedName;
+    assert(type.isNotEmpty);
+
     if (name == type || ignoredTypesInImports.contains(type)) return null;
     if (typeDef.isDelegate) return null;
 

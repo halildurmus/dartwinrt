@@ -4,6 +4,7 @@
 
 import 'package:winmd/winmd.dart';
 
+import '../exception/exception.dart';
 import '../utilities/utilities.dart';
 
 /// Represents a type argument for a generic class.
@@ -152,6 +153,6 @@ enum TypeArg {
             BaseType.classTypeModifier,
             name: 'Windows.Foundation.Uri',
             type: getMetadataForType('Windows.Foundation.Uri')),
-        _ => throw UnsupportedError('Unsupported type arg: $this'),
+        _ => throw WinRTGenException('Unsupported TypeArg: $this'),
       };
 }

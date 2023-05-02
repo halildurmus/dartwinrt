@@ -94,7 +94,7 @@ abstract class MethodProjection {
         VectorViewMethodProjection(method, vtableOffset),
       ProjectionType.void_ => VoidMethodProjection(method, vtableOffset),
       _ =>
-        throw UnsupportedError('Unsupported projection type: $projectionType'),
+        throw WinRTGenException('Unsupported projection type: $projectionType'),
     };
   }
 
