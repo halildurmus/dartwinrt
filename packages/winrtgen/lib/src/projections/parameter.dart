@@ -4,6 +4,7 @@
 
 import 'package:winmd/winmd.dart';
 
+import '../exception/exception.dart';
 import '../models/models.dart';
 import '../utilities/utilities.dart';
 import 'type.dart';
@@ -66,7 +67,7 @@ abstract class ParameterProjection {
       ProjectionType.uri => UriParameterProjection(param),
       ProjectionType.uriList => UriListParameterProjection(param),
       _ =>
-        throw UnsupportedError('Unsupported projection type: $projectionType'),
+        throw WinRTGenException('Unsupported projection type: $projectionType'),
     };
   }
 

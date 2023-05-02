@@ -96,7 +96,8 @@ final class GenericEnumListParameterProjection
 mixin _GenericObjectMixin on MethodProjection {
   @override
   bool get isNullable =>
-      returnTypeProjection.genericTypeArg == TypeArg.nullableInspectable;
+      returnTypeProjection.typeIdentifier.name ==
+      TypeArg.nullableInspectable.name;
 
   String get typeParameter {
     final genericParamSequence =

@@ -4,6 +4,8 @@
 
 import 'package:winmd/winmd.dart';
 
+import '../../exception/exception.dart';
+
 extension BaseTypeHelpers on BaseType {
   /// Returns the appropriate Dart type name of this BaseType.
   String get dartType => switch (this) {
@@ -19,7 +21,7 @@ extension BaseTypeHelpers on BaseType {
         BaseType.uint64Type =>
           'int',
         BaseType.stringType => 'String',
-        _ => throw UnsupportedError('Unsupported base type: $this'),
+        _ => throw WinRTGenException('Unsupported BaseType: $this'),
       };
 
   /// Returns the type signature of this BaseType as defined in:
@@ -39,6 +41,6 @@ extension BaseTypeHelpers on BaseType {
         BaseType.uint16Type => 'u2',
         BaseType.uint32Type => 'u4',
         BaseType.uint64Type => 'u8',
-        _ => throw UnsupportedError('Unsupported base type: $this')
+        _ => throw WinRTGenException('Unsupported BaseType: $this')
       };
 }

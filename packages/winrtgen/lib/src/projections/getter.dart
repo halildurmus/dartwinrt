@@ -4,6 +4,7 @@
 
 import 'package:winmd/winmd.dart';
 
+import '../exception/exception.dart';
 import '../models/models.dart';
 import '../utilities/utilities.dart';
 import 'method.dart';
@@ -54,7 +55,7 @@ abstract class GetterProjection extends PropertyProjection {
       ProjectionType.vectorView =>
         VectorViewGetterProjection(method, vtableOffset),
       _ =>
-        throw UnsupportedError('Unsupported projection type: $projectionType'),
+        throw WinRTGenException('Unsupported projection type: $projectionType'),
     };
   }
 

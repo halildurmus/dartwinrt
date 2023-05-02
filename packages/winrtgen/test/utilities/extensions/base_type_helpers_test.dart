@@ -20,7 +20,8 @@ void main() {
     expect(BaseType.uint32Type.dartType, equals('int'));
     expect(BaseType.uint64Type.dartType, equals('int'));
     expect(BaseType.stringType.dartType, equals('String'));
-    expect(() => BaseType.genericTypeModifier.dartType, throwsUnsupportedError);
+    expect(() => BaseType.genericTypeModifier.dartType,
+        throwsA(isA<WinRTGenException>()));
   });
 
   test('signature', () {
@@ -38,7 +39,7 @@ void main() {
     expect(BaseType.uint16Type.signature, equals('u2'));
     expect(BaseType.uint32Type.signature, equals('u4'));
     expect(BaseType.uint64Type.signature, equals('u8'));
-    expect(
-        () => BaseType.genericTypeModifier.signature, throwsUnsupportedError);
+    expect(() => BaseType.genericTypeModifier.signature,
+        throwsA(isA<WinRTGenException>()));
   });
 }

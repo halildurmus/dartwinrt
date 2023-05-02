@@ -169,15 +169,24 @@ final class TypeProjection {
     return typeTuple;
   }
 
+  TypeTuple unwrapGenericTypeArg() {
+    final typeArg = TypeArg.from(typeIdentifier.name);
+    return switch (typeArg) {
+      TypeArg.inspectable || TypeArg.nullableInspectable => TypeTuple(
+          isParameter ? 'VTablePointer' : 'Pointer<COMObject>',
+          isParameter ? 'VTablePointer' : 'Pointer<COMObject>'),
+      TypeArg.winrtEnum => baseNativeMapping[BaseType.int32Type]!,
+      TypeArg.winrtFlagsEnum => baseNativeMapping[BaseType.uint32Type]!,
+      _ => throw WinRTGenException('Unsupported TypeArg: $typeArg')
+    };
+  }
+
   /// Takes a type such as `pointerTypeModifier` -> `BaseType.Uint32` and
   /// converts it to `Pointer<Uint32>`.
   TypeTuple unwrapPointerType() {
-    if (typeIdentifier.typeArg case final typeArg?) {
-      final typeProjection = TypeProjection(typeArg);
-      final type = 'Pointer<${typeProjection.nativeType}>';
-      return TypeTuple(type, type);
-    }
-    throw WinRTGenException('Pointer type missing for $typeIdentifier.');
+    final typeProjection = TypeProjection(dereferenceType(typeIdentifier));
+    final type = 'Pointer<${typeProjection.nativeType}>';
+    return TypeTuple(type, type);
   }
 
   TypeTuple unwrapReferenceType() {
@@ -231,22 +240,6 @@ final class TypeProjection {
     return projection;
   }
 
-  TypeArg get genericTypeArg {
-    assert(typeIdentifier.isClassVariableType);
-    return TypeArg.from(typeIdentifier.name);
-  }
-
-  TypeTuple unwrapGenericTypeArg() {
-    if (genericTypeArg.isEnum) {
-      return baseNativeMapping[genericTypeArg == TypeArg.winrtEnum
-          ? BaseType.int32Type
-          : BaseType.uint32Type]!;
-    }
-
-    final type = isParameter ? 'VTablePointer' : 'Pointer<COMObject>';
-    return TypeTuple(type, type);
-  }
-
   TypeTuple projectType() {
     // Could be an intrinsic base type (e.g. Int32)
     if (isBaseType) return baseNativeMapping[typeIdentifier.baseType]!;
@@ -276,7 +269,8 @@ final class TypeProjection {
       return TypeTuple(type, type);
     }
 
-    // Handle generic type argument (e.g. TypeArg.inspectable)
+    // Handle generic type argument (e.g. TypeArg.inspectable,
+    // TypeArg.nullableInspectable, TypeArg.winrtEnum, TypeArg.winrtFlagsEnum)
     if (isClassVariableType) return unwrapGenericTypeArg();
 
     throw WinRTGenException('Type information missing for $typeIdentifier.');

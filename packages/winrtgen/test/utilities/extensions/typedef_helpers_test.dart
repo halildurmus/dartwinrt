@@ -99,10 +99,17 @@ void main() {
   });
 
   group('signature', () {
-    test('returns the signature of IAsyncAction', () {
-      final typeDef = getMetadataForType('Windows.Foundation.IAsyncAction');
+    test('returns the signature of AsyncActionCompletedHandler', () {
+      final typeDef =
+          getMetadataForType('Windows.Foundation.AsyncActionCompletedHandler');
+      expect(typeDef.signature,
+          equals('delegate({a4ed5c81-76c9-40bd-8be6-b1d90fb20ae7})'));
+    });
+
+    test('returns the signature of AsyncStatus', () {
+      final typeDef = getMetadataForType('Windows.Foundation.AsyncStatus');
       expect(
-          typeDef.signature, equals('{5a648006-843a-4da9-865b-9d26e5dfad7b}'));
+          typeDef.signature, equals('enum(Windows.Foundation.AsyncStatus;i4)'));
     });
 
     test('returns the signature of Calendar', () {
@@ -112,6 +119,12 @@ void main() {
               'rc(Windows.Globalization.Calendar;{ca30221d-86d9-40fb-a26b-d44eb7cf08ea})'));
     });
 
+    test('returns the signature of IAsyncAction', () {
+      final typeDef = getMetadataForType('Windows.Foundation.IAsyncAction');
+      expect(
+          typeDef.signature, equals('{5a648006-843a-4da9-865b-9d26e5dfad7b}'));
+    });
+
     test(
         'returns the signature of IIterable<IKeyValuePair<String, IJsonValue>>',
         () {
@@ -119,6 +132,12 @@ void main() {
           jsonObjectTypeDef.interfaces[3].signature,
           equals(
               'pinterface({faa585ea-6214-4217-afda-7f46de5869b3};pinterface({02b51929-c1c4-4a7e-8940-0312b5c18500};string;{a3219ecb-f0b3-4dcd-beee-19d48cd3ed1e}))'));
+    });
+
+    test('returns the signature of Point', () {
+      final typeDef = getMetadataForType('Windows.Foundation.Point');
+      expect(
+          typeDef.signature, equals('struct(Windows.Foundation.Point;f4;f4)'));
     });
   });
 }

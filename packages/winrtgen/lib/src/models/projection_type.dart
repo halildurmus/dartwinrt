@@ -2,8 +2,10 @@
 // details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
+import '../exception/exception.dart';
 import '../projections/projections.dart';
 import '../utilities/utilities.dart';
+import 'type_arg.dart';
 
 /// Represents the projection type of a WinRT type.
 ///
@@ -55,9 +57,16 @@ enum ProjectionType {
     }
 
     if (type.isClassVariableType) {
-      return type.genericTypeArg.isEnum
-          ? ProjectionType.genericEnum
-          : ProjectionType.genericObject;
+      final typeArg = TypeArg.from(type.typeIdentifier.name);
+      return switch (typeArg) {
+        TypeArg.inspectable ||
+        TypeArg.nullableInspectable =>
+          ProjectionType.genericObject,
+        TypeArg.winrtEnum ||
+        TypeArg.winrtFlagsEnum =>
+          ProjectionType.genericEnum,
+        _ => throw WinRTGenException('Unsupported TypeArg: $typeArg'),
+      };
     }
 
     if (type.isSimpleArray) {
@@ -78,7 +87,7 @@ enum ProjectionType {
         ProjectionType.string => ProjectionType.stringList,
         ProjectionType.struct => ProjectionType.structList,
         ProjectionType.uri => ProjectionType.uriList,
-        _ => throw UnsupportedError(
+        _ => throw WinRTGenException(
             'Unsupported projection type: $projectionType'),
       };
     }
@@ -103,6 +112,6 @@ enum ProjectionType {
     if (type.isWinRTDelegate) return ProjectionType.delegate;
     if (type.isWinRTStruct) return ProjectionType.struct;
 
-    throw UnsupportedError('Unsupported type: ${type.typeIdentifier}');
+    throw WinRTGenException('Unsupported type: ${type.typeIdentifier}');
   }
 }
