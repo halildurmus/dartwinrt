@@ -4,7 +4,6 @@ namespace.
 
 ## Examples
 
-| Example           | Description                                                    |
-| ----------------- | -------------------------------------------------------------- |
-| `geolocator.dart` | Demonstrates retrieving geolocation coordinates via WinRT APIs |
-
+| Example           | Description                                     |
+| ----------------- | ----------------------------------------------- |
+| `geolocator.dart` | Demonstrates retrieving geolocation coordinates |

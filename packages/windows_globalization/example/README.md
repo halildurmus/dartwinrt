@@ -4,7 +4,6 @@ demonstrate calling various Windows Runtime APIs under the
 
 ## Examples
 
-| Example         | Description                              |
-| --------------- | ---------------------------------------- |
-| `calendar.dart` | Demonstrates calling WinRT Calendar APIs |
-
+| Example         | Description                        |
+| --------------- | ---------------------------------- |
+| `calendar.dart` | Demonstrates calling Calendar APIs |

@@ -4,7 +4,6 @@ namespace.
 
 ## Examples
 
-| Example       | Description                                |
-| ------------- | ------------------------------------------ |
-| `picker.dart` | Demonstrates picking a file via WinRT APIs |
-
+| Example       | Description                 |
+| ------------- | --------------------------- |
+| `picker.dart` | Demonstrates picking a file |
