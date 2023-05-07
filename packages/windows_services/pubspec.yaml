@@ -6,6 +6,11 @@ repository: https://github.com/dart-windows/dartwinrt
 issue_tracker: https://github.com/dart-windows/dartwinrt/issues?q=is%3Aopen+is%3Aissue+label%3A%22p%3A+windows_services%22
 publish_to: none # TODO: Remove this
 
+topics:
+  - winrt
+  - windows
+  - ffi
+
 environment:
   sdk: '^3.0.0-0'
 
