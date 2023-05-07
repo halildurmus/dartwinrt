@@ -4,6 +4,7 @@ namespace.
 
 ## Examples
 
-| Example           | Description                                     |
-| ----------------- | ----------------------------------------------- |
-| `geolocator.dart` | Demonstrates retrieving geolocation coordinates |
+| Example                        | Description                                         |
+| ------------------------------ | --------------------------------------------------- |
+| `audio_rendering_devices.dart` | Demonstrates retrieving all audio rendering devices |
+| `geolocator.dart`              | Demonstrates retrieving geolocation coordinates     |
