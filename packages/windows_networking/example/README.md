@@ -4,6 +4,6 @@ namespace.
 
 ## Examples
 
-| Example | Description |
-| ------- | ----------- |
-| TODO    | TODO        |
+| Example             | Description                                             |
+| ------------------- | ------------------------------------------------------- |
+| `connectivity.dart` | Demonstrates retrieving network connection information. |
