@@ -5,6 +5,7 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 export 'creationcollisionoption.dart';
+export 'downloadsfolder.dart';
 export 'fileaccessmode.dart';
 export 'fileattributes.dart';
 export 'fileproperties/basicproperties.dart';
