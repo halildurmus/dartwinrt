@@ -61,13 +61,6 @@ const excludedObjects = <String>{
   'Windows.Foundation.Collections.IObservableMap`2',
   'Windows.Foundation.Collections.IVector`1',
   'Windows.Foundation.Collections.IVectorView`1',
-
-  // TODO: These types are currently being generated manually. The goal is to
-  // generate them automatically after making appropriate changes to the
-  // generation script:
-
-  //   Requires WinRT delegate support
-  'Windows.Storage.ApplicationData',
 };
 
 /// WinRT interfaces to exclude when generating an interface's inherited

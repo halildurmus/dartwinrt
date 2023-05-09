@@ -4,10 +4,15 @@
 
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
+export 'applicationdata.dart';
+export 'applicationdatacontainer.dart';
+export 'applicationdatacreatedisposition.dart';
+export 'applicationdatalocality.dart';
 export 'creationcollisionoption.dart';
 export 'downloadsfolder.dart';
 export 'fileaccessmode.dart';
 export 'fileattributes.dart';
+export 'fileio.dart';
 export 'fileproperties/basicproperties.dart';
 export 'fileproperties/documentproperties.dart';
 export 'fileproperties/ibasicproperties.dart';
@@ -29,6 +34,10 @@ export 'fileproperties/thumbnailoptions.dart';
 export 'fileproperties/thumbnailtype.dart';
 export 'fileproperties/videoorientation.dart';
 export 'fileproperties/videoproperties.dart';
+export 'iapplicationdata.dart';
+export 'iapplicationdata2.dart';
+export 'iapplicationdata3.dart';
+export 'iapplicationdatacontainer.dart';
 export 'istoragefile.dart';
 export 'istoragefile2.dart';
 export 'istoragefilepropertieswithavailability.dart';

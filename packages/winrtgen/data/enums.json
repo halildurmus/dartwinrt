@@ -65,6 +65,8 @@
     "Windows.Perception.Spatial.SpatialLocatability": "Indicates the lifecycle state of the device's spatial location system. This lets an app know whether it can reason about the device's orientation or its position in the user's surroundings.",
     "Windows.Security.Credentials.WebAccountState": "Describes the state of a WebAccount object.",
     "Windows.Services.Maps.MapLocationDesiredAccuracy": "Indicates the desired accuracy to use when converting latitude and longitude coordinates to a physical location like a city or address.",
+    "Windows.Storage.ApplicationDataCreateDisposition": "Specifies options for creating application data containers or returning existing containers. This enumeration is used by the ApplicationDataContainer.CreateContainer method.",
+    "Windows.Storage.ApplicationDataLocality": "Specifies the type of an application data store.",
     "Windows.Storage.CreationCollisionOption": "Specifies what to do if a file or folder with the specified name already exists in the current folder when you create a new file or folder.",
     "Windows.Storage.FileAccessMode": "Specifies whether to access a file in read-only mode or in read/write mode.",
     "Windows.Storage.FileAttributes": "Describes the attributes of a file or folder.",

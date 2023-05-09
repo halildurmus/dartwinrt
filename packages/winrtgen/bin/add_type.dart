@@ -256,11 +256,13 @@ Future<String> getDocumentationComment(String fullyQualifiedType) async {
     final response = await http.get(uri);
     final document = parse(response.body);
     final paragraphs = document.querySelectorAll('div.summary > p');
-    if (paragraphs.isEmpty) {
-      print('No documentation comment found for `$fullyQualifiedType`!');
-      return '';
+    switch (paragraphs) {
+      case [final paragraph] || [final paragraph, ...]:
+        return paragraph.text;
+      default:
+        print('No documentation comment found for `$fullyQualifiedType`!');
+        return '';
     }
-    return paragraphs.first.text;
   });
 }
 
