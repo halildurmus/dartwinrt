@@ -1,9 +1,10 @@
 name: windows_gaming
 description: Provides access to game controller input for Windows applications.
 version: 0.0.1
-homepage: https://dartwinrt.dev
+homepage: https://win32.pub
 repository: https://github.com/dart-windows/dartwinrt
 issue_tracker: https://github.com/dart-windows/dartwinrt/issues?q=is%3Aopen+is%3Aissue+label%3A%22p%3A+windows_gaming%22
+documentation: https://dartwinrt.dev
 publish_to: none # TODO: Remove this
 
 topics:
