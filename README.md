@@ -2,7 +2,6 @@
 
 A family of packages that provide an idiomatic Dart projection of modern
 Windows Runtime (WinRT) APIs using Dart FFI.
-
 Part of the [Dart | Windows](https://github.com/dart-windows) suite of Windows packages.
 
 [![package publisher](https://img.shields.io/pub/publisher/windows_foundation.svg)](https://pub.dev/publishers/win32.pub)
