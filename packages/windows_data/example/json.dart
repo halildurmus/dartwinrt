@@ -2,9 +2,7 @@
 // All rights reserved. Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-// Deserialize an object from JSON string into a JsonObject and retrieve the
-// named values that it contains.
-// Example is from:
+// Example is based on:
 // https://learn.microsoft.com/en-us/previous-versions/windows/apps/hh770289(v=win.10)
 
 import 'dart:ffi';
@@ -50,10 +48,13 @@ void main() {
   }
 
   // Convert the JsonObject to a Map
-  final map = jsonObject.toMap();
-  for (final MapEntry(:key, :value) in map.entries) {
-    print('MapEntry($key: ${value?.stringify()})');
-  }
+  final dartMap = Map.fromEntries(
+    jsonObject
+        .toMap()
+        .entries
+        .map((entry) => MapEntry(entry.key, entry.value!.stringify())),
+  );
+  print('Map: $dartMap');
 
   // You can also create a new JsonObject and populate it with new
   // name/JsonValue pairs using the JsonObject.insert method. Once finished,

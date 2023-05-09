@@ -17,9 +17,9 @@ void main() {
   final result = map.insert('key', 'value');
   switch (result) {
     case true:
-      print('"value" replaced an existing value in IMap');
+      print('Replaced an existing item in IMap with "value"');
     case false:
-      print('"value" inserted to IMap');
+      print('Inserted "value" into IMap');
   }
 
   // Get the size of the IMap
@@ -39,7 +39,7 @@ void main() {
   }
 
   // Check if IMap contains a specific key
-  print('Does IMap contains a "key": ${map.hasKey('key')}');
+  print('Does IMap contains the "key": ${map.hasKey('key')}');
 
   // Update the item using insert method
   map.insert('key', 'new value');
@@ -49,9 +49,7 @@ void main() {
 
   // Convert it to a Dart Map
   final dartMap = map.toMap();
-  for (final MapEntry(:key, :value) in dartMap.entries) {
-    print('MapEntry($key: $value)');
-  }
+  print('Map: $dartMap');
 
   // Remove the item
   map.remove('key');
