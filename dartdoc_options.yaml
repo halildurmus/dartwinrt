@@ -1,18 +1,18 @@
 dartdoc:
   categories:
-    "class":
-      name: "Classes"
+    'class':
+      name: 'Classes'
       markdown: doc/class.md
-    "interface":
-      name: "Interfaces"
+    'interface':
+      name: 'Interfaces'
       markdown: doc/interface.md
-    "enum":
-      name: "Enumerations"
+    'enum':
+      name: 'Enumerations'
       markdown: doc/enum.md
-    "struct":
-      name: "Structures"
+    'struct':
+      name: 'Structures'
       markdown: doc/struct.md
-  categoryOrder: ["class", "interface", "enum", "struct"]
+  categoryOrder: ['class', 'interface', 'enum', 'struct']
   showUndocumentedCategories: true
   ignore:
     - broken-link
