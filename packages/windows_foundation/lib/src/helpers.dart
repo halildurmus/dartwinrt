@@ -9,6 +9,7 @@ import 'dart:ffi';
 import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart' hide IUnknown;
 
+import 'extensions/iunknown_helpers.dart';
 import 'internal/extensions/extensions.dart';
 
 /// Activates the specified Windows Runtime class in the [className] and returns
