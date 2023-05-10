@@ -2,8 +2,7 @@
 // All rights reserved. Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-/// Provides an app with access to core system functionality and run-time
-/// information about its UI.
+/// Provides access to WinRT APIs from the `Windows.UI` namespace using FFI.
 library windows_ui;
 
 export 'src/exports.g.dart';

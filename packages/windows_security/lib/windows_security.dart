@@ -2,7 +2,8 @@
 // All rights reserved. Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-/// TODO: Add documentation.
+/// Provides access to WinRT APIs from the `Windows.Security` namespace using
+/// FFI.
 library windows_security;
 
 export 'src/exports.g.dart';

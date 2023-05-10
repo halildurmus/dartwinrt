@@ -2,9 +2,8 @@
 // All rights reserved. Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-/// Provides access to hostnames and endpoints used by network apps, connection
-/// profiles that provide connectivity, usage, and data plan information for
-/// established network connections.
+/// Provides access to WinRT APIs from the `Windows.Networking` namespace using
+/// FFI.
 library windows_networking;
 
 export 'src/exports.g.dart';

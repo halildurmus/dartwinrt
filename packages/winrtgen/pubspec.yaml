@@ -1,10 +1,10 @@
 name: winrtgen
-description: Provides functionality to generate Windows Runtime APIs from
-  Windows Metadata (WinMD) files.
+description: Provides functionality to generate WinRT APIs from Windows
+  Metadata(WinMD) files.
 publish_to: none
 
 environment:
-  sdk: '^3.0.0-0'
+  sdk: '^3.0.0'
 
 # Declare that this package only works on Windows.
 platforms:

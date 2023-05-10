@@ -28,20 +28,13 @@ jobs:
             sdk: main
           - os: windows-2022
             sdk: beta
-          # TODO: Enable after Dart 3.0 is released.
-          # - os: windows-2019
-          #   sdk: stable
-          # - os: ubuntu-latest
-          #   sdk: stable
+          - os: windows-2019
+            sdk: stable
+          - os: ubuntu-latest
+            sdk: stable
     uses: ./.github/workflows/dart_package.yml
     with:
       analyze_directories: bin example lib test
       dart_sdk: ${{ matrix.sdk }}
       runs_on: ${{ matrix.os }}
       working_directory: packages/winrtgen
-
-  # TODO: Enable after all packages in this repository are published.
-  # pana:
-  #   uses: ./.github/workflows/pana.yml
-  #   with:
-  #     working_directory: packages/winrtgen

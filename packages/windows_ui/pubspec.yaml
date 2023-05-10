@@ -1,9 +1,9 @@
 name: windows_ui
-description: Provides an app with access to core system functionality and
-  run-time information about its UI.
+description: Provides access to WinRT APIs from the Windows.UI namespace using
+  FFI.
 version: 0.0.1
 homepage: https://win32.pub
-repository: https://github.com/dart-windows/dartwinrt
+repository: https://github.com/dart-windows/dartwinrt/tree/main/packages/windows_ui
 issue_tracker: https://github.com/dart-windows/dartwinrt/issues?q=is%3Aopen+is%3Aissue+label%3A%22p%3A+windows_ui%22
 documentation: https://dartwinrt.dev
 publish_to: none # TODO: Remove this
@@ -14,7 +14,7 @@ topics:
   - ffi
 
 environment:
-  sdk: '^3.0.0-0'
+  sdk: '^3.0.0'
 
 # Declare that this package only works on Windows.
 platforms:
