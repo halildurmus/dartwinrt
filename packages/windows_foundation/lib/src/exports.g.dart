@@ -16,6 +16,7 @@ export 'collections/ivectorview.dart';
 export 'collections/propertyset.dart';
 export 'collections/stringmap.dart';
 export 'collections/valueset.dart';
+export 'extensions/iunknown_helpers.dart';
 export 'helpers.dart';
 export 'iclosable.dart';
 export 'imemorybuffer.dart';
