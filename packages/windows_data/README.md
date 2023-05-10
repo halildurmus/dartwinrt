@@ -16,9 +16,9 @@ For official documentation, please visit https://dartwinrt.dev.
 
 ## Examples
 
-The package includes a few examples in the `example` subdirectory, which
-demonstrate calling various Windows Runtime APIs from the `Windows.Data`
-namespace.
+The package includes a few examples in the
+[example/](/packages/windows_data/example) subdirectory, which demonstrate
+calling various Windows Runtime APIs from the `Windows.Data` namespace.
 
 ## Acknowledgements
 

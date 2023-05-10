@@ -16,7 +16,8 @@ For official documentation, please visit https://dartwinrt.dev.
 
 ## Examples
 
-The package includes a few examples in the `example` subdirectory, which
+The package includes a few examples in the
+[example/](/packages/windows_globalization/example) subdirectory, which
 demonstrate calling various Windows Runtime APIs from the
 `Windows.Globalization` namespace.
 
