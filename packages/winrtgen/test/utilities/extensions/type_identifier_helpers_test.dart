@@ -406,7 +406,7 @@ void main() {
               .shortName,
           equals(
               'AsyncOperationProgressHandler<IVectorView<ISmsMessage>, int>'));
-    }, skip: 'https://github.com/timsneath/winmd/issues/71');
+    });
   });
 
   group('signature', () {
@@ -632,6 +632,6 @@ void main() {
       expect(typeArgs.first.typeArg!.typeArg, isNull);
       expect(typeArgs.last.baseType, equals(BaseType.int32Type));
       expect(typeArgs.last.typeArg, isNull);
-    }, skip: 'https://github.com/timsneath/winmd/issues/71');
+    });
   });
 }
