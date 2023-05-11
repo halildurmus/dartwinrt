@@ -5,15 +5,13 @@ Windows Runtime (WinRT) APIs using FFI.
 Part of the [Dart | Windows](https://github.com/dart-windows) suite of Windows
 packages.
 
-[![package publisher](https://img.shields.io/pub/publisher/windows_foundation.svg)](https://pub.dev/publishers/win32.pub)
+[![Publisher](https://img.shields.io/pub/publisher/windows_foundation.svg)](https://pub.dev/publishers/win32.pub)
 [![Language](https://img.shields.io/badge/language-Dart-blue.svg)](https://dart.dev)
 [![License](https://img.shields.io/github/license/dart-windows/dartwinrt?color=blue)](https://opensource.org/licenses/BSD-3-Clause)
 
 ## Documentation 📝
 
 For official documentation, please visit https://dartwinrt.dev.
-
-# Coming soon!
 
 ## Packages 📦
 
