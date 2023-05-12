@@ -23,8 +23,8 @@ platforms:
 dependencies:
   ffi: ^2.0.1
   win32: ^5.0.0
-  windows_media:
-    path: ../windows_media
+  # windows_media:
+  #   path: ../windows_media
 
 dev_dependencies:
   test: ^1.24.1
