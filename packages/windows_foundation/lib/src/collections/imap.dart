@@ -6,7 +6,7 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
-// import 'package:windows_media/windows_media.dart';
+import 'package:windows_media/windows_media.dart';
 
 import '../../internal.dart';
 import '../types.dart';
@@ -57,11 +57,11 @@ abstract interface class IMap<K, V> extends IInspectable
   /// [K] must be of type `Guid` or `String` and [V] must be of type
   /// `Object?` or `String`.
   factory IMap.empty() {
-    // if (K == Guid && isNullableObjectType<V>()) {
-    //   final mediaPropertySet = MediaPropertySet();
-    //   return IMap.fromPtr(mediaPropertySet.toInterface(IID_IMap_Guid_Object),
-    //       iterableIid: IID_IIterable_IKeyValuePair_Guid_Object);
-    // }
+    if (K == Guid && isNullableObjectType<V>()) {
+      final mediaPropertySet = MediaPropertySet();
+      return IMap.fromPtr(mediaPropertySet.toInterface(IID_IMap_Guid_Object),
+          iterableIid: IID_IIterable_IKeyValuePair_Guid_Object);
+    }
 
     if (K == String) {
       if (V == String) {
