@@ -6,7 +6,6 @@ homepage: https://win32.pub
 repository: https://github.com/dart-windows/dartwinrt/tree/main/packages/windows_foundation
 issue_tracker: https://github.com/dart-windows/dartwinrt/issues?q=is%3Aopen+is%3Aissue+label%3A%22p%3A+windows_foundation%22
 documentation: https://dartwinrt.dev
-publish_to: none # TODO: Remove this
 
 topics:
   - winrt
@@ -23,8 +22,8 @@ platforms:
 dependencies:
   ffi: ^2.0.1
   win32: ^5.0.0
-  windows_media:
-    path: ../windows_media
+  # windows_media:
+  #   path: ../windows_media
 
 dev_dependencies:
   test: ^1.24.1
