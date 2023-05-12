@@ -2,8 +2,8 @@
 // All rights reserved. Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-/// Provides functionality to generate Windows Runtime APIs from Windows
-/// Metadata (WinMD) files.
+/// Provides functionality to generate WinRT APIs from Windows Metadata (WinMD)
+/// files.
 library winrtgen;
 
 export 'src/constants/constants.dart';

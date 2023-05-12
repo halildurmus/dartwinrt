@@ -1,8 +1,9 @@
 name: windows_web
-description: Provides information on errors resulting from web service operations.
+description: Provides access to WinRT APIs from the Windows.Web namespace using
+  FFI.
 version: 0.0.1
 homepage: https://win32.pub
-repository: https://github.com/dart-windows/dartwinrt
+repository: https://github.com/dart-windows/dartwinrt/tree/main/packages/windows_web
 issue_tracker: https://github.com/dart-windows/dartwinrt/issues?q=is%3Aopen+is%3Aissue+label%3A%22p%3A+windows_web%22
 documentation: https://dartwinrt.dev
 publish_to: none # TODO: Remove this
@@ -13,7 +14,7 @@ topics:
   - ffi
 
 environment:
-  sdk: '^3.0.0-0'
+  sdk: '^3.0.0'
 
 # Declare that this package only works on Windows.
 platforms:
@@ -21,10 +22,7 @@ platforms:
 
 dependencies:
   ffi: ^2.0.1
-  win32:
-    git:
-      url: https://github.com/timsneath/win32.git
-      ref: main
+  win32: ^5.0.0
   windows_foundation:
     path: ../windows_foundation
 

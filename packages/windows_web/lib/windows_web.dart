@@ -2,7 +2,7 @@
 // All rights reserved. Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-/// Provides information on errors resulting from web service operations.
+/// Provides access to WinRT APIs from the `Windows.Web` namespace using FFI.
 library windows_web;
 
 export 'src/exports.g.dart';

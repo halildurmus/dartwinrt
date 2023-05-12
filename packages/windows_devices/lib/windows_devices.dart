@@ -2,9 +2,8 @@
 // All rights reserved. Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-/// Provides classes for enumerating devices, getting the current location or
-/// tracking the device's location over time, and getting detailed battery
-/// information.
+/// Provides access to WinRT APIs from the `Windows.Devices` namespace using
+/// FFI.
 library windows_devices;
 
 export 'src/exports.g.dart';
