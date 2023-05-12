@@ -12,7 +12,7 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart' hide DocumentProperties;
-import 'package:windows_data/windows_data.dart';
+// import 'package:windows_data/windows_data.dart';
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -34,37 +34,37 @@ class IStorageFileQueryResult2 extends IInspectable
       IStorageFileQueryResult2.fromPtr(
           interface.toInterface(IID_IStorageFileQueryResult2));
 
-  IMap<String, IVectorView<TextSegment>> getMatchingPropertiesWithRanges(
-      StorageFile? file) {
-    final retValuePtr = calloc<COMObject>();
-    final filePtr = file == null ? nullptr : file.ptr.ref.lpVtbl;
+  // IMap<String, IVectorView<TextSegment>> getMatchingPropertiesWithRanges(
+  //     StorageFile? file) {
+  //   final retValuePtr = calloc<COMObject>();
+  //   final filePtr = file == null ? nullptr : file.ptr.ref.lpVtbl;
 
-    final hr =
-        ptr.ref.vtable
-                .elementAt(6)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                VTablePointer file,
-                                Pointer<COMObject> retValuePtr)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, VTablePointer file,
-                        Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl, filePtr, retValuePtr);
+  //   final hr =
+  //       ptr.ref.vtable
+  //               .elementAt(6)
+  //               .cast<
+  //                   Pointer<
+  //                       NativeFunction<
+  //                           HRESULT Function(
+  //                               VTablePointer lpVtbl,
+  //                               VTablePointer file,
+  //                               Pointer<COMObject> retValuePtr)>>>()
+  //               .value
+  //               .asFunction<
+  //                   int Function(VTablePointer lpVtbl, VTablePointer file,
+  //                       Pointer<COMObject> retValuePtr)>()(
+  //           ptr.ref.lpVtbl, filePtr, retValuePtr);
 
-    if (FAILED(hr)) {
-      free(retValuePtr);
-      throw WindowsException(hr);
-    }
+  //   if (FAILED(hr)) {
+  //     free(retValuePtr);
+  //     throw WindowsException(hr);
+  //   }
 
-    return IMap.fromPtr(retValuePtr,
-        iterableIid: '{f819a276-b3f5-54d4-b8fd-c9adb7f700e3}',
-        creator: (ptr) => IVectorView.fromPtr(ptr,
-            iterableIid: '{5498f4f3-cee4-5b72-9729-815c4ad7b9dc}'));
-  }
+  //   return IMap.fromPtr(retValuePtr,
+  //       iterableIid: '{f819a276-b3f5-54d4-b8fd-c9adb7f700e3}',
+  //       creator: (ptr) => IVectorView.fromPtr(ptr,
+  //           iterableIid: '{5498f4f3-cee4-5b72-9729-815c4ad7b9dc}'));
+  // }
 
   late final _iStorageQueryResultBase = IStorageQueryResultBase.from(this);
 
