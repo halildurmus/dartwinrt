@@ -12,7 +12,7 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart' hide DocumentProperties;
-// import 'package:windows_data/windows_data.dart';
+import 'package:windows_data/windows_data.dart';
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -84,10 +84,10 @@ class StorageFileQueryResult extends IInspectable
   void applyNewQueryOptions(QueryOptions? newQueryOptions) =>
       _iStorageQueryResultBase.applyNewQueryOptions(newQueryOptions);
 
-  // late final _iStorageFileQueryResult2 = IStorageFileQueryResult2.from(this);
+  late final _iStorageFileQueryResult2 = IStorageFileQueryResult2.from(this);
 
-  // @override
-  // IMap<String, IVectorView<TextSegment>> getMatchingPropertiesWithRanges(
-  //         StorageFile? file) =>
-  //     _iStorageFileQueryResult2.getMatchingPropertiesWithRanges(file);
+  @override
+  IMap<String, IVectorView<TextSegment>> getMatchingPropertiesWithRanges(
+          StorageFile? file) =>
+      _iStorageFileQueryResult2.getMatchingPropertiesWithRanges(file);
 }
