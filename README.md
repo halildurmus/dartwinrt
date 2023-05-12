@@ -2,8 +2,7 @@
 
 A family of packages that provide an idiomatic Dart projection of modern
 Windows Runtime (WinRT) APIs using FFI.
-Part of the [Dart | Windows](https://github.com/dart-windows) suite of Windows
-packages.
+Part of the [Dart | Windows] suite of Windows packages.
 
 [![Publisher](https://img.shields.io/pub/publisher/windows_foundation.svg)](https://pub.dev/publishers/win32.pub)
 [![Language](https://img.shields.io/badge/language-Dart-blue.svg)](https://dart.dev)
@@ -36,10 +35,23 @@ For official documentation, please visit https://dartwinrt.dev.
 | [windows_ui](./packages/windows_ui/)                             | [![pub package](https://img.shields.io/pub/v/windows_ui.svg)](https://pub.dev/packages/windows_ui)                             | [![pub points](https://img.shields.io/pub/points/windows_ui)](https://pub.dev/packages/windows_ui/score)                             | [![popularity](https://img.shields.io/pub/popularity/windows_ui)](https://pub.dev/packages/windows_ui/score)                             | [![likes](https://img.shields.io/pub/likes/windows_ui)](https://pub.dev/packages/windows_ui/score)                             |
 | [windows_web](./packages/windows_web/)                           | [![pub package](https://img.shields.io/pub/v/windows_web.svg)](https://pub.dev/packages/windowws_web)                          | [![pub points](https://img.shields.io/pub/points/windows_web)](https://pub.dev/packages/windows_web/score)                           | [![popularity](https://img.shields.io/pub/popularity/windows_web)](https://pub.dev/packages/windows_web/score)                           | [![likes](https://img.shields.io/pub/likes/windows_web)](https://pub.dev/packages/windows_web/score)                           |
 
+
+## Features and bugs
+
+The WinRT APIs that are projected by `dartwinrt` are limited, but additional
+APIs will be added based on user demand, especially if it helps facilitate the
+development of new Dart packages for Windows.
+
+If you encounter any issues or have any feature requests, please submit them
+through the [issue tracker].
+
 ## Acknowledgements
 
 The summary WinRT API documentation comments are [licensed by Microsoft][] under
 the [Creative Commons Attribution 4.0 International Public License][license].
 
+[Dart | Windows]: https://github.com/dart-windows
+[issue tracker]: https://github.com/dart-windows/dartwinrt/issues
 [licensed by Microsoft]: https://github.com/MicrosoftDocs/winrt-api/#legal-notices
 [license]: https://github.com/MicrosoftDocs/winrt-api/blob/89e9254fd8b53a648937dbb4324d7f7d6f8d1314/LICENSE
+[packages]: https://github.com/dart-windows/dartwinrt#packages-
