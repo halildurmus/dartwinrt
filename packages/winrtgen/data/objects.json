@@ -39,6 +39,7 @@
     "Windows.Devices.Geolocation.Geopoint": "Describes a geographic point.",
     "Windows.Devices.Geolocation.Geoposition": "Represents a location that may contain latitude and longitude data or venue data.",
     "Windows.Devices.Geolocation.VenueData": "Represents the venue associated with a geographic location.",
+    "Windows.Devices.Power.Battery": "Provides information about a battery controller that is currently connected to the device. For more info, see Get battery information.",
     "Windows.Devices.Power.BatteryReport": "Provides properties that indicate the charge, capacity, and status of the battery.",
     "Windows.Devices.Sensors.PedometerReading": "Provides an interface for a pedometer to measure the number of steps taken.",
     "Windows.Foundation.Collections.IPropertySet": "Represents a collection of key-value pairs, correlating several other collection interfaces.",
