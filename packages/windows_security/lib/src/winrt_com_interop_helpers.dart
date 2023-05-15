@@ -16,8 +16,9 @@ import 'package:windows_foundation/windows_foundation.dart';
 import 'authentication/web/core/webtokenrequest.dart';
 import 'authentication/web/core/webtokenrequestresult.dart';
 
-/// Exposes a method through which a client can provide an owner window to a
-/// Windows Runtime (WinRT) object used in a desktop application.
+/// Provides Win32 apps with access to certain functions of
+/// `WebAuthenticationCoreManager` that are otherwise available only to UWP
+/// apps.
 ///
 /// {@category class}
 final class WebAuthenticationCoreManagerInterop {
