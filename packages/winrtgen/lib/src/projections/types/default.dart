@@ -55,7 +55,7 @@ mixin _DefaultListMixin on MethodProjection {
   String get methodDeclaration => '''
   $methodHeader {
     final pValueSize = calloc<Uint32>();
-    final retValuePtr = calloc<${typeArgProjection.nativeType}>();
+    final retValuePtr = calloc<Pointer<${typeArgProjection.nativeType}>>();
 
     try {
       ${ffiCall()}

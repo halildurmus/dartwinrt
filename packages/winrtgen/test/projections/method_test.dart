@@ -355,6 +355,27 @@ void main() {
           equals('List<String> getLanguagesForUser(User? user)'));
     });
 
+    test('projects List<int>', () {
+      final projection = MethodProjection.fromTypeAndMethodName(
+          'Windows.Devices.Display.IDisplayMonitor', 'GetDescriptor');
+      expect(projection, isA<DefaultListMethodProjection>());
+      expect(projection.returnType, equals('List<int>'));
+      expect(
+          projection.nativePrototype,
+          equals(
+              'HRESULT Function(VTablePointer lpVtbl, Int32 descriptorKind, Pointer<Uint32> valueSize, Pointer<Pointer<Uint8>> retValuePtr)'));
+      expect(
+          projection.dartPrototype,
+          equals(
+              'int Function(VTablePointer lpVtbl, int descriptorKind, Pointer<Uint32> valueSize, Pointer<Pointer<Uint8>> retValuePtr)'));
+      expect(
+          projection.methodHeader,
+          equals(
+              'List<int> getDescriptor(DisplayMonitorDescriptorKind descriptorKind)'));
+      expect(projection.toString(),
+          contains('final retValuePtr = calloc<Pointer<Uint8>>();'));
+    });
+
     test('projects Object', () {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Foundation.Collections.PropertySet', 'Lookup');
