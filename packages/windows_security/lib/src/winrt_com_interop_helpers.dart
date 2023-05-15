@@ -15,6 +15,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 import 'authentication/web/core/webtokenrequest.dart';
 import 'authentication/web/core/webtokenrequestresult.dart';
+import 'credentials/webaccount.dart';
 
 /// Provides Win32 apps with access to certain functions of
 /// `WebAuthenticationCoreManager` that are otherwise available only to UWP
@@ -51,6 +52,47 @@ final class WebAuthenticationCoreManagerInterop {
           request.ptr.cast<Pointer<COMObject>>().value,
           pIID,
           asyncOperationPtr.cast());
+      if (FAILED(hr)) {
+        free(asyncOperationPtr);
+        throw WindowsException(hr);
+      }
+
+      final asyncOperation = IAsyncOperation<WebTokenRequestResult?>.fromPtr(
+          asyncOperationPtr,
+          creator: WebTokenRequestResult.fromPtr);
+      return asyncOperation.toFuture(asyncOperation.getResults);
+    } finally {
+      free(pIID);
+    }
+  }
+
+  /// Asynchronously requests a token from a web account provider.
+  /// If necessary, the user is prompted to enter their credentials.
+  ///
+  /// [appWindow] represents the window to be used as the owner for the window
+  /// prompting the user for credentials, in case such a window becomes
+  /// necessary.
+  /// Use `GetConsoleWindow()` for console apps or `GetShellWindow()` for
+  /// Flutter apps.
+  static Future<WebTokenRequestResult?>
+      requestTokenWithWebAccountForWindowAsync(
+          int appWindow, WebTokenRequest request, WebAccount webAccount) {
+    final webAuthenticationCoreManagerInterop = createActivationFactory(
+        IWebAuthenticationCoreManagerInterop.new,
+        _className,
+        IID_IWebAuthenticationCoreManagerInterop);
+
+    final pIID = GUIDFromString(_iid);
+    final asyncOperationPtr = calloc<COMObject>();
+
+    try {
+      final hr = webAuthenticationCoreManagerInterop
+          .requestTokenWithWebAccountForWindowAsync(
+              appWindow,
+              request.ptr.cast<Pointer<COMObject>>().value,
+              webAccount.ptr.cast<Pointer<COMObject>>().value,
+              pIID,
+              asyncOperationPtr.cast());
       if (FAILED(hr)) {
         free(asyncOperationPtr);
         throw WindowsException(hr);
