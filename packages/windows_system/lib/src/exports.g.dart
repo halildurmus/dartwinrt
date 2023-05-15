@@ -7,6 +7,7 @@
 export 'iuser.dart';
 export 'iuser2.dart';
 export 'iuserwatcher.dart';
+export 'knownuserproperties.dart';
 export 'power/batterystatus.dart';
 export 'power/energysaverstatus.dart';
 export 'power/powermanager.dart';

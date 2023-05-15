@@ -156,6 +156,7 @@
     "Windows.Storage.Streams.RandomAccessStreamOverStream": "Provides a Windows Runtime random access stream for an IStream base implementation.",
     "Windows.Storage.Streams.RandomAccessStreamReference": "Provides random access of data in input and output streams for a file.",
     "Windows.Storage.UserDataPaths": "Returns full paths for common user data folders. User data folders are based on the KNOWNFOLDERID naming pattern.",
+    "Windows.System.KnownUserProperties": "Contains basic information about a user.",
     "Windows.System.Power.PowerManager": "Provides access to information about a device's battery and power supply status.",
     "Windows.System.User": "Represents a user.",
     "Windows.System.UserWatcher": "Provides events that fire during enumeration of users, when the collection of users changes, or when a user's authentication status changes.",
