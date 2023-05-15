@@ -193,7 +193,7 @@ class IConnectionProfile extends IInspectable {
   }
 
   @Deprecated(
-      'GetLocalUsage may be altered or unavailable for releases after Windows 8.1. Instead, use GetNetworkUsageAsync.')
+      "GetLocalUsage may be altered or unavailable for releases after Windows 8.1. Instead, use GetNetworkUsageAsync.")
   DataUsage? getLocalUsage(DateTime startTime, DateTime endTime) {
     final retValuePtr = calloc<COMObject>();
 
@@ -224,7 +224,7 @@ class IConnectionProfile extends IInspectable {
   }
 
   @Deprecated(
-      'GetLocalUsage may be altered or unavailable for releases after Windows 8.1. Instead, use GetNetworkUsageAsync.')
+      "GetLocalUsage may be altered or unavailable for releases after Windows 8.1. Instead, use GetNetworkUsageAsync.")
   DataUsage? getLocalUsagePerRoamingStates(
       DateTime startTime, DateTime endTime, RoamingStates states) {
     final retValuePtr = calloc<COMObject>();

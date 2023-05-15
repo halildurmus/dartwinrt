@@ -45,9 +45,9 @@ void main() {
       expect(projection.method.isDeprecated, isTrue);
       expect(
           projection.toString(),
-          contains("@Deprecated('GetLocalUsage may be altered or unavailable "
-              "for releases after Windows 8.1. Instead, use "
-              "GetNetworkUsageAsync.')"));
+          contains('@Deprecated("GetLocalUsage may be altered or unavailable '
+              'for releases after Windows 8.1. Instead, use '
+              'GetNetworkUsageAsync.")'));
     });
 
     test('projects bool', () {

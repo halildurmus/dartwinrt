@@ -49,7 +49,7 @@ class IFileSavePicker2 extends IInspectable {
     return ValueSet.fromPtr(retValuePtr);
   }
 
-  @Deprecated('Instead, use PickSaveFileAsync')
+  @Deprecated("Instead, use PickSaveFileAsync")
   void pickSaveFileAndContinue() {
     final hr = ptr.ref.vtable
         .elementAt(7)

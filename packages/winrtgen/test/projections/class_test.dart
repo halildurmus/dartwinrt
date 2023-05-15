@@ -55,8 +55,8 @@ void main() {
       expect(projection.isDeprecated, isTrue);
       expect(
           projection.classHeader,
-          contains("@Deprecated('DataUsage may be altered or unavailable for "
-              "releases after Windows 8.1. Instead, use NetworkUsage.')"));
+          contains('@Deprecated("DataUsage may be altered or unavailable for '
+              'releases after Windows 8.1. Instead, use NetworkUsage.")'));
     });
 
     test('has correct inheritance chain (1)', () {
