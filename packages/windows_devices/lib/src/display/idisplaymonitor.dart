@@ -505,8 +505,6 @@ class IDisplayMonitor extends IInspectable {
 
   List<int> getDescriptor(DisplayMonitorDescriptorKind descriptorKind) {
     final pValueSize = calloc<Uint32>();
-
-    // @halildurmus NOTE: I had to manually change this from calloc<Uint8>
     final retValuePtr = calloc<Pointer<Uint8>>();
 
     try {
