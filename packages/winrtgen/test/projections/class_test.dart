@@ -194,6 +194,20 @@ void main() {
           equals('get_DefaultGeoposition'));
     });
 
+    test('has a static method annotated with @Deprecated', () {
+      final classProjection = ClassProjection.from(
+          'Windows.ApplicationModel.DataTransfer.StandardDataFormats');
+      final methodProjection = classProjection.staticMethods
+          .firstWhere((m) => m.method.name == 'get_Uri');
+      expect(methodProjection.method.method.isDeprecated, isTrue);
+      expect(
+          methodProjection.toString(),
+          startsWith(
+              '@Deprecated("Uri may be altered or unavailable for releases '
+              "after Windows Phone 'OSVersion' (TBD). Instead, use WebLink "
+              'or ApplicationLink.")'));
+    });
+
     test('has correct number of MethodForwardersProjection', () {
       expect(calendarProjection.methodForwarders.length, equals(2));
     });
