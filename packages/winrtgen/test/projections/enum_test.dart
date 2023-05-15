@@ -74,9 +74,8 @@ void main() {
           EnumProjection.from('Windows.System.UserProfile.AccountPictureKind');
       expect(
           projection.classHeader,
-          contains(
-              "@Deprecated('Use User instead of UserInformation. For more info,"
-              " see MSDN.')"));
+          contains('@Deprecated("Use User instead of UserInformation. For more '
+              'info, see MSDN.")'));
     });
 
     test('has correct class header', () {
@@ -119,8 +118,8 @@ void main() {
       expect(
           backgroundCapableMedia.toString(),
           contains(
-              "@Deprecated('BackgroundCapableMedia is deprecated and might not "
-              "work on all platforms. For more info, see MSDN.')"));
+              '@Deprecated("BackgroundCapableMedia is deprecated and might not '
+              'work on all platforms. For more info, see MSDN.")'));
     });
   });
 
@@ -156,9 +155,9 @@ void main() {
         expect(
             projection.classHeader,
             contains(
-                "@Deprecated('SecondaryAuthenticationFactorDeviceCapabilities is "
-                "deprecated and might not work on all platforms. For more info, "
-                "see MSDN.')"));
+                '@Deprecated("SecondaryAuthenticationFactorDeviceCapabilities '
+                'is deprecated and might not work on all platforms. For more '
+                'info, see MSDN.")'));
       });
     }
 
@@ -216,9 +215,9 @@ void main() {
       expect(
           ssl.toString(),
           contains(
-              "@Deprecated('Ssl may result in insecure connections and may be "
-              "altered or unavailable for releases after Windows 8.1. Instead, "
-              "use one of the TLS SocketProtectionLevel values.')"));
+              '@Deprecated("Ssl may result in insecure connections and may be '
+              'altered or unavailable for releases after Windows 8.1. Instead, '
+              'use one of the TLS SocketProtectionLevel values.")'));
     });
   });
 }

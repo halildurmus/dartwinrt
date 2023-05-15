@@ -23,8 +23,8 @@ void main() {
     expect(geocoordinateTypeDef.deprecatedAnnotation, isEmpty);
     expect(
         getLatitudeGetter.deprecatedAnnotation,
-        "@Deprecated('Latitude may be altered or unavailable after Windows 8.1."
-        " Instead, use Point.Position.Latitude')");
+        '@Deprecated("Latitude may be altered or unavailable after '
+        'Windows 8.1. Instead, use Point.Position.Latitude")');
   });
 
   test('isDeprecated', () {

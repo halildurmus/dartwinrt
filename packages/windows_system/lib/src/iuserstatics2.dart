@@ -15,18 +15,20 @@ import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
+import 'user.dart';
+
 /// @nodoc
-const IID_IFileSavePicker2 = '{0ec313a2-d24b-449a-8197-e89104fd42cc}';
+const IID_IUserStatics2 = '{74a37e11-2eb5-4487-b0d5-2c6790e013e9}';
 
 /// {@category interface}
-class IFileSavePicker2 extends IInspectable {
-  // vtable begins at 6, is 2 entries long.
-  IFileSavePicker2.fromPtr(super.ptr);
+class IUserStatics2 extends IInspectable {
+  // vtable begins at 6, is 1 entries long.
+  IUserStatics2.fromPtr(super.ptr);
 
-  factory IFileSavePicker2.from(IInspectable interface) =>
-      IFileSavePicker2.fromPtr(interface.toInterface(IID_IFileSavePicker2));
+  factory IUserStatics2.from(IInspectable interface) =>
+      IUserStatics2.fromPtr(interface.toInterface(IID_IUserStatics2));
 
-  ValueSet get continuationData {
+  User? getDefault() {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -46,17 +48,11 @@ class IFileSavePicker2 extends IInspectable {
       throw WindowsException(hr);
     }
 
-    return ValueSet.fromPtr(retValuePtr);
-  }
+    if (retValuePtr.ref.isNull) {
+      free(retValuePtr);
+      return null;
+    }
 
-  @Deprecated("Instead, use PickSaveFileAsync")
-  void pickSaveFileAndContinue() {
-    final hr = ptr.ref.vtable
-        .elementAt(7)
-        .cast<Pointer<NativeFunction<HRESULT Function(VTablePointer lpVtbl)>>>()
-        .value
-        .asFunction<int Function(VTablePointer lpVtbl)>()(ptr.ref.lpVtbl);
-
-    if (FAILED(hr)) throw WindowsException(hr);
+    return User.fromPtr(retValuePtr);
   }
 }

@@ -22,19 +22,19 @@ import 'idatausage.dart';
 ///
 /// {@category class}
 @Deprecated(
-    'DataUsage may be altered or unavailable for releases after Windows 8.1. Instead, use NetworkUsage.')
+    "DataUsage may be altered or unavailable for releases after Windows 8.1. Instead, use NetworkUsage.")
 class DataUsage extends IInspectable implements IDataUsage {
   DataUsage.fromPtr(super.ptr);
 
   late final _iDataUsage = IDataUsage.from(this);
 
   @Deprecated(
-      'IDataUsage may be altered or unavailable for releases after Windows 8.1. Instead, use INetworkUsage.')
+      "IDataUsage may be altered or unavailable for releases after Windows 8.1. Instead, use INetworkUsage.")
   @override
   int get bytesSent => _iDataUsage.bytesSent;
 
   @Deprecated(
-      'IDataUsage may be altered or unavailable for releases after Windows 8.1. Instead, use INetworkUsage.')
+      "IDataUsage may be altered or unavailable for releases after Windows 8.1. Instead, use INetworkUsage.")
   @override
   int get bytesReceived => _iDataUsage.bytesReceived;
 }

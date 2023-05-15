@@ -55,8 +55,8 @@ void main() {
       expect(projection.isDeprecated, isTrue);
       expect(
           projection.classHeader,
-          contains("@Deprecated('DataUsage may be altered or unavailable for "
-              "releases after Windows 8.1. Instead, use NetworkUsage.')"));
+          contains('@Deprecated("DataUsage may be altered or unavailable for '
+              'releases after Windows 8.1. Instead, use NetworkUsage.")'));
     });
 
     test('has correct inheritance chain (1)', () {
@@ -192,6 +192,20 @@ void main() {
     test('has correct last static method', () {
       expect(geolocatorProjection.staticMethods.last.method.name,
           equals('get_DefaultGeoposition'));
+    });
+
+    test('has a static method annotated with @Deprecated', () {
+      final classProjection = ClassProjection.from(
+          'Windows.ApplicationModel.DataTransfer.StandardDataFormats');
+      final methodProjection = classProjection.staticMethods
+          .firstWhere((m) => m.method.name == 'get_Uri');
+      expect(methodProjection.method.method.isDeprecated, isTrue);
+      expect(
+          methodProjection.toString(),
+          startsWith(
+              '@Deprecated("Uri may be altered or unavailable for releases '
+              "after Windows Phone 'OSVersion' (TBD). Instead, use WebLink "
+              'or ApplicationLink.")'));
     });
 
     test('has correct number of MethodForwardersProjection', () {

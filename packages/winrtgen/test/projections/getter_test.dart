@@ -56,8 +56,8 @@ void main() {
       expect(projection.method.isDeprecated, isTrue);
       expect(
           projection.toString(),
-          contains("@Deprecated('Latitude may be altered or unavailable after "
-              "Windows 8.1. Instead, use Point.Position.Latitude')"));
+          contains('@Deprecated("Latitude may be altered or unavailable after '
+              'Windows 8.1. Instead, use Point.Position.Latitude")'));
     });
 
     test('has correct shortForm', () {

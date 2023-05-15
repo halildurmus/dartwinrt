@@ -57,7 +57,7 @@ class ICurrencyFormatter extends IInspectable
   }
 
   @Deprecated(
-      'Currency may be read-only for releases after Windows 8.1. Instead, use a new CurrencyFormatter.')
+      "Currency may be read-only for releases after Windows 8.1. Instead, use a new CurrencyFormatter.")
   set currency(String value) {
     final hString = value.toHString();
 

@@ -66,7 +66,7 @@ class CurrencyFormatter extends IInspectable
   String get currency => _iCurrencyFormatter.currency;
 
   @Deprecated(
-      'Currency may be read-only for releases after Windows 8.1. Instead, use a new CurrencyFormatter.')
+      "Currency may be read-only for releases after Windows 8.1. Instead, use a new CurrencyFormatter.")
   @override
   set currency(String value) => _iCurrencyFormatter.currency = value;
 

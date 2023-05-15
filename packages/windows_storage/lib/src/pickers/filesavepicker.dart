@@ -50,7 +50,7 @@ class FileSavePicker extends IInspectable
   @override
   ValueSet get continuationData => _iFileSavePicker2.continuationData;
 
-  @Deprecated('Instead, use PickSaveFileAsync')
+  @Deprecated("Instead, use PickSaveFileAsync")
   @override
   void pickSaveFileAndContinue() => _iFileSavePicker2.pickSaveFileAndContinue();
 

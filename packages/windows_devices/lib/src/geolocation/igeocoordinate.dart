@@ -27,7 +27,7 @@ class IGeocoordinate extends IInspectable {
       IGeocoordinate.fromPtr(interface.toInterface(IID_IGeocoordinate));
 
   @Deprecated(
-      'Latitude may be altered or unavailable after Windows 8.1. Instead, use Point.Position.Latitude')
+      "Latitude may be altered or unavailable after Windows 8.1. Instead, use Point.Position.Latitude")
   double get latitude {
     final retValuePtr = calloc<Double>();
 
@@ -53,7 +53,7 @@ class IGeocoordinate extends IInspectable {
   }
 
   @Deprecated(
-      'Longitude may be altered or unavailable after Windows 8.1. Instead, use Point.Position.Longitude')
+      "Longitude may be altered or unavailable after Windows 8.1. Instead, use Point.Position.Longitude")
   double get longitude {
     final retValuePtr = calloc<Double>();
 
@@ -79,7 +79,7 @@ class IGeocoordinate extends IInspectable {
   }
 
   @Deprecated(
-      'Altitude may be altered or unavailable after Windows 8.1. Instead, use Point.Position.Altitude')
+      "Altitude may be altered or unavailable after Windows 8.1. Instead, use Point.Position.Altitude")
   double? get altitude {
     final retValuePtr = calloc<COMObject>();
 

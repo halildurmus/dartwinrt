@@ -88,17 +88,17 @@ class IGeocoordinateWithPositionData extends IInspectable
   late final _iGeocoordinate = IGeocoordinate.from(this);
 
   @Deprecated(
-      'Latitude may be altered or unavailable after Windows 8.1. Instead, use Point.Position.Latitude')
+      "Latitude may be altered or unavailable after Windows 8.1. Instead, use Point.Position.Latitude")
   @override
   double get latitude => _iGeocoordinate.latitude;
 
   @Deprecated(
-      'Longitude may be altered or unavailable after Windows 8.1. Instead, use Point.Position.Longitude')
+      "Longitude may be altered or unavailable after Windows 8.1. Instead, use Point.Position.Longitude")
   @override
   double get longitude => _iGeocoordinate.longitude;
 
   @Deprecated(
-      'Altitude may be altered or unavailable after Windows 8.1. Instead, use Point.Position.Altitude')
+      "Altitude may be altered or unavailable after Windows 8.1. Instead, use Point.Position.Altitude")
   @override
   double? get altitude => _iGeocoordinate.altitude;
 

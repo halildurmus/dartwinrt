@@ -139,10 +139,17 @@ final class StaticMethodProjection {
   final String shortName;
 
   @override
-  String toString() => '''
+  String toString() {
+    final deprecatedAnnotation =
+        method.method.isDeprecated ? method.method.deprecatedAnnotation : null;
+    return [
+      if (deprecatedAnnotation != null) deprecatedAnnotation,
+      '''
   static ${method.methodHeader} =>
       createActivationFactory(
               $shortName.fromPtr, _className, IID_$shortName)
           .${method.shortForm};
-''';
+'''
+    ].join('\n');
+  }
 }
