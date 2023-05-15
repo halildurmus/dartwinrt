@@ -33,6 +33,14 @@ final class NativeColor extends Struct {
   external int b;
 }
 
+final class NativeDisplayAdapterId extends Struct {
+  @Uint32()
+  external int lowPart;
+
+  @Int32()
+  external int highPart;
+}
+
 final class NativeGamepadReading extends Struct {
   @Uint64()
   external int timestamp;
@@ -208,6 +216,14 @@ final class NativeSize extends Struct {
 
   @Float()
   external double height;
+}
+
+final class NativeSizeInt32 extends Struct {
+  @Int32()
+  external int width;
+
+  @Int32()
+  external int height;
 }
 
 final class NativeSortEntry extends Struct {

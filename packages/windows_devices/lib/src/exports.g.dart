@@ -4,6 +4,13 @@
 
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
+export 'display/displaymonitor.dart';
+export 'display/displaymonitorconnectionkind.dart';
+export 'display/displaymonitordescriptorkind.dart';
+export 'display/displaymonitorphysicalconnectorkind.dart';
+export 'display/displaymonitorusagekind.dart';
+export 'display/idisplaymonitor.dart';
+export 'display/idisplaymonitor2.dart';
 export 'enumeration/deviceclass.dart';
 export 'enumeration/deviceinformation.dart';
 export 'enumeration/deviceinformationcollection.dart';
