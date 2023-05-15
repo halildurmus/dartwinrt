@@ -24,10 +24,17 @@ import 'authentication/web/core/webtokenrequestresult.dart';
 final class WebAuthenticationCoreManagerInterop {
   static const _className =
       'Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager';
-
-  // IAsyncOperation<WebTokenRequestResult>
+  // IID of IAsyncOperation<WebTokenRequestResult>
   static const _iid = '{0a815852-7c44-5674-b3d2-fa2e4c1e46c9}';
 
+  /// Asynchronously requests a token from a web account provider.
+  /// If necessary, the user is prompted to enter their credentials.
+  ///
+  /// [appWindow] represents the window to be used as the owner for the window
+  /// prompting the user for credentials, in case such a window becomes
+  /// necessary.
+  /// Use `GetConsoleWindow()` for console apps or `GetShellWindow()` for
+  /// Flutter apps.
   static Future<WebTokenRequestResult?> requestTokenForWindowAsync(
       int appWindow, WebTokenRequest request) {
     final webAuthenticationCoreManagerInterop = createActivationFactory(
