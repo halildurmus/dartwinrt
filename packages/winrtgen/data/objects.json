@@ -18,6 +18,7 @@
     "Windows.Data.Xml.Dom.XmlNodeList": "Describes a collection of nodes.",
     "Windows.Data.Xml.Dom.XmlProcessingInstruction": "Represents a processing instruction, which XML defines to keep processor-specific information in the text of the document.",
     "Windows.Data.Xml.Dom.XmlText": "Represents the text content of an element.",
+    "Windows.Devices.Display.DisplayMonitor": "Provides information about a display monitor device connected to the system.",
     "Windows.Devices.Enumeration.DeviceInformation": "Represents a device. This class allows access to well-known device properties as well as additional properties specified during device enumeration.",
     "Windows.Devices.Enumeration.DeviceInformationCollection": "Represents a collection of DeviceInformation objects.",
     "Windows.Devices.Enumeration.DeviceInformationCustomPairing": "Represents a custom pairing for a DeviceInformation object.",

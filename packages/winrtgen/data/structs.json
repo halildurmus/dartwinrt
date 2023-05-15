@@ -14,6 +14,8 @@
     "Windows.Foundation.Size": "Describes the width and height of an object.",
     "Windows.Gaming.Input.GamepadReading": "Represents the current state of the gamepad.",
     "Windows.Gaming.Input.GamepadVibration": "Describes the gamepad motor speed.",
+    "Windows.Graphics.DisplayAdapterId": "Corresponds to the LUID (Locally Unique Identifier) associated with a graphics adapter.",
+    "Windows.Graphics.SizeInt32": "Defines the height and wide of a surface in a two-dimensional plane.",
     "Windows.Networking.Connectivity.NetworkUsageStates": "Defines the desired state of the connection profile for which usage data is returned by the method GetNetworkUsageAsync.",
     "Windows.Storage.Search.SortEntry": "An entry in the SortOrder list the specifies a property and ordering that is used to sort query results.",
     "Windows.UI.Color": "Describes a color in terms of alpha, red, green, and blue channels."

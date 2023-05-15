@@ -26,3 +26,7 @@ dependencies:
 
 dev_dependencies:
   test: ^1.24.1
+
+dependency_overrides:
+  windows_foundation:
+    path: ../windows_foundation
