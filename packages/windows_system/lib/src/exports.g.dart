@@ -4,6 +4,8 @@
 
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
+export 'iuser.dart';
+export 'iuser2.dart';
 export 'iuserwatcher.dart';
 export 'power/batterystatus.dart';
 export 'power/energysaverstatus.dart';
