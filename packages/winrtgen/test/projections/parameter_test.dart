@@ -166,6 +166,18 @@ void main() {
               'value?.toReference(IntType.uint32).ptr.ref.lpVtbl ?? nullptr'));
     });
 
+    test('projects IVectorView', () {
+      final methodProjection = MethodProjection.fromTypeAndMethodName(
+          'Windows.System.IUser', 'GetPropertiesAsync');
+      final parameter = methodProjection.parameters.first;
+      expect(parameter, isA<ObjectParameterProjection>());
+      expect(parameter.type, equals('IVectorView<String>'));
+      expect(parameter.preamble,
+          equals("final valuesPtr = values.ptr.ref.lpVtbl;"));
+      expect(parameter.postamble, isEmpty);
+      expect(parameter.localIdentifier, equals('valuesPtr'));
+    });
+
     test('projects List<String> (FillArray - getMany)', () {
       final methodProjection = MethodProjection.fromTypeAndMethodName(
           'Windows.Storage.Pickers.FileExtensionVector', 'GetMany');

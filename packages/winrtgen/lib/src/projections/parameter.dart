@@ -57,7 +57,9 @@ abstract class ParameterProjection {
         GenericObjectListParameterProjection(param),
       ProjectionType.guid => GuidParameterProjection(param),
       ProjectionType.guidList => GuidListParameterProjection(param),
-      ProjectionType.object => ObjectParameterProjection(param),
+      ProjectionType.object ||
+      ProjectionType.vectorView =>
+        ObjectParameterProjection(param),
       ProjectionType.objectList => ObjectListParameterProjection(param),
       ProjectionType.reference => ReferenceParameterProjection(param),
       ProjectionType.string => StringParameterProjection(param),
