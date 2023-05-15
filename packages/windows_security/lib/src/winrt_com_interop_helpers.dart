@@ -45,17 +45,23 @@ final class WebAuthenticationCoreManagerInterop {
     final pIID = GUIDFromString(_iid);
     final asyncOperationPtr = calloc<COMObject>();
 
-    final hr = webAuthenticationCoreManagerInterop.requestTokenForWindowAsync(
-        appWindow,
-        request.ptr.cast<Pointer<COMObject>>().value,
-        pIID,
-        asyncOperationPtr.cast());
-    if (FAILED(hr)) throw WindowsException(hr);
+    try {
+      final hr = webAuthenticationCoreManagerInterop.requestTokenForWindowAsync(
+          appWindow,
+          request.ptr.cast<Pointer<COMObject>>().value,
+          pIID,
+          asyncOperationPtr.cast());
+      if (FAILED(hr)) {
+        free(asyncOperationPtr);
+        throw WindowsException(hr);
+      }
 
-    final asyncOperation = IAsyncOperation<WebTokenRequestResult?>.fromPtr(
-        asyncOperationPtr,
-        creator: WebTokenRequestResult.fromPtr);
-
-    return asyncOperation.toFuture(asyncOperation.getResults);
+      final asyncOperation = IAsyncOperation<WebTokenRequestResult?>.fromPtr(
+          asyncOperationPtr,
+          creator: WebTokenRequestResult.fromPtr);
+      return asyncOperation.toFuture(asyncOperation.getResults);
+    } finally {
+      free(pIID);
+    }
   }
 }
