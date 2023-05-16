@@ -192,7 +192,8 @@ final class TypeProjection {
   TypeTuple unwrapReferenceType() {
     final typeArg = dereferenceType(typeIdentifier);
     return switch (typeArg.baseType) {
-      BaseType.classTypeModifier =>
+      BaseType.classTypeModifier ||
+      BaseType.genericTypeModifier =>
         const TypeTuple('Pointer<COMObject>', 'Pointer<COMObject>'),
       // This form is used in WinRT methods when the caller receives an array
       // that was allocated by the method. In this style, the array size
