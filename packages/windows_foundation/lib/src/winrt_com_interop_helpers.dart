@@ -21,7 +21,7 @@ final class InitializeWithWindow {
   /// `IInitializeWithWindow` interface (e.g. `FileOpenPicker`).
   ///
   /// [hwnd] represents the handle of the window to be used as the owner window.
-  /// If omitted, [getWindowHandle] is used.
+  /// If omitted, the current console or shell's desktop window is used.
   ///
   /// ```dart
   /// final picker = FileOpenPicker()
