@@ -33,11 +33,11 @@ final class WebAuthenticationCoreManagerInterop {
   ///
   /// [appWindow] represents the window to be used as the owner for the window
   /// prompting the user for credentials, in case such a window becomes
-  /// necessary.
-  /// Use `GetConsoleWindow()` for console apps or `GetShellWindow()` for
-  /// Flutter apps.
+  /// necessary. If omitted, [getWindowHandle] is used.
   static Future<WebTokenRequestResult?> requestTokenForWindowAsync(
-      int appWindow, WebTokenRequest request) {
+      WebTokenRequest request,
+      [int? appWindow]) {
+    appWindow ??= getWindowHandle();
     final webAuthenticationCoreManagerInterop = createActivationFactory(
         IWebAuthenticationCoreManagerInterop.new,
         _className,
@@ -71,12 +71,12 @@ final class WebAuthenticationCoreManagerInterop {
   ///
   /// [appWindow] represents the window to be used as the owner for the window
   /// prompting the user for credentials, in case such a window becomes
-  /// necessary.
-  /// Use `GetConsoleWindow()` for console apps or `GetShellWindow()` for
-  /// Flutter apps.
+  /// necessary. If omitted, [getWindowHandle] is used.
   static Future<WebTokenRequestResult?>
       requestTokenWithWebAccountForWindowAsync(
-          int appWindow, WebTokenRequest request, WebAccount webAccount) {
+          WebTokenRequest request, WebAccount webAccount,
+          [int? appWindow]) {
+    appWindow ??= getWindowHandle();
     final webAuthenticationCoreManagerInterop = createActivationFactory(
         IWebAuthenticationCoreManagerInterop.new,
         _className,
