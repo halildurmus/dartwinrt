@@ -33,7 +33,8 @@ final class WebAuthenticationCoreManagerInterop {
   ///
   /// [appWindow] represents the window to be used as the owner for the window
   /// prompting the user for credentials, in case such a window becomes
-  /// necessary. If omitted, [getWindowHandle] is used.
+  /// necessary. If omitted, the current console or shell's desktop window is
+  /// used.
   static Future<WebTokenRequestResult?> requestTokenForWindowAsync(
       WebTokenRequest request,
       [int? appWindow]) {
@@ -71,7 +72,8 @@ final class WebAuthenticationCoreManagerInterop {
   ///
   /// [appWindow] represents the window to be used as the owner for the window
   /// prompting the user for credentials, in case such a window becomes
-  /// necessary. If omitted, [getWindowHandle] is used.
+  /// necessary. If omitted, the current console or shell's desktop window is
+  /// used.
   static Future<WebTokenRequestResult?>
       requestTokenWithWebAccountForWindowAsync(
           WebTokenRequest request, WebAccount webAccount,
