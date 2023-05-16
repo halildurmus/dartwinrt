@@ -125,6 +125,15 @@ void _initializeMTA() {
   }
 }
 
+/// Whether the program is running in Flutter.
+bool _isFlutter = const bool.fromEnvironment('dart.library.ui');
+
+/// Returns the window handle (HWND) of the current window.
+///
+/// If the program is running in Flutter, [GetShellWindow] is used; otherwise,
+/// [GetConsoleWindow] is used instead.
+int getWindowHandle() => _isFlutter ? GetShellWindow() : GetConsoleWindow();
+
 /// Gets the reference count of the Windows Runtime [object].
 int refCount(IInspectable object) {
   object.addRef();

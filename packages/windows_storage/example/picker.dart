@@ -4,7 +4,6 @@
 
 // Demonstrates calling WinRT FileOpenPicker to pick a file from console window.
 
-import 'package:win32/win32.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 import 'package:windows_storage/windows_storage.dart';
 
@@ -14,11 +13,8 @@ void main() async {
     ..suggestedStartLocation = PickerLocationId.desktop
     ..viewMode = PickerViewMode.thumbnail;
 
-  final hwnd = GetConsoleWindow(); // Use GetShellWindow() for Flutter apps
-  // Initialize the FileOpenPicker with the window handle (HWND).
-  // You can omit the 'hwnd' parameter on Flutter apps as GetShellWindow() is
-  // used by default if omitted.
-  InitializeWithWindow.initialize(picker, hwnd);
+  // Initialize the FileOpenPicker with the window handle of the current window.
+  InitializeWithWindow.initialize(picker);
 
   final pickedFile = await picker.pickSingleFileAsync();
   if (pickedFile != null) {

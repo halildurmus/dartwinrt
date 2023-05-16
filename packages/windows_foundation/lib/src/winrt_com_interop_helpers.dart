@@ -7,6 +7,8 @@
 
 import 'package:win32/win32.dart';
 
+import 'helpers.dart';
+
 /// Exposes a method through which a client can provide an owner window to a
 /// Windows Runtime (WinRT) object used in a desktop application.
 ///
@@ -19,8 +21,7 @@ final class InitializeWithWindow {
   /// `IInitializeWithWindow` interface (e.g. `FileOpenPicker`).
   ///
   /// [hwnd] represents the handle of the window to be used as the owner window.
-  /// Use `GetConsoleWindow()` for console apps or `GetShellWindow()` for
-  /// Flutter apps. By default, `GetShellWindow()` is used.
+  /// If omitted, [getWindowHandle] is used.
   ///
   /// ```dart
   /// final picker = FileOpenPicker()
@@ -31,9 +32,8 @@ final class InitializeWithWindow {
   /// final pickedFile = await picker.pickSingleFileAsync();
   /// ```
   static void initialize(IInspectable target, [int? hwnd]) {
-    hwnd ??= GetShellWindow();
-    final initializeWithWindow =
-        IInitializeWithWindow(target.toInterface(IID_IInitializeWithWindow));
+    hwnd ??= getWindowHandle();
+    final initializeWithWindow = IInitializeWithWindow.from(target);
     final hr = initializeWithWindow.initialize(hwnd);
     if (FAILED(hr)) throw WindowsException(hr);
   }
