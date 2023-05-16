@@ -138,6 +138,18 @@ void main() {
       expect(parameter.localIdentifier, equals('propertiesToSavePtr'));
     });
 
+    test('projects IMapView', () {
+      final methodProjection = MethodProjection.fromTypeAndMethodName(
+          'Windows.ApplicationModel.DataTransfer.DataPackagePropertySetView',
+          'Split');
+      final parameter = methodProjection.parameters.first;
+      expect(parameter, isA<ObjectParameterProjection>());
+      expect(parameter.type, equals('IMapView<String, Object?>'));
+      expect(parameter.preamble, isEmpty);
+      expect(parameter.postamble, isEmpty);
+      expect(parameter.localIdentifier, equals('first.ptr'));
+    });
+
     test('projects IReference (1)', () {
       final methodProjection = MethodProjection.fromTypeAndMethodName(
           'Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisement',
