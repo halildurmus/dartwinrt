@@ -1,9 +1,9 @@
 ## Examples
 
-| Example                       | Description                                    |
-| ----------------------------- | ---------------------------------------------- |
-| [calendar.dart]               | Demonstrates calling Calendar APIs             |
-| [phone_number_formatter.dart] | Demonstrates calling PhoneNumberFormatter APIs |
+| Example          | Description                                  |
+| ---------------- | -------------------------------------------- |
+| [calendar.dart]  | Demonstrates retrieving Calendar information |
+| [formatter.dart] | Demonstrates formatting a phone number       |
 
 [calendar.dart]: https://github.com/dart-windows/dartwinrt/blob/main/packages/windows_globalization/example/calendar.dart
-[phone_number_formatter.dart]: https://github.com/dart-windows/dartwinrt/blob/main/packages/windows_globalization/example/phone_number_formatter.dart
+[formatter.dart]: https://github.com/dart-windows/dartwinrt/blob/main/packages/windows_globalization/example/formatter.dart

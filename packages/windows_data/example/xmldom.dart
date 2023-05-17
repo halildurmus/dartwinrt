@@ -25,14 +25,14 @@ void main() {
 ''';
   final doc = XmlDocument()..loadXml(xmlString);
 
-  // Retrieve attributes of the products
+  // Retrieve the attributes of the products
   final products = doc.getElementsByTagName('product');
   for (final product in products.toList()) {
     final id = product.attributes.getNamedItem('id')?.nodeValue;
     final title = product.attributes.getNamedItem('title')?.nodeValue;
     final hot = product.attributes.getNamedItem('hot')?.nodeValue;
     final price = product.selectNodes('price').item(0)?.firstChild?.nodeValue;
-    print('Product id: $id | title: $title | hot: $hot | price: $price');
+    print('Product id: $id, title: $title, hot: $hot, price: $price');
   }
 
   // Mark 'hot' attribute to '1' if 'sell10days' is greater than 'InStore'
@@ -41,5 +41,5 @@ void main() {
   for (var index = 0; index < hotAttributes.length; index++) {
     hotAttributes.item(index)?.nodeValue = '1';
   }
-  print(doc.getXml());
+  print('Updated XML string:\n${doc.getXml()}');
 }

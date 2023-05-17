@@ -7,50 +7,57 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 void main() {
   // Create an empty IMap
-  final map = IMap<String, String>.empty();
+  final map = IMap<String, String>.empty()
+    // Insert some items
+    ..insert('England', 'London')
+    ..insert('France', 'Paris')
+    ..insert('Turkey', 'Istanbul')
+    ..insert('United States', 'Washington DC');
 
-  // You can also use the fromMap factory constructor to create an IMap from an
+  // You can also use the `fromMap` constructor to create an IMap from an
   // existing Dart Map
-  // final map = IMap<String, String>.fromMap({'key': 'value'});
-
-  // Insert an item into the IMap
-  final result = map.insert('key', 'value');
-  switch (result) {
-    case true:
-      print('Replaced an existing item in IMap with "value"');
-    case false:
-      print('Inserted "value" into IMap');
-  }
+  // final map = IMap<String, String>.fromMap({
+  //   'England': 'London',
+  //   'France': 'Paris',
+  //   'Turkey': 'Istanbul',
+  //   'United States': 'Washington DC'
+  // });
 
   // Get the size of the IMap
-  print('Size: ${map.size}');
+  print('IMap has ${map.size} items');
 
   // Retrieve the item using the lookup method
-  print('key: ${map.lookup('key')}');
+  print('The capital of the United States is ${map.lookup('United States')}.');
 
-  // You can also use the [] operator
-  // print('key: ${map['key']}');
+  // You can also retrieve the item by using the [] operator
+  print('The capital of the France is ${map['France']}.');
 
   // Attempting to retrieve a non-existent item throws a WindowsException
   try {
     map.lookup('non-existent key');
   } on WindowsException catch (e) {
-    print('WindowsException: $e');
+    print('Attempting to retrieve a non-existent item failed with: $e');
   }
 
   // Check if IMap contains a specific key
-  print('Does IMap contains the "key": ${map.hasKey('key')}');
+  print(map.hasKey('Turkey'));
 
-  // Update the item using insert method
-  map.insert('key', 'new value');
+  // Update an existing item using insert method
+  map.insert('United States', 'Washington, DC');
 
-  // You can also use the []= operator
-  // map['key'] = 'new value';
+  // You can also update an existing item by using the []= operator
+  // map['United States'] = 'Washington, DC';
 
-  // Convert it to a Dart Map
-  final dartMap = map.toMap();
-  print('Map: $dartMap');
+  // Convert the IMap into a Dart Map
+  print(map.toMap());
 
-  // Remove the item
-  map.remove('key');
+  // Remove an item
+  map.remove('England');
+
+  // Attempting to remove a non-existent item throws a WindowsException
+  try {
+    map.remove('non-existent key');
+  } on WindowsException catch (e) {
+    print('Attempting to remove a non-existent item failed with: $e');
+  }
 }
