@@ -1,4 +1,4 @@
-<img src="https://user-images.githubusercontent.com/2319867/235838660-a82bfdce-aa55-461d-b418-19bd5185b6af.png" width="50%" height="50%">
+<img src="https://raw.githubusercontent.com/dart-windows/.github/main/assets/dart-windows-card.png" width="50%" height="50%">
 
 A family of packages that provide an idiomatic Dart projection of modern
 Windows Runtime (WinRT) APIs using FFI.
@@ -12,7 +12,23 @@ Part of the [Dart | Windows] suite of Windows packages.
 
 For official documentation, please visit https://dartwinrt.dev.
 
+## Examples
+
+Each package contains several examples within its `example` subdirectory,
+demonstrating how to invoke various Windows Runtime APIs.
+
+## Feature requests and bugs
+
+The WinRT APIs that are projected by `dartwinrt` are limited, but additional
+APIs will be added based on user demand, especially if it helps facilitate the
+development of new Dart packages for Windows.
+
+If you encounter any issues or have any feature requests, please submit them
+through the [issue tracker].
+
 ## Packages 📦
+
+These packages can also be viewed on [pub].
 
 | Package                                                          | Pub                                                                                                                            | Points                                                                                                                               | Popularity                                                                                                                               | Likes                                                                                                                          |
 | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
@@ -33,21 +49,11 @@ For official documentation, please visit https://dartwinrt.dev.
 | [windows_storage](./packages/windows_storage/)                   | [![pub package](https://img.shields.io/pub/v/windows_storage.svg)](https://pub.dev/packages/windows_storage)                   | [![pub points](https://img.shields.io/pub/points/windows_storage)](https://pub.dev/packages/windows_storage/score)                   | [![popularity](https://img.shields.io/pub/popularity/windows_storage)](https://pub.dev/packages/windows_storage/score)                   | [![likes](https://img.shields.io/pub/likes/windows_storage)](https://pub.dev/packages/windows_storage/score)                   |
 | [windows_system](./packages/windows_system/)                     | [![pub package](https://img.shields.io/pub/v/windows_system.svg)](https://pub.dev/packages/windows_system)                     | [![pub points](https://img.shields.io/pub/points/windows_system)](https://pub.dev/packages/windows_system/score)                     | [![popularity](https://img.shields.io/pub/popularity/windows_system)](https://pub.dev/packages/windows_system/score)                     | [![likes](https://img.shields.io/pub/likes/windows_system)](https://pub.dev/packages/windows_system/score)                     |
 | [windows_ui](./packages/windows_ui/)                             | [![pub package](https://img.shields.io/pub/v/windows_ui.svg)](https://pub.dev/packages/windows_ui)                             | [![pub points](https://img.shields.io/pub/points/windows_ui)](https://pub.dev/packages/windows_ui/score)                             | [![popularity](https://img.shields.io/pub/popularity/windows_ui)](https://pub.dev/packages/windows_ui/score)                             | [![likes](https://img.shields.io/pub/likes/windows_ui)](https://pub.dev/packages/windows_ui/score)                             |
-| [windows_web](./packages/windows_web/)                           | [![pub package](https://img.shields.io/pub/v/windows_web.svg)](https://pub.dev/packages/windows_web)                          | [![pub points](https://img.shields.io/pub/points/windows_web)](https://pub.dev/packages/windows_web/score)                           | [![popularity](https://img.shields.io/pub/popularity/windows_web)](https://pub.dev/packages/windows_web/score)                           | [![likes](https://img.shields.io/pub/likes/windows_web)](https://pub.dev/packages/windows_web/score)                           |
-
-
-## Features and bugs
-
-The WinRT APIs that are projected by `dartwinrt` are limited, but additional
-APIs will be added based on user demand, especially if it helps facilitate the
-development of new Dart packages for Windows.
-
-If you encounter any issues or have any feature requests, please submit them
-through the [issue tracker].
+| [windows_web](./packages/windows_web/)                           | [![pub package](https://img.shields.io/pub/v/windows_web.svg)](https://pub.dev/packages/windows_web)                           | [![pub points](https://img.shields.io/pub/points/windows_web)](https://pub.dev/packages/windows_web/score)                           | [![popularity](https://img.shields.io/pub/popularity/windows_web)](https://pub.dev/packages/windows_web/score)                           | [![likes](https://img.shields.io/pub/likes/windows_web)](https://pub.dev/packages/windows_web/score)                           |
 
 ## Acknowledgements
 
-The summary WinRT API documentation comments are [licensed by Microsoft][] under
+The summary WinRT API documentation comments are [licensed by Microsoft] under
 the [Creative Commons Attribution 4.0 International Public License][license].
 
 [Dart | Windows]: https://github.com/dart-windows
@@ -55,3 +61,4 @@ the [Creative Commons Attribution 4.0 International Public License][license].
 [licensed by Microsoft]: https://github.com/MicrosoftDocs/winrt-api/#legal-notices
 [license]: https://github.com/MicrosoftDocs/winrt-api/blob/89e9254fd8b53a648937dbb4324d7f7d6f8d1314/LICENSE
 [packages]: https://github.com/dart-windows/dartwinrt#packages-
+[pub]: https://pub.dev/packages?q=topic%3Awinrt+publisher%3Awin32.pub
