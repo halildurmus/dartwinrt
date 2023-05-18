@@ -1,4 +1,4 @@
-<img src="https://user-images.githubusercontent.com/2319867/235838660-a82bfdce-aa55-461d-b418-19bd5185b6af.png" width="50%" height="50%">
+<img src="https://raw.githubusercontent.com/dart-windows/.github/main/assets/dart-windows-card.png" width="50%" height="50%">
 
 Provides functionality to generate Windows Runtime (WinRT) APIs from Windows
 Metadata (WinMD) files.
@@ -8,7 +8,7 @@ Metadata (WinMD) files.
 
 ## Acknowledgements
 
-The summary WinRT API documentation comments are [licensed by Microsoft][] under
+The summary WinRT API documentation comments are [licensed by Microsoft] under
 the [Creative Commons Attribution 4.0 International Public License][license].
 
 [licensed by Microsoft]: https://github.com/MicrosoftDocs/winrt-api/#legal-notices
