@@ -4,7 +4,7 @@
 
 import 'package:windows_devices/windows_devices.dart';
 
-void printBatteryReport(Battery? battery) async {
+void printBatteryReport(Battery? battery) {
   final report = battery?.getReport();
   if (report
       case BatteryReport(
@@ -23,9 +23,10 @@ void printBatteryReport(Battery? battery) async {
 }
 
 void main() async {
+  final deviceSelector = Battery.getDeviceSelector();
   // Identify all battery devices on the system
-  final batteryDevices = await DeviceInformation.findAllAsyncAqsFilter(
-      Battery.getDeviceSelector());
+  final batteryDevices =
+      await DeviceInformation.findAllAsyncAqsFilter(deviceSelector);
   for (final batteryDevice in batteryDevices.toList()) {
     final battery = await Battery.fromIdAsync(batteryDevice.id);
     printBatteryReport(battery);

@@ -21,6 +21,7 @@ void printMonitorSpecs(DisplayMonitor monitor) {
 
 void main() async {
   final deviceSelector = DisplayMonitor.getDeviceSelector();
+  // Identify all display monitor devices on the system
   final deviceInformationCollection =
       await DeviceInformation.findAllAsyncAqsFilter(deviceSelector);
   for (final device in deviceInformationCollection.toList()) {

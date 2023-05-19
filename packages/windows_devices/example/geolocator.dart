@@ -2,8 +2,6 @@
 // All rights reserved. Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-// Retrieve geolocation coordinates via WinRT APIs
-
 import 'package:windows_devices/windows_devices.dart';
 
 void main() async {
@@ -22,16 +20,15 @@ void main() async {
   final locator = Geolocator()..allowFallbackToConsentlessPositions();
   final location = await locator.getGeopositionAsync();
   if (location?.coordinate case final coordinate?) {
-    final position = coordinate.point?.position;
-    if (position case BasicGeoposition(:final latitude, :final longitude)) {
-      print('Current location: ($latitude, $longitude)');
-    } else {
-      print('Current location: N/A');
-    }
+    final position = switch (coordinate.point?.position) {
+      BasicGeoposition(:final latitude, :final longitude) =>
+        '($latitude, $longitude)',
+      _ => 'N/A'
+    };
+    print('Current location: $position');
     print('Location accuracy: ±${coordinate.accuracy} meters');
     print('Current heading: ${coordinate.heading ?? 'N/A'}');
-    final positionSource = coordinate.positionSource;
-    print('Position source: ${positionSource.name}');
+    print('Position source: ${coordinate.positionSource.name}');
   } else {
     print('No location received.');
   }
