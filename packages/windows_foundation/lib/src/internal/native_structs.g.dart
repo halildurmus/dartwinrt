@@ -8,6 +8,16 @@
 
 import 'dart:ffi';
 
+final class NativeAutomationAnnotationTypeRegistration extends Struct {
+  @Int32()
+  external int localId;
+}
+
+final class NativeAutomationRemoteOperationOperandId extends Struct {
+  @Int32()
+  external int value;
+}
+
 final class NativeBasicGeoposition extends Struct {
   @Double()
   external double latitude;
