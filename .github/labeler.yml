@@ -1,86 +1,68 @@
-'p: windows_ai':
+'area: build & ci':
+  - all: ['.github/workflows/*.yml']
+
+'area: docs':
+  - all: ['**/*.md']
+
+'area: examples':
+  - all: ['packages/*/example/*.{dart,md}']
+
+'area: tests':
+  - all: ['packages/*/test/*_test.dart']
+
+'pkg: windows_ai':
   - packages/windows_ai/**/*
 
-'p: windows_applicationmodel':
+'pkg: windows_applicationmodel':
   - packages/windows_applicationmodel/**/*
 
-'p: windows_data':
+'pkg: windows_data':
   - packages/windows_data/**/*
 
-'p: windows_devices':
+'pkg: windows_devices':
   - packages/windows_devices/**/*
 
-'p: windows_foundation':
+'pkg: windows_foundation':
   - packages/windows_foundation/**/*
 
-'p: windows_gaming':
+'pkg: windows_gaming':
   - packages/windows_gaming/**/*
 
-'p: windows_globalization':
+'pkg: windows_globalization':
   - packages/windows_globalization/**/*
 
-'p: windows_graphics':
+'pkg: windows_graphics':
   - packages/windows_graphics/**/*
 
-'p: windows_management':
+'pkg: windows_management':
   - packages/windows_management/**/*
 
-'p: windows_media':
+'pkg: windows_media':
   - packages/windows_media/**/*
 
-'p: windows_networking':
+'pkg: windows_networking':
   - packages/windows_networking/**/*
 
-'p: windows_perception':
+'pkg: windows_perception':
   - packages/windows_perception/**/*
 
-'p: windows_security':
+'pkg: windows_security':
   - packages/windows_security/**/*
 
-'p: windows_services':
+'pkg: windows_services':
   - packages/windows_services/**/*
 
-'p: windows_storage':
+'pkg: windows_storage':
   - packages/windows_storage/**/*
 
-'p: windows_system':
+'pkg: windows_system':
   - packages/windows_system/**/*
 
-'p: windows_ui':
+'pkg: windows_ui':
   - packages/windows_ui/**/*
 
-'p: windows_web':
+'pkg: windows_web':
   - packages/windows_web/**/*
 
-'p: winrtgen':
+'pkg: winrtgen':
   - packages/winrtgen/**/*
-
-# The matchers below are not working as intended.
-# There is an open PR (https://github.com/actions/labeler/pull/487) that adds
-# 'allofany' matcher to the labeler. We should change the 'all' matchers below
-# to 'allOfAny' if it lands.
-
-# chore:
-#   - all: ['packages/*/CHANGELOG.md', 'packages/*/pubspec.yaml']
-
-# ci:
-#   - all:
-#       [
-#         '.github/dependabot.yml',
-#         '.github/labeler.yml',
-#         '.github/workflows/*.yml',
-#       ]
-
-# documentation:
-#   - all:
-#       [
-#         'README.md',
-#         'doc/*.md',
-#         'packages/README.md',
-#         'packages/*/README.md',
-#         'packages/*/example/README.md',
-#         'tool/README.md',
-#       ]
-
-test:
-  - all: ['packages/*/test/*_test.dart']
