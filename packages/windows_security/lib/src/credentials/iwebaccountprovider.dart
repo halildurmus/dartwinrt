@@ -78,7 +78,7 @@ class IWebAccountProvider extends IInspectable {
   }
 
   @Deprecated(
-      'IconUri may be altered or unavailable for releases after Windows 8.2. Instead, use Icon.')
+      "IconUri may be altered or unavailable for releases after Windows 8.2. Instead, use Icon.")
   Uri? get iconUri {
     final retValuePtr = calloc<COMObject>();
 
