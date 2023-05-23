@@ -50,7 +50,7 @@ class WebAccountProvider extends IInspectable
   String get displayName => _iWebAccountProvider.displayName;
 
   @Deprecated(
-      'IconUri may be altered or unavailable for releases after Windows 8.2. Instead, use Icon.')
+      "IconUri may be altered or unavailable for releases after Windows 8.2. Instead, use Icon.")
   @override
   Uri? get iconUri => _iWebAccountProvider.iconUri;
 
