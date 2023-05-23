@@ -1,0 +1,41 @@
+name: 'PR Title is Conventional'
+
+on:
+  pull_request_target:
+    types:
+      - opened
+      - edited
+      - synchronize
+
+permissions:
+  pull-requests: read
+
+jobs:
+  main:
+    name: Validate PR title
+    runs-on: ubuntu-latest
+    steps:
+      - uses: amannn/action-semantic-pull-request@v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          scopes: |
+            windows_ai
+            windows_applicationmodel
+            windows_data
+            windows_devices
+            windows_foundation
+            windows_gaming
+            windows_globalization
+            windows_graphics
+            windows_management
+            windows_media
+            windows_networking
+            windows_perception
+            windows_security
+            windows_services
+            windows_storage
+            windows_system
+            windows_ui
+            windows_web
+            winrtgen
