@@ -57,7 +57,7 @@ TypeDef getMetadataForType(String type) {
 /// A byte representation of the pinterface instantiation.
 ///
 /// This is hardcoded as the value `{11f47ad5-7b73-42c0-abae-878b1e16adee}` in
-/// https://learn.microsoft.com/en-us/uwp/winrt-cref/winrt-type-system
+/// https://learn.microsoft.com/uwp/winrt-cref/winrt-type-system
 const _wrtPinterfaceNamespace = <int>[
   0x11, 0xf4, 0x7a, 0xd5,
   0x7b, 0x73,
@@ -74,7 +74,7 @@ const _wrtPinterfaceNamespace = <int>[
 ///
 /// Converts it to a unique IID for the resultant type, using an algorithm
 /// defined here:
-/// https://learn.microsoft.com/en-us/uwp/winrt-cref/winrt-type-system#guid-generation-for-parameterized-types
+/// https://learn.microsoft.com/uwp/winrt-cref/winrt-type-system#guid-generation-for-parameterized-types
 String iidFromSignature(String signature) {
   if (isValidIID(signature)) return signature;
 

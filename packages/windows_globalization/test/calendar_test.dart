@@ -136,7 +136,7 @@ void main() {
 
       // Per Microsoft docs, the WinRT implementation only recognizes the
       // current era (A.D.). See:
-      // https://docs.microsoft.com/en-us/uwp/api/windows.globalization.calendaridentifiers.gregorian
+      // https://learn.microsoft.com/uwp/api/windows.globalization.calendaridentifiers.gregorian
       expect(calendar.firstEra, equals(1));
     });
 

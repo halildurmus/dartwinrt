@@ -31,7 +31,7 @@ const _acronyms = <String>{
 };
 
 /// Currency codes that appear in the `CurrencyIdentifiers` class.
-/// See https://learn.microsoft.com/en-us/uwp/api/windows.globalization.currencyidentifiers?view=winrt-22621
+/// See https://learn.microsoft.com/uwp/api/windows.globalization.currencyidentifiers
 const _currencyCodes = <String>{
   'HNL', 'AED', 'AFN', 'ALL', 'AMD', 'ANG', 'AOA', 'ARS', 'AUD', 'AWG', //
   'AZN', 'BBD', 'BDT', 'BGN', 'BHD', 'BIF', 'BMD', 'BND', 'BOB', 'BRL', //

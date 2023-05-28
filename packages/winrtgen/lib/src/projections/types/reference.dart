@@ -31,7 +31,7 @@ mixin _ReferenceMixin on MethodProjection {
     // so that the 'IReference' implementation can use the correct IID when
     // retrieving the value it holds.
     // To learn know more about how the IID is calculated, please see
-    // https://learn.microsoft.com/en-us/uwp/winrt-cref/winrt-type-system#guid-generation-for-parameterized-types
+    // https://learn.microsoft.com/uwp/winrt-cref/winrt-type-system#guid-generation-for-parameterized-types
     final referenceArgSignature =
         returnTypeProjection.typeIdentifier.typeArgs.first.signature;
     final referenceSignature =

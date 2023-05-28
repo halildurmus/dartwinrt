@@ -25,7 +25,7 @@ extension BaseTypeHelpers on BaseType {
       };
 
   /// Returns the type signature of this BaseType as defined in:
-  /// https://learn.microsoft.com/en-us/uwp/winrt-cref/winrt-type-system#guid-generation-for-parameterized-types
+  /// https://learn.microsoft.com/uwp/winrt-cref/winrt-type-system#guid-generation-for-parameterized-types
   String get signature => switch (this) {
         BaseType.booleanType => 'b1',
         BaseType.charType => 'c2',
