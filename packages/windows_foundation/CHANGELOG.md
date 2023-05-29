@@ -1,3 +1,8 @@
+## 0.0.5
+
+ - **FEAT**: add some structs from Windows.UI namespace ([#211](https://github.com/dart-windows/dartwinrt/issues/211)). ([00ef0456](https://github.com/dart-windows/dartwinrt/commit/00ef0456506298362c67b34d82eed001a4735552))
+ - **DOCS**: update <xx>.microsoft.com URLs ([#212](https://github.com/dart-windows/dartwinrt/issues/212)). ([fbdf79f6](https://github.com/dart-windows/dartwinrt/commit/fbdf79f6a4e6fa3991ce6ed59379e260d2b734b3))
+
 ## 0.0.4
 
 - Add `getWindowHandle` helper function to retrieve the window handle of the
