@@ -17,6 +17,10 @@ command:
     workspaceChangelog: true
 
 scripts:
+  lint:all:
+    run: melos run analyze && melos run format
+    description: Run all static analysis checks.
+
   analyze:
     run: |
       melos exec -c 5 -- \
@@ -25,17 +29,15 @@ scripts:
       Run `dart analyze` in all packages.
        - Note: you can also rely on your IDEs Dart Analysis / Issues window.
 
-  # Clean things very deeply, can be used to establish "pristine checkout" status
-  clean:deep: >
-    git clean -x -d -f -q
+  clean:deep:
+    run: git clean -x -d -f -q
+    description: >
+      Clean things very deeply, can be used to establish "pristine checkout"
+      status.
 
   format:
     run: dart format --set-exit-if-changed .
     description: Run `dart format` in all packages.
-
-  lint:all:
-    run: melos run analyze && melos run format
-    description: Run all static analysis checks.
 
   # Check pubspecs are valid and publishable in each package.
   lint:pub: >
@@ -45,8 +47,7 @@ scripts:
   test:all:
     run: |
       melos run test --no-select
-    description: |
-      Run all tests available.
+    description: Run all tests available.
 
   test:
     run: |
@@ -54,9 +55,15 @@ scripts:
         "dart test"
     description: Run `dart test` for a specific package.
 
-  # Run all targets generally expected in CI for a full local quality check
-  qualitycheck: >
-    melos run clean:deep && melos clean && melos bootstrap && melos run lint:all && melos run test:all
+  qualitycheck:
+    run: >
+      melos run clean:deep &&
+      melos clean &&
+      melos bootstrap &&
+      melos run lint:all &&
+      melos run test:all
+    description: >
+      Run all targets generally expected in CI for a full local quality check.
 
   add-license-header:
     # If you add here another --ignore flag, add it also to
@@ -125,4 +132,4 @@ scripts:
         --ignore "**/flutter/generated_plugin_registrant.h" \
         --ignore "**/flutter/generated_plugin_registrant.cc" \
         .
-    description: Add a license header to all necessary files.
+    description: Verify that all necessary files have a license header.
