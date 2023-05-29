@@ -3,7 +3,7 @@
 // license that can be found in the LICENSE file.
 
 // Helper wrapper classes for WinRT COM interop interfaces.
-// See https://learn.microsoft.com/en-us/windows/apps/develop/ui-input/display-ui-objects
+// See https://learn.microsoft.com/windows/apps/develop/ui-input/display-ui-objects
 
 import 'package:win32/win32.dart';
 

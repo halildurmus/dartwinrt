@@ -36,7 +36,7 @@ extension IntoBoxHelper on Object {
     final self = this;
     // Since an object is a reference type, it is also a valid property value
     // and does not need to be boxed.
-    // See https://learn.microsoft.com/en-us/uwp/api/windows.foundation.propertyvalue.createinspectable
+    // See https://learn.microsoft.com/uwp/api/windows.foundation.propertyvalue.createinspectable
     if (self is Pointer<COMObject>) return IInspectable(self)..detach();
     if (self is IInspectable) return self;
 

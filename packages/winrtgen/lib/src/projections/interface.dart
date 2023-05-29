@@ -141,7 +141,7 @@ const IID_$shortName = ${quote(typeDef.iid)};
   // as IUnknown, from which IInspectable itself inherits).
   //
   // For more information, see the Interfaces section of the documentation here:
-  // https://docs.microsoft.com/en-us/uwp/winrt-cref/winrt-type-system
+  // https://learn.microsoft.com/uwp/winrt-cref/winrt-type-system
   int get vtableStart => 6;
 
   List<MethodProjection>? _methodProjections;

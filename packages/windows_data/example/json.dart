@@ -3,7 +3,7 @@
 // license that can be found in the LICENSE file.
 
 // Example is based on:
-// https://learn.microsoft.com/en-us/previous-versions/windows/apps/hh770289(v=win.10)
+// https://learn.microsoft.com/previous-versions/windows/apps/hh770289(v=win.10)
 
 import 'package:windows_data/windows_data.dart';
 

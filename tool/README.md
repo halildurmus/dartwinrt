@@ -3,7 +3,7 @@ This folder contains utilities to help with developing the `dartwinrt`.
 # Code-generation tools
 
 The WinRT APIs available in this package are generated from [Windows Metadata
-(WinMD)](https://learn.microsoft.com/en-us/uwp/winrt-cref/winmd-files) files
+(WinMD)](https://learn.microsoft.com/uwp/winrt-cref/winmd-files) files
 supplied by Microsoft. The metadata files are in the ECMA-335 specification
 file format and can be found on Windows machines under the
 `%windir%\System32\WinMetadata` directory.

@@ -18,7 +18,7 @@ enum DoubleType {
 /// Represents the integer types supported by WinRT type system.
 ///
 /// WinRT type system does not support Int8 types.
-/// See https://docs.microsoft.com/en-us/uwp/winrt-cref/winrt-type-system#fundamental-types
+/// See https://learn.microsoft.com/uwp/winrt-cref/winrt-type-system#fundamental-types
 enum IntType {
   /// A 16-bit signed integer.
   int16('Int16'),
