@@ -18,5 +18,7 @@
     "Windows.Graphics.SizeInt32": "Defines the height and wide of a surface in a two-dimensional plane.",
     "Windows.Networking.Connectivity.NetworkUsageStates": "Defines the desired state of the connection profile for which usage data is returned by the method GetNetworkUsageAsync.",
     "Windows.Storage.Search.SortEntry": "An entry in the SortOrder list the specifies a property and ordering that is used to sort query results.",
-    "Windows.UI.Color": "Describes a color in terms of alpha, red, green, and blue channels."
+    "Windows.UI.Color": "Describes a color in terms of alpha, red, green, and blue channels.",
+    "Windows.UI.UIAutomation.Core.AutomationAnnotationTypeRegistration": "Represents an annotation registration.",
+    "Windows.UI.UIAutomation.Core.AutomationRemoteOperationOperandId": "Represents an identifier that refers to an operand register of a CoreAutomationRemoteOperation."
 }

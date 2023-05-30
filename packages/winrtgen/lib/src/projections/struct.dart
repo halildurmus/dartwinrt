@@ -187,12 +187,16 @@ final class StructProjection extends NativeStructProjection {
   int get hashCode => ${fieldProjections.map((f) => '${f.fieldName}.hashCode').join(' ^ ')};
 ''';
 
-  String get nativeStructToDartExtension => '''
+  String get nativeStructToDartExtension {
+    final comment = wrapCommentText(
+        'Converts this [Native$structName] to a Dart [$structName].');
+    return '''
 extension PointerNative${structName}Conversion on Pointer<Native$structName> {
-  /// Converts this [Native$structName] to a Dart [$structName].
+  $comment
   $structName toDart() => $structName(${fieldProjections.map((f) => 'ref.${f.fieldName}').join(', ')});
 }
 ''';
+  }
 
   @override
   String toString() => '''
