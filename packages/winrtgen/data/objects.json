@@ -182,5 +182,18 @@
     "Windows.UI.Popups.MessageDialog": "Represents a dialog for showing messages to the user.",
     "Windows.UI.Popups.UICommand": "Represents a command in a context menu.",
     "Windows.UI.Popups.UICommandSeparator": "Represents a command separator in a context menu.",
+    "Windows.UI.UIAutomation.AutomationConnection": "Provides access to the connection details of a UI Automation connection.",
+    "Windows.UI.UIAutomation.AutomationConnectionBoundObject": "Represents an object associated with a specific UI Automation provider connection.",
+    "Windows.UI.UIAutomation.AutomationElement": "Provides access to a UI object that supports the IUIAutomationElement interface.",
+    "Windows.UI.UIAutomation.AutomationTextRange": "Provides access to a span of continuous text in a container that supports the IUIAutomationTextPattern interface.",
+    "Windows.UI.UIAutomation.Core.AutomationRemoteOperationResult": "Provides access to the execution results (status and remote objects) of a CoreAutomationRemoteOperation.",
+    "Windows.UI.UIAutomation.Core.CoreAutomationRegistrar": "Exposes methods for registering new control patterns, properties, events, and annotations.",
+    "Windows.UI.UIAutomation.Core.CoreAutomationRemoteOperation": "Represents an entry point for UI Automation (UIA) clients to use remote operations.",
+    "Windows.UI.UIAutomation.Core.CoreAutomationRemoteOperationContext": "Provides the ability for a ICoreAutomationRemoteOperationExtensionProvider object to read and write operands.",
+    "Windows.UI.UIAutomation.Core.ICoreAutomationConnectionBoundObjectProvider": "Exposes the properties of a connection-bound object in a remote operation for a UI Automation provider.",
+    "Windows.UI.UIAutomation.Core.ICoreAutomationRemoteOperationExtensionProvider": "Provides support for implementing one or more pattern extensions for a UI Automation provider.",
+    "Windows.UI.UIAutomation.Core.RemoteAutomationClientSession": "Represents a UI Automation client session for a remote application.",
+    "Windows.UI.UIAutomation.Core.RemoteAutomationServer": "Represents a UI Automation provider session for establishing the server (remote) side of a connection between a local client and a remote provider.",
+    "Windows.UI.UIAutomation.Core.RemoteAutomationWindow": "Represents a window for a remote application (one that isnât running on the local machine).",
     "Windows.UI.ViewManagement.UISettings": "Contains a set of common app user interface settings and operations."
 }
