@@ -1,4 +1,5 @@
 {
+    "Windows.ApplicationModel.PackageVersion": "Represents the package version info.",
     "Windows.Data.Text.TextSegment": "Identifies a sub-string of a source text string. Your app can use this structure to obtain the segment of your provided text that is identified by AlternateWordForm, SelectableWordSegment, WordSegment, or SemanticTextQuery.",
     "Windows.Devices.Geolocation.BasicGeoposition": "The basic information to describe a geographic position.",
     "Windows.Foundation.Numerics.Matrix3x2": "Describes a 3*2 floating point matrix.",
