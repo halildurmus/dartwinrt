@@ -17,6 +17,7 @@ Packages with other changes:
 
  - [`windows_applicationmodel` - `v0.0.2`](#windows_applicationmodel---v002)
  - [`windows_foundation` - `v0.0.6`](#windows_foundation---v006)
+ - [`windows_system` - `v0.0.3`](#windows_system---v003)
  - [`windows_ui` - `v0.0.3`](#windows_ui---v003)
 
 ---
@@ -28,6 +29,10 @@ Packages with other changes:
 #### `windows_foundation` - `v0.0.6`
 
  - **FEAT**(windows_foundation): add `NativePackageVersion` struct ([#221](https://github.com/dart-windows/dartwinrt/issues/221)). ([d6a4e35c](https://github.com/dart-windows/dartwinrt/commit/d6a4e35c0c79029d08871dd52c10859174ec042e))
+
+#### `windows_system` - `v0.0.3`
+
+ - **FEAT**(windows_system): add some enums required for `Launcher` APIs ([#224](https://github.com/dart-windows/dartwinrt/issues/224)). ([b229f83d](https://github.com/dart-windows/dartwinrt/commit/b229f83d6ee56102628667564fd2540f53cec5e1))
 
 #### `windows_ui` - `v0.0.3`
 
