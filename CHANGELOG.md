@@ -3,6 +3,36 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2023-06-01
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`windows_applicationmodel` - `v0.0.2`](#windows_applicationmodel---v002)
+ - [`windows_foundation` - `v0.0.6`](#windows_foundation---v006)
+ - [`windows_ui` - `v0.0.3`](#windows_ui---v003)
+
+---
+
+#### `windows_applicationmodel` - `v0.0.2`
+
+ - **FEAT**: add some enums required for `Windows.System.Launcher` APIs ([#222](https://github.com/dart-windows/dartwinrt/issues/222)). ([5401d2a8](https://github.com/dart-windows/dartwinrt/commit/5401d2a81b376f229cacc3feab086ffe378b8298))
+
+#### `windows_foundation` - `v0.0.6`
+
+ - **FEAT**(windows_foundation): add `NativePackageVersion` struct ([#221](https://github.com/dart-windows/dartwinrt/issues/221)). ([d6a4e35c](https://github.com/dart-windows/dartwinrt/commit/d6a4e35c0c79029d08871dd52c10859174ec042e))
+
+#### `windows_ui` - `v0.0.3`
+
+ - **FEAT**: add some enums required for `Windows.System.Launcher` APIs ([#222](https://github.com/dart-windows/dartwinrt/issues/222)). ([5401d2a8](https://github.com/dart-windows/dartwinrt/commit/5401d2a81b376f229cacc3feab086ffe378b8298))
+
 ## 2023-05-31
 
 ### Changes
