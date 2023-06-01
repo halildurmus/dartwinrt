@@ -1,5 +1,11 @@
 {
     "Windows.AI.MachineLearning.TensorKind": "Defines the list of supported tensor data types.",
+    "Windows.ApplicationModel.AppExecutionContext": "Specifies the context in which an app runs.",
+    "Windows.ApplicationModel.AppInstallerPolicySource": "Specifies the whether the source of the update policy for an app.",
+    "Windows.ApplicationModel.PackageContentGroupState": "Describes the staging state of the package content group.",
+    "Windows.ApplicationModel.PackageRelationship": "Defines the relationship between packages to be retrieved.",
+    "Windows.ApplicationModel.PackageSignatureKind": "Provides information about the package's signature and the kind of certificate used to create it.",
+    "Windows.ApplicationModel.PackageUpdateAvailability": "An enum that indicates if an application has an update, and if the update is required.",
     "Windows.ApplicationModel.StartupTaskState": "Represents the state (enabled, disabled, or disabled by user) of a startup task.",
     "Windows.Data.Json.JsonErrorStatus": "Defines errors encountered while parsing JSON data.",
     "Windows.Data.Json.JsonValueType": "Specifies the JSON value type of a JsonValue object.",
@@ -124,5 +130,6 @@
     "Windows.UI.ViewManagement.HandPreference": "Defines the set of directional preferences for the user interface presented by the app view.",
     "Windows.UI.ViewManagement.UIColorType": "Defines constants that specify known system color values.",
     "Windows.UI.ViewManagement.UIElementType": "Defines the set of user interface element types.",
+    "Windows.UI.ViewManagement.ViewSizePreference": "Defines the set of possible general window (app view) size preferences.",
     "Windows.Web.WebErrorStatus": "Defines errors encountered during operations involving web services, such as authentication, proxy configuration, and destination URIs."
 }

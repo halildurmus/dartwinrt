@@ -83,3 +83,4 @@ export 'viewmanagement/iuisettings6.dart';
 export 'viewmanagement/uicolortype.dart';
 export 'viewmanagement/uielementtype.dart';
 export 'viewmanagement/uisettings.dart';
+export 'viewmanagement/viewsizepreference.dart';
