@@ -13,5 +13,4 @@ export 'packagecontentgroupstate.dart';
 export 'packagerelationship.dart';
 export 'packagesignaturekind.dart';
 export 'packageupdateavailability.dart';
-export 'packageversion.dart';
 export 'startuptaskstate.dart';

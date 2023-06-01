@@ -1,7 +1,7 @@
 name: windows_ui
 description: Provides access to WinRT APIs from the Windows.UI namespace using
   FFI.
-version: 0.0.2
+version: 0.0.3
 homepage: https://win32.pub
 repository: https://github.com/dart-windows/dartwinrt/tree/main/packages/windows_ui
 issue_tracker: https://github.com/dart-windows/dartwinrt/issues?q=is%3Aopen+is%3Aissue+label%3A%22p%3A+windows_ui%22
