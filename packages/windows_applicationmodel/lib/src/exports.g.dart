@@ -4,7 +4,14 @@
 
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
+export 'appexecutioncontext.dart';
+export 'appinstallerpolicysource.dart';
 export 'background/devicewatchertrigger.dart';
 export 'background/ibackgroundtrigger.dart';
 export 'background/idevicewatchertrigger.dart';
+export 'packagecontentgroupstate.dart';
+export 'packagerelationship.dart';
+export 'packagesignaturekind.dart';
+export 'packageupdateavailability.dart';
+export 'packageversion.dart';
 export 'startuptaskstate.dart';
