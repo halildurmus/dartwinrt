@@ -169,6 +169,20 @@ final class NativeNetworkUsageStates extends Struct {
   external int shared;
 }
 
+final class NativePackageVersion extends Struct {
+  @Uint16()
+  external int major;
+
+  @Uint16()
+  external int minor;
+
+  @Uint16()
+  external int build;
+
+  @Uint16()
+  external int revision;
+}
+
 final class NativePlane extends Struct {
   external NativeVector3 normal;
 
