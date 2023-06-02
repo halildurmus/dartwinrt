@@ -3,17 +3,20 @@
 // license that can be found in the LICENSE file.
 
 import 'package:windows_devices/windows_devices.dart';
+import 'package:windows_system/windows_system.dart';
 
 void main() async {
   final status = await Geolocator.requestAccessAsync();
   if (status == GeolocationAccessStatus.denied) {
     print('Error: Location access denied.\n\n'
-        'Grant access from Windows by going to Settings / Privacy & security / '
-        'location,\nand turning on the following settings:\n'
+        'Grant access from the Location settings by turning on the following '
+        'settings:\n'
         ' - Location services\n'
         ' - Let apps access your location\n'
         ' - Let desktop apps access your location\n\n'
         'Then try this example again.');
+    // Launch the Location settings page
+    await Launcher.launchUriAsync(Uri.parse('ms-settings:privacy-location'));
     return;
   }
 
