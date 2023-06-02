@@ -61,4 +61,5 @@ jobs:
         run: dart test
 
       - name: 📒 Check API Reference Documentation
+        if: ${{ inputs.runs_on == 'windows-2022' }}
         run: dart doc --validate-links
