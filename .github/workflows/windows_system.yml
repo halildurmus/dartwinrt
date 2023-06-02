@@ -39,8 +39,3 @@ jobs:
       runs_on: ${{ matrix.os }}
       working_directory: packages/windows_system
 
-  # TODO: Enable after all packages in this repository are published.
-  # pana:
-  #   uses: ./.github/workflows/pana.yml
-  #   with:
-  #     working_directory: packages/windows_system
