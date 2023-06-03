@@ -9,6 +9,7 @@ import 'dart:ffi';
 import '../../rect.dart';
 import '../native_structs.g.dart';
 
+/// @nodoc
 extension RectArrayToListConversion on Pointer<NativeRect> {
   /// Creates a [List] from `Pointer<NativeRect>`.
   ///

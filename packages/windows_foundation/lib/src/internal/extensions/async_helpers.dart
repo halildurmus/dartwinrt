@@ -11,6 +11,7 @@ import '../../iasyncaction.dart';
 import '../../iasyncinfo.dart';
 import '../../iasyncoperation.dart';
 
+/// @nodoc
 extension IAsyncActionHelper on IAsyncAction {
   /// Converts this [IAsyncAction] to a [Future].
   Future<void> toFuture() {
@@ -20,6 +21,7 @@ extension IAsyncActionHelper on IAsyncAction {
   }
 }
 
+/// @nodoc
 extension IAsyncOperationHelper<T> on IAsyncOperation<T> {
   /// Converts this [IAsyncOperation] to a [Future].
   ///

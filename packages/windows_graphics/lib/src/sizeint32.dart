@@ -37,6 +37,7 @@ final class SizeInt32 implements WinRTStruct {
   int get hashCode => width.hashCode ^ height.hashCode;
 }
 
+/// @nodoc
 extension PointerNativeSizeInt32Conversion on Pointer<NativeSizeInt32> {
   /// Converts this [NativeSizeInt32] to a Dart [SizeInt32].
   SizeInt32 toDart() => SizeInt32(ref.width, ref.height);

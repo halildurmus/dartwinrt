@@ -6,6 +6,7 @@
 
 import 'dart:ffi';
 
+/// @nodoc
 extension DoubleArrayToListConversion on Pointer<Double> {
   /// Creates a [List] from `Pointer<Double>`.
   ///
@@ -20,6 +21,7 @@ extension DoubleArrayToListConversion on Pointer<Double> {
       [for (var i = 0; i < length; i++) this[i]];
 }
 
+/// @nodoc
 extension FloatArrayToListConversion on Pointer<Float> {
   /// Creates a [List] from `Pointer<Float>`.
   ///

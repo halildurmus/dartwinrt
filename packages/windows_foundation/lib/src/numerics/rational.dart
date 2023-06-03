@@ -40,6 +40,7 @@ final class Rational implements WinRTStruct {
   int get hashCode => numerator.hashCode ^ denominator.hashCode;
 }
 
+/// @nodoc
 extension PointerNativeRationalConversion on Pointer<NativeRational> {
   /// Converts this [NativeRational] to a Dart [Rational].
   Rational toDart() => Rational(ref.numerator, ref.denominator);

@@ -58,6 +58,7 @@ final class Matrix3x2 implements WinRTStruct {
       m32.hashCode;
 }
 
+/// @nodoc
 extension PointerNativeMatrix3x2Conversion on Pointer<NativeMatrix3x2> {
   /// Converts this [NativeMatrix3x2] to a Dart [Matrix3x2].
   Matrix3x2 toDart() =>

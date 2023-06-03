@@ -9,6 +9,7 @@ import 'dart:ffi';
 import '../../point.dart';
 import '../native_structs.g.dart';
 
+/// @nodoc
 extension PointArrayToListConversion on Pointer<NativePoint> {
   /// Creates a [List] from `Pointer<NativePoint>`.
   ///

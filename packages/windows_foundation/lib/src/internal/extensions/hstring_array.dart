@@ -10,6 +10,7 @@ import 'package:win32/win32.dart';
 
 import 'string_conversions.dart';
 
+/// @nodoc
 extension HStringArrayToListConversion on Pointer<HSTRING> {
   /// Creates a [List] from `Pointer<HSTRING>`.
   ///

@@ -8,6 +8,7 @@ import 'dart:ffi';
 
 import 'package:win32/win32.dart';
 
+/// @nodoc
 extension GuidArrayToListConversion on Pointer<GUID> {
   /// Creates a [List] from `Pointer<GUID>`.
   ///

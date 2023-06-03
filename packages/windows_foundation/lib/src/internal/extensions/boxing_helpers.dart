@@ -17,6 +17,7 @@ import '../../winrt_enum.dart';
 import '../../winrt_struct.dart';
 import '../iids.dart';
 
+/// @nodoc
 extension IntoBoxHelper on Object {
   /// Boxes the value so that it can be passed to the WinRT APIs that take
   /// `IPropertyValue` as a parameter.
@@ -68,6 +69,7 @@ extension IntoBoxHelper on Object {
   }
 }
 
+/// @nodoc
 extension BoolHelpers on bool {
   /// Returns the IID of `IReference<bool>`.
   String get referenceIid => IID_IReference_bool;
@@ -85,6 +87,7 @@ extension BoolHelpers on bool {
   }
 }
 
+/// @nodoc
 extension BoolListHelpers on List<bool> {
   /// Returns the IID of `IReferenceArray<bool>`.
   String get referenceArrayIid => IID_IReferenceArray_bool;
@@ -93,6 +96,7 @@ extension BoolListHelpers on List<bool> {
   IPropertyValue toPropertyValue() => PropertyValue.createBooleanArray(this);
 }
 
+/// @nodoc
 extension DoubleHelpers on double {
   /// Returns the IID of `IReference<double>`.
   String referenceIid(DoubleType type) => switch (type) {
@@ -117,6 +121,7 @@ extension DoubleHelpers on double {
   }
 }
 
+/// @nodoc
 extension DoubleListHelpers on List<double> {
   /// Returns the IID of `IReferenceArray<double>`.
   String referenceArrayIid(DoubleType type) => switch (type) {
@@ -131,6 +136,7 @@ extension DoubleListHelpers on List<double> {
       };
 }
 
+/// @nodoc
 extension DateTimeHelpers on DateTime {
   /// Returns the IID of `IReference<DateTime>`.
   String get referenceIid => IID_IReference_DateTime;
@@ -149,6 +155,7 @@ extension DateTimeHelpers on DateTime {
   }
 }
 
+/// @nodoc
 extension DateTimeListHelpers on List<DateTime> {
   /// Returns the IID of `IReferenceArray<DateTime>`.
   String get referenceArrayIid => IID_IReferenceArray_DateTime;
@@ -157,6 +164,7 @@ extension DateTimeListHelpers on List<DateTime> {
   IPropertyValue toPropertyValue() => PropertyValue.createDateTimeArray(this);
 }
 
+/// @nodoc
 extension DurationHelpers on Duration {
   /// Returns the IID of `IReference<Duration>`.
   String get referenceIid => IID_IReference_Duration;
@@ -175,6 +183,7 @@ extension DurationHelpers on Duration {
   }
 }
 
+/// @nodoc
 extension DurationListHelpers on List<Duration> {
   /// Returns the IID of `IReferenceArray<Duration>`.
   String get referenceArrayIid => IID_IReferenceArray_Duration;
@@ -183,6 +192,7 @@ extension DurationListHelpers on List<Duration> {
   IPropertyValue toPropertyValue() => PropertyValue.createTimeSpanArray(this);
 }
 
+/// @nodoc
 extension GuidHelpers on Guid {
   /// Returns the IID of `IReference<Guid>`.
   String get referenceIid => IID_IReference_Guid;
@@ -200,6 +210,7 @@ extension GuidHelpers on Guid {
   }
 }
 
+/// @nodoc
 extension GuidListHelpers on List<Guid> {
   /// Returns the IID of `IReferenceArray<Guid>`.
   String get referenceArrayIid => IID_IReferenceArray_Guid;
@@ -208,6 +219,7 @@ extension GuidListHelpers on List<Guid> {
   IPropertyValue toPropertyValue() => PropertyValue.createGuidArray(this);
 }
 
+/// @nodoc
 extension InspectableListHelpers<T extends IInspectable> on List<T> {
   /// Returns the IID of `IReferenceArray<Object>`.
   String get referenceArrayIid => IID_IReferenceArray_Object;
@@ -217,6 +229,7 @@ extension InspectableListHelpers<T extends IInspectable> on List<T> {
       PropertyValue.createInspectableArray(this);
 }
 
+/// @nodoc
 extension IntHelpers on int {
   /// Returns the IID of `IReference<int>`.
   String referenceIid(IntType type) => switch (type) {
@@ -250,6 +263,7 @@ extension IntHelpers on int {
   }
 }
 
+/// @nodoc
 extension IntListHelpers on List<int> {
   /// Returns the IID of `IReferenceArray<int>`.
   String referenceArrayIid(IntType type) => switch (type) {
@@ -274,6 +288,7 @@ extension IntListHelpers on List<int> {
       };
 }
 
+/// @nodoc
 extension PointHelpers on Point {
   /// Returns the IID of `IReference<Point>`.
   String get referenceIid => IID_IReference_Point;
@@ -291,6 +306,7 @@ extension PointHelpers on Point {
   }
 }
 
+/// @nodoc
 extension PointListHelpers on List<Point> {
   /// Returns the IID of `IReferenceArray<Point>`.
   String get referenceArrayIid => IID_IReferenceArray_Point;
@@ -299,6 +315,7 @@ extension PointListHelpers on List<Point> {
   IPropertyValue toPropertyValue() => PropertyValue.createPointArray(this);
 }
 
+/// @nodoc
 extension RectHelpers on Rect {
   /// Returns the IID of `IReference<Rect>`.
   String get referenceIid => IID_IReference_Rect;
@@ -316,6 +333,7 @@ extension RectHelpers on Rect {
   }
 }
 
+/// @nodoc
 extension RectListHelpers on List<Rect> {
   /// Returns the IID of `IReferenceArray<Rect>`.
   String get referenceArrayIid => IID_IReferenceArray_Rect;
@@ -324,6 +342,7 @@ extension RectListHelpers on List<Rect> {
   IPropertyValue toPropertyValue() => PropertyValue.createRectArray(this);
 }
 
+/// @nodoc
 extension SizeHelpers on Size {
   /// Returns the IID of `IReference<Size>`.
   String get referenceIid => IID_IReference_Size;
@@ -341,6 +360,7 @@ extension SizeHelpers on Size {
   }
 }
 
+/// @nodoc
 extension SizeListHelpers on List<Size> {
   /// Returns the IID of `IReferenceArray<Size>`.
   String get referenceArrayIid => IID_IReferenceArray_Size;
@@ -349,6 +369,7 @@ extension SizeListHelpers on List<Size> {
   IPropertyValue toPropertyValue() => PropertyValue.createSizeArray(this);
 }
 
+/// @nodoc
 extension StringHelpers on String {
   /// Returns the IID of `IReference<String>`.
   String get referenceIid => IID_IReference_String;
@@ -367,6 +388,7 @@ extension StringHelpers on String {
   }
 }
 
+/// @nodoc
 extension StringListHelpers on List<String> {
   /// Returns the IID of `IReferenceArray<String>`.
   String get referenceArrayIid => IID_IReferenceArray_String;
@@ -375,12 +397,14 @@ extension StringListHelpers on List<String> {
   IPropertyValue toPropertyValue() => PropertyValue.createStringArray(this);
 }
 
+/// @nodoc
 extension WinRTEnumHelper on WinRTEnum {
   // TODO: Boxing enums are not supported yet.
   IReference<dynamic> toReference() =>
       throw UnsupportedError('Cannot box value of type $runtimeType');
 }
 
+/// @nodoc
 extension WinRTStructHelper on WinRTStruct {
   // TODO: Boxing structs are not supported yet (except for Guid, Point, Rect,
   // and Size).

@@ -2,8 +2,6 @@
 // All rights reserved. Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-// Extension method to convert COMObject arrays to List<T>
-
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
@@ -14,6 +12,7 @@ import '../../uri.dart' as winrt_uri;
 import 'ipropertyvalue_helpers.dart';
 import 'uri_conversions.dart';
 
+/// @nodoc
 extension COMObjectArrayHelpers on Pointer<COMObject> {
   /// Creates a `List<Uri>` from `Pointer<COMObject>`.
   ///

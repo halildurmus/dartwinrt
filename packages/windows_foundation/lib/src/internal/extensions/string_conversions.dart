@@ -4,11 +4,13 @@
 
 import 'package:win32/win32.dart';
 
+/// @nodoc
 extension IntToDartStringConversion on int {
   /// Gets the Dart String at this handle.
   String toDartString() => convertFromHString(this);
 }
 
+/// @nodoc
 extension DartStringToHStringConversion on String {
   /// Converts this String into an `HSTRING` (a WinRT String), returning an
   /// integer handle.

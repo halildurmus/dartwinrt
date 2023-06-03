@@ -47,6 +47,7 @@ final class Rect implements WinRTStruct {
       x.hashCode ^ y.hashCode ^ width.hashCode ^ height.hashCode;
 }
 
+/// @nodoc
 extension PointerNativeRectConversion on Pointer<NativeRect> {
   /// Converts this [NativeRect] to a Dart [Rect].
   Rect toDart() => Rect(ref.x, ref.y, ref.width, ref.height);

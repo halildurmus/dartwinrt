@@ -40,6 +40,7 @@ final class Vector3 implements WinRTStruct {
   int get hashCode => x.hashCode ^ y.hashCode ^ z.hashCode;
 }
 
+/// @nodoc
 extension PointerNativeVector3Conversion on Pointer<NativeVector3> {
   /// Converts this [NativeVector3] to a Dart [Vector3].
   Vector3 toDart() => Vector3(ref.x, ref.y, ref.z);

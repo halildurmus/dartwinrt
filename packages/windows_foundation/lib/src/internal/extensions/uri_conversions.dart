@@ -8,16 +8,19 @@ import 'package:win32/win32.dart';
 
 import '../../uri.dart' as winrt_uri;
 
+/// @nodoc
 extension COMObjectPointerToWinRTUriConversion on Pointer<COMObject> {
   /// Creates a WinRT Uri from this Pointer.
   winrt_uri.Uri toWinRTUri() => winrt_uri.Uri.fromPtr(this);
 }
 
+/// @nodoc
 extension DartUriToWinRTUriConversion on Uri {
   /// Converts this Uri into a WinRT Uri.
   winrt_uri.Uri toWinRTUri() => winrt_uri.Uri.createUri(toString());
 }
 
+/// @nodoc
 extension WinRTUriToDartUriConversion on winrt_uri.Uri {
   /// Converts this WinRT Uri into a Dart Uri.
   Uri toDartUri() => Uri.parse(toString());

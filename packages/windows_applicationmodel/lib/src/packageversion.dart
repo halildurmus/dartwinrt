@@ -46,6 +46,7 @@ final class PackageVersion implements WinRTStruct {
       major.hashCode ^ minor.hashCode ^ build.hashCode ^ revision.hashCode;
 }
 
+/// @nodoc
 extension PointerNativePackageVersionConversion
     on Pointer<NativePackageVersion> {
   /// Converts this [NativePackageVersion] to a Dart [PackageVersion].

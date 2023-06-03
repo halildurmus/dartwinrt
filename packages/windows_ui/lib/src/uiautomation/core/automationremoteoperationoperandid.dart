@@ -37,6 +37,7 @@ final class AutomationRemoteOperationOperandId implements WinRTStruct {
   int get hashCode => value.hashCode;
 }
 
+/// @nodoc
 extension PointerNativeAutomationRemoteOperationOperandIdConversion
     on Pointer<NativeAutomationRemoteOperationOperandId> {
   /// Converts this [NativeAutomationRemoteOperationOperandId] to a Dart
