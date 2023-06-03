@@ -50,6 +50,7 @@ final class GamepadVibration implements WinRTStruct {
       rightTrigger.hashCode;
 }
 
+/// @nodoc
 extension PointerNativeGamepadVibrationConversion
     on Pointer<NativeGamepadVibration> {
   /// Converts this [NativeGamepadVibration] to a Dart [GamepadVibration].

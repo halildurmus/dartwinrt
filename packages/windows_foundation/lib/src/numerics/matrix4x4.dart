@@ -114,6 +114,7 @@ final class Matrix4x4 implements WinRTStruct {
       m44.hashCode;
 }
 
+/// @nodoc
 extension PointerNativeMatrix4x4Conversion on Pointer<NativeMatrix4x4> {
   /// Converts this [NativeMatrix4x4] to a Dart [Matrix4x4].
   Matrix4x4 toDart() => Matrix4x4(

@@ -6,6 +6,7 @@
 
 import 'dart:ffi';
 
+/// @nodoc
 extension BoolArrayToListConversion on Pointer<Bool> {
   /// Creates a [List] from `Pointer<Bool>`.
   ///

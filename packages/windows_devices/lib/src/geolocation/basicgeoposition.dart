@@ -43,6 +43,7 @@ final class BasicGeoposition implements WinRTStruct {
       latitude.hashCode ^ longitude.hashCode ^ altitude.hashCode;
 }
 
+/// @nodoc
 extension PointerNativeBasicGeopositionConversion
     on Pointer<NativeBasicGeoposition> {
   /// Converts this [NativeBasicGeoposition] to a Dart [BasicGeoposition].

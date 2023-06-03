@@ -45,6 +45,7 @@ final class Color implements WinRTStruct {
   int get hashCode => a.hashCode ^ r.hashCode ^ g.hashCode ^ b.hashCode;
 }
 
+/// @nodoc
 extension PointerNativeColorConversion on Pointer<NativeColor> {
   /// Converts this [NativeColor] to a Dart [Color].
   Color toDart() => Color(ref.a, ref.r, ref.g, ref.b);

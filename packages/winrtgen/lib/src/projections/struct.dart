@@ -70,6 +70,7 @@ final class NativeStructProjection {
   }
 
   String get classHeader => [
+        '/// @nodoc',
         if (isDeprecated) typeDef.deprecatedAnnotation,
         'final class $structName extends Struct'
       ].join('\n');
@@ -191,6 +192,7 @@ final class StructProjection extends NativeStructProjection {
     final comment = wrapCommentText(
         'Converts this [Native$structName] to a Dart [$structName].');
     return '''
+/// @nodoc
 extension PointerNative${structName}Conversion on Pointer<Native$structName> {
   $comment
   $structName toDart() => $structName(${fieldProjections.map((f) => 'ref.${f.fieldName}').join(', ')});

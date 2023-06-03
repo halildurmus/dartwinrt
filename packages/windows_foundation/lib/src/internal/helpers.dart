@@ -13,6 +13,7 @@ import '../winrt_struct.dart';
 /// isSameType<bool?, bool?>(); // true
 /// isSameType<String, String?>(); // false
 /// ```
+/// @nodoc
 bool isSameType<S, T>() {
   void func<X extends S>() {}
   return func is void Function<X extends T>();
@@ -24,6 +25,7 @@ bool isSameType<S, T>() {
 /// isNullableObjectType<Object?>(); // true
 /// isNullableObjectType<Object>(); // false
 /// ```
+/// @nodoc
 bool isNullableObjectType<T>() => isSameType<T, Object?>();
 
 /// Determines whether [S] is a subtype of [T] or [T?].
@@ -32,6 +34,7 @@ bool isNullableObjectType<T>() => isSameType<T, Object?>();
 /// isSubtype<Calendar, IInspectable>(); // true
 /// isSubtype<IUnknown, IInspectable>(); // false
 /// ```
+/// @nodoc
 bool isSubtype<S, T>() => <S>[] is List<T> || <S>[] is List<T?>;
 
 /// Determines whether [T] is a subtype of [IInspectable].
@@ -40,6 +43,7 @@ bool isSubtype<S, T>() => <S>[] is List<T> || <S>[] is List<T?>;
 /// isSubtypeOfInspectable<StorageFile>(); // true
 /// isSubtypeOfInspectable<IUnknown>(); // false
 /// ```
+/// @nodoc
 bool isSubtypeOfInspectable<T>() => isSubtype<T, IInspectable>();
 
 /// Determines whether [T] is a subtype of [WinRTEnum].
@@ -48,6 +52,7 @@ bool isSubtypeOfInspectable<T>() => isSubtype<T, IInspectable>();
 /// isSubtypeOfWinRTEnum<AsyncStatus>(); // true
 /// isSubtypeOfWinRTEnum<FileAttributes>(); // true
 /// ```
+/// @nodoc
 bool isSubtypeOfWinRTEnum<T>() => isSubtype<T, WinRTEnum>();
 
 /// Determines whether [T] is a subtype of [WinRTFlagsEnum].
@@ -56,6 +61,7 @@ bool isSubtypeOfWinRTEnum<T>() => isSubtype<T, WinRTEnum>();
 /// isSubtypeOfWinRTFlagsEnum<FileAttributes>(); // true
 /// isSubtypeOfWinRTFlagsEnum<AsyncStatus>(); // false
 /// ```
+/// @nodoc
 bool isSubtypeOfWinRTFlagsEnum<T>() => isSubtype<T, WinRTFlagsEnum<dynamic>>();
 
 /// Determines whether [T] is a subtype of [WinRTStruct].
@@ -64,4 +70,5 @@ bool isSubtypeOfWinRTFlagsEnum<T>() => isSubtype<T, WinRTFlagsEnum<dynamic>>();
 /// isSubtypeOfWinRTStruct<Point>(); // true
 /// isSubtypeOfWinRTStruct<Rect>(); // true
 /// ```
+/// @nodoc
 bool isSubtypeOfWinRTStruct<T>() => isSubtype<T, WinRTStruct>();

@@ -73,6 +73,7 @@ final class GamepadReading implements WinRTStruct {
       rightThumbstickY.hashCode;
 }
 
+/// @nodoc
 extension PointerNativeGamepadReadingConversion
     on Pointer<NativeGamepadReading> {
   /// Converts this [NativeGamepadReading] to a Dart [GamepadReading].

@@ -40,6 +40,7 @@ final class NetworkUsageStates implements WinRTStruct {
   int get hashCode => roaming.hashCode ^ shared.hashCode;
 }
 
+/// @nodoc
 extension PointerNativeNetworkUsageStatesConversion
     on Pointer<NativeNetworkUsageStates> {
   /// Converts this [NativeNetworkUsageStates] to a Dart [NetworkUsageStates].

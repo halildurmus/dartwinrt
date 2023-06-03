@@ -9,6 +9,7 @@ import 'dart:ffi';
 import '../../size.dart';
 import '../native_structs.g.dart';
 
+/// @nodoc
 extension SizeArrayToListConversion on Pointer<NativeSize> {
   /// Creates a [List] from `Pointer<NativeSize>`.
   ///

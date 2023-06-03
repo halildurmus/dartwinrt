@@ -40,6 +40,7 @@ final class DisplayAdapterId implements WinRTStruct {
   int get hashCode => lowPart.hashCode ^ highPart.hashCode;
 }
 
+/// @nodoc
 extension PointerNativeDisplayAdapterIdConversion
     on Pointer<NativeDisplayAdapterId> {
   /// Converts this [NativeDisplayAdapterId] to a Dart [DisplayAdapterId].

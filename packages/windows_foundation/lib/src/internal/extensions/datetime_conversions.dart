@@ -4,18 +4,21 @@
 
 import 'dart:ffi';
 
+/// @nodoc
 extension Int64PointerToDartDateTimeConversion on Pointer<Int64> {
   /// Converts the 64-bit signed integer value pointed to by this Pointer into a
   /// [DateTime].
   DateTime toDartDateTime() => value.toDartDateTime();
 }
 
+/// @nodoc
 extension IntToDartDateTimeConversion on int {
   /// Converts this integer into a [DateTime].
   DateTime toDartDateTime() =>
       DateTime.utc(1601, 01, 01).add(Duration(microseconds: this ~/ 10));
 }
 
+/// @nodoc
 extension DartDateTimeToWinRTDateTimeConversion on DateTime {
   /// Converts this [DateTime] into a 64-bit signed integer.
   ///

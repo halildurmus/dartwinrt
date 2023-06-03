@@ -37,6 +37,7 @@ final class AutomationAnnotationTypeRegistration implements WinRTStruct {
   int get hashCode => localId.hashCode;
 }
 
+/// @nodoc
 extension PointerNativeAutomationAnnotationTypeRegistrationConversion
     on Pointer<NativeAutomationAnnotationTypeRegistration> {
   /// Converts this [NativeAutomationAnnotationTypeRegistration] to a Dart

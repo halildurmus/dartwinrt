@@ -40,6 +40,7 @@ final class SortEntry implements WinRTStruct {
   int get hashCode => propertyName.hashCode ^ ascendingOrder.hashCode;
 }
 
+/// @nodoc
 extension PointerNativeSortEntryConversion on Pointer<NativeSortEntry> {
   /// Converts this [NativeSortEntry] to a Dart [SortEntry].
   SortEntry toDart() => SortEntry(ref.propertyName, ref.ascendingOrder);

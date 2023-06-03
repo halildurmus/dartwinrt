@@ -38,6 +38,7 @@ final class Plane implements WinRTStruct {
   int get hashCode => normal.hashCode ^ d.hashCode;
 }
 
+/// @nodoc
 extension PointerNativePlaneConversion on Pointer<NativePlane> {
   /// Converts this [NativePlane] to a Dart [Plane].
   Plane toDart() => Plane(ref.normal, ref.d);

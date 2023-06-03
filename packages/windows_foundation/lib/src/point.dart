@@ -39,6 +39,7 @@ final class Point implements WinRTStruct {
   int get hashCode => x.hashCode ^ y.hashCode;
 }
 
+/// @nodoc
 extension PointerNativePointConversion on Pointer<NativePoint> {
   /// Converts this [NativePoint] to a Dart [Point].
   Point toDart() => Point(ref.x, ref.y);

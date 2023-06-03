@@ -47,6 +47,7 @@ final class Quaternion implements WinRTStruct {
   int get hashCode => x.hashCode ^ y.hashCode ^ z.hashCode ^ w.hashCode;
 }
 
+/// @nodoc
 extension PointerNativeQuaternionConversion on Pointer<NativeQuaternion> {
   /// Converts this [NativeQuaternion] to a Dart [Quaternion].
   Quaternion toDart() => Quaternion(ref.x, ref.y, ref.z, ref.w);

@@ -42,6 +42,7 @@ final class TextSegment implements WinRTStruct {
   int get hashCode => startPosition.hashCode ^ length.hashCode;
 }
 
+/// @nodoc
 extension PointerNativeTextSegmentConversion on Pointer<NativeTextSegment> {
   /// Converts this [NativeTextSegment] to a Dart [TextSegment].
   TextSegment toDart() => TextSegment(ref.startPosition, ref.length);
