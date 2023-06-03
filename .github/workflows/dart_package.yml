@@ -73,7 +73,7 @@ jobs:
         run: dart doc --validate-links
 
   pana:
-    if: ${{ inputs.verify_pana_score }}
+    if: ${{ inputs.verify_pana_score && inputs.runs_on == 'ubuntu-latest' }}
     defaults:
       run:
         working-directory: ${{inputs.working_directory}}
