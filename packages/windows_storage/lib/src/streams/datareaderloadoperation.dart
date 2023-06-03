@@ -16,8 +16,6 @@ import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Loads data from an input stream.
-///
-/// {@category class}
 class DataReaderLoadOperation extends IInspectable
     implements IAsyncOperation<int>, IAsyncInfo {
   DataReaderLoadOperation.fromPtr(super.ptr);

@@ -11,8 +11,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// Defines values used by the
 /// NetworkOperatorTetheringManager.TetheringOperationalState property to
 /// indicate the operational state of a device's tethering capabilities.
-///
-/// {@category enum}
 enum TetheringOperationalState implements WinRTEnum {
   unknown(0),
   on(1),

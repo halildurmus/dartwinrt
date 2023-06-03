@@ -16,8 +16,6 @@ import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Commits data in a buffer to a backing store.
-///
-/// {@category class}
 class DataWriterStoreOperation extends IInspectable
     implements IAsyncOperation<int>, IAsyncInfo {
   DataWriterStoreOperation.fromPtr(super.ptr);

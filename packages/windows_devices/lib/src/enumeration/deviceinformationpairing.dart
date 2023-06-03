@@ -27,8 +27,6 @@ import 'ideviceinformationpairingstatics2.dart';
 import 'idevicepairingsettings.dart';
 
 /// Contains information and enables pairing for a device.
-///
-/// {@category class}
 class DeviceInformationPairing extends IInspectable
     implements IDeviceInformationPairing, IDeviceInformationPairing2 {
   DeviceInformationPairing.fromPtr(super.ptr);

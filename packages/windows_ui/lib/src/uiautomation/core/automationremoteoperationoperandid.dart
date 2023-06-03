@@ -12,8 +12,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 /// Represents an identifier that refers to an operand register of a
 /// CoreAutomationRemoteOperation.
-///
-/// {@category struct}
 final class AutomationRemoteOperationOperandId implements WinRTStruct {
   AutomationRemoteOperationOperandId(this.value);
 

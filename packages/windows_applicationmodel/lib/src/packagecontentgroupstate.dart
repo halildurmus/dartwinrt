@@ -9,8 +9,6 @@
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Describes the staging state of the package content group.
-///
-/// {@category enum}
 enum PackageContentGroupState implements WinRTEnum {
   notStaged(0),
   queued(1),

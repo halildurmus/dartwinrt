@@ -20,8 +20,6 @@ const IID_IDevicePairingSettings = '{482cb27c-83bb-420e-be51-6602b222de54}';
 
 /// Identifies a collection of settings for device pairing.
 /// WiFiDirectConnectionParameters implements IDevicePairingSettings.
-///
-/// {@category interface}
 class IDevicePairingSettings extends IInspectable {
   // vtable begins at 6, is 0 entries long.
   IDevicePairingSettings.fromPtr(super.ptr);

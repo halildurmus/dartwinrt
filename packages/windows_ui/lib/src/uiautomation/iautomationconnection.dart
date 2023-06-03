@@ -18,7 +18,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// @nodoc
 const IID_IAutomationConnection = '{aad262ed-0ef4-5d43-97be-a834e27b65b9}';
 
-/// {@category interface}
 class IAutomationConnection extends IInspectable {
   // vtable begins at 6, is 3 entries long.
   IAutomationConnection.fromPtr(super.ptr);

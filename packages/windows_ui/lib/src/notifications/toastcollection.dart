@@ -19,8 +19,6 @@ import 'itoastcollection.dart';
 import 'itoastcollectionfactory.dart';
 
 /// Represents a group of notifications for a particular app.
-///
-/// {@category class}
 class ToastCollection extends IInspectable implements IToastCollection {
   ToastCollection.fromPtr(super.ptr);
 

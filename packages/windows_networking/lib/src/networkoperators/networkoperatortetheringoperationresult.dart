@@ -22,8 +22,6 @@ import 'tetheringoperationstatus.dart';
 /// operation. In addition to the TetheringOperationStatus value, it can
 /// include an optional error message string that provides mobile operator
 /// specific context to the error.
-///
-/// {@category class}
 class NetworkOperatorTetheringOperationResult extends IInspectable
     implements INetworkOperatorTetheringOperationResult {
   NetworkOperatorTetheringOperationResult.fromPtr(super.ptr);

@@ -21,7 +21,6 @@ import 'devicepairingkinds.dart';
 const IID_IDeviceInformationPairingStatics =
     '{e915c408-36d4-49a1-bf13-514173799b6b}';
 
-/// {@category interface}
 class IDeviceInformationPairingStatics extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IDeviceInformationPairingStatics.fromPtr(super.ptr);

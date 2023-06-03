@@ -21,8 +21,6 @@ import 'icharactergroupingsfactory.dart';
 
 /// Contains the set of character groups and the functionality to get the
 /// label for any given string.
-///
-/// {@category class}
 class CharacterGroupings extends IInspectable
     implements
         ICharacterGroupings,

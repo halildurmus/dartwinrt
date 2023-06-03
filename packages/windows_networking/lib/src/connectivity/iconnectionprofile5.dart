@@ -20,7 +20,6 @@ import 'connectionprofiledeletestatus.dart';
 /// @nodoc
 const IID_IConnectionProfile5 = '{85361ec7-9c73-4be0-8f14-578eec71ee0e}';
 
-/// {@category interface}
 class IConnectionProfile5 extends IInspectable {
   // vtable begins at 6, is 2 entries long.
   IConnectionProfile5.fromPtr(super.ptr);

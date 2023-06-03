@@ -9,8 +9,6 @@
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Indicates whether the thumbnail is an icon or an image.
-///
-/// {@category enum}
 enum ThumbnailType implements WinRTEnum {
   image(0),
   icon(1);

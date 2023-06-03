@@ -21,8 +21,6 @@ import 'storagelibrarychange.dart';
 
 /// Enables the calling app to read through the changes to items in a
 /// storage library.
-///
-/// {@category class}
 class StorageLibraryChangeReader extends IInspectable
     implements IStorageLibraryChangeReader, IStorageLibraryChangeReader2 {
   StorageLibraryChangeReader.fromPtr(super.ptr);

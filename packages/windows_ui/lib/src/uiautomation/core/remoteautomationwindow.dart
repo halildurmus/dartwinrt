@@ -19,8 +19,6 @@ import 'iremoteautomationwindow.dart';
 
 /// Represents a window for a remote application (one that isnât running
 /// on the local machine).
-///
-/// {@category class}
 class RemoteAutomationWindow extends IInspectable
     implements IRemoteAutomationWindow {
   RemoteAutomationWindow.fromPtr(super.ptr);

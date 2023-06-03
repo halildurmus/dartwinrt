@@ -9,8 +9,6 @@
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Defines the set of user interface element types.
-///
-/// {@category enum}
 enum UIElementType implements WinRTEnum {
   activeCaption(0),
   background(1),

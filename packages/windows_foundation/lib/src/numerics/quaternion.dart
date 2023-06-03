@@ -13,8 +13,6 @@ import '../winrt_struct.dart';
 
 /// Describes a quaternion, which is an abstract representation of an
 /// orientation in space that is based on complex numbers.
-///
-/// {@category struct}
 final class Quaternion implements WinRTStruct {
   Quaternion(this.x, this.y, this.z, this.w);
 

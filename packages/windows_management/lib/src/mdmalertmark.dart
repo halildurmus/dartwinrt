@@ -9,8 +9,6 @@
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Values indicating priority or criticality of the MDM alert.
-///
-/// {@category enum}
 enum MdmAlertMark implements WinRTEnum {
   none(0),
   fatal(1),

@@ -19,8 +19,6 @@ import 'inetworkusage.dart';
 
 /// Represents network usage statistics returned by the
 /// ConnectionProfile.GetNetworkUsageAsync method.
-///
-/// {@category class}
 class NetworkUsage extends IInspectable implements INetworkUsage {
   NetworkUsage.fromPtr(super.ptr);
 

@@ -20,8 +20,6 @@ import 'inetworkadapter.dart';
 import 'networkitem.dart';
 
 /// Represents a network adapter.
-///
-/// {@category class}
 class NetworkAdapter extends IInspectable implements INetworkAdapter {
   NetworkAdapter.fromPtr(super.ptr);
 

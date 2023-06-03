@@ -19,8 +19,6 @@ import 'iprovidernetworkusage.dart';
 
 /// Represents provider network usage statistics returned by the
 /// ConnectionProfile.GetProviderNetworkUsageAsync method.
-///
-/// {@category class}
 class ProviderNetworkUsage extends IInspectable
     implements IProviderNetworkUsage {
   ProviderNetworkUsage.fromPtr(super.ptr);

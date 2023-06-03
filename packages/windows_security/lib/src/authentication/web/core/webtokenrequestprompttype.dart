@@ -9,8 +9,6 @@
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Represents the prompt type of a web token request.
-///
-/// {@category enum}
 enum WebTokenRequestPromptType implements WinRTEnum {
   default_(0),
   forceAuthentication(1);

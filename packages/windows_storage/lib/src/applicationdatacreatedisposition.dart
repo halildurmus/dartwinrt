@@ -11,8 +11,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// Specifies options for creating application data containers or returning
 /// existing containers. This enumeration is used by the
 /// ApplicationDataContainer.CreateContainer method.
-///
-/// {@category enum}
 enum ApplicationDataCreateDisposition implements WinRTEnum {
   always(0),
   existing(1);

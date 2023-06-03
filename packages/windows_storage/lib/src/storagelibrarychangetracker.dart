@@ -22,8 +22,6 @@ import 'storagelibrarychangetrackeroptions.dart';
 
 /// Provides APIs that you can use to manage change tracking for any library
 /// (such as documents, music, or videos) or folder.
-///
-/// {@category class}
 class StorageLibraryChangeTracker extends IInspectable
     implements IStorageLibraryChangeTracker, IStorageLibraryChangeTracker2 {
   StorageLibraryChangeTracker.fromPtr(super.ptr);

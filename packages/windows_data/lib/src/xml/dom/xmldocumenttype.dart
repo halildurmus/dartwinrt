@@ -25,8 +25,6 @@ import 'xmlnamednodemap.dart';
 import 'xmlnodelist.dart';
 
 /// Contains information associated with the document type.
-///
-/// {@category class}
 class XmlDocumentType extends IInspectable
     implements
         IXmlDocumentType,

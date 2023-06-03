@@ -23,8 +23,6 @@ import 'tetheringwifiband.dart';
 /// specific tethering network SSID, and specifies the passphrase used to
 /// authenticate clients trying to establish a network connection to the
 /// tethering network.
-///
-/// {@category class}
 class NetworkOperatorTetheringAccessPointConfiguration extends IInspectable
     implements
         INetworkOperatorTetheringAccessPointConfiguration,

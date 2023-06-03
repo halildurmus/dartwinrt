@@ -17,8 +17,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 import 'package:windows_storage/windows_storage.dart';
 
 /// Represents the thumbnail image for a device.
-///
-/// {@category class}
 class DeviceThumbnail extends IInspectable
     implements
         IRandomAccessStreamWithContentType,

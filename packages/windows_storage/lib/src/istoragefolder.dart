@@ -28,7 +28,6 @@ import 'storageitemtypes.dart';
 /// @nodoc
 const IID_IStorageFolder = '{72d1cb78-b3ef-4f75-a80b-6fd9dae2944b}';
 
-/// {@category interface}
 class IStorageFolder extends IInspectable implements IStorageItem {
   // vtable begins at 6, is 10 entries long.
   IStorageFolder.fromPtr(super.ptr);

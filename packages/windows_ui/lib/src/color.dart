@@ -11,8 +11,6 @@ import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Describes a color in terms of alpha, red, green, and blue channels.
-///
-/// {@category struct}
 final class Color implements WinRTStruct {
   Color(this.a, this.r, this.g, this.b);
 

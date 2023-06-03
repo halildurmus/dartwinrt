@@ -10,8 +10,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 /// Indicates the unit of time used to group files into folders if a
 /// CommonFolderQuery based on date is used to create a QueryOptions object.
-///
-/// {@category enum}
 enum DateStackOption implements WinRTEnum {
   none(0),
   year(1),

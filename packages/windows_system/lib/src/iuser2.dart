@@ -21,7 +21,6 @@ import 'userageconsentresult.dart';
 /// @nodoc
 const IID_IUser2 = '{98ba5628-a6e3-518e-89d9-d3b2b1991a10}';
 
-/// {@category interface}
 class IUser2 extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IUser2.fromPtr(super.ptr);

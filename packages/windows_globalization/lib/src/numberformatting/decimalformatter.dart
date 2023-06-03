@@ -25,8 +25,6 @@ import 'isignedzerooption.dart';
 import 'isignificantdigitsoption.dart';
 
 /// Formats and parses decimal numbers.
-///
-/// {@category class}
 class DecimalFormatter extends IInspectable
     implements
         INumberFormatterOptions,

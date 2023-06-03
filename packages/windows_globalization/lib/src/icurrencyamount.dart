@@ -18,7 +18,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// @nodoc
 const IID_ICurrencyAmount = '{74b49942-eb75-443a-95b3-7d723f56f93c}';
 
-/// {@category interface}
 class ICurrencyAmount extends IInspectable {
   // vtable begins at 6, is 2 entries long.
   ICurrencyAmount.fromPtr(super.ptr);

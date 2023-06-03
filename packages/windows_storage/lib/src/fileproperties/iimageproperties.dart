@@ -21,7 +21,6 @@ import 'photoorientation.dart';
 /// @nodoc
 const IID_IImageProperties = '{523c9424-fcff-4275-afee-ecdb9ab47973}';
 
-/// {@category interface}
 class IImageProperties extends IInspectable
     implements IStorageItemExtraProperties {
   // vtable begins at 6, is 17 entries long.

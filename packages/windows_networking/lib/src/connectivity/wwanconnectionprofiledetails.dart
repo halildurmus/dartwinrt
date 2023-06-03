@@ -22,8 +22,6 @@ import 'wwannetworkipkind.dart';
 import 'wwannetworkregistrationstate.dart';
 
 /// Used to access information specific to a WWAN connection.
-///
-/// {@category class}
 class WwanConnectionProfileDetails extends IInspectable
     implements IWwanConnectionProfileDetails, IWwanConnectionProfileDetails2 {
   WwanConnectionProfileDetails.fromPtr(super.ptr);

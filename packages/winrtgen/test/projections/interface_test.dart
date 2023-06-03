@@ -36,9 +36,8 @@ void main() {
     });
 
     test('has correct dartdoc category comment', () {
-      expect(calendarProjection.category, equals('interface'));
-      expect(calendarProjection.classPreamble,
-          equals('/// {@category interface}'));
+      expect(calendarProjection.category, isEmpty);
+      expect(calendarProjection.classPreamble, isEmpty);
     });
 
     test('has correct short name', () {

@@ -18,8 +18,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 import 'deviceinformation.dart';
 
 /// Represents a collection of DeviceInformation objects.
-///
-/// {@category class}
 class DeviceInformationCollection extends IInspectable
     implements IVectorView<DeviceInformation>, IIterable<DeviceInformation> {
   DeviceInformationCollection.fromPtr(super.ptr);

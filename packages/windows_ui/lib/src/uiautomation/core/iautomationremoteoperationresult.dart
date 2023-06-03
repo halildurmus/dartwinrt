@@ -22,7 +22,6 @@ import 'automationremoteoperationstatus.dart';
 const IID_IAutomationRemoteOperationResult =
     '{e0f80c42-4a67-5534-bf5a-09e8a99b36b1}';
 
-/// {@category interface}
 class IAutomationRemoteOperationResult extends IInspectable {
   // vtable begins at 6, is 5 entries long.
   IAutomationRemoteOperationResult.fromPtr(super.ptr);

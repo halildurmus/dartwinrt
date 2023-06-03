@@ -27,8 +27,6 @@ import 'pickerviewmode.dart';
 /// desktop app, before using an instance of this class in a way that
 /// displays UI, you'll need to associate the object with its owner's window
 /// handle.
-///
-/// {@category class}
 class FileOpenPicker extends IInspectable
     implements IFileOpenPicker, IFileOpenPicker3 {
   FileOpenPicker() : super(activateClass(_className));

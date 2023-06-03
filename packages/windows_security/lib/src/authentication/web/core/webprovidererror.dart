@@ -19,8 +19,6 @@ import 'iwebprovidererror.dart';
 import 'iwebprovidererrorfactory.dart';
 
 /// Represents an error from a web account provider.
-///
-/// {@category class}
 class WebProviderError extends IInspectable implements IWebProviderError {
   WebProviderError.fromPtr(super.ptr);
 

@@ -20,7 +20,6 @@ import 'networkadapter.dart';
 /// @nodoc
 const IID_IIPInformation = '{d85145e0-138f-47d7-9b3a-36bb488cef33}';
 
-/// {@category interface}
 class IIPInformation extends IInspectable {
   // vtable begins at 6, is 2 entries long.
   IIPInformation.fromPtr(super.ptr);

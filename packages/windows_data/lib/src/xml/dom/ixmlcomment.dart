@@ -27,7 +27,6 @@ import 'xmlnodelist.dart';
 /// @nodoc
 const IID_IXmlComment = '{bca474d5-b61f-4611-9cac-2e92e3476d47}';
 
-/// {@category interface}
 class IXmlComment extends IInspectable
     implements
         IXmlCharacterData,

@@ -93,16 +93,15 @@ final class EnumProjection {
       sortImports(imports.map((import) => "import ${quote(import)};").toList())
           .join('\n');
 
-  String get category => 'enum';
+  String get category => '';
 
   String get classPreamble {
-    final enumCategoryComment = '/// {@category $category}';
-    final classComment = wrapCommentText(comment);
-    final docComment = classComment.isEmpty
-        ? enumCategoryComment
-        : '$classComment\n///\n$enumCategoryComment';
-
-    return docComment;
+    final wrappedComment = wrapCommentText(comment);
+    return [
+      if (wrappedComment.isNotEmpty) wrappedComment,
+      if (wrappedComment.isNotEmpty && category.isNotEmpty) '///',
+      if (category.isNotEmpty) '/// {@category $category}',
+    ].join('\n');
   }
 
   String get classHeader => [

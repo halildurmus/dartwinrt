@@ -20,7 +20,6 @@ import 'networkcosttype.dart';
 /// @nodoc
 const IID_IConnectionCost = '{bad7d829-3416-4b10-a202-bac0b075bdae}';
 
-/// {@category interface}
 class IConnectionCost extends IInspectable {
   // vtable begins at 6, is 4 entries long.
   IConnectionCost.fromPtr(super.ptr);

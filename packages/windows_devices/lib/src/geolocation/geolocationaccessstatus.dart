@@ -9,8 +9,6 @@
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Indicates if your app has permission to access location data.
-///
-/// {@category enum}
 enum GeolocationAccessStatus implements WinRTEnum {
   unspecified(0),
   allowed(1),

@@ -18,7 +18,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// @nodoc
 const IID_IClockIdentifiersStatics = '{523805bb-12ec-4f83-bc31-b1b4376b0808}';
 
-/// {@category interface}
 class IClockIdentifiersStatics extends IInspectable {
   // vtable begins at 6, is 2 entries long.
   IClockIdentifiersStatics.fromPtr(super.ptr);

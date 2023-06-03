@@ -12,8 +12,6 @@ import '../../internal.dart';
 import '../winrt_struct.dart';
 
 /// Describes a number that can be created by the division of 2 integers.
-///
-/// {@category struct}
 final class Rational implements WinRTStruct {
   Rational(this.numerator, this.denominator);
 

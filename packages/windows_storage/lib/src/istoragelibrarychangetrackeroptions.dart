@@ -19,7 +19,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IStorageLibraryChangeTrackerOptions =
     '{bb52bcd4-1a6d-59c0-ad2a-823a20532483}';
 
-/// {@category interface}
 class IStorageLibraryChangeTrackerOptions extends IInspectable {
   // vtable begins at 6, is 2 entries long.
   IStorageLibraryChangeTrackerOptions.fromPtr(super.ptr);

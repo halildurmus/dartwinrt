@@ -20,8 +20,6 @@ import 'ioutputstream.dart';
 
 /// Provides a Windows Runtime output stream for an IStream base
 /// implementation.
-///
-/// {@category class}
 class OutputStreamOverStream extends IInspectable
     implements IOutputStream, IClosable {
   OutputStreamOverStream.fromPtr(super.ptr);

@@ -19,7 +19,6 @@ import 'package:windows_storage/windows_storage.dart';
 /// @nodoc
 const IID_IConnectionProfileFilter2 = '{cd068ee1-c3fc-4fad-9ddc-593faa4b7885}';
 
-/// {@category interface}
 class IConnectionProfileFilter2 extends IInspectable {
   // vtable begins at 6, is 7 entries long.
   IConnectionProfileFilter2.fromPtr(super.ptr);

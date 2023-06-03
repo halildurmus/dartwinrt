@@ -12,8 +12,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// reflect the WWAN_IP_TYPE enumeration. You can use these values to
 /// determine which cellular profile to use (for example, to choose between
 /// IMS and SUPL).
-///
-/// {@category enum}
 enum WwanNetworkIPKind implements WinRTEnum {
   none(0),
   ipv4(1),

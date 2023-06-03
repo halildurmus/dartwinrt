@@ -20,7 +20,6 @@ import 'panel.dart';
 /// @nodoc
 const IID_IEnclosureLocation = '{42340a27-5810-459c-aabb-c65e1f813ecf}';
 
-/// {@category interface}
 class IEnclosureLocation extends IInspectable {
   // vtable begins at 6, is 3 entries long.
   IEnclosureLocation.fromPtr(super.ptr);

@@ -9,8 +9,6 @@
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Specifies the button type.
-///
-/// {@category enum}
 final class GamepadButtons extends WinRTFlagsEnum<GamepadButtons> {
   const GamepadButtons(super.value, {super.name});
 

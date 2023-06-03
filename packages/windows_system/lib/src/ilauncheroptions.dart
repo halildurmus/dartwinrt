@@ -20,7 +20,6 @@ import 'launcheruioptions.dart';
 /// @nodoc
 const IID_ILauncherOptions = '{bafa21d8-b071-4cd8-853e-341203e557d3}';
 
-/// {@category interface}
 class ILauncherOptions extends IInspectable {
   // vtable begins at 6, is 13 entries long.
   ILauncherOptions.fromPtr(super.ptr);

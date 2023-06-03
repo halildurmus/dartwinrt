@@ -19,8 +19,6 @@ import 'ijapanesephoneme.dart';
 
 /// Represents a single Japanese word (a "reading") that has been extracted
 /// from a Japanese string by JapanesePhoneticAnalyzer.
-///
-/// {@category class}
 class JapanesePhoneme extends IInspectable implements IJapanesePhoneme {
   JapanesePhoneme.fromPtr(super.ptr);
 

@@ -23,8 +23,6 @@ import 'ilauncherviewoptions.dart';
 /// Specifies the options to use when launching File Explorer to display the
 /// contents of a specific folder by calling the
 /// LaunchFolderAsync(IStorageFolder, FolderLauncherOptions) method.
-///
-/// {@category class}
 class FolderLauncherOptions extends IInspectable
     implements IFolderLauncherOptions, ILauncherViewOptions {
   FolderLauncherOptions() : super(activateClass(_className));

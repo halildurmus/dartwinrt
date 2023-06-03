@@ -9,8 +9,6 @@
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Indicates the shape of a geographic region.
-///
-/// {@category enum}
 enum GeoshapeType implements WinRTEnum {
   geopoint(0),
   geocircle(1),

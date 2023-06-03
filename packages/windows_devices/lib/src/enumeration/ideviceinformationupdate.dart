@@ -18,7 +18,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// @nodoc
 const IID_IDeviceInformationUpdate = '{8f315305-d972-44b7-a37e-9e822c78213b}';
 
-/// {@category interface}
 class IDeviceInformationUpdate extends IInspectable {
   // vtable begins at 6, is 2 entries long.
   IDeviceInformationUpdate.fromPtr(super.ptr);

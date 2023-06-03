@@ -19,7 +19,6 @@ import 'package:windows_storage/windows_storage.dart';
 /// @nodoc
 const IID_IAppDisplayInfo = '{1aeb1103-e4d4-41aa-a4f6-c4a276e79eac}';
 
-/// {@category interface}
 class IAppDisplayInfo extends IInspectable {
   // vtable begins at 6, is 3 entries long.
   IAppDisplayInfo.fromPtr(super.ptr);

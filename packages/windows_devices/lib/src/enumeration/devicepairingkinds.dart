@@ -13,8 +13,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// what kinds of pairing your application supports. When this datatype is
 /// received as an output value, it indicates the kind of pairing requested
 /// by the system. In this case, your code will need to respond accordingly.
-///
-/// {@category enum}
 final class DevicePairingKinds extends WinRTFlagsEnum<DevicePairingKinds> {
   const DevicePairingKinds(super.value, {super.name});
 

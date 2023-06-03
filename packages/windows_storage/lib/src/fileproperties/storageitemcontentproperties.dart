@@ -24,8 +24,6 @@ import 'videoproperties.dart';
 
 /// Provides access to the content-related properties of an item (like a
 /// file or folder).
-///
-/// {@category class}
 class StorageItemContentProperties extends IInspectable
     implements IStorageItemContentProperties, IStorageItemExtraProperties {
   StorageItemContentProperties.fromPtr(super.ptr);

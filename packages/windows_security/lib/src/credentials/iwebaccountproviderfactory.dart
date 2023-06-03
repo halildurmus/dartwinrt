@@ -20,7 +20,6 @@ import 'webaccountprovider.dart';
 /// @nodoc
 const IID_IWebAccountProviderFactory = '{1d767df1-e1e1-4b9a-a774-5c7c7e3bf371}';
 
-/// {@category interface}
 class IWebAccountProviderFactory extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IWebAccountProviderFactory.fromPtr(super.ptr);

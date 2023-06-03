@@ -23,7 +23,6 @@ import 'devicewatcher.dart';
 /// @nodoc
 const IID_IDeviceInformationStatics = '{c17f100e-3a46-4a78-8013-769dc9b97390}';
 
-/// {@category interface}
 class IDeviceInformationStatics extends IInspectable {
   // vtable begins at 6, is 10 entries long.
   IDeviceInformationStatics.fromPtr(super.ptr);

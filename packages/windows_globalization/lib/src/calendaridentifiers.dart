@@ -21,8 +21,6 @@ import 'icalendaridentifiersstatics3.dart';
 
 /// Contains the calendar identifiers for the supported calendars, as static
 /// properties.
-///
-/// {@category class}
 class CalendarIdentifiers extends IInspectable {
   CalendarIdentifiers.fromPtr(super.ptr);
 

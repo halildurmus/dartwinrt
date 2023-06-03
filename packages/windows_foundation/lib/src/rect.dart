@@ -12,8 +12,6 @@ import '../internal.dart';
 import 'winrt_struct.dart';
 
 /// Describes the width, height, and point origin of a rectangle.
-///
-/// {@category struct}
 final class Rect implements WinRTStruct {
   Rect(this.x, this.y, this.width, this.height);
 

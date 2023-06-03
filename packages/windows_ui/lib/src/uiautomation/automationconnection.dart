@@ -18,8 +18,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 import 'iautomationconnection.dart';
 
 /// Provides access to the connection details of a UI Automation connection.
-///
-/// {@category class}
 class AutomationConnection extends IInspectable
     implements IAutomationConnection {
   AutomationConnection.fromPtr(super.ptr);

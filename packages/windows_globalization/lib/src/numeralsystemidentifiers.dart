@@ -20,8 +20,6 @@ import 'inumeralsystemidentifiersstatics2.dart';
 
 /// Contains the numeral system identifiers for the supported numeral
 /// systems, as static properties.
-///
-/// {@category class}
 class NumeralSystemIdentifiers extends IInspectable {
   NumeralSystemIdentifiers.fromPtr(super.ptr);
 

@@ -18,8 +18,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 import 'icivicaddress.dart';
 
 /// Unsupported API.
-///
-/// {@category class}
 class CivicAddress extends IInspectable implements ICivicAddress {
   CivicAddress.fromPtr(super.ptr);
 

@@ -19,8 +19,6 @@ import 'icurrencyamount.dart';
 import 'icurrencyamountfactory.dart';
 
 /// Defines properties for specifying a currency and its amount.
-///
-/// {@category class}
 class CurrencyAmount extends IInspectable implements ICurrencyAmount {
   CurrencyAmount.fromPtr(super.ptr);
 

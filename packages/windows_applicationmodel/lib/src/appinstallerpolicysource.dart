@@ -9,8 +9,6 @@
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Specifies the whether the source of the update policy for an app.
-///
-/// {@category enum}
 enum AppInstallerPolicySource implements WinRTEnum {
   default_(0),
   system(1);

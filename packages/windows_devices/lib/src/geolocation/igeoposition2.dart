@@ -23,7 +23,6 @@ import 'venuedata.dart';
 /// @nodoc
 const IID_IGeoposition2 = '{7f62f697-8671-4b0d-86f8-474a8496187c}';
 
-/// {@category interface}
 class IGeoposition2 extends IInspectable implements IGeoposition {
   // vtable begins at 6, is 1 entries long.
   IGeoposition2.fromPtr(super.ptr);

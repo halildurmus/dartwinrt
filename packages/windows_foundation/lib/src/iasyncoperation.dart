@@ -15,8 +15,6 @@ part 'iasyncoperation_part.dart';
 /// Represents an asynchronous operation, which returns a result upon
 /// completion. This is the return type for many Windows Runtime asynchronous
 /// methods that have results but don't report progress.
-///
-/// {@category interface}
 abstract interface class IAsyncOperation<TResult> extends IInspectable
     implements IAsyncInfo {
   // vtable begins at 6, is 3 entries long.

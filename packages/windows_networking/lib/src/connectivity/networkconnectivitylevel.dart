@@ -9,8 +9,6 @@
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Defines the level of connectivity currently available.
-///
-/// {@category enum}
 enum NetworkConnectivityLevel implements WinRTEnum {
   none(0),
   localAccess(1),

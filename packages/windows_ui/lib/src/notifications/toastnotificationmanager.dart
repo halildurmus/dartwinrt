@@ -31,8 +31,6 @@ import 'toasttemplatetype.dart';
 /// This class also provides access to the XML content of the
 /// system-provided toast templates so that you can customize that content
 /// for use in your notifications.
-///
-/// {@category class}
 class ToastNotificationManager extends IInspectable {
   ToastNotificationManager.fromPtr(super.ptr);
 

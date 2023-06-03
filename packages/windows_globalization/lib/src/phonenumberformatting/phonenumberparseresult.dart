@@ -9,8 +9,6 @@
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Describes the results of trying to parse a string into a phone number.
-///
-/// {@category enum}
 enum PhoneNumberParseResult implements WinRTEnum {
   valid(0),
   notANumber(1),

@@ -22,7 +22,6 @@ import 'storagelibrarychangetype.dart';
 /// @nodoc
 const IID_IStorageLibraryChange = '{00980b23-2be2-4909-aa48-159f5203a51e}';
 
-/// {@category interface}
 class IStorageLibraryChange extends IInspectable {
   // vtable begins at 6, is 5 entries long.
   IStorageLibraryChange.fromPtr(super.ptr);

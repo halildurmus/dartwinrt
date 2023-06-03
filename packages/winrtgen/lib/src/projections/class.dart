@@ -31,9 +31,6 @@ class ClassProjection extends InterfaceProjection {
   // InterfaceProjection overrides
 
   @override
-  String get category => 'class';
-
-  @override
   Set<String> get interfaceImports => {
         ...super.interfaceImports,
         ...factoryInterfaces.map(fileNameFromType),

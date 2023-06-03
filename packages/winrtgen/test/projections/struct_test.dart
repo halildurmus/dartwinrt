@@ -99,8 +99,8 @@ void main() {
     });
 
     test('includes correct dartdoc category comment', () {
-      expect(rectProjection.category, equals('struct'));
-      expect(rectProjection.classPreamble, equals('/// {@category struct}'));
+      expect(rectProjection.category, isEmpty);
+      expect(rectProjection.classPreamble, isEmpty);
     });
 
     test('has correct struct name', () {

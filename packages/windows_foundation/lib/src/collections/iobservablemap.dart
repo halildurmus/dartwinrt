@@ -11,8 +11,6 @@ import 'package:win32/win32.dart';
 
 /// Notifies listeners of dynamic changes to a map, such as when items are added
 /// or removed.
-///
-/// {@category interface}
 interface class IObservableMap<K, V> extends IInspectable {
   // vtable begins at 6, is 2 entries long.
   IObservableMap.fromPtr(super.ptr);

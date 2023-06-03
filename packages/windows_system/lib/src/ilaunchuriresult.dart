@@ -20,7 +20,6 @@ import 'launchuristatus.dart';
 /// @nodoc
 const IID_ILaunchUriResult = '{ec27a8df-f6d5-45ca-913a-70a40c5c8221}';
 
-/// {@category interface}
 class ILaunchUriResult extends IInspectable {
   // vtable begins at 6, is 2 entries long.
   ILaunchUriResult.fromPtr(super.ptr);

@@ -9,8 +9,6 @@
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Label that appears on the physical controller button.
-///
-/// {@category enum}
 enum GameControllerButtonLabel implements WinRTEnum {
   none(0),
   xboxBack(1),

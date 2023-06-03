@@ -22,7 +22,6 @@ import 'applicationdatalocality.dart';
 /// @nodoc
 const IID_IApplicationDataContainer = '{c5aefd1e-f467-40ba-8566-ab640a441e1d}';
 
-/// {@category interface}
 class IApplicationDataContainer extends IInspectable {
   // vtable begins at 6, is 6 entries long.
   IApplicationDataContainer.fromPtr(super.ptr);

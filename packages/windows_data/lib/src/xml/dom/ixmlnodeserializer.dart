@@ -18,7 +18,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// @nodoc
 const IID_IXmlNodeSerializer = '{5cc5b382-e6dd-4991-abef-06d8d2e7bd0c}';
 
-/// {@category interface}
 class IXmlNodeSerializer extends IInspectable {
   // vtable begins at 6, is 3 entries long.
   IXmlNodeSerializer.fromPtr(super.ptr);

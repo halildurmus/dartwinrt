@@ -20,7 +20,6 @@ import 'datetimeformatter.dart';
 /// @nodoc
 const IID_IDateTimeFormatterStatics = '{bfcde7c0-df4c-4a2e-9012-f47daf3f1212}';
 
-/// {@category interface}
 class IDateTimeFormatterStatics extends IInspectable {
   // vtable begins at 6, is 4 entries long.
   IDateTimeFormatterStatics.fromPtr(super.ptr);

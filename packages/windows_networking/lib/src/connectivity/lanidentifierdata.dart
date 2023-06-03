@@ -19,8 +19,6 @@ import 'ilanidentifierdata.dart';
 
 /// Represents the port specific data that enables LAN locality
 /// capabilities.
-///
-/// {@category class}
 class LanIdentifierData extends IInspectable implements ILanIdentifierData {
   LanIdentifierData.fromPtr(super.ptr);
 

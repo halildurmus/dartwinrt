@@ -19,8 +19,6 @@ import 'ixmldomimplementation.dart';
 
 /// Provides methods that are independent of any particular instance of the
 /// document object model.
-///
-/// {@category class}
 class XmlDomImplementation extends IInspectable
     implements IXmlDomImplementation {
   XmlDomImplementation.fromPtr(super.ptr);

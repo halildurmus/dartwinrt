@@ -26,8 +26,6 @@ import 'xmlnamednodemap.dart';
 import 'xmlnodelist.dart';
 
 /// Represents the text content of an element.
-///
-/// {@category class}
 class XmlText extends IInspectable
     implements
         IXmlText,

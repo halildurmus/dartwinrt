@@ -21,7 +21,6 @@ import 'notificationupdateresult.dart';
 /// @nodoc
 const IID_IToastNotifier2 = '{354389c6-7c01-4bd5-9c20-604340cd2b74}';
 
-/// {@category interface}
 class IToastNotifier2 extends IInspectable {
   // vtable begins at 6, is 2 entries long.
   IToastNotifier2.fromPtr(super.ptr);

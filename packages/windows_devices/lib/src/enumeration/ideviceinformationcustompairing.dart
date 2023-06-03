@@ -25,7 +25,6 @@ import 'idevicepairingsettings.dart';
 const IID_IDeviceInformationCustomPairing =
     '{85138c02-4ee6-4914-8370-107a39144c0e}';
 
-/// {@category interface}
 class IDeviceInformationCustomPairing extends IInspectable {
   // vtable begins at 6, is 5 entries long.
   IDeviceInformationCustomPairing.fromPtr(super.ptr);

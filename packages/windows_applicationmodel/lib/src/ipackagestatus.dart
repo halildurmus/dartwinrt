@@ -18,7 +18,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// @nodoc
 const IID_IPackageStatus = '{5fe74f71-a365-4c09-a02d-046d525ea1da}';
 
-/// {@category interface}
 class IPackageStatus extends IInspectable {
   // vtable begins at 6, is 12 entries long.
   IPackageStatus.fromPtr(super.ptr);

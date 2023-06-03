@@ -9,8 +9,6 @@
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Specifies the type of an application data store.
-///
-/// {@category enum}
 enum ApplicationDataLocality implements WinRTEnum {
   local(0),
   roaming(1),

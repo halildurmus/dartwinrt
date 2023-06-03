@@ -21,7 +21,6 @@ import 'toastnotificationmanagerforuser.dart';
 const IID_IToastNotificationManagerStatics5 =
     '{d6f5f569-d40d-407c-8989-88cab42cfd14}';
 
-/// {@category interface}
 class IToastNotificationManagerStatics5 extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IToastNotificationManagerStatics5.fromPtr(super.ptr);

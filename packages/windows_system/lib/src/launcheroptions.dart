@@ -25,8 +25,6 @@ import 'ilauncherviewoptions.dart';
 import 'launcheruioptions.dart';
 
 /// Specifies the options used to launch the default app for a file or URI.
-///
-/// {@category class}
 class LauncherOptions extends IInspectable
     implements
         ILauncherOptions2,

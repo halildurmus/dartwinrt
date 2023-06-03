@@ -31,8 +31,6 @@ import 'launchuristatus.dart';
 import 'user.dart';
 
 /// Starts the default app associated with the specified file or URI.
-///
-/// {@category class}
 class Launcher extends IInspectable {
   Launcher.fromPtr(super.ptr);
 

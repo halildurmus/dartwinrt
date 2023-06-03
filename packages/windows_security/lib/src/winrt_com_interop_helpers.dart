@@ -20,8 +20,6 @@ import 'credentials/webaccount.dart';
 /// Provides Win32 apps with access to certain functions of
 /// `WebAuthenticationCoreManager` that are otherwise available only to UWP
 /// apps.
-///
-/// {@category class}
 final class WebAuthenticationCoreManagerInterop {
   static const _className =
       'Windows.Security.Authentication.Web.Core.WebAuthenticationCoreManager';

@@ -20,7 +20,6 @@ import 'appdisplayinfo.dart';
 /// @nodoc
 const IID_IAppInfo = '{cf7f59b3-6a09-4de8-a6c0-5792d56880d1}';
 
-/// {@category interface}
 class IAppInfo extends IInspectable {
   // vtable begins at 6, is 4 entries long.
   IAppInfo.fromPtr(super.ptr);

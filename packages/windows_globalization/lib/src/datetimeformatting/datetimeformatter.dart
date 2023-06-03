@@ -28,8 +28,6 @@ import 'secondformat.dart';
 import 'yearformat.dart';
 
 /// Formats dates and times.
-///
-/// {@category class}
 class DateTimeFormatter extends IInspectable
     implements IDateTimeFormatter, IDateTimeFormatter2 {
   DateTimeFormatter.fromPtr(super.ptr);

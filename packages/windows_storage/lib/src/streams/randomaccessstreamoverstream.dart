@@ -23,8 +23,6 @@ import 'irandomaccessstream.dart';
 
 /// Provides a Windows Runtime random access stream for an IStream base
 /// implementation.
-///
-/// {@category class}
 class RandomAccessStreamOverStream extends IInspectable
     implements IRandomAccessStream, IOutputStream, IClosable, IInputStream {
   RandomAccessStreamOverStream.fromPtr(super.ptr);

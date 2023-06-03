@@ -24,8 +24,6 @@ import 'ioutputstream.dart';
 import 'unicodeencoding.dart';
 
 /// Writes data to an output stream.
-///
-/// {@category class}
 class DataWriter extends IInspectable implements IDataWriter, IClosable {
   DataWriter() : super(activateClass(_className));
   DataWriter.fromPtr(super.ptr);

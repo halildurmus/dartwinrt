@@ -20,8 +20,6 @@ import 'icoreautomationregistrarstatics.dart';
 
 /// Exposes methods for registering new control patterns, properties,
 /// events, and annotations.
-///
-/// {@category class}
 class CoreAutomationRegistrar extends IInspectable {
   CoreAutomationRegistrar.fromPtr(super.ptr);
 

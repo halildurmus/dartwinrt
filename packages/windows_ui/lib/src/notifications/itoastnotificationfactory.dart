@@ -21,7 +21,6 @@ import 'toastnotification.dart';
 /// @nodoc
 const IID_IToastNotificationFactory = '{04124b20-82c6-4229-b109-fd9ed4662b53}';
 
-/// {@category interface}
 class IToastNotificationFactory extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IToastNotificationFactory.fromPtr(super.ptr);

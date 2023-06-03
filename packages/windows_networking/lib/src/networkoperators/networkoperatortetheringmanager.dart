@@ -31,8 +31,6 @@ import 'tetheringoperationalstate.dart';
 
 /// This interface exposes the methods and properties used to control and
 /// configure tethering capabilities for a specific network account.
-///
-/// {@category class}
 class NetworkOperatorTetheringManager extends IInspectable
     implements
         INetworkOperatorTetheringManager,

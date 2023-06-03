@@ -19,7 +19,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IWlanConnectionProfileDetails =
     '{562098cb-b35a-4bf1-a884-b7557e88ff86}';
 
-/// {@category interface}
 class IWlanConnectionProfileDetails extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IWlanConnectionProfileDetails.fromPtr(super.ptr);

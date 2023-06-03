@@ -20,7 +20,6 @@ import 'webprovidererror.dart';
 /// @nodoc
 const IID_IWebProviderErrorFactory = '{e3c40a2d-89ef-4e37-847f-a8b9d5a32910}';
 
-/// {@category interface}
 class IWebProviderErrorFactory extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IWebProviderErrorFactory.fromPtr(super.ptr);

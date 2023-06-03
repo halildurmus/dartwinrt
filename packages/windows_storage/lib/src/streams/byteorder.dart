@@ -9,8 +9,6 @@
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Specifies the byte order of a stream.
-///
-/// {@category enum}
 enum ByteOrder implements WinRTEnum {
   littleEndian(0),
   bigEndian(1);

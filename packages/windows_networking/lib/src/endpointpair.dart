@@ -21,8 +21,6 @@ import 'iendpointpairfactory.dart';
 
 /// Provides data for the local endpoint and remote endpoint for a network
 /// connection used by network apps.
-///
-/// {@category class}
 class EndpointPair extends IInspectable implements IEndpointPair {
   EndpointPair.fromPtr(super.ptr);
 

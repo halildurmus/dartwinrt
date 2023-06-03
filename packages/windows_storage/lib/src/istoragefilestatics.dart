@@ -22,7 +22,6 @@ import 'streams/irandomaccessstreamreference.dart';
 /// @nodoc
 const IID_IStorageFileStatics = '{5984c710-daf2-43c8-8bb4-a4d3eacfd03f}';
 
-/// {@category interface}
 class IStorageFileStatics extends IInspectable {
   // vtable begins at 6, is 6 entries long.
   IStorageFileStatics.fromPtr(super.ptr);

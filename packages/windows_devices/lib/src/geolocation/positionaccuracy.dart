@@ -10,8 +10,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 /// Indicates the requested accuracy level for the location data that the
 /// application uses.
-///
-/// {@category enum}
 enum PositionAccuracy implements WinRTEnum {
   default_(0),
   high(1);

@@ -25,7 +25,6 @@ import 'videoproperties.dart';
 const IID_IStorageItemContentProperties =
     '{05294bad-bc38-48bf-85d7-770e0e2ae0ba}';
 
-/// {@category interface}
 class IStorageItemContentProperties extends IInspectable
     implements IStorageItemExtraProperties {
   // vtable begins at 6, is 4 entries long.

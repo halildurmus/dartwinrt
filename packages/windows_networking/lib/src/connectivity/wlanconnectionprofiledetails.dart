@@ -18,8 +18,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 import 'iwlanconnectionprofiledetails.dart';
 
 /// Used to access information specific to a WLAN connection.
-///
-/// {@category class}
 class WlanConnectionProfileDetails extends IInspectable
     implements IWlanConnectionProfileDetails {
   WlanConnectionProfileDetails.fromPtr(super.ptr);

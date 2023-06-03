@@ -22,7 +22,6 @@ import 'connectionprofilefilter.dart';
 const IID_INetworkInformationStatics2 =
     '{459ced14-2832-49b6-ba6e-e265f04786a8}';
 
-/// {@category interface}
 class INetworkInformationStatics2 extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   INetworkInformationStatics2.fromPtr(super.ptr);

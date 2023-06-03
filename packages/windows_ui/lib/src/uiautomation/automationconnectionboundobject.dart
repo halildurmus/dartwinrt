@@ -20,8 +20,6 @@ import 'iautomationconnectionboundobject.dart';
 
 /// Represents an object associated with a specific UI Automation provider
 /// connection.
-///
-/// {@category class}
 class AutomationConnectionBoundObject extends IInspectable
     implements IAutomationConnectionBoundObject {
   AutomationConnectionBoundObject.fromPtr(super.ptr);

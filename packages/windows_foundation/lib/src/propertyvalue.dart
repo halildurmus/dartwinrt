@@ -23,8 +23,6 @@ import 'size.dart';
 
 /// Represents a value in a property store (such as a `PropertySet`
 /// instance).
-///
-/// {@category class}
 class PropertyValue extends IInspectable {
   PropertyValue.fromPtr(super.ptr);
 

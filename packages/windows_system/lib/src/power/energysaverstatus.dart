@@ -9,8 +9,6 @@
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Specifies the status of battery saver.
-///
-/// {@category enum}
 enum EnergySaverStatus implements WinRTEnum {
   disabled(0),
   off(1),

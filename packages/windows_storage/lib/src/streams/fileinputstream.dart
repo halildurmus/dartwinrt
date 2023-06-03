@@ -20,8 +20,6 @@ import 'iinputstream.dart';
 import 'inputstreamoptions.dart';
 
 /// Reads data from a file.
-///
-/// {@category class}
 class FileInputStream extends IInspectable implements IInputStream, IClosable {
   FileInputStream.fromPtr(super.ptr);
 

@@ -139,16 +139,15 @@ final class StructProjection extends NativeStructProjection {
       sortImports(imports.map((import) => "import ${quote(import)};").toList())
           .join('\n');
 
-  String get category => 'struct';
+  String get category => '';
 
   String get classPreamble {
-    final structCategoryComment = '/// {@category $category}';
-    final classComment = wrapCommentText(comment);
-    final docComment = classComment.isEmpty
-        ? structCategoryComment
-        : '$classComment\n///\n$structCategoryComment';
-
-    return docComment;
+    final wrappedComment = wrapCommentText(comment);
+    return [
+      if (wrappedComment.isNotEmpty) wrappedComment,
+      if (wrappedComment.isNotEmpty && category.isNotEmpty) '///',
+      if (category.isNotEmpty) '/// {@category $category}',
+    ].join('\n');
   }
 
   @override

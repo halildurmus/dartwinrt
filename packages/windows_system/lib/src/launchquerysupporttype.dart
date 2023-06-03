@@ -9,8 +9,6 @@
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Specifies the type of activation to query for.
-///
-/// {@category enum}
 enum LaunchQuerySupportType implements WinRTEnum {
   uri(0),
   uriForResults(1);

@@ -19,8 +19,6 @@ import 'inetworkitem.dart';
 import 'networktypes.dart';
 
 /// Represents a connected network.
-///
-/// {@category class}
 class NetworkItem extends IInspectable implements INetworkItem {
   NetworkItem.fromPtr(super.ptr);
 

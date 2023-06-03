@@ -12,8 +12,6 @@ import '../internal.dart';
 import 'winrt_struct.dart';
 
 /// Describes the width and height of an object.
-///
-/// {@category struct}
 final class Size implements WinRTStruct {
   Size(this.width, this.height);
 

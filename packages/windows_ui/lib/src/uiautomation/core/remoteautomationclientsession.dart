@@ -20,8 +20,6 @@ import 'iremoteautomationclientsessionfactory.dart';
 import 'remoteautomationwindow.dart';
 
 /// Represents a UI Automation client session for a remote application.
-///
-/// {@category class}
 class RemoteAutomationClientSession extends IInspectable
     implements IRemoteAutomationClientSession {
   RemoteAutomationClientSession.fromPtr(super.ptr);

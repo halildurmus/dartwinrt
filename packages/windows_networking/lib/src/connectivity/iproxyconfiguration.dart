@@ -18,7 +18,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// @nodoc
 const IID_IProxyConfiguration = '{ef3a60b4-9004-4dd6-b7d8-b3e502f4aad0}';
 
-/// {@category interface}
 class IProxyConfiguration extends IInspectable {
   // vtable begins at 6, is 2 entries long.
   IProxyConfiguration.fromPtr(super.ptr);

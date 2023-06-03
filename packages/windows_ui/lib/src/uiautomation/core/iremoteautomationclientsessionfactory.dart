@@ -21,7 +21,6 @@ import 'remoteautomationclientsession.dart';
 const IID_IRemoteAutomationClientSessionFactory =
     '{f250263d-6057-5373-a5a5-ed7265fe0376}';
 
-/// {@category interface}
 class IRemoteAutomationClientSessionFactory extends IInspectable {
   // vtable begins at 6, is 2 entries long.
   IRemoteAutomationClientSessionFactory.fromPtr(super.ptr);

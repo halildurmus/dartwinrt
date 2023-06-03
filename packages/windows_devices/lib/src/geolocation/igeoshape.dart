@@ -21,7 +21,6 @@ import 'geoshapetype.dart';
 /// @nodoc
 const IID_IGeoshape = '{c99ca2af-c729-43c1-8fab-d6dec914df7e}';
 
-/// {@category interface}
 class IGeoshape extends IInspectable {
   // vtable begins at 6, is 3 entries long.
   IGeoshape.fromPtr(super.ptr);

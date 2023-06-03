@@ -22,8 +22,6 @@ import 'webprovidererror.dart';
 
 /// Represents the response from a web account provider to a web token
 /// request.
-///
-/// {@category class}
 class WebTokenResponse extends IInspectable implements IWebTokenResponse {
   WebTokenResponse() : super(activateClass(_className));
   WebTokenResponse.fromPtr(super.ptr);

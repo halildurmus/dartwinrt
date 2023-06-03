@@ -25,8 +25,6 @@ import 'isignedzerooption.dart';
 import 'isignificantdigitsoption.dart';
 
 /// Formats and parses percentages.
-///
-/// {@category class}
 class PercentFormatter extends IInspectable
     implements
         INumberFormatterOptions,

@@ -23,8 +23,6 @@ import 'storagefile.dart';
 import 'storagefolder.dart';
 
 /// Creates files and folders inside the Downloads folder.
-///
-/// {@category class}
 class DownloadsFolder extends IInspectable {
   DownloadsFolder.fromPtr(super.ptr);
 

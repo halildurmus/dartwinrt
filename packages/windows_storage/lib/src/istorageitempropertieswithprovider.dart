@@ -26,7 +26,6 @@ import 'storageprovider.dart';
 const IID_IStorageItemPropertiesWithProvider =
     '{861bf39b-6368-4dee-b40e-74684a5ce714}';
 
-/// {@category interface}
 class IStorageItemPropertiesWithProvider extends IInspectable
     implements IStorageItemProperties {
   // vtable begins at 6, is 1 entries long.

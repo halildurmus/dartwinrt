@@ -37,8 +37,6 @@ import 'packagestatus.dart';
 import 'packageupdateavailabilityresult.dart';
 
 /// Provides information about a package.
-///
-/// {@category class}
 class Package extends IInspectable
     implements
         IPackage,

@@ -9,8 +9,6 @@
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Specifies the color mode option.
-///
-/// {@category enum}
 enum PrintColorMode implements WinRTEnum {
   default_(0),
   notAvailable(1),

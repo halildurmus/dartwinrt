@@ -20,8 +20,6 @@ import 'ibatteryreport.dart';
 
 /// Provides properties that indicate the charge, capacity, and status of
 /// the battery.
-///
-/// {@category class}
 class BatteryReport extends IInspectable implements IBatteryReport {
   BatteryReport.fromPtr(super.ptr);
 

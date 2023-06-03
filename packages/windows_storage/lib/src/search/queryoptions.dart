@@ -30,8 +30,6 @@ import 'sortentry.dart';
 
 /// Specifies the parameters of a search query for enumerating the contents
 /// of storage folders.
-///
-/// {@category class}
 class QueryOptions extends IInspectable
     implements IQueryOptions, IQueryOptionsWithProviderFilter {
   QueryOptions() : super(activateClass(_className));

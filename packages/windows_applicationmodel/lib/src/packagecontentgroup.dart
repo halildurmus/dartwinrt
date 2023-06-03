@@ -21,8 +21,6 @@ import 'package.dart';
 import 'packagecontentgroupstate.dart';
 
 /// Provides information about a package content group.
-///
-/// {@category class}
 class PackageContentGroup extends IInspectable implements IPackageContentGroup {
   PackageContentGroup.fromPtr(super.ptr);
 

@@ -20,7 +20,6 @@ import 'dataplanusage.dart';
 /// @nodoc
 const IID_IDataPlanStatus = '{977a8b8c-3885-40f3-8851-42cd2bd568bb}';
 
-/// {@category interface}
 class IDataPlanStatus extends IInspectable {
   // vtable begins at 6, is 6 entries long.
   IDataPlanStatus.fromPtr(super.ptr);

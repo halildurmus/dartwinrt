@@ -18,7 +18,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// @nodoc
 const IID_INumberParser = '{e6659412-4a13-4a53-83a1-392fbe4cff9f}';
 
-/// {@category interface}
 class INumberParser extends IInspectable {
   // vtable begins at 6, is 3 entries long.
   INumberParser.fromPtr(super.ptr);

@@ -26,8 +26,6 @@ import 'xmlnamednodemap.dart';
 import 'xmlnodelist.dart';
 
 /// Represents an XML comment.
-///
-/// {@category class}
 class XmlComment extends IInspectable
     implements
         IXmlComment,

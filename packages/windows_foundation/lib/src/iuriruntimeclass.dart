@@ -22,7 +22,6 @@ import 'wwwformurldecoder.dart';
 /// @nodoc
 const IID_IUriRuntimeClass = '{9e365e57-48b2-4160-956f-c7385120bbfc}';
 
-/// {@category interface}
 class IUriRuntimeClass extends IInspectable {
   // vtable begins at 6, is 17 entries long.
   IUriRuntimeClass.fromPtr(super.ptr);

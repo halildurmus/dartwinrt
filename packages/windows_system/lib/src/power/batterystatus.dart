@@ -9,8 +9,6 @@
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Indicates the status of the battery.
-///
-/// {@category enum}
 enum BatteryStatus implements WinRTEnum {
   notPresent(0),
   discharging(1),

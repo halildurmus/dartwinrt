@@ -30,8 +30,6 @@ import 'igamepadstatics.dart';
 import 'igamepadstatics2.dart';
 
 /// Represents a gamepad.
-///
-/// {@category class}
 class Gamepad extends IInspectable
     implements
         IGamepad,

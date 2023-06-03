@@ -26,8 +26,6 @@ import 'xmlnodelist.dart';
 
 /// Represents a processing instruction, which XML defines to keep
 /// processor-specific information in the text of the document.
-///
-/// {@category class}
 class XmlProcessingInstruction extends IInspectable
     implements
         IXmlProcessingInstruction,

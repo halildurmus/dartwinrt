@@ -10,8 +10,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 /// Defines levels of granularity used when retrieving data usage statistics
 /// with GetNetworkUsageAsync.
-///
-/// {@category enum}
 enum DataUsageGranularity implements WinRTEnum {
   perMinute(0),
   perHour(1),

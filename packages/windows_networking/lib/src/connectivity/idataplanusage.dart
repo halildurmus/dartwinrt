@@ -18,7 +18,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// @nodoc
 const IID_IDataPlanUsage = '{b921492d-3b44-47ff-b361-be59e69ed1b0}';
 
-/// {@category interface}
 class IDataPlanUsage extends IInspectable {
   // vtable begins at 6, is 2 entries long.
   IDataPlanUsage.fromPtr(super.ptr);

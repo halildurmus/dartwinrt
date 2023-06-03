@@ -19,7 +19,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IKnownUserPropertiesStatics =
     '{7755911a-70c5-48e5-b637-5ba3441e4ee4}';
 
-/// {@category interface}
 class IKnownUserPropertiesStatics extends IInspectable {
   // vtable begins at 6, is 9 entries long.
   IKnownUserPropertiesStatics.fromPtr(super.ptr);

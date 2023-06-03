@@ -9,8 +9,6 @@
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Represents the authentication status of a user.
-///
-/// {@category enum}
 enum UserAuthenticationStatus implements WinRTEnum {
   unauthenticated(0),
   locallyAuthenticated(1),

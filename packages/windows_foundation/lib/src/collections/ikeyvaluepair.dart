@@ -17,8 +17,6 @@ part 'ikeyvaluepair_part.dart';
 /// This is typically used as a constraint type when you need to encapsulate
 /// two type parameters into one to satisfy the constraints of another generic
 /// interface.
-///
-/// {@category interface}
 abstract interface class IKeyValuePair<K, V> extends IInspectable {
   // vtable begins at 6, is 2 entries long.
   IKeyValuePair(super.ptr);

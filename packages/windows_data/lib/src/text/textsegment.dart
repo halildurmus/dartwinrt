@@ -14,8 +14,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// structure to obtain the segment of your provided text that is identified
 /// by AlternateWordForm, SelectableWordSegment, WordSegment, or
 /// SemanticTextQuery.
-///
-/// {@category struct}
 final class TextSegment implements WinRTStruct {
   TextSegment(this.startPosition, this.length);
 

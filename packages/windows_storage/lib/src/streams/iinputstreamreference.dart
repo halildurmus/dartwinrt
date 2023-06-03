@@ -20,7 +20,6 @@ import 'iinputstream.dart';
 /// @nodoc
 const IID_IInputStreamReference = '{43929d18-5ec9-4b5a-919c-4205b0c804b6}';
 
-/// {@category interface}
 class IInputStreamReference extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IInputStreamReference.fromPtr(super.ptr);

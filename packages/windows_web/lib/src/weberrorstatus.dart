@@ -10,8 +10,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 /// Defines errors encountered during operations involving web services,
 /// such as authentication, proxy configuration, and destination URIs.
-///
-/// {@category enum}
 enum WebErrorStatus implements WinRTEnum {
   unknown(0),
   certificateCommonNameIsIncorrect(1),

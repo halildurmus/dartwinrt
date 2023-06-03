@@ -26,8 +26,6 @@ const IID_IAsyncInfo = '{00000036-0000-0000-c000-000000000046}';
 /// `IAsyncOperation<TResult>` and
 /// `IAsyncOperationWithProgress<TResult,TProgress>`, each of which support
 /// combinations of return type and progress for an asynchronous method.
-///
-/// {@category interface}
 class IAsyncInfo extends IInspectable {
   // vtable begins at 6, is 5 entries long.
   IAsyncInfo.fromPtr(super.ptr);

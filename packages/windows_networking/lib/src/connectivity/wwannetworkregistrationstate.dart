@@ -9,8 +9,6 @@
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Defines the network registration states for a WWAN connection.
-///
-/// {@category enum}
 enum WwanNetworkRegistrationState implements WinRTEnum {
   none(0),
   deregistered(1),

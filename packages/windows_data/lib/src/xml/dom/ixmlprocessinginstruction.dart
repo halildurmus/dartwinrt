@@ -26,7 +26,6 @@ import 'xmlnodelist.dart';
 /// @nodoc
 const IID_IXmlProcessingInstruction = '{2707fd1e-1e92-4ece-b6f4-26f069078ddc}';
 
-/// {@category interface}
 class IXmlProcessingInstruction extends IInspectable
     implements IXmlNode, IXmlNodeSelector, IXmlNodeSerializer {
   // vtable begins at 6, is 3 entries long.

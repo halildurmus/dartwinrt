@@ -21,7 +21,6 @@ import 'automationconnection.dart';
 const IID_IAutomationConnectionBoundObject =
     '{5e8558fb-ca52-5b65-9830-dd2905816093}';
 
-/// {@category interface}
 class IAutomationConnectionBoundObject extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IAutomationConnectionBoundObject.fromPtr(super.ptr);

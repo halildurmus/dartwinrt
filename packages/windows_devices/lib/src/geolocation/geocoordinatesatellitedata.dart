@@ -21,8 +21,6 @@ import 'igeocoordinatesatellitedata2.dart';
 /// Provides additional information about a Geocoordinate. This information
 /// is only applicable to position estimates obtained using satellite
 /// signals.
-///
-/// {@category class}
 class GeocoordinateSatelliteData extends IInspectable
     implements IGeocoordinateSatelliteData, IGeocoordinateSatelliteData2 {
   GeocoordinateSatelliteData.fromPtr(super.ptr);

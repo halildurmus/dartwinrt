@@ -9,8 +9,6 @@
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Specifies the use of symbols or codes when currency is formatted.
-///
-/// {@category enum}
 enum CurrencyFormatterMode implements WinRTEnum {
   useSymbol(0),
   useCurrencyCode(1);

@@ -18,7 +18,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// @nodoc
 const IID_IToastCollection = '{0a8bc3b0-e0be-4858-bc2a-89dfe0b32863}';
 
-/// {@category interface}
 class IToastCollection extends IInspectable {
   // vtable begins at 6, is 7 entries long.
   IToastCollection.fromPtr(super.ptr);

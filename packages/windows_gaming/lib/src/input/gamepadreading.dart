@@ -11,8 +11,6 @@ import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Represents the current state of the gamepad.
-///
-/// {@category struct}
 final class GamepadReading implements WinRTStruct {
   GamepadReading(
       this.timestamp,

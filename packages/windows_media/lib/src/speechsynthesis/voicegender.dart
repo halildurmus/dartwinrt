@@ -10,8 +10,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 /// Specifies the gender preferences available for speech synthesis (if
 /// supported by the specified speech synthesis engine).
-///
-/// {@category enum}
 enum VoiceGender implements WinRTEnum {
   male(0),
   female(1);

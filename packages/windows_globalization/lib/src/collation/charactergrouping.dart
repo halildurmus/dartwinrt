@@ -20,8 +20,6 @@ import 'icharactergrouping.dart';
 /// A container for character group information. Characters are grouped in
 /// an index that enables an application to determine where the grouping
 /// boundaries are.
-///
-/// {@category class}
 class CharacterGrouping extends IInspectable implements ICharacterGrouping {
   CharacterGrouping.fromPtr(super.ptr);
 

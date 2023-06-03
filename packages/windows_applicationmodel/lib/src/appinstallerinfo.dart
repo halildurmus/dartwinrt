@@ -23,8 +23,6 @@ import 'packageversion.dart';
 /// Represents an App Installer file containing app package and bundle
 /// information for defining the packages that are part of a related set and
 /// specifying update and repair configuration.
-///
-/// {@category class}
 class AppInstallerInfo extends IInspectable
     implements IAppInstallerInfo, IAppInstallerInfo2 {
   AppInstallerInfo.fromPtr(super.ptr);

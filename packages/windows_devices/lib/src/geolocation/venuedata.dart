@@ -18,8 +18,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 import 'ivenuedata.dart';
 
 /// Represents the venue associated with a geographic location.
-///
-/// {@category class}
 class VenueData extends IInspectable implements IVenueData {
   VenueData.fromPtr(super.ptr);
 

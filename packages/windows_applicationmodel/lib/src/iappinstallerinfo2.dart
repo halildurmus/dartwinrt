@@ -21,7 +21,6 @@ import 'packageversion.dart';
 /// @nodoc
 const IID_IAppInstallerInfo2 = '{d20f1388-8256-597c-8511-c84ec50d5e2b}';
 
-/// {@category interface}
 class IAppInstallerInfo2 extends IInspectable {
   // vtable begins at 6, is 15 entries long.
   IAppInstallerInfo2.fromPtr(super.ptr);

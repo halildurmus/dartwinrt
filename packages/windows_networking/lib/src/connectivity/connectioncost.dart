@@ -21,8 +21,6 @@ import 'networkcosttype.dart';
 
 /// Provides access to property values that indicate the current cost of a
 /// network connection.
-///
-/// {@category class}
 class ConnectionCost extends IInspectable
     implements IConnectionCost, IConnectionCost2 {
   ConnectionCost.fromPtr(super.ptr);

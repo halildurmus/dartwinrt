@@ -21,8 +21,6 @@ import 'icoreautomationremoteoperationcontext.dart';
 /// Provides the ability for a
 /// ICoreAutomationRemoteOperationExtensionProvider object to read and write
 /// operands.
-///
-/// {@category class}
 class CoreAutomationRemoteOperationContext extends IInspectable
     implements ICoreAutomationRemoteOperationContext {
   CoreAutomationRemoteOperationContext.fromPtr(super.ptr);

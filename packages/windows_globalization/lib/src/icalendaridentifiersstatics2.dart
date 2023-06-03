@@ -19,7 +19,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_ICalendarIdentifiersStatics2 =
     '{7df4d488-5fd0-42a7-95b5-7d98d823075f}';
 
-/// {@category interface}
 class ICalendarIdentifiersStatics2 extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   ICalendarIdentifiersStatics2.fromPtr(super.ptr);

@@ -22,7 +22,6 @@ import 'queryoptions.dart';
 /// @nodoc
 const IID_IQueryOptionsFactory = '{032e1f8c-a9c1-4e71-8011-0dee9d4811a3}';
 
-/// {@category interface}
 class IQueryOptionsFactory extends IInspectable {
   // vtable begins at 6, is 2 entries long.
   IQueryOptionsFactory.fromPtr(super.ptr);

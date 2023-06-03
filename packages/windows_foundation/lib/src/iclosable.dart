@@ -21,8 +21,6 @@ import 'helpers.dart';
 const IID_IClosable = '{30d5a829-7fa4-4026-83bb-d75bae4ea99e}';
 
 /// Defines a method to release allocated resources.
-///
-/// {@category interface}
 class IClosable extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IClosable.fromPtr(super.ptr);

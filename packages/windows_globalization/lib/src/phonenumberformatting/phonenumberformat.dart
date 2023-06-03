@@ -9,8 +9,6 @@
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Lists phone number formats supported by this API.
-///
-/// {@category enum}
 enum PhoneNumberFormat implements WinRTEnum {
   e164(0),
   international(1),

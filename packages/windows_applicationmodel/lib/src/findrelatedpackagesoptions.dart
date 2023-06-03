@@ -20,8 +20,6 @@ import 'ifindrelatedpackagesoptionsfactory.dart';
 import 'packagerelationship.dart';
 
 /// Provides filtering when searching for packages.
-///
-/// {@category class}
 class FindRelatedPackagesOptions extends IInspectable
     implements IFindRelatedPackagesOptions {
   FindRelatedPackagesOptions.fromPtr(super.ptr);

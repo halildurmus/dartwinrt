@@ -20,7 +20,6 @@ import 'webaccountmonitor.dart';
 /// @nodoc
 const IID_IWebAccountMonitor = '{7445f5fd-aa9d-4619-8d5d-c138a4ede3e5}';
 
-/// {@category interface}
 class IWebAccountMonitor extends IInspectable {
   // vtable begins at 6, is 6 entries long.
   IWebAccountMonitor.fromPtr(super.ptr);

@@ -9,8 +9,6 @@
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Represents user picture sizes.
-///
-/// {@category enum}
 enum UserPictureSize implements WinRTEnum {
   size64x64(0),
   size208x208(1),

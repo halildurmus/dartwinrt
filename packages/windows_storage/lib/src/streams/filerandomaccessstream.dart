@@ -28,8 +28,6 @@ import 'ioutputstream.dart';
 import 'irandomaccessstream.dart';
 
 /// Supports reading and writing to a file at a specified position.
-///
-/// {@category class}
 class FileRandomAccessStream extends IInspectable
     implements IRandomAccessStream, IOutputStream, IClosable, IInputStream {
   FileRandomAccessStream.fromPtr(super.ptr);

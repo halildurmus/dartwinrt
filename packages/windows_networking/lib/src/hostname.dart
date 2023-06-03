@@ -22,8 +22,6 @@ import 'ihostnamefactory.dart';
 import 'ihostnamestatics.dart';
 
 /// Provides data for a hostname or an IP address.
-///
-/// {@category class}
 class HostName extends IInspectable implements IHostName, IStringable {
   HostName.fromPtr(super.ptr);
 

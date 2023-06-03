@@ -26,7 +26,6 @@ import 'webtokenrequestresult.dart';
 const IID_IWebAuthenticationCoreManagerStatics2 =
     '{f584184a-8b57-4820-b6a4-70a5b6fcf44a}';
 
-/// {@category interface}
 class IWebAuthenticationCoreManagerStatics2 extends IInspectable
     implements IWebAuthenticationCoreManagerStatics {
   // vtable begins at 6, is 1 entries long.

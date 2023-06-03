@@ -21,7 +21,6 @@ import '../hostname.dart';
 const IID_INetworkOperatorTetheringClient =
     '{709d254c-595f-4847-bb30-646935542918}';
 
-/// {@category interface}
 class INetworkOperatorTetheringClient extends IInspectable {
   // vtable begins at 6, is 2 entries long.
   INetworkOperatorTetheringClient.fromPtr(super.ptr);

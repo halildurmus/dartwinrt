@@ -23,7 +23,6 @@ import 'tetheringcapability.dart';
 const IID_INetworkOperatorTetheringManagerStatics2 =
     '{5b235412-35f0-49e7-9b08-16d278fbaa42}';
 
-/// {@category interface}
 class INetworkOperatorTetheringManagerStatics2 extends IInspectable {
   // vtable begins at 6, is 2 entries long.
   INetworkOperatorTetheringManagerStatics2.fromPtr(super.ptr);

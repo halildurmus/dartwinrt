@@ -9,8 +9,6 @@
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Options for how a list of EndpointPair objects is sorted.
-///
-/// {@category enum}
 final class HostNameSortOptions extends WinRTFlagsEnum<HostNameSortOptions> {
   const HostNameSortOptions(super.value, {super.name});
 

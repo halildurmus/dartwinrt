@@ -21,8 +21,6 @@ import 'idevicepickerfilter.dart';
 /// Represents the filter used to determine which devices to show in the
 /// device picker. The filter parameters are OR-ed together to build the
 /// resulting filter.
-///
-/// {@category class}
 class DevicePickerFilter extends IInspectable implements IDevicePickerFilter {
   DevicePickerFilter.fromPtr(super.ptr);
 

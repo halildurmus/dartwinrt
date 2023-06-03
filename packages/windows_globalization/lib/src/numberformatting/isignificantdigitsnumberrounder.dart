@@ -21,7 +21,6 @@ import 'roundingalgorithm.dart';
 const IID_ISignificantDigitsNumberRounder =
     '{f5941bca-6646-4913-8c76-1b191ff94dfd}';
 
-/// {@category interface}
 class ISignificantDigitsNumberRounder extends IInspectable {
   // vtable begins at 6, is 4 entries long.
   ISignificantDigitsNumberRounder.fromPtr(super.ptr);

@@ -18,7 +18,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// @nodoc
 const IID_INumberFormatterOptions = '{80332d21-aee1-4a39-baa2-07ed8c96daf6}';
 
-/// {@category interface}
 class INumberFormatterOptions extends IInspectable {
   // vtable begins at 6, is 14 entries long.
   INumberFormatterOptions.fromPtr(super.ptr);

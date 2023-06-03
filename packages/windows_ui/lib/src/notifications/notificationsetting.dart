@@ -9,8 +9,6 @@
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Specifies the limitations on tile or toast notification display.
-///
-/// {@category enum}
 enum NotificationSetting implements WinRTEnum {
   enabled(0),
   disabledForApplication(1),

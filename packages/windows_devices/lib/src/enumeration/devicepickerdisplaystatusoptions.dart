@@ -11,8 +11,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// Indicates what you'd like the device picker to show about a given
 /// device. Used with the SetDisplayStatus method on the DevicePicker
 /// object.
-///
-/// {@category enum}
 final class DevicePickerDisplayStatusOptions
     extends WinRTFlagsEnum<DevicePickerDisplayStatusOptions> {
   const DevicePickerDisplayStatusOptions(super.value, {super.name});

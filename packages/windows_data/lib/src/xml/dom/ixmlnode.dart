@@ -30,8 +30,6 @@ const IID_IXmlNode = '{1c741d59-2122-47d5-a856-83f3d4214875}';
 /// objects that implement this interface expose methods for dealing with
 /// children, not all objects that implement this interface may have
 /// children.
-///
-/// {@category interface}
 class IXmlNode extends IInspectable
     implements IXmlNodeSelector, IXmlNodeSerializer {
   // vtable begins at 6, is 23 entries long.

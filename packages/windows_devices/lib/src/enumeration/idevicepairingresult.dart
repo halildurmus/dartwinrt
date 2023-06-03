@@ -21,7 +21,6 @@ import 'devicepairingresultstatus.dart';
 /// @nodoc
 const IID_IDevicePairingResult = '{072b02bf-dd95-4025-9b37-de51adba37b7}';
 
-/// {@category interface}
 class IDevicePairingResult extends IInspectable {
   // vtable begins at 6, is 2 entries long.
   IDevicePairingResult.fromPtr(super.ptr);

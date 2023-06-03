@@ -10,8 +10,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 /// Defines constants that specify an abstract method in which a display is
 /// connected (not specific to a physical protocol).
-///
-/// {@category enum}
 enum DisplayMonitorConnectionKind implements WinRTEnum {
   internal(0),
   wired(1),

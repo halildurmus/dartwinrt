@@ -22,7 +22,6 @@ import 'webtokenresponse.dart';
 /// @nodoc
 const IID_IWebTokenResponseFactory = '{ab6bf7f8-5450-4ef6-97f7-052b0431c0f0}';
 
-/// {@category interface}
 class IWebTokenResponseFactory extends IInspectable {
   // vtable begins at 6, is 3 entries long.
   IWebTokenResponseFactory.fromPtr(super.ptr);

@@ -9,8 +9,6 @@
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Defines the list of supported tensor data types.
-///
-/// {@category enum}
 enum TensorKind implements WinRTEnum {
   undefined(0),
   float(1),

@@ -29,8 +29,6 @@ import 'isignificantdigitsoption.dart';
 import 'roundingalgorithm.dart';
 
 /// Formats and parses currencies.
-///
-/// {@category class}
 class CurrencyFormatter extends IInspectable
     implements
         ICurrencyFormatter,

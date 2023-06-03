@@ -9,8 +9,6 @@
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Specifies the type of character encoding for a stream.
-///
-/// {@category enum}
 enum UnicodeEncoding implements WinRTEnum {
   utf8(0),
   utf16LE(1),

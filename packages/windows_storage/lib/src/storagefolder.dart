@@ -49,8 +49,6 @@ import 'storagelibrarychangetracker.dart';
 import 'storageprovider.dart';
 
 /// Manages folders and their contents and provides information about them.
-///
-/// {@category class}
 class StorageFolder extends IInspectable
     implements
         IStorageFolder,

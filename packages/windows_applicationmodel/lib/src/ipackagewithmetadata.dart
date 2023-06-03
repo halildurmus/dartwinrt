@@ -18,7 +18,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// @nodoc
 const IID_IPackageWithMetadata = '{95949780-1de9-40f2-b452-0de9f1910012}';
 
-/// {@category interface}
 class IPackageWithMetadata extends IInspectable {
   // vtable begins at 6, is 3 entries long.
   IPackageWithMetadata.fromPtr(super.ptr);

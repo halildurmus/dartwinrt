@@ -9,8 +9,6 @@
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Specifies the result of activating an application for a URI.
-///
-/// {@category enum}
 enum LaunchUriStatus implements WinRTEnum {
   success(0),
   appUnavailable(1),

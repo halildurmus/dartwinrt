@@ -9,8 +9,6 @@
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Defines the network cost types.
-///
-/// {@category enum}
 enum NetworkCostType implements WinRTEnum {
   unknown(0),
   unrestricted(1),

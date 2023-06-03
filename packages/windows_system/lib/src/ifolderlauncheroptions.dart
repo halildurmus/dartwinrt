@@ -19,7 +19,6 @@ import 'package:windows_storage/windows_storage.dart';
 /// @nodoc
 const IID_IFolderLauncherOptions = '{bb91c27d-6b87-432a-bd04-776c6f5fb2ab}';
 
-/// {@category interface}
 class IFolderLauncherOptions extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IFolderLauncherOptions.fromPtr(super.ptr);

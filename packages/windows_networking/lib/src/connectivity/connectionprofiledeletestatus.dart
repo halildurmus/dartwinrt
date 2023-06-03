@@ -10,8 +10,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 /// Defines values that indicate the result of an attempt to delete a
 /// connection profile.
-///
-/// {@category enum}
 enum ConnectionProfileDeleteStatus implements WinRTEnum {
   success(0),
   deniedByUser(1),

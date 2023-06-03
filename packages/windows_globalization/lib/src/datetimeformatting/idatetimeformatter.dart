@@ -26,7 +26,6 @@ import 'yearformat.dart';
 /// @nodoc
 const IID_IDateTimeFormatter = '{95eeca10-73e0-4e4b-a183-3d6ad0ba35ec}';
 
-/// {@category interface}
 class IDateTimeFormatter extends IInspectable {
   // vtable begins at 6, is 18 entries long.
   IDateTimeFormatter.fromPtr(super.ptr);

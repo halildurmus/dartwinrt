@@ -9,8 +9,6 @@
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// The type of event.
-///
-/// {@category enum}
 enum DeviceWatcherEventKind implements WinRTEnum {
   add(0),
   update(1),

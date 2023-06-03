@@ -25,8 +25,6 @@ import 'queryoptions.dart';
 /// files and folders (or file groups) in the folder being queried (which is
 /// represented by a StorageFolder). You can use storageItemQueryResult to
 /// enumerate the files and folders in that StorageFolder.
-///
-/// {@category class}
 class StorageItemQueryResult extends IInspectable
     implements IStorageItemQueryResult, IStorageQueryResultBase {
   StorageItemQueryResult.fromPtr(super.ptr);

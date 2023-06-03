@@ -23,7 +23,6 @@ import 'storagefolder.dart';
 /// @nodoc
 const IID_IDownloadsFolderStatics2 = '{e93045bd-8ef8-4f8e-8d15-ac0e265f390d}';
 
-/// {@category interface}
 class IDownloadsFolderStatics2 extends IInspectable {
   // vtable begins at 6, is 4 entries long.
   IDownloadsFolderStatics2.fromPtr(super.ptr);

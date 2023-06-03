@@ -20,7 +20,6 @@ import 'deviceunpairingresultstatus.dart';
 /// @nodoc
 const IID_IDeviceUnpairingResult = '{66f44ad3-79d9-444b-92cf-a92ef72571c7}';
 
-/// {@category interface}
 class IDeviceUnpairingResult extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IDeviceUnpairingResult.fromPtr(super.ptr);

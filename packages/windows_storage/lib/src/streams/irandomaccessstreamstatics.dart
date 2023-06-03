@@ -21,7 +21,6 @@ import 'ioutputstream.dart';
 /// @nodoc
 const IID_IRandomAccessStreamStatics = '{524cedcf-6e29-4ce5-9573-6b753db66c3a}';
 
-/// {@category interface}
 class IRandomAccessStreamStatics extends IInspectable {
   // vtable begins at 6, is 3 entries long.
   IRandomAccessStreamStatics.fromPtr(super.ptr);

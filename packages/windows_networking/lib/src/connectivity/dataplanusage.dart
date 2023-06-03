@@ -18,8 +18,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 import 'idataplanusage.dart';
 
 /// Represents data plan specific data usage information for a connection.
-///
-/// {@category class}
 class DataPlanUsage extends IInspectable implements IDataPlanUsage {
   DataPlanUsage.fromPtr(super.ptr);
 

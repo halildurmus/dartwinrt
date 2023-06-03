@@ -19,7 +19,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_ICurrencyIdentifiersStatics3 =
     '{4fb23bfa-ed25-4f4d-857f-237f1748c21c}';
 
-/// {@category interface}
 class ICurrencyIdentifiersStatics3 extends IInspectable {
   // vtable begins at 6, is 4 entries long.
   ICurrencyIdentifiersStatics3.fromPtr(super.ptr);

@@ -9,8 +9,6 @@
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Represents the status of a user watcher.
-///
-/// {@category enum}
 enum UserWatcherStatus implements WinRTEnum {
   created(0),
   started(1),

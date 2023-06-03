@@ -21,7 +21,6 @@ import 'batteryreport.dart';
 /// @nodoc
 const IID_IBattery = '{bc894fc6-0072-47c8-8b5d-614aaa7a437e}';
 
-/// {@category interface}
 class IBattery extends IInspectable {
   // vtable begins at 6, is 4 entries long.
   IBattery.fromPtr(super.ptr);

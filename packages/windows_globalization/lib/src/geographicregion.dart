@@ -20,8 +20,6 @@ import 'igeographicregionfactory.dart';
 import 'igeographicregionstatics.dart';
 
 /// Describes a region. This is usually a country, but may be a macroregion.
-///
-/// {@category class}
 class GeographicRegion extends IInspectable implements IGeographicRegion {
   GeographicRegion() : super(activateClass(_className));
   GeographicRegion.fromPtr(super.ptr);

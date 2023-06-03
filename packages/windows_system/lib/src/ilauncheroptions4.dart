@@ -18,7 +18,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// @nodoc
 const IID_ILauncherOptions4 = '{ef6fd10e-e6fb-4814-a44e-57e8b9d9a01b}';
 
-/// {@category interface}
 class ILauncherOptions4 extends IInspectable {
   // vtable begins at 6, is 2 entries long.
   ILauncherOptions4.fromPtr(super.ptr);

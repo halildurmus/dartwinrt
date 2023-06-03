@@ -22,8 +22,6 @@ import 'irandomaccessstreamreferencestatics.dart';
 import 'irandomaccessstreamwithcontenttype.dart';
 
 /// Provides random access of data in input and output streams for a file.
-///
-/// {@category class}
 class RandomAccessStreamReference extends IInspectable
     implements IRandomAccessStreamReference {
   RandomAccessStreamReference.fromPtr(super.ptr);

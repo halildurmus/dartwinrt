@@ -9,8 +9,6 @@
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Defines the domain authentication status for a network connection.
-///
-/// {@category enum}
 enum DomainConnectivityLevel implements WinRTEnum {
   none(0),
   unauthenticated(1),

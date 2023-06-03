@@ -10,8 +10,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 /// The kinds of phone numbers returned by
 /// PhoneNumberInfo.PredictNumberKind.
-///
-/// {@category enum}
 enum PredictedPhoneNumberKind implements WinRTEnum {
   fixedLine(0),
   mobile(1),

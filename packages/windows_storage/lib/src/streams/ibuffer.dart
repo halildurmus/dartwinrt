@@ -18,7 +18,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// @nodoc
 const IID_IBuffer = '{905a0fe0-bc53-11df-8c49-001e4fc686da}';
 
-/// {@category interface}
 class IBuffer extends IInspectable {
   // vtable begins at 6, is 3 entries long.
   IBuffer.fromPtr(super.ptr);

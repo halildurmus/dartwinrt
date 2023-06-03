@@ -10,8 +10,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 /// Defines constants that specify various kinds of display monitor hardware
 /// descriptor.
-///
-/// {@category enum}
 enum DisplayMonitorDescriptorKind implements WinRTEnum {
   edid(0),
   displayId(1);

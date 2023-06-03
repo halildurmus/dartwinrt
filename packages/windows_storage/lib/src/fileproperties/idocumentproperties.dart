@@ -20,7 +20,6 @@ import 'istorageitemextraproperties.dart';
 /// @nodoc
 const IID_IDocumentProperties = '{7eab19bc-1821-4923-b4a9-0aea404d0070}';
 
-/// {@category interface}
 class IDocumentProperties extends IInspectable
     implements IStorageItemExtraProperties {
   // vtable begins at 6, is 6 entries long.

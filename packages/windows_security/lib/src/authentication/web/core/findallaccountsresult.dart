@@ -21,8 +21,6 @@ import 'ifindallaccountsresult.dart';
 import 'webprovidererror.dart';
 
 /// This class represents the result of an account retrieval operation.
-///
-/// {@category class}
 class FindAllAccountsResult extends IInspectable
     implements IFindAllAccountsResult {
   FindAllAccountsResult.fromPtr(super.ptr);

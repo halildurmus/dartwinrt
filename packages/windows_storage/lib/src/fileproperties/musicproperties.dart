@@ -20,8 +20,6 @@ import 'istorageitemextraproperties.dart';
 
 /// Provides access to the music-related properties of an item (like a file
 /// or folder).
-///
-/// {@category class}
 class MusicProperties extends IInspectable
     implements IMusicProperties, IStorageItemExtraProperties {
   MusicProperties.fromPtr(super.ptr);
