@@ -26,8 +26,6 @@ import 'idisplaymonitorstatics.dart';
 
 /// Provides information about a display monitor device connected to the
 /// system.
-///
-/// {@category class}
 class DisplayMonitor extends IInspectable
     implements IDisplayMonitor, IDisplayMonitor2 {
   DisplayMonitor.fromPtr(super.ptr);

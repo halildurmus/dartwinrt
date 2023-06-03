@@ -19,7 +19,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IStorageFilePropertiesWithAvailability =
     '{afcbbe9b-582b-4133-9648-e44ca46ee491}';
 
-/// {@category interface}
 class IStorageFilePropertiesWithAvailability extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IStorageFilePropertiesWithAvailability.fromPtr(super.ptr);

@@ -20,7 +20,6 @@ import 'domainauthenticationkind.dart';
 /// @nodoc
 const IID_IConnectionProfile6 = '{dc27dfe2-7a6f-5d0e-9589-2fe2e5b6f9aa}';
 
-/// {@category interface}
 class IConnectionProfile6 extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IConnectionProfile6.fromPtr(super.ptr);

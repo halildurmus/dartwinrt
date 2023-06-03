@@ -40,8 +40,6 @@ import 'xmltext.dart';
 
 /// Represents the top level of the XML source. This class includes members
 /// for retrieving and creating all other XML objects.
-///
-/// {@category class}
 class XmlDocument extends IInspectable
     implements
         IXmlDocument,

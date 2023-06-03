@@ -9,8 +9,6 @@
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Describes the type of change that occurred to the storage library item.
-///
-/// {@category enum}
 enum StorageLibraryChangeType implements WinRTEnum {
   created(0),
   deleted(1),

@@ -9,8 +9,6 @@
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Specifies whether an app is available that supports activation.
-///
-/// {@category enum}
 enum LaunchQuerySupportStatus implements WinRTEnum {
   available(0),
   appNotInstalled(1),

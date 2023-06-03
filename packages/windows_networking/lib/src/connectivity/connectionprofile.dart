@@ -43,8 +43,6 @@ import 'wwanconnectionprofiledetails.dart';
 /// Represents a network connection, which includes either the currently
 /// connected network or prior network connections. Provides information
 /// about the connection status and connectivity statistics.
-///
-/// {@category class}
 class ConnectionProfile extends IInspectable
     implements
         IConnectionProfile,

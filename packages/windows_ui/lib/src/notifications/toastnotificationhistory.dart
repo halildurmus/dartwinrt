@@ -21,8 +21,6 @@ import 'toastnotification.dart';
 
 /// Manages the toast notifications for an app including the ability the
 /// clear all toast history and removing individual toasts.
-///
-/// {@category class}
 class ToastNotificationHistory extends IInspectable
     implements IToastNotificationHistory2, IToastNotificationHistory {
   ToastNotificationHistory.fromPtr(super.ptr);

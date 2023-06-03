@@ -23,8 +23,6 @@ import 'phonenumberparseresult.dart';
 import 'predictedphonenumberkind.dart';
 
 /// Information about a phone number.
-///
-/// {@category class}
 class PhoneNumberInfo extends IInspectable
     implements IPhoneNumberInfo, IStringable {
   PhoneNumberInfo.fromPtr(super.ptr);

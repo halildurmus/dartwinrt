@@ -19,8 +19,6 @@ import 'package:windows_storage/windows_storage.dart';
 import 'iappdisplayinfo.dart';
 
 /// Provides an application's name, description, and logo.
-///
-/// {@category class}
 class AppDisplayInfo extends IInspectable implements IAppDisplayInfo {
   AppDisplayInfo.fromPtr(super.ptr);
 

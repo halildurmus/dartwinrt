@@ -21,7 +21,6 @@ import 'storagelibrarychangetrackeroptions.dart';
 const IID_IStorageLibraryChangeTracker2 =
     '{cd051c3b-0f9f-42f9-8fb3-158d82e13821}';
 
-/// {@category interface}
 class IStorageLibraryChangeTracker2 extends IInspectable {
   // vtable begins at 6, is 2 entries long.
   IStorageLibraryChangeTracker2.fromPtr(super.ptr);

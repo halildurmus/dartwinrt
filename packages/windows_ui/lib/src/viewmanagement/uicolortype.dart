@@ -9,8 +9,6 @@
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Defines constants that specify known system color values.
-///
-/// {@category enum}
 enum UIColorType implements WinRTEnum {
   background(0),
   foreground(1),

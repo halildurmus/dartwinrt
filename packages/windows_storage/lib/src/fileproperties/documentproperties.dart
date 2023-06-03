@@ -20,8 +20,6 @@ import 'istorageitemextraproperties.dart';
 
 /// Provides access to the document-related properties of an item (like a
 /// file or folder).
-///
-/// {@category class}
 class DocumentProperties extends IInspectable
     implements IDocumentProperties, IStorageItemExtraProperties {
   DocumentProperties.fromPtr(super.ptr);

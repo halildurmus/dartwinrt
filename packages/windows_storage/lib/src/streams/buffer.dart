@@ -21,8 +21,6 @@ import 'ibufferstatics.dart';
 
 /// Provides a default implementation of the IBuffer interface and its
 /// related interfaces.
-///
-/// {@category class}
 class Buffer extends IInspectable implements IBuffer {
   Buffer.fromPtr(super.ptr);
 

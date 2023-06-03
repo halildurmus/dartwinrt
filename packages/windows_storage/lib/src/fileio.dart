@@ -22,8 +22,6 @@ import 'streams/unicodeencoding.dart';
 
 /// Provides helper methods for reading and writing files that are
 /// represented by objects of type IStorageFile.
-///
-/// {@category class}
 class FileIO extends IInspectable {
   FileIO.fromPtr(super.ptr);
 

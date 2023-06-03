@@ -9,8 +9,6 @@
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Defines constants that specify a domain authentication method.
-///
-/// {@category enum}
 enum DomainAuthenticationKind implements WinRTEnum {
   none(0),
   ldap(1),

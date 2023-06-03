@@ -21,7 +21,6 @@ import 'providernetworkusage.dart';
 /// @nodoc
 const IID_IConnectionProfile4 = '{7a2d42cd-81e0-4ae6-abed-ab9ca13eb714}';
 
-/// {@category interface}
 class IConnectionProfile4 extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IConnectionProfile4.fromPtr(super.ptr);

@@ -26,7 +26,6 @@ import 'xmlnodelist.dart';
 /// @nodoc
 const IID_IXmlDocumentType = '{f7342425-9781-4964-8e94-9b1c6dfc9bc7}';
 
-/// {@category interface}
 class IXmlDocumentType extends IInspectable
     implements IXmlNode, IXmlNodeSelector, IXmlNodeSerializer {
   // vtable begins at 6, is 3 entries long.

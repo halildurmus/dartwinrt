@@ -20,8 +20,6 @@ import 'inumeralsystemtranslatorfactory.dart';
 
 /// Translates digits of the Latin numerical system into digits of another
 /// numerical system.
-///
-/// {@category class}
 class NumeralSystemTranslator extends IInspectable
     implements INumeralSystemTranslator {
   NumeralSystemTranslator() : super(activateClass(_className));

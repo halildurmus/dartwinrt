@@ -20,7 +20,6 @@ import 'currencyamount.dart';
 /// @nodoc
 const IID_ICurrencyAmountFactory = '{48d7168f-ef3b-4aee-a6a1-4b036fe03ff0}';
 
-/// {@category interface}
 class ICurrencyAmountFactory extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   ICurrencyAmountFactory.fromPtr(super.ptr);

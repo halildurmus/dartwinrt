@@ -18,7 +18,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// @nodoc
 const IID_IWebTokenRequest3 = '{5a755b51-3bb1-41a5-a63d-90bc32c7db9a}';
 
-/// {@category interface}
 class IWebTokenRequest3 extends IInspectable {
   // vtable begins at 6, is 2 entries long.
   IWebTokenRequest3.fromPtr(super.ptr);

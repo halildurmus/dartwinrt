@@ -10,8 +10,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 /// Defines constants that specify the content layout direction (for text
 /// and UI elements) most appropriate for a language.
-///
-/// {@category enum}
 enum LanguageLayoutDirection implements WinRTEnum {
   ltr(0),
   rtl(1),

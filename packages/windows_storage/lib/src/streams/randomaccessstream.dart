@@ -20,8 +20,6 @@ import 'ioutputstream.dart';
 import 'irandomaccessstreamstatics.dart';
 
 /// Provides random access of data in input and output streams.
-///
-/// {@category class}
 class RandomAccessStream extends IInspectable {
   RandomAccessStream.fromPtr(super.ptr);
 

@@ -12,8 +12,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 /// An entry in the SortOrder list the specifies a property and ordering
 /// that is used to sort query results.
-///
-/// {@category struct}
 final class SortEntry implements WinRTStruct {
   SortEntry(this.propertyName, this.ascendingOrder);
 

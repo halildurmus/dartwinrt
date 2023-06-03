@@ -9,8 +9,6 @@
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Specifies the context in which an app runs.
-///
-/// {@category enum}
 enum AppExecutionContext implements WinRTEnum {
   unknown(0),
   host(1),

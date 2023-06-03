@@ -22,8 +22,6 @@ import 'iclosable.dart';
 const IID_IMemoryBufferReference = '{fbc4dd29-245b-11e4-af98-689423260cf8}';
 
 /// Represents a reference to an IMemoryBuffer object.
-///
-/// {@category interface}
 class IMemoryBufferReference extends IInspectable implements IClosable {
   // vtable begins at 6, is 3 entries long.
   IMemoryBufferReference.fromPtr(super.ptr);

@@ -20,7 +20,6 @@ import 'ibuffer.dart';
 /// @nodoc
 const IID_IOutputStream = '{905a0fe6-bc53-11df-8c49-001e4fc686da}';
 
-/// {@category interface}
 class IOutputStream extends IInspectable implements IClosable {
   // vtable begins at 6, is 2 entries long.
   IOutputStream.fromPtr(super.ptr);

@@ -20,7 +20,6 @@ import 'calendar.dart';
 /// @nodoc
 const IID_ICalendarFactory = '{83f58412-e56b-4c75-a66e-0f63d57758a6}';
 
-/// {@category interface}
 class ICalendarFactory extends IInspectable {
   // vtable begins at 6, is 2 entries long.
   ICalendarFactory.fromPtr(super.ptr);

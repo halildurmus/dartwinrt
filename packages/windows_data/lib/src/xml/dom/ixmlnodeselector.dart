@@ -21,7 +21,6 @@ import 'xmlnodelist.dart';
 /// @nodoc
 const IID_IXmlNodeSelector = '{63dbba8b-d0db-4fe1-b745-f9433afdc25b}';
 
-/// {@category interface}
 class IXmlNodeSelector extends IInspectable {
   // vtable begins at 6, is 4 entries long.
   IXmlNodeSelector.fromPtr(super.ptr);

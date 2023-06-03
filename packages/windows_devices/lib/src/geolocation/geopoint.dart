@@ -23,8 +23,6 @@ import 'igeopointfactory.dart';
 import 'igeoshape.dart';
 
 /// Describes a geographic point.
-///
-/// {@category class}
 class Geopoint extends IInspectable implements IGeopoint, IGeoshape {
   Geopoint.fromPtr(super.ptr);
 

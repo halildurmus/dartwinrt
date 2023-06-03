@@ -9,8 +9,6 @@
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Indicates the ability of the Geolocator object to provide location data.
-///
-/// {@category enum}
 enum PositionStatus implements WinRTEnum {
   ready(0),
   initializing(1),

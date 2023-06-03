@@ -10,8 +10,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 /// Specifies the intended format for the year in a DateTimeFormatter
 /// object.
-///
-/// {@category enum}
 enum YearFormat implements WinRTEnum {
   none(0),
   default_(1),

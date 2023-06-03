@@ -22,8 +22,6 @@ import 'iapplicationdatacontainer.dart';
 /// Represents a container for app settings. The methods and properties of
 /// this class support creating, deleting, enumerating, and traversing the
 /// container hierarchy.
-///
-/// {@category class}
 class ApplicationDataContainer extends IInspectable
     implements IApplicationDataContainer, IClosable {
   ApplicationDataContainer.fromPtr(super.ptr);

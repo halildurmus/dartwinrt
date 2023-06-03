@@ -9,8 +9,6 @@
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// The type of an IXmlNode, as returned by the NodeType property.
-///
-/// {@category enum}
 enum NodeType implements WinRTEnum {
   invalid(0),
   elementNode(1),

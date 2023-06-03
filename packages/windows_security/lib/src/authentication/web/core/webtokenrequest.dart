@@ -24,8 +24,6 @@ import 'webtokenrequestprompttype.dart';
 
 /// Represents a request to an online identity provider for an
 /// authentication token.
-///
-/// {@category class}
 class WebTokenRequest extends IInspectable
     implements IWebTokenRequest, IWebTokenRequest2, IWebTokenRequest3 {
   WebTokenRequest.fromPtr(super.ptr);

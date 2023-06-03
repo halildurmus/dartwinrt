@@ -9,8 +9,6 @@
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Represents user types.
-///
-/// {@category enum}
 enum UserType implements WinRTEnum {
   localUser(0),
   remoteUser(1),

@@ -19,7 +19,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IPackageContentGroupStatics =
     '{70ee7619-5f12-4b92-b9ea-6ccada13bc75}';
 
-/// {@category interface}
 class IPackageContentGroupStatics extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IPackageContentGroupStatics.fromPtr(super.ptr);

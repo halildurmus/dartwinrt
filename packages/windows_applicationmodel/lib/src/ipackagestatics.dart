@@ -20,7 +20,6 @@ import 'package.dart';
 /// @nodoc
 const IID_IPackageStatics = '{4e534bdf-2960-4878-97a4-9624deb72f2d}';
 
-/// {@category interface}
 class IPackageStatics extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IPackageStatics.fromPtr(super.ptr);

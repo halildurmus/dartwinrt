@@ -19,8 +19,6 @@ import 'iclockidentifiersstatics.dart';
 
 /// Contains the clock identifiers for the supported clocks, as static
 /// properties.
-///
-/// {@category class}
 class ClockIdentifiers extends IInspectable {
   ClockIdentifiers.fromPtr(super.ptr);
 

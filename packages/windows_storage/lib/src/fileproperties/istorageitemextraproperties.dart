@@ -19,7 +19,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IStorageItemExtraProperties =
     '{c54361b2-54cd-432b-bdbc-4b19c4b470d7}';
 
-/// {@category interface}
 class IStorageItemExtraProperties extends IInspectable {
   // vtable begins at 6, is 3 entries long.
   IStorageItemExtraProperties.fromPtr(super.ptr);

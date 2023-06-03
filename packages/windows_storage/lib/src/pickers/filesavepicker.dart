@@ -26,8 +26,6 @@ import 'pickerlocationid.dart';
 
 /// Represents a file picker that lets the user choose the file name,
 /// extension, and storage location for a file.
-///
-/// {@category class}
 class FileSavePicker extends IInspectable
     implements
         IFileSavePicker2,

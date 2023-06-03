@@ -20,8 +20,6 @@ import 'devicepairingresultstatus.dart';
 import 'idevicepairingresult.dart';
 
 /// Contains information about the result of attempting to pair a device.
-///
-/// {@category class}
 class DevicePairingResult extends IInspectable implements IDevicePairingResult {
   DevicePairingResult.fromPtr(super.ptr);
 

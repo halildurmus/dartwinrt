@@ -8,7 +8,6 @@
 
 import 'package:windows_foundation/windows_foundation.dart';
 
-/// {@category enum}
 enum ToastNotificationMode implements WinRTEnum {
   unrestricted(0),
   priorityOnly(1),

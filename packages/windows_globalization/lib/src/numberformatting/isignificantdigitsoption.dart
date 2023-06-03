@@ -18,7 +18,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// @nodoc
 const IID_ISignificantDigitsOption = '{1d4dfcdd-2d43-4ee8-bbf1-c1b26a711a58}';
 
-/// {@category interface}
 class ISignificantDigitsOption extends IInspectable {
   // vtable begins at 6, is 2 entries long.
   ISignificantDigitsOption.fromPtr(super.ptr);

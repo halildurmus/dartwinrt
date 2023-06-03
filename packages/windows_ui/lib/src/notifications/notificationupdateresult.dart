@@ -9,8 +9,6 @@
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Describes the results of a notification update.
-///
-/// {@category enum}
 enum NotificationUpdateResult implements WinRTEnum {
   succeeded(0),
   failed(1),

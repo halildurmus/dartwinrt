@@ -19,7 +19,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IScheduledToastNotification2 =
     '{a66ea09c-31b4-43b0-b5dd-7a40e85363b1}';
 
-/// {@category interface}
 class IScheduledToastNotification2 extends IInspectable {
   // vtable begins at 6, is 6 entries long.
   IScheduledToastNotification2.fromPtr(super.ptr);

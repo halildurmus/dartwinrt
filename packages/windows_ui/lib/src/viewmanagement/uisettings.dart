@@ -27,8 +27,6 @@ import 'uicolortype.dart';
 import 'uielementtype.dart';
 
 /// Contains a set of common app user interface settings and operations.
-///
-/// {@category class}
 class UISettings extends IInspectable
     implements
         IUISettings,

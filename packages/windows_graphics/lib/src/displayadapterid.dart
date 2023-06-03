@@ -12,8 +12,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 /// Corresponds to the LUID (Locally Unique Identifier) associated with a
 /// graphics adapter.
-///
-/// {@category struct}
 final class DisplayAdapterId implements WinRTStruct {
   DisplayAdapterId(this.lowPart, this.highPart);
 

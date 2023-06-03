@@ -21,7 +21,6 @@ import 'headset.dart';
 /// @nodoc
 const IID_IGameController = '{1baf6522-5f64-42c5-8267-b9fe2215bfbd}';
 
-/// {@category interface}
 class IGameController extends IInspectable {
   // vtable begins at 6, is 9 entries long.
   IGameController.fromPtr(super.ptr);

@@ -26,8 +26,6 @@ import 'inputstreamoptions.dart';
 import 'unicodeencoding.dart';
 
 /// Reads data from an input stream.
-///
-/// {@category class}
 class DataReader extends IInspectable implements IDataReader, IClosable {
   DataReader.fromPtr(super.ptr);
 

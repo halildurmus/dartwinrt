@@ -20,8 +20,6 @@ import 'networkauthenticationtype.dart';
 import 'networkencryptiontype.dart';
 
 /// Represents the current network security settings.
-///
-/// {@category class}
 class NetworkSecuritySettings extends IInspectable
     implements INetworkSecuritySettings {
   NetworkSecuritySettings.fromPtr(super.ptr);

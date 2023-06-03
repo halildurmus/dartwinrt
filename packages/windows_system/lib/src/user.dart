@@ -28,8 +28,6 @@ import 'usertype.dart';
 import 'userwatcher.dart';
 
 /// Represents a user.
-///
-/// {@category class}
 class User extends IInspectable implements IUser, IUser2 {
   User.fromPtr(super.ptr);
 

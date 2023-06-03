@@ -21,8 +21,6 @@ import 'toastcollection.dart';
 
 /// Provides methods for creating, retrieving, updating, and removing
 /// ToastCollection objects.
-///
-/// {@category class}
 class ToastCollectionManager extends IInspectable
     implements IToastCollectionManager {
   ToastCollectionManager.fromPtr(super.ptr);

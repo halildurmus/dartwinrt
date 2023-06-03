@@ -11,8 +11,6 @@ import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Represents an annotation registration.
-///
-/// {@category struct}
 final class AutomationAnnotationTypeRegistration implements WinRTStruct {
   AutomationAnnotationTypeRegistration(this.localId);
 

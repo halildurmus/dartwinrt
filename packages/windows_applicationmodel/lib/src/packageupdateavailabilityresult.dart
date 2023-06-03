@@ -20,8 +20,6 @@ import 'packageupdateavailability.dart';
 
 /// Describes whether the main app package listed in the .appinstaller file
 /// requires updates.
-///
-/// {@category class}
 class PackageUpdateAvailabilityResult extends IInspectable
     implements IPackageUpdateAvailabilityResult {
   PackageUpdateAvailabilityResult.fromPtr(super.ptr);

@@ -21,8 +21,6 @@ import 'ibatterystatics.dart';
 
 /// Provides information about a battery controller that is currently
 /// connected to the device. For more info, see Get battery information.
-///
-/// {@category class}
 class Battery extends IInspectable implements IBattery {
   Battery.fromPtr(super.ptr);
 

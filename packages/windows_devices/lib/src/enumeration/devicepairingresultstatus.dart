@@ -11,8 +11,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// The result of the pairing action with an Association Endpoint (AEP)
 /// device object. For more information about AEP objects, see
 /// DeviceInformationKind.
-///
-/// {@category enum}
 enum DevicePairingResultStatus implements WinRTEnum {
   paired(0),
   notReadyToPair(1),

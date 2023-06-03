@@ -22,8 +22,6 @@ import 'lanidentifierdata.dart';
 /// object. For a code example showing how to retrieve data represented by a
 /// LanIdentifier object, see How to retrieve network adapter and locality
 /// information (XAML).
-///
-/// {@category class}
 class LanIdentifier extends IInspectable implements ILanIdentifier {
   LanIdentifier.fromPtr(super.ptr);
 

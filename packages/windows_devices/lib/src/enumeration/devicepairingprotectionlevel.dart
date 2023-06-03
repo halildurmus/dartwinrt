@@ -9,8 +9,6 @@
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// The level of protection for pairing.
-///
-/// {@category enum}
 enum DevicePairingProtectionLevel implements WinRTEnum {
   default_(0),
   none(1),

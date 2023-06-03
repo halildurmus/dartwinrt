@@ -28,8 +28,6 @@ import 'webtokenrequest.dart';
 import 'webtokenrequestresult.dart';
 
 /// Contains core methods for obtaining tokens from web account providers.
-///
-/// {@category class}
 class WebAuthenticationCoreManager extends IInspectable {
   WebAuthenticationCoreManager.fromPtr(super.ptr);
 

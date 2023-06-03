@@ -28,8 +28,6 @@ import 'toastnotifier.dart';
 /// for the bound user. This class also provides access to the XML content
 /// of the system-provided toast templates so that you can customize that
 /// content for use in your notifications.
-///
-/// {@category class}
 class ToastNotificationManagerForUser extends IInspectable
     implements
         IToastNotificationManagerForUser,

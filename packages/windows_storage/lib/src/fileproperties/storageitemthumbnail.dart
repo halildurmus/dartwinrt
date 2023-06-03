@@ -27,8 +27,6 @@ import 'thumbnailtype.dart';
 
 /// Represents the thumbnail image associated with a system resource (like a
 /// file or folder).
-///
-/// {@category class}
 class StorageItemThumbnail extends IInspectable
     implements
         IRandomAccessStreamWithContentType,

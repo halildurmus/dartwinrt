@@ -25,8 +25,6 @@ import 'isignedzerooption.dart';
 import 'isignificantdigitsoption.dart';
 
 /// Formats and parses permillages.
-///
-/// {@category class}
 class PermilleFormatter extends IInspectable
     implements
         INumberFormatterOptions,

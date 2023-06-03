@@ -24,8 +24,6 @@ import 'webaccountprovider.dart';
 import 'webaccountstate.dart';
 
 /// Identifies an account from a web account provider.
-///
-/// {@category class}
 class WebAccount extends IInspectable implements IWebAccount, IWebAccount2 {
   WebAccount.fromPtr(super.ptr);
 

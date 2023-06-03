@@ -60,9 +60,8 @@ void main() {
     });
 
     test('includes correct dartdoc category comment', () {
-      expect(asyncStatusProjection.category, equals('enum'));
-      expect(
-          asyncStatusProjection.classPreamble, equals('/// {@category enum}'));
+      expect(asyncStatusProjection.category, isEmpty);
+      expect(asyncStatusProjection.classPreamble, isEmpty);
     });
 
     test('has correct enum name', () {
@@ -139,9 +138,8 @@ void main() {
     });
 
     test('includes correct dartdoc category comment', () {
-      expect(fileAttributesProjection.category, equals('enum'));
-      expect(fileAttributesProjection.classPreamble,
-          equals('/// {@category enum}'));
+      expect(fileAttributesProjection.category, isEmpty);
+      expect(fileAttributesProjection.classPreamble, isEmpty);
     });
 
     test('has correct enum name', () {

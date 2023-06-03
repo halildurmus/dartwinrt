@@ -18,7 +18,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// @nodoc
 const IID_IDisplayMonitor2 = '{023018e6-cb23-5830-96df-a7bf6e602577}';
 
-/// {@category interface}
 class IDisplayMonitor2 extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IDisplayMonitor2.fromPtr(super.ptr);

@@ -10,8 +10,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 /// Specifies the result of a call to CheckUserAgeConsentGroupAsync,
 /// querying for a user's membership in a specified UserAgeConsentGroup.
-///
-/// {@category enum}
 enum UserAgeConsentResult implements WinRTEnum {
   notEnforced(0),
   included(1),

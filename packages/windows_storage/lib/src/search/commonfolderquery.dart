@@ -12,8 +12,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// determines whether the query is shallow or deep. Query results for deep
 /// queries include all files in all of the subfolders of the current
 /// folder, grouped into folders according to the specified option.
-///
-/// {@category enum}
 enum CommonFolderQuery implements WinRTEnum {
   defaultQuery(0),
   groupByYear(100),

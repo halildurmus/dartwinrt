@@ -12,8 +12,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 /// Defines the desired state of the connection profile for which usage data
 /// is returned by the method GetNetworkUsageAsync.
-///
-/// {@category struct}
 final class NetworkUsageStates implements WinRTStruct {
   NetworkUsageStates(this.roaming, this.shared);
 

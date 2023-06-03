@@ -19,8 +19,6 @@ import 'iconnectivityinterval.dart';
 
 /// Provides the start time and duration for an established or prior
 /// connection.
-///
-/// {@category class}
 class ConnectivityInterval extends IInspectable
     implements IConnectivityInterval {
   ConnectivityInterval.fromPtr(super.ptr);

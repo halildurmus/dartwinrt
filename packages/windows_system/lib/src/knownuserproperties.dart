@@ -19,8 +19,6 @@ import 'iknownuserpropertiesstatics.dart';
 import 'iknownuserpropertiesstatics2.dart';
 
 /// Contains basic information about a user.
-///
-/// {@category class}
 class KnownUserProperties extends IInspectable {
   KnownUserProperties.fromPtr(super.ptr);
 

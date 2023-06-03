@@ -11,8 +11,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// Indicates the Exchangeable Image File (EXIF) orientation flag of the
 /// photo. This flag describes how to rotate the photo to display it
 /// correctly.
-///
-/// {@category enum}
 enum PhotoOrientation implements WinRTEnum {
   unspecified(0),
   normal(1),

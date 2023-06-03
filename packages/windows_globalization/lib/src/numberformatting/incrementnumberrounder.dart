@@ -20,8 +20,6 @@ import 'inumberrounder.dart';
 import 'roundingalgorithm.dart';
 
 /// Rounds numbers to a specified increment.
-///
-/// {@category class}
 class IncrementNumberRounder extends IInspectable
     implements INumberRounder, IIncrementNumberRounder {
   IncrementNumberRounder() : super(activateClass(_className));

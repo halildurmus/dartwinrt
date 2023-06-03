@@ -27,8 +27,6 @@ import 'wwwformurldecoder.dart';
 /// value and parses it into components. The Uri object is used by many
 /// other Windows Runtime APIs that are not necessarily confined to web
 /// browser scenarios.
-///
-/// {@category class}
 class Uri extends IInspectable
     implements
         IUriRuntimeClass,

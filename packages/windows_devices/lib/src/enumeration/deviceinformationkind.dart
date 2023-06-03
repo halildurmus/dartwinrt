@@ -9,8 +9,6 @@
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Represents the kind of DeviceInformation object.
-///
-/// {@category enum}
 enum DeviceInformationKind implements WinRTEnum {
   unknown(0),
   deviceInterface(1),

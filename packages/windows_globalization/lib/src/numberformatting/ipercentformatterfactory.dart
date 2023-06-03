@@ -20,7 +20,6 @@ import 'percentformatter.dart';
 /// @nodoc
 const IID_IPercentFormatterFactory = '{b7828aef-fed4-4018-a6e2-e09961e03765}';
 
-/// {@category interface}
 class IPercentFormatterFactory extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IPercentFormatterFactory.fromPtr(super.ptr);

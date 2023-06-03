@@ -9,8 +9,6 @@
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Provides values that identify storage folders.
-///
-/// {@category enum}
 enum KnownFolderId implements WinRTEnum {
   appCaptures(0),
   cameraRoll(1),

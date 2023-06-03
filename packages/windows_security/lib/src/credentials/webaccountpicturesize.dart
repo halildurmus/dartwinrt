@@ -8,7 +8,6 @@
 
 import 'package:windows_foundation/windows_foundation.dart';
 
-/// {@category enum}
 enum WebAccountPictureSize implements WinRTEnum {
   size64x64(64),
   size208x208(208),

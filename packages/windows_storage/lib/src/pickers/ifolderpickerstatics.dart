@@ -21,7 +21,6 @@ import 'folderpicker.dart';
 /// @nodoc
 const IID_IFolderPickerStatics = '{9be34740-7ca1-5942-a3c8-46f2551ecff3}';
 
-/// {@category interface}
 class IFolderPickerStatics extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IFolderPickerStatics.fromPtr(super.ptr);

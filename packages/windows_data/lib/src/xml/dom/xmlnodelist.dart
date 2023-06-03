@@ -19,8 +19,6 @@ import 'ixmlnode.dart';
 import 'ixmlnodelist.dart';
 
 /// Describes a collection of nodes.
-///
-/// {@category class}
 class XmlNodeList extends IInspectable
     implements IXmlNodeList, IVectorView<IXmlNode>, IIterable<IXmlNode> {
   XmlNodeList.fromPtr(super.ptr);

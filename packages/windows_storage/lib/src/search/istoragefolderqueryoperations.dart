@@ -30,7 +30,6 @@ import 'storageitemqueryresult.dart';
 const IID_IStorageFolderQueryOperations =
     '{cb43ccc9-446b-4a4f-be97-757771be5203}';
 
-/// {@category interface}
 class IStorageFolderQueryOperations extends IInspectable {
   // vtable begins at 6, is 17 entries long.
   IStorageFolderQueryOperations.fromPtr(super.ptr);

@@ -19,7 +19,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_INumeralSystemIdentifiersStatics2 =
     '{7f003228-9ddb-4a34-9104-0260c091a7c7}';
 
-/// {@category interface}
 class INumeralSystemIdentifiersStatics2 extends IInspectable {
   // vtable begins at 6, is 12 entries long.
   INumeralSystemIdentifiersStatics2.fromPtr(super.ptr);

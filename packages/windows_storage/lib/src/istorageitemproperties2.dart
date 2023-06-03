@@ -24,7 +24,6 @@ import 'istorageitemproperties.dart';
 /// @nodoc
 const IID_IStorageItemProperties2 = '{8e86a951-04b9-4bd2-929d-fef3f71621d0}';
 
-/// {@category interface}
 class IStorageItemProperties2 extends IInspectable
     implements IStorageItemProperties {
   // vtable begins at 6, is 3 entries long.

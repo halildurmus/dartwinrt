@@ -21,7 +21,6 @@ import 'roundingalgorithm.dart';
 /// @nodoc
 const IID_ICurrencyFormatter2 = '{072c2f1d-e7ba-4197-920e-247c92f7dea6}';
 
-/// {@category interface}
 class ICurrencyFormatter2 extends IInspectable {
   // vtable begins at 6, is 3 entries long.
   ICurrencyFormatter2.fromPtr(super.ptr);

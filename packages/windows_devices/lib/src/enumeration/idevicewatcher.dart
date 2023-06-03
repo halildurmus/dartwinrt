@@ -23,7 +23,6 @@ import 'devicewatcherstatus.dart';
 /// @nodoc
 const IID_IDeviceWatcher = '{c9eab97d-8f6b-4f96-a9f4-abc814e22271}';
 
-/// {@category interface}
 class IDeviceWatcher extends IInspectable {
   // vtable begins at 6, is 13 entries long.
   IDeviceWatcher.fromPtr(super.ptr);

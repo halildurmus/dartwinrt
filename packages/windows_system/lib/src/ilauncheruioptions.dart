@@ -19,7 +19,6 @@ import 'package:windows_ui/windows_ui.dart';
 /// @nodoc
 const IID_ILauncherUIOptions = '{1b25da6e-8aa6-41e9-8251-4165f5985f49}';
 
-/// {@category interface}
 class ILauncherUIOptions extends IInspectable {
   // vtable begins at 6, is 6 entries long.
   ILauncherUIOptions.fromPtr(super.ptr);

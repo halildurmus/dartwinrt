@@ -21,7 +21,6 @@ import 'packageversion.dart';
 /// @nodoc
 const IID_IPackageId = '{1adb665e-37c7-4790-9980-dd7ae74e8bb2}';
 
-/// {@category interface}
 class IPackageId extends IInspectable {
   // vtable begins at 6, is 8 entries long.
   IPackageId.fromPtr(super.ptr);

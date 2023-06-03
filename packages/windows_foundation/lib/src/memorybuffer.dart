@@ -22,8 +22,6 @@ import 'imemorybufferfactory.dart';
 import 'imemorybufferreference.dart';
 
 /// Represents a reference counted memory buffer.
-///
-/// {@category class}
 class MemoryBuffer extends IInspectable implements IMemoryBuffer, IClosable {
   MemoryBuffer.fromPtr(super.ptr);
 

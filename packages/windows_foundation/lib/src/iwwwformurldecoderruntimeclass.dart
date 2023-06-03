@@ -24,7 +24,6 @@ import 'iwwwformurldecoderentry.dart';
 const IID_IWwwFormUrlDecoderRuntimeClass =
     '{d45a0451-f225-4542-9296-0e1df5d254df}';
 
-/// {@category interface}
 class IWwwFormUrlDecoderRuntimeClass extends IInspectable
     implements
         IIterable<IWwwFormUrlDecoderEntry>,

@@ -18,7 +18,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// @nodoc
 const IID_IJapanesePhoneme = '{2f6a9300-e85b-43e6-897d-5d82f862df21}';
 
-/// {@category interface}
 class IJapanesePhoneme extends IInspectable {
   // vtable begins at 6, is 3 entries long.
   IJapanesePhoneme.fromPtr(super.ptr);

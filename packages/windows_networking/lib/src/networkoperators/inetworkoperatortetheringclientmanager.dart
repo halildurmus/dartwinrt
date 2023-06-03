@@ -21,7 +21,6 @@ import 'networkoperatortetheringclient.dart';
 const IID_INetworkOperatorTetheringClientManager =
     '{91b14016-8dca-4225-bbed-eef8b8d718d7}';
 
-/// {@category interface}
 class INetworkOperatorTetheringClientManager extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   INetworkOperatorTetheringClientManager.fromPtr(super.ptr);

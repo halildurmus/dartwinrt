@@ -25,8 +25,6 @@ import 'xmlnamednodemap.dart';
 import 'xmlnodelist.dart';
 
 /// Represents an entity reference node.
-///
-/// {@category class}
 class XmlEntityReference extends IInspectable
     implements
         IXmlEntityReference,

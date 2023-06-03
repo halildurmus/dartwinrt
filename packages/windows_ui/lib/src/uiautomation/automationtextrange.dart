@@ -19,8 +19,6 @@ import 'iautomationtextrange.dart';
 
 /// Provides access to a span of continuous text in a container that
 /// supports the IUIAutomationTextPattern interface.
-///
-/// {@category class}
 class AutomationTextRange extends IInspectable implements IAutomationTextRange {
   AutomationTextRange.fromPtr(super.ptr);
 }

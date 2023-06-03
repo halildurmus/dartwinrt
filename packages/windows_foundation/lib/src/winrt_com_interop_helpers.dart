@@ -11,8 +11,6 @@ import 'helpers.dart';
 
 /// Exposes a method through which a client can provide an owner window to a
 /// Windows Runtime (WinRT) object used in a desktop application.
-///
-/// {@category class}
 final class InitializeWithWindow {
   /// Specifies an owner window to be used by a Windows Runtime object that is
   /// used in a desktop app.

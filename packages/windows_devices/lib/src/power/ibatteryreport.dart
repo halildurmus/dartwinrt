@@ -19,7 +19,6 @@ import 'package:windows_system/windows_system.dart';
 /// @nodoc
 const IID_IBatteryReport = '{c9858c3a-4e13-420a-a8d0-24f18f395401}';
 
-/// {@category interface}
 class IBatteryReport extends IInspectable {
   // vtable begins at 6, is 5 entries long.
   IBatteryReport.fromPtr(super.ptr);

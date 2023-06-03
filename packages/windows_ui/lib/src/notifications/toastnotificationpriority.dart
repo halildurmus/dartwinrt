@@ -9,8 +9,6 @@
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Specifies the priority of a ToastNotification.
-///
-/// {@category enum}
 enum ToastNotificationPriority implements WinRTEnum {
   default_(0),
   high(1);

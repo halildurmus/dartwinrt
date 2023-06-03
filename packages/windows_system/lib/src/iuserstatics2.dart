@@ -20,7 +20,6 @@ import 'user.dart';
 /// @nodoc
 const IID_IUserStatics2 = '{74a37e11-2eb5-4487-b0d5-2c6790e013e9}';
 
-/// {@category interface}
 class IUserStatics2 extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IUserStatics2.fromPtr(super.ptr);

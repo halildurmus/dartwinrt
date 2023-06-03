@@ -9,8 +9,6 @@
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// The result of calling the PhoneNumberInfo.CheckNumberMatch method.
-///
-/// {@category enum}
 enum PhoneNumberMatchResult implements WinRTEnum {
   noMatch(0),
   shortNationalSignificantNumberMatch(1),

@@ -9,8 +9,6 @@
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Indicates the type of devices that the user wants to enumerate.
-///
-/// {@category enum}
 enum DeviceClass implements WinRTEnum {
   all(0),
   audioCapture(1),

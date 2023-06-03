@@ -21,7 +21,6 @@ import 'hostname.dart';
 /// @nodoc
 const IID_IEndpointPairFactory = '{b609d971-64e0-442b-aa6f-cc8c8f181f78}';
 
-/// {@category interface}
 class IEndpointPairFactory extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IEndpointPairFactory.fromPtr(super.ptr);

@@ -21,8 +21,6 @@ import 'inputstreamoptions.dart';
 
 /// Provides a Windows Runtime input stream for an IStream base
 /// implementation.
-///
-/// {@category class}
 class InputStreamOverStream extends IInspectable
     implements IInputStream, IClosable {
   InputStreamOverStream.fromPtr(super.ptr);

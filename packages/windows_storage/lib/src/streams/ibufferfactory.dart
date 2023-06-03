@@ -20,7 +20,6 @@ import 'buffer.dart';
 /// @nodoc
 const IID_IBufferFactory = '{71af914d-c10f-484b-bc50-14bc623b3a27}';
 
-/// {@category interface}
 class IBufferFactory extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IBufferFactory.fromPtr(super.ptr);

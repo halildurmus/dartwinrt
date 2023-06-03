@@ -25,7 +25,6 @@ import 'launchuriresult.dart';
 /// @nodoc
 const IID_ILauncherStatics2 = '{59ba2fbb-24cb-4c02-a4c4-8294569d54f1}';
 
-/// {@category interface}
 class ILauncherStatics2 extends IInspectable {
   // vtable begins at 6, is 10 entries long.
   ILauncherStatics2.fromPtr(super.ptr);

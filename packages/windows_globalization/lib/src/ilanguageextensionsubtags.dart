@@ -18,7 +18,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// @nodoc
 const IID_ILanguageExtensionSubtags = '{7d7daf45-368d-4364-852b-dec927037b85}';
 
-/// {@category interface}
 class ILanguageExtensionSubtags extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   ILanguageExtensionSubtags.fromPtr(super.ptr);

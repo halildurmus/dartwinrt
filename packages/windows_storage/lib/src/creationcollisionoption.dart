@@ -10,8 +10,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 /// Specifies what to do if a file or folder with the specified name already
 /// exists in the current folder when you create a new file or folder.
-///
-/// {@category enum}
 enum CreationCollisionOption implements WinRTEnum {
   generateUniqueName(0),
   replaceExisting(1),

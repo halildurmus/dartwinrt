@@ -19,8 +19,6 @@ import 'iuicommand.dart';
 import 'iuicommandfactory.dart';
 
 /// Represents a command in a context menu.
-///
-/// {@category class}
 class UICommand extends IInspectable implements IUICommand {
   UICommand() : super(activateClass(_className));
   UICommand.fromPtr(super.ptr);

@@ -20,7 +20,6 @@ import 'basicgeoposition.dart';
 /// @nodoc
 const IID_IGeolocatorStatics2 = '{993011a2-fa1c-4631-a71d-0dbeb1250d9c}';
 
-/// {@category interface}
 class IGeolocatorStatics2 extends IInspectable {
   // vtable begins at 6, is 3 entries long.
   IGeolocatorStatics2.fromPtr(super.ptr);

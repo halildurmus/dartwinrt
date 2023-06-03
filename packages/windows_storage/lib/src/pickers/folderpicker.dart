@@ -25,8 +25,6 @@ import 'pickerlocationid.dart';
 import 'pickerviewmode.dart';
 
 /// Represents a UI element that lets the user choose folders.
-///
-/// {@category class}
 class FolderPicker extends IInspectable
     implements IFolderPicker2, IFolderPicker, IFolderPicker3 {
   FolderPicker() : super(activateClass(_className));

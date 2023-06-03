@@ -21,7 +21,6 @@ import 'ibuffer.dart';
 /// @nodoc
 const IID_IBufferStatics = '{e901e65b-d716-475a-a90a-af7229b1e741}';
 
-/// {@category interface}
 class IBufferStatics extends IInspectable {
   // vtable begins at 6, is 2 entries long.
   IBufferStatics.fromPtr(super.ptr);

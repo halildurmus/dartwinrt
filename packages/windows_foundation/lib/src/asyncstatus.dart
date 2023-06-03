@@ -9,8 +9,6 @@
 import 'winrt_enum.dart';
 
 /// Specifies the status of an asynchronous operation.
-///
-/// {@category enum}
 enum AsyncStatus implements WinRTEnum {
   started(0),
   completed(1),

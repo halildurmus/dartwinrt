@@ -20,7 +20,6 @@ import 'language.dart';
 /// @nodoc
 const IID_ILanguageFactory = '{9b0252ac-0c27-44f8-b792-9793fb66c63e}';
 
-/// {@category interface}
 class ILanguageFactory extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   ILanguageFactory.fromPtr(super.ptr);

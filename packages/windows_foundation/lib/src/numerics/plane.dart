@@ -12,8 +12,6 @@ import '../../internal.dart';
 import '../winrt_struct.dart';
 
 /// Describes a plane (a flat, two-dimensional surface).
-///
-/// {@category struct}
 final class Plane implements WinRTStruct {
   Plane(this.normal, this.d);
 

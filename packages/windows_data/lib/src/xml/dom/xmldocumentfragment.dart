@@ -26,8 +26,6 @@ import 'xmlnodelist.dart';
 
 /// Represents a lightweight object that is useful for tree insertion
 /// operations.
-///
-/// {@category class}
 class XmlDocumentFragment extends IInspectable
     implements
         IXmlDocumentFragment,

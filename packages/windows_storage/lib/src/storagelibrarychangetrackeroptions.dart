@@ -20,8 +20,6 @@ import 'istoragelibrarychangetrackeroptions.dart';
 /// Allows callers to call EnableWithOptions on the change tracker to choose
 /// to track all changes including last change id, or just the last change
 /// id.
-///
-/// {@category class}
 class StorageLibraryChangeTrackerOptions extends IInspectable
     implements IStorageLibraryChangeTrackerOptions {
   StorageLibraryChangeTrackerOptions() : super(activateClass(_className));

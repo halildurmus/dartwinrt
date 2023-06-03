@@ -20,7 +20,6 @@ import 'phonenumberinfo.dart';
 /// @nodoc
 const IID_IPhoneNumberInfoFactory = '{8202b964-adaa-4cff-8fcf-17e7516a28ff}';
 
-/// {@category interface}
 class IPhoneNumberInfoFactory extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IPhoneNumberInfoFactory.fromPtr(super.ptr);

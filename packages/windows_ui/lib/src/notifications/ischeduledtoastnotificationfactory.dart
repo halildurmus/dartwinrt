@@ -22,7 +22,6 @@ import 'scheduledtoastnotification.dart';
 const IID_IScheduledToastNotificationFactory =
     '{e7bed191-0bb9-4189-8394-31761b476fd7}';
 
-/// {@category interface}
 class IScheduledToastNotificationFactory extends IInspectable {
   // vtable begins at 6, is 2 entries long.
   IScheduledToastNotificationFactory.fromPtr(super.ptr);

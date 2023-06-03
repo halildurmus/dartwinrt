@@ -31,8 +31,6 @@ import 'storagefolder.dart';
 /// includes content from a user's local libraries (such as Documents,
 /// Pictures, Music, and Videos), HomeGroup, removable devices, and media
 /// server devices.
-///
-/// {@category class}
 class KnownFolders extends IInspectable {
   KnownFolders.fromPtr(super.ptr);
 

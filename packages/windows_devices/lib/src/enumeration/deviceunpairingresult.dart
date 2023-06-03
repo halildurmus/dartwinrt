@@ -19,8 +19,6 @@ import 'deviceunpairingresultstatus.dart';
 import 'ideviceunpairingresult.dart';
 
 /// Contains information about the result of attempting to unpair a device.
-///
-/// {@category class}
 class DeviceUnpairingResult extends IInspectable
     implements IDeviceUnpairingResult {
   DeviceUnpairingResult.fromPtr(super.ptr);

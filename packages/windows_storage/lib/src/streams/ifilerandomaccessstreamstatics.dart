@@ -26,7 +26,6 @@ import 'irandomaccessstream.dart';
 const IID_IFileRandomAccessStreamStatics =
     '{73550107-3b57-4b5d-8345-554d2fc621f0}';
 
-/// {@category interface}
 class IFileRandomAccessStreamStatics extends IInspectable {
   // vtable begins at 6, is 8 entries long.
   IFileRandomAccessStreamStatics.fromPtr(super.ptr);

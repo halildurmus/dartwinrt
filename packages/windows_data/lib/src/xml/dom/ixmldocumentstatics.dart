@@ -22,7 +22,6 @@ import 'xmlloadsettings.dart';
 /// @nodoc
 const IID_IXmlDocumentStatics = '{5543d254-d757-4b79-9539-232b18f50bf1}';
 
-/// {@category interface}
 class IXmlDocumentStatics extends IInspectable {
   // vtable begins at 6, is 4 entries long.
   IXmlDocumentStatics.fromPtr(super.ptr);

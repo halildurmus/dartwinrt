@@ -20,7 +20,6 @@ import 'istorageprovider.dart';
 /// @nodoc
 const IID_IStorageProvider2 = '{010d1917-3404-414b-9fd7-cd44472eaa39}';
 
-/// {@category interface}
 class IStorageProvider2 extends IInspectable implements IStorageProvider {
   // vtable begins at 6, is 1 entries long.
   IStorageProvider2.fromPtr(super.ptr);

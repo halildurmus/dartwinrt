@@ -26,8 +26,6 @@ import 'xmlnamednodemap.dart';
 import 'xmlnodelist.dart';
 
 /// Encapsulates information specific to XML Element nodes.
-///
-/// {@category class}
 class XmlElement extends IInspectable
     implements IXmlElement, IXmlNode, IXmlNodeSerializer, IXmlNodeSelector {
   XmlElement.fromPtr(super.ptr);

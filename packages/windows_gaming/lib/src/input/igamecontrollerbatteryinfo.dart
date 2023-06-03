@@ -19,7 +19,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// @nodoc
 const IID_IGameControllerBatteryInfo = '{dcecc681-3963-4da6-955d-553f3b6f6161}';
 
-/// {@category interface}
 class IGameControllerBatteryInfo extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IGameControllerBatteryInfo.fromPtr(super.ptr);

@@ -22,8 +22,6 @@ import 'powersupplystatus.dart';
 
 /// Provides access to information about a device's battery and power supply
 /// status.
-///
-/// {@category class}
 class PowerManager extends IInspectable {
   PowerManager.fromPtr(super.ptr);
 

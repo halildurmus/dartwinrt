@@ -9,8 +9,6 @@
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Represents the status of a web token request.
-///
-/// {@category enum}
 enum WebTokenRequestStatus implements WinRTEnum {
   success(0),
   userCancel(1),

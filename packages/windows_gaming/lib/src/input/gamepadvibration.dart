@@ -11,8 +11,6 @@ import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Describes the gamepad motor speed.
-///
-/// {@category struct}
 final class GamepadVibration implements WinRTStruct {
   GamepadVibration(
       this.leftMotor, this.rightMotor, this.leftTrigger, this.rightTrigger);

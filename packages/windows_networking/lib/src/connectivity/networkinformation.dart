@@ -26,8 +26,6 @@ import 'lanidentifier.dart';
 import 'proxyconfiguration.dart';
 
 /// Provides access to network connection information for the local machine.
-///
-/// {@category class}
 class NetworkInformation extends IInspectable {
   NetworkInformation.fromPtr(super.ptr);
 

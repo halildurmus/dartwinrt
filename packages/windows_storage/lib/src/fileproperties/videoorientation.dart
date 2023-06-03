@@ -9,8 +9,6 @@
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Indicates how to rotate the video to display it correctly.
-///
-/// {@category enum}
 enum VideoOrientation implements WinRTEnum {
   normal(0),
   rotate90(90),

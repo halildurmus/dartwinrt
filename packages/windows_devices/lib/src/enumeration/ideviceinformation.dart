@@ -22,7 +22,6 @@ import 'enclosurelocation.dart';
 /// @nodoc
 const IID_IDeviceInformation = '{aba0fb95-4398-489d-8e44-e6130927011f}';
 
-/// {@category interface}
 class IDeviceInformation extends IInspectable {
   // vtable begins at 6, is 9 entries long.
   IDeviceInformation.fromPtr(super.ptr);

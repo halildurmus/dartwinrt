@@ -20,7 +20,6 @@ import 'ibackgroundtrigger.dart';
 /// @nodoc
 const IID_IDeviceWatcherTrigger = '{a4617fdd-8573-4260-befc-5bec89cb693d}';
 
-/// {@category interface}
 class IDeviceWatcherTrigger extends IInspectable implements IBackgroundTrigger {
   // vtable begins at 6, is 0 entries long.
   IDeviceWatcherTrigger.fromPtr(super.ptr);

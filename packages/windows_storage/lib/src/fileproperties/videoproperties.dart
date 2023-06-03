@@ -21,8 +21,6 @@ import 'videoorientation.dart';
 
 /// Provides access to the video-related properties of an item (like a file
 /// or folder).
-///
-/// {@category class}
 class VideoProperties extends IInspectable
     implements IVideoProperties, IStorageItemExtraProperties {
   VideoProperties.fromPtr(super.ptr);

@@ -27,7 +27,6 @@ import 'xmlnodelist.dart';
 /// @nodoc
 const IID_IXmlText = '{f931a4cb-308d-4760-a1d5-43b67450ac7e}';
 
-/// {@category interface}
 class IXmlText extends IInspectable
     implements
         IXmlCharacterData,

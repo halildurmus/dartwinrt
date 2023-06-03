@@ -20,7 +20,6 @@ import 'notificationdata.dart';
 /// @nodoc
 const IID_INotificationDataFactory = '{23c1e33a-1c10-46fb-8040-dec384621cf8}';
 
-/// {@category interface}
 class INotificationDataFactory extends IInspectable {
   // vtable begins at 6, is 2 entries long.
   INotificationDataFactory.fromPtr(super.ptr);

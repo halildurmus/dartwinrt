@@ -34,7 +34,6 @@ import 'streams/irandomaccessstreamwithcontenttype.dart';
 /// @nodoc
 const IID_IStorageFile = '{fa3f6186-4214-428c-a64c-14c9ac7315ea}';
 
-/// {@category interface}
 class IStorageFile extends IInspectable
     implements
         IStorageItem,

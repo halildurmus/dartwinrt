@@ -19,8 +19,6 @@ import 'inotificationdata.dart';
 import 'inotificationdatafactory.dart';
 
 /// Stores data for display in a toast notification.
-///
-/// {@category class}
 class NotificationData extends IInspectable implements INotificationData {
   NotificationData() : super(activateClass(_className));
   NotificationData.fromPtr(super.ptr);

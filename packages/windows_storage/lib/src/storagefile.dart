@@ -49,8 +49,6 @@ import 'streams/irandomaccessstreamwithcontenttype.dart';
 
 /// Represents a file. Provides information about the file and its content,
 /// and ways to manipulate them.
-///
-/// {@category class}
 class StorageFile extends IInspectable
     implements
         IStorageFile,

@@ -25,8 +25,6 @@ import 'icoreautomationremoteoperation2.dart';
 
 /// Represents an entry point for UI Automation (UIA) clients to use remote
 /// operations.
-///
-/// {@category class}
 class CoreAutomationRemoteOperation extends IInspectable
     implements ICoreAutomationRemoteOperation, ICoreAutomationRemoteOperation2 {
   CoreAutomationRemoteOperation() : super(activateClass(_className));

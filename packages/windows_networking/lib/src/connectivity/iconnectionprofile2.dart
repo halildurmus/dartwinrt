@@ -26,7 +26,6 @@ import 'wwanconnectionprofiledetails.dart';
 /// @nodoc
 const IID_IConnectionProfile2 = '{e2045145-4c9f-400c-9150-7ec7d6e2888a}';
 
-/// {@category interface}
 class IConnectionProfile2 extends IInspectable {
   // vtable begins at 6, is 9 entries long.
   IConnectionProfile2.fromPtr(super.ptr);

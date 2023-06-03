@@ -11,8 +11,6 @@ import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Represents the package version info.
-///
-/// {@category struct}
 final class PackageVersion implements WinRTStruct {
   PackageVersion(this.major, this.minor, this.build, this.revision);
 

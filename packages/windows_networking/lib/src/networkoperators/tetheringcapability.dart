@@ -11,8 +11,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// Defines values that can be returned after calling
 /// NetworkOperatorTetheringManager.GetTetheringCapability to indicate the
 /// tethering capabilities of a network account.
-///
-/// {@category enum}
 enum TetheringCapability implements WinRTEnum {
   enabled(0),
   disabledByGroupPolicy(1),

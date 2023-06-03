@@ -19,8 +19,6 @@ import 'iautomationelement.dart';
 
 /// Provides access to a UI object that supports the IUIAutomationElement
 /// interface.
-///
-/// {@category class}
 class AutomationElement extends IInspectable implements IAutomationElement {
   AutomationElement.fromPtr(super.ptr);
 

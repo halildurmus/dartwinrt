@@ -22,7 +22,6 @@ import 'powersupplystatus.dart';
 /// @nodoc
 const IID_IPowerManagerStatics = '{1394825d-62ce-4364-98d5-aa28c7fbd15b}';
 
-/// {@category interface}
 class IPowerManagerStatics extends IInspectable {
   // vtable begins at 6, is 15 entries long.
   IPowerManagerStatics.fromPtr(super.ptr);

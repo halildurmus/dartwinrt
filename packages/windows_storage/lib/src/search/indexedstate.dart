@@ -9,8 +9,6 @@
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Indicates whether a StorageFolder is included in the system index.
-///
-/// {@category enum}
 enum IndexedState implements WinRTEnum {
   unknown(0),
   notIndexed(1),

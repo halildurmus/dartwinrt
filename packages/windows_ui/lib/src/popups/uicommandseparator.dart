@@ -18,8 +18,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 import 'iuicommand.dart';
 
 /// Represents a command separator in a context menu.
-///
-/// {@category class}
 class UICommandSeparator extends IInspectable implements IUICommand {
   UICommandSeparator() : super(activateClass(_className));
   UICommandSeparator.fromPtr(super.ptr);

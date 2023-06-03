@@ -20,7 +20,6 @@ import 'storagefolder.dart';
 /// @nodoc
 const IID_IKnownFoldersStatics = '{5a2a7520-4802-452d-9ad9-4351ada7ec35}';
 
-/// {@category interface}
 class IKnownFoldersStatics extends IInspectable {
   // vtable begins at 6, is 7 entries long.
   IKnownFoldersStatics.fromPtr(super.ptr);

@@ -27,8 +27,6 @@ import 'package.dart';
 
 /// Provides information about an application such as its name, logo,
 /// package information, ID.
-///
-/// {@category class}
 class AppInfo extends IInspectable
     implements IAppInfo, IAppInfo2, IAppInfo3, IAppInfo4 {
   AppInfo.fromPtr(super.ptr);

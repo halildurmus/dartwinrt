@@ -20,7 +20,6 @@ import 'roundingalgorithm.dart';
 /// @nodoc
 const IID_IIncrementNumberRounder = '{70a64ff8-66ab-4155-9da1-739e46764543}';
 
-/// {@category interface}
 class IIncrementNumberRounder extends IInspectable {
   // vtable begins at 6, is 4 entries long.
   IIncrementNumberRounder.fromPtr(super.ptr);

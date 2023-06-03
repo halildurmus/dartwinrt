@@ -20,7 +20,6 @@ import 'ixmlnode.dart';
 /// @nodoc
 const IID_IXmlNamedNodeMap = '{b3a69eb0-aab0-4b82-a6fa-b1453f7c021b}';
 
-/// {@category interface}
 class IXmlNamedNodeMap extends IInspectable
     implements IVectorView<IXmlNode>, IIterable<IXmlNode> {
   // vtable begins at 6, is 8 entries long.

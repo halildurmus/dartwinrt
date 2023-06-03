@@ -20,8 +20,6 @@ import 'idataplanstatus.dart';
 
 /// Represents the current status information for the data plan associated
 /// with a connection.
-///
-/// {@category class}
 class DataPlanStatus extends IInspectable implements IDataPlanStatus {
   DataPlanStatus.fromPtr(super.ptr);
 

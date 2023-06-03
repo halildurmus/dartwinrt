@@ -19,8 +19,6 @@ import 'helpers.dart';
 import 'iwwwformurldecoderentry.dart';
 
 /// Represents a name-value pair in a URL query string.
-///
-/// {@category class}
 class WwwFormUrlDecoderEntry extends IInspectable
     implements IWwwFormUrlDecoderEntry {
   WwwFormUrlDecoderEntry.fromPtr(super.ptr);

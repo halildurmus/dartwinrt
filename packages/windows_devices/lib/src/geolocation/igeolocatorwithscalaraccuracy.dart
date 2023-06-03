@@ -25,7 +25,6 @@ import 'positionstatus.dart';
 const IID_IGeolocatorWithScalarAccuracy =
     '{96f5d3c1-b80f-460a-994d-a96c47a51aa4}';
 
-/// {@category interface}
 class IGeolocatorWithScalarAccuracy extends IInspectable
     implements IGeolocator {
   // vtable begins at 6, is 2 entries long.

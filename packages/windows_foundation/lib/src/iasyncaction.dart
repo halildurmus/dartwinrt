@@ -25,8 +25,6 @@ const IID_IAsyncAction = '{5a648006-843a-4da9-865b-9d26e5dfad7b}';
 /// Represents an asynchronous action. This is the return type for many
 /// Windows Runtime asynchronous methods that don't have a result object,
 /// and don't report ongoing progress.
-///
-/// {@category interface}
 class IAsyncAction extends IInspectable implements IAsyncInfo {
   // vtable begins at 6, is 3 entries long.
   IAsyncAction.fromPtr(super.ptr);

@@ -21,8 +21,6 @@ import 'webtokenrequeststatus.dart';
 import 'webtokenresponse.dart';
 
 /// Represents the results of a web token request to an identity provider.
-///
-/// {@category class}
 class WebTokenRequestResult extends IInspectable
     implements IWebTokenRequestResult {
   WebTokenRequestResult.fromPtr(super.ptr);

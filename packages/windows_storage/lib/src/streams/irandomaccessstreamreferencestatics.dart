@@ -23,7 +23,6 @@ import 'randomaccessstreamreference.dart';
 const IID_IRandomAccessStreamReferenceStatics =
     '{857309dc-3fbf-4e7d-986f-ef3b1a07a964}';
 
-/// {@category interface}
 class IRandomAccessStreamReferenceStatics extends IInspectable {
   // vtable begins at 6, is 3 entries long.
   IRandomAccessStreamReferenceStatics.fromPtr(super.ptr);

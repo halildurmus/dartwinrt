@@ -19,8 +19,6 @@ import 'package:windows_ui/windows_ui.dart';
 import 'idevicepickerappearance.dart';
 
 /// Represents the appearance of a device picker.
-///
-/// {@category class}
 class DevicePickerAppearance extends IInspectable
     implements IDevicePickerAppearance {
   DevicePickerAppearance.fromPtr(super.ptr);

@@ -10,8 +10,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 /// Provides information about the package's signature and the kind of
 /// certificate used to create it.
-///
-/// {@category enum}
 enum PackageSignatureKind implements WinRTEnum {
   none(0),
   developer(1),

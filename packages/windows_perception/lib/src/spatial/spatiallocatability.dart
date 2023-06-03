@@ -11,8 +11,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// Indicates the lifecycle state of the device's spatial location system.
 /// This lets an app know whether it can reason about the device's
 /// orientation or its position in the user's surroundings.
-///
-/// {@category enum}
 enum SpatialLocatability implements WinRTEnum {
   unavailable(0),
   orientationOnly(1),

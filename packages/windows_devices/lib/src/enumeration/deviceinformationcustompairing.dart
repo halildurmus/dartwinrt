@@ -22,8 +22,6 @@ import 'ideviceinformationcustompairing.dart';
 import 'idevicepairingsettings.dart';
 
 /// Represents a custom pairing for a DeviceInformation object.
-///
-/// {@category class}
 class DeviceInformationCustomPairing extends IInspectable
     implements IDeviceInformationCustomPairing {
   DeviceInformationCustomPairing.fromPtr(super.ptr);

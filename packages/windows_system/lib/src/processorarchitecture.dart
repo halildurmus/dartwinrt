@@ -9,8 +9,6 @@
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Specifies the processor architecture supported by an app.
-///
-/// {@category enum}
 enum ProcessorArchitecture implements WinRTEnum {
   x86(0),
   arm(5),

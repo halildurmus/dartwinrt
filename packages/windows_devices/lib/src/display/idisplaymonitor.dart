@@ -24,7 +24,6 @@ import 'displaymonitorusagekind.dart';
 /// @nodoc
 const IID_IDisplayMonitor = '{1f6b15d4-1d01-4c51-87e2-6f954a772b59}';
 
-/// {@category interface}
 class IDisplayMonitor extends IInspectable {
   // vtable begins at 6, is 20 entries long.
   IDisplayMonitor.fromPtr(super.ptr);

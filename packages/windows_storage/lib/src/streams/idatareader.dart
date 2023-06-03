@@ -25,7 +25,6 @@ import 'unicodeencoding.dart';
 /// @nodoc
 const IID_IDataReader = '{e2b50029-b4c1-4314-a4b8-fb813a2f275e}';
 
-/// {@category interface}
 class IDataReader extends IInspectable {
   // vtable begins at 6, is 26 entries long.
   IDataReader.fromPtr(super.ptr);

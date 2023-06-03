@@ -9,8 +9,6 @@
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Specifies the algorithm used to round numbers.
-///
-/// {@category enum}
 enum RoundingAlgorithm implements WinRTEnum {
   none(0),
   roundDown(1),

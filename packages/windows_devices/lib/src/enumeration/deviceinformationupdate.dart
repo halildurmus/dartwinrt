@@ -20,8 +20,6 @@ import 'ideviceinformationupdate.dart';
 import 'ideviceinformationupdate2.dart';
 
 /// Contains updated properties for a DeviceInformation object.
-///
-/// {@category class}
 class DeviceInformationUpdate extends IInspectable
     implements IDeviceInformationUpdate, IDeviceInformationUpdate2 {
   DeviceInformationUpdate.fromPtr(super.ptr);

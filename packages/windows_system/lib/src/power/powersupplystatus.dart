@@ -9,8 +9,6 @@
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Represents the device's power supply status.
-///
-/// {@category enum}
 enum PowerSupplyStatus implements WinRTEnum {
   notPresent(0),
   inadequate(1),

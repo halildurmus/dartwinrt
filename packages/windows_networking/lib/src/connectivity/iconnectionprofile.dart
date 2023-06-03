@@ -26,7 +26,6 @@ import 'roamingstates.dart';
 /// @nodoc
 const IID_IConnectionProfile = '{71ba143c-598e-49d0-84eb-8febaedcc195}';
 
-/// {@category interface}
 class IConnectionProfile extends IInspectable {
   // vtable begins at 6, is 9 entries long.
   IConnectionProfile.fromPtr(super.ptr);

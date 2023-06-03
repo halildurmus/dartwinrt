@@ -21,7 +21,6 @@ import 'tetheringoperationstatus.dart';
 const IID_INetworkOperatorTetheringOperationResult =
     '{ebd203a1-01ba-476d-b4b3-bf3d12c8f80c}';
 
-/// {@category interface}
 class INetworkOperatorTetheringOperationResult extends IInspectable {
   // vtable begins at 6, is 2 entries long.
   INetworkOperatorTetheringOperationResult.fromPtr(super.ptr);

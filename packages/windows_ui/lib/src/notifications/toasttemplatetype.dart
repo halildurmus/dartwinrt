@@ -9,8 +9,6 @@
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Specifies the template to use in a toast notification.
-///
-/// {@category enum}
 enum ToastTemplateType implements WinRTEnum {
   toastImageAndText01(0),
   toastImageAndText02(1),

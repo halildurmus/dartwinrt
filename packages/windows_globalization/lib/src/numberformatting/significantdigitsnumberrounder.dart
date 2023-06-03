@@ -20,8 +20,6 @@ import 'isignificantdigitsnumberrounder.dart';
 import 'roundingalgorithm.dart';
 
 /// Rounds numbers to a specified number of significant digits.
-///
-/// {@category class}
 class SignificantDigitsNumberRounder extends IInspectable
     implements INumberRounder, ISignificantDigitsNumberRounder {
   SignificantDigitsNumberRounder() : super(activateClass(_className));

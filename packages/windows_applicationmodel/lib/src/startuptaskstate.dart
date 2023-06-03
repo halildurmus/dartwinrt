@@ -10,8 +10,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 /// Represents the state (enabled, disabled, or disabled by user) of a
 /// startup task.
-///
-/// {@category enum}
 enum StartupTaskState implements WinRTEnum {
   disabled(0),
   disabledByUser(1),

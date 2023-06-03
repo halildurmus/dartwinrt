@@ -9,8 +9,6 @@
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Defines the relationship between packages to be retrieved.
-///
-/// {@category enum}
 enum PackageRelationship implements WinRTEnum {
   dependencies(0),
   dependents(1),

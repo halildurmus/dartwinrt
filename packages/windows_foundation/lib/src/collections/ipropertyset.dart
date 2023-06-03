@@ -26,8 +26,6 @@ const IID_IPropertySet = '{8a43ed9f-f4e6-4421-acf9-1dab2986820c}';
 
 /// Represents a collection of key-value pairs, correlating several other
 /// collection interfaces.
-///
-/// {@category interface}
 class IPropertySet extends IInspectable
     implements
         IObservableMap<String, Object?>,

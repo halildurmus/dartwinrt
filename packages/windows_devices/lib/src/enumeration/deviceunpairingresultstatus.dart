@@ -9,8 +9,6 @@
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// The result of the unpairing action.
-///
-/// {@category enum}
 enum DeviceUnpairingResultStatus implements WinRTEnum {
   unpaired(0),
   alreadyUnpaired(1),

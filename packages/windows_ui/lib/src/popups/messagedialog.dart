@@ -21,8 +21,6 @@ import 'iuicommand.dart';
 import 'messagedialogoptions.dart';
 
 /// Represents a dialog for showing messages to the user.
-///
-/// {@category class}
 class MessageDialog extends IInspectable implements IMessageDialog {
   MessageDialog.fromPtr(super.ptr);
 

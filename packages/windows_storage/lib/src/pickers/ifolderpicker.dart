@@ -22,7 +22,6 @@ import 'pickerviewmode.dart';
 /// @nodoc
 const IID_IFolderPicker = '{084f7799-f3fb-400a-99b1-7b4a772fd60d}';
 
-/// {@category interface}
 class IFolderPicker extends IInspectable {
   // vtable begins at 6, is 10 entries long.
   IFolderPicker.fromPtr(super.ptr);

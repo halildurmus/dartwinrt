@@ -27,8 +27,6 @@ import 'positionaccuracy.dart';
 import 'positionstatus.dart';
 
 /// Provides access to the current geographic location.
-///
-/// {@category class}
 class Geolocator extends IInspectable
     implements IGeolocator, IGeolocatorWithScalarAccuracy, IGeolocator2 {
   Geolocator() : super(activateClass(_className));

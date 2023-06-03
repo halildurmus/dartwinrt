@@ -18,7 +18,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// @nodoc
 const IID_IDataUsage = '{c1431dd3-b146-4d39-b959-0c69b096c512}';
 
-/// {@category interface}
 @Deprecated(
     "IDataUsage may be altered or unavailable for releases after Windows 8.1. Instead, use INetworkUsage.")
 class IDataUsage extends IInspectable {

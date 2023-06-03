@@ -9,8 +9,6 @@
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Describes the state of a WebAccount object.
-///
-/// {@category enum}
 enum WebAccountState implements WinRTEnum {
   none(0),
   connected(1),

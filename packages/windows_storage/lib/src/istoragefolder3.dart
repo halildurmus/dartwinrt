@@ -20,7 +20,6 @@ import 'storagelibrarychangetracker.dart';
 /// @nodoc
 const IID_IStorageFolder3 = '{9f617899-bde1-4124-aeb3-b06ad96f98d4}';
 
-/// {@category interface}
 class IStorageFolder3 extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IStorageFolder3.fromPtr(super.ptr);

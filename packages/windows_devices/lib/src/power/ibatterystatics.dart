@@ -20,7 +20,6 @@ import 'battery.dart';
 /// @nodoc
 const IID_IBatteryStatics = '{79cd72b6-9e5e-4452-bea6-dfcd541e597f}';
 
-/// {@category interface}
 class IBatteryStatics extends IInspectable {
   // vtable begins at 6, is 3 entries long.
   IBatteryStatics.fromPtr(super.ptr);

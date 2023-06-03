@@ -9,8 +9,6 @@
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Describes a known folder's access to a single capability.
-///
-/// {@category enum}
 enum KnownFoldersAccessStatus implements WinRTEnum {
   deniedBySystem(0),
   notDeclaredByApp(1),

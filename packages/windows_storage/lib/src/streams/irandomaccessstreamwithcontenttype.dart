@@ -28,8 +28,6 @@ const IID_IRandomAccessStreamWithContentType =
 
 /// Supports random access of data in input and output streams for a
 /// specified data format.
-///
-/// {@category interface}
 class IRandomAccessStreamWithContentType extends IInspectable
     implements
         IRandomAccessStream,

@@ -19,8 +19,6 @@ import 'ibuffer.dart';
 import 'ioutputstream.dart';
 
 /// Writes data to a file.
-///
-/// {@category class}
 class FileOutputStream extends IInspectable
     implements IOutputStream, IClosable {
   FileOutputStream.fromPtr(super.ptr);

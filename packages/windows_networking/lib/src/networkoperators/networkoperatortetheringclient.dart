@@ -19,8 +19,6 @@ import '../hostname.dart';
 import 'inetworkoperatortetheringclient.dart';
 
 /// Contains details about a tethering client.
-///
-/// {@category class}
 class NetworkOperatorTetheringClient extends IInspectable
     implements INetworkOperatorTetheringClient {
   NetworkOperatorTetheringClient.fromPtr(super.ptr);

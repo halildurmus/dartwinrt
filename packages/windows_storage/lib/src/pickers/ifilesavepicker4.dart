@@ -19,7 +19,6 @@ import 'package:windows_system/windows_system.dart';
 /// @nodoc
 const IID_IFileSavePicker4 = '{e7d83a5a-ddfa-5de0-8b70-c842c21988ec}';
 
-/// {@category interface}
 class IFileSavePicker4 extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IFileSavePicker4.fromPtr(super.ptr);

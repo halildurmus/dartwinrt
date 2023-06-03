@@ -21,7 +21,6 @@ import 'webprovidererror.dart';
 /// @nodoc
 const IID_IWebTokenResponse = '{67a7c5ca-83f6-44c6-a3b1-0eb69e41fa8a}';
 
-/// {@category interface}
 class IWebTokenResponse extends IInspectable {
   // vtable begins at 6, is 4 entries long.
   IWebTokenResponse.fromPtr(super.ptr);

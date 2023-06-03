@@ -10,8 +10,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 /// Defines values that indicate the type of authentication used by the
 /// network.
-///
-/// {@category enum}
 enum NetworkAuthenticationType implements WinRTEnum {
   none(0),
   unknown(1),

@@ -9,8 +9,6 @@
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Enumeration values for actions to take on a file.
-///
-/// {@category enum}
 enum FileOpenDisposition implements WinRTEnum {
   openExisting(0),
   openAlways(1),

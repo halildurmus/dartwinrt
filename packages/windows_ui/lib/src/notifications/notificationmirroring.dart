@@ -10,8 +10,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 /// Specifies whether notification mirroring is allowed. Mirroring enables a
 /// notification to be displayed on multiple devices.
-///
-/// {@category enum}
 enum NotificationMirroring implements WinRTEnum {
   allowed(0),
   disabled(1);

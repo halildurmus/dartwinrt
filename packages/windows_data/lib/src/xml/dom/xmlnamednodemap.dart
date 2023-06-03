@@ -19,8 +19,6 @@ import 'ixmlnamednodemap.dart';
 import 'ixmlnode.dart';
 
 /// Encapsulates iteration through the collection of attribute nodes.
-///
-/// {@category class}
 class XmlNamedNodeMap extends IInspectable
     implements IXmlNamedNodeMap, IVectorView<IXmlNode>, IIterable<IXmlNode> {
   XmlNamedNodeMap.fromPtr(super.ptr);

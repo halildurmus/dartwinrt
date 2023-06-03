@@ -21,8 +21,6 @@ import 'phonenumberformat.dart';
 import 'phonenumberinfo.dart';
 
 /// Formats phone numbers.
-///
-/// {@category class}
 class PhoneNumberFormatter extends IInspectable
     implements IPhoneNumberFormatter {
   PhoneNumberFormatter() : super(activateClass(_className));

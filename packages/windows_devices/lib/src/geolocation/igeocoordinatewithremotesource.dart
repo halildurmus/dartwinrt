@@ -19,7 +19,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IGeocoordinateWithRemoteSource =
     '{397cebd7-ee38-5f3b-8900-c4a7bc9cf953}';
 
-/// {@category interface}
 class IGeocoordinateWithRemoteSource extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IGeocoordinateWithRemoteSource.fromPtr(super.ptr);

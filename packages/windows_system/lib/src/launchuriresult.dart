@@ -19,8 +19,6 @@ import 'ilaunchuriresult.dart';
 import 'launchuristatus.dart';
 
 /// Represents the results of a Uri launch.
-///
-/// {@category class}
 class LaunchUriResult extends IInspectable implements ILaunchUriResult {
   LaunchUriResult.fromPtr(super.ptr);
 

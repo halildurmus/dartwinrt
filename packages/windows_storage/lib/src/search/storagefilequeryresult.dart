@@ -27,8 +27,6 @@ import 'queryoptions.dart';
 /// that is represented by a StorageFolder object. You can use
 /// StorageFileQueryResult to enumerate the files in that StorageFolder
 /// location.
-///
-/// {@category class}
 class StorageFileQueryResult extends IInspectable
     implements
         IStorageFileQueryResult,

@@ -20,8 +20,6 @@ import 'ienclosurelocation2.dart';
 import 'panel.dart';
 
 /// Describes the physical location of a device in its enclosure.
-///
-/// {@category class}
 class EnclosureLocation extends IInspectable
     implements IEnclosureLocation, IEnclosureLocation2 {
   EnclosureLocation.fromPtr(super.ptr);

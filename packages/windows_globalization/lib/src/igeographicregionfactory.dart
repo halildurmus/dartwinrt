@@ -20,7 +20,6 @@ import 'geographicregion.dart';
 /// @nodoc
 const IID_IGeographicRegionFactory = '{53425270-77b4-426b-859f-81e19d512546}';
 
-/// {@category interface}
 class IGeographicRegionFactory extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IGeographicRegionFactory.fromPtr(super.ptr);

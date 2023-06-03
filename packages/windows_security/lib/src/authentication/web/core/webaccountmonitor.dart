@@ -20,8 +20,6 @@ import 'iwebaccountmonitor2.dart';
 
 /// Allows an app to monitor specific web accounts and raises events when
 /// those web accounts change.
-///
-/// {@category class}
 class WebAccountMonitor extends IInspectable
     implements IWebAccountMonitor, IWebAccountMonitor2 {
   WebAccountMonitor.fromPtr(super.ptr);

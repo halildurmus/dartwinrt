@@ -18,7 +18,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// @nodoc
 const IID_IAppListEntry2 = '{d0a618ad-bf35-42ac-ac06-86eeeb41d04b}';
 
-/// {@category interface}
 class IAppListEntry2 extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IAppListEntry2.fromPtr(super.ptr);

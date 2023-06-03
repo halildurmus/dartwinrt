@@ -21,7 +21,6 @@ import 'automationannotationtyperegistration.dart';
 const IID_ICoreAutomationRegistrarStatics =
     '{3e50129b-d6dc-5680-b580-ffff78300304}';
 
-/// {@category interface}
 class ICoreAutomationRegistrarStatics extends IInspectable {
   // vtable begins at 6, is 2 entries long.
   ICoreAutomationRegistrarStatics.fromPtr(super.ptr);

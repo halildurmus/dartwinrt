@@ -20,8 +20,6 @@ import 'iattributednetworkusage.dart';
 
 /// Provides access to property values containing information on current
 /// usage of the attributed network connection.
-///
-/// {@category class}
 class AttributedNetworkUsage extends IInspectable
     implements IAttributedNetworkUsage {
   AttributedNetworkUsage.fromPtr(super.ptr);

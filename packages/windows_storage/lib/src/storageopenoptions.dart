@@ -9,8 +9,6 @@
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Provides options to use when opening a file.
-///
-/// {@category enum}
 final class StorageOpenOptions extends WinRTFlagsEnum<StorageOpenOptions> {
   const StorageOpenOptions(super.value, {super.name});
 

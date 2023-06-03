@@ -24,8 +24,6 @@ import 'idevicepicker.dart';
 
 /// Represents a picker flyout that contains a list of devices for the user
 /// to choose from.
-///
-/// {@category class}
 class DevicePicker extends IInspectable implements IDevicePicker {
   DevicePicker() : super(activateClass(_className));
   DevicePicker.fromPtr(super.ptr);

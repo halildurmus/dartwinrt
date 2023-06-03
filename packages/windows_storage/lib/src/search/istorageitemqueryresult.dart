@@ -23,7 +23,6 @@ import 'queryoptions.dart';
 /// @nodoc
 const IID_IStorageItemQueryResult = '{e8948079-9d58-47b8-b2b2-41b07f4795f9}';
 
-/// {@category interface}
 class IStorageItemQueryResult extends IInspectable
     implements IStorageQueryResultBase {
   // vtable begins at 6, is 2 entries long.

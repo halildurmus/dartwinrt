@@ -23,8 +23,6 @@ import 'networkcosttype.dart';
 
 /// The ConnectionProfileFilter class defines a set of properties that are
 /// used to improve the relevance of FindConnectionProfilesAsync results.
-///
-/// {@category class}
 class ConnectionProfileFilter extends IInspectable
     implements
         IConnectionProfileFilter,

@@ -19,8 +19,6 @@ import 'idatausage.dart';
 
 /// Represents data usage information returned by the
 /// ConnectionProfile.GetLocalUsage method.
-///
-/// {@category class}
 @Deprecated(
     "DataUsage may be altered or unavailable for releases after Windows 8.1. Instead, use NetworkUsage.")
 class DataUsage extends IInspectable implements IDataUsage {

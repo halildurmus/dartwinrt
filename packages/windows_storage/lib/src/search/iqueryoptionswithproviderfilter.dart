@@ -19,7 +19,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IQueryOptionsWithProviderFilter =
     '{5b9d1026-15c4-44dd-b89a-47a59b7d7c4f}';
 
-/// {@category interface}
 class IQueryOptionsWithProviderFilter extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IQueryOptionsWithProviderFilter.fromPtr(super.ptr);

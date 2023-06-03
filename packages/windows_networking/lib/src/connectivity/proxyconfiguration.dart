@@ -18,8 +18,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 import 'iproxyconfiguration.dart';
 
 /// Represents the proxy configuration for the current user.
-///
-/// {@category class}
 class ProxyConfiguration extends IInspectable implements IProxyConfiguration {
   ProxyConfiguration.fromPtr(super.ptr);
 

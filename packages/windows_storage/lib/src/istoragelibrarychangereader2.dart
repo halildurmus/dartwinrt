@@ -19,7 +19,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IStorageLibraryChangeReader2 =
     '{abf4868b-fbcc-4a4f-999e-e7ab7c646dbe}';
 
-/// {@category interface}
 class IStorageLibraryChangeReader2 extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IStorageLibraryChangeReader2.fromPtr(super.ptr);

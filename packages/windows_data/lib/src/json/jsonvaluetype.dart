@@ -9,8 +9,6 @@
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Specifies the JSON value type of a JsonValue object.
-///
-/// {@category enum}
 enum JsonValueType implements WinRTEnum {
   null_(0),
   boolean(1),

@@ -9,8 +9,6 @@
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Specifies the age consent groups a user can belong to.
-///
-/// {@category enum}
 enum UserAgeConsentGroup implements WinRTEnum {
   child(0),
   minor(1),

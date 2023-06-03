@@ -10,8 +10,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 /// Contains values that describe the result of a web account enumeration
 /// operation (see the FindAllAccountsAsync method).
-///
-/// {@category enum}
 enum FindAllWebAccountsStatus implements WinRTEnum {
   success(0),
   notAllowedByProvider(1),

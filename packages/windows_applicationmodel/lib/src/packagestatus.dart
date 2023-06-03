@@ -19,8 +19,6 @@ import 'ipackagestatus.dart';
 import 'ipackagestatus2.dart';
 
 /// Provides the status of the package.
-///
-/// {@category class}
 class PackageStatus extends IInspectable
     implements IPackageStatus, IPackageStatus2 {
   PackageStatus.fromPtr(super.ptr);

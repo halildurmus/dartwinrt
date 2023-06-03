@@ -19,8 +19,6 @@ import 'istoragestreamtransaction.dart';
 import 'streams/irandomaccessstream.dart';
 
 /// Represents a write transaction for a random-access stream.
-///
-/// {@category class}
 class StorageStreamTransaction extends IInspectable
     implements IStorageStreamTransaction, IClosable {
   StorageStreamTransaction.fromPtr(super.ptr);

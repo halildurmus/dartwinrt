@@ -9,8 +9,6 @@
 import 'winrt_enum.dart';
 
 /// Specifies property value types.
-///
-/// {@category enum}
 enum PropertyType implements WinRTEnum {
   empty(0),
   uint8(1),

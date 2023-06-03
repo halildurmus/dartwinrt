@@ -10,8 +10,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 /// Defines constants that specify the use to which the display is being
 /// put.
-///
-/// {@category enum}
 enum DisplayMonitorUsageKind implements WinRTEnum {
   standard(0),
   headMounted(1),

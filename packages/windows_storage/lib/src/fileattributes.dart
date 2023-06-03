@@ -9,8 +9,6 @@
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Describes the attributes of a file or folder.
-///
-/// {@category enum}
 final class FileAttributes extends WinRTFlagsEnum<FileAttributes> {
   const FileAttributes(super.value, {super.name});
 

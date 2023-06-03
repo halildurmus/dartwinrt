@@ -9,8 +9,6 @@
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Indicates the view mode that the file picker is using to present items.
-///
-/// {@category enum}
 enum PickerViewMode implements WinRTEnum {
   list(0),
   thumbnail(1);

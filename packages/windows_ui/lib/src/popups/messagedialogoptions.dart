@@ -9,8 +9,6 @@
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Specifies less frequently used options for a MessageDialog.
-///
-/// {@category enum}
 final class MessageDialogOptions extends WinRTFlagsEnum<MessageDialogOptions> {
   const MessageDialogOptions(super.value, {super.name});
 

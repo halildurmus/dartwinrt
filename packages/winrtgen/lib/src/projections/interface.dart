@@ -58,14 +58,15 @@ class InterfaceProjection {
 const IID_$shortName = ${quote(typeDef.iid)};
 ''';
 
-  String get category => 'interface';
+  String get category => '';
 
   String get classPreamble {
     final wrappedComment = wrapCommentText(comment);
-    final categoryComment = '/// {@category $category}';
-    return wrappedComment.isNotEmpty
-        ? '$wrappedComment\n///\n$categoryComment'
-        : categoryComment;
+    return [
+      if (wrappedComment.isNotEmpty) wrappedComment,
+      if (wrappedComment.isNotEmpty && category.isNotEmpty) '///',
+      if (category.isNotEmpty) '/// {@category $category}',
+    ].join('\n');
   }
 
   List<TypeDef> get inheritedInterfaces => typeDef.interfaces

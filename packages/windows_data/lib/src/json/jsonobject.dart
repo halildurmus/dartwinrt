@@ -25,8 +25,6 @@ import 'jsonvaluetype.dart';
 
 /// Represents a JSON object containing a collection of name and [JsonValue]
 /// pairs.
-///
-/// {@category class}
 class JsonObject extends IInspectable
     implements
         IJsonObject,

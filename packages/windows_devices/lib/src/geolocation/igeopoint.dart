@@ -23,7 +23,6 @@ import 'igeoshape.dart';
 /// @nodoc
 const IID_IGeopoint = '{6bfa00eb-e56e-49bb-9caf-cbaa78a8bcef}';
 
-/// {@category interface}
 class IGeopoint extends IInspectable implements IGeoshape {
   // vtable begins at 6, is 1 entries long.
   IGeopoint.fromPtr(super.ptr);

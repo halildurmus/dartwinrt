@@ -9,8 +9,6 @@
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Indicates the source used to obtain a Geocoordinate.
-///
-/// {@category enum}
 enum PositionSource implements WinRTEnum {
   cellular(0),
   satellite(1),

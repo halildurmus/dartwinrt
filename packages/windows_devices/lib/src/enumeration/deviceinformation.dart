@@ -31,8 +31,6 @@ import 'ideviceinformationstatics2.dart';
 /// Represents a device. This class allows access to well-known device
 /// properties as well as additional properties specified during device
 /// enumeration.
-///
-/// {@category class}
 class DeviceInformation extends IInspectable
     implements IDeviceInformation, IDeviceInformation2 {
   DeviceInformation.fromPtr(super.ptr);

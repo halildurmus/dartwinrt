@@ -20,7 +20,6 @@ import 'hostname.dart';
 /// @nodoc
 const IID_IHostNameFactory = '{458c23ed-712f-4576-adf1-c20b2c643558}';
 
-/// {@category interface}
 class IHostNameFactory extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IHostNameFactory.fromPtr(super.ptr);

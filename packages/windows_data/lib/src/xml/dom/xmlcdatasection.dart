@@ -27,8 +27,6 @@ import 'xmlnamednodemap.dart';
 import 'xmlnodelist.dart';
 
 /// Represents a CDATA section of an XML document.
-///
-/// {@category class}
 class XmlCDataSection extends IInspectable
     implements
         IXmlCDataSection,

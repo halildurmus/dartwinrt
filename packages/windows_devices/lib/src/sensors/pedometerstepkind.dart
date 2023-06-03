@@ -9,8 +9,6 @@
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// The type of step taken according to the pedometer.
-///
-/// {@category enum}
 enum PedometerStepKind implements WinRTEnum {
   unknown(0),
   walking(1),

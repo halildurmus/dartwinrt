@@ -9,8 +9,6 @@
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Defines the set of possible general window (app view) size preferences.
-///
-/// {@category enum}
 enum ViewSizePreference implements WinRTEnum {
   default_(0),
   useLess(1),

@@ -10,8 +10,6 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 /// Describes the purpose of the thumbnail to determine how to adjust the
 /// thumbnail image to retrieve.
-///
-/// {@category enum}
 enum ThumbnailMode implements WinRTEnum {
   picturesView(0),
   videosView(1),

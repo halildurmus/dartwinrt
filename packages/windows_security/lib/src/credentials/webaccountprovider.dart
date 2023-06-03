@@ -23,8 +23,6 @@ import 'iwebaccountprovider4.dart';
 import 'iwebaccountproviderfactory.dart';
 
 /// Represents a web account authentication provider.
-///
-/// {@category class}
 class WebAccountProvider extends IInspectable
     implements
         IWebAccountProvider,
