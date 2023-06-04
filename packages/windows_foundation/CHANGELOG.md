@@ -1,3 +1,7 @@
+## 0.0.7
+
+ - **FEAT**: add APIs required for `Windows.Media.Ocr` APIs ([#238](https://github.com/dart-windows/dartwinrt/issues/238)). ([82e36141](https://github.com/dart-windows/dartwinrt/commit/82e361415f8839ea7b8f9e927f2a21d02e0bab09))
+
 ## 0.0.6
 
  - **FEAT**(windows_foundation): add `NativePackageVersion` struct ([#221](https://github.com/dart-windows/dartwinrt/issues/221)). ([d6a4e35c](https://github.com/dart-windows/dartwinrt/commit/d6a4e35c0c79029d08871dd52c10859174ec042e))
