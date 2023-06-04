@@ -33,6 +33,36 @@ final class NativeBasicGeoposition extends Struct {
 }
 
 /// @nodoc
+final class NativeBitmapBounds extends Struct {
+  @Uint32()
+  external int x;
+
+  @Uint32()
+  external int y;
+
+  @Uint32()
+  external int width;
+
+  @Uint32()
+  external int height;
+}
+
+/// @nodoc
+final class NativeBitmapPlaneDescription extends Struct {
+  @Int32()
+  external int startIndex;
+
+  @Int32()
+  external int width;
+
+  @Int32()
+  external int height;
+
+  @Int32()
+  external int stride;
+}
+
+/// @nodoc
 final class NativeColor extends Struct {
   @Uint8()
   external int a;
@@ -45,6 +75,29 @@ final class NativeColor extends Struct {
 
   @Uint8()
   external int b;
+}
+
+/// @nodoc
+final class NativeDirect3DMultisampleDescription extends Struct {
+  @Int32()
+  external int count;
+
+  @Int32()
+  external int quality;
+}
+
+/// @nodoc
+final class NativeDirect3DSurfaceDescription extends Struct {
+  @Int32()
+  external int width;
+
+  @Int32()
+  external int height;
+
+  @Int32()
+  external int format;
+
+  external NativeDirect3DMultisampleDescription multisampleDescription;
 }
 
 /// @nodoc
