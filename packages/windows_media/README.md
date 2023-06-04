@@ -15,7 +15,9 @@ For official documentation, please visit https://dartwinrt.dev.
 
 ## Examples
 
-TODO
+The package contains several examples in the [example] subdirectory,
+demonstrating how to invoke various Windows Runtime APIs from the
+`Windows.Media` namespace.
 
 ## Feature requests and bugs
 
