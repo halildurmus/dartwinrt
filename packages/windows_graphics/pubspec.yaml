@@ -1,7 +1,7 @@
 name: windows_graphics
 description: Provides access to WinRT APIs from the Windows.Graphics namespace
   using FFI.
-version: 0.0.2
+version: 0.0.3
 homepage: https://win32.pub
 repository: https://github.com/dart-windows/dartwinrt/tree/main/packages/windows_graphics
 issue_tracker: https://github.com/dart-windows/dartwinrt/issues?q=is%3Aopen+is%3Aissue+label%3A%22p%3A+windows_graphics%22
@@ -21,13 +21,9 @@ platforms:
 
 dependencies:
   ffi: ^2.0.1
-  win32: ^5.0.0
-  windows_foundation: ^0.0.3
+  win32: ^5.0.3
+  windows_foundation: ^0.0.7
   windows_storage: ^0.0.2
 
 dev_dependencies:
   test: ^1.24.1
-
-dependency_overrides:
-  windows_foundation:
-    path: ../windows_foundation
