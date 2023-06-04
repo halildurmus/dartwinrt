@@ -17,6 +17,7 @@ Packages with other changes:
 
  - [`windows_foundation` - `v0.0.7`](#windows_foundation---v007)
  - [`windows_graphics` - `v0.0.3`](#windows_graphics---v003)
+ - [`windows_media` - `v0.0.2`](#windows_media---v002)
 
 ---
 
@@ -27,6 +28,10 @@ Packages with other changes:
 #### `windows_graphics` - `v0.0.3`
 
  - **FEAT**: add APIs required for `Windows.Media.Ocr` APIs ([#238](https://github.com/dart-windows/dartwinrt/issues/238)). ([82e36141](https://github.com/dart-windows/dartwinrt/commit/82e361415f8839ea7b8f9e927f2a21d02e0bab09))
+
+#### `windows_media` - `v0.0.2`
+
+ - **FEAT**(windows_media): add OCR APIs ([#241](https://github.com/dart-windows/dartwinrt/issues/241)). ([174d7581](https://github.com/dart-windows/dartwinrt/commit/174d75815d682a01fee7765222848da5e224dc16))
 
 ## 2023-06-01
 
