@@ -1,0 +1,89 @@
+name: '🚀 Feature Request'
+description: Suggest an idea for this project
+labels: ['type: feature', 'state: needs triage']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to help us improve!
+
+  - type: checkboxes
+    attributes:
+      label: Is there an existing issue for this?
+      description: Please search to see if an issue already exists for this.
+      options:
+        - label: I have searched the
+            [existing issues](https://github.com/dart-windows/dartwinrt/issues)
+          required: true
+
+  - type: dropdown
+    id: packages
+    attributes:
+      label: Please select which package this feature is related to
+      description: You may select more than one.
+      multiple: true
+      options:
+        - windows_ai
+        - windows_applicationmodel
+        - windows_data
+        - windows_devices
+        - windows_foundation
+        - windows_gaming
+        - windows_globalization
+        - windows_graphics
+        - windows_management
+        - windows_media
+        - windows_networking
+        - windows_perception
+        - windows_security
+        - windows_services
+        - windows_storage
+        - windows_system
+        - windows_ui
+        - windows_web
+        - winrtgen
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Is your feature request related to a problem?
+      description: A clear description of what the problem is.
+      placeholder: "Example: I'm always frustrated when [...]"
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Describe the solution that you'd like
+      description: A clear description of what you want to happen.
+      placeholder: 'Example: When clicking this I want that.'
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Describe alternatives that you have considered
+      description: A clear description of any alternative solutions or features
+        you've considered.
+      placeholder: 'Example: Instead of this it should do that.'
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional context
+      description: Add any other context or screenshots about the feature
+        request here.
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our
+        [Code of Conduct](https://github.com/dart-windows/dartwinrt/tree/main/CODE_OF_CONDUCT.md)
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true
