@@ -20,7 +20,7 @@ dependencies:
   dart_style: ^2.3.0
 
   # Foreign Function Interface extension methods
-  ffi: ^2.0.1
+  ffi: ^2.0.2
 
   html: ^0.15.1
   http: ^0.13.5
@@ -30,10 +30,13 @@ dependencies:
 
   pool: ^1.5.1
 
-  # For working with Windows Metadata (winmd) files
-  winmd: ^3.0.0
+  # Windows metadata for automatically generating API signatures.
+  # The relationship between these two packages is tightly coupled, since this
+  # package includes a specific version of the Win32 metadata, so we pin the
+  # dependency by version to avoid surprising conflicts.
+  winmd: 3.0.0
 
-  win32: ^5.0.0
+  win32: ^5.0.3
 
 dev_dependencies:
   # Running the test suite.
