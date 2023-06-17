@@ -17,6 +17,7 @@ export 'core/iapplistentry.dart';
 export 'core/iapplistentry2.dart';
 export 'core/iapplistentry3.dart';
 export 'core/iapplistentry4.dart';
+export 'datatransfer/standarddataformats.dart';
 export 'findrelatedpackagesoptions.dart';
 export 'iappdisplayinfo.dart';
 export 'iappinfo.dart';

@@ -4,6 +4,7 @@
     "Windows.ApplicationModel.AppInstallerInfo": "Represents an App Installer file containing app package and bundle information for defining the packages that are part of a related set and specifying update and repair configuration.",
     "Windows.ApplicationModel.Background.DeviceWatcherTrigger": "Represents an event that causes a background task to run when changes occur to the list of devices. Returned by GetBackgroundTrigger.",
     "Windows.ApplicationModel.Core.AppListEntry": "Provides an app's display info such as its display name and description, and a method to launch the app.",
+    "Windows.ApplicationModel.DataTransfer.StandardDataFormats": "Contains static properties that return string values. Each string corresponds to a known format ID. Use this class to avoid errors in using string constants to specify data formats.",
     "Windows.ApplicationModel.FindRelatedPackagesOptions": "Provides filtering when searching for packages.",
     "Windows.ApplicationModel.Package": "Provides information about a package.",
     "Windows.ApplicationModel.PackageContentGroup": "Provides information about a package content group.",
