@@ -138,6 +138,19 @@ void main() {
       expect(parameter.localIdentifier, equals('propertiesToSavePtr'));
     });
 
+    test('projects IMap', () {
+      final methodProjection = MethodProjection.fromTypeAndMethodName(
+          'Windows.AI.MachineLearning.ILearningModelSession',
+          'EvaluateFeatures');
+      final parameter = methodProjection.parameters.first;
+      expect(parameter, isA<ObjectParameterProjection>());
+      expect(parameter.type, equals('IMap<String, Object?>'));
+      expect(parameter.preamble,
+          equals('final featuresPtr = features.ptr.ref.lpVtbl;'));
+      expect(parameter.postamble, isEmpty);
+      expect(parameter.localIdentifier, equals('featuresPtr'));
+    });
+
     test('projects IMapView', () {
       final methodProjection = MethodProjection.fromTypeAndMethodName(
           'Windows.ApplicationModel.DataTransfer.DataPackagePropertySetView',
