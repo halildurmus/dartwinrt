@@ -97,8 +97,8 @@ class IXmlNodeList extends IInspectable
       _iVectorView.indexOf(value, index);
 
   @override
-  int getMany(int startIndex, int valueSize, List<IXmlNode> value) =>
-      _iVectorView.getMany(startIndex, valueSize, value);
+  int getMany(int startIndex, int itemsSize, List<IXmlNode> items) =>
+      _iVectorView.getMany(startIndex, itemsSize, items);
 
   @override
   IIterator<IXmlNode> first() => _iVectorView.first();

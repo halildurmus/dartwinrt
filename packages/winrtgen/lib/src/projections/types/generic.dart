@@ -79,18 +79,18 @@ final class GenericEnumListParameterProjection
 
   @override
   String get passArrayPreamble => '''
-    final pArray = calloc<${typeArgProjection.nativeType}>(value.length);
-    for (var i = 0; i < value.length; i++) {
-      pArray[i] = (value as List<WinRTEnum>).elementAt(i).value;
+    final $localIdentifier = calloc<${typeArgProjection.nativeType}>($paramName.length);
+    for (var i = 0; i < $paramName.length; i++) {
+      $localIdentifier[i] = ($paramName as List<WinRTEnum>).elementAt(i).value;
     }
 ''';
 
   @override
   String get fillArrayPostamble => '''
     if ($fillArraySizeVariable > 0) {
-      value.addAll(pArray.toList(length: $fillArraySizeVariable).map(enumCreator));
+      $paramName.addAll($localIdentifier.toList(length: $fillArraySizeVariable).map(enumCreator));
     }
-    free(pArray);''';
+    free($localIdentifier);''';
 }
 
 mixin _GenericObjectMixin on MethodProjection {
@@ -172,19 +172,19 @@ final class GenericObjectListParameterProjection
 
   @override
   String get fillArrayPreamble =>
-      'final pArray = calloc<COMObject>(valueSize);';
+      'final $localIdentifier = calloc<COMObject>($sizeParamName);';
 
   @override
   String get passArrayPreamble => '''
-    final pArray = calloc<COMObject>(value.length);
-    for (var i = 0; i < value.length; i++) {
-      pArray[i] = (value as List<IInspectable>).elementAt(i).ptr.ref;
+    final $localIdentifier = calloc<COMObject>($paramName.length);
+    for (var i = 0; i < $paramName.length; i++) {
+      $localIdentifier[i] = ($paramName as List<IInspectable>).elementAt(i).ptr.ref;
     }''';
 
   @override
   String get fillArrayPostamble => '''
     if ($fillArraySizeVariable > 0) {
-      value.addAll(pArray.toList(creator, length: $fillArraySizeVariable));
+      $paramName.addAll($localIdentifier.toList(creator, length: $fillArraySizeVariable));
     }
-    free(pArray);''';
+    free($localIdentifier);''';
 }

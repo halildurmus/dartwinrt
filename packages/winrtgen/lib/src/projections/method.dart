@@ -130,13 +130,13 @@ abstract class MethodProjection {
   /// of making it easier to avoid name conflicts.
   String get camelCasedName => safeIdentifierForString(name.toCamelCase());
 
-  /// The parameters, with the exception of some `__valueSize` parameters.
+  /// The parameters, with the exception of some `__xxSize` parameters.
   Iterable<ParameterProjection> get _params {
     return parameters.where((param) {
-      // Exclude the __valueSize parameter on FillArray and PassArray styles as
-      // simpleArray params are projected as List.
-      // See DefaultListParameterProjection class.
-      if (param.parameter.name == '__valueSize') {
+      // Exclude the __xxSize parameter on FillArray and PassArray styles as
+      // simpleArray params are projected as List. See the
+      // DefaultListParameterProjection class.
+      if (isSimpleArraySizeIdentifier(param.parameter.name)) {
         if (param.parameter.isInParam ||
             (param.parameter.isOutParam &&
                 param.parameter.typeIdentifier.baseType ==
@@ -208,14 +208,14 @@ abstract class MethodProjection {
   String get identifiers => [
         'ptr.ref.lpVtbl',
         ...parameters.map((param) => param.localIdentifier),
-        if (returnTypeProjection.isSimpleArray) 'pValueSize',
+        if (returnTypeProjection.isSimpleArray) 'pRetValueSize',
         if (!returnTypeProjection.isVoid) 'retValuePtr',
       ].join(', ');
 
   String get nativeParams => [
         'VTablePointer lpVtbl',
         ...parameters.map((param) => param.ffiProjection),
-        if (returnTypeProjection.isSimpleArray) 'Pointer<Uint32> valueSize',
+        if (returnTypeProjection.isSimpleArray) 'Pointer<Uint32> retValueSize',
         if (!returnTypeProjection.isVoid)
           '${wrapWithPointer(returnTypeProjection.nativeType)} retValuePtr',
       ].join(', ');
@@ -223,7 +223,7 @@ abstract class MethodProjection {
   String get dartParams => [
         'VTablePointer lpVtbl',
         ...parameters.map((param) => param.dartProjection),
-        if (returnTypeProjection.isSimpleArray) 'Pointer<Uint32> valueSize',
+        if (returnTypeProjection.isSimpleArray) 'Pointer<Uint32> retValueSize',
         if (!returnTypeProjection.isVoid)
           '${wrapWithPointer(returnTypeProjection.nativeType)} retValuePtr',
       ].join(', ');

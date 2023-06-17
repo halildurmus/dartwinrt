@@ -127,20 +127,22 @@ mixin _ObjectListMixin on MethodProjection {
   String get returnType =>
       typeArgProjection.isObjectType ? 'List<Object?>' : 'List<$shortName>';
 
+  String get sizeIdentifier => 'pRetValueSize';
+
   String get returnStatement {
     if (typeArgProjection.isObjectType) {
-      return 'return retValuePtr.value.toObjectList(length: pValueSize.value);';
+      return 'return retValuePtr.value.toObjectList(length: $sizeIdentifier.value);';
     }
 
     return '''
       return retValuePtr.value
-          .toList($shortName.fromPtr, length: pValueSize.value);''';
+          .toList($shortName.fromPtr, length: $sizeIdentifier.value);''';
   }
 
   @override
   String get methodDeclaration => '''
   $methodHeader {
-    final pValueSize = calloc<Uint32>();
+    final $sizeIdentifier = calloc<Uint32>();
     final retValuePtr = calloc<Pointer<COMObject>>();
 
     try {
@@ -148,7 +150,7 @@ mixin _ObjectListMixin on MethodProjection {
 
       $returnStatement
     } finally {
-      free(pValueSize);
+      free($sizeIdentifier);
       free(retValuePtr);
     }
   }
@@ -257,55 +259,55 @@ final class ObjectListParameterProjection
 
   @override
   String get fillArrayPreamble =>
-      'final pArray = calloc<COMObject>(valueSize);';
+      'final $localIdentifier = calloc<COMObject>($sizeParamName);';
 
   @override
   String get passArrayPreamble {
     return [
       '''
-    final pArray = calloc<COMObject>(value.length);
-    for (var i = 0; i < value.length; i++) {''',
+    final $localIdentifier = calloc<COMObject>($paramName.length);
+    for (var i = 0; i < $paramName.length; i++) {''',
       if (typeArgProjection.isObjectType)
         '''
-    final element = value.elementAt(i);
+    final element = $paramName.elementAt(i);
     if (element == null) continue;
-    pArray[i] = element.intoBox().ptr.ref;'''
+    $localIdentifier[i] = element.intoBox().ptr.ref;'''
       else
-        'pArray[i] = value.elementAt(i).ptr.ref;',
+        '$localIdentifier[i] = $paramName.elementAt(i).ptr.ref;',
       '}'
     ].join('\n');
   }
 
   @override
   String get receiveArrayPreamble => '''
-    final pValueSize = calloc<Uint32>();
-    final pArray = calloc<Pointer<COMObject>>();''';
+    final $sizeIdentifier = calloc<Uint32>();
+    final $localIdentifier = calloc<Pointer<COMObject>>();''';
 
   @override
   String get fillArrayPostamble {
     final addAll = typeArgProjection.isObjectType
-        ? 'value.addAll(pArray.toObjectList(length: $fillArraySizeVariable));'
-        : 'value.addAll(pArray.toList($shortName.fromPtr, length: $fillArraySizeVariable));';
+        ? '$paramName.addAll($localIdentifier.toObjectList(length: $fillArraySizeVariable));'
+        : '$paramName.addAll($localIdentifier.toList($shortName.fromPtr, length: $fillArraySizeVariable));';
     return '''
     if ($fillArraySizeVariable > 0) {
       $addAll
     }
-    free(pArray);''';
+    free($localIdentifier);''';
   }
 
   @override
   String get receiveArrayPostamble {
     return [
-      'if (pValueSize.value > 0) {',
+      'if ($sizeIdentifier.value > 0) {',
       if (typeArgProjection.isObjectType)
-        'value.addAll(pArray.value.toObjectList(length: pValueSize.value));'
+        '$paramName.addAll($localIdentifier.value.toObjectList(length: $sizeIdentifier.value));'
       else
         '''
-    value.addAll(pArray.value
-        .toList($shortName.fromPtr, length: pValueSize.value));''',
+    $paramName.addAll($localIdentifier.value
+        .toList($shortName.fromPtr, length: $sizeIdentifier.value));''',
       '}',
-      'free(pValueSize);',
-      'free(pArray);',
+      'free($sizeIdentifier);',
+      'free($localIdentifier);',
     ].join('\n');
   }
 }

@@ -197,24 +197,25 @@ class IDataReader extends IInspectable {
   }
 
   void readBytes(int valueSize, List<int> value) {
-    final pArray = calloc<Uint8>(valueSize);
+    final pValueArray = calloc<Uint8>(valueSize);
 
     final hr = ptr.ref.vtable
-        .elementAt(14)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, Uint32 valueSize,
-                        Pointer<Uint8> value)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int valueSize,
-                Pointer<Uint8> value)>()(ptr.ref.lpVtbl, valueSize, pArray);
+            .elementAt(14)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(VTablePointer lpVtbl, Uint32 valueSize,
+                            Pointer<Uint8> value)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, int valueSize,
+                    Pointer<Uint8> value)>()(
+        ptr.ref.lpVtbl, valueSize, pValueArray);
 
     if (valueSize > 0) {
-      value.addAll(pArray.toList(length: valueSize));
+      value.addAll(pValueArray.toList(length: valueSize));
     }
-    free(pArray);
+    free(pValueArray);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }

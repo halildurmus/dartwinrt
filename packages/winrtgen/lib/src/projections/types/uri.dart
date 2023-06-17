@@ -86,20 +86,22 @@ mixin _UriListMixin on MethodProjection {
   @override
   String get returnType => 'List<Uri>';
 
+  String get sizeIdentifier => 'pRetValueSize';
+
   @override
   String get methodDeclaration => '''
   $methodHeader {
-    final pValueSize = calloc<Uint32>();
+    final $sizeIdentifier = calloc<Uint32>();
     final retValuePtr = calloc<Pointer<COMObject>>();
 
     try {
       ${ffiCall()}
 
       return retValuePtr.value
-        .toList(winrt_uri.Uri.fromPtr, length: pValueSize.value)
+        .toList(winrt_uri.Uri.fromPtr, length: $sizeIdentifier.value)
         .map((winrtUri) => Uri.parse(winrtUri.toString()));
     } finally {
-      free(pValueSize);
+      free($sizeIdentifier);
       free(retValuePtr);
     }
   }
@@ -171,33 +173,33 @@ final class UriListParameterProjection extends DefaultListParameterProjection {
 
   @override
   String get fillArrayPreamble =>
-      'final pArray = calloc<COMObject>(valueSize);';
+      'final $localIdentifier = calloc<COMObject>($sizeParamName);';
 
   @override
   String get passArrayPreamble => '''
-    final pArray = calloc<COMObject>(value.length);
-    for (var i = 0; i < value.length; i++) {
-      final winrtUri = value.elementAt(i).toWinRTUri();
-      pArray[i] = winrtUri.ptr.ref;
+    final $localIdentifier = calloc<COMObject>($paramName.length);
+    for (var i = 0; i < $paramName.length; i++) {
+      final ${paramName}WinrtUri = $paramName.elementAt(i).toWinRTUri();
+      $localIdentifier[i] = ${paramName}WinrtUri.ptr.ref;
     }''';
 
   @override
   String get receiveArrayPreamble => '''
-    final pValueSize = calloc<Uint32>();
-    final pArray = calloc<Pointer<COMObject>>();''';
+    final $sizeIdentifier = calloc<Uint32>();
+    final $localIdentifier = calloc<Pointer<COMObject>>();''';
 
   @override
   String get fillArrayPostamble => '''
     if ($fillArraySizeVariable > 0) {
-      value.addAll(pArray.toDartUriList(length: $fillArraySizeVariable));
+      $paramName.addAll($localIdentifier.toDartUriList(length: $fillArraySizeVariable));
     }
-    free(pArray);''';
+    free($localIdentifier);''';
 
   @override
   String get receiveArrayPostamble => '''
-    if (pValueSize.value > 0) {
-      value.addAll(pArray.value.toDartUriList(length: pValueSize.value));
+    if ($sizeIdentifier.value > 0) {
+      $paramName.addAll($localIdentifier.value.toDartUriList(length: $sizeIdentifier.value));
     }
-    free(pValueSize);
-    free(pArray);''';
+    free($sizeIdentifier);
+    free($localIdentifier);''';
 }

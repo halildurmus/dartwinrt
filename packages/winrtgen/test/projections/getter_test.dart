@@ -353,11 +353,11 @@ void main() {
         expect(
             projection.nativePrototype,
             equals(
-                'HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize, Pointer<Pointer<IntPtr>> retValuePtr)'));
+                'HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> retValueSize, Pointer<Pointer<IntPtr>> retValuePtr)'));
         expect(
             projection.dartPrototype,
             equals(
-                'int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize, Pointer<Pointer<IntPtr>> retValuePtr)'));
+                'int Function(VTablePointer lpVtbl, Pointer<Uint32> retValueSize, Pointer<Pointer<IntPtr>> retValuePtr)'));
         expect(projection.methodHeader,
             equals('List<String> get supportedFileExtensions'));
       });

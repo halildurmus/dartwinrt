@@ -2,7 +2,16 @@
 // All rights reserved. Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-extension CamelCaseConversion on String {
+extension StringHelpers on String {
+  /// Capitalizes the first letter of this string.
+  String capitalize() {
+    if (length == 0) return this;
+    if (length == 1) return toUpperCase();
+
+    // e.g. value -> Value
+    return this[0].toUpperCase() + substring(1);
+  }
+
   /// Converts this string to `camelCase`.
   String toCamelCase() {
     if (length == 0) return this;

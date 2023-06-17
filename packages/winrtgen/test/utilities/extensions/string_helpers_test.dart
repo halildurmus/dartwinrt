@@ -6,6 +6,13 @@ import 'package:test/test.dart';
 import 'package:winrtgen/winrtgen.dart';
 
 void main() {
+  test('capitalize', () {
+    expect('value'.capitalize(), equals('Value'));
+    expect('camelCase'.capitalize(), equals('CamelCase'));
+    expect('X'.capitalize(), equals('X'));
+    expect(''.capitalize(), isEmpty);
+  });
+
   test('toCamelCase', () {
     expect('TitleCase'.toCamelCase(), equals('titleCase'));
     expect('camelCase'.toCamelCase(), equals('camelCase'));

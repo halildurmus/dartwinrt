@@ -197,14 +197,14 @@ void main() {
       expect(parameter, isA<DefaultListParameterProjection>());
       expect(parameter.type, equals('List<String>'));
       expect(parameter.preamble,
-          equals('final pArray = calloc<IntPtr>(valueSize);'));
+          equals('final pItemsArray = calloc<IntPtr>(itemsSize);'));
       expect(
           parameter.postamble,
           equalsIgnoringWhitespace('if (retValuePtr.value > 0) {\n'
-              'value.addAll(pArray.toList(length: retValuePtr.value));\n'
+              'items.addAll(pItemsArray.toList(length: retValuePtr.value));\n'
               '}\n'
-              'free(pArray);'));
-      expect(parameter.localIdentifier, equals('pArray'));
+              'free(pItemsArray);'));
+      expect(parameter.localIdentifier, equals('pItemsArray'));
     });
 
     test('projects List<String> (FillArray - readBytes)', () {
@@ -214,14 +214,14 @@ void main() {
       expect(parameter, isA<DefaultListParameterProjection>());
       expect(parameter.type, equals('List<int>'));
       expect(parameter.preamble,
-          equals('final pArray = calloc<Uint8>(valueSize);'));
+          equals('final pValueArray = calloc<Uint8>(valueSize);'));
       expect(
           parameter.postamble,
           equalsIgnoringWhitespace('if (valueSize > 0) {\n'
-              'value.addAll(pArray.toList(length: valueSize));\n'
+              'value.addAll(pValueArray.toList(length: valueSize));\n'
               '}\n'
-              'free(pArray);'));
-      expect(parameter.localIdentifier, equals('pArray'));
+              'free(pValueArray);'));
+      expect(parameter.localIdentifier, equals('pValueArray'));
     });
 
     test('projects List<String> (PassArray)', () {
@@ -232,17 +232,18 @@ void main() {
       expect(parameter.type, equals('List<String>'));
       expect(
           parameter.preamble,
-          equalsIgnoringWhitespace('final handles = <int>[];\n'
-              'final pArray = calloc<HSTRING>(value.length);\n'
-              'for (var i = 0; i < value.length; i++) {\n'
-              '  pArray[i] = value.elementAt(i).toHString();\n'
-              '  handles.add(pArray[i]);\n'
+          equalsIgnoringWhitespace('final itemsHandles = <int>[];\n'
+              'final pItemsArray = calloc<HSTRING>(items.length);\n'
+              'for (var i = 0; i < items.length; i++) {\n'
+              '  pItemsArray[i] = items.elementAt(i).toHString();\n'
+              '  itemsHandles.add(pItemsArray[i]);\n'
               '}'));
       expect(
           parameter.postamble,
-          equalsIgnoringWhitespace('handles.forEach(WindowsDeleteString);\n'
-              'free(pArray);'));
-      expect(parameter.localIdentifier, equals('pArray'));
+          equalsIgnoringWhitespace(
+              'itemsHandles.forEach(WindowsDeleteString);\n'
+              'free(pItemsArray);'));
+      expect(parameter.localIdentifier, equals('pItemsArray'));
     });
 
     test('projects List<String> (ReceiveArray)', () {
@@ -254,15 +255,15 @@ void main() {
       expect(
           parameter.preamble,
           equalsIgnoringWhitespace('final pValueSize = calloc<Uint32>();\n'
-              'final pArray = calloc<Pointer<IntPtr>>();'));
+              'final pValueArray = calloc<Pointer<IntPtr>>();'));
       expect(
           parameter.postamble,
           equalsIgnoringWhitespace('if (pValueSize.value > 0) {\n'
-              'value.addAll(pArray.value.toList(length: pValueSize.value));\n'
+              'value.addAll(pValueArray.value.toList(length: pValueSize.value));\n'
               '}\n'
               'free(pValueSize);\n'
-              'free(pArray);'));
-      expect(parameter.localIdentifier, equals('pArray'));
+              'free(pValueArray);'));
+      expect(parameter.localIdentifier, equals('pValueArray'));
     });
 
     test('projects Object', () {

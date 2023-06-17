@@ -96,8 +96,7 @@ final class GenericInterfaceProjection extends InterfaceProjection {
   /// `_IVectorIInspectable`).
   String get className {
     final args = typeArgs
-        .map((arg) => stripQuestionMarkSuffix(
-            arg.name[0].toUpperCase() + arg.name.substring(1)))
+        .map((arg) => stripQuestionMarkSuffix(arg.name.capitalize()))
         .join();
     return '_$shortName$args';
   }

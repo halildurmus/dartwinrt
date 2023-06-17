@@ -38,11 +38,11 @@ final class _IIteratorBool extends IIterator<bool> {
   }
 
   @override
-  int getMany(int valueSize, List<bool> value) {
+  int getMany(int itemsSize, List<bool> items) {
     final retValuePtr = calloc<Uint32>();
 
     try {
-      final pArray = calloc<Bool>(valueSize);
+      final pItemsArray = calloc<Bool>(itemsSize);
 
       final hr =
           ptr.ref.vtable
@@ -52,19 +52,19 @@ final class _IIteratorBool extends IIterator<bool> {
                           NativeFunction<
                               HRESULT Function(
                                   VTablePointer lpVtbl,
-                                  Uint32 valueSize,
-                                  Pointer<Bool> value,
+                                  Uint32 itemsSize,
+                                  Pointer<Bool> items,
                                   Pointer<Uint32> retValuePtr)>>>()
                   .value
                   .asFunction<
-                      int Function(VTablePointer lpVtbl, int valueSize,
-                          Pointer<Bool> value, Pointer<Uint32> retValuePtr)>()(
-              ptr.ref.lpVtbl, valueSize, pArray, retValuePtr);
+                      int Function(VTablePointer lpVtbl, int itemsSize,
+                          Pointer<Bool> items, Pointer<Uint32> retValuePtr)>()(
+              ptr.ref.lpVtbl, itemsSize, pItemsArray, retValuePtr);
 
       if (retValuePtr.value > 0) {
-        value.addAll(pArray.toList(length: retValuePtr.value));
+        items.addAll(pItemsArray.toList(length: retValuePtr.value));
       }
-      free(pArray);
+      free(pItemsArray);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -104,11 +104,11 @@ final class _IIteratorGuid extends IIterator<Guid> {
   }
 
   @override
-  int getMany(int valueSize, List<Guid> value) {
+  int getMany(int itemsSize, List<Guid> items) {
     final retValuePtr = calloc<Uint32>();
 
     try {
-      final pArray = calloc<GUID>(valueSize);
+      final pItemsArray = calloc<GUID>(itemsSize);
 
       final hr =
           ptr.ref.vtable
@@ -118,19 +118,19 @@ final class _IIteratorGuid extends IIterator<Guid> {
                           NativeFunction<
                               HRESULT Function(
                                   VTablePointer lpVtbl,
-                                  Uint32 valueSize,
-                                  Pointer<GUID> value,
+                                  Uint32 itemsSize,
+                                  Pointer<GUID> items,
                                   Pointer<Uint32> retValuePtr)>>>()
                   .value
                   .asFunction<
-                      int Function(VTablePointer lpVtbl, int valueSize,
-                          Pointer<GUID> value, Pointer<Uint32> retValuePtr)>()(
-              ptr.ref.lpVtbl, valueSize, pArray, retValuePtr);
+                      int Function(VTablePointer lpVtbl, int itemsSize,
+                          Pointer<GUID> items, Pointer<Uint32> retValuePtr)>()(
+              ptr.ref.lpVtbl, itemsSize, pItemsArray, retValuePtr);
 
       if (retValuePtr.value > 0) {
-        value.addAll(pArray.toList(length: retValuePtr.value));
+        items.addAll(pItemsArray.toList(length: retValuePtr.value));
       }
-      free(pArray);
+      free(pItemsArray);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -171,11 +171,11 @@ final class _IIteratorInspectable<T> extends IIterator<T> {
   }
 
   @override
-  int getMany(int valueSize, List<T> value) {
+  int getMany(int itemsSize, List<T> items) {
     final retValuePtr = calloc<Uint32>();
 
     try {
-      final pArray = calloc<COMObject>(valueSize);
+      final pItemsArray = calloc<COMObject>(itemsSize);
 
       final hr = ptr.ref.vtable
               .elementAt(9)
@@ -184,19 +184,19 @@ final class _IIteratorInspectable<T> extends IIterator<T> {
                       NativeFunction<
                           HRESULT Function(
                               VTablePointer lpVtbl,
-                              Uint32 valueSize,
-                              Pointer<COMObject> value,
+                              Uint32 itemsSize,
+                              Pointer<COMObject> items,
                               Pointer<Uint32> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(VTablePointer lpVtbl, int valueSize,
-                      Pointer<COMObject> value, Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, valueSize, pArray, retValuePtr);
+                  int Function(VTablePointer lpVtbl, int itemsSize,
+                      Pointer<COMObject> items, Pointer<Uint32> retValuePtr)>()(
+          ptr.ref.lpVtbl, itemsSize, pItemsArray, retValuePtr);
 
       if (retValuePtr.value > 0) {
-        value.addAll(pArray.toList(creator, length: retValuePtr.value));
+        items.addAll(pItemsArray.toList(creator, length: retValuePtr.value));
       }
-      free(pArray);
+      free(pItemsArray);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -236,11 +236,11 @@ final class _IIteratorInt16 extends IIterator<int> {
   }
 
   @override
-  int getMany(int valueSize, List<int> value) {
+  int getMany(int itemsSize, List<int> items) {
     final retValuePtr = calloc<Uint32>();
 
     try {
-      final pArray = calloc<Int16>(valueSize);
+      final pItemsArray = calloc<Int16>(itemsSize);
 
       final hr = ptr.ref.vtable
               .elementAt(9)
@@ -249,19 +249,19 @@ final class _IIteratorInt16 extends IIterator<int> {
                       NativeFunction<
                           HRESULT Function(
                               VTablePointer lpVtbl,
-                              Uint32 valueSize,
-                              Pointer<Int16> value,
+                              Uint32 itemsSize,
+                              Pointer<Int16> items,
                               Pointer<Uint32> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(VTablePointer lpVtbl, int valueSize,
-                      Pointer<Int16> value, Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, valueSize, pArray, retValuePtr);
+                  int Function(VTablePointer lpVtbl, int itemsSize,
+                      Pointer<Int16> items, Pointer<Uint32> retValuePtr)>()(
+          ptr.ref.lpVtbl, itemsSize, pItemsArray, retValuePtr);
 
       if (retValuePtr.value > 0) {
-        value.addAll(pArray.toList(length: retValuePtr.value));
+        items.addAll(pItemsArray.toList(length: retValuePtr.value));
       }
-      free(pArray);
+      free(pItemsArray);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -301,11 +301,11 @@ final class _IIteratorInt32 extends IIterator<int> {
   }
 
   @override
-  int getMany(int valueSize, List<int> value) {
+  int getMany(int itemsSize, List<int> items) {
     final retValuePtr = calloc<Uint32>();
 
     try {
-      final pArray = calloc<Int32>(valueSize);
+      final pItemsArray = calloc<Int32>(itemsSize);
 
       final hr = ptr.ref.vtable
               .elementAt(9)
@@ -314,19 +314,19 @@ final class _IIteratorInt32 extends IIterator<int> {
                       NativeFunction<
                           HRESULT Function(
                               VTablePointer lpVtbl,
-                              Uint32 valueSize,
-                              Pointer<Int32> value,
+                              Uint32 itemsSize,
+                              Pointer<Int32> items,
                               Pointer<Uint32> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(VTablePointer lpVtbl, int valueSize,
-                      Pointer<Int32> value, Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, valueSize, pArray, retValuePtr);
+                  int Function(VTablePointer lpVtbl, int itemsSize,
+                      Pointer<Int32> items, Pointer<Uint32> retValuePtr)>()(
+          ptr.ref.lpVtbl, itemsSize, pItemsArray, retValuePtr);
 
       if (retValuePtr.value > 0) {
-        value.addAll(pArray.toList(length: retValuePtr.value));
+        items.addAll(pItemsArray.toList(length: retValuePtr.value));
       }
-      free(pArray);
+      free(pItemsArray);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -366,11 +366,11 @@ final class _IIteratorInt64 extends IIterator<int> {
   }
 
   @override
-  int getMany(int valueSize, List<int> value) {
+  int getMany(int itemsSize, List<int> items) {
     final retValuePtr = calloc<Uint32>();
 
     try {
-      final pArray = calloc<Int64>(valueSize);
+      final pItemsArray = calloc<Int64>(itemsSize);
 
       final hr = ptr.ref.vtable
               .elementAt(9)
@@ -379,19 +379,19 @@ final class _IIteratorInt64 extends IIterator<int> {
                       NativeFunction<
                           HRESULT Function(
                               VTablePointer lpVtbl,
-                              Uint32 valueSize,
-                              Pointer<Int64> value,
+                              Uint32 itemsSize,
+                              Pointer<Int64> items,
                               Pointer<Uint32> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(VTablePointer lpVtbl, int valueSize,
-                      Pointer<Int64> value, Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, valueSize, pArray, retValuePtr);
+                  int Function(VTablePointer lpVtbl, int itemsSize,
+                      Pointer<Int64> items, Pointer<Uint32> retValuePtr)>()(
+          ptr.ref.lpVtbl, itemsSize, pItemsArray, retValuePtr);
 
       if (retValuePtr.value > 0) {
-        value.addAll(pArray.toList(length: retValuePtr.value));
+        items.addAll(pItemsArray.toList(length: retValuePtr.value));
       }
-      free(pArray);
+      free(pItemsArray);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -432,11 +432,11 @@ final class _IIteratorString extends IIterator<String> {
   }
 
   @override
-  int getMany(int valueSize, List<String> value) {
+  int getMany(int itemsSize, List<String> items) {
     final retValuePtr = calloc<Uint32>();
 
     try {
-      final pArray = calloc<IntPtr>(valueSize);
+      final pItemsArray = calloc<IntPtr>(itemsSize);
 
       final hr = ptr.ref.vtable
               .elementAt(9)
@@ -445,19 +445,19 @@ final class _IIteratorString extends IIterator<String> {
                       NativeFunction<
                           HRESULT Function(
                               VTablePointer lpVtbl,
-                              Uint32 valueSize,
-                              Pointer<IntPtr> value,
+                              Uint32 itemsSize,
+                              Pointer<IntPtr> items,
                               Pointer<Uint32> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(VTablePointer lpVtbl, int valueSize,
-                      Pointer<IntPtr> value, Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, valueSize, pArray, retValuePtr);
+                  int Function(VTablePointer lpVtbl, int itemsSize,
+                      Pointer<IntPtr> items, Pointer<Uint32> retValuePtr)>()(
+          ptr.ref.lpVtbl, itemsSize, pItemsArray, retValuePtr);
 
       if (retValuePtr.value > 0) {
-        value.addAll(pArray.toList(length: retValuePtr.value));
+        items.addAll(pItemsArray.toList(length: retValuePtr.value));
       }
-      free(pArray);
+      free(pItemsArray);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -497,11 +497,11 @@ final class _IIteratorUint8 extends IIterator<int> {
   }
 
   @override
-  int getMany(int valueSize, List<int> value) {
+  int getMany(int itemsSize, List<int> items) {
     final retValuePtr = calloc<Uint32>();
 
     try {
-      final pArray = calloc<Uint8>(valueSize);
+      final pItemsArray = calloc<Uint8>(itemsSize);
 
       final hr = ptr.ref.vtable
               .elementAt(9)
@@ -510,19 +510,19 @@ final class _IIteratorUint8 extends IIterator<int> {
                       NativeFunction<
                           HRESULT Function(
                               VTablePointer lpVtbl,
-                              Uint32 valueSize,
-                              Pointer<Uint8> value,
+                              Uint32 itemsSize,
+                              Pointer<Uint8> items,
                               Pointer<Uint32> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(VTablePointer lpVtbl, int valueSize,
-                      Pointer<Uint8> value, Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, valueSize, pArray, retValuePtr);
+                  int Function(VTablePointer lpVtbl, int itemsSize,
+                      Pointer<Uint8> items, Pointer<Uint32> retValuePtr)>()(
+          ptr.ref.lpVtbl, itemsSize, pItemsArray, retValuePtr);
 
       if (retValuePtr.value > 0) {
-        value.addAll(pArray.toList(length: retValuePtr.value));
+        items.addAll(pItemsArray.toList(length: retValuePtr.value));
       }
-      free(pArray);
+      free(pItemsArray);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -562,11 +562,11 @@ final class _IIteratorUint16 extends IIterator<int> {
   }
 
   @override
-  int getMany(int valueSize, List<int> value) {
+  int getMany(int itemsSize, List<int> items) {
     final retValuePtr = calloc<Uint32>();
 
     try {
-      final pArray = calloc<Uint16>(valueSize);
+      final pItemsArray = calloc<Uint16>(itemsSize);
 
       final hr = ptr.ref.vtable
               .elementAt(9)
@@ -575,19 +575,19 @@ final class _IIteratorUint16 extends IIterator<int> {
                       NativeFunction<
                           HRESULT Function(
                               VTablePointer lpVtbl,
-                              Uint32 valueSize,
-                              Pointer<Uint16> value,
+                              Uint32 itemsSize,
+                              Pointer<Uint16> items,
                               Pointer<Uint32> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(VTablePointer lpVtbl, int valueSize,
-                      Pointer<Uint16> value, Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, valueSize, pArray, retValuePtr);
+                  int Function(VTablePointer lpVtbl, int itemsSize,
+                      Pointer<Uint16> items, Pointer<Uint32> retValuePtr)>()(
+          ptr.ref.lpVtbl, itemsSize, pItemsArray, retValuePtr);
 
       if (retValuePtr.value > 0) {
-        value.addAll(pArray.toList(length: retValuePtr.value));
+        items.addAll(pItemsArray.toList(length: retValuePtr.value));
       }
-      free(pArray);
+      free(pItemsArray);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -627,11 +627,11 @@ final class _IIteratorUint32 extends IIterator<int> {
   }
 
   @override
-  int getMany(int valueSize, List<int> value) {
+  int getMany(int itemsSize, List<int> items) {
     final retValuePtr = calloc<Uint32>();
 
     try {
-      final pArray = calloc<Uint32>(valueSize);
+      final pItemsArray = calloc<Uint32>(itemsSize);
 
       final hr = ptr.ref.vtable
               .elementAt(9)
@@ -640,19 +640,19 @@ final class _IIteratorUint32 extends IIterator<int> {
                       NativeFunction<
                           HRESULT Function(
                               VTablePointer lpVtbl,
-                              Uint32 valueSize,
-                              Pointer<Uint32> value,
+                              Uint32 itemsSize,
+                              Pointer<Uint32> items,
                               Pointer<Uint32> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(VTablePointer lpVtbl, int valueSize,
-                      Pointer<Uint32> value, Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, valueSize, pArray, retValuePtr);
+                  int Function(VTablePointer lpVtbl, int itemsSize,
+                      Pointer<Uint32> items, Pointer<Uint32> retValuePtr)>()(
+          ptr.ref.lpVtbl, itemsSize, pItemsArray, retValuePtr);
 
       if (retValuePtr.value > 0) {
-        value.addAll(pArray.toList(length: retValuePtr.value));
+        items.addAll(pItemsArray.toList(length: retValuePtr.value));
       }
-      free(pArray);
+      free(pItemsArray);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -692,11 +692,11 @@ final class _IIteratorUint64 extends IIterator<int> {
   }
 
   @override
-  int getMany(int valueSize, List<int> value) {
+  int getMany(int itemsSize, List<int> items) {
     final retValuePtr = calloc<Uint32>();
 
     try {
-      final pArray = calloc<Uint64>(valueSize);
+      final pItemsArray = calloc<Uint64>(itemsSize);
 
       final hr = ptr.ref.vtable
               .elementAt(9)
@@ -705,19 +705,19 @@ final class _IIteratorUint64 extends IIterator<int> {
                       NativeFunction<
                           HRESULT Function(
                               VTablePointer lpVtbl,
-                              Uint32 valueSize,
-                              Pointer<Uint64> value,
+                              Uint32 itemsSize,
+                              Pointer<Uint64> items,
                               Pointer<Uint32> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(VTablePointer lpVtbl, int valueSize,
-                      Pointer<Uint64> value, Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, valueSize, pArray, retValuePtr);
+                  int Function(VTablePointer lpVtbl, int itemsSize,
+                      Pointer<Uint64> items, Pointer<Uint32> retValuePtr)>()(
+          ptr.ref.lpVtbl, itemsSize, pItemsArray, retValuePtr);
 
       if (retValuePtr.value > 0) {
-        value.addAll(pArray.toList(length: retValuePtr.value));
+        items.addAll(pItemsArray.toList(length: retValuePtr.value));
       }
-      free(pArray);
+      free(pItemsArray);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -757,11 +757,11 @@ final class _IIteratorUri extends IIterator<Uri> {
   }
 
   @override
-  int getMany(int valueSize, List<Uri> value) {
+  int getMany(int itemsSize, List<Uri> items) {
     final retValuePtr = calloc<Uint32>();
 
     try {
-      final pArray = calloc<COMObject>(valueSize);
+      final pItemsArray = calloc<COMObject>(itemsSize);
 
       final hr = ptr.ref.vtable
               .elementAt(9)
@@ -770,19 +770,19 @@ final class _IIteratorUri extends IIterator<Uri> {
                       NativeFunction<
                           HRESULT Function(
                               VTablePointer lpVtbl,
-                              Uint32 valueSize,
-                              Pointer<COMObject> value,
+                              Uint32 itemsSize,
+                              Pointer<COMObject> items,
                               Pointer<Uint32> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(VTablePointer lpVtbl, int valueSize,
-                      Pointer<COMObject> value, Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, valueSize, pArray, retValuePtr);
+                  int Function(VTablePointer lpVtbl, int itemsSize,
+                      Pointer<COMObject> items, Pointer<Uint32> retValuePtr)>()(
+          ptr.ref.lpVtbl, itemsSize, pItemsArray, retValuePtr);
 
       if (retValuePtr.value > 0) {
-        value.addAll(pArray.toDartUriList(length: retValuePtr.value));
+        items.addAll(pItemsArray.toDartUriList(length: retValuePtr.value));
       }
-      free(pArray);
+      free(pItemsArray);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -824,11 +824,11 @@ final class _IIteratorWinRTEnum<T> extends IIterator<T> {
   }
 
   @override
-  int getMany(int valueSize, List<T> value) {
+  int getMany(int itemsSize, List<T> items) {
     final retValuePtr = calloc<Uint32>();
 
     try {
-      final pArray = calloc<Int32>(valueSize);
+      final pItemsArray = calloc<Int32>(itemsSize);
 
       final hr = ptr.ref.vtable
               .elementAt(9)
@@ -837,19 +837,20 @@ final class _IIteratorWinRTEnum<T> extends IIterator<T> {
                       NativeFunction<
                           HRESULT Function(
                               VTablePointer lpVtbl,
-                              Uint32 valueSize,
-                              Pointer<Int32> value,
+                              Uint32 itemsSize,
+                              Pointer<Int32> items,
                               Pointer<Uint32> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(VTablePointer lpVtbl, int valueSize,
-                      Pointer<Int32> value, Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, valueSize, pArray, retValuePtr);
+                  int Function(VTablePointer lpVtbl, int itemsSize,
+                      Pointer<Int32> items, Pointer<Uint32> retValuePtr)>()(
+          ptr.ref.lpVtbl, itemsSize, pItemsArray, retValuePtr);
 
       if (retValuePtr.value > 0) {
-        value.addAll(pArray.toList(length: retValuePtr.value).map(enumCreator));
+        items.addAll(
+            pItemsArray.toList(length: retValuePtr.value).map(enumCreator));
       }
-      free(pArray);
+      free(pItemsArray);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -891,11 +892,11 @@ final class _IIteratorWinRTFlagsEnum<T> extends IIterator<T> {
   }
 
   @override
-  int getMany(int valueSize, List<T> value) {
+  int getMany(int itemsSize, List<T> items) {
     final retValuePtr = calloc<Uint32>();
 
     try {
-      final pArray = calloc<Uint32>(valueSize);
+      final pItemsArray = calloc<Uint32>(itemsSize);
 
       final hr = ptr.ref.vtable
               .elementAt(9)
@@ -904,19 +905,20 @@ final class _IIteratorWinRTFlagsEnum<T> extends IIterator<T> {
                       NativeFunction<
                           HRESULT Function(
                               VTablePointer lpVtbl,
-                              Uint32 valueSize,
-                              Pointer<Uint32> value,
+                              Uint32 itemsSize,
+                              Pointer<Uint32> items,
                               Pointer<Uint32> retValuePtr)>>>()
               .value
               .asFunction<
-                  int Function(VTablePointer lpVtbl, int valueSize,
-                      Pointer<Uint32> value, Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, valueSize, pArray, retValuePtr);
+                  int Function(VTablePointer lpVtbl, int itemsSize,
+                      Pointer<Uint32> items, Pointer<Uint32> retValuePtr)>()(
+          ptr.ref.lpVtbl, itemsSize, pItemsArray, retValuePtr);
 
       if (retValuePtr.value > 0) {
-        value.addAll(pArray.toList(length: retValuePtr.value).map(enumCreator));
+        items.addAll(
+            pItemsArray.toList(length: retValuePtr.value).map(enumCreator));
       }
-      free(pArray);
+      free(pItemsArray);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
