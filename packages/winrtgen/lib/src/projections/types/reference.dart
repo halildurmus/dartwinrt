@@ -112,7 +112,7 @@ final class ReferenceParameterProjection extends ParameterProjection {
     final projection =
         TypeProjection(typeProjection.typeIdentifier.typeArgs.first);
     final arg = _toReferenceArgument(projection, type);
-    return 'value?.toReference($arg).ptr.ref.lpVtbl ?? nullptr';
+    return '$identifier?.toReference($arg).ptr.ref.lpVtbl ?? nullptr';
   }
 }
 

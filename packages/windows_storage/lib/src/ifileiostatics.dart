@@ -502,12 +502,12 @@ class IFileIOStatics extends IInspectable {
     return IAsyncAction.fromPtr(retValuePtr).toFuture();
   }
 
-  Future<void> writeBytesAsync(IStorageFile? file, List<int> value) {
+  Future<void> writeBytesAsync(IStorageFile? file, List<int> buffer) {
     final retValuePtr = calloc<COMObject>();
     final filePtr = file == null ? nullptr : file.ptr.ref.lpVtbl;
-    final pArray = calloc<Uint8>(value.length);
-    for (var i = 0; i < value.length; i++) {
-      pArray[i] = value.elementAt(i);
+    final pBufferArray = calloc<Uint8>(buffer.length);
+    for (var i = 0; i < buffer.length; i++) {
+      pBufferArray[i] = buffer.elementAt(i);
     }
 
     final hr = ptr.ref.vtable
@@ -518,20 +518,20 @@ class IFileIOStatics extends IInspectable {
                         HRESULT Function(
                             VTablePointer lpVtbl,
                             VTablePointer file,
-                            Uint32 valueSize,
-                            Pointer<Uint8> value,
+                            Uint32 bufferSize,
+                            Pointer<Uint8> buffer,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
                 int Function(
                     VTablePointer lpVtbl,
                     VTablePointer file,
-                    int valueSize,
-                    Pointer<Uint8> value,
+                    int bufferSize,
+                    Pointer<Uint8> buffer,
                     Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, filePtr, value.length, pArray, retValuePtr);
+        ptr.ref.lpVtbl, filePtr, buffer.length, pBufferArray, retValuePtr);
 
-    free(pArray);
+    free(pBufferArray);
 
     if (FAILED(hr)) {
       free(retValuePtr);

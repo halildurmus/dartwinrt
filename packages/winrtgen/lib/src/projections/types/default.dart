@@ -51,18 +51,20 @@ mixin _DefaultListMixin on MethodProjection {
   @override
   String get returnType => 'List<${typeArgProjection.dartType}>';
 
+  String get sizeIdentifier => 'pRetValueSize';
+
   @override
   String get methodDeclaration => '''
   $methodHeader {
-    final pValueSize = calloc<Uint32>();
+    final $sizeIdentifier = calloc<Uint32>();
     final retValuePtr = calloc<Pointer<${typeArgProjection.nativeType}>>();
 
     try {
       ${ffiCall()}
 
-      return retValuePtr.value.toList(length: pValueSize.value);
+      return retValuePtr.value.toList(length: $sizeIdentifier.value);
     } finally {
-      free(pValueSize);
+      free($sizeIdentifier);
       free(retValuePtr);
     }
   }
@@ -99,13 +101,14 @@ final class DefaultParameterProjection extends ParameterProjection {
 
   @override
   String get localIdentifier {
-    // Handle the __valueSize identifier specially as simpleArray params
-    // are projected as List.
-    // See DefaultListParameterProjection class below.
-    if (parameter.name == '__valueSize') {
-      if (parameter.isInParam) return 'value.length';
+    // Handle the __xxSize identifier specially as simpleArray params are
+    // projected as List. See the DefaultListParameterProjection class below.
+    if (isSimpleArraySizeIdentifier(parameter.name)) {
+      // e.g. __xxSize -> xx
+      final paramName = parameter.name.substring(2, parameter.name.length - 4);
+      if (parameter.isInParam) return '$paramName.length';
       if (parameter.isOutParam && parameter.typeIdentifier.isPointerType) {
-        return 'pValueSize';
+        return 'p${paramName.capitalize()}Size';
       }
     }
 
@@ -117,23 +120,30 @@ final class DefaultParameterProjection extends ParameterProjection {
 /// `simpleArrayType` in WinMD).
 base class DefaultListParameterProjection extends ParameterProjection {
   DefaultListParameterProjection(super.parameter)
-      : valueSizeParam = parameter.parent.parameters
-            .firstWhere((p) => p.name == '__valueSize'),
+      // Size parameter is always comes before the List parameter
+      : sizeParam = parameter.parent.parameters[parameter.parent.parameters
+                .indexWhere((p) => p.name == parameter.name) -
+            1],
         typeArgProjection = TypeProjection(
             parameter.typeIdentifier.isReferenceType
                 ? dereferenceType(dereferenceType(parameter.typeIdentifier))
                 : dereferenceType(parameter.typeIdentifier));
 
-  final Parameter valueSizeParam;
+  final Parameter sizeParam;
   final TypeProjection typeArgProjection;
 
-  bool get isFillArrayStyleParam =>
-      valueSizeParam.isOutParam && !valueSizeParam.typeIdentifier.isPointerType;
+  // e.g. __dataSize -> dataSize
+  String get sizeParamName => stripLeadingUnderscores(sizeParam.name);
 
-  bool get isPassArrayStyleParam => valueSizeParam.isInParam;
+  String get paramName => parameter.name;
+
+  bool get isFillArrayStyleParam =>
+      sizeParam.isOutParam && !sizeParam.typeIdentifier.isPointerType;
+
+  bool get isPassArrayStyleParam => sizeParam.isInParam;
 
   bool get isReceiveArrayStyleParam =>
-      valueSizeParam.isOutParam && valueSizeParam.typeIdentifier.isPointerType;
+      sizeParam.isOutParam && sizeParam.typeIdentifier.isPointerType;
 
   /// Whether the method this parameter belongs to returns `void`.
   bool get isVoidMethod =>
@@ -141,44 +151,46 @@ base class DefaultListParameterProjection extends ParameterProjection {
 
   /// Returns the name of the variable to use as the array size.
   ///
-  /// On `void` methods (e.g. `DataReader.readBytes`), `valueSize` parameter
-  /// from the method is used.
+  /// On `void` methods (e.g. `DataReader.readBytes`), `xxSize` parameter from
+  /// the method is used.
   ///
   /// On non-void methods (e.g. `IVector.getMany`), the number of items that
   /// were retrieved is returned so `retValuePtr.value` is used instead.
   String get fillArraySizeVariable =>
-      isVoidMethod ? 'valueSize' : 'retValuePtr.value';
+      isVoidMethod ? sizeParamName : 'retValuePtr.value';
 
   @override
   String get type => 'List<${typeArgProjection.dartType}>';
 
   String get fillArrayPreamble =>
-      'final pArray = calloc<${typeArgProjection.nativeType}>(valueSize);';
+      'final $localIdentifier = calloc<${typeArgProjection.nativeType}>($sizeParamName);';
 
   String get passArrayPreamble => '''
-    final pArray = calloc<${typeArgProjection.nativeType}>(value.length);
-    for (var i = 0; i < value.length; i++) {
-      pArray[i] = value.elementAt(i);
+    final $localIdentifier = calloc<${typeArgProjection.nativeType}>($paramName.length);
+    for (var i = 0; i < $paramName.length; i++) {
+      $localIdentifier[i] = $paramName.elementAt(i);
     }''';
 
   String get receiveArrayPreamble => '''
-    final pValueSize = calloc<Uint32>();
-    final pArray = calloc<Pointer<${typeArgProjection.nativeType}>>();''';
+    final $sizeIdentifier = calloc<Uint32>();
+    final $localIdentifier = calloc<Pointer<${typeArgProjection.nativeType}>>();''';
 
   String get fillArrayPostamble => '''
     if ($fillArraySizeVariable > 0) {
-      value.addAll(pArray.toList(length: $fillArraySizeVariable));
+      $paramName.addAll($localIdentifier.toList(length: $fillArraySizeVariable));
     }
-    free(pArray);''';
+    free($localIdentifier);''';
 
-  String get passArrayPostamble => 'free(pArray);';
+  String get passArrayPostamble => 'free($localIdentifier);';
 
   String get receiveArrayPostamble => '''
-    if (pValueSize.value > 0) {
-      value.addAll(pArray.value.toList(length: pValueSize.value));
+    if ($sizeIdentifier.value > 0) {
+      $paramName.addAll($localIdentifier.value.toList(length: $sizeIdentifier.value));
     }
-    free(pValueSize);
-    free(pArray);''';
+    free($sizeIdentifier);
+    free($localIdentifier);''';
+
+  String get sizeIdentifier => 'p${paramName.capitalize()}Size';
 
   @override
   String get preamble {
@@ -195,5 +207,5 @@ base class DefaultListParameterProjection extends ParameterProjection {
   }
 
   @override
-  String get localIdentifier => 'pArray';
+  String get localIdentifier => 'p${paramName.capitalize()}Array';
 }

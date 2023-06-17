@@ -105,8 +105,8 @@ class FileIO extends IInspectable {
               IFileIOStatics.fromPtr, _className, IID_IFileIOStatics)
           .writeBufferAsync(file, buffer);
 
-  static Future<void> writeBytesAsync(IStorageFile? file, List<int> value) =>
+  static Future<void> writeBytesAsync(IStorageFile? file, List<int> buffer) =>
       createActivationFactory(
               IFileIOStatics.fromPtr, _className, IID_IFileIOStatics)
-          .writeBytesAsync(file, value);
+          .writeBytesAsync(file, buffer);
 }

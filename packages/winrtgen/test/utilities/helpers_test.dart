@@ -110,6 +110,14 @@ void main() {
     });
   });
 
+  test('isSimpleArraySizeIdentifier', () {
+    expect(isSimpleArraySizeIdentifier('__valueSize'), isTrue);
+    expect(isSimpleArraySizeIdentifier('x__dataSize'), isFalse);
+    expect(isSimpleArraySizeIdentifier('__dataSizeX'), isFalse);
+    expect(isSimpleArraySizeIdentifier('not a simple array size identifier'),
+        isFalse);
+  });
+
   test('isValidIID', () {
     expect(isValidIID('ca30221d-86d9-40fb-a26b-d44eb7cf08ea'), isFalse);
     expect(isValidIID('{ca30221d-86d9-40fb-a26b-d44eb7cf08ea}'), isTrue);

@@ -181,7 +181,7 @@ TypeDependencies dependenciesOf(String type) {
   final methods = {
     ...typeDef.methods,
     // Also add the methods from typeDef's inherited interfaces
-    ...[for (var typeDef in typeDef.interfaces) ...typeDef.methods],
+    ...[for (final typeDef in typeDef.interfaces) ...typeDef.methods],
   };
 
   for (final method in methods) {

@@ -36,16 +36,16 @@ class ICoreAutomationRemoteOperationExtensionProvider extends IInspectable {
   void callExtension(
       Guid extensionId,
       CoreAutomationRemoteOperationContext? context,
-      List<AutomationRemoteOperationOperandId> value) {
+      List<AutomationRemoteOperationOperandId> operandIds) {
     final extensionIdNativeGuidPtr = extensionId.toNativeGUID();
     final contextPtr = context == null ? nullptr : context.ptr.ref.lpVtbl;
     final nativeStructPtrs =
         <Pointer<NativeAutomationRemoteOperationOperandId>>[];
-    final pArray =
-        calloc<NativeAutomationRemoteOperationOperandId>(value.length);
-    for (var i = 0; i < value.length; i++) {
-      final nativeStructPtr = value.elementAt(i).toNative();
-      pArray[i] = nativeStructPtr.ref;
+    final pOperandIdsArray =
+        calloc<NativeAutomationRemoteOperationOperandId>(operandIds.length);
+    for (var i = 0; i < operandIds.length; i++) {
+      final nativeStructPtr = operandIds.elementAt(i).toNative();
+      pOperandIdsArray[i] = nativeStructPtr.ref;
       nativeStructPtrs.add(nativeStructPtr);
     }
 
@@ -58,26 +58,27 @@ class ICoreAutomationRemoteOperationExtensionProvider extends IInspectable {
                             VTablePointer lpVtbl,
                             GUID extensionId,
                             VTablePointer context,
-                            Uint32 valueSize,
+                            Uint32 operandIdsSize,
                             Pointer<NativeAutomationRemoteOperationOperandId>
-                                value)>>>()
+                                operandIds)>>>()
             .value
             .asFunction<
                 int Function(
                     VTablePointer lpVtbl,
                     GUID extensionId,
                     VTablePointer context,
-                    int valueSize,
-                    Pointer<NativeAutomationRemoteOperationOperandId> value)>()(
+                    int operandIdsSize,
+                    Pointer<NativeAutomationRemoteOperationOperandId>
+                        operandIds)>()(
         ptr.ref.lpVtbl,
         extensionIdNativeGuidPtr.ref,
         contextPtr,
-        value.length,
-        pArray);
+        operandIds.length,
+        pOperandIdsArray);
 
     free(extensionIdNativeGuidPtr);
     nativeStructPtrs.forEach(free);
-    free(pArray);
+    free(pOperandIdsArray);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }

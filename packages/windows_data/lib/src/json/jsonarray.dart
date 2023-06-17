@@ -120,11 +120,11 @@ class JsonArray extends IInspectable
   void clear() => _iVector.clear();
 
   @override
-  int getMany(int startIndex, int valueSize, List<IJsonValue> value) =>
-      _iVector.getMany(startIndex, valueSize, value);
+  int getMany(int startIndex, int itemsSize, List<IJsonValue> items) =>
+      _iVector.getMany(startIndex, itemsSize, items);
 
   @override
-  void replaceAll(List<IJsonValue> value) => _iVector.replaceAll(value);
+  void replaceAll(List<IJsonValue> items) => _iVector.replaceAll(items);
 
   @override
   IIterator<IJsonValue> first() => _iVector.first();

@@ -363,11 +363,11 @@ void main() {
       expect(
           projection.nativePrototype,
           equals(
-              'HRESULT Function(VTablePointer lpVtbl, Int32 descriptorKind, Pointer<Uint32> valueSize, Pointer<Pointer<Uint8>> retValuePtr)'));
+              'HRESULT Function(VTablePointer lpVtbl, Int32 descriptorKind, Pointer<Uint32> retValueSize, Pointer<Pointer<Uint8>> retValuePtr)'));
       expect(
           projection.dartPrototype,
           equals(
-              'int Function(VTablePointer lpVtbl, int descriptorKind, Pointer<Uint32> valueSize, Pointer<Pointer<Uint8>> retValuePtr)'));
+              'int Function(VTablePointer lpVtbl, int descriptorKind, Pointer<Uint32> retValueSize, Pointer<Pointer<Uint8>> retValuePtr)'));
       expect(
           projection.methodHeader,
           equals(

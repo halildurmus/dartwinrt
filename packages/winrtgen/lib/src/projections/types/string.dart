@@ -47,18 +47,20 @@ mixin _StringListMixin on MethodProjection {
   @override
   String get returnType => 'List<String>';
 
+  String get sizeIdentifier => 'pRetValueSize';
+
   @override
   String get methodDeclaration => '''
   $methodHeader {
-    final pValueSize = calloc<Uint32>();
+    final $sizeIdentifier = calloc<Uint32>();
     final retValuePtr = calloc<Pointer<HSTRING>>();
 
     try {
       ${ffiCall()}
 
-      return retValuePtr.value.toList(length: pValueSize.value);
+      return retValuePtr.value.toList(length: $sizeIdentifier.value);
     } finally {
-      free(pValueSize);
+      free($sizeIdentifier);
       free(retValuePtr);
     }
   }
@@ -122,15 +124,15 @@ final class StringListParameterProjection
 
   @override
   String get passArrayPreamble => '''
-    final handles = <int>[];
-    final pArray = calloc<HSTRING>(value.length);
-    for (var i = 0; i < value.length; i++) {
-      pArray[i] = value.elementAt(i).toHString();
-      handles.add(pArray[i]);
+    final ${paramName}Handles = <int>[];
+    final $localIdentifier = calloc<HSTRING>($paramName.length);
+    for (var i = 0; i < $paramName.length; i++) {
+      $localIdentifier[i] = $paramName.elementAt(i).toHString();
+      ${paramName}Handles.add($localIdentifier[i]);
     }''';
 
   @override
   String get passArrayPostamble => '''
-    handles.forEach(WindowsDeleteString);
-    free(pArray);''';
+    ${paramName}Handles.forEach(WindowsDeleteString);
+    free($localIdentifier);''';
 }

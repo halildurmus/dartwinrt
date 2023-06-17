@@ -44,19 +44,21 @@ mixin _DateTimeListMixin on MethodProjection {
   @override
   String get returnType => 'List<DateTime>';
 
+  String get sizeIdentifier => 'pRetValueSize';
+
   @override
   String get methodDeclaration => '''
   $methodHeader {
-    final pValueSize = calloc<Uint32>();
+    final $sizeIdentifier = calloc<Uint32>();
     final retValuePtr = calloc<Pointer<Uint64>>();
 
     try {
       ${ffiCall()}
 
-      return retValuePtr.value.toList(length: pValueSize.value).map((value) =>
+      return retValuePtr.value.toList(length: $sizeIdentifier.value).map((value) =>
           DateTime.utc(1601, 01, 01).add(Duration(microseconds: value ~/ 10)));
     } finally {
-      free(pValueSize);
+      free($sizeIdentifier);
       free(retValuePtr);
     }
   }
@@ -108,27 +110,27 @@ final class DateTimeListParameterProjection
 
   @override
   String get passArrayPreamble => '''
-    final pArray = calloc<Int64>(value.length);
-    for (var i = 0; i < value.length; i++) {
-      pArray[i] = value.elementAt(i).toWinRTDateTime();
+    final $localIdentifier = calloc<Int64>($paramName.length);
+    for (var i = 0; i < $paramName.length; i++) {
+      $localIdentifier[i] = $paramName.elementAt(i).toWinRTDateTime();
     }''';
 
   @override
   String get fillArrayPostamble => '''
     if ($fillArraySizeVariable > 0) {
-      value.addAll(pArray
+      $paramName.addAll($localIdentifier
           .toList(length: $fillArraySizeVariable)
           .map((value) => value.toDartDateTime()));
     }
-    free(pArray);''';
+    free($localIdentifier);''';
 
   @override
   String get receiveArrayPostamble => '''
-    if (pValueSize.value > 0) {
-      value.addAll(pArray.value
-          .toList(length: pValueSize.value)
+    if ($sizeIdentifier.value > 0) {
+      $paramName.addAll($localIdentifier.value
+          .toList(length: $sizeIdentifier.value)
           .map((value) => value.toDartDateTime()));
     }
-    free(pValueSize);
-    free(pArray);''';
+    free($sizeIdentifier);
+    free($localIdentifier);''';
 }

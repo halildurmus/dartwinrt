@@ -42,18 +42,20 @@ mixin _GuidListMixin on MethodProjection {
   @override
   String get returnType => 'List<Guid>';
 
+  String get sizeIdentifier => 'pRetValueSize';
+
   @override
   String get methodDeclaration => '''
   $methodHeader {
-    final pValueSize = calloc<Uint32>();
+    final $sizeIdentifier = calloc<Uint32>();
     final retValuePtr = calloc<Pointer<GUID>>();
 
     try {
       ${ffiCall()}
 
-      return retValuePtr.value.toList(length: pValueSize.value);
+      return retValuePtr.value.toList(length: $sizeIdentifier.value);
     } finally {
-      free(pValueSize);
+      free($sizeIdentifier);
       free(retValuePtr);
     }
   }
@@ -117,16 +119,16 @@ final class GuidListParameterProjection extends DefaultListParameterProjection {
 
   @override
   String get passArrayPreamble => '''
-    final nativeGuids = <Pointer<GUID>>[];
-    final pArray = calloc<GUID>(value.length);
-    for (var i = 0; i < value.length; i++) {
-      final nativeGuidPtr = value.elementAt(i).toNativeGUID();
-      pArray[i] = nativeGuidPtr.ref;
-      nativeGuids.add(nativeGuidPtr);
+    final ${paramName}NativeGuids = <Pointer<GUID>>[];
+    final $localIdentifier = calloc<GUID>($paramName.length);
+    for (var i = 0; i < $paramName.length; i++) {
+      final ${paramName}NativeGuidPtr = $paramName.elementAt(i).toNativeGUID();
+      $localIdentifier[i] = ${paramName}NativeGuidPtr.ref;
+      ${paramName}NativeGuids.add(${paramName}NativeGuidPtr);
     }''';
 
   @override
   String get passArrayPostamble => '''
-    nativeGuids.forEach(free);
-    free(pArray);''';
+    ${paramName}NativeGuids.forEach(free);
+    free($localIdentifier);''';
 }

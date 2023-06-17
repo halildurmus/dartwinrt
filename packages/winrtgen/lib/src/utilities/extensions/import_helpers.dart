@@ -69,7 +69,7 @@ extension ImportHelpers on InterfaceProjection {
     final methods = {
       ...typeDef.methods,
       // Add the methods from inherited interfaces
-      ...[for (var typeDef in typeDef.interfaces) ...typeDef.methods]
+      ...[for (final typeDef in typeDef.interfaces) ...typeDef.methods]
     };
 
     final imports = <String>{};

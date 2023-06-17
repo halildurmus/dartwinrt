@@ -62,8 +62,8 @@ class WwwFormUrlDecoder extends IInspectable
 
   @override
   int getMany(
-          int startIndex, int valueSize, List<IWwwFormUrlDecoderEntry> value) =>
-      _iVectorView.getMany(startIndex, valueSize, value);
+          int startIndex, int itemsSize, List<IWwwFormUrlDecoderEntry> items) =>
+      _iVectorView.getMany(startIndex, itemsSize, items);
 
   @override
   IIterator<IWwwFormUrlDecoderEntry> first() => _iVectorView.first();

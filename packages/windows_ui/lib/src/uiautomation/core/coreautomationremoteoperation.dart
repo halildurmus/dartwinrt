@@ -55,8 +55,8 @@ class CoreAutomationRemoteOperation extends IInspectable
       _iCoreAutomationRemoteOperation.addToResults(operandId);
 
   @override
-  AutomationRemoteOperationResult? execute(List<int> value) =>
-      _iCoreAutomationRemoteOperation.execute(value);
+  AutomationRemoteOperationResult? execute(List<int> bytecodeBuffer) =>
+      _iCoreAutomationRemoteOperation.execute(bytecodeBuffer);
 
   late final _iCoreAutomationRemoteOperation2 =
       ICoreAutomationRemoteOperation2.from(this);

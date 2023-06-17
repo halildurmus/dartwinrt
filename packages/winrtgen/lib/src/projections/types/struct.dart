@@ -90,15 +90,15 @@ final class StructListParameterProjection
   @override
   String get passArrayPreamble => '''
     final nativeStructPtrs = <Pointer<$nativeStructName>>[];
-    final pArray = calloc<$nativeStructName>(value.length);
-    for (var i = 0; i < value.length; i++) {
-      final nativeStructPtr = value.elementAt(i).toNative();
-      pArray[i] = nativeStructPtr.ref;
+    final $localIdentifier = calloc<$nativeStructName>($paramName.length);
+    for (var i = 0; i < $paramName.length; i++) {
+      final nativeStructPtr = $paramName.elementAt(i).toNative();
+      $localIdentifier[i] = nativeStructPtr.ref;
       nativeStructPtrs.add(nativeStructPtr);
     }''';
 
   @override
   String get passArrayPostamble => '''
     nativeStructPtrs.forEach(free);
-    free(pArray);''';
+    free($localIdentifier);''';
 }

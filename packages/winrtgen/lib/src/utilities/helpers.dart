@@ -92,6 +92,10 @@ String iidFromSignature(String signature) {
       .toString();
 }
 
+/// Whether the [input] is a simple array size identifier (e.g. `__valueSize`).
+bool isSimpleArraySizeIdentifier(String input) =>
+    RegExp(r'^(__\w+Size)$').hasMatch(input);
+
 /// Whether the [input] is a valid IID.
 bool isValidIID(String input) =>
     RegExp(r'^{[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}}$')

@@ -133,11 +133,11 @@ class ICoreAutomationRemoteOperation extends IInspectable {
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
-  AutomationRemoteOperationResult? execute(List<int> value) {
+  AutomationRemoteOperationResult? execute(List<int> bytecodeBuffer) {
     final retValuePtr = calloc<COMObject>();
-    final pArray = calloc<Uint8>(value.length);
-    for (var i = 0; i < value.length; i++) {
-      pArray[i] = value.elementAt(i);
+    final pBytecodeBufferArray = calloc<Uint8>(bytecodeBuffer.length);
+    for (var i = 0; i < bytecodeBuffer.length; i++) {
+      pBytecodeBufferArray[i] = bytecodeBuffer.elementAt(i);
     }
 
     final hr = ptr.ref.vtable
@@ -147,16 +147,19 @@ class ICoreAutomationRemoteOperation extends IInspectable {
                     NativeFunction<
                         HRESULT Function(
                             VTablePointer lpVtbl,
-                            Uint32 valueSize,
-                            Pointer<Uint8> value,
+                            Uint32 bytecodeBufferSize,
+                            Pointer<Uint8> bytecodeBuffer,
                             Pointer<COMObject> retValuePtr)>>>()
             .value
             .asFunction<
-                int Function(VTablePointer lpVtbl, int valueSize,
-                    Pointer<Uint8> value, Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, value.length, pArray, retValuePtr);
+                int Function(
+                    VTablePointer lpVtbl,
+                    int bytecodeBufferSize,
+                    Pointer<Uint8> bytecodeBuffer,
+                    Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl,
+        bytecodeBuffer.length, pBytecodeBufferArray, retValuePtr);
 
-    free(pArray);
+    free(pBytecodeBufferArray);
 
     if (FAILED(hr)) {
       free(retValuePtr);
