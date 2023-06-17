@@ -114,6 +114,7 @@
     "Windows.Media.Ocr.OcrLine": "Represents a single line of text recognized by the OCR engine and returned as part of the OcrResult.",
     "Windows.Media.Ocr.OcrResult": "Contains the results of Optical Character Recognition (OCR).",
     "Windows.Media.Ocr.OcrWord": "Represents a single word in a line of text recognized by the OCR engine and returned as part of the OcrLine.",
+    "Windows.Media.VideoFrame": "Represents a single frame of video data.",
     "Windows.Networking.Connectivity.AttributedNetworkUsage": "Provides access to property values containing information on current usage of the attributed network connection.",
     "Windows.Networking.Connectivity.ConnectionCost": "Provides access to property values that indicate the current cost of a network connection.",
     "Windows.Networking.Connectivity.ConnectionProfile": "Represents a network connection, which includes either the currently connected network or prior network connections. Provides information about the connection status and connectivity statistics.",
