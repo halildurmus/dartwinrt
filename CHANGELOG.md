@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2023-06-17
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`windows_graphics` - `v0.0.4`](#windows_graphics---v004)
+
+---
+
+#### `windows_graphics` - `v0.0.4`
+
+ - **FEAT**(windows_graphics): add `IDirect3DDevice` interface ([#248](https://github.com/dart-windows/dartwinrt/issues/248)). ([05e44f7a](https://github.com/dart-windows/dartwinrt/commit/05e44f7ab42bc98d4b1cd7ef69f293b33adce152))
+ - **FEAT**(windows_graphics): add `DirectXPixelFormat` enum ([#247](https://github.com/dart-windows/dartwinrt/issues/247)). ([2263a10e](https://github.com/dart-windows/dartwinrt/commit/2263a10e713dd63eedd02f5801075e1783b78379))
+
+
 ## 2023-06-04
 
 ### Changes
