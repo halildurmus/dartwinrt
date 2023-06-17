@@ -2,11 +2,11 @@
 
 A family of packages that provide an idiomatic Dart projection of modern
 Windows Runtime (WinRT) APIs using FFI.
-Part of the [Dart | Windows] suite of Windows packages.
+Part of the [Dart | Windows][dart_windows_link] suite of Windows packages.
 
-[![Publisher](https://img.shields.io/pub/publisher/windows_foundation.svg)](https://pub.dev/publishers/win32.pub)
-[![Language](https://img.shields.io/badge/language-Dart-blue.svg)](https://dart.dev)
-[![License](https://img.shields.io/github/license/dart-windows/dartwinrt?color=blue)](https://opensource.org/licenses/BSD-3-Clause)
+[![Publisher: win32.pub][publisher_badge]][publisher_link]
+[![Language: Dart][language_badge]][language_link]
+[![License: BSD-3-Clause][license_badge]][license_link]
 
 ## Documentation 📝
 
@@ -24,11 +24,11 @@ APIs will be added based on user demand, especially if it helps facilitate the
 development of new Dart packages for Windows.
 
 If you encounter any issues or have any feature requests, please submit them
-through the [issue tracker].
+through the [issue tracker][issue_tracker_link].
 
 ## Packages 📦
 
-These packages can also be viewed on [pub].
+These packages can also be viewed on [pub][pub_link].
 
 | Package                                                          | Pub                                                                                                                            | Points                                                                                                                               | Popularity                                                                                                                               | Likes                                                                                                                          |
 | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
@@ -53,12 +53,18 @@ These packages can also be viewed on [pub].
 
 ## Acknowledgements
 
-The summary WinRT API documentation comments are [licensed by Microsoft] under
-the [Creative Commons Attribution 4.0 International Public License][license].
+The summary WinRT API documentation comments are
+[licensed by Microsoft][legal_notices_link] under the
+[Creative Commons Attribution 4.0 International Public License][cc_license_link].
 
-[Dart | Windows]: https://github.com/dart-windows
-[issue tracker]: https://github.com/dart-windows/dartwinrt/issues
-[licensed by Microsoft]: https://github.com/MicrosoftDocs/winrt-api/#legal-notices
-[license]: https://github.com/MicrosoftDocs/winrt-api/blob/89e9254fd8b53a648937dbb4324d7f7d6f8d1314/LICENSE
-[packages]: https://github.com/dart-windows/dartwinrt#packages-
-[pub]: https://pub.dev/packages?q=topic%3Awinrt+publisher%3Awin32.pub
+[cc_license_link]: https://github.com/MicrosoftDocs/winrt-api/blob/89e9254fd8b53a648937dbb4324d7f7d6f8d1314/LICENSE
+[dart_windows_link]: https://github.com/dart-windows
+[issue_tracker_link]: https://github.com/dart-windows/dartwinrt/issues
+[language_badge]: https://img.shields.io/badge/language-Dart-blue.svg
+[language_link]: https://dart.dev
+[legal_notices_link]: https://github.com/MicrosoftDocs/winrt-api/#legal-notices
+[license_badge]: https://img.shields.io/github/license/dart-windows/dartwinrt?color=blue
+[license_link]: https://opensource.org/licenses/BSD-3-Clause
+[pub_link]: https://pub.dev/packages?q=topic%3Awinrt+publisher%3Awin32.pub
+[publisher_badge]: https://img.shields.io/pub/publisher/windows_foundation.svg
+[publisher_link]: https://pub.dev/publishers/win32.pub
