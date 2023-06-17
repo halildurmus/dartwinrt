@@ -94,6 +94,7 @@
     "Windows.Globalization.NumeralSystemIdentifiers": "Contains the numeral system identifiers for the supported numeral systems, as static properties.",
     "Windows.Globalization.PhoneNumberFormatting.PhoneNumberFormatter": "Formats phone numbers.",
     "Windows.Globalization.PhoneNumberFormatting.PhoneNumberInfo": "Information about a phone number.",
+    "Windows.Graphics.DirectX.Direct3D11.IDirect3DDevice": "This represents an IDXGIDevice, and can be used to interop between Windows Runtime components that need to exchange IDXGIDevice references.",
     "Windows.Graphics.DirectX.Direct3D11.IDirect3DSurface": "This represents an IDXGISurface and can be used to interop between Windows Runtime components that need to exchange IDXGISurface references.",
     "Windows.Graphics.Imaging.BitmapBuffer": "Represents the pixel data buffer of a bitmap.",
     "Windows.Graphics.Imaging.BitmapCodecInformation": "Provides access to information about a decoder or encoder.",
