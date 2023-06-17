@@ -7,6 +7,7 @@
 export 'directx/direct3d11/direct3dmultisampledescription.dart';
 export 'directx/direct3d11/direct3dsurfacedescription.dart';
 export 'directx/direct3d11/idirect3dsurface.dart';
+export 'directx/directxpixelformat.dart';
 export 'displayadapterid.dart';
 export 'imaging/bitmapalphamode.dart';
 export 'imaging/bitmapbounds.dart';

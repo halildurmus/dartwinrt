@@ -50,6 +50,7 @@
     "Windows.Globalization.PhoneNumberFormatting.PhoneNumberMatchResult": "The result of calling the PhoneNumberInfo.CheckNumberMatch method.",
     "Windows.Globalization.PhoneNumberFormatting.PhoneNumberParseResult": "Describes the results of trying to parse a string into a phone number.",
     "Windows.Globalization.PhoneNumberFormatting.PredictedPhoneNumberKind": "The kinds of phone numbers returned by PhoneNumberInfo.PredictNumberKind.",
+    "Windows.Graphics.DirectX.DirectXPixelFormat": "Specifies pixel formats, which includes fully-typed and type-less formats. This is a Windows Runtime equivalent of the Desktop DXGI_FORMAT enumeration.",
     "Windows.Graphics.Imaging.BitmapAlphaMode": "Specifies the alpha mode of pixel data.",
     "Windows.Graphics.Imaging.BitmapBufferAccessMode": "Specifies the access mode of a BitmapBuffer.",
     "Windows.Graphics.Imaging.BitmapFlip": "Specifies the flip operation to be performed on pixel data.",
