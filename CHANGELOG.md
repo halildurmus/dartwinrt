@@ -15,9 +15,14 @@ Packages with breaking changes:
 
 Packages with other changes:
 
+ - [`windows_applicationmodel` - `v0.0.4`](#windows_applicationmodel---v004)
  - [`windows_graphics` - `v0.0.4`](#windows_graphics---v004)
 
 ---
+
+#### `windows_applicationmodel` - `v0.0.4`
+
+ - **FEAT**(windows_applicationmodel): add `StandardDataFormats` ([#250](https://github.com/dart-windows/dartwinrt/issues/250)). ([97b73390](https://github.com/dart-windows/dartwinrt/commit/97b73390973914fa0cc7cf28683b545ee67c6a98))
 
 #### `windows_graphics` - `v0.0.4`
 
