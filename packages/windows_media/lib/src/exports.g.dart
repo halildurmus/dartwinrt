@@ -4,6 +4,9 @@
 
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
+export 'imediaframe.dart';
+export 'ivideoframe.dart';
+export 'ivideoframe2.dart';
 export 'mediaproperties/mediapropertyset.dart';
 export 'ocr/iocrengine.dart';
 export 'ocr/iocrline.dart';
@@ -14,3 +17,4 @@ export 'ocr/ocrline.dart';
 export 'ocr/ocrresult.dart';
 export 'ocr/ocrword.dart';
 export 'speechsynthesis/voicegender.dart';
+export 'videoframe.dart';
