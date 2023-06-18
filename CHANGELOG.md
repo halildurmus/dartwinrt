@@ -140,6 +140,7 @@ Packages with other changes:
 
  - **FEAT**(windows_media): add `VideoFrame` ([#252](https://github.com/dart-windows/dartwinrt/issues/252)). ([49b56864](https://github.com/dart-windows/dartwinrt/commit/49b568642f3846be918b05bff2f9d9fb63c13356))
 
+
 ## 2023-06-04
 
 ### Changes
@@ -169,6 +170,7 @@ Packages with other changes:
 #### `windows_media` - `v0.0.2`
 
  - **FEAT**(windows_media): add OCR APIs ([#241](https://github.com/dart-windows/dartwinrt/issues/241)). ([174d7581](https://github.com/dart-windows/dartwinrt/commit/174d75815d682a01fee7765222848da5e224dc16))
+
 
 ## 2023-06-01
 
@@ -215,6 +217,7 @@ Packages with other changes:
 
  - **FEAT**: add some enums required for `Windows.System.Launcher` APIs ([#222](https://github.com/dart-windows/dartwinrt/issues/222)). ([5401d2a8](https://github.com/dart-windows/dartwinrt/commit/5401d2a81b376f229cacc3feab086ffe378b8298))
 
+
 ## 2023-05-31
 
 ### Changes
@@ -235,6 +238,7 @@ Packages with other changes:
 
  - **FEAT**(windows_ui): add Windows UI Automation APIs ([#216](https://github.com/dart-windows/dartwinrt/issues/216)). ([89035f86](https://github.com/dart-windows/dartwinrt/commit/89035f86409c25f56a5b48cb936b4012cb3a183f))
  - **FEAT**(windows_ui): add `MessageDialog` APIs ([#217](https://github.com/dart-windows/dartwinrt/issues/217)). ([1a5479fd](https://github.com/dart-windows/dartwinrt/commit/1a5479fd61c060c510830a1ef9c3730505e0775e))
+
 
 ## 2023-05-29
 
