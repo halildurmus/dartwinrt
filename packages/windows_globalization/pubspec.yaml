@@ -1,7 +1,7 @@
 name: windows_globalization
 description: Provides access to WinRT APIs from the Windows.Globalization
   namespace using FFI.
-version: 0.0.1+1
+version: 0.0.1+2
 homepage: https://win32.pub
 repository: https://github.com/dart-windows/dartwinrt/tree/main/packages/windows_globalization
 issue_tracker: https://github.com/dart-windows/dartwinrt/issues?q=is%3Aopen+is%3Aissue+label%3A%22pkg%3A+windows_globalization%22
