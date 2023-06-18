@@ -1,3 +1,7 @@
+## 0.0.2+2
+
+ - **DOCS**: update issue tracker links ([#256](https://github.com/dart-windows/dartwinrt/issues/256)). ([a05f5ec7](https://github.com/dart-windows/dartwinrt/commit/a05f5ec70f5e71773f04d7021e1a84d932ca0c21))
+
 ## 0.0.2+1
 
  - **DOCS**: fix example link ([#207](https://github.com/dart-windows/dartwinrt/issues/207)). ([9b182ab2](https://github.com/dart-windows/dartwinrt/commit/9b182ab298b02aaf0da4ff9f784218e34740089a))

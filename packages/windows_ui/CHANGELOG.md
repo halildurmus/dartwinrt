@@ -1,3 +1,7 @@
+## 0.0.3+1
+
+ - **DOCS**: update issue tracker links ([#256](https://github.com/dart-windows/dartwinrt/issues/256)). ([a05f5ec7](https://github.com/dart-windows/dartwinrt/commit/a05f5ec70f5e71773f04d7021e1a84d932ca0c21))
+
 ## 0.0.3
 
  - **FEAT**: add some enums required for `Windows.System.Launcher` APIs ([#222](https://github.com/dart-windows/dartwinrt/issues/222)). ([5401d2a8](https://github.com/dart-windows/dartwinrt/commit/5401d2a81b376f229cacc3feab086ffe378b8298))
