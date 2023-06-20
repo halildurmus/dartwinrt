@@ -1,4 +1,7 @@
 {
+    "Windows.AI.MachineLearning.LearningModelDeviceKind": "Defines the list of device kinds that can evaluate a machine learning model.",
+    "Windows.AI.MachineLearning.LearningModelFeatureKind": "Input and output feature kinds for a machine learning model.",
+    "Windows.AI.MachineLearning.LearningModelPixelRange": "Defines the list of image nominal pixel range suppored by Windows ML. The proper value is specified in a machine learning model's metadata.",
     "Windows.AI.MachineLearning.TensorKind": "Defines the list of supported tensor data types.",
     "Windows.ApplicationModel.AppExecutionContext": "Specifies the context in which an app runs.",
     "Windows.ApplicationModel.AppInstallerPolicySource": "Specifies the whether the source of the update policy for an app.",
