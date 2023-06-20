@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2023-06-20
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`windows_ai` - `v0.0.2`](#windows_ai---v002)
+
+---
+
+#### `windows_ai` - `v0.0.2`
+
+ - **FEAT**(windows_ai): add MachineLearning APIs ([#255](https://github.com/dart-windows/dartwinrt/issues/255)). ([c1c1ecaa](https://github.com/dart-windows/dartwinrt/commit/c1c1ecaa394ff0c7047ff68672ec9f6dcb4c733e))
+
+
 ## 2023-06-18
 
 ### Changes
