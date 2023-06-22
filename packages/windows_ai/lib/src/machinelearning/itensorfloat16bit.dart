@@ -46,7 +46,8 @@ class ITensorFloat16Bit extends IInspectable {
     }
 
     final vectorView = IVectorView<double>.fromPtr(retValuePtr,
-        iterableIid: '{b01bee51-063a-5fda-bd72-d76637bb8cb8}');
+        iterableIid: '{b01bee51-063a-5fda-bd72-d76637bb8cb8}',
+        doubleType: DoubleType.float);
     return vectorView.toList();
   }
 }
