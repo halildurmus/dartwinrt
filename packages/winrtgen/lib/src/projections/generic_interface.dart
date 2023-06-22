@@ -125,11 +125,17 @@ final class GenericInterfaceProjection extends InterfaceProjection {
         if (typeArgs case [final typeArg1, final typeArg2]) ...{
           if (typeArg1.isEnum) 'required this.enumKeyCreator',
           if (shortName case 'IMap' || 'IMapView' || 'IVector' || 'IVectorView'
+              when typeArg1.isDouble)
+            'super.doubleType',
+          if (shortName case 'IMap' || 'IMapView' || 'IVector' || 'IVectorView'
               when typeArg1.isInt)
             'super.intType',
           if (typeArg2.isInspectable) 'required this.creator',
           if (typeArg2.isEnum) 'required this.enumCreator'
         } else if (typeArgs case [final typeArg]) ...{
+          if (shortName case 'IMap' || 'IMapView' || 'IVector' || 'IVectorView'
+              when typeArg.isDouble)
+            'super.doubleType',
           if (shortName case 'IMap' || 'IMapView' || 'IVector' || 'IVectorView'
               when typeArg.isInt)
             'super.intType',

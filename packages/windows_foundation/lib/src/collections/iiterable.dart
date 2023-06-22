@@ -17,12 +17,19 @@ interface class IIterable<T> extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   final T Function(Pointer<COMObject>)? _creator;
   final T Function(int)? _enumCreator;
+  final DoubleType? _doubleType;
   final IntType? _intType;
 
   /// Creates an instance of [IIterable] from the given [ptr].
   ///
-  /// [T] must be of type `bool`, `Guid`, `int`, `String`, `Uri`,
+  /// [T] must be of type `bool`, `double`, `Guid`, `int`, `String`, `Uri`,
   /// `IInspectable` (e.g.`StorageFile`) or `WinRTEnum` (e.g. `DeviceClass`).
+  ///
+  /// [doubleType] must be specified if [T] is `double`.
+  /// ```dart
+  /// final iterable =
+  ///     IIterable<double>.fromPtr(ptr, doubleType: DoubleType.float);
+  /// ```
   ///
   /// [intType] must be specified if [T] is `int`.
   /// ```dart
@@ -44,10 +51,16 @@ interface class IIterable<T> extends IInspectable {
     super.ptr, {
     T Function(Pointer<COMObject>)? creator,
     T Function(int)? enumCreator,
+    DoubleType? doubleType,
     IntType? intType,
   })  : _creator = creator,
         _enumCreator = enumCreator,
+        _doubleType = doubleType,
         _intType = intType {
+    if (doubleType == null && this is IIterable<double>) {
+      throw ArgumentError.notNull('doubleType');
+    }
+
     if (intType == null && this is IIterable<int>) {
       throw ArgumentError.notNull('intType');
     }
@@ -83,6 +96,9 @@ interface class IIterable<T> extends IInspectable {
     }
 
     return IIterator.fromPtr(retValuePtr,
-        creator: _creator, enumCreator: _enumCreator, intType: _intType);
+        creator: _creator,
+        enumCreator: _enumCreator,
+        doubleType: _doubleType,
+        intType: _intType);
   }
 }

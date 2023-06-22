@@ -263,6 +263,24 @@ void main() {
 
       test('(4)', () {
         final projection = GenericInterfaceProjection.from(
+            'Windows.Foundation.Collections.IVector`1', TypeArg.int32);
+        expect(
+            projection.namedConstructor,
+            equals(
+                '_IVectorInt32.fromPtr(super.ptr, {required super.iterableIid, super.intType});'));
+      });
+
+      test('(5)', () {
+        final projection = GenericInterfaceProjection.from(
+            'Windows.Foundation.Collections.IVectorView`1', TypeArg.float);
+        expect(
+            projection.namedConstructor,
+            equals(
+                '_IVectorViewFloat.fromPtr(super.ptr, {required super.iterableIid, super.doubleType});'));
+      });
+
+      test('(6)', () {
+        final projection = GenericInterfaceProjection.from(
             'Windows.Foundation.Collections.IMap`2',
             TypeArg.string,
             TypeArg.object);
@@ -272,7 +290,7 @@ void main() {
                 '_IMapStringObject.fromPtr(super.ptr, {required super.iterableIid});'));
       });
 
-      test('(5)', () {
+      test('(7)', () {
         final projection = GenericInterfaceProjection.from(
             'Windows.Foundation.Collections.IMap`2',
             TypeArg.string,
@@ -283,7 +301,7 @@ void main() {
                 '_IMapStringInspectable.fromPtr(super.ptr, {required super.iterableIid, required this.creator}) : super(creator: creator);'));
       });
 
-      test('(6)', () {
+      test('(8)', () {
         final projection = GenericInterfaceProjection.from(
             'Windows.Foundation.Collections.IMap`2',
             TypeArg.winrtEnum,

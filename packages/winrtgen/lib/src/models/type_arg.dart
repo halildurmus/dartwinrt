@@ -64,6 +64,10 @@ enum TypeArg {
           orElse: () => throw ArgumentError.value(
               name, 'name', 'No enum value with that name'));
 
+  /// Whether this is [TypeArg.double] or [TypeArg.float].
+  bool get isDouble =>
+      switch (this) { TypeArg.double || TypeArg.float => true, _ => false };
+
   /// Whether this is [TypeArg.winrtEnum] or [TypeArg.winrtFlagsEnum].
   bool get isEnum => switch (this) {
         TypeArg.winrtEnum || TypeArg.winrtFlagsEnum => true,

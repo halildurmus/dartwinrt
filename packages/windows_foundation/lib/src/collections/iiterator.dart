@@ -19,8 +19,14 @@ abstract interface class IIterator<T> extends IInspectable {
 
   /// Creates an instance of [IIterator] from the given [ptr].
   ///
-  /// [T] must be of type `bool`, `Guid`, `int`, `String`, `Uri`,
+  /// [T] must be of type `bool`, `double` `Guid`, `int`, `String`, `Uri`,
   /// `IInspectable` (e.g.`StorageFile`) or `WinRTEnum` (e.g. `DeviceClass`).
+  ///
+  /// [doubleType] must be specified if [T] is `double`.
+  /// ```dart
+  /// final iterator =
+  ///     IIterator<double>.fromPtr(ptr, doubleType: DoubleType.float);
+  /// ```
   ///
   /// [intType] must be specified if [T] is `int`.
   /// ```dart
@@ -42,10 +48,20 @@ abstract interface class IIterator<T> extends IInspectable {
     Pointer<COMObject> ptr, {
     T Function(Pointer<COMObject>)? creator,
     T Function(int)? enumCreator,
+    DoubleType? doubleType,
     IntType? intType,
   }) {
     if (T == bool) return _IIteratorBool.fromPtr(ptr) as IIterator<T>;
     if (T == Guid) return _IIteratorGuid.fromPtr(ptr) as IIterator<T>;
+
+    if (T == double) {
+      if (doubleType == null) throw ArgumentError.notNull('doubleType');
+      final iterator = switch (doubleType) {
+        DoubleType.double => _IIteratorDouble.fromPtr(ptr),
+        DoubleType.float => _IIteratorFloat.fromPtr(ptr),
+      };
+      return iterator as IIterator<T>;
+    }
 
     if (T == int) {
       if (intType == null) throw ArgumentError.notNull('intType');
