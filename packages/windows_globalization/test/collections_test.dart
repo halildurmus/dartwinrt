@@ -60,7 +60,7 @@ void main() {
       expect(element.length, equals(5));
     });
 
-    test('indexOf returns 0 if the element is not found', () {
+    test('indexOf returns false if the element is not found', () {
       final pIndex = calloc<Uint32>();
 
       final vectorView = getVectorView();
