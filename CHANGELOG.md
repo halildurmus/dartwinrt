@@ -15,9 +15,14 @@ Packages with breaking changes:
 
 Packages with other changes:
 
+ - [`windows_ai` - `v0.0.2+1`](#windows_ai---v0021)
  - [`windows_foundation` - `v0.0.8`](#windows_foundation---v008)
 
 ---
+
+#### `windows_ai` - `v0.0.2+1`
+
+ - **FIX**: pass the appropriate `doubleType` to `IVectorView` ([#264](https://github.com/dart-windows/dartwinrt/issues/264)). ([4fd3a0b6](https://github.com/dart-windows/dartwinrt/commit/4fd3a0b62a801d2e4f4aac9f5589a0b415124bf1))
 
 #### `windows_foundation` - `v0.0.8`
 
