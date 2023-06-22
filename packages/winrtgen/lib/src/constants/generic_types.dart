@@ -60,8 +60,8 @@ const _mapTypeArgPairs = <(TypeArg, TypeArg)>[
 
 /// The common type arguments for `IIterator`, `IVector`, and `IVectorView`.
 const _vectorTypeArgs = <TypeArg>[
-  TypeArg.bool_, TypeArg.guid, TypeArg.inspectable, TypeArg.int16, //
-  TypeArg.int32, TypeArg.int64, TypeArg.string, TypeArg.uint8, //
-  TypeArg.uint16, TypeArg.uint32, TypeArg.uint64, TypeArg.uri, //
-  TypeArg.winrtEnum, TypeArg.winrtFlagsEnum
+  TypeArg.bool_, TypeArg.double, TypeArg.float, TypeArg.guid, //
+  TypeArg.inspectable, TypeArg.int16, TypeArg.int32, TypeArg.int64, //
+  TypeArg.string, TypeArg.uint8, TypeArg.uint16, TypeArg.uint32, //
+  TypeArg.uint64, TypeArg.uri, TypeArg.winrtEnum, TypeArg.winrtFlagsEnum //
 ];

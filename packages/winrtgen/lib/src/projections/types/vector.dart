@@ -34,6 +34,13 @@ mixin _VectorMixin on MethodProjection {
     final iterableIid =
         iterableIidFromVectorType(returnTypeProjection.typeIdentifier);
 
+    // If the type argument is a double, 'doubleType' parameter must be
+    // specified so that the IVector and IVectorView implementations can use
+    // the appropriate native double type
+    final doubleType = vectorTypeArg == 'double'
+        ? 'DoubleType.${typeProjection.nativeType.toLowerCase()}'
+        : null;
+
     // If the type argument is an int, 'intType' parameter must be specified so
     // that the IVector and IVectorView implementations can use the appropriate
     // native integer type
@@ -46,6 +53,9 @@ mixin _VectorMixin on MethodProjection {
       args.add('enumCreator: $creator');
     } else if (creator != null) {
       args.add('creator: $creator');
+    }
+    if (doubleType != null) {
+      args.add('doubleType: $doubleType');
     }
     if (intType != null) {
       args.add('intType: $intType');

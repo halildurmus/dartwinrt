@@ -75,6 +75,136 @@ final class _IIteratorBool extends IIterator<bool> {
   }
 }
 
+final class _IIteratorDouble extends IIterator<double> {
+  _IIteratorDouble.fromPtr(super.ptr);
+
+  @override
+  double get current {
+    final retValuePtr = calloc<Double>();
+
+    try {
+      final hr = ptr.ref.vtable
+          .elementAt(6)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          Pointer<Double> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<Double> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      return retValuePtr.value;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  @override
+  int getMany(int itemsSize, List<double> items) {
+    final retValuePtr = calloc<Uint32>();
+
+    try {
+      final pItemsArray = calloc<Double>(itemsSize);
+
+      final hr = ptr.ref.vtable
+              .elementAt(9)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl,
+                              Uint32 itemsSize,
+                              Pointer<Double> items,
+                              Pointer<Uint32> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, int itemsSize,
+                      Pointer<Double> items, Pointer<Uint32> retValuePtr)>()(
+          ptr.ref.lpVtbl, itemsSize, pItemsArray, retValuePtr);
+
+      if (retValuePtr.value > 0) {
+        items.addAll(pItemsArray.toList(length: retValuePtr.value));
+      }
+      free(pItemsArray);
+
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      return retValuePtr.value;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+}
+
+final class _IIteratorFloat extends IIterator<double> {
+  _IIteratorFloat.fromPtr(super.ptr);
+
+  @override
+  double get current {
+    final retValuePtr = calloc<Float>();
+
+    try {
+      final hr = ptr.ref.vtable
+          .elementAt(6)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Float> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<Float> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      return retValuePtr.value;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  @override
+  int getMany(int itemsSize, List<double> items) {
+    final retValuePtr = calloc<Uint32>();
+
+    try {
+      final pItemsArray = calloc<Float>(itemsSize);
+
+      final hr = ptr.ref.vtable
+              .elementAt(9)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl,
+                              Uint32 itemsSize,
+                              Pointer<Float> items,
+                              Pointer<Uint32> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, int itemsSize,
+                      Pointer<Float> items, Pointer<Uint32> retValuePtr)>()(
+          ptr.ref.lpVtbl, itemsSize, pItemsArray, retValuePtr);
+
+      if (retValuePtr.value > 0) {
+        items.addAll(pItemsArray.toList(length: retValuePtr.value));
+      }
+      free(pItemsArray);
+
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      return retValuePtr.value;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+}
+
 final class _IIteratorGuid extends IIterator<Guid> {
   _IIteratorGuid.fromPtr(super.ptr);
 

@@ -338,7 +338,7 @@ void main() {
           equals('IVector<BackgroundTransferFileRange> getDownloadedRanges()'));
     });
 
-    test('projects IVectorView', () {
+    test('projects IVectorView 1', () {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Globalization.ApplicationLanguages', 'GetLanguagesForUser');
       expect(projection, isA<VectorViewMethodProjection>());
@@ -353,6 +353,23 @@ void main() {
               'int Function(VTablePointer lpVtbl, VTablePointer user, Pointer<COMObject> retValuePtr)'));
       expect(projection.methodHeader,
           equals('List<String> getLanguagesForUser(User? user)'));
+    });
+
+    test('projects IVectorView 2', () {
+      final projection = MethodProjection.fromTypeAndMethodName(
+          'Windows.AI.MachineLearning.TensorFloat', 'GetAsVectorView');
+      expect(projection, isA<VectorViewMethodProjection>());
+      expect(projection.returnType, equals('List<double>'));
+      expect(
+          projection.nativePrototype,
+          equals(
+              'HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)'));
+      expect(
+          projection.dartPrototype,
+          equals(
+              'int Function(VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)'));
+      expect(projection.methodHeader, equals('List<double> getAsVectorView()'));
+      expect(projection.toString(), contains('doubleType: DoubleType.float'));
     });
 
     test('projects List<int>', () {

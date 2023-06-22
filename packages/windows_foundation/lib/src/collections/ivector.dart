@@ -25,14 +25,17 @@ abstract interface class IVector<T> extends IInspectable
     required String iterableIid,
     T Function(Pointer<COMObject>)? creator,
     T Function(int)? enumCreator,
+    DoubleType? doubleType,
     IntType? intType,
   })  : _creator = creator,
         _enumCreator = enumCreator,
+        _doubleType = doubleType,
         _intType = intType,
         _iterableIid = iterableIid;
 
   final T Function(Pointer<COMObject>)? _creator;
   final T Function(int)? _enumCreator;
+  final DoubleType? _doubleType;
   final IntType? _intType;
   final String _iterableIid;
 
@@ -41,12 +44,21 @@ abstract interface class IVector<T> extends IInspectable
   /// [iterableIid] must be the IID of the `IIterable<T>` interface (e.g.
   /// `'{9ac00304-83ea-5688-87b6-ae38aab65d0b}'`).
   ///
-  /// [T] must be of type `bool`, `Guid`, `int`, `String`, `Uri`,
+  /// [T] must be of type `bool`, `double`, `Guid`, `int`, `String`, `Uri`,
   /// `IInspectable` (e.g.`StorageFile`) or `WinRTEnum` (e.g. `DeviceClass`).
+  ///
+  /// [doubleType] must be specified if [T] is `double`.
+  /// ```dart
+  /// final vector = IVector<double>.fromPtr(ptr,
+  ///     doubleType: DoubleType.float,
+  ///     iterableIid: '{b01bee51-063a-5fda-bd72-d76637bb8cb8}');
+  /// ```
   ///
   /// [intType] must be specified if [T] is `int`.
   /// ```dart
-  /// final vector = IVector<int>.fromPtr(ptr, intType: IntType.uint64);
+  /// final vector = IVector<int>.fromPtr(ptr,
+  ///     intType: IntType.uint64,
+  ///     iterableIid: '{4b3a3229-7995-5f3c-b248-6c1f7e664f01}');
   /// ```
   ///
   /// [creator] must be specified if [T] is `IInspectable`.
@@ -67,6 +79,7 @@ abstract interface class IVector<T> extends IInspectable
     required String iterableIid,
     T Function(Pointer<COMObject>)? creator,
     T Function(int)? enumCreator,
+    DoubleType? doubleType,
     IntType? intType,
   }) {
     if (T == bool) {
@@ -81,6 +94,17 @@ abstract interface class IVector<T> extends IInspectable
       if (creator == null) throw ArgumentError.notNull('creator');
       return _IVectorInspectable.fromPtr(ptr,
           creator: creator, iterableIid: iterableIid);
+    }
+
+    if (T == double) {
+      if (doubleType == null) throw ArgumentError.notNull('doubleType');
+      final vector = switch (doubleType) {
+        DoubleType.double => _IVectorDouble.fromPtr(ptr,
+            doubleType: doubleType, iterableIid: iterableIid),
+        DoubleType.float => _IVectorFloat.fromPtr(ptr,
+            doubleType: doubleType, iterableIid: iterableIid),
+      };
+      return vector as IVector<T>;
     }
 
     if (T == int) {
@@ -180,6 +204,7 @@ abstract interface class IVector<T> extends IInspectable
     final vectorView = IVectorView<T>.fromPtr(retValuePtr,
         creator: _creator,
         enumCreator: _enumCreator,
+        doubleType: _doubleType,
         intType: _intType,
         iterableIid: _iterableIid);
     return vectorView.toList();
@@ -243,7 +268,10 @@ abstract interface class IVector<T> extends IInspectable
   void replaceAll(List<T> value);
 
   late final _iIterable = IIterable<T>.fromPtr(toInterface(_iterableIid),
-      creator: _creator, enumCreator: _enumCreator, intType: _intType);
+      creator: _creator,
+      enumCreator: _enumCreator,
+      doubleType: _doubleType,
+      intType: _intType);
 
   @override
   IIterator<T> first() => _iIterable.first();
