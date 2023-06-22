@@ -8,7 +8,7 @@
   - all: ['packages/*/example/*.{dart,md}']
 
 'area: tests':
-  - all: ['packages/*/test/*_test.dart']
+  - all: ['packages/*/test/**/*_test.dart']
 
 'pkg: windows_ai':
   - packages/windows_ai/**/*

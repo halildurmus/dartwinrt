@@ -232,7 +232,7 @@ void main() {
           projection.methodHeader, equals('Future<void> signOutUserAsync()'));
     });
 
-    test('projects IAsyncOperation (1)', () {
+    test('projects IAsyncOperation<StorageFile>', () {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Storage.Pickers.IFileOpenPicker', 'PickSingleFileAsync');
       expect(projection, isA<AsyncOperationMethodProjection>());
@@ -249,7 +249,7 @@ void main() {
           equals('Future<StorageFile?> pickSingleFileAsync()'));
     });
 
-    test('projects IAsyncOperation (2)', () {
+    test('projects IAsyncOperation<int>', () {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Storage.Streams.DataReader', 'LoadAsync');
       expect(projection, isA<AsyncOperationMethodProjection>());
@@ -266,7 +266,7 @@ void main() {
           projection.methodHeader, equals('Future<int> loadAsync(int count)'));
     });
 
-    test('projects IMap', () {
+    test('projects IMap<String, IVectorView<TextSegment>>', () {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Storage.Search.StorageFileQueryResult',
           'GetMatchingPropertiesWithRanges');
@@ -287,7 +287,7 @@ void main() {
               'IMap<String, IVectorView<TextSegment>> getMatchingPropertiesWithRanges(StorageFile? file)'));
     });
 
-    test('projects IMapView', () {
+    test('projects IMapView<String, String>', () {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Foundation.Collections.StringMap', 'GetView');
       expect(projection, isA<MapViewMethodProjection>());
@@ -303,7 +303,7 @@ void main() {
       expect(projection.methodHeader, equals('Map<String, String> getView()'));
     });
 
-    test('projects IReference', () {
+    test('projects IReference<int>', () {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Networking.Connectivity.ConnectionProfile', 'GetSignalBars');
       expect(projection, isA<ReferenceMethodProjection>());
@@ -319,7 +319,7 @@ void main() {
       expect(projection.methodHeader, equals('int? getSignalBars()'));
     });
 
-    test('projects IVector', () {
+    test('projects IVector<BackgroundTransferFileRange>', () {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Networking.BackgroundTransfer.IDownloadOperation3',
           'GetDownloadedRanges');
@@ -338,7 +338,7 @@ void main() {
           equals('IVector<BackgroundTransferFileRange> getDownloadedRanges()'));
     });
 
-    test('projects IVectorView 1', () {
+    test('projects IVectorView<String>', () {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Globalization.ApplicationLanguages', 'GetLanguagesForUser');
       expect(projection, isA<VectorViewMethodProjection>());
@@ -355,7 +355,7 @@ void main() {
           equals('List<String> getLanguagesForUser(User? user)'));
     });
 
-    test('projects IVectorView 2', () {
+    test('projects IVectorView<double>', () {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.AI.MachineLearning.TensorFloat', 'GetAsVectorView');
       expect(projection, isA<VectorViewMethodProjection>());
@@ -370,6 +370,23 @@ void main() {
               'int Function(VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)'));
       expect(projection.methodHeader, equals('List<double> getAsVectorView()'));
       expect(projection.toString(), contains('doubleType: DoubleType.float'));
+    });
+
+    test('projects IVectorView<int>', () {
+      final projection = MethodProjection.fromTypeAndMethodName(
+          'Windows.AI.MachineLearning.TensorInt32Bit', 'GetAsVectorView');
+      expect(projection, isA<VectorViewMethodProjection>());
+      expect(projection.returnType, equals('List<int>'));
+      expect(
+          projection.nativePrototype,
+          equals(
+              'HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)'));
+      expect(
+          projection.dartPrototype,
+          equals(
+              'int Function(VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)'));
+      expect(projection.methodHeader, equals('List<int> getAsVectorView()'));
+      expect(projection.toString(), contains('intType: IntType.int32'));
     });
 
     test('projects List<int>', () {

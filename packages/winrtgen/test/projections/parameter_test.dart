@@ -122,7 +122,7 @@ void main() {
       expect(parameter.localIdentifier, equals('fileToReplacePtr'));
     });
 
-    test('projects IIterable', () {
+    test('projects IIterable<IKeyValuePair<String, Object?>>', () {
       final methodProjection = MethodProjection.fromTypeAndMethodName(
           'Windows.Storage.FileProperties.IStorageItemExtraProperties',
           'SavePropertiesAsync');
@@ -138,7 +138,7 @@ void main() {
       expect(parameter.localIdentifier, equals('propertiesToSavePtr'));
     });
 
-    test('projects IMap', () {
+    test('projects IMap<String, Object?>', () {
       final methodProjection = MethodProjection.fromTypeAndMethodName(
           'Windows.AI.MachineLearning.ILearningModelSession',
           'EvaluateFeatures');
@@ -151,7 +151,7 @@ void main() {
       expect(parameter.localIdentifier, equals('featuresPtr'));
     });
 
-    test('projects IMapView', () {
+    test('projects IMapView<String, Object?>', () {
       final methodProjection = MethodProjection.fromTypeAndMethodName(
           'Windows.ApplicationModel.DataTransfer.DataPackagePropertySetView',
           'Split');
@@ -163,7 +163,7 @@ void main() {
       expect(parameter.localIdentifier, equals('first.ptr'));
     });
 
-    test('projects IReference (1)', () {
+    test('projects IReference<BluetoothLEAdvertisementFlags>', () {
       final methodProjection = MethodProjection.fromTypeAndMethodName(
           'Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisement',
           'put_Flags');
@@ -176,7 +176,7 @@ void main() {
           equals('value?.toReference().ptr.ref.lpVtbl ?? nullptr'));
     });
 
-    test('projects IReference (2)', () {
+    test('projects IReference<int>', () {
       final methodProjection = MethodProjection.fromTypeAndMethodName(
           'Windows.Devices.Geolocation.IGeolocatorWithScalarAccuracy',
           'put_DesiredAccuracyInMeters');
@@ -191,7 +191,7 @@ void main() {
               'value?.toReference(IntType.uint32).ptr.ref.lpVtbl ?? nullptr'));
     });
 
-    test('projects IVectorView', () {
+    test('projects IVectorView<String>', () {
       final methodProjection = MethodProjection.fromTypeAndMethodName(
           'Windows.System.IUser', 'GetPropertiesAsync');
       final parameter = methodProjection.parameters.first;
