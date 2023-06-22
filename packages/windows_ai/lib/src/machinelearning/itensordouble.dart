@@ -46,7 +46,8 @@ class ITensorDouble extends IInspectable {
     }
 
     final vectorView = IVectorView<double>.fromPtr(retValuePtr,
-        iterableIid: '{c738964e-9c64-5bce-b5ce-61e9a282ec4a}');
+        iterableIid: '{c738964e-9c64-5bce-b5ce-61e9a282ec4a}',
+        doubleType: DoubleType.double);
     return vectorView.toList();
   }
 }
