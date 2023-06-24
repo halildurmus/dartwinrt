@@ -116,7 +116,7 @@ void main() async {
   if (resultTensor is IInspectable) {
     // Cast it to TensorFloat
     final tensorFloat =
-        resultTensor.cast<TensorFloat>(TensorFloat.fromPtr, IID_ITensorFloat);
+        resultTensor.cast(TensorFloat.fromPtr, IID_ITensorFloat);
     final resultVector = tensorFloat.getAsVectorView();
     printResults(labels, resultVector);
   }
