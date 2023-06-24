@@ -346,9 +346,11 @@ void main() {
 
     if (windowsBuildNumber >= 20348) {
       test('projects List<String>', () {
-        final projection = GetterProjection.fromTypeAndMethodName(
+        var projection = GetterProjection.fromTypeAndMethodName(
             'Windows.ApplicationModel.AppInfo', 'get_SupportedFileExtensions');
         expect(projection, isA<StringListGetterProjection>());
+        projection = projection as StringListGetterProjection;
+        expect(projection.retValuePtr, equals('Pointer<IntPtr>'));
         expect(projection.returnType, equals('List<String>'));
         expect(
             projection.nativePrototype,
@@ -360,6 +362,10 @@ void main() {
                 'int Function(VTablePointer lpVtbl, Pointer<Uint32> retValueSize, Pointer<Pointer<IntPtr>> retValuePtr)'));
         expect(projection.methodHeader,
             equals('List<String> get supportedFileExtensions'));
+        expect(
+            projection.returnStatement,
+            equals(
+                'return retValuePtr.value.toList(length: pRetValueSize.value);'));
       });
     }
 

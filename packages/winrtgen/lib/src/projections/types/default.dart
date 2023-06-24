@@ -41,28 +41,42 @@ final class DefaultGetterProjection extends GetterProjection
 }
 
 mixin _DefaultListMixin on MethodProjection {
+  TypeProjection? _typeArgProjection;
+
   TypeProjection get typeArgProjection {
     final typeIdentifier = method.returnType.typeIdentifier;
-    return typeIdentifier.isReferenceType
+    _typeArgProjection ??= typeIdentifier.isReferenceType
         ? TypeProjection(dereferenceType(dereferenceType(typeIdentifier)))
         : TypeProjection(dereferenceType(typeIdentifier));
+    return _typeArgProjection!;
   }
+}
+
+/// Default method projection for methods that return `List`.
+base class DefaultListMethodProjection extends MethodProjection
+    with _DefaultListMixin {
+  DefaultListMethodProjection(super.method, super.vtableOffset);
 
   @override
   String get returnType => 'List<${typeArgProjection.dartType}>';
 
   String get sizeIdentifier => 'pRetValueSize';
 
+  String get retValuePtr => returnTypeProjection.nativeType;
+
+  String get returnStatement =>
+      'return retValuePtr.value.toList(length: $sizeIdentifier.value);';
+
   @override
   String get methodDeclaration => '''
   $methodHeader {
     final $sizeIdentifier = calloc<Uint32>();
-    final retValuePtr = calloc<Pointer<${typeArgProjection.nativeType}>>();
+    final retValuePtr = calloc<$retValuePtr>();
 
     try {
       ${ffiCall()}
 
-      return retValuePtr.value.toList(length: $sizeIdentifier.value);
+      $returnStatement
     } finally {
       free($sizeIdentifier);
       free(retValuePtr);
@@ -71,16 +85,37 @@ mixin _DefaultListMixin on MethodProjection {
 ''';
 }
 
-/// Default method projection for methods that return `List`.
-final class DefaultListMethodProjection extends MethodProjection
-    with _DefaultListMixin {
-  DefaultListMethodProjection(super.method, super.vtableOffset);
-}
-
 /// Default getter projection for `List` getters.
-final class DefaultListGetterProjection extends GetterProjection
+base class DefaultListGetterProjection extends GetterProjection
     with _DefaultListMixin {
   DefaultListGetterProjection(super.method, super.vtableOffset);
+
+  @override
+  String get returnType => 'List<${typeArgProjection.dartType}>';
+
+  String get sizeIdentifier => 'pRetValueSize';
+
+  String get retValuePtr => returnTypeProjection.nativeType;
+
+  String get returnStatement =>
+      'return retValuePtr.value.toList(length: $sizeIdentifier.value);';
+
+  @override
+  String get methodDeclaration => '''
+  $methodHeader {
+    final $sizeIdentifier = calloc<Uint32>();
+    final retValuePtr = calloc<$retValuePtr>();
+
+    try {
+      ${ffiCall()}
+
+      $returnStatement
+    } finally {
+      free($sizeIdentifier);
+      free(retValuePtr);
+    }
+  }
+''';
 }
 
 /// Default setter projection for setters.

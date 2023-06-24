@@ -40,42 +40,32 @@ final class DurationGetterProjection extends GetterProjection
   DurationGetterProjection(super.method, super.vtableOffset);
 }
 
-mixin _DurationListMixin on MethodProjection {
+/// Method projection for methods that return `List<Duration>`.
+final class DurationListMethodProjection extends DefaultListMethodProjection {
+  DurationListMethodProjection(super.method, super.vtableOffset);
+
   @override
   String get returnType => 'List<Duration>';
 
-  String get sizeIdentifier => 'pRetValueSize';
-
   @override
-  String get methodDeclaration => '''
-  $methodHeader {
-    final $sizeIdentifier = calloc<Uint32>();
-    final retValuePtr = calloc<Pointer<Uint64>>();
-
-    try {
-      ${ffiCall()}
-
-      return retValuePtr.value
-        .toList(length: $sizeIdentifier.value)
-        .map((value) => Duration(microseconds: value ~/ 10));
-    } finally {
-      free($sizeIdentifier);
-      free(retValuePtr);
-    }
-  }
-''';
-}
-
-/// Method projection for methods that return `List<Duration>`.
-final class DurationListMethodProjection extends MethodProjection
-    with _DurationListMixin {
-  DurationListMethodProjection(super.method, super.vtableOffset);
+  String get returnStatement => '''
+return retValuePtr.value
+  .toList(length: $sizeIdentifier.value)
+  .map((value) => Duration(microseconds: value ~/ 10));''';
 }
 
 /// Getter projection for `List<Duration>` getters.
-final class DurationListGetterProjection extends GetterProjection
-    with _DurationListMixin {
+final class DurationListGetterProjection extends DefaultListGetterProjection {
   DurationListGetterProjection(super.method, super.vtableOffset);
+
+  @override
+  String get returnType => 'List<Duration>';
+
+  @override
+  String get returnStatement => '''
+return retValuePtr.value
+  .toList(length: $sizeIdentifier.value)
+  .map((value) => Duration(microseconds: value ~/ 10));''';
 }
 
 /// Setter projection for `Duration` setters.

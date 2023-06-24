@@ -390,9 +390,11 @@ void main() {
     });
 
     test('projects List<int>', () {
-      final projection = MethodProjection.fromTypeAndMethodName(
+      var projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Devices.Display.IDisplayMonitor', 'GetDescriptor');
       expect(projection, isA<DefaultListMethodProjection>());
+      projection = projection as DefaultListMethodProjection;
+      expect(projection.retValuePtr, contains('Pointer<Uint8>'));
       expect(projection.returnType, equals('List<int>'));
       expect(
           projection.nativePrototype,
@@ -406,8 +408,10 @@ void main() {
           projection.methodHeader,
           equals(
               'List<int> getDescriptor(DisplayMonitorDescriptorKind descriptorKind)'));
-      expect(projection.toString(),
-          contains('final retValuePtr = calloc<Pointer<Uint8>>();'));
+      expect(
+          projection.returnStatement,
+          equals(
+              'return retValuePtr.value.toList(length: pRetValueSize.value);'));
     });
 
     test('projects Object', () {
