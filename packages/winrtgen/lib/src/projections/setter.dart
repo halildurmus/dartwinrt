@@ -21,24 +21,32 @@ abstract class SetterProjection extends PropertyProjection {
   /// Returns the appropriate setter projection for the [method] based on the
   /// parameter type.
   factory SetterProjection.create(Method method, int vtableOffset) {
-    final projectionType = method.parameters.first.projectionType;
-    return switch (projectionType) {
-      ProjectionType.dartPrimitive =>
-        DefaultSetterProjection(method, vtableOffset),
-      ProjectionType.dateTime => DateTimeSetterProjection(method, vtableOffset),
-      ProjectionType.delegate => DelegateSetterProjection(method, vtableOffset),
-      ProjectionType.duration => DurationSetterProjection(method, vtableOffset),
-      ProjectionType.enum_ => EnumSetterProjection(method, vtableOffset),
-      ProjectionType.guid => GuidSetterProjection(method, vtableOffset),
-      ProjectionType.object => ObjectSetterProjection(method, vtableOffset),
-      ProjectionType.reference =>
-        ReferenceSetterProjection(method, vtableOffset),
-      ProjectionType.string => StringSetterProjection(method, vtableOffset),
-      ProjectionType.struct => StructSetterProjection(method, vtableOffset),
-      ProjectionType.uri => UriSetterProjection(method, vtableOffset),
-      _ =>
-        throw WinRTGenException('Unsupported projection type: $projectionType'),
-    };
+    try {
+      final projectionType = method.parameters.first.projectionType;
+      return switch (projectionType) {
+        ProjectionType.dartPrimitive =>
+          DefaultSetterProjection(method, vtableOffset),
+        ProjectionType.dateTime =>
+          DateTimeSetterProjection(method, vtableOffset),
+        ProjectionType.delegate =>
+          DelegateSetterProjection(method, vtableOffset),
+        ProjectionType.duration =>
+          DurationSetterProjection(method, vtableOffset),
+        ProjectionType.enum_ => EnumSetterProjection(method, vtableOffset),
+        ProjectionType.guid => GuidSetterProjection(method, vtableOffset),
+        ProjectionType.object => ObjectSetterProjection(method, vtableOffset),
+        ProjectionType.reference =>
+          ReferenceSetterProjection(method, vtableOffset),
+        ProjectionType.string => StringSetterProjection(method, vtableOffset),
+        ProjectionType.struct => StructSetterProjection(method, vtableOffset),
+        ProjectionType.uri => UriSetterProjection(method, vtableOffset),
+        _ => throw WinRTGenException(
+            'Unsupported projection type: $projectionType'),
+      };
+    } catch (_) {
+      print('Failed to project setter "$method" from "${method.parent}".');
+      rethrow;
+    }
   }
 
   /// Attempts to create a [SetterProjection] from [fullyQualifiedType] and

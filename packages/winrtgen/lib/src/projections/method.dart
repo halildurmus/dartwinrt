@@ -47,55 +47,64 @@ abstract class MethodProjection {
   /// Returns the appropriate method projection for the [method] based on the
   /// return type.
   factory MethodProjection.create(Method method, int vtableOffset) {
-    final projectionType = method.projectionType;
-    return switch (projectionType) {
-      ProjectionType.asyncAction =>
-        AsyncActionMethodProjection(method, vtableOffset),
-      ProjectionType.asyncActionWithProgress =>
-        ObjectMethodProjection(method, vtableOffset),
-      ProjectionType.asyncOperation =>
-        AsyncOperationMethodProjection(method, vtableOffset),
-      ProjectionType.asyncOperationWithProgress =>
-        ObjectMethodProjection(method, vtableOffset),
-      ProjectionType.dartPrimitive =>
-        DefaultMethodProjection(method, vtableOffset),
-      ProjectionType.dartPrimitiveList ||
-      ProjectionType.structList =>
-        DefaultListMethodProjection(method, vtableOffset),
-      ProjectionType.dateTime => DateTimeMethodProjection(method, vtableOffset),
-      ProjectionType.dateTimeList =>
-        DateTimeListMethodProjection(method, vtableOffset),
-      ProjectionType.delegate => DelegateMethodProjection(method, vtableOffset),
-      ProjectionType.duration => DurationMethodProjection(method, vtableOffset),
-      ProjectionType.durationList =>
-        DurationListMethodProjection(method, vtableOffset),
-      ProjectionType.enum_ => EnumMethodProjection(method, vtableOffset),
-      ProjectionType.genericEnum =>
-        GenericEnumMethodProjection(method, vtableOffset),
-      ProjectionType.genericObject =>
-        GenericObjectMethodProjection(method, vtableOffset),
-      ProjectionType.guid => GuidMethodProjection(method, vtableOffset),
-      ProjectionType.guidList => GuidListMethodProjection(method, vtableOffset),
-      ProjectionType.map => MapMethodProjection(method, vtableOffset),
-      ProjectionType.mapView => MapViewMethodProjection(method, vtableOffset),
-      ProjectionType.object => ObjectMethodProjection(method, vtableOffset),
-      ProjectionType.objectList =>
-        ObjectListMethodProjection(method, vtableOffset),
-      ProjectionType.reference =>
-        ReferenceMethodProjection(method, vtableOffset),
-      ProjectionType.string => StringMethodProjection(method, vtableOffset),
-      ProjectionType.stringList =>
-        StringListMethodProjection(method, vtableOffset),
-      ProjectionType.struct => StructMethodProjection(method, vtableOffset),
-      ProjectionType.uri => UriMethodProjection(method, vtableOffset),
-      ProjectionType.uriList => UriListMethodProjection(method, vtableOffset),
-      ProjectionType.vector => VectorMethodProjection(method, vtableOffset),
-      ProjectionType.vectorView =>
-        VectorViewMethodProjection(method, vtableOffset),
-      ProjectionType.void_ => VoidMethodProjection(method, vtableOffset),
-      _ =>
-        throw WinRTGenException('Unsupported projection type: $projectionType'),
-    };
+    try {
+      final projectionType = method.projectionType;
+      return switch (projectionType) {
+        ProjectionType.asyncAction =>
+          AsyncActionMethodProjection(method, vtableOffset),
+        ProjectionType.asyncActionWithProgress =>
+          ObjectMethodProjection(method, vtableOffset),
+        ProjectionType.asyncOperation =>
+          AsyncOperationMethodProjection(method, vtableOffset),
+        ProjectionType.asyncOperationWithProgress =>
+          ObjectMethodProjection(method, vtableOffset),
+        ProjectionType.dartPrimitive =>
+          DefaultMethodProjection(method, vtableOffset),
+        ProjectionType.dartPrimitiveList ||
+        ProjectionType.structList =>
+          DefaultListMethodProjection(method, vtableOffset),
+        ProjectionType.dateTime =>
+          DateTimeMethodProjection(method, vtableOffset),
+        ProjectionType.dateTimeList =>
+          DateTimeListMethodProjection(method, vtableOffset),
+        ProjectionType.delegate =>
+          DelegateMethodProjection(method, vtableOffset),
+        ProjectionType.duration =>
+          DurationMethodProjection(method, vtableOffset),
+        ProjectionType.durationList =>
+          DurationListMethodProjection(method, vtableOffset),
+        ProjectionType.enum_ => EnumMethodProjection(method, vtableOffset),
+        ProjectionType.genericEnum =>
+          GenericEnumMethodProjection(method, vtableOffset),
+        ProjectionType.genericObject =>
+          GenericObjectMethodProjection(method, vtableOffset),
+        ProjectionType.guid => GuidMethodProjection(method, vtableOffset),
+        ProjectionType.guidList =>
+          GuidListMethodProjection(method, vtableOffset),
+        ProjectionType.map => MapMethodProjection(method, vtableOffset),
+        ProjectionType.mapView => MapViewMethodProjection(method, vtableOffset),
+        ProjectionType.object => ObjectMethodProjection(method, vtableOffset),
+        ProjectionType.objectList =>
+          ObjectListMethodProjection(method, vtableOffset),
+        ProjectionType.reference =>
+          ReferenceMethodProjection(method, vtableOffset),
+        ProjectionType.string => StringMethodProjection(method, vtableOffset),
+        ProjectionType.stringList =>
+          StringListMethodProjection(method, vtableOffset),
+        ProjectionType.struct => StructMethodProjection(method, vtableOffset),
+        ProjectionType.uri => UriMethodProjection(method, vtableOffset),
+        ProjectionType.uriList => UriListMethodProjection(method, vtableOffset),
+        ProjectionType.vector => VectorMethodProjection(method, vtableOffset),
+        ProjectionType.vectorView =>
+          VectorViewMethodProjection(method, vtableOffset),
+        ProjectionType.void_ => VoidMethodProjection(method, vtableOffset),
+        _ => throw WinRTGenException(
+            'Unsupported projection type: $projectionType'),
+      };
+    } catch (_) {
+      print('Failed to project method "$method" from "${method.parent}".');
+      rethrow;
+    }
   }
 
   /// Attempts to create a [MethodProjection] from [fullyQualifiedType] and
@@ -259,10 +268,10 @@ abstract class MethodProjection {
         if (method.isDeprecated) method.deprecatedAnnotation,
         methodDeclaration
       ].join('\n');
-    } on Exception {
+    } catch (_) {
       // Print an error if we're unable to project a method, but don't
       // completely bail out. The rest may be useful.
-      print('Unable to project WinRT method: ${method.name}');
+      print('Unable to project method "$method" from "${method.parent}".');
       return '';
     }
   }
