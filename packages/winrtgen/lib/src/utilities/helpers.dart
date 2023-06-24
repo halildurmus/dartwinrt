@@ -280,10 +280,3 @@ String wrapCommentText(String commentText, [int wrapLength = 76]) {
   wrappedText.write(textLine);
   return wrappedText.toString().trimRight();
 }
-
-/// Wrap a [type] in a `Pointer` if it isn't `Pointer<COMObject>`.
-///
-/// For example, `Pointer<Int32>` should become `Pointer<Pointer<Int32>>`
-/// whereas `Pointer<COMObject>` should remain as is.
-String wrapWithPointer(String type) =>
-    type == 'Pointer<COMObject>' ? type : 'Pointer<$type>';

@@ -217,7 +217,7 @@ abstract class MethodProjection {
         ...parameters.map((param) => param.ffiProjection),
         if (returnTypeProjection.isSimpleArray) 'Pointer<Uint32> retValueSize',
         if (!returnTypeProjection.isVoid)
-          '${wrapWithPointer(returnTypeProjection.nativeType)} retValuePtr',
+          '${returnTypeProjection.retValuePtr} retValuePtr',
       ].join(', ');
 
   String get dartParams => [
@@ -225,7 +225,7 @@ abstract class MethodProjection {
         ...parameters.map((param) => param.dartProjection),
         if (returnTypeProjection.isSimpleArray) 'Pointer<Uint32> retValueSize',
         if (!returnTypeProjection.isVoid)
-          '${wrapWithPointer(returnTypeProjection.nativeType)} retValuePtr',
+          '${returnTypeProjection.retValuePtr} retValuePtr',
       ].join(', ');
 
   String ffiCall({String identifier = '', bool freeRetValOnFailure = false}) {

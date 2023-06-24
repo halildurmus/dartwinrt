@@ -19,6 +19,13 @@ final class TypeTuple {
 
   /// The type, as represented as a struct attribute (e.g. `@Int64()`)
   final String? attribute;
+
+  /// Wraps the [TypeTuple]'s [nativeType] with `Pointer`
+  /// (e.g. `Int32` -> `Pointer<Int32>`).
+  TypeTuple get wrappedWithPointer {
+    final type = 'Pointer<$nativeType>';
+    return TypeTuple(type, type);
+  }
 }
 
 const baseNativeMapping = <BaseType, TypeTuple>{
@@ -191,32 +198,20 @@ final class TypeProjection {
 
   TypeTuple unwrapReferenceType() {
     final typeArg = dereferenceType(typeIdentifier);
-    return switch (typeArg.baseType) {
-      BaseType.classTypeModifier ||
-      BaseType.genericTypeModifier =>
-        const TypeTuple('Pointer<COMObject>', 'Pointer<COMObject>'),
-      // This form is used in WinRT methods when the caller receives an array
-      // that was allocated by the method. In this style, the array size
-      // parameter and the array parameter are both out parameters.
-      // Additionally, the array parameter is passed by reference (that is,
-      // ArrayType**, rather than ArrayType*).
-      BaseType.simpleArrayType => TypeTuple(
-          'Pointer<${unwrapSimpleArrayType(typeArg).nativeType}>',
-          'Pointer<${unwrapSimpleArrayType(typeArg).dartType}>'),
-      BaseType.uint32Type =>
-        const TypeTuple('Pointer<Uint32>', 'Pointer<Uint32>'),
-      _ => throw WinRTGenException(
-          'Could not unwrap reference type of $typeIdentifier')
-    };
+    final typeProjection = TypeProjection(typeArg);
+    if (!typeArg.isSimpleArrayType && typeProjection.isWinRTObject) {
+      return typeProjection.projection;
+    }
+    return typeProjection.projection.wrappedWithPointer;
   }
 
   /// Takes a type such as `simpleArrayType` -> `BaseType.Uint8` and converts
   /// it to `Pointer<Uint8>`.
-  TypeTuple unwrapSimpleArrayType(TypeIdentifier typeIdentifier) {
-    final typeArg = dereferenceType(typeIdentifier);
-    final typeArgNativeType = TypeProjection(typeArg).nativeType;
-    final type = wrapWithPointer(typeArgNativeType);
-    return TypeTuple(type, type);
+  TypeTuple unwrapSimpleArrayType() {
+    final typeProjection = TypeProjection(dereferenceType(typeIdentifier));
+    return typeProjection.nativeType == 'Pointer<COMObject>'
+        ? typeProjection.projection
+        : typeProjection.projection.wrappedWithPointer;
   }
 
   /// Takes a type such as `valueTypeModifier` ->
@@ -241,6 +236,13 @@ final class TypeProjection {
     return projection;
   }
 
+  /// The return value pointer type (e.g. `Pointer<Int32>`).
+  String get retValuePtr =>
+      // Pointer<COMObject> doesn't need to be wrapped with Pointer
+      nativeType == 'Pointer<COMObject>'
+          ? nativeType
+          : projection.wrappedWithPointer.nativeType;
+
   TypeTuple projectType() {
     // Could be an intrinsic base type (e.g. Int32)
     if (isBaseType) return baseNativeMapping[typeIdentifier.baseType]!;
@@ -253,7 +255,7 @@ final class TypeProjection {
 
     if (isPointer) return unwrapPointerType();
     if (isReferenceType) return unwrapReferenceType();
-    if (isSimpleArray) return unwrapSimpleArrayType(typeIdentifier);
+    if (isSimpleArray) return unwrapSimpleArrayType();
 
     // Strings in WinRT are defined as HSTRING which corresponding to IntPtr
     if (isString) return baseNativeMapping[BaseType.intPtrType]!;
