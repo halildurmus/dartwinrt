@@ -17,7 +17,9 @@ Part of the [Dart | Windows][dart_windows_link] suite of Windows packages.
 
 ## Examples
 
-TODO
+The package contains several examples in the [example][example_link]
+subdirectory, demonstrating how to invoke various Windows Runtime APIs from the
+`Windows.AI` namespace.
 
 ## Feature requests and bugs
 
