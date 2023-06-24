@@ -20,10 +20,11 @@ final class Rational implements WinRTStruct {
 
   @override
   Pointer<NativeRational> toNative({Allocator allocator = malloc}) {
-    final ptr = allocator<NativeRational>();
-    ptr.ref.numerator = numerator;
-    ptr.ref.denominator = denominator;
-    return ptr;
+    final nativeStructPtr = allocator<NativeRational>();
+    nativeStructPtr.ref
+      ..numerator = numerator
+      ..denominator = denominator;
+    return nativeStructPtr;
   }
 
   @override
@@ -41,5 +42,8 @@ final class Rational implements WinRTStruct {
 /// @nodoc
 extension PointerNativeRationalConversion on Pointer<NativeRational> {
   /// Converts this [NativeRational] to a Dart [Rational].
-  Rational toDart() => Rational(ref.numerator, ref.denominator);
+  Rational toDart() {
+    final ref = this.ref;
+    return Rational(ref.numerator, ref.denominator);
+  }
 }

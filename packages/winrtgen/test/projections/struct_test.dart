@@ -136,5 +136,33 @@ void main() {
       expect(fieldProjection.isDeprecated, isFalse);
       expect(fieldProjection.toString(), equals('final double height;'));
     });
+
+    test('has correct toNative method', () {
+      expect(rectProjection.toNativeMethod, equals('''
+  @override
+  Pointer<NativeRect> toNative({Allocator allocator = malloc}) {
+    final nativeStructPtr = allocator<NativeRect>();
+    nativeStructPtr.ref
+      ..x = x
+..y = y
+..width = width
+..height = height;
+    return nativeStructPtr;
+  }
+'''));
+    });
+
+    test('has correct extension declaration', () {
+      expect(rectProjection.extension, equals('''
+/// @nodoc
+extension PointerNativeRectConversion on Pointer<NativeRect> {
+  /// Converts this [NativeRect] to a Dart [Rect].
+  Rect toDart() {
+    final ref = this.ref;
+    return Rect(ref.x, ref.y, ref.width, ref.height);
+  }
+}
+'''));
+    });
   });
 }

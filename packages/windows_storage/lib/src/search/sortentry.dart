@@ -20,10 +20,11 @@ final class SortEntry implements WinRTStruct {
 
   @override
   Pointer<NativeSortEntry> toNative({Allocator allocator = malloc}) {
-    final ptr = allocator<NativeSortEntry>();
-    ptr.ref.propertyName = propertyName;
-    ptr.ref.ascendingOrder = ascendingOrder;
-    return ptr;
+    final nativeStructPtr = allocator<NativeSortEntry>();
+    nativeStructPtr.ref
+      ..propertyName = propertyName
+      ..ascendingOrder = ascendingOrder;
+    return nativeStructPtr;
   }
 
   @override
@@ -41,5 +42,8 @@ final class SortEntry implements WinRTStruct {
 /// @nodoc
 extension PointerNativeSortEntryConversion on Pointer<NativeSortEntry> {
   /// Converts this [NativeSortEntry] to a Dart [SortEntry].
-  SortEntry toDart() => SortEntry(ref.propertyName, ref.ascendingOrder);
+  SortEntry toDart() {
+    final ref = this.ref;
+    return SortEntry(ref.propertyName, ref.ascendingOrder);
+  }
 }

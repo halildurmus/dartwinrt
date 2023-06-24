@@ -22,10 +22,11 @@ final class TextSegment implements WinRTStruct {
 
   @override
   Pointer<NativeTextSegment> toNative({Allocator allocator = malloc}) {
-    final ptr = allocator<NativeTextSegment>();
-    ptr.ref.startPosition = startPosition;
-    ptr.ref.length = length;
-    return ptr;
+    final nativeStructPtr = allocator<NativeTextSegment>();
+    nativeStructPtr.ref
+      ..startPosition = startPosition
+      ..length = length;
+    return nativeStructPtr;
   }
 
   @override
@@ -43,5 +44,8 @@ final class TextSegment implements WinRTStruct {
 /// @nodoc
 extension PointerNativeTextSegmentConversion on Pointer<NativeTextSegment> {
   /// Converts this [NativeTextSegment] to a Dart [TextSegment].
-  TextSegment toDart() => TextSegment(ref.startPosition, ref.length);
+  TextSegment toDart() {
+    final ref = this.ref;
+    return TextSegment(ref.startPosition, ref.length);
+  }
 }

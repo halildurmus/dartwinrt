@@ -21,12 +21,13 @@ final class PackageVersion implements WinRTStruct {
 
   @override
   Pointer<NativePackageVersion> toNative({Allocator allocator = malloc}) {
-    final ptr = allocator<NativePackageVersion>();
-    ptr.ref.major = major;
-    ptr.ref.minor = minor;
-    ptr.ref.build = build;
-    ptr.ref.revision = revision;
-    return ptr;
+    final nativeStructPtr = allocator<NativePackageVersion>();
+    nativeStructPtr.ref
+      ..major = major
+      ..minor = minor
+      ..build = build
+      ..revision = revision;
+    return nativeStructPtr;
   }
 
   @override
@@ -48,6 +49,8 @@ final class PackageVersion implements WinRTStruct {
 extension PointerNativePackageVersionConversion
     on Pointer<NativePackageVersion> {
   /// Converts this [NativePackageVersion] to a Dart [PackageVersion].
-  PackageVersion toDart() =>
-      PackageVersion(ref.major, ref.minor, ref.build, ref.revision);
+  PackageVersion toDart() {
+    final ref = this.ref;
+    return PackageVersion(ref.major, ref.minor, ref.build, ref.revision);
+  }
 }

@@ -24,12 +24,13 @@ final class Direct3DSurfaceDescription implements WinRTStruct {
   @override
   Pointer<NativeDirect3DSurfaceDescription> toNative(
       {Allocator allocator = malloc}) {
-    final ptr = allocator<NativeDirect3DSurfaceDescription>();
-    ptr.ref.width = width;
-    ptr.ref.height = height;
-    ptr.ref.format = format;
-    ptr.ref.multisampleDescription = multisampleDescription;
-    return ptr;
+    final nativeStructPtr = allocator<NativeDirect3DSurfaceDescription>();
+    nativeStructPtr.ref
+      ..width = width
+      ..height = height
+      ..format = format
+      ..multisampleDescription = multisampleDescription;
+    return nativeStructPtr;
   }
 
   @override
@@ -55,6 +56,9 @@ extension PointerNativeDirect3DSurfaceDescriptionConversion
     on Pointer<NativeDirect3DSurfaceDescription> {
   /// Converts this [NativeDirect3DSurfaceDescription] to a Dart
   /// [Direct3DSurfaceDescription].
-  Direct3DSurfaceDescription toDart() => Direct3DSurfaceDescription(
-      ref.width, ref.height, ref.format, ref.multisampleDescription);
+  Direct3DSurfaceDescription toDart() {
+    final ref = this.ref;
+    return Direct3DSurfaceDescription(
+        ref.width, ref.height, ref.format, ref.multisampleDescription);
+  }
 }

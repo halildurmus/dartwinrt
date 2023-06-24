@@ -20,10 +20,11 @@ final class NetworkUsageStates implements WinRTStruct {
 
   @override
   Pointer<NativeNetworkUsageStates> toNative({Allocator allocator = malloc}) {
-    final ptr = allocator<NativeNetworkUsageStates>();
-    ptr.ref.roaming = roaming;
-    ptr.ref.shared = shared;
-    return ptr;
+    final nativeStructPtr = allocator<NativeNetworkUsageStates>();
+    nativeStructPtr.ref
+      ..roaming = roaming
+      ..shared = shared;
+    return nativeStructPtr;
   }
 
   @override
@@ -42,5 +43,8 @@ final class NetworkUsageStates implements WinRTStruct {
 extension PointerNativeNetworkUsageStatesConversion
     on Pointer<NativeNetworkUsageStates> {
   /// Converts this [NativeNetworkUsageStates] to a Dart [NetworkUsageStates].
-  NetworkUsageStates toDart() => NetworkUsageStates(ref.roaming, ref.shared);
+  NetworkUsageStates toDart() {
+    final ref = this.ref;
+    return NetworkUsageStates(ref.roaming, ref.shared);
+  }
 }

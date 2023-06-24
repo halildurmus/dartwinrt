@@ -21,10 +21,11 @@ final class Point implements WinRTStruct {
 
   @override
   Pointer<NativePoint> toNative({Allocator allocator = malloc}) {
-    final ptr = allocator<NativePoint>();
-    ptr.ref.x = x;
-    ptr.ref.y = y;
-    return ptr;
+    final nativeStructPtr = allocator<NativePoint>();
+    nativeStructPtr.ref
+      ..x = x
+      ..y = y;
+    return nativeStructPtr;
   }
 
   @override
@@ -40,5 +41,8 @@ final class Point implements WinRTStruct {
 /// @nodoc
 extension PointerNativePointConversion on Pointer<NativePoint> {
   /// Converts this [NativePoint] to a Dart [Point].
-  Point toDart() => Point(ref.x, ref.y);
+  Point toDart() {
+    final ref = this.ref;
+    return Point(ref.x, ref.y);
+  }
 }

@@ -21,10 +21,11 @@ final class Direct3DMultisampleDescription implements WinRTStruct {
   @override
   Pointer<NativeDirect3DMultisampleDescription> toNative(
       {Allocator allocator = malloc}) {
-    final ptr = allocator<NativeDirect3DMultisampleDescription>();
-    ptr.ref.count = count;
-    ptr.ref.quality = quality;
-    return ptr;
+    final nativeStructPtr = allocator<NativeDirect3DMultisampleDescription>();
+    nativeStructPtr.ref
+      ..count = count
+      ..quality = quality;
+    return nativeStructPtr;
   }
 
   @override
@@ -44,6 +45,8 @@ extension PointerNativeDirect3DMultisampleDescriptionConversion
     on Pointer<NativeDirect3DMultisampleDescription> {
   /// Converts this [NativeDirect3DMultisampleDescription] to a Dart
   /// [Direct3DMultisampleDescription].
-  Direct3DMultisampleDescription toDart() =>
-      Direct3DMultisampleDescription(ref.count, ref.quality);
+  Direct3DMultisampleDescription toDart() {
+    final ref = this.ref;
+    return Direct3DMultisampleDescription(ref.count, ref.quality);
+  }
 }

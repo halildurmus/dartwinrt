@@ -50,24 +50,25 @@ final class Matrix4x4 implements WinRTStruct {
 
   @override
   Pointer<NativeMatrix4x4> toNative({Allocator allocator = malloc}) {
-    final ptr = allocator<NativeMatrix4x4>();
-    ptr.ref.m11 = m11;
-    ptr.ref.m12 = m12;
-    ptr.ref.m13 = m13;
-    ptr.ref.m14 = m14;
-    ptr.ref.m21 = m21;
-    ptr.ref.m22 = m22;
-    ptr.ref.m23 = m23;
-    ptr.ref.m24 = m24;
-    ptr.ref.m31 = m31;
-    ptr.ref.m32 = m32;
-    ptr.ref.m33 = m33;
-    ptr.ref.m34 = m34;
-    ptr.ref.m41 = m41;
-    ptr.ref.m42 = m42;
-    ptr.ref.m43 = m43;
-    ptr.ref.m44 = m44;
-    return ptr;
+    final nativeStructPtr = allocator<NativeMatrix4x4>();
+    nativeStructPtr.ref
+      ..m11 = m11
+      ..m12 = m12
+      ..m13 = m13
+      ..m14 = m14
+      ..m21 = m21
+      ..m22 = m22
+      ..m23 = m23
+      ..m24 = m24
+      ..m31 = m31
+      ..m32 = m32
+      ..m33 = m33
+      ..m34 = m34
+      ..m41 = m41
+      ..m42 = m42
+      ..m43 = m43
+      ..m44 = m44;
+    return nativeStructPtr;
   }
 
   @override
@@ -115,21 +116,24 @@ final class Matrix4x4 implements WinRTStruct {
 /// @nodoc
 extension PointerNativeMatrix4x4Conversion on Pointer<NativeMatrix4x4> {
   /// Converts this [NativeMatrix4x4] to a Dart [Matrix4x4].
-  Matrix4x4 toDart() => Matrix4x4(
-      ref.m11,
-      ref.m12,
-      ref.m13,
-      ref.m14,
-      ref.m21,
-      ref.m22,
-      ref.m23,
-      ref.m24,
-      ref.m31,
-      ref.m32,
-      ref.m33,
-      ref.m34,
-      ref.m41,
-      ref.m42,
-      ref.m43,
-      ref.m44);
+  Matrix4x4 toDart() {
+    final ref = this.ref;
+    return Matrix4x4(
+        ref.m11,
+        ref.m12,
+        ref.m13,
+        ref.m14,
+        ref.m21,
+        ref.m22,
+        ref.m23,
+        ref.m24,
+        ref.m31,
+        ref.m32,
+        ref.m33,
+        ref.m34,
+        ref.m41,
+        ref.m42,
+        ref.m43,
+        ref.m44);
+  }
 }

@@ -22,12 +22,13 @@ final class GamepadVibration implements WinRTStruct {
 
   @override
   Pointer<NativeGamepadVibration> toNative({Allocator allocator = malloc}) {
-    final ptr = allocator<NativeGamepadVibration>();
-    ptr.ref.leftMotor = leftMotor;
-    ptr.ref.rightMotor = rightMotor;
-    ptr.ref.leftTrigger = leftTrigger;
-    ptr.ref.rightTrigger = rightTrigger;
-    return ptr;
+    final nativeStructPtr = allocator<NativeGamepadVibration>();
+    nativeStructPtr.ref
+      ..leftMotor = leftMotor
+      ..rightMotor = rightMotor
+      ..leftTrigger = leftTrigger
+      ..rightTrigger = rightTrigger;
+    return nativeStructPtr;
   }
 
   @override
@@ -52,6 +53,9 @@ final class GamepadVibration implements WinRTStruct {
 extension PointerNativeGamepadVibrationConversion
     on Pointer<NativeGamepadVibration> {
   /// Converts this [NativeGamepadVibration] to a Dart [GamepadVibration].
-  GamepadVibration toDart() => GamepadVibration(
-      ref.leftMotor, ref.rightMotor, ref.leftTrigger, ref.rightTrigger);
+  GamepadVibration toDart() {
+    final ref = this.ref;
+    return GamepadVibration(
+        ref.leftMotor, ref.rightMotor, ref.leftTrigger, ref.rightTrigger);
+  }
 }

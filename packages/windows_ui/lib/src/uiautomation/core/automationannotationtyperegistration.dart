@@ -19,9 +19,10 @@ final class AutomationAnnotationTypeRegistration implements WinRTStruct {
   @override
   Pointer<NativeAutomationAnnotationTypeRegistration> toNative(
       {Allocator allocator = malloc}) {
-    final ptr = allocator<NativeAutomationAnnotationTypeRegistration>();
-    ptr.ref.localId = localId;
-    return ptr;
+    final nativeStructPtr =
+        allocator<NativeAutomationAnnotationTypeRegistration>();
+    nativeStructPtr.ref..localId = localId;
+    return nativeStructPtr;
   }
 
   @override
@@ -40,6 +41,8 @@ extension PointerNativeAutomationAnnotationTypeRegistrationConversion
     on Pointer<NativeAutomationAnnotationTypeRegistration> {
   /// Converts this [NativeAutomationAnnotationTypeRegistration] to a Dart
   /// [AutomationAnnotationTypeRegistration].
-  AutomationAnnotationTypeRegistration toDart() =>
-      AutomationAnnotationTypeRegistration(ref.localId);
+  AutomationAnnotationTypeRegistration toDart() {
+    final ref = this.ref;
+    return AutomationAnnotationTypeRegistration(ref.localId);
+  }
 }

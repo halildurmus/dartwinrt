@@ -20,10 +20,11 @@ final class Plane implements WinRTStruct {
 
   @override
   Pointer<NativePlane> toNative({Allocator allocator = malloc}) {
-    final ptr = allocator<NativePlane>();
-    ptr.ref.normal = normal;
-    ptr.ref.d = d;
-    return ptr;
+    final nativeStructPtr = allocator<NativePlane>();
+    nativeStructPtr.ref
+      ..normal = normal
+      ..d = d;
+    return nativeStructPtr;
   }
 
   @override
@@ -39,5 +40,8 @@ final class Plane implements WinRTStruct {
 /// @nodoc
 extension PointerNativePlaneConversion on Pointer<NativePlane> {
   /// Converts this [NativePlane] to a Dart [Plane].
-  Plane toDart() => Plane(ref.normal, ref.d);
+  Plane toDart() {
+    final ref = this.ref;
+    return Plane(ref.normal, ref.d);
+  }
 }

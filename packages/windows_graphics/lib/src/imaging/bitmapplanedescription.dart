@@ -22,12 +22,13 @@ final class BitmapPlaneDescription implements WinRTStruct {
   @override
   Pointer<NativeBitmapPlaneDescription> toNative(
       {Allocator allocator = malloc}) {
-    final ptr = allocator<NativeBitmapPlaneDescription>();
-    ptr.ref.startIndex = startIndex;
-    ptr.ref.width = width;
-    ptr.ref.height = height;
-    ptr.ref.stride = stride;
-    return ptr;
+    final nativeStructPtr = allocator<NativeBitmapPlaneDescription>();
+    nativeStructPtr.ref
+      ..startIndex = startIndex
+      ..width = width
+      ..height = height
+      ..stride = stride;
+    return nativeStructPtr;
   }
 
   @override
@@ -50,6 +51,9 @@ extension PointerNativeBitmapPlaneDescriptionConversion
     on Pointer<NativeBitmapPlaneDescription> {
   /// Converts this [NativeBitmapPlaneDescription] to a Dart
   /// [BitmapPlaneDescription].
-  BitmapPlaneDescription toDart() =>
-      BitmapPlaneDescription(ref.startIndex, ref.width, ref.height, ref.stride);
+  BitmapPlaneDescription toDart() {
+    final ref = this.ref;
+    return BitmapPlaneDescription(
+        ref.startIndex, ref.width, ref.height, ref.stride);
+  }
 }

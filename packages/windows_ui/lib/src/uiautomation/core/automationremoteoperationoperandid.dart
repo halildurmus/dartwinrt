@@ -20,9 +20,10 @@ final class AutomationRemoteOperationOperandId implements WinRTStruct {
   @override
   Pointer<NativeAutomationRemoteOperationOperandId> toNative(
       {Allocator allocator = malloc}) {
-    final ptr = allocator<NativeAutomationRemoteOperationOperandId>();
-    ptr.ref.value = value;
-    return ptr;
+    final nativeStructPtr =
+        allocator<NativeAutomationRemoteOperationOperandId>();
+    nativeStructPtr.ref..value = value;
+    return nativeStructPtr;
   }
 
   @override
@@ -40,6 +41,8 @@ extension PointerNativeAutomationRemoteOperationOperandIdConversion
     on Pointer<NativeAutomationRemoteOperationOperandId> {
   /// Converts this [NativeAutomationRemoteOperationOperandId] to a Dart
   /// [AutomationRemoteOperationOperandId].
-  AutomationRemoteOperationOperandId toDart() =>
-      AutomationRemoteOperationOperandId(ref.value);
+  AutomationRemoteOperationOperandId toDart() {
+    final ref = this.ref;
+    return AutomationRemoteOperationOperandId(ref.value);
+  }
 }

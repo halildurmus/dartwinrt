@@ -166,12 +166,13 @@ final class StructProjection extends NativeStructProjection {
   List<StructFieldProjection> get fieldProjections =>
       typeDef.fields.map(StructInstanceVariableProjection.new).toList();
 
-  String get toNativeFunction => '''
+  String get toNativeMethod => '''
   @override
   Pointer<Native$structName> toNative({Allocator allocator = malloc}) {
-    final ptr = allocator<Native$structName>();
-    ${fieldProjections.map((f) => 'ptr.ref.${f.fieldName} = ${f.fieldName};').join('\n')}
-    return ptr;
+    final nativeStructPtr = allocator<Native$structName>();
+    nativeStructPtr.ref
+      ${fieldProjections.map((f) => '..${f.fieldName} = ${f.fieldName}').join('\n')};
+    return nativeStructPtr;
   }
 ''';
 
@@ -187,14 +188,17 @@ final class StructProjection extends NativeStructProjection {
   int get hashCode => ${fieldProjections.map((f) => '${f.fieldName}.hashCode').join(' ^ ')};
 ''';
 
-  String get nativeStructToDartExtension {
-    final comment = wrapCommentText(
+  String get extension {
+    final toDartComment = wrapCommentText(
         'Converts this [Native$structName] to a Dart [$structName].');
     return '''
 /// @nodoc
 extension PointerNative${structName}Conversion on Pointer<Native$structName> {
-  $comment
-  $structName toDart() => $structName(${fieldProjections.map((f) => 'ref.${f.fieldName}').join(', ')});
+  $toDartComment
+  $structName toDart() {
+    final ref = this.ref;
+    return $structName(${fieldProjections.map((f) => 'ref.${f.fieldName}').join(', ')});
+  }
 }
 ''';
   }
@@ -210,11 +214,11 @@ $classHeader {
 
   ${fieldProjections.join('\n')}
 
-  $toNativeFunction
+  $toNativeMethod
 
   $equalityOverrides
 }
 
-$nativeStructToDartExtension
+$extension
 ''';
 }

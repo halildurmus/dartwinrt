@@ -24,14 +24,15 @@ final class Matrix3x2 implements WinRTStruct {
 
   @override
   Pointer<NativeMatrix3x2> toNative({Allocator allocator = malloc}) {
-    final ptr = allocator<NativeMatrix3x2>();
-    ptr.ref.m11 = m11;
-    ptr.ref.m12 = m12;
-    ptr.ref.m21 = m21;
-    ptr.ref.m22 = m22;
-    ptr.ref.m31 = m31;
-    ptr.ref.m32 = m32;
-    return ptr;
+    final nativeStructPtr = allocator<NativeMatrix3x2>();
+    nativeStructPtr.ref
+      ..m11 = m11
+      ..m12 = m12
+      ..m21 = m21
+      ..m22 = m22
+      ..m31 = m31
+      ..m32 = m32;
+    return nativeStructPtr;
   }
 
   @override
@@ -59,6 +60,8 @@ final class Matrix3x2 implements WinRTStruct {
 /// @nodoc
 extension PointerNativeMatrix3x2Conversion on Pointer<NativeMatrix3x2> {
   /// Converts this [NativeMatrix3x2] to a Dart [Matrix3x2].
-  Matrix3x2 toDart() =>
-      Matrix3x2(ref.m11, ref.m12, ref.m21, ref.m22, ref.m31, ref.m32);
+  Matrix3x2 toDart() {
+    final ref = this.ref;
+    return Matrix3x2(ref.m11, ref.m12, ref.m21, ref.m22, ref.m31, ref.m32);
+  }
 }
