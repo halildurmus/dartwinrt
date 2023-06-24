@@ -17,46 +17,55 @@ abstract class GetterProjection extends PropertyProjection {
   /// Returns the appropriate getter projection for the [method] based on the
   /// return type.
   factory GetterProjection.create(Method method, int vtableOffset) {
-    final projectionType = method.projectionType;
-    return switch (projectionType) {
-      ProjectionType.dartPrimitive =>
-        DefaultGetterProjection(method, vtableOffset),
-      ProjectionType.dartPrimitiveList ||
-      ProjectionType.structList =>
-        DefaultListGetterProjection(method, vtableOffset),
-      ProjectionType.dateTime => DateTimeGetterProjection(method, vtableOffset),
-      ProjectionType.dateTimeList =>
-        DateTimeListGetterProjection(method, vtableOffset),
-      ProjectionType.delegate => DelegateGetterProjection(method, vtableOffset),
-      ProjectionType.duration => DurationGetterProjection(method, vtableOffset),
-      ProjectionType.durationList =>
-        DurationListGetterProjection(method, vtableOffset),
-      ProjectionType.enum_ => EnumGetterProjection(method, vtableOffset),
-      ProjectionType.genericEnum =>
-        GenericEnumGetterProjection(method, vtableOffset),
-      ProjectionType.genericObject =>
-        GenericObjectGetterProjection(method, vtableOffset),
-      ProjectionType.guid => GuidGetterProjection(method, vtableOffset),
-      ProjectionType.guidList => GuidListGetterProjection(method, vtableOffset),
-      ProjectionType.map => MapGetterProjection(method, vtableOffset),
-      ProjectionType.mapView => MapViewGetterProjection(method, vtableOffset),
-      ProjectionType.object => ObjectGetterProjection(method, vtableOffset),
-      ProjectionType.objectList =>
-        ObjectListGetterProjection(method, vtableOffset),
-      ProjectionType.reference =>
-        ReferenceGetterProjection(method, vtableOffset),
-      ProjectionType.string => StringGetterProjection(method, vtableOffset),
-      ProjectionType.stringList =>
-        StringListGetterProjection(method, vtableOffset),
-      ProjectionType.struct => StructGetterProjection(method, vtableOffset),
-      ProjectionType.uri => UriGetterProjection(method, vtableOffset),
-      ProjectionType.uriList => UriListGetterProjection(method, vtableOffset),
-      ProjectionType.vector => VectorGetterProjection(method, vtableOffset),
-      ProjectionType.vectorView =>
-        VectorViewGetterProjection(method, vtableOffset),
-      _ =>
-        throw WinRTGenException('Unsupported projection type: $projectionType'),
-    };
+    try {
+      final projectionType = method.projectionType;
+      return switch (projectionType) {
+        ProjectionType.dartPrimitive =>
+          DefaultGetterProjection(method, vtableOffset),
+        ProjectionType.dartPrimitiveList ||
+        ProjectionType.structList =>
+          DefaultListGetterProjection(method, vtableOffset),
+        ProjectionType.dateTime =>
+          DateTimeGetterProjection(method, vtableOffset),
+        ProjectionType.dateTimeList =>
+          DateTimeListGetterProjection(method, vtableOffset),
+        ProjectionType.delegate =>
+          DelegateGetterProjection(method, vtableOffset),
+        ProjectionType.duration =>
+          DurationGetterProjection(method, vtableOffset),
+        ProjectionType.durationList =>
+          DurationListGetterProjection(method, vtableOffset),
+        ProjectionType.enum_ => EnumGetterProjection(method, vtableOffset),
+        ProjectionType.genericEnum =>
+          GenericEnumGetterProjection(method, vtableOffset),
+        ProjectionType.genericObject =>
+          GenericObjectGetterProjection(method, vtableOffset),
+        ProjectionType.guid => GuidGetterProjection(method, vtableOffset),
+        ProjectionType.guidList =>
+          GuidListGetterProjection(method, vtableOffset),
+        ProjectionType.map => MapGetterProjection(method, vtableOffset),
+        ProjectionType.mapView => MapViewGetterProjection(method, vtableOffset),
+        ProjectionType.object => ObjectGetterProjection(method, vtableOffset),
+        ProjectionType.objectList =>
+          ObjectListGetterProjection(method, vtableOffset),
+        ProjectionType.reference =>
+          ReferenceGetterProjection(method, vtableOffset),
+        ProjectionType.string => StringGetterProjection(method, vtableOffset),
+        ProjectionType.stringList =>
+          StringListGetterProjection(method, vtableOffset),
+        ProjectionType.struct => StructGetterProjection(method, vtableOffset),
+        ProjectionType.uri => UriGetterProjection(method, vtableOffset),
+        ProjectionType.uriList => UriListGetterProjection(method, vtableOffset),
+        ProjectionType.vector => VectorGetterProjection(method, vtableOffset),
+        ProjectionType.vectorView =>
+          VectorViewGetterProjection(method, vtableOffset),
+        _ => throw WinRTGenException(
+            'Unsupported projection type: $projectionType'),
+      };
+    } catch (_) {
+      print('Failed to project getter "$method" from "${method.parent}".');
+      rethrow;
+    }
   }
 
   /// Attempts to create a [GetterProjection] from [fullyQualifiedType] and

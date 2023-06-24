@@ -46,10 +46,15 @@ final class EnumProjection {
   /// Returns the appropriate enum projection for the [typeDef] depending on
   /// whether it has the `System.FlagsAttribute` attribute.
   factory EnumProjection.create(TypeDef typeDef, {String comment = ''}) {
-    final isFlagsEnum = typeDef.existsAttribute(flagsAttribute);
-    return isFlagsEnum
-        ? FlagsEnumProjection(typeDef, comment: comment)
-        : EnumProjection(typeDef, comment: comment);
+    try {
+      final isFlagsEnum = typeDef.existsAttribute(flagsAttribute);
+      return isFlagsEnum
+          ? FlagsEnumProjection(typeDef, comment: comment)
+          : EnumProjection(typeDef, comment: comment);
+    } catch (_) {
+      print('Failed to project enum "${typeDef.fullyQualifiedName}".');
+      rethrow;
+    }
   }
 
   /// Attempts to create a [EnumProjection] from [fullyQualifiedType] by

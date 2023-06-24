@@ -37,43 +37,49 @@ abstract class ParameterProjection {
 
   /// Returns the appropriate projection for the parameter.
   factory ParameterProjection.create(Parameter param) {
-    final projectionType = param.projectionType;
-    return switch (projectionType) {
-      ProjectionType.dartPrimitive ||
-      ProjectionType.pointer =>
-        DefaultParameterProjection(param),
-      ProjectionType.dartPrimitiveList => DefaultListParameterProjection(param),
-      ProjectionType.dateTime => DateTimeParameterProjection(param),
-      ProjectionType.dateTimeList => DateTimeListParameterProjection(param),
-      ProjectionType.delegate => DelegateParameterProjection(param),
-      ProjectionType.duration => DurationParameterProjection(param),
-      ProjectionType.durationList => DurationListParameterProjection(param),
-      ProjectionType.enum_ => EnumParameterProjection(param),
-      ProjectionType.genericEnum => GenericEnumParameterProjection(param),
-      ProjectionType.genericEnumList =>
-        GenericEnumListParameterProjection(param),
-      ProjectionType.genericObject => GenericObjectParameterProjection(param),
-      ProjectionType.genericObjectList =>
-        GenericObjectListParameterProjection(param),
-      ProjectionType.guid => GuidParameterProjection(param),
-      ProjectionType.guidList => GuidListParameterProjection(param),
-      ProjectionType.map ||
-      ProjectionType.mapView ||
-      ProjectionType.object ||
-      ProjectionType.vector ||
-      ProjectionType.vectorView =>
-        ObjectParameterProjection(param),
-      ProjectionType.objectList => ObjectListParameterProjection(param),
-      ProjectionType.reference => ReferenceParameterProjection(param),
-      ProjectionType.string => StringParameterProjection(param),
-      ProjectionType.stringList => StringListParameterProjection(param),
-      ProjectionType.struct => StructParameterProjection(param),
-      ProjectionType.structList => StructListParameterProjection(param),
-      ProjectionType.uri => UriParameterProjection(param),
-      ProjectionType.uriList => UriListParameterProjection(param),
-      _ =>
-        throw WinRTGenException('Unsupported projection type: $projectionType'),
-    };
+    try {
+      final projectionType = param.projectionType;
+      return switch (projectionType) {
+        ProjectionType.dartPrimitive ||
+        ProjectionType.pointer =>
+          DefaultParameterProjection(param),
+        ProjectionType.dartPrimitiveList =>
+          DefaultListParameterProjection(param),
+        ProjectionType.dateTime => DateTimeParameterProjection(param),
+        ProjectionType.dateTimeList => DateTimeListParameterProjection(param),
+        ProjectionType.delegate => DelegateParameterProjection(param),
+        ProjectionType.duration => DurationParameterProjection(param),
+        ProjectionType.durationList => DurationListParameterProjection(param),
+        ProjectionType.enum_ => EnumParameterProjection(param),
+        ProjectionType.genericEnum => GenericEnumParameterProjection(param),
+        ProjectionType.genericEnumList =>
+          GenericEnumListParameterProjection(param),
+        ProjectionType.genericObject => GenericObjectParameterProjection(param),
+        ProjectionType.genericObjectList =>
+          GenericObjectListParameterProjection(param),
+        ProjectionType.guid => GuidParameterProjection(param),
+        ProjectionType.guidList => GuidListParameterProjection(param),
+        ProjectionType.map ||
+        ProjectionType.mapView ||
+        ProjectionType.object ||
+        ProjectionType.vector ||
+        ProjectionType.vectorView =>
+          ObjectParameterProjection(param),
+        ProjectionType.objectList => ObjectListParameterProjection(param),
+        ProjectionType.reference => ReferenceParameterProjection(param),
+        ProjectionType.string => StringParameterProjection(param),
+        ProjectionType.stringList => StringListParameterProjection(param),
+        ProjectionType.struct => StructParameterProjection(param),
+        ProjectionType.structList => StructListParameterProjection(param),
+        ProjectionType.uri => UriParameterProjection(param),
+        ProjectionType.uriList => UriListParameterProjection(param),
+        _ => throw WinRTGenException(
+            'Unsupported projection type: $projectionType'),
+      };
+    } catch (_) {
+      print('Failed to project parameter "$param" from "${param.parent}".');
+      rethrow;
+    }
   }
 
   String get ffiProjection => '${typeProjection.nativeType} $identifier';
