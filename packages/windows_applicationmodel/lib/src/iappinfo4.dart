@@ -27,7 +27,7 @@ class IAppInfo4 extends IInspectable {
 
   List<String> get supportedFileExtensions {
     final pRetValueSize = calloc<Uint32>();
-    final retValuePtr = calloc<Pointer<HSTRING>>();
+    final retValuePtr = calloc<Pointer<IntPtr>>();
 
     try {
       final hr = ptr.ref.vtable

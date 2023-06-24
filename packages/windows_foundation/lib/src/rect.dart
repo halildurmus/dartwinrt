@@ -22,12 +22,13 @@ final class Rect implements WinRTStruct {
 
   @override
   Pointer<NativeRect> toNative({Allocator allocator = malloc}) {
-    final ptr = allocator<NativeRect>();
-    ptr.ref.x = x;
-    ptr.ref.y = y;
-    ptr.ref.width = width;
-    ptr.ref.height = height;
-    return ptr;
+    final nativeStructPtr = allocator<NativeRect>();
+    nativeStructPtr.ref
+      ..x = x
+      ..y = y
+      ..width = width
+      ..height = height;
+    return nativeStructPtr;
   }
 
   @override
@@ -48,5 +49,8 @@ final class Rect implements WinRTStruct {
 /// @nodoc
 extension PointerNativeRectConversion on Pointer<NativeRect> {
   /// Converts this [NativeRect] to a Dart [Rect].
-  Rect toDart() => Rect(ref.x, ref.y, ref.width, ref.height);
+  Rect toDart() {
+    final ref = this.ref;
+    return Rect(ref.x, ref.y, ref.width, ref.height);
+  }
 }

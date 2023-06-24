@@ -20,10 +20,11 @@ final class DisplayAdapterId implements WinRTStruct {
 
   @override
   Pointer<NativeDisplayAdapterId> toNative({Allocator allocator = malloc}) {
-    final ptr = allocator<NativeDisplayAdapterId>();
-    ptr.ref.lowPart = lowPart;
-    ptr.ref.highPart = highPart;
-    return ptr;
+    final nativeStructPtr = allocator<NativeDisplayAdapterId>();
+    nativeStructPtr.ref
+      ..lowPart = lowPart
+      ..highPart = highPart;
+    return nativeStructPtr;
   }
 
   @override
@@ -42,5 +43,8 @@ final class DisplayAdapterId implements WinRTStruct {
 extension PointerNativeDisplayAdapterIdConversion
     on Pointer<NativeDisplayAdapterId> {
   /// Converts this [NativeDisplayAdapterId] to a Dart [DisplayAdapterId].
-  DisplayAdapterId toDart() => DisplayAdapterId(ref.lowPart, ref.highPart);
+  DisplayAdapterId toDart() {
+    final ref = this.ref;
+    return DisplayAdapterId(ref.lowPart, ref.highPart);
+  }
 }

@@ -21,12 +21,13 @@ final class Color implements WinRTStruct {
 
   @override
   Pointer<NativeColor> toNative({Allocator allocator = malloc}) {
-    final ptr = allocator<NativeColor>();
-    ptr.ref.a = a;
-    ptr.ref.r = r;
-    ptr.ref.g = g;
-    ptr.ref.b = b;
-    return ptr;
+    final nativeStructPtr = allocator<NativeColor>();
+    nativeStructPtr.ref
+      ..a = a
+      ..r = r
+      ..g = g
+      ..b = b;
+    return nativeStructPtr;
   }
 
   @override
@@ -46,5 +47,8 @@ final class Color implements WinRTStruct {
 /// @nodoc
 extension PointerNativeColorConversion on Pointer<NativeColor> {
   /// Converts this [NativeColor] to a Dart [Color].
-  Color toDart() => Color(ref.a, ref.r, ref.g, ref.b);
+  Color toDart() {
+    final ref = this.ref;
+    return Color(ref.a, ref.r, ref.g, ref.b);
+  }
 }

@@ -20,10 +20,11 @@ final class Size implements WinRTStruct {
 
   @override
   Pointer<NativeSize> toNative({Allocator allocator = malloc}) {
-    final ptr = allocator<NativeSize>();
-    ptr.ref.width = width;
-    ptr.ref.height = height;
-    return ptr;
+    final nativeStructPtr = allocator<NativeSize>();
+    nativeStructPtr.ref
+      ..width = width
+      ..height = height;
+    return nativeStructPtr;
   }
 
   @override
@@ -39,5 +40,8 @@ final class Size implements WinRTStruct {
 /// @nodoc
 extension PointerNativeSizeConversion on Pointer<NativeSize> {
   /// Converts this [NativeSize] to a Dart [Size].
-  Size toDart() => Size(ref.width, ref.height);
+  Size toDart() {
+    final ref = this.ref;
+    return Size(ref.width, ref.height);
+  }
 }

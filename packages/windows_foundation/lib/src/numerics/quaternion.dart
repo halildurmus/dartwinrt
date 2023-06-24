@@ -23,12 +23,13 @@ final class Quaternion implements WinRTStruct {
 
   @override
   Pointer<NativeQuaternion> toNative({Allocator allocator = malloc}) {
-    final ptr = allocator<NativeQuaternion>();
-    ptr.ref.x = x;
-    ptr.ref.y = y;
-    ptr.ref.z = z;
-    ptr.ref.w = w;
-    return ptr;
+    final nativeStructPtr = allocator<NativeQuaternion>();
+    nativeStructPtr.ref
+      ..x = x
+      ..y = y
+      ..z = z
+      ..w = w;
+    return nativeStructPtr;
   }
 
   @override
@@ -48,5 +49,8 @@ final class Quaternion implements WinRTStruct {
 /// @nodoc
 extension PointerNativeQuaternionConversion on Pointer<NativeQuaternion> {
   /// Converts this [NativeQuaternion] to a Dart [Quaternion].
-  Quaternion toDart() => Quaternion(ref.x, ref.y, ref.z, ref.w);
+  Quaternion toDart() {
+    final ref = this.ref;
+    return Quaternion(ref.x, ref.y, ref.z, ref.w);
+  }
 }

@@ -33,16 +33,17 @@ final class GamepadReading implements WinRTStruct {
 
   @override
   Pointer<NativeGamepadReading> toNative({Allocator allocator = malloc}) {
-    final ptr = allocator<NativeGamepadReading>();
-    ptr.ref.timestamp = timestamp;
-    ptr.ref.buttons = buttons;
-    ptr.ref.leftTrigger = leftTrigger;
-    ptr.ref.rightTrigger = rightTrigger;
-    ptr.ref.leftThumbstickX = leftThumbstickX;
-    ptr.ref.leftThumbstickY = leftThumbstickY;
-    ptr.ref.rightThumbstickX = rightThumbstickX;
-    ptr.ref.rightThumbstickY = rightThumbstickY;
-    return ptr;
+    final nativeStructPtr = allocator<NativeGamepadReading>();
+    nativeStructPtr.ref
+      ..timestamp = timestamp
+      ..buttons = buttons
+      ..leftTrigger = leftTrigger
+      ..rightTrigger = rightTrigger
+      ..leftThumbstickX = leftThumbstickX
+      ..leftThumbstickY = leftThumbstickY
+      ..rightThumbstickX = rightThumbstickX
+      ..rightThumbstickY = rightThumbstickY;
+    return nativeStructPtr;
   }
 
   @override
@@ -75,13 +76,16 @@ final class GamepadReading implements WinRTStruct {
 extension PointerNativeGamepadReadingConversion
     on Pointer<NativeGamepadReading> {
   /// Converts this [NativeGamepadReading] to a Dart [GamepadReading].
-  GamepadReading toDart() => GamepadReading(
-      ref.timestamp,
-      ref.buttons,
-      ref.leftTrigger,
-      ref.rightTrigger,
-      ref.leftThumbstickX,
-      ref.leftThumbstickY,
-      ref.rightThumbstickX,
-      ref.rightThumbstickY);
+  GamepadReading toDart() {
+    final ref = this.ref;
+    return GamepadReading(
+        ref.timestamp,
+        ref.buttons,
+        ref.leftTrigger,
+        ref.rightTrigger,
+        ref.leftThumbstickX,
+        ref.leftThumbstickY,
+        ref.rightThumbstickX,
+        ref.rightThumbstickY);
+  }
 }

@@ -20,10 +20,11 @@ final class Vector2 implements WinRTStruct {
 
   @override
   Pointer<NativeVector2> toNative({Allocator allocator = malloc}) {
-    final ptr = allocator<NativeVector2>();
-    ptr.ref.x = x;
-    ptr.ref.y = y;
-    return ptr;
+    final nativeStructPtr = allocator<NativeVector2>();
+    nativeStructPtr.ref
+      ..x = x
+      ..y = y;
+    return nativeStructPtr;
   }
 
   @override
@@ -39,5 +40,8 @@ final class Vector2 implements WinRTStruct {
 /// @nodoc
 extension PointerNativeVector2Conversion on Pointer<NativeVector2> {
   /// Converts this [NativeVector2] to a Dart [Vector2].
-  Vector2 toDart() => Vector2(ref.x, ref.y);
+  Vector2 toDart() {
+    final ref = this.ref;
+    return Vector2(ref.x, ref.y);
+  }
 }

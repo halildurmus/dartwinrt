@@ -266,6 +266,13 @@ String wrapCommentText(String commentText, [int wrapLength = 76]) {
   final wrappedText = StringBuffer();
 
   for (final word in words) {
+    if (word == '\n') {
+      textLine.write('\n///\n///');
+      wrappedText.write(textLine);
+      textLine.clear();
+      continue;
+    }
+
     if ((textLine.length + word.length) >= wrapLength) {
       textLine.write('\n');
       wrappedText.write(textLine);

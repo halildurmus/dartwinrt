@@ -20,11 +20,12 @@ final class BasicGeoposition implements WinRTStruct {
 
   @override
   Pointer<NativeBasicGeoposition> toNative({Allocator allocator = malloc}) {
-    final ptr = allocator<NativeBasicGeoposition>();
-    ptr.ref.latitude = latitude;
-    ptr.ref.longitude = longitude;
-    ptr.ref.altitude = altitude;
-    return ptr;
+    final nativeStructPtr = allocator<NativeBasicGeoposition>();
+    nativeStructPtr.ref
+      ..latitude = latitude
+      ..longitude = longitude
+      ..altitude = altitude;
+    return nativeStructPtr;
   }
 
   @override
@@ -45,6 +46,8 @@ final class BasicGeoposition implements WinRTStruct {
 extension PointerNativeBasicGeopositionConversion
     on Pointer<NativeBasicGeoposition> {
   /// Converts this [NativeBasicGeoposition] to a Dart [BasicGeoposition].
-  BasicGeoposition toDart() =>
-      BasicGeoposition(ref.latitude, ref.longitude, ref.altitude);
+  BasicGeoposition toDart() {
+    final ref = this.ref;
+    return BasicGeoposition(ref.latitude, ref.longitude, ref.altitude);
+  }
 }

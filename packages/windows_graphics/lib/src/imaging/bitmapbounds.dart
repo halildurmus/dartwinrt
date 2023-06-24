@@ -21,12 +21,13 @@ final class BitmapBounds implements WinRTStruct {
 
   @override
   Pointer<NativeBitmapBounds> toNative({Allocator allocator = malloc}) {
-    final ptr = allocator<NativeBitmapBounds>();
-    ptr.ref.x = x;
-    ptr.ref.y = y;
-    ptr.ref.width = width;
-    ptr.ref.height = height;
-    return ptr;
+    final nativeStructPtr = allocator<NativeBitmapBounds>();
+    nativeStructPtr.ref
+      ..x = x
+      ..y = y
+      ..width = width
+      ..height = height;
+    return nativeStructPtr;
   }
 
   @override
@@ -47,5 +48,8 @@ final class BitmapBounds implements WinRTStruct {
 /// @nodoc
 extension PointerNativeBitmapBoundsConversion on Pointer<NativeBitmapBounds> {
   /// Converts this [NativeBitmapBounds] to a Dart [BitmapBounds].
-  BitmapBounds toDart() => BitmapBounds(ref.x, ref.y, ref.width, ref.height);
+  BitmapBounds toDart() {
+    final ref = this.ref;
+    return BitmapBounds(ref.x, ref.y, ref.width, ref.height);
+  }
 }

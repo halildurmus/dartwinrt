@@ -327,5 +327,14 @@ void main() {
         equals('/// This is a short\n/// string'));
     expect(wrapCommentText('This is a short string', 200),
         equals('/// This is a short string'));
+    expect(
+        wrapCommentText(
+            'Creates a `List<Vector2>` from `Pointer<NativeVector2>`. \n '
+            '[length] must not be greater than the number of elements stored inside '
+            'the `Pointer<NativeVector2>`.'),
+        equals('/// Creates a `List<Vector2>` from `Pointer<NativeVector2>`.\n'
+            '///\n'
+            '/// [length] must not be greater than the number of elements '
+            'stored inside the\n/// `Pointer<NativeVector2>`.'));
   });
 }
