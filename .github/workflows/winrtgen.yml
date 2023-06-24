@@ -37,5 +37,4 @@ jobs:
       analyze_directories: bin example lib test
       dart_sdk: ${{ matrix.sdk }}
       runs_on: ${{ matrix.os }}
-      verify_pana_score: false
       working_directory: packages/winrtgen
