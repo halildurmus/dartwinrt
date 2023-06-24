@@ -113,7 +113,11 @@ final class ObjectGetterProjection extends GetterProjection with _ObjectMixin {
   ObjectGetterProjection(super.method, super.vtableOffset);
 }
 
-mixin _ObjectListMixin on MethodProjection {
+/// Method projection for methods that return `List` of WinRT class,
+/// interface, or `boxed` value.
+final class ObjectListMethodProjection extends DefaultListMethodProjection {
+  ObjectListMethodProjection(super.method, super.vtableOffset);
+
   TypeProjection get typeArgProjection {
     final typeIdentifier = method.returnType.typeIdentifier;
     return typeIdentifier.isReferenceType
@@ -127,48 +131,46 @@ mixin _ObjectListMixin on MethodProjection {
   String get returnType =>
       typeArgProjection.isObjectType ? 'List<Object?>' : 'List<$shortName>';
 
-  String get sizeIdentifier => 'pRetValueSize';
-
+  @override
   String get returnStatement {
     if (typeArgProjection.isObjectType) {
       return 'return retValuePtr.value.toObjectList(length: $sizeIdentifier.value);';
     }
 
     return '''
-      return retValuePtr.value
-          .toList($shortName.fromPtr, length: $sizeIdentifier.value);''';
+return retValuePtr.value
+  .toList($shortName.fromPtr, length: $sizeIdentifier.value);''';
   }
-
-  @override
-  String get methodDeclaration => '''
-  $methodHeader {
-    final $sizeIdentifier = calloc<Uint32>();
-    final retValuePtr = calloc<Pointer<COMObject>>();
-
-    try {
-      ${ffiCall()}
-
-      $returnStatement
-    } finally {
-      free($sizeIdentifier);
-      free(retValuePtr);
-    }
-  }
-''';
-}
-
-/// Method projection for methods that return `List` of WinRT class,
-/// interface, or `boxed` value.
-final class ObjectListMethodProjection extends MethodProjection
-    with _ObjectListMixin {
-  ObjectListMethodProjection(super.method, super.vtableOffset);
 }
 
 /// Getter projection for getters that return a `List` of WinRT class,
 /// interface, or `boxed` value.
-final class ObjectListGetterProjection extends GetterProjection
-    with _ObjectListMixin {
+final class ObjectListGetterProjection extends DefaultListGetterProjection {
   ObjectListGetterProjection(super.method, super.vtableOffset);
+
+  TypeProjection get typeArgProjection {
+    final typeIdentifier = method.returnType.typeIdentifier;
+    return typeIdentifier.isReferenceType
+        ? TypeProjection(dereferenceType(dereferenceType(typeIdentifier)))
+        : TypeProjection(dereferenceType(typeIdentifier));
+  }
+
+  String get shortName => typeArgProjection.typeIdentifier.shortName;
+
+  @override
+  String get returnType =>
+      typeArgProjection.isObjectType ? 'List<Object?>' : 'List<$shortName>';
+
+  @override
+  String get returnStatement {
+    if (typeArgProjection.isObjectType) {
+      return 'return retValuePtr.value.toObjectList(length: $sizeIdentifier.value);';
+    }
+
+    return '''
+return retValuePtr.value
+  .toList($shortName.fromPtr, length: $sizeIdentifier.value);''';
+  }
 }
 
 /// Setter projection for WinRT class, interface, or `boxed` value setters.
@@ -281,7 +283,7 @@ final class ObjectListParameterProjection
   @override
   String get receiveArrayPreamble => '''
     final $sizeIdentifier = calloc<Uint32>();
-    final $localIdentifier = calloc<Pointer<COMObject>>();''';
+    final $localIdentifier = calloc<${typeArgProjection.nativeType}>();''';
 
   @override
   String get fillArrayPostamble {

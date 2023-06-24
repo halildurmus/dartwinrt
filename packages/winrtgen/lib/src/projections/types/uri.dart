@@ -82,42 +82,32 @@ final class UriGetterProjection extends GetterProjection with _UriMixin {
   UriGetterProjection(super.method, super.vtableOffset);
 }
 
-mixin _UriListMixin on MethodProjection {
+/// Method projection for methods that return `List<Uri>`.
+final class UriListMethodProjection extends DefaultListMethodProjection {
+  UriListMethodProjection(super.method, super.vtableOffset);
+
   @override
   String get returnType => 'List<Uri>';
 
-  String get sizeIdentifier => 'pRetValueSize';
-
   @override
-  String get methodDeclaration => '''
-  $methodHeader {
-    final $sizeIdentifier = calloc<Uint32>();
-    final retValuePtr = calloc<Pointer<COMObject>>();
-
-    try {
-      ${ffiCall()}
-
-      return retValuePtr.value
-        .toList(winrt_uri.Uri.fromPtr, length: $sizeIdentifier.value)
-        .map((winrtUri) => Uri.parse(winrtUri.toString()));
-    } finally {
-      free($sizeIdentifier);
-      free(retValuePtr);
-    }
-  }
-''';
-}
-
-/// Method projection for methods that return `List<Uri>`.
-final class UriListMethodProjection extends MethodProjection
-    with _UriListMixin {
-  UriListMethodProjection(super.method, super.vtableOffset);
+  String get returnStatement => '''
+return retValuePtr.value
+  .toList(winrt_uri.Uri.fromPtr, length: $sizeIdentifier.value)
+  .map((winrtUri) => Uri.parse(winrtUri.toString()));''';
 }
 
 /// Getter projection for `List<Uri>` getters.
-final class UriListGetterProjection extends GetterProjection
-    with _UriListMixin {
+final class UriListGetterProjection extends DefaultListGetterProjection {
   UriListGetterProjection(super.method, super.vtableOffset);
+
+  @override
+  String get returnType => 'List<Uri>';
+
+  @override
+  String get returnStatement => '''
+return retValuePtr.value
+  .toList(winrt_uri.Uri.fromPtr, length: $sizeIdentifier.value)
+  .map((winrtUri) => Uri.parse(winrtUri.toString()));''';
 }
 
 /// Setter projection for `Uri` setters.
@@ -186,7 +176,7 @@ final class UriListParameterProjection extends DefaultListParameterProjection {
   @override
   String get receiveArrayPreamble => '''
     final $sizeIdentifier = calloc<Uint32>();
-    final $localIdentifier = calloc<Pointer<COMObject>>();''';
+    final $localIdentifier = calloc<${typeArgProjection.nativeType}>();''';
 
   @override
   String get fillArrayPostamble => '''
