@@ -31,13 +31,8 @@ class InterfaceProjection {
   /// found.
   factory InterfaceProjection.from(String fullyQualifiedType,
       {String comment = ''}) {
-    try {
-      final typeDef = getMetadataForType(fullyQualifiedType);
-      return InterfaceProjection(typeDef, comment: comment);
-    } catch (_) {
-      print('Failed to project interface "$fullyQualifiedType".');
-      rethrow;
-    }
+    final typeDef = getMetadataForType(fullyQualifiedType);
+    return InterfaceProjection(typeDef, comment: comment);
   }
 
   /// Returns the shorter name of the [typeDef] (e.g. `IAsyncInfo`, `Calendar`).

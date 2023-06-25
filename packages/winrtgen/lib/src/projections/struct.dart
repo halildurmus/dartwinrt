@@ -67,13 +67,8 @@ final class NativeStructProjection {
     String fullyQualifiedType, {
     String? structName,
   }) {
-    try {
-      final typeDef = getMetadataForType(fullyQualifiedType);
-      return NativeStructProjection(typeDef, structName: structName);
-    } catch (_) {
-      print('Failed to project native struct "$fullyQualifiedType".');
-      rethrow;
-    }
+    final typeDef = getMetadataForType(fullyQualifiedType);
+    return NativeStructProjection(typeDef, structName: structName);
   }
 
   String get classHeader => [
@@ -123,14 +118,8 @@ final class StructProjection extends NativeStructProjection {
     String comment = '',
     String? structName,
   }) {
-    try {
-      final typeDef = getMetadataForType(fullyQualifiedType);
-      return StructProjection(typeDef,
-          comment: comment, structName: structName);
-    } catch (_) {
-      print('Failed to project struct "$fullyQualifiedType".');
-      rethrow;
-    }
+    final typeDef = getMetadataForType(fullyQualifiedType);
+    return StructProjection(typeDef, comment: comment, structName: structName);
   }
 
   String get header => structFileHeader;

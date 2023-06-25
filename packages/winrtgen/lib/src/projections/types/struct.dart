@@ -39,6 +39,22 @@ final class StructGetterProjection extends GetterProjection with _StructMixin {
   StructGetterProjection(super.method, super.vtableOffset);
 }
 
+/// Method projection for methods that return `List<T extends WinRTStruct>`.
+final class StructListMethodProjection extends DefaultListMethodProjection {
+  StructListMethodProjection(super.method, super.vtableOffset);
+
+  @override
+  String get returnType => 'List<$typeArgShortName>';
+}
+
+/// Getter projection for `List<T extends WinRTStruct>` getters.
+final class StructListGetterProjection extends DefaultListGetterProjection {
+  StructListGetterProjection(super.method, super.vtableOffset);
+
+  @override
+  String get returnType => 'List<$typeArgShortName>';
+}
+
 /// Setter projection for WinRT struct setters.
 final class StructSetterProjection extends SetterProjection {
   StructSetterProjection(super.method, super.vtableOffset);
@@ -85,7 +101,7 @@ final class StructListParameterProjection
   String get nativeStructName => typeArgProjection.nativeType;
 
   @override
-  String get type => 'List<${typeArgProjection.typeIdentifier.shortName}>';
+  String get type => 'List<$typeArgShortName>';
 
   @override
   String get passArrayPreamble => '''

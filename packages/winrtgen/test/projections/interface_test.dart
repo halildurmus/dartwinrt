@@ -26,7 +26,7 @@ void main() {
 
     test('from factory constructor throws if type is not found', () {
       expect(() => InterfaceProjection.from('Windows.Foo.IBar'),
-          throwsA(isA<Exception>()));
+          throwsA(isA<WinRTGenException>()));
     });
   });
 

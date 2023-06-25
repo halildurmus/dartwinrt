@@ -203,6 +203,22 @@ void main() {
       expect(parameter.localIdentifier, equals('valuesPtr'));
     });
 
+    test('projects List<Point> (FillArray)', () {
+      final methodProjection = MethodProjection.fromTypeAndMethodName(
+          'Windows.Media.Devices.Core.CameraIntrinsics', 'DistortPoints');
+      final parameter = methodProjection.parameters.last;
+      expect(parameter, isA<StructListParameterProjection>());
+      expect(parameter.type, equals('List<Point>'));
+      expect(parameter.preamble,
+          equals('final pResultsArray = calloc<NativePoint>(resultsSize);'));
+      expect(parameter.postamble, equalsIgnoringWhitespace('''
+      if (resultsSize > 0) {
+        results.addAll(pResultsArray.toList(length: resultsSize));
+      }
+      free(pResultsArray);'''));
+      expect(parameter.localIdentifier, equals('pResultsArray'));
+    });
+
     test('projects List<String> (FillArray - getMany)', () {
       final methodProjection = MethodProjection.fromTypeAndMethodName(
           'Windows.Storage.Pickers.FileExtensionVector', 'GetMany');
@@ -211,12 +227,11 @@ void main() {
       expect(parameter.type, equals('List<String>'));
       expect(parameter.preamble,
           equals('final pItemsArray = calloc<IntPtr>(itemsSize);'));
-      expect(
-          parameter.postamble,
-          equalsIgnoringWhitespace('if (retValuePtr.value > 0) {\n'
-              'items.addAll(pItemsArray.toList(length: retValuePtr.value));\n'
-              '}\n'
-              'free(pItemsArray);'));
+      expect(parameter.postamble, equalsIgnoringWhitespace('''
+      if (retValuePtr.value > 0) {
+        items.addAll(pItemsArray.toList(length: retValuePtr.value));
+      }
+      free(pItemsArray);'''));
       expect(parameter.localIdentifier, equals('pItemsArray'));
     });
 
@@ -228,12 +243,11 @@ void main() {
       expect(parameter.type, equals('List<int>'));
       expect(parameter.preamble,
           equals('final pValueArray = calloc<Uint8>(valueSize);'));
-      expect(
-          parameter.postamble,
-          equalsIgnoringWhitespace('if (valueSize > 0) {\n'
-              'value.addAll(pValueArray.toList(length: valueSize));\n'
-              '}\n'
-              'free(pValueArray);'));
+      expect(parameter.postamble, equalsIgnoringWhitespace('''
+      if (valueSize > 0) {
+        value.addAll(pValueArray.toList(length: valueSize));
+      }
+      free(pValueArray);'''));
       expect(parameter.localIdentifier, equals('pValueArray'));
     });
 
@@ -243,19 +257,16 @@ void main() {
       final parameter = methodProjection.parameters.last;
       expect(parameter, isA<DefaultListParameterProjection>());
       expect(parameter.type, equals('List<String>'));
-      expect(
-          parameter.preamble,
-          equalsIgnoringWhitespace('final itemsHandles = <int>[];\n'
-              'final pItemsArray = calloc<HSTRING>(items.length);\n'
-              'for (var i = 0; i < items.length; i++) {\n'
-              '  pItemsArray[i] = items.elementAt(i).toHString();\n'
-              '  itemsHandles.add(pItemsArray[i]);\n'
-              '}'));
-      expect(
-          parameter.postamble,
-          equalsIgnoringWhitespace(
-              'itemsHandles.forEach(WindowsDeleteString);\n'
-              'free(pItemsArray);'));
+      expect(parameter.preamble, equalsIgnoringWhitespace('''
+      final itemsHandles = <int>[];
+      final pItemsArray = calloc<HSTRING>(items.length);
+      for (var i = 0; i < items.length; i++) {
+        pItemsArray[i] = items.elementAt(i).toHString();
+        itemsHandles.add(pItemsArray[i]);
+      }'''));
+      expect(parameter.postamble, equalsIgnoringWhitespace('''
+      itemsHandles.forEach(WindowsDeleteString);
+      free(pItemsArray);'''));
       expect(parameter.localIdentifier, equals('pItemsArray'));
     });
 
@@ -265,18 +276,31 @@ void main() {
       final parameter = methodProjection.parameters.last;
       expect(parameter, isA<DefaultListParameterProjection>());
       expect(parameter.type, equals('List<String>'));
-      expect(
-          parameter.preamble,
-          equalsIgnoringWhitespace('final pValueSize = calloc<Uint32>();\n'
-              'final pValueArray = calloc<Pointer<IntPtr>>();'));
-      expect(
-          parameter.postamble,
-          equalsIgnoringWhitespace('if (pValueSize.value > 0) {\n'
-              'value.addAll(pValueArray.value.toList(length: pValueSize.value));\n'
-              '}\n'
-              'free(pValueSize);\n'
-              'free(pValueArray);'));
+      expect(parameter.preamble, equalsIgnoringWhitespace('''
+      final pValueSize = calloc<Uint32>();
+      final pValueArray = calloc<Pointer<IntPtr>>();'''));
+      expect(parameter.postamble, equalsIgnoringWhitespace('''
+      if (pValueSize.value > 0) {
+        value.addAll(pValueArray.value.toList(length: pValueSize.value));
+      }
+      free(pValueSize);
+      free(pValueArray);'''));
       expect(parameter.localIdentifier, equals('pValueArray'));
+    });
+
+    test('projects List<VirtualKey> (PassArray)', () {
+      final methodProjection = MethodProjection.fromTypeAndMethodName(
+          'Windows.Devices.Lights.ILampArray', 'SetColorsForKeys');
+      final parameter = methodProjection.parameters.last;
+      expect(parameter, isA<EnumListParameterProjection>());
+      expect(parameter.type, equals('List<VirtualKey>'));
+      expect(parameter.preamble, equalsIgnoringWhitespace('''
+      final pKeysArray = calloc<Int32>(keys.length);
+      for (var i = 0; i < keys.length; i++) {
+        pKeysArray[i] = keys.elementAt(i).value;
+      }'''));
+      expect(parameter.postamble, equals('free(pKeysArray);'));
+      expect(parameter.localIdentifier, equals('pKeysArray'));
     });
 
     test('projects Object', () {

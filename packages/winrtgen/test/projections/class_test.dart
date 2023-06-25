@@ -31,7 +31,7 @@ void main() {
 
     test('from factory constructor throws if type is not found', () {
       expect(() => ClassProjection.from('Windows.Foo.Bar'),
-          throwsA(isA<Exception>()));
+          throwsA(isA<WinRTGenException>()));
     });
   });
 

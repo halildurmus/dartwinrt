@@ -24,7 +24,7 @@ void main() {
 
     test('from factory constructor throws if type is not found', () {
       expect(() => NativeStructProjection.from('Windows.Foo.Bar'),
-          throwsA(isA<Exception>()));
+          throwsA(isA<WinRTGenException>()));
     });
   });
 
@@ -38,7 +38,7 @@ void main() {
 
     test('from factory constructor throws if type is not found', () {
       expect(() => StructProjection.from('Windows.Foo.Bar'),
-          throwsA(isA<Exception>()));
+          throwsA(isA<WinRTGenException>()));
     });
   });
 

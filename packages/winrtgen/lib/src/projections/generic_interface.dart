@@ -44,19 +44,12 @@ final class GenericInterfaceProjection extends InterfaceProjection {
   factory GenericInterfaceProjection.from(
       String fullyQualifiedType, TypeArg typeArg1,
       [TypeArg? typeArg2]) {
-    try {
-      final typeDef = getMetadataForType(fullyQualifiedType);
-      if (fullyQualifiedType.endsWith('`2')) {
-        if (typeArg2 == null) throw ArgumentError.notNull('typeArg2');
-        return GenericInterfaceProjection._(typeDef, [typeArg1, typeArg2]);
-      }
-      return GenericInterfaceProjection._(typeDef, [typeArg1]);
-    } catch (_) {
-      final typeArgs = [typeArg1, if (typeArg2 != null) typeArg2];
-      print(
-          'Failed to project generic interface "$fullyQualifiedType<$typeArgs>".');
-      rethrow;
+    final typeDef = getMetadataForType(fullyQualifiedType);
+    if (fullyQualifiedType.endsWith('`2')) {
+      if (typeArg2 == null) throw ArgumentError.notNull('typeArg2');
+      return GenericInterfaceProjection._(typeDef, [typeArg1, typeArg2]);
     }
+    return GenericInterfaceProjection._(typeDef, [typeArg1]);
   }
 
   String _formatTypeArg(TypeArg typeArg) => switch (typeArg) {

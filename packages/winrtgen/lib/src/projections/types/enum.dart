@@ -8,6 +8,7 @@ import '../getter.dart';
 import '../method.dart';
 import '../parameter.dart';
 import '../setter.dart';
+import 'default.dart';
 
 mixin _EnumMixin on MethodProjection {
   @override
@@ -43,6 +44,35 @@ final class EnumGetterProjection extends GetterProjection with _EnumMixin {
   EnumGetterProjection(super.method, super.vtableOffset);
 }
 
+/// Method projection for methods that return `List<T extends WinRTEnum>`.
+final class EnumListMethodProjection extends DefaultListMethodProjection {
+  EnumListMethodProjection(super.method, super.vtableOffset);
+
+  @override
+  String get returnType => 'List<$typeArgShortName>';
+
+  @override
+  String get returnStatement => '''
+return retValuePtr.value
+  .toList(length: $sizeIdentifier.value)
+  .map($typeArgShortName.from)
+  .toList();''';
+}
+
+/// Getter projection for `List<T extends WinRTEnum>` getters.
+final class EnumListGetterProjection extends DefaultListGetterProjection {
+  EnumListGetterProjection(super.method, super.vtableOffset);
+
+  @override
+  String get returnType => 'List<$typeArgShortName>';
+
+  String get returnStatement => '''
+return retValuePtr.value
+  .toList(length: $sizeIdentifier.value)
+  .map($typeArgShortName.from)
+  .toList();''';
+}
+
 /// Setter projection for WinRT enum setters.
 final class EnumSetterProjection extends SetterProjection {
   EnumSetterProjection(super.method, super.vtableOffset);
@@ -67,4 +97,27 @@ final class EnumParameterProjection extends ParameterProjection {
 
   @override
   String get localIdentifier => '$identifier.value';
+}
+
+/// Parameter projection for `List<T extends WinRTEnum>` parameters.
+final class EnumListParameterProjection extends DefaultListParameterProjection {
+  EnumListParameterProjection(super.parameter);
+
+  @override
+  String get type => 'List<$typeArgShortName>';
+
+  @override
+  String get passArrayPreamble => '''
+    final $localIdentifier = calloc<${typeArgProjection.nativeType}>($paramName.length);
+    for (var i = 0; i < $paramName.length; i++) {
+      $localIdentifier[i] = $paramName.elementAt(i).value;
+    }
+''';
+
+  @override
+  String get fillArrayPostamble => '''
+    if ($fillArraySizeVariable > 0) {
+      $paramName.addAll($localIdentifier.toList(length: $fillArraySizeVariable).map(enumCreator));
+    }
+    free($localIdentifier);''';
 }
