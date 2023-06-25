@@ -49,4 +49,12 @@ extension PointerNativeDirect3DMultisampleDescriptionConversion
     final ref = this.ref;
     return Direct3DMultisampleDescription(ref.count, ref.quality);
   }
+
+  /// Creates a `List<Direct3DMultisampleDescription>` from
+  /// `Pointer<NativeDirect3DMultisampleDescription>`.
+  ///
+  /// [length] must not be greater than the number of elements stored inside the
+  /// `Pointer<NativeDirect3DMultisampleDescription>`.
+  List<Direct3DMultisampleDescription> toList({int length = 1}) =>
+      [for (var i = 0; i < length; i++) elementAt(i).toDart()];
 }

@@ -48,4 +48,11 @@ extension PointerNativeTextSegmentConversion on Pointer<NativeTextSegment> {
     final ref = this.ref;
     return TextSegment(ref.startPosition, ref.length);
   }
+
+  /// Creates a `List<TextSegment>` from `Pointer<NativeTextSegment>`.
+  ///
+  /// [length] must not be greater than the number of elements stored inside the
+  /// `Pointer<NativeTextSegment>`.
+  List<TextSegment> toList({int length = 1}) =>
+      [for (var i = 0; i < length; i++) elementAt(i).toDart()];
 }

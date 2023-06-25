@@ -51,4 +51,11 @@ extension PointerNativeColorConversion on Pointer<NativeColor> {
     final ref = this.ref;
     return Color(ref.a, ref.r, ref.g, ref.b);
   }
+
+  /// Creates a `List<Color>` from `Pointer<NativeColor>`.
+  ///
+  /// [length] must not be greater than the number of elements stored inside the
+  /// `Pointer<NativeColor>`.
+  List<Color> toList({int length = 1}) =>
+      [for (var i = 0; i < length; i++) elementAt(i).toDart()];
 }

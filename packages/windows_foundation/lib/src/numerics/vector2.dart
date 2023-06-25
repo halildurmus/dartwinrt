@@ -44,4 +44,11 @@ extension PointerNativeVector2Conversion on Pointer<NativeVector2> {
     final ref = this.ref;
     return Vector2(ref.x, ref.y);
   }
+
+  /// Creates a `List<Vector2>` from `Pointer<NativeVector2>`.
+  ///
+  /// [length] must not be greater than the number of elements stored inside the
+  /// `Pointer<NativeVector2>`.
+  List<Vector2> toList({int length = 1}) =>
+      [for (var i = 0; i < length; i++) elementAt(i).toDart()];
 }

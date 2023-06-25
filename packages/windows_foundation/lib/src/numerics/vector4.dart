@@ -52,4 +52,11 @@ extension PointerNativeVector4Conversion on Pointer<NativeVector4> {
     final ref = this.ref;
     return Vector4(ref.x, ref.y, ref.z, ref.w);
   }
+
+  /// Creates a `List<Vector4>` from `Pointer<NativeVector4>`.
+  ///
+  /// [length] must not be greater than the number of elements stored inside the
+  /// `Pointer<NativeVector4>`.
+  List<Vector4> toList({int length = 1}) =>
+      [for (var i = 0; i < length; i++) elementAt(i).toDart()];
 }

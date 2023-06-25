@@ -56,4 +56,12 @@ extension PointerNativeBitmapPlaneDescriptionConversion
     return BitmapPlaneDescription(
         ref.startIndex, ref.width, ref.height, ref.stride);
   }
+
+  /// Creates a `List<BitmapPlaneDescription>` from
+  /// `Pointer<NativeBitmapPlaneDescription>`.
+  ///
+  /// [length] must not be greater than the number of elements stored inside the
+  /// `Pointer<NativeBitmapPlaneDescription>`.
+  List<BitmapPlaneDescription> toList({int length = 1}) =>
+      [for (var i = 0; i < length; i++) elementAt(i).toDart()];
 }

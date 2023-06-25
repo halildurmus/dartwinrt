@@ -161,6 +161,13 @@ extension PointerNativeRectConversion on Pointer<NativeRect> {
     final ref = this.ref;
     return Rect(ref.x, ref.y, ref.width, ref.height);
   }
+
+  /// Creates a `List<Rect>` from `Pointer<NativeRect>`.
+///
+/// [length] must not be greater than the number of elements stored inside the
+/// `Pointer<NativeRect>`.
+  List<Rect> toList({int length = 1}) =>
+      [for (var i = 0; i < length; i++) elementAt(i).toDart()];
 }
 '''));
     });

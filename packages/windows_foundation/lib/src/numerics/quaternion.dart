@@ -53,4 +53,11 @@ extension PointerNativeQuaternionConversion on Pointer<NativeQuaternion> {
     final ref = this.ref;
     return Quaternion(ref.x, ref.y, ref.z, ref.w);
   }
+
+  /// Creates a `List<Quaternion>` from `Pointer<NativeQuaternion>`.
+  ///
+  /// [length] must not be greater than the number of elements stored inside the
+  /// `Pointer<NativeQuaternion>`.
+  List<Quaternion> toList({int length = 1}) =>
+      [for (var i = 0; i < length; i++) elementAt(i).toDart()];
 }

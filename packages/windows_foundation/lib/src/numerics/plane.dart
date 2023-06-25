@@ -44,4 +44,11 @@ extension PointerNativePlaneConversion on Pointer<NativePlane> {
     final ref = this.ref;
     return Plane(ref.normal, ref.d);
   }
+
+  /// Creates a `List<Plane>` from `Pointer<NativePlane>`.
+  ///
+  /// [length] must not be greater than the number of elements stored inside the
+  /// `Pointer<NativePlane>`.
+  List<Plane> toList({int length = 1}) =>
+      [for (var i = 0; i < length; i++) elementAt(i).toDart()];
 }

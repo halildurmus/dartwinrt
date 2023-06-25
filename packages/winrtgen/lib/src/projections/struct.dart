@@ -216,6 +216,10 @@ final class StructProjection extends NativeStructProjection {
   String get extension {
     final toDartComment = wrapCommentText(
         'Converts this [Native$structName] to a Dart [$structName].');
+    final toListComment = wrapCommentText(
+        'Creates a `List<$structName>` from `Pointer<Native$structName>`. \n '
+        '[length] must not be greater than the number of elements stored '
+        'inside the `Pointer<Native$structName>`.');
     return '''
 /// @nodoc
 extension PointerNative${structName}Conversion on Pointer<Native$structName> {
@@ -224,6 +228,10 @@ extension PointerNative${structName}Conversion on Pointer<Native$structName> {
     final ref = this.ref;
     return $structName(${fieldProjections.map((f) => 'ref.${f.fieldName}').join(', ')});
   }
+
+  $toListComment
+  List<$structName> toList({int length = 1}) =>
+      [for (var i = 0; i < length; i++) elementAt(i).toDart()];
 }
 ''';
   }

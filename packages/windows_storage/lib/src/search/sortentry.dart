@@ -46,4 +46,11 @@ extension PointerNativeSortEntryConversion on Pointer<NativeSortEntry> {
     final ref = this.ref;
     return SortEntry(ref.propertyName, ref.ascendingOrder);
   }
+
+  /// Creates a `List<SortEntry>` from `Pointer<NativeSortEntry>`.
+  ///
+  /// [length] must not be greater than the number of elements stored inside the
+  /// `Pointer<NativeSortEntry>`.
+  List<SortEntry> toList({int length = 1}) =>
+      [for (var i = 0; i < length; i++) elementAt(i).toDart()];
 }

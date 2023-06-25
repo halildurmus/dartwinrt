@@ -43,4 +43,11 @@ extension PointerNativeSizeInt32Conversion on Pointer<NativeSizeInt32> {
     final ref = this.ref;
     return SizeInt32(ref.width, ref.height);
   }
+
+  /// Creates a `List<SizeInt32>` from `Pointer<NativeSizeInt32>`.
+  ///
+  /// [length] must not be greater than the number of elements stored inside the
+  /// `Pointer<NativeSizeInt32>`.
+  List<SizeInt32> toList({int length = 1}) =>
+      [for (var i = 0; i < length; i++) elementAt(i).toDart()];
 }

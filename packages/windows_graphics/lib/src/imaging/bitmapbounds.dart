@@ -52,4 +52,11 @@ extension PointerNativeBitmapBoundsConversion on Pointer<NativeBitmapBounds> {
     final ref = this.ref;
     return BitmapBounds(ref.x, ref.y, ref.width, ref.height);
   }
+
+  /// Creates a `List<BitmapBounds>` from `Pointer<NativeBitmapBounds>`.
+  ///
+  /// [length] must not be greater than the number of elements stored inside the
+  /// `Pointer<NativeBitmapBounds>`.
+  List<BitmapBounds> toList({int length = 1}) =>
+      [for (var i = 0; i < length; i++) elementAt(i).toDart()];
 }

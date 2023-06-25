@@ -45,4 +45,12 @@ extension PointerNativeAutomationAnnotationTypeRegistrationConversion
     final ref = this.ref;
     return AutomationAnnotationTypeRegistration(ref.localId);
   }
+
+  /// Creates a `List<AutomationAnnotationTypeRegistration>` from
+  /// `Pointer<NativeAutomationAnnotationTypeRegistration>`.
+  ///
+  /// [length] must not be greater than the number of elements stored inside the
+  /// `Pointer<NativeAutomationAnnotationTypeRegistration>`.
+  List<AutomationAnnotationTypeRegistration> toList({int length = 1}) =>
+      [for (var i = 0; i < length; i++) elementAt(i).toDart()];
 }

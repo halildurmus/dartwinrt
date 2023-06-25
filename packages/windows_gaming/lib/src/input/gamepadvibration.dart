@@ -58,4 +58,12 @@ extension PointerNativeGamepadVibrationConversion
     return GamepadVibration(
         ref.leftMotor, ref.rightMotor, ref.leftTrigger, ref.rightTrigger);
   }
+
+  /// Creates a `List<GamepadVibration>` from
+  /// `Pointer<NativeGamepadVibration>`.
+  ///
+  /// [length] must not be greater than the number of elements stored inside the
+  /// `Pointer<NativeGamepadVibration>`.
+  List<GamepadVibration> toList({int length = 1}) =>
+      [for (var i = 0; i < length; i++) elementAt(i).toDart()];
 }
