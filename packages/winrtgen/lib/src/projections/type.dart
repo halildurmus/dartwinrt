@@ -280,5 +280,7 @@ final class TypeProjection {
   }
 
   @override
-  String toString() => 'TypeProjection($typeIdentifier)';
+  String toString() =>
+      'TypeProjection($typeIdentifier, isParameter: $isParameter, '
+      'nativeType: $nativeType, dartType: $dartType)';
 }

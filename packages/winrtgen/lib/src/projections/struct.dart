@@ -85,12 +85,21 @@ final class NativeStructProjection {
   List<StructFieldProjection> get fieldProjections =>
       typeDef.fields.map(StructFieldProjection.new).toList();
 
-  @override
-  String toString() => '''
+  String get projection => '''
 $classHeader {
   ${fieldProjections.join('\n')}
 }
 ''';
+
+  @override
+  String toString() {
+    try {
+      return projection;
+    } catch (_) {
+      print('Failed to project native struct "${typeDef.fullyQualifiedName}".');
+      rethrow;
+    }
+  }
 }
 
 /// Represents a Dart projection of a WinRT struct [TypeDef] as a Dart class.
@@ -219,8 +228,7 @@ extension PointerNative${structName}Conversion on Pointer<Native$structName> {
 ''';
   }
 
-  @override
-  String toString() => '''
+  String get projection => '''
 $structFileHeader
 $importHeader
 
@@ -237,4 +245,14 @@ $classHeader {
 
 $extension
 ''';
+
+  @override
+  String toString() {
+    try {
+      return projection;
+    } catch (_) {
+      print('Failed to project struct "${typeDef.fullyQualifiedName}".');
+      rethrow;
+    }
+  }
 }

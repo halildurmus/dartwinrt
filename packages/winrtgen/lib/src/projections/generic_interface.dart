@@ -52,7 +52,9 @@ final class GenericInterfaceProjection extends InterfaceProjection {
       }
       return GenericInterfaceProjection._(typeDef, [typeArg1]);
     } catch (_) {
-      print('Failed to project generic interface "$fullyQualifiedType".');
+      final typeArgs = [typeArg1, if (typeArg2 != null) typeArg2];
+      print(
+          'Failed to project generic interface "$fullyQualifiedType<$typeArgs>".');
       rethrow;
     }
   }
@@ -334,8 +336,7 @@ final class GenericInterfaceProjection extends InterfaceProjection {
     return methodProjections.map((method) => '@override\n$method').join('\n');
   }
 
-  @override
-  String toString() => '''
+  String get projection => '''
   $classHeader {
   $namedConstructor
 
@@ -344,4 +345,15 @@ final class GenericInterfaceProjection extends InterfaceProjection {
   $formattedMethodProjections
 }
 ''';
+
+  @override
+  String toString() {
+    try {
+      return projection;
+    } catch (_) {
+      print(
+          'Failed to project generic interface "$shortName<$formattedTypeArgs>".');
+      rethrow;
+    }
+  }
 }

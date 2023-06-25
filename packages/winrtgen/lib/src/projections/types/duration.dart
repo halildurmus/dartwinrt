@@ -51,7 +51,8 @@ final class DurationListMethodProjection extends DefaultListMethodProjection {
   String get returnStatement => '''
 return retValuePtr.value
   .toList(length: $sizeIdentifier.value)
-  .map((value) => Duration(microseconds: value ~/ 10));''';
+  .map((value) => Duration(microseconds: value ~/ 10))
+  .toList();''';
 }
 
 /// Getter projection for `List<Duration>` getters.
@@ -65,7 +66,8 @@ final class DurationListGetterProjection extends DefaultListGetterProjection {
   String get returnStatement => '''
 return retValuePtr.value
   .toList(length: $sizeIdentifier.value)
-  .map((value) => Duration(microseconds: value ~/ 10));''';
+  .map((value) => Duration(microseconds: value ~/ 10))
+  .toList();''';
 }
 
 /// Setter projection for `Duration` setters.

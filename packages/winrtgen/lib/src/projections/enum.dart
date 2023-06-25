@@ -68,8 +68,13 @@ final class EnumProjection {
   /// found.
   factory EnumProjection.from(String fullyQualifiedType,
       {String comment = ''}) {
-    final typeDef = getMetadataForType(fullyQualifiedType);
-    return EnumProjection.create(typeDef, comment: comment);
+    try {
+      final typeDef = getMetadataForType(fullyQualifiedType);
+      return EnumProjection.create(typeDef, comment: comment);
+    } catch (_) {
+      print('Failed to project enum "$fullyQualifiedType".');
+      rethrow;
+    }
   }
 
   String get header => enumFileHeader;
@@ -131,8 +136,7 @@ final class EnumProjection {
               value, 'value', 'No enum value with that value'));
 ''';
 
-  @override
-  String toString() => '''
+  String get projection => '''
 $header
 $importHeader
 
@@ -147,6 +151,16 @@ $classHeader {
   $factoryConstructor
 }
 ''';
+
+  @override
+  String toString() {
+    try {
+      return projection;
+    } catch (_) {
+      print('Failed to project enum "${typeDef.fullyQualifiedName}".');
+      rethrow;
+    }
+  }
 }
 
 /// A static enum constant.
@@ -179,8 +193,13 @@ final class FlagsEnumProjection extends EnumProjection {
   /// found.
   factory FlagsEnumProjection.from(String fullyQualifiedType,
       {String comment = ''}) {
-    final typeDef = getMetadataForType(fullyQualifiedType);
-    return FlagsEnumProjection(typeDef, comment: comment);
+    try {
+      final typeDef = getMetadataForType(fullyQualifiedType);
+      return FlagsEnumProjection(typeDef, comment: comment);
+    } catch (_) {
+      print('Failed to project flags enum "$fullyQualifiedType".');
+      rethrow;
+    }
   }
 
   @override
@@ -222,8 +241,7 @@ final class FlagsEnumProjection extends EnumProjection {
       $enumName(value | other.value);
 ''';
 
-  @override
-  String toString() => '''
+  String get projection => '''
 $header
 $importHeader
 
@@ -242,4 +260,14 @@ $classHeader {
   $orOperator
 }
 ''';
+
+  @override
+  String toString() {
+    try {
+      return projection;
+    } catch (_) {
+      print('Failed to project flags enum "${typeDef.fullyQualifiedName}".');
+      rethrow;
+    }
+  }
 }
