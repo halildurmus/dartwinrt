@@ -96,8 +96,7 @@ class ClassProjection extends InterfaceProjection {
               .map(StaticMethodProjection.new)
       ];
 
-  @override
-  String toString() => '''
+  String get projection => '''
 $header
 $importHeader
 
@@ -113,6 +112,16 @@ $classHeader {
   ${methodForwarders.join('\n')}
 }
 ''';
+
+  @override
+  String toString() {
+    try {
+      return projection;
+    } catch (_) {
+      print('Failed to project class "${typeDef.fullyQualifiedName}".');
+      rethrow;
+    }
+  }
 }
 
 final class FactoryConstructorProjection {

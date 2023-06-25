@@ -189,8 +189,7 @@ const IID_$shortName = ${quote(typeDef.iid)};
           .map((interface) => MethodForwardersProjection(interface, this))
           .toList();
 
-  @override
-  String toString() => '''
+  String get projection => '''
 $header
 $importHeader
 $iidConstant
@@ -206,4 +205,14 @@ $classHeader {
   ${methodForwarders.join('\n')}
 }
 ''';
+
+  @override
+  String toString() {
+    try {
+      return projection;
+    } catch (_) {
+      print('Failed to project interface "${typeDef.fullyQualifiedName}".');
+      rethrow;
+    }
+  }
 }

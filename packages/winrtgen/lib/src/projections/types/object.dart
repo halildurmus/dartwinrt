@@ -7,7 +7,6 @@ import '../getter.dart';
 import '../method.dart';
 import '../parameter.dart';
 import '../setter.dart';
-import '../type.dart';
 import 'default.dart';
 
 mixin _ObjectMixin on MethodProjection {
@@ -118,18 +117,10 @@ final class ObjectGetterProjection extends GetterProjection with _ObjectMixin {
 final class ObjectListMethodProjection extends DefaultListMethodProjection {
   ObjectListMethodProjection(super.method, super.vtableOffset);
 
-  TypeProjection get typeArgProjection {
-    final typeIdentifier = method.returnType.typeIdentifier;
-    return typeIdentifier.isReferenceType
-        ? TypeProjection(dereferenceType(dereferenceType(typeIdentifier)))
-        : TypeProjection(dereferenceType(typeIdentifier));
-  }
-
-  String get shortName => typeArgProjection.typeIdentifier.shortName;
-
   @override
-  String get returnType =>
-      typeArgProjection.isObjectType ? 'List<Object?>' : 'List<$shortName>';
+  String get returnType => typeArgProjection.isObjectType
+      ? 'List<Object?>'
+      : 'List<$typeArgShortName>';
 
   @override
   String get returnStatement {
@@ -139,7 +130,7 @@ final class ObjectListMethodProjection extends DefaultListMethodProjection {
 
     return '''
 return retValuePtr.value
-  .toList($shortName.fromPtr, length: $sizeIdentifier.value);''';
+  .toList($typeArgShortName.fromPtr, length: $sizeIdentifier.value);''';
   }
 }
 
@@ -148,18 +139,10 @@ return retValuePtr.value
 final class ObjectListGetterProjection extends DefaultListGetterProjection {
   ObjectListGetterProjection(super.method, super.vtableOffset);
 
-  TypeProjection get typeArgProjection {
-    final typeIdentifier = method.returnType.typeIdentifier;
-    return typeIdentifier.isReferenceType
-        ? TypeProjection(dereferenceType(dereferenceType(typeIdentifier)))
-        : TypeProjection(dereferenceType(typeIdentifier));
-  }
-
-  String get shortName => typeArgProjection.typeIdentifier.shortName;
-
   @override
-  String get returnType =>
-      typeArgProjection.isObjectType ? 'List<Object?>' : 'List<$shortName>';
+  String get returnType => typeArgProjection.isObjectType
+      ? 'List<Object?>'
+      : 'List<$typeArgShortName>';
 
   @override
   String get returnStatement {
@@ -169,7 +152,7 @@ final class ObjectListGetterProjection extends DefaultListGetterProjection {
 
     return '''
 return retValuePtr.value
-  .toList($shortName.fromPtr, length: $sizeIdentifier.value);''';
+  .toList($typeArgShortName.fromPtr, length: $sizeIdentifier.value);''';
   }
 }
 
@@ -253,11 +236,10 @@ final class ObjectListParameterProjection
     extends DefaultListParameterProjection {
   ObjectListParameterProjection(super.parameter);
 
-  String get shortName => typeArgProjection.typeIdentifier.shortName;
-
   @override
-  String get type =>
-      typeArgProjection.isObjectType ? 'List<Object?>' : 'List<$shortName>';
+  String get type => typeArgProjection.isObjectType
+      ? 'List<Object?>'
+      : 'List<$typeArgShortName>';
 
   @override
   String get fillArrayPreamble =>
@@ -289,7 +271,7 @@ final class ObjectListParameterProjection
   String get fillArrayPostamble {
     final addAll = typeArgProjection.isObjectType
         ? '$paramName.addAll($localIdentifier.toObjectList(length: $fillArraySizeVariable));'
-        : '$paramName.addAll($localIdentifier.toList($shortName.fromPtr, length: $fillArraySizeVariable));';
+        : '$paramName.addAll($localIdentifier.toList($typeArgShortName.fromPtr, length: $fillArraySizeVariable));';
     return '''
     if ($fillArraySizeVariable > 0) {
       $addAll
@@ -306,7 +288,7 @@ final class ObjectListParameterProjection
       else
         '''
     $paramName.addAll($localIdentifier.value
-        .toList($shortName.fromPtr, length: $sizeIdentifier.value));''',
+        .toList($typeArgShortName.fromPtr, length: $sizeIdentifier.value));''',
       '}',
       'free($sizeIdentifier);',
       'free($localIdentifier);',

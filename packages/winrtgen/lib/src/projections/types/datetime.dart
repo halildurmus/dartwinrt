@@ -51,7 +51,8 @@ final class DateTimeListMethodProjection extends DefaultListMethodProjection {
   String get returnStatement => '''
 return retValuePtr.value
   .toList(length: $sizeIdentifier.value)
-  .map((value) => DateTime.utc(1601, 01, 01).add(Duration(microseconds: value ~/ 10)));''';
+  .map((value) => DateTime.utc(1601, 01, 01).add(Duration(microseconds: value ~/ 10)))
+  .toList();''';
 }
 
 /// Getter projection for `List<DateTime>` getters.
@@ -65,7 +66,8 @@ final class DateTimeListGetterProjection extends DefaultListGetterProjection {
   String get returnStatement => '''
 return retValuePtr.value
   .toList(length: $sizeIdentifier.value)
-  .map((value) => DateTime.utc(1601, 01, 01).add(Duration(microseconds: value ~/ 10)));''';
+  .map((value) => DateTime.utc(1601, 01, 01).add(Duration(microseconds: value ~/ 10)))
+  .toList();''';
 }
 
 /// Setter projection for `DateTime` setters.

@@ -60,6 +60,8 @@ base class DefaultListMethodProjection extends MethodProjection
   @override
   String get returnType => 'List<${typeArgProjection.dartType}>';
 
+  String get typeArgShortName => typeArgProjection.typeIdentifier.shortName;
+
   String get sizeIdentifier => 'pRetValueSize';
 
   String get retValuePtr => returnTypeProjection.nativeType;
@@ -92,6 +94,8 @@ base class DefaultListGetterProjection extends GetterProjection
 
   @override
   String get returnType => 'List<${typeArgProjection.dartType}>';
+
+  String get typeArgShortName => typeArgProjection.typeIdentifier.shortName;
 
   String get sizeIdentifier => 'pRetValueSize';
 
@@ -171,6 +175,8 @@ base class DefaultListParameterProjection extends ParameterProjection {
   String get sizeParamName => stripLeadingUnderscores(sizeParam.name);
 
   String get paramName => parameter.name;
+
+  String get typeArgShortName => typeArgProjection.typeIdentifier.shortName;
 
   bool get isFillArrayStyleParam =>
       sizeParam.isOutParam && !sizeParam.typeIdentifier.isPointerType;
