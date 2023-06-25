@@ -1,3 +1,7 @@
+## 0.0.9
+
+ - **FEAT**: add `toList` extension method to structs ([#279](https://github.com/dart-windows/dartwinrt/issues/279)). ([dd00ee32](https://github.com/dart-windows/dartwinrt/commit/dd00ee32b03d10aa1dcf95805e821921c433a184))
+
 ## 0.0.8
 
  - **FEAT**: support `double` types in collections ([#262](https://github.com/dart-windows/dartwinrt/issues/262)). ([78dd2882](https://github.com/dart-windows/dartwinrt/commit/78dd28825f510417c2ca45e98a4c425b5063f3b5))

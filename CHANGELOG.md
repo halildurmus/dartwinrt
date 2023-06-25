@@ -3,6 +3,90 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2023-06-25
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - There are no breaking changes in this release.
+
+Packages with other changes:
+
+ - [`windows_applicationmodel` - `v0.0.5`](#windows_applicationmodel---v005)
+ - [`windows_data` - `v0.0.2`](#windows_data---v002)
+ - [`windows_devices` - `v0.0.3`](#windows_devices---v003)
+ - [`windows_foundation` - `v0.0.9`](#windows_foundation---v009)
+ - [`windows_gaming` - `v0.0.2`](#windows_gaming---v002)
+ - [`windows_graphics` - `v0.0.5`](#windows_graphics---v005)
+ - [`windows_networking` - `v0.0.2`](#windows_networking---v002)
+ - [`windows_storage` - `v0.0.3`](#windows_storage---v003)
+ - [`windows_ui` - `v0.0.4`](#windows_ui---v004)
+ - [`windows_system` - `v0.0.4+2`](#windows_system---v0042)
+ - [`windows_security` - `v0.0.2+3`](#windows_security---v0023)
+ - [`windows_ai` - `v0.0.2+2`](#windows_ai---v0022)
+ - [`windows_media` - `v0.0.3+2`](#windows_media---v0032)
+ - [`windows_globalization` - `v0.0.1+3`](#windows_globalization---v0013)
+ - [`windows_management` - `v0.0.1+2`](#windows_management---v0012)
+ - [`windows_services` - `v0.0.1+2`](#windows_services---v0012)
+ - [`windows_perception` - `v0.0.1+2`](#windows_perception---v0012)
+ - [`windows_web` - `v0.0.1+2`](#windows_web---v0012)
+
+Packages with dependency updates only:
+
+> Packages listed below depend on other packages in this workspace that have had changes. Their versions have been incremented to bump the minimum dependency versions of the packages they depend upon in this project.
+
+ - `windows_system` - `v0.0.4+2`
+ - `windows_security` - `v0.0.2+3`
+ - `windows_ai` - `v0.0.2+2`
+ - `windows_media` - `v0.0.3+2`
+ - `windows_globalization` - `v0.0.1+3`
+ - `windows_management` - `v0.0.1+2`
+ - `windows_services` - `v0.0.1+2`
+ - `windows_perception` - `v0.0.1+2`
+ - `windows_web` - `v0.0.1+2`
+
+---
+
+#### `windows_applicationmodel` - `v0.0.5`
+
+ - **FEAT**: add `toList` extension method to structs ([#279](https://github.com/dart-windows/dartwinrt/issues/279)). ([dd00ee32](https://github.com/dart-windows/dartwinrt/commit/dd00ee32b03d10aa1dcf95805e821921c433a184))
+
+#### `windows_data` - `v0.0.2`
+
+ - **FEAT**: add `toList` extension method to structs ([#279](https://github.com/dart-windows/dartwinrt/issues/279)). ([dd00ee32](https://github.com/dart-windows/dartwinrt/commit/dd00ee32b03d10aa1dcf95805e821921c433a184))
+
+#### `windows_devices` - `v0.0.3`
+
+ - **FEAT**: add `toList` extension method to structs ([#279](https://github.com/dart-windows/dartwinrt/issues/279)). ([dd00ee32](https://github.com/dart-windows/dartwinrt/commit/dd00ee32b03d10aa1dcf95805e821921c433a184))
+
+#### `windows_foundation` - `v0.0.9`
+
+ - **FEAT**: add `toList` extension method to structs ([#279](https://github.com/dart-windows/dartwinrt/issues/279)). ([dd00ee32](https://github.com/dart-windows/dartwinrt/commit/dd00ee32b03d10aa1dcf95805e821921c433a184))
+
+#### `windows_gaming` - `v0.0.2`
+
+ - **FEAT**: add `toList` extension method to structs ([#279](https://github.com/dart-windows/dartwinrt/issues/279)). ([dd00ee32](https://github.com/dart-windows/dartwinrt/commit/dd00ee32b03d10aa1dcf95805e821921c433a184))
+
+#### `windows_graphics` - `v0.0.5`
+
+ - **FEAT**: add `toList` extension method to structs ([#279](https://github.com/dart-windows/dartwinrt/issues/279)). ([dd00ee32](https://github.com/dart-windows/dartwinrt/commit/dd00ee32b03d10aa1dcf95805e821921c433a184))
+
+#### `windows_networking` - `v0.0.2`
+
+ - **FEAT**: add `toList` extension method to structs ([#279](https://github.com/dart-windows/dartwinrt/issues/279)). ([dd00ee32](https://github.com/dart-windows/dartwinrt/commit/dd00ee32b03d10aa1dcf95805e821921c433a184))
+
+#### `windows_storage` - `v0.0.3`
+
+ - **FEAT**: add `toList` extension method to structs ([#279](https://github.com/dart-windows/dartwinrt/issues/279)). ([dd00ee32](https://github.com/dart-windows/dartwinrt/commit/dd00ee32b03d10aa1dcf95805e821921c433a184))
+
+#### `windows_ui` - `v0.0.4`
+
+ - **FEAT**: add `toList` extension method to structs ([#279](https://github.com/dart-windows/dartwinrt/issues/279)). ([dd00ee32](https://github.com/dart-windows/dartwinrt/commit/dd00ee32b03d10aa1dcf95805e821921c433a184))
+
+
 ## 2023-06-22
 
 ### Changes

@@ -1,7 +1,7 @@
 name: windows_storage
 description: Provides access to WinRT APIs from the Windows.Storage namespace
   using FFI.
-version: 0.0.2+1
+version: 0.0.3
 homepage: https://win32.pub
 repository: https://github.com/dart-windows/dartwinrt/tree/main/packages/windows_storage
 issue_tracker: https://github.com/dart-windows/dartwinrt/issues?q=is%3Aopen+is%3Aissue+label%3A%22pkg%3A+windows_storage%22
@@ -22,9 +22,9 @@ platforms:
 dependencies:
   ffi: ^2.0.1
   win32: ^5.0.0
-  windows_data: ^0.0.1
-  windows_foundation: ^0.0.2
-  windows_system: ^0.0.1
+  windows_data: ^0.0.2
+  windows_foundation: ^0.0.9
+  windows_system: ^0.0.4+2
 
 dev_dependencies:
   test: ^1.24.1
