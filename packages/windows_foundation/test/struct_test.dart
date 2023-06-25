@@ -13,11 +13,6 @@ import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
 void main() {
-  if (!isWindowsRuntimeAvailable()) {
-    print('Skipping tests because Windows Runtime is not available.');
-    return;
-  }
-
   group('NativePoint', () {
     test('toDart', () {
       final nativePoint = calloc<NativePoint>();
