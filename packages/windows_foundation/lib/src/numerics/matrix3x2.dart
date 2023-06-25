@@ -64,4 +64,11 @@ extension PointerNativeMatrix3x2Conversion on Pointer<NativeMatrix3x2> {
     final ref = this.ref;
     return Matrix3x2(ref.m11, ref.m12, ref.m21, ref.m22, ref.m31, ref.m32);
   }
+
+  /// Creates a `List<Matrix3x2>` from `Pointer<NativeMatrix3x2>`.
+  ///
+  /// [length] must not be greater than the number of elements stored inside the
+  /// `Pointer<NativeMatrix3x2>`.
+  List<Matrix3x2> toList({int length = 1}) =>
+      [for (var i = 0; i < length; i++) elementAt(i).toDart()];
 }

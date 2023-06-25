@@ -46,4 +46,11 @@ extension PointerNativeRationalConversion on Pointer<NativeRational> {
     final ref = this.ref;
     return Rational(ref.numerator, ref.denominator);
   }
+
+  /// Creates a `List<Rational>` from `Pointer<NativeRational>`.
+  ///
+  /// [length] must not be greater than the number of elements stored inside the
+  /// `Pointer<NativeRational>`.
+  List<Rational> toList({int length = 1}) =>
+      [for (var i = 0; i < length; i++) elementAt(i).toDart()];
 }

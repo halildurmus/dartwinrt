@@ -45,4 +45,12 @@ extension PointerNativeAutomationRemoteOperationOperandIdConversion
     final ref = this.ref;
     return AutomationRemoteOperationOperandId(ref.value);
   }
+
+  /// Creates a `List<AutomationRemoteOperationOperandId>` from
+  /// `Pointer<NativeAutomationRemoteOperationOperandId>`.
+  ///
+  /// [length] must not be greater than the number of elements stored inside the
+  /// `Pointer<NativeAutomationRemoteOperationOperandId>`.
+  List<AutomationRemoteOperationOperandId> toList({int length = 1}) =>
+      [for (var i = 0; i < length; i++) elementAt(i).toDart()];
 }

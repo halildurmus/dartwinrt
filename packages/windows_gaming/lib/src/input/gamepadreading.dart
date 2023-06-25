@@ -88,4 +88,11 @@ extension PointerNativeGamepadReadingConversion
         ref.rightThumbstickX,
         ref.rightThumbstickY);
   }
+
+  /// Creates a `List<GamepadReading>` from `Pointer<NativeGamepadReading>`.
+  ///
+  /// [length] must not be greater than the number of elements stored inside the
+  /// `Pointer<NativeGamepadReading>`.
+  List<GamepadReading> toList({int length = 1}) =>
+      [for (var i = 0; i < length; i++) elementAt(i).toDart()];
 }

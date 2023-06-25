@@ -47,4 +47,12 @@ extension PointerNativeNetworkUsageStatesConversion
     final ref = this.ref;
     return NetworkUsageStates(ref.roaming, ref.shared);
   }
+
+  /// Creates a `List<NetworkUsageStates>` from
+  /// `Pointer<NativeNetworkUsageStates>`.
+  ///
+  /// [length] must not be greater than the number of elements stored inside the
+  /// `Pointer<NativeNetworkUsageStates>`.
+  List<NetworkUsageStates> toList({int length = 1}) =>
+      [for (var i = 0; i < length; i++) elementAt(i).toDart()];
 }

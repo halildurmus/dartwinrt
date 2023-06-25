@@ -61,4 +61,12 @@ extension PointerNativeDirect3DSurfaceDescriptionConversion
     return Direct3DSurfaceDescription(
         ref.width, ref.height, ref.format, ref.multisampleDescription);
   }
+
+  /// Creates a `List<Direct3DSurfaceDescription>` from
+  /// `Pointer<NativeDirect3DSurfaceDescription>`.
+  ///
+  /// [length] must not be greater than the number of elements stored inside the
+  /// `Pointer<NativeDirect3DSurfaceDescription>`.
+  List<Direct3DSurfaceDescription> toList({int length = 1}) =>
+      [for (var i = 0; i < length; i++) elementAt(i).toDart()];
 }

@@ -53,4 +53,11 @@ extension PointerNativePackageVersionConversion
     final ref = this.ref;
     return PackageVersion(ref.major, ref.minor, ref.build, ref.revision);
   }
+
+  /// Creates a `List<PackageVersion>` from `Pointer<NativePackageVersion>`.
+  ///
+  /// [length] must not be greater than the number of elements stored inside the
+  /// `Pointer<NativePackageVersion>`.
+  List<PackageVersion> toList({int length = 1}) =>
+      [for (var i = 0; i < length; i++) elementAt(i).toDart()];
 }

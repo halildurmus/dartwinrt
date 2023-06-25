@@ -50,4 +50,12 @@ extension PointerNativeBasicGeopositionConversion
     final ref = this.ref;
     return BasicGeoposition(ref.latitude, ref.longitude, ref.altitude);
   }
+
+  /// Creates a `List<BasicGeoposition>` from
+  /// `Pointer<NativeBasicGeoposition>`.
+  ///
+  /// [length] must not be greater than the number of elements stored inside the
+  /// `Pointer<NativeBasicGeoposition>`.
+  List<BasicGeoposition> toList({int length = 1}) =>
+      [for (var i = 0; i < length; i++) elementAt(i).toDart()];
 }

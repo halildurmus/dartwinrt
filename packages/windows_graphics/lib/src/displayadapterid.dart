@@ -47,4 +47,12 @@ extension PointerNativeDisplayAdapterIdConversion
     final ref = this.ref;
     return DisplayAdapterId(ref.lowPart, ref.highPart);
   }
+
+  /// Creates a `List<DisplayAdapterId>` from
+  /// `Pointer<NativeDisplayAdapterId>`.
+  ///
+  /// [length] must not be greater than the number of elements stored inside the
+  /// `Pointer<NativeDisplayAdapterId>`.
+  List<DisplayAdapterId> toList({int length = 1}) =>
+      [for (var i = 0; i < length; i++) elementAt(i).toDart()];
 }

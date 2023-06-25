@@ -44,4 +44,11 @@ extension PointerNativeSizeConversion on Pointer<NativeSize> {
     final ref = this.ref;
     return Size(ref.width, ref.height);
   }
+
+  /// Creates a `List<Size>` from `Pointer<NativeSize>`.
+  ///
+  /// [length] must not be greater than the number of elements stored inside the
+  /// `Pointer<NativeSize>`.
+  List<Size> toList({int length = 1}) =>
+      [for (var i = 0; i < length; i++) elementAt(i).toDart()];
 }
