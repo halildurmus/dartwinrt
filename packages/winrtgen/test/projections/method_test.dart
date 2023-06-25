@@ -8,11 +8,15 @@ import 'package:test/test.dart';
 import 'package:win32/win32.dart';
 import 'package:winrtgen/winrtgen.dart';
 
+import '../helpers.dart';
+
 void main() {
   if (!isWindowsRuntimeAvailable()) {
     print('Skipping tests because Windows Runtime is not available.');
     return;
   }
+
+  final windowsBuildNumber = getWindowsBuildNumber();
 
   group('MethodProjection', () {
     test('projects something', () {
@@ -27,7 +31,7 @@ void main() {
       expect(
           () =>
               MethodProjection.fromTypeAndMethodName('Windows.Foo.Bar', 'Foo'),
-          throwsA(isA<Exception>()));
+          throwsA(isA<WinRTGenException>()));
     });
   });
 
@@ -388,6 +392,30 @@ void main() {
       expect(projection.methodHeader, equals('List<int> getAsVectorView()'));
       expect(projection.toString(), contains('intType: IntType.int32'));
     });
+
+    if (windowsBuildNumber >= 20348) {
+      test('projects List<DisplayId>', () {
+        var projection = MethodProjection.fromTypeAndMethodName(
+            'Windows.Graphics.Display.IDisplayServicesStatics', 'FindAll');
+        expect(projection, isA<StructListMethodProjection>());
+        projection = projection as StructListMethodProjection;
+        expect(projection.retValuePtr, contains('Pointer<NativeDisplayId>'));
+        expect(projection.returnType, equals('List<DisplayId>'));
+        expect(
+            projection.nativePrototype,
+            equals(
+                'HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> retValueSize, Pointer<Pointer<NativeDisplayId>> retValuePtr)'));
+        expect(
+            projection.dartPrototype,
+            equals(
+                'int Function(VTablePointer lpVtbl, Pointer<Uint32> retValueSize, Pointer<Pointer<NativeDisplayId>> retValuePtr)'));
+        expect(projection.methodHeader, equals('List<DisplayId> findAll()'));
+        expect(
+            projection.returnStatement,
+            equals(
+                'return retValuePtr.value.toList(length: pRetValueSize.value);'));
+      });
+    }
 
     test('projects List<int>', () {
       var projection = MethodProjection.fromTypeAndMethodName(

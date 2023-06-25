@@ -60,8 +60,7 @@ abstract class MethodProjection {
           ObjectMethodProjection(method, vtableOffset),
         ProjectionType.dartPrimitive =>
           DefaultMethodProjection(method, vtableOffset),
-        ProjectionType.dartPrimitiveList ||
-        ProjectionType.structList =>
+        ProjectionType.dartPrimitiveList =>
           DefaultListMethodProjection(method, vtableOffset),
         ProjectionType.dateTime =>
           DateTimeMethodProjection(method, vtableOffset),
@@ -74,6 +73,8 @@ abstract class MethodProjection {
         ProjectionType.durationList =>
           DurationListMethodProjection(method, vtableOffset),
         ProjectionType.enum_ => EnumMethodProjection(method, vtableOffset),
+        ProjectionType.enumList =>
+          EnumListMethodProjection(method, vtableOffset),
         ProjectionType.genericEnum =>
           GenericEnumMethodProjection(method, vtableOffset),
         ProjectionType.genericObject =>
@@ -92,6 +93,8 @@ abstract class MethodProjection {
         ProjectionType.stringList =>
           StringListMethodProjection(method, vtableOffset),
         ProjectionType.struct => StructMethodProjection(method, vtableOffset),
+        ProjectionType.structList =>
+          StructListMethodProjection(method, vtableOffset),
         ProjectionType.uri => UriMethodProjection(method, vtableOffset),
         ProjectionType.uriList => UriListMethodProjection(method, vtableOffset),
         ProjectionType.vector => VectorMethodProjection(method, vtableOffset),

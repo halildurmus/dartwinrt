@@ -31,7 +31,7 @@ void main() {
       expect(
           () => GetterProjection.fromTypeAndMethodName(
               'Windows.Foo.IBar', 'get_Foo'),
-          throwsA(isA<Exception>()));
+          throwsA(isA<WinRTGenException>()));
     });
 
     test('fromTypeAndMethodName constructor throws if method name is invalid',
@@ -343,6 +343,32 @@ void main() {
       expect(projection.toString(),
           contains('return IPropertyValue.fromPtr(retValuePtr).value;'));
     });
+
+    if (windowsBuildNumber >= 20348) {
+      test('projects List<DigitalWindowMode>', () {
+        var projection = GetterProjection.fromTypeAndMethodName(
+            'Windows.Media.Devices.DigitalWindowControl', 'get_SupportedModes');
+        expect(projection, isA<EnumListGetterProjection>());
+        projection = projection as EnumListGetterProjection;
+        expect(projection.retValuePtr, equals('Pointer<Int32>'));
+        expect(projection.returnType, equals('List<DigitalWindowMode>'));
+        expect(
+            projection.nativePrototype,
+            equals(
+                'HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> retValueSize, Pointer<Pointer<Int32>> retValuePtr)'));
+        expect(
+            projection.dartPrototype,
+            equals(
+                'int Function(VTablePointer lpVtbl, Pointer<Uint32> retValueSize, Pointer<Pointer<Int32>> retValuePtr)'));
+        expect(projection.methodHeader,
+            equals('List<DigitalWindowMode> get supportedModes'));
+        expect(projection.returnStatement, equals('''
+return retValuePtr.value
+  .toList(length: pRetValueSize.value)
+  .map(DigitalWindowMode.from)
+  .toList();'''));
+      });
+    }
 
     if (windowsBuildNumber >= 20348) {
       test('projects List<String>', () {

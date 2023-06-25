@@ -27,7 +27,7 @@ void main() {
       expect(
           () => SetterProjection.fromTypeAndMethodName(
               'Windows.Foo.IBar', 'put_Foo'),
-          throwsA(isA<Exception>()));
+          throwsA(isA<WinRTGenException>()));
     });
 
     test('fromTypeAndMethodName constructor throws if method name is invalid',

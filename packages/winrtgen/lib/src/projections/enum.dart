@@ -46,15 +46,10 @@ final class EnumProjection {
   /// Returns the appropriate enum projection for the [typeDef] depending on
   /// whether it has the `System.FlagsAttribute` attribute.
   factory EnumProjection.create(TypeDef typeDef, {String comment = ''}) {
-    try {
-      final isFlagsEnum = typeDef.existsAttribute(flagsAttribute);
-      return isFlagsEnum
-          ? FlagsEnumProjection(typeDef, comment: comment)
-          : EnumProjection(typeDef, comment: comment);
-    } catch (_) {
-      print('Failed to project enum "${typeDef.fullyQualifiedName}".');
-      rethrow;
-    }
+    final isFlagsEnum = typeDef.existsAttribute(flagsAttribute);
+    return isFlagsEnum
+        ? FlagsEnumProjection(typeDef, comment: comment)
+        : EnumProjection(typeDef, comment: comment);
   }
 
   /// Attempts to create a [EnumProjection] from [fullyQualifiedType] by
@@ -68,13 +63,8 @@ final class EnumProjection {
   /// found.
   factory EnumProjection.from(String fullyQualifiedType,
       {String comment = ''}) {
-    try {
-      final typeDef = getMetadataForType(fullyQualifiedType);
-      return EnumProjection.create(typeDef, comment: comment);
-    } catch (_) {
-      print('Failed to project enum "$fullyQualifiedType".');
-      rethrow;
-    }
+    final typeDef = getMetadataForType(fullyQualifiedType);
+    return EnumProjection.create(typeDef, comment: comment);
   }
 
   String get header => enumFileHeader;
@@ -193,13 +183,8 @@ final class FlagsEnumProjection extends EnumProjection {
   /// found.
   factory FlagsEnumProjection.from(String fullyQualifiedType,
       {String comment = ''}) {
-    try {
-      final typeDef = getMetadataForType(fullyQualifiedType);
-      return FlagsEnumProjection(typeDef, comment: comment);
-    } catch (_) {
-      print('Failed to project flags enum "$fullyQualifiedType".');
-      rethrow;
-    }
+    final typeDef = getMetadataForType(fullyQualifiedType);
+    return FlagsEnumProjection(typeDef, comment: comment);
   }
 
   @override

@@ -24,13 +24,8 @@ class ClassProjection extends InterfaceProjection {
   /// found.
   factory ClassProjection.from(String fullyQualifiedType,
       {String comment = ''}) {
-    try {
-      final typeDef = getMetadataForType(fullyQualifiedType);
-      return ClassProjection(typeDef, comment: comment);
-    } catch (_) {
-      print('Failed to project class "$fullyQualifiedType".');
-      rethrow;
-    }
+    final typeDef = getMetadataForType(fullyQualifiedType);
+    return ClassProjection(typeDef, comment: comment);
   }
 
   // InterfaceProjection overrides

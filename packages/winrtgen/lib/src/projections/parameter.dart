@@ -51,6 +51,7 @@ abstract class ParameterProjection {
         ProjectionType.duration => DurationParameterProjection(param),
         ProjectionType.durationList => DurationListParameterProjection(param),
         ProjectionType.enum_ => EnumParameterProjection(param),
+        ProjectionType.enumList => EnumListParameterProjection(param),
         ProjectionType.genericEnum => GenericEnumParameterProjection(param),
         ProjectionType.genericEnumList =>
           GenericEnumListParameterProjection(param),

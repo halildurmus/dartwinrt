@@ -35,7 +35,7 @@ void main() {
       expect(
           () => GenericInterfaceProjection.from(
               'Windows.Foo.IBar', TypeArg.bool_),
-          throwsA(isA<Exception>()));
+          throwsA(isA<WinRTGenException>()));
     });
   });
 

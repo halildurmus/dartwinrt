@@ -22,8 +22,7 @@ abstract class GetterProjection extends PropertyProjection {
       return switch (projectionType) {
         ProjectionType.dartPrimitive =>
           DefaultGetterProjection(method, vtableOffset),
-        ProjectionType.dartPrimitiveList ||
-        ProjectionType.structList =>
+        ProjectionType.dartPrimitiveList =>
           DefaultListGetterProjection(method, vtableOffset),
         ProjectionType.dateTime =>
           DateTimeGetterProjection(method, vtableOffset),
@@ -36,6 +35,8 @@ abstract class GetterProjection extends PropertyProjection {
         ProjectionType.durationList =>
           DurationListGetterProjection(method, vtableOffset),
         ProjectionType.enum_ => EnumGetterProjection(method, vtableOffset),
+        ProjectionType.enumList =>
+          EnumListGetterProjection(method, vtableOffset),
         ProjectionType.genericEnum =>
           GenericEnumGetterProjection(method, vtableOffset),
         ProjectionType.genericObject =>
@@ -54,6 +55,8 @@ abstract class GetterProjection extends PropertyProjection {
         ProjectionType.stringList =>
           StringListGetterProjection(method, vtableOffset),
         ProjectionType.struct => StructGetterProjection(method, vtableOffset),
+        ProjectionType.structList =>
+          StructListGetterProjection(method, vtableOffset),
         ProjectionType.uri => UriGetterProjection(method, vtableOffset),
         ProjectionType.uriList => UriListGetterProjection(method, vtableOffset),
         ProjectionType.vector => VectorGetterProjection(method, vtableOffset),
