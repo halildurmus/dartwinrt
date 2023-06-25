@@ -1,3 +1,7 @@
+## 0.0.2+2
+
+ - Update a dependency to the latest release.
+
 ## 0.0.2+1
 
  - **FIX**: pass the appropriate `doubleType` to `IVectorView` ([#264](https://github.com/dart-windows/dartwinrt/issues/264)). ([4fd3a0b6](https://github.com/dart-windows/dartwinrt/commit/4fd3a0b62a801d2e4f4aac9f5589a0b415124bf1))
