@@ -21,7 +21,7 @@ import 'ixmlnode.dart';
 const IID_IXmlNamedNodeMap = '{b3a69eb0-aab0-4b82-a6fa-b1453f7c021b}';
 
 class IXmlNamedNodeMap extends IInspectable
-    implements IVectorView<IXmlNode>, IIterable<IXmlNode> {
+    implements IVectorView<IXmlNode?>, IIterable<IXmlNode?> {
   // vtable begins at 6, is 8 entries long.
   IXmlNamedNodeMap.fromPtr(super.ptr);
 
@@ -73,7 +73,7 @@ class IXmlNamedNodeMap extends IInspectable
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null;
     }
@@ -105,7 +105,7 @@ class IXmlNamedNodeMap extends IInspectable
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null;
     }
@@ -138,7 +138,7 @@ class IXmlNamedNodeMap extends IInspectable
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null;
     }
@@ -170,7 +170,7 @@ class IXmlNamedNodeMap extends IInspectable
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null;
     }
@@ -206,7 +206,7 @@ class IXmlNamedNodeMap extends IInspectable
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null;
     }
@@ -242,7 +242,7 @@ class IXmlNamedNodeMap extends IInspectable
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null;
     }
@@ -275,7 +275,7 @@ class IXmlNamedNodeMap extends IInspectable
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null;
     }
@@ -283,34 +283,34 @@ class IXmlNamedNodeMap extends IInspectable
     return IXmlNode.fromPtr(retValuePtr);
   }
 
-  late final _iVectorView = IVectorView<IXmlNode>.fromPtr(
+  late final _iVectorView = IVectorView<IXmlNode?>.fromPtr(
       toInterface('{139d959e-e7b5-5cb6-a596-4b544478da9b}'),
       creator: IXmlNode.fromPtr,
       iterableIid: '{f1146ffc-8c92-56e8-93f1-711f86722633}');
 
   @override
-  IXmlNode getAt(int index) => _iVectorView.getAt(index);
+  IXmlNode? getAt(int index) => _iVectorView.getAt(index);
 
   @override
   int get size => _iVectorView.size;
 
   @override
-  bool indexOf(IXmlNode value, Pointer<Uint32> index) =>
+  bool indexOf(IXmlNode? value, Pointer<Uint32> index) =>
       _iVectorView.indexOf(value, index);
 
   @override
-  int getMany(int startIndex, int itemsSize, List<IXmlNode> items) =>
+  int getMany(int startIndex, int itemsSize, List<IXmlNode?> items) =>
       _iVectorView.getMany(startIndex, itemsSize, items);
 
   @override
-  IIterator<IXmlNode> first() => _iVectorView.first();
+  IIterator<IXmlNode?> first() => _iVectorView.first();
 
   @override
-  List<IXmlNode> toList() => _iVectorView.toList();
+  List<IXmlNode?> toList() => _iVectorView.toList();
 
   @override
-  IXmlNode operator [](int index) => _iVectorView[index];
+  IXmlNode? operator [](int index) => _iVectorView[index];
 
   @override
-  List<IXmlNode> operator +(List<IXmlNode> other) => toList() + other;
+  List<IXmlNode?> operator +(List<IXmlNode?> other) => toList() + other;
 }

@@ -19,8 +19,8 @@ abstract interface class IIterator<T> extends IInspectable {
 
   /// Creates an instance of [IIterator] from the given [ptr].
   ///
-  /// [T] must be of type `bool`, `double` `Guid`, `int`, `String`, `Uri`,
-  /// `IInspectable` (e.g.`StorageFile`) or `WinRTEnum` (e.g. `DeviceClass`).
+  /// [T] must be of type `bool`, `double` `Guid`, `int`, `String`, `Uri?`,
+  /// `IInspectable?` (e.g.`StorageFile?`) or `WinRTEnum` (e.g. `DeviceClass`).
   ///
   /// [doubleType] must be specified if [T] is `double`.
   /// ```dart
@@ -33,9 +33,9 @@ abstract interface class IIterator<T> extends IInspectable {
   /// final iterator = IIterator<int>.fromPtr(ptr, intType: IntType.uint64);
   /// ```
   ///
-  /// [creator] must be specified if [T] is `IInspectable`.
+  /// [creator] must be specified if [T] is `IInspectable?`.
   /// ```dart
-  /// final iterator = IIterator<StorageFile>.fromPtr(ptr,
+  /// final iterator = IIterator<StorageFile?>.fromPtr(ptr,
   ///     creator: StorageFile.fromPtr);
   /// ```
   ///
@@ -83,7 +83,7 @@ abstract interface class IIterator<T> extends IInspectable {
     }
 
     if (T == String) return _IIteratorString.fromPtr(ptr) as IIterator<T>;
-    if (T == Uri) return _IIteratorUri.fromPtr(ptr) as IIterator<T>;
+    if (isSubtype<T, Uri>()) return _IIteratorUri.fromPtr(ptr) as IIterator<T>;
 
     if (isSubtypeOfWinRTEnum<T>()) {
       if (enumCreator == null) throw ArgumentError.notNull('enumCreator');

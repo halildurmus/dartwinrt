@@ -69,7 +69,7 @@ class Package extends IInspectable
   bool get isFramework => _iPackage.isFramework;
 
   @override
-  List<Package> get dependencies => _iPackage.dependencies;
+  List<Package?> get dependencies => _iPackage.dependencies;
 
   late final _iPackage2 = IPackage2.from(this);
 
@@ -103,7 +103,7 @@ class Package extends IInspectable
   DateTime get installedDate => _iPackage3.installedDate;
 
   @override
-  Future<List<AppListEntry>> getAppListEntriesAsync() =>
+  Future<List<AppListEntry?>> getAppListEntriesAsync() =>
       _iPackage3.getAppListEntriesAsync();
 
   late final _iPackageWithMetadata = IPackageWithMetadata.from(this);
@@ -134,7 +134,7 @@ class Package extends IInspectable
   late final _iPackage5 = IPackage5.from(this);
 
   @override
-  Future<IVector<PackageContentGroup>> getContentGroupsAsync() =>
+  Future<IVector<PackageContentGroup?>> getContentGroupsAsync() =>
       _iPackage5.getContentGroupsAsync();
 
   @override
@@ -142,12 +142,12 @@ class Package extends IInspectable
       _iPackage5.getContentGroupAsync(name);
 
   @override
-  Future<IVector<PackageContentGroup>> stageContentGroupsAsync(
+  Future<IVector<PackageContentGroup?>> stageContentGroupsAsync(
           IIterable<String>? names) =>
       _iPackage5.stageContentGroupsAsync(names);
 
   @override
-  Future<IVector<PackageContentGroup>> stageContentGroupsWithPriorityAsync(
+  Future<IVector<PackageContentGroup?>> stageContentGroupsWithPriorityAsync(
           IIterable<String>? names, bool moveToHeadOfQueue) =>
       _iPackage5.stageContentGroupsWithPriorityAsync(names, moveToHeadOfQueue);
 
@@ -208,7 +208,7 @@ class Package extends IInspectable
       _iPackage8.getLogoAsRandomAccessStreamReference(size);
 
   @override
-  List<AppListEntry> getAppListEntries() => _iPackage8.getAppListEntries();
+  List<AppListEntry?> getAppListEntries() => _iPackage8.getAppListEntries();
 
   @override
   bool get isStub => _iPackage8.isStub;
@@ -216,7 +216,7 @@ class Package extends IInspectable
   late final _iPackage9 = IPackage9.from(this);
 
   @override
-  IVector<Package> findRelatedPackages(FindRelatedPackagesOptions? options) =>
+  IVector<Package?> findRelatedPackages(FindRelatedPackagesOptions? options) =>
       _iPackage9.findRelatedPackages(options);
 
   @override

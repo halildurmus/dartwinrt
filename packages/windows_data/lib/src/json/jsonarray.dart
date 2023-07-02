@@ -26,8 +26,8 @@ class JsonArray extends IInspectable
     implements
         IJsonArray,
         IJsonValue,
-        IVector<IJsonValue>,
-        IIterable<IJsonValue>,
+        IVector<IJsonValue?>,
+        IIterable<IJsonValue?>,
         IStringable {
   JsonArray() : super(activateClass(_className));
   JsonArray.fromPtr(super.ptr);
@@ -83,35 +83,36 @@ class JsonArray extends IInspectable
   @override
   JsonObject getObject() => _iJsonValue.getObject();
 
-  late final _iVector = IVector<IJsonValue>.fromPtr(
+  late final _iVector = IVector<IJsonValue?>.fromPtr(
       toInterface('{d44662bc-dce3-59a8-9272-4b210f33908b}'),
       creator: IJsonValue.fromPtr,
       iterableIid: '{cb0492b6-4113-55cf-b2c5-99eb428ba493}');
 
   @override
-  IJsonValue getAt(int index) => _iVector.getAt(index);
+  IJsonValue? getAt(int index) => _iVector.getAt(index);
 
   @override
   int get size => _iVector.size;
 
   @override
-  List<IJsonValue> getView() => _iVector.getView();
+  List<IJsonValue?> getView() => _iVector.getView();
 
   @override
-  bool indexOf(IJsonValue value, Pointer<Uint32> index) =>
+  bool indexOf(IJsonValue? value, Pointer<Uint32> index) =>
       _iVector.indexOf(value, index);
 
   @override
-  void setAt(int index, IJsonValue value) => _iVector.setAt(index, value);
+  void setAt(int index, IJsonValue? value) => _iVector.setAt(index, value);
 
   @override
-  void insertAt(int index, IJsonValue value) => _iVector.insertAt(index, value);
+  void insertAt(int index, IJsonValue? value) =>
+      _iVector.insertAt(index, value);
 
   @override
   void removeAt(int index) => _iVector.removeAt(index);
 
   @override
-  void append(IJsonValue value) => _iVector.append(value);
+  void append(IJsonValue? value) => _iVector.append(value);
 
   @override
   void removeAtEnd() => _iVector.removeAtEnd();
@@ -120,26 +121,26 @@ class JsonArray extends IInspectable
   void clear() => _iVector.clear();
 
   @override
-  int getMany(int startIndex, int itemsSize, List<IJsonValue> items) =>
+  int getMany(int startIndex, int itemsSize, List<IJsonValue?> items) =>
       _iVector.getMany(startIndex, itemsSize, items);
 
   @override
-  void replaceAll(List<IJsonValue> items) => _iVector.replaceAll(items);
+  void replaceAll(List<IJsonValue?> items) => _iVector.replaceAll(items);
 
   @override
-  IIterator<IJsonValue> first() => _iVector.first();
+  IIterator<IJsonValue?> first() => _iVector.first();
 
   @override
-  List<IJsonValue> toList() => _iVector.toList();
+  List<IJsonValue?> toList() => _iVector.toList();
 
   @override
-  IJsonValue operator [](int index) => _iVector[index];
+  IJsonValue? operator [](int index) => _iVector[index];
 
   @override
-  void operator []=(int index, IJsonValue value) => _iVector[index] = value;
+  void operator []=(int index, IJsonValue? value) => _iVector[index] = value;
 
   @override
-  List<IJsonValue> operator +(List<IJsonValue> other) => toList() + other;
+  List<IJsonValue?> operator +(List<IJsonValue?> other) => toList() + other;
 
   late final _iStringable = IStringable.from(this);
 

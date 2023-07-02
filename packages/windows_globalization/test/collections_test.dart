@@ -54,6 +54,7 @@ void main() {
 
     test('getAt returns elements', () {
       final vectorView = getVectorView();
+      expect(vectorView.size, greaterThanOrEqualTo(1));
       final element = vectorView.getAt(0);
       // Should be something like en-US
       expect(element[2], equals('-'));

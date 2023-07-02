@@ -50,7 +50,7 @@ class IUserStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null;
     }
@@ -58,7 +58,7 @@ class IUserStatics extends IInspectable {
     return UserWatcher.fromPtr(retValuePtr);
   }
 
-  Future<List<User>> findAllAsync() {
+  Future<List<User?>> findAllAsync() {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -78,7 +78,7 @@ class IUserStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<IVectorView<User>>.fromPtr(
+    final asyncOperation = IAsyncOperation<IVectorView<User?>>.fromPtr(
         retValuePtr,
         creator: (ptr) => IVectorView.fromPtr(ptr,
             creator: User.fromPtr,
@@ -88,7 +88,7 @@ class IUserStatics extends IInspectable {
 
   @Deprecated(
       "FindAllAsyncByType is deprecated and might not function consistently on all platforms. Instead, use FindAllAsync or GetDefault.")
-  Future<List<User>> findAllAsyncByType(UserType type) {
+  Future<List<User?>> findAllAsyncByType(UserType type) {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -109,7 +109,7 @@ class IUserStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<IVectorView<User>>.fromPtr(
+    final asyncOperation = IAsyncOperation<IVectorView<User?>>.fromPtr(
         retValuePtr,
         creator: (ptr) => IVectorView.fromPtr(ptr,
             creator: User.fromPtr,
@@ -119,7 +119,7 @@ class IUserStatics extends IInspectable {
 
   @Deprecated(
       "FindAllAsyncByTypeAndStatus is deprecated and might not function consistently on all platforms. Instead, use FindAllAsync or GetDefault.")
-  Future<List<User>> findAllAsyncByTypeAndStatus(
+  Future<List<User?>> findAllAsyncByTypeAndStatus(
       UserType type, UserAuthenticationStatus status) {
     final retValuePtr = calloc<COMObject>();
 
@@ -141,7 +141,7 @@ class IUserStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<IVectorView<User>>.fromPtr(
+    final asyncOperation = IAsyncOperation<IVectorView<User?>>.fromPtr(
         retValuePtr,
         creator: (ptr) => IVectorView.fromPtr(ptr,
             creator: User.fromPtr,
@@ -176,7 +176,7 @@ class IUserStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null;
     }

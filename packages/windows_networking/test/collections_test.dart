@@ -19,8 +19,8 @@ void main() {
     return;
   }
 
-  group('IVectorView<HostName>', () {
-    IVectorView<HostName> getHostNames(Pointer<COMObject> ptr) {
+  group('IVectorView<HostName?>', () {
+    IVectorView<HostName?> getHostNames(Pointer<COMObject> ptr) {
       final retValuePtr = calloc<COMObject>();
 
       final hr = ptr.ref.vtable
@@ -36,13 +36,16 @@ void main() {
                       VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)>()(
           ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) {
+        free(retValuePtr);
+        throw WindowsException(hr);
+      }
 
       return IVectorView.fromPtr(retValuePtr,
           creator: HostName.fromPtr, iterableIid: IID_IIterable_HostName);
     }
 
-    IVectorView<HostName> getVectorView() {
+    IVectorView<HostName?> getVectorView() {
       final object = createActivationFactory(
           IInspectable.new,
           'Windows.Networking.Connectivity.NetworkInformation',
@@ -58,8 +61,9 @@ void main() {
 
     test('getAt returns elements', () {
       final vectorView = getVectorView();
+      expect(vectorView.size, greaterThanOrEqualTo(1));
       final hostName = vectorView.getAt(0);
-      expect(hostName.displayName, isNotEmpty);
+      expect(hostName?.displayName, isNotEmpty);
     });
 
     test('indexOf finds element', () {
@@ -75,7 +79,7 @@ void main() {
     });
 
     test('getMany returns elements starting from index 0', () {
-      final list = <HostName>[];
+      final list = <HostName?>[];
       final vectorView = getVectorView();
       expect(vectorView.getMany(0, vectorView.size, list),
           greaterThanOrEqualTo(1));
@@ -85,7 +89,7 @@ void main() {
     test(
         'getMany returns all elements if valueSize is greater than the number '
         'of elements', () {
-      final list = <HostName>[];
+      final list = <HostName?>[];
       final vectorView = getVectorView();
       expect(vectorView.getMany(0, vectorView.size + 1, list),
           greaterThanOrEqualTo(1));
@@ -106,7 +110,7 @@ void main() {
 
       for (var i = 0; i < list.length; i++) {
         expect(iterator.hasCurrent, isTrue);
-        expect(iterator.current.rawName, equals(list[i].rawName));
+        expect(iterator.current?.rawName, equals(list[i]?.rawName));
         // moveNext() should return true except for the last iteration
         expect(iterator.moveNext(), i < list.length - 1);
       }
@@ -114,7 +118,7 @@ void main() {
 
     test('operator []', () {
       final vector = getVectorView();
-      expect(vector[0].displayName, isNotEmpty);
+      expect(vector[0]?.displayName, isNotEmpty);
     });
 
     test('operator +', () {
@@ -122,8 +126,8 @@ void main() {
       final list = [HostName.createHostName('test')];
       final newList = vector + list;
       expect(newList.length, equals(vector.size + 1));
-      expect(newList.first.displayName, isNotEmpty);
-      expect(newList.last.displayName, equals('test'));
+      expect(newList.first?.displayName, isNotEmpty);
+      expect(newList.last?.displayName, equals('test'));
     });
   });
 }

@@ -1345,11 +1345,11 @@ final class _IVectorViewUint64 extends IVectorView<int> {
   }
 }
 
-final class _IVectorViewUri extends IVectorView<Uri> {
+final class _IVectorViewUri extends IVectorView<Uri?> {
   _IVectorViewUri.fromPtr(super.ptr, {required super.iterableIid});
 
   @override
-  Uri getAt(int index) {
+  Uri? getAt(int index) {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -1370,16 +1370,21 @@ final class _IVectorViewUri extends IVectorView<Uri> {
       throw WindowsException(hr);
     }
 
+    if (retValuePtr.isNull) {
+      free(retValuePtr);
+      return null;
+    }
+
     final winrtUri = retValuePtr.toWinRTUri();
     return winrtUri.toDartUri();
   }
 
   @override
-  bool indexOf(Uri value, Pointer<Uint32> index) {
+  bool indexOf(Uri? value, Pointer<Uint32> index) {
     final retValuePtr = calloc<Bool>();
 
     try {
-      final valueUri = value.toWinRTUri();
+      final valueUri = value?.toWinRTUri();
 
       final hr = ptr.ref.vtable
               .elementAt(8)
@@ -1395,7 +1400,10 @@ final class _IVectorViewUri extends IVectorView<Uri> {
               .asFunction<
                   int Function(VTablePointer lpVtbl, VTablePointer value,
                       Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
-          ptr.ref.lpVtbl, valueUri.ptr.ref.lpVtbl, index, retValuePtr);
+          ptr.ref.lpVtbl,
+          valueUri == null ? nullptr : valueUri.ptr.ref.lpVtbl,
+          index,
+          retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -1406,7 +1414,7 @@ final class _IVectorViewUri extends IVectorView<Uri> {
   }
 
   @override
-  int getMany(int startIndex, int itemsSize, List<Uri> items) {
+  int getMany(int startIndex, int itemsSize, List<Uri?> items) {
     final retValuePtr = calloc<Uint32>();
 
     try {

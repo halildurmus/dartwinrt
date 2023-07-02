@@ -40,6 +40,7 @@ void main() {
       final vector = getVector()
         ..append(5)
         ..append(259);
+      expect(vector.size, equals(2));
       expect(vector.getAt(0), equals(5));
       expect(vector.getAt(1), equals(259));
     });

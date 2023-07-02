@@ -48,7 +48,7 @@ class IPackage3 extends IInspectable {
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null;
     }
@@ -80,7 +80,7 @@ class IPackage3 extends IInspectable {
     }
   }
 
-  Future<List<AppListEntry>> getAppListEntriesAsync() {
+  Future<List<AppListEntry?>> getAppListEntriesAsync() {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -100,7 +100,7 @@ class IPackage3 extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<IVectorView<AppListEntry>>.fromPtr(
+    final asyncOperation = IAsyncOperation<IVectorView<AppListEntry?>>.fromPtr(
         retValuePtr,
         creator: (ptr) => IVectorView.fromPtr(ptr,
             creator: AppListEntry.fromPtr,

@@ -28,7 +28,7 @@ class FindAllAccountsResult extends IInspectable
   late final _iFindAllAccountsResult = IFindAllAccountsResult.from(this);
 
   @override
-  List<WebAccount> get accounts => _iFindAllAccountsResult.accounts;
+  List<WebAccount?> get accounts => _iFindAllAccountsResult.accounts;
 
   @override
   FindAllWebAccountsStatus get status => _iFindAllAccountsResult.status;

@@ -19,38 +19,38 @@ import 'deviceinformation.dart';
 
 /// Represents a collection of DeviceInformation objects.
 class DeviceInformationCollection extends IInspectable
-    implements IVectorView<DeviceInformation>, IIterable<DeviceInformation> {
+    implements IVectorView<DeviceInformation?>, IIterable<DeviceInformation?> {
   DeviceInformationCollection.fromPtr(super.ptr);
 
-  late final _iVectorView = IVectorView<DeviceInformation>.fromPtr(
+  late final _iVectorView = IVectorView<DeviceInformation?>.fromPtr(
       toInterface('{e170688f-3495-5bf6-aab5-9cac17e0f10f}'),
       creator: DeviceInformation.fromPtr,
       iterableIid: '{dd9f8a5d-ec98-5f4b-a3ea-9c8b5ad53c4b}');
 
   @override
-  DeviceInformation getAt(int index) => _iVectorView.getAt(index);
+  DeviceInformation? getAt(int index) => _iVectorView.getAt(index);
 
   @override
   int get size => _iVectorView.size;
 
   @override
-  bool indexOf(DeviceInformation value, Pointer<Uint32> index) =>
+  bool indexOf(DeviceInformation? value, Pointer<Uint32> index) =>
       _iVectorView.indexOf(value, index);
 
   @override
-  int getMany(int startIndex, int itemsSize, List<DeviceInformation> items) =>
+  int getMany(int startIndex, int itemsSize, List<DeviceInformation?> items) =>
       _iVectorView.getMany(startIndex, itemsSize, items);
 
   @override
-  IIterator<DeviceInformation> first() => _iVectorView.first();
+  IIterator<DeviceInformation?> first() => _iVectorView.first();
 
   @override
-  List<DeviceInformation> toList() => _iVectorView.toList();
+  List<DeviceInformation?> toList() => _iVectorView.toList();
 
   @override
-  DeviceInformation operator [](int index) => _iVectorView[index];
+  DeviceInformation? operator [](int index) => _iVectorView[index];
 
   @override
-  List<DeviceInformation> operator +(List<DeviceInformation> other) =>
+  List<DeviceInformation?> operator +(List<DeviceInformation?> other) =>
       toList() + other;
 }

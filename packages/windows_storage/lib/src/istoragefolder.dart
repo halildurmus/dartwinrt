@@ -256,7 +256,8 @@ class IStorageFolder extends IInspectable implements IStorageItem {
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
-  Future<List<StorageFile>> getFilesAsyncOverloadDefaultOptionsStartAndCount() {
+  Future<List<StorageFile?>>
+      getFilesAsyncOverloadDefaultOptionsStartAndCount() {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -276,7 +277,7 @@ class IStorageFolder extends IInspectable implements IStorageItem {
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<IVectorView<StorageFile>>.fromPtr(
+    final asyncOperation = IAsyncOperation<IVectorView<StorageFile?>>.fromPtr(
         retValuePtr,
         creator: (ptr) => IVectorView.fromPtr(ptr,
             creator: StorageFile.fromPtr,
@@ -284,7 +285,7 @@ class IStorageFolder extends IInspectable implements IStorageItem {
     return asyncOperation.toFuture(() => asyncOperation.getResults().toList());
   }
 
-  Future<List<StorageFolder>>
+  Future<List<StorageFolder?>>
       getFoldersAsyncOverloadDefaultOptionsStartAndCount() {
     final retValuePtr = calloc<COMObject>();
 
@@ -305,7 +306,7 @@ class IStorageFolder extends IInspectable implements IStorageItem {
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<IVectorView<StorageFolder>>.fromPtr(
+    final asyncOperation = IAsyncOperation<IVectorView<StorageFolder?>>.fromPtr(
         retValuePtr,
         creator: (ptr) => IVectorView.fromPtr(ptr,
             creator: StorageFolder.fromPtr,
@@ -313,7 +314,7 @@ class IStorageFolder extends IInspectable implements IStorageItem {
     return asyncOperation.toFuture(() => asyncOperation.getResults().toList());
   }
 
-  Future<List<IStorageItem>> getItemsAsyncOverloadDefaultStartAndCount() {
+  Future<List<IStorageItem?>> getItemsAsyncOverloadDefaultStartAndCount() {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -333,7 +334,7 @@ class IStorageFolder extends IInspectable implements IStorageItem {
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<IVectorView<IStorageItem>>.fromPtr(
+    final asyncOperation = IAsyncOperation<IVectorView<IStorageItem?>>.fromPtr(
         retValuePtr,
         creator: (ptr) => IVectorView.fromPtr(ptr,
             creator: IStorageItem.fromPtr,

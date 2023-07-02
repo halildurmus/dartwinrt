@@ -47,7 +47,7 @@ mixin _ReferenceMixin on MethodProjection {
   }
 
   String get nullCheck => '''
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null;
     }

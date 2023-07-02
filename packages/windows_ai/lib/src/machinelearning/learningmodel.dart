@@ -100,11 +100,11 @@ class LearningModel extends IInspectable implements ILearningModel, IClosable {
   Map<String, String> get metadata => _iLearningModel.metadata;
 
   @override
-  List<ILearningModelFeatureDescriptor> get inputFeatures =>
+  List<ILearningModelFeatureDescriptor?> get inputFeatures =>
       _iLearningModel.inputFeatures;
 
   @override
-  List<ILearningModelFeatureDescriptor> get outputFeatures =>
+  List<ILearningModelFeatureDescriptor?> get outputFeatures =>
       _iLearningModel.outputFeatures;
 
   late final _iClosable = IClosable.from(this);

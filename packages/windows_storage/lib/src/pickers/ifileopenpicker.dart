@@ -248,7 +248,7 @@ class IFileOpenPicker extends IInspectable {
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
-  Future<List<StorageFile>> pickMultipleFilesAsync() {
+  Future<List<StorageFile?>> pickMultipleFilesAsync() {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -268,7 +268,7 @@ class IFileOpenPicker extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<IVectorView<StorageFile>>.fromPtr(
+    final asyncOperation = IAsyncOperation<IVectorView<StorageFile?>>.fromPtr(
         retValuePtr,
         creator: (ptr) => IVectorView.fromPtr(ptr,
             creator: StorageFile.fromPtr,

@@ -20,7 +20,7 @@ import 'ixmlnodelist.dart';
 
 /// Describes a collection of nodes.
 class XmlNodeList extends IInspectable
-    implements IXmlNodeList, IVectorView<IXmlNode>, IIterable<IXmlNode> {
+    implements IXmlNodeList, IVectorView<IXmlNode?>, IIterable<IXmlNode?> {
   XmlNodeList.fromPtr(super.ptr);
 
   late final _iXmlNodeList = IXmlNodeList.from(this);
@@ -31,34 +31,34 @@ class XmlNodeList extends IInspectable
   @override
   IXmlNode? item(int index) => _iXmlNodeList.item(index);
 
-  late final _iVectorView = IVectorView<IXmlNode>.fromPtr(
+  late final _iVectorView = IVectorView<IXmlNode?>.fromPtr(
       toInterface('{139d959e-e7b5-5cb6-a596-4b544478da9b}'),
       creator: IXmlNode.fromPtr,
       iterableIid: '{f1146ffc-8c92-56e8-93f1-711f86722633}');
 
   @override
-  IXmlNode getAt(int index) => _iVectorView.getAt(index);
+  IXmlNode? getAt(int index) => _iVectorView.getAt(index);
 
   @override
   int get size => _iVectorView.size;
 
   @override
-  bool indexOf(IXmlNode value, Pointer<Uint32> index) =>
+  bool indexOf(IXmlNode? value, Pointer<Uint32> index) =>
       _iVectorView.indexOf(value, index);
 
   @override
-  int getMany(int startIndex, int itemsSize, List<IXmlNode> items) =>
+  int getMany(int startIndex, int itemsSize, List<IXmlNode?> items) =>
       _iVectorView.getMany(startIndex, itemsSize, items);
 
   @override
-  IIterator<IXmlNode> first() => _iVectorView.first();
+  IIterator<IXmlNode?> first() => _iVectorView.first();
 
   @override
-  List<IXmlNode> toList() => _iVectorView.toList();
+  List<IXmlNode?> toList() => _iVectorView.toList();
 
   @override
-  IXmlNode operator [](int index) => _iVectorView[index];
+  IXmlNode? operator [](int index) => _iVectorView[index];
 
   @override
-  List<IXmlNode> operator +(List<IXmlNode> other) => toList() + other;
+  List<IXmlNode?> operator +(List<IXmlNode?> other) => toList() + other;
 }

@@ -32,7 +32,7 @@ class IStorageItemQueryResult extends IInspectable
       IStorageItemQueryResult.fromPtr(
           interface.toInterface(IID_IStorageItemQueryResult));
 
-  Future<List<IStorageItem>> getItemsAsync(
+  Future<List<IStorageItem?>> getItemsAsync(
       int startIndex, int maxNumberOfItems) {
     final retValuePtr = calloc<COMObject>();
 
@@ -57,7 +57,7 @@ class IStorageItemQueryResult extends IInspectable
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<IVectorView<IStorageItem>>.fromPtr(
+    final asyncOperation = IAsyncOperation<IVectorView<IStorageItem?>>.fromPtr(
         retValuePtr,
         creator: (ptr) => IVectorView.fromPtr(ptr,
             creator: IStorageItem.fromPtr,
@@ -65,7 +65,7 @@ class IStorageItemQueryResult extends IInspectable
     return asyncOperation.toFuture(() => asyncOperation.getResults().toList());
   }
 
-  Future<List<IStorageItem>> getItemsAsyncDefaultStartAndCount() {
+  Future<List<IStorageItem?>> getItemsAsyncDefaultStartAndCount() {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -85,7 +85,7 @@ class IStorageItemQueryResult extends IInspectable
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<IVectorView<IStorageItem>>.fromPtr(
+    final asyncOperation = IAsyncOperation<IVectorView<IStorageItem?>>.fromPtr(
         retValuePtr,
         creator: (ptr) => IVectorView.fromPtr(ptr,
             creator: IStorageItem.fromPtr,

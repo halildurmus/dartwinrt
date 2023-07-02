@@ -4,13 +4,18 @@
 
 import 'package:windows_devices/windows_devices.dart';
 
+void printAudioDevice(DeviceInformation? device) {
+  if (device == null) return;
+  final DeviceInformation(:id, :name, :isDefault, :isEnabled) = device;
+  print('Device name: $name, isDefault: $isDefault, isEnabled: $isEnabled, '
+      'ID: $id');
+}
+
 void main() async {
   // Identify all audio rendering devices on the system
   final audioRenderingDevices =
       await DeviceInformation.findAllAsyncDeviceClass(DeviceClass.audioRender);
-  for (final DeviceInformation(:name, :isDefault, :isEnabled, :id)
-      in audioRenderingDevices.toList()) {
-    print(
-        'Device name: $name, isDefault: $isDefault, isEnabled: $isEnabled, ID: $id');
+  for (final device in audioRenderingDevices.toList()) {
+    printAudioDevice(device);
   }
 }

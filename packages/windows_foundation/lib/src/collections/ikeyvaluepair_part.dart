@@ -60,7 +60,7 @@ final class _IKeyValuePairGuidInspectable<V> extends IKeyValuePair<Guid, V> {
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null as V;
     }
@@ -118,7 +118,7 @@ final class _IKeyValuePairGuidObject extends IKeyValuePair<Guid, Object?> {
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null;
     }
@@ -178,7 +178,7 @@ final class _IKeyValuePairInt16Inspectable<V> extends IKeyValuePair<int, V> {
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null as V;
     }
@@ -238,7 +238,7 @@ final class _IKeyValuePairInt32Inspectable<V> extends IKeyValuePair<int, V> {
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null as V;
     }
@@ -298,7 +298,7 @@ final class _IKeyValuePairInt64Inspectable<V> extends IKeyValuePair<int, V> {
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null as V;
     }
@@ -360,7 +360,7 @@ final class _IKeyValuePairStringInspectable<V>
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null as V;
     }
@@ -419,7 +419,7 @@ final class _IKeyValuePairStringObject extends IKeyValuePair<String, Object?> {
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null;
     }
@@ -651,7 +651,7 @@ final class _IKeyValuePairUint8Inspectable<V> extends IKeyValuePair<int, V> {
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null as V;
     }
@@ -711,7 +711,7 @@ final class _IKeyValuePairUint16Inspectable<V> extends IKeyValuePair<int, V> {
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null as V;
     }
@@ -771,7 +771,7 @@ final class _IKeyValuePairUint32Inspectable<V> extends IKeyValuePair<int, V> {
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null as V;
     }
@@ -831,7 +831,7 @@ final class _IKeyValuePairUint64Inspectable<V> extends IKeyValuePair<int, V> {
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null as V;
     }
@@ -894,7 +894,7 @@ final class _IKeyValuePairWinRTEnumInspectable<K, V>
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null as V;
     }
@@ -957,7 +957,7 @@ final class _IKeyValuePairWinRTFlagsEnumInspectable<K, V>
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null as V;
     }

@@ -198,7 +198,7 @@ class IBitmapDecoderStatics extends IInspectable {
     }
   }
 
-  List<BitmapCodecInformation> getDecoderInformationEnumerator() {
+  List<BitmapCodecInformation?> getDecoderInformationEnumerator() {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -218,7 +218,7 @@ class IBitmapDecoderStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final vectorView = IVectorView<BitmapCodecInformation>.fromPtr(retValuePtr,
+    final vectorView = IVectorView<BitmapCodecInformation?>.fromPtr(retValuePtr,
         iterableIid: '{2b6bdb90-a4eb-5142-b582-3ccb1edc5789}',
         creator: BitmapCodecInformation.fromPtr);
     return vectorView.toList();

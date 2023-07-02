@@ -123,7 +123,7 @@ class ConnectionProfile extends IInspectable
       _iConnectionProfile2.getDomainConnectivityLevel();
 
   @override
-  Future<List<NetworkUsage>> getNetworkUsageAsync(
+  Future<List<NetworkUsage?>> getNetworkUsageAsync(
           DateTime startTime,
           DateTime endTime,
           DataUsageGranularity granularity,
@@ -132,7 +132,7 @@ class ConnectionProfile extends IInspectable
           startTime, endTime, granularity, states);
 
   @override
-  Future<List<ConnectivityInterval>> getConnectivityIntervalsAsync(
+  Future<List<ConnectivityInterval?>> getConnectivityIntervalsAsync(
           DateTime startTime, DateTime endTime, NetworkUsageStates states) =>
       _iConnectionProfile2.getConnectivityIntervalsAsync(
           startTime, endTime, states);
@@ -140,7 +140,7 @@ class ConnectionProfile extends IInspectable
   late final _iConnectionProfile3 = IConnectionProfile3.from(this);
 
   @override
-  Future<List<AttributedNetworkUsage>> getAttributedNetworkUsageAsync(
+  Future<List<AttributedNetworkUsage?>> getAttributedNetworkUsageAsync(
           DateTime startTime, DateTime endTime, NetworkUsageStates states) =>
       _iConnectionProfile3.getAttributedNetworkUsageAsync(
           startTime, endTime, states);
@@ -148,7 +148,7 @@ class ConnectionProfile extends IInspectable
   late final _iConnectionProfile4 = IConnectionProfile4.from(this);
 
   @override
-  Future<List<ProviderNetworkUsage>> getProviderNetworkUsageAsync(
+  Future<List<ProviderNetworkUsage?>> getProviderNetworkUsageAsync(
           DateTime startTime, DateTime endTime, NetworkUsageStates states) =>
       _iConnectionProfile4.getProviderNetworkUsageAsync(
           startTime, endTime, states);

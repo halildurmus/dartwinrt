@@ -265,7 +265,7 @@ class IAppInstallerInfo2 extends IInspectable {
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null;
     }
@@ -275,7 +275,7 @@ class IAppInstallerInfo2 extends IInspectable {
     return reference.value;
   }
 
-  List<Uri> get updateUris {
+  List<Uri?> get updateUris {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -295,12 +295,12 @@ class IAppInstallerInfo2 extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final vectorView = IVectorView<Uri>.fromPtr(retValuePtr,
+    final vectorView = IVectorView<Uri?>.fromPtr(retValuePtr,
         iterableIid: '{b0d63b78-78ad-5e31-b6d8-e32a0e16c447}');
     return vectorView.toList();
   }
 
-  List<Uri> get repairUris {
+  List<Uri?> get repairUris {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -320,12 +320,12 @@ class IAppInstallerInfo2 extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final vectorView = IVectorView<Uri>.fromPtr(retValuePtr,
+    final vectorView = IVectorView<Uri?>.fromPtr(retValuePtr,
         iterableIid: '{b0d63b78-78ad-5e31-b6d8-e32a0e16c447}');
     return vectorView.toList();
   }
 
-  List<Uri> get dependencyPackageUris {
+  List<Uri?> get dependencyPackageUris {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -345,12 +345,12 @@ class IAppInstallerInfo2 extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final vectorView = IVectorView<Uri>.fromPtr(retValuePtr,
+    final vectorView = IVectorView<Uri?>.fromPtr(retValuePtr,
         iterableIid: '{b0d63b78-78ad-5e31-b6d8-e32a0e16c447}');
     return vectorView.toList();
   }
 
-  List<Uri> get optionalPackageUris {
+  List<Uri?> get optionalPackageUris {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -370,7 +370,7 @@ class IAppInstallerInfo2 extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final vectorView = IVectorView<Uri>.fromPtr(retValuePtr,
+    final vectorView = IVectorView<Uri?>.fromPtr(retValuePtr,
         iterableIid: '{b0d63b78-78ad-5e31-b6d8-e32a0e16c447}');
     return vectorView.toList();
   }

@@ -5,15 +5,21 @@
 import 'package:win32/win32.dart';
 import 'package:windows_storage/windows_storage.dart';
 
+void printStorageFile(StorageFile? file) {
+  if (file == null) return;
+  final StorageFile(:name, :path, :dateCreated, :contentType) = file;
+  print('Name: $name, path: $path, date created: $dateCreated, '
+      'content type: $contentType');
+}
+
 void main() async {
   final folder = KnownFolders.documentsLibrary;
   if (folder == null) return;
 
   // Retrieve all files in the Documents library
   final files = await folder.getFilesAsyncOverloadDefaultOptionsStartAndCount();
-  for (final StorageFile(:name, :path, :dateCreated, :contentType) in files) {
-    print('Name: $name, path: $path, date created: $dateCreated, '
-        'content type: $contentType');
+  for (final file in files) {
+    printStorageFile(file);
   }
 
   try {

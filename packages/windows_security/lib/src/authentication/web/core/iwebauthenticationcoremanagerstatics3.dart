@@ -36,7 +36,7 @@ class IWebAuthenticationCoreManagerStatics3 extends IInspectable
           interface.toInterface(IID_IWebAuthenticationCoreManagerStatics3));
 
   WebAccountMonitor? createWebAccountMonitor(
-      IIterable<WebAccount>? webAccounts) {
+      IIterable<WebAccount?>? webAccounts) {
     final retValuePtr = calloc<COMObject>();
     final webAccountsPtr = webAccounts == null
         ? nullptr
@@ -66,7 +66,7 @@ class IWebAuthenticationCoreManagerStatics3 extends IInspectable
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null;
     }

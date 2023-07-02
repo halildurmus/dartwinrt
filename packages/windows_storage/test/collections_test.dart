@@ -40,6 +40,7 @@ void main() {
       final vector = getVector()
         ..append('.jpg')
         ..append('.jpeg');
+      expect(vector.size, equals(2));
       expect(vector.getAt(0), equals('.jpg'));
       expect(vector.getAt(1), equals('.jpeg'));
     });

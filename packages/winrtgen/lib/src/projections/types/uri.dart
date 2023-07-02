@@ -25,16 +25,9 @@ bool _methodBelongsToUriRuntimeClass(Method method) =>
     };
 
 mixin _UriMixin on MethodProjection {
+  // Factory interface methods (constructors) cannot return null.
   @override
-  bool get isNullable {
-    // Factory interface methods (constructors) cannot return null.
-    if (method.parent.isFactoryInterface) return false;
-
-    // Methods of IIterator, IVector, and IVectorView cannot return null.
-    return !method.parent.name.endsWith('IIterator`1') &&
-        !method.parent.name.endsWith('IVector`1') &&
-        !method.parent.name.endsWith('IVectorView`1');
-  }
+  bool get isNullable => !method.parent.isFactoryInterface;
 
   @override
   String get returnType => 'Uri${isNullable ? '?' : ''}';
@@ -42,7 +35,7 @@ mixin _UriMixin on MethodProjection {
   String get nullCheck {
     if (!isNullable) return '';
     return '''
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null;
     }
@@ -87,7 +80,7 @@ final class UriListMethodProjection extends DefaultListMethodProjection {
   UriListMethodProjection(super.method, super.vtableOffset);
 
   @override
-  String get returnType => 'List<Uri>';
+  String get returnType => 'List<Uri?>';
 
   @override
   String get returnStatement => '''
@@ -101,7 +94,7 @@ final class UriListGetterProjection extends DefaultListGetterProjection {
   UriListGetterProjection(super.method, super.vtableOffset);
 
   @override
-  String get returnType => 'List<Uri>';
+  String get returnType => 'List<Uri?>';
 
   @override
   String get returnStatement => '''
@@ -128,10 +121,7 @@ final class UriParameterProjection extends ParameterProjection {
   UriParameterProjection(super.parameter);
 
   @override
-  bool get isNullable =>
-      !method.parent.name.endsWith('IIterator`1') &&
-      !method.parent.name.endsWith('IVector`1') &&
-      !method.parent.name.endsWith('IVectorView`1');
+  bool get isNullable => true;
 
   @override
   String get type => 'Uri${isNullable ? '?' : ''}';
@@ -159,7 +149,7 @@ final class UriListParameterProjection extends DefaultListParameterProjection {
   UriListParameterProjection(super.parameter);
 
   @override
-  String get type => 'List<Uri>';
+  String get type => 'List<Uri?>';
 
   @override
   String get fillArrayPreamble =>
@@ -169,8 +159,7 @@ final class UriListParameterProjection extends DefaultListParameterProjection {
   String get passArrayPreamble => '''
     final $localIdentifier = calloc<COMObject>($paramName.length);
     for (var i = 0; i < $paramName.length; i++) {
-      final ${paramName}WinrtUri = $paramName.elementAt(i).toWinRTUri();
-      $localIdentifier[i] = ${paramName}WinrtUri.ptr.ref;
+      $localIdentifier[i] = $paramName.elementAt(i)?.toWinRTUri().ptr.ref ?? calloc<COMObject>().ref;
     }''';
 
   @override

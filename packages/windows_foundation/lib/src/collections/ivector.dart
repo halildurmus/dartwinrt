@@ -44,8 +44,8 @@ abstract interface class IVector<T> extends IInspectable
   /// [iterableIid] must be the IID of the `IIterable<T>` interface (e.g.
   /// `'{9ac00304-83ea-5688-87b6-ae38aab65d0b}'`).
   ///
-  /// [T] must be of type `bool`, `double`, `Guid`, `int`, `String`, `Uri`,
-  /// `IInspectable` (e.g.`StorageFile`) or `WinRTEnum` (e.g. `DeviceClass`).
+  /// [T] must be of type `bool`, `double`, `Guid`, `int`, `String`, `Uri?`,
+  /// `IInspectable?` (e.g.`StorageFile?`) or `WinRTEnum` (e.g. `DeviceClass`).
   ///
   /// [doubleType] must be specified if [T] is `double`.
   /// ```dart
@@ -61,9 +61,9 @@ abstract interface class IVector<T> extends IInspectable
   ///     iterableIid: '{4b3a3229-7995-5f3c-b248-6c1f7e664f01}');
   /// ```
   ///
-  /// [creator] must be specified if [T] is `IInspectable`.
+  /// [creator] must be specified if [T] is `IInspectable?`.
   /// ```dart
-  /// final vector = IVector<StorageFile>.fromPtr(ptr,
+  /// final vector = IVector<StorageFile?>.fromPtr(ptr,
   ///     creator: StorageFile.fromPtr,
   ///     iterableIid: '{9ac00304-83ea-5688-87b6-ae38aab65d0b}');
   /// ```
@@ -133,7 +133,7 @@ abstract interface class IVector<T> extends IInspectable
           as IVector<T>;
     }
 
-    if (T == Uri) {
+    if (isSubtype<T, Uri>()) {
       return _IVectorUri.fromPtr(ptr, iterableIid: iterableIid) as IVector<T>;
     }
 

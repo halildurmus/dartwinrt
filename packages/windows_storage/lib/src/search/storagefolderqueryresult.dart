@@ -31,12 +31,12 @@ class StorageFolderQueryResult extends IInspectable
   late final _iStorageFolderQueryResult = IStorageFolderQueryResult.from(this);
 
   @override
-  Future<List<StorageFolder>> getFoldersAsync(
+  Future<List<StorageFolder?>> getFoldersAsync(
           int startIndex, int maxNumberOfItems) =>
       _iStorageFolderQueryResult.getFoldersAsync(startIndex, maxNumberOfItems);
 
   @override
-  Future<List<StorageFolder>> getFoldersAsyncDefaultStartAndCount() =>
+  Future<List<StorageFolder?>> getFoldersAsyncDefaultStartAndCount() =>
       _iStorageFolderQueryResult.getFoldersAsyncDefaultStartAndCount();
 
   late final _iStorageQueryResultBase = IStorageQueryResultBase.from(this);

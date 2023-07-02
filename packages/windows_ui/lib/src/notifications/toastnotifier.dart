@@ -53,7 +53,7 @@ class ToastNotifier extends IInspectable
       _iToastNotifier.removeFromSchedule(scheduledToast);
 
   @override
-  List<ScheduledToastNotification> getScheduledToastNotifications() =>
+  List<ScheduledToastNotification?> getScheduledToastNotifications() =>
       _iToastNotifier.getScheduledToastNotifications();
 
   late final _iToastNotifier2 = IToastNotifier2.from(this);

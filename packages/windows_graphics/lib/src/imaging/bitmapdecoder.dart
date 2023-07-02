@@ -69,7 +69,7 @@ class BitmapDecoder extends IInspectable
           IBitmapDecoderStatics.fromPtr, _className, IID_IBitmapDecoderStatics)
       .icoDecoderId;
 
-  static List<BitmapCodecInformation> getDecoderInformationEnumerator() =>
+  static List<BitmapCodecInformation?> getDecoderInformationEnumerator() =>
       createActivationFactory(IBitmapDecoderStatics.fromPtr, _className,
               IID_IBitmapDecoderStatics)
           .getDecoderInformationEnumerator();

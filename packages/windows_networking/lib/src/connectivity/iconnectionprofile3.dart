@@ -29,7 +29,7 @@ class IConnectionProfile3 extends IInspectable {
       IConnectionProfile3.fromPtr(
           interface.toInterface(IID_IConnectionProfile3));
 
-  Future<List<AttributedNetworkUsage>> getAttributedNetworkUsageAsync(
+  Future<List<AttributedNetworkUsage?>> getAttributedNetworkUsageAsync(
       DateTime startTime, DateTime endTime, NetworkUsageStates states) {
     final retValuePtr = calloc<COMObject>();
     final statesNativeStructPtr = states.toNative();
@@ -67,7 +67,7 @@ class IConnectionProfile3 extends IInspectable {
     }
 
     final asyncOperation =
-        IAsyncOperation<IVectorView<AttributedNetworkUsage>>.fromPtr(
+        IAsyncOperation<IVectorView<AttributedNetworkUsage?>>.fromPtr(
             retValuePtr,
             creator: (ptr) => IVectorView.fromPtr(ptr,
                 creator: AttributedNetworkUsage.fromPtr,

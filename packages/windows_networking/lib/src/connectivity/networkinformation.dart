@@ -32,7 +32,7 @@ class NetworkInformation extends IInspectable {
   static const _className =
       'Windows.Networking.Connectivity.NetworkInformation';
 
-  static List<ConnectionProfile> getConnectionProfiles() =>
+  static List<ConnectionProfile?> getConnectionProfiles() =>
       createActivationFactory(INetworkInformationStatics.fromPtr, _className,
               IID_INetworkInformationStatics)
           .getConnectionProfiles();
@@ -42,13 +42,13 @@ class NetworkInformation extends IInspectable {
               IID_INetworkInformationStatics)
           .getInternetConnectionProfile();
 
-  static List<LanIdentifier> getLanIdentifiers() => createActivationFactory(
+  static List<LanIdentifier?> getLanIdentifiers() => createActivationFactory(
           INetworkInformationStatics.fromPtr,
           _className,
           IID_INetworkInformationStatics)
       .getLanIdentifiers();
 
-  static List<HostName> getHostNames() => createActivationFactory(
+  static List<HostName?> getHostNames() => createActivationFactory(
           INetworkInformationStatics.fromPtr,
           _className,
           IID_INetworkInformationStatics)
@@ -59,8 +59,8 @@ class NetworkInformation extends IInspectable {
               IID_INetworkInformationStatics)
           .getProxyConfigurationAsync(uri);
 
-  static List<EndpointPair> getSortedEndpointPairs(
-          IIterable<EndpointPair>? destinationList,
+  static List<EndpointPair?> getSortedEndpointPairs(
+          IIterable<EndpointPair?>? destinationList,
           HostNameSortOptions sortOptions) =>
       createActivationFactory(INetworkInformationStatics.fromPtr, _className,
               IID_INetworkInformationStatics)
@@ -77,7 +77,7 @@ class NetworkInformation extends IInspectable {
               IID_INetworkInformationStatics)
           .remove_NetworkStatusChanged(eventCookie);
 
-  static Future<List<ConnectionProfile>> findConnectionProfilesAsync(
+  static Future<List<ConnectionProfile?>> findConnectionProfilesAsync(
           ConnectionProfileFilter? pProfileFilter) =>
       createActivationFactory(INetworkInformationStatics2.fromPtr, _className,
               IID_INetworkInformationStatics2)

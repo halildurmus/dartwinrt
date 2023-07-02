@@ -30,7 +30,7 @@ class INetworkInformationStatics2 extends IInspectable {
       INetworkInformationStatics2.fromPtr(
           interface.toInterface(IID_INetworkInformationStatics2));
 
-  Future<List<ConnectionProfile>> findConnectionProfilesAsync(
+  Future<List<ConnectionProfile?>> findConnectionProfilesAsync(
       ConnectionProfileFilter? pProfileFilter) {
     final retValuePtr = calloc<COMObject>();
     final pProfileFilterPtr =
@@ -57,7 +57,8 @@ class INetworkInformationStatics2 extends IInspectable {
     }
 
     final asyncOperation =
-        IAsyncOperation<IVectorView<ConnectionProfile>>.fromPtr(retValuePtr,
+        IAsyncOperation<IVectorView<ConnectionProfile?>>.fromPtr(
+            retValuePtr,
             creator: (ptr) => IVectorView.fromPtr(ptr,
                 creator: ConnectionProfile.fromPtr,
                 iterableIid: '{34dabef9-87d0-5b1c-a7ac-9d290adeb0c8}'));

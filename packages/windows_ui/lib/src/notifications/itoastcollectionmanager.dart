@@ -57,7 +57,7 @@ class IToastCollectionManager extends IInspectable {
     return IAsyncAction.fromPtr(retValuePtr).toFuture();
   }
 
-  Future<List<ToastCollection>> findAllToastCollectionsAsync() {
+  Future<List<ToastCollection?>> findAllToastCollectionsAsync() {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -78,7 +78,7 @@ class IToastCollectionManager extends IInspectable {
     }
 
     final asyncOperation =
-        IAsyncOperation<IVectorView<ToastCollection>>.fromPtr(retValuePtr,
+        IAsyncOperation<IVectorView<ToastCollection?>>.fromPtr(retValuePtr,
             creator: (ptr) => IVectorView.fromPtr(ptr,
                 creator: ToastCollection.fromPtr,
                 iterableIid: '{8928d527-db5d-5a10-ae9b-430fa0906e74}'));
@@ -191,7 +191,7 @@ class IToastCollectionManager extends IInspectable {
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null;
     }

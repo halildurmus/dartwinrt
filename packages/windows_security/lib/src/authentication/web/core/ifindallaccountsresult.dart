@@ -30,7 +30,7 @@ class IFindAllAccountsResult extends IInspectable {
       IFindAllAccountsResult.fromPtr(
           interface.toInterface(IID_IFindAllAccountsResult));
 
-  List<WebAccount> get accounts {
+  List<WebAccount?> get accounts {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -50,7 +50,7 @@ class IFindAllAccountsResult extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final vectorView = IVectorView<WebAccount>.fromPtr(retValuePtr,
+    final vectorView = IVectorView<WebAccount?>.fromPtr(retValuePtr,
         iterableIid: '{cb15d439-a910-542a-89ed-7cfe67848a83}',
         creator: WebAccount.fromPtr);
     return vectorView.toList();
@@ -100,7 +100,7 @@ class IFindAllAccountsResult extends IInspectable {
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null;
     }

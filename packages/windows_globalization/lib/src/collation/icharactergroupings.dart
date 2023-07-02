@@ -21,7 +21,7 @@ import 'charactergrouping.dart';
 const IID_ICharacterGroupings = '{b8d20a75-d4cf-4055-80e5-ce169c226496}';
 
 class ICharacterGroupings extends IInspectable
-    implements IVectorView<CharacterGrouping>, IIterable<CharacterGrouping> {
+    implements IVectorView<CharacterGrouping?>, IIterable<CharacterGrouping?> {
   // vtable begins at 6, is 1 entries long.
   ICharacterGroupings.fromPtr(super.ptr);
 
@@ -59,35 +59,35 @@ class ICharacterGroupings extends IInspectable
     }
   }
 
-  late final _iVectorView = IVectorView<CharacterGrouping>.fromPtr(
+  late final _iVectorView = IVectorView<CharacterGrouping?>.fromPtr(
       toInterface('{f7cf5a4a-2b7a-5bc9-a0c4-9dce07ff61c9}'),
       creator: CharacterGrouping.fromPtr,
       iterableIid: '{82e3abf0-06e3-5609-ba39-c51eb2f5fae6}');
 
   @override
-  CharacterGrouping getAt(int index) => _iVectorView.getAt(index);
+  CharacterGrouping? getAt(int index) => _iVectorView.getAt(index);
 
   @override
   int get size => _iVectorView.size;
 
   @override
-  bool indexOf(CharacterGrouping value, Pointer<Uint32> index) =>
+  bool indexOf(CharacterGrouping? value, Pointer<Uint32> index) =>
       _iVectorView.indexOf(value, index);
 
   @override
-  int getMany(int startIndex, int itemsSize, List<CharacterGrouping> items) =>
+  int getMany(int startIndex, int itemsSize, List<CharacterGrouping?> items) =>
       _iVectorView.getMany(startIndex, itemsSize, items);
 
   @override
-  IIterator<CharacterGrouping> first() => _iVectorView.first();
+  IIterator<CharacterGrouping?> first() => _iVectorView.first();
 
   @override
-  List<CharacterGrouping> toList() => _iVectorView.toList();
+  List<CharacterGrouping?> toList() => _iVectorView.toList();
 
   @override
-  CharacterGrouping operator [](int index) => _iVectorView[index];
+  CharacterGrouping? operator [](int index) => _iVectorView[index];
 
   @override
-  List<CharacterGrouping> operator +(List<CharacterGrouping> other) =>
+  List<CharacterGrouping?> operator +(List<CharacterGrouping?> other) =>
       toList() + other;
 }

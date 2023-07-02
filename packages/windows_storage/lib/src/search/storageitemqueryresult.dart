@@ -32,12 +32,12 @@ class StorageItemQueryResult extends IInspectable
   late final _iStorageItemQueryResult = IStorageItemQueryResult.from(this);
 
   @override
-  Future<List<IStorageItem>> getItemsAsync(
+  Future<List<IStorageItem?>> getItemsAsync(
           int startIndex, int maxNumberOfItems) =>
       _iStorageItemQueryResult.getItemsAsync(startIndex, maxNumberOfItems);
 
   @override
-  Future<List<IStorageItem>> getItemsAsyncDefaultStartAndCount() =>
+  Future<List<IStorageItem?>> getItemsAsyncDefaultStartAndCount() =>
       _iStorageItemQueryResult.getItemsAsyncDefaultStartAndCount();
 
   late final _iStorageQueryResultBase = IStorageQueryResultBase.from(this);

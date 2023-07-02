@@ -28,7 +28,7 @@ class IToastNotificationHistory2 extends IInspectable {
       IToastNotificationHistory2.fromPtr(
           interface.toInterface(IID_IToastNotificationHistory2));
 
-  List<ToastNotification> getHistory() {
+  List<ToastNotification?> getHistory() {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -48,13 +48,13 @@ class IToastNotificationHistory2 extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final vectorView = IVectorView<ToastNotification>.fromPtr(retValuePtr,
+    final vectorView = IVectorView<ToastNotification?>.fromPtr(retValuePtr,
         iterableIid: '{52c9428b-d37a-554d-bf55-b8685d5f552d}',
         creator: ToastNotification.fromPtr);
     return vectorView.toList();
   }
 
-  List<ToastNotification> getHistoryWithId(String applicationId) {
+  List<ToastNotification?> getHistoryWithId(String applicationId) {
     final retValuePtr = calloc<COMObject>();
     final applicationIdHString = applicationId.toHString();
 
@@ -81,7 +81,7 @@ class IToastNotificationHistory2 extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final vectorView = IVectorView<ToastNotification>.fromPtr(retValuePtr,
+    final vectorView = IVectorView<ToastNotification?>.fromPtr(retValuePtr,
         iterableIid: '{52c9428b-d37a-554d-bf55-b8685d5f552d}',
         creator: ToastNotification.fromPtr);
     return vectorView.toList();

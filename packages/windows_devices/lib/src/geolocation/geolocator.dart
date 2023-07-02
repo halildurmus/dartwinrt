@@ -39,13 +39,13 @@ class Geolocator extends IInspectable
               IGeolocatorStatics.fromPtr, _className, IID_IGeolocatorStatics)
           .requestAccessAsync();
 
-  static Future<List<Geoposition>> getGeopositionHistoryAsync(
+  static Future<List<Geoposition?>> getGeopositionHistoryAsync(
           DateTime startTime) =>
       createActivationFactory(
               IGeolocatorStatics.fromPtr, _className, IID_IGeolocatorStatics)
           .getGeopositionHistoryAsync(startTime);
 
-  static Future<List<Geoposition>> getGeopositionHistoryWithDurationAsync(
+  static Future<List<Geoposition?>> getGeopositionHistoryWithDurationAsync(
           DateTime startTime, Duration duration) =>
       createActivationFactory(
               IGeolocatorStatics.fromPtr, _className, IID_IGeolocatorStatics)

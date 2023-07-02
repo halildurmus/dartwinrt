@@ -49,7 +49,7 @@ class IVideoFrame extends IInspectable implements IMediaFrame, IClosable {
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null;
     }
@@ -105,7 +105,7 @@ class IVideoFrame extends IInspectable implements IMediaFrame, IClosable {
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null;
     }

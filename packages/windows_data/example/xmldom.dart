@@ -7,6 +7,15 @@
 
 import 'package:windows_data/windows_data.dart';
 
+void printProduct(IXmlNode? product) {
+  if (product == null) return;
+  final id = product.attributes.getNamedItem('id')?.nodeValue;
+  final title = product.attributes.getNamedItem('title')?.nodeValue;
+  final hot = product.attributes.getNamedItem('hot')?.nodeValue;
+  final price = product.selectNodes('price').item(0)?.firstChild?.nodeValue;
+  print('Product id: $id, title: $title, hot: $hot, price: $price');
+}
+
 void main() {
   const xmlString = '''
 <?xml version="1.0" encoding="utf-8"?>
@@ -28,11 +37,7 @@ void main() {
   // Retrieve the attributes of the products
   final products = doc.getElementsByTagName('product');
   for (final product in products.toList()) {
-    final id = product.attributes.getNamedItem('id')?.nodeValue;
-    final title = product.attributes.getNamedItem('title')?.nodeValue;
-    final hot = product.attributes.getNamedItem('hot')?.nodeValue;
-    final price = product.selectNodes('price').item(0)?.firstChild?.nodeValue;
-    print('Product id: $id, title: $title, hot: $hot, price: $price');
+    printProduct(product);
   }
 
   // Mark 'hot' attribute to '1' if 'sell10days' is greater than 'InStore'

@@ -105,19 +105,19 @@ class Launcher extends IInspectable {
               .queryFileSupportWithPackageFamilyNameAsync(
                   file, packageFamilyName);
 
-  static Future<List<AppInfo>> findUriSchemeHandlersAsync(String scheme) =>
+  static Future<List<AppInfo?>> findUriSchemeHandlersAsync(String scheme) =>
       createActivationFactory(
               ILauncherStatics2.fromPtr, _className, IID_ILauncherStatics2)
           .findUriSchemeHandlersAsync(scheme);
 
-  static Future<List<AppInfo>> findUriSchemeHandlersWithLaunchUriTypeAsync(
+  static Future<List<AppInfo?>> findUriSchemeHandlersWithLaunchUriTypeAsync(
           String scheme, LaunchQuerySupportType launchQuerySupportType) =>
       createActivationFactory(
               ILauncherStatics2.fromPtr, _className, IID_ILauncherStatics2)
           .findUriSchemeHandlersWithLaunchUriTypeAsync(
               scheme, launchQuerySupportType);
 
-  static Future<List<AppInfo>> findFileHandlersAsync(String extension) =>
+  static Future<List<AppInfo?>> findFileHandlersAsync(String extension) =>
       createActivationFactory(
               ILauncherStatics2.fromPtr, _className, IID_ILauncherStatics2)
           .findFileHandlersAsync(extension);
@@ -146,7 +146,7 @@ class Launcher extends IInspectable {
               .queryAppUriSupportWithPackageFamilyNameAsync(
                   uri, packageFamilyName);
 
-  static Future<List<AppInfo>> findAppUriHandlersAsync(Uri? uri) =>
+  static Future<List<AppInfo?>> findAppUriHandlersAsync(Uri? uri) =>
       createActivationFactory(
               ILauncherStatics4.fromPtr, _className, IID_ILauncherStatics4)
           .findAppUriHandlersAsync(uri);

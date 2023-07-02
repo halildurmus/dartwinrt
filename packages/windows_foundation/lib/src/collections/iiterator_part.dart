@@ -858,11 +858,11 @@ final class _IIteratorUint64 extends IIterator<int> {
   }
 }
 
-final class _IIteratorUri extends IIterator<Uri> {
+final class _IIteratorUri extends IIterator<Uri?> {
   _IIteratorUri.fromPtr(super.ptr);
 
   @override
-  Uri get current {
+  Uri? get current {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -882,12 +882,17 @@ final class _IIteratorUri extends IIterator<Uri> {
       throw WindowsException(hr);
     }
 
+    if (retValuePtr.isNull) {
+      free(retValuePtr);
+      return null;
+    }
+
     final winrtUri = retValuePtr.toWinRTUri();
     return winrtUri.toDartUri();
   }
 
   @override
-  int getMany(int itemsSize, List<Uri> items) {
+  int getMany(int itemsSize, List<Uri?> items) {
     final retValuePtr = calloc<Uint32>();
 
     try {

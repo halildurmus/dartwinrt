@@ -27,7 +27,7 @@ class IPackage5 extends IInspectable {
   factory IPackage5.from(IInspectable interface) =>
       IPackage5.fromPtr(interface.toInterface(IID_IPackage5));
 
-  Future<IVector<PackageContentGroup>> getContentGroupsAsync() {
+  Future<IVector<PackageContentGroup?>> getContentGroupsAsync() {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -48,7 +48,7 @@ class IPackage5 extends IInspectable {
     }
 
     final asyncOperation =
-        IAsyncOperation<IVector<PackageContentGroup>>.fromPtr(retValuePtr,
+        IAsyncOperation<IVector<PackageContentGroup?>>.fromPtr(retValuePtr,
             creator: (ptr) => IVector.fromPtr(ptr,
                 creator: PackageContentGroup.fromPtr,
                 iterableIid: '{d7dd1456-4805-5768-a25d-99641b096491}'));
@@ -85,7 +85,7 @@ class IPackage5 extends IInspectable {
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
-  Future<IVector<PackageContentGroup>> stageContentGroupsAsync(
+  Future<IVector<PackageContentGroup?>> stageContentGroupsAsync(
       IIterable<String>? names) {
     final retValuePtr = calloc<COMObject>();
     final namesPtr = names == null
@@ -118,14 +118,14 @@ class IPackage5 extends IInspectable {
     }
 
     final asyncOperation =
-        IAsyncOperation<IVector<PackageContentGroup>>.fromPtr(retValuePtr,
+        IAsyncOperation<IVector<PackageContentGroup?>>.fromPtr(retValuePtr,
             creator: (ptr) => IVector.fromPtr(ptr,
                 creator: PackageContentGroup.fromPtr,
                 iterableIid: '{d7dd1456-4805-5768-a25d-99641b096491}'));
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
-  Future<IVector<PackageContentGroup>> stageContentGroupsWithPriorityAsync(
+  Future<IVector<PackageContentGroup?>> stageContentGroupsWithPriorityAsync(
       IIterable<String>? names, bool moveToHeadOfQueue) {
     final retValuePtr = calloc<COMObject>();
     final namesPtr = names == null
@@ -158,7 +158,7 @@ class IPackage5 extends IInspectable {
     }
 
     final asyncOperation =
-        IAsyncOperation<IVector<PackageContentGroup>>.fromPtr(retValuePtr,
+        IAsyncOperation<IVector<PackageContentGroup?>>.fromPtr(retValuePtr,
             creator: (ptr) => IVector.fromPtr(ptr,
                 creator: PackageContentGroup.fromPtr,
                 iterableIid: '{d7dd1456-4805-5768-a25d-99641b096491}'));

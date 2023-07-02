@@ -13,19 +13,37 @@ import 'ipropertyvalue_helpers.dart';
 import 'uri_conversions.dart';
 
 /// @nodoc
-extension COMObjectArrayHelpers on Pointer<COMObject> {
-  /// Creates a `List<Uri>` from `Pointer<COMObject>`.
+extension COMObjectHelpers on Pointer<COMObject> {
+  /// Whether this is a null pointer.
+  bool get isNull => address == 0 || ref.isNull;
+
+  /// Creates a `List<Uri?>` from `Pointer<COMObject>`.
   ///
   /// [length] must not be greater than the number of elements stored inside the
   /// `Pointer<COMObject>`.
-  List<Uri> toDartUriList({int length = 1}) =>
-      toList(winrt_uri.Uri.fromPtr, length: length)
-          .map((winrtUri) => winrtUri.toDartUri())
-          .toList();
+  List<Uri?> toDartUriList({int length = 1}) {
+    final list = <Uri?>[];
+
+    for (var i = 0; i < length; i++) {
+      final objectPtr = elementAt(i);
+      if (objectPtr.isNull) {
+        list.add(null);
+        continue;
+      }
+
+      // Move each element to a newly allocated pointer so that it can be
+      // freed properly.
+      final newObjectPtr = calloc<COMObject>()..ref = objectPtr.ref;
+      final winrtUri = winrt_uri.Uri.fromPtr(newObjectPtr);
+      list.add(winrtUri.toDartUri());
+    }
+
+    return list;
+  }
 
   /// Creates a [List] from `Pointer<COMObject>`.
   ///
-  /// [T] must be `IInspectable` (e.g. `HostName`).
+  /// [T] must be `IInspectable?` (e.g. `HostName?`).
   ///
   /// [creator] must be specified for [T] (e.g. `HostName.fromPtr`).
   ///
@@ -41,6 +59,11 @@ extension COMObjectArrayHelpers on Pointer<COMObject> {
 
     for (var i = 0; i < length; i++) {
       final objectPtr = elementAt(i);
+      if (objectPtr.isNull) {
+        list.add(null as T);
+        continue;
+      }
+
       // Move each element to a newly allocated pointer so that it can be
       // freed properly.
       final newObjectPtr = calloc<COMObject>()..ref = objectPtr.ref;
@@ -59,7 +82,7 @@ extension COMObjectArrayHelpers on Pointer<COMObject> {
 
     for (var i = 0; i < length; i++) {
       final objectPtr = elementAt(i);
-      if (objectPtr.ref.isNull) {
+      if (objectPtr.isNull) {
         list.add(null);
         continue;
       }
@@ -73,4 +96,7 @@ extension COMObjectArrayHelpers on Pointer<COMObject> {
 
     return list;
   }
+
+  /// Creates a WinRT Uri from this Pointer.
+  winrt_uri.Uri toWinRTUri() => winrt_uri.Uri.fromPtr(this);
 }

@@ -110,7 +110,7 @@ mixin _GenericObjectMixin on MethodProjection {
 
   String get nullCheck => isNullable
       ? '''
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null as $typeParameter;
     }

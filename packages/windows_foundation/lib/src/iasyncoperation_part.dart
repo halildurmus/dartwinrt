@@ -181,7 +181,7 @@ final class _IAsyncOperationInspectable<TResult>
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null as TResult;
     }
@@ -214,7 +214,7 @@ final class _IAsyncOperationObject extends IAsyncOperation<Object?> {
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null;
     }
@@ -247,7 +247,7 @@ final class _IAsyncOperationUri extends IAsyncOperation<Uri?> {
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null;
     }

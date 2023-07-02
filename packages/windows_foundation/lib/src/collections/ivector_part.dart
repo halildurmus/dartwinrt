@@ -2348,11 +2348,11 @@ final class _IVectorUint64 extends IVector<int> {
   }
 }
 
-final class _IVectorUri extends IVector<Uri> {
+final class _IVectorUri extends IVector<Uri?> {
   _IVectorUri.fromPtr(super.ptr, {required super.iterableIid});
 
   @override
-  Uri getAt(int index) {
+  Uri? getAt(int index) {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -2373,16 +2373,21 @@ final class _IVectorUri extends IVector<Uri> {
       throw WindowsException(hr);
     }
 
+    if (retValuePtr.isNull) {
+      free(retValuePtr);
+      return null;
+    }
+
     final winrtUri = retValuePtr.toWinRTUri();
     return winrtUri.toDartUri();
   }
 
   @override
-  bool indexOf(Uri value, Pointer<Uint32> index) {
+  bool indexOf(Uri? value, Pointer<Uint32> index) {
     final retValuePtr = calloc<Bool>();
 
     try {
-      final valueUri = value.toWinRTUri();
+      final valueUri = value?.toWinRTUri();
 
       final hr = ptr.ref.vtable
               .elementAt(9)
@@ -2398,7 +2403,10 @@ final class _IVectorUri extends IVector<Uri> {
               .asFunction<
                   int Function(VTablePointer lpVtbl, VTablePointer value,
                       Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
-          ptr.ref.lpVtbl, valueUri.ptr.ref.lpVtbl, index, retValuePtr);
+          ptr.ref.lpVtbl,
+          valueUri == null ? nullptr : valueUri.ptr.ref.lpVtbl,
+          index,
+          retValuePtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -2409,8 +2417,8 @@ final class _IVectorUri extends IVector<Uri> {
   }
 
   @override
-  void setAt(int index, Uri value) {
-    final valueUri = value.toWinRTUri();
+  void setAt(int index, Uri? value) {
+    final valueUri = value?.toWinRTUri();
 
     final hr = ptr.ref.vtable
             .elementAt(10)
@@ -2423,14 +2431,16 @@ final class _IVectorUri extends IVector<Uri> {
             .asFunction<
                 int Function(
                     VTablePointer lpVtbl, int index, VTablePointer value)>()(
-        ptr.ref.lpVtbl, index, valueUri.ptr.ref.lpVtbl);
+        ptr.ref.lpVtbl,
+        index,
+        valueUri == null ? nullptr : valueUri.ptr.ref.lpVtbl);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
   @override
-  void insertAt(int index, Uri value) {
-    final valueUri = value.toWinRTUri();
+  void insertAt(int index, Uri? value) {
+    final valueUri = value?.toWinRTUri();
 
     final hr = ptr.ref.vtable
             .elementAt(11)
@@ -2443,14 +2453,16 @@ final class _IVectorUri extends IVector<Uri> {
             .asFunction<
                 int Function(
                     VTablePointer lpVtbl, int index, VTablePointer value)>()(
-        ptr.ref.lpVtbl, index, valueUri.ptr.ref.lpVtbl);
+        ptr.ref.lpVtbl,
+        index,
+        valueUri == null ? nullptr : valueUri.ptr.ref.lpVtbl);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
   @override
-  void append(Uri value) {
-    final valueUri = value.toWinRTUri();
+  void append(Uri? value) {
+    final valueUri = value?.toWinRTUri();
 
     final hr = ptr.ref.vtable
             .elementAt(13)
@@ -2462,13 +2474,13 @@ final class _IVectorUri extends IVector<Uri> {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer value)>()(
-        ptr.ref.lpVtbl, valueUri.ptr.ref.lpVtbl);
+        ptr.ref.lpVtbl, valueUri == null ? nullptr : valueUri.ptr.ref.lpVtbl);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
   @override
-  int getMany(int startIndex, int itemsSize, List<Uri> items) {
+  int getMany(int startIndex, int itemsSize, List<Uri?> items) {
     final retValuePtr = calloc<Uint32>();
 
     try {
@@ -2509,11 +2521,11 @@ final class _IVectorUri extends IVector<Uri> {
   }
 
   @override
-  void replaceAll(List<Uri> items) {
+  void replaceAll(List<Uri?> items) {
     final pItemsArray = calloc<COMObject>(items.length);
     for (var i = 0; i < items.length; i++) {
-      final itemsWinrtUri = items.elementAt(i).toWinRTUri();
-      pItemsArray[i] = itemsWinrtUri.ptr.ref;
+      pItemsArray[i] =
+          items.elementAt(i)?.toWinRTUri().ptr.ref ?? calloc<COMObject>().ref;
     }
 
     final hr = ptr.ref.vtable

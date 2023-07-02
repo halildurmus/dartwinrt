@@ -30,5 +30,5 @@ class NetworkOperatorTetheringClient extends IInspectable
   String get macAddress => _iNetworkOperatorTetheringClient.macAddress;
 
   @override
-  List<HostName> get hostNames => _iNetworkOperatorTetheringClient.hostNames;
+  List<HostName?> get hostNames => _iNetworkOperatorTetheringClient.hostNames;
 }

@@ -2,8 +2,6 @@
 // All rights reserved. Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import 'dart:ffi';
-
 import 'package:win32/win32.dart';
 
 import '../../ipropertyvalue.dart';
@@ -11,11 +9,12 @@ import '../../point.dart';
 import '../../propertytype.dart';
 import '../../rect.dart';
 import '../../size.dart';
+import 'comobject_helpers.dart';
 
 extension IPropertyValueHelper on IPropertyValue {
   /// Gets the type that is represented as an [IPropertyValue].
   Object? get value {
-    if (ptr.ref.isNull) return null;
+    if (ptr.isNull) return null;
 
     // If the object does not implement the IPropertyValue interface, return it
     // as an IInspectable object.

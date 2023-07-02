@@ -302,7 +302,7 @@ class ILauncherStatics2 extends IInspectable {
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
-  Future<List<AppInfo>> findUriSchemeHandlersAsync(String scheme) {
+  Future<List<AppInfo?>> findUriSchemeHandlersAsync(String scheme) {
     final retValuePtr = calloc<COMObject>();
     final schemeHString = scheme.toHString();
 
@@ -326,7 +326,7 @@ class ILauncherStatics2 extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<IVectorView<AppInfo>>.fromPtr(
+    final asyncOperation = IAsyncOperation<IVectorView<AppInfo?>>.fromPtr(
         retValuePtr,
         creator: (ptr) => IVectorView.fromPtr(ptr,
             creator: AppInfo.fromPtr,
@@ -334,7 +334,7 @@ class ILauncherStatics2 extends IInspectable {
     return asyncOperation.toFuture(() => asyncOperation.getResults().toList());
   }
 
-  Future<List<AppInfo>> findUriSchemeHandlersWithLaunchUriTypeAsync(
+  Future<List<AppInfo?>> findUriSchemeHandlersWithLaunchUriTypeAsync(
       String scheme, LaunchQuerySupportType launchQuerySupportType) {
     final retValuePtr = calloc<COMObject>();
     final schemeHString = scheme.toHString();
@@ -365,7 +365,7 @@ class ILauncherStatics2 extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<IVectorView<AppInfo>>.fromPtr(
+    final asyncOperation = IAsyncOperation<IVectorView<AppInfo?>>.fromPtr(
         retValuePtr,
         creator: (ptr) => IVectorView.fromPtr(ptr,
             creator: AppInfo.fromPtr,
@@ -373,7 +373,7 @@ class ILauncherStatics2 extends IInspectable {
     return asyncOperation.toFuture(() => asyncOperation.getResults().toList());
   }
 
-  Future<List<AppInfo>> findFileHandlersAsync(String extension) {
+  Future<List<AppInfo?>> findFileHandlersAsync(String extension) {
     final retValuePtr = calloc<COMObject>();
     final extensionHString = extension.toHString();
 
@@ -397,7 +397,7 @@ class ILauncherStatics2 extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<IVectorView<AppInfo>>.fromPtr(
+    final asyncOperation = IAsyncOperation<IVectorView<AppInfo?>>.fromPtr(
         retValuePtr,
         creator: (ptr) => IVectorView.fromPtr(ptr,
             creator: AppInfo.fromPtr,
