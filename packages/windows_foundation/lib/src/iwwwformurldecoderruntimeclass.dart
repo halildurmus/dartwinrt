@@ -26,8 +26,8 @@ const IID_IWwwFormUrlDecoderRuntimeClass =
 
 class IWwwFormUrlDecoderRuntimeClass extends IInspectable
     implements
-        IIterable<IWwwFormUrlDecoderEntry>,
-        IVectorView<IWwwFormUrlDecoderEntry> {
+        IIterable<IWwwFormUrlDecoderEntry?>,
+        IVectorView<IWwwFormUrlDecoderEntry?> {
   // vtable begins at 6, is 1 entries long.
   IWwwFormUrlDecoderRuntimeClass.fromPtr(super.ptr);
 
@@ -65,37 +65,37 @@ class IWwwFormUrlDecoderRuntimeClass extends IInspectable
     }
   }
 
-  late final _iVectorView = IVectorView<IWwwFormUrlDecoderEntry>.fromPtr(
+  late final _iVectorView = IVectorView<IWwwFormUrlDecoderEntry?>.fromPtr(
       toInterface('{b1f00d3b-1f06-5117-93ea-2a0d79116701}'),
       creator: IWwwFormUrlDecoderEntry.fromPtr,
       iterableIid: '{876be83b-7218-5bfb-a169-83152ef7e146}');
 
   @override
-  IWwwFormUrlDecoderEntry getAt(int index) => _iVectorView.getAt(index);
+  IWwwFormUrlDecoderEntry? getAt(int index) => _iVectorView.getAt(index);
 
   @override
   int get size => _iVectorView.size;
 
   @override
-  bool indexOf(IWwwFormUrlDecoderEntry value, Pointer<Uint32> index) =>
+  bool indexOf(IWwwFormUrlDecoderEntry? value, Pointer<Uint32> index) =>
       _iVectorView.indexOf(value, index);
 
   @override
-  int getMany(
-          int startIndex, int itemsSize, List<IWwwFormUrlDecoderEntry> items) =>
+  int getMany(int startIndex, int itemsSize,
+          List<IWwwFormUrlDecoderEntry?> items) =>
       _iVectorView.getMany(startIndex, itemsSize, items);
 
   @override
-  IIterator<IWwwFormUrlDecoderEntry> first() => _iVectorView.first();
+  IIterator<IWwwFormUrlDecoderEntry?> first() => _iVectorView.first();
 
   @override
-  List<IWwwFormUrlDecoderEntry> toList() => _iVectorView.toList();
+  List<IWwwFormUrlDecoderEntry?> toList() => _iVectorView.toList();
 
   @override
-  IWwwFormUrlDecoderEntry operator [](int index) => _iVectorView[index];
+  IWwwFormUrlDecoderEntry? operator [](int index) => _iVectorView[index];
 
   @override
-  List<IWwwFormUrlDecoderEntry> operator +(
-          List<IWwwFormUrlDecoderEntry> other) =>
+  List<IWwwFormUrlDecoderEntry?> operator +(
+          List<IWwwFormUrlDecoderEntry?> other) =>
       toList() + other;
 }

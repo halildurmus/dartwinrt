@@ -60,8 +60,11 @@ void main() {
 
       test('getAt returns elements', () {
         final vectorView = getVectorView();
-        final element = vectorView.getAt(0);
-        expect(element, equals(1));
+        expect(vectorView.size, equals(4));
+        expect(vectorView.getAt(0), equals(1));
+        expect(vectorView.getAt(1), equals(2));
+        expect(vectorView.getAt(2), equals(3));
+        expect(vectorView.getAt(3), equals(4));
       });
 
       test('indexOf finds element', () {

@@ -54,7 +54,7 @@ class IGamepadStatics2 extends IInspectable implements IGamepadStatics {
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null;
     }
@@ -81,5 +81,5 @@ class IGamepadStatics2 extends IInspectable implements IGamepadStatics {
       _iGamepadStatics.remove_GamepadRemoved(token);
 
   @override
-  List<Gamepad> get gamepads => _iGamepadStatics.gamepads;
+  List<Gamepad?> get gamepads => _iGamepadStatics.gamepads;
 }

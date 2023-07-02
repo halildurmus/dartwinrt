@@ -45,26 +45,13 @@ mixin _ObjectMixin on MethodProjection {
       return shortName;
     }
 
-    // IIterable.First() cannot return null.
-    if (method.name == 'First' && method.parent.isCollectionObject) {
-      return shortName;
-    }
-
-    // IVector(View).GetAt() cannot return null.
-    if (method.name == 'GetAt' &&
-        (method.parent.interfaces.any((interface) =>
-            (interface.typeSpec?.name.endsWith('IVector`1') ?? false) ||
-            (interface.typeSpec?.name.endsWith('IVectorView`1') ?? false)))) {
-      return shortName;
-    }
-
     return nullable(shortName);
   }
 
   String get nullCheck {
     if (!isNullable) return '';
     return '''
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null;
     }
@@ -239,7 +226,7 @@ final class ObjectListParameterProjection
   @override
   String get type => typeArgProjection.isObjectType
       ? 'List<Object?>'
-      : 'List<$typeArgShortName>';
+      : 'List<$typeArgShortName?>';
 
   @override
   String get fillArrayPreamble =>

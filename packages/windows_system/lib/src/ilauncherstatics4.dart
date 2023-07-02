@@ -101,7 +101,7 @@ class ILauncherStatics4 extends IInspectable {
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
-  Future<List<AppInfo>> findAppUriHandlersAsync(Uri? uri) {
+  Future<List<AppInfo?>> findAppUriHandlersAsync(Uri? uri) {
     final retValuePtr = calloc<COMObject>();
     final uriUri = uri?.toWinRTUri();
 
@@ -126,7 +126,7 @@ class ILauncherStatics4 extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<IVectorView<AppInfo>>.fromPtr(
+    final asyncOperation = IAsyncOperation<IVectorView<AppInfo?>>.fromPtr(
         retValuePtr,
         creator: (ptr) => IVectorView.fromPtr(ptr,
             creator: AppInfo.fromPtr,

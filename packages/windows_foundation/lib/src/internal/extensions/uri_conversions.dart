@@ -2,17 +2,7 @@
 // All rights reserved. Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import 'dart:ffi';
-
-import 'package:win32/win32.dart';
-
 import '../../uri.dart' as winrt_uri;
-
-/// @nodoc
-extension COMObjectPointerToWinRTUriConversion on Pointer<COMObject> {
-  /// Creates a WinRT Uri from this Pointer.
-  winrt_uri.Uri toWinRTUri() => winrt_uri.Uri.fromPtr(this);
-}
 
 /// @nodoc
 extension DartUriToWinRTUriConversion on Uri {

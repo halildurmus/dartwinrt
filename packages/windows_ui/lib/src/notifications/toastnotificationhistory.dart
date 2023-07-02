@@ -29,11 +29,11 @@ class ToastNotificationHistory extends IInspectable
       IToastNotificationHistory2.from(this);
 
   @override
-  List<ToastNotification> getHistory() =>
+  List<ToastNotification?> getHistory() =>
       _iToastNotificationHistory2.getHistory();
 
   @override
-  List<ToastNotification> getHistoryWithId(String applicationId) =>
+  List<ToastNotification?> getHistoryWithId(String applicationId) =>
       _iToastNotificationHistory2.getHistoryWithId(applicationId);
 
   late final _iToastNotificationHistory = IToastNotificationHistory.from(this);

@@ -131,7 +131,7 @@ class IToastNotifier extends IInspectable {
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
-  List<ScheduledToastNotification> getScheduledToastNotifications() {
+  List<ScheduledToastNotification?> getScheduledToastNotifications() {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -151,7 +151,7 @@ class IToastNotifier extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final vectorView = IVectorView<ScheduledToastNotification>.fromPtr(
+    final vectorView = IVectorView<ScheduledToastNotification?>.fromPtr(
         retValuePtr,
         iterableIid: '{7a7b2a51-c182-5846-a861-4f9c036f24ad}',
         creator: ScheduledToastNotification.fromPtr);

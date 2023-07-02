@@ -75,11 +75,9 @@ extension TypeIdentifierHelpers on TypeIdentifier {
     // If the typeIdentifier's name is already parsed, return it as is
     if (name.contains('<')) return name;
 
-    if (name == 'Windows.Foundation.TimeSpan') return 'Duration';
+    if (isReferenceType) return dereferenceType(this).shortName;
 
-    if (baseType == BaseType.referenceTypeModifier) {
-      return dereferenceType(this).shortName;
-    }
+    if (name == 'Windows.Foundation.TimeSpan') return 'Duration';
 
     return switch (baseType) {
       BaseType.classTypeModifier ||
@@ -222,7 +220,7 @@ String _parseGenericTypeIdentifierCreator(TypeIdentifier typeIdentifier) {
     final referenceSignature =
         'pinterface($IID_IReference;$referenceArgSignature)';
     final iid = iidFromSignature(referenceSignature);
-    args.add("referenceIid: ${quote(iid)}");
+    args.add('referenceIid: ${quote(iid)}');
   } else {
     if (creator == null) return '$shortName.fromPtr';
   }
@@ -239,10 +237,11 @@ String _parseGenericTypeIdentifierCreator(TypeIdentifier typeIdentifier) {
 
 String _parseTypeArgName(TypeIdentifier typeIdentifier) {
   final typeArg = typeIdentifier.shortName;
-  // Collection interfaces cannot be null.
-  if (typeIdentifier.type?.isCollectionObject ?? false) return typeArg;
+  if (typeArg.startsWith('IKeyValuePair')) return typeArg;
   // Value types (enums and structs) cannot be null.
   if (TypeProjection(typeIdentifier).isValueType) return typeArg;
+  // Collection interfaces cannot be null.
+  if (typeIdentifier.type?.isCollectionObject ?? false) return typeArg;
   // Primitive types cannot be null.
   if (typeArg case 'bool' || 'double' || 'int' || 'String') return typeArg;
   return nullable(typeArg);
@@ -278,10 +277,9 @@ String _parseGenericTypeIdentifierName(TypeIdentifier typeIdentifier) {
 
   // Handle generic types with one type parameter
   return switch (shortName) {
-    'IAsyncOperation' => 'IAsyncOperation<${_parseTypeArgName(typeArg1)}>',
     // Mark typeArg as nullable since all IReference types are nullable.
     'IReference' => 'IReference<${typeArg1.shortName}?>',
-    _ => '$shortName<${typeArg1.shortName}>',
+    _ => '$shortName<${_parseTypeArgName(typeArg1)}>',
   };
 }
 

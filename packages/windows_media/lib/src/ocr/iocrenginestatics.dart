@@ -52,7 +52,7 @@ class IOcrEngineStatics extends IInspectable {
     }
   }
 
-  List<Language> get availableRecognizerLanguages {
+  List<Language?> get availableRecognizerLanguages {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -72,7 +72,7 @@ class IOcrEngineStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final vectorView = IVectorView<Language>.fromPtr(retValuePtr,
+    final vectorView = IVectorView<Language?>.fromPtr(retValuePtr,
         iterableIid: '{48409a10-61b6-5db1-a69d-8abc46ac608a}',
         creator: Language.fromPtr);
     return vectorView.toList();
@@ -131,7 +131,7 @@ class IOcrEngineStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null;
     }
@@ -159,7 +159,7 @@ class IOcrEngineStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null;
     }

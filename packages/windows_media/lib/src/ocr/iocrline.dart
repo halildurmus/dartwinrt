@@ -27,7 +27,7 @@ class IOcrLine extends IInspectable {
   factory IOcrLine.from(IInspectable interface) =>
       IOcrLine.fromPtr(interface.toInterface(IID_IOcrLine));
 
-  List<OcrWord> get words {
+  List<OcrWord?> get words {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -47,7 +47,7 @@ class IOcrLine extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final vectorView = IVectorView<OcrWord>.fromPtr(retValuePtr,
+    final vectorView = IVectorView<OcrWord?>.fromPtr(retValuePtr,
         iterableIid: '{a0ce663a-46d0-55e5-928e-251eb67a1e99}',
         creator: OcrWord.fromPtr);
     return vectorView.toList();

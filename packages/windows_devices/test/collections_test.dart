@@ -41,6 +41,7 @@ void main() {
       final vector = getVector()
         ..append(DeviceClass.audioCapture)
         ..append(DeviceClass.audioRender);
+      expect(vector.size, equals(2));
       expect(vector.getAt(0), equals(DeviceClass.audioCapture));
       expect(vector.getAt(1), equals(DeviceClass.audioRender));
     });

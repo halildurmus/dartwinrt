@@ -181,35 +181,6 @@ final class MethodForwardersProjection {
         continue;
       }
 
-      if (shortInterfaceName case 'IVector' || 'IVectorView') {
-        // Use custom forwarder for Append to make its parameter non-nullable.
-        if (methodProjection.name == 'Append') {
-          methods.add(vectorAppendForwarder());
-          continue;
-        }
-
-        // Use custom forwarder for IndexOf to make its value parameter
-        // non-nullable.
-        if (methodProjection.name == 'IndexOf') {
-          methods.add(vectorIndexOfForwarder());
-          continue;
-        }
-
-        // Use custom forwarder for InsertAt to make its value parameter
-        // non-nullable.
-        if (methodProjection.name == 'InsertAt') {
-          methods.add(vectorInsertAtForwarder());
-          continue;
-        }
-
-        // Use custom forwarder for SetAt to make its value parameter
-        // non-nullable.
-        if (methodProjection.name == 'SetAt') {
-          methods.add(vectorSetAtForwarder());
-          continue;
-        }
-      }
-
       methods.add(defaultForwarder(methodProjection));
     }
 
@@ -253,8 +224,7 @@ final class MethodForwardersProjection {
   // Custom method forwarders
 
   String jsonObjectInsertForwarder() {
-    final keyType = typeArgs.split(', ')[0];
-    final valueType = typeArgs.split(', ')[1];
+    final [keyType, valueType] = typeArgs.split(', ');
     return '''
   @override
   bool insert($keyType key, $valueType value) =>
@@ -273,47 +243,20 @@ final class MethodForwardersProjection {
 ''';
 
   String mapSubscriptAccessOperatorForwarder() {
-    final keyType = typeArgs.split(', ')[0];
-    final valueType = typeArgs.split(', ')[1];
+    final [keyType, valueType] = typeArgs.split(', ');
     return '''
   @override
   $valueType operator []($keyType key) => $fieldIdentifier[key];
-  ''';
+''';
   }
 
   String mapSubscriptAssignmentOperatorForwarder() {
-    final keyType = typeArgs.split(', ')[0];
-    final valueType = typeArgs.split(', ')[1];
+    final [keyType, valueType] = typeArgs.split(', ');
     return '''
   @override
-  void operator []=($keyType key, $valueType value) =>
-      $fieldIdentifier[key] = value;
-  ''';
+  void operator []=($keyType key, $valueType value) => $fieldIdentifier[key] = value;
+''';
   }
-
-  String vectorAppendForwarder() => '''
-  @override
-  void append(${stripQuestionMarkSuffix(typeArgs)} value) =>
-      $fieldIdentifier.append(value);
-''';
-
-  String vectorIndexOfForwarder() => '''
-  @override
-  bool indexOf(${stripQuestionMarkSuffix(typeArgs)} value, Pointer<Uint32> index) =>
-      $fieldIdentifier.indexOf(value, index);
-''';
-
-  String vectorInsertAtForwarder() => '''
-  @override
-  void insertAt(int index, ${stripQuestionMarkSuffix(typeArgs)} value) =>
-      $fieldIdentifier.insertAt(index, value);
-''';
-
-  String vectorSetAtForwarder() => '''
-  @override
-  void setAt(int index, ${stripQuestionMarkSuffix(typeArgs)} value) =>
-      $fieldIdentifier.setAt(index, value);
-''';
 
   String vectorFirstForwarder() => '''
   @override
@@ -327,20 +270,17 @@ final class MethodForwardersProjection {
 
   String vectorSubscriptAccessOperatorForwarder() => '''
   @override
-  ${stripQuestionMarkSuffix(typeArgs)} operator [](int index) =>
-      $fieldIdentifier[index];
+  $typeArgs operator [](int index) => $fieldIdentifier[index];
 ''';
 
   String vectorSubscriptAssignmentOperatorForwarder() => '''
   @override
-  void operator []=(int index, ${stripQuestionMarkSuffix(typeArgs)} value) =>
-      $fieldIdentifier[index] = value;
+  void operator []=(int index, $typeArgs value) => $fieldIdentifier[index] = value;
 ''';
 
   String vectorAddOperatorForwarder() => '''
   @override
-  List<$typeArgs> operator +(List<${stripQuestionMarkSuffix(typeArgs)}> other) =>
-      toList() + other;
+  List<$typeArgs> operator +(List<$typeArgs> other) => toList() + other;
 ''';
 
   @override

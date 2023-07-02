@@ -110,17 +110,17 @@ class StorageFolder extends IInspectable
       _iStorageFolder.getItemAsync(name);
 
   @override
-  Future<List<StorageFile>>
+  Future<List<StorageFile?>>
       getFilesAsyncOverloadDefaultOptionsStartAndCount() =>
           _iStorageFolder.getFilesAsyncOverloadDefaultOptionsStartAndCount();
 
   @override
-  Future<List<StorageFolder>>
+  Future<List<StorageFolder?>>
       getFoldersAsyncOverloadDefaultOptionsStartAndCount() =>
           _iStorageFolder.getFoldersAsyncOverloadDefaultOptionsStartAndCount();
 
   @override
-  Future<List<IStorageItem>> getItemsAsyncOverloadDefaultStartAndCount() =>
+  Future<List<IStorageItem?>> getItemsAsyncOverloadDefaultStartAndCount() =>
       _iStorageFolder.getItemsAsyncOverloadDefaultStartAndCount();
 
   late final _iStorageItem = IStorageItem.from(this);
@@ -203,31 +203,31 @@ class StorageFolder extends IInspectable
       _iStorageFolderQueryOperations.createItemQueryWithOptions(queryOptions);
 
   @override
-  Future<List<StorageFile>> getFilesAsync(
+  Future<List<StorageFile?>> getFilesAsync(
           CommonFileQuery query, int startIndex, int maxItemsToRetrieve) =>
       _iStorageFolderQueryOperations.getFilesAsync(
           query, startIndex, maxItemsToRetrieve);
 
   @override
-  Future<List<StorageFile>> getFilesAsyncOverloadDefaultStartAndCount(
+  Future<List<StorageFile?>> getFilesAsyncOverloadDefaultStartAndCount(
           CommonFileQuery query) =>
       _iStorageFolderQueryOperations
           .getFilesAsyncOverloadDefaultStartAndCount(query);
 
   @override
-  Future<List<StorageFolder>> getFoldersAsync(
+  Future<List<StorageFolder?>> getFoldersAsync(
           CommonFolderQuery query, int startIndex, int maxItemsToRetrieve) =>
       _iStorageFolderQueryOperations.getFoldersAsync(
           query, startIndex, maxItemsToRetrieve);
 
   @override
-  Future<List<StorageFolder>> getFoldersAsyncOverloadDefaultStartAndCount(
+  Future<List<StorageFolder?>> getFoldersAsyncOverloadDefaultStartAndCount(
           CommonFolderQuery query) =>
       _iStorageFolderQueryOperations
           .getFoldersAsyncOverloadDefaultStartAndCount(query);
 
   @override
-  Future<List<IStorageItem>> getItemsAsync(
+  Future<List<IStorageItem?>> getItemsAsync(
           int startIndex, int maxItemsToRetrieve) =>
       _iStorageFolderQueryOperations.getItemsAsync(
           startIndex, maxItemsToRetrieve);

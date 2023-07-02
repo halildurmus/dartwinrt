@@ -30,7 +30,7 @@ class IWebTokenRequestResult extends IInspectable {
       IWebTokenRequestResult.fromPtr(
           interface.toInterface(IID_IWebTokenRequestResult));
 
-  List<WebTokenResponse> get responseData {
+  List<WebTokenResponse?> get responseData {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -50,7 +50,7 @@ class IWebTokenRequestResult extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final vectorView = IVectorView<WebTokenResponse>.fromPtr(retValuePtr,
+    final vectorView = IVectorView<WebTokenResponse?>.fromPtr(retValuePtr,
         iterableIid: '{7e5bb7ec-bbd7-5575-9a61-f5815fa22a0e}',
         creator: WebTokenResponse.fromPtr);
     return vectorView.toList();
@@ -100,7 +100,7 @@ class IWebTokenRequestResult extends IInspectable {
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null;
     }

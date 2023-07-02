@@ -5,7 +5,8 @@
 import 'package:windows_devices/windows_devices.dart';
 import 'package:windows_graphics/windows_graphics.dart';
 
-void printMonitorSpecs(DisplayMonitor monitor) {
+void printMonitorSpecs(DisplayMonitor? monitor) {
+  if (monitor == null) return;
   print('Display name: ${monitor.displayName}');
   print('Monitor size: '
       '${monitor.physicalSizeInInches?.width.toStringAsFixed(1)}in x '
@@ -29,8 +30,8 @@ void main() async {
   final deviceInformationCollection =
       await DeviceInformation.findAllAsyncAqsFilter(deviceSelector);
   for (final device in deviceInformationCollection.toList()) {
-    final monitor = await DisplayMonitor.fromInterfaceIdAsync(device.id);
-    if (monitor != null) {
+    if (device != null) {
+      final monitor = await DisplayMonitor.fromInterfaceIdAsync(device.id);
       printMonitorSpecs(monitor);
     }
   }

@@ -78,7 +78,7 @@ class FileOpenPicker extends IInspectable
       _iFileOpenPicker.pickSingleFileAsync();
 
   @override
-  Future<List<StorageFile>> pickMultipleFilesAsync() =>
+  Future<List<StorageFile?>> pickMultipleFilesAsync() =>
       _iFileOpenPicker.pickMultipleFilesAsync();
 
   late final _iFileOpenPicker3 = IFileOpenPicker3.from(this);

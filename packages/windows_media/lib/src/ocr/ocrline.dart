@@ -26,7 +26,7 @@ class OcrLine extends IInspectable implements IOcrLine {
   late final _iOcrLine = IOcrLine.from(this);
 
   @override
-  List<OcrWord> get words => _iOcrLine.words;
+  List<OcrWord?> get words => _iOcrLine.words;
 
   @override
   String get text => _iOcrLine.text;

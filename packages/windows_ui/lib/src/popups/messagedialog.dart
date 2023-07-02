@@ -44,7 +44,7 @@ class MessageDialog extends IInspectable implements IMessageDialog {
   set title(String value) => _iMessageDialog.title = value;
 
   @override
-  IVector<IUICommand> get commands => _iMessageDialog.commands;
+  IVector<IUICommand?> get commands => _iMessageDialog.commands;
 
   @override
   int get defaultCommandIndex => _iMessageDialog.defaultCommandIndex;

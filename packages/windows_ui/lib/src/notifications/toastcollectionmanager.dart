@@ -32,7 +32,7 @@ class ToastCollectionManager extends IInspectable
       _iToastCollectionManager.saveToastCollectionAsync(collection);
 
   @override
-  Future<List<ToastCollection>> findAllToastCollectionsAsync() =>
+  Future<List<ToastCollection?>> findAllToastCollectionsAsync() =>
       _iToastCollectionManager.findAllToastCollectionsAsync();
 
   @override

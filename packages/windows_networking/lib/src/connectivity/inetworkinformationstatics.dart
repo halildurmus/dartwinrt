@@ -33,7 +33,7 @@ class INetworkInformationStatics extends IInspectable {
       INetworkInformationStatics.fromPtr(
           interface.toInterface(IID_INetworkInformationStatics));
 
-  List<ConnectionProfile> getConnectionProfiles() {
+  List<ConnectionProfile?> getConnectionProfiles() {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -53,7 +53,7 @@ class INetworkInformationStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final vectorView = IVectorView<ConnectionProfile>.fromPtr(retValuePtr,
+    final vectorView = IVectorView<ConnectionProfile?>.fromPtr(retValuePtr,
         iterableIid: '{34dabef9-87d0-5b1c-a7ac-9d290adeb0c8}',
         creator: ConnectionProfile.fromPtr);
     return vectorView.toList();
@@ -79,7 +79,7 @@ class INetworkInformationStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null;
     }
@@ -87,7 +87,7 @@ class INetworkInformationStatics extends IInspectable {
     return ConnectionProfile.fromPtr(retValuePtr);
   }
 
-  List<LanIdentifier> getLanIdentifiers() {
+  List<LanIdentifier?> getLanIdentifiers() {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -107,13 +107,13 @@ class INetworkInformationStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final vectorView = IVectorView<LanIdentifier>.fromPtr(retValuePtr,
+    final vectorView = IVectorView<LanIdentifier?>.fromPtr(retValuePtr,
         iterableIid: '{accef3cd-5d92-5c01-8ac4-79fe74cd733e}',
         creator: LanIdentifier.fromPtr);
     return vectorView.toList();
   }
 
-  List<HostName> getHostNames() {
+  List<HostName?> getHostNames() {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -133,7 +133,7 @@ class INetworkInformationStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final vectorView = IVectorView<HostName>.fromPtr(retValuePtr,
+    final vectorView = IVectorView<HostName?>.fromPtr(retValuePtr,
         iterableIid: '{9e5f3ed0-cf1c-5d38-832c-acea6164bf5c}',
         creator: HostName.fromPtr);
     return vectorView.toList();
@@ -170,8 +170,8 @@ class INetworkInformationStatics extends IInspectable {
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
-  List<EndpointPair> getSortedEndpointPairs(
-      IIterable<EndpointPair>? destinationList,
+  List<EndpointPair?> getSortedEndpointPairs(
+      IIterable<EndpointPair?>? destinationList,
       HostNameSortOptions sortOptions) {
     final retValuePtr = calloc<COMObject>();
     final destinationListPtr = destinationList == null
@@ -206,7 +206,7 @@ class INetworkInformationStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final vectorView = IVectorView<EndpointPair>.fromPtr(retValuePtr,
+    final vectorView = IVectorView<EndpointPair?>.fromPtr(retValuePtr,
         iterableIid: '{d7ec83c4-a17b-51bf-8997-aa33b9102dc9}',
         creator: EndpointPair.fromPtr);
     return vectorView.toList();

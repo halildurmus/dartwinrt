@@ -54,7 +54,7 @@ class IGeolocatorStatics extends IInspectable {
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
-  Future<List<Geoposition>> getGeopositionHistoryAsync(DateTime startTime) {
+  Future<List<Geoposition?>> getGeopositionHistoryAsync(DateTime startTime) {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -75,7 +75,7 @@ class IGeolocatorStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<IVectorView<Geoposition>>.fromPtr(
+    final asyncOperation = IAsyncOperation<IVectorView<Geoposition?>>.fromPtr(
         retValuePtr,
         creator: (ptr) => IVectorView.fromPtr(ptr,
             creator: Geoposition.fromPtr,
@@ -83,7 +83,7 @@ class IGeolocatorStatics extends IInspectable {
     return asyncOperation.toFuture(() => asyncOperation.getResults().toList());
   }
 
-  Future<List<Geoposition>> getGeopositionHistoryWithDurationAsync(
+  Future<List<Geoposition?>> getGeopositionHistoryWithDurationAsync(
       DateTime startTime, Duration duration) {
     final retValuePtr = calloc<COMObject>();
 
@@ -105,7 +105,7 @@ class IGeolocatorStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<IVectorView<Geoposition>>.fromPtr(
+    final asyncOperation = IAsyncOperation<IVectorView<Geoposition?>>.fromPtr(
         retValuePtr,
         creator: (ptr) => IVectorView.fromPtr(ptr,
             creator: Geoposition.fromPtr,

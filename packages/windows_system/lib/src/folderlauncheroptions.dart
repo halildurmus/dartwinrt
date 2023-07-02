@@ -33,7 +33,7 @@ class FolderLauncherOptions extends IInspectable
   late final _iFolderLauncherOptions = IFolderLauncherOptions.from(this);
 
   @override
-  IVector<IStorageItem> get itemsToSelect =>
+  IVector<IStorageItem?> get itemsToSelect =>
       _iFolderLauncherOptions.itemsToSelect;
 
   late final _iLauncherViewOptions = ILauncherViewOptions.from(this);

@@ -122,14 +122,14 @@ void main() {
       expect(parameter.localIdentifier, equals('fileToReplacePtr'));
     });
 
-    test('projects IIterable<IKeyValuePair<String, Object?>>', () {
+    test('projects IIterable<IKeyValuePair<String, Object?>?>', () {
       final methodProjection = MethodProjection.fromTypeAndMethodName(
           'Windows.Storage.FileProperties.IStorageItemExtraProperties',
           'SavePropertiesAsync');
       final parameter = methodProjection.parameters.first;
       expect(parameter, isA<ObjectParameterProjection>());
-      expect(
-          parameter.type, equals('IIterable<IKeyValuePair<String, Object?>>?'));
+      expect(parameter.type,
+          equals('IIterable<IKeyValuePair<String, Object?>>?'));
       expect(
           parameter.preamble,
           equals(
@@ -163,7 +163,7 @@ void main() {
       expect(parameter.localIdentifier, equals('first.ptr'));
     });
 
-    test('projects IReference<BluetoothLEAdvertisementFlags>', () {
+    test('projects IReference<BluetoothLEAdvertisementFlags?>', () {
       final methodProjection = MethodProjection.fromTypeAndMethodName(
           'Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisement',
           'put_Flags');
@@ -176,7 +176,7 @@ void main() {
           equals('value?.toReference().ptr.ref.lpVtbl ?? nullptr'));
     });
 
-    test('projects IReference<int>', () {
+    test('projects IReference<int?>', () {
       final methodProjection = MethodProjection.fromTypeAndMethodName(
           'Windows.Devices.Geolocation.IGeolocatorWithScalarAccuracy',
           'put_DesiredAccuracyInMeters');

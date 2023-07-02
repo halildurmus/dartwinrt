@@ -29,7 +29,7 @@ class StorageLibraryChangeReader extends IInspectable
       IStorageLibraryChangeReader.from(this);
 
   @override
-  Future<List<StorageLibraryChange>> readBatchAsync() =>
+  Future<List<StorageLibraryChange?>> readBatchAsync() =>
       _iStorageLibraryChangeReader.readBatchAsync();
 
   @override

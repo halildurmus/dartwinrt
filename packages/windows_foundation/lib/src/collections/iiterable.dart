@@ -22,8 +22,8 @@ interface class IIterable<T> extends IInspectable {
 
   /// Creates an instance of [IIterable] from the given [ptr].
   ///
-  /// [T] must be of type `bool`, `double`, `Guid`, `int`, `String`, `Uri`,
-  /// `IInspectable` (e.g.`StorageFile`) or `WinRTEnum` (e.g. `DeviceClass`).
+  /// [T] must be of type `bool`, `double`, `Guid`, `int`, `String`, `Uri?`,
+  /// `IInspectable?` (e.g.`StorageFile?`) or `WinRTEnum` (e.g. `DeviceClass`).
   ///
   /// [doubleType] must be specified if [T] is `double`.
   /// ```dart
@@ -36,9 +36,9 @@ interface class IIterable<T> extends IInspectable {
   /// final iterable = IIterable<int>.fromPtr(ptr, intType: IntType.uint64);
   /// ```
   ///
-  /// [creator] must be specified if [T] is `IInspectable`.
+  /// [creator] must be specified if [T] is `IInspectable?`.
   /// ```dart
-  /// final iterable = IIterable<StorageFile>.fromPtr(ptr,
+  /// final iterable = IIterable<StorageFile?>.fromPtr(ptr,
   ///     creator: StorageFile.fromPtr);
   /// ```
   ///

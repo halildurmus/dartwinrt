@@ -784,8 +784,8 @@ void main() {
     });
   });
 
-  group('IVector<Uri>', () {
-    IVector<Uri> getServerUris(Pointer<COMObject> ptr) {
+  group('IVector<Uri?>', () {
+    IVector<Uri?> getServerUris(Pointer<COMObject> ptr) {
       final retValuePtr = calloc<COMObject>();
 
       final hr = ptr.ref.vtable
@@ -801,12 +801,15 @@ void main() {
                       VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)>()(
           ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) {
+        free(retValuePtr);
+        throw WindowsException(hr);
+      }
 
       return IVector.fromPtr(retValuePtr, iterableIid: IID_IIterable_Uri);
     }
 
-    IVector<Uri> getVector() {
+    IVector<Uri?> getVector() {
       // ignore: constant_identifier_names
       const IID_IVpnPlugInProfile = '{0edf0da4-4f00-4589-8d7b-4bf988f6542c}';
       final object = createObject(IInspectable.new,
@@ -829,17 +832,27 @@ void main() {
     test('getAt returns elements', () {
       final vector = getVector()
         ..append(Uri.parse('https://dart.dev/overview'))
+        ..append(null)
         ..append(Uri.parse('https://dart.dev/docs'));
+      expect(vector.size, equals(3));
       expect(vector.getAt(0), equals(Uri.parse('https://dart.dev/overview')));
-      expect(vector.getAt(1), equals(Uri.parse('https://dart.dev/docs')));
+      expect(vector.getAt(1), isNull);
+      expect(vector.getAt(2), equals(Uri.parse('https://dart.dev/docs')));
     });
 
-    test('getView', () {
+    test('getView returns empty List', () {
+      final vector = getVector();
+      final list = vector.getView();
+      expect(list, isEmpty);
+    });
+
+    test('getView returns elements', () {
       final vector = getVector()
         ..append(Uri.parse('https://dart.dev/overview'))
+        ..append(null)
         ..append(Uri.parse('https://dart.dev/docs'));
       final list = vector.getView();
-      expect(list.length, equals(2));
+      expect(list.length, equals(3));
       expect(() => list..clear(), throwsUnsupportedError);
     });
 
@@ -861,7 +874,7 @@ void main() {
     test('setAt', () {
       final vector = getVector()
         ..append(Uri.parse('https://dart.dev/overview'))
-        ..append(Uri.parse('https://dart.dev/docs'));
+        ..append(null);
       expect(vector.size, equals(2));
       vector.setAt(0, Uri.parse('https://flutter.dev/development'));
       expect(vector.size, equals(2));
@@ -890,13 +903,12 @@ void main() {
       expect(vector.size, equals(2));
       vector.insertAt(0, Uri.parse('https://flutter.dev/development'));
       expect(vector.size, equals(3));
-      vector.insertAt(2, Uri.parse('https://flutter.dev/multi-platform'));
+      vector.insertAt(2, null);
       expect(vector.size, equals(4));
       expect(vector.getAt(0),
           equals(Uri.parse('https://flutter.dev/development')));
       expect(vector.getAt(1), equals(Uri.parse('https://dart.dev/overview')));
-      expect(vector.getAt(2),
-          equals(Uri.parse('https://flutter.dev/multi-platform')));
+      expect(vector.getAt(2), isNull);
       expect(vector.getAt(3), equals(Uri.parse('https://dart.dev/docs')));
     });
 
@@ -916,7 +928,7 @@ void main() {
       final vector = getVector()
         ..append(Uri.parse('https://dart.dev/overview'))
         ..append(Uri.parse('https://dart.dev/docs'))
-        ..append(Uri.parse('https://flutter.dev/development'))
+        ..append(null)
         ..append(Uri.parse('https://flutter.dev/multi-platform'));
       expect(vector.size, equals(4));
       vector.removeAt(2);
@@ -938,8 +950,10 @@ void main() {
       expect(vector.size, equals(0));
       vector.append(Uri.parse('https://dart.dev/overview'));
       expect(vector.size, equals(1));
-      vector.append(Uri.parse('https://dart.dev/docs'));
+      vector.append(null);
       expect(vector.size, equals(2));
+      vector.append(Uri.parse('https://dart.dev/docs'));
+      expect(vector.size, equals(3));
     });
 
     test('removeAtEnd throws exception if the vector is empty', () {
@@ -959,8 +973,9 @@ void main() {
     test('clear', () {
       final vector = getVector()
         ..append(Uri.parse('https://dart.dev/overview'))
+        ..append(null)
         ..append(Uri.parse('https://dart.dev/docs'));
-      expect(vector.size, equals(2));
+      expect(vector.size, equals(3));
       vector.clear();
       expect(vector.size, equals(0));
     });
@@ -971,45 +986,45 @@ void main() {
     });
 
     test('getMany returns elements starting from index 0', () {
-      final list = <Uri>[];
+      final list = <Uri?>[];
 
       final vector = getVector()
         ..append(Uri.parse('https://dart.dev/overview'))
-        ..append(Uri.parse('https://dart.dev/docs'))
+        ..append(null)
         ..append(Uri.parse('https://flutter.dev/development'));
       expect(vector.getMany(0, 3, list), equals(3));
       expect(list.length, equals(3));
       expect(list[0].toString(), equals('https://dart.dev/overview'));
-      expect(list[1].toString(), equals('https://dart.dev/docs'));
+      expect(list[1], isNull);
       expect(list[2].toString(), equals('https://flutter.dev/development'));
     });
 
     test(
         'getMany returns all elements if valueSize is greater than the number '
         'of elements', () {
-      final list = <Uri>[];
+      final list = <Uri?>[];
 
       final vector = getVector()
         ..append(Uri.parse('https://dart.dev/overview'))
-        ..append(Uri.parse('https://dart.dev/docs'))
+        ..append(null)
         ..append(Uri.parse('https://flutter.dev/development'));
       expect(vector.getMany(0, 5, list), equals(3));
       expect(list.length, equals(3));
       expect(list[0].toString(), equals('https://dart.dev/overview'));
-      expect(list[1].toString(), equals('https://dart.dev/docs'));
+      expect(list[1], isNull);
       expect(list[2].toString(), equals('https://flutter.dev/development'));
     });
 
     test('getMany returns elements starting from index 1', () {
-      final list = <Uri>[];
+      final list = <Uri?>[];
 
       final vector = getVector()
         ..append(Uri.parse('https://dart.dev/overview'))
-        ..append(Uri.parse('https://dart.dev/docs'))
+        ..append(null)
         ..append(Uri.parse('https://flutter.dev/development'));
       expect(vector.getMany(1, 2, list), equals(2));
       expect(list.length, equals(2));
-      expect(list[0].toString(), equals('https://dart.dev/docs'));
+      expect(list[0], isNull);
       expect(list[1].toString(), equals('https://flutter.dev/development'));
     });
 
@@ -1018,11 +1033,13 @@ void main() {
       expect(vector.size, equals(0));
       vector.replaceAll([
         Uri.parse('https://dart.dev/overview'),
+        null,
         Uri.parse('https://dart.dev/docs')
       ]);
-      expect(vector.size, equals(2));
+      expect(vector.size, equals(3));
       expect(vector.getAt(0), equals(Uri.parse('https://dart.dev/overview')));
-      expect(vector.getAt(1), equals(Uri.parse('https://dart.dev/docs')));
+      expect(vector.getAt(1), isNull);
+      expect(vector.getAt(2), equals(Uri.parse('https://dart.dev/docs')));
       vector.replaceAll([
         Uri.parse('https://flutter.dev/development'),
         Uri.parse('https://flutter.dev/multi-platform')
@@ -1037,12 +1054,12 @@ void main() {
     test('toList', () {
       final vector = getVector()
         ..append(Uri.parse('https://dart.dev/overview'))
-        ..append(Uri.parse('https://dart.dev/docs'))
+        ..append(null)
         ..append(Uri.parse('https://flutter.dev/development'));
       final list = vector.toList();
       expect(list.length, equals(3));
       expect(list[0], equals(Uri.parse('https://dart.dev/overview')));
-      expect(list[1], equals(Uri.parse('https://dart.dev/docs')));
+      expect(list[1], isNull);
       expect(list[2], equals(Uri.parse('https://flutter.dev/development')));
       expect(() => list..clear(), throwsUnsupportedError);
     });
@@ -1050,13 +1067,13 @@ void main() {
     test('first', () {
       final vector = getVector()
         ..append(Uri.parse('https://dart.dev/overview'))
-        ..append(Uri.parse('https://dart.dev/docs'))
+        ..append(null)
         ..append(Uri.parse('https://flutter.dev/development'));
       final iterator = vector.first();
       expect(iterator.hasCurrent, isTrue);
       expect(iterator.current, equals(Uri.parse('https://dart.dev/overview')));
       expect(iterator.moveNext(), isTrue);
-      expect(iterator.current, equals(Uri.parse('https://dart.dev/docs')));
+      expect(iterator.current, isNull);
       expect(iterator.moveNext(), isTrue);
       expect(iterator.current,
           equals(Uri.parse('https://flutter.dev/development')));
@@ -1066,10 +1083,10 @@ void main() {
     test('operator []', () {
       final vector = getVector()
         ..append(Uri.parse('https://dart.dev/overview'))
-        ..append(Uri.parse('https://dart.dev/docs'))
+        ..append(null)
         ..append(Uri.parse('https://flutter.dev/development'));
       expect(vector[0], equals(Uri.parse('https://dart.dev/overview')));
-      expect(vector[1], equals(Uri.parse('https://dart.dev/docs')));
+      expect(vector[1], isNull);
       expect(vector[2], equals(Uri.parse('https://flutter.dev/development')));
     });
 

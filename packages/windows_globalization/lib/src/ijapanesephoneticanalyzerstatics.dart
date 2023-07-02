@@ -29,7 +29,7 @@ class IJapanesePhoneticAnalyzerStatics extends IInspectable {
       IJapanesePhoneticAnalyzerStatics.fromPtr(
           interface.toInterface(IID_IJapanesePhoneticAnalyzerStatics));
 
-  List<JapanesePhoneme> getWords(String input) {
+  List<JapanesePhoneme?> getWords(String input) {
     final retValuePtr = calloc<COMObject>();
     final inputHString = input.toHString();
 
@@ -53,13 +53,13 @@ class IJapanesePhoneticAnalyzerStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final vectorView = IVectorView<JapanesePhoneme>.fromPtr(retValuePtr,
+    final vectorView = IVectorView<JapanesePhoneme?>.fromPtr(retValuePtr,
         iterableIid: '{1aad17cb-1829-5236-8aef-0b75f8dfd7a6}',
         creator: JapanesePhoneme.fromPtr);
     return vectorView.toList();
   }
 
-  List<JapanesePhoneme> getWordsWithMonoRubyOption(
+  List<JapanesePhoneme?> getWordsWithMonoRubyOption(
       String input, bool monoRuby) {
     final retValuePtr = calloc<COMObject>();
     final inputHString = input.toHString();
@@ -84,7 +84,7 @@ class IJapanesePhoneticAnalyzerStatics extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final vectorView = IVectorView<JapanesePhoneme>.fromPtr(retValuePtr,
+    final vectorView = IVectorView<JapanesePhoneme?>.fromPtr(retValuePtr,
         iterableIid: '{1aad17cb-1829-5236-8aef-0b75f8dfd7a6}',
         creator: JapanesePhoneme.fromPtr);
     return vectorView.toList();

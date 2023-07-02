@@ -26,7 +26,7 @@ class IProxyConfiguration extends IInspectable {
       IProxyConfiguration.fromPtr(
           interface.toInterface(IID_IProxyConfiguration));
 
-  List<Uri> get proxyUris {
+  List<Uri?> get proxyUris {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -46,7 +46,7 @@ class IProxyConfiguration extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final vectorView = IVectorView<Uri>.fromPtr(retValuePtr,
+    final vectorView = IVectorView<Uri?>.fromPtr(retValuePtr,
         iterableIid: '{b0d63b78-78ad-5e31-b6d8-e32a0e16c447}');
     return vectorView.toList();
   }

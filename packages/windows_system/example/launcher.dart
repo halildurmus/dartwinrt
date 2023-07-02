@@ -40,7 +40,7 @@ void main() async {
   if (handlers.isNotEmpty) {
     print('Found ${handlers.length} handler(s) for ".html" files:');
     for (final handler in handlers) {
-      print(' - ${handler.displayInfo?.displayName}');
+      print(' - ${handler?.displayInfo?.displayName}');
     }
   }
 

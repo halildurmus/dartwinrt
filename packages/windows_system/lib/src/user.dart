@@ -37,20 +37,20 @@ class User extends IInspectable implements IUser, IUser2 {
           IUserStatics.fromPtr, _className, IID_IUserStatics)
       .createWatcher();
 
-  static Future<List<User>> findAllAsync() => createActivationFactory(
+  static Future<List<User?>> findAllAsync() => createActivationFactory(
           IUserStatics.fromPtr, _className, IID_IUserStatics)
       .findAllAsync();
 
   @Deprecated(
       "FindAllAsyncByType is deprecated and might not function consistently on all platforms. Instead, use FindAllAsync or GetDefault.")
-  static Future<List<User>> findAllAsyncByType(UserType type) =>
+  static Future<List<User?>> findAllAsyncByType(UserType type) =>
       createActivationFactory(
               IUserStatics.fromPtr, _className, IID_IUserStatics)
           .findAllAsyncByType(type);
 
   @Deprecated(
       "FindAllAsyncByTypeAndStatus is deprecated and might not function consistently on all platforms. Instead, use FindAllAsync or GetDefault.")
-  static Future<List<User>> findAllAsyncByTypeAndStatus(
+  static Future<List<User?>> findAllAsyncByTypeAndStatus(
           UserType type, UserAuthenticationStatus status) =>
       createActivationFactory(
               IUserStatics.fromPtr, _className, IID_IUserStatics)

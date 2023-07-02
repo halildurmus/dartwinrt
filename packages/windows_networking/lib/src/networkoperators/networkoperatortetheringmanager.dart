@@ -136,6 +136,6 @@ class NetworkOperatorTetheringManager extends IInspectable
       INetworkOperatorTetheringClientManager.from(this);
 
   @override
-  List<NetworkOperatorTetheringClient> getTetheringClients() =>
+  List<NetworkOperatorTetheringClient?> getTetheringClients() =>
       _iNetworkOperatorTetheringClientManager.getTetheringClients();
 }

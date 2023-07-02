@@ -48,7 +48,7 @@ class IPackage8 extends IInspectable {
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null;
     }
@@ -76,7 +76,7 @@ class IPackage8 extends IInspectable {
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null;
     }
@@ -104,7 +104,7 @@ class IPackage8 extends IInspectable {
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null;
     }
@@ -286,7 +286,7 @@ class IPackage8 extends IInspectable {
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null;
     }
@@ -294,7 +294,7 @@ class IPackage8 extends IInspectable {
     return RandomAccessStreamReference.fromPtr(retValuePtr);
   }
 
-  List<AppListEntry> getAppListEntries() {
+  List<AppListEntry?> getAppListEntries() {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -314,7 +314,7 @@ class IPackage8 extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final vectorView = IVectorView<AppListEntry>.fromPtr(retValuePtr,
+    final vectorView = IVectorView<AppListEntry?>.fromPtr(retValuePtr,
         iterableIid: '{86f4d4ef-d8fd-5fb5-807c-72da8fc9e544}',
         creator: AppListEntry.fromPtr);
     return vectorView.toList();

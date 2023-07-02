@@ -102,7 +102,7 @@ class IConnectionProfile2 extends IInspectable {
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null;
     }
@@ -130,7 +130,7 @@ class IConnectionProfile2 extends IInspectable {
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null;
     }
@@ -158,7 +158,7 @@ class IConnectionProfile2 extends IInspectable {
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null;
     }
@@ -188,7 +188,7 @@ class IConnectionProfile2 extends IInspectable {
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null;
     }
@@ -222,7 +222,7 @@ class IConnectionProfile2 extends IInspectable {
     }
   }
 
-  Future<List<NetworkUsage>> getNetworkUsageAsync(
+  Future<List<NetworkUsage?>> getNetworkUsageAsync(
       DateTime startTime,
       DateTime endTime,
       DataUsageGranularity granularity,
@@ -265,7 +265,7 @@ class IConnectionProfile2 extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<IVectorView<NetworkUsage>>.fromPtr(
+    final asyncOperation = IAsyncOperation<IVectorView<NetworkUsage?>>.fromPtr(
         retValuePtr,
         creator: (ptr) => IVectorView.fromPtr(ptr,
             creator: NetworkUsage.fromPtr,
@@ -273,7 +273,7 @@ class IConnectionProfile2 extends IInspectable {
     return asyncOperation.toFuture(() => asyncOperation.getResults().toList());
   }
 
-  Future<List<ConnectivityInterval>> getConnectivityIntervalsAsync(
+  Future<List<ConnectivityInterval?>> getConnectivityIntervalsAsync(
       DateTime startTime, DateTime endTime, NetworkUsageStates states) {
     final retValuePtr = calloc<COMObject>();
     final statesNativeStructPtr = states.toNative();
@@ -311,7 +311,7 @@ class IConnectionProfile2 extends IInspectable {
     }
 
     final asyncOperation =
-        IAsyncOperation<IVectorView<ConnectivityInterval>>.fromPtr(retValuePtr,
+        IAsyncOperation<IVectorView<ConnectivityInterval?>>.fromPtr(retValuePtr,
             creator: (ptr) => IVectorView.fromPtr(ptr,
                 creator: ConnectivityInterval.fromPtr,
                 iterableIid: '{58051a8b-b259-5414-9b9a-caa0789e833e}'));

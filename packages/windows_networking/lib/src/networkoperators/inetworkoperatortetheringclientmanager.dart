@@ -29,7 +29,7 @@ class INetworkOperatorTetheringClientManager extends IInspectable {
       INetworkOperatorTetheringClientManager.fromPtr(
           interface.toInterface(IID_INetworkOperatorTetheringClientManager));
 
-  List<NetworkOperatorTetheringClient> getTetheringClients() {
+  List<NetworkOperatorTetheringClient?> getTetheringClients() {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -49,7 +49,7 @@ class INetworkOperatorTetheringClientManager extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final vectorView = IVectorView<NetworkOperatorTetheringClient>.fromPtr(
+    final vectorView = IVectorView<NetworkOperatorTetheringClient?>.fromPtr(
         retValuePtr,
         iterableIid: '{4762ecb3-af48-5b63-89b7-78a42056549f}',
         creator: NetworkOperatorTetheringClient.fromPtr);

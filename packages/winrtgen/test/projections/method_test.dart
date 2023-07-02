@@ -188,7 +188,7 @@ void main() {
           'Windows.Foundation.Collections.StringMap', 'First');
       expect(projection, isA<ObjectMethodProjection>());
       expect(projection.returnType,
-          equals('IIterator<IKeyValuePair<String, String>>'));
+          equals('IIterator<IKeyValuePair<String, String>>?'));
       expect(
           projection.nativePrototype,
           equals(
@@ -198,7 +198,7 @@ void main() {
           equals(
               'int Function(VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)'));
       expect(projection.methodHeader,
-          equals('IIterator<IKeyValuePair<String, String>> first()'));
+          equals('IIterator<IKeyValuePair<String, String>>? first()'));
     });
 
     test('projects IAsyncAction (1)', () {
@@ -307,7 +307,7 @@ void main() {
       expect(projection.methodHeader, equals('Map<String, String> getView()'));
     });
 
-    test('projects IReference<int>', () {
+    test('projects IReference<int?>', () {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Networking.Connectivity.ConnectionProfile', 'GetSignalBars');
       expect(projection, isA<ReferenceMethodProjection>());

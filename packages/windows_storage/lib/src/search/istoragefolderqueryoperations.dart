@@ -83,7 +83,7 @@ class IStorageFolderQueryOperations extends IInspectable {
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null;
     }
@@ -112,7 +112,7 @@ class IStorageFolderQueryOperations extends IInspectable {
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null;
     }
@@ -146,7 +146,7 @@ class IStorageFolderQueryOperations extends IInspectable {
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null;
     }
@@ -174,7 +174,7 @@ class IStorageFolderQueryOperations extends IInspectable {
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null;
     }
@@ -203,7 +203,7 @@ class IStorageFolderQueryOperations extends IInspectable {
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null;
     }
@@ -237,7 +237,7 @@ class IStorageFolderQueryOperations extends IInspectable {
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null;
     }
@@ -265,7 +265,7 @@ class IStorageFolderQueryOperations extends IInspectable {
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null;
     }
@@ -299,7 +299,7 @@ class IStorageFolderQueryOperations extends IInspectable {
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null;
     }
@@ -307,7 +307,7 @@ class IStorageFolderQueryOperations extends IInspectable {
     return StorageItemQueryResult.fromPtr(retValuePtr);
   }
 
-  Future<List<StorageFile>> getFilesAsync(
+  Future<List<StorageFile?>> getFilesAsync(
       CommonFileQuery query, int startIndex, int maxItemsToRetrieve) {
     final retValuePtr = calloc<COMObject>();
 
@@ -337,7 +337,7 @@ class IStorageFolderQueryOperations extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<IVectorView<StorageFile>>.fromPtr(
+    final asyncOperation = IAsyncOperation<IVectorView<StorageFile?>>.fromPtr(
         retValuePtr,
         creator: (ptr) => IVectorView.fromPtr(ptr,
             creator: StorageFile.fromPtr,
@@ -345,7 +345,7 @@ class IStorageFolderQueryOperations extends IInspectable {
     return asyncOperation.toFuture(() => asyncOperation.getResults().toList());
   }
 
-  Future<List<StorageFile>> getFilesAsyncOverloadDefaultStartAndCount(
+  Future<List<StorageFile?>> getFilesAsyncOverloadDefaultStartAndCount(
       CommonFileQuery query) {
     final retValuePtr = calloc<COMObject>();
 
@@ -367,7 +367,7 @@ class IStorageFolderQueryOperations extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<IVectorView<StorageFile>>.fromPtr(
+    final asyncOperation = IAsyncOperation<IVectorView<StorageFile?>>.fromPtr(
         retValuePtr,
         creator: (ptr) => IVectorView.fromPtr(ptr,
             creator: StorageFile.fromPtr,
@@ -375,7 +375,7 @@ class IStorageFolderQueryOperations extends IInspectable {
     return asyncOperation.toFuture(() => asyncOperation.getResults().toList());
   }
 
-  Future<List<StorageFolder>> getFoldersAsync(
+  Future<List<StorageFolder?>> getFoldersAsync(
       CommonFolderQuery query, int startIndex, int maxItemsToRetrieve) {
     final retValuePtr = calloc<COMObject>();
 
@@ -405,7 +405,7 @@ class IStorageFolderQueryOperations extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<IVectorView<StorageFolder>>.fromPtr(
+    final asyncOperation = IAsyncOperation<IVectorView<StorageFolder?>>.fromPtr(
         retValuePtr,
         creator: (ptr) => IVectorView.fromPtr(ptr,
             creator: StorageFolder.fromPtr,
@@ -413,7 +413,7 @@ class IStorageFolderQueryOperations extends IInspectable {
     return asyncOperation.toFuture(() => asyncOperation.getResults().toList());
   }
 
-  Future<List<StorageFolder>> getFoldersAsyncOverloadDefaultStartAndCount(
+  Future<List<StorageFolder?>> getFoldersAsyncOverloadDefaultStartAndCount(
       CommonFolderQuery query) {
     final retValuePtr = calloc<COMObject>();
 
@@ -435,7 +435,7 @@ class IStorageFolderQueryOperations extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<IVectorView<StorageFolder>>.fromPtr(
+    final asyncOperation = IAsyncOperation<IVectorView<StorageFolder?>>.fromPtr(
         retValuePtr,
         creator: (ptr) => IVectorView.fromPtr(ptr,
             creator: StorageFolder.fromPtr,
@@ -443,7 +443,7 @@ class IStorageFolderQueryOperations extends IInspectable {
     return asyncOperation.toFuture(() => asyncOperation.getResults().toList());
   }
 
-  Future<List<IStorageItem>> getItemsAsync(
+  Future<List<IStorageItem?>> getItemsAsync(
       int startIndex, int maxItemsToRetrieve) {
     final retValuePtr = calloc<COMObject>();
 
@@ -468,7 +468,7 @@ class IStorageFolderQueryOperations extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<IVectorView<IStorageItem>>.fromPtr(
+    final asyncOperation = IAsyncOperation<IVectorView<IStorageItem?>>.fromPtr(
         retValuePtr,
         creator: (ptr) => IVectorView.fromPtr(ptr,
             creator: IStorageItem.fromPtr,

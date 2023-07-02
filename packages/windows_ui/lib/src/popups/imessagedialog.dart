@@ -75,7 +75,7 @@ class IMessageDialog extends IInspectable {
     }
   }
 
-  IVector<IUICommand> get commands {
+  IVector<IUICommand?> get commands {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable

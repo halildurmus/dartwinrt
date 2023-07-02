@@ -86,7 +86,7 @@ class WebAuthenticationCoreManager extends IInspectable {
                   webAccountProviderId, authority, user);
 
   static WebAccountMonitor? createWebAccountMonitor(
-          IIterable<WebAccount>? webAccounts) =>
+          IIterable<WebAccount?>? webAccounts) =>
       createActivationFactory(IWebAuthenticationCoreManagerStatics3.fromPtr,
               _className, IID_IWebAuthenticationCoreManagerStatics3)
           .createWebAccountMonitor(webAccounts);

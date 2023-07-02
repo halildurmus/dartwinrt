@@ -6,20 +6,18 @@ import 'package:windows_devices/windows_devices.dart';
 
 void printBatteryReport(Battery? battery) {
   final report = battery?.getReport();
-  if (report
-      case BatteryReport(
-        :final chargeRateInMilliwatts,
-        :final designCapacityInMilliwattHours,
-        :final fullChargeCapacityInMilliwattHours,
-        :final remainingCapacityInMilliwattHours
-      )) {
-    print('Charge rate (mW): $chargeRateInMilliwatts');
-    print('Design energy capacity (mWh): $designCapacityInMilliwattHours');
-    print(
-        'Fully-charged energy capacity (mWh): $fullChargeCapacityInMilliwattHours');
-    print(
-        'Remaining energy capacity (mWh): $remainingCapacityInMilliwattHours');
-  }
+  if (report == null) return;
+  final BatteryReport(
+    :chargeRateInMilliwatts,
+    :designCapacityInMilliwattHours,
+    :fullChargeCapacityInMilliwattHours,
+    :remainingCapacityInMilliwattHours
+  ) = report;
+  print('Charge rate (mW): $chargeRateInMilliwatts');
+  print('Design energy capacity (mWh): $designCapacityInMilliwattHours');
+  print(
+      'Fully-charged energy capacity (mWh): $fullChargeCapacityInMilliwattHours');
+  print('Remaining energy capacity (mWh): $remainingCapacityInMilliwattHours');
 }
 
 void main() async {
@@ -28,7 +26,9 @@ void main() async {
   final batteryDevices =
       await DeviceInformation.findAllAsyncAqsFilter(deviceSelector);
   for (final batteryDevice in batteryDevices.toList()) {
-    final battery = await Battery.fromIdAsync(batteryDevice.id);
-    printBatteryReport(battery);
+    if (batteryDevice != null) {
+      final battery = await Battery.fromIdAsync(batteryDevice.id);
+      printBatteryReport(battery);
+    }
   }
 }

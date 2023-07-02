@@ -26,12 +26,12 @@ class JapanesePhoneticAnalyzer extends IInspectable {
 
   static const _className = 'Windows.Globalization.JapanesePhoneticAnalyzer';
 
-  static List<JapanesePhoneme> getWords(String input) =>
+  static List<JapanesePhoneme?> getWords(String input) =>
       createActivationFactory(IJapanesePhoneticAnalyzerStatics.fromPtr,
               _className, IID_IJapanesePhoneticAnalyzerStatics)
           .getWords(input);
 
-  static List<JapanesePhoneme> getWordsWithMonoRubyOption(
+  static List<JapanesePhoneme?> getWordsWithMonoRubyOption(
           String input, bool monoRuby) =>
       createActivationFactory(IJapanesePhoneticAnalyzerStatics.fromPtr,
               _className, IID_IJapanesePhoneticAnalyzerStatics)

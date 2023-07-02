@@ -361,7 +361,7 @@ void main() {
               .returnType
               .typeIdentifier
               .shortName,
-          equals('IAsyncOperation<IVectorView<StorageFile>>'));
+          equals('IAsyncOperation<IVectorView<StorageFile?>>'));
     });
 
     test('(10)', () {
@@ -405,7 +405,7 @@ void main() {
               .typeIdentifier
               .shortName,
           equals(
-              'AsyncOperationProgressHandler<IVectorView<ISmsMessage>, int>'));
+              'AsyncOperationProgressHandler<IVectorView<ISmsMessage?>, int>'));
     });
   });
 
@@ -531,20 +531,20 @@ void main() {
               'pinterface({e480ce40-a338-4ada-adcf-272272e48cb9};enum(Windows.Devices.Sensors.PedometerStepKind;i4);rc(Windows.Devices.Sensors.PedometerReading;{2245dcf4-a8e1-432f-896a-be0dd9b02d24}))'));
     });
 
-    // TODO: Enable this test when a new version of winmd is released.
-    // test(
-    //     'returns the signature of AsyncOperationProgressHandler<IVectorView<ISmsMessage>, int>',
-    //     () {
-    //   final typeDef = getMetadataForType(
-    //       'Windows.Devices.Sms.GetSmsMessagesOperation');
-    //   expect(
-    //       typeDef
-    //           .findMethod('get_Progress')!
-    //           .returnType
-    //           .typeIdentifier
-    //           .signature,
-    //       equals('pinterface()'));
-    // });
+    test(
+        'returns the signature of AsyncOperationProgressHandler<IVectorView<ISmsMessage>, int>',
+        () {
+      final typeDef =
+          getMetadataForType('Windows.Devices.Sms.GetSmsMessagesOperation');
+      expect(
+          typeDef
+              .findMethod('get_Progress')!
+              .returnType
+              .typeIdentifier
+              .signature,
+          equals(
+              'pinterface({c49b9bba-03ab-522e-884f-227352c8e7d1};pinterface({bbe1fa4c-b0e3-4583-baef-1f1b2e483e56};{ed3c5e28-6984-4b07-811d-8d5906ed3cea});i4)'));
+    });
   });
 
   group('typeArgs', () {

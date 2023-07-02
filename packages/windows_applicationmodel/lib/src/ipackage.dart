@@ -49,7 +49,7 @@ class IPackage extends IInspectable {
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null;
     }
@@ -77,7 +77,7 @@ class IPackage extends IInspectable {
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null;
     }
@@ -109,7 +109,7 @@ class IPackage extends IInspectable {
     }
   }
 
-  List<Package> get dependencies {
+  List<Package?> get dependencies {
     final retValuePtr = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -129,7 +129,7 @@ class IPackage extends IInspectable {
       throw WindowsException(hr);
     }
 
-    final vectorView = IVectorView<Package>.fromPtr(retValuePtr,
+    final vectorView = IVectorView<Package?>.fromPtr(retValuePtr,
         iterableIid: '{69ad6aa7-0c49-5f27-a5eb-ef4d59467b6d}',
         creator: Package.fromPtr);
     return vectorView.toList();

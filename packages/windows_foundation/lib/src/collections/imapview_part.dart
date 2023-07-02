@@ -41,7 +41,7 @@ final class _IMapViewGuidInspectable<V> extends IMapView<Guid, V> {
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null as V;
     }
@@ -108,7 +108,7 @@ final class _IMapViewGuidObject extends IMapView<Guid, Object?> {
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null;
     }
@@ -176,7 +176,7 @@ final class _IMapViewInt16Inspectable<V> extends IMapView<int, V> {
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null as V;
     }
@@ -240,7 +240,7 @@ final class _IMapViewInt32Inspectable<V> extends IMapView<int, V> {
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null as V;
     }
@@ -304,7 +304,7 @@ final class _IMapViewInt64Inspectable<V> extends IMapView<int, V> {
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null as V;
     }
@@ -371,7 +371,7 @@ final class _IMapViewStringInspectable<V> extends IMapView<String, V> {
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null as V;
     }
@@ -438,7 +438,7 @@ final class _IMapViewStringObject extends IMapView<String, Object?> {
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null;
     }
@@ -707,7 +707,7 @@ final class _IMapViewUint8Inspectable<V> extends IMapView<int, V> {
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null as V;
     }
@@ -771,7 +771,7 @@ final class _IMapViewUint16Inspectable<V> extends IMapView<int, V> {
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null as V;
     }
@@ -835,7 +835,7 @@ final class _IMapViewUint32Inspectable<V> extends IMapView<int, V> {
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null as V;
     }
@@ -899,7 +899,7 @@ final class _IMapViewUint64Inspectable<V> extends IMapView<int, V> {
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null as V;
     }
@@ -966,7 +966,7 @@ final class _IMapViewWinRTEnumInspectable<K, V> extends IMapView<K, V> {
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null as V;
     }
@@ -1033,7 +1033,7 @@ final class _IMapViewWinRTFlagsEnumInspectable<K, V> extends IMapView<K, V> {
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.ref.isNull) {
+    if (retValuePtr.isNull) {
       free(retValuePtr);
       return null as V;
     }

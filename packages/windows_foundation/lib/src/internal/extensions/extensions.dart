@@ -5,7 +5,7 @@
 export 'async_helpers.dart';
 export 'bool_array.dart';
 export 'boxing_helpers.dart';
-export 'comobject_array.dart';
+export 'comobject_helpers.dart';
 export 'datetime_conversions.dart';
 export 'double_array.dart';
 export 'duration_conversions.dart';
