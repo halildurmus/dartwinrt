@@ -4,7 +4,7 @@
 
 import 'package:winmd/winmd.dart' hide TypeTuple;
 
-import '../constants/exclusions.dart';
+import '../constants/constants.dart';
 import '../exception/exception.dart';
 import '../models/models.dart';
 import '../utilities/utilities.dart';
@@ -12,14 +12,44 @@ import 'getter.dart';
 import 'interface.dart';
 import 'method.dart';
 import 'setter.dart';
-import 'types/types.dart';
+
+final class GenericInterfacePartFileProjection {
+  GenericInterfacePartFileProjection(this.genericType)
+      : fileName = genericType.shortName.toLowerCase();
+
+  final GenericType genericType;
+  final String fileName;
+
+  List<GenericInterfaceProjection>? _projections;
+
+  List<GenericInterfaceProjection> get projections =>
+      _projections ??= _cacheProjections();
+
+  List<GenericInterfaceProjection> _cacheProjections() => switch (genericType) {
+        GenericTypeWithOneTypeArg(:final typeArgs) => typeArgs.map((typeArg) =>
+            GenericInterfaceProjection.from(
+                genericType.fullyQualifiedType, typeArg)),
+        GenericTypeWithTwoTypeArgs(:final typeArgs) => typeArgs.map(
+            (typeArgs) => GenericInterfaceProjection.from(
+                genericType.fullyQualifiedType, typeArgs.$1, typeArgs.$2)),
+      }
+          .toList();
+
+  @override
+  String toString() => '''
+$classFileHeader
+part of '$fileName.dart';
+
+${projections.join('\n')}
+''';
+}
 
 final class GenericInterfaceProjection extends InterfaceProjection {
   GenericInterfaceProjection._(super.typeDef, this.typeArgs);
 
-  /// The type arguments of the interface (e.g. `[TypeArg.string]`,
-  /// `[TypeArg.string, TypeArg.nullableObject]`).
-  final List<TypeArg> typeArgs;
+  /// The type arguments of the interface (e.g. `[TypeArgKind.string]`,
+  /// `[TypeArgKind.string, TypeArgKind.nullableObject]`).
+  final List<TypeArgKind> typeArgs;
 
   /// Attempts to create a [GenericInterfaceProjection] from
   /// [fullyQualifiedType], [typeArg1], and optionally [typeArg2] by searching
@@ -27,7 +57,7 @@ final class GenericInterfaceProjection extends InterfaceProjection {
   ///
   /// ```dart
   /// final projection = GenericInterfaceProjection.from(
-  ///     'Windows.Foundation.IAsyncOperation`1', TypeArg.string);
+  ///     'Windows.Foundation.IAsyncOperation`1', TypeArgKind.string);
   /// ```
   ///
   /// [typeArg2] must be specified if [fullyQualifiedType] has two type
@@ -36,14 +66,14 @@ final class GenericInterfaceProjection extends InterfaceProjection {
   /// ```dart
   /// final projection = GenericInterfaceProjection.from(
   ///     'Windows.Foundation.Collections.IMap`2',
-  ///     TypeArg.string, TypeArg.string);
+  ///     TypeArgKind.string, TypeArgKind.string);
   /// ```
   ///
-  /// Throws a [WinRTGenException] if no [TypeDef] matching [fullyQualifiedType] is
-  /// found.
+  /// Throws a [WinRTGenException] if no [TypeDef] matching
+  /// [fullyQualifiedType] is found.
   factory GenericInterfaceProjection.from(
-      String fullyQualifiedType, TypeArg typeArg1,
-      [TypeArg? typeArg2]) {
+      String fullyQualifiedType, TypeArgKind typeArg1,
+      [TypeArgKind? typeArg2]) {
     final typeDef = getMetadataForType(fullyQualifiedType);
     if (fullyQualifiedType.endsWith('`2')) {
       if (typeArg2 == null) throw ArgumentError.notNull('typeArg2');
@@ -52,34 +82,34 @@ final class GenericInterfaceProjection extends InterfaceProjection {
     return GenericInterfaceProjection._(typeDef, [typeArg1]);
   }
 
-  String _formatTypeArg(TypeArg typeArg) => switch (typeArg) {
-        TypeArg.double || TypeArg.float => 'double',
-        TypeArg.nullableDouble || TypeArg.nullableFloat => 'double?',
-        TypeArg.int16 ||
-        TypeArg.int32 ||
-        TypeArg.int64 ||
-        TypeArg.uint8 ||
-        TypeArg.uint16 ||
-        TypeArg.uint32 ||
-        TypeArg.uint64 =>
+  String _formatTypeArgKind(TypeArgKind typeArgKind) => switch (typeArgKind) {
+        TypeArgKind.double || TypeArgKind.float => 'double',
+        TypeArgKind.nullableDouble || TypeArgKind.nullableFloat => 'double?',
+        TypeArgKind.int16 ||
+        TypeArgKind.int32 ||
+        TypeArgKind.int64 ||
+        TypeArgKind.uint8 ||
+        TypeArgKind.uint16 ||
+        TypeArgKind.uint32 ||
+        TypeArgKind.uint64 =>
           'int',
-        TypeArg.nullableInt16 ||
-        TypeArg.nullableInt32 ||
-        TypeArg.nullableInt64 ||
-        TypeArg.nullableUint8 ||
-        TypeArg.nullableUint16 ||
-        TypeArg.nullableUint32 ||
-        TypeArg.nullableUint64 =>
+        TypeArgKind.nullableInt16 ||
+        TypeArgKind.nullableInt32 ||
+        TypeArgKind.nullableInt64 ||
+        TypeArgKind.nullableUint8 ||
+        TypeArgKind.nullableUint16 ||
+        TypeArgKind.nullableUint32 ||
+        TypeArgKind.nullableUint64 =>
           'int?',
-        TypeArg.inspectable ||
-        TypeArg.nullableInspectable ||
-        TypeArg.winrtEnum ||
-        TypeArg.winrtFlagsEnum =>
-          typeDef.genericParams[typeArgs.indexOf(typeArg)].name,
-        _ => typeArg.name,
+        TypeArgKind.inspectable ||
+        TypeArgKind.nullableInspectable ||
+        TypeArgKind.winrtEnum ||
+        TypeArgKind.winrtFlagsEnum =>
+          typeDef.genericParams[typeArgs.indexOf(typeArgKind)].name,
+        _ => typeArgKind.name,
       };
 
-  String get formattedTypeArgs => typeArgs.map(_formatTypeArg).join(', ');
+  String get formattedTypeArgs => typeArgs.map(_formatTypeArgKind).join(', ');
 
   /// The generic type parameters that are used in the class header (e.g.
   /// `<K, V>`, `<T>`).
@@ -231,7 +261,7 @@ final class GenericInterfaceProjection extends InterfaceProjection {
     final methods = <Method>[];
 
     for (final method in typeDef.methods) {
-      // TODO: Skip delegates as they are not supported yet
+      // TODO(halildurmus): Skip delegates as they are not supported yet
       if (method.returnType.isDelegate) continue;
 
       // Skip excluded methods
@@ -306,9 +336,14 @@ final class GenericInterfaceProjection extends InterfaceProjection {
     if (shortName == 'IReference') {
       return methodProjections
           .map((method) {
-            var methodHeader = method.methodHeader;
-            final isGenericGetter = method is GenericEnumGetterProjection ||
-                method is GenericObjectGetterProjection;
+            var methodHeader = method.header;
+            final isGenericGetter = method.method.isGetProperty &&
+                switch (method.typeProjection.projectionKind) {
+                  ProjectionKind.genericEnum ||
+                  ProjectionKind.genericObject =>
+                    true,
+                  _ => false
+                };
             final returnType = method.returnType;
             // Make the return type nullable if it is not generic
             if (!isGenericGetter) {
@@ -345,7 +380,7 @@ final class GenericInterfaceProjection extends InterfaceProjection {
       return projection;
     } catch (_) {
       print(
-          'Failed to project generic interface "$shortName<$formattedTypeArgs>".');
+          "Failed to project generic interface '$shortName<$formattedTypeArgs>'.");
       rethrow;
     }
   }

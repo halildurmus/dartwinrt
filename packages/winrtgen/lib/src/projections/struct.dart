@@ -91,7 +91,7 @@ $classHeader {
     try {
       return projection;
     } catch (_) {
-      print('Failed to project native struct "${typeDef.fullyQualifiedName}".');
+      print("Failed to project native struct '${typeDef.fullyQualifiedName}'.");
       rethrow;
     }
   }
@@ -248,7 +248,7 @@ $extension
     try {
       return projection;
     } catch (_) {
-      print('Failed to project struct "${typeDef.fullyQualifiedName}".');
+      print("Failed to project struct '${typeDef.fullyQualifiedName}'.");
       rethrow;
     }
   }

@@ -54,9 +54,10 @@ extension TypeDefHelpers on TypeDef {
     if (typeSpec case final typeSpec?) return typeSpec.signature;
 
     if (isClass) {
-      assert(interfaces.isNotEmpty);
-      final defaultInterfaceSignature = interfaces.first.signature;
-      return 'rc($name;$defaultInterfaceSignature)';
+      if (defaultInterface?.signature case final signature?) {
+        return 'rc($name;$signature)';
+      }
+      throw WinRTGenException('Type $this has no default interface.');
     }
 
     if (isDelegate) {

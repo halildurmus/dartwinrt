@@ -8,15 +8,11 @@ import 'package:test/test.dart';
 import 'package:win32/win32.dart';
 import 'package:winrtgen/winrtgen.dart';
 
-import '../helpers.dart';
-
 void main() {
   if (!isWindowsRuntimeAvailable()) {
     print('Skipping tests because Windows Runtime is not available.');
     return;
   }
-
-  final windowsBuildNumber = getWindowsBuildNumber();
 
   group('EnumProjection', () {
     test('projects something', () {
@@ -146,18 +142,16 @@ void main() {
       expect(fileAttributesProjection.enumName, equals('FileAttributes'));
     });
 
-    if (windowsBuildNumber >= 22621) {
-      test('annotated with @Deprecated', () {
-        final projection = FlagsEnumProjection.from(
-            'Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorDeviceCapabilities');
-        expect(
-            projection.classHeader,
-            contains(
-                '@Deprecated("SecondaryAuthenticationFactorDeviceCapabilities '
-                'is deprecated and might not work on all platforms. For more '
-                'info, see MSDN.")'));
-      });
-    }
+    test('annotated with @Deprecated', () {
+      final projection = FlagsEnumProjection.from(
+          'Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorDeviceCapabilities');
+      expect(
+          projection.classHeader,
+          contains(
+              '@Deprecated("SecondaryAuthenticationFactorDeviceCapabilities '
+              'is deprecated and might not work on all platforms. For more '
+              'info, see MSDN.")'));
+    });
 
     test('has correct class header', () {
       expect(

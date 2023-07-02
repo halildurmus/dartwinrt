@@ -45,7 +45,7 @@ void main() {
           .firstWhere((m) => m.name == 'get_DesiredAccuracy');
       expect(
           geolocatorProjection.importForTypeDef(
-              methodProjection.returnTypeProjection.typeIdentifier.type!),
+              methodProjection.typeProjection.typeIdentifier.type!),
           equals('positionaccuracy.dart'));
     });
 
@@ -94,7 +94,7 @@ void main() {
         .firstWhere((m) => m.name == 'get_DesiredAccuracy');
     expect(
         geolocatorProjection.importForTypeIdentifier(
-            methodProjection.returnTypeProjection.typeIdentifier),
+            methodProjection.typeProjection.typeIdentifier),
         equals('positionaccuracy.dart'));
   });
 

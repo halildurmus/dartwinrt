@@ -104,8 +104,10 @@ extension TypeIdentifierHelpers on TypeIdentifier {
     final typeProjection = TypeProjection(this);
 
     if (typeProjection.isWinRTClass) {
-      final defaultInterfaceSignature = type.interfaces.first.signature;
-      return 'rc($name;$defaultInterfaceSignature)';
+      if (type.defaultInterface?.signature case final signature?) {
+        return 'rc($name;$signature)';
+      }
+      throw WinRTGenException('Type $this has no default interface.');
     }
 
     if (typeProjection.isWinRTDelegate) return type.signature;
@@ -244,6 +246,7 @@ String _parseTypeArgName(TypeIdentifier typeIdentifier) {
   if (typeIdentifier.type?.isCollectionObject ?? false) return typeArg;
   // Primitive types cannot be null.
   if (typeArg case 'bool' || 'double' || 'int' || 'String') return typeArg;
+  // Otherwise, mark typeArg as nullable.
   return nullable(typeArg);
 }
 

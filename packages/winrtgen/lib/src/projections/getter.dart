@@ -18,55 +18,41 @@ abstract class GetterProjection extends PropertyProjection {
   /// return type.
   factory GetterProjection.create(Method method, int vtableOffset) {
     try {
-      final projectionType = method.projectionType;
-      return switch (projectionType) {
-        ProjectionType.dartPrimitive =>
+      final projectionKind = method.projectionKind;
+      return switch (projectionKind) {
+        ProjectionKind.dartPrimitive ||
+        ProjectionKind.dateTime ||
+        ProjectionKind.delegate ||
+        ProjectionKind.duration ||
+        ProjectionKind.enum_ ||
+        ProjectionKind.genericEnum ||
+        ProjectionKind.genericObject ||
+        ProjectionKind.guid ||
+        ProjectionKind.map ||
+        ProjectionKind.mapView ||
+        ProjectionKind.object ||
+        ProjectionKind.reference ||
+        ProjectionKind.string ||
+        ProjectionKind.struct ||
+        ProjectionKind.uri ||
+        ProjectionKind.vector ||
+        ProjectionKind.vectorView =>
           DefaultGetterProjection(method, vtableOffset),
-        ProjectionType.dartPrimitiveList =>
+        ProjectionKind.dartPrimitiveList ||
+        ProjectionKind.dateTimeList ||
+        ProjectionKind.durationList ||
+        ProjectionKind.enumList ||
+        ProjectionKind.guidList ||
+        ProjectionKind.objectList ||
+        ProjectionKind.stringList ||
+        ProjectionKind.structList ||
+        ProjectionKind.uriList =>
           DefaultListGetterProjection(method, vtableOffset),
-        ProjectionType.dateTime =>
-          DateTimeGetterProjection(method, vtableOffset),
-        ProjectionType.dateTimeList =>
-          DateTimeListGetterProjection(method, vtableOffset),
-        ProjectionType.delegate =>
-          DelegateGetterProjection(method, vtableOffset),
-        ProjectionType.duration =>
-          DurationGetterProjection(method, vtableOffset),
-        ProjectionType.durationList =>
-          DurationListGetterProjection(method, vtableOffset),
-        ProjectionType.enum_ => EnumGetterProjection(method, vtableOffset),
-        ProjectionType.enumList =>
-          EnumListGetterProjection(method, vtableOffset),
-        ProjectionType.genericEnum =>
-          GenericEnumGetterProjection(method, vtableOffset),
-        ProjectionType.genericObject =>
-          GenericObjectGetterProjection(method, vtableOffset),
-        ProjectionType.guid => GuidGetterProjection(method, vtableOffset),
-        ProjectionType.guidList =>
-          GuidListGetterProjection(method, vtableOffset),
-        ProjectionType.map => MapGetterProjection(method, vtableOffset),
-        ProjectionType.mapView => MapViewGetterProjection(method, vtableOffset),
-        ProjectionType.object => ObjectGetterProjection(method, vtableOffset),
-        ProjectionType.objectList =>
-          ObjectListGetterProjection(method, vtableOffset),
-        ProjectionType.reference =>
-          ReferenceGetterProjection(method, vtableOffset),
-        ProjectionType.string => StringGetterProjection(method, vtableOffset),
-        ProjectionType.stringList =>
-          StringListGetterProjection(method, vtableOffset),
-        ProjectionType.struct => StructGetterProjection(method, vtableOffset),
-        ProjectionType.structList =>
-          StructListGetterProjection(method, vtableOffset),
-        ProjectionType.uri => UriGetterProjection(method, vtableOffset),
-        ProjectionType.uriList => UriListGetterProjection(method, vtableOffset),
-        ProjectionType.vector => VectorGetterProjection(method, vtableOffset),
-        ProjectionType.vectorView =>
-          VectorViewGetterProjection(method, vtableOffset),
         _ => throw WinRTGenException(
-            'Unsupported projection type: $projectionType'),
+            'Unsupported projection kind: $projectionKind'),
       };
     } catch (_) {
-      print('Failed to project getter "$method" from "${method.parent}".');
+      print("Failed to project getter '$method' from '${method.parent}'.");
       rethrow;
     }
   }

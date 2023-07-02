@@ -16,35 +16,35 @@ abstract class SetterProjection extends PropertyProjection {
   SetterProjection(super.method, super.vtableOffset);
 
   /// [ParameterProjection] for the parameter of the method.
-  ParameterProjection get param => parameters.first;
+  ParameterProjection get parameter => parameters.first;
 
   /// Returns the appropriate setter projection for the [method] based on the
   /// parameter type.
   factory SetterProjection.create(Method method, int vtableOffset) {
     try {
-      final projectionType = method.parameters.first.projectionType;
-      return switch (projectionType) {
-        ProjectionType.dartPrimitive =>
+      final projectionKind = method.parameters.first.projectionKind;
+      return switch (projectionKind) {
+        ProjectionKind.dartPrimitive ||
+        ProjectionKind.dateTime ||
+        ProjectionKind.delegate ||
+        ProjectionKind.duration ||
+        ProjectionKind.enum_ ||
+        ProjectionKind.guid ||
+        ProjectionKind.map ||
+        ProjectionKind.mapView ||
+        ProjectionKind.object ||
+        ProjectionKind.reference ||
+        ProjectionKind.string ||
+        ProjectionKind.struct ||
+        ProjectionKind.uri ||
+        ProjectionKind.vector ||
+        ProjectionKind.vectorView =>
           DefaultSetterProjection(method, vtableOffset),
-        ProjectionType.dateTime =>
-          DateTimeSetterProjection(method, vtableOffset),
-        ProjectionType.delegate =>
-          DelegateSetterProjection(method, vtableOffset),
-        ProjectionType.duration =>
-          DurationSetterProjection(method, vtableOffset),
-        ProjectionType.enum_ => EnumSetterProjection(method, vtableOffset),
-        ProjectionType.guid => GuidSetterProjection(method, vtableOffset),
-        ProjectionType.object => ObjectSetterProjection(method, vtableOffset),
-        ProjectionType.reference =>
-          ReferenceSetterProjection(method, vtableOffset),
-        ProjectionType.string => StringSetterProjection(method, vtableOffset),
-        ProjectionType.struct => StructSetterProjection(method, vtableOffset),
-        ProjectionType.uri => UriSetterProjection(method, vtableOffset),
         _ => throw WinRTGenException(
-            'Unsupported projection type: $projectionType'),
+            'Unsupported projection kind: $projectionKind'),
       };
     } catch (_) {
-      print('Failed to project setter "$method" from "${method.parent}".');
+      print("Failed to project setter '$method' from '${method.parent}'.");
       rethrow;
     }
   }
@@ -77,5 +77,8 @@ abstract class SetterProjection extends PropertyProjection {
   // MethodProjection overrides
 
   @override
-  String get shortForm => '$camelCasedName = value';
+  String get returnType => '';
+
+  @override
+  String get shortForm => '$camelCasedName = ${parameter.identifier}';
 }

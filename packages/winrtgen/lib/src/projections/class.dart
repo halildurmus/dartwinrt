@@ -52,7 +52,12 @@ class ClassProjection extends InterfaceProjection {
       ? 'static const _className = ${quote(typeDef.name)};'
       : '';
 
-  List<String> get factoryInterfaces => typeDef.customAttributes
+  List<String>? _factoryInterfaces;
+
+  List<String> get factoryInterfaces =>
+      _factoryInterfaces ??= _cacheFactoryInterfaces();
+
+  List<String> _cacheFactoryInterfaces() => typeDef.customAttributes
       .where((attribute) => attribute.name == activatableAttribute)
       .where((attribute) => attribute.parameters.length == 3)
       .map((attribute) => attribute.parameters.first.value as String)
@@ -71,7 +76,12 @@ class ClassProjection extends InterfaceProjection {
               .map(FactoryConstructorProjection.new)
       ];
 
-  List<String> get staticInterfaces => typeDef.customAttributes
+  List<String>? _staticInterfaces;
+
+  List<String> get staticInterfaces =>
+      _staticInterfaces ??= _cacheStaticInterfaces();
+
+  List<String> _cacheStaticInterfaces() => typeDef.customAttributes
       .where((attribute) => attribute.name == staticAttribute)
       .where((attribute) => attribute.parameters.length == 3)
       .map((attribute) => attribute.parameters.first.value as String)
@@ -113,7 +123,7 @@ $classHeader {
     try {
       return projection;
     } catch (_) {
-      print('Failed to project class "${typeDef.fullyQualifiedName}".');
+      print("Failed to project class '${typeDef.fullyQualifiedName}'.");
       rethrow;
     }
   }
@@ -121,7 +131,7 @@ $classHeader {
 
 final class FactoryConstructorProjection {
   FactoryConstructorProjection(this.method)
-      : className = method.methodHeader.split(' ').first,
+      : className = method.header.split(' ').first,
         shortName = method.method.parent.shortName;
 
   final MethodProjection method;
@@ -151,7 +161,7 @@ final class StaticMethodProjection {
     return [
       if (deprecatedAnnotation != null) deprecatedAnnotation,
       '''
-  static ${method.methodHeader} =>
+  static ${method.header} =>
       createActivationFactory(
               $shortName.fromPtr, _className, IID_$shortName)
           .${method.shortForm};

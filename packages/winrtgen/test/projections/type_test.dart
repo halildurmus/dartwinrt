@@ -18,7 +18,7 @@ void main() {
     test('DateTime types are projected correctly', () {
       final methodProjection = MethodProjection.fromTypeAndMethodName(
           'Windows.Globalization.ICalendar', 'GetDateTime');
-      final typeProjection = methodProjection.returnTypeProjection;
+      final typeProjection = methodProjection.typeProjection;
       expect(typeProjection.dartType, equals('int'));
       expect(typeProjection.nativeType, equals('Int64'));
     });
@@ -34,7 +34,7 @@ void main() {
     test('HResult types are projected correctly', () {
       final methodProjection = MethodProjection.fromTypeAndMethodName(
           'Windows.Foundation.IAsyncInfo', 'get_ErrorCode');
-      final typeProjection = methodProjection.returnTypeProjection;
+      final typeProjection = methodProjection.typeProjection;
       expect(typeProjection.dartType, equals('int'));
       expect(typeProjection.nativeType, equals('Int32'));
     });
@@ -42,7 +42,7 @@ void main() {
     test('TimeSpan types are projected correctly', () {
       final methodProjection = MethodProjection.fromTypeAndMethodName(
           'Windows.Foundation.IPropertyValue', 'GetTimeSpan');
-      final typeProjection = methodProjection.returnTypeProjection;
+      final typeProjection = methodProjection.typeProjection;
       expect(typeProjection.dartType, equals('int'));
       expect(typeProjection.nativeType, equals('Int64'));
     });

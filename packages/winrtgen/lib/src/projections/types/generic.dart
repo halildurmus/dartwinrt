@@ -4,51 +4,7 @@
 
 import '../../models/models.dart';
 import '../../utilities/utilities.dart';
-import '../getter.dart';
-import '../method.dart';
 import '../parameter.dart';
-import 'default.dart';
-
-mixin _GenericEnumMixin on MethodProjection {
-  String get enumCreator => switch (method.parent.genericParams) {
-        [final param, _] when param.name == returnType => 'enumKeyCreator',
-        _ => 'enumCreator'
-      };
-
-  @override
-  String get returnType {
-    final genericParamSequence =
-        returnTypeProjection.typeIdentifier.genericParamSequence;
-    return method.parent.genericParams[genericParamSequence].name;
-  }
-
-  @override
-  String get methodDeclaration => '''
-  $methodHeader {
-    final retValuePtr = calloc<${returnTypeProjection.nativeType}>();
-
-    try {
-      ${ffiCall()}
-
-      return $enumCreator(retValuePtr.value);
-    } finally {
-      free(retValuePtr);
-    }
-  }
-''';
-}
-
-/// Method projection for generic methods that return WinRT enum.
-final class GenericEnumMethodProjection extends MethodProjection
-    with _GenericEnumMixin {
-  GenericEnumMethodProjection(super.method, super.vtableOffset);
-}
-
-/// Getter projection for generic getters that return a WinRT enum.
-final class GenericEnumGetterProjection extends GetterProjection
-    with _GenericEnumMixin {
-  GenericEnumGetterProjection(super.method, super.vtableOffset);
-}
 
 /// Parameter projection for `T extends WinRTEnum` parameters.
 final class GenericEnumParameterProjection extends ParameterProjection {
@@ -61,91 +17,30 @@ final class GenericEnumParameterProjection extends ParameterProjection {
   }
 
   @override
-  String get localIdentifier => '($identifier as WinRTEnum).value';
-}
-
-/// Parameter projection for `List<T extends WinRTEnum>` parameters.
-final class GenericEnumListParameterProjection
-    extends DefaultListParameterProjection {
-  GenericEnumListParameterProjection(super.parameter);
+  String get creator => switch (method.parent.genericParams) {
+        [final param, _] when param.name == type =>
+          'enumKeyCreator($identifier.value)',
+        _ => 'enumCreator($identifier.value)'
+      };
 
   @override
-  String get type {
-    final genericParamSequence =
-        typeArgProjection.typeIdentifier.genericParamSequence;
-    final genericParam = method.parent.genericParams[genericParamSequence].name;
-    return 'List<$genericParam>';
-  }
+  String get into => '($identifier as WinRTEnum).value';
 
   @override
-  String get passArrayPreamble => '''
-    final $localIdentifier = calloc<${typeArgProjection.nativeType}>($paramName.length);
-    for (var i = 0; i < $paramName.length; i++) {
-      $localIdentifier[i] = ($paramName as List<WinRTEnum>).elementAt(i).value;
-    }
-''';
+  String get toListCreator => '.map(enumCreator).toList()';
 
   @override
-  String get fillArrayPostamble => '''
-    if ($fillArraySizeVariable > 0) {
-      $paramName.addAll($localIdentifier.toList(length: $fillArraySizeVariable).map(enumCreator));
-    }
-    free($localIdentifier);''';
-}
-
-mixin _GenericObjectMixin on MethodProjection {
-  @override
-  bool get isNullable =>
-      returnTypeProjection.typeIdentifier.name ==
-      TypeArg.nullableInspectable.name;
-
-  String get typeParameter {
-    final genericParamSequence =
-        returnTypeProjection.typeIdentifier.genericParamSequence;
-    return method.parent.genericParams[genericParamSequence].name;
-  }
-
-  @override
-  String get returnType => typeParameter;
-
-  String get nullCheck => isNullable
-      ? '''
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
-      return null as $typeParameter;
-    }
-'''
-      : '';
-
-  @override
-  String get methodDeclaration => '''
-  $methodHeader {
-    final retValuePtr = calloc<COMObject>();
-    ${ffiCall(freeRetValOnFailure: true)}
-
-    $nullCheck
-
-    return creator(retValuePtr);
-  }
-''';
-}
-
-/// Method projection for generic methods that return WinRT class or interface.
-final class GenericObjectMethodProjection extends MethodProjection
-    with _GenericObjectMixin {
-  GenericObjectMethodProjection(super.method, super.vtableOffset);
-}
-
-/// Getter projection for generic getters that return a WinRT class or
-/// interface.
-final class GenericObjectGetterProjection extends GetterProjection
-    with _GenericObjectMixin {
-  GenericObjectGetterProjection(super.method, super.vtableOffset);
+  String get toListInto => '$identifier.cast<WinRTEnum>()[i].value';
 }
 
 /// Parameter projection for `T extends IInspectable` parameters.
 final class GenericObjectParameterProjection extends ParameterProjection {
   GenericObjectParameterProjection(super.parameter);
+
+  @override
+  bool get isNullable =>
+      typeProjection.typeIdentifier.name ==
+      TypeArgKind.nullableInspectable.name;
 
   @override
   String get type {
@@ -154,37 +49,29 @@ final class GenericObjectParameterProjection extends ParameterProjection {
   }
 
   @override
-  String get localIdentifier => '($identifier as IInspectable).ptr.ref.lpVtbl';
-}
-
-/// Parameter projection for `List<T extends IInspectable>` parameters.
-final class GenericObjectListParameterProjection
-    extends DefaultListParameterProjection {
-  GenericObjectListParameterProjection(super.parameter);
+  String get creator => 'creator($identifier)';
 
   @override
-  String get type {
-    final genericParamSequence =
-        typeArgProjection.typeIdentifier.genericParamSequence;
-    final genericParam = method.parent.genericParams[genericParamSequence].name;
-    return 'List<$genericParam>';
-  }
+  String get into => '($identifier as IInspectable).ptr.ref.lpVtbl';
 
   @override
-  String get fillArrayPreamble =>
-      'final $localIdentifier = calloc<COMObject>($sizeParamName);';
+  String get toListArg => 'creator';
 
   @override
-  String get passArrayPreamble => '''
-    final $localIdentifier = calloc<COMObject>($paramName.length);
-    for (var i = 0; i < $paramName.length; i++) {
-      $localIdentifier[i] = ($paramName as List<IInspectable>).elementAt(i).ptr.ref;
-    }''';
+  String get toListInto => '$identifier.cast<IInspectable>()[i].ptr.ref.lpVtbl';
+
+  // No deallocation is needed as NativeFinalizer will handle it.
+  @override
+  bool get needsDeallocation => false;
 
   @override
-  String get fillArrayPostamble => '''
-    if ($fillArraySizeVariable > 0) {
-      $paramName.addAll($localIdentifier.toList(creator, length: $fillArraySizeVariable));
+  String get nullCheck {
+    if (!isNullable) return '';
+    return '''
+    if ($identifier.isNull) {
+      free($identifier);
+      return null as $type;
     }
-    free($localIdentifier);''';
+''';
+  }
 }

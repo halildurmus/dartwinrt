@@ -6,48 +6,50 @@ import 'package:winmd/winmd.dart';
 
 import '../../exception/exception.dart';
 import '../../utilities/utilities.dart';
-import '../method.dart';
-import '../type.dart';
+import '../projections.dart';
 
-/// Method projection for methods that return `IAsyncAction`.
-final class AsyncActionMethodProjection extends MethodProjection {
-  AsyncActionMethodProjection(super.method, super.vtableOffset);
-
-  @override
-  String get returnType => 'Future<void>';
+/// Parameter projection for `IAsyncAction` parameters.
+final class AsyncActionParameterProjection extends ParameterProjection {
+  AsyncActionParameterProjection(super.parameter);
 
   @override
-  String get methodDeclaration => '''
-  $methodHeader {
-    final retValuePtr = calloc<COMObject>();
-    ${ffiCall(freeRetValOnFailure: true)}
+  String get type => 'Future<void>';
 
-    return IAsyncAction.fromPtr(retValuePtr).toFuture();
-  }
-''';
+  @override
+  String get creator => 'IAsyncAction.fromPtr($identifier).toFuture()';
+
+  @override
+  String get into => '$identifier.ptr.ref.lpVtbl';
+
+  // No deallocation is needed as NativeFinalizer will handle it.
+  @override
+  bool get needsDeallocation => false;
 }
 
-mixin _AsyncOperationMixin on MethodProjection {
+/// Parameter projection for `IAsyncOperation` parameters.
+final class AsyncOperationParameterProjection
+    extends AsyncActionParameterProjection {
+  AsyncOperationParameterProjection(super.parameter);
+
   /// Whether the method returns a type like `DataReaderLoadOperation`.
   bool get isSubtypeOfAsyncOperation =>
-      returnTypeProjection.typeIdentifier.type?.interfaces.any((interface) =>
+      typeProjection.typeIdentifier.type?.interfaces.any((interface) =>
           interface.typeSpec?.name.endsWith('IAsyncOperation`1') ?? false) ??
       false;
 
   TypeIdentifier get typeIdentifier {
     if (isSubtypeOfAsyncOperation) {
-      final typeDef =
-          getMetadataForType(returnTypeProjection.typeIdentifier.name);
+      final typeDef = getMetadataForType(typeProjection.typeIdentifier.name);
       final interface = typeDef.interfaces.firstWhere((interface) =>
           interface.typeSpec?.name.endsWith('IAsyncOperation`1') ?? false);
       if (interface.typeSpec case final typeSpec?) return typeSpec;
-      throw WinRTGenException('Type $interface has no TypeSpec.');
+      throw WinRTGenException("Type '$interface' has no TypeSpec.");
     }
-    return returnTypeProjection.typeIdentifier;
+    return typeProjection.typeIdentifier;
   }
 
   /// The type argument of `IAsyncOperation`, as represented in the
-  /// [returnTypeProjection]'s `TypeIdentifier` (e.g. `bool`, `String`,
+  /// [typeProjection]'s `TypeIdentifier` (e.g. `bool`, `String`,
   /// `StorageFile?`).
   String get typeArg => typeArguments(typeIdentifier.shortName);
 
@@ -90,10 +92,7 @@ mixin _AsyncOperationMixin on MethodProjection {
     } else if (creator != null) {
       args.add('creator: $creator');
     }
-    if (intType != null) {
-      args.add('intType: $intType');
-    }
-
+    if (intType != null) args.add('intType: $intType');
     return args.isEmpty ? '' : ', ${args.join(', ')}';
   }
 
@@ -112,23 +111,15 @@ mixin _AsyncOperationMixin on MethodProjection {
   }
 
   @override
-  String get returnType => 'Future<$formattedTypeArg>';
+  String get type => 'Future<$formattedTypeArg>';
 
   @override
-  String get methodDeclaration => '''
-  $methodHeader {
-    final retValuePtr = calloc<COMObject>();
-    ${ffiCall(freeRetValOnFailure: true)}
+  String get creatorPreamble =>
+      'final asyncOperation = IAsyncOperation<$typeArg>.fromPtr($identifier$constructorArgs);';
 
-    final asyncOperation =
-        IAsyncOperation<$typeArg>.fromPtr(retValuePtr$constructorArgs);
-    return asyncOperation.toFuture($onCompletedCallback);
-  }
-''';
-}
+  @override
+  String get creator => 'asyncOperation.toFuture($onCompletedCallback)';
 
-/// Method projection for methods that return `IAsyncOperation<TResult>`.
-final class AsyncOperationMethodProjection extends MethodProjection
-    with _AsyncOperationMixin {
-  AsyncOperationMethodProjection(super.method, super.vtableOffset);
+  @override
+  String get into => '$identifier.ptr.ref.lpVtbl';
 }

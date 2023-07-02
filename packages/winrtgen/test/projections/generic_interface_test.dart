@@ -15,7 +15,17 @@ void main() {
   }
 
   final asyncOperationBoolProjection = GenericInterfaceProjection.from(
-      'Windows.Foundation.IAsyncOperation`1', TypeArg.bool_);
+      'Windows.Foundation.IAsyncOperation`1', TypeArgKind.bool_);
+
+  group('GenericInterfacePartFileProjection', () {
+    test('projects something', () {
+      const genericType = GenericTypeWithOneTypeArg(
+          'Windows.Foundation.IReference`1', [TypeArgKind.string]);
+      final output = GenericInterfacePartFileProjection(genericType).toString();
+      expect(output, isNotEmpty);
+      expect(output, contains('_IReferenceString'));
+    });
+  });
 
   group('GenericInterfaceProjection', () {
     test('projects something', () {
@@ -27,14 +37,14 @@ void main() {
     test('from factory constructor throws if typeArg2 is not specified', () {
       expect(
           () => GenericInterfaceProjection.from(
-              'Windows.Foundation.Collections.IMap`2', TypeArg.string),
+              'Windows.Foundation.Collections.IMap`2', TypeArgKind.string),
           throwsA(isA<ArgumentError>()));
     });
 
     test('from factory constructor throws if type is not found', () {
       expect(
           () => GenericInterfaceProjection.from(
-              'Windows.Foo.IBar', TypeArg.bool_),
+              'Windows.Foo.IBar', TypeArgKind.bool_),
           throwsA(isA<WinRTGenException>()));
     });
   });
@@ -47,58 +57,58 @@ void main() {
 
       test('(2)', () {
         final projection = GenericInterfaceProjection.from(
-            'Windows.Foundation.IAsyncOperation`1', TypeArg.nullableInt32);
+            'Windows.Foundation.IAsyncOperation`1', TypeArgKind.nullableInt32);
         expect(projection.formattedTypeArgs, equals('int?'));
       });
 
       test('(3)', () {
         final projection = GenericInterfaceProjection.from(
             'Windows.Foundation.IAsyncOperation`1',
-            TypeArg.nullableInspectable);
+            TypeArgKind.nullableInspectable);
         expect(projection.formattedTypeArgs, equals('TResult'));
       });
 
       test('(4)', () {
         final projection = GenericInterfaceProjection.from(
-            'Windows.Foundation.IAsyncOperation`1', TypeArg.winrtEnum);
+            'Windows.Foundation.IAsyncOperation`1', TypeArgKind.winrtEnum);
         expect(projection.formattedTypeArgs, equals('TResult'));
       });
 
       test('(5)', () {
         final projection = GenericInterfaceProjection.from(
-            'Windows.Foundation.IAsyncOperation`1', TypeArg.winrtFlagsEnum);
+            'Windows.Foundation.IAsyncOperation`1', TypeArgKind.winrtFlagsEnum);
         expect(projection.formattedTypeArgs, equals('TResult'));
       });
 
       test('(6)', () {
         final projection = GenericInterfaceProjection.from(
             'Windows.Foundation.Collections.IMap`2',
-            TypeArg.string,
-            TypeArg.string);
+            TypeArgKind.string,
+            TypeArgKind.string);
         expect(projection.formattedTypeArgs, equals('String, String'));
       });
 
       test('(7)', () {
         final projection = GenericInterfaceProjection.from(
             'Windows.Foundation.Collections.IMap`2',
-            TypeArg.guid,
-            TypeArg.nullableObject);
+            TypeArgKind.guid,
+            TypeArgKind.nullableObject);
         expect(projection.formattedTypeArgs, equals('Guid, Object?'));
       });
 
       test('(8)', () {
         final projection = GenericInterfaceProjection.from(
             'Windows.Foundation.Collections.IMap`2',
-            TypeArg.string,
-            TypeArg.nullableInspectable);
+            TypeArgKind.string,
+            TypeArgKind.nullableInspectable);
         expect(projection.formattedTypeArgs, equals('String, V'));
       });
 
       test('(9)', () {
         final projection = GenericInterfaceProjection.from(
             'Windows.Foundation.Collections.IMap`2',
-            TypeArg.winrtEnum,
-            TypeArg.nullableInspectable);
+            TypeArgKind.winrtEnum,
+            TypeArgKind.nullableInspectable);
         expect(projection.formattedTypeArgs, equals('K, V'));
       });
     });
@@ -110,58 +120,58 @@ void main() {
 
       test('(2)', () {
         final projection = GenericInterfaceProjection.from(
-            'Windows.Foundation.IAsyncOperation`1', TypeArg.nullableInt32);
+            'Windows.Foundation.IAsyncOperation`1', TypeArgKind.nullableInt32);
         expect(projection.typeParams, isEmpty);
       });
 
       test('(3)', () {
         final projection = GenericInterfaceProjection.from(
             'Windows.Foundation.IAsyncOperation`1',
-            TypeArg.nullableInspectable);
+            TypeArgKind.nullableInspectable);
         expect(projection.typeParams, equals('<TResult>'));
       });
 
       test('(4)', () {
         final projection = GenericInterfaceProjection.from(
-            'Windows.Foundation.IAsyncOperation`1', TypeArg.winrtEnum);
+            'Windows.Foundation.IAsyncOperation`1', TypeArgKind.winrtEnum);
         expect(projection.typeParams, equals('<TResult>'));
       });
 
       test('(5)', () {
         final projection = GenericInterfaceProjection.from(
-            'Windows.Foundation.IAsyncOperation`1', TypeArg.winrtFlagsEnum);
+            'Windows.Foundation.IAsyncOperation`1', TypeArgKind.winrtFlagsEnum);
         expect(projection.typeParams, equals('<TResult>'));
       });
 
       test('(6)', () {
         final projection = GenericInterfaceProjection.from(
             'Windows.Foundation.Collections.IMap`2',
-            TypeArg.string,
-            TypeArg.string);
+            TypeArgKind.string,
+            TypeArgKind.string);
         expect(projection.typeParams, isEmpty);
       });
 
       test('(7)', () {
         final projection = GenericInterfaceProjection.from(
             'Windows.Foundation.Collections.IMap`2',
-            TypeArg.guid,
-            TypeArg.nullableObject);
+            TypeArgKind.guid,
+            TypeArgKind.nullableObject);
         expect(projection.typeParams, isEmpty);
       });
 
       test('(8)', () {
         final projection = GenericInterfaceProjection.from(
             'Windows.Foundation.Collections.IMap`2',
-            TypeArg.string,
-            TypeArg.nullableInspectable);
+            TypeArgKind.string,
+            TypeArgKind.nullableInspectable);
         expect(projection.typeParams, equals('<V>'));
       });
 
       test('(9)', () {
         final projection = GenericInterfaceProjection.from(
             'Windows.Foundation.Collections.IMap`2',
-            TypeArg.winrtEnum,
-            TypeArg.nullableInspectable);
+            TypeArgKind.winrtEnum,
+            TypeArgKind.nullableInspectable);
         expect(projection.typeParams, equals('<K, V>'));
       });
     });
@@ -175,15 +185,15 @@ void main() {
       test('(2)', () {
         final projection = GenericInterfaceProjection.from(
             'Windows.Foundation.IAsyncOperation`1',
-            TypeArg.nullableInspectable);
+            TypeArgKind.nullableInspectable);
         expect(projection.className, equals('_IAsyncOperationInspectable'));
       });
 
       test('(3)', () {
         final projection = GenericInterfaceProjection.from(
             'Windows.Foundation.Collections.IMap`2',
-            TypeArg.string,
-            TypeArg.nullableInspectable);
+            TypeArgKind.string,
+            TypeArgKind.nullableInspectable);
         expect(projection.className, equals('_IMapStringInspectable'));
       });
     });
@@ -199,7 +209,7 @@ void main() {
       test('(2)', () {
         final projection = GenericInterfaceProjection.from(
             'Windows.Foundation.IAsyncOperation`1',
-            TypeArg.nullableInspectable);
+            TypeArgKind.nullableInspectable);
         expect(
             projection.classHeader,
             equals(
@@ -208,7 +218,7 @@ void main() {
 
       test('(3)', () {
         final projection = GenericInterfaceProjection.from(
-            'Windows.Foundation.IAsyncOperation`1', TypeArg.winrtEnum);
+            'Windows.Foundation.IAsyncOperation`1', TypeArgKind.winrtEnum);
         expect(
             projection.classHeader,
             equals(
@@ -218,8 +228,8 @@ void main() {
       test('(4)', () {
         final projection = GenericInterfaceProjection.from(
             'Windows.Foundation.Collections.IMap`2',
-            TypeArg.string,
-            TypeArg.nullableInspectable);
+            TypeArgKind.string,
+            TypeArgKind.nullableInspectable);
         expect(
             projection.classHeader,
             equals(
@@ -229,8 +239,8 @@ void main() {
       test('(5)', () {
         final projection = GenericInterfaceProjection.from(
             'Windows.Foundation.Collections.IMap`2',
-            TypeArg.guid,
-            TypeArg.nullableObject);
+            TypeArgKind.guid,
+            TypeArgKind.nullableObject);
         expect(projection.classHeader,
             equals('final class _IMapGuidObject extends IMap<Guid, Object?>'));
       });
@@ -245,7 +255,7 @@ void main() {
       test('(2)', () {
         final projection = GenericInterfaceProjection.from(
             'Windows.Foundation.IAsyncOperation`1',
-            TypeArg.nullableInspectable);
+            TypeArgKind.nullableInspectable);
         expect(
             projection.namedConstructor,
             equals(
@@ -254,7 +264,7 @@ void main() {
 
       test('(3)', () {
         final projection = GenericInterfaceProjection.from(
-            'Windows.Foundation.IAsyncOperation`1', TypeArg.winrtEnum);
+            'Windows.Foundation.IAsyncOperation`1', TypeArgKind.winrtEnum);
         expect(
             projection.namedConstructor,
             equals(
@@ -263,7 +273,7 @@ void main() {
 
       test('(4)', () {
         final projection = GenericInterfaceProjection.from(
-            'Windows.Foundation.Collections.IVector`1', TypeArg.int32);
+            'Windows.Foundation.Collections.IVector`1', TypeArgKind.int32);
         expect(
             projection.namedConstructor,
             equals(
@@ -272,7 +282,7 @@ void main() {
 
       test('(5)', () {
         final projection = GenericInterfaceProjection.from(
-            'Windows.Foundation.Collections.IVectorView`1', TypeArg.float);
+            'Windows.Foundation.Collections.IVectorView`1', TypeArgKind.float);
         expect(
             projection.namedConstructor,
             equals(
@@ -282,8 +292,8 @@ void main() {
       test('(6)', () {
         final projection = GenericInterfaceProjection.from(
             'Windows.Foundation.Collections.IMap`2',
-            TypeArg.string,
-            TypeArg.object);
+            TypeArgKind.string,
+            TypeArgKind.object);
         expect(
             projection.namedConstructor,
             equals(
@@ -293,8 +303,8 @@ void main() {
       test('(7)', () {
         final projection = GenericInterfaceProjection.from(
             'Windows.Foundation.Collections.IMap`2',
-            TypeArg.string,
-            TypeArg.nullableInspectable);
+            TypeArgKind.string,
+            TypeArgKind.nullableInspectable);
         expect(
             projection.namedConstructor,
             equals(
@@ -304,8 +314,8 @@ void main() {
       test('(8)', () {
         final projection = GenericInterfaceProjection.from(
             'Windows.Foundation.Collections.IMap`2',
-            TypeArg.winrtEnum,
-            TypeArg.nullableInspectable);
+            TypeArgKind.winrtEnum,
+            TypeArgKind.nullableInspectable);
         expect(
             projection.namedConstructor,
             equals(
@@ -321,49 +331,49 @@ void main() {
 
       test('(2)', () {
         final projection = GenericInterfaceProjection.from(
-            'Windows.Foundation.IReference`1', TypeArg.nullableInt32);
+            'Windows.Foundation.IReference`1', TypeArgKind.nullableInt32);
         expect(projection.methodProjections.length, equals(1));
       });
 
       test('(3)', () {
         final projection = GenericInterfaceProjection.from(
-            'Windows.Foundation.Collections.IIterator`1', TypeArg.string);
+            'Windows.Foundation.Collections.IIterator`1', TypeArgKind.string);
         expect(projection.methodProjections.length, equals(2));
       });
 
       test('(4)', () {
         final projection = GenericInterfaceProjection.from(
             'Windows.Foundation.Collections.IKeyValuePair`2',
-            TypeArg.string,
-            TypeArg.string);
+            TypeArgKind.string,
+            TypeArgKind.string);
         expect(projection.methodProjections.length, equals(2));
       });
 
       test('(5)', () {
         final projection = GenericInterfaceProjection.from(
             'Windows.Foundation.Collections.IMap`2',
-            TypeArg.string,
-            TypeArg.string);
+            TypeArgKind.string,
+            TypeArgKind.string);
         expect(projection.methodProjections.length, equals(4));
       });
 
       test('(6)', () {
         final projection = GenericInterfaceProjection.from(
             'Windows.Foundation.Collections.IMapView`2',
-            TypeArg.string,
-            TypeArg.string);
+            TypeArgKind.string,
+            TypeArgKind.string);
         expect(projection.methodProjections.length, equals(2));
       });
 
       test('(7)', () {
         final projection = GenericInterfaceProjection.from(
-            'Windows.Foundation.Collections.IVector`1', TypeArg.string);
+            'Windows.Foundation.Collections.IVector`1', TypeArgKind.string);
         expect(projection.methodProjections.length, equals(7));
       });
 
       test('(8)', () {
         final projection = GenericInterfaceProjection.from(
-            'Windows.Foundation.Collections.IVectorView`1', TypeArg.string);
+            'Windows.Foundation.Collections.IVectorView`1', TypeArgKind.string);
         expect(projection.methodProjections.length, equals(3));
       });
     });
@@ -376,49 +386,49 @@ void main() {
 
       test('(2)', () {
         final projection = GenericInterfaceProjection.from(
-            'Windows.Foundation.IReference`1', TypeArg.nullableInt32);
+            'Windows.Foundation.IReference`1', TypeArgKind.nullableInt32);
         expect(projection.methodProjections.first.name, equals('get_Value'));
       });
 
       test('(3)', () {
         final projection = GenericInterfaceProjection.from(
-            'Windows.Foundation.Collections.IIterator`1', TypeArg.string);
+            'Windows.Foundation.Collections.IIterator`1', TypeArgKind.string);
         expect(projection.methodProjections.first.name, equals('get_Current'));
       });
 
       test('(4)', () {
         final projection = GenericInterfaceProjection.from(
             'Windows.Foundation.Collections.IKeyValuePair`2',
-            TypeArg.string,
-            TypeArg.string);
+            TypeArgKind.string,
+            TypeArgKind.string);
         expect(projection.methodProjections.first.name, equals('get_Key'));
       });
 
       test('(5)', () {
         final projection = GenericInterfaceProjection.from(
             'Windows.Foundation.Collections.IMap`2',
-            TypeArg.string,
-            TypeArg.string);
+            TypeArgKind.string,
+            TypeArgKind.string);
         expect(projection.methodProjections.first.name, equals('Lookup'));
       });
 
       test('(6)', () {
         final projection = GenericInterfaceProjection.from(
             'Windows.Foundation.Collections.IMapView`2',
-            TypeArg.string,
-            TypeArg.string);
+            TypeArgKind.string,
+            TypeArgKind.string);
         expect(projection.methodProjections.first.name, equals('Lookup'));
       });
 
       test('(7)', () {
         final projection = GenericInterfaceProjection.from(
-            'Windows.Foundation.Collections.IVector`1', TypeArg.string);
+            'Windows.Foundation.Collections.IVector`1', TypeArgKind.string);
         expect(projection.methodProjections.first.name, equals('GetAt'));
       });
 
       test('(8)', () {
         final projection = GenericInterfaceProjection.from(
-            'Windows.Foundation.Collections.IVectorView`1', TypeArg.string);
+            'Windows.Foundation.Collections.IVectorView`1', TypeArgKind.string);
         expect(projection.methodProjections.first.name, equals('GetAt'));
       });
     });
@@ -426,43 +436,43 @@ void main() {
     group('has correct last method', () {
       test('(1)', () {
         final projection = GenericInterfaceProjection.from(
-            'Windows.Foundation.Collections.IIterator`1', TypeArg.string);
+            'Windows.Foundation.Collections.IIterator`1', TypeArgKind.string);
         expect(projection.methodProjections.last.name, equals('GetMany'));
       });
 
       test('(2)', () {
         final projection = GenericInterfaceProjection.from(
             'Windows.Foundation.Collections.IKeyValuePair`2',
-            TypeArg.string,
-            TypeArg.string);
+            TypeArgKind.string,
+            TypeArgKind.string);
         expect(projection.methodProjections.last.name, equals('get_Value'));
       });
 
       test('(3)', () {
         final projection = GenericInterfaceProjection.from(
             'Windows.Foundation.Collections.IMap`2',
-            TypeArg.string,
-            TypeArg.string);
+            TypeArgKind.string,
+            TypeArgKind.string);
         expect(projection.methodProjections.last.name, equals('Remove'));
       });
 
       test('(4)', () {
         final projection = GenericInterfaceProjection.from(
             'Windows.Foundation.Collections.IMapView`2',
-            TypeArg.string,
-            TypeArg.string);
+            TypeArgKind.string,
+            TypeArgKind.string);
         expect(projection.methodProjections.last.name, equals('HasKey'));
       });
 
       test('(5)', () {
         final projection = GenericInterfaceProjection.from(
-            'Windows.Foundation.Collections.IVector`1', TypeArg.string);
+            'Windows.Foundation.Collections.IVector`1', TypeArgKind.string);
         expect(projection.methodProjections.last.name, equals('ReplaceAll'));
       });
 
       test('(6)', () {
         final projection = GenericInterfaceProjection.from(
-            'Windows.Foundation.Collections.IVectorView`1', TypeArg.string);
+            'Windows.Foundation.Collections.IVectorView`1', TypeArgKind.string);
         expect(projection.methodProjections.last.name, equals('GetMany'));
       });
     });

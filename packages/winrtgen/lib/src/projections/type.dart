@@ -8,65 +8,15 @@ import '../exception/exception.dart';
 import '../models/models.dart';
 import '../utilities/utilities.dart';
 
-final class TypeTuple {
-  const TypeTuple(this.nativeType, this.dartType, {this.attribute});
-
-  /// The type, as represented in the native function (e.g. `Int64`)
-  final String nativeType;
-
-  /// The type, as represented in the Dart function (e.g. `int`)
-  final String dartType;
-
-  /// The type, as represented as a struct attribute (e.g. `@Int64()`)
-  final String? attribute;
-
-  /// Wraps the [TypeTuple]'s [nativeType] with `Pointer`
-  /// (e.g. `Int32` -> `Pointer<Int32>`).
-  TypeTuple get wrappedWithPointer {
-    final type = 'Pointer<$nativeType>';
-    return TypeTuple(type, type);
-  }
-}
-
-const baseNativeMapping = <BaseType, TypeTuple>{
-  BaseType.booleanType: TypeTuple('Bool', 'bool', attribute: '@Bool()'),
-  BaseType.charType: TypeTuple('Uint16', 'int', attribute: '@Uint16()'),
-  BaseType.doubleType: TypeTuple('Double', 'double', attribute: '@Double()'),
-  BaseType.floatType: TypeTuple('Float', 'double', attribute: '@Float()'),
-  BaseType.int8Type: TypeTuple('Int8', 'int', attribute: '@Int8()'),
-  BaseType.uint8Type: TypeTuple('Uint8', 'int', attribute: '@Uint8()'),
-  BaseType.int16Type: TypeTuple('Int16', 'int', attribute: '@Int16()'),
-  BaseType.uint16Type: TypeTuple('Uint16', 'int', attribute: '@Uint16()'),
-  BaseType.int32Type: TypeTuple('Int32', 'int', attribute: '@Int32()'),
-  BaseType.uint32Type: TypeTuple('Uint32', 'int', attribute: '@Uint32()'),
-  BaseType.int64Type: TypeTuple('Int64', 'int', attribute: '@Int64()'),
-  BaseType.uint64Type: TypeTuple('Uint64', 'int', attribute: '@Uint64()'),
-  BaseType.intPtrType: TypeTuple('IntPtr', 'int', attribute: '@IntPtr()'),
-  BaseType.uintPtrType: TypeTuple('IntPtr', 'int', attribute: '@IntPtr()'),
-  BaseType.voidType: TypeTuple('Void', 'void'),
-};
-
-const specialTypes = <String, TypeTuple>{
-  'System.Guid': TypeTuple('GUID', 'GUID'),
-  'Windows.Foundation.DateTime':
-      TypeTuple('Int64', 'int', attribute: '@Int64()'),
-  'Windows.Foundation.EventRegistrationToken':
-      TypeTuple('IntPtr', 'int', attribute: '@IntPtr()'),
-  'Windows.Foundation.HResult':
-      TypeTuple('Int32', 'int', attribute: '@Int32()'),
-  'Windows.Foundation.TimeSpan':
-      TypeTuple('Int64', 'int', attribute: '@Int64()'),
-};
-
 final class TypeProjection {
-  TypeProjection(TypeIdentifier ti, {this.isParameter = false})
+  TypeProjection(TypeIdentifier ti, {this.isInParam = false})
       : typeIdentifier =
             ti.isGenericType ? ti.copyWith(name: ti.shortName) : ti;
 
   final TypeIdentifier typeIdentifier;
 
-  /// Whether this type belongs to a parameter.
-  final bool isParameter;
+  /// Whether this type represents an `in` parameter.
+  final bool isInParam;
 
   /// The type, as represented in the native function (e.g. `Int64`)
   String get nativeType => projection.nativeType;
@@ -77,26 +27,34 @@ final class TypeProjection {
   /// The type, as represented as a struct attribute (e.g. `@Int64()`)
   String get attribute => projection.attribute ?? '';
 
-  /// The projection type of this type (e.g. `ProjectionType.dateTime`).
-  ProjectionType get projectionType => ProjectionType.from(this);
+  /// The projection kind of this type (e.g. `ProjectionKind.dateTime`).
+  ProjectionKind get projectionKind => ProjectionKind.from(this);
+
+  /// The type of the pointer to [nativeType] (e.g. `Pointer<Int64>`).
+  TypeTuple get pointer {
+    final type = 'Pointer<$nativeType>';
+    return TypeTuple(type, type);
+  }
 
   // Type matcher properties
 
   bool get isAsyncAction =>
       typeIdentifier.name == 'Windows.Foundation.IAsyncAction' ||
+      // Does the type implement IAsyncAction?
       (typeIdentifier.type?.interfaces
               .any((interface) => interface.name.endsWith('IAsyncAction')) ??
           false);
 
   bool get isAsyncOperation =>
       (typeIdentifier.type?.name.endsWith('IAsyncOperation`1') ?? false) ||
+      // Does the type implement IAsyncOperation?
       (typeIdentifier.type?.interfaces.any((interface) =>
               interface.typeSpec?.name.endsWith('IAsyncOperation`1') ??
               false) ??
           false);
 
   bool get isBaseType =>
-      baseNativeMapping.keys.contains(typeIdentifier.baseType);
+      _baseNativeMapping.keys.contains(typeIdentifier.baseType);
 
   bool get isClassVariableType => typeIdentifier.isClassVariableType;
 
@@ -128,7 +86,7 @@ final class TypeProjection {
 
   bool get isSimpleArray => typeIdentifier.isSimpleArrayType;
 
-  bool get isSpecialType => specialTypes.keys.contains(typeIdentifier.name);
+  bool get isSpecialType => _specialTypes.keys.contains(typeIdentifier.name);
 
   bool get isString => typeIdentifier.isStringType;
 
@@ -161,13 +119,13 @@ final class TypeProjection {
 
   bool get isWinRTStruct => isWinRT && (typeIdentifier.type?.isStruct ?? false);
 
-  TypeTuple unwrapEnum() {
+  TypeTuple _unwrapEnum() {
     final fieldType = typeIdentifier.type?.findField('value__')?.typeIdentifier;
     if (fieldType == null) {
       throw WinRTGenException('Enum $typeIdentifier is missing value__ field');
     }
 
-    final typeTuple = baseNativeMapping[fieldType.baseType];
+    final typeTuple = _baseNativeMapping[fieldType.baseType];
     if (typeTuple == null) {
       throw WinRTGenException(
           'Enum $typeIdentifier has unsupported underlying type');
@@ -176,48 +134,42 @@ final class TypeProjection {
     return typeTuple;
   }
 
-  TypeTuple unwrapGenericTypeArg() {
-    final typeArg = TypeArg.from(typeIdentifier.name);
+  /// Convert the projection of a *[typeIdentifier] into the projection of a
+  /// typeIdentifier.
+  ///
+  /// Throws a [WinRTGenException] if [typeIdentifier] is cannot be
+  /// de-referenced.
+  TypeProjection _dereference() =>
+      TypeProjection(dereferenceType(typeIdentifier), isInParam: isInParam);
+
+  TypeTuple _unwrapGenericTypeArg() {
+    final typeArg = TypeArgKind.from(typeIdentifier.name);
     return switch (typeArg) {
-      TypeArg.inspectable || TypeArg.nullableInspectable => TypeTuple(
-          isParameter ? 'VTablePointer' : 'Pointer<COMObject>',
-          isParameter ? 'VTablePointer' : 'Pointer<COMObject>'),
-      TypeArg.winrtEnum => baseNativeMapping[BaseType.int32Type]!,
-      TypeArg.winrtFlagsEnum => baseNativeMapping[BaseType.uint32Type]!,
-      _ => throw WinRTGenException('Unsupported TypeArg: $typeArg')
+      TypeArgKind.inspectable || TypeArgKind.nullableInspectable => TypeTuple(
+          isInParam ? 'VTablePointer' : 'COMObject',
+          isInParam ? 'VTablePointer' : 'COMObject'),
+      TypeArgKind.winrtEnum => _baseNativeMapping[BaseType.int32Type]!,
+      TypeArgKind.winrtFlagsEnum => _baseNativeMapping[BaseType.uint32Type]!,
+      _ => throw WinRTGenException('Unsupported TypeArgKind: $typeArg')
     };
   }
 
   /// Takes a type such as `pointerTypeModifier` -> `BaseType.Uint32` and
   /// converts it to `Pointer<Uint32>`.
-  TypeTuple unwrapPointerType() {
-    final typeProjection = TypeProjection(dereferenceType(typeIdentifier));
-    final type = 'Pointer<${typeProjection.nativeType}>';
-    return TypeTuple(type, type);
-  }
+  TypeTuple _unwrapPointerType() => _dereference().pointer;
 
-  TypeTuple unwrapReferenceType() {
-    final typeArg = dereferenceType(typeIdentifier);
-    final typeProjection = TypeProjection(typeArg);
-    if (!typeArg.isSimpleArrayType && typeProjection.isWinRTObject) {
-      return typeProjection.projection;
-    }
-    return typeProjection.projection.wrappedWithPointer;
-  }
+  /// Takes a type such as `referenceTypeModifier` -> `BaseType.Int32` and
+  /// converts it to `Pointer<Int32>`.
+  TypeTuple _unwrapReferenceType() => _dereference().pointer;
 
   /// Takes a type such as `simpleArrayType` -> `BaseType.Uint8` and converts
   /// it to `Pointer<Uint8>`.
-  TypeTuple unwrapSimpleArrayType() {
-    final typeProjection = TypeProjection(dereferenceType(typeIdentifier));
-    return typeProjection.nativeType == 'Pointer<COMObject>'
-        ? typeProjection.projection
-        : typeProjection.projection.wrappedWithPointer;
-  }
+  TypeTuple _unwrapSimpleArrayType() => _dereference().pointer;
 
   /// Takes a type such as `valueTypeModifier` ->
   /// `Windows.Devices.Geolocation.BasicGeoposition` and converts it to
   /// `NativeBasicGeoposition`.
-  TypeTuple unwrapStruct() {
+  TypeTuple _unwrapStruct() {
     final structType = typeIdentifier.type;
     if (structType == null) {
       throw WinRTGenException('Struct type missing for $typeIdentifier.');
@@ -229,58 +181,89 @@ final class TypeProjection {
 
   TypeTuple? _projection;
 
-  TypeTuple get projection {
-    var projection = _projection;
-    if (projection != null) return projection;
-    projection = _projection = projectType();
-    return projection;
-  }
+  TypeTuple get projection => _projection ??= _projectType();
 
-  /// The return value pointer type (e.g. `Pointer<Int32>`).
-  String get retValuePtr =>
-      // Pointer<COMObject> doesn't need to be wrapped with Pointer
-      nativeType == 'Pointer<COMObject>'
-          ? nativeType
-          : projection.wrappedWithPointer.nativeType;
-
-  TypeTuple projectType() {
+  TypeTuple _projectType() {
     // Could be an intrinsic base type (e.g. Int32)
-    if (isBaseType) return baseNativeMapping[typeIdentifier.baseType]!;
+    if (isBaseType) return _baseNativeMapping[typeIdentifier.baseType]!;
 
     // Could be a GUID or other special type that we want to custom-map
-    if (isSpecialType) return specialTypes[typeIdentifier.name]!;
+    if (isSpecialType) return _specialTypes[typeIdentifier.name]!;
 
     // Could be a WinRT enum like AsyncStatus
-    if (isWinRTEnum) return unwrapEnum();
+    if (isWinRTEnum) return _unwrapEnum();
 
-    if (isPointer) return unwrapPointerType();
-    if (isReferenceType) return unwrapReferenceType();
-    if (isSimpleArray) return unwrapSimpleArrayType();
+    if (isPointer) return _unwrapPointerType();
+    if (isReferenceType) return _unwrapReferenceType();
+    if (isSimpleArray) return _unwrapSimpleArrayType();
 
     // Strings in WinRT are defined as HSTRING which corresponding to IntPtr
-    if (isString) return baseNativeMapping[BaseType.intPtrType]!;
+    if (isString) return _baseNativeMapping[BaseType.intPtrType]!;
 
     // Could be a WinRT struct like BasicGeoposition
-    if (isWinRTStruct) return unwrapStruct();
+    if (isWinRTStruct) return _unwrapStruct();
 
     // Could be a WinRT delegate (e.g. AsyncActionCompletedHandler), class (e.g.
     // Calendar), interface (e.g. ICalendar), or boxed value
     if (isWinRTDelegate || isWinRTObject) {
       // VTablePointer is a type alias that represents a Pointer to the
       // COM v-table (i.e. Pointer<Pointer<IntPtr>>).
-      final type = isParameter ? 'VTablePointer' : 'Pointer<COMObject>';
+      final type = isInParam ? 'VTablePointer' : 'COMObject';
       return TypeTuple(type, type);
     }
 
-    // Handle generic type argument (e.g. TypeArg.inspectable,
-    // TypeArg.nullableInspectable, TypeArg.winrtEnum, TypeArg.winrtFlagsEnum)
-    if (isClassVariableType) return unwrapGenericTypeArg();
+    // Handle generic type argument (e.g. TypeArgKind.inspectable,
+    // TypeArgKind.nullableInspectable, TypeArgKind.winrtEnum, or
+    // TypeArgKind.winrtFlagsEnum)
+    if (isClassVariableType) return _unwrapGenericTypeArg();
 
     throw WinRTGenException('Type information missing for $typeIdentifier.');
   }
 
   @override
-  String toString() =>
-      'TypeProjection($typeIdentifier, isParameter: $isParameter, '
-      'nativeType: $nativeType, dartType: $dartType)';
+  String toString() => 'TypeProjection($typeIdentifier, isInParam: $isInParam, '
+      'nativeType: $nativeType, dartType: $dartType, pointer: $pointer)';
 }
+
+final class TypeTuple {
+  const TypeTuple(this.nativeType, this.dartType, {this.attribute});
+
+  /// The type, as represented in the native function (e.g. `Int64`)
+  final String nativeType;
+
+  /// The type, as represented in the Dart function (e.g. `int`)
+  final String dartType;
+
+  /// The type, as represented as a struct attribute (e.g. `@Int64()`)
+  final String? attribute;
+}
+
+const _baseNativeMapping = <BaseType, TypeTuple>{
+  BaseType.booleanType: TypeTuple('Bool', 'bool', attribute: '@Bool()'),
+  BaseType.charType: TypeTuple('Uint16', 'int', attribute: '@Uint16()'),
+  BaseType.doubleType: TypeTuple('Double', 'double', attribute: '@Double()'),
+  BaseType.floatType: TypeTuple('Float', 'double', attribute: '@Float()'),
+  BaseType.int8Type: TypeTuple('Int8', 'int', attribute: '@Int8()'),
+  BaseType.uint8Type: TypeTuple('Uint8', 'int', attribute: '@Uint8()'),
+  BaseType.int16Type: TypeTuple('Int16', 'int', attribute: '@Int16()'),
+  BaseType.uint16Type: TypeTuple('Uint16', 'int', attribute: '@Uint16()'),
+  BaseType.int32Type: TypeTuple('Int32', 'int', attribute: '@Int32()'),
+  BaseType.uint32Type: TypeTuple('Uint32', 'int', attribute: '@Uint32()'),
+  BaseType.int64Type: TypeTuple('Int64', 'int', attribute: '@Int64()'),
+  BaseType.uint64Type: TypeTuple('Uint64', 'int', attribute: '@Uint64()'),
+  BaseType.intPtrType: TypeTuple('IntPtr', 'int', attribute: '@IntPtr()'),
+  BaseType.uintPtrType: TypeTuple('IntPtr', 'int', attribute: '@IntPtr()'),
+  BaseType.voidType: TypeTuple('Void', 'void'),
+};
+
+const _specialTypes = <String, TypeTuple>{
+  'System.Guid': TypeTuple('GUID', 'GUID'),
+  'Windows.Foundation.DateTime':
+      TypeTuple('Int64', 'int', attribute: '@Int64()'),
+  'Windows.Foundation.EventRegistrationToken':
+      TypeTuple('IntPtr', 'int', attribute: '@IntPtr()'),
+  'Windows.Foundation.HResult':
+      TypeTuple('Int32', 'int', attribute: '@Int32()'),
+  'Windows.Foundation.TimeSpan':
+      TypeTuple('Int64', 'int', attribute: '@Int64()'),
+};
