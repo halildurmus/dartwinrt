@@ -33,41 +33,36 @@ class ISoftwareBitmapStatics extends IInspectable {
           interface.toInterface(IID_ISoftwareBitmapStatics));
 
   SoftwareBitmap? copy(SoftwareBitmap? source) {
-    final retValuePtr = calloc<COMObject>();
-    final sourcePtr = source == null ? nullptr : source.ptr.ref.lpVtbl;
+    final value = calloc<COMObject>();
 
-    final hr =
-        ptr.ref.vtable
-                .elementAt(6)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                VTablePointer source,
-                                Pointer<COMObject> retValuePtr)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, VTablePointer source,
-                        Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl, sourcePtr, retValuePtr);
+    final hr = ptr.ref.vtable
+            .elementAt(6)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(VTablePointer lpVtbl, VTablePointer source,
+                            Pointer<COMObject> value)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, VTablePointer source,
+                    Pointer<COMObject> value)>()(ptr.ref.lpVtbl,
+        source == null ? nullptr : source.ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (value.isNull) {
+      free(value);
       return null;
     }
 
-    return SoftwareBitmap.fromPtr(retValuePtr);
+    return SoftwareBitmap.fromPtr(value);
   }
 
   SoftwareBitmap? convert(SoftwareBitmap? source, BitmapPixelFormat format) {
-    final retValuePtr = calloc<COMObject>();
-    final sourcePtr = source == null ? nullptr : source.ptr.ref.lpVtbl;
+    final value = calloc<COMObject>();
 
     final hr =
         ptr.ref.vtable
@@ -79,30 +74,32 @@ class ISoftwareBitmapStatics extends IInspectable {
                                 VTablePointer lpVtbl,
                                 VTablePointer source,
                                 Int32 format,
-                                Pointer<COMObject> retValuePtr)>>>()
+                                Pointer<COMObject> value)>>>()
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer source,
-                        int format, Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl, sourcePtr, format.value, retValuePtr);
+                        int format, Pointer<COMObject> value)>()(
+            ptr.ref.lpVtbl,
+            source == null ? nullptr : source.ptr.ref.lpVtbl,
+            format.value,
+            value);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (value.isNull) {
+      free(value);
       return null;
     }
 
-    return SoftwareBitmap.fromPtr(retValuePtr);
+    return SoftwareBitmap.fromPtr(value);
   }
 
   SoftwareBitmap? convertWithAlpha(
       SoftwareBitmap? source, BitmapPixelFormat format, BitmapAlphaMode alpha) {
-    final retValuePtr = calloc<COMObject>();
-    final sourcePtr = source == null ? nullptr : source.ptr.ref.lpVtbl;
+    final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(8)
@@ -114,30 +111,33 @@ class ISoftwareBitmapStatics extends IInspectable {
                             VTablePointer source,
                             Int32 format,
                             Int32 alpha,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> value)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer source,
-                    int format, int alpha, Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, sourcePtr, format.value, alpha.value, retValuePtr);
+                    int format, int alpha, Pointer<COMObject> value)>()(
+        ptr.ref.lpVtbl,
+        source == null ? nullptr : source.ptr.ref.lpVtbl,
+        format.value,
+        alpha.value,
+        value);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (value.isNull) {
+      free(value);
       return null;
     }
 
-    return SoftwareBitmap.fromPtr(retValuePtr);
+    return SoftwareBitmap.fromPtr(value);
   }
 
   SoftwareBitmap? createCopyFromBuffer(
       IBuffer? source, BitmapPixelFormat format, int width, int height) {
-    final retValuePtr = calloc<COMObject>();
-    final sourcePtr = source == null ? nullptr : source.ptr.ref.lpVtbl;
+    final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(9)
@@ -150,7 +150,7 @@ class ISoftwareBitmapStatics extends IInspectable {
                             Int32 format,
                             Int32 width,
                             Int32 height,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> value)>>>()
             .value
             .asFunction<
                 int Function(
@@ -159,26 +159,30 @@ class ISoftwareBitmapStatics extends IInspectable {
                     int format,
                     int width,
                     int height,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, sourcePtr, format.value, width, height, retValuePtr);
+                    Pointer<COMObject> value)>()(
+        ptr.ref.lpVtbl,
+        source == null ? nullptr : source.ptr.ref.lpVtbl,
+        format.value,
+        width,
+        height,
+        value);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (value.isNull) {
+      free(value);
       return null;
     }
 
-    return SoftwareBitmap.fromPtr(retValuePtr);
+    return SoftwareBitmap.fromPtr(value);
   }
 
   SoftwareBitmap? createCopyWithAlphaFromBuffer(IBuffer? source,
       BitmapPixelFormat format, int width, int height, BitmapAlphaMode alpha) {
-    final retValuePtr = calloc<COMObject>();
-    final sourcePtr = source == null ? nullptr : source.ptr.ref.lpVtbl;
+    final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(10)
@@ -192,7 +196,7 @@ class ISoftwareBitmapStatics extends IInspectable {
                             Int32 width,
                             Int32 height,
                             Int32 alpha,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> value)>>>()
             .value
             .asFunction<
                 int Function(
@@ -202,56 +206,61 @@ class ISoftwareBitmapStatics extends IInspectable {
                     int width,
                     int height,
                     int alpha,
-                    Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl,
-        sourcePtr, format.value, width, height, alpha.value, retValuePtr);
+                    Pointer<COMObject> value)>()(
+        ptr.ref.lpVtbl,
+        source == null ? nullptr : source.ptr.ref.lpVtbl,
+        format.value,
+        width,
+        height,
+        alpha.value,
+        value);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (value.isNull) {
+      free(value);
       return null;
     }
 
-    return SoftwareBitmap.fromPtr(retValuePtr);
+    return SoftwareBitmap.fromPtr(value);
   }
 
   Future<SoftwareBitmap?> createCopyFromSurfaceAsync(
       IDirect3DSurface? surface) {
-    final retValuePtr = calloc<COMObject>();
-    final surfacePtr = surface == null ? nullptr : surface.ptr.ref.lpVtbl;
+    final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(11)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer surface,
-                            Pointer<COMObject> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer surface,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, surfacePtr, retValuePtr);
+    final hr =
+        ptr.ref.vtable
+                .elementAt(11)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                VTablePointer lpVtbl,
+                                VTablePointer surface,
+                                Pointer<COMObject> value)>>>()
+                .value
+                .asFunction<
+                    int Function(VTablePointer lpVtbl, VTablePointer surface,
+                        Pointer<COMObject> value)>()(ptr.ref.lpVtbl,
+            surface == null ? nullptr : surface.ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<SoftwareBitmap?>.fromPtr(retValuePtr,
+    final asyncOperation = IAsyncOperation<SoftwareBitmap?>.fromPtr(value,
         creator: SoftwareBitmap.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<SoftwareBitmap?> createCopyWithAlphaFromSurfaceAsync(
       IDirect3DSurface? surface, BitmapAlphaMode alpha) {
-    final retValuePtr = calloc<COMObject>();
-    final surfacePtr = surface == null ? nullptr : surface.ptr.ref.lpVtbl;
+    final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(12)
@@ -262,19 +271,19 @@ class ISoftwareBitmapStatics extends IInspectable {
                             VTablePointer lpVtbl,
                             VTablePointer surface,
                             Int32 alpha,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> value)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer surface,
-                    int alpha, Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, surfacePtr, alpha.value, retValuePtr);
+                    int alpha, Pointer<COMObject> value)>()(ptr.ref.lpVtbl,
+        surface == null ? nullptr : surface.ptr.ref.lpVtbl, alpha.value, value);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<SoftwareBitmap?>.fromPtr(retValuePtr,
+    final asyncOperation = IAsyncOperation<SoftwareBitmap?>.fromPtr(value,
         creator: SoftwareBitmap.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }

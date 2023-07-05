@@ -30,7 +30,7 @@ class IVideoFrameStatics extends IInspectable {
 
   VideoFrame? createAsDirect3D11SurfaceBacked(
       DirectXPixelFormat format, int width, int height) {
-    final retValuePtr = calloc<COMObject>();
+    final result = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -42,24 +42,24 @@ class IVideoFrameStatics extends IInspectable {
                             Int32 format,
                             Int32 width,
                             Int32 height,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> result)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int format, int width,
-                    int height, Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, format.value, width, height, retValuePtr);
+                    int height, Pointer<COMObject> result)>()(
+        ptr.ref.lpVtbl, format.value, width, height, result);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(result);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (result.isNull) {
+      free(result);
       return null;
     }
 
-    return VideoFrame.fromPtr(retValuePtr);
+    return VideoFrame.fromPtr(result);
   }
 
   VideoFrame? createAsDirect3D11SurfaceBackedWithDevice(
@@ -67,8 +67,7 @@ class IVideoFrameStatics extends IInspectable {
       int width,
       int height,
       IDirect3DDevice? device) {
-    final retValuePtr = calloc<COMObject>();
-    final devicePtr = device == null ? nullptr : device.ptr.ref.lpVtbl;
+    final result = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(7)
@@ -81,7 +80,7 @@ class IVideoFrameStatics extends IInspectable {
                             Int32 width,
                             Int32 height,
                             VTablePointer device,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> result)>>>()
             .value
             .asFunction<
                 int Function(
@@ -90,25 +89,29 @@ class IVideoFrameStatics extends IInspectable {
                     int width,
                     int height,
                     VTablePointer device,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, format.value, width, height, devicePtr, retValuePtr);
+                    Pointer<COMObject> result)>()(
+        ptr.ref.lpVtbl,
+        format.value,
+        width,
+        height,
+        device == null ? nullptr : device.ptr.ref.lpVtbl,
+        result);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(result);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (result.isNull) {
+      free(result);
       return null;
     }
 
-    return VideoFrame.fromPtr(retValuePtr);
+    return VideoFrame.fromPtr(result);
   }
 
   VideoFrame? createWithSoftwareBitmap(SoftwareBitmap? bitmap) {
-    final retValuePtr = calloc<COMObject>();
-    final bitmapPtr = bitmap == null ? nullptr : bitmap.ptr.ref.lpVtbl;
+    final result = calloc<COMObject>();
 
     final hr =
         ptr.ref.vtable
@@ -119,55 +122,55 @@ class IVideoFrameStatics extends IInspectable {
                             HRESULT Function(
                                 VTablePointer lpVtbl,
                                 VTablePointer bitmap,
-                                Pointer<COMObject> retValuePtr)>>>()
+                                Pointer<COMObject> result)>>>()
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer bitmap,
-                        Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl, bitmapPtr, retValuePtr);
+                        Pointer<COMObject> result)>()(ptr.ref.lpVtbl,
+            bitmap == null ? nullptr : bitmap.ptr.ref.lpVtbl, result);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(result);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (result.isNull) {
+      free(result);
       return null;
     }
 
-    return VideoFrame.fromPtr(retValuePtr);
+    return VideoFrame.fromPtr(result);
   }
 
   VideoFrame? createWithDirect3D11Surface(IDirect3DSurface? surface) {
-    final retValuePtr = calloc<COMObject>();
-    final surfacePtr = surface == null ? nullptr : surface.ptr.ref.lpVtbl;
+    final result = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(9)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer surface,
-                            Pointer<COMObject> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer surface,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, surfacePtr, retValuePtr);
+    final hr =
+        ptr.ref.vtable
+                .elementAt(9)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                VTablePointer lpVtbl,
+                                VTablePointer surface,
+                                Pointer<COMObject> result)>>>()
+                .value
+                .asFunction<
+                    int Function(VTablePointer lpVtbl, VTablePointer surface,
+                        Pointer<COMObject> result)>()(ptr.ref.lpVtbl,
+            surface == null ? nullptr : surface.ptr.ref.lpVtbl, result);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(result);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (result.isNull) {
+      free(result);
       return null;
     }
 
-    return VideoFrame.fromPtr(retValuePtr);
+    return VideoFrame.fromPtr(result);
   }
 }

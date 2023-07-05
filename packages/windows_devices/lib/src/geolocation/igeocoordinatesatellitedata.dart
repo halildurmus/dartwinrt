@@ -28,92 +28,92 @@ class IGeocoordinateSatelliteData extends IInspectable {
           interface.toInterface(IID_IGeocoordinateSatelliteData));
 
   double? get positionDilutionOfPrecision {
-    final retValuePtr = calloc<COMObject>();
+    final ppValue = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
         .elementAt(6)
         .cast<
             Pointer<
                 NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
+                    HRESULT Function(
+                        VTablePointer lpVtbl, Pointer<COMObject> ppValue)>>>()
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                Pointer<COMObject> ppValue)>()(ptr.ref.lpVtbl, ppValue);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(ppValue);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (ppValue.isNull) {
+      free(ppValue);
       return null;
     }
 
-    final reference = IReference<double?>.fromPtr(retValuePtr,
-        referenceIid: '{2f2d6c29-5473-5f3e-92e7-96572bb990e2}');
-    return reference.value;
+    return IReference<double?>.fromPtr(ppValue,
+            referenceIid: '{2f2d6c29-5473-5f3e-92e7-96572bb990e2}')
+        .value;
   }
 
   double? get horizontalDilutionOfPrecision {
-    final retValuePtr = calloc<COMObject>();
+    final ppValue = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
         .elementAt(7)
         .cast<
             Pointer<
                 NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
+                    HRESULT Function(
+                        VTablePointer lpVtbl, Pointer<COMObject> ppValue)>>>()
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                Pointer<COMObject> ppValue)>()(ptr.ref.lpVtbl, ppValue);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(ppValue);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (ppValue.isNull) {
+      free(ppValue);
       return null;
     }
 
-    final reference = IReference<double?>.fromPtr(retValuePtr,
-        referenceIid: '{2f2d6c29-5473-5f3e-92e7-96572bb990e2}');
-    return reference.value;
+    return IReference<double?>.fromPtr(ppValue,
+            referenceIid: '{2f2d6c29-5473-5f3e-92e7-96572bb990e2}')
+        .value;
   }
 
   double? get verticalDilutionOfPrecision {
-    final retValuePtr = calloc<COMObject>();
+    final ppValue = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
         .elementAt(8)
         .cast<
             Pointer<
                 NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
+                    HRESULT Function(
+                        VTablePointer lpVtbl, Pointer<COMObject> ppValue)>>>()
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                Pointer<COMObject> ppValue)>()(ptr.ref.lpVtbl, ppValue);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(ppValue);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (ppValue.isNull) {
+      free(ppValue);
       return null;
     }
 
-    final reference = IReference<double?>.fromPtr(retValuePtr,
-        referenceIid: '{2f2d6c29-5473-5f3e-92e7-96572bb990e2}');
-    return reference.value;
+    return IReference<double?>.fromPtr(ppValue,
+            referenceIid: '{2f2d6c29-5473-5f3e-92e7-96572bb990e2}')
+        .value;
   }
 }

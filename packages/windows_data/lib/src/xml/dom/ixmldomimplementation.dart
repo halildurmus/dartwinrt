@@ -27,36 +27,37 @@ class IXmlDomImplementation extends IInspectable {
           interface.toInterface(IID_IXmlDomImplementation));
 
   bool hasFeature(String feature, Object? version) {
-    final retValuePtr = calloc<Bool>();
+    final featureSupported = calloc<Bool>();
 
     try {
       final featureHString = feature.toHString();
-      final versionPtr = version?.intoBox().ptr.ref.lpVtbl ?? nullptr;
 
-      final hr =
-          ptr.ref.vtable
-                  .elementAt(6)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(
-                                  VTablePointer lpVtbl,
-                                  IntPtr feature,
-                                  VTablePointer version,
-                                  Pointer<Bool> retValuePtr)>>>()
-                  .value
-                  .asFunction<
-                      int Function(VTablePointer lpVtbl, int feature,
-                          VTablePointer version, Pointer<Bool> retValuePtr)>()(
-              ptr.ref.lpVtbl, featureHString, versionPtr, retValuePtr);
+      final hr = ptr.ref.vtable
+              .elementAt(6)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl,
+                              IntPtr feature,
+                              VTablePointer version,
+                              Pointer<Bool> featureSupported)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, int feature,
+                      VTablePointer version, Pointer<Bool> featureSupported)>()(
+          ptr.ref.lpVtbl,
+          featureHString,
+          version?.intoBox().ptr.ref.lpVtbl ?? nullptr,
+          featureSupported);
 
       WindowsDeleteString(featureHString);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return featureSupported.value;
     } finally {
-      free(retValuePtr);
+      free(featureSupported);
     }
   }
 }

@@ -30,33 +30,36 @@ class INumeralSystemTranslatorFactory extends IInspectable {
           interface.toInterface(IID_INumeralSystemTranslatorFactory));
 
   NumeralSystemTranslator create(IIterable<String> languages) {
-    final retValuePtr = calloc<COMObject>();
-    final languagesPtr = IInspectable(
-            languages.toInterface('{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'))
-        .ptr
-        .ref
-        .lpVtbl;
+    final result = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer languages,
-                            Pointer<COMObject> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer languages,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, languagesPtr, retValuePtr);
+    final hr =
+        ptr
+                .ref.vtable
+                .elementAt(6)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                VTablePointer lpVtbl,
+                                VTablePointer languages,
+                                Pointer<COMObject> result)>>>()
+                .value
+                .asFunction<
+                    int Function(VTablePointer lpVtbl, VTablePointer languages,
+                        Pointer<COMObject> result)>()(
+            ptr.ref.lpVtbl,
+            IInspectable(languages
+                    .toInterface('{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'))
+                .ptr
+                .ref
+                .lpVtbl,
+            result);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(result);
       throw WindowsException(hr);
     }
 
-    return NumeralSystemTranslator.fromPtr(retValuePtr);
+    return NumeralSystemTranslator.fromPtr(result);
   }
 }

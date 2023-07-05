@@ -34,57 +34,53 @@ class IStorageItem2 extends IInspectable implements IStorageItem {
       IStorageItem2.fromPtr(interface.toInterface(IID_IStorageItem2));
 
   Future<StorageFolder?> getParentAsync() {
-    final retValuePtr = calloc<COMObject>();
+    final operation = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
         .elementAt(6)
         .cast<
             Pointer<
                 NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
+                    HRESULT Function(
+                        VTablePointer lpVtbl, Pointer<COMObject> operation)>>>()
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                Pointer<COMObject> operation)>()(ptr.ref.lpVtbl, operation);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<StorageFolder?>.fromPtr(retValuePtr,
+    final asyncOperation = IAsyncOperation<StorageFolder?>.fromPtr(operation,
         creator: StorageFolder.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   bool isEqual(IStorageItem? item) {
-    final retValuePtr = calloc<Bool>();
+    final value = calloc<Bool>();
 
     try {
-      final itemPtr = item == null ? nullptr : item.ptr.ref.lpVtbl;
-
       final hr =
           ptr.ref.vtable
                   .elementAt(7)
                   .cast<
                       Pointer<
                           NativeFunction<
-                              HRESULT Function(
-                                  VTablePointer lpVtbl,
-                                  VTablePointer item,
-                                  Pointer<Bool> retValuePtr)>>>()
+                              HRESULT Function(VTablePointer lpVtbl,
+                                  VTablePointer item, Pointer<Bool> value)>>>()
                   .value
                   .asFunction<
                       int Function(VTablePointer lpVtbl, VTablePointer item,
-                          Pointer<Bool> retValuePtr)>()(
-              ptr.ref.lpVtbl, itemPtr, retValuePtr);
+                          Pointer<Bool> value)>()(ptr.ref.lpVtbl,
+              item == null ? nullptr : item.ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return value.value;
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 

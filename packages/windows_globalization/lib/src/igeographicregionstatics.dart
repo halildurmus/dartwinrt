@@ -27,7 +27,7 @@ class IGeographicRegionStatics extends IInspectable {
           interface.toInterface(IID_IGeographicRegionStatics));
 
   bool isSupported(String geographicRegionCode) {
-    final retValuePtr = calloc<Bool>();
+    final result = calloc<Bool>();
 
     try {
       final geographicRegionCodeHString = geographicRegionCode.toHString();
@@ -40,20 +40,20 @@ class IGeographicRegionStatics extends IInspectable {
                           HRESULT Function(
                               VTablePointer lpVtbl,
                               IntPtr geographicRegionCode,
-                              Pointer<Bool> retValuePtr)>>>()
+                              Pointer<Bool> result)>>>()
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, int geographicRegionCode,
-                      Pointer<Bool> retValuePtr)>()(
-          ptr.ref.lpVtbl, geographicRegionCodeHString, retValuePtr);
+                      Pointer<Bool> result)>()(
+          ptr.ref.lpVtbl, geographicRegionCodeHString, result);
 
       WindowsDeleteString(geographicRegionCodeHString);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return result.value;
     } finally {
-      free(retValuePtr);
+      free(result);
     }
   }
 }

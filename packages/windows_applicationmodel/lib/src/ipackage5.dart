@@ -28,27 +28,27 @@ class IPackage5 extends IInspectable {
       IPackage5.fromPtr(interface.toInterface(IID_IPackage5));
 
   Future<IVector<PackageContentGroup?>> getContentGroupsAsync() {
-    final retValuePtr = calloc<COMObject>();
+    final operation = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
         .elementAt(6)
         .cast<
             Pointer<
                 NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
+                    HRESULT Function(
+                        VTablePointer lpVtbl, Pointer<COMObject> operation)>>>()
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                Pointer<COMObject> operation)>()(ptr.ref.lpVtbl, operation);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
     final asyncOperation =
-        IAsyncOperation<IVector<PackageContentGroup?>>.fromPtr(retValuePtr,
+        IAsyncOperation<IVector<PackageContentGroup?>>.fromPtr(operation,
             creator: (ptr) => IVector.fromPtr(ptr,
                 creator: PackageContentGroup.fromPtr,
                 iterableIid: '{d7dd1456-4805-5768-a25d-99641b096491}'));
@@ -56,7 +56,7 @@ class IPackage5 extends IInspectable {
   }
 
   Future<PackageContentGroup?> getContentGroupAsync(String name) {
-    final retValuePtr = calloc<COMObject>();
+    final operation = calloc<COMObject>();
     final nameHString = name.toHString();
 
     final hr = ptr.ref.vtable
@@ -65,36 +65,29 @@ class IPackage5 extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(VTablePointer lpVtbl, IntPtr name,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> operation)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int name,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, nameHString, retValuePtr);
+                    Pointer<COMObject> operation)>()(
+        ptr.ref.lpVtbl, nameHString, operation);
 
     WindowsDeleteString(nameHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<PackageContentGroup?>.fromPtr(
-        retValuePtr,
+        operation,
         creator: PackageContentGroup.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<IVector<PackageContentGroup?>> stageContentGroupsAsync(
       IIterable<String>? names) {
-    final retValuePtr = calloc<COMObject>();
-    final namesPtr = names == null
-        ? nullptr
-        : IInspectable(
-                names.toInterface('{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'))
-            .ptr
-            .ref
-            .lpVtbl;
+    final operation = calloc<COMObject>();
 
     final hr =
         ptr.ref.vtable
@@ -105,20 +98,28 @@ class IPackage5 extends IInspectable {
                             HRESULT Function(
                                 VTablePointer lpVtbl,
                                 VTablePointer names,
-                                Pointer<COMObject> retValuePtr)>>>()
+                                Pointer<COMObject> operation)>>>()
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer names,
-                        Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl, namesPtr, retValuePtr);
+                        Pointer<COMObject> operation)>()(
+            ptr.ref.lpVtbl,
+            names == null
+                ? nullptr
+                : IInspectable(names
+                        .toInterface('{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'))
+                    .ptr
+                    .ref
+                    .lpVtbl,
+            operation);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
     final asyncOperation =
-        IAsyncOperation<IVector<PackageContentGroup?>>.fromPtr(retValuePtr,
+        IAsyncOperation<IVector<PackageContentGroup?>>.fromPtr(operation,
             creator: (ptr) => IVector.fromPtr(ptr,
                 creator: PackageContentGroup.fromPtr,
                 iterableIid: '{d7dd1456-4805-5768-a25d-99641b096491}'));
@@ -127,14 +128,7 @@ class IPackage5 extends IInspectable {
 
   Future<IVector<PackageContentGroup?>> stageContentGroupsWithPriorityAsync(
       IIterable<String>? names, bool moveToHeadOfQueue) {
-    final retValuePtr = calloc<COMObject>();
-    final namesPtr = names == null
-        ? nullptr
-        : IInspectable(
-                names.toInterface('{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'))
-            .ptr
-            .ref
-            .lpVtbl;
+    final operation = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(9)
@@ -145,20 +139,29 @@ class IPackage5 extends IInspectable {
                             VTablePointer lpVtbl,
                             VTablePointer names,
                             Bool moveToHeadOfQueue,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> operation)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer names,
-                    bool moveToHeadOfQueue, Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, namesPtr, moveToHeadOfQueue, retValuePtr);
+                    bool moveToHeadOfQueue, Pointer<COMObject> operation)>()(
+        ptr.ref.lpVtbl,
+        names == null
+            ? nullptr
+            : IInspectable(
+                    names.toInterface('{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'))
+                .ptr
+                .ref
+                .lpVtbl,
+        moveToHeadOfQueue,
+        operation);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
     final asyncOperation =
-        IAsyncOperation<IVector<PackageContentGroup?>>.fromPtr(retValuePtr,
+        IAsyncOperation<IVector<PackageContentGroup?>>.fromPtr(operation,
             creator: (ptr) => IVector.fromPtr(ptr,
                 creator: PackageContentGroup.fromPtr,
                 iterableIid: '{d7dd1456-4805-5768-a25d-99641b096491}'));
@@ -166,7 +169,7 @@ class IPackage5 extends IInspectable {
   }
 
   Future<bool> setInUseAsync(bool inUse) {
-    final retValuePtr = calloc<COMObject>();
+    final operation = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(10)
@@ -174,19 +177,19 @@ class IPackage5 extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(VTablePointer lpVtbl, Bool inUse,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> operation)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, bool inUse,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, inUse, retValuePtr);
+                    Pointer<COMObject> operation)>()(
+        ptr.ref.lpVtbl, inUse, operation);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<bool>.fromPtr(retValuePtr);
+    final asyncOperation = IAsyncOperation<bool>.fromPtr(operation);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 }

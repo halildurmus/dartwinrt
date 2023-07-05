@@ -29,7 +29,7 @@ class IMessageDialogFactory extends IInspectable {
           interface.toInterface(IID_IMessageDialogFactory));
 
   MessageDialog create(String content) {
-    final retValuePtr = calloc<COMObject>();
+    final messageDialog = calloc<COMObject>();
     final contentHString = content.toHString();
 
     final hr = ptr.ref.vtable
@@ -38,25 +38,25 @@ class IMessageDialogFactory extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(VTablePointer lpVtbl, IntPtr content,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> messageDialog)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int content,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, contentHString, retValuePtr);
+                    Pointer<COMObject> messageDialog)>()(
+        ptr.ref.lpVtbl, contentHString, messageDialog);
 
     WindowsDeleteString(contentHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(messageDialog);
       throw WindowsException(hr);
     }
 
-    return MessageDialog.fromPtr(retValuePtr);
+    return MessageDialog.fromPtr(messageDialog);
   }
 
   MessageDialog createWithTitle(String content, String title) {
-    final retValuePtr = calloc<COMObject>();
+    final messageDialog = calloc<COMObject>();
     final contentHString = content.toHString();
     final titleHString = title.toHString();
 
@@ -66,21 +66,21 @@ class IMessageDialogFactory extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(VTablePointer lpVtbl, IntPtr content,
-                            IntPtr title, Pointer<COMObject> retValuePtr)>>>()
+                            IntPtr title, Pointer<COMObject> messageDialog)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int content, int title,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, contentHString, titleHString, retValuePtr);
+                    Pointer<COMObject> messageDialog)>()(
+        ptr.ref.lpVtbl, contentHString, titleHString, messageDialog);
 
     WindowsDeleteString(contentHString);
     WindowsDeleteString(titleHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(messageDialog);
       throw WindowsException(hr);
     }
 
-    return MessageDialog.fromPtr(retValuePtr);
+    return MessageDialog.fromPtr(messageDialog);
   }
 }

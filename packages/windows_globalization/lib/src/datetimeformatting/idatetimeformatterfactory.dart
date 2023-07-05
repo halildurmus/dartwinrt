@@ -36,43 +36,39 @@ class IDateTimeFormatterFactory extends IInspectable {
           interface.toInterface(IID_IDateTimeFormatterFactory));
 
   DateTimeFormatter createDateTimeFormatter(String formatTemplate) {
-    final retValuePtr = calloc<COMObject>();
+    final result = calloc<COMObject>();
     final formatTemplateHString = formatTemplate.toHString();
 
-    final hr = ptr.ref.vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            IntPtr formatTemplate,
-                            Pointer<COMObject> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int formatTemplate,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, formatTemplateHString, retValuePtr);
+    final hr =
+        ptr.ref.vtable
+                .elementAt(6)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                VTablePointer lpVtbl,
+                                IntPtr formatTemplate,
+                                Pointer<COMObject> result)>>>()
+                .value
+                .asFunction<
+                    int Function(VTablePointer lpVtbl, int formatTemplate,
+                        Pointer<COMObject> result)>()(
+            ptr.ref.lpVtbl, formatTemplateHString, result);
 
     WindowsDeleteString(formatTemplateHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(result);
       throw WindowsException(hr);
     }
 
-    return DateTimeFormatter.fromPtr(retValuePtr);
+    return DateTimeFormatter.fromPtr(result);
   }
 
   DateTimeFormatter createDateTimeFormatterLanguages(
       String formatTemplate, IIterable<String> languages) {
-    final retValuePtr = calloc<COMObject>();
+    final result = calloc<COMObject>();
     final formatTemplateHString = formatTemplate.toHString();
-    final languagesPtr = IInspectable(
-            languages.toInterface('{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'))
-        .ptr
-        .ref
-        .lpVtbl;
 
     final hr = ptr.ref.vtable
             .elementAt(7)
@@ -83,21 +79,28 @@ class IDateTimeFormatterFactory extends IInspectable {
                             VTablePointer lpVtbl,
                             IntPtr formatTemplate,
                             VTablePointer languages,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> result)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int formatTemplate,
-                    VTablePointer languages, Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, formatTemplateHString, languagesPtr, retValuePtr);
+                    VTablePointer languages, Pointer<COMObject> result)>()(
+        ptr.ref.lpVtbl,
+        formatTemplateHString,
+        IInspectable(
+                languages.toInterface('{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'))
+            .ptr
+            .ref
+            .lpVtbl,
+        result);
 
     WindowsDeleteString(formatTemplateHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(result);
       throw WindowsException(hr);
     }
 
-    return DateTimeFormatter.fromPtr(retValuePtr);
+    return DateTimeFormatter.fromPtr(result);
   }
 
   DateTimeFormatter createDateTimeFormatterContext(
@@ -106,13 +109,8 @@ class IDateTimeFormatterFactory extends IInspectable {
       String geographicRegion,
       String calendar,
       String clock) {
-    final retValuePtr = calloc<COMObject>();
+    final result = calloc<COMObject>();
     final formatTemplateHString = formatTemplate.toHString();
-    final languagesPtr = IInspectable(
-            languages.toInterface('{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'))
-        .ptr
-        .ref
-        .lpVtbl;
     final geographicRegionHString = geographicRegion.toHString();
     final calendarHString = calendar.toHString();
     final clockHString = clock.toHString();
@@ -129,7 +127,7 @@ class IDateTimeFormatterFactory extends IInspectable {
                             IntPtr geographicRegion,
                             IntPtr calendar,
                             IntPtr clock,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> result)>>>()
             .value
             .asFunction<
                 int Function(
@@ -139,14 +137,18 @@ class IDateTimeFormatterFactory extends IInspectable {
                     int geographicRegion,
                     int calendar,
                     int clock,
-                    Pointer<COMObject> retValuePtr)>()(
+                    Pointer<COMObject> result)>()(
         ptr.ref.lpVtbl,
         formatTemplateHString,
-        languagesPtr,
+        IInspectable(
+                languages.toInterface('{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'))
+            .ptr
+            .ref
+            .lpVtbl,
         geographicRegionHString,
         calendarHString,
         clockHString,
-        retValuePtr);
+        result);
 
     WindowsDeleteString(formatTemplateHString);
     WindowsDeleteString(geographicRegionHString);
@@ -154,11 +156,11 @@ class IDateTimeFormatterFactory extends IInspectable {
     WindowsDeleteString(clockHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(result);
       throw WindowsException(hr);
     }
 
-    return DateTimeFormatter.fromPtr(retValuePtr);
+    return DateTimeFormatter.fromPtr(result);
   }
 
   DateTimeFormatter createDateTimeFormatterDate(
@@ -166,7 +168,7 @@ class IDateTimeFormatterFactory extends IInspectable {
       MonthFormat monthFormat,
       DayFormat dayFormat,
       DayOfWeekFormat dayOfWeekFormat) {
-    final retValuePtr = calloc<COMObject>();
+    final result = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(9)
@@ -179,7 +181,7 @@ class IDateTimeFormatterFactory extends IInspectable {
                             Int32 monthFormat,
                             Int32 dayFormat,
                             Int32 dayOfWeekFormat,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> result)>>>()
             .value
             .asFunction<
                 int Function(
@@ -188,25 +190,25 @@ class IDateTimeFormatterFactory extends IInspectable {
                     int monthFormat,
                     int dayFormat,
                     int dayOfWeekFormat,
-                    Pointer<COMObject> retValuePtr)>()(
+                    Pointer<COMObject> result)>()(
         ptr.ref.lpVtbl,
         yearFormat.value,
         monthFormat.value,
         dayFormat.value,
         dayOfWeekFormat.value,
-        retValuePtr);
+        result);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(result);
       throw WindowsException(hr);
     }
 
-    return DateTimeFormatter.fromPtr(retValuePtr);
+    return DateTimeFormatter.fromPtr(result);
   }
 
   DateTimeFormatter createDateTimeFormatterTime(HourFormat hourFormat,
       MinuteFormat minuteFormat, SecondFormat secondFormat) {
-    final retValuePtr = calloc<COMObject>();
+    final result = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(10)
@@ -218,7 +220,7 @@ class IDateTimeFormatterFactory extends IInspectable {
                             Int32 hourFormat,
                             Int32 minuteFormat,
                             Int32 secondFormat,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> result)>>>()
             .value
             .asFunction<
                 int Function(
@@ -226,15 +228,15 @@ class IDateTimeFormatterFactory extends IInspectable {
                     int hourFormat,
                     int minuteFormat,
                     int secondFormat,
-                    Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl,
-        hourFormat.value, minuteFormat.value, secondFormat.value, retValuePtr);
+                    Pointer<COMObject> result)>()(ptr.ref.lpVtbl,
+        hourFormat.value, minuteFormat.value, secondFormat.value, result);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(result);
       throw WindowsException(hr);
     }
 
-    return DateTimeFormatter.fromPtr(retValuePtr);
+    return DateTimeFormatter.fromPtr(result);
   }
 
   DateTimeFormatter createDateTimeFormatterDateTimeLanguages(
@@ -246,12 +248,7 @@ class IDateTimeFormatterFactory extends IInspectable {
       MinuteFormat minuteFormat,
       SecondFormat secondFormat,
       IIterable<String> languages) {
-    final retValuePtr = calloc<COMObject>();
-    final languagesPtr = IInspectable(
-            languages.toInterface('{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'))
-        .ptr
-        .ref
-        .lpVtbl;
+    final result = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(11)
@@ -268,7 +265,7 @@ class IDateTimeFormatterFactory extends IInspectable {
                             Int32 minuteFormat,
                             Int32 secondFormat,
                             VTablePointer languages,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> result)>>>()
             .value
             .asFunction<
                 int Function(
@@ -281,7 +278,7 @@ class IDateTimeFormatterFactory extends IInspectable {
                     int minuteFormat,
                     int secondFormat,
                     VTablePointer languages,
-                    Pointer<COMObject> retValuePtr)>()(
+                    Pointer<COMObject> result)>()(
         ptr.ref.lpVtbl,
         yearFormat.value,
         monthFormat.value,
@@ -290,15 +287,19 @@ class IDateTimeFormatterFactory extends IInspectable {
         hourFormat.value,
         minuteFormat.value,
         secondFormat.value,
-        languagesPtr,
-        retValuePtr);
+        IInspectable(
+                languages.toInterface('{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'))
+            .ptr
+            .ref
+            .lpVtbl,
+        result);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(result);
       throw WindowsException(hr);
     }
 
-    return DateTimeFormatter.fromPtr(retValuePtr);
+    return DateTimeFormatter.fromPtr(result);
   }
 
   DateTimeFormatter createDateTimeFormatterDateTimeContext(
@@ -313,12 +314,7 @@ class IDateTimeFormatterFactory extends IInspectable {
       String geographicRegion,
       String calendar,
       String clock) {
-    final retValuePtr = calloc<COMObject>();
-    final languagesPtr = IInspectable(
-            languages.toInterface('{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'))
-        .ptr
-        .ref
-        .lpVtbl;
+    final result = calloc<COMObject>();
     final geographicRegionHString = geographicRegion.toHString();
     final calendarHString = calendar.toHString();
     final clockHString = clock.toHString();
@@ -341,7 +337,7 @@ class IDateTimeFormatterFactory extends IInspectable {
                             IntPtr geographicRegion,
                             IntPtr calendar,
                             IntPtr clock,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> result)>>>()
             .value
             .asFunction<
                 int Function(
@@ -357,7 +353,7 @@ class IDateTimeFormatterFactory extends IInspectable {
                     int geographicRegion,
                     int calendar,
                     int clock,
-                    Pointer<COMObject> retValuePtr)>()(
+                    Pointer<COMObject> result)>()(
         ptr.ref.lpVtbl,
         yearFormat.value,
         monthFormat.value,
@@ -366,21 +362,25 @@ class IDateTimeFormatterFactory extends IInspectable {
         hourFormat.value,
         minuteFormat.value,
         secondFormat.value,
-        languagesPtr,
+        IInspectable(
+                languages.toInterface('{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'))
+            .ptr
+            .ref
+            .lpVtbl,
         geographicRegionHString,
         calendarHString,
         clockHString,
-        retValuePtr);
+        result);
 
     WindowsDeleteString(geographicRegionHString);
     WindowsDeleteString(calendarHString);
     WindowsDeleteString(clockHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(result);
       throw WindowsException(hr);
     }
 
-    return DateTimeFormatter.fromPtr(retValuePtr);
+    return DateTimeFormatter.fromPtr(result);
   }
 }

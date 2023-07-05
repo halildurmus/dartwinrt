@@ -29,8 +29,7 @@ class IDataReaderFactory extends IInspectable {
       IDataReaderFactory.fromPtr(interface.toInterface(IID_IDataReaderFactory));
 
   DataReader createDataReader(IInputStream inputStream) {
-    final retValuePtr = calloc<COMObject>();
-    final inputStreamPtr = inputStream.ptr.ref.lpVtbl;
+    final dataReader = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -40,18 +39,18 @@ class IDataReaderFactory extends IInspectable {
                         HRESULT Function(
                             VTablePointer lpVtbl,
                             VTablePointer inputStream,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> dataReader)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer inputStream,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, inputStreamPtr, retValuePtr);
+                    Pointer<COMObject> dataReader)>()(
+        ptr.ref.lpVtbl, inputStream.ptr.ref.lpVtbl, dataReader);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(dataReader);
       throw WindowsException(hr);
     }
 
-    return DataReader.fromPtr(retValuePtr);
+    return DataReader.fromPtr(dataReader);
   }
 }

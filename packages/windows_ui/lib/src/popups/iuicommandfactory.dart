@@ -28,7 +28,7 @@ class IUICommandFactory extends IInspectable {
       IUICommandFactory.fromPtr(interface.toInterface(IID_IUICommandFactory));
 
   UICommand create(String label) {
-    final retValuePtr = calloc<COMObject>();
+    final instance = calloc<COMObject>();
     final labelHString = label.toHString();
 
     final hr = ptr.ref.vtable
@@ -37,58 +37,58 @@ class IUICommandFactory extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(VTablePointer lpVtbl, IntPtr label,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> instance)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int label,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, labelHString, retValuePtr);
+                    Pointer<COMObject> instance)>()(
+        ptr.ref.lpVtbl, labelHString, instance);
 
     WindowsDeleteString(labelHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(instance);
       throw WindowsException(hr);
     }
 
-    return UICommand.fromPtr(retValuePtr);
+    return UICommand.fromPtr(instance);
   }
 
   UICommand createWithHandler(String label, Pointer<COMObject> action) {
-    final retValuePtr = calloc<COMObject>();
+    final instance = calloc<COMObject>();
     final labelHString = label.toHString();
 
-    final hr = ptr.ref.vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            IntPtr label,
-                            VTablePointer action,
-                            Pointer<COMObject> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int label,
-                    VTablePointer action, Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, labelHString, action.ref.lpVtbl, retValuePtr);
+    final hr =
+        ptr.ref.vtable
+                .elementAt(7)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                VTablePointer lpVtbl,
+                                IntPtr label,
+                                VTablePointer action,
+                                Pointer<COMObject> instance)>>>()
+                .value
+                .asFunction<
+                    int Function(VTablePointer lpVtbl, int label,
+                        VTablePointer action, Pointer<COMObject> instance)>()(
+            ptr.ref.lpVtbl, labelHString, action.ref.lpVtbl, instance);
 
     WindowsDeleteString(labelHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(instance);
       throw WindowsException(hr);
     }
 
-    return UICommand.fromPtr(retValuePtr);
+    return UICommand.fromPtr(instance);
   }
 
   UICommand createWithHandlerAndId(
       String label, Pointer<COMObject> action, Object? commandId) {
-    final retValuePtr = calloc<COMObject>();
+    final instance = calloc<COMObject>();
     final labelHString = label.toHString();
-    final commandIdPtr = commandId?.intoBox().ptr.ref.lpVtbl ?? nullptr;
 
     final hr = ptr.ref.vtable
             .elementAt(8)
@@ -100,7 +100,7 @@ class IUICommandFactory extends IInspectable {
                             IntPtr label,
                             VTablePointer action,
                             VTablePointer commandId,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> instance)>>>()
             .value
             .asFunction<
                 int Function(
@@ -108,16 +108,20 @@ class IUICommandFactory extends IInspectable {
                     int label,
                     VTablePointer action,
                     VTablePointer commandId,
-                    Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl,
-        labelHString, action.ref.lpVtbl, commandIdPtr, retValuePtr);
+                    Pointer<COMObject> instance)>()(
+        ptr.ref.lpVtbl,
+        labelHString,
+        action.ref.lpVtbl,
+        commandId?.intoBox().ptr.ref.lpVtbl ?? nullptr,
+        instance);
 
     WindowsDeleteString(labelHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(instance);
       throw WindowsException(hr);
     }
 
-    return UICommand.fromPtr(retValuePtr);
+    return UICommand.fromPtr(instance);
   }
 }

@@ -29,8 +29,7 @@ class ILauncherStatics extends IInspectable {
       ILauncherStatics.fromPtr(interface.toInterface(IID_ILauncherStatics));
 
   Future<bool> launchFileAsync(IStorageFile? file) {
-    final retValuePtr = calloc<COMObject>();
-    final filePtr = file == null ? nullptr : file.ptr.ref.lpVtbl;
+    final operation = calloc<COMObject>();
 
     final hr =
         ptr.ref.vtable
@@ -41,27 +40,25 @@ class ILauncherStatics extends IInspectable {
                             HRESULT Function(
                                 VTablePointer lpVtbl,
                                 VTablePointer file,
-                                Pointer<COMObject> retValuePtr)>>>()
+                                Pointer<COMObject> operation)>>>()
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer file,
-                        Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl, filePtr, retValuePtr);
+                        Pointer<COMObject> operation)>()(ptr.ref.lpVtbl,
+            file == null ? nullptr : file.ptr.ref.lpVtbl, operation);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<bool>.fromPtr(retValuePtr);
+    final asyncOperation = IAsyncOperation<bool>.fromPtr(operation);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<bool> launchFileWithOptionsAsync(
       IStorageFile? file, LauncherOptions? options) {
-    final retValuePtr = calloc<COMObject>();
-    final filePtr = file == null ? nullptr : file.ptr.ref.lpVtbl;
-    final optionsPtr = options == null ? nullptr : options.ptr.ref.lpVtbl;
+    final operation = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(7)
@@ -72,25 +69,27 @@ class ILauncherStatics extends IInspectable {
                             VTablePointer lpVtbl,
                             VTablePointer file,
                             VTablePointer options,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> operation)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer file,
-                    VTablePointer options, Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, filePtr, optionsPtr, retValuePtr);
+                    VTablePointer options, Pointer<COMObject> operation)>()(
+        ptr.ref.lpVtbl,
+        file == null ? nullptr : file.ptr.ref.lpVtbl,
+        options == null ? nullptr : options.ptr.ref.lpVtbl,
+        operation);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<bool>.fromPtr(retValuePtr);
+    final asyncOperation = IAsyncOperation<bool>.fromPtr(operation);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<bool> launchUriAsync(Uri? uri) {
-    final retValuePtr = calloc<COMObject>();
-    final uriUri = uri?.toWinRTUri();
+    final operation = calloc<COMObject>();
 
     final hr =
         ptr.ref.vtable
@@ -101,26 +100,24 @@ class ILauncherStatics extends IInspectable {
                             HRESULT Function(
                                 VTablePointer lpVtbl,
                                 VTablePointer uri,
-                                Pointer<COMObject> retValuePtr)>>>()
+                                Pointer<COMObject> operation)>>>()
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer uri,
-                        Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl,
-            uriUri == null ? nullptr : uriUri.ptr.ref.lpVtbl, retValuePtr);
+                        Pointer<COMObject> operation)>()(ptr.ref.lpVtbl,
+            uri?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr, operation);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<bool>.fromPtr(retValuePtr);
+    final asyncOperation = IAsyncOperation<bool>.fromPtr(operation);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<bool> launchUriWithOptionsAsync(Uri? uri, LauncherOptions? options) {
-    final retValuePtr = calloc<COMObject>();
-    final uriUri = uri?.toWinRTUri();
-    final optionsPtr = options == null ? nullptr : options.ptr.ref.lpVtbl;
+    final operation = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(9)
@@ -131,22 +128,22 @@ class ILauncherStatics extends IInspectable {
                             VTablePointer lpVtbl,
                             VTablePointer uri,
                             VTablePointer options,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> operation)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer uri,
-                    VTablePointer options, Pointer<COMObject> retValuePtr)>()(
+                    VTablePointer options, Pointer<COMObject> operation)>()(
         ptr.ref.lpVtbl,
-        uriUri == null ? nullptr : uriUri.ptr.ref.lpVtbl,
-        optionsPtr,
-        retValuePtr);
+        uri?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr,
+        options == null ? nullptr : options.ptr.ref.lpVtbl,
+        operation);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<bool>.fromPtr(retValuePtr);
+    final asyncOperation = IAsyncOperation<bool>.fromPtr(operation);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 }

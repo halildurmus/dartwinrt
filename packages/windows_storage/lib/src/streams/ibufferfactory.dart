@@ -28,26 +28,25 @@ class IBufferFactory extends IInspectable {
       IBufferFactory.fromPtr(interface.toInterface(IID_IBufferFactory));
 
   Buffer create(int capacity) {
-    final retValuePtr = calloc<COMObject>();
+    final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint32 capacity,
-                            Pointer<COMObject> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int capacity,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, capacity, retValuePtr);
+        .elementAt(6)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl, Uint32 capacity,
+                        Pointer<COMObject> value)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl, int capacity,
+                Pointer<COMObject> value)>()(ptr.ref.lpVtbl, capacity, value);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    return Buffer.fromPtr(retValuePtr);
+    return Buffer.fromPtr(value);
   }
 }

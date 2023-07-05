@@ -26,7 +26,7 @@ class ILanguageStatics2 extends IInspectable {
       ILanguageStatics2.fromPtr(interface.toInterface(IID_ILanguageStatics2));
 
   bool trySetInputMethodLanguageTag(String languageTag) {
-    final retValuePtr = calloc<Bool>();
+    final result = calloc<Bool>();
 
     try {
       final languageTagHString = languageTag.toHString();
@@ -37,23 +37,21 @@ class ILanguageStatics2 extends IInspectable {
                   .cast<
                       Pointer<
                           NativeFunction<
-                              HRESULT Function(
-                                  VTablePointer lpVtbl,
-                                  IntPtr languageTag,
-                                  Pointer<Bool> retValuePtr)>>>()
+                              HRESULT Function(VTablePointer lpVtbl,
+                                  IntPtr languageTag, Pointer<Bool> result)>>>()
                   .value
                   .asFunction<
                       int Function(VTablePointer lpVtbl, int languageTag,
-                          Pointer<Bool> retValuePtr)>()(
-              ptr.ref.lpVtbl, languageTagHString, retValuePtr);
+                          Pointer<Bool> result)>()(
+              ptr.ref.lpVtbl, languageTagHString, result);
 
       WindowsDeleteString(languageTagHString);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return result.value;
     } finally {
-      free(retValuePtr);
+      free(result);
     }
   }
 }

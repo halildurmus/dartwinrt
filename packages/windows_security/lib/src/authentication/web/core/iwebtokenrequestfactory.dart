@@ -32,8 +32,7 @@ class IWebTokenRequestFactory extends IInspectable {
 
   WebTokenRequest create(
       WebAccountProvider provider, String scope, String clientId) {
-    final retValuePtr = calloc<COMObject>();
-    final providerPtr = provider.ptr.ref.lpVtbl;
+    final webTokenRequest = calloc<COMObject>();
     final scopeHString = scope.toHString();
     final clientIdHString = clientId.toHString();
 
@@ -47,32 +46,35 @@ class IWebTokenRequestFactory extends IInspectable {
                             VTablePointer provider,
                             IntPtr scope,
                             IntPtr clientId,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> webTokenRequest)>>>()
             .value
             .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer provider,
-                    int scope, int clientId, Pointer<COMObject> retValuePtr)>()(
+                int Function(
+                    VTablePointer lpVtbl,
+                    VTablePointer provider,
+                    int scope,
+                    int clientId,
+                    Pointer<COMObject> webTokenRequest)>()(
         ptr.ref.lpVtbl,
-        providerPtr,
+        provider.ptr.ref.lpVtbl,
         scopeHString,
         clientIdHString,
-        retValuePtr);
+        webTokenRequest);
 
     WindowsDeleteString(scopeHString);
     WindowsDeleteString(clientIdHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(webTokenRequest);
       throw WindowsException(hr);
     }
 
-    return WebTokenRequest.fromPtr(retValuePtr);
+    return WebTokenRequest.fromPtr(webTokenRequest);
   }
 
   WebTokenRequest createWithPromptType(WebAccountProvider provider,
       String scope, String clientId, WebTokenRequestPromptType promptType) {
-    final retValuePtr = calloc<COMObject>();
-    final providerPtr = provider.ptr.ref.lpVtbl;
+    final webTokenRequest = calloc<COMObject>();
     final scopeHString = scope.toHString();
     final clientIdHString = clientId.toHString();
 
@@ -87,7 +89,7 @@ class IWebTokenRequestFactory extends IInspectable {
                             IntPtr scope,
                             IntPtr clientId,
                             Int32 promptType,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> webTokenRequest)>>>()
             .value
             .asFunction<
                 int Function(
@@ -96,28 +98,27 @@ class IWebTokenRequestFactory extends IInspectable {
                     int scope,
                     int clientId,
                     int promptType,
-                    Pointer<COMObject> retValuePtr)>()(
+                    Pointer<COMObject> webTokenRequest)>()(
         ptr.ref.lpVtbl,
-        providerPtr,
+        provider.ptr.ref.lpVtbl,
         scopeHString,
         clientIdHString,
         promptType.value,
-        retValuePtr);
+        webTokenRequest);
 
     WindowsDeleteString(scopeHString);
     WindowsDeleteString(clientIdHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(webTokenRequest);
       throw WindowsException(hr);
     }
 
-    return WebTokenRequest.fromPtr(retValuePtr);
+    return WebTokenRequest.fromPtr(webTokenRequest);
   }
 
   WebTokenRequest createWithProvider(WebAccountProvider provider) {
-    final retValuePtr = calloc<COMObject>();
-    final providerPtr = provider.ptr.ref.lpVtbl;
+    final webTokenRequest = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(8)
@@ -127,24 +128,23 @@ class IWebTokenRequestFactory extends IInspectable {
                         HRESULT Function(
                             VTablePointer lpVtbl,
                             VTablePointer provider,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> webTokenRequest)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer provider,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, providerPtr, retValuePtr);
+                    Pointer<COMObject> webTokenRequest)>()(
+        ptr.ref.lpVtbl, provider.ptr.ref.lpVtbl, webTokenRequest);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(webTokenRequest);
       throw WindowsException(hr);
     }
 
-    return WebTokenRequest.fromPtr(retValuePtr);
+    return WebTokenRequest.fromPtr(webTokenRequest);
   }
 
   WebTokenRequest createWithScope(WebAccountProvider provider, String scope) {
-    final retValuePtr = calloc<COMObject>();
-    final providerPtr = provider.ptr.ref.lpVtbl;
+    final webTokenRequest = calloc<COMObject>();
     final scopeHString = scope.toHString();
 
     final hr = ptr.ref.vtable
@@ -156,20 +156,20 @@ class IWebTokenRequestFactory extends IInspectable {
                             VTablePointer lpVtbl,
                             VTablePointer provider,
                             IntPtr scope,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> webTokenRequest)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer provider,
-                    int scope, Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, providerPtr, scopeHString, retValuePtr);
+                    int scope, Pointer<COMObject> webTokenRequest)>()(
+        ptr.ref.lpVtbl, provider.ptr.ref.lpVtbl, scopeHString, webTokenRequest);
 
     WindowsDeleteString(scopeHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(webTokenRequest);
       throw WindowsException(hr);
     }
 
-    return WebTokenRequest.fromPtr(retValuePtr);
+    return WebTokenRequest.fromPtr(webTokenRequest);
   }
 }

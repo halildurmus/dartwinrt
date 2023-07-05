@@ -37,10 +37,9 @@ class IWebAuthenticationCoreManagerStatics2 extends IInspectable
 
   Future<WebAccountProvider?> findAccountProviderWithAuthorityForUserAsync(
       String webAccountProviderId, String authority, User? user) {
-    final retValuePtr = calloc<COMObject>();
+    final asyncInfo = calloc<COMObject>();
     final webAccountProviderIdHString = webAccountProviderId.toHString();
     final authorityHString = authority.toHString();
-    final userPtr = user == null ? nullptr : user.ptr.ref.lpVtbl;
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -52,7 +51,7 @@ class IWebAuthenticationCoreManagerStatics2 extends IInspectable
                             IntPtr webAccountProviderId,
                             IntPtr authority,
                             VTablePointer user,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> asyncInfo)>>>()
             .value
             .asFunction<
                 int Function(
@@ -60,19 +59,23 @@ class IWebAuthenticationCoreManagerStatics2 extends IInspectable
                     int webAccountProviderId,
                     int authority,
                     VTablePointer user,
-                    Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl,
-        webAccountProviderIdHString, authorityHString, userPtr, retValuePtr);
+                    Pointer<COMObject> asyncInfo)>()(
+        ptr.ref.lpVtbl,
+        webAccountProviderIdHString,
+        authorityHString,
+        user == null ? nullptr : user.ptr.ref.lpVtbl,
+        asyncInfo);
 
     WindowsDeleteString(webAccountProviderIdHString);
     WindowsDeleteString(authorityHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(asyncInfo);
       throw WindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<WebAccountProvider?>.fromPtr(
-        retValuePtr,
+        asyncInfo,
         creator: WebAccountProvider.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }

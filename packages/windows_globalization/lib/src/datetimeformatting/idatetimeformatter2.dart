@@ -27,39 +27,32 @@ class IDateTimeFormatter2 extends IInspectable {
           interface.toInterface(IID_IDateTimeFormatter2));
 
   String formatUsingTimeZone(DateTime datetime, String timeZoneId) {
-    final retValuePtr = calloc<HSTRING>();
+    final result = calloc<IntPtr>();
 
     try {
       final timeZoneIdHString = timeZoneId.toHString();
 
-      final hr =
-          ptr.ref.vtable
-                  .elementAt(6)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(
-                                  VTablePointer lpVtbl,
-                                  Int64 datetime,
-                                  IntPtr timeZoneId,
-                                  Pointer<IntPtr> retValuePtr)>>>()
-                  .value
-                  .asFunction<
-                      int Function(VTablePointer lpVtbl, int datetime,
-                          int timeZoneId, Pointer<IntPtr> retValuePtr)>()(
-              ptr.ref.lpVtbl,
-              datetime.toWinRTDateTime(),
-              timeZoneIdHString,
-              retValuePtr);
+      final hr = ptr.ref.vtable
+              .elementAt(6)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(VTablePointer lpVtbl, Int64 datetime,
+                              IntPtr timeZoneId, Pointer<IntPtr> result)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, int datetime,
+                      int timeZoneId, Pointer<IntPtr> result)>()(ptr.ref.lpVtbl,
+          datetime.toWinRTDateTime(), timeZoneIdHString, result);
 
       WindowsDeleteString(timeZoneIdHString);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.toDartString();
+      return result.toDartString();
     } finally {
-      WindowsDeleteString(retValuePtr.value);
-      free(retValuePtr);
+      WindowsDeleteString(result.value);
+      free(result);
     }
   }
 }

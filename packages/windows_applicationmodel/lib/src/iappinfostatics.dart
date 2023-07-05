@@ -29,100 +29,104 @@ class IAppInfoStatics extends IInspectable {
       IAppInfoStatics.fromPtr(interface.toInterface(IID_IAppInfoStatics));
 
   AppInfo? get current {
-    final retValuePtr = calloc<COMObject>();
+    final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+            .elementAt(6)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
+        ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (value.isNull) {
+      free(value);
       return null;
     }
 
-    return AppInfo.fromPtr(retValuePtr);
+    return AppInfo.fromPtr(value);
   }
 
   AppInfo? getFromAppUserModelId(String appUserModelId) {
-    final retValuePtr = calloc<COMObject>();
+    final result = calloc<COMObject>();
     final appUserModelIdHString = appUserModelId.toHString();
 
-    final hr = ptr.ref.vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            IntPtr appUserModelId,
-                            Pointer<COMObject> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int appUserModelId,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, appUserModelIdHString, retValuePtr);
+    final hr =
+        ptr.ref.vtable
+                .elementAt(7)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                VTablePointer lpVtbl,
+                                IntPtr appUserModelId,
+                                Pointer<COMObject> result)>>>()
+                .value
+                .asFunction<
+                    int Function(VTablePointer lpVtbl, int appUserModelId,
+                        Pointer<COMObject> result)>()(
+            ptr.ref.lpVtbl, appUserModelIdHString, result);
 
     WindowsDeleteString(appUserModelIdHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(result);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (result.isNull) {
+      free(result);
       return null;
     }
 
-    return AppInfo.fromPtr(retValuePtr);
+    return AppInfo.fromPtr(result);
   }
 
   AppInfo? getFromAppUserModelIdForUser(User? user, String appUserModelId) {
-    final retValuePtr = calloc<COMObject>();
-    final userPtr = user == null ? nullptr : user.ptr.ref.lpVtbl;
+    final result = calloc<COMObject>();
     final appUserModelIdHString = appUserModelId.toHString();
 
-    final hr = ptr.ref.vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer user,
-                            IntPtr appUserModelId,
-                            Pointer<COMObject> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer user,
-                    int appUserModelId, Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, userPtr, appUserModelIdHString, retValuePtr);
+    final hr =
+        ptr.ref.vtable
+                .elementAt(8)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                VTablePointer lpVtbl,
+                                VTablePointer user,
+                                IntPtr appUserModelId,
+                                Pointer<COMObject> result)>>>()
+                .value
+                .asFunction<
+                    int Function(VTablePointer lpVtbl, VTablePointer user,
+                        int appUserModelId, Pointer<COMObject> result)>()(
+            ptr.ref.lpVtbl,
+            user == null ? nullptr : user.ptr.ref.lpVtbl,
+            appUserModelIdHString,
+            result);
 
     WindowsDeleteString(appUserModelIdHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(result);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (result.isNull) {
+      free(result);
       return null;
     }
 
-    return AppInfo.fromPtr(retValuePtr);
+    return AppInfo.fromPtr(result);
   }
 }

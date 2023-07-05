@@ -26,27 +26,27 @@ class ITensorBoolean extends IInspectable {
       ITensorBoolean.fromPtr(interface.toInterface(IID_ITensorBoolean));
 
   List<bool> getAsVectorView() {
-    final retValuePtr = calloc<COMObject>();
+    final result = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
         .elementAt(6)
         .cast<
             Pointer<
                 NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
+                    HRESULT Function(
+                        VTablePointer lpVtbl, Pointer<COMObject> result)>>>()
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                Pointer<COMObject> result)>()(ptr.ref.lpVtbl, result);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(result);
       throw WindowsException(hr);
     }
 
-    final vectorView = IVectorView<bool>.fromPtr(retValuePtr,
-        iterableIid: '{30160817-1d7d-54e9-99db-d7636266a476}');
-    return vectorView.toList();
+    return IVectorView<bool>.fromPtr(result,
+            iterableIid: '{30160817-1d7d-54e9-99db-d7636266a476}')
+        .toList();
   }
 }

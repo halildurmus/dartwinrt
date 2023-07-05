@@ -30,158 +30,157 @@ class IHostName extends IInspectable {
       IHostName.fromPtr(interface.toInterface(IID_IHostName));
 
   IPInformation? get ipInformation {
-    final retValuePtr = calloc<COMObject>();
+    final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+            .elementAt(6)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
+        ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (value.isNull) {
+      free(value);
       return null;
     }
 
-    return IPInformation.fromPtr(retValuePtr);
+    return IPInformation.fromPtr(value);
   }
 
   String get rawName {
-    final retValuePtr = calloc<HSTRING>();
+    final value = calloc<IntPtr>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          Pointer<IntPtr> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
-
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      return retValuePtr.toDartString();
-    } finally {
-      WindowsDeleteString(retValuePtr.value);
-      free(retValuePtr);
-    }
-  }
-
-  String get displayName {
-    final retValuePtr = calloc<HSTRING>();
-
-    try {
-      final hr = ptr.ref.vtable
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          Pointer<IntPtr> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
-
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      return retValuePtr.toDartString();
-    } finally {
-      WindowsDeleteString(retValuePtr.value);
-      free(retValuePtr);
-    }
-  }
-
-  String get canonicalName {
-    final retValuePtr = calloc<HSTRING>();
-
-    try {
-      final hr = ptr.ref.vtable
-          .elementAt(9)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          Pointer<IntPtr> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
-
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      return retValuePtr.toDartString();
-    } finally {
-      WindowsDeleteString(retValuePtr.value);
-      free(retValuePtr);
-    }
-  }
-
-  HostNameType get type {
-    final retValuePtr = calloc<Int32>();
-
-    try {
-      final hr = ptr.ref.vtable
-          .elementAt(10)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Int32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
-
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      return HostNameType.from(retValuePtr.value);
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  bool isEqual(HostName? hostName) {
-    final retValuePtr = calloc<Bool>();
-
-    try {
-      final hostNamePtr = hostName == null ? nullptr : hostName.ptr.ref.lpVtbl;
-
-      final hr = ptr.ref.vtable
-              .elementAt(11)
+              .elementAt(7)
               .cast<
                   Pointer<
                       NativeFunction<
                           HRESULT Function(
-                              VTablePointer lpVtbl,
-                              VTablePointer hostName,
-                              Pointer<Bool> retValuePtr)>>>()
+                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
               .value
               .asFunction<
-                  int Function(VTablePointer lpVtbl, VTablePointer hostName,
-                      Pointer<Bool> retValuePtr)>()(
-          ptr.ref.lpVtbl, hostNamePtr, retValuePtr);
+                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return value.toDartString();
     } finally {
-      free(retValuePtr);
+      WindowsDeleteString(value.value);
+      free(value);
+    }
+  }
+
+  String get displayName {
+    final value = calloc<IntPtr>();
+
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(8)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
+          ptr.ref.lpVtbl, value);
+
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      return value.toDartString();
+    } finally {
+      WindowsDeleteString(value.value);
+      free(value);
+    }
+  }
+
+  String get canonicalName {
+    final value = calloc<IntPtr>();
+
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(9)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
+          ptr.ref.lpVtbl, value);
+
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      return value.toDartString();
+    } finally {
+      WindowsDeleteString(value.value);
+      free(value);
+    }
+  }
+
+  HostNameType get type {
+    final value = calloc<Int32>();
+
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(10)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<Int32> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
+          ptr.ref.lpVtbl, value);
+
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      return HostNameType.from(value.value);
+    } finally {
+      free(value);
+    }
+  }
+
+  bool isEqual(HostName? hostName) {
+    final isEqual = calloc<Bool>();
+
+    try {
+      final hr =
+          ptr.ref.vtable
+                  .elementAt(11)
+                  .cast<
+                      Pointer<
+                          NativeFunction<
+                              HRESULT Function(
+                                  VTablePointer lpVtbl,
+                                  VTablePointer hostName,
+                                  Pointer<Bool> isEqual)>>>()
+                  .value
+                  .asFunction<
+                      int Function(VTablePointer lpVtbl, VTablePointer hostName,
+                          Pointer<Bool> isEqual)>()(ptr.ref.lpVtbl,
+              hostName == null ? nullptr : hostName.ptr.ref.lpVtbl, isEqual);
+
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      return isEqual.value;
+    } finally {
+      free(isEqual);
     }
   }
 }

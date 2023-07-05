@@ -252,8 +252,7 @@ final class _IAsyncOperationUri extends IAsyncOperation<Uri?> {
       return null;
     }
 
-    final winrtUri = retValuePtr.toWinRTUri();
-    return winrtUri.toDartUri();
+    return retValuePtr.toWinRTUri().toDartUri();
   }
 }
 
@@ -262,7 +261,7 @@ final class _IAsyncOperationString extends IAsyncOperation<String> {
 
   @override
   String getResults() {
-    final retValuePtr = calloc<HSTRING>();
+    final retValuePtr = calloc<IntPtr>();
 
     try {
       final hr = ptr.ref.vtable

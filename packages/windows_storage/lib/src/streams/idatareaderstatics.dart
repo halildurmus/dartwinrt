@@ -29,8 +29,7 @@ class IDataReaderStatics extends IInspectable {
       IDataReaderStatics.fromPtr(interface.toInterface(IID_IDataReaderStatics));
 
   DataReader? fromBuffer(IBuffer? buffer) {
-    final retValuePtr = calloc<COMObject>();
-    final bufferPtr = buffer == null ? nullptr : buffer.ptr.ref.lpVtbl;
+    final dataReader = calloc<COMObject>();
 
     final hr =
         ptr.ref.vtable
@@ -41,23 +40,23 @@ class IDataReaderStatics extends IInspectable {
                             HRESULT Function(
                                 VTablePointer lpVtbl,
                                 VTablePointer buffer,
-                                Pointer<COMObject> retValuePtr)>>>()
+                                Pointer<COMObject> dataReader)>>>()
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer buffer,
-                        Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl, bufferPtr, retValuePtr);
+                        Pointer<COMObject> dataReader)>()(ptr.ref.lpVtbl,
+            buffer == null ? nullptr : buffer.ptr.ref.lpVtbl, dataReader);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(dataReader);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (dataReader.isNull) {
+      free(dataReader);
       return null;
     }
 
-    return DataReader.fromPtr(retValuePtr);
+    return DataReader.fromPtr(dataReader);
   }
 }

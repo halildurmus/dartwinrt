@@ -29,7 +29,7 @@ class IGeographicRegionFactory extends IInspectable {
           interface.toInterface(IID_IGeographicRegionFactory));
 
   GeographicRegion createGeographicRegion(String geographicRegionCode) {
-    final retValuePtr = calloc<COMObject>();
+    final result = calloc<COMObject>();
     final geographicRegionCodeHString = geographicRegionCode.toHString();
 
     final hr = ptr.ref.vtable
@@ -40,20 +40,20 @@ class IGeographicRegionFactory extends IInspectable {
                         HRESULT Function(
                             VTablePointer lpVtbl,
                             IntPtr geographicRegionCode,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> result)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int geographicRegionCode,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, geographicRegionCodeHString, retValuePtr);
+                    Pointer<COMObject> result)>()(
+        ptr.ref.lpVtbl, geographicRegionCodeHString, result);
 
     WindowsDeleteString(geographicRegionCodeHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(result);
       throw WindowsException(hr);
     }
 
-    return GeographicRegion.fromPtr(retValuePtr);
+    return GeographicRegion.fromPtr(result);
   }
 }

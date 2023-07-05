@@ -36,10 +36,8 @@ class IJsonObjectWithDefaultValues extends IInspectable
           interface.toInterface(IID_IJsonObjectWithDefaultValues));
 
   JsonValue? getNamedValueOrDefault(String name, JsonValue? defaultValue) {
-    final retValuePtr = calloc<COMObject>();
+    final returnValue = calloc<COMObject>();
     final nameHString = name.toHString();
-    final defaultValuePtr =
-        defaultValue == null ? nullptr : defaultValue.ptr.ref.lpVtbl;
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -50,35 +48,37 @@ class IJsonObjectWithDefaultValues extends IInspectable
                             VTablePointer lpVtbl,
                             IntPtr name,
                             VTablePointer defaultValue,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> returnValue)>>>()
             .value
             .asFunction<
                 int Function(
                     VTablePointer lpVtbl,
                     int name,
                     VTablePointer defaultValue,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, nameHString, defaultValuePtr, retValuePtr);
+                    Pointer<COMObject> returnValue)>()(
+        ptr.ref.lpVtbl,
+        nameHString,
+        defaultValue == null ? nullptr : defaultValue.ptr.ref.lpVtbl,
+        returnValue);
 
     WindowsDeleteString(nameHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(returnValue);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (returnValue.isNull) {
+      free(returnValue);
       return null;
     }
 
-    return JsonValue.fromPtr(retValuePtr);
+    return JsonValue.fromPtr(returnValue);
   }
 
   JsonObject getNamedObjectOrDefault(String name, JsonObject defaultValue) {
-    final retValuePtr = calloc<COMObject>();
+    final returnValue = calloc<COMObject>();
     final nameHString = name.toHString();
-    final defaultValuePtr = defaultValue.ptr.ref.lpVtbl;
 
     final hr = ptr.ref.vtable
             .elementAt(7)
@@ -89,28 +89,28 @@ class IJsonObjectWithDefaultValues extends IInspectable
                             VTablePointer lpVtbl,
                             IntPtr name,
                             VTablePointer defaultValue,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> returnValue)>>>()
             .value
             .asFunction<
                 int Function(
                     VTablePointer lpVtbl,
                     int name,
                     VTablePointer defaultValue,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, nameHString, defaultValuePtr, retValuePtr);
+                    Pointer<COMObject> returnValue)>()(
+        ptr.ref.lpVtbl, nameHString, defaultValue.ptr.ref.lpVtbl, returnValue);
 
     WindowsDeleteString(nameHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(returnValue);
       throw WindowsException(hr);
     }
 
-    return JsonObject.fromPtr(retValuePtr);
+    return JsonObject.fromPtr(returnValue);
   }
 
   String getNamedStringOrDefault(String name, String defaultValue) {
-    final retValuePtr = calloc<HSTRING>();
+    final returnValue = calloc<IntPtr>();
 
     try {
       final nameHString = name.toHString();
@@ -126,29 +126,28 @@ class IJsonObjectWithDefaultValues extends IInspectable
                                   VTablePointer lpVtbl,
                                   IntPtr name,
                                   IntPtr defaultValue,
-                                  Pointer<IntPtr> retValuePtr)>>>()
+                                  Pointer<IntPtr> returnValue)>>>()
                   .value
                   .asFunction<
                       int Function(VTablePointer lpVtbl, int name,
-                          int defaultValue, Pointer<IntPtr> retValuePtr)>()(
-              ptr.ref.lpVtbl, nameHString, defaultValueHString, retValuePtr);
+                          int defaultValue, Pointer<IntPtr> returnValue)>()(
+              ptr.ref.lpVtbl, nameHString, defaultValueHString, returnValue);
 
       WindowsDeleteString(nameHString);
       WindowsDeleteString(defaultValueHString);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.toDartString();
+      return returnValue.toDartString();
     } finally {
-      WindowsDeleteString(retValuePtr.value);
-      free(retValuePtr);
+      WindowsDeleteString(returnValue.value);
+      free(returnValue);
     }
   }
 
   JsonArray getNamedArrayOrDefault(String name, JsonArray defaultValue) {
-    final retValuePtr = calloc<COMObject>();
+    final returnValue = calloc<COMObject>();
     final nameHString = name.toHString();
-    final defaultValuePtr = defaultValue.ptr.ref.lpVtbl;
 
     final hr = ptr.ref.vtable
             .elementAt(9)
@@ -159,28 +158,28 @@ class IJsonObjectWithDefaultValues extends IInspectable
                             VTablePointer lpVtbl,
                             IntPtr name,
                             VTablePointer defaultValue,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> returnValue)>>>()
             .value
             .asFunction<
                 int Function(
                     VTablePointer lpVtbl,
                     int name,
                     VTablePointer defaultValue,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, nameHString, defaultValuePtr, retValuePtr);
+                    Pointer<COMObject> returnValue)>()(
+        ptr.ref.lpVtbl, nameHString, defaultValue.ptr.ref.lpVtbl, returnValue);
 
     WindowsDeleteString(nameHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(returnValue);
       throw WindowsException(hr);
     }
 
-    return JsonArray.fromPtr(retValuePtr);
+    return JsonArray.fromPtr(returnValue);
   }
 
   double getNamedNumberOrDefault(String name, double defaultValue) {
-    final retValuePtr = calloc<Double>();
+    final returnValue = calloc<Double>();
 
     try {
       final nameHString = name.toHString();
@@ -195,25 +194,25 @@ class IJsonObjectWithDefaultValues extends IInspectable
                                   VTablePointer lpVtbl,
                                   IntPtr name,
                                   Double defaultValue,
-                                  Pointer<Double> retValuePtr)>>>()
+                                  Pointer<Double> returnValue)>>>()
                   .value
                   .asFunction<
                       int Function(VTablePointer lpVtbl, int name,
-                          double defaultValue, Pointer<Double> retValuePtr)>()(
-              ptr.ref.lpVtbl, nameHString, defaultValue, retValuePtr);
+                          double defaultValue, Pointer<Double> returnValue)>()(
+              ptr.ref.lpVtbl, nameHString, defaultValue, returnValue);
 
       WindowsDeleteString(nameHString);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return returnValue.value;
     } finally {
-      free(retValuePtr);
+      free(returnValue);
     }
   }
 
   bool getNamedBooleanOrDefault(String name, bool defaultValue) {
-    final retValuePtr = calloc<Bool>();
+    final returnValue = calloc<Bool>();
 
     try {
       final nameHString = name.toHString();
@@ -224,20 +223,20 @@ class IJsonObjectWithDefaultValues extends IInspectable
                   Pointer<
                       NativeFunction<
                           HRESULT Function(VTablePointer lpVtbl, IntPtr name,
-                              Bool defaultValue, Pointer<Bool> retValuePtr)>>>()
+                              Bool defaultValue, Pointer<Bool> returnValue)>>>()
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, int name,
-                      bool defaultValue, Pointer<Bool> retValuePtr)>()(
-          ptr.ref.lpVtbl, nameHString, defaultValue, retValuePtr);
+                      bool defaultValue, Pointer<Bool> returnValue)>()(
+          ptr.ref.lpVtbl, nameHString, defaultValue, returnValue);
 
       WindowsDeleteString(nameHString);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return returnValue.value;
     } finally {
-      free(retValuePtr);
+      free(returnValue);
     }
   }
 

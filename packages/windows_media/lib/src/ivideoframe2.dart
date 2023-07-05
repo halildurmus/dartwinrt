@@ -30,8 +30,7 @@ class IVideoFrame2 extends IInspectable {
 
   Future<void> copyToWithBoundsAsync(VideoFrame? frame,
       BitmapBounds? sourceBounds, BitmapBounds? destinationBounds) {
-    final retValuePtr = calloc<COMObject>();
-    final framePtr = frame == null ? nullptr : frame.ptr.ref.lpVtbl;
+    final operation = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -43,7 +42,7 @@ class IVideoFrame2 extends IInspectable {
                             VTablePointer frame,
                             VTablePointer sourceBounds,
                             VTablePointer destinationBounds,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> operation)>>>()
             .value
             .asFunction<
                 int Function(
@@ -51,18 +50,18 @@ class IVideoFrame2 extends IInspectable {
                     VTablePointer frame,
                     VTablePointer sourceBounds,
                     VTablePointer destinationBounds,
-                    Pointer<COMObject> retValuePtr)>()(
+                    Pointer<COMObject> operation)>()(
         ptr.ref.lpVtbl,
-        framePtr,
+        frame == null ? nullptr : frame.ptr.ref.lpVtbl,
         sourceBounds?.toReference().ptr.ref.lpVtbl ?? nullptr,
         destinationBounds?.toReference().ptr.ref.lpVtbl ?? nullptr,
-        retValuePtr);
+        operation);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
-    return IAsyncAction.fromPtr(retValuePtr).toFuture();
+    return IAsyncAction.fromPtr(operation).toFuture();
   }
 }

@@ -30,7 +30,7 @@ class IUser2 extends IInspectable {
 
   Future<UserAgeConsentResult> checkUserAgeConsentGroupAsync(
       UserAgeConsentGroup consentGroup) {
-    final retValuePtr = calloc<COMObject>();
+    final operation = calloc<COMObject>();
 
     final hr =
         ptr.ref.vtable
@@ -41,20 +41,20 @@ class IUser2 extends IInspectable {
                             HRESULT Function(
                                 VTablePointer lpVtbl,
                                 Int32 consentGroup,
-                                Pointer<COMObject> retValuePtr)>>>()
+                                Pointer<COMObject> operation)>>>()
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, int consentGroup,
-                        Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl, consentGroup.value, retValuePtr);
+                        Pointer<COMObject> operation)>()(
+            ptr.ref.lpVtbl, consentGroup.value, operation);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<UserAgeConsentResult>.fromPtr(
-        retValuePtr,
+        operation,
         enumCreator: UserAgeConsentResult.from);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }

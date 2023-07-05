@@ -30,7 +30,7 @@ class IRemoteAutomationClientSessionFactory extends IInspectable {
           interface.toInterface(IID_IRemoteAutomationClientSessionFactory));
 
   RemoteAutomationClientSession createInstance(String name) {
-    final retValuePtr = calloc<COMObject>();
+    final value = calloc<COMObject>();
     final nameHString = name.toHString();
 
     final hr = ptr.ref.vtable
@@ -39,27 +39,27 @@ class IRemoteAutomationClientSessionFactory extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(VTablePointer lpVtbl, IntPtr name,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> value)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int name,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, nameHString, retValuePtr);
+                    Pointer<COMObject> value)>()(
+        ptr.ref.lpVtbl, nameHString, value);
 
     WindowsDeleteString(nameHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    return RemoteAutomationClientSession.fromPtr(retValuePtr);
+    return RemoteAutomationClientSession.fromPtr(value);
   }
 
   RemoteAutomationClientSession createInstance2(String name, Guid sessionId) {
-    final retValuePtr = calloc<COMObject>();
+    final value = calloc<COMObject>();
     final nameHString = name.toHString();
-    final sessionIdNativeGuidPtr = sessionId.toNativeGUID();
+    final sessionIdNativeStructPtr = sessionId.toNativeGUID();
 
     final hr = ptr.ref.vtable
             .elementAt(7)
@@ -67,21 +67,21 @@ class IRemoteAutomationClientSessionFactory extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(VTablePointer lpVtbl, IntPtr name,
-                            GUID sessionId, Pointer<COMObject> retValuePtr)>>>()
+                            GUID sessionId, Pointer<COMObject> value)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int name, GUID sessionId,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, nameHString, sessionIdNativeGuidPtr.ref, retValuePtr);
+                    Pointer<COMObject> value)>()(
+        ptr.ref.lpVtbl, nameHString, sessionIdNativeStructPtr.ref, value);
 
     WindowsDeleteString(nameHString);
-    free(sessionIdNativeGuidPtr);
+    free(sessionIdNativeStructPtr);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    return RemoteAutomationClientSession.fromPtr(retValuePtr);
+    return RemoteAutomationClientSession.fromPtr(value);
   }
 }

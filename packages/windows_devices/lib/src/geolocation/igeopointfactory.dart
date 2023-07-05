@@ -30,7 +30,7 @@ class IGeopointFactory extends IInspectable {
       IGeopointFactory.fromPtr(interface.toInterface(IID_IGeopointFactory));
 
   Geopoint create(BasicGeoposition position) {
-    final retValuePtr = calloc<COMObject>();
+    final value = calloc<COMObject>();
     final positionNativeStructPtr = position.toNative();
 
     final hr = ptr.ref.vtable
@@ -41,28 +41,28 @@ class IGeopointFactory extends IInspectable {
                         HRESULT Function(
                             VTablePointer lpVtbl,
                             NativeBasicGeoposition position,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> value)>>>()
             .value
             .asFunction<
                 int Function(
                     VTablePointer lpVtbl,
                     NativeBasicGeoposition position,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, positionNativeStructPtr.ref, retValuePtr);
+                    Pointer<COMObject> value)>()(
+        ptr.ref.lpVtbl, positionNativeStructPtr.ref, value);
 
     free(positionNativeStructPtr);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    return Geopoint.fromPtr(retValuePtr);
+    return Geopoint.fromPtr(value);
   }
 
   Geopoint createWithAltitudeReferenceSystem(BasicGeoposition position,
       AltitudeReferenceSystem altitudeReferenceSystem) {
-    final retValuePtr = calloc<COMObject>();
+    final value = calloc<COMObject>();
     final positionNativeStructPtr = position.toNative();
 
     final hr = ptr.ref.vtable
@@ -74,34 +74,31 @@ class IGeopointFactory extends IInspectable {
                             VTablePointer lpVtbl,
                             NativeBasicGeoposition position,
                             Int32 altitudeReferenceSystem,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> value)>>>()
             .value
             .asFunction<
                 int Function(
                     VTablePointer lpVtbl,
                     NativeBasicGeoposition position,
                     int altitudeReferenceSystem,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl,
-        positionNativeStructPtr.ref,
-        altitudeReferenceSystem.value,
-        retValuePtr);
+                    Pointer<COMObject> value)>()(ptr.ref.lpVtbl,
+        positionNativeStructPtr.ref, altitudeReferenceSystem.value, value);
 
     free(positionNativeStructPtr);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    return Geopoint.fromPtr(retValuePtr);
+    return Geopoint.fromPtr(value);
   }
 
   Geopoint createWithAltitudeReferenceSystemAndSpatialReferenceId(
       BasicGeoposition position,
       AltitudeReferenceSystem altitudeReferenceSystem,
       int spatialReferenceId) {
-    final retValuePtr = calloc<COMObject>();
+    final value = calloc<COMObject>();
     final positionNativeStructPtr = position.toNative();
 
     final hr = ptr.ref.vtable
@@ -114,7 +111,7 @@ class IGeopointFactory extends IInspectable {
                             NativeBasicGeoposition position,
                             Int32 altitudeReferenceSystem,
                             Uint32 spatialReferenceId,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> value)>>>()
             .value
             .asFunction<
                 int Function(
@@ -122,20 +119,20 @@ class IGeopointFactory extends IInspectable {
                     NativeBasicGeoposition position,
                     int altitudeReferenceSystem,
                     int spatialReferenceId,
-                    Pointer<COMObject> retValuePtr)>()(
+                    Pointer<COMObject> value)>()(
         ptr.ref.lpVtbl,
         positionNativeStructPtr.ref,
         altitudeReferenceSystem.value,
         spatialReferenceId,
-        retValuePtr);
+        value);
 
     free(positionNativeStructPtr);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    return Geopoint.fromPtr(retValuePtr);
+    return Geopoint.fromPtr(value);
   }
 }

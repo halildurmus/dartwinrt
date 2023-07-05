@@ -28,7 +28,7 @@ class IJsonObjectStatics extends IInspectable {
       IJsonObjectStatics.fromPtr(interface.toInterface(IID_IJsonObjectStatics));
 
   JsonObject parse(String input) {
-    final retValuePtr = calloc<COMObject>();
+    final jsonObject = calloc<COMObject>();
     final inputHString = input.toHString();
 
     final hr = ptr.ref.vtable
@@ -37,25 +37,25 @@ class IJsonObjectStatics extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(VTablePointer lpVtbl, IntPtr input,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> jsonObject)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int input,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, inputHString, retValuePtr);
+                    Pointer<COMObject> jsonObject)>()(
+        ptr.ref.lpVtbl, inputHString, jsonObject);
 
     WindowsDeleteString(inputHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(jsonObject);
       throw WindowsException(hr);
     }
 
-    return JsonObject.fromPtr(retValuePtr);
+    return JsonObject.fromPtr(jsonObject);
   }
 
   bool tryParse(String input, JsonObject result) {
-    final retValuePtr = calloc<Bool>();
+    final succeeded = calloc<Bool>();
 
     try {
       final inputHString = input.toHString();
@@ -69,20 +69,20 @@ class IJsonObjectStatics extends IInspectable {
                               VTablePointer lpVtbl,
                               IntPtr input,
                               Pointer<COMObject> result,
-                              Pointer<Bool> retValuePtr)>>>()
+                              Pointer<Bool> succeeded)>>>()
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, int input,
-                      Pointer<COMObject> result, Pointer<Bool> retValuePtr)>()(
-          ptr.ref.lpVtbl, inputHString, result.ptr, retValuePtr);
+                      Pointer<COMObject> result, Pointer<Bool> succeeded)>()(
+          ptr.ref.lpVtbl, inputHString, result.ptr, succeeded);
 
       WindowsDeleteString(inputHString);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return succeeded.value;
     } finally {
-      free(retValuePtr);
+      free(succeeded);
     }
   }
 }

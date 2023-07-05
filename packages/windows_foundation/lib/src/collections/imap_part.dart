@@ -19,7 +19,7 @@ final class _IMapGuidInspectable<V> extends IMap<Guid, V> {
   @override
   V lookup(Guid key) {
     final retValuePtr = calloc<COMObject>();
-    final keyNativeGuidPtr = key.toNativeGUID();
+    final keyNativeStructPtr = key.toNativeGUID();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -32,9 +32,9 @@ final class _IMapGuidInspectable<V> extends IMap<Guid, V> {
             .asFunction<
                 int Function(VTablePointer lpVtbl, GUID key,
                     Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, keyNativeGuidPtr.ref, retValuePtr);
+        ptr.ref.lpVtbl, keyNativeStructPtr.ref, retValuePtr);
 
-    free(keyNativeGuidPtr);
+    free(keyNativeStructPtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -54,7 +54,7 @@ final class _IMapGuidInspectable<V> extends IMap<Guid, V> {
     final retValuePtr = calloc<Bool>();
 
     try {
-      final keyNativeGuidPtr = key.toNativeGUID();
+      final keyNativeStructPtr = key.toNativeGUID();
 
       final hr = ptr.ref.vtable
               .elementAt(8)
@@ -67,9 +67,9 @@ final class _IMapGuidInspectable<V> extends IMap<Guid, V> {
               .asFunction<
                   int Function(VTablePointer lpVtbl, GUID key,
                       Pointer<Bool> retValuePtr)>()(
-          ptr.ref.lpVtbl, keyNativeGuidPtr.ref, retValuePtr);
+          ptr.ref.lpVtbl, keyNativeStructPtr.ref, retValuePtr);
 
-      free(keyNativeGuidPtr);
+      free(keyNativeStructPtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -84,7 +84,7 @@ final class _IMapGuidInspectable<V> extends IMap<Guid, V> {
     final retValuePtr = calloc<Bool>();
 
     try {
-      final keyNativeGuidPtr = key.toNativeGUID();
+      final keyNativeStructPtr = key.toNativeGUID();
 
       final hr =
           ptr.ref.vtable
@@ -102,11 +102,11 @@ final class _IMapGuidInspectable<V> extends IMap<Guid, V> {
                       int Function(VTablePointer lpVtbl, GUID key,
                           VTablePointer value, Pointer<Bool> retValuePtr)>()(
               ptr.ref.lpVtbl,
-              keyNativeGuidPtr.ref,
+              keyNativeStructPtr.ref,
               (value as IInspectable).ptr.ref.lpVtbl,
               retValuePtr);
 
-      free(keyNativeGuidPtr);
+      free(keyNativeStructPtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -118,7 +118,7 @@ final class _IMapGuidInspectable<V> extends IMap<Guid, V> {
 
   @override
   void remove(Guid key) {
-    final keyNativeGuidPtr = key.toNativeGUID();
+    final keyNativeStructPtr = key.toNativeGUID();
 
     final hr = ptr.ref.vtable
             .elementAt(11)
@@ -128,9 +128,9 @@ final class _IMapGuidInspectable<V> extends IMap<Guid, V> {
                         HRESULT Function(VTablePointer lpVtbl, GUID key)>>>()
             .value
             .asFunction<int Function(VTablePointer lpVtbl, GUID key)>()(
-        ptr.ref.lpVtbl, keyNativeGuidPtr.ref);
+        ptr.ref.lpVtbl, keyNativeStructPtr.ref);
 
-    free(keyNativeGuidPtr);
+    free(keyNativeStructPtr);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
@@ -142,7 +142,7 @@ final class _IMapGuidObject extends IMap<Guid, Object?> {
   @override
   Object? lookup(Guid key) {
     final retValuePtr = calloc<COMObject>();
-    final keyNativeGuidPtr = key.toNativeGUID();
+    final keyNativeStructPtr = key.toNativeGUID();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -155,9 +155,9 @@ final class _IMapGuidObject extends IMap<Guid, Object?> {
             .asFunction<
                 int Function(VTablePointer lpVtbl, GUID key,
                     Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, keyNativeGuidPtr.ref, retValuePtr);
+        ptr.ref.lpVtbl, keyNativeStructPtr.ref, retValuePtr);
 
-    free(keyNativeGuidPtr);
+    free(keyNativeStructPtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -177,7 +177,7 @@ final class _IMapGuidObject extends IMap<Guid, Object?> {
     final retValuePtr = calloc<Bool>();
 
     try {
-      final keyNativeGuidPtr = key.toNativeGUID();
+      final keyNativeStructPtr = key.toNativeGUID();
 
       final hr = ptr.ref.vtable
               .elementAt(8)
@@ -190,9 +190,9 @@ final class _IMapGuidObject extends IMap<Guid, Object?> {
               .asFunction<
                   int Function(VTablePointer lpVtbl, GUID key,
                       Pointer<Bool> retValuePtr)>()(
-          ptr.ref.lpVtbl, keyNativeGuidPtr.ref, retValuePtr);
+          ptr.ref.lpVtbl, keyNativeStructPtr.ref, retValuePtr);
 
-      free(keyNativeGuidPtr);
+      free(keyNativeStructPtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -207,8 +207,7 @@ final class _IMapGuidObject extends IMap<Guid, Object?> {
     final retValuePtr = calloc<Bool>();
 
     try {
-      final keyNativeGuidPtr = key.toNativeGUID();
-      final valuePtr = value?.intoBox().ptr.ref.lpVtbl ?? nullptr;
+      final keyNativeStructPtr = key.toNativeGUID();
 
       final hr =
           ptr.ref.vtable
@@ -225,9 +224,12 @@ final class _IMapGuidObject extends IMap<Guid, Object?> {
                   .asFunction<
                       int Function(VTablePointer lpVtbl, GUID key,
                           VTablePointer value, Pointer<Bool> retValuePtr)>()(
-              ptr.ref.lpVtbl, keyNativeGuidPtr.ref, valuePtr, retValuePtr);
+              ptr.ref.lpVtbl,
+              keyNativeStructPtr.ref,
+              value?.intoBox().ptr.ref.lpVtbl ?? nullptr,
+              retValuePtr);
 
-      free(keyNativeGuidPtr);
+      free(keyNativeStructPtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -239,7 +241,7 @@ final class _IMapGuidObject extends IMap<Guid, Object?> {
 
   @override
   void remove(Guid key) {
-    final keyNativeGuidPtr = key.toNativeGUID();
+    final keyNativeStructPtr = key.toNativeGUID();
 
     final hr = ptr.ref.vtable
             .elementAt(11)
@@ -249,9 +251,9 @@ final class _IMapGuidObject extends IMap<Guid, Object?> {
                         HRESULT Function(VTablePointer lpVtbl, GUID key)>>>()
             .value
             .asFunction<int Function(VTablePointer lpVtbl, GUID key)>()(
-        ptr.ref.lpVtbl, keyNativeGuidPtr.ref);
+        ptr.ref.lpVtbl, keyNativeStructPtr.ref);
 
-    free(keyNativeGuidPtr);
+    free(keyNativeStructPtr);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
@@ -792,7 +794,6 @@ final class _IMapStringObject extends IMap<String, Object?> {
 
     try {
       final keyHString = key.toHString();
-      final valuePtr = value?.intoBox().ptr.ref.lpVtbl ?? nullptr;
 
       final hr =
           ptr.ref.vtable
@@ -809,7 +810,10 @@ final class _IMapStringObject extends IMap<String, Object?> {
                   .asFunction<
                       int Function(VTablePointer lpVtbl, int key,
                           VTablePointer value, Pointer<Bool> retValuePtr)>()(
-              ptr.ref.lpVtbl, keyHString, valuePtr, retValuePtr);
+              ptr.ref.lpVtbl,
+              keyHString,
+              value?.intoBox().ptr.ref.lpVtbl ?? nullptr,
+              retValuePtr);
 
       WindowsDeleteString(keyHString);
 
@@ -846,7 +850,7 @@ final class _IMapStringString extends IMap<String, String> {
 
   @override
   String lookup(String key) {
-    final retValuePtr = calloc<HSTRING>();
+    final retValuePtr = calloc<IntPtr>();
 
     try {
       final keyHString = key.toHString();

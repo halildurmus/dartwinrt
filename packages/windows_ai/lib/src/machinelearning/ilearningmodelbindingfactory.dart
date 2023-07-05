@@ -31,29 +31,29 @@ class ILearningModelBindingFactory extends IInspectable {
           interface.toInterface(IID_ILearningModelBindingFactory));
 
   LearningModelBinding createFromSession(LearningModelSession session) {
-    final retValuePtr = calloc<COMObject>();
-    final sessionPtr = session.ptr.ref.lpVtbl;
+    final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer session,
-                            Pointer<COMObject> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer session,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, sessionPtr, retValuePtr);
+    final hr =
+        ptr.ref.vtable
+                .elementAt(6)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                VTablePointer lpVtbl,
+                                VTablePointer session,
+                                Pointer<COMObject> value)>>>()
+                .value
+                .asFunction<
+                    int Function(VTablePointer lpVtbl, VTablePointer session,
+                        Pointer<COMObject> value)>()(
+            ptr.ref.lpVtbl, session.ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    return LearningModelBinding.fromPtr(retValuePtr);
+    return LearningModelBinding.fromPtr(value);
   }
 }

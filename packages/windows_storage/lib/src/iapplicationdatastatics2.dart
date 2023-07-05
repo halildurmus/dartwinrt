@@ -30,8 +30,7 @@ class IApplicationDataStatics2 extends IInspectable {
           interface.toInterface(IID_IApplicationDataStatics2));
 
   Future<ApplicationData?> getForUserAsync(User? user) {
-    final retValuePtr = calloc<COMObject>();
-    final userPtr = user == null ? nullptr : user.ptr.ref.lpVtbl;
+    final getForUserOperation = calloc<COMObject>();
 
     final hr =
         ptr.ref.vtable
@@ -42,20 +41,22 @@ class IApplicationDataStatics2 extends IInspectable {
                             HRESULT Function(
                                 VTablePointer lpVtbl,
                                 VTablePointer user,
-                                Pointer<COMObject> retValuePtr)>>>()
+                                Pointer<COMObject> getForUserOperation)>>>()
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer user,
-                        Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl, userPtr, retValuePtr);
+                        Pointer<COMObject> getForUserOperation)>()(
+            ptr.ref.lpVtbl,
+            user == null ? nullptr : user.ptr.ref.lpVtbl,
+            getForUserOperation);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(getForUserOperation);
       throw WindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<ApplicationData?>.fromPtr(
-        retValuePtr,
+        getForUserOperation,
         creator: ApplicationData.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }

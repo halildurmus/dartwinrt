@@ -32,50 +32,50 @@ class IDataWriter extends IInspectable {
       IDataWriter.fromPtr(interface.toInterface(IID_IDataWriter));
 
   int get unstoredBufferLength {
-    final retValuePtr = calloc<Uint32>();
+    final value = calloc<Uint32>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          Pointer<Uint32> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Uint32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(6)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<Uint32> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return value.value;
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
   UnicodeEncoding get unicodeEncoding {
-    final retValuePtr = calloc<Int32>();
+    final value = calloc<Int32>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Int32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(7)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<Int32> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return UnicodeEncoding.from(retValuePtr.value);
+      return UnicodeEncoding.from(value.value);
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
@@ -94,26 +94,26 @@ class IDataWriter extends IInspectable {
   }
 
   ByteOrder get byteOrder {
-    final retValuePtr = calloc<Int32>();
+    final value = calloc<Int32>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(9)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Int32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(9)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<Int32> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return ByteOrder.from(retValuePtr.value);
+      return ByteOrder.from(value.value);
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
@@ -148,7 +148,7 @@ class IDataWriter extends IInspectable {
   void writeBytes(List<int> value) {
     final pValueArray = calloc<Uint8>(value.length);
     for (var i = 0; i < value.length; i++) {
-      pValueArray[i] = value.elementAt(i);
+      pValueArray[i] = value[i];
     }
 
     final hr = ptr.ref.vtable
@@ -170,8 +170,6 @@ class IDataWriter extends IInspectable {
   }
 
   void writeBuffer(IBuffer? buffer) {
-    final bufferPtr = buffer == null ? nullptr : buffer.ptr.ref.lpVtbl;
-
     final hr = ptr.ref.vtable
             .elementAt(13)
             .cast<
@@ -182,25 +180,28 @@ class IDataWriter extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer buffer)>()(
-        ptr.ref.lpVtbl, bufferPtr);
+        ptr.ref.lpVtbl, buffer == null ? nullptr : buffer.ptr.ref.lpVtbl);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
   void writeBufferRange(IBuffer? buffer, int start, int count) {
-    final bufferPtr = buffer == null ? nullptr : buffer.ptr.ref.lpVtbl;
-
-    final hr = ptr.ref.vtable
-        .elementAt(14)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, VTablePointer buffer,
-                        Uint32 start, Uint32 count)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, VTablePointer buffer, int start,
-                int count)>()(ptr.ref.lpVtbl, bufferPtr, start, count);
+    final hr =
+        ptr.ref.vtable
+                .elementAt(14)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                VTablePointer lpVtbl,
+                                VTablePointer buffer,
+                                Uint32 start,
+                                Uint32 count)>>>()
+                .value
+                .asFunction<
+                    int Function(VTablePointer lpVtbl, VTablePointer buffer,
+                        int start, int count)>()(ptr.ref.lpVtbl,
+            buffer == null ? nullptr : buffer.ptr.ref.lpVtbl, start, count);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
@@ -220,7 +221,7 @@ class IDataWriter extends IInspectable {
   }
 
   void writeGuid(Guid value) {
-    final valueNativeGuidPtr = value.toNativeGUID();
+    final valueNativeStructPtr = value.toNativeGUID();
 
     final hr = ptr.ref.vtable
             .elementAt(16)
@@ -230,9 +231,9 @@ class IDataWriter extends IInspectable {
                         HRESULT Function(VTablePointer lpVtbl, GUID value)>>>()
             .value
             .asFunction<int Function(VTablePointer lpVtbl, GUID value)>()(
-        ptr.ref.lpVtbl, valueNativeGuidPtr.ref);
+        ptr.ref.lpVtbl, valueNativeStructPtr.ref);
 
-    free(valueNativeGuidPtr);
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
@@ -386,7 +387,7 @@ class IDataWriter extends IInspectable {
   }
 
   int writeString(String value) {
-    final retValuePtr = calloc<Uint32>();
+    final codeUnitCount = calloc<Uint32>();
 
     try {
       final valueHString = value.toHString();
@@ -397,25 +398,25 @@ class IDataWriter extends IInspectable {
                   Pointer<
                       NativeFunction<
                           HRESULT Function(VTablePointer lpVtbl, IntPtr value,
-                              Pointer<Uint32> retValuePtr)>>>()
+                              Pointer<Uint32> codeUnitCount)>>>()
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, int value,
-                      Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, valueHString, retValuePtr);
+                      Pointer<Uint32> codeUnitCount)>()(
+          ptr.ref.lpVtbl, valueHString, codeUnitCount);
 
       WindowsDeleteString(valueHString);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return codeUnitCount.value;
     } finally {
-      free(retValuePtr);
+      free(codeUnitCount);
     }
   }
 
   int measureString(String value) {
-    final retValuePtr = calloc<Uint32>();
+    final codeUnitCount = calloc<Uint32>();
 
     try {
       final valueHString = value.toHString();
@@ -426,125 +427,126 @@ class IDataWriter extends IInspectable {
                   Pointer<
                       NativeFunction<
                           HRESULT Function(VTablePointer lpVtbl, IntPtr value,
-                              Pointer<Uint32> retValuePtr)>>>()
+                              Pointer<Uint32> codeUnitCount)>>>()
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, int value,
-                      Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, valueHString, retValuePtr);
+                      Pointer<Uint32> codeUnitCount)>()(
+          ptr.ref.lpVtbl, valueHString, codeUnitCount);
 
       WindowsDeleteString(valueHString);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return codeUnitCount.value;
     } finally {
-      free(retValuePtr);
+      free(codeUnitCount);
     }
   }
 
   Future<int> storeAsync() {
-    final retValuePtr = calloc<COMObject>();
+    final operation = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
         .elementAt(29)
         .cast<
             Pointer<
                 NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
+                    HRESULT Function(
+                        VTablePointer lpVtbl, Pointer<COMObject> operation)>>>()
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                Pointer<COMObject> operation)>()(ptr.ref.lpVtbl, operation);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
     final asyncOperation =
-        IAsyncOperation<int>.fromPtr(retValuePtr, intType: IntType.uint32);
+        IAsyncOperation<int>.fromPtr(operation, intType: IntType.uint32);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<bool> flushAsync() {
-    final retValuePtr = calloc<COMObject>();
+    final operation = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
         .elementAt(30)
         .cast<
             Pointer<
                 NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
+                    HRESULT Function(
+                        VTablePointer lpVtbl, Pointer<COMObject> operation)>>>()
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                Pointer<COMObject> operation)>()(ptr.ref.lpVtbl, operation);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<bool>.fromPtr(retValuePtr);
+    final asyncOperation = IAsyncOperation<bool>.fromPtr(operation);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   IBuffer? detachBuffer() {
-    final retValuePtr = calloc<COMObject>();
+    final buffer = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
         .elementAt(31)
         .cast<
             Pointer<
                 NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
+                    HRESULT Function(
+                        VTablePointer lpVtbl, Pointer<COMObject> buffer)>>>()
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                Pointer<COMObject> buffer)>()(ptr.ref.lpVtbl, buffer);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(buffer);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (buffer.isNull) {
+      free(buffer);
       return null;
     }
 
-    return IBuffer.fromPtr(retValuePtr);
+    return IBuffer.fromPtr(buffer);
   }
 
   IOutputStream? detachStream() {
-    final retValuePtr = calloc<COMObject>();
+    final outputStream = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-        .elementAt(32)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+            .elementAt(32)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(VTablePointer lpVtbl,
+                            Pointer<COMObject> outputStream)>>>()
+            .value
+            .asFunction<
+                int Function(
+                    VTablePointer lpVtbl, Pointer<COMObject> outputStream)>()(
+        ptr.ref.lpVtbl, outputStream);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(outputStream);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (outputStream.isNull) {
+      free(outputStream);
       return null;
     }
 
-    return IOutputStream.fromPtr(retValuePtr);
+    return IOutputStream.fromPtr(outputStream);
   }
 }

@@ -31,31 +31,31 @@ class IMemoryBuffer extends IInspectable implements IClosable {
       IMemoryBuffer.fromPtr(interface.toInterface(IID_IMemoryBuffer));
 
   IMemoryBufferReference? createReference() {
-    final retValuePtr = calloc<COMObject>();
+    final reference = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
         .elementAt(6)
         .cast<
             Pointer<
                 NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
+                    HRESULT Function(
+                        VTablePointer lpVtbl, Pointer<COMObject> reference)>>>()
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                Pointer<COMObject> reference)>()(ptr.ref.lpVtbl, reference);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(reference);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (reference.isNull) {
+      free(reference);
       return null;
     }
 
-    return IMemoryBufferReference.fromPtr(retValuePtr);
+    return IMemoryBufferReference.fromPtr(reference);
   }
 
   late final _iClosable = IClosable.from(this);

@@ -30,29 +30,29 @@ class IToastNotificationFactory extends IInspectable {
           interface.toInterface(IID_IToastNotificationFactory));
 
   ToastNotification createToastNotification(XmlDocument content) {
-    final retValuePtr = calloc<COMObject>();
-    final contentPtr = content.ptr.ref.lpVtbl;
+    final value = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer content,
-                            Pointer<COMObject> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer content,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, contentPtr, retValuePtr);
+    final hr =
+        ptr.ref.vtable
+                .elementAt(6)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                VTablePointer lpVtbl,
+                                VTablePointer content,
+                                Pointer<COMObject> value)>>>()
+                .value
+                .asFunction<
+                    int Function(VTablePointer lpVtbl, VTablePointer content,
+                        Pointer<COMObject> value)>()(
+            ptr.ref.lpVtbl, content.ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    return ToastNotification.fromPtr(retValuePtr);
+    return ToastNotification.fromPtr(value);
   }
 }

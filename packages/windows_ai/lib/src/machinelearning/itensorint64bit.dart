@@ -26,28 +26,28 @@ class ITensorInt64Bit extends IInspectable {
       ITensorInt64Bit.fromPtr(interface.toInterface(IID_ITensorInt64Bit));
 
   List<int> getAsVectorView() {
-    final retValuePtr = calloc<COMObject>();
+    final result = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
         .elementAt(6)
         .cast<
             Pointer<
                 NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
+                    HRESULT Function(
+                        VTablePointer lpVtbl, Pointer<COMObject> result)>>>()
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                Pointer<COMObject> result)>()(ptr.ref.lpVtbl, result);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(result);
       throw WindowsException(hr);
     }
 
-    final vectorView = IVectorView<int>.fromPtr(retValuePtr,
-        iterableIid: '{7784427e-f9cc-518d-964b-e50d5ce727f1}',
-        intType: IntType.int64);
-    return vectorView.toList();
+    return IVectorView<int>.fromPtr(result,
+            iterableIid: '{7784427e-f9cc-518d-964b-e50d5ce727f1}',
+            intType: IntType.int64)
+        .toList();
   }
 }

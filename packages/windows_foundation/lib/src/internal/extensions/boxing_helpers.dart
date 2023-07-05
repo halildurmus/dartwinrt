@@ -32,8 +32,8 @@ extension IntoBoxHelper on Object {
     IntType intType = IntType.int32,
   }) {
     // Type promotion doesn't work for `this`.
-    // TODO: Remove when https://github.com/dart-lang/language/issues/926 is
-    // fixed
+    // TODO(halildurmus): Remove when
+    // https://github.com/dart-lang/language/issues/926 is fixed
     final self = this;
     // Since an object is a reference type, it is also a valid property value
     // and does not need to be boxed.
@@ -63,7 +63,8 @@ extension IntoBoxHelper on Object {
     if (self is List<Size>) return self.toPropertyValue();
     if (self is List<String>) return self.toPropertyValue();
 
-    // TODO: Support boxing enums and other structs (e.g. BasicGeoposition)
+    // TODO(halildurmus): Support boxing enums and other structs (e.g.
+    // BasicGeoposition)
 
     throw UnsupportedError('Cannot box value of type $runtimeType');
   }
@@ -399,15 +400,15 @@ extension StringListHelpers on List<String> {
 
 /// @nodoc
 extension WinRTEnumHelper on WinRTEnum {
-  // TODO: Boxing enums are not supported yet.
+  // TODO(halildurmus): Boxing enums are not supported yet.
   IReference<dynamic> toReference() =>
       throw UnsupportedError('Cannot box value of type $runtimeType');
 }
 
 /// @nodoc
 extension WinRTStructHelper on WinRTStruct {
-  // TODO: Boxing structs are not supported yet (except for Guid, Point, Rect,
-  // and Size).
+  // TODO(halildurmus): Boxing structs are not supported yet (except for Guid,
+  // Point, Rect, and Size).
   IReference<dynamic> toReference() =>
       throw UnsupportedError('Cannot box value of type $runtimeType');
 }

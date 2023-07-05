@@ -29,7 +29,7 @@ class IPhoneNumberInfoFactory extends IInspectable {
           interface.toInterface(IID_IPhoneNumberInfoFactory));
 
   PhoneNumberInfo create(String number) {
-    final retValuePtr = calloc<COMObject>();
+    final result = calloc<COMObject>();
     final numberHString = number.toHString();
 
     final hr = ptr.ref.vtable
@@ -38,20 +38,20 @@ class IPhoneNumberInfoFactory extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(VTablePointer lpVtbl, IntPtr number,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> result)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int number,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, numberHString, retValuePtr);
+                    Pointer<COMObject> result)>()(
+        ptr.ref.lpVtbl, numberHString, result);
 
     WindowsDeleteString(numberHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(result);
       throw WindowsException(hr);
     }
 
-    return PhoneNumberInfo.fromPtr(retValuePtr);
+    return PhoneNumberInfo.fromPtr(result);
   }
 }

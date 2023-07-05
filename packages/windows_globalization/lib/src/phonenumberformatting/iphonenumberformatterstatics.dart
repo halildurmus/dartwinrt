@@ -54,7 +54,7 @@ class IPhoneNumberFormatterStatics extends IInspectable {
   }
 
   int getCountryCodeForRegion(String regionCode) {
-    final retValuePtr = calloc<Int32>();
+    final result = calloc<Int32>();
 
     try {
       final regionCodeHString = regionCode.toHString();
@@ -65,29 +65,27 @@ class IPhoneNumberFormatterStatics extends IInspectable {
                   .cast<
                       Pointer<
                           NativeFunction<
-                              HRESULT Function(
-                                  VTablePointer lpVtbl,
-                                  IntPtr regionCode,
-                                  Pointer<Int32> retValuePtr)>>>()
+                              HRESULT Function(VTablePointer lpVtbl,
+                                  IntPtr regionCode, Pointer<Int32> result)>>>()
                   .value
                   .asFunction<
                       int Function(VTablePointer lpVtbl, int regionCode,
-                          Pointer<Int32> retValuePtr)>()(
-              ptr.ref.lpVtbl, regionCodeHString, retValuePtr);
+                          Pointer<Int32> result)>()(
+              ptr.ref.lpVtbl, regionCodeHString, result);
 
       WindowsDeleteString(regionCodeHString);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return result.value;
     } finally {
-      free(retValuePtr);
+      free(result);
     }
   }
 
   String getNationalDirectDialingPrefixForRegion(
       String regionCode, bool stripNonDigit) {
-    final retValuePtr = calloc<HSTRING>();
+    final result = calloc<IntPtr>();
 
     try {
       final regionCodeHString = regionCode.toHString();
@@ -102,26 +100,26 @@ class IPhoneNumberFormatterStatics extends IInspectable {
                                   VTablePointer lpVtbl,
                                   IntPtr regionCode,
                                   Bool stripNonDigit,
-                                  Pointer<IntPtr> retValuePtr)>>>()
+                                  Pointer<IntPtr> result)>>>()
                   .value
                   .asFunction<
                       int Function(VTablePointer lpVtbl, int regionCode,
-                          bool stripNonDigit, Pointer<IntPtr> retValuePtr)>()(
-              ptr.ref.lpVtbl, regionCodeHString, stripNonDigit, retValuePtr);
+                          bool stripNonDigit, Pointer<IntPtr> result)>()(
+              ptr.ref.lpVtbl, regionCodeHString, stripNonDigit, result);
 
       WindowsDeleteString(regionCodeHString);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.toDartString();
+      return result.toDartString();
     } finally {
-      WindowsDeleteString(retValuePtr.value);
-      free(retValuePtr);
+      WindowsDeleteString(result.value);
+      free(result);
     }
   }
 
   String wrapWithLeftToRightMarkers(String number) {
-    final retValuePtr = calloc<HSTRING>();
+    final result = calloc<IntPtr>();
 
     try {
       final numberHString = number.toHString();
@@ -132,21 +130,21 @@ class IPhoneNumberFormatterStatics extends IInspectable {
                   Pointer<
                       NativeFunction<
                           HRESULT Function(VTablePointer lpVtbl, IntPtr number,
-                              Pointer<IntPtr> retValuePtr)>>>()
+                              Pointer<IntPtr> result)>>>()
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, int number,
-                      Pointer<IntPtr> retValuePtr)>()(
-          ptr.ref.lpVtbl, numberHString, retValuePtr);
+                      Pointer<IntPtr> result)>()(
+          ptr.ref.lpVtbl, numberHString, result);
 
       WindowsDeleteString(numberHString);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.toDartString();
+      return result.toDartString();
     } finally {
-      WindowsDeleteString(retValuePtr.value);
-      free(retValuePtr);
+      WindowsDeleteString(result.value);
+      free(result);
     }
   }
 }

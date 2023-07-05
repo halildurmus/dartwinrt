@@ -30,9 +30,7 @@ class IToastCollectionManager extends IInspectable {
           interface.toInterface(IID_IToastCollectionManager));
 
   Future<void> saveToastCollectionAsync(ToastCollection? collection) {
-    final retValuePtr = calloc<COMObject>();
-    final collectionPtr =
-        collection == null ? nullptr : collection.ptr.ref.lpVtbl;
+    final operation = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -42,43 +40,43 @@ class IToastCollectionManager extends IInspectable {
                         HRESULT Function(
                             VTablePointer lpVtbl,
                             VTablePointer collection,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> operation)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer collection,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, collectionPtr, retValuePtr);
+                    Pointer<COMObject> operation)>()(ptr.ref.lpVtbl,
+        collection == null ? nullptr : collection.ptr.ref.lpVtbl, operation);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
-    return IAsyncAction.fromPtr(retValuePtr).toFuture();
+    return IAsyncAction.fromPtr(operation).toFuture();
   }
 
   Future<List<ToastCollection?>> findAllToastCollectionsAsync() {
-    final retValuePtr = calloc<COMObject>();
+    final operation = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
         .elementAt(7)
         .cast<
             Pointer<
                 NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
+                    HRESULT Function(
+                        VTablePointer lpVtbl, Pointer<COMObject> operation)>>>()
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                Pointer<COMObject> operation)>()(ptr.ref.lpVtbl, operation);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
     final asyncOperation =
-        IAsyncOperation<IVectorView<ToastCollection?>>.fromPtr(retValuePtr,
+        IAsyncOperation<IVectorView<ToastCollection?>>.fromPtr(operation,
             creator: (ptr) => IVectorView.fromPtr(ptr,
                 creator: ToastCollection.fromPtr,
                 iterableIid: '{8928d527-db5d-5a10-ae9b-430fa0906e74}'));
@@ -86,7 +84,7 @@ class IToastCollectionManager extends IInspectable {
   }
 
   Future<ToastCollection?> getToastCollectionAsync(String collectionId) {
-    final retValuePtr = calloc<COMObject>();
+    final operation = calloc<COMObject>();
     final collectionIdHString = collectionId.toHString();
 
     final hr =
@@ -98,28 +96,27 @@ class IToastCollectionManager extends IInspectable {
                             HRESULT Function(
                                 VTablePointer lpVtbl,
                                 IntPtr collectionId,
-                                Pointer<COMObject> retValuePtr)>>>()
+                                Pointer<COMObject> operation)>>>()
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, int collectionId,
-                        Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl, collectionIdHString, retValuePtr);
+                        Pointer<COMObject> operation)>()(
+            ptr.ref.lpVtbl, collectionIdHString, operation);
 
     WindowsDeleteString(collectionIdHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<ToastCollection?>.fromPtr(
-        retValuePtr,
+    final asyncOperation = IAsyncOperation<ToastCollection?>.fromPtr(operation,
         creator: ToastCollection.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<void> removeToastCollectionAsync(String collectionId) {
-    final retValuePtr = calloc<COMObject>();
+    final operation = calloc<COMObject>();
     final collectionIdHString = collectionId.toHString();
 
     final hr =
@@ -131,96 +128,96 @@ class IToastCollectionManager extends IInspectable {
                             HRESULT Function(
                                 VTablePointer lpVtbl,
                                 IntPtr collectionId,
-                                Pointer<COMObject> retValuePtr)>>>()
+                                Pointer<COMObject> operation)>>>()
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, int collectionId,
-                        Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl, collectionIdHString, retValuePtr);
+                        Pointer<COMObject> operation)>()(
+            ptr.ref.lpVtbl, collectionIdHString, operation);
 
     WindowsDeleteString(collectionIdHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
-    return IAsyncAction.fromPtr(retValuePtr).toFuture();
+    return IAsyncAction.fromPtr(operation).toFuture();
   }
 
   Future<void> removeAllToastCollectionsAsync() {
-    final retValuePtr = calloc<COMObject>();
+    final operation = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
         .elementAt(10)
         .cast<
             Pointer<
                 NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
+                    HRESULT Function(
+                        VTablePointer lpVtbl, Pointer<COMObject> operation)>>>()
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                Pointer<COMObject> operation)>()(ptr.ref.lpVtbl, operation);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
-    return IAsyncAction.fromPtr(retValuePtr).toFuture();
+    return IAsyncAction.fromPtr(operation).toFuture();
   }
 
   User? get user {
-    final retValuePtr = calloc<COMObject>();
+    final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-        .elementAt(11)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+            .elementAt(11)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
+        ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (value.isNull) {
+      free(value);
       return null;
     }
 
-    return User.fromPtr(retValuePtr);
+    return User.fromPtr(value);
   }
 
   String get appId {
-    final retValuePtr = calloc<HSTRING>();
+    final value = calloc<IntPtr>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(12)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          Pointer<IntPtr> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(12)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.toDartString();
+      return value.toDartString();
     } finally {
-      WindowsDeleteString(retValuePtr.value);
-      free(retValuePtr);
+      WindowsDeleteString(value.value);
+      free(value);
     }
   }
 }

@@ -29,7 +29,7 @@ class IWebProviderErrorFactory extends IInspectable {
           interface.toInterface(IID_IWebProviderErrorFactory));
 
   WebProviderError create(int errorCode, String errorMessage) {
-    final retValuePtr = calloc<COMObject>();
+    final webProviderError = calloc<COMObject>();
     final errorMessageHString = errorMessage.toHString();
 
     final hr = ptr.ref.vtable
@@ -41,20 +41,20 @@ class IWebProviderErrorFactory extends IInspectable {
                             VTablePointer lpVtbl,
                             Uint32 errorCode,
                             IntPtr errorMessage,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> webProviderError)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int errorCode,
-                    int errorMessage, Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, errorCode, errorMessageHString, retValuePtr);
+                    int errorMessage, Pointer<COMObject> webProviderError)>()(
+        ptr.ref.lpVtbl, errorCode, errorMessageHString, webProviderError);
 
     WindowsDeleteString(errorMessageHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(webProviderError);
       throw WindowsException(hr);
     }
 
-    return WebProviderError.fromPtr(retValuePtr);
+    return WebProviderError.fromPtr(webProviderError);
   }
 }

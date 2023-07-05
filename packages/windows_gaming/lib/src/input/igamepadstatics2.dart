@@ -30,9 +30,7 @@ class IGamepadStatics2 extends IInspectable implements IGamepadStatics {
       IGamepadStatics2.fromPtr(interface.toInterface(IID_IGamepadStatics2));
 
   Gamepad? fromGameController(IGameController? gameController) {
-    final retValuePtr = calloc<COMObject>();
-    final gameControllerPtr =
-        gameController == null ? nullptr : gameController.ptr.ref.lpVtbl;
+    final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -42,24 +40,26 @@ class IGamepadStatics2 extends IInspectable implements IGamepadStatics {
                         HRESULT Function(
                             VTablePointer lpVtbl,
                             VTablePointer gameController,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> value)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer gameController,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, gameControllerPtr, retValuePtr);
+                    Pointer<COMObject> value)>()(
+        ptr.ref.lpVtbl,
+        gameController == null ? nullptr : gameController.ptr.ref.lpVtbl,
+        value);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (value.isNull) {
+      free(value);
       return null;
     }
 
-    return Gamepad.fromPtr(retValuePtr);
+    return Gamepad.fromPtr(value);
   }
 
   late final _iGamepadStatics = IGamepadStatics.from(this);

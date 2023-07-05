@@ -31,8 +31,7 @@ class IXmlDocumentStatics extends IInspectable {
           interface.toInterface(IID_IXmlDocumentStatics));
 
   Future<XmlDocument?> loadFromUriAsync(Uri? uri) {
-    final retValuePtr = calloc<COMObject>();
-    final uriUri = uri?.toWinRTUri();
+    final asyncInfo = calloc<COMObject>();
 
     final hr =
         ptr.ref.vtable
@@ -43,29 +42,26 @@ class IXmlDocumentStatics extends IInspectable {
                             HRESULT Function(
                                 VTablePointer lpVtbl,
                                 VTablePointer uri,
-                                Pointer<COMObject> retValuePtr)>>>()
+                                Pointer<COMObject> asyncInfo)>>>()
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer uri,
-                        Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl,
-            uriUri == null ? nullptr : uriUri.ptr.ref.lpVtbl, retValuePtr);
+                        Pointer<COMObject> asyncInfo)>()(ptr.ref.lpVtbl,
+            uri?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr, asyncInfo);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(asyncInfo);
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<XmlDocument?>.fromPtr(retValuePtr,
+    final asyncOperation = IAsyncOperation<XmlDocument?>.fromPtr(asyncInfo,
         creator: XmlDocument.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<XmlDocument?> loadFromUriWithSettingsAsync(
       Uri? uri, XmlLoadSettings? loadSettings) {
-    final retValuePtr = calloc<COMObject>();
-    final uriUri = uri?.toWinRTUri();
-    final loadSettingsPtr =
-        loadSettings == null ? nullptr : loadSettings.ptr.ref.lpVtbl;
+    final asyncInfo = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(7)
@@ -76,32 +72,31 @@ class IXmlDocumentStatics extends IInspectable {
                             VTablePointer lpVtbl,
                             VTablePointer uri,
                             VTablePointer loadSettings,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> asyncInfo)>>>()
             .value
             .asFunction<
                 int Function(
                     VTablePointer lpVtbl,
                     VTablePointer uri,
                     VTablePointer loadSettings,
-                    Pointer<COMObject> retValuePtr)>()(
+                    Pointer<COMObject> asyncInfo)>()(
         ptr.ref.lpVtbl,
-        uriUri == null ? nullptr : uriUri.ptr.ref.lpVtbl,
-        loadSettingsPtr,
-        retValuePtr);
+        uri?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr,
+        loadSettings == null ? nullptr : loadSettings.ptr.ref.lpVtbl,
+        asyncInfo);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(asyncInfo);
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<XmlDocument?>.fromPtr(retValuePtr,
+    final asyncOperation = IAsyncOperation<XmlDocument?>.fromPtr(asyncInfo,
         creator: XmlDocument.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<XmlDocument?> loadFromFileAsync(IStorageFile? file) {
-    final retValuePtr = calloc<COMObject>();
-    final filePtr = file == null ? nullptr : file.ptr.ref.lpVtbl;
+    final asyncInfo = calloc<COMObject>();
 
     final hr =
         ptr.ref.vtable
@@ -112,29 +107,26 @@ class IXmlDocumentStatics extends IInspectable {
                             HRESULT Function(
                                 VTablePointer lpVtbl,
                                 VTablePointer file,
-                                Pointer<COMObject> retValuePtr)>>>()
+                                Pointer<COMObject> asyncInfo)>>>()
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer file,
-                        Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl, filePtr, retValuePtr);
+                        Pointer<COMObject> asyncInfo)>()(ptr.ref.lpVtbl,
+            file == null ? nullptr : file.ptr.ref.lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(asyncInfo);
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<XmlDocument?>.fromPtr(retValuePtr,
+    final asyncOperation = IAsyncOperation<XmlDocument?>.fromPtr(asyncInfo,
         creator: XmlDocument.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<XmlDocument?> loadFromFileWithSettingsAsync(
       IStorageFile? file, XmlLoadSettings? loadSettings) {
-    final retValuePtr = calloc<COMObject>();
-    final filePtr = file == null ? nullptr : file.ptr.ref.lpVtbl;
-    final loadSettingsPtr =
-        loadSettings == null ? nullptr : loadSettings.ptr.ref.lpVtbl;
+    final asyncInfo = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(9)
@@ -145,22 +137,25 @@ class IXmlDocumentStatics extends IInspectable {
                             VTablePointer lpVtbl,
                             VTablePointer file,
                             VTablePointer loadSettings,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> asyncInfo)>>>()
             .value
             .asFunction<
                 int Function(
                     VTablePointer lpVtbl,
                     VTablePointer file,
                     VTablePointer loadSettings,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, filePtr, loadSettingsPtr, retValuePtr);
+                    Pointer<COMObject> asyncInfo)>()(
+        ptr.ref.lpVtbl,
+        file == null ? nullptr : file.ptr.ref.lpVtbl,
+        loadSettings == null ? nullptr : loadSettings.ptr.ref.lpVtbl,
+        asyncInfo);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(asyncInfo);
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<XmlDocument?>.fromPtr(retValuePtr,
+    final asyncOperation = IAsyncOperation<XmlDocument?>.fromPtr(asyncInfo,
         creator: XmlDocument.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }

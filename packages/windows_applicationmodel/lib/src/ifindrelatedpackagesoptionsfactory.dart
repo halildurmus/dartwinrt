@@ -31,29 +31,28 @@ class IFindRelatedPackagesOptionsFactory extends IInspectable {
           interface.toInterface(IID_IFindRelatedPackagesOptionsFactory));
 
   FindRelatedPackagesOptions createInstance(PackageRelationship relationship) {
-    final retValuePtr = calloc<COMObject>();
+    final value = calloc<COMObject>();
 
-    final hr =
-        ptr.ref.vtable
-                .elementAt(6)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                Int32 relationship,
-                                Pointer<COMObject> retValuePtr)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, int relationship,
-                        Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl, relationship.value, retValuePtr);
+    final hr = ptr.ref.vtable
+        .elementAt(6)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl, Int32 relationship,
+                        Pointer<COMObject> value)>>>()
+        .value
+        .asFunction<
+            int Function(
+                VTablePointer lpVtbl,
+                int relationship,
+                Pointer<COMObject>
+                    value)>()(ptr.ref.lpVtbl, relationship.value, value);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    return FindRelatedPackagesOptions.fromPtr(retValuePtr);
+    return FindRelatedPackagesOptions.fromPtr(value);
   }
 }

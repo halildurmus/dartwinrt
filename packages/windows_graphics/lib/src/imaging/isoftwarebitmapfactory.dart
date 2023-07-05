@@ -31,7 +31,7 @@ class ISoftwareBitmapFactory extends IInspectable {
           interface.toInterface(IID_ISoftwareBitmapFactory));
 
   SoftwareBitmap create(BitmapPixelFormat format, int width, int height) {
-    final retValuePtr = calloc<COMObject>();
+    final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -43,24 +43,24 @@ class ISoftwareBitmapFactory extends IInspectable {
                             Int32 format,
                             Int32 width,
                             Int32 height,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> value)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int format, int width,
-                    int height, Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, format.value, width, height, retValuePtr);
+                    int height, Pointer<COMObject> value)>()(
+        ptr.ref.lpVtbl, format.value, width, height, value);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    return SoftwareBitmap.fromPtr(retValuePtr);
+    return SoftwareBitmap.fromPtr(value);
   }
 
   SoftwareBitmap createWithAlpha(
       BitmapPixelFormat format, int width, int height, BitmapAlphaMode alpha) {
-    final retValuePtr = calloc<COMObject>();
+    final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(7)
@@ -73,18 +73,18 @@ class ISoftwareBitmapFactory extends IInspectable {
                             Int32 width,
                             Int32 height,
                             Int32 alpha,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> value)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int format, int width,
-                    int height, int alpha, Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, format.value, width, height, alpha.value, retValuePtr);
+                    int height, int alpha, Pointer<COMObject> value)>()(
+        ptr.ref.lpVtbl, format.value, width, height, alpha.value, value);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    return SoftwareBitmap.fromPtr(retValuePtr);
+    return SoftwareBitmap.fromPtr(value);
   }
 }

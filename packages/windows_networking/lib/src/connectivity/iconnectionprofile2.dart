@@ -35,190 +35,190 @@ class IConnectionProfile2 extends IInspectable {
           interface.toInterface(IID_IConnectionProfile2));
 
   bool get isWwanConnectionProfile {
-    final retValuePtr = calloc<Bool>();
+    final value = calloc<Bool>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Bool> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Bool> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(6)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<Bool> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Bool> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return value.value;
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
   bool get isWlanConnectionProfile {
-    final retValuePtr = calloc<Bool>();
+    final value = calloc<Bool>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Bool> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Bool> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(7)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<Bool> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Bool> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return value.value;
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
   WwanConnectionProfileDetails? get wwanConnectionProfileDetails {
-    final retValuePtr = calloc<COMObject>();
+    final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-        .elementAt(8)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+            .elementAt(8)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
+        ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (value.isNull) {
+      free(value);
       return null;
     }
 
-    return WwanConnectionProfileDetails.fromPtr(retValuePtr);
+    return WwanConnectionProfileDetails.fromPtr(value);
   }
 
   WlanConnectionProfileDetails? get wlanConnectionProfileDetails {
-    final retValuePtr = calloc<COMObject>();
+    final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-        .elementAt(9)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+            .elementAt(9)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
+        ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (value.isNull) {
+      free(value);
       return null;
     }
 
-    return WlanConnectionProfileDetails.fromPtr(retValuePtr);
+    return WlanConnectionProfileDetails.fromPtr(value);
   }
 
   Guid? get serviceProviderGuid {
-    final retValuePtr = calloc<COMObject>();
+    final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-        .elementAt(10)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+            .elementAt(10)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
+        ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (value.isNull) {
+      free(value);
       return null;
     }
 
-    final reference = IReference<Guid?>.fromPtr(retValuePtr,
-        referenceIid: '{7d50f649-632c-51f9-849a-ee49428933ea}');
-    return reference.value;
+    return IReference<Guid?>.fromPtr(value,
+            referenceIid: '{7d50f649-632c-51f9-849a-ee49428933ea}')
+        .value;
   }
 
   int? getSignalBars() {
-    final retValuePtr = calloc<COMObject>();
+    final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-        .elementAt(11)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+            .elementAt(11)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
+        ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (value.isNull) {
+      free(value);
       return null;
     }
 
-    final reference = IReference<int?>.fromPtr(retValuePtr,
-        referenceIid: '{e5198cc8-2873-55f5-b0a1-84ff9e4aad62}');
-    return reference.value;
+    return IReference<int?>.fromPtr(value,
+            referenceIid: '{e5198cc8-2873-55f5-b0a1-84ff9e4aad62}')
+        .value;
   }
 
   DomainConnectivityLevel getDomainConnectivityLevel() {
-    final retValuePtr = calloc<Int32>();
+    final value = calloc<Int32>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(12)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Int32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(12)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<Int32> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return DomainConnectivityLevel.from(retValuePtr.value);
+      return DomainConnectivityLevel.from(value.value);
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
@@ -227,7 +227,7 @@ class IConnectionProfile2 extends IInspectable {
       DateTime endTime,
       DataUsageGranularity granularity,
       NetworkUsageStates states) {
-    final retValuePtr = calloc<COMObject>();
+    final value = calloc<COMObject>();
     final statesNativeStructPtr = states.toNative();
 
     final hr = ptr.ref.vtable
@@ -241,7 +241,7 @@ class IConnectionProfile2 extends IInspectable {
                             Int64 endTime,
                             Int32 granularity,
                             NativeNetworkUsageStates states,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> value)>>>()
             .value
             .asFunction<
                 int Function(
@@ -250,23 +250,23 @@ class IConnectionProfile2 extends IInspectable {
                     int endTime,
                     int granularity,
                     NativeNetworkUsageStates states,
-                    Pointer<COMObject> retValuePtr)>()(
+                    Pointer<COMObject> value)>()(
         ptr.ref.lpVtbl,
         startTime.toWinRTDateTime(),
         endTime.toWinRTDateTime(),
         granularity.value,
         statesNativeStructPtr.ref,
-        retValuePtr);
+        value);
 
     free(statesNativeStructPtr);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<IVectorView<NetworkUsage?>>.fromPtr(
-        retValuePtr,
+        value,
         creator: (ptr) => IVectorView.fromPtr(ptr,
             creator: NetworkUsage.fromPtr,
             iterableIid: '{dd2656b1-8360-5772-b272-c47f7f0fc7a6}'));
@@ -275,7 +275,7 @@ class IConnectionProfile2 extends IInspectable {
 
   Future<List<ConnectivityInterval?>> getConnectivityIntervalsAsync(
       DateTime startTime, DateTime endTime, NetworkUsageStates states) {
-    final retValuePtr = calloc<COMObject>();
+    final value = calloc<COMObject>();
     final statesNativeStructPtr = states.toNative();
 
     final hr = ptr.ref.vtable
@@ -288,7 +288,7 @@ class IConnectionProfile2 extends IInspectable {
                             Int64 startTime,
                             Int64 endTime,
                             NativeNetworkUsageStates states,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> value)>>>()
             .value
             .asFunction<
                 int Function(
@@ -296,22 +296,22 @@ class IConnectionProfile2 extends IInspectable {
                     int startTime,
                     int endTime,
                     NativeNetworkUsageStates states,
-                    Pointer<COMObject> retValuePtr)>()(
+                    Pointer<COMObject> value)>()(
         ptr.ref.lpVtbl,
         startTime.toWinRTDateTime(),
         endTime.toWinRTDateTime(),
         statesNativeStructPtr.ref,
-        retValuePtr);
+        value);
 
     free(statesNativeStructPtr);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
     final asyncOperation =
-        IAsyncOperation<IVectorView<ConnectivityInterval?>>.fromPtr(retValuePtr,
+        IAsyncOperation<IVectorView<ConnectivityInterval?>>.fromPtr(value,
             creator: (ptr) => IVectorView.fromPtr(ptr,
                 creator: ConnectivityInterval.fromPtr,
                 iterableIid: '{58051a8b-b259-5414-9b9a-caa0789e833e}'));

@@ -30,7 +30,7 @@ class ICoreAutomationRemoteOperationContext extends IInspectable {
           interface.toInterface(IID_ICoreAutomationRemoteOperationContext));
 
   Object? getOperand(AutomationRemoteOperationOperandId id) {
-    final retValuePtr = calloc<COMObject>();
+    final result = calloc<COMObject>();
     final idNativeStructPtr = id.toNative();
 
     final hr = ptr.ref.vtable
@@ -41,33 +41,32 @@ class ICoreAutomationRemoteOperationContext extends IInspectable {
                         HRESULT Function(
                             VTablePointer lpVtbl,
                             NativeAutomationRemoteOperationOperandId id,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> result)>>>()
             .value
             .asFunction<
                 int Function(
                     VTablePointer lpVtbl,
                     NativeAutomationRemoteOperationOperandId id,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, idNativeStructPtr.ref, retValuePtr);
+                    Pointer<COMObject> result)>()(
+        ptr.ref.lpVtbl, idNativeStructPtr.ref, result);
 
     free(idNativeStructPtr);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(result);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (result.isNull) {
+      free(result);
       return null;
     }
 
-    return IPropertyValue.fromPtr(retValuePtr).value;
+    return IPropertyValue.fromPtr(result).value;
   }
 
   void setOperand(AutomationRemoteOperationOperandId id, Object? operand) {
     final idNativeStructPtr = id.toNative();
-    final operandPtr = operand?.intoBox().ptr.ref.lpVtbl ?? nullptr;
 
     final hr = ptr.ref.vtable
             .elementAt(7)
@@ -83,8 +82,8 @@ class ICoreAutomationRemoteOperationContext extends IInspectable {
                 int Function(
                     VTablePointer lpVtbl,
                     NativeAutomationRemoteOperationOperandId id,
-                    VTablePointer operand)>()(
-        ptr.ref.lpVtbl, idNativeStructPtr.ref, operandPtr);
+                    VTablePointer operand)>()(ptr.ref.lpVtbl,
+        idNativeStructPtr.ref, operand?.intoBox().ptr.ref.lpVtbl ?? nullptr);
 
     free(idNativeStructPtr);
 
@@ -94,8 +93,7 @@ class ICoreAutomationRemoteOperationContext extends IInspectable {
   void setOperand2(AutomationRemoteOperationOperandId id, Object? operand,
       Guid operandInterfaceId) {
     final idNativeStructPtr = id.toNative();
-    final operandPtr = operand?.intoBox().ptr.ref.lpVtbl ?? nullptr;
-    final operandInterfaceIdNativeGuidPtr = operandInterfaceId.toNativeGUID();
+    final operandInterfaceIdNativeStructPtr = operandInterfaceId.toNativeGUID();
 
     final hr = ptr.ref.vtable
             .elementAt(8)
@@ -113,11 +111,14 @@ class ICoreAutomationRemoteOperationContext extends IInspectable {
                     VTablePointer lpVtbl,
                     NativeAutomationRemoteOperationOperandId id,
                     VTablePointer operand,
-                    GUID operandInterfaceId)>()(ptr.ref.lpVtbl,
-        idNativeStructPtr.ref, operandPtr, operandInterfaceIdNativeGuidPtr.ref);
+                    GUID operandInterfaceId)>()(
+        ptr.ref.lpVtbl,
+        idNativeStructPtr.ref,
+        operand?.intoBox().ptr.ref.lpVtbl ?? nullptr,
+        operandInterfaceIdNativeStructPtr.ref);
 
     free(idNativeStructPtr);
-    free(operandInterfaceIdNativeGuidPtr);
+    free(operandInterfaceIdNativeStructPtr);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }

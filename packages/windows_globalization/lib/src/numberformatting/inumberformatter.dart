@@ -26,80 +26,77 @@ class INumberFormatter extends IInspectable {
       INumberFormatter.fromPtr(interface.toInterface(IID_INumberFormatter));
 
   String formatInt(int value) {
-    final retValuePtr = calloc<HSTRING>();
+    final result = calloc<IntPtr>();
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl, Int64 value,
-                              Pointer<IntPtr> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, int value,
-                      Pointer<IntPtr> retValuePtr)>()(
-          ptr.ref.lpVtbl, value, retValuePtr);
+          .elementAt(6)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl, Int64 value,
+                          Pointer<IntPtr> result)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl, int value,
+                  Pointer<IntPtr> result)>()(ptr.ref.lpVtbl, value, result);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.toDartString();
+      return result.toDartString();
     } finally {
-      WindowsDeleteString(retValuePtr.value);
-      free(retValuePtr);
+      WindowsDeleteString(result.value);
+      free(result);
     }
   }
 
   String formatUInt(int value) {
-    final retValuePtr = calloc<HSTRING>();
+    final result = calloc<IntPtr>();
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl, Uint64 value,
-                              Pointer<IntPtr> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, int value,
-                      Pointer<IntPtr> retValuePtr)>()(
-          ptr.ref.lpVtbl, value, retValuePtr);
+          .elementAt(7)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl, Uint64 value,
+                          Pointer<IntPtr> result)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl, int value,
+                  Pointer<IntPtr> result)>()(ptr.ref.lpVtbl, value, result);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.toDartString();
+      return result.toDartString();
     } finally {
-      WindowsDeleteString(retValuePtr.value);
-      free(retValuePtr);
+      WindowsDeleteString(result.value);
+      free(result);
     }
   }
 
   String formatDouble(double value) {
-    final retValuePtr = calloc<HSTRING>();
+    final result = calloc<IntPtr>();
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(8)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl, Double value,
-                              Pointer<IntPtr> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, double value,
-                      Pointer<IntPtr> retValuePtr)>()(
-          ptr.ref.lpVtbl, value, retValuePtr);
+          .elementAt(8)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl, Double value,
+                          Pointer<IntPtr> result)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl, double value,
+                  Pointer<IntPtr> result)>()(ptr.ref.lpVtbl, value, result);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.toDartString();
+      return result.toDartString();
     } finally {
-      WindowsDeleteString(retValuePtr.value);
-      free(retValuePtr);
+      WindowsDeleteString(result.value);
+      free(result);
     }
   }
 }

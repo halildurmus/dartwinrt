@@ -27,7 +27,7 @@ class ILanguageExtensionSubtags extends IInspectable {
           interface.toInterface(IID_ILanguageExtensionSubtags));
 
   List<String> getExtensionSubtags(String singleton) {
-    final retValuePtr = calloc<COMObject>();
+    final value = calloc<COMObject>();
     final singletonHString = singleton.toHString();
 
     final hr = ptr.ref.vtable
@@ -36,22 +36,22 @@ class ILanguageExtensionSubtags extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(VTablePointer lpVtbl, IntPtr singleton,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> value)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int singleton,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, singletonHString, retValuePtr);
+                    Pointer<COMObject> value)>()(
+        ptr.ref.lpVtbl, singletonHString, value);
 
     WindowsDeleteString(singletonHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    final vectorView = IVectorView<String>.fromPtr(retValuePtr,
-        iterableIid: '{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}');
-    return vectorView.toList();
+    return IVectorView<String>.fromPtr(value,
+            iterableIid: '{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}')
+        .toList();
   }
 }

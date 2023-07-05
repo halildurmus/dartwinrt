@@ -25,7 +25,8 @@ class DataReaderLoadOperation extends IInspectable
       intType: IntType.uint32);
 
   @override
-  set completed(Pointer<COMObject> value) => _iAsyncOperation.completed = value;
+  set completed(Pointer<COMObject> handler) =>
+      _iAsyncOperation.completed = handler;
 
   @override
   Pointer<COMObject> get completed => _iAsyncOperation.completed;

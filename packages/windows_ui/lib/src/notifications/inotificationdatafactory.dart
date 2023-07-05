@@ -31,12 +31,7 @@ class INotificationDataFactory extends IInspectable {
   NotificationData createNotificationDataWithValuesAndSequenceNumber(
       IIterable<IKeyValuePair<String, String>> initialValues,
       int sequenceNumber) {
-    final retValuePtr = calloc<COMObject>();
-    final initialValuesPtr = IInspectable(
-            initialValues.toInterface('{e9bdaaf0-cbf6-5c72-be90-29cbf3a1319b}'))
-        .ptr
-        .ref
-        .lpVtbl;
+    final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -47,29 +42,31 @@ class INotificationDataFactory extends IInspectable {
                             VTablePointer lpVtbl,
                             VTablePointer initialValues,
                             Uint32 sequenceNumber,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> value)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer initialValues,
-                    int sequenceNumber, Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, initialValuesPtr, sequenceNumber, retValuePtr);
+                    int sequenceNumber, Pointer<COMObject> value)>()(
+        ptr.ref.lpVtbl,
+        IInspectable(initialValues
+                .toInterface('{e9bdaaf0-cbf6-5c72-be90-29cbf3a1319b}'))
+            .ptr
+            .ref
+            .lpVtbl,
+        sequenceNumber,
+        value);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    return NotificationData.fromPtr(retValuePtr);
+    return NotificationData.fromPtr(value);
   }
 
   NotificationData createNotificationDataWithValues(
       IIterable<IKeyValuePair<String, String>> initialValues) {
-    final retValuePtr = calloc<COMObject>();
-    final initialValuesPtr = IInspectable(
-            initialValues.toInterface('{e9bdaaf0-cbf6-5c72-be90-29cbf3a1319b}'))
-        .ptr
-        .ref
-        .lpVtbl;
+    final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(7)
@@ -79,18 +76,24 @@ class INotificationDataFactory extends IInspectable {
                         HRESULT Function(
                             VTablePointer lpVtbl,
                             VTablePointer initialValues,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> value)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer initialValues,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, initialValuesPtr, retValuePtr);
+                    Pointer<COMObject> value)>()(
+        ptr.ref.lpVtbl,
+        IInspectable(initialValues
+                .toInterface('{e9bdaaf0-cbf6-5c72-be90-29cbf3a1319b}'))
+            .ptr
+            .ref
+            .lpVtbl,
+        value);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    return NotificationData.fromPtr(retValuePtr);
+    return NotificationData.fromPtr(value);
   }
 }

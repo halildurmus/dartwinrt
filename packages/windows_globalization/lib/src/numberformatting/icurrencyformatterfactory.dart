@@ -29,44 +29,38 @@ class ICurrencyFormatterFactory extends IInspectable {
           interface.toInterface(IID_ICurrencyFormatterFactory));
 
   CurrencyFormatter createCurrencyFormatterCode(String currencyCode) {
-    final retValuePtr = calloc<COMObject>();
+    final result = calloc<COMObject>();
     final currencyCodeHString = currencyCode.toHString();
 
-    final hr =
-        ptr.ref.vtable
-                .elementAt(6)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                IntPtr currencyCode,
-                                Pointer<COMObject> retValuePtr)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, int currencyCode,
-                        Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl, currencyCodeHString, retValuePtr);
+    final hr = ptr.ref.vtable
+        .elementAt(6)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl, IntPtr currencyCode,
+                        Pointer<COMObject> result)>>>()
+        .value
+        .asFunction<
+            int Function(
+                VTablePointer lpVtbl,
+                int currencyCode,
+                Pointer<COMObject>
+                    result)>()(ptr.ref.lpVtbl, currencyCodeHString, result);
 
     WindowsDeleteString(currencyCodeHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(result);
       throw WindowsException(hr);
     }
 
-    return CurrencyFormatter.fromPtr(retValuePtr);
+    return CurrencyFormatter.fromPtr(result);
   }
 
   CurrencyFormatter createCurrencyFormatterCodeContext(String currencyCode,
       IIterable<String> languages, String geographicRegion) {
-    final retValuePtr = calloc<COMObject>();
+    final result = calloc<COMObject>();
     final currencyCodeHString = currencyCode.toHString();
-    final languagesPtr = IInspectable(
-            languages.toInterface('{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'))
-        .ptr
-        .ref
-        .lpVtbl;
     final geographicRegionHString = geographicRegion.toHString();
 
     final hr = ptr.ref.vtable
@@ -79,7 +73,7 @@ class ICurrencyFormatterFactory extends IInspectable {
                             IntPtr currencyCode,
                             VTablePointer languages,
                             IntPtr geographicRegion,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> result)>>>()
             .value
             .asFunction<
                 int Function(
@@ -87,21 +81,25 @@ class ICurrencyFormatterFactory extends IInspectable {
                     int currencyCode,
                     VTablePointer languages,
                     int geographicRegion,
-                    Pointer<COMObject> retValuePtr)>()(
+                    Pointer<COMObject> result)>()(
         ptr.ref.lpVtbl,
         currencyCodeHString,
-        languagesPtr,
+        IInspectable(
+                languages.toInterface('{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'))
+            .ptr
+            .ref
+            .lpVtbl,
         geographicRegionHString,
-        retValuePtr);
+        result);
 
     WindowsDeleteString(currencyCodeHString);
     WindowsDeleteString(geographicRegionHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(result);
       throw WindowsException(hr);
     }
 
-    return CurrencyFormatter.fromPtr(retValuePtr);
+    return CurrencyFormatter.fromPtr(result);
   }
 }

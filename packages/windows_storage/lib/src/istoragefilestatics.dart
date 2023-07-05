@@ -31,7 +31,7 @@ class IStorageFileStatics extends IInspectable {
           interface.toInterface(IID_IStorageFileStatics));
 
   Future<StorageFile?> getFileFromPathAsync(String path) {
-    final retValuePtr = calloc<COMObject>();
+    final operation = calloc<COMObject>();
     final pathHString = path.toHString();
 
     final hr = ptr.ref.vtable
@@ -40,28 +40,27 @@ class IStorageFileStatics extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(VTablePointer lpVtbl, IntPtr path,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> operation)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int path,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, pathHString, retValuePtr);
+                    Pointer<COMObject> operation)>()(
+        ptr.ref.lpVtbl, pathHString, operation);
 
     WindowsDeleteString(pathHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<StorageFile?>.fromPtr(retValuePtr,
+    final asyncOperation = IAsyncOperation<StorageFile?>.fromPtr(operation,
         creator: StorageFile.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<StorageFile?> getFileFromApplicationUriAsync(Uri? uri) {
-    final retValuePtr = calloc<COMObject>();
-    final uriUri = uri?.toWinRTUri();
+    final operation = calloc<COMObject>();
 
     final hr =
         ptr.ref.vtable
@@ -72,19 +71,19 @@ class IStorageFileStatics extends IInspectable {
                             HRESULT Function(
                                 VTablePointer lpVtbl,
                                 VTablePointer uri,
-                                Pointer<COMObject> retValuePtr)>>>()
+                                Pointer<COMObject> operation)>>>()
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer uri,
-                        Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl,
-            uriUri == null ? nullptr : uriUri.ptr.ref.lpVtbl, retValuePtr);
+                        Pointer<COMObject> operation)>()(ptr.ref.lpVtbl,
+            uri?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr, operation);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<StorageFile?>.fromPtr(retValuePtr,
+    final asyncOperation = IAsyncOperation<StorageFile?>.fromPtr(operation,
         creator: StorageFile.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
@@ -93,10 +92,9 @@ class IStorageFileStatics extends IInspectable {
       String displayNameWithExtension,
       Pointer<COMObject> dataRequested,
       IRandomAccessStreamReference? thumbnail) {
-    final retValuePtr = calloc<COMObject>();
+    final operation = calloc<COMObject>();
     final displayNameWithExtensionHString =
         displayNameWithExtension.toHString();
-    final thumbnailPtr = thumbnail == null ? nullptr : thumbnail.ptr.ref.lpVtbl;
 
     final hr = ptr.ref.vtable
             .elementAt(8)
@@ -108,7 +106,7 @@ class IStorageFileStatics extends IInspectable {
                             IntPtr displayNameWithExtension,
                             VTablePointer dataRequested,
                             VTablePointer thumbnail,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> operation)>>>()
             .value
             .asFunction<
                 int Function(
@@ -116,21 +114,21 @@ class IStorageFileStatics extends IInspectable {
                     int displayNameWithExtension,
                     VTablePointer dataRequested,
                     VTablePointer thumbnail,
-                    Pointer<COMObject> retValuePtr)>()(
+                    Pointer<COMObject> operation)>()(
         ptr.ref.lpVtbl,
         displayNameWithExtensionHString,
         dataRequested.ref.lpVtbl,
-        thumbnailPtr,
-        retValuePtr);
+        thumbnail == null ? nullptr : thumbnail.ptr.ref.lpVtbl,
+        operation);
 
     WindowsDeleteString(displayNameWithExtensionHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<StorageFile?>.fromPtr(retValuePtr,
+    final asyncOperation = IAsyncOperation<StorageFile?>.fromPtr(operation,
         creator: StorageFile.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
@@ -139,10 +137,7 @@ class IStorageFileStatics extends IInspectable {
       IStorageFile? fileToReplace,
       Pointer<COMObject> dataRequested,
       IRandomAccessStreamReference? thumbnail) {
-    final retValuePtr = calloc<COMObject>();
-    final fileToReplacePtr =
-        fileToReplace == null ? nullptr : fileToReplace.ptr.ref.lpVtbl;
-    final thumbnailPtr = thumbnail == null ? nullptr : thumbnail.ptr.ref.lpVtbl;
+    final operation = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(9)
@@ -154,7 +149,7 @@ class IStorageFileStatics extends IInspectable {
                             VTablePointer fileToReplace,
                             VTablePointer dataRequested,
                             VTablePointer thumbnail,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> operation)>>>()
             .value
             .asFunction<
                 int Function(
@@ -162,15 +157,19 @@ class IStorageFileStatics extends IInspectable {
                     VTablePointer fileToReplace,
                     VTablePointer dataRequested,
                     VTablePointer thumbnail,
-                    Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl,
-        fileToReplacePtr, dataRequested.ref.lpVtbl, thumbnailPtr, retValuePtr);
+                    Pointer<COMObject> operation)>()(
+        ptr.ref.lpVtbl,
+        fileToReplace == null ? nullptr : fileToReplace.ptr.ref.lpVtbl,
+        dataRequested.ref.lpVtbl,
+        thumbnail == null ? nullptr : thumbnail.ptr.ref.lpVtbl,
+        operation);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<StorageFile?>.fromPtr(retValuePtr,
+    final asyncOperation = IAsyncOperation<StorageFile?>.fromPtr(operation,
         creator: StorageFile.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
@@ -179,11 +178,9 @@ class IStorageFileStatics extends IInspectable {
       String displayNameWithExtension,
       Uri? uri,
       IRandomAccessStreamReference? thumbnail) {
-    final retValuePtr = calloc<COMObject>();
+    final operation = calloc<COMObject>();
     final displayNameWithExtensionHString =
         displayNameWithExtension.toHString();
-    final uriUri = uri?.toWinRTUri();
-    final thumbnailPtr = thumbnail == null ? nullptr : thumbnail.ptr.ref.lpVtbl;
 
     final hr = ptr.ref.vtable
             .elementAt(10)
@@ -195,7 +192,7 @@ class IStorageFileStatics extends IInspectable {
                             IntPtr displayNameWithExtension,
                             VTablePointer uri,
                             VTablePointer thumbnail,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> operation)>>>()
             .value
             .asFunction<
                 int Function(
@@ -203,21 +200,21 @@ class IStorageFileStatics extends IInspectable {
                     int displayNameWithExtension,
                     VTablePointer uri,
                     VTablePointer thumbnail,
-                    Pointer<COMObject> retValuePtr)>()(
+                    Pointer<COMObject> operation)>()(
         ptr.ref.lpVtbl,
         displayNameWithExtensionHString,
-        uriUri == null ? nullptr : uriUri.ptr.ref.lpVtbl,
-        thumbnailPtr,
-        retValuePtr);
+        uri?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr,
+        thumbnail == null ? nullptr : thumbnail.ptr.ref.lpVtbl,
+        operation);
 
     WindowsDeleteString(displayNameWithExtensionHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<StorageFile?>.fromPtr(retValuePtr,
+    final asyncOperation = IAsyncOperation<StorageFile?>.fromPtr(operation,
         creator: StorageFile.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
@@ -226,11 +223,7 @@ class IStorageFileStatics extends IInspectable {
       IStorageFile? fileToReplace,
       Uri? uri,
       IRandomAccessStreamReference? thumbnail) {
-    final retValuePtr = calloc<COMObject>();
-    final fileToReplacePtr =
-        fileToReplace == null ? nullptr : fileToReplace.ptr.ref.lpVtbl;
-    final uriUri = uri?.toWinRTUri();
-    final thumbnailPtr = thumbnail == null ? nullptr : thumbnail.ptr.ref.lpVtbl;
+    final operation = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(11)
@@ -242,7 +235,7 @@ class IStorageFileStatics extends IInspectable {
                             VTablePointer fileToReplace,
                             VTablePointer uri,
                             VTablePointer thumbnail,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> operation)>>>()
             .value
             .asFunction<
                 int Function(
@@ -250,19 +243,19 @@ class IStorageFileStatics extends IInspectable {
                     VTablePointer fileToReplace,
                     VTablePointer uri,
                     VTablePointer thumbnail,
-                    Pointer<COMObject> retValuePtr)>()(
+                    Pointer<COMObject> operation)>()(
         ptr.ref.lpVtbl,
-        fileToReplacePtr,
-        uriUri == null ? nullptr : uriUri.ptr.ref.lpVtbl,
-        thumbnailPtr,
-        retValuePtr);
+        fileToReplace == null ? nullptr : fileToReplace.ptr.ref.lpVtbl,
+        uri?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr,
+        thumbnail == null ? nullptr : thumbnail.ptr.ref.lpVtbl,
+        operation);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<StorageFile?>.fromPtr(retValuePtr,
+    final asyncOperation = IAsyncOperation<StorageFile?>.fromPtr(operation,
         creator: StorageFile.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }

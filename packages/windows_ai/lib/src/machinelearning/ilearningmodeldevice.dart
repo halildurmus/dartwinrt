@@ -28,7 +28,7 @@ class ILearningModelDevice extends IInspectable {
           interface.toInterface(IID_ILearningModelDevice));
 
   DisplayAdapterId get adapterId {
-    final retValuePtr = calloc<NativeDisplayAdapterId>();
+    final value = calloc<NativeDisplayAdapterId>();
 
     try {
       final hr = ptr.ref.vtable
@@ -37,46 +37,46 @@ class ILearningModelDevice extends IInspectable {
                   Pointer<
                       NativeFunction<
                           HRESULT Function(VTablePointer lpVtbl,
-                              Pointer<NativeDisplayAdapterId> retValuePtr)>>>()
+                              Pointer<NativeDisplayAdapterId> value)>>>()
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl,
-                      Pointer<NativeDisplayAdapterId> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+                      Pointer<NativeDisplayAdapterId> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.toDart();
+      return value.toDart();
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
   IDirect3DDevice? get direct3D11Device {
-    final retValuePtr = calloc<COMObject>();
+    final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-        .elementAt(7)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+            .elementAt(7)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
+        ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (value.isNull) {
+      free(value);
       return null;
     }
 
-    return IDirect3DDevice.fromPtr(retValuePtr);
+    return IDirect3DDevice.fromPtr(value);
   }
 }

@@ -33,7 +33,7 @@ class IDeviceInformationPairingStatics2 extends IInspectable {
   bool tryRegisterForAllInboundPairingRequestsWithProtectionLevel(
       DevicePairingKinds pairingKindsSupported,
       DevicePairingProtectionLevel minProtectionLevel) {
-    final retValuePtr = calloc<Bool>();
+    final result = calloc<Bool>();
 
     try {
       final hr = ptr.ref.vtable
@@ -45,21 +45,21 @@ class IDeviceInformationPairingStatics2 extends IInspectable {
                               VTablePointer lpVtbl,
                               Uint32 pairingKindsSupported,
                               Int32 minProtectionLevel,
-                              Pointer<Bool> retValuePtr)>>>()
+                              Pointer<Bool> result)>>>()
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, int pairingKindsSupported,
-                      int minProtectionLevel, Pointer<Bool> retValuePtr)>()(
+                      int minProtectionLevel, Pointer<Bool> result)>()(
           ptr.ref.lpVtbl,
           pairingKindsSupported.value,
           minProtectionLevel.value,
-          retValuePtr);
+          result);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return result.value;
     } finally {
-      free(retValuePtr);
+      free(result);
     }
   }
 }

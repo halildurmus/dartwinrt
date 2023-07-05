@@ -32,7 +32,7 @@ class IStorageFile2 extends IInspectable {
 
   Future<IRandomAccessStream?> openWithOptionsAsync(
       FileAccessMode accessMode, StorageOpenOptions options) {
-    final retValuePtr = calloc<COMObject>();
+    final operation = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -40,27 +40,27 @@ class IStorageFile2 extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(VTablePointer lpVtbl, Int32 accessMode,
-                            Uint32 options, Pointer<COMObject> retValuePtr)>>>()
+                            Uint32 options, Pointer<COMObject> operation)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int accessMode, int options,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, accessMode.value, options.value, retValuePtr);
+                    Pointer<COMObject> operation)>()(
+        ptr.ref.lpVtbl, accessMode.value, options.value, operation);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<IRandomAccessStream?>.fromPtr(
-        retValuePtr,
+        operation,
         creator: IRandomAccessStream.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<StorageStreamTransaction?> openTransactedWriteWithOptionsAsync(
       StorageOpenOptions options) {
-    final retValuePtr = calloc<COMObject>();
+    final operation = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(7)
@@ -68,20 +68,20 @@ class IStorageFile2 extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(VTablePointer lpVtbl, Uint32 options,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> operation)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int options,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, options.value, retValuePtr);
+                    Pointer<COMObject> operation)>()(
+        ptr.ref.lpVtbl, options.value, operation);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<StorageStreamTransaction?>.fromPtr(
-        retValuePtr,
+        operation,
         creator: StorageStreamTransaction.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }

@@ -32,39 +32,40 @@ class INetworkOperatorTetheringManagerStatics extends IInspectable {
           interface.toInterface(IID_INetworkOperatorTetheringManagerStatics));
 
   TetheringCapability getTetheringCapability(String networkAccountId) {
-    final retValuePtr = calloc<Int32>();
+    final value = calloc<Int32>();
 
     try {
       final networkAccountIdHString = networkAccountId.toHString();
 
-      final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              IntPtr networkAccountId,
-                              Pointer<Int32> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, int networkAccountId,
-                      Pointer<Int32> retValuePtr)>()(
-          ptr.ref.lpVtbl, networkAccountIdHString, retValuePtr);
+      final hr =
+          ptr.ref.vtable
+                  .elementAt(6)
+                  .cast<
+                      Pointer<
+                          NativeFunction<
+                              HRESULT Function(
+                                  VTablePointer lpVtbl,
+                                  IntPtr networkAccountId,
+                                  Pointer<Int32> value)>>>()
+                  .value
+                  .asFunction<
+                      int Function(VTablePointer lpVtbl, int networkAccountId,
+                          Pointer<Int32> value)>()(
+              ptr.ref.lpVtbl, networkAccountIdHString, value);
 
       WindowsDeleteString(networkAccountIdHString);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return TetheringCapability.from(retValuePtr.value);
+      return TetheringCapability.from(value.value);
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
   NetworkOperatorTetheringManager? createFromNetworkAccountId(
       String networkAccountId) {
-    final retValuePtr = calloc<COMObject>();
+    final ppManager = calloc<COMObject>();
     final networkAccountIdHString = networkAccountId.toHString();
 
     final hr = ptr.ref.vtable
@@ -75,25 +76,25 @@ class INetworkOperatorTetheringManagerStatics extends IInspectable {
                         HRESULT Function(
                             VTablePointer lpVtbl,
                             IntPtr networkAccountId,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> ppManager)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int networkAccountId,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, networkAccountIdHString, retValuePtr);
+                    Pointer<COMObject> ppManager)>()(
+        ptr.ref.lpVtbl, networkAccountIdHString, ppManager);
 
     WindowsDeleteString(networkAccountIdHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(ppManager);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (ppManager.isNull) {
+      free(ppManager);
       return null;
     }
 
-    return NetworkOperatorTetheringManager.fromPtr(retValuePtr);
+    return NetworkOperatorTetheringManager.fromPtr(ppManager);
   }
 }

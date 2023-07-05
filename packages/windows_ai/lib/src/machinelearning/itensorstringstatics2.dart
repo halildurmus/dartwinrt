@@ -30,15 +30,15 @@ class ITensorStringStatics2 extends IInspectable {
 
   TensorString? createFromShapeArrayAndDataArray(
       List<int> shape, List<String> data) {
-    final retValuePtr = calloc<COMObject>();
+    final result = calloc<COMObject>();
     final pShapeArray = calloc<Int64>(shape.length);
     for (var i = 0; i < shape.length; i++) {
-      pShapeArray[i] = shape.elementAt(i);
+      pShapeArray[i] = shape[i];
     }
     final dataHandles = <int>[];
     final pDataArray = calloc<HSTRING>(data.length);
     for (var i = 0; i < data.length; i++) {
-      pDataArray[i] = data.elementAt(i).toHString();
+      pDataArray[i] = data[i].toHString();
       dataHandles.add(pDataArray[i]);
     }
 
@@ -53,7 +53,7 @@ class ITensorStringStatics2 extends IInspectable {
                             Pointer<Int64> shape,
                             Uint32 dataSize,
                             Pointer<IntPtr> data,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> result)>>>()
             .value
             .asFunction<
                 int Function(
@@ -62,23 +62,23 @@ class ITensorStringStatics2 extends IInspectable {
                     Pointer<Int64> shape,
                     int dataSize,
                     Pointer<IntPtr> data,
-                    Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl,
-        shape.length, pShapeArray, data.length, pDataArray, retValuePtr);
+                    Pointer<COMObject> result)>()(ptr.ref.lpVtbl, shape.length,
+        pShapeArray, data.length, pDataArray, result);
 
     free(pShapeArray);
     dataHandles.forEach(WindowsDeleteString);
     free(pDataArray);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(result);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (result.isNull) {
+      free(result);
       return null;
     }
 
-    return TensorString.fromPtr(retValuePtr);
+    return TensorString.fromPtr(result);
   }
 }

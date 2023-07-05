@@ -31,79 +31,79 @@ class IAutomationRemoteOperationResult extends IInspectable {
           interface.toInterface(IID_IAutomationRemoteOperationResult));
 
   AutomationRemoteOperationStatus get status {
-    final retValuePtr = calloc<Int32>();
+    final value = calloc<Int32>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Int32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(6)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<Int32> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return AutomationRemoteOperationStatus.from(retValuePtr.value);
+      return AutomationRemoteOperationStatus.from(value.value);
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
   int get extendedError {
-    final retValuePtr = calloc<Int32>();
+    final value = calloc<Int32>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Int32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(7)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<Int32> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return value.value;
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
   int get errorLocation {
-    final retValuePtr = calloc<Int32>();
+    final value = calloc<Int32>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Int32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(8)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<Int32> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return value.value;
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
   bool hasOperand(AutomationRemoteOperationOperandId operandId) {
-    final retValuePtr = calloc<Bool>();
+    final result = calloc<Bool>();
 
     try {
       final operandIdNativeStructPtr = operandId.toNative();
@@ -118,27 +118,27 @@ class IAutomationRemoteOperationResult extends IInspectable {
                                   VTablePointer lpVtbl,
                                   NativeAutomationRemoteOperationOperandId
                                       operandId,
-                                  Pointer<Bool> retValuePtr)>>>()
+                                  Pointer<Bool> result)>>>()
                   .value
                   .asFunction<
                       int Function(
                           VTablePointer lpVtbl,
                           NativeAutomationRemoteOperationOperandId operandId,
-                          Pointer<Bool> retValuePtr)>()(
-              ptr.ref.lpVtbl, operandIdNativeStructPtr.ref, retValuePtr);
+                          Pointer<Bool> result)>()(
+              ptr.ref.lpVtbl, operandIdNativeStructPtr.ref, result);
 
       free(operandIdNativeStructPtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return result.value;
     } finally {
-      free(retValuePtr);
+      free(result);
     }
   }
 
   Object? getOperand(AutomationRemoteOperationOperandId operandId) {
-    final retValuePtr = calloc<COMObject>();
+    final result = calloc<COMObject>();
     final operandIdNativeStructPtr = operandId.toNative();
 
     final hr = ptr.ref.vtable
@@ -149,27 +149,27 @@ class IAutomationRemoteOperationResult extends IInspectable {
                         HRESULT Function(
                             VTablePointer lpVtbl,
                             NativeAutomationRemoteOperationOperandId operandId,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> result)>>>()
             .value
             .asFunction<
                 int Function(
                     VTablePointer lpVtbl,
                     NativeAutomationRemoteOperationOperandId operandId,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, operandIdNativeStructPtr.ref, retValuePtr);
+                    Pointer<COMObject> result)>()(
+        ptr.ref.lpVtbl, operandIdNativeStructPtr.ref, result);
 
     free(operandIdNativeStructPtr);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(result);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (result.isNull) {
+      free(result);
       return null;
     }
 
-    return IPropertyValue.fromPtr(retValuePtr).value;
+    return IPropertyValue.fromPtr(result).value;
   }
 }

@@ -31,7 +31,7 @@ class IGeopoint extends IInspectable implements IGeoshape {
       IGeopoint.fromPtr(interface.toInterface(IID_IGeopoint));
 
   BasicGeoposition get position {
-    final retValuePtr = calloc<NativeBasicGeoposition>();
+    final value = calloc<NativeBasicGeoposition>();
 
     try {
       final hr = ptr.ref.vtable
@@ -40,18 +40,18 @@ class IGeopoint extends IInspectable implements IGeoshape {
                   Pointer<
                       NativeFunction<
                           HRESULT Function(VTablePointer lpVtbl,
-                              Pointer<NativeBasicGeoposition> retValuePtr)>>>()
+                              Pointer<NativeBasicGeoposition> value)>>>()
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl,
-                      Pointer<NativeBasicGeoposition> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+                      Pointer<NativeBasicGeoposition> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.toDart();
+      return value.toDart();
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 

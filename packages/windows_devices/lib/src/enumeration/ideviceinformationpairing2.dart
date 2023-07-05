@@ -33,64 +33,61 @@ class IDeviceInformationPairing2 extends IInspectable {
           interface.toInterface(IID_IDeviceInformationPairing2));
 
   DevicePairingProtectionLevel get protectionLevel {
-    final retValuePtr = calloc<Int32>();
+    final value = calloc<Int32>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Int32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(6)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<Int32> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return DevicePairingProtectionLevel.from(retValuePtr.value);
+      return DevicePairingProtectionLevel.from(value.value);
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
   DeviceInformationCustomPairing? get custom {
-    final retValuePtr = calloc<COMObject>();
+    final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-        .elementAt(7)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+            .elementAt(7)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
+        ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (value.isNull) {
+      free(value);
       return null;
     }
 
-    return DeviceInformationCustomPairing.fromPtr(retValuePtr);
+    return DeviceInformationCustomPairing.fromPtr(value);
   }
 
   Future<DevicePairingResult?> pairWithProtectionLevelAndSettingsAsync(
       DevicePairingProtectionLevel minProtectionLevel,
       IDevicePairingSettings? devicePairingSettings) {
-    final retValuePtr = calloc<COMObject>();
-    final devicePairingSettingsPtr = devicePairingSettings == null
-        ? nullptr
-        : devicePairingSettings.ptr.ref.lpVtbl;
+    final result = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(8)
@@ -101,49 +98,53 @@ class IDeviceInformationPairing2 extends IInspectable {
                             VTablePointer lpVtbl,
                             Int32 minProtectionLevel,
                             VTablePointer devicePairingSettings,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> result)>>>()
             .value
             .asFunction<
                 int Function(
                     VTablePointer lpVtbl,
                     int minProtectionLevel,
                     VTablePointer devicePairingSettings,
-                    Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl,
-        minProtectionLevel.value, devicePairingSettingsPtr, retValuePtr);
+                    Pointer<COMObject> result)>()(
+        ptr.ref.lpVtbl,
+        minProtectionLevel.value,
+        devicePairingSettings == null
+            ? nullptr
+            : devicePairingSettings.ptr.ref.lpVtbl,
+        result);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(result);
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<DevicePairingResult?>.fromPtr(
-        retValuePtr,
+    final asyncOperation = IAsyncOperation<DevicePairingResult?>.fromPtr(result,
         creator: DevicePairingResult.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<DeviceUnpairingResult?> unpairAsync() {
-    final retValuePtr = calloc<COMObject>();
+    final result = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
         .elementAt(9)
         .cast<
             Pointer<
                 NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
+                    HRESULT Function(
+                        VTablePointer lpVtbl, Pointer<COMObject> result)>>>()
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                Pointer<COMObject> result)>()(ptr.ref.lpVtbl, result);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(result);
       throw WindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<DeviceUnpairingResult?>.fromPtr(
-        retValuePtr,
+        result,
         creator: DeviceUnpairingResult.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }

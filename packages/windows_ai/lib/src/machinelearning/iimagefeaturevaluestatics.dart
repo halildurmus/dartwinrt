@@ -30,35 +30,31 @@ class IImageFeatureValueStatics extends IInspectable {
           interface.toInterface(IID_IImageFeatureValueStatics));
 
   ImageFeatureValue? createFromVideoFrame(VideoFrame? image) {
-    final retValuePtr = calloc<COMObject>();
-    final imagePtr = image == null ? nullptr : image.ptr.ref.lpVtbl;
+    final result = calloc<COMObject>();
 
-    final hr =
-        ptr.ref.vtable
-                .elementAt(6)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                VTablePointer image,
-                                Pointer<COMObject> retValuePtr)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, VTablePointer image,
-                        Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl, imagePtr, retValuePtr);
+    final hr = ptr.ref.vtable
+            .elementAt(6)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(VTablePointer lpVtbl, VTablePointer image,
+                            Pointer<COMObject> result)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, VTablePointer image,
+                    Pointer<COMObject> result)>()(
+        ptr.ref.lpVtbl, image == null ? nullptr : image.ptr.ref.lpVtbl, result);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(result);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (result.isNull) {
+      free(result);
       return null;
     }
 
-    return ImageFeatureValue.fromPtr(retValuePtr);
+    return ImageFeatureValue.fromPtr(result);
   }
 }

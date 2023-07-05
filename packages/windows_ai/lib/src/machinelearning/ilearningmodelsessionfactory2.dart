@@ -36,11 +36,7 @@ class ILearningModelSessionFactory2 extends IInspectable {
       LearningModel model,
       LearningModelDevice deviceToRunOn,
       LearningModelSessionOptions learningModelSessionOptions) {
-    final retValuePtr = calloc<COMObject>();
-    final modelPtr = model.ptr.ref.lpVtbl;
-    final deviceToRunOnPtr = deviceToRunOn.ptr.ref.lpVtbl;
-    final learningModelSessionOptionsPtr =
-        learningModelSessionOptions.ptr.ref.lpVtbl;
+    final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -52,7 +48,7 @@ class ILearningModelSessionFactory2 extends IInspectable {
                             VTablePointer model,
                             VTablePointer deviceToRunOn,
                             VTablePointer learningModelSessionOptions,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> value)>>>()
             .value
             .asFunction<
                 int Function(
@@ -60,14 +56,18 @@ class ILearningModelSessionFactory2 extends IInspectable {
                     VTablePointer model,
                     VTablePointer deviceToRunOn,
                     VTablePointer learningModelSessionOptions,
-                    Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, modelPtr,
-        deviceToRunOnPtr, learningModelSessionOptionsPtr, retValuePtr);
+                    Pointer<COMObject> value)>()(
+        ptr.ref.lpVtbl,
+        model.ptr.ref.lpVtbl,
+        deviceToRunOn.ptr.ref.lpVtbl,
+        learningModelSessionOptions.ptr.ref.lpVtbl,
+        value);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    return LearningModelSession.fromPtr(retValuePtr);
+    return LearningModelSession.fromPtr(value);
   }
 }

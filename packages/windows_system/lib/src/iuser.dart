@@ -31,80 +31,80 @@ class IUser extends IInspectable {
       IUser.fromPtr(interface.toInterface(IID_IUser));
 
   String get nonRoamableId {
-    final retValuePtr = calloc<HSTRING>();
+    final value = calloc<IntPtr>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          Pointer<IntPtr> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(6)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.toDartString();
+      return value.toDartString();
     } finally {
-      WindowsDeleteString(retValuePtr.value);
-      free(retValuePtr);
+      WindowsDeleteString(value.value);
+      free(value);
     }
   }
 
   UserAuthenticationStatus get authenticationStatus {
-    final retValuePtr = calloc<Int32>();
+    final value = calloc<Int32>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Int32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(7)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<Int32> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return UserAuthenticationStatus.from(retValuePtr.value);
+      return UserAuthenticationStatus.from(value.value);
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
   UserType get type {
-    final retValuePtr = calloc<Int32>();
+    final value = calloc<Int32>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Int32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(8)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<Int32> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return UserType.from(retValuePtr.value);
+      return UserType.from(value.value);
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
   Future<Object?> getPropertyAsync(String value) {
-    final retValuePtr = calloc<COMObject>();
+    final operation = calloc<COMObject>();
     final valueHString = value.toHString();
 
     final hr = ptr.ref.vtable
@@ -113,27 +113,26 @@ class IUser extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(VTablePointer lpVtbl, IntPtr value,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> operation)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int value,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, valueHString, retValuePtr);
+                    Pointer<COMObject> operation)>()(
+        ptr.ref.lpVtbl, valueHString, operation);
 
     WindowsDeleteString(valueHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<Object?>.fromPtr(retValuePtr);
+    final asyncOperation = IAsyncOperation<Object?>.fromPtr(operation);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<IPropertySet> getPropertiesAsync(IVectorView<String> values) {
-    final retValuePtr = calloc<COMObject>();
-    final valuesPtr = values.ptr.ref.lpVtbl;
+    final operation = calloc<COMObject>();
 
     final hr =
         ptr.ref.vtable
@@ -144,26 +143,26 @@ class IUser extends IInspectable {
                             HRESULT Function(
                                 VTablePointer lpVtbl,
                                 VTablePointer values,
-                                Pointer<COMObject> retValuePtr)>>>()
+                                Pointer<COMObject> operation)>>>()
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer values,
-                        Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl, valuesPtr, retValuePtr);
+                        Pointer<COMObject> operation)>()(
+            ptr.ref.lpVtbl, values.ptr.ref.lpVtbl, operation);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<IPropertySet>.fromPtr(retValuePtr,
+    final asyncOperation = IAsyncOperation<IPropertySet>.fromPtr(operation,
         creator: IPropertySet.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<IRandomAccessStreamReference?> getPictureAsync(
       UserPictureSize desiredSize) {
-    final retValuePtr = calloc<COMObject>();
+    final operation = calloc<COMObject>();
 
     final hr =
         ptr.ref.vtable
@@ -174,20 +173,20 @@ class IUser extends IInspectable {
                             HRESULT Function(
                                 VTablePointer lpVtbl,
                                 Int32 desiredSize,
-                                Pointer<COMObject> retValuePtr)>>>()
+                                Pointer<COMObject> operation)>>>()
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, int desiredSize,
-                        Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl, desiredSize.value, retValuePtr);
+                        Pointer<COMObject> operation)>()(
+            ptr.ref.lpVtbl, desiredSize.value, operation);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
     final asyncOperation =
-        IAsyncOperation<IRandomAccessStreamReference?>.fromPtr(retValuePtr,
+        IAsyncOperation<IRandomAccessStreamReference?>.fromPtr(operation,
             creator: IRandomAccessStreamReference.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }

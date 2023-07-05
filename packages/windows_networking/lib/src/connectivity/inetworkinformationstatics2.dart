@@ -32,9 +32,7 @@ class INetworkInformationStatics2 extends IInspectable {
 
   Future<List<ConnectionProfile?>> findConnectionProfilesAsync(
       ConnectionProfileFilter? pProfileFilter) {
-    final retValuePtr = calloc<COMObject>();
-    final pProfileFilterPtr =
-        pProfileFilter == null ? nullptr : pProfileFilter.ptr.ref.lpVtbl;
+    final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -44,21 +42,23 @@ class INetworkInformationStatics2 extends IInspectable {
                         HRESULT Function(
                             VTablePointer lpVtbl,
                             VTablePointer pProfileFilter,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> value)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer pProfileFilter,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, pProfileFilterPtr, retValuePtr);
+                    Pointer<COMObject> value)>()(
+        ptr.ref.lpVtbl,
+        pProfileFilter == null ? nullptr : pProfileFilter.ptr.ref.lpVtbl,
+        value);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
     final asyncOperation =
         IAsyncOperation<IVectorView<ConnectionProfile?>>.fromPtr(
-            retValuePtr,
+            value,
             creator: (ptr) => IVectorView.fromPtr(ptr,
                 creator: ConnectionProfile.fromPtr,
                 iterableIid: '{34dabef9-87d0-5b1c-a7ac-9d290adeb0c8}'));

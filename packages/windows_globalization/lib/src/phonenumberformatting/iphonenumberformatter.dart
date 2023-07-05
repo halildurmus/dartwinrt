@@ -30,42 +30,36 @@ class IPhoneNumberFormatter extends IInspectable {
           interface.toInterface(IID_IPhoneNumberFormatter));
 
   String format(PhoneNumberInfo? number) {
-    final retValuePtr = calloc<HSTRING>();
+    final result = calloc<IntPtr>();
 
     try {
-      final numberPtr = number == null ? nullptr : number.ptr.ref.lpVtbl;
-
       final hr = ptr.ref.vtable
               .elementAt(6)
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              VTablePointer number,
-                              Pointer<IntPtr> retValuePtr)>>>()
+                          HRESULT Function(VTablePointer lpVtbl,
+                              VTablePointer number, Pointer<IntPtr> result)>>>()
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, VTablePointer number,
-                      Pointer<IntPtr> retValuePtr)>()(
-          ptr.ref.lpVtbl, numberPtr, retValuePtr);
+                      Pointer<IntPtr> result)>()(ptr.ref.lpVtbl,
+          number == null ? nullptr : number.ptr.ref.lpVtbl, result);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.toDartString();
+      return result.toDartString();
     } finally {
-      WindowsDeleteString(retValuePtr.value);
-      free(retValuePtr);
+      WindowsDeleteString(result.value);
+      free(result);
     }
   }
 
   String formatWithOutputFormat(
       PhoneNumberInfo? number, PhoneNumberFormat numberFormat) {
-    final retValuePtr = calloc<HSTRING>();
+    final result = calloc<IntPtr>();
 
     try {
-      final numberPtr = number == null ? nullptr : number.ptr.ref.lpVtbl;
-
       final hr = ptr.ref.vtable
               .elementAt(7)
               .cast<
@@ -75,24 +69,27 @@ class IPhoneNumberFormatter extends IInspectable {
                               VTablePointer lpVtbl,
                               VTablePointer number,
                               Int32 numberFormat,
-                              Pointer<IntPtr> retValuePtr)>>>()
+                              Pointer<IntPtr> result)>>>()
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, VTablePointer number,
-                      int numberFormat, Pointer<IntPtr> retValuePtr)>()(
-          ptr.ref.lpVtbl, numberPtr, numberFormat.value, retValuePtr);
+                      int numberFormat, Pointer<IntPtr> result)>()(
+          ptr.ref.lpVtbl,
+          number == null ? nullptr : number.ptr.ref.lpVtbl,
+          numberFormat.value,
+          result);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.toDartString();
+      return result.toDartString();
     } finally {
-      WindowsDeleteString(retValuePtr.value);
-      free(retValuePtr);
+      WindowsDeleteString(result.value);
+      free(result);
     }
   }
 
   String formatPartialString(String number) {
-    final retValuePtr = calloc<HSTRING>();
+    final result = calloc<IntPtr>();
 
     try {
       final numberHString = number.toHString();
@@ -103,26 +100,26 @@ class IPhoneNumberFormatter extends IInspectable {
                   Pointer<
                       NativeFunction<
                           HRESULT Function(VTablePointer lpVtbl, IntPtr number,
-                              Pointer<IntPtr> retValuePtr)>>>()
+                              Pointer<IntPtr> result)>>>()
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, int number,
-                      Pointer<IntPtr> retValuePtr)>()(
-          ptr.ref.lpVtbl, numberHString, retValuePtr);
+                      Pointer<IntPtr> result)>()(
+          ptr.ref.lpVtbl, numberHString, result);
 
       WindowsDeleteString(numberHString);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.toDartString();
+      return result.toDartString();
     } finally {
-      WindowsDeleteString(retValuePtr.value);
-      free(retValuePtr);
+      WindowsDeleteString(result.value);
+      free(result);
     }
   }
 
   String formatString(String number) {
-    final retValuePtr = calloc<HSTRING>();
+    final result = calloc<IntPtr>();
 
     try {
       final numberHString = number.toHString();
@@ -133,26 +130,26 @@ class IPhoneNumberFormatter extends IInspectable {
                   Pointer<
                       NativeFunction<
                           HRESULT Function(VTablePointer lpVtbl, IntPtr number,
-                              Pointer<IntPtr> retValuePtr)>>>()
+                              Pointer<IntPtr> result)>>>()
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, int number,
-                      Pointer<IntPtr> retValuePtr)>()(
-          ptr.ref.lpVtbl, numberHString, retValuePtr);
+                      Pointer<IntPtr> result)>()(
+          ptr.ref.lpVtbl, numberHString, result);
 
       WindowsDeleteString(numberHString);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.toDartString();
+      return result.toDartString();
     } finally {
-      WindowsDeleteString(retValuePtr.value);
-      free(retValuePtr);
+      WindowsDeleteString(result.value);
+      free(result);
     }
   }
 
   String formatStringWithLeftToRightMarkers(String number) {
-    final retValuePtr = calloc<HSTRING>();
+    final result = calloc<IntPtr>();
 
     try {
       final numberHString = number.toHString();
@@ -163,21 +160,21 @@ class IPhoneNumberFormatter extends IInspectable {
                   Pointer<
                       NativeFunction<
                           HRESULT Function(VTablePointer lpVtbl, IntPtr number,
-                              Pointer<IntPtr> retValuePtr)>>>()
+                              Pointer<IntPtr> result)>>>()
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, int number,
-                      Pointer<IntPtr> retValuePtr)>()(
-          ptr.ref.lpVtbl, numberHString, retValuePtr);
+                      Pointer<IntPtr> result)>()(
+          ptr.ref.lpVtbl, numberHString, result);
 
       WindowsDeleteString(numberHString);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.toDartString();
+      return result.toDartString();
     } finally {
-      WindowsDeleteString(retValuePtr.value);
-      free(retValuePtr);
+      WindowsDeleteString(result.value);
+      free(result);
     }
   }
 }

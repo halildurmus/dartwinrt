@@ -31,7 +31,7 @@ class IWwwFormUrlDecoderRuntimeClassFactory extends IInspectable {
           interface.toInterface(IID_IWwwFormUrlDecoderRuntimeClassFactory));
 
   WwwFormUrlDecoder createWwwFormUrlDecoder(String query) {
-    final retValuePtr = calloc<COMObject>();
+    final instance = calloc<COMObject>();
     final queryHString = query.toHString();
 
     final hr = ptr.ref.vtable
@@ -40,20 +40,20 @@ class IWwwFormUrlDecoderRuntimeClassFactory extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(VTablePointer lpVtbl, IntPtr query,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> instance)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int query,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, queryHString, retValuePtr);
+                    Pointer<COMObject> instance)>()(
+        ptr.ref.lpVtbl, queryHString, instance);
 
     WindowsDeleteString(queryHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(instance);
       throw WindowsException(hr);
     }
 
-    return WwwFormUrlDecoder.fromPtr(retValuePtr);
+    return WwwFormUrlDecoder.fromPtr(instance);
   }
 }

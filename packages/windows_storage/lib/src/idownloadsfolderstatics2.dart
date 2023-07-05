@@ -32,8 +32,7 @@ class IDownloadsFolderStatics2 extends IInspectable {
           interface.toInterface(IID_IDownloadsFolderStatics2));
 
   Future<StorageFile?> createFileForUserAsync(User? user, String desiredName) {
-    final retValuePtr = calloc<COMObject>();
-    final userPtr = user == null ? nullptr : user.ptr.ref.lpVtbl;
+    final operation = calloc<COMObject>();
     final desiredNameHString = desiredName.toHString();
 
     final hr =
@@ -46,29 +45,31 @@ class IDownloadsFolderStatics2 extends IInspectable {
                                 VTablePointer lpVtbl,
                                 VTablePointer user,
                                 IntPtr desiredName,
-                                Pointer<COMObject> retValuePtr)>>>()
+                                Pointer<COMObject> operation)>>>()
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer user,
-                        int desiredName, Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl, userPtr, desiredNameHString, retValuePtr);
+                        int desiredName, Pointer<COMObject> operation)>()(
+            ptr.ref.lpVtbl,
+            user == null ? nullptr : user.ptr.ref.lpVtbl,
+            desiredNameHString,
+            operation);
 
     WindowsDeleteString(desiredNameHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<StorageFile?>.fromPtr(retValuePtr,
+    final asyncOperation = IAsyncOperation<StorageFile?>.fromPtr(operation,
         creator: StorageFile.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<StorageFolder?> createFolderForUserAsync(
       User? user, String desiredName) {
-    final retValuePtr = calloc<COMObject>();
-    final userPtr = user == null ? nullptr : user.ptr.ref.lpVtbl;
+    final operation = calloc<COMObject>();
     final desiredNameHString = desiredName.toHString();
 
     final hr =
@@ -81,29 +82,31 @@ class IDownloadsFolderStatics2 extends IInspectable {
                                 VTablePointer lpVtbl,
                                 VTablePointer user,
                                 IntPtr desiredName,
-                                Pointer<COMObject> retValuePtr)>>>()
+                                Pointer<COMObject> operation)>>>()
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer user,
-                        int desiredName, Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl, userPtr, desiredNameHString, retValuePtr);
+                        int desiredName, Pointer<COMObject> operation)>()(
+            ptr.ref.lpVtbl,
+            user == null ? nullptr : user.ptr.ref.lpVtbl,
+            desiredNameHString,
+            operation);
 
     WindowsDeleteString(desiredNameHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<StorageFolder?>.fromPtr(retValuePtr,
+    final asyncOperation = IAsyncOperation<StorageFolder?>.fromPtr(operation,
         creator: StorageFolder.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<StorageFile?> createFileForUserWithCollisionOptionAsync(
       User? user, String desiredName, CreationCollisionOption option) {
-    final retValuePtr = calloc<COMObject>();
-    final userPtr = user == null ? nullptr : user.ptr.ref.lpVtbl;
+    final operation = calloc<COMObject>();
     final desiredNameHString = desiredName.toHString();
 
     final hr = ptr.ref.vtable
@@ -116,7 +119,7 @@ class IDownloadsFolderStatics2 extends IInspectable {
                             VTablePointer user,
                             IntPtr desiredName,
                             Int32 option,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> operation)>>>()
             .value
             .asFunction<
                 int Function(
@@ -124,25 +127,28 @@ class IDownloadsFolderStatics2 extends IInspectable {
                     VTablePointer user,
                     int desiredName,
                     int option,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, userPtr, desiredNameHString, option.value, retValuePtr);
+                    Pointer<COMObject> operation)>()(
+        ptr.ref.lpVtbl,
+        user == null ? nullptr : user.ptr.ref.lpVtbl,
+        desiredNameHString,
+        option.value,
+        operation);
 
     WindowsDeleteString(desiredNameHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<StorageFile?>.fromPtr(retValuePtr,
+    final asyncOperation = IAsyncOperation<StorageFile?>.fromPtr(operation,
         creator: StorageFile.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<StorageFolder?> createFolderForUserWithCollisionOptionAsync(
       User? user, String desiredName, CreationCollisionOption option) {
-    final retValuePtr = calloc<COMObject>();
-    final userPtr = user == null ? nullptr : user.ptr.ref.lpVtbl;
+    final operation = calloc<COMObject>();
     final desiredNameHString = desiredName.toHString();
 
     final hr = ptr.ref.vtable
@@ -155,7 +161,7 @@ class IDownloadsFolderStatics2 extends IInspectable {
                             VTablePointer user,
                             IntPtr desiredName,
                             Int32 option,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> operation)>>>()
             .value
             .asFunction<
                 int Function(
@@ -163,17 +169,21 @@ class IDownloadsFolderStatics2 extends IInspectable {
                     VTablePointer user,
                     int desiredName,
                     int option,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, userPtr, desiredNameHString, option.value, retValuePtr);
+                    Pointer<COMObject> operation)>()(
+        ptr.ref.lpVtbl,
+        user == null ? nullptr : user.ptr.ref.lpVtbl,
+        desiredNameHString,
+        option.value,
+        operation);
 
     WindowsDeleteString(desiredNameHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<StorageFolder?>.fromPtr(retValuePtr,
+    final asyncOperation = IAsyncOperation<StorageFolder?>.fromPtr(operation,
         creator: StorageFolder.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }

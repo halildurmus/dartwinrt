@@ -29,8 +29,6 @@ class IXmlDocumentIO2 extends IInspectable {
       IXmlDocumentIO2.fromPtr(interface.toInterface(IID_IXmlDocumentIO2));
 
   void loadXmlFromBuffer(IBuffer? buffer) {
-    final bufferPtr = buffer == null ? nullptr : buffer.ptr.ref.lpVtbl;
-
     final hr = ptr.ref.vtable
             .elementAt(6)
             .cast<
@@ -41,17 +39,13 @@ class IXmlDocumentIO2 extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer buffer)>()(
-        ptr.ref.lpVtbl, bufferPtr);
+        ptr.ref.lpVtbl, buffer == null ? nullptr : buffer.ptr.ref.lpVtbl);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
   void loadXmlFromBufferWithSettings(
       IBuffer? buffer, XmlLoadSettings? loadSettings) {
-    final bufferPtr = buffer == null ? nullptr : buffer.ptr.ref.lpVtbl;
-    final loadSettingsPtr =
-        loadSettings == null ? nullptr : loadSettings.ptr.ref.lpVtbl;
-
     final hr =
         ptr.ref.vtable
                 .elementAt(7)
@@ -66,7 +60,9 @@ class IXmlDocumentIO2 extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer buffer,
                         VTablePointer loadSettings)>()(
-            ptr.ref.lpVtbl, bufferPtr, loadSettingsPtr);
+            ptr.ref.lpVtbl,
+            buffer == null ? nullptr : buffer.ptr.ref.lpVtbl,
+            loadSettings == null ? nullptr : loadSettings.ptr.ref.lpVtbl);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }

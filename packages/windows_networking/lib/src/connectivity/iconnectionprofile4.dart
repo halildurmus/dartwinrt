@@ -31,7 +31,7 @@ class IConnectionProfile4 extends IInspectable {
 
   Future<List<ProviderNetworkUsage?>> getProviderNetworkUsageAsync(
       DateTime startTime, DateTime endTime, NetworkUsageStates states) {
-    final retValuePtr = calloc<COMObject>();
+    final value = calloc<COMObject>();
     final statesNativeStructPtr = states.toNative();
 
     final hr = ptr.ref.vtable
@@ -44,7 +44,7 @@ class IConnectionProfile4 extends IInspectable {
                             Int64 startTime,
                             Int64 endTime,
                             NativeNetworkUsageStates states,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> value)>>>()
             .value
             .asFunction<
                 int Function(
@@ -52,22 +52,22 @@ class IConnectionProfile4 extends IInspectable {
                     int startTime,
                     int endTime,
                     NativeNetworkUsageStates states,
-                    Pointer<COMObject> retValuePtr)>()(
+                    Pointer<COMObject> value)>()(
         ptr.ref.lpVtbl,
         startTime.toWinRTDateTime(),
         endTime.toWinRTDateTime(),
         statesNativeStructPtr.ref,
-        retValuePtr);
+        value);
 
     free(statesNativeStructPtr);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
     final asyncOperation =
-        IAsyncOperation<IVectorView<ProviderNetworkUsage?>>.fromPtr(retValuePtr,
+        IAsyncOperation<IVectorView<ProviderNetworkUsage?>>.fromPtr(value,
             creator: (ptr) => IVectorView.fromPtr(ptr,
                 creator: ProviderNetworkUsage.fromPtr,
                 iterableIid: '{f79bc7ba-01df-51ec-bfaf-fd883f698e07}'));

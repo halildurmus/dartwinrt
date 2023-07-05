@@ -29,26 +29,26 @@ class IDeviceUnpairingResult extends IInspectable {
           interface.toInterface(IID_IDeviceUnpairingResult));
 
   DeviceUnpairingResultStatus get status {
-    final retValuePtr = calloc<Int32>();
+    final status = calloc<Int32>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Int32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(6)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<Int32> status)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Int32> status)>()(
+          ptr.ref.lpVtbl, status);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return DeviceUnpairingResultStatus.from(retValuePtr.value);
+      return DeviceUnpairingResultStatus.from(status.value);
     } finally {
-      free(retValuePtr);
+      free(status);
     }
   }
 }

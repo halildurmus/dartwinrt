@@ -106,10 +106,10 @@ abstract interface class IReference<T> extends IInspectable {
         return _IReferenceSize.fromPtr(ptr) as IReference<T>;
       }
 
-      // TODO: Other structs like BasicGeoposition are not yet supported.
-      // Since the PropertyValue does not support creating an `IReference`
-      // object for them, we need to create our own IReference<T> (and possibly
-      // IPropertyValue) implementations for them.
+      // TODO(halildurmus): Other structs like BasicGeoposition are not yet
+      // supported. Since the PropertyValue does not support creating an
+      // `IReference` object for them, we need to create our own IReference<T>
+      // (and possibly IPropertyValue) implementations for them.
 
       throw ArgumentError.value(T, 'T', 'Unsupported type');
     }

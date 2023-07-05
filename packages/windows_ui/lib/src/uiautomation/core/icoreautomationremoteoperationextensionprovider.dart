@@ -37,14 +37,13 @@ class ICoreAutomationRemoteOperationExtensionProvider extends IInspectable {
       Guid extensionId,
       CoreAutomationRemoteOperationContext? context,
       List<AutomationRemoteOperationOperandId> operandIds) {
-    final extensionIdNativeGuidPtr = extensionId.toNativeGUID();
-    final contextPtr = context == null ? nullptr : context.ptr.ref.lpVtbl;
+    final extensionIdNativeStructPtr = extensionId.toNativeGUID();
     final nativeStructPtrs =
         <Pointer<NativeAutomationRemoteOperationOperandId>>[];
     final pOperandIdsArray =
         calloc<NativeAutomationRemoteOperationOperandId>(operandIds.length);
     for (var i = 0; i < operandIds.length; i++) {
-      final nativeStructPtr = operandIds.elementAt(i).toNative();
+      final nativeStructPtr = operandIds[i].toNative();
       pOperandIdsArray[i] = nativeStructPtr.ref;
       nativeStructPtrs.add(nativeStructPtr);
     }
@@ -71,12 +70,12 @@ class ICoreAutomationRemoteOperationExtensionProvider extends IInspectable {
                     Pointer<NativeAutomationRemoteOperationOperandId>
                         operandIds)>()(
         ptr.ref.lpVtbl,
-        extensionIdNativeGuidPtr.ref,
-        contextPtr,
+        extensionIdNativeStructPtr.ref,
+        context == null ? nullptr : context.ptr.ref.lpVtbl,
         operandIds.length,
         pOperandIdsArray);
 
-    free(extensionIdNativeGuidPtr);
+    free(extensionIdNativeStructPtr);
     nativeStructPtrs.forEach(free);
     free(pOperandIdsArray);
 
@@ -84,31 +83,32 @@ class ICoreAutomationRemoteOperationExtensionProvider extends IInspectable {
   }
 
   bool isExtensionSupported(Guid extensionId) {
-    final retValuePtr = calloc<Bool>();
+    final result = calloc<Bool>();
 
     try {
-      final extensionIdNativeGuidPtr = extensionId.toNativeGUID();
+      final extensionIdNativeStructPtr = extensionId.toNativeGUID();
 
-      final hr = ptr.ref.vtable
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl, GUID extensionId,
-                              Pointer<Bool> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, GUID extensionId,
-                      Pointer<Bool> retValuePtr)>()(
-          ptr.ref.lpVtbl, extensionIdNativeGuidPtr.ref, retValuePtr);
+      final hr =
+          ptr.ref.vtable
+                  .elementAt(7)
+                  .cast<
+                      Pointer<
+                          NativeFunction<
+                              HRESULT Function(VTablePointer lpVtbl,
+                                  GUID extensionId, Pointer<Bool> result)>>>()
+                  .value
+                  .asFunction<
+                      int Function(VTablePointer lpVtbl, GUID extensionId,
+                          Pointer<Bool> result)>()(
+              ptr.ref.lpVtbl, extensionIdNativeStructPtr.ref, result);
 
-      free(extensionIdNativeGuidPtr);
+      free(extensionIdNativeStructPtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return result.value;
     } finally {
-      free(retValuePtr);
+      free(result);
     }
   }
 }

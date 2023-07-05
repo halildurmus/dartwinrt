@@ -34,10 +34,8 @@ class IEndpointPairFactory extends IInspectable {
       String localServiceName,
       HostName remoteHostName,
       String remoteServiceName) {
-    final retValuePtr = calloc<COMObject>();
-    final localHostNamePtr = localHostName.ptr.ref.lpVtbl;
+    final value = calloc<COMObject>();
     final localServiceNameHString = localServiceName.toHString();
-    final remoteHostNamePtr = remoteHostName.ptr.ref.lpVtbl;
     final remoteServiceNameHString = remoteServiceName.toHString();
 
     final hr = ptr.ref.vtable
@@ -51,7 +49,7 @@ class IEndpointPairFactory extends IInspectable {
                             IntPtr localServiceName,
                             VTablePointer remoteHostName,
                             IntPtr remoteServiceName,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> value)>>>()
             .value
             .asFunction<
                 int Function(
@@ -60,22 +58,22 @@ class IEndpointPairFactory extends IInspectable {
                     int localServiceName,
                     VTablePointer remoteHostName,
                     int remoteServiceName,
-                    Pointer<COMObject> retValuePtr)>()(
+                    Pointer<COMObject> value)>()(
         ptr.ref.lpVtbl,
-        localHostNamePtr,
+        localHostName.ptr.ref.lpVtbl,
         localServiceNameHString,
-        remoteHostNamePtr,
+        remoteHostName.ptr.ref.lpVtbl,
         remoteServiceNameHString,
-        retValuePtr);
+        value);
 
     WindowsDeleteString(localServiceNameHString);
     WindowsDeleteString(remoteServiceNameHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    return EndpointPair.fromPtr(retValuePtr);
+    return EndpointPair.fromPtr(value);
   }
 }

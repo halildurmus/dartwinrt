@@ -31,8 +31,7 @@ class IPropertySetSerializer extends IInspectable {
           interface.toInterface(IID_IPropertySetSerializer));
 
   IBuffer? serialize(IPropertySet propertySet) {
-    final retValuePtr = calloc<COMObject>();
-    final propertySetPtr = propertySet.ptr.ref.lpVtbl;
+    final result = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -42,30 +41,27 @@ class IPropertySetSerializer extends IInspectable {
                         HRESULT Function(
                             VTablePointer lpVtbl,
                             VTablePointer propertySet,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> result)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer propertySet,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, propertySetPtr, retValuePtr);
+                    Pointer<COMObject> result)>()(
+        ptr.ref.lpVtbl, propertySet.ptr.ref.lpVtbl, result);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(result);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (result.isNull) {
+      free(result);
       return null;
     }
 
-    return IBuffer.fromPtr(retValuePtr);
+    return IBuffer.fromPtr(result);
   }
 
   void deserialize(IPropertySet propertySet, IBuffer? buffer) {
-    final propertySetPtr = propertySet.ptr.ref.lpVtbl;
-    final bufferPtr = buffer == null ? nullptr : buffer.ptr.ref.lpVtbl;
-
     final hr =
         ptr.ref.vtable
                 .elementAt(7)
@@ -80,7 +76,9 @@ class IPropertySetSerializer extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl,
                         VTablePointer propertySet, VTablePointer buffer)>()(
-            ptr.ref.lpVtbl, propertySetPtr, bufferPtr);
+            ptr.ref.lpVtbl,
+            propertySet.ptr.ref.lpVtbl,
+            buffer == null ? nullptr : buffer.ptr.ref.lpVtbl);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }

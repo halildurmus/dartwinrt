@@ -33,7 +33,7 @@ class IStorageFolderQueryResult extends IInspectable
 
   Future<List<StorageFolder?>> getFoldersAsync(
       int startIndex, int maxNumberOfItems) {
-    final retValuePtr = calloc<COMObject>();
+    final operation = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -44,20 +44,20 @@ class IStorageFolderQueryResult extends IInspectable
                             VTablePointer lpVtbl,
                             Uint32 startIndex,
                             Uint32 maxNumberOfItems,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> operation)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int startIndex,
-                    int maxNumberOfItems, Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, startIndex, maxNumberOfItems, retValuePtr);
+                    int maxNumberOfItems, Pointer<COMObject> operation)>()(
+        ptr.ref.lpVtbl, startIndex, maxNumberOfItems, operation);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<IVectorView<StorageFolder?>>.fromPtr(
-        retValuePtr,
+        operation,
         creator: (ptr) => IVectorView.fromPtr(ptr,
             creator: StorageFolder.fromPtr,
             iterableIid: '{4669befc-ae5c-52b1-8a97-5466ce61e94e}'));
@@ -65,27 +65,27 @@ class IStorageFolderQueryResult extends IInspectable
   }
 
   Future<List<StorageFolder?>> getFoldersAsyncDefaultStartAndCount() {
-    final retValuePtr = calloc<COMObject>();
+    final operation = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
         .elementAt(7)
         .cast<
             Pointer<
                 NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
+                    HRESULT Function(
+                        VTablePointer lpVtbl, Pointer<COMObject> operation)>>>()
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                Pointer<COMObject> operation)>()(ptr.ref.lpVtbl, operation);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<IVectorView<StorageFolder?>>.fromPtr(
-        retValuePtr,
+        operation,
         creator: (ptr) => IVectorView.fromPtr(ptr,
             creator: StorageFolder.fromPtr,
             iterableIid: '{4669befc-ae5c-52b1-8a97-5466ce61e94e}'));
