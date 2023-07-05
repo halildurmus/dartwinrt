@@ -1,0 +1,33 @@
+// Copyright (c) 2023, Dart | Windows. Please see the AUTHORS file for details.
+// All rights reserved. Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.
+
+String failedCheck({
+  bool freeRetVal = false,
+  String identifier = 'retValuePtr',
+}) {
+  if (!freeRetVal) {
+    return 'if (FAILED(hr)) throw WindowsException(hr);';
+  }
+
+  return '''
+    if (FAILED(hr)) {
+      free($identifier);
+      throw WindowsException(hr);
+    }
+''';
+}
+
+String nullCheck(
+  String identifier, {
+  bool castReturn = false,
+  String typeParameter = 'T',
+}) {
+  final cast = castReturn ? ' as $typeParameter' : '';
+  return '''
+    if ($identifier.isNull) {
+      free($identifier);
+      return null$cast;
+    }
+''';
+}

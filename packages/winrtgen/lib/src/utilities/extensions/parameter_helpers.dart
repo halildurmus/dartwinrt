@@ -4,7 +4,7 @@
 
 import 'package:winmd/winmd.dart';
 
-import '../../models/projection_type.dart';
+import '../../models/projection_kind.dart';
 import '../../projections/type.dart';
 import 'type_identifier_helpers.dart';
 
@@ -12,6 +12,7 @@ extension ParameterHelpers on Parameter {
   /// Returns a copy of this parameter.
   Parameter clone() =>
       Parameter.fromTypeIdentifier(scope, parent.token, typeIdentifier)
+        ..attributes = attributes
         ..name = name;
 
   bool get isClassVariableType => typeIdentifier.isClassVariableType;
@@ -20,9 +21,14 @@ extension ParameterHelpers on Parameter {
 
   bool get isGenericType => typeIdentifier.isGenericType;
 
+  bool get isPointerType => typeIdentifier.isPointerType;
+
+  /// Whether this is a simple array size parameter (e.g. `__valueSize`).
+  bool get isSimpleArraySizeParam => RegExp(r'^(__\w+Size)$').hasMatch(name);
+
   bool get isSimpleArrayType => typeIdentifier.isSimpleArrayType;
 
-  /// Returns the appropriate [ProjectionType] for this parameter.
-  ProjectionType get projectionType =>
-      TypeProjection(typeIdentifier).projectionType;
+  /// Returns the appropriate [ProjectionKind] for this parameter.
+  ProjectionKind get projectionKind =>
+      TypeProjection(typeIdentifier).projectionKind;
 }

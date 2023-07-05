@@ -17,7 +17,15 @@ import '../constants/constants.dart';
 import '../exception/exception.dart';
 import 'extensions/extensions.dart';
 
-/// Convert a *typeIdentifier into a typeIdentifier.
+/// Convert a [paramName] like `__valueSize` to a name like `value`.
+String arrayNameFromSizeParamName(String paramName) {
+  if (paramName.startsWith('__') && paramName.endsWith('Size')) {
+    return paramName.substring(2, paramName.length - 4);
+  }
+  return paramName;
+}
+
+/// Convert a *[typeIdentifier] into a typeIdentifier.
 ///
 /// Throws a [WinRTGenException] if [typeIdentifier] is cannot be de-referenced.
 TypeIdentifier dereferenceType(TypeIdentifier typeIdentifier) {
@@ -92,10 +100,6 @@ String iidFromSignature(String signature) {
       .toString();
 }
 
-/// Whether the [input] is a simple array size identifier (e.g. `__valueSize`).
-bool isSimpleArraySizeIdentifier(String input) =>
-    RegExp(r'^(__\w+Size)$').hasMatch(input);
-
 /// Whether the [input] is a valid IID.
 bool isValidIID(String input) =>
     RegExp(r'^{[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}}$')
@@ -159,7 +163,7 @@ String quote(String s) => "'$s'";
 
 /// Converts a [fullyQualifiedType] (e.g.
 /// `Windows.Storage.Pickers.FileOpenPicker`) and returns the relative path from
-/// the `dartwinrt/tools` folder to matching folder path  (e.g.
+/// the `dartwinrt/tool` folder to matching folder path  (e.g.
 /// `../../packages/windows_storage/lib/src/pickers`).
 String relativeFolderPathFromType(String fullyQualifiedType) {
   final packageName = packageNameFromType(fullyQualifiedType);
@@ -174,6 +178,13 @@ String relativeFolderPathFromType(String fullyQualifiedType) {
 /// directory.
 String relativePath(String targetPath, {required String start}) =>
     path.relative(targetPath, from: start).replaceAll(r'\', '/');
+
+/// Converts a [fullyQualifiedType] (e.g.
+/// `Windows.Storage.Pickers.FileOpenPicker`) and returns the relative path from
+/// the `dartwinrt/tool` folder to matching file path  (e.g.
+/// `../../packages/windows_storage/lib/src/pickers/fileopenpicker.dart`).
+String relativePathForType(String fullyQualifiedType) =>
+    '${relativeFolderPathFromType(fullyQualifiedType)}/${fileNameFromType(fullyQualifiedType)}';
 
 /// Takes a [name] and converts it to a safe Dart identifier (i.e. one that
 /// is not a reserved word or a private modifier).

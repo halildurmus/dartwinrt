@@ -11,7 +11,7 @@ extension MethodHelpers on Method {
   /// Returns a copy of this method.
   Method clone() => Method.fromToken(scope, token);
 
-  /// Returns the appropriate [ProjectionType] for this method.
-  ProjectionType get projectionType =>
-      TypeProjection(returnType.typeIdentifier).projectionType;
+  /// Returns the appropriate [ProjectionKind] for this method.
+  ProjectionKind get projectionKind =>
+      TypeProjection(returnType.typeIdentifier).projectionKind;
 }

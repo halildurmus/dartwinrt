@@ -8,15 +8,12 @@ import 'package:test/test.dart';
 import 'package:win32/win32.dart';
 import 'package:winrtgen/winrtgen.dart';
 
-import '../helpers.dart';
-
 void main() {
   if (!isWindowsRuntimeAvailable()) {
     print('Skipping tests because Windows Runtime is not available.');
     return;
   }
 
-  final windowsBuildNumber = getWindowsBuildNumber();
   final calendarProjection =
       ClassProjection.from('Windows.Globalization.Calendar');
   final geolocatorProjection =
@@ -87,29 +84,26 @@ void main() {
           unorderedEquals(['ipropertyvaluestatics.dart']));
     });
 
-    if (windowsBuildNumber >= 18362) {
-      test('has correct inheritance chain (3) (ignores excluded interfaces)',
-          () {
-        final projection =
-            ClassProjection.from('Windows.Storage.Pickers.FileOpenPicker');
-        // IFileOpenPicker2 and IFileOpenPickerStatics and
-        // IFileOpenPickerWithOperationId interfaces are excluded
-        expect(projection.inheritsFrom,
-            equals('IFileOpenPicker, IFileOpenPicker3'));
-        expect(
-            projection.classHeader,
-            equals('class FileOpenPicker extends IInspectable '
-                'implements IFileOpenPicker, IFileOpenPicker3'));
-        expect(
-          projection.interfaceImports,
-          unorderedEquals([
-            'ifileopenpicker.dart',
-            'ifileopenpicker3.dart',
-            'ifileopenpickerstatics2.dart',
-          ]),
-        );
-      });
-    }
+    test('has correct inheritance chain (3) (ignores excluded interfaces)', () {
+      final projection =
+          ClassProjection.from('Windows.Storage.Pickers.FileOpenPicker');
+      // IFileOpenPicker2 and IFileOpenPickerStatics and
+      // IFileOpenPickerWithOperationId interfaces are excluded
+      expect(
+          projection.inheritsFrom, equals('IFileOpenPicker, IFileOpenPicker3'));
+      expect(
+          projection.classHeader,
+          equals('class FileOpenPicker extends IInspectable '
+              'implements IFileOpenPicker, IFileOpenPicker3'));
+      expect(
+        projection.interfaceImports,
+        unorderedEquals([
+          'ifileopenpicker.dart',
+          'ifileopenpicker3.dart',
+          'ifileopenpickerstatics2.dart',
+        ]),
+      );
+    });
 
     test('imports are meaningful', () {
       expect(

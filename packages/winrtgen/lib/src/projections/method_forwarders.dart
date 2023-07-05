@@ -130,7 +130,12 @@ final class MethodForwardersProjection {
     throw WinRTGenException('Type $interface has no TypeDef.');
   }
 
-  List<MethodProjection> get methodProjections {
+  List<MethodProjection>? _methodProjections;
+
+  List<MethodProjection> get methodProjections =>
+      _methodProjections ??= _cacheMethodProjections();
+
+  List<MethodProjection> _cacheMethodProjections() {
     if (!isGenericInterface) {
       return InterfaceProjection(interface).methodProjections;
     }
@@ -208,7 +213,7 @@ final class MethodForwardersProjection {
 
   String defaultForwarder(MethodProjection methodProjection) {
     // e.g. `int get Second` or `void addHours(int hours)`
-    final methodHeader = methodProjection.methodHeader;
+    final methodHeader = methodProjection.header;
     final deprecatedAnnotation = methodProjection.method.isDeprecated
         ? methodProjection.method.deprecatedAnnotation
         : null;

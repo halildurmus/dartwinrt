@@ -5,128 +5,88 @@
 import 'package:winmd/winmd.dart';
 
 import '../../utilities/utilities.dart';
-import '../getter.dart';
-import '../method.dart';
+import '../parameter.dart';
 import '../type.dart';
 
-mixin _VectorMixin on MethodProjection {
+final class VectorParameterProjection extends ParameterProjection {
+  VectorParameterProjection(super.parameter);
+
+  TypeIdentifier get typeIdentifier => typeProjection.isReferenceType
+      ? dereferenceType(typeProjection.typeIdentifier)
+      : typeProjection.typeIdentifier;
+
   /// The type argument of `IVector` and `IVectorView`, as represented in the
-  /// [returnTypeProjection]'s [TypeIdentifier] (e.g. `int`, `String`,
-  /// `StorageFile`).
+  /// [typeProjection]'s [TypeIdentifier] (e.g. `int`, `String`, `StorageFile`).
   String get vectorTypeArg =>
-      typeArguments(returnTypeProjection.typeIdentifier.name);
+      typeArguments(typeProjection.typeIdentifier.shortName);
 
   /// The constructor arguments passed to the constructors of `IVector` and
   /// `IVectorView`.
   String get vectorConstructorArgs {
-    final typeProjection =
-        TypeProjection(returnTypeProjection.typeIdentifier.typeArgs.first);
+    final typeArgProjection = TypeProjection(typeIdentifier.typeArgs.first);
 
     // If the type argument is an enum or a WinRT object (e.g. StorageFile), the
     // constructor of that class must be passed in the 'enumCreator' parameter
     // for enums, 'creator' parameter for WinRT objects so that the IVector and
     // IVectorView implementations can instantiate the object
-    final creator = returnTypeProjection.typeIdentifier.typeArgs.first.creator;
+    final creator = typeArgProjection.typeIdentifier.creator;
 
     // The IID for IIterable<T> must be passed in the 'iterableIid' parameter so
     // that the IVector and IVectorView implementations can use the correct IID
     // when instantiating the IIterable object
     final iterableIid =
-        iterableIidFromVectorType(returnTypeProjection.typeIdentifier);
+        iterableIidFromVectorType(typeProjection.typeIdentifier);
+
+    // e.g. float, int32
+    final nativeType = typeArgProjection.nativeType.toLowerCase();
 
     // If the type argument is a double, 'doubleType' parameter must be
     // specified so that the IVector and IVectorView implementations can use
     // the appropriate native double type
-    final doubleType = vectorTypeArg == 'double'
-        ? 'DoubleType.${typeProjection.nativeType.toLowerCase()}'
-        : null;
+    final doubleType =
+        vectorTypeArg == 'double' ? 'DoubleType.$nativeType' : null;
 
     // If the type argument is an int, 'intType' parameter must be specified so
     // that the IVector and IVectorView implementations can use the appropriate
     // native integer type
-    final intType = vectorTypeArg == 'int'
-        ? 'IntType.${typeProjection.nativeType.toLowerCase()}'
-        : null;
+    final intType = vectorTypeArg == 'int' ? 'IntType.$nativeType' : null;
 
-    final args = <String>["iterableIid: ${quote(iterableIid)}"];
-    if (typeProjection.isWinRTEnum) {
+    final args = <String>['iterableIid: ${quote(iterableIid)}'];
+    if (typeArgProjection.isWinRTEnum) {
       args.add('enumCreator: $creator');
     } else if (creator != null) {
       args.add('creator: $creator');
     }
-    if (doubleType != null) {
-      args.add('doubleType: $doubleType');
-    }
-    if (intType != null) {
-      args.add('intType: $intType');
-    }
-
+    if (doubleType != null) args.add('doubleType: $doubleType');
+    if (intType != null) args.add('intType: $intType');
     return ', ${args.join(', ')}';
   }
 
   @override
-  String get returnType => 'IVector<$vectorTypeArg>';
+  String get type => 'IVector<$vectorTypeArg>';
 
   @override
-  String get methodDeclaration => '''
-  $methodHeader {
-    final retValuePtr = calloc<COMObject>();
-    ${ffiCall(freeRetValOnFailure: true)}
+  String get creator => 'IVector.fromPtr($identifier$vectorConstructorArgs)';
 
-    return IVector.fromPtr(retValuePtr$vectorConstructorArgs);
-  }
-''';
+  @override
+  String get into => typeProjection.isReferenceType
+      ? '$identifier.ptr'
+      : '$identifier.ptr.ref.lpVtbl';
+
+  // No deallocation is needed as NativeFinalizer will handle it.
+  @override
+  bool get needsDeallocation => false;
 }
 
-/// Method projection for methods that return `IVector<T>`.
-final class VectorMethodProjection extends MethodProjection with _VectorMixin {
-  VectorMethodProjection(super.method, super.vtableOffset);
-}
-
-/// Getter projection for `IVector<T>` getters.
-final class VectorGetterProjection extends GetterProjection with _VectorMixin {
-  VectorGetterProjection(super.method, super.vtableOffset);
-}
-
-/// Method projection for methods that return `IVectorView<T>` (exposed as
-/// `List<T>`).
-final class VectorViewMethodProjection extends MethodProjection
-    with _VectorMixin {
-  VectorViewMethodProjection(super.method, super.vtableOffset);
+final class VectorViewParameterProjection extends VectorParameterProjection {
+  VectorViewParameterProjection(super.parameter);
 
   @override
-  String get returnType => 'List<$vectorTypeArg>';
+  String get type => isInParam || isOutParam
+      ? typeProjection.typeIdentifier.shortName
+      : 'List<$vectorTypeArg>';
 
   @override
-  String get methodDeclaration => '''
-  $methodHeader {
-    final retValuePtr = calloc<COMObject>();
-    ${ffiCall(freeRetValOnFailure: true)}
-
-    final vectorView = IVectorView<$vectorTypeArg>.fromPtr
-        (retValuePtr$vectorConstructorArgs);
-    return vectorView.toList();
-  }
-''';
-}
-
-/// Getter projection for `IVectorView<T>` (exposed as `List<T>`) getters.
-final class VectorViewGetterProjection extends GetterProjection
-    with _VectorMixin {
-  VectorViewGetterProjection(super.method, super.vtableOffset);
-
-  @override
-  String get returnType => 'List<$vectorTypeArg>';
-
-  @override
-  String get methodDeclaration => '''
-  $methodHeader {
-    final retValuePtr = calloc<COMObject>();
-    ${ffiCall(freeRetValOnFailure: true)}
-
-    final vectorView = IVectorView<$vectorTypeArg>.fromPtr
-        (retValuePtr$vectorConstructorArgs);
-    return vectorView.toList();
-  }
-''';
+  String get creator =>
+      'IVectorView<$vectorTypeArg>.fromPtr($localIdentifier$vectorConstructorArgs).toList()';
 }

@@ -113,18 +113,16 @@ final class EnumProjection {
       fields.map(EnumIdentifierProjection.new).toList();
 
   String get valueField => '''
-    @override
-    final int value;
-''';
+  @override
+  final int value;''';
 
   String get constructor => 'const $enumName(this.value);';
 
   String get factoryConstructor => '''
-    factory $enumName.from(int value) =>
+  factory $enumName.from(int value) =>
       $enumName.values.firstWhere((e) => e.value == value,
           orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
-''';
+              value, 'value', 'No enum value with that value'));''';
 
   String get projection => '''
 $header
@@ -147,7 +145,7 @@ $classHeader {
     try {
       return projection;
     } catch (_) {
-      print('Failed to project enum "${typeDef.fullyQualifiedName}".');
+      print("Failed to project enum '${typeDef.fullyQualifiedName}'.");
       rethrow;
     }
   }
@@ -198,10 +196,9 @@ final class FlagsEnumProjection extends EnumProjection {
 
   @override
   String get factoryConstructor => '''
-    factory $enumName.from(int value) =>
-        $enumName.values.firstWhere((e) => e.value == value,
-            orElse: () => $enumName(value));
-''';
+  factory $enumName.from(int value) =>
+      $enumName.values.firstWhere((e) => e.value == value,
+          orElse: () => $enumName(value));''';
 
   List<StaticEnumConstantProjection> get staticEnumConstants => fields
       .map((field) => StaticEnumConstantProjection(field, enumName))
@@ -217,14 +214,12 @@ final class FlagsEnumProjection extends EnumProjection {
   String get andOperator => '''
   @override
   $enumName operator &($enumName other) =>
-      $enumName(value & other.value);
-''';
+      $enumName(value & other.value);''';
 
   String get orOperator => '''
   @override
   $enumName operator |($enumName other) =>
-      $enumName(value | other.value);
-''';
+      $enumName(value | other.value);''';
 
   String get projection => '''
 $header
@@ -251,7 +246,7 @@ $classHeader {
     try {
       return projection;
     } catch (_) {
-      print('Failed to project flags enum "${typeDef.fullyQualifiedName}".');
+      print("Failed to project flags enum '${typeDef.fullyQualifiedName}'.");
       rethrow;
     }
   }

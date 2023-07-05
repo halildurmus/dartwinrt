@@ -13,12 +13,12 @@ abstract class PropertyProjection extends MethodProjection {
   @override
   String get camelCasedName {
     final String formattedMethodName;
-    if (method.name.startsWith('get__') || method.name.startsWith('put__')) {
+    if (name.startsWith('get__') || name.startsWith('put__')) {
       // e.g. get__Languages -> Languages, put__Data -> Data
-      formattedMethodName = method.name.substring(5);
+      formattedMethodName = name.substring(5);
     } else {
       // e.g. get_Size -> Size, put_Completed -> Completed
-      formattedMethodName = method.name.substring(4);
+      formattedMethodName = name.substring(4);
     }
 
     return safeIdentifierForString(formattedMethodName.toCamelCase());

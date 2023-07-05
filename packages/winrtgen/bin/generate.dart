@@ -8,6 +8,22 @@ import 'dart:io';
 import 'package:dart_style/dart_style.dart';
 import 'package:winrtgen/winrtgen.dart';
 
+final formatter = DartFormatter();
+
+({
+  Map<String, String> objects,
+  Map<String, String> enums,
+  Map<String, String> structs
+}) loadJsonFiles() {
+  final objects = loadMap('objects.json');
+  final enums = loadMap('enums.json');
+  final structs = loadMap('structs.json');
+  saveMap(objects, 'objects.json');
+  saveMap(enums, 'enums.json');
+  saveMap(structs, 'structs.json');
+  return (objects: objects, enums: enums, structs: structs);
+}
+
 /// Creates a file at the given [path] and writes the formatted [content] to it.
 ///
 /// If the [content] cannot be formatted, it will be written as unformatted.
@@ -15,7 +31,7 @@ void writeToFile(String path, String content) {
   try {
     File(path)
       ..createSync(recursive: true)
-      ..writeAsStringSync(DartFormatter().format(content));
+      ..writeAsStringSync(formatter.format(content));
   } catch (_) {
     // Better to write even on failure, so we can figure out what syntax error
     // it was that thwarted DartFormatter.
@@ -30,6 +46,7 @@ void generateObjects(Map<String, String> types) {
   // Catalog all the types we need to generate: the types themselves and their
   // dependencies
   final typesAndDependencies = <String>{};
+
   for (final type in types.keys) {
     final typeDef = getMetadataForType(type);
     final projection = typeDef.isInterface
@@ -63,10 +80,8 @@ void generateObjects(Map<String, String> types) {
     final projection = typeDef.isInterface
         ? InterfaceProjection(typeDef, comment: comment)
         : ClassProjection(typeDef, comment: comment);
-    final fileName = stripGenerics(lastComponent(type)).toLowerCase();
-    final path = '${relativeFolderPathFromType(type)}/$fileName.dart';
-    final content = projection.toString();
-    writeToFile(path, content);
+    final path = relativePathForType(type);
+    writeToFile(path, projection.toString());
   }
 }
 
@@ -74,30 +89,17 @@ void generateConcreteClassesForGenericInterfaces(
     List<GenericType> genericTypes) {
   for (final genericType in genericTypes) {
     final type = genericType.fullyQualifiedType;
-    final projections = switch (genericType) {
-      GenericTypeWithOneTypeArg(:final typeArgs) => typeArgs
-          .map((typeArg) => GenericInterfaceProjection.from(type, typeArg)),
-      GenericTypeWithTwoTypeArgs(:final typeArgs) => typeArgs.map((typeArgs) =>
-          GenericInterfaceProjection.from(type, typeArgs.$1, typeArgs.$2)),
-    };
-    final fileName = stripGenerics(lastComponent(type).toLowerCase());
-    final path = '${relativeFolderPathFromType(type)}/${fileName}_part.dart';
-    final content = [
-      classFileHeader,
-      "part of '$fileName.dart';",
-      projections.join('\n')
-    ].join('\n');
-    writeToFile(path, content);
+    final projection = GenericInterfacePartFileProjection(genericType);
+    final path = relativePathForType(type).replaceFirst('.dart', '_part.dart');
+    writeToFile(path, projection.toString());
   }
 }
 
 void generateEnumerations(Map<String, String> enums) {
   for (final type in enums.keys) {
     final projection = EnumProjection.from(type, comment: enums[type] ?? '');
-    final fileName = stripGenerics(lastComponent(type)).toLowerCase();
-    final path = '${relativeFolderPathFromType(type)}/$fileName.dart';
-    final content = projection.toString();
-    writeToFile(path, content);
+    final path = relativePathForType(type);
+    writeToFile(path, projection.toString());
   }
 }
 
@@ -110,19 +112,18 @@ void generateStructs(Map<String, String> structs) {
     nativeStructProjections.add(nativeStructProjection);
     final structProjection =
         StructProjection.from(type, comment: structs[type] ?? '');
-    final fileName = stripGenerics(lastComponent(type)).toLowerCase();
-    final path = '${relativeFolderPathFromType(type)}/$fileName.dart';
-    final content = structProjection.toString();
-    writeToFile(path, content);
+    final path = relativePathForType(type);
+    writeToFile(path, structProjection.toString());
   }
 
-  final path =
+  final nativeStructsFilePath =
       '../../packages/windows_foundation/lib/src/internal/native_structs.g.dart';
-  final content = [nativeStructsFileHeader, ...nativeStructProjections].join();
-  writeToFile(path, content);
+  final nativeStructsFileContent =
+      [nativeStructsFileHeader, ...nativeStructProjections].join();
+  writeToFile(nativeStructsFilePath, nativeStructsFileContent);
 }
 
-void generatePackageExports() {
+void generateLibraryExports() {
   for (final packageName in packageNames) {
     final packagePath = '../$packageName/lib/src/';
     final dir = Directory(packagePath);
@@ -141,7 +142,7 @@ void generatePackageExports() {
 
       final fileName = file.uri.pathSegments.last; // e.g. calendar.dart
 
-      // Skip generated package export files
+      // Skip generated library export files
       if (fileName == 'exports.g.dart') continue;
 
       // Skip excluded package files
@@ -161,33 +162,37 @@ void generatePackageExports() {
     }
 
     final path = '${packagePath}exports.g.dart';
-    final content = [
-      exportsFileHeader,
-      exports.map((e) => "export '$e';").join('\n')
-    ].join();
+    final content = '''
+$exportsFileHeader
+
+${exports.map((e) => "export '$e';").join('\n')}
+''';
     writeToFile(path, content);
   }
 }
 
 void main() {
-  print('Generating WinRT objects...');
-  final objectsToGenerate = loadMap('objects.json');
-  saveMap(objectsToGenerate, 'objects.json');
-  generateObjects(objectsToGenerate);
+  final stopwatch = Stopwatch()..start();
 
-  print('Generating concrete classes for WinRT generic interfaces...');
+  print('[${stopwatch.elapsed}] Loading JSON files...');
+  final (:enums, :objects, :structs) = loadJsonFiles();
+
+  print('[${stopwatch.elapsed}] Generating WinRT objects...');
+  generateObjects(objects);
+
+  print('[${stopwatch.elapsed}] Generating concrete classes for WinRT generic '
+      'interfaces...');
   generateConcreteClassesForGenericInterfaces(genericTypes);
 
-  print('Generating WinRT enumerations...');
-  final enumsToGenerate = loadMap('enums.json');
-  saveMap(enumsToGenerate, 'enums.json');
-  generateEnumerations(enumsToGenerate);
+  print('[${stopwatch.elapsed}] Generating WinRT enumerations...');
+  generateEnumerations(enums);
 
-  print('Generating WinRT structs...');
-  final structsToGenerate = loadMap('structs.json');
-  saveMap(structsToGenerate, 'structs.json');
-  generateStructs(structsToGenerate);
+  print('[${stopwatch.elapsed}] Generating WinRT structures...');
+  generateStructs(structs);
 
-  print('Generating package exports...');
-  generatePackageExports();
+  print('[${stopwatch.elapsed}] Generating library exports...');
+  generateLibraryExports();
+
+  stopwatch.stop();
+  print('[${stopwatch.elapsed}] Completed');
 }

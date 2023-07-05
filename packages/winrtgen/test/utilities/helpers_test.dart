@@ -9,6 +9,13 @@ import 'package:win32/win32.dart';
 import 'package:winrtgen/winrtgen.dart';
 
 void main() {
+  test('arrayNameFromSizeParamName', () {
+    expect(arrayNameFromSizeParamName('__valueSize'), equals('value'));
+    expect(arrayNameFromSizeParamName('_resultsSize'), equals('_resultsSize'));
+    expect(
+        arrayNameFromSizeParamName('notASizeParam'), equals('notASizeParam'));
+  });
+
   test('fileNameFromType', () {
     expect(fileNameFromType('Windows.Globalization.Calendar'),
         equals('calendar.dart'));
@@ -108,14 +115,6 @@ void main() {
               .toString(),
           equals('{98b9acc1-4b56-532e-ac73-03d5291cca90}'));
     });
-  });
-
-  test('isSimpleArraySizeIdentifier', () {
-    expect(isSimpleArraySizeIdentifier('__valueSize'), isTrue);
-    expect(isSimpleArraySizeIdentifier('x__dataSize'), isFalse);
-    expect(isSimpleArraySizeIdentifier('__dataSizeX'), isFalse);
-    expect(isSimpleArraySizeIdentifier('not a simple array size identifier'),
-        isFalse);
   });
 
   test('isValidIID', () {
@@ -256,6 +255,19 @@ void main() {
             'windows_globalization/lib/src/phonenumberformatting/phonenumberformatter.dart',
             start: 'windows_globalization/lib/src'),
         equals('phonenumberformatting/phonenumberformatter.dart'));
+  });
+
+  test('relativePathForType', () {
+    expect(relativePathForType('Windows.Globalization.Calendar'),
+        equals('../../packages/windows_globalization/lib/src/calendar.dart'));
+    expect(
+        relativePathForType('Windows.Storage.Pickers.FileOpenPicker'),
+        equals(
+            '../../packages/windows_storage/lib/src/pickers/fileopenpicker.dart'));
+    expect(
+        relativePathForType('Windows.Devices.Geolocation.Geofencing.Geofence'),
+        equals(
+            '../../packages/windows_devices/lib/src/geolocation/geofencing/geofence.dart'));
   });
 
   test('safeIdentifierForString', () {

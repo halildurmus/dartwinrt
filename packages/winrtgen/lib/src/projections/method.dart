@@ -27,7 +27,7 @@ abstract class MethodProjection {
         parameters = method.isGetProperty
             ? const []
             : method.parameters.map(ParameterProjection.create).toList(),
-        returnTypeProjection = TypeProjection(method.returnType.typeIdentifier);
+        paramProjection = ParameterProjection.create(method.returnType);
 
   /// The retrieved Windows metadata for the method or property.
   final Method method;
@@ -41,71 +41,53 @@ abstract class MethodProjection {
   /// Projections for the parameters of the method.
   final List<ParameterProjection> parameters;
 
-  /// Type projection of the return type.
-  final TypeProjection returnTypeProjection;
+  /// Parameter projection of the return type parameter.
+  final ParameterProjection paramProjection;
 
   /// Returns the appropriate method projection for the [method] based on the
-  /// return type.
+  /// [ProjectionKind] of the method.
   factory MethodProjection.create(Method method, int vtableOffset) {
     try {
-      final projectionType = method.projectionType;
-      return switch (projectionType) {
-        ProjectionType.asyncAction =>
-          AsyncActionMethodProjection(method, vtableOffset),
-        ProjectionType.asyncActionWithProgress =>
-          ObjectMethodProjection(method, vtableOffset),
-        ProjectionType.asyncOperation =>
-          AsyncOperationMethodProjection(method, vtableOffset),
-        ProjectionType.asyncOperationWithProgress =>
-          ObjectMethodProjection(method, vtableOffset),
-        ProjectionType.dartPrimitive =>
+      final projectionKind = method.projectionKind;
+      return switch (projectionKind) {
+        ProjectionKind.asyncAction ||
+        ProjectionKind.asyncActionWithProgress ||
+        ProjectionKind.asyncOperation ||
+        ProjectionKind.asyncOperationWithProgress ||
+        ProjectionKind.dartPrimitive ||
+        ProjectionKind.dateTime ||
+        ProjectionKind.delegate ||
+        ProjectionKind.duration ||
+        ProjectionKind.enum_ ||
+        ProjectionKind.genericEnum ||
+        ProjectionKind.genericObject ||
+        ProjectionKind.guid ||
+        ProjectionKind.map ||
+        ProjectionKind.mapView ||
+        ProjectionKind.object ||
+        ProjectionKind.reference ||
+        ProjectionKind.string ||
+        ProjectionKind.struct ||
+        ProjectionKind.uri ||
+        ProjectionKind.vector ||
+        ProjectionKind.vectorView =>
           DefaultMethodProjection(method, vtableOffset),
-        ProjectionType.dartPrimitiveList =>
+        ProjectionKind.dartPrimitiveList ||
+        ProjectionKind.dateTimeList ||
+        ProjectionKind.durationList ||
+        ProjectionKind.enumList ||
+        ProjectionKind.guidList ||
+        ProjectionKind.objectList ||
+        ProjectionKind.stringList ||
+        ProjectionKind.structList ||
+        ProjectionKind.uriList =>
           DefaultListMethodProjection(method, vtableOffset),
-        ProjectionType.dateTime =>
-          DateTimeMethodProjection(method, vtableOffset),
-        ProjectionType.dateTimeList =>
-          DateTimeListMethodProjection(method, vtableOffset),
-        ProjectionType.delegate =>
-          DelegateMethodProjection(method, vtableOffset),
-        ProjectionType.duration =>
-          DurationMethodProjection(method, vtableOffset),
-        ProjectionType.durationList =>
-          DurationListMethodProjection(method, vtableOffset),
-        ProjectionType.enum_ => EnumMethodProjection(method, vtableOffset),
-        ProjectionType.enumList =>
-          EnumListMethodProjection(method, vtableOffset),
-        ProjectionType.genericEnum =>
-          GenericEnumMethodProjection(method, vtableOffset),
-        ProjectionType.genericObject =>
-          GenericObjectMethodProjection(method, vtableOffset),
-        ProjectionType.guid => GuidMethodProjection(method, vtableOffset),
-        ProjectionType.guidList =>
-          GuidListMethodProjection(method, vtableOffset),
-        ProjectionType.map => MapMethodProjection(method, vtableOffset),
-        ProjectionType.mapView => MapViewMethodProjection(method, vtableOffset),
-        ProjectionType.object => ObjectMethodProjection(method, vtableOffset),
-        ProjectionType.objectList =>
-          ObjectListMethodProjection(method, vtableOffset),
-        ProjectionType.reference =>
-          ReferenceMethodProjection(method, vtableOffset),
-        ProjectionType.string => StringMethodProjection(method, vtableOffset),
-        ProjectionType.stringList =>
-          StringListMethodProjection(method, vtableOffset),
-        ProjectionType.struct => StructMethodProjection(method, vtableOffset),
-        ProjectionType.structList =>
-          StructListMethodProjection(method, vtableOffset),
-        ProjectionType.uri => UriMethodProjection(method, vtableOffset),
-        ProjectionType.uriList => UriListMethodProjection(method, vtableOffset),
-        ProjectionType.vector => VectorMethodProjection(method, vtableOffset),
-        ProjectionType.vectorView =>
-          VectorViewMethodProjection(method, vtableOffset),
-        ProjectionType.void_ => VoidMethodProjection(method, vtableOffset),
+        ProjectionKind.void_ => DefaultMethodProjection(method, vtableOffset),
         _ => throw WinRTGenException(
-            'Unsupported projection type: $projectionType'),
+            'Unsupported projection kind: $projectionKind'),
       };
     } catch (_) {
-      print('Failed to project method "$method" from "${method.parent}".');
+      print("Failed to project method '$method' from '${method.parent}'.");
       rethrow;
     }
   }
@@ -142,32 +124,42 @@ abstract class MethodProjection {
   /// of making it easier to avoid name conflicts.
   String get camelCasedName => safeIdentifierForString(name.toCamelCase());
 
-  /// The parameters, with the exception of some `__xxSize` parameters.
-  Iterable<ParameterProjection> get _params {
-    return parameters.where((param) {
-      // Exclude the __xxSize parameter on FillArray and PassArray styles as
-      // simpleArray params are projected as List. See the
-      // DefaultListParameterProjection class.
-      if (isSimpleArraySizeIdentifier(param.parameter.name)) {
-        if (param.parameter.isInParam ||
-            (param.parameter.isOutParam &&
-                param.parameter.typeIdentifier.baseType ==
-                    BaseType.pointerTypeModifier)) {
-          return false;
-        }
-      }
+  List<ParameterProjection>? _exposedParams;
 
-      return true;
-    });
+  /// The parameters, with the exception of some `__xxSize` parameters.
+  List<ParameterProjection> get exposedParams =>
+      _exposedParams ??= _cacheExposedParams();
+
+  List<ParameterProjection> _cacheExposedParams() {
+    final params = <ParameterProjection>[];
+    for (final (i, param) in parameters.indexed) {
+      // Don't expose the __xxSize parameters on PassArray and ReceiveArray
+      // styles as simpleArray parameters are projected as List.
+      // See the DefaultListParameterProjection class.
+      if (param.parameter.isSimpleArraySizeParam) {
+        // PassArray style
+        if (param.isInParam && parameters[i + 1].isInParam) continue;
+        // ReceiveArray style
+        if (param.isOutParam && param.parameter.isPointerType) continue;
+      }
+      params.add(param);
+    }
+    return params;
   }
 
   /// The parameters exposed by a projected Dart method (e.g. `int age`,
   /// `int index, String value`).
   String get methodParams =>
-      _params.map((param) => param.paramProjection).join(', ');
+      exposedParams.map((param) => param.paramProjection).join(', ');
 
   /// The return type of the method (e.g. `String`).
-  String get returnType => returnTypeProjection.dartType;
+  String get returnType => paramProjection.type;
+
+  /// Type projection of the return type parameter.
+  TypeProjection get typeProjection => paramProjection.typeProjection;
+
+  /// Identifier of the return type parameter.
+  String get paramIdentifier => paramProjection.identifier;
 
   /// Whether the return type of the method is nullable.
   bool get isNullable => returnType.endsWith('?');
@@ -176,10 +168,10 @@ abstract class MethodProjection {
   ///   e.g. `void setDateTime(DateTime value)` or `void setToNow()` (method)
   ///   e.g. `int get second` (getter)
   ///   e.g. `set second(int value)` (setter)
-  String get methodHeader => switch (this) {
+  String get header => switch (this) {
         GetterProjection _ => '$returnType get $camelCasedName',
         final SetterProjection p =>
-          'set $camelCasedName(${p.param.type} value)',
+          'set $camelCasedName(${p.parameter.type} ${p.parameter.identifier})',
         MethodProjection _ => '$returnType $camelCasedName($methodParams)'
       };
 
@@ -189,25 +181,22 @@ abstract class MethodProjection {
   ///   e.g. `period` or `second` (get property)
   ///   e.g. `second = value` (set property)
   String get shortForm {
-    final identifiers = _params.map((param) => param.identifier).join(', ');
+    final identifiers =
+        exposedParams.map((param) => param.identifier).join(', ');
     return '$camelCasedName($identifiers)';
   }
 
-  String get parametersPreamble => switch (this) {
-        GetterProjection _ || SetterProjection _ => '',
-        MethodProjection _ => parameters
-            .where((param) => param.preamble.isNotEmpty)
-            .map((param) => param.preamble)
-            .join('\n'),
-      };
+  List<String> get parametersPreamble => parameters
+      .where((param) => param.preambles.isNotEmpty)
+      .map((param) => param.preambles)
+      .expand((param) => param)
+      .toList();
 
-  String get parametersPostamble => switch (this) {
-        GetterProjection _ || SetterProjection _ => '',
-        MethodProjection _ => parameters
-            .where((param) => param.postamble.isNotEmpty)
-            .map((param) => param.postamble)
-            .join('\n'),
-      };
+  List<String> get parametersPostamble => parameters
+      .where((param) => param.postambles.isNotEmpty)
+      .map((param) => param.postambles)
+      .expand((param) => param)
+      .toList();
 
   // WinRT methods always return an HRESULT
   String get nativePrototype => 'HRESULT Function($nativeParams)';
@@ -220,61 +209,111 @@ abstract class MethodProjection {
   String get identifiers => [
         'ptr.ref.lpVtbl',
         ...parameters.map((param) => param.localIdentifier),
-        if (returnTypeProjection.isSimpleArray) 'pRetValueSize',
-        if (!returnTypeProjection.isVoid) 'retValuePtr',
+        if (typeProjection.isSimpleArray) 'retValueSize',
+        if (!typeProjection.isVoid) paramProjection.localIdentifier,
       ].join(', ');
 
   String get nativeParams => [
         'VTablePointer lpVtbl',
         ...parameters.map((param) => param.ffiProjection),
-        if (returnTypeProjection.isSimpleArray) 'Pointer<Uint32> retValueSize',
-        if (!returnTypeProjection.isVoid)
-          '${returnTypeProjection.retValuePtr} retValuePtr',
+        if (typeProjection.isSimpleArray) 'Pointer<Uint32> retValueSize',
+        if (!typeProjection.isVoid)
+          '${typeProjection.pointer.nativeType} ${paramProjection.identifier}',
       ].join(', ');
 
   String get dartParams => [
         'VTablePointer lpVtbl',
         ...parameters.map((param) => param.dartProjection),
-        if (returnTypeProjection.isSimpleArray) 'Pointer<Uint32> retValueSize',
-        if (!returnTypeProjection.isVoid)
-          '${returnTypeProjection.retValuePtr} retValuePtr',
+        if (typeProjection.isSimpleArray) 'Pointer<Uint32> retValueSize',
+        if (!typeProjection.isVoid)
+          '${typeProjection.pointer.nativeType} ${paramProjection.identifier}',
       ].join(', ');
 
-  String ffiCall({String identifier = '', bool freeRetValOnFailure = false}) {
-    final identifiers_ =
-        identifier.isNotEmpty ? 'ptr.ref.lpVtbl, $identifier' : identifiers;
-    return [
-      parametersPreamble,
-      '',
-      '''
+  String get failedCheck {
+    if (!freeRetValOnFailure) {
+      return 'if (FAILED(hr)) throw WindowsException(hr);';
+    }
+
+    return '''
+    if (FAILED(hr)) {
+      free(${paramProjection.localIdentifier});
+      throw WindowsException(hr);
+    }
+''';
+  }
+
+  String get ffiCall => [
+        parametersPreamble.join('\n'),
+        '',
+        '''
     final hr = ptr.ref.vtable
         .elementAt($vtableOffset)
         .cast<Pointer<NativeFunction<$nativePrototype>>>()
         .value
-        .asFunction<$dartPrototype>()($identifiers_);
+        .asFunction<$dartPrototype>()($identifiers);
 ''',
-      parametersPostamble,
-      '',
-      if (freeRetValOnFailure)
-        'if (FAILED(hr)) { free(retValuePtr); throw WindowsException(hr); }'
-      else
-        'if (FAILED(hr)) throw WindowsException(hr);'
-    ].join('\n');
-  }
+        parametersPostamble.join('\n'),
+        '',
+        failedCheck
+      ].join('\n');
 
-  String get methodDeclaration;
+  List<String> get annotations => [
+        if (method.isDeprecated) method.deprecatedAnnotation,
+        if (returnType == 'String' && camelCasedName == 'toString') '@override'
+      ];
+
+  bool get useTryFinallyBlock => postambles.isNotEmpty;
+
+  List<String> get preambles => paramProjection.preambles;
+
+  bool get freeRetValOnFailure =>
+      paramProjection.type != 'void' && !useTryFinallyBlock;
+
+  String get nullCheck => paramProjection.nullCheck;
+
+  String get returnStatement => '';
+
+  List<String> get postambles => paramProjection.postambles;
+
+  String get methodBody => useTryFinallyBlock
+      ? '''
+    ${preambles.join('\n')}
+
+    try {
+      $ffiCall
+
+      $nullCheck
+
+      $returnStatement
+    } finally {
+      ${postambles.join('\n')}
+    }
+'''
+      : '''
+    ${preambles.join('\n')}
+    $ffiCall
+
+    $nullCheck
+
+    $returnStatement
+''';
+
+  String get projection => '''
+  ${annotations.join('\n')}
+  $header {
+    $methodBody
+  }
+''';
 
   @override
   String toString() {
     try {
-      return [
-        if (method.isDeprecated) method.deprecatedAnnotation,
-        methodDeclaration
-      ].join('\n');
-    } catch (_) {
+      return projection;
+    } catch (e) {
       // Print an error if we're unable to project a method, but don't
       // completely bail out. The rest may be useful.
-      print('Unable to project method "$method" from "${method.parent}".');
+      print("Failed to project method '$method' from '${method.parent}'.");
+      print(e);
       return '';
     }
   }

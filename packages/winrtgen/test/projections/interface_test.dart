@@ -54,14 +54,14 @@ void main() {
               'releases after Windows 8.1. Instead, use INetworkUsage.")'));
     });
 
-    test('has correct inheritance chain 1', () {
+    test('has correct inheritance chain (1)', () {
       expect(calendarProjection.inheritsFrom, isEmpty);
       expect(calendarProjection.classHeader,
           equals('class ICalendar extends IInspectable'));
       expect(calendarProjection.interfaceImports, isEmpty);
     });
 
-    test('has correct inheritance chain 2', () {
+    test('has correct inheritance chain (2)', () {
       final projection =
           InterfaceProjection.from('Windows.Gaming.Input.IGamepad');
       expect(projection.inheritsFrom, equals('IGameController'));
@@ -74,7 +74,7 @@ void main() {
           unorderedEquals(['igamecontroller.dart']));
     });
 
-    test('has correct inheritance chain 3 (ignores excluded interfaces)', () {
+    test('has correct inheritance chain (3) (ignores excluded interfaces)', () {
       final projection = ClassProjection.from(
           'Windows.Globalization.NumberFormatting.ICurrencyFormatter');
       // INumberFormatter2 interface is excluded

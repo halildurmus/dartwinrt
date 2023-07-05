@@ -103,7 +103,7 @@ const IID_$shortName = ${quote(typeDef.iid)};
 
   Set<String> get imports =>
       {...interfaceImports, ...importsForTypes, ...extraImports}
-        // TODO: Remove this once WinRT events are supported.
+        // TODO(halildurmus): Remove this once WinRT events are supported.
         ..removeWhere((import) => import.endsWith('eventargs.dart'));
 
   String get importHeader {
@@ -112,10 +112,10 @@ const IID_$shortName = ${quote(typeDef.iid)};
         if (import == 'package:win32/win32.dart') {
           // Hide DocumentProperties to avoid conflicts with a class of the same
           // name in the windows_storage package.
-          return "import ${quote(import)} hide DocumentProperties;";
+          return 'import ${quote(import)} hide DocumentProperties;';
         }
 
-        return "import ${quote(import)};";
+        return 'import ${quote(import)};';
       }).toList(),
     ).join('\n');
   }
@@ -206,7 +206,7 @@ $classHeader {
     try {
       return projection;
     } catch (_) {
-      print('Failed to project interface "${typeDef.fullyQualifiedName}".');
+      print("Failed to project interface '${typeDef.fullyQualifiedName}'.");
       rethrow;
     }
   }

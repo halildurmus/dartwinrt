@@ -7,11 +7,11 @@ import 'package:winmd/winmd.dart';
 import '../exception/exception.dart';
 import '../utilities/utilities.dart';
 
-/// Represents a type argument for a generic class.
+/// Represents a type argument kind for a generic class.
 ///
 /// Used when generating private concrete classes for the abstract WinRT generic
 /// classes.
-enum TypeArg {
+enum TypeArgKind {
   bool_('bool'),
   dateTime('DateTime'),
   double('Double'),
@@ -57,106 +57,112 @@ enum TypeArg {
 
   final String name;
 
-  const TypeArg(this.name);
+  const TypeArgKind(this.name);
 
-  factory TypeArg.from(String name) =>
-      TypeArg.values.firstWhere((e) => e.name == name,
+  factory TypeArgKind.from(String name) =>
+      TypeArgKind.values.firstWhere((e) => e.name == name,
           orElse: () => throw ArgumentError.value(
               name, 'name', 'No enum value with that name'));
 
-  /// Whether this is [TypeArg.double] or [TypeArg.float].
-  bool get isDouble =>
-      switch (this) { TypeArg.double || TypeArg.float => true, _ => false };
-
-  /// Whether this is [TypeArg.winrtEnum] or [TypeArg.winrtFlagsEnum].
-  bool get isEnum => switch (this) {
-        TypeArg.winrtEnum || TypeArg.winrtFlagsEnum => true,
+  /// Whether this is [TypeArgKind.double] or [TypeArgKind.float].
+  bool get isDouble => switch (this) {
+        TypeArgKind.double || TypeArgKind.float => true,
         _ => false
       };
 
-  /// Whether this is [TypeArg.int16], [TypeArg.int32], [TypeArg.int64],
-  /// [TypeArg.uint8], [TypeArg.uint16], [TypeArg.uint32], or [TypeArg.uint64].
+  /// Whether this is [TypeArgKind.winrtEnum] or [TypeArgKind.winrtFlagsEnum].
+  bool get isEnum => switch (this) {
+        TypeArgKind.winrtEnum || TypeArgKind.winrtFlagsEnum => true,
+        _ => false
+      };
+
+  /// Whether this is [TypeArgKind.int16], [TypeArgKind.int32],
+  /// [TypeArgKind.int64], [TypeArgKind.uint8], [TypeArgKind.uint16],
+  /// [TypeArgKind.uint32], or [TypeArgKind.uint64].
   bool get isInt => switch (this) {
-        TypeArg.int16 ||
-        TypeArg.int32 ||
-        TypeArg.int64 ||
-        TypeArg.uint8 ||
-        TypeArg.uint16 ||
-        TypeArg.uint32 ||
-        TypeArg.uint64 =>
+        TypeArgKind.int16 ||
+        TypeArgKind.int32 ||
+        TypeArgKind.int64 ||
+        TypeArgKind.uint8 ||
+        TypeArgKind.uint16 ||
+        TypeArgKind.uint32 ||
+        TypeArgKind.uint64 =>
           true,
         _ => false
       };
 
-  /// Whether this is [TypeArg.inspectable] or [TypeArg.nullableInspectable].
+  /// Whether this is [TypeArgKind.inspectable] or
+  /// [TypeArgKind.nullableInspectable].
   bool get isInspectable => switch (this) {
-        TypeArg.inspectable || TypeArg.nullableInspectable => true,
+        TypeArgKind.inspectable || TypeArgKind.nullableInspectable => true,
         _ => false
       };
 
-  /// Returns the appropriate [TypeIdentifier] for this [TypeArg].
+  /// Returns the appropriate [TypeIdentifier] for this [TypeArgKind].
   TypeIdentifier get typeIdentifier => switch (this) {
-        TypeArg.bool_ ||
-        TypeArg.nullableBool =>
+        TypeArgKind.bool_ ||
+        TypeArgKind.nullableBool =>
           const TypeIdentifier(BaseType.booleanType),
-        TypeArg.dateTime || TypeArg.nullableDateTime => const TypeIdentifier(
-            BaseType.classTypeModifier,
-            name: 'Windows.Foundation.DateTime'),
-        TypeArg.double ||
-        TypeArg.nullableDouble =>
+        TypeArgKind.dateTime ||
+        TypeArgKind.nullableDateTime =>
+          const TypeIdentifier(BaseType.classTypeModifier,
+              name: 'Windows.Foundation.DateTime'),
+        TypeArgKind.double ||
+        TypeArgKind.nullableDouble =>
           const TypeIdentifier(BaseType.doubleType),
-        TypeArg.duration || TypeArg.nullableDuration => const TypeIdentifier(
-            BaseType.classTypeModifier,
-            name: 'Windows.Foundation.TimeSpan'),
-        TypeArg.float ||
-        TypeArg.nullableFloat =>
+        TypeArgKind.duration ||
+        TypeArgKind.nullableDuration =>
+          const TypeIdentifier(BaseType.classTypeModifier,
+              name: 'Windows.Foundation.TimeSpan'),
+        TypeArgKind.float ||
+        TypeArgKind.nullableFloat =>
           const TypeIdentifier(BaseType.floatType),
-        TypeArg.guid ||
-        TypeArg.nullableGuid =>
+        TypeArgKind.guid ||
+        TypeArgKind.nullableGuid =>
           const TypeIdentifier(BaseType.valueTypeModifier, name: 'System.Guid'),
-        TypeArg.int16 ||
-        TypeArg.nullableInt16 =>
+        TypeArgKind.int16 ||
+        TypeArgKind.nullableInt16 =>
           const TypeIdentifier(BaseType.int16Type),
-        TypeArg.int32 ||
-        TypeArg.nullableInt32 =>
+        TypeArgKind.int32 ||
+        TypeArgKind.nullableInt32 =>
           const TypeIdentifier(BaseType.int32Type),
-        TypeArg.int64 ||
-        TypeArg.nullableInt64 =>
+        TypeArgKind.int64 ||
+        TypeArgKind.nullableInt64 =>
           const TypeIdentifier(BaseType.int64Type),
-        TypeArg.object ||
-        TypeArg.nullableObject =>
+        TypeArgKind.object ||
+        TypeArgKind.nullableObject =>
           const TypeIdentifier(BaseType.objectType),
-        TypeArg.point || TypeArg.nullablePoint => TypeIdentifier(
+        TypeArgKind.point || TypeArgKind.nullablePoint => TypeIdentifier(
             BaseType.classTypeModifier,
             name: 'Windows.Foundation.Point',
             type: getMetadataForType('Windows.Foundation.Point')),
-        TypeArg.rect || TypeArg.nullableRect => TypeIdentifier(
+        TypeArgKind.rect || TypeArgKind.nullableRect => TypeIdentifier(
             BaseType.classTypeModifier,
             name: 'Windows.Foundation.Rect',
             type: getMetadataForType('Windows.Foundation.Rect')),
-        TypeArg.size || TypeArg.nullableSize => TypeIdentifier(
+        TypeArgKind.size || TypeArgKind.nullableSize => TypeIdentifier(
             BaseType.classTypeModifier,
             name: 'Windows.Foundation.Size',
             type: getMetadataForType('Windows.Foundation.Size')),
-        TypeArg.string ||
-        TypeArg.nullableString =>
+        TypeArgKind.string ||
+        TypeArgKind.nullableString =>
           const TypeIdentifier(BaseType.stringType),
-        TypeArg.uint8 ||
-        TypeArg.nullableUint8 =>
+        TypeArgKind.uint8 ||
+        TypeArgKind.nullableUint8 =>
           const TypeIdentifier(BaseType.uint8Type),
-        TypeArg.uint16 ||
-        TypeArg.nullableUint16 =>
+        TypeArgKind.uint16 ||
+        TypeArgKind.nullableUint16 =>
           const TypeIdentifier(BaseType.uint16Type),
-        TypeArg.uint32 ||
-        TypeArg.nullableUint32 =>
+        TypeArgKind.uint32 ||
+        TypeArgKind.nullableUint32 =>
           const TypeIdentifier(BaseType.uint32Type),
-        TypeArg.uint64 ||
-        TypeArg.nullableUint64 =>
+        TypeArgKind.uint64 ||
+        TypeArgKind.nullableUint64 =>
           const TypeIdentifier(BaseType.uint64Type),
-        TypeArg.uri || TypeArg.nullableUri => TypeIdentifier(
+        TypeArgKind.uri || TypeArgKind.nullableUri => TypeIdentifier(
             BaseType.classTypeModifier,
             name: 'Windows.Foundation.Uri',
             type: getMetadataForType('Windows.Foundation.Uri')),
-        _ => throw WinRTGenException('Unsupported TypeArg: $this'),
+        _ => throw WinRTGenException('Unsupported TypeArgKind: $this'),
       };
 }

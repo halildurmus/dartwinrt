@@ -4,65 +4,72 @@
 
 import '../models/models.dart';
 
-/// WinRT generic types with their [TypeArg]s.
+/// WinRT generic types with their [TypeArgKind]s.
 ///
 /// Used to generate private concrete classes for the abstract WinRT generic
 /// classes.
 const genericTypes = <GenericType>[
   GenericTypeWithOneTypeArg('Windows.Foundation.IAsyncOperation`1', [
-    TypeArg.bool_, TypeArg.guid, TypeArg.int16, TypeArg.int32, TypeArg.int64, //
-    TypeArg.nullableInspectable, TypeArg.nullableObject, TypeArg.nullableUri, //
-    TypeArg.string, TypeArg.uint8, TypeArg.uint16, TypeArg.uint32, //
-    TypeArg.uint64, TypeArg.winrtEnum, TypeArg.winrtFlagsEnum
+    TypeArgKind.bool_, TypeArgKind.guid, TypeArgKind.int16, TypeArgKind.int32,
+    TypeArgKind.int64, TypeArgKind.nullableInspectable, //
+    TypeArgKind.nullableObject, TypeArgKind.nullableUri, TypeArgKind.string, //
+    TypeArgKind.uint8, TypeArgKind.uint16, TypeArgKind.uint32, //
+    TypeArgKind.uint64, TypeArgKind.winrtEnum, TypeArgKind.winrtFlagsEnum //
   ]),
   GenericTypeWithOneTypeArg('Windows.Foundation.IReference`1', [
-    TypeArg.nullableBool, TypeArg.nullableDateTime, TypeArg.nullableDouble, //
-    TypeArg.nullableDuration, TypeArg.nullableFloat, TypeArg.nullableGuid, //
-    TypeArg.nullableInt16, TypeArg.nullableInt32, TypeArg.nullableInt64, //
-    TypeArg.nullablePoint, TypeArg.nullableRect, TypeArg.nullableSize, //
-    TypeArg.nullableString, TypeArg.nullableUint8, TypeArg.nullableUint16, //
-    TypeArg.nullableUint32, TypeArg.nullableUint64, TypeArg.winrtEnum, //
-    TypeArg.winrtFlagsEnum
+    TypeArgKind.nullableBool, TypeArgKind.nullableDateTime, //
+    TypeArgKind.nullableDouble, TypeArgKind.nullableDuration, //
+    TypeArgKind.nullableFloat, TypeArgKind.nullableGuid, //
+    TypeArgKind.nullableInt16, TypeArgKind.nullableInt32, //
+    TypeArgKind.nullableInt64, TypeArgKind.nullablePoint, //
+    TypeArgKind.nullableRect, TypeArgKind.nullableSize, //
+    TypeArgKind.nullableString, TypeArgKind.nullableUint8, //
+    TypeArgKind.nullableUint16, TypeArgKind.nullableUint32, //
+    TypeArgKind.nullableUint64, TypeArgKind.winrtEnum, //
+    TypeArgKind.winrtFlagsEnum
   ]),
   GenericTypeWithOneTypeArg(
-      'Windows.Foundation.Collections.IIterator`1', _vectorTypeArgs),
+      'Windows.Foundation.Collections.IIterator`1', _vectorTypeArgKinds),
   GenericTypeWithTwoTypeArgs(
-      'Windows.Foundation.Collections.IKeyValuePair`2', _mapTypeArgPairs),
+      'Windows.Foundation.Collections.IKeyValuePair`2', _mapTypeArgKindPairs),
   GenericTypeWithTwoTypeArgs(
-      'Windows.Foundation.Collections.IMap`2', _mapTypeArgPairs),
+      'Windows.Foundation.Collections.IMap`2', _mapTypeArgKindPairs),
   GenericTypeWithTwoTypeArgs(
-      'Windows.Foundation.Collections.IMapView`2', _mapTypeArgPairs),
+      'Windows.Foundation.Collections.IMapView`2', _mapTypeArgKindPairs),
   GenericTypeWithOneTypeArg(
-      'Windows.Foundation.Collections.IVector`1', _vectorTypeArgs),
+      'Windows.Foundation.Collections.IVector`1', _vectorTypeArgKinds),
   GenericTypeWithOneTypeArg(
-      'Windows.Foundation.Collections.IVectorView`1', _vectorTypeArgs),
+      'Windows.Foundation.Collections.IVectorView`1', _vectorTypeArgKinds),
 ];
 
-/// The common type argument pairs for `IKeyValuePair`, `IMap`, and `IMapView`.
-const _mapTypeArgPairs = <(TypeArg, TypeArg)>[
-  (TypeArg.guid, TypeArg.nullableInspectable),
-  (TypeArg.guid, TypeArg.nullableObject),
-  (TypeArg.int16, TypeArg.nullableInspectable),
-  (TypeArg.int32, TypeArg.nullableInspectable),
-  (TypeArg.int64, TypeArg.nullableInspectable),
-  (TypeArg.string, TypeArg.nullableInspectable),
-  (TypeArg.string, TypeArg.nullableObject),
-  (TypeArg.string, TypeArg.string),
-  (TypeArg.string, TypeArg.winrtEnum),
-  (TypeArg.string, TypeArg.winrtFlagsEnum),
-  (TypeArg.uint8, TypeArg.nullableInspectable),
-  (TypeArg.uint16, TypeArg.nullableInspectable),
-  (TypeArg.uint32, TypeArg.nullableInspectable),
-  (TypeArg.uint64, TypeArg.nullableInspectable),
-  (TypeArg.winrtEnum, TypeArg.nullableInspectable),
-  (TypeArg.winrtFlagsEnum, TypeArg.nullableInspectable)
+/// The common type argument kind pairs for `IKeyValuePair`, `IMap`, and
+/// `IMapView`.
+const _mapTypeArgKindPairs = <(TypeArgKind, TypeArgKind)>[
+  (TypeArgKind.guid, TypeArgKind.nullableInspectable),
+  (TypeArgKind.guid, TypeArgKind.nullableObject),
+  (TypeArgKind.int16, TypeArgKind.nullableInspectable),
+  (TypeArgKind.int32, TypeArgKind.nullableInspectable),
+  (TypeArgKind.int64, TypeArgKind.nullableInspectable),
+  (TypeArgKind.string, TypeArgKind.nullableInspectable),
+  (TypeArgKind.string, TypeArgKind.nullableObject),
+  (TypeArgKind.string, TypeArgKind.string),
+  (TypeArgKind.string, TypeArgKind.winrtEnum),
+  (TypeArgKind.string, TypeArgKind.winrtFlagsEnum),
+  (TypeArgKind.uint8, TypeArgKind.nullableInspectable),
+  (TypeArgKind.uint16, TypeArgKind.nullableInspectable),
+  (TypeArgKind.uint32, TypeArgKind.nullableInspectable),
+  (TypeArgKind.uint64, TypeArgKind.nullableInspectable),
+  (TypeArgKind.winrtEnum, TypeArgKind.nullableInspectable),
+  (TypeArgKind.winrtFlagsEnum, TypeArgKind.nullableInspectable)
 ];
 
-/// The common type arguments for `IIterator`, `IVector`, and `IVectorView`.
-const _vectorTypeArgs = <TypeArg>[
-  TypeArg.bool_, TypeArg.double, TypeArg.float, TypeArg.guid, //
-  TypeArg.inspectable, TypeArg.int16, TypeArg.int32, TypeArg.int64, //
-  TypeArg.string, TypeArg.uint8, TypeArg.uint16, TypeArg.uint32, //
-  TypeArg.uint64, TypeArg.nullableUri, TypeArg.winrtEnum, //
-  TypeArg.winrtFlagsEnum
+/// The common type argument kinds for `IIterator`, `IVector`, and
+/// `IVectorView`.
+const _vectorTypeArgKinds = <TypeArgKind>[
+  TypeArgKind.bool_, TypeArgKind.double, TypeArgKind.float, TypeArgKind.guid, //
+  TypeArgKind.int16, TypeArgKind.int32, TypeArgKind.int64, //
+  TypeArgKind.nullableInspectable, TypeArgKind.nullableUri, //
+  TypeArgKind.string, TypeArgKind.uint8, TypeArgKind.uint16, //
+  TypeArgKind.uint32, TypeArgKind.uint64, TypeArgKind.winrtEnum, //
+  TypeArgKind.winrtFlagsEnum
 ];
