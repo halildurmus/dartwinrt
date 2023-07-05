@@ -3059,6 +3059,191 @@ final class _IVectorInspectable<T> extends IVector<T> {
   }
 }
 
+final class _IVectorObject extends IVector<Object?> {
+  _IVectorObject.fromPtr(super.ptr, {required super.iterableIid});
+
+  @override
+  Object? getAt(int index) {
+    final retValuePtr = calloc<COMObject>();
+
+    final hr = ptr.ref.vtable
+            .elementAt(6)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(VTablePointer lpVtbl, Uint32 index,
+                            Pointer<COMObject> retValuePtr)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, int index,
+                    Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl, index, retValuePtr);
+
+    if (FAILED(hr)) {
+      free(retValuePtr);
+      throw WindowsException(hr);
+    }
+
+    if (retValuePtr.isNull) {
+      free(retValuePtr);
+      return null;
+    }
+
+    return IPropertyValue.fromPtr(retValuePtr).value;
+  }
+
+  @override
+  bool indexOf(Object? value, Pointer<Uint32> index) {
+    final retValuePtr = calloc<Bool>();
+
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(9)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl,
+                              VTablePointer value,
+                              Pointer<Uint32> index,
+                              Pointer<Bool> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, VTablePointer value,
+                      Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
+          ptr.ref.lpVtbl,
+          value?.intoBox().ptr.ref.lpVtbl ?? nullptr,
+          index,
+          retValuePtr);
+
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      return retValuePtr.value;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  @override
+  void setAt(int index, Object? value) {
+    final hr = ptr.ref.vtable
+            .elementAt(10)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(VTablePointer lpVtbl, Uint32 index,
+                            VTablePointer value)>>>()
+            .value
+            .asFunction<
+                int Function(
+                    VTablePointer lpVtbl, int index, VTablePointer value)>()(
+        ptr.ref.lpVtbl, index, value?.intoBox().ptr.ref.lpVtbl ?? nullptr);
+
+    if (FAILED(hr)) throw WindowsException(hr);
+  }
+
+  @override
+  void insertAt(int index, Object? value) {
+    final hr = ptr.ref.vtable
+            .elementAt(11)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(VTablePointer lpVtbl, Uint32 index,
+                            VTablePointer value)>>>()
+            .value
+            .asFunction<
+                int Function(
+                    VTablePointer lpVtbl, int index, VTablePointer value)>()(
+        ptr.ref.lpVtbl, index, value?.intoBox().ptr.ref.lpVtbl ?? nullptr);
+
+    if (FAILED(hr)) throw WindowsException(hr);
+  }
+
+  @override
+  void append(Object? value) {
+    final hr = ptr.ref.vtable
+            .elementAt(13)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            VTablePointer lpVtbl, VTablePointer value)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, VTablePointer value)>()(
+        ptr.ref.lpVtbl, value?.intoBox().ptr.ref.lpVtbl ?? nullptr);
+
+    if (FAILED(hr)) throw WindowsException(hr);
+  }
+
+  @override
+  int getMany(int startIndex, int itemsSize, List<Object?> items) {
+    final retValuePtr = calloc<Uint32>();
+
+    try {
+      final pItemsArray = calloc<COMObject>(itemsSize);
+
+      final hr = ptr.ref.vtable
+              .elementAt(16)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl,
+                              Uint32 startIndex,
+                              Uint32 itemsSize,
+                              Pointer<COMObject> items,
+                              Pointer<Uint32> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(
+                      VTablePointer lpVtbl,
+                      int startIndex,
+                      int itemsSize,
+                      Pointer<COMObject> items,
+                      Pointer<Uint32> retValuePtr)>()(
+          ptr.ref.lpVtbl, startIndex, itemsSize, pItemsArray, retValuePtr);
+
+      if (retValuePtr.value > 0) {
+        items.addAll(pItemsArray.toObjectList(length: retValuePtr.value));
+      }
+      free(pItemsArray);
+
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      return retValuePtr.value;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  @override
+  void replaceAll(List<Object?> items) {
+    final pItemsArray = calloc<VTablePointer>(items.length);
+    for (var i = 0; i < items.length; i++) {
+      pItemsArray[i] = items[i]?.intoBox().ptr.ref.lpVtbl ?? nullptr;
+    }
+
+    final hr = ptr.ref.vtable
+            .elementAt(17)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
+                            Pointer<VTablePointer> items)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, int itemsSize,
+                    Pointer<VTablePointer> items)>()(
+        ptr.ref.lpVtbl, items.length, pItemsArray);
+
+    free(pItemsArray);
+
+    if (FAILED(hr)) throw WindowsException(hr);
+  }
+}
+
 final class _IVectorUri extends IVector<Uri?> {
   _IVectorUri.fromPtr(super.ptr, {required super.iterableIid});
 

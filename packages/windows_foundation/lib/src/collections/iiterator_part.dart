@@ -1093,6 +1093,75 @@ final class _IIteratorInspectable<T> extends IIterator<T> {
   }
 }
 
+final class _IIteratorObject extends IIterator<Object?> {
+  _IIteratorObject.fromPtr(super.ptr);
+
+  @override
+  Object? get current {
+    final retValuePtr = calloc<COMObject>();
+
+    final hr = ptr.ref.vtable
+        .elementAt(6)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl,
+                        Pointer<COMObject> retValuePtr)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl,
+                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+
+    if (FAILED(hr)) {
+      free(retValuePtr);
+      throw WindowsException(hr);
+    }
+
+    if (retValuePtr.isNull) {
+      free(retValuePtr);
+      return null;
+    }
+
+    return IPropertyValue.fromPtr(retValuePtr).value;
+  }
+
+  @override
+  int getMany(int itemsSize, List<Object?> items) {
+    final retValuePtr = calloc<Uint32>();
+
+    try {
+      final pItemsArray = calloc<COMObject>(itemsSize);
+
+      final hr = ptr.ref.vtable
+              .elementAt(9)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl,
+                              Uint32 itemsSize,
+                              Pointer<COMObject> items,
+                              Pointer<Uint32> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, int itemsSize,
+                      Pointer<COMObject> items, Pointer<Uint32> retValuePtr)>()(
+          ptr.ref.lpVtbl, itemsSize, pItemsArray, retValuePtr);
+
+      if (retValuePtr.value > 0) {
+        items.addAll(pItemsArray.toObjectList(length: retValuePtr.value));
+      }
+      free(pItemsArray);
+
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      return retValuePtr.value;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+}
+
 final class _IIteratorUri extends IIterator<Uri?> {
   _IIteratorUri.fromPtr(super.ptr);
 

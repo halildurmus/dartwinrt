@@ -55,9 +55,9 @@ abstract interface class IVector<T> extends IInspectable
   /// [iterableIid] must be the IID of the `IIterable<T>` interface (e.g.
   /// `'{9ac00304-83ea-5688-87b6-ae38aab65d0b}'`).
   ///
-  /// [T] must be of type `bool`, `double`, `Guid`, `int`, `String`, `Uri?`,
-  /// `IInspectable?` (e.g.`StorageFile?`), `WinRTEnum` (e.g. `DeviceClass`),
-  /// or `WinRTStruct` (e.g. `BasicGeoposition`).
+  /// [T] must be of type `bool`, `double`, `Guid`, `int`, `Object?`, `String`,
+  /// `Uri?`, `IInspectable?` (e.g.`StorageFile?`), `WinRTEnum` (e.g.
+  /// `DeviceClass`), or `WinRTStruct` (e.g. `BasicGeoposition`).
   ///
   /// [doubleType] must be specified if [T] is `double`.
   /// ```dart
@@ -159,6 +159,11 @@ abstract interface class IVector<T> extends IInspectable
 
       return _IVectorWinRTEnum.fromPtr(ptr,
           enumCreator: enumCreator, iterableIid: iterableIid);
+    }
+
+    if (isNullableObjectType<T>()) {
+      return _IVectorObject.fromPtr(ptr, iterableIid: iterableIid)
+          as IVector<T>;
     }
 
     if (T == AccessListEntry) {

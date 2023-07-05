@@ -757,6 +757,39 @@ void main() {
       expect(projection.postambles, isEmpty);
     });
 
+    test('projects IVectorView<Object?>', () {
+      final projection = GetterProjection.fromTypeAndMethodName(
+          'Windows.Graphics.Printing.OptionDetails.IPrintItemListOptionDetails',
+          'get_Items');
+      expect(projection, isA<DefaultGetterProjection>());
+      expect(projection.annotations, isEmpty);
+      expect(projection.useTryFinallyBlock, isFalse);
+      expect(projection.returnType, equals('List<Object?>'));
+      expect(projection.header, equals('List<Object?> get items'));
+      expect(projection.paramIdentifier, equals('value'));
+      expect(
+          projection.preambles, equals(['final value = calloc<COMObject>();']));
+      expect(projection.parametersPreamble, isEmpty);
+      expect(
+          projection.nativePrototype,
+          equals(
+              'HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)'));
+      expect(
+          projection.dartPrototype,
+          equals(
+              'int Function(VTablePointer lpVtbl, Pointer<COMObject> value)'));
+      expect(projection.identifiers, equals('ptr.ref.lpVtbl, value'));
+      expect(projection.parametersPostamble, isEmpty);
+      expect(projection.failedCheck,
+          equals(failedCheck(freeRetVal: true, identifier: 'value')));
+      expect(projection.nullCheck, isEmpty);
+      expect(projection.returnStatement, equalsIgnoringWhitespace('''
+        return IVectorView<Object?>.fromPtr(value,
+            iterableIid: '{092b849b-60b1-52be-a44a-6fe8e933cbe4}').toList();
+'''));
+      expect(projection.postambles, isEmpty);
+    });
+
     test('projects IVectorView<String>', () {
       final projection = GetterProjection.fromTypeAndMethodName(
           'Windows.Globalization.Calendar', 'get_Languages');
