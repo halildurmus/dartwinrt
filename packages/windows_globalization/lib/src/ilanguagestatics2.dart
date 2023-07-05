@@ -47,7 +47,7 @@ class ILanguageStatics2 extends IInspectable {
 
       WindowsDeleteString(languageTagHString);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return result.value;
     } finally {

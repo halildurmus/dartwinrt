@@ -42,7 +42,7 @@ class IPackageWithMetadata extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int64> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartDateTime();
     } finally {
@@ -66,7 +66,7 @@ class IPackageWithMetadata extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartString();
     } finally {
@@ -93,6 +93,6 @@ class IPackageWithMetadata extends IInspectable {
 
     WindowsDeleteString(parametersHString);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 }

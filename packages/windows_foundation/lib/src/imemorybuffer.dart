@@ -47,7 +47,7 @@ class IMemoryBuffer extends IInspectable implements IClosable {
 
     if (FAILED(hr)) {
       free(reference);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (reference.isNull) {

@@ -37,7 +37,7 @@ class IRemoteAutomationClientSession extends IInspectable {
         .value
         .asFunction<int Function(VTablePointer lpVtbl)>()(ptr.ref.lpVtbl);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void stop() {
@@ -47,7 +47,7 @@ class IRemoteAutomationClientSession extends IInspectable {
         .value
         .asFunction<int Function(VTablePointer lpVtbl)>()(ptr.ref.lpVtbl);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   Future<RemoteAutomationWindow?> createWindowAsync(int remoteWindowId,
@@ -81,7 +81,7 @@ class IRemoteAutomationClientSession extends IInspectable {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<RemoteAutomationWindow?>.fromPtr(
@@ -106,7 +106,7 @@ class IRemoteAutomationClientSession extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<GUID> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartGuid();
     } finally {
@@ -131,7 +131,7 @@ class IRemoteAutomationClientSession extends IInspectable {
                       Pointer<IntPtr> token)>()(
           ptr.ref.lpVtbl, handler.ref.lpVtbl, token);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return token.value;
     } finally {
@@ -152,7 +152,7 @@ class IRemoteAutomationClientSession extends IInspectable {
                 .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
             ptr.ref.lpVtbl, token);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   int add_Disconnected(Pointer<COMObject> handler) {
@@ -172,7 +172,7 @@ class IRemoteAutomationClientSession extends IInspectable {
                       Pointer<IntPtr> token)>()(
           ptr.ref.lpVtbl, handler.ref.lpVtbl, token);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return token.value;
     } finally {
@@ -193,6 +193,6 @@ class IRemoteAutomationClientSession extends IInspectable {
                 .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
             ptr.ref.lpVtbl, token);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 }

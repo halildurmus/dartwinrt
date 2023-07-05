@@ -47,7 +47,7 @@ class IGeopoint extends IInspectable implements IGeoshape {
                       Pointer<NativeBasicGeoposition> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDart();
     } finally {

@@ -45,7 +45,7 @@ class IGeolocatorStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(result);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<GeolocationAccessStatus>.fromPtr(
@@ -72,7 +72,7 @@ class IGeolocatorStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(result);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<IVectorView<Geoposition?>>.fromPtr(
@@ -102,7 +102,7 @@ class IGeolocatorStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(result);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<IVectorView<Geoposition?>>.fromPtr(

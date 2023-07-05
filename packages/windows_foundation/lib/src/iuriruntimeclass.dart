@@ -45,7 +45,7 @@ class IUriRuntimeClass extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartString();
     } finally {
@@ -70,7 +70,7 @@ class IUriRuntimeClass extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartString();
     } finally {
@@ -95,7 +95,7 @@ class IUriRuntimeClass extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartString();
     } finally {
@@ -120,7 +120,7 @@ class IUriRuntimeClass extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartString();
     } finally {
@@ -145,7 +145,7 @@ class IUriRuntimeClass extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartString();
     } finally {
@@ -170,7 +170,7 @@ class IUriRuntimeClass extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartString();
     } finally {
@@ -195,7 +195,7 @@ class IUriRuntimeClass extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartString();
     } finally {
@@ -220,7 +220,7 @@ class IUriRuntimeClass extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartString();
     } finally {
@@ -245,7 +245,7 @@ class IUriRuntimeClass extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartString();
     } finally {
@@ -272,7 +272,7 @@ class IUriRuntimeClass extends IInspectable {
 
     if (FAILED(hr)) {
       free(ppWwwFormUrlDecoder);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return WwwFormUrlDecoder.fromPtr(ppWwwFormUrlDecoder);
@@ -294,7 +294,7 @@ class IUriRuntimeClass extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartString();
     } finally {
@@ -319,7 +319,7 @@ class IUriRuntimeClass extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartString();
     } finally {
@@ -344,7 +344,7 @@ class IUriRuntimeClass extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartString();
     } finally {
@@ -369,7 +369,7 @@ class IUriRuntimeClass extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -393,7 +393,7 @@ class IUriRuntimeClass extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Bool> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -419,7 +419,7 @@ class IUriRuntimeClass extends IInspectable {
                           Pointer<Bool> value)>()(
               ptr.ref.lpVtbl, pUri?.ptr.ref.lpVtbl ?? nullptr, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -451,7 +451,7 @@ class IUriRuntimeClass extends IInspectable {
 
     if (FAILED(hr)) {
       free(instance);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (instance.isNull) {

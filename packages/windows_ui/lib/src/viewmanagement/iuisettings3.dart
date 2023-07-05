@@ -49,7 +49,7 @@ class IUISettings3 extends IInspectable {
                           Pointer<NativeColor> value)>()(
               ptr.ref.lpVtbl, desiredColor.value, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDart();
     } finally {
@@ -77,7 +77,7 @@ class IUISettings3 extends IInspectable {
                           Pointer<IntPtr> cookie)>()(
               ptr.ref.lpVtbl, handler.ref.lpVtbl, cookie);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return cookie.value;
     } finally {
@@ -98,6 +98,6 @@ class IUISettings3 extends IInspectable {
                 .asFunction<int Function(VTablePointer lpVtbl, int cookie)>()(
             ptr.ref.lpVtbl, cookie);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 }

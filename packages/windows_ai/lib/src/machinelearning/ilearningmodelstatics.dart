@@ -50,7 +50,7 @@ class ILearningModelStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<LearningModel?>.fromPtr(operation,
@@ -79,7 +79,7 @@ class ILearningModelStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<LearningModel?>.fromPtr(operation,
@@ -108,7 +108,7 @@ class ILearningModelStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(result);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (result.isNull) {
@@ -139,7 +139,7 @@ class ILearningModelStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(result);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (result.isNull) {
@@ -179,7 +179,7 @@ class ILearningModelStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<LearningModel?>.fromPtr(operation,
@@ -216,7 +216,7 @@ class ILearningModelStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<LearningModel?>.fromPtr(operation,
@@ -255,7 +255,7 @@ class ILearningModelStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(result);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (result.isNull) {
@@ -295,7 +295,7 @@ class ILearningModelStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(result);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (result.isNull) {

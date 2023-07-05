@@ -50,7 +50,7 @@ class INetworkOperatorTetheringManagerStatics2 extends IInspectable {
                       Pointer<Int32> result)>()(ptr.ref.lpVtbl,
           profile == null ? nullptr : profile.ptr.ref.lpVtbl, result);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return TetheringCapability.from(result.value);
     } finally {
@@ -79,7 +79,7 @@ class INetworkOperatorTetheringManagerStatics2 extends IInspectable {
 
     if (FAILED(hr)) {
       free(ppManager);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (ppManager.isNull) {

@@ -49,7 +49,7 @@ class IGeographicRegionStatics extends IInspectable {
 
       WindowsDeleteString(geographicRegionCodeHString);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return result.value;
     } finally {

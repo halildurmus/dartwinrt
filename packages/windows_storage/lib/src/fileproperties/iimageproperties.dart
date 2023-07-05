@@ -45,7 +45,7 @@ class IImageProperties extends IInspectable
                   int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -66,7 +66,7 @@ class IImageProperties extends IInspectable
                 .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
             ptr.ref.lpVtbl, value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   IVector<String> get keywords {
@@ -86,7 +86,7 @@ class IImageProperties extends IInspectable
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IVector.fromPtr(value,
@@ -109,7 +109,7 @@ class IImageProperties extends IInspectable
                   int Function(VTablePointer lpVtbl, Pointer<Int64> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartDateTime();
     } finally {
@@ -128,7 +128,7 @@ class IImageProperties extends IInspectable
             .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
         ptr.ref.lpVtbl, value.toWinRTDateTime());
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   int get width {
@@ -147,7 +147,7 @@ class IImageProperties extends IInspectable
                   int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -171,7 +171,7 @@ class IImageProperties extends IInspectable
                   int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -195,7 +195,7 @@ class IImageProperties extends IInspectable
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartString();
     } finally {
@@ -221,7 +221,7 @@ class IImageProperties extends IInspectable
 
     WindowsDeleteString(valueHString);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   double? get latitude {
@@ -241,7 +241,7 @@ class IImageProperties extends IInspectable
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (value.isNull) {
@@ -271,7 +271,7 @@ class IImageProperties extends IInspectable
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (value.isNull) {
@@ -300,7 +300,7 @@ class IImageProperties extends IInspectable
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartString();
     } finally {
@@ -326,7 +326,7 @@ class IImageProperties extends IInspectable
 
     WindowsDeleteString(valueHString);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   String get cameraModel {
@@ -345,7 +345,7 @@ class IImageProperties extends IInspectable
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartString();
     } finally {
@@ -371,7 +371,7 @@ class IImageProperties extends IInspectable
 
     WindowsDeleteString(valueHString);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   PhotoOrientation get orientation {
@@ -390,7 +390,7 @@ class IImageProperties extends IInspectable
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return PhotoOrientation.from(value.value);
     } finally {
@@ -415,7 +415,7 @@ class IImageProperties extends IInspectable
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IVectorView<String>.fromPtr(value,

@@ -44,7 +44,7 @@ class IOcrEngineStatics extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -69,7 +69,7 @@ class IOcrEngineStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IVectorView<Language?>.fromPtr(value,
@@ -95,7 +95,7 @@ class IOcrEngineStatics extends IInspectable {
                       Pointer<Bool> result)>()(ptr.ref.lpVtbl,
           language == null ? nullptr : language.ptr.ref.lpVtbl, result);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return result.value;
     } finally {
@@ -124,7 +124,7 @@ class IOcrEngineStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(result);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (result.isNull) {
@@ -152,7 +152,7 @@ class IOcrEngineStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(result);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (result.isNull) {

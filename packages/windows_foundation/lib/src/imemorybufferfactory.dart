@@ -46,7 +46,7 @@ class IMemoryBufferFactory extends IInspectable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return MemoryBuffer.fromPtr(value);

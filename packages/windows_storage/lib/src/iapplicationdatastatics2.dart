@@ -52,7 +52,7 @@ class IApplicationDataStatics2 extends IInspectable {
 
     if (FAILED(hr)) {
       free(getForUserOperation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<ApplicationData?>.fromPtr(

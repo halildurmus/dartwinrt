@@ -55,7 +55,7 @@ class IStorageFolderQueryOperations extends IInspectable {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<IndexedState>.fromPtr(operation,
@@ -80,7 +80,7 @@ class IStorageFolderQueryOperations extends IInspectable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (value.isNull) {
@@ -109,7 +109,7 @@ class IStorageFolderQueryOperations extends IInspectable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (value.isNull) {
@@ -141,7 +141,7 @@ class IStorageFolderQueryOperations extends IInspectable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (value.isNull) {
@@ -169,7 +169,7 @@ class IStorageFolderQueryOperations extends IInspectable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (value.isNull) {
@@ -198,7 +198,7 @@ class IStorageFolderQueryOperations extends IInspectable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (value.isNull) {
@@ -230,7 +230,7 @@ class IStorageFolderQueryOperations extends IInspectable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (value.isNull) {
@@ -258,7 +258,7 @@ class IStorageFolderQueryOperations extends IInspectable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (value.isNull) {
@@ -290,7 +290,7 @@ class IStorageFolderQueryOperations extends IInspectable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (value.isNull) {
@@ -324,7 +324,7 @@ class IStorageFolderQueryOperations extends IInspectable {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<IVectorView<StorageFile?>>.fromPtr(
@@ -354,7 +354,7 @@ class IStorageFolderQueryOperations extends IInspectable {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<IVectorView<StorageFile?>>.fromPtr(
@@ -388,7 +388,7 @@ class IStorageFolderQueryOperations extends IInspectable {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<IVectorView<StorageFolder?>>.fromPtr(
@@ -418,7 +418,7 @@ class IStorageFolderQueryOperations extends IInspectable {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<IVectorView<StorageFolder?>>.fromPtr(
@@ -451,7 +451,7 @@ class IStorageFolderQueryOperations extends IInspectable {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<IVectorView<IStorageItem?>>.fromPtr(
@@ -484,7 +484,7 @@ class IStorageFolderQueryOperations extends IInspectable {
               queryOptions == null ? nullptr : queryOptions.ptr.ref.lpVtbl,
               value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -508,7 +508,7 @@ class IStorageFolderQueryOperations extends IInspectable {
               int Function(VTablePointer lpVtbl, int query,
                   Pointer<Bool> value)>()(ptr.ref.lpVtbl, query.value, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -532,7 +532,7 @@ class IStorageFolderQueryOperations extends IInspectable {
               int Function(VTablePointer lpVtbl, int query,
                   Pointer<Bool> value)>()(ptr.ref.lpVtbl, query.value, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {

@@ -51,7 +51,7 @@ class ILearningModelBindingFactory extends IInspectable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return LearningModelBinding.fromPtr(value);

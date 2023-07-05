@@ -45,7 +45,7 @@ class IToastNotification extends IInspectable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (value.isNull) {
@@ -69,7 +69,7 @@ class IToastNotification extends IInspectable {
                 int Function(VTablePointer lpVtbl, VTablePointer value)>()(
         ptr.ref.lpVtbl, value?.toReference().ptr.ref.lpVtbl ?? nullptr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   DateTime? get expirationTime {
@@ -89,7 +89,7 @@ class IToastNotification extends IInspectable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (value.isNull) {
@@ -119,7 +119,7 @@ class IToastNotification extends IInspectable {
                       Pointer<IntPtr> token)>()(
           ptr.ref.lpVtbl, handler.ref.lpVtbl, token);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return token.value;
     } finally {
@@ -140,7 +140,7 @@ class IToastNotification extends IInspectable {
                 .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
             ptr.ref.lpVtbl, token);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   int add_Activated(Pointer<COMObject> handler) {
@@ -160,7 +160,7 @@ class IToastNotification extends IInspectable {
                       Pointer<IntPtr> token)>()(
           ptr.ref.lpVtbl, handler.ref.lpVtbl, token);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return token.value;
     } finally {
@@ -181,7 +181,7 @@ class IToastNotification extends IInspectable {
                 .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
             ptr.ref.lpVtbl, token);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   int add_Failed(Pointer<COMObject> handler) {
@@ -201,7 +201,7 @@ class IToastNotification extends IInspectable {
                       Pointer<IntPtr> token)>()(
           ptr.ref.lpVtbl, handler.ref.lpVtbl, token);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return token.value;
     } finally {
@@ -222,6 +222,6 @@ class IToastNotification extends IInspectable {
                 .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
             ptr.ref.lpVtbl, token);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 }

@@ -44,7 +44,7 @@ class IGamepadStatics extends IInspectable {
                       Pointer<IntPtr> token)>()(
           ptr.ref.lpVtbl, value.ref.lpVtbl, token);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return token.value;
     } finally {
@@ -65,7 +65,7 @@ class IGamepadStatics extends IInspectable {
                 .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
             ptr.ref.lpVtbl, token);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   int add_GamepadRemoved(Pointer<COMObject> value) {
@@ -85,7 +85,7 @@ class IGamepadStatics extends IInspectable {
                       Pointer<IntPtr> token)>()(
           ptr.ref.lpVtbl, value.ref.lpVtbl, token);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return token.value;
     } finally {
@@ -106,7 +106,7 @@ class IGamepadStatics extends IInspectable {
                 .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
             ptr.ref.lpVtbl, token);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   List<Gamepad?> get gamepads {
@@ -126,7 +126,7 @@ class IGamepadStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IVectorView<Gamepad?>.fromPtr(value,

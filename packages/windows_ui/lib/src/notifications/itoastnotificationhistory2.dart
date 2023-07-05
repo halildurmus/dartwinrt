@@ -45,7 +45,7 @@ class IToastNotificationHistory2 extends IInspectable {
 
     if (FAILED(hr)) {
       free(result);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IVectorView<ToastNotification?>.fromPtr(result,
@@ -78,7 +78,7 @@ class IToastNotificationHistory2 extends IInspectable {
 
     if (FAILED(hr)) {
       free(result);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IVectorView<ToastNotification?>.fromPtr(result,

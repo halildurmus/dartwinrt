@@ -48,7 +48,7 @@ class IHostNameStatics extends IInspectable {
       WindowsDeleteString(value1HString);
       WindowsDeleteString(value2HString);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return result.value;
     } finally {

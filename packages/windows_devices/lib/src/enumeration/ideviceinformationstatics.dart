@@ -52,7 +52,7 @@ class IDeviceInformationStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(asyncOp);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<DeviceInformation?>.fromPtr(asyncOp,
@@ -97,7 +97,7 @@ class IDeviceInformationStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(asyncOp);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<DeviceInformation?>.fromPtr(asyncOp,
@@ -122,7 +122,7 @@ class IDeviceInformationStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(asyncOp);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<DeviceInformationCollection>.fromPtr(
@@ -152,7 +152,7 @@ class IDeviceInformationStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(asyncOp);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<DeviceInformationCollection>.fromPtr(
@@ -182,7 +182,7 @@ class IDeviceInformationStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(asyncOp);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<DeviceInformationCollection>.fromPtr(
@@ -229,7 +229,7 @@ class IDeviceInformationStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(asyncOp);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<DeviceInformationCollection>.fromPtr(
@@ -255,7 +255,7 @@ class IDeviceInformationStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(watcher);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (watcher.isNull) {
@@ -286,7 +286,7 @@ class IDeviceInformationStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(watcher);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (watcher.isNull) {
@@ -318,7 +318,7 @@ class IDeviceInformationStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(watcher);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (watcher.isNull) {
@@ -366,7 +366,7 @@ class IDeviceInformationStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(watcher);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (watcher.isNull) {

@@ -50,7 +50,7 @@ class IDateTimeFormatter extends IInspectable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IVectorView<String>.fromPtr(value,
@@ -74,7 +74,7 @@ class IDateTimeFormatter extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartString();
     } finally {
@@ -99,7 +99,7 @@ class IDateTimeFormatter extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartString();
     } finally {
@@ -124,7 +124,7 @@ class IDateTimeFormatter extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartString();
     } finally {
@@ -149,7 +149,7 @@ class IDateTimeFormatter extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartString();
     } finally {
@@ -175,7 +175,7 @@ class IDateTimeFormatter extends IInspectable {
 
     WindowsDeleteString(valueHString);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   List<String> get patterns {
@@ -195,7 +195,7 @@ class IDateTimeFormatter extends IInspectable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IVectorView<String>.fromPtr(value,
@@ -219,7 +219,7 @@ class IDateTimeFormatter extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartString();
     } finally {
@@ -245,7 +245,7 @@ class IDateTimeFormatter extends IInspectable {
                       Pointer<IntPtr> result)>()(
           ptr.ref.lpVtbl, value.toWinRTDateTime(), result);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDartString();
     } finally {
@@ -270,7 +270,7 @@ class IDateTimeFormatter extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return YearFormat.from(value.value);
     } finally {
@@ -294,7 +294,7 @@ class IDateTimeFormatter extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return MonthFormat.from(value.value);
     } finally {
@@ -318,7 +318,7 @@ class IDateTimeFormatter extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return DayOfWeekFormat.from(value.value);
     } finally {
@@ -342,7 +342,7 @@ class IDateTimeFormatter extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return DayFormat.from(value.value);
     } finally {
@@ -366,7 +366,7 @@ class IDateTimeFormatter extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return HourFormat.from(value.value);
     } finally {
@@ -390,7 +390,7 @@ class IDateTimeFormatter extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return MinuteFormat.from(value.value);
     } finally {
@@ -414,7 +414,7 @@ class IDateTimeFormatter extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return SecondFormat.from(value.value);
     } finally {
@@ -438,7 +438,7 @@ class IDateTimeFormatter extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartString();
     } finally {
@@ -463,7 +463,7 @@ class IDateTimeFormatter extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartString();
     } finally {

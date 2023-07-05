@@ -46,7 +46,7 @@ class IHostName extends IInspectable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (value.isNull) {
@@ -73,7 +73,7 @@ class IHostName extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartString();
     } finally {
@@ -98,7 +98,7 @@ class IHostName extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartString();
     } finally {
@@ -123,7 +123,7 @@ class IHostName extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartString();
     } finally {
@@ -148,7 +148,7 @@ class IHostName extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return HostNameType.from(value.value);
     } finally {
@@ -176,7 +176,7 @@ class IHostName extends IInspectable {
                           Pointer<Bool> isEqual)>()(ptr.ref.lpVtbl,
               hostName == null ? nullptr : hostName.ptr.ref.lpVtbl, isEqual);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return isEqual.value;
     } finally {

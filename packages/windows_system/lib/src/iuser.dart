@@ -46,7 +46,7 @@ class IUser extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartString();
     } finally {
@@ -71,7 +71,7 @@ class IUser extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return UserAuthenticationStatus.from(value.value);
     } finally {
@@ -95,7 +95,7 @@ class IUser extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return UserType.from(value.value);
     } finally {
@@ -124,7 +124,7 @@ class IUser extends IInspectable {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<Object?>.fromPtr(operation);
@@ -152,7 +152,7 @@ class IUser extends IInspectable {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<IPropertySet>.fromPtr(operation,
@@ -182,7 +182,7 @@ class IUser extends IInspectable {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation =

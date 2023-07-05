@@ -44,7 +44,7 @@ class ILearningModelDevice extends IInspectable {
                       Pointer<NativeDisplayAdapterId> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDart();
     } finally {
@@ -69,7 +69,7 @@ class ILearningModelDevice extends IInspectable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (value.isNull) {

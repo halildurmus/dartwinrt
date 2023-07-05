@@ -38,7 +38,7 @@ final class _IMapViewGuidInspectable<V> extends IMapView<Guid, V> {
 
     if (FAILED(hr)) {
       free(retValuePtr);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (retValuePtr.isNull) {
@@ -71,7 +71,7 @@ final class _IMapViewGuidInspectable<V> extends IMapView<Guid, V> {
 
       free(keyNativeStructPtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -105,7 +105,7 @@ final class _IMapViewGuidObject extends IMapView<Guid, Object?> {
 
     if (FAILED(hr)) {
       free(retValuePtr);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (retValuePtr.isNull) {
@@ -138,7 +138,7 @@ final class _IMapViewGuidObject extends IMapView<Guid, Object?> {
 
       free(keyNativeStructPtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -173,7 +173,7 @@ final class _IMapViewInt16Inspectable<V> extends IMapView<int, V> {
 
     if (FAILED(hr)) {
       free(retValuePtr);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (retValuePtr.isNull) {
@@ -202,7 +202,7 @@ final class _IMapViewInt16Inspectable<V> extends IMapView<int, V> {
                       Pointer<Bool> retValuePtr)>()(
           ptr.ref.lpVtbl, key, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -237,7 +237,7 @@ final class _IMapViewInt32Inspectable<V> extends IMapView<int, V> {
 
     if (FAILED(hr)) {
       free(retValuePtr);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (retValuePtr.isNull) {
@@ -266,7 +266,7 @@ final class _IMapViewInt32Inspectable<V> extends IMapView<int, V> {
                       Pointer<Bool> retValuePtr)>()(
           ptr.ref.lpVtbl, key, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -301,7 +301,7 @@ final class _IMapViewInt64Inspectable<V> extends IMapView<int, V> {
 
     if (FAILED(hr)) {
       free(retValuePtr);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (retValuePtr.isNull) {
@@ -330,7 +330,7 @@ final class _IMapViewInt64Inspectable<V> extends IMapView<int, V> {
                       Pointer<Bool> retValuePtr)>()(
           ptr.ref.lpVtbl, key, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -368,7 +368,7 @@ final class _IMapViewStringInspectable<V> extends IMapView<String, V> {
 
     if (FAILED(hr)) {
       free(retValuePtr);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (retValuePtr.isNull) {
@@ -401,7 +401,7 @@ final class _IMapViewStringInspectable<V> extends IMapView<String, V> {
 
       WindowsDeleteString(keyHString);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -435,7 +435,7 @@ final class _IMapViewStringObject extends IMapView<String, Object?> {
 
     if (FAILED(hr)) {
       free(retValuePtr);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (retValuePtr.isNull) {
@@ -468,7 +468,7 @@ final class _IMapViewStringObject extends IMapView<String, Object?> {
 
       WindowsDeleteString(keyHString);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -502,7 +502,7 @@ final class _IMapViewStringString extends IMapView<String, String> {
 
       WindowsDeleteString(keyHString);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.toDartString();
     } finally {
@@ -533,7 +533,7 @@ final class _IMapViewStringString extends IMapView<String, String> {
 
       WindowsDeleteString(keyHString);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -571,7 +571,7 @@ final class _IMapViewStringWinRTEnum<V> extends IMapView<String, V> {
 
       WindowsDeleteString(keyHString);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return enumCreator(retValuePtr.value);
     } finally {
@@ -601,7 +601,7 @@ final class _IMapViewStringWinRTEnum<V> extends IMapView<String, V> {
 
       WindowsDeleteString(keyHString);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -639,7 +639,7 @@ final class _IMapViewStringWinRTFlagsEnum<V> extends IMapView<String, V> {
 
       WindowsDeleteString(keyHString);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return enumCreator(retValuePtr.value);
     } finally {
@@ -669,7 +669,7 @@ final class _IMapViewStringWinRTFlagsEnum<V> extends IMapView<String, V> {
 
       WindowsDeleteString(keyHString);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -704,7 +704,7 @@ final class _IMapViewUint8Inspectable<V> extends IMapView<int, V> {
 
     if (FAILED(hr)) {
       free(retValuePtr);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (retValuePtr.isNull) {
@@ -733,7 +733,7 @@ final class _IMapViewUint8Inspectable<V> extends IMapView<int, V> {
                       Pointer<Bool> retValuePtr)>()(
           ptr.ref.lpVtbl, key, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -768,7 +768,7 @@ final class _IMapViewUint16Inspectable<V> extends IMapView<int, V> {
 
     if (FAILED(hr)) {
       free(retValuePtr);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (retValuePtr.isNull) {
@@ -797,7 +797,7 @@ final class _IMapViewUint16Inspectable<V> extends IMapView<int, V> {
                       Pointer<Bool> retValuePtr)>()(
           ptr.ref.lpVtbl, key, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -832,7 +832,7 @@ final class _IMapViewUint32Inspectable<V> extends IMapView<int, V> {
 
     if (FAILED(hr)) {
       free(retValuePtr);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (retValuePtr.isNull) {
@@ -861,7 +861,7 @@ final class _IMapViewUint32Inspectable<V> extends IMapView<int, V> {
                       Pointer<Bool> retValuePtr)>()(
           ptr.ref.lpVtbl, key, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -896,7 +896,7 @@ final class _IMapViewUint64Inspectable<V> extends IMapView<int, V> {
 
     if (FAILED(hr)) {
       free(retValuePtr);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (retValuePtr.isNull) {
@@ -925,7 +925,7 @@ final class _IMapViewUint64Inspectable<V> extends IMapView<int, V> {
                       Pointer<Bool> retValuePtr)>()(
           ptr.ref.lpVtbl, key, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -963,7 +963,7 @@ final class _IMapViewWinRTEnumInspectable<K, V> extends IMapView<K, V> {
 
     if (FAILED(hr)) {
       free(retValuePtr);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (retValuePtr.isNull) {
@@ -992,7 +992,7 @@ final class _IMapViewWinRTEnumInspectable<K, V> extends IMapView<K, V> {
                       Pointer<Bool> retValuePtr)>()(
           ptr.ref.lpVtbl, (key as WinRTEnum).value, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -1030,7 +1030,7 @@ final class _IMapViewWinRTFlagsEnumInspectable<K, V> extends IMapView<K, V> {
 
     if (FAILED(hr)) {
       free(retValuePtr);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (retValuePtr.isNull) {
@@ -1059,7 +1059,7 @@ final class _IMapViewWinRTFlagsEnumInspectable<K, V> extends IMapView<K, V> {
                       Pointer<Bool> retValuePtr)>()(
           ptr.ref.lpVtbl, (key as WinRTEnum).value, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {

@@ -41,7 +41,7 @@ class INumberFormatter extends IInspectable {
               int Function(VTablePointer lpVtbl, int value,
                   Pointer<IntPtr> result)>()(ptr.ref.lpVtbl, value, result);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDartString();
     } finally {
@@ -66,7 +66,7 @@ class INumberFormatter extends IInspectable {
               int Function(VTablePointer lpVtbl, int value,
                   Pointer<IntPtr> result)>()(ptr.ref.lpVtbl, value, result);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDartString();
     } finally {
@@ -91,7 +91,7 @@ class INumberFormatter extends IInspectable {
               int Function(VTablePointer lpVtbl, double value,
                   Pointer<IntPtr> result)>()(ptr.ref.lpVtbl, value, result);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDartString();
     } finally {

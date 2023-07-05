@@ -45,7 +45,7 @@ class ICurrencyFormatter2 extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return CurrencyFormatterMode.from(value.value);
     } finally {
@@ -64,7 +64,7 @@ class ICurrencyFormatter2 extends IInspectable {
             .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
         ptr.ref.lpVtbl, value.value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void applyRoundingForCurrency(RoundingAlgorithm roundingAlgorithm) {
@@ -80,6 +80,6 @@ class ICurrencyFormatter2 extends IInspectable {
                 int Function(VTablePointer lpVtbl, int roundingAlgorithm)>()(
         ptr.ref.lpVtbl, roundingAlgorithm.value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 }

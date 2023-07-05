@@ -46,7 +46,7 @@ class IBitmapTransform extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -67,7 +67,7 @@ class IBitmapTransform extends IInspectable {
                 .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
             ptr.ref.lpVtbl, value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   int get scaledHeight {
@@ -86,7 +86,7 @@ class IBitmapTransform extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -107,7 +107,7 @@ class IBitmapTransform extends IInspectable {
                 .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
             ptr.ref.lpVtbl, value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   BitmapInterpolationMode get interpolationMode {
@@ -126,7 +126,7 @@ class IBitmapTransform extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return BitmapInterpolationMode.from(value.value);
     } finally {
@@ -145,7 +145,7 @@ class IBitmapTransform extends IInspectable {
             .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
         ptr.ref.lpVtbl, value.value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   BitmapFlip get flip {
@@ -164,7 +164,7 @@ class IBitmapTransform extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return BitmapFlip.from(value.value);
     } finally {
@@ -183,7 +183,7 @@ class IBitmapTransform extends IInspectable {
             .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
         ptr.ref.lpVtbl, value.value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   BitmapRotation get rotation {
@@ -202,7 +202,7 @@ class IBitmapTransform extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return BitmapRotation.from(value.value);
     } finally {
@@ -221,7 +221,7 @@ class IBitmapTransform extends IInspectable {
             .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
         ptr.ref.lpVtbl, value.value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   BitmapBounds get bounds {
@@ -240,7 +240,7 @@ class IBitmapTransform extends IInspectable {
               int Function(VTablePointer lpVtbl,
                   Pointer<NativeBitmapBounds> value)>()(ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDart();
     } finally {
@@ -265,6 +265,6 @@ class IBitmapTransform extends IInspectable {
 
     free(valueNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 }

@@ -48,7 +48,7 @@ class IOutputStream extends IInspectable implements IClosable {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return operation;
@@ -71,7 +71,7 @@ class IOutputStream extends IInspectable implements IClosable {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<bool>.fromPtr(operation);

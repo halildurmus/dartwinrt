@@ -51,7 +51,7 @@ class ICurrencyFormatterFactory extends IInspectable {
 
     if (FAILED(hr)) {
       free(result);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return CurrencyFormatter.fromPtr(result);
@@ -97,7 +97,7 @@ class ICurrencyFormatterFactory extends IInspectable {
 
     if (FAILED(hr)) {
       free(result);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return CurrencyFormatter.fromPtr(result);

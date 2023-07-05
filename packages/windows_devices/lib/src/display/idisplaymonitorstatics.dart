@@ -44,7 +44,7 @@ class IDisplayMonitorStatics extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> result)>()(
           ptr.ref.lpVtbl, result);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDartString();
     } finally {
@@ -74,7 +74,7 @@ class IDisplayMonitorStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<DisplayMonitor?>.fromPtr(operation,
@@ -105,7 +105,7 @@ class IDisplayMonitorStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<DisplayMonitor?>.fromPtr(operation,

@@ -48,7 +48,7 @@ class IPropertyValue extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return PropertyType.from(value.value);
     } finally {
@@ -72,7 +72,7 @@ class IPropertyValue extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Bool> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -96,7 +96,7 @@ class IPropertyValue extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Uint8> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -120,7 +120,7 @@ class IPropertyValue extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int16> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -144,7 +144,7 @@ class IPropertyValue extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Uint16> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -168,7 +168,7 @@ class IPropertyValue extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -192,7 +192,7 @@ class IPropertyValue extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -216,7 +216,7 @@ class IPropertyValue extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int64> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -240,7 +240,7 @@ class IPropertyValue extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Uint64> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -264,7 +264,7 @@ class IPropertyValue extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Float> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -288,7 +288,7 @@ class IPropertyValue extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Double> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -312,7 +312,7 @@ class IPropertyValue extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Uint16> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -336,7 +336,7 @@ class IPropertyValue extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Bool> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -360,7 +360,7 @@ class IPropertyValue extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartString();
     } finally {
@@ -385,7 +385,7 @@ class IPropertyValue extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<GUID> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartGuid();
     } finally {
@@ -409,7 +409,7 @@ class IPropertyValue extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int64> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartDateTime();
     } finally {
@@ -433,7 +433,7 @@ class IPropertyValue extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int64> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartDuration();
     } finally {
@@ -457,7 +457,7 @@ class IPropertyValue extends IInspectable {
               int Function(VTablePointer lpVtbl,
                   Pointer<NativePoint> value)>()(ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDart();
     } finally {
@@ -481,7 +481,7 @@ class IPropertyValue extends IInspectable {
               int Function(VTablePointer lpVtbl,
                   Pointer<NativeSize> value)>()(ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDart();
     } finally {
@@ -505,7 +505,7 @@ class IPropertyValue extends IInspectable {
               int Function(VTablePointer lpVtbl,
                   Pointer<NativeRect> value)>()(ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDart();
     } finally {
@@ -540,7 +540,7 @@ class IPropertyValue extends IInspectable {
     free(pValueSize);
     free(pValueArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void getInt16Array(List<int> value) {
@@ -570,7 +570,7 @@ class IPropertyValue extends IInspectable {
     free(pValueSize);
     free(pValueArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void getUInt16Array(List<int> value) {
@@ -600,7 +600,7 @@ class IPropertyValue extends IInspectable {
     free(pValueSize);
     free(pValueArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void getInt32Array(List<int> value) {
@@ -630,7 +630,7 @@ class IPropertyValue extends IInspectable {
     free(pValueSize);
     free(pValueArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void getUInt32Array(List<int> value) {
@@ -660,7 +660,7 @@ class IPropertyValue extends IInspectable {
     free(pValueSize);
     free(pValueArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void getInt64Array(List<int> value) {
@@ -690,7 +690,7 @@ class IPropertyValue extends IInspectable {
     free(pValueSize);
     free(pValueArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void getUInt64Array(List<int> value) {
@@ -720,7 +720,7 @@ class IPropertyValue extends IInspectable {
     free(pValueSize);
     free(pValueArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void getSingleArray(List<double> value) {
@@ -750,7 +750,7 @@ class IPropertyValue extends IInspectable {
     free(pValueSize);
     free(pValueArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void getDoubleArray(List<double> value) {
@@ -780,7 +780,7 @@ class IPropertyValue extends IInspectable {
     free(pValueSize);
     free(pValueArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void getChar16Array(List<int> value) {
@@ -810,7 +810,7 @@ class IPropertyValue extends IInspectable {
     free(pValueSize);
     free(pValueArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void getBooleanArray(List<bool> value) {
@@ -840,7 +840,7 @@ class IPropertyValue extends IInspectable {
     free(pValueSize);
     free(pValueArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void getStringArray(List<String> value) {
@@ -870,7 +870,7 @@ class IPropertyValue extends IInspectable {
     free(pValueSize);
     free(pValueArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void getInspectableArray(List<Object?> value) {
@@ -900,7 +900,7 @@ class IPropertyValue extends IInspectable {
     free(pValueSize);
     free(pValueArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void getGuidArray(List<Guid> value) {
@@ -930,7 +930,7 @@ class IPropertyValue extends IInspectable {
     free(pValueSize);
     free(pValueArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void getDateTimeArray(List<DateTime> value) {
@@ -963,7 +963,7 @@ class IPropertyValue extends IInspectable {
     free(pValueSize);
     free(pValueArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void getTimeSpanArray(List<Duration> value) {
@@ -996,7 +996,7 @@ class IPropertyValue extends IInspectable {
     free(pValueSize);
     free(pValueArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void getPointArray(List<Point> value) {
@@ -1026,7 +1026,7 @@ class IPropertyValue extends IInspectable {
     free(pValueSize);
     free(pValueArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void getSizeArray(List<Size> value) {
@@ -1056,7 +1056,7 @@ class IPropertyValue extends IInspectable {
     free(pValueSize);
     free(pValueArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void getRectArray(List<Rect> value) {
@@ -1086,6 +1086,6 @@ class IPropertyValue extends IInspectable {
     free(pValueSize);
     free(pValueArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 }

@@ -44,7 +44,7 @@ class IConnectionProfile6 extends IInspectable {
               int Function(VTablePointer lpVtbl, int kind,
                   Pointer<Bool> result)>()(ptr.ref.lpVtbl, kind.value, result);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return result.value;
     } finally {

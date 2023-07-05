@@ -46,7 +46,7 @@ class IBitmapDecoderStatics extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<GUID> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartGuid();
     } finally {
@@ -70,7 +70,7 @@ class IBitmapDecoderStatics extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<GUID> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartGuid();
     } finally {
@@ -94,7 +94,7 @@ class IBitmapDecoderStatics extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<GUID> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartGuid();
     } finally {
@@ -118,7 +118,7 @@ class IBitmapDecoderStatics extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<GUID> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartGuid();
     } finally {
@@ -142,7 +142,7 @@ class IBitmapDecoderStatics extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<GUID> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartGuid();
     } finally {
@@ -166,7 +166,7 @@ class IBitmapDecoderStatics extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<GUID> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartGuid();
     } finally {
@@ -190,7 +190,7 @@ class IBitmapDecoderStatics extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<GUID> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartGuid();
     } finally {
@@ -219,7 +219,7 @@ class IBitmapDecoderStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(decoderInformationEnumerator);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IVectorView<BitmapCodecInformation?>.fromPtr(
@@ -250,7 +250,7 @@ class IBitmapDecoderStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(asyncInfo);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<BitmapDecoder?>.fromPtr(asyncInfo,
@@ -287,7 +287,7 @@ class IBitmapDecoderStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(asyncInfo);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<BitmapDecoder?>.fromPtr(asyncInfo,

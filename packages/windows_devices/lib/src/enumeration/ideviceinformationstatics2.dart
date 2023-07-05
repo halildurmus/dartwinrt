@@ -51,7 +51,7 @@ class IDeviceInformationStatics2 extends IInspectable {
                   Pointer<IntPtr>
                       aqsFilter)>()(ptr.ref.lpVtbl, deviceClass.value, aqsFilter);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return aqsFilter.toDartString();
     } finally {
@@ -102,7 +102,7 @@ class IDeviceInformationStatics2 extends IInspectable {
 
     if (FAILED(hr)) {
       free(asyncOp);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<DeviceInformation?>.fromPtr(asyncOp,
@@ -151,7 +151,7 @@ class IDeviceInformationStatics2 extends IInspectable {
 
     if (FAILED(hr)) {
       free(asyncOp);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<DeviceInformationCollection>.fromPtr(
@@ -202,7 +202,7 @@ class IDeviceInformationStatics2 extends IInspectable {
 
     if (FAILED(hr)) {
       free(watcher);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (watcher.isNull) {

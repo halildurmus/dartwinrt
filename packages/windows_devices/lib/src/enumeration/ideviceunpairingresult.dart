@@ -44,7 +44,7 @@ class IDeviceUnpairingResult extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> status)>()(
           ptr.ref.lpVtbl, status);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return DeviceUnpairingResultStatus.from(status.value);
     } finally {

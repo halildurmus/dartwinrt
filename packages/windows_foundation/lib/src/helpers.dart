@@ -9,8 +9,8 @@ import 'dart:ffi';
 import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart' hide IUnknown;
 
+import '../internal.dart';
 import 'extensions/iunknown_helpers.dart';
-import 'internal/extensions/extensions.dart';
 
 /// Activates the specified Windows Runtime class in the [className] and returns
 /// a reference to the `IInspectable` interface.
@@ -26,7 +26,7 @@ Pointer<COMObject> activateClass(String className,
 
   try {
     final hr = RoActivateInstance(hClassName, inspectablePtr.cast());
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
     // Return a pointer to the relevant class
     return inspectablePtr;
   } on WindowsException catch (e) {
@@ -35,7 +35,7 @@ Pointer<COMObject> activateClass(String className,
     if (e.hr == CO_E_NOTINITIALIZED) {
       _initializeMTA();
       final hr = RoActivateInstance(hClassName, inspectablePtr.cast());
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
       // Return a pointer to the relevant class
       return inspectablePtr;
     }
@@ -71,7 +71,7 @@ T createActivationFactory<T extends IInspectable>(
   try {
     final hr =
         RoGetActivationFactory(hClassName, pIID, activationFactoryPtr.cast());
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
     // Create and return the relevant interface
     return creator(activationFactoryPtr);
   } on WindowsException catch (e) {
@@ -81,7 +81,7 @@ T createActivationFactory<T extends IInspectable>(
       _initializeMTA();
       final hr =
           RoGetActivationFactory(hClassName, pIID, activationFactoryPtr.cast());
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
       // Create and return the relevant interface
       return creator(activationFactoryPtr);
     }
@@ -119,7 +119,7 @@ void _initializeMTA() {
 
   try {
     final hr = CoIncrementMTAUsage(pCookie);
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   } finally {
     free(pCookie);
   }

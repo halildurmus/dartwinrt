@@ -43,7 +43,7 @@ class IToastNotification2 extends IInspectable {
 
     WindowsDeleteString(valueHString);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   String get tag {
@@ -62,7 +62,7 @@ class IToastNotification2 extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartString();
     } finally {
@@ -88,7 +88,7 @@ class IToastNotification2 extends IInspectable {
 
     WindowsDeleteString(valueHString);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   String get group {
@@ -107,7 +107,7 @@ class IToastNotification2 extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartString();
     } finally {
@@ -127,7 +127,7 @@ class IToastNotification2 extends IInspectable {
             .asFunction<int Function(VTablePointer lpVtbl, bool value)>()(
         ptr.ref.lpVtbl, value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   bool get suppressPopup {
@@ -146,7 +146,7 @@ class IToastNotification2 extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Bool> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {

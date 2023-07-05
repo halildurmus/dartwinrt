@@ -46,7 +46,7 @@ class IPhoneNumberFormatter extends IInspectable {
                       Pointer<IntPtr> result)>()(ptr.ref.lpVtbl,
           number == null ? nullptr : number.ptr.ref.lpVtbl, result);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDartString();
     } finally {
@@ -79,7 +79,7 @@ class IPhoneNumberFormatter extends IInspectable {
           numberFormat.value,
           result);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDartString();
     } finally {
@@ -109,7 +109,7 @@ class IPhoneNumberFormatter extends IInspectable {
 
       WindowsDeleteString(numberHString);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDartString();
     } finally {
@@ -139,7 +139,7 @@ class IPhoneNumberFormatter extends IInspectable {
 
       WindowsDeleteString(numberHString);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDartString();
     } finally {
@@ -169,7 +169,7 @@ class IPhoneNumberFormatter extends IInspectable {
 
       WindowsDeleteString(numberHString);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDartString();
     } finally {

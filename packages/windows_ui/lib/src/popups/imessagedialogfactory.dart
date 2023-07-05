@@ -49,7 +49,7 @@ class IMessageDialogFactory extends IInspectable {
 
     if (FAILED(hr)) {
       free(messageDialog);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return MessageDialog.fromPtr(messageDialog);
@@ -78,7 +78,7 @@ class IMessageDialogFactory extends IInspectable {
 
     if (FAILED(hr)) {
       free(messageDialog);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return MessageDialog.fromPtr(messageDialog);

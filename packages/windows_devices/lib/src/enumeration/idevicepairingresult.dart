@@ -45,7 +45,7 @@ class IDevicePairingResult extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> status)>()(
           ptr.ref.lpVtbl, status);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return DevicePairingResultStatus.from(status.value);
     } finally {
@@ -69,7 +69,7 @@ class IDevicePairingResult extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return DevicePairingProtectionLevel.from(value.value);
     } finally {

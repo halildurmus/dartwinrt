@@ -57,7 +57,7 @@ class INetworkOperatorTetheringManagerStatics3 extends IInspectable {
 
     if (FAILED(hr)) {
       free(ppManager);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (ppManager.isNull) {

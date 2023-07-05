@@ -44,7 +44,7 @@ class IIncrementNumberRounder extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return RoundingAlgorithm.from(value.value);
     } finally {
@@ -63,7 +63,7 @@ class IIncrementNumberRounder extends IInspectable {
             .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
         ptr.ref.lpVtbl, value.value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   double get increment {
@@ -82,7 +82,7 @@ class IIncrementNumberRounder extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Double> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -103,6 +103,6 @@ class IIncrementNumberRounder extends IInspectable {
                 .asFunction<int Function(VTablePointer lpVtbl, double value)>()(
             ptr.ref.lpVtbl, value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 }

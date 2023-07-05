@@ -45,7 +45,7 @@ class IFolderPicker extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return PickerViewMode.from(value.value);
     } finally {
@@ -64,7 +64,7 @@ class IFolderPicker extends IInspectable {
             .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
         ptr.ref.lpVtbl, value.value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   String get settingsIdentifier {
@@ -83,7 +83,7 @@ class IFolderPicker extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartString();
     } finally {
@@ -109,7 +109,7 @@ class IFolderPicker extends IInspectable {
 
     WindowsDeleteString(valueHString);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   PickerLocationId get suggestedStartLocation {
@@ -128,7 +128,7 @@ class IFolderPicker extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return PickerLocationId.from(value.value);
     } finally {
@@ -147,7 +147,7 @@ class IFolderPicker extends IInspectable {
             .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
         ptr.ref.lpVtbl, value.value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   String get commitButtonText {
@@ -166,7 +166,7 @@ class IFolderPicker extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartString();
     } finally {
@@ -192,7 +192,7 @@ class IFolderPicker extends IInspectable {
 
     WindowsDeleteString(valueHString);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   IVector<String> get fileTypeFilter {
@@ -212,7 +212,7 @@ class IFolderPicker extends IInspectable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IVector.fromPtr(value,
@@ -236,7 +236,7 @@ class IFolderPicker extends IInspectable {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<StorageFolder?>.fromPtr(operation,

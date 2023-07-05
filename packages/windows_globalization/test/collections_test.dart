@@ -36,7 +36,7 @@ void main() {
                       VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)>()(
           ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return IVectorView.fromPtr(retValuePtr,
           iterableIid: IID_IIterable_String);

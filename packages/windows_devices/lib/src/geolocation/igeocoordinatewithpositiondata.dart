@@ -48,7 +48,7 @@ class IGeocoordinateWithPositionData extends IInspectable
                   int Function(VTablePointer lpVtbl, Pointer<Int32> pValue)>()(
           ptr.ref.lpVtbl, pValue);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return PositionSource.from(pValue.value);
     } finally {
@@ -73,7 +73,7 @@ class IGeocoordinateWithPositionData extends IInspectable
 
     if (FAILED(hr)) {
       free(ppValue);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (ppValue.isNull) {

@@ -60,7 +60,7 @@ class IPermilleFormatterFactory extends IInspectable {
 
     if (FAILED(hr)) {
       free(result);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return PermilleFormatter.fromPtr(result);

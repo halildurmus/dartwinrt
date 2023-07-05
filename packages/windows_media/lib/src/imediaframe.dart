@@ -41,7 +41,7 @@ class IMediaFrame extends IInspectable implements IClosable {
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartString();
     } finally {
@@ -66,7 +66,7 @@ class IMediaFrame extends IInspectable implements IClosable {
                   int Function(VTablePointer lpVtbl, Pointer<Bool> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -87,7 +87,7 @@ class IMediaFrame extends IInspectable implements IClosable {
                 int Function(VTablePointer lpVtbl, VTablePointer value)>()(
         ptr.ref.lpVtbl, value?.toReference().ptr.ref.lpVtbl ?? nullptr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   Duration? get relativeTime {
@@ -107,7 +107,7 @@ class IMediaFrame extends IInspectable implements IClosable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (value.isNull) {
@@ -133,7 +133,7 @@ class IMediaFrame extends IInspectable implements IClosable {
                 int Function(VTablePointer lpVtbl, VTablePointer value)>()(
         ptr.ref.lpVtbl, value?.toReference().ptr.ref.lpVtbl ?? nullptr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   Duration? get systemRelativeTime {
@@ -153,7 +153,7 @@ class IMediaFrame extends IInspectable implements IClosable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (value.isNull) {
@@ -179,7 +179,7 @@ class IMediaFrame extends IInspectable implements IClosable {
                 int Function(VTablePointer lpVtbl, VTablePointer value)>()(
         ptr.ref.lpVtbl, value?.toReference().ptr.ref.lpVtbl ?? nullptr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   Duration? get duration {
@@ -199,7 +199,7 @@ class IMediaFrame extends IInspectable implements IClosable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (value.isNull) {
@@ -223,7 +223,7 @@ class IMediaFrame extends IInspectable implements IClosable {
             .asFunction<int Function(VTablePointer lpVtbl, bool value)>()(
         ptr.ref.lpVtbl, value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   bool get isDiscontinuous {
@@ -242,7 +242,7 @@ class IMediaFrame extends IInspectable implements IClosable {
                   int Function(VTablePointer lpVtbl, Pointer<Bool> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -267,7 +267,7 @@ class IMediaFrame extends IInspectable implements IClosable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IPropertySet.fromPtr(value);

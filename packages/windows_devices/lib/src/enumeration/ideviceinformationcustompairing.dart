@@ -54,7 +54,7 @@ class IDeviceInformationCustomPairing extends IInspectable {
 
     if (FAILED(hr)) {
       free(result);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<DevicePairingResult?>.fromPtr(result,
@@ -88,7 +88,7 @@ class IDeviceInformationCustomPairing extends IInspectable {
 
     if (FAILED(hr)) {
       free(result);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<DevicePairingResult?>.fromPtr(result,
@@ -131,7 +131,7 @@ class IDeviceInformationCustomPairing extends IInspectable {
 
     if (FAILED(hr)) {
       free(result);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<DevicePairingResult?>.fromPtr(result,
@@ -156,7 +156,7 @@ class IDeviceInformationCustomPairing extends IInspectable {
                       Pointer<IntPtr> token)>()(
           ptr.ref.lpVtbl, handler.ref.lpVtbl, token);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return token.value;
     } finally {
@@ -177,6 +177,6 @@ class IDeviceInformationCustomPairing extends IInspectable {
                 .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
             ptr.ref.lpVtbl, token);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 }

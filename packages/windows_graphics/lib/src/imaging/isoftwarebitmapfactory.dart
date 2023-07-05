@@ -52,7 +52,7 @@ class ISoftwareBitmapFactory extends IInspectable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return SoftwareBitmap.fromPtr(value);
@@ -82,7 +82,7 @@ class ISoftwareBitmapFactory extends IInspectable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return SoftwareBitmap.fromPtr(value);

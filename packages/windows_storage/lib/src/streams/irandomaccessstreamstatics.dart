@@ -54,7 +54,7 @@ class IRandomAccessStreamStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return operation;
@@ -91,7 +91,7 @@ class IRandomAccessStreamStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return operation;
@@ -122,7 +122,7 @@ class IRandomAccessStreamStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return operation;

@@ -59,7 +59,7 @@ class IBitmapPropertiesView extends IInspectable {
 
     if (FAILED(hr)) {
       free(asyncInfo);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<BitmapPropertySet>.fromPtr(asyncInfo,

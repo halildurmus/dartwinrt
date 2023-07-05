@@ -45,7 +45,7 @@ class IVideoProperties extends IInspectable
                   int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -66,7 +66,7 @@ class IVideoProperties extends IInspectable
                 .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
             ptr.ref.lpVtbl, value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   IVector<String> get keywords {
@@ -86,7 +86,7 @@ class IVideoProperties extends IInspectable
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IVector.fromPtr(value,
@@ -109,7 +109,7 @@ class IVideoProperties extends IInspectable
                   int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -133,7 +133,7 @@ class IVideoProperties extends IInspectable
                   int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -157,7 +157,7 @@ class IVideoProperties extends IInspectable
                   int Function(VTablePointer lpVtbl, Pointer<Int64> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartDuration();
     } finally {
@@ -182,7 +182,7 @@ class IVideoProperties extends IInspectable
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (value.isNull) {
@@ -212,7 +212,7 @@ class IVideoProperties extends IInspectable
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (value.isNull) {
@@ -241,7 +241,7 @@ class IVideoProperties extends IInspectable
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartString();
     } finally {
@@ -267,7 +267,7 @@ class IVideoProperties extends IInspectable
 
     WindowsDeleteString(valueHString);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   String get subtitle {
@@ -286,7 +286,7 @@ class IVideoProperties extends IInspectable
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartString();
     } finally {
@@ -312,7 +312,7 @@ class IVideoProperties extends IInspectable
 
     WindowsDeleteString(valueHString);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   IVector<String> get producers {
@@ -332,7 +332,7 @@ class IVideoProperties extends IInspectable
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IVector.fromPtr(value,
@@ -355,7 +355,7 @@ class IVideoProperties extends IInspectable
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartString();
     } finally {
@@ -381,7 +381,7 @@ class IVideoProperties extends IInspectable
 
     WindowsDeleteString(valueHString);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   IVector<String> get writers {
@@ -401,7 +401,7 @@ class IVideoProperties extends IInspectable
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IVector.fromPtr(value,
@@ -424,7 +424,7 @@ class IVideoProperties extends IInspectable
                   int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -445,7 +445,7 @@ class IVideoProperties extends IInspectable
                 .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
             ptr.ref.lpVtbl, value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   int get bitrate {
@@ -464,7 +464,7 @@ class IVideoProperties extends IInspectable
                   int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -489,7 +489,7 @@ class IVideoProperties extends IInspectable
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IVector.fromPtr(value,
@@ -512,7 +512,7 @@ class IVideoProperties extends IInspectable
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return VideoOrientation.from(value.value);
     } finally {

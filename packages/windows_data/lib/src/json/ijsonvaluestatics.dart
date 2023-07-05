@@ -48,7 +48,7 @@ class IJsonValueStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(jsonValue);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (jsonValue.isNull) {
@@ -83,7 +83,7 @@ class IJsonValueStatics extends IInspectable {
 
       WindowsDeleteString(inputHString);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return succeeded.value;
     } finally {
@@ -109,7 +109,7 @@ class IJsonValueStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(jsonValue);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (jsonValue.isNull) {
@@ -138,7 +138,7 @@ class IJsonValueStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(jsonValue);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (jsonValue.isNull) {
@@ -170,7 +170,7 @@ class IJsonValueStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(jsonValue);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (jsonValue.isNull) {

@@ -50,7 +50,7 @@ class IJapanesePhoneticAnalyzerStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(result);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IVectorView<JapanesePhoneme?>.fromPtr(result,
@@ -81,7 +81,7 @@ class IJapanesePhoneticAnalyzerStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(result);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IVectorView<JapanesePhoneme?>.fromPtr(result,

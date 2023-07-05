@@ -53,7 +53,7 @@ class IXmlDomImplementation extends IInspectable {
 
       WindowsDeleteString(featureHString);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return featureSupported.value;
     } finally {

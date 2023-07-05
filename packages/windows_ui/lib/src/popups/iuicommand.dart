@@ -41,7 +41,7 @@ class IUICommand extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartString();
     } finally {
@@ -67,7 +67,7 @@ class IUICommand extends IInspectable {
 
     WindowsDeleteString(valueHString);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   Pointer<COMObject> get invoked {
@@ -87,7 +87,7 @@ class IUICommand extends IInspectable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return value;
@@ -106,7 +106,7 @@ class IUICommand extends IInspectable {
                 int Function(VTablePointer lpVtbl, VTablePointer value)>()(
         ptr.ref.lpVtbl, value.ref.lpVtbl);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   Object? get id {
@@ -126,7 +126,7 @@ class IUICommand extends IInspectable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (value.isNull) {
@@ -150,6 +150,6 @@ class IUICommand extends IInspectable {
                 int Function(VTablePointer lpVtbl, VTablePointer value)>()(
         ptr.ref.lpVtbl, value?.intoBox().ptr.ref.lpVtbl ?? nullptr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 }

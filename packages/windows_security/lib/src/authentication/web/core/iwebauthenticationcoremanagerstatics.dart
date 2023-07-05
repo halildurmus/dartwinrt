@@ -53,7 +53,7 @@ class IWebAuthenticationCoreManagerStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(asyncInfo);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<WebTokenRequestResult?>.fromPtr(
@@ -87,7 +87,7 @@ class IWebAuthenticationCoreManagerStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(asyncInfo);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<WebTokenRequestResult?>.fromPtr(
@@ -116,7 +116,7 @@ class IWebAuthenticationCoreManagerStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(asyncInfo);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<WebTokenRequestResult?>.fromPtr(
@@ -150,7 +150,7 @@ class IWebAuthenticationCoreManagerStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(asyncInfo);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<WebTokenRequestResult?>.fromPtr(
@@ -187,7 +187,7 @@ class IWebAuthenticationCoreManagerStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(asyncInfo);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<WebAccount?>.fromPtr(asyncInfo,
@@ -219,7 +219,7 @@ class IWebAuthenticationCoreManagerStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(asyncInfo);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<WebAccountProvider?>.fromPtr(
@@ -258,7 +258,7 @@ class IWebAuthenticationCoreManagerStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(asyncInfo);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<WebAccountProvider?>.fromPtr(

@@ -117,7 +117,7 @@ abstract interface class IAsyncOperation<TResult> extends IInspectable
                 int Function(VTablePointer lpVtbl, VTablePointer value)>()(
         ptr.ref.lpVtbl, value.ref.lpVtbl);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   /// Gets the method that handles the operation completed notification.
@@ -136,7 +136,7 @@ abstract interface class IAsyncOperation<TResult> extends IInspectable
             int Function(VTablePointer lpVtbl,
                 Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
 
     return retValuePtr;
   }

@@ -34,7 +34,7 @@ class IDirect3DDevice extends IInspectable implements IClosable {
         .value
         .asFunction<int Function(VTablePointer lpVtbl)>()(ptr.ref.lpVtbl);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   late final _iClosable = IClosable.from(this);

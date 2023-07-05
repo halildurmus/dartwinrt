@@ -57,7 +57,7 @@ class IXmlText extends IInspectable
 
     if (FAILED(hr)) {
       free(secondPart);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (secondPart.isNull) {

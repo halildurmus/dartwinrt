@@ -43,7 +43,7 @@ class IPedometerReading extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return PedometerStepKind.from(value.value);
     } finally {
@@ -67,7 +67,7 @@ class IPedometerReading extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -91,7 +91,7 @@ class IPedometerReading extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int64> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartDateTime();
     } finally {
@@ -115,7 +115,7 @@ class IPedometerReading extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int64> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartDuration();
     } finally {

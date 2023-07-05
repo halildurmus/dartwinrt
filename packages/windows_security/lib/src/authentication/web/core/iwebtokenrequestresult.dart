@@ -47,7 +47,7 @@ class IWebTokenRequestResult extends IInspectable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IVectorView<WebTokenResponse?>.fromPtr(value,
@@ -72,7 +72,7 @@ class IWebTokenRequestResult extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return WebTokenRequestStatus.from(value.value);
     } finally {
@@ -97,7 +97,7 @@ class IWebTokenRequestResult extends IInspectable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (value.isNull) {
@@ -125,7 +125,7 @@ class IWebTokenRequestResult extends IInspectable {
 
     if (FAILED(hr)) {
       free(asyncInfo);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IAsyncAction.fromPtr(asyncInfo).toFuture();

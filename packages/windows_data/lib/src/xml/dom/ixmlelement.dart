@@ -51,7 +51,7 @@ class IXmlElement extends IInspectable
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartString();
     } finally {
@@ -83,7 +83,7 @@ class IXmlElement extends IInspectable
 
       WindowsDeleteString(attributeNameHString);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return attributeValue.toDartString();
     } finally {
@@ -113,7 +113,7 @@ class IXmlElement extends IInspectable
     WindowsDeleteString(attributeNameHString);
     WindowsDeleteString(attributeValueHString);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void removeAttribute(String attributeName) {
@@ -133,7 +133,7 @@ class IXmlElement extends IInspectable
 
     WindowsDeleteString(attributeNameHString);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   XmlAttribute? getAttributeNode(String attributeName) {
@@ -160,7 +160,7 @@ class IXmlElement extends IInspectable
 
     if (FAILED(hr)) {
       free(attributeNode);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (attributeNode.isNull) {
@@ -193,7 +193,7 @@ class IXmlElement extends IInspectable
 
     if (FAILED(hr)) {
       free(previousAttribute);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (previousAttribute.isNull) {
@@ -226,7 +226,7 @@ class IXmlElement extends IInspectable
 
     if (FAILED(hr)) {
       free(removedAttribute);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (removedAttribute.isNull) {
@@ -258,7 +258,7 @@ class IXmlElement extends IInspectable
 
     if (FAILED(hr)) {
       free(elements);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return XmlNodeList.fromPtr(elements);
@@ -291,7 +291,7 @@ class IXmlElement extends IInspectable
     WindowsDeleteString(qualifiedNameHString);
     WindowsDeleteString(valueHString);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   String getAttributeNS(Object? namespaceUri, String localName) {
@@ -321,7 +321,7 @@ class IXmlElement extends IInspectable
 
       WindowsDeleteString(localNameHString);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartString();
     } finally {
@@ -348,7 +348,7 @@ class IXmlElement extends IInspectable
 
     WindowsDeleteString(localNameHString);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   XmlAttribute? setAttributeNodeNS(XmlAttribute? newAttribute) {
@@ -373,7 +373,7 @@ class IXmlElement extends IInspectable
 
     if (FAILED(hr)) {
       free(previousAttribute);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (previousAttribute.isNull) {
@@ -411,7 +411,7 @@ class IXmlElement extends IInspectable
 
     if (FAILED(hr)) {
       free(previousAttribute);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (previousAttribute.isNull) {

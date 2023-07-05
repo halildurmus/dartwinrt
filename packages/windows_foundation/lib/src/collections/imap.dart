@@ -225,7 +225,7 @@ abstract interface class IMap<K, V> extends IInspectable
               int Function(VTablePointer lpVtbl,
                   Pointer<Uint32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -254,7 +254,7 @@ abstract interface class IMap<K, V> extends IInspectable
 
     if (FAILED(hr)) {
       free(retValuePtr);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final mapView = IMapView<K, V>.fromPtr(retValuePtr,
@@ -280,7 +280,7 @@ abstract interface class IMap<K, V> extends IInspectable
         .value
         .asFunction<int Function(VTablePointer lpVtbl)>()(ptr.ref.lpVtbl);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   late final _iIterable = IIterable<IKeyValuePair<K, V>>.fromPtr(

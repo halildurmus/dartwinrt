@@ -48,7 +48,7 @@ class IToastNotificationManagerForUser extends IInspectable {
 
     if (FAILED(hr)) {
       free(result);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (result.isNull) {
@@ -83,7 +83,7 @@ class IToastNotificationManagerForUser extends IInspectable {
 
     if (FAILED(hr)) {
       free(result);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (result.isNull) {
@@ -111,7 +111,7 @@ class IToastNotificationManagerForUser extends IInspectable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (value.isNull) {
@@ -139,7 +139,7 @@ class IToastNotificationManagerForUser extends IInspectable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (value.isNull) {

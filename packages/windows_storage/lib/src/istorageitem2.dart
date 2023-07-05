@@ -50,7 +50,7 @@ class IStorageItem2 extends IInspectable implements IStorageItem {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<StorageFolder?>.fromPtr(operation,
@@ -76,7 +76,7 @@ class IStorageItem2 extends IInspectable implements IStorageItem {
                           Pointer<Bool> value)>()(ptr.ref.lpVtbl,
               item == null ? nullptr : item.ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {

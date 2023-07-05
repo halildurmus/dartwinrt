@@ -29,7 +29,7 @@ final class _IAsyncOperationBool extends IAsyncOperation<bool> {
               int Function(VTablePointer lpVtbl,
                   Pointer<Bool> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -58,7 +58,7 @@ final class _IAsyncOperationGuid extends IAsyncOperation<Guid> {
               int Function(VTablePointer lpVtbl,
                   Pointer<GUID> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.toDartGuid();
     } finally {
@@ -87,7 +87,7 @@ final class _IAsyncOperationInt16 extends IAsyncOperation<int> {
               int Function(VTablePointer lpVtbl,
                   Pointer<Int16> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -116,7 +116,7 @@ final class _IAsyncOperationInt32 extends IAsyncOperation<int> {
               int Function(VTablePointer lpVtbl,
                   Pointer<Int32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -145,7 +145,7 @@ final class _IAsyncOperationInt64 extends IAsyncOperation<int> {
               int Function(VTablePointer lpVtbl,
                   Pointer<Int64> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -178,7 +178,7 @@ final class _IAsyncOperationInspectable<TResult>
 
     if (FAILED(hr)) {
       free(retValuePtr);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (retValuePtr.isNull) {
@@ -211,7 +211,7 @@ final class _IAsyncOperationObject extends IAsyncOperation<Object?> {
 
     if (FAILED(hr)) {
       free(retValuePtr);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (retValuePtr.isNull) {
@@ -244,7 +244,7 @@ final class _IAsyncOperationUri extends IAsyncOperation<Uri?> {
 
     if (FAILED(hr)) {
       free(retValuePtr);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (retValuePtr.isNull) {
@@ -276,7 +276,7 @@ final class _IAsyncOperationString extends IAsyncOperation<String> {
               int Function(VTablePointer lpVtbl,
                   Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.toDartString();
     } finally {
@@ -306,7 +306,7 @@ final class _IAsyncOperationUint8 extends IAsyncOperation<int> {
               int Function(VTablePointer lpVtbl,
                   Pointer<Uint8> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -335,7 +335,7 @@ final class _IAsyncOperationUint16 extends IAsyncOperation<int> {
               int Function(VTablePointer lpVtbl,
                   Pointer<Uint16> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -364,7 +364,7 @@ final class _IAsyncOperationUint32 extends IAsyncOperation<int> {
               int Function(VTablePointer lpVtbl,
                   Pointer<Uint32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -393,7 +393,7 @@ final class _IAsyncOperationUint64 extends IAsyncOperation<int> {
               int Function(VTablePointer lpVtbl,
                   Pointer<Uint64> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -425,7 +425,7 @@ final class _IAsyncOperationWinRTEnum<TResult>
               int Function(VTablePointer lpVtbl,
                   Pointer<Int32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return enumCreator(retValuePtr.value);
     } finally {
@@ -458,7 +458,7 @@ final class _IAsyncOperationWinRTFlagsEnum<TResult>
               int Function(VTablePointer lpVtbl,
                   Pointer<Uint32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return enumCreator(retValuePtr.value);
     } finally {

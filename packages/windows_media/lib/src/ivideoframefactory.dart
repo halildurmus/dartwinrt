@@ -50,7 +50,7 @@ class IVideoFrameFactory extends IInspectable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return VideoFrame.fromPtr(value);
@@ -80,7 +80,7 @@ class IVideoFrameFactory extends IInspectable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return VideoFrame.fromPtr(value);

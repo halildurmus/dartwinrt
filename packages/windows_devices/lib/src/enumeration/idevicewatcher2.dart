@@ -59,7 +59,7 @@ class IDeviceWatcher2 extends IInspectable {
 
     if (FAILED(hr)) {
       free(trigger);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (trigger.isNull) {

@@ -48,7 +48,7 @@ class IJsonArrayStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(jsonArray);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return JsonArray.fromPtr(jsonArray);
@@ -78,7 +78,7 @@ class IJsonArrayStatics extends IInspectable {
 
       WindowsDeleteString(inputHString);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return succeeded.value;
     } finally {

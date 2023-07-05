@@ -44,7 +44,7 @@ class IImageFeatureDescriptor2 extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return LearningModelPixelRange.from(value.value);
     } finally {

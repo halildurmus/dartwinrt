@@ -53,7 +53,7 @@ class IBitmapTypedValueFactory extends IInspectable {
 
     if (FAILED(hr)) {
       free(bitmapTypedValue);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return BitmapTypedValue.fromPtr(bitmapTypedValue);

@@ -44,7 +44,7 @@ class IMessageDialog extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartString();
     } finally {
@@ -70,7 +70,7 @@ class IMessageDialog extends IInspectable {
 
     WindowsDeleteString(valueHString);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   IVector<IUICommand?> get commands {
@@ -90,7 +90,7 @@ class IMessageDialog extends IInspectable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IVector.fromPtr(value,
@@ -114,7 +114,7 @@ class IMessageDialog extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -135,7 +135,7 @@ class IMessageDialog extends IInspectable {
                 .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
             ptr.ref.lpVtbl, value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   int get cancelCommandIndex {
@@ -154,7 +154,7 @@ class IMessageDialog extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -175,7 +175,7 @@ class IMessageDialog extends IInspectable {
                 .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
             ptr.ref.lpVtbl, value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   String get content {
@@ -194,7 +194,7 @@ class IMessageDialog extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartString();
     } finally {
@@ -220,7 +220,7 @@ class IMessageDialog extends IInspectable {
 
     WindowsDeleteString(valueHString);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   Future<IUICommand?> showAsync() {
@@ -241,7 +241,7 @@ class IMessageDialog extends IInspectable {
 
     if (FAILED(hr)) {
       free(messageDialogAsyncOperation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<IUICommand?>.fromPtr(
@@ -266,7 +266,7 @@ class IMessageDialog extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return MessageDialogOptions.from(value.value);
     } finally {
@@ -287,6 +287,6 @@ class IMessageDialog extends IInspectable {
                 .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
             ptr.ref.lpVtbl, value.value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 }

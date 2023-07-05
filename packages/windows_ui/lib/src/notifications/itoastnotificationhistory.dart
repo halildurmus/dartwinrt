@@ -43,7 +43,7 @@ class IToastNotificationHistory extends IInspectable {
 
     WindowsDeleteString(groupHString);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void removeGroupWithId(String group, String applicationId) {
@@ -66,7 +66,7 @@ class IToastNotificationHistory extends IInspectable {
     WindowsDeleteString(groupHString);
     WindowsDeleteString(applicationIdHString);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void removeGroupedTagWithId(String tag, String group, String applicationId) {
@@ -91,7 +91,7 @@ class IToastNotificationHistory extends IInspectable {
     WindowsDeleteString(groupHString);
     WindowsDeleteString(applicationIdHString);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void removeGroupedTag(String tag, String group) {
@@ -113,7 +113,7 @@ class IToastNotificationHistory extends IInspectable {
     WindowsDeleteString(tagHString);
     WindowsDeleteString(groupHString);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void remove(String tag) {
@@ -131,7 +131,7 @@ class IToastNotificationHistory extends IInspectable {
 
     WindowsDeleteString(tagHString);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void clear() {
@@ -141,7 +141,7 @@ class IToastNotificationHistory extends IInspectable {
         .value
         .asFunction<int Function(VTablePointer lpVtbl)>()(ptr.ref.lpVtbl);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void clearWithId(String applicationId) {
@@ -161,6 +161,6 @@ class IToastNotificationHistory extends IInspectable {
 
     WindowsDeleteString(applicationIdHString);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 }

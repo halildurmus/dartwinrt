@@ -44,7 +44,7 @@ class IToastNotifier extends IInspectable {
         ptr.ref.lpVtbl,
         notification == null ? nullptr : notification.ptr.ref.lpVtbl);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void hide(ToastNotification? notification) {
@@ -62,7 +62,7 @@ class IToastNotifier extends IInspectable {
         ptr.ref.lpVtbl,
         notification == null ? nullptr : notification.ptr.ref.lpVtbl);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   NotificationSetting get setting {
@@ -81,7 +81,7 @@ class IToastNotifier extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return NotificationSetting.from(value.value);
     } finally {
@@ -104,7 +104,7 @@ class IToastNotifier extends IInspectable {
         ptr.ref.lpVtbl,
         scheduledToast == null ? nullptr : scheduledToast.ptr.ref.lpVtbl);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void removeFromSchedule(ScheduledToastNotification? scheduledToast) {
@@ -122,7 +122,7 @@ class IToastNotifier extends IInspectable {
         ptr.ref.lpVtbl,
         scheduledToast == null ? nullptr : scheduledToast.ptr.ref.lpVtbl);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   List<ScheduledToastNotification?> getScheduledToastNotifications() {
@@ -142,7 +142,7 @@ class IToastNotifier extends IInspectable {
 
     if (FAILED(hr)) {
       free(result);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IVectorView<ScheduledToastNotification?>.fromPtr(result,

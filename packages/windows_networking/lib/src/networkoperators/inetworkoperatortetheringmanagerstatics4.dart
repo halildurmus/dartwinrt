@@ -44,7 +44,7 @@ class INetworkOperatorTetheringManagerStatics4 extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Bool> result)>()(
           ptr.ref.lpVtbl, result);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return result.value;
     } finally {
@@ -59,7 +59,7 @@ class INetworkOperatorTetheringManagerStatics4 extends IInspectable {
         .value
         .asFunction<int Function(VTablePointer lpVtbl)>()(ptr.ref.lpVtbl);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   Future<void> enableNoConnectionsTimeoutAsync() {
@@ -79,7 +79,7 @@ class INetworkOperatorTetheringManagerStatics4 extends IInspectable {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IAsyncAction.fromPtr(operation).toFuture();
@@ -92,7 +92,7 @@ class INetworkOperatorTetheringManagerStatics4 extends IInspectable {
         .value
         .asFunction<int Function(VTablePointer lpVtbl)>()(ptr.ref.lpVtbl);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   Future<void> disableNoConnectionsTimeoutAsync() {
@@ -112,7 +112,7 @@ class INetworkOperatorTetheringManagerStatics4 extends IInspectable {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IAsyncAction.fromPtr(operation).toFuture();

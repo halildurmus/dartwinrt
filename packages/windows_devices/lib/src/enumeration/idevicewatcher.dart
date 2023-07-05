@@ -47,7 +47,7 @@ class IDeviceWatcher extends IInspectable {
                       Pointer<IntPtr> token)>()(
           ptr.ref.lpVtbl, handler.ref.lpVtbl, token);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return token.value;
     } finally {
@@ -68,7 +68,7 @@ class IDeviceWatcher extends IInspectable {
                 .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
             ptr.ref.lpVtbl, token);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   int add_Updated(Pointer<COMObject> handler) {
@@ -88,7 +88,7 @@ class IDeviceWatcher extends IInspectable {
                       Pointer<IntPtr> token)>()(
           ptr.ref.lpVtbl, handler.ref.lpVtbl, token);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return token.value;
     } finally {
@@ -109,7 +109,7 @@ class IDeviceWatcher extends IInspectable {
                 .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
             ptr.ref.lpVtbl, token);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   int add_Removed(Pointer<COMObject> handler) {
@@ -129,7 +129,7 @@ class IDeviceWatcher extends IInspectable {
                       Pointer<IntPtr> token)>()(
           ptr.ref.lpVtbl, handler.ref.lpVtbl, token);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return token.value;
     } finally {
@@ -150,7 +150,7 @@ class IDeviceWatcher extends IInspectable {
                 .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
             ptr.ref.lpVtbl, token);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   int add_EnumerationCompleted(Pointer<COMObject> handler) {
@@ -170,7 +170,7 @@ class IDeviceWatcher extends IInspectable {
                       Pointer<IntPtr> token)>()(
           ptr.ref.lpVtbl, handler.ref.lpVtbl, token);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return token.value;
     } finally {
@@ -191,7 +191,7 @@ class IDeviceWatcher extends IInspectable {
                 .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
             ptr.ref.lpVtbl, token);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   int add_Stopped(Pointer<COMObject> handler) {
@@ -211,7 +211,7 @@ class IDeviceWatcher extends IInspectable {
                       Pointer<IntPtr> token)>()(
           ptr.ref.lpVtbl, handler.ref.lpVtbl, token);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return token.value;
     } finally {
@@ -232,7 +232,7 @@ class IDeviceWatcher extends IInspectable {
                 .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
             ptr.ref.lpVtbl, token);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   DeviceWatcherStatus get status {
@@ -251,7 +251,7 @@ class IDeviceWatcher extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> status)>()(
           ptr.ref.lpVtbl, status);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return DeviceWatcherStatus.from(status.value);
     } finally {
@@ -266,7 +266,7 @@ class IDeviceWatcher extends IInspectable {
         .value
         .asFunction<int Function(VTablePointer lpVtbl)>()(ptr.ref.lpVtbl);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void stop() {
@@ -276,6 +276,6 @@ class IDeviceWatcher extends IInspectable {
         .value
         .asFunction<int Function(VTablePointer lpVtbl)>()(ptr.ref.lpVtbl);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 }

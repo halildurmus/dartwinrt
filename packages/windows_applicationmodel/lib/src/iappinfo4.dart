@@ -47,7 +47,7 @@ class IAppInfo4 extends IInspectable {
                       Pointer<Pointer<IntPtr>> value)>()(
           ptr.ref.lpVtbl, retValueSize, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value.toList(length: retValueSize.value);
     } finally {

@@ -7,6 +7,7 @@ import 'dart:ffi';
 import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
 
+import '../../internal.dart';
 import '../types.dart';
 import '../winrt_enum.dart';
 import 'iiterator.dart';
@@ -93,7 +94,7 @@ interface class IIterable<T> extends IInspectable {
 
     if (FAILED(hr)) {
       free(retValuePtr);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IIterator.fromPtr(retValuePtr,

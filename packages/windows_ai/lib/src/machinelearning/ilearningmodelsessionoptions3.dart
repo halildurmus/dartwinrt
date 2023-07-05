@@ -44,6 +44,6 @@ class ILearningModelSessionOptions3 extends IInspectable {
 
     WindowsDeleteString(nameHString);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 }

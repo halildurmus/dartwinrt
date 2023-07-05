@@ -44,7 +44,7 @@ class IWebAccountMonitor extends IInspectable {
                       Pointer<IntPtr> token)>()(
           ptr.ref.lpVtbl, handler.ref.lpVtbl, token);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return token.value;
     } finally {
@@ -65,7 +65,7 @@ class IWebAccountMonitor extends IInspectable {
                 .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
             ptr.ref.lpVtbl, token);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   int add_Removed(Pointer<COMObject> handler) {
@@ -85,7 +85,7 @@ class IWebAccountMonitor extends IInspectable {
                       Pointer<IntPtr> token)>()(
           ptr.ref.lpVtbl, handler.ref.lpVtbl, token);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return token.value;
     } finally {
@@ -106,7 +106,7 @@ class IWebAccountMonitor extends IInspectable {
                 .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
             ptr.ref.lpVtbl, token);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   int add_DefaultSignInAccountChanged(Pointer<COMObject> handler) {
@@ -126,7 +126,7 @@ class IWebAccountMonitor extends IInspectable {
                       Pointer<IntPtr> token)>()(
           ptr.ref.lpVtbl, handler.ref.lpVtbl, token);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return token.value;
     } finally {
@@ -147,6 +147,6 @@ class IWebAccountMonitor extends IInspectable {
                 .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
             ptr.ref.lpVtbl, token);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 }

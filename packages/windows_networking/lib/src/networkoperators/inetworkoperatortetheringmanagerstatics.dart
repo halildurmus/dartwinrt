@@ -55,7 +55,7 @@ class INetworkOperatorTetheringManagerStatics extends IInspectable {
 
       WindowsDeleteString(networkAccountIdHString);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return TetheringCapability.from(value.value);
     } finally {
@@ -87,7 +87,7 @@ class INetworkOperatorTetheringManagerStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(ppManager);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (ppManager.isNull) {

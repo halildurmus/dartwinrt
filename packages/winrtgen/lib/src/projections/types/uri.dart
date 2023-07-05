@@ -40,7 +40,7 @@ final class UriParameterProjection extends ParameterProjection {
   @override
   String get toListIdentifier => 'toDartUriList';
 
-  // No deallocation is needed as NativeFinalizer will handle it.
+  // No deallocation is needed as Finalizer will handle it.
   @override
   bool get needsDeallocation => false;
 

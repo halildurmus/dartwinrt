@@ -54,7 +54,7 @@ class IStorageFileQueryResult extends IInspectable
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<IVectorView<StorageFile?>>.fromPtr(
@@ -82,7 +82,7 @@ class IStorageFileQueryResult extends IInspectable
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<IVectorView<StorageFile?>>.fromPtr(

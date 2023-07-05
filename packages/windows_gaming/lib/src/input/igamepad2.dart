@@ -50,7 +50,7 @@ class IGamepad2 extends IInspectable implements IGamepad, IGameController {
               int Function(VTablePointer lpVtbl, int button,
                   Pointer<Int32> value)>()(ptr.ref.lpVtbl, button.value, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return GameControllerButtonLabel.from(value.value);
     } finally {

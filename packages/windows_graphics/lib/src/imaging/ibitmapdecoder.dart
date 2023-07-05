@@ -47,7 +47,7 @@ class IBitmapDecoder extends IInspectable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (value.isNull) {
@@ -75,7 +75,7 @@ class IBitmapDecoder extends IInspectable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (value.isNull) {
@@ -102,7 +102,7 @@ class IBitmapDecoder extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -127,7 +127,7 @@ class IBitmapDecoder extends IInspectable {
 
     if (FAILED(hr)) {
       free(asyncInfo);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<ImageStream?>.fromPtr(asyncInfo,
@@ -156,7 +156,7 @@ class IBitmapDecoder extends IInspectable {
 
     if (FAILED(hr)) {
       free(asyncInfo);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<BitmapFrame?>.fromPtr(asyncInfo,

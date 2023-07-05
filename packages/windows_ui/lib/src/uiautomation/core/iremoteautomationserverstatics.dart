@@ -45,6 +45,6 @@ class IRemoteAutomationServerStatics extends IInspectable {
 
     free(sessionIdNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 }

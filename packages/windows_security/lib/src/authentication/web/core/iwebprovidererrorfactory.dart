@@ -52,7 +52,7 @@ class IWebProviderErrorFactory extends IInspectable {
 
     if (FAILED(hr)) {
       free(webProviderError);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return WebProviderError.fromPtr(webProviderError);

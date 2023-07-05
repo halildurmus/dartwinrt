@@ -54,7 +54,7 @@ class IGeopointFactory extends IInspectable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return Geopoint.fromPtr(value);
@@ -88,7 +88,7 @@ class IGeopointFactory extends IInspectable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return Geopoint.fromPtr(value);
@@ -130,7 +130,7 @@ class IGeopointFactory extends IInspectable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return Geopoint.fromPtr(value);

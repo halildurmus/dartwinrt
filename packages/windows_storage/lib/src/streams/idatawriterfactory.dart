@@ -48,7 +48,7 @@ class IDataWriterFactory extends IInspectable {
 
     if (FAILED(hr)) {
       free(dataWriter);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return DataWriter.fromPtr(dataWriter);

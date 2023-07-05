@@ -49,7 +49,7 @@ class IPhoneNumberInfoFactory extends IInspectable {
 
     if (FAILED(hr)) {
       free(result);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return PhoneNumberInfo.fromPtr(result);

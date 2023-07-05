@@ -45,7 +45,7 @@ class IPhoneNumberInfo extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -69,7 +69,7 @@ class IPhoneNumberInfo extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartString();
     } finally {
@@ -94,7 +94,7 @@ class IPhoneNumberInfo extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> result)>()(
           ptr.ref.lpVtbl, result);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return result.value;
     } finally {
@@ -118,7 +118,7 @@ class IPhoneNumberInfo extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> result)>()(
           ptr.ref.lpVtbl, result);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDartString();
     } finally {
@@ -143,7 +143,7 @@ class IPhoneNumberInfo extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> result)>()(
           ptr.ref.lpVtbl, result);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return result.value;
     } finally {
@@ -167,7 +167,7 @@ class IPhoneNumberInfo extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> result)>()(
           ptr.ref.lpVtbl, result);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return PredictedPhoneNumberKind.from(result.value);
     } finally {
@@ -191,7 +191,7 @@ class IPhoneNumberInfo extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> result)>()(
           ptr.ref.lpVtbl, result);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDartString();
     } finally {
@@ -222,7 +222,7 @@ class IPhoneNumberInfo extends IInspectable {
               otherNumber == null ? nullptr : otherNumber.ptr.ref.lpVtbl,
               result);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return PhoneNumberMatchResult.from(result.value);
     } finally {

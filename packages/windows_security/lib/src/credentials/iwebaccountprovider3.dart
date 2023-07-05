@@ -48,7 +48,7 @@ class IWebAccountProvider3 extends IInspectable
 
     if (FAILED(hr)) {
       free(user);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (user.isNull) {

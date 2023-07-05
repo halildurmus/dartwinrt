@@ -50,7 +50,7 @@ class IFindRelatedPackagesOptionsFactory extends IInspectable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return FindRelatedPackagesOptions.fromPtr(value);

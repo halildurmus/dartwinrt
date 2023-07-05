@@ -55,7 +55,7 @@ final class ReferenceParameterProjection extends ParameterProjection {
       ? '$identifier?.toReference($toReferenceArgument).ptr ?? nullptr'
       : '$identifier?.toReference($toReferenceArgument).ptr.ref.lpVtbl ?? nullptr';
 
-  // No deallocation is needed as NativeFinalizer will handle it.
+  // No deallocation is needed as Finalizer will handle it.
   @override
   bool get needsDeallocation => false;
 

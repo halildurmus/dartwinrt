@@ -47,7 +47,7 @@ class IDisplayMonitor extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartString();
     } finally {
@@ -72,7 +72,7 @@ class IDisplayMonitor extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartString();
     } finally {
@@ -97,7 +97,7 @@ class IDisplayMonitor extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return DisplayMonitorConnectionKind.from(value.value);
     } finally {
@@ -121,7 +121,7 @@ class IDisplayMonitor extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return DisplayMonitorPhysicalConnectorKind.from(value.value);
     } finally {
@@ -145,7 +145,7 @@ class IDisplayMonitor extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartString();
     } finally {
@@ -171,7 +171,7 @@ class IDisplayMonitor extends IInspectable {
                       Pointer<NativeDisplayAdapterId> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDart();
     } finally {
@@ -195,7 +195,7 @@ class IDisplayMonitor extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -219,7 +219,7 @@ class IDisplayMonitor extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return DisplayMonitorUsageKind.from(value.value);
     } finally {
@@ -243,7 +243,7 @@ class IDisplayMonitor extends IInspectable {
               int Function(VTablePointer lpVtbl,
                   Pointer<NativeSizeInt32> value)>()(ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDart();
     } finally {
@@ -268,7 +268,7 @@ class IDisplayMonitor extends IInspectable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (value.isNull) {
@@ -297,7 +297,7 @@ class IDisplayMonitor extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Float> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -321,7 +321,7 @@ class IDisplayMonitor extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Float> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -345,7 +345,7 @@ class IDisplayMonitor extends IInspectable {
               int Function(VTablePointer lpVtbl,
                   Pointer<NativePoint> value)>()(ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDart();
     } finally {
@@ -369,7 +369,7 @@ class IDisplayMonitor extends IInspectable {
               int Function(VTablePointer lpVtbl,
                   Pointer<NativePoint> value)>()(ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDart();
     } finally {
@@ -393,7 +393,7 @@ class IDisplayMonitor extends IInspectable {
               int Function(VTablePointer lpVtbl,
                   Pointer<NativePoint> value)>()(ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDart();
     } finally {
@@ -417,7 +417,7 @@ class IDisplayMonitor extends IInspectable {
               int Function(VTablePointer lpVtbl,
                   Pointer<NativePoint> value)>()(ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDart();
     } finally {
@@ -441,7 +441,7 @@ class IDisplayMonitor extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Float> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -465,7 +465,7 @@ class IDisplayMonitor extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Float> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -489,7 +489,7 @@ class IDisplayMonitor extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Float> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -521,7 +521,7 @@ class IDisplayMonitor extends IInspectable {
                       Pointer<Pointer<Uint8>> result)>()(
           ptr.ref.lpVtbl, descriptorKind.value, retValueSize, result);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return result.value.toList(length: retValueSize.value);
     } finally {

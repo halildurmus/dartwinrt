@@ -46,7 +46,7 @@ class IMemoryBufferReference extends IInspectable implements IClosable {
                   int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -74,7 +74,7 @@ class IMemoryBufferReference extends IInspectable implements IClosable {
                           Pointer<IntPtr> cookie)>()(
               ptr.ref.lpVtbl, handler.ref.lpVtbl, cookie);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return cookie.value;
     } finally {
@@ -95,7 +95,7 @@ class IMemoryBufferReference extends IInspectable implements IClosable {
                 .asFunction<int Function(VTablePointer lpVtbl, int cookie)>()(
             ptr.ref.lpVtbl, cookie);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   late final _iClosable = IClosable.from(this);
