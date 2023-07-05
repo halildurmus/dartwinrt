@@ -31,8 +31,7 @@ class ILearningModelDeviceStatics extends IInspectable {
           interface.toInterface(IID_ILearningModelDeviceStatics));
 
   LearningModelDevice? createFromDirect3D11Device(IDirect3DDevice? device) {
-    final retValuePtr = calloc<COMObject>();
-    final devicePtr = device == null ? nullptr : device.ptr.ref.lpVtbl;
+    final result = calloc<COMObject>();
 
     final hr =
         ptr.ref.vtable
@@ -43,23 +42,23 @@ class ILearningModelDeviceStatics extends IInspectable {
                             HRESULT Function(
                                 VTablePointer lpVtbl,
                                 VTablePointer device,
-                                Pointer<COMObject> retValuePtr)>>>()
+                                Pointer<COMObject> result)>>>()
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer device,
-                        Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl, devicePtr, retValuePtr);
+                        Pointer<COMObject> result)>()(ptr.ref.lpVtbl,
+            device == null ? nullptr : device.ptr.ref.lpVtbl, result);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(result);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (result.isNull) {
+      free(result);
       return null;
     }
 
-    return LearningModelDevice.fromPtr(retValuePtr);
+    return LearningModelDevice.fromPtr(result);
   }
 }

@@ -28,8 +28,7 @@ class IOutputStream extends IInspectable implements IClosable {
       IOutputStream.fromPtr(interface.toInterface(IID_IOutputStream));
 
   Pointer<COMObject> writeAsync(IBuffer? buffer) {
-    final retValuePtr = calloc<COMObject>();
-    final bufferPtr = buffer == null ? nullptr : buffer.ptr.ref.lpVtbl;
+    final operation = calloc<COMObject>();
 
     final hr =
         ptr.ref.vtable
@@ -40,42 +39,42 @@ class IOutputStream extends IInspectable implements IClosable {
                             HRESULT Function(
                                 VTablePointer lpVtbl,
                                 VTablePointer buffer,
-                                Pointer<COMObject> retValuePtr)>>>()
+                                Pointer<COMObject> operation)>>>()
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer buffer,
-                        Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl, bufferPtr, retValuePtr);
+                        Pointer<COMObject> operation)>()(ptr.ref.lpVtbl,
+            buffer == null ? nullptr : buffer.ptr.ref.lpVtbl, operation);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
-    return retValuePtr;
+    return operation;
   }
 
   Future<bool> flushAsync() {
-    final retValuePtr = calloc<COMObject>();
+    final operation = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
         .elementAt(7)
         .cast<
             Pointer<
                 NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
+                    HRESULT Function(
+                        VTablePointer lpVtbl, Pointer<COMObject> operation)>>>()
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                Pointer<COMObject> operation)>()(ptr.ref.lpVtbl, operation);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<bool>.fromPtr(retValuePtr);
+    final asyncOperation = IAsyncOperation<bool>.fromPtr(operation);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 

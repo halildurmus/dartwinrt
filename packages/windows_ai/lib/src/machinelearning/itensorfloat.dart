@@ -26,28 +26,28 @@ class ITensorFloat extends IInspectable {
       ITensorFloat.fromPtr(interface.toInterface(IID_ITensorFloat));
 
   List<double> getAsVectorView() {
-    final retValuePtr = calloc<COMObject>();
+    final result = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
         .elementAt(6)
         .cast<
             Pointer<
                 NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
+                    HRESULT Function(
+                        VTablePointer lpVtbl, Pointer<COMObject> result)>>>()
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                Pointer<COMObject> result)>()(ptr.ref.lpVtbl, result);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(result);
       throw WindowsException(hr);
     }
 
-    final vectorView = IVectorView<double>.fromPtr(retValuePtr,
-        iterableIid: '{b01bee51-063a-5fda-bd72-d76637bb8cb8}',
-        doubleType: DoubleType.float);
-    return vectorView.toList();
+    return IVectorView<double>.fromPtr(result,
+            iterableIid: '{b01bee51-063a-5fda-bd72-d76637bb8cb8}',
+            doubleType: DoubleType.float)
+        .toList();
   }
 }

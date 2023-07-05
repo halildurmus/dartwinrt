@@ -28,222 +28,222 @@ class IGeocoordinate extends IInspectable {
   @Deprecated(
       "Latitude may be altered or unavailable after Windows 8.1. Instead, use Point.Position.Latitude")
   double get latitude {
-    final retValuePtr = calloc<Double>();
+    final value = calloc<Double>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          Pointer<Double> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Double> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(6)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<Double> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Double> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return value.value;
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
   @Deprecated(
       "Longitude may be altered or unavailable after Windows 8.1. Instead, use Point.Position.Longitude")
   double get longitude {
-    final retValuePtr = calloc<Double>();
+    final value = calloc<Double>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          Pointer<Double> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Double> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(7)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<Double> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Double> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return value.value;
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
   @Deprecated(
       "Altitude may be altered or unavailable after Windows 8.1. Instead, use Point.Position.Altitude")
   double? get altitude {
-    final retValuePtr = calloc<COMObject>();
+    final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-        .elementAt(8)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+            .elementAt(8)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
+        ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (value.isNull) {
+      free(value);
       return null;
     }
 
-    final reference = IReference<double?>.fromPtr(retValuePtr,
-        referenceIid: '{2f2d6c29-5473-5f3e-92e7-96572bb990e2}');
-    return reference.value;
+    return IReference<double?>.fromPtr(value,
+            referenceIid: '{2f2d6c29-5473-5f3e-92e7-96572bb990e2}')
+        .value;
   }
 
   double get accuracy {
-    final retValuePtr = calloc<Double>();
+    final value = calloc<Double>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(9)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          Pointer<Double> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Double> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(9)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<Double> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Double> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return value.value;
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
   double? get altitudeAccuracy {
-    final retValuePtr = calloc<COMObject>();
+    final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-        .elementAt(10)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+            .elementAt(10)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
+        ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (value.isNull) {
+      free(value);
       return null;
     }
 
-    final reference = IReference<double?>.fromPtr(retValuePtr,
-        referenceIid: '{2f2d6c29-5473-5f3e-92e7-96572bb990e2}');
-    return reference.value;
+    return IReference<double?>.fromPtr(value,
+            referenceIid: '{2f2d6c29-5473-5f3e-92e7-96572bb990e2}')
+        .value;
   }
 
   double? get heading {
-    final retValuePtr = calloc<COMObject>();
+    final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-        .elementAt(11)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+            .elementAt(11)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
+        ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (value.isNull) {
+      free(value);
       return null;
     }
 
-    final reference = IReference<double?>.fromPtr(retValuePtr,
-        referenceIid: '{2f2d6c29-5473-5f3e-92e7-96572bb990e2}');
-    return reference.value;
+    return IReference<double?>.fromPtr(value,
+            referenceIid: '{2f2d6c29-5473-5f3e-92e7-96572bb990e2}')
+        .value;
   }
 
   double? get speed {
-    final retValuePtr = calloc<COMObject>();
+    final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-        .elementAt(12)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+            .elementAt(12)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
+        ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (value.isNull) {
+      free(value);
       return null;
     }
 
-    final reference = IReference<double?>.fromPtr(retValuePtr,
-        referenceIid: '{2f2d6c29-5473-5f3e-92e7-96572bb990e2}');
-    return reference.value;
+    return IReference<double?>.fromPtr(value,
+            referenceIid: '{2f2d6c29-5473-5f3e-92e7-96572bb990e2}')
+        .value;
   }
 
   DateTime get timestamp {
-    final retValuePtr = calloc<Int64>();
+    final value = calloc<Int64>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(13)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int64> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Int64> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(13)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<Int64> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Int64> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.toDartDateTime();
+      return value.toDartDateTime();
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 }

@@ -28,19 +28,21 @@ class ILearningModelBinding extends IInspectable {
 
   void bind(String name, Object? value) {
     final nameHString = name.toHString();
-    final valuePtr = value?.intoBox().ptr.ref.lpVtbl ?? nullptr;
 
     final hr = ptr.ref.vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, IntPtr name,
-                        VTablePointer value)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int name,
-                VTablePointer value)>()(ptr.ref.lpVtbl, nameHString, valuePtr);
+            .elementAt(6)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(VTablePointer lpVtbl, IntPtr name,
+                            VTablePointer value)>>>()
+            .value
+            .asFunction<
+                int Function(
+                    VTablePointer lpVtbl, int name, VTablePointer value)>()(
+        ptr.ref.lpVtbl,
+        nameHString,
+        value?.intoBox().ptr.ref.lpVtbl ?? nullptr);
 
     WindowsDeleteString(nameHString);
 
@@ -49,8 +51,6 @@ class ILearningModelBinding extends IInspectable {
 
   void bindWithProperties(String name, Object? value, IPropertySet props) {
     final nameHString = name.toHString();
-    final valuePtr = value?.intoBox().ptr.ref.lpVtbl ?? nullptr;
-    final propsPtr = props.ptr.ref.lpVtbl;
 
     final hr = ptr.ref.vtable
             .elementAt(7)
@@ -63,7 +63,10 @@ class ILearningModelBinding extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int name,
                     VTablePointer value, VTablePointer props)>()(
-        ptr.ref.lpVtbl, nameHString, valuePtr, propsPtr);
+        ptr.ref.lpVtbl,
+        nameHString,
+        value?.intoBox().ptr.ref.lpVtbl ?? nullptr,
+        props.ptr.ref.lpVtbl);
 
     WindowsDeleteString(nameHString);
 

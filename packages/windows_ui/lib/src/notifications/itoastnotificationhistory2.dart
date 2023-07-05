@@ -29,33 +29,33 @@ class IToastNotificationHistory2 extends IInspectable {
           interface.toInterface(IID_IToastNotificationHistory2));
 
   List<ToastNotification?> getHistory() {
-    final retValuePtr = calloc<COMObject>();
+    final result = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
         .elementAt(6)
         .cast<
             Pointer<
                 NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
+                    HRESULT Function(
+                        VTablePointer lpVtbl, Pointer<COMObject> result)>>>()
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                Pointer<COMObject> result)>()(ptr.ref.lpVtbl, result);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(result);
       throw WindowsException(hr);
     }
 
-    final vectorView = IVectorView<ToastNotification?>.fromPtr(retValuePtr,
-        iterableIid: '{52c9428b-d37a-554d-bf55-b8685d5f552d}',
-        creator: ToastNotification.fromPtr);
-    return vectorView.toList();
+    return IVectorView<ToastNotification?>.fromPtr(result,
+            iterableIid: '{52c9428b-d37a-554d-bf55-b8685d5f552d}',
+            creator: ToastNotification.fromPtr)
+        .toList();
   }
 
   List<ToastNotification?> getHistoryWithId(String applicationId) {
-    final retValuePtr = calloc<COMObject>();
+    final result = calloc<COMObject>();
     final applicationIdHString = applicationId.toHString();
 
     final hr =
@@ -67,23 +67,23 @@ class IToastNotificationHistory2 extends IInspectable {
                             HRESULT Function(
                                 VTablePointer lpVtbl,
                                 IntPtr applicationId,
-                                Pointer<COMObject> retValuePtr)>>>()
+                                Pointer<COMObject> result)>>>()
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, int applicationId,
-                        Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl, applicationIdHString, retValuePtr);
+                        Pointer<COMObject> result)>()(
+            ptr.ref.lpVtbl, applicationIdHString, result);
 
     WindowsDeleteString(applicationIdHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(result);
       throw WindowsException(hr);
     }
 
-    final vectorView = IVectorView<ToastNotification?>.fromPtr(retValuePtr,
-        iterableIid: '{52c9428b-d37a-554d-bf55-b8685d5f552d}',
-        creator: ToastNotification.fromPtr);
-    return vectorView.toList();
+    return IVectorView<ToastNotification?>.fromPtr(result,
+            iterableIid: '{52c9428b-d37a-554d-bf55-b8685d5f552d}',
+            creator: ToastNotification.fromPtr)
+        .toList();
   }
 }

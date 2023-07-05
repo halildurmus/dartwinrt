@@ -28,30 +28,30 @@ class IStorageFolder3 extends IInspectable {
       IStorageFolder3.fromPtr(interface.toInterface(IID_IStorageFolder3));
 
   StorageLibraryChangeTracker? tryGetChangeTracker() {
-    final retValuePtr = calloc<COMObject>();
+    final result = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
         .elementAt(6)
         .cast<
             Pointer<
                 NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
+                    HRESULT Function(
+                        VTablePointer lpVtbl, Pointer<COMObject> result)>>>()
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                Pointer<COMObject> result)>()(ptr.ref.lpVtbl, result);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(result);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (result.isNull) {
+      free(result);
       return null;
     }
 
-    return StorageLibraryChangeTracker.fromPtr(retValuePtr);
+    return StorageLibraryChangeTracker.fromPtr(result);
   }
 }

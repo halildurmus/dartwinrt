@@ -31,202 +31,206 @@ class IBitmapDecoderStatics extends IInspectable {
           interface.toInterface(IID_IBitmapDecoderStatics));
 
   Guid get bmpDecoderId {
-    final retValuePtr = calloc<GUID>();
+    final value = calloc<GUID>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<GUID> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<GUID> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(6)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<GUID> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<GUID> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.toDartGuid();
+      return value.toDartGuid();
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
   Guid get jpegDecoderId {
-    final retValuePtr = calloc<GUID>();
+    final value = calloc<GUID>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<GUID> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<GUID> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(7)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<GUID> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<GUID> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.toDartGuid();
+      return value.toDartGuid();
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
   Guid get pngDecoderId {
-    final retValuePtr = calloc<GUID>();
+    final value = calloc<GUID>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<GUID> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<GUID> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(8)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<GUID> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<GUID> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.toDartGuid();
+      return value.toDartGuid();
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
   Guid get tiffDecoderId {
-    final retValuePtr = calloc<GUID>();
+    final value = calloc<GUID>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(9)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<GUID> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<GUID> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(9)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<GUID> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<GUID> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.toDartGuid();
+      return value.toDartGuid();
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
   Guid get gifDecoderId {
-    final retValuePtr = calloc<GUID>();
+    final value = calloc<GUID>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(10)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<GUID> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<GUID> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(10)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<GUID> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<GUID> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.toDartGuid();
+      return value.toDartGuid();
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
   Guid get jpegXRDecoderId {
-    final retValuePtr = calloc<GUID>();
+    final value = calloc<GUID>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(11)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<GUID> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<GUID> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(11)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<GUID> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<GUID> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.toDartGuid();
+      return value.toDartGuid();
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
   Guid get icoDecoderId {
-    final retValuePtr = calloc<GUID>();
+    final value = calloc<GUID>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(12)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<GUID> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<GUID> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(12)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<GUID> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<GUID> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.toDartGuid();
+      return value.toDartGuid();
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
   List<BitmapCodecInformation?> getDecoderInformationEnumerator() {
-    final retValuePtr = calloc<COMObject>();
+    final decoderInformationEnumerator = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
-        .elementAt(13)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+    final hr =
+        ptr.ref.vtable
+                .elementAt(13)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                VTablePointer lpVtbl,
+                                Pointer<COMObject>
+                                    decoderInformationEnumerator)>>>()
+                .value
+                .asFunction<
+                    int Function(VTablePointer lpVtbl,
+                        Pointer<COMObject> decoderInformationEnumerator)>()(
+            ptr.ref.lpVtbl, decoderInformationEnumerator);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(decoderInformationEnumerator);
       throw WindowsException(hr);
     }
 
-    final vectorView = IVectorView<BitmapCodecInformation?>.fromPtr(retValuePtr,
-        iterableIid: '{2b6bdb90-a4eb-5142-b582-3ccb1edc5789}',
-        creator: BitmapCodecInformation.fromPtr);
-    return vectorView.toList();
+    return IVectorView<BitmapCodecInformation?>.fromPtr(
+            decoderInformationEnumerator,
+            iterableIid: '{2b6bdb90-a4eb-5142-b582-3ccb1edc5789}',
+            creator: BitmapCodecInformation.fromPtr)
+        .toList();
   }
 
   Future<BitmapDecoder?> createAsync(IRandomAccessStream? stream) {
-    final retValuePtr = calloc<COMObject>();
-    final streamPtr = stream == null ? nullptr : stream.ptr.ref.lpVtbl;
+    final asyncInfo = calloc<COMObject>();
 
     final hr =
         ptr.ref.vtable
@@ -237,53 +241,56 @@ class IBitmapDecoderStatics extends IInspectable {
                             HRESULT Function(
                                 VTablePointer lpVtbl,
                                 VTablePointer stream,
-                                Pointer<COMObject> retValuePtr)>>>()
+                                Pointer<COMObject> asyncInfo)>>>()
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer stream,
-                        Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl, streamPtr, retValuePtr);
+                        Pointer<COMObject> asyncInfo)>()(ptr.ref.lpVtbl,
+            stream == null ? nullptr : stream.ptr.ref.lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(asyncInfo);
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<BitmapDecoder?>.fromPtr(retValuePtr,
+    final asyncOperation = IAsyncOperation<BitmapDecoder?>.fromPtr(asyncInfo,
         creator: BitmapDecoder.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<BitmapDecoder?> createWithIdAsync(
       Guid decoderId, IRandomAccessStream? stream) {
-    final retValuePtr = calloc<COMObject>();
-    final decoderIdNativeGuidPtr = decoderId.toNativeGUID();
-    final streamPtr = stream == null ? nullptr : stream.ptr.ref.lpVtbl;
+    final asyncInfo = calloc<COMObject>();
+    final decoderIdNativeStructPtr = decoderId.toNativeGUID();
 
-    final hr = ptr.ref.vtable
-            .elementAt(15)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            GUID decoderId,
-                            VTablePointer stream,
-                            Pointer<COMObject> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, GUID decoderId,
-                    VTablePointer stream, Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, decoderIdNativeGuidPtr.ref, streamPtr, retValuePtr);
+    final hr =
+        ptr.ref.vtable
+                .elementAt(15)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                VTablePointer lpVtbl,
+                                GUID decoderId,
+                                VTablePointer stream,
+                                Pointer<COMObject> asyncInfo)>>>()
+                .value
+                .asFunction<
+                    int Function(VTablePointer lpVtbl, GUID decoderId,
+                        VTablePointer stream, Pointer<COMObject> asyncInfo)>()(
+            ptr.ref.lpVtbl,
+            decoderIdNativeStructPtr.ref,
+            stream == null ? nullptr : stream.ptr.ref.lpVtbl,
+            asyncInfo);
 
-    free(decoderIdNativeGuidPtr);
+    free(decoderIdNativeStructPtr);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(asyncInfo);
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<BitmapDecoder?>.fromPtr(retValuePtr,
+    final asyncOperation = IAsyncOperation<BitmapDecoder?>.fromPtr(asyncInfo,
         creator: BitmapDecoder.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }

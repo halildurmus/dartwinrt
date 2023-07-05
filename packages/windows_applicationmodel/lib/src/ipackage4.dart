@@ -28,74 +28,74 @@ class IPackage4 extends IInspectable {
       IPackage4.fromPtr(interface.toInterface(IID_IPackage4));
 
   PackageSignatureKind get signatureKind {
-    final retValuePtr = calloc<Int32>();
+    final value = calloc<Int32>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Int32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(6)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<Int32> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return PackageSignatureKind.from(retValuePtr.value);
+      return PackageSignatureKind.from(value.value);
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
   bool get isOptional {
-    final retValuePtr = calloc<Bool>();
+    final value = calloc<Bool>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Bool> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Bool> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(7)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<Bool> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Bool> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return value.value;
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
   Future<bool> verifyContentIntegrityAsync() {
-    final retValuePtr = calloc<COMObject>();
+    final operation = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
         .elementAt(8)
         .cast<
             Pointer<
                 NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
+                    HRESULT Function(
+                        VTablePointer lpVtbl, Pointer<COMObject> operation)>>>()
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                Pointer<COMObject> operation)>()(ptr.ref.lpVtbl, operation);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<bool>.fromPtr(retValuePtr);
+    final asyncOperation = IAsyncOperation<bool>.fromPtr(operation);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 }

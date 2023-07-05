@@ -30,8 +30,7 @@ class IOcrEngine extends IInspectable {
       IOcrEngine.fromPtr(interface.toInterface(IID_IOcrEngine));
 
   Future<OcrResult?> recognizeAsync(SoftwareBitmap? bitmap) {
-    final retValuePtr = calloc<COMObject>();
-    final bitmapPtr = bitmap == null ? nullptr : bitmap.ptr.ref.lpVtbl;
+    final result = calloc<COMObject>();
 
     final hr =
         ptr.ref.vtable
@@ -42,48 +41,48 @@ class IOcrEngine extends IInspectable {
                             HRESULT Function(
                                 VTablePointer lpVtbl,
                                 VTablePointer bitmap,
-                                Pointer<COMObject> retValuePtr)>>>()
+                                Pointer<COMObject> result)>>>()
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer bitmap,
-                        Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl, bitmapPtr, retValuePtr);
+                        Pointer<COMObject> result)>()(ptr.ref.lpVtbl,
+            bitmap == null ? nullptr : bitmap.ptr.ref.lpVtbl, result);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(result);
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<OcrResult?>.fromPtr(retValuePtr,
-        creator: OcrResult.fromPtr);
+    final asyncOperation =
+        IAsyncOperation<OcrResult?>.fromPtr(result, creator: OcrResult.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Language? get recognizerLanguage {
-    final retValuePtr = calloc<COMObject>();
+    final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-        .elementAt(7)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+            .elementAt(7)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
+        ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (value.isNull) {
+      free(value);
       return null;
     }
 
-    return Language.fromPtr(retValuePtr);
+    return Language.fromPtr(value);
   }
 }

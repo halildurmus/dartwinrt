@@ -28,83 +28,83 @@ class IOcrResult extends IInspectable {
       IOcrResult.fromPtr(interface.toInterface(IID_IOcrResult));
 
   List<OcrLine?> get lines {
-    final retValuePtr = calloc<COMObject>();
+    final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+            .elementAt(6)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
+        ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    final vectorView = IVectorView<OcrLine?>.fromPtr(retValuePtr,
-        iterableIid: '{6afa94a2-60d7-5dbe-942d-81aa3929c85e}',
-        creator: OcrLine.fromPtr);
-    return vectorView.toList();
+    return IVectorView<OcrLine?>.fromPtr(value,
+            iterableIid: '{6afa94a2-60d7-5dbe-942d-81aa3929c85e}',
+            creator: OcrLine.fromPtr)
+        .toList();
   }
 
   double? get textAngle {
-    final retValuePtr = calloc<COMObject>();
+    final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-        .elementAt(7)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+            .elementAt(7)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
+        ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (value.isNull) {
+      free(value);
       return null;
     }
 
-    final reference = IReference<double?>.fromPtr(retValuePtr,
-        referenceIid: '{2f2d6c29-5473-5f3e-92e7-96572bb990e2}');
-    return reference.value;
+    return IReference<double?>.fromPtr(value,
+            referenceIid: '{2f2d6c29-5473-5f3e-92e7-96572bb990e2}')
+        .value;
   }
 
   String get text {
-    final retValuePtr = calloc<HSTRING>();
+    final value = calloc<IntPtr>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          Pointer<IntPtr> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(8)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.toDartString();
+      return value.toDartString();
     } finally {
-      WindowsDeleteString(retValuePtr.value);
-      free(retValuePtr);
+      WindowsDeleteString(value.value);
+      free(value);
     }
   }
 }

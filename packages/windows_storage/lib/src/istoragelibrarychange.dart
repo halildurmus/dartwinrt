@@ -31,125 +31,124 @@ class IStorageLibraryChange extends IInspectable {
           interface.toInterface(IID_IStorageLibraryChange));
 
   StorageLibraryChangeType get changeType {
-    final retValuePtr = calloc<Int32>();
+    final value = calloc<Int32>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Int32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(6)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<Int32> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return StorageLibraryChangeType.from(retValuePtr.value);
+      return StorageLibraryChangeType.from(value.value);
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
   String get path {
-    final retValuePtr = calloc<HSTRING>();
+    final value = calloc<IntPtr>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          Pointer<IntPtr> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(7)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.toDartString();
+      return value.toDartString();
     } finally {
-      WindowsDeleteString(retValuePtr.value);
-      free(retValuePtr);
+      WindowsDeleteString(value.value);
+      free(value);
     }
   }
 
   String get previousPath {
-    final retValuePtr = calloc<HSTRING>();
+    final value = calloc<IntPtr>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          Pointer<IntPtr> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(8)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.toDartString();
+      return value.toDartString();
     } finally {
-      WindowsDeleteString(retValuePtr.value);
-      free(retValuePtr);
+      WindowsDeleteString(value.value);
+      free(value);
     }
   }
 
   bool isOfType(StorageItemTypes type) {
-    final retValuePtr = calloc<Bool>();
+    final value = calloc<Bool>();
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(9)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl, Uint32 type,
-                              Pointer<Bool> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, int type,
-                      Pointer<Bool> retValuePtr)>()(
-          ptr.ref.lpVtbl, type.value, retValuePtr);
+          .elementAt(9)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl, Uint32 type,
+                          Pointer<Bool> value)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl, int type,
+                  Pointer<Bool> value)>()(ptr.ref.lpVtbl, type.value, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return value.value;
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
   Future<IStorageItem?> getStorageItemAsync() {
-    final retValuePtr = calloc<COMObject>();
+    final operation = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
         .elementAt(10)
         .cast<
             Pointer<
                 NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
+                    HRESULT Function(
+                        VTablePointer lpVtbl, Pointer<COMObject> operation)>>>()
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                Pointer<COMObject> operation)>()(ptr.ref.lpVtbl, operation);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<IStorageItem?>.fromPtr(retValuePtr,
+    final asyncOperation = IAsyncOperation<IStorageItem?>.fromPtr(operation,
         creator: IStorageItem.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }

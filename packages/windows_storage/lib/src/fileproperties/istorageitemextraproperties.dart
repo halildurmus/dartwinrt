@@ -29,14 +29,7 @@ class IStorageItemExtraProperties extends IInspectable {
 
   Future<IMap<String, Object?>> retrievePropertiesAsync(
       IIterable<String>? propertiesToRetrieve) {
-    final retValuePtr = calloc<COMObject>();
-    final propertiesToRetrievePtr = propertiesToRetrieve == null
-        ? nullptr
-        : IInspectable(propertiesToRetrieve
-                .toInterface('{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'))
-            .ptr
-            .ref
-            .lpVtbl;
+    final operation = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -46,22 +39,30 @@ class IStorageItemExtraProperties extends IInspectable {
                         HRESULT Function(
                             VTablePointer lpVtbl,
                             VTablePointer propertiesToRetrieve,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> operation)>>>()
             .value
             .asFunction<
                 int Function(
                     VTablePointer lpVtbl,
                     VTablePointer propertiesToRetrieve,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, propertiesToRetrievePtr, retValuePtr);
+                    Pointer<COMObject> operation)>()(
+        ptr.ref.lpVtbl,
+        propertiesToRetrieve == null
+            ? nullptr
+            : IInspectable(propertiesToRetrieve
+                    .toInterface('{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'))
+                .ptr
+                .ref
+                .lpVtbl,
+        operation);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<IMap<String, Object?>>.fromPtr(
-        retValuePtr,
+        operation,
         creator: (ptr) => IMap.fromPtr(ptr,
             iterableIid: '{fe2f3d47-5d47-5499-8374-430c7cda0204}'));
     return asyncOperation.toFuture(asyncOperation.getResults);
@@ -69,14 +70,7 @@ class IStorageItemExtraProperties extends IInspectable {
 
   Future<void> savePropertiesAsync(
       IIterable<IKeyValuePair<String, Object?>>? propertiesToSave) {
-    final retValuePtr = calloc<COMObject>();
-    final propertiesToSavePtr = propertiesToSave == null
-        ? nullptr
-        : IInspectable(propertiesToSave
-                .toInterface('{fe2f3d47-5d47-5499-8374-430c7cda0204}'))
-            .ptr
-            .ref
-            .lpVtbl;
+    final operation = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(7)
@@ -86,43 +80,51 @@ class IStorageItemExtraProperties extends IInspectable {
                         HRESULT Function(
                             VTablePointer lpVtbl,
                             VTablePointer propertiesToSave,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> operation)>>>()
             .value
             .asFunction<
                 int Function(
                     VTablePointer lpVtbl,
                     VTablePointer propertiesToSave,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, propertiesToSavePtr, retValuePtr);
+                    Pointer<COMObject> operation)>()(
+        ptr.ref.lpVtbl,
+        propertiesToSave == null
+            ? nullptr
+            : IInspectable(propertiesToSave
+                    .toInterface('{fe2f3d47-5d47-5499-8374-430c7cda0204}'))
+                .ptr
+                .ref
+                .lpVtbl,
+        operation);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
-    return IAsyncAction.fromPtr(retValuePtr).toFuture();
+    return IAsyncAction.fromPtr(operation).toFuture();
   }
 
   Future<void> savePropertiesAsyncOverloadDefault() {
-    final retValuePtr = calloc<COMObject>();
+    final operation = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
         .elementAt(8)
         .cast<
             Pointer<
                 NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
+                    HRESULT Function(
+                        VTablePointer lpVtbl, Pointer<COMObject> operation)>>>()
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                Pointer<COMObject> operation)>()(ptr.ref.lpVtbl, operation);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
-    return IAsyncAction.fromPtr(retValuePtr).toFuture();
+    return IAsyncAction.fromPtr(operation).toFuture();
   }
 }

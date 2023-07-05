@@ -36,7 +36,7 @@ class IStorageItemProperties2 extends IInspectable
   Future<StorageItemThumbnail?>
       getScaledImageAsThumbnailAsyncOverloadDefaultSizeDefaultOptions(
           ThumbnailMode mode) {
-    final retValuePtr = calloc<COMObject>();
+    final operation = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -44,20 +44,20 @@ class IStorageItemProperties2 extends IInspectable
                 Pointer<
                     NativeFunction<
                         HRESULT Function(VTablePointer lpVtbl, Int32 mode,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> operation)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int mode,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, mode.value, retValuePtr);
+                    Pointer<COMObject> operation)>()(
+        ptr.ref.lpVtbl, mode.value, operation);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<StorageItemThumbnail?>.fromPtr(
-        retValuePtr,
+        operation,
         creator: StorageItemThumbnail.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
@@ -65,38 +65,39 @@ class IStorageItemProperties2 extends IInspectable
   Future<StorageItemThumbnail?>
       getScaledImageAsThumbnailAsyncOverloadDefaultOptions(
           ThumbnailMode mode, int requestedSize) {
-    final retValuePtr = calloc<COMObject>();
+    final operation = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            Int32 mode,
-                            Uint32 requestedSize,
-                            Pointer<COMObject> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int mode, int requestedSize,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, mode.value, requestedSize, retValuePtr);
+    final hr =
+        ptr.ref.vtable
+                .elementAt(7)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                VTablePointer lpVtbl,
+                                Int32 mode,
+                                Uint32 requestedSize,
+                                Pointer<COMObject> operation)>>>()
+                .value
+                .asFunction<
+                    int Function(VTablePointer lpVtbl, int mode,
+                        int requestedSize, Pointer<COMObject> operation)>()(
+            ptr.ref.lpVtbl, mode.value, requestedSize, operation);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<StorageItemThumbnail?>.fromPtr(
-        retValuePtr,
+        operation,
         creator: StorageItemThumbnail.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<StorageItemThumbnail?> getScaledImageAsThumbnailAsync(
       ThumbnailMode mode, int requestedSize, ThumbnailOptions options) {
-    final retValuePtr = calloc<COMObject>();
+    final operation = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(8)
@@ -108,20 +109,20 @@ class IStorageItemProperties2 extends IInspectable
                             Int32 mode,
                             Uint32 requestedSize,
                             Uint32 options,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> operation)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int mode, int requestedSize,
-                    int options, Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, mode.value, requestedSize, options.value, retValuePtr);
+                    int options, Pointer<COMObject> operation)>()(
+        ptr.ref.lpVtbl, mode.value, requestedSize, options.value, operation);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<StorageItemThumbnail?>.fromPtr(
-        retValuePtr,
+        operation,
         creator: StorageItemThumbnail.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }

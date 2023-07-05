@@ -30,53 +30,53 @@ class INetworkOperatorTetheringClient extends IInspectable {
           interface.toInterface(IID_INetworkOperatorTetheringClient));
 
   String get macAddress {
-    final retValuePtr = calloc<HSTRING>();
+    final value = calloc<IntPtr>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          Pointer<IntPtr> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(6)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.toDartString();
+      return value.toDartString();
     } finally {
-      WindowsDeleteString(retValuePtr.value);
-      free(retValuePtr);
+      WindowsDeleteString(value.value);
+      free(value);
     }
   }
 
   List<HostName?> get hostNames {
-    final retValuePtr = calloc<COMObject>();
+    final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-        .elementAt(7)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+            .elementAt(7)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
+        ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    final vectorView = IVectorView<HostName?>.fromPtr(retValuePtr,
-        iterableIid: '{9e5f3ed0-cf1c-5d38-832c-acea6164bf5c}',
-        creator: HostName.fromPtr);
-    return vectorView.toList();
+    return IVectorView<HostName?>.fromPtr(value,
+            iterableIid: '{9e5f3ed0-cf1c-5d38-832c-acea6164bf5c}',
+            creator: HostName.fromPtr)
+        .toList();
   }
 }

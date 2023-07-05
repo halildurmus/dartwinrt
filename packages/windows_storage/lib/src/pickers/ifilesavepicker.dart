@@ -29,73 +29,71 @@ class IFileSavePicker extends IInspectable {
       IFileSavePicker.fromPtr(interface.toInterface(IID_IFileSavePicker));
 
   String get settingsIdentifier {
-    final retValuePtr = calloc<HSTRING>();
+    final value = calloc<IntPtr>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          Pointer<IntPtr> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(6)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.toDartString();
+      return value.toDartString();
     } finally {
-      WindowsDeleteString(retValuePtr.value);
-      free(retValuePtr);
+      WindowsDeleteString(value.value);
+      free(value);
     }
   }
 
   set settingsIdentifier(String value) {
-    final hString = value.toHString();
+    final valueHString = value.toHString();
 
-    try {
-      final hr =
-          ptr.ref.vtable
-                  .elementAt(7)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(
-                                  VTablePointer lpVtbl, IntPtr value)>>>()
-                  .value
-                  .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-              ptr.ref.lpVtbl, hString);
+    final hr =
+        ptr.ref.vtable
+                .elementAt(7)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                VTablePointer lpVtbl, IntPtr value)>>>()
+                .value
+                .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
+            ptr.ref.lpVtbl, valueHString);
 
-      if (FAILED(hr)) throw WindowsException(hr);
-    } finally {
-      WindowsDeleteString(hString);
-    }
+    WindowsDeleteString(valueHString);
+
+    if (FAILED(hr)) throw WindowsException(hr);
   }
 
   PickerLocationId get suggestedStartLocation {
-    final retValuePtr = calloc<Int32>();
+    final value = calloc<Int32>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Int32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(8)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<Int32> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return PickerLocationId.from(retValuePtr.value);
+      return PickerLocationId.from(value.value);
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
@@ -114,151 +112,147 @@ class IFileSavePicker extends IInspectable {
   }
 
   String get commitButtonText {
-    final retValuePtr = calloc<HSTRING>();
+    final value = calloc<IntPtr>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(10)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          Pointer<IntPtr> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(10)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.toDartString();
+      return value.toDartString();
     } finally {
-      WindowsDeleteString(retValuePtr.value);
-      free(retValuePtr);
+      WindowsDeleteString(value.value);
+      free(value);
     }
   }
 
   set commitButtonText(String value) {
-    final hString = value.toHString();
+    final valueHString = value.toHString();
 
-    try {
-      final hr =
-          ptr.ref.vtable
-                  .elementAt(11)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(
-                                  VTablePointer lpVtbl, IntPtr value)>>>()
-                  .value
-                  .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-              ptr.ref.lpVtbl, hString);
+    final hr =
+        ptr.ref.vtable
+                .elementAt(11)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                VTablePointer lpVtbl, IntPtr value)>>>()
+                .value
+                .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
+            ptr.ref.lpVtbl, valueHString);
 
-      if (FAILED(hr)) throw WindowsException(hr);
-    } finally {
-      WindowsDeleteString(hString);
-    }
+    WindowsDeleteString(valueHString);
+
+    if (FAILED(hr)) throw WindowsException(hr);
   }
 
   IMap<String, IVector<String>> get fileTypeChoices {
-    final retValuePtr = calloc<COMObject>();
+    final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-        .elementAt(12)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+            .elementAt(12)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
+        ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    return IMap.fromPtr(retValuePtr,
+    return IMap.fromPtr(value,
         iterableIid: '{4fed2669-d0d3-59f6-91d9-95902d728d6a}',
         creator: (ptr) => IVector.fromPtr(ptr,
             iterableIid: '{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'));
   }
 
   String get defaultFileExtension {
-    final retValuePtr = calloc<HSTRING>();
+    final value = calloc<IntPtr>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(13)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          Pointer<IntPtr> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(13)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.toDartString();
+      return value.toDartString();
     } finally {
-      WindowsDeleteString(retValuePtr.value);
-      free(retValuePtr);
+      WindowsDeleteString(value.value);
+      free(value);
     }
   }
 
   set defaultFileExtension(String value) {
-    final hString = value.toHString();
+    final valueHString = value.toHString();
 
-    try {
-      final hr =
-          ptr.ref.vtable
-                  .elementAt(14)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(
-                                  VTablePointer lpVtbl, IntPtr value)>>>()
-                  .value
-                  .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-              ptr.ref.lpVtbl, hString);
+    final hr =
+        ptr.ref.vtable
+                .elementAt(14)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                VTablePointer lpVtbl, IntPtr value)>>>()
+                .value
+                .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
+            ptr.ref.lpVtbl, valueHString);
 
-      if (FAILED(hr)) throw WindowsException(hr);
-    } finally {
-      WindowsDeleteString(hString);
-    }
+    WindowsDeleteString(valueHString);
+
+    if (FAILED(hr)) throw WindowsException(hr);
   }
 
   StorageFile? get suggestedSaveFile {
-    final retValuePtr = calloc<COMObject>();
+    final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-        .elementAt(15)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+            .elementAt(15)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
+        ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (value.isNull) {
+      free(value);
       return null;
     }
 
-    return StorageFile.fromPtr(retValuePtr);
+    return StorageFile.fromPtr(value);
   }
 
   set suggestedSaveFile(StorageFile? value) {
@@ -278,73 +272,71 @@ class IFileSavePicker extends IInspectable {
   }
 
   String get suggestedFileName {
-    final retValuePtr = calloc<HSTRING>();
+    final value = calloc<IntPtr>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(17)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          Pointer<IntPtr> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(17)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.toDartString();
+      return value.toDartString();
     } finally {
-      WindowsDeleteString(retValuePtr.value);
-      free(retValuePtr);
+      WindowsDeleteString(value.value);
+      free(value);
     }
   }
 
   set suggestedFileName(String value) {
-    final hString = value.toHString();
+    final valueHString = value.toHString();
 
-    try {
-      final hr =
-          ptr.ref.vtable
-                  .elementAt(18)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(
-                                  VTablePointer lpVtbl, IntPtr value)>>>()
-                  .value
-                  .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-              ptr.ref.lpVtbl, hString);
+    final hr =
+        ptr.ref.vtable
+                .elementAt(18)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                VTablePointer lpVtbl, IntPtr value)>>>()
+                .value
+                .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
+            ptr.ref.lpVtbl, valueHString);
 
-      if (FAILED(hr)) throw WindowsException(hr);
-    } finally {
-      WindowsDeleteString(hString);
-    }
+    WindowsDeleteString(valueHString);
+
+    if (FAILED(hr)) throw WindowsException(hr);
   }
 
   Future<StorageFile?> pickSaveFileAsync() {
-    final retValuePtr = calloc<COMObject>();
+    final operation = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
         .elementAt(19)
         .cast<
             Pointer<
                 NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
+                    HRESULT Function(
+                        VTablePointer lpVtbl, Pointer<COMObject> operation)>>>()
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                Pointer<COMObject> operation)>()(ptr.ref.lpVtbl, operation);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<StorageFile?>.fromPtr(retValuePtr,
+    final asyncOperation = IAsyncOperation<StorageFile?>.fromPtr(operation,
         creator: StorageFile.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }

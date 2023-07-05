@@ -34,26 +34,26 @@ class IRandomAccessStream extends IInspectable
           interface.toInterface(IID_IRandomAccessStream));
 
   int get size {
-    final retValuePtr = calloc<Uint64>();
+    final value = calloc<Uint64>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          Pointer<Uint64> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Uint64> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(6)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<Uint64> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Uint64> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return value.value;
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
@@ -74,84 +74,82 @@ class IRandomAccessStream extends IInspectable
   }
 
   IInputStream? getInputStreamAt(int position) {
-    final retValuePtr = calloc<COMObject>();
+    final stream = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint64 position,
-                            Pointer<COMObject> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int position,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, position, retValuePtr);
+        .elementAt(8)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl, Uint64 position,
+                        Pointer<COMObject> stream)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl, int position,
+                Pointer<COMObject> stream)>()(ptr.ref.lpVtbl, position, stream);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(stream);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (stream.isNull) {
+      free(stream);
       return null;
     }
 
-    return IInputStream.fromPtr(retValuePtr);
+    return IInputStream.fromPtr(stream);
   }
 
   IOutputStream? getOutputStreamAt(int position) {
-    final retValuePtr = calloc<COMObject>();
+    final stream = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-            .elementAt(9)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint64 position,
-                            Pointer<COMObject> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int position,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, position, retValuePtr);
+        .elementAt(9)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl, Uint64 position,
+                        Pointer<COMObject> stream)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl, int position,
+                Pointer<COMObject> stream)>()(ptr.ref.lpVtbl, position, stream);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(stream);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (stream.isNull) {
+      free(stream);
       return null;
     }
 
-    return IOutputStream.fromPtr(retValuePtr);
+    return IOutputStream.fromPtr(stream);
   }
 
   int get position {
-    final retValuePtr = calloc<Uint64>();
+    final value = calloc<Uint64>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(10)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          Pointer<Uint64> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Uint64> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(10)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<Uint64> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Uint64> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return value.value;
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
@@ -172,78 +170,78 @@ class IRandomAccessStream extends IInspectable
   }
 
   IRandomAccessStream? cloneStream() {
-    final retValuePtr = calloc<COMObject>();
+    final stream = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
         .elementAt(12)
         .cast<
             Pointer<
                 NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
+                    HRESULT Function(
+                        VTablePointer lpVtbl, Pointer<COMObject> stream)>>>()
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                Pointer<COMObject> stream)>()(ptr.ref.lpVtbl, stream);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(stream);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (stream.isNull) {
+      free(stream);
       return null;
     }
 
-    return IRandomAccessStream.fromPtr(retValuePtr);
+    return IRandomAccessStream.fromPtr(stream);
   }
 
   bool get canRead {
-    final retValuePtr = calloc<Bool>();
+    final value = calloc<Bool>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(13)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Bool> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Bool> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(13)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<Bool> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Bool> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return value.value;
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
   bool get canWrite {
-    final retValuePtr = calloc<Bool>();
+    final value = calloc<Bool>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(14)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Bool> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Bool> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(14)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<Bool> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Bool> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return value.value;
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 

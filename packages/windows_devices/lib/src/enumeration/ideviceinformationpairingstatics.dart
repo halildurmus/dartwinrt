@@ -31,7 +31,7 @@ class IDeviceInformationPairingStatics extends IInspectable {
 
   bool tryRegisterForAllInboundPairingRequests(
       DevicePairingKinds pairingKindsSupported) {
-    final retValuePtr = calloc<Bool>();
+    final result = calloc<Bool>();
 
     try {
       final hr = ptr.ref.vtable
@@ -42,18 +42,18 @@ class IDeviceInformationPairingStatics extends IInspectable {
                           HRESULT Function(
                               VTablePointer lpVtbl,
                               Uint32 pairingKindsSupported,
-                              Pointer<Bool> retValuePtr)>>>()
+                              Pointer<Bool> result)>>>()
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, int pairingKindsSupported,
-                      Pointer<Bool> retValuePtr)>()(
-          ptr.ref.lpVtbl, pairingKindsSupported.value, retValuePtr);
+                      Pointer<Bool> result)>()(
+          ptr.ref.lpVtbl, pairingKindsSupported.value, result);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return result.value;
     } finally {
-      free(retValuePtr);
+      free(result);
     }
   }
 }

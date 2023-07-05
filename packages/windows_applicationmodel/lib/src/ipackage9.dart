@@ -29,56 +29,56 @@ class IPackage9 extends IInspectable {
       IPackage9.fromPtr(interface.toInterface(IID_IPackage9));
 
   IVector<Package?> findRelatedPackages(FindRelatedPackagesOptions? options) {
-    final retValuePtr = calloc<COMObject>();
-    final optionsPtr = options == null ? nullptr : options.ptr.ref.lpVtbl;
+    final result = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            VTablePointer options,
-                            Pointer<COMObject> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer options,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, optionsPtr, retValuePtr);
+    final hr =
+        ptr.ref.vtable
+                .elementAt(6)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                VTablePointer lpVtbl,
+                                VTablePointer options,
+                                Pointer<COMObject> result)>>>()
+                .value
+                .asFunction<
+                    int Function(VTablePointer lpVtbl, VTablePointer options,
+                        Pointer<COMObject> result)>()(ptr.ref.lpVtbl,
+            options == null ? nullptr : options.ptr.ref.lpVtbl, result);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(result);
       throw WindowsException(hr);
     }
 
-    return IVector.fromPtr(retValuePtr,
+    return IVector.fromPtr(result,
         iterableIid: '{69ad6aa7-0c49-5f27-a5eb-ef4d59467b6d}',
         creator: Package.fromPtr);
   }
 
   String get sourceUriSchemeName {
-    final retValuePtr = calloc<HSTRING>();
+    final value = calloc<IntPtr>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          Pointer<IntPtr> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(7)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.toDartString();
+      return value.toDartString();
     } finally {
-      WindowsDeleteString(retValuePtr.value);
-      free(retValuePtr);
+      WindowsDeleteString(value.value);
+      free(value);
     }
   }
 }

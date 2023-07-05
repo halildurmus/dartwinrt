@@ -33,34 +33,32 @@ class ICoreAutomationRemoteOperation extends IInspectable {
           interface.toInterface(IID_ICoreAutomationRemoteOperation));
 
   bool isOpcodeSupported(int opcode) {
-    final retValuePtr = calloc<Bool>();
+    final result = calloc<Bool>();
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl, Uint32 opcode,
-                              Pointer<Bool> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, int opcode,
-                      Pointer<Bool> retValuePtr)>()(
-          ptr.ref.lpVtbl, opcode, retValuePtr);
+          .elementAt(6)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl, Uint32 opcode,
+                          Pointer<Bool> result)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl, int opcode,
+                  Pointer<Bool> result)>()(ptr.ref.lpVtbl, opcode, result);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return result.value;
     } finally {
-      free(retValuePtr);
+      free(result);
     }
   }
 
   void importElement(AutomationRemoteOperationOperandId operandId,
       AutomationElement? element) {
     final operandIdNativeStructPtr = operandId.toNative();
-    final elementPtr = element == null ? nullptr : element.ptr.ref.lpVtbl;
 
     final hr = ptr.ref.vtable
             .elementAt(7)
@@ -77,7 +75,9 @@ class ICoreAutomationRemoteOperation extends IInspectable {
                     VTablePointer lpVtbl,
                     NativeAutomationRemoteOperationOperandId operandId,
                     VTablePointer element)>()(
-        ptr.ref.lpVtbl, operandIdNativeStructPtr.ref, elementPtr);
+        ptr.ref.lpVtbl,
+        operandIdNativeStructPtr.ref,
+        element == null ? nullptr : element.ptr.ref.lpVtbl);
 
     free(operandIdNativeStructPtr);
 
@@ -87,7 +87,6 @@ class ICoreAutomationRemoteOperation extends IInspectable {
   void importTextRange(AutomationRemoteOperationOperandId operandId,
       AutomationTextRange? textRange) {
     final operandIdNativeStructPtr = operandId.toNative();
-    final textRangePtr = textRange == null ? nullptr : textRange.ptr.ref.lpVtbl;
 
     final hr = ptr.ref.vtable
             .elementAt(8)
@@ -104,7 +103,9 @@ class ICoreAutomationRemoteOperation extends IInspectable {
                     VTablePointer lpVtbl,
                     NativeAutomationRemoteOperationOperandId operandId,
                     VTablePointer textRange)>()(
-        ptr.ref.lpVtbl, operandIdNativeStructPtr.ref, textRangePtr);
+        ptr.ref.lpVtbl,
+        operandIdNativeStructPtr.ref,
+        textRange == null ? nullptr : textRange.ptr.ref.lpVtbl);
 
     free(operandIdNativeStructPtr);
 
@@ -134,10 +135,10 @@ class ICoreAutomationRemoteOperation extends IInspectable {
   }
 
   AutomationRemoteOperationResult? execute(List<int> bytecodeBuffer) {
-    final retValuePtr = calloc<COMObject>();
+    final result = calloc<COMObject>();
     final pBytecodeBufferArray = calloc<Uint8>(bytecodeBuffer.length);
     for (var i = 0; i < bytecodeBuffer.length; i++) {
-      pBytecodeBufferArray[i] = bytecodeBuffer.elementAt(i);
+      pBytecodeBufferArray[i] = bytecodeBuffer[i];
     }
 
     final hr = ptr.ref.vtable
@@ -149,28 +150,28 @@ class ICoreAutomationRemoteOperation extends IInspectable {
                             VTablePointer lpVtbl,
                             Uint32 bytecodeBufferSize,
                             Pointer<Uint8> bytecodeBuffer,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> result)>>>()
             .value
             .asFunction<
                 int Function(
                     VTablePointer lpVtbl,
                     int bytecodeBufferSize,
                     Pointer<Uint8> bytecodeBuffer,
-                    Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl,
-        bytecodeBuffer.length, pBytecodeBufferArray, retValuePtr);
+                    Pointer<COMObject> result)>()(
+        ptr.ref.lpVtbl, bytecodeBuffer.length, pBytecodeBufferArray, result);
 
     free(pBytecodeBufferArray);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(result);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (result.isNull) {
+      free(result);
       return null;
     }
 
-    return AutomationRemoteOperationResult.fromPtr(retValuePtr);
+    return AutomationRemoteOperationResult.fromPtr(result);
   }
 }

@@ -31,8 +31,7 @@ class IStorageFolderStatics2 extends IInspectable {
 
   Future<StorageFolder?> getFolderFromPathForUserAsync(
       User? user, String path) {
-    final retValuePtr = calloc<COMObject>();
-    final userPtr = user == null ? nullptr : user.ptr.ref.lpVtbl;
+    final operation = calloc<COMObject>();
     final pathHString = path.toHString();
 
     final hr =
@@ -45,21 +44,24 @@ class IStorageFolderStatics2 extends IInspectable {
                                 VTablePointer lpVtbl,
                                 VTablePointer user,
                                 IntPtr path,
-                                Pointer<COMObject> retValuePtr)>>>()
+                                Pointer<COMObject> operation)>>>()
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer user,
-                        int path, Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl, userPtr, pathHString, retValuePtr);
+                        int path, Pointer<COMObject> operation)>()(
+            ptr.ref.lpVtbl,
+            user == null ? nullptr : user.ptr.ref.lpVtbl,
+            pathHString,
+            operation);
 
     WindowsDeleteString(pathHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<StorageFolder?>.fromPtr(retValuePtr,
+    final asyncOperation = IAsyncOperation<StorageFolder?>.fromPtr(operation,
         creator: StorageFolder.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }

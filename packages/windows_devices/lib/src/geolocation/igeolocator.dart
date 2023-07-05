@@ -31,26 +31,26 @@ class IGeolocator extends IInspectable {
       IGeolocator.fromPtr(interface.toInterface(IID_IGeolocator));
 
   PositionAccuracy get desiredAccuracy {
-    final retValuePtr = calloc<Int32>();
+    final value = calloc<Int32>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Int32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(6)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<Int32> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return PositionAccuracy.from(retValuePtr.value);
+      return PositionAccuracy.from(value.value);
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
@@ -69,26 +69,26 @@ class IGeolocator extends IInspectable {
   }
 
   double get movementThreshold {
-    final retValuePtr = calloc<Double>();
+    final value = calloc<Double>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          Pointer<Double> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Double> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(8)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<Double> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Double> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return value.value;
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
@@ -109,26 +109,26 @@ class IGeolocator extends IInspectable {
   }
 
   int get reportInterval {
-    final retValuePtr = calloc<Uint32>();
+    final value = calloc<Uint32>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(10)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          Pointer<Uint32> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Uint32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(10)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<Uint32> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return value.value;
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
@@ -149,57 +149,57 @@ class IGeolocator extends IInspectable {
   }
 
   PositionStatus get locationStatus {
-    final retValuePtr = calloc<Int32>();
+    final value = calloc<Int32>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(12)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Int32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(12)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<Int32> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return PositionStatus.from(retValuePtr.value);
+      return PositionStatus.from(value.value);
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
   Future<Geoposition?> getGeopositionAsync() {
-    final retValuePtr = calloc<COMObject>();
+    final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-        .elementAt(13)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+            .elementAt(13)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
+        ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<Geoposition?>.fromPtr(retValuePtr,
+    final asyncOperation = IAsyncOperation<Geoposition?>.fromPtr(value,
         creator: Geoposition.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<Geoposition?> getGeopositionAsyncWithAgeAndTimeout(
       Duration maximumAge, Duration timeout) {
-    final retValuePtr = calloc<COMObject>();
+    final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(14)
@@ -207,25 +207,25 @@ class IGeolocator extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(VTablePointer lpVtbl, Int64 maximumAge,
-                            Int64 timeout, Pointer<COMObject> retValuePtr)>>>()
+                            Int64 timeout, Pointer<COMObject> value)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int maximumAge, int timeout,
-                    Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl,
-        maximumAge.toWinRTDuration(), timeout.toWinRTDuration(), retValuePtr);
+                    Pointer<COMObject> value)>()(ptr.ref.lpVtbl,
+        maximumAge.toWinRTDuration(), timeout.toWinRTDuration(), value);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<Geoposition?>.fromPtr(retValuePtr,
+    final asyncOperation = IAsyncOperation<Geoposition?>.fromPtr(value,
         creator: Geoposition.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   int add_PositionChanged(Pointer<COMObject> handler) {
-    final retValuePtr = calloc<IntPtr>();
+    final token = calloc<IntPtr>();
 
     try {
       final hr = ptr.ref.vtable
@@ -233,21 +233,19 @@ class IGeolocator extends IInspectable {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              VTablePointer handler,
-                              Pointer<IntPtr> retValuePtr)>>>()
+                          HRESULT Function(VTablePointer lpVtbl,
+                              VTablePointer handler, Pointer<IntPtr> token)>>>()
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, VTablePointer handler,
-                      Pointer<IntPtr> retValuePtr)>()(
-          ptr.ref.lpVtbl, handler.ref.lpVtbl, retValuePtr);
+                      Pointer<IntPtr> token)>()(
+          ptr.ref.lpVtbl, handler.ref.lpVtbl, token);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return token.value;
     } finally {
-      free(retValuePtr);
+      free(token);
     }
   }
 
@@ -268,7 +266,7 @@ class IGeolocator extends IInspectable {
   }
 
   int add_StatusChanged(Pointer<COMObject> handler) {
-    final retValuePtr = calloc<IntPtr>();
+    final token = calloc<IntPtr>();
 
     try {
       final hr = ptr.ref.vtable
@@ -276,21 +274,19 @@ class IGeolocator extends IInspectable {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              VTablePointer handler,
-                              Pointer<IntPtr> retValuePtr)>>>()
+                          HRESULT Function(VTablePointer lpVtbl,
+                              VTablePointer handler, Pointer<IntPtr> token)>>>()
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, VTablePointer handler,
-                      Pointer<IntPtr> retValuePtr)>()(
-          ptr.ref.lpVtbl, handler.ref.lpVtbl, retValuePtr);
+                      Pointer<IntPtr> token)>()(
+          ptr.ref.lpVtbl, handler.ref.lpVtbl, token);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return token.value;
     } finally {
-      free(retValuePtr);
+      free(token);
     }
   }
 

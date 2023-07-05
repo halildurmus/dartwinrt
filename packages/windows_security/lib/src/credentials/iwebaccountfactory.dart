@@ -31,8 +31,7 @@ class IWebAccountFactory extends IInspectable {
 
   WebAccount createWebAccount(WebAccountProvider webAccountProvider,
       String userName, WebAccountState state) {
-    final retValuePtr = calloc<COMObject>();
-    final webAccountProviderPtr = webAccountProvider.ptr.ref.lpVtbl;
+    final instance = calloc<COMObject>();
     final userNameHString = userName.toHString();
 
     final hr = ptr.ref.vtable
@@ -45,7 +44,7 @@ class IWebAccountFactory extends IInspectable {
                             VTablePointer webAccountProvider,
                             IntPtr userName,
                             Int32 state,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> instance)>>>()
             .value
             .asFunction<
                 int Function(
@@ -53,16 +52,20 @@ class IWebAccountFactory extends IInspectable {
                     VTablePointer webAccountProvider,
                     int userName,
                     int state,
-                    Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl,
-        webAccountProviderPtr, userNameHString, state.value, retValuePtr);
+                    Pointer<COMObject> instance)>()(
+        ptr.ref.lpVtbl,
+        webAccountProvider.ptr.ref.lpVtbl,
+        userNameHString,
+        state.value,
+        instance);
 
     WindowsDeleteString(userNameHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(instance);
       throw WindowsException(hr);
     }
 
-    return WebAccount.fromPtr(retValuePtr);
+    return WebAccount.fromPtr(instance);
   }
 }

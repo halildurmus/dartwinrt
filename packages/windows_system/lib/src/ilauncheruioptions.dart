@@ -27,33 +27,33 @@ class ILauncherUIOptions extends IInspectable {
       ILauncherUIOptions.fromPtr(interface.toInterface(IID_ILauncherUIOptions));
 
   Point? get invocationPoint {
-    final retValuePtr = calloc<COMObject>();
+    final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+            .elementAt(6)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
+        ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (value.isNull) {
+      free(value);
       return null;
     }
 
-    final reference = IReference<Point?>.fromPtr(retValuePtr,
-        referenceIid: '{84f14c22-a00a-5272-8d3d-82112e66df00}');
-    return reference.value;
+    return IReference<Point?>.fromPtr(value,
+            referenceIid: '{84f14c22-a00a-5272-8d3d-82112e66df00}')
+        .value;
   }
 
   set invocationPoint(Point? value) {
@@ -73,33 +73,33 @@ class ILauncherUIOptions extends IInspectable {
   }
 
   Rect? get selectionRect {
-    final retValuePtr = calloc<COMObject>();
+    final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-        .elementAt(8)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+            .elementAt(8)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
+        ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (value.isNull) {
+      free(value);
       return null;
     }
 
-    final reference = IReference<Rect?>.fromPtr(retValuePtr,
-        referenceIid: '{80423f11-054f-5eac-afd3-63b6ce15e77b}');
-    return reference.value;
+    return IReference<Rect?>.fromPtr(value,
+            referenceIid: '{80423f11-054f-5eac-afd3-63b6ce15e77b}')
+        .value;
   }
 
   set selectionRect(Rect? value) {
@@ -119,26 +119,26 @@ class ILauncherUIOptions extends IInspectable {
   }
 
   Placement get preferredPlacement {
-    final retValuePtr = calloc<Int32>();
+    final value = calloc<Int32>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(10)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Int32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(10)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<Int32> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return Placement.from(retValuePtr.value);
+      return Placement.from(value.value);
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 

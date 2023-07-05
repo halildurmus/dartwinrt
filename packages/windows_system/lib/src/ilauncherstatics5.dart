@@ -29,7 +29,7 @@ class ILauncherStatics5 extends IInspectable {
       ILauncherStatics5.fromPtr(interface.toInterface(IID_ILauncherStatics5));
 
   Future<bool> launchFolderPathAsync(String path) {
-    final retValuePtr = calloc<COMObject>();
+    final operation = calloc<COMObject>();
     final pathHString = path.toHString();
 
     final hr = ptr.ref.vtable
@@ -38,29 +38,28 @@ class ILauncherStatics5 extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(VTablePointer lpVtbl, IntPtr path,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> operation)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int path,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, pathHString, retValuePtr);
+                    Pointer<COMObject> operation)>()(
+        ptr.ref.lpVtbl, pathHString, operation);
 
     WindowsDeleteString(pathHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<bool>.fromPtr(retValuePtr);
+    final asyncOperation = IAsyncOperation<bool>.fromPtr(operation);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<bool> launchFolderPathWithOptionsAsync(
       String path, FolderLauncherOptions? options) {
-    final retValuePtr = calloc<COMObject>();
+    final operation = calloc<COMObject>();
     final pathHString = path.toHString();
-    final optionsPtr = options == null ? nullptr : options.ptr.ref.lpVtbl;
 
     final hr = ptr.ref.vtable
             .elementAt(7)
@@ -71,27 +70,29 @@ class ILauncherStatics5 extends IInspectable {
                             VTablePointer lpVtbl,
                             IntPtr path,
                             VTablePointer options,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> operation)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int path,
-                    VTablePointer options, Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, pathHString, optionsPtr, retValuePtr);
+                    VTablePointer options, Pointer<COMObject> operation)>()(
+        ptr.ref.lpVtbl,
+        pathHString,
+        options == null ? nullptr : options.ptr.ref.lpVtbl,
+        operation);
 
     WindowsDeleteString(pathHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<bool>.fromPtr(retValuePtr);
+    final asyncOperation = IAsyncOperation<bool>.fromPtr(operation);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<bool> launchFolderPathForUserAsync(User? user, String path) {
-    final retValuePtr = calloc<COMObject>();
-    final userPtr = user == null ? nullptr : user.ptr.ref.lpVtbl;
+    final operation = calloc<COMObject>();
     final pathHString = path.toHString();
 
     final hr =
@@ -104,30 +105,31 @@ class ILauncherStatics5 extends IInspectable {
                                 VTablePointer lpVtbl,
                                 VTablePointer user,
                                 IntPtr path,
-                                Pointer<COMObject> retValuePtr)>>>()
+                                Pointer<COMObject> operation)>>>()
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer user,
-                        int path, Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl, userPtr, pathHString, retValuePtr);
+                        int path, Pointer<COMObject> operation)>()(
+            ptr.ref.lpVtbl,
+            user == null ? nullptr : user.ptr.ref.lpVtbl,
+            pathHString,
+            operation);
 
     WindowsDeleteString(pathHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<bool>.fromPtr(retValuePtr);
+    final asyncOperation = IAsyncOperation<bool>.fromPtr(operation);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<bool> launchFolderPathWithOptionsForUserAsync(
       User? user, String path, FolderLauncherOptions? options) {
-    final retValuePtr = calloc<COMObject>();
-    final userPtr = user == null ? nullptr : user.ptr.ref.lpVtbl;
+    final operation = calloc<COMObject>();
     final pathHString = path.toHString();
-    final optionsPtr = options == null ? nullptr : options.ptr.ref.lpVtbl;
 
     final hr = ptr.ref.vtable
             .elementAt(9)
@@ -139,21 +141,25 @@ class ILauncherStatics5 extends IInspectable {
                             VTablePointer user,
                             IntPtr path,
                             VTablePointer options,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> operation)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer user, int path,
-                    VTablePointer options, Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, userPtr, pathHString, optionsPtr, retValuePtr);
+                    VTablePointer options, Pointer<COMObject> operation)>()(
+        ptr.ref.lpVtbl,
+        user == null ? nullptr : user.ptr.ref.lpVtbl,
+        pathHString,
+        options == null ? nullptr : options.ptr.ref.lpVtbl,
+        operation);
 
     WindowsDeleteString(pathHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<bool>.fromPtr(retValuePtr);
+    final asyncOperation = IAsyncOperation<bool>.fromPtr(operation);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 }

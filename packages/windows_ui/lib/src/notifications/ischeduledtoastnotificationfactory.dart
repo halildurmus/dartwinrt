@@ -32,8 +32,7 @@ class IScheduledToastNotificationFactory extends IInspectable {
 
   ScheduledToastNotification createScheduledToastNotification(
       XmlDocument content, DateTime deliveryTime) {
-    final retValuePtr = calloc<COMObject>();
-    final contentPtr = content.ptr.ref.lpVtbl;
+    final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -44,22 +43,22 @@ class IScheduledToastNotificationFactory extends IInspectable {
                             VTablePointer lpVtbl,
                             VTablePointer content,
                             Int64 deliveryTime,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> value)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer content,
-                    int deliveryTime, Pointer<COMObject> retValuePtr)>()(
+                    int deliveryTime, Pointer<COMObject> value)>()(
         ptr.ref.lpVtbl,
-        contentPtr,
+        content.ptr.ref.lpVtbl,
         deliveryTime.toWinRTDateTime(),
-        retValuePtr);
+        value);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    return ScheduledToastNotification.fromPtr(retValuePtr);
+    return ScheduledToastNotification.fromPtr(value);
   }
 
   ScheduledToastNotification createScheduledToastNotificationRecurring(
@@ -67,8 +66,7 @@ class IScheduledToastNotificationFactory extends IInspectable {
       DateTime deliveryTime,
       Duration snoozeInterval,
       int maximumSnoozeCount) {
-    final retValuePtr = calloc<COMObject>();
-    final contentPtr = content.ptr.ref.lpVtbl;
+    final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(7)
@@ -81,7 +79,7 @@ class IScheduledToastNotificationFactory extends IInspectable {
                             Int64 deliveryTime,
                             Int64 snoozeInterval,
                             Uint32 maximumSnoozeCount,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> value)>>>()
             .value
             .asFunction<
                 int Function(
@@ -90,19 +88,19 @@ class IScheduledToastNotificationFactory extends IInspectable {
                     int deliveryTime,
                     int snoozeInterval,
                     int maximumSnoozeCount,
-                    Pointer<COMObject> retValuePtr)>()(
+                    Pointer<COMObject> value)>()(
         ptr.ref.lpVtbl,
-        contentPtr,
+        content.ptr.ref.lpVtbl,
         deliveryTime.toWinRTDateTime(),
         snoozeInterval.toWinRTDuration(),
         maximumSnoozeCount,
-        retValuePtr);
+        value);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    return ScheduledToastNotification.fromPtr(retValuePtr);
+    return ScheduledToastNotification.fromPtr(value);
   }
 }

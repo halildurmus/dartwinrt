@@ -31,14 +31,14 @@ class ITensorUInt16BitStatics2 extends IInspectable {
 
   TensorUInt16Bit? createFromShapeArrayAndDataArray(
       List<int> shape, List<int> data) {
-    final retValuePtr = calloc<COMObject>();
+    final result = calloc<COMObject>();
     final pShapeArray = calloc<Int64>(shape.length);
     for (var i = 0; i < shape.length; i++) {
-      pShapeArray[i] = shape.elementAt(i);
+      pShapeArray[i] = shape[i];
     }
     final pDataArray = calloc<Uint16>(data.length);
     for (var i = 0; i < data.length; i++) {
-      pDataArray[i] = data.elementAt(i);
+      pDataArray[i] = data[i];
     }
 
     final hr = ptr.ref.vtable
@@ -52,7 +52,7 @@ class ITensorUInt16BitStatics2 extends IInspectable {
                             Pointer<Int64> shape,
                             Uint32 dataSize,
                             Pointer<Uint16> data,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> result)>>>()
             .value
             .asFunction<
                 int Function(
@@ -61,32 +61,31 @@ class ITensorUInt16BitStatics2 extends IInspectable {
                     Pointer<Int64> shape,
                     int dataSize,
                     Pointer<Uint16> data,
-                    Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl,
-        shape.length, pShapeArray, data.length, pDataArray, retValuePtr);
+                    Pointer<COMObject> result)>()(ptr.ref.lpVtbl, shape.length,
+        pShapeArray, data.length, pDataArray, result);
 
     free(pShapeArray);
     free(pDataArray);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(result);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (result.isNull) {
+      free(result);
       return null;
     }
 
-    return TensorUInt16Bit.fromPtr(retValuePtr);
+    return TensorUInt16Bit.fromPtr(result);
   }
 
   TensorUInt16Bit? createFromBuffer(List<int> shape, IBuffer? buffer) {
-    final retValuePtr = calloc<COMObject>();
+    final result = calloc<COMObject>();
     final pShapeArray = calloc<Int64>(shape.length);
     for (var i = 0; i < shape.length; i++) {
-      pShapeArray[i] = shape.elementAt(i);
+      pShapeArray[i] = shape[i];
     }
-    final bufferPtr = buffer == null ? nullptr : buffer.ptr.ref.lpVtbl;
 
     final hr = ptr.ref.vtable
             .elementAt(7)
@@ -98,7 +97,7 @@ class ITensorUInt16BitStatics2 extends IInspectable {
                             Uint32 shapeSize,
                             Pointer<Int64> shape,
                             VTablePointer buffer,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> result)>>>()
             .value
             .asFunction<
                 int Function(
@@ -106,21 +105,21 @@ class ITensorUInt16BitStatics2 extends IInspectable {
                     int shapeSize,
                     Pointer<Int64> shape,
                     VTablePointer buffer,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, shape.length, pShapeArray, bufferPtr, retValuePtr);
+                    Pointer<COMObject> result)>()(ptr.ref.lpVtbl, shape.length,
+        pShapeArray, buffer == null ? nullptr : buffer.ptr.ref.lpVtbl, result);
 
     free(pShapeArray);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(result);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (result.isNull) {
+      free(result);
       return null;
     }
 
-    return TensorUInt16Bit.fromPtr(retValuePtr);
+    return TensorUInt16Bit.fromPtr(result);
   }
 }

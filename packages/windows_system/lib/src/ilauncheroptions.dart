@@ -28,26 +28,26 @@ class ILauncherOptions extends IInspectable {
       ILauncherOptions.fromPtr(interface.toInterface(IID_ILauncherOptions));
 
   bool get treatAsUntrusted {
-    final retValuePtr = calloc<Bool>();
+    final value = calloc<Bool>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Bool> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Bool> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(6)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<Bool> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Bool> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return value.value;
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
@@ -66,26 +66,26 @@ class ILauncherOptions extends IInspectable {
   }
 
   bool get displayApplicationPicker {
-    final retValuePtr = calloc<Bool>();
+    final value = calloc<Bool>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Bool> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Bool> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(8)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<Bool> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Bool> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return value.value;
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
@@ -104,159 +104,152 @@ class ILauncherOptions extends IInspectable {
   }
 
   LauncherUIOptions? get ui {
-    final retValuePtr = calloc<COMObject>();
+    final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-        .elementAt(10)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+            .elementAt(10)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
+        ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (value.isNull) {
+      free(value);
       return null;
     }
 
-    return LauncherUIOptions.fromPtr(retValuePtr);
+    return LauncherUIOptions.fromPtr(value);
   }
 
   String get preferredApplicationPackageFamilyName {
-    final retValuePtr = calloc<HSTRING>();
+    final value = calloc<IntPtr>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(11)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          Pointer<IntPtr> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(11)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.toDartString();
+      return value.toDartString();
     } finally {
-      WindowsDeleteString(retValuePtr.value);
-      free(retValuePtr);
+      WindowsDeleteString(value.value);
+      free(value);
     }
   }
 
   set preferredApplicationPackageFamilyName(String value) {
-    final hString = value.toHString();
+    final valueHString = value.toHString();
 
-    try {
-      final hr =
-          ptr.ref.vtable
-                  .elementAt(12)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(
-                                  VTablePointer lpVtbl, IntPtr value)>>>()
-                  .value
-                  .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-              ptr.ref.lpVtbl, hString);
+    final hr =
+        ptr.ref.vtable
+                .elementAt(12)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                VTablePointer lpVtbl, IntPtr value)>>>()
+                .value
+                .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
+            ptr.ref.lpVtbl, valueHString);
 
-      if (FAILED(hr)) throw WindowsException(hr);
-    } finally {
-      WindowsDeleteString(hString);
-    }
+    WindowsDeleteString(valueHString);
+
+    if (FAILED(hr)) throw WindowsException(hr);
   }
 
   String get preferredApplicationDisplayName {
-    final retValuePtr = calloc<HSTRING>();
+    final value = calloc<IntPtr>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(13)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          Pointer<IntPtr> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(13)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.toDartString();
+      return value.toDartString();
     } finally {
-      WindowsDeleteString(retValuePtr.value);
-      free(retValuePtr);
+      WindowsDeleteString(value.value);
+      free(value);
     }
   }
 
   set preferredApplicationDisplayName(String value) {
-    final hString = value.toHString();
+    final valueHString = value.toHString();
 
-    try {
-      final hr =
-          ptr.ref.vtable
-                  .elementAt(14)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(
-                                  VTablePointer lpVtbl, IntPtr value)>>>()
-                  .value
-                  .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-              ptr.ref.lpVtbl, hString);
+    final hr =
+        ptr.ref.vtable
+                .elementAt(14)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                VTablePointer lpVtbl, IntPtr value)>>>()
+                .value
+                .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
+            ptr.ref.lpVtbl, valueHString);
 
-      if (FAILED(hr)) throw WindowsException(hr);
-    } finally {
-      WindowsDeleteString(hString);
-    }
+    WindowsDeleteString(valueHString);
+
+    if (FAILED(hr)) throw WindowsException(hr);
   }
 
   Uri? get fallbackUri {
-    final retValuePtr = calloc<COMObject>();
+    final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-        .elementAt(15)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+            .elementAt(15)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
+        ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (value.isNull) {
+      free(value);
       return null;
     }
 
-    final winrtUri = retValuePtr.toWinRTUri();
-    return winrtUri.toDartUri();
+    return value.toWinRTUri().toDartUri();
   }
 
   set fallbackUri(Uri? value) {
-    final winrtUri = value?.toWinRTUri();
-
     final hr = ptr.ref.vtable
             .elementAt(16)
             .cast<
@@ -267,55 +260,53 @@ class ILauncherOptions extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer value)>()(
-        ptr.ref.lpVtbl, winrtUri == null ? nullptr : winrtUri.ptr.ref.lpVtbl);
+        ptr.ref.lpVtbl, value?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }
 
   String get contentType {
-    final retValuePtr = calloc<HSTRING>();
+    final value = calloc<IntPtr>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(17)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          Pointer<IntPtr> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(17)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.toDartString();
+      return value.toDartString();
     } finally {
-      WindowsDeleteString(retValuePtr.value);
-      free(retValuePtr);
+      WindowsDeleteString(value.value);
+      free(value);
     }
   }
 
   set contentType(String value) {
-    final hString = value.toHString();
+    final valueHString = value.toHString();
 
-    try {
-      final hr =
-          ptr.ref.vtable
-                  .elementAt(18)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(
-                                  VTablePointer lpVtbl, IntPtr value)>>>()
-                  .value
-                  .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-              ptr.ref.lpVtbl, hString);
+    final hr =
+        ptr.ref.vtable
+                .elementAt(18)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                VTablePointer lpVtbl, IntPtr value)>>>()
+                .value
+                .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
+            ptr.ref.lpVtbl, valueHString);
 
-      if (FAILED(hr)) throw WindowsException(hr);
-    } finally {
-      WindowsDeleteString(hString);
-    }
+    WindowsDeleteString(valueHString);
+
+    if (FAILED(hr)) throw WindowsException(hr);
   }
 }

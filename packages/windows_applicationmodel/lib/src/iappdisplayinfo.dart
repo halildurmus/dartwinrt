@@ -27,57 +27,57 @@ class IAppDisplayInfo extends IInspectable {
       IAppDisplayInfo.fromPtr(interface.toInterface(IID_IAppDisplayInfo));
 
   String get displayName {
-    final retValuePtr = calloc<HSTRING>();
+    final value = calloc<IntPtr>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          Pointer<IntPtr> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(6)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.toDartString();
+      return value.toDartString();
     } finally {
-      WindowsDeleteString(retValuePtr.value);
-      free(retValuePtr);
+      WindowsDeleteString(value.value);
+      free(value);
     }
   }
 
   String get description {
-    final retValuePtr = calloc<HSTRING>();
+    final value = calloc<IntPtr>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          Pointer<IntPtr> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(7)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.toDartString();
+      return value.toDartString();
     } finally {
-      WindowsDeleteString(retValuePtr.value);
-      free(retValuePtr);
+      WindowsDeleteString(value.value);
+      free(value);
     }
   }
 
   RandomAccessStreamReference? getLogo(Size size) {
-    final retValuePtr = calloc<COMObject>();
+    final value = calloc<COMObject>();
     final sizeNativeStructPtr = size.toNative();
 
     final hr = ptr.ref.vtable
@@ -86,25 +86,25 @@ class IAppDisplayInfo extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(VTablePointer lpVtbl, NativeSize size,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> value)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, NativeSize size,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, sizeNativeStructPtr.ref, retValuePtr);
+                    Pointer<COMObject> value)>()(
+        ptr.ref.lpVtbl, sizeNativeStructPtr.ref, value);
 
     free(sizeNativeStructPtr);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (value.isNull) {
+      free(value);
       return null;
     }
 
-    return RandomAccessStreamReference.fromPtr(retValuePtr);
+    return RandomAccessStreamReference.fromPtr(value);
   }
 }

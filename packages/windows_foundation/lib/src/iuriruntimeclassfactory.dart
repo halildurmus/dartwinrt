@@ -30,7 +30,7 @@ class IUriRuntimeClassFactory extends IInspectable {
           interface.toInterface(IID_IUriRuntimeClassFactory));
 
   Uri createUri(String uri) {
-    final retValuePtr = calloc<COMObject>();
+    final instance = calloc<COMObject>();
     final uriHString = uri.toHString();
 
     final hr = ptr.ref.vtable
@@ -39,25 +39,25 @@ class IUriRuntimeClassFactory extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(VTablePointer lpVtbl, IntPtr uri,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> instance)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int uri,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, uriHString, retValuePtr);
+                    Pointer<COMObject> instance)>()(
+        ptr.ref.lpVtbl, uriHString, instance);
 
     WindowsDeleteString(uriHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(instance);
       throw WindowsException(hr);
     }
 
-    return Uri.fromPtr(retValuePtr);
+    return Uri.fromPtr(instance);
   }
 
   Uri createWithRelativeUri(String baseUri, String relativeUri) {
-    final retValuePtr = calloc<COMObject>();
+    final instance = calloc<COMObject>();
     final baseUriHString = baseUri.toHString();
     final relativeUriHString = relativeUri.toHString();
 
@@ -71,21 +71,21 @@ class IUriRuntimeClassFactory extends IInspectable {
                                 VTablePointer lpVtbl,
                                 IntPtr baseUri,
                                 IntPtr relativeUri,
-                                Pointer<COMObject> retValuePtr)>>>()
+                                Pointer<COMObject> instance)>>>()
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, int baseUri,
-                        int relativeUri, Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl, baseUriHString, relativeUriHString, retValuePtr);
+                        int relativeUri, Pointer<COMObject> instance)>()(
+            ptr.ref.lpVtbl, baseUriHString, relativeUriHString, instance);
 
     WindowsDeleteString(baseUriHString);
     WindowsDeleteString(relativeUriHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(instance);
       throw WindowsException(hr);
     }
 
-    return Uri.fromPtr(retValuePtr);
+    return Uri.fromPtr(instance);
   }
 }

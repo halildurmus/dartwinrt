@@ -28,7 +28,7 @@ class IJsonValueStatics extends IInspectable {
       IJsonValueStatics.fromPtr(interface.toInterface(IID_IJsonValueStatics));
 
   JsonValue? parse(String input) {
-    final retValuePtr = calloc<COMObject>();
+    final jsonValue = calloc<COMObject>();
     final inputHString = input.toHString();
 
     final hr = ptr.ref.vtable
@@ -37,30 +37,30 @@ class IJsonValueStatics extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(VTablePointer lpVtbl, IntPtr input,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> jsonValue)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int input,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, inputHString, retValuePtr);
+                    Pointer<COMObject> jsonValue)>()(
+        ptr.ref.lpVtbl, inputHString, jsonValue);
 
     WindowsDeleteString(inputHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(jsonValue);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (jsonValue.isNull) {
+      free(jsonValue);
       return null;
     }
 
-    return JsonValue.fromPtr(retValuePtr);
+    return JsonValue.fromPtr(jsonValue);
   }
 
   bool tryParse(String input, JsonValue result) {
-    final retValuePtr = calloc<Bool>();
+    final succeeded = calloc<Bool>();
 
     try {
       final inputHString = input.toHString();
@@ -74,25 +74,25 @@ class IJsonValueStatics extends IInspectable {
                               VTablePointer lpVtbl,
                               IntPtr input,
                               Pointer<COMObject> result,
-                              Pointer<Bool> retValuePtr)>>>()
+                              Pointer<Bool> succeeded)>>>()
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, int input,
-                      Pointer<COMObject> result, Pointer<Bool> retValuePtr)>()(
-          ptr.ref.lpVtbl, inputHString, result.ptr, retValuePtr);
+                      Pointer<COMObject> result, Pointer<Bool> succeeded)>()(
+          ptr.ref.lpVtbl, inputHString, result.ptr, succeeded);
 
       WindowsDeleteString(inputHString);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return succeeded.value;
     } finally {
-      free(retValuePtr);
+      free(succeeded);
     }
   }
 
   JsonValue? createBooleanValue(bool input) {
-    final retValuePtr = calloc<COMObject>();
+    final jsonValue = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(8)
@@ -100,28 +100,28 @@ class IJsonValueStatics extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(VTablePointer lpVtbl, Bool input,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> jsonValue)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, bool input,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, input, retValuePtr);
+                    Pointer<COMObject> jsonValue)>()(
+        ptr.ref.lpVtbl, input, jsonValue);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(jsonValue);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (jsonValue.isNull) {
+      free(jsonValue);
       return null;
     }
 
-    return JsonValue.fromPtr(retValuePtr);
+    return JsonValue.fromPtr(jsonValue);
   }
 
   JsonValue? createNumberValue(double input) {
-    final retValuePtr = calloc<COMObject>();
+    final jsonValue = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(9)
@@ -129,28 +129,28 @@ class IJsonValueStatics extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(VTablePointer lpVtbl, Double input,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> jsonValue)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, double input,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, input, retValuePtr);
+                    Pointer<COMObject> jsonValue)>()(
+        ptr.ref.lpVtbl, input, jsonValue);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(jsonValue);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (jsonValue.isNull) {
+      free(jsonValue);
       return null;
     }
 
-    return JsonValue.fromPtr(retValuePtr);
+    return JsonValue.fromPtr(jsonValue);
   }
 
   JsonValue? createStringValue(String input) {
-    final retValuePtr = calloc<COMObject>();
+    final jsonValue = calloc<COMObject>();
     final inputHString = input.toHString();
 
     final hr = ptr.ref.vtable
@@ -159,25 +159,25 @@ class IJsonValueStatics extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(VTablePointer lpVtbl, IntPtr input,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> jsonValue)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int input,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, inputHString, retValuePtr);
+                    Pointer<COMObject> jsonValue)>()(
+        ptr.ref.lpVtbl, inputHString, jsonValue);
 
     WindowsDeleteString(inputHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(jsonValue);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (jsonValue.isNull) {
+      free(jsonValue);
       return null;
     }
 
-    return JsonValue.fromPtr(retValuePtr);
+    return JsonValue.fromPtr(jsonValue);
   }
 }

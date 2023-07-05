@@ -35,31 +35,27 @@ class IStorageFileQueryResult2 extends IInspectable
 
   IMap<String, IVectorView<TextSegment>> getMatchingPropertiesWithRanges(
       StorageFile? file) {
-    final retValuePtr = calloc<COMObject>();
-    final filePtr = file == null ? nullptr : file.ptr.ref.lpVtbl;
+    final result = calloc<COMObject>();
 
-    final hr =
-        ptr.ref.vtable
-                .elementAt(6)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                VTablePointer file,
-                                Pointer<COMObject> retValuePtr)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, VTablePointer file,
-                        Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl, filePtr, retValuePtr);
+    final hr = ptr.ref.vtable
+            .elementAt(6)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(VTablePointer lpVtbl, VTablePointer file,
+                            Pointer<COMObject> result)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, VTablePointer file,
+                    Pointer<COMObject> result)>()(
+        ptr.ref.lpVtbl, file == null ? nullptr : file.ptr.ref.lpVtbl, result);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(result);
       throw WindowsException(hr);
     }
 
-    return IMap.fromPtr(retValuePtr,
+    return IMap.fromPtr(result,
         iterableIid: '{f819a276-b3f5-54d4-b8fd-c9adb7f700e3}',
         creator: (ptr) => IVectorView.fromPtr(ptr,
             iterableIid: '{5498f4f3-cee4-5b72-9729-815c4ad7b9dc}'));

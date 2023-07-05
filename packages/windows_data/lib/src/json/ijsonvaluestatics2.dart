@@ -28,30 +28,30 @@ class IJsonValueStatics2 extends IInspectable {
       IJsonValueStatics2.fromPtr(interface.toInterface(IID_IJsonValueStatics2));
 
   JsonValue? createNullValue() {
-    final retValuePtr = calloc<COMObject>();
+    final jsonValue = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
         .elementAt(6)
         .cast<
             Pointer<
                 NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
+                    HRESULT Function(
+                        VTablePointer lpVtbl, Pointer<COMObject> jsonValue)>>>()
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                Pointer<COMObject> jsonValue)>()(ptr.ref.lpVtbl, jsonValue);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(jsonValue);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (jsonValue.isNull) {
+      free(jsonValue);
       return null;
     }
 
-    return JsonValue.fromPtr(retValuePtr);
+    return JsonValue.fromPtr(jsonValue);
   }
 }

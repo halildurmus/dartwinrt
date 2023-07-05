@@ -46,57 +46,57 @@ class IStorageFile extends IInspectable
       IStorageFile.fromPtr(interface.toInterface(IID_IStorageFile));
 
   String get fileType {
-    final retValuePtr = calloc<HSTRING>();
+    final value = calloc<IntPtr>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          Pointer<IntPtr> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(6)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.toDartString();
+      return value.toDartString();
     } finally {
-      WindowsDeleteString(retValuePtr.value);
-      free(retValuePtr);
+      WindowsDeleteString(value.value);
+      free(value);
     }
   }
 
   String get contentType {
-    final retValuePtr = calloc<HSTRING>();
+    final value = calloc<IntPtr>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          Pointer<IntPtr> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(7)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.toDartString();
+      return value.toDartString();
     } finally {
-      WindowsDeleteString(retValuePtr.value);
-      free(retValuePtr);
+      WindowsDeleteString(value.value);
+      free(value);
     }
   }
 
   Future<IRandomAccessStream?> openAsync(FileAccessMode accessMode) {
-    final retValuePtr = calloc<COMObject>();
+    final operation = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(8)
@@ -104,55 +104,53 @@ class IStorageFile extends IInspectable
                 Pointer<
                     NativeFunction<
                         HRESULT Function(VTablePointer lpVtbl, Int32 accessMode,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> operation)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int accessMode,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, accessMode.value, retValuePtr);
+                    Pointer<COMObject> operation)>()(
+        ptr.ref.lpVtbl, accessMode.value, operation);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<IRandomAccessStream?>.fromPtr(
-        retValuePtr,
+        operation,
         creator: IRandomAccessStream.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<StorageStreamTransaction?> openTransactedWriteAsync() {
-    final retValuePtr = calloc<COMObject>();
+    final operation = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
         .elementAt(9)
         .cast<
             Pointer<
                 NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
+                    HRESULT Function(
+                        VTablePointer lpVtbl, Pointer<COMObject> operation)>>>()
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                Pointer<COMObject> operation)>()(ptr.ref.lpVtbl, operation);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<StorageStreamTransaction?>.fromPtr(
-        retValuePtr,
+        operation,
         creator: StorageStreamTransaction.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<StorageFile?> copyOverloadDefaultNameAndOptions(
       IStorageFolder? destinationFolder) {
-    final retValuePtr = calloc<COMObject>();
-    final destinationFolderPtr =
-        destinationFolder == null ? nullptr : destinationFolder.ptr.ref.lpVtbl;
+    final operation = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(10)
@@ -162,30 +160,30 @@ class IStorageFile extends IInspectable
                         HRESULT Function(
                             VTablePointer lpVtbl,
                             VTablePointer destinationFolder,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> operation)>>>()
             .value
             .asFunction<
                 int Function(
                     VTablePointer lpVtbl,
                     VTablePointer destinationFolder,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, destinationFolderPtr, retValuePtr);
+                    Pointer<COMObject> operation)>()(
+        ptr.ref.lpVtbl,
+        destinationFolder == null ? nullptr : destinationFolder.ptr.ref.lpVtbl,
+        operation);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<StorageFile?>.fromPtr(retValuePtr,
+    final asyncOperation = IAsyncOperation<StorageFile?>.fromPtr(operation,
         creator: StorageFile.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<StorageFile?> copyOverloadDefaultOptions(
       IStorageFolder? destinationFolder, String desiredNewName) {
-    final retValuePtr = calloc<COMObject>();
-    final destinationFolderPtr =
-        destinationFolder == null ? nullptr : destinationFolder.ptr.ref.lpVtbl;
+    final operation = calloc<COMObject>();
     final desiredNewNameHString = desiredNewName.toHString();
 
     final hr = ptr.ref.vtable
@@ -197,33 +195,34 @@ class IStorageFile extends IInspectable
                             VTablePointer lpVtbl,
                             VTablePointer destinationFolder,
                             IntPtr desiredNewName,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> operation)>>>()
             .value
             .asFunction<
                 int Function(
                     VTablePointer lpVtbl,
                     VTablePointer destinationFolder,
                     int desiredNewName,
-                    Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl,
-        destinationFolderPtr, desiredNewNameHString, retValuePtr);
+                    Pointer<COMObject> operation)>()(
+        ptr.ref.lpVtbl,
+        destinationFolder == null ? nullptr : destinationFolder.ptr.ref.lpVtbl,
+        desiredNewNameHString,
+        operation);
 
     WindowsDeleteString(desiredNewNameHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<StorageFile?>.fromPtr(retValuePtr,
+    final asyncOperation = IAsyncOperation<StorageFile?>.fromPtr(operation,
         creator: StorageFile.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<StorageFile?> copyOverload(IStorageFolder? destinationFolder,
       String desiredNewName, NameCollisionOption option) {
-    final retValuePtr = calloc<COMObject>();
-    final destinationFolderPtr =
-        destinationFolder == null ? nullptr : destinationFolder.ptr.ref.lpVtbl;
+    final operation = calloc<COMObject>();
     final desiredNewNameHString = desiredNewName.toHString();
 
     final hr = ptr.ref.vtable
@@ -236,7 +235,7 @@ class IStorageFile extends IInspectable
                             VTablePointer destinationFolder,
                             IntPtr desiredNewName,
                             Int32 option,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> operation)>>>()
             .value
             .asFunction<
                 int Function(
@@ -244,25 +243,27 @@ class IStorageFile extends IInspectable
                     VTablePointer destinationFolder,
                     int desiredNewName,
                     int option,
-                    Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl,
-        destinationFolderPtr, desiredNewNameHString, option.value, retValuePtr);
+                    Pointer<COMObject> operation)>()(
+        ptr.ref.lpVtbl,
+        destinationFolder == null ? nullptr : destinationFolder.ptr.ref.lpVtbl,
+        desiredNewNameHString,
+        option.value,
+        operation);
 
     WindowsDeleteString(desiredNewNameHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<StorageFile?>.fromPtr(retValuePtr,
+    final asyncOperation = IAsyncOperation<StorageFile?>.fromPtr(operation,
         creator: StorageFile.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<void> copyAndReplaceAsync(IStorageFile? fileToReplace) {
-    final retValuePtr = calloc<COMObject>();
-    final fileToReplacePtr =
-        fileToReplace == null ? nullptr : fileToReplace.ptr.ref.lpVtbl;
+    final operation = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(13)
@@ -272,26 +273,26 @@ class IStorageFile extends IInspectable
                         HRESULT Function(
                             VTablePointer lpVtbl,
                             VTablePointer fileToReplace,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> operation)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer fileToReplace,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, fileToReplacePtr, retValuePtr);
+                    Pointer<COMObject> operation)>()(
+        ptr.ref.lpVtbl,
+        fileToReplace == null ? nullptr : fileToReplace.ptr.ref.lpVtbl,
+        operation);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
-    return IAsyncAction.fromPtr(retValuePtr).toFuture();
+    return IAsyncAction.fromPtr(operation).toFuture();
   }
 
   Future<void> moveOverloadDefaultNameAndOptions(
       IStorageFolder? destinationFolder) {
-    final retValuePtr = calloc<COMObject>();
-    final destinationFolderPtr =
-        destinationFolder == null ? nullptr : destinationFolder.ptr.ref.lpVtbl;
+    final operation = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(14)
@@ -301,28 +302,28 @@ class IStorageFile extends IInspectable
                         HRESULT Function(
                             VTablePointer lpVtbl,
                             VTablePointer destinationFolder,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> operation)>>>()
             .value
             .asFunction<
                 int Function(
                     VTablePointer lpVtbl,
                     VTablePointer destinationFolder,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, destinationFolderPtr, retValuePtr);
+                    Pointer<COMObject> operation)>()(
+        ptr.ref.lpVtbl,
+        destinationFolder == null ? nullptr : destinationFolder.ptr.ref.lpVtbl,
+        operation);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
-    return IAsyncAction.fromPtr(retValuePtr).toFuture();
+    return IAsyncAction.fromPtr(operation).toFuture();
   }
 
   Future<void> moveOverloadDefaultOptions(
       IStorageFolder? destinationFolder, String desiredNewName) {
-    final retValuePtr = calloc<COMObject>();
-    final destinationFolderPtr =
-        destinationFolder == null ? nullptr : destinationFolder.ptr.ref.lpVtbl;
+    final operation = calloc<COMObject>();
     final desiredNewNameHString = desiredNewName.toHString();
 
     final hr = ptr.ref.vtable
@@ -334,31 +335,32 @@ class IStorageFile extends IInspectable
                             VTablePointer lpVtbl,
                             VTablePointer destinationFolder,
                             IntPtr desiredNewName,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> operation)>>>()
             .value
             .asFunction<
                 int Function(
                     VTablePointer lpVtbl,
                     VTablePointer destinationFolder,
                     int desiredNewName,
-                    Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl,
-        destinationFolderPtr, desiredNewNameHString, retValuePtr);
+                    Pointer<COMObject> operation)>()(
+        ptr.ref.lpVtbl,
+        destinationFolder == null ? nullptr : destinationFolder.ptr.ref.lpVtbl,
+        desiredNewNameHString,
+        operation);
 
     WindowsDeleteString(desiredNewNameHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
-    return IAsyncAction.fromPtr(retValuePtr).toFuture();
+    return IAsyncAction.fromPtr(operation).toFuture();
   }
 
   Future<void> moveOverload(IStorageFolder? destinationFolder,
       String desiredNewName, NameCollisionOption option) {
-    final retValuePtr = calloc<COMObject>();
-    final destinationFolderPtr =
-        destinationFolder == null ? nullptr : destinationFolder.ptr.ref.lpVtbl;
+    final operation = calloc<COMObject>();
     final desiredNewNameHString = desiredNewName.toHString();
 
     final hr = ptr.ref.vtable
@@ -371,7 +373,7 @@ class IStorageFile extends IInspectable
                             VTablePointer destinationFolder,
                             IntPtr desiredNewName,
                             Int32 option,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> operation)>>>()
             .value
             .asFunction<
                 int Function(
@@ -379,23 +381,25 @@ class IStorageFile extends IInspectable
                     VTablePointer destinationFolder,
                     int desiredNewName,
                     int option,
-                    Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl,
-        destinationFolderPtr, desiredNewNameHString, option.value, retValuePtr);
+                    Pointer<COMObject> operation)>()(
+        ptr.ref.lpVtbl,
+        destinationFolder == null ? nullptr : destinationFolder.ptr.ref.lpVtbl,
+        desiredNewNameHString,
+        option.value,
+        operation);
 
     WindowsDeleteString(desiredNewNameHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
-    return IAsyncAction.fromPtr(retValuePtr).toFuture();
+    return IAsyncAction.fromPtr(operation).toFuture();
   }
 
   Future<void> moveAndReplaceAsync(IStorageFile? fileToReplace) {
-    final retValuePtr = calloc<COMObject>();
-    final fileToReplacePtr =
-        fileToReplace == null ? nullptr : fileToReplace.ptr.ref.lpVtbl;
+    final operation = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(17)
@@ -405,19 +409,21 @@ class IStorageFile extends IInspectable
                         HRESULT Function(
                             VTablePointer lpVtbl,
                             VTablePointer fileToReplace,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> operation)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer fileToReplace,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, fileToReplacePtr, retValuePtr);
+                    Pointer<COMObject> operation)>()(
+        ptr.ref.lpVtbl,
+        fileToReplace == null ? nullptr : fileToReplace.ptr.ref.lpVtbl,
+        operation);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
-    return IAsyncAction.fromPtr(retValuePtr).toFuture();
+    return IAsyncAction.fromPtr(operation).toFuture();
   }
 
   late final _iStorageItem = IStorageItem.from(this);

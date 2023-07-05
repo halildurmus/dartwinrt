@@ -33,9 +33,6 @@ class ICoreAutomationRemoteOperation2 extends IInspectable {
   void importConnectionBoundObject(AutomationRemoteOperationOperandId operandId,
       AutomationConnectionBoundObject? connectionBoundObject) {
     final operandIdNativeStructPtr = operandId.toNative();
-    final connectionBoundObjectPtr = connectionBoundObject == null
-        ? nullptr
-        : connectionBoundObject.ptr.ref.lpVtbl;
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -52,7 +49,11 @@ class ICoreAutomationRemoteOperation2 extends IInspectable {
                     VTablePointer lpVtbl,
                     NativeAutomationRemoteOperationOperandId operandId,
                     VTablePointer connectionBoundObject)>()(
-        ptr.ref.lpVtbl, operandIdNativeStructPtr.ref, connectionBoundObjectPtr);
+        ptr.ref.lpVtbl,
+        operandIdNativeStructPtr.ref,
+        connectionBoundObject == null
+            ? nullptr
+            : connectionBoundObject.ptr.ref.lpVtbl);
 
     free(operandIdNativeStructPtr);
 

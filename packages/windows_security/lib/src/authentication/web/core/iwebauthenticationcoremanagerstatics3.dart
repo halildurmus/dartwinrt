@@ -37,14 +37,7 @@ class IWebAuthenticationCoreManagerStatics3 extends IInspectable
 
   WebAccountMonitor? createWebAccountMonitor(
       IIterable<WebAccount?>? webAccounts) {
-    final retValuePtr = calloc<COMObject>();
-    final webAccountsPtr = webAccounts == null
-        ? nullptr
-        : IInspectable(webAccounts
-                .toInterface('{cb15d439-a910-542a-89ed-7cfe67848a83}'))
-            .ptr
-            .ref
-            .lpVtbl;
+    final result = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -54,24 +47,32 @@ class IWebAuthenticationCoreManagerStatics3 extends IInspectable
                         HRESULT Function(
                             VTablePointer lpVtbl,
                             VTablePointer webAccounts,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> result)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer webAccounts,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, webAccountsPtr, retValuePtr);
+                    Pointer<COMObject> result)>()(
+        ptr.ref.lpVtbl,
+        webAccounts == null
+            ? nullptr
+            : IInspectable(webAccounts
+                    .toInterface('{cb15d439-a910-542a-89ed-7cfe67848a83}'))
+                .ptr
+                .ref
+                .lpVtbl,
+        result);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(result);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (result.isNull) {
+      free(result);
       return null;
     }
 
-    return WebAccountMonitor.fromPtr(retValuePtr);
+    return WebAccountMonitor.fromPtr(result);
   }
 
   late final _iWebAuthenticationCoreManagerStatics =

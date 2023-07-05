@@ -33,490 +33,488 @@ class IPropertyValue extends IInspectable {
       IPropertyValue.fromPtr(interface.toInterface(IID_IPropertyValue));
 
   PropertyType get type {
-    final retValuePtr = calloc<Int32>();
+    final value = calloc<Int32>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Int32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(6)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<Int32> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return PropertyType.from(retValuePtr.value);
+      return PropertyType.from(value.value);
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
   bool get isNumericScalar {
-    final retValuePtr = calloc<Bool>();
+    final value = calloc<Bool>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Bool> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Bool> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(7)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<Bool> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Bool> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return value.value;
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
   int getUInt8() {
-    final retValuePtr = calloc<Uint8>();
+    final value = calloc<Uint8>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Uint8> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Uint8> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(8)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<Uint8> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Uint8> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return value.value;
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
   int getInt16() {
-    final retValuePtr = calloc<Int16>();
+    final value = calloc<Int16>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(9)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int16> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Int16> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(9)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<Int16> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Int16> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return value.value;
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
   int getUInt16() {
-    final retValuePtr = calloc<Uint16>();
+    final value = calloc<Uint16>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(10)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          Pointer<Uint16> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Uint16> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(10)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<Uint16> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Uint16> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return value.value;
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
   int getInt32() {
-    final retValuePtr = calloc<Int32>();
+    final value = calloc<Int32>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(11)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Int32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(11)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<Int32> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return value.value;
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
   int getUInt32() {
-    final retValuePtr = calloc<Uint32>();
+    final value = calloc<Uint32>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(12)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          Pointer<Uint32> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Uint32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(12)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<Uint32> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return value.value;
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
   int getInt64() {
-    final retValuePtr = calloc<Int64>();
+    final value = calloc<Int64>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(13)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int64> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Int64> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(13)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<Int64> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Int64> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return value.value;
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
   int getUInt64() {
-    final retValuePtr = calloc<Uint64>();
+    final value = calloc<Uint64>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(14)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          Pointer<Uint64> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Uint64> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(14)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<Uint64> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Uint64> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return value.value;
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
   double getSingle() {
-    final retValuePtr = calloc<Float>();
+    final value = calloc<Float>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(15)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Float> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Float> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(15)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<Float> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Float> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return value.value;
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
   double getDouble() {
-    final retValuePtr = calloc<Double>();
+    final value = calloc<Double>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(16)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          Pointer<Double> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Double> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(16)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<Double> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Double> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return value.value;
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
   int getChar16() {
-    final retValuePtr = calloc<Uint16>();
+    final value = calloc<Uint16>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(17)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          Pointer<Uint16> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Uint16> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(17)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<Uint16> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Uint16> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return value.value;
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
   bool getBoolean() {
-    final retValuePtr = calloc<Bool>();
+    final value = calloc<Bool>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(18)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Bool> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Bool> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(18)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<Bool> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Bool> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return value.value;
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
   String getString() {
-    final retValuePtr = calloc<HSTRING>();
+    final value = calloc<IntPtr>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(19)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          Pointer<IntPtr> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(19)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.toDartString();
+      return value.toDartString();
     } finally {
-      WindowsDeleteString(retValuePtr.value);
-      free(retValuePtr);
+      WindowsDeleteString(value.value);
+      free(value);
     }
   }
 
   Guid getGuid() {
-    final retValuePtr = calloc<GUID>();
+    final value = calloc<GUID>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(20)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<GUID> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<GUID> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(20)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<GUID> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<GUID> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.toDartGuid();
+      return value.toDartGuid();
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
   DateTime getDateTime() {
-    final retValuePtr = calloc<Int64>();
+    final value = calloc<Int64>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(21)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int64> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Int64> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(21)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<Int64> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Int64> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.toDartDateTime();
+      return value.toDartDateTime();
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
   Duration getTimeSpan() {
-    final retValuePtr = calloc<Int64>();
+    final value = calloc<Int64>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(22)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int64> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Int64> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(22)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<Int64> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Int64> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.toDartDuration();
+      return value.toDartDuration();
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
   Point getPoint() {
-    final retValuePtr = calloc<NativePoint>();
+    final value = calloc<NativePoint>();
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(23)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl,
-                              Pointer<NativePoint> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl,
-                      Pointer<NativePoint> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          .elementAt(23)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<NativePoint> value)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<NativePoint> value)>()(ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.toDart();
+      return value.toDart();
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
   Size getSize() {
-    final retValuePtr = calloc<NativeSize>();
+    final value = calloc<NativeSize>();
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(24)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl,
-                              Pointer<NativeSize> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      VTablePointer lpVtbl, Pointer<NativeSize> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          .elementAt(24)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<NativeSize> value)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<NativeSize> value)>()(ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.toDart();
+      return value.toDart();
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
   Rect getRect() {
-    final retValuePtr = calloc<NativeRect>();
+    final value = calloc<NativeRect>();
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(25)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl,
-                              Pointer<NativeRect> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      VTablePointer lpVtbl, Pointer<NativeRect> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          .elementAt(25)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<NativeRect> value)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<NativeRect> value)>()(ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.toDart();
+      return value.toDart();
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
   void getUInt8Array(List<int> value) {
+    final valueSize = calloc<Pointer<Uint32>>();
     final pValueSize = calloc<Uint32>();
     final pValueArray = calloc<Pointer<Uint8>>();
 
@@ -535,6 +533,7 @@ class IPropertyValue extends IInspectable {
                     Pointer<Pointer<Uint8>> value)>()(
         ptr.ref.lpVtbl, pValueSize, pValueArray);
 
+    free(valueSize);
     if (pValueSize.value > 0) {
       value.addAll(pValueArray.value.toList(length: pValueSize.value));
     }
@@ -545,6 +544,7 @@ class IPropertyValue extends IInspectable {
   }
 
   void getInt16Array(List<int> value) {
+    final valueSize = calloc<Pointer<Uint32>>();
     final pValueSize = calloc<Uint32>();
     final pValueArray = calloc<Pointer<Int16>>();
 
@@ -563,6 +563,7 @@ class IPropertyValue extends IInspectable {
                     Pointer<Pointer<Int16>> value)>()(
         ptr.ref.lpVtbl, pValueSize, pValueArray);
 
+    free(valueSize);
     if (pValueSize.value > 0) {
       value.addAll(pValueArray.value.toList(length: pValueSize.value));
     }
@@ -573,6 +574,7 @@ class IPropertyValue extends IInspectable {
   }
 
   void getUInt16Array(List<int> value) {
+    final valueSize = calloc<Pointer<Uint32>>();
     final pValueSize = calloc<Uint32>();
     final pValueArray = calloc<Pointer<Uint16>>();
 
@@ -591,6 +593,7 @@ class IPropertyValue extends IInspectable {
                     Pointer<Pointer<Uint16>> value)>()(
         ptr.ref.lpVtbl, pValueSize, pValueArray);
 
+    free(valueSize);
     if (pValueSize.value > 0) {
       value.addAll(pValueArray.value.toList(length: pValueSize.value));
     }
@@ -601,6 +604,7 @@ class IPropertyValue extends IInspectable {
   }
 
   void getInt32Array(List<int> value) {
+    final valueSize = calloc<Pointer<Uint32>>();
     final pValueSize = calloc<Uint32>();
     final pValueArray = calloc<Pointer<Int32>>();
 
@@ -619,6 +623,7 @@ class IPropertyValue extends IInspectable {
                     Pointer<Pointer<Int32>> value)>()(
         ptr.ref.lpVtbl, pValueSize, pValueArray);
 
+    free(valueSize);
     if (pValueSize.value > 0) {
       value.addAll(pValueArray.value.toList(length: pValueSize.value));
     }
@@ -629,6 +634,7 @@ class IPropertyValue extends IInspectable {
   }
 
   void getUInt32Array(List<int> value) {
+    final valueSize = calloc<Pointer<Uint32>>();
     final pValueSize = calloc<Uint32>();
     final pValueArray = calloc<Pointer<Uint32>>();
 
@@ -647,6 +653,7 @@ class IPropertyValue extends IInspectable {
                     Pointer<Pointer<Uint32>> value)>()(
         ptr.ref.lpVtbl, pValueSize, pValueArray);
 
+    free(valueSize);
     if (pValueSize.value > 0) {
       value.addAll(pValueArray.value.toList(length: pValueSize.value));
     }
@@ -657,6 +664,7 @@ class IPropertyValue extends IInspectable {
   }
 
   void getInt64Array(List<int> value) {
+    final valueSize = calloc<Pointer<Uint32>>();
     final pValueSize = calloc<Uint32>();
     final pValueArray = calloc<Pointer<Int64>>();
 
@@ -675,6 +683,7 @@ class IPropertyValue extends IInspectable {
                     Pointer<Pointer<Int64>> value)>()(
         ptr.ref.lpVtbl, pValueSize, pValueArray);
 
+    free(valueSize);
     if (pValueSize.value > 0) {
       value.addAll(pValueArray.value.toList(length: pValueSize.value));
     }
@@ -685,6 +694,7 @@ class IPropertyValue extends IInspectable {
   }
 
   void getUInt64Array(List<int> value) {
+    final valueSize = calloc<Pointer<Uint32>>();
     final pValueSize = calloc<Uint32>();
     final pValueArray = calloc<Pointer<Uint64>>();
 
@@ -703,6 +713,7 @@ class IPropertyValue extends IInspectable {
                     Pointer<Pointer<Uint64>> value)>()(
         ptr.ref.lpVtbl, pValueSize, pValueArray);
 
+    free(valueSize);
     if (pValueSize.value > 0) {
       value.addAll(pValueArray.value.toList(length: pValueSize.value));
     }
@@ -713,6 +724,7 @@ class IPropertyValue extends IInspectable {
   }
 
   void getSingleArray(List<double> value) {
+    final valueSize = calloc<Pointer<Uint32>>();
     final pValueSize = calloc<Uint32>();
     final pValueArray = calloc<Pointer<Float>>();
 
@@ -731,6 +743,7 @@ class IPropertyValue extends IInspectable {
                     Pointer<Pointer<Float>> value)>()(
         ptr.ref.lpVtbl, pValueSize, pValueArray);
 
+    free(valueSize);
     if (pValueSize.value > 0) {
       value.addAll(pValueArray.value.toList(length: pValueSize.value));
     }
@@ -741,6 +754,7 @@ class IPropertyValue extends IInspectable {
   }
 
   void getDoubleArray(List<double> value) {
+    final valueSize = calloc<Pointer<Uint32>>();
     final pValueSize = calloc<Uint32>();
     final pValueArray = calloc<Pointer<Double>>();
 
@@ -759,6 +773,7 @@ class IPropertyValue extends IInspectable {
                     Pointer<Pointer<Double>> value)>()(
         ptr.ref.lpVtbl, pValueSize, pValueArray);
 
+    free(valueSize);
     if (pValueSize.value > 0) {
       value.addAll(pValueArray.value.toList(length: pValueSize.value));
     }
@@ -769,6 +784,7 @@ class IPropertyValue extends IInspectable {
   }
 
   void getChar16Array(List<int> value) {
+    final valueSize = calloc<Pointer<Uint32>>();
     final pValueSize = calloc<Uint32>();
     final pValueArray = calloc<Pointer<Uint16>>();
 
@@ -787,6 +803,7 @@ class IPropertyValue extends IInspectable {
                     Pointer<Pointer<Uint16>> value)>()(
         ptr.ref.lpVtbl, pValueSize, pValueArray);
 
+    free(valueSize);
     if (pValueSize.value > 0) {
       value.addAll(pValueArray.value.toList(length: pValueSize.value));
     }
@@ -797,6 +814,7 @@ class IPropertyValue extends IInspectable {
   }
 
   void getBooleanArray(List<bool> value) {
+    final valueSize = calloc<Pointer<Uint32>>();
     final pValueSize = calloc<Uint32>();
     final pValueArray = calloc<Pointer<Bool>>();
 
@@ -815,6 +833,7 @@ class IPropertyValue extends IInspectable {
                     Pointer<Pointer<Bool>> value)>()(
         ptr.ref.lpVtbl, pValueSize, pValueArray);
 
+    free(valueSize);
     if (pValueSize.value > 0) {
       value.addAll(pValueArray.value.toList(length: pValueSize.value));
     }
@@ -825,6 +844,7 @@ class IPropertyValue extends IInspectable {
   }
 
   void getStringArray(List<String> value) {
+    final valueSize = calloc<Pointer<Uint32>>();
     final pValueSize = calloc<Uint32>();
     final pValueArray = calloc<Pointer<IntPtr>>();
 
@@ -843,6 +863,7 @@ class IPropertyValue extends IInspectable {
                     Pointer<Pointer<IntPtr>> value)>()(
         ptr.ref.lpVtbl, pValueSize, pValueArray);
 
+    free(valueSize);
     if (pValueSize.value > 0) {
       value.addAll(pValueArray.value.toList(length: pValueSize.value));
     }
@@ -853,6 +874,7 @@ class IPropertyValue extends IInspectable {
   }
 
   void getInspectableArray(List<Object?> value) {
+    final valueSize = calloc<Pointer<Uint32>>();
     final pValueSize = calloc<Uint32>();
     final pValueArray = calloc<Pointer<COMObject>>();
 
@@ -871,6 +893,7 @@ class IPropertyValue extends IInspectable {
                     Pointer<Pointer<COMObject>> value)>()(
         ptr.ref.lpVtbl, pValueSize, pValueArray);
 
+    free(valueSize);
     if (pValueSize.value > 0) {
       value.addAll(pValueArray.value.toObjectList(length: pValueSize.value));
     }
@@ -881,6 +904,7 @@ class IPropertyValue extends IInspectable {
   }
 
   void getGuidArray(List<Guid> value) {
+    final valueSize = calloc<Pointer<Uint32>>();
     final pValueSize = calloc<Uint32>();
     final pValueArray = calloc<Pointer<GUID>>();
 
@@ -899,6 +923,7 @@ class IPropertyValue extends IInspectable {
                     Pointer<Pointer<GUID>> value)>()(
         ptr.ref.lpVtbl, pValueSize, pValueArray);
 
+    free(valueSize);
     if (pValueSize.value > 0) {
       value.addAll(pValueArray.value.toList(length: pValueSize.value));
     }
@@ -909,6 +934,7 @@ class IPropertyValue extends IInspectable {
   }
 
   void getDateTimeArray(List<DateTime> value) {
+    final valueSize = calloc<Pointer<Uint32>>();
     final pValueSize = calloc<Uint32>();
     final pValueArray = calloc<Pointer<Int64>>();
 
@@ -927,10 +953,12 @@ class IPropertyValue extends IInspectable {
                     Pointer<Pointer<Int64>> value)>()(
         ptr.ref.lpVtbl, pValueSize, pValueArray);
 
+    free(valueSize);
     if (pValueSize.value > 0) {
       value.addAll(pValueArray.value
           .toList(length: pValueSize.value)
-          .map((value) => value.toDartDateTime()));
+          .map((value) => value.toDartDateTime())
+          .toList());
     }
     free(pValueSize);
     free(pValueArray);
@@ -939,6 +967,7 @@ class IPropertyValue extends IInspectable {
   }
 
   void getTimeSpanArray(List<Duration> value) {
+    final valueSize = calloc<Pointer<Uint32>>();
     final pValueSize = calloc<Uint32>();
     final pValueArray = calloc<Pointer<Int64>>();
 
@@ -957,10 +986,12 @@ class IPropertyValue extends IInspectable {
                     Pointer<Pointer<Int64>> value)>()(
         ptr.ref.lpVtbl, pValueSize, pValueArray);
 
+    free(valueSize);
     if (pValueSize.value > 0) {
       value.addAll(pValueArray.value
           .toList(length: pValueSize.value)
-          .map((value) => value.toDartDuration()));
+          .map((value) => value.toDartDuration())
+          .toList());
     }
     free(pValueSize);
     free(pValueArray);
@@ -969,6 +1000,7 @@ class IPropertyValue extends IInspectable {
   }
 
   void getPointArray(List<Point> value) {
+    final valueSize = calloc<Pointer<Uint32>>();
     final pValueSize = calloc<Uint32>();
     final pValueArray = calloc<Pointer<NativePoint>>();
 
@@ -987,6 +1019,7 @@ class IPropertyValue extends IInspectable {
                     Pointer<Pointer<NativePoint>> value)>()(
         ptr.ref.lpVtbl, pValueSize, pValueArray);
 
+    free(valueSize);
     if (pValueSize.value > 0) {
       value.addAll(pValueArray.value.toList(length: pValueSize.value));
     }
@@ -997,6 +1030,7 @@ class IPropertyValue extends IInspectable {
   }
 
   void getSizeArray(List<Size> value) {
+    final valueSize = calloc<Pointer<Uint32>>();
     final pValueSize = calloc<Uint32>();
     final pValueArray = calloc<Pointer<NativeSize>>();
 
@@ -1015,6 +1049,7 @@ class IPropertyValue extends IInspectable {
                     Pointer<Pointer<NativeSize>> value)>()(
         ptr.ref.lpVtbl, pValueSize, pValueArray);
 
+    free(valueSize);
     if (pValueSize.value > 0) {
       value.addAll(pValueArray.value.toList(length: pValueSize.value));
     }
@@ -1025,6 +1060,7 @@ class IPropertyValue extends IInspectable {
   }
 
   void getRectArray(List<Rect> value) {
+    final valueSize = calloc<Pointer<Uint32>>();
     final pValueSize = calloc<Uint32>();
     final pValueArray = calloc<Pointer<NativeRect>>();
 
@@ -1043,6 +1079,7 @@ class IPropertyValue extends IInspectable {
                     Pointer<Pointer<NativeRect>> value)>()(
         ptr.ref.lpVtbl, pValueSize, pValueArray);
 
+    free(valueSize);
     if (pValueSize.value > 0) {
       value.addAll(pValueArray.value.toList(length: pValueSize.value));
     }

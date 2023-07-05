@@ -29,27 +29,26 @@ class IConnectionProfile6 extends IInspectable {
           interface.toInterface(IID_IConnectionProfile6));
 
   bool isDomainAuthenticatedBy(DomainAuthenticationKind kind) {
-    final retValuePtr = calloc<Bool>();
+    final result = calloc<Bool>();
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl, Int32 kind,
-                              Pointer<Bool> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, int kind,
-                      Pointer<Bool> retValuePtr)>()(
-          ptr.ref.lpVtbl, kind.value, retValuePtr);
+          .elementAt(6)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl, Int32 kind,
+                          Pointer<Bool> result)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl, int kind,
+                  Pointer<Bool> result)>()(ptr.ref.lpVtbl, kind.value, result);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return result.value;
     } finally {
-      free(retValuePtr);
+      free(result);
     }
   }
 }

@@ -391,7 +391,7 @@ final class _IReferenceString extends IReference<String?> {
   String? get value {
     if (_isNull) return null;
 
-    final retValuePtr = calloc<HSTRING>();
+    final retValuePtr = calloc<IntPtr>();
 
     try {
       final hr = ptr.ref.vtable

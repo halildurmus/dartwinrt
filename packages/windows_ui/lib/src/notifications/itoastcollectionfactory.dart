@@ -28,13 +28,12 @@ class IToastCollectionFactory extends IInspectable {
       IToastCollectionFactory.fromPtr(
           interface.toInterface(IID_IToastCollectionFactory));
 
-  ToastCollection createInstance(String collectionId, String displayName,
-      String launchArgs, Uri? iconUri) {
-    final retValuePtr = calloc<COMObject>();
+  ToastCollection createInstance(
+      String collectionId, String displayName, String launchArgs, Uri iconUri) {
+    final value = calloc<COMObject>();
     final collectionIdHString = collectionId.toHString();
     final displayNameHString = displayName.toHString();
     final launchArgsHString = launchArgs.toHString();
-    final iconUriUri = iconUri?.toWinRTUri();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -47,7 +46,7 @@ class IToastCollectionFactory extends IInspectable {
                             IntPtr displayName,
                             IntPtr launchArgs,
                             VTablePointer iconUri,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> value)>>>()
             .value
             .asFunction<
                 int Function(
@@ -56,23 +55,23 @@ class IToastCollectionFactory extends IInspectable {
                     int displayName,
                     int launchArgs,
                     VTablePointer iconUri,
-                    Pointer<COMObject> retValuePtr)>()(
+                    Pointer<COMObject> value)>()(
         ptr.ref.lpVtbl,
         collectionIdHString,
         displayNameHString,
         launchArgsHString,
-        iconUriUri == null ? nullptr : iconUriUri.ptr.ref.lpVtbl,
-        retValuePtr);
+        iconUri.toWinRTUri().ptr.ref.lpVtbl,
+        value);
 
     WindowsDeleteString(collectionIdHString);
     WindowsDeleteString(displayNameHString);
     WindowsDeleteString(launchArgsHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    return ToastCollection.fromPtr(retValuePtr);
+    return ToastCollection.fromPtr(value);
   }
 }

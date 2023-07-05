@@ -32,7 +32,7 @@ class IJsonObject extends IInspectable implements IJsonValue {
       IJsonObject.fromPtr(interface.toInterface(IID_IJsonObject));
 
   JsonValue? getNamedValue(String name) {
-    final retValuePtr = calloc<COMObject>();
+    final returnValue = calloc<COMObject>();
     final nameHString = name.toHString();
 
     final hr = ptr.ref.vtable
@@ -41,43 +41,45 @@ class IJsonObject extends IInspectable implements IJsonValue {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(VTablePointer lpVtbl, IntPtr name,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> returnValue)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int name,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, nameHString, retValuePtr);
+                    Pointer<COMObject> returnValue)>()(
+        ptr.ref.lpVtbl, nameHString, returnValue);
 
     WindowsDeleteString(nameHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(returnValue);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (returnValue.isNull) {
+      free(returnValue);
       return null;
     }
 
-    return JsonValue.fromPtr(retValuePtr);
+    return JsonValue.fromPtr(returnValue);
   }
 
   void setNamedValue(String name, IJsonValue? value) {
     final nameHString = name.toHString();
-    final valuePtr = value == null ? nullptr : value.ptr.ref.lpVtbl;
 
     final hr = ptr.ref.vtable
-        .elementAt(7)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, IntPtr name,
-                        VTablePointer value)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int name,
-                VTablePointer value)>()(ptr.ref.lpVtbl, nameHString, valuePtr);
+            .elementAt(7)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(VTablePointer lpVtbl, IntPtr name,
+                            VTablePointer value)>>>()
+            .value
+            .asFunction<
+                int Function(
+                    VTablePointer lpVtbl, int name, VTablePointer value)>()(
+        ptr.ref.lpVtbl,
+        nameHString,
+        value == null ? nullptr : value.ptr.ref.lpVtbl);
 
     WindowsDeleteString(nameHString);
 
@@ -85,7 +87,7 @@ class IJsonObject extends IInspectable implements IJsonValue {
   }
 
   JsonObject getNamedObject(String name) {
-    final retValuePtr = calloc<COMObject>();
+    final returnValue = calloc<COMObject>();
     final nameHString = name.toHString();
 
     final hr = ptr.ref.vtable
@@ -94,25 +96,25 @@ class IJsonObject extends IInspectable implements IJsonValue {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(VTablePointer lpVtbl, IntPtr name,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> returnValue)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int name,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, nameHString, retValuePtr);
+                    Pointer<COMObject> returnValue)>()(
+        ptr.ref.lpVtbl, nameHString, returnValue);
 
     WindowsDeleteString(nameHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(returnValue);
       throw WindowsException(hr);
     }
 
-    return JsonObject.fromPtr(retValuePtr);
+    return JsonObject.fromPtr(returnValue);
   }
 
   JsonArray getNamedArray(String name) {
-    final retValuePtr = calloc<COMObject>();
+    final returnValue = calloc<COMObject>();
     final nameHString = name.toHString();
 
     final hr = ptr.ref.vtable
@@ -121,25 +123,25 @@ class IJsonObject extends IInspectable implements IJsonValue {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(VTablePointer lpVtbl, IntPtr name,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> returnValue)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int name,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, nameHString, retValuePtr);
+                    Pointer<COMObject> returnValue)>()(
+        ptr.ref.lpVtbl, nameHString, returnValue);
 
     WindowsDeleteString(nameHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(returnValue);
       throw WindowsException(hr);
     }
 
-    return JsonArray.fromPtr(retValuePtr);
+    return JsonArray.fromPtr(returnValue);
   }
 
   String getNamedString(String name) {
-    final retValuePtr = calloc<HSTRING>();
+    final returnValue = calloc<IntPtr>();
 
     try {
       final nameHString = name.toHString();
@@ -150,26 +152,26 @@ class IJsonObject extends IInspectable implements IJsonValue {
                   Pointer<
                       NativeFunction<
                           HRESULT Function(VTablePointer lpVtbl, IntPtr name,
-                              Pointer<IntPtr> retValuePtr)>>>()
+                              Pointer<IntPtr> returnValue)>>>()
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, int name,
-                      Pointer<IntPtr> retValuePtr)>()(
-          ptr.ref.lpVtbl, nameHString, retValuePtr);
+                      Pointer<IntPtr> returnValue)>()(
+          ptr.ref.lpVtbl, nameHString, returnValue);
 
       WindowsDeleteString(nameHString);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.toDartString();
+      return returnValue.toDartString();
     } finally {
-      WindowsDeleteString(retValuePtr.value);
-      free(retValuePtr);
+      WindowsDeleteString(returnValue.value);
+      free(returnValue);
     }
   }
 
   double getNamedNumber(String name) {
-    final retValuePtr = calloc<Double>();
+    final returnValue = calloc<Double>();
 
     try {
       final nameHString = name.toHString();
@@ -180,25 +182,25 @@ class IJsonObject extends IInspectable implements IJsonValue {
                   Pointer<
                       NativeFunction<
                           HRESULT Function(VTablePointer lpVtbl, IntPtr name,
-                              Pointer<Double> retValuePtr)>>>()
+                              Pointer<Double> returnValue)>>>()
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, int name,
-                      Pointer<Double> retValuePtr)>()(
-          ptr.ref.lpVtbl, nameHString, retValuePtr);
+                      Pointer<Double> returnValue)>()(
+          ptr.ref.lpVtbl, nameHString, returnValue);
 
       WindowsDeleteString(nameHString);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return returnValue.value;
     } finally {
-      free(retValuePtr);
+      free(returnValue);
     }
   }
 
   bool getNamedBoolean(String name) {
-    final retValuePtr = calloc<Bool>();
+    final returnValue = calloc<Bool>();
 
     try {
       final nameHString = name.toHString();
@@ -209,20 +211,20 @@ class IJsonObject extends IInspectable implements IJsonValue {
                   Pointer<
                       NativeFunction<
                           HRESULT Function(VTablePointer lpVtbl, IntPtr name,
-                              Pointer<Bool> retValuePtr)>>>()
+                              Pointer<Bool> returnValue)>>>()
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, int name,
-                      Pointer<Bool> retValuePtr)>()(
-          ptr.ref.lpVtbl, nameHString, retValuePtr);
+                      Pointer<Bool> returnValue)>()(
+          ptr.ref.lpVtbl, nameHString, returnValue);
 
       WindowsDeleteString(nameHString);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return returnValue.value;
     } finally {
-      free(retValuePtr);
+      free(returnValue);
     }
   }
 

@@ -28,7 +28,7 @@ class IUriEscapeStatics extends IInspectable {
       IUriEscapeStatics.fromPtr(interface.toInterface(IID_IUriEscapeStatics));
 
   String unescapeComponent(String toUnescape) {
-    final retValuePtr = calloc<HSTRING>();
+    final value = calloc<IntPtr>();
 
     try {
       final toUnescapeHString = toUnescape.toHString();
@@ -39,54 +39,53 @@ class IUriEscapeStatics extends IInspectable {
                   .cast<
                       Pointer<
                           NativeFunction<
-                              HRESULT Function(
-                                  VTablePointer lpVtbl,
-                                  IntPtr toUnescape,
-                                  Pointer<IntPtr> retValuePtr)>>>()
+                              HRESULT Function(VTablePointer lpVtbl,
+                                  IntPtr toUnescape, Pointer<IntPtr> value)>>>()
                   .value
                   .asFunction<
                       int Function(VTablePointer lpVtbl, int toUnescape,
-                          Pointer<IntPtr> retValuePtr)>()(
-              ptr.ref.lpVtbl, toUnescapeHString, retValuePtr);
+                          Pointer<IntPtr> value)>()(
+              ptr.ref.lpVtbl, toUnescapeHString, value);
 
       WindowsDeleteString(toUnescapeHString);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.toDartString();
+      return value.toDartString();
     } finally {
-      WindowsDeleteString(retValuePtr.value);
-      free(retValuePtr);
+      WindowsDeleteString(value.value);
+      free(value);
     }
   }
 
   String escapeComponent(String toEscape) {
-    final retValuePtr = calloc<HSTRING>();
+    final value = calloc<IntPtr>();
 
     try {
       final toEscapeHString = toEscape.toHString();
 
-      final hr = ptr.ref.vtable
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl, IntPtr toEscape,
-                              Pointer<IntPtr> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, int toEscape,
-                      Pointer<IntPtr> retValuePtr)>()(
-          ptr.ref.lpVtbl, toEscapeHString, retValuePtr);
+      final hr =
+          ptr.ref.vtable
+                  .elementAt(7)
+                  .cast<
+                      Pointer<
+                          NativeFunction<
+                              HRESULT Function(VTablePointer lpVtbl,
+                                  IntPtr toEscape, Pointer<IntPtr> value)>>>()
+                  .value
+                  .asFunction<
+                      int Function(VTablePointer lpVtbl, int toEscape,
+                          Pointer<IntPtr> value)>()(
+              ptr.ref.lpVtbl, toEscapeHString, value);
 
       WindowsDeleteString(toEscapeHString);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.toDartString();
+      return value.toDartString();
     } finally {
-      WindowsDeleteString(retValuePtr.value);
-      free(retValuePtr);
+      WindowsDeleteString(value.value);
+      free(value);
     }
   }
 }

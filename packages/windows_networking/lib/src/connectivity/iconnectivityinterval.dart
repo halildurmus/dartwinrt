@@ -27,7 +27,7 @@ class IConnectivityInterval extends IInspectable {
           interface.toInterface(IID_IConnectivityInterval));
 
   DateTime get startTime {
-    final retValuePtr = calloc<Int64>();
+    final startTime = calloc<Int64>();
 
     try {
       final hr = ptr.ref.vtable
@@ -36,22 +36,22 @@ class IConnectivityInterval extends IInspectable {
               Pointer<
                   NativeFunction<
                       HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int64> retValuePtr)>>>()
+                          VTablePointer lpVtbl, Pointer<Int64> startTime)>>>()
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<Int64> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<Int64> startTime)>()(ptr.ref.lpVtbl, startTime);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.toDartDateTime();
+      return startTime.toDartDateTime();
     } finally {
-      free(retValuePtr);
+      free(startTime);
     }
   }
 
   Duration get connectionDuration {
-    final retValuePtr = calloc<Int64>();
+    final duration = calloc<Int64>();
 
     try {
       final hr = ptr.ref.vtable
@@ -60,17 +60,17 @@ class IConnectivityInterval extends IInspectable {
               Pointer<
                   NativeFunction<
                       HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int64> retValuePtr)>>>()
+                          VTablePointer lpVtbl, Pointer<Int64> duration)>>>()
           .value
           .asFunction<
               int Function(VTablePointer lpVtbl,
-                  Pointer<Int64> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                  Pointer<Int64> duration)>()(ptr.ref.lpVtbl, duration);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.toDartDuration();
+      return duration.toDartDuration();
     } finally {
-      free(retValuePtr);
+      free(duration);
     }
   }
 }

@@ -32,8 +32,7 @@ class IRandomAccessStreamReferenceStatics extends IInspectable {
           interface.toInterface(IID_IRandomAccessStreamReferenceStatics));
 
   RandomAccessStreamReference? createFromFile(IStorageFile? file) {
-    final retValuePtr = calloc<COMObject>();
-    final filePtr = file == null ? nullptr : file.ptr.ref.lpVtbl;
+    final streamReference = calloc<COMObject>();
 
     final hr =
         ptr.ref.vtable
@@ -44,29 +43,28 @@ class IRandomAccessStreamReferenceStatics extends IInspectable {
                             HRESULT Function(
                                 VTablePointer lpVtbl,
                                 VTablePointer file,
-                                Pointer<COMObject> retValuePtr)>>>()
+                                Pointer<COMObject> streamReference)>>>()
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer file,
-                        Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl, filePtr, retValuePtr);
+                        Pointer<COMObject> streamReference)>()(ptr.ref.lpVtbl,
+            file == null ? nullptr : file.ptr.ref.lpVtbl, streamReference);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(streamReference);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (streamReference.isNull) {
+      free(streamReference);
       return null;
     }
 
-    return RandomAccessStreamReference.fromPtr(retValuePtr);
+    return RandomAccessStreamReference.fromPtr(streamReference);
   }
 
   RandomAccessStreamReference? createFromUri(Uri? uri) {
-    final retValuePtr = calloc<COMObject>();
-    final uriUri = uri?.toWinRTUri();
+    final streamReference = calloc<COMObject>();
 
     final hr =
         ptr.ref.vtable
@@ -77,29 +75,28 @@ class IRandomAccessStreamReferenceStatics extends IInspectable {
                             HRESULT Function(
                                 VTablePointer lpVtbl,
                                 VTablePointer uri,
-                                Pointer<COMObject> retValuePtr)>>>()
+                                Pointer<COMObject> streamReference)>>>()
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer uri,
-                        Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl,
-            uriUri == null ? nullptr : uriUri.ptr.ref.lpVtbl, retValuePtr);
+                        Pointer<COMObject> streamReference)>()(ptr.ref.lpVtbl,
+            uri?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr, streamReference);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(streamReference);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (streamReference.isNull) {
+      free(streamReference);
       return null;
     }
 
-    return RandomAccessStreamReference.fromPtr(retValuePtr);
+    return RandomAccessStreamReference.fromPtr(streamReference);
   }
 
   RandomAccessStreamReference? createFromStream(IRandomAccessStream? stream) {
-    final retValuePtr = calloc<COMObject>();
-    final streamPtr = stream == null ? nullptr : stream.ptr.ref.lpVtbl;
+    final streamReference = calloc<COMObject>();
 
     final hr =
         ptr.ref.vtable
@@ -110,23 +107,23 @@ class IRandomAccessStreamReferenceStatics extends IInspectable {
                             HRESULT Function(
                                 VTablePointer lpVtbl,
                                 VTablePointer stream,
-                                Pointer<COMObject> retValuePtr)>>>()
+                                Pointer<COMObject> streamReference)>>>()
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer stream,
-                        Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl, streamPtr, retValuePtr);
+                        Pointer<COMObject> streamReference)>()(ptr.ref.lpVtbl,
+            stream == null ? nullptr : stream.ptr.ref.lpVtbl, streamReference);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(streamReference);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (streamReference.isNull) {
+      free(streamReference);
       return null;
     }
 
-    return RandomAccessStreamReference.fromPtr(retValuePtr);
+    return RandomAccessStreamReference.fromPtr(streamReference);
   }
 }

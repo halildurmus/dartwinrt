@@ -29,8 +29,7 @@ class ILauncherStatics3 extends IInspectable {
       ILauncherStatics3.fromPtr(interface.toInterface(IID_ILauncherStatics3));
 
   Future<bool> launchFolderAsync(IStorageFolder? folder) {
-    final retValuePtr = calloc<COMObject>();
-    final folderPtr = folder == null ? nullptr : folder.ptr.ref.lpVtbl;
+    final operation = calloc<COMObject>();
 
     final hr =
         ptr.ref.vtable
@@ -41,27 +40,25 @@ class ILauncherStatics3 extends IInspectable {
                             HRESULT Function(
                                 VTablePointer lpVtbl,
                                 VTablePointer folder,
-                                Pointer<COMObject> retValuePtr)>>>()
+                                Pointer<COMObject> operation)>>>()
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer folder,
-                        Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl, folderPtr, retValuePtr);
+                        Pointer<COMObject> operation)>()(ptr.ref.lpVtbl,
+            folder == null ? nullptr : folder.ptr.ref.lpVtbl, operation);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<bool>.fromPtr(retValuePtr);
+    final asyncOperation = IAsyncOperation<bool>.fromPtr(operation);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<bool> launchFolderWithOptionsAsync(
       IStorageFolder? folder, FolderLauncherOptions? options) {
-    final retValuePtr = calloc<COMObject>();
-    final folderPtr = folder == null ? nullptr : folder.ptr.ref.lpVtbl;
-    final optionsPtr = options == null ? nullptr : options.ptr.ref.lpVtbl;
+    final operation = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(7)
@@ -72,19 +69,22 @@ class ILauncherStatics3 extends IInspectable {
                             VTablePointer lpVtbl,
                             VTablePointer folder,
                             VTablePointer options,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> operation)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer folder,
-                    VTablePointer options, Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, folderPtr, optionsPtr, retValuePtr);
+                    VTablePointer options, Pointer<COMObject> operation)>()(
+        ptr.ref.lpVtbl,
+        folder == null ? nullptr : folder.ptr.ref.lpVtbl,
+        options == null ? nullptr : options.ptr.ref.lpVtbl,
+        operation);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<bool>.fromPtr(retValuePtr);
+    final asyncOperation = IAsyncOperation<bool>.fromPtr(operation);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 }

@@ -30,28 +30,27 @@ class IRandomAccessStreamReference extends IInspectable {
           interface.toInterface(IID_IRandomAccessStreamReference));
 
   Future<IRandomAccessStreamWithContentType?> openReadAsync() {
-    final retValuePtr = calloc<COMObject>();
+    final operation = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
         .elementAt(6)
         .cast<
             Pointer<
                 NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
+                    HRESULT Function(
+                        VTablePointer lpVtbl, Pointer<COMObject> operation)>>>()
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                Pointer<COMObject> operation)>()(ptr.ref.lpVtbl, operation);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
     final asyncOperation =
-        IAsyncOperation<IRandomAccessStreamWithContentType?>.fromPtr(
-            retValuePtr,
+        IAsyncOperation<IRandomAccessStreamWithContentType?>.fromPtr(operation,
             creator: IRandomAccessStreamWithContentType.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }

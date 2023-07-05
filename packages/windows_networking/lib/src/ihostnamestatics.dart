@@ -26,7 +26,7 @@ class IHostNameStatics extends IInspectable {
       IHostNameStatics.fromPtr(interface.toInterface(IID_IHostNameStatics));
 
   int compare(String value1, String value2) {
-    final retValuePtr = calloc<Int32>();
+    final result = calloc<Int32>();
 
     try {
       final value1HString = value1.toHString();
@@ -38,21 +38,21 @@ class IHostNameStatics extends IInspectable {
                   Pointer<
                       NativeFunction<
                           HRESULT Function(VTablePointer lpVtbl, IntPtr value1,
-                              IntPtr value2, Pointer<Int32> retValuePtr)>>>()
+                              IntPtr value2, Pointer<Int32> result)>>>()
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, int value1, int value2,
-                      Pointer<Int32> retValuePtr)>()(
-          ptr.ref.lpVtbl, value1HString, value2HString, retValuePtr);
+                      Pointer<Int32> result)>()(
+          ptr.ref.lpVtbl, value1HString, value2HString, result);
 
       WindowsDeleteString(value1HString);
       WindowsDeleteString(value2HString);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return result.value;
     } finally {
-      free(retValuePtr);
+      free(result);
     }
   }
 }

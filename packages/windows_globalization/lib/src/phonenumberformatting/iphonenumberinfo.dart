@@ -30,203 +30,203 @@ class IPhoneNumberInfo extends IInspectable {
       IPhoneNumberInfo.fromPtr(interface.toInterface(IID_IPhoneNumberInfo));
 
   int get countryCode {
-    final retValuePtr = calloc<Int32>();
+    final value = calloc<Int32>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Int32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
-
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      return retValuePtr.value;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  String get phoneNumber {
-    final retValuePtr = calloc<HSTRING>();
-
-    try {
-      final hr = ptr.ref.vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          Pointer<IntPtr> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
-
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      return retValuePtr.toDartString();
-    } finally {
-      WindowsDeleteString(retValuePtr.value);
-      free(retValuePtr);
-    }
-  }
-
-  int getLengthOfGeographicalAreaCode() {
-    final retValuePtr = calloc<Int32>();
-
-    try {
-      final hr = ptr.ref.vtable
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Int32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
-
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      return retValuePtr.value;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  String getNationalSignificantNumber() {
-    final retValuePtr = calloc<HSTRING>();
-
-    try {
-      final hr = ptr.ref.vtable
-          .elementAt(9)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          Pointer<IntPtr> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
-
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      return retValuePtr.toDartString();
-    } finally {
-      WindowsDeleteString(retValuePtr.value);
-      free(retValuePtr);
-    }
-  }
-
-  int getLengthOfNationalDestinationCode() {
-    final retValuePtr = calloc<Int32>();
-
-    try {
-      final hr = ptr.ref.vtable
-          .elementAt(10)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Int32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
-
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      return retValuePtr.value;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  PredictedPhoneNumberKind predictNumberKind() {
-    final retValuePtr = calloc<Int32>();
-
-    try {
-      final hr = ptr.ref.vtable
-          .elementAt(11)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Int32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
-
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      return PredictedPhoneNumberKind.from(retValuePtr.value);
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  String getGeographicRegionCode() {
-    final retValuePtr = calloc<HSTRING>();
-
-    try {
-      final hr = ptr.ref.vtable
-          .elementAt(12)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          Pointer<IntPtr> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
-
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      return retValuePtr.toDartString();
-    } finally {
-      WindowsDeleteString(retValuePtr.value);
-      free(retValuePtr);
-    }
-  }
-
-  PhoneNumberMatchResult checkNumberMatch(PhoneNumberInfo? otherNumber) {
-    final retValuePtr = calloc<Int32>();
-
-    try {
-      final otherNumberPtr =
-          otherNumber == null ? nullptr : otherNumber.ptr.ref.lpVtbl;
-
-      final hr = ptr.ref.vtable
-              .elementAt(13)
+              .elementAt(6)
               .cast<
                   Pointer<
                       NativeFunction<
                           HRESULT Function(
-                              VTablePointer lpVtbl,
-                              VTablePointer otherNumber,
-                              Pointer<Int32> retValuePtr)>>>()
+                              VTablePointer lpVtbl, Pointer<Int32> value)>>>()
               .value
               .asFunction<
-                  int Function(VTablePointer lpVtbl, VTablePointer otherNumber,
-                      Pointer<Int32> retValuePtr)>()(
-          ptr.ref.lpVtbl, otherNumberPtr, retValuePtr);
+                  int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return PhoneNumberMatchResult.from(retValuePtr.value);
+      return value.value;
     } finally {
-      free(retValuePtr);
+      free(value);
+    }
+  }
+
+  String get phoneNumber {
+    final value = calloc<IntPtr>();
+
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(7)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
+          ptr.ref.lpVtbl, value);
+
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      return value.toDartString();
+    } finally {
+      WindowsDeleteString(value.value);
+      free(value);
+    }
+  }
+
+  int getLengthOfGeographicalAreaCode() {
+    final result = calloc<Int32>();
+
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(8)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<Int32> result)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Int32> result)>()(
+          ptr.ref.lpVtbl, result);
+
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      return result.value;
+    } finally {
+      free(result);
+    }
+  }
+
+  String getNationalSignificantNumber() {
+    final result = calloc<IntPtr>();
+
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(9)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<IntPtr> result)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> result)>()(
+          ptr.ref.lpVtbl, result);
+
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      return result.toDartString();
+    } finally {
+      WindowsDeleteString(result.value);
+      free(result);
+    }
+  }
+
+  int getLengthOfNationalDestinationCode() {
+    final result = calloc<Int32>();
+
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(10)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<Int32> result)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Int32> result)>()(
+          ptr.ref.lpVtbl, result);
+
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      return result.value;
+    } finally {
+      free(result);
+    }
+  }
+
+  PredictedPhoneNumberKind predictNumberKind() {
+    final result = calloc<Int32>();
+
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(11)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<Int32> result)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Int32> result)>()(
+          ptr.ref.lpVtbl, result);
+
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      return PredictedPhoneNumberKind.from(result.value);
+    } finally {
+      free(result);
+    }
+  }
+
+  String getGeographicRegionCode() {
+    final result = calloc<IntPtr>();
+
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(12)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<IntPtr> result)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> result)>()(
+          ptr.ref.lpVtbl, result);
+
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      return result.toDartString();
+    } finally {
+      WindowsDeleteString(result.value);
+      free(result);
+    }
+  }
+
+  PhoneNumberMatchResult checkNumberMatch(PhoneNumberInfo? otherNumber) {
+    final result = calloc<Int32>();
+
+    try {
+      final hr =
+          ptr.ref.vtable
+                  .elementAt(13)
+                  .cast<
+                      Pointer<
+                          NativeFunction<
+                              HRESULT Function(
+                                  VTablePointer lpVtbl,
+                                  VTablePointer otherNumber,
+                                  Pointer<Int32> result)>>>()
+                  .value
+                  .asFunction<
+                      int Function(VTablePointer lpVtbl,
+                          VTablePointer otherNumber, Pointer<Int32> result)>()(
+              ptr.ref.lpVtbl,
+              otherNumber == null ? nullptr : otherNumber.ptr.ref.lpVtbl,
+              result);
+
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      return PhoneNumberMatchResult.from(result.value);
+    } finally {
+      free(result);
     }
   }
 }

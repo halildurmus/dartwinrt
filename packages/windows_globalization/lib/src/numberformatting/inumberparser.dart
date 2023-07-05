@@ -26,7 +26,7 @@ class INumberParser extends IInspectable {
       INumberParser.fromPtr(interface.toInterface(IID_INumberParser));
 
   int? parseInt(String text) {
-    final retValuePtr = calloc<COMObject>();
+    final result = calloc<COMObject>();
     final textHString = text.toHString();
 
     final hr = ptr.ref.vtable
@@ -35,32 +35,32 @@ class INumberParser extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(VTablePointer lpVtbl, IntPtr text,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> result)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int text,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, textHString, retValuePtr);
+                    Pointer<COMObject> result)>()(
+        ptr.ref.lpVtbl, textHString, result);
 
     WindowsDeleteString(textHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(result);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (result.isNull) {
+      free(result);
       return null;
     }
 
-    final reference = IReference<int?>.fromPtr(retValuePtr,
-        referenceIid: '{4dda9e24-e69f-5c6a-a0a6-93427365af2a}');
-    return reference.value;
+    return IReference<int?>.fromPtr(result,
+            referenceIid: '{4dda9e24-e69f-5c6a-a0a6-93427365af2a}')
+        .value;
   }
 
   int? parseUInt(String text) {
-    final retValuePtr = calloc<COMObject>();
+    final result = calloc<COMObject>();
     final textHString = text.toHString();
 
     final hr = ptr.ref.vtable
@@ -69,32 +69,32 @@ class INumberParser extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(VTablePointer lpVtbl, IntPtr text,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> result)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int text,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, textHString, retValuePtr);
+                    Pointer<COMObject> result)>()(
+        ptr.ref.lpVtbl, textHString, result);
 
     WindowsDeleteString(textHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(result);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (result.isNull) {
+      free(result);
       return null;
     }
 
-    final reference = IReference<int?>.fromPtr(retValuePtr,
-        referenceIid: '{6755e376-53bb-568b-a11d-17239868309e}');
-    return reference.value;
+    return IReference<int?>.fromPtr(result,
+            referenceIid: '{6755e376-53bb-568b-a11d-17239868309e}')
+        .value;
   }
 
   double? parseDouble(String text) {
-    final retValuePtr = calloc<COMObject>();
+    final result = calloc<COMObject>();
     final textHString = text.toHString();
 
     final hr = ptr.ref.vtable
@@ -103,27 +103,27 @@ class INumberParser extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(VTablePointer lpVtbl, IntPtr text,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> result)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int text,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, textHString, retValuePtr);
+                    Pointer<COMObject> result)>()(
+        ptr.ref.lpVtbl, textHString, result);
 
     WindowsDeleteString(textHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(result);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (result.isNull) {
+      free(result);
       return null;
     }
 
-    final reference = IReference<double?>.fromPtr(retValuePtr,
-        referenceIid: '{2f2d6c29-5473-5f3e-92e7-96572bb990e2}');
-    return reference.value;
+    return IReference<double?>.fromPtr(result,
+            referenceIid: '{2f2d6c29-5473-5f3e-92e7-96572bb990e2}')
+        .value;
   }
 }

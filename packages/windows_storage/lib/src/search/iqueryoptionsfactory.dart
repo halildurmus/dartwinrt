@@ -32,12 +32,7 @@ class IQueryOptionsFactory extends IInspectable {
 
   QueryOptions createCommonFileQuery(
       CommonFileQuery query, IIterable<String> fileTypeFilter) {
-    final retValuePtr = calloc<COMObject>();
-    final fileTypeFilterPtr = IInspectable(fileTypeFilter
-            .toInterface('{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'))
-        .ptr
-        .ref
-        .lpVtbl;
+    final queryOptions = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -48,26 +43,33 @@ class IQueryOptionsFactory extends IInspectable {
                             VTablePointer lpVtbl,
                             Int32 query,
                             VTablePointer fileTypeFilter,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> queryOptions)>>>()
             .value
             .asFunction<
                 int Function(
                     VTablePointer lpVtbl,
                     int query,
                     VTablePointer fileTypeFilter,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, query.value, fileTypeFilterPtr, retValuePtr);
+                    Pointer<COMObject> queryOptions)>()(
+        ptr.ref.lpVtbl,
+        query.value,
+        IInspectable(fileTypeFilter
+                .toInterface('{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'))
+            .ptr
+            .ref
+            .lpVtbl,
+        queryOptions);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(queryOptions);
       throw WindowsException(hr);
     }
 
-    return QueryOptions.fromPtr(retValuePtr);
+    return QueryOptions.fromPtr(queryOptions);
   }
 
   QueryOptions createCommonFolderQuery(CommonFolderQuery query) {
-    final retValuePtr = calloc<COMObject>();
+    final queryOptions = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(7)
@@ -75,18 +77,18 @@ class IQueryOptionsFactory extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(VTablePointer lpVtbl, Int32 query,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> queryOptions)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int query,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, query.value, retValuePtr);
+                    Pointer<COMObject> queryOptions)>()(
+        ptr.ref.lpVtbl, query.value, queryOptions);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(queryOptions);
       throw WindowsException(hr);
     }
 
-    return QueryOptions.fromPtr(retValuePtr);
+    return QueryOptions.fromPtr(queryOptions);
   }
 }

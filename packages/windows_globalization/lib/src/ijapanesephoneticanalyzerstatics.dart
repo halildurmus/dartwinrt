@@ -30,7 +30,7 @@ class IJapanesePhoneticAnalyzerStatics extends IInspectable {
           interface.toInterface(IID_IJapanesePhoneticAnalyzerStatics));
 
   List<JapanesePhoneme?> getWords(String input) {
-    final retValuePtr = calloc<COMObject>();
+    final result = calloc<COMObject>();
     final inputHString = input.toHString();
 
     final hr = ptr.ref.vtable
@@ -39,29 +39,29 @@ class IJapanesePhoneticAnalyzerStatics extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(VTablePointer lpVtbl, IntPtr input,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> result)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int input,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, inputHString, retValuePtr);
+                    Pointer<COMObject> result)>()(
+        ptr.ref.lpVtbl, inputHString, result);
 
     WindowsDeleteString(inputHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(result);
       throw WindowsException(hr);
     }
 
-    final vectorView = IVectorView<JapanesePhoneme?>.fromPtr(retValuePtr,
-        iterableIid: '{1aad17cb-1829-5236-8aef-0b75f8dfd7a6}',
-        creator: JapanesePhoneme.fromPtr);
-    return vectorView.toList();
+    return IVectorView<JapanesePhoneme?>.fromPtr(result,
+            iterableIid: '{1aad17cb-1829-5236-8aef-0b75f8dfd7a6}',
+            creator: JapanesePhoneme.fromPtr)
+        .toList();
   }
 
   List<JapanesePhoneme?> getWordsWithMonoRubyOption(
       String input, bool monoRuby) {
-    final retValuePtr = calloc<COMObject>();
+    final result = calloc<COMObject>();
     final inputHString = input.toHString();
 
     final hr = ptr.ref.vtable
@@ -70,23 +70,23 @@ class IJapanesePhoneticAnalyzerStatics extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(VTablePointer lpVtbl, IntPtr input,
-                            Bool monoRuby, Pointer<COMObject> retValuePtr)>>>()
+                            Bool monoRuby, Pointer<COMObject> result)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int input, bool monoRuby,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, inputHString, monoRuby, retValuePtr);
+                    Pointer<COMObject> result)>()(
+        ptr.ref.lpVtbl, inputHString, monoRuby, result);
 
     WindowsDeleteString(inputHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(result);
       throw WindowsException(hr);
     }
 
-    final vectorView = IVectorView<JapanesePhoneme?>.fromPtr(retValuePtr,
-        iterableIid: '{1aad17cb-1829-5236-8aef-0b75f8dfd7a6}',
-        creator: JapanesePhoneme.fromPtr);
-    return vectorView.toList();
+    return IVectorView<JapanesePhoneme?>.fromPtr(result,
+            iterableIid: '{1aad17cb-1829-5236-8aef-0b75f8dfd7a6}',
+            creator: JapanesePhoneme.fromPtr)
+        .toList();
   }
 }

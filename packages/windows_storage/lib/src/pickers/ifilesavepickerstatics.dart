@@ -30,35 +30,31 @@ class IFileSavePickerStatics extends IInspectable {
           interface.toInterface(IID_IFileSavePickerStatics));
 
   FileSavePicker? createForUser(User? user) {
-    final retValuePtr = calloc<COMObject>();
-    final userPtr = user == null ? nullptr : user.ptr.ref.lpVtbl;
+    final result = calloc<COMObject>();
 
-    final hr =
-        ptr.ref.vtable
-                .elementAt(6)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                VTablePointer user,
-                                Pointer<COMObject> retValuePtr)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, VTablePointer user,
-                        Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl, userPtr, retValuePtr);
+    final hr = ptr.ref.vtable
+            .elementAt(6)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(VTablePointer lpVtbl, VTablePointer user,
+                            Pointer<COMObject> result)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, VTablePointer user,
+                    Pointer<COMObject> result)>()(
+        ptr.ref.lpVtbl, user == null ? nullptr : user.ptr.ref.lpVtbl, result);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(result);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (result.isNull) {
+      free(result);
       return null;
     }
 
-    return FileSavePicker.fromPtr(retValuePtr);
+    return FileSavePicker.fromPtr(result);
   }
 }

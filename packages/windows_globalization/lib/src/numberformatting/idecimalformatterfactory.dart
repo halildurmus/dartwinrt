@@ -30,12 +30,7 @@ class IDecimalFormatterFactory extends IInspectable {
 
   DecimalFormatter createDecimalFormatter(
       IIterable<String> languages, String geographicRegion) {
-    final retValuePtr = calloc<COMObject>();
-    final languagesPtr = IInspectable(
-            languages.toInterface('{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'))
-        .ptr
-        .ref
-        .lpVtbl;
+    final result = calloc<COMObject>();
     final geographicRegionHString = geographicRegion.toHString();
 
     final hr = ptr.ref.vtable
@@ -47,20 +42,27 @@ class IDecimalFormatterFactory extends IInspectable {
                             VTablePointer lpVtbl,
                             VTablePointer languages,
                             IntPtr geographicRegion,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> result)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer languages,
-                    int geographicRegion, Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, languagesPtr, geographicRegionHString, retValuePtr);
+                    int geographicRegion, Pointer<COMObject> result)>()(
+        ptr.ref.lpVtbl,
+        IInspectable(
+                languages.toInterface('{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'))
+            .ptr
+            .ref
+            .lpVtbl,
+        geographicRegionHString,
+        result);
 
     WindowsDeleteString(geographicRegionHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(result);
       throw WindowsException(hr);
     }
 
-    return DecimalFormatter.fromPtr(retValuePtr);
+    return DecimalFormatter.fromPtr(result);
   }
 }

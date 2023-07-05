@@ -34,7 +34,7 @@ class WebAccountProvider extends IInspectable
   static const _className = 'Windows.Security.Credentials.WebAccountProvider';
 
   factory WebAccountProvider.createWebAccountProvider(
-          String id, String displayName, Uri? iconUri) =>
+          String id, String displayName, Uri iconUri) =>
       createActivationFactory(IWebAccountProviderFactory.fromPtr, _className,
               IID_IWebAccountProviderFactory)
           .createWebAccountProvider(id, displayName, iconUri);

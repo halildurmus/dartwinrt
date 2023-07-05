@@ -30,29 +30,28 @@ class INetworkOperatorTetheringClientManager extends IInspectable {
           interface.toInterface(IID_INetworkOperatorTetheringClientManager));
 
   List<NetworkOperatorTetheringClient?> getTetheringClients() {
-    final retValuePtr = calloc<COMObject>();
+    final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+            .elementAt(6)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
+        ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    final vectorView = IVectorView<NetworkOperatorTetheringClient?>.fromPtr(
-        retValuePtr,
-        iterableIid: '{4762ecb3-af48-5b63-89b7-78a42056549f}',
-        creator: NetworkOperatorTetheringClient.fromPtr);
-    return vectorView.toList();
+    return IVectorView<NetworkOperatorTetheringClient?>.fromPtr(value,
+            iterableIid: '{4762ecb3-af48-5b63-89b7-78a42056549f}',
+            creator: NetworkOperatorTetheringClient.fromPtr)
+        .toList();
   }
 }

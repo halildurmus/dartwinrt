@@ -29,11 +29,10 @@ class IWebAccountProviderFactory extends IInspectable {
           interface.toInterface(IID_IWebAccountProviderFactory));
 
   WebAccountProvider createWebAccountProvider(
-      String id, String displayName, Uri? iconUri) {
-    final retValuePtr = calloc<COMObject>();
+      String id, String displayName, Uri iconUri) {
+    final instance = calloc<COMObject>();
     final idHString = id.toHString();
     final displayNameHString = displayName.toHString();
-    final iconUriUri = iconUri?.toWinRTUri();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -45,25 +44,25 @@ class IWebAccountProviderFactory extends IInspectable {
                             IntPtr id,
                             IntPtr displayName,
                             VTablePointer iconUri,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> instance)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int id, int displayName,
-                    VTablePointer iconUri, Pointer<COMObject> retValuePtr)>()(
+                    VTablePointer iconUri, Pointer<COMObject> instance)>()(
         ptr.ref.lpVtbl,
         idHString,
         displayNameHString,
-        iconUriUri == null ? nullptr : iconUriUri.ptr.ref.lpVtbl,
-        retValuePtr);
+        iconUri.toWinRTUri().ptr.ref.lpVtbl,
+        instance);
 
     WindowsDeleteString(idHString);
     WindowsDeleteString(displayNameHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(instance);
       throw WindowsException(hr);
     }
 
-    return WebAccountProvider.fromPtr(retValuePtr);
+    return WebAccountProvider.fromPtr(instance);
   }
 }

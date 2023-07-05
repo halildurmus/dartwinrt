@@ -28,30 +28,27 @@ class IGamepadStatics extends IInspectable {
       IGamepadStatics.fromPtr(interface.toInterface(IID_IGamepadStatics));
 
   int add_GamepadAdded(Pointer<COMObject> value) {
-    final retValuePtr = calloc<IntPtr>();
+    final token = calloc<IntPtr>();
 
     try {
-      final hr =
-          ptr.ref.vtable
-                  .elementAt(6)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(
-                                  VTablePointer lpVtbl,
-                                  VTablePointer value,
-                                  Pointer<IntPtr> retValuePtr)>>>()
-                  .value
-                  .asFunction<
-                      int Function(VTablePointer lpVtbl, VTablePointer value,
-                          Pointer<IntPtr> retValuePtr)>()(
-              ptr.ref.lpVtbl, value.ref.lpVtbl, retValuePtr);
+      final hr = ptr.ref.vtable
+              .elementAt(6)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(VTablePointer lpVtbl,
+                              VTablePointer value, Pointer<IntPtr> token)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, VTablePointer value,
+                      Pointer<IntPtr> token)>()(
+          ptr.ref.lpVtbl, value.ref.lpVtbl, token);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return token.value;
     } finally {
-      free(retValuePtr);
+      free(token);
     }
   }
 
@@ -72,30 +69,27 @@ class IGamepadStatics extends IInspectable {
   }
 
   int add_GamepadRemoved(Pointer<COMObject> value) {
-    final retValuePtr = calloc<IntPtr>();
+    final token = calloc<IntPtr>();
 
     try {
-      final hr =
-          ptr.ref.vtable
-                  .elementAt(8)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(
-                                  VTablePointer lpVtbl,
-                                  VTablePointer value,
-                                  Pointer<IntPtr> retValuePtr)>>>()
-                  .value
-                  .asFunction<
-                      int Function(VTablePointer lpVtbl, VTablePointer value,
-                          Pointer<IntPtr> retValuePtr)>()(
-              ptr.ref.lpVtbl, value.ref.lpVtbl, retValuePtr);
+      final hr = ptr.ref.vtable
+              .elementAt(8)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(VTablePointer lpVtbl,
+                              VTablePointer value, Pointer<IntPtr> token)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, VTablePointer value,
+                      Pointer<IntPtr> token)>()(
+          ptr.ref.lpVtbl, value.ref.lpVtbl, token);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return token.value;
     } finally {
-      free(retValuePtr);
+      free(token);
     }
   }
 
@@ -116,28 +110,28 @@ class IGamepadStatics extends IInspectable {
   }
 
   List<Gamepad?> get gamepads {
-    final retValuePtr = calloc<COMObject>();
+    final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-        .elementAt(10)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+            .elementAt(10)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
+        ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    final vectorView = IVectorView<Gamepad?>.fromPtr(retValuePtr,
-        iterableIid: '{47132ba0-6b17-5cd2-a8bd-b5d3443ccb13}',
-        creator: Gamepad.fromPtr);
-    return vectorView.toList();
+    return IVectorView<Gamepad?>.fromPtr(value,
+            iterableIid: '{47132ba0-6b17-5cd2-a8bd-b5d3443ccb13}',
+            creator: Gamepad.fromPtr)
+        .toList();
   }
 }

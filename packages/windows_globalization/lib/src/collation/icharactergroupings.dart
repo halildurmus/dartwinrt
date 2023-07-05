@@ -30,7 +30,7 @@ class ICharacterGroupings extends IInspectable
           interface.toInterface(IID_ICharacterGroupings));
 
   String lookup(String text) {
-    final retValuePtr = calloc<HSTRING>();
+    final result = calloc<IntPtr>();
 
     try {
       final textHString = text.toHString();
@@ -41,21 +41,21 @@ class ICharacterGroupings extends IInspectable
                   Pointer<
                       NativeFunction<
                           HRESULT Function(VTablePointer lpVtbl, IntPtr text,
-                              Pointer<IntPtr> retValuePtr)>>>()
+                              Pointer<IntPtr> result)>>>()
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, int text,
-                      Pointer<IntPtr> retValuePtr)>()(
-          ptr.ref.lpVtbl, textHString, retValuePtr);
+                      Pointer<IntPtr> result)>()(
+          ptr.ref.lpVtbl, textHString, result);
 
       WindowsDeleteString(textHString);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.toDartString();
+      return result.toDartString();
     } finally {
-      WindowsDeleteString(retValuePtr.value);
-      free(retValuePtr);
+      WindowsDeleteString(result.value);
+      free(result);
     }
   }
 

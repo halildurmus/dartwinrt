@@ -31,7 +31,7 @@ class IJsonArray extends IInspectable implements IJsonValue {
       IJsonArray.fromPtr(interface.toInterface(IID_IJsonArray));
 
   JsonObject getObjectAt(int index) {
-    final retValuePtr = calloc<COMObject>();
+    final returnValue = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -39,23 +39,23 @@ class IJsonArray extends IInspectable implements IJsonValue {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> returnValue)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int index,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, index, retValuePtr);
+                    Pointer<COMObject> returnValue)>()(
+        ptr.ref.lpVtbl, index, returnValue);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(returnValue);
       throw WindowsException(hr);
     }
 
-    return JsonObject.fromPtr(retValuePtr);
+    return JsonObject.fromPtr(returnValue);
   }
 
   JsonArray getArrayAt(int index) {
-    final retValuePtr = calloc<COMObject>();
+    final returnValue = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(7)
@@ -63,23 +63,23 @@ class IJsonArray extends IInspectable implements IJsonValue {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> returnValue)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int index,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, index, retValuePtr);
+                    Pointer<COMObject> returnValue)>()(
+        ptr.ref.lpVtbl, index, returnValue);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(returnValue);
       throw WindowsException(hr);
     }
 
-    return JsonArray.fromPtr(retValuePtr);
+    return JsonArray.fromPtr(returnValue);
   }
 
   String getStringAt(int index) {
-    final retValuePtr = calloc<HSTRING>();
+    final returnValue = calloc<IntPtr>();
 
     try {
       final hr = ptr.ref.vtable
@@ -88,24 +88,24 @@ class IJsonArray extends IInspectable implements IJsonValue {
                   Pointer<
                       NativeFunction<
                           HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                              Pointer<IntPtr> retValuePtr)>>>()
+                              Pointer<IntPtr> returnValue)>>>()
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, int index,
-                      Pointer<IntPtr> retValuePtr)>()(
-          ptr.ref.lpVtbl, index, retValuePtr);
+                      Pointer<IntPtr> returnValue)>()(
+          ptr.ref.lpVtbl, index, returnValue);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.toDartString();
+      return returnValue.toDartString();
     } finally {
-      WindowsDeleteString(retValuePtr.value);
-      free(retValuePtr);
+      WindowsDeleteString(returnValue.value);
+      free(returnValue);
     }
   }
 
   double getNumberAt(int index) {
-    final retValuePtr = calloc<Double>();
+    final returnValue = calloc<Double>();
 
     try {
       final hr = ptr.ref.vtable
@@ -114,23 +114,23 @@ class IJsonArray extends IInspectable implements IJsonValue {
                   Pointer<
                       NativeFunction<
                           HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                              Pointer<Double> retValuePtr)>>>()
+                              Pointer<Double> returnValue)>>>()
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, int index,
-                      Pointer<Double> retValuePtr)>()(
-          ptr.ref.lpVtbl, index, retValuePtr);
+                      Pointer<Double> returnValue)>()(
+          ptr.ref.lpVtbl, index, returnValue);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return returnValue.value;
     } finally {
-      free(retValuePtr);
+      free(returnValue);
     }
   }
 
   bool getBooleanAt(int index) {
-    final retValuePtr = calloc<Bool>();
+    final returnValue = calloc<Bool>();
 
     try {
       final hr = ptr.ref.vtable
@@ -139,18 +139,18 @@ class IJsonArray extends IInspectable implements IJsonValue {
                   Pointer<
                       NativeFunction<
                           HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                              Pointer<Bool> retValuePtr)>>>()
+                              Pointer<Bool> returnValue)>>>()
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, int index,
-                      Pointer<Bool> retValuePtr)>()(
-          ptr.ref.lpVtbl, index, retValuePtr);
+                      Pointer<Bool> returnValue)>()(
+          ptr.ref.lpVtbl, index, returnValue);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return returnValue.value;
     } finally {
-      free(retValuePtr);
+      free(returnValue);
     }
   }
 

@@ -28,53 +28,54 @@ class IUISettings2 extends IInspectable {
       IUISettings2.fromPtr(interface.toInterface(IID_IUISettings2));
 
   double get textScaleFactor {
-    final retValuePtr = calloc<Double>();
+    final value = calloc<Double>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          Pointer<Double> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Double> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
-
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      return retValuePtr.value;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  int add_TextScaleFactorChanged(Pointer<COMObject> handler) {
-    final retValuePtr = calloc<IntPtr>();
-
-    try {
-      final hr = ptr.ref.vtable
-              .elementAt(7)
+              .elementAt(6)
               .cast<
                   Pointer<
                       NativeFunction<
                           HRESULT Function(
-                              VTablePointer lpVtbl,
-                              VTablePointer handler,
-                              Pointer<IntPtr> retValuePtr)>>>()
+                              VTablePointer lpVtbl, Pointer<Double> value)>>>()
               .value
               .asFunction<
-                  int Function(VTablePointer lpVtbl, VTablePointer handler,
-                      Pointer<IntPtr> retValuePtr)>()(
-          ptr.ref.lpVtbl, handler.ref.lpVtbl, retValuePtr);
+                  int Function(VTablePointer lpVtbl, Pointer<Double> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return value.value;
     } finally {
-      free(retValuePtr);
+      free(value);
+    }
+  }
+
+  int add_TextScaleFactorChanged(Pointer<COMObject> handler) {
+    final cookie = calloc<IntPtr>();
+
+    try {
+      final hr =
+          ptr.ref.vtable
+                  .elementAt(7)
+                  .cast<
+                      Pointer<
+                          NativeFunction<
+                              HRESULT Function(
+                                  VTablePointer lpVtbl,
+                                  VTablePointer handler,
+                                  Pointer<IntPtr> cookie)>>>()
+                  .value
+                  .asFunction<
+                      int Function(VTablePointer lpVtbl, VTablePointer handler,
+                          Pointer<IntPtr> cookie)>()(
+              ptr.ref.lpVtbl, handler.ref.lpVtbl, cookie);
+
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      return cookie.value;
+    } finally {
+      free(cookie);
     }
   }
 

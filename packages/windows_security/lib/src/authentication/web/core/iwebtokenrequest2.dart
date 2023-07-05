@@ -26,26 +26,27 @@ class IWebTokenRequest2 extends IInspectable {
       IWebTokenRequest2.fromPtr(interface.toInterface(IID_IWebTokenRequest2));
 
   IMap<String, String> get appProperties {
-    final retValuePtr = calloc<COMObject>();
+    final requestProperties = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+            .elementAt(6)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(VTablePointer lpVtbl,
+                            Pointer<COMObject> requestProperties)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl,
+                    Pointer<COMObject> requestProperties)>()(
+        ptr.ref.lpVtbl, requestProperties);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(requestProperties);
       throw WindowsException(hr);
     }
 
-    return IMap.fromPtr(retValuePtr,
+    return IMap.fromPtr(requestProperties,
         iterableIid: '{e9bdaaf0-cbf6-5c72-be90-29cbf3a1319b}');
   }
 }

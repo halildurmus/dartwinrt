@@ -29,12 +29,7 @@ class ICalendarFactory2 extends IInspectable {
 
   Calendar createCalendarWithTimeZone(IIterable<String> languages,
       String calendar, String clock, String timeZoneId) {
-    final retValuePtr = calloc<COMObject>();
-    final languagesPtr = IInspectable(
-            languages.toInterface('{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'))
-        .ptr
-        .ref
-        .lpVtbl;
+    final result = calloc<COMObject>();
     final calendarHString = calendar.toHString();
     final clockHString = clock.toHString();
     final timeZoneIdHString = timeZoneId.toHString();
@@ -50,7 +45,7 @@ class ICalendarFactory2 extends IInspectable {
                             IntPtr calendar,
                             IntPtr clock,
                             IntPtr timeZoneId,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> result)>>>()
             .value
             .asFunction<
                 int Function(
@@ -59,23 +54,27 @@ class ICalendarFactory2 extends IInspectable {
                     int calendar,
                     int clock,
                     int timeZoneId,
-                    Pointer<COMObject> retValuePtr)>()(
+                    Pointer<COMObject> result)>()(
         ptr.ref.lpVtbl,
-        languagesPtr,
+        IInspectable(
+                languages.toInterface('{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'))
+            .ptr
+            .ref
+            .lpVtbl,
         calendarHString,
         clockHString,
         timeZoneIdHString,
-        retValuePtr);
+        result);
 
     WindowsDeleteString(calendarHString);
     WindowsDeleteString(clockHString);
     WindowsDeleteString(timeZoneIdHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(result);
       throw WindowsException(hr);
     }
 
-    return Calendar.fromPtr(retValuePtr);
+    return Calendar.fromPtr(result);
   }
 }

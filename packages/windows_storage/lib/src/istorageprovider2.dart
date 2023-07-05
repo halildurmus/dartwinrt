@@ -29,7 +29,7 @@ class IStorageProvider2 extends IInspectable implements IStorageProvider {
 
   Future<bool> isPropertySupportedForPartialFileAsync(
       String propertyCanonicalName) {
-    final retValuePtr = calloc<COMObject>();
+    final operation = calloc<COMObject>();
     final propertyCanonicalNameHString = propertyCanonicalName.toHString();
 
     final hr = ptr.ref.vtable
@@ -40,21 +40,21 @@ class IStorageProvider2 extends IInspectable implements IStorageProvider {
                         HRESULT Function(
                             VTablePointer lpVtbl,
                             IntPtr propertyCanonicalName,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> operation)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int propertyCanonicalName,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, propertyCanonicalNameHString, retValuePtr);
+                    Pointer<COMObject> operation)>()(
+        ptr.ref.lpVtbl, propertyCanonicalNameHString, operation);
 
     WindowsDeleteString(propertyCanonicalNameHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<bool>.fromPtr(retValuePtr);
+    final asyncOperation = IAsyncOperation<bool>.fromPtr(operation);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 

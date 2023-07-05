@@ -30,14 +30,7 @@ class IBitmapPropertiesView extends IInspectable {
 
   Future<BitmapPropertySet> getPropertiesAsync(
       IIterable<String>? propertiesToRetrieve) {
-    final retValuePtr = calloc<COMObject>();
-    final propertiesToRetrievePtr = propertiesToRetrieve == null
-        ? nullptr
-        : IInspectable(propertiesToRetrieve
-                .toInterface('{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'))
-            .ptr
-            .ref
-            .lpVtbl;
+    final asyncInfo = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -47,22 +40,29 @@ class IBitmapPropertiesView extends IInspectable {
                         HRESULT Function(
                             VTablePointer lpVtbl,
                             VTablePointer propertiesToRetrieve,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> asyncInfo)>>>()
             .value
             .asFunction<
                 int Function(
                     VTablePointer lpVtbl,
                     VTablePointer propertiesToRetrieve,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, propertiesToRetrievePtr, retValuePtr);
+                    Pointer<COMObject> asyncInfo)>()(
+        ptr.ref.lpVtbl,
+        propertiesToRetrieve == null
+            ? nullptr
+            : IInspectable(propertiesToRetrieve
+                    .toInterface('{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'))
+                .ptr
+                .ref
+                .lpVtbl,
+        asyncInfo);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(asyncInfo);
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<BitmapPropertySet>.fromPtr(
-        retValuePtr,
+    final asyncOperation = IAsyncOperation<BitmapPropertySet>.fromPtr(asyncInfo,
         creator: BitmapPropertySet.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }

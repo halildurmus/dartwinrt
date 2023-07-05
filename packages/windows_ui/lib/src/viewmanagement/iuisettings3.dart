@@ -30,7 +30,7 @@ class IUISettings3 extends IInspectable {
       IUISettings3.fromPtr(interface.toInterface(IID_IUISettings3));
 
   Color getColorValue(UIColorType desiredColor) {
-    final retValuePtr = calloc<NativeColor>();
+    final value = calloc<NativeColor>();
 
     try {
       final hr =
@@ -42,45 +42,46 @@ class IUISettings3 extends IInspectable {
                               HRESULT Function(
                                   VTablePointer lpVtbl,
                                   Int32 desiredColor,
-                                  Pointer<NativeColor> retValuePtr)>>>()
+                                  Pointer<NativeColor> value)>>>()
                   .value
                   .asFunction<
                       int Function(VTablePointer lpVtbl, int desiredColor,
-                          Pointer<NativeColor> retValuePtr)>()(
-              ptr.ref.lpVtbl, desiredColor.value, retValuePtr);
+                          Pointer<NativeColor> value)>()(
+              ptr.ref.lpVtbl, desiredColor.value, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.toDart();
+      return value.toDart();
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
   int add_ColorValuesChanged(Pointer<COMObject> handler) {
-    final retValuePtr = calloc<IntPtr>();
+    final cookie = calloc<IntPtr>();
 
     try {
-      final hr = ptr.ref.vtable
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              VTablePointer handler,
-                              Pointer<IntPtr> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, VTablePointer handler,
-                      Pointer<IntPtr> retValuePtr)>()(
-          ptr.ref.lpVtbl, handler.ref.lpVtbl, retValuePtr);
+      final hr =
+          ptr.ref.vtable
+                  .elementAt(7)
+                  .cast<
+                      Pointer<
+                          NativeFunction<
+                              HRESULT Function(
+                                  VTablePointer lpVtbl,
+                                  VTablePointer handler,
+                                  Pointer<IntPtr> cookie)>>>()
+                  .value
+                  .asFunction<
+                      int Function(VTablePointer lpVtbl, VTablePointer handler,
+                          Pointer<IntPtr> cookie)>()(
+              ptr.ref.lpVtbl, handler.ref.lpVtbl, cookie);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return cookie.value;
     } finally {
-      free(retValuePtr);
+      free(cookie);
     }
   }
 

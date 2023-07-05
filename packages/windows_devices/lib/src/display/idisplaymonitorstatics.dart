@@ -29,32 +29,32 @@ class IDisplayMonitorStatics extends IInspectable {
           interface.toInterface(IID_IDisplayMonitorStatics));
 
   String getDeviceSelector() {
-    final retValuePtr = calloc<HSTRING>();
+    final result = calloc<IntPtr>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          Pointer<IntPtr> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(6)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<IntPtr> result)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> result)>()(
+          ptr.ref.lpVtbl, result);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.toDartString();
+      return result.toDartString();
     } finally {
-      WindowsDeleteString(retValuePtr.value);
-      free(retValuePtr);
+      WindowsDeleteString(result.value);
+      free(result);
     }
   }
 
   Future<DisplayMonitor?> fromIdAsync(String deviceId) {
-    final retValuePtr = calloc<COMObject>();
+    final operation = calloc<COMObject>();
     final deviceIdHString = deviceId.toHString();
 
     final hr = ptr.ref.vtable
@@ -63,27 +63,27 @@ class IDisplayMonitorStatics extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(VTablePointer lpVtbl, IntPtr deviceId,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> operation)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int deviceId,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, deviceIdHString, retValuePtr);
+                    Pointer<COMObject> operation)>()(
+        ptr.ref.lpVtbl, deviceIdHString, operation);
 
     WindowsDeleteString(deviceIdHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<DisplayMonitor?>.fromPtr(retValuePtr,
+    final asyncOperation = IAsyncOperation<DisplayMonitor?>.fromPtr(operation,
         creator: DisplayMonitor.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<DisplayMonitor?> fromInterfaceIdAsync(String deviceInterfaceId) {
-    final retValuePtr = calloc<COMObject>();
+    final operation = calloc<COMObject>();
     final deviceInterfaceIdHString = deviceInterfaceId.toHString();
 
     final hr = ptr.ref.vtable
@@ -94,21 +94,21 @@ class IDisplayMonitorStatics extends IInspectable {
                         HRESULT Function(
                             VTablePointer lpVtbl,
                             IntPtr deviceInterfaceId,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> operation)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int deviceInterfaceId,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, deviceInterfaceIdHString, retValuePtr);
+                    Pointer<COMObject> operation)>()(
+        ptr.ref.lpVtbl, deviceInterfaceIdHString, operation);
 
     WindowsDeleteString(deviceInterfaceIdHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<DisplayMonitor?>.fromPtr(retValuePtr,
+    final asyncOperation = IAsyncOperation<DisplayMonitor?>.fromPtr(operation,
         creator: DisplayMonitor.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }

@@ -30,46 +30,49 @@ class IToastNotifier2 extends IInspectable {
 
   NotificationUpdateResult updateWithTagAndGroup(
       NotificationData? data, String tag, String group) {
-    final retValuePtr = calloc<Int32>();
+    final result = calloc<Int32>();
 
     try {
-      final dataPtr = data == null ? nullptr : data.ptr.ref.lpVtbl;
       final tagHString = tag.toHString();
       final groupHString = group.toHString();
 
-      final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              VTablePointer data,
-                              IntPtr tag,
-                              IntPtr group,
-                              Pointer<Int32> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, VTablePointer data,
-                      int tag, int group, Pointer<Int32> retValuePtr)>()(
-          ptr.ref.lpVtbl, dataPtr, tagHString, groupHString, retValuePtr);
+      final hr =
+          ptr.ref.vtable
+                  .elementAt(6)
+                  .cast<
+                      Pointer<
+                          NativeFunction<
+                              HRESULT Function(
+                                  VTablePointer lpVtbl,
+                                  VTablePointer data,
+                                  IntPtr tag,
+                                  IntPtr group,
+                                  Pointer<Int32> result)>>>()
+                  .value
+                  .asFunction<
+                      int Function(VTablePointer lpVtbl, VTablePointer data,
+                          int tag, int group, Pointer<Int32> result)>()(
+              ptr.ref.lpVtbl,
+              data == null ? nullptr : data.ptr.ref.lpVtbl,
+              tagHString,
+              groupHString,
+              result);
 
       WindowsDeleteString(tagHString);
       WindowsDeleteString(groupHString);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return NotificationUpdateResult.from(retValuePtr.value);
+      return NotificationUpdateResult.from(result.value);
     } finally {
-      free(retValuePtr);
+      free(result);
     }
   }
 
   NotificationUpdateResult updateWithTag(NotificationData? data, String tag) {
-    final retValuePtr = calloc<Int32>();
+    final result = calloc<Int32>();
 
     try {
-      final dataPtr = data == null ? nullptr : data.ptr.ref.lpVtbl;
       final tagHString = tag.toHString();
 
       final hr =
@@ -82,20 +85,20 @@ class IToastNotifier2 extends IInspectable {
                                   VTablePointer lpVtbl,
                                   VTablePointer data,
                                   IntPtr tag,
-                                  Pointer<Int32> retValuePtr)>>>()
+                                  Pointer<Int32> result)>>>()
                   .value
                   .asFunction<
                       int Function(VTablePointer lpVtbl, VTablePointer data,
-                          int tag, Pointer<Int32> retValuePtr)>()(
-              ptr.ref.lpVtbl, dataPtr, tagHString, retValuePtr);
+                          int tag, Pointer<Int32> result)>()(ptr.ref.lpVtbl,
+              data == null ? nullptr : data.ptr.ref.lpVtbl, tagHString, result);
 
       WindowsDeleteString(tagHString);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return NotificationUpdateResult.from(retValuePtr.value);
+      return NotificationUpdateResult.from(result.value);
     } finally {
-      free(retValuePtr);
+      free(result);
     }
   }
 }

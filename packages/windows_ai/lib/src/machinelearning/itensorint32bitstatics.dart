@@ -29,84 +29,75 @@ class ITensorInt32BitStatics extends IInspectable {
           interface.toInterface(IID_ITensorInt32BitStatics));
 
   TensorInt32Bit? create() {
-    final retValuePtr = calloc<COMObject>();
+    final result = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
         .elementAt(6)
         .cast<
             Pointer<
                 NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
+                    HRESULT Function(
+                        VTablePointer lpVtbl, Pointer<COMObject> result)>>>()
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                Pointer<COMObject> result)>()(ptr.ref.lpVtbl, result);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(result);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (result.isNull) {
+      free(result);
       return null;
     }
 
-    return TensorInt32Bit.fromPtr(retValuePtr);
+    return TensorInt32Bit.fromPtr(result);
   }
 
   TensorInt32Bit? create2(IIterable<int>? shape) {
-    final retValuePtr = calloc<COMObject>();
-    final shapePtr = shape == null
-        ? nullptr
-        : IInspectable(
-                shape.toInterface('{7784427e-f9cc-518d-964b-e50d5ce727f1}'))
-            .ptr
-            .ref
-            .lpVtbl;
+    final result = calloc<COMObject>();
 
-    final hr =
-        ptr.ref.vtable
-                .elementAt(7)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                VTablePointer shape,
-                                Pointer<COMObject> retValuePtr)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, VTablePointer shape,
-                        Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl, shapePtr, retValuePtr);
+    final hr = ptr.ref.vtable
+            .elementAt(7)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(VTablePointer lpVtbl, VTablePointer shape,
+                            Pointer<COMObject> result)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, VTablePointer shape,
+                    Pointer<COMObject> result)>()(
+        ptr.ref.lpVtbl,
+        shape == null
+            ? nullptr
+            : IInspectable(
+                    shape.toInterface('{7784427e-f9cc-518d-964b-e50d5ce727f1}'))
+                .ptr
+                .ref
+                .lpVtbl,
+        result);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(result);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (result.isNull) {
+      free(result);
       return null;
     }
 
-    return TensorInt32Bit.fromPtr(retValuePtr);
+    return TensorInt32Bit.fromPtr(result);
   }
 
   TensorInt32Bit? createFromArray(IIterable<int>? shape, List<int> data) {
-    final retValuePtr = calloc<COMObject>();
-    final shapePtr = shape == null
-        ? nullptr
-        : IInspectable(
-                shape.toInterface('{7784427e-f9cc-518d-964b-e50d5ce727f1}'))
-            .ptr
-            .ref
-            .lpVtbl;
+    final result = calloc<COMObject>();
     final pDataArray = calloc<Int32>(data.length);
     for (var i = 0; i < data.length; i++) {
-      pDataArray[i] = data.elementAt(i);
+      pDataArray[i] = data[i];
     }
 
     final hr = ptr.ref.vtable
@@ -119,7 +110,7 @@ class ITensorInt32BitStatics extends IInspectable {
                             VTablePointer shape,
                             Uint32 dataSize,
                             Pointer<Int32> data,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> result)>>>()
             .value
             .asFunction<
                 int Function(
@@ -127,69 +118,76 @@ class ITensorInt32BitStatics extends IInspectable {
                     VTablePointer shape,
                     int dataSize,
                     Pointer<Int32> data,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, shapePtr, data.length, pDataArray, retValuePtr);
+                    Pointer<COMObject> result)>()(
+        ptr.ref.lpVtbl,
+        shape == null
+            ? nullptr
+            : IInspectable(
+                    shape.toInterface('{7784427e-f9cc-518d-964b-e50d5ce727f1}'))
+                .ptr
+                .ref
+                .lpVtbl,
+        data.length,
+        pDataArray,
+        result);
 
     free(pDataArray);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(result);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (result.isNull) {
+      free(result);
       return null;
     }
 
-    return TensorInt32Bit.fromPtr(retValuePtr);
+    return TensorInt32Bit.fromPtr(result);
   }
 
   TensorInt32Bit? createFromIterable(
       IIterable<int>? shape, IIterable<int>? data) {
-    final retValuePtr = calloc<COMObject>();
-    final shapePtr = shape == null
-        ? nullptr
-        : IInspectable(
-                shape.toInterface('{7784427e-f9cc-518d-964b-e50d5ce727f1}'))
-            .ptr
-            .ref
-            .lpVtbl;
-    final dataPtr = data == null
-        ? nullptr
-        : IInspectable(
-                data.toInterface('{81a643fb-f51c-5565-83c4-f96425777b66}'))
-            .ptr
-            .ref
-            .lpVtbl;
+    final result = calloc<COMObject>();
 
-    final hr =
-        ptr.ref.vtable
-                .elementAt(9)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                VTablePointer shape,
-                                VTablePointer data,
-                                Pointer<COMObject> retValuePtr)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, VTablePointer shape,
-                        VTablePointer data, Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl, shapePtr, dataPtr, retValuePtr);
+    final hr = ptr.ref.vtable
+            .elementAt(9)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(VTablePointer lpVtbl, VTablePointer shape,
+                            VTablePointer data, Pointer<COMObject> result)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, VTablePointer shape,
+                    VTablePointer data, Pointer<COMObject> result)>()(
+        ptr.ref.lpVtbl,
+        shape == null
+            ? nullptr
+            : IInspectable(
+                    shape.toInterface('{7784427e-f9cc-518d-964b-e50d5ce727f1}'))
+                .ptr
+                .ref
+                .lpVtbl,
+        data == null
+            ? nullptr
+            : IInspectable(
+                    data.toInterface('{81a643fb-f51c-5565-83c4-f96425777b66}'))
+                .ptr
+                .ref
+                .lpVtbl,
+        result);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(result);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (result.isNull) {
+      free(result);
       return null;
     }
 
-    return TensorInt32Bit.fromPtr(retValuePtr);
+    return TensorInt32Bit.fromPtr(result);
   }
 }

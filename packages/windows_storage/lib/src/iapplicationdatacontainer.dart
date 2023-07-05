@@ -31,107 +31,106 @@ class IApplicationDataContainer extends IInspectable {
           interface.toInterface(IID_IApplicationDataContainer));
 
   String get name {
-    final retValuePtr = calloc<HSTRING>();
+    final value = calloc<IntPtr>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          Pointer<IntPtr> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(6)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.toDartString();
+      return value.toDartString();
     } finally {
-      WindowsDeleteString(retValuePtr.value);
-      free(retValuePtr);
+      WindowsDeleteString(value.value);
+      free(value);
     }
   }
 
   ApplicationDataLocality get locality {
-    final retValuePtr = calloc<Int32>();
+    final value = calloc<Int32>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(7)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Int32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(7)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<Int32> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return ApplicationDataLocality.from(retValuePtr.value);
+      return ApplicationDataLocality.from(value.value);
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
   IPropertySet get values {
-    final retValuePtr = calloc<COMObject>();
+    final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-        .elementAt(8)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+            .elementAt(8)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
+        ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    return IPropertySet.fromPtr(retValuePtr);
+    return IPropertySet.fromPtr(value);
   }
 
   Map<String, ApplicationDataContainer?> get containers {
-    final retValuePtr = calloc<COMObject>();
+    final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-        .elementAt(9)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+            .elementAt(9)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
+        ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    final mapView = IMapView<String, ApplicationDataContainer?>.fromPtr(
-        retValuePtr,
-        iterableIid: '{a785be1d-159e-53ad-9553-598b03dca048}',
-        creator: ApplicationDataContainer.fromPtr);
-    return mapView.toMap();
+    return IMapView<String, ApplicationDataContainer?>.fromPtr(value,
+            iterableIid: '{a785be1d-159e-53ad-9553-598b03dca048}',
+            creator: ApplicationDataContainer.fromPtr)
+        .toMap();
   }
 
   ApplicationDataContainer? createContainer(
       String name, ApplicationDataCreateDisposition disposition) {
-    final retValuePtr = calloc<COMObject>();
+    final container = calloc<COMObject>();
     final nameHString = name.toHString();
 
     final hr =
@@ -144,26 +143,26 @@ class IApplicationDataContainer extends IInspectable {
                                 VTablePointer lpVtbl,
                                 IntPtr name,
                                 Int32 disposition,
-                                Pointer<COMObject> retValuePtr)>>>()
+                                Pointer<COMObject> container)>>>()
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, int name,
-                        int disposition, Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl, nameHString, disposition.value, retValuePtr);
+                        int disposition, Pointer<COMObject> container)>()(
+            ptr.ref.lpVtbl, nameHString, disposition.value, container);
 
     WindowsDeleteString(nameHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(container);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (container.isNull) {
+      free(container);
       return null;
     }
 
-    return ApplicationDataContainer.fromPtr(retValuePtr);
+    return ApplicationDataContainer.fromPtr(container);
   }
 
   void deleteContainer(String name) {

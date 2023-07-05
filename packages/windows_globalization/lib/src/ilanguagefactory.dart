@@ -28,32 +28,31 @@ class ILanguageFactory extends IInspectable {
       ILanguageFactory.fromPtr(interface.toInterface(IID_ILanguageFactory));
 
   Language createLanguage(String languageTag) {
-    final retValuePtr = calloc<COMObject>();
+    final result = calloc<COMObject>();
     final languageTagHString = languageTag.toHString();
 
-    final hr =
-        ptr.ref.vtable
-                .elementAt(6)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                IntPtr languageTag,
-                                Pointer<COMObject> retValuePtr)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, int languageTag,
-                        Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl, languageTagHString, retValuePtr);
+    final hr = ptr.ref.vtable
+        .elementAt(6)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl, IntPtr languageTag,
+                        Pointer<COMObject> result)>>>()
+        .value
+        .asFunction<
+            int Function(
+                VTablePointer lpVtbl,
+                int languageTag,
+                Pointer<COMObject>
+                    result)>()(ptr.ref.lpVtbl, languageTagHString, result);
 
     WindowsDeleteString(languageTagHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(result);
       throw WindowsException(hr);
     }
 
-    return Language.fromPtr(retValuePtr);
+    return Language.fromPtr(result);
   }
 }

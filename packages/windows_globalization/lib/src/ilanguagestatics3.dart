@@ -27,14 +27,7 @@ class ILanguageStatics3 extends IInspectable {
 
   IVector<String> getMuiCompatibleLanguageListFromLanguageTags(
       IIterable<String>? languageTags) {
-    final retValuePtr = calloc<COMObject>();
-    final languageTagsPtr = languageTags == null
-        ? nullptr
-        : IInspectable(languageTags
-                .toInterface('{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'))
-            .ptr
-            .ref
-            .lpVtbl;
+    final result = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -44,19 +37,27 @@ class ILanguageStatics3 extends IInspectable {
                         HRESULT Function(
                             VTablePointer lpVtbl,
                             VTablePointer languageTags,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> result)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer languageTags,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, languageTagsPtr, retValuePtr);
+                    Pointer<COMObject> result)>()(
+        ptr.ref.lpVtbl,
+        languageTags == null
+            ? nullptr
+            : IInspectable(languageTags
+                    .toInterface('{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'))
+                .ptr
+                .ref
+                .lpVtbl,
+        result);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(result);
       throw WindowsException(hr);
     }
 
-    return IVector.fromPtr(retValuePtr,
+    return IVector.fromPtr(result,
         iterableIid: '{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}');
   }
 }

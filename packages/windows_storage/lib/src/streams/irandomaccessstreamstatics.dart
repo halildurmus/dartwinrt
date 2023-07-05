@@ -31,10 +31,7 @@ class IRandomAccessStreamStatics extends IInspectable {
 
   Pointer<COMObject> copyAsync(
       IInputStream? source, IOutputStream? destination) {
-    final retValuePtr = calloc<COMObject>();
-    final sourcePtr = source == null ? nullptr : source.ptr.ref.lpVtbl;
-    final destinationPtr =
-        destination == null ? nullptr : destination.ptr.ref.lpVtbl;
+    final operation = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -45,30 +42,27 @@ class IRandomAccessStreamStatics extends IInspectable {
                             VTablePointer lpVtbl,
                             VTablePointer source,
                             VTablePointer destination,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> operation)>>>()
             .value
             .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    VTablePointer source,
-                    VTablePointer destination,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, sourcePtr, destinationPtr, retValuePtr);
+                int Function(VTablePointer lpVtbl, VTablePointer source,
+                    VTablePointer destination, Pointer<COMObject> operation)>()(
+        ptr.ref.lpVtbl,
+        source == null ? nullptr : source.ptr.ref.lpVtbl,
+        destination == null ? nullptr : destination.ptr.ref.lpVtbl,
+        operation);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
-    return retValuePtr;
+    return operation;
   }
 
   Pointer<COMObject> copySizeAsync(
       IInputStream? source, IOutputStream? destination, int bytesToCopy) {
-    final retValuePtr = calloc<COMObject>();
-    final sourcePtr = source == null ? nullptr : source.ptr.ref.lpVtbl;
-    final destinationPtr =
-        destination == null ? nullptr : destination.ptr.ref.lpVtbl;
+    final operation = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(7)
@@ -80,7 +74,7 @@ class IRandomAccessStreamStatics extends IInspectable {
                             VTablePointer source,
                             VTablePointer destination,
                             Uint64 bytesToCopy,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> operation)>>>()
             .value
             .asFunction<
                 int Function(
@@ -88,23 +82,24 @@ class IRandomAccessStreamStatics extends IInspectable {
                     VTablePointer source,
                     VTablePointer destination,
                     int bytesToCopy,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, sourcePtr, destinationPtr, bytesToCopy, retValuePtr);
+                    Pointer<COMObject> operation)>()(
+        ptr.ref.lpVtbl,
+        source == null ? nullptr : source.ptr.ref.lpVtbl,
+        destination == null ? nullptr : destination.ptr.ref.lpVtbl,
+        bytesToCopy,
+        operation);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
-    return retValuePtr;
+    return operation;
   }
 
   Pointer<COMObject> copyAndCloseAsync(
       IInputStream? source, IOutputStream? destination) {
-    final retValuePtr = calloc<COMObject>();
-    final sourcePtr = source == null ? nullptr : source.ptr.ref.lpVtbl;
-    final destinationPtr =
-        destination == null ? nullptr : destination.ptr.ref.lpVtbl;
+    final operation = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(8)
@@ -115,21 +110,21 @@ class IRandomAccessStreamStatics extends IInspectable {
                             VTablePointer lpVtbl,
                             VTablePointer source,
                             VTablePointer destination,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> operation)>>>()
             .value
             .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    VTablePointer source,
-                    VTablePointer destination,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, sourcePtr, destinationPtr, retValuePtr);
+                int Function(VTablePointer lpVtbl, VTablePointer source,
+                    VTablePointer destination, Pointer<COMObject> operation)>()(
+        ptr.ref.lpVtbl,
+        source == null ? nullptr : source.ptr.ref.lpVtbl,
+        destination == null ? nullptr : destination.ptr.ref.lpVtbl,
+        operation);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
-    return retValuePtr;
+    return operation;
   }
 }

@@ -32,58 +32,58 @@ class IWebAccount2 extends IInspectable implements IWebAccount {
       IWebAccount2.fromPtr(interface.toInterface(IID_IWebAccount2));
 
   String get id {
-    final retValuePtr = calloc<HSTRING>();
+    final value = calloc<IntPtr>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          Pointer<IntPtr> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(6)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<IntPtr> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.toDartString();
+      return value.toDartString();
     } finally {
-      WindowsDeleteString(retValuePtr.value);
-      free(retValuePtr);
+      WindowsDeleteString(value.value);
+      free(value);
     }
   }
 
   Map<String, String> get properties {
-    final retValuePtr = calloc<COMObject>();
+    final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-        .elementAt(7)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+            .elementAt(7)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
+        ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    final mapView = IMapView<String, String>.fromPtr(retValuePtr,
-        iterableIid: '{e9bdaaf0-cbf6-5c72-be90-29cbf3a1319b}');
-    return mapView.toMap();
+    return IMapView<String, String>.fromPtr(value,
+            iterableIid: '{e9bdaaf0-cbf6-5c72-be90-29cbf3a1319b}')
+        .toMap();
   }
 
   Future<IRandomAccessStream?> getPictureAsync(
       WebAccountPictureSize desizedSize) {
-    final retValuePtr = calloc<COMObject>();
+    final asyncInfo = calloc<COMObject>();
 
     final hr =
         ptr.ref.vtable
@@ -94,49 +94,49 @@ class IWebAccount2 extends IInspectable implements IWebAccount {
                             HRESULT Function(
                                 VTablePointer lpVtbl,
                                 Int32 desizedSize,
-                                Pointer<COMObject> retValuePtr)>>>()
+                                Pointer<COMObject> asyncInfo)>>>()
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, int desizedSize,
-                        Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl, desizedSize.value, retValuePtr);
+                        Pointer<COMObject> asyncInfo)>()(
+            ptr.ref.lpVtbl, desizedSize.value, asyncInfo);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(asyncInfo);
       throw WindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<IRandomAccessStream?>.fromPtr(
-        retValuePtr,
+        asyncInfo,
         creator: IRandomAccessStream.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<void> signOutAsync() {
-    final retValuePtr = calloc<COMObject>();
+    final asyncInfo = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
         .elementAt(9)
         .cast<
             Pointer<
                 NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
+                    HRESULT Function(
+                        VTablePointer lpVtbl, Pointer<COMObject> asyncInfo)>>>()
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                Pointer<COMObject> asyncInfo)>()(ptr.ref.lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(asyncInfo);
       throw WindowsException(hr);
     }
 
-    return IAsyncAction.fromPtr(retValuePtr).toFuture();
+    return IAsyncAction.fromPtr(asyncInfo).toFuture();
   }
 
   Future<void> signOutWithClientIdAsync(String clientId) {
-    final retValuePtr = calloc<COMObject>();
+    final asyncInfo = calloc<COMObject>();
     final clientIdHString = clientId.toHString();
 
     final hr = ptr.ref.vtable
@@ -145,21 +145,21 @@ class IWebAccount2 extends IInspectable implements IWebAccount {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(VTablePointer lpVtbl, IntPtr clientId,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> asyncInfo)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int clientId,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, clientIdHString, retValuePtr);
+                    Pointer<COMObject> asyncInfo)>()(
+        ptr.ref.lpVtbl, clientIdHString, asyncInfo);
 
     WindowsDeleteString(clientIdHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(asyncInfo);
       throw WindowsException(hr);
     }
 
-    return IAsyncAction.fromPtr(retValuePtr).toFuture();
+    return IAsyncAction.fromPtr(asyncInfo).toFuture();
   }
 
   late final _iWebAccount = IWebAccount.from(this);

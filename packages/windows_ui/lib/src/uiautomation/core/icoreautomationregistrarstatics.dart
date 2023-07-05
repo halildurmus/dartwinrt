@@ -30,10 +30,10 @@ class ICoreAutomationRegistrarStatics extends IInspectable {
           interface.toInterface(IID_ICoreAutomationRegistrarStatics));
 
   AutomationAnnotationTypeRegistration registerAnnotationType(Guid guid) {
-    final retValuePtr = calloc<NativeAutomationAnnotationTypeRegistration>();
+    final result = calloc<NativeAutomationAnnotationTypeRegistration>();
 
     try {
-      final guidNativeGuidPtr = guid.toNativeGUID();
+      final guidNativeStructPtr = guid.toNativeGUID();
 
       final hr = ptr.ref.vtable
               .elementAt(6)
@@ -44,23 +44,23 @@ class ICoreAutomationRegistrarStatics extends IInspectable {
                               VTablePointer lpVtbl,
                               GUID guid,
                               Pointer<NativeAutomationAnnotationTypeRegistration>
-                                  retValuePtr)>>>()
+                                  result)>>>()
               .value
               .asFunction<
                   int Function(
                       VTablePointer lpVtbl,
                       GUID guid,
                       Pointer<NativeAutomationAnnotationTypeRegistration>
-                          retValuePtr)>()(
-          ptr.ref.lpVtbl, guidNativeGuidPtr.ref, retValuePtr);
+                          result)>()(
+          ptr.ref.lpVtbl, guidNativeStructPtr.ref, result);
 
-      free(guidNativeGuidPtr);
+      free(guidNativeStructPtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.toDart();
+      return result.toDart();
     } finally {
-      free(retValuePtr);
+      free(result);
     }
   }
 

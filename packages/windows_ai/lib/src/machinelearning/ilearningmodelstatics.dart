@@ -31,8 +31,7 @@ class ILearningModelStatics extends IInspectable {
           interface.toInterface(IID_ILearningModelStatics));
 
   Future<LearningModel?> loadFromStorageFileAsync(IStorageFile? modelFile) {
-    final retValuePtr = calloc<COMObject>();
-    final modelFilePtr = modelFile == null ? nullptr : modelFile.ptr.ref.lpVtbl;
+    final operation = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -42,28 +41,26 @@ class ILearningModelStatics extends IInspectable {
                         HRESULT Function(
                             VTablePointer lpVtbl,
                             VTablePointer modelFile,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> operation)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer modelFile,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, modelFilePtr, retValuePtr);
+                    Pointer<COMObject> operation)>()(ptr.ref.lpVtbl,
+        modelFile == null ? nullptr : modelFile.ptr.ref.lpVtbl, operation);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<LearningModel?>.fromPtr(retValuePtr,
+    final asyncOperation = IAsyncOperation<LearningModel?>.fromPtr(operation,
         creator: LearningModel.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<LearningModel?> loadFromStreamAsync(
       IRandomAccessStreamReference? modelStream) {
-    final retValuePtr = calloc<COMObject>();
-    final modelStreamPtr =
-        modelStream == null ? nullptr : modelStream.ptr.ref.lpVtbl;
+    final operation = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(7)
@@ -73,25 +70,25 @@ class ILearningModelStatics extends IInspectable {
                         HRESULT Function(
                             VTablePointer lpVtbl,
                             VTablePointer modelStream,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> operation)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer modelStream,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, modelStreamPtr, retValuePtr);
+                    Pointer<COMObject> operation)>()(ptr.ref.lpVtbl,
+        modelStream == null ? nullptr : modelStream.ptr.ref.lpVtbl, operation);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<LearningModel?>.fromPtr(retValuePtr,
+    final asyncOperation = IAsyncOperation<LearningModel?>.fromPtr(operation,
         creator: LearningModel.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   LearningModel? loadFromFilePath(String filePath) {
-    final retValuePtr = calloc<COMObject>();
+    final result = calloc<COMObject>();
     final filePathHString = filePath.toHString();
 
     final hr = ptr.ref.vtable
@@ -100,32 +97,30 @@ class ILearningModelStatics extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(VTablePointer lpVtbl, IntPtr filePath,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> result)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int filePath,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, filePathHString, retValuePtr);
+                    Pointer<COMObject> result)>()(
+        ptr.ref.lpVtbl, filePathHString, result);
 
     WindowsDeleteString(filePathHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(result);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (result.isNull) {
+      free(result);
       return null;
     }
 
-    return LearningModel.fromPtr(retValuePtr);
+    return LearningModel.fromPtr(result);
   }
 
   LearningModel? loadFromStream(IRandomAccessStreamReference? modelStream) {
-    final retValuePtr = calloc<COMObject>();
-    final modelStreamPtr =
-        modelStream == null ? nullptr : modelStream.ptr.ref.lpVtbl;
+    final result = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(9)
@@ -135,33 +130,30 @@ class ILearningModelStatics extends IInspectable {
                         HRESULT Function(
                             VTablePointer lpVtbl,
                             VTablePointer modelStream,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> result)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer modelStream,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, modelStreamPtr, retValuePtr);
+                    Pointer<COMObject> result)>()(ptr.ref.lpVtbl,
+        modelStream == null ? nullptr : modelStream.ptr.ref.lpVtbl, result);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(result);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (result.isNull) {
+      free(result);
       return null;
     }
 
-    return LearningModel.fromPtr(retValuePtr);
+    return LearningModel.fromPtr(result);
   }
 
   Future<LearningModel?> loadFromStorageFileWithOperatorProviderAsync(
       IStorageFile? modelFile,
       ILearningModelOperatorProvider? operatorProvider) {
-    final retValuePtr = calloc<COMObject>();
-    final modelFilePtr = modelFile == null ? nullptr : modelFile.ptr.ref.lpVtbl;
-    final operatorProviderPtr =
-        operatorProvider == null ? nullptr : operatorProvider.ptr.ref.lpVtbl;
+    final operation = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(10)
@@ -172,22 +164,25 @@ class ILearningModelStatics extends IInspectable {
                             VTablePointer lpVtbl,
                             VTablePointer modelFile,
                             VTablePointer operatorProvider,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> operation)>>>()
             .value
             .asFunction<
                 int Function(
                     VTablePointer lpVtbl,
                     VTablePointer modelFile,
                     VTablePointer operatorProvider,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, modelFilePtr, operatorProviderPtr, retValuePtr);
+                    Pointer<COMObject> operation)>()(
+        ptr.ref.lpVtbl,
+        modelFile == null ? nullptr : modelFile.ptr.ref.lpVtbl,
+        operatorProvider == null ? nullptr : operatorProvider.ptr.ref.lpVtbl,
+        operation);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<LearningModel?>.fromPtr(retValuePtr,
+    final asyncOperation = IAsyncOperation<LearningModel?>.fromPtr(operation,
         creator: LearningModel.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
@@ -195,11 +190,7 @@ class ILearningModelStatics extends IInspectable {
   Future<LearningModel?> loadFromStreamWithOperatorProviderAsync(
       IRandomAccessStreamReference? modelStream,
       ILearningModelOperatorProvider? operatorProvider) {
-    final retValuePtr = calloc<COMObject>();
-    final modelStreamPtr =
-        modelStream == null ? nullptr : modelStream.ptr.ref.lpVtbl;
-    final operatorProviderPtr =
-        operatorProvider == null ? nullptr : operatorProvider.ptr.ref.lpVtbl;
+    final operation = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(11)
@@ -210,32 +201,33 @@ class ILearningModelStatics extends IInspectable {
                             VTablePointer lpVtbl,
                             VTablePointer modelStream,
                             VTablePointer operatorProvider,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> operation)>>>()
             .value
             .asFunction<
                 int Function(
                     VTablePointer lpVtbl,
                     VTablePointer modelStream,
                     VTablePointer operatorProvider,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, modelStreamPtr, operatorProviderPtr, retValuePtr);
+                    Pointer<COMObject> operation)>()(
+        ptr.ref.lpVtbl,
+        modelStream == null ? nullptr : modelStream.ptr.ref.lpVtbl,
+        operatorProvider == null ? nullptr : operatorProvider.ptr.ref.lpVtbl,
+        operation);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<LearningModel?>.fromPtr(retValuePtr,
+    final asyncOperation = IAsyncOperation<LearningModel?>.fromPtr(operation,
         creator: LearningModel.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   LearningModel? loadFromFilePathWithOperatorProvider(
       String filePath, ILearningModelOperatorProvider? operatorProvider) {
-    final retValuePtr = calloc<COMObject>();
+    final result = calloc<COMObject>();
     final filePathHString = filePath.toHString();
-    final operatorProviderPtr =
-        operatorProvider == null ? nullptr : operatorProvider.ptr.ref.lpVtbl;
 
     final hr = ptr.ref.vtable
             .elementAt(12)
@@ -246,39 +238,38 @@ class ILearningModelStatics extends IInspectable {
                             VTablePointer lpVtbl,
                             IntPtr filePath,
                             VTablePointer operatorProvider,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> result)>>>()
             .value
             .asFunction<
                 int Function(
                     VTablePointer lpVtbl,
                     int filePath,
                     VTablePointer operatorProvider,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, filePathHString, operatorProviderPtr, retValuePtr);
+                    Pointer<COMObject> result)>()(
+        ptr.ref.lpVtbl,
+        filePathHString,
+        operatorProvider == null ? nullptr : operatorProvider.ptr.ref.lpVtbl,
+        result);
 
     WindowsDeleteString(filePathHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(result);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (result.isNull) {
+      free(result);
       return null;
     }
 
-    return LearningModel.fromPtr(retValuePtr);
+    return LearningModel.fromPtr(result);
   }
 
   LearningModel? loadFromStreamWithOperatorProvider(
       IRandomAccessStreamReference? modelStream,
       ILearningModelOperatorProvider? operatorProvider) {
-    final retValuePtr = calloc<COMObject>();
-    final modelStreamPtr =
-        modelStream == null ? nullptr : modelStream.ptr.ref.lpVtbl;
-    final operatorProviderPtr =
-        operatorProvider == null ? nullptr : operatorProvider.ptr.ref.lpVtbl;
+    final result = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(13)
@@ -289,26 +280,29 @@ class ILearningModelStatics extends IInspectable {
                             VTablePointer lpVtbl,
                             VTablePointer modelStream,
                             VTablePointer operatorProvider,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> result)>>>()
             .value
             .asFunction<
                 int Function(
                     VTablePointer lpVtbl,
                     VTablePointer modelStream,
                     VTablePointer operatorProvider,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, modelStreamPtr, operatorProviderPtr, retValuePtr);
+                    Pointer<COMObject> result)>()(
+        ptr.ref.lpVtbl,
+        modelStream == null ? nullptr : modelStream.ptr.ref.lpVtbl,
+        operatorProvider == null ? nullptr : operatorProvider.ptr.ref.lpVtbl,
+        result);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(result);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (result.isNull) {
+      free(result);
       return null;
     }
 
-    return LearningModel.fromPtr(retValuePtr);
+    return LearningModel.fromPtr(result);
   }
 }

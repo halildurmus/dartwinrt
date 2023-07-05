@@ -29,33 +29,33 @@ class IGeolocatorStatics extends IInspectable {
       IGeolocatorStatics.fromPtr(interface.toInterface(IID_IGeolocatorStatics));
 
   Future<GeolocationAccessStatus> requestAccessAsync() {
-    final retValuePtr = calloc<COMObject>();
+    final result = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
         .elementAt(6)
         .cast<
             Pointer<
                 NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
+                    HRESULT Function(
+                        VTablePointer lpVtbl, Pointer<COMObject> result)>>>()
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                Pointer<COMObject> result)>()(ptr.ref.lpVtbl, result);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(result);
       throw WindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<GeolocationAccessStatus>.fromPtr(
-        retValuePtr,
+        result,
         enumCreator: GeolocationAccessStatus.from);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<List<Geoposition?>> getGeopositionHistoryAsync(DateTime startTime) {
-    final retValuePtr = calloc<COMObject>();
+    final result = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(7)
@@ -63,20 +63,20 @@ class IGeolocatorStatics extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(VTablePointer lpVtbl, Int64 startTime,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> result)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int startTime,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, startTime.toWinRTDateTime(), retValuePtr);
+                    Pointer<COMObject> result)>()(
+        ptr.ref.lpVtbl, startTime.toWinRTDateTime(), result);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(result);
       throw WindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<IVectorView<Geoposition?>>.fromPtr(
-        retValuePtr,
+        result,
         creator: (ptr) => IVectorView.fromPtr(ptr,
             creator: Geoposition.fromPtr,
             iterableIid: '{135ed72d-75b1-5881-be41-6ffeaa202044}'));
@@ -85,7 +85,7 @@ class IGeolocatorStatics extends IInspectable {
 
   Future<List<Geoposition?>> getGeopositionHistoryWithDurationAsync(
       DateTime startTime, Duration duration) {
-    final retValuePtr = calloc<COMObject>();
+    final result = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(8)
@@ -93,20 +93,20 @@ class IGeolocatorStatics extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(VTablePointer lpVtbl, Int64 startTime,
-                            Int64 duration, Pointer<COMObject> retValuePtr)>>>()
+                            Int64 duration, Pointer<COMObject> result)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int startTime, int duration,
-                    Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl,
-        startTime.toWinRTDateTime(), duration.toWinRTDuration(), retValuePtr);
+                    Pointer<COMObject> result)>()(ptr.ref.lpVtbl,
+        startTime.toWinRTDateTime(), duration.toWinRTDuration(), result);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(result);
       throw WindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<IVectorView<Geoposition?>>.fromPtr(
-        retValuePtr,
+        result,
         creator: (ptr) => IVectorView.fromPtr(ptr,
             creator: Geoposition.fromPtr,
             iterableIid: '{135ed72d-75b1-5881-be41-6ffeaa202044}'));

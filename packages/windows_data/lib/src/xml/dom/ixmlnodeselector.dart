@@ -29,39 +29,38 @@ class IXmlNodeSelector extends IInspectable {
       IXmlNodeSelector.fromPtr(interface.toInterface(IID_IXmlNodeSelector));
 
   IXmlNode? selectSingleNode(String xpath) {
-    final retValuePtr = calloc<COMObject>();
+    final node = calloc<COMObject>();
     final xpathHString = xpath.toHString();
 
     final hr = ptr.ref.vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, IntPtr xpath,
-                            Pointer<COMObject> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int xpath,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, xpathHString, retValuePtr);
+        .elementAt(6)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl, IntPtr xpath,
+                        Pointer<COMObject> node)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl, int xpath,
+                Pointer<COMObject> node)>()(ptr.ref.lpVtbl, xpathHString, node);
 
     WindowsDeleteString(xpathHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(node);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (node.isNull) {
+      free(node);
       return null;
     }
 
-    return IXmlNode.fromPtr(retValuePtr);
+    return IXmlNode.fromPtr(node);
   }
 
   XmlNodeList selectNodes(String xpath) {
-    final retValuePtr = calloc<COMObject>();
+    final nodelist = calloc<COMObject>();
     final xpathHString = xpath.toHString();
 
     final hr = ptr.ref.vtable
@@ -70,66 +69,65 @@ class IXmlNodeSelector extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(VTablePointer lpVtbl, IntPtr xpath,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> nodelist)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int xpath,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, xpathHString, retValuePtr);
+                    Pointer<COMObject> nodelist)>()(
+        ptr.ref.lpVtbl, xpathHString, nodelist);
 
     WindowsDeleteString(xpathHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(nodelist);
       throw WindowsException(hr);
     }
 
-    return XmlNodeList.fromPtr(retValuePtr);
+    return XmlNodeList.fromPtr(nodelist);
   }
 
   IXmlNode? selectSingleNodeNS(String xpath, Object? namespaces) {
-    final retValuePtr = calloc<COMObject>();
+    final node = calloc<COMObject>();
     final xpathHString = xpath.toHString();
-    final namespacesPtr = namespaces?.intoBox().ptr.ref.lpVtbl ?? nullptr;
 
-    final hr = ptr.ref.vtable
-            .elementAt(8)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            IntPtr xpath,
-                            VTablePointer namespaces,
-                            Pointer<COMObject> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    int xpath,
-                    VTablePointer namespaces,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, xpathHString, namespacesPtr, retValuePtr);
+    final hr =
+        ptr.ref.vtable
+                .elementAt(8)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                VTablePointer lpVtbl,
+                                IntPtr xpath,
+                                VTablePointer namespaces,
+                                Pointer<COMObject> node)>>>()
+                .value
+                .asFunction<
+                    int Function(VTablePointer lpVtbl, int xpath,
+                        VTablePointer namespaces, Pointer<COMObject> node)>()(
+            ptr.ref.lpVtbl,
+            xpathHString,
+            namespaces?.intoBox().ptr.ref.lpVtbl ?? nullptr,
+            node);
 
     WindowsDeleteString(xpathHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(node);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (node.isNull) {
+      free(node);
       return null;
     }
 
-    return IXmlNode.fromPtr(retValuePtr);
+    return IXmlNode.fromPtr(node);
   }
 
   XmlNodeList selectNodesNS(String xpath, Object? namespaces) {
-    final retValuePtr = calloc<COMObject>();
+    final nodelist = calloc<COMObject>();
     final xpathHString = xpath.toHString();
-    final namespacesPtr = namespaces?.intoBox().ptr.ref.lpVtbl ?? nullptr;
 
     final hr = ptr.ref.vtable
             .elementAt(9)
@@ -140,23 +138,23 @@ class IXmlNodeSelector extends IInspectable {
                             VTablePointer lpVtbl,
                             IntPtr xpath,
                             VTablePointer namespaces,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> nodelist)>>>()
             .value
             .asFunction<
-                int Function(
-                    VTablePointer lpVtbl,
-                    int xpath,
-                    VTablePointer namespaces,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, xpathHString, namespacesPtr, retValuePtr);
+                int Function(VTablePointer lpVtbl, int xpath,
+                    VTablePointer namespaces, Pointer<COMObject> nodelist)>()(
+        ptr.ref.lpVtbl,
+        xpathHString,
+        namespaces?.intoBox().ptr.ref.lpVtbl ?? nullptr,
+        nodelist);
 
     WindowsDeleteString(xpathHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(nodelist);
       throw WindowsException(hr);
     }
 
-    return XmlNodeList.fromPtr(retValuePtr);
+    return XmlNodeList.fromPtr(nodelist);
   }
 }

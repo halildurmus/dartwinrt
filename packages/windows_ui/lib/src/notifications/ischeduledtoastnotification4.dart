@@ -28,33 +28,33 @@ class IScheduledToastNotification4 extends IInspectable {
           interface.toInterface(IID_IScheduledToastNotification4));
 
   DateTime? get expirationTime {
-    final retValuePtr = calloc<COMObject>();
+    final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+            .elementAt(6)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
+        ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (value.isNull) {
+      free(value);
       return null;
     }
 
-    final reference = IReference<DateTime?>.fromPtr(retValuePtr,
-        referenceIid: '{5541d8a7-497c-5aa4-86fc-7713adbf2a2c}');
-    return reference.value;
+    return IReference<DateTime?>.fromPtr(value,
+            referenceIid: '{5541d8a7-497c-5aa4-86fc-7713adbf2a2c}')
+        .value;
   }
 
   set expirationTime(DateTime? value) {

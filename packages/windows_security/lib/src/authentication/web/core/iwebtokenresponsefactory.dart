@@ -31,7 +31,7 @@ class IWebTokenResponseFactory extends IInspectable {
           interface.toInterface(IID_IWebTokenResponseFactory));
 
   WebTokenResponse createWithToken(String token) {
-    final retValuePtr = calloc<COMObject>();
+    final webTokenResponse = calloc<COMObject>();
     final tokenHString = token.toHString();
 
     final hr = ptr.ref.vtable
@@ -40,28 +40,27 @@ class IWebTokenResponseFactory extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(VTablePointer lpVtbl, IntPtr token,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> webTokenResponse)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int token,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, tokenHString, retValuePtr);
+                    Pointer<COMObject> webTokenResponse)>()(
+        ptr.ref.lpVtbl, tokenHString, webTokenResponse);
 
     WindowsDeleteString(tokenHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(webTokenResponse);
       throw WindowsException(hr);
     }
 
-    return WebTokenResponse.fromPtr(retValuePtr);
+    return WebTokenResponse.fromPtr(webTokenResponse);
   }
 
   WebTokenResponse createWithTokenAndAccount(
       String token, WebAccount webAccount) {
-    final retValuePtr = calloc<COMObject>();
+    final webTokenResponse = calloc<COMObject>();
     final tokenHString = token.toHString();
-    final webAccountPtr = webAccount.ptr.ref.lpVtbl;
 
     final hr = ptr.ref.vtable
             .elementAt(7)
@@ -72,32 +71,30 @@ class IWebTokenResponseFactory extends IInspectable {
                             VTablePointer lpVtbl,
                             IntPtr token,
                             VTablePointer webAccount,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> webTokenResponse)>>>()
             .value
             .asFunction<
                 int Function(
                     VTablePointer lpVtbl,
                     int token,
                     VTablePointer webAccount,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, tokenHString, webAccountPtr, retValuePtr);
+                    Pointer<COMObject> webTokenResponse)>()(ptr.ref.lpVtbl,
+        tokenHString, webAccount.ptr.ref.lpVtbl, webTokenResponse);
 
     WindowsDeleteString(tokenHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(webTokenResponse);
       throw WindowsException(hr);
     }
 
-    return WebTokenResponse.fromPtr(retValuePtr);
+    return WebTokenResponse.fromPtr(webTokenResponse);
   }
 
   WebTokenResponse createWithTokenAccountAndError(
       String token, WebAccount webAccount, WebProviderError error) {
-    final retValuePtr = calloc<COMObject>();
+    final webTokenResponse = calloc<COMObject>();
     final tokenHString = token.toHString();
-    final webAccountPtr = webAccount.ptr.ref.lpVtbl;
-    final errorPtr = error.ptr.ref.lpVtbl;
 
     final hr = ptr.ref.vtable
             .elementAt(8)
@@ -109,7 +106,7 @@ class IWebTokenResponseFactory extends IInspectable {
                             IntPtr token,
                             VTablePointer webAccount,
                             VTablePointer error,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> webTokenResponse)>>>()
             .value
             .asFunction<
                 int Function(
@@ -117,16 +114,20 @@ class IWebTokenResponseFactory extends IInspectable {
                     int token,
                     VTablePointer webAccount,
                     VTablePointer error,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, tokenHString, webAccountPtr, errorPtr, retValuePtr);
+                    Pointer<COMObject> webTokenResponse)>()(
+        ptr.ref.lpVtbl,
+        tokenHString,
+        webAccount.ptr.ref.lpVtbl,
+        error.ptr.ref.lpVtbl,
+        webTokenResponse);
 
     WindowsDeleteString(tokenHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(webTokenResponse);
       throw WindowsException(hr);
     }
 
-    return WebTokenResponse.fromPtr(retValuePtr);
+    return WebTokenResponse.fromPtr(webTokenResponse);
   }
 }

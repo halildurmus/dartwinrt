@@ -28,7 +28,7 @@ class IHostNameFactory extends IInspectable {
       IHostNameFactory.fromPtr(interface.toInterface(IID_IHostNameFactory));
 
   HostName createHostName(String hostName) {
-    final retValuePtr = calloc<COMObject>();
+    final value = calloc<COMObject>();
     final hostNameHString = hostName.toHString();
 
     final hr = ptr.ref.vtable
@@ -37,20 +37,20 @@ class IHostNameFactory extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(VTablePointer lpVtbl, IntPtr hostName,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> value)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int hostName,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, hostNameHString, retValuePtr);
+                    Pointer<COMObject> value)>()(
+        ptr.ref.lpVtbl, hostNameHString, value);
 
     WindowsDeleteString(hostNameHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    return HostName.fromPtr(retValuePtr);
+    return HostName.fromPtr(value);
   }
 }

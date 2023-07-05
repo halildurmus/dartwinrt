@@ -38,8 +38,7 @@ class IWebAuthenticationCoreManagerStatics4 extends IInspectable
 
   Future<FindAllAccountsResult?> findAllAccountsAsync(
       WebAccountProvider? provider) {
-    final retValuePtr = calloc<COMObject>();
-    final providerPtr = provider == null ? nullptr : provider.ptr.ref.lpVtbl;
+    final operation = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -49,28 +48,27 @@ class IWebAuthenticationCoreManagerStatics4 extends IInspectable
                         HRESULT Function(
                             VTablePointer lpVtbl,
                             VTablePointer provider,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> operation)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer provider,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, providerPtr, retValuePtr);
+                    Pointer<COMObject> operation)>()(ptr.ref.lpVtbl,
+        provider == null ? nullptr : provider.ptr.ref.lpVtbl, operation);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<FindAllAccountsResult?>.fromPtr(
-        retValuePtr,
+        operation,
         creator: FindAllAccountsResult.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<FindAllAccountsResult?> findAllAccountsWithClientIdAsync(
       WebAccountProvider? provider, String clientId) {
-    final retValuePtr = calloc<COMObject>();
-    final providerPtr = provider == null ? nullptr : provider.ptr.ref.lpVtbl;
+    final operation = calloc<COMObject>();
     final clientIdHString = clientId.toHString();
 
     final hr = ptr.ref.vtable
@@ -82,29 +80,32 @@ class IWebAuthenticationCoreManagerStatics4 extends IInspectable
                             VTablePointer lpVtbl,
                             VTablePointer provider,
                             IntPtr clientId,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> operation)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer provider,
-                    int clientId, Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, providerPtr, clientIdHString, retValuePtr);
+                    int clientId, Pointer<COMObject> operation)>()(
+        ptr.ref.lpVtbl,
+        provider == null ? nullptr : provider.ptr.ref.lpVtbl,
+        clientIdHString,
+        operation);
 
     WindowsDeleteString(clientIdHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<FindAllAccountsResult?>.fromPtr(
-        retValuePtr,
+        operation,
         creator: FindAllAccountsResult.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<WebAccountProvider?> findSystemAccountProviderAsync(
       String webAccountProviderId) {
-    final retValuePtr = calloc<COMObject>();
+    final operation = calloc<COMObject>();
     final webAccountProviderIdHString = webAccountProviderId.toHString();
 
     final hr = ptr.ref.vtable
@@ -115,29 +116,29 @@ class IWebAuthenticationCoreManagerStatics4 extends IInspectable
                         HRESULT Function(
                             VTablePointer lpVtbl,
                             IntPtr webAccountProviderId,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> operation)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int webAccountProviderId,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, webAccountProviderIdHString, retValuePtr);
+                    Pointer<COMObject> operation)>()(
+        ptr.ref.lpVtbl, webAccountProviderIdHString, operation);
 
     WindowsDeleteString(webAccountProviderIdHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<WebAccountProvider?>.fromPtr(
-        retValuePtr,
+        operation,
         creator: WebAccountProvider.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<WebAccountProvider?> findSystemAccountProviderWithAuthorityAsync(
       String webAccountProviderId, String authority) {
-    final retValuePtr = calloc<COMObject>();
+    final operation = calloc<COMObject>();
     final webAccountProviderIdHString = webAccountProviderId.toHString();
     final authorityHString = authority.toHString();
 
@@ -150,26 +151,26 @@ class IWebAuthenticationCoreManagerStatics4 extends IInspectable
                             VTablePointer lpVtbl,
                             IntPtr webAccountProviderId,
                             IntPtr authority,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> operation)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int webAccountProviderId,
-                    int authority, Pointer<COMObject> retValuePtr)>()(
+                    int authority, Pointer<COMObject> operation)>()(
         ptr.ref.lpVtbl,
         webAccountProviderIdHString,
         authorityHString,
-        retValuePtr);
+        operation);
 
     WindowsDeleteString(webAccountProviderIdHString);
     WindowsDeleteString(authorityHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<WebAccountProvider?>.fromPtr(
-        retValuePtr,
+        operation,
         creator: WebAccountProvider.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
@@ -177,10 +178,9 @@ class IWebAuthenticationCoreManagerStatics4 extends IInspectable
   Future<WebAccountProvider?>
       findSystemAccountProviderWithAuthorityForUserAsync(
           String webAccountProviderId, String authority, User? user) {
-    final retValuePtr = calloc<COMObject>();
+    final operation = calloc<COMObject>();
     final webAccountProviderIdHString = webAccountProviderId.toHString();
     final authorityHString = authority.toHString();
-    final userPtr = user == null ? nullptr : user.ptr.ref.lpVtbl;
 
     final hr = ptr.ref.vtable
             .elementAt(10)
@@ -192,7 +192,7 @@ class IWebAuthenticationCoreManagerStatics4 extends IInspectable
                             IntPtr webAccountProviderId,
                             IntPtr authority,
                             VTablePointer user,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> operation)>>>()
             .value
             .asFunction<
                 int Function(
@@ -200,19 +200,23 @@ class IWebAuthenticationCoreManagerStatics4 extends IInspectable
                     int webAccountProviderId,
                     int authority,
                     VTablePointer user,
-                    Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl,
-        webAccountProviderIdHString, authorityHString, userPtr, retValuePtr);
+                    Pointer<COMObject> operation)>()(
+        ptr.ref.lpVtbl,
+        webAccountProviderIdHString,
+        authorityHString,
+        user == null ? nullptr : user.ptr.ref.lpVtbl,
+        operation);
 
     WindowsDeleteString(webAccountProviderIdHString);
     WindowsDeleteString(authorityHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<WebAccountProvider?>.fromPtr(
-        retValuePtr,
+        operation,
         creator: WebAccountProvider.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }

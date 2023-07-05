@@ -32,88 +32,87 @@ class ILearningModelSession extends IInspectable {
           interface.toInterface(IID_ILearningModelSession));
 
   LearningModel? get model {
-    final retValuePtr = calloc<COMObject>();
+    final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+            .elementAt(6)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
+        ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (value.isNull) {
+      free(value);
       return null;
     }
 
-    return LearningModel.fromPtr(retValuePtr);
+    return LearningModel.fromPtr(value);
   }
 
   LearningModelDevice? get device {
-    final retValuePtr = calloc<COMObject>();
+    final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-        .elementAt(7)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+            .elementAt(7)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
+        ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (value.isNull) {
+      free(value);
       return null;
     }
 
-    return LearningModelDevice.fromPtr(retValuePtr);
+    return LearningModelDevice.fromPtr(value);
   }
 
   IPropertySet get evaluationProperties {
-    final retValuePtr = calloc<COMObject>();
+    final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-        .elementAt(8)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+            .elementAt(8)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
+        ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    return IPropertySet.fromPtr(retValuePtr);
+    return IPropertySet.fromPtr(value);
   }
 
   Future<LearningModelEvaluationResult?> evaluateAsync(
       LearningModelBinding bindings, String correlationId) {
-    final retValuePtr = calloc<COMObject>();
-    final bindingsPtr = bindings.ptr.ref.lpVtbl;
+    final operation = calloc<COMObject>();
     final correlationIdHString = correlationId.toHString();
 
     final hr = ptr.ref.vtable
@@ -125,30 +124,32 @@ class ILearningModelSession extends IInspectable {
                             VTablePointer lpVtbl,
                             VTablePointer bindings,
                             IntPtr correlationId,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> operation)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer bindings,
-                    int correlationId, Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, bindingsPtr, correlationIdHString, retValuePtr);
+                    int correlationId, Pointer<COMObject> operation)>()(
+        ptr.ref.lpVtbl,
+        bindings.ptr.ref.lpVtbl,
+        correlationIdHString,
+        operation);
 
     WindowsDeleteString(correlationIdHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
     final asyncOperation =
-        IAsyncOperation<LearningModelEvaluationResult?>.fromPtr(retValuePtr,
+        IAsyncOperation<LearningModelEvaluationResult?>.fromPtr(operation,
             creator: LearningModelEvaluationResult.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<LearningModelEvaluationResult?> evaluateFeaturesAsync(
       IMap<String, Object?> features, String correlationId) {
-    final retValuePtr = calloc<COMObject>();
-    final featuresPtr = features.ptr.ref.lpVtbl;
+    final operation = calloc<COMObject>();
     final correlationIdHString = correlationId.toHString();
 
     final hr = ptr.ref.vtable
@@ -160,30 +161,32 @@ class ILearningModelSession extends IInspectable {
                             VTablePointer lpVtbl,
                             VTablePointer features,
                             IntPtr correlationId,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> operation)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer features,
-                    int correlationId, Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, featuresPtr, correlationIdHString, retValuePtr);
+                    int correlationId, Pointer<COMObject> operation)>()(
+        ptr.ref.lpVtbl,
+        features.ptr.ref.lpVtbl,
+        correlationIdHString,
+        operation);
 
     WindowsDeleteString(correlationIdHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
     final asyncOperation =
-        IAsyncOperation<LearningModelEvaluationResult?>.fromPtr(retValuePtr,
+        IAsyncOperation<LearningModelEvaluationResult?>.fromPtr(operation,
             creator: LearningModelEvaluationResult.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   LearningModelEvaluationResult? evaluate(
       LearningModelBinding bindings, String correlationId) {
-    final retValuePtr = calloc<COMObject>();
-    final bindingsPtr = bindings.ptr.ref.lpVtbl;
+    final result = calloc<COMObject>();
     final correlationIdHString = correlationId.toHString();
 
     final hr = ptr.ref.vtable
@@ -195,32 +198,31 @@ class ILearningModelSession extends IInspectable {
                             VTablePointer lpVtbl,
                             VTablePointer bindings,
                             IntPtr correlationId,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> result)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer bindings,
-                    int correlationId, Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, bindingsPtr, correlationIdHString, retValuePtr);
+                    int correlationId, Pointer<COMObject> result)>()(
+        ptr.ref.lpVtbl, bindings.ptr.ref.lpVtbl, correlationIdHString, result);
 
     WindowsDeleteString(correlationIdHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(result);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (result.isNull) {
+      free(result);
       return null;
     }
 
-    return LearningModelEvaluationResult.fromPtr(retValuePtr);
+    return LearningModelEvaluationResult.fromPtr(result);
   }
 
   LearningModelEvaluationResult? evaluateFeatures(
       IMap<String, Object?> features, String correlationId) {
-    final retValuePtr = calloc<COMObject>();
-    final featuresPtr = features.ptr.ref.lpVtbl;
+    final result = calloc<COMObject>();
     final correlationIdHString = correlationId.toHString();
 
     final hr = ptr.ref.vtable
@@ -232,25 +234,25 @@ class ILearningModelSession extends IInspectable {
                             VTablePointer lpVtbl,
                             VTablePointer features,
                             IntPtr correlationId,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> result)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer features,
-                    int correlationId, Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, featuresPtr, correlationIdHString, retValuePtr);
+                    int correlationId, Pointer<COMObject> result)>()(
+        ptr.ref.lpVtbl, features.ptr.ref.lpVtbl, correlationIdHString, result);
 
     WindowsDeleteString(correlationIdHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(result);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (result.isNull) {
+      free(result);
       return null;
     }
 
-    return LearningModelEvaluationResult.fromPtr(retValuePtr);
+    return LearningModelEvaluationResult.fromPtr(result);
   }
 }

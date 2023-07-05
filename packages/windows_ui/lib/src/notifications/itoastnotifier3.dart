@@ -28,7 +28,7 @@ class IToastNotifier3 extends IInspectable {
       IToastNotifier3.fromPtr(interface.toInterface(IID_IToastNotifier3));
 
   int add_ScheduledToastNotificationShowing(Pointer<COMObject> handler) {
-    final retValuePtr = calloc<IntPtr>();
+    final token = calloc<IntPtr>();
 
     try {
       final hr = ptr.ref.vtable
@@ -36,21 +36,19 @@ class IToastNotifier3 extends IInspectable {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              VTablePointer handler,
-                              Pointer<IntPtr> retValuePtr)>>>()
+                          HRESULT Function(VTablePointer lpVtbl,
+                              VTablePointer handler, Pointer<IntPtr> token)>>>()
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, VTablePointer handler,
-                      Pointer<IntPtr> retValuePtr)>()(
-          ptr.ref.lpVtbl, handler.ref.lpVtbl, retValuePtr);
+                      Pointer<IntPtr> token)>()(
+          ptr.ref.lpVtbl, handler.ref.lpVtbl, token);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return token.value;
     } finally {
-      free(retValuePtr);
+      free(token);
     }
   }
 

@@ -29,35 +29,31 @@ class ICurrencyAmountFactory extends IInspectable {
           interface.toInterface(IID_ICurrencyAmountFactory));
 
   CurrencyAmount create(String amount, String currency) {
-    final retValuePtr = calloc<COMObject>();
+    final result = calloc<COMObject>();
     final amountHString = amount.toHString();
     final currencyHString = currency.toHString();
 
-    final hr =
-        ptr.ref.vtable
-                .elementAt(6)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                IntPtr amount,
-                                IntPtr currency,
-                                Pointer<COMObject> retValuePtr)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, int amount, int currency,
-                        Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl, amountHString, currencyHString, retValuePtr);
+    final hr = ptr.ref.vtable
+            .elementAt(6)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(VTablePointer lpVtbl, IntPtr amount,
+                            IntPtr currency, Pointer<COMObject> result)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, int amount, int currency,
+                    Pointer<COMObject> result)>()(
+        ptr.ref.lpVtbl, amountHString, currencyHString, result);
 
     WindowsDeleteString(amountHString);
     WindowsDeleteString(currencyHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(result);
       throw WindowsException(hr);
     }
 
-    return CurrencyAmount.fromPtr(retValuePtr);
+    return CurrencyAmount.fromPtr(result);
   }
 }

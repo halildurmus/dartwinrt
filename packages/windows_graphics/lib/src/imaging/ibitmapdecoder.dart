@@ -31,112 +31,112 @@ class IBitmapDecoder extends IInspectable {
       IBitmapDecoder.fromPtr(interface.toInterface(IID_IBitmapDecoder));
 
   BitmapPropertiesView? get bitmapContainerProperties {
-    final retValuePtr = calloc<COMObject>();
+    final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+            .elementAt(6)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
+        ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (value.isNull) {
+      free(value);
       return null;
     }
 
-    return BitmapPropertiesView.fromPtr(retValuePtr);
+    return BitmapPropertiesView.fromPtr(value);
   }
 
   BitmapCodecInformation? get decoderInformation {
-    final retValuePtr = calloc<COMObject>();
+    final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-        .elementAt(7)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+            .elementAt(7)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
+        ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (value.isNull) {
+      free(value);
       return null;
     }
 
-    return BitmapCodecInformation.fromPtr(retValuePtr);
+    return BitmapCodecInformation.fromPtr(value);
   }
 
   int get frameCount {
-    final retValuePtr = calloc<Uint32>();
+    final value = calloc<Uint32>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(8)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(VTablePointer lpVtbl,
-                          Pointer<Uint32> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Uint32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(8)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<Uint32> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return value.value;
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
   Future<ImageStream?> getPreviewAsync() {
-    final retValuePtr = calloc<COMObject>();
+    final asyncInfo = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
         .elementAt(9)
         .cast<
             Pointer<
                 NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
+                    HRESULT Function(
+                        VTablePointer lpVtbl, Pointer<COMObject> asyncInfo)>>>()
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                Pointer<COMObject> asyncInfo)>()(ptr.ref.lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(asyncInfo);
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<ImageStream?>.fromPtr(retValuePtr,
+    final asyncOperation = IAsyncOperation<ImageStream?>.fromPtr(asyncInfo,
         creator: ImageStream.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<BitmapFrame?> getFrameAsync(int frameIndex) {
-    final retValuePtr = calloc<COMObject>();
+    final asyncInfo = calloc<COMObject>();
 
     final hr =
         ptr.ref.vtable
@@ -147,19 +147,19 @@ class IBitmapDecoder extends IInspectable {
                             HRESULT Function(
                                 VTablePointer lpVtbl,
                                 Uint32 frameIndex,
-                                Pointer<COMObject> retValuePtr)>>>()
+                                Pointer<COMObject> asyncInfo)>>>()
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, int frameIndex,
-                        Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl, frameIndex, retValuePtr);
+                        Pointer<COMObject> asyncInfo)>()(
+            ptr.ref.lpVtbl, frameIndex, asyncInfo);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(asyncInfo);
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<BitmapFrame?>.fromPtr(retValuePtr,
+    final asyncOperation = IAsyncOperation<BitmapFrame?>.fromPtr(asyncInfo,
         creator: BitmapFrame.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }

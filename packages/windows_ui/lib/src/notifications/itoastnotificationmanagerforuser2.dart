@@ -33,7 +33,7 @@ class IToastNotificationManagerForUser2 extends IInspectable {
 
   Future<ToastNotifier?> getToastNotifierForToastCollectionIdAsync(
       String collectionId) {
-    final retValuePtr = calloc<COMObject>();
+    final operation = calloc<COMObject>();
     final collectionIdHString = collectionId.toHString();
 
     final hr =
@@ -45,28 +45,28 @@ class IToastNotificationManagerForUser2 extends IInspectable {
                             HRESULT Function(
                                 VTablePointer lpVtbl,
                                 IntPtr collectionId,
-                                Pointer<COMObject> retValuePtr)>>>()
+                                Pointer<COMObject> operation)>>>()
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, int collectionId,
-                        Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl, collectionIdHString, retValuePtr);
+                        Pointer<COMObject> operation)>()(
+            ptr.ref.lpVtbl, collectionIdHString, operation);
 
     WindowsDeleteString(collectionIdHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<ToastNotifier?>.fromPtr(retValuePtr,
+    final asyncOperation = IAsyncOperation<ToastNotifier?>.fromPtr(operation,
         creator: ToastNotifier.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<ToastNotificationHistory?> getHistoryForToastCollectionIdAsync(
       String collectionId) {
-    final retValuePtr = calloc<COMObject>();
+    final operation = calloc<COMObject>();
     final collectionIdHString = collectionId.toHString();
 
     final hr =
@@ -78,56 +78,56 @@ class IToastNotificationManagerForUser2 extends IInspectable {
                             HRESULT Function(
                                 VTablePointer lpVtbl,
                                 IntPtr collectionId,
-                                Pointer<COMObject> retValuePtr)>>>()
+                                Pointer<COMObject> operation)>>>()
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, int collectionId,
-                        Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl, collectionIdHString, retValuePtr);
+                        Pointer<COMObject> operation)>()(
+            ptr.ref.lpVtbl, collectionIdHString, operation);
 
     WindowsDeleteString(collectionIdHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<ToastNotificationHistory?>.fromPtr(
-        retValuePtr,
+        operation,
         creator: ToastNotificationHistory.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   ToastCollectionManager? getToastCollectionManager() {
-    final retValuePtr = calloc<COMObject>();
+    final result = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
         .elementAt(8)
         .cast<
             Pointer<
                 NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
+                    HRESULT Function(
+                        VTablePointer lpVtbl, Pointer<COMObject> result)>>>()
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                Pointer<COMObject> result)>()(ptr.ref.lpVtbl, result);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(result);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (result.isNull) {
+      free(result);
       return null;
     }
 
-    return ToastCollectionManager.fromPtr(retValuePtr);
+    return ToastCollectionManager.fromPtr(result);
   }
 
   ToastCollectionManager? getToastCollectionManagerWithAppId(String appId) {
-    final retValuePtr = calloc<COMObject>();
+    final result = calloc<COMObject>();
     final appIdHString = appId.toHString();
 
     final hr = ptr.ref.vtable
@@ -136,25 +136,25 @@ class IToastNotificationManagerForUser2 extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(VTablePointer lpVtbl, IntPtr appId,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> result)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int appId,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, appIdHString, retValuePtr);
+                    Pointer<COMObject> result)>()(
+        ptr.ref.lpVtbl, appIdHString, result);
 
     WindowsDeleteString(appIdHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(result);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (result.isNull) {
+      free(result);
       return null;
     }
 
-    return ToastCollectionManager.fromPtr(retValuePtr);
+    return ToastCollectionManager.fromPtr(result);
   }
 }

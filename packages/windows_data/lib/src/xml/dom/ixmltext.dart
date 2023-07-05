@@ -40,7 +40,7 @@ class IXmlText extends IInspectable
       IXmlText.fromPtr(interface.toInterface(IID_IXmlText));
 
   IXmlText? splitText(int offset) {
-    final retValuePtr = calloc<COMObject>();
+    final secondPart = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -48,24 +48,24 @@ class IXmlText extends IInspectable
                 Pointer<
                     NativeFunction<
                         HRESULT Function(VTablePointer lpVtbl, Uint32 offset,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> secondPart)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int offset,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, offset, retValuePtr);
+                    Pointer<COMObject> secondPart)>()(
+        ptr.ref.lpVtbl, offset, secondPart);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(secondPart);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (secondPart.isNull) {
+      free(secondPart);
       return null;
     }
 
-    return IXmlText.fromPtr(retValuePtr);
+    return IXmlText.fromPtr(secondPart);
   }
 
   late final _iXmlCharacterData = IXmlCharacterData.from(this);

@@ -31,29 +31,28 @@ class IDirect3DSurface extends IInspectable implements IClosable {
       IDirect3DSurface.fromPtr(interface.toInterface(IID_IDirect3DSurface));
 
   Direct3DSurfaceDescription get description {
-    final retValuePtr = calloc<NativeDirect3DSurfaceDescription>();
+    final value = calloc<NativeDirect3DSurfaceDescription>();
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              Pointer<NativeDirect3DSurfaceDescription>
-                                  retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl,
-                      Pointer<NativeDirect3DSurfaceDescription> retValuePtr)>()(
-          ptr.ref.lpVtbl, retValuePtr);
+          .elementAt(6)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          Pointer<NativeDirect3DSurfaceDescription> value)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  VTablePointer lpVtbl,
+                  Pointer<NativeDirect3DSurfaceDescription>
+                      value)>()(ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.toDart();
+      return value.toDart();
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 

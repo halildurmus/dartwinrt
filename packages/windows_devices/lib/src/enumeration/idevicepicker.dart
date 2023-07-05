@@ -33,87 +33,87 @@ class IDevicePicker extends IInspectable {
       IDevicePicker.fromPtr(interface.toInterface(IID_IDevicePicker));
 
   DevicePickerFilter? get filter {
-    final retValuePtr = calloc<COMObject>();
+    final filter = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
         .elementAt(6)
         .cast<
             Pointer<
                 NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
+                    HRESULT Function(
+                        VTablePointer lpVtbl, Pointer<COMObject> filter)>>>()
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                Pointer<COMObject> filter)>()(ptr.ref.lpVtbl, filter);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(filter);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (filter.isNull) {
+      free(filter);
       return null;
     }
 
-    return DevicePickerFilter.fromPtr(retValuePtr);
+    return DevicePickerFilter.fromPtr(filter);
   }
 
   DevicePickerAppearance? get appearance {
-    final retValuePtr = calloc<COMObject>();
+    final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-        .elementAt(7)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+            .elementAt(7)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
+        ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (value.isNull) {
+      free(value);
       return null;
     }
 
-    return DevicePickerAppearance.fromPtr(retValuePtr);
+    return DevicePickerAppearance.fromPtr(value);
   }
 
   IVector<String> get requestedProperties {
-    final retValuePtr = calloc<COMObject>();
+    final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-        .elementAt(8)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+            .elementAt(8)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
+        ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    return IVector.fromPtr(retValuePtr,
+    return IVector.fromPtr(value,
         iterableIid: '{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}');
   }
 
   int add_DeviceSelected(Pointer<COMObject> handler) {
-    final retValuePtr = calloc<IntPtr>();
+    final token = calloc<IntPtr>();
 
     try {
       final hr = ptr.ref.vtable
@@ -121,21 +121,19 @@ class IDevicePicker extends IInspectable {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              VTablePointer handler,
-                              Pointer<IntPtr> retValuePtr)>>>()
+                          HRESULT Function(VTablePointer lpVtbl,
+                              VTablePointer handler, Pointer<IntPtr> token)>>>()
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, VTablePointer handler,
-                      Pointer<IntPtr> retValuePtr)>()(
-          ptr.ref.lpVtbl, handler.ref.lpVtbl, retValuePtr);
+                      Pointer<IntPtr> token)>()(
+          ptr.ref.lpVtbl, handler.ref.lpVtbl, token);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return token.value;
     } finally {
-      free(retValuePtr);
+      free(token);
     }
   }
 
@@ -156,7 +154,7 @@ class IDevicePicker extends IInspectable {
   }
 
   int add_DisconnectButtonClicked(Pointer<COMObject> handler) {
-    final retValuePtr = calloc<IntPtr>();
+    final token = calloc<IntPtr>();
 
     try {
       final hr = ptr.ref.vtable
@@ -164,21 +162,19 @@ class IDevicePicker extends IInspectable {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              VTablePointer handler,
-                              Pointer<IntPtr> retValuePtr)>>>()
+                          HRESULT Function(VTablePointer lpVtbl,
+                              VTablePointer handler, Pointer<IntPtr> token)>>>()
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, VTablePointer handler,
-                      Pointer<IntPtr> retValuePtr)>()(
-          ptr.ref.lpVtbl, handler.ref.lpVtbl, retValuePtr);
+                      Pointer<IntPtr> token)>()(
+          ptr.ref.lpVtbl, handler.ref.lpVtbl, token);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return token.value;
     } finally {
-      free(retValuePtr);
+      free(token);
     }
   }
 
@@ -199,7 +195,7 @@ class IDevicePicker extends IInspectable {
   }
 
   int add_DevicePickerDismissed(Pointer<COMObject> handler) {
-    final retValuePtr = calloc<IntPtr>();
+    final token = calloc<IntPtr>();
 
     try {
       final hr = ptr.ref.vtable
@@ -207,21 +203,19 @@ class IDevicePicker extends IInspectable {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              VTablePointer handler,
-                              Pointer<IntPtr> retValuePtr)>>>()
+                          HRESULT Function(VTablePointer lpVtbl,
+                              VTablePointer handler, Pointer<IntPtr> token)>>>()
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, VTablePointer handler,
-                      Pointer<IntPtr> retValuePtr)>()(
-          ptr.ref.lpVtbl, handler.ref.lpVtbl, retValuePtr);
+                      Pointer<IntPtr> token)>()(
+          ptr.ref.lpVtbl, handler.ref.lpVtbl, token);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return token.value;
     } finally {
-      free(retValuePtr);
+      free(token);
     }
   }
 
@@ -284,7 +278,7 @@ class IDevicePicker extends IInspectable {
   }
 
   Future<DeviceInformation?> pickSingleDeviceAsync(Rect selection) {
-    final retValuePtr = calloc<COMObject>();
+    final operation = calloc<COMObject>();
     final selectionNativeStructPtr = selection.toNative();
 
     final hr =
@@ -296,29 +290,29 @@ class IDevicePicker extends IInspectable {
                             HRESULT Function(
                                 VTablePointer lpVtbl,
                                 NativeRect selection,
-                                Pointer<COMObject> retValuePtr)>>>()
+                                Pointer<COMObject> operation)>>>()
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, NativeRect selection,
-                        Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl, selectionNativeStructPtr.ref, retValuePtr);
+                        Pointer<COMObject> operation)>()(
+            ptr.ref.lpVtbl, selectionNativeStructPtr.ref, operation);
 
     free(selectionNativeStructPtr);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<DeviceInformation?>.fromPtr(
-        retValuePtr,
+        operation,
         creator: DeviceInformation.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<DeviceInformation?> pickSingleDeviceAsyncWithPlacement(
       Rect selection, Placement placement) {
-    final retValuePtr = calloc<COMObject>();
+    final operation = calloc<COMObject>();
     final selectionNativeStructPtr = selection.toNative();
 
     final hr =
@@ -331,25 +325,25 @@ class IDevicePicker extends IInspectable {
                                 VTablePointer lpVtbl,
                                 NativeRect selection,
                                 Int32 placement,
-                                Pointer<COMObject> retValuePtr)>>>()
+                                Pointer<COMObject> operation)>>>()
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, NativeRect selection,
-                        int placement, Pointer<COMObject> retValuePtr)>()(
+                        int placement, Pointer<COMObject> operation)>()(
             ptr.ref.lpVtbl,
             selectionNativeStructPtr.ref,
             placement.value,
-            retValuePtr);
+            operation);
 
     free(selectionNativeStructPtr);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<DeviceInformation?>.fromPtr(
-        retValuePtr,
+        operation,
         creator: DeviceInformation.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
@@ -366,7 +360,6 @@ class IDevicePicker extends IInspectable {
 
   void setDisplayStatus(DeviceInformation? device, String status,
       DevicePickerDisplayStatusOptions options) {
-    final devicePtr = device == null ? nullptr : device.ptr.ref.lpVtbl;
     final statusHString = status.toHString();
 
     final hr =
@@ -384,7 +377,10 @@ class IDevicePicker extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer device,
                         int status, int options)>()(
-            ptr.ref.lpVtbl, devicePtr, statusHString, options.value);
+            ptr.ref.lpVtbl,
+            device == null ? nullptr : device.ptr.ref.lpVtbl,
+            statusHString,
+            options.value);
 
     WindowsDeleteString(statusHString);
 

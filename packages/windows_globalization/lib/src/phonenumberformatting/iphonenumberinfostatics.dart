@@ -30,7 +30,7 @@ class IPhoneNumberInfoStatics extends IInspectable {
           interface.toInterface(IID_IPhoneNumberInfoStatics));
 
   PhoneNumberParseResult tryParse(String input, PhoneNumberInfo phoneNumber) {
-    final retValuePtr = calloc<Int32>();
+    final result = calloc<Int32>();
 
     try {
       final inputHString = input.toHString();
@@ -44,29 +44,26 @@ class IPhoneNumberInfoStatics extends IInspectable {
                               VTablePointer lpVtbl,
                               IntPtr input,
                               Pointer<COMObject> phoneNumber,
-                              Pointer<Int32> retValuePtr)>>>()
+                              Pointer<Int32> result)>>>()
               .value
               .asFunction<
-                  int Function(
-                      VTablePointer lpVtbl,
-                      int input,
-                      Pointer<COMObject> phoneNumber,
-                      Pointer<Int32> retValuePtr)>()(
-          ptr.ref.lpVtbl, inputHString, phoneNumber.ptr, retValuePtr);
+                  int Function(VTablePointer lpVtbl, int input,
+                      Pointer<COMObject> phoneNumber, Pointer<Int32> result)>()(
+          ptr.ref.lpVtbl, inputHString, phoneNumber.ptr, result);
 
       WindowsDeleteString(inputHString);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return PhoneNumberParseResult.from(retValuePtr.value);
+      return PhoneNumberParseResult.from(result.value);
     } finally {
-      free(retValuePtr);
+      free(result);
     }
   }
 
   PhoneNumberParseResult tryParseWithRegion(
       String input, String regionCode, PhoneNumberInfo phoneNumber) {
-    final retValuePtr = calloc<Int32>();
+    final result = calloc<Int32>();
 
     try {
       final inputHString = input.toHString();
@@ -82,25 +79,25 @@ class IPhoneNumberInfoStatics extends IInspectable {
                               IntPtr input,
                               IntPtr regionCode,
                               Pointer<COMObject> phoneNumber,
-                              Pointer<Int32> retValuePtr)>>>()
+                              Pointer<Int32> result)>>>()
               .value
               .asFunction<
-                  int Function(
-                      VTablePointer lpVtbl,
-                      int input,
-                      int regionCode,
-                      Pointer<COMObject> phoneNumber,
-                      Pointer<Int32> retValuePtr)>()(ptr.ref.lpVtbl,
-          inputHString, regionCodeHString, phoneNumber.ptr, retValuePtr);
+                  int Function(VTablePointer lpVtbl, int input, int regionCode,
+                      Pointer<COMObject> phoneNumber, Pointer<Int32> result)>()(
+          ptr.ref.lpVtbl,
+          inputHString,
+          regionCodeHString,
+          phoneNumber.ptr,
+          result);
 
       WindowsDeleteString(inputHString);
       WindowsDeleteString(regionCodeHString);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return PhoneNumberParseResult.from(retValuePtr.value);
+      return PhoneNumberParseResult.from(result.value);
     } finally {
-      free(retValuePtr);
+      free(result);
     }
   }
 }

@@ -28,42 +28,41 @@ class IApplicationData3 extends IInspectable {
       IApplicationData3.fromPtr(interface.toInterface(IID_IApplicationData3));
 
   StorageFolder? getPublisherCacheFolder(String folderName) {
-    final retValuePtr = calloc<COMObject>();
+    final value = calloc<COMObject>();
     final folderNameHString = folderName.toHString();
 
-    final hr =
-        ptr.ref.vtable
-                .elementAt(6)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                IntPtr folderName,
-                                Pointer<COMObject> retValuePtr)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, int folderName,
-                        Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl, folderNameHString, retValuePtr);
+    final hr = ptr.ref.vtable
+        .elementAt(6)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl, IntPtr folderName,
+                        Pointer<COMObject> value)>>>()
+        .value
+        .asFunction<
+            int Function(
+                VTablePointer lpVtbl,
+                int folderName,
+                Pointer<COMObject>
+                    value)>()(ptr.ref.lpVtbl, folderNameHString, value);
 
     WindowsDeleteString(folderNameHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (value.isNull) {
+      free(value);
       return null;
     }
 
-    return StorageFolder.fromPtr(retValuePtr);
+    return StorageFolder.fromPtr(value);
   }
 
   Future<void> clearPublisherCacheFolderAsync(String folderName) {
-    final retValuePtr = calloc<COMObject>();
+    final clearOperation = calloc<COMObject>();
     final folderNameHString = folderName.toHString();
 
     final hr =
@@ -75,48 +74,48 @@ class IApplicationData3 extends IInspectable {
                             HRESULT Function(
                                 VTablePointer lpVtbl,
                                 IntPtr folderName,
-                                Pointer<COMObject> retValuePtr)>>>()
+                                Pointer<COMObject> clearOperation)>>>()
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, int folderName,
-                        Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl, folderNameHString, retValuePtr);
+                        Pointer<COMObject> clearOperation)>()(
+            ptr.ref.lpVtbl, folderNameHString, clearOperation);
 
     WindowsDeleteString(folderNameHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(clearOperation);
       throw WindowsException(hr);
     }
 
-    return IAsyncAction.fromPtr(retValuePtr).toFuture();
+    return IAsyncAction.fromPtr(clearOperation).toFuture();
   }
 
   StorageFolder? get sharedLocalFolder {
-    final retValuePtr = calloc<COMObject>();
+    final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-        .elementAt(8)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+            .elementAt(8)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
+        ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (value.isNull) {
+      free(value);
       return null;
     }
 
-    return StorageFolder.fromPtr(retValuePtr);
+    return StorageFolder.fromPtr(value);
   }
 }

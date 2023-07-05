@@ -32,35 +32,35 @@ class IToastNotificationManagerForUser extends IInspectable {
           interface.toInterface(IID_IToastNotificationManagerForUser));
 
   ToastNotifier? createToastNotifier() {
-    final retValuePtr = calloc<COMObject>();
+    final result = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
         .elementAt(6)
         .cast<
             Pointer<
                 NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
+                    HRESULT Function(
+                        VTablePointer lpVtbl, Pointer<COMObject> result)>>>()
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                Pointer<COMObject> result)>()(ptr.ref.lpVtbl, result);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(result);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (result.isNull) {
+      free(result);
       return null;
     }
 
-    return ToastNotifier.fromPtr(retValuePtr);
+    return ToastNotifier.fromPtr(result);
   }
 
   ToastNotifier? createToastNotifierWithId(String applicationId) {
-    final retValuePtr = calloc<COMObject>();
+    final result = calloc<COMObject>();
     final applicationIdHString = applicationId.toHString();
 
     final hr =
@@ -72,81 +72,81 @@ class IToastNotificationManagerForUser extends IInspectable {
                             HRESULT Function(
                                 VTablePointer lpVtbl,
                                 IntPtr applicationId,
-                                Pointer<COMObject> retValuePtr)>>>()
+                                Pointer<COMObject> result)>>>()
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, int applicationId,
-                        Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl, applicationIdHString, retValuePtr);
+                        Pointer<COMObject> result)>()(
+            ptr.ref.lpVtbl, applicationIdHString, result);
 
     WindowsDeleteString(applicationIdHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(result);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (result.isNull) {
+      free(result);
       return null;
     }
 
-    return ToastNotifier.fromPtr(retValuePtr);
+    return ToastNotifier.fromPtr(result);
   }
 
   ToastNotificationHistory? get history {
-    final retValuePtr = calloc<COMObject>();
+    final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-        .elementAt(8)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+            .elementAt(8)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
+        ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (value.isNull) {
+      free(value);
       return null;
     }
 
-    return ToastNotificationHistory.fromPtr(retValuePtr);
+    return ToastNotificationHistory.fromPtr(value);
   }
 
   User? get user {
-    final retValuePtr = calloc<COMObject>();
+    final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-        .elementAt(9)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+            .elementAt(9)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
+        ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (value.isNull) {
+      free(value);
       return null;
     }
 
-    return User.fromPtr(retValuePtr);
+    return User.fromPtr(value);
   }
 }

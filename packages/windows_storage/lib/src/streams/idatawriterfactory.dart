@@ -29,8 +29,7 @@ class IDataWriterFactory extends IInspectable {
       IDataWriterFactory.fromPtr(interface.toInterface(IID_IDataWriterFactory));
 
   DataWriter createDataWriter(IOutputStream outputStream) {
-    final retValuePtr = calloc<COMObject>();
-    final outputStreamPtr = outputStream.ptr.ref.lpVtbl;
+    final dataWriter = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -40,18 +39,18 @@ class IDataWriterFactory extends IInspectable {
                         HRESULT Function(
                             VTablePointer lpVtbl,
                             VTablePointer outputStream,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> dataWriter)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer outputStream,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, outputStreamPtr, retValuePtr);
+                    Pointer<COMObject> dataWriter)>()(
+        ptr.ref.lpVtbl, outputStream.ptr.ref.lpVtbl, dataWriter);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(dataWriter);
       throw WindowsException(hr);
     }
 
-    return DataWriter.fromPtr(retValuePtr);
+    return DataWriter.fromPtr(dataWriter);
   }
 }

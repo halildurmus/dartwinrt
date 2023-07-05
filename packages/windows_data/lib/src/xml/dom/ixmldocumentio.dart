@@ -48,8 +48,6 @@ class IXmlDocumentIO extends IInspectable {
 
   void loadXmlWithSettings(String xml, XmlLoadSettings? loadSettings) {
     final xmlHString = xml.toHString();
-    final loadSettingsPtr =
-        loadSettings == null ? nullptr : loadSettings.ptr.ref.lpVtbl;
 
     final hr = ptr.ref.vtable
             .elementAt(7)
@@ -61,8 +59,8 @@ class IXmlDocumentIO extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int xml,
-                    VTablePointer loadSettings)>()(
-        ptr.ref.lpVtbl, xmlHString, loadSettingsPtr);
+                    VTablePointer loadSettings)>()(ptr.ref.lpVtbl, xmlHString,
+        loadSettings == null ? nullptr : loadSettings.ptr.ref.lpVtbl);
 
     WindowsDeleteString(xmlHString);
 
@@ -70,8 +68,7 @@ class IXmlDocumentIO extends IInspectable {
   }
 
   Future<void> saveToFileAsync(IStorageFile? file) {
-    final retValuePtr = calloc<COMObject>();
-    final filePtr = file == null ? nullptr : file.ptr.ref.lpVtbl;
+    final asyncInfo = calloc<COMObject>();
 
     final hr =
         ptr.ref.vtable
@@ -82,18 +79,18 @@ class IXmlDocumentIO extends IInspectable {
                             HRESULT Function(
                                 VTablePointer lpVtbl,
                                 VTablePointer file,
-                                Pointer<COMObject> retValuePtr)>>>()
+                                Pointer<COMObject> asyncInfo)>>>()
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer file,
-                        Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl, filePtr, retValuePtr);
+                        Pointer<COMObject> asyncInfo)>()(ptr.ref.lpVtbl,
+            file == null ? nullptr : file.ptr.ref.lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(asyncInfo);
       throw WindowsException(hr);
     }
 
-    return IAsyncAction.fromPtr(retValuePtr).toFuture();
+    return IAsyncAction.fromPtr(asyncInfo).toFuture();
   }
 }

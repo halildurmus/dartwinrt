@@ -348,7 +348,7 @@ final class _IVectorViewGuid extends IVectorView<Guid> {
     final retValuePtr = calloc<Bool>();
 
     try {
-      final valueNativeGuidPtr = value.toNativeGUID();
+      final valueNativeStructPtr = value.toNativeGUID();
 
       final hr =
           ptr.ref.vtable
@@ -365,9 +365,9 @@ final class _IVectorViewGuid extends IVectorView<Guid> {
                   .asFunction<
                       int Function(VTablePointer lpVtbl, GUID value,
                           Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
-              ptr.ref.lpVtbl, valueNativeGuidPtr.ref, index, retValuePtr);
+              ptr.ref.lpVtbl, valueNativeStructPtr.ref, index, retValuePtr);
 
-      free(valueNativeGuidPtr);
+      free(valueNativeStructPtr);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
@@ -407,112 +407,6 @@ final class _IVectorViewGuid extends IVectorView<Guid> {
 
       if (retValuePtr.value > 0) {
         items.addAll(pItemsArray.toList(length: retValuePtr.value));
-      }
-      free(pItemsArray);
-
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      return retValuePtr.value;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-}
-
-final class _IVectorViewInspectable<T> extends IVectorView<T> {
-  _IVectorViewInspectable.fromPtr(super.ptr,
-      {required super.iterableIid, required this.creator})
-      : super(creator: creator);
-
-  final T Function(Pointer<COMObject>) creator;
-
-  @override
-  T getAt(int index) {
-    final retValuePtr = calloc<COMObject>();
-
-    final hr = ptr.ref.vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                            Pointer<COMObject> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int index,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, index, retValuePtr);
-
-    if (FAILED(hr)) {
-      free(retValuePtr);
-      throw WindowsException(hr);
-    }
-
-    return creator(retValuePtr);
-  }
-
-  @override
-  bool indexOf(T value, Pointer<Uint32> index) {
-    final retValuePtr = calloc<Bool>();
-
-    try {
-      final hr = ptr.ref.vtable
-              .elementAt(8)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              VTablePointer value,
-                              Pointer<Uint32> index,
-                              Pointer<Bool> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, VTablePointer value,
-                      Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
-          ptr.ref.lpVtbl,
-          (value as IInspectable).ptr.ref.lpVtbl,
-          index,
-          retValuePtr);
-
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      return retValuePtr.value;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  @override
-  int getMany(int startIndex, int itemsSize, List<T> items) {
-    final retValuePtr = calloc<Uint32>();
-
-    try {
-      final pItemsArray = calloc<COMObject>(itemsSize);
-
-      final hr = ptr.ref.vtable
-              .elementAt(9)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              Uint32 startIndex,
-                              Uint32 itemsSize,
-                              Pointer<COMObject> items,
-                              Pointer<Uint32> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      VTablePointer lpVtbl,
-                      int startIndex,
-                      int itemsSize,
-                      Pointer<COMObject> items,
-                      Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, startIndex, itemsSize, pItemsArray, retValuePtr);
-
-      if (retValuePtr.value > 0) {
-        items.addAll(pItemsArray.toList(creator, length: retValuePtr.value));
       }
       free(pItemsArray);
 
@@ -831,12 +725,230 @@ final class _IVectorViewInt64 extends IVectorView<int> {
   }
 }
 
+final class _IVectorViewInspectable<T> extends IVectorView<T> {
+  _IVectorViewInspectable.fromPtr(super.ptr,
+      {required super.iterableIid, required this.creator})
+      : super(creator: creator);
+
+  final T Function(Pointer<COMObject>) creator;
+
+  @override
+  T getAt(int index) {
+    final retValuePtr = calloc<COMObject>();
+
+    final hr = ptr.ref.vtable
+            .elementAt(6)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(VTablePointer lpVtbl, Uint32 index,
+                            Pointer<COMObject> retValuePtr)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, int index,
+                    Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl, index, retValuePtr);
+
+    if (FAILED(hr)) {
+      free(retValuePtr);
+      throw WindowsException(hr);
+    }
+
+    if (retValuePtr.isNull) {
+      free(retValuePtr);
+      return null as T;
+    }
+
+    return creator(retValuePtr);
+  }
+
+  @override
+  bool indexOf(T value, Pointer<Uint32> index) {
+    final retValuePtr = calloc<Bool>();
+
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(8)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl,
+                              VTablePointer value,
+                              Pointer<Uint32> index,
+                              Pointer<Bool> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, VTablePointer value,
+                      Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
+          ptr.ref.lpVtbl,
+          (value as IInspectable).ptr.ref.lpVtbl,
+          index,
+          retValuePtr);
+
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      return retValuePtr.value;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  @override
+  int getMany(int startIndex, int itemsSize, List<T> items) {
+    final retValuePtr = calloc<Uint32>();
+
+    try {
+      final pItemsArray = calloc<COMObject>(itemsSize);
+
+      final hr = ptr.ref.vtable
+              .elementAt(9)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl,
+                              Uint32 startIndex,
+                              Uint32 itemsSize,
+                              Pointer<COMObject> items,
+                              Pointer<Uint32> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(
+                      VTablePointer lpVtbl,
+                      int startIndex,
+                      int itemsSize,
+                      Pointer<COMObject> items,
+                      Pointer<Uint32> retValuePtr)>()(
+          ptr.ref.lpVtbl, startIndex, itemsSize, pItemsArray, retValuePtr);
+
+      if (retValuePtr.value > 0) {
+        items.addAll(pItemsArray.toList(creator, length: retValuePtr.value));
+      }
+      free(pItemsArray);
+
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      return retValuePtr.value;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+}
+
+final class _IVectorViewUri extends IVectorView<Uri?> {
+  _IVectorViewUri.fromPtr(super.ptr, {required super.iterableIid});
+
+  @override
+  Uri? getAt(int index) {
+    final retValuePtr = calloc<COMObject>();
+
+    final hr = ptr.ref.vtable
+            .elementAt(6)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(VTablePointer lpVtbl, Uint32 index,
+                            Pointer<COMObject> retValuePtr)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, int index,
+                    Pointer<COMObject> retValuePtr)>()(
+        ptr.ref.lpVtbl, index, retValuePtr);
+
+    if (FAILED(hr)) {
+      free(retValuePtr);
+      throw WindowsException(hr);
+    }
+
+    if (retValuePtr.isNull) {
+      free(retValuePtr);
+      return null;
+    }
+
+    return retValuePtr.toWinRTUri().toDartUri();
+  }
+
+  @override
+  bool indexOf(Uri? value, Pointer<Uint32> index) {
+    final retValuePtr = calloc<Bool>();
+
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(8)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl,
+                              VTablePointer value,
+                              Pointer<Uint32> index,
+                              Pointer<Bool> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, VTablePointer value,
+                      Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
+          ptr.ref.lpVtbl,
+          value?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr,
+          index,
+          retValuePtr);
+
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      return retValuePtr.value;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  @override
+  int getMany(int startIndex, int itemsSize, List<Uri?> items) {
+    final retValuePtr = calloc<Uint32>();
+
+    try {
+      final pItemsArray = calloc<COMObject>(itemsSize);
+
+      final hr = ptr.ref.vtable
+              .elementAt(9)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl,
+                              Uint32 startIndex,
+                              Uint32 itemsSize,
+                              Pointer<COMObject> items,
+                              Pointer<Uint32> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(
+                      VTablePointer lpVtbl,
+                      int startIndex,
+                      int itemsSize,
+                      Pointer<COMObject> items,
+                      Pointer<Uint32> retValuePtr)>()(
+          ptr.ref.lpVtbl, startIndex, itemsSize, pItemsArray, retValuePtr);
+
+      if (retValuePtr.value > 0) {
+        items.addAll(pItemsArray.toDartUriList(length: retValuePtr.value));
+      }
+      free(pItemsArray);
+
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      return retValuePtr.value;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+}
+
 final class _IVectorViewString extends IVectorView<String> {
   _IVectorViewString.fromPtr(super.ptr, {required super.iterableIid});
 
   @override
   String getAt(int index) {
-    final retValuePtr = calloc<HSTRING>();
+    final retValuePtr = calloc<IntPtr>();
 
     try {
       final hr = ptr.ref.vtable
@@ -1345,116 +1457,6 @@ final class _IVectorViewUint64 extends IVectorView<int> {
   }
 }
 
-final class _IVectorViewUri extends IVectorView<Uri?> {
-  _IVectorViewUri.fromPtr(super.ptr, {required super.iterableIid});
-
-  @override
-  Uri? getAt(int index) {
-    final retValuePtr = calloc<COMObject>();
-
-    final hr = ptr.ref.vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, Uint32 index,
-                            Pointer<COMObject> retValuePtr)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, int index,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, index, retValuePtr);
-
-    if (FAILED(hr)) {
-      free(retValuePtr);
-      throw WindowsException(hr);
-    }
-
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
-      return null;
-    }
-
-    final winrtUri = retValuePtr.toWinRTUri();
-    return winrtUri.toDartUri();
-  }
-
-  @override
-  bool indexOf(Uri? value, Pointer<Uint32> index) {
-    final retValuePtr = calloc<Bool>();
-
-    try {
-      final valueUri = value?.toWinRTUri();
-
-      final hr = ptr.ref.vtable
-              .elementAt(8)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              VTablePointer value,
-                              Pointer<Uint32> index,
-                              Pointer<Bool> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, VTablePointer value,
-                      Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
-          ptr.ref.lpVtbl,
-          valueUri == null ? nullptr : valueUri.ptr.ref.lpVtbl,
-          index,
-          retValuePtr);
-
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      return retValuePtr.value;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-
-  @override
-  int getMany(int startIndex, int itemsSize, List<Uri?> items) {
-    final retValuePtr = calloc<Uint32>();
-
-    try {
-      final pItemsArray = calloc<COMObject>(itemsSize);
-
-      final hr = ptr.ref.vtable
-              .elementAt(9)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              Uint32 startIndex,
-                              Uint32 itemsSize,
-                              Pointer<COMObject> items,
-                              Pointer<Uint32> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(
-                      VTablePointer lpVtbl,
-                      int startIndex,
-                      int itemsSize,
-                      Pointer<COMObject> items,
-                      Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, startIndex, itemsSize, pItemsArray, retValuePtr);
-
-      if (retValuePtr.value > 0) {
-        items.addAll(pItemsArray.toDartUriList(length: retValuePtr.value));
-      }
-      free(pItemsArray);
-
-      if (FAILED(hr)) throw WindowsException(hr);
-
-      return retValuePtr.value;
-    } finally {
-      free(retValuePtr);
-    }
-  }
-}
-
 final class _IVectorViewWinRTEnum<T> extends IVectorView<T> {
   _IVectorViewWinRTEnum.fromPtr(super.ptr,
       {required super.iterableIid, required this.enumCreator})
@@ -1547,8 +1549,10 @@ final class _IVectorViewWinRTEnum<T> extends IVectorView<T> {
           ptr.ref.lpVtbl, startIndex, itemsSize, pItemsArray, retValuePtr);
 
       if (retValuePtr.value > 0) {
-        items.addAll(
-            pItemsArray.toList(length: retValuePtr.value).map(enumCreator));
+        items.addAll(pItemsArray
+            .toList(length: retValuePtr.value)
+            .map(enumCreator)
+            .toList());
       }
       free(pItemsArray);
 
@@ -1653,8 +1657,10 @@ final class _IVectorViewWinRTFlagsEnum<T> extends IVectorView<T> {
           ptr.ref.lpVtbl, startIndex, itemsSize, pItemsArray, retValuePtr);
 
       if (retValuePtr.value > 0) {
-        items.addAll(
-            pItemsArray.toList(length: retValuePtr.value).map(enumCreator));
+        items.addAll(pItemsArray
+            .toList(length: retValuePtr.value)
+            .map(enumCreator)
+            .toList());
       }
       free(pItemsArray);
 

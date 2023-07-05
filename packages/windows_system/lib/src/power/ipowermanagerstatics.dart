@@ -31,31 +31,31 @@ class IPowerManagerStatics extends IInspectable {
           interface.toInterface(IID_IPowerManagerStatics));
 
   EnergySaverStatus get energySaverStatus {
-    final retValuePtr = calloc<Int32>();
+    final value = calloc<Int32>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Int32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(6)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<Int32> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return EnergySaverStatus.from(retValuePtr.value);
+      return EnergySaverStatus.from(value.value);
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
   int add_EnergySaverStatusChanged(Pointer<COMObject> handler) {
-    final retValuePtr = calloc<IntPtr>();
+    final token = calloc<IntPtr>();
 
     try {
       final hr = ptr.ref.vtable
@@ -63,21 +63,19 @@ class IPowerManagerStatics extends IInspectable {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              VTablePointer handler,
-                              Pointer<IntPtr> retValuePtr)>>>()
+                          HRESULT Function(VTablePointer lpVtbl,
+                              VTablePointer handler, Pointer<IntPtr> token)>>>()
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, VTablePointer handler,
-                      Pointer<IntPtr> retValuePtr)>()(
-          ptr.ref.lpVtbl, handler.ref.lpVtbl, retValuePtr);
+                      Pointer<IntPtr> token)>()(
+          ptr.ref.lpVtbl, handler.ref.lpVtbl, token);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return token.value;
     } finally {
-      free(retValuePtr);
+      free(token);
     }
   }
 
@@ -98,31 +96,31 @@ class IPowerManagerStatics extends IInspectable {
   }
 
   BatteryStatus get batteryStatus {
-    final retValuePtr = calloc<Int32>();
+    final value = calloc<Int32>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(9)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Int32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(9)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<Int32> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return BatteryStatus.from(retValuePtr.value);
+      return BatteryStatus.from(value.value);
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
   int add_BatteryStatusChanged(Pointer<COMObject> handler) {
-    final retValuePtr = calloc<IntPtr>();
+    final token = calloc<IntPtr>();
 
     try {
       final hr = ptr.ref.vtable
@@ -130,21 +128,19 @@ class IPowerManagerStatics extends IInspectable {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              VTablePointer handler,
-                              Pointer<IntPtr> retValuePtr)>>>()
+                          HRESULT Function(VTablePointer lpVtbl,
+                              VTablePointer handler, Pointer<IntPtr> token)>>>()
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, VTablePointer handler,
-                      Pointer<IntPtr> retValuePtr)>()(
-          ptr.ref.lpVtbl, handler.ref.lpVtbl, retValuePtr);
+                      Pointer<IntPtr> token)>()(
+          ptr.ref.lpVtbl, handler.ref.lpVtbl, token);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return token.value;
     } finally {
-      free(retValuePtr);
+      free(token);
     }
   }
 
@@ -165,31 +161,31 @@ class IPowerManagerStatics extends IInspectable {
   }
 
   PowerSupplyStatus get powerSupplyStatus {
-    final retValuePtr = calloc<Int32>();
+    final value = calloc<Int32>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(12)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Int32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(12)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<Int32> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return PowerSupplyStatus.from(retValuePtr.value);
+      return PowerSupplyStatus.from(value.value);
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
   int add_PowerSupplyStatusChanged(Pointer<COMObject> handler) {
-    final retValuePtr = calloc<IntPtr>();
+    final token = calloc<IntPtr>();
 
     try {
       final hr = ptr.ref.vtable
@@ -197,21 +193,19 @@ class IPowerManagerStatics extends IInspectable {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              VTablePointer handler,
-                              Pointer<IntPtr> retValuePtr)>>>()
+                          HRESULT Function(VTablePointer lpVtbl,
+                              VTablePointer handler, Pointer<IntPtr> token)>>>()
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, VTablePointer handler,
-                      Pointer<IntPtr> retValuePtr)>()(
-          ptr.ref.lpVtbl, handler.ref.lpVtbl, retValuePtr);
+                      Pointer<IntPtr> token)>()(
+          ptr.ref.lpVtbl, handler.ref.lpVtbl, token);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return token.value;
     } finally {
-      free(retValuePtr);
+      free(token);
     }
   }
 
@@ -232,31 +226,31 @@ class IPowerManagerStatics extends IInspectable {
   }
 
   int get remainingChargePercent {
-    final retValuePtr = calloc<Int32>();
+    final value = calloc<Int32>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(15)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Int32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(15)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<Int32> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return value.value;
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
   int add_RemainingChargePercentChanged(Pointer<COMObject> handler) {
-    final retValuePtr = calloc<IntPtr>();
+    final token = calloc<IntPtr>();
 
     try {
       final hr = ptr.ref.vtable
@@ -264,21 +258,19 @@ class IPowerManagerStatics extends IInspectable {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              VTablePointer handler,
-                              Pointer<IntPtr> retValuePtr)>>>()
+                          HRESULT Function(VTablePointer lpVtbl,
+                              VTablePointer handler, Pointer<IntPtr> token)>>>()
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, VTablePointer handler,
-                      Pointer<IntPtr> retValuePtr)>()(
-          ptr.ref.lpVtbl, handler.ref.lpVtbl, retValuePtr);
+                      Pointer<IntPtr> token)>()(
+          ptr.ref.lpVtbl, handler.ref.lpVtbl, token);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return token.value;
     } finally {
-      free(retValuePtr);
+      free(token);
     }
   }
 
@@ -299,31 +291,31 @@ class IPowerManagerStatics extends IInspectable {
   }
 
   Duration get remainingDischargeTime {
-    final retValuePtr = calloc<Int64>();
+    final value = calloc<Int64>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(18)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int64> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Int64> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(18)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<Int64> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Int64> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.toDartDuration();
+      return value.toDartDuration();
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
   int add_RemainingDischargeTimeChanged(Pointer<COMObject> handler) {
-    final retValuePtr = calloc<IntPtr>();
+    final token = calloc<IntPtr>();
 
     try {
       final hr = ptr.ref.vtable
@@ -331,21 +323,19 @@ class IPowerManagerStatics extends IInspectable {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              VTablePointer handler,
-                              Pointer<IntPtr> retValuePtr)>>>()
+                          HRESULT Function(VTablePointer lpVtbl,
+                              VTablePointer handler, Pointer<IntPtr> token)>>>()
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, VTablePointer handler,
-                      Pointer<IntPtr> retValuePtr)>()(
-          ptr.ref.lpVtbl, handler.ref.lpVtbl, retValuePtr);
+                      Pointer<IntPtr> token)>()(
+          ptr.ref.lpVtbl, handler.ref.lpVtbl, token);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return token.value;
     } finally {
-      free(retValuePtr);
+      free(token);
     }
   }
 

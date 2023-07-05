@@ -40,33 +40,33 @@ class IBitmapFrameWithSoftwareBitmap extends IInspectable
           interface.toInterface(IID_IBitmapFrameWithSoftwareBitmap));
 
   Future<SoftwareBitmap?> getSoftwareBitmapAsync() {
-    final retValuePtr = calloc<COMObject>();
+    final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+            .elementAt(6)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            VTablePointer lpVtbl, Pointer<COMObject> value)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, Pointer<COMObject> value)>()(
+        ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<SoftwareBitmap?>.fromPtr(retValuePtr,
+    final asyncOperation = IAsyncOperation<SoftwareBitmap?>.fromPtr(value,
         creator: SoftwareBitmap.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
   Future<SoftwareBitmap?> getSoftwareBitmapConvertedAsync(
       BitmapPixelFormat pixelFormat, BitmapAlphaMode alphaMode) {
-    final retValuePtr = calloc<COMObject>();
+    final value = calloc<COMObject>();
 
     final hr =
         ptr.ref.vtable
@@ -78,19 +78,19 @@ class IBitmapFrameWithSoftwareBitmap extends IInspectable
                                 VTablePointer lpVtbl,
                                 Int32 pixelFormat,
                                 Int32 alphaMode,
-                                Pointer<COMObject> retValuePtr)>>>()
+                                Pointer<COMObject> value)>>>()
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, int pixelFormat,
-                        int alphaMode, Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl, pixelFormat.value, alphaMode.value, retValuePtr);
+                        int alphaMode, Pointer<COMObject> value)>()(
+            ptr.ref.lpVtbl, pixelFormat.value, alphaMode.value, value);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<SoftwareBitmap?>.fromPtr(retValuePtr,
+    final asyncOperation = IAsyncOperation<SoftwareBitmap?>.fromPtr(value,
         creator: SoftwareBitmap.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
@@ -101,8 +101,7 @@ class IBitmapFrameWithSoftwareBitmap extends IInspectable
       BitmapTransform? transform,
       ExifOrientationMode exifOrientationMode,
       ColorManagementMode colorManagementMode) {
-    final retValuePtr = calloc<COMObject>();
-    final transformPtr = transform == null ? nullptr : transform.ptr.ref.lpVtbl;
+    final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(8)
@@ -116,7 +115,7 @@ class IBitmapFrameWithSoftwareBitmap extends IInspectable
                             VTablePointer transform,
                             Int32 exifOrientationMode,
                             Int32 colorManagementMode,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> value)>>>()
             .value
             .asFunction<
                 int Function(
@@ -126,21 +125,21 @@ class IBitmapFrameWithSoftwareBitmap extends IInspectable
                     VTablePointer transform,
                     int exifOrientationMode,
                     int colorManagementMode,
-                    Pointer<COMObject> retValuePtr)>()(
+                    Pointer<COMObject> value)>()(
         ptr.ref.lpVtbl,
         pixelFormat.value,
         alphaMode.value,
-        transformPtr,
+        transform == null ? nullptr : transform.ptr.ref.lpVtbl,
         exifOrientationMode.value,
         colorManagementMode.value,
-        retValuePtr);
+        value);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<SoftwareBitmap?>.fromPtr(retValuePtr,
+    final asyncOperation = IAsyncOperation<SoftwareBitmap?>.fromPtr(value,
         creator: SoftwareBitmap.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }

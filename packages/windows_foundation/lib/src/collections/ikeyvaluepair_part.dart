@@ -315,7 +315,7 @@ final class _IKeyValuePairStringInspectable<V>
 
   @override
   String get key {
-    final retValuePtr = calloc<HSTRING>();
+    final retValuePtr = calloc<IntPtr>();
 
     try {
       final hr = ptr.ref.vtable
@@ -374,7 +374,7 @@ final class _IKeyValuePairStringObject extends IKeyValuePair<String, Object?> {
 
   @override
   String get key {
-    final retValuePtr = calloc<HSTRING>();
+    final retValuePtr = calloc<IntPtr>();
 
     try {
       final hr = ptr.ref.vtable
@@ -433,7 +433,7 @@ final class _IKeyValuePairStringString extends IKeyValuePair<String, String> {
 
   @override
   String get key {
-    final retValuePtr = calloc<HSTRING>();
+    final retValuePtr = calloc<IntPtr>();
 
     try {
       final hr = ptr.ref.vtable
@@ -459,7 +459,7 @@ final class _IKeyValuePairStringString extends IKeyValuePair<String, String> {
 
   @override
   String get value {
-    final retValuePtr = calloc<HSTRING>();
+    final retValuePtr = calloc<IntPtr>();
 
     try {
       final hr = ptr.ref.vtable
@@ -491,7 +491,7 @@ final class _IKeyValuePairStringWinRTEnum<V> extends IKeyValuePair<String, V> {
 
   @override
   String get key {
-    final retValuePtr = calloc<HSTRING>();
+    final retValuePtr = calloc<IntPtr>();
 
     try {
       final hr = ptr.ref.vtable
@@ -550,7 +550,7 @@ final class _IKeyValuePairStringWinRTFlagsEnum<V>
 
   @override
   String get key {
-    final retValuePtr = calloc<HSTRING>();
+    final retValuePtr = calloc<IntPtr>();
 
     try {
       final hr = ptr.ref.vtable

@@ -32,8 +32,7 @@ class IKnownFoldersStatics3 extends IInspectable {
 
   Future<StorageFolder?> getFolderForUserAsync(
       User? user, KnownFolderId folderId) {
-    final retValuePtr = calloc<COMObject>();
-    final userPtr = user == null ? nullptr : user.ptr.ref.lpVtbl;
+    final operation = calloc<COMObject>();
 
     final hr =
         ptr.ref.vtable
@@ -45,19 +44,22 @@ class IKnownFoldersStatics3 extends IInspectable {
                                 VTablePointer lpVtbl,
                                 VTablePointer user,
                                 Int32 folderId,
-                                Pointer<COMObject> retValuePtr)>>>()
+                                Pointer<COMObject> operation)>>>()
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer user,
-                        int folderId, Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl, userPtr, folderId.value, retValuePtr);
+                        int folderId, Pointer<COMObject> operation)>()(
+            ptr.ref.lpVtbl,
+            user == null ? nullptr : user.ptr.ref.lpVtbl,
+            folderId.value,
+            operation);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
-    final asyncOperation = IAsyncOperation<StorageFolder?>.fromPtr(retValuePtr,
+    final asyncOperation = IAsyncOperation<StorageFolder?>.fromPtr(operation,
         creator: StorageFolder.fromPtr);
     return asyncOperation.toFuture(asyncOperation.getResults);
   }

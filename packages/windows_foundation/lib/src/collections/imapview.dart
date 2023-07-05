@@ -190,21 +190,20 @@ abstract interface class IMapView<K, V> extends IInspectable
 
   /// Splits the map view into two views.
   void split(IMapView<K, V> first, IMapView<K, V> second) {
-    final hr =
-        ptr.ref.lpVtbl.value
-                .elementAt(9)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                Pointer<COMObject>,
-                                Pointer<COMObject> retValuePtr)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, Pointer<COMObject>,
-                        Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl, first.ptr, second.ptr);
+    final hr = ptr.ref.lpVtbl.value
+            .elementAt(9)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            VTablePointer lpVtbl,
+                            Pointer<COMObject> first,
+                            Pointer<COMObject> second)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, Pointer<COMObject> first,
+                    Pointer<COMObject> second)>()(
+        ptr.ref.lpVtbl, first.ptr, second.ptr);
 
     if (FAILED(hr)) throw WindowsException(hr);
   }

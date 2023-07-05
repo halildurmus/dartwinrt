@@ -32,31 +32,31 @@ class IWebAccountProvider3 extends IInspectable
           interface.toInterface(IID_IWebAccountProvider3));
 
   User? get user {
-    final retValuePtr = calloc<COMObject>();
+    final user = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+            .elementAt(6)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            VTablePointer lpVtbl, Pointer<COMObject> user)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, Pointer<COMObject> user)>()(
+        ptr.ref.lpVtbl, user);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(user);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (user.isNull) {
+      free(user);
       return null;
     }
 
-    return User.fromPtr(retValuePtr);
+    return User.fromPtr(user);
   }
 
   late final _iWebAccountProvider2 = IWebAccountProvider2.from(this);

@@ -28,152 +28,146 @@ class INumberRounder extends IInspectable {
       INumberRounder.fromPtr(interface.toInterface(IID_INumberRounder));
 
   int roundInt32(int value) {
-    final retValuePtr = calloc<Int32>();
+    final result = calloc<Int32>();
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl, Int32 value,
-                              Pointer<Int32> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, int value,
-                      Pointer<Int32> retValuePtr)>()(
-          ptr.ref.lpVtbl, value, retValuePtr);
+          .elementAt(6)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl, Int32 value,
+                          Pointer<Int32> result)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl, int value,
+                  Pointer<Int32> result)>()(ptr.ref.lpVtbl, value, result);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return result.value;
     } finally {
-      free(retValuePtr);
+      free(result);
     }
   }
 
   int roundUInt32(int value) {
-    final retValuePtr = calloc<Uint32>();
+    final result = calloc<Uint32>();
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(7)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl, Uint32 value,
-                              Pointer<Uint32> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, int value,
-                      Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, value, retValuePtr);
+          .elementAt(7)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl, Uint32 value,
+                          Pointer<Uint32> result)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl, int value,
+                  Pointer<Uint32> result)>()(ptr.ref.lpVtbl, value, result);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return result.value;
     } finally {
-      free(retValuePtr);
+      free(result);
     }
   }
 
   int roundInt64(int value) {
-    final retValuePtr = calloc<Int64>();
+    final result = calloc<Int64>();
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(8)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl, Int64 value,
-                              Pointer<Int64> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, int value,
-                      Pointer<Int64> retValuePtr)>()(
-          ptr.ref.lpVtbl, value, retValuePtr);
+          .elementAt(8)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl, Int64 value,
+                          Pointer<Int64> result)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl, int value,
+                  Pointer<Int64> result)>()(ptr.ref.lpVtbl, value, result);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return result.value;
     } finally {
-      free(retValuePtr);
+      free(result);
     }
   }
 
   int roundUInt64(int value) {
-    final retValuePtr = calloc<Uint64>();
+    final result = calloc<Uint64>();
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(9)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl, Uint64 value,
-                              Pointer<Uint64> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, int value,
-                      Pointer<Uint64> retValuePtr)>()(
-          ptr.ref.lpVtbl, value, retValuePtr);
+          .elementAt(9)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl, Uint64 value,
+                          Pointer<Uint64> result)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl, int value,
+                  Pointer<Uint64> result)>()(ptr.ref.lpVtbl, value, result);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return result.value;
     } finally {
-      free(retValuePtr);
+      free(result);
     }
   }
 
   double roundSingle(double value) {
-    final retValuePtr = calloc<Float>();
+    final result = calloc<Float>();
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(10)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl, Float value,
-                              Pointer<Float> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, double value,
-                      Pointer<Float> retValuePtr)>()(
-          ptr.ref.lpVtbl, value, retValuePtr);
+          .elementAt(10)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl, Float value,
+                          Pointer<Float> result)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl, double value,
+                  Pointer<Float> result)>()(ptr.ref.lpVtbl, value, result);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return result.value;
     } finally {
-      free(retValuePtr);
+      free(result);
     }
   }
 
   double roundDouble(double value) {
-    final retValuePtr = calloc<Double>();
+    final result = calloc<Double>();
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(11)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl, Double value,
-                              Pointer<Double> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, double value,
-                      Pointer<Double> retValuePtr)>()(
-          ptr.ref.lpVtbl, value, retValuePtr);
+          .elementAt(11)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl, Double value,
+                          Pointer<Double> result)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl, double value,
+                  Pointer<Double> result)>()(ptr.ref.lpVtbl, value, result);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return result.value;
     } finally {
-      free(retValuePtr);
+      free(result);
     }
   }
 }

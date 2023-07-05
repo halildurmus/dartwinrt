@@ -29,7 +29,7 @@ class ICharacterGroupingsFactory extends IInspectable {
           interface.toInterface(IID_ICharacterGroupingsFactory));
 
   CharacterGroupings create(String language) {
-    final retValuePtr = calloc<COMObject>();
+    final result = calloc<COMObject>();
     final languageHString = language.toHString();
 
     final hr = ptr.ref.vtable
@@ -38,20 +38,20 @@ class ICharacterGroupingsFactory extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(VTablePointer lpVtbl, IntPtr language,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> result)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int language,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, languageHString, retValuePtr);
+                    Pointer<COMObject> result)>()(
+        ptr.ref.lpVtbl, languageHString, result);
 
     WindowsDeleteString(languageHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(result);
       throw WindowsException(hr);
     }
 
-    return CharacterGroupings.fromPtr(retValuePtr);
+    return CharacterGroupings.fromPtr(result);
   }
 }

@@ -31,55 +31,55 @@ class IUserStatics extends IInspectable {
       IUserStatics.fromPtr(interface.toInterface(IID_IUserStatics));
 
   UserWatcher? createWatcher() {
-    final retValuePtr = calloc<COMObject>();
+    final result = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
         .elementAt(6)
         .cast<
             Pointer<
                 NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
+                    HRESULT Function(
+                        VTablePointer lpVtbl, Pointer<COMObject> result)>>>()
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                Pointer<COMObject> result)>()(ptr.ref.lpVtbl, result);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(result);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (result.isNull) {
+      free(result);
       return null;
     }
 
-    return UserWatcher.fromPtr(retValuePtr);
+    return UserWatcher.fromPtr(result);
   }
 
   Future<List<User?>> findAllAsync() {
-    final retValuePtr = calloc<COMObject>();
+    final operation = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
         .elementAt(7)
         .cast<
             Pointer<
                 NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl,
-                        Pointer<COMObject> retValuePtr)>>>()
+                    HRESULT Function(
+                        VTablePointer lpVtbl, Pointer<COMObject> operation)>>>()
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl,
-                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+                Pointer<COMObject> operation)>()(ptr.ref.lpVtbl, operation);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<IVectorView<User?>>.fromPtr(
-        retValuePtr,
+        operation,
         creator: (ptr) => IVectorView.fromPtr(ptr,
             creator: User.fromPtr,
             iterableIid: '{d1bacd1f-0376-5823-8c29-1d45b9f4c191}'));
@@ -89,7 +89,7 @@ class IUserStatics extends IInspectable {
   @Deprecated(
       "FindAllAsyncByType is deprecated and might not function consistently on all platforms. Instead, use FindAllAsync or GetDefault.")
   Future<List<User?>> findAllAsyncByType(UserType type) {
-    final retValuePtr = calloc<COMObject>();
+    final operation = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(8)
@@ -97,20 +97,20 @@ class IUserStatics extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(VTablePointer lpVtbl, Int32 type,
-                            Pointer<COMObject> retValuePtr)>>>()
+                            Pointer<COMObject> operation)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int type,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, type.value, retValuePtr);
+                    Pointer<COMObject> operation)>()(
+        ptr.ref.lpVtbl, type.value, operation);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<IVectorView<User?>>.fromPtr(
-        retValuePtr,
+        operation,
         creator: (ptr) => IVectorView.fromPtr(ptr,
             creator: User.fromPtr,
             iterableIid: '{d1bacd1f-0376-5823-8c29-1d45b9f4c191}'));
@@ -121,7 +121,7 @@ class IUserStatics extends IInspectable {
       "FindAllAsyncByTypeAndStatus is deprecated and might not function consistently on all platforms. Instead, use FindAllAsync or GetDefault.")
   Future<List<User?>> findAllAsyncByTypeAndStatus(
       UserType type, UserAuthenticationStatus status) {
-    final retValuePtr = calloc<COMObject>();
+    final operation = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
             .elementAt(9)
@@ -129,20 +129,20 @@ class IUserStatics extends IInspectable {
                 Pointer<
                     NativeFunction<
                         HRESULT Function(VTablePointer lpVtbl, Int32 type,
-                            Int32 status, Pointer<COMObject> retValuePtr)>>>()
+                            Int32 status, Pointer<COMObject> operation)>>>()
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int type, int status,
-                    Pointer<COMObject> retValuePtr)>()(
-        ptr.ref.lpVtbl, type.value, status.value, retValuePtr);
+                    Pointer<COMObject> operation)>()(
+        ptr.ref.lpVtbl, type.value, status.value, operation);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(operation);
       throw WindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<IVectorView<User?>>.fromPtr(
-        retValuePtr,
+        operation,
         creator: (ptr) => IVectorView.fromPtr(ptr,
             creator: User.fromPtr,
             iterableIid: '{d1bacd1f-0376-5823-8c29-1d45b9f4c191}'));
@@ -150,7 +150,7 @@ class IUserStatics extends IInspectable {
   }
 
   User? getFromId(String nonRoamableId) {
-    final retValuePtr = calloc<COMObject>();
+    final result = calloc<COMObject>();
     final nonRoamableIdHString = nonRoamableId.toHString();
 
     final hr =
@@ -162,25 +162,25 @@ class IUserStatics extends IInspectable {
                             HRESULT Function(
                                 VTablePointer lpVtbl,
                                 IntPtr nonRoamableId,
-                                Pointer<COMObject> retValuePtr)>>>()
+                                Pointer<COMObject> result)>>>()
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, int nonRoamableId,
-                        Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl, nonRoamableIdHString, retValuePtr);
+                        Pointer<COMObject> result)>()(
+            ptr.ref.lpVtbl, nonRoamableIdHString, result);
 
     WindowsDeleteString(nonRoamableIdHString);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(result);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (result.isNull) {
+      free(result);
       return null;
     }
 
-    return User.fromPtr(retValuePtr);
+    return User.fromPtr(result);
   }
 }

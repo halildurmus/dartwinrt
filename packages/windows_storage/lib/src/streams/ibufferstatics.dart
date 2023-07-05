@@ -29,68 +29,60 @@ class IBufferStatics extends IInspectable {
       IBufferStatics.fromPtr(interface.toInterface(IID_IBufferStatics));
 
   Buffer? createCopyFromMemoryBuffer(IMemoryBuffer? input) {
-    final retValuePtr = calloc<COMObject>();
-    final inputPtr = input == null ? nullptr : input.ptr.ref.lpVtbl;
+    final value = calloc<COMObject>();
 
-    final hr =
-        ptr.ref.vtable
-                .elementAt(6)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                VTablePointer input,
-                                Pointer<COMObject> retValuePtr)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, VTablePointer input,
-                        Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl, inputPtr, retValuePtr);
+    final hr = ptr.ref.vtable
+            .elementAt(6)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(VTablePointer lpVtbl, VTablePointer input,
+                            Pointer<COMObject> value)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, VTablePointer input,
+                    Pointer<COMObject> value)>()(
+        ptr.ref.lpVtbl, input == null ? nullptr : input.ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (value.isNull) {
+      free(value);
       return null;
     }
 
-    return Buffer.fromPtr(retValuePtr);
+    return Buffer.fromPtr(value);
   }
 
   MemoryBuffer? createMemoryBufferOverIBuffer(IBuffer? input) {
-    final retValuePtr = calloc<COMObject>();
-    final inputPtr = input == null ? nullptr : input.ptr.ref.lpVtbl;
+    final value = calloc<COMObject>();
 
-    final hr =
-        ptr.ref.vtable
-                .elementAt(7)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                VTablePointer input,
-                                Pointer<COMObject> retValuePtr)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, VTablePointer input,
-                        Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl, inputPtr, retValuePtr);
+    final hr = ptr.ref.vtable
+            .elementAt(7)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(VTablePointer lpVtbl, VTablePointer input,
+                            Pointer<COMObject> value)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, VTablePointer input,
+                    Pointer<COMObject> value)>()(
+        ptr.ref.lpVtbl, input == null ? nullptr : input.ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(value);
       throw WindowsException(hr);
     }
 
-    if (retValuePtr.isNull) {
-      free(retValuePtr);
+    if (value.isNull) {
+      free(value);
       return null;
     }
 
-    return MemoryBuffer.fromPtr(retValuePtr);
+    return MemoryBuffer.fromPtr(value);
   }
 }

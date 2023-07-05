@@ -35,27 +35,26 @@ class IGamepad2 extends IInspectable implements IGamepad, IGameController {
       IGamepad2.fromPtr(interface.toInterface(IID_IGamepad2));
 
   GameControllerButtonLabel getButtonLabel(GamepadButtons button) {
-    final retValuePtr = calloc<Int32>();
+    final value = calloc<Int32>();
 
     try {
       final hr = ptr.ref.vtable
-              .elementAt(6)
-              .cast<
-                  Pointer<
-                      NativeFunction<
-                          HRESULT Function(VTablePointer lpVtbl, Uint32 button,
-                              Pointer<Int32> retValuePtr)>>>()
-              .value
-              .asFunction<
-                  int Function(VTablePointer lpVtbl, int button,
-                      Pointer<Int32> retValuePtr)>()(
-          ptr.ref.lpVtbl, button.value, retValuePtr);
+          .elementAt(6)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl, Uint32 button,
+                          Pointer<Int32> value)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl, int button,
+                  Pointer<Int32> value)>()(ptr.ref.lpVtbl, button.value, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return GameControllerButtonLabel.from(retValuePtr.value);
+      return GameControllerButtonLabel.from(value.value);
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 

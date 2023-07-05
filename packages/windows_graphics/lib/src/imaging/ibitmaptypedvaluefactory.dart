@@ -29,8 +29,7 @@ class IBitmapTypedValueFactory extends IInspectable {
           interface.toInterface(IID_IBitmapTypedValueFactory));
 
   BitmapTypedValue create(Object? value, PropertyType type) {
-    final retValuePtr = calloc<COMObject>();
-    final valuePtr = value?.intoBox().ptr.ref.lpVtbl ?? nullptr;
+    final bitmapTypedValue = calloc<COMObject>();
 
     final hr =
         ptr.ref.vtable
@@ -42,18 +41,21 @@ class IBitmapTypedValueFactory extends IInspectable {
                                 VTablePointer lpVtbl,
                                 VTablePointer value,
                                 Int32 type,
-                                Pointer<COMObject> retValuePtr)>>>()
+                                Pointer<COMObject> bitmapTypedValue)>>>()
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer value,
-                        int type, Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl, valuePtr, type.value, retValuePtr);
+                        int type, Pointer<COMObject> bitmapTypedValue)>()(
+            ptr.ref.lpVtbl,
+            value?.intoBox().ptr.ref.lpVtbl ?? nullptr,
+            type.value,
+            bitmapTypedValue);
 
     if (FAILED(hr)) {
-      free(retValuePtr);
+      free(bitmapTypedValue);
       throw WindowsException(hr);
     }
 
-    return BitmapTypedValue.fromPtr(retValuePtr);
+    return BitmapTypedValue.fromPtr(bitmapTypedValue);
   }
 }

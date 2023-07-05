@@ -28,31 +28,31 @@ class IBitmapBuffer extends IInspectable implements IMemoryBuffer, IClosable {
       IBitmapBuffer.fromPtr(interface.toInterface(IID_IBitmapBuffer));
 
   int getPlaneCount() {
-    final retValuePtr = calloc<Int32>();
+    final value = calloc<Int32>();
 
     try {
       final hr = ptr.ref.vtable
-          .elementAt(6)
-          .cast<
-              Pointer<
-                  NativeFunction<
-                      HRESULT Function(
-                          VTablePointer lpVtbl, Pointer<Int32> retValuePtr)>>>()
-          .value
-          .asFunction<
-              int Function(VTablePointer lpVtbl,
-                  Pointer<Int32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+              .elementAt(6)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl, Pointer<Int32> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
+          ptr.ref.lpVtbl, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.value;
+      return value.value;
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
   BitmapPlaneDescription getPlaneDescription(int index) {
-    final retValuePtr = calloc<NativeBitmapPlaneDescription>();
+    final value = calloc<NativeBitmapPlaneDescription>();
 
     try {
       final hr = ptr.ref.vtable
@@ -60,22 +60,19 @@ class IBitmapBuffer extends IInspectable implements IMemoryBuffer, IClosable {
               .cast<
                   Pointer<
                       NativeFunction<
-                          HRESULT Function(
-                              VTablePointer lpVtbl,
-                              Int32 index,
-                              Pointer<NativeBitmapPlaneDescription>
-                                  retValuePtr)>>>()
+                          HRESULT Function(VTablePointer lpVtbl, Int32 index,
+                              Pointer<NativeBitmapPlaneDescription> value)>>>()
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, int index,
-                      Pointer<NativeBitmapPlaneDescription> retValuePtr)>()(
-          ptr.ref.lpVtbl, index, retValuePtr);
+                      Pointer<NativeBitmapPlaneDescription> value)>()(
+          ptr.ref.lpVtbl, index, value);
 
       if (FAILED(hr)) throw WindowsException(hr);
 
-      return retValuePtr.toDart();
+      return value.toDart();
     } finally {
-      free(retValuePtr);
+      free(value);
     }
   }
 
