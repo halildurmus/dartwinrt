@@ -55,7 +55,7 @@ class IXmlNode extends IInspectable
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (value.isNull) {
@@ -79,7 +79,7 @@ class IXmlNode extends IInspectable
                 int Function(VTablePointer lpVtbl, VTablePointer value)>()(
         ptr.ref.lpVtbl, value?.intoBox().ptr.ref.lpVtbl ?? nullptr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   NodeType get nodeType {
@@ -98,7 +98,7 @@ class IXmlNode extends IInspectable
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return NodeType.from(value.value);
     } finally {
@@ -122,7 +122,7 @@ class IXmlNode extends IInspectable
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartString();
     } finally {
@@ -148,7 +148,7 @@ class IXmlNode extends IInspectable
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (value.isNull) {
@@ -176,7 +176,7 @@ class IXmlNode extends IInspectable
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return XmlNodeList.fromPtr(value);
@@ -199,7 +199,7 @@ class IXmlNode extends IInspectable
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (value.isNull) {
@@ -227,7 +227,7 @@ class IXmlNode extends IInspectable
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (value.isNull) {
@@ -255,7 +255,7 @@ class IXmlNode extends IInspectable
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (value.isNull) {
@@ -283,7 +283,7 @@ class IXmlNode extends IInspectable
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (value.isNull) {
@@ -311,7 +311,7 @@ class IXmlNode extends IInspectable
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return XmlNamedNodeMap.fromPtr(value);
@@ -333,7 +333,7 @@ class IXmlNode extends IInspectable
                   int Function(VTablePointer lpVtbl, Pointer<Bool> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -358,7 +358,7 @@ class IXmlNode extends IInspectable
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (value.isNull) {
@@ -396,7 +396,7 @@ class IXmlNode extends IInspectable
 
     if (FAILED(hr)) {
       free(insertedChild);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (insertedChild.isNull) {
@@ -434,7 +434,7 @@ class IXmlNode extends IInspectable
 
     if (FAILED(hr)) {
       free(previousChild);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (previousChild.isNull) {
@@ -465,7 +465,7 @@ class IXmlNode extends IInspectable
 
     if (FAILED(hr)) {
       free(removedChild);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (removedChild.isNull) {
@@ -496,7 +496,7 @@ class IXmlNode extends IInspectable
 
     if (FAILED(hr)) {
       free(appendedChild);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (appendedChild.isNull) {
@@ -524,7 +524,7 @@ class IXmlNode extends IInspectable
 
     if (FAILED(hr)) {
       free(newNode);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (newNode.isNull) {
@@ -552,7 +552,7 @@ class IXmlNode extends IInspectable
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (value.isNull) {
@@ -580,7 +580,7 @@ class IXmlNode extends IInspectable
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (value.isNull) {
@@ -608,7 +608,7 @@ class IXmlNode extends IInspectable
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (value.isNull) {
@@ -626,7 +626,7 @@ class IXmlNode extends IInspectable
         .value
         .asFunction<int Function(VTablePointer lpVtbl)>()(ptr.ref.lpVtbl);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   set prefix(Object? value) {
@@ -642,7 +642,7 @@ class IXmlNode extends IInspectable
                 int Function(VTablePointer lpVtbl, VTablePointer value)>()(
         ptr.ref.lpVtbl, value?.intoBox().ptr.ref.lpVtbl ?? nullptr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   late final _iXmlNodeSelector = IXmlNodeSelector.from(this);

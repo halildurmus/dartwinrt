@@ -48,7 +48,7 @@ class IGamepad extends IInspectable implements IGameController {
                       Pointer<NativeGamepadVibration> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDart();
     } finally {
@@ -74,7 +74,7 @@ class IGamepad extends IInspectable implements IGameController {
 
     free(valueNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   GamepadReading getCurrentReading() {
@@ -94,7 +94,7 @@ class IGamepad extends IInspectable implements IGameController {
                       Pointer<NativeGamepadReading> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDart();
     } finally {

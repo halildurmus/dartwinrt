@@ -7,6 +7,7 @@
 
 import 'package:win32/win32.dart';
 
+import '../internal.dart';
 import 'helpers.dart';
 
 /// Exposes a method through which a client can provide an owner window to a
@@ -33,6 +34,6 @@ final class InitializeWithWindow {
     hwnd ??= getWindowHandle();
     final initializeWithWindow = IInitializeWithWindow.from(target);
     final hr = initializeWithWindow.initialize(hwnd);
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 }

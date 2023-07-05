@@ -50,7 +50,7 @@ class IApplicationData3 extends IInspectable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (value.isNull) {
@@ -85,7 +85,7 @@ class IApplicationData3 extends IInspectable {
 
     if (FAILED(hr)) {
       free(clearOperation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IAsyncAction.fromPtr(clearOperation).toFuture();
@@ -108,7 +108,7 @@ class IApplicationData3 extends IInspectable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (value.isNull) {

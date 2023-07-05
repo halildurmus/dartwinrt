@@ -44,7 +44,7 @@ class IJsonValueStatics2 extends IInspectable {
 
     if (FAILED(hr)) {
       free(jsonValue);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (jsonValue.isNull) {

@@ -10,6 +10,7 @@ import '../../asyncstatus.dart';
 import '../../iasyncaction.dart';
 import '../../iasyncinfo.dart';
 import '../../iasyncoperation.dart';
+import '../helpers.dart';
 
 /// @nodoc
 extension IAsyncActionHelper on IAsyncAction {
@@ -51,7 +52,8 @@ Future<void> _completeAsyncDelegate<T extends IAsyncInfo, C>(T asyncDelegate,
     if (status == AsyncStatus.completed) {
       onCompleted();
     } else if (status == AsyncStatus.error) {
-      completer.completeError(WindowsException(asyncDelegate.errorCode));
+      completer.completeError(WindowsException(asyncDelegate.errorCode,
+          message: getRestrictedErrorDescription()));
     } else if (status == AsyncStatus.canceled) {
       completer.completeError('The async operation canceled!');
     }

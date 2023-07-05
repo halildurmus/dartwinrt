@@ -50,7 +50,7 @@ class IFileIOStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(textOperation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<String>.fromPtr(textOperation);
@@ -83,7 +83,7 @@ class IFileIOStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(textOperation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<String>.fromPtr(textOperation);
@@ -118,7 +118,7 @@ class IFileIOStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(textOperation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IAsyncAction.fromPtr(textOperation).toFuture();
@@ -158,7 +158,7 @@ class IFileIOStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(textOperation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IAsyncAction.fromPtr(textOperation).toFuture();
@@ -192,7 +192,7 @@ class IFileIOStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(textOperation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IAsyncAction.fromPtr(textOperation).toFuture();
@@ -232,7 +232,7 @@ class IFileIOStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(textOperation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IAsyncAction.fromPtr(textOperation).toFuture();
@@ -259,7 +259,7 @@ class IFileIOStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(linesOperation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<IVector<String>>.fromPtr(
@@ -295,7 +295,7 @@ class IFileIOStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(linesOperation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<IVector<String>>.fromPtr(
@@ -336,7 +336,7 @@ class IFileIOStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IAsyncAction.fromPtr(operation).toFuture();
@@ -379,7 +379,7 @@ class IFileIOStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IAsyncAction.fromPtr(operation).toFuture();
@@ -416,7 +416,7 @@ class IFileIOStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IAsyncAction.fromPtr(operation).toFuture();
@@ -459,7 +459,7 @@ class IFileIOStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IAsyncAction.fromPtr(operation).toFuture();
@@ -486,7 +486,7 @@ class IFileIOStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation =
@@ -519,7 +519,7 @@ class IFileIOStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IAsyncAction.fromPtr(operation).toFuture();
@@ -561,7 +561,7 @@ class IFileIOStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IAsyncAction.fromPtr(operation).toFuture();

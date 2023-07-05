@@ -50,7 +50,7 @@ class IUriRuntimeClassFactory extends IInspectable {
 
     if (FAILED(hr)) {
       free(instance);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return Uri.fromPtr(instance);
@@ -83,7 +83,7 @@ class IUriRuntimeClassFactory extends IInspectable {
 
     if (FAILED(hr)) {
       free(instance);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return Uri.fromPtr(instance);

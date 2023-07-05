@@ -47,7 +47,7 @@ class IWebAccount2 extends IInspectable implements IWebAccount {
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartString();
     } finally {
@@ -73,7 +73,7 @@ class IWebAccount2 extends IInspectable implements IWebAccount {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IMapView<String, String>.fromPtr(value,
@@ -103,7 +103,7 @@ class IWebAccount2 extends IInspectable implements IWebAccount {
 
     if (FAILED(hr)) {
       free(asyncInfo);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<IRandomAccessStream?>.fromPtr(
@@ -129,7 +129,7 @@ class IWebAccount2 extends IInspectable implements IWebAccount {
 
     if (FAILED(hr)) {
       free(asyncInfo);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IAsyncAction.fromPtr(asyncInfo).toFuture();
@@ -156,7 +156,7 @@ class IWebAccount2 extends IInspectable implements IWebAccount {
 
     if (FAILED(hr)) {
       free(asyncInfo);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IAsyncAction.fromPtr(asyncInfo).toFuture();

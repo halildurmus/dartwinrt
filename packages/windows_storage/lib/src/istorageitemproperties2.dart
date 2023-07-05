@@ -53,7 +53,7 @@ class IStorageItemProperties2 extends IInspectable
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<StorageItemThumbnail?>.fromPtr(
@@ -86,7 +86,7 @@ class IStorageItemProperties2 extends IInspectable
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<StorageItemThumbnail?>.fromPtr(
@@ -118,7 +118,7 @@ class IStorageItemProperties2 extends IInspectable
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<StorageItemThumbnail?>.fromPtr(

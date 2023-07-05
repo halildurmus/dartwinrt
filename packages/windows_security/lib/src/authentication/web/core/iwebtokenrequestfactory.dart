@@ -66,7 +66,7 @@ class IWebTokenRequestFactory extends IInspectable {
 
     if (FAILED(hr)) {
       free(webTokenRequest);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return WebTokenRequest.fromPtr(webTokenRequest);
@@ -111,7 +111,7 @@ class IWebTokenRequestFactory extends IInspectable {
 
     if (FAILED(hr)) {
       free(webTokenRequest);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return WebTokenRequest.fromPtr(webTokenRequest);
@@ -137,7 +137,7 @@ class IWebTokenRequestFactory extends IInspectable {
 
     if (FAILED(hr)) {
       free(webTokenRequest);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return WebTokenRequest.fromPtr(webTokenRequest);
@@ -167,7 +167,7 @@ class IWebTokenRequestFactory extends IInspectable {
 
     if (FAILED(hr)) {
       free(webTokenRequest);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return WebTokenRequest.fromPtr(webTokenRequest);

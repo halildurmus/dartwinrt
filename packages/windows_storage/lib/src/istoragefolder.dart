@@ -60,7 +60,7 @@ class IStorageFolder extends IInspectable implements IStorageItem {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<StorageFile?>.fromPtr(operation,
@@ -94,7 +94,7 @@ class IStorageFolder extends IInspectable implements IStorageItem {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<StorageFile?>.fromPtr(operation,
@@ -127,7 +127,7 @@ class IStorageFolder extends IInspectable implements IStorageItem {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<StorageFolder?>.fromPtr(operation,
@@ -161,7 +161,7 @@ class IStorageFolder extends IInspectable implements IStorageItem {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<StorageFolder?>.fromPtr(operation,
@@ -190,7 +190,7 @@ class IStorageFolder extends IInspectable implements IStorageItem {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<StorageFile?>.fromPtr(operation,
@@ -219,7 +219,7 @@ class IStorageFolder extends IInspectable implements IStorageItem {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<StorageFolder?>.fromPtr(operation,
@@ -248,7 +248,7 @@ class IStorageFolder extends IInspectable implements IStorageItem {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<IStorageItem?>.fromPtr(operation,
@@ -274,7 +274,7 @@ class IStorageFolder extends IInspectable implements IStorageItem {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<IVectorView<StorageFile?>>.fromPtr(
@@ -303,7 +303,7 @@ class IStorageFolder extends IInspectable implements IStorageItem {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<IVectorView<StorageFolder?>>.fromPtr(
@@ -331,7 +331,7 @@ class IStorageFolder extends IInspectable implements IStorageItem {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<IVectorView<IStorageItem?>>.fromPtr(

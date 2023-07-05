@@ -57,7 +57,7 @@ class IWebAuthenticationCoreManagerStatics4 extends IInspectable
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<FindAllAccountsResult?>.fromPtr(
@@ -94,7 +94,7 @@ class IWebAuthenticationCoreManagerStatics4 extends IInspectable
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<FindAllAccountsResult?>.fromPtr(
@@ -127,7 +127,7 @@ class IWebAuthenticationCoreManagerStatics4 extends IInspectable
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<WebAccountProvider?>.fromPtr(
@@ -166,7 +166,7 @@ class IWebAuthenticationCoreManagerStatics4 extends IInspectable
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<WebAccountProvider?>.fromPtr(
@@ -212,7 +212,7 @@ class IWebAuthenticationCoreManagerStatics4 extends IInspectable
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<WebAccountProvider?>.fromPtr(

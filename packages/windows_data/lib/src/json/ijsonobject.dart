@@ -52,7 +52,7 @@ class IJsonObject extends IInspectable implements IJsonValue {
 
     if (FAILED(hr)) {
       free(returnValue);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (returnValue.isNull) {
@@ -83,7 +83,7 @@ class IJsonObject extends IInspectable implements IJsonValue {
 
     WindowsDeleteString(nameHString);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   JsonObject getNamedObject(String name) {
@@ -107,7 +107,7 @@ class IJsonObject extends IInspectable implements IJsonValue {
 
     if (FAILED(hr)) {
       free(returnValue);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return JsonObject.fromPtr(returnValue);
@@ -134,7 +134,7 @@ class IJsonObject extends IInspectable implements IJsonValue {
 
     if (FAILED(hr)) {
       free(returnValue);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return JsonArray.fromPtr(returnValue);
@@ -161,7 +161,7 @@ class IJsonObject extends IInspectable implements IJsonValue {
 
       WindowsDeleteString(nameHString);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return returnValue.toDartString();
     } finally {
@@ -191,7 +191,7 @@ class IJsonObject extends IInspectable implements IJsonValue {
 
       WindowsDeleteString(nameHString);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return returnValue.value;
     } finally {
@@ -220,7 +220,7 @@ class IJsonObject extends IInspectable implements IJsonValue {
 
       WindowsDeleteString(nameHString);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return returnValue.value;
     } finally {

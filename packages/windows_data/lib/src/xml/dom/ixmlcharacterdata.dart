@@ -50,7 +50,7 @@ class IXmlCharacterData extends IInspectable
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartString();
     } finally {
@@ -76,7 +76,7 @@ class IXmlCharacterData extends IInspectable
 
     WindowsDeleteString(valueHString);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   int get length {
@@ -95,7 +95,7 @@ class IXmlCharacterData extends IInspectable
                   int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -119,7 +119,7 @@ class IXmlCharacterData extends IInspectable
               int Function(VTablePointer lpVtbl, int offset, int count,
                   Pointer<IntPtr> data)>()(ptr.ref.lpVtbl, offset, count, data);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return data.toDartString();
     } finally {
@@ -143,7 +143,7 @@ class IXmlCharacterData extends IInspectable
 
     WindowsDeleteString(dataHString);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void insertData(int offset, String data) {
@@ -163,7 +163,7 @@ class IXmlCharacterData extends IInspectable
 
     WindowsDeleteString(dataHString);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void deleteData(int offset, int count) {
@@ -179,7 +179,7 @@ class IXmlCharacterData extends IInspectable
             int Function(VTablePointer lpVtbl, int offset,
                 int count)>()(ptr.ref.lpVtbl, offset, count);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void replaceData(int offset, int count, String data) {
@@ -199,7 +199,7 @@ class IXmlCharacterData extends IInspectable
 
     WindowsDeleteString(dataHString);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   late final _iXmlNode = IXmlNode.from(this);

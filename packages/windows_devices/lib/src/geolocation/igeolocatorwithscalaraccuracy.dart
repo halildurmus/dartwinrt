@@ -51,7 +51,7 @@ class IGeolocatorWithScalarAccuracy extends IInspectable
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (value.isNull) {
@@ -78,7 +78,7 @@ class IGeolocatorWithScalarAccuracy extends IInspectable
         ptr.ref.lpVtbl,
         value?.toReference(IntType.uint32).ptr.ref.lpVtbl ?? nullptr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   late final _iGeolocator = IGeolocator.from(this);

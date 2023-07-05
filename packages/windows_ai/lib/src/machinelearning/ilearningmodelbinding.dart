@@ -46,7 +46,7 @@ class ILearningModelBinding extends IInspectable {
 
     WindowsDeleteString(nameHString);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void bindWithProperties(String name, Object? value, IPropertySet props) {
@@ -70,7 +70,7 @@ class ILearningModelBinding extends IInspectable {
 
     WindowsDeleteString(nameHString);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void clear() {
@@ -80,6 +80,6 @@ class ILearningModelBinding extends IInspectable {
         .value
         .asFunction<int Function(VTablePointer lpVtbl)>()(ptr.ref.lpVtbl);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 }

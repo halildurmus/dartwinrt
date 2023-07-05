@@ -45,7 +45,7 @@ class ITensor extends IInspectable implements ILearningModelFeatureValue {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return TensorKind.from(value.value);
     } finally {
@@ -70,7 +70,7 @@ class ITensor extends IInspectable implements ILearningModelFeatureValue {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IVectorView<int>.fromPtr(value,

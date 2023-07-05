@@ -53,7 +53,7 @@ final class WebAuthenticationCoreManagerInterop {
           asyncOperationPtr.cast());
       if (FAILED(hr)) {
         free(asyncOperationPtr);
-        throw WindowsException(hr);
+        throwWindowsException(hr);
       }
 
       final asyncOperation = IAsyncOperation<WebTokenRequestResult?>.fromPtr(
@@ -95,7 +95,7 @@ final class WebAuthenticationCoreManagerInterop {
               asyncOperationPtr.cast());
       if (FAILED(hr)) {
         free(asyncOperationPtr);
-        throw WindowsException(hr);
+        throwWindowsException(hr);
       }
 
       final asyncOperation = IAsyncOperation<WebTokenRequestResult?>.fromPtr(

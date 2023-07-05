@@ -49,7 +49,7 @@ class IDataReaderStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(dataReader);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (dataReader.isNull) {

@@ -47,7 +47,7 @@ class IDateTimeFormatter2 extends IInspectable {
 
       WindowsDeleteString(timeZoneIdHString);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDartString();
     } finally {

@@ -47,7 +47,7 @@ class IUserStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(result);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (result.isNull) {
@@ -75,7 +75,7 @@ class IUserStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<IVectorView<User?>>.fromPtr(
@@ -106,7 +106,7 @@ class IUserStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<IVectorView<User?>>.fromPtr(
@@ -138,7 +138,7 @@ class IUserStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<IVectorView<User?>>.fromPtr(
@@ -173,7 +173,7 @@ class IUserStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(result);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (result.isNull) {

@@ -46,7 +46,7 @@ class IKnownFoldersPlaylistsStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (value.isNull) {

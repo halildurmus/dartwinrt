@@ -50,7 +50,7 @@ class IPropertySetSerializer extends IInspectable {
 
     if (FAILED(hr)) {
       free(result);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (result.isNull) {
@@ -80,6 +80,6 @@ class IPropertySetSerializer extends IInspectable {
             propertySet.ptr.ref.lpVtbl,
             buffer == null ? nullptr : buffer.ptr.ref.lpVtbl);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 }

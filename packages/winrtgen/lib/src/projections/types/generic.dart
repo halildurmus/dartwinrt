@@ -60,7 +60,7 @@ final class GenericObjectParameterProjection extends ParameterProjection {
   @override
   String get toListInto => '$identifier.cast<IInspectable>()[i].ptr.ref.lpVtbl';
 
-  // No deallocation is needed as NativeFinalizer will handle it.
+  // No deallocation is needed as Finalizer will handle it.
   @override
   bool get needsDeallocation => false;
 

@@ -231,13 +231,13 @@ abstract class MethodProjection {
 
   String get failedCheck {
     if (!freeRetValOnFailure) {
-      return 'if (FAILED(hr)) throw WindowsException(hr);';
+      return 'if (FAILED(hr)) throwWindowsException(hr);';
     }
 
     return '''
     if (FAILED(hr)) {
       free(${paramProjection.localIdentifier});
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 ''';
   }

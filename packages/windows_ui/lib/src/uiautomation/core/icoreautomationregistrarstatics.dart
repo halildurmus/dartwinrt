@@ -56,7 +56,7 @@ class ICoreAutomationRegistrarStatics extends IInspectable {
 
       free(guidNativeStructPtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDart();
     } finally {
@@ -85,6 +85,6 @@ class ICoreAutomationRegistrarStatics extends IInspectable {
 
     free(registrationNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 }

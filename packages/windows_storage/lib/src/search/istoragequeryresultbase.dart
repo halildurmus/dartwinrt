@@ -46,7 +46,7 @@ class IStorageQueryResultBase extends IInspectable {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation =
@@ -71,7 +71,7 @@ class IStorageQueryResultBase extends IInspectable {
 
     if (FAILED(hr)) {
       free(container);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (container.isNull) {
@@ -101,7 +101,7 @@ class IStorageQueryResultBase extends IInspectable {
                       Pointer<IntPtr> eventCookie)>()(
           ptr.ref.lpVtbl, handler.ref.lpVtbl, eventCookie);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return eventCookie.value;
     } finally {
@@ -121,7 +121,7 @@ class IStorageQueryResultBase extends IInspectable {
             .asFunction<int Function(VTablePointer lpVtbl, int eventCookie)>()(
         ptr.ref.lpVtbl, eventCookie);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   int add_OptionsChanged(Pointer<COMObject> changedHandler) {
@@ -145,7 +145,7 @@ class IStorageQueryResultBase extends IInspectable {
                       Pointer<IntPtr> eventCookie)>()(
           ptr.ref.lpVtbl, changedHandler.ref.lpVtbl, eventCookie);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return eventCookie.value;
     } finally {
@@ -165,7 +165,7 @@ class IStorageQueryResultBase extends IInspectable {
             .asFunction<int Function(VTablePointer lpVtbl, int eventCookie)>()(
         ptr.ref.lpVtbl, eventCookie);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   Future<int> findStartIndexAsync(Object? value) {
@@ -189,7 +189,7 @@ class IStorageQueryResultBase extends IInspectable {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation =
@@ -214,7 +214,7 @@ class IStorageQueryResultBase extends IInspectable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (value.isNull) {
@@ -240,6 +240,6 @@ class IStorageQueryResultBase extends IInspectable {
         ptr.ref.lpVtbl,
         newQueryOptions == null ? nullptr : newQueryOptions.ptr.ref.lpVtbl);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 }

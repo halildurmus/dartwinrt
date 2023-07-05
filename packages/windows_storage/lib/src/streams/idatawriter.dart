@@ -47,7 +47,7 @@ class IDataWriter extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -71,7 +71,7 @@ class IDataWriter extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return UnicodeEncoding.from(value.value);
     } finally {
@@ -90,7 +90,7 @@ class IDataWriter extends IInspectable {
             .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
         ptr.ref.lpVtbl, value.value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   ByteOrder get byteOrder {
@@ -109,7 +109,7 @@ class IDataWriter extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return ByteOrder.from(value.value);
     } finally {
@@ -128,7 +128,7 @@ class IDataWriter extends IInspectable {
             .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
         ptr.ref.lpVtbl, value.value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void writeByte(int value) {
@@ -142,7 +142,7 @@ class IDataWriter extends IInspectable {
             .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
         ptr.ref.lpVtbl, value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void writeBytes(List<int> value) {
@@ -166,7 +166,7 @@ class IDataWriter extends IInspectable {
 
     free(pValueArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void writeBuffer(IBuffer? buffer) {
@@ -182,7 +182,7 @@ class IDataWriter extends IInspectable {
                 int Function(VTablePointer lpVtbl, VTablePointer buffer)>()(
         ptr.ref.lpVtbl, buffer == null ? nullptr : buffer.ptr.ref.lpVtbl);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void writeBufferRange(IBuffer? buffer, int start, int count) {
@@ -203,7 +203,7 @@ class IDataWriter extends IInspectable {
                         int start, int count)>()(ptr.ref.lpVtbl,
             buffer == null ? nullptr : buffer.ptr.ref.lpVtbl, start, count);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void writeBoolean(bool value) {
@@ -217,7 +217,7 @@ class IDataWriter extends IInspectable {
             .asFunction<int Function(VTablePointer lpVtbl, bool value)>()(
         ptr.ref.lpVtbl, value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void writeGuid(Guid value) {
@@ -235,7 +235,7 @@ class IDataWriter extends IInspectable {
 
     free(valueNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void writeInt16(int value) {
@@ -249,7 +249,7 @@ class IDataWriter extends IInspectable {
             .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
         ptr.ref.lpVtbl, value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void writeInt32(int value) {
@@ -263,7 +263,7 @@ class IDataWriter extends IInspectable {
             .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
         ptr.ref.lpVtbl, value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void writeInt64(int value) {
@@ -277,7 +277,7 @@ class IDataWriter extends IInspectable {
             .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
         ptr.ref.lpVtbl, value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void writeUInt16(int value) {
@@ -293,7 +293,7 @@ class IDataWriter extends IInspectable {
                 .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
             ptr.ref.lpVtbl, value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void writeUInt32(int value) {
@@ -309,7 +309,7 @@ class IDataWriter extends IInspectable {
                 .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
             ptr.ref.lpVtbl, value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void writeUInt64(int value) {
@@ -325,7 +325,7 @@ class IDataWriter extends IInspectable {
                 .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
             ptr.ref.lpVtbl, value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void writeSingle(double value) {
@@ -339,7 +339,7 @@ class IDataWriter extends IInspectable {
             .asFunction<int Function(VTablePointer lpVtbl, double value)>()(
         ptr.ref.lpVtbl, value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void writeDouble(double value) {
@@ -355,7 +355,7 @@ class IDataWriter extends IInspectable {
                 .asFunction<int Function(VTablePointer lpVtbl, double value)>()(
             ptr.ref.lpVtbl, value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void writeDateTime(DateTime value) {
@@ -369,7 +369,7 @@ class IDataWriter extends IInspectable {
             .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
         ptr.ref.lpVtbl, value.toWinRTDateTime());
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void writeTimeSpan(Duration value) {
@@ -383,7 +383,7 @@ class IDataWriter extends IInspectable {
             .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
         ptr.ref.lpVtbl, value.toWinRTDuration());
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   int writeString(String value) {
@@ -407,7 +407,7 @@ class IDataWriter extends IInspectable {
 
       WindowsDeleteString(valueHString);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return codeUnitCount.value;
     } finally {
@@ -436,7 +436,7 @@ class IDataWriter extends IInspectable {
 
       WindowsDeleteString(valueHString);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return codeUnitCount.value;
     } finally {
@@ -461,7 +461,7 @@ class IDataWriter extends IInspectable {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation =
@@ -486,7 +486,7 @@ class IDataWriter extends IInspectable {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<bool>.fromPtr(operation);
@@ -510,7 +510,7 @@ class IDataWriter extends IInspectable {
 
     if (FAILED(hr)) {
       free(buffer);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (buffer.isNull) {
@@ -539,7 +539,7 @@ class IDataWriter extends IInspectable {
 
     if (FAILED(hr)) {
       free(outputStream);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (outputStream.isNull) {

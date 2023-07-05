@@ -49,7 +49,7 @@ class IPropertyValueStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(propertyValue);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return propertyValue;
@@ -73,7 +73,7 @@ class IPropertyValueStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(propertyValue);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IPropertyValue.fromPtr(propertyValue);
@@ -97,7 +97,7 @@ class IPropertyValueStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(propertyValue);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IPropertyValue.fromPtr(propertyValue);
@@ -121,7 +121,7 @@ class IPropertyValueStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(propertyValue);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IPropertyValue.fromPtr(propertyValue);
@@ -145,7 +145,7 @@ class IPropertyValueStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(propertyValue);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IPropertyValue.fromPtr(propertyValue);
@@ -169,7 +169,7 @@ class IPropertyValueStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(propertyValue);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IPropertyValue.fromPtr(propertyValue);
@@ -193,7 +193,7 @@ class IPropertyValueStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(propertyValue);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IPropertyValue.fromPtr(propertyValue);
@@ -217,7 +217,7 @@ class IPropertyValueStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(propertyValue);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IPropertyValue.fromPtr(propertyValue);
@@ -241,7 +241,7 @@ class IPropertyValueStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(propertyValue);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IPropertyValue.fromPtr(propertyValue);
@@ -265,7 +265,7 @@ class IPropertyValueStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(propertyValue);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IPropertyValue.fromPtr(propertyValue);
@@ -289,7 +289,7 @@ class IPropertyValueStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(propertyValue);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IPropertyValue.fromPtr(propertyValue);
@@ -313,7 +313,7 @@ class IPropertyValueStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(propertyValue);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IPropertyValue.fromPtr(propertyValue);
@@ -340,7 +340,7 @@ class IPropertyValueStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(propertyValue);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IPropertyValue.fromPtr(propertyValue);
@@ -367,7 +367,7 @@ class IPropertyValueStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(propertyValue);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return propertyValue;
@@ -394,7 +394,7 @@ class IPropertyValueStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(propertyValue);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IPropertyValue.fromPtr(propertyValue);
@@ -418,7 +418,7 @@ class IPropertyValueStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(propertyValue);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IPropertyValue.fromPtr(propertyValue);
@@ -442,7 +442,7 @@ class IPropertyValueStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(propertyValue);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IPropertyValue.fromPtr(propertyValue);
@@ -472,7 +472,7 @@ class IPropertyValueStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(propertyValue);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IPropertyValue.fromPtr(propertyValue);
@@ -499,7 +499,7 @@ class IPropertyValueStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(propertyValue);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IPropertyValue.fromPtr(propertyValue);
@@ -526,7 +526,7 @@ class IPropertyValueStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(propertyValue);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IPropertyValue.fromPtr(propertyValue);
@@ -559,7 +559,7 @@ class IPropertyValueStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(propertyValue);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IPropertyValue.fromPtr(propertyValue);
@@ -592,7 +592,7 @@ class IPropertyValueStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(propertyValue);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IPropertyValue.fromPtr(propertyValue);
@@ -625,7 +625,7 @@ class IPropertyValueStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(propertyValue);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IPropertyValue.fromPtr(propertyValue);
@@ -658,7 +658,7 @@ class IPropertyValueStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(propertyValue);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IPropertyValue.fromPtr(propertyValue);
@@ -691,7 +691,7 @@ class IPropertyValueStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(propertyValue);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IPropertyValue.fromPtr(propertyValue);
@@ -724,7 +724,7 @@ class IPropertyValueStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(propertyValue);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IPropertyValue.fromPtr(propertyValue);
@@ -757,7 +757,7 @@ class IPropertyValueStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(propertyValue);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IPropertyValue.fromPtr(propertyValue);
@@ -790,7 +790,7 @@ class IPropertyValueStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(propertyValue);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IPropertyValue.fromPtr(propertyValue);
@@ -823,7 +823,7 @@ class IPropertyValueStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(propertyValue);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IPropertyValue.fromPtr(propertyValue);
@@ -856,7 +856,7 @@ class IPropertyValueStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(propertyValue);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IPropertyValue.fromPtr(propertyValue);
@@ -889,7 +889,7 @@ class IPropertyValueStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(propertyValue);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IPropertyValue.fromPtr(propertyValue);
@@ -925,7 +925,7 @@ class IPropertyValueStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(propertyValue);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IPropertyValue.fromPtr(propertyValue);
@@ -961,7 +961,7 @@ class IPropertyValueStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(propertyValue);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IPropertyValue.fromPtr(propertyValue);
@@ -998,7 +998,7 @@ class IPropertyValueStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(propertyValue);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IPropertyValue.fromPtr(propertyValue);
@@ -1031,7 +1031,7 @@ class IPropertyValueStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(propertyValue);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IPropertyValue.fromPtr(propertyValue);
@@ -1064,7 +1064,7 @@ class IPropertyValueStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(propertyValue);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IPropertyValue.fromPtr(propertyValue);
@@ -1104,7 +1104,7 @@ class IPropertyValueStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(propertyValue);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IPropertyValue.fromPtr(propertyValue);
@@ -1144,7 +1144,7 @@ class IPropertyValueStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(propertyValue);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IPropertyValue.fromPtr(propertyValue);
@@ -1184,7 +1184,7 @@ class IPropertyValueStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(propertyValue);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IPropertyValue.fromPtr(propertyValue);

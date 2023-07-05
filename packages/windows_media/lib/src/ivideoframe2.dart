@@ -59,7 +59,7 @@ class IVideoFrame2 extends IInspectable {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IAsyncAction.fromPtr(operation).toFuture();

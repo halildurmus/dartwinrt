@@ -31,7 +31,7 @@ final class _IReferenceBool extends IReference<bool?> {
               int Function(VTablePointer lpVtbl,
                   Pointer<Bool> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -62,7 +62,7 @@ final class _IReferenceDateTime extends IReference<DateTime?> {
               int Function(VTablePointer lpVtbl,
                   Pointer<Int64> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.toDartDateTime();
     } finally {
@@ -93,7 +93,7 @@ final class _IReferenceDouble extends IReference<double?> {
               int Function(VTablePointer lpVtbl,
                   Pointer<Double> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -124,7 +124,7 @@ final class _IReferenceDuration extends IReference<Duration?> {
               int Function(VTablePointer lpVtbl,
                   Pointer<Int64> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.toDartDuration();
     } finally {
@@ -155,7 +155,7 @@ final class _IReferenceFloat extends IReference<double?> {
               int Function(VTablePointer lpVtbl,
                   Pointer<Float> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -186,7 +186,7 @@ final class _IReferenceGuid extends IReference<Guid?> {
               int Function(VTablePointer lpVtbl,
                   Pointer<GUID> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.toDartGuid();
     } finally {
@@ -217,7 +217,7 @@ final class _IReferenceInt16 extends IReference<int?> {
               int Function(VTablePointer lpVtbl,
                   Pointer<Int16> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -248,7 +248,7 @@ final class _IReferenceInt32 extends IReference<int?> {
               int Function(VTablePointer lpVtbl,
                   Pointer<Int32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -279,7 +279,7 @@ final class _IReferenceInt64 extends IReference<int?> {
               int Function(VTablePointer lpVtbl,
                   Pointer<Int64> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -311,7 +311,7 @@ final class _IReferencePoint extends IReference<Point?> {
                       Pointer<NativePoint> retValuePtr)>()(
           ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.toDart();
     } finally {
@@ -343,7 +343,7 @@ final class _IReferenceRect extends IReference<Rect?> {
                       VTablePointer lpVtbl, Pointer<NativeRect> retValuePtr)>()(
           ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.toDart();
     } finally {
@@ -375,7 +375,7 @@ final class _IReferenceSize extends IReference<Size?> {
                       VTablePointer lpVtbl, Pointer<NativeSize> retValuePtr)>()(
           ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.toDart();
     } finally {
@@ -406,7 +406,7 @@ final class _IReferenceString extends IReference<String?> {
               int Function(VTablePointer lpVtbl,
                   Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.toDartString();
     } finally {
@@ -438,7 +438,7 @@ final class _IReferenceUint8 extends IReference<int?> {
               int Function(VTablePointer lpVtbl,
                   Pointer<Uint8> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -469,7 +469,7 @@ final class _IReferenceUint16 extends IReference<int?> {
               int Function(VTablePointer lpVtbl,
                   Pointer<Uint16> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -500,7 +500,7 @@ final class _IReferenceUint32 extends IReference<int?> {
               int Function(VTablePointer lpVtbl,
                   Pointer<Uint32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -531,7 +531,7 @@ final class _IReferenceUint64 extends IReference<int?> {
               int Function(VTablePointer lpVtbl,
                   Pointer<Uint64> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -564,7 +564,7 @@ final class _IReferenceWinRTEnum<T> extends IReference<T> {
               int Function(VTablePointer lpVtbl,
                   Pointer<Int32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return enumCreator(retValuePtr.value);
     } finally {
@@ -597,7 +597,7 @@ final class _IReferenceWinRTFlagsEnum<T> extends IReference<T> {
               int Function(VTablePointer lpVtbl,
                   Pointer<Uint32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return enumCreator(retValuePtr.value);
     } finally {

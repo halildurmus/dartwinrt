@@ -42,7 +42,7 @@ class IConnectivityInterval extends IInspectable {
               int Function(VTablePointer lpVtbl,
                   Pointer<Int64> startTime)>()(ptr.ref.lpVtbl, startTime);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return startTime.toDartDateTime();
     } finally {
@@ -66,7 +66,7 @@ class IConnectivityInterval extends IInspectable {
               int Function(VTablePointer lpVtbl,
                   Pointer<Int64> duration)>()(ptr.ref.lpVtbl, duration);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return duration.toDartDuration();
     } finally {

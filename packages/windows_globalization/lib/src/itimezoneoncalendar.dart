@@ -42,7 +42,7 @@ class ITimeZoneOnCalendar extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartString();
     } finally {
@@ -67,7 +67,7 @@ class ITimeZoneOnCalendar extends IInspectable {
 
     WindowsDeleteString(timeZoneIdHString);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   String timeZoneAsFullString() {
@@ -86,7 +86,7 @@ class ITimeZoneOnCalendar extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> result)>()(
           ptr.ref.lpVtbl, result);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDartString();
     } finally {
@@ -114,7 +114,7 @@ class ITimeZoneOnCalendar extends IInspectable {
                   Pointer<IntPtr>
                       result)>()(ptr.ref.lpVtbl, idealLength, result);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDartString();
     } finally {

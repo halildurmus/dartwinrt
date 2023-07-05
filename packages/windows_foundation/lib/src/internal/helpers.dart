@@ -2,10 +2,53 @@
 // All rights reserved. Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+import 'dart:ffi';
+
+import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
 
+import '../../internal.dart';
 import '../winrt_enum.dart';
 import '../winrt_struct.dart';
+
+/// Returns the restricted error description of the last error that occurred on
+/// the current logical thread.
+///
+/// Returns `null` if no restricted error description was found.
+/// @nodoc
+String? getRestrictedErrorDescription() {
+  final ppRestrictedErrorInfo = calloc<COMObject>();
+
+  try {
+    var hr = GetRestrictedErrorInfo(ppRestrictedErrorInfo.cast());
+    if (FAILED(hr)) throw WindowsException(hr);
+
+    if (ppRestrictedErrorInfo.isNull) return null;
+    final restrictedErrorInfo = IRestrictedErrorInfo(ppRestrictedErrorInfo);
+
+    return using((arena) {
+      final description = arena<Pointer<Utf16>>();
+      final error = arena<Int32>();
+      final restrictedDescription = arena<Pointer<Utf16>>();
+      final capabilitySid = arena<Pointer<Utf16>>();
+      hr = restrictedErrorInfo.getErrorDetails(
+          description, error, restrictedDescription, capabilitySid);
+      if (FAILED(hr)) throw WindowsException(hr);
+
+      final value = restrictedDescription.value.toDartString();
+      return value.isEmpty ? null : value;
+    });
+  } catch (_) {
+    free(ppRestrictedErrorInfo);
+    return null;
+  }
+}
+
+/// Throws a [WindowsException] with the given [hr] and the restricted error
+/// description of the last error that occurred on the current logical thread.
+/// @nodoc
+void throwWindowsException(int hr) =>
+    throw WindowsException(hr, message: getRestrictedErrorDescription());
 
 /// Determines whether [S] is the same type as [T].
 ///

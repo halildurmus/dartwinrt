@@ -56,7 +56,7 @@ class IBitmapFrameWithSoftwareBitmap extends IInspectable
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<SoftwareBitmap?>.fromPtr(value,
@@ -87,7 +87,7 @@ class IBitmapFrameWithSoftwareBitmap extends IInspectable
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<SoftwareBitmap?>.fromPtr(value,
@@ -136,7 +136,7 @@ class IBitmapFrameWithSoftwareBitmap extends IInspectable
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<SoftwareBitmap?>.fromPtr(value,

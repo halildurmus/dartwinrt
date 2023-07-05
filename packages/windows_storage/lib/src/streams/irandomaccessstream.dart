@@ -49,7 +49,7 @@ class IRandomAccessStream extends IInspectable
                   int Function(VTablePointer lpVtbl, Pointer<Uint64> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -70,7 +70,7 @@ class IRandomAccessStream extends IInspectable
                 .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
             ptr.ref.lpVtbl, value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   IInputStream? getInputStreamAt(int position) {
@@ -90,7 +90,7 @@ class IRandomAccessStream extends IInspectable
 
     if (FAILED(hr)) {
       free(stream);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (stream.isNull) {
@@ -118,7 +118,7 @@ class IRandomAccessStream extends IInspectable
 
     if (FAILED(hr)) {
       free(stream);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (stream.isNull) {
@@ -145,7 +145,7 @@ class IRandomAccessStream extends IInspectable
                   int Function(VTablePointer lpVtbl, Pointer<Uint64> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -166,7 +166,7 @@ class IRandomAccessStream extends IInspectable
                 .asFunction<int Function(VTablePointer lpVtbl, int position)>()(
             ptr.ref.lpVtbl, position);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   IRandomAccessStream? cloneStream() {
@@ -186,7 +186,7 @@ class IRandomAccessStream extends IInspectable
 
     if (FAILED(hr)) {
       free(stream);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (stream.isNull) {
@@ -213,7 +213,7 @@ class IRandomAccessStream extends IInspectable
                   int Function(VTablePointer lpVtbl, Pointer<Bool> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -237,7 +237,7 @@ class IRandomAccessStream extends IInspectable
                   int Function(VTablePointer lpVtbl, Pointer<Bool> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {

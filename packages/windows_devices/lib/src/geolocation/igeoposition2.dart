@@ -47,7 +47,7 @@ class IGeoposition2 extends IInspectable implements IGeoposition {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (value.isNull) {

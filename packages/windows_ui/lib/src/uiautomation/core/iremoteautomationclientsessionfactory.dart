@@ -50,7 +50,7 @@ class IRemoteAutomationClientSessionFactory extends IInspectable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return RemoteAutomationClientSession.fromPtr(value);
@@ -79,7 +79,7 @@ class IRemoteAutomationClientSessionFactory extends IInspectable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return RemoteAutomationClientSession.fromPtr(value);

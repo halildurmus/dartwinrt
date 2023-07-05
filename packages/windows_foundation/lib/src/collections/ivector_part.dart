@@ -30,7 +30,7 @@ final class _IVectorAccessListEntry extends IVector<AccessListEntry> {
                       Pointer<NativeAccessListEntry> retValuePtr)>()(
           ptr.ref.lpVtbl, index, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.toDart();
     } finally {
@@ -66,7 +66,7 @@ final class _IVectorAccessListEntry extends IVector<AccessListEntry> {
 
       free(valueNativeStructPtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -93,7 +93,7 @@ final class _IVectorAccessListEntry extends IVector<AccessListEntry> {
 
     free(valueNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -115,7 +115,7 @@ final class _IVectorAccessListEntry extends IVector<AccessListEntry> {
 
     free(valueNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -137,7 +137,7 @@ final class _IVectorAccessListEntry extends IVector<AccessListEntry> {
 
     free(valueNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -173,7 +173,7 @@ final class _IVectorAccessListEntry extends IVector<AccessListEntry> {
       }
       free(pItemsArray);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -207,7 +207,7 @@ final class _IVectorAccessListEntry extends IVector<AccessListEntry> {
     nativeStructPtrs.forEach(free);
     free(pItemsArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 }
 
@@ -239,7 +239,7 @@ final class _IVectorBackgroundTransferFileRange
                   Pointer<NativeBackgroundTransferFileRange>
                       retValuePtr)>()(ptr.ref.lpVtbl, index, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.toDart();
     } finally {
@@ -275,7 +275,7 @@ final class _IVectorBackgroundTransferFileRange
 
       free(valueNativeStructPtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -302,7 +302,7 @@ final class _IVectorBackgroundTransferFileRange
 
     free(valueNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -324,7 +324,7 @@ final class _IVectorBackgroundTransferFileRange
 
     free(valueNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -346,7 +346,7 @@ final class _IVectorBackgroundTransferFileRange
 
     free(valueNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -383,7 +383,7 @@ final class _IVectorBackgroundTransferFileRange
       }
       free(pItemsArray);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -419,7 +419,7 @@ final class _IVectorBackgroundTransferFileRange
     nativeStructPtrs.forEach(free);
     free(pItemsArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 }
 
@@ -444,7 +444,7 @@ final class _IVectorBasicGeoposition extends IVector<BasicGeoposition> {
                       Pointer<NativeBasicGeoposition> retValuePtr)>()(
           ptr.ref.lpVtbl, index, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.toDart();
     } finally {
@@ -480,7 +480,7 @@ final class _IVectorBasicGeoposition extends IVector<BasicGeoposition> {
 
       free(valueNativeStructPtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -507,7 +507,7 @@ final class _IVectorBasicGeoposition extends IVector<BasicGeoposition> {
 
     free(valueNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -529,7 +529,7 @@ final class _IVectorBasicGeoposition extends IVector<BasicGeoposition> {
 
     free(valueNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -551,7 +551,7 @@ final class _IVectorBasicGeoposition extends IVector<BasicGeoposition> {
 
     free(valueNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -587,7 +587,7 @@ final class _IVectorBasicGeoposition extends IVector<BasicGeoposition> {
       }
       free(pItemsArray);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -621,7 +621,7 @@ final class _IVectorBasicGeoposition extends IVector<BasicGeoposition> {
     nativeStructPtrs.forEach(free);
     free(pItemsArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 }
 
@@ -646,7 +646,7 @@ final class _IVectorBool extends IVector<bool> {
                       Pointer<Bool> retValuePtr)>()(
           ptr.ref.lpVtbl, index, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -676,7 +676,7 @@ final class _IVectorBool extends IVector<bool> {
                           Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
               ptr.ref.lpVtbl, value, index, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -698,7 +698,7 @@ final class _IVectorBool extends IVector<bool> {
                 int Function(VTablePointer lpVtbl, int index, bool value)>()(
         ptr.ref.lpVtbl, index, value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -715,7 +715,7 @@ final class _IVectorBool extends IVector<bool> {
                 int Function(VTablePointer lpVtbl, int index, bool value)>()(
         ptr.ref.lpVtbl, index, value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -730,7 +730,7 @@ final class _IVectorBool extends IVector<bool> {
             .asFunction<int Function(VTablePointer lpVtbl, bool value)>()(
         ptr.ref.lpVtbl, value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -766,7 +766,7 @@ final class _IVectorBool extends IVector<bool> {
       }
       free(pItemsArray);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -796,7 +796,7 @@ final class _IVectorBool extends IVector<bool> {
 
     free(pItemsArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 }
 
@@ -821,7 +821,7 @@ final class _IVectorColor extends IVector<Color> {
                       Pointer<NativeColor> retValuePtr)>()(
           ptr.ref.lpVtbl, index, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.toDart();
     } finally {
@@ -855,7 +855,7 @@ final class _IVectorColor extends IVector<Color> {
 
       free(valueNativeStructPtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -882,7 +882,7 @@ final class _IVectorColor extends IVector<Color> {
 
     free(valueNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -904,7 +904,7 @@ final class _IVectorColor extends IVector<Color> {
 
     free(valueNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -925,7 +925,7 @@ final class _IVectorColor extends IVector<Color> {
 
     free(valueNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -961,7 +961,7 @@ final class _IVectorColor extends IVector<Color> {
       }
       free(pItemsArray);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -995,7 +995,7 @@ final class _IVectorColor extends IVector<Color> {
     nativeStructPtrs.forEach(free);
     free(pItemsArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 }
 
@@ -1021,7 +1021,7 @@ final class _IVectorDouble extends IVector<double> {
                       Pointer<Double> retValuePtr)>()(
           ptr.ref.lpVtbl, index, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -1051,7 +1051,7 @@ final class _IVectorDouble extends IVector<double> {
                           Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
               ptr.ref.lpVtbl, value, index, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -1073,7 +1073,7 @@ final class _IVectorDouble extends IVector<double> {
             int Function(VTablePointer lpVtbl, int index,
                 double value)>()(ptr.ref.lpVtbl, index, value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -1090,7 +1090,7 @@ final class _IVectorDouble extends IVector<double> {
             int Function(VTablePointer lpVtbl, int index,
                 double value)>()(ptr.ref.lpVtbl, index, value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -1107,7 +1107,7 @@ final class _IVectorDouble extends IVector<double> {
                 .asFunction<int Function(VTablePointer lpVtbl, double value)>()(
             ptr.ref.lpVtbl, value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -1143,7 +1143,7 @@ final class _IVectorDouble extends IVector<double> {
       }
       free(pItemsArray);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -1173,7 +1173,7 @@ final class _IVectorDouble extends IVector<double> {
 
     free(pItemsArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 }
 
@@ -1199,7 +1199,7 @@ final class _IVectorFloat extends IVector<double> {
                       Pointer<Float> retValuePtr)>()(
           ptr.ref.lpVtbl, index, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -1229,7 +1229,7 @@ final class _IVectorFloat extends IVector<double> {
                           Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
               ptr.ref.lpVtbl, value, index, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -1251,7 +1251,7 @@ final class _IVectorFloat extends IVector<double> {
             int Function(VTablePointer lpVtbl, int index,
                 double value)>()(ptr.ref.lpVtbl, index, value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -1268,7 +1268,7 @@ final class _IVectorFloat extends IVector<double> {
             int Function(VTablePointer lpVtbl, int index,
                 double value)>()(ptr.ref.lpVtbl, index, value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -1283,7 +1283,7 @@ final class _IVectorFloat extends IVector<double> {
             .asFunction<int Function(VTablePointer lpVtbl, double value)>()(
         ptr.ref.lpVtbl, value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -1319,7 +1319,7 @@ final class _IVectorFloat extends IVector<double> {
       }
       free(pItemsArray);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -1349,7 +1349,7 @@ final class _IVectorFloat extends IVector<double> {
 
     free(pItemsArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 }
 
@@ -1374,7 +1374,7 @@ final class _IVectorGpioChangeRecord extends IVector<GpioChangeRecord> {
                       Pointer<NativeGpioChangeRecord> retValuePtr)>()(
           ptr.ref.lpVtbl, index, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.toDart();
     } finally {
@@ -1410,7 +1410,7 @@ final class _IVectorGpioChangeRecord extends IVector<GpioChangeRecord> {
 
       free(valueNativeStructPtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -1437,7 +1437,7 @@ final class _IVectorGpioChangeRecord extends IVector<GpioChangeRecord> {
 
     free(valueNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -1459,7 +1459,7 @@ final class _IVectorGpioChangeRecord extends IVector<GpioChangeRecord> {
 
     free(valueNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -1481,7 +1481,7 @@ final class _IVectorGpioChangeRecord extends IVector<GpioChangeRecord> {
 
     free(valueNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -1517,7 +1517,7 @@ final class _IVectorGpioChangeRecord extends IVector<GpioChangeRecord> {
       }
       free(pItemsArray);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -1551,7 +1551,7 @@ final class _IVectorGpioChangeRecord extends IVector<GpioChangeRecord> {
     nativeStructPtrs.forEach(free);
     free(pItemsArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 }
 
@@ -1576,7 +1576,7 @@ final class _IVectorGuid extends IVector<Guid> {
                       Pointer<GUID> retValuePtr)>()(
           ptr.ref.lpVtbl, index, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.toDartGuid();
     } finally {
@@ -1610,7 +1610,7 @@ final class _IVectorGuid extends IVector<Guid> {
 
       free(valueNativeStructPtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -1636,7 +1636,7 @@ final class _IVectorGuid extends IVector<Guid> {
 
     free(valueNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -1657,7 +1657,7 @@ final class _IVectorGuid extends IVector<Guid> {
 
     free(valueNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -1676,7 +1676,7 @@ final class _IVectorGuid extends IVector<Guid> {
 
     free(valueNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -1712,7 +1712,7 @@ final class _IVectorGuid extends IVector<Guid> {
       }
       free(pItemsArray);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -1746,7 +1746,7 @@ final class _IVectorGuid extends IVector<Guid> {
     nativeStructPtrs.forEach(free);
     free(pItemsArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 }
 
@@ -1771,7 +1771,7 @@ final class _IVectorInt16 extends IVector<int> {
                       Pointer<Int16> retValuePtr)>()(
           ptr.ref.lpVtbl, index, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -1801,7 +1801,7 @@ final class _IVectorInt16 extends IVector<int> {
                           Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
               ptr.ref.lpVtbl, value, index, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -1823,7 +1823,7 @@ final class _IVectorInt16 extends IVector<int> {
             int Function(VTablePointer lpVtbl, int index,
                 int value)>()(ptr.ref.lpVtbl, index, value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -1840,7 +1840,7 @@ final class _IVectorInt16 extends IVector<int> {
             int Function(VTablePointer lpVtbl, int index,
                 int value)>()(ptr.ref.lpVtbl, index, value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -1855,7 +1855,7 @@ final class _IVectorInt16 extends IVector<int> {
             .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
         ptr.ref.lpVtbl, value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -1891,7 +1891,7 @@ final class _IVectorInt16 extends IVector<int> {
       }
       free(pItemsArray);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -1921,7 +1921,7 @@ final class _IVectorInt16 extends IVector<int> {
 
     free(pItemsArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 }
 
@@ -1946,7 +1946,7 @@ final class _IVectorInt32 extends IVector<int> {
                       Pointer<Int32> retValuePtr)>()(
           ptr.ref.lpVtbl, index, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -1976,7 +1976,7 @@ final class _IVectorInt32 extends IVector<int> {
                           Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
               ptr.ref.lpVtbl, value, index, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -1998,7 +1998,7 @@ final class _IVectorInt32 extends IVector<int> {
             int Function(VTablePointer lpVtbl, int index,
                 int value)>()(ptr.ref.lpVtbl, index, value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -2015,7 +2015,7 @@ final class _IVectorInt32 extends IVector<int> {
             int Function(VTablePointer lpVtbl, int index,
                 int value)>()(ptr.ref.lpVtbl, index, value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -2030,7 +2030,7 @@ final class _IVectorInt32 extends IVector<int> {
             .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
         ptr.ref.lpVtbl, value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -2066,7 +2066,7 @@ final class _IVectorInt32 extends IVector<int> {
       }
       free(pItemsArray);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -2096,7 +2096,7 @@ final class _IVectorInt32 extends IVector<int> {
 
     free(pItemsArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 }
 
@@ -2121,7 +2121,7 @@ final class _IVectorInt64 extends IVector<int> {
                       Pointer<Int64> retValuePtr)>()(
           ptr.ref.lpVtbl, index, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -2151,7 +2151,7 @@ final class _IVectorInt64 extends IVector<int> {
                           Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
               ptr.ref.lpVtbl, value, index, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -2173,7 +2173,7 @@ final class _IVectorInt64 extends IVector<int> {
             int Function(VTablePointer lpVtbl, int index,
                 int value)>()(ptr.ref.lpVtbl, index, value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -2190,7 +2190,7 @@ final class _IVectorInt64 extends IVector<int> {
             int Function(VTablePointer lpVtbl, int index,
                 int value)>()(ptr.ref.lpVtbl, index, value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -2205,7 +2205,7 @@ final class _IVectorInt64 extends IVector<int> {
             .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
         ptr.ref.lpVtbl, value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -2241,7 +2241,7 @@ final class _IVectorInt64 extends IVector<int> {
       }
       free(pItemsArray);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -2271,7 +2271,7 @@ final class _IVectorInt64 extends IVector<int> {
 
     free(pItemsArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 }
 
@@ -2296,7 +2296,7 @@ final class _IVectorMediaTimeRange extends IVector<MediaTimeRange> {
                       Pointer<NativeMediaTimeRange> retValuePtr)>()(
           ptr.ref.lpVtbl, index, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.toDart();
     } finally {
@@ -2329,7 +2329,7 @@ final class _IVectorMediaTimeRange extends IVector<MediaTimeRange> {
 
       free(valueNativeStructPtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -2356,7 +2356,7 @@ final class _IVectorMediaTimeRange extends IVector<MediaTimeRange> {
 
     free(valueNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -2378,7 +2378,7 @@ final class _IVectorMediaTimeRange extends IVector<MediaTimeRange> {
 
     free(valueNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -2400,7 +2400,7 @@ final class _IVectorMediaTimeRange extends IVector<MediaTimeRange> {
 
     free(valueNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -2436,7 +2436,7 @@ final class _IVectorMediaTimeRange extends IVector<MediaTimeRange> {
       }
       free(pItemsArray);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -2470,7 +2470,7 @@ final class _IVectorMediaTimeRange extends IVector<MediaTimeRange> {
     nativeStructPtrs.forEach(free);
     free(pItemsArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 }
 
@@ -2495,7 +2495,7 @@ final class _IVectorMseTimeRange extends IVector<MseTimeRange> {
                       Pointer<NativeMseTimeRange> retValuePtr)>()(
           ptr.ref.lpVtbl, index, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.toDart();
     } finally {
@@ -2528,7 +2528,7 @@ final class _IVectorMseTimeRange extends IVector<MseTimeRange> {
 
       free(valueNativeStructPtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -2555,7 +2555,7 @@ final class _IVectorMseTimeRange extends IVector<MseTimeRange> {
 
     free(valueNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -2577,7 +2577,7 @@ final class _IVectorMseTimeRange extends IVector<MseTimeRange> {
 
     free(valueNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -2598,7 +2598,7 @@ final class _IVectorMseTimeRange extends IVector<MseTimeRange> {
 
     free(valueNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -2634,7 +2634,7 @@ final class _IVectorMseTimeRange extends IVector<MseTimeRange> {
       }
       free(pItemsArray);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -2668,7 +2668,7 @@ final class _IVectorMseTimeRange extends IVector<MseTimeRange> {
     nativeStructPtrs.forEach(free);
     free(pItemsArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 }
 
@@ -2693,7 +2693,7 @@ final class _IVectorNitRange extends IVector<NitRange> {
                       Pointer<NativeNitRange> retValuePtr)>()(
           ptr.ref.lpVtbl, index, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.toDart();
     } finally {
@@ -2726,7 +2726,7 @@ final class _IVectorNitRange extends IVector<NitRange> {
 
       free(valueNativeStructPtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -2753,7 +2753,7 @@ final class _IVectorNitRange extends IVector<NitRange> {
 
     free(valueNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -2775,7 +2775,7 @@ final class _IVectorNitRange extends IVector<NitRange> {
 
     free(valueNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -2796,7 +2796,7 @@ final class _IVectorNitRange extends IVector<NitRange> {
 
     free(valueNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -2832,7 +2832,7 @@ final class _IVectorNitRange extends IVector<NitRange> {
       }
       free(pItemsArray);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -2866,7 +2866,7 @@ final class _IVectorNitRange extends IVector<NitRange> {
     nativeStructPtrs.forEach(free);
     free(pItemsArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 }
 
@@ -2896,7 +2896,7 @@ final class _IVectorInspectable<T> extends IVector<T> {
 
     if (FAILED(hr)) {
       free(retValuePtr);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (retValuePtr.isNull) {
@@ -2931,7 +2931,7 @@ final class _IVectorInspectable<T> extends IVector<T> {
           index,
           retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -2954,7 +2954,7 @@ final class _IVectorInspectable<T> extends IVector<T> {
                     VTablePointer lpVtbl, int index, VTablePointer value)>()(
         ptr.ref.lpVtbl, index, (value as IInspectable).ptr.ref.lpVtbl);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -2972,7 +2972,7 @@ final class _IVectorInspectable<T> extends IVector<T> {
                     VTablePointer lpVtbl, int index, VTablePointer value)>()(
         ptr.ref.lpVtbl, index, (value as IInspectable).ptr.ref.lpVtbl);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -2989,7 +2989,7 @@ final class _IVectorInspectable<T> extends IVector<T> {
                 int Function(VTablePointer lpVtbl, VTablePointer value)>()(
         ptr.ref.lpVtbl, (value as IInspectable).ptr.ref.lpVtbl);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -3025,7 +3025,7 @@ final class _IVectorInspectable<T> extends IVector<T> {
       }
       free(pItemsArray);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -3055,7 +3055,7 @@ final class _IVectorInspectable<T> extends IVector<T> {
 
     free(pItemsArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 }
 
@@ -3081,7 +3081,7 @@ final class _IVectorObject extends IVector<Object?> {
 
     if (FAILED(hr)) {
       free(retValuePtr);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (retValuePtr.isNull) {
@@ -3116,7 +3116,7 @@ final class _IVectorObject extends IVector<Object?> {
           index,
           retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -3139,7 +3139,7 @@ final class _IVectorObject extends IVector<Object?> {
                     VTablePointer lpVtbl, int index, VTablePointer value)>()(
         ptr.ref.lpVtbl, index, value?.intoBox().ptr.ref.lpVtbl ?? nullptr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -3157,7 +3157,7 @@ final class _IVectorObject extends IVector<Object?> {
                     VTablePointer lpVtbl, int index, VTablePointer value)>()(
         ptr.ref.lpVtbl, index, value?.intoBox().ptr.ref.lpVtbl ?? nullptr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -3174,7 +3174,7 @@ final class _IVectorObject extends IVector<Object?> {
                 int Function(VTablePointer lpVtbl, VTablePointer value)>()(
         ptr.ref.lpVtbl, value?.intoBox().ptr.ref.lpVtbl ?? nullptr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -3210,7 +3210,7 @@ final class _IVectorObject extends IVector<Object?> {
       }
       free(pItemsArray);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -3240,7 +3240,7 @@ final class _IVectorObject extends IVector<Object?> {
 
     free(pItemsArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 }
 
@@ -3266,7 +3266,7 @@ final class _IVectorUri extends IVector<Uri?> {
 
     if (FAILED(hr)) {
       free(retValuePtr);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (retValuePtr.isNull) {
@@ -3301,7 +3301,7 @@ final class _IVectorUri extends IVector<Uri?> {
           index,
           retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -3324,7 +3324,7 @@ final class _IVectorUri extends IVector<Uri?> {
                     VTablePointer lpVtbl, int index, VTablePointer value)>()(
         ptr.ref.lpVtbl, index, value?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -3342,7 +3342,7 @@ final class _IVectorUri extends IVector<Uri?> {
                     VTablePointer lpVtbl, int index, VTablePointer value)>()(
         ptr.ref.lpVtbl, index, value?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -3359,7 +3359,7 @@ final class _IVectorUri extends IVector<Uri?> {
                 int Function(VTablePointer lpVtbl, VTablePointer value)>()(
         ptr.ref.lpVtbl, value?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -3395,7 +3395,7 @@ final class _IVectorUri extends IVector<Uri?> {
       }
       free(pItemsArray);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -3425,7 +3425,7 @@ final class _IVectorUri extends IVector<Uri?> {
 
     free(pItemsArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 }
 
@@ -3450,7 +3450,7 @@ final class _IVectorPoint extends IVector<Point> {
                       Pointer<NativePoint> retValuePtr)>()(
           ptr.ref.lpVtbl, index, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.toDart();
     } finally {
@@ -3484,7 +3484,7 @@ final class _IVectorPoint extends IVector<Point> {
 
       free(valueNativeStructPtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -3511,7 +3511,7 @@ final class _IVectorPoint extends IVector<Point> {
 
     free(valueNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -3533,7 +3533,7 @@ final class _IVectorPoint extends IVector<Point> {
 
     free(valueNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -3554,7 +3554,7 @@ final class _IVectorPoint extends IVector<Point> {
 
     free(valueNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -3590,7 +3590,7 @@ final class _IVectorPoint extends IVector<Point> {
       }
       free(pItemsArray);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -3624,7 +3624,7 @@ final class _IVectorPoint extends IVector<Point> {
     nativeStructPtrs.forEach(free);
     free(pItemsArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 }
 
@@ -3651,7 +3651,7 @@ final class _IVectorPointerDeviceUsage extends IVector<PointerDeviceUsage> {
                   Pointer<NativePointerDeviceUsage>
                       retValuePtr)>()(ptr.ref.lpVtbl, index, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.toDart();
     } finally {
@@ -3687,7 +3687,7 @@ final class _IVectorPointerDeviceUsage extends IVector<PointerDeviceUsage> {
 
       free(valueNativeStructPtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -3714,7 +3714,7 @@ final class _IVectorPointerDeviceUsage extends IVector<PointerDeviceUsage> {
 
     free(valueNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -3736,7 +3736,7 @@ final class _IVectorPointerDeviceUsage extends IVector<PointerDeviceUsage> {
 
     free(valueNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -3758,7 +3758,7 @@ final class _IVectorPointerDeviceUsage extends IVector<PointerDeviceUsage> {
 
     free(valueNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -3794,7 +3794,7 @@ final class _IVectorPointerDeviceUsage extends IVector<PointerDeviceUsage> {
       }
       free(pItemsArray);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -3828,7 +3828,7 @@ final class _IVectorPointerDeviceUsage extends IVector<PointerDeviceUsage> {
     nativeStructPtrs.forEach(free);
     free(pItemsArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 }
 
@@ -3853,7 +3853,7 @@ final class _IVectorRect extends IVector<Rect> {
                       Pointer<NativeRect> retValuePtr)>()(
           ptr.ref.lpVtbl, index, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.toDart();
     } finally {
@@ -3887,7 +3887,7 @@ final class _IVectorRect extends IVector<Rect> {
 
       free(valueNativeStructPtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -3914,7 +3914,7 @@ final class _IVectorRect extends IVector<Rect> {
 
     free(valueNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -3936,7 +3936,7 @@ final class _IVectorRect extends IVector<Rect> {
 
     free(valueNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -3956,7 +3956,7 @@ final class _IVectorRect extends IVector<Rect> {
 
     free(valueNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -3992,7 +3992,7 @@ final class _IVectorRect extends IVector<Rect> {
       }
       free(pItemsArray);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -4026,7 +4026,7 @@ final class _IVectorRect extends IVector<Rect> {
     nativeStructPtrs.forEach(free);
     free(pItemsArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 }
 
@@ -4051,7 +4051,7 @@ final class _IVectorRectInt32 extends IVector<RectInt32> {
                       Pointer<NativeRectInt32> retValuePtr)>()(
           ptr.ref.lpVtbl, index, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.toDart();
     } finally {
@@ -4084,7 +4084,7 @@ final class _IVectorRectInt32 extends IVector<RectInt32> {
 
       free(valueNativeStructPtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -4111,7 +4111,7 @@ final class _IVectorRectInt32 extends IVector<RectInt32> {
 
     free(valueNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -4133,7 +4133,7 @@ final class _IVectorRectInt32 extends IVector<RectInt32> {
 
     free(valueNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -4154,7 +4154,7 @@ final class _IVectorRectInt32 extends IVector<RectInt32> {
 
     free(valueNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -4190,7 +4190,7 @@ final class _IVectorRectInt32 extends IVector<RectInt32> {
       }
       free(pItemsArray);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -4224,7 +4224,7 @@ final class _IVectorRectInt32 extends IVector<RectInt32> {
     nativeStructPtrs.forEach(free);
     free(pItemsArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 }
 
@@ -4249,7 +4249,7 @@ final class _IVectorSize extends IVector<Size> {
                       Pointer<NativeSize> retValuePtr)>()(
           ptr.ref.lpVtbl, index, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.toDart();
     } finally {
@@ -4283,7 +4283,7 @@ final class _IVectorSize extends IVector<Size> {
 
       free(valueNativeStructPtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -4310,7 +4310,7 @@ final class _IVectorSize extends IVector<Size> {
 
     free(valueNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -4332,7 +4332,7 @@ final class _IVectorSize extends IVector<Size> {
 
     free(valueNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -4352,7 +4352,7 @@ final class _IVectorSize extends IVector<Size> {
 
     free(valueNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -4388,7 +4388,7 @@ final class _IVectorSize extends IVector<Size> {
       }
       free(pItemsArray);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -4422,7 +4422,7 @@ final class _IVectorSize extends IVector<Size> {
     nativeStructPtrs.forEach(free);
     free(pItemsArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 }
 
@@ -4447,7 +4447,7 @@ final class _IVectorSizeUInt32 extends IVector<SizeUInt32> {
                       Pointer<NativeSizeUInt32> retValuePtr)>()(
           ptr.ref.lpVtbl, index, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.toDart();
     } finally {
@@ -4480,7 +4480,7 @@ final class _IVectorSizeUInt32 extends IVector<SizeUInt32> {
 
       free(valueNativeStructPtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -4507,7 +4507,7 @@ final class _IVectorSizeUInt32 extends IVector<SizeUInt32> {
 
     free(valueNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -4529,7 +4529,7 @@ final class _IVectorSizeUInt32 extends IVector<SizeUInt32> {
 
     free(valueNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -4550,7 +4550,7 @@ final class _IVectorSizeUInt32 extends IVector<SizeUInt32> {
 
     free(valueNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -4586,7 +4586,7 @@ final class _IVectorSizeUInt32 extends IVector<SizeUInt32> {
       }
       free(pItemsArray);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -4620,7 +4620,7 @@ final class _IVectorSizeUInt32 extends IVector<SizeUInt32> {
     nativeStructPtrs.forEach(free);
     free(pItemsArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 }
 
@@ -4645,7 +4645,7 @@ final class _IVectorSortEntry extends IVector<SortEntry> {
                       Pointer<NativeSortEntry> retValuePtr)>()(
           ptr.ref.lpVtbl, index, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.toDart();
     } finally {
@@ -4678,7 +4678,7 @@ final class _IVectorSortEntry extends IVector<SortEntry> {
 
       free(valueNativeStructPtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -4705,7 +4705,7 @@ final class _IVectorSortEntry extends IVector<SortEntry> {
 
     free(valueNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -4727,7 +4727,7 @@ final class _IVectorSortEntry extends IVector<SortEntry> {
 
     free(valueNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -4748,7 +4748,7 @@ final class _IVectorSortEntry extends IVector<SortEntry> {
 
     free(valueNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -4784,7 +4784,7 @@ final class _IVectorSortEntry extends IVector<SortEntry> {
       }
       free(pItemsArray);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -4818,7 +4818,7 @@ final class _IVectorSortEntry extends IVector<SortEntry> {
     nativeStructPtrs.forEach(free);
     free(pItemsArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 }
 
@@ -4848,7 +4848,7 @@ final class _IVectorStorePackageUpdateStatus
                       Pointer<NativeStorePackageUpdateStatus> retValuePtr)>()(
           ptr.ref.lpVtbl, index, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.toDart();
     } finally {
@@ -4884,7 +4884,7 @@ final class _IVectorStorePackageUpdateStatus
 
       free(valueNativeStructPtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -4911,7 +4911,7 @@ final class _IVectorStorePackageUpdateStatus
 
     free(valueNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -4933,7 +4933,7 @@ final class _IVectorStorePackageUpdateStatus
 
     free(valueNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -4955,7 +4955,7 @@ final class _IVectorStorePackageUpdateStatus
 
     free(valueNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -4992,7 +4992,7 @@ final class _IVectorStorePackageUpdateStatus
       }
       free(pItemsArray);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -5026,7 +5026,7 @@ final class _IVectorStorePackageUpdateStatus
     nativeStructPtrs.forEach(free);
     free(pItemsArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 }
 
@@ -5051,7 +5051,7 @@ final class _IVectorString extends IVector<String> {
                       Pointer<IntPtr> retValuePtr)>()(
           ptr.ref.lpVtbl, index, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.toDartString();
     } finally {
@@ -5086,7 +5086,7 @@ final class _IVectorString extends IVector<String> {
 
       WindowsDeleteString(valueHString);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -5112,7 +5112,7 @@ final class _IVectorString extends IVector<String> {
 
     WindowsDeleteString(valueHString);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -5133,7 +5133,7 @@ final class _IVectorString extends IVector<String> {
 
     WindowsDeleteString(valueHString);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -5154,7 +5154,7 @@ final class _IVectorString extends IVector<String> {
 
     WindowsDeleteString(valueHString);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -5190,7 +5190,7 @@ final class _IVectorString extends IVector<String> {
       }
       free(pItemsArray);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -5223,7 +5223,7 @@ final class _IVectorString extends IVector<String> {
     itemsHandles.forEach(WindowsDeleteString);
     free(pItemsArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 }
 
@@ -5248,7 +5248,7 @@ final class _IVectorTextSegment extends IVector<TextSegment> {
                       Pointer<NativeTextSegment> retValuePtr)>()(
           ptr.ref.lpVtbl, index, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.toDart();
     } finally {
@@ -5281,7 +5281,7 @@ final class _IVectorTextSegment extends IVector<TextSegment> {
 
       free(valueNativeStructPtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -5308,7 +5308,7 @@ final class _IVectorTextSegment extends IVector<TextSegment> {
 
     free(valueNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -5330,7 +5330,7 @@ final class _IVectorTextSegment extends IVector<TextSegment> {
 
     free(valueNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -5351,7 +5351,7 @@ final class _IVectorTextSegment extends IVector<TextSegment> {
 
     free(valueNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -5387,7 +5387,7 @@ final class _IVectorTextSegment extends IVector<TextSegment> {
       }
       free(pItemsArray);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -5421,7 +5421,7 @@ final class _IVectorTextSegment extends IVector<TextSegment> {
     nativeStructPtrs.forEach(free);
     free(pItemsArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 }
 
@@ -5446,7 +5446,7 @@ final class _IVectorUint8 extends IVector<int> {
                       Pointer<Uint8> retValuePtr)>()(
           ptr.ref.lpVtbl, index, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -5476,7 +5476,7 @@ final class _IVectorUint8 extends IVector<int> {
                           Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
               ptr.ref.lpVtbl, value, index, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -5498,7 +5498,7 @@ final class _IVectorUint8 extends IVector<int> {
             int Function(VTablePointer lpVtbl, int index,
                 int value)>()(ptr.ref.lpVtbl, index, value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -5515,7 +5515,7 @@ final class _IVectorUint8 extends IVector<int> {
             int Function(VTablePointer lpVtbl, int index,
                 int value)>()(ptr.ref.lpVtbl, index, value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -5530,7 +5530,7 @@ final class _IVectorUint8 extends IVector<int> {
             .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
         ptr.ref.lpVtbl, value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -5566,7 +5566,7 @@ final class _IVectorUint8 extends IVector<int> {
       }
       free(pItemsArray);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -5596,7 +5596,7 @@ final class _IVectorUint8 extends IVector<int> {
 
     free(pItemsArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 }
 
@@ -5622,7 +5622,7 @@ final class _IVectorUint16 extends IVector<int> {
                       Pointer<Uint16> retValuePtr)>()(
           ptr.ref.lpVtbl, index, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -5652,7 +5652,7 @@ final class _IVectorUint16 extends IVector<int> {
                           Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
               ptr.ref.lpVtbl, value, index, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -5674,7 +5674,7 @@ final class _IVectorUint16 extends IVector<int> {
             int Function(VTablePointer lpVtbl, int index,
                 int value)>()(ptr.ref.lpVtbl, index, value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -5691,7 +5691,7 @@ final class _IVectorUint16 extends IVector<int> {
             int Function(VTablePointer lpVtbl, int index,
                 int value)>()(ptr.ref.lpVtbl, index, value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -5708,7 +5708,7 @@ final class _IVectorUint16 extends IVector<int> {
                 .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
             ptr.ref.lpVtbl, value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -5744,7 +5744,7 @@ final class _IVectorUint16 extends IVector<int> {
       }
       free(pItemsArray);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -5774,7 +5774,7 @@ final class _IVectorUint16 extends IVector<int> {
 
     free(pItemsArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 }
 
@@ -5800,7 +5800,7 @@ final class _IVectorUint32 extends IVector<int> {
                       Pointer<Uint32> retValuePtr)>()(
           ptr.ref.lpVtbl, index, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -5830,7 +5830,7 @@ final class _IVectorUint32 extends IVector<int> {
                           Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
               ptr.ref.lpVtbl, value, index, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -5852,7 +5852,7 @@ final class _IVectorUint32 extends IVector<int> {
             int Function(VTablePointer lpVtbl, int index,
                 int value)>()(ptr.ref.lpVtbl, index, value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -5869,7 +5869,7 @@ final class _IVectorUint32 extends IVector<int> {
             int Function(VTablePointer lpVtbl, int index,
                 int value)>()(ptr.ref.lpVtbl, index, value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -5886,7 +5886,7 @@ final class _IVectorUint32 extends IVector<int> {
                 .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
             ptr.ref.lpVtbl, value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -5922,7 +5922,7 @@ final class _IVectorUint32 extends IVector<int> {
       }
       free(pItemsArray);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -5952,7 +5952,7 @@ final class _IVectorUint32 extends IVector<int> {
 
     free(pItemsArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 }
 
@@ -5978,7 +5978,7 @@ final class _IVectorUint64 extends IVector<int> {
                       Pointer<Uint64> retValuePtr)>()(
           ptr.ref.lpVtbl, index, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -6008,7 +6008,7 @@ final class _IVectorUint64 extends IVector<int> {
                           Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
               ptr.ref.lpVtbl, value, index, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -6030,7 +6030,7 @@ final class _IVectorUint64 extends IVector<int> {
             int Function(VTablePointer lpVtbl, int index,
                 int value)>()(ptr.ref.lpVtbl, index, value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -6047,7 +6047,7 @@ final class _IVectorUint64 extends IVector<int> {
             int Function(VTablePointer lpVtbl, int index,
                 int value)>()(ptr.ref.lpVtbl, index, value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -6064,7 +6064,7 @@ final class _IVectorUint64 extends IVector<int> {
                 .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
             ptr.ref.lpVtbl, value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -6100,7 +6100,7 @@ final class _IVectorUint64 extends IVector<int> {
       }
       free(pItemsArray);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -6130,7 +6130,7 @@ final class _IVectorUint64 extends IVector<int> {
 
     free(pItemsArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 }
 
@@ -6155,7 +6155,7 @@ final class _IVectorWindowId extends IVector<WindowId> {
                       Pointer<NativeWindowId> retValuePtr)>()(
           ptr.ref.lpVtbl, index, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.toDart();
     } finally {
@@ -6188,7 +6188,7 @@ final class _IVectorWindowId extends IVector<WindowId> {
 
       free(valueNativeStructPtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -6215,7 +6215,7 @@ final class _IVectorWindowId extends IVector<WindowId> {
 
     free(valueNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -6237,7 +6237,7 @@ final class _IVectorWindowId extends IVector<WindowId> {
 
     free(valueNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -6258,7 +6258,7 @@ final class _IVectorWindowId extends IVector<WindowId> {
 
     free(valueNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -6294,7 +6294,7 @@ final class _IVectorWindowId extends IVector<WindowId> {
       }
       free(pItemsArray);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -6328,7 +6328,7 @@ final class _IVectorWindowId extends IVector<WindowId> {
     nativeStructPtrs.forEach(free);
     free(pItemsArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 }
 
@@ -6357,7 +6357,7 @@ final class _IVectorWinRTEnum<T> extends IVector<T> {
                       Pointer<Int32> retValuePtr)>()(
           ptr.ref.lpVtbl, index, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return enumCreator(retValuePtr.value);
     } finally {
@@ -6387,7 +6387,7 @@ final class _IVectorWinRTEnum<T> extends IVector<T> {
                           Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
               ptr.ref.lpVtbl, (value as WinRTEnum).value, index, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -6409,7 +6409,7 @@ final class _IVectorWinRTEnum<T> extends IVector<T> {
                 int Function(VTablePointer lpVtbl, int index, int value)>()(
         ptr.ref.lpVtbl, index, (value as WinRTEnum).value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -6426,7 +6426,7 @@ final class _IVectorWinRTEnum<T> extends IVector<T> {
                 int Function(VTablePointer lpVtbl, int index, int value)>()(
         ptr.ref.lpVtbl, index, (value as WinRTEnum).value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -6441,7 +6441,7 @@ final class _IVectorWinRTEnum<T> extends IVector<T> {
             .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
         ptr.ref.lpVtbl, (value as WinRTEnum).value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -6480,7 +6480,7 @@ final class _IVectorWinRTEnum<T> extends IVector<T> {
       }
       free(pItemsArray);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -6510,7 +6510,7 @@ final class _IVectorWinRTEnum<T> extends IVector<T> {
 
     free(pItemsArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 }
 
@@ -6539,7 +6539,7 @@ final class _IVectorWinRTFlagsEnum<T> extends IVector<T> {
                       Pointer<Uint32> retValuePtr)>()(
           ptr.ref.lpVtbl, index, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return enumCreator(retValuePtr.value);
     } finally {
@@ -6569,7 +6569,7 @@ final class _IVectorWinRTFlagsEnum<T> extends IVector<T> {
                           Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
               ptr.ref.lpVtbl, (value as WinRTEnum).value, index, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -6591,7 +6591,7 @@ final class _IVectorWinRTFlagsEnum<T> extends IVector<T> {
                 int Function(VTablePointer lpVtbl, int index, int value)>()(
         ptr.ref.lpVtbl, index, (value as WinRTEnum).value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -6608,7 +6608,7 @@ final class _IVectorWinRTFlagsEnum<T> extends IVector<T> {
                 int Function(VTablePointer lpVtbl, int index, int value)>()(
         ptr.ref.lpVtbl, index, (value as WinRTEnum).value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -6625,7 +6625,7 @@ final class _IVectorWinRTFlagsEnum<T> extends IVector<T> {
                 .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
             ptr.ref.lpVtbl, (value as WinRTEnum).value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
@@ -6664,7 +6664,7 @@ final class _IVectorWinRTFlagsEnum<T> extends IVector<T> {
       }
       free(pItemsArray);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -6694,6 +6694,6 @@ final class _IVectorWinRTFlagsEnum<T> extends IVector<T> {
 
     free(pItemsArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 }

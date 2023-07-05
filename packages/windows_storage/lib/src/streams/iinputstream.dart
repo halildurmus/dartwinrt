@@ -55,7 +55,7 @@ class IInputStream extends IInspectable implements IClosable {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return operation;

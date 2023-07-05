@@ -50,7 +50,7 @@ class ILanguageFactory extends IInspectable {
 
     if (FAILED(hr)) {
       free(result);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return Language.fromPtr(result);

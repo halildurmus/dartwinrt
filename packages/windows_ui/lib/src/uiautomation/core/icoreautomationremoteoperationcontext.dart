@@ -54,7 +54,7 @@ class ICoreAutomationRemoteOperationContext extends IInspectable {
 
     if (FAILED(hr)) {
       free(result);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (result.isNull) {
@@ -87,7 +87,7 @@ class ICoreAutomationRemoteOperationContext extends IInspectable {
 
     free(idNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void setOperand2(AutomationRemoteOperationOperandId id, Object? operand,
@@ -120,6 +120,6 @@ class ICoreAutomationRemoteOperationContext extends IInspectable {
     free(idNativeStructPtr);
     free(operandInterfaceIdNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 }

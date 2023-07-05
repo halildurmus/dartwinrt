@@ -17,7 +17,7 @@ final class DelegateParameterProjection extends ParameterProjection {
   @override
   String get into => '$identifier.ref.lpVtbl';
 
-  // No deallocation is needed as NativeFinalizer will handle it.
+  // No deallocation is needed as Finalizer will handle it.
   @override
   bool get needsDeallocation => false;
 }

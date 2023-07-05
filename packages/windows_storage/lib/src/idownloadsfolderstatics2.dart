@@ -59,7 +59,7 @@ class IDownloadsFolderStatics2 extends IInspectable {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<StorageFile?>.fromPtr(operation,
@@ -96,7 +96,7 @@ class IDownloadsFolderStatics2 extends IInspectable {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<StorageFolder?>.fromPtr(operation,
@@ -138,7 +138,7 @@ class IDownloadsFolderStatics2 extends IInspectable {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<StorageFile?>.fromPtr(operation,
@@ -180,7 +180,7 @@ class IDownloadsFolderStatics2 extends IInspectable {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<StorageFolder?>.fromPtr(operation,

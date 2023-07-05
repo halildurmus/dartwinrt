@@ -48,7 +48,7 @@ class IDirect3DSurface extends IInspectable implements IClosable {
                   Pointer<NativeDirect3DSurfaceDescription>
                       value)>()(ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDart();
     } finally {

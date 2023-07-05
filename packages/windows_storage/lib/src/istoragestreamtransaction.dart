@@ -45,7 +45,7 @@ class IStorageStreamTransaction extends IInspectable implements IClosable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (value.isNull) {
@@ -73,7 +73,7 @@ class IStorageStreamTransaction extends IInspectable implements IClosable {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IAsyncAction.fromPtr(operation).toFuture();

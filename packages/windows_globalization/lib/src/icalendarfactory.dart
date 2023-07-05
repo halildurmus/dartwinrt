@@ -55,7 +55,7 @@ class ICalendarFactory extends IInspectable {
 
     if (FAILED(hr)) {
       free(result);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return Calendar.fromPtr(result);
@@ -97,7 +97,7 @@ class ICalendarFactory extends IInspectable {
 
     if (FAILED(hr)) {
       free(result);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return Calendar.fromPtr(result);

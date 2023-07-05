@@ -10,6 +10,7 @@ import 'package:ffi/ffi.dart';
 import 'package:test/test.dart';
 import 'package:win32/win32.dart';
 import 'package:windows_ai/windows_ai.dart';
+import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
 void main() {
@@ -35,7 +36,7 @@ void main() {
                       VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)>()(
           ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return IVectorView.fromPtr(retValuePtr,
           iterableIid: '{b01bee51-063a-5fda-bd72-d76637bb8cb8}',

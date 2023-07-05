@@ -43,7 +43,7 @@ class IXmlDocumentIO extends IInspectable {
 
     WindowsDeleteString(xmlHString);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void loadXmlWithSettings(String xml, XmlLoadSettings? loadSettings) {
@@ -64,7 +64,7 @@ class IXmlDocumentIO extends IInspectable {
 
     WindowsDeleteString(xmlHString);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   Future<void> saveToFileAsync(IStorageFile? file) {
@@ -88,7 +88,7 @@ class IXmlDocumentIO extends IInspectable {
 
     if (FAILED(hr)) {
       free(asyncInfo);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IAsyncAction.fromPtr(asyncInfo).toFuture();

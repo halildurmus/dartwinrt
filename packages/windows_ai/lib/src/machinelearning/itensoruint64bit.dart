@@ -42,7 +42,7 @@ class ITensorUInt64Bit extends IInspectable {
 
     if (FAILED(hr)) {
       free(result);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IVectorView<int>.fromPtr(result,

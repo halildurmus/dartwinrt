@@ -49,7 +49,7 @@ class IDevicePicker extends IInspectable {
 
     if (FAILED(hr)) {
       free(filter);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (filter.isNull) {
@@ -77,7 +77,7 @@ class IDevicePicker extends IInspectable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (value.isNull) {
@@ -105,7 +105,7 @@ class IDevicePicker extends IInspectable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IVector.fromPtr(value,
@@ -129,7 +129,7 @@ class IDevicePicker extends IInspectable {
                       Pointer<IntPtr> token)>()(
           ptr.ref.lpVtbl, handler.ref.lpVtbl, token);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return token.value;
     } finally {
@@ -150,7 +150,7 @@ class IDevicePicker extends IInspectable {
                 .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
             ptr.ref.lpVtbl, token);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   int add_DisconnectButtonClicked(Pointer<COMObject> handler) {
@@ -170,7 +170,7 @@ class IDevicePicker extends IInspectable {
                       Pointer<IntPtr> token)>()(
           ptr.ref.lpVtbl, handler.ref.lpVtbl, token);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return token.value;
     } finally {
@@ -191,7 +191,7 @@ class IDevicePicker extends IInspectable {
                 .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
             ptr.ref.lpVtbl, token);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   int add_DevicePickerDismissed(Pointer<COMObject> handler) {
@@ -211,7 +211,7 @@ class IDevicePicker extends IInspectable {
                       Pointer<IntPtr> token)>()(
           ptr.ref.lpVtbl, handler.ref.lpVtbl, token);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return token.value;
     } finally {
@@ -232,7 +232,7 @@ class IDevicePicker extends IInspectable {
                 .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
             ptr.ref.lpVtbl, token);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void show(Rect selection) {
@@ -252,7 +252,7 @@ class IDevicePicker extends IInspectable {
 
     free(selectionNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void showWithPlacement(Rect selection, Placement placement) {
@@ -274,7 +274,7 @@ class IDevicePicker extends IInspectable {
 
     free(selectionNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   Future<DeviceInformation?> pickSingleDeviceAsync(Rect selection) {
@@ -301,7 +301,7 @@ class IDevicePicker extends IInspectable {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<DeviceInformation?>.fromPtr(
@@ -339,7 +339,7 @@ class IDevicePicker extends IInspectable {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<DeviceInformation?>.fromPtr(
@@ -355,7 +355,7 @@ class IDevicePicker extends IInspectable {
         .value
         .asFunction<int Function(VTablePointer lpVtbl)>()(ptr.ref.lpVtbl);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void setDisplayStatus(DeviceInformation? device, String status,
@@ -384,6 +384,6 @@ class IDevicePicker extends IInspectable {
 
     WindowsDeleteString(statusHString);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 }

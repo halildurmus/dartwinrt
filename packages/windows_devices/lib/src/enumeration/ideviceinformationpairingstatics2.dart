@@ -55,7 +55,7 @@ class IDeviceInformationPairingStatics2 extends IInspectable {
           minProtectionLevel.value,
           result);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return result.value;
     } finally {

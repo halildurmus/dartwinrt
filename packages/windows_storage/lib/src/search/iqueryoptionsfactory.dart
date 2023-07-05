@@ -62,7 +62,7 @@ class IQueryOptionsFactory extends IInspectable {
 
     if (FAILED(hr)) {
       free(queryOptions);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return QueryOptions.fromPtr(queryOptions);
@@ -86,7 +86,7 @@ class IQueryOptionsFactory extends IInspectable {
 
     if (FAILED(hr)) {
       free(queryOptions);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return QueryOptions.fromPtr(queryOptions);

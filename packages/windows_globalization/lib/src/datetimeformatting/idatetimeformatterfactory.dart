@@ -59,7 +59,7 @@ class IDateTimeFormatterFactory extends IInspectable {
 
     if (FAILED(hr)) {
       free(result);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return DateTimeFormatter.fromPtr(result);
@@ -97,7 +97,7 @@ class IDateTimeFormatterFactory extends IInspectable {
 
     if (FAILED(hr)) {
       free(result);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return DateTimeFormatter.fromPtr(result);
@@ -157,7 +157,7 @@ class IDateTimeFormatterFactory extends IInspectable {
 
     if (FAILED(hr)) {
       free(result);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return DateTimeFormatter.fromPtr(result);
@@ -200,7 +200,7 @@ class IDateTimeFormatterFactory extends IInspectable {
 
     if (FAILED(hr)) {
       free(result);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return DateTimeFormatter.fromPtr(result);
@@ -233,7 +233,7 @@ class IDateTimeFormatterFactory extends IInspectable {
 
     if (FAILED(hr)) {
       free(result);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return DateTimeFormatter.fromPtr(result);
@@ -296,7 +296,7 @@ class IDateTimeFormatterFactory extends IInspectable {
 
     if (FAILED(hr)) {
       free(result);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return DateTimeFormatter.fromPtr(result);
@@ -378,7 +378,7 @@ class IDateTimeFormatterFactory extends IInspectable {
 
     if (FAILED(hr)) {
       free(result);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return DateTimeFormatter.fromPtr(result);

@@ -44,7 +44,7 @@ class IGeocoordinateSatelliteData extends IInspectable {
 
     if (FAILED(hr)) {
       free(ppValue);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (ppValue.isNull) {
@@ -74,7 +74,7 @@ class IGeocoordinateSatelliteData extends IInspectable {
 
     if (FAILED(hr)) {
       free(ppValue);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (ppValue.isNull) {
@@ -104,7 +104,7 @@ class IGeocoordinateSatelliteData extends IInspectable {
 
     if (FAILED(hr)) {
       free(ppValue);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (ppValue.isNull) {

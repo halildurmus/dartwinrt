@@ -45,7 +45,7 @@ class IInputStreamReference extends IInspectable {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<IInputStream?>.fromPtr(operation,

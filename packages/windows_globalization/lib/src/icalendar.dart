@@ -45,7 +45,7 @@ class ICalendar extends IInspectable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (value.isNull) {
@@ -63,7 +63,7 @@ class ICalendar extends IInspectable {
         .value
         .asFunction<int Function(VTablePointer lpVtbl)>()(ptr.ref.lpVtbl);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void setToMax() {
@@ -73,7 +73,7 @@ class ICalendar extends IInspectable {
         .value
         .asFunction<int Function(VTablePointer lpVtbl)>()(ptr.ref.lpVtbl);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   List<String> get languages {
@@ -93,7 +93,7 @@ class ICalendar extends IInspectable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IVectorView<String>.fromPtr(value,
@@ -117,7 +117,7 @@ class ICalendar extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartString();
     } finally {
@@ -143,7 +143,7 @@ class ICalendar extends IInspectable {
 
     WindowsDeleteString(valueHString);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   String getCalendarSystem() {
@@ -162,7 +162,7 @@ class ICalendar extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartString();
     } finally {
@@ -188,7 +188,7 @@ class ICalendar extends IInspectable {
 
     WindowsDeleteString(valueHString);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   String getClock() {
@@ -207,7 +207,7 @@ class ICalendar extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartString();
     } finally {
@@ -233,7 +233,7 @@ class ICalendar extends IInspectable {
 
     WindowsDeleteString(valueHString);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   DateTime getDateTime() {
@@ -252,7 +252,7 @@ class ICalendar extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int64> result)>()(
           ptr.ref.lpVtbl, result);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDartDateTime();
     } finally {
@@ -271,7 +271,7 @@ class ICalendar extends IInspectable {
             .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
         ptr.ref.lpVtbl, value.toWinRTDateTime());
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void setToNow() {
@@ -281,7 +281,7 @@ class ICalendar extends IInspectable {
         .value
         .asFunction<int Function(VTablePointer lpVtbl)>()(ptr.ref.lpVtbl);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   int get firstEra {
@@ -300,7 +300,7 @@ class ICalendar extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -324,7 +324,7 @@ class ICalendar extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -348,7 +348,7 @@ class ICalendar extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -372,7 +372,7 @@ class ICalendar extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -391,7 +391,7 @@ class ICalendar extends IInspectable {
             .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
         ptr.ref.lpVtbl, value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void addEras(int eras) {
@@ -405,7 +405,7 @@ class ICalendar extends IInspectable {
             .asFunction<int Function(VTablePointer lpVtbl, int eras)>()(
         ptr.ref.lpVtbl, eras);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   String eraAsFullString() {
@@ -424,7 +424,7 @@ class ICalendar extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> result)>()(
           ptr.ref.lpVtbl, result);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDartString();
     } finally {
@@ -452,7 +452,7 @@ class ICalendar extends IInspectable {
                   Pointer<IntPtr>
                       result)>()(ptr.ref.lpVtbl, idealLength, result);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDartString();
     } finally {
@@ -477,7 +477,7 @@ class ICalendar extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -501,7 +501,7 @@ class ICalendar extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -525,7 +525,7 @@ class ICalendar extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -549,7 +549,7 @@ class ICalendar extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -568,7 +568,7 @@ class ICalendar extends IInspectable {
             .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
         ptr.ref.lpVtbl, value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void addYears(int years) {
@@ -582,7 +582,7 @@ class ICalendar extends IInspectable {
             .asFunction<int Function(VTablePointer lpVtbl, int years)>()(
         ptr.ref.lpVtbl, years);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   String yearAsString() {
@@ -601,7 +601,7 @@ class ICalendar extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> result)>()(
           ptr.ref.lpVtbl, result);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDartString();
     } finally {
@@ -630,7 +630,7 @@ class ICalendar extends IInspectable {
                           Pointer<IntPtr> result)>()(
               ptr.ref.lpVtbl, remainingDigits, result);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDartString();
     } finally {
@@ -655,7 +655,7 @@ class ICalendar extends IInspectable {
               int Function(VTablePointer lpVtbl, int minDigits,
                   Pointer<IntPtr> result)>()(ptr.ref.lpVtbl, minDigits, result);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDartString();
     } finally {
@@ -680,7 +680,7 @@ class ICalendar extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -704,7 +704,7 @@ class ICalendar extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -728,7 +728,7 @@ class ICalendar extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -752,7 +752,7 @@ class ICalendar extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -771,7 +771,7 @@ class ICalendar extends IInspectable {
             .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
         ptr.ref.lpVtbl, value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void addMonths(int months) {
@@ -787,7 +787,7 @@ class ICalendar extends IInspectable {
                 .asFunction<int Function(VTablePointer lpVtbl, int months)>()(
             ptr.ref.lpVtbl, months);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   String monthAsFullString() {
@@ -806,7 +806,7 @@ class ICalendar extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> result)>()(
           ptr.ref.lpVtbl, result);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDartString();
     } finally {
@@ -834,7 +834,7 @@ class ICalendar extends IInspectable {
                   Pointer<IntPtr>
                       result)>()(ptr.ref.lpVtbl, idealLength, result);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDartString();
     } finally {
@@ -859,7 +859,7 @@ class ICalendar extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> result)>()(
           ptr.ref.lpVtbl, result);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDartString();
     } finally {
@@ -887,7 +887,7 @@ class ICalendar extends IInspectable {
                   Pointer<IntPtr>
                       result)>()(ptr.ref.lpVtbl, idealLength, result);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDartString();
     } finally {
@@ -912,7 +912,7 @@ class ICalendar extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> result)>()(
           ptr.ref.lpVtbl, result);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDartString();
     } finally {
@@ -937,7 +937,7 @@ class ICalendar extends IInspectable {
               int Function(VTablePointer lpVtbl, int minDigits,
                   Pointer<IntPtr> result)>()(ptr.ref.lpVtbl, minDigits, result);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDartString();
     } finally {
@@ -957,7 +957,7 @@ class ICalendar extends IInspectable {
             .asFunction<int Function(VTablePointer lpVtbl, int weeks)>()(
         ptr.ref.lpVtbl, weeks);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   int get firstDayInThisMonth {
@@ -976,7 +976,7 @@ class ICalendar extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -1000,7 +1000,7 @@ class ICalendar extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -1024,7 +1024,7 @@ class ICalendar extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -1048,7 +1048,7 @@ class ICalendar extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -1067,7 +1067,7 @@ class ICalendar extends IInspectable {
             .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
         ptr.ref.lpVtbl, value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void addDays(int days) {
@@ -1081,7 +1081,7 @@ class ICalendar extends IInspectable {
             .asFunction<int Function(VTablePointer lpVtbl, int days)>()(
         ptr.ref.lpVtbl, days);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   String dayAsString() {
@@ -1100,7 +1100,7 @@ class ICalendar extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> result)>()(
           ptr.ref.lpVtbl, result);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDartString();
     } finally {
@@ -1125,7 +1125,7 @@ class ICalendar extends IInspectable {
               int Function(VTablePointer lpVtbl, int minDigits,
                   Pointer<IntPtr> result)>()(ptr.ref.lpVtbl, minDigits, result);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDartString();
     } finally {
@@ -1150,7 +1150,7 @@ class ICalendar extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return DayOfWeek.from(value.value);
     } finally {
@@ -1174,7 +1174,7 @@ class ICalendar extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> result)>()(
           ptr.ref.lpVtbl, result);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDartString();
     } finally {
@@ -1202,7 +1202,7 @@ class ICalendar extends IInspectable {
                   Pointer<IntPtr>
                       result)>()(ptr.ref.lpVtbl, idealLength, result);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDartString();
     } finally {
@@ -1227,7 +1227,7 @@ class ICalendar extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> result)>()(
           ptr.ref.lpVtbl, result);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDartString();
     } finally {
@@ -1255,7 +1255,7 @@ class ICalendar extends IInspectable {
                   Pointer<IntPtr>
                       result)>()(ptr.ref.lpVtbl, idealLength, result);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDartString();
     } finally {
@@ -1280,7 +1280,7 @@ class ICalendar extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -1304,7 +1304,7 @@ class ICalendar extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -1328,7 +1328,7 @@ class ICalendar extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -1352,7 +1352,7 @@ class ICalendar extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -1371,7 +1371,7 @@ class ICalendar extends IInspectable {
             .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
         ptr.ref.lpVtbl, value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void addPeriods(int periods) {
@@ -1387,7 +1387,7 @@ class ICalendar extends IInspectable {
                 .asFunction<int Function(VTablePointer lpVtbl, int periods)>()(
             ptr.ref.lpVtbl, periods);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   String periodAsFullString() {
@@ -1406,7 +1406,7 @@ class ICalendar extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> result)>()(
           ptr.ref.lpVtbl, result);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDartString();
     } finally {
@@ -1434,7 +1434,7 @@ class ICalendar extends IInspectable {
                   Pointer<IntPtr>
                       result)>()(ptr.ref.lpVtbl, idealLength, result);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDartString();
     } finally {
@@ -1459,7 +1459,7 @@ class ICalendar extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -1483,7 +1483,7 @@ class ICalendar extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -1507,7 +1507,7 @@ class ICalendar extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -1531,7 +1531,7 @@ class ICalendar extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -1550,7 +1550,7 @@ class ICalendar extends IInspectable {
             .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
         ptr.ref.lpVtbl, value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void addHours(int hours) {
@@ -1564,7 +1564,7 @@ class ICalendar extends IInspectable {
             .asFunction<int Function(VTablePointer lpVtbl, int hours)>()(
         ptr.ref.lpVtbl, hours);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   String hourAsString() {
@@ -1583,7 +1583,7 @@ class ICalendar extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> result)>()(
           ptr.ref.lpVtbl, result);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDartString();
     } finally {
@@ -1608,7 +1608,7 @@ class ICalendar extends IInspectable {
               int Function(VTablePointer lpVtbl, int minDigits,
                   Pointer<IntPtr> result)>()(ptr.ref.lpVtbl, minDigits, result);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDartString();
     } finally {
@@ -1633,7 +1633,7 @@ class ICalendar extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -1652,7 +1652,7 @@ class ICalendar extends IInspectable {
             .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
         ptr.ref.lpVtbl, value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void addMinutes(int minutes) {
@@ -1668,7 +1668,7 @@ class ICalendar extends IInspectable {
                 .asFunction<int Function(VTablePointer lpVtbl, int minutes)>()(
             ptr.ref.lpVtbl, minutes);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   String minuteAsString() {
@@ -1687,7 +1687,7 @@ class ICalendar extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> result)>()(
           ptr.ref.lpVtbl, result);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDartString();
     } finally {
@@ -1712,7 +1712,7 @@ class ICalendar extends IInspectable {
               int Function(VTablePointer lpVtbl, int minDigits,
                   Pointer<IntPtr> result)>()(ptr.ref.lpVtbl, minDigits, result);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDartString();
     } finally {
@@ -1737,7 +1737,7 @@ class ICalendar extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -1756,7 +1756,7 @@ class ICalendar extends IInspectable {
             .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
         ptr.ref.lpVtbl, value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void addSeconds(int seconds) {
@@ -1772,7 +1772,7 @@ class ICalendar extends IInspectable {
                 .asFunction<int Function(VTablePointer lpVtbl, int seconds)>()(
             ptr.ref.lpVtbl, seconds);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   String secondAsString() {
@@ -1791,7 +1791,7 @@ class ICalendar extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> result)>()(
           ptr.ref.lpVtbl, result);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDartString();
     } finally {
@@ -1816,7 +1816,7 @@ class ICalendar extends IInspectable {
               int Function(VTablePointer lpVtbl, int minDigits,
                   Pointer<IntPtr> result)>()(ptr.ref.lpVtbl, minDigits, result);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDartString();
     } finally {
@@ -1841,7 +1841,7 @@ class ICalendar extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -1860,7 +1860,7 @@ class ICalendar extends IInspectable {
             .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
         ptr.ref.lpVtbl, value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void addNanoseconds(int nanoseconds) {
@@ -1875,7 +1875,7 @@ class ICalendar extends IInspectable {
             .asFunction<int Function(VTablePointer lpVtbl, int nanoseconds)>()(
         ptr.ref.lpVtbl, nanoseconds);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   String nanosecondAsString() {
@@ -1894,7 +1894,7 @@ class ICalendar extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> result)>()(
           ptr.ref.lpVtbl, result);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDartString();
     } finally {
@@ -1919,7 +1919,7 @@ class ICalendar extends IInspectable {
               int Function(VTablePointer lpVtbl, int minDigits,
                   Pointer<IntPtr> result)>()(ptr.ref.lpVtbl, minDigits, result);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDartString();
     } finally {
@@ -1945,7 +1945,7 @@ class ICalendar extends IInspectable {
                       Pointer<Int32> result)>()(ptr.ref.lpVtbl,
           other == null ? nullptr : other.ptr.ref.lpVtbl, result);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return result.value;
     } finally {
@@ -1970,7 +1970,7 @@ class ICalendar extends IInspectable {
                       Pointer<Int32> result)>()(
           ptr.ref.lpVtbl, other.toWinRTDateTime(), result);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return result.value;
     } finally {
@@ -1991,7 +1991,7 @@ class ICalendar extends IInspectable {
                 int Function(VTablePointer lpVtbl, VTablePointer other)>()(
         ptr.ref.lpVtbl, other == null ? nullptr : other.ptr.ref.lpVtbl);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   int get firstMinuteInThisHour {
@@ -2010,7 +2010,7 @@ class ICalendar extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -2034,7 +2034,7 @@ class ICalendar extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -2058,7 +2058,7 @@ class ICalendar extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -2082,7 +2082,7 @@ class ICalendar extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -2106,7 +2106,7 @@ class ICalendar extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -2130,7 +2130,7 @@ class ICalendar extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -2154,7 +2154,7 @@ class ICalendar extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartString();
     } finally {
@@ -2179,7 +2179,7 @@ class ICalendar extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Bool> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {

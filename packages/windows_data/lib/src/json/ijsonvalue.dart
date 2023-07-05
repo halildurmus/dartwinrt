@@ -45,7 +45,7 @@ class IJsonValue extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return JsonValueType.from(value.value);
     } finally {
@@ -69,7 +69,7 @@ class IJsonValue extends IInspectable {
               int Function(VTablePointer lpVtbl,
                   Pointer<IntPtr> returnValue)>()(ptr.ref.lpVtbl, returnValue);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return returnValue.toDartString();
     } finally {
@@ -94,7 +94,7 @@ class IJsonValue extends IInspectable {
               int Function(VTablePointer lpVtbl,
                   Pointer<IntPtr> returnValue)>()(ptr.ref.lpVtbl, returnValue);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return returnValue.toDartString();
     } finally {
@@ -119,7 +119,7 @@ class IJsonValue extends IInspectable {
               int Function(VTablePointer lpVtbl,
                   Pointer<Double> returnValue)>()(ptr.ref.lpVtbl, returnValue);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return returnValue.value;
     } finally {
@@ -143,7 +143,7 @@ class IJsonValue extends IInspectable {
               int Function(VTablePointer lpVtbl,
                   Pointer<Bool> returnValue)>()(ptr.ref.lpVtbl, returnValue);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return returnValue.value;
     } finally {
@@ -168,7 +168,7 @@ class IJsonValue extends IInspectable {
 
     if (FAILED(hr)) {
       free(returnValue);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return JsonArray.fromPtr(returnValue);
@@ -191,7 +191,7 @@ class IJsonValue extends IInspectable {
 
     if (FAILED(hr)) {
       free(returnValue);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return JsonObject.fromPtr(returnValue);

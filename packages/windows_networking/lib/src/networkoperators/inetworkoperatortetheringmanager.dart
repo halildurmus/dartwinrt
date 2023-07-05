@@ -47,7 +47,7 @@ class INetworkOperatorTetheringManager extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -71,7 +71,7 @@ class INetworkOperatorTetheringManager extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -95,7 +95,7 @@ class INetworkOperatorTetheringManager extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return TetheringOperationalState.from(value.value);
     } finally {
@@ -122,7 +122,7 @@ class INetworkOperatorTetheringManager extends IInspectable {
 
     if (FAILED(hr)) {
       free(configuration);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (configuration.isNull) {
@@ -157,7 +157,7 @@ class INetworkOperatorTetheringManager extends IInspectable {
 
     if (FAILED(hr)) {
       free(asyncInfo);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IAsyncAction.fromPtr(asyncInfo).toFuture();
@@ -180,7 +180,7 @@ class INetworkOperatorTetheringManager extends IInspectable {
 
     if (FAILED(hr)) {
       free(asyncInfo);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation =
@@ -207,7 +207,7 @@ class INetworkOperatorTetheringManager extends IInspectable {
 
     if (FAILED(hr)) {
       free(asyncInfo);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation =

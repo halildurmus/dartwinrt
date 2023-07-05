@@ -48,7 +48,7 @@ class IDeviceInformationPairing2 extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return DevicePairingProtectionLevel.from(value.value);
     } finally {
@@ -73,7 +73,7 @@ class IDeviceInformationPairing2 extends IInspectable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (value.isNull) {
@@ -115,7 +115,7 @@ class IDeviceInformationPairing2 extends IInspectable {
 
     if (FAILED(hr)) {
       free(result);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<DevicePairingResult?>.fromPtr(result,
@@ -140,7 +140,7 @@ class IDeviceInformationPairing2 extends IInspectable {
 
     if (FAILED(hr)) {
       free(result);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<DeviceUnpairingResult?>.fromPtr(

@@ -48,7 +48,7 @@ class IUICommandFactory extends IInspectable {
 
     if (FAILED(hr)) {
       free(instance);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return UICommand.fromPtr(instance);
@@ -79,7 +79,7 @@ class IUICommandFactory extends IInspectable {
 
     if (FAILED(hr)) {
       free(instance);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return UICommand.fromPtr(instance);
@@ -119,7 +119,7 @@ class IUICommandFactory extends IInspectable {
 
     if (FAILED(hr)) {
       free(instance);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return UICommand.fromPtr(instance);

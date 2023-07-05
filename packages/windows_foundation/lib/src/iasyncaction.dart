@@ -45,7 +45,7 @@ class IAsyncAction extends IInspectable implements IAsyncInfo {
                 int Function(VTablePointer lpVtbl, VTablePointer handler)>()(
         ptr.ref.lpVtbl, handler.ref.lpVtbl);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   Pointer<COMObject> get completed {
@@ -65,7 +65,7 @@ class IAsyncAction extends IInspectable implements IAsyncInfo {
 
     if (FAILED(hr)) {
       free(handler);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return handler;
@@ -78,7 +78,7 @@ class IAsyncAction extends IInspectable implements IAsyncInfo {
         .value
         .asFunction<int Function(VTablePointer lpVtbl)>()(ptr.ref.lpVtbl);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   late final _iAsyncInfo = IAsyncInfo.from(this);

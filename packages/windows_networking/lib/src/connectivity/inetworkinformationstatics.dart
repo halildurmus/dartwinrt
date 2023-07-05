@@ -50,7 +50,7 @@ class INetworkInformationStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IVectorView<ConnectionProfile?>.fromPtr(value,
@@ -76,7 +76,7 @@ class INetworkInformationStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (value.isNull) {
@@ -104,7 +104,7 @@ class INetworkInformationStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IVectorView<LanIdentifier?>.fromPtr(value,
@@ -130,7 +130,7 @@ class INetworkInformationStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IVectorView<HostName?>.fromPtr(value,
@@ -157,7 +157,7 @@ class INetworkInformationStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<ProxyConfiguration?>.fromPtr(value,
@@ -200,7 +200,7 @@ class INetworkInformationStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IVectorView<EndpointPair?>.fromPtr(value,
@@ -230,7 +230,7 @@ class INetworkInformationStatics extends IInspectable {
                       Pointer<IntPtr> eventCookie)>()(
           ptr.ref.lpVtbl, networkStatusHandler.ref.lpVtbl, eventCookie);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return eventCookie.value;
     } finally {
@@ -250,6 +250,6 @@ class INetworkInformationStatics extends IInspectable {
             .asFunction<int Function(VTablePointer lpVtbl, int eventCookie)>()(
         ptr.ref.lpVtbl, eventCookie);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 }

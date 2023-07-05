@@ -31,7 +31,7 @@ final class _IKeyValuePairGuidInspectable<V> extends IKeyValuePair<Guid, V> {
               int Function(VTablePointer lpVtbl,
                   Pointer<GUID> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.toDartGuid();
     } finally {
@@ -57,7 +57,7 @@ final class _IKeyValuePairGuidInspectable<V> extends IKeyValuePair<Guid, V> {
 
     if (FAILED(hr)) {
       free(retValuePtr);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (retValuePtr.isNull) {
@@ -89,7 +89,7 @@ final class _IKeyValuePairGuidObject extends IKeyValuePair<Guid, Object?> {
               int Function(VTablePointer lpVtbl,
                   Pointer<GUID> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.toDartGuid();
     } finally {
@@ -115,7 +115,7 @@ final class _IKeyValuePairGuidObject extends IKeyValuePair<Guid, Object?> {
 
     if (FAILED(hr)) {
       free(retValuePtr);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (retValuePtr.isNull) {
@@ -149,7 +149,7 @@ final class _IKeyValuePairInt16Inspectable<V> extends IKeyValuePair<int, V> {
               int Function(VTablePointer lpVtbl,
                   Pointer<Int16> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -175,7 +175,7 @@ final class _IKeyValuePairInt16Inspectable<V> extends IKeyValuePair<int, V> {
 
     if (FAILED(hr)) {
       free(retValuePtr);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (retValuePtr.isNull) {
@@ -209,7 +209,7 @@ final class _IKeyValuePairInt32Inspectable<V> extends IKeyValuePair<int, V> {
               int Function(VTablePointer lpVtbl,
                   Pointer<Int32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -235,7 +235,7 @@ final class _IKeyValuePairInt32Inspectable<V> extends IKeyValuePair<int, V> {
 
     if (FAILED(hr)) {
       free(retValuePtr);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (retValuePtr.isNull) {
@@ -269,7 +269,7 @@ final class _IKeyValuePairInt64Inspectable<V> extends IKeyValuePair<int, V> {
               int Function(VTablePointer lpVtbl,
                   Pointer<Int64> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -295,7 +295,7 @@ final class _IKeyValuePairInt64Inspectable<V> extends IKeyValuePair<int, V> {
 
     if (FAILED(hr)) {
       free(retValuePtr);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (retValuePtr.isNull) {
@@ -330,7 +330,7 @@ final class _IKeyValuePairStringInspectable<V>
               int Function(VTablePointer lpVtbl,
                   Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.toDartString();
     } finally {
@@ -357,7 +357,7 @@ final class _IKeyValuePairStringInspectable<V>
 
     if (FAILED(hr)) {
       free(retValuePtr);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (retValuePtr.isNull) {
@@ -389,7 +389,7 @@ final class _IKeyValuePairStringObject extends IKeyValuePair<String, Object?> {
               int Function(VTablePointer lpVtbl,
                   Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.toDartString();
     } finally {
@@ -416,7 +416,7 @@ final class _IKeyValuePairStringObject extends IKeyValuePair<String, Object?> {
 
     if (FAILED(hr)) {
       free(retValuePtr);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (retValuePtr.isNull) {
@@ -448,7 +448,7 @@ final class _IKeyValuePairStringString extends IKeyValuePair<String, String> {
               int Function(VTablePointer lpVtbl,
                   Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.toDartString();
     } finally {
@@ -474,7 +474,7 @@ final class _IKeyValuePairStringString extends IKeyValuePair<String, String> {
               int Function(VTablePointer lpVtbl,
                   Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.toDartString();
     } finally {
@@ -506,7 +506,7 @@ final class _IKeyValuePairStringWinRTEnum<V> extends IKeyValuePair<String, V> {
               int Function(VTablePointer lpVtbl,
                   Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.toDartString();
     } finally {
@@ -532,7 +532,7 @@ final class _IKeyValuePairStringWinRTEnum<V> extends IKeyValuePair<String, V> {
               int Function(VTablePointer lpVtbl,
                   Pointer<Int32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return enumCreator(retValuePtr.value);
     } finally {
@@ -565,7 +565,7 @@ final class _IKeyValuePairStringWinRTFlagsEnum<V>
               int Function(VTablePointer lpVtbl,
                   Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.toDartString();
     } finally {
@@ -591,7 +591,7 @@ final class _IKeyValuePairStringWinRTFlagsEnum<V>
               int Function(VTablePointer lpVtbl,
                   Pointer<Uint32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return enumCreator(retValuePtr.value);
     } finally {
@@ -622,7 +622,7 @@ final class _IKeyValuePairUint8Inspectable<V> extends IKeyValuePair<int, V> {
               int Function(VTablePointer lpVtbl,
                   Pointer<Uint8> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -648,7 +648,7 @@ final class _IKeyValuePairUint8Inspectable<V> extends IKeyValuePair<int, V> {
 
     if (FAILED(hr)) {
       free(retValuePtr);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (retValuePtr.isNull) {
@@ -682,7 +682,7 @@ final class _IKeyValuePairUint16Inspectable<V> extends IKeyValuePair<int, V> {
               int Function(VTablePointer lpVtbl,
                   Pointer<Uint16> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -708,7 +708,7 @@ final class _IKeyValuePairUint16Inspectable<V> extends IKeyValuePair<int, V> {
 
     if (FAILED(hr)) {
       free(retValuePtr);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (retValuePtr.isNull) {
@@ -742,7 +742,7 @@ final class _IKeyValuePairUint32Inspectable<V> extends IKeyValuePair<int, V> {
               int Function(VTablePointer lpVtbl,
                   Pointer<Uint32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -768,7 +768,7 @@ final class _IKeyValuePairUint32Inspectable<V> extends IKeyValuePair<int, V> {
 
     if (FAILED(hr)) {
       free(retValuePtr);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (retValuePtr.isNull) {
@@ -802,7 +802,7 @@ final class _IKeyValuePairUint64Inspectable<V> extends IKeyValuePair<int, V> {
               int Function(VTablePointer lpVtbl,
                   Pointer<Uint64> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -828,7 +828,7 @@ final class _IKeyValuePairUint64Inspectable<V> extends IKeyValuePair<int, V> {
 
     if (FAILED(hr)) {
       free(retValuePtr);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (retValuePtr.isNull) {
@@ -865,7 +865,7 @@ final class _IKeyValuePairWinRTEnumInspectable<K, V>
               int Function(VTablePointer lpVtbl,
                   Pointer<Int32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return enumKeyCreator(retValuePtr.value);
     } finally {
@@ -891,7 +891,7 @@ final class _IKeyValuePairWinRTEnumInspectable<K, V>
 
     if (FAILED(hr)) {
       free(retValuePtr);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (retValuePtr.isNull) {
@@ -928,7 +928,7 @@ final class _IKeyValuePairWinRTFlagsEnumInspectable<K, V>
               int Function(VTablePointer lpVtbl,
                   Pointer<Uint32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return enumKeyCreator(retValuePtr.value);
     } finally {
@@ -954,7 +954,7 @@ final class _IKeyValuePairWinRTFlagsEnumInspectable<K, V>
 
     if (FAILED(hr)) {
       free(retValuePtr);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (retValuePtr.isNull) {

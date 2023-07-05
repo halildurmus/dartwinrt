@@ -63,7 +63,7 @@ class IWebAccountFactory extends IInspectable {
 
     if (FAILED(hr)) {
       free(instance);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return WebAccount.fromPtr(instance);

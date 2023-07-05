@@ -49,7 +49,7 @@ class IDeviceInformationPairingStatics extends IInspectable {
                       Pointer<Bool> result)>()(
           ptr.ref.lpVtbl, pairingKindsSupported.value, result);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return result.value;
     } finally {

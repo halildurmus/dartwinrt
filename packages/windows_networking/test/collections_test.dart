@@ -38,7 +38,7 @@ void main() {
 
       if (FAILED(hr)) {
         free(retValuePtr);
-        throw WindowsException(hr);
+        throwWindowsException(hr);
       }
 
       return IVectorView.fromPtr(retValuePtr,

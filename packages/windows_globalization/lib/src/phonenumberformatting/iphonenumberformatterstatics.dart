@@ -50,7 +50,7 @@ class IPhoneNumberFormatterStatics extends IInspectable {
 
     WindowsDeleteString(regionCodeHString);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   int getCountryCodeForRegion(String regionCode) {
@@ -75,7 +75,7 @@ class IPhoneNumberFormatterStatics extends IInspectable {
 
       WindowsDeleteString(regionCodeHString);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return result.value;
     } finally {
@@ -109,7 +109,7 @@ class IPhoneNumberFormatterStatics extends IInspectable {
 
       WindowsDeleteString(regionCodeHString);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDartString();
     } finally {
@@ -139,7 +139,7 @@ class IPhoneNumberFormatterStatics extends IInspectable {
 
       WindowsDeleteString(numberHString);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDartString();
     } finally {

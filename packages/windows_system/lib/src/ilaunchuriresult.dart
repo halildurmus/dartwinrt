@@ -43,7 +43,7 @@ class ILaunchUriResult extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return LaunchUriStatus.from(value.value);
     } finally {
@@ -68,7 +68,7 @@ class ILaunchUriResult extends IInspectable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return ValueSet.fromPtr(value);

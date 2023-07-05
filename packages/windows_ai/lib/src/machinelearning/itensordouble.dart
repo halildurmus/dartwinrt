@@ -42,7 +42,7 @@ class ITensorDouble extends IInspectable {
 
     if (FAILED(hr)) {
       free(result);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IVectorView<double>.fromPtr(result,

@@ -30,7 +30,7 @@ final class _IIteratorAccessListEntry extends IIterator<AccessListEntry> {
                       Pointer<NativeAccessListEntry> retValuePtr)>()(
           ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.toDart();
     } finally {
@@ -69,7 +69,7 @@ final class _IIteratorAccessListEntry extends IIterator<AccessListEntry> {
       }
       free(pItemsArray);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -103,7 +103,7 @@ final class _IIteratorBackgroundTransferFileRange
                   Pointer<NativeBackgroundTransferFileRange>
                       retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.toDart();
     } finally {
@@ -142,7 +142,7 @@ final class _IIteratorBackgroundTransferFileRange
       }
       free(pItemsArray);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -172,7 +172,7 @@ final class _IIteratorBasicGeoposition extends IIterator<BasicGeoposition> {
                       Pointer<NativeBasicGeoposition> retValuePtr)>()(
           ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.toDart();
     } finally {
@@ -211,7 +211,7 @@ final class _IIteratorBasicGeoposition extends IIterator<BasicGeoposition> {
       }
       free(pItemsArray);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -240,7 +240,7 @@ final class _IIteratorBool extends IIterator<bool> {
               int Function(VTablePointer lpVtbl,
                   Pointer<Bool> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -277,7 +277,7 @@ final class _IIteratorBool extends IIterator<bool> {
       }
       free(pItemsArray);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -307,7 +307,7 @@ final class _IIteratorColor extends IIterator<Color> {
                       Pointer<NativeColor> retValuePtr)>()(
           ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.toDart();
     } finally {
@@ -346,7 +346,7 @@ final class _IIteratorColor extends IIterator<Color> {
       }
       free(pItemsArray);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -375,7 +375,7 @@ final class _IIteratorDouble extends IIterator<double> {
               int Function(VTablePointer lpVtbl,
                   Pointer<Double> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -411,7 +411,7 @@ final class _IIteratorDouble extends IIterator<double> {
       }
       free(pItemsArray);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -440,7 +440,7 @@ final class _IIteratorFloat extends IIterator<double> {
               int Function(VTablePointer lpVtbl,
                   Pointer<Float> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -476,7 +476,7 @@ final class _IIteratorFloat extends IIterator<double> {
       }
       free(pItemsArray);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -506,7 +506,7 @@ final class _IIteratorGpioChangeRecord extends IIterator<GpioChangeRecord> {
                       Pointer<NativeGpioChangeRecord> retValuePtr)>()(
           ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.toDart();
     } finally {
@@ -545,7 +545,7 @@ final class _IIteratorGpioChangeRecord extends IIterator<GpioChangeRecord> {
       }
       free(pItemsArray);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -574,7 +574,7 @@ final class _IIteratorGuid extends IIterator<Guid> {
               int Function(VTablePointer lpVtbl,
                   Pointer<GUID> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.toDartGuid();
     } finally {
@@ -611,7 +611,7 @@ final class _IIteratorGuid extends IIterator<Guid> {
       }
       free(pItemsArray);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -640,7 +640,7 @@ final class _IIteratorInt16 extends IIterator<int> {
               int Function(VTablePointer lpVtbl,
                   Pointer<Int16> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -676,7 +676,7 @@ final class _IIteratorInt16 extends IIterator<int> {
       }
       free(pItemsArray);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -705,7 +705,7 @@ final class _IIteratorInt32 extends IIterator<int> {
               int Function(VTablePointer lpVtbl,
                   Pointer<Int32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -741,7 +741,7 @@ final class _IIteratorInt32 extends IIterator<int> {
       }
       free(pItemsArray);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -770,7 +770,7 @@ final class _IIteratorInt64 extends IIterator<int> {
               int Function(VTablePointer lpVtbl,
                   Pointer<Int64> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -806,7 +806,7 @@ final class _IIteratorInt64 extends IIterator<int> {
       }
       free(pItemsArray);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -836,7 +836,7 @@ final class _IIteratorMediaTimeRange extends IIterator<MediaTimeRange> {
                       Pointer<NativeMediaTimeRange> retValuePtr)>()(
           ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.toDart();
     } finally {
@@ -875,7 +875,7 @@ final class _IIteratorMediaTimeRange extends IIterator<MediaTimeRange> {
       }
       free(pItemsArray);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -905,7 +905,7 @@ final class _IIteratorMseTimeRange extends IIterator<MseTimeRange> {
                       Pointer<NativeMseTimeRange> retValuePtr)>()(
           ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.toDart();
     } finally {
@@ -944,7 +944,7 @@ final class _IIteratorMseTimeRange extends IIterator<MseTimeRange> {
       }
       free(pItemsArray);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -974,7 +974,7 @@ final class _IIteratorNitRange extends IIterator<NitRange> {
                       Pointer<NativeNitRange> retValuePtr)>()(
           ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.toDart();
     } finally {
@@ -1013,7 +1013,7 @@ final class _IIteratorNitRange extends IIterator<NitRange> {
       }
       free(pItemsArray);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -1045,7 +1045,7 @@ final class _IIteratorInspectable<T> extends IIterator<T> {
 
     if (FAILED(hr)) {
       free(retValuePtr);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (retValuePtr.isNull) {
@@ -1084,7 +1084,7 @@ final class _IIteratorInspectable<T> extends IIterator<T> {
       }
       free(pItemsArray);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -1114,7 +1114,7 @@ final class _IIteratorObject extends IIterator<Object?> {
 
     if (FAILED(hr)) {
       free(retValuePtr);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (retValuePtr.isNull) {
@@ -1153,7 +1153,7 @@ final class _IIteratorObject extends IIterator<Object?> {
       }
       free(pItemsArray);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -1183,7 +1183,7 @@ final class _IIteratorUri extends IIterator<Uri?> {
 
     if (FAILED(hr)) {
       free(retValuePtr);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (retValuePtr.isNull) {
@@ -1222,7 +1222,7 @@ final class _IIteratorUri extends IIterator<Uri?> {
       }
       free(pItemsArray);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -1252,7 +1252,7 @@ final class _IIteratorPoint extends IIterator<Point> {
                       Pointer<NativePoint> retValuePtr)>()(
           ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.toDart();
     } finally {
@@ -1291,7 +1291,7 @@ final class _IIteratorPoint extends IIterator<Point> {
       }
       free(pItemsArray);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -1322,7 +1322,7 @@ final class _IIteratorPointerDeviceUsage extends IIterator<PointerDeviceUsage> {
                   Pointer<NativePointerDeviceUsage>
                       retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.toDart();
     } finally {
@@ -1361,7 +1361,7 @@ final class _IIteratorPointerDeviceUsage extends IIterator<PointerDeviceUsage> {
       }
       free(pItemsArray);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -1391,7 +1391,7 @@ final class _IIteratorRect extends IIterator<Rect> {
                       VTablePointer lpVtbl, Pointer<NativeRect> retValuePtr)>()(
           ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.toDart();
     } finally {
@@ -1430,7 +1430,7 @@ final class _IIteratorRect extends IIterator<Rect> {
       }
       free(pItemsArray);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -1460,7 +1460,7 @@ final class _IIteratorRectInt32 extends IIterator<RectInt32> {
                       Pointer<NativeRectInt32> retValuePtr)>()(
           ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.toDart();
     } finally {
@@ -1499,7 +1499,7 @@ final class _IIteratorRectInt32 extends IIterator<RectInt32> {
       }
       free(pItemsArray);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -1529,7 +1529,7 @@ final class _IIteratorSize extends IIterator<Size> {
                       VTablePointer lpVtbl, Pointer<NativeSize> retValuePtr)>()(
           ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.toDart();
     } finally {
@@ -1568,7 +1568,7 @@ final class _IIteratorSize extends IIterator<Size> {
       }
       free(pItemsArray);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -1598,7 +1598,7 @@ final class _IIteratorSizeUInt32 extends IIterator<SizeUInt32> {
                       Pointer<NativeSizeUInt32> retValuePtr)>()(
           ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.toDart();
     } finally {
@@ -1637,7 +1637,7 @@ final class _IIteratorSizeUInt32 extends IIterator<SizeUInt32> {
       }
       free(pItemsArray);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -1667,7 +1667,7 @@ final class _IIteratorSortEntry extends IIterator<SortEntry> {
                       Pointer<NativeSortEntry> retValuePtr)>()(
           ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.toDart();
     } finally {
@@ -1706,7 +1706,7 @@ final class _IIteratorSortEntry extends IIterator<SortEntry> {
       }
       free(pItemsArray);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -1739,7 +1739,7 @@ final class _IIteratorStorePackageUpdateStatus
                       Pointer<NativeStorePackageUpdateStatus> retValuePtr)>()(
           ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.toDart();
     } finally {
@@ -1778,7 +1778,7 @@ final class _IIteratorStorePackageUpdateStatus
       }
       free(pItemsArray);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -1807,7 +1807,7 @@ final class _IIteratorString extends IIterator<String> {
               int Function(VTablePointer lpVtbl,
                   Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.toDartString();
     } finally {
@@ -1844,7 +1844,7 @@ final class _IIteratorString extends IIterator<String> {
       }
       free(pItemsArray);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -1874,7 +1874,7 @@ final class _IIteratorTextSegment extends IIterator<TextSegment> {
                       Pointer<NativeTextSegment> retValuePtr)>()(
           ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.toDart();
     } finally {
@@ -1913,7 +1913,7 @@ final class _IIteratorTextSegment extends IIterator<TextSegment> {
       }
       free(pItemsArray);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -1942,7 +1942,7 @@ final class _IIteratorUint8 extends IIterator<int> {
               int Function(VTablePointer lpVtbl,
                   Pointer<Uint8> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -1978,7 +1978,7 @@ final class _IIteratorUint8 extends IIterator<int> {
       }
       free(pItemsArray);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -2007,7 +2007,7 @@ final class _IIteratorUint16 extends IIterator<int> {
               int Function(VTablePointer lpVtbl,
                   Pointer<Uint16> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -2043,7 +2043,7 @@ final class _IIteratorUint16 extends IIterator<int> {
       }
       free(pItemsArray);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -2072,7 +2072,7 @@ final class _IIteratorUint32 extends IIterator<int> {
               int Function(VTablePointer lpVtbl,
                   Pointer<Uint32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -2108,7 +2108,7 @@ final class _IIteratorUint32 extends IIterator<int> {
       }
       free(pItemsArray);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -2137,7 +2137,7 @@ final class _IIteratorUint64 extends IIterator<int> {
               int Function(VTablePointer lpVtbl,
                   Pointer<Uint64> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -2173,7 +2173,7 @@ final class _IIteratorUint64 extends IIterator<int> {
       }
       free(pItemsArray);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -2203,7 +2203,7 @@ final class _IIteratorWindowId extends IIterator<WindowId> {
                       Pointer<NativeWindowId> retValuePtr)>()(
           ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.toDart();
     } finally {
@@ -2242,7 +2242,7 @@ final class _IIteratorWindowId extends IIterator<WindowId> {
       }
       free(pItemsArray);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -2273,7 +2273,7 @@ final class _IIteratorWinRTEnum<T> extends IIterator<T> {
               int Function(VTablePointer lpVtbl,
                   Pointer<Int32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return enumCreator(retValuePtr.value);
     } finally {
@@ -2312,7 +2312,7 @@ final class _IIteratorWinRTEnum<T> extends IIterator<T> {
       }
       free(pItemsArray);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -2343,7 +2343,7 @@ final class _IIteratorWinRTFlagsEnum<T> extends IIterator<T> {
               int Function(VTablePointer lpVtbl,
                   Pointer<Uint32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return enumCreator(retValuePtr.value);
     } finally {
@@ -2382,7 +2382,7 @@ final class _IIteratorWinRTFlagsEnum<T> extends IIterator<T> {
       }
       free(pItemsArray);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {

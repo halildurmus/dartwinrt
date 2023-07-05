@@ -61,7 +61,7 @@ class IToastNotifier2 extends IInspectable {
       WindowsDeleteString(tagHString);
       WindowsDeleteString(groupHString);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return NotificationUpdateResult.from(result.value);
     } finally {
@@ -94,7 +94,7 @@ class IToastNotifier2 extends IInspectable {
 
       WindowsDeleteString(tagHString);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return NotificationUpdateResult.from(result.value);
     } finally {

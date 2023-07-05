@@ -51,7 +51,7 @@ class IStorageProvider2 extends IInspectable implements IStorageProvider {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<bool>.fromPtr(operation);

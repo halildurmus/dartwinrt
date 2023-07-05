@@ -51,7 +51,7 @@ class IXmlDocumentStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(asyncInfo);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<XmlDocument?>.fromPtr(asyncInfo,
@@ -87,7 +87,7 @@ class IXmlDocumentStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(asyncInfo);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<XmlDocument?>.fromPtr(asyncInfo,
@@ -116,7 +116,7 @@ class IXmlDocumentStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(asyncInfo);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<XmlDocument?>.fromPtr(asyncInfo,
@@ -152,7 +152,7 @@ class IXmlDocumentStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(asyncInfo);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<XmlDocument?>.fromPtr(asyncInfo,

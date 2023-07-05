@@ -7,13 +7,13 @@ String failedCheck({
   String identifier = 'retValuePtr',
 }) {
   if (!freeRetVal) {
-    return 'if (FAILED(hr)) throw WindowsException(hr);';
+    return 'if (FAILED(hr)) throwWindowsException(hr);';
   }
 
   return '''
     if (FAILED(hr)) {
       free($identifier);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 ''';
 }

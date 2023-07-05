@@ -56,7 +56,7 @@ class IToastNotificationManagerForUser2 extends IInspectable {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<ToastNotifier?>.fromPtr(operation,
@@ -89,7 +89,7 @@ class IToastNotificationManagerForUser2 extends IInspectable {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<ToastNotificationHistory?>.fromPtr(
@@ -115,7 +115,7 @@ class IToastNotificationManagerForUser2 extends IInspectable {
 
     if (FAILED(hr)) {
       free(result);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (result.isNull) {
@@ -147,7 +147,7 @@ class IToastNotificationManagerForUser2 extends IInspectable {
 
     if (FAILED(hr)) {
       free(result);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (result.isNull) {

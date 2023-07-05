@@ -43,7 +43,7 @@ class INumberRounder extends IInspectable {
               int Function(VTablePointer lpVtbl, int value,
                   Pointer<Int32> result)>()(ptr.ref.lpVtbl, value, result);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return result.value;
     } finally {
@@ -67,7 +67,7 @@ class INumberRounder extends IInspectable {
               int Function(VTablePointer lpVtbl, int value,
                   Pointer<Uint32> result)>()(ptr.ref.lpVtbl, value, result);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return result.value;
     } finally {
@@ -91,7 +91,7 @@ class INumberRounder extends IInspectable {
               int Function(VTablePointer lpVtbl, int value,
                   Pointer<Int64> result)>()(ptr.ref.lpVtbl, value, result);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return result.value;
     } finally {
@@ -115,7 +115,7 @@ class INumberRounder extends IInspectable {
               int Function(VTablePointer lpVtbl, int value,
                   Pointer<Uint64> result)>()(ptr.ref.lpVtbl, value, result);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return result.value;
     } finally {
@@ -139,7 +139,7 @@ class INumberRounder extends IInspectable {
               int Function(VTablePointer lpVtbl, double value,
                   Pointer<Float> result)>()(ptr.ref.lpVtbl, value, result);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return result.value;
     } finally {
@@ -163,7 +163,7 @@ class INumberRounder extends IInspectable {
               int Function(VTablePointer lpVtbl, double value,
                   Pointer<Double> result)>()(ptr.ref.lpVtbl, value, result);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return result.value;
     } finally {

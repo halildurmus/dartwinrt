@@ -52,7 +52,7 @@ class IRandomAccessStreamReferenceStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(streamReference);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (streamReference.isNull) {
@@ -84,7 +84,7 @@ class IRandomAccessStreamReferenceStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(streamReference);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (streamReference.isNull) {
@@ -116,7 +116,7 @@ class IRandomAccessStreamReferenceStatics extends IInspectable {
 
     if (FAILED(hr)) {
       free(streamReference);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (streamReference.isNull) {

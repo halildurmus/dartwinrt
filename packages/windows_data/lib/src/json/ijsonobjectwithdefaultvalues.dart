@@ -65,7 +65,7 @@ class IJsonObjectWithDefaultValues extends IInspectable
 
     if (FAILED(hr)) {
       free(returnValue);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (returnValue.isNull) {
@@ -103,7 +103,7 @@ class IJsonObjectWithDefaultValues extends IInspectable
 
     if (FAILED(hr)) {
       free(returnValue);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return JsonObject.fromPtr(returnValue);
@@ -136,7 +136,7 @@ class IJsonObjectWithDefaultValues extends IInspectable
       WindowsDeleteString(nameHString);
       WindowsDeleteString(defaultValueHString);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return returnValue.toDartString();
     } finally {
@@ -172,7 +172,7 @@ class IJsonObjectWithDefaultValues extends IInspectable
 
     if (FAILED(hr)) {
       free(returnValue);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return JsonArray.fromPtr(returnValue);
@@ -203,7 +203,7 @@ class IJsonObjectWithDefaultValues extends IInspectable
 
       WindowsDeleteString(nameHString);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return returnValue.value;
     } finally {
@@ -232,7 +232,7 @@ class IJsonObjectWithDefaultValues extends IInspectable
 
       WindowsDeleteString(nameHString);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return returnValue.value;
     } finally {

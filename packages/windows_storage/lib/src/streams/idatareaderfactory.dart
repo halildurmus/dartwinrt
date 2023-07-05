@@ -48,7 +48,7 @@ class IDataReaderFactory extends IInspectable {
 
     if (FAILED(hr)) {
       free(dataReader);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return DataReader.fromPtr(dataReader);

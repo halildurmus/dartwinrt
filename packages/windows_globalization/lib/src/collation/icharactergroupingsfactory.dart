@@ -49,7 +49,7 @@ class ICharacterGroupingsFactory extends IInspectable {
 
     if (FAILED(hr)) {
       free(result);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return CharacterGroupings.fromPtr(result);

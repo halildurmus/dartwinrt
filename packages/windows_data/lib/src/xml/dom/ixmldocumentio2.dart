@@ -41,7 +41,7 @@ class IXmlDocumentIO2 extends IInspectable {
                 int Function(VTablePointer lpVtbl, VTablePointer buffer)>()(
         ptr.ref.lpVtbl, buffer == null ? nullptr : buffer.ptr.ref.lpVtbl);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void loadXmlFromBufferWithSettings(
@@ -64,6 +64,6 @@ class IXmlDocumentIO2 extends IInspectable {
             buffer == null ? nullptr : buffer.ptr.ref.lpVtbl,
             loadSettings == null ? nullptr : loadSettings.ptr.ref.lpVtbl);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 }

@@ -44,7 +44,7 @@ class ITensorFeatureDescriptor extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return TensorKind.from(value.value);
     } finally {
@@ -69,7 +69,7 @@ class ITensorFeatureDescriptor extends IInspectable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IVectorView<int>.fromPtr(value,

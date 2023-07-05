@@ -53,7 +53,7 @@ class IPhoneNumberInfoStatics extends IInspectable {
 
       WindowsDeleteString(inputHString);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return PhoneNumberParseResult.from(result.value);
     } finally {
@@ -93,7 +93,7 @@ class IPhoneNumberInfoStatics extends IInspectable {
       WindowsDeleteString(inputHString);
       WindowsDeleteString(regionCodeHString);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return PhoneNumberParseResult.from(result.value);
     } finally {

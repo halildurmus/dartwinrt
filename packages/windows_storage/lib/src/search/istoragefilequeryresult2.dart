@@ -52,7 +52,7 @@ class IStorageFileQueryResult2 extends IInspectable
 
     if (FAILED(hr)) {
       free(result);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IMap.fromPtr(result,

@@ -43,7 +43,7 @@ class IStorageLibraryChangeReader2 extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Uint64> result)>()(
           ptr.ref.lpVtbl, result);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return result.value;
     } finally {

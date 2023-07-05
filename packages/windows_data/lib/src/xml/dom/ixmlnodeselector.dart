@@ -48,7 +48,7 @@ class IXmlNodeSelector extends IInspectable {
 
     if (FAILED(hr)) {
       free(node);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (node.isNull) {
@@ -80,7 +80,7 @@ class IXmlNodeSelector extends IInspectable {
 
     if (FAILED(hr)) {
       free(nodelist);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return XmlNodeList.fromPtr(nodelist);
@@ -114,7 +114,7 @@ class IXmlNodeSelector extends IInspectable {
 
     if (FAILED(hr)) {
       free(node);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (node.isNull) {
@@ -152,7 +152,7 @@ class IXmlNodeSelector extends IInspectable {
 
     if (FAILED(hr)) {
       free(nodelist);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return XmlNodeList.fromPtr(nodelist);

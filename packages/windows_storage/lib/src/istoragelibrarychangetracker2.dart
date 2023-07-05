@@ -42,7 +42,7 @@ class IStorageLibraryChangeTracker2 extends IInspectable {
                 int Function(VTablePointer lpVtbl, VTablePointer options)>()(
         ptr.ref.lpVtbl, options == null ? nullptr : options.ptr.ref.lpVtbl);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void disable() {
@@ -52,6 +52,6 @@ class IStorageLibraryChangeTracker2 extends IInspectable {
         .value
         .asFunction<int Function(VTablePointer lpVtbl)>()(ptr.ref.lpVtbl);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 }

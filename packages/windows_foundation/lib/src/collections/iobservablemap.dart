@@ -9,6 +9,8 @@ import 'dart:ffi';
 import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
 
+import '../../internal.dart';
+
 /// Notifies listeners of dynamic changes to a map, such as when items are added
 /// or removed.
 interface class IObservableMap<K, V> extends IInspectable {
@@ -35,7 +37,7 @@ interface class IObservableMap<K, V> extends IInspectable {
                           Pointer<IntPtr> retValuePtr)>()(
               ptr.ref.lpVtbl, vhnd.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -56,6 +58,6 @@ interface class IObservableMap<K, V> extends IInspectable {
                 .asFunction<int Function(VTablePointer lpVtbl, int token)>()(
             ptr.ref.lpVtbl, token);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 }

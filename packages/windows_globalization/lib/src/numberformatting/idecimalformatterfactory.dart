@@ -60,7 +60,7 @@ class IDecimalFormatterFactory extends IInspectable {
 
     if (FAILED(hr)) {
       free(result);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return DecimalFormatter.fromPtr(result);

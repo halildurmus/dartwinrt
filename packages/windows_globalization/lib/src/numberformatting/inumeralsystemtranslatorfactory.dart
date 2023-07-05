@@ -57,7 +57,7 @@ class INumeralSystemTranslatorFactory extends IInspectable {
 
     if (FAILED(hr)) {
       free(result);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return NumeralSystemTranslator.fromPtr(result);

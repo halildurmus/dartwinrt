@@ -48,7 +48,7 @@ class IDataReader extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -72,7 +72,7 @@ class IDataReader extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return UnicodeEncoding.from(value.value);
     } finally {
@@ -91,7 +91,7 @@ class IDataReader extends IInspectable {
             .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
         ptr.ref.lpVtbl, value.value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   ByteOrder get byteOrder {
@@ -110,7 +110,7 @@ class IDataReader extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return ByteOrder.from(value.value);
     } finally {
@@ -129,7 +129,7 @@ class IDataReader extends IInspectable {
             .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
         ptr.ref.lpVtbl, value.value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   InputStreamOptions get inputStreamOptions {
@@ -148,7 +148,7 @@ class IDataReader extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return InputStreamOptions.from(value.value);
     } finally {
@@ -169,7 +169,7 @@ class IDataReader extends IInspectable {
                 .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
             ptr.ref.lpVtbl, value.value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   int readByte() {
@@ -188,7 +188,7 @@ class IDataReader extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Uint8> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -217,7 +217,7 @@ class IDataReader extends IInspectable {
     }
     free(pValueArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   IBuffer? readBuffer(int length) {
@@ -237,7 +237,7 @@ class IDataReader extends IInspectable {
 
     if (FAILED(hr)) {
       free(buffer);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (buffer.isNull) {
@@ -264,7 +264,7 @@ class IDataReader extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Bool> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -288,7 +288,7 @@ class IDataReader extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<GUID> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartGuid();
     } finally {
@@ -312,7 +312,7 @@ class IDataReader extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int16> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -336,7 +336,7 @@ class IDataReader extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -360,7 +360,7 @@ class IDataReader extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int64> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -384,7 +384,7 @@ class IDataReader extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Uint16> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -408,7 +408,7 @@ class IDataReader extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Uint32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -432,7 +432,7 @@ class IDataReader extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Uint64> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -456,7 +456,7 @@ class IDataReader extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Float> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -480,7 +480,7 @@ class IDataReader extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Double> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -505,7 +505,7 @@ class IDataReader extends IInspectable {
                       Pointer<IntPtr> value)>()(
           ptr.ref.lpVtbl, codeUnitCount, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartString();
     } finally {
@@ -530,7 +530,7 @@ class IDataReader extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int64> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartDateTime();
     } finally {
@@ -554,7 +554,7 @@ class IDataReader extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int64> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartDuration();
     } finally {
@@ -580,7 +580,7 @@ class IDataReader extends IInspectable {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation =
@@ -605,7 +605,7 @@ class IDataReader extends IInspectable {
 
     if (FAILED(hr)) {
       free(buffer);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (buffer.isNull) {
@@ -633,7 +633,7 @@ class IDataReader extends IInspectable {
 
     if (FAILED(hr)) {
       free(stream);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (stream.isNull) {

@@ -50,7 +50,7 @@ class ICharacterGroupings extends IInspectable
 
       WindowsDeleteString(textHString);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDartString();
     } finally {

@@ -79,7 +79,7 @@ class ICoreAutomationRemoteOperationExtensionProvider extends IInspectable {
     nativeStructPtrs.forEach(free);
     free(pOperandIdsArray);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   bool isExtensionSupported(Guid extensionId) {
@@ -104,7 +104,7 @@ class ICoreAutomationRemoteOperationExtensionProvider extends IInspectable {
 
       free(extensionIdNativeStructPtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return result.value;
     } finally {

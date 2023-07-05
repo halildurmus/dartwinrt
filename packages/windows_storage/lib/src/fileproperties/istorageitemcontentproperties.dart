@@ -51,7 +51,7 @@ class IStorageItemContentProperties extends IInspectable
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<MusicProperties?>.fromPtr(operation,
@@ -76,7 +76,7 @@ class IStorageItemContentProperties extends IInspectable
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<VideoProperties?>.fromPtr(operation,
@@ -101,7 +101,7 @@ class IStorageItemContentProperties extends IInspectable
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<ImageProperties?>.fromPtr(operation,
@@ -126,7 +126,7 @@ class IStorageItemContentProperties extends IInspectable
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<DocumentProperties?>.fromPtr(

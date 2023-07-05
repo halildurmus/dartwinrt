@@ -57,6 +57,6 @@ class ICoreAutomationRemoteOperation2 extends IInspectable {
 
     free(operandIdNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 }

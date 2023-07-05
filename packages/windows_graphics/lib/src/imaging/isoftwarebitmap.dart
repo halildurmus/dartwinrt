@@ -48,7 +48,7 @@ class ISoftwareBitmap extends IInspectable implements IClosable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return BitmapPixelFormat.from(value.value);
     } finally {
@@ -72,7 +72,7 @@ class ISoftwareBitmap extends IInspectable implements IClosable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return BitmapAlphaMode.from(value.value);
     } finally {
@@ -96,7 +96,7 @@ class ISoftwareBitmap extends IInspectable implements IClosable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -120,7 +120,7 @@ class ISoftwareBitmap extends IInspectable implements IClosable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -144,7 +144,7 @@ class ISoftwareBitmap extends IInspectable implements IClosable {
                   int Function(VTablePointer lpVtbl, Pointer<Bool> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -165,7 +165,7 @@ class ISoftwareBitmap extends IInspectable implements IClosable {
                 .asFunction<int Function(VTablePointer lpVtbl, double value)>()(
             ptr.ref.lpVtbl, value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   double get dpiX {
@@ -184,7 +184,7 @@ class ISoftwareBitmap extends IInspectable implements IClosable {
                   int Function(VTablePointer lpVtbl, Pointer<Double> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -205,7 +205,7 @@ class ISoftwareBitmap extends IInspectable implements IClosable {
                 .asFunction<int Function(VTablePointer lpVtbl, double value)>()(
             ptr.ref.lpVtbl, value);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   double get dpiY {
@@ -224,7 +224,7 @@ class ISoftwareBitmap extends IInspectable implements IClosable {
                   int Function(VTablePointer lpVtbl, Pointer<Double> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -249,7 +249,7 @@ class ISoftwareBitmap extends IInspectable implements IClosable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (value.isNull) {
@@ -273,7 +273,7 @@ class ISoftwareBitmap extends IInspectable implements IClosable {
                 int Function(VTablePointer lpVtbl, VTablePointer bitmap)>()(
         ptr.ref.lpVtbl, bitmap == null ? nullptr : bitmap.ptr.ref.lpVtbl);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void copyFromBuffer(IBuffer? buffer) {
@@ -289,7 +289,7 @@ class ISoftwareBitmap extends IInspectable implements IClosable {
                 int Function(VTablePointer lpVtbl, VTablePointer buffer)>()(
         ptr.ref.lpVtbl, buffer == null ? nullptr : buffer.ptr.ref.lpVtbl);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void copyToBuffer(IBuffer? buffer) {
@@ -305,7 +305,7 @@ class ISoftwareBitmap extends IInspectable implements IClosable {
                 int Function(VTablePointer lpVtbl, VTablePointer buffer)>()(
         ptr.ref.lpVtbl, buffer == null ? nullptr : buffer.ptr.ref.lpVtbl);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   SoftwareBitmap? getReadOnlyView() {
@@ -325,7 +325,7 @@ class ISoftwareBitmap extends IInspectable implements IClosable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (value.isNull) {

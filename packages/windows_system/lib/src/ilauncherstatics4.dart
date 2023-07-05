@@ -53,7 +53,7 @@ class ILauncherStatics4 extends IInspectable {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<LaunchQuerySupportStatus>.fromPtr(
@@ -90,7 +90,7 @@ class ILauncherStatics4 extends IInspectable {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<LaunchQuerySupportStatus>.fromPtr(
@@ -120,7 +120,7 @@ class ILauncherStatics4 extends IInspectable {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<IVectorView<AppInfo?>>.fromPtr(
@@ -156,7 +156,7 @@ class ILauncherStatics4 extends IInspectable {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<LaunchUriStatus>.fromPtr(operation,
@@ -195,7 +195,7 @@ class ILauncherStatics4 extends IInspectable {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<LaunchUriStatus>.fromPtr(operation,
@@ -237,7 +237,7 @@ class ILauncherStatics4 extends IInspectable {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<LaunchUriStatus>.fromPtr(operation,
@@ -276,7 +276,7 @@ class ILauncherStatics4 extends IInspectable {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<LaunchUriResult?>.fromPtr(operation,
@@ -318,7 +318,7 @@ class ILauncherStatics4 extends IInspectable {
 
     if (FAILED(hr)) {
       free(operation);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final asyncOperation = IAsyncOperation<LaunchUriResult?>.fromPtr(operation,

@@ -48,7 +48,7 @@ class ICoreAutomationRemoteOperation extends IInspectable {
               int Function(VTablePointer lpVtbl, int opcode,
                   Pointer<Bool> result)>()(ptr.ref.lpVtbl, opcode, result);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return result.value;
     } finally {
@@ -81,7 +81,7 @@ class ICoreAutomationRemoteOperation extends IInspectable {
 
     free(operandIdNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void importTextRange(AutomationRemoteOperationOperandId operandId,
@@ -109,7 +109,7 @@ class ICoreAutomationRemoteOperation extends IInspectable {
 
     free(operandIdNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void addToResults(AutomationRemoteOperationOperandId operandId) {
@@ -131,7 +131,7 @@ class ICoreAutomationRemoteOperation extends IInspectable {
 
     free(operandIdNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   AutomationRemoteOperationResult? execute(List<int> bytecodeBuffer) {
@@ -164,7 +164,7 @@ class ICoreAutomationRemoteOperation extends IInspectable {
 
     if (FAILED(hr)) {
       free(result);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (result.isNull) {

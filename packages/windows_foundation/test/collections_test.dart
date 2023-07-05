@@ -704,7 +704,7 @@ void main() {
                       VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)>()(
           ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return IMapView.fromPtr(retValuePtr,
           iterableIid: IID_IIterable_IKeyValuePair_String_String);
@@ -803,7 +803,7 @@ void main() {
 
       if (FAILED(hr)) {
         free(retValuePtr);
-        throw WindowsException(hr);
+        throwWindowsException(hr);
       }
 
       return IVector.fromPtr(retValuePtr, iterableIid: IID_IIterable_Uri);

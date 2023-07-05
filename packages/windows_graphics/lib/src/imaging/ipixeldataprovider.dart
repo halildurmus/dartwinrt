@@ -47,7 +47,7 @@ class IPixelDataProvider extends IInspectable {
                       Pointer<Pointer<Uint8>> pixelData)>()(
           ptr.ref.lpVtbl, retValueSize, pixelData);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return pixelData.value.toList(length: retValueSize.value);
     } finally {

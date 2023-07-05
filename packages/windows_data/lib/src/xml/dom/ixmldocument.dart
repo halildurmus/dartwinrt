@@ -61,7 +61,7 @@ class IXmlDocument extends IInspectable
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (value.isNull) {
@@ -89,7 +89,7 @@ class IXmlDocument extends IInspectable
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (value.isNull) {
@@ -117,7 +117,7 @@ class IXmlDocument extends IInspectable
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (value.isNull) {
@@ -149,7 +149,7 @@ class IXmlDocument extends IInspectable
 
     if (FAILED(hr)) {
       free(newElement);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (newElement.isNull) {
@@ -178,7 +178,7 @@ class IXmlDocument extends IInspectable
 
     if (FAILED(hr)) {
       free(newDocumentFragment);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (newDocumentFragment.isNull) {
@@ -210,7 +210,7 @@ class IXmlDocument extends IInspectable
 
     if (FAILED(hr)) {
       free(newTextNode);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (newTextNode.isNull) {
@@ -242,7 +242,7 @@ class IXmlDocument extends IInspectable
 
     if (FAILED(hr)) {
       free(newComment);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (newComment.isNull) {
@@ -280,7 +280,7 @@ class IXmlDocument extends IInspectable
 
     if (FAILED(hr)) {
       free(newProcessingInstruction);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (newProcessingInstruction.isNull) {
@@ -312,7 +312,7 @@ class IXmlDocument extends IInspectable
 
     if (FAILED(hr)) {
       free(newAttribute);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (newAttribute.isNull) {
@@ -344,7 +344,7 @@ class IXmlDocument extends IInspectable
 
     if (FAILED(hr)) {
       free(newEntityReference);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (newEntityReference.isNull) {
@@ -376,7 +376,7 @@ class IXmlDocument extends IInspectable
 
     if (FAILED(hr)) {
       free(elements);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return XmlNodeList.fromPtr(elements);
@@ -403,7 +403,7 @@ class IXmlDocument extends IInspectable
 
     if (FAILED(hr)) {
       free(newCDataSection);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (newCDataSection.isNull) {
@@ -430,7 +430,7 @@ class IXmlDocument extends IInspectable
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartString();
     } finally {
@@ -466,7 +466,7 @@ class IXmlDocument extends IInspectable
 
     if (FAILED(hr)) {
       free(newAttribute);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (newAttribute.isNull) {
@@ -504,7 +504,7 @@ class IXmlDocument extends IInspectable
 
     if (FAILED(hr)) {
       free(newElement);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (newElement.isNull) {
@@ -536,7 +536,7 @@ class IXmlDocument extends IInspectable
 
     if (FAILED(hr)) {
       free(element);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (element.isNull) {
@@ -572,7 +572,7 @@ class IXmlDocument extends IInspectable
 
     if (FAILED(hr)) {
       free(newNode);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (newNode.isNull) {

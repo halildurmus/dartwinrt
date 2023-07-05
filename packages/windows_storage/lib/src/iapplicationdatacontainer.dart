@@ -46,7 +46,7 @@ class IApplicationDataContainer extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartString();
     } finally {
@@ -71,7 +71,7 @@ class IApplicationDataContainer extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return ApplicationDataLocality.from(value.value);
     } finally {
@@ -96,7 +96,7 @@ class IApplicationDataContainer extends IInspectable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IPropertySet.fromPtr(value);
@@ -119,7 +119,7 @@ class IApplicationDataContainer extends IInspectable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IMapView<String, ApplicationDataContainer?>.fromPtr(value,
@@ -154,7 +154,7 @@ class IApplicationDataContainer extends IInspectable {
 
     if (FAILED(hr)) {
       free(container);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (container.isNull) {
@@ -180,6 +180,6 @@ class IApplicationDataContainer extends IInspectable {
 
     WindowsDeleteString(nameHString);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 }

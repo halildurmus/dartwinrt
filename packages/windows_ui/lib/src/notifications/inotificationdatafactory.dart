@@ -58,7 +58,7 @@ class INotificationDataFactory extends IInspectable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return NotificationData.fromPtr(value);
@@ -91,7 +91,7 @@ class INotificationDataFactory extends IInspectable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return NotificationData.fromPtr(value);

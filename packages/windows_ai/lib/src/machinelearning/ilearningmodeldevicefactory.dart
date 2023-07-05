@@ -48,7 +48,7 @@ class ILearningModelDeviceFactory extends IInspectable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return LearningModelDevice.fromPtr(value);

@@ -259,7 +259,7 @@ abstract interface class IVector<T> extends IInspectable
               int Function(VTablePointer lpVtbl,
                   Pointer<Uint32> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
     } finally {
@@ -285,7 +285,7 @@ abstract interface class IVector<T> extends IInspectable
 
     if (FAILED(hr)) {
       free(retValuePtr);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     final vectorView = IVectorView<T>.fromPtr(retValuePtr,
@@ -320,7 +320,7 @@ abstract interface class IVector<T> extends IInspectable
             .asFunction<int Function(VTablePointer lpVtbl, int)>()(
         ptr.ref.lpVtbl, index);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   /// Appends an item to the end of the vector.
@@ -334,7 +334,7 @@ abstract interface class IVector<T> extends IInspectable
         .value
         .asFunction<int Function(VTablePointer lpVtbl)>()(ptr.ref.lpVtbl);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   /// Removes all items from the vector.
@@ -345,7 +345,7 @@ abstract interface class IVector<T> extends IInspectable
         .value
         .asFunction<int Function(VTablePointer lpVtbl)>()(ptr.ref.lpVtbl);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   /// Retrieves multiple items from the the vector beginning at the given index.

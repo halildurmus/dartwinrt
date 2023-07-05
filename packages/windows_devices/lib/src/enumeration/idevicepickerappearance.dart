@@ -43,7 +43,7 @@ class IDevicePickerAppearance extends IInspectable {
                   int Function(VTablePointer lpVtbl, Pointer<IntPtr> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartString();
     } finally {
@@ -69,7 +69,7 @@ class IDevicePickerAppearance extends IInspectable {
 
     WindowsDeleteString(valueHString);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   Color get foregroundColor {
@@ -88,7 +88,7 @@ class IDevicePickerAppearance extends IInspectable {
               int Function(VTablePointer lpVtbl,
                   Pointer<NativeColor> value)>()(ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDart();
     } finally {
@@ -113,7 +113,7 @@ class IDevicePickerAppearance extends IInspectable {
 
     free(valueNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   Color get backgroundColor {
@@ -132,7 +132,7 @@ class IDevicePickerAppearance extends IInspectable {
               int Function(VTablePointer lpVtbl,
                   Pointer<NativeColor> value)>()(ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDart();
     } finally {
@@ -157,7 +157,7 @@ class IDevicePickerAppearance extends IInspectable {
 
     free(valueNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   Color get accentColor {
@@ -176,7 +176,7 @@ class IDevicePickerAppearance extends IInspectable {
               int Function(VTablePointer lpVtbl,
                   Pointer<NativeColor> value)>()(ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDart();
     } finally {
@@ -201,7 +201,7 @@ class IDevicePickerAppearance extends IInspectable {
 
     free(valueNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   Color get selectedForegroundColor {
@@ -220,7 +220,7 @@ class IDevicePickerAppearance extends IInspectable {
               int Function(VTablePointer lpVtbl,
                   Pointer<NativeColor> value)>()(ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDart();
     } finally {
@@ -245,7 +245,7 @@ class IDevicePickerAppearance extends IInspectable {
 
     free(valueNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   Color get selectedBackgroundColor {
@@ -264,7 +264,7 @@ class IDevicePickerAppearance extends IInspectable {
               int Function(VTablePointer lpVtbl,
                   Pointer<NativeColor> value)>()(ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDart();
     } finally {
@@ -289,7 +289,7 @@ class IDevicePickerAppearance extends IInspectable {
 
     free(valueNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 
   Color get selectedAccentColor {
@@ -308,7 +308,7 @@ class IDevicePickerAppearance extends IInspectable {
               int Function(VTablePointer lpVtbl,
                   Pointer<NativeColor> value)>()(ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDart();
     } finally {
@@ -333,6 +333,6 @@ class IDevicePickerAppearance extends IInspectable {
 
     free(valueNativeStructPtr);
 
-    if (FAILED(hr)) throw WindowsException(hr);
+    if (FAILED(hr)) throwWindowsException(hr);
   }
 }

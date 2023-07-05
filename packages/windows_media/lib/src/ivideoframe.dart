@@ -46,7 +46,7 @@ class IVideoFrame extends IInspectable implements IMediaFrame, IClosable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (value.isNull) {
@@ -75,7 +75,7 @@ class IVideoFrame extends IInspectable implements IMediaFrame, IClosable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     return IAsyncAction.fromPtr(value).toFuture();
@@ -98,7 +98,7 @@ class IVideoFrame extends IInspectable implements IMediaFrame, IClosable {
 
     if (FAILED(hr)) {
       free(value);
-      throw WindowsException(hr);
+      throwWindowsException(hr);
     }
 
     if (value.isNull) {

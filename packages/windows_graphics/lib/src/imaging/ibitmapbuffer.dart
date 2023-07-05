@@ -43,7 +43,7 @@ class IBitmapBuffer extends IInspectable implements IMemoryBuffer, IClosable {
                   int Function(VTablePointer lpVtbl, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.value;
     } finally {
@@ -68,7 +68,7 @@ class IBitmapBuffer extends IInspectable implements IMemoryBuffer, IClosable {
                       Pointer<NativeBitmapPlaneDescription> value)>()(
           ptr.ref.lpVtbl, index, value);
 
-      if (FAILED(hr)) throw WindowsException(hr);
+      if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDart();
     } finally {
