@@ -9,6 +9,15 @@
 import 'dart:ffi';
 
 /// @nodoc
+final class NativeAccessListEntry extends Struct {
+  @IntPtr()
+  external int token;
+
+  @IntPtr()
+  external int metadata;
+}
+
+/// @nodoc
 final class NativeAutomationAnnotationTypeRegistration extends Struct {
   @Int32()
   external int localId;
@@ -18,6 +27,15 @@ final class NativeAutomationAnnotationTypeRegistration extends Struct {
 final class NativeAutomationRemoteOperationOperandId extends Struct {
   @Int32()
   external int value;
+}
+
+/// @nodoc
+final class NativeBackgroundTransferFileRange extends Struct {
+  @Uint64()
+  external int offset;
+
+  @Uint64()
+  external int length;
 }
 
 /// @nodoc
@@ -152,6 +170,15 @@ final class NativeGamepadVibration extends Struct {
 }
 
 /// @nodoc
+final class NativeGpioChangeRecord extends Struct {
+  @Int64()
+  external int relativeTime;
+
+  @Int32()
+  external int edge;
+}
+
+/// @nodoc
 final class NativeMatrix3x2 extends Struct {
   @Float()
   external double m11;
@@ -224,12 +251,42 @@ final class NativeMatrix4x4 extends Struct {
 }
 
 /// @nodoc
+final class NativeMediaTimeRange extends Struct {
+  @Int64()
+  external int start;
+
+  @Int64()
+  external int end;
+}
+
+/// @nodoc
+final class NativeMseTimeRange extends Struct {
+  @Int64()
+  external int start;
+
+  @Int64()
+  external int end;
+}
+
+/// @nodoc
 final class NativeNetworkUsageStates extends Struct {
   @Int32()
   external int roaming;
 
   @Int32()
   external int shared;
+}
+
+/// @nodoc
+final class NativeNitRange extends Struct {
+  @Float()
+  external double minNits;
+
+  @Float()
+  external double maxNits;
+
+  @Float()
+  external double stepSizeNits;
 }
 
 /// @nodoc
@@ -262,6 +319,33 @@ final class NativePoint extends Struct {
 
   @Float()
   external double y;
+}
+
+/// @nodoc
+final class NativePointerDeviceUsage extends Struct {
+  @Uint32()
+  external int usagePage;
+
+  @Uint32()
+  external int usage;
+
+  @Int32()
+  external int minLogical;
+
+  @Int32()
+  external int maxLogical;
+
+  @Int32()
+  external int minPhysical;
+
+  @Int32()
+  external int maxPhysical;
+
+  @Uint32()
+  external int unit;
+
+  @Float()
+  external double physicalMultiplier;
 }
 
 /// @nodoc
@@ -304,6 +388,21 @@ final class NativeRect extends Struct {
 }
 
 /// @nodoc
+final class NativeRectInt32 extends Struct {
+  @Int32()
+  external int x;
+
+  @Int32()
+  external int y;
+
+  @Int32()
+  external int width;
+
+  @Int32()
+  external int height;
+}
+
+/// @nodoc
 final class NativeSize extends Struct {
   @Float()
   external double width;
@@ -322,12 +421,42 @@ final class NativeSizeInt32 extends Struct {
 }
 
 /// @nodoc
+final class NativeSizeUInt32 extends Struct {
+  @Uint32()
+  external int width;
+
+  @Uint32()
+  external int height;
+}
+
+/// @nodoc
 final class NativeSortEntry extends Struct {
   @IntPtr()
   external int propertyName;
 
   @Bool()
   external bool ascendingOrder;
+}
+
+/// @nodoc
+final class NativeStorePackageUpdateStatus extends Struct {
+  @IntPtr()
+  external int packageFamilyName;
+
+  @Uint64()
+  external int packageDownloadSizeInBytes;
+
+  @Uint64()
+  external int packageBytesDownloaded;
+
+  @Double()
+  external double packageDownloadProgress;
+
+  @Double()
+  external double totalDownloadProgress;
+
+  @Int32()
+  external int packageUpdateState;
 }
 
 /// @nodoc
@@ -373,4 +502,10 @@ final class NativeVector4 extends Struct {
 
   @Float()
   external double w;
+}
+
+/// @nodoc
+final class NativeWindowId extends Struct {
+  @Uint64()
+  external int value;
 }

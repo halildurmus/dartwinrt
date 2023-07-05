@@ -878,6 +878,38 @@ void main() {
       expect(projection.postambles, isEmpty);
     });
 
+    test('projects IVector<DateTime>', () {
+      final projection = MethodProjection.fromTypeAndMethodName(
+          'Windows.Devices.Printers.IIppAttributeValue', 'GetDateTimeArray');
+      expect(projection, isA<DefaultMethodProjection>());
+      expect(projection.annotations, isEmpty);
+      expect(projection.useTryFinallyBlock, isFalse);
+      expect(projection.returnType, equals('IVector<DateTime>'));
+      expect(projection.header, equals('IVector<DateTime> getDateTimeArray()'));
+      expect(projection.paramIdentifier, equals('result'));
+      expect(projection.preambles,
+          equals(['final result = calloc<COMObject>();']));
+      expect(projection.parametersPreamble, isEmpty);
+      expect(
+          projection.nativePrototype,
+          equals(
+              'HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> result)'));
+      expect(
+          projection.dartPrototype,
+          equals(
+              'int Function(VTablePointer lpVtbl, Pointer<COMObject> result)'));
+      expect(projection.identifiers, equals('ptr.ref.lpVtbl, result'));
+      expect(projection.parametersPostamble, isEmpty);
+      expect(projection.failedCheck,
+          equals(failedCheck(freeRetVal: true, identifier: 'result')));
+      expect(projection.nullCheck, isEmpty);
+      expect(projection.returnStatement, equalsIgnoringWhitespace('''
+        return IVector.fromPtr(result,
+            iterableIid: '{576a207d-977c-5b36-b54d-624ec86c53a3}');
+'''));
+      expect(projection.postambles, isEmpty);
+    });
+
     test('projects IVector<VideoStreamDescriptor?>', () {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Media.MediaProperties.IMediaEncodingProfile2',
@@ -975,6 +1007,39 @@ void main() {
         return IVectorView<int>.fromPtr(result,
             iterableIid: '{81a643fb-f51c-5565-83c4-f96425777b66}',
             intType: IntType.int32).toList();
+'''));
+      expect(projection.postambles, isEmpty);
+    });
+
+    test('projects IVectorView<MediaTimeRange>', () {
+      final projection = MethodProjection.fromTypeAndMethodName(
+          'Windows.Media.Playback.IMediaPlaybackSession2', 'GetSeekableRanges');
+      expect(projection, isA<DefaultMethodProjection>());
+      expect(projection.annotations, isEmpty);
+      expect(projection.useTryFinallyBlock, isFalse);
+      expect(projection.returnType, equals('List<MediaTimeRange>'));
+      expect(projection.header,
+          equals('List<MediaTimeRange> getSeekableRanges()'));
+      expect(projection.paramIdentifier, equals('value'));
+      expect(
+          projection.preambles, equals(['final value = calloc<COMObject>();']));
+      expect(projection.parametersPreamble, isEmpty);
+      expect(
+          projection.nativePrototype,
+          equals(
+              'HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)'));
+      expect(
+          projection.dartPrototype,
+          equals(
+              'int Function(VTablePointer lpVtbl, Pointer<COMObject> value)'));
+      expect(projection.identifiers, equals('ptr.ref.lpVtbl, value'));
+      expect(projection.parametersPostamble, isEmpty);
+      expect(projection.failedCheck,
+          equals(failedCheck(freeRetVal: true, identifier: 'value')));
+      expect(projection.nullCheck, isEmpty);
+      expect(projection.returnStatement, equalsIgnoringWhitespace('''
+        return IVectorView<MediaTimeRange>.fromPtr(value,
+            iterableIid: '{268204e2-9d52-5e7b-a54b-869c63defc8e}').toList();
 '''));
       expect(projection.postambles, isEmpty);
     });

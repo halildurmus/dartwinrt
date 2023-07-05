@@ -111,6 +111,13 @@ void main() {
             TypeArgKind.nullableInspectable);
         expect(projection.formattedTypeArgs, equals('K, V'));
       });
+
+      test('(10)', () {
+        final projection = GenericInterfaceProjection.from(
+            'Windows.Foundation.Collections.IVector`1',
+            TypeArgKind.basicGeoposition);
+        expect(projection.formattedTypeArgs, equals('BasicGeoposition'));
+      });
     });
 
     group('has correct type params', () {
@@ -195,6 +202,12 @@ void main() {
             TypeArgKind.string,
             TypeArgKind.nullableInspectable);
         expect(projection.className, equals('_IMapStringInspectable'));
+      });
+
+      test('(4)', () {
+        final projection = GenericInterfaceProjection.from(
+            'Windows.Foundation.Collections.IVector`1', TypeArgKind.sizeUint32);
+        expect(projection.className, equals('_IVectorSizeUInt32'));
       });
     });
 

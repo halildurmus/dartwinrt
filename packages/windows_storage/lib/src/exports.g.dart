@@ -4,6 +4,7 @@
 
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
+export 'accesscache/accesslistentry.dart';
 export 'applicationdata.dart';
 export 'applicationdatacontainer.dart';
 export 'applicationdatacreatedisposition.dart';
