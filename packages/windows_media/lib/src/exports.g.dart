@@ -4,10 +4,12 @@
 
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
+export 'core/msetimerange.dart';
 export 'imediaframe.dart';
 export 'ivideoframe.dart';
 export 'ivideoframe2.dart';
 export 'mediaproperties/mediapropertyset.dart';
+export 'mediatimerange.dart';
 export 'ocr/iocrengine.dart';
 export 'ocr/iocrline.dart';
 export 'ocr/iocrresult.dart';

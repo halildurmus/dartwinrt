@@ -6,8 +6,19 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
+import 'package:windows_data/windows_data.dart';
+import 'package:windows_devices/windows_devices.dart';
+import 'package:windows_graphics/windows_graphics.dart';
+import 'package:windows_media/windows_media.dart';
+import 'package:windows_networking/windows_networking.dart';
+import 'package:windows_services/windows_services.dart';
+import 'package:windows_storage/windows_storage.dart';
+import 'package:windows_ui/windows_ui.dart';
 
 import '../../internal.dart';
+import '../point.dart';
+import '../rect.dart';
+import '../size.dart';
 import '../types.dart';
 import '../winrt_enum.dart';
 import 'iiterable.dart';
@@ -45,7 +56,8 @@ abstract interface class IVector<T> extends IInspectable
   /// `'{9ac00304-83ea-5688-87b6-ae38aab65d0b}'`).
   ///
   /// [T] must be of type `bool`, `double`, `Guid`, `int`, `String`, `Uri?`,
-  /// `IInspectable?` (e.g.`StorageFile?`) or `WinRTEnum` (e.g. `DeviceClass`).
+  /// `IInspectable?` (e.g.`StorageFile?`), `WinRTEnum` (e.g. `DeviceClass`),
+  /// or `WinRTStruct` (e.g. `BasicGeoposition`).
   ///
   /// [doubleType] must be specified if [T] is `double`.
   /// ```dart
@@ -147,6 +159,76 @@ abstract interface class IVector<T> extends IInspectable
 
       return _IVectorWinRTEnum.fromPtr(ptr,
           enumCreator: enumCreator, iterableIid: iterableIid);
+    }
+
+    if (T == AccessListEntry) {
+      return _IVectorAccessListEntry.fromPtr(ptr, iterableIid: iterableIid)
+          as IVector<T>;
+    }
+    if (T == BackgroundTransferFileRange) {
+      return _IVectorBackgroundTransferFileRange.fromPtr(ptr,
+          iterableIid: iterableIid) as IVector<T>;
+    }
+    if (T == BasicGeoposition) {
+      return _IVectorBasicGeoposition.fromPtr(ptr, iterableIid: iterableIid)
+          as IVector<T>;
+    }
+    if (T == Color) {
+      return _IVectorColor.fromPtr(ptr, iterableIid: iterableIid) as IVector<T>;
+    }
+    if (T == GpioChangeRecord) {
+      return _IVectorGpioChangeRecord.fromPtr(ptr, iterableIid: iterableIid)
+          as IVector<T>;
+    }
+    if (T == MediaTimeRange) {
+      return _IVectorMediaTimeRange.fromPtr(ptr, iterableIid: iterableIid)
+          as IVector<T>;
+    }
+    if (T == MseTimeRange) {
+      return _IVectorMseTimeRange.fromPtr(ptr, iterableIid: iterableIid)
+          as IVector<T>;
+    }
+    if (T == NitRange) {
+      return _IVectorNitRange.fromPtr(ptr, iterableIid: iterableIid)
+          as IVector<T>;
+    }
+    if (T == Point) {
+      return _IVectorPoint.fromPtr(ptr, iterableIid: iterableIid) as IVector<T>;
+    }
+    if (T == PointerDeviceUsage) {
+      return _IVectorPointerDeviceUsage.fromPtr(ptr, iterableIid: iterableIid)
+          as IVector<T>;
+    }
+    if (T == Rect) {
+      return _IVectorRect.fromPtr(ptr, iterableIid: iterableIid) as IVector<T>;
+    }
+    if (T == RectInt32) {
+      return _IVectorRectInt32.fromPtr(ptr, iterableIid: iterableIid)
+          as IVector<T>;
+    }
+    if (T == Size) {
+      return _IVectorSize.fromPtr(ptr, iterableIid: iterableIid) as IVector<T>;
+    }
+    if (T == SizeUInt32) {
+      final iVectorSizeUInt32 =
+          _IVectorSizeUInt32.fromPtr(ptr, iterableIid: iterableIid);
+      return iVectorSizeUInt32 as IVector<T>;
+    }
+    if (T == SortEntry) {
+      return _IVectorSortEntry.fromPtr(ptr, iterableIid: iterableIid)
+          as IVector<T>;
+    }
+    if (T == StorePackageUpdateStatus) {
+      return _IVectorStorePackageUpdateStatus.fromPtr(ptr,
+          iterableIid: iterableIid) as IVector<T>;
+    }
+    if (T == TextSegment) {
+      return _IVectorTextSegment.fromPtr(ptr, iterableIid: iterableIid)
+          as IVector<T>;
+    }
+    if (T == WindowId) {
+      return _IVectorWindowId.fromPtr(ptr, iterableIid: iterableIid)
+          as IVector<T>;
     }
 
     throw ArgumentError.value(T, 'T', 'Unsupported type');

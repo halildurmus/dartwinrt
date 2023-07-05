@@ -596,6 +596,38 @@ void main() {
       expect(projection.postambles, isEmpty);
     });
 
+    test('projects IVector<SortOrder>', () {
+      final projection = GetterProjection.fromTypeAndMethodName(
+          'Windows.Storage.Search.IQueryOptions', 'get_SortOrder');
+      expect(projection, isA<DefaultGetterProjection>());
+      expect(projection.annotations, isEmpty);
+      expect(projection.useTryFinallyBlock, isFalse);
+      expect(projection.returnType, equals('IVector<SortEntry>'));
+      expect(projection.header, equals('IVector<SortEntry> get sortOrder'));
+      expect(projection.paramIdentifier, equals('value'));
+      expect(
+          projection.preambles, equals(['final value = calloc<COMObject>();']));
+      expect(projection.parametersPreamble, isEmpty);
+      expect(
+          projection.nativePrototype,
+          equals(
+              'HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)'));
+      expect(
+          projection.dartPrototype,
+          equals(
+              'int Function(VTablePointer lpVtbl, Pointer<COMObject> value)'));
+      expect(projection.identifiers, equals('ptr.ref.lpVtbl, value'));
+      expect(projection.parametersPostamble, isEmpty);
+      expect(projection.failedCheck,
+          equals(failedCheck(freeRetVal: true, identifier: 'value')));
+      expect(projection.nullCheck, isEmpty);
+      expect(projection.returnStatement, equalsIgnoringWhitespace('''
+        return IVector.fromPtr(value,
+            iterableIid: '{35aff6f9-ef75-5280-bb84-a2bf8317cf35}');
+'''));
+      expect(projection.postambles, isEmpty);
+    });
+
     test('projects IVector<String>', () {
       final projection = GetterProjection.fromTypeAndMethodName(
           'Windows.Storage.Pickers.IFileOpenPicker', 'get_FileTypeFilter');
@@ -656,6 +688,38 @@ void main() {
       expect(projection.returnStatement, equalsIgnoringWhitespace('''
         return IVector.fromPtr(value,
             iterableIid: '{b0d63b78-78ad-5e31-b6d8-e32a0e16c447}');
+'''));
+      expect(projection.postambles, isEmpty);
+    });
+
+    test('projects IVectorView<BasicGeoposition>', () {
+      final projection = MethodProjection.fromTypeAndMethodName(
+          'Windows.Devices.Geolocation.IGeopath', 'get_Positions');
+      expect(projection, isA<DefaultGetterProjection>());
+      expect(projection.annotations, isEmpty);
+      expect(projection.useTryFinallyBlock, isFalse);
+      expect(projection.returnType, equals('List<BasicGeoposition>'));
+      expect(projection.header, equals('List<BasicGeoposition> get positions'));
+      expect(projection.paramIdentifier, equals('value'));
+      expect(
+          projection.preambles, equals(['final value = calloc<COMObject>();']));
+      expect(projection.parametersPreamble, isEmpty);
+      expect(
+          projection.nativePrototype,
+          equals(
+              'HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)'));
+      expect(
+          projection.dartPrototype,
+          equals(
+              'int Function(VTablePointer lpVtbl, Pointer<COMObject> value)'));
+      expect(projection.identifiers, equals('ptr.ref.lpVtbl, value'));
+      expect(projection.parametersPostamble, isEmpty);
+      expect(projection.failedCheck,
+          equals(failedCheck(freeRetVal: true, identifier: 'value')));
+      expect(projection.nullCheck, isEmpty);
+      expect(projection.returnStatement, equalsIgnoringWhitespace('''
+        return IVectorView<BasicGeoposition>.fromPtr(value,
+            iterableIid: '{922399a8-0093-5009-a8d2-f87b0eae75f5}').toList();
 '''));
       expect(projection.postambles, isEmpty);
     });

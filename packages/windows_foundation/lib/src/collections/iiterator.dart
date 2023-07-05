@@ -6,8 +6,19 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
+import 'package:windows_data/windows_data.dart';
+import 'package:windows_devices/windows_devices.dart';
+import 'package:windows_graphics/windows_graphics.dart';
+import 'package:windows_media/windows_media.dart';
+import 'package:windows_networking/windows_networking.dart';
+import 'package:windows_services/windows_services.dart';
+import 'package:windows_storage/windows_storage.dart';
+import 'package:windows_ui/windows_ui.dart';
 
 import '../../internal.dart';
+import '../point.dart';
+import '../rect.dart';
+import '../size.dart';
 import '../types.dart';
 
 part 'iiterator_part.dart';
@@ -19,8 +30,9 @@ abstract interface class IIterator<T> extends IInspectable {
 
   /// Creates an instance of [IIterator] from the given [ptr].
   ///
-  /// [T] must be of type `bool`, `double` `Guid`, `int`, `String`, `Uri?`,
-  /// `IInspectable?` (e.g.`StorageFile?`) or `WinRTEnum` (e.g. `DeviceClass`).
+  /// [T] must be of type `bool`, `double`, `Guid`, `int`, `String`, `Uri?`,
+  /// `IInspectable?` (e.g.`StorageFile?`), `WinRTEnum` (e.g. `DeviceClass`),
+  /// or `WinRTStruct` (e.g. `BasicGeoposition`).
   ///
   /// [doubleType] must be specified if [T] is `double`.
   /// ```dart
@@ -94,6 +106,45 @@ abstract interface class IIterator<T> extends IInspectable {
 
       return _IIteratorWinRTEnum.fromPtr(ptr, enumCreator: enumCreator);
     }
+
+    if (T == AccessListEntry) {
+      return _IIteratorAccessListEntry.fromPtr(ptr) as IIterator<T>;
+    }
+    if (T == BackgroundTransferFileRange) {
+      return _IIteratorBackgroundTransferFileRange.fromPtr(ptr) as IIterator<T>;
+    }
+    if (T == BasicGeoposition) {
+      return _IIteratorBasicGeoposition.fromPtr(ptr) as IIterator<T>;
+    }
+    if (T == Color) return _IIteratorColor.fromPtr(ptr) as IIterator<T>;
+    if (T == GpioChangeRecord) {
+      return _IIteratorGpioChangeRecord.fromPtr(ptr) as IIterator<T>;
+    }
+    if (T == MediaTimeRange) {
+      return _IIteratorMediaTimeRange.fromPtr(ptr) as IIterator<T>;
+    }
+    if (T == MseTimeRange) {
+      return _IIteratorMseTimeRange.fromPtr(ptr) as IIterator<T>;
+    }
+    if (T == NitRange) return _IIteratorNitRange.fromPtr(ptr) as IIterator<T>;
+    if (T == Point) return _IIteratorPoint.fromPtr(ptr) as IIterator<T>;
+    if (T == PointerDeviceUsage) {
+      return _IIteratorPointerDeviceUsage.fromPtr(ptr) as IIterator<T>;
+    }
+    if (T == Rect) return _IIteratorRect.fromPtr(ptr) as IIterator<T>;
+    if (T == RectInt32) return _IIteratorRectInt32.fromPtr(ptr) as IIterator<T>;
+    if (T == Size) return _IIteratorSize.fromPtr(ptr) as IIterator<T>;
+    if (T == SizeUInt32) {
+      return _IIteratorSizeUInt32.fromPtr(ptr) as IIterator<T>;
+    }
+    if (T == SortEntry) return _IIteratorSortEntry.fromPtr(ptr) as IIterator<T>;
+    if (T == StorePackageUpdateStatus) {
+      return _IIteratorStorePackageUpdateStatus.fromPtr(ptr) as IIterator<T>;
+    }
+    if (T == TextSegment) {
+      return _IIteratorTextSegment.fromPtr(ptr) as IIterator<T>;
+    }
+    if (T == WindowId) return _IIteratorWindowId.fromPtr(ptr) as IIterator<T>;
 
     throw ArgumentError.value(T, 'T', 'Unsupported type');
   }

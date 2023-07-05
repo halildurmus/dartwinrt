@@ -4,6 +4,7 @@
 
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
+export 'backgroundtransfer/backgroundtransferfilerange.dart';
 export 'connectivity/attributednetworkusage.dart';
 export 'connectivity/connectioncost.dart';
 export 'connectivity/connectionprofile.dart';
