@@ -131,7 +131,7 @@ class IUser extends IInspectable {
     return asyncOperation.toFuture(asyncOperation.getResults);
   }
 
-  Future<IPropertySet> getPropertiesAsync(IVectorView<String> values) {
+  Future<IPropertySet> getPropertiesAsync(IVectorView<String>? values) {
     final operation = calloc<COMObject>();
 
     final hr =
@@ -148,7 +148,7 @@ class IUser extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer values,
                         Pointer<COMObject> operation)>()(
-            ptr.ref.lpVtbl, values.ptr.ref.lpVtbl, operation);
+            ptr.ref.lpVtbl, values?.ptr.ref.lpVtbl ?? nullptr, operation);
 
     if (FAILED(hr)) {
       free(operation);

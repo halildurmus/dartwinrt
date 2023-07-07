@@ -27,7 +27,7 @@ class ICalendarFactory2 extends IInspectable {
   factory ICalendarFactory2.from(IInspectable interface) =>
       ICalendarFactory2.fromPtr(interface.toInterface(IID_ICalendarFactory2));
 
-  Calendar createCalendarWithTimeZone(IIterable<String> languages,
+  Calendar createCalendarWithTimeZone(IIterable<String>? languages,
       String calendar, String clock, String timeZoneId) {
     final result = calloc<COMObject>();
     final calendarHString = calendar.toHString();
@@ -56,11 +56,13 @@ class ICalendarFactory2 extends IInspectable {
                     int timeZoneId,
                     Pointer<COMObject> result)>()(
         ptr.ref.lpVtbl,
-        IInspectable(
-                languages.toInterface('{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'))
-            .ptr
-            .ref
-            .lpVtbl,
+        languages == null
+            ? nullptr
+            : IInspectable(languages
+                    .toInterface('{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'))
+                .ptr
+                .ref
+                .lpVtbl,
         calendarHString,
         clockHString,
         timeZoneIdHString,

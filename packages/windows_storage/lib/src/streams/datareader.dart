@@ -31,7 +31,7 @@ class DataReader extends IInspectable implements IDataReader, IClosable {
 
   static const _className = 'Windows.Storage.Streams.DataReader';
 
-  factory DataReader.createDataReader(IInputStream inputStream) =>
+  factory DataReader.createDataReader(IInputStream? inputStream) =>
       createActivationFactory(
               IDataReaderFactory.fromPtr, _className, IID_IDataReaderFactory)
           .createDataReader(inputStream);

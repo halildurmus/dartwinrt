@@ -31,7 +31,7 @@ class IQueryOptionsFactory extends IInspectable {
           interface.toInterface(IID_IQueryOptionsFactory));
 
   QueryOptions createCommonFileQuery(
-      CommonFileQuery query, IIterable<String> fileTypeFilter) {
+      CommonFileQuery query, IIterable<String>? fileTypeFilter) {
     final queryOptions = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -53,11 +53,13 @@ class IQueryOptionsFactory extends IInspectable {
                     Pointer<COMObject> queryOptions)>()(
         ptr.ref.lpVtbl,
         query.value,
-        IInspectable(fileTypeFilter
-                .toInterface('{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'))
-            .ptr
-            .ref
-            .lpVtbl,
+        fileTypeFilter == null
+            ? nullptr
+            : IInspectable(fileTypeFilter
+                    .toInterface('{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'))
+                .ptr
+                .ref
+                .lpVtbl,
         queryOptions);
 
     if (FAILED(hr)) {

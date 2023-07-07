@@ -81,7 +81,7 @@ class User extends IInspectable implements IUser, IUser2 {
       _iUser.getPropertyAsync(value);
 
   @override
-  Future<IPropertySet> getPropertiesAsync(IVectorView<String> values) =>
+  Future<IPropertySet> getPropertiesAsync(IVectorView<String>? values) =>
       _iUser.getPropertiesAsync(values);
 
   @override

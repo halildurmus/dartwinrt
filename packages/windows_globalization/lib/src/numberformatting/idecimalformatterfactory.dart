@@ -29,7 +29,7 @@ class IDecimalFormatterFactory extends IInspectable {
           interface.toInterface(IID_IDecimalFormatterFactory));
 
   DecimalFormatter createDecimalFormatter(
-      IIterable<String> languages, String geographicRegion) {
+      IIterable<String>? languages, String geographicRegion) {
     final result = calloc<COMObject>();
     final geographicRegionHString = geographicRegion.toHString();
 
@@ -48,11 +48,13 @@ class IDecimalFormatterFactory extends IInspectable {
                 int Function(VTablePointer lpVtbl, VTablePointer languages,
                     int geographicRegion, Pointer<COMObject> result)>()(
         ptr.ref.lpVtbl,
-        IInspectable(
-                languages.toInterface('{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'))
-            .ptr
-            .ref
-            .lpVtbl,
+        languages == null
+            ? nullptr
+            : IInspectable(languages
+                    .toInterface('{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'))
+                .ptr
+                .ref
+                .lpVtbl,
         geographicRegionHString,
         result);
 

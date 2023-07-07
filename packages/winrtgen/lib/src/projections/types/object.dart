@@ -19,11 +19,23 @@ final class ObjectParameterProjection extends ParameterProjection {
 
   @override
   bool get isNullable {
-    if (isObjectType &&
-        !isInParam &&
-        !isOutParam &&
-        isMethodFromPropertyValueStatics) {
-      return false;
+    // TODO(halildurmus): Remove this
+    if (typeProjection.isReferenceType) return false;
+
+    if (isReturnParam) {
+      // Constructors cannot return null.
+      if (method.parent.isFactoryInterface) return false;
+
+      // Methods that return collection interfaces cannot return null.
+      if (typeProjection.typeIdentifier.isCollectionObject) return false;
+
+      // IIterable.First() cannot return null.
+      if (method.name == 'First' && method.parent.isCollectionObject) {
+        return false;
+      }
+
+      //
+      if (isObjectType && isMethodFromPropertyValueStatics) return false;
     }
 
     // TODO(halildurmus): Remove this once methods that return
@@ -31,23 +43,7 @@ final class ObjectParameterProjection extends ParameterProjection {
     // supported.
     if (shortName.startsWith('IAsync')) return false;
 
-    // TODO(halildurmus): Remove this
-    if (typeProjection.isReferenceType) return false;
-
-    // Parameters of factory interface methods (constructors) cannot be null.
-    if (method.parent.isFactoryInterface) return false;
-
-    // Collection interface parameters cannot be null.
-    if (typeProjection.typeIdentifier.type?.isCollectionObject ?? false) {
-      return false;
-    }
-
-    // IIterable.First() cannot return null.
-    if (method.name == 'First' && method.parent.isCollectionObject) {
-      return false;
-    }
-
-    // Otherwise, the parameter must be nullable.
+    // Treat everything else as nullable.
     return true;
   }
 
@@ -68,7 +64,7 @@ final class ObjectParameterProjection extends ParameterProjection {
     // supported.
     if (shortName.startsWith('IAsync')) return 'Pointer<COMObject>';
 
-    return '$shortName${isNullable ? '?' : ''}';
+    return isNullable ? nullable(shortName) : shortName;
   }
 
   @override

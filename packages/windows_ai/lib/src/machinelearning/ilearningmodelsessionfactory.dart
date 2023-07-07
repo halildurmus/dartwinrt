@@ -31,23 +31,21 @@ class ILearningModelSessionFactory extends IInspectable {
       ILearningModelSessionFactory.fromPtr(
           interface.toInterface(IID_ILearningModelSessionFactory));
 
-  LearningModelSession createFromModel(LearningModel model) {
+  LearningModelSession createFromModel(LearningModel? model) {
     final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, VTablePointer model,
-                        Pointer<COMObject> value)>>>()
-        .value
-        .asFunction<
-            int Function(
-                VTablePointer lpVtbl,
-                VTablePointer model,
-                Pointer<COMObject>
-                    value)>()(ptr.ref.lpVtbl, model.ptr.ref.lpVtbl, value);
+            .elementAt(6)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(VTablePointer lpVtbl, VTablePointer model,
+                            Pointer<COMObject> value)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, VTablePointer model,
+                    Pointer<COMObject> value)>()(
+        ptr.ref.lpVtbl, model == null ? nullptr : model.ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -58,7 +56,7 @@ class ILearningModelSessionFactory extends IInspectable {
   }
 
   LearningModelSession createFromModelOnDevice(
-      LearningModel model, LearningModelDevice deviceToRunOn) {
+      LearningModel? model, LearningModelDevice? deviceToRunOn) {
     final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -76,8 +74,8 @@ class ILearningModelSessionFactory extends IInspectable {
                 int Function(VTablePointer lpVtbl, VTablePointer model,
                     VTablePointer deviceToRunOn, Pointer<COMObject> value)>()(
         ptr.ref.lpVtbl,
-        model.ptr.ref.lpVtbl,
-        deviceToRunOn.ptr.ref.lpVtbl,
+        model == null ? nullptr : model.ptr.ref.lpVtbl,
+        deviceToRunOn == null ? nullptr : deviceToRunOn.ptr.ref.lpVtbl,
         value);
 
     if (FAILED(hr)) {

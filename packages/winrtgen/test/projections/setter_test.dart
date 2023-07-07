@@ -360,7 +360,7 @@ void main() {
       expect(projection.useTryFinallyBlock, isFalse);
       expect(projection.returnType, isEmpty);
       expect(projection.header,
-          equals('set dnsServers(IVector<HostName?> value)'));
+          equals('set dnsServers(IVector<HostName?>? value)'));
       expect(projection.paramIdentifier, isEmpty);
       expect(projection.preambles, isEmpty);
       expect(projection.parametersPreamble, isEmpty);
@@ -371,7 +371,7 @@ void main() {
       expect(projection.dartPrototype,
           equals('int Function(VTablePointer lpVtbl, VTablePointer value)'));
       expect(projection.identifiers,
-          equals('ptr.ref.lpVtbl, value.ptr.ref.lpVtbl'));
+          equals('ptr.ref.lpVtbl, value?.ptr.ref.lpVtbl ?? nullptr'));
       expect(projection.parametersPostamble, isEmpty);
       expect(projection.failedCheck, equals(failedCheck()));
       expect(projection.nullCheck, isEmpty);
@@ -386,7 +386,7 @@ void main() {
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
       expect(projection.returnType, isEmpty);
-      expect(projection.header, equals('set items(IVector<Object?> value)'));
+      expect(projection.header, equals('set items(IVector<Object?>? value)'));
       expect(projection.paramIdentifier, isEmpty);
       expect(projection.preambles, isEmpty);
       expect(projection.parametersPreamble, isEmpty);
@@ -397,7 +397,7 @@ void main() {
       expect(projection.dartPrototype,
           equals('int Function(VTablePointer lpVtbl, VTablePointer value)'));
       expect(projection.identifiers,
-          equals('ptr.ref.lpVtbl, value.ptr.ref.lpVtbl'));
+          equals('ptr.ref.lpVtbl, value?.ptr.ref.lpVtbl ?? nullptr'));
       expect(projection.parametersPostamble, isEmpty);
       expect(projection.failedCheck, equals(failedCheck()));
       expect(projection.nullCheck, isEmpty);
@@ -413,7 +413,7 @@ void main() {
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
       expect(projection.returnType, isEmpty);
-      expect(projection.header, equals('set ratings(IVector<String> value)'));
+      expect(projection.header, equals('set ratings(IVector<String>? value)'));
       expect(projection.paramIdentifier, isEmpty);
       expect(projection.preambles, isEmpty);
       expect(projection.parametersPreamble, isEmpty);
@@ -424,7 +424,7 @@ void main() {
       expect(projection.dartPrototype,
           equals('int Function(VTablePointer lpVtbl, VTablePointer value)'));
       expect(projection.identifiers,
-          equals('ptr.ref.lpVtbl, value.ptr.ref.lpVtbl'));
+          equals('ptr.ref.lpVtbl, value?.ptr.ref.lpVtbl ?? nullptr'));
       expect(projection.parametersPostamble, isEmpty);
       expect(projection.failedCheck, equals(failedCheck()));
       expect(projection.nullCheck, isEmpty);
@@ -441,7 +441,7 @@ void main() {
       expect(projection.useTryFinallyBlock, isFalse);
       expect(projection.returnType, isEmpty);
       expect(projection.header,
-          equals('set displayItems(IVectorView<PaymentItem?> value)'));
+          equals('set displayItems(IVectorView<PaymentItem?>? value)'));
       expect(projection.paramIdentifier, isEmpty);
       expect(projection.preambles, isEmpty);
       expect(projection.parametersPreamble, isEmpty);
@@ -452,7 +452,7 @@ void main() {
       expect(projection.dartPrototype,
           equals('int Function(VTablePointer lpVtbl, VTablePointer value)'));
       expect(projection.identifiers,
-          equals('ptr.ref.lpVtbl, value.ptr.ref.lpVtbl'));
+          equals('ptr.ref.lpVtbl, value?.ptr.ref.lpVtbl ?? nullptr'));
       expect(projection.parametersPostamble, isEmpty);
       expect(projection.failedCheck, equals(failedCheck()));
       expect(projection.nullCheck, isEmpty);
@@ -469,7 +469,7 @@ void main() {
       expect(projection.useTryFinallyBlock, isFalse);
       expect(projection.returnType, isEmpty);
       expect(projection.header,
-          equals('set languages(IVectorView<String> languages)'));
+          equals('set languages(IVectorView<String>? languages)'));
       expect(projection.paramIdentifier, isEmpty);
       expect(projection.preambles, isEmpty);
       expect(projection.parametersPreamble, isEmpty);
@@ -482,7 +482,7 @@ void main() {
           equals(
               'int Function(VTablePointer lpVtbl, VTablePointer languages)'));
       expect(projection.identifiers,
-          equals('ptr.ref.lpVtbl, languages.ptr.ref.lpVtbl'));
+          equals('ptr.ref.lpVtbl, languages?.ptr.ref.lpVtbl ?? nullptr'));
       expect(projection.parametersPostamble, isEmpty);
       expect(projection.failedCheck, equals(failedCheck()));
       expect(projection.nullCheck, isEmpty);

@@ -30,9 +30,9 @@ class IEndpointPairFactory extends IInspectable {
           interface.toInterface(IID_IEndpointPairFactory));
 
   EndpointPair createEndpointPair(
-      HostName localHostName,
+      HostName? localHostName,
       String localServiceName,
-      HostName remoteHostName,
+      HostName? remoteHostName,
       String remoteServiceName) {
     final value = calloc<COMObject>();
     final localServiceNameHString = localServiceName.toHString();
@@ -60,9 +60,9 @@ class IEndpointPairFactory extends IInspectable {
                     int remoteServiceName,
                     Pointer<COMObject> value)>()(
         ptr.ref.lpVtbl,
-        localHostName.ptr.ref.lpVtbl,
+        localHostName == null ? nullptr : localHostName.ptr.ref.lpVtbl,
         localServiceNameHString,
-        remoteHostName.ptr.ref.lpVtbl,
+        remoteHostName == null ? nullptr : remoteHostName.ptr.ref.lpVtbl,
         remoteServiceNameHString,
         value);
 

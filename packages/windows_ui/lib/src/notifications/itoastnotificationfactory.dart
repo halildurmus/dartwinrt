@@ -29,7 +29,7 @@ class IToastNotificationFactory extends IInspectable {
       IToastNotificationFactory.fromPtr(
           interface.toInterface(IID_IToastNotificationFactory));
 
-  ToastNotification createToastNotification(XmlDocument content) {
+  ToastNotification createToastNotification(XmlDocument? content) {
     final value = calloc<COMObject>();
 
     final hr =
@@ -45,8 +45,8 @@ class IToastNotificationFactory extends IInspectable {
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer content,
-                        Pointer<COMObject> value)>()(
-            ptr.ref.lpVtbl, content.ptr.ref.lpVtbl, value);
+                        Pointer<COMObject> value)>()(ptr.ref.lpVtbl,
+            content == null ? nullptr : content.ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);

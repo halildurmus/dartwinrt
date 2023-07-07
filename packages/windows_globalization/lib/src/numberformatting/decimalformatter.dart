@@ -40,7 +40,7 @@ class DecimalFormatter extends IInspectable
       'Windows.Globalization.NumberFormatting.DecimalFormatter';
 
   factory DecimalFormatter.createDecimalFormatter(
-          IIterable<String> languages, String geographicRegion) =>
+          IIterable<String>? languages, String geographicRegion) =>
       createActivationFactory(IDecimalFormatterFactory.fromPtr, _className,
               IID_IDecimalFormatterFactory)
           .createDecimalFormatter(languages, geographicRegion);

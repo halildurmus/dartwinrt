@@ -29,7 +29,7 @@ class IWebAccountFactory extends IInspectable {
   factory IWebAccountFactory.from(IInspectable interface) =>
       IWebAccountFactory.fromPtr(interface.toInterface(IID_IWebAccountFactory));
 
-  WebAccount createWebAccount(WebAccountProvider webAccountProvider,
+  WebAccount createWebAccount(WebAccountProvider? webAccountProvider,
       String userName, WebAccountState state) {
     final instance = calloc<COMObject>();
     final userNameHString = userName.toHString();
@@ -54,7 +54,9 @@ class IWebAccountFactory extends IInspectable {
                     int state,
                     Pointer<COMObject> instance)>()(
         ptr.ref.lpVtbl,
-        webAccountProvider.ptr.ref.lpVtbl,
+        webAccountProvider == null
+            ? nullptr
+            : webAccountProvider.ptr.ref.lpVtbl,
         userNameHString,
         state.value,
         instance);

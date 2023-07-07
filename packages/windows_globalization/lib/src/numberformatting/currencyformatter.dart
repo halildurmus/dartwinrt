@@ -51,7 +51,7 @@ class CurrencyFormatter extends IInspectable
 
   factory CurrencyFormatter.createCurrencyFormatterCodeContext(
           String currencyCode,
-          IIterable<String> languages,
+          IIterable<String>? languages,
           String geographicRegion) =>
       createActivationFactory(ICurrencyFormatterFactory.fromPtr, _className,
               IID_ICurrencyFormatterFactory)

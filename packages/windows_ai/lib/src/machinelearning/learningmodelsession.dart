@@ -31,21 +31,21 @@ class LearningModelSession extends IInspectable
 
   static const _className = 'Windows.AI.MachineLearning.LearningModelSession';
 
-  factory LearningModelSession.createFromModel(LearningModel model) =>
+  factory LearningModelSession.createFromModel(LearningModel? model) =>
       createActivationFactory(ILearningModelSessionFactory.fromPtr, _className,
               IID_ILearningModelSessionFactory)
           .createFromModel(model);
 
   factory LearningModelSession.createFromModelOnDevice(
-          LearningModel model, LearningModelDevice deviceToRunOn) =>
+          LearningModel? model, LearningModelDevice? deviceToRunOn) =>
       createActivationFactory(ILearningModelSessionFactory.fromPtr, _className,
               IID_ILearningModelSessionFactory)
           .createFromModelOnDevice(model, deviceToRunOn);
 
   factory LearningModelSession.createFromModelOnDeviceWithSessionOptions(
-          LearningModel model,
-          LearningModelDevice deviceToRunOn,
-          LearningModelSessionOptions learningModelSessionOptions) =>
+          LearningModel? model,
+          LearningModelDevice? deviceToRunOn,
+          LearningModelSessionOptions? learningModelSessionOptions) =>
       createActivationFactory(ILearningModelSessionFactory2.fromPtr, _className,
               IID_ILearningModelSessionFactory2)
           .createFromModelOnDeviceWithSessionOptions(
@@ -65,22 +65,22 @@ class LearningModelSession extends IInspectable
 
   @override
   Future<LearningModelEvaluationResult?> evaluateAsync(
-          LearningModelBinding bindings, String correlationId) =>
+          LearningModelBinding? bindings, String correlationId) =>
       _iLearningModelSession.evaluateAsync(bindings, correlationId);
 
   @override
   Future<LearningModelEvaluationResult?> evaluateFeaturesAsync(
-          IMap<String, Object?> features, String correlationId) =>
+          IMap<String, Object?>? features, String correlationId) =>
       _iLearningModelSession.evaluateFeaturesAsync(features, correlationId);
 
   @override
   LearningModelEvaluationResult? evaluate(
-          LearningModelBinding bindings, String correlationId) =>
+          LearningModelBinding? bindings, String correlationId) =>
       _iLearningModelSession.evaluate(bindings, correlationId);
 
   @override
   LearningModelEvaluationResult? evaluateFeatures(
-          IMap<String, Object?> features, String correlationId) =>
+          IMap<String, Object?>? features, String correlationId) =>
       _iLearningModelSession.evaluateFeatures(features, correlationId);
 
   late final _iClosable = IClosable.from(this);

@@ -76,7 +76,7 @@ class IJsonObjectWithDefaultValues extends IInspectable
     return JsonValue.fromPtr(returnValue);
   }
 
-  JsonObject getNamedObjectOrDefault(String name, JsonObject defaultValue) {
+  JsonObject getNamedObjectOrDefault(String name, JsonObject? defaultValue) {
     final returnValue = calloc<COMObject>();
     final nameHString = name.toHString();
 
@@ -97,7 +97,10 @@ class IJsonObjectWithDefaultValues extends IInspectable
                     int name,
                     VTablePointer defaultValue,
                     Pointer<COMObject> returnValue)>()(
-        ptr.ref.lpVtbl, nameHString, defaultValue.ptr.ref.lpVtbl, returnValue);
+        ptr.ref.lpVtbl,
+        nameHString,
+        defaultValue == null ? nullptr : defaultValue.ptr.ref.lpVtbl,
+        returnValue);
 
     WindowsDeleteString(nameHString);
 
@@ -145,7 +148,7 @@ class IJsonObjectWithDefaultValues extends IInspectable
     }
   }
 
-  JsonArray getNamedArrayOrDefault(String name, JsonArray defaultValue) {
+  JsonArray getNamedArrayOrDefault(String name, JsonArray? defaultValue) {
     final returnValue = calloc<COMObject>();
     final nameHString = name.toHString();
 
@@ -166,7 +169,10 @@ class IJsonObjectWithDefaultValues extends IInspectable
                     int name,
                     VTablePointer defaultValue,
                     Pointer<COMObject> returnValue)>()(
-        ptr.ref.lpVtbl, nameHString, defaultValue.ptr.ref.lpVtbl, returnValue);
+        ptr.ref.lpVtbl,
+        nameHString,
+        defaultValue == null ? nullptr : defaultValue.ptr.ref.lpVtbl,
+        returnValue);
 
     WindowsDeleteString(nameHString);
 

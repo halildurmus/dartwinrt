@@ -204,7 +204,7 @@ class ILauncherStatics4 extends IInspectable {
   }
 
   Future<LaunchUriStatus> launchUriWithDataForUserAsync(
-      User? user, Uri? uri, LauncherOptions? options, ValueSet inputData) {
+      User? user, Uri? uri, LauncherOptions? options, ValueSet? inputData) {
     final operation = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -232,7 +232,7 @@ class ILauncherStatics4 extends IInspectable {
         user == null ? nullptr : user.ptr.ref.lpVtbl,
         uri?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr,
         options == null ? nullptr : options.ptr.ref.lpVtbl,
-        inputData.ptr.ref.lpVtbl,
+        inputData == null ? nullptr : inputData.ptr.ref.lpVtbl,
         operation);
 
     if (FAILED(hr)) {
@@ -285,7 +285,7 @@ class ILauncherStatics4 extends IInspectable {
   }
 
   Future<LaunchUriResult?> launchUriForResultsWithDataForUserAsync(
-      User? user, Uri? uri, LauncherOptions? options, ValueSet inputData) {
+      User? user, Uri? uri, LauncherOptions? options, ValueSet? inputData) {
     final operation = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -313,7 +313,7 @@ class ILauncherStatics4 extends IInspectable {
         user == null ? nullptr : user.ptr.ref.lpVtbl,
         uri?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr,
         options == null ? nullptr : options.ptr.ref.lpVtbl,
-        inputData.ptr.ref.lpVtbl,
+        inputData == null ? nullptr : inputData.ptr.ref.lpVtbl,
         operation);
 
     if (FAILED(hr)) {

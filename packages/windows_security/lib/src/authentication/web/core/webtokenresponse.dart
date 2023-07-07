@@ -35,13 +35,13 @@ class WebTokenResponse extends IInspectable implements IWebTokenResponse {
           .createWithToken(token);
 
   factory WebTokenResponse.createWithTokenAndAccount(
-          String token, WebAccount webAccount) =>
+          String token, WebAccount? webAccount) =>
       createActivationFactory(IWebTokenResponseFactory.fromPtr, _className,
               IID_IWebTokenResponseFactory)
           .createWithTokenAndAccount(token, webAccount);
 
   factory WebTokenResponse.createWithTokenAccountAndError(
-          String token, WebAccount webAccount, WebProviderError error) =>
+          String token, WebAccount? webAccount, WebProviderError? error) =>
       createActivationFactory(IWebTokenResponseFactory.fromPtr, _className,
               IID_IWebTokenResponseFactory)
           .createWithTokenAccountAndError(token, webAccount, error);

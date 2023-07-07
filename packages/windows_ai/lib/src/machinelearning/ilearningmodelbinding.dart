@@ -49,7 +49,7 @@ class ILearningModelBinding extends IInspectable {
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
-  void bindWithProperties(String name, Object? value, IPropertySet props) {
+  void bindWithProperties(String name, Object? value, IPropertySet? props) {
     final nameHString = name.toHString();
 
     final hr = ptr.ref.vtable
@@ -66,7 +66,7 @@ class ILearningModelBinding extends IInspectable {
         ptr.ref.lpVtbl,
         nameHString,
         value?.intoBox().ptr.ref.lpVtbl ?? nullptr,
-        props.ptr.ref.lpVtbl);
+        props == null ? nullptr : props.ptr.ref.lpVtbl);
 
     WindowsDeleteString(nameHString);
 

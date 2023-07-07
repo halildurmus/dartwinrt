@@ -58,7 +58,7 @@ class IWebTokenResponseFactory extends IInspectable {
   }
 
   WebTokenResponse createWithTokenAndAccount(
-      String token, WebAccount webAccount) {
+      String token, WebAccount? webAccount) {
     final webTokenResponse = calloc<COMObject>();
     final tokenHString = token.toHString();
 
@@ -78,8 +78,11 @@ class IWebTokenResponseFactory extends IInspectable {
                     VTablePointer lpVtbl,
                     int token,
                     VTablePointer webAccount,
-                    Pointer<COMObject> webTokenResponse)>()(ptr.ref.lpVtbl,
-        tokenHString, webAccount.ptr.ref.lpVtbl, webTokenResponse);
+                    Pointer<COMObject> webTokenResponse)>()(
+        ptr.ref.lpVtbl,
+        tokenHString,
+        webAccount == null ? nullptr : webAccount.ptr.ref.lpVtbl,
+        webTokenResponse);
 
     WindowsDeleteString(tokenHString);
 
@@ -92,7 +95,7 @@ class IWebTokenResponseFactory extends IInspectable {
   }
 
   WebTokenResponse createWithTokenAccountAndError(
-      String token, WebAccount webAccount, WebProviderError error) {
+      String token, WebAccount? webAccount, WebProviderError? error) {
     final webTokenResponse = calloc<COMObject>();
     final tokenHString = token.toHString();
 
@@ -117,8 +120,8 @@ class IWebTokenResponseFactory extends IInspectable {
                     Pointer<COMObject> webTokenResponse)>()(
         ptr.ref.lpVtbl,
         tokenHString,
-        webAccount.ptr.ref.lpVtbl,
-        error.ptr.ref.lpVtbl,
+        webAccount == null ? nullptr : webAccount.ptr.ref.lpVtbl,
+        error == null ? nullptr : error.ptr.ref.lpVtbl,
         webTokenResponse);
 
     WindowsDeleteString(tokenHString);

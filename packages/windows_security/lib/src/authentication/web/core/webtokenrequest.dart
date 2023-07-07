@@ -32,13 +32,13 @@ class WebTokenRequest extends IInspectable
       'Windows.Security.Authentication.Web.Core.WebTokenRequest';
 
   factory WebTokenRequest.create(
-          WebAccountProvider provider, String scope, String clientId) =>
+          WebAccountProvider? provider, String scope, String clientId) =>
       createActivationFactory(IWebTokenRequestFactory.fromPtr, _className,
               IID_IWebTokenRequestFactory)
           .create(provider, scope, clientId);
 
   factory WebTokenRequest.createWithPromptType(
-          WebAccountProvider provider,
+          WebAccountProvider? provider,
           String scope,
           String clientId,
           WebTokenRequestPromptType promptType) =>
@@ -46,13 +46,13 @@ class WebTokenRequest extends IInspectable
               IID_IWebTokenRequestFactory)
           .createWithPromptType(provider, scope, clientId, promptType);
 
-  factory WebTokenRequest.createWithProvider(WebAccountProvider provider) =>
+  factory WebTokenRequest.createWithProvider(WebAccountProvider? provider) =>
       createActivationFactory(IWebTokenRequestFactory.fromPtr, _className,
               IID_IWebTokenRequestFactory)
           .createWithProvider(provider);
 
   factory WebTokenRequest.createWithScope(
-          WebAccountProvider provider, String scope) =>
+          WebAccountProvider? provider, String scope) =>
       createActivationFactory(IWebTokenRequestFactory.fromPtr, _className,
               IID_IWebTokenRequestFactory)
           .createWithScope(provider, scope);

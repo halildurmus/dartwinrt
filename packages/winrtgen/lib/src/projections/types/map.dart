@@ -65,15 +65,21 @@ final class MapParameterProjection extends ParameterProjection {
   }
 
   @override
-  String get type => 'IMap<$mapTypeArgs>';
+  bool get isNullable {
+    if (isReturnParam) return false;
+    // TODO(halildurmus): Remove this
+    if (isOutParam) return false;
+    return true;
+  }
+
+  @override
+  String get type => isNullable ? 'IMap<$mapTypeArgs>?' : 'IMap<$mapTypeArgs>';
 
   @override
   String get creator => 'IMap.fromPtr($identifier$mapConstructorArgs)';
 
   @override
-  String get into => typeProjection.isReferenceType
-      ? '$identifier.ptr'
-      : '$identifier.ptr.ref.lpVtbl';
+  String get into => '$identifier?.ptr.ref.lpVtbl ?? nullptr';
 
   // No deallocation is needed as Finalizer will handle it.
   @override
@@ -84,11 +90,13 @@ final class MapViewParameterProjection extends MapParameterProjection {
   MapViewParameterProjection(super.parameter);
 
   @override
-  String get type => isInParam || isOutParam
-      ? typeProjection.typeIdentifier.shortName
-      : 'Map<$mapTypeArgs>';
+  String get type {
+    if (isInParam) return 'IMapView<$mapTypeArgs>?';
+    if (isOutParam) return 'IMapView<$mapTypeArgs>';
+    return isNullable ? 'Map<$mapTypeArgs>?' : 'Map<$mapTypeArgs>';
+  }
 
   @override
   String get creator =>
-      'IMapView<$mapTypeArgs>.fromPtr($localIdentifier$mapConstructorArgs).toMap()';
+      'IMapView<$mapTypeArgs>.fromPtr($identifier$mapConstructorArgs).toMap()';
 }

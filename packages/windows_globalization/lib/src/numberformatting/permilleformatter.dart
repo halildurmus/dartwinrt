@@ -40,7 +40,7 @@ class PermilleFormatter extends IInspectable
       'Windows.Globalization.NumberFormatting.PermilleFormatter';
 
   factory PermilleFormatter.createPermilleFormatter(
-          IIterable<String> languages, String geographicRegion) =>
+          IIterable<String>? languages, String geographicRegion) =>
       createActivationFactory(IPermilleFormatterFactory.fromPtr, _className,
               IID_IPermilleFormatterFactory)
           .createPermilleFormatter(languages, geographicRegion);

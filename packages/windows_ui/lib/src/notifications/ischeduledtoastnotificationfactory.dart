@@ -31,7 +31,7 @@ class IScheduledToastNotificationFactory extends IInspectable {
           interface.toInterface(IID_IScheduledToastNotificationFactory));
 
   ScheduledToastNotification createScheduledToastNotification(
-      XmlDocument content, DateTime deliveryTime) {
+      XmlDocument? content, DateTime deliveryTime) {
     final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -49,7 +49,7 @@ class IScheduledToastNotificationFactory extends IInspectable {
                 int Function(VTablePointer lpVtbl, VTablePointer content,
                     int deliveryTime, Pointer<COMObject> value)>()(
         ptr.ref.lpVtbl,
-        content.ptr.ref.lpVtbl,
+        content == null ? nullptr : content.ptr.ref.lpVtbl,
         deliveryTime.toWinRTDateTime(),
         value);
 
@@ -62,7 +62,7 @@ class IScheduledToastNotificationFactory extends IInspectable {
   }
 
   ScheduledToastNotification createScheduledToastNotificationRecurring(
-      XmlDocument content,
+      XmlDocument? content,
       DateTime deliveryTime,
       Duration snoozeInterval,
       int maximumSnoozeCount) {
@@ -90,7 +90,7 @@ class IScheduledToastNotificationFactory extends IInspectable {
                     int maximumSnoozeCount,
                     Pointer<COMObject> value)>()(
         ptr.ref.lpVtbl,
-        content.ptr.ref.lpVtbl,
+        content == null ? nullptr : content.ptr.ref.lpVtbl,
         deliveryTime.toWinRTDateTime(),
         snoozeInterval.toWinRTDuration(),
         maximumSnoozeCount,

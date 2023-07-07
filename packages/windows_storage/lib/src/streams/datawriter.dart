@@ -30,7 +30,7 @@ class DataWriter extends IInspectable implements IDataWriter, IClosable {
 
   static const _className = 'Windows.Storage.Streams.DataWriter';
 
-  factory DataWriter.createDataWriter(IOutputStream outputStream) =>
+  factory DataWriter.createDataWriter(IOutputStream? outputStream) =>
       createActivationFactory(
               IDataWriterFactory.fromPtr, _className, IID_IDataWriterFactory)
           .createDataWriter(outputStream);

@@ -25,7 +25,7 @@ class ToastCollection extends IInspectable implements IToastCollection {
   static const _className = 'Windows.UI.Notifications.ToastCollection';
 
   factory ToastCollection.createInstance(String collectionId,
-          String displayName, String launchArgs, Uri iconUri) =>
+          String displayName, String launchArgs, Uri? iconUri) =>
       createActivationFactory(IToastCollectionFactory.fromPtr, _className,
               IID_IToastCollectionFactory)
           .createInstance(collectionId, displayName, launchArgs, iconUri);
