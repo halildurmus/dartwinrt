@@ -17,8 +17,7 @@ final class VectorParameterProjection extends ParameterProjection {
 
   /// The type argument of `IVector` and `IVectorView`, as represented in the
   /// [typeProjection]'s [TypeIdentifier] (e.g. `int`, `String`, `StorageFile`).
-  String get vectorTypeArg =>
-      typeArguments(typeProjection.typeIdentifier.shortName);
+  String get vectorTypeArg => typeArguments(shortTypeName);
 
   /// The constructor arguments passed to the constructors of `IVector` and
   /// `IVectorView`.
@@ -64,25 +63,36 @@ final class VectorParameterProjection extends ParameterProjection {
 
   @override
   bool get isNullable {
-    if (isReturnParam) return false;
+    // Methods that return collection objects cannot return null.
+    if (isReturnParam && !method.isGetProperty) return false;
     // TODO(halildurmus): Remove this
     if (isOutParam) return false;
+    // Treat everything else as nullable.
     return true;
   }
 
   @override
-  String get type =>
-      isNullable ? 'IVector<$vectorTypeArg>?' : 'IVector<$vectorTypeArg>';
+  String get type => isNullable ? nullable(shortTypeName) : shortTypeName;
 
   @override
   String get creator => 'IVector.fromPtr($identifier$vectorConstructorArgs)';
 
-  @override
   String get into => '$identifier?.ptr.ref.lpVtbl ?? nullptr';
 
   // No deallocation is needed as Finalizer will handle it.
   @override
   bool get needsDeallocation => false;
+
+  @override
+  String get nullCheck {
+    if (!isNullable) return '';
+    return '''
+    if ($identifier.isNull) {
+      free($identifier);
+      return null;
+    }
+''';
+  }
 }
 
 final class VectorViewParameterProjection extends VectorParameterProjection {
@@ -90,9 +100,12 @@ final class VectorViewParameterProjection extends VectorParameterProjection {
 
   @override
   String get type {
-    if (isInParam) return 'IVectorView<$vectorTypeArg>?';
-    if (isOutParam) return 'IVectorView<$vectorTypeArg>';
-    return isNullable ? 'List<$vectorTypeArg>?' : 'List<$vectorTypeArg>';
+    if (isReturnParam) {
+      if (method.isGetProperty) return 'List<$vectorTypeArg>?';
+      return 'List<$vectorTypeArg>';
+    }
+
+    return isNullable ? nullable(shortTypeName) : shortTypeName;
   }
 
   @override

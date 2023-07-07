@@ -60,7 +60,7 @@ class LearningModelSession extends IInspectable
   LearningModelDevice? get device => _iLearningModelSession.device;
 
   @override
-  IPropertySet get evaluationProperties =>
+  IPropertySet? get evaluationProperties =>
       _iLearningModelSession.evaluationProperties;
 
   @override

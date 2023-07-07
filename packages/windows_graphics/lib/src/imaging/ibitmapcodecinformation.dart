@@ -50,7 +50,7 @@ class IBitmapCodecInformation extends IInspectable {
     }
   }
 
-  List<String> get fileExtensions {
+  List<String>? get fileExtensions {
     final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -68,6 +68,11 @@ class IBitmapCodecInformation extends IInspectable {
     if (FAILED(hr)) {
       free(value);
       throwWindowsException(hr);
+    }
+
+    if (value.isNull) {
+      free(value);
+      return null;
     }
 
     return IVectorView<String>.fromPtr(value,
@@ -100,7 +105,7 @@ class IBitmapCodecInformation extends IInspectable {
     }
   }
 
-  List<String> get mimeTypes {
+  List<String>? get mimeTypes {
     final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -118,6 +123,11 @@ class IBitmapCodecInformation extends IInspectable {
     if (FAILED(hr)) {
       free(value);
       throwWindowsException(hr);
+    }
+
+    if (value.isNull) {
+      free(value);
+      return null;
     }
 
     return IVectorView<String>.fromPtr(value,

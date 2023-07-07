@@ -51,7 +51,7 @@ class ILaunchUriResult extends IInspectable {
     }
   }
 
-  ValueSet get result {
+  ValueSet? get result {
     final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -69,6 +69,11 @@ class ILaunchUriResult extends IInspectable {
     if (FAILED(hr)) {
       free(value);
       throwWindowsException(hr);
+    }
+
+    if (value.isNull) {
+      free(value);
+      return null;
     }
 
     return ValueSet.fromPtr(value);

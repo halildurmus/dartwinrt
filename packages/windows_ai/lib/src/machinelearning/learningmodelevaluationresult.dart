@@ -35,5 +35,5 @@ class LearningModelEvaluationResult extends IInspectable
   bool get succeeded => _iLearningModelEvaluationResult.succeeded;
 
   @override
-  Map<String, Object?> get outputs => _iLearningModelEvaluationResult.outputs;
+  Map<String, Object?>? get outputs => _iLearningModelEvaluationResult.outputs;
 }

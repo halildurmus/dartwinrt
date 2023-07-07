@@ -148,7 +148,7 @@ class DateTimeFormatter extends IInspectable
   late final _iDateTimeFormatter = IDateTimeFormatter.from(this);
 
   @override
-  List<String> get languages => _iDateTimeFormatter.languages;
+  List<String>? get languages => _iDateTimeFormatter.languages;
 
   @override
   String get geographicRegion => _iDateTimeFormatter.geographicRegion;
@@ -166,7 +166,7 @@ class DateTimeFormatter extends IInspectable
   set numeralSystem(String value) => _iDateTimeFormatter.numeralSystem = value;
 
   @override
-  List<String> get patterns => _iDateTimeFormatter.patterns;
+  List<String>? get patterns => _iDateTimeFormatter.patterns;
 
   @override
   String get template => _iDateTimeFormatter.template;

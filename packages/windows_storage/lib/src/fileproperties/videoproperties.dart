@@ -34,7 +34,7 @@ class VideoProperties extends IInspectable
   set rating(int value) => _iVideoProperties.rating = value;
 
   @override
-  IVector<String> get keywords => _iVideoProperties.keywords;
+  IVector<String>? get keywords => _iVideoProperties.keywords;
 
   @override
   int get width => _iVideoProperties.width;
@@ -64,7 +64,7 @@ class VideoProperties extends IInspectable
   set subtitle(String value) => _iVideoProperties.subtitle = value;
 
   @override
-  IVector<String> get producers => _iVideoProperties.producers;
+  IVector<String>? get producers => _iVideoProperties.producers;
 
   @override
   String get publisher => _iVideoProperties.publisher;
@@ -73,7 +73,7 @@ class VideoProperties extends IInspectable
   set publisher(String value) => _iVideoProperties.publisher = value;
 
   @override
-  IVector<String> get writers => _iVideoProperties.writers;
+  IVector<String>? get writers => _iVideoProperties.writers;
 
   @override
   int get year => _iVideoProperties.year;
@@ -85,7 +85,7 @@ class VideoProperties extends IInspectable
   int get bitrate => _iVideoProperties.bitrate;
 
   @override
-  IVector<String> get directors => _iVideoProperties.directors;
+  IVector<String>? get directors => _iVideoProperties.directors;
 
   @override
   VideoOrientation get orientation => _iVideoProperties.orientation;

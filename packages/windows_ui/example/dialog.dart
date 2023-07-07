@@ -17,7 +17,7 @@ void main() async {
 
   // Add commands
   messageDialog.commands
-    ..append(UICommand.create('Install updates'))
+    ?..append(UICommand.create('Install updates'))
     ..append(UICommand.create("Don't install"));
 
   messageDialog

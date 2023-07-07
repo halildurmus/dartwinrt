@@ -71,7 +71,7 @@ class FileOpenPicker extends IInspectable
       _iFileOpenPicker.commitButtonText = value;
 
   @override
-  IVector<String> get fileTypeFilter => _iFileOpenPicker.fileTypeFilter;
+  IVector<String>? get fileTypeFilter => _iFileOpenPicker.fileTypeFilter;
 
   @override
   Future<StorageFile?> pickSingleFileAsync() =>

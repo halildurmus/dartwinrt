@@ -30,7 +30,7 @@ class DeviceInformationUpdate extends IInspectable
   String get id => _iDeviceInformationUpdate.id;
 
   @override
-  Map<String, Object?> get properties => _iDeviceInformationUpdate.properties;
+  Map<String, Object?>? get properties => _iDeviceInformationUpdate.properties;
 
   late final _iDeviceInformationUpdate2 = IDeviceInformationUpdate2.from(this);
 

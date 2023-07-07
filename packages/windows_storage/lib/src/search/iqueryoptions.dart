@@ -33,7 +33,7 @@ class IQueryOptions extends IInspectable {
   factory IQueryOptions.from(IInspectable interface) =>
       IQueryOptions.fromPtr(interface.toInterface(IID_IQueryOptions));
 
-  IVector<String> get fileTypeFilter {
+  IVector<String>? get fileTypeFilter {
     final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -51,6 +51,11 @@ class IQueryOptions extends IInspectable {
     if (FAILED(hr)) {
       free(value);
       throwWindowsException(hr);
+    }
+
+    if (value.isNull) {
+      free(value);
+      return null;
     }
 
     return IVector.fromPtr(value,
@@ -268,7 +273,7 @@ class IQueryOptions extends IInspectable {
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
-  IVector<SortEntry> get sortOrder {
+  IVector<SortEntry>? get sortOrder {
     final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -286,6 +291,11 @@ class IQueryOptions extends IInspectable {
     if (FAILED(hr)) {
       free(value);
       throwWindowsException(hr);
+    }
+
+    if (value.isNull) {
+      free(value);
+      return null;
     }
 
     return IVector.fromPtr(value,

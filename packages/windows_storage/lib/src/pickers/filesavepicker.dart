@@ -46,7 +46,7 @@ class FileSavePicker extends IInspectable
   late final _iFileSavePicker2 = IFileSavePicker2.from(this);
 
   @override
-  ValueSet get continuationData => _iFileSavePicker2.continuationData;
+  ValueSet? get continuationData => _iFileSavePicker2.continuationData;
 
   @Deprecated("Instead, use PickSaveFileAsync")
   @override
@@ -85,7 +85,7 @@ class FileSavePicker extends IInspectable
       _iFileSavePicker.commitButtonText = value;
 
   @override
-  IMap<String, IVector<String>> get fileTypeChoices =>
+  IMap<String, IVector<String>>? get fileTypeChoices =>
       _iFileSavePicker.fileTypeChoices;
 
   @override

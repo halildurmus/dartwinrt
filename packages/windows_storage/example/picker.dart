@@ -20,7 +20,7 @@ void printFileInformation(StorageFile? file) {
 
 void main() async {
   final picker = FileOpenPicker()
-    ..fileTypeFilter.append('*') // Allow all file types
+    ..fileTypeFilter?.append('*') // Allow all file types
     ..suggestedStartLocation = PickerLocationId.desktop
     ..viewMode = PickerViewMode.thumbnail;
 

@@ -15,8 +15,6 @@ final class ObjectParameterProjection extends ParameterProjection {
 
   bool get isObjectType => typeProjection.isObjectType;
 
-  String get shortName => typeProjection.typeIdentifier.shortName;
-
   @override
   bool get isNullable {
     // TODO(halildurmus): Remove this
@@ -27,7 +25,10 @@ final class ObjectParameterProjection extends ParameterProjection {
       if (method.parent.isFactoryInterface) return false;
 
       // Methods that return collection interfaces cannot return null.
-      if (typeProjection.typeIdentifier.isCollectionObject) return false;
+      if (!method.isGetProperty &&
+          typeProjection.typeIdentifier.isCollectionObject) {
+        return false;
+      }
 
       // IIterable.First() cannot return null.
       if (method.name == 'First' && method.parent.isCollectionObject) {
@@ -37,11 +38,6 @@ final class ObjectParameterProjection extends ParameterProjection {
       //
       if (isObjectType && isMethodFromPropertyValueStatics) return false;
     }
-
-    // TODO(halildurmus): Remove this once methods that return
-    // IAsyncActionWithProgress and IAsyncOperationWithProgress delegates are
-    // supported.
-    if (shortName.startsWith('IAsync')) return false;
 
     // Treat everything else as nullable.
     return true;
@@ -59,12 +55,7 @@ final class ObjectParameterProjection extends ParameterProjection {
       return 'Object?';
     }
 
-    // TODO(halildurmus): Remove this once methods that return
-    // IAsyncActionWithProgress and IAsyncOperationWithProgress delegates are
-    // supported.
-    if (shortName.startsWith('IAsync')) return 'Pointer<COMObject>';
-
-    return isNullable ? nullable(shortName) : shortName;
+    return isNullable ? nullable(shortTypeName) : shortTypeName;
   }
 
   @override

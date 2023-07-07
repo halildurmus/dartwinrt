@@ -88,10 +88,8 @@ void main() {
               'HRESULT Function(VTablePointer lpVtbl, VTablePointer value)'));
       expect(projection.dartPrototype,
           equals('int Function(VTablePointer lpVtbl, VTablePointer value)'));
-      expect(
-          projection.identifiers,
-          equals(
-              'ptr.ref.lpVtbl, value?.ptr.ref.lpVtbl ?? nullptr'));
+      expect(projection.identifiers,
+          equals('ptr.ref.lpVtbl, value?.ptr.ref.lpVtbl ?? nullptr'));
       expect(projection.parametersPostamble, isEmpty);
       expect(projection.failedCheck, equals(failedCheck()));
       expect(projection.nullCheck, isEmpty);
@@ -312,10 +310,8 @@ void main() {
               'HRESULT Function(VTablePointer lpVtbl, VTablePointer value)'));
       expect(projection.dartPrototype,
           equals('int Function(VTablePointer lpVtbl, VTablePointer value)'));
-      expect(
-          projection.identifiers,
-          equals(
-              'ptr.ref.lpVtbl, value?.ptr.ref.lpVtbl ?? nullptr'));
+      expect(projection.identifiers,
+          equals('ptr.ref.lpVtbl, value?.ptr.ref.lpVtbl ?? nullptr'));
       expect(projection.parametersPostamble, isEmpty);
       expect(projection.failedCheck, equals(failedCheck()));
       expect(projection.nullCheck, isEmpty);

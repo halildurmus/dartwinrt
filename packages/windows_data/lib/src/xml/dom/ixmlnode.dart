@@ -159,7 +159,7 @@ class IXmlNode extends IInspectable
     return IXmlNode.fromPtr(value);
   }
 
-  XmlNodeList get childNodes {
+  XmlNodeList? get childNodes {
     final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -177,6 +177,11 @@ class IXmlNode extends IInspectable
     if (FAILED(hr)) {
       free(value);
       throwWindowsException(hr);
+    }
+
+    if (value.isNull) {
+      free(value);
+      return null;
     }
 
     return XmlNodeList.fromPtr(value);
@@ -294,7 +299,7 @@ class IXmlNode extends IInspectable
     return IXmlNode.fromPtr(value);
   }
 
-  XmlNamedNodeMap get attributes {
+  XmlNamedNodeMap? get attributes {
     final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -312,6 +317,11 @@ class IXmlNode extends IInspectable
     if (FAILED(hr)) {
       free(value);
       throwWindowsException(hr);
+    }
+
+    if (value.isNull) {
+      free(value);
+      return null;
     }
 
     return XmlNamedNodeMap.fromPtr(value);

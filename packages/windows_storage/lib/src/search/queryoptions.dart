@@ -51,7 +51,7 @@ class QueryOptions extends IInspectable
   late final _iQueryOptions = IQueryOptions.from(this);
 
   @override
-  IVector<String> get fileTypeFilter => _iQueryOptions.fileTypeFilter;
+  IVector<String>? get fileTypeFilter => _iQueryOptions.fileTypeFilter;
 
   @override
   FolderDepth get folderDepth => _iQueryOptions.folderDepth;
@@ -86,7 +86,7 @@ class QueryOptions extends IInspectable
       _iQueryOptions.indexerOption = value;
 
   @override
-  IVector<SortEntry> get sortOrder => _iQueryOptions.sortOrder;
+  IVector<SortEntry>? get sortOrder => _iQueryOptions.sortOrder;
 
   @override
   String get groupPropertyName => _iQueryOptions.groupPropertyName;
@@ -114,6 +114,6 @@ class QueryOptions extends IInspectable
       IQueryOptionsWithProviderFilter.from(this);
 
   @override
-  IVector<String> get storageProviderIdFilter =>
+  IVector<String>? get storageProviderIdFilter =>
       _iQueryOptionsWithProviderFilter.storageProviderIdFilter;
 }

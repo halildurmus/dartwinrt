@@ -35,10 +35,10 @@ class ApplicationDataContainer extends IInspectable
   ApplicationDataLocality get locality => _iApplicationDataContainer.locality;
 
   @override
-  IPropertySet get values => _iApplicationDataContainer.values;
+  IPropertySet? get values => _iApplicationDataContainer.values;
 
   @override
-  Map<String, ApplicationDataContainer?> get containers =>
+  Map<String, ApplicationDataContainer?>? get containers =>
       _iApplicationDataContainer.containers;
 
   @override

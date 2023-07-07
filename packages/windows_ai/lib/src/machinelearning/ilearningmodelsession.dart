@@ -87,7 +87,7 @@ class ILearningModelSession extends IInspectable {
     return LearningModelDevice.fromPtr(value);
   }
 
-  IPropertySet get evaluationProperties {
+  IPropertySet? get evaluationProperties {
     final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -105,6 +105,11 @@ class ILearningModelSession extends IInspectable {
     if (FAILED(hr)) {
       free(value);
       throwWindowsException(hr);
+    }
+
+    if (value.isNull) {
+      free(value);
+      return null;
     }
 
     return IPropertySet.fromPtr(value);

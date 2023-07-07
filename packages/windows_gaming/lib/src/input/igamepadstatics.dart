@@ -109,7 +109,7 @@ class IGamepadStatics extends IInspectable {
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
-  List<Gamepad?> get gamepads {
+  List<Gamepad?>? get gamepads {
     final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -127,6 +127,11 @@ class IGamepadStatics extends IInspectable {
     if (FAILED(hr)) {
       free(value);
       throwWindowsException(hr);
+    }
+
+    if (value.isNull) {
+      free(value);
+      return null;
     }
 
     return IVectorView<Gamepad?>.fromPtr(value,

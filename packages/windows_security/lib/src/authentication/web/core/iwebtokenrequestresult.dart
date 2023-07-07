@@ -30,7 +30,7 @@ class IWebTokenRequestResult extends IInspectable {
       IWebTokenRequestResult.fromPtr(
           interface.toInterface(IID_IWebTokenRequestResult));
 
-  List<WebTokenResponse?> get responseData {
+  List<WebTokenResponse?>? get responseData {
     final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -48,6 +48,11 @@ class IWebTokenRequestResult extends IInspectable {
     if (FAILED(hr)) {
       free(value);
       throwWindowsException(hr);
+    }
+
+    if (value.isNull) {
+      free(value);
+      return null;
     }
 
     return IVectorView<WebTokenResponse?>.fromPtr(value,

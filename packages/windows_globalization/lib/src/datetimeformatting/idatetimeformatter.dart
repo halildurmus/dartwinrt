@@ -33,7 +33,7 @@ class IDateTimeFormatter extends IInspectable {
   factory IDateTimeFormatter.from(IInspectable interface) =>
       IDateTimeFormatter.fromPtr(interface.toInterface(IID_IDateTimeFormatter));
 
-  List<String> get languages {
+  List<String>? get languages {
     final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -51,6 +51,11 @@ class IDateTimeFormatter extends IInspectable {
     if (FAILED(hr)) {
       free(value);
       throwWindowsException(hr);
+    }
+
+    if (value.isNull) {
+      free(value);
+      return null;
     }
 
     return IVectorView<String>.fromPtr(value,
@@ -178,7 +183,7 @@ class IDateTimeFormatter extends IInspectable {
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
-  List<String> get patterns {
+  List<String>? get patterns {
     final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -196,6 +201,11 @@ class IDateTimeFormatter extends IInspectable {
     if (FAILED(hr)) {
       free(value);
       throwWindowsException(hr);
+    }
+
+    if (value.isNull) {
+      free(value);
+      return null;
     }
 
     return IVectorView<String>.fromPtr(value,

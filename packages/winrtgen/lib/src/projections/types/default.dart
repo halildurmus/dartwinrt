@@ -283,7 +283,6 @@ base class DefaultListParameterProjection extends ParameterProjection {
 
   // TODO(halildurmus): Remove this
   @override
-  String get localIdentifier => !isOutParam && !isInParam
-      ? identifier
-      : 'p${identifier.capitalize()}Array';
+  String get localIdentifier =>
+      isReturnParam ? identifier : 'p${identifier.capitalize()}Array';
 }

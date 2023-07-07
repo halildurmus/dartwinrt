@@ -73,7 +73,7 @@ class IMessageDialog extends IInspectable {
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
-  IVector<IUICommand?> get commands {
+  IVector<IUICommand?>? get commands {
     final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -91,6 +91,11 @@ class IMessageDialog extends IInspectable {
     if (FAILED(hr)) {
       free(value);
       throwWindowsException(hr);
+    }
+
+    if (value.isNull) {
+      free(value);
+      return null;
     }
 
     return IVector.fromPtr(value,

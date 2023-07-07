@@ -36,7 +36,7 @@ class NumeralSystemTranslator extends IInspectable
   late final _iNumeralSystemTranslator = INumeralSystemTranslator.from(this);
 
   @override
-  List<String> get languages => _iNumeralSystemTranslator.languages;
+  List<String>? get languages => _iNumeralSystemTranslator.languages;
 
   @override
   String get resolvedLanguage => _iNumeralSystemTranslator.resolvedLanguage;

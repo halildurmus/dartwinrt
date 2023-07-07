@@ -69,7 +69,7 @@ class Package extends IInspectable
   bool get isFramework => _iPackage.isFramework;
 
   @override
-  List<Package?> get dependencies => _iPackage.dependencies;
+  List<Package?>? get dependencies => _iPackage.dependencies;
 
   late final _iPackage2 = IPackage2.from(this);
 

@@ -118,7 +118,7 @@ class IMusicProperties extends IInspectable
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
-  IVector<String> get genre {
+  IVector<String>? get genre {
     final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -136,6 +136,11 @@ class IMusicProperties extends IInspectable
     if (FAILED(hr)) {
       free(value);
       throwWindowsException(hr);
+    }
+
+    if (value.isNull) {
+      free(value);
+      return null;
     }
 
     return IVector.fromPtr(value,
@@ -360,7 +365,7 @@ class IMusicProperties extends IInspectable
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
-  IVector<String> get composers {
+  IVector<String>? get composers {
     final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -380,11 +385,16 @@ class IMusicProperties extends IInspectable
       throwWindowsException(hr);
     }
 
+    if (value.isNull) {
+      free(value);
+      return null;
+    }
+
     return IVector.fromPtr(value,
         iterableIid: '{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}');
   }
 
-  IVector<String> get conductors {
+  IVector<String>? get conductors {
     final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -402,6 +412,11 @@ class IMusicProperties extends IInspectable
     if (FAILED(hr)) {
       free(value);
       throwWindowsException(hr);
+    }
+
+    if (value.isNull) {
+      free(value);
+      return null;
     }
 
     return IVector.fromPtr(value,
@@ -453,7 +468,7 @@ class IMusicProperties extends IInspectable
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
-  IVector<String> get producers {
+  IVector<String>? get producers {
     final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -471,6 +486,11 @@ class IMusicProperties extends IInspectable
     if (FAILED(hr)) {
       free(value);
       throwWindowsException(hr);
+    }
+
+    if (value.isNull) {
+      free(value);
+      return null;
     }
 
     return IVector.fromPtr(value,
@@ -522,7 +542,7 @@ class IMusicProperties extends IInspectable
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
-  IVector<String> get writers {
+  IVector<String>? get writers {
     final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -540,6 +560,11 @@ class IMusicProperties extends IInspectable
     if (FAILED(hr)) {
       free(value);
       throwWindowsException(hr);
+    }
+
+    if (value.isNull) {
+      free(value);
+      return null;
     }
 
     return IVector.fromPtr(value,

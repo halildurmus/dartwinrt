@@ -27,7 +27,7 @@ class IQueryOptionsWithProviderFilter extends IInspectable {
       IQueryOptionsWithProviderFilter.fromPtr(
           interface.toInterface(IID_IQueryOptionsWithProviderFilter));
 
-  IVector<String> get storageProviderIdFilter {
+  IVector<String>? get storageProviderIdFilter {
     final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -45,6 +45,11 @@ class IQueryOptionsWithProviderFilter extends IInspectable {
     if (FAILED(hr)) {
       free(value);
       throwWindowsException(hr);
+    }
+
+    if (value.isNull) {
+      free(value);
+      return null;
     }
 
     return IVector.fromPtr(value,

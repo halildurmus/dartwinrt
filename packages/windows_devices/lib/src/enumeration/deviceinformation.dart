@@ -150,7 +150,7 @@ class DeviceInformation extends IInspectable
       _iDeviceInformation.enclosureLocation;
 
   @override
-  Map<String, Object?> get properties => _iDeviceInformation.properties;
+  Map<String, Object?>? get properties => _iDeviceInformation.properties;
 
   @override
   void update(DeviceInformationUpdate? updateInfo) =>

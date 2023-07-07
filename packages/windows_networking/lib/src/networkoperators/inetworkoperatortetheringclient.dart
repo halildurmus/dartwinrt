@@ -54,7 +54,7 @@ class INetworkOperatorTetheringClient extends IInspectable {
     }
   }
 
-  List<HostName?> get hostNames {
+  List<HostName?>? get hostNames {
     final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -72,6 +72,11 @@ class INetworkOperatorTetheringClient extends IInspectable {
     if (FAILED(hr)) {
       free(value);
       throwWindowsException(hr);
+    }
+
+    if (value.isNull) {
+      free(value);
+      return null;
     }
 
     return IVectorView<HostName?>.fromPtr(value,

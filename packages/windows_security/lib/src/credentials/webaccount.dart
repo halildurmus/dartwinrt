@@ -52,7 +52,7 @@ class WebAccount extends IInspectable implements IWebAccount, IWebAccount2 {
   String get id => _iWebAccount2.id;
 
   @override
-  Map<String, String> get properties => _iWebAccount2.properties;
+  Map<String, String>? get properties => _iWebAccount2.properties;
 
   @override
   Future<IRandomAccessStream?> getPictureAsync(

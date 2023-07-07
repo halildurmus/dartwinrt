@@ -52,7 +52,7 @@ class IOcrEngineStatics extends IInspectable {
     }
   }
 
-  List<Language?> get availableRecognizerLanguages {
+  List<Language?>? get availableRecognizerLanguages {
     final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -70,6 +70,11 @@ class IOcrEngineStatics extends IInspectable {
     if (FAILED(hr)) {
       free(value);
       throwWindowsException(hr);
+    }
+
+    if (value.isNull) {
+      free(value);
+      return null;
     }
 
     return IVectorView<Language?>.fromPtr(value,

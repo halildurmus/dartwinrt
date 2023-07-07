@@ -9,9 +9,10 @@ import 'package:windows_data/windows_data.dart';
 
 void printProduct(IXmlNode? product) {
   if (product == null) return;
-  final id = product.attributes.getNamedItem('id')?.nodeValue;
-  final title = product.attributes.getNamedItem('title')?.nodeValue;
-  final hot = product.attributes.getNamedItem('hot')?.nodeValue;
+  final attributes = product.attributes;
+  final id = attributes?.getNamedItem('id')?.nodeValue;
+  final title = attributes?.getNamedItem('title')?.nodeValue;
+  final hot = attributes?.getNamedItem('hot')?.nodeValue;
   final price = product.selectNodes('price').item(0)?.firstChild?.nodeValue;
   print('Product id: $id, title: $title, hot: $hot, price: $price');
 }

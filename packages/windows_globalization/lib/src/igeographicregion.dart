@@ -175,7 +175,7 @@ class IGeographicRegion extends IInspectable {
     }
   }
 
-  List<String> get currenciesInUse {
+  List<String>? get currenciesInUse {
     final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -193,6 +193,11 @@ class IGeographicRegion extends IInspectable {
     if (FAILED(hr)) {
       free(value);
       throwWindowsException(hr);
+    }
+
+    if (value.isNull) {
+      free(value);
+      return null;
     }
 
     return IVectorView<String>.fromPtr(value,

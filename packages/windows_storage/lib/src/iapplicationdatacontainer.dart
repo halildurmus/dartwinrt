@@ -79,7 +79,7 @@ class IApplicationDataContainer extends IInspectable {
     }
   }
 
-  IPropertySet get values {
+  IPropertySet? get values {
     final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -99,10 +99,15 @@ class IApplicationDataContainer extends IInspectable {
       throwWindowsException(hr);
     }
 
+    if (value.isNull) {
+      free(value);
+      return null;
+    }
+
     return IPropertySet.fromPtr(value);
   }
 
-  Map<String, ApplicationDataContainer?> get containers {
+  Map<String, ApplicationDataContainer?>? get containers {
     final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -120,6 +125,11 @@ class IApplicationDataContainer extends IInspectable {
     if (FAILED(hr)) {
       free(value);
       throwWindowsException(hr);
+    }
+
+    if (value.isNull) {
+      free(value);
+      return null;
     }
 
     return IMapView<String, ApplicationDataContainer?>.fromPtr(value,

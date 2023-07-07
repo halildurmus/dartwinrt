@@ -59,7 +59,7 @@ class IXmlDocumentType extends IInspectable
     }
   }
 
-  XmlNamedNodeMap get entities {
+  XmlNamedNodeMap? get entities {
     final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -79,10 +79,15 @@ class IXmlDocumentType extends IInspectable
       throwWindowsException(hr);
     }
 
+    if (value.isNull) {
+      free(value);
+      return null;
+    }
+
     return XmlNamedNodeMap.fromPtr(value);
   }
 
-  XmlNamedNodeMap get notations {
+  XmlNamedNodeMap? get notations {
     final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -100,6 +105,11 @@ class IXmlDocumentType extends IInspectable
     if (FAILED(hr)) {
       free(value);
       throwWindowsException(hr);
+    }
+
+    if (value.isNull) {
+      free(value);
+      return null;
     }
 
     return XmlNamedNodeMap.fromPtr(value);
@@ -123,7 +133,7 @@ class IXmlDocumentType extends IInspectable
   IXmlNode? get parentNode => _iXmlNode.parentNode;
 
   @override
-  XmlNodeList get childNodes => _iXmlNode.childNodes;
+  XmlNodeList? get childNodes => _iXmlNode.childNodes;
 
   @override
   IXmlNode? get firstChild => _iXmlNode.firstChild;
@@ -138,7 +148,7 @@ class IXmlDocumentType extends IInspectable
   IXmlNode? get nextSibling => _iXmlNode.nextSibling;
 
   @override
-  XmlNamedNodeMap get attributes => _iXmlNode.attributes;
+  XmlNamedNodeMap? get attributes => _iXmlNode.attributes;
 
   @override
   bool hasChildNodes() => _iXmlNode.hasChildNodes();

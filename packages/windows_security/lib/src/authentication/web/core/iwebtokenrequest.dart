@@ -130,7 +130,7 @@ class IWebTokenRequest extends IInspectable {
     }
   }
 
-  IMap<String, String> get properties {
+  IMap<String, String>? get properties {
     final requestProperties = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -149,6 +149,11 @@ class IWebTokenRequest extends IInspectable {
     if (FAILED(hr)) {
       free(requestProperties);
       throwWindowsException(hr);
+    }
+
+    if (requestProperties.isNull) {
+      free(requestProperties);
+      return null;
     }
 
     return IMap.fromPtr(requestProperties,

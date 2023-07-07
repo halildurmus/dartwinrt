@@ -421,7 +421,7 @@ void main() {
       expect(projection.toListIdentifier, isEmpty);
       expect(projection.preambles, isEmpty);
       expect(projection.postambles, isEmpty);
-      expect(projection.nullCheck, isEmpty);
+      expect(projection.nullCheck, equals(nullCheck('features')));
       expect(projection.identifier, equals('features'));
       expect(projection.localIdentifier,
           equals('features?.ptr.ref.lpVtbl ?? nullptr'));
@@ -549,7 +549,7 @@ void main() {
       expect(projection.toListIdentifier, isEmpty);
       expect(projection.preambles, isEmpty);
       expect(projection.postambles, isEmpty);
-      expect(projection.nullCheck, isEmpty);
+      expect(projection.nullCheck, equals(nullCheck('dnsServerList')));
       expect(projection.identifier, equals('dnsServerList'));
       expect(projection.localIdentifier,
           equals('dnsServerList?.ptr.ref.lpVtbl ?? nullptr'));
@@ -578,7 +578,7 @@ void main() {
       expect(projection.toListIdentifier, isEmpty);
       expect(projection.preambles, isEmpty);
       expect(projection.postambles, isEmpty);
-      expect(projection.nullCheck, isEmpty);
+      expect(projection.nullCheck, equals(nullCheck('values')));
       expect(projection.identifier, equals('values'));
       expect(projection.localIdentifier,
           equals('values?.ptr.ref.lpVtbl ?? nullptr'));

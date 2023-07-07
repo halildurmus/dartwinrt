@@ -307,7 +307,7 @@ void main() {
               .last
               .typeIdentifier
               .shortName,
-          equals('Object'));
+          equals('Object?'));
     });
 
     test('(7)', () {

@@ -39,7 +39,7 @@ class MusicProperties extends IInspectable
   set artist(String value) => _iMusicProperties.artist = value;
 
   @override
-  IVector<String> get genre => _iMusicProperties.genre;
+  IVector<String>? get genre => _iMusicProperties.genre;
 
   @override
   int get trackNumber => _iMusicProperties.trackNumber;
@@ -72,10 +72,10 @@ class MusicProperties extends IInspectable
   set albumArtist(String value) => _iMusicProperties.albumArtist = value;
 
   @override
-  IVector<String> get composers => _iMusicProperties.composers;
+  IVector<String>? get composers => _iMusicProperties.composers;
 
   @override
-  IVector<String> get conductors => _iMusicProperties.conductors;
+  IVector<String>? get conductors => _iMusicProperties.conductors;
 
   @override
   String get subtitle => _iMusicProperties.subtitle;
@@ -84,7 +84,7 @@ class MusicProperties extends IInspectable
   set subtitle(String value) => _iMusicProperties.subtitle = value;
 
   @override
-  IVector<String> get producers => _iMusicProperties.producers;
+  IVector<String>? get producers => _iMusicProperties.producers;
 
   @override
   String get publisher => _iMusicProperties.publisher;
@@ -93,7 +93,7 @@ class MusicProperties extends IInspectable
   set publisher(String value) => _iMusicProperties.publisher = value;
 
   @override
-  IVector<String> get writers => _iMusicProperties.writers;
+  IVector<String>? get writers => _iMusicProperties.writers;
 
   @override
   int get year => _iMusicProperties.year;

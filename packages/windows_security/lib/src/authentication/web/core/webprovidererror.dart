@@ -39,5 +39,5 @@ class WebProviderError extends IInspectable implements IWebProviderError {
   String get errorMessage => _iWebProviderError.errorMessage;
 
   @override
-  IMap<String, String> get properties => _iWebProviderError.properties;
+  IMap<String, String>? get properties => _iWebProviderError.properties;
 }

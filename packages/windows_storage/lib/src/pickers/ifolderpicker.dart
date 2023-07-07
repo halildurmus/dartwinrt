@@ -195,7 +195,7 @@ class IFolderPicker extends IInspectable {
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
-  IVector<String> get fileTypeFilter {
+  IVector<String>? get fileTypeFilter {
     final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -213,6 +213,11 @@ class IFolderPicker extends IInspectable {
     if (FAILED(hr)) {
       free(value);
       throwWindowsException(hr);
+    }
+
+    if (value.isNull) {
+      free(value);
+      return null;
     }
 
     return IVector.fromPtr(value,

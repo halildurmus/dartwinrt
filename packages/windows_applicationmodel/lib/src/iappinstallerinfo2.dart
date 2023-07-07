@@ -275,7 +275,7 @@ class IAppInstallerInfo2 extends IInspectable {
         .value;
   }
 
-  List<Uri?> get updateUris {
+  List<Uri?>? get updateUris {
     final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -295,12 +295,17 @@ class IAppInstallerInfo2 extends IInspectable {
       throwWindowsException(hr);
     }
 
+    if (value.isNull) {
+      free(value);
+      return null;
+    }
+
     return IVectorView<Uri?>.fromPtr(value,
             iterableIid: '{b0d63b78-78ad-5e31-b6d8-e32a0e16c447}')
         .toList();
   }
 
-  List<Uri?> get repairUris {
+  List<Uri?>? get repairUris {
     final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -320,12 +325,17 @@ class IAppInstallerInfo2 extends IInspectable {
       throwWindowsException(hr);
     }
 
+    if (value.isNull) {
+      free(value);
+      return null;
+    }
+
     return IVectorView<Uri?>.fromPtr(value,
             iterableIid: '{b0d63b78-78ad-5e31-b6d8-e32a0e16c447}')
         .toList();
   }
 
-  List<Uri?> get dependencyPackageUris {
+  List<Uri?>? get dependencyPackageUris {
     final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -345,12 +355,17 @@ class IAppInstallerInfo2 extends IInspectable {
       throwWindowsException(hr);
     }
 
+    if (value.isNull) {
+      free(value);
+      return null;
+    }
+
     return IVectorView<Uri?>.fromPtr(value,
             iterableIid: '{b0d63b78-78ad-5e31-b6d8-e32a0e16c447}')
         .toList();
   }
 
-  List<Uri?> get optionalPackageUris {
+  List<Uri?>? get optionalPackageUris {
     final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -368,6 +383,11 @@ class IAppInstallerInfo2 extends IInspectable {
     if (FAILED(hr)) {
       free(value);
       throwWindowsException(hr);
+    }
+
+    if (value.isNull) {
+      free(value);
+      return null;
     }
 
     return IVectorView<Uri?>.fromPtr(value,

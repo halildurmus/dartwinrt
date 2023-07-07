@@ -34,7 +34,7 @@ class ImageProperties extends IInspectable
   set rating(int value) => _iImageProperties.rating = value;
 
   @override
-  IVector<String> get keywords => _iImageProperties.keywords;
+  IVector<String>? get keywords => _iImageProperties.keywords;
 
   @override
   DateTime get dateTaken => _iImageProperties.dateTaken;
@@ -77,7 +77,7 @@ class ImageProperties extends IInspectable
   PhotoOrientation get orientation => _iImageProperties.orientation;
 
   @override
-  List<String> get peopleNames => _iImageProperties.peopleNames;
+  List<String>? get peopleNames => _iImageProperties.peopleNames;
 
   late final _iStorageItemExtraProperties =
       IStorageItemExtraProperties.from(this);

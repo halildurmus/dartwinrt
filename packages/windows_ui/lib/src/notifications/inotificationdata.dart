@@ -25,7 +25,7 @@ class INotificationData extends IInspectable {
   factory INotificationData.from(IInspectable interface) =>
       INotificationData.fromPtr(interface.toInterface(IID_INotificationData));
 
-  IMap<String, String> get values {
+  IMap<String, String>? get values {
     final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -43,6 +43,11 @@ class INotificationData extends IInspectable {
     if (FAILED(hr)) {
       free(value);
       throwWindowsException(hr);
+    }
+
+    if (value.isNull) {
+      free(value);
+      return null;
     }
 
     return IMap.fromPtr(value,

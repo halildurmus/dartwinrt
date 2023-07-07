@@ -43,10 +43,12 @@ abstract class ParameterProjection {
       final projectionKind = param.projectionKind;
       return switch (projectionKind) {
         ProjectionKind.asyncAction => AsyncActionParameterProjection(param),
+        ProjectionKind.asyncActionWithProgress =>
+          AsyncActionWithProgressParameterProjection(param),
         ProjectionKind.asyncOperation =>
           AsyncOperationParameterProjection(param),
-        ProjectionKind.asyncActionWithProgress ||
-        ProjectionKind.asyncOperationWithProgress ||
+        ProjectionKind.asyncOperationWithProgress =>
+          AsyncOperationWithProgressParameterProjection(param),
         ProjectionKind.dartPrimitive ||
         ProjectionKind.pointer ||
         ProjectionKind.void_ =>
@@ -103,6 +105,8 @@ abstract class ParameterProjection {
 
   /// The type of the parameter (e.g. `String`).
   String get type => typeProjection.dartType;
+
+  String get shortTypeName => typeProjection.typeIdentifier.shortName;
 
   String get creatorPreamble => '';
 

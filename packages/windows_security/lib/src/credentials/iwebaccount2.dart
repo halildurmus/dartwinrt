@@ -56,7 +56,7 @@ class IWebAccount2 extends IInspectable implements IWebAccount {
     }
   }
 
-  Map<String, String> get properties {
+  Map<String, String>? get properties {
     final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -74,6 +74,11 @@ class IWebAccount2 extends IInspectable implements IWebAccount {
     if (FAILED(hr)) {
       free(value);
       throwWindowsException(hr);
+    }
+
+    if (value.isNull) {
+      free(value);
+      return null;
     }
 
     return IMapView<String, String>.fromPtr(value,

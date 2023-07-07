@@ -12,7 +12,7 @@ final class ReferenceParameterProjection extends ParameterProjection {
   ReferenceParameterProjection(super.parameter);
 
   @override
-  String get type => typeArguments(typeProjection.typeIdentifier.shortName);
+  String get type => typeArguments(shortTypeName);
 
   TypeProjection get typeArgProjection =>
       TypeProjection(typeProjection.typeIdentifier.typeArgs.first);
@@ -51,9 +51,8 @@ final class ReferenceParameterProjection extends ParameterProjection {
       'IReference<$type>.fromPtr($identifier$referenceConstructorArgs).value';
 
   @override
-  String get into => typeProjection.isReferenceType
-      ? '$identifier?.toReference($toReferenceArgument).ptr ?? nullptr'
-      : '$identifier?.toReference($toReferenceArgument).ptr.ref.lpVtbl ?? nullptr';
+  String get into =>
+      '$identifier?.toReference($toReferenceArgument).ptr.ref.lpVtbl ?? nullptr';
 
   // No deallocation is needed as Finalizer will handle it.
   @override

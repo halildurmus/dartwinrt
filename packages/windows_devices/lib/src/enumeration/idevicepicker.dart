@@ -88,7 +88,7 @@ class IDevicePicker extends IInspectable {
     return DevicePickerAppearance.fromPtr(value);
   }
 
-  IVector<String> get requestedProperties {
+  IVector<String>? get requestedProperties {
     final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -106,6 +106,11 @@ class IDevicePicker extends IInspectable {
     if (FAILED(hr)) {
       free(value);
       throwWindowsException(hr);
+    }
+
+    if (value.isNull) {
+      free(value);
+      return null;
     }
 
     return IVector.fromPtr(value,

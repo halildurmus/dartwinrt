@@ -39,7 +39,7 @@ class FolderPicker extends IInspectable
   late final _iFolderPicker2 = IFolderPicker2.from(this);
 
   @override
-  ValueSet get continuationData => _iFolderPicker2.continuationData;
+  ValueSet? get continuationData => _iFolderPicker2.continuationData;
 
   @Deprecated("Instead, use PickSingleFolderAsync")
   @override
@@ -75,7 +75,7 @@ class FolderPicker extends IInspectable
   set commitButtonText(String value) => _iFolderPicker.commitButtonText = value;
 
   @override
-  IVector<String> get fileTypeFilter => _iFolderPicker.fileTypeFilter;
+  IVector<String>? get fileTypeFilter => _iFolderPicker.fileTypeFilter;
 
   @override
   Future<StorageFolder?> pickSingleFolderAsync() =>
