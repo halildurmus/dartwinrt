@@ -43,8 +43,8 @@ class IOutputStream extends IInspectable implements IClosable {
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer buffer,
-                        Pointer<COMObject> operation)>()(ptr.ref.lpVtbl,
-            buffer == null ? nullptr : buffer.ptr.ref.lpVtbl, operation);
+                        Pointer<COMObject> operation)>()(
+            ptr.ref.lpVtbl, buffer?.ptr.ref.lpVtbl ?? nullptr, operation);
 
     if (FAILED(hr)) {
       free(operation);

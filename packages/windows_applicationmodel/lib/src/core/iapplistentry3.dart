@@ -42,8 +42,8 @@ class IAppListEntry3 extends IInspectable {
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer user,
-                        Pointer<COMObject> operation)>()(ptr.ref.lpVtbl,
-            user == null ? nullptr : user.ptr.ref.lpVtbl, operation);
+                        Pointer<COMObject> operation)>()(
+            ptr.ref.lpVtbl, user?.ptr.ref.lpVtbl ?? nullptr, operation);
 
     if (FAILED(hr)) {
       free(operation);

@@ -118,7 +118,7 @@ class IStorageFileStatics extends IInspectable {
         ptr.ref.lpVtbl,
         displayNameWithExtensionHString,
         dataRequested.ref.lpVtbl,
-        thumbnail == null ? nullptr : thumbnail.ptr.ref.lpVtbl,
+        thumbnail?.ptr.ref.lpVtbl ?? nullptr,
         operation);
 
     WindowsDeleteString(displayNameWithExtensionHString);
@@ -159,9 +159,9 @@ class IStorageFileStatics extends IInspectable {
                     VTablePointer thumbnail,
                     Pointer<COMObject> operation)>()(
         ptr.ref.lpVtbl,
-        fileToReplace == null ? nullptr : fileToReplace.ptr.ref.lpVtbl,
+        fileToReplace?.ptr.ref.lpVtbl ?? nullptr,
         dataRequested.ref.lpVtbl,
-        thumbnail == null ? nullptr : thumbnail.ptr.ref.lpVtbl,
+        thumbnail?.ptr.ref.lpVtbl ?? nullptr,
         operation);
 
     if (FAILED(hr)) {
@@ -204,7 +204,7 @@ class IStorageFileStatics extends IInspectable {
         ptr.ref.lpVtbl,
         displayNameWithExtensionHString,
         uri?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr,
-        thumbnail == null ? nullptr : thumbnail.ptr.ref.lpVtbl,
+        thumbnail?.ptr.ref.lpVtbl ?? nullptr,
         operation);
 
     WindowsDeleteString(displayNameWithExtensionHString);
@@ -245,9 +245,9 @@ class IStorageFileStatics extends IInspectable {
                     VTablePointer thumbnail,
                     Pointer<COMObject> operation)>()(
         ptr.ref.lpVtbl,
-        fileToReplace == null ? nullptr : fileToReplace.ptr.ref.lpVtbl,
+        fileToReplace?.ptr.ref.lpVtbl ?? nullptr,
         uri?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr,
-        thumbnail == null ? nullptr : thumbnail.ptr.ref.lpVtbl,
+        thumbnail?.ptr.ref.lpVtbl ?? nullptr,
         operation);
 
     if (FAILED(hr)) {

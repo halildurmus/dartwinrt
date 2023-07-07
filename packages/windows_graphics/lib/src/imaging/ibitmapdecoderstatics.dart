@@ -245,8 +245,8 @@ class IBitmapDecoderStatics extends IInspectable {
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer stream,
-                        Pointer<COMObject> asyncInfo)>()(ptr.ref.lpVtbl,
-            stream == null ? nullptr : stream.ptr.ref.lpVtbl, asyncInfo);
+                        Pointer<COMObject> asyncInfo)>()(
+            ptr.ref.lpVtbl, stream?.ptr.ref.lpVtbl ?? nullptr, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -280,7 +280,7 @@ class IBitmapDecoderStatics extends IInspectable {
                         VTablePointer stream, Pointer<COMObject> asyncInfo)>()(
             ptr.ref.lpVtbl,
             decoderIdNativeStructPtr.ref,
-            stream == null ? nullptr : stream.ptr.ref.lpVtbl,
+            stream?.ptr.ref.lpVtbl ?? nullptr,
             asyncInfo);
 
     free(decoderIdNativeStructPtr);

@@ -39,7 +39,7 @@ class IXmlDocumentIO2 extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer buffer)>()(
-        ptr.ref.lpVtbl, buffer == null ? nullptr : buffer.ptr.ref.lpVtbl);
+        ptr.ref.lpVtbl, buffer?.ptr.ref.lpVtbl ?? nullptr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -61,8 +61,8 @@ class IXmlDocumentIO2 extends IInspectable {
                     int Function(VTablePointer lpVtbl, VTablePointer buffer,
                         VTablePointer loadSettings)>()(
             ptr.ref.lpVtbl,
-            buffer == null ? nullptr : buffer.ptr.ref.lpVtbl,
-            loadSettings == null ? nullptr : loadSettings.ptr.ref.lpVtbl);
+            buffer?.ptr.ref.lpVtbl ?? nullptr,
+            loadSettings?.ptr.ref.lpVtbl ?? nullptr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

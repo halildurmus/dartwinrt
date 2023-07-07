@@ -111,7 +111,7 @@ class IAppInfoStatics extends IInspectable {
                     int Function(VTablePointer lpVtbl, VTablePointer user,
                         int appUserModelId, Pointer<COMObject> result)>()(
             ptr.ref.lpVtbl,
-            user == null ? nullptr : user.ptr.ref.lpVtbl,
+            user?.ptr.ref.lpVtbl ?? nullptr,
             appUserModelIdHString,
             result);
 

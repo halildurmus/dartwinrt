@@ -134,7 +134,7 @@ final class ObjectParameterProjection extends ParameterProjection {
         return '${nullCheck}IInspectable($identifier.toInterface(${quote(iid)})).ptr.ref.lpVtbl';
       } else {
         return isNullable
-            ? '$identifier == null ? nullptr : $identifier.ptr.ref.lpVtbl'
+            ? '$identifier?.ptr.ref.lpVtbl ?? nullptr'
             : '$identifier.ptr.ref.lpVtbl';
       }
     }

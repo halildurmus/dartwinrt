@@ -73,8 +73,8 @@ class IStorageItem2 extends IInspectable implements IStorageItem {
                   .value
                   .asFunction<
                       int Function(VTablePointer lpVtbl, VTablePointer item,
-                          Pointer<Bool> value)>()(ptr.ref.lpVtbl,
-              item == null ? nullptr : item.ptr.ref.lpVtbl, value);
+                          Pointer<Bool> value)>()(
+              ptr.ref.lpVtbl, item?.ptr.ref.lpVtbl ?? nullptr, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 

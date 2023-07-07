@@ -1942,8 +1942,8 @@ class ICalendar extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, VTablePointer other,
-                      Pointer<Int32> result)>()(ptr.ref.lpVtbl,
-          other == null ? nullptr : other.ptr.ref.lpVtbl, result);
+                      Pointer<Int32> result)>()(
+          ptr.ref.lpVtbl, other?.ptr.ref.lpVtbl ?? nullptr, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1989,7 +1989,7 @@ class ICalendar extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer other)>()(
-        ptr.ref.lpVtbl, other == null ? nullptr : other.ptr.ref.lpVtbl);
+        ptr.ref.lpVtbl, other?.ptr.ref.lpVtbl ?? nullptr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

@@ -52,7 +52,7 @@ class ILauncherStatics2 extends IInspectable {
                     VTablePointer options, Pointer<COMObject> operation)>()(
         ptr.ref.lpVtbl,
         uri?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr,
-        options == null ? nullptr : options.ptr.ref.lpVtbl,
+        options?.ptr.ref.lpVtbl ?? nullptr,
         operation);
 
     if (FAILED(hr)) {
@@ -90,8 +90,8 @@ class ILauncherStatics2 extends IInspectable {
                     Pointer<COMObject> operation)>()(
         ptr.ref.lpVtbl,
         uri?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr,
-        options == null ? nullptr : options.ptr.ref.lpVtbl,
-        inputData == null ? nullptr : inputData.ptr.ref.lpVtbl,
+        options?.ptr.ref.lpVtbl ?? nullptr,
+        inputData?.ptr.ref.lpVtbl ?? nullptr,
         operation);
 
     if (FAILED(hr)) {
@@ -129,8 +129,8 @@ class ILauncherStatics2 extends IInspectable {
                     Pointer<COMObject> operation)>()(
         ptr.ref.lpVtbl,
         uri?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr,
-        options == null ? nullptr : options.ptr.ref.lpVtbl,
-        inputData == null ? nullptr : inputData.ptr.ref.lpVtbl,
+        options?.ptr.ref.lpVtbl ?? nullptr,
+        inputData?.ptr.ref.lpVtbl ?? nullptr,
         operation);
 
     if (FAILED(hr)) {
@@ -240,8 +240,8 @@ class ILauncherStatics2 extends IInspectable {
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer file,
-                        Pointer<COMObject> operation)>()(ptr.ref.lpVtbl,
-            file == null ? nullptr : file.ptr.ref.lpVtbl, operation);
+                        Pointer<COMObject> operation)>()(
+            ptr.ref.lpVtbl, file?.ptr.ref.lpVtbl ?? nullptr, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -274,7 +274,7 @@ class ILauncherStatics2 extends IInspectable {
                 int Function(VTablePointer lpVtbl, VTablePointer file,
                     int packageFamilyName, Pointer<COMObject> operation)>()(
         ptr.ref.lpVtbl,
-        file == null ? nullptr : file.ptr.ref.lpVtbl,
+        file?.ptr.ref.lpVtbl ?? nullptr,
         packageFamilyNameHString,
         operation);
 

@@ -78,11 +78,8 @@ class IWebTokenResponseFactory extends IInspectable {
                     VTablePointer lpVtbl,
                     int token,
                     VTablePointer webAccount,
-                    Pointer<COMObject> webTokenResponse)>()(
-        ptr.ref.lpVtbl,
-        tokenHString,
-        webAccount == null ? nullptr : webAccount.ptr.ref.lpVtbl,
-        webTokenResponse);
+                    Pointer<COMObject> webTokenResponse)>()(ptr.ref.lpVtbl,
+        tokenHString, webAccount?.ptr.ref.lpVtbl ?? nullptr, webTokenResponse);
 
     WindowsDeleteString(tokenHString);
 
@@ -120,8 +117,8 @@ class IWebTokenResponseFactory extends IInspectable {
                     Pointer<COMObject> webTokenResponse)>()(
         ptr.ref.lpVtbl,
         tokenHString,
-        webAccount == null ? nullptr : webAccount.ptr.ref.lpVtbl,
-        error == null ? nullptr : error.ptr.ref.lpVtbl,
+        webAccount?.ptr.ref.lpVtbl ?? nullptr,
+        error?.ptr.ref.lpVtbl ?? nullptr,
         webTokenResponse);
 
     WindowsDeleteString(tokenHString);

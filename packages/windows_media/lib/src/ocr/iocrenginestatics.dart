@@ -92,8 +92,8 @@ class IOcrEngineStatics extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, VTablePointer language,
-                      Pointer<Bool> result)>()(ptr.ref.lpVtbl,
-          language == null ? nullptr : language.ptr.ref.lpVtbl, result);
+                      Pointer<Bool> result)>()(
+          ptr.ref.lpVtbl, language?.ptr.ref.lpVtbl ?? nullptr, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -119,8 +119,8 @@ class IOcrEngineStatics extends IInspectable {
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer language,
-                        Pointer<COMObject> result)>()(ptr.ref.lpVtbl,
-            language == null ? nullptr : language.ptr.ref.lpVtbl, result);
+                        Pointer<COMObject> result)>()(
+            ptr.ref.lpVtbl, language?.ptr.ref.lpVtbl ?? nullptr, result);
 
     if (FAILED(hr)) {
       free(result);

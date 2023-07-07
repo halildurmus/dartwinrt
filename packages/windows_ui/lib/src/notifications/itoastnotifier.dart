@@ -41,8 +41,7 @@ class IToastNotifier extends IInspectable {
             .asFunction<
                 int Function(
                     VTablePointer lpVtbl, VTablePointer notification)>()(
-        ptr.ref.lpVtbl,
-        notification == null ? nullptr : notification.ptr.ref.lpVtbl);
+        ptr.ref.lpVtbl, notification?.ptr.ref.lpVtbl ?? nullptr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -59,8 +58,7 @@ class IToastNotifier extends IInspectable {
             .asFunction<
                 int Function(
                     VTablePointer lpVtbl, VTablePointer notification)>()(
-        ptr.ref.lpVtbl,
-        notification == null ? nullptr : notification.ptr.ref.lpVtbl);
+        ptr.ref.lpVtbl, notification?.ptr.ref.lpVtbl ?? nullptr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -101,8 +99,7 @@ class IToastNotifier extends IInspectable {
             .asFunction<
                 int Function(
                     VTablePointer lpVtbl, VTablePointer scheduledToast)>()(
-        ptr.ref.lpVtbl,
-        scheduledToast == null ? nullptr : scheduledToast.ptr.ref.lpVtbl);
+        ptr.ref.lpVtbl, scheduledToast?.ptr.ref.lpVtbl ?? nullptr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -119,8 +116,7 @@ class IToastNotifier extends IInspectable {
             .asFunction<
                 int Function(
                     VTablePointer lpVtbl, VTablePointer scheduledToast)>()(
-        ptr.ref.lpVtbl,
-        scheduledToast == null ? nullptr : scheduledToast.ptr.ref.lpVtbl);
+        ptr.ref.lpVtbl, scheduledToast?.ptr.ref.lpVtbl ?? nullptr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

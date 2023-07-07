@@ -43,7 +43,7 @@ class IImageFeatureValueStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer image,
                     Pointer<COMObject> result)>()(
-        ptr.ref.lpVtbl, image == null ? nullptr : image.ptr.ref.lpVtbl, result);
+        ptr.ref.lpVtbl, image?.ptr.ref.lpVtbl ?? nullptr, result);
 
     if (FAILED(hr)) {
       free(result);

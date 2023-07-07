@@ -173,8 +173,8 @@ class IHostName extends IInspectable {
                   .value
                   .asFunction<
                       int Function(VTablePointer lpVtbl, VTablePointer hostName,
-                          Pointer<Bool> isEqual)>()(ptr.ref.lpVtbl,
-              hostName == null ? nullptr : hostName.ptr.ref.lpVtbl, isEqual);
+                          Pointer<Bool> isEqual)>()(
+              ptr.ref.lpVtbl, hostName?.ptr.ref.lpVtbl ?? nullptr, isEqual);
 
       if (FAILED(hr)) throwWindowsException(hr);
 

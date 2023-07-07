@@ -44,8 +44,8 @@ class IPackage9 extends IInspectable {
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer options,
-                        Pointer<COMObject> result)>()(ptr.ref.lpVtbl,
-            options == null ? nullptr : options.ptr.ref.lpVtbl, result);
+                        Pointer<COMObject> result)>()(
+            ptr.ref.lpVtbl, options?.ptr.ref.lpVtbl ?? nullptr, result);
 
     if (FAILED(hr)) {
       free(result);

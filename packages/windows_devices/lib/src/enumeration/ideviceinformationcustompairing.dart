@@ -124,9 +124,7 @@ class IDeviceInformationCustomPairing extends IInspectable {
         ptr.ref.lpVtbl,
         pairingKindsSupported.value,
         minProtectionLevel.value,
-        devicePairingSettings == null
-            ? nullptr
-            : devicePairingSettings.ptr.ref.lpVtbl,
+        devicePairingSettings?.ptr.ref.lpVtbl ?? nullptr,
         result);
 
     if (FAILED(hr)) {

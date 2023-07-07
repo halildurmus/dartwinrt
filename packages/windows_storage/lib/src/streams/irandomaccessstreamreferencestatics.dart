@@ -47,8 +47,8 @@ class IRandomAccessStreamReferenceStatics extends IInspectable {
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer file,
-                        Pointer<COMObject> streamReference)>()(ptr.ref.lpVtbl,
-            file == null ? nullptr : file.ptr.ref.lpVtbl, streamReference);
+                        Pointer<COMObject> streamReference)>()(
+            ptr.ref.lpVtbl, file?.ptr.ref.lpVtbl ?? nullptr, streamReference);
 
     if (FAILED(hr)) {
       free(streamReference);
@@ -111,8 +111,8 @@ class IRandomAccessStreamReferenceStatics extends IInspectable {
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer stream,
-                        Pointer<COMObject> streamReference)>()(ptr.ref.lpVtbl,
-            stream == null ? nullptr : stream.ptr.ref.lpVtbl, streamReference);
+                        Pointer<COMObject> streamReference)>()(
+            ptr.ref.lpVtbl, stream?.ptr.ref.lpVtbl ?? nullptr, streamReference);
 
     if (FAILED(hr)) {
       free(streamReference);

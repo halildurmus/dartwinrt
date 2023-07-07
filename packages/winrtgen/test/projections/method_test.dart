@@ -619,7 +619,7 @@ void main() {
       expect(
           projection.identifiers,
           equals(
-              'ptr.ref.lpVtbl, target == null ? nullptr : target.ptr.ref.lpVtbl, operation'));
+              'ptr.ref.lpVtbl, target?.ptr.ref.lpVtbl ?? nullptr, operation'));
       expect(projection.parametersPostamble, isEmpty);
       expect(projection.failedCheck,
           equals(failedCheck(freeRetVal: true, identifier: 'operation')));
@@ -728,7 +728,7 @@ void main() {
       expect(
           projection.identifiers,
           equals(
-              'ptr.ref.lpVtbl, buffer == null ? nullptr : buffer.ptr.ref.lpVtbl, operation'));
+              'ptr.ref.lpVtbl, buffer?.ptr.ref.lpVtbl ?? nullptr, operation'));
       expect(projection.parametersPostamble, isEmpty);
       expect(projection.failedCheck,
           equals(failedCheck(freeRetVal: true, identifier: 'operation')));
@@ -765,7 +765,7 @@ void main() {
       expect(
           projection.identifiers,
           equals(
-              'ptr.ref.lpVtbl, file == null ? nullptr : file.ptr.ref.lpVtbl, result'));
+              'ptr.ref.lpVtbl, file?.ptr.ref.lpVtbl ?? nullptr, result'));
       expect(projection.parametersPostamble, isEmpty);
       expect(projection.failedCheck,
           equals(failedCheck(freeRetVal: true, identifier: 'result')));
@@ -1068,7 +1068,7 @@ void main() {
       expect(
           projection.identifiers,
           equals(
-              'ptr.ref.lpVtbl, user == null ? nullptr : user.ptr.ref.lpVtbl, value'));
+              'ptr.ref.lpVtbl, user?.ptr.ref.lpVtbl ?? nullptr, value'));
       expect(projection.parametersPostamble, isEmpty);
       expect(projection.failedCheck,
           equals(failedCheck(freeRetVal: true, identifier: 'value')));

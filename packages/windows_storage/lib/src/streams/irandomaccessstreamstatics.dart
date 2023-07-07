@@ -48,8 +48,8 @@ class IRandomAccessStreamStatics extends IInspectable {
                 int Function(VTablePointer lpVtbl, VTablePointer source,
                     VTablePointer destination, Pointer<COMObject> operation)>()(
         ptr.ref.lpVtbl,
-        source == null ? nullptr : source.ptr.ref.lpVtbl,
-        destination == null ? nullptr : destination.ptr.ref.lpVtbl,
+        source?.ptr.ref.lpVtbl ?? nullptr,
+        destination?.ptr.ref.lpVtbl ?? nullptr,
         operation);
 
     if (FAILED(hr)) {
@@ -84,8 +84,8 @@ class IRandomAccessStreamStatics extends IInspectable {
                     int bytesToCopy,
                     Pointer<COMObject> operation)>()(
         ptr.ref.lpVtbl,
-        source == null ? nullptr : source.ptr.ref.lpVtbl,
-        destination == null ? nullptr : destination.ptr.ref.lpVtbl,
+        source?.ptr.ref.lpVtbl ?? nullptr,
+        destination?.ptr.ref.lpVtbl ?? nullptr,
         bytesToCopy,
         operation);
 
@@ -116,8 +116,8 @@ class IRandomAccessStreamStatics extends IInspectable {
                 int Function(VTablePointer lpVtbl, VTablePointer source,
                     VTablePointer destination, Pointer<COMObject> operation)>()(
         ptr.ref.lpVtbl,
-        source == null ? nullptr : source.ptr.ref.lpVtbl,
-        destination == null ? nullptr : destination.ptr.ref.lpVtbl,
+        source?.ptr.ref.lpVtbl ?? nullptr,
+        destination?.ptr.ref.lpVtbl ?? nullptr,
         operation);
 
     if (FAILED(hr)) {

@@ -49,7 +49,7 @@ class IScheduledToastNotificationFactory extends IInspectable {
                 int Function(VTablePointer lpVtbl, VTablePointer content,
                     int deliveryTime, Pointer<COMObject> value)>()(
         ptr.ref.lpVtbl,
-        content == null ? nullptr : content.ptr.ref.lpVtbl,
+        content?.ptr.ref.lpVtbl ?? nullptr,
         deliveryTime.toWinRTDateTime(),
         value);
 
@@ -90,7 +90,7 @@ class IScheduledToastNotificationFactory extends IInspectable {
                     int maximumSnoozeCount,
                     Pointer<COMObject> value)>()(
         ptr.ref.lpVtbl,
-        content == null ? nullptr : content.ptr.ref.lpVtbl,
+        content?.ptr.ref.lpVtbl ?? nullptr,
         deliveryTime.toWinRTDateTime(),
         snoozeInterval.toWinRTDuration(),
         maximumSnoozeCount,

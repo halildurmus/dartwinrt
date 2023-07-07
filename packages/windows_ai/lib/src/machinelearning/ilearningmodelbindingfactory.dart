@@ -46,8 +46,8 @@ class ILearningModelBindingFactory extends IInspectable {
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer session,
-                        Pointer<COMObject> value)>()(ptr.ref.lpVtbl,
-            session == null ? nullptr : session.ptr.ref.lpVtbl, value);
+                        Pointer<COMObject> value)>()(
+            ptr.ref.lpVtbl, session?.ptr.ref.lpVtbl ?? nullptr, value);
 
     if (FAILED(hr)) {
       free(value);

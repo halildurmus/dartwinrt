@@ -58,11 +58,9 @@ class ILearningModelSessionFactory2 extends IInspectable {
                     VTablePointer learningModelSessionOptions,
                     Pointer<COMObject> value)>()(
         ptr.ref.lpVtbl,
-        model == null ? nullptr : model.ptr.ref.lpVtbl,
-        deviceToRunOn == null ? nullptr : deviceToRunOn.ptr.ref.lpVtbl,
-        learningModelSessionOptions == null
-            ? nullptr
-            : learningModelSessionOptions.ptr.ref.lpVtbl,
+        model?.ptr.ref.lpVtbl ?? nullptr,
+        deviceToRunOn?.ptr.ref.lpVtbl ?? nullptr,
+        learningModelSessionOptions?.ptr.ref.lpVtbl ?? nullptr,
         value);
 
     if (FAILED(hr)) {

@@ -46,8 +46,8 @@ class ILearningModelDeviceStatics extends IInspectable {
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer device,
-                        Pointer<COMObject> result)>()(ptr.ref.lpVtbl,
-            device == null ? nullptr : device.ptr.ref.lpVtbl, result);
+                        Pointer<COMObject> result)>()(
+            ptr.ref.lpVtbl, device?.ptr.ref.lpVtbl ?? nullptr, result);
 
     if (FAILED(hr)) {
       free(result);

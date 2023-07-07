@@ -45,8 +45,8 @@ class IToastNotificationFactory extends IInspectable {
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer content,
-                        Pointer<COMObject> value)>()(ptr.ref.lpVtbl,
-            content == null ? nullptr : content.ptr.ref.lpVtbl, value);
+                        Pointer<COMObject> value)>()(
+            ptr.ref.lpVtbl, content?.ptr.ref.lpVtbl ?? nullptr, value);
 
     if (FAILED(hr)) {
       free(value);

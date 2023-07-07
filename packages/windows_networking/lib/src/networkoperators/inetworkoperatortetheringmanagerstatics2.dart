@@ -47,8 +47,8 @@ class INetworkOperatorTetheringManagerStatics2 extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, VTablePointer profile,
-                      Pointer<Int32> result)>()(ptr.ref.lpVtbl,
-          profile == null ? nullptr : profile.ptr.ref.lpVtbl, result);
+                      Pointer<Int32> result)>()(
+          ptr.ref.lpVtbl, profile?.ptr.ref.lpVtbl ?? nullptr, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -74,8 +74,8 @@ class INetworkOperatorTetheringManagerStatics2 extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer profile,
-                    Pointer<COMObject> ppManager)>()(ptr.ref.lpVtbl,
-        profile == null ? nullptr : profile.ptr.ref.lpVtbl, ppManager);
+                    Pointer<COMObject> ppManager)>()(
+        ptr.ref.lpVtbl, profile?.ptr.ref.lpVtbl ?? nullptr, ppManager);
 
     if (FAILED(hr)) {
       free(ppManager);

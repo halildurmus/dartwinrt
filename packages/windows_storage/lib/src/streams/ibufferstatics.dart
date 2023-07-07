@@ -42,7 +42,7 @@ class IBufferStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer input,
                     Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, input == null ? nullptr : input.ptr.ref.lpVtbl, value);
+        ptr.ref.lpVtbl, input?.ptr.ref.lpVtbl ?? nullptr, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -71,7 +71,7 @@ class IBufferStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer input,
                     Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, input == null ? nullptr : input.ptr.ref.lpVtbl, value);
+        ptr.ref.lpVtbl, input?.ptr.ref.lpVtbl ?? nullptr, value);
 
     if (FAILED(hr)) {
       free(value);

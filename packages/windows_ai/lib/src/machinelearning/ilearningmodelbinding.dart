@@ -66,7 +66,7 @@ class ILearningModelBinding extends IInspectable {
         ptr.ref.lpVtbl,
         nameHString,
         value?.intoBox().ptr.ref.lpVtbl ?? nullptr,
-        props == null ? nullptr : props.ptr.ref.lpVtbl);
+        props?.ptr.ref.lpVtbl ?? nullptr);
 
     WindowsDeleteString(nameHString);
 

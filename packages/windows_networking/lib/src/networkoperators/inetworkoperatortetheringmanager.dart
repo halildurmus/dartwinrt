@@ -151,9 +151,7 @@ class INetworkOperatorTetheringManager extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer configuration,
                     Pointer<COMObject> asyncInfo)>()(
-        ptr.ref.lpVtbl,
-        configuration == null ? nullptr : configuration.ptr.ref.lpVtbl,
-        asyncInfo);
+        ptr.ref.lpVtbl, configuration?.ptr.ref.lpVtbl ?? nullptr, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);

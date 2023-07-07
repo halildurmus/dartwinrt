@@ -48,7 +48,7 @@ class IStorageFileQueryResult2 extends IInspectable
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer file,
                     Pointer<COMObject> result)>()(
-        ptr.ref.lpVtbl, file == null ? nullptr : file.ptr.ref.lpVtbl, result);
+        ptr.ref.lpVtbl, file?.ptr.ref.lpVtbl ?? nullptr, result);
 
     if (FAILED(hr)) {
       free(result);

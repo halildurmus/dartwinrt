@@ -43,8 +43,8 @@ class IDataReaderFactory extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer inputStream,
-                    Pointer<COMObject> dataReader)>()(ptr.ref.lpVtbl,
-        inputStream == null ? nullptr : inputStream.ptr.ref.lpVtbl, dataReader);
+                    Pointer<COMObject> dataReader)>()(
+        ptr.ref.lpVtbl, inputStream?.ptr.ref.lpVtbl ?? nullptr, dataReader);
 
     if (FAILED(hr)) {
       free(dataReader);

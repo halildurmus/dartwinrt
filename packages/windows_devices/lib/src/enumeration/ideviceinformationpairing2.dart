@@ -108,9 +108,7 @@ class IDeviceInformationPairing2 extends IInspectable {
                     Pointer<COMObject> result)>()(
         ptr.ref.lpVtbl,
         minProtectionLevel.value,
-        devicePairingSettings == null
-            ? nullptr
-            : devicePairingSettings.ptr.ref.lpVtbl,
+        devicePairingSettings?.ptr.ref.lpVtbl ?? nullptr,
         result);
 
     if (FAILED(hr)) {

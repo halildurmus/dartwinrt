@@ -51,9 +51,7 @@ class ICoreAutomationRemoteOperation2 extends IInspectable {
                     VTablePointer connectionBoundObject)>()(
         ptr.ref.lpVtbl,
         operandIdNativeStructPtr.ref,
-        connectionBoundObject == null
-            ? nullptr
-            : connectionBoundObject.ptr.ref.lpVtbl);
+        connectionBoundObject?.ptr.ref.lpVtbl ?? nullptr);
 
     free(operandIdNativeStructPtr);
 

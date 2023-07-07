@@ -186,10 +186,8 @@ class IXmlElement extends IInspectable
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer newAttribute,
-                    Pointer<COMObject> previousAttribute)>()(
-        ptr.ref.lpVtbl,
-        newAttribute == null ? nullptr : newAttribute.ptr.ref.lpVtbl,
-        previousAttribute);
+                    Pointer<COMObject> previousAttribute)>()(ptr.ref.lpVtbl,
+        newAttribute?.ptr.ref.lpVtbl ?? nullptr, previousAttribute);
 
     if (FAILED(hr)) {
       free(previousAttribute);
@@ -219,10 +217,8 @@ class IXmlElement extends IInspectable
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer attributeNode,
-                    Pointer<COMObject> removedAttribute)>()(
-        ptr.ref.lpVtbl,
-        attributeNode == null ? nullptr : attributeNode.ptr.ref.lpVtbl,
-        removedAttribute);
+                    Pointer<COMObject> removedAttribute)>()(ptr.ref.lpVtbl,
+        attributeNode?.ptr.ref.lpVtbl ?? nullptr, removedAttribute);
 
     if (FAILED(hr)) {
       free(removedAttribute);
@@ -366,10 +362,8 @@ class IXmlElement extends IInspectable
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer newAttribute,
-                    Pointer<COMObject> previousAttribute)>()(
-        ptr.ref.lpVtbl,
-        newAttribute == null ? nullptr : newAttribute.ptr.ref.lpVtbl,
-        previousAttribute);
+                    Pointer<COMObject> previousAttribute)>()(ptr.ref.lpVtbl,
+        newAttribute?.ptr.ref.lpVtbl ?? nullptr, previousAttribute);
 
     if (FAILED(hr)) {
       free(previousAttribute);

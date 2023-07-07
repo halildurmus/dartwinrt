@@ -48,8 +48,8 @@ class IWebAuthenticationCoreManagerStatics extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer request,
-                    Pointer<COMObject> asyncInfo)>()(ptr.ref.lpVtbl,
-        request == null ? nullptr : request.ptr.ref.lpVtbl, asyncInfo);
+                    Pointer<COMObject> asyncInfo)>()(
+        ptr.ref.lpVtbl, request?.ptr.ref.lpVtbl ?? nullptr, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -81,8 +81,8 @@ class IWebAuthenticationCoreManagerStatics extends IInspectable {
                 int Function(VTablePointer lpVtbl, VTablePointer request,
                     VTablePointer webAccount, Pointer<COMObject> asyncInfo)>()(
         ptr.ref.lpVtbl,
-        request == null ? nullptr : request.ptr.ref.lpVtbl,
-        webAccount == null ? nullptr : webAccount.ptr.ref.lpVtbl,
+        request?.ptr.ref.lpVtbl ?? nullptr,
+        webAccount?.ptr.ref.lpVtbl ?? nullptr,
         asyncInfo);
 
     if (FAILED(hr)) {
@@ -111,8 +111,8 @@ class IWebAuthenticationCoreManagerStatics extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer request,
-                    Pointer<COMObject> asyncInfo)>()(ptr.ref.lpVtbl,
-        request == null ? nullptr : request.ptr.ref.lpVtbl, asyncInfo);
+                    Pointer<COMObject> asyncInfo)>()(
+        ptr.ref.lpVtbl, request?.ptr.ref.lpVtbl ?? nullptr, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -144,8 +144,8 @@ class IWebAuthenticationCoreManagerStatics extends IInspectable {
                 int Function(VTablePointer lpVtbl, VTablePointer request,
                     VTablePointer webAccount, Pointer<COMObject> asyncInfo)>()(
         ptr.ref.lpVtbl,
-        request == null ? nullptr : request.ptr.ref.lpVtbl,
-        webAccount == null ? nullptr : webAccount.ptr.ref.lpVtbl,
+        request?.ptr.ref.lpVtbl ?? nullptr,
+        webAccount?.ptr.ref.lpVtbl ?? nullptr,
         asyncInfo);
 
     if (FAILED(hr)) {
@@ -179,7 +179,7 @@ class IWebAuthenticationCoreManagerStatics extends IInspectable {
                 int Function(VTablePointer lpVtbl, VTablePointer provider,
                     int webAccountId, Pointer<COMObject> asyncInfo)>()(
         ptr.ref.lpVtbl,
-        provider == null ? nullptr : provider.ptr.ref.lpVtbl,
+        provider?.ptr.ref.lpVtbl ?? nullptr,
         webAccountIdHString,
         asyncInfo);
 

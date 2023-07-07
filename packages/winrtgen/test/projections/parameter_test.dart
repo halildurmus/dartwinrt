@@ -66,7 +66,7 @@ void main() {
       expect(projection.postambles, isEmpty);
       expect(projection.identifier, equals('other'));
       expect(projection.localIdentifier,
-          equals('other == null ? nullptr : other.ptr.ref.lpVtbl'));
+          equals('other?.ptr.ref.lpVtbl ?? nullptr'));
     });
 
     test('projects DateTime', () {
@@ -358,10 +358,8 @@ void main() {
       expect(projection.nullCheck, equals(nullCheck('fileToReplace')));
       expect(projection.postambles, isEmpty);
       expect(projection.identifier, equals('fileToReplace'));
-      expect(
-          projection.localIdentifier,
-          equals(
-              'fileToReplace == null ? nullptr : fileToReplace.ptr.ref.lpVtbl'));
+      expect(projection.localIdentifier,
+          equals('fileToReplace?.ptr.ref.lpVtbl ?? nullptr'));
     });
 
     test('projects IIterable<IKeyValuePair<String, Object?>?>', () {

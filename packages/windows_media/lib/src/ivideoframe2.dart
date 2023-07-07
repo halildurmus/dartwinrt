@@ -52,7 +52,7 @@ class IVideoFrame2 extends IInspectable {
                     VTablePointer destinationBounds,
                     Pointer<COMObject> operation)>()(
         ptr.ref.lpVtbl,
-        frame == null ? nullptr : frame.ptr.ref.lpVtbl,
+        frame?.ptr.ref.lpVtbl ?? nullptr,
         sourceBounds?.toReference().ptr.ref.lpVtbl ?? nullptr,
         destinationBounds?.toReference().ptr.ref.lpVtbl ?? nullptr,
         operation);
