@@ -71,7 +71,7 @@ class ICoreAutomationRemoteOperationExtensionProvider extends IInspectable {
                         operandIds)>()(
         ptr.ref.lpVtbl,
         extensionIdNativeStructPtr.ref,
-        context == null ? nullptr : context.ptr.ref.lpVtbl,
+        context?.ptr.ref.lpVtbl ?? nullptr,
         operandIds.length,
         pOperandIdsArray);
 

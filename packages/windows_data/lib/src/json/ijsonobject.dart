@@ -77,9 +77,7 @@ class IJsonObject extends IInspectable implements IJsonValue {
             .asFunction<
                 int Function(
                     VTablePointer lpVtbl, int name, VTablePointer value)>()(
-        ptr.ref.lpVtbl,
-        nameHString,
-        value == null ? nullptr : value.ptr.ref.lpVtbl);
+        ptr.ref.lpVtbl, nameHString, value?.ptr.ref.lpVtbl ?? nullptr);
 
     WindowsDeleteString(nameHString);
 

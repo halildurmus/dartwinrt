@@ -150,7 +150,7 @@ class ILauncherStatics4 extends IInspectable {
                     int Function(VTablePointer lpVtbl, VTablePointer user,
                         VTablePointer uri, Pointer<COMObject> operation)>()(
             ptr.ref.lpVtbl,
-            user == null ? nullptr : user.ptr.ref.lpVtbl,
+            user?.ptr.ref.lpVtbl ?? nullptr,
             uri?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr,
             operation);
 
@@ -188,9 +188,9 @@ class ILauncherStatics4 extends IInspectable {
                     VTablePointer options,
                     Pointer<COMObject> operation)>()(
         ptr.ref.lpVtbl,
-        user == null ? nullptr : user.ptr.ref.lpVtbl,
+        user?.ptr.ref.lpVtbl ?? nullptr,
         uri?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr,
-        options == null ? nullptr : options.ptr.ref.lpVtbl,
+        options?.ptr.ref.lpVtbl ?? nullptr,
         operation);
 
     if (FAILED(hr)) {
@@ -229,10 +229,10 @@ class ILauncherStatics4 extends IInspectable {
                     VTablePointer inputData,
                     Pointer<COMObject> operation)>()(
         ptr.ref.lpVtbl,
-        user == null ? nullptr : user.ptr.ref.lpVtbl,
+        user?.ptr.ref.lpVtbl ?? nullptr,
         uri?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr,
-        options == null ? nullptr : options.ptr.ref.lpVtbl,
-        inputData == null ? nullptr : inputData.ptr.ref.lpVtbl,
+        options?.ptr.ref.lpVtbl ?? nullptr,
+        inputData?.ptr.ref.lpVtbl ?? nullptr,
         operation);
 
     if (FAILED(hr)) {
@@ -269,9 +269,9 @@ class ILauncherStatics4 extends IInspectable {
                     VTablePointer options,
                     Pointer<COMObject> operation)>()(
         ptr.ref.lpVtbl,
-        user == null ? nullptr : user.ptr.ref.lpVtbl,
+        user?.ptr.ref.lpVtbl ?? nullptr,
         uri?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr,
-        options == null ? nullptr : options.ptr.ref.lpVtbl,
+        options?.ptr.ref.lpVtbl ?? nullptr,
         operation);
 
     if (FAILED(hr)) {
@@ -310,10 +310,10 @@ class ILauncherStatics4 extends IInspectable {
                     VTablePointer inputData,
                     Pointer<COMObject> operation)>()(
         ptr.ref.lpVtbl,
-        user == null ? nullptr : user.ptr.ref.lpVtbl,
+        user?.ptr.ref.lpVtbl ?? nullptr,
         uri?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr,
-        options == null ? nullptr : options.ptr.ref.lpVtbl,
-        inputData == null ? nullptr : inputData.ptr.ref.lpVtbl,
+        options?.ptr.ref.lpVtbl ?? nullptr,
+        inputData?.ptr.ref.lpVtbl ?? nullptr,
         operation);
 
     if (FAILED(hr)) {

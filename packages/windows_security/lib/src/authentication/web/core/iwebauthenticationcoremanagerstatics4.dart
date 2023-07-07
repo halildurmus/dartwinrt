@@ -52,8 +52,8 @@ class IWebAuthenticationCoreManagerStatics4 extends IInspectable
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer provider,
-                    Pointer<COMObject> operation)>()(ptr.ref.lpVtbl,
-        provider == null ? nullptr : provider.ptr.ref.lpVtbl, operation);
+                    Pointer<COMObject> operation)>()(
+        ptr.ref.lpVtbl, provider?.ptr.ref.lpVtbl ?? nullptr, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -86,7 +86,7 @@ class IWebAuthenticationCoreManagerStatics4 extends IInspectable
                 int Function(VTablePointer lpVtbl, VTablePointer provider,
                     int clientId, Pointer<COMObject> operation)>()(
         ptr.ref.lpVtbl,
-        provider == null ? nullptr : provider.ptr.ref.lpVtbl,
+        provider?.ptr.ref.lpVtbl ?? nullptr,
         clientIdHString,
         operation);
 
@@ -204,7 +204,7 @@ class IWebAuthenticationCoreManagerStatics4 extends IInspectable
         ptr.ref.lpVtbl,
         webAccountProviderIdHString,
         authorityHString,
-        user == null ? nullptr : user.ptr.ref.lpVtbl,
+        user?.ptr.ref.lpVtbl ?? nullptr,
         operation);
 
     WindowsDeleteString(webAccountProviderIdHString);

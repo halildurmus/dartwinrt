@@ -60,9 +60,9 @@ class IEndpointPairFactory extends IInspectable {
                     int remoteServiceName,
                     Pointer<COMObject> value)>()(
         ptr.ref.lpVtbl,
-        localHostName == null ? nullptr : localHostName.ptr.ref.lpVtbl,
+        localHostName?.ptr.ref.lpVtbl ?? nullptr,
         localServiceNameHString,
-        remoteHostName == null ? nullptr : remoteHostName.ptr.ref.lpVtbl,
+        remoteHostName?.ptr.ref.lpVtbl ?? nullptr,
         remoteServiceNameHString,
         value);
 

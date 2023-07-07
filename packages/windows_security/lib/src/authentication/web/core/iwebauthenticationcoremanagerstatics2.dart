@@ -63,7 +63,7 @@ class IWebAuthenticationCoreManagerStatics2 extends IInspectable
         ptr.ref.lpVtbl,
         webAccountProviderIdHString,
         authorityHString,
-        user == null ? nullptr : user.ptr.ref.lpVtbl,
+        user?.ptr.ref.lpVtbl ?? nullptr,
         asyncInfo);
 
     WindowsDeleteString(webAccountProviderIdHString);

@@ -91,7 +91,7 @@ void main() {
       expect(
           projection.identifiers,
           equals(
-              'ptr.ref.lpVtbl, value == null ? nullptr : value.ptr.ref.lpVtbl'));
+              'ptr.ref.lpVtbl, value?.ptr.ref.lpVtbl ?? nullptr'));
       expect(projection.parametersPostamble, isEmpty);
       expect(projection.failedCheck, equals(failedCheck()));
       expect(projection.nullCheck, isEmpty);
@@ -315,7 +315,7 @@ void main() {
       expect(
           projection.identifiers,
           equals(
-              'ptr.ref.lpVtbl, value == null ? nullptr : value.ptr.ref.lpVtbl'));
+              'ptr.ref.lpVtbl, value?.ptr.ref.lpVtbl ?? nullptr'));
       expect(projection.parametersPostamble, isEmpty);
       expect(projection.failedCheck, equals(failedCheck()));
       expect(projection.nullCheck, isEmpty);

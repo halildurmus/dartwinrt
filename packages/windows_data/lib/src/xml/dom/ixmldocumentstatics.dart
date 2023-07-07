@@ -82,7 +82,7 @@ class IXmlDocumentStatics extends IInspectable {
                     Pointer<COMObject> asyncInfo)>()(
         ptr.ref.lpVtbl,
         uri?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr,
-        loadSettings == null ? nullptr : loadSettings.ptr.ref.lpVtbl,
+        loadSettings?.ptr.ref.lpVtbl ?? nullptr,
         asyncInfo);
 
     if (FAILED(hr)) {
@@ -111,8 +111,8 @@ class IXmlDocumentStatics extends IInspectable {
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer file,
-                        Pointer<COMObject> asyncInfo)>()(ptr.ref.lpVtbl,
-            file == null ? nullptr : file.ptr.ref.lpVtbl, asyncInfo);
+                        Pointer<COMObject> asyncInfo)>()(
+            ptr.ref.lpVtbl, file?.ptr.ref.lpVtbl ?? nullptr, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -146,8 +146,8 @@ class IXmlDocumentStatics extends IInspectable {
                     VTablePointer loadSettings,
                     Pointer<COMObject> asyncInfo)>()(
         ptr.ref.lpVtbl,
-        file == null ? nullptr : file.ptr.ref.lpVtbl,
-        loadSettings == null ? nullptr : loadSettings.ptr.ref.lpVtbl,
+        file?.ptr.ref.lpVtbl ?? nullptr,
+        loadSettings?.ptr.ref.lpVtbl ?? nullptr,
         asyncInfo);
 
     if (FAILED(hr)) {

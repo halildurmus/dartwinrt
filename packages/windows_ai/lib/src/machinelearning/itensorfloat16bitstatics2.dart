@@ -106,7 +106,7 @@ class ITensorFloat16BitStatics2 extends IInspectable {
                     Pointer<Int64> shape,
                     VTablePointer buffer,
                     Pointer<COMObject> result)>()(ptr.ref.lpVtbl, shape.length,
-        pShapeArray, buffer == null ? nullptr : buffer.ptr.ref.lpVtbl, result);
+        pShapeArray, buffer?.ptr.ref.lpVtbl ?? nullptr, result);
 
     free(pShapeArray);
 

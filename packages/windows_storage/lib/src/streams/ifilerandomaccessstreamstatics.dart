@@ -210,7 +210,7 @@ class IFileRandomAccessStreamStatics extends IInspectable {
                     int accessMode,
                     Pointer<COMObject> operation)>()(
         ptr.ref.lpVtbl,
-        user == null ? nullptr : user.ptr.ref.lpVtbl,
+        user?.ptr.ref.lpVtbl ?? nullptr,
         filePathHString,
         accessMode.value,
         operation);
@@ -261,7 +261,7 @@ class IFileRandomAccessStreamStatics extends IInspectable {
                     int openDisposition,
                     Pointer<COMObject> operation)>()(
         ptr.ref.lpVtbl,
-        user == null ? nullptr : user.ptr.ref.lpVtbl,
+        user?.ptr.ref.lpVtbl ?? nullptr,
         filePathHString,
         accessMode.value,
         sharingOptions.value,
@@ -302,7 +302,7 @@ class IFileRandomAccessStreamStatics extends IInspectable {
                     int Function(VTablePointer lpVtbl, VTablePointer user,
                         int filePath, Pointer<COMObject> operation)>()(
             ptr.ref.lpVtbl,
-            user == null ? nullptr : user.ptr.ref.lpVtbl,
+            user?.ptr.ref.lpVtbl ?? nullptr,
             filePathHString,
             operation);
 
@@ -349,7 +349,7 @@ class IFileRandomAccessStreamStatics extends IInspectable {
                     int openDisposition,
                     Pointer<COMObject> operation)>()(
         ptr.ref.lpVtbl,
-        user == null ? nullptr : user.ptr.ref.lpVtbl,
+        user?.ptr.ref.lpVtbl ?? nullptr,
         filePathHString,
         openOptions.value,
         openDisposition.value,

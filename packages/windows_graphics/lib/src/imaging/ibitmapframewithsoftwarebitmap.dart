@@ -129,7 +129,7 @@ class IBitmapFrameWithSoftwareBitmap extends IInspectable
         ptr.ref.lpVtbl,
         pixelFormat.value,
         alphaMode.value,
-        transform == null ? nullptr : transform.ptr.ref.lpVtbl,
+        transform?.ptr.ref.lpVtbl ?? nullptr,
         exifOrientationMode.value,
         colorManagementMode.value,
         value);

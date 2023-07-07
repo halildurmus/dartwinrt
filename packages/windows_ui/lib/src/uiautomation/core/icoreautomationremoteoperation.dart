@@ -74,10 +74,8 @@ class ICoreAutomationRemoteOperation extends IInspectable {
                 int Function(
                     VTablePointer lpVtbl,
                     NativeAutomationRemoteOperationOperandId operandId,
-                    VTablePointer element)>()(
-        ptr.ref.lpVtbl,
-        operandIdNativeStructPtr.ref,
-        element == null ? nullptr : element.ptr.ref.lpVtbl);
+                    VTablePointer element)>()(ptr.ref.lpVtbl,
+        operandIdNativeStructPtr.ref, element?.ptr.ref.lpVtbl ?? nullptr);
 
     free(operandIdNativeStructPtr);
 
@@ -102,10 +100,8 @@ class ICoreAutomationRemoteOperation extends IInspectable {
                 int Function(
                     VTablePointer lpVtbl,
                     NativeAutomationRemoteOperationOperandId operandId,
-                    VTablePointer textRange)>()(
-        ptr.ref.lpVtbl,
-        operandIdNativeStructPtr.ref,
-        textRange == null ? nullptr : textRange.ptr.ref.lpVtbl);
+                    VTablePointer textRange)>()(ptr.ref.lpVtbl,
+        operandIdNativeStructPtr.ref, textRange?.ptr.ref.lpVtbl ?? nullptr);
 
     free(operandIdNativeStructPtr);
 

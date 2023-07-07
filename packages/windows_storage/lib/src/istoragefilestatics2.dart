@@ -49,7 +49,7 @@ class IStorageFileStatics2 extends IInspectable {
                     int Function(VTablePointer lpVtbl, VTablePointer user,
                         int path, Pointer<COMObject> operation)>()(
             ptr.ref.lpVtbl,
-            user == null ? nullptr : user.ptr.ref.lpVtbl,
+            user?.ptr.ref.lpVtbl ?? nullptr,
             pathHString,
             operation);
 

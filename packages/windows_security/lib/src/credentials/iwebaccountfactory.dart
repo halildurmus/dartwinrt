@@ -54,9 +54,7 @@ class IWebAccountFactory extends IInspectable {
                     int state,
                     Pointer<COMObject> instance)>()(
         ptr.ref.lpVtbl,
-        webAccountProvider == null
-            ? nullptr
-            : webAccountProvider.ptr.ref.lpVtbl,
+        webAccountProvider?.ptr.ref.lpVtbl ?? nullptr,
         userNameHString,
         state.value,
         instance);

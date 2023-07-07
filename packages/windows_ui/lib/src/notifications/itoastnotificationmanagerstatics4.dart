@@ -45,7 +45,7 @@ class IToastNotificationManagerStatics4 extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer user,
                     Pointer<COMObject> result)>()(
-        ptr.ref.lpVtbl, user == null ? nullptr : user.ptr.ref.lpVtbl, result);
+        ptr.ref.lpVtbl, user?.ptr.ref.lpVtbl ?? nullptr, result);
 
     if (FAILED(hr)) {
       free(result);

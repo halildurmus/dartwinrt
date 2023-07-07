@@ -45,7 +45,7 @@ class ILearningModelSessionFactory extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer model,
                     Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, model == null ? nullptr : model.ptr.ref.lpVtbl, value);
+        ptr.ref.lpVtbl, model?.ptr.ref.lpVtbl ?? nullptr, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -74,8 +74,8 @@ class ILearningModelSessionFactory extends IInspectable {
                 int Function(VTablePointer lpVtbl, VTablePointer model,
                     VTablePointer deviceToRunOn, Pointer<COMObject> value)>()(
         ptr.ref.lpVtbl,
-        model == null ? nullptr : model.ptr.ref.lpVtbl,
-        deviceToRunOn == null ? nullptr : deviceToRunOn.ptr.ref.lpVtbl,
+        model?.ptr.ref.lpVtbl ?? nullptr,
+        deviceToRunOn?.ptr.ref.lpVtbl ?? nullptr,
         value);
 
     if (FAILED(hr)) {

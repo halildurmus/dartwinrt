@@ -77,7 +77,7 @@ class ILauncherStatics5 extends IInspectable {
                     VTablePointer options, Pointer<COMObject> operation)>()(
         ptr.ref.lpVtbl,
         pathHString,
-        options == null ? nullptr : options.ptr.ref.lpVtbl,
+        options?.ptr.ref.lpVtbl ?? nullptr,
         operation);
 
     WindowsDeleteString(pathHString);
@@ -111,7 +111,7 @@ class ILauncherStatics5 extends IInspectable {
                     int Function(VTablePointer lpVtbl, VTablePointer user,
                         int path, Pointer<COMObject> operation)>()(
             ptr.ref.lpVtbl,
-            user == null ? nullptr : user.ptr.ref.lpVtbl,
+            user?.ptr.ref.lpVtbl ?? nullptr,
             pathHString,
             operation);
 
@@ -147,9 +147,9 @@ class ILauncherStatics5 extends IInspectable {
                 int Function(VTablePointer lpVtbl, VTablePointer user, int path,
                     VTablePointer options, Pointer<COMObject> operation)>()(
         ptr.ref.lpVtbl,
-        user == null ? nullptr : user.ptr.ref.lpVtbl,
+        user?.ptr.ref.lpVtbl ?? nullptr,
         pathHString,
-        options == null ? nullptr : options.ptr.ref.lpVtbl,
+        options?.ptr.ref.lpVtbl ?? nullptr,
         operation);
 
     WindowsDeleteString(pathHString);

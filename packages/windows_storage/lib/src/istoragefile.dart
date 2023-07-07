@@ -166,10 +166,8 @@ class IStorageFile extends IInspectable
                 int Function(
                     VTablePointer lpVtbl,
                     VTablePointer destinationFolder,
-                    Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl,
-        destinationFolder == null ? nullptr : destinationFolder.ptr.ref.lpVtbl,
-        operation);
+                    Pointer<COMObject> operation)>()(ptr.ref.lpVtbl,
+        destinationFolder?.ptr.ref.lpVtbl ?? nullptr, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -204,7 +202,7 @@ class IStorageFile extends IInspectable
                     int desiredNewName,
                     Pointer<COMObject> operation)>()(
         ptr.ref.lpVtbl,
-        destinationFolder == null ? nullptr : destinationFolder.ptr.ref.lpVtbl,
+        destinationFolder?.ptr.ref.lpVtbl ?? nullptr,
         desiredNewNameHString,
         operation);
 
@@ -245,7 +243,7 @@ class IStorageFile extends IInspectable
                     int option,
                     Pointer<COMObject> operation)>()(
         ptr.ref.lpVtbl,
-        destinationFolder == null ? nullptr : destinationFolder.ptr.ref.lpVtbl,
+        destinationFolder?.ptr.ref.lpVtbl ?? nullptr,
         desiredNewNameHString,
         option.value,
         operation);
@@ -278,9 +276,7 @@ class IStorageFile extends IInspectable
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer fileToReplace,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl,
-        fileToReplace == null ? nullptr : fileToReplace.ptr.ref.lpVtbl,
-        operation);
+        ptr.ref.lpVtbl, fileToReplace?.ptr.ref.lpVtbl ?? nullptr, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -308,10 +304,8 @@ class IStorageFile extends IInspectable
                 int Function(
                     VTablePointer lpVtbl,
                     VTablePointer destinationFolder,
-                    Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl,
-        destinationFolder == null ? nullptr : destinationFolder.ptr.ref.lpVtbl,
-        operation);
+                    Pointer<COMObject> operation)>()(ptr.ref.lpVtbl,
+        destinationFolder?.ptr.ref.lpVtbl ?? nullptr, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -344,7 +338,7 @@ class IStorageFile extends IInspectable
                     int desiredNewName,
                     Pointer<COMObject> operation)>()(
         ptr.ref.lpVtbl,
-        destinationFolder == null ? nullptr : destinationFolder.ptr.ref.lpVtbl,
+        destinationFolder?.ptr.ref.lpVtbl ?? nullptr,
         desiredNewNameHString,
         operation);
 
@@ -383,7 +377,7 @@ class IStorageFile extends IInspectable
                     int option,
                     Pointer<COMObject> operation)>()(
         ptr.ref.lpVtbl,
-        destinationFolder == null ? nullptr : destinationFolder.ptr.ref.lpVtbl,
+        destinationFolder?.ptr.ref.lpVtbl ?? nullptr,
         desiredNewNameHString,
         option.value,
         operation);
@@ -414,9 +408,7 @@ class IStorageFile extends IInspectable
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer fileToReplace,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl,
-        fileToReplace == null ? nullptr : fileToReplace.ptr.ref.lpVtbl,
-        operation);
+        ptr.ref.lpVtbl, fileToReplace?.ptr.ref.lpVtbl ?? nullptr, operation);
 
     if (FAILED(hr)) {
       free(operation);

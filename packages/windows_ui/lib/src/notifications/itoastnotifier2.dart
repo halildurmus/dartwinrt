@@ -53,7 +53,7 @@ class IToastNotifier2 extends IInspectable {
                       int Function(VTablePointer lpVtbl, VTablePointer data,
                           int tag, int group, Pointer<Int32> result)>()(
               ptr.ref.lpVtbl,
-              data == null ? nullptr : data.ptr.ref.lpVtbl,
+              data?.ptr.ref.lpVtbl ?? nullptr,
               tagHString,
               groupHString,
               result);
@@ -90,7 +90,7 @@ class IToastNotifier2 extends IInspectable {
                   .asFunction<
                       int Function(VTablePointer lpVtbl, VTablePointer data,
                           int tag, Pointer<Int32> result)>()(ptr.ref.lpVtbl,
-              data == null ? nullptr : data.ptr.ref.lpVtbl, tagHString, result);
+              data?.ptr.ref.lpVtbl ?? nullptr, tagHString, result);
 
       WindowsDeleteString(tagHString);
 

@@ -44,8 +44,8 @@ class ILauncherStatics extends IInspectable {
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer file,
-                        Pointer<COMObject> operation)>()(ptr.ref.lpVtbl,
-            file == null ? nullptr : file.ptr.ref.lpVtbl, operation);
+                        Pointer<COMObject> operation)>()(
+            ptr.ref.lpVtbl, file?.ptr.ref.lpVtbl ?? nullptr, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -75,8 +75,8 @@ class ILauncherStatics extends IInspectable {
                 int Function(VTablePointer lpVtbl, VTablePointer file,
                     VTablePointer options, Pointer<COMObject> operation)>()(
         ptr.ref.lpVtbl,
-        file == null ? nullptr : file.ptr.ref.lpVtbl,
-        options == null ? nullptr : options.ptr.ref.lpVtbl,
+        file?.ptr.ref.lpVtbl ?? nullptr,
+        options?.ptr.ref.lpVtbl ?? nullptr,
         operation);
 
     if (FAILED(hr)) {
@@ -135,7 +135,7 @@ class ILauncherStatics extends IInspectable {
                     VTablePointer options, Pointer<COMObject> operation)>()(
         ptr.ref.lpVtbl,
         uri?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr,
-        options == null ? nullptr : options.ptr.ref.lpVtbl,
+        options?.ptr.ref.lpVtbl ?? nullptr,
         operation);
 
     if (FAILED(hr)) {

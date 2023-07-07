@@ -565,10 +565,7 @@ class IXmlDocument extends IInspectable
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer node,
                         bool deep, Pointer<COMObject> newNode)>()(
-            ptr.ref.lpVtbl,
-            node == null ? nullptr : node.ptr.ref.lpVtbl,
-            deep,
-            newNode);
+            ptr.ref.lpVtbl, node?.ptr.ref.lpVtbl ?? nullptr, deep, newNode);
 
     if (FAILED(hr)) {
       free(newNode);

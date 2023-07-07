@@ -45,8 +45,8 @@ class IOcrEngine extends IInspectable {
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer bitmap,
-                        Pointer<COMObject> result)>()(ptr.ref.lpVtbl,
-            bitmap == null ? nullptr : bitmap.ptr.ref.lpVtbl, result);
+                        Pointer<COMObject> result)>()(
+            ptr.ref.lpVtbl, bitmap?.ptr.ref.lpVtbl ?? nullptr, result);
 
     if (FAILED(hr)) {
       free(result);

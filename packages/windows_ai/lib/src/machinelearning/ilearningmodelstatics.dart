@@ -45,8 +45,8 @@ class ILearningModelStatics extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer modelFile,
-                    Pointer<COMObject> operation)>()(ptr.ref.lpVtbl,
-        modelFile == null ? nullptr : modelFile.ptr.ref.lpVtbl, operation);
+                    Pointer<COMObject> operation)>()(
+        ptr.ref.lpVtbl, modelFile?.ptr.ref.lpVtbl ?? nullptr, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -74,8 +74,8 @@ class ILearningModelStatics extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer modelStream,
-                    Pointer<COMObject> operation)>()(ptr.ref.lpVtbl,
-        modelStream == null ? nullptr : modelStream.ptr.ref.lpVtbl, operation);
+                    Pointer<COMObject> operation)>()(
+        ptr.ref.lpVtbl, modelStream?.ptr.ref.lpVtbl ?? nullptr, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -134,8 +134,8 @@ class ILearningModelStatics extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer modelStream,
-                    Pointer<COMObject> result)>()(ptr.ref.lpVtbl,
-        modelStream == null ? nullptr : modelStream.ptr.ref.lpVtbl, result);
+                    Pointer<COMObject> result)>()(
+        ptr.ref.lpVtbl, modelStream?.ptr.ref.lpVtbl ?? nullptr, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -173,8 +173,8 @@ class ILearningModelStatics extends IInspectable {
                     VTablePointer operatorProvider,
                     Pointer<COMObject> operation)>()(
         ptr.ref.lpVtbl,
-        modelFile == null ? nullptr : modelFile.ptr.ref.lpVtbl,
-        operatorProvider == null ? nullptr : operatorProvider.ptr.ref.lpVtbl,
+        modelFile?.ptr.ref.lpVtbl ?? nullptr,
+        operatorProvider?.ptr.ref.lpVtbl ?? nullptr,
         operation);
 
     if (FAILED(hr)) {
@@ -210,8 +210,8 @@ class ILearningModelStatics extends IInspectable {
                     VTablePointer operatorProvider,
                     Pointer<COMObject> operation)>()(
         ptr.ref.lpVtbl,
-        modelStream == null ? nullptr : modelStream.ptr.ref.lpVtbl,
-        operatorProvider == null ? nullptr : operatorProvider.ptr.ref.lpVtbl,
+        modelStream?.ptr.ref.lpVtbl ?? nullptr,
+        operatorProvider?.ptr.ref.lpVtbl ?? nullptr,
         operation);
 
     if (FAILED(hr)) {
@@ -245,11 +245,8 @@ class ILearningModelStatics extends IInspectable {
                     VTablePointer lpVtbl,
                     int filePath,
                     VTablePointer operatorProvider,
-                    Pointer<COMObject> result)>()(
-        ptr.ref.lpVtbl,
-        filePathHString,
-        operatorProvider == null ? nullptr : operatorProvider.ptr.ref.lpVtbl,
-        result);
+                    Pointer<COMObject> result)>()(ptr.ref.lpVtbl,
+        filePathHString, operatorProvider?.ptr.ref.lpVtbl ?? nullptr, result);
 
     WindowsDeleteString(filePathHString);
 
@@ -289,8 +286,8 @@ class ILearningModelStatics extends IInspectable {
                     VTablePointer operatorProvider,
                     Pointer<COMObject> result)>()(
         ptr.ref.lpVtbl,
-        modelStream == null ? nullptr : modelStream.ptr.ref.lpVtbl,
-        operatorProvider == null ? nullptr : operatorProvider.ptr.ref.lpVtbl,
+        modelStream?.ptr.ref.lpVtbl ?? nullptr,
+        operatorProvider?.ptr.ref.lpVtbl ?? nullptr,
         result);
 
     if (FAILED(hr)) {

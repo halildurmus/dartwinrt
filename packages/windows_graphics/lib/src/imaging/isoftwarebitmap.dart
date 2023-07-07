@@ -271,7 +271,7 @@ class ISoftwareBitmap extends IInspectable implements IClosable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer bitmap)>()(
-        ptr.ref.lpVtbl, bitmap == null ? nullptr : bitmap.ptr.ref.lpVtbl);
+        ptr.ref.lpVtbl, bitmap?.ptr.ref.lpVtbl ?? nullptr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -287,7 +287,7 @@ class ISoftwareBitmap extends IInspectable implements IClosable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer buffer)>()(
-        ptr.ref.lpVtbl, buffer == null ? nullptr : buffer.ptr.ref.lpVtbl);
+        ptr.ref.lpVtbl, buffer?.ptr.ref.lpVtbl ?? nullptr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -303,7 +303,7 @@ class ISoftwareBitmap extends IInspectable implements IClosable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer buffer)>()(
-        ptr.ref.lpVtbl, buffer == null ? nullptr : buffer.ptr.ref.lpVtbl);
+        ptr.ref.lpVtbl, buffer?.ptr.ref.lpVtbl ?? nullptr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

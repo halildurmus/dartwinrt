@@ -55,11 +55,8 @@ class IJsonObjectWithDefaultValues extends IInspectable
                     VTablePointer lpVtbl,
                     int name,
                     VTablePointer defaultValue,
-                    Pointer<COMObject> returnValue)>()(
-        ptr.ref.lpVtbl,
-        nameHString,
-        defaultValue == null ? nullptr : defaultValue.ptr.ref.lpVtbl,
-        returnValue);
+                    Pointer<COMObject> returnValue)>()(ptr.ref.lpVtbl,
+        nameHString, defaultValue?.ptr.ref.lpVtbl ?? nullptr, returnValue);
 
     WindowsDeleteString(nameHString);
 
@@ -96,11 +93,8 @@ class IJsonObjectWithDefaultValues extends IInspectable
                     VTablePointer lpVtbl,
                     int name,
                     VTablePointer defaultValue,
-                    Pointer<COMObject> returnValue)>()(
-        ptr.ref.lpVtbl,
-        nameHString,
-        defaultValue == null ? nullptr : defaultValue.ptr.ref.lpVtbl,
-        returnValue);
+                    Pointer<COMObject> returnValue)>()(ptr.ref.lpVtbl,
+        nameHString, defaultValue?.ptr.ref.lpVtbl ?? nullptr, returnValue);
 
     WindowsDeleteString(nameHString);
 
@@ -168,11 +162,8 @@ class IJsonObjectWithDefaultValues extends IInspectable
                     VTablePointer lpVtbl,
                     int name,
                     VTablePointer defaultValue,
-                    Pointer<COMObject> returnValue)>()(
-        ptr.ref.lpVtbl,
-        nameHString,
-        defaultValue == null ? nullptr : defaultValue.ptr.ref.lpVtbl,
-        returnValue);
+                    Pointer<COMObject> returnValue)>()(ptr.ref.lpVtbl,
+        nameHString, defaultValue?.ptr.ref.lpVtbl ?? nullptr, returnValue);
 
     WindowsDeleteString(nameHString);
 

@@ -59,8 +59,8 @@ class IXmlDocumentIO extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int xml,
-                    VTablePointer loadSettings)>()(ptr.ref.lpVtbl, xmlHString,
-        loadSettings == null ? nullptr : loadSettings.ptr.ref.lpVtbl);
+                    VTablePointer loadSettings)>()(
+        ptr.ref.lpVtbl, xmlHString, loadSettings?.ptr.ref.lpVtbl ?? nullptr);
 
     WindowsDeleteString(xmlHString);
 
@@ -83,8 +83,8 @@ class IXmlDocumentIO extends IInspectable {
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer file,
-                        Pointer<COMObject> asyncInfo)>()(ptr.ref.lpVtbl,
-            file == null ? nullptr : file.ptr.ref.lpVtbl, asyncInfo);
+                        Pointer<COMObject> asyncInfo)>()(
+            ptr.ref.lpVtbl, file?.ptr.ref.lpVtbl ?? nullptr, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);

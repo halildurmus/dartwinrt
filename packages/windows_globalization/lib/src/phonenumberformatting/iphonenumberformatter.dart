@@ -43,8 +43,8 @@ class IPhoneNumberFormatter extends IInspectable {
               .value
               .asFunction<
                   int Function(VTablePointer lpVtbl, VTablePointer number,
-                      Pointer<IntPtr> result)>()(ptr.ref.lpVtbl,
-          number == null ? nullptr : number.ptr.ref.lpVtbl, result);
+                      Pointer<IntPtr> result)>()(
+          ptr.ref.lpVtbl, number?.ptr.ref.lpVtbl ?? nullptr, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -75,7 +75,7 @@ class IPhoneNumberFormatter extends IInspectable {
                   int Function(VTablePointer lpVtbl, VTablePointer number,
                       int numberFormat, Pointer<IntPtr> result)>()(
           ptr.ref.lpVtbl,
-          number == null ? nullptr : number.ptr.ref.lpVtbl,
+          number?.ptr.ref.lpVtbl ?? nullptr,
           numberFormat.value,
           result);
 

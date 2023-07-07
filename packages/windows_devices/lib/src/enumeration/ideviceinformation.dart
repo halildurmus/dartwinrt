@@ -191,8 +191,7 @@ class IDeviceInformation extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer updateInfo)>()(
-        ptr.ref.lpVtbl,
-        updateInfo == null ? nullptr : updateInfo.ptr.ref.lpVtbl);
+        ptr.ref.lpVtbl, updateInfo?.ptr.ref.lpVtbl ?? nullptr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

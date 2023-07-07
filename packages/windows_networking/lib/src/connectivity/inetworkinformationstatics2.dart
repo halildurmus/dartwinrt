@@ -47,9 +47,7 @@ class INetworkInformationStatics2 extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer pProfileFilter,
                     Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl,
-        pProfileFilter == null ? nullptr : pProfileFilter.ptr.ref.lpVtbl,
-        value);
+        ptr.ref.lpVtbl, pProfileFilter?.ptr.ref.lpVtbl ?? nullptr, value);
 
     if (FAILED(hr)) {
       free(value);

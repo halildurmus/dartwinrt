@@ -44,9 +44,7 @@ class IDataWriterFactory extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer outputStream,
                     Pointer<COMObject> dataWriter)>()(
-        ptr.ref.lpVtbl,
-        outputStream == null ? nullptr : outputStream.ptr.ref.lpVtbl,
-        dataWriter);
+        ptr.ref.lpVtbl, outputStream?.ptr.ref.lpVtbl ?? nullptr, dataWriter);
 
     if (FAILED(hr)) {
       free(dataWriter);

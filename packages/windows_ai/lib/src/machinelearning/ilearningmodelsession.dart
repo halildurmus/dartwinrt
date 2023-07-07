@@ -130,7 +130,7 @@ class ILearningModelSession extends IInspectable {
                 int Function(VTablePointer lpVtbl, VTablePointer bindings,
                     int correlationId, Pointer<COMObject> operation)>()(
         ptr.ref.lpVtbl,
-        bindings == null ? nullptr : bindings.ptr.ref.lpVtbl,
+        bindings?.ptr.ref.lpVtbl ?? nullptr,
         correlationIdHString,
         operation);
 
@@ -204,7 +204,7 @@ class ILearningModelSession extends IInspectable {
                 int Function(VTablePointer lpVtbl, VTablePointer bindings,
                     int correlationId, Pointer<COMObject> result)>()(
         ptr.ref.lpVtbl,
-        bindings == null ? nullptr : bindings.ptr.ref.lpVtbl,
+        bindings?.ptr.ref.lpVtbl ?? nullptr,
         correlationIdHString,
         result);
 

@@ -44,8 +44,8 @@ class IDataReaderStatics extends IInspectable {
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer buffer,
-                        Pointer<COMObject> dataReader)>()(ptr.ref.lpVtbl,
-            buffer == null ? nullptr : buffer.ptr.ref.lpVtbl, dataReader);
+                        Pointer<COMObject> dataReader)>()(
+            ptr.ref.lpVtbl, buffer?.ptr.ref.lpVtbl ?? nullptr, dataReader);
 
     if (FAILED(hr)) {
       free(dataReader);

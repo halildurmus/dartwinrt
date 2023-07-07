@@ -45,8 +45,8 @@ class IPropertySetSerializer extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer propertySet,
-                    Pointer<COMObject> result)>()(ptr.ref.lpVtbl,
-        propertySet == null ? nullptr : propertySet.ptr.ref.lpVtbl, result);
+                    Pointer<COMObject> result)>()(
+        ptr.ref.lpVtbl, propertySet?.ptr.ref.lpVtbl ?? nullptr, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -77,8 +77,8 @@ class IPropertySetSerializer extends IInspectable {
                     int Function(VTablePointer lpVtbl,
                         VTablePointer propertySet, VTablePointer buffer)>()(
             ptr.ref.lpVtbl,
-            propertySet == null ? nullptr : propertySet.ptr.ref.lpVtbl,
-            buffer == null ? nullptr : buffer.ptr.ref.lpVtbl);
+            propertySet?.ptr.ref.lpVtbl ?? nullptr,
+            buffer?.ptr.ref.lpVtbl ?? nullptr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

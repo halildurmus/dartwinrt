@@ -78,7 +78,7 @@ class IKnownFoldersStatics4 extends IInspectable {
                     int Function(VTablePointer lpVtbl, VTablePointer user,
                         int folderId, Pointer<COMObject> operation)>()(
             ptr.ref.lpVtbl,
-            user == null ? nullptr : user.ptr.ref.lpVtbl,
+            user?.ptr.ref.lpVtbl ?? nullptr,
             folderId.value,
             operation);
 

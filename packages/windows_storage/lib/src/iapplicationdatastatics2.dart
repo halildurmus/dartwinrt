@@ -47,7 +47,7 @@ class IApplicationDataStatics2 extends IInspectable {
                     int Function(VTablePointer lpVtbl, VTablePointer user,
                         Pointer<COMObject> getForUserOperation)>()(
             ptr.ref.lpVtbl,
-            user == null ? nullptr : user.ptr.ref.lpVtbl,
+            user?.ptr.ref.lpVtbl ?? nullptr,
             getForUserOperation);
 
     if (FAILED(hr)) {

@@ -390,8 +390,8 @@ class IXmlNode extends IInspectable
                     VTablePointer referenceChild,
                     Pointer<COMObject> insertedChild)>()(
         ptr.ref.lpVtbl,
-        newChild == null ? nullptr : newChild.ptr.ref.lpVtbl,
-        referenceChild == null ? nullptr : referenceChild.ptr.ref.lpVtbl,
+        newChild?.ptr.ref.lpVtbl ?? nullptr,
+        referenceChild?.ptr.ref.lpVtbl ?? nullptr,
         insertedChild);
 
     if (FAILED(hr)) {
@@ -428,8 +428,8 @@ class IXmlNode extends IInspectable
                     VTablePointer referenceChild,
                     Pointer<COMObject> previousChild)>()(
         ptr.ref.lpVtbl,
-        newChild == null ? nullptr : newChild.ptr.ref.lpVtbl,
-        referenceChild == null ? nullptr : referenceChild.ptr.ref.lpVtbl,
+        newChild?.ptr.ref.lpVtbl ?? nullptr,
+        referenceChild?.ptr.ref.lpVtbl ?? nullptr,
         previousChild);
 
     if (FAILED(hr)) {
@@ -460,8 +460,8 @@ class IXmlNode extends IInspectable
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer childNode,
-                    Pointer<COMObject> removedChild)>()(ptr.ref.lpVtbl,
-        childNode == null ? nullptr : childNode.ptr.ref.lpVtbl, removedChild);
+                    Pointer<COMObject> removedChild)>()(
+        ptr.ref.lpVtbl, childNode?.ptr.ref.lpVtbl ?? nullptr, removedChild);
 
     if (FAILED(hr)) {
       free(removedChild);
@@ -491,8 +491,8 @@ class IXmlNode extends IInspectable
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer newChild,
-                    Pointer<COMObject> appendedChild)>()(ptr.ref.lpVtbl,
-        newChild == null ? nullptr : newChild.ptr.ref.lpVtbl, appendedChild);
+                    Pointer<COMObject> appendedChild)>()(
+        ptr.ref.lpVtbl, newChild?.ptr.ref.lpVtbl ?? nullptr, appendedChild);
 
     if (FAILED(hr)) {
       free(appendedChild);

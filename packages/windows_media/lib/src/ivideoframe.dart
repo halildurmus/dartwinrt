@@ -71,7 +71,7 @@ class IVideoFrame extends IInspectable implements IMediaFrame, IClosable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer frame,
                     Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, frame == null ? nullptr : frame.ptr.ref.lpVtbl, value);
+        ptr.ref.lpVtbl, frame?.ptr.ref.lpVtbl ?? nullptr, value);
 
     if (FAILED(hr)) {
       free(value);

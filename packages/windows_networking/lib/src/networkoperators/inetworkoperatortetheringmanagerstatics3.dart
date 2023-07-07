@@ -51,8 +51,8 @@ class INetworkOperatorTetheringManagerStatics3 extends IInspectable {
                 int Function(VTablePointer lpVtbl, VTablePointer profile,
                     VTablePointer adapter, Pointer<COMObject> ppManager)>()(
         ptr.ref.lpVtbl,
-        profile == null ? nullptr : profile.ptr.ref.lpVtbl,
-        adapter == null ? nullptr : adapter.ptr.ref.lpVtbl,
+        profile?.ptr.ref.lpVtbl ?? nullptr,
+        adapter?.ptr.ref.lpVtbl ?? nullptr,
         ppManager);
 
     if (FAILED(hr)) {

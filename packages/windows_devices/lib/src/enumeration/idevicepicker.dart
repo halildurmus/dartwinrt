@@ -376,11 +376,8 @@ class IDevicePicker extends IInspectable {
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer device,
-                        int status, int options)>()(
-            ptr.ref.lpVtbl,
-            device == null ? nullptr : device.ptr.ref.lpVtbl,
-            statusHString,
-            options.value);
+                        int status, int options)>()(ptr.ref.lpVtbl,
+            device?.ptr.ref.lpVtbl ?? nullptr, statusHString, options.value);
 
     WindowsDeleteString(statusHString);
 

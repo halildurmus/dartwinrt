@@ -136,8 +136,8 @@ class IStorageFolderQueryOperations extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer queryOptions,
-                    Pointer<COMObject> value)>()(ptr.ref.lpVtbl,
-        queryOptions == null ? nullptr : queryOptions.ptr.ref.lpVtbl, value);
+                    Pointer<COMObject> value)>()(
+        ptr.ref.lpVtbl, queryOptions?.ptr.ref.lpVtbl ?? nullptr, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -225,8 +225,8 @@ class IStorageFolderQueryOperations extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer queryOptions,
-                    Pointer<COMObject> value)>()(ptr.ref.lpVtbl,
-        queryOptions == null ? nullptr : queryOptions.ptr.ref.lpVtbl, value);
+                    Pointer<COMObject> value)>()(
+        ptr.ref.lpVtbl, queryOptions?.ptr.ref.lpVtbl ?? nullptr, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -285,8 +285,8 @@ class IStorageFolderQueryOperations extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer queryOptions,
-                    Pointer<COMObject> value)>()(ptr.ref.lpVtbl,
-        queryOptions == null ? nullptr : queryOptions.ptr.ref.lpVtbl, value);
+                    Pointer<COMObject> value)>()(
+        ptr.ref.lpVtbl, queryOptions?.ptr.ref.lpVtbl ?? nullptr, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -480,9 +480,7 @@ class IStorageFolderQueryOperations extends IInspectable {
                   .asFunction<
                       int Function(VTablePointer lpVtbl,
                           VTablePointer queryOptions, Pointer<Bool> value)>()(
-              ptr.ref.lpVtbl,
-              queryOptions == null ? nullptr : queryOptions.ptr.ref.lpVtbl,
-              value);
+              ptr.ref.lpVtbl, queryOptions?.ptr.ref.lpVtbl ?? nullptr, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 

@@ -266,7 +266,7 @@ class IFileSavePicker extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer value)>()(
-        ptr.ref.lpVtbl, value == null ? nullptr : value.ptr.ref.lpVtbl);
+        ptr.ref.lpVtbl, value?.ptr.ref.lpVtbl ?? nullptr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

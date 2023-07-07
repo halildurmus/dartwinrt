@@ -237,8 +237,7 @@ class IStorageQueryResultBase extends IInspectable {
             .asFunction<
                 int Function(
                     VTablePointer lpVtbl, VTablePointer newQueryOptions)>()(
-        ptr.ref.lpVtbl,
-        newQueryOptions == null ? nullptr : newQueryOptions.ptr.ref.lpVtbl);
+        ptr.ref.lpVtbl, newQueryOptions?.ptr.ref.lpVtbl ?? nullptr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

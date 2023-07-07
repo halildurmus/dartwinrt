@@ -48,7 +48,7 @@ class IInputStream extends IInspectable implements IClosable {
                 int Function(VTablePointer lpVtbl, VTablePointer buffer,
                     int count, int options, Pointer<COMObject> operation)>()(
         ptr.ref.lpVtbl,
-        buffer == null ? nullptr : buffer.ptr.ref.lpVtbl,
+        buffer?.ptr.ref.lpVtbl ?? nullptr,
         count,
         options.value,
         operation);

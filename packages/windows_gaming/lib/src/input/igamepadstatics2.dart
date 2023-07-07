@@ -45,9 +45,7 @@ class IGamepadStatics2 extends IInspectable implements IGamepadStatics {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer gameController,
                     Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl,
-        gameController == null ? nullptr : gameController.ptr.ref.lpVtbl,
-        value);
+        ptr.ref.lpVtbl, gameController?.ptr.ref.lpVtbl ?? nullptr, value);
 
     if (FAILED(hr)) {
       free(value);

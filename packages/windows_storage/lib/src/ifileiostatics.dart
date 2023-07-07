@@ -45,8 +45,8 @@ class IFileIOStatics extends IInspectable {
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer file,
-                        Pointer<COMObject> textOperation)>()(ptr.ref.lpVtbl,
-            file == null ? nullptr : file.ptr.ref.lpVtbl, textOperation);
+                        Pointer<COMObject> textOperation)>()(
+            ptr.ref.lpVtbl, file?.ptr.ref.lpVtbl ?? nullptr, textOperation);
 
     if (FAILED(hr)) {
       free(textOperation);
@@ -77,7 +77,7 @@ class IFileIOStatics extends IInspectable {
                     int Function(VTablePointer lpVtbl, VTablePointer file,
                         int encoding, Pointer<COMObject> textOperation)>()(
             ptr.ref.lpVtbl,
-            file == null ? nullptr : file.ptr.ref.lpVtbl,
+            file?.ptr.ref.lpVtbl ?? nullptr,
             encoding.value,
             textOperation);
 
@@ -110,7 +110,7 @@ class IFileIOStatics extends IInspectable {
                     int Function(VTablePointer lpVtbl, VTablePointer file,
                         int contents, Pointer<COMObject> textOperation)>()(
             ptr.ref.lpVtbl,
-            file == null ? nullptr : file.ptr.ref.lpVtbl,
+            file?.ptr.ref.lpVtbl ?? nullptr,
             contentsHString,
             textOperation);
 
@@ -149,7 +149,7 @@ class IFileIOStatics extends IInspectable {
                     int encoding,
                     Pointer<COMObject> textOperation)>()(
         ptr.ref.lpVtbl,
-        file == null ? nullptr : file.ptr.ref.lpVtbl,
+        file?.ptr.ref.lpVtbl ?? nullptr,
         contentsHString,
         encoding.value,
         textOperation);
@@ -184,7 +184,7 @@ class IFileIOStatics extends IInspectable {
                     int Function(VTablePointer lpVtbl, VTablePointer file,
                         int contents, Pointer<COMObject> textOperation)>()(
             ptr.ref.lpVtbl,
-            file == null ? nullptr : file.ptr.ref.lpVtbl,
+            file?.ptr.ref.lpVtbl ?? nullptr,
             contentsHString,
             textOperation);
 
@@ -223,7 +223,7 @@ class IFileIOStatics extends IInspectable {
                     int encoding,
                     Pointer<COMObject> textOperation)>()(
         ptr.ref.lpVtbl,
-        file == null ? nullptr : file.ptr.ref.lpVtbl,
+        file?.ptr.ref.lpVtbl ?? nullptr,
         contentsHString,
         encoding.value,
         textOperation);
@@ -254,8 +254,8 @@ class IFileIOStatics extends IInspectable {
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer file,
-                        Pointer<COMObject> linesOperation)>()(ptr.ref.lpVtbl,
-            file == null ? nullptr : file.ptr.ref.lpVtbl, linesOperation);
+                        Pointer<COMObject> linesOperation)>()(
+            ptr.ref.lpVtbl, file?.ptr.ref.lpVtbl ?? nullptr, linesOperation);
 
     if (FAILED(hr)) {
       free(linesOperation);
@@ -289,7 +289,7 @@ class IFileIOStatics extends IInspectable {
                     int Function(VTablePointer lpVtbl, VTablePointer file,
                         int encoding, Pointer<COMObject> linesOperation)>()(
             ptr.ref.lpVtbl,
-            file == null ? nullptr : file.ptr.ref.lpVtbl,
+            file?.ptr.ref.lpVtbl ?? nullptr,
             encoding.value,
             linesOperation);
 
@@ -324,7 +324,7 @@ class IFileIOStatics extends IInspectable {
                     int Function(VTablePointer lpVtbl, VTablePointer file,
                         VTablePointer lines, Pointer<COMObject> operation)>()(
             ptr.ref.lpVtbl,
-            file == null ? nullptr : file.ptr.ref.lpVtbl,
+            file?.ptr.ref.lpVtbl ?? nullptr,
             lines == null
                 ? nullptr
                 : IInspectable(lines
@@ -366,7 +366,7 @@ class IFileIOStatics extends IInspectable {
                     int encoding,
                     Pointer<COMObject> operation)>()(
         ptr.ref.lpVtbl,
-        file == null ? nullptr : file.ptr.ref.lpVtbl,
+        file?.ptr.ref.lpVtbl ?? nullptr,
         lines == null
             ? nullptr
             : IInspectable(
@@ -404,7 +404,7 @@ class IFileIOStatics extends IInspectable {
                     int Function(VTablePointer lpVtbl, VTablePointer file,
                         VTablePointer lines, Pointer<COMObject> operation)>()(
             ptr.ref.lpVtbl,
-            file == null ? nullptr : file.ptr.ref.lpVtbl,
+            file?.ptr.ref.lpVtbl ?? nullptr,
             lines == null
                 ? nullptr
                 : IInspectable(lines
@@ -446,7 +446,7 @@ class IFileIOStatics extends IInspectable {
                     int encoding,
                     Pointer<COMObject> operation)>()(
         ptr.ref.lpVtbl,
-        file == null ? nullptr : file.ptr.ref.lpVtbl,
+        file?.ptr.ref.lpVtbl ?? nullptr,
         lines == null
             ? nullptr
             : IInspectable(
@@ -481,8 +481,8 @@ class IFileIOStatics extends IInspectable {
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer file,
-                        Pointer<COMObject> operation)>()(ptr.ref.lpVtbl,
-            file == null ? nullptr : file.ptr.ref.lpVtbl, operation);
+                        Pointer<COMObject> operation)>()(
+            ptr.ref.lpVtbl, file?.ptr.ref.lpVtbl ?? nullptr, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -513,8 +513,8 @@ class IFileIOStatics extends IInspectable {
                     int Function(VTablePointer lpVtbl, VTablePointer file,
                         VTablePointer buffer, Pointer<COMObject> operation)>()(
             ptr.ref.lpVtbl,
-            file == null ? nullptr : file.ptr.ref.lpVtbl,
-            buffer == null ? nullptr : buffer.ptr.ref.lpVtbl,
+            file?.ptr.ref.lpVtbl ?? nullptr,
+            buffer?.ptr.ref.lpVtbl ?? nullptr,
             operation);
 
     if (FAILED(hr)) {
@@ -552,7 +552,7 @@ class IFileIOStatics extends IInspectable {
                     Pointer<Uint8> buffer,
                     Pointer<COMObject> operation)>()(
         ptr.ref.lpVtbl,
-        file == null ? nullptr : file.ptr.ref.lpVtbl,
+        file?.ptr.ref.lpVtbl ?? nullptr,
         buffer.length,
         pBufferArray,
         operation);

@@ -56,7 +56,7 @@ class IWebTokenRequestFactory extends IInspectable {
                     int clientId,
                     Pointer<COMObject> webTokenRequest)>()(
         ptr.ref.lpVtbl,
-        provider == null ? nullptr : provider.ptr.ref.lpVtbl,
+        provider?.ptr.ref.lpVtbl ?? nullptr,
         scopeHString,
         clientIdHString,
         webTokenRequest);
@@ -100,7 +100,7 @@ class IWebTokenRequestFactory extends IInspectable {
                     int promptType,
                     Pointer<COMObject> webTokenRequest)>()(
         ptr.ref.lpVtbl,
-        provider == null ? nullptr : provider.ptr.ref.lpVtbl,
+        provider?.ptr.ref.lpVtbl ?? nullptr,
         scopeHString,
         clientIdHString,
         promptType.value,
@@ -132,8 +132,8 @@ class IWebTokenRequestFactory extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer provider,
-                    Pointer<COMObject> webTokenRequest)>()(ptr.ref.lpVtbl,
-        provider == null ? nullptr : provider.ptr.ref.lpVtbl, webTokenRequest);
+                    Pointer<COMObject> webTokenRequest)>()(
+        ptr.ref.lpVtbl, provider?.ptr.ref.lpVtbl ?? nullptr, webTokenRequest);
 
     if (FAILED(hr)) {
       free(webTokenRequest);
@@ -162,7 +162,7 @@ class IWebTokenRequestFactory extends IInspectable {
                 int Function(VTablePointer lpVtbl, VTablePointer provider,
                     int scope, Pointer<COMObject> webTokenRequest)>()(
         ptr.ref.lpVtbl,
-        provider == null ? nullptr : provider.ptr.ref.lpVtbl,
+        provider?.ptr.ref.lpVtbl ?? nullptr,
         scopeHString,
         webTokenRequest);
 

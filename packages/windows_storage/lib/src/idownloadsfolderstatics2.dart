@@ -51,7 +51,7 @@ class IDownloadsFolderStatics2 extends IInspectable {
                     int Function(VTablePointer lpVtbl, VTablePointer user,
                         int desiredName, Pointer<COMObject> operation)>()(
             ptr.ref.lpVtbl,
-            user == null ? nullptr : user.ptr.ref.lpVtbl,
+            user?.ptr.ref.lpVtbl ?? nullptr,
             desiredNameHString,
             operation);
 
@@ -88,7 +88,7 @@ class IDownloadsFolderStatics2 extends IInspectable {
                     int Function(VTablePointer lpVtbl, VTablePointer user,
                         int desiredName, Pointer<COMObject> operation)>()(
             ptr.ref.lpVtbl,
-            user == null ? nullptr : user.ptr.ref.lpVtbl,
+            user?.ptr.ref.lpVtbl ?? nullptr,
             desiredNameHString,
             operation);
 
@@ -129,7 +129,7 @@ class IDownloadsFolderStatics2 extends IInspectable {
                     int option,
                     Pointer<COMObject> operation)>()(
         ptr.ref.lpVtbl,
-        user == null ? nullptr : user.ptr.ref.lpVtbl,
+        user?.ptr.ref.lpVtbl ?? nullptr,
         desiredNameHString,
         option.value,
         operation);
@@ -171,7 +171,7 @@ class IDownloadsFolderStatics2 extends IInspectable {
                     int option,
                     Pointer<COMObject> operation)>()(
         ptr.ref.lpVtbl,
-        user == null ? nullptr : user.ptr.ref.lpVtbl,
+        user?.ptr.ref.lpVtbl ?? nullptr,
         desiredNameHString,
         option.value,
         operation);

@@ -89,13 +89,8 @@ class IVideoFrameStatics extends IInspectable {
                     int width,
                     int height,
                     VTablePointer device,
-                    Pointer<COMObject> result)>()(
-        ptr.ref.lpVtbl,
-        format.value,
-        width,
-        height,
-        device == null ? nullptr : device.ptr.ref.lpVtbl,
-        result);
+                    Pointer<COMObject> result)>()(ptr.ref.lpVtbl, format.value,
+        width, height, device?.ptr.ref.lpVtbl ?? nullptr, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -126,8 +121,8 @@ class IVideoFrameStatics extends IInspectable {
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer bitmap,
-                        Pointer<COMObject> result)>()(ptr.ref.lpVtbl,
-            bitmap == null ? nullptr : bitmap.ptr.ref.lpVtbl, result);
+                        Pointer<COMObject> result)>()(
+            ptr.ref.lpVtbl, bitmap?.ptr.ref.lpVtbl ?? nullptr, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -158,8 +153,8 @@ class IVideoFrameStatics extends IInspectable {
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer surface,
-                        Pointer<COMObject> result)>()(ptr.ref.lpVtbl,
-            surface == null ? nullptr : surface.ptr.ref.lpVtbl, result);
+                        Pointer<COMObject> result)>()(
+            ptr.ref.lpVtbl, surface?.ptr.ref.lpVtbl ?? nullptr, result);
 
     if (FAILED(hr)) {
       free(result);

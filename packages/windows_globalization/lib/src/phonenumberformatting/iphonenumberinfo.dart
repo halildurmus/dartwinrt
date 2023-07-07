@@ -218,9 +218,7 @@ class IPhoneNumberInfo extends IInspectable {
                   .asFunction<
                       int Function(VTablePointer lpVtbl,
                           VTablePointer otherNumber, Pointer<Int32> result)>()(
-              ptr.ref.lpVtbl,
-              otherNumber == null ? nullptr : otherNumber.ptr.ref.lpVtbl,
-              result);
+              ptr.ref.lpVtbl, otherNumber?.ptr.ref.lpVtbl ?? nullptr, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 

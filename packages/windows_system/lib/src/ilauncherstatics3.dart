@@ -44,8 +44,8 @@ class ILauncherStatics3 extends IInspectable {
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer folder,
-                        Pointer<COMObject> operation)>()(ptr.ref.lpVtbl,
-            folder == null ? nullptr : folder.ptr.ref.lpVtbl, operation);
+                        Pointer<COMObject> operation)>()(
+            ptr.ref.lpVtbl, folder?.ptr.ref.lpVtbl ?? nullptr, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -75,8 +75,8 @@ class ILauncherStatics3 extends IInspectable {
                 int Function(VTablePointer lpVtbl, VTablePointer folder,
                     VTablePointer options, Pointer<COMObject> operation)>()(
         ptr.ref.lpVtbl,
-        folder == null ? nullptr : folder.ptr.ref.lpVtbl,
-        options == null ? nullptr : options.ptr.ref.lpVtbl,
+        folder?.ptr.ref.lpVtbl ?? nullptr,
+        options?.ptr.ref.lpVtbl ?? nullptr,
         operation);
 
     if (FAILED(hr)) {

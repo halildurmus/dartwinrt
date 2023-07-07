@@ -44,8 +44,8 @@ class IToastCollectionManager extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer collection,
-                    Pointer<COMObject> operation)>()(ptr.ref.lpVtbl,
-        collection == null ? nullptr : collection.ptr.ref.lpVtbl, operation);
+                    Pointer<COMObject> operation)>()(
+        ptr.ref.lpVtbl, collection?.ptr.ref.lpVtbl ?? nullptr, operation);
 
     if (FAILED(hr)) {
       free(operation);
