@@ -16,14 +16,17 @@ import '../winrt_struct.dart';
 ///
 /// Returns `null` if no restricted error description was found.
 /// @nodoc
-String? getRestrictedErrorDescription() {
+String? getRestrictedErrorDescription(int hresult) {
   final ppRestrictedErrorInfo = calloc<COMObject>();
 
   try {
     var hr = GetRestrictedErrorInfo(ppRestrictedErrorInfo.cast());
     if (FAILED(hr)) throw WindowsException(hr);
+    if (ppRestrictedErrorInfo.isNull) {
+      free(ppRestrictedErrorInfo);
+      return null;
+    }
 
-    if (ppRestrictedErrorInfo.isNull) return null;
     final restrictedErrorInfo = IRestrictedErrorInfo(ppRestrictedErrorInfo);
 
     return using((arena) {
@@ -35,8 +38,13 @@ String? getRestrictedErrorDescription() {
           description, error, restrictedDescription, capabilitySid);
       if (FAILED(hr)) throw WindowsException(hr);
 
-      final value = restrictedDescription.value.toDartString();
-      return value.isEmpty ? null : value;
+      // If the error is not the one we're looking for, return null.
+      if (error.value != hresult) return null;
+
+      final message = restrictedDescription.value.toDartString();
+      if (message.isNotEmpty) return message;
+      // If the restricted description is empty, return the generic description.
+      return description.value.toDartString();
     });
   } catch (_) {
     free(ppRestrictedErrorInfo);
@@ -48,7 +56,7 @@ String? getRestrictedErrorDescription() {
 /// description of the last error that occurred on the current logical thread.
 /// @nodoc
 void throwWindowsException(int hr) =>
-    throw WindowsException(hr, message: getRestrictedErrorDescription());
+    throw WindowsException(hr, message: getRestrictedErrorDescription(hr));
 
 /// Determines whether [S] is the same type as [T].
 ///
