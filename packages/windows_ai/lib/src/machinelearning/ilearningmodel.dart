@@ -151,7 +151,7 @@ class ILearningModel extends IInspectable {
     }
   }
 
-  Map<String, String> get metadata {
+  Map<String, String>? get metadata {
     final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -171,12 +171,17 @@ class ILearningModel extends IInspectable {
       throwWindowsException(hr);
     }
 
+    if (value.isNull) {
+      free(value);
+      return null;
+    }
+
     return IMapView<String, String>.fromPtr(value,
             iterableIid: '{e9bdaaf0-cbf6-5c72-be90-29cbf3a1319b}')
         .toMap();
   }
 
-  List<ILearningModelFeatureDescriptor?> get inputFeatures {
+  List<ILearningModelFeatureDescriptor?>? get inputFeatures {
     final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -196,13 +201,18 @@ class ILearningModel extends IInspectable {
       throwWindowsException(hr);
     }
 
+    if (value.isNull) {
+      free(value);
+      return null;
+    }
+
     return IVectorView<ILearningModelFeatureDescriptor?>.fromPtr(value,
             iterableIid: '{0fa50877-6792-56b7-af46-430a8901894a}',
             creator: ILearningModelFeatureDescriptor.fromPtr)
         .toList();
   }
 
-  List<ILearningModelFeatureDescriptor?> get outputFeatures {
+  List<ILearningModelFeatureDescriptor?>? get outputFeatures {
     final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -220,6 +230,11 @@ class ILearningModel extends IInspectable {
     if (FAILED(hr)) {
       free(value);
       throwWindowsException(hr);
+    }
+
+    if (value.isNull) {
+      free(value);
+      return null;
     }
 
     return IVectorView<ILearningModelFeatureDescriptor?>.fromPtr(value,

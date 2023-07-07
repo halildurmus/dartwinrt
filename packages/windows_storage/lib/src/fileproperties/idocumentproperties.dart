@@ -29,7 +29,7 @@ class IDocumentProperties extends IInspectable
       IDocumentProperties.fromPtr(
           interface.toInterface(IID_IDocumentProperties));
 
-  IVector<String> get author {
+  IVector<String>? get author {
     final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -47,6 +47,11 @@ class IDocumentProperties extends IInspectable
     if (FAILED(hr)) {
       free(value);
       throwWindowsException(hr);
+    }
+
+    if (value.isNull) {
+      free(value);
+      return null;
     }
 
     return IVector.fromPtr(value,
@@ -98,7 +103,7 @@ class IDocumentProperties extends IInspectable
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
-  IVector<String> get keywords {
+  IVector<String>? get keywords {
     final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -116,6 +121,11 @@ class IDocumentProperties extends IInspectable
     if (FAILED(hr)) {
       free(value);
       throwWindowsException(hr);
+    }
+
+    if (value.isNull) {
+      free(value);
+      return null;
     }
 
     return IVector.fromPtr(value,

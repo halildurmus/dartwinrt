@@ -28,7 +28,7 @@ class WebTokenRequestResult extends IInspectable
   late final _iWebTokenRequestResult = IWebTokenRequestResult.from(this);
 
   @override
-  List<WebTokenResponse?> get responseData =>
+  List<WebTokenResponse?>? get responseData =>
       _iWebTokenRequestResult.responseData;
 
   @override

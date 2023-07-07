@@ -58,5 +58,5 @@ class WebTokenResponse extends IInspectable implements IWebTokenResponse {
   WebAccount? get webAccount => _iWebTokenResponse.webAccount;
 
   @override
-  IMap<String, String> get properties => _iWebTokenResponse.properties;
+  IMap<String, String>? get properties => _iWebTokenResponse.properties;
 }

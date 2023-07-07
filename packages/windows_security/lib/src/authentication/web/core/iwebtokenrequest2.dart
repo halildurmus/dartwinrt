@@ -25,7 +25,7 @@ class IWebTokenRequest2 extends IInspectable {
   factory IWebTokenRequest2.from(IInspectable interface) =>
       IWebTokenRequest2.fromPtr(interface.toInterface(IID_IWebTokenRequest2));
 
-  IMap<String, String> get appProperties {
+  IMap<String, String>? get appProperties {
     final requestProperties = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -44,6 +44,11 @@ class IWebTokenRequest2 extends IInspectable {
     if (FAILED(hr)) {
       free(requestProperties);
       throwWindowsException(hr);
+    }
+
+    if (requestProperties.isNull) {
+      free(requestProperties);
+      return null;
     }
 
     return IMap.fromPtr(requestProperties,

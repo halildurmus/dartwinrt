@@ -28,11 +28,11 @@ class BitmapCodecInformation extends IInspectable
   Guid get codecId => _iBitmapCodecInformation.codecId;
 
   @override
-  List<String> get fileExtensions => _iBitmapCodecInformation.fileExtensions;
+  List<String>? get fileExtensions => _iBitmapCodecInformation.fileExtensions;
 
   @override
   String get friendlyName => _iBitmapCodecInformation.friendlyName;
 
   @override
-  List<String> get mimeTypes => _iBitmapCodecInformation.mimeTypes;
+  List<String>? get mimeTypes => _iBitmapCodecInformation.mimeTypes;
 }

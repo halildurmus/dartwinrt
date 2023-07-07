@@ -111,7 +111,7 @@ void main() async {
   final results = session.evaluate(binding, 'RunId')!;
 
   // Get the output
-  final resultTensor = results.outputs['softmaxout_1'];
+  final resultTensor = results.outputs?['softmaxout_1'];
 
   if (resultTensor is IInspectable) {
     // Cast it to TensorFloat

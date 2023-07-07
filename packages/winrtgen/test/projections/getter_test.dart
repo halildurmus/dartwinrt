@@ -95,8 +95,8 @@ void main() {
       expect(projection, isA<DefaultGetterProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
-      expect(projection.returnType, equals('WwwFormUrlDecoder'));
-      expect(projection.header, equals('WwwFormUrlDecoder get queryParsed'));
+      expect(projection.returnType, equals('WwwFormUrlDecoder?'));
+      expect(projection.header, equals('WwwFormUrlDecoder? get queryParsed'));
       expect(projection.paramIdentifier, equals('ppWwwFormUrlDecoder'));
       expect(projection.preambles,
           equals(['final ppWwwFormUrlDecoder = calloc<COMObject>();']));
@@ -116,7 +116,7 @@ void main() {
           projection.failedCheck,
           equals(failedCheck(
               freeRetVal: true, identifier: 'ppWwwFormUrlDecoder')));
-      expect(projection.nullCheck, isEmpty);
+      expect(projection.nullCheck, equals(nullCheck('ppWwwFormUrlDecoder')));
       expect(projection.returnStatement,
           equals('return WwwFormUrlDecoder.fromPtr(ppWwwFormUrlDecoder);'));
       expect(projection.postambles, isEmpty);
@@ -472,8 +472,8 @@ void main() {
       expect(projection, isA<DefaultGetterProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
-      expect(projection.returnType, equals('IMap<String, String>'));
-      expect(projection.header, equals('IMap<String, String> get values'));
+      expect(projection.returnType, equals('IMap<String, String>?'));
+      expect(projection.header, equals('IMap<String, String>? get values'));
       expect(projection.paramIdentifier, equals('value'));
       expect(
           projection.preambles, equals(['final value = calloc<COMObject>();']));
@@ -490,7 +490,7 @@ void main() {
       expect(projection.parametersPostamble, isEmpty);
       expect(projection.failedCheck,
           equals(failedCheck(freeRetVal: true, identifier: 'value')));
-      expect(projection.nullCheck, isEmpty);
+      expect(projection.nullCheck, equals(nullCheck('value')));
       expect(projection.returnStatement, equalsIgnoringWhitespace('''
         return IMap.fromPtr(value,
             iterableIid: '{e9bdaaf0-cbf6-5c72-be90-29cbf3a1319b}');
@@ -504,8 +504,8 @@ void main() {
       expect(projection, isA<DefaultGetterProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
-      expect(projection.returnType, equals('Map<String, Object?>'));
-      expect(projection.header, equals('Map<String, Object?> get properties'));
+      expect(projection.returnType, equals('Map<String, Object?>?'));
+      expect(projection.header, equals('Map<String, Object?>? get properties'));
       expect(projection.paramIdentifier, equals('value'));
       expect(
           projection.preambles, equals(['final value = calloc<COMObject>();']));
@@ -522,7 +522,7 @@ void main() {
       expect(projection.parametersPostamble, isEmpty);
       expect(projection.failedCheck,
           equals(failedCheck(freeRetVal: true, identifier: 'value')));
-      expect(projection.nullCheck, isEmpty);
+      expect(projection.nullCheck, equals(nullCheck('value')));
       expect(projection.returnStatement, equalsIgnoringWhitespace('''
             return IMapView<String, Object?>.fromPtr(value,
                 iterableIid: '{fe2f3d47-5d47-5499-8374-430c7cda0204}').toMap();
@@ -569,8 +569,8 @@ void main() {
       expect(projection, isA<DefaultGetterProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
-      expect(projection.returnType, equals('IVector<int>'));
-      expect(projection.header, equals('IVector<int> get materialIndices'));
+      expect(projection.returnType, equals('IVector<int>?'));
+      expect(projection.header, equals('IVector<int>? get materialIndices'));
       expect(projection.paramIdentifier, equals('value'));
       expect(
           projection.preambles, equals(['final value = calloc<COMObject>();']));
@@ -587,7 +587,7 @@ void main() {
       expect(projection.parametersPostamble, isEmpty);
       expect(projection.failedCheck,
           equals(failedCheck(freeRetVal: true, identifier: 'value')));
-      expect(projection.nullCheck, isEmpty);
+      expect(projection.nullCheck, equals(nullCheck('value')));
       expect(projection.returnStatement, equalsIgnoringWhitespace('''
         return IVector.fromPtr(value,
             iterableIid: '{421d4b91-b13b-5f37-ae54-b5249bd80539}',
@@ -602,8 +602,8 @@ void main() {
       expect(projection, isA<DefaultGetterProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
-      expect(projection.returnType, equals('IVector<SortEntry>'));
-      expect(projection.header, equals('IVector<SortEntry> get sortOrder'));
+      expect(projection.returnType, equals('IVector<SortEntry>?'));
+      expect(projection.header, equals('IVector<SortEntry>? get sortOrder'));
       expect(projection.paramIdentifier, equals('value'));
       expect(
           projection.preambles, equals(['final value = calloc<COMObject>();']));
@@ -620,7 +620,7 @@ void main() {
       expect(projection.parametersPostamble, isEmpty);
       expect(projection.failedCheck,
           equals(failedCheck(freeRetVal: true, identifier: 'value')));
-      expect(projection.nullCheck, isEmpty);
+      expect(projection.nullCheck, equals(nullCheck('value')));
       expect(projection.returnStatement, equalsIgnoringWhitespace('''
         return IVector.fromPtr(value,
             iterableIid: '{35aff6f9-ef75-5280-bb84-a2bf8317cf35}');
@@ -634,8 +634,8 @@ void main() {
       expect(projection, isA<DefaultGetterProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
-      expect(projection.returnType, equals('IVector<String>'));
-      expect(projection.header, equals('IVector<String> get fileTypeFilter'));
+      expect(projection.returnType, equals('IVector<String>?'));
+      expect(projection.header, equals('IVector<String>? get fileTypeFilter'));
       expect(projection.paramIdentifier, equals('value'));
       expect(
           projection.preambles, equals(['final value = calloc<COMObject>();']));
@@ -652,7 +652,7 @@ void main() {
       expect(projection.parametersPostamble, isEmpty);
       expect(projection.failedCheck,
           equals(failedCheck(freeRetVal: true, identifier: 'value')));
-      expect(projection.nullCheck, isEmpty);
+      expect(projection.nullCheck, equals(nullCheck('value')));
       expect(projection.returnStatement, equalsIgnoringWhitespace('''
         return IVector.fromPtr(value,
             iterableIid: '{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}');
@@ -666,8 +666,8 @@ void main() {
       expect(projection, isA<DefaultGetterProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
-      expect(projection.returnType, equals('IVector<Uri?>'));
-      expect(projection.header, equals('IVector<Uri?> get serverUris'));
+      expect(projection.returnType, equals('IVector<Uri?>?'));
+      expect(projection.header, equals('IVector<Uri?>? get serverUris'));
       expect(projection.paramIdentifier, equals('value'));
       expect(
           projection.preambles, equals(['final value = calloc<COMObject>();']));
@@ -684,7 +684,7 @@ void main() {
       expect(projection.parametersPostamble, isEmpty);
       expect(projection.failedCheck,
           equals(failedCheck(freeRetVal: true, identifier: 'value')));
-      expect(projection.nullCheck, isEmpty);
+      expect(projection.nullCheck, equals(nullCheck('value')));
       expect(projection.returnStatement, equalsIgnoringWhitespace('''
         return IVector.fromPtr(value,
             iterableIid: '{b0d63b78-78ad-5e31-b6d8-e32a0e16c447}');
@@ -698,8 +698,9 @@ void main() {
       expect(projection, isA<DefaultGetterProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
-      expect(projection.returnType, equals('List<BasicGeoposition>'));
-      expect(projection.header, equals('List<BasicGeoposition> get positions'));
+      expect(projection.returnType, equals('List<BasicGeoposition>?'));
+      expect(
+          projection.header, equals('List<BasicGeoposition>? get positions'));
       expect(projection.paramIdentifier, equals('value'));
       expect(
           projection.preambles, equals(['final value = calloc<COMObject>();']));
@@ -716,7 +717,7 @@ void main() {
       expect(projection.parametersPostamble, isEmpty);
       expect(projection.failedCheck,
           equals(failedCheck(freeRetVal: true, identifier: 'value')));
-      expect(projection.nullCheck, isEmpty);
+      expect(projection.nullCheck, equals(nullCheck('value')));
       expect(projection.returnStatement, equalsIgnoringWhitespace('''
         return IVectorView<BasicGeoposition>.fromPtr(value,
             iterableIid: '{922399a8-0093-5009-a8d2-f87b0eae75f5}').toList();
@@ -730,8 +731,8 @@ void main() {
       expect(projection, isA<DefaultGetterProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
-      expect(projection.returnType, equals('List<int>'));
-      expect(projection.header, equals('List<int> get shape'));
+      expect(projection.returnType, equals('List<int>?'));
+      expect(projection.header, equals('List<int>? get shape'));
       expect(projection.paramIdentifier, equals('value'));
       expect(
           projection.preambles, equals(['final value = calloc<COMObject>();']));
@@ -748,7 +749,7 @@ void main() {
       expect(projection.parametersPostamble, isEmpty);
       expect(projection.failedCheck,
           equals(failedCheck(freeRetVal: true, identifier: 'value')));
-      expect(projection.nullCheck, isEmpty);
+      expect(projection.nullCheck, equals(nullCheck('value')));
       expect(projection.returnStatement, equalsIgnoringWhitespace('''
         return IVectorView<int>.fromPtr(value,
             iterableIid: '{7784427e-f9cc-518d-964b-e50d5ce727f1}',
@@ -764,8 +765,8 @@ void main() {
       expect(projection, isA<DefaultGetterProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
-      expect(projection.returnType, equals('List<Object?>'));
-      expect(projection.header, equals('List<Object?> get items'));
+      expect(projection.returnType, equals('List<Object?>?'));
+      expect(projection.header, equals('List<Object?>? get items'));
       expect(projection.paramIdentifier, equals('value'));
       expect(
           projection.preambles, equals(['final value = calloc<COMObject>();']));
@@ -782,7 +783,7 @@ void main() {
       expect(projection.parametersPostamble, isEmpty);
       expect(projection.failedCheck,
           equals(failedCheck(freeRetVal: true, identifier: 'value')));
-      expect(projection.nullCheck, isEmpty);
+      expect(projection.nullCheck, equals(nullCheck('value')));
       expect(projection.returnStatement, equalsIgnoringWhitespace('''
         return IVectorView<Object?>.fromPtr(value,
             iterableIid: '{092b849b-60b1-52be-a44a-6fe8e933cbe4}').toList();
@@ -796,8 +797,8 @@ void main() {
       expect(projection, isA<DefaultGetterProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
-      expect(projection.returnType, equals('List<String>'));
-      expect(projection.header, equals('List<String> get languages'));
+      expect(projection.returnType, equals('List<String>?'));
+      expect(projection.header, equals('List<String>? get languages'));
       expect(projection.paramIdentifier, equals('value'));
       expect(
           projection.preambles, equals(['final value = calloc<COMObject>();']));
@@ -814,7 +815,7 @@ void main() {
       expect(projection.parametersPostamble, isEmpty);
       expect(projection.failedCheck,
           equals(failedCheck(freeRetVal: true, identifier: 'value')));
-      expect(projection.nullCheck, isEmpty);
+      expect(projection.nullCheck, equals(nullCheck('value')));
       expect(projection.returnStatement, equalsIgnoringWhitespace('''
         return IVectorView<String>.fromPtr(value,
             iterableIid: '{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}').toList();
@@ -828,8 +829,8 @@ void main() {
       expect(projection, isA<DefaultGetterProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
-      expect(projection.returnType, equals('List<Uri?>'));
-      expect(projection.header, equals('List<Uri?> get updateUris'));
+      expect(projection.returnType, equals('List<Uri?>?'));
+      expect(projection.header, equals('List<Uri?>? get updateUris'));
       expect(projection.paramIdentifier, equals('value'));
       expect(
           projection.preambles, equals(['final value = calloc<COMObject>();']));
@@ -846,7 +847,7 @@ void main() {
       expect(projection.parametersPostamble, isEmpty);
       expect(projection.failedCheck,
           equals(failedCheck(freeRetVal: true, identifier: 'value')));
-      expect(projection.nullCheck, isEmpty);
+      expect(projection.nullCheck, equals(nullCheck('value')));
       expect(projection.returnStatement, equalsIgnoringWhitespace('''
         return IVectorView<Uri?>.fromPtr(value,
             iterableIid: '{b0d63b78-78ad-5e31-b6d8-e32a0e16c447}').toList();

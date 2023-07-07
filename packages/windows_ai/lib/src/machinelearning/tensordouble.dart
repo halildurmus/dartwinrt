@@ -79,7 +79,7 @@ class TensorDouble extends IInspectable
   TensorKind get tensorKind => _iTensor.tensorKind;
 
   @override
-  List<int> get shape => _iTensor.shape;
+  List<int>? get shape => _iTensor.shape;
 
   late final _iLearningModelFeatureValue =
       ILearningModelFeatureValue.from(this);

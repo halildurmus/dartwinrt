@@ -9,9 +9,7 @@ import '../models/models.dart';
 import '../utilities/utilities.dart';
 
 final class TypeProjection {
-  TypeProjection(TypeIdentifier ti, {this.isInParam = false})
-      : typeIdentifier =
-            ti.isGenericType ? ti.copyWith(name: ti.shortName) : ti;
+  TypeProjection(this.typeIdentifier, {this.isInParam = false});
 
   final TypeIdentifier typeIdentifier;
 
@@ -45,11 +43,29 @@ final class TypeProjection {
               .any((interface) => interface.name.endsWith('IAsyncAction')) ??
           false);
 
+  bool get isAsyncActionWithProgress =>
+      typeIdentifier.name == 'Windows.Foundation.IAsyncActionWithProgress`1' ||
+      // Does the type implement IAsyncActionWithProgress?
+      (typeIdentifier.type?.interfaces.any((interface) =>
+              interface.typeSpec?.name.endsWith('IAsyncActionWithProgress`1') ??
+              false) ??
+          false);
+
   bool get isAsyncOperation =>
       (typeIdentifier.type?.name.endsWith('IAsyncOperation`1') ?? false) ||
       // Does the type implement IAsyncOperation?
       (typeIdentifier.type?.interfaces.any((interface) =>
               interface.typeSpec?.name.endsWith('IAsyncOperation`1') ??
+              false) ??
+          false);
+
+  bool get isAsyncOperationWithProgress =>
+      (typeIdentifier.type?.name.endsWith('IAsyncOperationWithProgress`2') ??
+          false) ||
+      // Does the type implement IAsyncOperationWithProgress?
+      (typeIdentifier.type?.interfaces.any((interface) =>
+              interface.typeSpec?.name
+                  .endsWith('IAsyncOperationWithProgress`2') ??
               false) ??
           false);
 
@@ -175,7 +191,7 @@ final class TypeProjection {
       throw WinRTGenException('Struct type missing for $typeIdentifier.');
     }
 
-    final structName = 'Native${structType.shortName}';
+    final structName = 'Native${lastComponent(structType.name)}';
     return TypeTuple(structName, structName);
   }
 

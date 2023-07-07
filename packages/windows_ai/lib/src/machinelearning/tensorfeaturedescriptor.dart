@@ -31,7 +31,7 @@ class TensorFeatureDescriptor extends IInspectable
   TensorKind get tensorKind => _iTensorFeatureDescriptor.tensorKind;
 
   @override
-  List<int> get shape => _iTensorFeatureDescriptor.shape;
+  List<int>? get shape => _iTensorFeatureDescriptor.shape;
 
   late final _iLearningModelFeatureDescriptor =
       ILearningModelFeatureDescriptor.from(this);

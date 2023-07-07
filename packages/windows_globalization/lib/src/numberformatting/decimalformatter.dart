@@ -48,7 +48,7 @@ class DecimalFormatter extends IInspectable
   late final _iNumberFormatterOptions = INumberFormatterOptions.from(this);
 
   @override
-  List<String> get languages => _iNumberFormatterOptions.languages;
+  List<String>? get languages => _iNumberFormatterOptions.languages;
 
   @override
   String get geographicRegion => _iNumberFormatterOptions.geographicRegion;

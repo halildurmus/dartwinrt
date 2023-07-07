@@ -25,7 +25,7 @@ class OcrResult extends IInspectable implements IOcrResult {
   late final _iOcrResult = IOcrResult.from(this);
 
   @override
-  List<OcrLine?> get lines => _iOcrResult.lines;
+  List<OcrLine?>? get lines => _iOcrResult.lines;
 
   @override
   double? get textAngle => _iOcrResult.textAngle;

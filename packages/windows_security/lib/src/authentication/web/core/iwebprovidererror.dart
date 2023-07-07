@@ -74,7 +74,7 @@ class IWebProviderError extends IInspectable {
     }
   }
 
-  IMap<String, String> get properties {
+  IMap<String, String>? get properties {
     final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -92,6 +92,11 @@ class IWebProviderError extends IInspectable {
     if (FAILED(hr)) {
       free(value);
       throwWindowsException(hr);
+    }
+
+    if (value.isNull) {
+      free(value);
+      return null;
     }
 
     return IMap.fromPtr(value,

@@ -22,7 +22,7 @@ void main() {
     IVector<DeviceClass> getVector() {
       final picker = DevicePicker();
       final pickerFilter = picker.filter!;
-      return pickerFilter.supportedDeviceClasses;
+      return pickerFilter.supportedDeviceClasses!;
     }
 
     test('getAt fails if the vector is empty', () {

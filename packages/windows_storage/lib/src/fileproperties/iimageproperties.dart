@@ -69,7 +69,7 @@ class IImageProperties extends IInspectable
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
-  IVector<String> get keywords {
+  IVector<String>? get keywords {
     final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -87,6 +87,11 @@ class IImageProperties extends IInspectable
     if (FAILED(hr)) {
       free(value);
       throwWindowsException(hr);
+    }
+
+    if (value.isNull) {
+      free(value);
+      return null;
     }
 
     return IVector.fromPtr(value,
@@ -398,7 +403,7 @@ class IImageProperties extends IInspectable
     }
   }
 
-  List<String> get peopleNames {
+  List<String>? get peopleNames {
     final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -416,6 +421,11 @@ class IImageProperties extends IInspectable
     if (FAILED(hr)) {
       free(value);
       throwWindowsException(hr);
+    }
+
+    if (value.isNull) {
+      free(value);
+      return null;
     }
 
     return IVectorView<String>.fromPtr(value,

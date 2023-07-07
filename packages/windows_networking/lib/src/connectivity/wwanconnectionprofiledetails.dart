@@ -50,5 +50,5 @@ class WwanConnectionProfileDetails extends IInspectable
   WwanNetworkIPKind get ipKind => _iWwanConnectionProfileDetails2.ipKind;
 
   @override
-  List<Guid> get purposeGuids => _iWwanConnectionProfileDetails2.purposeGuids;
+  List<Guid>? get purposeGuids => _iWwanConnectionProfileDetails2.purposeGuids;
 }

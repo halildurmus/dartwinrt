@@ -85,7 +85,7 @@ class Uri extends IInspectable
   String get query => _iUriRuntimeClass.query;
 
   @override
-  WwwFormUrlDecoder get queryParsed => _iUriRuntimeClass.queryParsed;
+  WwwFormUrlDecoder? get queryParsed => _iUriRuntimeClass.queryParsed;
 
   @override
   String get rawUri => _iUriRuntimeClass.rawUri;

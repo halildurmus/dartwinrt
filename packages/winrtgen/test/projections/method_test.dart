@@ -762,10 +762,8 @@ void main() {
           projection.dartPrototype,
           equals(
               'int Function(VTablePointer lpVtbl, VTablePointer file, Pointer<COMObject> result)'));
-      expect(
-          projection.identifiers,
-          equals(
-              'ptr.ref.lpVtbl, file?.ptr.ref.lpVtbl ?? nullptr, result'));
+      expect(projection.identifiers,
+          equals('ptr.ref.lpVtbl, file?.ptr.ref.lpVtbl ?? nullptr, result'));
       expect(projection.parametersPostamble, isEmpty);
       expect(projection.failedCheck,
           equals(failedCheck(freeRetVal: true, identifier: 'result')));
@@ -1065,10 +1063,8 @@ void main() {
           projection.dartPrototype,
           equals(
               'int Function(VTablePointer lpVtbl, VTablePointer user, Pointer<COMObject> value)'));
-      expect(
-          projection.identifiers,
-          equals(
-              'ptr.ref.lpVtbl, user?.ptr.ref.lpVtbl ?? nullptr, value'));
+      expect(projection.identifiers,
+          equals('ptr.ref.lpVtbl, user?.ptr.ref.lpVtbl ?? nullptr, value'));
       expect(projection.parametersPostamble, isEmpty);
       expect(projection.failedCheck,
           equals(failedCheck(freeRetVal: true, identifier: 'value')));

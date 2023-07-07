@@ -156,7 +156,7 @@ class IFileSavePicker extends IInspectable {
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
-  IMap<String, IVector<String>> get fileTypeChoices {
+  IMap<String, IVector<String>>? get fileTypeChoices {
     final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -174,6 +174,11 @@ class IFileSavePicker extends IInspectable {
     if (FAILED(hr)) {
       free(value);
       throwWindowsException(hr);
+    }
+
+    if (value.isNull) {
+      free(value);
+      return null;
     }
 
     return IMap.fromPtr(value,

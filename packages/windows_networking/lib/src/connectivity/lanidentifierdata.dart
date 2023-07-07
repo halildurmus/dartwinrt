@@ -28,5 +28,5 @@ class LanIdentifierData extends IInspectable implements ILanIdentifierData {
   int get type => _iLanIdentifierData.type;
 
   @override
-  List<int> get value => _iLanIdentifierData.value;
+  List<int>? get value => _iLanIdentifierData.value;
 }

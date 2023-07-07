@@ -28,7 +28,7 @@ class IDevicePickerFilter extends IInspectable {
       IDevicePickerFilter.fromPtr(
           interface.toInterface(IID_IDevicePickerFilter));
 
-  IVector<DeviceClass> get supportedDeviceClasses {
+  IVector<DeviceClass>? get supportedDeviceClasses {
     final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -48,12 +48,17 @@ class IDevicePickerFilter extends IInspectable {
       throwWindowsException(hr);
     }
 
+    if (value.isNull) {
+      free(value);
+      return null;
+    }
+
     return IVector.fromPtr(value,
         iterableIid: '{47d4be05-58f1-522e-81c6-975eb4131bb9}',
         enumCreator: DeviceClass.from);
   }
 
-  IVector<String> get supportedDeviceSelectors {
+  IVector<String>? get supportedDeviceSelectors {
     final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -71,6 +76,11 @@ class IDevicePickerFilter extends IInspectable {
     if (FAILED(hr)) {
       free(value);
       throwWindowsException(hr);
+    }
+
+    if (value.isNull) {
+      free(value);
+      return null;
     }
 
     return IVector.fromPtr(value,

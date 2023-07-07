@@ -18,8 +18,7 @@ final class MapParameterProjection extends ParameterProjection {
   /// The type arguments of `IMap` and `IMapView`, as represented in the
   /// [typeProjection]'s [TypeIdentifier] (e.g. `String, Object?`,
   /// `String, String?`).
-  String get mapTypeArgs =>
-      typeArguments(typeProjection.typeIdentifier.shortName);
+  String get mapTypeArgs => typeArguments(shortTypeName);
 
   /// The constructor arguments passed to the constructors of `IMap` and
   /// `IMapView`.
@@ -66,24 +65,36 @@ final class MapParameterProjection extends ParameterProjection {
 
   @override
   bool get isNullable {
-    if (isReturnParam) return false;
+    // Methods that return collection objects cannot return null.
+    if (isReturnParam && !method.isGetProperty) return false;
     // TODO(halildurmus): Remove this
     if (isOutParam) return false;
+    // Treat everything else as nullable.
     return true;
   }
 
   @override
-  String get type => isNullable ? 'IMap<$mapTypeArgs>?' : 'IMap<$mapTypeArgs>';
+  String get type => isNullable ? nullable(shortTypeName) : shortTypeName;
 
   @override
   String get creator => 'IMap.fromPtr($identifier$mapConstructorArgs)';
 
-  @override
   String get into => '$identifier?.ptr.ref.lpVtbl ?? nullptr';
 
   // No deallocation is needed as Finalizer will handle it.
   @override
   bool get needsDeallocation => false;
+
+  @override
+  String get nullCheck {
+    if (!isNullable) return '';
+    return '''
+    if ($identifier.isNull) {
+      free($identifier);
+      return null;
+    }
+''';
+  }
 }
 
 final class MapViewParameterProjection extends MapParameterProjection {
@@ -91,9 +102,12 @@ final class MapViewParameterProjection extends MapParameterProjection {
 
   @override
   String get type {
-    if (isInParam) return 'IMapView<$mapTypeArgs>?';
-    if (isOutParam) return 'IMapView<$mapTypeArgs>';
-    return isNullable ? 'Map<$mapTypeArgs>?' : 'Map<$mapTypeArgs>';
+    if (isReturnParam) {
+      if (method.isGetProperty) return 'Map<$mapTypeArgs>?';
+      return 'Map<$mapTypeArgs>';
+    }
+
+    return isNullable ? nullable(shortTypeName) : shortTypeName;
   }
 
   @override

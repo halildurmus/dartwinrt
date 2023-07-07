@@ -73,12 +73,12 @@ class WebTokenRequest extends IInspectable
   WebTokenRequestPromptType get promptType => _iWebTokenRequest.promptType;
 
   @override
-  IMap<String, String> get properties => _iWebTokenRequest.properties;
+  IMap<String, String>? get properties => _iWebTokenRequest.properties;
 
   late final _iWebTokenRequest2 = IWebTokenRequest2.from(this);
 
   @override
-  IMap<String, String> get appProperties => _iWebTokenRequest2.appProperties;
+  IMap<String, String>? get appProperties => _iWebTokenRequest2.appProperties;
 
   late final _iWebTokenRequest3 = IWebTokenRequest3.from(this);
 

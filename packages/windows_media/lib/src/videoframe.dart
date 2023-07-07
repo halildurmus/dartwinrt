@@ -112,7 +112,7 @@ class VideoFrame extends IInspectable
   bool get isDiscontinuous => _iMediaFrame.isDiscontinuous;
 
   @override
-  IPropertySet get extendedProperties => _iMediaFrame.extendedProperties;
+  IPropertySet? get extendedProperties => _iMediaFrame.extendedProperties;
 
   late final _iClosable = IClosable.from(this);
 

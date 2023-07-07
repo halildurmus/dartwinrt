@@ -27,7 +27,7 @@ class IPrinting3DMultiplePropertyMaterial extends IInspectable {
       IPrinting3DMultiplePropertyMaterial.fromPtr(
           interface.toInterface(IID_IPrinting3DMultiplePropertyMaterial));
 
-  IVector<int> get materialIndices {
+  IVector<int>? get materialIndices {
     final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -45,6 +45,11 @@ class IPrinting3DMultiplePropertyMaterial extends IInspectable {
     if (FAILED(hr)) {
       free(value);
       throwWindowsException(hr);
+    }
+
+    if (value.isNull) {
+      free(value);
+      return null;
     }
 
     return IVector.fromPtr(value,

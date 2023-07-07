@@ -53,7 +53,7 @@ class IWwanConnectionProfileDetails2 extends IInspectable {
     }
   }
 
-  List<Guid> get purposeGuids {
+  List<Guid>? get purposeGuids {
     final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -71,6 +71,11 @@ class IWwanConnectionProfileDetails2 extends IInspectable {
     if (FAILED(hr)) {
       free(value);
       throwWindowsException(hr);
+    }
+
+    if (value.isNull) {
+      free(value);
+      return null;
     }
 
     return IVectorView<Guid>.fromPtr(value,

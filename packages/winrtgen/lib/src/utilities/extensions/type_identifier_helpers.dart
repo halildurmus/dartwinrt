@@ -8,8 +8,7 @@ import '../../constants/constants.dart';
 import '../../exception/exception.dart';
 import '../../projections/projections.dart';
 import '../helpers.dart';
-import 'base_type_helpers.dart';
-import 'typedef_helpers.dart';
+import 'extensions.dart';
 
 extension TypeIdentifierHelpers on TypeIdentifier {
   /// Parses the argument to be passed to the `creator` parameter for the type
@@ -31,6 +30,69 @@ extension TypeIdentifierHelpers on TypeIdentifier {
         '${lastComponent(name)}.from',
       _ => null,
     };
+  }
+
+  /// Parses the argument to be passed to the `creator` parameter from a generic
+  /// [typeIdentifier].
+  String _parseGenericTypeIdentifierCreator(TypeIdentifier typeIdentifier) {
+    final shortName = outerType(typeIdentifier.shortName);
+    final typeArgs = typeIdentifier.typeArgs;
+    final args = <String>['ptr'];
+
+    if (shortName case 'IKeyValuePair' || 'IMap' || 'IMapView') {
+      // Handle enum key typeArg
+      if (typeArgs.first.type?.isEnum ?? false) {
+        final enumKeyCreator = typeArgs.first.creator;
+        args.add('enumKeyCreator: $enumKeyCreator');
+      }
+
+      // Handle int key typeArg
+      if (typeArgs.first.baseType
+          case BaseType.int32Type || BaseType.uint32Type) {
+        final typeProjection = TypeProjection(typeArgs.first);
+        final intType = 'IntType.${typeProjection.nativeType.toLowerCase()}';
+        args.add('intType: $intType');
+      }
+    }
+
+    // Use the value (last) typeArg to parse the creator argument since the
+    // key (first) typeArg is handled above.
+    final typeArg = switch (shortName) {
+      'IKeyValuePair' || 'IMap' || 'IMapView' => typeArgs.last,
+      _ => typeArgs.first,
+    };
+    final creator = typeArg.creator;
+    if (creator != null) {
+      final typeArgIsEnum = typeArg.type?.isEnum ?? false;
+      final creatorParamName = typeArgIsEnum ? 'enumCreator' : 'creator';
+      args.add('$creatorParamName: $creator');
+    }
+
+    if (shortName case 'IVector' || 'IVectorView') {
+      final iid = iterableIidFromVectorType(typeIdentifier);
+      args.add("iterableIid: ${quote(iid)}");
+    } else if (shortName case 'IMap' || 'IMapView') {
+      final iid = iterableIidFromMapType(typeIdentifier);
+      args.add("iterableIid: ${quote(iid)}");
+    } else if (shortName == 'IReference') {
+      final referenceArgSignature = typeArgs.first.signature;
+      final referenceSignature =
+          'pinterface($IID_IReference;$referenceArgSignature)';
+      final iid = iidFromSignature(referenceSignature);
+      args.add('referenceIid: ${quote(iid)}');
+    } else {
+      if (creator == null) return '$shortName.fromPtr';
+    }
+
+    // Hanlde int typeArg in IIterable, IVector and IVectorView interfaces
+    if (typeArguments(_parseGenericTypeIdentifierName(typeIdentifier)) ==
+        'int') {
+      final typeProjection = TypeProjection(typeArgs.first);
+      final intType = 'IntType.${typeProjection.nativeType.toLowerCase()}';
+      args.add('intType: $intType');
+    }
+
+    return '(ptr) => $shortName.fromPtr(${args.join(', ')})';
   }
 
   /// The value identifying the generic parameter sequence, if there is one.
@@ -74,19 +136,14 @@ extension TypeIdentifierHelpers on TypeIdentifier {
   /// Returns the shorter name of the type defined in this TypeIdentifier (e.g.
   /// `ICalendar`, `IMap<String, String>`).
   String get shortName {
-    // If the typeIdentifier's name is already parsed, return it as is
-    if (name.contains('<')) return name;
-
-    if (isReferenceType) return dereferenceType(this).shortName;
-
     if (name == 'Windows.Foundation.TimeSpan') return 'Duration';
-
     return switch (baseType) {
       BaseType.classTypeModifier ||
       BaseType.valueTypeModifier =>
         lastComponent(name),
       BaseType.genericTypeModifier => _parseGenericTypeIdentifierName(this),
-      BaseType.objectType => 'Object',
+      BaseType.objectType => 'Object?',
+      BaseType.referenceTypeModifier => dereferenceType(this).shortName,
       _ => baseType.dartType,
     };
   }
@@ -177,79 +234,14 @@ extension TypeIdentifierHelpers on TypeIdentifier {
   }
 }
 
-/// Parses the argument to be passed to the `creator` parameter from a generic
-/// [typeIdentifier].
-String _parseGenericTypeIdentifierCreator(TypeIdentifier typeIdentifier) {
-  final shortName = outerType(typeIdentifier.shortName);
-  final typeArgs = typeIdentifier.typeArgs;
-  final args = <String>['ptr'];
-
-  if (shortName case 'IKeyValuePair' || 'IMap' || 'IMapView') {
-    // Handle enum key typeArg
-    if (typeArgs.first.type?.isEnum ?? false) {
-      final enumKeyCreator = typeArgs.first.creator;
-      args.add('enumKeyCreator: $enumKeyCreator');
-    }
-
-    // Handle int key typeArg
-    if (typeArgs.first.baseType
-        case BaseType.int32Type || BaseType.uint32Type) {
-      final typeProjection = TypeProjection(typeArgs.first);
-      final intType = 'IntType.${typeProjection.nativeType.toLowerCase()}';
-      args.add('intType: $intType');
-    }
+/// Unwraps [typeIdentifiers] into a single `TypeIdentifier`.
+TypeIdentifier _unwrapTypeIdentifiers(List<TypeIdentifier> typeIdentifiers) {
+  var type = typeIdentifiers.last;
+  for (var idx = typeIdentifiers.length - 2; idx >= 0; idx--) {
+    final newType = typeIdentifiers[idx].copyWith(typeArg: type);
+    type = newType;
   }
-
-  // Use the value (last) typeArg to parse the creator argument since the
-  // key (first) typeArg is handled above.
-  final typeArg = switch (shortName) {
-    'IKeyValuePair' || 'IMap' || 'IMapView' => typeArgs.last,
-    _ => typeArgs.first,
-  };
-  final creator = typeArg.creator;
-  if (creator != null) {
-    final typeArgIsEnum = typeArg.type?.isEnum ?? false;
-    final creatorParamName = typeArgIsEnum ? 'enumCreator' : 'creator';
-    args.add('$creatorParamName: $creator');
-  }
-
-  if (shortName case 'IVector' || 'IVectorView') {
-    final iid = iterableIidFromVectorType(typeIdentifier);
-    args.add("iterableIid: ${quote(iid)}");
-  } else if (shortName case 'IMap' || 'IMapView') {
-    final iid = iterableIidFromMapType(typeIdentifier);
-    args.add("iterableIid: ${quote(iid)}");
-  } else if (shortName == 'IReference') {
-    final referenceArgSignature = typeArgs.first.signature;
-    final referenceSignature =
-        'pinterface($IID_IReference;$referenceArgSignature)';
-    final iid = iidFromSignature(referenceSignature);
-    args.add('referenceIid: ${quote(iid)}');
-  } else {
-    if (creator == null) return '$shortName.fromPtr';
-  }
-
-  // Hanlde int typeArg in IIterable, IVector and IVectorView interfaces
-  if (typeArguments(_parseGenericTypeIdentifierName(typeIdentifier)) == 'int') {
-    final typeProjection = TypeProjection(typeArgs.first);
-    final intType = 'IntType.${typeProjection.nativeType.toLowerCase()}';
-    args.add('intType: $intType');
-  }
-
-  return '(ptr) => $shortName.fromPtr(${args.join(', ')})';
-}
-
-String _parseTypeArgName(TypeIdentifier typeIdentifier) {
-  final typeArg = typeIdentifier.shortName;
-  if (typeArg.startsWith('IKeyValuePair')) return typeArg;
-  // Value types (enums and structs) cannot be null.
-  if (TypeProjection(typeIdentifier).isValueType) return typeArg;
-  // Collection interfaces cannot be null.
-  if (typeIdentifier.isCollectionObject) return typeArg;
-  // Primitive types cannot be null.
-  if (typeArg case 'bool' || 'double' || 'int' || 'String') return typeArg;
-  // Otherwise, mark typeArg as nullable.
-  return nullable(typeArg);
+  return type;
 }
 
 /// Unpack a nested [typeIdentifier] into a single name.
@@ -288,12 +280,16 @@ String _parseGenericTypeIdentifierName(TypeIdentifier typeIdentifier) {
   };
 }
 
-/// Unwraps [typeIdentifiers] into a single `TypeIdentifier`.
-TypeIdentifier _unwrapTypeIdentifiers(List<TypeIdentifier> typeIdentifiers) {
-  var type = typeIdentifiers.last;
-  for (var idx = typeIdentifiers.length - 2; idx >= 0; idx--) {
-    final newType = typeIdentifiers[idx].copyWith(typeArg: type);
-    type = newType;
-  }
-  return type;
+String _parseTypeArgName(TypeIdentifier typeIdentifier) {
+  final typeArg = typeIdentifier.shortName;
+  // IIterable<IKeyValuePair<K, V>> cannot be null.
+  if (typeArg.startsWith('IKeyValuePair')) return typeArg;
+  // Value types (enums and structs) cannot be null.
+  if (TypeProjection(typeIdentifier).isValueType) return typeArg;
+  // Collection interfaces cannot be null.
+  if (typeIdentifier.isCollectionObject) return typeArg;
+  // Primitive types cannot be null.
+  if (typeArg case 'bool' || 'double' || 'int' || 'String') return typeArg;
+  // Everything else can be null.
+  return nullable(typeArg);
 }

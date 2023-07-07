@@ -31,7 +31,7 @@ class OcrEngine extends IInspectable implements IOcrEngine {
           IOcrEngineStatics.fromPtr, _className, IID_IOcrEngineStatics)
       .maxImageDimension;
 
-  static List<Language?> get availableRecognizerLanguages =>
+  static List<Language?>? get availableRecognizerLanguages =>
       createActivationFactory(
               IOcrEngineStatics.fromPtr, _className, IID_IOcrEngineStatics)
           .availableRecognizerLanguages;

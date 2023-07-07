@@ -97,7 +97,13 @@ enum ProjectionKind {
     if (type.isWinRTEnum) return ProjectionKind.enum_;
     if (type.isGuid) return ProjectionKind.guid;
     if (type.isAsyncAction) return ProjectionKind.asyncAction;
+    if (type.isAsyncActionWithProgress) {
+      return ProjectionKind.asyncActionWithProgress;
+    }
     if (type.isAsyncOperation) return ProjectionKind.asyncOperation;
+    if (type.isAsyncOperationWithProgress) {
+      return ProjectionKind.asyncOperationWithProgress;
+    }
     if (type.isMap) return ProjectionKind.map;
     if (type.isMapView) return ProjectionKind.mapView;
     if (type.isReference) return ProjectionKind.reference;

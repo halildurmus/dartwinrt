@@ -155,7 +155,7 @@ class IDeviceInformation extends IInspectable {
     return EnclosureLocation.fromPtr(value);
   }
 
-  Map<String, Object?> get properties {
+  Map<String, Object?>? get properties {
     final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -173,6 +173,11 @@ class IDeviceInformation extends IInspectable {
     if (FAILED(hr)) {
       free(value);
       throwWindowsException(hr);
+    }
+
+    if (value.isNull) {
+      free(value);
+      return null;
     }
 
     return IMapView<String, Object?>.fromPtr(value,

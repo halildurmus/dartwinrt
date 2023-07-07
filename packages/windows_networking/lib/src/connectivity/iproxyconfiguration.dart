@@ -26,7 +26,7 @@ class IProxyConfiguration extends IInspectable {
       IProxyConfiguration.fromPtr(
           interface.toInterface(IID_IProxyConfiguration));
 
-  List<Uri?> get proxyUris {
+  List<Uri?>? get proxyUris {
     final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -44,6 +44,11 @@ class IProxyConfiguration extends IInspectable {
     if (FAILED(hr)) {
       free(value);
       throwWindowsException(hr);
+    }
+
+    if (value.isNull) {
+      free(value);
+      return null;
     }
 
     return IVectorView<Uri?>.fromPtr(value,

@@ -27,7 +27,7 @@ class DocumentProperties extends IInspectable
   late final _iDocumentProperties = IDocumentProperties.from(this);
 
   @override
-  IVector<String> get author => _iDocumentProperties.author;
+  IVector<String>? get author => _iDocumentProperties.author;
 
   @override
   String get title => _iDocumentProperties.title;
@@ -36,7 +36,7 @@ class DocumentProperties extends IInspectable
   set title(String value) => _iDocumentProperties.title = value;
 
   @override
-  IVector<String> get keywords => _iDocumentProperties.keywords;
+  IVector<String>? get keywords => _iDocumentProperties.keywords;
 
   @override
   String get comment => _iDocumentProperties.comment;

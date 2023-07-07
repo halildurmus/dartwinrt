@@ -59,7 +59,7 @@ class Calendar extends IInspectable implements ICalendar, ITimeZoneOnCalendar {
   void setToMax() => _iCalendar.setToMax();
 
   @override
-  List<String> get languages => _iCalendar.languages;
+  List<String>? get languages => _iCalendar.languages;
 
   @override
   String get numeralSystem => _iCalendar.numeralSystem;

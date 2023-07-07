@@ -31,6 +31,6 @@ class Printing3DMultiplePropertyMaterial extends IInspectable
       IPrinting3DMultiplePropertyMaterial.from(this);
 
   @override
-  IVector<int> get materialIndices =>
+  IVector<int>? get materialIndices =>
       _iPrinting3DMultiplePropertyMaterial.materialIndices;
 }

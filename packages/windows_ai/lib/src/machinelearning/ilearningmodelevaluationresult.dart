@@ -100,7 +100,7 @@ class ILearningModelEvaluationResult extends IInspectable {
     }
   }
 
-  Map<String, Object?> get outputs {
+  Map<String, Object?>? get outputs {
     final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -118,6 +118,11 @@ class ILearningModelEvaluationResult extends IInspectable {
     if (FAILED(hr)) {
       free(value);
       throwWindowsException(hr);
+    }
+
+    if (value.isNull) {
+      free(value);
+      return null;
     }
 
     return IMapView<String, Object?>.fromPtr(value,

@@ -52,7 +52,7 @@ class ITensorFeatureDescriptor extends IInspectable {
     }
   }
 
-  List<int> get shape {
+  List<int>? get shape {
     final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -70,6 +70,11 @@ class ITensorFeatureDescriptor extends IInspectable {
     if (FAILED(hr)) {
       free(value);
       throwWindowsException(hr);
+    }
+
+    if (value.isNull) {
+      free(value);
+      return null;
     }
 
     return IVectorView<int>.fromPtr(value,

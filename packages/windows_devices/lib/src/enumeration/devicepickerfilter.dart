@@ -27,10 +27,10 @@ class DevicePickerFilter extends IInspectable implements IDevicePickerFilter {
   late final _iDevicePickerFilter = IDevicePickerFilter.from(this);
 
   @override
-  IVector<DeviceClass> get supportedDeviceClasses =>
+  IVector<DeviceClass>? get supportedDeviceClasses =>
       _iDevicePickerFilter.supportedDeviceClasses;
 
   @override
-  IVector<String> get supportedDeviceSelectors =>
+  IVector<String>? get supportedDeviceSelectors =>
       _iDevicePickerFilter.supportedDeviceSelectors;
 }

@@ -26,6 +26,25 @@ final class AsyncActionParameterProjection extends ParameterProjection {
   bool get needsDeallocation => false;
 }
 
+/// Parameter projection for `IAsyncActionWithProgress` parameters.
+final class AsyncActionWithProgressParameterProjection
+    extends ParameterProjection {
+  AsyncActionWithProgressParameterProjection(super.parameter);
+
+  @override
+  String get type => 'Pointer<COMObject>';
+
+  @override
+  String get creator => identifier;
+
+  @override
+  String get into => '$identifier.ref.lpVtbl';
+
+  // No deallocation is needed as Finalizer will handle it.
+  @override
+  bool get needsDeallocation => false;
+}
+
 /// Parameter projection for `IAsyncOperation` parameters.
 final class AsyncOperationParameterProjection
     extends AsyncActionParameterProjection {
@@ -45,6 +64,7 @@ final class AsyncOperationParameterProjection
       if (interface.typeSpec case final typeSpec?) return typeSpec;
       throw WinRTGenException("Type '$interface' has no TypeSpec.");
     }
+
     return typeProjection.typeIdentifier;
   }
 
@@ -122,4 +142,23 @@ final class AsyncOperationParameterProjection
 
   @override
   String get into => '$identifier.ptr.ref.lpVtbl';
+}
+
+/// Parameter projection for `IAsyncOperationWithProgress` parameters.
+final class AsyncOperationWithProgressParameterProjection
+    extends ParameterProjection {
+  AsyncOperationWithProgressParameterProjection(super.parameter);
+
+  @override
+  String get type => 'Pointer<COMObject>';
+
+  @override
+  String get creator => identifier;
+
+  @override
+  String get into => '$identifier.ref.lpVtbl';
+
+  // No deallocation is needed as Finalizer will handle it.
+  @override
+  bool get needsDeallocation => false;
 }

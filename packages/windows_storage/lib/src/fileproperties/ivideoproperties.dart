@@ -69,7 +69,7 @@ class IVideoProperties extends IInspectable
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
-  IVector<String> get keywords {
+  IVector<String>? get keywords {
     final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -87,6 +87,11 @@ class IVideoProperties extends IInspectable
     if (FAILED(hr)) {
       free(value);
       throwWindowsException(hr);
+    }
+
+    if (value.isNull) {
+      free(value);
+      return null;
     }
 
     return IVector.fromPtr(value,
@@ -315,7 +320,7 @@ class IVideoProperties extends IInspectable
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
-  IVector<String> get producers {
+  IVector<String>? get producers {
     final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -333,6 +338,11 @@ class IVideoProperties extends IInspectable
     if (FAILED(hr)) {
       free(value);
       throwWindowsException(hr);
+    }
+
+    if (value.isNull) {
+      free(value);
+      return null;
     }
 
     return IVector.fromPtr(value,
@@ -384,7 +394,7 @@ class IVideoProperties extends IInspectable
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
-  IVector<String> get writers {
+  IVector<String>? get writers {
     final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -402,6 +412,11 @@ class IVideoProperties extends IInspectable
     if (FAILED(hr)) {
       free(value);
       throwWindowsException(hr);
+    }
+
+    if (value.isNull) {
+      free(value);
+      return null;
     }
 
     return IVector.fromPtr(value,
@@ -472,7 +487,7 @@ class IVideoProperties extends IInspectable
     }
   }
 
-  IVector<String> get directors {
+  IVector<String>? get directors {
     final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -490,6 +505,11 @@ class IVideoProperties extends IInspectable
     if (FAILED(hr)) {
       free(value);
       throwWindowsException(hr);
+    }
+
+    if (value.isNull) {
+      free(value);
+      return null;
     }
 
     return IVector.fromPtr(value,

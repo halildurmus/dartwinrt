@@ -21,7 +21,7 @@ void main() {
   group('IVector<int>', () {
     IVector<int> getVector() {
       final material = Printing3DMultiplePropertyMaterial();
-      return material.materialIndices;
+      return material.materialIndices!;
     }
 
     test('getAt fails if the vector is empty', () {

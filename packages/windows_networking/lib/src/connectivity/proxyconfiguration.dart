@@ -24,7 +24,7 @@ class ProxyConfiguration extends IInspectable implements IProxyConfiguration {
   late final _iProxyConfiguration = IProxyConfiguration.from(this);
 
   @override
-  List<Uri?> get proxyUris => _iProxyConfiguration.proxyUris;
+  List<Uri?>? get proxyUris => _iProxyConfiguration.proxyUris;
 
   @override
   bool get canConnectDirectly => _iProxyConfiguration.canConnectDirectly;

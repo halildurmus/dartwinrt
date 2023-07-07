@@ -39,7 +39,8 @@ class DevicePicker extends IInspectable implements IDevicePicker {
   DevicePickerAppearance? get appearance => _iDevicePicker.appearance;
 
   @override
-  IVector<String> get requestedProperties => _iDevicePicker.requestedProperties;
+  IVector<String>? get requestedProperties =>
+      _iDevicePicker.requestedProperties;
 
   @override
   int add_DeviceSelected(Pointer<COMObject> handler) =>

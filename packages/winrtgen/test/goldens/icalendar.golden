@@ -76,7 +76,7 @@ class ICalendar extends IInspectable {
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
-  List<String> get languages {
+  List<String>? get languages {
     final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -94,6 +94,11 @@ class ICalendar extends IInspectable {
     if (FAILED(hr)) {
       free(value);
       throwWindowsException(hr);
+    }
+
+    if (value.isNull) {
+      free(value);
+      return null;
     }
 
     return IVectorView<String>.fromPtr(value,

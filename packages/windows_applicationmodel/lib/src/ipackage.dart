@@ -109,7 +109,7 @@ class IPackage extends IInspectable {
     }
   }
 
-  List<Package?> get dependencies {
+  List<Package?>? get dependencies {
     final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -127,6 +127,11 @@ class IPackage extends IInspectable {
     if (FAILED(hr)) {
       free(value);
       throwWindowsException(hr);
+    }
+
+    if (value.isNull) {
+      free(value);
+      return null;
     }
 
     return IVectorView<Package?>.fromPtr(value,

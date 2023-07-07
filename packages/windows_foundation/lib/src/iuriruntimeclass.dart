@@ -254,7 +254,7 @@ class IUriRuntimeClass extends IInspectable {
     }
   }
 
-  WwwFormUrlDecoder get queryParsed {
+  WwwFormUrlDecoder? get queryParsed {
     final ppWwwFormUrlDecoder = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -273,6 +273,11 @@ class IUriRuntimeClass extends IInspectable {
     if (FAILED(hr)) {
       free(ppWwwFormUrlDecoder);
       throwWindowsException(hr);
+    }
+
+    if (ppWwwFormUrlDecoder.isNull) {
+      free(ppWwwFormUrlDecoder);
+      return null;
     }
 
     return WwwFormUrlDecoder.fromPtr(ppWwwFormUrlDecoder);

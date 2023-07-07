@@ -27,7 +27,7 @@ class IFolderLauncherOptions extends IInspectable {
       IFolderLauncherOptions.fromPtr(
           interface.toInterface(IID_IFolderLauncherOptions));
 
-  IVector<IStorageItem?> get itemsToSelect {
+  IVector<IStorageItem?>? get itemsToSelect {
     final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -45,6 +45,11 @@ class IFolderLauncherOptions extends IInspectable {
     if (FAILED(hr)) {
       free(value);
       throwWindowsException(hr);
+    }
+
+    if (value.isNull) {
+      free(value);
+      return null;
     }
 
     return IVector.fromPtr(value,

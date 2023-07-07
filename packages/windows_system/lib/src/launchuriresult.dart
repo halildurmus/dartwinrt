@@ -28,5 +28,5 @@ class LaunchUriResult extends IInspectable implements ILaunchUriResult {
   LaunchUriStatus get status => _iLaunchUriResult.status;
 
   @override
-  ValueSet get result => _iLaunchUriResult.result;
+  ValueSet? get result => _iLaunchUriResult.result;
 }

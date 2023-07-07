@@ -21,7 +21,7 @@ void main() {
   group('IVector<String>', () {
     IVector<String> getVector() {
       final picker = FileOpenPicker();
-      return picker.fileTypeFilter;
+      return picker.fileTypeFilter!;
     }
 
     test('getAt fails if the vector is empty', () {

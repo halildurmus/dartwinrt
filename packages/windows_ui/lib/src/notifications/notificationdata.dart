@@ -42,7 +42,7 @@ class NotificationData extends IInspectable implements INotificationData {
   late final _iNotificationData = INotificationData.from(this);
 
   @override
-  IMap<String, String> get values => _iNotificationData.values;
+  IMap<String, String>? get values => _iNotificationData.values;
 
   @override
   int get sequenceNumber => _iNotificationData.sequenceNumber;

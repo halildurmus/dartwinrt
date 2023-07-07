@@ -58,5 +58,5 @@ class GeographicRegion extends IInspectable implements IGeographicRegion {
   String get nativeName => _iGeographicRegion.nativeName;
 
   @override
-  List<String> get currenciesInUse => _iGeographicRegion.currenciesInUse;
+  List<String>? get currenciesInUse => _iGeographicRegion.currenciesInUse;
 }

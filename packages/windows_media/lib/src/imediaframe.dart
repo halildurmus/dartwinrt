@@ -250,7 +250,7 @@ class IMediaFrame extends IInspectable implements IClosable {
     }
   }
 
-  IPropertySet get extendedProperties {
+  IPropertySet? get extendedProperties {
     final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -268,6 +268,11 @@ class IMediaFrame extends IInspectable implements IClosable {
     if (FAILED(hr)) {
       free(value);
       throwWindowsException(hr);
+    }
+
+    if (value.isNull) {
+      free(value);
+      return null;
     }
 
     return IPropertySet.fromPtr(value);

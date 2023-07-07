@@ -58,7 +58,7 @@ class Gamepad extends IInspectable
           IGamepadStatics.fromPtr, _className, IID_IGamepadStatics)
       .remove_GamepadRemoved(token);
 
-  static List<Gamepad?> get gamepads => createActivationFactory(
+  static List<Gamepad?>? get gamepads => createActivationFactory(
           IGamepadStatics.fromPtr, _className, IID_IGamepadStatics)
       .gamepads;
 

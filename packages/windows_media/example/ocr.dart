@@ -9,7 +9,7 @@ import 'package:windows_storage/windows_storage.dart';
 
 Future<StorageFile> pickFile() async {
   final picker = FileOpenPicker()
-    ..fileTypeFilter.replaceAll(['.bmp', '.jpg', '.jpeg', '.png'])
+    ..fileTypeFilter?.replaceAll(['.bmp', '.jpg', '.jpeg', '.png'])
     ..suggestedStartLocation = PickerLocationId.desktop;
 
   InitializeWithWindow.initialize(picker);

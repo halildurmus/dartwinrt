@@ -2,7 +2,6 @@
 // All rights reserved. Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import '../../utilities/utilities.dart';
 import '../parameter.dart';
 import 'default.dart';
 
@@ -11,8 +10,7 @@ final class StructParameterProjection extends ParameterProjection {
   StructParameterProjection(super.parameter);
 
   @override
-  String get type =>
-      typeProjection.isGuid ? 'Guid' : typeProjection.typeIdentifier.shortName;
+  String get type => shortTypeName;
 
   @override
   String get creator =>

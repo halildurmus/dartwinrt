@@ -79,5 +79,5 @@ class IGamepadStatics2 extends IInspectable implements IGamepadStatics {
       _iGamepadStatics.remove_GamepadRemoved(token);
 
   @override
-  List<Gamepad?> get gamepads => _iGamepadStatics.gamepads;
+  List<Gamepad?>? get gamepads => _iGamepadStatics.gamepads;
 }

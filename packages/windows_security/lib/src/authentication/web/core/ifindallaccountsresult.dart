@@ -30,7 +30,7 @@ class IFindAllAccountsResult extends IInspectable {
       IFindAllAccountsResult.fromPtr(
           interface.toInterface(IID_IFindAllAccountsResult));
 
-  List<WebAccount?> get accounts {
+  List<WebAccount?>? get accounts {
     final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -48,6 +48,11 @@ class IFindAllAccountsResult extends IInspectable {
     if (FAILED(hr)) {
       free(value);
       throwWindowsException(hr);
+    }
+
+    if (value.isNull) {
+      free(value);
+      return null;
     }
 
     return IVectorView<WebAccount?>.fromPtr(value,
