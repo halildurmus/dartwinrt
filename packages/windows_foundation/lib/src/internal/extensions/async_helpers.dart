@@ -52,8 +52,9 @@ Future<void> _completeAsyncDelegate<T extends IAsyncInfo, C>(T asyncDelegate,
     if (status == AsyncStatus.completed) {
       onCompleted();
     } else if (status == AsyncStatus.error) {
-      completer.completeError(WindowsException(asyncDelegate.errorCode,
-          message: getRestrictedErrorDescription()));
+      final errorCode = asyncDelegate.errorCode;
+      completer.completeError(WindowsException(errorCode,
+          message: getRestrictedErrorDescription(errorCode)));
     } else if (status == AsyncStatus.canceled) {
       completer.completeError('The async operation canceled!');
     }
