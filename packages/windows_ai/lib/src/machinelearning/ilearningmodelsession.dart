@@ -111,7 +111,7 @@ class ILearningModelSession extends IInspectable {
   }
 
   Future<LearningModelEvaluationResult?> evaluateAsync(
-      LearningModelBinding bindings, String correlationId) {
+      LearningModelBinding? bindings, String correlationId) {
     final operation = calloc<COMObject>();
     final correlationIdHString = correlationId.toHString();
 
@@ -130,7 +130,7 @@ class ILearningModelSession extends IInspectable {
                 int Function(VTablePointer lpVtbl, VTablePointer bindings,
                     int correlationId, Pointer<COMObject> operation)>()(
         ptr.ref.lpVtbl,
-        bindings.ptr.ref.lpVtbl,
+        bindings == null ? nullptr : bindings.ptr.ref.lpVtbl,
         correlationIdHString,
         operation);
 
@@ -148,7 +148,7 @@ class ILearningModelSession extends IInspectable {
   }
 
   Future<LearningModelEvaluationResult?> evaluateFeaturesAsync(
-      IMap<String, Object?> features, String correlationId) {
+      IMap<String, Object?>? features, String correlationId) {
     final operation = calloc<COMObject>();
     final correlationIdHString = correlationId.toHString();
 
@@ -167,7 +167,7 @@ class ILearningModelSession extends IInspectable {
                 int Function(VTablePointer lpVtbl, VTablePointer features,
                     int correlationId, Pointer<COMObject> operation)>()(
         ptr.ref.lpVtbl,
-        features.ptr.ref.lpVtbl,
+        features?.ptr.ref.lpVtbl ?? nullptr,
         correlationIdHString,
         operation);
 
@@ -185,7 +185,7 @@ class ILearningModelSession extends IInspectable {
   }
 
   LearningModelEvaluationResult? evaluate(
-      LearningModelBinding bindings, String correlationId) {
+      LearningModelBinding? bindings, String correlationId) {
     final result = calloc<COMObject>();
     final correlationIdHString = correlationId.toHString();
 
@@ -203,7 +203,10 @@ class ILearningModelSession extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer bindings,
                     int correlationId, Pointer<COMObject> result)>()(
-        ptr.ref.lpVtbl, bindings.ptr.ref.lpVtbl, correlationIdHString, result);
+        ptr.ref.lpVtbl,
+        bindings == null ? nullptr : bindings.ptr.ref.lpVtbl,
+        correlationIdHString,
+        result);
 
     WindowsDeleteString(correlationIdHString);
 
@@ -221,7 +224,7 @@ class ILearningModelSession extends IInspectable {
   }
 
   LearningModelEvaluationResult? evaluateFeatures(
-      IMap<String, Object?> features, String correlationId) {
+      IMap<String, Object?>? features, String correlationId) {
     final result = calloc<COMObject>();
     final correlationIdHString = correlationId.toHString();
 
@@ -239,7 +242,10 @@ class ILearningModelSession extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer features,
                     int correlationId, Pointer<COMObject> result)>()(
-        ptr.ref.lpVtbl, features.ptr.ref.lpVtbl, correlationIdHString, result);
+        ptr.ref.lpVtbl,
+        features?.ptr.ref.lpVtbl ?? nullptr,
+        correlationIdHString,
+        result);
 
     WindowsDeleteString(correlationIdHString);
 

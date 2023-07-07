@@ -28,7 +28,7 @@ class NumeralSystemTranslator extends IInspectable
   static const _className =
       'Windows.Globalization.NumberFormatting.NumeralSystemTranslator';
 
-  factory NumeralSystemTranslator.create(IIterable<String> languages) =>
+  factory NumeralSystemTranslator.create(IIterable<String>? languages) =>
       createActivationFactory(INumeralSystemTranslatorFactory.fromPtr,
               _className, IID_INumeralSystemTranslatorFactory)
           .create(languages);

@@ -27,7 +27,7 @@ class ICalendarFactory extends IInspectable {
   factory ICalendarFactory.from(IInspectable interface) =>
       ICalendarFactory.fromPtr(interface.toInterface(IID_ICalendarFactory));
 
-  Calendar createCalendarDefaultCalendarAndClock(IIterable<String> languages) {
+  Calendar createCalendarDefaultCalendarAndClock(IIterable<String>? languages) {
     final result = calloc<COMObject>();
 
     final hr =
@@ -43,14 +43,20 @@ class ICalendarFactory extends IInspectable {
                                 Pointer<COMObject> result)>>>()
                 .value
                 .asFunction<
-                    int Function(VTablePointer lpVtbl, VTablePointer languages,
-                        Pointer<COMObject> result)>()(
+                    int Function(
+                        VTablePointer lpVtbl,
+                        VTablePointer languages,
+                        Pointer<COMObject>
+                            result)>()(
             ptr.ref.lpVtbl,
-            IInspectable(languages
-                    .toInterface('{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'))
-                .ptr
-                .ref
-                .lpVtbl,
+            languages ==
+                    null
+                ? nullptr
+                : IInspectable(languages
+                        .toInterface('{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'))
+                    .ptr
+                    .ref
+                    .lpVtbl,
             result);
 
     if (FAILED(hr)) {
@@ -62,7 +68,7 @@ class ICalendarFactory extends IInspectable {
   }
 
   Calendar createCalendar(
-      IIterable<String> languages, String calendar, String clock) {
+      IIterable<String>? languages, String calendar, String clock) {
     final result = calloc<COMObject>();
     final calendarHString = calendar.toHString();
     final clockHString = clock.toHString();
@@ -83,11 +89,13 @@ class ICalendarFactory extends IInspectable {
                 int Function(VTablePointer lpVtbl, VTablePointer languages,
                     int calendar, int clock, Pointer<COMObject> result)>()(
         ptr.ref.lpVtbl,
-        IInspectable(
-                languages.toInterface('{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'))
-            .ptr
-            .ref
-            .lpVtbl,
+        languages == null
+            ? nullptr
+            : IInspectable(languages
+                    .toInterface('{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'))
+                .ptr
+                .ref
+                .lpVtbl,
         calendarHString,
         clockHString,
         result);

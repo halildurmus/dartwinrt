@@ -30,7 +30,7 @@ class LearningModelBinding extends IInspectable
   static const _className = 'Windows.AI.MachineLearning.LearningModelBinding';
 
   factory LearningModelBinding.createFromSession(
-          LearningModelSession session) =>
+          LearningModelSession? session) =>
       createActivationFactory(ILearningModelBindingFactory.fromPtr, _className,
               IID_ILearningModelBindingFactory)
           .createFromSession(session);
@@ -42,7 +42,7 @@ class LearningModelBinding extends IInspectable
       _iLearningModelBinding.bind(name, value);
 
   @override
-  void bindWithProperties(String name, Object? value, IPropertySet props) =>
+  void bindWithProperties(String name, Object? value, IPropertySet? props) =>
       _iLearningModelBinding.bindWithProperties(name, value, props);
 
   @override

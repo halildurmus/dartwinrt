@@ -64,13 +64,13 @@ class Launcher extends IInspectable {
           .launchUriForResultsAsync(uri, options);
 
   static Future<LaunchUriResult?> launchUriForResultsWithDataAsync(
-          Uri? uri, LauncherOptions? options, ValueSet inputData) =>
+          Uri? uri, LauncherOptions? options, ValueSet? inputData) =>
       createActivationFactory(
               ILauncherStatics2.fromPtr, _className, IID_ILauncherStatics2)
           .launchUriForResultsWithDataAsync(uri, options, inputData);
 
   static Future<bool> launchUriWithDataAsync(
-          Uri? uri, LauncherOptions? options, ValueSet inputData) =>
+          Uri? uri, LauncherOptions? options, ValueSet? inputData) =>
       createActivationFactory(
               ILauncherStatics2.fromPtr, _className, IID_ILauncherStatics2)
           .launchUriWithDataAsync(uri, options, inputData);
@@ -162,8 +162,8 @@ class Launcher extends IInspectable {
               ILauncherStatics4.fromPtr, _className, IID_ILauncherStatics4)
           .launchUriWithOptionsForUserAsync(user, uri, options);
 
-  static Future<LaunchUriStatus> launchUriWithDataForUserAsync(
-          User? user, Uri? uri, LauncherOptions? options, ValueSet inputData) =>
+  static Future<LaunchUriStatus> launchUriWithDataForUserAsync(User? user,
+          Uri? uri, LauncherOptions? options, ValueSet? inputData) =>
       createActivationFactory(
               ILauncherStatics4.fromPtr, _className, IID_ILauncherStatics4)
           .launchUriWithDataForUserAsync(user, uri, options, inputData);
@@ -175,7 +175,10 @@ class Launcher extends IInspectable {
           .launchUriForResultsForUserAsync(user, uri, options);
 
   static Future<LaunchUriResult?> launchUriForResultsWithDataForUserAsync(
-          User? user, Uri? uri, LauncherOptions? options, ValueSet inputData) =>
+          User? user,
+          Uri? uri,
+          LauncherOptions? options,
+          ValueSet? inputData) =>
       createActivationFactory(
               ILauncherStatics4.fromPtr, _className, IID_ILauncherStatics4)
           .launchUriForResultsWithDataForUserAsync(

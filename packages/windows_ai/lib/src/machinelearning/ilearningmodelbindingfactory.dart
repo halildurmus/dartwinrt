@@ -30,7 +30,7 @@ class ILearningModelBindingFactory extends IInspectable {
       ILearningModelBindingFactory.fromPtr(
           interface.toInterface(IID_ILearningModelBindingFactory));
 
-  LearningModelBinding createFromSession(LearningModelSession session) {
+  LearningModelBinding createFromSession(LearningModelSession? session) {
     final value = calloc<COMObject>();
 
     final hr =
@@ -46,8 +46,8 @@ class ILearningModelBindingFactory extends IInspectable {
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer session,
-                        Pointer<COMObject> value)>()(
-            ptr.ref.lpVtbl, session.ptr.ref.lpVtbl, value);
+                        Pointer<COMObject> value)>()(ptr.ref.lpVtbl,
+            session == null ? nullptr : session.ptr.ref.lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);

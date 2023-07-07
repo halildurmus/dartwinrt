@@ -40,7 +40,7 @@ class PercentFormatter extends IInspectable
       'Windows.Globalization.NumberFormatting.PercentFormatter';
 
   factory PercentFormatter.createPercentFormatter(
-          IIterable<String> languages, String geographicRegion) =>
+          IIterable<String>? languages, String geographicRegion) =>
       createActivationFactory(IPercentFormatterFactory.fromPtr, _className,
               IID_IPercentFormatterFactory)
           .createPercentFormatter(languages, geographicRegion);

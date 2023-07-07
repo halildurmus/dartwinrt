@@ -26,7 +26,7 @@ class NotificationData extends IInspectable implements INotificationData {
   static const _className = 'Windows.UI.Notifications.NotificationData';
 
   factory NotificationData.createNotificationDataWithValuesAndSequenceNumber(
-          IIterable<IKeyValuePair<String, String>> initialValues,
+          IIterable<IKeyValuePair<String, String>>? initialValues,
           int sequenceNumber) =>
       createActivationFactory(INotificationDataFactory.fromPtr, _className,
               IID_INotificationDataFactory)
@@ -34,7 +34,7 @@ class NotificationData extends IInspectable implements INotificationData {
               initialValues, sequenceNumber);
 
   factory NotificationData.createNotificationDataWithValues(
-          IIterable<IKeyValuePair<String, String>> initialValues) =>
+          IIterable<IKeyValuePair<String, String>>? initialValues) =>
       createActivationFactory(INotificationDataFactory.fromPtr, _className,
               IID_INotificationDataFactory)
           .createNotificationDataWithValues(initialValues);

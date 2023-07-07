@@ -58,7 +58,7 @@ class ICurrencyFormatterFactory extends IInspectable {
   }
 
   CurrencyFormatter createCurrencyFormatterCodeContext(String currencyCode,
-      IIterable<String> languages, String geographicRegion) {
+      IIterable<String>? languages, String geographicRegion) {
     final result = calloc<COMObject>();
     final currencyCodeHString = currencyCode.toHString();
     final geographicRegionHString = geographicRegion.toHString();
@@ -84,11 +84,13 @@ class ICurrencyFormatterFactory extends IInspectable {
                     Pointer<COMObject> result)>()(
         ptr.ref.lpVtbl,
         currencyCodeHString,
-        IInspectable(
-                languages.toInterface('{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'))
-            .ptr
-            .ref
-            .lpVtbl,
+        languages == null
+            ? nullptr
+            : IInspectable(languages
+                    .toInterface('{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'))
+                .ptr
+                .ref
+                .lpVtbl,
         geographicRegionHString,
         result);
 

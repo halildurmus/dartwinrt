@@ -29,7 +29,7 @@ class WebAccount extends IInspectable implements IWebAccount, IWebAccount2 {
 
   static const _className = 'Windows.Security.Credentials.WebAccount';
 
-  factory WebAccount.createWebAccount(WebAccountProvider webAccountProvider,
+  factory WebAccount.createWebAccount(WebAccountProvider? webAccountProvider,
           String userName, WebAccountState state) =>
       createActivationFactory(
               IWebAccountFactory.fromPtr, _className, IID_IWebAccountFactory)

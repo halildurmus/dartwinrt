@@ -28,8 +28,8 @@ class IToastCollectionFactory extends IInspectable {
       IToastCollectionFactory.fromPtr(
           interface.toInterface(IID_IToastCollectionFactory));
 
-  ToastCollection createInstance(
-      String collectionId, String displayName, String launchArgs, Uri iconUri) {
+  ToastCollection createInstance(String collectionId, String displayName,
+      String launchArgs, Uri? iconUri) {
     final value = calloc<COMObject>();
     final collectionIdHString = collectionId.toHString();
     final displayNameHString = displayName.toHString();
@@ -60,7 +60,7 @@ class IToastCollectionFactory extends IInspectable {
         collectionIdHString,
         displayNameHString,
         launchArgsHString,
-        iconUri.toWinRTUri().ptr.ref.lpVtbl,
+        iconUri?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr,
         value);
 
     WindowsDeleteString(collectionIdHString);

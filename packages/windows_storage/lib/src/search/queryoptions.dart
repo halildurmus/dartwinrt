@@ -38,7 +38,7 @@ class QueryOptions extends IInspectable
   static const _className = 'Windows.Storage.Search.QueryOptions';
 
   factory QueryOptions.createCommonFileQuery(
-          CommonFileQuery query, IIterable<String> fileTypeFilter) =>
+          CommonFileQuery query, IIterable<String>? fileTypeFilter) =>
       createActivationFactory(IQueryOptionsFactory.fromPtr, _className,
               IID_IQueryOptionsFactory)
           .createCommonFileQuery(query, fileTypeFilter);

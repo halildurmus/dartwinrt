@@ -31,7 +31,7 @@ class IWebTokenRequestFactory extends IInspectable {
           interface.toInterface(IID_IWebTokenRequestFactory));
 
   WebTokenRequest create(
-      WebAccountProvider provider, String scope, String clientId) {
+      WebAccountProvider? provider, String scope, String clientId) {
     final webTokenRequest = calloc<COMObject>();
     final scopeHString = scope.toHString();
     final clientIdHString = clientId.toHString();
@@ -56,7 +56,7 @@ class IWebTokenRequestFactory extends IInspectable {
                     int clientId,
                     Pointer<COMObject> webTokenRequest)>()(
         ptr.ref.lpVtbl,
-        provider.ptr.ref.lpVtbl,
+        provider == null ? nullptr : provider.ptr.ref.lpVtbl,
         scopeHString,
         clientIdHString,
         webTokenRequest);
@@ -72,7 +72,7 @@ class IWebTokenRequestFactory extends IInspectable {
     return WebTokenRequest.fromPtr(webTokenRequest);
   }
 
-  WebTokenRequest createWithPromptType(WebAccountProvider provider,
+  WebTokenRequest createWithPromptType(WebAccountProvider? provider,
       String scope, String clientId, WebTokenRequestPromptType promptType) {
     final webTokenRequest = calloc<COMObject>();
     final scopeHString = scope.toHString();
@@ -100,7 +100,7 @@ class IWebTokenRequestFactory extends IInspectable {
                     int promptType,
                     Pointer<COMObject> webTokenRequest)>()(
         ptr.ref.lpVtbl,
-        provider.ptr.ref.lpVtbl,
+        provider == null ? nullptr : provider.ptr.ref.lpVtbl,
         scopeHString,
         clientIdHString,
         promptType.value,
@@ -117,7 +117,7 @@ class IWebTokenRequestFactory extends IInspectable {
     return WebTokenRequest.fromPtr(webTokenRequest);
   }
 
-  WebTokenRequest createWithProvider(WebAccountProvider provider) {
+  WebTokenRequest createWithProvider(WebAccountProvider? provider) {
     final webTokenRequest = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -132,8 +132,8 @@ class IWebTokenRequestFactory extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer provider,
-                    Pointer<COMObject> webTokenRequest)>()(
-        ptr.ref.lpVtbl, provider.ptr.ref.lpVtbl, webTokenRequest);
+                    Pointer<COMObject> webTokenRequest)>()(ptr.ref.lpVtbl,
+        provider == null ? nullptr : provider.ptr.ref.lpVtbl, webTokenRequest);
 
     if (FAILED(hr)) {
       free(webTokenRequest);
@@ -143,7 +143,7 @@ class IWebTokenRequestFactory extends IInspectable {
     return WebTokenRequest.fromPtr(webTokenRequest);
   }
 
-  WebTokenRequest createWithScope(WebAccountProvider provider, String scope) {
+  WebTokenRequest createWithScope(WebAccountProvider? provider, String scope) {
     final webTokenRequest = calloc<COMObject>();
     final scopeHString = scope.toHString();
 
@@ -161,7 +161,10 @@ class IWebTokenRequestFactory extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer provider,
                     int scope, Pointer<COMObject> webTokenRequest)>()(
-        ptr.ref.lpVtbl, provider.ptr.ref.lpVtbl, scopeHString, webTokenRequest);
+        ptr.ref.lpVtbl,
+        provider == null ? nullptr : provider.ptr.ref.lpVtbl,
+        scopeHString,
+        webTokenRequest);
 
     WindowsDeleteString(scopeHString);
 

@@ -27,9 +27,9 @@ class EndpointPair extends IInspectable implements IEndpointPair {
   static const _className = 'Windows.Networking.EndpointPair';
 
   factory EndpointPair.createEndpointPair(
-          HostName localHostName,
+          HostName? localHostName,
           String localServiceName,
-          HostName remoteHostName,
+          HostName? remoteHostName,
           String remoteServiceName) =>
       createActivationFactory(IEndpointPairFactory.fromPtr, _className,
               IID_IEndpointPairFactory)

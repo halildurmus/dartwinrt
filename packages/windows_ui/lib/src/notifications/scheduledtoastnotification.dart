@@ -37,13 +37,13 @@ class ScheduledToastNotification extends IInspectable
       'Windows.UI.Notifications.ScheduledToastNotification';
 
   factory ScheduledToastNotification.createScheduledToastNotification(
-          XmlDocument content, DateTime deliveryTime) =>
+          XmlDocument? content, DateTime deliveryTime) =>
       createActivationFactory(IScheduledToastNotificationFactory.fromPtr,
               _className, IID_IScheduledToastNotificationFactory)
           .createScheduledToastNotification(content, deliveryTime);
 
   factory ScheduledToastNotification.createScheduledToastNotificationRecurring(
-          XmlDocument content,
+          XmlDocument? content,
           DateTime deliveryTime,
           Duration snoozeInterval,
           int maximumSnoozeCount) =>

@@ -41,14 +41,14 @@ class DateTimeFormatter extends IInspectable
           .createDateTimeFormatter(formatTemplate);
 
   factory DateTimeFormatter.createDateTimeFormatterLanguages(
-          String formatTemplate, IIterable<String> languages) =>
+          String formatTemplate, IIterable<String>? languages) =>
       createActivationFactory(IDateTimeFormatterFactory.fromPtr, _className,
               IID_IDateTimeFormatterFactory)
           .createDateTimeFormatterLanguages(formatTemplate, languages);
 
   factory DateTimeFormatter.createDateTimeFormatterContext(
           String formatTemplate,
-          IIterable<String> languages,
+          IIterable<String>? languages,
           String geographicRegion,
           String calendar,
           String clock) =>
@@ -81,7 +81,7 @@ class DateTimeFormatter extends IInspectable
           HourFormat hourFormat,
           MinuteFormat minuteFormat,
           SecondFormat secondFormat,
-          IIterable<String> languages) =>
+          IIterable<String>? languages) =>
       createActivationFactory(IDateTimeFormatterFactory.fromPtr, _className,
               IID_IDateTimeFormatterFactory)
           .createDateTimeFormatterDateTimeLanguages(
@@ -102,7 +102,7 @@ class DateTimeFormatter extends IInspectable
           HourFormat hourFormat,
           MinuteFormat minuteFormat,
           SecondFormat secondFormat,
-          IIterable<String> languages,
+          IIterable<String>? languages,
           String geographicRegion,
           String calendar,
           String clock) =>

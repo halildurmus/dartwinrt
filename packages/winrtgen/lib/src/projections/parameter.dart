@@ -93,6 +93,8 @@ abstract class ParameterProjection {
 
   bool get isOutParam => parameter.isOutParam;
 
+  bool get isReturnParam => !isInParam && !isOutParam;
+
   String get ffiProjection => '${typeProjection.nativeType} $identifier';
 
   String get dartProjection => '${typeProjection.dartType} $identifier';

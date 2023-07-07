@@ -2,7 +2,7 @@
 // All rights reserved. Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import '../../utilities/utilities.dart';
+import '../../utilities/extensions/extensions.dart';
 import '../parameter.dart';
 
 /// Parameter projection for `Uri` parameters.
@@ -10,7 +10,12 @@ final class UriParameterProjection extends ParameterProjection {
   UriParameterProjection(super.parameter);
 
   @override
-  bool get isNullable => !method.parent.isFactoryInterface;
+  bool get isNullable {
+    // Constructors cannot return null.
+    if (isReturnParam && method.parent.isFactoryInterface) return false;
+    // Treat everything else as nullable.
+    return true;
+  }
 
   @override
   String get type => isNullable ? 'Uri?' : 'Uri';
@@ -25,11 +30,8 @@ final class UriParameterProjection extends ParameterProjection {
     final buffer = StringBuffer()..write(identifier);
     if (isNullable) buffer.write('?');
     if (needsConversionToWinRTUri) buffer.write('.toWinRTUri()');
-    buffer.write('.ptr');
-    if (!typeProjection.isReferenceType) {
-      buffer.write('.ref.lpVtbl');
-      if (isNullable) buffer.write(' ?? nullptr');
-    }
+    buffer.write('.ptr.ref.lpVtbl');
+    if (isNullable) buffer.write(' ?? nullptr');
     return buffer.toString();
   }
 

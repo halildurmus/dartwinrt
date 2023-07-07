@@ -29,7 +29,7 @@ class IWebAccountProviderFactory extends IInspectable {
           interface.toInterface(IID_IWebAccountProviderFactory));
 
   WebAccountProvider createWebAccountProvider(
-      String id, String displayName, Uri iconUri) {
+      String id, String displayName, Uri? iconUri) {
     final instance = calloc<COMObject>();
     final idHString = id.toHString();
     final displayNameHString = displayName.toHString();
@@ -52,7 +52,7 @@ class IWebAccountProviderFactory extends IInspectable {
         ptr.ref.lpVtbl,
         idHString,
         displayNameHString,
-        iconUri.toWinRTUri().ptr.ref.lpVtbl,
+        iconUri?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr,
         instance);
 
     WindowsDeleteString(idHString);

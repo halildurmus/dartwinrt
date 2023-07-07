@@ -407,8 +407,8 @@ void main() {
       expect(projection, isA<MapParameterProjection>());
       expect(projection.isInParam, isTrue);
       expect(projection.isOutParam, isFalse);
-      expect(projection.isNullable, isFalse);
-      expect(projection.type, equals('IMap<String, Object?>'));
+      expect(projection.isNullable, isTrue);
+      expect(projection.type, equals('IMap<String, Object?>?'));
       expect(projection.needsAllocation, isFalse);
       expect(projection.needsDeallocation, isFalse);
       expect(projection.creatorPreamble, isEmpty);
@@ -416,7 +416,7 @@ void main() {
           projection.creator,
           equals(
               "IMap.fromPtr(features, iterableIid: '{fe2f3d47-5d47-5499-8374-430c7cda0204}')"));
-      expect(projection.into, equals('features.ptr.ref.lpVtbl'));
+      expect(projection.into, equals('features?.ptr.ref.lpVtbl ?? nullptr'));
       expect(projection.toListArg, isEmpty);
       expect(projection.toListCreator, isEmpty);
       expect(projection.toListInto, isEmpty);
@@ -425,7 +425,8 @@ void main() {
       expect(projection.postambles, isEmpty);
       expect(projection.nullCheck, isEmpty);
       expect(projection.identifier, equals('features'));
-      expect(projection.localIdentifier, equals('features.ptr.ref.lpVtbl'));
+      expect(projection.localIdentifier,
+          equals('features?.ptr.ref.lpVtbl ?? nullptr'));
     });
 
     test('projects IMapView<String, Object?>', () {
@@ -445,7 +446,7 @@ void main() {
         IMapView<String, Object?>.fromPtr(first,
             iterableIid: '{fe2f3d47-5d47-5499-8374-430c7cda0204}').toMap()
 '''));
-      expect(projection.into, equals('first.ptr'));
+      expect(projection.into, equals('first?.ptr.ref.lpVtbl ?? nullptr'));
       expect(projection.toListArg, isEmpty);
       expect(projection.toListCreator, isEmpty);
       expect(projection.toListInto, isEmpty);
@@ -532,8 +533,8 @@ void main() {
       expect(projection, isA<VectorParameterProjection>());
       expect(projection.isInParam, isTrue);
       expect(projection.isOutParam, isFalse);
-      expect(projection.isNullable, isFalse);
-      expect(projection.type, equals('IVector<HostName?>'));
+      expect(projection.isNullable, isTrue);
+      expect(projection.type, equals('IVector<HostName?>?'));
       expect(projection.needsAllocation, isFalse);
       expect(projection.needsDeallocation, isFalse);
       expect(projection.creatorPreamble, isEmpty);
@@ -542,7 +543,8 @@ void main() {
           iterableIid: '{9e5f3ed0-cf1c-5d38-832c-acea6164bf5c}',
           creator: HostName.fromPtr)
 '''));
-      expect(projection.into, equals('dnsServerList.ptr.ref.lpVtbl'));
+      expect(
+          projection.into, equals('dnsServerList?.ptr.ref.lpVtbl ?? nullptr'));
       expect(projection.toListArg, isEmpty);
       expect(projection.toListCreator, isEmpty);
       expect(projection.toListInto, isEmpty);
@@ -551,8 +553,8 @@ void main() {
       expect(projection.postambles, isEmpty);
       expect(projection.nullCheck, isEmpty);
       expect(projection.identifier, equals('dnsServerList'));
-      expect(
-          projection.localIdentifier, equals('dnsServerList.ptr.ref.lpVtbl'));
+      expect(projection.localIdentifier,
+          equals('dnsServerList?.ptr.ref.lpVtbl ?? nullptr'));
     });
 
     test('projects IVectorView<String>', () {
@@ -562,16 +564,16 @@ void main() {
       expect(projection, isA<VectorViewParameterProjection>());
       expect(projection.isInParam, isTrue);
       expect(projection.isOutParam, isFalse);
-      expect(projection.isNullable, isFalse);
-      expect(projection.type, equals('IVectorView<String>'));
+      expect(projection.isNullable, isTrue);
+      expect(projection.type, equals('IVectorView<String>?'));
       expect(projection.needsAllocation, isFalse);
       expect(projection.needsDeallocation, isFalse);
       expect(projection.creatorPreamble, isEmpty);
       expect(projection.creator, equalsIgnoringWhitespace('''
-        IVectorView<String>.fromPtr(values.ptr.ref.lpVtbl,
+        IVectorView<String>.fromPtr(values,
             iterableIid: '{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}').toList()
 '''));
-      expect(projection.into, equals('values.ptr.ref.lpVtbl'));
+      expect(projection.into, equals('values?.ptr.ref.lpVtbl ?? nullptr'));
       expect(projection.toListArg, isEmpty);
       expect(projection.toListCreator, isEmpty);
       expect(projection.toListInto, isEmpty);
@@ -580,7 +582,8 @@ void main() {
       expect(projection.postambles, isEmpty);
       expect(projection.nullCheck, isEmpty);
       expect(projection.identifier, equals('values'));
-      expect(projection.localIdentifier, equals('values.ptr.ref.lpVtbl'));
+      expect(projection.localIdentifier,
+          equals('values?.ptr.ref.lpVtbl ?? nullptr'));
     });
 
     test('projects List<Point> (FillArray)', () {
@@ -918,24 +921,25 @@ void main() {
       expect(projection, isA<UriParameterProjection>());
       expect(projection.isInParam, isTrue);
       expect(projection.isOutParam, isFalse);
-      expect(projection.isNullable, isFalse);
-      expect(projection.type, equals('Uri'));
+      expect(projection.isNullable, isTrue);
+      expect(projection.type, equals('Uri?'));
       expect(projection.needsAllocation, isFalse);
       expect(projection.needsDeallocation, isFalse);
       expect(projection.creatorPreamble, isEmpty);
       expect(projection.creator, equals('iconUri.toWinRTUri().toDartUri()'));
-      expect(projection.into, equals('iconUri.toWinRTUri().ptr.ref.lpVtbl'));
+      expect(projection.into,
+          equals('iconUri?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr'));
       expect(projection.toListArg, isEmpty);
       expect(projection.toListCreator, isEmpty);
       expect(projection.toListInto,
           equals('iconUri[i]?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr'));
       expect(projection.toListIdentifier, equals('toDartUriList'));
       expect(projection.preambles, isEmpty);
-      expect(projection.nullCheck, isEmpty);
+      expect(projection.nullCheck, equals(nullCheck('iconUri')));
       expect(projection.postambles, isEmpty);
       expect(projection.identifier, equals('iconUri'));
       expect(projection.localIdentifier,
-          equals('iconUri.toWinRTUri().ptr.ref.lpVtbl'));
+          equals('iconUri?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr'));
     });
 
     test('projects Uri?', () {

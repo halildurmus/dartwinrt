@@ -53,6 +53,8 @@ extension TypeIdentifierHelpers on TypeIdentifier {
   bool get isClassVariableType =>
       baseType == BaseType.classVariableTypeModifier;
 
+  bool get isCollectionObject => type?.isCollectionObject ?? false;
+
   bool get isGenericType => baseType == BaseType.genericTypeModifier;
 
   bool get isObjectType => baseType == BaseType.objectType;
@@ -243,7 +245,7 @@ String _parseTypeArgName(TypeIdentifier typeIdentifier) {
   // Value types (enums and structs) cannot be null.
   if (TypeProjection(typeIdentifier).isValueType) return typeArg;
   // Collection interfaces cannot be null.
-  if (typeIdentifier.type?.isCollectionObject ?? false) return typeArg;
+  if (typeIdentifier.isCollectionObject) return typeArg;
   // Primitive types cannot be null.
   if (typeArg case 'bool' || 'double' || 'int' || 'String') return typeArg;
   // Otherwise, mark typeArg as nullable.

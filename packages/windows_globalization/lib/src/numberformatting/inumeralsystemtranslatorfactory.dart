@@ -29,7 +29,7 @@ class INumeralSystemTranslatorFactory extends IInspectable {
       INumeralSystemTranslatorFactory.fromPtr(
           interface.toInterface(IID_INumeralSystemTranslatorFactory));
 
-  NumeralSystemTranslator create(IIterable<String> languages) {
+  NumeralSystemTranslator create(IIterable<String>? languages) {
     final result = calloc<COMObject>();
 
     final hr =
@@ -45,14 +45,20 @@ class INumeralSystemTranslatorFactory extends IInspectable {
                                 Pointer<COMObject> result)>>>()
                 .value
                 .asFunction<
-                    int Function(VTablePointer lpVtbl, VTablePointer languages,
-                        Pointer<COMObject> result)>()(
+                    int Function(
+                        VTablePointer lpVtbl,
+                        VTablePointer languages,
+                        Pointer<COMObject>
+                            result)>()(
             ptr.ref.lpVtbl,
-            IInspectable(languages
-                    .toInterface('{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'))
-                .ptr
-                .ref
-                .lpVtbl,
+            languages ==
+                    null
+                ? nullptr
+                : IInspectable(languages
+                        .toInterface('{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'))
+                    .ptr
+                    .ref
+                    .lpVtbl,
             result);
 
     if (FAILED(hr)) {

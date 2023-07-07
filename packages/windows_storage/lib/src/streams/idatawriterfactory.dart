@@ -28,7 +28,7 @@ class IDataWriterFactory extends IInspectable {
   factory IDataWriterFactory.from(IInspectable interface) =>
       IDataWriterFactory.fromPtr(interface.toInterface(IID_IDataWriterFactory));
 
-  DataWriter createDataWriter(IOutputStream outputStream) {
+  DataWriter createDataWriter(IOutputStream? outputStream) {
     final dataWriter = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -44,7 +44,9 @@ class IDataWriterFactory extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer outputStream,
                     Pointer<COMObject> dataWriter)>()(
-        ptr.ref.lpVtbl, outputStream.ptr.ref.lpVtbl, dataWriter);
+        ptr.ref.lpVtbl,
+        outputStream == null ? nullptr : outputStream.ptr.ref.lpVtbl,
+        dataWriter);
 
     if (FAILED(hr)) {
       free(dataWriter);

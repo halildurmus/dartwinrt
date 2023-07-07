@@ -63,15 +63,22 @@ final class VectorParameterProjection extends ParameterProjection {
   }
 
   @override
-  String get type => 'IVector<$vectorTypeArg>';
+  bool get isNullable {
+    if (isReturnParam) return false;
+    // TODO(halildurmus): Remove this
+    if (isOutParam) return false;
+    return true;
+  }
+
+  @override
+  String get type =>
+      isNullable ? 'IVector<$vectorTypeArg>?' : 'IVector<$vectorTypeArg>';
 
   @override
   String get creator => 'IVector.fromPtr($identifier$vectorConstructorArgs)';
 
   @override
-  String get into => typeProjection.isReferenceType
-      ? '$identifier.ptr'
-      : '$identifier.ptr.ref.lpVtbl';
+  String get into => '$identifier?.ptr.ref.lpVtbl ?? nullptr';
 
   // No deallocation is needed as Finalizer will handle it.
   @override
@@ -82,11 +89,13 @@ final class VectorViewParameterProjection extends VectorParameterProjection {
   VectorViewParameterProjection(super.parameter);
 
   @override
-  String get type => isInParam || isOutParam
-      ? typeProjection.typeIdentifier.shortName
-      : 'List<$vectorTypeArg>';
+  String get type {
+    if (isInParam) return 'IVectorView<$vectorTypeArg>?';
+    if (isOutParam) return 'IVectorView<$vectorTypeArg>';
+    return isNullable ? 'List<$vectorTypeArg>?' : 'List<$vectorTypeArg>';
+  }
 
   @override
   String get creator =>
-      'IVectorView<$vectorTypeArg>.fromPtr($localIdentifier$vectorConstructorArgs).toList()';
+      'IVectorView<$vectorTypeArg>.fromPtr($identifier$vectorConstructorArgs).toList()';
 }
