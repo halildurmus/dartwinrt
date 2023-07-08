@@ -64,14 +64,9 @@ final class MapParameterProjection extends ParameterProjection {
   }
 
   @override
-  bool get isNullable {
-    // Methods that return collection objects cannot return null.
-    if (isReturnParam && !method.isGetProperty) return false;
-    // TODO(halildurmus): Remove this
-    if (isOutParam) return false;
-    // Treat everything else as nullable.
-    return true;
-  }
+  bool get isNullable =>
+      // Methods that return collection interfaces cannot return null.
+      !(isReturnParam && !method.isGetProperty);
 
   @override
   String get type => isNullable ? nullable(shortTypeName) : shortTypeName;

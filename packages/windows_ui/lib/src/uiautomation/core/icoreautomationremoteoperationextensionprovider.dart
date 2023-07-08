@@ -40,11 +40,11 @@ class ICoreAutomationRemoteOperationExtensionProvider extends IInspectable {
     final extensionIdNativeStructPtr = extensionId.toNativeGUID();
     final nativeStructPtrs =
         <Pointer<NativeAutomationRemoteOperationOperandId>>[];
-    final pOperandIdsArray =
+    final operandIdsArray =
         calloc<NativeAutomationRemoteOperationOperandId>(operandIds.length);
     for (var i = 0; i < operandIds.length; i++) {
       final nativeStructPtr = operandIds[i].toNative();
-      pOperandIdsArray[i] = nativeStructPtr.ref;
+      operandIdsArray[i] = nativeStructPtr.ref;
       nativeStructPtrs.add(nativeStructPtr);
     }
 
@@ -73,11 +73,11 @@ class ICoreAutomationRemoteOperationExtensionProvider extends IInspectable {
         extensionIdNativeStructPtr.ref,
         context?.ptr.ref.lpVtbl ?? nullptr,
         operandIds.length,
-        pOperandIdsArray);
+        operandIdsArray);
 
     free(extensionIdNativeStructPtr);
     nativeStructPtrs.forEach(free);
-    free(pOperandIdsArray);
+    free(operandIdsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

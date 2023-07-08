@@ -498,7 +498,7 @@ class IDisplayMonitor extends IInspectable {
   }
 
   List<int> getDescriptor(DisplayMonitorDescriptorKind descriptorKind) {
-    final retValueSize = calloc<Uint32>();
+    final resultSize = calloc<Uint32>();
     final result = calloc<Pointer<Uint8>>();
 
     try {
@@ -510,22 +510,22 @@ class IDisplayMonitor extends IInspectable {
                           HRESULT Function(
                               VTablePointer lpVtbl,
                               Int32 descriptorKind,
-                              Pointer<Uint32> retValueSize,
+                              Pointer<Uint32> resultSize,
                               Pointer<Pointer<Uint8>> result)>>>()
               .value
               .asFunction<
                   int Function(
                       VTablePointer lpVtbl,
                       int descriptorKind,
-                      Pointer<Uint32> retValueSize,
+                      Pointer<Uint32> resultSize,
                       Pointer<Pointer<Uint8>> result)>()(
-          ptr.ref.lpVtbl, descriptorKind.value, retValueSize, result);
+          ptr.ref.lpVtbl, descriptorKind.value, resultSize, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return result.value.toList(length: retValueSize.value);
+      return result.value.toList(length: resultSize.value);
     } finally {
-      free(retValueSize);
+      free(resultSize);
       free(result);
     }
   }

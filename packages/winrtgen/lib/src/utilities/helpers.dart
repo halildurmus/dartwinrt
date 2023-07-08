@@ -17,14 +17,6 @@ import '../constants/constants.dart';
 import '../exception/exception.dart';
 import 'extensions/extensions.dart';
 
-/// Convert a [paramName] like `__valueSize` to a name like `value`.
-String arrayNameFromSizeParamName(String paramName) {
-  if (paramName.startsWith('__') && paramName.endsWith('Size')) {
-    return paramName.substring(2, paramName.length - 4);
-  }
-  return paramName;
-}
-
 /// Convert a *[typeIdentifier] into a typeIdentifier.
 ///
 /// Throws a [WinRTGenException] if [typeIdentifier] is cannot be de-referenced.

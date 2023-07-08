@@ -295,10 +295,9 @@ abstract interface class IMap<K, V> extends IInspectable
     if (size == 0) return Map.unmodifiable({});
 
     final iterator = first();
-    final keyValuePairs = <IKeyValuePair<K, V>>[];
-    iterator.getMany(size, keyValuePairs);
-    final map = Map.fromEntries(
-        keyValuePairs.map((kvp) => MapEntry(kvp.key, kvp.value)));
+    final (_, :items) = iterator.getMany(size);
+    final map =
+        Map.fromEntries(items.map((kvp) => MapEntry(kvp.key, kvp.value)));
     return Map.unmodifiable(map);
   }
 

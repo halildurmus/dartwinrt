@@ -38,10 +38,10 @@ class JsonArray extends IInspectable
           IJsonArrayStatics.fromPtr, _className, IID_IJsonArrayStatics)
       .parse(input);
 
-  static bool tryParse(String input, JsonArray result) =>
+  static (bool, {JsonArray? result}) tryParse(String input) =>
       createActivationFactory(
               IJsonArrayStatics.fromPtr, _className, IID_IJsonArrayStatics)
-          .tryParse(input, result);
+          .tryParse(input);
 
   late final _iJsonArray = IJsonArray.from(this);
 
@@ -98,8 +98,7 @@ class JsonArray extends IInspectable
   List<IJsonValue?> getView() => _iVector.getView();
 
   @override
-  bool indexOf(IJsonValue? value, Pointer<Uint32> index) =>
-      _iVector.indexOf(value, index);
+  (bool, {int index}) indexOf(IJsonValue? value) => _iVector.indexOf(value);
 
   @override
   void setAt(int index, IJsonValue? value) => _iVector.setAt(index, value);
@@ -121,8 +120,8 @@ class JsonArray extends IInspectable
   void clear() => _iVector.clear();
 
   @override
-  int getMany(int startIndex, int itemsSize, List<IJsonValue?> items) =>
-      _iVector.getMany(startIndex, itemsSize, items);
+  (int, {List<IJsonValue?> items}) getMany(int startIndex, int itemsSize) =>
+      _iVector.getMany(startIndex, itemsSize);
 
   @override
   void replaceAll(List<IJsonValue?> items) => _iVector.replaceAll(items);

@@ -95,9 +95,9 @@ class ITensorUInt16BitStatics extends IInspectable {
 
   TensorUInt16Bit? createFromArray(IIterable<int>? shape, List<int> data) {
     final result = calloc<COMObject>();
-    final pDataArray = calloc<Uint16>(data.length);
+    final dataArray = calloc<Uint16>(data.length);
     for (var i = 0; i < data.length; i++) {
-      pDataArray[i] = data[i];
+      dataArray[i] = data[i];
     }
 
     final hr = ptr.ref.vtable
@@ -128,10 +128,10 @@ class ITensorUInt16BitStatics extends IInspectable {
                 .ref
                 .lpVtbl,
         data.length,
-        pDataArray,
+        dataArray,
         result);
 
-    free(pDataArray);
+    free(dataArray);
 
     if (FAILED(hr)) {
       free(result);

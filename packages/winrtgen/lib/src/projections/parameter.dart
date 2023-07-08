@@ -15,7 +15,7 @@ import 'types/types.dart';
 /// specialized in that they have logic to translate primitive WinRT types to
 /// their Dart equivalents (e.g. a WinRT `TimeSpan` can be represented by a Dart
 /// [Duration]).
-abstract class ParameterProjection {
+base class ParameterProjection {
   ParameterProjection(this.parameter)
       : method = parameter.parent,
         // Some getter parameters don't have a name so use 'retValuePtr' instead
@@ -39,8 +39,8 @@ abstract class ParameterProjection {
 
   /// Returns the appropriate projection for the parameter.
   factory ParameterProjection.create(Parameter param) {
+    final Parameter(:parent, :projectionKind) = param;
     try {
-      final projectionKind = param.projectionKind;
       return switch (projectionKind) {
         ProjectionKind.asyncAction => AsyncActionParameterProjection(param),
         ProjectionKind.asyncActionWithProgress =>
@@ -52,41 +52,39 @@ abstract class ParameterProjection {
         ProjectionKind.dartPrimitive ||
         ProjectionKind.pointer ||
         ProjectionKind.void_ =>
-          DefaultParameterProjection(param),
-        ProjectionKind.dartPrimitiveList ||
-        ProjectionKind.dateTimeList ||
-        ProjectionKind.durationList ||
-        ProjectionKind.enumList ||
-        ProjectionKind.genericEnumList ||
-        ProjectionKind.genericObjectList ||
-        ProjectionKind.objectList ||
-        ProjectionKind.uriList =>
-          DefaultListParameterProjection(param),
+          ParameterProjection(param),
+        ProjectionKind.dartPrimitiveArray ||
+        ProjectionKind.dateTimeArray ||
+        ProjectionKind.durationArray ||
+        ProjectionKind.enumArray ||
+        ProjectionKind.genericEnumArray ||
+        ProjectionKind.genericObjectArray ||
+        ProjectionKind.objectArray ||
+        ProjectionKind.stringArray ||
+        ProjectionKind.structArray ||
+        ProjectionKind.uriArray =>
+          ArrayParameterProjection.create(param),
         ProjectionKind.dateTime => DateTimeParameterProjection(param),
         ProjectionKind.delegate => DelegateParameterProjection(param),
         ProjectionKind.duration => DurationParameterProjection(param),
         ProjectionKind.enum_ => EnumParameterProjection(param),
         ProjectionKind.genericEnum => GenericEnumParameterProjection(param),
         ProjectionKind.genericObject => GenericObjectParameterProjection(param),
-        ProjectionKind.guid => StructParameterProjection(param),
+        ProjectionKind.ireference => IReferenceParameterProjection(param),
         ProjectionKind.map => MapParameterProjection(param),
         ProjectionKind.mapView => MapViewParameterProjection(param),
         ProjectionKind.object => ObjectParameterProjection(param),
+        ProjectionKind.record =>
+          throw WinmdException('Unsupported projection kind: $projectionKind'),
         ProjectionKind.reference => ReferenceParameterProjection(param),
         ProjectionKind.string => StringParameterProjection(param),
-        ProjectionKind.stringList => StringListParameterProjection(param),
         ProjectionKind.struct => StructParameterProjection(param),
-        ProjectionKind.guidList ||
-        ProjectionKind.structList =>
-          StructListParameterProjection(param),
         ProjectionKind.uri => UriParameterProjection(param),
         ProjectionKind.vector => VectorParameterProjection(param),
         ProjectionKind.vectorView => VectorViewParameterProjection(param),
       };
-    } catch (e, s) {
-      print("Failed to project parameter '$param' from '${param.parent}'.");
-      print(e);
-      print(s);
+    } catch (_) {
+      print("Failed to project parameter '$param' from '$parent'.");
       rethrow;
     }
   }
@@ -110,15 +108,15 @@ abstract class ParameterProjection {
 
   String get creatorPreamble => '';
 
-  String get creator => '';
+  String get creator => '$identifier.value';
 
-  String get into => '';
+  String get into => identifier;
 
   String get toListArg => '';
 
   String get toListCreator => '';
 
-  String get toListInto => '';
+  String get toListInto => '$identifier[i]';
 
   String get toListIdentifier => '';
 
@@ -129,11 +127,8 @@ abstract class ParameterProjection {
   String get identifier => safeIdentifierForString(name.toCamelCase());
 
   bool get needsAllocation {
+    if (parameter.isSimpleArraySizeParam && isOutParam) return false;
     if (type == 'void') return false;
-
-    // TODO(halildurmus): Remove this
-    if (typeProjection.isReferenceType) return false;
-
     return !isInParam;
   }
 
@@ -144,9 +139,13 @@ abstract class ParameterProjection {
   ///
   /// Any preamble that allocates memory should have a matching postamble that
   /// frees the memory.
-  List<String> get preambles => needsAllocation
-      ? ['final $identifier = calloc<${typeProjection.nativeType}>();']
-      : [];
+  List<String> get preambles {
+    if (!needsAllocation) return [];
+    final nativeType = typeProjection.isReferenceType
+        ? typeArguments(typeProjection.nativeType)
+        : typeProjection.nativeType;
+    return ['final $identifier = calloc<$nativeType>();'];
+  }
 
   String get nullCheck => '';
 
@@ -156,8 +155,20 @@ abstract class ParameterProjection {
       needsDeallocation ? ['free($identifier);'] : [];
 
   /// The name of the converted variable that should be passed inside the method
-  /// call (e.g. `today` -> `todayDateTime`)
-  String get localIdentifier => isInParam ? into : identifier;
+  /// call (e.g. `value` -> `valueHString`)
+  String get localIdentifier {
+    // Handle the __xxSize identifier specially as simpleArray parameters are
+    // projected as List. See the ArrayParameterProjection class.
+    if (parameter.isSimpleArraySizeParam) {
+      final identifier = parameter.toArrayParamName();
+      return switch (parameter.arrayStyle) {
+        ArrayStyle.fill || ArrayStyle.receive => '${identifier}Size',
+        ArrayStyle.pass => '$identifier.length',
+      };
+    }
+
+    return isInParam ? into : identifier;
+  }
 
   @override
   String toString() => '$type $identifier';

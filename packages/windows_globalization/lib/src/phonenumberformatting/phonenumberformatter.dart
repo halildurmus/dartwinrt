@@ -29,10 +29,10 @@ class PhoneNumberFormatter extends IInspectable
   static const _className =
       'Windows.Globalization.PhoneNumberFormatting.PhoneNumberFormatter';
 
-  static void tryCreate(String regionCode, PhoneNumberFormatter phoneNumber) =>
+  static PhoneNumberFormatter? tryCreate(String regionCode) =>
       createActivationFactory(IPhoneNumberFormatterStatics.fromPtr, _className,
               IID_IPhoneNumberFormatterStatics)
-          .tryCreate(regionCode, phoneNumber);
+          .tryCreate(regionCode);
 
   static int getCountryCodeForRegion(String regionCode) =>
       createActivationFactory(IPhoneNumberFormatterStatics.fromPtr, _className,

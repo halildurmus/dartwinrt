@@ -54,12 +54,12 @@ class IJsonObjectStatics extends IInspectable {
     return JsonObject.fromPtr(jsonObject);
   }
 
-  bool tryParse(String input, JsonObject result) {
+  (bool, {JsonObject? result}) tryParse(String input) {
     final succeeded = calloc<Bool>();
+    final inputHString = input.toHString();
+    final result = calloc<COMObject>();
 
     try {
-      final inputHString = input.toHString();
-
       final hr = ptr.ref.vtable
               .elementAt(7)
               .cast<
@@ -74,14 +74,25 @@ class IJsonObjectStatics extends IInspectable {
               .asFunction<
                   int Function(VTablePointer lpVtbl, int input,
                       Pointer<COMObject> result, Pointer<Bool> succeeded)>()(
-          ptr.ref.lpVtbl, inputHString, result.ptr, succeeded);
+          ptr.ref.lpVtbl, inputHString, result, succeeded);
 
-      WindowsDeleteString(inputHString);
+      if (FAILED(hr)) {
+        free(result);
+        throwWindowsException(hr);
+      }
 
-      if (FAILED(hr)) throwWindowsException(hr);
+      var resultIsNull = false;
+      if (result.isNull) {
+        free(result);
+        resultIsNull = true;
+      }
 
-      return succeeded.value;
+      return (
+        succeeded.value,
+        result: resultIsNull ? null : JsonObject.fromPtr(result)
+      );
     } finally {
+      WindowsDeleteString(inputHString);
       free(succeeded);
     }
   }

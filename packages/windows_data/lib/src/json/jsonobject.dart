@@ -42,10 +42,10 @@ class JsonObject extends IInspectable
           IJsonObjectStatics.fromPtr, _className, IID_IJsonObjectStatics)
       .parse(input);
 
-  static bool tryParse(String input, JsonObject result) =>
+  static (bool, {JsonObject? result}) tryParse(String input) =>
       createActivationFactory(
               IJsonObjectStatics.fromPtr, _className, IID_IJsonObjectStatics)
-          .tryParse(input, result);
+          .tryParse(input);
 
   late final _iJsonObject = IJsonObject.from(this);
 

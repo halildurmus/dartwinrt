@@ -39,4 +39,32 @@ void main() {
       expect(parameter.isSimpleArraySizeParam, isFalse);
     });
   });
+
+  group('toArrayParamName', () {
+    final scope = MetadataStore.getScopeForNamespace('Windows.Foundation');
+
+    test('(1)', () {
+      final parameter = Parameter.fromVoid(scope, 0)..name = '__valueSize';
+      expect(parameter.toArrayParamName(), equals('value'));
+    });
+
+    test('(2)', () {
+      final parameter = Parameter.fromVoid(scope, 0)..name = 'value';
+      expect(parameter.toArrayParamName, throwsA(isA<AssertionError>()));
+    });
+  });
+
+  group('toArraySizeParamName', () {
+    final scope = MetadataStore.getScopeForNamespace('Windows.Foundation');
+
+    test('(1)', () {
+      final parameter = Parameter.fromVoid(scope, 0)..name = 'value';
+      expect(parameter.toArraySizeParamName(), equals('__valueSize'));
+    });
+
+    test('(2)', () {
+      final parameter = Parameter.fromVoid(scope, 0)..name = '__valueSize';
+      expect(parameter.toArraySizeParamName, throwsA(isA<AssertionError>()));
+    });
+  });
 }

@@ -22,7 +22,7 @@ void main() {
           'Windows.Globalization.PhoneNumberFormatting.IPhoneNumberFormatterStatics',
           'GetNationalDirectDialingPrefixForRegion');
       final projection = methodProjection.parameters.last;
-      expect(projection, isA<DefaultParameterProjection>());
+      expect(projection, isA<ParameterProjection>());
       expect(projection.isInParam, isTrue);
       expect(projection.isOutParam, isFalse);
       expect(projection.isNullable, isFalse);
@@ -30,8 +30,8 @@ void main() {
       expect(projection.needsAllocation, isFalse);
       expect(projection.needsDeallocation, isFalse);
       expect(projection.creatorPreamble, isEmpty);
-      expect(projection.creator, isEmpty);
-      expect(projection.into, isEmpty);
+      expect(projection.creator, equals('stripNonDigit.value'));
+      expect(projection.into, equals('stripNonDigit'));
       expect(projection.toListArg, isEmpty);
       expect(projection.toListCreator, isEmpty);
       expect(projection.toListInto, equals('stripNonDigit[i]'));
@@ -56,7 +56,7 @@ void main() {
       expect(projection.needsDeallocation, isFalse);
       expect(projection.creatorPreamble, isEmpty);
       expect(projection.creator, equals('Calendar.fromPtr(other)'));
-      expect(projection.into, isEmpty);
+      expect(projection.into, equals('other'));
       expect(projection.toListArg, equals('Calendar.fromPtr'));
       expect(projection.toListCreator, isEmpty);
       expect(projection.toListInto, equals('other[i].ptr.ref.lpVtbl'));
@@ -99,7 +99,7 @@ void main() {
       final methodProjection = MethodProjection.fromTypeAndMethodName(
           'Windows.Foundation.IPropertyValueStatics', 'CreateDouble');
       final projection = methodProjection.parameters.first;
-      expect(projection, isA<DefaultParameterProjection>());
+      expect(projection, isA<ParameterProjection>());
       expect(projection.isInParam, isTrue);
       expect(projection.isOutParam, isFalse);
       expect(projection.isNullable, isFalse);
@@ -107,8 +107,8 @@ void main() {
       expect(projection.needsAllocation, isFalse);
       expect(projection.needsDeallocation, isFalse);
       expect(projection.creatorPreamble, isEmpty);
-      expect(projection.creator, isEmpty);
-      expect(projection.into, isEmpty);
+      expect(projection.creator, equals('value.value'));
+      expect(projection.into, equals('value'));
       expect(projection.toListArg, isEmpty);
       expect(projection.toListCreator, isEmpty);
       expect(projection.toListInto, equals('value[i]'));
@@ -315,7 +315,7 @@ void main() {
       final methodProjection = MethodProjection.fromTypeAndMethodName(
           'Windows.Foundation.IPropertyValueStatics', 'CreateInt32');
       final projection = methodProjection.parameters.first;
-      expect(projection, isA<DefaultParameterProjection>());
+      expect(projection, isA<ParameterProjection>());
       expect(projection.isInParam, isTrue);
       expect(projection.isOutParam, isFalse);
       expect(projection.isNullable, isFalse);
@@ -323,8 +323,8 @@ void main() {
       expect(projection.needsAllocation, isFalse);
       expect(projection.needsDeallocation, isFalse);
       expect(projection.creatorPreamble, isEmpty);
-      expect(projection.creator, isEmpty);
-      expect(projection.into, isEmpty);
+      expect(projection.creator, equals('value.value'));
+      expect(projection.into, equals('value'));
       expect(projection.toListArg, isEmpty);
       expect(projection.toListCreator, isEmpty);
       expect(projection.toListInto, equals('value[i]'));
@@ -349,7 +349,7 @@ void main() {
       expect(projection.needsDeallocation, isFalse);
       expect(projection.creatorPreamble, isEmpty);
       expect(projection.creator, equals('IStorageFile.fromPtr(fileToReplace)'));
-      expect(projection.into, isEmpty);
+      expect(projection.into, equals('fileToReplace'));
       expect(projection.toListArg, equals('IStorageFile.fromPtr'));
       expect(projection.toListCreator, isEmpty);
       expect(projection.toListInto, equals('fileToReplace[i].ptr.ref.lpVtbl'));
@@ -380,7 +380,7 @@ void main() {
           projection.creator,
           equals(
               'IIterable<IKeyValuePair<String, Object?>>.fromPtr(propertiesToSave)'));
-      expect(projection.into, isEmpty);
+      expect(projection.into, equals('propertiesToSave'));
       expect(projection.toListArg,
           equals('IIterable<IKeyValuePair<String, Object?>>.fromPtr'));
       expect(projection.toListCreator, isEmpty);
@@ -417,7 +417,7 @@ void main() {
       expect(projection.into, equals('features?.ptr.ref.lpVtbl ?? nullptr'));
       expect(projection.toListArg, isEmpty);
       expect(projection.toListCreator, isEmpty);
-      expect(projection.toListInto, isEmpty);
+      expect(projection.toListInto, equals('features[i]'));
       expect(projection.toListIdentifier, isEmpty);
       expect(projection.preambles, isEmpty);
       expect(projection.postambles, isEmpty);
@@ -435,9 +435,9 @@ void main() {
       expect(projection, isA<MapViewParameterProjection>());
       expect(projection.isInParam, isFalse);
       expect(projection.isOutParam, isTrue);
-      expect(projection.isNullable, isFalse);
-      expect(projection.type, equals('IMapView<String, Object?>'));
-      expect(projection.needsAllocation, isFalse);
+      expect(projection.isNullable, isTrue);
+      expect(projection.type, equals('IMapView<String, Object?>?'));
+      expect(projection.needsAllocation, isTrue);
       expect(projection.needsDeallocation, isFalse);
       expect(projection.creatorPreamble, isEmpty);
       expect(projection.creator, equalsIgnoringWhitespace('''
@@ -447,11 +447,12 @@ void main() {
       expect(projection.into, equals('first?.ptr.ref.lpVtbl ?? nullptr'));
       expect(projection.toListArg, isEmpty);
       expect(projection.toListCreator, isEmpty);
-      expect(projection.toListInto, isEmpty);
+      expect(projection.toListInto, equals('first[i]'));
       expect(projection.toListIdentifier, isEmpty);
-      expect(projection.preambles, isEmpty);
+      expect(
+          projection.preambles, equals(['final first = calloc<COMObject>();']));
       expect(projection.postambles, isEmpty);
-      expect(projection.nullCheck, isEmpty);
+      expect(projection.nullCheck, equals(nullCheck('first')));
       expect(projection.identifier, equals('first'));
       expect(projection.localIdentifier, equals('first'));
     });
@@ -461,7 +462,7 @@ void main() {
           'Windows.Devices.Bluetooth.Advertisement.IBluetoothLEAdvertisement',
           'put_Flags');
       final projection = methodProjection.parameters.first;
-      expect(projection, isA<ReferenceParameterProjection>());
+      expect(projection, isA<IReferenceParameterProjection>());
       expect(projection.isInParam, isTrue);
       expect(projection.isOutParam, isFalse);
       expect(projection.isNullable, isTrue);
@@ -478,7 +479,7 @@ void main() {
           equals('value?.toReference().ptr.ref.lpVtbl ?? nullptr'));
       expect(projection.toListArg, isEmpty);
       expect(projection.toListCreator, isEmpty);
-      expect(projection.toListInto, isEmpty);
+      expect(projection.toListInto, equals('value[i]'));
       expect(projection.toListIdentifier, isEmpty);
       expect(projection.preambles, isEmpty);
       expect(projection.postambles, isEmpty);
@@ -493,7 +494,7 @@ void main() {
           'Windows.Devices.Geolocation.IGeolocatorWithScalarAccuracy',
           'put_DesiredAccuracyInMeters');
       final projection = methodProjection.parameters.first;
-      expect(projection, isA<ReferenceParameterProjection>());
+      expect(projection, isA<IReferenceParameterProjection>());
       expect(projection.isInParam, isTrue);
       expect(projection.isOutParam, isFalse);
       expect(projection.isNullable, isTrue);
@@ -511,7 +512,7 @@ void main() {
               'value?.toReference(IntType.uint32).ptr.ref.lpVtbl ?? nullptr'));
       expect(projection.toListArg, isEmpty);
       expect(projection.toListCreator, isEmpty);
-      expect(projection.toListInto, isEmpty);
+      expect(projection.toListInto, equals('value[i]'));
       expect(projection.toListIdentifier, isEmpty);
       expect(projection.preambles, isEmpty);
       expect(projection.postambles, isEmpty);
@@ -545,7 +546,7 @@ void main() {
           projection.into, equals('dnsServerList?.ptr.ref.lpVtbl ?? nullptr'));
       expect(projection.toListArg, isEmpty);
       expect(projection.toListCreator, isEmpty);
-      expect(projection.toListInto, isEmpty);
+      expect(projection.toListInto, equals('dnsServerList[i]'));
       expect(projection.toListIdentifier, isEmpty);
       expect(projection.preambles, isEmpty);
       expect(projection.postambles, isEmpty);
@@ -574,7 +575,7 @@ void main() {
       expect(projection.into, equals('values?.ptr.ref.lpVtbl ?? nullptr'));
       expect(projection.toListArg, isEmpty);
       expect(projection.toListCreator, isEmpty);
-      expect(projection.toListInto, isEmpty);
+      expect(projection.toListInto, equals('values[i]'));
       expect(projection.toListIdentifier, isEmpty);
       expect(projection.preambles, isEmpty);
       expect(projection.postambles, isEmpty);
@@ -588,7 +589,7 @@ void main() {
       final methodProjection = MethodProjection.fromTypeAndMethodName(
           'Windows.Media.Devices.Core.CameraIntrinsics', 'DistortPoints');
       final projection = methodProjection.parameters.last;
-      expect(projection, isA<StructListParameterProjection>());
+      expect(projection, isA<FillArrayParameterProjection>());
       expect(projection.isInParam, isFalse);
       expect(projection.isOutParam, isTrue);
       expect(projection.isNullable, isFalse);
@@ -596,34 +597,25 @@ void main() {
       expect(projection.needsAllocation, isTrue);
       expect(projection.needsDeallocation, isTrue);
       expect(projection.creatorPreamble, isEmpty);
-      expect(projection.creator,
-          equals('pResultsArray.toList(length: resultsSize)'));
-      expect(projection.into, isEmpty);
+      expect(projection.creator, equals('results.toList(length: resultsSize)'));
+      expect(projection.into, equals('resultsArray'));
       expect(projection.toListArg, isEmpty);
       expect(projection.toListCreator, isEmpty);
-      expect(projection.toListInto, isEmpty);
+      expect(projection.toListInto, equals('results[i]'));
       expect(projection.toListIdentifier, equals('toList'));
       expect(projection.preambles,
-          equals(['final pResultsArray = calloc<NativePoint>(resultsSize);']));
-      expect(
-          projection.postambles,
-          equals([
-            '''
-    if (resultsSize > 0) {
-      results.addAll(pResultsArray.toList(length: resultsSize));
-    }''',
-            'free(pResultsArray);'
-          ]));
+          equals(['final results = calloc<NativePoint>(resultsSize);']));
+      expect(projection.postambles, equals(['free(results);']));
       expect(projection.nullCheck, isEmpty);
       expect(projection.identifier, equals('results'));
-      expect(projection.localIdentifier, equals('pResultsArray'));
+      expect(projection.localIdentifier, equals('results'));
     });
 
     test('projects List<String> (FillArray - getMany)', () {
       final methodProjection = MethodProjection.fromTypeAndMethodName(
           'Windows.Storage.Pickers.FileExtensionVector', 'GetMany');
       final projection = methodProjection.parameters.last;
-      expect(projection, isA<DefaultListParameterProjection>());
+      expect(projection, isA<ArrayParameterProjection>());
       expect(projection.isInParam, isFalse);
       expect(projection.isOutParam, isTrue);
       expect(projection.isNullable, isFalse);
@@ -632,33 +624,25 @@ void main() {
       expect(projection.needsDeallocation, isTrue);
       expect(projection.creatorPreamble, isEmpty);
       expect(projection.creator,
-          equals('pItemsArray.toList(length: returnValue.value)'));
-      expect(projection.into, isEmpty);
+          equals('items.toList(length: returnValue.value)'));
+      expect(projection.into, equals('itemsArray'));
       expect(projection.toListArg, isEmpty);
       expect(projection.toListCreator, isEmpty);
-      expect(projection.toListInto, isEmpty);
+      expect(projection.toListInto, equals('items[i]'));
       expect(projection.toListIdentifier, equals('toList'));
       expect(projection.preambles,
-          equals(['final pItemsArray = calloc<IntPtr>(itemsSize);']));
-      expect(
-          projection.postambles,
-          equals([
-            '''
-    if (returnValue.value > 0) {
-      items.addAll(pItemsArray.toList(length: returnValue.value));
-    }''',
-            'free(pItemsArray);'
-          ]));
+          equals(['final items = calloc<IntPtr>(itemsSize);']));
+      expect(projection.postambles, equals(['free(items);']));
       expect(projection.nullCheck, isEmpty);
       expect(projection.identifier, equals('items'));
-      expect(projection.localIdentifier, equals('pItemsArray'));
+      expect(projection.localIdentifier, equals('items'));
     });
 
     test('projects List<String> (FillArray - readBytes)', () {
       final methodProjection = MethodProjection.fromTypeAndMethodName(
           'Windows.Storage.Streams.DataReader', 'ReadBytes');
       final projection = methodProjection.parameters.last;
-      expect(projection, isA<DefaultListParameterProjection>());
+      expect(projection, isA<ArrayParameterProjection>());
       expect(projection.isInParam, isFalse);
       expect(projection.isOutParam, isTrue);
       expect(projection.isNullable, isFalse);
@@ -666,34 +650,25 @@ void main() {
       expect(projection.needsAllocation, isTrue);
       expect(projection.needsDeallocation, isTrue);
       expect(projection.creatorPreamble, isEmpty);
-      expect(
-          projection.creator, equals('pValueArray.toList(length: valueSize)'));
-      expect(projection.into, isEmpty);
+      expect(projection.creator, equals('value.toList(length: valueSize)'));
+      expect(projection.into, equals('valueArray'));
       expect(projection.toListArg, isEmpty);
       expect(projection.toListCreator, isEmpty);
-      expect(projection.toListInto, isEmpty);
+      expect(projection.toListInto, equals('value[i]'));
       expect(projection.toListIdentifier, equals('toList'));
       expect(projection.preambles,
-          equals(['final pValueArray = calloc<Uint8>(valueSize);']));
-      expect(
-          projection.postambles,
-          equals([
-            '''
-    if (valueSize > 0) {
-      value.addAll(pValueArray.toList(length: valueSize));
-    }''',
-            'free(pValueArray);'
-          ]));
+          equals(['final value = calloc<Uint8>(valueSize);']));
+      expect(projection.postambles, equals(['free(value);']));
       expect(projection.nullCheck, isEmpty);
       expect(projection.identifier, equals('value'));
-      expect(projection.localIdentifier, equals('pValueArray'));
+      expect(projection.localIdentifier, equals('value'));
     });
 
     test('projects List<String> (PassArray)', () {
       final methodProjection = MethodProjection.fromTypeAndMethodName(
           'Windows.Storage.Pickers.FileExtensionVector', 'ReplaceAll');
       final projection = methodProjection.parameters.last;
-      expect(projection, isA<DefaultListParameterProjection>());
+      expect(projection, isA<ArrayParameterProjection>());
       expect(projection.isInParam, isTrue);
       expect(projection.isOutParam, isFalse);
       expect(projection.isNullable, isFalse);
@@ -702,39 +677,39 @@ void main() {
       expect(projection.needsDeallocation, isTrue);
       expect(projection.creatorPreamble, isEmpty);
       expect(projection.creator,
-          equals('pItemsArray.toList(length: pItemsSize.value)'));
-      expect(projection.into, isEmpty);
+          equals('itemsArray.toList(length: itemsSize.value)'));
+      expect(projection.into, equals('itemsArray'));
       expect(projection.toListArg, isEmpty);
       expect(projection.toListCreator, isEmpty);
-      expect(projection.toListInto, isEmpty);
+      expect(projection.toListInto, equals('items[i]'));
       expect(projection.toListIdentifier, equals('toList'));
       expect(
           projection.preambles,
           equals([
             'final itemsHandles = <int>[];',
-            'final pItemsArray = calloc<HSTRING>(items.length);',
+            'final itemsArray = calloc<HSTRING>(items.length);',
             '''
     for (var i = 0; i < items.length; i++) {
-      pItemsArray[i] = items[i].toHString();
-      itemsHandles.add(pItemsArray[i]);
+      itemsArray[i] = items[i].toHString();
+      itemsHandles.add(itemsArray[i]);
     }'''
           ]));
       expect(
           projection.postambles,
           equals([
             'itemsHandles.forEach(WindowsDeleteString);',
-            'free(pItemsArray);'
+            'free(itemsArray);'
           ]));
       expect(projection.nullCheck, isEmpty);
       expect(projection.identifier, equals('items'));
-      expect(projection.localIdentifier, equals('pItemsArray'));
+      expect(projection.localIdentifier, equals('itemsArray'));
     });
 
     test('projects List<String> (ReceiveArray)', () {
       final methodProjection = MethodProjection.fromTypeAndMethodName(
           'Windows.Foundation.IPropertyValue', 'GetStringArray');
       final projection = methodProjection.parameters.last;
-      expect(projection, isA<DefaultListParameterProjection>());
+      expect(projection, isA<ArrayParameterProjection>());
       expect(projection.isInParam, isFalse);
       expect(projection.isOutParam, isTrue);
       expect(projection.isNullable, isFalse);
@@ -743,38 +718,30 @@ void main() {
       expect(projection.needsDeallocation, isTrue);
       expect(projection.creatorPreamble, isEmpty);
       expect(projection.creator,
-          equals('pValueArray.value.toList(length: pValueSize.value)'));
-      expect(projection.into, isEmpty);
+          equals('value.value.toList(length: valueSize.value)'));
+      expect(projection.into, equals('valueArray'));
       expect(projection.toListArg, isEmpty);
       expect(projection.toListCreator, isEmpty);
-      expect(projection.toListInto, isEmpty);
+      expect(projection.toListInto, equals('value[i]'));
       expect(projection.toListIdentifier, equals('toList'));
       expect(
           projection.preambles,
           equals([
-            'final pValueSize = calloc<Uint32>();',
-            'final pValueArray = calloc<Pointer<IntPtr>>();'
+            'final valueSize = calloc<Uint32>();',
+            'final value = calloc<Pointer<IntPtr>>();'
           ]));
       expect(
-          projection.postambles,
-          equals([
-            '''
-    if (pValueSize.value > 0) {
-      value.addAll(pValueArray.value.toList(length: pValueSize.value));
-    }''',
-            'free(pValueSize);',
-            'free(pValueArray);'
-          ]));
+          projection.postambles, equals(['free(valueSize);', 'free(value);']));
       expect(projection.nullCheck, isEmpty);
       expect(projection.identifier, equals('value'));
-      expect(projection.localIdentifier, equals('pValueArray'));
+      expect(projection.localIdentifier, equals('value'));
     });
 
     test('projects List<VirtualKey> (PassArray)', () {
       final methodProjection = MethodProjection.fromTypeAndMethodName(
           'Windows.Devices.Lights.ILampArray', 'SetColorsForKeys');
       final projection = methodProjection.parameters.last;
-      expect(projection, isA<DefaultListParameterProjection>());
+      expect(projection, isA<ArrayParameterProjection>());
       expect(projection.isInParam, isTrue);
       expect(projection.isOutParam, isFalse);
       expect(projection.isNullable, isFalse);
@@ -785,25 +752,25 @@ void main() {
       expect(
           projection.creator,
           equals(
-              'pKeysArray.toList(length: pKeysSize.value).map(VirtualKey.from).toList()'));
-      expect(projection.into, isEmpty);
+              'keysArray.toList(length: keysSize.value).map(VirtualKey.from).toList()'));
+      expect(projection.into, equals('keysArray'));
       expect(projection.toListArg, isEmpty);
       expect(projection.toListCreator, isEmpty);
-      expect(projection.toListInto, isEmpty);
+      expect(projection.toListInto, equals('keys[i]'));
       expect(projection.toListIdentifier, equals('toList'));
       expect(
           projection.preambles,
           equals([
-            'final pKeysArray = calloc<Int32>(keys.length);',
+            'final keysArray = calloc<Int32>(keys.length);',
             '''
     for (var i = 0; i < keys.length; i++) {
-      pKeysArray[i] = keys[i].value;
+      keysArray[i] = keys[i].value;
     }'''
           ]));
-      expect(projection.postambles, equals(['free(pKeysArray);']));
+      expect(projection.postambles, equals(['free(keysArray);']));
       expect(projection.nullCheck, isEmpty);
       expect(projection.identifier, equals('keys'));
-      expect(projection.localIdentifier, equals('pKeysArray'));
+      expect(projection.localIdentifier, equals('keysArray'));
     });
 
     test('projects Object?', () {
@@ -819,7 +786,7 @@ void main() {
       expect(projection.needsDeallocation, isFalse);
       expect(projection.creatorPreamble, isEmpty);
       expect(projection.creator, equals('IPropertyValue.fromPtr(value).value'));
-      expect(projection.into, isEmpty);
+      expect(projection.into, equals('value'));
       expect(projection.toListArg, isEmpty);
       expect(projection.toListCreator, isEmpty);
       expect(projection.toListInto,
@@ -833,27 +800,27 @@ void main() {
           equals('value?.intoBox().ptr.ref.lpVtbl ?? nullptr'));
     });
 
-    test('projects pointer', () {
+    test('projects reference type', () {
       final methodProjection = MethodProjection.fromTypeAndMethodName(
           'Windows.Storage.Pickers.FileExtensionVector', 'IndexOf');
       final projection = methodProjection.parameters.last;
-      expect(projection, isA<DefaultParameterProjection>());
+      expect(projection, isA<ReferenceParameterProjection>());
       expect(projection.isInParam, isFalse);
       expect(projection.isOutParam, isTrue);
       expect(projection.isNullable, isFalse);
-      expect(projection.type, equals('Pointer<Uint32>'));
-      expect(projection.needsAllocation, isFalse);
-      expect(projection.needsDeallocation, isFalse);
+      expect(projection.type, equals('int'));
+      expect(projection.needsAllocation, isTrue);
+      expect(projection.needsDeallocation, isTrue);
       expect(projection.creatorPreamble, isEmpty);
-      expect(projection.creator, isEmpty);
-      expect(projection.into, isEmpty);
+      expect(projection.creator, equals('index.value'));
+      expect(projection.into, equals('index'));
       expect(projection.toListArg, isEmpty);
       expect(projection.toListCreator, isEmpty);
       expect(projection.toListInto, equals('index[i]'));
       expect(projection.toListIdentifier, isEmpty);
-      expect(projection.preambles, isEmpty);
+      expect(projection.preambles, equals(['final index = calloc<Uint32>();']));
       expect(projection.nullCheck, isEmpty);
-      expect(projection.postambles, isEmpty);
+      expect(projection.postambles, equals(['free(index);']));
       expect(projection.identifier, equals('index'));
       expect(projection.localIdentifier, equals('index'));
     });
@@ -874,7 +841,7 @@ void main() {
       expect(projection.into, 'valueHString');
       expect(projection.toListArg, isEmpty);
       expect(projection.toListCreator, isEmpty);
-      expect(projection.toListInto, isEmpty);
+      expect(projection.toListInto, equals('value[i]'));
       expect(projection.toListIdentifier, isEmpty);
       expect(projection.preambles,
           equals(['final valueHString = value.toHString();']));

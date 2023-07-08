@@ -9,6 +9,7 @@ import 'dart:ffi';
 import 'package:ffi/ffi.dart';
 import 'package:test/test.dart';
 import 'package:win32/win32.dart' hide IUnknown;
+import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
 void main() {
@@ -19,6 +20,7 @@ void main() {
 
   test('isNull', () {
     final ptr = calloc<COMObject>();
+    expect(ptr.isNull, isTrue);
     expect(ptr.ref.isNull, isTrue);
     free(ptr);
   });

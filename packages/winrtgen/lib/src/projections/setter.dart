@@ -10,16 +10,12 @@ import '../utilities/utilities.dart';
 import 'method.dart';
 import 'parameter.dart';
 import 'property.dart';
-import 'types/types.dart';
 
-abstract class SetterProjection extends PropertyProjection {
+base class SetterProjection extends PropertyProjection {
   SetterProjection(super.method, super.vtableOffset);
 
-  /// [ParameterProjection] for the parameter of the method.
-  ParameterProjection get parameter => parameters.first;
-
   /// Returns the appropriate setter projection for the [method] based on the
-  /// parameter type.
+  /// parameter's [ProjectionKind].
   factory SetterProjection.create(Method method, int vtableOffset) {
     try {
       final projectionKind = method.parameters.first.projectionKind;
@@ -29,17 +25,16 @@ abstract class SetterProjection extends PropertyProjection {
         ProjectionKind.delegate ||
         ProjectionKind.duration ||
         ProjectionKind.enum_ ||
-        ProjectionKind.guid ||
+        ProjectionKind.ireference ||
         ProjectionKind.map ||
         ProjectionKind.mapView ||
         ProjectionKind.object ||
-        ProjectionKind.reference ||
         ProjectionKind.string ||
         ProjectionKind.struct ||
         ProjectionKind.uri ||
         ProjectionKind.vector ||
         ProjectionKind.vectorView =>
-          DefaultSetterProjection(method, vtableOffset),
+          SetterProjection(method, vtableOffset),
         _ => throw WinRTGenException(
             'Unsupported projection kind: $projectionKind'),
       };
@@ -73,6 +68,9 @@ abstract class SetterProjection extends PropertyProjection {
     return MethodProjection.fromTypeAndMethodName(
         fullyQualifiedType, methodName) as SetterProjection;
   }
+
+  /// [ParameterProjection] for the parameter of the setter.
+  ParameterProjection get parameter => parameters.first;
 
   // MethodProjection overrides
 

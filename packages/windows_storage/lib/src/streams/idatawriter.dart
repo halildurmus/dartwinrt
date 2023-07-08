@@ -146,9 +146,9 @@ class IDataWriter extends IInspectable {
   }
 
   void writeBytes(List<int> value) {
-    final pValueArray = calloc<Uint8>(value.length);
+    final valueArray = calloc<Uint8>(value.length);
     for (var i = 0; i < value.length; i++) {
-      pValueArray[i] = value[i];
+      valueArray[i] = value[i];
     }
 
     final hr = ptr.ref.vtable
@@ -162,9 +162,9 @@ class IDataWriter extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int valueSize,
                     Pointer<Uint8> value)>()(
-        ptr.ref.lpVtbl, value.length, pValueArray);
+        ptr.ref.lpVtbl, value.length, valueArray);
 
-    free(pValueArray);
+    free(valueArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

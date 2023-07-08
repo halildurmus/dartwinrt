@@ -69,8 +69,7 @@ class DataReader extends IInspectable implements IDataReader, IClosable {
   int readByte() => _iDataReader.readByte();
 
   @override
-  void readBytes(int valueSize, List<int> value) =>
-      _iDataReader.readBytes(valueSize, value);
+  List<int> readBytes(int valueSize) => _iDataReader.readBytes(valueSize);
 
   @override
   IBuffer? readBuffer(int length) => _iDataReader.readBuffer(length);

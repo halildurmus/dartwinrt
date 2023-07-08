@@ -17,9 +17,6 @@ final class ObjectParameterProjection extends ParameterProjection {
 
   @override
   bool get isNullable {
-    // TODO(halildurmus): Remove this
-    if (typeProjection.isReferenceType) return false;
-
     if (isReturnParam) {
       // Constructors cannot return null.
       if (method.parent.isFactoryInterface) return false;
@@ -113,7 +110,7 @@ final class ObjectParameterProjection extends ParameterProjection {
   @override
   String get localIdentifier {
     if (typeProjection.isReferenceType || typeProjection.isSimpleArray) {
-      return type == 'Pointer<COMObject>' ? identifier : '$identifier.ptr';
+      return identifier;
     }
 
     if (isInParam) {

@@ -300,7 +300,7 @@ abstract interface class IVector<T> extends IInspectable
   /// Retrieves the index of a specified item in the vector.
   ///
   /// Does not work for `Uri` [value]s.
-  bool indexOf(T value, Pointer<Uint32> index);
+  (bool, {int index}) indexOf(T value);
 
   /// Sets the value at the specified index in the vector.
   void setAt(int index, T value);
@@ -349,7 +349,7 @@ abstract interface class IVector<T> extends IInspectable
   }
 
   /// Retrieves multiple items from the the vector beginning at the given index.
-  int getMany(int startIndex, int valueSize, List<T> value);
+  (int, {List<T> items}) getMany(int startIndex, int valueSize);
 
   /// Replaces all the items in the vector with the specified items.
   void replaceAll(List<T> value);
@@ -366,10 +366,8 @@ abstract interface class IVector<T> extends IInspectable
   /// Creates an unmodifiable [List] from the current [IVector] instance.
   List<T> toList() {
     if (size == 0) return List.unmodifiable(<T>[]);
-
-    final list = <T>[];
-    getMany(0, size, list);
-    return List.unmodifiable(list);
+    final (_, :items) = getMany(0, size);
+    return List.unmodifiable(items);
   }
 
   /// The object at the given [index] in the list.

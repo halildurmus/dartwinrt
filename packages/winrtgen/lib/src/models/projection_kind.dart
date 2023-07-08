@@ -4,7 +4,6 @@
 
 import '../exception/exception.dart';
 import '../projections/projections.dart';
-import '../utilities/utilities.dart';
 import 'type_arg_kind.dart';
 
 /// Represents the projection kind of a WinRT type.
@@ -17,32 +16,32 @@ enum ProjectionKind {
   asyncOperation,
   asyncOperationWithProgress,
   dartPrimitive,
-  dartPrimitiveList,
+  dartPrimitiveArray,
   dateTime,
-  dateTimeList,
+  dateTimeArray,
   delegate,
   duration,
-  durationList,
+  durationArray,
   enum_,
-  enumList,
+  enumArray,
   genericEnum,
-  genericEnumList,
+  genericEnumArray,
   genericObject,
-  genericObjectList,
-  guid,
-  guidList,
+  genericObjectArray,
+  ireference,
   map,
   mapView,
   object,
-  objectList,
+  objectArray,
   pointer,
+  record,
   reference,
   string,
-  stringList,
+  stringArray,
   struct,
-  structList,
+  structArray,
   uri,
-  uriList,
+  uriArray,
   vector,
   vectorView,
   void_;
@@ -50,8 +49,10 @@ enum ProjectionKind {
   /// Returns the appropriate [ProjectionKind] for the [type].
   factory ProjectionKind.from(TypeProjection type) {
     if (type.isReferenceType) {
-      return TypeProjection(dereferenceType(type.typeIdentifier))
-          .projectionKind;
+      final projectionKind = type.dereference().projectionKind;
+      return projectionKind == ProjectionKind.dartPrimitive
+          ? ProjectionKind.reference
+          : projectionKind;
     }
 
     if (type.isClassVariableType) {
@@ -68,24 +69,18 @@ enum ProjectionKind {
     }
 
     if (type.isSimpleArray) {
-      var typeIdentifier = type.typeIdentifier;
-      if (typeIdentifier.isReferenceType) {
-        typeIdentifier = dereferenceType(typeIdentifier);
-      }
-      final projectionKind =
-          TypeProjection(dereferenceType(typeIdentifier)).projectionKind;
+      final projectionKind = type.dereference().projectionKind;
       return switch (projectionKind) {
-        ProjectionKind.dartPrimitive => ProjectionKind.dartPrimitiveList,
-        ProjectionKind.dateTime => ProjectionKind.dateTimeList,
-        ProjectionKind.duration => ProjectionKind.durationList,
-        ProjectionKind.enum_ => ProjectionKind.enumList,
-        ProjectionKind.genericEnum => ProjectionKind.genericEnumList,
-        ProjectionKind.genericObject => ProjectionKind.genericObjectList,
-        ProjectionKind.guid => ProjectionKind.guidList,
-        ProjectionKind.object => ProjectionKind.objectList,
-        ProjectionKind.string => ProjectionKind.stringList,
-        ProjectionKind.struct => ProjectionKind.structList,
-        ProjectionKind.uri => ProjectionKind.uriList,
+        ProjectionKind.dartPrimitive => ProjectionKind.dartPrimitiveArray,
+        ProjectionKind.dateTime => ProjectionKind.dateTimeArray,
+        ProjectionKind.duration => ProjectionKind.durationArray,
+        ProjectionKind.enum_ => ProjectionKind.enumArray,
+        ProjectionKind.genericEnum => ProjectionKind.genericEnumArray,
+        ProjectionKind.genericObject => ProjectionKind.genericObjectArray,
+        ProjectionKind.object => ProjectionKind.objectArray,
+        ProjectionKind.string => ProjectionKind.stringArray,
+        ProjectionKind.struct => ProjectionKind.structArray,
+        ProjectionKind.uri => ProjectionKind.uriArray,
         _ => throw WinRTGenException(
             'Unsupported projection kind: $projectionKind'),
       };
@@ -95,7 +90,7 @@ enum ProjectionKind {
     if (type.isDateTime) return ProjectionKind.dateTime;
     if (type.isTimeSpan) return ProjectionKind.duration;
     if (type.isWinRTEnum) return ProjectionKind.enum_;
-    if (type.isGuid) return ProjectionKind.guid;
+    if (type.isGuid) return ProjectionKind.struct;
     if (type.isAsyncAction) return ProjectionKind.asyncAction;
     if (type.isAsyncActionWithProgress) {
       return ProjectionKind.asyncActionWithProgress;
@@ -106,7 +101,7 @@ enum ProjectionKind {
     }
     if (type.isMap) return ProjectionKind.map;
     if (type.isMapView) return ProjectionKind.mapView;
-    if (type.isReference) return ProjectionKind.reference;
+    if (type.isIReference) return ProjectionKind.ireference;
     if (type.isString) return ProjectionKind.string;
     if (type.isUri) return ProjectionKind.uri;
     if (type.isVector) return ProjectionKind.vector;

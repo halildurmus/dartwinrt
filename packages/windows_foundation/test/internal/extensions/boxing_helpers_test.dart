@@ -52,8 +52,8 @@ void main() {
       expect(boxed, isA<IPropertyValue>());
       final pv = boxed as IPropertyValue;
       expect(pv.type, equals(PropertyType.doubleArray));
-      final list = <double>[];
-      pv.getDoubleArray(list);
+      final list = pv.getDoubleArray();
+      expect(list.length, equals(2));
       expect(list, orderedEquals([1.5, -2.5]));
     });
 
@@ -62,8 +62,8 @@ void main() {
       expect(boxed, isA<IPropertyValue>());
       final pv = boxed as IPropertyValue;
       expect(pv.type, equals(PropertyType.singleArray));
-      final list = <double>[];
-      pv.getDoubleArray(list);
+      final list = pv.getDoubleArray();
+      expect(list.length, equals(2));
       expect(list, orderedEquals([1.5, -2.5]));
     });
   });

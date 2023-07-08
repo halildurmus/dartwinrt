@@ -31,15 +31,15 @@ class ITensorStringStatics2 extends IInspectable {
   TensorString? createFromShapeArrayAndDataArray(
       List<int> shape, List<String> data) {
     final result = calloc<COMObject>();
-    final pShapeArray = calloc<Int64>(shape.length);
+    final shapeArray = calloc<Int64>(shape.length);
     for (var i = 0; i < shape.length; i++) {
-      pShapeArray[i] = shape[i];
+      shapeArray[i] = shape[i];
     }
     final dataHandles = <int>[];
-    final pDataArray = calloc<HSTRING>(data.length);
+    final dataArray = calloc<HSTRING>(data.length);
     for (var i = 0; i < data.length; i++) {
-      pDataArray[i] = data[i].toHString();
-      dataHandles.add(pDataArray[i]);
+      dataArray[i] = data[i].toHString();
+      dataHandles.add(dataArray[i]);
     }
 
     final hr = ptr.ref.vtable
@@ -63,11 +63,11 @@ class ITensorStringStatics2 extends IInspectable {
                     int dataSize,
                     Pointer<IntPtr> data,
                     Pointer<COMObject> result)>()(ptr.ref.lpVtbl, shape.length,
-        pShapeArray, data.length, pDataArray, result);
+        shapeArray, data.length, dataArray, result);
 
-    free(pShapeArray);
+    free(shapeArray);
     dataHandles.forEach(WindowsDeleteString);
-    free(pDataArray);
+    free(dataArray);
 
     if (FAILED(hr)) {
       free(result);

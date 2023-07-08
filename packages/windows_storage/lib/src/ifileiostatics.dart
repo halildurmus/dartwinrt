@@ -527,9 +527,9 @@ class IFileIOStatics extends IInspectable {
 
   Future<void> writeBytesAsync(IStorageFile? file, List<int> buffer) {
     final operation = calloc<COMObject>();
-    final pBufferArray = calloc<Uint8>(buffer.length);
+    final bufferArray = calloc<Uint8>(buffer.length);
     for (var i = 0; i < buffer.length; i++) {
-      pBufferArray[i] = buffer[i];
+      bufferArray[i] = buffer[i];
     }
 
     final hr = ptr.ref.vtable
@@ -550,14 +550,10 @@ class IFileIOStatics extends IInspectable {
                     VTablePointer file,
                     int bufferSize,
                     Pointer<Uint8> buffer,
-                    Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl,
-        file?.ptr.ref.lpVtbl ?? nullptr,
-        buffer.length,
-        pBufferArray,
-        operation);
+                    Pointer<COMObject> operation)>()(ptr.ref.lpVtbl,
+        file?.ptr.ref.lpVtbl ?? nullptr, buffer.length, bufferArray, operation);
 
-    free(pBufferArray);
+    free(bufferArray);
 
     if (FAILED(hr)) {
       free(operation);

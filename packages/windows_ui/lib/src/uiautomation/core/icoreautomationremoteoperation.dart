@@ -132,9 +132,9 @@ class ICoreAutomationRemoteOperation extends IInspectable {
 
   AutomationRemoteOperationResult? execute(List<int> bytecodeBuffer) {
     final result = calloc<COMObject>();
-    final pBytecodeBufferArray = calloc<Uint8>(bytecodeBuffer.length);
+    final bytecodeBufferArray = calloc<Uint8>(bytecodeBuffer.length);
     for (var i = 0; i < bytecodeBuffer.length; i++) {
-      pBytecodeBufferArray[i] = bytecodeBuffer[i];
+      bytecodeBufferArray[i] = bytecodeBuffer[i];
     }
 
     final hr = ptr.ref.vtable
@@ -154,9 +154,9 @@ class ICoreAutomationRemoteOperation extends IInspectable {
                     int bytecodeBufferSize,
                     Pointer<Uint8> bytecodeBuffer,
                     Pointer<COMObject> result)>()(
-        ptr.ref.lpVtbl, bytecodeBuffer.length, pBytecodeBufferArray, result);
+        ptr.ref.lpVtbl, bytecodeBuffer.length, bytecodeBufferArray, result);
 
-    free(pBytecodeBufferArray);
+    free(bytecodeBufferArray);
 
     if (FAILED(hr)) {
       free(result);

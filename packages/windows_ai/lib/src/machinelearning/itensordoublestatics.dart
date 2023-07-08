@@ -95,9 +95,9 @@ class ITensorDoubleStatics extends IInspectable {
 
   TensorDouble? createFromArray(IIterable<int>? shape, List<double> data) {
     final result = calloc<COMObject>();
-    final pDataArray = calloc<Double>(data.length);
+    final dataArray = calloc<Double>(data.length);
     for (var i = 0; i < data.length; i++) {
-      pDataArray[i] = data[i];
+      dataArray[i] = data[i];
     }
 
     final hr = ptr.ref.vtable
@@ -128,10 +128,10 @@ class ITensorDoubleStatics extends IInspectable {
                 .ref
                 .lpVtbl,
         data.length,
-        pDataArray,
+        dataArray,
         result);
 
-    free(pDataArray);
+    free(dataArray);
 
     if (FAILED(hr)) {
       free(result);

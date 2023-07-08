@@ -29,12 +29,13 @@ class IPhoneNumberInfoStatics extends IInspectable {
       IPhoneNumberInfoStatics.fromPtr(
           interface.toInterface(IID_IPhoneNumberInfoStatics));
 
-  PhoneNumberParseResult tryParse(String input, PhoneNumberInfo phoneNumber) {
+  (PhoneNumberParseResult, {PhoneNumberInfo? phoneNumber}) tryParse(
+      String input) {
     final result = calloc<Int32>();
+    final inputHString = input.toHString();
+    final phoneNumber = calloc<COMObject>();
 
     try {
-      final inputHString = input.toHString();
-
       final hr = ptr.ref.vtable
               .elementAt(6)
               .cast<
@@ -49,26 +50,38 @@ class IPhoneNumberInfoStatics extends IInspectable {
               .asFunction<
                   int Function(VTablePointer lpVtbl, int input,
                       Pointer<COMObject> phoneNumber, Pointer<Int32> result)>()(
-          ptr.ref.lpVtbl, inputHString, phoneNumber.ptr, result);
+          ptr.ref.lpVtbl, inputHString, phoneNumber, result);
 
-      WindowsDeleteString(inputHString);
+      if (FAILED(hr)) {
+        free(phoneNumber);
+        throwWindowsException(hr);
+      }
 
-      if (FAILED(hr)) throwWindowsException(hr);
+      var phoneNumberIsNull = false;
+      if (phoneNumber.isNull) {
+        free(phoneNumber);
+        phoneNumberIsNull = true;
+      }
 
-      return PhoneNumberParseResult.from(result.value);
+      return (
+        PhoneNumberParseResult.from(result.value),
+        phoneNumber:
+            phoneNumberIsNull ? null : PhoneNumberInfo.fromPtr(phoneNumber)
+      );
     } finally {
+      WindowsDeleteString(inputHString);
       free(result);
     }
   }
 
-  PhoneNumberParseResult tryParseWithRegion(
-      String input, String regionCode, PhoneNumberInfo phoneNumber) {
+  (PhoneNumberParseResult, {PhoneNumberInfo? phoneNumber}) tryParseWithRegion(
+      String input, String regionCode) {
     final result = calloc<Int32>();
+    final inputHString = input.toHString();
+    final regionCodeHString = regionCode.toHString();
+    final phoneNumber = calloc<COMObject>();
 
     try {
-      final inputHString = input.toHString();
-      final regionCodeHString = regionCode.toHString();
-
       final hr = ptr.ref.vtable
               .elementAt(7)
               .cast<
@@ -84,19 +97,27 @@ class IPhoneNumberInfoStatics extends IInspectable {
               .asFunction<
                   int Function(VTablePointer lpVtbl, int input, int regionCode,
                       Pointer<COMObject> phoneNumber, Pointer<Int32> result)>()(
-          ptr.ref.lpVtbl,
-          inputHString,
-          regionCodeHString,
-          phoneNumber.ptr,
-          result);
+          ptr.ref.lpVtbl, inputHString, regionCodeHString, phoneNumber, result);
 
+      if (FAILED(hr)) {
+        free(phoneNumber);
+        throwWindowsException(hr);
+      }
+
+      var phoneNumberIsNull = false;
+      if (phoneNumber.isNull) {
+        free(phoneNumber);
+        phoneNumberIsNull = true;
+      }
+
+      return (
+        PhoneNumberParseResult.from(result.value),
+        phoneNumber:
+            phoneNumberIsNull ? null : PhoneNumberInfo.fromPtr(phoneNumber)
+      );
+    } finally {
       WindowsDeleteString(inputHString);
       WindowsDeleteString(regionCodeHString);
-
-      if (FAILED(hr)) throwWindowsException(hr);
-
-      return PhoneNumberParseResult.from(result.value);
-    } finally {
       free(result);
     }
   }

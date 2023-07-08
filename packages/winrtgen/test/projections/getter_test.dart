@@ -67,7 +67,6 @@ void main() {
     test('projects bool', () {
       final projection = GetterProjection.fromTypeAndMethodName(
           'Windows.Globalization.ICalendar', 'get_IsDaylightSavingTime');
-      expect(projection, isA<DefaultGetterProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isTrue);
       expect(projection.returnType, equals('bool'));
@@ -92,7 +91,6 @@ void main() {
     test('projects class', () {
       final projection = GetterProjection.fromTypeAndMethodName(
           'Windows.Foundation.IUriRuntimeClass', 'get_QueryParsed');
-      expect(projection, isA<DefaultGetterProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
       expect(projection.returnType, equals('WwwFormUrlDecoder?'));
@@ -126,7 +124,6 @@ void main() {
       final projection = GetterProjection.fromTypeAndMethodName(
           'Windows.Storage.FileProperties.IBasicProperties',
           'get_DateModified');
-      expect(projection, isA<DefaultGetterProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isTrue);
       expect(projection.returnType, equals('DateTime'));
@@ -152,7 +149,6 @@ void main() {
     test('projects delegate', () {
       final projection = GetterProjection.fromTypeAndMethodName(
           'Windows.Foundation.IAsyncAction', 'get_Completed');
-      expect(projection, isA<DefaultGetterProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
       expect(projection.returnType, equals('Pointer<COMObject>'));
@@ -181,7 +177,6 @@ void main() {
     test('projects double', () {
       final projection = GetterProjection.fromTypeAndMethodName(
           'Windows.Devices.Geolocation.IGeocoordinate', 'get_Latitude');
-      expect(projection, isA<DefaultGetterProjection>());
       expect(
           projection.annotations,
           equals([
@@ -211,7 +206,6 @@ void main() {
       final projection = GetterProjection.fromTypeAndMethodName(
           'Windows.System.Power.IPowerManagerStatics',
           'get_RemainingDischargeTime');
-      expect(projection, isA<DefaultGetterProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isTrue);
       expect(projection.returnType, equals('Duration'));
@@ -237,7 +231,6 @@ void main() {
     test('projects enum', () {
       final projection = GetterProjection.fromTypeAndMethodName(
           'Windows.Storage.Pickers.IFileOpenPicker', 'get_ViewMode');
-      expect(projection, isA<DefaultGetterProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isTrue);
       expect(projection.returnType, equals('PickerViewMode'));
@@ -263,7 +256,6 @@ void main() {
     test('projects Flags enum', () {
       final projection = GetterProjection.fromTypeAndMethodName(
           'Windows.Storage.IStorageItem', 'get_Attributes');
-      expect(projection, isA<DefaultGetterProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isTrue);
       expect(projection.returnType, equals('FileAttributes'));
@@ -292,7 +284,6 @@ void main() {
       final projection = genericInterfaceProjection.methodProjections
           .firstWhere(
               (methodProjection) => methodProjection.name == 'get_Current');
-      expect(projection, isA<DefaultGetterProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isTrue);
       expect(projection.returnType, equals('T'));
@@ -325,7 +316,6 @@ void main() {
       final projection = genericInterfaceProjection.methodProjections
           .firstWhere(
               (methodProjection) => methodProjection.name == 'get_Current');
-      expect(projection, isA<DefaultGetterProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isTrue);
       expect(projection.returnType, equals('T'));
@@ -358,7 +348,6 @@ void main() {
       final projection = genericInterfaceProjection.methodProjections
           .firstWhere(
               (methodProjection) => methodProjection.name == 'get_Current');
-      expect(projection, isA<DefaultGetterProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
       expect(projection.returnType, equals('T'));
@@ -389,7 +378,6 @@ void main() {
       final projection = GetterProjection.fromTypeAndMethodName(
           'Windows.Networking.Connectivity.INetworkAdapter',
           'get_NetworkAdapterId');
-      expect(projection, isA<DefaultGetterProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isTrue);
       expect(projection.returnType, equals('Guid'));
@@ -414,7 +402,6 @@ void main() {
     test('projects int', () {
       final projection = GetterProjection.fromTypeAndMethodName(
           'Windows.Globalization.ICalendar', 'get_NumberOfDaysInThisMonth');
-      expect(projection, isA<DefaultGetterProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isTrue);
       expect(projection.returnType, equals('int'));
@@ -439,7 +426,6 @@ void main() {
     test('projects interface', () {
       final projection = GetterProjection.fromTypeAndMethodName(
           'Windows.Data.Xml.Dom.IXmlNode', 'get_FirstChild');
-      expect(projection, isA<DefaultGetterProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
       expect(projection.returnType, equals('IXmlNode?'));
@@ -469,7 +455,6 @@ void main() {
     test('projects IMap<String, String>', () {
       final projection = GetterProjection.fromTypeAndMethodName(
           'Windows.UI.Notifications.INotificationData', 'get_Values');
-      expect(projection, isA<DefaultGetterProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
       expect(projection.returnType, equals('IMap<String, String>?'));
@@ -501,7 +486,6 @@ void main() {
     test('projects IMapView<String, Object?>', () {
       final projection = GetterProjection.fromTypeAndMethodName(
           'Windows.Devices.Enumeration.IDeviceInformation', 'get_Properties');
-      expect(projection, isA<DefaultGetterProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
       expect(projection.returnType, equals('Map<String, Object?>?'));
@@ -533,7 +517,6 @@ void main() {
     test('projects IReference<DateTime?>', () {
       final projection = GetterProjection.fromTypeAndMethodName(
           'Windows.UI.Notifications.IToastNotification', 'get_ExpirationTime');
-      expect(projection, isA<DefaultGetterProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
       expect(projection.returnType, equals('DateTime?'));
@@ -566,7 +549,6 @@ void main() {
       final projection = GetterProjection.fromTypeAndMethodName(
           'Windows.Graphics.Printing3D.Printing3DMultiplePropertyMaterial',
           'get_MaterialIndices');
-      expect(projection, isA<DefaultGetterProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
       expect(projection.returnType, equals('IVector<int>?'));
@@ -599,7 +581,6 @@ void main() {
     test('projects IVector<SortOrder>', () {
       final projection = GetterProjection.fromTypeAndMethodName(
           'Windows.Storage.Search.IQueryOptions', 'get_SortOrder');
-      expect(projection, isA<DefaultGetterProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
       expect(projection.returnType, equals('IVector<SortEntry>?'));
@@ -631,7 +612,6 @@ void main() {
     test('projects IVector<String>', () {
       final projection = GetterProjection.fromTypeAndMethodName(
           'Windows.Storage.Pickers.IFileOpenPicker', 'get_FileTypeFilter');
-      expect(projection, isA<DefaultGetterProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
       expect(projection.returnType, equals('IVector<String>?'));
@@ -663,7 +643,6 @@ void main() {
     test('projects IVector<Uri?>', () {
       final projection = GetterProjection.fromTypeAndMethodName(
           'Windows.Networking.Vpn.VpnPlugInProfile', 'get_ServerUris');
-      expect(projection, isA<DefaultGetterProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
       expect(projection.returnType, equals('IVector<Uri?>?'));
@@ -695,7 +674,6 @@ void main() {
     test('projects IVectorView<BasicGeoposition>', () {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Devices.Geolocation.IGeopath', 'get_Positions');
-      expect(projection, isA<DefaultGetterProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
       expect(projection.returnType, equals('List<BasicGeoposition>?'));
@@ -728,7 +706,6 @@ void main() {
     test('projects IVectorView<int>', () {
       final projection = GetterProjection.fromTypeAndMethodName(
           'Windows.AI.MachineLearning.ITensor', 'get_Shape');
-      expect(projection, isA<DefaultGetterProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
       expect(projection.returnType, equals('List<int>?'));
@@ -762,7 +739,6 @@ void main() {
       final projection = GetterProjection.fromTypeAndMethodName(
           'Windows.Graphics.Printing.OptionDetails.IPrintItemListOptionDetails',
           'get_Items');
-      expect(projection, isA<DefaultGetterProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
       expect(projection.returnType, equals('List<Object?>?'));
@@ -794,7 +770,6 @@ void main() {
     test('projects IVectorView<String>', () {
       final projection = GetterProjection.fromTypeAndMethodName(
           'Windows.Globalization.Calendar', 'get_Languages');
-      expect(projection, isA<DefaultGetterProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
       expect(projection.returnType, equals('List<String>?'));
@@ -826,7 +801,6 @@ void main() {
     test('projects IVectorView<Uri?>', () {
       final projection = GetterProjection.fromTypeAndMethodName(
           'Windows.ApplicationModel.AppInstallerInfo', 'get_UpdateUris');
-      expect(projection, isA<DefaultGetterProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
       expect(projection.returnType, equals('List<Uri?>?'));
@@ -858,7 +832,6 @@ void main() {
     test('projects List<DigitalWindowMode>', () {
       final projection = GetterProjection.fromTypeAndMethodName(
           'Windows.Media.Devices.DigitalWindowControl', 'get_SupportedModes');
-      expect(projection, isA<DefaultListGetterProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isTrue);
       expect(projection.returnType, equals('List<DigitalWindowMode>'));
@@ -868,36 +841,35 @@ void main() {
       expect(
           projection.preambles,
           equals([
-            'final retValueSize = calloc<Uint32>();',
+            'final valueSize = calloc<Uint32>();',
             'final value = calloc<Pointer<Int32>>();'
           ]));
       expect(projection.parametersPreamble, isEmpty);
       expect(
           projection.nativePrototype,
           equals(
-              'HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> retValueSize, Pointer<Pointer<Int32>> value)'));
+              'HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize, Pointer<Pointer<Int32>> value)'));
       expect(
           projection.dartPrototype,
           equals(
-              'int Function(VTablePointer lpVtbl, Pointer<Uint32> retValueSize, Pointer<Pointer<Int32>> value)'));
-      expect(projection.identifiers,
-          equals('ptr.ref.lpVtbl, retValueSize, value'));
+              'int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize, Pointer<Pointer<Int32>> value)'));
+      expect(
+          projection.identifiers, equals('ptr.ref.lpVtbl, valueSize, value'));
       expect(projection.parametersPostamble, isEmpty);
       expect(projection.failedCheck, equals(failedCheck()));
       expect(projection.nullCheck, isEmpty);
       expect(
           projection.returnStatement,
           equals(
-              'return value.value.toList(length: retValueSize.value).map(DigitalWindowMode.from).toList();'));
-      expect(projection.postambles,
-          equals(['free(retValueSize);', 'free(value);']));
+              'return value.value.toList(length: valueSize.value).map(DigitalWindowMode.from).toList();'));
+      expect(
+          projection.postambles, equals(['free(valueSize);', 'free(value);']));
     });
 
     test('projects List<Guid>', () {
       final projection = GetterProjection.fromTypeAndMethodName(
           'Windows.Media.Protection.PlayReady.IPlayReadyContentHeader2',
           'get_KeyIds');
-      expect(projection, isA<DefaultListGetterProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isTrue);
       expect(projection.returnType, equals('List<Guid>'));
@@ -906,36 +878,35 @@ void main() {
       expect(
           projection.preambles,
           equals([
-            'final retValueSize = calloc<Uint32>();',
+            'final contentKeyIdsSize = calloc<Uint32>();',
             'final contentKeyIds = calloc<Pointer<GUID>>();'
           ]));
       expect(projection.parametersPreamble, isEmpty);
       expect(
           projection.nativePrototype,
           equals(
-              'HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> retValueSize, Pointer<Pointer<GUID>> contentKeyIds)'));
+              'HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> contentKeyIdsSize, Pointer<Pointer<GUID>> contentKeyIds)'));
       expect(
           projection.dartPrototype,
           equals(
-              'int Function(VTablePointer lpVtbl, Pointer<Uint32> retValueSize, Pointer<Pointer<GUID>> contentKeyIds)'));
+              'int Function(VTablePointer lpVtbl, Pointer<Uint32> contentKeyIdsSize, Pointer<Pointer<GUID>> contentKeyIds)'));
       expect(projection.identifiers,
-          equals('ptr.ref.lpVtbl, retValueSize, contentKeyIds'));
+          equals('ptr.ref.lpVtbl, contentKeyIdsSize, contentKeyIds'));
       expect(projection.parametersPostamble, isEmpty);
       expect(projection.failedCheck, equals(failedCheck()));
       expect(projection.nullCheck, isEmpty);
       expect(
           projection.returnStatement,
           equals(
-              'return contentKeyIds.value.toList(length: retValueSize.value);'));
+              'return contentKeyIds.value.toList(length: contentKeyIdsSize.value);'));
       expect(projection.postambles,
-          equals(['free(retValueSize);', 'free(contentKeyIds);']));
+          equals(['free(contentKeyIdsSize);', 'free(contentKeyIds);']));
     });
 
     test('projects List<int>', () {
       final projection = GetterProjection.fromTypeAndMethodName(
           'Windows.Networking.NetworkOperators.IHotspotAuthenticationContext',
           'get_WirelessNetworkId');
-      expect(projection, isA<DefaultListGetterProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isTrue);
       expect(projection.returnType, equals('List<int>'));
@@ -944,33 +915,32 @@ void main() {
       expect(
           projection.preambles,
           equals([
-            'final retValueSize = calloc<Uint32>();',
+            'final valueSize = calloc<Uint32>();',
             'final value = calloc<Pointer<Uint8>>();'
           ]));
       expect(projection.parametersPreamble, isEmpty);
       expect(
           projection.nativePrototype,
           equals(
-              'HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> retValueSize, Pointer<Pointer<Uint8>> value)'));
+              'HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize, Pointer<Pointer<Uint8>> value)'));
       expect(
           projection.dartPrototype,
           equals(
-              'int Function(VTablePointer lpVtbl, Pointer<Uint32> retValueSize, Pointer<Pointer<Uint8>> value)'));
-      expect(projection.identifiers,
-          equals('ptr.ref.lpVtbl, retValueSize, value'));
+              'int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize, Pointer<Pointer<Uint8>> value)'));
+      expect(
+          projection.identifiers, equals('ptr.ref.lpVtbl, valueSize, value'));
       expect(projection.parametersPostamble, isEmpty);
       expect(projection.failedCheck, equals(failedCheck()));
       expect(projection.nullCheck, isEmpty);
       expect(projection.returnStatement,
-          equals('return value.value.toList(length: retValueSize.value);'));
-      expect(projection.postambles,
-          equals(['free(retValueSize);', 'free(value);']));
+          equals('return value.value.toList(length: valueSize.value);'));
+      expect(
+          projection.postambles, equals(['free(valueSize);', 'free(value);']));
     });
 
     test('projects List<String>', () {
       final projection = GetterProjection.fromTypeAndMethodName(
           'Windows.ApplicationModel.AppInfo', 'get_SupportedFileExtensions');
-      expect(projection, isA<DefaultListGetterProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isTrue);
       expect(projection.returnType, equals('List<String>'));
@@ -980,34 +950,33 @@ void main() {
       expect(
           projection.preambles,
           equals([
-            'final retValueSize = calloc<Uint32>();',
+            'final valueSize = calloc<Uint32>();',
             'final value = calloc<Pointer<IntPtr>>();'
           ]));
       expect(projection.parametersPreamble, isEmpty);
       expect(
           projection.nativePrototype,
           equals(
-              'HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> retValueSize, Pointer<Pointer<IntPtr>> value)'));
+              'HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize, Pointer<Pointer<IntPtr>> value)'));
       expect(
           projection.dartPrototype,
           equals(
-              'int Function(VTablePointer lpVtbl, Pointer<Uint32> retValueSize, Pointer<Pointer<IntPtr>> value)'));
-      expect(projection.identifiers,
-          equals('ptr.ref.lpVtbl, retValueSize, value'));
+              'int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize, Pointer<Pointer<IntPtr>> value)'));
+      expect(
+          projection.identifiers, equals('ptr.ref.lpVtbl, valueSize, value'));
       expect(projection.parametersPostamble, isEmpty);
       expect(projection.failedCheck, equals(failedCheck()));
       expect(projection.nullCheck, isEmpty);
       expect(projection.returnStatement,
-          equals('return value.value.toList(length: retValueSize.value);'));
-      expect(projection.postambles,
-          equals(['free(retValueSize);', 'free(value);']));
+          equals('return value.value.toList(length: valueSize.value);'));
+      expect(
+          projection.postambles, equals(['free(valueSize);', 'free(value);']));
     });
 
     test('projects List<Vector2>', () {
       final projection = GetterProjection.fromTypeAndMethodName(
           'Windows.Graphics.Holographic.IHolographicCameraViewportParameters',
           'get_HiddenAreaMesh');
-      expect(projection, isA<DefaultListGetterProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isTrue);
       expect(projection.returnType, equals('List<Vector2>'));
@@ -1016,33 +985,32 @@ void main() {
       expect(
           projection.preambles,
           equals([
-            'final retValueSize = calloc<Uint32>();',
+            'final valueSize = calloc<Uint32>();',
             'final value = calloc<Pointer<NativeVector2>>();'
           ]));
       expect(projection.parametersPreamble, isEmpty);
       expect(
           projection.nativePrototype,
           equals(
-              'HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> retValueSize, Pointer<Pointer<NativeVector2>> value)'));
+              'HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize, Pointer<Pointer<NativeVector2>> value)'));
       expect(
           projection.dartPrototype,
           equals(
-              'int Function(VTablePointer lpVtbl, Pointer<Uint32> retValueSize, Pointer<Pointer<NativeVector2>> value)'));
-      expect(projection.identifiers,
-          equals('ptr.ref.lpVtbl, retValueSize, value'));
+              'int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize, Pointer<Pointer<NativeVector2>> value)'));
+      expect(
+          projection.identifiers, equals('ptr.ref.lpVtbl, valueSize, value'));
       expect(projection.parametersPostamble, isEmpty);
       expect(projection.failedCheck, equals(failedCheck()));
       expect(projection.nullCheck, isEmpty);
       expect(projection.returnStatement,
-          equals('return value.value.toList(length: retValueSize.value);'));
-      expect(projection.postambles,
-          equals(['free(retValueSize);', 'free(value);']));
+          equals('return value.value.toList(length: valueSize.value);'));
+      expect(
+          projection.postambles, equals(['free(valueSize);', 'free(value);']));
     });
 
     test('projects Object?', () {
       final projection = GetterProjection.fromTypeAndMethodName(
           'Windows.Data.Xml.Dom.IXmlNode', 'get_LocalName');
-      expect(projection, isA<DefaultGetterProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
       expect(projection.returnType, equals('Object?'));
@@ -1072,7 +1040,6 @@ void main() {
     test('projects String', () {
       final projection = GetterProjection.fromTypeAndMethodName(
           'Windows.Globalization.ICalendar', 'get_NumeralSystem');
-      expect(projection, isA<DefaultGetterProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isTrue);
       expect(projection.returnType, equals('String'));
@@ -1099,7 +1066,6 @@ void main() {
     test('projects struct', () {
       final projection = GetterProjection.fromTypeAndMethodName(
           'Windows.Devices.Geolocation.IGeopoint', 'get_Position');
-      expect(projection, isA<DefaultGetterProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isTrue);
       expect(projection.returnType, equals('BasicGeoposition'));
@@ -1127,7 +1093,6 @@ void main() {
     test('projects Uri?', () {
       final projection = GetterProjection.fromTypeAndMethodName(
           'Windows.System.ILauncherOptions', 'get_FallbackUri');
-      expect(projection, isA<DefaultGetterProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
       expect(projection.returnType, equals('Uri?'));

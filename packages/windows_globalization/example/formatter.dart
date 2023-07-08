@@ -2,10 +2,6 @@
 // All rights reserved. Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import 'dart:ffi';
-
-import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart';
 import 'package:windows_globalization/windows_globalization.dart';
 
 void main() {
@@ -17,9 +13,8 @@ void main() {
   print('Formatted phone number: ${defaultFormatter.formatString(phone)}');
 
   // Create a PhoneNumberFormatter object for the US region
-  final usFormatter = PhoneNumberFormatter.fromPtr(calloc<COMObject>());
-  PhoneNumberFormatter.tryCreate('US', usFormatter);
-  final formattedPhone = usFormatter.formatString(phone);
+  final usFormatter = PhoneNumberFormatter.tryCreate('US');
+  final formattedPhone = usFormatter?.formatString(phone);
   print('Formatted phone number for the US region: $formattedPhone');
 
   // Get the country code and national direct dialing prefix for each region

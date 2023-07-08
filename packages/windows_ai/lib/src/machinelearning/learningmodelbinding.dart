@@ -62,9 +62,8 @@ class LearningModelBinding extends IInspectable
   bool hasKey(String key) => _iMapView.hasKey(key);
 
   @override
-  void split(
-          IMapView<String, Object?> first, IMapView<String, Object?> second) =>
-      _iMapView.split(first, second);
+  ({IMapView<String, Object?>? first, IMapView<String, Object?>? second})
+      split() => _iMapView.split();
 
   @override
   IIterator<IKeyValuePair<String, Object?>> first() => _iMapView.first();

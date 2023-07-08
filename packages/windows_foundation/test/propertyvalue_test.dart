@@ -27,8 +27,7 @@ void main() {
     final pv = PropertyValue.createUInt8Array(list);
     expect(pv.type, equals(PropertyType.uint8Array));
 
-    final newList = <int>[];
-    pv.getUInt8Array(newList);
+    final newList = pv.getUInt8Array();
     expect(newList.length, equals(5));
     expect(newList[0], equals(10));
     expect(newList[1], equals(20));
@@ -50,8 +49,7 @@ void main() {
     final pv = PropertyValue.createUInt16Array(list);
     expect(pv.type, equals(PropertyType.uint16Array));
 
-    final newList = <int>[];
-    pv.getUInt16Array(newList);
+    final newList = pv.getUInt16Array();
     expect(newList.length, equals(5));
     expect(newList[0], equals(100));
     expect(newList[1], equals(200));
@@ -78,8 +76,7 @@ void main() {
     final pv = PropertyValue.createGuidArray(list);
     expect(pv.type, equals(PropertyType.guidArray));
 
-    final newList = <Guid>[];
-    pv.getGuidArray(newList);
+    final newList = pv.getGuidArray();
     expect(newList.length, equals(3));
     expect(newList[0].toString(), equals(IID_IAsyncAction));
     expect(newList[1].toString(), equals(IID_IAsyncInfo));
@@ -120,8 +117,7 @@ void main() {
     final pv = PropertyValue.createInspectableArray(list);
     expect(pv.type, equals(PropertyType.inspectableArray));
 
-    final newList = <Object?>[];
-    pv.getInspectableArray(newList);
+    final newList = pv.getInspectableArray();
     expect(newList.length, equals(5));
     expect(newList[0], equals(5));
     expect(newList[1], isTrue);

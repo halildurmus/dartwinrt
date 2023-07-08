@@ -534,9 +534,9 @@ class IPropertyValueStatics extends IInspectable {
 
   IPropertyValue createUInt8Array(List<int> value) {
     final propertyValue = calloc<COMObject>();
-    final pValueArray = calloc<Uint8>(value.length);
+    final valueArray = calloc<Uint8>(value.length);
     for (var i = 0; i < value.length; i++) {
-      pValueArray[i] = value[i];
+      valueArray[i] = value[i];
     }
 
     final hr = ptr.ref.vtable
@@ -553,9 +553,9 @@ class IPropertyValueStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int valueSize,
                     Pointer<Uint8> value, Pointer<COMObject> propertyValue)>()(
-        ptr.ref.lpVtbl, value.length, pValueArray, propertyValue);
+        ptr.ref.lpVtbl, value.length, valueArray, propertyValue);
 
-    free(pValueArray);
+    free(valueArray);
 
     if (FAILED(hr)) {
       free(propertyValue);
@@ -567,9 +567,9 @@ class IPropertyValueStatics extends IInspectable {
 
   IPropertyValue createInt16Array(List<int> value) {
     final propertyValue = calloc<COMObject>();
-    final pValueArray = calloc<Int16>(value.length);
+    final valueArray = calloc<Int16>(value.length);
     for (var i = 0; i < value.length; i++) {
-      pValueArray[i] = value[i];
+      valueArray[i] = value[i];
     }
 
     final hr = ptr.ref.vtable
@@ -586,9 +586,9 @@ class IPropertyValueStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int valueSize,
                     Pointer<Int16> value, Pointer<COMObject> propertyValue)>()(
-        ptr.ref.lpVtbl, value.length, pValueArray, propertyValue);
+        ptr.ref.lpVtbl, value.length, valueArray, propertyValue);
 
-    free(pValueArray);
+    free(valueArray);
 
     if (FAILED(hr)) {
       free(propertyValue);
@@ -600,9 +600,9 @@ class IPropertyValueStatics extends IInspectable {
 
   IPropertyValue createUInt16Array(List<int> value) {
     final propertyValue = calloc<COMObject>();
-    final pValueArray = calloc<Uint16>(value.length);
+    final valueArray = calloc<Uint16>(value.length);
     for (var i = 0; i < value.length; i++) {
-      pValueArray[i] = value[i];
+      valueArray[i] = value[i];
     }
 
     final hr = ptr.ref.vtable
@@ -619,9 +619,9 @@ class IPropertyValueStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int valueSize,
                     Pointer<Uint16> value, Pointer<COMObject> propertyValue)>()(
-        ptr.ref.lpVtbl, value.length, pValueArray, propertyValue);
+        ptr.ref.lpVtbl, value.length, valueArray, propertyValue);
 
-    free(pValueArray);
+    free(valueArray);
 
     if (FAILED(hr)) {
       free(propertyValue);
@@ -633,9 +633,9 @@ class IPropertyValueStatics extends IInspectable {
 
   IPropertyValue createInt32Array(List<int> value) {
     final propertyValue = calloc<COMObject>();
-    final pValueArray = calloc<Int32>(value.length);
+    final valueArray = calloc<Int32>(value.length);
     for (var i = 0; i < value.length; i++) {
-      pValueArray[i] = value[i];
+      valueArray[i] = value[i];
     }
 
     final hr = ptr.ref.vtable
@@ -652,9 +652,9 @@ class IPropertyValueStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int valueSize,
                     Pointer<Int32> value, Pointer<COMObject> propertyValue)>()(
-        ptr.ref.lpVtbl, value.length, pValueArray, propertyValue);
+        ptr.ref.lpVtbl, value.length, valueArray, propertyValue);
 
-    free(pValueArray);
+    free(valueArray);
 
     if (FAILED(hr)) {
       free(propertyValue);
@@ -666,9 +666,9 @@ class IPropertyValueStatics extends IInspectable {
 
   IPropertyValue createUInt32Array(List<int> value) {
     final propertyValue = calloc<COMObject>();
-    final pValueArray = calloc<Uint32>(value.length);
+    final valueArray = calloc<Uint32>(value.length);
     for (var i = 0; i < value.length; i++) {
-      pValueArray[i] = value[i];
+      valueArray[i] = value[i];
     }
 
     final hr = ptr.ref.vtable
@@ -685,9 +685,9 @@ class IPropertyValueStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int valueSize,
                     Pointer<Uint32> value, Pointer<COMObject> propertyValue)>()(
-        ptr.ref.lpVtbl, value.length, pValueArray, propertyValue);
+        ptr.ref.lpVtbl, value.length, valueArray, propertyValue);
 
-    free(pValueArray);
+    free(valueArray);
 
     if (FAILED(hr)) {
       free(propertyValue);
@@ -699,9 +699,9 @@ class IPropertyValueStatics extends IInspectable {
 
   IPropertyValue createInt64Array(List<int> value) {
     final propertyValue = calloc<COMObject>();
-    final pValueArray = calloc<Int64>(value.length);
+    final valueArray = calloc<Int64>(value.length);
     for (var i = 0; i < value.length; i++) {
-      pValueArray[i] = value[i];
+      valueArray[i] = value[i];
     }
 
     final hr = ptr.ref.vtable
@@ -718,9 +718,9 @@ class IPropertyValueStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int valueSize,
                     Pointer<Int64> value, Pointer<COMObject> propertyValue)>()(
-        ptr.ref.lpVtbl, value.length, pValueArray, propertyValue);
+        ptr.ref.lpVtbl, value.length, valueArray, propertyValue);
 
-    free(pValueArray);
+    free(valueArray);
 
     if (FAILED(hr)) {
       free(propertyValue);
@@ -732,9 +732,9 @@ class IPropertyValueStatics extends IInspectable {
 
   IPropertyValue createUInt64Array(List<int> value) {
     final propertyValue = calloc<COMObject>();
-    final pValueArray = calloc<Uint64>(value.length);
+    final valueArray = calloc<Uint64>(value.length);
     for (var i = 0; i < value.length; i++) {
-      pValueArray[i] = value[i];
+      valueArray[i] = value[i];
     }
 
     final hr = ptr.ref.vtable
@@ -751,9 +751,9 @@ class IPropertyValueStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int valueSize,
                     Pointer<Uint64> value, Pointer<COMObject> propertyValue)>()(
-        ptr.ref.lpVtbl, value.length, pValueArray, propertyValue);
+        ptr.ref.lpVtbl, value.length, valueArray, propertyValue);
 
-    free(pValueArray);
+    free(valueArray);
 
     if (FAILED(hr)) {
       free(propertyValue);
@@ -765,9 +765,9 @@ class IPropertyValueStatics extends IInspectable {
 
   IPropertyValue createSingleArray(List<double> value) {
     final propertyValue = calloc<COMObject>();
-    final pValueArray = calloc<Float>(value.length);
+    final valueArray = calloc<Float>(value.length);
     for (var i = 0; i < value.length; i++) {
-      pValueArray[i] = value[i];
+      valueArray[i] = value[i];
     }
 
     final hr = ptr.ref.vtable
@@ -784,9 +784,9 @@ class IPropertyValueStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int valueSize,
                     Pointer<Float> value, Pointer<COMObject> propertyValue)>()(
-        ptr.ref.lpVtbl, value.length, pValueArray, propertyValue);
+        ptr.ref.lpVtbl, value.length, valueArray, propertyValue);
 
-    free(pValueArray);
+    free(valueArray);
 
     if (FAILED(hr)) {
       free(propertyValue);
@@ -798,9 +798,9 @@ class IPropertyValueStatics extends IInspectable {
 
   IPropertyValue createDoubleArray(List<double> value) {
     final propertyValue = calloc<COMObject>();
-    final pValueArray = calloc<Double>(value.length);
+    final valueArray = calloc<Double>(value.length);
     for (var i = 0; i < value.length; i++) {
-      pValueArray[i] = value[i];
+      valueArray[i] = value[i];
     }
 
     final hr = ptr.ref.vtable
@@ -817,9 +817,9 @@ class IPropertyValueStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int valueSize,
                     Pointer<Double> value, Pointer<COMObject> propertyValue)>()(
-        ptr.ref.lpVtbl, value.length, pValueArray, propertyValue);
+        ptr.ref.lpVtbl, value.length, valueArray, propertyValue);
 
-    free(pValueArray);
+    free(valueArray);
 
     if (FAILED(hr)) {
       free(propertyValue);
@@ -831,9 +831,9 @@ class IPropertyValueStatics extends IInspectable {
 
   IPropertyValue createChar16Array(List<int> value) {
     final propertyValue = calloc<COMObject>();
-    final pValueArray = calloc<Uint16>(value.length);
+    final valueArray = calloc<Uint16>(value.length);
     for (var i = 0; i < value.length; i++) {
-      pValueArray[i] = value[i];
+      valueArray[i] = value[i];
     }
 
     final hr = ptr.ref.vtable
@@ -850,9 +850,9 @@ class IPropertyValueStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int valueSize,
                     Pointer<Uint16> value, Pointer<COMObject> propertyValue)>()(
-        ptr.ref.lpVtbl, value.length, pValueArray, propertyValue);
+        ptr.ref.lpVtbl, value.length, valueArray, propertyValue);
 
-    free(pValueArray);
+    free(valueArray);
 
     if (FAILED(hr)) {
       free(propertyValue);
@@ -864,9 +864,9 @@ class IPropertyValueStatics extends IInspectable {
 
   IPropertyValue createBooleanArray(List<bool> value) {
     final propertyValue = calloc<COMObject>();
-    final pValueArray = calloc<Bool>(value.length);
+    final valueArray = calloc<Bool>(value.length);
     for (var i = 0; i < value.length; i++) {
-      pValueArray[i] = value[i];
+      valueArray[i] = value[i];
     }
 
     final hr = ptr.ref.vtable
@@ -883,9 +883,9 @@ class IPropertyValueStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int valueSize,
                     Pointer<Bool> value, Pointer<COMObject> propertyValue)>()(
-        ptr.ref.lpVtbl, value.length, pValueArray, propertyValue);
+        ptr.ref.lpVtbl, value.length, valueArray, propertyValue);
 
-    free(pValueArray);
+    free(valueArray);
 
     if (FAILED(hr)) {
       free(propertyValue);
@@ -898,10 +898,10 @@ class IPropertyValueStatics extends IInspectable {
   IPropertyValue createStringArray(List<String> value) {
     final propertyValue = calloc<COMObject>();
     final valueHandles = <int>[];
-    final pValueArray = calloc<HSTRING>(value.length);
+    final valueArray = calloc<HSTRING>(value.length);
     for (var i = 0; i < value.length; i++) {
-      pValueArray[i] = value[i].toHString();
-      valueHandles.add(pValueArray[i]);
+      valueArray[i] = value[i].toHString();
+      valueHandles.add(valueArray[i]);
     }
 
     final hr = ptr.ref.vtable
@@ -918,10 +918,10 @@ class IPropertyValueStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int valueSize,
                     Pointer<IntPtr> value, Pointer<COMObject> propertyValue)>()(
-        ptr.ref.lpVtbl, value.length, pValueArray, propertyValue);
+        ptr.ref.lpVtbl, value.length, valueArray, propertyValue);
 
     valueHandles.forEach(WindowsDeleteString);
-    free(pValueArray);
+    free(valueArray);
 
     if (FAILED(hr)) {
       free(propertyValue);
@@ -933,9 +933,9 @@ class IPropertyValueStatics extends IInspectable {
 
   IPropertyValue createInspectableArray(List<Object?> value) {
     final propertyValue = calloc<COMObject>();
-    final pValueArray = calloc<VTablePointer>(value.length);
+    final valueArray = calloc<VTablePointer>(value.length);
     for (var i = 0; i < value.length; i++) {
-      pValueArray[i] = value[i]?.intoBox().ptr.ref.lpVtbl ?? nullptr;
+      valueArray[i] = value[i]?.intoBox().ptr.ref.lpVtbl ?? nullptr;
     }
 
     final hr = ptr.ref.vtable
@@ -955,9 +955,9 @@ class IPropertyValueStatics extends IInspectable {
                     int valueSize,
                     Pointer<VTablePointer> value,
                     Pointer<COMObject> propertyValue)>()(
-        ptr.ref.lpVtbl, value.length, pValueArray, propertyValue);
+        ptr.ref.lpVtbl, value.length, valueArray, propertyValue);
 
-    free(pValueArray);
+    free(valueArray);
 
     if (FAILED(hr)) {
       free(propertyValue);
@@ -970,10 +970,10 @@ class IPropertyValueStatics extends IInspectable {
   IPropertyValue createGuidArray(List<Guid> value) {
     final propertyValue = calloc<COMObject>();
     final nativeStructPtrs = <Pointer<GUID>>[];
-    final pValueArray = calloc<GUID>(value.length);
+    final valueArray = calloc<GUID>(value.length);
     for (var i = 0; i < value.length; i++) {
       final nativeStructPtr = value[i].toNativeGUID();
-      pValueArray[i] = nativeStructPtr.ref;
+      valueArray[i] = nativeStructPtr.ref;
       nativeStructPtrs.add(nativeStructPtr);
     }
 
@@ -991,10 +991,10 @@ class IPropertyValueStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int valueSize,
                     Pointer<GUID> value, Pointer<COMObject> propertyValue)>()(
-        ptr.ref.lpVtbl, value.length, pValueArray, propertyValue);
+        ptr.ref.lpVtbl, value.length, valueArray, propertyValue);
 
     nativeStructPtrs.forEach(free);
-    free(pValueArray);
+    free(valueArray);
 
     if (FAILED(hr)) {
       free(propertyValue);
@@ -1006,9 +1006,9 @@ class IPropertyValueStatics extends IInspectable {
 
   IPropertyValue createDateTimeArray(List<DateTime> value) {
     final propertyValue = calloc<COMObject>();
-    final pValueArray = calloc<Int64>(value.length);
+    final valueArray = calloc<Int64>(value.length);
     for (var i = 0; i < value.length; i++) {
-      pValueArray[i] = value[i].toWinRTDateTime();
+      valueArray[i] = value[i].toWinRTDateTime();
     }
 
     final hr = ptr.ref.vtable
@@ -1025,9 +1025,9 @@ class IPropertyValueStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int valueSize,
                     Pointer<Int64> value, Pointer<COMObject> propertyValue)>()(
-        ptr.ref.lpVtbl, value.length, pValueArray, propertyValue);
+        ptr.ref.lpVtbl, value.length, valueArray, propertyValue);
 
-    free(pValueArray);
+    free(valueArray);
 
     if (FAILED(hr)) {
       free(propertyValue);
@@ -1039,9 +1039,9 @@ class IPropertyValueStatics extends IInspectable {
 
   IPropertyValue createTimeSpanArray(List<Duration> value) {
     final propertyValue = calloc<COMObject>();
-    final pValueArray = calloc<Int64>(value.length);
+    final valueArray = calloc<Int64>(value.length);
     for (var i = 0; i < value.length; i++) {
-      pValueArray[i] = value[i].toWinRTDuration();
+      valueArray[i] = value[i].toWinRTDuration();
     }
 
     final hr = ptr.ref.vtable
@@ -1058,9 +1058,9 @@ class IPropertyValueStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int valueSize,
                     Pointer<Int64> value, Pointer<COMObject> propertyValue)>()(
-        ptr.ref.lpVtbl, value.length, pValueArray, propertyValue);
+        ptr.ref.lpVtbl, value.length, valueArray, propertyValue);
 
-    free(pValueArray);
+    free(valueArray);
 
     if (FAILED(hr)) {
       free(propertyValue);
@@ -1073,10 +1073,10 @@ class IPropertyValueStatics extends IInspectable {
   IPropertyValue createPointArray(List<Point> value) {
     final propertyValue = calloc<COMObject>();
     final nativeStructPtrs = <Pointer<NativePoint>>[];
-    final pValueArray = calloc<NativePoint>(value.length);
+    final valueArray = calloc<NativePoint>(value.length);
     for (var i = 0; i < value.length; i++) {
       final nativeStructPtr = value[i].toNative();
-      pValueArray[i] = nativeStructPtr.ref;
+      valueArray[i] = nativeStructPtr.ref;
       nativeStructPtrs.add(nativeStructPtr);
     }
 
@@ -1097,10 +1097,10 @@ class IPropertyValueStatics extends IInspectable {
                     int valueSize,
                     Pointer<NativePoint> value,
                     Pointer<COMObject> propertyValue)>()(
-        ptr.ref.lpVtbl, value.length, pValueArray, propertyValue);
+        ptr.ref.lpVtbl, value.length, valueArray, propertyValue);
 
     nativeStructPtrs.forEach(free);
-    free(pValueArray);
+    free(valueArray);
 
     if (FAILED(hr)) {
       free(propertyValue);
@@ -1113,10 +1113,10 @@ class IPropertyValueStatics extends IInspectable {
   IPropertyValue createSizeArray(List<Size> value) {
     final propertyValue = calloc<COMObject>();
     final nativeStructPtrs = <Pointer<NativeSize>>[];
-    final pValueArray = calloc<NativeSize>(value.length);
+    final valueArray = calloc<NativeSize>(value.length);
     for (var i = 0; i < value.length; i++) {
       final nativeStructPtr = value[i].toNative();
-      pValueArray[i] = nativeStructPtr.ref;
+      valueArray[i] = nativeStructPtr.ref;
       nativeStructPtrs.add(nativeStructPtr);
     }
 
@@ -1137,10 +1137,10 @@ class IPropertyValueStatics extends IInspectable {
                     int valueSize,
                     Pointer<NativeSize> value,
                     Pointer<COMObject> propertyValue)>()(
-        ptr.ref.lpVtbl, value.length, pValueArray, propertyValue);
+        ptr.ref.lpVtbl, value.length, valueArray, propertyValue);
 
     nativeStructPtrs.forEach(free);
-    free(pValueArray);
+    free(valueArray);
 
     if (FAILED(hr)) {
       free(propertyValue);
@@ -1153,10 +1153,10 @@ class IPropertyValueStatics extends IInspectable {
   IPropertyValue createRectArray(List<Rect> value) {
     final propertyValue = calloc<COMObject>();
     final nativeStructPtrs = <Pointer<NativeRect>>[];
-    final pValueArray = calloc<NativeRect>(value.length);
+    final valueArray = calloc<NativeRect>(value.length);
     for (var i = 0; i < value.length; i++) {
       final nativeStructPtr = value[i].toNative();
-      pValueArray[i] = nativeStructPtr.ref;
+      valueArray[i] = nativeStructPtr.ref;
       nativeStructPtrs.add(nativeStructPtr);
     }
 
@@ -1177,10 +1177,10 @@ class IPropertyValueStatics extends IInspectable {
                     int valueSize,
                     Pointer<NativeRect> value,
                     Pointer<COMObject> propertyValue)>()(
-        ptr.ref.lpVtbl, value.length, pValueArray, propertyValue);
+        ptr.ref.lpVtbl, value.length, valueArray, propertyValue);
 
     nativeStructPtrs.forEach(free);
-    free(pValueArray);
+    free(valueArray);
 
     if (FAILED(hr)) {
       free(propertyValue);

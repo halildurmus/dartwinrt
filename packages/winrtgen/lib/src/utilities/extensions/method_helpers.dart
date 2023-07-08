@@ -6,12 +6,17 @@ import 'package:winmd/winmd.dart';
 
 import '../../models/models.dart';
 import '../../projections/projections.dart';
+import 'type_identifier_helpers.dart';
 
 extension MethodHelpers on Method {
   /// Returns a copy of this method.
   Method clone() => Method.fromToken(scope, token);
 
+  /// Whether this method returns `void`.
+  bool get isVoid => returnType.typeIdentifier.isVoidType;
+
   /// Returns the appropriate [ProjectionKind] for this method.
-  ProjectionKind get projectionKind =>
-      TypeProjection(returnType.typeIdentifier).projectionKind;
+  ProjectionKind get projectionKind => parameters.any((p) => p.isOutParam)
+      ? ProjectionKind.record
+      : TypeProjection(returnType.typeIdentifier).projectionKind;
 }
