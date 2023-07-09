@@ -2,36 +2,25 @@
 // All rights reserved. Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-// Extension methods to convert double arrays to List<double>
-
 import 'dart:ffi';
+import 'dart:typed_data';
 
 /// @nodoc
-extension DoubleArrayToListConversion on Pointer<Double> {
-  /// Creates a [List] from `Pointer<Double>`.
+extension DoubleArrayToFloat64ListConversion on Pointer<Double> {
+  /// Creates a [Float64List] from `Pointer<Double>`.
   ///
   /// [length] must not be greater than the number of elements stored inside the
   /// `Pointer<Double>`.
-  ///
-  /// ```dart
-  /// final pDouble = ...
-  /// final list = pDouble.toList(length: 5);
-  /// ```
-  List<double> toList({int length = 1}) =>
-      [for (var i = 0; i < length; i++) this[i]];
+  Float64List toList({int length = 1}) =>
+      Float64List.fromList(asTypedList(length));
 }
 
 /// @nodoc
-extension FloatArrayToListConversion on Pointer<Float> {
-  /// Creates a [List] from `Pointer<Float>`.
+extension FloatArrayToFloat32ListConversion on Pointer<Float> {
+  /// Creates a [Float32List] from `Pointer<Float>`.
   ///
   /// [length] must not be greater than the number of elements stored inside the
   /// `Pointer<Float>`.
-  ///
-  /// ```dart
-  /// final pFloat = ...
-  /// final list = pFloat.toList(length: 5);
-  /// ```
-  List<double> toList({int length = 1}) =>
-      [for (var i = 0; i < length; i++) this[i]];
+  Float32List toList({int length = 1}) =>
+      Float32List.fromList(asTypedList(length));
 }

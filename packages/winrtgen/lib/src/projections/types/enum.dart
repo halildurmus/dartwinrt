@@ -18,8 +18,11 @@ final class EnumParameterProjection extends ParameterProjection {
   String get into => '$identifier.value';
 
   @override
-  String get toListCreator => '.map($type.from).toList()';
+  String get toListArg => 'enumCreator';
 
   @override
   String get toListInto => '$identifier[i].value';
+
+  @override
+  String get toListIdentifier => 'toEnumList';
 }

@@ -13,7 +13,7 @@ import 'ipropertyvalue_helpers.dart';
 import 'uri_conversions.dart';
 
 /// @nodoc
-extension COMObjectHelpers on Pointer<COMObject> {
+extension COMObjectArrayHelpers on Pointer<COMObject> {
   /// Whether this is a null pointer.
   bool get isNull => address == 0 || ref.isNull;
 
@@ -49,11 +49,6 @@ extension COMObjectHelpers on Pointer<COMObject> {
   ///
   /// [length] must not be greater than the number of elements stored inside the
   /// `Pointer<COMObject>`.
-  ///
-  /// ```dart
-  /// final pComObject = ...
-  /// final list = pComObject.toList(HostName.fromPtr, length: 4);
-  /// ```
   List<T> toList<T>(T Function(Pointer<COMObject>) creator, {int length = 1}) {
     final list = <T>[];
 

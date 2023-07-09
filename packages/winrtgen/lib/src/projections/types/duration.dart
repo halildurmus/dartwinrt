@@ -18,8 +18,8 @@ final class DurationParameterProjection extends ParameterProjection {
   String get into => '$identifier.toWinRTDuration()';
 
   @override
-  String get toListCreator => '.map(($identifier) => $creator).toList()';
+  String get toListInto => '$identifier[i].toWinRTDuration()';
 
   @override
-  String get toListInto => '$identifier[i].toWinRTDuration()';
+  String get toListIdentifier => 'toDurationList';
 }

@@ -3533,7 +3533,7 @@ final class _IVectorViewWinRTEnum<T> extends IVectorView<T> {
 
       return (
         retValuePtr.value,
-        items: items.toList(length: retValuePtr.value).map(enumCreator).toList()
+        items: items.toEnumList(enumCreator, length: retValuePtr.value)
       );
     } finally {
       free(items);
@@ -3638,7 +3638,7 @@ final class _IVectorViewWinRTFlagsEnum<T> extends IVectorView<T> {
 
       return (
         retValuePtr.value,
-        items: items.toList(length: retValuePtr.value).map(enumCreator).toList()
+        items: items.toEnumList(enumCreator, length: retValuePtr.value)
       );
     } finally {
       free(items);
