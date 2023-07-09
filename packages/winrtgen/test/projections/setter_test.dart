@@ -51,7 +51,6 @@ void main() {
     test('projects bool', () {
       final projection = SetterProjection.fromTypeAndMethodName(
           'Windows.UI.Notifications.IToastNotification2', 'put_SuppressPopup');
-      expect(projection, isA<DefaultSetterProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
       expect(projection.returnType, isEmpty);
@@ -74,7 +73,6 @@ void main() {
     test('projects class', () {
       final projection = SetterProjection.fromTypeAndMethodName(
           'Windows.UI.Notifications.IToastNotification4', 'put_Data');
-      expect(projection, isA<DefaultSetterProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
       expect(projection.returnType, isEmpty);
@@ -100,7 +98,6 @@ void main() {
     test('projects DateTime', () {
       final projection = SetterProjection.fromTypeAndMethodName(
           'Windows.Storage.FileProperties.ImageProperties', 'put_DateTaken');
-      expect(projection, isA<DefaultSetterProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
       expect(projection.returnType, isEmpty);
@@ -124,7 +121,6 @@ void main() {
     test('projects delegate', () {
       final projection = SetterProjection.fromTypeAndMethodName(
           'Windows.Foundation.IAsyncAction', 'put_Completed');
-      expect(projection, isA<DefaultSetterProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
       expect(projection.returnType, isEmpty);
@@ -151,7 +147,6 @@ void main() {
     test('projects double', () {
       final projection = SetterProjection.fromTypeAndMethodName(
           'Windows.Devices.Geolocation.IGeolocator', 'put_MovementThreshold');
-      expect(projection, isA<DefaultSetterProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
       expect(projection.returnType, isEmpty);
@@ -174,7 +169,6 @@ void main() {
     test('projects Duration', () {
       final projection = SetterProjection.fromTypeAndMethodName(
           'Windows.Media.Playback.MediaPlaybackSession', 'put_Position');
-      expect(projection, isA<DefaultSetterProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
       expect(projection.returnType, isEmpty);
@@ -198,7 +192,6 @@ void main() {
     test('projects enum', () {
       final projection = SetterProjection.fromTypeAndMethodName(
           'Windows.Storage.Pickers.IFileOpenPicker', 'put_ViewMode');
-      expect(projection, isA<DefaultSetterProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
       expect(projection.returnType, isEmpty);
@@ -222,7 +215,6 @@ void main() {
       final projection = SetterProjection.fromTypeAndMethodName(
           'Windows.Graphics.Display.IDisplayInformationStatics',
           'put_AutoRotationPreferences');
-      expect(projection, isA<DefaultSetterProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
       expect(projection.returnType, isEmpty);
@@ -246,7 +238,6 @@ void main() {
     test('projects Guid', () {
       final projection = SetterProjection.fromTypeAndMethodName(
           'Windows.Data.Pdf.IPdfPageRenderOptions', 'put_BitmapEncoderId');
-      expect(projection, isA<DefaultSetterProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
       expect(projection.returnType, isEmpty);
@@ -272,7 +263,6 @@ void main() {
     test('projects int', () {
       final projection = SetterProjection.fromTypeAndMethodName(
           'Windows.Globalization.ICalendar', 'put_Era');
-      expect(projection, isA<DefaultSetterProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
       expect(projection.returnType, isEmpty);
@@ -296,7 +286,6 @@ void main() {
       final projection = SetterProjection.fromTypeAndMethodName(
           'Windows.Storage.Pickers.Provider.ITargetFileRequest',
           'put_TargetFile');
-      expect(projection, isA<DefaultSetterProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
       expect(projection.returnType, isEmpty);
@@ -351,7 +340,6 @@ void main() {
     test('projects IVector<HostName?>', () {
       final projection = SetterProjection.fromTypeAndMethodName(
           'Windows.Networking.Vpn.IVpnNamespaceInfo', 'put_DnsServers');
-      expect(projection, isA<DefaultSetterProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
       expect(projection.returnType, isEmpty);
@@ -378,7 +366,6 @@ void main() {
     test('projects IVector<Object?>', () {
       final projection = SetterProjection.fromTypeAndMethodName(
           'Windows.UI.Xaml.Controls.Primitives.ILoopingSelector', 'put_Items');
-      expect(projection, isA<DefaultSetterProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
       expect(projection.returnType, isEmpty);
@@ -405,7 +392,6 @@ void main() {
       final projection = SetterProjection.fromTypeAndMethodName(
           'Windows.Media.ContentRestrictions.IRatedContentDescription',
           'put_Ratings');
-      expect(projection, isA<DefaultSetterProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
       expect(projection.returnType, isEmpty);
@@ -432,7 +418,6 @@ void main() {
       final projection = SetterProjection.fromTypeAndMethodName(
           'Windows.ApplicationModel.Payments.IPaymentDetails',
           'put_DisplayItems');
-      expect(projection, isA<DefaultSetterProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
       expect(projection.returnType, isEmpty);
@@ -460,7 +445,6 @@ void main() {
       final projection = SetterProjection.fromTypeAndMethodName(
           'Windows.ApplicationModel.Resources.Core.IResourceContext',
           'put_Languages');
-      expect(projection, isA<DefaultSetterProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
       expect(projection.returnType, isEmpty);
@@ -489,7 +473,6 @@ void main() {
     test('projects Object?', () {
       final projection = SetterProjection.fromTypeAndMethodName(
           'Windows.Data.Xml.Dom.IXmlNode', 'put_NodeValue');
-      expect(projection, isA<DefaultSetterProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
       expect(projection.header, equals('set nodeValue(Object? value)'));
@@ -515,7 +498,6 @@ void main() {
     test('projects String', () {
       final projection = SetterProjection.fromTypeAndMethodName(
           'Windows.Globalization.ICalendar', 'put_NumeralSystem');
-      expect(projection, isA<DefaultSetterProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
       expect(projection.header, equals('set numeralSystem(String value)'));
@@ -540,7 +522,6 @@ void main() {
     test('projects struct', () {
       final projection = SetterProjection.fromTypeAndMethodName(
           'Windows.Gaming.Input.IGamepad', 'put_Vibration');
-      expect(projection, isA<DefaultSetterProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
       expect(
@@ -571,7 +552,6 @@ void main() {
     test('projects Uri?', () {
       final projection = SetterProjection.fromTypeAndMethodName(
           'Windows.System.ILauncherOptions', 'put_FallbackUri');
-      expect(projection, isA<DefaultSetterProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
       expect(projection.header, equals('set fallbackUri(Uri? value)'));

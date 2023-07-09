@@ -70,10 +70,10 @@ extension TypeIdentifierHelpers on TypeIdentifier {
 
     if (shortName case 'IVector' || 'IVectorView') {
       final iid = iterableIidFromVectorType(typeIdentifier);
-      args.add("iterableIid: ${quote(iid)}");
+      args.add('iterableIid: ${quote(iid)}');
     } else if (shortName case 'IMap' || 'IMapView') {
       final iid = iterableIidFromMapType(typeIdentifier);
-      args.add("iterableIid: ${quote(iid)}");
+      args.add('iterableIid: ${quote(iid)}');
     } else if (shortName == 'IReference') {
       final referenceArgSignature = typeArgs.first.signature;
       final referenceSignature =

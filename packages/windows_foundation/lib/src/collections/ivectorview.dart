@@ -277,11 +277,11 @@ abstract interface class IVectorView<T> extends IInspectable
   /// Retrieves the index of a specified item in the vector view.
   ///
   /// Does not work for `Uri` [value]s.
-  bool indexOf(T value, Pointer<Uint32> index);
+  (bool, {int index}) indexOf(T value);
 
   /// Retrieves multiple items from the vector view beginning at the given
   /// index.
-  int getMany(int startIndex, int valueSize, List<T> value);
+  (int, {List<T> items}) getMany(int startIndex, int valueSize);
 
   late final _iIterable = IIterable<T>.fromPtr(toInterface(_iterableIid),
       creator: _creator,
@@ -295,10 +295,8 @@ abstract interface class IVectorView<T> extends IInspectable
   /// Creates an unmodifiable [List] from the current [IVectorView] instance.
   List<T> toList() {
     if (size == 0) return List.unmodifiable(<T>[]);
-
-    final list = <T>[];
-    getMany(0, size, list);
-    return List.unmodifiable(list);
+    final (_, :items) = getMany(0, size);
+    return List.unmodifiable(items);
   }
 
   /// The object at the given [index] in the list.

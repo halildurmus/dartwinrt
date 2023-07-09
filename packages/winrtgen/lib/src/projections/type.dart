@@ -86,6 +86,9 @@ final class TypeProjection {
 
   bool get isGuid => dartType == 'GUID';
 
+  bool get isIReference =>
+      typeIdentifier.type?.name.endsWith('IReference`1') ?? false;
+
   bool get isMap => typeIdentifier.type?.name.endsWith('IMap`2') ?? false;
 
   bool get isMapView =>
@@ -94,9 +97,6 @@ final class TypeProjection {
   bool get isObjectType => typeIdentifier.isObjectType;
 
   bool get isPointer => typeIdentifier.isPointerType;
-
-  bool get isReference =>
-      typeIdentifier.type?.name.endsWith('IReference`1') ?? false;
 
   bool get isReferenceType => typeIdentifier.isReferenceType;
 
@@ -155,7 +155,7 @@ final class TypeProjection {
   ///
   /// Throws a [WinRTGenException] if [typeIdentifier] is cannot be
   /// de-referenced.
-  TypeProjection _dereference() =>
+  TypeProjection dereference() =>
       TypeProjection(dereferenceType(typeIdentifier), isInParam: isInParam);
 
   TypeTuple _unwrapGenericTypeArg() {
@@ -172,15 +172,15 @@ final class TypeProjection {
 
   /// Takes a type such as `pointerTypeModifier` -> `BaseType.Uint32` and
   /// converts it to `Pointer<Uint32>`.
-  TypeTuple _unwrapPointerType() => _dereference().pointer;
+  TypeTuple _unwrapPointerType() => dereference().pointer;
 
   /// Takes a type such as `referenceTypeModifier` -> `BaseType.Int32` and
   /// converts it to `Pointer<Int32>`.
-  TypeTuple _unwrapReferenceType() => _dereference().pointer;
+  TypeTuple _unwrapReferenceType() => dereference().pointer;
 
   /// Takes a type such as `simpleArrayType` -> `BaseType.Uint8` and converts
   /// it to `Pointer<Uint8>`.
-  TypeTuple _unwrapSimpleArrayType() => _dereference().pointer;
+  TypeTuple _unwrapSimpleArrayType() => dereference().pointer;
 
   /// Takes a type such as `valueTypeModifier` ->
   /// `Windows.Devices.Geolocation.BasicGeoposition` and converts it to

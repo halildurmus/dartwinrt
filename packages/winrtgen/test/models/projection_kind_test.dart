@@ -80,7 +80,7 @@ void main() {
           'Windows.Foundation.IPropertyValue', 'GetInt32Array');
       final paramProjection = methodProjection.parameters.last;
       expect(ProjectionKind.from(paramProjection.typeProjection),
-          equals(ProjectionKind.dartPrimitiveList));
+          equals(ProjectionKind.dartPrimitiveArray));
     });
 
     test('returns dateTime type', () {
@@ -95,7 +95,7 @@ void main() {
           'Windows.Foundation.IPropertyValue', 'GetDateTimeArray');
       final paramProjection = methodProjection.parameters.last;
       expect(ProjectionKind.from(paramProjection.typeProjection),
-          equals(ProjectionKind.dateTimeList));
+          equals(ProjectionKind.dateTimeArray));
     });
 
     test('returns delegate type', () {
@@ -118,7 +118,7 @@ void main() {
           'Windows.Foundation.IPropertyValue', 'GetTimeSpanArray');
       final paramProjection = methodProjection.parameters.last;
       expect(ProjectionKind.from(paramProjection.typeProjection),
-          equals(ProjectionKind.durationList));
+          equals(ProjectionKind.durationArray));
     });
 
     test('returns enum_ type', () {
@@ -165,7 +165,7 @@ void main() {
           'Windows.Networking.Connectivity.INetworkAdapter',
           'get_NetworkAdapterId');
       expect(ProjectionKind.from(methodProjection.typeProjection),
-          equals(ProjectionKind.guid));
+          equals(ProjectionKind.struct));
     });
 
     test('returns guidList type', () {
@@ -173,7 +173,7 @@ void main() {
           'Windows.Foundation.IPropertyValue', 'GetGuidArray');
       final paramProjection = methodProjection.parameters.last;
       expect(ProjectionKind.from(paramProjection.typeProjection),
-          equals(ProjectionKind.guidList));
+          equals(ProjectionKind.structArray));
     });
 
     test('returns map type', () {
@@ -209,7 +209,7 @@ void main() {
           'Windows.Foundation.WwwFormUrlDecoder', 'GetMany');
       final paramProjection = methodProjection.parameters.last;
       expect(ProjectionKind.from(paramProjection.typeProjection),
-          equals(ProjectionKind.objectList));
+          equals(ProjectionKind.objectArray));
     });
 
     test('returns pointer type', () {
@@ -225,7 +225,7 @@ void main() {
           'Windows.Devices.Geolocation.IGeolocatorWithScalarAccuracy',
           'get_DesiredAccuracyInMeters');
       expect(ProjectionKind.from(methodProjection.typeProjection),
-          equals(ProjectionKind.reference));
+          equals(ProjectionKind.ireference));
     });
 
     test('returns string type', () {
@@ -240,7 +240,7 @@ void main() {
           'Windows.Foundation.IPropertyValue', 'GetStringArray');
       final paramProjection = methodProjection.parameters.last;
       expect(ProjectionKind.from(paramProjection.typeProjection),
-          equals(ProjectionKind.stringList));
+          equals(ProjectionKind.stringArray));
     });
 
     test('returns struct type', () {
@@ -255,7 +255,7 @@ void main() {
           'Windows.Foundation.IPropertyValue', 'GetSizeArray');
       final paramProjection = methodProjection.parameters.last;
       expect(ProjectionKind.from(paramProjection.typeProjection),
-          equals(ProjectionKind.structList));
+          equals(ProjectionKind.structArray));
     });
 
     test('returns uri type', () {

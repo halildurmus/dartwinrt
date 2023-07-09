@@ -982,50 +982,49 @@ void main() {
 
     test('getMany returns 0 if the vector is empty', () {
       final vector = getVector();
-      expect(vector.getMany(0, 1, []), equals(0));
+      final (itemCount, :items) = vector.getMany(0, 1);
+      expect(itemCount, equals(0));
+      expect(items.length, equals(0));
     });
 
     test('getMany returns elements starting from index 0', () {
-      final list = <Uri?>[];
-
       final vector = getVector()
         ..append(Uri.parse('https://dart.dev/overview'))
         ..append(null)
         ..append(Uri.parse('https://flutter.dev/development'));
-      expect(vector.getMany(0, 3, list), equals(3));
-      expect(list.length, equals(3));
-      expect(list[0].toString(), equals('https://dart.dev/overview'));
-      expect(list[1], isNull);
-      expect(list[2].toString(), equals('https://flutter.dev/development'));
+      final (itemCount, :items) = vector.getMany(0, 3);
+      expect(itemCount, equals(3));
+      expect(items.length, equals(3));
+      expect(items[0].toString(), equals('https://dart.dev/overview'));
+      expect(items[1], isNull);
+      expect(items[2].toString(), equals('https://flutter.dev/development'));
     });
 
     test(
         'getMany returns all elements if valueSize is greater than the number '
         'of elements', () {
-      final list = <Uri?>[];
-
       final vector = getVector()
         ..append(Uri.parse('https://dart.dev/overview'))
         ..append(null)
         ..append(Uri.parse('https://flutter.dev/development'));
-      expect(vector.getMany(0, 5, list), equals(3));
-      expect(list.length, equals(3));
-      expect(list[0].toString(), equals('https://dart.dev/overview'));
-      expect(list[1], isNull);
-      expect(list[2].toString(), equals('https://flutter.dev/development'));
+      final (itemCount, :items) = vector.getMany(0, 5);
+      expect(itemCount, equals(3));
+      expect(items.length, equals(3));
+      expect(items[0].toString(), equals('https://dart.dev/overview'));
+      expect(items[1], isNull);
+      expect(items[2].toString(), equals('https://flutter.dev/development'));
     });
 
     test('getMany returns elements starting from index 1', () {
-      final list = <Uri?>[];
-
       final vector = getVector()
         ..append(Uri.parse('https://dart.dev/overview'))
         ..append(null)
         ..append(Uri.parse('https://flutter.dev/development'));
-      expect(vector.getMany(1, 2, list), equals(2));
-      expect(list.length, equals(2));
-      expect(list[0], isNull);
-      expect(list[1].toString(), equals('https://flutter.dev/development'));
+      final (itemCount, :items) = vector.getMany(1, 2);
+      expect(itemCount, equals(2));
+      expect(items.length, equals(2));
+      expect(items[0], isNull);
+      expect(items[1].toString(), equals('https://flutter.dev/development'));
     });
 
     test('replaceAll', () {

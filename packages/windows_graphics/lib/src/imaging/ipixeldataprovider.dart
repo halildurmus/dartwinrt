@@ -26,7 +26,7 @@ class IPixelDataProvider extends IInspectable {
       IPixelDataProvider.fromPtr(interface.toInterface(IID_IPixelDataProvider));
 
   List<int> detachPixelData() {
-    final retValueSize = calloc<Uint32>();
+    final pixelDataSize = calloc<Uint32>();
     final pixelData = calloc<Pointer<Uint8>>();
 
     try {
@@ -37,21 +37,21 @@ class IPixelDataProvider extends IInspectable {
                       NativeFunction<
                           HRESULT Function(
                               VTablePointer lpVtbl,
-                              Pointer<Uint32> retValueSize,
+                              Pointer<Uint32> pixelDataSize,
                               Pointer<Pointer<Uint8>> pixelData)>>>()
               .value
               .asFunction<
                   int Function(
                       VTablePointer lpVtbl,
-                      Pointer<Uint32> retValueSize,
+                      Pointer<Uint32> pixelDataSize,
                       Pointer<Pointer<Uint8>> pixelData)>()(
-          ptr.ref.lpVtbl, retValueSize, pixelData);
+          ptr.ref.lpVtbl, pixelDataSize, pixelData);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return pixelData.value.toList(length: retValueSize.value);
+      return pixelData.value.toList(length: pixelDataSize.value);
     } finally {
-      free(retValueSize);
+      free(pixelDataSize);
       free(pixelData);
     }
   }

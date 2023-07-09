@@ -32,10 +32,10 @@ class JsonValue extends IInspectable implements IJsonValue, IStringable {
           IJsonValueStatics.fromPtr, _className, IID_IJsonValueStatics)
       .parse(input);
 
-  static bool tryParse(String input, JsonValue result) =>
+  static (bool, {JsonValue? result}) tryParse(String input) =>
       createActivationFactory(
               IJsonValueStatics.fromPtr, _className, IID_IJsonValueStatics)
-          .tryParse(input, result);
+          .tryParse(input);
 
   static JsonValue? createBooleanValue(bool input) => createActivationFactory(
           IJsonValueStatics.fromPtr, _className, IID_IJsonValueStatics)

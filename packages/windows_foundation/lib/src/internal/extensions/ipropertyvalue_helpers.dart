@@ -5,10 +5,7 @@
 import 'package:win32/win32.dart';
 
 import '../../ipropertyvalue.dart';
-import '../../point.dart';
 import '../../propertytype.dart';
-import '../../rect.dart';
-import '../../size.dart';
 import 'comobject_helpers.dart';
 
 extension IPropertyValueHelper on IPropertyValue {
@@ -22,124 +19,49 @@ extension IPropertyValueHelper on IPropertyValue {
       return IInspectable.from(this);
     }
 
-    switch (type) {
-      case PropertyType.boolean:
-        return getBoolean();
-      case PropertyType.booleanArray:
-        final list = <bool>[];
-        getBooleanArray(list);
-        return list;
-      case PropertyType.char16:
-        return getChar16();
-      case PropertyType.char16Array:
-        final list = <int>[];
-        getChar16Array(list);
-        return list;
-      case PropertyType.dateTime:
-        return getDateTime();
-      case PropertyType.dateTimeArray:
-        final list = <DateTime>[];
-        getDateTimeArray(list);
-        return list;
-      case PropertyType.double_:
-        return getDouble();
-      case PropertyType.doubleArray:
-        final list = <double>[];
-        getDoubleArray(list);
-        return list;
-      case PropertyType.guid:
-        return getGuid();
-      case PropertyType.guidArray:
-        final list = <Guid>[];
-        getGuidArray(list);
-        return list;
-      case PropertyType.inspectableArray:
-        final list = <Object?>[];
-        getInspectableArray(list);
-        return list;
-      case PropertyType.int16:
-        return getInt16();
-      case PropertyType.int16Array:
-        final list = <int>[];
-        getInt16Array(list);
-        return list;
-      case PropertyType.int32:
-        return getInt32();
-      case PropertyType.int32Array:
-        final list = <int>[];
-        getInt32Array(list);
-        return list;
-      case PropertyType.int64:
-        return getInt64();
-      case PropertyType.int64Array:
-        final list = <int>[];
-        getInt64Array(list);
-        return list;
-      case PropertyType.point:
-        return getPoint();
-      case PropertyType.pointArray:
-        final list = <Point>[];
-        getPointArray(list);
-        return list;
-      case PropertyType.rect:
-        return getRect();
-      case PropertyType.rectArray:
-        final list = <Rect>[];
-        getRectArray(list);
-        return list;
-      case PropertyType.single:
-        return getSingle();
-      case PropertyType.singleArray:
-        final list = <double>[];
-        getSingleArray(list);
-        return list;
-      case PropertyType.size:
-        return getSize();
-      case PropertyType.sizeArray:
-        final list = <Size>[];
-        getSizeArray(list);
-        return list;
-      case PropertyType.string:
-        return getString();
-      case PropertyType.stringArray:
-        final list = <String>[];
-        getStringArray(list);
-        return list;
-      case PropertyType.timeSpan:
-        return getTimeSpan();
-      case PropertyType.timeSpanArray:
-        final list = <Duration>[];
-        getTimeSpanArray(list);
-        return list;
-      case PropertyType.uint16:
-        return getUInt16();
-      case PropertyType.uint16Array:
-        final list = <int>[];
-        getUInt16Array(list);
-        return list;
-      case PropertyType.uint32:
-        return getUInt32();
-      case PropertyType.uint32Array:
-        final list = <int>[];
-        getUInt32Array(list);
-        return list;
-      case PropertyType.uint64:
-        return getUInt64();
-      case PropertyType.uint64Array:
-        final list = <int>[];
-        getUInt64Array(list);
-        return list;
-      case PropertyType.uint8:
-        return getUInt8();
-      case PropertyType.uint8Array:
-        final list = <int>[];
-        getUInt8Array(list);
-        return list;
-      case PropertyType.empty:
-      case PropertyType.inspectable:
-      case PropertyType.otherType:
-      case PropertyType.otherTypeArray:
-        throw UnsupportedError('Unsupported property type: $type');
-    }
+    return switch (type) {
+      PropertyType.boolean => getBoolean(),
+      PropertyType.booleanArray => getBooleanArray(),
+      PropertyType.char16 => getChar16(),
+      PropertyType.char16Array => getChar16Array(),
+      PropertyType.dateTime => getDateTime(),
+      PropertyType.dateTimeArray => getDateTimeArray(),
+      PropertyType.double_ => getDouble(),
+      PropertyType.doubleArray => getDoubleArray(),
+      PropertyType.guid => getGuid(),
+      PropertyType.guidArray => getGuidArray(),
+      PropertyType.inspectableArray => getInspectableArray(),
+      PropertyType.int16 => getInt16(),
+      PropertyType.int16Array => getInt16Array(),
+      PropertyType.int32 => getInt32(),
+      PropertyType.int32Array => getInt32Array(),
+      PropertyType.int64 => getInt64(),
+      PropertyType.int64Array => getInt64Array(),
+      PropertyType.point => getPoint(),
+      PropertyType.pointArray => getPointArray(),
+      PropertyType.rect => getRect(),
+      PropertyType.rectArray => getRectArray(),
+      PropertyType.single => getSingle(),
+      PropertyType.singleArray => getSingleArray(),
+      PropertyType.size => getSize(),
+      PropertyType.sizeArray => getSizeArray(),
+      PropertyType.string => getString(),
+      PropertyType.stringArray => getStringArray(),
+      PropertyType.timeSpan => getTimeSpan(),
+      PropertyType.timeSpanArray => getTimeSpanArray(),
+      PropertyType.uint16 => getUInt16(),
+      PropertyType.uint16Array => getUInt16Array(),
+      PropertyType.uint32 => getUInt32(),
+      PropertyType.uint32Array => getUInt32Array(),
+      PropertyType.uint64 => getUInt64(),
+      PropertyType.uint64Array => getUInt64Array(),
+      PropertyType.uint8 => getUInt8(),
+      PropertyType.uint8Array => getUInt8Array(),
+      PropertyType.empty ||
+      PropertyType.inspectable ||
+      PropertyType.otherType ||
+      PropertyType.otherTypeArray =>
+        throw UnsupportedError('Unsupported property type: $type')
+    };
   }
 }

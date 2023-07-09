@@ -27,7 +27,11 @@ abstract interface class IMapView<K, V> extends IInspectable
     K Function(int)? enumKeyCreator,
     V Function(int)? enumCreator,
     IntType? intType,
-  }) : _iterableIid = iterableIid {
+  })  : _iterableIid = iterableIid,
+        _creator = creator,
+        _enumKeyCreator = enumKeyCreator,
+        _enumCreator = enumCreator,
+        _intType = intType {
     _iterableCreator = (ptr) => IKeyValuePair<K, V>.fromPtr(ptr,
         creator: creator,
         enumKeyCreator: enumKeyCreator,
@@ -36,6 +40,10 @@ abstract interface class IMapView<K, V> extends IInspectable
   }
 
   final String _iterableIid;
+  final V Function(Pointer<COMObject>)? _creator;
+  final K Function(int)? _enumKeyCreator;
+  final V Function(int)? _enumCreator;
+  final IntType? _intType;
   late final IKeyValuePair<K, V> Function(Pointer<COMObject>)? _iterableCreator;
 
   /// Creates an instance of [IMapView] from the given [ptr] and [iterableIid].
@@ -189,23 +197,59 @@ abstract interface class IMapView<K, V> extends IInspectable
   bool hasKey(K value);
 
   /// Splits the map view into two views.
-  void split(IMapView<K, V> first, IMapView<K, V> second) {
-    final hr = ptr.ref.lpVtbl.value
-            .elementAt(9)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            Pointer<COMObject> first,
-                            Pointer<COMObject> second)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<COMObject> first,
-                    Pointer<COMObject> second)>()(
-        ptr.ref.lpVtbl, first.ptr, second.ptr);
+  ({IMapView<K, V>? first, IMapView<K, V>? second}) split() {
+    final first = calloc<COMObject>();
+    final second = calloc<COMObject>();
 
-    if (FAILED(hr)) throwWindowsException(hr);
+    final hr = ptr.ref.lpVtbl.value
+        .elementAt(9)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(
+                        VTablePointer lpVtbl,
+                        Pointer<COMObject> first,
+                        Pointer<COMObject> second)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl, Pointer<COMObject> first,
+                Pointer<COMObject> second)>()(ptr.ref.lpVtbl, first, second);
+
+    if (FAILED(hr)) {
+      free(first);
+      free(second);
+      throwWindowsException(hr);
+    }
+
+    var firstIsNull = false;
+    if (first.isNull) {
+      free(first);
+      firstIsNull = true;
+    }
+    var secondIsNull = false;
+    if (second.isNull) {
+      free(second);
+      secondIsNull = true;
+    }
+
+    return (
+      first: firstIsNull
+          ? null
+          : IMapView<K, V>.fromPtr(first,
+              creator: _creator,
+              enumKeyCreator: _enumKeyCreator,
+              enumCreator: _enumCreator,
+              intType: _intType,
+              iterableIid: _iterableIid),
+      second: secondIsNull
+          ? null
+          : IMapView<K, V>.fromPtr(second,
+              creator: _creator,
+              enumKeyCreator: _enumKeyCreator,
+              enumCreator: _enumCreator,
+              intType: _intType,
+              iterableIid: _iterableIid)
+    );
   }
 
   late final _iIterable = IIterable<IKeyValuePair<K, V>>.fromPtr(
@@ -220,10 +264,9 @@ abstract interface class IMapView<K, V> extends IInspectable
     if (size == 0) return Map.unmodifiable({});
 
     final iterator = first();
-    final keyValuePairs = <IKeyValuePair<K, V>>[];
-    iterator.getMany(size, keyValuePairs);
-    final map = Map.fromEntries(
-        keyValuePairs.map((kvp) => MapEntry(kvp.key, kvp.value)));
+    final (_, :items) = iterator.getMany(size);
+    final map =
+        Map.fromEntries(items.map((kvp) => MapEntry(kvp.key, kvp.value)));
     return Map.unmodifiable(map);
   }
 

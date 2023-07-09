@@ -513,579 +513,560 @@ class IPropertyValue extends IInspectable {
     }
   }
 
-  void getUInt8Array(List<int> value) {
-    final valueSize = calloc<Pointer<Uint32>>();
-    final pValueSize = calloc<Uint32>();
-    final pValueArray = calloc<Pointer<Uint8>>();
+  List<int> getUInt8Array() {
+    final valueSize = calloc<Uint32>();
+    final value = calloc<Pointer<Uint8>>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(26)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            Pointer<Uint32> valueSize,
-                            Pointer<Pointer<Uint8>> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
-                    Pointer<Pointer<Uint8>> value)>()(
-        ptr.ref.lpVtbl, pValueSize, pValueArray);
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(26)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl,
+                              Pointer<Uint32> valueSize,
+                              Pointer<Pointer<Uint8>> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
+                      Pointer<Pointer<Uint8>> value)>()(
+          ptr.ref.lpVtbl, valueSize, value);
 
-    free(valueSize);
-    if (pValueSize.value > 0) {
-      value.addAll(pValueArray.value.toList(length: pValueSize.value));
+      if (FAILED(hr)) throwWindowsException(hr);
+
+      return value.value.toList(length: valueSize.value);
+    } finally {
+      free(valueSize);
+      free(value);
     }
-    free(pValueSize);
-    free(pValueArray);
-
-    if (FAILED(hr)) throwWindowsException(hr);
   }
 
-  void getInt16Array(List<int> value) {
-    final valueSize = calloc<Pointer<Uint32>>();
-    final pValueSize = calloc<Uint32>();
-    final pValueArray = calloc<Pointer<Int16>>();
+  List<int> getInt16Array() {
+    final valueSize = calloc<Uint32>();
+    final value = calloc<Pointer<Int16>>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(27)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            Pointer<Uint32> valueSize,
-                            Pointer<Pointer<Int16>> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
-                    Pointer<Pointer<Int16>> value)>()(
-        ptr.ref.lpVtbl, pValueSize, pValueArray);
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(27)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl,
+                              Pointer<Uint32> valueSize,
+                              Pointer<Pointer<Int16>> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
+                      Pointer<Pointer<Int16>> value)>()(
+          ptr.ref.lpVtbl, valueSize, value);
 
-    free(valueSize);
-    if (pValueSize.value > 0) {
-      value.addAll(pValueArray.value.toList(length: pValueSize.value));
+      if (FAILED(hr)) throwWindowsException(hr);
+
+      return value.value.toList(length: valueSize.value);
+    } finally {
+      free(valueSize);
+      free(value);
     }
-    free(pValueSize);
-    free(pValueArray);
-
-    if (FAILED(hr)) throwWindowsException(hr);
   }
 
-  void getUInt16Array(List<int> value) {
-    final valueSize = calloc<Pointer<Uint32>>();
-    final pValueSize = calloc<Uint32>();
-    final pValueArray = calloc<Pointer<Uint16>>();
+  List<int> getUInt16Array() {
+    final valueSize = calloc<Uint32>();
+    final value = calloc<Pointer<Uint16>>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(28)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            Pointer<Uint32> valueSize,
-                            Pointer<Pointer<Uint16>> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
-                    Pointer<Pointer<Uint16>> value)>()(
-        ptr.ref.lpVtbl, pValueSize, pValueArray);
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(28)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl,
+                              Pointer<Uint32> valueSize,
+                              Pointer<Pointer<Uint16>> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
+                      Pointer<Pointer<Uint16>> value)>()(
+          ptr.ref.lpVtbl, valueSize, value);
 
-    free(valueSize);
-    if (pValueSize.value > 0) {
-      value.addAll(pValueArray.value.toList(length: pValueSize.value));
+      if (FAILED(hr)) throwWindowsException(hr);
+
+      return value.value.toList(length: valueSize.value);
+    } finally {
+      free(valueSize);
+      free(value);
     }
-    free(pValueSize);
-    free(pValueArray);
-
-    if (FAILED(hr)) throwWindowsException(hr);
   }
 
-  void getInt32Array(List<int> value) {
-    final valueSize = calloc<Pointer<Uint32>>();
-    final pValueSize = calloc<Uint32>();
-    final pValueArray = calloc<Pointer<Int32>>();
+  List<int> getInt32Array() {
+    final valueSize = calloc<Uint32>();
+    final value = calloc<Pointer<Int32>>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(29)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            Pointer<Uint32> valueSize,
-                            Pointer<Pointer<Int32>> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
-                    Pointer<Pointer<Int32>> value)>()(
-        ptr.ref.lpVtbl, pValueSize, pValueArray);
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(29)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl,
+                              Pointer<Uint32> valueSize,
+                              Pointer<Pointer<Int32>> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
+                      Pointer<Pointer<Int32>> value)>()(
+          ptr.ref.lpVtbl, valueSize, value);
 
-    free(valueSize);
-    if (pValueSize.value > 0) {
-      value.addAll(pValueArray.value.toList(length: pValueSize.value));
+      if (FAILED(hr)) throwWindowsException(hr);
+
+      return value.value.toList(length: valueSize.value);
+    } finally {
+      free(valueSize);
+      free(value);
     }
-    free(pValueSize);
-    free(pValueArray);
-
-    if (FAILED(hr)) throwWindowsException(hr);
   }
 
-  void getUInt32Array(List<int> value) {
-    final valueSize = calloc<Pointer<Uint32>>();
-    final pValueSize = calloc<Uint32>();
-    final pValueArray = calloc<Pointer<Uint32>>();
+  List<int> getUInt32Array() {
+    final valueSize = calloc<Uint32>();
+    final value = calloc<Pointer<Uint32>>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(30)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            Pointer<Uint32> valueSize,
-                            Pointer<Pointer<Uint32>> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
-                    Pointer<Pointer<Uint32>> value)>()(
-        ptr.ref.lpVtbl, pValueSize, pValueArray);
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(30)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl,
+                              Pointer<Uint32> valueSize,
+                              Pointer<Pointer<Uint32>> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
+                      Pointer<Pointer<Uint32>> value)>()(
+          ptr.ref.lpVtbl, valueSize, value);
 
-    free(valueSize);
-    if (pValueSize.value > 0) {
-      value.addAll(pValueArray.value.toList(length: pValueSize.value));
+      if (FAILED(hr)) throwWindowsException(hr);
+
+      return value.value.toList(length: valueSize.value);
+    } finally {
+      free(valueSize);
+      free(value);
     }
-    free(pValueSize);
-    free(pValueArray);
-
-    if (FAILED(hr)) throwWindowsException(hr);
   }
 
-  void getInt64Array(List<int> value) {
-    final valueSize = calloc<Pointer<Uint32>>();
-    final pValueSize = calloc<Uint32>();
-    final pValueArray = calloc<Pointer<Int64>>();
+  List<int> getInt64Array() {
+    final valueSize = calloc<Uint32>();
+    final value = calloc<Pointer<Int64>>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(31)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            Pointer<Uint32> valueSize,
-                            Pointer<Pointer<Int64>> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
-                    Pointer<Pointer<Int64>> value)>()(
-        ptr.ref.lpVtbl, pValueSize, pValueArray);
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(31)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl,
+                              Pointer<Uint32> valueSize,
+                              Pointer<Pointer<Int64>> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
+                      Pointer<Pointer<Int64>> value)>()(
+          ptr.ref.lpVtbl, valueSize, value);
 
-    free(valueSize);
-    if (pValueSize.value > 0) {
-      value.addAll(pValueArray.value.toList(length: pValueSize.value));
+      if (FAILED(hr)) throwWindowsException(hr);
+
+      return value.value.toList(length: valueSize.value);
+    } finally {
+      free(valueSize);
+      free(value);
     }
-    free(pValueSize);
-    free(pValueArray);
-
-    if (FAILED(hr)) throwWindowsException(hr);
   }
 
-  void getUInt64Array(List<int> value) {
-    final valueSize = calloc<Pointer<Uint32>>();
-    final pValueSize = calloc<Uint32>();
-    final pValueArray = calloc<Pointer<Uint64>>();
+  List<int> getUInt64Array() {
+    final valueSize = calloc<Uint32>();
+    final value = calloc<Pointer<Uint64>>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(32)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            Pointer<Uint32> valueSize,
-                            Pointer<Pointer<Uint64>> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
-                    Pointer<Pointer<Uint64>> value)>()(
-        ptr.ref.lpVtbl, pValueSize, pValueArray);
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(32)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl,
+                              Pointer<Uint32> valueSize,
+                              Pointer<Pointer<Uint64>> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
+                      Pointer<Pointer<Uint64>> value)>()(
+          ptr.ref.lpVtbl, valueSize, value);
 
-    free(valueSize);
-    if (pValueSize.value > 0) {
-      value.addAll(pValueArray.value.toList(length: pValueSize.value));
+      if (FAILED(hr)) throwWindowsException(hr);
+
+      return value.value.toList(length: valueSize.value);
+    } finally {
+      free(valueSize);
+      free(value);
     }
-    free(pValueSize);
-    free(pValueArray);
-
-    if (FAILED(hr)) throwWindowsException(hr);
   }
 
-  void getSingleArray(List<double> value) {
-    final valueSize = calloc<Pointer<Uint32>>();
-    final pValueSize = calloc<Uint32>();
-    final pValueArray = calloc<Pointer<Float>>();
+  List<double> getSingleArray() {
+    final valueSize = calloc<Uint32>();
+    final value = calloc<Pointer<Float>>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(33)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            Pointer<Uint32> valueSize,
-                            Pointer<Pointer<Float>> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
-                    Pointer<Pointer<Float>> value)>()(
-        ptr.ref.lpVtbl, pValueSize, pValueArray);
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(33)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl,
+                              Pointer<Uint32> valueSize,
+                              Pointer<Pointer<Float>> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
+                      Pointer<Pointer<Float>> value)>()(
+          ptr.ref.lpVtbl, valueSize, value);
 
-    free(valueSize);
-    if (pValueSize.value > 0) {
-      value.addAll(pValueArray.value.toList(length: pValueSize.value));
+      if (FAILED(hr)) throwWindowsException(hr);
+
+      return value.value.toList(length: valueSize.value);
+    } finally {
+      free(valueSize);
+      free(value);
     }
-    free(pValueSize);
-    free(pValueArray);
-
-    if (FAILED(hr)) throwWindowsException(hr);
   }
 
-  void getDoubleArray(List<double> value) {
-    final valueSize = calloc<Pointer<Uint32>>();
-    final pValueSize = calloc<Uint32>();
-    final pValueArray = calloc<Pointer<Double>>();
+  List<double> getDoubleArray() {
+    final valueSize = calloc<Uint32>();
+    final value = calloc<Pointer<Double>>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(34)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            Pointer<Uint32> valueSize,
-                            Pointer<Pointer<Double>> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
-                    Pointer<Pointer<Double>> value)>()(
-        ptr.ref.lpVtbl, pValueSize, pValueArray);
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(34)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl,
+                              Pointer<Uint32> valueSize,
+                              Pointer<Pointer<Double>> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
+                      Pointer<Pointer<Double>> value)>()(
+          ptr.ref.lpVtbl, valueSize, value);
 
-    free(valueSize);
-    if (pValueSize.value > 0) {
-      value.addAll(pValueArray.value.toList(length: pValueSize.value));
+      if (FAILED(hr)) throwWindowsException(hr);
+
+      return value.value.toList(length: valueSize.value);
+    } finally {
+      free(valueSize);
+      free(value);
     }
-    free(pValueSize);
-    free(pValueArray);
-
-    if (FAILED(hr)) throwWindowsException(hr);
   }
 
-  void getChar16Array(List<int> value) {
-    final valueSize = calloc<Pointer<Uint32>>();
-    final pValueSize = calloc<Uint32>();
-    final pValueArray = calloc<Pointer<Uint16>>();
+  List<int> getChar16Array() {
+    final valueSize = calloc<Uint32>();
+    final value = calloc<Pointer<Uint16>>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(35)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            Pointer<Uint32> valueSize,
-                            Pointer<Pointer<Uint16>> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
-                    Pointer<Pointer<Uint16>> value)>()(
-        ptr.ref.lpVtbl, pValueSize, pValueArray);
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(35)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl,
+                              Pointer<Uint32> valueSize,
+                              Pointer<Pointer<Uint16>> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
+                      Pointer<Pointer<Uint16>> value)>()(
+          ptr.ref.lpVtbl, valueSize, value);
 
-    free(valueSize);
-    if (pValueSize.value > 0) {
-      value.addAll(pValueArray.value.toList(length: pValueSize.value));
+      if (FAILED(hr)) throwWindowsException(hr);
+
+      return value.value.toList(length: valueSize.value);
+    } finally {
+      free(valueSize);
+      free(value);
     }
-    free(pValueSize);
-    free(pValueArray);
-
-    if (FAILED(hr)) throwWindowsException(hr);
   }
 
-  void getBooleanArray(List<bool> value) {
-    final valueSize = calloc<Pointer<Uint32>>();
-    final pValueSize = calloc<Uint32>();
-    final pValueArray = calloc<Pointer<Bool>>();
+  List<bool> getBooleanArray() {
+    final valueSize = calloc<Uint32>();
+    final value = calloc<Pointer<Bool>>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(36)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            Pointer<Uint32> valueSize,
-                            Pointer<Pointer<Bool>> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
-                    Pointer<Pointer<Bool>> value)>()(
-        ptr.ref.lpVtbl, pValueSize, pValueArray);
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(36)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl,
+                              Pointer<Uint32> valueSize,
+                              Pointer<Pointer<Bool>> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
+                      Pointer<Pointer<Bool>> value)>()(
+          ptr.ref.lpVtbl, valueSize, value);
 
-    free(valueSize);
-    if (pValueSize.value > 0) {
-      value.addAll(pValueArray.value.toList(length: pValueSize.value));
+      if (FAILED(hr)) throwWindowsException(hr);
+
+      return value.value.toList(length: valueSize.value);
+    } finally {
+      free(valueSize);
+      free(value);
     }
-    free(pValueSize);
-    free(pValueArray);
-
-    if (FAILED(hr)) throwWindowsException(hr);
   }
 
-  void getStringArray(List<String> value) {
-    final valueSize = calloc<Pointer<Uint32>>();
-    final pValueSize = calloc<Uint32>();
-    final pValueArray = calloc<Pointer<IntPtr>>();
+  List<String> getStringArray() {
+    final valueSize = calloc<Uint32>();
+    final value = calloc<Pointer<IntPtr>>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(37)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            Pointer<Uint32> valueSize,
-                            Pointer<Pointer<IntPtr>> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
-                    Pointer<Pointer<IntPtr>> value)>()(
-        ptr.ref.lpVtbl, pValueSize, pValueArray);
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(37)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl,
+                              Pointer<Uint32> valueSize,
+                              Pointer<Pointer<IntPtr>> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
+                      Pointer<Pointer<IntPtr>> value)>()(
+          ptr.ref.lpVtbl, valueSize, value);
 
-    free(valueSize);
-    if (pValueSize.value > 0) {
-      value.addAll(pValueArray.value.toList(length: pValueSize.value));
+      if (FAILED(hr)) throwWindowsException(hr);
+
+      return value.value.toList(length: valueSize.value);
+    } finally {
+      free(valueSize);
+      free(value);
     }
-    free(pValueSize);
-    free(pValueArray);
-
-    if (FAILED(hr)) throwWindowsException(hr);
   }
 
-  void getInspectableArray(List<Object?> value) {
-    final valueSize = calloc<Pointer<Uint32>>();
-    final pValueSize = calloc<Uint32>();
-    final pValueArray = calloc<Pointer<COMObject>>();
+  List<Object?> getInspectableArray() {
+    final valueSize = calloc<Uint32>();
+    final value = calloc<Pointer<COMObject>>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(38)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            Pointer<Uint32> valueSize,
-                            Pointer<Pointer<COMObject>> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
-                    Pointer<Pointer<COMObject>> value)>()(
-        ptr.ref.lpVtbl, pValueSize, pValueArray);
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(38)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl,
+                              Pointer<Uint32> valueSize,
+                              Pointer<Pointer<COMObject>> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
+                      Pointer<Pointer<COMObject>> value)>()(
+          ptr.ref.lpVtbl, valueSize, value);
 
-    free(valueSize);
-    if (pValueSize.value > 0) {
-      value.addAll(pValueArray.value.toObjectList(length: pValueSize.value));
+      if (FAILED(hr)) throwWindowsException(hr);
+
+      return value.value.toObjectList(length: valueSize.value);
+    } finally {
+      free(valueSize);
+      free(value);
     }
-    free(pValueSize);
-    free(pValueArray);
-
-    if (FAILED(hr)) throwWindowsException(hr);
   }
 
-  void getGuidArray(List<Guid> value) {
-    final valueSize = calloc<Pointer<Uint32>>();
-    final pValueSize = calloc<Uint32>();
-    final pValueArray = calloc<Pointer<GUID>>();
+  List<Guid> getGuidArray() {
+    final valueSize = calloc<Uint32>();
+    final value = calloc<Pointer<GUID>>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(39)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            Pointer<Uint32> valueSize,
-                            Pointer<Pointer<GUID>> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
-                    Pointer<Pointer<GUID>> value)>()(
-        ptr.ref.lpVtbl, pValueSize, pValueArray);
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(39)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl,
+                              Pointer<Uint32> valueSize,
+                              Pointer<Pointer<GUID>> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
+                      Pointer<Pointer<GUID>> value)>()(
+          ptr.ref.lpVtbl, valueSize, value);
 
-    free(valueSize);
-    if (pValueSize.value > 0) {
-      value.addAll(pValueArray.value.toList(length: pValueSize.value));
+      if (FAILED(hr)) throwWindowsException(hr);
+
+      return value.value.toList(length: valueSize.value);
+    } finally {
+      free(valueSize);
+      free(value);
     }
-    free(pValueSize);
-    free(pValueArray);
-
-    if (FAILED(hr)) throwWindowsException(hr);
   }
 
-  void getDateTimeArray(List<DateTime> value) {
-    final valueSize = calloc<Pointer<Uint32>>();
-    final pValueSize = calloc<Uint32>();
-    final pValueArray = calloc<Pointer<Int64>>();
+  List<DateTime> getDateTimeArray() {
+    final valueSize = calloc<Uint32>();
+    final value = calloc<Pointer<Int64>>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(40)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            Pointer<Uint32> valueSize,
-                            Pointer<Pointer<Int64>> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
-                    Pointer<Pointer<Int64>> value)>()(
-        ptr.ref.lpVtbl, pValueSize, pValueArray);
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(40)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl,
+                              Pointer<Uint32> valueSize,
+                              Pointer<Pointer<Int64>> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
+                      Pointer<Pointer<Int64>> value)>()(
+          ptr.ref.lpVtbl, valueSize, value);
 
-    free(valueSize);
-    if (pValueSize.value > 0) {
-      value.addAll(pValueArray.value
-          .toList(length: pValueSize.value)
+      if (FAILED(hr)) throwWindowsException(hr);
+
+      return value.value
+          .toList(length: valueSize.value)
           .map((value) => value.toDartDateTime())
-          .toList());
+          .toList();
+    } finally {
+      free(valueSize);
+      free(value);
     }
-    free(pValueSize);
-    free(pValueArray);
-
-    if (FAILED(hr)) throwWindowsException(hr);
   }
 
-  void getTimeSpanArray(List<Duration> value) {
-    final valueSize = calloc<Pointer<Uint32>>();
-    final pValueSize = calloc<Uint32>();
-    final pValueArray = calloc<Pointer<Int64>>();
+  List<Duration> getTimeSpanArray() {
+    final valueSize = calloc<Uint32>();
+    final value = calloc<Pointer<Int64>>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(41)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            Pointer<Uint32> valueSize,
-                            Pointer<Pointer<Int64>> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
-                    Pointer<Pointer<Int64>> value)>()(
-        ptr.ref.lpVtbl, pValueSize, pValueArray);
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(41)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl,
+                              Pointer<Uint32> valueSize,
+                              Pointer<Pointer<Int64>> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
+                      Pointer<Pointer<Int64>> value)>()(
+          ptr.ref.lpVtbl, valueSize, value);
 
-    free(valueSize);
-    if (pValueSize.value > 0) {
-      value.addAll(pValueArray.value
-          .toList(length: pValueSize.value)
+      if (FAILED(hr)) throwWindowsException(hr);
+
+      return value.value
+          .toList(length: valueSize.value)
           .map((value) => value.toDartDuration())
-          .toList());
+          .toList();
+    } finally {
+      free(valueSize);
+      free(value);
     }
-    free(pValueSize);
-    free(pValueArray);
-
-    if (FAILED(hr)) throwWindowsException(hr);
   }
 
-  void getPointArray(List<Point> value) {
-    final valueSize = calloc<Pointer<Uint32>>();
-    final pValueSize = calloc<Uint32>();
-    final pValueArray = calloc<Pointer<NativePoint>>();
+  List<Point> getPointArray() {
+    final valueSize = calloc<Uint32>();
+    final value = calloc<Pointer<NativePoint>>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(42)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            Pointer<Uint32> valueSize,
-                            Pointer<Pointer<NativePoint>> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
-                    Pointer<Pointer<NativePoint>> value)>()(
-        ptr.ref.lpVtbl, pValueSize, pValueArray);
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(42)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl,
+                              Pointer<Uint32> valueSize,
+                              Pointer<Pointer<NativePoint>> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
+                      Pointer<Pointer<NativePoint>> value)>()(
+          ptr.ref.lpVtbl, valueSize, value);
 
-    free(valueSize);
-    if (pValueSize.value > 0) {
-      value.addAll(pValueArray.value.toList(length: pValueSize.value));
+      if (FAILED(hr)) throwWindowsException(hr);
+
+      return value.value.toList(length: valueSize.value);
+    } finally {
+      free(valueSize);
+      free(value);
     }
-    free(pValueSize);
-    free(pValueArray);
-
-    if (FAILED(hr)) throwWindowsException(hr);
   }
 
-  void getSizeArray(List<Size> value) {
-    final valueSize = calloc<Pointer<Uint32>>();
-    final pValueSize = calloc<Uint32>();
-    final pValueArray = calloc<Pointer<NativeSize>>();
+  List<Size> getSizeArray() {
+    final valueSize = calloc<Uint32>();
+    final value = calloc<Pointer<NativeSize>>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(43)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            Pointer<Uint32> valueSize,
-                            Pointer<Pointer<NativeSize>> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
-                    Pointer<Pointer<NativeSize>> value)>()(
-        ptr.ref.lpVtbl, pValueSize, pValueArray);
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(43)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl,
+                              Pointer<Uint32> valueSize,
+                              Pointer<Pointer<NativeSize>> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
+                      Pointer<Pointer<NativeSize>> value)>()(
+          ptr.ref.lpVtbl, valueSize, value);
 
-    free(valueSize);
-    if (pValueSize.value > 0) {
-      value.addAll(pValueArray.value.toList(length: pValueSize.value));
+      if (FAILED(hr)) throwWindowsException(hr);
+
+      return value.value.toList(length: valueSize.value);
+    } finally {
+      free(valueSize);
+      free(value);
     }
-    free(pValueSize);
-    free(pValueArray);
-
-    if (FAILED(hr)) throwWindowsException(hr);
   }
 
-  void getRectArray(List<Rect> value) {
-    final valueSize = calloc<Pointer<Uint32>>();
-    final pValueSize = calloc<Uint32>();
-    final pValueArray = calloc<Pointer<NativeRect>>();
+  List<Rect> getRectArray() {
+    final valueSize = calloc<Uint32>();
+    final value = calloc<Pointer<NativeRect>>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(44)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(
-                            VTablePointer lpVtbl,
-                            Pointer<Uint32> valueSize,
-                            Pointer<Pointer<NativeRect>> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
-                    Pointer<Pointer<NativeRect>> value)>()(
-        ptr.ref.lpVtbl, pValueSize, pValueArray);
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(44)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl,
+                              Pointer<Uint32> valueSize,
+                              Pointer<Pointer<NativeRect>> value)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
+                      Pointer<Pointer<NativeRect>> value)>()(
+          ptr.ref.lpVtbl, valueSize, value);
 
-    free(valueSize);
-    if (pValueSize.value > 0) {
-      value.addAll(pValueArray.value.toList(length: pValueSize.value));
+      if (FAILED(hr)) throwWindowsException(hr);
+
+      return value.value.toList(length: valueSize.value);
+    } finally {
+      free(valueSize);
+      free(value);
     }
-    free(pValueSize);
-    free(pValueArray);
-
-    if (FAILED(hr)) throwWindowsException(hr);
   }
 }

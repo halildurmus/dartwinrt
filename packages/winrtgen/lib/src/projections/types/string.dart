@@ -3,7 +3,7 @@
 // license that can be found in the LICENSE file.
 
 import '../parameter.dart';
-import 'default.dart';
+import 'array.dart';
 
 /// Parameter projection for `String` parameters.
 final class StringParameterProjection extends ParameterProjection {
@@ -32,13 +32,13 @@ final class StringParameterProjection extends ParameterProjection {
   bool get needsAllocation => true;
 }
 
-/// Parameter projection for `List<String>` parameters.
-final class StringListParameterProjection
-    extends DefaultListParameterProjection {
-  StringListParameterProjection(super.parameter);
+/// Parameter projection for Pass Array style String parameters.
+final class StringPassArrayParameterProjection
+    extends PassArrayParameterProjection {
+  StringPassArrayParameterProjection(super.parameter);
 
   @override
-  List<String> get passArrayPreambles => [
+  List<String> get preambles => [
         'final ${identifier}Handles = <int>[];',
         'final $localIdentifier = calloc<HSTRING>($identifier.length);',
         '''
@@ -49,7 +49,7 @@ final class StringListParameterProjection
       ];
 
   @override
-  List<String> get passArrayPostambles => [
+  List<String> get postambles => [
         '${identifier}Handles.forEach(WindowsDeleteString);',
         'free($localIdentifier);'
       ];

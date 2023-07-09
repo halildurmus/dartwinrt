@@ -36,17 +36,17 @@ class PhoneNumberInfo extends IInspectable
           IID_IPhoneNumberInfoFactory)
       .create(number);
 
-  static PhoneNumberParseResult tryParse(
-          String input, PhoneNumberInfo phoneNumber) =>
+  static (PhoneNumberParseResult, {PhoneNumberInfo? phoneNumber}) tryParse(
+          String input) =>
       createActivationFactory(IPhoneNumberInfoStatics.fromPtr, _className,
               IID_IPhoneNumberInfoStatics)
-          .tryParse(input, phoneNumber);
+          .tryParse(input);
 
-  static PhoneNumberParseResult tryParseWithRegion(
-          String input, String regionCode, PhoneNumberInfo phoneNumber) =>
-      createActivationFactory(IPhoneNumberInfoStatics.fromPtr, _className,
-              IID_IPhoneNumberInfoStatics)
-          .tryParseWithRegion(input, regionCode, phoneNumber);
+  static (PhoneNumberParseResult, {PhoneNumberInfo? phoneNumber})
+      tryParseWithRegion(String input, String regionCode) =>
+          createActivationFactory(IPhoneNumberInfoStatics.fromPtr, _className,
+                  IID_IPhoneNumberInfoStatics)
+              .tryParseWithRegion(input, regionCode);
 
   late final _iPhoneNumberInfo = IPhoneNumberInfo.from(this);
 

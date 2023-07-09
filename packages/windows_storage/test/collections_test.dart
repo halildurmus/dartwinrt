@@ -4,9 +4,6 @@
 
 @TestOn('windows')
 
-import 'dart:ffi';
-
-import 'package:ffi/ffi.dart';
 import 'package:test/test.dart';
 import 'package:win32/win32.dart';
 import 'package:windows_foundation/windows_foundation.dart';
@@ -55,29 +52,21 @@ void main() {
     });
 
     test('indexOf finds element', () {
-      final pIndex = calloc<Uint32>();
-
       final vector = getVector()
         ..append('.jpg')
         ..append('.jpeg');
-      final containsElement = vector.indexOf('.jpeg', pIndex);
+      final (containsElement, :index) = vector.indexOf('.jpeg');
       expect(containsElement, isTrue);
-      expect(pIndex.value, equals(1));
-
-      free(pIndex);
+      expect(index, equals(1));
     });
 
     test('indexOf returns false if the element is not found', () {
-      final pIndex = calloc<Uint32>();
-
       final vector = getVector()
         ..append('.jpg')
         ..append('.jpeg');
-      final containsElement = vector.indexOf('.png', pIndex);
+      final (containsElement, :index) = vector.indexOf('.png');
       expect(containsElement, isFalse);
-      expect(pIndex.value, equals(0));
-
-      free(pIndex);
+      expect(index, equals(0));
     });
 
     test('setAt throws exception if the vector is empty', () {
@@ -193,50 +182,49 @@ void main() {
 
     test('getMany returns 0 if the vector is empty', () {
       final vector = getVector();
-      expect(vector.getMany(0, 1, []), equals(0));
+      final (itemCount, :items) = vector.getMany(0, 1);
+      expect(itemCount, equals(0));
+      expect(items.length, equals(0));
     });
 
     test('getMany returns elements starting from index 0', () {
-      final list = <String>[];
-
       final vector = getVector()
         ..append('.jpg')
         ..append('.jpeg')
         ..append('.png');
-      expect(vector.getMany(0, 3, list), equals(3));
-      expect(list.length, equals(3));
-      expect(list[0], equals('.jpg'));
-      expect(list[1], equals('.jpeg'));
-      expect(list[2], equals('.png'));
+      final (itemCount, :items) = vector.getMany(0, 3);
+      expect(itemCount, equals(3));
+      expect(items.length, equals(3));
+      expect(items[0], equals('.jpg'));
+      expect(items[1], equals('.jpeg'));
+      expect(items[2], equals('.png'));
     });
 
     test(
         'getMany returns all elements if valueSize is greater than the number '
         'of elements', () {
-      final list = <String>[];
-
       final vector = getVector()
         ..append('.jpg')
         ..append('.jpeg')
         ..append('.png');
-      expect(vector.getMany(0, 5, list), equals(3));
-      expect(list.length, equals(3));
-      expect(list[0], equals('.jpg'));
-      expect(list[1], equals('.jpeg'));
-      expect(list[2], equals('.png'));
+      final (itemCount, :items) = vector.getMany(0, 5);
+      expect(itemCount, equals(3));
+      expect(items.length, equals(3));
+      expect(items[0], equals('.jpg'));
+      expect(items[1], equals('.jpeg'));
+      expect(items[2], equals('.png'));
     });
 
     test('getMany returns elements starting from index 1', () {
-      final list = <String>[];
-
       final vector = getVector()
         ..append('.jpg')
         ..append('.jpeg')
         ..append('.png');
-      expect(vector.getMany(1, 2, list), equals(2));
-      expect(list.length, equals(2));
-      expect(list[0], equals('.jpeg'));
-      expect(list[1], equals('.png'));
+      final (itemCount, :items) = vector.getMany(1, 2);
+      expect(itemCount, equals(2));
+      expect(items.length, equals(2));
+      expect(items[0], equals('.jpeg'));
+      expect(items[1], equals('.png'));
     });
 
     test('replaceAll', () {

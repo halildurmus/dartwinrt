@@ -67,33 +67,27 @@ void main() {
     });
 
     test('indexOf finds element', () {
-      final pIndex = calloc<Uint32>();
-
       final vectorView = getVectorView();
       final hostName = vectorView.getAt(0);
-      final containsElement = vectorView.indexOf(hostName, pIndex);
+      final (containsElement, :index) = vectorView.indexOf(hostName);
       expect(containsElement, isTrue);
-      expect(pIndex.value, greaterThanOrEqualTo(0));
-
-      free(pIndex);
+      expect(index, greaterThanOrEqualTo(0));
     });
 
     test('getMany returns elements starting from index 0', () {
-      final list = <HostName?>[];
       final vectorView = getVectorView();
-      expect(vectorView.getMany(0, vectorView.size, list),
-          greaterThanOrEqualTo(1));
-      expect(list.length, equals(vectorView.size));
+      final (itemCount, :items) = vectorView.getMany(0, vectorView.size);
+      expect(itemCount, greaterThanOrEqualTo(1));
+      expect(items.length, equals(vectorView.size));
     });
 
     test(
         'getMany returns all elements if valueSize is greater than the number '
         'of elements', () {
-      final list = <HostName?>[];
       final vectorView = getVectorView();
-      expect(vectorView.getMany(0, vectorView.size + 1, list),
-          greaterThanOrEqualTo(1));
-      expect(list.length, equals(vectorView.size));
+      final (itemCount, :items) = vectorView.getMany(0, vectorView.size + 1);
+      expect(itemCount, greaterThanOrEqualTo(1));
+      expect(items.length, equals(vectorView.size));
     });
 
     test('toList', () {

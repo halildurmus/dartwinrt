@@ -55,7 +55,6 @@ void main() {
     test('projects bool', () {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Foundation.IPropertyValue', 'GetBoolean');
-      expect(projection, isA<DefaultMethodProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isTrue);
       expect(projection.returnType, equals('bool'));
@@ -80,7 +79,6 @@ void main() {
     test('projects class', () {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Globalization.Calendar', 'Clone');
-      expect(projection, isA<DefaultMethodProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
       expect(projection.returnType, equals('Calendar?'));
@@ -110,7 +108,6 @@ void main() {
     test('projects DateTime', () {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Globalization.Calendar', 'GetDateTime');
-      expect(projection, isA<DefaultMethodProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isTrue);
       expect(projection.returnType, equals('DateTime'));
@@ -136,7 +133,6 @@ void main() {
     test('projects double', () {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Foundation.IPropertyValue', 'GetDouble');
-      expect(projection, isA<DefaultMethodProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isTrue);
       expect(projection.returnType, equals('double'));
@@ -161,7 +157,6 @@ void main() {
     test('projects Duration', () {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Foundation.IPropertyValue', 'GetTimeSpan');
-      expect(projection, isA<DefaultMethodProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isTrue);
       expect(projection.returnType, equals('Duration'));
@@ -187,7 +182,6 @@ void main() {
     test('projects enum', () {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Data.Json.IJsonErrorStatics2', 'GetJsonStatus');
-      expect(projection, isA<DefaultMethodProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isTrue);
       expect(projection.returnType, equals('JsonErrorStatus'));
@@ -216,7 +210,6 @@ void main() {
     test('projects Flags enum', () {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Networking.Connectivity.NetworkItem', 'GetNetworkTypes');
-      expect(projection, isA<DefaultMethodProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isTrue);
       expect(projection.returnType, equals('NetworkTypes'));
@@ -244,7 +237,6 @@ void main() {
           'Windows.Foundation.Collections.IVector`1', TypeArgKind.winrtEnum);
       final projection = genericInterfaceProjection.methodProjections
           .firstWhere((methodProjection) => methodProjection.name == 'GetAt');
-      expect(projection, isA<DefaultMethodProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isTrue);
       expect(projection.returnType, equals('T'));
@@ -277,7 +269,6 @@ void main() {
           TypeArgKind.winrtFlagsEnum);
       final projection = genericInterfaceProjection.methodProjections
           .firstWhere((methodProjection) => methodProjection.name == 'GetAt');
-      expect(projection, isA<DefaultMethodProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isTrue);
       expect(projection.returnType, equals('T'));
@@ -310,7 +301,6 @@ void main() {
           TypeArgKind.nullableInspectable);
       final projection = genericInterfaceProjection.methodProjections
           .firstWhere((methodProjection) => methodProjection.name == 'GetAt');
-      expect(projection, isA<DefaultMethodProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
       expect(projection.returnType, equals('T'));
@@ -341,7 +331,6 @@ void main() {
     test('projects Guid', () {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Foundation.IPropertyValue', 'GetGuid');
-      expect(projection, isA<DefaultMethodProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isTrue);
       expect(projection.returnType, equals('Guid'));
@@ -366,7 +355,6 @@ void main() {
     test('projects int', () {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Foundation.IPropertyValue', 'GetInt32');
-      expect(projection, isA<DefaultMethodProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isTrue);
       expect(projection.returnType, equals('int'));
@@ -391,7 +379,6 @@ void main() {
     test('projects interface', () {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Foundation.Collections.StringMap', 'First');
-      expect(projection, isA<DefaultMethodProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
       expect(projection.returnType,
@@ -425,7 +412,6 @@ void main() {
     test('projects IAsyncAction (1)', () {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Storage.IStorageItem', 'DeleteAsyncOverloadDefaultOptions');
-      expect(projection, isA<DefaultMethodProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
       expect(projection.returnType, equals('Future<void>'));
@@ -457,7 +443,6 @@ void main() {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Security.Authentication.OnlineId.OnlineIdAuthenticator',
           'SignOutUserAsync');
-      expect(projection, isA<DefaultMethodProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
       expect(projection.returnType, equals('Future<void>'));
@@ -492,7 +477,6 @@ void main() {
     test('projects IAsyncActionWithProgress<double>', () {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Media.Transcoding.PrepareTranscodeResult', 'TranscodeAsync');
-      expect(projection, isA<DefaultMethodProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
       expect(projection.returnType, equals('Pointer<COMObject>'));
@@ -521,7 +505,6 @@ void main() {
     test('projects IAsyncOperation<int>', () {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Storage.Streams.DataReader', 'LoadAsync');
-      expect(projection, isA<DefaultMethodProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
       expect(projection.returnType, equals('Future<int>'));
@@ -555,7 +538,6 @@ void main() {
     test('projects IAsyncOperation<IMapView<String, Object?>>', () {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Storage.Search.IContentIndexer', 'RetrievePropertiesAsync');
-      expect(projection, isA<DefaultMethodProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
       expect(projection.returnType, equals('Future<Map<String, Object?>>'));
@@ -598,7 +580,6 @@ void main() {
     test('projects IAsyncOperation<IReference<DateTime?>?>', () {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.UI.Xaml.Controls.IDatePickerFlyout', 'ShowAtAsync');
-      expect(projection, isA<DefaultMethodProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
       expect(projection.returnType, equals('Future<DateTime?>'));
@@ -637,7 +618,6 @@ void main() {
     test('projects IAsyncOperation<IVectorView<User>>', () {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.System.IUserStatics', 'FindAllAsync');
-      expect(projection, isA<DefaultMethodProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
       expect(projection.returnType, equals('Future<List<User?>>'));
@@ -673,7 +653,6 @@ void main() {
     test('projects IAsyncOperation<StorageFile?>', () {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Storage.Pickers.IFileOpenPicker', 'PickSingleFileAsync');
-      expect(projection, isA<DefaultMethodProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
       expect(projection.returnType, equals('Future<StorageFile?>'));
@@ -707,7 +686,6 @@ void main() {
     test('projects IAsyncOperationWithProgress<double>', () {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Storage.Streams.IOutputStream', 'WriteAsync');
-      expect(projection, isA<DefaultMethodProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
       expect(projection.returnType, equals('Pointer<COMObject>'));
@@ -741,7 +719,6 @@ void main() {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Storage.Search.StorageFileQueryResult',
           'GetMatchingPropertiesWithRanges');
-      expect(projection, isA<DefaultMethodProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
       expect(projection.returnType,
@@ -780,7 +757,6 @@ void main() {
     test('projects IMapView<String, String>', () {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Foundation.Collections.StringMap', 'GetView');
-      expect(projection, isA<DefaultMethodProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
       expect(projection.returnType, equals('Map<String, String>'));
@@ -812,7 +788,6 @@ void main() {
     test('projects IReference<int?>', () {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Networking.Connectivity.ConnectionProfile', 'GetSignalBars');
-      expect(projection, isA<DefaultMethodProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
       expect(projection.returnType, equals('int?'));
@@ -845,7 +820,6 @@ void main() {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Networking.BackgroundTransfer.IDownloadOperation3',
           'GetDownloadedRanges');
-      expect(projection, isA<DefaultMethodProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
       expect(projection.returnType,
@@ -879,7 +853,6 @@ void main() {
     test('projects IVector<DateTime>', () {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Devices.Printers.IIppAttributeValue', 'GetDateTimeArray');
-      expect(projection, isA<DefaultMethodProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
       expect(projection.returnType, equals('IVector<DateTime>'));
@@ -912,7 +885,6 @@ void main() {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Media.MediaProperties.IMediaEncodingProfile2',
           'GetVideoTracks');
-      expect(projection, isA<DefaultMethodProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
       expect(projection.returnType, equals('IVector<VideoStreamDescriptor?>'));
@@ -946,7 +918,6 @@ void main() {
     test('projects IVectorView<double>', () {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.AI.MachineLearning.TensorFloat', 'GetAsVectorView');
-      expect(projection, isA<DefaultMethodProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
       expect(projection.returnType, equals('List<double>'));
@@ -979,7 +950,6 @@ void main() {
     test('projects IVectorView<int>', () {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.AI.MachineLearning.TensorInt32Bit', 'GetAsVectorView');
-      expect(projection, isA<DefaultMethodProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
       expect(projection.returnType, equals('List<int>'));
@@ -1012,7 +982,6 @@ void main() {
     test('projects IVectorView<MediaTimeRange>', () {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Media.Playback.IMediaPlaybackSession2', 'GetSeekableRanges');
-      expect(projection, isA<DefaultMethodProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
       expect(projection.returnType, equals('List<MediaTimeRange>'));
@@ -1045,7 +1014,6 @@ void main() {
     test('projects IVectorView<String>', () {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Globalization.ApplicationLanguages', 'GetLanguagesForUser');
-      expect(projection, isA<DefaultMethodProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
       expect(projection.returnType, equals('List<String>'));
@@ -1080,7 +1048,6 @@ void main() {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.UI.Xaml.Automation.Provider.ISpreadsheetItemProvider',
           'GetAnnotationTypes');
-      expect(projection, isA<DefaultListMethodProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isTrue);
       expect(projection.returnType, equals('List<AnnotationType>'));
@@ -1090,35 +1057,34 @@ void main() {
       expect(
           projection.preambles,
           orderedEquals([
-            'final retValueSize = calloc<Uint32>();',
+            'final resultSize = calloc<Uint32>();',
             'final result = calloc<Pointer<Int32>>();'
           ]));
       expect(projection.parametersPreamble, isEmpty);
       expect(
           projection.nativePrototype,
           equals(
-              'HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> retValueSize, Pointer<Pointer<Int32>> result)'));
+              'HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> resultSize, Pointer<Pointer<Int32>> result)'));
       expect(
           projection.dartPrototype,
           equals(
-              'int Function(VTablePointer lpVtbl, Pointer<Uint32> retValueSize, Pointer<Pointer<Int32>> result)'));
-      expect(projection.identifiers,
-          equals('ptr.ref.lpVtbl, retValueSize, result'));
+              'int Function(VTablePointer lpVtbl, Pointer<Uint32> resultSize, Pointer<Pointer<Int32>> result)'));
+      expect(
+          projection.identifiers, equals('ptr.ref.lpVtbl, resultSize, result'));
       expect(projection.parametersPostamble, isEmpty);
       expect(projection.failedCheck, equals(failedCheck()));
       expect(projection.nullCheck, isEmpty);
       expect(
           projection.returnStatement,
           equals(
-              'return result.value.toList(length: retValueSize.value).map(AnnotationType.from).toList();'));
+              'return result.value.toList(length: resultSize.value).map(AnnotationType.from).toList();'));
       expect(projection.postambles,
-          orderedEquals(['free(retValueSize);', 'free(result);']));
+          orderedEquals(['free(resultSize);', 'free(result);']));
     });
 
     test('projects List<DisplayId>', () {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Graphics.Display.IDisplayServicesStatics', 'FindAll');
-      expect(projection, isA<DefaultListMethodProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isTrue);
       expect(projection.returnType, equals('List<DisplayId>'));
@@ -1127,33 +1093,32 @@ void main() {
       expect(
           projection.preambles,
           orderedEquals([
-            'final retValueSize = calloc<Uint32>();',
+            'final resultSize = calloc<Uint32>();',
             'final result = calloc<Pointer<NativeDisplayId>>();'
           ]));
       expect(projection.parametersPreamble, isEmpty);
       expect(
           projection.nativePrototype,
           equals(
-              'HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> retValueSize, Pointer<Pointer<NativeDisplayId>> result)'));
+              'HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> resultSize, Pointer<Pointer<NativeDisplayId>> result)'));
       expect(
           projection.dartPrototype,
           equals(
-              'int Function(VTablePointer lpVtbl, Pointer<Uint32> retValueSize, Pointer<Pointer<NativeDisplayId>> result)'));
-      expect(projection.identifiers,
-          equals('ptr.ref.lpVtbl, retValueSize, result'));
+              'int Function(VTablePointer lpVtbl, Pointer<Uint32> resultSize, Pointer<Pointer<NativeDisplayId>> result)'));
+      expect(
+          projection.identifiers, equals('ptr.ref.lpVtbl, resultSize, result'));
       expect(projection.parametersPostamble, isEmpty);
       expect(projection.failedCheck, equals(failedCheck()));
       expect(projection.nullCheck, isEmpty);
       expect(projection.returnStatement,
-          equals('return result.value.toList(length: retValueSize.value);'));
+          equals('return result.value.toList(length: resultSize.value);'));
       expect(projection.postambles,
-          orderedEquals(['free(retValueSize);', 'free(result);']));
+          orderedEquals(['free(resultSize);', 'free(result);']));
     });
 
     test('projects List<int>', () {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Devices.Display.IDisplayMonitor', 'GetDescriptor');
-      expect(projection, isA<DefaultListMethodProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isTrue);
       expect(projection.returnType, equals('List<int>'));
@@ -1165,33 +1130,32 @@ void main() {
       expect(
           projection.preambles,
           orderedEquals([
-            'final retValueSize = calloc<Uint32>();',
+            'final resultSize = calloc<Uint32>();',
             'final result = calloc<Pointer<Uint8>>();'
           ]));
       expect(projection.parametersPreamble, isEmpty);
       expect(
           projection.nativePrototype,
           equals(
-              'HRESULT Function(VTablePointer lpVtbl, Int32 descriptorKind, Pointer<Uint32> retValueSize, Pointer<Pointer<Uint8>> result)'));
+              'HRESULT Function(VTablePointer lpVtbl, Int32 descriptorKind, Pointer<Uint32> resultSize, Pointer<Pointer<Uint8>> result)'));
       expect(
           projection.dartPrototype,
           equals(
-              'int Function(VTablePointer lpVtbl, int descriptorKind, Pointer<Uint32> retValueSize, Pointer<Pointer<Uint8>> result)'));
+              'int Function(VTablePointer lpVtbl, int descriptorKind, Pointer<Uint32> resultSize, Pointer<Pointer<Uint8>> result)'));
       expect(projection.identifiers,
-          equals('ptr.ref.lpVtbl, descriptorKind.value, retValueSize, result'));
+          equals('ptr.ref.lpVtbl, descriptorKind.value, resultSize, result'));
       expect(projection.parametersPostamble, isEmpty);
       expect(projection.failedCheck, equals(failedCheck()));
       expect(projection.nullCheck, isEmpty);
       expect(projection.returnStatement,
-          equals('return result.value.toList(length: retValueSize.value);'));
+          equals('return result.value.toList(length: resultSize.value);'));
       expect(projection.postambles,
-          orderedEquals(['free(retValueSize);', 'free(result);']));
+          orderedEquals(['free(resultSize);', 'free(result);']));
     });
 
     test('projects List<ITextRangeProvider?>', () {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.UI.Xaml.Automation.Provider.ITextProvider', 'GetSelection');
-      expect(projection, isA<DefaultListMethodProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isTrue);
       expect(projection.returnType, equals('List<ITextRangeProvider?>'));
@@ -1201,35 +1165,34 @@ void main() {
       expect(
           projection.preambles,
           orderedEquals([
-            'final retValueSize = calloc<Uint32>();',
+            'final resultSize = calloc<Uint32>();',
             'final result = calloc<Pointer<COMObject>>();'
           ]));
       expect(projection.parametersPreamble, isEmpty);
       expect(
           projection.nativePrototype,
           equals(
-              'HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> retValueSize, Pointer<Pointer<COMObject>> result)'));
+              'HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> resultSize, Pointer<Pointer<COMObject>> result)'));
       expect(
           projection.dartPrototype,
           equals(
-              'int Function(VTablePointer lpVtbl, Pointer<Uint32> retValueSize, Pointer<Pointer<COMObject>> result)'));
-      expect(projection.identifiers,
-          equals('ptr.ref.lpVtbl, retValueSize, result'));
+              'int Function(VTablePointer lpVtbl, Pointer<Uint32> resultSize, Pointer<Pointer<COMObject>> result)'));
+      expect(
+          projection.identifiers, equals('ptr.ref.lpVtbl, resultSize, result'));
       expect(projection.parametersPostamble, isEmpty);
       expect(projection.failedCheck, equals(failedCheck()));
       expect(projection.nullCheck, isEmpty);
       expect(
           projection.returnStatement,
           equals(
-              'return result.value.toList(ITextRangeProvider.fromPtr, length: retValueSize.value);'));
+              'return result.value.toList(ITextRangeProvider.fromPtr, length: resultSize.value);'));
       expect(projection.postambles,
-          orderedEquals(['free(retValueSize);', 'free(result);']));
+          orderedEquals(['free(resultSize);', 'free(result);']));
     });
 
     test('projects Object?', () {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Foundation.Collections.PropertySet', 'Lookup');
-      expect(projection, isA<DefaultMethodProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
       expect(projection.returnType, equals('Object?'));
@@ -1259,10 +1222,219 @@ void main() {
       expect(projection.postambles, isEmpty);
     });
 
+    test('projects Record (1)', () {
+      final projection = MethodProjection.fromTypeAndMethodName(
+          'Windows.Globalization.PhoneNumberFormatting.IPhoneNumberFormatterStatics',
+          'TryCreate');
+      expect(projection, isA<RecordMethodProjection>());
+      expect(projection.annotations, isEmpty);
+      expect(projection.useTryFinallyBlock, isTrue);
+      expect(projection.returnType, equals('PhoneNumberFormatter?'));
+      expect(projection.header,
+          equals('PhoneNumberFormatter? tryCreate(String regionCode)'));
+      expect(projection.paramIdentifier, isEmpty);
+      expect(projection.preambles, isEmpty);
+      expect(
+          projection.parametersPreamble,
+          equals([
+            'final regionCodeHString = regionCode.toHString();',
+            'final phoneNumber = calloc<COMObject>();'
+          ]));
+      expect(
+          projection.nativePrototype,
+          equals(
+              'HRESULT Function(VTablePointer lpVtbl, IntPtr regionCode, Pointer<COMObject> phoneNumber)'));
+      expect(
+          projection.dartPrototype,
+          equals(
+              'int Function(VTablePointer lpVtbl, int regionCode, Pointer<COMObject> phoneNumber)'));
+      expect(projection.identifiers,
+          equals('ptr.ref.lpVtbl, regionCodeHString, phoneNumber'));
+      expect(projection.parametersPostamble,
+          equals(['WindowsDeleteString(regionCodeHString);']));
+      expect(projection.failedCheck,
+          equals(failedCheck(freeRetVal: true, identifier: 'phoneNumber')));
+      expect(projection.nullCheck, equals(nullCheck('phoneNumber')));
+      expect(projection.returnStatement,
+          equals('return PhoneNumberFormatter.fromPtr(phoneNumber);'));
+      expect(projection.postambles, isEmpty);
+    });
+
+    test('projects Record (2)', () {
+      final projection = MethodProjection.fromTypeAndMethodName(
+          'Windows.Data.Xml.Dom.XmlNamedNodeMap', 'IndexOf');
+      expect(projection, isA<RecordMethodProjection>());
+      expect(projection.annotations, isEmpty);
+      expect(projection.useTryFinallyBlock, isTrue);
+      expect(projection.returnType, equals('(bool, {int index})'));
+      expect(projection.header,
+          equals('(bool, {int index}) indexOf(IXmlNode? value)'));
+      expect(projection.paramIdentifier, equals('returnValue'));
+      expect(projection.preambles,
+          equals(['final returnValue = calloc<Bool>();']));
+      expect(projection.parametersPreamble,
+          equals(['final index = calloc<Uint32>();']));
+      expect(
+          projection.nativePrototype,
+          equals(
+              'HRESULT Function(VTablePointer lpVtbl, VTablePointer value, Pointer<Uint32> index, Pointer<Bool> returnValue)'));
+      expect(
+          projection.dartPrototype,
+          equals(
+              'int Function(VTablePointer lpVtbl, VTablePointer value, Pointer<Uint32> index, Pointer<Bool> returnValue)'));
+      expect(
+          projection.identifiers,
+          equals(
+              'ptr.ref.lpVtbl, value?.ptr.ref.lpVtbl ?? nullptr, index, returnValue'));
+      expect(projection.parametersPostamble, equals(['free(index);']));
+      expect(projection.failedCheck, equals(failedCheck()));
+      expect(projection.nullCheck, isEmpty);
+      expect(projection.returnStatement,
+          equals('return (returnValue.value, index: index.value);'));
+      expect(projection.postambles, equals(['free(returnValue);']));
+    });
+
+    test('projects Record (3)', () {
+      final projection = MethodProjection.fromTypeAndMethodName(
+          'Windows.Data.Xml.Dom.XmlNodeList', 'GetMany');
+      expect(projection, isA<RecordMethodProjection>());
+      expect(projection.annotations, isEmpty);
+      expect(projection.useTryFinallyBlock, isTrue);
+      expect(projection.returnType, equals('(int, {List<IXmlNode?> items})'));
+      expect(
+          projection.header,
+          equals(
+              '(int, {List<IXmlNode?> items}) getMany(int startIndex, int itemsSize)'));
+      expect(projection.paramIdentifier, equals('returnValue'));
+      expect(projection.preambles,
+          equals(['final returnValue = calloc<Uint32>();']));
+      expect(projection.parametersPreamble,
+          equals(['final items = calloc<COMObject>(itemsSize);']));
+      expect(
+          projection.nativePrototype,
+          equals(
+              'HRESULT Function(VTablePointer lpVtbl, Uint32 startIndex, Uint32 itemsSize, Pointer<COMObject> items, Pointer<Uint32> returnValue)'));
+      expect(
+          projection.dartPrototype,
+          equals(
+              'int Function(VTablePointer lpVtbl, int startIndex, int itemsSize, Pointer<COMObject> items, Pointer<Uint32> returnValue)'));
+      expect(projection.identifiers,
+          equals('ptr.ref.lpVtbl, startIndex, itemsSize, items, returnValue'));
+      expect(projection.parametersPostamble, equals(['free(items);']));
+      expect(projection.failedCheck, equals(failedCheck()));
+      expect(projection.nullCheck, isEmpty);
+      expect(
+          projection.returnStatement,
+          equals(
+              'return (returnValue.value, items: items.toList(IXmlNode.fromPtr, length: returnValue.value));'));
+      expect(projection.postambles, equals(['free(returnValue);']));
+    });
+
+    test('projects Record (4)', () {
+      final projection = MethodProjection.fromTypeAndMethodName(
+          'Windows.AI.MachineLearning.LearningModelBinding', 'Split');
+      expect(projection, isA<RecordMethodProjection>());
+      expect(projection.annotations, isEmpty);
+      expect(projection.useTryFinallyBlock, isTrue);
+      expect(
+          projection.returnType,
+          equals(
+              '({IMapView<String, Object?>? first, IMapView<String, Object?>? second})'));
+      expect(
+          projection.header,
+          equals(
+              '({IMapView<String, Object?>? first, IMapView<String, Object?>? second}) split()'));
+      expect(projection.paramIdentifier, isEmpty);
+      expect(projection.preambles, isEmpty);
+      expect(
+          projection.parametersPreamble,
+          equals([
+            'final first = calloc<COMObject>();',
+            'final second = calloc<COMObject>();'
+          ]));
+      expect(
+          projection.nativePrototype,
+          equals(
+              'HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> first, Pointer<COMObject> second)'));
+      expect(
+          projection.dartPrototype,
+          equals(
+              'int Function(VTablePointer lpVtbl, Pointer<COMObject> first, Pointer<COMObject> second)'));
+      expect(projection.identifiers, equals('ptr.ref.lpVtbl, first, second'));
+      expect(projection.parametersPostamble, isEmpty);
+      expect(projection.failedCheck,
+          equals(failedCheck(freeRetVal: true, identifier: 'first')));
+      expect(projection.nullCheck, equalsIgnoringWhitespace('''
+        var firstIsNull = false;
+        if (first.isNull) {
+          free(first);
+          firstIsNull = true;
+        }
+
+        var secondIsNull = false;
+        if (second.isNull) {
+          free(second);
+          secondIsNull = true;
+        }
+'''));
+      expect(projection.returnStatement, equalsIgnoringWhitespace('''
+          return (first: firstIsNull ? null : IMapView<String, Object?>.fromPtr(first, iterableIid: '{fe2f3d47-5d47-5499-8374-430c7cda0204}').toMap(), second: secondIsNull ? null : IMapView<String, Object?>.fromPtr(second, iterableIid: '{fe2f3d47-5d47-5499-8374-430c7cda0204}').toMap());
+'''));
+      expect(projection.postambles, isEmpty);
+    });
+
+    test('projects Record (5)', () {
+      final projection = MethodProjection.fromTypeAndMethodName(
+          'Windows.Globalization.PhoneNumberFormatting.IPhoneNumberInfoStatics',
+          'TryParse');
+      expect(projection, isA<RecordMethodProjection>());
+      expect(projection.annotations, isEmpty);
+      expect(projection.useTryFinallyBlock, isTrue);
+      expect(projection.returnType,
+          equals('(PhoneNumberParseResult, {PhoneNumberInfo? phoneNumber})'));
+      expect(
+          projection.header,
+          equals(
+              '(PhoneNumberParseResult, {PhoneNumberInfo? phoneNumber}) tryParse(String input)'));
+      expect(projection.paramIdentifier, equals('result'));
+      expect(projection.preambles, equals(['final result = calloc<Int32>();']));
+      expect(
+          projection.parametersPreamble,
+          equals([
+            'final inputHString = input.toHString();',
+            'final phoneNumber = calloc<COMObject>();'
+          ]));
+      expect(
+          projection.nativePrototype,
+          equals(
+              'HRESULT Function(VTablePointer lpVtbl, IntPtr input, Pointer<COMObject> phoneNumber, Pointer<Int32> result)'));
+      expect(
+          projection.dartPrototype,
+          equals(
+              'int Function(VTablePointer lpVtbl, int input, Pointer<COMObject> phoneNumber, Pointer<Int32> result)'));
+      expect(projection.identifiers,
+          equals('ptr.ref.lpVtbl, inputHString, phoneNumber, result'));
+      expect(projection.parametersPostamble,
+          equals(['WindowsDeleteString(inputHString);']));
+      expect(projection.failedCheck,
+          equals(failedCheck(freeRetVal: true, identifier: 'phoneNumber')));
+      expect(projection.nullCheck, equalsIgnoringWhitespace('''
+        var phoneNumberIsNull = false;
+        if (phoneNumber.isNull) {
+          free(phoneNumber);
+          phoneNumberIsNull = true;
+        }
+'''));
+      expect(
+          projection.returnStatement,
+          equals(
+              'return (PhoneNumberParseResult.from(result.value), phoneNumber: phoneNumberIsNull ? null : PhoneNumberInfo.fromPtr(phoneNumber));'));
+      expect(projection.postambles, equals(['free(result);']));
+    });
+
     test('projects String (1)', () {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Globalization.ICalendar', 'GetCalendarSystem');
-      expect(projection, isA<DefaultMethodProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isTrue);
       expect(projection.returnType, equals('String'));
@@ -1289,7 +1461,6 @@ void main() {
     test('projects String (2) (annotated with @override)', () {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Foundation.IStringable', 'ToString');
-      expect(projection, isA<DefaultMethodProjection>());
       expect(projection.annotations, equals(['@override']));
       expect(projection.useTryFinallyBlock, isTrue);
       expect(projection.returnType, equals('String'));
@@ -1316,7 +1487,6 @@ void main() {
     test('projects struct', () {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Foundation.IPropertyValue', 'GetPoint');
-      expect(projection, isA<DefaultMethodProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isTrue);
       expect(projection.returnType, equals('Point'));
@@ -1344,7 +1514,6 @@ void main() {
     test('projects Uri', () {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Foundation.IUriRuntimeClassFactory', 'CreateUri');
-      expect(projection, isA<DefaultMethodProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
       expect(projection.returnType, equals('Uri'));
@@ -1378,7 +1547,6 @@ void main() {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Security.Authentication.Web.WebAuthenticationBroker',
           'GetCurrentApplicationCallbackUri');
-      expect(projection, isA<DefaultMethodProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
       expect(projection.returnType, equals('Uri?'));
@@ -1406,10 +1574,9 @@ void main() {
       expect(projection.postambles, isEmpty);
     });
 
-    test('projects void (1)', () {
+    test('projects void', () {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Foundation.IClosable', 'Close');
-      expect(projection, isA<DefaultMethodProjection>());
       expect(projection.annotations, isEmpty);
       expect(projection.useTryFinallyBlock, isFalse);
       expect(projection.returnType, equals('void'));
@@ -1423,40 +1590,6 @@ void main() {
           equals('int Function(VTablePointer lpVtbl)'));
       expect(projection.identifiers, equals('ptr.ref.lpVtbl'));
       expect(projection.parametersPostamble, isEmpty);
-      expect(projection.failedCheck, equals(failedCheck()));
-      expect(projection.nullCheck, isEmpty);
-      expect(projection.returnStatement, isEmpty);
-      expect(projection.postambles, isEmpty);
-    });
-
-    test('projects void (2)', () {
-      final projection = MethodProjection.fromTypeAndMethodName(
-          'Windows.Globalization.PhoneNumberFormatting.IPhoneNumberFormatterStatics',
-          'TryCreate');
-      expect(projection, isA<DefaultMethodProjection>());
-      expect(projection.annotations, isEmpty);
-      expect(projection.useTryFinallyBlock, isFalse);
-      expect(projection.returnType, equals('void'));
-      expect(
-          projection.header,
-          equals(
-              'void tryCreate(String regionCode, PhoneNumberFormatter phoneNumber)'));
-      expect(projection.paramIdentifier, isEmpty);
-      expect(projection.preambles, isEmpty);
-      expect(projection.parametersPreamble,
-          equals(['final regionCodeHString = regionCode.toHString();']));
-      expect(
-          projection.nativePrototype,
-          equals(
-              'HRESULT Function(VTablePointer lpVtbl, IntPtr regionCode, Pointer<COMObject> phoneNumber)'));
-      expect(
-          projection.dartPrototype,
-          equals(
-              'int Function(VTablePointer lpVtbl, int regionCode, Pointer<COMObject> phoneNumber)'));
-      expect(projection.identifiers,
-          equals('ptr.ref.lpVtbl, regionCodeHString, phoneNumber.ptr'));
-      expect(projection.parametersPostamble,
-          equals(['WindowsDeleteString(regionCodeHString);']));
       expect(projection.failedCheck, equals(failedCheck()));
       expect(projection.nullCheck, isEmpty);
       expect(projection.returnStatement, isEmpty);

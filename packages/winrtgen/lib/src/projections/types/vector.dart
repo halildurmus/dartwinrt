@@ -16,7 +16,7 @@ final class VectorParameterProjection extends ParameterProjection {
       : typeProjection.typeIdentifier;
 
   /// The type argument of `IVector` and `IVectorView`, as represented in the
-  /// [typeProjection]'s [TypeIdentifier] (e.g. `int`, `String`, `StorageFile`).
+  /// [typeProjection]'s [TypeIdentifier] (e.g. `String`, `StorageFile?`).
   String get vectorTypeArg => typeArguments(shortTypeName);
 
   /// The constructor arguments passed to the constructors of `IVector` and
@@ -62,14 +62,9 @@ final class VectorParameterProjection extends ParameterProjection {
   }
 
   @override
-  bool get isNullable {
-    // Methods that return collection objects cannot return null.
-    if (isReturnParam && !method.isGetProperty) return false;
-    // TODO(halildurmus): Remove this
-    if (isOutParam) return false;
-    // Treat everything else as nullable.
-    return true;
-  }
+  bool get isNullable =>
+      // Methods that return collection interfaces cannot return null.
+      !(isReturnParam && !method.isGetProperty);
 
   @override
   String get type => isNullable ? nullable(shortTypeName) : shortTypeName;

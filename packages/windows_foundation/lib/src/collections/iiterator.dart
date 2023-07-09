@@ -208,5 +208,5 @@ abstract interface class IIterator<T> extends IInspectable {
   }
 
   /// Retrieves multiple items from the iterator.
-  int getMany(int capacity, List<T> value);
+  (int, {List<T> items}) getMany(int capacity);
 }

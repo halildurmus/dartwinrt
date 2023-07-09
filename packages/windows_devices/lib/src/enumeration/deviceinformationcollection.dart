@@ -34,12 +34,13 @@ class DeviceInformationCollection extends IInspectable
   int get size => _iVectorView.size;
 
   @override
-  bool indexOf(DeviceInformation? value, Pointer<Uint32> index) =>
-      _iVectorView.indexOf(value, index);
+  (bool, {int index}) indexOf(DeviceInformation? value) =>
+      _iVectorView.indexOf(value);
 
   @override
-  int getMany(int startIndex, int itemsSize, List<DeviceInformation?> items) =>
-      _iVectorView.getMany(startIndex, itemsSize, items);
+  (int, {List<DeviceInformation?> items}) getMany(
+          int startIndex, int itemsSize) =>
+      _iVectorView.getMany(startIndex, itemsSize);
 
   @override
   IIterator<DeviceInformation?> first() => _iVectorView.first();

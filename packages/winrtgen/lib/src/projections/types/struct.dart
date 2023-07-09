@@ -3,7 +3,7 @@
 // license that can be found in the LICENSE file.
 
 import '../parameter.dart';
-import 'default.dart';
+import 'array.dart';
 
 /// Parameter projection for WinRT struct parameters.
 final class StructParameterProjection extends ParameterProjection {
@@ -45,13 +45,13 @@ final class StructParameterProjection extends ParameterProjection {
   bool get needsAllocation => true;
 }
 
-/// Parameter projection for `List<T extends WinRTStruct>` parameters.
-final class StructListParameterProjection
-    extends DefaultListParameterProjection {
-  StructListParameterProjection(super.parameter);
+/// Parameter projection for Pass Array style WinRTStruct parameters.
+final class StructPassArrayParameterProjection
+    extends PassArrayParameterProjection {
+  StructPassArrayParameterProjection(super.parameter);
 
   @override
-  List<String> get passArrayPreambles => [
+  List<String> get preambles => [
         'final nativeStructPtrs = <Pointer<$nativeType>>[];',
         'final $localIdentifier = calloc<$nativeType>($identifier.length);',
         '''
@@ -63,6 +63,6 @@ final class StructListParameterProjection
       ];
 
   @override
-  List<String> get passArrayPostambles =>
+  List<String> get postambles =>
       ['nativeStructPtrs.forEach(free);', 'free($localIdentifier);'];
 }

@@ -62,38 +62,32 @@ void main() {
     });
 
     test('indexOf returns false if the element is not found', () {
-      final pIndex = calloc<Uint32>();
-
       final vectorView = getVectorView();
-      final containsElement = vectorView.indexOf('xx-xx', pIndex);
+      final (containsElement, :index) = vectorView.indexOf('xx-xx');
       expect(containsElement, isFalse);
-      expect(pIndex.value, equals(0));
-
-      free(pIndex);
+      expect(index, equals(0));
     });
 
     test('getMany returns elements starting from index 0', () {
-      final list = <String>[];
       final vectorView = getVectorView();
-      expect(vectorView.getMany(0, vectorView.size, list),
-          greaterThanOrEqualTo(1));
-      expect(list.length, equals(vectorView.size));
+      final (itemCount, :items) = vectorView.getMany(0, vectorView.size);
+      expect(itemCount, greaterThanOrEqualTo(1));
+      expect(items.length, equals(vectorView.size));
       // Should be something like en-US
-      expect(list[0][2], equals('-'));
-      expect(list[0].length, equals(5));
+      expect(items[0][2], equals('-'));
+      expect(items[0].length, equals(5));
     });
 
     test(
         'getMany returns all elements if valueSize is greater than the number '
         'of elements', () {
-      final list = <String>[];
       final vectorView = getVectorView();
-      expect(vectorView.getMany(0, vectorView.size + 1, list),
-          greaterThanOrEqualTo(1));
-      expect(list.length, equals(vectorView.size));
+      final (itemCount, :items) = vectorView.getMany(0, vectorView.size + 1);
+      expect(itemCount, greaterThanOrEqualTo(1));
+      expect(items.length, equals(vectorView.size));
       // Should be something like en-US
-      expect(list[0][2], equals('-'));
-      expect(list[0].length, equals(5));
+      expect(items[0][2], equals('-'));
+      expect(items[0].length, equals(5));
     });
 
     test('toList', () {

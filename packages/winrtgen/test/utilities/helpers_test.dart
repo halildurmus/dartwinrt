@@ -9,13 +9,6 @@ import 'package:win32/win32.dart';
 import 'package:winrtgen/winrtgen.dart';
 
 void main() {
-  test('arrayNameFromSizeParamName', () {
-    expect(arrayNameFromSizeParamName('__valueSize'), equals('value'));
-    expect(arrayNameFromSizeParamName('_resultsSize'), equals('_resultsSize'));
-    expect(
-        arrayNameFromSizeParamName('notASizeParam'), equals('notASizeParam'));
-  });
-
   test('fileNameFromType', () {
     expect(fileNameFromType('Windows.Globalization.Calendar'),
         equals('calendar.dart'));

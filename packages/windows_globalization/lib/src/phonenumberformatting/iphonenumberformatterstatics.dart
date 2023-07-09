@@ -29,28 +29,41 @@ class IPhoneNumberFormatterStatics extends IInspectable {
       IPhoneNumberFormatterStatics.fromPtr(
           interface.toInterface(IID_IPhoneNumberFormatterStatics));
 
-  void tryCreate(String regionCode, PhoneNumberFormatter phoneNumber) {
+  PhoneNumberFormatter? tryCreate(String regionCode) {
     final regionCodeHString = regionCode.toHString();
+    final phoneNumber = calloc<COMObject>();
 
-    final hr =
-        ptr.ref.vtable
-                .elementAt(6)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                IntPtr regionCode,
-                                Pointer<COMObject> phoneNumber)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, int regionCode,
-                        Pointer<COMObject> phoneNumber)>()(
-            ptr.ref.lpVtbl, regionCodeHString, phoneNumber.ptr);
+    try {
+      final hr =
+          ptr.ref.vtable
+                  .elementAt(6)
+                  .cast<
+                      Pointer<
+                          NativeFunction<
+                              HRESULT Function(
+                                  VTablePointer lpVtbl,
+                                  IntPtr regionCode,
+                                  Pointer<COMObject> phoneNumber)>>>()
+                  .value
+                  .asFunction<
+                      int Function(VTablePointer lpVtbl, int regionCode,
+                          Pointer<COMObject> phoneNumber)>()(
+              ptr.ref.lpVtbl, regionCodeHString, phoneNumber);
 
-    WindowsDeleteString(regionCodeHString);
+      if (FAILED(hr)) {
+        free(phoneNumber);
+        throwWindowsException(hr);
+      }
 
-    if (FAILED(hr)) throwWindowsException(hr);
+      if (phoneNumber.isNull) {
+        free(phoneNumber);
+        return null;
+      }
+
+      return PhoneNumberFormatter.fromPtr(phoneNumber);
+    } finally {
+      WindowsDeleteString(regionCodeHString);
+    }
   }
 
   int getCountryCodeForRegion(String regionCode) {

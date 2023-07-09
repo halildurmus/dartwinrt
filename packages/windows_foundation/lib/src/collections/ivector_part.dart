@@ -39,12 +39,12 @@ final class _IVectorAccessListEntry extends IVector<AccessListEntry> {
   }
 
   @override
-  bool indexOf(AccessListEntry value, Pointer<Uint32> index) {
+  (bool, {int index}) indexOf(AccessListEntry value) {
     final retValuePtr = calloc<Bool>();
+    final valueNativeStructPtr = value.toNative();
+    final index = calloc<Uint32>();
 
     try {
-      final valueNativeStructPtr = value.toNative();
-
       final hr = ptr.ref.vtable
               .elementAt(9)
               .cast<
@@ -64,12 +64,12 @@ final class _IVectorAccessListEntry extends IVector<AccessListEntry> {
                       Pointer<Bool> retValuePtr)>()(
           ptr.ref.lpVtbl, valueNativeStructPtr.ref, index, retValuePtr);
 
-      free(valueNativeStructPtr);
-
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return retValuePtr.value;
+      return (retValuePtr.value, index: index.value);
     } finally {
+      free(valueNativeStructPtr);
+      free(index);
       free(retValuePtr);
     }
   }
@@ -141,12 +141,11 @@ final class _IVectorAccessListEntry extends IVector<AccessListEntry> {
   }
 
   @override
-  int getMany(int startIndex, int itemsSize, List<AccessListEntry> items) {
+  (int, {List<AccessListEntry> items}) getMany(int startIndex, int itemsSize) {
     final retValuePtr = calloc<Uint32>();
+    final items = calloc<NativeAccessListEntry>(itemsSize);
 
     try {
-      final pItemsArray = calloc<NativeAccessListEntry>(itemsSize);
-
       final hr = ptr.ref.vtable
               .elementAt(16)
               .cast<
@@ -166,17 +165,16 @@ final class _IVectorAccessListEntry extends IVector<AccessListEntry> {
                       int itemsSize,
                       Pointer<NativeAccessListEntry> items,
                       Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, startIndex, itemsSize, pItemsArray, retValuePtr);
-
-      if (retValuePtr.value > 0) {
-        items.addAll(pItemsArray.toList(length: retValuePtr.value));
-      }
-      free(pItemsArray);
+          ptr.ref.lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return retValuePtr.value;
+      return (
+        retValuePtr.value,
+        items: items.toList(length: retValuePtr.value)
+      );
     } finally {
+      free(items);
       free(retValuePtr);
     }
   }
@@ -184,10 +182,10 @@ final class _IVectorAccessListEntry extends IVector<AccessListEntry> {
   @override
   void replaceAll(List<AccessListEntry> items) {
     final nativeStructPtrs = <Pointer<NativeAccessListEntry>>[];
-    final pItemsArray = calloc<NativeAccessListEntry>(items.length);
+    final itemsArray = calloc<NativeAccessListEntry>(items.length);
     for (var i = 0; i < items.length; i++) {
       final nativeStructPtr = items[i].toNative();
-      pItemsArray[i] = nativeStructPtr.ref;
+      itemsArray[i] = nativeStructPtr.ref;
       nativeStructPtrs.add(nativeStructPtr);
     }
 
@@ -202,10 +200,10 @@ final class _IVectorAccessListEntry extends IVector<AccessListEntry> {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int itemsSize,
                     Pointer<NativeAccessListEntry> items)>()(
-        ptr.ref.lpVtbl, items.length, pItemsArray);
+        ptr.ref.lpVtbl, items.length, itemsArray);
 
     nativeStructPtrs.forEach(free);
-    free(pItemsArray);
+    free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -248,12 +246,12 @@ final class _IVectorBackgroundTransferFileRange
   }
 
   @override
-  bool indexOf(BackgroundTransferFileRange value, Pointer<Uint32> index) {
+  (bool, {int index}) indexOf(BackgroundTransferFileRange value) {
     final retValuePtr = calloc<Bool>();
+    final valueNativeStructPtr = value.toNative();
+    final index = calloc<Uint32>();
 
     try {
-      final valueNativeStructPtr = value.toNative();
-
       final hr = ptr.ref.vtable
               .elementAt(9)
               .cast<
@@ -273,12 +271,12 @@ final class _IVectorBackgroundTransferFileRange
                       Pointer<Bool> retValuePtr)>()(
           ptr.ref.lpVtbl, valueNativeStructPtr.ref, index, retValuePtr);
 
-      free(valueNativeStructPtr);
-
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return retValuePtr.value;
+      return (retValuePtr.value, index: index.value);
     } finally {
+      free(valueNativeStructPtr);
+      free(index);
       free(retValuePtr);
     }
   }
@@ -350,13 +348,12 @@ final class _IVectorBackgroundTransferFileRange
   }
 
   @override
-  int getMany(
-      int startIndex, int itemsSize, List<BackgroundTransferFileRange> items) {
+  (int, {List<BackgroundTransferFileRange> items}) getMany(
+      int startIndex, int itemsSize) {
     final retValuePtr = calloc<Uint32>();
+    final items = calloc<NativeBackgroundTransferFileRange>(itemsSize);
 
     try {
-      final pItemsArray = calloc<NativeBackgroundTransferFileRange>(itemsSize);
-
       final hr = ptr.ref.vtable
               .elementAt(16)
               .cast<
@@ -376,17 +373,16 @@ final class _IVectorBackgroundTransferFileRange
                       int itemsSize,
                       Pointer<NativeBackgroundTransferFileRange> items,
                       Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, startIndex, itemsSize, pItemsArray, retValuePtr);
-
-      if (retValuePtr.value > 0) {
-        items.addAll(pItemsArray.toList(length: retValuePtr.value));
-      }
-      free(pItemsArray);
+          ptr.ref.lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return retValuePtr.value;
+      return (
+        retValuePtr.value,
+        items: items.toList(length: retValuePtr.value)
+      );
     } finally {
+      free(items);
       free(retValuePtr);
     }
   }
@@ -394,10 +390,10 @@ final class _IVectorBackgroundTransferFileRange
   @override
   void replaceAll(List<BackgroundTransferFileRange> items) {
     final nativeStructPtrs = <Pointer<NativeBackgroundTransferFileRange>>[];
-    final pItemsArray = calloc<NativeBackgroundTransferFileRange>(items.length);
+    final itemsArray = calloc<NativeBackgroundTransferFileRange>(items.length);
     for (var i = 0; i < items.length; i++) {
       final nativeStructPtr = items[i].toNative();
-      pItemsArray[i] = nativeStructPtr.ref;
+      itemsArray[i] = nativeStructPtr.ref;
       nativeStructPtrs.add(nativeStructPtr);
     }
 
@@ -414,10 +410,10 @@ final class _IVectorBackgroundTransferFileRange
                 VTablePointer lpVtbl,
                 int itemsSize,
                 Pointer<NativeBackgroundTransferFileRange>
-                    items)>()(ptr.ref.lpVtbl, items.length, pItemsArray);
+                    items)>()(ptr.ref.lpVtbl, items.length, itemsArray);
 
     nativeStructPtrs.forEach(free);
-    free(pItemsArray);
+    free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -453,12 +449,12 @@ final class _IVectorBasicGeoposition extends IVector<BasicGeoposition> {
   }
 
   @override
-  bool indexOf(BasicGeoposition value, Pointer<Uint32> index) {
+  (bool, {int index}) indexOf(BasicGeoposition value) {
     final retValuePtr = calloc<Bool>();
+    final valueNativeStructPtr = value.toNative();
+    final index = calloc<Uint32>();
 
     try {
-      final valueNativeStructPtr = value.toNative();
-
       final hr = ptr.ref.vtable
               .elementAt(9)
               .cast<
@@ -478,12 +474,12 @@ final class _IVectorBasicGeoposition extends IVector<BasicGeoposition> {
                       Pointer<Bool> retValuePtr)>()(
           ptr.ref.lpVtbl, valueNativeStructPtr.ref, index, retValuePtr);
 
-      free(valueNativeStructPtr);
-
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return retValuePtr.value;
+      return (retValuePtr.value, index: index.value);
     } finally {
+      free(valueNativeStructPtr);
+      free(index);
       free(retValuePtr);
     }
   }
@@ -555,12 +551,11 @@ final class _IVectorBasicGeoposition extends IVector<BasicGeoposition> {
   }
 
   @override
-  int getMany(int startIndex, int itemsSize, List<BasicGeoposition> items) {
+  (int, {List<BasicGeoposition> items}) getMany(int startIndex, int itemsSize) {
     final retValuePtr = calloc<Uint32>();
+    final items = calloc<NativeBasicGeoposition>(itemsSize);
 
     try {
-      final pItemsArray = calloc<NativeBasicGeoposition>(itemsSize);
-
       final hr = ptr.ref.vtable
               .elementAt(16)
               .cast<
@@ -580,17 +575,16 @@ final class _IVectorBasicGeoposition extends IVector<BasicGeoposition> {
                       int itemsSize,
                       Pointer<NativeBasicGeoposition> items,
                       Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, startIndex, itemsSize, pItemsArray, retValuePtr);
-
-      if (retValuePtr.value > 0) {
-        items.addAll(pItemsArray.toList(length: retValuePtr.value));
-      }
-      free(pItemsArray);
+          ptr.ref.lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return retValuePtr.value;
+      return (
+        retValuePtr.value,
+        items: items.toList(length: retValuePtr.value)
+      );
     } finally {
+      free(items);
       free(retValuePtr);
     }
   }
@@ -598,10 +592,10 @@ final class _IVectorBasicGeoposition extends IVector<BasicGeoposition> {
   @override
   void replaceAll(List<BasicGeoposition> items) {
     final nativeStructPtrs = <Pointer<NativeBasicGeoposition>>[];
-    final pItemsArray = calloc<NativeBasicGeoposition>(items.length);
+    final itemsArray = calloc<NativeBasicGeoposition>(items.length);
     for (var i = 0; i < items.length; i++) {
       final nativeStructPtr = items[i].toNative();
-      pItemsArray[i] = nativeStructPtr.ref;
+      itemsArray[i] = nativeStructPtr.ref;
       nativeStructPtrs.add(nativeStructPtr);
     }
 
@@ -616,10 +610,10 @@ final class _IVectorBasicGeoposition extends IVector<BasicGeoposition> {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int itemsSize,
                     Pointer<NativeBasicGeoposition> items)>()(
-        ptr.ref.lpVtbl, items.length, pItemsArray);
+        ptr.ref.lpVtbl, items.length, itemsArray);
 
     nativeStructPtrs.forEach(free);
-    free(pItemsArray);
+    free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -655,8 +649,9 @@ final class _IVectorBool extends IVector<bool> {
   }
 
   @override
-  bool indexOf(bool value, Pointer<Uint32> index) {
+  (bool, {int index}) indexOf(bool value) {
     final retValuePtr = calloc<Bool>();
+    final index = calloc<Uint32>();
 
     try {
       final hr =
@@ -678,8 +673,9 @@ final class _IVectorBool extends IVector<bool> {
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return retValuePtr.value;
+      return (retValuePtr.value, index: index.value);
     } finally {
+      free(index);
       free(retValuePtr);
     }
   }
@@ -734,12 +730,11 @@ final class _IVectorBool extends IVector<bool> {
   }
 
   @override
-  int getMany(int startIndex, int itemsSize, List<bool> items) {
+  (int, {List<bool> items}) getMany(int startIndex, int itemsSize) {
     final retValuePtr = calloc<Uint32>();
+    final items = calloc<Bool>(itemsSize);
 
     try {
-      final pItemsArray = calloc<Bool>(itemsSize);
-
       final hr = ptr.ref.vtable
               .elementAt(16)
               .cast<
@@ -759,26 +754,25 @@ final class _IVectorBool extends IVector<bool> {
                       int itemsSize,
                       Pointer<Bool> items,
                       Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, startIndex, itemsSize, pItemsArray, retValuePtr);
-
-      if (retValuePtr.value > 0) {
-        items.addAll(pItemsArray.toList(length: retValuePtr.value));
-      }
-      free(pItemsArray);
+          ptr.ref.lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return retValuePtr.value;
+      return (
+        retValuePtr.value,
+        items: items.toList(length: retValuePtr.value)
+      );
     } finally {
+      free(items);
       free(retValuePtr);
     }
   }
 
   @override
   void replaceAll(List<bool> items) {
-    final pItemsArray = calloc<Bool>(items.length);
+    final itemsArray = calloc<Bool>(items.length);
     for (var i = 0; i < items.length; i++) {
-      pItemsArray[i] = items[i];
+      itemsArray[i] = items[i];
     }
 
     final hr = ptr.ref.vtable
@@ -792,9 +786,9 @@ final class _IVectorBool extends IVector<bool> {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int itemsSize,
                     Pointer<Bool> items)>()(
-        ptr.ref.lpVtbl, items.length, pItemsArray);
+        ptr.ref.lpVtbl, items.length, itemsArray);
 
-    free(pItemsArray);
+    free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -830,12 +824,12 @@ final class _IVectorColor extends IVector<Color> {
   }
 
   @override
-  bool indexOf(Color value, Pointer<Uint32> index) {
+  (bool, {int index}) indexOf(Color value) {
     final retValuePtr = calloc<Bool>();
+    final valueNativeStructPtr = value.toNative();
+    final index = calloc<Uint32>();
 
     try {
-      final valueNativeStructPtr = value.toNative();
-
       final hr =
           ptr.ref.vtable
                   .elementAt(9)
@@ -853,12 +847,12 @@ final class _IVectorColor extends IVector<Color> {
                           Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
               ptr.ref.lpVtbl, valueNativeStructPtr.ref, index, retValuePtr);
 
-      free(valueNativeStructPtr);
-
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return retValuePtr.value;
+      return (retValuePtr.value, index: index.value);
     } finally {
+      free(valueNativeStructPtr);
+      free(index);
       free(retValuePtr);
     }
   }
@@ -929,12 +923,11 @@ final class _IVectorColor extends IVector<Color> {
   }
 
   @override
-  int getMany(int startIndex, int itemsSize, List<Color> items) {
+  (int, {List<Color> items}) getMany(int startIndex, int itemsSize) {
     final retValuePtr = calloc<Uint32>();
+    final items = calloc<NativeColor>(itemsSize);
 
     try {
-      final pItemsArray = calloc<NativeColor>(itemsSize);
-
       final hr = ptr.ref.vtable
               .elementAt(16)
               .cast<
@@ -954,17 +947,16 @@ final class _IVectorColor extends IVector<Color> {
                       int itemsSize,
                       Pointer<NativeColor> items,
                       Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, startIndex, itemsSize, pItemsArray, retValuePtr);
-
-      if (retValuePtr.value > 0) {
-        items.addAll(pItemsArray.toList(length: retValuePtr.value));
-      }
-      free(pItemsArray);
+          ptr.ref.lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return retValuePtr.value;
+      return (
+        retValuePtr.value,
+        items: items.toList(length: retValuePtr.value)
+      );
     } finally {
+      free(items);
       free(retValuePtr);
     }
   }
@@ -972,10 +964,10 @@ final class _IVectorColor extends IVector<Color> {
   @override
   void replaceAll(List<Color> items) {
     final nativeStructPtrs = <Pointer<NativeColor>>[];
-    final pItemsArray = calloc<NativeColor>(items.length);
+    final itemsArray = calloc<NativeColor>(items.length);
     for (var i = 0; i < items.length; i++) {
       final nativeStructPtr = items[i].toNative();
-      pItemsArray[i] = nativeStructPtr.ref;
+      itemsArray[i] = nativeStructPtr.ref;
       nativeStructPtrs.add(nativeStructPtr);
     }
 
@@ -990,10 +982,10 @@ final class _IVectorColor extends IVector<Color> {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int itemsSize,
                     Pointer<NativeColor> items)>()(
-        ptr.ref.lpVtbl, items.length, pItemsArray);
+        ptr.ref.lpVtbl, items.length, itemsArray);
 
     nativeStructPtrs.forEach(free);
-    free(pItemsArray);
+    free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -1030,8 +1022,9 @@ final class _IVectorDouble extends IVector<double> {
   }
 
   @override
-  bool indexOf(double value, Pointer<Uint32> index) {
+  (bool, {int index}) indexOf(double value) {
     final retValuePtr = calloc<Bool>();
+    final index = calloc<Uint32>();
 
     try {
       final hr =
@@ -1053,8 +1046,9 @@ final class _IVectorDouble extends IVector<double> {
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return retValuePtr.value;
+      return (retValuePtr.value, index: index.value);
     } finally {
+      free(index);
       free(retValuePtr);
     }
   }
@@ -1111,12 +1105,11 @@ final class _IVectorDouble extends IVector<double> {
   }
 
   @override
-  int getMany(int startIndex, int itemsSize, List<double> items) {
+  (int, {List<double> items}) getMany(int startIndex, int itemsSize) {
     final retValuePtr = calloc<Uint32>();
+    final items = calloc<Double>(itemsSize);
 
     try {
-      final pItemsArray = calloc<Double>(itemsSize);
-
       final hr = ptr.ref.vtable
               .elementAt(16)
               .cast<
@@ -1136,26 +1129,25 @@ final class _IVectorDouble extends IVector<double> {
                       int itemsSize,
                       Pointer<Double> items,
                       Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, startIndex, itemsSize, pItemsArray, retValuePtr);
-
-      if (retValuePtr.value > 0) {
-        items.addAll(pItemsArray.toList(length: retValuePtr.value));
-      }
-      free(pItemsArray);
+          ptr.ref.lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return retValuePtr.value;
+      return (
+        retValuePtr.value,
+        items: items.toList(length: retValuePtr.value)
+      );
     } finally {
+      free(items);
       free(retValuePtr);
     }
   }
 
   @override
   void replaceAll(List<double> items) {
-    final pItemsArray = calloc<Double>(items.length);
+    final itemsArray = calloc<Double>(items.length);
     for (var i = 0; i < items.length; i++) {
-      pItemsArray[i] = items[i];
+      itemsArray[i] = items[i];
     }
 
     final hr = ptr.ref.vtable
@@ -1169,9 +1161,9 @@ final class _IVectorDouble extends IVector<double> {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int itemsSize,
                     Pointer<Double> items)>()(
-        ptr.ref.lpVtbl, items.length, pItemsArray);
+        ptr.ref.lpVtbl, items.length, itemsArray);
 
-    free(pItemsArray);
+    free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -1208,8 +1200,9 @@ final class _IVectorFloat extends IVector<double> {
   }
 
   @override
-  bool indexOf(double value, Pointer<Uint32> index) {
+  (bool, {int index}) indexOf(double value) {
     final retValuePtr = calloc<Bool>();
+    final index = calloc<Uint32>();
 
     try {
       final hr =
@@ -1231,8 +1224,9 @@ final class _IVectorFloat extends IVector<double> {
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return retValuePtr.value;
+      return (retValuePtr.value, index: index.value);
     } finally {
+      free(index);
       free(retValuePtr);
     }
   }
@@ -1287,12 +1281,11 @@ final class _IVectorFloat extends IVector<double> {
   }
 
   @override
-  int getMany(int startIndex, int itemsSize, List<double> items) {
+  (int, {List<double> items}) getMany(int startIndex, int itemsSize) {
     final retValuePtr = calloc<Uint32>();
+    final items = calloc<Float>(itemsSize);
 
     try {
-      final pItemsArray = calloc<Float>(itemsSize);
-
       final hr = ptr.ref.vtable
               .elementAt(16)
               .cast<
@@ -1312,26 +1305,25 @@ final class _IVectorFloat extends IVector<double> {
                       int itemsSize,
                       Pointer<Float> items,
                       Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, startIndex, itemsSize, pItemsArray, retValuePtr);
-
-      if (retValuePtr.value > 0) {
-        items.addAll(pItemsArray.toList(length: retValuePtr.value));
-      }
-      free(pItemsArray);
+          ptr.ref.lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return retValuePtr.value;
+      return (
+        retValuePtr.value,
+        items: items.toList(length: retValuePtr.value)
+      );
     } finally {
+      free(items);
       free(retValuePtr);
     }
   }
 
   @override
   void replaceAll(List<double> items) {
-    final pItemsArray = calloc<Float>(items.length);
+    final itemsArray = calloc<Float>(items.length);
     for (var i = 0; i < items.length; i++) {
-      pItemsArray[i] = items[i];
+      itemsArray[i] = items[i];
     }
 
     final hr = ptr.ref.vtable
@@ -1345,9 +1337,9 @@ final class _IVectorFloat extends IVector<double> {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int itemsSize,
                     Pointer<Float> items)>()(
-        ptr.ref.lpVtbl, items.length, pItemsArray);
+        ptr.ref.lpVtbl, items.length, itemsArray);
 
-    free(pItemsArray);
+    free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -1383,12 +1375,12 @@ final class _IVectorGpioChangeRecord extends IVector<GpioChangeRecord> {
   }
 
   @override
-  bool indexOf(GpioChangeRecord value, Pointer<Uint32> index) {
+  (bool, {int index}) indexOf(GpioChangeRecord value) {
     final retValuePtr = calloc<Bool>();
+    final valueNativeStructPtr = value.toNative();
+    final index = calloc<Uint32>();
 
     try {
-      final valueNativeStructPtr = value.toNative();
-
       final hr = ptr.ref.vtable
               .elementAt(9)
               .cast<
@@ -1408,12 +1400,12 @@ final class _IVectorGpioChangeRecord extends IVector<GpioChangeRecord> {
                       Pointer<Bool> retValuePtr)>()(
           ptr.ref.lpVtbl, valueNativeStructPtr.ref, index, retValuePtr);
 
-      free(valueNativeStructPtr);
-
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return retValuePtr.value;
+      return (retValuePtr.value, index: index.value);
     } finally {
+      free(valueNativeStructPtr);
+      free(index);
       free(retValuePtr);
     }
   }
@@ -1485,12 +1477,11 @@ final class _IVectorGpioChangeRecord extends IVector<GpioChangeRecord> {
   }
 
   @override
-  int getMany(int startIndex, int itemsSize, List<GpioChangeRecord> items) {
+  (int, {List<GpioChangeRecord> items}) getMany(int startIndex, int itemsSize) {
     final retValuePtr = calloc<Uint32>();
+    final items = calloc<NativeGpioChangeRecord>(itemsSize);
 
     try {
-      final pItemsArray = calloc<NativeGpioChangeRecord>(itemsSize);
-
       final hr = ptr.ref.vtable
               .elementAt(16)
               .cast<
@@ -1510,17 +1501,16 @@ final class _IVectorGpioChangeRecord extends IVector<GpioChangeRecord> {
                       int itemsSize,
                       Pointer<NativeGpioChangeRecord> items,
                       Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, startIndex, itemsSize, pItemsArray, retValuePtr);
-
-      if (retValuePtr.value > 0) {
-        items.addAll(pItemsArray.toList(length: retValuePtr.value));
-      }
-      free(pItemsArray);
+          ptr.ref.lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return retValuePtr.value;
+      return (
+        retValuePtr.value,
+        items: items.toList(length: retValuePtr.value)
+      );
     } finally {
+      free(items);
       free(retValuePtr);
     }
   }
@@ -1528,10 +1518,10 @@ final class _IVectorGpioChangeRecord extends IVector<GpioChangeRecord> {
   @override
   void replaceAll(List<GpioChangeRecord> items) {
     final nativeStructPtrs = <Pointer<NativeGpioChangeRecord>>[];
-    final pItemsArray = calloc<NativeGpioChangeRecord>(items.length);
+    final itemsArray = calloc<NativeGpioChangeRecord>(items.length);
     for (var i = 0; i < items.length; i++) {
       final nativeStructPtr = items[i].toNative();
-      pItemsArray[i] = nativeStructPtr.ref;
+      itemsArray[i] = nativeStructPtr.ref;
       nativeStructPtrs.add(nativeStructPtr);
     }
 
@@ -1546,10 +1536,10 @@ final class _IVectorGpioChangeRecord extends IVector<GpioChangeRecord> {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int itemsSize,
                     Pointer<NativeGpioChangeRecord> items)>()(
-        ptr.ref.lpVtbl, items.length, pItemsArray);
+        ptr.ref.lpVtbl, items.length, itemsArray);
 
     nativeStructPtrs.forEach(free);
-    free(pItemsArray);
+    free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -1585,12 +1575,12 @@ final class _IVectorGuid extends IVector<Guid> {
   }
 
   @override
-  bool indexOf(Guid value, Pointer<Uint32> index) {
+  (bool, {int index}) indexOf(Guid value) {
     final retValuePtr = calloc<Bool>();
+    final valueNativeStructPtr = value.toNativeGUID();
+    final index = calloc<Uint32>();
 
     try {
-      final valueNativeStructPtr = value.toNativeGUID();
-
       final hr =
           ptr.ref.vtable
                   .elementAt(9)
@@ -1608,12 +1598,12 @@ final class _IVectorGuid extends IVector<Guid> {
                           Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
               ptr.ref.lpVtbl, valueNativeStructPtr.ref, index, retValuePtr);
 
-      free(valueNativeStructPtr);
-
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return retValuePtr.value;
+      return (retValuePtr.value, index: index.value);
     } finally {
+      free(valueNativeStructPtr);
+      free(index);
       free(retValuePtr);
     }
   }
@@ -1680,12 +1670,11 @@ final class _IVectorGuid extends IVector<Guid> {
   }
 
   @override
-  int getMany(int startIndex, int itemsSize, List<Guid> items) {
+  (int, {List<Guid> items}) getMany(int startIndex, int itemsSize) {
     final retValuePtr = calloc<Uint32>();
+    final items = calloc<GUID>(itemsSize);
 
     try {
-      final pItemsArray = calloc<GUID>(itemsSize);
-
       final hr = ptr.ref.vtable
               .elementAt(16)
               .cast<
@@ -1705,17 +1694,16 @@ final class _IVectorGuid extends IVector<Guid> {
                       int itemsSize,
                       Pointer<GUID> items,
                       Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, startIndex, itemsSize, pItemsArray, retValuePtr);
-
-      if (retValuePtr.value > 0) {
-        items.addAll(pItemsArray.toList(length: retValuePtr.value));
-      }
-      free(pItemsArray);
+          ptr.ref.lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return retValuePtr.value;
+      return (
+        retValuePtr.value,
+        items: items.toList(length: retValuePtr.value)
+      );
     } finally {
+      free(items);
       free(retValuePtr);
     }
   }
@@ -1723,10 +1711,10 @@ final class _IVectorGuid extends IVector<Guid> {
   @override
   void replaceAll(List<Guid> items) {
     final nativeStructPtrs = <Pointer<GUID>>[];
-    final pItemsArray = calloc<GUID>(items.length);
+    final itemsArray = calloc<GUID>(items.length);
     for (var i = 0; i < items.length; i++) {
       final nativeStructPtr = items[i].toNativeGUID();
-      pItemsArray[i] = nativeStructPtr.ref;
+      itemsArray[i] = nativeStructPtr.ref;
       nativeStructPtrs.add(nativeStructPtr);
     }
 
@@ -1741,10 +1729,10 @@ final class _IVectorGuid extends IVector<Guid> {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int itemsSize,
                     Pointer<GUID> items)>()(
-        ptr.ref.lpVtbl, items.length, pItemsArray);
+        ptr.ref.lpVtbl, items.length, itemsArray);
 
     nativeStructPtrs.forEach(free);
-    free(pItemsArray);
+    free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -1780,8 +1768,9 @@ final class _IVectorInt16 extends IVector<int> {
   }
 
   @override
-  bool indexOf(int value, Pointer<Uint32> index) {
+  (bool, {int index}) indexOf(int value) {
     final retValuePtr = calloc<Bool>();
+    final index = calloc<Uint32>();
 
     try {
       final hr =
@@ -1803,8 +1792,9 @@ final class _IVectorInt16 extends IVector<int> {
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return retValuePtr.value;
+      return (retValuePtr.value, index: index.value);
     } finally {
+      free(index);
       free(retValuePtr);
     }
   }
@@ -1859,12 +1849,11 @@ final class _IVectorInt16 extends IVector<int> {
   }
 
   @override
-  int getMany(int startIndex, int itemsSize, List<int> items) {
+  (int, {List<int> items}) getMany(int startIndex, int itemsSize) {
     final retValuePtr = calloc<Uint32>();
+    final items = calloc<Int16>(itemsSize);
 
     try {
-      final pItemsArray = calloc<Int16>(itemsSize);
-
       final hr = ptr.ref.vtable
               .elementAt(16)
               .cast<
@@ -1884,26 +1873,25 @@ final class _IVectorInt16 extends IVector<int> {
                       int itemsSize,
                       Pointer<Int16> items,
                       Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, startIndex, itemsSize, pItemsArray, retValuePtr);
-
-      if (retValuePtr.value > 0) {
-        items.addAll(pItemsArray.toList(length: retValuePtr.value));
-      }
-      free(pItemsArray);
+          ptr.ref.lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return retValuePtr.value;
+      return (
+        retValuePtr.value,
+        items: items.toList(length: retValuePtr.value)
+      );
     } finally {
+      free(items);
       free(retValuePtr);
     }
   }
 
   @override
   void replaceAll(List<int> items) {
-    final pItemsArray = calloc<Int16>(items.length);
+    final itemsArray = calloc<Int16>(items.length);
     for (var i = 0; i < items.length; i++) {
-      pItemsArray[i] = items[i];
+      itemsArray[i] = items[i];
     }
 
     final hr = ptr.ref.vtable
@@ -1917,9 +1905,9 @@ final class _IVectorInt16 extends IVector<int> {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int itemsSize,
                     Pointer<Int16> items)>()(
-        ptr.ref.lpVtbl, items.length, pItemsArray);
+        ptr.ref.lpVtbl, items.length, itemsArray);
 
-    free(pItemsArray);
+    free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -1955,8 +1943,9 @@ final class _IVectorInt32 extends IVector<int> {
   }
 
   @override
-  bool indexOf(int value, Pointer<Uint32> index) {
+  (bool, {int index}) indexOf(int value) {
     final retValuePtr = calloc<Bool>();
+    final index = calloc<Uint32>();
 
     try {
       final hr =
@@ -1978,8 +1967,9 @@ final class _IVectorInt32 extends IVector<int> {
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return retValuePtr.value;
+      return (retValuePtr.value, index: index.value);
     } finally {
+      free(index);
       free(retValuePtr);
     }
   }
@@ -2034,12 +2024,11 @@ final class _IVectorInt32 extends IVector<int> {
   }
 
   @override
-  int getMany(int startIndex, int itemsSize, List<int> items) {
+  (int, {List<int> items}) getMany(int startIndex, int itemsSize) {
     final retValuePtr = calloc<Uint32>();
+    final items = calloc<Int32>(itemsSize);
 
     try {
-      final pItemsArray = calloc<Int32>(itemsSize);
-
       final hr = ptr.ref.vtable
               .elementAt(16)
               .cast<
@@ -2059,26 +2048,25 @@ final class _IVectorInt32 extends IVector<int> {
                       int itemsSize,
                       Pointer<Int32> items,
                       Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, startIndex, itemsSize, pItemsArray, retValuePtr);
-
-      if (retValuePtr.value > 0) {
-        items.addAll(pItemsArray.toList(length: retValuePtr.value));
-      }
-      free(pItemsArray);
+          ptr.ref.lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return retValuePtr.value;
+      return (
+        retValuePtr.value,
+        items: items.toList(length: retValuePtr.value)
+      );
     } finally {
+      free(items);
       free(retValuePtr);
     }
   }
 
   @override
   void replaceAll(List<int> items) {
-    final pItemsArray = calloc<Int32>(items.length);
+    final itemsArray = calloc<Int32>(items.length);
     for (var i = 0; i < items.length; i++) {
-      pItemsArray[i] = items[i];
+      itemsArray[i] = items[i];
     }
 
     final hr = ptr.ref.vtable
@@ -2092,9 +2080,9 @@ final class _IVectorInt32 extends IVector<int> {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int itemsSize,
                     Pointer<Int32> items)>()(
-        ptr.ref.lpVtbl, items.length, pItemsArray);
+        ptr.ref.lpVtbl, items.length, itemsArray);
 
-    free(pItemsArray);
+    free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -2130,8 +2118,9 @@ final class _IVectorInt64 extends IVector<int> {
   }
 
   @override
-  bool indexOf(int value, Pointer<Uint32> index) {
+  (bool, {int index}) indexOf(int value) {
     final retValuePtr = calloc<Bool>();
+    final index = calloc<Uint32>();
 
     try {
       final hr =
@@ -2153,8 +2142,9 @@ final class _IVectorInt64 extends IVector<int> {
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return retValuePtr.value;
+      return (retValuePtr.value, index: index.value);
     } finally {
+      free(index);
       free(retValuePtr);
     }
   }
@@ -2209,12 +2199,11 @@ final class _IVectorInt64 extends IVector<int> {
   }
 
   @override
-  int getMany(int startIndex, int itemsSize, List<int> items) {
+  (int, {List<int> items}) getMany(int startIndex, int itemsSize) {
     final retValuePtr = calloc<Uint32>();
+    final items = calloc<Int64>(itemsSize);
 
     try {
-      final pItemsArray = calloc<Int64>(itemsSize);
-
       final hr = ptr.ref.vtable
               .elementAt(16)
               .cast<
@@ -2234,26 +2223,25 @@ final class _IVectorInt64 extends IVector<int> {
                       int itemsSize,
                       Pointer<Int64> items,
                       Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, startIndex, itemsSize, pItemsArray, retValuePtr);
-
-      if (retValuePtr.value > 0) {
-        items.addAll(pItemsArray.toList(length: retValuePtr.value));
-      }
-      free(pItemsArray);
+          ptr.ref.lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return retValuePtr.value;
+      return (
+        retValuePtr.value,
+        items: items.toList(length: retValuePtr.value)
+      );
     } finally {
+      free(items);
       free(retValuePtr);
     }
   }
 
   @override
   void replaceAll(List<int> items) {
-    final pItemsArray = calloc<Int64>(items.length);
+    final itemsArray = calloc<Int64>(items.length);
     for (var i = 0; i < items.length; i++) {
-      pItemsArray[i] = items[i];
+      itemsArray[i] = items[i];
     }
 
     final hr = ptr.ref.vtable
@@ -2267,9 +2255,9 @@ final class _IVectorInt64 extends IVector<int> {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int itemsSize,
                     Pointer<Int64> items)>()(
-        ptr.ref.lpVtbl, items.length, pItemsArray);
+        ptr.ref.lpVtbl, items.length, itemsArray);
 
-    free(pItemsArray);
+    free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -2305,12 +2293,12 @@ final class _IVectorMediaTimeRange extends IVector<MediaTimeRange> {
   }
 
   @override
-  bool indexOf(MediaTimeRange value, Pointer<Uint32> index) {
+  (bool, {int index}) indexOf(MediaTimeRange value) {
     final retValuePtr = calloc<Bool>();
+    final valueNativeStructPtr = value.toNative();
+    final index = calloc<Uint32>();
 
     try {
-      final valueNativeStructPtr = value.toNative();
-
       final hr = ptr.ref.vtable
               .elementAt(9)
               .cast<
@@ -2327,12 +2315,12 @@ final class _IVectorMediaTimeRange extends IVector<MediaTimeRange> {
                       Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
           ptr.ref.lpVtbl, valueNativeStructPtr.ref, index, retValuePtr);
 
-      free(valueNativeStructPtr);
-
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return retValuePtr.value;
+      return (retValuePtr.value, index: index.value);
     } finally {
+      free(valueNativeStructPtr);
+      free(index);
       free(retValuePtr);
     }
   }
@@ -2404,12 +2392,11 @@ final class _IVectorMediaTimeRange extends IVector<MediaTimeRange> {
   }
 
   @override
-  int getMany(int startIndex, int itemsSize, List<MediaTimeRange> items) {
+  (int, {List<MediaTimeRange> items}) getMany(int startIndex, int itemsSize) {
     final retValuePtr = calloc<Uint32>();
+    final items = calloc<NativeMediaTimeRange>(itemsSize);
 
     try {
-      final pItemsArray = calloc<NativeMediaTimeRange>(itemsSize);
-
       final hr = ptr.ref.vtable
               .elementAt(16)
               .cast<
@@ -2429,17 +2416,16 @@ final class _IVectorMediaTimeRange extends IVector<MediaTimeRange> {
                       int itemsSize,
                       Pointer<NativeMediaTimeRange> items,
                       Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, startIndex, itemsSize, pItemsArray, retValuePtr);
-
-      if (retValuePtr.value > 0) {
-        items.addAll(pItemsArray.toList(length: retValuePtr.value));
-      }
-      free(pItemsArray);
+          ptr.ref.lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return retValuePtr.value;
+      return (
+        retValuePtr.value,
+        items: items.toList(length: retValuePtr.value)
+      );
     } finally {
+      free(items);
       free(retValuePtr);
     }
   }
@@ -2447,10 +2433,10 @@ final class _IVectorMediaTimeRange extends IVector<MediaTimeRange> {
   @override
   void replaceAll(List<MediaTimeRange> items) {
     final nativeStructPtrs = <Pointer<NativeMediaTimeRange>>[];
-    final pItemsArray = calloc<NativeMediaTimeRange>(items.length);
+    final itemsArray = calloc<NativeMediaTimeRange>(items.length);
     for (var i = 0; i < items.length; i++) {
       final nativeStructPtr = items[i].toNative();
-      pItemsArray[i] = nativeStructPtr.ref;
+      itemsArray[i] = nativeStructPtr.ref;
       nativeStructPtrs.add(nativeStructPtr);
     }
 
@@ -2465,10 +2451,10 @@ final class _IVectorMediaTimeRange extends IVector<MediaTimeRange> {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int itemsSize,
                     Pointer<NativeMediaTimeRange> items)>()(
-        ptr.ref.lpVtbl, items.length, pItemsArray);
+        ptr.ref.lpVtbl, items.length, itemsArray);
 
     nativeStructPtrs.forEach(free);
-    free(pItemsArray);
+    free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -2504,12 +2490,12 @@ final class _IVectorMseTimeRange extends IVector<MseTimeRange> {
   }
 
   @override
-  bool indexOf(MseTimeRange value, Pointer<Uint32> index) {
+  (bool, {int index}) indexOf(MseTimeRange value) {
     final retValuePtr = calloc<Bool>();
+    final valueNativeStructPtr = value.toNative();
+    final index = calloc<Uint32>();
 
     try {
-      final valueNativeStructPtr = value.toNative();
-
       final hr = ptr.ref.vtable
               .elementAt(9)
               .cast<
@@ -2526,12 +2512,12 @@ final class _IVectorMseTimeRange extends IVector<MseTimeRange> {
                       Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
           ptr.ref.lpVtbl, valueNativeStructPtr.ref, index, retValuePtr);
 
-      free(valueNativeStructPtr);
-
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return retValuePtr.value;
+      return (retValuePtr.value, index: index.value);
     } finally {
+      free(valueNativeStructPtr);
+      free(index);
       free(retValuePtr);
     }
   }
@@ -2602,12 +2588,11 @@ final class _IVectorMseTimeRange extends IVector<MseTimeRange> {
   }
 
   @override
-  int getMany(int startIndex, int itemsSize, List<MseTimeRange> items) {
+  (int, {List<MseTimeRange> items}) getMany(int startIndex, int itemsSize) {
     final retValuePtr = calloc<Uint32>();
+    final items = calloc<NativeMseTimeRange>(itemsSize);
 
     try {
-      final pItemsArray = calloc<NativeMseTimeRange>(itemsSize);
-
       final hr = ptr.ref.vtable
               .elementAt(16)
               .cast<
@@ -2627,17 +2612,16 @@ final class _IVectorMseTimeRange extends IVector<MseTimeRange> {
                       int itemsSize,
                       Pointer<NativeMseTimeRange> items,
                       Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, startIndex, itemsSize, pItemsArray, retValuePtr);
-
-      if (retValuePtr.value > 0) {
-        items.addAll(pItemsArray.toList(length: retValuePtr.value));
-      }
-      free(pItemsArray);
+          ptr.ref.lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return retValuePtr.value;
+      return (
+        retValuePtr.value,
+        items: items.toList(length: retValuePtr.value)
+      );
     } finally {
+      free(items);
       free(retValuePtr);
     }
   }
@@ -2645,10 +2629,10 @@ final class _IVectorMseTimeRange extends IVector<MseTimeRange> {
   @override
   void replaceAll(List<MseTimeRange> items) {
     final nativeStructPtrs = <Pointer<NativeMseTimeRange>>[];
-    final pItemsArray = calloc<NativeMseTimeRange>(items.length);
+    final itemsArray = calloc<NativeMseTimeRange>(items.length);
     for (var i = 0; i < items.length; i++) {
       final nativeStructPtr = items[i].toNative();
-      pItemsArray[i] = nativeStructPtr.ref;
+      itemsArray[i] = nativeStructPtr.ref;
       nativeStructPtrs.add(nativeStructPtr);
     }
 
@@ -2663,10 +2647,10 @@ final class _IVectorMseTimeRange extends IVector<MseTimeRange> {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int itemsSize,
                     Pointer<NativeMseTimeRange> items)>()(
-        ptr.ref.lpVtbl, items.length, pItemsArray);
+        ptr.ref.lpVtbl, items.length, itemsArray);
 
     nativeStructPtrs.forEach(free);
-    free(pItemsArray);
+    free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -2702,12 +2686,12 @@ final class _IVectorNitRange extends IVector<NitRange> {
   }
 
   @override
-  bool indexOf(NitRange value, Pointer<Uint32> index) {
+  (bool, {int index}) indexOf(NitRange value) {
     final retValuePtr = calloc<Bool>();
+    final valueNativeStructPtr = value.toNative();
+    final index = calloc<Uint32>();
 
     try {
-      final valueNativeStructPtr = value.toNative();
-
       final hr = ptr.ref.vtable
               .elementAt(9)
               .cast<
@@ -2724,12 +2708,12 @@ final class _IVectorNitRange extends IVector<NitRange> {
                       Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
           ptr.ref.lpVtbl, valueNativeStructPtr.ref, index, retValuePtr);
 
-      free(valueNativeStructPtr);
-
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return retValuePtr.value;
+      return (retValuePtr.value, index: index.value);
     } finally {
+      free(valueNativeStructPtr);
+      free(index);
       free(retValuePtr);
     }
   }
@@ -2800,12 +2784,11 @@ final class _IVectorNitRange extends IVector<NitRange> {
   }
 
   @override
-  int getMany(int startIndex, int itemsSize, List<NitRange> items) {
+  (int, {List<NitRange> items}) getMany(int startIndex, int itemsSize) {
     final retValuePtr = calloc<Uint32>();
+    final items = calloc<NativeNitRange>(itemsSize);
 
     try {
-      final pItemsArray = calloc<NativeNitRange>(itemsSize);
-
       final hr = ptr.ref.vtable
               .elementAt(16)
               .cast<
@@ -2825,17 +2808,16 @@ final class _IVectorNitRange extends IVector<NitRange> {
                       int itemsSize,
                       Pointer<NativeNitRange> items,
                       Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, startIndex, itemsSize, pItemsArray, retValuePtr);
-
-      if (retValuePtr.value > 0) {
-        items.addAll(pItemsArray.toList(length: retValuePtr.value));
-      }
-      free(pItemsArray);
+          ptr.ref.lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return retValuePtr.value;
+      return (
+        retValuePtr.value,
+        items: items.toList(length: retValuePtr.value)
+      );
     } finally {
+      free(items);
       free(retValuePtr);
     }
   }
@@ -2843,10 +2825,10 @@ final class _IVectorNitRange extends IVector<NitRange> {
   @override
   void replaceAll(List<NitRange> items) {
     final nativeStructPtrs = <Pointer<NativeNitRange>>[];
-    final pItemsArray = calloc<NativeNitRange>(items.length);
+    final itemsArray = calloc<NativeNitRange>(items.length);
     for (var i = 0; i < items.length; i++) {
       final nativeStructPtr = items[i].toNative();
-      pItemsArray[i] = nativeStructPtr.ref;
+      itemsArray[i] = nativeStructPtr.ref;
       nativeStructPtrs.add(nativeStructPtr);
     }
 
@@ -2861,10 +2843,10 @@ final class _IVectorNitRange extends IVector<NitRange> {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int itemsSize,
                     Pointer<NativeNitRange> items)>()(
-        ptr.ref.lpVtbl, items.length, pItemsArray);
+        ptr.ref.lpVtbl, items.length, itemsArray);
 
     nativeStructPtrs.forEach(free);
-    free(pItemsArray);
+    free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -2908,8 +2890,9 @@ final class _IVectorInspectable<T> extends IVector<T> {
   }
 
   @override
-  bool indexOf(T value, Pointer<Uint32> index) {
+  (bool, {int index}) indexOf(T value) {
     final retValuePtr = calloc<Bool>();
+    final index = calloc<Uint32>();
 
     try {
       final hr = ptr.ref.vtable
@@ -2933,8 +2916,9 @@ final class _IVectorInspectable<T> extends IVector<T> {
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return retValuePtr.value;
+      return (retValuePtr.value, index: index.value);
     } finally {
+      free(index);
       free(retValuePtr);
     }
   }
@@ -2993,12 +2977,11 @@ final class _IVectorInspectable<T> extends IVector<T> {
   }
 
   @override
-  int getMany(int startIndex, int itemsSize, List<T> items) {
+  (int, {List<T> items}) getMany(int startIndex, int itemsSize) {
     final retValuePtr = calloc<Uint32>();
+    final items = calloc<COMObject>(itemsSize);
 
     try {
-      final pItemsArray = calloc<COMObject>(itemsSize);
-
       final hr = ptr.ref.vtable
               .elementAt(16)
               .cast<
@@ -3018,26 +3001,25 @@ final class _IVectorInspectable<T> extends IVector<T> {
                       int itemsSize,
                       Pointer<COMObject> items,
                       Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, startIndex, itemsSize, pItemsArray, retValuePtr);
-
-      if (retValuePtr.value > 0) {
-        items.addAll(pItemsArray.toList(creator, length: retValuePtr.value));
-      }
-      free(pItemsArray);
+          ptr.ref.lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return retValuePtr.value;
+      return (
+        retValuePtr.value,
+        items: items.toList(creator, length: retValuePtr.value)
+      );
     } finally {
+      free(items);
       free(retValuePtr);
     }
   }
 
   @override
   void replaceAll(List<T> items) {
-    final pItemsArray = calloc<VTablePointer>(items.length);
+    final itemsArray = calloc<VTablePointer>(items.length);
     for (var i = 0; i < items.length; i++) {
-      pItemsArray[i] = items.cast<IInspectable>()[i].ptr.ref.lpVtbl;
+      itemsArray[i] = items.cast<IInspectable>()[i].ptr.ref.lpVtbl;
     }
 
     final hr = ptr.ref.vtable
@@ -3051,9 +3033,9 @@ final class _IVectorInspectable<T> extends IVector<T> {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int itemsSize,
                     Pointer<VTablePointer> items)>()(
-        ptr.ref.lpVtbl, items.length, pItemsArray);
+        ptr.ref.lpVtbl, items.length, itemsArray);
 
-    free(pItemsArray);
+    free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -3093,8 +3075,9 @@ final class _IVectorObject extends IVector<Object?> {
   }
 
   @override
-  bool indexOf(Object? value, Pointer<Uint32> index) {
+  (bool, {int index}) indexOf(Object? value) {
     final retValuePtr = calloc<Bool>();
+    final index = calloc<Uint32>();
 
     try {
       final hr = ptr.ref.vtable
@@ -3118,8 +3101,9 @@ final class _IVectorObject extends IVector<Object?> {
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return retValuePtr.value;
+      return (retValuePtr.value, index: index.value);
     } finally {
+      free(index);
       free(retValuePtr);
     }
   }
@@ -3178,12 +3162,11 @@ final class _IVectorObject extends IVector<Object?> {
   }
 
   @override
-  int getMany(int startIndex, int itemsSize, List<Object?> items) {
+  (int, {List<Object?> items}) getMany(int startIndex, int itemsSize) {
     final retValuePtr = calloc<Uint32>();
+    final items = calloc<COMObject>(itemsSize);
 
     try {
-      final pItemsArray = calloc<COMObject>(itemsSize);
-
       final hr = ptr.ref.vtable
               .elementAt(16)
               .cast<
@@ -3203,26 +3186,25 @@ final class _IVectorObject extends IVector<Object?> {
                       int itemsSize,
                       Pointer<COMObject> items,
                       Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, startIndex, itemsSize, pItemsArray, retValuePtr);
-
-      if (retValuePtr.value > 0) {
-        items.addAll(pItemsArray.toObjectList(length: retValuePtr.value));
-      }
-      free(pItemsArray);
+          ptr.ref.lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return retValuePtr.value;
+      return (
+        retValuePtr.value,
+        items: items.toObjectList(length: retValuePtr.value)
+      );
     } finally {
+      free(items);
       free(retValuePtr);
     }
   }
 
   @override
   void replaceAll(List<Object?> items) {
-    final pItemsArray = calloc<VTablePointer>(items.length);
+    final itemsArray = calloc<VTablePointer>(items.length);
     for (var i = 0; i < items.length; i++) {
-      pItemsArray[i] = items[i]?.intoBox().ptr.ref.lpVtbl ?? nullptr;
+      itemsArray[i] = items[i]?.intoBox().ptr.ref.lpVtbl ?? nullptr;
     }
 
     final hr = ptr.ref.vtable
@@ -3236,9 +3218,9 @@ final class _IVectorObject extends IVector<Object?> {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int itemsSize,
                     Pointer<VTablePointer> items)>()(
-        ptr.ref.lpVtbl, items.length, pItemsArray);
+        ptr.ref.lpVtbl, items.length, itemsArray);
 
-    free(pItemsArray);
+    free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -3278,8 +3260,9 @@ final class _IVectorUri extends IVector<Uri?> {
   }
 
   @override
-  bool indexOf(Uri? value, Pointer<Uint32> index) {
+  (bool, {int index}) indexOf(Uri? value) {
     final retValuePtr = calloc<Bool>();
+    final index = calloc<Uint32>();
 
     try {
       final hr = ptr.ref.vtable
@@ -3303,8 +3286,9 @@ final class _IVectorUri extends IVector<Uri?> {
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return retValuePtr.value;
+      return (retValuePtr.value, index: index.value);
     } finally {
+      free(index);
       free(retValuePtr);
     }
   }
@@ -3363,12 +3347,11 @@ final class _IVectorUri extends IVector<Uri?> {
   }
 
   @override
-  int getMany(int startIndex, int itemsSize, List<Uri?> items) {
+  (int, {List<Uri?> items}) getMany(int startIndex, int itemsSize) {
     final retValuePtr = calloc<Uint32>();
+    final items = calloc<COMObject>(itemsSize);
 
     try {
-      final pItemsArray = calloc<COMObject>(itemsSize);
-
       final hr = ptr.ref.vtable
               .elementAt(16)
               .cast<
@@ -3388,26 +3371,25 @@ final class _IVectorUri extends IVector<Uri?> {
                       int itemsSize,
                       Pointer<COMObject> items,
                       Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, startIndex, itemsSize, pItemsArray, retValuePtr);
-
-      if (retValuePtr.value > 0) {
-        items.addAll(pItemsArray.toDartUriList(length: retValuePtr.value));
-      }
-      free(pItemsArray);
+          ptr.ref.lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return retValuePtr.value;
+      return (
+        retValuePtr.value,
+        items: items.toDartUriList(length: retValuePtr.value)
+      );
     } finally {
+      free(items);
       free(retValuePtr);
     }
   }
 
   @override
   void replaceAll(List<Uri?> items) {
-    final pItemsArray = calloc<VTablePointer>(items.length);
+    final itemsArray = calloc<VTablePointer>(items.length);
     for (var i = 0; i < items.length; i++) {
-      pItemsArray[i] = items[i]?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr;
+      itemsArray[i] = items[i]?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr;
     }
 
     final hr = ptr.ref.vtable
@@ -3421,9 +3403,9 @@ final class _IVectorUri extends IVector<Uri?> {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int itemsSize,
                     Pointer<VTablePointer> items)>()(
-        ptr.ref.lpVtbl, items.length, pItemsArray);
+        ptr.ref.lpVtbl, items.length, itemsArray);
 
-    free(pItemsArray);
+    free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -3459,12 +3441,12 @@ final class _IVectorPoint extends IVector<Point> {
   }
 
   @override
-  bool indexOf(Point value, Pointer<Uint32> index) {
+  (bool, {int index}) indexOf(Point value) {
     final retValuePtr = calloc<Bool>();
+    final valueNativeStructPtr = value.toNative();
+    final index = calloc<Uint32>();
 
     try {
-      final valueNativeStructPtr = value.toNative();
-
       final hr =
           ptr.ref.vtable
                   .elementAt(9)
@@ -3482,12 +3464,12 @@ final class _IVectorPoint extends IVector<Point> {
                           Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
               ptr.ref.lpVtbl, valueNativeStructPtr.ref, index, retValuePtr);
 
-      free(valueNativeStructPtr);
-
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return retValuePtr.value;
+      return (retValuePtr.value, index: index.value);
     } finally {
+      free(valueNativeStructPtr);
+      free(index);
       free(retValuePtr);
     }
   }
@@ -3558,12 +3540,11 @@ final class _IVectorPoint extends IVector<Point> {
   }
 
   @override
-  int getMany(int startIndex, int itemsSize, List<Point> items) {
+  (int, {List<Point> items}) getMany(int startIndex, int itemsSize) {
     final retValuePtr = calloc<Uint32>();
+    final items = calloc<NativePoint>(itemsSize);
 
     try {
-      final pItemsArray = calloc<NativePoint>(itemsSize);
-
       final hr = ptr.ref.vtable
               .elementAt(16)
               .cast<
@@ -3583,17 +3564,16 @@ final class _IVectorPoint extends IVector<Point> {
                       int itemsSize,
                       Pointer<NativePoint> items,
                       Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, startIndex, itemsSize, pItemsArray, retValuePtr);
-
-      if (retValuePtr.value > 0) {
-        items.addAll(pItemsArray.toList(length: retValuePtr.value));
-      }
-      free(pItemsArray);
+          ptr.ref.lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return retValuePtr.value;
+      return (
+        retValuePtr.value,
+        items: items.toList(length: retValuePtr.value)
+      );
     } finally {
+      free(items);
       free(retValuePtr);
     }
   }
@@ -3601,10 +3581,10 @@ final class _IVectorPoint extends IVector<Point> {
   @override
   void replaceAll(List<Point> items) {
     final nativeStructPtrs = <Pointer<NativePoint>>[];
-    final pItemsArray = calloc<NativePoint>(items.length);
+    final itemsArray = calloc<NativePoint>(items.length);
     for (var i = 0; i < items.length; i++) {
       final nativeStructPtr = items[i].toNative();
-      pItemsArray[i] = nativeStructPtr.ref;
+      itemsArray[i] = nativeStructPtr.ref;
       nativeStructPtrs.add(nativeStructPtr);
     }
 
@@ -3619,10 +3599,10 @@ final class _IVectorPoint extends IVector<Point> {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int itemsSize,
                     Pointer<NativePoint> items)>()(
-        ptr.ref.lpVtbl, items.length, pItemsArray);
+        ptr.ref.lpVtbl, items.length, itemsArray);
 
     nativeStructPtrs.forEach(free);
-    free(pItemsArray);
+    free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -3660,12 +3640,12 @@ final class _IVectorPointerDeviceUsage extends IVector<PointerDeviceUsage> {
   }
 
   @override
-  bool indexOf(PointerDeviceUsage value, Pointer<Uint32> index) {
+  (bool, {int index}) indexOf(PointerDeviceUsage value) {
     final retValuePtr = calloc<Bool>();
+    final valueNativeStructPtr = value.toNative();
+    final index = calloc<Uint32>();
 
     try {
-      final valueNativeStructPtr = value.toNative();
-
       final hr = ptr.ref.vtable
               .elementAt(9)
               .cast<
@@ -3685,12 +3665,12 @@ final class _IVectorPointerDeviceUsage extends IVector<PointerDeviceUsage> {
                       Pointer<Bool> retValuePtr)>()(
           ptr.ref.lpVtbl, valueNativeStructPtr.ref, index, retValuePtr);
 
-      free(valueNativeStructPtr);
-
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return retValuePtr.value;
+      return (retValuePtr.value, index: index.value);
     } finally {
+      free(valueNativeStructPtr);
+      free(index);
       free(retValuePtr);
     }
   }
@@ -3762,12 +3742,12 @@ final class _IVectorPointerDeviceUsage extends IVector<PointerDeviceUsage> {
   }
 
   @override
-  int getMany(int startIndex, int itemsSize, List<PointerDeviceUsage> items) {
+  (int, {List<PointerDeviceUsage> items}) getMany(
+      int startIndex, int itemsSize) {
     final retValuePtr = calloc<Uint32>();
+    final items = calloc<NativePointerDeviceUsage>(itemsSize);
 
     try {
-      final pItemsArray = calloc<NativePointerDeviceUsage>(itemsSize);
-
       final hr = ptr.ref.vtable
               .elementAt(16)
               .cast<
@@ -3787,17 +3767,16 @@ final class _IVectorPointerDeviceUsage extends IVector<PointerDeviceUsage> {
                       int itemsSize,
                       Pointer<NativePointerDeviceUsage> items,
                       Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, startIndex, itemsSize, pItemsArray, retValuePtr);
-
-      if (retValuePtr.value > 0) {
-        items.addAll(pItemsArray.toList(length: retValuePtr.value));
-      }
-      free(pItemsArray);
+          ptr.ref.lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return retValuePtr.value;
+      return (
+        retValuePtr.value,
+        items: items.toList(length: retValuePtr.value)
+      );
     } finally {
+      free(items);
       free(retValuePtr);
     }
   }
@@ -3805,10 +3784,10 @@ final class _IVectorPointerDeviceUsage extends IVector<PointerDeviceUsage> {
   @override
   void replaceAll(List<PointerDeviceUsage> items) {
     final nativeStructPtrs = <Pointer<NativePointerDeviceUsage>>[];
-    final pItemsArray = calloc<NativePointerDeviceUsage>(items.length);
+    final itemsArray = calloc<NativePointerDeviceUsage>(items.length);
     for (var i = 0; i < items.length; i++) {
       final nativeStructPtr = items[i].toNative();
-      pItemsArray[i] = nativeStructPtr.ref;
+      itemsArray[i] = nativeStructPtr.ref;
       nativeStructPtrs.add(nativeStructPtr);
     }
 
@@ -3823,10 +3802,10 @@ final class _IVectorPointerDeviceUsage extends IVector<PointerDeviceUsage> {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int itemsSize,
                     Pointer<NativePointerDeviceUsage> items)>()(
-        ptr.ref.lpVtbl, items.length, pItemsArray);
+        ptr.ref.lpVtbl, items.length, itemsArray);
 
     nativeStructPtrs.forEach(free);
-    free(pItemsArray);
+    free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -3862,12 +3841,12 @@ final class _IVectorRect extends IVector<Rect> {
   }
 
   @override
-  bool indexOf(Rect value, Pointer<Uint32> index) {
+  (bool, {int index}) indexOf(Rect value) {
     final retValuePtr = calloc<Bool>();
+    final valueNativeStructPtr = value.toNative();
+    final index = calloc<Uint32>();
 
     try {
-      final valueNativeStructPtr = value.toNative();
-
       final hr =
           ptr.ref.vtable
                   .elementAt(9)
@@ -3885,12 +3864,12 @@ final class _IVectorRect extends IVector<Rect> {
                           Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
               ptr.ref.lpVtbl, valueNativeStructPtr.ref, index, retValuePtr);
 
-      free(valueNativeStructPtr);
-
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return retValuePtr.value;
+      return (retValuePtr.value, index: index.value);
     } finally {
+      free(valueNativeStructPtr);
+      free(index);
       free(retValuePtr);
     }
   }
@@ -3960,12 +3939,11 @@ final class _IVectorRect extends IVector<Rect> {
   }
 
   @override
-  int getMany(int startIndex, int itemsSize, List<Rect> items) {
+  (int, {List<Rect> items}) getMany(int startIndex, int itemsSize) {
     final retValuePtr = calloc<Uint32>();
+    final items = calloc<NativeRect>(itemsSize);
 
     try {
-      final pItemsArray = calloc<NativeRect>(itemsSize);
-
       final hr = ptr.ref.vtable
               .elementAt(16)
               .cast<
@@ -3985,17 +3963,16 @@ final class _IVectorRect extends IVector<Rect> {
                       int itemsSize,
                       Pointer<NativeRect> items,
                       Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, startIndex, itemsSize, pItemsArray, retValuePtr);
-
-      if (retValuePtr.value > 0) {
-        items.addAll(pItemsArray.toList(length: retValuePtr.value));
-      }
-      free(pItemsArray);
+          ptr.ref.lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return retValuePtr.value;
+      return (
+        retValuePtr.value,
+        items: items.toList(length: retValuePtr.value)
+      );
     } finally {
+      free(items);
       free(retValuePtr);
     }
   }
@@ -4003,10 +3980,10 @@ final class _IVectorRect extends IVector<Rect> {
   @override
   void replaceAll(List<Rect> items) {
     final nativeStructPtrs = <Pointer<NativeRect>>[];
-    final pItemsArray = calloc<NativeRect>(items.length);
+    final itemsArray = calloc<NativeRect>(items.length);
     for (var i = 0; i < items.length; i++) {
       final nativeStructPtr = items[i].toNative();
-      pItemsArray[i] = nativeStructPtr.ref;
+      itemsArray[i] = nativeStructPtr.ref;
       nativeStructPtrs.add(nativeStructPtr);
     }
 
@@ -4021,10 +3998,10 @@ final class _IVectorRect extends IVector<Rect> {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int itemsSize,
                     Pointer<NativeRect> items)>()(
-        ptr.ref.lpVtbl, items.length, pItemsArray);
+        ptr.ref.lpVtbl, items.length, itemsArray);
 
     nativeStructPtrs.forEach(free);
-    free(pItemsArray);
+    free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -4060,12 +4037,12 @@ final class _IVectorRectInt32 extends IVector<RectInt32> {
   }
 
   @override
-  bool indexOf(RectInt32 value, Pointer<Uint32> index) {
+  (bool, {int index}) indexOf(RectInt32 value) {
     final retValuePtr = calloc<Bool>();
+    final valueNativeStructPtr = value.toNative();
+    final index = calloc<Uint32>();
 
     try {
-      final valueNativeStructPtr = value.toNative();
-
       final hr = ptr.ref.vtable
               .elementAt(9)
               .cast<
@@ -4082,12 +4059,12 @@ final class _IVectorRectInt32 extends IVector<RectInt32> {
                       Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
           ptr.ref.lpVtbl, valueNativeStructPtr.ref, index, retValuePtr);
 
-      free(valueNativeStructPtr);
-
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return retValuePtr.value;
+      return (retValuePtr.value, index: index.value);
     } finally {
+      free(valueNativeStructPtr);
+      free(index);
       free(retValuePtr);
     }
   }
@@ -4158,12 +4135,11 @@ final class _IVectorRectInt32 extends IVector<RectInt32> {
   }
 
   @override
-  int getMany(int startIndex, int itemsSize, List<RectInt32> items) {
+  (int, {List<RectInt32> items}) getMany(int startIndex, int itemsSize) {
     final retValuePtr = calloc<Uint32>();
+    final items = calloc<NativeRectInt32>(itemsSize);
 
     try {
-      final pItemsArray = calloc<NativeRectInt32>(itemsSize);
-
       final hr = ptr.ref.vtable
               .elementAt(16)
               .cast<
@@ -4183,17 +4159,16 @@ final class _IVectorRectInt32 extends IVector<RectInt32> {
                       int itemsSize,
                       Pointer<NativeRectInt32> items,
                       Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, startIndex, itemsSize, pItemsArray, retValuePtr);
-
-      if (retValuePtr.value > 0) {
-        items.addAll(pItemsArray.toList(length: retValuePtr.value));
-      }
-      free(pItemsArray);
+          ptr.ref.lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return retValuePtr.value;
+      return (
+        retValuePtr.value,
+        items: items.toList(length: retValuePtr.value)
+      );
     } finally {
+      free(items);
       free(retValuePtr);
     }
   }
@@ -4201,10 +4176,10 @@ final class _IVectorRectInt32 extends IVector<RectInt32> {
   @override
   void replaceAll(List<RectInt32> items) {
     final nativeStructPtrs = <Pointer<NativeRectInt32>>[];
-    final pItemsArray = calloc<NativeRectInt32>(items.length);
+    final itemsArray = calloc<NativeRectInt32>(items.length);
     for (var i = 0; i < items.length; i++) {
       final nativeStructPtr = items[i].toNative();
-      pItemsArray[i] = nativeStructPtr.ref;
+      itemsArray[i] = nativeStructPtr.ref;
       nativeStructPtrs.add(nativeStructPtr);
     }
 
@@ -4219,10 +4194,10 @@ final class _IVectorRectInt32 extends IVector<RectInt32> {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int itemsSize,
                     Pointer<NativeRectInt32> items)>()(
-        ptr.ref.lpVtbl, items.length, pItemsArray);
+        ptr.ref.lpVtbl, items.length, itemsArray);
 
     nativeStructPtrs.forEach(free);
-    free(pItemsArray);
+    free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -4258,12 +4233,12 @@ final class _IVectorSize extends IVector<Size> {
   }
 
   @override
-  bool indexOf(Size value, Pointer<Uint32> index) {
+  (bool, {int index}) indexOf(Size value) {
     final retValuePtr = calloc<Bool>();
+    final valueNativeStructPtr = value.toNative();
+    final index = calloc<Uint32>();
 
     try {
-      final valueNativeStructPtr = value.toNative();
-
       final hr =
           ptr.ref.vtable
                   .elementAt(9)
@@ -4281,12 +4256,12 @@ final class _IVectorSize extends IVector<Size> {
                           Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
               ptr.ref.lpVtbl, valueNativeStructPtr.ref, index, retValuePtr);
 
-      free(valueNativeStructPtr);
-
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return retValuePtr.value;
+      return (retValuePtr.value, index: index.value);
     } finally {
+      free(valueNativeStructPtr);
+      free(index);
       free(retValuePtr);
     }
   }
@@ -4356,12 +4331,11 @@ final class _IVectorSize extends IVector<Size> {
   }
 
   @override
-  int getMany(int startIndex, int itemsSize, List<Size> items) {
+  (int, {List<Size> items}) getMany(int startIndex, int itemsSize) {
     final retValuePtr = calloc<Uint32>();
+    final items = calloc<NativeSize>(itemsSize);
 
     try {
-      final pItemsArray = calloc<NativeSize>(itemsSize);
-
       final hr = ptr.ref.vtable
               .elementAt(16)
               .cast<
@@ -4381,17 +4355,16 @@ final class _IVectorSize extends IVector<Size> {
                       int itemsSize,
                       Pointer<NativeSize> items,
                       Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, startIndex, itemsSize, pItemsArray, retValuePtr);
-
-      if (retValuePtr.value > 0) {
-        items.addAll(pItemsArray.toList(length: retValuePtr.value));
-      }
-      free(pItemsArray);
+          ptr.ref.lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return retValuePtr.value;
+      return (
+        retValuePtr.value,
+        items: items.toList(length: retValuePtr.value)
+      );
     } finally {
+      free(items);
       free(retValuePtr);
     }
   }
@@ -4399,10 +4372,10 @@ final class _IVectorSize extends IVector<Size> {
   @override
   void replaceAll(List<Size> items) {
     final nativeStructPtrs = <Pointer<NativeSize>>[];
-    final pItemsArray = calloc<NativeSize>(items.length);
+    final itemsArray = calloc<NativeSize>(items.length);
     for (var i = 0; i < items.length; i++) {
       final nativeStructPtr = items[i].toNative();
-      pItemsArray[i] = nativeStructPtr.ref;
+      itemsArray[i] = nativeStructPtr.ref;
       nativeStructPtrs.add(nativeStructPtr);
     }
 
@@ -4417,10 +4390,10 @@ final class _IVectorSize extends IVector<Size> {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int itemsSize,
                     Pointer<NativeSize> items)>()(
-        ptr.ref.lpVtbl, items.length, pItemsArray);
+        ptr.ref.lpVtbl, items.length, itemsArray);
 
     nativeStructPtrs.forEach(free);
-    free(pItemsArray);
+    free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -4456,12 +4429,12 @@ final class _IVectorSizeUInt32 extends IVector<SizeUInt32> {
   }
 
   @override
-  bool indexOf(SizeUInt32 value, Pointer<Uint32> index) {
+  (bool, {int index}) indexOf(SizeUInt32 value) {
     final retValuePtr = calloc<Bool>();
+    final valueNativeStructPtr = value.toNative();
+    final index = calloc<Uint32>();
 
     try {
-      final valueNativeStructPtr = value.toNative();
-
       final hr = ptr.ref.vtable
               .elementAt(9)
               .cast<
@@ -4478,12 +4451,12 @@ final class _IVectorSizeUInt32 extends IVector<SizeUInt32> {
                       Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
           ptr.ref.lpVtbl, valueNativeStructPtr.ref, index, retValuePtr);
 
-      free(valueNativeStructPtr);
-
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return retValuePtr.value;
+      return (retValuePtr.value, index: index.value);
     } finally {
+      free(valueNativeStructPtr);
+      free(index);
       free(retValuePtr);
     }
   }
@@ -4554,12 +4527,11 @@ final class _IVectorSizeUInt32 extends IVector<SizeUInt32> {
   }
 
   @override
-  int getMany(int startIndex, int itemsSize, List<SizeUInt32> items) {
+  (int, {List<SizeUInt32> items}) getMany(int startIndex, int itemsSize) {
     final retValuePtr = calloc<Uint32>();
+    final items = calloc<NativeSizeUInt32>(itemsSize);
 
     try {
-      final pItemsArray = calloc<NativeSizeUInt32>(itemsSize);
-
       final hr = ptr.ref.vtable
               .elementAt(16)
               .cast<
@@ -4579,17 +4551,16 @@ final class _IVectorSizeUInt32 extends IVector<SizeUInt32> {
                       int itemsSize,
                       Pointer<NativeSizeUInt32> items,
                       Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, startIndex, itemsSize, pItemsArray, retValuePtr);
-
-      if (retValuePtr.value > 0) {
-        items.addAll(pItemsArray.toList(length: retValuePtr.value));
-      }
-      free(pItemsArray);
+          ptr.ref.lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return retValuePtr.value;
+      return (
+        retValuePtr.value,
+        items: items.toList(length: retValuePtr.value)
+      );
     } finally {
+      free(items);
       free(retValuePtr);
     }
   }
@@ -4597,10 +4568,10 @@ final class _IVectorSizeUInt32 extends IVector<SizeUInt32> {
   @override
   void replaceAll(List<SizeUInt32> items) {
     final nativeStructPtrs = <Pointer<NativeSizeUInt32>>[];
-    final pItemsArray = calloc<NativeSizeUInt32>(items.length);
+    final itemsArray = calloc<NativeSizeUInt32>(items.length);
     for (var i = 0; i < items.length; i++) {
       final nativeStructPtr = items[i].toNative();
-      pItemsArray[i] = nativeStructPtr.ref;
+      itemsArray[i] = nativeStructPtr.ref;
       nativeStructPtrs.add(nativeStructPtr);
     }
 
@@ -4615,10 +4586,10 @@ final class _IVectorSizeUInt32 extends IVector<SizeUInt32> {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int itemsSize,
                     Pointer<NativeSizeUInt32> items)>()(
-        ptr.ref.lpVtbl, items.length, pItemsArray);
+        ptr.ref.lpVtbl, items.length, itemsArray);
 
     nativeStructPtrs.forEach(free);
-    free(pItemsArray);
+    free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -4654,12 +4625,12 @@ final class _IVectorSortEntry extends IVector<SortEntry> {
   }
 
   @override
-  bool indexOf(SortEntry value, Pointer<Uint32> index) {
+  (bool, {int index}) indexOf(SortEntry value) {
     final retValuePtr = calloc<Bool>();
+    final valueNativeStructPtr = value.toNative();
+    final index = calloc<Uint32>();
 
     try {
-      final valueNativeStructPtr = value.toNative();
-
       final hr = ptr.ref.vtable
               .elementAt(9)
               .cast<
@@ -4676,12 +4647,12 @@ final class _IVectorSortEntry extends IVector<SortEntry> {
                       Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
           ptr.ref.lpVtbl, valueNativeStructPtr.ref, index, retValuePtr);
 
-      free(valueNativeStructPtr);
-
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return retValuePtr.value;
+      return (retValuePtr.value, index: index.value);
     } finally {
+      free(valueNativeStructPtr);
+      free(index);
       free(retValuePtr);
     }
   }
@@ -4752,12 +4723,11 @@ final class _IVectorSortEntry extends IVector<SortEntry> {
   }
 
   @override
-  int getMany(int startIndex, int itemsSize, List<SortEntry> items) {
+  (int, {List<SortEntry> items}) getMany(int startIndex, int itemsSize) {
     final retValuePtr = calloc<Uint32>();
+    final items = calloc<NativeSortEntry>(itemsSize);
 
     try {
-      final pItemsArray = calloc<NativeSortEntry>(itemsSize);
-
       final hr = ptr.ref.vtable
               .elementAt(16)
               .cast<
@@ -4777,17 +4747,16 @@ final class _IVectorSortEntry extends IVector<SortEntry> {
                       int itemsSize,
                       Pointer<NativeSortEntry> items,
                       Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, startIndex, itemsSize, pItemsArray, retValuePtr);
-
-      if (retValuePtr.value > 0) {
-        items.addAll(pItemsArray.toList(length: retValuePtr.value));
-      }
-      free(pItemsArray);
+          ptr.ref.lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return retValuePtr.value;
+      return (
+        retValuePtr.value,
+        items: items.toList(length: retValuePtr.value)
+      );
     } finally {
+      free(items);
       free(retValuePtr);
     }
   }
@@ -4795,10 +4764,10 @@ final class _IVectorSortEntry extends IVector<SortEntry> {
   @override
   void replaceAll(List<SortEntry> items) {
     final nativeStructPtrs = <Pointer<NativeSortEntry>>[];
-    final pItemsArray = calloc<NativeSortEntry>(items.length);
+    final itemsArray = calloc<NativeSortEntry>(items.length);
     for (var i = 0; i < items.length; i++) {
       final nativeStructPtr = items[i].toNative();
-      pItemsArray[i] = nativeStructPtr.ref;
+      itemsArray[i] = nativeStructPtr.ref;
       nativeStructPtrs.add(nativeStructPtr);
     }
 
@@ -4813,10 +4782,10 @@ final class _IVectorSortEntry extends IVector<SortEntry> {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int itemsSize,
                     Pointer<NativeSortEntry> items)>()(
-        ptr.ref.lpVtbl, items.length, pItemsArray);
+        ptr.ref.lpVtbl, items.length, itemsArray);
 
     nativeStructPtrs.forEach(free);
-    free(pItemsArray);
+    free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -4857,12 +4826,12 @@ final class _IVectorStorePackageUpdateStatus
   }
 
   @override
-  bool indexOf(StorePackageUpdateStatus value, Pointer<Uint32> index) {
+  (bool, {int index}) indexOf(StorePackageUpdateStatus value) {
     final retValuePtr = calloc<Bool>();
+    final valueNativeStructPtr = value.toNative();
+    final index = calloc<Uint32>();
 
     try {
-      final valueNativeStructPtr = value.toNative();
-
       final hr = ptr.ref.vtable
               .elementAt(9)
               .cast<
@@ -4882,12 +4851,12 @@ final class _IVectorStorePackageUpdateStatus
                       Pointer<Bool> retValuePtr)>()(
           ptr.ref.lpVtbl, valueNativeStructPtr.ref, index, retValuePtr);
 
-      free(valueNativeStructPtr);
-
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return retValuePtr.value;
+      return (retValuePtr.value, index: index.value);
     } finally {
+      free(valueNativeStructPtr);
+      free(index);
       free(retValuePtr);
     }
   }
@@ -4959,13 +4928,12 @@ final class _IVectorStorePackageUpdateStatus
   }
 
   @override
-  int getMany(
-      int startIndex, int itemsSize, List<StorePackageUpdateStatus> items) {
+  (int, {List<StorePackageUpdateStatus> items}) getMany(
+      int startIndex, int itemsSize) {
     final retValuePtr = calloc<Uint32>();
+    final items = calloc<NativeStorePackageUpdateStatus>(itemsSize);
 
     try {
-      final pItemsArray = calloc<NativeStorePackageUpdateStatus>(itemsSize);
-
       final hr = ptr.ref.vtable
               .elementAt(16)
               .cast<
@@ -4985,17 +4953,16 @@ final class _IVectorStorePackageUpdateStatus
                       int itemsSize,
                       Pointer<NativeStorePackageUpdateStatus> items,
                       Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, startIndex, itemsSize, pItemsArray, retValuePtr);
-
-      if (retValuePtr.value > 0) {
-        items.addAll(pItemsArray.toList(length: retValuePtr.value));
-      }
-      free(pItemsArray);
+          ptr.ref.lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return retValuePtr.value;
+      return (
+        retValuePtr.value,
+        items: items.toList(length: retValuePtr.value)
+      );
     } finally {
+      free(items);
       free(retValuePtr);
     }
   }
@@ -5003,10 +4970,10 @@ final class _IVectorStorePackageUpdateStatus
   @override
   void replaceAll(List<StorePackageUpdateStatus> items) {
     final nativeStructPtrs = <Pointer<NativeStorePackageUpdateStatus>>[];
-    final pItemsArray = calloc<NativeStorePackageUpdateStatus>(items.length);
+    final itemsArray = calloc<NativeStorePackageUpdateStatus>(items.length);
     for (var i = 0; i < items.length; i++) {
       final nativeStructPtr = items[i].toNative();
-      pItemsArray[i] = nativeStructPtr.ref;
+      itemsArray[i] = nativeStructPtr.ref;
       nativeStructPtrs.add(nativeStructPtr);
     }
 
@@ -5021,10 +4988,10 @@ final class _IVectorStorePackageUpdateStatus
             .asFunction<
                 int Function(VTablePointer lpVtbl, int itemsSize,
                     Pointer<NativeStorePackageUpdateStatus> items)>()(
-        ptr.ref.lpVtbl, items.length, pItemsArray);
+        ptr.ref.lpVtbl, items.length, itemsArray);
 
     nativeStructPtrs.forEach(free);
-    free(pItemsArray);
+    free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -5061,12 +5028,12 @@ final class _IVectorString extends IVector<String> {
   }
 
   @override
-  bool indexOf(String value, Pointer<Uint32> index) {
+  (bool, {int index}) indexOf(String value) {
     final retValuePtr = calloc<Bool>();
+    final valueHString = value.toHString();
+    final index = calloc<Uint32>();
 
     try {
-      final valueHString = value.toHString();
-
       final hr =
           ptr.ref.vtable
                   .elementAt(9)
@@ -5084,12 +5051,12 @@ final class _IVectorString extends IVector<String> {
                           Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
               ptr.ref.lpVtbl, valueHString, index, retValuePtr);
 
-      WindowsDeleteString(valueHString);
-
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return retValuePtr.value;
+      return (retValuePtr.value, index: index.value);
     } finally {
+      WindowsDeleteString(valueHString);
+      free(index);
       free(retValuePtr);
     }
   }
@@ -5158,12 +5125,11 @@ final class _IVectorString extends IVector<String> {
   }
 
   @override
-  int getMany(int startIndex, int itemsSize, List<String> items) {
+  (int, {List<String> items}) getMany(int startIndex, int itemsSize) {
     final retValuePtr = calloc<Uint32>();
+    final items = calloc<IntPtr>(itemsSize);
 
     try {
-      final pItemsArray = calloc<IntPtr>(itemsSize);
-
       final hr = ptr.ref.vtable
               .elementAt(16)
               .cast<
@@ -5183,17 +5149,16 @@ final class _IVectorString extends IVector<String> {
                       int itemsSize,
                       Pointer<IntPtr> items,
                       Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, startIndex, itemsSize, pItemsArray, retValuePtr);
-
-      if (retValuePtr.value > 0) {
-        items.addAll(pItemsArray.toList(length: retValuePtr.value));
-      }
-      free(pItemsArray);
+          ptr.ref.lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return retValuePtr.value;
+      return (
+        retValuePtr.value,
+        items: items.toList(length: retValuePtr.value)
+      );
     } finally {
+      free(items);
       free(retValuePtr);
     }
   }
@@ -5201,10 +5166,10 @@ final class _IVectorString extends IVector<String> {
   @override
   void replaceAll(List<String> items) {
     final itemsHandles = <int>[];
-    final pItemsArray = calloc<HSTRING>(items.length);
+    final itemsArray = calloc<HSTRING>(items.length);
     for (var i = 0; i < items.length; i++) {
-      pItemsArray[i] = items[i].toHString();
-      itemsHandles.add(pItemsArray[i]);
+      itemsArray[i] = items[i].toHString();
+      itemsHandles.add(itemsArray[i]);
     }
 
     final hr = ptr.ref.vtable
@@ -5218,10 +5183,10 @@ final class _IVectorString extends IVector<String> {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int itemsSize,
                     Pointer<IntPtr> items)>()(
-        ptr.ref.lpVtbl, items.length, pItemsArray);
+        ptr.ref.lpVtbl, items.length, itemsArray);
 
     itemsHandles.forEach(WindowsDeleteString);
-    free(pItemsArray);
+    free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -5257,12 +5222,12 @@ final class _IVectorTextSegment extends IVector<TextSegment> {
   }
 
   @override
-  bool indexOf(TextSegment value, Pointer<Uint32> index) {
+  (bool, {int index}) indexOf(TextSegment value) {
     final retValuePtr = calloc<Bool>();
+    final valueNativeStructPtr = value.toNative();
+    final index = calloc<Uint32>();
 
     try {
-      final valueNativeStructPtr = value.toNative();
-
       final hr = ptr.ref.vtable
               .elementAt(9)
               .cast<
@@ -5279,12 +5244,12 @@ final class _IVectorTextSegment extends IVector<TextSegment> {
                       Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
           ptr.ref.lpVtbl, valueNativeStructPtr.ref, index, retValuePtr);
 
-      free(valueNativeStructPtr);
-
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return retValuePtr.value;
+      return (retValuePtr.value, index: index.value);
     } finally {
+      free(valueNativeStructPtr);
+      free(index);
       free(retValuePtr);
     }
   }
@@ -5355,12 +5320,11 @@ final class _IVectorTextSegment extends IVector<TextSegment> {
   }
 
   @override
-  int getMany(int startIndex, int itemsSize, List<TextSegment> items) {
+  (int, {List<TextSegment> items}) getMany(int startIndex, int itemsSize) {
     final retValuePtr = calloc<Uint32>();
+    final items = calloc<NativeTextSegment>(itemsSize);
 
     try {
-      final pItemsArray = calloc<NativeTextSegment>(itemsSize);
-
       final hr = ptr.ref.vtable
               .elementAt(16)
               .cast<
@@ -5380,17 +5344,16 @@ final class _IVectorTextSegment extends IVector<TextSegment> {
                       int itemsSize,
                       Pointer<NativeTextSegment> items,
                       Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, startIndex, itemsSize, pItemsArray, retValuePtr);
-
-      if (retValuePtr.value > 0) {
-        items.addAll(pItemsArray.toList(length: retValuePtr.value));
-      }
-      free(pItemsArray);
+          ptr.ref.lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return retValuePtr.value;
+      return (
+        retValuePtr.value,
+        items: items.toList(length: retValuePtr.value)
+      );
     } finally {
+      free(items);
       free(retValuePtr);
     }
   }
@@ -5398,10 +5361,10 @@ final class _IVectorTextSegment extends IVector<TextSegment> {
   @override
   void replaceAll(List<TextSegment> items) {
     final nativeStructPtrs = <Pointer<NativeTextSegment>>[];
-    final pItemsArray = calloc<NativeTextSegment>(items.length);
+    final itemsArray = calloc<NativeTextSegment>(items.length);
     for (var i = 0; i < items.length; i++) {
       final nativeStructPtr = items[i].toNative();
-      pItemsArray[i] = nativeStructPtr.ref;
+      itemsArray[i] = nativeStructPtr.ref;
       nativeStructPtrs.add(nativeStructPtr);
     }
 
@@ -5416,10 +5379,10 @@ final class _IVectorTextSegment extends IVector<TextSegment> {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int itemsSize,
                     Pointer<NativeTextSegment> items)>()(
-        ptr.ref.lpVtbl, items.length, pItemsArray);
+        ptr.ref.lpVtbl, items.length, itemsArray);
 
     nativeStructPtrs.forEach(free);
-    free(pItemsArray);
+    free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -5455,8 +5418,9 @@ final class _IVectorUint8 extends IVector<int> {
   }
 
   @override
-  bool indexOf(int value, Pointer<Uint32> index) {
+  (bool, {int index}) indexOf(int value) {
     final retValuePtr = calloc<Bool>();
+    final index = calloc<Uint32>();
 
     try {
       final hr =
@@ -5478,8 +5442,9 @@ final class _IVectorUint8 extends IVector<int> {
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return retValuePtr.value;
+      return (retValuePtr.value, index: index.value);
     } finally {
+      free(index);
       free(retValuePtr);
     }
   }
@@ -5534,12 +5499,11 @@ final class _IVectorUint8 extends IVector<int> {
   }
 
   @override
-  int getMany(int startIndex, int itemsSize, List<int> items) {
+  (int, {List<int> items}) getMany(int startIndex, int itemsSize) {
     final retValuePtr = calloc<Uint32>();
+    final items = calloc<Uint8>(itemsSize);
 
     try {
-      final pItemsArray = calloc<Uint8>(itemsSize);
-
       final hr = ptr.ref.vtable
               .elementAt(16)
               .cast<
@@ -5559,26 +5523,25 @@ final class _IVectorUint8 extends IVector<int> {
                       int itemsSize,
                       Pointer<Uint8> items,
                       Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, startIndex, itemsSize, pItemsArray, retValuePtr);
-
-      if (retValuePtr.value > 0) {
-        items.addAll(pItemsArray.toList(length: retValuePtr.value));
-      }
-      free(pItemsArray);
+          ptr.ref.lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return retValuePtr.value;
+      return (
+        retValuePtr.value,
+        items: items.toList(length: retValuePtr.value)
+      );
     } finally {
+      free(items);
       free(retValuePtr);
     }
   }
 
   @override
   void replaceAll(List<int> items) {
-    final pItemsArray = calloc<Uint8>(items.length);
+    final itemsArray = calloc<Uint8>(items.length);
     for (var i = 0; i < items.length; i++) {
-      pItemsArray[i] = items[i];
+      itemsArray[i] = items[i];
     }
 
     final hr = ptr.ref.vtable
@@ -5592,9 +5555,9 @@ final class _IVectorUint8 extends IVector<int> {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int itemsSize,
                     Pointer<Uint8> items)>()(
-        ptr.ref.lpVtbl, items.length, pItemsArray);
+        ptr.ref.lpVtbl, items.length, itemsArray);
 
-    free(pItemsArray);
+    free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -5631,8 +5594,9 @@ final class _IVectorUint16 extends IVector<int> {
   }
 
   @override
-  bool indexOf(int value, Pointer<Uint32> index) {
+  (bool, {int index}) indexOf(int value) {
     final retValuePtr = calloc<Bool>();
+    final index = calloc<Uint32>();
 
     try {
       final hr =
@@ -5654,8 +5618,9 @@ final class _IVectorUint16 extends IVector<int> {
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return retValuePtr.value;
+      return (retValuePtr.value, index: index.value);
     } finally {
+      free(index);
       free(retValuePtr);
     }
   }
@@ -5712,12 +5677,11 @@ final class _IVectorUint16 extends IVector<int> {
   }
 
   @override
-  int getMany(int startIndex, int itemsSize, List<int> items) {
+  (int, {List<int> items}) getMany(int startIndex, int itemsSize) {
     final retValuePtr = calloc<Uint32>();
+    final items = calloc<Uint16>(itemsSize);
 
     try {
-      final pItemsArray = calloc<Uint16>(itemsSize);
-
       final hr = ptr.ref.vtable
               .elementAt(16)
               .cast<
@@ -5737,26 +5701,25 @@ final class _IVectorUint16 extends IVector<int> {
                       int itemsSize,
                       Pointer<Uint16> items,
                       Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, startIndex, itemsSize, pItemsArray, retValuePtr);
-
-      if (retValuePtr.value > 0) {
-        items.addAll(pItemsArray.toList(length: retValuePtr.value));
-      }
-      free(pItemsArray);
+          ptr.ref.lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return retValuePtr.value;
+      return (
+        retValuePtr.value,
+        items: items.toList(length: retValuePtr.value)
+      );
     } finally {
+      free(items);
       free(retValuePtr);
     }
   }
 
   @override
   void replaceAll(List<int> items) {
-    final pItemsArray = calloc<Uint16>(items.length);
+    final itemsArray = calloc<Uint16>(items.length);
     for (var i = 0; i < items.length; i++) {
-      pItemsArray[i] = items[i];
+      itemsArray[i] = items[i];
     }
 
     final hr = ptr.ref.vtable
@@ -5770,9 +5733,9 @@ final class _IVectorUint16 extends IVector<int> {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int itemsSize,
                     Pointer<Uint16> items)>()(
-        ptr.ref.lpVtbl, items.length, pItemsArray);
+        ptr.ref.lpVtbl, items.length, itemsArray);
 
-    free(pItemsArray);
+    free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -5809,8 +5772,9 @@ final class _IVectorUint32 extends IVector<int> {
   }
 
   @override
-  bool indexOf(int value, Pointer<Uint32> index) {
+  (bool, {int index}) indexOf(int value) {
     final retValuePtr = calloc<Bool>();
+    final index = calloc<Uint32>();
 
     try {
       final hr =
@@ -5832,8 +5796,9 @@ final class _IVectorUint32 extends IVector<int> {
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return retValuePtr.value;
+      return (retValuePtr.value, index: index.value);
     } finally {
+      free(index);
       free(retValuePtr);
     }
   }
@@ -5890,12 +5855,11 @@ final class _IVectorUint32 extends IVector<int> {
   }
 
   @override
-  int getMany(int startIndex, int itemsSize, List<int> items) {
+  (int, {List<int> items}) getMany(int startIndex, int itemsSize) {
     final retValuePtr = calloc<Uint32>();
+    final items = calloc<Uint32>(itemsSize);
 
     try {
-      final pItemsArray = calloc<Uint32>(itemsSize);
-
       final hr = ptr.ref.vtable
               .elementAt(16)
               .cast<
@@ -5915,26 +5879,25 @@ final class _IVectorUint32 extends IVector<int> {
                       int itemsSize,
                       Pointer<Uint32> items,
                       Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, startIndex, itemsSize, pItemsArray, retValuePtr);
-
-      if (retValuePtr.value > 0) {
-        items.addAll(pItemsArray.toList(length: retValuePtr.value));
-      }
-      free(pItemsArray);
+          ptr.ref.lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return retValuePtr.value;
+      return (
+        retValuePtr.value,
+        items: items.toList(length: retValuePtr.value)
+      );
     } finally {
+      free(items);
       free(retValuePtr);
     }
   }
 
   @override
   void replaceAll(List<int> items) {
-    final pItemsArray = calloc<Uint32>(items.length);
+    final itemsArray = calloc<Uint32>(items.length);
     for (var i = 0; i < items.length; i++) {
-      pItemsArray[i] = items[i];
+      itemsArray[i] = items[i];
     }
 
     final hr = ptr.ref.vtable
@@ -5948,9 +5911,9 @@ final class _IVectorUint32 extends IVector<int> {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int itemsSize,
                     Pointer<Uint32> items)>()(
-        ptr.ref.lpVtbl, items.length, pItemsArray);
+        ptr.ref.lpVtbl, items.length, itemsArray);
 
-    free(pItemsArray);
+    free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -5987,8 +5950,9 @@ final class _IVectorUint64 extends IVector<int> {
   }
 
   @override
-  bool indexOf(int value, Pointer<Uint32> index) {
+  (bool, {int index}) indexOf(int value) {
     final retValuePtr = calloc<Bool>();
+    final index = calloc<Uint32>();
 
     try {
       final hr =
@@ -6010,8 +5974,9 @@ final class _IVectorUint64 extends IVector<int> {
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return retValuePtr.value;
+      return (retValuePtr.value, index: index.value);
     } finally {
+      free(index);
       free(retValuePtr);
     }
   }
@@ -6068,12 +6033,11 @@ final class _IVectorUint64 extends IVector<int> {
   }
 
   @override
-  int getMany(int startIndex, int itemsSize, List<int> items) {
+  (int, {List<int> items}) getMany(int startIndex, int itemsSize) {
     final retValuePtr = calloc<Uint32>();
+    final items = calloc<Uint64>(itemsSize);
 
     try {
-      final pItemsArray = calloc<Uint64>(itemsSize);
-
       final hr = ptr.ref.vtable
               .elementAt(16)
               .cast<
@@ -6093,26 +6057,25 @@ final class _IVectorUint64 extends IVector<int> {
                       int itemsSize,
                       Pointer<Uint64> items,
                       Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, startIndex, itemsSize, pItemsArray, retValuePtr);
-
-      if (retValuePtr.value > 0) {
-        items.addAll(pItemsArray.toList(length: retValuePtr.value));
-      }
-      free(pItemsArray);
+          ptr.ref.lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return retValuePtr.value;
+      return (
+        retValuePtr.value,
+        items: items.toList(length: retValuePtr.value)
+      );
     } finally {
+      free(items);
       free(retValuePtr);
     }
   }
 
   @override
   void replaceAll(List<int> items) {
-    final pItemsArray = calloc<Uint64>(items.length);
+    final itemsArray = calloc<Uint64>(items.length);
     for (var i = 0; i < items.length; i++) {
-      pItemsArray[i] = items[i];
+      itemsArray[i] = items[i];
     }
 
     final hr = ptr.ref.vtable
@@ -6126,9 +6089,9 @@ final class _IVectorUint64 extends IVector<int> {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int itemsSize,
                     Pointer<Uint64> items)>()(
-        ptr.ref.lpVtbl, items.length, pItemsArray);
+        ptr.ref.lpVtbl, items.length, itemsArray);
 
-    free(pItemsArray);
+    free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -6164,12 +6127,12 @@ final class _IVectorWindowId extends IVector<WindowId> {
   }
 
   @override
-  bool indexOf(WindowId value, Pointer<Uint32> index) {
+  (bool, {int index}) indexOf(WindowId value) {
     final retValuePtr = calloc<Bool>();
+    final valueNativeStructPtr = value.toNative();
+    final index = calloc<Uint32>();
 
     try {
-      final valueNativeStructPtr = value.toNative();
-
       final hr = ptr.ref.vtable
               .elementAt(9)
               .cast<
@@ -6186,12 +6149,12 @@ final class _IVectorWindowId extends IVector<WindowId> {
                       Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
           ptr.ref.lpVtbl, valueNativeStructPtr.ref, index, retValuePtr);
 
-      free(valueNativeStructPtr);
-
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return retValuePtr.value;
+      return (retValuePtr.value, index: index.value);
     } finally {
+      free(valueNativeStructPtr);
+      free(index);
       free(retValuePtr);
     }
   }
@@ -6262,12 +6225,11 @@ final class _IVectorWindowId extends IVector<WindowId> {
   }
 
   @override
-  int getMany(int startIndex, int itemsSize, List<WindowId> items) {
+  (int, {List<WindowId> items}) getMany(int startIndex, int itemsSize) {
     final retValuePtr = calloc<Uint32>();
+    final items = calloc<NativeWindowId>(itemsSize);
 
     try {
-      final pItemsArray = calloc<NativeWindowId>(itemsSize);
-
       final hr = ptr.ref.vtable
               .elementAt(16)
               .cast<
@@ -6287,17 +6249,16 @@ final class _IVectorWindowId extends IVector<WindowId> {
                       int itemsSize,
                       Pointer<NativeWindowId> items,
                       Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, startIndex, itemsSize, pItemsArray, retValuePtr);
-
-      if (retValuePtr.value > 0) {
-        items.addAll(pItemsArray.toList(length: retValuePtr.value));
-      }
-      free(pItemsArray);
+          ptr.ref.lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return retValuePtr.value;
+      return (
+        retValuePtr.value,
+        items: items.toList(length: retValuePtr.value)
+      );
     } finally {
+      free(items);
       free(retValuePtr);
     }
   }
@@ -6305,10 +6266,10 @@ final class _IVectorWindowId extends IVector<WindowId> {
   @override
   void replaceAll(List<WindowId> items) {
     final nativeStructPtrs = <Pointer<NativeWindowId>>[];
-    final pItemsArray = calloc<NativeWindowId>(items.length);
+    final itemsArray = calloc<NativeWindowId>(items.length);
     for (var i = 0; i < items.length; i++) {
       final nativeStructPtr = items[i].toNative();
-      pItemsArray[i] = nativeStructPtr.ref;
+      itemsArray[i] = nativeStructPtr.ref;
       nativeStructPtrs.add(nativeStructPtr);
     }
 
@@ -6323,10 +6284,10 @@ final class _IVectorWindowId extends IVector<WindowId> {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int itemsSize,
                     Pointer<NativeWindowId> items)>()(
-        ptr.ref.lpVtbl, items.length, pItemsArray);
+        ptr.ref.lpVtbl, items.length, itemsArray);
 
     nativeStructPtrs.forEach(free);
-    free(pItemsArray);
+    free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -6366,8 +6327,9 @@ final class _IVectorWinRTEnum<T> extends IVector<T> {
   }
 
   @override
-  bool indexOf(T value, Pointer<Uint32> index) {
+  (bool, {int index}) indexOf(T value) {
     final retValuePtr = calloc<Bool>();
+    final index = calloc<Uint32>();
 
     try {
       final hr =
@@ -6389,8 +6351,9 @@ final class _IVectorWinRTEnum<T> extends IVector<T> {
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return retValuePtr.value;
+      return (retValuePtr.value, index: index.value);
     } finally {
+      free(index);
       free(retValuePtr);
     }
   }
@@ -6445,12 +6408,11 @@ final class _IVectorWinRTEnum<T> extends IVector<T> {
   }
 
   @override
-  int getMany(int startIndex, int itemsSize, List<T> items) {
+  (int, {List<T> items}) getMany(int startIndex, int itemsSize) {
     final retValuePtr = calloc<Uint32>();
+    final items = calloc<Int32>(itemsSize);
 
     try {
-      final pItemsArray = calloc<Int32>(itemsSize);
-
       final hr = ptr.ref.vtable
               .elementAt(16)
               .cast<
@@ -6470,29 +6432,25 @@ final class _IVectorWinRTEnum<T> extends IVector<T> {
                       int itemsSize,
                       Pointer<Int32> items,
                       Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, startIndex, itemsSize, pItemsArray, retValuePtr);
-
-      if (retValuePtr.value > 0) {
-        items.addAll(pItemsArray
-            .toList(length: retValuePtr.value)
-            .map(enumCreator)
-            .toList());
-      }
-      free(pItemsArray);
+          ptr.ref.lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return retValuePtr.value;
+      return (
+        retValuePtr.value,
+        items: items.toList(length: retValuePtr.value).map(enumCreator).toList()
+      );
     } finally {
+      free(items);
       free(retValuePtr);
     }
   }
 
   @override
   void replaceAll(List<T> items) {
-    final pItemsArray = calloc<Int32>(items.length);
+    final itemsArray = calloc<Int32>(items.length);
     for (var i = 0; i < items.length; i++) {
-      pItemsArray[i] = items.cast<WinRTEnum>()[i].value;
+      itemsArray[i] = items.cast<WinRTEnum>()[i].value;
     }
 
     final hr = ptr.ref.vtable
@@ -6506,9 +6464,9 @@ final class _IVectorWinRTEnum<T> extends IVector<T> {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int itemsSize,
                     Pointer<Int32> items)>()(
-        ptr.ref.lpVtbl, items.length, pItemsArray);
+        ptr.ref.lpVtbl, items.length, itemsArray);
 
-    free(pItemsArray);
+    free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -6548,8 +6506,9 @@ final class _IVectorWinRTFlagsEnum<T> extends IVector<T> {
   }
 
   @override
-  bool indexOf(T value, Pointer<Uint32> index) {
+  (bool, {int index}) indexOf(T value) {
     final retValuePtr = calloc<Bool>();
+    final index = calloc<Uint32>();
 
     try {
       final hr =
@@ -6571,8 +6530,9 @@ final class _IVectorWinRTFlagsEnum<T> extends IVector<T> {
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return retValuePtr.value;
+      return (retValuePtr.value, index: index.value);
     } finally {
+      free(index);
       free(retValuePtr);
     }
   }
@@ -6629,12 +6589,11 @@ final class _IVectorWinRTFlagsEnum<T> extends IVector<T> {
   }
 
   @override
-  int getMany(int startIndex, int itemsSize, List<T> items) {
+  (int, {List<T> items}) getMany(int startIndex, int itemsSize) {
     final retValuePtr = calloc<Uint32>();
+    final items = calloc<Uint32>(itemsSize);
 
     try {
-      final pItemsArray = calloc<Uint32>(itemsSize);
-
       final hr = ptr.ref.vtable
               .elementAt(16)
               .cast<
@@ -6654,29 +6613,25 @@ final class _IVectorWinRTFlagsEnum<T> extends IVector<T> {
                       int itemsSize,
                       Pointer<Uint32> items,
                       Pointer<Uint32> retValuePtr)>()(
-          ptr.ref.lpVtbl, startIndex, itemsSize, pItemsArray, retValuePtr);
-
-      if (retValuePtr.value > 0) {
-        items.addAll(pItemsArray
-            .toList(length: retValuePtr.value)
-            .map(enumCreator)
-            .toList());
-      }
-      free(pItemsArray);
+          ptr.ref.lpVtbl, startIndex, itemsSize, items, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return retValuePtr.value;
+      return (
+        retValuePtr.value,
+        items: items.toList(length: retValuePtr.value).map(enumCreator).toList()
+      );
     } finally {
+      free(items);
       free(retValuePtr);
     }
   }
 
   @override
   void replaceAll(List<T> items) {
-    final pItemsArray = calloc<Uint32>(items.length);
+    final itemsArray = calloc<Uint32>(items.length);
     for (var i = 0; i < items.length; i++) {
-      pItemsArray[i] = items.cast<WinRTEnum>()[i].value;
+      itemsArray[i] = items.cast<WinRTEnum>()[i].value;
     }
 
     final hr = ptr.ref.vtable
@@ -6690,9 +6645,9 @@ final class _IVectorWinRTFlagsEnum<T> extends IVector<T> {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int itemsSize,
                     Pointer<Uint32> items)>()(
-        ptr.ref.lpVtbl, items.length, pItemsArray);
+        ptr.ref.lpVtbl, items.length, itemsArray);
 
-    free(pItemsArray);
+    free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

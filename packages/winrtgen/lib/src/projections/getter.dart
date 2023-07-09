@@ -9,47 +9,31 @@ import '../models/models.dart';
 import '../utilities/utilities.dart';
 import 'method.dart';
 import 'property.dart';
-import 'types/types.dart';
 
-abstract class GetterProjection extends PropertyProjection {
+base class GetterProjection extends PropertyProjection {
   GetterProjection(super.method, super.vtableOffset);
 
   /// Returns the appropriate getter projection for the [method] based on the
-  /// return type.
+  /// parameter's [ProjectionKind].
   factory GetterProjection.create(Method method, int vtableOffset) {
     try {
       final projectionKind = method.projectionKind;
       return switch (projectionKind) {
-        ProjectionKind.dartPrimitive ||
-        ProjectionKind.dateTime ||
-        ProjectionKind.delegate ||
-        ProjectionKind.duration ||
-        ProjectionKind.enum_ ||
-        ProjectionKind.genericEnum ||
-        ProjectionKind.genericObject ||
-        ProjectionKind.guid ||
-        ProjectionKind.map ||
-        ProjectionKind.mapView ||
-        ProjectionKind.object ||
+        ProjectionKind.asyncAction ||
+        ProjectionKind.asyncActionWithProgress ||
+        ProjectionKind.asyncOperation ||
+        ProjectionKind.asyncOperationWithProgress ||
+        ProjectionKind.genericEnumArray ||
+        ProjectionKind.genericObjectArray ||
+        ProjectionKind.pointer ||
+        ProjectionKind.record ||
         ProjectionKind.reference ||
-        ProjectionKind.string ||
-        ProjectionKind.struct ||
-        ProjectionKind.uri ||
-        ProjectionKind.vector ||
-        ProjectionKind.vectorView =>
-          DefaultGetterProjection(method, vtableOffset),
-        ProjectionKind.dartPrimitiveList ||
-        ProjectionKind.dateTimeList ||
-        ProjectionKind.durationList ||
-        ProjectionKind.enumList ||
-        ProjectionKind.guidList ||
-        ProjectionKind.objectList ||
-        ProjectionKind.stringList ||
-        ProjectionKind.structList ||
-        ProjectionKind.uriList =>
-          DefaultListGetterProjection(method, vtableOffset),
-        _ => throw WinRTGenException(
-            'Unsupported projection kind: $projectionKind'),
+        ProjectionKind.void_ =>
+          throw WinRTGenException(
+              'Unsupported projection kind: $projectionKind'),
+        ProjectionKind.dartPrimitive ||
+        _ =>
+          GetterProjection(method, vtableOffset),
       };
     } catch (_) {
       print("Failed to project getter '$method' from '${method.parent}'.");

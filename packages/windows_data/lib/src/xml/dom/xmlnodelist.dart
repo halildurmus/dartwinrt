@@ -43,12 +43,11 @@ class XmlNodeList extends IInspectable
   int get size => _iVectorView.size;
 
   @override
-  bool indexOf(IXmlNode? value, Pointer<Uint32> index) =>
-      _iVectorView.indexOf(value, index);
+  (bool, {int index}) indexOf(IXmlNode? value) => _iVectorView.indexOf(value);
 
   @override
-  int getMany(int startIndex, int itemsSize, List<IXmlNode?> items) =>
-      _iVectorView.getMany(startIndex, itemsSize, items);
+  (int, {List<IXmlNode?> items}) getMany(int startIndex, int itemsSize) =>
+      _iVectorView.getMany(startIndex, itemsSize);
 
   @override
   IIterator<IXmlNode?> first() => _iVectorView.first();

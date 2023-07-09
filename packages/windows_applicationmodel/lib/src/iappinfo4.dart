@@ -26,7 +26,7 @@ class IAppInfo4 extends IInspectable {
       IAppInfo4.fromPtr(interface.toInterface(IID_IAppInfo4));
 
   List<String> get supportedFileExtensions {
-    final retValueSize = calloc<Uint32>();
+    final valueSize = calloc<Uint32>();
     final value = calloc<Pointer<IntPtr>>();
 
     try {
@@ -37,21 +37,19 @@ class IAppInfo4 extends IInspectable {
                       NativeFunction<
                           HRESULT Function(
                               VTablePointer lpVtbl,
-                              Pointer<Uint32> retValueSize,
+                              Pointer<Uint32> valueSize,
                               Pointer<Pointer<IntPtr>> value)>>>()
               .value
               .asFunction<
-                  int Function(
-                      VTablePointer lpVtbl,
-                      Pointer<Uint32> retValueSize,
+                  int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize,
                       Pointer<Pointer<IntPtr>> value)>()(
-          ptr.ref.lpVtbl, retValueSize, value);
+          ptr.ref.lpVtbl, valueSize, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return value.value.toList(length: retValueSize.value);
+      return value.value.toList(length: valueSize.value);
     } finally {
-      free(retValueSize);
+      free(valueSize);
       free(value);
     }
   }

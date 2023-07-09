@@ -77,13 +77,13 @@ class IWwwFormUrlDecoderRuntimeClass extends IInspectable
   int get size => _iVectorView.size;
 
   @override
-  bool indexOf(IWwwFormUrlDecoderEntry? value, Pointer<Uint32> index) =>
-      _iVectorView.indexOf(value, index);
+  (bool, {int index}) indexOf(IWwwFormUrlDecoderEntry? value) =>
+      _iVectorView.indexOf(value);
 
   @override
-  int getMany(int startIndex, int itemsSize,
-          List<IWwwFormUrlDecoderEntry?> items) =>
-      _iVectorView.getMany(startIndex, itemsSize, items);
+  (int, {List<IWwwFormUrlDecoderEntry?> items}) getMany(
+          int startIndex, int itemsSize) =>
+      _iVectorView.getMany(startIndex, itemsSize);
 
   @override
   IIterator<IWwwFormUrlDecoderEntry?> first() => _iVectorView.first();

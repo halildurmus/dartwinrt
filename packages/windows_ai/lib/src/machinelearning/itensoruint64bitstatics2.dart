@@ -32,13 +32,13 @@ class ITensorUInt64BitStatics2 extends IInspectable {
   TensorUInt64Bit? createFromShapeArrayAndDataArray(
       List<int> shape, List<int> data) {
     final result = calloc<COMObject>();
-    final pShapeArray = calloc<Int64>(shape.length);
+    final shapeArray = calloc<Int64>(shape.length);
     for (var i = 0; i < shape.length; i++) {
-      pShapeArray[i] = shape[i];
+      shapeArray[i] = shape[i];
     }
-    final pDataArray = calloc<Uint64>(data.length);
+    final dataArray = calloc<Uint64>(data.length);
     for (var i = 0; i < data.length; i++) {
-      pDataArray[i] = data[i];
+      dataArray[i] = data[i];
     }
 
     final hr = ptr.ref.vtable
@@ -62,10 +62,10 @@ class ITensorUInt64BitStatics2 extends IInspectable {
                     int dataSize,
                     Pointer<Uint64> data,
                     Pointer<COMObject> result)>()(ptr.ref.lpVtbl, shape.length,
-        pShapeArray, data.length, pDataArray, result);
+        shapeArray, data.length, dataArray, result);
 
-    free(pShapeArray);
-    free(pDataArray);
+    free(shapeArray);
+    free(dataArray);
 
     if (FAILED(hr)) {
       free(result);
@@ -82,9 +82,9 @@ class ITensorUInt64BitStatics2 extends IInspectable {
 
   TensorUInt64Bit? createFromBuffer(List<int> shape, IBuffer? buffer) {
     final result = calloc<COMObject>();
-    final pShapeArray = calloc<Int64>(shape.length);
+    final shapeArray = calloc<Int64>(shape.length);
     for (var i = 0; i < shape.length; i++) {
-      pShapeArray[i] = shape[i];
+      shapeArray[i] = shape[i];
     }
 
     final hr = ptr.ref.vtable
@@ -106,9 +106,9 @@ class ITensorUInt64BitStatics2 extends IInspectable {
                     Pointer<Int64> shape,
                     VTablePointer buffer,
                     Pointer<COMObject> result)>()(ptr.ref.lpVtbl, shape.length,
-        pShapeArray, buffer?.ptr.ref.lpVtbl ?? nullptr, result);
+        shapeArray, buffer?.ptr.ref.lpVtbl ?? nullptr, result);
 
-    free(pShapeArray);
+    free(shapeArray);
 
     if (FAILED(hr)) {
       free(result);

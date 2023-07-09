@@ -55,12 +55,13 @@ class CharacterGroupings extends IInspectable
   int get size => _iVectorView.size;
 
   @override
-  bool indexOf(CharacterGrouping? value, Pointer<Uint32> index) =>
-      _iVectorView.indexOf(value, index);
+  (bool, {int index}) indexOf(CharacterGrouping? value) =>
+      _iVectorView.indexOf(value);
 
   @override
-  int getMany(int startIndex, int itemsSize, List<CharacterGrouping?> items) =>
-      _iVectorView.getMany(startIndex, itemsSize, items);
+  (int, {List<CharacterGrouping?> items}) getMany(
+          int startIndex, int itemsSize) =>
+      _iVectorView.getMany(startIndex, itemsSize);
 
   @override
   IIterator<CharacterGrouping?> first() => _iVectorView.first();

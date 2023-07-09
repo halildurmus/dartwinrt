@@ -5,22 +5,22 @@
 import '../utilities/utilities.dart';
 import 'method.dart';
 
-abstract class PropertyProjection extends MethodProjection {
+abstract base class PropertyProjection extends MethodProjection {
   PropertyProjection(super.method, super.vtableOffset);
 
   /// Strip off all underscores, even if double underscores (e.g.
   /// `get_Languages` -> `languages`, `put__Data` -> `data`).
   @override
   String get camelCasedName {
-    final String formattedMethodName;
+    final String formattedName;
     if (name.startsWith('get__') || name.startsWith('put__')) {
       // e.g. get__Languages -> Languages, put__Data -> Data
-      formattedMethodName = name.substring(5);
+      formattedName = name.substring(5);
     } else {
       // e.g. get_Size -> Size, put_Completed -> Completed
-      formattedMethodName = name.substring(4);
+      formattedName = name.substring(4);
     }
 
-    return safeIdentifierForString(formattedMethodName.toCamelCase());
+    return safeIdentifierForString(formattedName.toCamelCase());
   }
 }
