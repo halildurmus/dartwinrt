@@ -27,10 +27,13 @@ final class GenericEnumParameterProjection extends ParameterProjection {
   String get into => '($identifier as WinRTEnum).value';
 
   @override
-  String get toListCreator => '.map(enumCreator).toList()';
+  String get toListInto => '$identifier.cast<WinRTEnum>()[i].value';
 
   @override
-  String get toListInto => '$identifier.cast<WinRTEnum>()[i].value';
+  String get toListIdentifier => 'toEnumList';
+
+  @override
+  String get toListArg => 'enumCreator';
 }
 
 /// Parameter projection for `T extends IInspectable` parameters.

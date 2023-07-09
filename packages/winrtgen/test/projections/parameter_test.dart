@@ -84,10 +84,9 @@ void main() {
       expect(projection.creator, equals('value.toDartDateTime()'));
       expect(projection.into, equals('value.toWinRTDateTime()'));
       expect(projection.toListArg, isEmpty);
-      expect(projection.toListCreator,
-          equals('.map((value) => value.toDartDateTime()).toList()'));
+      expect(projection.toListCreator, isEmpty);
       expect(projection.toListInto, equals('value[i].toWinRTDateTime()'));
-      expect(projection.toListIdentifier, isEmpty);
+      expect(projection.toListIdentifier, equals('toDateTimeList'));
       expect(projection.preambles, isEmpty);
       expect(projection.nullCheck, isEmpty);
       expect(projection.postambles, isEmpty);
@@ -135,10 +134,9 @@ void main() {
       expect(projection.creator, equals('value.toDartDuration()'));
       expect(projection.into, equals('value.toWinRTDuration()'));
       expect(projection.toListArg, isEmpty);
-      expect(projection.toListCreator,
-          equals('.map((value) => value.toDartDuration()).toList()'));
+      expect(projection.toListCreator, isEmpty);
       expect(projection.toListInto, equals('value[i].toWinRTDuration()'));
-      expect(projection.toListIdentifier, isEmpty);
+      expect(projection.toListIdentifier, equals('toDurationList'));
       expect(projection.preambles, isEmpty);
       expect(projection.nullCheck, isEmpty);
       expect(projection.postambles, isEmpty);
@@ -161,11 +159,10 @@ void main() {
       expect(
           projection.creator, equals('StorageDeleteOption.from(option.value)'));
       expect(projection.into, equals('option.value'));
-      expect(projection.toListArg, isEmpty);
-      expect(projection.toListCreator,
-          equals('.map(StorageDeleteOption.from).toList()'));
+      expect(projection.toListArg, equals('enumCreator'));
+      expect(projection.toListCreator, isEmpty);
       expect(projection.toListInto, equals('option[i].value'));
-      expect(projection.toListIdentifier, isEmpty);
+      expect(projection.toListIdentifier, equals('toEnumList'));
       expect(projection.preambles, isEmpty);
       expect(projection.nullCheck, isEmpty);
       expect(projection.postambles, isEmpty);
@@ -187,11 +184,10 @@ void main() {
       expect(projection.creatorPreamble, isEmpty);
       expect(projection.creator, equals('GamepadButtons.from(button.value)'));
       expect(projection.into, equals('button.value'));
-      expect(projection.toListArg, isEmpty);
-      expect(projection.toListCreator,
-          equals('.map(GamepadButtons.from).toList()'));
+      expect(projection.toListArg, equals('enumCreator'));
+      expect(projection.toListCreator, isEmpty);
       expect(projection.toListInto, equals('button[i].value'));
-      expect(projection.toListIdentifier, isEmpty);
+      expect(projection.toListIdentifier, equals('toEnumList'));
       expect(projection.preambles, isEmpty);
       expect(projection.nullCheck, isEmpty);
       expect(projection.postambles, isEmpty);
@@ -215,10 +211,10 @@ void main() {
       expect(projection.creatorPreamble, isEmpty);
       expect(projection.creator, equals('enumCreator(value.value)'));
       expect(projection.into, equals('(value as WinRTEnum).value'));
-      expect(projection.toListArg, isEmpty);
-      expect(projection.toListCreator, equals('.map(enumCreator).toList()'));
+      expect(projection.toListArg, equals('enumCreator'));
+      expect(projection.toListCreator, isEmpty);
       expect(projection.toListInto, equals('value.cast<WinRTEnum>()[i].value'));
-      expect(projection.toListIdentifier, isEmpty);
+      expect(projection.toListIdentifier, equals('toEnumList'));
       expect(projection.preambles, isEmpty);
       expect(projection.nullCheck, isEmpty);
       expect(projection.postambles, isEmpty);
@@ -243,10 +239,10 @@ void main() {
       expect(projection.creatorPreamble, isEmpty);
       expect(projection.creator, equals('enumCreator(value.value)'));
       expect(projection.into, equals('(value as WinRTEnum).value'));
-      expect(projection.toListArg, isEmpty);
-      expect(projection.toListCreator, equals('.map(enumCreator).toList()'));
+      expect(projection.toListArg, equals('enumCreator'));
+      expect(projection.toListCreator, isEmpty);
       expect(projection.toListInto, equals('value.cast<WinRTEnum>()[i].value'));
-      expect(projection.toListIdentifier, isEmpty);
+      expect(projection.toListIdentifier, equals('toEnumList'));
       expect(projection.preambles, isEmpty);
       expect(projection.nullCheck, isEmpty);
       expect(projection.postambles, isEmpty);
@@ -749,15 +745,13 @@ void main() {
       expect(projection.needsAllocation, isTrue);
       expect(projection.needsDeallocation, isTrue);
       expect(projection.creatorPreamble, isEmpty);
-      expect(
-          projection.creator,
-          equals(
-              'keysArray.toList(length: keysSize.value).map(VirtualKey.from).toList()'));
+      expect(projection.creator,
+          equals('keysArray.toEnumList(enumCreator, length: keysSize.value)'));
       expect(projection.into, equals('keysArray'));
       expect(projection.toListArg, isEmpty);
       expect(projection.toListCreator, isEmpty);
       expect(projection.toListInto, equals('keys[i]'));
-      expect(projection.toListIdentifier, equals('toList'));
+      expect(projection.toListIdentifier, equals('toEnumList'));
       expect(
           projection.preambles,
           equals([

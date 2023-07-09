@@ -941,10 +941,7 @@ class IPropertyValue extends IInspectable {
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return value.value
-          .toList(length: valueSize.value)
-          .map((value) => value.toDartDateTime())
-          .toList();
+      return value.value.toDateTimeList(length: valueSize.value);
     } finally {
       free(valueSize);
       free(value);
@@ -973,10 +970,7 @@ class IPropertyValue extends IInspectable {
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return value.value
-          .toList(length: valueSize.value)
-          .map((value) => value.toDartDuration())
-          .toList();
+      return value.value.toDurationList(length: valueSize.value);
     } finally {
       free(valueSize);
       free(value);

@@ -2241,7 +2241,7 @@ final class _IIteratorWinRTEnum<T> extends IIterator<T> {
 
       return (
         retValuePtr.value,
-        items: items.toList(length: retValuePtr.value).map(enumCreator).toList()
+        items: items.toEnumList(enumCreator, length: retValuePtr.value)
       );
     } finally {
       free(items);
@@ -2306,7 +2306,7 @@ final class _IIteratorWinRTFlagsEnum<T> extends IIterator<T> {
 
       return (
         retValuePtr.value,
-        items: items.toList(length: retValuePtr.value).map(enumCreator).toList()
+        items: items.toEnumList(enumCreator, length: retValuePtr.value)
       );
     } finally {
       free(items);

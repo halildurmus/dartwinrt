@@ -39,14 +39,6 @@ void main() {
       expect(newStringMap.size, equals(0));
     });
 
-    test('String', () {
-      final boxed = 'dart'.intoBox();
-      expect(boxed, isA<IPropertyValue>());
-      final pv = boxed as IPropertyValue;
-      expect(pv.type, equals(PropertyType.string));
-      expect(pv.getString(), equals('dart'));
-    });
-
     test('List<double> (Double)', () {
       final boxed = [1.5, -2.5].intoBox(doubleType: DoubleType.double);
       expect(boxed, isA<IPropertyValue>());
@@ -65,6 +57,14 @@ void main() {
       final list = pv.getDoubleArray();
       expect(list.length, equals(2));
       expect(list, orderedEquals([1.5, -2.5]));
+    });
+
+    test('String', () {
+      final boxed = 'dart'.intoBox();
+      expect(boxed, isA<IPropertyValue>());
+      final pv = boxed as IPropertyValue;
+      expect(pv.type, equals(PropertyType.string));
+      expect(pv.getString(), equals('dart'));
     });
   });
 }
