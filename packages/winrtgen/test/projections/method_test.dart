@@ -1077,7 +1077,7 @@ void main() {
       expect(
           projection.returnStatement,
           equals(
-              'return result.value.toEnumList(enumCreator, length: resultSize.value);'));
+              'return result.value.toEnumList(AnnotationType.from, length: resultSize.value);'));
       expect(projection.postambles,
           orderedEquals(['free(resultSize);', 'free(result);']));
     });

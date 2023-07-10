@@ -25,6 +25,8 @@ dependencies:
   windows_foundation: ^0.0.9
   windows_globalization: ^0.0.1+3
   windows_graphics: ^0.0.5
+  windows_perception: ^0.0.1+2
+  windows_security: ^0.0.2+3
 
 dev_dependencies:
   test: ^1.24.1

@@ -28,7 +28,9 @@ final class IReferenceParameterProjection extends ParameterProjection {
     // If the type argument is an enum, the constructor of the enum class must
     // be passed in the 'enumCreator' parameter so that the 'IReference'
     // implementation can instantiate the object
-    final enumCreator = typeArgProjection.isWinRTEnum ? '$type.from' : null;
+    final enumCreator = typeArgProjection.isWinRTEnum
+        ? '${stripQuestionMarkSuffix(type)}.from'
+        : null;
 
     // The IID for IReference<T> must be passed in the 'referenceIid' parameter
     // so that the 'IReference' implementation can use the correct IID when

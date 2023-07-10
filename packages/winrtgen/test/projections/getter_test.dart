@@ -861,7 +861,7 @@ void main() {
       expect(
           projection.returnStatement,
           equals(
-              'return value.value.toEnumList(enumCreator, length: valueSize.value);'));
+              'return value.value.toEnumList(DigitalWindowMode.from, length: valueSize.value);'));
       expect(
           projection.postambles, equals(['free(valueSize);', 'free(value);']));
     });

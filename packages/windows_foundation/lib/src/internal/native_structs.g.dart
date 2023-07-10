@@ -81,6 +81,15 @@ final class NativeBitmapPlaneDescription extends Struct {
 }
 
 /// @nodoc
+final class NativeBitmapSize extends Struct {
+  @Uint32()
+  external int width;
+
+  @Uint32()
+  external int height;
+}
+
+/// @nodoc
 final class NativeColor extends Struct {
   @Uint8()
   external int a;
@@ -502,6 +511,18 @@ final class NativeVector4 extends Struct {
 
   @Float()
   external double w;
+}
+
+/// @nodoc
+final class NativeWhiteBalanceGain extends Struct {
+  @Double()
+  external double r;
+
+  @Double()
+  external double g;
+
+  @Double()
+  external double b;
 }
 
 /// @nodoc

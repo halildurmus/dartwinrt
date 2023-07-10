@@ -85,3 +85,8 @@ export 'viewmanagement/uielementtype.dart';
 export 'viewmanagement/uisettings.dart';
 export 'viewmanagement/viewsizepreference.dart';
 export 'windowid.dart';
+export 'windowmanagement/displayregion.dart';
+export 'windowmanagement/idisplayregion.dart';
+export 'windowmanagement/iwindowingenvironment.dart';
+export 'windowmanagement/windowingenvironment.dart';
+export 'windowmanagement/windowingenvironmentkind.dart';
