@@ -159,7 +159,7 @@ void main() {
       expect(
           projection.creator, equals('StorageDeleteOption.from(option.value)'));
       expect(projection.into, equals('option.value'));
-      expect(projection.toListArg, equals('enumCreator'));
+      expect(projection.toListArg, equals('StorageDeleteOption.from'));
       expect(projection.toListCreator, isEmpty);
       expect(projection.toListInto, equals('option[i].value'));
       expect(projection.toListIdentifier, equals('toEnumList'));
@@ -184,7 +184,7 @@ void main() {
       expect(projection.creatorPreamble, isEmpty);
       expect(projection.creator, equals('GamepadButtons.from(button.value)'));
       expect(projection.into, equals('button.value'));
-      expect(projection.toListArg, equals('enumCreator'));
+      expect(projection.toListArg, equals('GamepadButtons.from'));
       expect(projection.toListCreator, isEmpty);
       expect(projection.toListInto, equals('button[i].value'));
       expect(projection.toListIdentifier, equals('toEnumList'));
@@ -469,7 +469,7 @@ void main() {
       expect(projection.creator, equalsIgnoringWhitespace('''
         IReference<BluetoothLEAdvertisementFlags?>.fromPtr(value,
             referenceIid: '{91c0ba96-9e69-5b82-bf1d-83ab2a509c53}',
-            enumCreator: BluetoothLEAdvertisementFlags?.from).value
+            enumCreator: BluetoothLEAdvertisementFlags.from).value
 '''));
       expect(projection.into,
           equals('value?.toReference().ptr.ref.lpVtbl ?? nullptr'));
@@ -745,8 +745,10 @@ void main() {
       expect(projection.needsAllocation, isTrue);
       expect(projection.needsDeallocation, isTrue);
       expect(projection.creatorPreamble, isEmpty);
-      expect(projection.creator,
-          equals('keysArray.toEnumList(enumCreator, length: keysSize.value)'));
+      expect(
+          projection.creator,
+          equals(
+              'keysArray.toEnumList(VirtualKey.from, length: keysSize.value)'));
       expect(projection.into, equals('keysArray'));
       expect(projection.toListArg, isEmpty);
       expect(projection.toListCreator, isEmpty);

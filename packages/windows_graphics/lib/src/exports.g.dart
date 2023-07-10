@@ -25,6 +25,7 @@ export 'imaging/bitmapplanedescription.dart';
 export 'imaging/bitmappropertiesview.dart';
 export 'imaging/bitmappropertyset.dart';
 export 'imaging/bitmaprotation.dart';
+export 'imaging/bitmapsize.dart';
 export 'imaging/bitmaptransform.dart';
 export 'imaging/bitmaptypedvalue.dart';
 export 'imaging/colormanagementmode.dart';

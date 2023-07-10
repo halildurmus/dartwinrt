@@ -58,10 +58,10 @@ final class GenericObjectParameterProjection extends ParameterProjection {
   String get into => '($identifier as IInspectable).ptr.ref.lpVtbl';
 
   @override
-  String get toListArg => 'creator';
+  String get toListInto => '$identifier.cast<IInspectable>()[i].ptr.ref.lpVtbl';
 
   @override
-  String get toListInto => '$identifier.cast<IInspectable>()[i].ptr.ref.lpVtbl';
+  String get toListArg => 'creator';
 
   // No deallocation is needed as Finalizer will handle it.
   @override

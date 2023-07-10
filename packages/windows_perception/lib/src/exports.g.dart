@@ -4,4 +4,6 @@
 
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
+export 'spatial/ispatialcoordinatesystem.dart';
+export 'spatial/spatialcoordinatesystem.dart';
 export 'spatial/spatiallocatability.dart';
