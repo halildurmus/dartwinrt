@@ -13,6 +13,8 @@ import 'package:windows_ai/windows_ai.dart';
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
+import 'helpers.dart';
+
 void main() {
   if (!isWindowsRuntimeAvailable()) {
     print('Skipping tests because Windows Runtime is not available.');
@@ -122,5 +124,5 @@ void main() {
       expect(newList.first, equals(1));
       expect(newList.last, equals(1.5));
     });
-  });
+  }, skip: getWindowsBuildNumber() < 18362);
 }
