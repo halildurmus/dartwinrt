@@ -1,3 +1,7 @@
+## 0.0.2
+
+ - **FEAT**: support `WinRTStruct` type arguments in Vectors ([#289](https://github.com/dart-windows/dartwinrt/issues/289)). ([486f0de9](https://github.com/dart-windows/dartwinrt/commit/486f0de9e71122e15fcb1fb2933dbc385f5c3718))
+
 ## 0.0.1+2
 
  - Update a dependency to the latest release.
