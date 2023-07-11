@@ -4,6 +4,7 @@
 
 import 'package:winmd/winmd.dart';
 
+import '../../exception/exception.dart';
 import '../../models/models.dart';
 import '../../projections/type.dart';
 import 'type_identifier_helpers.dart';
@@ -15,7 +16,7 @@ extension ParameterHelpers on Parameter {
         ..attributes = attributes
         ..name = name;
 
-  ArrayStyle get arrayStyle {
+  ArrayPassingStyle get arrayPassingStyle {
     assert(isReferenceType || isSimpleArraySizeParam || isSimpleArrayType);
 
     var arrayParam = this;
@@ -33,12 +34,20 @@ extension ParameterHelpers on Parameter {
           .firstOrNull;
     }
 
-    if (arraySizeParam == null) return ArrayStyle.receive;
-    if (arraySizeParam.isInParam) {
-      if (arrayParam.isOutParam) return ArrayStyle.fill;
-      return ArrayStyle.pass;
+    if (arraySizeParam == null || arrayParam.isReferenceType) {
+      return ArrayPassingStyle.receive;
     }
-    return ArrayStyle.receive;
+
+    if (arraySizeParam.isInParam && arrayParam.isOutParam) {
+      return ArrayPassingStyle.fill;
+    }
+
+    if (arraySizeParam.isInParam && arrayParam.isInParam) {
+      return ArrayPassingStyle.pass;
+    }
+
+    throw WinRTGenException(
+        'Failed to determine array-passing style for parameter $name');
   }
 
   bool get isClassVariableType => typeIdentifier.isClassVariableType;

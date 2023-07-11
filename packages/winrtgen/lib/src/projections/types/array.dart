@@ -15,16 +15,18 @@ abstract base class ArrayParameterProjection extends ParameterProjection {
 
   /// Returns the appropriate projection for the parameter.
   factory ArrayParameterProjection.create(Parameter param) {
-    final Parameter(:arrayStyle, :parent, :projectionKind) = param;
+    final Parameter(:arrayPassingStyle, :parent, :projectionKind) = param;
     try {
-      return switch (arrayStyle) {
-        ArrayStyle.fill => FillArrayParameterProjection(param),
-        ArrayStyle.pass when projectionKind == ProjectionKind.stringArray =>
+      return switch (arrayPassingStyle) {
+        ArrayPassingStyle.fill => FillArrayParameterProjection(param),
+        ArrayPassingStyle.pass
+            when projectionKind == ProjectionKind.stringArray =>
           StringPassArrayParameterProjection(param),
-        ArrayStyle.pass when projectionKind == ProjectionKind.structArray =>
+        ArrayPassingStyle.pass
+            when projectionKind == ProjectionKind.structArray =>
           StructPassArrayParameterProjection(param),
-        ArrayStyle.pass => PassArrayParameterProjection(param),
-        ArrayStyle.receive => ReceiveArrayParameterProjection(param),
+        ArrayPassingStyle.pass => PassArrayParameterProjection(param),
+        ArrayPassingStyle.receive => ReceiveArrayParameterProjection(param),
       };
     } catch (_) {
       print("Failed to project parameter '$param' from '$parent'.");
