@@ -161,9 +161,11 @@ base class ParameterProjection {
     // projected as List. See the ArrayParameterProjection class.
     if (parameter.isSimpleArraySizeParam) {
       final identifier = parameter.toArrayParamName();
-      return switch (parameter.arrayStyle) {
-        ArrayStyle.fill || ArrayStyle.receive => '${identifier}Size',
-        ArrayStyle.pass => '$identifier.length',
+      return switch (parameter.arrayPassingStyle) {
+        ArrayPassingStyle.fill ||
+        ArrayPassingStyle.receive =>
+          '${identifier}Size',
+        ArrayPassingStyle.pass => '$identifier.length',
       };
     }
 
