@@ -1,3 +1,13 @@
+## 0.1.0
+
+> Note: This release has breaking changes.
+
+ - **FEAT**(windows_media): add `MediaCapture` APIs ([#301](https://github.com/dart-windows/dartwinrt/issues/301)). ([81584de7](https://github.com/dart-windows/dartwinrt/commit/81584de719d6c7e64bd3d591a1a219bccf17eb13))
+ - **FEAT**: provide better error messages on `WindowsException`s ([#291](https://github.com/dart-windows/dartwinrt/issues/291)). ([c06493cf](https://github.com/dart-windows/dartwinrt/commit/c06493cf014927c87b5e9783196754280f7815ef))
+ - **BREAKING** **FIX**: getters that return collection objects are now nullable ([#297](https://github.com/dart-windows/dartwinrt/issues/297)). ([6e0c8148](https://github.com/dart-windows/dartwinrt/commit/6e0c8148bfc66fcdaee18c8a8c5a7623bc1154dd))
+ - **BREAKING** **FIX**: parameters of type `Uri` and WinRT object are now nullable ([#294](https://github.com/dart-windows/dartwinrt/issues/294)). ([16b1a292](https://github.com/dart-windows/dartwinrt/commit/16b1a2926a6cfba4c5c3279f5893511b5fca6c9c))
+ - **BREAKING** **FIX**: some Vector type arguments are now nullable ([#286](https://github.com/dart-windows/dartwinrt/issues/286)). ([36eef7ae](https://github.com/dart-windows/dartwinrt/commit/36eef7ae3ca7321daecec59f60d071246c362f43))
+
 ## 0.0.2+3
 
  - Update a dependency to the latest release.
