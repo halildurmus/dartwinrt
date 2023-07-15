@@ -65,6 +65,7 @@ extension IntoBoxHelper on Object {
 
     // TODO(halildurmus): Support boxing enums and other structs (e.g.
     // BasicGeoposition)
+    // https://github.com/dart-windows/dartwinrt/issues/307
 
     throw UnsupportedError('Cannot box value of type $runtimeType');
   }
@@ -401,6 +402,7 @@ extension StringListHelpers on List<String> {
 /// @nodoc
 extension WinRTEnumHelper on WinRTEnum {
   // TODO(halildurmus): Boxing enums are not supported yet.
+  // https://github.com/dart-windows/dartwinrt/issues/307
   IReference<dynamic> toReference() =>
       throw UnsupportedError('Cannot box value of type $runtimeType');
 }
@@ -409,6 +411,7 @@ extension WinRTEnumHelper on WinRTEnum {
 extension WinRTStructHelper on WinRTStruct {
   // TODO(halildurmus): Boxing structs are not supported yet (except for Guid,
   // Point, Rect, and Size).
+  // https://github.com/dart-windows/dartwinrt/issues/307
   IReference<dynamic> toReference() =>
       throw UnsupportedError('Cannot box value of type $runtimeType');
 }
