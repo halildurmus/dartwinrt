@@ -103,7 +103,8 @@ const IID_$shortName = ${quote(typeDef.iid)};
 
   Set<String> get imports =>
       {...interfaceImports, ...importsForTypes, ...extraImports}
-        // TODO(halildurmus): Remove this once WinRT events are supported.
+        // TODO(halildurmus): Remove this once events are supported.
+        // https://github.com/dart-windows/dartwinrt/issues/161
         ..removeWhere((import) => import.endsWith('eventargs.dart'));
 
   String get importHeader {
