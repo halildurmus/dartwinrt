@@ -82,7 +82,7 @@ APIs will be added based on user demand, especially if it helps facilitate the
 development of new Dart packages for Windows.
 
 If you encounter any issues or have any feature requests, please submit them
-through the [issue tracker].
+through the [issue tracker][issue_tracker_link].
 
 ## Acknowledgements
 
@@ -92,7 +92,7 @@ The summary WinRT API documentation comments are
 
 [cc_license_link]: https://github.com/MicrosoftDocs/winrt-api/blob/89e9254fd8b53a648937dbb4324d7f7d6f8d1314/LICENSE
 [dart_windows_link]: https://github.com/dart-windows
-[issue_tracker]: https://github.com/dart-windows/dartwinrt/issues
+[issue_tracker_link]: https://github.com/dart-windows/dartwinrt/issues
 [language_badge]: https://img.shields.io/badge/language-Dart-blue.svg
 [language_link]: https://dart.dev
 [legal_notices_link]: https://github.com/MicrosoftDocs/winrt-api/#legal-notices
