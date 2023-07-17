@@ -125,15 +125,15 @@ abstract interface class IMapView<K, V> extends IInspectable
             creator: creator, iterableIid: iterableIid) as IMapView<K, V>;
       }
 
+      if (isSubtypeOfWinRTFlagsEnum<V>()) {
+        if (enumCreator == null) throw ArgumentError.notNull('enumCreator');
+        return _IMapViewStringWinRTFlagsEnum<V>.fromPtr(ptr,
+            enumCreator: enumCreator,
+            iterableIid: iterableIid) as IMapView<K, V>;
+      }
+
       if (isSubtypeOfWinRTEnum<V>()) {
         if (enumCreator == null) throw ArgumentError.notNull('enumCreator');
-
-        if (isSubtypeOfWinRTFlagsEnum<V>()) {
-          return _IMapViewStringWinRTFlagsEnum<V>.fromPtr(ptr,
-              enumCreator: enumCreator,
-              iterableIid: iterableIid) as IMapView<K, V>;
-        }
-
         return _IMapViewStringWinRTEnum<V>.fromPtr(ptr,
             enumCreator: enumCreator,
             iterableIid: iterableIid) as IMapView<K, V>;

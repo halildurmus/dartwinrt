@@ -97,13 +97,13 @@ abstract interface class IIterator<T> extends IInspectable {
     if (T == String) return _IIteratorString.fromPtr(ptr) as IIterator<T>;
     if (isSubtype<T, Uri>()) return _IIteratorUri.fromPtr(ptr) as IIterator<T>;
 
+    if (isSubtypeOfWinRTFlagsEnum<T>()) {
+      if (enumCreator == null) throw ArgumentError.notNull('enumCreator');
+      return _IIteratorWinRTFlagsEnum.fromPtr(ptr, enumCreator: enumCreator);
+    }
+
     if (isSubtypeOfWinRTEnum<T>()) {
       if (enumCreator == null) throw ArgumentError.notNull('enumCreator');
-
-      if (isSubtypeOfWinRTFlagsEnum<T>()) {
-        return _IIteratorWinRTFlagsEnum.fromPtr(ptr, enumCreator: enumCreator);
-      }
-
       return _IIteratorWinRTEnum.fromPtr(ptr, enumCreator: enumCreator);
     }
 
@@ -111,44 +111,49 @@ abstract interface class IIterator<T> extends IInspectable {
       return _IIteratorObject.fromPtr(ptr) as IIterator<T>;
     }
 
-    if (T == AccessListEntry) {
-      return _IIteratorAccessListEntry.fromPtr(ptr) as IIterator<T>;
+    if (isSubtypeOfWinRTStruct<T>()) {
+      if (T == AccessListEntry) {
+        return _IIteratorAccessListEntry.fromPtr(ptr) as IIterator<T>;
+      }
+      if (T == BackgroundTransferFileRange) {
+        return _IIteratorBackgroundTransferFileRange.fromPtr(ptr)
+            as IIterator<T>;
+      }
+      if (T == BasicGeoposition) {
+        return _IIteratorBasicGeoposition.fromPtr(ptr) as IIterator<T>;
+      }
+      if (T == Color) return _IIteratorColor.fromPtr(ptr) as IIterator<T>;
+      if (T == GpioChangeRecord) {
+        return _IIteratorGpioChangeRecord.fromPtr(ptr) as IIterator<T>;
+      }
+      if (T == MediaTimeRange) {
+        return _IIteratorMediaTimeRange.fromPtr(ptr) as IIterator<T>;
+      }
+      if (T == MseTimeRange) {
+        return _IIteratorMseTimeRange.fromPtr(ptr) as IIterator<T>;
+      }
+      if (T == NitRange) return _IIteratorNitRange.fromPtr(ptr) as IIterator<T>;
+      if (T == Point) return _IIteratorPoint.fromPtr(ptr) as IIterator<T>;
+      if (T == PointerDeviceUsage) {
+        return _IIteratorPointerDeviceUsage.fromPtr(ptr) as IIterator<T>;
+      }
+      if (T == Rect) return _IIteratorRect.fromPtr(ptr) as IIterator<T>;
+      if (T == RectInt32)
+        return _IIteratorRectInt32.fromPtr(ptr) as IIterator<T>;
+      if (T == Size) return _IIteratorSize.fromPtr(ptr) as IIterator<T>;
+      if (T == SizeUInt32) {
+        return _IIteratorSizeUInt32.fromPtr(ptr) as IIterator<T>;
+      }
+      if (T == SortEntry)
+        return _IIteratorSortEntry.fromPtr(ptr) as IIterator<T>;
+      if (T == StorePackageUpdateStatus) {
+        return _IIteratorStorePackageUpdateStatus.fromPtr(ptr) as IIterator<T>;
+      }
+      if (T == TextSegment) {
+        return _IIteratorTextSegment.fromPtr(ptr) as IIterator<T>;
+      }
+      if (T == WindowId) return _IIteratorWindowId.fromPtr(ptr) as IIterator<T>;
     }
-    if (T == BackgroundTransferFileRange) {
-      return _IIteratorBackgroundTransferFileRange.fromPtr(ptr) as IIterator<T>;
-    }
-    if (T == BasicGeoposition) {
-      return _IIteratorBasicGeoposition.fromPtr(ptr) as IIterator<T>;
-    }
-    if (T == Color) return _IIteratorColor.fromPtr(ptr) as IIterator<T>;
-    if (T == GpioChangeRecord) {
-      return _IIteratorGpioChangeRecord.fromPtr(ptr) as IIterator<T>;
-    }
-    if (T == MediaTimeRange) {
-      return _IIteratorMediaTimeRange.fromPtr(ptr) as IIterator<T>;
-    }
-    if (T == MseTimeRange) {
-      return _IIteratorMseTimeRange.fromPtr(ptr) as IIterator<T>;
-    }
-    if (T == NitRange) return _IIteratorNitRange.fromPtr(ptr) as IIterator<T>;
-    if (T == Point) return _IIteratorPoint.fromPtr(ptr) as IIterator<T>;
-    if (T == PointerDeviceUsage) {
-      return _IIteratorPointerDeviceUsage.fromPtr(ptr) as IIterator<T>;
-    }
-    if (T == Rect) return _IIteratorRect.fromPtr(ptr) as IIterator<T>;
-    if (T == RectInt32) return _IIteratorRectInt32.fromPtr(ptr) as IIterator<T>;
-    if (T == Size) return _IIteratorSize.fromPtr(ptr) as IIterator<T>;
-    if (T == SizeUInt32) {
-      return _IIteratorSizeUInt32.fromPtr(ptr) as IIterator<T>;
-    }
-    if (T == SortEntry) return _IIteratorSortEntry.fromPtr(ptr) as IIterator<T>;
-    if (T == StorePackageUpdateStatus) {
-      return _IIteratorStorePackageUpdateStatus.fromPtr(ptr) as IIterator<T>;
-    }
-    if (T == TextSegment) {
-      return _IIteratorTextSegment.fromPtr(ptr) as IIterator<T>;
-    }
-    if (T == WindowId) return _IIteratorWindowId.fromPtr(ptr) as IIterator<T>;
 
     throw ArgumentError.value(T, 'T', 'Unsupported type');
   }

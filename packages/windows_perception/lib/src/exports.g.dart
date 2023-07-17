@@ -5,5 +5,9 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 export 'spatial/ispatialcoordinatesystem.dart';
+export 'spatial/spatialboundingbox.dart';
+export 'spatial/spatialboundingfrustum.dart';
+export 'spatial/spatialboundingorientedbox.dart';
 export 'spatial/spatialcoordinatesystem.dart';
 export 'spatial/spatiallocatability.dart';
+export 'spatial/spatialray.dart';

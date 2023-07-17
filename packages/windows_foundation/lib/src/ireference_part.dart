@@ -9,6 +9,38 @@
 
 part of 'ireference.dart';
 
+final class _IReferenceBasicGeoposition extends IReference<BasicGeoposition?> {
+  _IReferenceBasicGeoposition.fromPtr(super.ptr);
+
+  @override
+  BasicGeoposition? get value {
+    if (_isNull) return null;
+
+    final retValuePtr = calloc<NativeBasicGeoposition>();
+
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(6)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(VTablePointer lpVtbl,
+                              Pointer<NativeBasicGeoposition> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl,
+                      Pointer<NativeBasicGeoposition> retValuePtr)>()(
+          ptr.ref.lpVtbl, retValuePtr);
+
+      if (FAILED(hr)) throwWindowsException(hr);
+
+      return retValuePtr.toDart();
+    } finally {
+      free(retValuePtr);
+    }
+  }
+}
+
 final class _IReferenceBool extends IReference<bool?> {
   _IReferenceBool.fromPtr(super.ptr);
 
@@ -40,6 +72,38 @@ final class _IReferenceBool extends IReference<bool?> {
   }
 }
 
+final class _IReferenceColor extends IReference<Color?> {
+  _IReferenceColor.fromPtr(super.ptr);
+
+  @override
+  Color? get value {
+    if (_isNull) return null;
+
+    final retValuePtr = calloc<NativeColor>();
+
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(6)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(VTablePointer lpVtbl,
+                              Pointer<NativeColor> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl,
+                      Pointer<NativeColor> retValuePtr)>()(
+          ptr.ref.lpVtbl, retValuePtr);
+
+      if (FAILED(hr)) throwWindowsException(hr);
+
+      return retValuePtr.toDart();
+    } finally {
+      free(retValuePtr);
+    }
+  }
+}
+
 final class _IReferenceDateTime extends IReference<DateTime?> {
   _IReferenceDateTime.fromPtr(super.ptr);
 
@@ -65,6 +129,41 @@ final class _IReferenceDateTime extends IReference<DateTime?> {
       if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.toDartDateTime();
+    } finally {
+      free(retValuePtr);
+    }
+  }
+}
+
+final class _IReferenceDisplayPresentationRate
+    extends IReference<DisplayPresentationRate?> {
+  _IReferenceDisplayPresentationRate.fromPtr(super.ptr);
+
+  @override
+  DisplayPresentationRate? get value {
+    if (_isNull) return null;
+
+    final retValuePtr = calloc<NativeDisplayPresentationRate>();
+
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(6)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl,
+                              Pointer<NativeDisplayPresentationRate>
+                                  retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl,
+                      Pointer<NativeDisplayPresentationRate> retValuePtr)>()(
+          ptr.ref.lpVtbl, retValuePtr);
+
+      if (FAILED(hr)) throwWindowsException(hr);
+
+      return retValuePtr.toDart();
     } finally {
       free(retValuePtr);
     }
@@ -195,6 +294,41 @@ final class _IReferenceGuid extends IReference<Guid?> {
   }
 }
 
+final class _IReferenceHolographicStereoTransform
+    extends IReference<HolographicStereoTransform?> {
+  _IReferenceHolographicStereoTransform.fromPtr(super.ptr);
+
+  @override
+  HolographicStereoTransform? get value {
+    if (_isNull) return null;
+
+    final retValuePtr = calloc<NativeHolographicStereoTransform>();
+
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(6)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl,
+                              Pointer<NativeHolographicStereoTransform>
+                                  retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl,
+                      Pointer<NativeHolographicStereoTransform> retValuePtr)>()(
+          ptr.ref.lpVtbl, retValuePtr);
+
+      if (FAILED(hr)) throwWindowsException(hr);
+
+      return retValuePtr.toDart();
+    } finally {
+      free(retValuePtr);
+    }
+  }
+}
+
 final class _IReferenceInt16 extends IReference<int?> {
   _IReferenceInt16.fromPtr(super.ptr);
 
@@ -288,6 +422,70 @@ final class _IReferenceInt64 extends IReference<int?> {
   }
 }
 
+final class _IReferenceMatrix4x4 extends IReference<Matrix4x4?> {
+  _IReferenceMatrix4x4.fromPtr(super.ptr);
+
+  @override
+  Matrix4x4? get value {
+    if (_isNull) return null;
+
+    final retValuePtr = calloc<NativeMatrix4x4>();
+
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(6)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(VTablePointer lpVtbl,
+                              Pointer<NativeMatrix4x4> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl,
+                      Pointer<NativeMatrix4x4> retValuePtr)>()(
+          ptr.ref.lpVtbl, retValuePtr);
+
+      if (FAILED(hr)) throwWindowsException(hr);
+
+      return retValuePtr.toDart();
+    } finally {
+      free(retValuePtr);
+    }
+  }
+}
+
+final class _IReferenceMseTimeRange extends IReference<MseTimeRange?> {
+  _IReferenceMseTimeRange.fromPtr(super.ptr);
+
+  @override
+  MseTimeRange? get value {
+    if (_isNull) return null;
+
+    final retValuePtr = calloc<NativeMseTimeRange>();
+
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(6)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(VTablePointer lpVtbl,
+                              Pointer<NativeMseTimeRange> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl,
+                      Pointer<NativeMseTimeRange> retValuePtr)>()(
+          ptr.ref.lpVtbl, retValuePtr);
+
+      if (FAILED(hr)) throwWindowsException(hr);
+
+      return retValuePtr.toDart();
+    } finally {
+      free(retValuePtr);
+    }
+  }
+}
+
 final class _IReferencePoint extends IReference<Point?> {
   _IReferencePoint.fromPtr(super.ptr);
 
@@ -309,6 +507,38 @@ final class _IReferencePoint extends IReference<Point?> {
               .asFunction<
                   int Function(VTablePointer lpVtbl,
                       Pointer<NativePoint> retValuePtr)>()(
+          ptr.ref.lpVtbl, retValuePtr);
+
+      if (FAILED(hr)) throwWindowsException(hr);
+
+      return retValuePtr.toDart();
+    } finally {
+      free(retValuePtr);
+    }
+  }
+}
+
+final class _IReferenceQuaternion extends IReference<Quaternion?> {
+  _IReferenceQuaternion.fromPtr(super.ptr);
+
+  @override
+  Quaternion? get value {
+    if (_isNull) return null;
+
+    final retValuePtr = calloc<NativeQuaternion>();
+
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(6)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(VTablePointer lpVtbl,
+                              Pointer<NativeQuaternion> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl,
+                      Pointer<NativeQuaternion> retValuePtr)>()(
           ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -373,6 +603,174 @@ final class _IReferenceSize extends IReference<Size?> {
               .asFunction<
                   int Function(
                       VTablePointer lpVtbl, Pointer<NativeSize> retValuePtr)>()(
+          ptr.ref.lpVtbl, retValuePtr);
+
+      if (FAILED(hr)) throwWindowsException(hr);
+
+      return retValuePtr.toDart();
+    } finally {
+      free(retValuePtr);
+    }
+  }
+}
+
+final class _IReferenceSizeInt32 extends IReference<SizeInt32?> {
+  _IReferenceSizeInt32.fromPtr(super.ptr);
+
+  @override
+  SizeInt32? get value {
+    if (_isNull) return null;
+
+    final retValuePtr = calloc<NativeSizeInt32>();
+
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(6)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(VTablePointer lpVtbl,
+                              Pointer<NativeSizeInt32> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl,
+                      Pointer<NativeSizeInt32> retValuePtr)>()(
+          ptr.ref.lpVtbl, retValuePtr);
+
+      if (FAILED(hr)) throwWindowsException(hr);
+
+      return retValuePtr.toDart();
+    } finally {
+      free(retValuePtr);
+    }
+  }
+}
+
+final class _IReferenceSpatialBoundingBox
+    extends IReference<SpatialBoundingBox?> {
+  _IReferenceSpatialBoundingBox.fromPtr(super.ptr);
+
+  @override
+  SpatialBoundingBox? get value {
+    if (_isNull) return null;
+
+    final retValuePtr = calloc<NativeSpatialBoundingBox>();
+
+    try {
+      final hr = ptr.ref.vtable
+          .elementAt(6)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          Pointer<NativeSpatialBoundingBox> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  VTablePointer lpVtbl,
+                  Pointer<NativeSpatialBoundingBox>
+                      retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+
+      if (FAILED(hr)) throwWindowsException(hr);
+
+      return retValuePtr.toDart();
+    } finally {
+      free(retValuePtr);
+    }
+  }
+}
+
+final class _IReferenceSpatialBoundingFrustum
+    extends IReference<SpatialBoundingFrustum?> {
+  _IReferenceSpatialBoundingFrustum.fromPtr(super.ptr);
+
+  @override
+  SpatialBoundingFrustum? get value {
+    if (_isNull) return null;
+
+    final retValuePtr = calloc<NativeSpatialBoundingFrustum>();
+
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(6)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl,
+                              Pointer<NativeSpatialBoundingFrustum>
+                                  retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl,
+                      Pointer<NativeSpatialBoundingFrustum> retValuePtr)>()(
+          ptr.ref.lpVtbl, retValuePtr);
+
+      if (FAILED(hr)) throwWindowsException(hr);
+
+      return retValuePtr.toDart();
+    } finally {
+      free(retValuePtr);
+    }
+  }
+}
+
+final class _IReferenceSpatialBoundingOrientedBox
+    extends IReference<SpatialBoundingOrientedBox?> {
+  _IReferenceSpatialBoundingOrientedBox.fromPtr(super.ptr);
+
+  @override
+  SpatialBoundingOrientedBox? get value {
+    if (_isNull) return null;
+
+    final retValuePtr = calloc<NativeSpatialBoundingOrientedBox>();
+
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(6)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl,
+                              Pointer<NativeSpatialBoundingOrientedBox>
+                                  retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl,
+                      Pointer<NativeSpatialBoundingOrientedBox> retValuePtr)>()(
+          ptr.ref.lpVtbl, retValuePtr);
+
+      if (FAILED(hr)) throwWindowsException(hr);
+
+      return retValuePtr.toDart();
+    } finally {
+      free(retValuePtr);
+    }
+  }
+}
+
+final class _IReferenceSpatialRay extends IReference<SpatialRay?> {
+  _IReferenceSpatialRay.fromPtr(super.ptr);
+
+  @override
+  SpatialRay? get value {
+    if (_isNull) return null;
+
+    final retValuePtr = calloc<NativeSpatialRay>();
+
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(6)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(VTablePointer lpVtbl,
+                              Pointer<NativeSpatialRay> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl,
+                      Pointer<NativeSpatialRay> retValuePtr)>()(
           ptr.ref.lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -534,6 +932,102 @@ final class _IReferenceUint64 extends IReference<int?> {
       if (FAILED(hr)) throwWindowsException(hr);
 
       return retValuePtr.value;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+}
+
+final class _IReferenceVector2 extends IReference<Vector2?> {
+  _IReferenceVector2.fromPtr(super.ptr);
+
+  @override
+  Vector2? get value {
+    if (_isNull) return null;
+
+    final retValuePtr = calloc<NativeVector2>();
+
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(6)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(VTablePointer lpVtbl,
+                              Pointer<NativeVector2> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl,
+                      Pointer<NativeVector2> retValuePtr)>()(
+          ptr.ref.lpVtbl, retValuePtr);
+
+      if (FAILED(hr)) throwWindowsException(hr);
+
+      return retValuePtr.toDart();
+    } finally {
+      free(retValuePtr);
+    }
+  }
+}
+
+final class _IReferenceVector3 extends IReference<Vector3?> {
+  _IReferenceVector3.fromPtr(super.ptr);
+
+  @override
+  Vector3? get value {
+    if (_isNull) return null;
+
+    final retValuePtr = calloc<NativeVector3>();
+
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(6)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(VTablePointer lpVtbl,
+                              Pointer<NativeVector3> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl,
+                      Pointer<NativeVector3> retValuePtr)>()(
+          ptr.ref.lpVtbl, retValuePtr);
+
+      if (FAILED(hr)) throwWindowsException(hr);
+
+      return retValuePtr.toDart();
+    } finally {
+      free(retValuePtr);
+    }
+  }
+}
+
+final class _IReferenceWhiteBalanceGain extends IReference<WhiteBalanceGain?> {
+  _IReferenceWhiteBalanceGain.fromPtr(super.ptr);
+
+  @override
+  WhiteBalanceGain? get value {
+    if (_isNull) return null;
+
+    final retValuePtr = calloc<NativeWhiteBalanceGain>();
+
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(6)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(VTablePointer lpVtbl,
+                              Pointer<NativeWhiteBalanceGain> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl,
+                      Pointer<NativeWhiteBalanceGain> retValuePtr)>()(
+          ptr.ref.lpVtbl, retValuePtr);
+
+      if (FAILED(hr)) throwWindowsException(hr);
+
+      return retValuePtr.toDart();
     } finally {
       free(retValuePtr);
     }

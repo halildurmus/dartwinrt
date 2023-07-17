@@ -30,26 +30,41 @@ enum TypeArgKind {
   mediaTimeRange('MediaTimeRange'),
   mseTimeRange('MseTimeRange'),
   nitRange('NitRange'),
+  nullableBasicGeoposition('BasicGeoposition?'),
   nullableBool('bool?'),
+  nullableColor('Color?'),
   nullableDateTime('DateTime?'),
+  nullableDisplayPresentationRate('DisplayPresentationRate?'),
   nullableDouble('Double?'),
   nullableDuration('Duration?'),
   nullableFloat('Float?'),
   nullableGuid('Guid?'),
+  nullableHolographicStereoTransform('HolographicStereoTransform?'),
   nullableInspectable('Inspectable?'),
   nullableInt16('Int16?'),
   nullableInt32('Int32?'),
   nullableInt64('Int64?'),
+  nullableMatrix4x4('Matrix4x4?'),
+  nullableMseTimeRange('MseTimeRange?'),
   nullableObject('Object?'),
   nullablePoint('Point?'),
+  nullableQuaternion('Quaternion?'),
   nullableRect('Rect?'),
   nullableSize('Size?'),
+  nullableSizeInt32('SizeInt32?'),
+  nullableSpatialBoundingBox('SpatialBoundingBox?'),
+  nullableSpatialBoundingFrustum('SpatialBoundingFrustum?'),
+  nullableSpatialBoundingOrientedBox('SpatialBoundingOrientedBox?'),
+  nullableSpatialRay('SpatialRay?'),
   nullableString('String?'),
   nullableUint8('Uint8?'),
   nullableUint16('Uint16?'),
   nullableUint32('Uint32?'),
   nullableUint64('Uint64?'),
   nullableUri('Uri?'),
+  nullableVector2('Vector2?'),
+  nullableVector3('Vector3?'),
+  nullableWhiteBalanceGain('WhiteBalanceGain?'),
   object('Object'),
   point('Point'),
   pointerDeviceUsage('PointerDeviceUsage'),
@@ -119,15 +134,22 @@ enum TypeArgKind {
             'Windows.Storage.AccessCache.AccessListEntry'),
         TypeArgKind.backgroundTransferFileRange => _createClassTypeIdentifier(
             'Windows.Networking.BackgroundTransfer.BackgroundTransferFileRange'),
-        TypeArgKind.basicGeoposition => _createClassTypeIdentifier(
-            'Windows.Devices.Geolocation.BasicGeoposition'),
+        TypeArgKind.basicGeoposition ||
+        TypeArgKind.nullableBasicGeoposition =>
+          _createClassTypeIdentifier(
+              'Windows.Devices.Geolocation.BasicGeoposition'),
         TypeArgKind.bool_ ||
         TypeArgKind.nullableBool =>
           const TypeIdentifier(BaseType.booleanType),
-        TypeArgKind.color => _createClassTypeIdentifier('Windows.UI.Color'),
+        TypeArgKind.color ||
+        TypeArgKind.nullableColor =>
+          _createClassTypeIdentifier('Windows.UI.Color'),
         TypeArgKind.dateTime ||
         TypeArgKind.nullableDateTime =>
           _createClassTypeIdentifier('Windows.Foundation.DateTime'),
+        TypeArgKind.nullableDisplayPresentationRate =>
+          _createClassTypeIdentifier(
+              'Windows.Devices.Display.Core.DisplayPresentationRate'),
         TypeArgKind.double ||
         TypeArgKind.nullableDouble =>
           const TypeIdentifier(BaseType.doubleType),
@@ -153,10 +175,36 @@ enum TypeArgKind {
           const TypeIdentifier(BaseType.int64Type),
         TypeArgKind.mediaTimeRange =>
           _createClassTypeIdentifier('Windows.Media.MediaTimeRange'),
-        TypeArgKind.mseTimeRange =>
+        TypeArgKind.mseTimeRange ||
+        TypeArgKind.nullableMseTimeRange =>
           _createClassTypeIdentifier('Windows.Media.Core.MseTimeRange'),
         TypeArgKind.nitRange =>
           _createClassTypeIdentifier('Windows.Graphics.Display.NitRange'),
+        TypeArgKind.nullableHolographicStereoTransform =>
+          _createClassTypeIdentifier(
+              'Windows.Graphics.Holographic.HolographicStereoTransform'),
+        TypeArgKind.nullableMatrix4x4 =>
+          _createClassTypeIdentifier('Windows.Foundation.Numerics.Matrix4x4'),
+        TypeArgKind.nullableQuaternion =>
+          _createClassTypeIdentifier('Windows.Foundation.Numerics.Quaternion'),
+        TypeArgKind.nullableSizeInt32 =>
+          _createClassTypeIdentifier('Windows.Graphics.SizeInt32'),
+        TypeArgKind.nullableSpatialBoundingBox => _createClassTypeIdentifier(
+            'Windows.Perception.Spatial.SpatialBoundingBox'),
+        TypeArgKind.nullableSpatialBoundingFrustum =>
+          _createClassTypeIdentifier(
+              'Windows.Perception.Spatial.SpatialBoundingFrustum'),
+        TypeArgKind.nullableSpatialBoundingOrientedBox =>
+          _createClassTypeIdentifier(
+              'Windows.Perception.Spatial.SpatialBoundingOrientedBox'),
+        TypeArgKind.nullableSpatialRay =>
+          _createClassTypeIdentifier('Windows.Perception.Spatial.SpatialRay'),
+        TypeArgKind.nullableVector2 =>
+          _createClassTypeIdentifier('Windows.Foundation.Numerics.Vector2'),
+        TypeArgKind.nullableVector3 =>
+          _createClassTypeIdentifier('Windows.Foundation.Numerics.Vector3'),
+        TypeArgKind.nullableWhiteBalanceGain =>
+          _createClassTypeIdentifier('Windows.Media.Capture.WhiteBalanceGain'),
         TypeArgKind.object ||
         TypeArgKind.nullableObject =>
           const TypeIdentifier(BaseType.objectType),

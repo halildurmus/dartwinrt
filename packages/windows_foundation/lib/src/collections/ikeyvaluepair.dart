@@ -100,14 +100,14 @@ abstract interface class IKeyValuePair<K, V> extends IInspectable {
             as IKeyValuePair<K, V>;
       }
 
+      if (isSubtypeOfWinRTFlagsEnum<V>()) {
+        if (enumCreator == null) throw ArgumentError.notNull('enumCreator');
+        return _IKeyValuePairStringWinRTFlagsEnum<V>.fromPtr(ptr,
+            enumCreator: enumCreator) as IKeyValuePair<K, V>;
+      }
+
       if (isSubtypeOfWinRTEnum<V>()) {
         if (enumCreator == null) throw ArgumentError.notNull('enumCreator');
-
-        if (isSubtypeOfWinRTFlagsEnum<V>()) {
-          return _IKeyValuePairStringWinRTFlagsEnum<V>.fromPtr(ptr,
-              enumCreator: enumCreator) as IKeyValuePair<K, V>;
-        }
-
         return _IKeyValuePairStringWinRTEnum<V>.fromPtr(ptr,
             enumCreator: enumCreator) as IKeyValuePair<K, V>;
       }

@@ -11,6 +11,7 @@ export 'directx/direct3d11/idirect3dsurface.dart';
 export 'directx/directxpixelformat.dart';
 export 'display/nitrange.dart';
 export 'displayadapterid.dart';
+export 'holographic/holographicstereotransform.dart';
 export 'imaging/bitmapalphamode.dart';
 export 'imaging/bitmapbounds.dart';
 export 'imaging/bitmapbuffer.dart';
