@@ -38,6 +38,64 @@ final class _IAsyncOperationBool extends IAsyncOperation<bool> {
   }
 }
 
+final class _IAsyncOperationDouble extends IAsyncOperation<double> {
+  _IAsyncOperationDouble.fromPtr(super.ptr);
+
+  @override
+  double getResults() {
+    final retValuePtr = calloc<Double>();
+
+    try {
+      final hr = ptr.ref.vtable
+          .elementAt(8)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          Pointer<Double> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<Double> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+
+      if (FAILED(hr)) throwWindowsException(hr);
+
+      return retValuePtr.value;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+}
+
+final class _IAsyncOperationFloat extends IAsyncOperation<double> {
+  _IAsyncOperationFloat.fromPtr(super.ptr);
+
+  @override
+  double getResults() {
+    final retValuePtr = calloc<Float>();
+
+    try {
+      final hr = ptr.ref.vtable
+          .elementAt(8)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(
+                          VTablePointer lpVtbl, Pointer<Float> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<Float> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+
+      if (FAILED(hr)) throwWindowsException(hr);
+
+      return retValuePtr.value;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+}
+
 final class _IAsyncOperationGuid extends IAsyncOperation<Guid> {
   _IAsyncOperationGuid.fromPtr(super.ptr);
 

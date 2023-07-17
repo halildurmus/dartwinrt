@@ -99,12 +99,19 @@ final class AsyncOperationParameterProjection
     // IAsyncOperation implementation can instantiate the object.
     final creator = typeArg.creator;
 
+    // e.g. float, int32
+    final nativeType = typeProjection.nativeType.toLowerCase();
+
+    // If the type argument is a double, 'doubleType' parameter must be
+    // specified so that the IAsyncOperation implementation can use the
+    // appropriate native double type
+    final doubleType =
+        this.typeArg == 'double' ? 'DoubleType.$nativeType' : null;
+
     // If the type argument is an int, 'intType' parameter must be specified so
     // that the IAsyncOperation implementation can use the appropriate native
     // integer type
-    final intType = this.typeArg == 'int'
-        ? 'IntType.${typeProjection.nativeType.toLowerCase()}'
-        : null;
+    final intType = this.typeArg == 'int' ? 'IntType.$nativeType' : null;
 
     final args = <String>[];
     if (typeProjection.isWinRTEnum) {
@@ -112,6 +119,7 @@ final class AsyncOperationParameterProjection
     } else if (creator != null) {
       args.add('creator: $creator');
     }
+    if (doubleType != null) args.add('doubleType: $doubleType');
     if (intType != null) args.add('intType: $intType');
     return args.isEmpty ? '' : ', ${args.join(', ')}';
   }

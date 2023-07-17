@@ -23,21 +23,27 @@ abstract interface class IAsyncOperation<TResult> extends IInspectable
 
   /// Creates an instance of [IAsyncOperation] from the given `ptr`.
   ///
-  /// [TResult] must be of type `bool`, `Guid`, `int`, `Object?`, `String`,
-  /// `Uri?`, `IInspectable?` (e.g. `StorageFile?`), `WinRTEnum` (e.g.
+  /// [TResult] must be of type `bool`, `double`, `Guid`, `int`, `Object?`,
+  /// `String`, `Uri?`, `IInspectable?` (e.g. `StorageFile?`), `WinRTEnum` (e.g.
   /// `LaunchUriStatus`), or `WinRTStruct` (e.g. `LoadMoreItemsResult`).
+  ///
+  /// [doubleType] must be specified if [TResult] is `double`.
+  /// ```darts
+  /// final asyncOperation =
+  ///     IAsyncOperation<double>.fromPtr(ptr, doubleType: DoubleType.float);
+  /// ```
   ///
   /// [intType] must be specified if [TResult] is `int`.
   /// ```dart
-  /// final asyncOperation = IAsyncOperation<int>.fromPtr(ptr,
-  ///     intType: IntType.uint64);
+  /// final asyncOperation =
+  ///     IAsyncOperation<int>.fromPtr(ptr, intType: IntType.uint64);
   /// ```
   ///
   /// [creator] must be specified if [TResult] is `IInspectable?`.
   /// ```dart
   /// ...
-  /// final asyncOperation = IAsyncOperation<StorageFile?>(ptr,
-  ///     creator: StorageFile.fromPtr);
+  /// final asyncOperation =
+  ///     IAsyncOperation<StorageFile?>(ptr, creator: StorageFile.fromPtr);
   /// ```
   ///
   /// [enumCreator] must be specified if [TResult] is `WinRTEnum`.
@@ -49,6 +55,7 @@ abstract interface class IAsyncOperation<TResult> extends IInspectable
     Pointer<COMObject> ptr, {
     TResult Function(Pointer<COMObject>)? creator,
     TResult Function(int)? enumCreator,
+    DoubleType? doubleType,
     IntType? intType,
   }) {
     if (TResult == bool) {
@@ -62,6 +69,15 @@ abstract interface class IAsyncOperation<TResult> extends IInspectable
     if (isSubtypeOfInspectable<TResult>()) {
       if (creator == null) throw ArgumentError.notNull('creator');
       return _IAsyncOperationInspectable.fromPtr(ptr, creator: creator);
+    }
+
+    if (TResult == double) {
+      if (doubleType == null) throw ArgumentError.notNull('doubleType');
+      final asyncOperation = switch (doubleType) {
+        DoubleType.double => _IAsyncOperationDouble.fromPtr(ptr),
+        DoubleType.float => _IAsyncOperationFloat.fromPtr(ptr),
+      };
+      return asyncOperation as IAsyncOperation<TResult>;
     }
 
     if (TResult == int) {
