@@ -90,3 +90,4 @@ export 'windowmanagement/idisplayregion.dart';
 export 'windowmanagement/iwindowingenvironment.dart';
 export 'windowmanagement/windowingenvironment.dart';
 export 'windowmanagement/windowingenvironmentkind.dart';
+export 'xaml/data/loadmoreitemsresult.dart';

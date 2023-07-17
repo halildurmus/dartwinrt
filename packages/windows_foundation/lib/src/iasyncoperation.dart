@@ -6,6 +6,7 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
+import 'package:windows_ui/windows_ui.dart';
 
 import '../internal.dart';
 import 'exports.g.dart';
@@ -23,8 +24,8 @@ abstract interface class IAsyncOperation<TResult> extends IInspectable
   /// Creates an instance of [IAsyncOperation] from the given `ptr`.
   ///
   /// [TResult] must be of type `bool`, `Guid`, `int`, `Object?`, `String`,
-  /// `Uri?`, `IInspectable?` (e.g. `StorageFile?`) or `WinRTEnum` (e.g.
-  /// `LaunchUriStatus`).
+  /// `Uri?`, `IInspectable?` (e.g. `StorageFile?`), `WinRTEnum` (e.g.
+  /// `LaunchUriStatus`), or `WinRTStruct` (e.g. `LoadMoreItemsResult`).
   ///
   /// [intType] must be specified if [TResult] is `int`.
   /// ```dart
@@ -98,6 +99,13 @@ abstract interface class IAsyncOperation<TResult> extends IInspectable
     if (isSubtypeOfWinRTEnum<TResult>()) {
       if (enumCreator == null) throw ArgumentError.notNull('enumCreator');
       return _IAsyncOperationWinRTEnum.fromPtr(ptr, enumCreator: enumCreator);
+    }
+
+    if (isSubtypeOfWinRTStruct<TResult>()) {
+      if (TResult == LoadMoreItemsResult) {
+        return _IAsyncOperationLoadMoreItemsResult.fromPtr(ptr)
+            as IAsyncOperation<TResult>;
+      }
     }
 
     throw ArgumentError.value(TResult, 'TResult', 'Unsupported type');

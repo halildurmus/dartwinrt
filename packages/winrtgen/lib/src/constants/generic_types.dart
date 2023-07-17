@@ -29,11 +29,12 @@ const genericTypes = <GenericType>[
 
 /// The type argument kinds for `IAsyncOperation`.
 const _asyncOperationTypeArgKinds = <TypeArgKind>[
-  TypeArgKind.bool_, TypeArgKind.guid, TypeArgKind.int16, TypeArgKind.int32,
-  TypeArgKind.int64, TypeArgKind.nullableInspectable, //
-  TypeArgKind.nullableObject, TypeArgKind.nullableUri, TypeArgKind.string, //
-  TypeArgKind.uint8, TypeArgKind.uint16, TypeArgKind.uint32, //
-  TypeArgKind.uint64, TypeArgKind.winrtEnum, TypeArgKind.winrtFlagsEnum //
+  TypeArgKind.bool_, TypeArgKind.guid, TypeArgKind.int16, TypeArgKind.int32, //
+  TypeArgKind.int64, TypeArgKind.loadMoreItemsResult, //
+  TypeArgKind.nullableInspectable, TypeArgKind.nullableObject, //
+  TypeArgKind.nullableUri, TypeArgKind.string, TypeArgKind.uint8, //
+  TypeArgKind.uint16, TypeArgKind.uint32, TypeArgKind.uint64, //
+  TypeArgKind.winrtEnum, TypeArgKind.winrtFlagsEnum
 ];
 
 /// The common type argument kind pairs for `IKeyValuePair`, `IMap`, and

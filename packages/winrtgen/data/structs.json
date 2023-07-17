@@ -44,5 +44,6 @@
     "Windows.UI.Color": "Describes a color in terms of alpha, red, green, and blue channels.",
     "Windows.UI.UIAutomation.Core.AutomationAnnotationTypeRegistration": "Represents an annotation registration.",
     "Windows.UI.UIAutomation.Core.AutomationRemoteOperationOperandId": "Represents an identifier that refers to an operand register of a CoreAutomationRemoteOperation.",
-    "Windows.UI.WindowId": "Defines an identifier for a top-level window."
+    "Windows.UI.WindowId": "Defines an identifier for a top-level window.",
+    "Windows.UI.Xaml.Data.LoadMoreItemsResult": "Wraps the asynchronous results of a LoadMoreItemsAsync call."
 }

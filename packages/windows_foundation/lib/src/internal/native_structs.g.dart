@@ -203,6 +203,12 @@ final class NativeHolographicStereoTransform extends Struct {
 }
 
 /// @nodoc
+final class NativeLoadMoreItemsResult extends Struct {
+  @Uint32()
+  external int count;
+}
+
+/// @nodoc
 final class NativeMatrix3x2 extends Struct {
   @Float()
   external double m11;

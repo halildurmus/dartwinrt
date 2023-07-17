@@ -27,6 +27,7 @@ enum TypeArgKind {
   int16('Int16'),
   int32('Int32'),
   int64('Int64'),
+  loadMoreItemsResult('LoadMoreItemsResult'),
   mediaTimeRange('MediaTimeRange'),
   mseTimeRange('MseTimeRange'),
   nitRange('NitRange'),
@@ -173,6 +174,8 @@ enum TypeArgKind {
         TypeArgKind.int64 ||
         TypeArgKind.nullableInt64 =>
           const TypeIdentifier(BaseType.int64Type),
+        TypeArgKind.loadMoreItemsResult => _createClassTypeIdentifier(
+            'Windows.UI.Xaml.Data.LoadMoreItemsResult'),
         TypeArgKind.mediaTimeRange =>
           _createClassTypeIdentifier('Windows.Media.MediaTimeRange'),
         TypeArgKind.mseTimeRange ||
