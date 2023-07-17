@@ -154,6 +154,38 @@ final class _IAsyncOperationInt64 extends IAsyncOperation<int> {
   }
 }
 
+final class _IAsyncOperationLoadMoreItemsResult
+    extends IAsyncOperation<LoadMoreItemsResult> {
+  _IAsyncOperationLoadMoreItemsResult.fromPtr(super.ptr);
+
+  @override
+  LoadMoreItemsResult getResults() {
+    final retValuePtr = calloc<NativeLoadMoreItemsResult>();
+
+    try {
+      final hr = ptr.ref.vtable
+          .elementAt(8)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          Pointer<NativeLoadMoreItemsResult> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(
+                  VTablePointer lpVtbl,
+                  Pointer<NativeLoadMoreItemsResult>
+                      retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+
+      if (FAILED(hr)) throwWindowsException(hr);
+
+      return retValuePtr.toDart();
+    } finally {
+      free(retValuePtr);
+    }
+  }
+}
+
 final class _IAsyncOperationInspectable<TResult>
     extends IAsyncOperation<TResult> {
   _IAsyncOperationInspectable.fromPtr(super.ptr, {required this.creator});
