@@ -6,6 +6,11 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart' hide DocumentProperties, POINT, RECT, SIZE;
+import 'package:windows_devices/windows_devices.dart';
+import 'package:windows_graphics/windows_graphics.dart';
+import 'package:windows_media/windows_media.dart';
+import 'package:windows_perception/windows_perception.dart';
+import 'package:windows_ui/windows_ui.dart';
 
 import '../internal.dart';
 import 'exports.g.dart';
@@ -27,8 +32,8 @@ abstract interface class IReference<T> extends IInspectable {
   /// `'{513ef3af-e784-5325-a91e-97c2b8111cf3}'`).
   ///
   /// [T] must be of type `bool`, `DateTime?`, `double?`, `Duration?`, `Guid?`,
-  /// `int?`, `String?`, `WinRTStruct?` (e.g. `Point?`), or `WinRTEnum?` (e.g.
-  /// `WebErrorStatus?`).
+  /// `int?`, `String?`, `WinRTEnum?` (e.g. `WebErrorStatus?`), or
+  /// `WinRTStruct?` (e.g. `BasicGeoposition?`).
   ///
   /// [enumCreator] must be specified if [T] is `WinRTEnum?`.
   /// ```dart
@@ -85,19 +90,41 @@ abstract interface class IReference<T> extends IInspectable {
       return _IReferenceString.fromPtr(ptr) as IReference<T>;
     }
 
+    if (isSubtypeOfWinRTFlagsEnum<T>()) {
+      if (enumCreator == null) throw ArgumentError.notNull('enumCreator');
+      return _IReferenceWinRTFlagsEnum.fromPtr(ptr, enumCreator: enumCreator);
+    }
+
     if (isSubtypeOfWinRTEnum<T>()) {
       if (enumCreator == null) throw ArgumentError.notNull('enumCreator');
-
-      if (isSubtypeOfWinRTFlagsEnum<T>()) {
-        return _IReferenceWinRTFlagsEnum.fromPtr(ptr, enumCreator: enumCreator);
-      }
-
       return _IReferenceWinRTEnum.fromPtr(ptr, enumCreator: enumCreator);
     }
 
     if (isSubtypeOfWinRTStruct<T>()) {
+      if (isSameType<T, BasicGeoposition?>()) {
+        return _IReferenceBasicGeoposition.fromPtr(ptr) as IReference<T>;
+      }
+      if (isSameType<T, Color?>()) {
+        return _IReferenceColor.fromPtr(ptr) as IReference<T>;
+      }
+      if (isSameType<T, DisplayPresentationRate?>()) {
+        return _IReferenceDisplayPresentationRate.fromPtr(ptr) as IReference<T>;
+      }
+      if (isSameType<T, HolographicStereoTransform?>()) {
+        return _IReferenceHolographicStereoTransform.fromPtr(ptr)
+            as IReference<T>;
+      }
+      if (isSameType<T, Matrix4x4?>()) {
+        return _IReferenceMatrix4x4.fromPtr(ptr) as IReference<T>;
+      }
+      if (isSameType<T, MseTimeRange?>()) {
+        return _IReferenceMseTimeRange.fromPtr(ptr) as IReference<T>;
+      }
       if (isSameType<T, Point?>()) {
         return _IReferencePoint.fromPtr(ptr) as IReference<T>;
+      }
+      if (isSameType<T, Quaternion?>()) {
+        return _IReferenceQuaternion.fromPtr(ptr) as IReference<T>;
       }
       if (isSameType<T, Rect?>()) {
         return _IReferenceRect.fromPtr(ptr) as IReference<T>;
@@ -105,13 +132,31 @@ abstract interface class IReference<T> extends IInspectable {
       if (isSameType<T, Size?>()) {
         return _IReferenceSize.fromPtr(ptr) as IReference<T>;
       }
-
-      // TODO(halildurmus): Other structs like BasicGeoposition are not yet
-      // supported. Since the PropertyValue does not support creating an
-      // `IReference` object for them, we need to create our own IReference<T>
-      // (and possibly IPropertyValue) implementations for them.
-
-      throw ArgumentError.value(T, 'T', 'Unsupported type');
+      if (isSameType<T, SizeInt32?>()) {
+        return _IReferenceSizeInt32.fromPtr(ptr) as IReference<T>;
+      }
+      if (isSameType<T, SpatialBoundingBox?>()) {
+        return _IReferenceSpatialBoundingBox.fromPtr(ptr) as IReference<T>;
+      }
+      if (isSameType<T, SpatialBoundingFrustum?>()) {
+        return _IReferenceSpatialBoundingFrustum.fromPtr(ptr) as IReference<T>;
+      }
+      if (isSameType<T, SpatialBoundingOrientedBox?>()) {
+        return _IReferenceSpatialBoundingOrientedBox.fromPtr(ptr)
+            as IReference<T>;
+      }
+      if (isSameType<T, SpatialRay?>()) {
+        return _IReferenceSpatialRay.fromPtr(ptr) as IReference<T>;
+      }
+      if (isSameType<T, Vector2?>()) {
+        return _IReferenceVector2.fromPtr(ptr) as IReference<T>;
+      }
+      if (isSameType<T, Vector3?>()) {
+        return _IReferenceVector3.fromPtr(ptr) as IReference<T>;
+      }
+      if (isSameType<T, WhiteBalanceGain?>()) {
+        return _IReferenceWhiteBalanceGain.fromPtr(ptr) as IReference<T>;
+      }
     }
 
     throw ArgumentError.value(T, 'T', 'Unsupported type');

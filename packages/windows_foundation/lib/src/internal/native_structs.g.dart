@@ -137,6 +137,14 @@ final class NativeDisplayAdapterId extends Struct {
 }
 
 /// @nodoc
+final class NativeDisplayPresentationRate extends Struct {
+  external NativeRational verticalSyncRate;
+
+  @Int32()
+  external int verticalSyncsPerPresentation;
+}
+
+/// @nodoc
 final class NativeGamepadReading extends Struct {
   @Uint64()
   external int timestamp;
@@ -185,6 +193,13 @@ final class NativeGpioChangeRecord extends Struct {
 
   @Int32()
   external int edge;
+}
+
+/// @nodoc
+final class NativeHolographicStereoTransform extends Struct {
+  external NativeMatrix4x4 left;
+
+  external NativeMatrix4x4 right;
 }
 
 /// @nodoc
@@ -445,6 +460,44 @@ final class NativeSortEntry extends Struct {
 
   @Bool()
   external bool ascendingOrder;
+}
+
+/// @nodoc
+final class NativeSpatialBoundingBox extends Struct {
+  external NativeVector3 center;
+
+  external NativeVector3 extents;
+}
+
+/// @nodoc
+final class NativeSpatialBoundingFrustum extends Struct {
+  external NativePlane near;
+
+  external NativePlane far;
+
+  external NativePlane right;
+
+  external NativePlane left;
+
+  external NativePlane top;
+
+  external NativePlane bottom;
+}
+
+/// @nodoc
+final class NativeSpatialBoundingOrientedBox extends Struct {
+  external NativeVector3 center;
+
+  external NativeVector3 extents;
+
+  external NativeQuaternion orientation;
+}
+
+/// @nodoc
+final class NativeSpatialRay extends Struct {
+  external NativeVector3 origin;
+
+  external NativeVector3 direction;
 }
 
 /// @nodoc

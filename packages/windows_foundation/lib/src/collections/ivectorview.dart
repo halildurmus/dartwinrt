@@ -152,14 +152,14 @@ abstract interface class IVectorView<T> extends IInspectable
           as IVectorView<T>;
     }
 
+    if (isSubtypeOfWinRTFlagsEnum<T>()) {
+      if (enumCreator == null) throw ArgumentError.notNull('enumCreator');
+      return _IVectorViewWinRTFlagsEnum.fromPtr(ptr,
+          enumCreator: enumCreator, iterableIid: iterableIid);
+    }
+
     if (isSubtypeOfWinRTEnum<T>()) {
       if (enumCreator == null) throw ArgumentError.notNull('enumCreator');
-
-      if (isSubtypeOfWinRTFlagsEnum<T>()) {
-        return _IVectorViewWinRTFlagsEnum.fromPtr(ptr,
-            enumCreator: enumCreator, iterableIid: iterableIid);
-      }
-
       return _IVectorViewWinRTEnum.fromPtr(ptr,
           enumCreator: enumCreator, iterableIid: iterableIid);
     }
@@ -169,78 +169,80 @@ abstract interface class IVectorView<T> extends IInspectable
           as IVectorView<T>;
     }
 
-    if (T == AccessListEntry) {
-      return _IVectorViewAccessListEntry.fromPtr(ptr, iterableIid: iterableIid)
-          as IVectorView<T>;
-    }
-    if (T == BackgroundTransferFileRange) {
-      return _IVectorViewBackgroundTransferFileRange.fromPtr(ptr,
-          iterableIid: iterableIid) as IVectorView<T>;
-    }
-    if (T == BasicGeoposition) {
-      return _IVectorViewBasicGeoposition.fromPtr(ptr, iterableIid: iterableIid)
-          as IVectorView<T>;
-    }
-    if (T == Color) {
-      return _IVectorViewColor.fromPtr(ptr, iterableIid: iterableIid)
-          as IVectorView<T>;
-    }
-    if (T == GpioChangeRecord) {
-      return _IVectorViewGpioChangeRecord.fromPtr(ptr, iterableIid: iterableIid)
-          as IVectorView<T>;
-    }
-    if (T == MediaTimeRange) {
-      return _IVectorViewMediaTimeRange.fromPtr(ptr, iterableIid: iterableIid)
-          as IVectorView<T>;
-    }
-    if (T == MseTimeRange) {
-      return _IVectorViewMseTimeRange.fromPtr(ptr, iterableIid: iterableIid)
-          as IVectorView<T>;
-    }
-    if (T == NitRange) {
-      return _IVectorViewNitRange.fromPtr(ptr, iterableIid: iterableIid)
-          as IVectorView<T>;
-    }
-    if (T == Point) {
-      return _IVectorViewPoint.fromPtr(ptr, iterableIid: iterableIid)
-          as IVectorView<T>;
-    }
-    if (T == PointerDeviceUsage) {
-      return _IVectorViewPointerDeviceUsage.fromPtr(ptr,
-          iterableIid: iterableIid) as IVectorView<T>;
-    }
-    if (T == Rect) {
-      return _IVectorViewRect.fromPtr(ptr, iterableIid: iterableIid)
-          as IVectorView<T>;
-    }
-    if (T == RectInt32) {
-      return _IVectorViewRectInt32.fromPtr(ptr, iterableIid: iterableIid)
-          as IVectorView<T>;
-    }
-    if (T == Size) {
-      return _IVectorViewSize.fromPtr(ptr, iterableIid: iterableIid)
-          as IVectorView<T>;
-    }
-    if (T == SizeUInt32) {
-      final iVectorSizeUInt32 =
-          _IVectorViewSizeUInt32.fromPtr(ptr, iterableIid: iterableIid);
-      return iVectorSizeUInt32 as IVectorView<T>;
-    }
-    if (T == SortEntry) {
-      return _IVectorViewSortEntry.fromPtr(ptr, iterableIid: iterableIid)
-          as IVectorView<T>;
-    }
-    if (T == StorePackageUpdateStatus) {
-      return _IVectorViewStorePackageUpdateStatus.fromPtr(ptr,
-          iterableIid: iterableIid) as IVectorView<T>;
-    }
-    if (T == TextSegment) {
-      return _IVectorViewTextSegment.fromPtr(ptr, iterableIid: iterableIid)
-          as IVectorView<T>;
-    }
-    if (T == WindowId) {
-      return _IVectorViewWindowId.fromPtr(ptr, iterableIid: iterableIid)
-          as IVectorView<T>;
+    if (isSubtypeOfWinRTStruct<T>()) {
+      if (T == AccessListEntry) {
+        return _IVectorViewAccessListEntry.fromPtr(ptr,
+            iterableIid: iterableIid) as IVectorView<T>;
+      }
+      if (T == BackgroundTransferFileRange) {
+        return _IVectorViewBackgroundTransferFileRange.fromPtr(ptr,
+            iterableIid: iterableIid) as IVectorView<T>;
+      }
+      if (T == BasicGeoposition) {
+        return _IVectorViewBasicGeoposition.fromPtr(ptr,
+            iterableIid: iterableIid) as IVectorView<T>;
+      }
+      if (T == Color) {
+        return _IVectorViewColor.fromPtr(ptr, iterableIid: iterableIid)
+            as IVectorView<T>;
+      }
+      if (T == GpioChangeRecord) {
+        return _IVectorViewGpioChangeRecord.fromPtr(ptr,
+            iterableIid: iterableIid) as IVectorView<T>;
+      }
+      if (T == MediaTimeRange) {
+        return _IVectorViewMediaTimeRange.fromPtr(ptr, iterableIid: iterableIid)
+            as IVectorView<T>;
+      }
+      if (T == MseTimeRange) {
+        return _IVectorViewMseTimeRange.fromPtr(ptr, iterableIid: iterableIid)
+            as IVectorView<T>;
+      }
+      if (T == NitRange) {
+        return _IVectorViewNitRange.fromPtr(ptr, iterableIid: iterableIid)
+            as IVectorView<T>;
+      }
+      if (T == Point) {
+        return _IVectorViewPoint.fromPtr(ptr, iterableIid: iterableIid)
+            as IVectorView<T>;
+      }
+      if (T == PointerDeviceUsage) {
+        return _IVectorViewPointerDeviceUsage.fromPtr(ptr,
+            iterableIid: iterableIid) as IVectorView<T>;
+      }
+      if (T == Rect) {
+        return _IVectorViewRect.fromPtr(ptr, iterableIid: iterableIid)
+            as IVectorView<T>;
+      }
+      if (T == RectInt32) {
+        return _IVectorViewRectInt32.fromPtr(ptr, iterableIid: iterableIid)
+            as IVectorView<T>;
+      }
+      if (T == Size) {
+        return _IVectorViewSize.fromPtr(ptr, iterableIid: iterableIid)
+            as IVectorView<T>;
+      }
+      if (T == SizeUInt32) {
+        final iVectorSizeUInt32 =
+            _IVectorViewSizeUInt32.fromPtr(ptr, iterableIid: iterableIid);
+        return iVectorSizeUInt32 as IVectorView<T>;
+      }
+      if (T == SortEntry) {
+        return _IVectorViewSortEntry.fromPtr(ptr, iterableIid: iterableIid)
+            as IVectorView<T>;
+      }
+      if (T == StorePackageUpdateStatus) {
+        return _IVectorViewStorePackageUpdateStatus.fromPtr(ptr,
+            iterableIid: iterableIid) as IVectorView<T>;
+      }
+      if (T == TextSegment) {
+        return _IVectorViewTextSegment.fromPtr(ptr, iterableIid: iterableIid)
+            as IVectorView<T>;
+      }
+      if (T == WindowId) {
+        return _IVectorViewWindowId.fromPtr(ptr, iterableIid: iterableIid)
+            as IVectorView<T>;
+      }
     }
 
     throw ArgumentError.value(T, 'T', 'Unsupported type');

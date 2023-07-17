@@ -4,6 +4,7 @@
 
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
+export 'display/core/displaypresentationrate.dart';
 export 'display/displaymonitor.dart';
 export 'display/displaymonitorconnectionkind.dart';
 export 'display/displaymonitordescriptorkind.dart';

@@ -89,14 +89,14 @@ abstract interface class IAsyncOperation<TResult> extends IInspectable
       return _IAsyncOperationUri.fromPtr(ptr) as IAsyncOperation<TResult>;
     }
 
+    if (isSubtypeOfWinRTFlagsEnum<TResult>()) {
+      if (enumCreator == null) throw ArgumentError.notNull('enumCreator');
+      return _IAsyncOperationWinRTFlagsEnum.fromPtr(ptr,
+          enumCreator: enumCreator);
+    }
+
     if (isSubtypeOfWinRTEnum<TResult>()) {
       if (enumCreator == null) throw ArgumentError.notNull('enumCreator');
-
-      if (isSubtypeOfWinRTFlagsEnum<TResult>()) {
-        return _IAsyncOperationWinRTFlagsEnum.fromPtr(ptr,
-            enumCreator: enumCreator);
-      }
-
       return _IAsyncOperationWinRTEnum.fromPtr(ptr, enumCreator: enumCreator);
     }
 

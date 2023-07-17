@@ -149,14 +149,14 @@ abstract interface class IVector<T> extends IInspectable
       return _IVectorUri.fromPtr(ptr, iterableIid: iterableIid) as IVector<T>;
     }
 
+    if (isSubtypeOfWinRTFlagsEnum<T>()) {
+      if (enumCreator == null) throw ArgumentError.notNull('enumCreator');
+      return _IVectorWinRTFlagsEnum.fromPtr(ptr,
+          enumCreator: enumCreator, iterableIid: iterableIid);
+    }
+
     if (isSubtypeOfWinRTEnum<T>()) {
       if (enumCreator == null) throw ArgumentError.notNull('enumCreator');
-
-      if (isSubtypeOfWinRTFlagsEnum<T>()) {
-        return _IVectorWinRTFlagsEnum.fromPtr(ptr,
-            enumCreator: enumCreator, iterableIid: iterableIid);
-      }
-
       return _IVectorWinRTEnum.fromPtr(ptr,
           enumCreator: enumCreator, iterableIid: iterableIid);
     }
@@ -166,74 +166,80 @@ abstract interface class IVector<T> extends IInspectable
           as IVector<T>;
     }
 
-    if (T == AccessListEntry) {
-      return _IVectorAccessListEntry.fromPtr(ptr, iterableIid: iterableIid)
-          as IVector<T>;
-    }
-    if (T == BackgroundTransferFileRange) {
-      return _IVectorBackgroundTransferFileRange.fromPtr(ptr,
-          iterableIid: iterableIid) as IVector<T>;
-    }
-    if (T == BasicGeoposition) {
-      return _IVectorBasicGeoposition.fromPtr(ptr, iterableIid: iterableIid)
-          as IVector<T>;
-    }
-    if (T == Color) {
-      return _IVectorColor.fromPtr(ptr, iterableIid: iterableIid) as IVector<T>;
-    }
-    if (T == GpioChangeRecord) {
-      return _IVectorGpioChangeRecord.fromPtr(ptr, iterableIid: iterableIid)
-          as IVector<T>;
-    }
-    if (T == MediaTimeRange) {
-      return _IVectorMediaTimeRange.fromPtr(ptr, iterableIid: iterableIid)
-          as IVector<T>;
-    }
-    if (T == MseTimeRange) {
-      return _IVectorMseTimeRange.fromPtr(ptr, iterableIid: iterableIid)
-          as IVector<T>;
-    }
-    if (T == NitRange) {
-      return _IVectorNitRange.fromPtr(ptr, iterableIid: iterableIid)
-          as IVector<T>;
-    }
-    if (T == Point) {
-      return _IVectorPoint.fromPtr(ptr, iterableIid: iterableIid) as IVector<T>;
-    }
-    if (T == PointerDeviceUsage) {
-      return _IVectorPointerDeviceUsage.fromPtr(ptr, iterableIid: iterableIid)
-          as IVector<T>;
-    }
-    if (T == Rect) {
-      return _IVectorRect.fromPtr(ptr, iterableIid: iterableIid) as IVector<T>;
-    }
-    if (T == RectInt32) {
-      return _IVectorRectInt32.fromPtr(ptr, iterableIid: iterableIid)
-          as IVector<T>;
-    }
-    if (T == Size) {
-      return _IVectorSize.fromPtr(ptr, iterableIid: iterableIid) as IVector<T>;
-    }
-    if (T == SizeUInt32) {
-      final iVectorSizeUInt32 =
-          _IVectorSizeUInt32.fromPtr(ptr, iterableIid: iterableIid);
-      return iVectorSizeUInt32 as IVector<T>;
-    }
-    if (T == SortEntry) {
-      return _IVectorSortEntry.fromPtr(ptr, iterableIid: iterableIid)
-          as IVector<T>;
-    }
-    if (T == StorePackageUpdateStatus) {
-      return _IVectorStorePackageUpdateStatus.fromPtr(ptr,
-          iterableIid: iterableIid) as IVector<T>;
-    }
-    if (T == TextSegment) {
-      return _IVectorTextSegment.fromPtr(ptr, iterableIid: iterableIid)
-          as IVector<T>;
-    }
-    if (T == WindowId) {
-      return _IVectorWindowId.fromPtr(ptr, iterableIid: iterableIid)
-          as IVector<T>;
+    if (isSubtypeOfWinRTStruct<T>()) {
+      if (T == AccessListEntry) {
+        return _IVectorAccessListEntry.fromPtr(ptr, iterableIid: iterableIid)
+            as IVector<T>;
+      }
+      if (T == BackgroundTransferFileRange) {
+        return _IVectorBackgroundTransferFileRange.fromPtr(ptr,
+            iterableIid: iterableIid) as IVector<T>;
+      }
+      if (T == BasicGeoposition) {
+        return _IVectorBasicGeoposition.fromPtr(ptr, iterableIid: iterableIid)
+            as IVector<T>;
+      }
+      if (T == Color) {
+        return _IVectorColor.fromPtr(ptr, iterableIid: iterableIid)
+            as IVector<T>;
+      }
+      if (T == GpioChangeRecord) {
+        return _IVectorGpioChangeRecord.fromPtr(ptr, iterableIid: iterableIid)
+            as IVector<T>;
+      }
+      if (T == MediaTimeRange) {
+        return _IVectorMediaTimeRange.fromPtr(ptr, iterableIid: iterableIid)
+            as IVector<T>;
+      }
+      if (T == MseTimeRange) {
+        return _IVectorMseTimeRange.fromPtr(ptr, iterableIid: iterableIid)
+            as IVector<T>;
+      }
+      if (T == NitRange) {
+        return _IVectorNitRange.fromPtr(ptr, iterableIid: iterableIid)
+            as IVector<T>;
+      }
+      if (T == Point) {
+        return _IVectorPoint.fromPtr(ptr, iterableIid: iterableIid)
+            as IVector<T>;
+      }
+      if (T == PointerDeviceUsage) {
+        return _IVectorPointerDeviceUsage.fromPtr(ptr, iterableIid: iterableIid)
+            as IVector<T>;
+      }
+      if (T == Rect) {
+        return _IVectorRect.fromPtr(ptr, iterableIid: iterableIid)
+            as IVector<T>;
+      }
+      if (T == RectInt32) {
+        return _IVectorRectInt32.fromPtr(ptr, iterableIid: iterableIid)
+            as IVector<T>;
+      }
+      if (T == Size) {
+        return _IVectorSize.fromPtr(ptr, iterableIid: iterableIid)
+            as IVector<T>;
+      }
+      if (T == SizeUInt32) {
+        final iVectorSizeUInt32 =
+            _IVectorSizeUInt32.fromPtr(ptr, iterableIid: iterableIid);
+        return iVectorSizeUInt32 as IVector<T>;
+      }
+      if (T == SortEntry) {
+        return _IVectorSortEntry.fromPtr(ptr, iterableIid: iterableIid)
+            as IVector<T>;
+      }
+      if (T == StorePackageUpdateStatus) {
+        return _IVectorStorePackageUpdateStatus.fromPtr(ptr,
+            iterableIid: iterableIid) as IVector<T>;
+      }
+      if (T == TextSegment) {
+        return _IVectorTextSegment.fromPtr(ptr, iterableIid: iterableIid)
+            as IVector<T>;
+      }
+      if (T == WindowId) {
+        return _IVectorWindowId.fromPtr(ptr, iterableIid: iterableIid)
+            as IVector<T>;
+      }
     }
 
     throw ArgumentError.value(T, 'T', 'Unsupported type');
