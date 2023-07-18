@@ -55,9 +55,10 @@ abstract interface class IVector<T> extends IInspectable
   /// [iterableIid] must be the IID of the `IIterable<T>` interface (e.g.
   /// `'{9ac00304-83ea-5688-87b6-ae38aab65d0b}'`).
   ///
-  /// [T] must be of type `bool`, `double`, `Guid`, `int`, `Object?`, `String`,
-  /// `Uri?`, `IInspectable?` (e.g.`StorageFile?`), `WinRTEnum` (e.g.
-  /// `DeviceClass`), or `WinRTStruct` (e.g. `BasicGeoposition`).
+  /// [T] must be of type `bool`, `DateTime`, `double`, `Duration`, `Guid`,
+  /// `int`, `Object?`, `String`, `Uri?`, `IInspectable?` (e.g. `StorageFile?`),
+  /// `WinRTEnum` (e.g. `DeviceClass`), or `WinRTStruct` (e.g.
+  /// `BasicGeoposition`).
   ///
   /// [doubleType] must be specified if [T] is `double`.
   /// ```dart
@@ -96,6 +97,16 @@ abstract interface class IVector<T> extends IInspectable
   }) {
     if (T == bool) {
       return _IVectorBool.fromPtr(ptr, iterableIid: iterableIid) as IVector<T>;
+    }
+
+    if (T == DateTime) {
+      return _IVectorDateTime.fromPtr(ptr, iterableIid: iterableIid)
+          as IVector<T>;
+    }
+
+    if (T == Duration) {
+      return _IVectorDuration.fromPtr(ptr, iterableIid: iterableIid)
+          as IVector<T>;
     }
 
     if (T == Guid) {
@@ -231,6 +242,10 @@ abstract interface class IVector<T> extends IInspectable
       if (T == StorePackageUpdateStatus) {
         return _IVectorStorePackageUpdateStatus.fromPtr(ptr,
             iterableIid: iterableIid) as IVector<T>;
+      }
+      if (T == TextRange) {
+        return _IVectorTextRange.fromPtr(ptr, iterableIid: iterableIid)
+            as IVector<T>;
       }
       if (T == TextSegment) {
         return _IVectorTextSegment.fromPtr(ptr, iterableIid: iterableIid)
