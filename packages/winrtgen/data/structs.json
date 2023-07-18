@@ -45,5 +45,6 @@
     "Windows.UI.UIAutomation.Core.AutomationAnnotationTypeRegistration": "Represents an annotation registration.",
     "Windows.UI.UIAutomation.Core.AutomationRemoteOperationOperandId": "Represents an identifier that refers to an operand register of a CoreAutomationRemoteOperation.",
     "Windows.UI.WindowId": "Defines an identifier for a top-level window.",
-    "Windows.UI.Xaml.Data.LoadMoreItemsResult": "Wraps the asynchronous results of a LoadMoreItemsAsync call."
+    "Windows.UI.Xaml.Data.LoadMoreItemsResult": "Wraps the asynchronous results of a LoadMoreItemsAsync call.",
+    "Windows.UI.Xaml.Documents.TextRange": "Represents a selection of text content."
 }

@@ -76,6 +76,7 @@ enum TypeArgKind {
   sortEntry('SortEntry'),
   storePackageUpdateStatus('StorePackageUpdateStatus'),
   string('String'),
+  textRange('TextRange'),
   textSegment('TextSegment'),
   uint8('Uint8'),
   uint16('Uint16'),
@@ -233,6 +234,8 @@ enum TypeArgKind {
         TypeArgKind.string ||
         TypeArgKind.nullableString =>
           const TypeIdentifier(BaseType.stringType),
+        TypeArgKind.textRange =>
+          _createClassTypeIdentifier('Windows.UI.Xaml.Documents.TextRange'),
         TypeArgKind.textSegment =>
           _createClassTypeIdentifier('Windows.Data.Text.TextSegment'),
         TypeArgKind.uint8 ||

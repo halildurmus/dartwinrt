@@ -528,6 +528,15 @@ final class NativeStorePackageUpdateStatus extends Struct {
 }
 
 /// @nodoc
+final class NativeTextRange extends Struct {
+  @Int32()
+  external int startIndex;
+
+  @Int32()
+  external int length;
+}
+
+/// @nodoc
 final class NativeTextSegment extends Struct {
   @Uint32()
   external int startPosition;

@@ -101,15 +101,16 @@ const _referenceTypeArgKinds = <TypeArgKind>[
 const _vectorTypeArgKinds = <TypeArgKind>[
   TypeArgKind.accessListEntry, TypeArgKind.backgroundTransferFileRange, //
   TypeArgKind.basicGeoposition, TypeArgKind.bool_, TypeArgKind.color, //
-  TypeArgKind.double, TypeArgKind.float, TypeArgKind.gpioChangeRecord, //
-  TypeArgKind.guid, TypeArgKind.int16, TypeArgKind.int32, TypeArgKind.int64, //
+  TypeArgKind.dateTime, TypeArgKind.double, TypeArgKind.duration, //
+  TypeArgKind.float, TypeArgKind.gpioChangeRecord, TypeArgKind.guid, //
+  TypeArgKind.int16, TypeArgKind.int32, TypeArgKind.int64, //
   TypeArgKind.mediaTimeRange, TypeArgKind.mseTimeRange, TypeArgKind.nitRange, //
   TypeArgKind.nullableInspectable, TypeArgKind.nullableObject, //
   TypeArgKind.nullableUri, TypeArgKind.point, TypeArgKind.pointerDeviceUsage, //
   TypeArgKind.rect, TypeArgKind.rectInt32, TypeArgKind.size, //
   TypeArgKind.sizeUint32, TypeArgKind.sortEntry, //
   TypeArgKind.storePackageUpdateStatus, TypeArgKind.string, //
-  TypeArgKind.textSegment, TypeArgKind.uint8, TypeArgKind.uint16, //
-  TypeArgKind.uint32, TypeArgKind.uint64, TypeArgKind.windowId, //
-  TypeArgKind.winrtEnum, TypeArgKind.winrtFlagsEnum
+  TypeArgKind.textRange, TypeArgKind.textSegment, TypeArgKind.uint8, //
+  TypeArgKind.uint16, TypeArgKind.uint32, TypeArgKind.uint64, //
+  TypeArgKind.windowId, TypeArgKind.winrtEnum, TypeArgKind.winrtFlagsEnum
 ];

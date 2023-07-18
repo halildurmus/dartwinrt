@@ -991,6 +991,181 @@ final class _IVectorColor extends IVector<Color> {
   }
 }
 
+final class _IVectorDateTime extends IVector<DateTime> {
+  _IVectorDateTime.fromPtr(super.ptr, {required super.iterableIid});
+
+  @override
+  DateTime getAt(int index) {
+    final retValuePtr = calloc<Int64>();
+
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(6)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
+                              Pointer<Int64> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, int index,
+                      Pointer<Int64> retValuePtr)>()(
+          ptr.ref.lpVtbl, index, retValuePtr);
+
+      if (FAILED(hr)) throwWindowsException(hr);
+
+      return retValuePtr.toDartDateTime();
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  @override
+  (bool, {int index}) indexOf(DateTime value) {
+    final retValuePtr = calloc<Bool>();
+    final index = calloc<Uint32>();
+
+    try {
+      final hr =
+          ptr.ref.vtable
+                  .elementAt(9)
+                  .cast<
+                      Pointer<
+                          NativeFunction<
+                              HRESULT Function(
+                                  VTablePointer lpVtbl,
+                                  Int64 value,
+                                  Pointer<Uint32> index,
+                                  Pointer<Bool> retValuePtr)>>>()
+                  .value
+                  .asFunction<
+                      int Function(VTablePointer lpVtbl, int value,
+                          Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
+              ptr.ref.lpVtbl, value.toWinRTDateTime(), index, retValuePtr);
+
+      if (FAILED(hr)) throwWindowsException(hr);
+
+      return (retValuePtr.value, index: index.value);
+    } finally {
+      free(index);
+      free(retValuePtr);
+    }
+  }
+
+  @override
+  void setAt(int index, DateTime value) {
+    final hr = ptr.ref.vtable
+        .elementAt(10)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(
+                        VTablePointer lpVtbl, Uint32 index, Int64 value)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl, int index,
+                int value)>()(ptr.ref.lpVtbl, index, value.toWinRTDateTime());
+
+    if (FAILED(hr)) throwWindowsException(hr);
+  }
+
+  @override
+  void insertAt(int index, DateTime value) {
+    final hr = ptr.ref.vtable
+        .elementAt(11)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(
+                        VTablePointer lpVtbl, Uint32 index, Int64 value)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl, int index,
+                int value)>()(ptr.ref.lpVtbl, index, value.toWinRTDateTime());
+
+    if (FAILED(hr)) throwWindowsException(hr);
+  }
+
+  @override
+  void append(DateTime value) {
+    final hr = ptr.ref.vtable
+            .elementAt(13)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(VTablePointer lpVtbl, Int64 value)>>>()
+            .value
+            .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
+        ptr.ref.lpVtbl, value.toWinRTDateTime());
+
+    if (FAILED(hr)) throwWindowsException(hr);
+  }
+
+  @override
+  (int, {List<DateTime> items}) getMany(int startIndex, int itemsSize) {
+    final retValuePtr = calloc<Uint32>();
+    final items = calloc<Int64>(itemsSize);
+
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(16)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl,
+                              Uint32 startIndex,
+                              Uint32 itemsSize,
+                              Pointer<Int64> items,
+                              Pointer<Uint32> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(
+                      VTablePointer lpVtbl,
+                      int startIndex,
+                      int itemsSize,
+                      Pointer<Int64> items,
+                      Pointer<Uint32> retValuePtr)>()(
+          ptr.ref.lpVtbl, startIndex, itemsSize, items, retValuePtr);
+
+      if (FAILED(hr)) throwWindowsException(hr);
+
+      return (
+        retValuePtr.value,
+        items: items.toDateTimeList(length: retValuePtr.value)
+      );
+    } finally {
+      free(items);
+      free(retValuePtr);
+    }
+  }
+
+  @override
+  void replaceAll(List<DateTime> items) {
+    final itemsArray = calloc<Int64>(items.length);
+    for (var i = 0; i < items.length; i++) {
+      itemsArray[i] = items[i].toWinRTDateTime();
+    }
+
+    final hr = ptr.ref.vtable
+            .elementAt(17)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
+                            Pointer<Int64> items)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, int itemsSize,
+                    Pointer<Int64> items)>()(
+        ptr.ref.lpVtbl, items.length, itemsArray);
+
+    free(itemsArray);
+
+    if (FAILED(hr)) throwWindowsException(hr);
+  }
+}
+
 final class _IVectorDouble extends IVector<double> {
   _IVectorDouble.fromPtr(super.ptr,
       {required super.iterableIid, super.doubleType});
@@ -1161,6 +1336,181 @@ final class _IVectorDouble extends IVector<double> {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int itemsSize,
                     Pointer<Double> items)>()(
+        ptr.ref.lpVtbl, items.length, itemsArray);
+
+    free(itemsArray);
+
+    if (FAILED(hr)) throwWindowsException(hr);
+  }
+}
+
+final class _IVectorDuration extends IVector<Duration> {
+  _IVectorDuration.fromPtr(super.ptr, {required super.iterableIid});
+
+  @override
+  Duration getAt(int index) {
+    final retValuePtr = calloc<Int64>();
+
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(6)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
+                              Pointer<Int64> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, int index,
+                      Pointer<Int64> retValuePtr)>()(
+          ptr.ref.lpVtbl, index, retValuePtr);
+
+      if (FAILED(hr)) throwWindowsException(hr);
+
+      return retValuePtr.toDartDuration();
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  @override
+  (bool, {int index}) indexOf(Duration value) {
+    final retValuePtr = calloc<Bool>();
+    final index = calloc<Uint32>();
+
+    try {
+      final hr =
+          ptr.ref.vtable
+                  .elementAt(9)
+                  .cast<
+                      Pointer<
+                          NativeFunction<
+                              HRESULT Function(
+                                  VTablePointer lpVtbl,
+                                  Int64 value,
+                                  Pointer<Uint32> index,
+                                  Pointer<Bool> retValuePtr)>>>()
+                  .value
+                  .asFunction<
+                      int Function(VTablePointer lpVtbl, int value,
+                          Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
+              ptr.ref.lpVtbl, value.toWinRTDuration(), index, retValuePtr);
+
+      if (FAILED(hr)) throwWindowsException(hr);
+
+      return (retValuePtr.value, index: index.value);
+    } finally {
+      free(index);
+      free(retValuePtr);
+    }
+  }
+
+  @override
+  void setAt(int index, Duration value) {
+    final hr = ptr.ref.vtable
+        .elementAt(10)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(
+                        VTablePointer lpVtbl, Uint32 index, Int64 value)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl, int index,
+                int value)>()(ptr.ref.lpVtbl, index, value.toWinRTDuration());
+
+    if (FAILED(hr)) throwWindowsException(hr);
+  }
+
+  @override
+  void insertAt(int index, Duration value) {
+    final hr = ptr.ref.vtable
+        .elementAt(11)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(
+                        VTablePointer lpVtbl, Uint32 index, Int64 value)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl, int index,
+                int value)>()(ptr.ref.lpVtbl, index, value.toWinRTDuration());
+
+    if (FAILED(hr)) throwWindowsException(hr);
+  }
+
+  @override
+  void append(Duration value) {
+    final hr = ptr.ref.vtable
+            .elementAt(13)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(VTablePointer lpVtbl, Int64 value)>>>()
+            .value
+            .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
+        ptr.ref.lpVtbl, value.toWinRTDuration());
+
+    if (FAILED(hr)) throwWindowsException(hr);
+  }
+
+  @override
+  (int, {List<Duration> items}) getMany(int startIndex, int itemsSize) {
+    final retValuePtr = calloc<Uint32>();
+    final items = calloc<Int64>(itemsSize);
+
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(16)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl,
+                              Uint32 startIndex,
+                              Uint32 itemsSize,
+                              Pointer<Int64> items,
+                              Pointer<Uint32> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(
+                      VTablePointer lpVtbl,
+                      int startIndex,
+                      int itemsSize,
+                      Pointer<Int64> items,
+                      Pointer<Uint32> retValuePtr)>()(
+          ptr.ref.lpVtbl, startIndex, itemsSize, items, retValuePtr);
+
+      if (FAILED(hr)) throwWindowsException(hr);
+
+      return (
+        retValuePtr.value,
+        items: items.toDurationList(length: retValuePtr.value)
+      );
+    } finally {
+      free(items);
+      free(retValuePtr);
+    }
+  }
+
+  @override
+  void replaceAll(List<Duration> items) {
+    final itemsArray = calloc<Int64>(items.length);
+    for (var i = 0; i < items.length; i++) {
+      itemsArray[i] = items[i].toWinRTDuration();
+    }
+
+    final hr = ptr.ref.vtable
+            .elementAt(17)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
+                            Pointer<Int64> items)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, int itemsSize,
+                    Pointer<Int64> items)>()(
         ptr.ref.lpVtbl, items.length, itemsArray);
 
     free(itemsArray);
@@ -5186,6 +5536,202 @@ final class _IVectorString extends IVector<String> {
         ptr.ref.lpVtbl, items.length, itemsArray);
 
     itemsHandles.forEach(WindowsDeleteString);
+    free(itemsArray);
+
+    if (FAILED(hr)) throwWindowsException(hr);
+  }
+}
+
+final class _IVectorTextRange extends IVector<TextRange> {
+  _IVectorTextRange.fromPtr(super.ptr, {required super.iterableIid});
+
+  @override
+  TextRange getAt(int index) {
+    final retValuePtr = calloc<NativeTextRange>();
+
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(6)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(VTablePointer lpVtbl, Uint32 index,
+                              Pointer<NativeTextRange> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, int index,
+                      Pointer<NativeTextRange> retValuePtr)>()(
+          ptr.ref.lpVtbl, index, retValuePtr);
+
+      if (FAILED(hr)) throwWindowsException(hr);
+
+      return retValuePtr.toDart();
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  @override
+  (bool, {int index}) indexOf(TextRange value) {
+    final retValuePtr = calloc<Bool>();
+    final valueNativeStructPtr = value.toNative();
+    final index = calloc<Uint32>();
+
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(9)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl,
+                              NativeTextRange value,
+                              Pointer<Uint32> index,
+                              Pointer<Bool> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, NativeTextRange value,
+                      Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
+          ptr.ref.lpVtbl, valueNativeStructPtr.ref, index, retValuePtr);
+
+      if (FAILED(hr)) throwWindowsException(hr);
+
+      return (retValuePtr.value, index: index.value);
+    } finally {
+      free(valueNativeStructPtr);
+      free(index);
+      free(retValuePtr);
+    }
+  }
+
+  @override
+  void setAt(int index, TextRange value) {
+    final valueNativeStructPtr = value.toNative();
+
+    final hr = ptr.ref.vtable
+            .elementAt(10)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(VTablePointer lpVtbl, Uint32 index,
+                            NativeTextRange value)>>>()
+            .value
+            .asFunction<
+                int Function(
+                    VTablePointer lpVtbl, int index, NativeTextRange value)>()(
+        ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
+
+    free(valueNativeStructPtr);
+
+    if (FAILED(hr)) throwWindowsException(hr);
+  }
+
+  @override
+  void insertAt(int index, TextRange value) {
+    final valueNativeStructPtr = value.toNative();
+
+    final hr = ptr.ref.vtable
+            .elementAt(11)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(VTablePointer lpVtbl, Uint32 index,
+                            NativeTextRange value)>>>()
+            .value
+            .asFunction<
+                int Function(
+                    VTablePointer lpVtbl, int index, NativeTextRange value)>()(
+        ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
+
+    free(valueNativeStructPtr);
+
+    if (FAILED(hr)) throwWindowsException(hr);
+  }
+
+  @override
+  void append(TextRange value) {
+    final valueNativeStructPtr = value.toNative();
+
+    final hr = ptr.ref.vtable
+            .elementAt(13)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            VTablePointer lpVtbl, NativeTextRange value)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, NativeTextRange value)>()(
+        ptr.ref.lpVtbl, valueNativeStructPtr.ref);
+
+    free(valueNativeStructPtr);
+
+    if (FAILED(hr)) throwWindowsException(hr);
+  }
+
+  @override
+  (int, {List<TextRange> items}) getMany(int startIndex, int itemsSize) {
+    final retValuePtr = calloc<Uint32>();
+    final items = calloc<NativeTextRange>(itemsSize);
+
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(16)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(
+                              VTablePointer lpVtbl,
+                              Uint32 startIndex,
+                              Uint32 itemsSize,
+                              Pointer<NativeTextRange> items,
+                              Pointer<Uint32> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(
+                      VTablePointer lpVtbl,
+                      int startIndex,
+                      int itemsSize,
+                      Pointer<NativeTextRange> items,
+                      Pointer<Uint32> retValuePtr)>()(
+          ptr.ref.lpVtbl, startIndex, itemsSize, items, retValuePtr);
+
+      if (FAILED(hr)) throwWindowsException(hr);
+
+      return (
+        retValuePtr.value,
+        items: items.toList(length: retValuePtr.value)
+      );
+    } finally {
+      free(items);
+      free(retValuePtr);
+    }
+  }
+
+  @override
+  void replaceAll(List<TextRange> items) {
+    final nativeStructPtrs = <Pointer<NativeTextRange>>[];
+    final itemsArray = calloc<NativeTextRange>(items.length);
+    for (var i = 0; i < items.length; i++) {
+      final nativeStructPtr = items[i].toNative();
+      itemsArray[i] = nativeStructPtr.ref;
+      nativeStructPtrs.add(nativeStructPtr);
+    }
+
+    final hr = ptr.ref.vtable
+            .elementAt(17)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(VTablePointer lpVtbl, Uint32 itemsSize,
+                            Pointer<NativeTextRange> items)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, int itemsSize,
+                    Pointer<NativeTextRange> items)>()(
+        ptr.ref.lpVtbl, items.length, itemsArray);
+
+    nativeStructPtrs.forEach(free);
     free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
