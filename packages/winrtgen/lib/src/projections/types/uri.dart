@@ -11,8 +11,22 @@ final class UriParameterProjection extends ParameterProjection {
 
   @override
   bool get isNullable {
+    final parent = method.parent;
+
     // Constructors cannot return null.
-    if (isReturnParam && method.parent.isFactoryInterface) return false;
+    if (isReturnParam && parent.isFactoryInterface) return false;
+
+    // The key type arguments of IKeyValuePair<Uri, V>, IMap<Uri, V>, and
+    // IMapView<Uri, V> cannot be null.
+    if (parent.genericParams.length == 2 &&
+        (parent.name.endsWith('IKeyValuePair`2') ||
+            parent.isCollectionObject)) {
+      return switch (parameter.typeIdentifier.genericParameterSequence) {
+        0 => false,
+        _ => true
+      };
+    }
+
     // Treat everything else as nullable.
     return true;
   }
@@ -36,8 +50,9 @@ final class UriParameterProjection extends ParameterProjection {
   }
 
   @override
-  String get toListInto =>
-      '$identifier[i]?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr';
+  String get toListInto => isNullable
+      ? '$identifier[i]?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr'
+      : '$identifier[i].toWinRTUri().ptr.ref.lpVtbl';
 
   @override
   String get toListIdentifier => 'toDartUriList';

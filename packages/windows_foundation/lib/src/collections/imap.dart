@@ -93,8 +93,8 @@ abstract interface class IMap<K, V> extends IInspectable
   /// [iterableIid] must be the IID of the `IIterable<IKeyValuePair<K, V>>`
   /// interface (e.g. `'{fe2f3d47-5d47-5499-8374-430c7cda0204}'`).
   ///
-  /// [K] must be of type `Guid`, `int`, `String`, or `WinRTEnum` (e.g.
-  /// `PedometerStepKind`).
+  /// [K] must be of type `Guid`, `int`, `Object`, `String`, `Uri`, or
+  /// `WinRTEnum` (e.g. `PedometerStepKind`).
   ///
   /// [V] must be of type `Object?`, `String`, `IInspectable?` (e.g.
   /// `IJsonValue?`), or `WinRTEnum` (e.g. `ChatMessageStatus`).
@@ -200,6 +200,16 @@ abstract interface class IMap<K, V> extends IInspectable
           creator: creator,
           enumKeyCreator: enumKeyCreator,
           iterableIid: iterableIid);
+    }
+
+    if (K == Uri && V == String) {
+      return _IMapUriString.fromPtr(ptr, iterableIid: iterableIid)
+          as IMap<K, V>;
+    }
+
+    if (K == Object && isNullableObjectType<V>()) {
+      return _IMapObjectObject.fromPtr(ptr, iterableIid: iterableIid)
+          as IMap<K, V>;
     }
 
     throw UnsupportedError('Unsupported key-value pair: ($K, $V)');

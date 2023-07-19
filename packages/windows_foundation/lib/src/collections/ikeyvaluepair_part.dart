@@ -307,6 +307,63 @@ final class _IKeyValuePairInt64Inspectable<V> extends IKeyValuePair<int, V> {
   }
 }
 
+final class _IKeyValuePairObjectObject extends IKeyValuePair<Object, Object?> {
+  _IKeyValuePairObjectObject.fromPtr(super.ptr);
+
+  @override
+  Object get key {
+    final retValuePtr = calloc<COMObject>();
+
+    final hr = ptr.ref.vtable
+        .elementAt(6)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl,
+                        Pointer<COMObject> retValuePtr)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl,
+                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+
+    if (FAILED(hr)) {
+      free(retValuePtr);
+      throwWindowsException(hr);
+    }
+
+    return IPropertyValue.fromPtr(retValuePtr).value as Object;
+  }
+
+  @override
+  Object? get value {
+    final retValuePtr = calloc<COMObject>();
+
+    final hr = ptr.ref.vtable
+        .elementAt(7)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl,
+                        Pointer<COMObject> retValuePtr)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl,
+                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+
+    if (FAILED(hr)) {
+      free(retValuePtr);
+      throwWindowsException(hr);
+    }
+
+    if (retValuePtr.isNull) {
+      free(retValuePtr);
+      return null;
+    }
+
+    return IPropertyValue.fromPtr(retValuePtr).value;
+  }
+}
+
 final class _IKeyValuePairStringInspectable<V>
     extends IKeyValuePair<String, V> {
   _IKeyValuePairStringInspectable.fromPtr(super.ptr, {required this.creator});
@@ -837,6 +894,60 @@ final class _IKeyValuePairUint64Inspectable<V> extends IKeyValuePair<int, V> {
     }
 
     return creator(retValuePtr);
+  }
+}
+
+final class _IKeyValuePairUriString extends IKeyValuePair<Uri, String> {
+  _IKeyValuePairUriString.fromPtr(super.ptr);
+
+  @override
+  Uri get key {
+    final retValuePtr = calloc<COMObject>();
+
+    final hr = ptr.ref.vtable
+        .elementAt(6)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl,
+                        Pointer<COMObject> retValuePtr)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl,
+                Pointer<COMObject> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+
+    if (FAILED(hr)) {
+      free(retValuePtr);
+      throwWindowsException(hr);
+    }
+
+    return retValuePtr.toWinRTUri().toDartUri();
+  }
+
+  @override
+  String get value {
+    final retValuePtr = calloc<IntPtr>();
+
+    try {
+      final hr = ptr.ref.vtable
+          .elementAt(7)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl,
+                          Pointer<IntPtr> retValuePtr)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl,
+                  Pointer<IntPtr> retValuePtr)>()(ptr.ref.lpVtbl, retValuePtr);
+
+      if (FAILED(hr)) throwWindowsException(hr);
+
+      return retValuePtr.toDartString();
+    } finally {
+      WindowsDeleteString(retValuePtr.value);
+      free(retValuePtr);
+    }
   }
 }
 

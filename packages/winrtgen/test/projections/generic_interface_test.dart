@@ -20,7 +20,7 @@ void main() {
   group('GenericInterfacePartFileProjection', () {
     test('projects something', () {
       const genericType = GenericTypeWithOneTypeArg(
-          'Windows.Foundation.IReference`1', [TypeArgKind.string]);
+          'Windows.Foundation.IReference`1', {TypeArgKind.string});
       final output = GenericInterfacePartFileProjection(genericType).toString();
       expect(output, isNotEmpty);
       expect(output, contains('_IReferenceString'));
@@ -50,6 +50,65 @@ void main() {
   });
 
   group('WinRT generic interface', () {
+    group('type arguments are supported', () {
+      void verifySupportedTypeArgKindsOf(GenericType genericType) {
+        switch (genericType) {
+          case final GenericTypeWithOneTypeArg type:
+            final GenericTypeWithOneTypeArg(
+              :typeArgKinds,
+              :typeArgKindsInMetadata
+            ) = type;
+
+            final diff = typeArgKindsInMetadata.difference(typeArgKinds);
+            if (diff.isNotEmpty) {
+              fail("$genericType does not support these TypeArgKinds: $diff");
+            }
+          case final GenericTypeWithTwoTypeArgs type:
+            final GenericTypeWithTwoTypeArgs(
+              :typeArgKindPairs,
+              :typeArgKindPairsInMetadata
+            ) = type;
+
+            final diff =
+                typeArgKindPairsInMetadata.difference(typeArgKindPairs);
+            if (diff.isNotEmpty) {
+              fail(
+                  "$genericType does not support these TypeArgKind pairs: $diff");
+            }
+        }
+      }
+
+// TODO(halildurmus): Write tests for:
+// TypeArgKind.fromTypeIdentifier
+// GenericTypeWithOneTypeArg.typeArgKindsInMetadata
+// GenericTypeWithTwoTypeAgs.typeArgKindPairsInMetadata
+// non-nullable object and uri parameters
+
+      test('(IAsyncOperation)', () {
+        verifySupportedTypeArgKindsOf(iasyncOperation);
+      });
+
+      test('(IMap)', () {
+        verifySupportedTypeArgKindsOf(imap);
+      });
+
+      test('(IMapView)', () {
+        verifySupportedTypeArgKindsOf(imapView);
+      });
+
+      test('(IReference)', () {
+        verifySupportedTypeArgKindsOf(ireference);
+      });
+
+      test('(IVector)', () {
+        verifySupportedTypeArgKindsOf(ivector);
+      });
+
+      test('(IVectorView)', () {
+        verifySupportedTypeArgKindsOf(ivectorView);
+      });
+    });
+
     group('has correct formatted type args', () {
       test('(1)', () {
         expect(asyncOperationBoolProjection.formattedTypeArgs, equals('bool'));

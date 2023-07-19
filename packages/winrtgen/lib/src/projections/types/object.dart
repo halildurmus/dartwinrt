@@ -17,22 +17,34 @@ final class ObjectParameterProjection extends ParameterProjection {
 
   @override
   bool get isNullable {
+    final parent = method.parent;
+
+    // The key type arguments of IKeyValuePair<Object, V>, IMap<Object, V>,
+    // and IMapView<Object, V> cannot be null.
+    if (parent.genericParams.length == 2 &&
+        (parent.name.endsWith('IKeyValuePair`2') ||
+            parent.isCollectionObject)) {
+      return switch (parameter.typeIdentifier.genericParameterSequence) {
+        0 => false,
+        _ => true
+      };
+    }
+
     if (isReturnParam) {
       // Constructors cannot return null.
-      if (method.parent.isFactoryInterface) return false;
+      if (parent.isFactoryInterface) return false;
 
       // Methods that return collection interfaces cannot return null.
       if (!method.isGetProperty &&
-          typeProjection.typeIdentifier.isCollectionObject) {
+          parameter.typeIdentifier.isCollectionObject) {
         return false;
       }
 
       // IIterable.First() cannot return null.
-      if (method.name == 'First' && method.parent.isCollectionObject) {
+      if (method.name == 'First' && parent.isCollectionObject) {
         return false;
       }
 
-      //
       if (isObjectType && isMethodFromPropertyValueStatics) return false;
     }
 
@@ -49,7 +61,6 @@ final class ObjectParameterProjection extends ParameterProjection {
           _ => 'IPropertyValue'
         };
       }
-      return 'Object?';
     }
 
     return isNullable ? nullable(shortTypeName) : shortTypeName;
@@ -71,7 +82,8 @@ final class ObjectParameterProjection extends ParameterProjection {
         };
       }
 
-      return 'IPropertyValue.fromPtr($identifier).value';
+      final cast = isNullable ? '' : ' as Object';
+      return 'IPropertyValue.fromPtr($identifier).value$cast';
     }
 
     if (type == 'Pointer<COMObject>') return identifier;
@@ -89,7 +101,9 @@ final class ObjectParameterProjection extends ParameterProjection {
 
   @override
   String get toListInto => isObjectType
-      ? '$identifier[i]?.intoBox().ptr.ref.lpVtbl ?? nullptr'
+      ? isNullable
+          ? '$identifier[i]?.intoBox().ptr.ref.lpVtbl ?? nullptr'
+          : '$identifier[i].intoBox().ptr.ref.lpVtbl'
       : '$identifier[i].ptr.ref.lpVtbl';
 
   // No deallocation is needed as Finalizer will handle it.
@@ -115,7 +129,9 @@ final class ObjectParameterProjection extends ParameterProjection {
 
     if (isInParam) {
       if (typeProjection.isObjectType) {
-        return '$identifier?.intoBox().ptr.ref.lpVtbl ?? nullptr';
+        return isNullable
+            ? '$identifier?.intoBox().ptr.ref.lpVtbl ?? nullptr'
+            : '$identifier.intoBox().ptr.ref.lpVtbl';
       } else if (type.startsWith('IIterable<')) {
         final iid = typeProjection.typeIdentifier.iid;
         final nullCheck = isNullable ? '$identifier == null ? nullptr : ' : '';
