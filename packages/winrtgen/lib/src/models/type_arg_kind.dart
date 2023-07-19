@@ -4,6 +4,7 @@
 
 import 'package:winmd/winmd.dart';
 
+import '../constants/constants.dart';
 import '../exception/exception.dart';
 import '../utilities/utilities.dart';
 
@@ -130,7 +131,9 @@ enum TypeArgKind {
       BaseType.uint64Type =>
         isNullable ? TypeArgKind.nullableUint64 : TypeArgKind.uint64,
       BaseType.valueTypeModifier when type?.isEnum ?? false =>
-        isNullable ? TypeArgKind.winrtEnum : TypeArgKind.winrtFlagsEnum,
+        type!.existsAttribute(flagsAttribute)
+            ? TypeArgKind.winrtFlagsEnum
+            : TypeArgKind.winrtEnum,
       BaseType.valueTypeModifier => switch (name) {
           'System.Guid' =>
             isNullable ? TypeArgKind.nullableGuid : TypeArgKind.guid,

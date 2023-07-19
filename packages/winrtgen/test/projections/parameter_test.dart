@@ -769,6 +769,37 @@ void main() {
       expect(projection.localIdentifier, equals('keysArray'));
     });
 
+    test('projects Object', () {
+      final genericInterfaceProjection = GenericInterfaceProjection.from(
+          'Windows.Foundation.Collections.IMap`2',
+          TypeArgKind.object,
+          TypeArgKind.nullableObject);
+      final methodProjection = genericInterfaceProjection.methodProjections
+          .firstWhere((methodProjection) => methodProjection.name == 'Insert');
+      final projection = methodProjection.parameters.first;
+      expect(projection, isA<ObjectParameterProjection>());
+      expect(projection.isInParam, isTrue);
+      expect(projection.isOutParam, isFalse);
+      expect(projection.isNullable, isFalse);
+      expect(projection.type, equals('Object'));
+      expect(projection.needsAllocation, isFalse);
+      expect(projection.needsDeallocation, isFalse);
+      expect(projection.creatorPreamble, isEmpty);
+      expect(projection.creator,
+          equals('IPropertyValue.fromPtr(key).value as Object'));
+      expect(projection.into, equals('key'));
+      expect(projection.toListArg, isEmpty);
+      expect(projection.toListCreator, isEmpty);
+      expect(projection.toListInto, equals('key[i].intoBox().ptr.ref.lpVtbl'));
+      expect(projection.toListIdentifier, equals('toObjectList'));
+      expect(projection.preambles, isEmpty);
+      expect(projection.nullCheck, isEmpty);
+      expect(projection.postambles, isEmpty);
+      expect(projection.identifier, equals('key'));
+      expect(
+          projection.localIdentifier, equals('key.intoBox().ptr.ref.lpVtbl'));
+    });
+
     test('projects Object?', () {
       final methodProjection = MethodProjection.fromTypeAndMethodName(
           'Windows.Foundation.Collections.PropertySet', 'Insert');
@@ -875,32 +906,34 @@ void main() {
     });
 
     test('projects Uri', () {
-      final methodProjection = MethodProjection.fromTypeAndMethodName(
-          'Windows.Security.Credentials.IWebAccountProviderFactory',
-          'CreateWebAccountProvider');
-      final projection = methodProjection.parameters.last;
+      final genericInterfaceProjection = GenericInterfaceProjection.from(
+          'Windows.Foundation.Collections.IMap`2',
+          TypeArgKind.uri,
+          TypeArgKind.string);
+      final methodProjection = genericInterfaceProjection.methodProjections
+          .firstWhere((methodProjection) => methodProjection.name == 'Insert');
+      final projection = methodProjection.parameters.first;
       expect(projection, isA<UriParameterProjection>());
       expect(projection.isInParam, isTrue);
       expect(projection.isOutParam, isFalse);
-      expect(projection.isNullable, isTrue);
-      expect(projection.type, equals('Uri?'));
+      expect(projection.isNullable, isFalse);
+      expect(projection.type, equals('Uri'));
       expect(projection.needsAllocation, isFalse);
       expect(projection.needsDeallocation, isFalse);
       expect(projection.creatorPreamble, isEmpty);
-      expect(projection.creator, equals('iconUri.toWinRTUri().toDartUri()'));
-      expect(projection.into,
-          equals('iconUri?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr'));
+      expect(projection.creator, equals('key.toWinRTUri().toDartUri()'));
+      expect(projection.into, equals('key.toWinRTUri().ptr.ref.lpVtbl'));
       expect(projection.toListArg, isEmpty);
       expect(projection.toListCreator, isEmpty);
-      expect(projection.toListInto,
-          equals('iconUri[i]?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr'));
+      expect(
+          projection.toListInto, equals('key[i].toWinRTUri().ptr.ref.lpVtbl'));
       expect(projection.toListIdentifier, equals('toDartUriList'));
       expect(projection.preambles, isEmpty);
-      expect(projection.nullCheck, equals(nullCheck('iconUri')));
+      expect(projection.nullCheck, isEmpty);
       expect(projection.postambles, isEmpty);
-      expect(projection.identifier, equals('iconUri'));
+      expect(projection.identifier, equals('key'));
       expect(projection.localIdentifier,
-          equals('iconUri?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr'));
+          equals('key.toWinRTUri().ptr.ref.lpVtbl'));
     });
 
     test('projects Uri?', () {
