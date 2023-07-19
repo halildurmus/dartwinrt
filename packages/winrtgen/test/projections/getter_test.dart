@@ -1008,6 +1008,41 @@ void main() {
           projection.postambles, equals(['free(valueSize);', 'free(value);']));
     });
 
+    test('projects Object', () {
+      final genericInterfaceProjection = GenericInterfaceProjection.from(
+          'Windows.Foundation.Collections.IKeyValuePair`2',
+          TypeArgKind.object,
+          TypeArgKind.nullableObject);
+      final projection = genericInterfaceProjection.methodProjections
+          .firstWhere((methodProjection) => methodProjection.name == 'get_Key');
+      expect(projection.annotations, isEmpty);
+      expect(projection.useTryFinallyBlock, isFalse);
+      expect(projection.returnType, equals('Object'));
+      expect(projection.header, equals('Object get key'));
+      expect(projection.paramIdentifier, equals('retValuePtr'));
+      expect(projection.preambles,
+          equals(['final retValuePtr = calloc<COMObject>();']));
+      expect(projection.parametersPreamble, isEmpty);
+      expect(
+          projection.nativePrototype,
+          equals(
+              'HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)'));
+      expect(
+          projection.dartPrototype,
+          equals(
+              'int Function(VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)'));
+      expect(projection.identifiers, equals('ptr.ref.lpVtbl, retValuePtr'));
+      expect(projection.parametersPostamble, isEmpty);
+      expect(projection.failedCheck,
+          equals(failedCheck(freeRetVal: true, identifier: 'retValuePtr')));
+      expect(projection.nullCheck, isEmpty);
+      expect(
+          projection.returnStatement,
+          equals(
+              'return IPropertyValue.fromPtr(retValuePtr).value as Object;'));
+      expect(projection.postambles, isEmpty);
+    });
+
     test('projects Object?', () {
       final projection = GetterProjection.fromTypeAndMethodName(
           'Windows.Data.Xml.Dom.IXmlNode', 'get_LocalName');
@@ -1088,6 +1123,39 @@ void main() {
       expect(projection.nullCheck, isEmpty);
       expect(projection.returnStatement, equals('return value.toDart();'));
       expect(projection.postambles, equals(['free(value);']));
+    });
+
+    test('projects Uri', () {
+      final genericInterfaceProjection = GenericInterfaceProjection.from(
+          'Windows.Foundation.Collections.IKeyValuePair`2',
+          TypeArgKind.uri,
+          TypeArgKind.string);
+      final projection = genericInterfaceProjection.methodProjections
+          .firstWhere((methodProjection) => methodProjection.name == 'get_Key');
+      expect(projection.annotations, isEmpty);
+      expect(projection.useTryFinallyBlock, isFalse);
+      expect(projection.returnType, equals('Uri'));
+      expect(projection.header, equals('Uri get key'));
+      expect(projection.paramIdentifier, equals('retValuePtr'));
+      expect(projection.preambles,
+          equals(['final retValuePtr = calloc<COMObject>();']));
+      expect(projection.parametersPreamble, isEmpty);
+      expect(
+          projection.nativePrototype,
+          equals(
+              'HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)'));
+      expect(
+          projection.dartPrototype,
+          equals(
+              'int Function(VTablePointer lpVtbl, Pointer<COMObject> retValuePtr)'));
+      expect(projection.identifiers, equals('ptr.ref.lpVtbl, retValuePtr'));
+      expect(projection.parametersPostamble, isEmpty);
+      expect(projection.failedCheck,
+          equals(failedCheck(freeRetVal: true, identifier: 'retValuePtr')));
+      expect(projection.nullCheck, isEmpty);
+      expect(projection.returnStatement,
+          equals('return retValuePtr.toWinRTUri().toDartUri();'));
+      expect(projection.postambles, isEmpty);
     });
 
     test('projects Uri?', () {

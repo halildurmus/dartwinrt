@@ -78,12 +78,6 @@ void main() {
         }
       }
 
-// TODO(halildurmus): Write tests for:
-// TypeArgKind.fromTypeIdentifier
-// GenericTypeWithOneTypeArg.typeArgKindsInMetadata
-// GenericTypeWithTwoTypeAgs.typeArgKindPairsInMetadata
-// non-nullable object and uri parameters
-
       test('(IAsyncOperation)', () {
         verifySupportedTypeArgKindsOf(iasyncOperation);
       });

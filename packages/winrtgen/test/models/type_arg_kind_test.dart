@@ -15,35 +15,180 @@ void main() {
     return;
   }
 
-  group('TypeArgKind.from constructor', () {
+  group('TypeArgKind.from factory constructor', () {
     test('throws an ArgumentError if invalid name is given', () {
       expect(() => TypeArgKind.from('foo'), throwsArgumentError);
     });
 
-    test('returns the appropriate TypeArgKind (1)', () {
-      expect(TypeArgKind.from('bool'), equals(TypeArgKind.bool_));
+    group('returns the appropriate TypeArgKind', () {
+      test('(1)', () {
+        expect(TypeArgKind.from('bool'), equals(TypeArgKind.bool_));
+      });
+
+      test('(2)', () {
+        expect(TypeArgKind.from('bool?'), equals(TypeArgKind.nullableBool));
+      });
+
+      test('(3)', () {
+        expect(
+            TypeArgKind.from('Inspectable'), equals(TypeArgKind.inspectable));
+      });
+
+      test('(4)', () {
+        expect(TypeArgKind.from('Inspectable?'),
+            equals(TypeArgKind.nullableInspectable));
+      });
+
+      test('(5)', () {
+        expect(TypeArgKind.from('WinRTEnum'), equals(TypeArgKind.winrtEnum));
+      });
+
+      test('(6)', () {
+        expect(TypeArgKind.from('WinRTFlagsEnum'),
+            equals(TypeArgKind.winrtFlagsEnum));
+      });
+    });
+  });
+
+  group('TypeArgKind.fromTypeIdentifier factory constructor', () {
+    test('throws a WinRTGenException if invalid TypeIdentifier is given', () {
+      expect(
+          () => TypeArgKind.fromTypeIdentifier(
+              const TypeIdentifier(BaseType.classVariableTypeModifier)),
+          throwsA(isA<WinRTGenException>()));
     });
 
-    test('returns the appropriate TypeArgKind (2)', () {
-      expect(TypeArgKind.from('bool?'), equals(TypeArgKind.nullableBool));
-    });
+    group('returns the appropriate TypeArgKind', () {
+      test('(1)', () {
+        expect(
+            TypeArgKind.fromTypeIdentifier(
+                const TypeIdentifier(BaseType.booleanType)),
+            equals(TypeArgKind.bool_));
+      });
 
-    test('returns the appropriate TypeArgKind (3)', () {
-      expect(TypeArgKind.from('Inspectable'), equals(TypeArgKind.inspectable));
-    });
+      test('(2)', () {
+        expect(
+            TypeArgKind.fromTypeIdentifier(
+                const TypeIdentifier(BaseType.booleanType),
+                isNullable: true),
+            equals(TypeArgKind.nullableBool));
+      });
 
-    test('returns the appropriate TypeArgKind (4)', () {
-      expect(TypeArgKind.from('Inspectable?'),
-          equals(TypeArgKind.nullableInspectable));
-    });
+      test('(3)', () {
+        expect(
+            TypeArgKind.fromTypeIdentifier(
+                const TypeIdentifier(BaseType.genericTypeModifier)),
+            equals(TypeArgKind.inspectable));
+      });
 
-    test('returns the appropriate TypeArgKind (5)', () {
-      expect(TypeArgKind.from('WinRTEnum'), equals(TypeArgKind.winrtEnum));
-    });
+      test('(4)', () {
+        expect(
+            TypeArgKind.fromTypeIdentifier(
+                const TypeIdentifier(BaseType.genericTypeModifier),
+                isNullable: true),
+            equals(TypeArgKind.nullableInspectable));
+      });
 
-    test('returns the appropriate TypeArgKind (6)', () {
-      expect(TypeArgKind.from('WinRTFlagsEnum'),
-          equals(TypeArgKind.winrtFlagsEnum));
+      test('(5)', () {
+        expect(
+            TypeArgKind.fromTypeIdentifier(
+                const TypeIdentifier(BaseType.objectType)),
+            equals(TypeArgKind.object));
+      });
+
+      test('(6)', () {
+        expect(
+            TypeArgKind.fromTypeIdentifier(
+                const TypeIdentifier(BaseType.objectType),
+                isNullable: true),
+            equals(TypeArgKind.nullableObject));
+      });
+
+      test('(7)', () {
+        expect(
+            TypeArgKind.fromTypeIdentifier(const TypeIdentifier(
+                BaseType.classTypeModifier,
+                name: 'Windows.Foundation.Uri')),
+            equals(TypeArgKind.uri));
+      });
+
+      test('(8)', () {
+        expect(
+            TypeArgKind.fromTypeIdentifier(const TypeIdentifier(
+                BaseType.classTypeModifier,
+                name: 'Windows.Foundation.IAsyncInfo')),
+            equals(TypeArgKind.inspectable));
+      });
+
+      test('(9)', () {
+        expect(
+            TypeArgKind.fromTypeIdentifier(
+                const TypeIdentifier(BaseType.classTypeModifier,
+                    name: 'Windows.Foundation.IAsyncInfo'),
+                isNullable: true),
+            equals(TypeArgKind.nullableInspectable));
+      });
+
+      test('(10)', () {
+        expect(
+            TypeArgKind.fromTypeIdentifier(const TypeIdentifier(
+                BaseType.valueTypeModifier,
+                name: 'System.Guid')),
+            equals(TypeArgKind.guid));
+      });
+
+      test('(11)', () {
+        expect(
+            TypeArgKind.fromTypeIdentifier(const TypeIdentifier(
+                BaseType.valueTypeModifier,
+                name: 'Windows.Foundation.DateTime')),
+            equals(TypeArgKind.dateTime));
+      });
+
+      test('(12)', () {
+        expect(
+            TypeArgKind.fromTypeIdentifier(const TypeIdentifier(
+                BaseType.valueTypeModifier,
+                name: 'Windows.Foundation.TimeSpan')),
+            equals(TypeArgKind.duration));
+      });
+
+      test('(13)', () {
+        expect(
+            TypeArgKind.fromTypeIdentifier(const TypeIdentifier(
+                BaseType.valueTypeModifier,
+                name: 'Windows.Foundation.Point')),
+            equals(TypeArgKind.point));
+      });
+
+      test('(14)', () {
+        expect(
+            TypeArgKind.fromTypeIdentifier(
+                const TypeIdentifier(BaseType.valueTypeModifier,
+                    name: 'Windows.Foundation.Size'),
+                isNullable: true),
+            equals(TypeArgKind.nullableSize));
+      });
+
+      test('(15)', () {
+        expect(
+            TypeArgKind.fromTypeIdentifier(
+              TypeIdentifier(BaseType.valueTypeModifier,
+                  name: 'Windows.Foundation.AsyncStatus',
+                  type: getMetadataForType('Windows.Foundation.AsyncStatus')),
+            ),
+            equals(TypeArgKind.winrtEnum));
+      });
+
+      test('(16)', () {
+        expect(
+            TypeArgKind.fromTypeIdentifier(
+              TypeIdentifier(BaseType.valueTypeModifier,
+                  name: 'Windows.Storage.FileAttributes',
+                  type: getMetadataForType('Windows.Storage.FileAttributes')),
+            ),
+            equals(TypeArgKind.winrtFlagsEnum));
+      });
     });
   });
 
