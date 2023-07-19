@@ -23,8 +23,8 @@ abstract interface class IKeyValuePair<K, V> extends IInspectable {
 
   /// Creates an instance of [IKeyValuePair] from the given [ptr].
   ///
-  /// [K] must be of type `Guid`, `int`, `String`, or `WinRTEnum` (e.g.
-  /// `PedometerStepKind`).
+  /// [K] must be of type `Guid`, `int`, `Object`, `String`, `Uri`, or
+  /// `WinRTEnum` (e.g. `PedometerStepKind`).
   ///
   /// [V] must be of type `Object?`, `String`, `IInspectable?` (e.g.
   /// `IJsonValue?`), or `WinRTEnum` (e.g. `ChatMessageStatus`).
@@ -128,6 +128,14 @@ abstract interface class IKeyValuePair<K, V> extends IInspectable {
 
       return _IKeyValuePairWinRTEnumInspectable.fromPtr(ptr,
           creator: creator, enumKeyCreator: enumKeyCreator);
+    }
+
+    if (K == Uri && V == String) {
+      return _IKeyValuePairUriString.fromPtr(ptr) as IKeyValuePair<K, V>;
+    }
+
+    if (K == Object && isNullableObjectType<V>()) {
+      return _IKeyValuePairObjectObject.fromPtr(ptr) as IKeyValuePair<K, V>;
     }
 
     throw UnsupportedError('Unsupported key-value pair: ($K, $V)');

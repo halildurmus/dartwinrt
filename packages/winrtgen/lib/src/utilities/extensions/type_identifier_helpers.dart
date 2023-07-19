@@ -144,7 +144,7 @@ extension TypeIdentifierHelpers on TypeIdentifier {
       BaseType.valueTypeModifier =>
         lastComponent(name),
       BaseType.genericTypeModifier => _parseGenericTypeIdentifierName(this),
-      BaseType.objectType => 'Object?',
+      BaseType.objectType => 'Object',
       BaseType.referenceTypeModifier => dereferenceType(this).shortName,
       _ => baseType.dartType,
     };

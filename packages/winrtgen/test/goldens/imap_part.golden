@@ -595,6 +595,119 @@ final class _IMapInt64Inspectable<V> extends IMap<int, V> {
   }
 }
 
+final class _IMapObjectObject extends IMap<Object, Object?> {
+  _IMapObjectObject.fromPtr(super.ptr, {required super.iterableIid});
+
+  @override
+  Object? lookup(Object key) {
+    final retValuePtr = calloc<COMObject>();
+
+    final hr =
+        ptr.ref.vtable
+                .elementAt(6)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                VTablePointer lpVtbl,
+                                VTablePointer key,
+                                Pointer<COMObject> retValuePtr)>>>()
+                .value
+                .asFunction<
+                    int Function(VTablePointer lpVtbl, VTablePointer key,
+                        Pointer<COMObject> retValuePtr)>()(
+            ptr.ref.lpVtbl, key.intoBox().ptr.ref.lpVtbl, retValuePtr);
+
+    if (FAILED(hr)) {
+      free(retValuePtr);
+      throwWindowsException(hr);
+    }
+
+    if (retValuePtr.isNull) {
+      free(retValuePtr);
+      return null;
+    }
+
+    return IPropertyValue.fromPtr(retValuePtr).value;
+  }
+
+  @override
+  bool hasKey(Object key) {
+    final retValuePtr = calloc<Bool>();
+
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(8)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(VTablePointer lpVtbl, VTablePointer key,
+                              Pointer<Bool> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, VTablePointer key,
+                      Pointer<Bool> retValuePtr)>()(
+          ptr.ref.lpVtbl, key.intoBox().ptr.ref.lpVtbl, retValuePtr);
+
+      if (FAILED(hr)) throwWindowsException(hr);
+
+      return retValuePtr.value;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  @override
+  bool insert(Object key, Object? value) {
+    final retValuePtr = calloc<Bool>();
+
+    try {
+      final hr =
+          ptr.ref.vtable
+                  .elementAt(10)
+                  .cast<
+                      Pointer<
+                          NativeFunction<
+                              HRESULT Function(
+                                  VTablePointer lpVtbl,
+                                  VTablePointer key,
+                                  VTablePointer value,
+                                  Pointer<Bool> retValuePtr)>>>()
+                  .value
+                  .asFunction<
+                      int Function(VTablePointer lpVtbl, VTablePointer key,
+                          VTablePointer value, Pointer<Bool> retValuePtr)>()(
+              ptr.ref.lpVtbl,
+              key.intoBox().ptr.ref.lpVtbl,
+              value?.intoBox().ptr.ref.lpVtbl ?? nullptr,
+              retValuePtr);
+
+      if (FAILED(hr)) throwWindowsException(hr);
+
+      return retValuePtr.value;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  @override
+  void remove(Object key) {
+    final hr = ptr.ref.vtable
+            .elementAt(11)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            VTablePointer lpVtbl, VTablePointer key)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, VTablePointer key)>()(
+        ptr.ref.lpVtbl, key.intoBox().ptr.ref.lpVtbl);
+
+    if (FAILED(hr)) throwWindowsException(hr);
+  }
+}
+
 final class _IMapStringInspectable<V> extends IMap<String, V> {
   _IMapStringInspectable.fromPtr(super.ptr,
       {required super.iterableIid, required this.creator})
@@ -1638,6 +1751,120 @@ final class _IMapUint64Inspectable<V> extends IMap<int, V> {
             .value
             .asFunction<int Function(VTablePointer lpVtbl, int key)>()(
         ptr.ref.lpVtbl, key);
+
+    if (FAILED(hr)) throwWindowsException(hr);
+  }
+}
+
+final class _IMapUriString extends IMap<Uri, String> {
+  _IMapUriString.fromPtr(super.ptr, {required super.iterableIid});
+
+  @override
+  String lookup(Uri key) {
+    final retValuePtr = calloc<IntPtr>();
+
+    try {
+      final hr =
+          ptr.ref.vtable
+                  .elementAt(6)
+                  .cast<
+                      Pointer<
+                          NativeFunction<
+                              HRESULT Function(
+                                  VTablePointer lpVtbl,
+                                  VTablePointer key,
+                                  Pointer<IntPtr> retValuePtr)>>>()
+                  .value
+                  .asFunction<
+                      int Function(VTablePointer lpVtbl, VTablePointer key,
+                          Pointer<IntPtr> retValuePtr)>()(
+              ptr.ref.lpVtbl, key.toWinRTUri().ptr.ref.lpVtbl, retValuePtr);
+
+      if (FAILED(hr)) throwWindowsException(hr);
+
+      return retValuePtr.toDartString();
+    } finally {
+      WindowsDeleteString(retValuePtr.value);
+      free(retValuePtr);
+    }
+  }
+
+  @override
+  bool hasKey(Uri key) {
+    final retValuePtr = calloc<Bool>();
+
+    try {
+      final hr = ptr.ref.vtable
+              .elementAt(8)
+              .cast<
+                  Pointer<
+                      NativeFunction<
+                          HRESULT Function(VTablePointer lpVtbl, VTablePointer key,
+                              Pointer<Bool> retValuePtr)>>>()
+              .value
+              .asFunction<
+                  int Function(VTablePointer lpVtbl, VTablePointer key,
+                      Pointer<Bool> retValuePtr)>()(
+          ptr.ref.lpVtbl, key.toWinRTUri().ptr.ref.lpVtbl, retValuePtr);
+
+      if (FAILED(hr)) throwWindowsException(hr);
+
+      return retValuePtr.value;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  @override
+  bool insert(Uri key, String value) {
+    final retValuePtr = calloc<Bool>();
+
+    try {
+      final valueHString = value.toHString();
+
+      final hr =
+          ptr.ref.vtable
+                  .elementAt(10)
+                  .cast<
+                      Pointer<
+                          NativeFunction<
+                              HRESULT Function(
+                                  VTablePointer lpVtbl,
+                                  VTablePointer key,
+                                  IntPtr value,
+                                  Pointer<Bool> retValuePtr)>>>()
+                  .value
+                  .asFunction<
+                      int Function(VTablePointer lpVtbl, VTablePointer key,
+                          int value, Pointer<Bool> retValuePtr)>()(
+              ptr.ref.lpVtbl,
+              key.toWinRTUri().ptr.ref.lpVtbl,
+              valueHString,
+              retValuePtr);
+
+      WindowsDeleteString(valueHString);
+
+      if (FAILED(hr)) throwWindowsException(hr);
+
+      return retValuePtr.value;
+    } finally {
+      free(retValuePtr);
+    }
+  }
+
+  @override
+  void remove(Uri key) {
+    final hr = ptr.ref.vtable
+            .elementAt(11)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(
+                            VTablePointer lpVtbl, VTablePointer key)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, VTablePointer key)>()(
+        ptr.ref.lpVtbl, key.toWinRTUri().ptr.ref.lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

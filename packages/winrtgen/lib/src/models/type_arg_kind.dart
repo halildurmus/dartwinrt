@@ -96,6 +96,54 @@ enum TypeArgKind {
           orElse: () => throw ArgumentError.value(
               name, 'name', 'No enum value with that name'));
 
+  factory TypeArgKind.fromTypeIdentifier(TypeIdentifier typeIdentifier,
+      {bool isNullable = false}) {
+    final TypeIdentifier(:baseType, :name, :type) = typeIdentifier;
+    return switch (baseType) {
+      BaseType.booleanType =>
+        isNullable ? TypeArgKind.nullableBool : TypeArgKind.bool_,
+      BaseType.classTypeModifier when name == 'Windows.Foundation.Uri' =>
+        isNullable ? TypeArgKind.nullableUri : TypeArgKind.uri,
+      BaseType.classTypeModifier ||
+      BaseType.genericTypeModifier =>
+        isNullable ? TypeArgKind.nullableInspectable : TypeArgKind.inspectable,
+      BaseType.doubleType =>
+        isNullable ? TypeArgKind.nullableDouble : TypeArgKind.double,
+      BaseType.floatType =>
+        isNullable ? TypeArgKind.nullableFloat : TypeArgKind.float,
+      BaseType.int16Type =>
+        isNullable ? TypeArgKind.nullableInt16 : TypeArgKind.int16,
+      BaseType.int32Type =>
+        isNullable ? TypeArgKind.nullableInt32 : TypeArgKind.int32,
+      BaseType.int64Type =>
+        isNullable ? TypeArgKind.nullableInt64 : TypeArgKind.int64,
+      BaseType.objectType =>
+        isNullable ? TypeArgKind.nullableObject : TypeArgKind.object,
+      BaseType.stringType =>
+        isNullable ? TypeArgKind.nullableString : TypeArgKind.string,
+      BaseType.uint8Type =>
+        isNullable ? TypeArgKind.nullableUint8 : TypeArgKind.uint8,
+      BaseType.uint16Type =>
+        isNullable ? TypeArgKind.nullableUint16 : TypeArgKind.uint16,
+      BaseType.uint32Type =>
+        isNullable ? TypeArgKind.nullableUint32 : TypeArgKind.uint32,
+      BaseType.uint64Type =>
+        isNullable ? TypeArgKind.nullableUint64 : TypeArgKind.uint64,
+      BaseType.valueTypeModifier when type?.isEnum ?? false =>
+        isNullable ? TypeArgKind.winrtEnum : TypeArgKind.winrtFlagsEnum,
+      BaseType.valueTypeModifier => switch (name) {
+          'System.Guid' =>
+            isNullable ? TypeArgKind.nullableGuid : TypeArgKind.guid,
+          'Windows.Foundation.TimeSpan' =>
+            isNullable ? TypeArgKind.nullableDuration : TypeArgKind.duration,
+          _ => TypeArgKind.from(
+              isNullable ? nullable(lastComponent(name)) : lastComponent(name))
+        },
+      _ =>
+        throw WinRTGenException('Unsupported TypeIdentifier: $typeIdentifier')
+    };
+  }
+
   /// Whether this is [TypeArgKind.double] or [TypeArgKind.float].
   bool get isDouble => switch (this) {
         TypeArgKind.double || TypeArgKind.float => true,
@@ -132,37 +180,36 @@ enum TypeArgKind {
 
   /// Returns the appropriate [TypeIdentifier] for this [TypeArgKind].
   TypeIdentifier get typeIdentifier => switch (this) {
-        TypeArgKind.accessListEntry => _createClassTypeIdentifier(
-            'Windows.Storage.AccessCache.AccessListEntry'),
-        TypeArgKind.backgroundTransferFileRange => _createClassTypeIdentifier(
-            'Windows.Networking.BackgroundTransfer.BackgroundTransferFileRange'),
+        TypeArgKind.accessListEntry =>
+          'Windows.Storage.AccessCache.AccessListEntry'.typeIdentifier,
+        TypeArgKind.backgroundTransferFileRange =>
+          'Windows.Networking.BackgroundTransfer.BackgroundTransferFileRange'
+              .typeIdentifier,
         TypeArgKind.basicGeoposition ||
         TypeArgKind.nullableBasicGeoposition =>
-          _createClassTypeIdentifier(
-              'Windows.Devices.Geolocation.BasicGeoposition'),
+          'Windows.Devices.Geolocation.BasicGeoposition'.typeIdentifier,
         TypeArgKind.bool_ ||
         TypeArgKind.nullableBool =>
           const TypeIdentifier(BaseType.booleanType),
         TypeArgKind.color ||
         TypeArgKind.nullableColor =>
-          _createClassTypeIdentifier('Windows.UI.Color'),
+          'Windows.UI.Color'.typeIdentifier,
         TypeArgKind.dateTime ||
         TypeArgKind.nullableDateTime =>
-          _createClassTypeIdentifier('Windows.Foundation.DateTime'),
+          'Windows.Foundation.DateTime'.typeIdentifier,
         TypeArgKind.nullableDisplayPresentationRate =>
-          _createClassTypeIdentifier(
-              'Windows.Devices.Display.Core.DisplayPresentationRate'),
+          'Windows.Devices.Display.Core.DisplayPresentationRate'.typeIdentifier,
         TypeArgKind.double ||
         TypeArgKind.nullableDouble =>
           const TypeIdentifier(BaseType.doubleType),
         TypeArgKind.duration ||
         TypeArgKind.nullableDuration =>
-          _createClassTypeIdentifier('Windows.Foundation.TimeSpan'),
+          'Windows.Foundation.TimeSpan'.typeIdentifier,
         TypeArgKind.float ||
         TypeArgKind.nullableFloat =>
           const TypeIdentifier(BaseType.floatType),
         TypeArgKind.gpioChangeRecord =>
-          _createClassTypeIdentifier('Windows.Devices.Gpio.GpioChangeRecord'),
+          'Windows.Devices.Gpio.GpioChangeRecord'.typeIdentifier,
         TypeArgKind.guid ||
         TypeArgKind.nullableGuid =>
           const TypeIdentifier(BaseType.valueTypeModifier, name: 'System.Guid'),
@@ -175,69 +222,67 @@ enum TypeArgKind {
         TypeArgKind.int64 ||
         TypeArgKind.nullableInt64 =>
           const TypeIdentifier(BaseType.int64Type),
-        TypeArgKind.loadMoreItemsResult => _createClassTypeIdentifier(
-            'Windows.UI.Xaml.Data.LoadMoreItemsResult'),
+        TypeArgKind.loadMoreItemsResult =>
+          'Windows.UI.Xaml.Data.LoadMoreItemsResult'.typeIdentifier,
         TypeArgKind.mediaTimeRange =>
-          _createClassTypeIdentifier('Windows.Media.MediaTimeRange'),
+          'Windows.Media.MediaTimeRange'.typeIdentifier,
         TypeArgKind.mseTimeRange ||
         TypeArgKind.nullableMseTimeRange =>
-          _createClassTypeIdentifier('Windows.Media.Core.MseTimeRange'),
+          'Windows.Media.Core.MseTimeRange'.typeIdentifier,
         TypeArgKind.nitRange =>
-          _createClassTypeIdentifier('Windows.Graphics.Display.NitRange'),
+          'Windows.Graphics.Display.NitRange'.typeIdentifier,
         TypeArgKind.nullableHolographicStereoTransform =>
-          _createClassTypeIdentifier(
-              'Windows.Graphics.Holographic.HolographicStereoTransform'),
+          'Windows.Graphics.Holographic.HolographicStereoTransform'
+              .typeIdentifier,
         TypeArgKind.nullableMatrix4x4 =>
-          _createClassTypeIdentifier('Windows.Foundation.Numerics.Matrix4x4'),
+          'Windows.Foundation.Numerics.Matrix4x4'.typeIdentifier,
         TypeArgKind.nullableQuaternion =>
-          _createClassTypeIdentifier('Windows.Foundation.Numerics.Quaternion'),
+          'Windows.Foundation.Numerics.Quaternion'.typeIdentifier,
         TypeArgKind.nullableSizeInt32 =>
-          _createClassTypeIdentifier('Windows.Graphics.SizeInt32'),
-        TypeArgKind.nullableSpatialBoundingBox => _createClassTypeIdentifier(
-            'Windows.Perception.Spatial.SpatialBoundingBox'),
+          'Windows.Graphics.SizeInt32'.typeIdentifier,
+        TypeArgKind.nullableSpatialBoundingBox =>
+          'Windows.Perception.Spatial.SpatialBoundingBox'.typeIdentifier,
         TypeArgKind.nullableSpatialBoundingFrustum =>
-          _createClassTypeIdentifier(
-              'Windows.Perception.Spatial.SpatialBoundingFrustum'),
+          'Windows.Perception.Spatial.SpatialBoundingFrustum'.typeIdentifier,
         TypeArgKind.nullableSpatialBoundingOrientedBox =>
-          _createClassTypeIdentifier(
-              'Windows.Perception.Spatial.SpatialBoundingOrientedBox'),
+          'Windows.Perception.Spatial.SpatialBoundingOrientedBox'
+              .typeIdentifier,
         TypeArgKind.nullableSpatialRay =>
-          _createClassTypeIdentifier('Windows.Perception.Spatial.SpatialRay'),
+          'Windows.Perception.Spatial.SpatialRay'.typeIdentifier,
         TypeArgKind.nullableVector2 =>
-          _createClassTypeIdentifier('Windows.Foundation.Numerics.Vector2'),
+          'Windows.Foundation.Numerics.Vector2'.typeIdentifier,
         TypeArgKind.nullableVector3 =>
-          _createClassTypeIdentifier('Windows.Foundation.Numerics.Vector3'),
+          'Windows.Foundation.Numerics.Vector3'.typeIdentifier,
         TypeArgKind.nullableWhiteBalanceGain =>
-          _createClassTypeIdentifier('Windows.Media.Capture.WhiteBalanceGain'),
+          'Windows.Media.Capture.WhiteBalanceGain'.typeIdentifier,
         TypeArgKind.object ||
         TypeArgKind.nullableObject =>
           const TypeIdentifier(BaseType.objectType),
         TypeArgKind.point ||
         TypeArgKind.nullablePoint =>
-          _createClassTypeIdentifier('Windows.Foundation.Point'),
-        TypeArgKind.pointerDeviceUsage => _createClassTypeIdentifier(
-            'Windows.Devices.Input.PointerDeviceUsage'),
+          'Windows.Foundation.Point'.typeIdentifier,
+        TypeArgKind.pointerDeviceUsage =>
+          'Windows.Devices.Input.PointerDeviceUsage'.typeIdentifier,
         TypeArgKind.rect ||
         TypeArgKind.nullableRect =>
-          _createClassTypeIdentifier('Windows.Foundation.Rect'),
-        TypeArgKind.rectInt32 =>
-          _createClassTypeIdentifier('Windows.Graphics.RectInt32'),
+          'Windows.Foundation.Rect'.typeIdentifier,
+        TypeArgKind.rectInt32 => 'Windows.Graphics.RectInt32'.typeIdentifier,
         TypeArgKind.size ||
         TypeArgKind.nullableSize =>
-          _createClassTypeIdentifier('Windows.Foundation.Size'),
-        TypeArgKind.sizeUint32 => _createClassTypeIdentifier(
-            'Windows.Devices.PointOfService.SizeUInt32'),
+          'Windows.Foundation.Size'.typeIdentifier,
+        TypeArgKind.sizeUint32 =>
+          'Windows.Devices.PointOfService.SizeUInt32'.typeIdentifier,
         TypeArgKind.sortEntry =>
-          _createClassTypeIdentifier('Windows.Storage.Search.SortEntry'),
-        TypeArgKind.storePackageUpdateStatus => _createClassTypeIdentifier(
-            'Windows.Services.Store.StorePackageUpdateStatus'),
+          'Windows.Storage.Search.SortEntry'.typeIdentifier,
+        TypeArgKind.storePackageUpdateStatus =>
+          'Windows.Services.Store.StorePackageUpdateStatus'.typeIdentifier,
         TypeArgKind.string ||
         TypeArgKind.nullableString =>
           const TypeIdentifier(BaseType.stringType),
         TypeArgKind.textRange =>
-          _createClassTypeIdentifier('Windows.UI.Xaml.Documents.TextRange'),
+          'Windows.UI.Xaml.Documents.TextRange'.typeIdentifier,
         TypeArgKind.textSegment =>
-          _createClassTypeIdentifier('Windows.Data.Text.TextSegment'),
+          'Windows.Data.Text.TextSegment'.typeIdentifier,
         TypeArgKind.uint8 ||
         TypeArgKind.nullableUint8 =>
           const TypeIdentifier(BaseType.uint8Type),
@@ -252,13 +297,14 @@ enum TypeArgKind {
           const TypeIdentifier(BaseType.uint64Type),
         TypeArgKind.uri ||
         TypeArgKind.nullableUri =>
-          _createClassTypeIdentifier('Windows.Foundation.Uri'),
-        TypeArgKind.windowId =>
-          _createClassTypeIdentifier('Windows.UI.WindowId'),
+          'Windows.Foundation.Uri'.typeIdentifier,
+        TypeArgKind.windowId => 'Windows.UI.WindowId'.typeIdentifier,
         _ => throw WinRTGenException('Unsupported TypeArgKind: $this'),
       };
 }
 
-TypeIdentifier _createClassTypeIdentifier(String type) =>
-    TypeIdentifier(BaseType.classTypeModifier,
-        name: type, type: getMetadataForType(type));
+extension on String {
+  TypeIdentifier get typeIdentifier =>
+      TypeIdentifier(BaseType.classTypeModifier,
+          name: this, type: getMetadataForType(this));
+}

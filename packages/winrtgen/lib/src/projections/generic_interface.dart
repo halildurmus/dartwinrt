@@ -25,15 +25,18 @@ final class GenericInterfacePartFileProjection {
   List<GenericInterfaceProjection> get projections =>
       _projections ??= _cacheProjections();
 
-  List<GenericInterfaceProjection> _cacheProjections() => switch (genericType) {
-        GenericTypeWithOneTypeArg(:final typeArgs) => typeArgs.map((typeArg) =>
-            GenericInterfaceProjection.from(
-                genericType.fullyQualifiedType, typeArg)),
-        GenericTypeWithTwoTypeArgs(:final typeArgs) => typeArgs.map(
-            (typeArgs) => GenericInterfaceProjection.from(
-                genericType.fullyQualifiedType, typeArgs.$1, typeArgs.$2)),
-      }
-          .toList();
+  List<GenericInterfaceProjection> _cacheProjections() {
+    final fullyQualifiedType = genericType.fullyQualifiedType;
+    return switch (genericType) {
+      GenericTypeWithOneTypeArg(:final typeArgKinds) => typeArgKinds.map(
+          (typeArgKind) =>
+              GenericInterfaceProjection.from(fullyQualifiedType, typeArgKind)),
+      GenericTypeWithTwoTypeArgs(:final typeArgKindPairs) => typeArgKindPairs
+          .map((typeArgKindPair) => GenericInterfaceProjection.from(
+              fullyQualifiedType, typeArgKindPair.$1, typeArgKindPair.$2)),
+    }
+        .toList();
+  }
 
   @override
   String toString() => '''
@@ -220,7 +223,8 @@ final class GenericInterfaceProjection extends InterfaceProjection {
           method.returnType.typeIdentifier.copyWith(name: arg.name);
     } else {
       // Otherwise, replace TypeIdentifier with an appropriate one for arg.
-      method.returnType.typeIdentifier = arg.typeIdentifier;
+      method.returnType.typeIdentifier = arg.typeIdentifier
+          .copyWith(genericParameterSequence: genericParamSequence);
     }
   }
 
@@ -234,7 +238,8 @@ final class GenericInterfaceProjection extends InterfaceProjection {
       param.typeIdentifier = param.typeIdentifier.copyWith(name: arg.name);
       method.parameters[paramIndex] = param;
     } else {
-      param.typeIdentifier = arg.typeIdentifier;
+      param.typeIdentifier = arg.typeIdentifier
+          .copyWith(genericParameterSequence: genericParamSequence);
       method.parameters[paramIndex] = param;
     }
   }
@@ -250,8 +255,9 @@ final class GenericInterfaceProjection extends InterfaceProjection {
           .copyWith(typeArg: typeArg.copyWith(name: arg.name));
       method.parameters[paramIndex] = param;
     } else {
-      param.typeIdentifier =
-          param.typeIdentifier.copyWith(typeArg: arg.typeIdentifier);
+      param.typeIdentifier = param.typeIdentifier.copyWith(
+          typeArg: arg.typeIdentifier
+              .copyWith(genericParameterSequence: genericParamSequence));
       method.parameters[paramIndex] = param;
     }
   }

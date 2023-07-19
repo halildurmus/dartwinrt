@@ -42,6 +42,22 @@ String folderFromType(String fullyQualifiedType) {
   return '$packageName/lib/src/${segments.join('/').toLowerCase()}';
 }
 
+/// Returns the all [Method]s in the Metadata.
+List<Method> getAllMethodsInMetadata() {
+  final methods = <Method>[];
+
+  for (final namespace in WinRTNamespace.values) {
+    final scope = MetadataStore.getWinRTScopeForNamespace(namespace);
+    methods.addAll(
+      [...scope.classes, ...scope.interfaces]
+          .map((typeDef) => typeDef.methods)
+          .expand((e) => e),
+    );
+  }
+
+  return methods;
+}
+
 /// Find a matching typedef, if one exists, for a Windows Runtime [type].
 /// Otherwise, throws a [WinRTGenException].
 TypeDef getMetadataForType(String type) {
