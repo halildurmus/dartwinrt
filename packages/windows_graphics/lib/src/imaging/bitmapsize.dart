@@ -4,9 +4,12 @@
 
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
+// ignore_for_file: unnecessary_import, unused_import
+
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
+import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -39,8 +42,21 @@ final class BitmapSize implements WinRTStruct {
 }
 
 /// @nodoc
+extension NativeBitmapSizeConversion on NativeBitmapSize {
+  /// Converts this [NativeBitmapSize] into a Dart [BitmapSize].
+  BitmapSize toDart() {
+    return BitmapSize(width, height);
+  }
+}
+
+/// @nodoc
 extension PointerNativeBitmapSizeConversion on Pointer<NativeBitmapSize> {
-  /// Converts this [NativeBitmapSize] to a Dart [BitmapSize].
+  /// Frees the allocated memory for [NativeBitmapSize].
+  void free() {
+    calloc.free(this);
+  }
+
+  /// Converts the referenced [NativeBitmapSize] into a Dart [BitmapSize].
   BitmapSize toDart() {
     final ref = this.ref;
     return BitmapSize(ref.width, ref.height);

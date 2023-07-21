@@ -48,7 +48,7 @@ class ILearningModelDevice extends IInspectable {
 
       return value.toDart();
     } finally {
-      free(value);
+      value.free();
     }
   }
 

@@ -59,7 +59,7 @@ class IConnectionProfile3 extends IInspectable {
         statesNativeStructPtr.ref,
         value);
 
-    free(statesNativeStructPtr);
+    statesNativeStructPtr.free();
 
     if (FAILED(hr)) {
       free(value);

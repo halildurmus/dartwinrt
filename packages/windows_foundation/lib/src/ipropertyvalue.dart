@@ -389,7 +389,7 @@ class IPropertyValue extends IInspectable {
 
       return value.toDartGuid();
     } finally {
-      free(value);
+      value.free();
     }
   }
 
@@ -461,7 +461,7 @@ class IPropertyValue extends IInspectable {
 
       return value.toDart();
     } finally {
-      free(value);
+      value.free();
     }
   }
 
@@ -485,7 +485,7 @@ class IPropertyValue extends IInspectable {
 
       return value.toDart();
     } finally {
-      free(value);
+      value.free();
     }
   }
 
@@ -509,7 +509,7 @@ class IPropertyValue extends IInspectable {
 
       return value.toDart();
     } finally {
-      free(value);
+      value.free();
     }
   }
 

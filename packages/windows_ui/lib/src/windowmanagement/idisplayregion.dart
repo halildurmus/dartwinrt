@@ -97,7 +97,7 @@ class IDisplayRegion extends IInspectable {
 
       return value.toDart();
     } finally {
-      free(value);
+      value.free();
     }
   }
 
@@ -121,7 +121,7 @@ class IDisplayRegion extends IInspectable {
 
       return value.toDart();
     } finally {
-      free(value);
+      value.free();
     }
   }
 

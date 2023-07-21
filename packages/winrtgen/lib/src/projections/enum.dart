@@ -6,20 +6,22 @@ import 'package:winmd/winmd.dart';
 
 import '../constants/constants.dart';
 import '../utilities/utilities.dart';
+import 'base.dart';
 
 /// An enum identifier.
 ///
 /// Enum identifiers are a tuple of a name and a value.
 final class EnumIdentifierProjection {
-  EnumIdentifierProjection(this.field)
-      : identifierName = safeIdentifierForString(field.name.toCamelCase()),
-        identifierValue = field.value,
-        isDeprecated = field.isDeprecated;
+  EnumIdentifierProjection(this.field);
 
   final Field field;
-  final String identifierName;
-  final int identifierValue;
-  final bool isDeprecated;
+
+  String get identifierName =>
+      safeIdentifierForString(field.name.toCamelCase());
+
+  int get identifierValue => field.value;
+
+  bool get isDeprecated => field.isDeprecated;
 
   @override
   String toString() => [
@@ -29,19 +31,14 @@ final class EnumIdentifierProjection {
 }
 
 /// Represents a Dart projection of a WinRT enumeration typedef.
-final class EnumProjection {
-  EnumProjection(this.typeDef, {this.comment = '', String? enumName})
-      : enumName = enumName ?? typeDef.shortName,
+final class EnumProjection extends BaseProjection {
+  EnumProjection(super.typeDef, {super.comment})
+      :
         // The first field is always the special field value__
         fields = typeDef.fields.skip(1).toList()
-          ..sort((a, b) => a.value.compareTo(b.value)),
-        isDeprecated = typeDef.isDeprecated;
+          ..sort((a, b) => a.value.compareTo(b.value));
 
-  final TypeDef typeDef;
-  final String comment;
-  final String enumName;
   final List<Field> fields;
-  final bool isDeprecated;
 
   /// Returns the appropriate enum projection for the [typeDef] depending on
   /// whether it has the `System.FlagsAttribute` attribute.
@@ -67,21 +64,10 @@ final class EnumProjection {
     return EnumProjection.create(typeDef, comment: comment);
   }
 
+  @override
   String get header => enumFileHeader;
 
-  /// Returns the package name for the [typeDef] (e.g. `windows_foundation`
-  /// for `Windows.Foundation.Point`).
-  String get packageName => typeDef.packageName;
-
-  /// Returns the path to the folder where the current class is located (e.g.
-  /// `windows_foundation/lib/src` for `Windows.Foundation.Point`).
-  String get currentFolderPath => folderFromType(typeDef.name);
-
-  /// Converts [path] to an equivalent relative path from the
-  /// [currentFolderPath].
-  String relativePathTo(String path) =>
-      relativePath(path, start: currentFolderPath);
-
+  @override
   Set<String> get imports => {
         if (packageName == 'windows_foundation')
           relativePathTo('windows_foundation/lib/src/winrt_enum.dart')
@@ -89,24 +75,10 @@ final class EnumProjection {
           'package:windows_foundation/windows_foundation.dart'
       };
 
-  String get importHeader =>
-      sortImports(imports.map((import) => "import ${quote(import)};").toList())
-          .join('\n');
-
-  String get category => '';
-
-  String get classPreamble {
-    final wrappedComment = wrapCommentText(comment);
-    return [
-      if (wrappedComment.isNotEmpty) wrappedComment,
-      if (wrappedComment.isNotEmpty && category.isNotEmpty) '///',
-      if (category.isNotEmpty) '/// {@category $category}',
-    ].join('\n');
-  }
-
+  @override
   String get classHeader => [
         if (isDeprecated) typeDef.deprecatedAnnotation,
-        'enum $enumName implements WinRTEnum'
+        'enum $shortName implements WinRTEnum'
       ].join('\n');
 
   List<EnumIdentifierProjection> get identifiers =>
@@ -116,14 +88,16 @@ final class EnumProjection {
   @override
   final int value;''';
 
-  String get constructor => 'const $enumName(this.value);';
+  @override
+  String get constructor => 'const $shortName(this.value);';
 
   String get factoryConstructor => '''
-  factory $enumName.from(int value) =>
-      $enumName.values.firstWhere((e) => e.value == value,
+  factory $shortName.from(int value) =>
+      $shortName.values.firstWhere((e) => e.value == value,
           orElse: () => throw ArgumentError.value(
               value, 'value', 'No enum value with that value'));''';
 
+  @override
   String get projection => '''
 $header
 $importHeader
@@ -139,16 +113,6 @@ $classHeader {
   $factoryConstructor
 }
 ''';
-
-  @override
-  String toString() {
-    try {
-      return projection;
-    } catch (_) {
-      print("Failed to project enum '${typeDef.fullyQualifiedName}'.");
-      rethrow;
-    }
-  }
 }
 
 /// A static enum constant.
@@ -167,7 +131,7 @@ final class StaticEnumConstantProjection extends EnumIdentifierProjection {
 
 /// Represents a Dart projection of a WinRT Flags enumeration typedef.
 final class FlagsEnumProjection extends EnumProjection {
-  FlagsEnumProjection(super.typeDef, {super.comment, super.enumName});
+  FlagsEnumProjection(super.typeDef, {super.comment});
 
   /// Attempts to create a [FlagsEnumProjection] from [fullyQualifiedType] by
   /// searching its [TypeDef].
@@ -188,39 +152,40 @@ final class FlagsEnumProjection extends EnumProjection {
   @override
   String get classHeader => [
         if (isDeprecated) typeDef.deprecatedAnnotation,
-        'final class $enumName extends WinRTFlagsEnum<$enumName>'
+        'final class $shortName extends WinRTFlagsEnum<$shortName>'
       ].join('\n');
 
   @override
-  String get constructor => 'const $enumName(super.value, {super.name});';
+  String get constructor => 'const $shortName(super.value, {super.name});';
 
   @override
   String get factoryConstructor => '''
-  factory $enumName.from(int value) =>
-      $enumName.values.firstWhere((e) => e.value == value,
-          orElse: () => $enumName(value));''';
+  factory $shortName.from(int value) =>
+      $shortName.values.firstWhere((e) => e.value == value,
+          orElse: () => $shortName(value));''';
 
   List<StaticEnumConstantProjection> get staticEnumConstants => fields
-      .map((field) => StaticEnumConstantProjection(field, enumName))
+      .map((field) => StaticEnumConstantProjection(field, shortName))
       .toList();
 
   String get valuesConstant {
     final fieldNames = fields
         .map((field) => safeIdentifierForString(field.name.toCamelCase()))
         .join(',');
-    return 'static const List<$enumName> values = [$fieldNames];';
+    return 'static const List<$shortName> values = [$fieldNames];';
   }
 
   String get andOperator => '''
   @override
-  $enumName operator &($enumName other) =>
-      $enumName(value & other.value);''';
+  $shortName operator &($shortName other) =>
+      $shortName(value & other.value);''';
 
   String get orOperator => '''
   @override
-  $enumName operator |($enumName other) =>
-      $enumName(value | other.value);''';
+  $shortName operator |($shortName other) =>
+      $shortName(value | other.value);''';
 
+  @override
   String get projection => '''
 $header
 $importHeader
@@ -240,14 +205,4 @@ $classHeader {
   $orOperator
 }
 ''';
-
-  @override
-  String toString() {
-    try {
-      return projection;
-    } catch (_) {
-      print("Failed to project flags enum '${typeDef.fullyQualifiedName}'.");
-      rethrow;
-    }
-  }
 }

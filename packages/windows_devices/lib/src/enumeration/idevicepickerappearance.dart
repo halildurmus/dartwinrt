@@ -92,7 +92,7 @@ class IDevicePickerAppearance extends IInspectable {
 
       return value.toDart();
     } finally {
-      free(value);
+      value.free();
     }
   }
 
@@ -111,7 +111,7 @@ class IDevicePickerAppearance extends IInspectable {
                 int Function(VTablePointer lpVtbl, NativeColor value)>()(
         ptr.ref.lpVtbl, valueNativeStructPtr.ref);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -136,7 +136,7 @@ class IDevicePickerAppearance extends IInspectable {
 
       return value.toDart();
     } finally {
-      free(value);
+      value.free();
     }
   }
 
@@ -155,7 +155,7 @@ class IDevicePickerAppearance extends IInspectable {
                 int Function(VTablePointer lpVtbl, NativeColor value)>()(
         ptr.ref.lpVtbl, valueNativeStructPtr.ref);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -180,7 +180,7 @@ class IDevicePickerAppearance extends IInspectable {
 
       return value.toDart();
     } finally {
-      free(value);
+      value.free();
     }
   }
 
@@ -199,7 +199,7 @@ class IDevicePickerAppearance extends IInspectable {
                 int Function(VTablePointer lpVtbl, NativeColor value)>()(
         ptr.ref.lpVtbl, valueNativeStructPtr.ref);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -224,7 +224,7 @@ class IDevicePickerAppearance extends IInspectable {
 
       return value.toDart();
     } finally {
-      free(value);
+      value.free();
     }
   }
 
@@ -243,7 +243,7 @@ class IDevicePickerAppearance extends IInspectable {
                 int Function(VTablePointer lpVtbl, NativeColor value)>()(
         ptr.ref.lpVtbl, valueNativeStructPtr.ref);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -268,7 +268,7 @@ class IDevicePickerAppearance extends IInspectable {
 
       return value.toDart();
     } finally {
-      free(value);
+      value.free();
     }
   }
 
@@ -287,7 +287,7 @@ class IDevicePickerAppearance extends IInspectable {
                 int Function(VTablePointer lpVtbl, NativeColor value)>()(
         ptr.ref.lpVtbl, valueNativeStructPtr.ref);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -312,7 +312,7 @@ class IDevicePickerAppearance extends IInspectable {
 
       return value.toDart();
     } finally {
-      free(value);
+      value.free();
     }
   }
 
@@ -331,7 +331,7 @@ class IDevicePickerAppearance extends IInspectable {
                 int Function(VTablePointer lpVtbl, NativeColor value)>()(
         ptr.ref.lpVtbl, valueNativeStructPtr.ref);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

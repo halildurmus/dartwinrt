@@ -4,9 +4,12 @@
 
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
+// ignore_for_file: unnecessary_import, unused_import
+
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
+import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -45,8 +48,21 @@ final class Color implements WinRTStruct {
 }
 
 /// @nodoc
+extension NativeColorConversion on NativeColor {
+  /// Converts this [NativeColor] into a Dart [Color].
+  Color toDart() {
+    return Color(a, r, g, b);
+  }
+}
+
+/// @nodoc
 extension PointerNativeColorConversion on Pointer<NativeColor> {
-  /// Converts this [NativeColor] to a Dart [Color].
+  /// Frees the allocated memory for [NativeColor].
+  void free() {
+    calloc.free(this);
+  }
+
+  /// Converts the referenced [NativeColor] into a Dart [Color].
   Color toDart() {
     final ref = this.ref;
     return Color(ref.a, ref.r, ref.g, ref.b);

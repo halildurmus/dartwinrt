@@ -45,7 +45,7 @@ class ICameraIntrinsics2 extends IInspectable {
 
       return value.toDart();
     } finally {
-      free(value);
+      value.free();
     }
   }
 
@@ -71,23 +71,21 @@ class ICameraIntrinsics2 extends IInspectable {
                           Pointer<NativePoint> result)>()(
               ptr.ref.lpVtbl, inputNativeStructPtr.ref, result);
 
-      free(inputNativeStructPtr);
+      inputNativeStructPtr.free();
 
       if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDart();
     } finally {
-      free(result);
+      result.free();
     }
   }
 
   List<Point> distortPoints(List<Point> inputs, int resultsSize) {
-    final nativeStructPtrs = <Pointer<NativePoint>>[];
+    final allocator = Arena();
     final inputsArray = calloc<NativePoint>(inputs.length);
     for (var i = 0; i < inputs.length; i++) {
-      final nativeStructPtr = inputs[i].toNative();
-      inputsArray[i] = nativeStructPtr.ref;
-      nativeStructPtrs.add(nativeStructPtr);
+      inputsArray[i] = inputs[i].toNative(allocator: allocator).ref;
     }
     final results = calloc<NativePoint>(resultsSize);
 
@@ -117,7 +115,7 @@ class ICameraIntrinsics2 extends IInspectable {
 
       return results.toList(length: resultsSize);
     } finally {
-      nativeStructPtrs.forEach(free);
+      allocator.releaseAll();
       free(inputsArray);
       free(results);
     }
@@ -145,23 +143,21 @@ class ICameraIntrinsics2 extends IInspectable {
                           Pointer<NativePoint> result)>()(
               ptr.ref.lpVtbl, inputNativeStructPtr.ref, result);
 
-      free(inputNativeStructPtr);
+      inputNativeStructPtr.free();
 
       if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDart();
     } finally {
-      free(result);
+      result.free();
     }
   }
 
   List<Point> undistortPoints(List<Point> inputs, int resultsSize) {
-    final nativeStructPtrs = <Pointer<NativePoint>>[];
+    final allocator = Arena();
     final inputsArray = calloc<NativePoint>(inputs.length);
     for (var i = 0; i < inputs.length; i++) {
-      final nativeStructPtr = inputs[i].toNative();
-      inputsArray[i] = nativeStructPtr.ref;
-      nativeStructPtrs.add(nativeStructPtr);
+      inputsArray[i] = inputs[i].toNative(allocator: allocator).ref;
     }
     final results = calloc<NativePoint>(resultsSize);
 
@@ -191,7 +187,7 @@ class ICameraIntrinsics2 extends IInspectable {
 
       return results.toList(length: resultsSize);
     } finally {
-      nativeStructPtrs.forEach(free);
+      allocator.releaseAll();
       free(inputsArray);
       free(results);
     }

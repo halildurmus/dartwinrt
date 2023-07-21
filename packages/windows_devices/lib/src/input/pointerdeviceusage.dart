@@ -4,9 +4,12 @@
 
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
+// ignore_for_file: unnecessary_import, unused_import
+
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
+import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -74,9 +77,25 @@ final class PointerDeviceUsage implements WinRTStruct {
 }
 
 /// @nodoc
+extension NativePointerDeviceUsageConversion on NativePointerDeviceUsage {
+  /// Converts this [NativePointerDeviceUsage] into a Dart
+  /// [PointerDeviceUsage].
+  PointerDeviceUsage toDart() {
+    return PointerDeviceUsage(usagePage, usage, minLogical, maxLogical,
+        minPhysical, maxPhysical, unit, physicalMultiplier);
+  }
+}
+
+/// @nodoc
 extension PointerNativePointerDeviceUsageConversion
     on Pointer<NativePointerDeviceUsage> {
-  /// Converts this [NativePointerDeviceUsage] to a Dart [PointerDeviceUsage].
+  /// Frees the allocated memory for [NativePointerDeviceUsage].
+  void free() {
+    calloc.free(this);
+  }
+
+  /// Converts the referenced [NativePointerDeviceUsage] into a Dart
+  /// [PointerDeviceUsage].
   PointerDeviceUsage toDart() {
     final ref = this.ref;
     return PointerDeviceUsage(

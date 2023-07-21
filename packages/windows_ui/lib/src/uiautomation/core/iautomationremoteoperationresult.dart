@@ -127,7 +127,7 @@ class IAutomationRemoteOperationResult extends IInspectable {
                           Pointer<Bool> result)>()(
               ptr.ref.lpVtbl, operandIdNativeStructPtr.ref, result);
 
-      free(operandIdNativeStructPtr);
+      operandIdNativeStructPtr.free();
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -158,7 +158,7 @@ class IAutomationRemoteOperationResult extends IInspectable {
                     Pointer<COMObject> result)>()(
         ptr.ref.lpVtbl, operandIdNativeStructPtr.ref, result);
 
-    free(operandIdNativeStructPtr);
+    operandIdNativeStructPtr.free();
 
     if (FAILED(hr)) {
       free(result);

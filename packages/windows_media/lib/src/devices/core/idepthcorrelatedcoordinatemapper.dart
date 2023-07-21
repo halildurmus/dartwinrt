@@ -60,24 +60,22 @@ class IDepthCorrelatedCoordinateMapper extends IInspectable
           targetCoordinateSystem?.ptr.ref.lpVtbl ?? nullptr,
           result);
 
-      free(sourcePointNativeStructPtr);
+      sourcePointNativeStructPtr.free();
 
       if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDart();
     } finally {
-      free(result);
+      result.free();
     }
   }
 
   List<Vector3> unprojectPoints(List<Point> sourcePoints,
       SpatialCoordinateSystem? targetCoordinateSystem, int resultsSize) {
-    final nativeStructPtrs = <Pointer<NativePoint>>[];
+    final allocator = Arena();
     final sourcePointsArray = calloc<NativePoint>(sourcePoints.length);
     for (var i = 0; i < sourcePoints.length; i++) {
-      final nativeStructPtr = sourcePoints[i].toNative();
-      sourcePointsArray[i] = nativeStructPtr.ref;
-      nativeStructPtrs.add(nativeStructPtr);
+      sourcePointsArray[i] = sourcePoints[i].toNative(allocator: allocator).ref;
     }
     final results = calloc<NativeVector3>(resultsSize);
 
@@ -114,7 +112,7 @@ class IDepthCorrelatedCoordinateMapper extends IInspectable
 
       return results.toList(length: resultsSize);
     } finally {
-      nativeStructPtrs.forEach(free);
+      allocator.releaseAll();
       free(sourcePointsArray);
       free(results);
     }
@@ -154,13 +152,13 @@ class IDepthCorrelatedCoordinateMapper extends IInspectable
           targetCameraIntrinsics?.ptr.ref.lpVtbl ?? nullptr,
           result);
 
-      free(sourcePointNativeStructPtr);
+      sourcePointNativeStructPtr.free();
 
       if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDart();
     } finally {
-      free(result);
+      result.free();
     }
   }
 
@@ -169,12 +167,10 @@ class IDepthCorrelatedCoordinateMapper extends IInspectable
       SpatialCoordinateSystem? targetCoordinateSystem,
       CameraIntrinsics? targetCameraIntrinsics,
       int resultsSize) {
-    final nativeStructPtrs = <Pointer<NativePoint>>[];
+    final allocator = Arena();
     final sourcePointsArray = calloc<NativePoint>(sourcePoints.length);
     for (var i = 0; i < sourcePoints.length; i++) {
-      final nativeStructPtr = sourcePoints[i].toNative();
-      sourcePointsArray[i] = nativeStructPtr.ref;
-      nativeStructPtrs.add(nativeStructPtr);
+      sourcePointsArray[i] = sourcePoints[i].toNative(allocator: allocator).ref;
     }
     final results = calloc<NativePoint>(resultsSize);
 
@@ -214,7 +210,7 @@ class IDepthCorrelatedCoordinateMapper extends IInspectable
 
       return results.toList(length: resultsSize);
     } finally {
-      nativeStructPtrs.forEach(free);
+      allocator.releaseAll();
       free(sourcePointsArray);
       free(results);
     }

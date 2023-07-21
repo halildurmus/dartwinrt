@@ -8,6 +8,8 @@
 
 import 'dart:ffi';
 
+import 'package:win32/win32.dart';
+
 /// @nodoc
 final class NativeAccessListEntry extends Struct {
   @IntPtr()
@@ -200,6 +202,25 @@ final class NativeHolographicStereoTransform extends Struct {
   external NativeMatrix4x4 left;
 
   external NativeMatrix4x4 right;
+}
+
+/// @nodoc
+final class NativeHttpProgress extends Struct {
+  @Int32()
+  external int stage;
+
+  @Uint64()
+  external int bytesSent;
+
+  external VTablePointer totalBytesToSend;
+
+  @Uint64()
+  external int bytesReceived;
+
+  external VTablePointer totalBytesToReceive;
+
+  @Uint32()
+  external int retries;
 }
 
 /// @nodoc

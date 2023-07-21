@@ -17,7 +17,7 @@ import 'types/types.dart';
 /// [Duration]).
 base class ParameterProjection {
   ParameterProjection(this.parameter)
-      : method = parameter.parent,
+      :
         // Some getter parameters don't have a name so use 'retValuePtr' instead
         name = parameter.name.isNotEmpty || parameter.typeIdentifier.isVoidType
             ? parameter.name
@@ -28,9 +28,6 @@ base class ParameterProjection {
   /// The retrieved Windows metadata for the parameter.
   final Parameter parameter;
 
-  /// The method that this parameter is a part of.
-  final Method method;
-
   /// The name of the parameter.
   final String name;
 
@@ -39,9 +36,8 @@ base class ParameterProjection {
 
   /// Returns the appropriate projection for the parameter.
   factory ParameterProjection.create(Parameter param) {
-    final Parameter(:parent, :projectionKind) = param;
     try {
-      return switch (projectionKind) {
+      return switch (param.projectionKind) {
         ProjectionKind.asyncAction => AsyncActionParameterProjection(param),
         ProjectionKind.asyncActionWithProgress =>
           AsyncActionWithProgressParameterProjection(param),
@@ -74,8 +70,8 @@ base class ParameterProjection {
         ProjectionKind.map => MapParameterProjection(param),
         ProjectionKind.mapView => MapViewParameterProjection(param),
         ProjectionKind.object => ObjectParameterProjection(param),
-        ProjectionKind.record =>
-          throw WinmdException('Unsupported projection kind: $projectionKind'),
+        ProjectionKind.record => throw WinmdException(
+            'Unsupported projection kind: ${param.projectionKind}'),
         ProjectionKind.reference => ReferenceParameterProjection(param),
         ProjectionKind.string => StringParameterProjection(param),
         ProjectionKind.struct => StructParameterProjection(param),
@@ -84,7 +80,7 @@ base class ParameterProjection {
         ProjectionKind.vectorView => VectorViewParameterProjection(param),
       };
     } catch (_) {
-      print("Failed to project parameter '$param' from '$parent'.");
+      print("Failed to project parameter '$param' from '${param.parent}'.");
       rethrow;
     }
   }
@@ -98,6 +94,9 @@ base class ParameterProjection {
   String get ffiProjection => '${typeProjection.nativeType} $identifier';
 
   String get dartProjection => '${typeProjection.dartType} $identifier';
+
+  /// The method that this parameter is a part of.
+  Method get method => parameter.parent;
 
   String get paramProjection => '$type $identifier';
 

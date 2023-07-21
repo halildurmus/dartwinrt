@@ -4,9 +4,12 @@
 
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
+// ignore_for_file: unnecessary_import, unused_import
+
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
+import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -16,7 +19,7 @@ final class DisplayPresentationRate implements WinRTStruct {
   DisplayPresentationRate(
       this.verticalSyncRate, this.verticalSyncsPerPresentation);
 
-  final NativeRational verticalSyncRate;
+  final Rational verticalSyncRate;
   final int verticalSyncsPerPresentation;
 
   @override
@@ -24,7 +27,7 @@ final class DisplayPresentationRate implements WinRTStruct {
       {Allocator allocator = malloc}) {
     final nativeStructPtr = allocator<NativeDisplayPresentationRate>();
     nativeStructPtr.ref
-      ..verticalSyncRate = verticalSyncRate
+      ..verticalSyncRate = verticalSyncRate.toNative(allocator: allocator).ref
       ..verticalSyncsPerPresentation = verticalSyncsPerPresentation;
     return nativeStructPtr;
   }
@@ -43,14 +46,30 @@ final class DisplayPresentationRate implements WinRTStruct {
 }
 
 /// @nodoc
+extension NativeDisplayPresentationRateConversion
+    on NativeDisplayPresentationRate {
+  /// Converts this [NativeDisplayPresentationRate] into a Dart
+  /// [DisplayPresentationRate].
+  DisplayPresentationRate toDart() {
+    return DisplayPresentationRate(
+        verticalSyncRate.toDart(), verticalSyncsPerPresentation);
+  }
+}
+
+/// @nodoc
 extension PointerNativeDisplayPresentationRateConversion
     on Pointer<NativeDisplayPresentationRate> {
-  /// Converts this [NativeDisplayPresentationRate] to a Dart
+  /// Frees the allocated memory for [NativeDisplayPresentationRate].
+  void free() {
+    calloc.free(this);
+  }
+
+  /// Converts the referenced [NativeDisplayPresentationRate] into a Dart
   /// [DisplayPresentationRate].
   DisplayPresentationRate toDart() {
     final ref = this.ref;
     return DisplayPresentationRate(
-        ref.verticalSyncRate, ref.verticalSyncsPerPresentation);
+        ref.verticalSyncRate.toDart(), ref.verticalSyncsPerPresentation);
   }
 
   /// Creates a `List<DisplayPresentationRate>` from

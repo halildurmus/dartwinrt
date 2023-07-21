@@ -4,9 +4,12 @@
 
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
+// ignore_for_file: unnecessary_import, unused_import
+
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
+import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -15,14 +18,14 @@ import 'package:windows_foundation/windows_foundation.dart';
 final class SortEntry implements WinRTStruct {
   SortEntry(this.propertyName, this.ascendingOrder);
 
-  final int propertyName;
+  final String propertyName;
   final bool ascendingOrder;
 
   @override
   Pointer<NativeSortEntry> toNative({Allocator allocator = malloc}) {
     final nativeStructPtr = allocator<NativeSortEntry>();
     nativeStructPtr.ref
-      ..propertyName = propertyName
+      ..propertyName = propertyName.toHString()
       ..ascendingOrder = ascendingOrder;
     return nativeStructPtr;
   }
@@ -40,11 +43,30 @@ final class SortEntry implements WinRTStruct {
 }
 
 /// @nodoc
+extension NativeSortEntryConversion on NativeSortEntry {
+  /// Converts this [NativeSortEntry] into a Dart [SortEntry].
+  SortEntry toDart() {
+    final propertyNameDartString = propertyName.toDartString();
+    WindowsDeleteString(propertyName);
+    return SortEntry(propertyNameDartString, ascendingOrder);
+  }
+}
+
+/// @nodoc
 extension PointerNativeSortEntryConversion on Pointer<NativeSortEntry> {
-  /// Converts this [NativeSortEntry] to a Dart [SortEntry].
+  /// Frees the allocated memory for [NativeSortEntry].
+  void free() {
+    final ref = this.ref;
+    WindowsDeleteString(ref.propertyName);
+    calloc.free(this);
+  }
+
+  /// Converts the referenced [NativeSortEntry] into a Dart [SortEntry].
   SortEntry toDart() {
     final ref = this.ref;
-    return SortEntry(ref.propertyName, ref.ascendingOrder);
+    final propertyNameDartString = ref.propertyName.toDartString();
+    WindowsDeleteString(ref.propertyName);
+    return SortEntry(propertyNameDartString, ref.ascendingOrder);
   }
 
   /// Creates a `List<SortEntry>` from `Pointer<NativeSortEntry>`.

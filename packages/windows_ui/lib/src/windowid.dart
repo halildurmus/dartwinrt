@@ -4,9 +4,12 @@
 
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
+// ignore_for_file: unnecessary_import, unused_import
+
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
+import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -34,8 +37,21 @@ final class WindowId implements WinRTStruct {
 }
 
 /// @nodoc
+extension NativeWindowIdConversion on NativeWindowId {
+  /// Converts this [NativeWindowId] into a Dart [WindowId].
+  WindowId toDart() {
+    return WindowId(value);
+  }
+}
+
+/// @nodoc
 extension PointerNativeWindowIdConversion on Pointer<NativeWindowId> {
-  /// Converts this [NativeWindowId] to a Dart [WindowId].
+  /// Frees the allocated memory for [NativeWindowId].
+  void free() {
+    calloc.free(this);
+  }
+
+  /// Converts the referenced [NativeWindowId] into a Dart [WindowId].
   WindowId toDart() {
     final ref = this.ref;
     return WindowId(ref.value);

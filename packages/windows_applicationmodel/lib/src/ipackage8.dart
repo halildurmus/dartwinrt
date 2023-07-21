@@ -279,7 +279,7 @@ class IPackage8 extends IInspectable {
                     Pointer<COMObject> result)>()(
         ptr.ref.lpVtbl, sizeNativeStructPtr.ref, result);
 
-    free(sizeNativeStructPtr);
+    sizeNativeStructPtr.free();
 
     if (FAILED(hr)) {
       free(result);

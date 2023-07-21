@@ -4,9 +4,12 @@
 
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
+// ignore_for_file: unnecessary_import, unused_import
+
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
+import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -47,9 +50,24 @@ final class BitmapPlaneDescription implements WinRTStruct {
 }
 
 /// @nodoc
+extension NativeBitmapPlaneDescriptionConversion
+    on NativeBitmapPlaneDescription {
+  /// Converts this [NativeBitmapPlaneDescription] into a Dart
+  /// [BitmapPlaneDescription].
+  BitmapPlaneDescription toDart() {
+    return BitmapPlaneDescription(startIndex, width, height, stride);
+  }
+}
+
+/// @nodoc
 extension PointerNativeBitmapPlaneDescriptionConversion
     on Pointer<NativeBitmapPlaneDescription> {
-  /// Converts this [NativeBitmapPlaneDescription] to a Dart
+  /// Frees the allocated memory for [NativeBitmapPlaneDescription].
+  void free() {
+    calloc.free(this);
+  }
+
+  /// Converts the referenced [NativeBitmapPlaneDescription] into a Dart
   /// [BitmapPlaneDescription].
   BitmapPlaneDescription toDart() {
     final ref = this.ref;

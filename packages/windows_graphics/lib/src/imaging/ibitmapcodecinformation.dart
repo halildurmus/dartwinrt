@@ -46,7 +46,7 @@ class IBitmapCodecInformation extends IInspectable {
 
       return value.toDartGuid();
     } finally {
-      free(value);
+      value.free();
     }
   }
 

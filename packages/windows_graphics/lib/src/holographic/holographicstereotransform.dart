@@ -4,9 +4,12 @@
 
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
+// ignore_for_file: unnecessary_import, unused_import
+
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
+import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -16,16 +19,16 @@ import 'package:windows_foundation/windows_foundation.dart';
 final class HolographicStereoTransform implements WinRTStruct {
   HolographicStereoTransform(this.left, this.right);
 
-  final NativeMatrix4x4 left;
-  final NativeMatrix4x4 right;
+  final Matrix4x4 left;
+  final Matrix4x4 right;
 
   @override
   Pointer<NativeHolographicStereoTransform> toNative(
       {Allocator allocator = malloc}) {
     final nativeStructPtr = allocator<NativeHolographicStereoTransform>();
     nativeStructPtr.ref
-      ..left = left
-      ..right = right;
+      ..left = left.toNative(allocator: allocator).ref
+      ..right = right.toNative(allocator: allocator).ref;
     return nativeStructPtr;
   }
 
@@ -42,13 +45,28 @@ final class HolographicStereoTransform implements WinRTStruct {
 }
 
 /// @nodoc
+extension NativeHolographicStereoTransformConversion
+    on NativeHolographicStereoTransform {
+  /// Converts this [NativeHolographicStereoTransform] into a Dart
+  /// [HolographicStereoTransform].
+  HolographicStereoTransform toDart() {
+    return HolographicStereoTransform(left.toDart(), right.toDart());
+  }
+}
+
+/// @nodoc
 extension PointerNativeHolographicStereoTransformConversion
     on Pointer<NativeHolographicStereoTransform> {
-  /// Converts this [NativeHolographicStereoTransform] to a Dart
+  /// Frees the allocated memory for [NativeHolographicStereoTransform].
+  void free() {
+    calloc.free(this);
+  }
+
+  /// Converts the referenced [NativeHolographicStereoTransform] into a Dart
   /// [HolographicStereoTransform].
   HolographicStereoTransform toDart() {
     final ref = this.ref;
-    return HolographicStereoTransform(ref.left, ref.right);
+    return HolographicStereoTransform(ref.left.toDart(), ref.right.toDart());
   }
 
   /// Creates a `List<HolographicStereoTransform>` from

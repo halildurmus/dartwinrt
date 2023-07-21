@@ -4,4 +4,6 @@
 
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
+export 'http/httpprogress.dart';
+export 'http/httpprogressstage.dart';
 export 'weberrorstatus.dart';

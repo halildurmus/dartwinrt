@@ -12,7 +12,7 @@ final class EnumParameterProjection extends ParameterProjection {
   String get type => shortTypeName;
 
   @override
-  String get creator => '$type.from($identifier.value)';
+  String get creator => '$type.from($into)';
 
   @override
   String get into => '$identifier.value';

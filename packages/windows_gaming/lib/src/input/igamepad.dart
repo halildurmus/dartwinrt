@@ -52,7 +52,7 @@ class IGamepad extends IInspectable implements IGameController {
 
       return value.toDart();
     } finally {
-      free(value);
+      value.free();
     }
   }
 
@@ -72,7 +72,7 @@ class IGamepad extends IInspectable implements IGameController {
                     VTablePointer lpVtbl, NativeGamepadVibration value)>()(
         ptr.ref.lpVtbl, valueNativeStructPtr.ref);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -98,7 +98,7 @@ class IGamepad extends IInspectable implements IGameController {
 
       return value.toDart();
     } finally {
-      free(value);
+      value.free();
     }
   }
 

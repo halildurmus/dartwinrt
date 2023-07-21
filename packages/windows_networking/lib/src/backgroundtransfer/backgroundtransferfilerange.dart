@@ -4,9 +4,12 @@
 
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
+// ignore_for_file: unnecessary_import, unused_import
+
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
+import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -40,9 +43,24 @@ final class BackgroundTransferFileRange implements WinRTStruct {
 }
 
 /// @nodoc
+extension NativeBackgroundTransferFileRangeConversion
+    on NativeBackgroundTransferFileRange {
+  /// Converts this [NativeBackgroundTransferFileRange] into a Dart
+  /// [BackgroundTransferFileRange].
+  BackgroundTransferFileRange toDart() {
+    return BackgroundTransferFileRange(offset, length);
+  }
+}
+
+/// @nodoc
 extension PointerNativeBackgroundTransferFileRangeConversion
     on Pointer<NativeBackgroundTransferFileRange> {
-  /// Converts this [NativeBackgroundTransferFileRange] to a Dart
+  /// Frees the allocated memory for [NativeBackgroundTransferFileRange].
+  void free() {
+    calloc.free(this);
+  }
+
+  /// Converts the referenced [NativeBackgroundTransferFileRange] into a Dart
   /// [BackgroundTransferFileRange].
   BackgroundTransferFileRange toDart() {
     final ref = this.ref;

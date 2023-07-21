@@ -83,6 +83,7 @@ export 'geolocation/positionsource.dart';
 export 'geolocation/positionstatus.dart';
 export 'geolocation/venuedata.dart';
 export 'gpio/gpiochangerecord.dart';
+export 'gpio/gpiopinedge.dart';
 export 'input/pointerdeviceusage.dart';
 export 'pointofservice/sizeuint32.dart';
 export 'power/battery.dart';

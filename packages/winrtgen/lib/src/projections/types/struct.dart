@@ -2,34 +2,56 @@
 // All rights reserved. Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+import 'package:winmd/winmd.dart';
+
+import '../../utilities/utilities.dart';
 import '../parameter.dart';
+import '../struct.dart';
 import 'array.dart';
 
 /// Parameter projection for WinRT struct parameters.
 final class StructParameterProjection extends ParameterProjection {
   StructParameterProjection(super.parameter);
 
+  String get allocatorArgument => needsAllocator ? 'allocator: allocator' : '';
+
+  List<Field> get fields => isGuid ? [] : typeIdentifier.type!.fields;
+
+  List<StructFieldProjection> get fieldProjections =>
+      isGuid ? [] : fields.map(StructFieldProjection.new).toList();
+
+  bool get isGuid => type == 'Guid';
+
+  bool get needsAllocator =>
+      isInParam &&
+      fieldProjections.any((fieldProjection) =>
+          fieldProjection.isIReference || fieldProjection.exposedAsStruct);
+
+  TypeIdentifier get typeIdentifier => parameter.isReferenceType
+      ? dereferenceType(parameter.typeIdentifier)
+      : parameter.typeIdentifier;
+
   @override
   String get type => shortTypeName;
 
   @override
   String get creator =>
-      type == 'Guid' ? '$identifier.toDartGuid()' : '$identifier.toDart()';
+      isGuid ? '$identifier.toDartGuid()' : '$identifier.toDart()';
 
   @override
   String get into => '${identifier}NativeStructPtr.ref';
 
   @override
-  String get toListInto => type == 'Guid'
-      ? '$identifier[i].toNativeGUID()'
-      : '$identifier[i].toNative()';
+  String get toListInto => isGuid
+      ? '$identifier[i].toNativeGUID(allocator: allocator)'
+      : '$identifier[i].toNative(allocator: allocator)';
 
   @override
   List<String> get preambles {
     if (isInParam) {
-      final expression = type == 'Guid'
-          ? '$identifier.toNativeGUID();'
-          : '$identifier.toNative();';
+      final expression = isGuid
+          ? '$identifier.toNativeGUID($allocatorArgument);'
+          : '$identifier.toNative($allocatorArgument);';
       return ['final ${identifier}NativeStructPtr = $expression'];
     }
 
@@ -37,9 +59,13 @@ final class StructParameterProjection extends ParameterProjection {
   }
 
   @override
-  List<String> get postambles => [
-        isInParam ? 'free(${identifier}NativeStructPtr);' : 'free($identifier);'
-      ];
+  List<String> get postambles => needsAllocator
+      ? []
+      : [
+          isInParam
+              ? '${identifier}NativeStructPtr.free();'
+              : '$identifier.free();'
+        ];
 
   @override
   bool get needsAllocation => true;
@@ -52,17 +78,15 @@ final class StructPassArrayParameterProjection
 
   @override
   List<String> get preambles => [
-        'final nativeStructPtrs = <Pointer<$nativeType>>[];',
+        'final allocator = Arena();',
         'final $localIdentifier = calloc<$nativeType>($identifier.length);',
         '''
     for (var i = 0; i < $identifier.length; i++) {
-      final nativeStructPtr = ${typeArgParamProjection.toListInto};
-      $localIdentifier[i] = nativeStructPtr.ref;
-      nativeStructPtrs.add(nativeStructPtr);
+      $localIdentifier[i] = ${typeArgParamProjection.toListInto}.ref;
     }'''
       ];
 
   @override
   List<String> get postambles =>
-      ['nativeStructPtrs.forEach(free);', 'free($localIdentifier);'];
+      ['allocator.releaseAll();', 'free($localIdentifier);'];
 }

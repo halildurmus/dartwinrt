@@ -4,9 +4,12 @@
 
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
+// ignore_for_file: unnecessary_import, unused_import
+
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
+import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -40,9 +43,23 @@ final class DisplayAdapterId implements WinRTStruct {
 }
 
 /// @nodoc
+extension NativeDisplayAdapterIdConversion on NativeDisplayAdapterId {
+  /// Converts this [NativeDisplayAdapterId] into a Dart [DisplayAdapterId].
+  DisplayAdapterId toDart() {
+    return DisplayAdapterId(lowPart, highPart);
+  }
+}
+
+/// @nodoc
 extension PointerNativeDisplayAdapterIdConversion
     on Pointer<NativeDisplayAdapterId> {
-  /// Converts this [NativeDisplayAdapterId] to a Dart [DisplayAdapterId].
+  /// Frees the allocated memory for [NativeDisplayAdapterId].
+  void free() {
+    calloc.free(this);
+  }
+
+  /// Converts the referenced [NativeDisplayAdapterId] into a Dart
+  /// [DisplayAdapterId].
   DisplayAdapterId toDart() {
     final ref = this.ref;
     return DisplayAdapterId(ref.lowPart, ref.highPart);

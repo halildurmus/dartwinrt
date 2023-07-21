@@ -4,9 +4,12 @@
 
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
+// ignore_for_file: unnecessary_import, unused_import
+
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
+import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -46,9 +49,23 @@ final class PackageVersion implements WinRTStruct {
 }
 
 /// @nodoc
+extension NativePackageVersionConversion on NativePackageVersion {
+  /// Converts this [NativePackageVersion] into a Dart [PackageVersion].
+  PackageVersion toDart() {
+    return PackageVersion(major, minor, build, revision);
+  }
+}
+
+/// @nodoc
 extension PointerNativePackageVersionConversion
     on Pointer<NativePackageVersion> {
-  /// Converts this [NativePackageVersion] to a Dart [PackageVersion].
+  /// Frees the allocated memory for [NativePackageVersion].
+  void free() {
+    calloc.free(this);
+  }
+
+  /// Converts the referenced [NativePackageVersion] into a Dart
+  /// [PackageVersion].
   PackageVersion toDart() {
     final ref = this.ref;
     return PackageVersion(ref.major, ref.minor, ref.build, ref.revision);

@@ -4,11 +4,16 @@
 
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
+// ignore_for_file: unnecessary_import, unused_import
+
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
+import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
+
+import 'storepackageupdatestate.dart';
 
 /// Provides status info for a package that is associated with a download or
 /// installation request.
@@ -21,24 +26,24 @@ final class StorePackageUpdateStatus implements WinRTStruct {
       this.totalDownloadProgress,
       this.packageUpdateState);
 
-  final int packageFamilyName;
+  final String packageFamilyName;
   final int packageDownloadSizeInBytes;
   final int packageBytesDownloaded;
   final double packageDownloadProgress;
   final double totalDownloadProgress;
-  final int packageUpdateState;
+  final StorePackageUpdateState packageUpdateState;
 
   @override
   Pointer<NativeStorePackageUpdateStatus> toNative(
       {Allocator allocator = malloc}) {
     final nativeStructPtr = allocator<NativeStorePackageUpdateStatus>();
     nativeStructPtr.ref
-      ..packageFamilyName = packageFamilyName
+      ..packageFamilyName = packageFamilyName.toHString()
       ..packageDownloadSizeInBytes = packageDownloadSizeInBytes
       ..packageBytesDownloaded = packageBytesDownloaded
       ..packageDownloadProgress = packageDownloadProgress
       ..totalDownloadProgress = totalDownloadProgress
-      ..packageUpdateState = packageUpdateState;
+      ..packageUpdateState = packageUpdateState.value;
     return nativeStructPtr;
   }
 
@@ -65,19 +70,46 @@ final class StorePackageUpdateStatus implements WinRTStruct {
 }
 
 /// @nodoc
+extension NativeStorePackageUpdateStatusConversion
+    on NativeStorePackageUpdateStatus {
+  /// Converts this [NativeStorePackageUpdateStatus] into a Dart
+  /// [StorePackageUpdateStatus].
+  StorePackageUpdateStatus toDart() {
+    final packageFamilyNameDartString = packageFamilyName.toDartString();
+    WindowsDeleteString(packageFamilyName);
+    return StorePackageUpdateStatus(
+        packageFamilyNameDartString,
+        packageDownloadSizeInBytes,
+        packageBytesDownloaded,
+        packageDownloadProgress,
+        totalDownloadProgress,
+        StorePackageUpdateState.from(packageUpdateState));
+  }
+}
+
+/// @nodoc
 extension PointerNativeStorePackageUpdateStatusConversion
     on Pointer<NativeStorePackageUpdateStatus> {
-  /// Converts this [NativeStorePackageUpdateStatus] to a Dart
+  /// Frees the allocated memory for [NativeStorePackageUpdateStatus].
+  void free() {
+    final ref = this.ref;
+    WindowsDeleteString(ref.packageFamilyName);
+    calloc.free(this);
+  }
+
+  /// Converts the referenced [NativeStorePackageUpdateStatus] into a Dart
   /// [StorePackageUpdateStatus].
   StorePackageUpdateStatus toDart() {
     final ref = this.ref;
+    final packageFamilyNameDartString = ref.packageFamilyName.toDartString();
+    WindowsDeleteString(ref.packageFamilyName);
     return StorePackageUpdateStatus(
-        ref.packageFamilyName,
+        packageFamilyNameDartString,
         ref.packageDownloadSizeInBytes,
         ref.packageBytesDownloaded,
         ref.packageDownloadProgress,
         ref.totalDownloadProgress,
-        ref.packageUpdateState);
+        StorePackageUpdateState.from(ref.packageUpdateState));
   }
 
   /// Creates a `List<StorePackageUpdateStatus>` from

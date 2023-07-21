@@ -4,9 +4,12 @@
 
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
+// ignore_for_file: unnecessary_import, unused_import
+
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
+import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -14,15 +17,15 @@ import 'package:windows_foundation/windows_foundation.dart';
 final class SpatialRay implements WinRTStruct {
   SpatialRay(this.origin, this.direction);
 
-  final NativeVector3 origin;
-  final NativeVector3 direction;
+  final Vector3 origin;
+  final Vector3 direction;
 
   @override
   Pointer<NativeSpatialRay> toNative({Allocator allocator = malloc}) {
     final nativeStructPtr = allocator<NativeSpatialRay>();
     nativeStructPtr.ref
-      ..origin = origin
-      ..direction = direction;
+      ..origin = origin.toNative(allocator: allocator).ref
+      ..direction = direction.toNative(allocator: allocator).ref;
     return nativeStructPtr;
   }
 
@@ -39,11 +42,24 @@ final class SpatialRay implements WinRTStruct {
 }
 
 /// @nodoc
+extension NativeSpatialRayConversion on NativeSpatialRay {
+  /// Converts this [NativeSpatialRay] into a Dart [SpatialRay].
+  SpatialRay toDart() {
+    return SpatialRay(origin.toDart(), direction.toDart());
+  }
+}
+
+/// @nodoc
 extension PointerNativeSpatialRayConversion on Pointer<NativeSpatialRay> {
-  /// Converts this [NativeSpatialRay] to a Dart [SpatialRay].
+  /// Frees the allocated memory for [NativeSpatialRay].
+  void free() {
+    calloc.free(this);
+  }
+
+  /// Converts the referenced [NativeSpatialRay] into a Dart [SpatialRay].
   SpatialRay toDart() {
     final ref = this.ref;
-    return SpatialRay(ref.origin, ref.direction);
+    return SpatialRay(ref.origin.toDart(), ref.direction.toDart());
   }
 
   /// Creates a `List<SpatialRay>` from `Pointer<NativeSpatialRay>`.

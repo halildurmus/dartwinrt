@@ -255,7 +255,7 @@ class IDevicePicker extends IInspectable {
                 int Function(VTablePointer lpVtbl, NativeRect selection)>()(
         ptr.ref.lpVtbl, selectionNativeStructPtr.ref);
 
-    free(selectionNativeStructPtr);
+    selectionNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -277,7 +277,7 @@ class IDevicePicker extends IInspectable {
                         int placement)>()(
             ptr.ref.lpVtbl, selectionNativeStructPtr.ref, placement.value);
 
-    free(selectionNativeStructPtr);
+    selectionNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -302,7 +302,7 @@ class IDevicePicker extends IInspectable {
                         Pointer<COMObject> operation)>()(
             ptr.ref.lpVtbl, selectionNativeStructPtr.ref, operation);
 
-    free(selectionNativeStructPtr);
+    selectionNativeStructPtr.free();
 
     if (FAILED(hr)) {
       free(operation);
@@ -340,7 +340,7 @@ class IDevicePicker extends IInspectable {
             placement.value,
             operation);
 
-    free(selectionNativeStructPtr);
+    selectionNativeStructPtr.free();
 
     if (FAILED(hr)) {
       free(operation);

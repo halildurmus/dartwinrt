@@ -75,10 +75,10 @@ class ICameraIntrinsicsFactory extends IInspectable {
         imageHeight,
         result);
 
-    free(focalLengthNativeStructPtr);
-    free(principalPointNativeStructPtr);
-    free(radialDistortionNativeStructPtr);
-    free(tangentialDistortionNativeStructPtr);
+    focalLengthNativeStructPtr.free();
+    principalPointNativeStructPtr.free();
+    radialDistortionNativeStructPtr.free();
+    tangentialDistortionNativeStructPtr.free();
 
     if (FAILED(hr)) {
       free(result);

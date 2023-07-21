@@ -370,6 +370,7 @@ final class GenericInterfaceProjection extends InterfaceProjection {
     return methodProjections.map((method) => '@override\n$method').join('\n');
   }
 
+  @override
   String get projection => '''
   $classHeader {
   $namedConstructor

@@ -35,7 +35,7 @@ final class _IKeyValuePairGuidInspectable<V> extends IKeyValuePair<Guid, V> {
 
       return retValuePtr.toDartGuid();
     } finally {
-      free(retValuePtr);
+      retValuePtr.free();
     }
   }
 
@@ -93,7 +93,7 @@ final class _IKeyValuePairGuidObject extends IKeyValuePair<Guid, Object?> {
 
       return retValuePtr.toDartGuid();
     } finally {
-      free(retValuePtr);
+      retValuePtr.free();
     }
   }
 

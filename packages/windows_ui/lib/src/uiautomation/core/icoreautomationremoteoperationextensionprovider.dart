@@ -38,14 +38,11 @@ class ICoreAutomationRemoteOperationExtensionProvider extends IInspectable {
       CoreAutomationRemoteOperationContext? context,
       List<AutomationRemoteOperationOperandId> operandIds) {
     final extensionIdNativeStructPtr = extensionId.toNativeGUID();
-    final nativeStructPtrs =
-        <Pointer<NativeAutomationRemoteOperationOperandId>>[];
+    final allocator = Arena();
     final operandIdsArray =
         calloc<NativeAutomationRemoteOperationOperandId>(operandIds.length);
     for (var i = 0; i < operandIds.length; i++) {
-      final nativeStructPtr = operandIds[i].toNative();
-      operandIdsArray[i] = nativeStructPtr.ref;
-      nativeStructPtrs.add(nativeStructPtr);
+      operandIdsArray[i] = operandIds[i].toNative(allocator: allocator).ref;
     }
 
     final hr = ptr.ref.vtable
@@ -75,8 +72,8 @@ class ICoreAutomationRemoteOperationExtensionProvider extends IInspectable {
         operandIds.length,
         operandIdsArray);
 
-    free(extensionIdNativeStructPtr);
-    nativeStructPtrs.forEach(free);
+    extensionIdNativeStructPtr.free();
+    allocator.releaseAll();
     free(operandIdsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
@@ -102,7 +99,7 @@ class ICoreAutomationRemoteOperationExtensionProvider extends IInspectable {
                           Pointer<Bool> result)>()(
               ptr.ref.lpVtbl, extensionIdNativeStructPtr.ref, result);
 
-      free(extensionIdNativeStructPtr);
+      extensionIdNativeStructPtr.free();
 
       if (FAILED(hr)) throwWindowsException(hr);
 

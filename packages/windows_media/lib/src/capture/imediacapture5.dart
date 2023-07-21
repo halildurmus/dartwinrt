@@ -244,7 +244,7 @@ class IMediaCapture5 extends IInspectable {
         value);
 
     WindowsDeleteString(outputSubtypeHString);
-    free(outputSizeNativeStructPtr);
+    outputSizeNativeStructPtr.free();
 
     if (FAILED(hr)) {
       free(value);

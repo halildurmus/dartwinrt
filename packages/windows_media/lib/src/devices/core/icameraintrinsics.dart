@@ -45,7 +45,7 @@ class ICameraIntrinsics extends IInspectable {
 
       return value.toDart();
     } finally {
-      free(value);
+      value.free();
     }
   }
 
@@ -69,7 +69,7 @@ class ICameraIntrinsics extends IInspectable {
 
       return value.toDart();
     } finally {
-      free(value);
+      value.free();
     }
   }
 
@@ -93,7 +93,7 @@ class ICameraIntrinsics extends IInspectable {
 
       return value.toDart();
     } finally {
-      free(value);
+      value.free();
     }
   }
 
@@ -117,7 +117,7 @@ class ICameraIntrinsics extends IInspectable {
 
       return value.toDart();
     } finally {
-      free(value);
+      value.free();
     }
   }
 
@@ -190,13 +190,13 @@ class ICameraIntrinsics extends IInspectable {
                       Pointer<NativePoint> result)>()(
           ptr.ref.lpVtbl, coordinateNativeStructPtr.ref, result);
 
-      free(coordinateNativeStructPtr);
+      coordinateNativeStructPtr.free();
 
       if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDart();
     } finally {
-      free(result);
+      result.free();
     }
   }
 
@@ -223,23 +223,21 @@ class ICameraIntrinsics extends IInspectable {
                       Pointer<NativeVector2> result)>()(
           ptr.ref.lpVtbl, pixelCoordinateNativeStructPtr.ref, result);
 
-      free(pixelCoordinateNativeStructPtr);
+      pixelCoordinateNativeStructPtr.free();
 
       if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDart();
     } finally {
-      free(result);
+      result.free();
     }
   }
 
   List<Point> projectManyOntoFrame(List<Vector3> coordinates, int resultsSize) {
-    final nativeStructPtrs = <Pointer<NativeVector3>>[];
+    final allocator = Arena();
     final coordinatesArray = calloc<NativeVector3>(coordinates.length);
     for (var i = 0; i < coordinates.length; i++) {
-      final nativeStructPtr = coordinates[i].toNative();
-      coordinatesArray[i] = nativeStructPtr.ref;
-      nativeStructPtrs.add(nativeStructPtr);
+      coordinatesArray[i] = coordinates[i].toNative(allocator: allocator).ref;
     }
     final results = calloc<NativePoint>(resultsSize);
 
@@ -269,7 +267,7 @@ class ICameraIntrinsics extends IInspectable {
 
       return results.toList(length: resultsSize);
     } finally {
-      nativeStructPtrs.forEach(free);
+      allocator.releaseAll();
       free(coordinatesArray);
       free(results);
     }
@@ -277,12 +275,11 @@ class ICameraIntrinsics extends IInspectable {
 
   List<Vector2> unprojectPixelsAtUnitDepth(
       List<Point> pixelCoordinates, int resultsSize) {
-    final nativeStructPtrs = <Pointer<NativePoint>>[];
+    final allocator = Arena();
     final pixelCoordinatesArray = calloc<NativePoint>(pixelCoordinates.length);
     for (var i = 0; i < pixelCoordinates.length; i++) {
-      final nativeStructPtr = pixelCoordinates[i].toNative();
-      pixelCoordinatesArray[i] = nativeStructPtr.ref;
-      nativeStructPtrs.add(nativeStructPtr);
+      pixelCoordinatesArray[i] =
+          pixelCoordinates[i].toNative(allocator: allocator).ref;
     }
     final results = calloc<NativeVector2>(resultsSize);
 
@@ -312,7 +309,7 @@ class ICameraIntrinsics extends IInspectable {
 
       return results.toList(length: resultsSize);
     } finally {
-      nativeStructPtrs.forEach(free);
+      allocator.releaseAll();
       free(pixelCoordinatesArray);
       free(results);
     }

@@ -390,7 +390,7 @@ class IPropertyValueStatics extends IInspectable {
                     Pointer<COMObject> propertyValue)>()(
         ptr.ref.lpVtbl, valueNativeStructPtr.ref, propertyValue);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) {
       free(propertyValue);
@@ -468,7 +468,7 @@ class IPropertyValueStatics extends IInspectable {
                         Pointer<COMObject> propertyValue)>()(
             ptr.ref.lpVtbl, valueNativeStructPtr.ref, propertyValue);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) {
       free(propertyValue);
@@ -495,7 +495,7 @@ class IPropertyValueStatics extends IInspectable {
                     Pointer<COMObject> propertyValue)>()(
         ptr.ref.lpVtbl, valueNativeStructPtr.ref, propertyValue);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) {
       free(propertyValue);
@@ -522,7 +522,7 @@ class IPropertyValueStatics extends IInspectable {
                     Pointer<COMObject> propertyValue)>()(
         ptr.ref.lpVtbl, valueNativeStructPtr.ref, propertyValue);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) {
       free(propertyValue);
@@ -969,12 +969,10 @@ class IPropertyValueStatics extends IInspectable {
 
   IPropertyValue createGuidArray(List<Guid> value) {
     final propertyValue = calloc<COMObject>();
-    final nativeStructPtrs = <Pointer<GUID>>[];
+    final allocator = Arena();
     final valueArray = calloc<GUID>(value.length);
     for (var i = 0; i < value.length; i++) {
-      final nativeStructPtr = value[i].toNativeGUID();
-      valueArray[i] = nativeStructPtr.ref;
-      nativeStructPtrs.add(nativeStructPtr);
+      valueArray[i] = value[i].toNativeGUID(allocator: allocator).ref;
     }
 
     final hr = ptr.ref.vtable
@@ -993,7 +991,7 @@ class IPropertyValueStatics extends IInspectable {
                     Pointer<GUID> value, Pointer<COMObject> propertyValue)>()(
         ptr.ref.lpVtbl, value.length, valueArray, propertyValue);
 
-    nativeStructPtrs.forEach(free);
+    allocator.releaseAll();
     free(valueArray);
 
     if (FAILED(hr)) {
@@ -1072,12 +1070,10 @@ class IPropertyValueStatics extends IInspectable {
 
   IPropertyValue createPointArray(List<Point> value) {
     final propertyValue = calloc<COMObject>();
-    final nativeStructPtrs = <Pointer<NativePoint>>[];
+    final allocator = Arena();
     final valueArray = calloc<NativePoint>(value.length);
     for (var i = 0; i < value.length; i++) {
-      final nativeStructPtr = value[i].toNative();
-      valueArray[i] = nativeStructPtr.ref;
-      nativeStructPtrs.add(nativeStructPtr);
+      valueArray[i] = value[i].toNative(allocator: allocator).ref;
     }
 
     final hr = ptr.ref.vtable
@@ -1099,7 +1095,7 @@ class IPropertyValueStatics extends IInspectable {
                     Pointer<COMObject> propertyValue)>()(
         ptr.ref.lpVtbl, value.length, valueArray, propertyValue);
 
-    nativeStructPtrs.forEach(free);
+    allocator.releaseAll();
     free(valueArray);
 
     if (FAILED(hr)) {
@@ -1112,12 +1108,10 @@ class IPropertyValueStatics extends IInspectable {
 
   IPropertyValue createSizeArray(List<Size> value) {
     final propertyValue = calloc<COMObject>();
-    final nativeStructPtrs = <Pointer<NativeSize>>[];
+    final allocator = Arena();
     final valueArray = calloc<NativeSize>(value.length);
     for (var i = 0; i < value.length; i++) {
-      final nativeStructPtr = value[i].toNative();
-      valueArray[i] = nativeStructPtr.ref;
-      nativeStructPtrs.add(nativeStructPtr);
+      valueArray[i] = value[i].toNative(allocator: allocator).ref;
     }
 
     final hr = ptr.ref.vtable
@@ -1139,7 +1133,7 @@ class IPropertyValueStatics extends IInspectable {
                     Pointer<COMObject> propertyValue)>()(
         ptr.ref.lpVtbl, value.length, valueArray, propertyValue);
 
-    nativeStructPtrs.forEach(free);
+    allocator.releaseAll();
     free(valueArray);
 
     if (FAILED(hr)) {
@@ -1152,12 +1146,10 @@ class IPropertyValueStatics extends IInspectable {
 
   IPropertyValue createRectArray(List<Rect> value) {
     final propertyValue = calloc<COMObject>();
-    final nativeStructPtrs = <Pointer<NativeRect>>[];
+    final allocator = Arena();
     final valueArray = calloc<NativeRect>(value.length);
     for (var i = 0; i < value.length; i++) {
-      final nativeStructPtr = value[i].toNative();
-      valueArray[i] = nativeStructPtr.ref;
-      nativeStructPtrs.add(nativeStructPtr);
+      valueArray[i] = value[i].toNative(allocator: allocator).ref;
     }
 
     final hr = ptr.ref.vtable
@@ -1179,7 +1171,7 @@ class IPropertyValueStatics extends IInspectable {
                     Pointer<COMObject> propertyValue)>()(
         ptr.ref.lpVtbl, value.length, valueArray, propertyValue);
 
-    nativeStructPtrs.forEach(free);
+    allocator.releaseAll();
     free(valueArray);
 
     if (FAILED(hr)) {

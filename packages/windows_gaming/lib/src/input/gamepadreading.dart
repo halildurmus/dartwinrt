@@ -4,11 +4,16 @@
 
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
+// ignore_for_file: unnecessary_import, unused_import
+
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
+import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
+
+import 'gamepadbuttons.dart';
 
 /// Represents the current state of the gamepad.
 final class GamepadReading implements WinRTStruct {
@@ -23,7 +28,7 @@ final class GamepadReading implements WinRTStruct {
       this.rightThumbstickY);
 
   final int timestamp;
-  final int buttons;
+  final GamepadButtons buttons;
   final double leftTrigger;
   final double rightTrigger;
   final double leftThumbstickX;
@@ -36,7 +41,7 @@ final class GamepadReading implements WinRTStruct {
     final nativeStructPtr = allocator<NativeGamepadReading>();
     nativeStructPtr.ref
       ..timestamp = timestamp
-      ..buttons = buttons
+      ..buttons = buttons.value
       ..leftTrigger = leftTrigger
       ..rightTrigger = rightTrigger
       ..leftThumbstickX = leftThumbstickX
@@ -73,14 +78,36 @@ final class GamepadReading implements WinRTStruct {
 }
 
 /// @nodoc
+extension NativeGamepadReadingConversion on NativeGamepadReading {
+  /// Converts this [NativeGamepadReading] into a Dart [GamepadReading].
+  GamepadReading toDart() {
+    return GamepadReading(
+        timestamp,
+        GamepadButtons.from(buttons),
+        leftTrigger,
+        rightTrigger,
+        leftThumbstickX,
+        leftThumbstickY,
+        rightThumbstickX,
+        rightThumbstickY);
+  }
+}
+
+/// @nodoc
 extension PointerNativeGamepadReadingConversion
     on Pointer<NativeGamepadReading> {
-  /// Converts this [NativeGamepadReading] to a Dart [GamepadReading].
+  /// Frees the allocated memory for [NativeGamepadReading].
+  void free() {
+    calloc.free(this);
+  }
+
+  /// Converts the referenced [NativeGamepadReading] into a Dart
+  /// [GamepadReading].
   GamepadReading toDart() {
     final ref = this.ref;
     return GamepadReading(
         ref.timestamp,
-        ref.buttons,
+        GamepadButtons.from(ref.buttons),
         ref.leftTrigger,
         ref.rightTrigger,
         ref.leftThumbstickX,

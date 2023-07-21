@@ -159,7 +159,7 @@ class IRegionOfInterest extends IInspectable {
 
       return value.toDart();
     } finally {
-      free(value);
+      value.free();
     }
   }
 
@@ -177,7 +177,7 @@ class IRegionOfInterest extends IInspectable {
             .asFunction<int Function(VTablePointer lpVtbl, NativeRect value)>()(
         ptr.ref.lpVtbl, valueNativeStructPtr.ref);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

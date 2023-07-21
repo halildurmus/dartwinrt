@@ -24,12 +24,10 @@ const excludedPackageFiles = <String, Set<String>>{
     'iasyncoperation.dart',
     'iasyncoperationwithprogress.dart',
 
-    // Fully wrapped by projection
+    // Fully wrapped by dartwinrt
     'ipropertyvalue.dart',
     'ireference.dart',
     'propertyvalue.dart',
-
-    'iunknown.dart',
 
     // Internally used enums
     'asyncstatus.dart',
@@ -51,7 +49,7 @@ const excludedObjects = <String>{
   ...excludedInterfacesInInherits,
   ...excludedStaticInterfaces,
 
-  // These types are generated manually by design
+  // These types are projected manually by design
   'Windows.Foundation.IAsyncOperation`1',
   'Windows.Foundation.Collections.IIterable`1',
   'Windows.Foundation.Collections.IIterator`1',

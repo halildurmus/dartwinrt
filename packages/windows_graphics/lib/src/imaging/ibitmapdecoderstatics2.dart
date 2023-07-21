@@ -46,7 +46,7 @@ class IBitmapDecoderStatics2 extends IInspectable {
 
       return value.toDartGuid();
     } finally {
-      free(value);
+      value.free();
     }
   }
 
@@ -70,7 +70,7 @@ class IBitmapDecoderStatics2 extends IInspectable {
 
       return value.toDartGuid();
     } finally {
-      free(value);
+      value.free();
     }
   }
 }

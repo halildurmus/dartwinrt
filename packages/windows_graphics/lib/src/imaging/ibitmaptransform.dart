@@ -244,7 +244,7 @@ class IBitmapTransform extends IInspectable {
 
       return value.toDart();
     } finally {
-      free(value);
+      value.free();
     }
   }
 
@@ -263,7 +263,7 @@ class IBitmapTransform extends IInspectable {
                 int Function(VTablePointer lpVtbl, NativeBitmapBounds value)>()(
         ptr.ref.lpVtbl, valueNativeStructPtr.ref);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

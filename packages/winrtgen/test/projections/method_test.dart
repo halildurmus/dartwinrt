@@ -349,7 +349,7 @@ void main() {
       expect(projection.failedCheck, equals(failedCheck()));
       expect(projection.nullCheck, isEmpty);
       expect(projection.returnStatement, equals('return value.toDartGuid();'));
-      expect(projection.postambles, equals(['free(value);']));
+      expect(projection.postambles, equals(['value.free();']));
     });
 
     test('projects int', () {
@@ -1508,7 +1508,7 @@ void main() {
       expect(projection.failedCheck, equals(failedCheck()));
       expect(projection.nullCheck, isEmpty);
       expect(projection.returnStatement, equals('return value.toDart();'));
-      expect(projection.postambles, equals(['free(value);']));
+      expect(projection.postambles, equals(['value.free();']));
     });
 
     test('projects Uri', () {
@@ -1574,7 +1574,7 @@ void main() {
       expect(projection.postambles, isEmpty);
     });
 
-    test('projects void', () {
+    test('projects void (1)', () {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Foundation.IClosable', 'Close');
       expect(projection.annotations, isEmpty);
@@ -1590,6 +1590,36 @@ void main() {
           equals('int Function(VTablePointer lpVtbl)'));
       expect(projection.identifiers, equals('ptr.ref.lpVtbl'));
       expect(projection.parametersPostamble, isEmpty);
+      expect(projection.failedCheck, equals(failedCheck()));
+      expect(projection.nullCheck, isEmpty);
+      expect(projection.returnStatement, isEmpty);
+      expect(projection.postambles, isEmpty);
+    });
+
+    test('projects void (2)', () {
+      final genericInterfaceProjection = GenericInterfaceProjection.from(
+          'Windows.Foundation.Collections.IVector`1', TypeArgKind.plane);
+      final projection = genericInterfaceProjection.methodProjections
+          .firstWhere((methodProjection) => methodProjection.name == 'Append');
+      expect(projection.annotations, isEmpty);
+      expect(projection.useTryFinallyBlock, isFalse);
+      expect(projection.returnType, equals('void'));
+      expect(projection.header, equals('void append(Plane value)'));
+      expect(projection.paramIdentifier, isEmpty);
+      expect(projection.preambles, equals(['final allocator = Arena();']));
+      expect(
+          projection.parametersPreamble,
+          equals([
+            'final valueNativeStructPtr = value.toNative(allocator: allocator);'
+          ]));
+      expect(projection.nativePrototype,
+          equals('HRESULT Function(VTablePointer lpVtbl, NativePlane value)'));
+      expect(projection.dartPrototype,
+          equals('int Function(VTablePointer lpVtbl, NativePlane value)'));
+      expect(projection.identifiers,
+          equals('ptr.ref.lpVtbl, valueNativeStructPtr.ref'));
+      expect(
+          projection.parametersPostamble, equals(['allocator.releaseAll();']));
       expect(projection.failedCheck, equals(failedCheck()));
       expect(projection.nullCheck, isEmpty);
       expect(projection.returnStatement, isEmpty);

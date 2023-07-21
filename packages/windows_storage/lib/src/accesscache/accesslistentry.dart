@@ -4,9 +4,12 @@
 
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
+// ignore_for_file: unnecessary_import, unused_import
+
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
+import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -15,15 +18,15 @@ import 'package:windows_foundation/windows_foundation.dart';
 final class AccessListEntry implements WinRTStruct {
   AccessListEntry(this.token, this.metadata);
 
-  final int token;
-  final int metadata;
+  final String token;
+  final String metadata;
 
   @override
   Pointer<NativeAccessListEntry> toNative({Allocator allocator = malloc}) {
     final nativeStructPtr = allocator<NativeAccessListEntry>();
     nativeStructPtr.ref
-      ..token = token
-      ..metadata = metadata;
+      ..token = token.toHString()
+      ..metadata = metadata.toHString();
     return nativeStructPtr;
   }
 
@@ -40,12 +43,37 @@ final class AccessListEntry implements WinRTStruct {
 }
 
 /// @nodoc
+extension NativeAccessListEntryConversion on NativeAccessListEntry {
+  /// Converts this [NativeAccessListEntry] into a Dart [AccessListEntry].
+  AccessListEntry toDart() {
+    final tokenDartString = token.toDartString();
+    WindowsDeleteString(token);
+    final metadataDartString = metadata.toDartString();
+    WindowsDeleteString(metadata);
+    return AccessListEntry(tokenDartString, metadataDartString);
+  }
+}
+
+/// @nodoc
 extension PointerNativeAccessListEntryConversion
     on Pointer<NativeAccessListEntry> {
-  /// Converts this [NativeAccessListEntry] to a Dart [AccessListEntry].
+  /// Frees the allocated memory for [NativeAccessListEntry].
+  void free() {
+    final ref = this.ref;
+    WindowsDeleteString(ref.token);
+    WindowsDeleteString(ref.metadata);
+    calloc.free(this);
+  }
+
+  /// Converts the referenced [NativeAccessListEntry] into a Dart
+  /// [AccessListEntry].
   AccessListEntry toDart() {
     final ref = this.ref;
-    return AccessListEntry(ref.token, ref.metadata);
+    final tokenDartString = ref.token.toDartString();
+    WindowsDeleteString(ref.token);
+    final metadataDartString = ref.metadata.toDartString();
+    WindowsDeleteString(ref.metadata);
+    return AccessListEntry(tokenDartString, metadataDartString);
   }
 
   /// Creates a `List<AccessListEntry>` from `Pointer<NativeAccessListEntry>`.

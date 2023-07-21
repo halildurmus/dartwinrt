@@ -62,6 +62,7 @@ export 'connectivity/networkusagestates.dart';
 export 'connectivity/providernetworkusage.dart';
 export 'connectivity/proxyconfiguration.dart';
 export 'connectivity/roamingstates.dart';
+export 'connectivity/tristates.dart';
 export 'connectivity/wlanconnectionprofiledetails.dart';
 export 'connectivity/wwanconnectionprofiledetails.dart';
 export 'connectivity/wwandataclass.dart';

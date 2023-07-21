@@ -292,7 +292,7 @@ class IDataReader extends IInspectable {
 
       return value.toDartGuid();
     } finally {
-      free(value);
+      value.free();
     }
   }
 

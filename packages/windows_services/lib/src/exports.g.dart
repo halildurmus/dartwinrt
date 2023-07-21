@@ -5,4 +5,5 @@
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 export 'maps/maplocationdesiredaccuracy.dart';
+export 'store/storepackageupdatestate.dart';
 export 'store/storepackageupdatestatus.dart';

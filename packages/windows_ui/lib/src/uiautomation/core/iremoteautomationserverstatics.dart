@@ -43,7 +43,7 @@ class IRemoteAutomationServerStatics extends IInspectable {
                     int Function(VTablePointer lpVtbl, GUID sessionId)>()(
             ptr.ref.lpVtbl, sessionIdNativeStructPtr.ref);
 
-    free(sessionIdNativeStructPtr);
+    sessionIdNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

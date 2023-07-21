@@ -4,9 +4,12 @@
 
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
+// ignore_for_file: unnecessary_import, unused_import
+
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
+import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -43,9 +46,23 @@ final class BasicGeoposition implements WinRTStruct {
 }
 
 /// @nodoc
+extension NativeBasicGeopositionConversion on NativeBasicGeoposition {
+  /// Converts this [NativeBasicGeoposition] into a Dart [BasicGeoposition].
+  BasicGeoposition toDart() {
+    return BasicGeoposition(latitude, longitude, altitude);
+  }
+}
+
+/// @nodoc
 extension PointerNativeBasicGeopositionConversion
     on Pointer<NativeBasicGeoposition> {
-  /// Converts this [NativeBasicGeoposition] to a Dart [BasicGeoposition].
+  /// Frees the allocated memory for [NativeBasicGeoposition].
+  void free() {
+    calloc.free(this);
+  }
+
+  /// Converts the referenced [NativeBasicGeoposition] into a Dart
+  /// [BasicGeoposition].
   BasicGeoposition toDart() {
     final ref = this.ref;
     return BasicGeoposition(ref.latitude, ref.longitude, ref.altitude);

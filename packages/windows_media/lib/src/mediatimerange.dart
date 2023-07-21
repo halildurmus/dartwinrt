@@ -4,9 +4,12 @@
 
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
+// ignore_for_file: unnecessary_import, unused_import
+
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
+import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -14,15 +17,15 @@ import 'package:windows_foundation/windows_foundation.dart';
 final class MediaTimeRange implements WinRTStruct {
   MediaTimeRange(this.start, this.end);
 
-  final int start;
-  final int end;
+  final Duration start;
+  final Duration end;
 
   @override
   Pointer<NativeMediaTimeRange> toNative({Allocator allocator = malloc}) {
     final nativeStructPtr = allocator<NativeMediaTimeRange>();
     nativeStructPtr.ref
-      ..start = start
-      ..end = end;
+      ..start = start.toWinRTDuration()
+      ..end = end.toWinRTDuration();
     return nativeStructPtr;
   }
 
@@ -37,12 +40,26 @@ final class MediaTimeRange implements WinRTStruct {
 }
 
 /// @nodoc
+extension NativeMediaTimeRangeConversion on NativeMediaTimeRange {
+  /// Converts this [NativeMediaTimeRange] into a Dart [MediaTimeRange].
+  MediaTimeRange toDart() {
+    return MediaTimeRange(start.toDartDuration(), end.toDartDuration());
+  }
+}
+
+/// @nodoc
 extension PointerNativeMediaTimeRangeConversion
     on Pointer<NativeMediaTimeRange> {
-  /// Converts this [NativeMediaTimeRange] to a Dart [MediaTimeRange].
+  /// Frees the allocated memory for [NativeMediaTimeRange].
+  void free() {
+    calloc.free(this);
+  }
+
+  /// Converts the referenced [NativeMediaTimeRange] into a Dart
+  /// [MediaTimeRange].
   MediaTimeRange toDart() {
     final ref = this.ref;
-    return MediaTimeRange(ref.start, ref.end);
+    return MediaTimeRange(ref.start.toDartDuration(), ref.end.toDartDuration());
   }
 
   /// Creates a `List<MediaTimeRange>` from `Pointer<NativeMediaTimeRange>`.

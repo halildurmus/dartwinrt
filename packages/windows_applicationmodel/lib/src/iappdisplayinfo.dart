@@ -93,7 +93,7 @@ class IAppDisplayInfo extends IInspectable {
                     Pointer<COMObject> value)>()(
         ptr.ref.lpVtbl, sizeNativeStructPtr.ref, value);
 
-    free(sizeNativeStructPtr);
+    sizeNativeStructPtr.free();
 
     if (FAILED(hr)) {
       free(value);

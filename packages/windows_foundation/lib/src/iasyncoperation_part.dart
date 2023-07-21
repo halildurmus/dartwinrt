@@ -120,7 +120,7 @@ final class _IAsyncOperationGuid extends IAsyncOperation<Guid> {
 
       return retValuePtr.toDartGuid();
     } finally {
-      free(retValuePtr);
+      retValuePtr.free();
     }
   }
 }
@@ -239,7 +239,7 @@ final class _IAsyncOperationLoadMoreItemsResult
 
       return retValuePtr.toDart();
     } finally {
-      free(retValuePtr);
+      retValuePtr.free();
     }
   }
 }

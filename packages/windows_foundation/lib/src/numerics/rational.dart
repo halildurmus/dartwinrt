@@ -4,9 +4,12 @@
 
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
+// ignore_for_file: unnecessary_import, unused_import
+
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
+import 'package:win32/win32.dart' hide DocumentProperties;
 
 import '../../internal.dart';
 import '../winrt_struct.dart';
@@ -40,8 +43,21 @@ final class Rational implements WinRTStruct {
 }
 
 /// @nodoc
+extension NativeRationalConversion on NativeRational {
+  /// Converts this [NativeRational] into a Dart [Rational].
+  Rational toDart() {
+    return Rational(numerator, denominator);
+  }
+}
+
+/// @nodoc
 extension PointerNativeRationalConversion on Pointer<NativeRational> {
-  /// Converts this [NativeRational] to a Dart [Rational].
+  /// Frees the allocated memory for [NativeRational].
+  void free() {
+    calloc.free(this);
+  }
+
+  /// Converts the referenced [NativeRational] into a Dart [Rational].
   Rational toDart() {
     final ref = this.ref;
     return Rational(ref.numerator, ref.denominator);

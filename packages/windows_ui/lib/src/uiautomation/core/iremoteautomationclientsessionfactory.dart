@@ -75,7 +75,7 @@ class IRemoteAutomationClientSessionFactory extends IInspectable {
         ptr.ref.lpVtbl, nameHString, sessionIdNativeStructPtr.ref, value);
 
     WindowsDeleteString(nameHString);
-    free(sessionIdNativeStructPtr);
+    sessionIdNativeStructPtr.free();
 
     if (FAILED(hr)) {
       free(value);

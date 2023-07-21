@@ -76,7 +76,7 @@ final class TypeProjection {
 
   bool get isDartPrimitive => switch (dartType) {
         'bool' || 'double' || 'void' => true,
-        'int' when !isWinRTEnum => true,
+        'int' when !isDateTime && !isTimeSpan && !isWinRTEnum => true,
         _ => false
       };
 
@@ -134,6 +134,8 @@ final class TypeProjection {
   bool get isWinRTObject => isWinRTClass || isWinRTInterface || isObjectType;
 
   bool get isWinRTStruct => isWinRT && (typeIdentifier.type?.isStruct ?? false);
+
+  bool get exposedAsStruct => isWinRTStruct && !isSpecialType;
 
   TypeTuple _unwrapEnum() {
     final fieldType = typeIdentifier.type?.findField('value__')?.typeIdentifier;
