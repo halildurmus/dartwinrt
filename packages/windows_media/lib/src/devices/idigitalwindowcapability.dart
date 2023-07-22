@@ -166,7 +166,7 @@ class IDigitalWindowCapability extends IInspectable {
 
       return value.toDart();
     } finally {
-      free(value);
+      value.free();
     }
   }
 }

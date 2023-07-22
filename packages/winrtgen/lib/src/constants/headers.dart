@@ -35,9 +35,13 @@ $copyrightHeader
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
 import 'dart:ffi';
+
+import 'package:win32/win32.dart';
 ''';
 
 const structFileHeader = '''
 $copyrightHeader
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
+
+// ignore_for_file: unnecessary_import, unused_import
 ''';

@@ -233,7 +233,7 @@ class IDataWriter extends IInspectable {
             .asFunction<int Function(VTablePointer lpVtbl, GUID value)>()(
         ptr.ref.lpVtbl, valueNativeStructPtr.ref);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

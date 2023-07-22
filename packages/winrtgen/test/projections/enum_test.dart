@@ -60,8 +60,8 @@ void main() {
       expect(asyncStatusProjection.classPreamble, isEmpty);
     });
 
-    test('has correct enum name', () {
-      expect(asyncStatusProjection.enumName, equals('AsyncStatus'));
+    test('has correct short name', () {
+      expect(asyncStatusProjection.shortName, equals('AsyncStatus'));
     });
 
     test('annotated with @Deprecated', () {
@@ -138,8 +138,8 @@ void main() {
       expect(fileAttributesProjection.classPreamble, isEmpty);
     });
 
-    test('has correct enum name', () {
-      expect(fileAttributesProjection.enumName, equals('FileAttributes'));
+    test('has correct short name', () {
+      expect(fileAttributesProjection.shortName, equals('FileAttributes'));
     });
 
     test('annotated with @Deprecated', () {

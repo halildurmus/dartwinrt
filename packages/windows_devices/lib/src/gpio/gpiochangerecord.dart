@@ -4,11 +4,16 @@
 
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
+// ignore_for_file: unnecessary_import, unused_import
+
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
+import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
+
+import 'gpiopinedge.dart';
 
 /// Stores a relative timestap of a general-purpose I/O (GPIO) pin value
 /// change, and whether the pin transitioned from low to high or from high
@@ -16,15 +21,15 @@ import 'package:windows_foundation/windows_foundation.dart';
 final class GpioChangeRecord implements WinRTStruct {
   GpioChangeRecord(this.relativeTime, this.edge);
 
-  final int relativeTime;
-  final int edge;
+  final Duration relativeTime;
+  final GpioPinEdge edge;
 
   @override
   Pointer<NativeGpioChangeRecord> toNative({Allocator allocator = malloc}) {
     final nativeStructPtr = allocator<NativeGpioChangeRecord>();
     nativeStructPtr.ref
-      ..relativeTime = relativeTime
-      ..edge = edge;
+      ..relativeTime = relativeTime.toWinRTDuration()
+      ..edge = edge.value;
     return nativeStructPtr;
   }
 
@@ -41,12 +46,28 @@ final class GpioChangeRecord implements WinRTStruct {
 }
 
 /// @nodoc
+extension NativeGpioChangeRecordConversion on NativeGpioChangeRecord {
+  /// Converts this [NativeGpioChangeRecord] into a Dart [GpioChangeRecord].
+  GpioChangeRecord toDart() {
+    return GpioChangeRecord(
+        relativeTime.toDartDuration(), GpioPinEdge.from(edge));
+  }
+}
+
+/// @nodoc
 extension PointerNativeGpioChangeRecordConversion
     on Pointer<NativeGpioChangeRecord> {
-  /// Converts this [NativeGpioChangeRecord] to a Dart [GpioChangeRecord].
+  /// Frees the allocated memory for [NativeGpioChangeRecord].
+  void free() {
+    calloc.free(this);
+  }
+
+  /// Converts the referenced [NativeGpioChangeRecord] into a Dart
+  /// [GpioChangeRecord].
   GpioChangeRecord toDart() {
     final ref = this.ref;
-    return GpioChangeRecord(ref.relativeTime, ref.edge);
+    return GpioChangeRecord(
+        ref.relativeTime.toDartDuration(), GpioPinEdge.from(ref.edge));
   }
 
   /// Creates a `List<GpioChangeRecord>` from

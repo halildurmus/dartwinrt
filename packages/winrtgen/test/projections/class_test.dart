@@ -125,14 +125,14 @@ void main() {
     });
 
     test('with default constructor', () {
-      expect(calendarProjection.isActivatable, isTrue);
+      expect(calendarProjection.isActivatableWithNoParams, isTrue);
       expect(calendarProjection.defaultConstructor,
           equals('Calendar() : super(activateClass(_className));'));
     });
 
     test('without default constructor', () {
       final projection = ClassProjection.from('Windows.Networking.HostName');
-      expect(projection.isActivatable, isFalse);
+      expect(projection.isActivatableWithNoParams, isFalse);
       expect(projection.defaultConstructor, isEmpty);
     });
 
@@ -142,11 +142,11 @@ void main() {
     });
 
     test('with _className variable', () {
-      expect(calendarProjection.isActivatable, isTrue);
+      expect(calendarProjection.isActivatableWithNoParams, isTrue);
       expect(calendarProjection.factoryInterfaces, isNotEmpty);
       expect(calendarProjection.staticInterfaces, isEmpty);
       expect(
-          calendarProjection.classNameVariable,
+          calendarProjection.classNameConstant,
           equals(
               "static const _className = 'Windows.Globalization.Calendar';"));
     });
@@ -154,10 +154,10 @@ void main() {
     test('without _className variable', () {
       final projection = ClassProjection.from(
           'Windows.Storage.FileProperties.BasicProperties');
-      expect(projection.isActivatable, isFalse);
+      expect(projection.isActivatableWithNoParams, isFalse);
       expect(projection.factoryInterfaces, isEmpty);
       expect(projection.staticInterfaces, isEmpty);
-      expect(projection.classNameVariable, isEmpty);
+      expect(projection.classNameConstant, isEmpty);
     });
 
     test('has correct number of factory constructors', () {
@@ -165,12 +165,12 @@ void main() {
     });
 
     test('has correct first factory constructor', () {
-      expect(calendarProjection.factoryConstructors.first.method.name,
+      expect(calendarProjection.factoryConstructors.first.methodProjection.name,
           equals('CreateCalendarDefaultCalendarAndClock'));
     });
 
     test('has correct last factory constructor', () {
-      expect(calendarProjection.factoryConstructors.last.method.name,
+      expect(calendarProjection.factoryConstructors.last.methodProjection.name,
           equals('CreateCalendarWithTimeZone'));
     });
 
@@ -179,12 +179,12 @@ void main() {
     });
 
     test('has correct first static method', () {
-      expect(geolocatorProjection.staticMethods.first.method.name,
+      expect(geolocatorProjection.staticMethods.first.methodProjection.name,
           equals('RequestAccessAsync'));
     });
 
     test('has correct last static method', () {
-      expect(geolocatorProjection.staticMethods.last.method.name,
+      expect(geolocatorProjection.staticMethods.last.methodProjection.name,
           equals('get_DefaultGeoposition'));
     });
 
@@ -192,8 +192,8 @@ void main() {
       final classProjection = ClassProjection.from(
           'Windows.ApplicationModel.DataTransfer.StandardDataFormats');
       final methodProjection = classProjection.staticMethods
-          .firstWhere((m) => m.method.name == 'get_Uri');
-      expect(methodProjection.method.method.isDeprecated, isTrue);
+          .firstWhere((m) => m.methodProjection.name == 'get_Uri');
+      expect(methodProjection.methodProjection.method.isDeprecated, isTrue);
       expect(
           methodProjection.toString(),
           startsWith(

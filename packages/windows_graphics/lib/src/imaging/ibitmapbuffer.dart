@@ -72,7 +72,7 @@ class IBitmapBuffer extends IInspectable implements IMemoryBuffer, IClosable {
 
       return value.toDart();
     } finally {
-      free(value);
+      value.free();
     }
   }
 

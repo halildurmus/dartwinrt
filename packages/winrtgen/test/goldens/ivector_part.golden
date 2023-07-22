@@ -34,7 +34,7 @@ final class _IVectorAccessListEntry extends IVector<AccessListEntry> {
 
       return retValuePtr.toDart();
     } finally {
-      free(retValuePtr);
+      retValuePtr.free();
     }
   }
 
@@ -68,7 +68,7 @@ final class _IVectorAccessListEntry extends IVector<AccessListEntry> {
 
       return (retValuePtr.value, index: index.value);
     } finally {
-      free(valueNativeStructPtr);
+      valueNativeStructPtr.free();
       free(index);
       free(retValuePtr);
     }
@@ -91,7 +91,7 @@ final class _IVectorAccessListEntry extends IVector<AccessListEntry> {
                     NativeAccessListEntry value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -113,7 +113,7 @@ final class _IVectorAccessListEntry extends IVector<AccessListEntry> {
                     NativeAccessListEntry value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -135,7 +135,7 @@ final class _IVectorAccessListEntry extends IVector<AccessListEntry> {
                     VTablePointer lpVtbl, NativeAccessListEntry value)>()(
         ptr.ref.lpVtbl, valueNativeStructPtr.ref);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -181,12 +181,10 @@ final class _IVectorAccessListEntry extends IVector<AccessListEntry> {
 
   @override
   void replaceAll(List<AccessListEntry> items) {
-    final nativeStructPtrs = <Pointer<NativeAccessListEntry>>[];
+    final allocator = Arena();
     final itemsArray = calloc<NativeAccessListEntry>(items.length);
     for (var i = 0; i < items.length; i++) {
-      final nativeStructPtr = items[i].toNative();
-      itemsArray[i] = nativeStructPtr.ref;
-      nativeStructPtrs.add(nativeStructPtr);
+      itemsArray[i] = items[i].toNative(allocator: allocator).ref;
     }
 
     final hr = ptr.ref.vtable
@@ -202,7 +200,7 @@ final class _IVectorAccessListEntry extends IVector<AccessListEntry> {
                     Pointer<NativeAccessListEntry> items)>()(
         ptr.ref.lpVtbl, items.length, itemsArray);
 
-    nativeStructPtrs.forEach(free);
+    allocator.releaseAll();
     free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
@@ -241,7 +239,7 @@ final class _IVectorBackgroundTransferFileRange
 
       return retValuePtr.toDart();
     } finally {
-      free(retValuePtr);
+      retValuePtr.free();
     }
   }
 
@@ -275,7 +273,7 @@ final class _IVectorBackgroundTransferFileRange
 
       return (retValuePtr.value, index: index.value);
     } finally {
-      free(valueNativeStructPtr);
+      valueNativeStructPtr.free();
       free(index);
       free(retValuePtr);
     }
@@ -298,7 +296,7 @@ final class _IVectorBackgroundTransferFileRange
                     NativeBackgroundTransferFileRange value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -320,7 +318,7 @@ final class _IVectorBackgroundTransferFileRange
                     NativeBackgroundTransferFileRange value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -342,7 +340,7 @@ final class _IVectorBackgroundTransferFileRange
                     NativeBackgroundTransferFileRange value)>()(
         ptr.ref.lpVtbl, valueNativeStructPtr.ref);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -389,12 +387,10 @@ final class _IVectorBackgroundTransferFileRange
 
   @override
   void replaceAll(List<BackgroundTransferFileRange> items) {
-    final nativeStructPtrs = <Pointer<NativeBackgroundTransferFileRange>>[];
+    final allocator = Arena();
     final itemsArray = calloc<NativeBackgroundTransferFileRange>(items.length);
     for (var i = 0; i < items.length; i++) {
-      final nativeStructPtr = items[i].toNative();
-      itemsArray[i] = nativeStructPtr.ref;
-      nativeStructPtrs.add(nativeStructPtr);
+      itemsArray[i] = items[i].toNative(allocator: allocator).ref;
     }
 
     final hr = ptr.ref.vtable
@@ -412,7 +408,7 @@ final class _IVectorBackgroundTransferFileRange
                 Pointer<NativeBackgroundTransferFileRange>
                     items)>()(ptr.ref.lpVtbl, items.length, itemsArray);
 
-    nativeStructPtrs.forEach(free);
+    allocator.releaseAll();
     free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
@@ -444,7 +440,7 @@ final class _IVectorBasicGeoposition extends IVector<BasicGeoposition> {
 
       return retValuePtr.toDart();
     } finally {
-      free(retValuePtr);
+      retValuePtr.free();
     }
   }
 
@@ -478,7 +474,7 @@ final class _IVectorBasicGeoposition extends IVector<BasicGeoposition> {
 
       return (retValuePtr.value, index: index.value);
     } finally {
-      free(valueNativeStructPtr);
+      valueNativeStructPtr.free();
       free(index);
       free(retValuePtr);
     }
@@ -501,7 +497,7 @@ final class _IVectorBasicGeoposition extends IVector<BasicGeoposition> {
                     NativeBasicGeoposition value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -523,7 +519,7 @@ final class _IVectorBasicGeoposition extends IVector<BasicGeoposition> {
                     NativeBasicGeoposition value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -545,7 +541,7 @@ final class _IVectorBasicGeoposition extends IVector<BasicGeoposition> {
                     VTablePointer lpVtbl, NativeBasicGeoposition value)>()(
         ptr.ref.lpVtbl, valueNativeStructPtr.ref);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -591,12 +587,10 @@ final class _IVectorBasicGeoposition extends IVector<BasicGeoposition> {
 
   @override
   void replaceAll(List<BasicGeoposition> items) {
-    final nativeStructPtrs = <Pointer<NativeBasicGeoposition>>[];
+    final allocator = Arena();
     final itemsArray = calloc<NativeBasicGeoposition>(items.length);
     for (var i = 0; i < items.length; i++) {
-      final nativeStructPtr = items[i].toNative();
-      itemsArray[i] = nativeStructPtr.ref;
-      nativeStructPtrs.add(nativeStructPtr);
+      itemsArray[i] = items[i].toNative(allocator: allocator).ref;
     }
 
     final hr = ptr.ref.vtable
@@ -612,7 +606,7 @@ final class _IVectorBasicGeoposition extends IVector<BasicGeoposition> {
                     Pointer<NativeBasicGeoposition> items)>()(
         ptr.ref.lpVtbl, items.length, itemsArray);
 
-    nativeStructPtrs.forEach(free);
+    allocator.releaseAll();
     free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
@@ -819,7 +813,7 @@ final class _IVectorColor extends IVector<Color> {
 
       return retValuePtr.toDart();
     } finally {
-      free(retValuePtr);
+      retValuePtr.free();
     }
   }
 
@@ -851,7 +845,7 @@ final class _IVectorColor extends IVector<Color> {
 
       return (retValuePtr.value, index: index.value);
     } finally {
-      free(valueNativeStructPtr);
+      valueNativeStructPtr.free();
       free(index);
       free(retValuePtr);
     }
@@ -874,7 +868,7 @@ final class _IVectorColor extends IVector<Color> {
                     VTablePointer lpVtbl, int index, NativeColor value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -896,7 +890,7 @@ final class _IVectorColor extends IVector<Color> {
                     VTablePointer lpVtbl, int index, NativeColor value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -917,7 +911,7 @@ final class _IVectorColor extends IVector<Color> {
                 int Function(VTablePointer lpVtbl, NativeColor value)>()(
         ptr.ref.lpVtbl, valueNativeStructPtr.ref);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -963,12 +957,10 @@ final class _IVectorColor extends IVector<Color> {
 
   @override
   void replaceAll(List<Color> items) {
-    final nativeStructPtrs = <Pointer<NativeColor>>[];
+    final allocator = Arena();
     final itemsArray = calloc<NativeColor>(items.length);
     for (var i = 0; i < items.length; i++) {
-      final nativeStructPtr = items[i].toNative();
-      itemsArray[i] = nativeStructPtr.ref;
-      nativeStructPtrs.add(nativeStructPtr);
+      itemsArray[i] = items[i].toNative(allocator: allocator).ref;
     }
 
     final hr = ptr.ref.vtable
@@ -984,7 +976,7 @@ final class _IVectorColor extends IVector<Color> {
                     Pointer<NativeColor> items)>()(
         ptr.ref.lpVtbl, items.length, itemsArray);
 
-    nativeStructPtrs.forEach(free);
+    allocator.releaseAll();
     free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
@@ -1720,7 +1712,7 @@ final class _IVectorGpioChangeRecord extends IVector<GpioChangeRecord> {
 
       return retValuePtr.toDart();
     } finally {
-      free(retValuePtr);
+      retValuePtr.free();
     }
   }
 
@@ -1754,7 +1746,7 @@ final class _IVectorGpioChangeRecord extends IVector<GpioChangeRecord> {
 
       return (retValuePtr.value, index: index.value);
     } finally {
-      free(valueNativeStructPtr);
+      valueNativeStructPtr.free();
       free(index);
       free(retValuePtr);
     }
@@ -1777,7 +1769,7 @@ final class _IVectorGpioChangeRecord extends IVector<GpioChangeRecord> {
                     NativeGpioChangeRecord value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -1799,7 +1791,7 @@ final class _IVectorGpioChangeRecord extends IVector<GpioChangeRecord> {
                     NativeGpioChangeRecord value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -1821,7 +1813,7 @@ final class _IVectorGpioChangeRecord extends IVector<GpioChangeRecord> {
                     VTablePointer lpVtbl, NativeGpioChangeRecord value)>()(
         ptr.ref.lpVtbl, valueNativeStructPtr.ref);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -1867,12 +1859,10 @@ final class _IVectorGpioChangeRecord extends IVector<GpioChangeRecord> {
 
   @override
   void replaceAll(List<GpioChangeRecord> items) {
-    final nativeStructPtrs = <Pointer<NativeGpioChangeRecord>>[];
+    final allocator = Arena();
     final itemsArray = calloc<NativeGpioChangeRecord>(items.length);
     for (var i = 0; i < items.length; i++) {
-      final nativeStructPtr = items[i].toNative();
-      itemsArray[i] = nativeStructPtr.ref;
-      nativeStructPtrs.add(nativeStructPtr);
+      itemsArray[i] = items[i].toNative(allocator: allocator).ref;
     }
 
     final hr = ptr.ref.vtable
@@ -1888,7 +1878,7 @@ final class _IVectorGpioChangeRecord extends IVector<GpioChangeRecord> {
                     Pointer<NativeGpioChangeRecord> items)>()(
         ptr.ref.lpVtbl, items.length, itemsArray);
 
-    nativeStructPtrs.forEach(free);
+    allocator.releaseAll();
     free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
@@ -1920,7 +1910,7 @@ final class _IVectorGuid extends IVector<Guid> {
 
       return retValuePtr.toDartGuid();
     } finally {
-      free(retValuePtr);
+      retValuePtr.free();
     }
   }
 
@@ -1952,7 +1942,7 @@ final class _IVectorGuid extends IVector<Guid> {
 
       return (retValuePtr.value, index: index.value);
     } finally {
-      free(valueNativeStructPtr);
+      valueNativeStructPtr.free();
       free(index);
       free(retValuePtr);
     }
@@ -1974,7 +1964,7 @@ final class _IVectorGuid extends IVector<Guid> {
                 int Function(VTablePointer lpVtbl, int index, GUID value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -1995,7 +1985,7 @@ final class _IVectorGuid extends IVector<Guid> {
                 int Function(VTablePointer lpVtbl, int index, GUID value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -2014,7 +2004,7 @@ final class _IVectorGuid extends IVector<Guid> {
             .asFunction<int Function(VTablePointer lpVtbl, GUID value)>()(
         ptr.ref.lpVtbl, valueNativeStructPtr.ref);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -2060,12 +2050,10 @@ final class _IVectorGuid extends IVector<Guid> {
 
   @override
   void replaceAll(List<Guid> items) {
-    final nativeStructPtrs = <Pointer<GUID>>[];
+    final allocator = Arena();
     final itemsArray = calloc<GUID>(items.length);
     for (var i = 0; i < items.length; i++) {
-      final nativeStructPtr = items[i].toNativeGUID();
-      itemsArray[i] = nativeStructPtr.ref;
-      nativeStructPtrs.add(nativeStructPtr);
+      itemsArray[i] = items[i].toNativeGUID(allocator: allocator).ref;
     }
 
     final hr = ptr.ref.vtable
@@ -2081,7 +2069,7 @@ final class _IVectorGuid extends IVector<Guid> {
                     Pointer<GUID> items)>()(
         ptr.ref.lpVtbl, items.length, itemsArray);
 
-    nativeStructPtrs.forEach(free);
+    allocator.releaseAll();
     free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
@@ -2638,7 +2626,7 @@ final class _IVectorMediaTimeRange extends IVector<MediaTimeRange> {
 
       return retValuePtr.toDart();
     } finally {
-      free(retValuePtr);
+      retValuePtr.free();
     }
   }
 
@@ -2669,7 +2657,7 @@ final class _IVectorMediaTimeRange extends IVector<MediaTimeRange> {
 
       return (retValuePtr.value, index: index.value);
     } finally {
-      free(valueNativeStructPtr);
+      valueNativeStructPtr.free();
       free(index);
       free(retValuePtr);
     }
@@ -2692,7 +2680,7 @@ final class _IVectorMediaTimeRange extends IVector<MediaTimeRange> {
                     NativeMediaTimeRange value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -2714,7 +2702,7 @@ final class _IVectorMediaTimeRange extends IVector<MediaTimeRange> {
                     NativeMediaTimeRange value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -2736,7 +2724,7 @@ final class _IVectorMediaTimeRange extends IVector<MediaTimeRange> {
                     VTablePointer lpVtbl, NativeMediaTimeRange value)>()(
         ptr.ref.lpVtbl, valueNativeStructPtr.ref);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -2782,12 +2770,10 @@ final class _IVectorMediaTimeRange extends IVector<MediaTimeRange> {
 
   @override
   void replaceAll(List<MediaTimeRange> items) {
-    final nativeStructPtrs = <Pointer<NativeMediaTimeRange>>[];
+    final allocator = Arena();
     final itemsArray = calloc<NativeMediaTimeRange>(items.length);
     for (var i = 0; i < items.length; i++) {
-      final nativeStructPtr = items[i].toNative();
-      itemsArray[i] = nativeStructPtr.ref;
-      nativeStructPtrs.add(nativeStructPtr);
+      itemsArray[i] = items[i].toNative(allocator: allocator).ref;
     }
 
     final hr = ptr.ref.vtable
@@ -2803,7 +2789,7 @@ final class _IVectorMediaTimeRange extends IVector<MediaTimeRange> {
                     Pointer<NativeMediaTimeRange> items)>()(
         ptr.ref.lpVtbl, items.length, itemsArray);
 
-    nativeStructPtrs.forEach(free);
+    allocator.releaseAll();
     free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
@@ -2835,7 +2821,7 @@ final class _IVectorMseTimeRange extends IVector<MseTimeRange> {
 
       return retValuePtr.toDart();
     } finally {
-      free(retValuePtr);
+      retValuePtr.free();
     }
   }
 
@@ -2866,7 +2852,7 @@ final class _IVectorMseTimeRange extends IVector<MseTimeRange> {
 
       return (retValuePtr.value, index: index.value);
     } finally {
-      free(valueNativeStructPtr);
+      valueNativeStructPtr.free();
       free(index);
       free(retValuePtr);
     }
@@ -2889,7 +2875,7 @@ final class _IVectorMseTimeRange extends IVector<MseTimeRange> {
                     NativeMseTimeRange value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -2911,7 +2897,7 @@ final class _IVectorMseTimeRange extends IVector<MseTimeRange> {
                     NativeMseTimeRange value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -2932,7 +2918,7 @@ final class _IVectorMseTimeRange extends IVector<MseTimeRange> {
                 int Function(VTablePointer lpVtbl, NativeMseTimeRange value)>()(
         ptr.ref.lpVtbl, valueNativeStructPtr.ref);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -2978,12 +2964,10 @@ final class _IVectorMseTimeRange extends IVector<MseTimeRange> {
 
   @override
   void replaceAll(List<MseTimeRange> items) {
-    final nativeStructPtrs = <Pointer<NativeMseTimeRange>>[];
+    final allocator = Arena();
     final itemsArray = calloc<NativeMseTimeRange>(items.length);
     for (var i = 0; i < items.length; i++) {
-      final nativeStructPtr = items[i].toNative();
-      itemsArray[i] = nativeStructPtr.ref;
-      nativeStructPtrs.add(nativeStructPtr);
+      itemsArray[i] = items[i].toNative(allocator: allocator).ref;
     }
 
     final hr = ptr.ref.vtable
@@ -2999,7 +2983,7 @@ final class _IVectorMseTimeRange extends IVector<MseTimeRange> {
                     Pointer<NativeMseTimeRange> items)>()(
         ptr.ref.lpVtbl, items.length, itemsArray);
 
-    nativeStructPtrs.forEach(free);
+    allocator.releaseAll();
     free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
@@ -3031,7 +3015,7 @@ final class _IVectorNitRange extends IVector<NitRange> {
 
       return retValuePtr.toDart();
     } finally {
-      free(retValuePtr);
+      retValuePtr.free();
     }
   }
 
@@ -3062,7 +3046,7 @@ final class _IVectorNitRange extends IVector<NitRange> {
 
       return (retValuePtr.value, index: index.value);
     } finally {
-      free(valueNativeStructPtr);
+      valueNativeStructPtr.free();
       free(index);
       free(retValuePtr);
     }
@@ -3085,7 +3069,7 @@ final class _IVectorNitRange extends IVector<NitRange> {
                     VTablePointer lpVtbl, int index, NativeNitRange value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -3107,7 +3091,7 @@ final class _IVectorNitRange extends IVector<NitRange> {
                     VTablePointer lpVtbl, int index, NativeNitRange value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -3128,7 +3112,7 @@ final class _IVectorNitRange extends IVector<NitRange> {
                 int Function(VTablePointer lpVtbl, NativeNitRange value)>()(
         ptr.ref.lpVtbl, valueNativeStructPtr.ref);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -3174,12 +3158,10 @@ final class _IVectorNitRange extends IVector<NitRange> {
 
   @override
   void replaceAll(List<NitRange> items) {
-    final nativeStructPtrs = <Pointer<NativeNitRange>>[];
+    final allocator = Arena();
     final itemsArray = calloc<NativeNitRange>(items.length);
     for (var i = 0; i < items.length; i++) {
-      final nativeStructPtr = items[i].toNative();
-      itemsArray[i] = nativeStructPtr.ref;
-      nativeStructPtrs.add(nativeStructPtr);
+      itemsArray[i] = items[i].toNative(allocator: allocator).ref;
     }
 
     final hr = ptr.ref.vtable
@@ -3195,7 +3177,7 @@ final class _IVectorNitRange extends IVector<NitRange> {
                     Pointer<NativeNitRange> items)>()(
         ptr.ref.lpVtbl, items.length, itemsArray);
 
-    nativeStructPtrs.forEach(free);
+    allocator.releaseAll();
     free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
@@ -3786,7 +3768,7 @@ final class _IVectorPoint extends IVector<Point> {
 
       return retValuePtr.toDart();
     } finally {
-      free(retValuePtr);
+      retValuePtr.free();
     }
   }
 
@@ -3818,7 +3800,7 @@ final class _IVectorPoint extends IVector<Point> {
 
       return (retValuePtr.value, index: index.value);
     } finally {
-      free(valueNativeStructPtr);
+      valueNativeStructPtr.free();
       free(index);
       free(retValuePtr);
     }
@@ -3841,7 +3823,7 @@ final class _IVectorPoint extends IVector<Point> {
                     VTablePointer lpVtbl, int index, NativePoint value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -3863,7 +3845,7 @@ final class _IVectorPoint extends IVector<Point> {
                     VTablePointer lpVtbl, int index, NativePoint value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -3884,7 +3866,7 @@ final class _IVectorPoint extends IVector<Point> {
                 int Function(VTablePointer lpVtbl, NativePoint value)>()(
         ptr.ref.lpVtbl, valueNativeStructPtr.ref);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -3930,12 +3912,10 @@ final class _IVectorPoint extends IVector<Point> {
 
   @override
   void replaceAll(List<Point> items) {
-    final nativeStructPtrs = <Pointer<NativePoint>>[];
+    final allocator = Arena();
     final itemsArray = calloc<NativePoint>(items.length);
     for (var i = 0; i < items.length; i++) {
-      final nativeStructPtr = items[i].toNative();
-      itemsArray[i] = nativeStructPtr.ref;
-      nativeStructPtrs.add(nativeStructPtr);
+      itemsArray[i] = items[i].toNative(allocator: allocator).ref;
     }
 
     final hr = ptr.ref.vtable
@@ -3951,7 +3931,7 @@ final class _IVectorPoint extends IVector<Point> {
                     Pointer<NativePoint> items)>()(
         ptr.ref.lpVtbl, items.length, itemsArray);
 
-    nativeStructPtrs.forEach(free);
+    allocator.releaseAll();
     free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
@@ -3985,7 +3965,7 @@ final class _IVectorPointerDeviceUsage extends IVector<PointerDeviceUsage> {
 
       return retValuePtr.toDart();
     } finally {
-      free(retValuePtr);
+      retValuePtr.free();
     }
   }
 
@@ -4019,7 +3999,7 @@ final class _IVectorPointerDeviceUsage extends IVector<PointerDeviceUsage> {
 
       return (retValuePtr.value, index: index.value);
     } finally {
-      free(valueNativeStructPtr);
+      valueNativeStructPtr.free();
       free(index);
       free(retValuePtr);
     }
@@ -4042,7 +4022,7 @@ final class _IVectorPointerDeviceUsage extends IVector<PointerDeviceUsage> {
                     NativePointerDeviceUsage value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -4064,7 +4044,7 @@ final class _IVectorPointerDeviceUsage extends IVector<PointerDeviceUsage> {
                     NativePointerDeviceUsage value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -4086,7 +4066,7 @@ final class _IVectorPointerDeviceUsage extends IVector<PointerDeviceUsage> {
                     VTablePointer lpVtbl, NativePointerDeviceUsage value)>()(
         ptr.ref.lpVtbl, valueNativeStructPtr.ref);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -4133,12 +4113,10 @@ final class _IVectorPointerDeviceUsage extends IVector<PointerDeviceUsage> {
 
   @override
   void replaceAll(List<PointerDeviceUsage> items) {
-    final nativeStructPtrs = <Pointer<NativePointerDeviceUsage>>[];
+    final allocator = Arena();
     final itemsArray = calloc<NativePointerDeviceUsage>(items.length);
     for (var i = 0; i < items.length; i++) {
-      final nativeStructPtr = items[i].toNative();
-      itemsArray[i] = nativeStructPtr.ref;
-      nativeStructPtrs.add(nativeStructPtr);
+      itemsArray[i] = items[i].toNative(allocator: allocator).ref;
     }
 
     final hr = ptr.ref.vtable
@@ -4154,7 +4132,7 @@ final class _IVectorPointerDeviceUsage extends IVector<PointerDeviceUsage> {
                     Pointer<NativePointerDeviceUsage> items)>()(
         ptr.ref.lpVtbl, items.length, itemsArray);
 
-    nativeStructPtrs.forEach(free);
+    allocator.releaseAll();
     free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
@@ -4186,7 +4164,7 @@ final class _IVectorRect extends IVector<Rect> {
 
       return retValuePtr.toDart();
     } finally {
-      free(retValuePtr);
+      retValuePtr.free();
     }
   }
 
@@ -4218,7 +4196,7 @@ final class _IVectorRect extends IVector<Rect> {
 
       return (retValuePtr.value, index: index.value);
     } finally {
-      free(valueNativeStructPtr);
+      valueNativeStructPtr.free();
       free(index);
       free(retValuePtr);
     }
@@ -4241,7 +4219,7 @@ final class _IVectorRect extends IVector<Rect> {
                     VTablePointer lpVtbl, int index, NativeRect value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -4263,7 +4241,7 @@ final class _IVectorRect extends IVector<Rect> {
                     VTablePointer lpVtbl, int index, NativeRect value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -4283,7 +4261,7 @@ final class _IVectorRect extends IVector<Rect> {
             .asFunction<int Function(VTablePointer lpVtbl, NativeRect value)>()(
         ptr.ref.lpVtbl, valueNativeStructPtr.ref);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -4329,12 +4307,10 @@ final class _IVectorRect extends IVector<Rect> {
 
   @override
   void replaceAll(List<Rect> items) {
-    final nativeStructPtrs = <Pointer<NativeRect>>[];
+    final allocator = Arena();
     final itemsArray = calloc<NativeRect>(items.length);
     for (var i = 0; i < items.length; i++) {
-      final nativeStructPtr = items[i].toNative();
-      itemsArray[i] = nativeStructPtr.ref;
-      nativeStructPtrs.add(nativeStructPtr);
+      itemsArray[i] = items[i].toNative(allocator: allocator).ref;
     }
 
     final hr = ptr.ref.vtable
@@ -4350,7 +4326,7 @@ final class _IVectorRect extends IVector<Rect> {
                     Pointer<NativeRect> items)>()(
         ptr.ref.lpVtbl, items.length, itemsArray);
 
-    nativeStructPtrs.forEach(free);
+    allocator.releaseAll();
     free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
@@ -4382,7 +4358,7 @@ final class _IVectorRectInt32 extends IVector<RectInt32> {
 
       return retValuePtr.toDart();
     } finally {
-      free(retValuePtr);
+      retValuePtr.free();
     }
   }
 
@@ -4413,7 +4389,7 @@ final class _IVectorRectInt32 extends IVector<RectInt32> {
 
       return (retValuePtr.value, index: index.value);
     } finally {
-      free(valueNativeStructPtr);
+      valueNativeStructPtr.free();
       free(index);
       free(retValuePtr);
     }
@@ -4436,7 +4412,7 @@ final class _IVectorRectInt32 extends IVector<RectInt32> {
                     VTablePointer lpVtbl, int index, NativeRectInt32 value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -4458,7 +4434,7 @@ final class _IVectorRectInt32 extends IVector<RectInt32> {
                     VTablePointer lpVtbl, int index, NativeRectInt32 value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -4479,7 +4455,7 @@ final class _IVectorRectInt32 extends IVector<RectInt32> {
                 int Function(VTablePointer lpVtbl, NativeRectInt32 value)>()(
         ptr.ref.lpVtbl, valueNativeStructPtr.ref);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -4525,12 +4501,10 @@ final class _IVectorRectInt32 extends IVector<RectInt32> {
 
   @override
   void replaceAll(List<RectInt32> items) {
-    final nativeStructPtrs = <Pointer<NativeRectInt32>>[];
+    final allocator = Arena();
     final itemsArray = calloc<NativeRectInt32>(items.length);
     for (var i = 0; i < items.length; i++) {
-      final nativeStructPtr = items[i].toNative();
-      itemsArray[i] = nativeStructPtr.ref;
-      nativeStructPtrs.add(nativeStructPtr);
+      itemsArray[i] = items[i].toNative(allocator: allocator).ref;
     }
 
     final hr = ptr.ref.vtable
@@ -4546,7 +4520,7 @@ final class _IVectorRectInt32 extends IVector<RectInt32> {
                     Pointer<NativeRectInt32> items)>()(
         ptr.ref.lpVtbl, items.length, itemsArray);
 
-    nativeStructPtrs.forEach(free);
+    allocator.releaseAll();
     free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
@@ -4578,7 +4552,7 @@ final class _IVectorSize extends IVector<Size> {
 
       return retValuePtr.toDart();
     } finally {
-      free(retValuePtr);
+      retValuePtr.free();
     }
   }
 
@@ -4610,7 +4584,7 @@ final class _IVectorSize extends IVector<Size> {
 
       return (retValuePtr.value, index: index.value);
     } finally {
-      free(valueNativeStructPtr);
+      valueNativeStructPtr.free();
       free(index);
       free(retValuePtr);
     }
@@ -4633,7 +4607,7 @@ final class _IVectorSize extends IVector<Size> {
                     VTablePointer lpVtbl, int index, NativeSize value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -4655,7 +4629,7 @@ final class _IVectorSize extends IVector<Size> {
                     VTablePointer lpVtbl, int index, NativeSize value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -4675,7 +4649,7 @@ final class _IVectorSize extends IVector<Size> {
             .asFunction<int Function(VTablePointer lpVtbl, NativeSize value)>()(
         ptr.ref.lpVtbl, valueNativeStructPtr.ref);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -4721,12 +4695,10 @@ final class _IVectorSize extends IVector<Size> {
 
   @override
   void replaceAll(List<Size> items) {
-    final nativeStructPtrs = <Pointer<NativeSize>>[];
+    final allocator = Arena();
     final itemsArray = calloc<NativeSize>(items.length);
     for (var i = 0; i < items.length; i++) {
-      final nativeStructPtr = items[i].toNative();
-      itemsArray[i] = nativeStructPtr.ref;
-      nativeStructPtrs.add(nativeStructPtr);
+      itemsArray[i] = items[i].toNative(allocator: allocator).ref;
     }
 
     final hr = ptr.ref.vtable
@@ -4742,7 +4714,7 @@ final class _IVectorSize extends IVector<Size> {
                     Pointer<NativeSize> items)>()(
         ptr.ref.lpVtbl, items.length, itemsArray);
 
-    nativeStructPtrs.forEach(free);
+    allocator.releaseAll();
     free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
@@ -4774,7 +4746,7 @@ final class _IVectorSizeUInt32 extends IVector<SizeUInt32> {
 
       return retValuePtr.toDart();
     } finally {
-      free(retValuePtr);
+      retValuePtr.free();
     }
   }
 
@@ -4805,7 +4777,7 @@ final class _IVectorSizeUInt32 extends IVector<SizeUInt32> {
 
       return (retValuePtr.value, index: index.value);
     } finally {
-      free(valueNativeStructPtr);
+      valueNativeStructPtr.free();
       free(index);
       free(retValuePtr);
     }
@@ -4828,7 +4800,7 @@ final class _IVectorSizeUInt32 extends IVector<SizeUInt32> {
                     VTablePointer lpVtbl, int index, NativeSizeUInt32 value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -4850,7 +4822,7 @@ final class _IVectorSizeUInt32 extends IVector<SizeUInt32> {
                     VTablePointer lpVtbl, int index, NativeSizeUInt32 value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -4871,7 +4843,7 @@ final class _IVectorSizeUInt32 extends IVector<SizeUInt32> {
                 int Function(VTablePointer lpVtbl, NativeSizeUInt32 value)>()(
         ptr.ref.lpVtbl, valueNativeStructPtr.ref);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -4917,12 +4889,10 @@ final class _IVectorSizeUInt32 extends IVector<SizeUInt32> {
 
   @override
   void replaceAll(List<SizeUInt32> items) {
-    final nativeStructPtrs = <Pointer<NativeSizeUInt32>>[];
+    final allocator = Arena();
     final itemsArray = calloc<NativeSizeUInt32>(items.length);
     for (var i = 0; i < items.length; i++) {
-      final nativeStructPtr = items[i].toNative();
-      itemsArray[i] = nativeStructPtr.ref;
-      nativeStructPtrs.add(nativeStructPtr);
+      itemsArray[i] = items[i].toNative(allocator: allocator).ref;
     }
 
     final hr = ptr.ref.vtable
@@ -4938,7 +4908,7 @@ final class _IVectorSizeUInt32 extends IVector<SizeUInt32> {
                     Pointer<NativeSizeUInt32> items)>()(
         ptr.ref.lpVtbl, items.length, itemsArray);
 
-    nativeStructPtrs.forEach(free);
+    allocator.releaseAll();
     free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
@@ -4970,7 +4940,7 @@ final class _IVectorSortEntry extends IVector<SortEntry> {
 
       return retValuePtr.toDart();
     } finally {
-      free(retValuePtr);
+      retValuePtr.free();
     }
   }
 
@@ -5001,7 +4971,7 @@ final class _IVectorSortEntry extends IVector<SortEntry> {
 
       return (retValuePtr.value, index: index.value);
     } finally {
-      free(valueNativeStructPtr);
+      valueNativeStructPtr.free();
       free(index);
       free(retValuePtr);
     }
@@ -5024,7 +4994,7 @@ final class _IVectorSortEntry extends IVector<SortEntry> {
                     VTablePointer lpVtbl, int index, NativeSortEntry value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -5046,7 +5016,7 @@ final class _IVectorSortEntry extends IVector<SortEntry> {
                     VTablePointer lpVtbl, int index, NativeSortEntry value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -5067,7 +5037,7 @@ final class _IVectorSortEntry extends IVector<SortEntry> {
                 int Function(VTablePointer lpVtbl, NativeSortEntry value)>()(
         ptr.ref.lpVtbl, valueNativeStructPtr.ref);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -5113,12 +5083,10 @@ final class _IVectorSortEntry extends IVector<SortEntry> {
 
   @override
   void replaceAll(List<SortEntry> items) {
-    final nativeStructPtrs = <Pointer<NativeSortEntry>>[];
+    final allocator = Arena();
     final itemsArray = calloc<NativeSortEntry>(items.length);
     for (var i = 0; i < items.length; i++) {
-      final nativeStructPtr = items[i].toNative();
-      itemsArray[i] = nativeStructPtr.ref;
-      nativeStructPtrs.add(nativeStructPtr);
+      itemsArray[i] = items[i].toNative(allocator: allocator).ref;
     }
 
     final hr = ptr.ref.vtable
@@ -5134,7 +5102,7 @@ final class _IVectorSortEntry extends IVector<SortEntry> {
                     Pointer<NativeSortEntry> items)>()(
         ptr.ref.lpVtbl, items.length, itemsArray);
 
-    nativeStructPtrs.forEach(free);
+    allocator.releaseAll();
     free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
@@ -5171,7 +5139,7 @@ final class _IVectorStorePackageUpdateStatus
 
       return retValuePtr.toDart();
     } finally {
-      free(retValuePtr);
+      retValuePtr.free();
     }
   }
 
@@ -5205,7 +5173,7 @@ final class _IVectorStorePackageUpdateStatus
 
       return (retValuePtr.value, index: index.value);
     } finally {
-      free(valueNativeStructPtr);
+      valueNativeStructPtr.free();
       free(index);
       free(retValuePtr);
     }
@@ -5228,7 +5196,7 @@ final class _IVectorStorePackageUpdateStatus
                     NativeStorePackageUpdateStatus value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -5250,7 +5218,7 @@ final class _IVectorStorePackageUpdateStatus
                     NativeStorePackageUpdateStatus value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -5272,7 +5240,7 @@ final class _IVectorStorePackageUpdateStatus
                     NativeStorePackageUpdateStatus value)>()(
         ptr.ref.lpVtbl, valueNativeStructPtr.ref);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -5319,12 +5287,10 @@ final class _IVectorStorePackageUpdateStatus
 
   @override
   void replaceAll(List<StorePackageUpdateStatus> items) {
-    final nativeStructPtrs = <Pointer<NativeStorePackageUpdateStatus>>[];
+    final allocator = Arena();
     final itemsArray = calloc<NativeStorePackageUpdateStatus>(items.length);
     for (var i = 0; i < items.length; i++) {
-      final nativeStructPtr = items[i].toNative();
-      itemsArray[i] = nativeStructPtr.ref;
-      nativeStructPtrs.add(nativeStructPtr);
+      itemsArray[i] = items[i].toNative(allocator: allocator).ref;
     }
 
     final hr = ptr.ref.vtable
@@ -5340,7 +5306,7 @@ final class _IVectorStorePackageUpdateStatus
                     Pointer<NativeStorePackageUpdateStatus> items)>()(
         ptr.ref.lpVtbl, items.length, itemsArray);
 
-    nativeStructPtrs.forEach(free);
+    allocator.releaseAll();
     free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
@@ -5567,7 +5533,7 @@ final class _IVectorTextRange extends IVector<TextRange> {
 
       return retValuePtr.toDart();
     } finally {
-      free(retValuePtr);
+      retValuePtr.free();
     }
   }
 
@@ -5598,7 +5564,7 @@ final class _IVectorTextRange extends IVector<TextRange> {
 
       return (retValuePtr.value, index: index.value);
     } finally {
-      free(valueNativeStructPtr);
+      valueNativeStructPtr.free();
       free(index);
       free(retValuePtr);
     }
@@ -5621,7 +5587,7 @@ final class _IVectorTextRange extends IVector<TextRange> {
                     VTablePointer lpVtbl, int index, NativeTextRange value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -5643,7 +5609,7 @@ final class _IVectorTextRange extends IVector<TextRange> {
                     VTablePointer lpVtbl, int index, NativeTextRange value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -5664,7 +5630,7 @@ final class _IVectorTextRange extends IVector<TextRange> {
                 int Function(VTablePointer lpVtbl, NativeTextRange value)>()(
         ptr.ref.lpVtbl, valueNativeStructPtr.ref);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -5710,12 +5676,10 @@ final class _IVectorTextRange extends IVector<TextRange> {
 
   @override
   void replaceAll(List<TextRange> items) {
-    final nativeStructPtrs = <Pointer<NativeTextRange>>[];
+    final allocator = Arena();
     final itemsArray = calloc<NativeTextRange>(items.length);
     for (var i = 0; i < items.length; i++) {
-      final nativeStructPtr = items[i].toNative();
-      itemsArray[i] = nativeStructPtr.ref;
-      nativeStructPtrs.add(nativeStructPtr);
+      itemsArray[i] = items[i].toNative(allocator: allocator).ref;
     }
 
     final hr = ptr.ref.vtable
@@ -5731,7 +5695,7 @@ final class _IVectorTextRange extends IVector<TextRange> {
                     Pointer<NativeTextRange> items)>()(
         ptr.ref.lpVtbl, items.length, itemsArray);
 
-    nativeStructPtrs.forEach(free);
+    allocator.releaseAll();
     free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
@@ -5763,7 +5727,7 @@ final class _IVectorTextSegment extends IVector<TextSegment> {
 
       return retValuePtr.toDart();
     } finally {
-      free(retValuePtr);
+      retValuePtr.free();
     }
   }
 
@@ -5794,7 +5758,7 @@ final class _IVectorTextSegment extends IVector<TextSegment> {
 
       return (retValuePtr.value, index: index.value);
     } finally {
-      free(valueNativeStructPtr);
+      valueNativeStructPtr.free();
       free(index);
       free(retValuePtr);
     }
@@ -5817,7 +5781,7 @@ final class _IVectorTextSegment extends IVector<TextSegment> {
                     NativeTextSegment value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -5839,7 +5803,7 @@ final class _IVectorTextSegment extends IVector<TextSegment> {
                     NativeTextSegment value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -5860,7 +5824,7 @@ final class _IVectorTextSegment extends IVector<TextSegment> {
                 int Function(VTablePointer lpVtbl, NativeTextSegment value)>()(
         ptr.ref.lpVtbl, valueNativeStructPtr.ref);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -5906,12 +5870,10 @@ final class _IVectorTextSegment extends IVector<TextSegment> {
 
   @override
   void replaceAll(List<TextSegment> items) {
-    final nativeStructPtrs = <Pointer<NativeTextSegment>>[];
+    final allocator = Arena();
     final itemsArray = calloc<NativeTextSegment>(items.length);
     for (var i = 0; i < items.length; i++) {
-      final nativeStructPtr = items[i].toNative();
-      itemsArray[i] = nativeStructPtr.ref;
-      nativeStructPtrs.add(nativeStructPtr);
+      itemsArray[i] = items[i].toNative(allocator: allocator).ref;
     }
 
     final hr = ptr.ref.vtable
@@ -5927,7 +5889,7 @@ final class _IVectorTextSegment extends IVector<TextSegment> {
                     Pointer<NativeTextSegment> items)>()(
         ptr.ref.lpVtbl, items.length, itemsArray);
 
-    nativeStructPtrs.forEach(free);
+    allocator.releaseAll();
     free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
@@ -6668,7 +6630,7 @@ final class _IVectorWindowId extends IVector<WindowId> {
 
       return retValuePtr.toDart();
     } finally {
-      free(retValuePtr);
+      retValuePtr.free();
     }
   }
 
@@ -6699,7 +6661,7 @@ final class _IVectorWindowId extends IVector<WindowId> {
 
       return (retValuePtr.value, index: index.value);
     } finally {
-      free(valueNativeStructPtr);
+      valueNativeStructPtr.free();
       free(index);
       free(retValuePtr);
     }
@@ -6722,7 +6684,7 @@ final class _IVectorWindowId extends IVector<WindowId> {
                     VTablePointer lpVtbl, int index, NativeWindowId value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -6744,7 +6706,7 @@ final class _IVectorWindowId extends IVector<WindowId> {
                     VTablePointer lpVtbl, int index, NativeWindowId value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -6765,7 +6727,7 @@ final class _IVectorWindowId extends IVector<WindowId> {
                 int Function(VTablePointer lpVtbl, NativeWindowId value)>()(
         ptr.ref.lpVtbl, valueNativeStructPtr.ref);
 
-    free(valueNativeStructPtr);
+    valueNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -6811,12 +6773,10 @@ final class _IVectorWindowId extends IVector<WindowId> {
 
   @override
   void replaceAll(List<WindowId> items) {
-    final nativeStructPtrs = <Pointer<NativeWindowId>>[];
+    final allocator = Arena();
     final itemsArray = calloc<NativeWindowId>(items.length);
     for (var i = 0; i < items.length; i++) {
-      final nativeStructPtr = items[i].toNative();
-      itemsArray[i] = nativeStructPtr.ref;
-      nativeStructPtrs.add(nativeStructPtr);
+      itemsArray[i] = items[i].toNative(allocator: allocator).ref;
     }
 
     final hr = ptr.ref.vtable
@@ -6832,7 +6792,7 @@ final class _IVectorWindowId extends IVector<WindowId> {
                     Pointer<NativeWindowId> items)>()(
         ptr.ref.lpVtbl, items.length, itemsArray);
 
-    nativeStructPtrs.forEach(free);
+    allocator.releaseAll();
     free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);

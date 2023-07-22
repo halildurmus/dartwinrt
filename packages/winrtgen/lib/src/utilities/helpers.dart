@@ -205,8 +205,8 @@ String safeIdentifierForString(String name) => badIdentifierNames.contains(name)
 
 /// Sorts [importLines] according to Effective Dart: Style guidelines.
 /// See https://dart.dev/guides/language/effective-dart/style#ordering
-List<String> sortImports(List<String> importLines) {
-  if (importLines.isEmpty) return importLines;
+List<String> sortImports(Iterable<String> importLines) {
+  if (importLines.isEmpty) return importLines.toList();
 
   final dartImports = SplayTreeSet<String>();
   final packageImports = SplayTreeSet<String>();

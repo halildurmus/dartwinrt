@@ -34,7 +34,7 @@ final class _IMapViewGuidInspectable<V> extends IMapView<Guid, V> {
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, keyNativeStructPtr.ref, retValuePtr);
 
-    free(keyNativeStructPtr);
+    keyNativeStructPtr.free();
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -69,7 +69,7 @@ final class _IMapViewGuidInspectable<V> extends IMapView<Guid, V> {
                       Pointer<Bool> retValuePtr)>()(
           ptr.ref.lpVtbl, keyNativeStructPtr.ref, retValuePtr);
 
-      free(keyNativeStructPtr);
+      keyNativeStructPtr.free();
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -101,7 +101,7 @@ final class _IMapViewGuidObject extends IMapView<Guid, Object?> {
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, keyNativeStructPtr.ref, retValuePtr);
 
-    free(keyNativeStructPtr);
+    keyNativeStructPtr.free();
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -136,7 +136,7 @@ final class _IMapViewGuidObject extends IMapView<Guid, Object?> {
                       Pointer<Bool> retValuePtr)>()(
           ptr.ref.lpVtbl, keyNativeStructPtr.ref, retValuePtr);
 
-      free(keyNativeStructPtr);
+      keyNativeStructPtr.free();
 
       if (FAILED(hr)) throwWindowsException(hr);
 

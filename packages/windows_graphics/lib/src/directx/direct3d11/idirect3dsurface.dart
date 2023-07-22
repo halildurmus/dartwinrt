@@ -52,7 +52,7 @@ class IDirect3DSurface extends IInspectable implements IClosable {
 
       return value.toDart();
     } finally {
-      free(value);
+      value.free();
     }
   }
 

@@ -4,25 +4,29 @@
 
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
+// ignore_for_file: unnecessary_import, unused_import
+
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
+import 'package:win32/win32.dart' hide DocumentProperties;
 
 import '../../internal.dart';
 import '../winrt_struct.dart';
+import 'vector3.dart';
 
 /// Describes a plane (a flat, two-dimensional surface).
 final class Plane implements WinRTStruct {
   Plane(this.normal, this.d);
 
-  final NativeVector3 normal;
+  final Vector3 normal;
   final double d;
 
   @override
   Pointer<NativePlane> toNative({Allocator allocator = malloc}) {
     final nativeStructPtr = allocator<NativePlane>();
     nativeStructPtr.ref
-      ..normal = normal
+      ..normal = normal.toNative(allocator: allocator).ref
       ..d = d;
     return nativeStructPtr;
   }
@@ -38,11 +42,24 @@ final class Plane implements WinRTStruct {
 }
 
 /// @nodoc
+extension NativePlaneConversion on NativePlane {
+  /// Converts this [NativePlane] into a Dart [Plane].
+  Plane toDart() {
+    return Plane(normal.toDart(), d);
+  }
+}
+
+/// @nodoc
 extension PointerNativePlaneConversion on Pointer<NativePlane> {
-  /// Converts this [NativePlane] to a Dart [Plane].
+  /// Frees the allocated memory for [NativePlane].
+  void free() {
+    calloc.free(this);
+  }
+
+  /// Converts the referenced [NativePlane] into a Dart [Plane].
   Plane toDart() {
     final ref = this.ref;
-    return Plane(ref.normal, ref.d);
+    return Plane(ref.normal.toDart(), ref.d);
   }
 
   /// Creates a `List<Plane>` from `Pointer<NativePlane>`.

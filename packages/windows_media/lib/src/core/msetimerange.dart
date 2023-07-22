@@ -4,9 +4,12 @@
 
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
+// ignore_for_file: unnecessary_import, unused_import
+
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
+import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -14,15 +17,15 @@ import 'package:windows_foundation/windows_foundation.dart';
 final class MseTimeRange implements WinRTStruct {
   MseTimeRange(this.start, this.end);
 
-  final int start;
-  final int end;
+  final Duration start;
+  final Duration end;
 
   @override
   Pointer<NativeMseTimeRange> toNative({Allocator allocator = malloc}) {
     final nativeStructPtr = allocator<NativeMseTimeRange>();
     nativeStructPtr.ref
-      ..start = start
-      ..end = end;
+      ..start = start.toWinRTDuration()
+      ..end = end.toWinRTDuration();
     return nativeStructPtr;
   }
 
@@ -37,11 +40,24 @@ final class MseTimeRange implements WinRTStruct {
 }
 
 /// @nodoc
+extension NativeMseTimeRangeConversion on NativeMseTimeRange {
+  /// Converts this [NativeMseTimeRange] into a Dart [MseTimeRange].
+  MseTimeRange toDart() {
+    return MseTimeRange(start.toDartDuration(), end.toDartDuration());
+  }
+}
+
+/// @nodoc
 extension PointerNativeMseTimeRangeConversion on Pointer<NativeMseTimeRange> {
-  /// Converts this [NativeMseTimeRange] to a Dart [MseTimeRange].
+  /// Frees the allocated memory for [NativeMseTimeRange].
+  void free() {
+    calloc.free(this);
+  }
+
+  /// Converts the referenced [NativeMseTimeRange] into a Dart [MseTimeRange].
   MseTimeRange toDart() {
     final ref = this.ref;
-    return MseTimeRange(ref.start, ref.end);
+    return MseTimeRange(ref.start.toDartDuration(), ref.end.toDartDuration());
   }
 
   /// Creates a `List<MseTimeRange>` from `Pointer<NativeMseTimeRange>`.

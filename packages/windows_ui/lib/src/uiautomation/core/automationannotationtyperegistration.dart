@@ -4,9 +4,12 @@
 
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
+// ignore_for_file: unnecessary_import, unused_import
+
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
+import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -37,10 +40,26 @@ final class AutomationAnnotationTypeRegistration implements WinRTStruct {
 }
 
 /// @nodoc
+extension NativeAutomationAnnotationTypeRegistrationConversion
+    on NativeAutomationAnnotationTypeRegistration {
+  /// Converts this [NativeAutomationAnnotationTypeRegistration] into a Dart
+  /// [AutomationAnnotationTypeRegistration].
+  AutomationAnnotationTypeRegistration toDart() {
+    return AutomationAnnotationTypeRegistration(localId);
+  }
+}
+
+/// @nodoc
 extension PointerNativeAutomationAnnotationTypeRegistrationConversion
     on Pointer<NativeAutomationAnnotationTypeRegistration> {
-  /// Converts this [NativeAutomationAnnotationTypeRegistration] to a Dart
-  /// [AutomationAnnotationTypeRegistration].
+  /// Frees the allocated memory for
+  /// [NativeAutomationAnnotationTypeRegistration].
+  void free() {
+    calloc.free(this);
+  }
+
+  /// Converts the referenced [NativeAutomationAnnotationTypeRegistration]
+  /// into a Dart [AutomationAnnotationTypeRegistration].
   AutomationAnnotationTypeRegistration toDart() {
     final ref = this.ref;
     return AutomationAnnotationTypeRegistration(ref.localId);

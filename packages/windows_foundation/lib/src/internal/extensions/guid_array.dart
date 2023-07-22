@@ -4,10 +4,16 @@
 
 import 'dart:ffi';
 
+import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
 
 /// @nodoc
 extension GuidArrayToListConversion on Pointer<GUID> {
+  /// Frees the memory allocated by the referenced [GUID].
+  void free() {
+    calloc.free(this);
+  }
+
   /// Creates a [List] from `Pointer<GUID>`.
   ///
   /// [length] must not be greater than the number of elements stored inside the

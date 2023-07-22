@@ -53,7 +53,7 @@ class ICoreAutomationRemoteOperation2 extends IInspectable {
         operandIdNativeStructPtr.ref,
         connectionBoundObject?.ptr.ref.lpVtbl ?? nullptr);
 
-    free(operandIdNativeStructPtr);
+    operandIdNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

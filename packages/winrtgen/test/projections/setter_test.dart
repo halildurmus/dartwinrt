@@ -253,7 +253,7 @@ void main() {
       expect(projection.identifiers,
           equals('ptr.ref.lpVtbl, valueNativeStructPtr.ref'));
       expect(projection.parametersPostamble,
-          equals(['free(valueNativeStructPtr);']));
+          equals(['valueNativeStructPtr.free();']));
       expect(projection.failedCheck, equals(failedCheck()));
       expect(projection.nullCheck, isEmpty);
       expect(projection.returnStatement, isEmpty);
@@ -542,7 +542,7 @@ void main() {
       expect(projection.identifiers,
           equals('ptr.ref.lpVtbl, valueNativeStructPtr.ref'));
       expect(projection.parametersPostamble,
-          equals(['free(valueNativeStructPtr);']));
+          equals(['valueNativeStructPtr.free();']));
       expect(projection.failedCheck, equals(failedCheck()));
       expect(projection.nullCheck, isEmpty);
       expect(projection.returnStatement, isEmpty);

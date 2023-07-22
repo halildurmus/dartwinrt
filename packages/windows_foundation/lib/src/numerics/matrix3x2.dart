@@ -4,9 +4,12 @@
 
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
+// ignore_for_file: unnecessary_import, unused_import
+
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
+import 'package:win32/win32.dart' hide DocumentProperties;
 
 import '../../internal.dart';
 import '../winrt_struct.dart';
@@ -58,8 +61,21 @@ final class Matrix3x2 implements WinRTStruct {
 }
 
 /// @nodoc
+extension NativeMatrix3x2Conversion on NativeMatrix3x2 {
+  /// Converts this [NativeMatrix3x2] into a Dart [Matrix3x2].
+  Matrix3x2 toDart() {
+    return Matrix3x2(m11, m12, m21, m22, m31, m32);
+  }
+}
+
+/// @nodoc
 extension PointerNativeMatrix3x2Conversion on Pointer<NativeMatrix3x2> {
-  /// Converts this [NativeMatrix3x2] to a Dart [Matrix3x2].
+  /// Frees the allocated memory for [NativeMatrix3x2].
+  void free() {
+    calloc.free(this);
+  }
+
+  /// Converts the referenced [NativeMatrix3x2] into a Dart [Matrix3x2].
   Matrix3x2 toDart() {
     final ref = this.ref;
     return Matrix3x2(ref.m11, ref.m12, ref.m21, ref.m22, ref.m31, ref.m32);

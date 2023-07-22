@@ -54,13 +54,13 @@ class ICoreAutomationRegistrarStatics extends IInspectable {
                           result)>()(
           ptr.ref.lpVtbl, guidNativeStructPtr.ref, result);
 
-      free(guidNativeStructPtr);
+      guidNativeStructPtr.free();
 
       if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDart();
     } finally {
-      free(result);
+      result.free();
     }
   }
 
@@ -83,7 +83,7 @@ class ICoreAutomationRegistrarStatics extends IInspectable {
                     NativeAutomationAnnotationTypeRegistration registration)>()(
         ptr.ref.lpVtbl, registrationNativeStructPtr.ref);
 
-    free(registrationNativeStructPtr);
+    registrationNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

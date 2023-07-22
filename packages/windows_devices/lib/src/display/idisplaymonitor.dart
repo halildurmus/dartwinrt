@@ -175,7 +175,7 @@ class IDisplayMonitor extends IInspectable {
 
       return value.toDart();
     } finally {
-      free(value);
+      value.free();
     }
   }
 
@@ -247,7 +247,7 @@ class IDisplayMonitor extends IInspectable {
 
       return value.toDart();
     } finally {
-      free(value);
+      value.free();
     }
   }
 
@@ -349,7 +349,7 @@ class IDisplayMonitor extends IInspectable {
 
       return value.toDart();
     } finally {
-      free(value);
+      value.free();
     }
   }
 
@@ -373,7 +373,7 @@ class IDisplayMonitor extends IInspectable {
 
       return value.toDart();
     } finally {
-      free(value);
+      value.free();
     }
   }
 
@@ -397,7 +397,7 @@ class IDisplayMonitor extends IInspectable {
 
       return value.toDart();
     } finally {
-      free(value);
+      value.free();
     }
   }
 
@@ -421,7 +421,7 @@ class IDisplayMonitor extends IInspectable {
 
       return value.toDart();
     } finally {
-      free(value);
+      value.free();
     }
   }
 

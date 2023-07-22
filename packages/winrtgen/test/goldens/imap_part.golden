@@ -34,7 +34,7 @@ final class _IMapGuidInspectable<V> extends IMap<Guid, V> {
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, keyNativeStructPtr.ref, retValuePtr);
 
-    free(keyNativeStructPtr);
+    keyNativeStructPtr.free();
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -69,7 +69,7 @@ final class _IMapGuidInspectable<V> extends IMap<Guid, V> {
                       Pointer<Bool> retValuePtr)>()(
           ptr.ref.lpVtbl, keyNativeStructPtr.ref, retValuePtr);
 
-      free(keyNativeStructPtr);
+      keyNativeStructPtr.free();
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -106,7 +106,7 @@ final class _IMapGuidInspectable<V> extends IMap<Guid, V> {
               (value as IInspectable).ptr.ref.lpVtbl,
               retValuePtr);
 
-      free(keyNativeStructPtr);
+      keyNativeStructPtr.free();
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -130,7 +130,7 @@ final class _IMapGuidInspectable<V> extends IMap<Guid, V> {
             .asFunction<int Function(VTablePointer lpVtbl, GUID key)>()(
         ptr.ref.lpVtbl, keyNativeStructPtr.ref);
 
-    free(keyNativeStructPtr);
+    keyNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -157,7 +157,7 @@ final class _IMapGuidObject extends IMap<Guid, Object?> {
                     Pointer<COMObject> retValuePtr)>()(
         ptr.ref.lpVtbl, keyNativeStructPtr.ref, retValuePtr);
 
-    free(keyNativeStructPtr);
+    keyNativeStructPtr.free();
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -192,7 +192,7 @@ final class _IMapGuidObject extends IMap<Guid, Object?> {
                       Pointer<Bool> retValuePtr)>()(
           ptr.ref.lpVtbl, keyNativeStructPtr.ref, retValuePtr);
 
-      free(keyNativeStructPtr);
+      keyNativeStructPtr.free();
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -229,7 +229,7 @@ final class _IMapGuidObject extends IMap<Guid, Object?> {
               value?.intoBox().ptr.ref.lpVtbl ?? nullptr,
               retValuePtr);
 
-      free(keyNativeStructPtr);
+      keyNativeStructPtr.free();
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -253,7 +253,7 @@ final class _IMapGuidObject extends IMap<Guid, Object?> {
             .asFunction<int Function(VTablePointer lpVtbl, GUID key)>()(
         ptr.ref.lpVtbl, keyNativeStructPtr.ref);
 
-    free(keyNativeStructPtr);
+    keyNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

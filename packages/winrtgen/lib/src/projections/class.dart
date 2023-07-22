@@ -9,7 +9,7 @@ import '../utilities/utilities.dart';
 import 'interface.dart';
 import 'method.dart';
 
-class ClassProjection extends InterfaceProjection {
+base class ClassProjection extends InterfaceProjection {
   ClassProjection(super.typeDef, {super.comment});
 
   /// Attempts to create a [ClassProjection] from [fullyQualifiedType] by
@@ -17,7 +17,7 @@ class ClassProjection extends InterfaceProjection {
   ///
   /// ```dart
   /// final projection =
-  ///    ClassProjection.from('Windows.Storage.Pickers.FileOpenPicker');
+  ///     ClassProjection.from('Windows.Storage.Pickers.FileOpenPicker');
   /// ```
   ///
   /// Throws an [Exception] if no [TypeDef] matching [fullyQualifiedType] is
@@ -38,15 +38,16 @@ class ClassProjection extends InterfaceProjection {
       };
 
   /// Whether the class is an activatable runtime class.
-  bool get isActivatable => typeDef.customAttributes
+  bool get isActivatableWithNoParams => typeDef.customAttributes
       .where((attribute) => attribute.name == activatableAttribute)
       .where((attribute) => attribute.parameters.length == 2)
       .isNotEmpty;
 
-  String get defaultConstructor =>
-      isActivatable ? '$shortName() : super(activateClass(_className));' : '';
+  String get defaultConstructor => isActivatableWithNoParams
+      ? '$shortName() : super(activateClass(_className));'
+      : '';
 
-  String get classNameVariable => (isActivatable ||
+  String get classNameConstant => (isActivatableWithNoParams ||
           factoryInterfaces.isNotEmpty ||
           staticInterfaces.isNotEmpty)
       ? 'static const _className = ${quote(typeDef.name)};'
@@ -101,6 +102,7 @@ class ClassProjection extends InterfaceProjection {
               .map(StaticMethodProjection.new)
       ];
 
+  @override
   String get projection => '''
 $header
 $importHeader
@@ -110,61 +112,51 @@ $classHeader {
   $defaultConstructor
   $namedConstructor
 
-  $classNameVariable
+  $classNameConstant
 
   ${factoryConstructors.join('\n')}
   ${staticMethods.join('\n')}
   ${methodForwarders.join('\n')}
 }
 ''';
-
-  @override
-  String toString() {
-    try {
-      return projection;
-    } catch (_) {
-      print("Failed to project class '${typeDef.fullyQualifiedName}'.");
-      rethrow;
-    }
-  }
 }
 
 final class FactoryConstructorProjection {
-  FactoryConstructorProjection(this.method)
-      : className = method.header.split(' ').first,
-        shortName = method.method.parent.shortName;
+  FactoryConstructorProjection(this.methodProjection);
 
-  final MethodProjection method;
-  final String className;
-  final String shortName;
+  final MethodProjection methodProjection;
 
-  @override
-  String toString() => '''
-  factory $className.${method.camelCasedName}(${method.methodParams}) =>
-      createActivationFactory(
-              $shortName.fromPtr, _className, IID_$shortName)
-          .${method.shortForm};
-''';
-}
+  String get className => methodProjection.header.split(' ').first;
 
-final class StaticMethodProjection {
-  StaticMethodProjection(this.method)
-      : shortName = method.method.parent.shortName;
-
-  final MethodProjection method;
-  final String shortName;
+  String get shortName => methodProjection.method.parent.shortName;
 
   @override
   String toString() {
+    final MethodProjection(:camelCasedName, :methodParams, :shortForm) =
+        methodProjection;
+    return '''
+  factory $className.$camelCasedName($methodParams) =>
+      createActivationFactory($shortName.fromPtr, _className, IID_$shortName).$shortForm;
+''';
+  }
+}
+
+final class StaticMethodProjection {
+  StaticMethodProjection(this.methodProjection);
+
+  final MethodProjection methodProjection;
+
+  String get shortName => methodProjection.method.parent.shortName;
+
+  @override
+  String toString() {
+    final MethodProjection(:header, :method, :shortForm) = methodProjection;
     final deprecatedAnnotation =
-        method.method.isDeprecated ? method.method.deprecatedAnnotation : null;
+        method.isDeprecated ? method.deprecatedAnnotation : null;
     return [
       if (deprecatedAnnotation != null) deprecatedAnnotation,
       '''
-  static ${method.header} =>
-      createActivationFactory(
-              $shortName.fromPtr, _className, IID_$shortName)
-          .${method.shortForm};
+    static $header => createActivationFactory($shortName.fromPtr, _className, IID_$shortName).$shortForm;
 '''
     ].join('\n');
   }

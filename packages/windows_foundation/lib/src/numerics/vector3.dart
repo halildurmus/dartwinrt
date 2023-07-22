@@ -4,9 +4,12 @@
 
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
+// ignore_for_file: unnecessary_import, unused_import
+
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
+import 'package:win32/win32.dart' hide DocumentProperties;
 
 import '../../internal.dart';
 import '../winrt_struct.dart';
@@ -40,8 +43,21 @@ final class Vector3 implements WinRTStruct {
 }
 
 /// @nodoc
+extension NativeVector3Conversion on NativeVector3 {
+  /// Converts this [NativeVector3] into a Dart [Vector3].
+  Vector3 toDart() {
+    return Vector3(x, y, z);
+  }
+}
+
+/// @nodoc
 extension PointerNativeVector3Conversion on Pointer<NativeVector3> {
-  /// Converts this [NativeVector3] to a Dart [Vector3].
+  /// Frees the allocated memory for [NativeVector3].
+  void free() {
+    calloc.free(this);
+  }
+
+  /// Converts the referenced [NativeVector3] into a Dart [Vector3].
   Vector3 toDart() {
     final ref = this.ref;
     return Vector3(ref.x, ref.y, ref.z);

@@ -80,12 +80,14 @@ base class MethodProjection {
   factory MethodProjection.fromTypeAndMethodName(
       String fullyQualifiedType, String methodName) {
     final interfaceProjection = InterfaceProjection.from(fullyQualifiedType);
-    final methodProjections = interfaceProjection.methodProjections
-        .where((methodProjection) => methodProjection.name == methodName);
-    if (methodProjections.isEmpty) {
-      throw WinRTGenException("Can't find $methodName");
+    final methodProjection = interfaceProjection.methodProjections
+        .where((methodProjection) => methodProjection.name == methodName)
+        .firstOrNull;
+    if (methodProjection == null) {
+      throw WinRTGenException(
+          "Could not find method '$methodName' in '$fullyQualifiedType'.");
     }
-    return methodProjections.first;
+    return methodProjection;
   }
 
   /// The method name without uppercased first letter.
@@ -164,12 +166,17 @@ base class MethodProjection {
   ///   e.g. `period` or `second` (get property)
   ///   e.g. `second = value` (set property)
   String get shortForm {
-    final identifiers =
-        exposedParams.map((param) => param.identifier).join(', ');
+    final identifiers = exposedParams.map((p) => p.identifier).join(', ');
     return '$camelCasedName($identifiers)';
   }
 
-  List<String> get preambles => paramProjection.preambles;
+  List<String> get preambles => [
+        if (parameters
+            .whereType<StructParameterProjection>()
+            .any((param) => param.needsAllocator))
+          'final allocator = Arena();',
+        ...paramProjection.preambles
+      ];
 
   List<String> get parametersPreamble => parameters
       .where((param) => param.preambles.isNotEmpty)
@@ -177,11 +184,17 @@ base class MethodProjection {
       .expand((param) => param)
       .toList();
 
-  List<String> get parametersPostamble => parameters
-      .where((param) => param.postambles.isNotEmpty)
-      .map((param) => param.postambles)
-      .expand((param) => param)
-      .toList();
+  List<String> get parametersPostamble => [
+        ...parameters
+            .where((param) => param.postambles.isNotEmpty)
+            .map((param) => param.postambles)
+            .expand((param) => param)
+            .toList(),
+        if (parameters
+            .whereType<StructParameterProjection>()
+            .any((param) => param.needsAllocator))
+          'allocator.releaseAll();'
+      ];
 
   String get nativeParams => [
         'VTablePointer lpVtbl',

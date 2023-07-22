@@ -4,9 +4,12 @@
 
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
+// ignore_for_file: unnecessary_import, unused_import
+
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
+import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -16,24 +19,24 @@ final class SpatialBoundingFrustum implements WinRTStruct {
   SpatialBoundingFrustum(
       this.near, this.far, this.right, this.left, this.top, this.bottom);
 
-  final NativePlane near;
-  final NativePlane far;
-  final NativePlane right;
-  final NativePlane left;
-  final NativePlane top;
-  final NativePlane bottom;
+  final Plane near;
+  final Plane far;
+  final Plane right;
+  final Plane left;
+  final Plane top;
+  final Plane bottom;
 
   @override
   Pointer<NativeSpatialBoundingFrustum> toNative(
       {Allocator allocator = malloc}) {
     final nativeStructPtr = allocator<NativeSpatialBoundingFrustum>();
     nativeStructPtr.ref
-      ..near = near
-      ..far = far
-      ..right = right
-      ..left = left
-      ..top = top
-      ..bottom = bottom;
+      ..near = near.toNative(allocator: allocator).ref
+      ..far = far.toNative(allocator: allocator).ref
+      ..right = right.toNative(allocator: allocator).ref
+      ..left = left.toNative(allocator: allocator).ref
+      ..top = top.toNative(allocator: allocator).ref
+      ..bottom = bottom.toNative(allocator: allocator).ref;
     return nativeStructPtr;
   }
 
@@ -60,14 +63,35 @@ final class SpatialBoundingFrustum implements WinRTStruct {
 }
 
 /// @nodoc
+extension NativeSpatialBoundingFrustumConversion
+    on NativeSpatialBoundingFrustum {
+  /// Converts this [NativeSpatialBoundingFrustum] into a Dart
+  /// [SpatialBoundingFrustum].
+  SpatialBoundingFrustum toDart() {
+    return SpatialBoundingFrustum(near.toDart(), far.toDart(), right.toDart(),
+        left.toDart(), top.toDart(), bottom.toDart());
+  }
+}
+
+/// @nodoc
 extension PointerNativeSpatialBoundingFrustumConversion
     on Pointer<NativeSpatialBoundingFrustum> {
-  /// Converts this [NativeSpatialBoundingFrustum] to a Dart
+  /// Frees the allocated memory for [NativeSpatialBoundingFrustum].
+  void free() {
+    calloc.free(this);
+  }
+
+  /// Converts the referenced [NativeSpatialBoundingFrustum] into a Dart
   /// [SpatialBoundingFrustum].
   SpatialBoundingFrustum toDart() {
     final ref = this.ref;
     return SpatialBoundingFrustum(
-        ref.near, ref.far, ref.right, ref.left, ref.top, ref.bottom);
+        ref.near.toDart(),
+        ref.far.toDart(),
+        ref.right.toDart(),
+        ref.left.toDart(),
+        ref.top.toDart(),
+        ref.bottom.toDart());
   }
 
   /// Creates a `List<SpatialBoundingFrustum>` from

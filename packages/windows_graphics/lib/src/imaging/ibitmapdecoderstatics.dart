@@ -50,7 +50,7 @@ class IBitmapDecoderStatics extends IInspectable {
 
       return value.toDartGuid();
     } finally {
-      free(value);
+      value.free();
     }
   }
 
@@ -74,7 +74,7 @@ class IBitmapDecoderStatics extends IInspectable {
 
       return value.toDartGuid();
     } finally {
-      free(value);
+      value.free();
     }
   }
 
@@ -98,7 +98,7 @@ class IBitmapDecoderStatics extends IInspectable {
 
       return value.toDartGuid();
     } finally {
-      free(value);
+      value.free();
     }
   }
 
@@ -122,7 +122,7 @@ class IBitmapDecoderStatics extends IInspectable {
 
       return value.toDartGuid();
     } finally {
-      free(value);
+      value.free();
     }
   }
 
@@ -146,7 +146,7 @@ class IBitmapDecoderStatics extends IInspectable {
 
       return value.toDartGuid();
     } finally {
-      free(value);
+      value.free();
     }
   }
 
@@ -170,7 +170,7 @@ class IBitmapDecoderStatics extends IInspectable {
 
       return value.toDartGuid();
     } finally {
-      free(value);
+      value.free();
     }
   }
 
@@ -194,7 +194,7 @@ class IBitmapDecoderStatics extends IInspectable {
 
       return value.toDartGuid();
     } finally {
-      free(value);
+      value.free();
     }
   }
 
@@ -283,7 +283,7 @@ class IBitmapDecoderStatics extends IInspectable {
             stream?.ptr.ref.lpVtbl ?? nullptr,
             asyncInfo);
 
-    free(decoderIdNativeStructPtr);
+    decoderIdNativeStructPtr.free();
 
     if (FAILED(hr)) {
       free(asyncInfo);

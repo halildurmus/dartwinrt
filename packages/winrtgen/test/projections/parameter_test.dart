@@ -297,12 +297,13 @@ void main() {
       expect(projection.into, equals('valueNativeStructPtr.ref'));
       expect(projection.toListArg, isEmpty);
       expect(projection.toListCreator, isEmpty);
-      expect(projection.toListInto, equals('value[i].toNativeGUID()'));
+      expect(projection.toListInto,
+          equals('value[i].toNativeGUID(allocator: allocator)'));
       expect(projection.toListIdentifier, isEmpty);
       expect(projection.preambles,
           equals(['final valueNativeStructPtr = value.toNativeGUID();']));
       expect(projection.nullCheck, isEmpty);
-      expect(projection.postambles, equals(['free(valueNativeStructPtr);']));
+      expect(projection.postambles, equals(['valueNativeStructPtr.free();']));
       expect(projection.identifier, equals('value'));
       expect(projection.localIdentifier, equals('valueNativeStructPtr.ref'));
     });
@@ -879,7 +880,7 @@ void main() {
       expect(projection.localIdentifier, equals('valueHString'));
     });
 
-    test('projects struct', () {
+    test('projects struct (1)', () {
       final methodProjection = MethodProjection.fromTypeAndMethodName(
           'Windows.Foundation.IPropertyValueStatics', 'CreatePoint');
       final projection = methodProjection.parameters.first;
@@ -895,12 +896,45 @@ void main() {
       expect(projection.into, equals('valueNativeStructPtr.ref'));
       expect(projection.toListArg, isEmpty);
       expect(projection.toListCreator, isEmpty);
-      expect(projection.toListInto, equals('value[i].toNative()'));
+      expect(projection.toListInto,
+          equals('value[i].toNative(allocator: allocator)'));
       expect(projection.toListIdentifier, isEmpty);
       expect(projection.preambles,
           equals(['final valueNativeStructPtr = value.toNative();']));
       expect(projection.nullCheck, isEmpty);
-      expect(projection.postambles, equals(['free(valueNativeStructPtr);']));
+      expect(projection.postambles, equals(['valueNativeStructPtr.free();']));
+      expect(projection.identifier, equals('value'));
+      expect(projection.localIdentifier, equals('valueNativeStructPtr.ref'));
+    });
+
+    test('projects struct (2)', () {
+      final genericInterfaceProjection = GenericInterfaceProjection.from(
+          'Windows.Foundation.Collections.IVector`1', TypeArgKind.plane);
+      final methodProjection = genericInterfaceProjection.methodProjections
+          .firstWhere((methodProjection) => methodProjection.name == 'Append');
+      final projection = methodProjection.parameters.first;
+      expect(projection, isA<StructParameterProjection>());
+      expect(projection.isInParam, isTrue);
+      expect(projection.isOutParam, isFalse);
+      expect(projection.isNullable, isFalse);
+      expect(projection.type, equals('Plane'));
+      expect(projection.needsAllocation, isTrue);
+      expect(projection.needsDeallocation, isTrue);
+      expect(projection.creatorPreamble, isEmpty);
+      expect(projection.creator, equals('value.toDart()'));
+      expect(projection.into, equals('valueNativeStructPtr.ref'));
+      expect(projection.toListArg, isEmpty);
+      expect(projection.toListCreator, isEmpty);
+      expect(projection.toListInto,
+          equals('value[i].toNative(allocator: allocator)'));
+      expect(projection.toListIdentifier, isEmpty);
+      expect(
+          projection.preambles,
+          equals([
+            'final valueNativeStructPtr = value.toNative(allocator: allocator);'
+          ]));
+      expect(projection.nullCheck, isEmpty);
+      expect(projection.postambles, isEmpty);
       expect(projection.identifier, equals('value'));
       expect(projection.localIdentifier, equals('valueNativeStructPtr.ref'));
     });

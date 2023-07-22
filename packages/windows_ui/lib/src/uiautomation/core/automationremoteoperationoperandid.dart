@@ -4,9 +4,12 @@
 
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
+// ignore_for_file: unnecessary_import, unused_import
+
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
+import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -37,10 +40,26 @@ final class AutomationRemoteOperationOperandId implements WinRTStruct {
 }
 
 /// @nodoc
+extension NativeAutomationRemoteOperationOperandIdConversion
+    on NativeAutomationRemoteOperationOperandId {
+  /// Converts this [NativeAutomationRemoteOperationOperandId] into a Dart
+  /// [AutomationRemoteOperationOperandId].
+  AutomationRemoteOperationOperandId toDart() {
+    return AutomationRemoteOperationOperandId(value);
+  }
+}
+
+/// @nodoc
 extension PointerNativeAutomationRemoteOperationOperandIdConversion
     on Pointer<NativeAutomationRemoteOperationOperandId> {
-  /// Converts this [NativeAutomationRemoteOperationOperandId] to a Dart
-  /// [AutomationRemoteOperationOperandId].
+  /// Frees the allocated memory for
+  /// [NativeAutomationRemoteOperationOperandId].
+  void free() {
+    calloc.free(this);
+  }
+
+  /// Converts the referenced [NativeAutomationRemoteOperationOperandId] into
+  /// a Dart [AutomationRemoteOperationOperandId].
   AutomationRemoteOperationOperandId toDart() {
     final ref = this.ref;
     return AutomationRemoteOperationOperandId(ref.value);

@@ -4,9 +4,12 @@
 
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
+// ignore_for_file: unnecessary_import, unused_import
+
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
+import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -44,8 +47,21 @@ final class NitRange implements WinRTStruct {
 }
 
 /// @nodoc
+extension NativeNitRangeConversion on NativeNitRange {
+  /// Converts this [NativeNitRange] into a Dart [NitRange].
+  NitRange toDart() {
+    return NitRange(minNits, maxNits, stepSizeNits);
+  }
+}
+
+/// @nodoc
 extension PointerNativeNitRangeConversion on Pointer<NativeNitRange> {
-  /// Converts this [NativeNitRange] to a Dart [NitRange].
+  /// Frees the allocated memory for [NativeNitRange].
+  void free() {
+    calloc.free(this);
+  }
+
+  /// Converts the referenced [NativeNitRange] into a Dart [NitRange].
   NitRange toDart() {
     final ref = this.ref;
     return NitRange(ref.minNits, ref.maxNits, ref.stepSizeNits);

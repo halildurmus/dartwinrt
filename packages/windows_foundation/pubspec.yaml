@@ -27,6 +27,7 @@ dependencies:
   windows_graphics: ^0.1.0
   windows_media: ^0.1.0
   windows_networking: ^0.1.0
+  windows_perception: ^0.0.2
   windows_services: ^0.0.2
   windows_storage: ^0.1.0
   windows_ui: ^0.1.0

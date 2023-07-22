@@ -50,7 +50,7 @@ class ICoreAutomationRemoteOperationContext extends IInspectable {
                     Pointer<COMObject> result)>()(
         ptr.ref.lpVtbl, idNativeStructPtr.ref, result);
 
-    free(idNativeStructPtr);
+    idNativeStructPtr.free();
 
     if (FAILED(hr)) {
       free(result);
@@ -85,7 +85,7 @@ class ICoreAutomationRemoteOperationContext extends IInspectable {
                     VTablePointer operand)>()(ptr.ref.lpVtbl,
         idNativeStructPtr.ref, operand?.intoBox().ptr.ref.lpVtbl ?? nullptr);
 
-    free(idNativeStructPtr);
+    idNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -117,8 +117,8 @@ class ICoreAutomationRemoteOperationContext extends IInspectable {
         operand?.intoBox().ptr.ref.lpVtbl ?? nullptr,
         operandInterfaceIdNativeStructPtr.ref);
 
-    free(idNativeStructPtr);
-    free(operandInterfaceIdNativeStructPtr);
+    idNativeStructPtr.free();
+    operandInterfaceIdNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

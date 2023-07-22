@@ -4,9 +4,12 @@
 
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
+// ignore_for_file: unnecessary_import, unused_import
+
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
+import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -46,8 +49,21 @@ final class RectInt32 implements WinRTStruct {
 }
 
 /// @nodoc
+extension NativeRectInt32Conversion on NativeRectInt32 {
+  /// Converts this [NativeRectInt32] into a Dart [RectInt32].
+  RectInt32 toDart() {
+    return RectInt32(x, y, width, height);
+  }
+}
+
+/// @nodoc
 extension PointerNativeRectInt32Conversion on Pointer<NativeRectInt32> {
-  /// Converts this [NativeRectInt32] to a Dart [RectInt32].
+  /// Frees the allocated memory for [NativeRectInt32].
+  void free() {
+    calloc.free(this);
+  }
+
+  /// Converts the referenced [NativeRectInt32] into a Dart [RectInt32].
   RectInt32 toDart() {
     final ref = this.ref;
     return RectInt32(ref.x, ref.y, ref.width, ref.height);

@@ -77,7 +77,7 @@ class ICoreAutomationRemoteOperation extends IInspectable {
                     VTablePointer element)>()(ptr.ref.lpVtbl,
         operandIdNativeStructPtr.ref, element?.ptr.ref.lpVtbl ?? nullptr);
 
-    free(operandIdNativeStructPtr);
+    operandIdNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -103,7 +103,7 @@ class ICoreAutomationRemoteOperation extends IInspectable {
                     VTablePointer textRange)>()(ptr.ref.lpVtbl,
         operandIdNativeStructPtr.ref, textRange?.ptr.ref.lpVtbl ?? nullptr);
 
-    free(operandIdNativeStructPtr);
+    operandIdNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -125,7 +125,7 @@ class ICoreAutomationRemoteOperation extends IInspectable {
                 NativeAutomationRemoteOperationOperandId
                     operandId)>()(ptr.ref.lpVtbl, operandIdNativeStructPtr.ref);
 
-    free(operandIdNativeStructPtr);
+    operandIdNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

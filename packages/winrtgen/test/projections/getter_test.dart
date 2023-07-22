@@ -396,7 +396,7 @@ void main() {
       expect(projection.failedCheck, equals(failedCheck()));
       expect(projection.nullCheck, isEmpty);
       expect(projection.returnStatement, equals('return value.toDartGuid();'));
-      expect(projection.postambles, equals(['free(value);']));
+      expect(projection.postambles, equals(['value.free();']));
     });
 
     test('projects int', () {
@@ -1122,7 +1122,7 @@ void main() {
       expect(projection.failedCheck, equals(failedCheck()));
       expect(projection.nullCheck, isEmpty);
       expect(projection.returnStatement, equals('return value.toDart();'));
-      expect(projection.postambles, equals(['free(value);']));
+      expect(projection.postambles, equals(['value.free();']));
     });
 
     test('projects Uri', () {

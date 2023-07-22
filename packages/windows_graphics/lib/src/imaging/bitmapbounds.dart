@@ -4,9 +4,12 @@
 
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
+// ignore_for_file: unnecessary_import, unused_import
+
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
+import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -46,8 +49,21 @@ final class BitmapBounds implements WinRTStruct {
 }
 
 /// @nodoc
+extension NativeBitmapBoundsConversion on NativeBitmapBounds {
+  /// Converts this [NativeBitmapBounds] into a Dart [BitmapBounds].
+  BitmapBounds toDart() {
+    return BitmapBounds(x, y, width, height);
+  }
+}
+
+/// @nodoc
 extension PointerNativeBitmapBoundsConversion on Pointer<NativeBitmapBounds> {
-  /// Converts this [NativeBitmapBounds] to a Dart [BitmapBounds].
+  /// Frees the allocated memory for [NativeBitmapBounds].
+  void free() {
+    calloc.free(this);
+  }
+
+  /// Converts the referenced [NativeBitmapBounds] into a Dart [BitmapBounds].
   BitmapBounds toDart() {
     final ref = this.ref;
     return BitmapBounds(ref.x, ref.y, ref.width, ref.height);

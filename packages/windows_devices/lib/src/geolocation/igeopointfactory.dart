@@ -50,7 +50,7 @@ class IGeopointFactory extends IInspectable {
                     Pointer<COMObject> value)>()(
         ptr.ref.lpVtbl, positionNativeStructPtr.ref, value);
 
-    free(positionNativeStructPtr);
+    positionNativeStructPtr.free();
 
     if (FAILED(hr)) {
       free(value);
@@ -84,7 +84,7 @@ class IGeopointFactory extends IInspectable {
                     Pointer<COMObject> value)>()(ptr.ref.lpVtbl,
         positionNativeStructPtr.ref, altitudeReferenceSystem.value, value);
 
-    free(positionNativeStructPtr);
+    positionNativeStructPtr.free();
 
     if (FAILED(hr)) {
       free(value);
@@ -126,7 +126,7 @@ class IGeopointFactory extends IInspectable {
         spatialReferenceId,
         value);
 
-    free(positionNativeStructPtr);
+    positionNativeStructPtr.free();
 
     if (FAILED(hr)) {
       free(value);

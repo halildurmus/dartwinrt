@@ -412,7 +412,7 @@ class IMediaCapture extends IInspectable {
         propertyIdNativeStructPtr.ref,
         propertyValue?.intoBox().ptr.ref.lpVtbl ?? nullptr);
 
-    free(propertyIdNativeStructPtr);
+    propertyIdNativeStructPtr.free();
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -440,7 +440,7 @@ class IMediaCapture extends IInspectable {
         propertyIdNativeStructPtr.ref,
         propertyValue);
 
-    free(propertyIdNativeStructPtr);
+    propertyIdNativeStructPtr.free();
 
     if (FAILED(hr)) {
       free(propertyValue);

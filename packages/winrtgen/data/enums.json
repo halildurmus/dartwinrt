@@ -33,6 +33,7 @@
     "Windows.Devices.Geolocation.PositionAccuracy": "Indicates the requested accuracy level for the location data that the application uses.",
     "Windows.Devices.Geolocation.PositionSource": "Indicates the source used to obtain a Geocoordinate.",
     "Windows.Devices.Geolocation.PositionStatus": "Indicates the ability of the Geolocator object to provide location data.",
+    "Windows.Devices.Gpio.GpioPinEdge": "Describes the possible types of change that can occur to the value of the general-purpose I/O (GPIO) pin for the GpioPin.ValueChanged event.",
     "Windows.Devices.Sensors.PedometerStepKind": "The type of step taken according to the pedometer.",
     "Windows.Foundation.AsyncStatus": "Specifies the status of an asynchronous operation.",
     "Windows.Foundation.PropertyType": "Specifies property value types.",
@@ -125,6 +126,7 @@
     "Windows.Networking.Connectivity.NetworkEncryptionType": "Defines values that indicate the type of encryption used for authentication.",
     "Windows.Networking.Connectivity.NetworkTypes": "Defines the network connection types.",
     "Windows.Networking.Connectivity.RoamingStates": "Defines the roaming states.",
+    "Windows.Networking.Connectivity.TriStates": "Used with the NetworkUsageStates structure to define the desired roaming state and shared state of a network connection.",
     "Windows.Networking.Connectivity.WwanDataClass": "Defines values used to indicate the class of data service provided by a WWAN network connection.",
     "Windows.Networking.Connectivity.WwanNetworkIPKind": "Defines constants that describe a level of supported IP. The values reflect the WWAN_IP_TYPE enumeration. You can use these values to determine which cellular profile to use (for example, to choose between IMS and SUPL).",
     "Windows.Networking.Connectivity.WwanNetworkRegistrationState": "Defines the network registration states for a WWAN connection.",
@@ -141,6 +143,7 @@
     "Windows.Security.Credentials.WebAccountPictureSize": "",
     "Windows.Security.Credentials.WebAccountState": "Describes the state of a WebAccount object.",
     "Windows.Services.Maps.MapLocationDesiredAccuracy": "Indicates the desired accuracy to use when converting latitude and longitude coordinates to a physical location like a city or address.",
+    "Windows.Services.Store.StorePackageUpdateState": "Defines values that represent the state of a package download or installation request.",
     "Windows.Storage.ApplicationDataCreateDisposition": "Specifies options for creating application data containers or returning existing containers. This enumeration is used by the ApplicationDataContainer.CreateContainer method.",
     "Windows.Storage.ApplicationDataLocality": "Specifies the type of an application data store.",
     "Windows.Storage.CreationCollisionOption": "Specifies what to do if a file or folder with the specified name already exists in the current folder when you create a new file or folder.",
@@ -198,5 +201,6 @@
     "Windows.UI.ViewManagement.UIElementType": "Defines the set of user interface element types.",
     "Windows.UI.ViewManagement.ViewSizePreference": "Defines the set of possible general window (app view) size preferences.",
     "Windows.UI.WindowManagement.WindowingEnvironmentKind": "Defines constants the specify what kind a windowing environment is.",
+    "Windows.Web.Http.HttpProgressStage": "Indicates the step in the progress for an HTTP connection.",
     "Windows.Web.WebErrorStatus": "Defines errors encountered during operations involving web services, such as authentication, proxy configuration, and destination URIs."
 }

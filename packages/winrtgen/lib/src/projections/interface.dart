@@ -6,25 +6,21 @@ import 'package:winmd/winmd.dart';
 
 import '../constants/constants.dart';
 import '../utilities/utilities.dart';
+import 'base.dart';
 import 'getter.dart';
 import 'method.dart';
 import 'method_forwarders.dart';
 import 'setter.dart';
 
-class InterfaceProjection {
-  InterfaceProjection(this.typeDef, {this.comment = ''})
-      : isDeprecated = typeDef.isDeprecated;
-
-  final TypeDef typeDef;
-  final String comment;
-  final bool isDeprecated;
+base class InterfaceProjection extends BaseProjection {
+  InterfaceProjection(super.typeDef, {super.comment});
 
   /// Attempts to create an [InterfaceProjection] from [fullyQualifiedType] by
   /// searching its [TypeDef].
   ///
   /// ```dart
   /// final projection =
-  ///    InterfaceProjection.from('Windows.Foundation.IAsyncInfo');
+  ///     InterfaceProjection.from('Windows.Foundation.IAsyncInfo');
   /// ```
   ///
   /// Throws an [Exception] if no [TypeDef] matching [fullyQualifiedType] is
@@ -35,39 +31,12 @@ class InterfaceProjection {
     return InterfaceProjection(typeDef, comment: comment);
   }
 
-  /// Returns the shorter name of the [typeDef] (e.g. `IAsyncInfo`, `Calendar`).
-  String get shortName => outerType(typeDef.shortName);
-
-  /// Returns the path to the folder where the current interface is located
-  /// (e.g. `windows_storage/lib/src/pickers` for
-  /// `Windows.Storage.Pickers.IFileOpenPicker`).
-  String get currentFolderPath => folderFromType(typeDef.name);
-
-  /// Returns the package name for the [typeDef] (e.g. `windows_globalization`
-  /// for `Windows.Globalization.Calendar`).
-  String get packageName => typeDef.packageName;
-
-  /// Returns the fully-qualified name of the [typeDef] (e.g.
-  /// `Windows.Globalization.Calendar`, `Windows.Foundation.IReference`1`).
-  String get name => typeDef.fullyQualifiedName;
-
   String get header => classFileHeader;
 
   String get iidConstant => '''
 /// @nodoc
 const IID_$shortName = ${quote(typeDef.iid)};
 ''';
-
-  String get category => '';
-
-  String get classPreamble {
-    final wrappedComment = wrapCommentText(comment);
-    return [
-      if (wrappedComment.isNotEmpty) wrappedComment,
-      if (wrappedComment.isNotEmpty && category.isNotEmpty) '///',
-      if (category.isNotEmpty) '/// {@category $category}',
-    ].join('\n');
-  }
 
   List<TypeDef> get inheritedInterfaces => typeDef.interfaces
     ..removeWhere((interface) =>
@@ -78,18 +47,34 @@ const IID_$shortName = ${quote(typeDef.iid)};
       .toList()
       .join(', ');
 
-  Set<String> get interfaceImports => importsForInheritedInterfaces;
+  /// Returns imports for [typeDef]'s inherited interfaces.
+  Set<String> get interfaceImports => typeDef.interfaces.isEmpty
+      ? {}
+      : {
+          for (final interface in typeDef.interfaces)
+            ...importsForTypeDef(interface)
+        };
 
-  /// Converts [path] to an equivalent relative path from the
-  /// [currentFolderPath].
-  String relativePathTo(String path) =>
-      relativePath(path, start: currentFolderPath);
+  /// Returns imports for types in parameters and return types of [typeDef]'s
+  /// methods, as well as methods from inherited interfaces.
+  Set<String> get importsForTypes {
+    final methods = {
+      ...typeDef.methods,
+      // Add the methods from inherited interfaces
+      ...[for (final typeDef in typeDef.interfaces) ...typeDef.methods]
+    };
 
-  Set<String> get extraImports => {
+    return {
+      for (final method in methods)
+        for (final param in [...method.parameters, method.returnType])
+          ...importsForTypeIdentifier(param.typeIdentifier)
+    };
+  }
+
+  @override
+  Set<String> get imports => {
         'dart:async',
-        'dart:ffi',
-        'package:ffi/ffi.dart',
-        'package:win32/win32.dart',
+        ...commonImports,
         if (packageName == 'windows_foundation') ...[
           relativePathTo('windows_foundation/lib/internal.dart'),
           relativePathTo('windows_foundation/lib/src/helpers.dart'),
@@ -99,34 +84,19 @@ const IID_$shortName = ${quote(typeDef.iid)};
           'package:windows_foundation/internal.dart',
           'package:windows_foundation/windows_foundation.dart',
         ],
-      };
-
-  Set<String> get imports =>
-      {...interfaceImports, ...importsForTypes, ...extraImports}
+        ...interfaceImports,
+        ...importsForTypes
+      }
         // TODO(halildurmus): Remove this once events are supported.
         // https://github.com/dart-windows/dartwinrt/issues/161
         ..removeWhere((import) => import.endsWith('eventargs.dart'));
 
-  String get importHeader {
-    return sortImports(
-      imports.map((import) {
-        if (import == 'package:win32/win32.dart') {
-          // Hide DocumentProperties to avoid conflicts with a class of the same
-          // name in the windows_storage package.
-          return 'import ${quote(import)} hide DocumentProperties;';
-        }
-
-        return 'import ${quote(import)};';
-      }).toList(),
-    ).join('\n');
-  }
-
+  @override
   String get classHeader {
-    final deprecatedAnnotation = typeDef.deprecatedAnnotation;
     final implementsClause =
         inheritsFrom.isNotEmpty ? ' implements $inheritsFrom' : '';
     return [
-      if (isDeprecated) deprecatedAnnotation,
+      if (isDeprecated) typeDef.deprecatedAnnotation,
       'class $shortName extends IInspectable$implementsClause'
     ].join('\n');
   }
@@ -158,16 +128,14 @@ const IID_$shortName = ${quote(typeDef.iid)};
     for (final method in typeDef.methods) {
       if (method.name == '.ctor') continue; // Skip constructors
 
-      if (method.isGetProperty) {
-        final projection = GetterProjection.create(method, vtableOffset++);
-        projections.add(projection);
-      } else if (method.isSetProperty) {
-        final projection = SetterProjection.create(method, vtableOffset++);
-        projections.add(projection);
-      } else {
-        final projection = MethodProjection.create(method, vtableOffset++);
-        projections.add(projection);
-      }
+      final projection = switch (method) {
+        final Method m when m.isGetProperty =>
+          GetterProjection.create(method, vtableOffset++),
+        final Method m when m.isSetProperty =>
+          SetterProjection.create(method, vtableOffset++),
+        final Method _ => MethodProjection.create(method, vtableOffset++),
+      };
+      projections.add(projection);
     }
 
     return projections;
@@ -185,6 +153,7 @@ const IID_$shortName = ${quote(typeDef.iid)};
           .map((interface) => MethodForwardersProjection(interface, this))
           .toList();
 
+  @override
   String get projection => '''
 $header
 $importHeader
@@ -201,14 +170,4 @@ $classHeader {
   ${methodForwarders.join('\n')}
 }
 ''';
-
-  @override
-  String toString() {
-    try {
-      return projection;
-    } catch (_) {
-      print("Failed to project interface '${typeDef.fullyQualifiedName}'.");
-      rethrow;
-    }
-  }
 }

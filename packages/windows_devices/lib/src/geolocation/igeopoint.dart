@@ -51,7 +51,7 @@ class IGeopoint extends IInspectable implements IGeoshape {
 
       return value.toDart();
     } finally {
-      free(value);
+      value.free();
     }
   }
 

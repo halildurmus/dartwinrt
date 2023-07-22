@@ -68,6 +68,7 @@ enum TypeArgKind {
   nullableVector3('Vector3?'),
   nullableWhiteBalanceGain('WhiteBalanceGain?'),
   object('Object'),
+  plane('Plane'),
   point('Point'),
   pointerDeviceUsage('PointerDeviceUsage'),
   rect('Rect'),
@@ -261,6 +262,7 @@ enum TypeArgKind {
         TypeArgKind.object ||
         TypeArgKind.nullableObject =>
           const TypeIdentifier(BaseType.objectType),
+        TypeArgKind.plane => 'Windows.Foundation.Numerics.Plane'.typeIdentifier,
         TypeArgKind.point ||
         TypeArgKind.nullablePoint =>
           'Windows.Foundation.Point'.typeIdentifier,

@@ -74,7 +74,7 @@ class IPackageId extends IInspectable {
 
       return value.toDart();
     } finally {
-      free(value);
+      value.free();
     }
   }
 

@@ -4,11 +4,17 @@
 
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
+// ignore_for_file: unnecessary_import, unused_import
+
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
+import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
+
+import '../directxpixelformat.dart';
+import 'direct3dmultisampledescription.dart';
 
 /// This is a Windows Runtime equivalent of the Desktop DXGI_SURFACE_DESC
 /// structure. Describes an IDirect3DSurface.
@@ -18,8 +24,8 @@ final class Direct3DSurfaceDescription implements WinRTStruct {
 
   final int width;
   final int height;
-  final int format;
-  final NativeDirect3DMultisampleDescription multisampleDescription;
+  final DirectXPixelFormat format;
+  final Direct3DMultisampleDescription multisampleDescription;
 
   @override
   Pointer<NativeDirect3DSurfaceDescription> toNative(
@@ -28,8 +34,9 @@ final class Direct3DSurfaceDescription implements WinRTStruct {
     nativeStructPtr.ref
       ..width = width
       ..height = height
-      ..format = format
-      ..multisampleDescription = multisampleDescription;
+      ..format = format.value
+      ..multisampleDescription =
+          multisampleDescription.toNative(allocator: allocator).ref;
     return nativeStructPtr;
   }
 
@@ -52,14 +59,33 @@ final class Direct3DSurfaceDescription implements WinRTStruct {
 }
 
 /// @nodoc
+extension NativeDirect3DSurfaceDescriptionConversion
+    on NativeDirect3DSurfaceDescription {
+  /// Converts this [NativeDirect3DSurfaceDescription] into a Dart
+  /// [Direct3DSurfaceDescription].
+  Direct3DSurfaceDescription toDart() {
+    return Direct3DSurfaceDescription(width, height,
+        DirectXPixelFormat.from(format), multisampleDescription.toDart());
+  }
+}
+
+/// @nodoc
 extension PointerNativeDirect3DSurfaceDescriptionConversion
     on Pointer<NativeDirect3DSurfaceDescription> {
-  /// Converts this [NativeDirect3DSurfaceDescription] to a Dart
+  /// Frees the allocated memory for [NativeDirect3DSurfaceDescription].
+  void free() {
+    calloc.free(this);
+  }
+
+  /// Converts the referenced [NativeDirect3DSurfaceDescription] into a Dart
   /// [Direct3DSurfaceDescription].
   Direct3DSurfaceDescription toDart() {
     final ref = this.ref;
     return Direct3DSurfaceDescription(
-        ref.width, ref.height, ref.format, ref.multisampleDescription);
+        ref.width,
+        ref.height,
+        DirectXPixelFormat.from(ref.format),
+        ref.multisampleDescription.toDart());
   }
 
   /// Creates a `List<Direct3DSurfaceDescription>` from

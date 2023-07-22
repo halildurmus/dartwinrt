@@ -4,9 +4,12 @@
 
 // THIS FILE IS GENERATED AUTOMATICALLY AND SHOULD NOT BE EDITED DIRECTLY.
 
+// ignore_for_file: unnecessary_import, unused_import
+
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
+import 'package:win32/win32.dart' hide DocumentProperties;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -15,15 +18,15 @@ import 'package:windows_foundation/windows_foundation.dart';
 final class SpatialBoundingBox implements WinRTStruct {
   SpatialBoundingBox(this.center, this.extents);
 
-  final NativeVector3 center;
-  final NativeVector3 extents;
+  final Vector3 center;
+  final Vector3 extents;
 
   @override
   Pointer<NativeSpatialBoundingBox> toNative({Allocator allocator = malloc}) {
     final nativeStructPtr = allocator<NativeSpatialBoundingBox>();
     nativeStructPtr.ref
-      ..center = center
-      ..extents = extents;
+      ..center = center.toNative(allocator: allocator).ref
+      ..extents = extents.toNative(allocator: allocator).ref;
     return nativeStructPtr;
   }
 
@@ -40,12 +43,27 @@ final class SpatialBoundingBox implements WinRTStruct {
 }
 
 /// @nodoc
+extension NativeSpatialBoundingBoxConversion on NativeSpatialBoundingBox {
+  /// Converts this [NativeSpatialBoundingBox] into a Dart
+  /// [SpatialBoundingBox].
+  SpatialBoundingBox toDart() {
+    return SpatialBoundingBox(center.toDart(), extents.toDart());
+  }
+}
+
+/// @nodoc
 extension PointerNativeSpatialBoundingBoxConversion
     on Pointer<NativeSpatialBoundingBox> {
-  /// Converts this [NativeSpatialBoundingBox] to a Dart [SpatialBoundingBox].
+  /// Frees the allocated memory for [NativeSpatialBoundingBox].
+  void free() {
+    calloc.free(this);
+  }
+
+  /// Converts the referenced [NativeSpatialBoundingBox] into a Dart
+  /// [SpatialBoundingBox].
   SpatialBoundingBox toDart() {
     final ref = this.ref;
-    return SpatialBoundingBox(ref.center, ref.extents);
+    return SpatialBoundingBox(ref.center.toDart(), ref.extents.toDart());
   }
 
   /// Creates a `List<SpatialBoundingBox>` from

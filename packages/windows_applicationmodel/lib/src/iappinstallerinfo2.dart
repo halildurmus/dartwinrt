@@ -217,7 +217,7 @@ class IAppInstallerInfo2 extends IInspectable {
 
       return value.toDart();
     } finally {
-      free(value);
+      value.free();
     }
   }
 
