@@ -120,7 +120,7 @@ final class _IAsyncOperationGuid extends IAsyncOperation<Guid> {
 
       return retValuePtr.toDartGuid();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 }
@@ -239,7 +239,7 @@ final class _IAsyncOperationLoadMoreItemsResult
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 }
@@ -370,7 +370,6 @@ final class _IAsyncOperationString extends IAsyncOperation<String> {
 
       return retValuePtr.toDartString();
     } finally {
-      WindowsDeleteString(retValuePtr.value);
       free(retValuePtr);
     }
   }

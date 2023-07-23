@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_applicationmodel/windows_applicationmodel.dart';
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
@@ -47,15 +48,7 @@ class IDeviceWatcher2 extends IInspectable {
                     VTablePointer lpVtbl,
                     VTablePointer requestedEventKinds,
                     Pointer<COMObject> trigger)>()(
-        ptr.ref.lpVtbl,
-        requestedEventKinds == null
-            ? nullptr
-            : IInspectable(requestedEventKinds
-                    .toInterface('{f04365ab-d3f3-5f85-a7da-dc19cff73d86}'))
-                .ptr
-                .ref
-                .lpVtbl,
-        trigger);
+        ptr.ref.lpVtbl, requestedEventKinds.lpVtbl, trigger);
 
     if (FAILED(hr)) {
       free(trigger);

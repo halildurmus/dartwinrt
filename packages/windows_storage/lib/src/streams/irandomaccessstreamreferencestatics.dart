@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -48,7 +49,7 @@ class IRandomAccessStreamReferenceStatics extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer file,
                         Pointer<COMObject> streamReference)>()(
-            ptr.ref.lpVtbl, file?.ptr.ref.lpVtbl ?? nullptr, streamReference);
+            ptr.ref.lpVtbl, file.lpVtbl, streamReference);
 
     if (FAILED(hr)) {
       free(streamReference);
@@ -80,7 +81,7 @@ class IRandomAccessStreamReferenceStatics extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer uri,
                         Pointer<COMObject> streamReference)>()(ptr.ref.lpVtbl,
-            uri?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr, streamReference);
+            uri?.toWinRTUri().lpVtbl ?? nullptr, streamReference);
 
     if (FAILED(hr)) {
       free(streamReference);
@@ -112,7 +113,7 @@ class IRandomAccessStreamReferenceStatics extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer stream,
                         Pointer<COMObject> streamReference)>()(
-            ptr.ref.lpVtbl, stream?.ptr.ref.lpVtbl ?? nullptr, streamReference);
+            ptr.ref.lpVtbl, stream.lpVtbl, streamReference);
 
     if (FAILED(hr)) {
       free(streamReference);

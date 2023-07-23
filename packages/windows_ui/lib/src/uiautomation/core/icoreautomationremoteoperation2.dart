@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -48,12 +49,10 @@ class ICoreAutomationRemoteOperation2 extends IInspectable {
                 int Function(
                     VTablePointer lpVtbl,
                     NativeAutomationRemoteOperationOperandId operandId,
-                    VTablePointer connectionBoundObject)>()(
-        ptr.ref.lpVtbl,
-        operandIdNativeStructPtr.ref,
-        connectionBoundObject?.ptr.ref.lpVtbl ?? nullptr);
+                    VTablePointer connectionBoundObject)>()(ptr.ref.lpVtbl,
+        operandIdNativeStructPtr.ref, connectionBoundObject.lpVtbl);
 
-    operandIdNativeStructPtr.free();
+    free(operandIdNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

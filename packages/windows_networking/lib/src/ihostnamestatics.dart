@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -29,9 +30,6 @@ class IHostNameStatics extends IInspectable {
     final result = calloc<Int32>();
 
     try {
-      final value1HString = value1.toHString();
-      final value2HString = value2.toHString();
-
       final hr = ptr.ref.vtable
               .elementAt(6)
               .cast<
@@ -43,10 +41,7 @@ class IHostNameStatics extends IInspectable {
               .asFunction<
                   int Function(VTablePointer lpVtbl, int value1, int value2,
                       Pointer<Int32> result)>()(
-          ptr.ref.lpVtbl, value1HString, value2HString, result);
-
-      WindowsDeleteString(value1HString);
-      WindowsDeleteString(value2HString);
+          ptr.ref.lpVtbl, value1.toHString(), value2.toHString(), result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 

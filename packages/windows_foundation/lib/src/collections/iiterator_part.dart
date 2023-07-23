@@ -34,7 +34,7 @@ final class _IIteratorAccessListEntry extends IIterator<AccessListEntry> {
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 
@@ -105,7 +105,7 @@ final class _IIteratorBackgroundTransferFileRange
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 
@@ -172,7 +172,7 @@ final class _IIteratorBasicGeoposition extends IIterator<BasicGeoposition> {
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 
@@ -303,7 +303,7 @@ final class _IIteratorColor extends IIterator<Color> {
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 
@@ -622,7 +622,7 @@ final class _IIteratorGpioChangeRecord extends IIterator<GpioChangeRecord> {
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 
@@ -688,7 +688,7 @@ final class _IIteratorGuid extends IIterator<Guid> {
 
       return retValuePtr.toDartGuid();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 
@@ -942,7 +942,7 @@ final class _IIteratorMediaTimeRange extends IIterator<MediaTimeRange> {
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 
@@ -1009,7 +1009,7 @@ final class _IIteratorMseTimeRange extends IIterator<MseTimeRange> {
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 
@@ -1076,7 +1076,7 @@ final class _IIteratorNitRange extends IIterator<NitRange> {
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 
@@ -1346,7 +1346,7 @@ final class _IIteratorPoint extends IIterator<Point> {
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 
@@ -1414,7 +1414,7 @@ final class _IIteratorPointerDeviceUsage extends IIterator<PointerDeviceUsage> {
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 
@@ -1481,7 +1481,7 @@ final class _IIteratorRect extends IIterator<Rect> {
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 
@@ -1548,7 +1548,7 @@ final class _IIteratorRectInt32 extends IIterator<RectInt32> {
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 
@@ -1615,7 +1615,7 @@ final class _IIteratorSize extends IIterator<Size> {
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 
@@ -1682,7 +1682,7 @@ final class _IIteratorSizeUInt32 extends IIterator<SizeUInt32> {
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 
@@ -1749,7 +1749,7 @@ final class _IIteratorSortEntry extends IIterator<SortEntry> {
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 
@@ -1819,7 +1819,7 @@ final class _IIteratorStorePackageUpdateStatus
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 
@@ -1885,7 +1885,6 @@ final class _IIteratorString extends IIterator<String> {
 
       return retValuePtr.toDartString();
     } finally {
-      WindowsDeleteString(retValuePtr.value);
       free(retValuePtr);
     }
   }
@@ -1950,7 +1949,7 @@ final class _IIteratorTextRange extends IIterator<TextRange> {
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 
@@ -2017,7 +2016,7 @@ final class _IIteratorTextSegment extends IIterator<TextSegment> {
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 
@@ -2336,7 +2335,7 @@ final class _IIteratorWindowId extends IIterator<WindowId> {
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 

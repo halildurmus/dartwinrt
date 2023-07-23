@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -150,17 +151,19 @@ class IMediaFrameSource extends IInspectable {
     final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-            .elementAt(10)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, VTablePointer format,
-                            Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer format,
-                    Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, format?.ptr.ref.lpVtbl ?? nullptr, value);
+        .elementAt(10)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl, VTablePointer format,
+                        Pointer<COMObject> value)>>>()
+        .value
+        .asFunction<
+            int Function(
+                VTablePointer lpVtbl,
+                VTablePointer format,
+                Pointer<COMObject>
+                    value)>()(ptr.ref.lpVtbl, format.lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -215,17 +218,19 @@ class IMediaFrameSource extends IInspectable {
     final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-            .elementAt(13)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, VTablePointer format,
-                            Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer format,
-                    Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, format?.ptr.ref.lpVtbl ?? nullptr, value);
+        .elementAt(13)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl, VTablePointer format,
+                        Pointer<COMObject> value)>>>()
+        .value
+        .asFunction<
+            int Function(
+                VTablePointer lpVtbl,
+                VTablePointer format,
+                Pointer<COMObject>
+                    value)>()(ptr.ref.lpVtbl, format.lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);

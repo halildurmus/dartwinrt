@@ -9,7 +9,8 @@
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -67,20 +68,18 @@ extension NativeSpatialBoundingFrustumConversion
     on NativeSpatialBoundingFrustum {
   /// Converts this [NativeSpatialBoundingFrustum] into a Dart
   /// [SpatialBoundingFrustum].
-  SpatialBoundingFrustum toDart() {
-    return SpatialBoundingFrustum(near.toDart(), far.toDart(), right.toDart(),
-        left.toDart(), top.toDart(), bottom.toDart());
-  }
+  SpatialBoundingFrustum toDart() => SpatialBoundingFrustum(
+      near.toDart(),
+      far.toDart(),
+      right.toDart(),
+      left.toDart(),
+      top.toDart(),
+      bottom.toDart());
 }
 
 /// @nodoc
 extension PointerNativeSpatialBoundingFrustumConversion
     on Pointer<NativeSpatialBoundingFrustum> {
-  /// Frees the allocated memory for [NativeSpatialBoundingFrustum].
-  void free() {
-    calloc.free(this);
-  }
-
   /// Converts the referenced [NativeSpatialBoundingFrustum] into a Dart
   /// [SpatialBoundingFrustum].
   SpatialBoundingFrustum toDart() {

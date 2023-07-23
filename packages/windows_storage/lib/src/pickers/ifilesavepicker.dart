@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -48,14 +49,11 @@ class IFileSavePicker extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
 
   set settingsIdentifier(String value) {
-    final valueHString = value.toHString();
-
     final hr =
         ptr.ref.vtable
                 .elementAt(7)
@@ -66,9 +64,7 @@ class IFileSavePicker extends IInspectable {
                                 VTablePointer lpVtbl, IntPtr value)>>>()
                 .value
                 .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-            ptr.ref.lpVtbl, valueHString);
-
-    WindowsDeleteString(valueHString);
+            ptr.ref.lpVtbl, value.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -131,14 +127,11 @@ class IFileSavePicker extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
 
   set commitButtonText(String value) {
-    final valueHString = value.toHString();
-
     final hr =
         ptr.ref.vtable
                 .elementAt(11)
@@ -149,9 +142,7 @@ class IFileSavePicker extends IInspectable {
                                 VTablePointer lpVtbl, IntPtr value)>>>()
                 .value
                 .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-            ptr.ref.lpVtbl, valueHString);
-
-    WindowsDeleteString(valueHString);
+            ptr.ref.lpVtbl, value.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -207,14 +198,11 @@ class IFileSavePicker extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
 
   set defaultFileExtension(String value) {
-    final valueHString = value.toHString();
-
     final hr =
         ptr.ref.vtable
                 .elementAt(14)
@@ -225,9 +213,7 @@ class IFileSavePicker extends IInspectable {
                                 VTablePointer lpVtbl, IntPtr value)>>>()
                 .value
                 .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-            ptr.ref.lpVtbl, valueHString);
-
-    WindowsDeleteString(valueHString);
+            ptr.ref.lpVtbl, value.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -271,7 +257,7 @@ class IFileSavePicker extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer value)>()(
-        ptr.ref.lpVtbl, value?.ptr.ref.lpVtbl ?? nullptr);
+        ptr.ref.lpVtbl, value.lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -296,14 +282,11 @@ class IFileSavePicker extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
 
   set suggestedFileName(String value) {
-    final valueHString = value.toHString();
-
     final hr =
         ptr.ref.vtable
                 .elementAt(18)
@@ -314,9 +297,7 @@ class IFileSavePicker extends IInspectable {
                                 VTablePointer lpVtbl, IntPtr value)>>>()
                 .value
                 .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-            ptr.ref.lpVtbl, valueHString);
-
-    WindowsDeleteString(valueHString);
+            ptr.ref.lpVtbl, value.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

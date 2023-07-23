@@ -9,7 +9,8 @@
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 
 import '../../internal.dart';
 import '../winrt_struct.dart';
@@ -45,18 +46,11 @@ final class Vector3 implements WinRTStruct {
 /// @nodoc
 extension NativeVector3Conversion on NativeVector3 {
   /// Converts this [NativeVector3] into a Dart [Vector3].
-  Vector3 toDart() {
-    return Vector3(x, y, z);
-  }
+  Vector3 toDart() => Vector3(x, y, z);
 }
 
 /// @nodoc
 extension PointerNativeVector3Conversion on Pointer<NativeVector3> {
-  /// Frees the allocated memory for [NativeVector3].
-  void free() {
-    calloc.free(this);
-  }
-
   /// Converts the referenced [NativeVector3] into a Dart [Vector3].
   Vector3 toDart() {
     final ref = this.ref;

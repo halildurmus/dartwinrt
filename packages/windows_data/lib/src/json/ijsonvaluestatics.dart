@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -29,7 +30,6 @@ class IJsonValueStatics extends IInspectable {
 
   JsonValue? parse(String input) {
     final jsonValue = calloc<COMObject>();
-    final inputHString = input.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -42,9 +42,7 @@ class IJsonValueStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int input,
                     Pointer<COMObject> jsonValue)>()(
-        ptr.ref.lpVtbl, inputHString, jsonValue);
-
-    WindowsDeleteString(inputHString);
+        ptr.ref.lpVtbl, input.toHString(), jsonValue);
 
     if (FAILED(hr)) {
       free(jsonValue);
@@ -61,7 +59,6 @@ class IJsonValueStatics extends IInspectable {
 
   (bool, {JsonValue? result}) tryParse(String input) {
     final succeeded = calloc<Bool>();
-    final inputHString = input.toHString();
     final result = calloc<COMObject>();
 
     try {
@@ -79,7 +76,7 @@ class IJsonValueStatics extends IInspectable {
               .asFunction<
                   int Function(VTablePointer lpVtbl, int input,
                       Pointer<COMObject> result, Pointer<Bool> succeeded)>()(
-          ptr.ref.lpVtbl, inputHString, result, succeeded);
+          ptr.ref.lpVtbl, input.toHString(), result, succeeded);
 
       if (FAILED(hr)) {
         free(result);
@@ -97,7 +94,6 @@ class IJsonValueStatics extends IInspectable {
         result: resultIsNull ? null : JsonValue.fromPtr(result)
       );
     } finally {
-      WindowsDeleteString(inputHString);
       free(succeeded);
     }
   }
@@ -162,7 +158,6 @@ class IJsonValueStatics extends IInspectable {
 
   JsonValue? createStringValue(String input) {
     final jsonValue = calloc<COMObject>();
-    final inputHString = input.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(10)
@@ -175,9 +170,7 @@ class IJsonValueStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int input,
                     Pointer<COMObject> jsonValue)>()(
-        ptr.ref.lpVtbl, inputHString, jsonValue);
-
-    WindowsDeleteString(inputHString);
+        ptr.ref.lpVtbl, input.toHString(), jsonValue);
 
     if (FAILED(hr)) {
       free(jsonValue);

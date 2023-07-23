@@ -9,7 +9,8 @@
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -49,19 +50,13 @@ extension NativeHolographicStereoTransformConversion
     on NativeHolographicStereoTransform {
   /// Converts this [NativeHolographicStereoTransform] into a Dart
   /// [HolographicStereoTransform].
-  HolographicStereoTransform toDart() {
-    return HolographicStereoTransform(left.toDart(), right.toDart());
-  }
+  HolographicStereoTransform toDart() =>
+      HolographicStereoTransform(left.toDart(), right.toDart());
 }
 
 /// @nodoc
 extension PointerNativeHolographicStereoTransformConversion
     on Pointer<NativeHolographicStereoTransform> {
-  /// Frees the allocated memory for [NativeHolographicStereoTransform].
-  void free() {
-    calloc.free(this);
-  }
-
   /// Converts the referenced [NativeHolographicStereoTransform] into a Dart
   /// [HolographicStereoTransform].
   HolographicStereoTransform toDart() {

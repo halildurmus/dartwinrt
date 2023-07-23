@@ -34,7 +34,7 @@ final class _IVectorViewAccessListEntry extends IVectorView<AccessListEntry> {
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 
@@ -68,7 +68,7 @@ final class _IVectorViewAccessListEntry extends IVectorView<AccessListEntry> {
 
       return (retValuePtr.value, index: index.value);
     } finally {
-      valueNativeStructPtr.free();
+      free(valueNativeStructPtr);
       free(index);
       free(retValuePtr);
     }
@@ -146,7 +146,7 @@ final class _IVectorViewBackgroundTransferFileRange
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 
@@ -180,7 +180,7 @@ final class _IVectorViewBackgroundTransferFileRange
 
       return (retValuePtr.value, index: index.value);
     } finally {
-      valueNativeStructPtr.free();
+      free(valueNativeStructPtr);
       free(index);
       free(retValuePtr);
     }
@@ -252,7 +252,7 @@ final class _IVectorViewBasicGeoposition extends IVectorView<BasicGeoposition> {
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 
@@ -286,7 +286,7 @@ final class _IVectorViewBasicGeoposition extends IVectorView<BasicGeoposition> {
 
       return (retValuePtr.value, index: index.value);
     } finally {
-      valueNativeStructPtr.free();
+      free(valueNativeStructPtr);
       free(index);
       free(retValuePtr);
     }
@@ -458,7 +458,7 @@ final class _IVectorViewColor extends IVectorView<Color> {
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 
@@ -490,7 +490,7 @@ final class _IVectorViewColor extends IVectorView<Color> {
 
       return (retValuePtr.value, index: index.value);
     } finally {
-      valueNativeStructPtr.free();
+      free(valueNativeStructPtr);
       free(index);
       free(retValuePtr);
     }
@@ -967,7 +967,7 @@ final class _IVectorViewGpioChangeRecord extends IVectorView<GpioChangeRecord> {
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 
@@ -1001,7 +1001,7 @@ final class _IVectorViewGpioChangeRecord extends IVectorView<GpioChangeRecord> {
 
       return (retValuePtr.value, index: index.value);
     } finally {
-      valueNativeStructPtr.free();
+      free(valueNativeStructPtr);
       free(index);
       free(retValuePtr);
     }
@@ -1072,7 +1072,7 @@ final class _IVectorViewGuid extends IVectorView<Guid> {
 
       return retValuePtr.toDartGuid();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 
@@ -1104,7 +1104,7 @@ final class _IVectorViewGuid extends IVectorView<Guid> {
 
       return (retValuePtr.value, index: index.value);
     } finally {
-      valueNativeStructPtr.free();
+      free(valueNativeStructPtr);
       free(index);
       free(retValuePtr);
     }
@@ -1481,7 +1481,7 @@ final class _IVectorViewMediaTimeRange extends IVectorView<MediaTimeRange> {
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 
@@ -1512,7 +1512,7 @@ final class _IVectorViewMediaTimeRange extends IVectorView<MediaTimeRange> {
 
       return (retValuePtr.value, index: index.value);
     } finally {
-      valueNativeStructPtr.free();
+      free(valueNativeStructPtr);
       free(index);
       free(retValuePtr);
     }
@@ -1583,7 +1583,7 @@ final class _IVectorViewMseTimeRange extends IVectorView<MseTimeRange> {
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 
@@ -1614,7 +1614,7 @@ final class _IVectorViewMseTimeRange extends IVectorView<MseTimeRange> {
 
       return (retValuePtr.value, index: index.value);
     } finally {
-      valueNativeStructPtr.free();
+      free(valueNativeStructPtr);
       free(index);
       free(retValuePtr);
     }
@@ -1685,7 +1685,7 @@ final class _IVectorViewNitRange extends IVectorView<NitRange> {
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 
@@ -1716,7 +1716,7 @@ final class _IVectorViewNitRange extends IVectorView<NitRange> {
 
       return (retValuePtr.value, index: index.value);
     } finally {
-      valueNativeStructPtr.free();
+      free(valueNativeStructPtr);
       free(index);
       free(retValuePtr);
     }
@@ -1819,10 +1819,7 @@ final class _IVectorViewInspectable<T> extends IVectorView<T> {
               .asFunction<
                   int Function(VTablePointer lpVtbl, VTablePointer value,
                       Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
-          ptr.ref.lpVtbl,
-          (value as IInspectable).ptr.ref.lpVtbl,
-          index,
-          retValuePtr);
+          ptr.ref.lpVtbl, (value as IInspectable).lpVtbl, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1927,7 +1924,7 @@ final class _IVectorViewObject extends IVectorView<Object?> {
                   int Function(VTablePointer lpVtbl, VTablePointer value,
                       Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
           ptr.ref.lpVtbl,
-          value?.intoBox().ptr.ref.lpVtbl ?? nullptr,
+          value?.intoBox().lpVtbl ?? nullptr,
           index,
           retValuePtr);
 
@@ -2034,7 +2031,7 @@ final class _IVectorViewUri extends IVectorView<Uri?> {
                   int Function(VTablePointer lpVtbl, VTablePointer value,
                       Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
           ptr.ref.lpVtbl,
-          value?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr,
+          value?.toWinRTUri().lpVtbl ?? nullptr,
           index,
           retValuePtr);
 
@@ -2112,7 +2109,7 @@ final class _IVectorViewPoint extends IVectorView<Point> {
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 
@@ -2144,7 +2141,7 @@ final class _IVectorViewPoint extends IVectorView<Point> {
 
       return (retValuePtr.value, index: index.value);
     } finally {
-      valueNativeStructPtr.free();
+      free(valueNativeStructPtr);
       free(index);
       free(retValuePtr);
     }
@@ -2219,7 +2216,7 @@ final class _IVectorViewPointerDeviceUsage
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 
@@ -2253,7 +2250,7 @@ final class _IVectorViewPointerDeviceUsage
 
       return (retValuePtr.value, index: index.value);
     } finally {
-      valueNativeStructPtr.free();
+      free(valueNativeStructPtr);
       free(index);
       free(retValuePtr);
     }
@@ -2325,7 +2322,7 @@ final class _IVectorViewRect extends IVectorView<Rect> {
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 
@@ -2357,7 +2354,7 @@ final class _IVectorViewRect extends IVectorView<Rect> {
 
       return (retValuePtr.value, index: index.value);
     } finally {
-      valueNativeStructPtr.free();
+      free(valueNativeStructPtr);
       free(index);
       free(retValuePtr);
     }
@@ -2428,7 +2425,7 @@ final class _IVectorViewRectInt32 extends IVectorView<RectInt32> {
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 
@@ -2459,7 +2456,7 @@ final class _IVectorViewRectInt32 extends IVectorView<RectInt32> {
 
       return (retValuePtr.value, index: index.value);
     } finally {
-      valueNativeStructPtr.free();
+      free(valueNativeStructPtr);
       free(index);
       free(retValuePtr);
     }
@@ -2530,7 +2527,7 @@ final class _IVectorViewSize extends IVectorView<Size> {
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 
@@ -2562,7 +2559,7 @@ final class _IVectorViewSize extends IVectorView<Size> {
 
       return (retValuePtr.value, index: index.value);
     } finally {
-      valueNativeStructPtr.free();
+      free(valueNativeStructPtr);
       free(index);
       free(retValuePtr);
     }
@@ -2633,7 +2630,7 @@ final class _IVectorViewSizeUInt32 extends IVectorView<SizeUInt32> {
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 
@@ -2664,7 +2661,7 @@ final class _IVectorViewSizeUInt32 extends IVectorView<SizeUInt32> {
 
       return (retValuePtr.value, index: index.value);
     } finally {
-      valueNativeStructPtr.free();
+      free(valueNativeStructPtr);
       free(index);
       free(retValuePtr);
     }
@@ -2735,7 +2732,7 @@ final class _IVectorViewSortEntry extends IVectorView<SortEntry> {
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 
@@ -2766,7 +2763,7 @@ final class _IVectorViewSortEntry extends IVectorView<SortEntry> {
 
       return (retValuePtr.value, index: index.value);
     } finally {
-      valueNativeStructPtr.free();
+      free(valueNativeStructPtr);
       free(index);
       free(retValuePtr);
     }
@@ -2842,7 +2839,7 @@ final class _IVectorViewStorePackageUpdateStatus
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 
@@ -2876,7 +2873,7 @@ final class _IVectorViewStorePackageUpdateStatus
 
       return (retValuePtr.value, index: index.value);
     } finally {
-      valueNativeStructPtr.free();
+      free(valueNativeStructPtr);
       free(index);
       free(retValuePtr);
     }
@@ -2948,7 +2945,6 @@ final class _IVectorViewString extends IVectorView<String> {
 
       return retValuePtr.toDartString();
     } finally {
-      WindowsDeleteString(retValuePtr.value);
       free(retValuePtr);
     }
   }
@@ -2956,7 +2952,6 @@ final class _IVectorViewString extends IVectorView<String> {
   @override
   (bool, {int index}) indexOf(String value) {
     final retValuePtr = calloc<Bool>();
-    final valueHString = value.toHString();
     final index = calloc<Uint32>();
 
     try {
@@ -2975,13 +2970,12 @@ final class _IVectorViewString extends IVectorView<String> {
                   .asFunction<
                       int Function(VTablePointer lpVtbl, int value,
                           Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
-              ptr.ref.lpVtbl, valueHString, index, retValuePtr);
+              ptr.ref.lpVtbl, value.toHString(), index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
       return (retValuePtr.value, index: index.value);
     } finally {
-      WindowsDeleteString(valueHString);
       free(index);
       free(retValuePtr);
     }
@@ -3052,7 +3046,7 @@ final class _IVectorViewTextRange extends IVectorView<TextRange> {
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 
@@ -3083,7 +3077,7 @@ final class _IVectorViewTextRange extends IVectorView<TextRange> {
 
       return (retValuePtr.value, index: index.value);
     } finally {
-      valueNativeStructPtr.free();
+      free(valueNativeStructPtr);
       free(index);
       free(retValuePtr);
     }
@@ -3154,7 +3148,7 @@ final class _IVectorViewTextSegment extends IVectorView<TextSegment> {
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 
@@ -3185,7 +3179,7 @@ final class _IVectorViewTextSegment extends IVectorView<TextSegment> {
 
       return (retValuePtr.value, index: index.value);
     } finally {
-      valueNativeStructPtr.free();
+      free(valueNativeStructPtr);
       free(index);
       free(retValuePtr);
     }
@@ -3664,7 +3658,7 @@ final class _IVectorViewWindowId extends IVectorView<WindowId> {
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 
@@ -3695,7 +3689,7 @@ final class _IVectorViewWindowId extends IVectorView<WindowId> {
 
       return (retValuePtr.value, index: index.value);
     } finally {
-      valueNativeStructPtr.free();
+      free(valueNativeStructPtr);
       free(index);
       free(retValuePtr);
     }

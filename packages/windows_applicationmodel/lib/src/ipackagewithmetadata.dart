@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -70,7 +71,6 @@ class IPackageWithMetadata extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
@@ -78,8 +78,6 @@ class IPackageWithMetadata extends IInspectable {
   @Deprecated(
       "Launch may be altered or unavailable for releases after Windows 8.1. Instead, for SmartCardTrigger scenarios use SmartCardTriggerDetails.TryLaunchSelfAsync")
   void launch(String parameters) {
-    final parametersHString = parameters.toHString();
-
     final hr = ptr.ref.vtable
             .elementAt(8)
             .cast<
@@ -89,9 +87,7 @@ class IPackageWithMetadata extends IInspectable {
                             VTablePointer lpVtbl, IntPtr parameters)>>>()
             .value
             .asFunction<int Function(VTablePointer lpVtbl, int parameters)>()(
-        ptr.ref.lpVtbl, parametersHString);
-
-    WindowsDeleteString(parametersHString);
+        ptr.ref.lpVtbl, parameters.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

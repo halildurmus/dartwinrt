@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -34,7 +35,6 @@ class IToastNotificationManagerForUser2 extends IInspectable {
   Future<ToastNotifier?> getToastNotifierForToastCollectionIdAsync(
       String collectionId) {
     final operation = calloc<COMObject>();
-    final collectionIdHString = collectionId.toHString();
 
     final hr =
         ptr.ref.vtable
@@ -50,9 +50,7 @@ class IToastNotificationManagerForUser2 extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, int collectionId,
                         Pointer<COMObject> operation)>()(
-            ptr.ref.lpVtbl, collectionIdHString, operation);
-
-    WindowsDeleteString(collectionIdHString);
+            ptr.ref.lpVtbl, collectionId.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -67,7 +65,6 @@ class IToastNotificationManagerForUser2 extends IInspectable {
   Future<ToastNotificationHistory?> getHistoryForToastCollectionIdAsync(
       String collectionId) {
     final operation = calloc<COMObject>();
-    final collectionIdHString = collectionId.toHString();
 
     final hr =
         ptr.ref.vtable
@@ -83,9 +80,7 @@ class IToastNotificationManagerForUser2 extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, int collectionId,
                         Pointer<COMObject> operation)>()(
-            ptr.ref.lpVtbl, collectionIdHString, operation);
-
-    WindowsDeleteString(collectionIdHString);
+            ptr.ref.lpVtbl, collectionId.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -128,7 +123,6 @@ class IToastNotificationManagerForUser2 extends IInspectable {
 
   ToastCollectionManager? getToastCollectionManagerWithAppId(String appId) {
     final result = calloc<COMObject>();
-    final appIdHString = appId.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(9)
@@ -141,9 +135,7 @@ class IToastNotificationManagerForUser2 extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int appId,
                     Pointer<COMObject> result)>()(
-        ptr.ref.lpVtbl, appIdHString, result);
-
-    WindowsDeleteString(appIdHString);
+        ptr.ref.lpVtbl, appId.toHString(), result);
 
     if (FAILED(hr)) {
       free(result);

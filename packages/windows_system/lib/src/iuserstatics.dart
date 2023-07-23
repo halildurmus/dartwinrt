@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -151,7 +152,6 @@ class IUserStatics extends IInspectable {
 
   User? getFromId(String nonRoamableId) {
     final result = calloc<COMObject>();
-    final nonRoamableIdHString = nonRoamableId.toHString();
 
     final hr =
         ptr.ref.vtable
@@ -167,9 +167,7 @@ class IUserStatics extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, int nonRoamableId,
                         Pointer<COMObject> result)>()(
-            ptr.ref.lpVtbl, nonRoamableIdHString, result);
-
-    WindowsDeleteString(nonRoamableIdHString);
+            ptr.ref.lpVtbl, nonRoamableId.toHString(), result);
 
     if (FAILED(hr)) {
       free(result);

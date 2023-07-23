@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -48,14 +49,11 @@ class INetworkOperatorTetheringAccessPointConfiguration extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
 
   set ssid(String value) {
-    final valueHString = value.toHString();
-
     final hr =
         ptr.ref.vtable
                 .elementAt(7)
@@ -66,9 +64,7 @@ class INetworkOperatorTetheringAccessPointConfiguration extends IInspectable {
                                 VTablePointer lpVtbl, IntPtr value)>>>()
                 .value
                 .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-            ptr.ref.lpVtbl, valueHString);
-
-    WindowsDeleteString(valueHString);
+            ptr.ref.lpVtbl, value.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -93,14 +89,11 @@ class INetworkOperatorTetheringAccessPointConfiguration extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
 
   set passphrase(String value) {
-    final valueHString = value.toHString();
-
     final hr =
         ptr.ref.vtable
                 .elementAt(9)
@@ -111,9 +104,7 @@ class INetworkOperatorTetheringAccessPointConfiguration extends IInspectable {
                                 VTablePointer lpVtbl, IntPtr value)>>>()
                 .value
                 .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-            ptr.ref.lpVtbl, valueHString);
-
-    WindowsDeleteString(valueHString);
+            ptr.ref.lpVtbl, value.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

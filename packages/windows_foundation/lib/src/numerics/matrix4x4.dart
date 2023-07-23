@@ -9,7 +9,8 @@
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 
 import '../../internal.dart';
 import '../winrt_struct.dart';
@@ -119,19 +120,12 @@ final class Matrix4x4 implements WinRTStruct {
 /// @nodoc
 extension NativeMatrix4x4Conversion on NativeMatrix4x4 {
   /// Converts this [NativeMatrix4x4] into a Dart [Matrix4x4].
-  Matrix4x4 toDart() {
-    return Matrix4x4(m11, m12, m13, m14, m21, m22, m23, m24, m31, m32, m33, m34,
-        m41, m42, m43, m44);
-  }
+  Matrix4x4 toDart() => Matrix4x4(m11, m12, m13, m14, m21, m22, m23, m24, m31,
+      m32, m33, m34, m41, m42, m43, m44);
 }
 
 /// @nodoc
 extension PointerNativeMatrix4x4Conversion on Pointer<NativeMatrix4x4> {
-  /// Frees the allocated memory for [NativeMatrix4x4].
-  void free() {
-    calloc.free(this);
-  }
-
   /// Converts the referenced [NativeMatrix4x4] into a Dart [Matrix4x4].
   Matrix4x4 toDart() {
     final ref = this.ref;

@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 import 'package:windows_system/windows_system.dart';
@@ -43,7 +44,7 @@ class IAppListEntry3 extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer user,
                         Pointer<COMObject> operation)>()(
-            ptr.ref.lpVtbl, user?.ptr.ref.lpVtbl ?? nullptr, operation);
+            ptr.ref.lpVtbl, user.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);

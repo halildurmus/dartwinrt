@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -47,7 +48,6 @@ class INumeralSystemIdentifiersStatics extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
@@ -72,7 +72,6 @@ class INumeralSystemIdentifiersStatics extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
@@ -97,7 +96,6 @@ class INumeralSystemIdentifiersStatics extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
@@ -122,7 +120,6 @@ class INumeralSystemIdentifiersStatics extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
@@ -147,7 +144,6 @@ class INumeralSystemIdentifiersStatics extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
@@ -172,7 +168,6 @@ class INumeralSystemIdentifiersStatics extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
@@ -197,7 +192,6 @@ class INumeralSystemIdentifiersStatics extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
@@ -222,7 +216,6 @@ class INumeralSystemIdentifiersStatics extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
@@ -247,7 +240,6 @@ class INumeralSystemIdentifiersStatics extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
@@ -272,7 +264,6 @@ class INumeralSystemIdentifiersStatics extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
@@ -297,7 +288,6 @@ class INumeralSystemIdentifiersStatics extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
@@ -322,7 +312,6 @@ class INumeralSystemIdentifiersStatics extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
@@ -347,7 +336,6 @@ class INumeralSystemIdentifiersStatics extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
@@ -372,7 +360,6 @@ class INumeralSystemIdentifiersStatics extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
@@ -397,7 +384,6 @@ class INumeralSystemIdentifiersStatics extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
@@ -422,7 +408,6 @@ class INumeralSystemIdentifiersStatics extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
@@ -447,7 +432,6 @@ class INumeralSystemIdentifiersStatics extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
@@ -472,7 +456,6 @@ class INumeralSystemIdentifiersStatics extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
@@ -497,7 +480,6 @@ class INumeralSystemIdentifiersStatics extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
@@ -522,7 +504,6 @@ class INumeralSystemIdentifiersStatics extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
@@ -547,7 +528,6 @@ class INumeralSystemIdentifiersStatics extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
@@ -572,7 +552,6 @@ class INumeralSystemIdentifiersStatics extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
@@ -597,7 +576,6 @@ class INumeralSystemIdentifiersStatics extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
@@ -622,7 +600,6 @@ class INumeralSystemIdentifiersStatics extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
@@ -647,7 +624,6 @@ class INumeralSystemIdentifiersStatics extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
@@ -672,7 +648,6 @@ class INumeralSystemIdentifiersStatics extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
@@ -697,7 +672,6 @@ class INumeralSystemIdentifiersStatics extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
@@ -722,7 +696,6 @@ class INumeralSystemIdentifiersStatics extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
@@ -747,7 +720,6 @@ class INumeralSystemIdentifiersStatics extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
@@ -772,7 +744,6 @@ class INumeralSystemIdentifiersStatics extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
@@ -797,7 +768,6 @@ class INumeralSystemIdentifiersStatics extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
@@ -822,7 +792,6 @@ class INumeralSystemIdentifiersStatics extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
@@ -847,7 +816,6 @@ class INumeralSystemIdentifiersStatics extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
@@ -872,7 +840,6 @@ class INumeralSystemIdentifiersStatics extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
@@ -897,7 +864,6 @@ class INumeralSystemIdentifiersStatics extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
@@ -922,7 +888,6 @@ class INumeralSystemIdentifiersStatics extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }

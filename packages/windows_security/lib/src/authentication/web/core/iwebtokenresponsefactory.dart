@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -32,7 +33,6 @@ class IWebTokenResponseFactory extends IInspectable {
 
   WebTokenResponse createWithToken(String token) {
     final webTokenResponse = calloc<COMObject>();
-    final tokenHString = token.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -45,9 +45,7 @@ class IWebTokenResponseFactory extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int token,
                     Pointer<COMObject> webTokenResponse)>()(
-        ptr.ref.lpVtbl, tokenHString, webTokenResponse);
-
-    WindowsDeleteString(tokenHString);
+        ptr.ref.lpVtbl, token.toHString(), webTokenResponse);
 
     if (FAILED(hr)) {
       free(webTokenResponse);
@@ -60,7 +58,6 @@ class IWebTokenResponseFactory extends IInspectable {
   WebTokenResponse createWithTokenAndAccount(
       String token, WebAccount? webAccount) {
     final webTokenResponse = calloc<COMObject>();
-    final tokenHString = token.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(7)
@@ -78,10 +75,8 @@ class IWebTokenResponseFactory extends IInspectable {
                     VTablePointer lpVtbl,
                     int token,
                     VTablePointer webAccount,
-                    Pointer<COMObject> webTokenResponse)>()(ptr.ref.lpVtbl,
-        tokenHString, webAccount?.ptr.ref.lpVtbl ?? nullptr, webTokenResponse);
-
-    WindowsDeleteString(tokenHString);
+                    Pointer<COMObject> webTokenResponse)>()(
+        ptr.ref.lpVtbl, token.toHString(), webAccount.lpVtbl, webTokenResponse);
 
     if (FAILED(hr)) {
       free(webTokenResponse);
@@ -94,7 +89,6 @@ class IWebTokenResponseFactory extends IInspectable {
   WebTokenResponse createWithTokenAccountAndError(
       String token, WebAccount? webAccount, WebProviderError? error) {
     final webTokenResponse = calloc<COMObject>();
-    final tokenHString = token.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(8)
@@ -114,14 +108,8 @@ class IWebTokenResponseFactory extends IInspectable {
                     int token,
                     VTablePointer webAccount,
                     VTablePointer error,
-                    Pointer<COMObject> webTokenResponse)>()(
-        ptr.ref.lpVtbl,
-        tokenHString,
-        webAccount?.ptr.ref.lpVtbl ?? nullptr,
-        error?.ptr.ref.lpVtbl ?? nullptr,
-        webTokenResponse);
-
-    WindowsDeleteString(tokenHString);
+                    Pointer<COMObject> webTokenResponse)>()(ptr.ref.lpVtbl,
+        token.toHString(), webAccount.lpVtbl, error.lpVtbl, webTokenResponse);
 
     if (FAILED(hr)) {
       free(webTokenResponse);

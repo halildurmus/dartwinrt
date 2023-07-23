@@ -9,7 +9,8 @@
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 
 import '../internal.dart';
 import 'winrt_struct.dart';
@@ -44,18 +45,11 @@ final class Point implements WinRTStruct {
 /// @nodoc
 extension NativePointConversion on NativePoint {
   /// Converts this [NativePoint] into a Dart [Point].
-  Point toDart() {
-    return Point(x, y);
-  }
+  Point toDart() => Point(x, y);
 }
 
 /// @nodoc
 extension PointerNativePointConversion on Pointer<NativePoint> {
-  /// Frees the allocated memory for [NativePoint].
-  void free() {
-    calloc.free(this);
-  }
-
   /// Converts the referenced [NativePoint] into a Dart [Point].
   Point toDart() {
     final ref = this.ref;

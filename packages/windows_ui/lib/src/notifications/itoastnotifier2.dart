@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -33,9 +34,6 @@ class IToastNotifier2 extends IInspectable {
     final result = calloc<Int32>();
 
     try {
-      final tagHString = tag.toHString();
-      final groupHString = group.toHString();
-
       final hr =
           ptr.ref.vtable
                   .elementAt(6)
@@ -53,13 +51,10 @@ class IToastNotifier2 extends IInspectable {
                       int Function(VTablePointer lpVtbl, VTablePointer data,
                           int tag, int group, Pointer<Int32> result)>()(
               ptr.ref.lpVtbl,
-              data?.ptr.ref.lpVtbl ?? nullptr,
-              tagHString,
-              groupHString,
+              data.lpVtbl,
+              tag.toHString(),
+              group.toHString(),
               result);
-
-      WindowsDeleteString(tagHString);
-      WindowsDeleteString(groupHString);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -73,8 +68,6 @@ class IToastNotifier2 extends IInspectable {
     final result = calloc<Int32>();
 
     try {
-      final tagHString = tag.toHString();
-
       final hr =
           ptr.ref.vtable
                   .elementAt(7)
@@ -89,10 +82,8 @@ class IToastNotifier2 extends IInspectable {
                   .value
                   .asFunction<
                       int Function(VTablePointer lpVtbl, VTablePointer data,
-                          int tag, Pointer<Int32> result)>()(ptr.ref.lpVtbl,
-              data?.ptr.ref.lpVtbl ?? nullptr, tagHString, result);
-
-      WindowsDeleteString(tagHString);
+                          int tag, Pointer<Int32> result)>()(
+              ptr.ref.lpVtbl, data.lpVtbl, tag.toHString(), result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 

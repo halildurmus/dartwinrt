@@ -349,7 +349,7 @@ void main() {
       expect(projection.failedCheck, equals(failedCheck()));
       expect(projection.nullCheck, isEmpty);
       expect(projection.returnStatement, equals('return value.toDartGuid();'));
-      expect(projection.postambles, equals(['value.free();']));
+      expect(projection.postambles, equals(['free(value);']));
     });
 
     test('projects int', () {
@@ -548,8 +548,7 @@ void main() {
       expect(projection.paramIdentifier, equals('operation'));
       expect(projection.preambles,
           equals(['final operation = calloc<COMObject>();']));
-      expect(projection.parametersPreamble,
-          equals(['final contentIdHString = contentId.toHString();']));
+      expect(projection.parametersPreamble, isEmpty);
       expect(
           projection.nativePrototype,
           equals(
@@ -561,9 +560,8 @@ void main() {
       expect(
           projection.identifiers,
           equals(
-              "ptr.ref.lpVtbl, contentIdHString, propertiesToRetrieve == null ? nullptr : IInspectable(propertiesToRetrieve.toInterface('{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}')).ptr.ref.lpVtbl, operation"));
-      expect(projection.parametersPostamble,
-          equals(['WindowsDeleteString(contentIdHString);']));
+              'ptr.ref.lpVtbl, contentId.toHString(), propertiesToRetrieve.lpVtbl, operation'));
+      expect(projection.parametersPostamble, isEmpty);
       expect(projection.failedCheck,
           equals(failedCheck(freeRetVal: true, identifier: 'operation')));
       expect(projection.nullCheck, isEmpty);
@@ -597,10 +595,8 @@ void main() {
           projection.dartPrototype,
           equals(
               'int Function(VTablePointer lpVtbl, VTablePointer target, Pointer<COMObject> operation)'));
-      expect(
-          projection.identifiers,
-          equals(
-              'ptr.ref.lpVtbl, target?.ptr.ref.lpVtbl ?? nullptr, operation'));
+      expect(projection.identifiers,
+          equals('ptr.ref.lpVtbl, target.lpVtbl, operation'));
       expect(projection.parametersPostamble, isEmpty);
       expect(projection.failedCheck,
           equals(failedCheck(freeRetVal: true, identifier: 'operation')));
@@ -703,10 +699,8 @@ void main() {
           projection.dartPrototype,
           equals(
               'int Function(VTablePointer lpVtbl, VTablePointer buffer, Pointer<COMObject> operation)'));
-      expect(
-          projection.identifiers,
-          equals(
-              'ptr.ref.lpVtbl, buffer?.ptr.ref.lpVtbl ?? nullptr, operation'));
+      expect(projection.identifiers,
+          equals('ptr.ref.lpVtbl, buffer.lpVtbl, operation'));
       expect(projection.parametersPostamble, isEmpty);
       expect(projection.failedCheck,
           equals(failedCheck(freeRetVal: true, identifier: 'operation')));
@@ -740,7 +734,7 @@ void main() {
           equals(
               'int Function(VTablePointer lpVtbl, VTablePointer file, Pointer<COMObject> result)'));
       expect(projection.identifiers,
-          equals('ptr.ref.lpVtbl, file?.ptr.ref.lpVtbl ?? nullptr, result'));
+          equals('ptr.ref.lpVtbl, file.lpVtbl, result'));
       expect(projection.parametersPostamble, isEmpty);
       expect(projection.failedCheck,
           equals(failedCheck(freeRetVal: true, identifier: 'result')));
@@ -1031,8 +1025,8 @@ void main() {
           projection.dartPrototype,
           equals(
               'int Function(VTablePointer lpVtbl, VTablePointer user, Pointer<COMObject> value)'));
-      expect(projection.identifiers,
-          equals('ptr.ref.lpVtbl, user?.ptr.ref.lpVtbl ?? nullptr, value'));
+      expect(
+          projection.identifiers, equals('ptr.ref.lpVtbl, user.lpVtbl, value'));
       expect(projection.parametersPostamble, isEmpty);
       expect(projection.failedCheck,
           equals(failedCheck(freeRetVal: true, identifier: 'value')));
@@ -1200,8 +1194,7 @@ void main() {
       expect(projection.paramIdentifier, equals('returnValue'));
       expect(projection.preambles,
           equals(['final returnValue = calloc<COMObject>();']));
-      expect(projection.parametersPreamble,
-          equals(['final keyHString = key.toHString();']));
+      expect(projection.parametersPreamble, isEmpty);
       expect(
           projection.nativePrototype,
           equals(
@@ -1211,9 +1204,8 @@ void main() {
           equals(
               'int Function(VTablePointer lpVtbl, int key, Pointer<COMObject> returnValue)'));
       expect(projection.identifiers,
-          equals('ptr.ref.lpVtbl, keyHString, returnValue'));
-      expect(projection.parametersPostamble,
-          equals(['WindowsDeleteString(keyHString);']));
+          equals('ptr.ref.lpVtbl, key.toHString(), returnValue'));
+      expect(projection.parametersPostamble, isEmpty);
       expect(projection.failedCheck,
           equals(failedCheck(freeRetVal: true, identifier: 'returnValue')));
       expect(projection.nullCheck, equals(nullCheck('returnValue')));
@@ -1234,12 +1226,8 @@ void main() {
           equals('PhoneNumberFormatter? tryCreate(String regionCode)'));
       expect(projection.paramIdentifier, isEmpty);
       expect(projection.preambles, isEmpty);
-      expect(
-          projection.parametersPreamble,
-          equals([
-            'final regionCodeHString = regionCode.toHString();',
-            'final phoneNumber = calloc<COMObject>();'
-          ]));
+      expect(projection.parametersPreamble,
+          equals(['final phoneNumber = calloc<COMObject>();']));
       expect(
           projection.nativePrototype,
           equals(
@@ -1249,9 +1237,8 @@ void main() {
           equals(
               'int Function(VTablePointer lpVtbl, int regionCode, Pointer<COMObject> phoneNumber)'));
       expect(projection.identifiers,
-          equals('ptr.ref.lpVtbl, regionCodeHString, phoneNumber'));
-      expect(projection.parametersPostamble,
-          equals(['WindowsDeleteString(regionCodeHString);']));
+          equals('ptr.ref.lpVtbl, regionCode.toHString(), phoneNumber'));
+      expect(projection.parametersPostamble, isEmpty);
       expect(projection.failedCheck,
           equals(failedCheck(freeRetVal: true, identifier: 'phoneNumber')));
       expect(projection.nullCheck, equals(nullCheck('phoneNumber')));
@@ -1282,10 +1269,8 @@ void main() {
           projection.dartPrototype,
           equals(
               'int Function(VTablePointer lpVtbl, VTablePointer value, Pointer<Uint32> index, Pointer<Bool> returnValue)'));
-      expect(
-          projection.identifiers,
-          equals(
-              'ptr.ref.lpVtbl, value?.ptr.ref.lpVtbl ?? nullptr, index, returnValue'));
+      expect(projection.identifiers,
+          equals('ptr.ref.lpVtbl, value.lpVtbl, index, returnValue'));
       expect(projection.parametersPostamble, equals(['free(index);']));
       expect(projection.failedCheck, equals(failedCheck()));
       expect(projection.nullCheck, isEmpty);
@@ -1398,12 +1383,8 @@ void main() {
               '(PhoneNumberParseResult, {PhoneNumberInfo? phoneNumber}) tryParse(String input)'));
       expect(projection.paramIdentifier, equals('result'));
       expect(projection.preambles, equals(['final result = calloc<Int32>();']));
-      expect(
-          projection.parametersPreamble,
-          equals([
-            'final inputHString = input.toHString();',
-            'final phoneNumber = calloc<COMObject>();'
-          ]));
+      expect(projection.parametersPreamble,
+          equals(['final phoneNumber = calloc<COMObject>();']));
       expect(
           projection.nativePrototype,
           equals(
@@ -1413,9 +1394,8 @@ void main() {
           equals(
               'int Function(VTablePointer lpVtbl, int input, Pointer<COMObject> phoneNumber, Pointer<Int32> result)'));
       expect(projection.identifiers,
-          equals('ptr.ref.lpVtbl, inputHString, phoneNumber, result'));
-      expect(projection.parametersPostamble,
-          equals(['WindowsDeleteString(inputHString);']));
+          equals('ptr.ref.lpVtbl, input.toHString(), phoneNumber, result'));
+      expect(projection.parametersPostamble, isEmpty);
       expect(projection.failedCheck,
           equals(failedCheck(freeRetVal: true, identifier: 'phoneNumber')));
       expect(projection.nullCheck, equalsIgnoringWhitespace('''
@@ -1454,8 +1434,7 @@ void main() {
       expect(projection.nullCheck, isEmpty);
       expect(
           projection.returnStatement, equals('return value.toDartString();'));
-      expect(projection.postambles,
-          orderedEquals(['WindowsDeleteString(value.value);', 'free(value);']));
+      expect(projection.postambles, orderedEquals(['free(value);']));
     });
 
     test('projects String (2) (annotated with @override)', () {
@@ -1480,8 +1459,7 @@ void main() {
       expect(projection.nullCheck, isEmpty);
       expect(
           projection.returnStatement, equals('return value.toDartString();'));
-      expect(projection.postambles,
-          orderedEquals(['WindowsDeleteString(value.value);', 'free(value);']));
+      expect(projection.postambles, orderedEquals(['free(value);']));
     });
 
     test('projects struct', () {
@@ -1508,7 +1486,7 @@ void main() {
       expect(projection.failedCheck, equals(failedCheck()));
       expect(projection.nullCheck, isEmpty);
       expect(projection.returnStatement, equals('return value.toDart();'));
-      expect(projection.postambles, equals(['value.free();']));
+      expect(projection.postambles, equals(['free(value);']));
     });
 
     test('projects Uri', () {
@@ -1521,8 +1499,7 @@ void main() {
       expect(projection.paramIdentifier, equals('instance'));
       expect(projection.preambles,
           equals(['final instance = calloc<COMObject>();']));
-      expect(projection.parametersPreamble,
-          equals(['final uriHString = uri.toHString();']));
+      expect(projection.parametersPreamble, isEmpty);
       expect(
           projection.nativePrototype,
           equals(
@@ -1532,9 +1509,8 @@ void main() {
           equals(
               'int Function(VTablePointer lpVtbl, int uri, Pointer<COMObject> instance)'));
       expect(projection.identifiers,
-          equals('ptr.ref.lpVtbl, uriHString, instance'));
-      expect(projection.parametersPostamble,
-          equals(['WindowsDeleteString(uriHString);']));
+          equals('ptr.ref.lpVtbl, uri.toHString(), instance'));
+      expect(projection.parametersPostamble, isEmpty);
       expect(projection.failedCheck,
           equals(failedCheck(freeRetVal: true, identifier: 'instance')));
       expect(projection.nullCheck, isEmpty);

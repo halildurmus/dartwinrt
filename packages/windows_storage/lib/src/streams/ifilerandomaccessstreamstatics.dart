@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 import 'package:windows_system/windows_system.dart';
@@ -37,7 +38,6 @@ class IFileRandomAccessStreamStatics extends IInspectable {
   Future<IRandomAccessStream?> openAsync(
       String filePath, FileAccessMode accessMode) {
     final operation = calloc<COMObject>();
-    final filePathHString = filePath.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -50,9 +50,7 @@ class IFileRandomAccessStreamStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int filePath, int accessMode,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, filePathHString, accessMode.value, operation);
-
-    WindowsDeleteString(filePathHString);
+        ptr.ref.lpVtbl, filePath.toHString(), accessMode.value, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -71,7 +69,6 @@ class IFileRandomAccessStreamStatics extends IInspectable {
       StorageOpenOptions sharingOptions,
       FileOpenDisposition openDisposition) {
     final operation = calloc<COMObject>();
-    final filePathHString = filePath.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(7)
@@ -95,13 +92,11 @@ class IFileRandomAccessStreamStatics extends IInspectable {
                     int openDisposition,
                     Pointer<COMObject> operation)>()(
         ptr.ref.lpVtbl,
-        filePathHString,
+        filePath.toHString(),
         accessMode.value,
         sharingOptions.value,
         openDisposition.value,
         operation);
-
-    WindowsDeleteString(filePathHString);
 
     if (FAILED(hr)) {
       free(operation);
@@ -116,7 +111,6 @@ class IFileRandomAccessStreamStatics extends IInspectable {
 
   Future<StorageStreamTransaction?> openTransactedWriteAsync(String filePath) {
     final operation = calloc<COMObject>();
-    final filePathHString = filePath.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(8)
@@ -129,9 +123,7 @@ class IFileRandomAccessStreamStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int filePath,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, filePathHString, operation);
-
-    WindowsDeleteString(filePathHString);
+        ptr.ref.lpVtbl, filePath.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -149,7 +141,6 @@ class IFileRandomAccessStreamStatics extends IInspectable {
       StorageOpenOptions openOptions,
       FileOpenDisposition openDisposition) {
     final operation = calloc<COMObject>();
-    final filePathHString = filePath.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(9)
@@ -169,10 +160,12 @@ class IFileRandomAccessStreamStatics extends IInspectable {
                     int filePath,
                     int openOptions,
                     int openDisposition,
-                    Pointer<COMObject> operation)>()(ptr.ref.lpVtbl,
-        filePathHString, openOptions.value, openDisposition.value, operation);
-
-    WindowsDeleteString(filePathHString);
+                    Pointer<COMObject> operation)>()(
+        ptr.ref.lpVtbl,
+        filePath.toHString(),
+        openOptions.value,
+        openDisposition.value,
+        operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -188,7 +181,6 @@ class IFileRandomAccessStreamStatics extends IInspectable {
   Future<IRandomAccessStream?> openForUserAsync(
       User? user, String filePath, FileAccessMode accessMode) {
     final operation = calloc<COMObject>();
-    final filePathHString = filePath.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(10)
@@ -208,14 +200,8 @@ class IFileRandomAccessStreamStatics extends IInspectable {
                     VTablePointer user,
                     int filePath,
                     int accessMode,
-                    Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl,
-        user?.ptr.ref.lpVtbl ?? nullptr,
-        filePathHString,
-        accessMode.value,
-        operation);
-
-    WindowsDeleteString(filePathHString);
+                    Pointer<COMObject> operation)>()(ptr.ref.lpVtbl,
+        user.lpVtbl, filePath.toHString(), accessMode.value, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -235,7 +221,6 @@ class IFileRandomAccessStreamStatics extends IInspectable {
       StorageOpenOptions sharingOptions,
       FileOpenDisposition openDisposition) {
     final operation = calloc<COMObject>();
-    final filePathHString = filePath.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(11)
@@ -261,14 +246,12 @@ class IFileRandomAccessStreamStatics extends IInspectable {
                     int openDisposition,
                     Pointer<COMObject> operation)>()(
         ptr.ref.lpVtbl,
-        user?.ptr.ref.lpVtbl ?? nullptr,
-        filePathHString,
+        user.lpVtbl,
+        filePath.toHString(),
         accessMode.value,
         sharingOptions.value,
         openDisposition.value,
         operation);
-
-    WindowsDeleteString(filePathHString);
 
     if (FAILED(hr)) {
       free(operation);
@@ -284,7 +267,6 @@ class IFileRandomAccessStreamStatics extends IInspectable {
   Future<StorageStreamTransaction?> openTransactedWriteForUserAsync(
       User? user, String filePath) {
     final operation = calloc<COMObject>();
-    final filePathHString = filePath.toHString();
 
     final hr =
         ptr.ref.vtable
@@ -301,12 +283,7 @@ class IFileRandomAccessStreamStatics extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer user,
                         int filePath, Pointer<COMObject> operation)>()(
-            ptr.ref.lpVtbl,
-            user?.ptr.ref.lpVtbl ?? nullptr,
-            filePathHString,
-            operation);
-
-    WindowsDeleteString(filePathHString);
+            ptr.ref.lpVtbl, user.lpVtbl, filePath.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -325,7 +302,6 @@ class IFileRandomAccessStreamStatics extends IInspectable {
       StorageOpenOptions openOptions,
       FileOpenDisposition openDisposition) {
     final operation = calloc<COMObject>();
-    final filePathHString = filePath.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(13)
@@ -349,13 +325,11 @@ class IFileRandomAccessStreamStatics extends IInspectable {
                     int openDisposition,
                     Pointer<COMObject> operation)>()(
         ptr.ref.lpVtbl,
-        user?.ptr.ref.lpVtbl ?? nullptr,
-        filePathHString,
+        user.lpVtbl,
+        filePath.toHString(),
         openOptions.value,
         openDisposition.value,
         operation);
-
-    WindowsDeleteString(filePathHString);
 
     if (FAILED(hr)) {
       free(operation);

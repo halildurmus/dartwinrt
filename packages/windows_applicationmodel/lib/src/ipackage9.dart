@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -45,7 +46,7 @@ class IPackage9 extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer options,
                         Pointer<COMObject> result)>()(
-            ptr.ref.lpVtbl, options?.ptr.ref.lpVtbl ?? nullptr, result);
+            ptr.ref.lpVtbl, options.lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -77,7 +78,6 @@ class IPackage9 extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }

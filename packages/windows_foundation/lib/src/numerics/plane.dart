@@ -9,7 +9,8 @@
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 
 import '../../internal.dart';
 import '../winrt_struct.dart';
@@ -44,18 +45,11 @@ final class Plane implements WinRTStruct {
 /// @nodoc
 extension NativePlaneConversion on NativePlane {
   /// Converts this [NativePlane] into a Dart [Plane].
-  Plane toDart() {
-    return Plane(normal.toDart(), d);
-  }
+  Plane toDart() => Plane(normal.toDart(), d);
 }
 
 /// @nodoc
 extension PointerNativePlaneConversion on Pointer<NativePlane> {
-  /// Frees the allocated memory for [NativePlane].
-  void free() {
-    calloc.free(this);
-  }
-
   /// Converts the referenced [NativePlane] into a Dart [Plane].
   Plane toDart() {
     final ref = this.ref;

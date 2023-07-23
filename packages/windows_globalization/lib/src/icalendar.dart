@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -126,14 +127,11 @@ class ICalendar extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
 
   set numeralSystem(String value) {
-    final valueHString = value.toHString();
-
     final hr =
         ptr.ref.vtable
                 .elementAt(11)
@@ -144,9 +142,7 @@ class ICalendar extends IInspectable {
                                 VTablePointer lpVtbl, IntPtr value)>>>()
                 .value
                 .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-            ptr.ref.lpVtbl, valueHString);
-
-    WindowsDeleteString(valueHString);
+            ptr.ref.lpVtbl, value.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -171,14 +167,11 @@ class ICalendar extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
 
   void changeCalendarSystem(String value) {
-    final valueHString = value.toHString();
-
     final hr =
         ptr.ref.vtable
                 .elementAt(13)
@@ -189,9 +182,7 @@ class ICalendar extends IInspectable {
                                 VTablePointer lpVtbl, IntPtr value)>>>()
                 .value
                 .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-            ptr.ref.lpVtbl, valueHString);
-
-    WindowsDeleteString(valueHString);
+            ptr.ref.lpVtbl, value.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -216,14 +207,11 @@ class ICalendar extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
 
   void changeClock(String value) {
-    final valueHString = value.toHString();
-
     final hr =
         ptr.ref.vtable
                 .elementAt(15)
@@ -234,9 +222,7 @@ class ICalendar extends IInspectable {
                                 VTablePointer lpVtbl, IntPtr value)>>>()
                 .value
                 .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-            ptr.ref.lpVtbl, valueHString);
-
-    WindowsDeleteString(valueHString);
+            ptr.ref.lpVtbl, value.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -433,7 +419,6 @@ class ICalendar extends IInspectable {
 
       return result.toDartString();
     } finally {
-      WindowsDeleteString(result.value);
       free(result);
     }
   }
@@ -461,7 +446,6 @@ class ICalendar extends IInspectable {
 
       return result.toDartString();
     } finally {
-      WindowsDeleteString(result.value);
       free(result);
     }
   }
@@ -610,7 +594,6 @@ class ICalendar extends IInspectable {
 
       return result.toDartString();
     } finally {
-      WindowsDeleteString(result.value);
       free(result);
     }
   }
@@ -639,7 +622,6 @@ class ICalendar extends IInspectable {
 
       return result.toDartString();
     } finally {
-      WindowsDeleteString(result.value);
       free(result);
     }
   }
@@ -664,7 +646,6 @@ class ICalendar extends IInspectable {
 
       return result.toDartString();
     } finally {
-      WindowsDeleteString(result.value);
       free(result);
     }
   }
@@ -815,7 +796,6 @@ class ICalendar extends IInspectable {
 
       return result.toDartString();
     } finally {
-      WindowsDeleteString(result.value);
       free(result);
     }
   }
@@ -843,7 +823,6 @@ class ICalendar extends IInspectable {
 
       return result.toDartString();
     } finally {
-      WindowsDeleteString(result.value);
       free(result);
     }
   }
@@ -868,7 +847,6 @@ class ICalendar extends IInspectable {
 
       return result.toDartString();
     } finally {
-      WindowsDeleteString(result.value);
       free(result);
     }
   }
@@ -896,7 +874,6 @@ class ICalendar extends IInspectable {
 
       return result.toDartString();
     } finally {
-      WindowsDeleteString(result.value);
       free(result);
     }
   }
@@ -921,7 +898,6 @@ class ICalendar extends IInspectable {
 
       return result.toDartString();
     } finally {
-      WindowsDeleteString(result.value);
       free(result);
     }
   }
@@ -946,7 +922,6 @@ class ICalendar extends IInspectable {
 
       return result.toDartString();
     } finally {
-      WindowsDeleteString(result.value);
       free(result);
     }
   }
@@ -1109,7 +1084,6 @@ class ICalendar extends IInspectable {
 
       return result.toDartString();
     } finally {
-      WindowsDeleteString(result.value);
       free(result);
     }
   }
@@ -1134,7 +1108,6 @@ class ICalendar extends IInspectable {
 
       return result.toDartString();
     } finally {
-      WindowsDeleteString(result.value);
       free(result);
     }
   }
@@ -1183,7 +1156,6 @@ class ICalendar extends IInspectable {
 
       return result.toDartString();
     } finally {
-      WindowsDeleteString(result.value);
       free(result);
     }
   }
@@ -1211,7 +1183,6 @@ class ICalendar extends IInspectable {
 
       return result.toDartString();
     } finally {
-      WindowsDeleteString(result.value);
       free(result);
     }
   }
@@ -1236,7 +1207,6 @@ class ICalendar extends IInspectable {
 
       return result.toDartString();
     } finally {
-      WindowsDeleteString(result.value);
       free(result);
     }
   }
@@ -1264,7 +1234,6 @@ class ICalendar extends IInspectable {
 
       return result.toDartString();
     } finally {
-      WindowsDeleteString(result.value);
       free(result);
     }
   }
@@ -1415,7 +1384,6 @@ class ICalendar extends IInspectable {
 
       return result.toDartString();
     } finally {
-      WindowsDeleteString(result.value);
       free(result);
     }
   }
@@ -1443,7 +1411,6 @@ class ICalendar extends IInspectable {
 
       return result.toDartString();
     } finally {
-      WindowsDeleteString(result.value);
       free(result);
     }
   }
@@ -1592,7 +1559,6 @@ class ICalendar extends IInspectable {
 
       return result.toDartString();
     } finally {
-      WindowsDeleteString(result.value);
       free(result);
     }
   }
@@ -1617,7 +1583,6 @@ class ICalendar extends IInspectable {
 
       return result.toDartString();
     } finally {
-      WindowsDeleteString(result.value);
       free(result);
     }
   }
@@ -1696,7 +1661,6 @@ class ICalendar extends IInspectable {
 
       return result.toDartString();
     } finally {
-      WindowsDeleteString(result.value);
       free(result);
     }
   }
@@ -1721,7 +1685,6 @@ class ICalendar extends IInspectable {
 
       return result.toDartString();
     } finally {
-      WindowsDeleteString(result.value);
       free(result);
     }
   }
@@ -1800,7 +1763,6 @@ class ICalendar extends IInspectable {
 
       return result.toDartString();
     } finally {
-      WindowsDeleteString(result.value);
       free(result);
     }
   }
@@ -1825,7 +1787,6 @@ class ICalendar extends IInspectable {
 
       return result.toDartString();
     } finally {
-      WindowsDeleteString(result.value);
       free(result);
     }
   }
@@ -1903,7 +1864,6 @@ class ICalendar extends IInspectable {
 
       return result.toDartString();
     } finally {
-      WindowsDeleteString(result.value);
       free(result);
     }
   }
@@ -1928,7 +1888,6 @@ class ICalendar extends IInspectable {
 
       return result.toDartString();
     } finally {
-      WindowsDeleteString(result.value);
       free(result);
     }
   }
@@ -1948,7 +1907,7 @@ class ICalendar extends IInspectable {
               .asFunction<
                   int Function(VTablePointer lpVtbl, VTablePointer other,
                       Pointer<Int32> result)>()(
-          ptr.ref.lpVtbl, other?.ptr.ref.lpVtbl ?? nullptr, result);
+          ptr.ref.lpVtbl, other.lpVtbl, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -1994,7 +1953,7 @@ class ICalendar extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer other)>()(
-        ptr.ref.lpVtbl, other?.ptr.ref.lpVtbl ?? nullptr);
+        ptr.ref.lpVtbl, other.lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -2163,7 +2122,6 @@ class ICalendar extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }

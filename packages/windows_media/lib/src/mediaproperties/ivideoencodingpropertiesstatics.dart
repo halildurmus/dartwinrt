@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -88,7 +89,6 @@ class IVideoEncodingPropertiesStatics extends IInspectable {
   VideoEncodingProperties? createUncompressed(
       String subtype, int width, int height) {
     final value = calloc<COMObject>();
-    final subtypeHString = subtype.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(8)
@@ -105,9 +105,7 @@ class IVideoEncodingPropertiesStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int subtype, int width,
                     int height, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, subtypeHString, width, height, value);
-
-    WindowsDeleteString(subtypeHString);
+        ptr.ref.lpVtbl, subtype.toHString(), width, height, value);
 
     if (FAILED(hr)) {
       free(value);

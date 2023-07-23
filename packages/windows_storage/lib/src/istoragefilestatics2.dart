@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 import 'package:windows_system/windows_system.dart';
@@ -31,7 +32,6 @@ class IStorageFileStatics2 extends IInspectable {
 
   Future<StorageFile?> getFileFromPathForUserAsync(User? user, String path) {
     final operation = calloc<COMObject>();
-    final pathHString = path.toHString();
 
     final hr =
         ptr.ref.vtable
@@ -48,12 +48,7 @@ class IStorageFileStatics2 extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer user,
                         int path, Pointer<COMObject> operation)>()(
-            ptr.ref.lpVtbl,
-            user?.ptr.ref.lpVtbl ?? nullptr,
-            pathHString,
-            operation);
-
-    WindowsDeleteString(pathHString);
+            ptr.ref.lpVtbl, user.lpVtbl, path.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);

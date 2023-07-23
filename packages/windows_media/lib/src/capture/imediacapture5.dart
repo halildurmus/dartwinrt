@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 import 'package:windows_graphics/windows_graphics.dart';
@@ -50,7 +51,7 @@ class IMediaCapture5 extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer effect,
                         Pointer<COMObject> asyncInfo)>()(
-            ptr.ref.lpVtbl, effect?.ptr.ref.lpVtbl ?? nullptr, asyncInfo);
+            ptr.ref.lpVtbl, effect.lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -162,7 +163,7 @@ class IMediaCapture5 extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer inputSource,
                     Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, inputSource?.ptr.ref.lpVtbl ?? nullptr, value);
+        ptr.ref.lpVtbl, inputSource.lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -177,7 +178,6 @@ class IMediaCapture5 extends IInspectable {
   Future<MediaFrameReader?> createFrameReaderWithSubtypeAsync(
       MediaFrameSource? inputSource, String outputSubtype) {
     final value = calloc<COMObject>();
-    final outputSubtypeHString = outputSubtype.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(11)
@@ -193,12 +193,7 @@ class IMediaCapture5 extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer inputSource,
                     int outputSubtype, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl,
-        inputSource?.ptr.ref.lpVtbl ?? nullptr,
-        outputSubtypeHString,
-        value);
-
-    WindowsDeleteString(outputSubtypeHString);
+        ptr.ref.lpVtbl, inputSource.lpVtbl, outputSubtype.toHString(), value);
 
     if (FAILED(hr)) {
       free(value);
@@ -215,7 +210,6 @@ class IMediaCapture5 extends IInspectable {
       String outputSubtype,
       BitmapSize outputSize) {
     final value = calloc<COMObject>();
-    final outputSubtypeHString = outputSubtype.toHString();
     final outputSizeNativeStructPtr = outputSize.toNative();
 
     final hr = ptr.ref.vtable
@@ -238,13 +232,12 @@ class IMediaCapture5 extends IInspectable {
                     NativeBitmapSize outputSize,
                     Pointer<COMObject> value)>()(
         ptr.ref.lpVtbl,
-        inputSource?.ptr.ref.lpVtbl ?? nullptr,
-        outputSubtypeHString,
+        inputSource.lpVtbl,
+        outputSubtype.toHString(),
         outputSizeNativeStructPtr.ref,
         value);
 
-    WindowsDeleteString(outputSubtypeHString);
-    outputSizeNativeStructPtr.free();
+    free(outputSizeNativeStructPtr);
 
     if (FAILED(hr)) {
       free(value);

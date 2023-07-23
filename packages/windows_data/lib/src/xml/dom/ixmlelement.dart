@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -55,7 +56,6 @@ class IXmlElement extends IInspectable
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
@@ -64,8 +64,6 @@ class IXmlElement extends IInspectable
     final attributeValue = calloc<IntPtr>();
 
     try {
-      final attributeNameHString = attributeName.toHString();
-
       final hr = ptr.ref.vtable
               .elementAt(7)
               .cast<
@@ -79,23 +77,17 @@ class IXmlElement extends IInspectable
               .asFunction<
                   int Function(VTablePointer lpVtbl, int attributeName,
                       Pointer<IntPtr> attributeValue)>()(
-          ptr.ref.lpVtbl, attributeNameHString, attributeValue);
-
-      WindowsDeleteString(attributeNameHString);
+          ptr.ref.lpVtbl, attributeName.toHString(), attributeValue);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
       return attributeValue.toDartString();
     } finally {
-      WindowsDeleteString(attributeValue.value);
       free(attributeValue);
     }
   }
 
   void setAttribute(String attributeName, String attributeValue) {
-    final attributeNameHString = attributeName.toHString();
-    final attributeValueHString = attributeValue.toHString();
-
     final hr =
         ptr.ref.vtable
                 .elementAt(8)
@@ -107,18 +99,13 @@ class IXmlElement extends IInspectable
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, int attributeName,
-                        int attributeValue)>()(
-            ptr.ref.lpVtbl, attributeNameHString, attributeValueHString);
-
-    WindowsDeleteString(attributeNameHString);
-    WindowsDeleteString(attributeValueHString);
+                        int attributeValue)>()(ptr.ref.lpVtbl,
+            attributeName.toHString(), attributeValue.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void removeAttribute(String attributeName) {
-    final attributeNameHString = attributeName.toHString();
-
     final hr = ptr.ref.vtable
             .elementAt(9)
             .cast<
@@ -129,16 +116,13 @@ class IXmlElement extends IInspectable
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int attributeName)>()(
-        ptr.ref.lpVtbl, attributeNameHString);
-
-    WindowsDeleteString(attributeNameHString);
+        ptr.ref.lpVtbl, attributeName.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   XmlAttribute? getAttributeNode(String attributeName) {
     final attributeNode = calloc<COMObject>();
-    final attributeNameHString = attributeName.toHString();
 
     final hr =
         ptr.ref.vtable
@@ -154,9 +138,7 @@ class IXmlElement extends IInspectable
                 .asFunction<
                     int Function(VTablePointer lpVtbl, int attributeName,
                         Pointer<COMObject> attributeNode)>()(
-            ptr.ref.lpVtbl, attributeNameHString, attributeNode);
-
-    WindowsDeleteString(attributeNameHString);
+            ptr.ref.lpVtbl, attributeName.toHString(), attributeNode);
 
     if (FAILED(hr)) {
       free(attributeNode);
@@ -186,8 +168,8 @@ class IXmlElement extends IInspectable
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer newAttribute,
-                    Pointer<COMObject> previousAttribute)>()(ptr.ref.lpVtbl,
-        newAttribute?.ptr.ref.lpVtbl ?? nullptr, previousAttribute);
+                    Pointer<COMObject> previousAttribute)>()(
+        ptr.ref.lpVtbl, newAttribute.lpVtbl, previousAttribute);
 
     if (FAILED(hr)) {
       free(previousAttribute);
@@ -217,8 +199,8 @@ class IXmlElement extends IInspectable
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer attributeNode,
-                    Pointer<COMObject> removedAttribute)>()(ptr.ref.lpVtbl,
-        attributeNode?.ptr.ref.lpVtbl ?? nullptr, removedAttribute);
+                    Pointer<COMObject> removedAttribute)>()(
+        ptr.ref.lpVtbl, attributeNode.lpVtbl, removedAttribute);
 
     if (FAILED(hr)) {
       free(removedAttribute);
@@ -235,7 +217,6 @@ class IXmlElement extends IInspectable
 
   XmlNodeList getElementsByTagName(String tagName) {
     final elements = calloc<COMObject>();
-    final tagNameHString = tagName.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(13)
@@ -248,9 +229,7 @@ class IXmlElement extends IInspectable
             .asFunction<
                 int Function(VTablePointer lpVtbl, int tagName,
                     Pointer<COMObject> elements)>()(
-        ptr.ref.lpVtbl, tagNameHString, elements);
-
-    WindowsDeleteString(tagNameHString);
+        ptr.ref.lpVtbl, tagName.toHString(), elements);
 
     if (FAILED(hr)) {
       free(elements);
@@ -262,9 +241,6 @@ class IXmlElement extends IInspectable
 
   void setAttributeNS(
       Object? namespaceUri, String qualifiedName, String value) {
-    final qualifiedNameHString = qualifiedName.toHString();
-    final valueHString = value.toHString();
-
     final hr = ptr.ref.vtable
             .elementAt(14)
             .cast<
@@ -280,12 +256,9 @@ class IXmlElement extends IInspectable
                 int Function(VTablePointer lpVtbl, VTablePointer namespaceUri,
                     int qualifiedName, int value)>()(
         ptr.ref.lpVtbl,
-        namespaceUri?.intoBox().ptr.ref.lpVtbl ?? nullptr,
-        qualifiedNameHString,
-        valueHString);
-
-    WindowsDeleteString(qualifiedNameHString);
-    WindowsDeleteString(valueHString);
+        namespaceUri?.intoBox().lpVtbl ?? nullptr,
+        qualifiedName.toHString(),
+        value.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -294,8 +267,6 @@ class IXmlElement extends IInspectable
     final value = calloc<IntPtr>();
 
     try {
-      final localNameHString = localName.toHString();
-
       final hr = ptr.ref.vtable
               .elementAt(15)
               .cast<
@@ -311,24 +282,19 @@ class IXmlElement extends IInspectable
                   int Function(VTablePointer lpVtbl, VTablePointer namespaceUri,
                       int localName, Pointer<IntPtr> value)>()(
           ptr.ref.lpVtbl,
-          namespaceUri?.intoBox().ptr.ref.lpVtbl ?? nullptr,
-          localNameHString,
+          namespaceUri?.intoBox().lpVtbl ?? nullptr,
+          localName.toHString(),
           value);
-
-      WindowsDeleteString(localNameHString);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
 
   void removeAttributeNS(Object? namespaceUri, String localName) {
-    final localNameHString = localName.toHString();
-
     final hr = ptr.ref.vtable
             .elementAt(16)
             .cast<
@@ -340,9 +306,7 @@ class IXmlElement extends IInspectable
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer namespaceUri,
                     int localName)>()(ptr.ref.lpVtbl,
-        namespaceUri?.intoBox().ptr.ref.lpVtbl ?? nullptr, localNameHString);
-
-    WindowsDeleteString(localNameHString);
+        namespaceUri?.intoBox().lpVtbl ?? nullptr, localName.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -362,8 +326,8 @@ class IXmlElement extends IInspectable
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer newAttribute,
-                    Pointer<COMObject> previousAttribute)>()(ptr.ref.lpVtbl,
-        newAttribute?.ptr.ref.lpVtbl ?? nullptr, previousAttribute);
+                    Pointer<COMObject> previousAttribute)>()(
+        ptr.ref.lpVtbl, newAttribute.lpVtbl, previousAttribute);
 
     if (FAILED(hr)) {
       free(previousAttribute);
@@ -380,7 +344,6 @@ class IXmlElement extends IInspectable
 
   XmlAttribute? getAttributeNodeNS(Object? namespaceUri, String localName) {
     final previousAttribute = calloc<COMObject>();
-    final localNameHString = localName.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(18)
@@ -397,11 +360,9 @@ class IXmlElement extends IInspectable
                 int Function(VTablePointer lpVtbl, VTablePointer namespaceUri,
                     int localName, Pointer<COMObject> previousAttribute)>()(
         ptr.ref.lpVtbl,
-        namespaceUri?.intoBox().ptr.ref.lpVtbl ?? nullptr,
-        localNameHString,
+        namespaceUri?.intoBox().lpVtbl ?? nullptr,
+        localName.toHString(),
         previousAttribute);
-
-    WindowsDeleteString(localNameHString);
 
     if (FAILED(hr)) {
       free(previousAttribute);

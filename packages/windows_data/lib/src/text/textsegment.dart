@@ -9,7 +9,8 @@
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -47,18 +48,11 @@ final class TextSegment implements WinRTStruct {
 /// @nodoc
 extension NativeTextSegmentConversion on NativeTextSegment {
   /// Converts this [NativeTextSegment] into a Dart [TextSegment].
-  TextSegment toDart() {
-    return TextSegment(startPosition, length);
-  }
+  TextSegment toDart() => TextSegment(startPosition, length);
 }
 
 /// @nodoc
 extension PointerNativeTextSegmentConversion on Pointer<NativeTextSegment> {
-  /// Frees the allocated memory for [NativeTextSegment].
-  void free() {
-    calloc.free(this);
-  }
-
   /// Converts the referenced [NativeTextSegment] into a Dart [TextSegment].
   TextSegment toDart() {
     final ref = this.ref;

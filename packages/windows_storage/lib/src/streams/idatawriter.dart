@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -180,28 +181,23 @@ class IDataWriter extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer buffer)>()(
-        ptr.ref.lpVtbl, buffer?.ptr.ref.lpVtbl ?? nullptr);
+        ptr.ref.lpVtbl, buffer.lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void writeBufferRange(IBuffer? buffer, int start, int count) {
-    final hr =
-        ptr.ref.vtable
-                .elementAt(14)
-                .cast<
-                    Pointer<
-                        NativeFunction<
-                            HRESULT Function(
-                                VTablePointer lpVtbl,
-                                VTablePointer buffer,
-                                Uint32 start,
-                                Uint32 count)>>>()
-                .value
-                .asFunction<
-                    int Function(VTablePointer lpVtbl, VTablePointer buffer,
-                        int start, int count)>()(
-            ptr.ref.lpVtbl, buffer?.ptr.ref.lpVtbl ?? nullptr, start, count);
+    final hr = ptr.ref.vtable
+        .elementAt(14)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl, VTablePointer buffer,
+                        Uint32 start, Uint32 count)>>>()
+        .value
+        .asFunction<
+            int Function(VTablePointer lpVtbl, VTablePointer buffer, int start,
+                int count)>()(ptr.ref.lpVtbl, buffer.lpVtbl, start, count);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -233,7 +229,7 @@ class IDataWriter extends IInspectable {
             .asFunction<int Function(VTablePointer lpVtbl, GUID value)>()(
         ptr.ref.lpVtbl, valueNativeStructPtr.ref);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -390,8 +386,6 @@ class IDataWriter extends IInspectable {
     final codeUnitCount = calloc<Uint32>();
 
     try {
-      final valueHString = value.toHString();
-
       final hr = ptr.ref.vtable
               .elementAt(27)
               .cast<
@@ -403,9 +397,7 @@ class IDataWriter extends IInspectable {
               .asFunction<
                   int Function(VTablePointer lpVtbl, int value,
                       Pointer<Uint32> codeUnitCount)>()(
-          ptr.ref.lpVtbl, valueHString, codeUnitCount);
-
-      WindowsDeleteString(valueHString);
+          ptr.ref.lpVtbl, value.toHString(), codeUnitCount);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -419,8 +411,6 @@ class IDataWriter extends IInspectable {
     final codeUnitCount = calloc<Uint32>();
 
     try {
-      final valueHString = value.toHString();
-
       final hr = ptr.ref.vtable
               .elementAt(28)
               .cast<
@@ -432,9 +422,7 @@ class IDataWriter extends IInspectable {
               .asFunction<
                   int Function(VTablePointer lpVtbl, int value,
                       Pointer<Uint32> codeUnitCount)>()(
-          ptr.ref.lpVtbl, valueHString, codeUnitCount);
-
-      WindowsDeleteString(valueHString);
+          ptr.ref.lpVtbl, value.toHString(), codeUnitCount);
 
       if (FAILED(hr)) throwWindowsException(hr);
 

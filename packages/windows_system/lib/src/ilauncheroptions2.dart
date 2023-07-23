@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 import 'package:windows_storage/windows_storage.dart';
@@ -46,14 +47,11 @@ class ILauncherOptions2 extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
 
   set targetApplicationPackageFamilyName(String value) {
-    final valueHString = value.toHString();
-
     final hr =
         ptr.ref.vtable
                 .elementAt(7)
@@ -64,9 +62,7 @@ class ILauncherOptions2 extends IInspectable {
                                 VTablePointer lpVtbl, IntPtr value)>>>()
                 .value
                 .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-            ptr.ref.lpVtbl, valueHString);
-
-    WindowsDeleteString(valueHString);
+            ptr.ref.lpVtbl, value.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -110,7 +106,7 @@ class ILauncherOptions2 extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer value)>()(
-        ptr.ref.lpVtbl, value?.ptr.ref.lpVtbl ?? nullptr);
+        ptr.ref.lpVtbl, value.lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

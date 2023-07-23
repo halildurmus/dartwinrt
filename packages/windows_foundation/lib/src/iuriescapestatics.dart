@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 
 import '../internal.dart';
 import 'collections/iiterator.dart';
@@ -31,8 +32,6 @@ class IUriEscapeStatics extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final toUnescapeHString = toUnescape.toHString();
-
       final hr =
           ptr.ref.vtable
                   .elementAt(6)
@@ -45,15 +44,12 @@ class IUriEscapeStatics extends IInspectable {
                   .asFunction<
                       int Function(VTablePointer lpVtbl, int toUnescape,
                           Pointer<IntPtr> value)>()(
-              ptr.ref.lpVtbl, toUnescapeHString, value);
-
-      WindowsDeleteString(toUnescapeHString);
+              ptr.ref.lpVtbl, toUnescape.toHString(), value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
@@ -62,8 +58,6 @@ class IUriEscapeStatics extends IInspectable {
     final value = calloc<IntPtr>();
 
     try {
-      final toEscapeHString = toEscape.toHString();
-
       final hr =
           ptr.ref.vtable
                   .elementAt(7)
@@ -76,15 +70,12 @@ class IUriEscapeStatics extends IInspectable {
                   .asFunction<
                       int Function(VTablePointer lpVtbl, int toEscape,
                           Pointer<IntPtr> value)>()(
-              ptr.ref.lpVtbl, toEscapeHString, value);
-
-      WindowsDeleteString(toEscapeHString);
+              ptr.ref.lpVtbl, toEscape.toHString(), value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }

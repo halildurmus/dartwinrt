@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -137,7 +138,7 @@ class IStorageFolderQueryOperations extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer queryOptions,
                     Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, queryOptions?.ptr.ref.lpVtbl ?? nullptr, value);
+        ptr.ref.lpVtbl, queryOptions.lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -226,7 +227,7 @@ class IStorageFolderQueryOperations extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer queryOptions,
                     Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, queryOptions?.ptr.ref.lpVtbl ?? nullptr, value);
+        ptr.ref.lpVtbl, queryOptions.lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -286,7 +287,7 @@ class IStorageFolderQueryOperations extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer queryOptions,
                     Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, queryOptions?.ptr.ref.lpVtbl ?? nullptr, value);
+        ptr.ref.lpVtbl, queryOptions.lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -480,7 +481,7 @@ class IStorageFolderQueryOperations extends IInspectable {
                   .asFunction<
                       int Function(VTablePointer lpVtbl,
                           VTablePointer queryOptions, Pointer<Bool> value)>()(
-              ptr.ref.lpVtbl, queryOptions?.ptr.ref.lpVtbl ?? nullptr, value);
+              ptr.ref.lpVtbl, queryOptions.lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 

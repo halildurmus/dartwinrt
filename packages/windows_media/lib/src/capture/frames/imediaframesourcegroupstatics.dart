@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -59,21 +60,19 @@ class IMediaFrameSourceGroupStatics extends IInspectable {
 
   Future<MediaFrameSourceGroup?> fromIdAsync(String id) {
     final value = calloc<COMObject>();
-    final idHString = id.toHString();
 
     final hr = ptr.ref.vtable
-        .elementAt(7)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, IntPtr id,
-                        Pointer<COMObject> value)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int id,
-                Pointer<COMObject> value)>()(ptr.ref.lpVtbl, idHString, value);
-
-    WindowsDeleteString(idHString);
+            .elementAt(7)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(VTablePointer lpVtbl, IntPtr id,
+                            Pointer<COMObject> value)>>>()
+            .value
+            .asFunction<
+                int Function(
+                    VTablePointer lpVtbl, int id, Pointer<COMObject> value)>()(
+        ptr.ref.lpVtbl, id.toHString(), value);
 
     if (FAILED(hr)) {
       free(value);
@@ -106,7 +105,6 @@ class IMediaFrameSourceGroupStatics extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }

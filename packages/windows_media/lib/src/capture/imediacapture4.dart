@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -55,7 +56,7 @@ class IMediaCapture4 extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer definition,
                         Pointer<COMObject> op)>()(
-            ptr.ref.lpVtbl, definition?.ptr.ref.lpVtbl ?? nullptr, op);
+            ptr.ref.lpVtbl, definition.lpVtbl, op);
 
     if (FAILED(hr)) {
       free(op);
@@ -85,10 +86,7 @@ class IMediaCapture4 extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer definition,
                     int mediaStreamType, Pointer<COMObject> op)>()(
-        ptr.ref.lpVtbl,
-        definition?.ptr.ref.lpVtbl ?? nullptr,
-        mediaStreamType.value,
-        op);
+        ptr.ref.lpVtbl, definition.lpVtbl, mediaStreamType.value, op);
 
     if (FAILED(hr)) {
       free(op);
@@ -253,7 +251,7 @@ class IMediaCapture4 extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer destination,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, destination?.ptr.ref.lpVtbl ?? nullptr, operation);
+        ptr.ref.lpVtbl, destination.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -348,8 +346,8 @@ class IMediaCapture4 extends IInspectable {
                 int Function(
                     VTablePointer lpVtbl,
                     VTablePointer encodingProperties,
-                    Pointer<COMObject> operation)>()(ptr.ref.lpVtbl,
-        encodingProperties?.ptr.ref.lpVtbl ?? nullptr, operation);
+                    Pointer<COMObject> operation)>()(
+        ptr.ref.lpVtbl, encodingProperties.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);

@@ -4,9 +4,12 @@
 
 @TestOn('windows')
 
+import 'dart:ffi';
+
+import 'package:ffi/ffi.dart';
 import 'package:test/test.dart';
 import 'package:win32/win32.dart';
-import 'package:windows_foundation/windows_foundation.dart';
+import 'package:windows_foundation/internal.dart';
 
 void main() {
   if (!isWindowsRuntimeAvailable()) {
@@ -22,7 +25,6 @@ void main() {
       for (var i = 0; i < testRuns; i++) {
         final hString = HString.fromString(testString);
         expect(hString.toString(), equals(testString));
-        hString.free();
       }
     });
 
@@ -32,7 +34,6 @@ void main() {
       for (var i = 0; i < 10; i++) {
         final hString = HString.fromString(longString);
         expect(hString.toString(), equals(longString));
-        hString.free();
       }
     });
 
@@ -45,8 +46,6 @@ void main() {
           final clone = original.clone();
           expect(original.toString(), equals(clone.toString()));
           expect(original.handle, equals(clone.handle));
-          clone.free();
-          original.free();
         }
       }
     });
@@ -57,7 +56,6 @@ void main() {
         final second = HString.fromString(' and Dart');
         final matchInHeaven = first + second;
         expect(matchInHeaven.toString(), equals('Windows and Dart'));
-        [first, second, matchInHeaven].forEach((object) => object.free());
       }
     });
 
@@ -66,7 +64,6 @@ void main() {
         final hString = const HString.empty();
         expect(hString.isEmpty, isTrue);
         expect(hString.toString(), isEmpty);
-        hString.free();
       }
     });
 
@@ -79,9 +76,6 @@ void main() {
         expect(hString2.isEmpty, isTrue);
         final hString3 = HString.fromString('');
         expect(hString3.isEmpty, isTrue);
-        hString1.free();
-        hString2.free();
-        hString3.free();
       }
     });
 
@@ -94,8 +88,41 @@ void main() {
         expect(testString.length, equals(123));
         expect(hString.length, equals(123));
         expect(hString.toString(), equals(testString));
-        hString.free();
       }
     });
+  });
+
+  test('HStringHandleToDartStringConversion', () {
+    const testString = 'Hello world!';
+    for (var i = 0; i < testRuns; i++) {
+      final hString = HString.fromString(testString)..detach();
+      final dartString = hString.handle.toDartString();
+      expect(dartString, equals(testString));
+    }
+  });
+
+  test('DartStringToHStringConversion', () {
+    const testString = 'Hello world!';
+    for (var i = 0; i < testRuns; i++) {
+      final hStringHandle = testString.toHString();
+      final hString = HString.fromHandle(hStringHandle)..detach();
+      expect(hString.toString(), equals(testString));
+    }
+  });
+
+  test('HStringArrayToListConversion', () {
+    const testString1 = 'Hello world!';
+    const testString2 = 'Goodbye world!';
+    for (var i = 0; i < testRuns; i++) {
+      final hString1 = HString.fromString(testString1)..detach();
+      final hString2 = HString.fromString(testString2)..detach();
+      final pHStringArray = calloc<HSTRING>(2)
+        ..[0] = hString1.handle
+        ..[1] = hString2.handle;
+      final dartList = pHStringArray.toList(length: 2);
+      expect(dartList.length, equals(2));
+      expect(dartList, orderedEquals([testString1, testString2]));
+      free(pHStringArray);
+    }
   });
 }

@@ -49,7 +49,7 @@ abstract base class BaseProjection {
               // Hide DocumentProperties to avoid conflicts with a class of the
               // same name in the windows_storage package.
               'package:win32/win32.dart' =>
-                'import ${quote(import)} hide DocumentProperties;',
+                'import ${quote(import)} hide DocumentProperties, WinRTStringConversion;',
               _ => 'import ${quote(import)};',
             }),
       ).join('\n');

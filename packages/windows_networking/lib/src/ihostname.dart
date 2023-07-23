@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -77,7 +78,6 @@ class IHostName extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
@@ -102,7 +102,6 @@ class IHostName extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
@@ -127,7 +126,6 @@ class IHostName extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
@@ -174,7 +172,7 @@ class IHostName extends IInspectable {
                   .asFunction<
                       int Function(VTablePointer lpVtbl, VTablePointer hostName,
                           Pointer<Bool> isEqual)>()(
-              ptr.ref.lpVtbl, hostName?.ptr.ref.lpVtbl ?? nullptr, isEqual);
+              ptr.ref.lpVtbl, hostName.lpVtbl, isEqual);
 
       if (FAILED(hr)) throwWindowsException(hr);
 

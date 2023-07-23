@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 import 'package:windows_storage/windows_storage.dart';
@@ -194,7 +195,7 @@ class IMediaEncodingProfileStatics extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer file,
                         Pointer<COMObject> operation)>()(
-            ptr.ref.lpVtbl, file?.ptr.ref.lpVtbl ?? nullptr, operation);
+            ptr.ref.lpVtbl, file.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -225,7 +226,7 @@ class IMediaEncodingProfileStatics extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer stream,
                         Pointer<COMObject> operation)>()(
-            ptr.ref.lpVtbl, stream?.ptr.ref.lpVtbl ?? nullptr, operation);
+            ptr.ref.lpVtbl, stream.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);

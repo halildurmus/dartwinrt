@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 import 'package:windows_storage/windows_storage.dart';
@@ -46,8 +47,8 @@ class IXmlDocumentStatics extends IInspectable {
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer uri,
-                        Pointer<COMObject> asyncInfo)>()(ptr.ref.lpVtbl,
-            uri?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr, asyncInfo);
+                        Pointer<COMObject> asyncInfo)>()(
+            ptr.ref.lpVtbl, uri?.toWinRTUri().lpVtbl ?? nullptr, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -79,11 +80,8 @@ class IXmlDocumentStatics extends IInspectable {
                     VTablePointer lpVtbl,
                     VTablePointer uri,
                     VTablePointer loadSettings,
-                    Pointer<COMObject> asyncInfo)>()(
-        ptr.ref.lpVtbl,
-        uri?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr,
-        loadSettings?.ptr.ref.lpVtbl ?? nullptr,
-        asyncInfo);
+                    Pointer<COMObject> asyncInfo)>()(ptr.ref.lpVtbl,
+        uri?.toWinRTUri().lpVtbl ?? nullptr, loadSettings.lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -112,7 +110,7 @@ class IXmlDocumentStatics extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer file,
                         Pointer<COMObject> asyncInfo)>()(
-            ptr.ref.lpVtbl, file?.ptr.ref.lpVtbl ?? nullptr, asyncInfo);
+            ptr.ref.lpVtbl, file.lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -145,10 +143,7 @@ class IXmlDocumentStatics extends IInspectable {
                     VTablePointer file,
                     VTablePointer loadSettings,
                     Pointer<COMObject> asyncInfo)>()(
-        ptr.ref.lpVtbl,
-        file?.ptr.ref.lpVtbl ?? nullptr,
-        loadSettings?.ptr.ref.lpVtbl ?? nullptr,
-        asyncInfo);
+        ptr.ref.lpVtbl, file.lpVtbl, loadSettings.lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);

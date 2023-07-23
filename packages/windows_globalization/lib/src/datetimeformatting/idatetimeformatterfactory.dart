@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -37,7 +38,6 @@ class IDateTimeFormatterFactory extends IInspectable {
 
   DateTimeFormatter createDateTimeFormatter(String formatTemplate) {
     final result = calloc<COMObject>();
-    final formatTemplateHString = formatTemplate.toHString();
 
     final hr =
         ptr.ref.vtable
@@ -53,9 +53,7 @@ class IDateTimeFormatterFactory extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, int formatTemplate,
                         Pointer<COMObject> result)>()(
-            ptr.ref.lpVtbl, formatTemplateHString, result);
-
-    WindowsDeleteString(formatTemplateHString);
+            ptr.ref.lpVtbl, formatTemplate.toHString(), result);
 
     if (FAILED(hr)) {
       free(result);
@@ -68,7 +66,6 @@ class IDateTimeFormatterFactory extends IInspectable {
   DateTimeFormatter createDateTimeFormatterLanguages(
       String formatTemplate, IIterable<String>? languages) {
     final result = calloc<COMObject>();
-    final formatTemplateHString = formatTemplate.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(7)
@@ -84,18 +81,7 @@ class IDateTimeFormatterFactory extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int formatTemplate,
                     VTablePointer languages, Pointer<COMObject> result)>()(
-        ptr.ref.lpVtbl,
-        formatTemplateHString,
-        languages == null
-            ? nullptr
-            : IInspectable(languages
-                    .toInterface('{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'))
-                .ptr
-                .ref
-                .lpVtbl,
-        result);
-
-    WindowsDeleteString(formatTemplateHString);
+        ptr.ref.lpVtbl, formatTemplate.toHString(), languages.lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -112,10 +98,6 @@ class IDateTimeFormatterFactory extends IInspectable {
       String calendar,
       String clock) {
     final result = calloc<COMObject>();
-    final formatTemplateHString = formatTemplate.toHString();
-    final geographicRegionHString = geographicRegion.toHString();
-    final calendarHString = calendar.toHString();
-    final clockHString = clock.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(8)
@@ -141,23 +123,12 @@ class IDateTimeFormatterFactory extends IInspectable {
                     int clock,
                     Pointer<COMObject> result)>()(
         ptr.ref.lpVtbl,
-        formatTemplateHString,
-        languages == null
-            ? nullptr
-            : IInspectable(languages
-                    .toInterface('{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'))
-                .ptr
-                .ref
-                .lpVtbl,
-        geographicRegionHString,
-        calendarHString,
-        clockHString,
+        formatTemplate.toHString(),
+        languages.lpVtbl,
+        geographicRegion.toHString(),
+        calendar.toHString(),
+        clock.toHString(),
         result);
-
-    WindowsDeleteString(formatTemplateHString);
-    WindowsDeleteString(geographicRegionHString);
-    WindowsDeleteString(calendarHString);
-    WindowsDeleteString(clockHString);
 
     if (FAILED(hr)) {
       free(result);
@@ -291,13 +262,7 @@ class IDateTimeFormatterFactory extends IInspectable {
         hourFormat.value,
         minuteFormat.value,
         secondFormat.value,
-        languages == null
-            ? nullptr
-            : IInspectable(languages
-                    .toInterface('{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'))
-                .ptr
-                .ref
-                .lpVtbl,
+        languages.lpVtbl,
         result);
 
     if (FAILED(hr)) {
@@ -321,9 +286,6 @@ class IDateTimeFormatterFactory extends IInspectable {
       String calendar,
       String clock) {
     final result = calloc<COMObject>();
-    final geographicRegionHString = geographicRegion.toHString();
-    final calendarHString = calendar.toHString();
-    final clockHString = clock.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(12)
@@ -368,21 +330,11 @@ class IDateTimeFormatterFactory extends IInspectable {
         hourFormat.value,
         minuteFormat.value,
         secondFormat.value,
-        languages == null
-            ? nullptr
-            : IInspectable(languages
-                    .toInterface('{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'))
-                .ptr
-                .ref
-                .lpVtbl,
-        geographicRegionHString,
-        calendarHString,
-        clockHString,
+        languages.lpVtbl,
+        geographicRegion.toHString(),
+        calendar.toHString(),
+        clock.toHString(),
         result);
-
-    WindowsDeleteString(geographicRegionHString);
-    WindowsDeleteString(calendarHString);
-    WindowsDeleteString(clockHString);
 
     if (FAILED(hr)) {
       free(result);

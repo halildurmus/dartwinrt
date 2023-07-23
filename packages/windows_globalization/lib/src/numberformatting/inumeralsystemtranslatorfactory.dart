@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -33,8 +34,7 @@ class INumeralSystemTranslatorFactory extends IInspectable {
     final result = calloc<COMObject>();
 
     final hr =
-        ptr
-                .ref.vtable
+        ptr.ref.vtable
                 .elementAt(6)
                 .cast<
                     Pointer<
@@ -45,21 +45,9 @@ class INumeralSystemTranslatorFactory extends IInspectable {
                                 Pointer<COMObject> result)>>>()
                 .value
                 .asFunction<
-                    int Function(
-                        VTablePointer lpVtbl,
-                        VTablePointer languages,
-                        Pointer<COMObject>
-                            result)>()(
-            ptr.ref.lpVtbl,
-            languages ==
-                    null
-                ? nullptr
-                : IInspectable(languages
-                        .toInterface('{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'))
-                    .ptr
-                    .ref
-                    .lpVtbl,
-            result);
+                    int Function(VTablePointer lpVtbl, VTablePointer languages,
+                        Pointer<COMObject> result)>()(
+            ptr.ref.lpVtbl, languages.lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);

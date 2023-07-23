@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 import 'package:windows_ui/windows_ui.dart';
@@ -255,7 +256,7 @@ class IDevicePicker extends IInspectable {
                 int Function(VTablePointer lpVtbl, NativeRect selection)>()(
         ptr.ref.lpVtbl, selectionNativeStructPtr.ref);
 
-    selectionNativeStructPtr.free();
+    free(selectionNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -277,7 +278,7 @@ class IDevicePicker extends IInspectable {
                         int placement)>()(
             ptr.ref.lpVtbl, selectionNativeStructPtr.ref, placement.value);
 
-    selectionNativeStructPtr.free();
+    free(selectionNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -302,7 +303,7 @@ class IDevicePicker extends IInspectable {
                         Pointer<COMObject> operation)>()(
             ptr.ref.lpVtbl, selectionNativeStructPtr.ref, operation);
 
-    selectionNativeStructPtr.free();
+    free(selectionNativeStructPtr);
 
     if (FAILED(hr)) {
       free(operation);
@@ -340,7 +341,7 @@ class IDevicePicker extends IInspectable {
             placement.value,
             operation);
 
-    selectionNativeStructPtr.free();
+    free(selectionNativeStructPtr);
 
     if (FAILED(hr)) {
       free(operation);
@@ -365,8 +366,6 @@ class IDevicePicker extends IInspectable {
 
   void setDisplayStatus(DeviceInformation? device, String status,
       DevicePickerDisplayStatusOptions options) {
-    final statusHString = status.toHString();
-
     final hr =
         ptr.ref.vtable
                 .elementAt(20)
@@ -381,10 +380,8 @@ class IDevicePicker extends IInspectable {
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer device,
-                        int status, int options)>()(ptr.ref.lpVtbl,
-            device?.ptr.ref.lpVtbl ?? nullptr, statusHString, options.value);
-
-    WindowsDeleteString(statusHString);
+                        int status, int options)>()(
+            ptr.ref.lpVtbl, device.lpVtbl, status.toHString(), options.value);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

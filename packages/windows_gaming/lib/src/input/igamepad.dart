@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 import 'package:windows_system/windows_system.dart';
@@ -52,7 +53,7 @@ class IGamepad extends IInspectable implements IGameController {
 
       return value.toDart();
     } finally {
-      value.free();
+      free(value);
     }
   }
 
@@ -72,7 +73,7 @@ class IGamepad extends IInspectable implements IGameController {
                     VTablePointer lpVtbl, NativeGamepadVibration value)>()(
         ptr.ref.lpVtbl, valueNativeStructPtr.ref);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -98,7 +99,7 @@ class IGamepad extends IInspectable implements IGameController {
 
       return value.toDart();
     } finally {
-      value.free();
+      free(value);
     }
   }
 

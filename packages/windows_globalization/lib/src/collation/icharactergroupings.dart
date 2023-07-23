@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -33,8 +34,6 @@ class ICharacterGroupings extends IInspectable
     final result = calloc<IntPtr>();
 
     try {
-      final textHString = text.toHString();
-
       final hr = ptr.ref.vtable
               .elementAt(6)
               .cast<
@@ -46,15 +45,12 @@ class ICharacterGroupings extends IInspectable
               .asFunction<
                   int Function(VTablePointer lpVtbl, int text,
                       Pointer<IntPtr> result)>()(
-          ptr.ref.lpVtbl, textHString, result);
-
-      WindowsDeleteString(textHString);
+          ptr.ref.lpVtbl, text.toHString(), result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDartString();
     } finally {
-      WindowsDeleteString(result.value);
       free(result);
     }
   }

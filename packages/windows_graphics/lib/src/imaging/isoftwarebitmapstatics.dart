@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 import 'package:windows_storage/windows_storage.dart';
@@ -36,17 +37,19 @@ class ISoftwareBitmapStatics extends IInspectable {
     final value = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, VTablePointer source,
-                            Pointer<COMObject> value)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer source,
-                    Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, source?.ptr.ref.lpVtbl ?? nullptr, value);
+        .elementAt(6)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl, VTablePointer source,
+                        Pointer<COMObject> value)>>>()
+        .value
+        .asFunction<
+            int Function(
+                VTablePointer lpVtbl,
+                VTablePointer source,
+                Pointer<COMObject>
+                    value)>()(ptr.ref.lpVtbl, source.lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -78,8 +81,8 @@ class ISoftwareBitmapStatics extends IInspectable {
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer source,
-                        int format, Pointer<COMObject> value)>()(ptr.ref.lpVtbl,
-            source?.ptr.ref.lpVtbl ?? nullptr, format.value, value);
+                        int format, Pointer<COMObject> value)>()(
+            ptr.ref.lpVtbl, source.lpVtbl, format.value, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -113,11 +116,7 @@ class ISoftwareBitmapStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer source,
                     int format, int alpha, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl,
-        source?.ptr.ref.lpVtbl ?? nullptr,
-        format.value,
-        alpha.value,
-        value);
+        ptr.ref.lpVtbl, source.lpVtbl, format.value, alpha.value, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -156,8 +155,8 @@ class ISoftwareBitmapStatics extends IInspectable {
                     int format,
                     int width,
                     int height,
-                    Pointer<COMObject> value)>()(ptr.ref.lpVtbl,
-        source?.ptr.ref.lpVtbl ?? nullptr, format.value, width, height, value);
+                    Pointer<COMObject> value)>()(
+        ptr.ref.lpVtbl, source.lpVtbl, format.value, width, height, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -198,14 +197,8 @@ class ISoftwareBitmapStatics extends IInspectable {
                     int width,
                     int height,
                     int alpha,
-                    Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl,
-        source?.ptr.ref.lpVtbl ?? nullptr,
-        format.value,
-        width,
-        height,
-        alpha.value,
-        value);
+                    Pointer<COMObject> value)>()(ptr.ref.lpVtbl, source.lpVtbl,
+        format.value, width, height, alpha.value, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -238,7 +231,7 @@ class ISoftwareBitmapStatics extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer surface,
                         Pointer<COMObject> value)>()(
-            ptr.ref.lpVtbl, surface?.ptr.ref.lpVtbl ?? nullptr, value);
+            ptr.ref.lpVtbl, surface.lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -268,7 +261,7 @@ class ISoftwareBitmapStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer surface,
                     int alpha, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, surface?.ptr.ref.lpVtbl ?? nullptr, alpha.value, value);
+        ptr.ref.lpVtbl, surface.lpVtbl, alpha.value, value);
 
     if (FAILED(hr)) {
       free(value);

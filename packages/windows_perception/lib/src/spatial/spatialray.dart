@@ -9,7 +9,8 @@
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -44,18 +45,11 @@ final class SpatialRay implements WinRTStruct {
 /// @nodoc
 extension NativeSpatialRayConversion on NativeSpatialRay {
   /// Converts this [NativeSpatialRay] into a Dart [SpatialRay].
-  SpatialRay toDart() {
-    return SpatialRay(origin.toDart(), direction.toDart());
-  }
+  SpatialRay toDart() => SpatialRay(origin.toDart(), direction.toDart());
 }
 
 /// @nodoc
 extension PointerNativeSpatialRayConversion on Pointer<NativeSpatialRay> {
-  /// Frees the allocated memory for [NativeSpatialRay].
-  void free() {
-    calloc.free(this);
-  }
-
   /// Converts the referenced [NativeSpatialRay] into a Dart [SpatialRay].
   SpatialRay toDart() {
     final ref = this.ref;

@@ -59,14 +59,13 @@ void main() {
       expect(projection.into, equals('other'));
       expect(projection.toListArg, equals('Calendar.fromPtr'));
       expect(projection.toListCreator, isEmpty);
-      expect(projection.toListInto, equals('other[i].ptr.ref.lpVtbl'));
+      expect(projection.toListInto, equals('other[i].lpVtbl'));
       expect(projection.toListIdentifier, isEmpty);
       expect(projection.preambles, isEmpty);
       expect(projection.nullCheck, equals(nullCheck('other')));
       expect(projection.postambles, isEmpty);
       expect(projection.identifier, equals('other'));
-      expect(projection.localIdentifier,
-          equals('other?.ptr.ref.lpVtbl ?? nullptr'));
+      expect(projection.localIdentifier, equals('other.lpVtbl'));
     });
 
     test('projects DateTime', () {
@@ -266,19 +265,19 @@ void main() {
       expect(projection.needsDeallocation, isFalse);
       expect(projection.creatorPreamble, isEmpty);
       expect(projection.creator, equals('creator(value)'));
-      expect(projection.into, equals('(value as IInspectable).ptr.ref.lpVtbl'));
+      expect(projection.into, equals('(value as IInspectable).lpVtbl'));
       expect(projection.toListArg, equals('creator'));
       expect(projection.toListCreator, isEmpty);
       expect(projection.toListInto,
-          equals('value.cast<IInspectable>()[i].ptr.ref.lpVtbl'));
+          equals('value.cast<IInspectable>()[i].lpVtbl'));
       expect(projection.toListIdentifier, isEmpty);
       expect(projection.preambles, isEmpty);
       expect(
           projection.nullCheck, equals(nullCheck('value', castReturn: true)));
       expect(projection.postambles, isEmpty);
       expect(projection.identifier, equals('value'));
-      expect(projection.localIdentifier,
-          equals('(value as IInspectable).ptr.ref.lpVtbl'));
+      expect(
+          projection.localIdentifier, equals('(value as IInspectable).lpVtbl'));
     });
 
     test('projects Guid', () {
@@ -303,7 +302,7 @@ void main() {
       expect(projection.preambles,
           equals(['final valueNativeStructPtr = value.toNativeGUID();']));
       expect(projection.nullCheck, isEmpty);
-      expect(projection.postambles, equals(['valueNativeStructPtr.free();']));
+      expect(projection.postambles, equals(['free(valueNativeStructPtr);']));
       expect(projection.identifier, equals('value'));
       expect(projection.localIdentifier, equals('valueNativeStructPtr.ref'));
     });
@@ -349,14 +348,13 @@ void main() {
       expect(projection.into, equals('fileToReplace'));
       expect(projection.toListArg, equals('IStorageFile.fromPtr'));
       expect(projection.toListCreator, isEmpty);
-      expect(projection.toListInto, equals('fileToReplace[i].ptr.ref.lpVtbl'));
+      expect(projection.toListInto, equals('fileToReplace[i].lpVtbl'));
       expect(projection.toListIdentifier, isEmpty);
       expect(projection.preambles, isEmpty);
       expect(projection.nullCheck, equals(nullCheck('fileToReplace')));
       expect(projection.postambles, isEmpty);
       expect(projection.identifier, equals('fileToReplace'));
-      expect(projection.localIdentifier,
-          equals('fileToReplace?.ptr.ref.lpVtbl ?? nullptr'));
+      expect(projection.localIdentifier, equals('fileToReplace.lpVtbl'));
     });
 
     test('projects IIterable<IKeyValuePair<String, Object?>?>', () {
@@ -381,17 +379,13 @@ void main() {
       expect(projection.toListArg,
           equals('IIterable<IKeyValuePair<String, Object?>>.fromPtr'));
       expect(projection.toListCreator, isEmpty);
-      expect(
-          projection.toListInto, equals('propertiesToSave[i].ptr.ref.lpVtbl'));
+      expect(projection.toListInto, equals('propertiesToSave[i].lpVtbl'));
       expect(projection.toListIdentifier, isEmpty);
       expect(projection.preambles, isEmpty);
       expect(projection.postambles, isEmpty);
       expect(projection.nullCheck, equals(nullCheck('propertiesToSave')));
       expect(projection.identifier, equals('propertiesToSave'));
-      expect(
-          projection.localIdentifier,
-          equals(
-              "propertiesToSave == null ? nullptr : IInspectable(propertiesToSave.toInterface('{fe2f3d47-5d47-5499-8374-430c7cda0204}')).ptr.ref.lpVtbl"));
+      expect(projection.localIdentifier, equals('propertiesToSave.lpVtbl'));
     });
 
     test('projects IMap<String, Object?>', () {
@@ -411,7 +405,7 @@ void main() {
           projection.creator,
           equals(
               "IMap.fromPtr(features, iterableIid: '{fe2f3d47-5d47-5499-8374-430c7cda0204}')"));
-      expect(projection.into, equals('features?.ptr.ref.lpVtbl ?? nullptr'));
+      expect(projection.into, equals('features.lpVtbl'));
       expect(projection.toListArg, isEmpty);
       expect(projection.toListCreator, isEmpty);
       expect(projection.toListInto, equals('features[i]'));
@@ -420,8 +414,7 @@ void main() {
       expect(projection.postambles, isEmpty);
       expect(projection.nullCheck, equals(nullCheck('features')));
       expect(projection.identifier, equals('features'));
-      expect(projection.localIdentifier,
-          equals('features?.ptr.ref.lpVtbl ?? nullptr'));
+      expect(projection.localIdentifier, equals('features.lpVtbl'));
     });
 
     test('projects IMapView<String, Object?>', () {
@@ -441,7 +434,7 @@ void main() {
         IMapView<String, Object?>.fromPtr(first,
             iterableIid: '{fe2f3d47-5d47-5499-8374-430c7cda0204}').toMap()
 '''));
-      expect(projection.into, equals('first?.ptr.ref.lpVtbl ?? nullptr'));
+      expect(projection.into, equals('first.lpVtbl'));
       expect(projection.toListArg, isEmpty);
       expect(projection.toListCreator, isEmpty);
       expect(projection.toListInto, equals('first[i]'));
@@ -472,8 +465,7 @@ void main() {
             referenceIid: '{91c0ba96-9e69-5b82-bf1d-83ab2a509c53}',
             enumCreator: BluetoothLEAdvertisementFlags.from).value
 '''));
-      expect(projection.into,
-          equals('value?.toReference().ptr.ref.lpVtbl ?? nullptr'));
+      expect(projection.into, equals('value?.toReference().lpVtbl ?? nullptr'));
       expect(projection.toListArg, isEmpty);
       expect(projection.toListCreator, isEmpty);
       expect(projection.toListInto, equals('value[i]'));
@@ -483,7 +475,7 @@ void main() {
       expect(projection.nullCheck, equals(nullCheck('value')));
       expect(projection.identifier, equals('value'));
       expect(projection.localIdentifier,
-          equals('value?.toReference().ptr.ref.lpVtbl ?? nullptr'));
+          equals('value?.toReference().lpVtbl ?? nullptr'));
     });
 
     test('projects IReference<int?>', () {
@@ -503,10 +495,8 @@ void main() {
         IReference<int?>.fromPtr(value,
             referenceIid: '{513ef3af-e784-5325-a91e-97c2b8111cf3}').value
 '''));
-      expect(
-          projection.into,
-          equals(
-              'value?.toReference(IntType.uint32).ptr.ref.lpVtbl ?? nullptr'));
+      expect(projection.into,
+          equals('value?.toReference(IntType.uint32).lpVtbl ?? nullptr'));
       expect(projection.toListArg, isEmpty);
       expect(projection.toListCreator, isEmpty);
       expect(projection.toListInto, equals('value[i]'));
@@ -515,10 +505,8 @@ void main() {
       expect(projection.postambles, isEmpty);
       expect(projection.nullCheck, equals(nullCheck('value')));
       expect(projection.identifier, equals('value'));
-      expect(
-          projection.localIdentifier,
-          equals(
-              'value?.toReference(IntType.uint32).ptr.ref.lpVtbl ?? nullptr'));
+      expect(projection.localIdentifier,
+          equals('value?.toReference(IntType.uint32).lpVtbl ?? nullptr'));
     });
 
     test('projects IVector<HostName?>', () {
@@ -539,8 +527,7 @@ void main() {
           iterableIid: '{9e5f3ed0-cf1c-5d38-832c-acea6164bf5c}',
           creator: HostName.fromPtr)
 '''));
-      expect(
-          projection.into, equals('dnsServerList?.ptr.ref.lpVtbl ?? nullptr'));
+      expect(projection.into, equals('dnsServerList.lpVtbl'));
       expect(projection.toListArg, isEmpty);
       expect(projection.toListCreator, isEmpty);
       expect(projection.toListInto, equals('dnsServerList[i]'));
@@ -549,8 +536,7 @@ void main() {
       expect(projection.postambles, isEmpty);
       expect(projection.nullCheck, equals(nullCheck('dnsServerList')));
       expect(projection.identifier, equals('dnsServerList'));
-      expect(projection.localIdentifier,
-          equals('dnsServerList?.ptr.ref.lpVtbl ?? nullptr'));
+      expect(projection.localIdentifier, equals('dnsServerList.lpVtbl'));
     });
 
     test('projects IVectorView<String>', () {
@@ -569,7 +555,7 @@ void main() {
         IVectorView<String>.fromPtr(values,
             iterableIid: '{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}').toList()
 '''));
-      expect(projection.into, equals('values?.ptr.ref.lpVtbl ?? nullptr'));
+      expect(projection.into, equals('values.lpVtbl'));
       expect(projection.toListArg, isEmpty);
       expect(projection.toListCreator, isEmpty);
       expect(projection.toListInto, equals('values[i]'));
@@ -578,8 +564,7 @@ void main() {
       expect(projection.postambles, isEmpty);
       expect(projection.nullCheck, equals(nullCheck('values')));
       expect(projection.identifier, equals('values'));
-      expect(projection.localIdentifier,
-          equals('values?.ptr.ref.lpVtbl ?? nullptr'));
+      expect(projection.localIdentifier, equals('values.lpVtbl'));
     });
 
     test('projects List<Point> (FillArray)', () {
@@ -683,20 +668,13 @@ void main() {
       expect(
           projection.preambles,
           equals([
-            'final itemsHandles = <int>[];',
-            'final itemsArray = calloc<HSTRING>(items.length);',
+            'final itemsArray = calloc<IntPtr>(items.length);',
             '''
     for (var i = 0; i < items.length; i++) {
       itemsArray[i] = items[i].toHString();
-      itemsHandles.add(itemsArray[i]);
     }'''
           ]));
-      expect(
-          projection.postambles,
-          equals([
-            'itemsHandles.forEach(WindowsDeleteString);',
-            'free(itemsArray);'
-          ]));
+      expect(projection.postambles, equals(['free(itemsArray);']));
       expect(projection.nullCheck, isEmpty);
       expect(projection.identifier, equals('items'));
       expect(projection.localIdentifier, equals('itemsArray'));
@@ -791,14 +769,13 @@ void main() {
       expect(projection.into, equals('key'));
       expect(projection.toListArg, isEmpty);
       expect(projection.toListCreator, isEmpty);
-      expect(projection.toListInto, equals('key[i].intoBox().ptr.ref.lpVtbl'));
+      expect(projection.toListInto, equals('key[i].intoBox().lpVtbl'));
       expect(projection.toListIdentifier, equals('toObjectList'));
       expect(projection.preambles, isEmpty);
       expect(projection.nullCheck, isEmpty);
       expect(projection.postambles, isEmpty);
       expect(projection.identifier, equals('key'));
-      expect(
-          projection.localIdentifier, equals('key.intoBox().ptr.ref.lpVtbl'));
+      expect(projection.localIdentifier, equals('key.intoBox().lpVtbl'));
     });
 
     test('projects Object?', () {
@@ -818,14 +795,14 @@ void main() {
       expect(projection.toListArg, isEmpty);
       expect(projection.toListCreator, isEmpty);
       expect(projection.toListInto,
-          equals('value[i]?.intoBox().ptr.ref.lpVtbl ?? nullptr'));
+          equals('value[i]?.intoBox().lpVtbl ?? nullptr'));
       expect(projection.toListIdentifier, equals('toObjectList'));
       expect(projection.preambles, isEmpty);
       expect(projection.nullCheck, equals(nullCheck('value')));
       expect(projection.postambles, isEmpty);
       expect(projection.identifier, equals('value'));
       expect(projection.localIdentifier,
-          equals('value?.intoBox().ptr.ref.lpVtbl ?? nullptr'));
+          equals('value?.intoBox().lpVtbl ?? nullptr'));
     });
 
     test('projects reference type', () {
@@ -862,22 +839,20 @@ void main() {
       expect(projection.isOutParam, isFalse);
       expect(projection.isNullable, isFalse);
       expect(projection.type, equals('String'));
-      expect(projection.needsAllocation, isTrue);
-      expect(projection.needsDeallocation, isTrue);
+      expect(projection.needsAllocation, isFalse);
+      expect(projection.needsDeallocation, isFalse);
       expect(projection.creatorPreamble, isEmpty);
       expect(projection.creator, equals('value.toDartString()'));
-      expect(projection.into, 'valueHString');
+      expect(projection.into, 'value.toHString()');
       expect(projection.toListArg, isEmpty);
       expect(projection.toListCreator, isEmpty);
-      expect(projection.toListInto, equals('value[i]'));
+      expect(projection.toListInto, equals('value[i].toHString()'));
       expect(projection.toListIdentifier, isEmpty);
-      expect(projection.preambles,
-          equals(['final valueHString = value.toHString();']));
+      expect(projection.preambles, isEmpty);
       expect(projection.nullCheck, isEmpty);
-      expect(projection.postambles,
-          equals(['WindowsDeleteString(valueHString);']));
+      expect(projection.postambles, isEmpty);
       expect(projection.identifier, equals('value'));
-      expect(projection.localIdentifier, equals('valueHString'));
+      expect(projection.localIdentifier, equals('value.toHString()'));
     });
 
     test('projects struct (1)', () {
@@ -902,7 +877,7 @@ void main() {
       expect(projection.preambles,
           equals(['final valueNativeStructPtr = value.toNative();']));
       expect(projection.nullCheck, isEmpty);
-      expect(projection.postambles, equals(['valueNativeStructPtr.free();']));
+      expect(projection.postambles, equals(['free(valueNativeStructPtr);']));
       expect(projection.identifier, equals('value'));
       expect(projection.localIdentifier, equals('valueNativeStructPtr.ref'));
     });
@@ -956,18 +931,16 @@ void main() {
       expect(projection.needsDeallocation, isFalse);
       expect(projection.creatorPreamble, isEmpty);
       expect(projection.creator, equals('key.toWinRTUri().toDartUri()'));
-      expect(projection.into, equals('key.toWinRTUri().ptr.ref.lpVtbl'));
+      expect(projection.into, equals('key.toWinRTUri().lpVtbl'));
       expect(projection.toListArg, isEmpty);
       expect(projection.toListCreator, isEmpty);
-      expect(
-          projection.toListInto, equals('key[i].toWinRTUri().ptr.ref.lpVtbl'));
+      expect(projection.toListInto, equals('key[i].toWinRTUri().lpVtbl'));
       expect(projection.toListIdentifier, equals('toDartUriList'));
       expect(projection.preambles, isEmpty);
       expect(projection.nullCheck, isEmpty);
       expect(projection.postambles, isEmpty);
       expect(projection.identifier, equals('key'));
-      expect(projection.localIdentifier,
-          equals('key.toWinRTUri().ptr.ref.lpVtbl'));
+      expect(projection.localIdentifier, equals('key.toWinRTUri().lpVtbl'));
     });
 
     test('projects Uri?', () {
@@ -983,19 +956,18 @@ void main() {
       expect(projection.needsDeallocation, isFalse);
       expect(projection.creatorPreamble, isEmpty);
       expect(projection.creator, equals('uri.toWinRTUri().toDartUri()'));
-      expect(projection.into,
-          equals('uri?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr'));
+      expect(projection.into, equals('uri?.toWinRTUri().lpVtbl ?? nullptr'));
       expect(projection.toListArg, isEmpty);
       expect(projection.toListCreator, isEmpty);
       expect(projection.toListInto,
-          equals('uri[i]?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr'));
+          equals('uri[i]?.toWinRTUri().lpVtbl ?? nullptr'));
       expect(projection.toListIdentifier, equals('toDartUriList'));
       expect(projection.preambles, isEmpty);
       expect(projection.nullCheck, equals(nullCheck('uri')));
       expect(projection.postambles, isEmpty);
       expect(projection.identifier, equals('uri'));
       expect(projection.localIdentifier,
-          equals('uri?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr'));
+          equals('uri?.toWinRTUri().lpVtbl ?? nullptr'));
     });
   });
 }

@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -44,13 +45,12 @@ class IPhoneNumberFormatter extends IInspectable {
               .asFunction<
                   int Function(VTablePointer lpVtbl, VTablePointer number,
                       Pointer<IntPtr> result)>()(
-          ptr.ref.lpVtbl, number?.ptr.ref.lpVtbl ?? nullptr, result);
+          ptr.ref.lpVtbl, number.lpVtbl, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDartString();
     } finally {
-      WindowsDeleteString(result.value);
       free(result);
     }
   }
@@ -74,16 +74,12 @@ class IPhoneNumberFormatter extends IInspectable {
               .asFunction<
                   int Function(VTablePointer lpVtbl, VTablePointer number,
                       int numberFormat, Pointer<IntPtr> result)>()(
-          ptr.ref.lpVtbl,
-          number?.ptr.ref.lpVtbl ?? nullptr,
-          numberFormat.value,
-          result);
+          ptr.ref.lpVtbl, number.lpVtbl, numberFormat.value, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDartString();
     } finally {
-      WindowsDeleteString(result.value);
       free(result);
     }
   }
@@ -92,8 +88,6 @@ class IPhoneNumberFormatter extends IInspectable {
     final result = calloc<IntPtr>();
 
     try {
-      final numberHString = number.toHString();
-
       final hr = ptr.ref.vtable
               .elementAt(8)
               .cast<
@@ -105,15 +99,12 @@ class IPhoneNumberFormatter extends IInspectable {
               .asFunction<
                   int Function(VTablePointer lpVtbl, int number,
                       Pointer<IntPtr> result)>()(
-          ptr.ref.lpVtbl, numberHString, result);
-
-      WindowsDeleteString(numberHString);
+          ptr.ref.lpVtbl, number.toHString(), result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDartString();
     } finally {
-      WindowsDeleteString(result.value);
       free(result);
     }
   }
@@ -122,8 +113,6 @@ class IPhoneNumberFormatter extends IInspectable {
     final result = calloc<IntPtr>();
 
     try {
-      final numberHString = number.toHString();
-
       final hr = ptr.ref.vtable
               .elementAt(9)
               .cast<
@@ -135,15 +124,12 @@ class IPhoneNumberFormatter extends IInspectable {
               .asFunction<
                   int Function(VTablePointer lpVtbl, int number,
                       Pointer<IntPtr> result)>()(
-          ptr.ref.lpVtbl, numberHString, result);
-
-      WindowsDeleteString(numberHString);
+          ptr.ref.lpVtbl, number.toHString(), result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDartString();
     } finally {
-      WindowsDeleteString(result.value);
       free(result);
     }
   }
@@ -152,8 +138,6 @@ class IPhoneNumberFormatter extends IInspectable {
     final result = calloc<IntPtr>();
 
     try {
-      final numberHString = number.toHString();
-
       final hr = ptr.ref.vtable
               .elementAt(10)
               .cast<
@@ -165,15 +149,12 @@ class IPhoneNumberFormatter extends IInspectable {
               .asFunction<
                   int Function(VTablePointer lpVtbl, int number,
                       Pointer<IntPtr> result)>()(
-          ptr.ref.lpVtbl, numberHString, result);
-
-      WindowsDeleteString(numberHString);
+          ptr.ref.lpVtbl, number.toHString(), result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDartString();
     } finally {
-      WindowsDeleteString(result.value);
       free(result);
     }
   }

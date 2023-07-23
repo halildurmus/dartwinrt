@@ -36,7 +36,7 @@ final class _IReferenceBasicGeoposition extends IReference<BasicGeoposition?> {
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 }
@@ -99,7 +99,7 @@ final class _IReferenceColor extends IReference<Color?> {
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 }
@@ -165,7 +165,7 @@ final class _IReferenceDisplayPresentationRate
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 }
@@ -289,7 +289,7 @@ final class _IReferenceGuid extends IReference<Guid?> {
 
       return retValuePtr.toDartGuid();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 }
@@ -324,7 +324,7 @@ final class _IReferenceHolographicStereoTransform
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 }
@@ -449,7 +449,7 @@ final class _IReferenceMatrix4x4 extends IReference<Matrix4x4?> {
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 }
@@ -481,7 +481,7 @@ final class _IReferenceMseTimeRange extends IReference<MseTimeRange?> {
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 }
@@ -513,7 +513,7 @@ final class _IReferencePoint extends IReference<Point?> {
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 }
@@ -545,7 +545,7 @@ final class _IReferenceQuaternion extends IReference<Quaternion?> {
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 }
@@ -577,7 +577,7 @@ final class _IReferenceRect extends IReference<Rect?> {
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 }
@@ -609,7 +609,7 @@ final class _IReferenceSize extends IReference<Size?> {
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 }
@@ -641,7 +641,7 @@ final class _IReferenceSizeInt32 extends IReference<SizeInt32?> {
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 }
@@ -675,7 +675,7 @@ final class _IReferenceSpatialBoundingBox
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 }
@@ -710,7 +710,7 @@ final class _IReferenceSpatialBoundingFrustum
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 }
@@ -745,7 +745,7 @@ final class _IReferenceSpatialBoundingOrientedBox
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 }
@@ -777,7 +777,7 @@ final class _IReferenceSpatialRay extends IReference<SpatialRay?> {
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 }
@@ -808,7 +808,6 @@ final class _IReferenceString extends IReference<String?> {
 
       return retValuePtr.toDartString();
     } finally {
-      WindowsDeleteString(retValuePtr.value);
       free(retValuePtr);
     }
   }
@@ -965,7 +964,7 @@ final class _IReferenceVector2 extends IReference<Vector2?> {
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 }
@@ -997,7 +996,7 @@ final class _IReferenceVector3 extends IReference<Vector3?> {
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 }
@@ -1029,7 +1028,7 @@ final class _IReferenceWhiteBalanceGain extends IReference<WhiteBalanceGain?> {
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 }

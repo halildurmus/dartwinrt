@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -62,19 +63,17 @@ class IStorageItem2 extends IInspectable implements IStorageItem {
     final value = calloc<Bool>();
 
     try {
-      final hr =
-          ptr.ref.vtable
-                  .elementAt(7)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(VTablePointer lpVtbl,
-                                  VTablePointer item, Pointer<Bool> value)>>>()
-                  .value
-                  .asFunction<
-                      int Function(VTablePointer lpVtbl, VTablePointer item,
-                          Pointer<Bool> value)>()(
-              ptr.ref.lpVtbl, item?.ptr.ref.lpVtbl ?? nullptr, value);
+      final hr = ptr.ref.vtable
+          .elementAt(7)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl, VTablePointer item,
+                          Pointer<Bool> value)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl, VTablePointer item,
+                  Pointer<Bool> value)>()(ptr.ref.lpVtbl, item.lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 

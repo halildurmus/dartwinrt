@@ -5,7 +5,8 @@
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties, POINT, RECT, SIZE;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_devices/windows_devices.dart';
 import 'package:windows_graphics/windows_graphics.dart';
 import 'package:windows_media/windows_media.dart';

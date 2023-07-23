@@ -9,7 +9,8 @@
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 
 import '../internal.dart';
 import 'winrt_struct.dart';
@@ -52,18 +53,11 @@ final class Rect implements WinRTStruct {
 /// @nodoc
 extension NativeRectConversion on NativeRect {
   /// Converts this [NativeRect] into a Dart [Rect].
-  Rect toDart() {
-    return Rect(x, y, width, height);
-  }
+  Rect toDart() => Rect(x, y, width, height);
 }
 
 /// @nodoc
 extension PointerNativeRectConversion on Pointer<NativeRect> {
-  /// Frees the allocated memory for [NativeRect].
-  void free() {
-    calloc.free(this);
-  }
-
   /// Converts the referenced [NativeRect] into a Dart [Rect].
   Rect toDart() {
     final ref = this.ref;

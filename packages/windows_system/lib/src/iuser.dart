@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 import 'package:windows_storage/windows_storage.dart';
@@ -50,7 +51,6 @@ class IUser extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
@@ -105,7 +105,6 @@ class IUser extends IInspectable {
 
   Future<Object?> getPropertyAsync(String value) {
     final operation = calloc<COMObject>();
-    final valueHString = value.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(9)
@@ -118,9 +117,7 @@ class IUser extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int value,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, valueHString, operation);
-
-    WindowsDeleteString(valueHString);
+        ptr.ref.lpVtbl, value.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -148,7 +145,7 @@ class IUser extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer values,
                         Pointer<COMObject> operation)>()(
-            ptr.ref.lpVtbl, values?.ptr.ref.lpVtbl ?? nullptr, operation);
+            ptr.ref.lpVtbl, values.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);

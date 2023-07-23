@@ -9,7 +9,8 @@
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -44,18 +45,11 @@ final class TextRange implements WinRTStruct {
 /// @nodoc
 extension NativeTextRangeConversion on NativeTextRange {
   /// Converts this [NativeTextRange] into a Dart [TextRange].
-  TextRange toDart() {
-    return TextRange(startIndex, length);
-  }
+  TextRange toDart() => TextRange(startIndex, length);
 }
 
 /// @nodoc
 extension PointerNativeTextRangeConversion on Pointer<NativeTextRange> {
-  /// Frees the allocated memory for [NativeTextRange].
-  void free() {
-    calloc.free(this);
-  }
-
   /// Converts the referenced [NativeTextRange] into a Dart [TextRange].
   TextRange toDart() {
     final ref = this.ref;

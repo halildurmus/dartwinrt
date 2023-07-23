@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -46,15 +47,7 @@ class IStorageItemExtraProperties extends IInspectable {
                     VTablePointer lpVtbl,
                     VTablePointer propertiesToRetrieve,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl,
-        propertiesToRetrieve == null
-            ? nullptr
-            : IInspectable(propertiesToRetrieve
-                    .toInterface('{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'))
-                .ptr
-                .ref
-                .lpVtbl,
-        operation);
+        ptr.ref.lpVtbl, propertiesToRetrieve.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -87,15 +80,7 @@ class IStorageItemExtraProperties extends IInspectable {
                     VTablePointer lpVtbl,
                     VTablePointer propertiesToSave,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl,
-        propertiesToSave == null
-            ? nullptr
-            : IInspectable(propertiesToSave
-                    .toInterface('{fe2f3d47-5d47-5499-8374-430c7cda0204}'))
-                .ptr
-                .ref
-                .lpVtbl,
-        operation);
+        ptr.ref.lpVtbl, propertiesToSave.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);

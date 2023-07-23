@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 import 'package:windows_storage/windows_storage.dart';
@@ -57,10 +58,7 @@ class IMediaCapture2 extends IInspectable {
                     VTablePointer encodingProfile,
                     VTablePointer file,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl,
-        encodingProfile?.ptr.ref.lpVtbl ?? nullptr,
-        file?.ptr.ref.lpVtbl ?? nullptr,
-        operation);
+        ptr.ref.lpVtbl, encodingProfile.lpVtbl, file.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -94,10 +92,7 @@ class IMediaCapture2 extends IInspectable {
                     VTablePointer encodingProfile,
                     VTablePointer stream,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl,
-        encodingProfile?.ptr.ref.lpVtbl ?? nullptr,
-        stream?.ptr.ref.lpVtbl ?? nullptr,
-        operation);
+        ptr.ref.lpVtbl, encodingProfile.lpVtbl, stream.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -130,11 +125,8 @@ class IMediaCapture2 extends IInspectable {
                     VTablePointer lpVtbl,
                     VTablePointer encodingProfile,
                     VTablePointer customMediaSink,
-                    Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl,
-        encodingProfile?.ptr.ref.lpVtbl ?? nullptr,
-        customMediaSink?.ptr.ref.lpVtbl ?? nullptr,
-        operation);
+                    Pointer<COMObject> operation)>()(ptr.ref.lpVtbl,
+        encodingProfile.lpVtbl, customMediaSink.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -152,7 +144,6 @@ class IMediaCapture2 extends IInspectable {
       String customSinkActivationId,
       IPropertySet? customSinkSettings) {
     final operation = calloc<COMObject>();
-    final customSinkActivationIdHString = customSinkActivationId.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(9)
@@ -174,12 +165,10 @@ class IMediaCapture2 extends IInspectable {
                     VTablePointer customSinkSettings,
                     Pointer<COMObject> operation)>()(
         ptr.ref.lpVtbl,
-        encodingProfile?.ptr.ref.lpVtbl ?? nullptr,
-        customSinkActivationIdHString,
-        customSinkSettings?.ptr.ref.lpVtbl ?? nullptr,
+        encodingProfile.lpVtbl,
+        customSinkActivationId.toHString(),
+        customSinkSettings.lpVtbl,
         operation);
-
-    WindowsDeleteString(customSinkActivationIdHString);
 
     if (FAILED(hr)) {
       free(operation);
@@ -210,7 +199,7 @@ class IMediaCapture2 extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer type,
                         Pointer<COMObject> operation)>()(
-            ptr.ref.lpVtbl, type?.ptr.ref.lpVtbl ?? nullptr, operation);
+            ptr.ref.lpVtbl, type.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -241,7 +230,7 @@ class IMediaCapture2 extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer type,
                         Pointer<COMObject> operation)>()(
-            ptr.ref.lpVtbl, type?.ptr.ref.lpVtbl ?? nullptr, operation);
+            ptr.ref.lpVtbl, type.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -281,8 +270,8 @@ class IMediaCapture2 extends IInspectable {
                     Pointer<COMObject> operation)>()(
         ptr.ref.lpVtbl,
         mediaStreamType.value,
-        mediaEncodingProperties?.ptr.ref.lpVtbl ?? nullptr,
-        encoderProperties?.ptr.ref.lpVtbl ?? nullptr,
+        mediaEncodingProperties.lpVtbl,
+        encoderProperties.lpVtbl,
         operation);
 
     if (FAILED(hr)) {

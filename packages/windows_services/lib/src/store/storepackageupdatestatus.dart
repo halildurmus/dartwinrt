@@ -9,7 +9,8 @@
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -74,37 +75,24 @@ extension NativeStorePackageUpdateStatusConversion
     on NativeStorePackageUpdateStatus {
   /// Converts this [NativeStorePackageUpdateStatus] into a Dart
   /// [StorePackageUpdateStatus].
-  StorePackageUpdateStatus toDart() {
-    final packageFamilyNameDartString = packageFamilyName.toDartString();
-    WindowsDeleteString(packageFamilyName);
-    return StorePackageUpdateStatus(
-        packageFamilyNameDartString,
-        packageDownloadSizeInBytes,
-        packageBytesDownloaded,
-        packageDownloadProgress,
-        totalDownloadProgress,
-        StorePackageUpdateState.from(packageUpdateState));
-  }
+  StorePackageUpdateStatus toDart() => StorePackageUpdateStatus(
+      packageFamilyName.toDartString(),
+      packageDownloadSizeInBytes,
+      packageBytesDownloaded,
+      packageDownloadProgress,
+      totalDownloadProgress,
+      StorePackageUpdateState.from(packageUpdateState));
 }
 
 /// @nodoc
 extension PointerNativeStorePackageUpdateStatusConversion
     on Pointer<NativeStorePackageUpdateStatus> {
-  /// Frees the allocated memory for [NativeStorePackageUpdateStatus].
-  void free() {
-    final ref = this.ref;
-    WindowsDeleteString(ref.packageFamilyName);
-    calloc.free(this);
-  }
-
   /// Converts the referenced [NativeStorePackageUpdateStatus] into a Dart
   /// [StorePackageUpdateStatus].
   StorePackageUpdateStatus toDart() {
     final ref = this.ref;
-    final packageFamilyNameDartString = ref.packageFamilyName.toDartString();
-    WindowsDeleteString(ref.packageFamilyName);
     return StorePackageUpdateStatus(
-        packageFamilyNameDartString,
+        ref.packageFamilyName.toDartString(),
         ref.packageDownloadSizeInBytes,
         ref.packageBytesDownloaded,
         ref.packageDownloadProgress,

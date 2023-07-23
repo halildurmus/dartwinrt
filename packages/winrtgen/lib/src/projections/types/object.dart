@@ -102,9 +102,9 @@ final class ObjectParameterProjection extends ParameterProjection {
   @override
   String get toListInto => isObjectType
       ? isNullable
-          ? '$identifier[i]?.intoBox().ptr.ref.lpVtbl ?? nullptr'
-          : '$identifier[i].intoBox().ptr.ref.lpVtbl'
-      : '$identifier[i].ptr.ref.lpVtbl';
+          ? '$identifier[i]?.intoBox().lpVtbl ?? nullptr'
+          : '$identifier[i].intoBox().lpVtbl'
+      : '$identifier[i].lpVtbl';
 
   // No deallocation is needed as Finalizer will handle it.
   @override
@@ -123,25 +123,18 @@ final class ObjectParameterProjection extends ParameterProjection {
 
   @override
   String get localIdentifier {
-    if (typeProjection.isReferenceType || typeProjection.isSimpleArray) {
-      return identifier;
-    }
-
     if (isInParam) {
       if (typeProjection.isObjectType) {
         return isNullable
-            ? '$identifier?.intoBox().ptr.ref.lpVtbl ?? nullptr'
-            : '$identifier.intoBox().ptr.ref.lpVtbl';
-      } else if (type.startsWith('IIterable<')) {
-        final iid = typeProjection.typeIdentifier.iid;
-        final nullCheck = isNullable ? '$identifier == null ? nullptr : ' : '';
-        return '${nullCheck}IInspectable($identifier.toInterface(${quote(iid)})).ptr.ref.lpVtbl';
-      } else {
-        return isNullable
-            ? '$identifier?.ptr.ref.lpVtbl ?? nullptr'
-            : '$identifier.ptr.ref.lpVtbl';
+            ? '$identifier?.intoBox().lpVtbl ?? nullptr'
+            : '$identifier.intoBox().lpVtbl';
+      }
+
+      if (!typeProjection.isReferenceType && !typeProjection.isSimpleArray) {
+        return '$identifier.lpVtbl';
       }
     }
+
     return identifier;
   }
 }

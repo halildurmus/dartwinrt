@@ -35,7 +35,7 @@ final class _IKeyValuePairGuidInspectable<V> extends IKeyValuePair<Guid, V> {
 
       return retValuePtr.toDartGuid();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 
@@ -93,7 +93,7 @@ final class _IKeyValuePairGuidObject extends IKeyValuePair<Guid, Object?> {
 
       return retValuePtr.toDartGuid();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 
@@ -391,7 +391,6 @@ final class _IKeyValuePairStringInspectable<V>
 
       return retValuePtr.toDartString();
     } finally {
-      WindowsDeleteString(retValuePtr.value);
       free(retValuePtr);
     }
   }
@@ -450,7 +449,6 @@ final class _IKeyValuePairStringObject extends IKeyValuePair<String, Object?> {
 
       return retValuePtr.toDartString();
     } finally {
-      WindowsDeleteString(retValuePtr.value);
       free(retValuePtr);
     }
   }
@@ -509,7 +507,6 @@ final class _IKeyValuePairStringString extends IKeyValuePair<String, String> {
 
       return retValuePtr.toDartString();
     } finally {
-      WindowsDeleteString(retValuePtr.value);
       free(retValuePtr);
     }
   }
@@ -535,7 +532,6 @@ final class _IKeyValuePairStringString extends IKeyValuePair<String, String> {
 
       return retValuePtr.toDartString();
     } finally {
-      WindowsDeleteString(retValuePtr.value);
       free(retValuePtr);
     }
   }
@@ -567,7 +563,6 @@ final class _IKeyValuePairStringWinRTEnum<V> extends IKeyValuePair<String, V> {
 
       return retValuePtr.toDartString();
     } finally {
-      WindowsDeleteString(retValuePtr.value);
       free(retValuePtr);
     }
   }
@@ -626,7 +621,6 @@ final class _IKeyValuePairStringWinRTFlagsEnum<V>
 
       return retValuePtr.toDartString();
     } finally {
-      WindowsDeleteString(retValuePtr.value);
       free(retValuePtr);
     }
   }
@@ -945,7 +939,6 @@ final class _IKeyValuePairUriString extends IKeyValuePair<Uri, String> {
 
       return retValuePtr.toDartString();
     } finally {
-      WindowsDeleteString(retValuePtr.value);
       free(retValuePtr);
     }
   }

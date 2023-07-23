@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -55,7 +56,6 @@ class IDeviceInformationStatics2 extends IInspectable {
 
       return aqsFilter.toDartString();
     } finally {
-      WindowsDeleteString(aqsFilter.value);
       free(aqsFilter);
     }
   }
@@ -65,7 +65,6 @@ class IDeviceInformationStatics2 extends IInspectable {
       IIterable<String>? additionalProperties,
       DeviceInformationKind kind) {
     final asyncOp = calloc<COMObject>();
-    final deviceIdHString = deviceId.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(7)
@@ -85,20 +84,8 @@ class IDeviceInformationStatics2 extends IInspectable {
                     int deviceId,
                     VTablePointer additionalProperties,
                     int kind,
-                    Pointer<COMObject> asyncOp)>()(
-        ptr.ref.lpVtbl,
-        deviceIdHString,
-        additionalProperties == null
-            ? nullptr
-            : IInspectable(additionalProperties
-                    .toInterface('{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'))
-                .ptr
-                .ref
-                .lpVtbl,
-        kind.value,
-        asyncOp);
-
-    WindowsDeleteString(deviceIdHString);
+                    Pointer<COMObject> asyncOp)>()(ptr.ref.lpVtbl,
+        deviceId.toHString(), additionalProperties.lpVtbl, kind.value, asyncOp);
 
     if (FAILED(hr)) {
       free(asyncOp);
@@ -114,7 +101,6 @@ class IDeviceInformationStatics2 extends IInspectable {
       findAllAsyncWithKindAqsFilterAndAdditionalProperties(String aqsFilter,
           IIterable<String>? additionalProperties, DeviceInformationKind kind) {
     final asyncOp = calloc<COMObject>();
-    final aqsFilterHString = aqsFilter.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(8)
@@ -136,18 +122,10 @@ class IDeviceInformationStatics2 extends IInspectable {
                     int kind,
                     Pointer<COMObject> asyncOp)>()(
         ptr.ref.lpVtbl,
-        aqsFilterHString,
-        additionalProperties == null
-            ? nullptr
-            : IInspectable(additionalProperties
-                    .toInterface('{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'))
-                .ptr
-                .ref
-                .lpVtbl,
+        aqsFilter.toHString(),
+        additionalProperties.lpVtbl,
         kind.value,
         asyncOp);
-
-    WindowsDeleteString(aqsFilterHString);
 
     if (FAILED(hr)) {
       free(asyncOp);
@@ -165,7 +143,6 @@ class IDeviceInformationStatics2 extends IInspectable {
       IIterable<String>? additionalProperties,
       DeviceInformationKind kind) {
     final watcher = calloc<COMObject>();
-    final aqsFilterHString = aqsFilter.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(9)
@@ -187,18 +164,10 @@ class IDeviceInformationStatics2 extends IInspectable {
                     int kind,
                     Pointer<COMObject> watcher)>()(
         ptr.ref.lpVtbl,
-        aqsFilterHString,
-        additionalProperties == null
-            ? nullptr
-            : IInspectable(additionalProperties
-                    .toInterface('{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'))
-                .ptr
-                .ref
-                .lpVtbl,
+        aqsFilter.toHString(),
+        additionalProperties.lpVtbl,
         kind.value,
         watcher);
-
-    WindowsDeleteString(aqsFilterHString);
 
     if (FAILED(hr)) {
       free(watcher);

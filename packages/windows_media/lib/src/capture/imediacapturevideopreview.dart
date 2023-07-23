@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -72,11 +73,8 @@ class IMediaCaptureVideoPreview extends IInspectable {
                     VTablePointer lpVtbl,
                     VTablePointer encodingProfile,
                     VTablePointer customMediaSink,
-                    Pointer<COMObject> asyncInfo)>()(
-        ptr.ref.lpVtbl,
-        encodingProfile?.ptr.ref.lpVtbl ?? nullptr,
-        customMediaSink?.ptr.ref.lpVtbl ?? nullptr,
-        asyncInfo);
+                    Pointer<COMObject> asyncInfo)>()(ptr.ref.lpVtbl,
+        encodingProfile.lpVtbl, customMediaSink.lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -91,7 +89,6 @@ class IMediaCaptureVideoPreview extends IInspectable {
       String customSinkActivationId,
       IPropertySet? customSinkSettings) {
     final asyncInfo = calloc<COMObject>();
-    final customSinkActivationIdHString = customSinkActivationId.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(8)
@@ -113,12 +110,10 @@ class IMediaCaptureVideoPreview extends IInspectable {
                     VTablePointer customSinkSettings,
                     Pointer<COMObject> asyncInfo)>()(
         ptr.ref.lpVtbl,
-        encodingProfile?.ptr.ref.lpVtbl ?? nullptr,
-        customSinkActivationIdHString,
-        customSinkSettings?.ptr.ref.lpVtbl ?? nullptr,
+        encodingProfile.lpVtbl,
+        customSinkActivationId.toHString(),
+        customSinkSettings.lpVtbl,
         asyncInfo);
-
-    WindowsDeleteString(customSinkActivationIdHString);
 
     if (FAILED(hr)) {
       free(asyncInfo);

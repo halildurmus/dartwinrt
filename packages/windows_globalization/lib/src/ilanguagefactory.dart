@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -29,7 +30,6 @@ class ILanguageFactory extends IInspectable {
 
   Language createLanguage(String languageTag) {
     final result = calloc<COMObject>();
-    final languageTagHString = languageTag.toHString();
 
     final hr = ptr.ref.vtable
         .elementAt(6)
@@ -44,9 +44,7 @@ class ILanguageFactory extends IInspectable {
                 VTablePointer lpVtbl,
                 int languageTag,
                 Pointer<COMObject>
-                    result)>()(ptr.ref.lpVtbl, languageTagHString, result);
-
-    WindowsDeleteString(languageTagHString);
+                    result)>()(ptr.ref.lpVtbl, languageTag.toHString(), result);
 
     if (FAILED(hr)) {
       free(result);

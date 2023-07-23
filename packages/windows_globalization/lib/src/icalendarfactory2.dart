@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -30,9 +31,6 @@ class ICalendarFactory2 extends IInspectable {
   Calendar createCalendarWithTimeZone(IIterable<String>? languages,
       String calendar, String clock, String timeZoneId) {
     final result = calloc<COMObject>();
-    final calendarHString = calendar.toHString();
-    final clockHString = clock.toHString();
-    final timeZoneIdHString = timeZoneId.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -56,21 +54,11 @@ class ICalendarFactory2 extends IInspectable {
                     int timeZoneId,
                     Pointer<COMObject> result)>()(
         ptr.ref.lpVtbl,
-        languages == null
-            ? nullptr
-            : IInspectable(languages
-                    .toInterface('{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'))
-                .ptr
-                .ref
-                .lpVtbl,
-        calendarHString,
-        clockHString,
-        timeZoneIdHString,
+        languages.lpVtbl,
+        calendar.toHString(),
+        clock.toHString(),
+        timeZoneId.toHString(),
         result);
-
-    WindowsDeleteString(calendarHString);
-    WindowsDeleteString(clockHString);
-    WindowsDeleteString(timeZoneIdHString);
 
     if (FAILED(hr)) {
       free(result);

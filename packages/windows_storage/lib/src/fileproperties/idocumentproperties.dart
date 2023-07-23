@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -78,14 +79,11 @@ class IDocumentProperties extends IInspectable
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
 
   set title(String value) {
-    final valueHString = value.toHString();
-
     final hr =
         ptr.ref.vtable
                 .elementAt(8)
@@ -96,9 +94,7 @@ class IDocumentProperties extends IInspectable
                                 VTablePointer lpVtbl, IntPtr value)>>>()
                 .value
                 .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-            ptr.ref.lpVtbl, valueHString);
-
-    WindowsDeleteString(valueHString);
+            ptr.ref.lpVtbl, value.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -152,14 +148,11 @@ class IDocumentProperties extends IInspectable
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
 
   set comment(String value) {
-    final valueHString = value.toHString();
-
     final hr =
         ptr.ref.vtable
                 .elementAt(11)
@@ -170,9 +163,7 @@ class IDocumentProperties extends IInspectable
                                 VTablePointer lpVtbl, IntPtr value)>>>()
                 .value
                 .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-            ptr.ref.lpVtbl, valueHString);
-
-    WindowsDeleteString(valueHString);
+            ptr.ref.lpVtbl, value.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

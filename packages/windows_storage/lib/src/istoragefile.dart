@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -65,7 +66,6 @@ class IStorageFile extends IInspectable
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
@@ -90,7 +90,6 @@ class IStorageFile extends IInspectable
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
@@ -166,8 +165,8 @@ class IStorageFile extends IInspectable
                 int Function(
                     VTablePointer lpVtbl,
                     VTablePointer destinationFolder,
-                    Pointer<COMObject> operation)>()(ptr.ref.lpVtbl,
-        destinationFolder?.ptr.ref.lpVtbl ?? nullptr, operation);
+                    Pointer<COMObject> operation)>()(
+        ptr.ref.lpVtbl, destinationFolder.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -182,7 +181,6 @@ class IStorageFile extends IInspectable
   Future<StorageFile?> copyOverloadDefaultOptions(
       IStorageFolder? destinationFolder, String desiredNewName) {
     final operation = calloc<COMObject>();
-    final desiredNewNameHString = desiredNewName.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(11)
@@ -200,13 +198,8 @@ class IStorageFile extends IInspectable
                     VTablePointer lpVtbl,
                     VTablePointer destinationFolder,
                     int desiredNewName,
-                    Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl,
-        destinationFolder?.ptr.ref.lpVtbl ?? nullptr,
-        desiredNewNameHString,
-        operation);
-
-    WindowsDeleteString(desiredNewNameHString);
+                    Pointer<COMObject> operation)>()(ptr.ref.lpVtbl,
+        destinationFolder.lpVtbl, desiredNewName.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -221,7 +214,6 @@ class IStorageFile extends IInspectable
   Future<StorageFile?> copyOverload(IStorageFolder? destinationFolder,
       String desiredNewName, NameCollisionOption option) {
     final operation = calloc<COMObject>();
-    final desiredNewNameHString = desiredNewName.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(12)
@@ -243,12 +235,10 @@ class IStorageFile extends IInspectable
                     int option,
                     Pointer<COMObject> operation)>()(
         ptr.ref.lpVtbl,
-        destinationFolder?.ptr.ref.lpVtbl ?? nullptr,
-        desiredNewNameHString,
+        destinationFolder.lpVtbl,
+        desiredNewName.toHString(),
         option.value,
         operation);
-
-    WindowsDeleteString(desiredNewNameHString);
 
     if (FAILED(hr)) {
       free(operation);
@@ -276,7 +266,7 @@ class IStorageFile extends IInspectable
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer fileToReplace,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, fileToReplace?.ptr.ref.lpVtbl ?? nullptr, operation);
+        ptr.ref.lpVtbl, fileToReplace.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -304,8 +294,8 @@ class IStorageFile extends IInspectable
                 int Function(
                     VTablePointer lpVtbl,
                     VTablePointer destinationFolder,
-                    Pointer<COMObject> operation)>()(ptr.ref.lpVtbl,
-        destinationFolder?.ptr.ref.lpVtbl ?? nullptr, operation);
+                    Pointer<COMObject> operation)>()(
+        ptr.ref.lpVtbl, destinationFolder.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -318,7 +308,6 @@ class IStorageFile extends IInspectable
   Future<void> moveOverloadDefaultOptions(
       IStorageFolder? destinationFolder, String desiredNewName) {
     final operation = calloc<COMObject>();
-    final desiredNewNameHString = desiredNewName.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(15)
@@ -336,13 +325,8 @@ class IStorageFile extends IInspectable
                     VTablePointer lpVtbl,
                     VTablePointer destinationFolder,
                     int desiredNewName,
-                    Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl,
-        destinationFolder?.ptr.ref.lpVtbl ?? nullptr,
-        desiredNewNameHString,
-        operation);
-
-    WindowsDeleteString(desiredNewNameHString);
+                    Pointer<COMObject> operation)>()(ptr.ref.lpVtbl,
+        destinationFolder.lpVtbl, desiredNewName.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -355,7 +339,6 @@ class IStorageFile extends IInspectable
   Future<void> moveOverload(IStorageFolder? destinationFolder,
       String desiredNewName, NameCollisionOption option) {
     final operation = calloc<COMObject>();
-    final desiredNewNameHString = desiredNewName.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(16)
@@ -377,12 +360,10 @@ class IStorageFile extends IInspectable
                     int option,
                     Pointer<COMObject> operation)>()(
         ptr.ref.lpVtbl,
-        destinationFolder?.ptr.ref.lpVtbl ?? nullptr,
-        desiredNewNameHString,
+        destinationFolder.lpVtbl,
+        desiredNewName.toHString(),
         option.value,
         operation);
-
-    WindowsDeleteString(desiredNewNameHString);
 
     if (FAILED(hr)) {
       free(operation);
@@ -408,7 +389,7 @@ class IStorageFile extends IInspectable
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer fileToReplace,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, fileToReplace?.ptr.ref.lpVtbl ?? nullptr, operation);
+        ptr.ref.lpVtbl, fileToReplace.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);

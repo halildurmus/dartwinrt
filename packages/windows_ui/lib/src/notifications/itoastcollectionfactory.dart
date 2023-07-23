@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -31,9 +32,6 @@ class IToastCollectionFactory extends IInspectable {
   ToastCollection createInstance(String collectionId, String displayName,
       String launchArgs, Uri? iconUri) {
     final value = calloc<COMObject>();
-    final collectionIdHString = collectionId.toHString();
-    final displayNameHString = displayName.toHString();
-    final launchArgsHString = launchArgs.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -57,15 +55,11 @@ class IToastCollectionFactory extends IInspectable {
                     VTablePointer iconUri,
                     Pointer<COMObject> value)>()(
         ptr.ref.lpVtbl,
-        collectionIdHString,
-        displayNameHString,
-        launchArgsHString,
-        iconUri?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr,
+        collectionId.toHString(),
+        displayName.toHString(),
+        launchArgs.toHString(),
+        iconUri?.toWinRTUri().lpVtbl ?? nullptr,
         value);
-
-    WindowsDeleteString(collectionIdHString);
-    WindowsDeleteString(displayNameHString);
-    WindowsDeleteString(launchArgsHString);
 
     if (FAILED(hr)) {
       free(value);

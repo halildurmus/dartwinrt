@@ -9,7 +9,8 @@
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -48,19 +49,13 @@ final class NetworkUsageStates implements WinRTStruct {
 extension NativeNetworkUsageStatesConversion on NativeNetworkUsageStates {
   /// Converts this [NativeNetworkUsageStates] into a Dart
   /// [NetworkUsageStates].
-  NetworkUsageStates toDart() {
-    return NetworkUsageStates(TriStates.from(roaming), TriStates.from(shared));
-  }
+  NetworkUsageStates toDart() =>
+      NetworkUsageStates(TriStates.from(roaming), TriStates.from(shared));
 }
 
 /// @nodoc
 extension PointerNativeNetworkUsageStatesConversion
     on Pointer<NativeNetworkUsageStates> {
-  /// Frees the allocated memory for [NativeNetworkUsageStates].
-  void free() {
-    calloc.free(this);
-  }
-
   /// Converts the referenced [NativeNetworkUsageStates] into a Dart
   /// [NetworkUsageStates].
   NetworkUsageStates toDart() {

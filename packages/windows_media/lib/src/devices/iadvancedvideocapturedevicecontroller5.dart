@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -50,7 +51,6 @@ class IAdvancedVideoCaptureDeviceController5 extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
@@ -58,7 +58,6 @@ class IAdvancedVideoCaptureDeviceController5 extends IInspectable {
   VideoDeviceControllerGetDevicePropertyResult? getDevicePropertyById(
       String propertyId, int? maxPropertyValueSize) {
     final value = calloc<COMObject>();
-    final propertyIdHString = propertyId.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(7)
@@ -78,12 +77,9 @@ class IAdvancedVideoCaptureDeviceController5 extends IInspectable {
                     VTablePointer maxPropertyValueSize,
                     Pointer<COMObject> value)>()(
         ptr.ref.lpVtbl,
-        propertyIdHString,
-        maxPropertyValueSize?.toReference(IntType.uint32).ptr.ref.lpVtbl ??
-            nullptr,
+        propertyId.toHString(),
+        maxPropertyValueSize?.toReference(IntType.uint32).lpVtbl ?? nullptr,
         value);
-
-    WindowsDeleteString(propertyIdHString);
 
     if (FAILED(hr)) {
       free(value);
@@ -103,8 +99,6 @@ class IAdvancedVideoCaptureDeviceController5 extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final propertyIdHString = propertyId.toHString();
-
       final hr = ptr.ref.vtable
               .elementAt(8)
               .cast<
@@ -120,11 +114,9 @@ class IAdvancedVideoCaptureDeviceController5 extends IInspectable {
                   int Function(VTablePointer lpVtbl, int propertyId,
                       VTablePointer propertyValue, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl,
-          propertyIdHString,
-          propertyValue?.intoBox().ptr.ref.lpVtbl ?? nullptr,
+          propertyId.toHString(),
+          propertyValue?.intoBox().lpVtbl ?? nullptr,
           value);
-
-      WindowsDeleteString(propertyIdHString);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -164,8 +156,7 @@ class IAdvancedVideoCaptureDeviceController5 extends IInspectable {
         ptr.ref.lpVtbl,
         extendedPropertyId.length,
         extendedPropertyIdArray,
-        maxPropertyValueSize?.toReference(IntType.uint32).ptr.ref.lpVtbl ??
-            nullptr,
+        maxPropertyValueSize?.toReference(IntType.uint32).lpVtbl ?? nullptr,
         value);
 
     free(extendedPropertyIdArray);

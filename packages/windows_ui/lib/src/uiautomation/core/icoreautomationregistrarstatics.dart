@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -54,13 +55,13 @@ class ICoreAutomationRegistrarStatics extends IInspectable {
                           result)>()(
           ptr.ref.lpVtbl, guidNativeStructPtr.ref, result);
 
-      guidNativeStructPtr.free();
+      free(guidNativeStructPtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDart();
     } finally {
-      result.free();
+      free(result);
     }
   }
 
@@ -83,7 +84,7 @@ class ICoreAutomationRegistrarStatics extends IInspectable {
                     NativeAutomationAnnotationTypeRegistration registration)>()(
         ptr.ref.lpVtbl, registrationNativeStructPtr.ref);
 
-    registrationNativeStructPtr.free();
+    free(registrationNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

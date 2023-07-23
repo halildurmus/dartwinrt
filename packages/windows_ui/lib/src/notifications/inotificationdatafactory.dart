@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -47,16 +48,7 @@ class INotificationDataFactory extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer initialValues,
                     int sequenceNumber, Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl,
-        initialValues == null
-            ? nullptr
-            : IInspectable(initialValues
-                    .toInterface('{e9bdaaf0-cbf6-5c72-be90-29cbf3a1319b}'))
-                .ptr
-                .ref
-                .lpVtbl,
-        sequenceNumber,
-        value);
+        ptr.ref.lpVtbl, initialValues.lpVtbl, sequenceNumber, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -83,15 +75,7 @@ class INotificationDataFactory extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer initialValues,
                     Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl,
-        initialValues == null
-            ? nullptr
-            : IInspectable(initialValues
-                    .toInterface('{e9bdaaf0-cbf6-5c72-be90-29cbf3a1319b}'))
-                .ptr
-                .ref
-                .lpVtbl,
-        value);
+        ptr.ref.lpVtbl, initialValues.lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);

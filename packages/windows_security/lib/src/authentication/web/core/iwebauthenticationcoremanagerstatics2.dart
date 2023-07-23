@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 import 'package:windows_system/windows_system.dart';
@@ -38,8 +39,6 @@ class IWebAuthenticationCoreManagerStatics2 extends IInspectable
   Future<WebAccountProvider?> findAccountProviderWithAuthorityForUserAsync(
       String webAccountProviderId, String authority, User? user) {
     final asyncInfo = calloc<COMObject>();
-    final webAccountProviderIdHString = webAccountProviderId.toHString();
-    final authorityHString = authority.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -61,13 +60,10 @@ class IWebAuthenticationCoreManagerStatics2 extends IInspectable
                     VTablePointer user,
                     Pointer<COMObject> asyncInfo)>()(
         ptr.ref.lpVtbl,
-        webAccountProviderIdHString,
-        authorityHString,
-        user?.ptr.ref.lpVtbl ?? nullptr,
+        webAccountProviderId.toHString(),
+        authority.toHString(),
+        user.lpVtbl,
         asyncInfo);
-
-    WindowsDeleteString(webAccountProviderIdHString);
-    WindowsDeleteString(authorityHString);
 
     if (FAILED(hr)) {
       free(asyncInfo);

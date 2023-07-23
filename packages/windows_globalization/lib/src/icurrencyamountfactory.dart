@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -30,8 +31,6 @@ class ICurrencyAmountFactory extends IInspectable {
 
   CurrencyAmount create(String amount, String currency) {
     final result = calloc<COMObject>();
-    final amountHString = amount.toHString();
-    final currencyHString = currency.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -44,10 +43,7 @@ class ICurrencyAmountFactory extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int amount, int currency,
                     Pointer<COMObject> result)>()(
-        ptr.ref.lpVtbl, amountHString, currencyHString, result);
-
-    WindowsDeleteString(amountHString);
-    WindowsDeleteString(currencyHString);
+        ptr.ref.lpVtbl, amount.toHString(), currency.toHString(), result);
 
     if (FAILED(hr)) {
       free(result);

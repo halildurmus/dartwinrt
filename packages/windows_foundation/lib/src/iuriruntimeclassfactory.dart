@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 
 import '../internal.dart';
 import 'collections/iiterator.dart';
@@ -31,7 +32,6 @@ class IUriRuntimeClassFactory extends IInspectable {
 
   Uri createUri(String uri) {
     final instance = calloc<COMObject>();
-    final uriHString = uri.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -44,9 +44,7 @@ class IUriRuntimeClassFactory extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int uri,
                     Pointer<COMObject> instance)>()(
-        ptr.ref.lpVtbl, uriHString, instance);
-
-    WindowsDeleteString(uriHString);
+        ptr.ref.lpVtbl, uri.toHString(), instance);
 
     if (FAILED(hr)) {
       free(instance);
@@ -58,8 +56,6 @@ class IUriRuntimeClassFactory extends IInspectable {
 
   Uri createWithRelativeUri(String baseUri, String relativeUri) {
     final instance = calloc<COMObject>();
-    final baseUriHString = baseUri.toHString();
-    final relativeUriHString = relativeUri.toHString();
 
     final hr =
         ptr.ref.vtable
@@ -76,10 +72,10 @@ class IUriRuntimeClassFactory extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, int baseUri,
                         int relativeUri, Pointer<COMObject> instance)>()(
-            ptr.ref.lpVtbl, baseUriHString, relativeUriHString, instance);
-
-    WindowsDeleteString(baseUriHString);
-    WindowsDeleteString(relativeUriHString);
+            ptr.ref.lpVtbl,
+            baseUri.toHString(),
+            relativeUri.toHString(),
+            instance);
 
     if (FAILED(hr)) {
       free(instance);

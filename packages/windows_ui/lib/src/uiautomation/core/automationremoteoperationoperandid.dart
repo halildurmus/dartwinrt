@@ -9,7 +9,8 @@
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -44,20 +45,13 @@ extension NativeAutomationRemoteOperationOperandIdConversion
     on NativeAutomationRemoteOperationOperandId {
   /// Converts this [NativeAutomationRemoteOperationOperandId] into a Dart
   /// [AutomationRemoteOperationOperandId].
-  AutomationRemoteOperationOperandId toDart() {
-    return AutomationRemoteOperationOperandId(value);
-  }
+  AutomationRemoteOperationOperandId toDart() =>
+      AutomationRemoteOperationOperandId(value);
 }
 
 /// @nodoc
 extension PointerNativeAutomationRemoteOperationOperandIdConversion
     on Pointer<NativeAutomationRemoteOperationOperandId> {
-  /// Frees the allocated memory for
-  /// [NativeAutomationRemoteOperationOperandId].
-  void free() {
-    calloc.free(this);
-  }
-
   /// Converts the referenced [NativeAutomationRemoteOperationOperandId] into
   /// a Dart [AutomationRemoteOperationOperandId].
   AutomationRemoteOperationOperandId toDart() {

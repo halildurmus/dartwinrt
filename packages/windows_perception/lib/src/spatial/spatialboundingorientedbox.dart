@@ -9,7 +9,8 @@
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -51,20 +52,13 @@ extension NativeSpatialBoundingOrientedBoxConversion
     on NativeSpatialBoundingOrientedBox {
   /// Converts this [NativeSpatialBoundingOrientedBox] into a Dart
   /// [SpatialBoundingOrientedBox].
-  SpatialBoundingOrientedBox toDart() {
-    return SpatialBoundingOrientedBox(
-        center.toDart(), extents.toDart(), orientation.toDart());
-  }
+  SpatialBoundingOrientedBox toDart() => SpatialBoundingOrientedBox(
+      center.toDart(), extents.toDart(), orientation.toDart());
 }
 
 /// @nodoc
 extension PointerNativeSpatialBoundingOrientedBoxConversion
     on Pointer<NativeSpatialBoundingOrientedBox> {
-  /// Frees the allocated memory for [NativeSpatialBoundingOrientedBox].
-  void free() {
-    calloc.free(this);
-  }
-
   /// Converts the referenced [NativeSpatialBoundingOrientedBox] into a Dart
   /// [SpatialBoundingOrientedBox].
   SpatialBoundingOrientedBox toDart() {

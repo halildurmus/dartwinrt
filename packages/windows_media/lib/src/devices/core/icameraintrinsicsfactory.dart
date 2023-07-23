@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -75,10 +76,10 @@ class ICameraIntrinsicsFactory extends IInspectable {
         imageHeight,
         result);
 
-    focalLengthNativeStructPtr.free();
-    principalPointNativeStructPtr.free();
-    radialDistortionNativeStructPtr.free();
-    tangentialDistortionNativeStructPtr.free();
+    free(focalLengthNativeStructPtr);
+    free(principalPointNativeStructPtr);
+    free(radialDistortionNativeStructPtr);
+    free(tangentialDistortionNativeStructPtr);
 
     if (FAILED(hr)) {
       free(result);

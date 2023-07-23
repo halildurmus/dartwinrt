@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -30,7 +31,6 @@ class IStorageProvider2 extends IInspectable implements IStorageProvider {
   Future<bool> isPropertySupportedForPartialFileAsync(
       String propertyCanonicalName) {
     final operation = calloc<COMObject>();
-    final propertyCanonicalNameHString = propertyCanonicalName.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -45,9 +45,7 @@ class IStorageProvider2 extends IInspectable implements IStorageProvider {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int propertyCanonicalName,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, propertyCanonicalNameHString, operation);
-
-    WindowsDeleteString(propertyCanonicalNameHString);
+        ptr.ref.lpVtbl, propertyCanonicalName.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);

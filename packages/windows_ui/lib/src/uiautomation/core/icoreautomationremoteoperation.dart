@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -74,10 +75,10 @@ class ICoreAutomationRemoteOperation extends IInspectable {
                 int Function(
                     VTablePointer lpVtbl,
                     NativeAutomationRemoteOperationOperandId operandId,
-                    VTablePointer element)>()(ptr.ref.lpVtbl,
-        operandIdNativeStructPtr.ref, element?.ptr.ref.lpVtbl ?? nullptr);
+                    VTablePointer element)>()(
+        ptr.ref.lpVtbl, operandIdNativeStructPtr.ref, element.lpVtbl);
 
-    operandIdNativeStructPtr.free();
+    free(operandIdNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -100,10 +101,10 @@ class ICoreAutomationRemoteOperation extends IInspectable {
                 int Function(
                     VTablePointer lpVtbl,
                     NativeAutomationRemoteOperationOperandId operandId,
-                    VTablePointer textRange)>()(ptr.ref.lpVtbl,
-        operandIdNativeStructPtr.ref, textRange?.ptr.ref.lpVtbl ?? nullptr);
+                    VTablePointer textRange)>()(
+        ptr.ref.lpVtbl, operandIdNativeStructPtr.ref, textRange.lpVtbl);
 
-    operandIdNativeStructPtr.free();
+    free(operandIdNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -125,7 +126,7 @@ class ICoreAutomationRemoteOperation extends IInspectable {
                 NativeAutomationRemoteOperationOperandId
                     operandId)>()(ptr.ref.lpVtbl, operandIdNativeStructPtr.ref);
 
-    operandIdNativeStructPtr.free();
+    free(operandIdNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

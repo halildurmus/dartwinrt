@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -28,8 +29,6 @@ class IAdvancedVideoCaptureDeviceController extends IInspectable {
           interface.toInterface(IID_IAdvancedVideoCaptureDeviceController));
 
   void setDeviceProperty(String propertyId, Object? propertyValue) {
-    final propertyIdHString = propertyId.toHString();
-
     final hr = ptr.ref.vtable
             .elementAt(6)
             .cast<
@@ -41,16 +40,13 @@ class IAdvancedVideoCaptureDeviceController extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int propertyId,
                     VTablePointer propertyValue)>()(ptr.ref.lpVtbl,
-        propertyIdHString, propertyValue?.intoBox().ptr.ref.lpVtbl ?? nullptr);
-
-    WindowsDeleteString(propertyIdHString);
+        propertyId.toHString(), propertyValue?.intoBox().lpVtbl ?? nullptr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   Object? getDeviceProperty(String propertyId) {
     final propertyValue = calloc<COMObject>();
-    final propertyIdHString = propertyId.toHString();
 
     final hr =
         ptr.ref.vtable
@@ -66,9 +62,7 @@ class IAdvancedVideoCaptureDeviceController extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, int propertyId,
                         Pointer<COMObject> propertyValue)>()(
-            ptr.ref.lpVtbl, propertyIdHString, propertyValue);
-
-    WindowsDeleteString(propertyIdHString);
+            ptr.ref.lpVtbl, propertyId.toHString(), propertyValue);
 
     if (FAILED(hr)) {
       free(propertyValue);

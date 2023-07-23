@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -30,7 +31,6 @@ class IMessageDialogFactory extends IInspectable {
 
   MessageDialog create(String content) {
     final messageDialog = calloc<COMObject>();
-    final contentHString = content.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -43,9 +43,7 @@ class IMessageDialogFactory extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int content,
                     Pointer<COMObject> messageDialog)>()(
-        ptr.ref.lpVtbl, contentHString, messageDialog);
-
-    WindowsDeleteString(contentHString);
+        ptr.ref.lpVtbl, content.toHString(), messageDialog);
 
     if (FAILED(hr)) {
       free(messageDialog);
@@ -57,8 +55,6 @@ class IMessageDialogFactory extends IInspectable {
 
   MessageDialog createWithTitle(String content, String title) {
     final messageDialog = calloc<COMObject>();
-    final contentHString = content.toHString();
-    final titleHString = title.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(7)
@@ -71,10 +67,7 @@ class IMessageDialogFactory extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int content, int title,
                     Pointer<COMObject> messageDialog)>()(
-        ptr.ref.lpVtbl, contentHString, titleHString, messageDialog);
-
-    WindowsDeleteString(contentHString);
-    WindowsDeleteString(titleHString);
+        ptr.ref.lpVtbl, content.toHString(), title.toHString(), messageDialog);
 
     if (FAILED(hr)) {
       free(messageDialog);

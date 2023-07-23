@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -46,14 +47,11 @@ class ITimeZoneOnCalendar extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
 
   void changeTimeZone(String timeZoneId) {
-    final timeZoneIdHString = timeZoneId.toHString();
-
     final hr = ptr.ref.vtable
             .elementAt(7)
             .cast<
@@ -63,9 +61,7 @@ class ITimeZoneOnCalendar extends IInspectable {
                             VTablePointer lpVtbl, IntPtr timeZoneId)>>>()
             .value
             .asFunction<int Function(VTablePointer lpVtbl, int timeZoneId)>()(
-        ptr.ref.lpVtbl, timeZoneIdHString);
-
-    WindowsDeleteString(timeZoneIdHString);
+        ptr.ref.lpVtbl, timeZoneId.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -90,7 +86,6 @@ class ITimeZoneOnCalendar extends IInspectable {
 
       return result.toDartString();
     } finally {
-      WindowsDeleteString(result.value);
       free(result);
     }
   }
@@ -118,7 +113,6 @@ class ITimeZoneOnCalendar extends IInspectable {
 
       return result.toDartString();
     } finally {
-      WindowsDeleteString(result.value);
       free(result);
     }
   }

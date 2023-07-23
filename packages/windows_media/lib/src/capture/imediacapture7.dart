@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 import 'package:windows_ui/windows_ui.dart';
@@ -47,10 +48,7 @@ class IMediaCapture7 extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int captureMode,
                     VTablePointer displayRegion, Pointer<COMObject> result)>()(
-        ptr.ref.lpVtbl,
-        captureMode.value,
-        displayRegion?.ptr.ref.lpVtbl ?? nullptr,
-        result);
+        ptr.ref.lpVtbl, captureMode.value, displayRegion.lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);

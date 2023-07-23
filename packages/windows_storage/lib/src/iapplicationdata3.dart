@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -29,7 +30,6 @@ class IApplicationData3 extends IInspectable {
 
   StorageFolder? getPublisherCacheFolder(String folderName) {
     final value = calloc<COMObject>();
-    final folderNameHString = folderName.toHString();
 
     final hr = ptr.ref.vtable
         .elementAt(6)
@@ -44,9 +44,7 @@ class IApplicationData3 extends IInspectable {
                 VTablePointer lpVtbl,
                 int folderName,
                 Pointer<COMObject>
-                    value)>()(ptr.ref.lpVtbl, folderNameHString, value);
-
-    WindowsDeleteString(folderNameHString);
+                    value)>()(ptr.ref.lpVtbl, folderName.toHString(), value);
 
     if (FAILED(hr)) {
       free(value);
@@ -63,7 +61,6 @@ class IApplicationData3 extends IInspectable {
 
   Future<void> clearPublisherCacheFolderAsync(String folderName) {
     final clearOperation = calloc<COMObject>();
-    final folderNameHString = folderName.toHString();
 
     final hr =
         ptr.ref.vtable
@@ -79,9 +76,7 @@ class IApplicationData3 extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, int folderName,
                         Pointer<COMObject> clearOperation)>()(
-            ptr.ref.lpVtbl, folderNameHString, clearOperation);
-
-    WindowsDeleteString(folderNameHString);
+            ptr.ref.lpVtbl, folderName.toHString(), clearOperation);
 
     if (FAILED(hr)) {
       free(clearOperation);

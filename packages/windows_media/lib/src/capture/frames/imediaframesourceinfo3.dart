@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_devices/windows_devices.dart';
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
@@ -45,7 +46,7 @@ class IMediaFrameSourceInfo3 extends IInspectable {
               .asFunction<
                   int Function(VTablePointer lpVtbl,
                       VTablePointer displayRegion, Pointer<Int32> result)>()(
-          ptr.ref.lpVtbl, displayRegion?.ptr.ref.lpVtbl ?? nullptr, result);
+          ptr.ref.lpVtbl, displayRegion.lpVtbl, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 

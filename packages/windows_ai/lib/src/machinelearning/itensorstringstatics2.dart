@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -35,11 +36,9 @@ class ITensorStringStatics2 extends IInspectable {
     for (var i = 0; i < shape.length; i++) {
       shapeArray[i] = shape[i];
     }
-    final dataHandles = <int>[];
-    final dataArray = calloc<HSTRING>(data.length);
+    final dataArray = calloc<IntPtr>(data.length);
     for (var i = 0; i < data.length; i++) {
       dataArray[i] = data[i].toHString();
-      dataHandles.add(dataArray[i]);
     }
 
     final hr = ptr.ref.vtable
@@ -66,7 +65,6 @@ class ITensorStringStatics2 extends IInspectable {
         shapeArray, data.length, dataArray, result);
 
     free(shapeArray);
-    dataHandles.forEach(WindowsDeleteString);
     free(dataArray);
 
     if (FAILED(hr)) {

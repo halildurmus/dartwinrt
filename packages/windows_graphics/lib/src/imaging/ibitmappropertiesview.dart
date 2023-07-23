@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -47,15 +48,7 @@ class IBitmapPropertiesView extends IInspectable {
                     VTablePointer lpVtbl,
                     VTablePointer propertiesToRetrieve,
                     Pointer<COMObject> asyncInfo)>()(
-        ptr.ref.lpVtbl,
-        propertiesToRetrieve == null
-            ? nullptr
-            : IInspectable(propertiesToRetrieve
-                    .toInterface('{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'))
-                .ptr
-                .ref
-                .lpVtbl,
-        asyncInfo);
+        ptr.ref.lpVtbl, propertiesToRetrieve.lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);

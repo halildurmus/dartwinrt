@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -31,7 +32,6 @@ class IRemoteAutomationClientSessionFactory extends IInspectable {
 
   RemoteAutomationClientSession createInstance(String name) {
     final value = calloc<COMObject>();
-    final nameHString = name.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -44,9 +44,7 @@ class IRemoteAutomationClientSessionFactory extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int name,
                     Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, nameHString, value);
-
-    WindowsDeleteString(nameHString);
+        ptr.ref.lpVtbl, name.toHString(), value);
 
     if (FAILED(hr)) {
       free(value);
@@ -58,7 +56,6 @@ class IRemoteAutomationClientSessionFactory extends IInspectable {
 
   RemoteAutomationClientSession createInstance2(String name, Guid sessionId) {
     final value = calloc<COMObject>();
-    final nameHString = name.toHString();
     final sessionIdNativeStructPtr = sessionId.toNativeGUID();
 
     final hr = ptr.ref.vtable
@@ -72,10 +69,9 @@ class IRemoteAutomationClientSessionFactory extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int name, GUID sessionId,
                     Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, nameHString, sessionIdNativeStructPtr.ref, value);
+        ptr.ref.lpVtbl, name.toHString(), sessionIdNativeStructPtr.ref, value);
 
-    WindowsDeleteString(nameHString);
-    sessionIdNativeStructPtr.free();
+    free(sessionIdNativeStructPtr);
 
     if (FAILED(hr)) {
       free(value);

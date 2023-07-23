@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -32,7 +33,6 @@ class IWebAccountFactory extends IInspectable {
   WebAccount createWebAccount(WebAccountProvider? webAccountProvider,
       String userName, WebAccountState state) {
     final instance = calloc<COMObject>();
-    final userNameHString = userName.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -52,14 +52,8 @@ class IWebAccountFactory extends IInspectable {
                     VTablePointer webAccountProvider,
                     int userName,
                     int state,
-                    Pointer<COMObject> instance)>()(
-        ptr.ref.lpVtbl,
-        webAccountProvider?.ptr.ref.lpVtbl ?? nullptr,
-        userNameHString,
-        state.value,
-        instance);
-
-    WindowsDeleteString(userNameHString);
+                    Pointer<COMObject> instance)>()(ptr.ref.lpVtbl,
+        webAccountProvider.lpVtbl, userName.toHString(), state.value, instance);
 
     if (FAILED(hr)) {
       free(instance);

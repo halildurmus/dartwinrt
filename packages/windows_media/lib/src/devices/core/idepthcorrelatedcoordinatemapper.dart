@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 import 'package:windows_perception/windows_perception.dart';
@@ -57,16 +58,16 @@ class IDepthCorrelatedCoordinateMapper extends IInspectable
                       Pointer<NativeVector3> result)>()(
           ptr.ref.lpVtbl,
           sourcePointNativeStructPtr.ref,
-          targetCoordinateSystem?.ptr.ref.lpVtbl ?? nullptr,
+          targetCoordinateSystem.lpVtbl,
           result);
 
-      sourcePointNativeStructPtr.free();
+      free(sourcePointNativeStructPtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDart();
     } finally {
-      result.free();
+      free(result);
     }
   }
 
@@ -104,7 +105,7 @@ class IDepthCorrelatedCoordinateMapper extends IInspectable
           ptr.ref.lpVtbl,
           sourcePoints.length,
           sourcePointsArray,
-          targetCoordinateSystem?.ptr.ref.lpVtbl ?? nullptr,
+          targetCoordinateSystem.lpVtbl,
           resultsSize,
           results);
 
@@ -148,17 +149,17 @@ class IDepthCorrelatedCoordinateMapper extends IInspectable
                       Pointer<NativePoint> result)>()(
           ptr.ref.lpVtbl,
           sourcePointNativeStructPtr.ref,
-          targetCoordinateSystem?.ptr.ref.lpVtbl ?? nullptr,
-          targetCameraIntrinsics?.ptr.ref.lpVtbl ?? nullptr,
+          targetCoordinateSystem.lpVtbl,
+          targetCameraIntrinsics.lpVtbl,
           result);
 
-      sourcePointNativeStructPtr.free();
+      free(sourcePointNativeStructPtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDart();
     } finally {
-      result.free();
+      free(result);
     }
   }
 
@@ -201,8 +202,8 @@ class IDepthCorrelatedCoordinateMapper extends IInspectable
           ptr.ref.lpVtbl,
           sourcePoints.length,
           sourcePointsArray,
-          targetCoordinateSystem?.ptr.ref.lpVtbl ?? nullptr,
-          targetCameraIntrinsics?.ptr.ref.lpVtbl ?? nullptr,
+          targetCoordinateSystem.lpVtbl,
+          targetCameraIntrinsics.lpVtbl,
           resultsSize,
           results);
 

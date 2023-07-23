@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 import 'package:windows_storage/windows_storage.dart';
@@ -45,7 +46,7 @@ class ILauncherStatics extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer file,
                         Pointer<COMObject> operation)>()(
-            ptr.ref.lpVtbl, file?.ptr.ref.lpVtbl ?? nullptr, operation);
+            ptr.ref.lpVtbl, file.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -74,10 +75,7 @@ class ILauncherStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer file,
                     VTablePointer options, Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl,
-        file?.ptr.ref.lpVtbl ?? nullptr,
-        options?.ptr.ref.lpVtbl ?? nullptr,
-        operation);
+        ptr.ref.lpVtbl, file.lpVtbl, options.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -104,8 +102,8 @@ class ILauncherStatics extends IInspectable {
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer uri,
-                        Pointer<COMObject> operation)>()(ptr.ref.lpVtbl,
-            uri?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr, operation);
+                        Pointer<COMObject> operation)>()(
+            ptr.ref.lpVtbl, uri?.toWinRTUri().lpVtbl ?? nullptr, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -134,8 +132,8 @@ class ILauncherStatics extends IInspectable {
                 int Function(VTablePointer lpVtbl, VTablePointer uri,
                     VTablePointer options, Pointer<COMObject> operation)>()(
         ptr.ref.lpVtbl,
-        uri?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr,
-        options?.ptr.ref.lpVtbl ?? nullptr,
+        uri?.toWinRTUri().lpVtbl ?? nullptr,
+        options.lpVtbl,
         operation);
 
     if (FAILED(hr)) {

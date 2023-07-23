@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -30,7 +31,6 @@ class IPhoneNumberInfoFactory extends IInspectable {
 
   PhoneNumberInfo create(String number) {
     final result = calloc<COMObject>();
-    final numberHString = number.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -43,9 +43,7 @@ class IPhoneNumberInfoFactory extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int number,
                     Pointer<COMObject> result)>()(
-        ptr.ref.lpVtbl, numberHString, result);
-
-    WindowsDeleteString(numberHString);
+        ptr.ref.lpVtbl, number.toHString(), result);
 
     if (FAILED(hr)) {
       free(result);

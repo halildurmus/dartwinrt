@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -76,7 +77,7 @@ class IRemoteAutomationClientSession extends IInspectable {
         ptr.ref.lpVtbl,
         remoteWindowId,
         remoteProcessId,
-        parentAutomationElement?.intoBox().ptr.ref.lpVtbl ?? nullptr,
+        parentAutomationElement?.intoBox().lpVtbl ?? nullptr,
         operation);
 
     if (FAILED(hr)) {
@@ -110,7 +111,7 @@ class IRemoteAutomationClientSession extends IInspectable {
 
       return value.toDartGuid();
     } finally {
-      value.free();
+      free(value);
     }
   }
 

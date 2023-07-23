@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -30,7 +31,6 @@ class IWebProviderErrorFactory extends IInspectable {
 
   WebProviderError create(int errorCode, String errorMessage) {
     final webProviderError = calloc<COMObject>();
-    final errorMessageHString = errorMessage.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -46,9 +46,7 @@ class IWebProviderErrorFactory extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int errorCode,
                     int errorMessage, Pointer<COMObject> webProviderError)>()(
-        ptr.ref.lpVtbl, errorCode, errorMessageHString, webProviderError);
-
-    WindowsDeleteString(errorMessageHString);
+        ptr.ref.lpVtbl, errorCode, errorMessage.toHString(), webProviderError);
 
     if (FAILED(hr)) {
       free(webProviderError);

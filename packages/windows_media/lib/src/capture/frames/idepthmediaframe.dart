@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 import 'package:windows_perception/windows_perception.dart';
@@ -137,11 +138,8 @@ class IDepthMediaFrame extends IInspectable {
                     VTablePointer lpVtbl,
                     VTablePointer cameraIntrinsics,
                     VTablePointer coordinateSystem,
-                    Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl,
-        cameraIntrinsics?.ptr.ref.lpVtbl ?? nullptr,
-        coordinateSystem?.ptr.ref.lpVtbl ?? nullptr,
-        value);
+                    Pointer<COMObject> value)>()(ptr.ref.lpVtbl,
+        cameraIntrinsics.lpVtbl, coordinateSystem.lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);

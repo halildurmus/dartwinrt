@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -32,7 +33,6 @@ class IStorageFileStatics extends IInspectable {
 
   Future<StorageFile?> getFileFromPathAsync(String path) {
     final operation = calloc<COMObject>();
-    final pathHString = path.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -45,9 +45,7 @@ class IStorageFileStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int path,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, pathHString, operation);
-
-    WindowsDeleteString(pathHString);
+        ptr.ref.lpVtbl, path.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -75,8 +73,8 @@ class IStorageFileStatics extends IInspectable {
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer uri,
-                        Pointer<COMObject> operation)>()(ptr.ref.lpVtbl,
-            uri?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr, operation);
+                        Pointer<COMObject> operation)>()(
+            ptr.ref.lpVtbl, uri?.toWinRTUri().lpVtbl ?? nullptr, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -93,8 +91,6 @@ class IStorageFileStatics extends IInspectable {
       Pointer<COMObject> dataRequested,
       IRandomAccessStreamReference? thumbnail) {
     final operation = calloc<COMObject>();
-    final displayNameWithExtensionHString =
-        displayNameWithExtension.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(8)
@@ -116,12 +112,10 @@ class IStorageFileStatics extends IInspectable {
                     VTablePointer thumbnail,
                     Pointer<COMObject> operation)>()(
         ptr.ref.lpVtbl,
-        displayNameWithExtensionHString,
+        displayNameWithExtension.toHString(),
         dataRequested.ref.lpVtbl,
-        thumbnail?.ptr.ref.lpVtbl ?? nullptr,
+        thumbnail.lpVtbl,
         operation);
-
-    WindowsDeleteString(displayNameWithExtensionHString);
 
     if (FAILED(hr)) {
       free(operation);
@@ -159,9 +153,9 @@ class IStorageFileStatics extends IInspectable {
                     VTablePointer thumbnail,
                     Pointer<COMObject> operation)>()(
         ptr.ref.lpVtbl,
-        fileToReplace?.ptr.ref.lpVtbl ?? nullptr,
+        fileToReplace.lpVtbl,
         dataRequested.ref.lpVtbl,
-        thumbnail?.ptr.ref.lpVtbl ?? nullptr,
+        thumbnail.lpVtbl,
         operation);
 
     if (FAILED(hr)) {
@@ -179,8 +173,6 @@ class IStorageFileStatics extends IInspectable {
       Uri? uri,
       IRandomAccessStreamReference? thumbnail) {
     final operation = calloc<COMObject>();
-    final displayNameWithExtensionHString =
-        displayNameWithExtension.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(10)
@@ -202,12 +194,10 @@ class IStorageFileStatics extends IInspectable {
                     VTablePointer thumbnail,
                     Pointer<COMObject> operation)>()(
         ptr.ref.lpVtbl,
-        displayNameWithExtensionHString,
-        uri?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr,
-        thumbnail?.ptr.ref.lpVtbl ?? nullptr,
+        displayNameWithExtension.toHString(),
+        uri?.toWinRTUri().lpVtbl ?? nullptr,
+        thumbnail.lpVtbl,
         operation);
-
-    WindowsDeleteString(displayNameWithExtensionHString);
 
     if (FAILED(hr)) {
       free(operation);
@@ -245,9 +235,9 @@ class IStorageFileStatics extends IInspectable {
                     VTablePointer thumbnail,
                     Pointer<COMObject> operation)>()(
         ptr.ref.lpVtbl,
-        fileToReplace?.ptr.ref.lpVtbl ?? nullptr,
-        uri?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr,
-        thumbnail?.ptr.ref.lpVtbl ?? nullptr,
+        fileToReplace.lpVtbl,
+        uri?.toWinRTUri().lpVtbl ?? nullptr,
+        thumbnail.lpVtbl,
         operation);
 
     if (FAILED(hr)) {

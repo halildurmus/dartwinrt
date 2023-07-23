@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -153,7 +154,7 @@ class INetworkInformationStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer uri,
                     Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, uri?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr, value);
+        ptr.ref.lpVtbl, uri?.toWinRTUri().lpVtbl ?? nullptr, value);
 
     if (FAILED(hr)) {
       free(value);
@@ -187,16 +188,7 @@ class INetworkInformationStatics extends IInspectable {
                     VTablePointer destinationList,
                     int sortOptions,
                     Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl,
-        destinationList == null
-            ? nullptr
-            : IInspectable(destinationList
-                    .toInterface('{d7ec83c4-a17b-51bf-8997-aa33b9102dc9}'))
-                .ptr
-                .ref
-                .lpVtbl,
-        sortOptions.value,
-        value);
+        ptr.ref.lpVtbl, destinationList.lpVtbl, sortOptions.value, value);
 
     if (FAILED(hr)) {
       free(value);

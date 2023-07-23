@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -38,7 +39,6 @@ class IStorageFolder extends IInspectable implements IStorageItem {
   Future<StorageFile?> createFileAsyncOverloadDefaultOptions(
       String desiredName) {
     final operation = calloc<COMObject>();
-    final desiredNameHString = desiredName.toHString();
 
     final hr =
         ptr.ref.vtable
@@ -54,9 +54,7 @@ class IStorageFolder extends IInspectable implements IStorageItem {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, int desiredName,
                         Pointer<COMObject> operation)>()(
-            ptr.ref.lpVtbl, desiredNameHString, operation);
-
-    WindowsDeleteString(desiredNameHString);
+            ptr.ref.lpVtbl, desiredName.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -71,7 +69,6 @@ class IStorageFolder extends IInspectable implements IStorageItem {
   Future<StorageFile?> createFileAsync(
       String desiredName, CreationCollisionOption options) {
     final operation = calloc<COMObject>();
-    final desiredNameHString = desiredName.toHString();
 
     final hr =
         ptr.ref.vtable
@@ -88,9 +85,7 @@ class IStorageFolder extends IInspectable implements IStorageItem {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, int desiredName,
                         int options, Pointer<COMObject> operation)>()(
-            ptr.ref.lpVtbl, desiredNameHString, options.value, operation);
-
-    WindowsDeleteString(desiredNameHString);
+            ptr.ref.lpVtbl, desiredName.toHString(), options.value, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -105,7 +100,6 @@ class IStorageFolder extends IInspectable implements IStorageItem {
   Future<StorageFolder?> createFolderAsyncOverloadDefaultOptions(
       String desiredName) {
     final operation = calloc<COMObject>();
-    final desiredNameHString = desiredName.toHString();
 
     final hr =
         ptr.ref.vtable
@@ -121,9 +115,7 @@ class IStorageFolder extends IInspectable implements IStorageItem {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, int desiredName,
                         Pointer<COMObject> operation)>()(
-            ptr.ref.lpVtbl, desiredNameHString, operation);
-
-    WindowsDeleteString(desiredNameHString);
+            ptr.ref.lpVtbl, desiredName.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -138,7 +130,6 @@ class IStorageFolder extends IInspectable implements IStorageItem {
   Future<StorageFolder?> createFolderAsync(
       String desiredName, CreationCollisionOption options) {
     final operation = calloc<COMObject>();
-    final desiredNameHString = desiredName.toHString();
 
     final hr =
         ptr.ref.vtable
@@ -155,9 +146,7 @@ class IStorageFolder extends IInspectable implements IStorageItem {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, int desiredName,
                         int options, Pointer<COMObject> operation)>()(
-            ptr.ref.lpVtbl, desiredNameHString, options.value, operation);
-
-    WindowsDeleteString(desiredNameHString);
+            ptr.ref.lpVtbl, desiredName.toHString(), options.value, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -171,7 +160,6 @@ class IStorageFolder extends IInspectable implements IStorageItem {
 
   Future<StorageFile?> getFileAsync(String name) {
     final operation = calloc<COMObject>();
-    final nameHString = name.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(10)
@@ -184,9 +172,7 @@ class IStorageFolder extends IInspectable implements IStorageItem {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int name,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, nameHString, operation);
-
-    WindowsDeleteString(nameHString);
+        ptr.ref.lpVtbl, name.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -200,7 +186,6 @@ class IStorageFolder extends IInspectable implements IStorageItem {
 
   Future<StorageFolder?> getFolderAsync(String name) {
     final operation = calloc<COMObject>();
-    final nameHString = name.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(11)
@@ -213,9 +198,7 @@ class IStorageFolder extends IInspectable implements IStorageItem {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int name,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, nameHString, operation);
-
-    WindowsDeleteString(nameHString);
+        ptr.ref.lpVtbl, name.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -229,7 +212,6 @@ class IStorageFolder extends IInspectable implements IStorageItem {
 
   Future<IStorageItem?> getItemAsync(String name) {
     final operation = calloc<COMObject>();
-    final nameHString = name.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(12)
@@ -242,9 +224,7 @@ class IStorageFolder extends IInspectable implements IStorageItem {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int name,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, nameHString, operation);
-
-    WindowsDeleteString(nameHString);
+        ptr.ref.lpVtbl, name.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);

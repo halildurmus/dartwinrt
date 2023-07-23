@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -33,7 +34,6 @@ class IStorageItem extends IInspectable {
 
   Future<void> renameAsyncOverloadDefaultOptions(String desiredName) {
     final operation = calloc<COMObject>();
-    final desiredNameHString = desiredName.toHString();
 
     final hr =
         ptr.ref.vtable
@@ -49,9 +49,7 @@ class IStorageItem extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, int desiredName,
                         Pointer<COMObject> operation)>()(
-            ptr.ref.lpVtbl, desiredNameHString, operation);
-
-    WindowsDeleteString(desiredNameHString);
+            ptr.ref.lpVtbl, desiredName.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -63,7 +61,6 @@ class IStorageItem extends IInspectable {
 
   Future<void> renameAsync(String desiredName, NameCollisionOption option) {
     final operation = calloc<COMObject>();
-    final desiredNameHString = desiredName.toHString();
 
     final hr =
         ptr.ref.vtable
@@ -80,9 +77,7 @@ class IStorageItem extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, int desiredName,
                         int option, Pointer<COMObject> operation)>()(
-            ptr.ref.lpVtbl, desiredNameHString, option.value, operation);
-
-    WindowsDeleteString(desiredNameHString);
+            ptr.ref.lpVtbl, desiredName.toHString(), option.value, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -184,7 +179,6 @@ class IStorageItem extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
@@ -209,7 +203,6 @@ class IStorageItem extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }

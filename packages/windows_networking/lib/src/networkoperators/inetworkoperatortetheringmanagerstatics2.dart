@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -48,7 +49,7 @@ class INetworkOperatorTetheringManagerStatics2 extends IInspectable {
               .asFunction<
                   int Function(VTablePointer lpVtbl, VTablePointer profile,
                       Pointer<Int32> result)>()(
-          ptr.ref.lpVtbl, profile?.ptr.ref.lpVtbl ?? nullptr, result);
+          ptr.ref.lpVtbl, profile.lpVtbl, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -75,7 +76,7 @@ class INetworkOperatorTetheringManagerStatics2 extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer profile,
                     Pointer<COMObject> ppManager)>()(
-        ptr.ref.lpVtbl, profile?.ptr.ref.lpVtbl ?? nullptr, ppManager);
+        ptr.ref.lpVtbl, profile.lpVtbl, ppManager);
 
     if (FAILED(hr)) {
       free(ppManager);

@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 
 import '../internal.dart';
 import 'collections/iiterator.dart';
@@ -49,7 +50,6 @@ class IUriRuntimeClass extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
@@ -74,7 +74,6 @@ class IUriRuntimeClass extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
@@ -99,7 +98,6 @@ class IUriRuntimeClass extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
@@ -124,7 +122,6 @@ class IUriRuntimeClass extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
@@ -149,7 +146,6 @@ class IUriRuntimeClass extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
@@ -174,7 +170,6 @@ class IUriRuntimeClass extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
@@ -199,7 +194,6 @@ class IUriRuntimeClass extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
@@ -224,7 +218,6 @@ class IUriRuntimeClass extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
@@ -249,7 +242,6 @@ class IUriRuntimeClass extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
@@ -303,7 +295,6 @@ class IUriRuntimeClass extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
@@ -328,7 +319,6 @@ class IUriRuntimeClass extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
@@ -353,7 +343,6 @@ class IUriRuntimeClass extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
@@ -410,19 +399,17 @@ class IUriRuntimeClass extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final hr =
-          ptr.ref.vtable
-                  .elementAt(21)
-                  .cast<
-                      Pointer<
-                          NativeFunction<
-                              HRESULT Function(VTablePointer lpVtbl,
-                                  VTablePointer pUri, Pointer<Bool> value)>>>()
-                  .value
-                  .asFunction<
-                      int Function(VTablePointer lpVtbl, VTablePointer pUri,
-                          Pointer<Bool> value)>()(
-              ptr.ref.lpVtbl, pUri?.ptr.ref.lpVtbl ?? nullptr, value);
+      final hr = ptr.ref.vtable
+          .elementAt(21)
+          .cast<
+              Pointer<
+                  NativeFunction<
+                      HRESULT Function(VTablePointer lpVtbl, VTablePointer pUri,
+                          Pointer<Bool> value)>>>()
+          .value
+          .asFunction<
+              int Function(VTablePointer lpVtbl, VTablePointer pUri,
+                  Pointer<Bool> value)>()(ptr.ref.lpVtbl, pUri.lpVtbl, value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -434,7 +421,6 @@ class IUriRuntimeClass extends IInspectable {
 
   Uri? combineUri(String relativeUri) {
     final instance = calloc<COMObject>();
-    final relativeUriHString = relativeUri.toHString();
 
     final hr =
         ptr.ref.vtable
@@ -450,9 +436,7 @@ class IUriRuntimeClass extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, int relativeUri,
                         Pointer<COMObject> instance)>()(
-            ptr.ref.lpVtbl, relativeUriHString, instance);
-
-    WindowsDeleteString(relativeUriHString);
+            ptr.ref.lpVtbl, relativeUri.toHString(), instance);
 
     if (FAILED(hr)) {
       free(instance);

@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 import 'package:windows_storage/windows_storage.dart';
@@ -50,7 +51,7 @@ class IBitmapDecoderStatics extends IInspectable {
 
       return value.toDartGuid();
     } finally {
-      value.free();
+      free(value);
     }
   }
 
@@ -74,7 +75,7 @@ class IBitmapDecoderStatics extends IInspectable {
 
       return value.toDartGuid();
     } finally {
-      value.free();
+      free(value);
     }
   }
 
@@ -98,7 +99,7 @@ class IBitmapDecoderStatics extends IInspectable {
 
       return value.toDartGuid();
     } finally {
-      value.free();
+      free(value);
     }
   }
 
@@ -122,7 +123,7 @@ class IBitmapDecoderStatics extends IInspectable {
 
       return value.toDartGuid();
     } finally {
-      value.free();
+      free(value);
     }
   }
 
@@ -146,7 +147,7 @@ class IBitmapDecoderStatics extends IInspectable {
 
       return value.toDartGuid();
     } finally {
-      value.free();
+      free(value);
     }
   }
 
@@ -170,7 +171,7 @@ class IBitmapDecoderStatics extends IInspectable {
 
       return value.toDartGuid();
     } finally {
-      value.free();
+      free(value);
     }
   }
 
@@ -194,7 +195,7 @@ class IBitmapDecoderStatics extends IInspectable {
 
       return value.toDartGuid();
     } finally {
-      value.free();
+      free(value);
     }
   }
 
@@ -246,7 +247,7 @@ class IBitmapDecoderStatics extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer stream,
                         Pointer<COMObject> asyncInfo)>()(
-            ptr.ref.lpVtbl, stream?.ptr.ref.lpVtbl ?? nullptr, asyncInfo);
+            ptr.ref.lpVtbl, stream.lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -280,10 +281,10 @@ class IBitmapDecoderStatics extends IInspectable {
                         VTablePointer stream, Pointer<COMObject> asyncInfo)>()(
             ptr.ref.lpVtbl,
             decoderIdNativeStructPtr.ref,
-            stream?.ptr.ref.lpVtbl ?? nullptr,
+            stream.lpVtbl,
             asyncInfo);
 
-    decoderIdNativeStructPtr.free();
+    free(decoderIdNativeStructPtr);
 
     if (FAILED(hr)) {
       free(asyncInfo);

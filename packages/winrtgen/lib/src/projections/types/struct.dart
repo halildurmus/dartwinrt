@@ -63,8 +63,8 @@ final class StructParameterProjection extends ParameterProjection {
       ? []
       : [
           isInParam
-              ? '${identifier}NativeStructPtr.free();'
-              : '$identifier.free();'
+              ? 'free(${identifier}NativeStructPtr);'
+              : 'free($identifier);'
         ];
 
   @override

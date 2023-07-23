@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -68,11 +69,11 @@ class ICoreAutomationRemoteOperationExtensionProvider extends IInspectable {
                         operandIds)>()(
         ptr.ref.lpVtbl,
         extensionIdNativeStructPtr.ref,
-        context?.ptr.ref.lpVtbl ?? nullptr,
+        context.lpVtbl,
         operandIds.length,
         operandIdsArray);
 
-    extensionIdNativeStructPtr.free();
+    free(extensionIdNativeStructPtr);
     allocator.releaseAll();
     free(operandIdsArray);
 
@@ -99,7 +100,7 @@ class ICoreAutomationRemoteOperationExtensionProvider extends IInspectable {
                           Pointer<Bool> result)>()(
               ptr.ref.lpVtbl, extensionIdNativeStructPtr.ref, result);
 
-      extensionIdNativeStructPtr.free();
+      free(extensionIdNativeStructPtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 

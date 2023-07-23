@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -30,8 +31,6 @@ class IGeographicRegionStatics extends IInspectable {
     final result = calloc<Bool>();
 
     try {
-      final geographicRegionCodeHString = geographicRegionCode.toHString();
-
       final hr = ptr.ref.vtable
               .elementAt(6)
               .cast<
@@ -45,9 +44,7 @@ class IGeographicRegionStatics extends IInspectable {
               .asFunction<
                   int Function(VTablePointer lpVtbl, int geographicRegionCode,
                       Pointer<Bool> result)>()(
-          ptr.ref.lpVtbl, geographicRegionCodeHString, result);
-
-      WindowsDeleteString(geographicRegionCodeHString);
+          ptr.ref.lpVtbl, geographicRegionCode.toHString(), result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
