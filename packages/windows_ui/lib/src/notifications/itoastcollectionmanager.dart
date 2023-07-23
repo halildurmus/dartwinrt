@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 import 'package:windows_system/windows_system.dart';
@@ -45,7 +46,7 @@ class IToastCollectionManager extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer collection,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, collection?.ptr.ref.lpVtbl ?? nullptr, operation);
+        ptr.ref.lpVtbl, collection.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -85,7 +86,6 @@ class IToastCollectionManager extends IInspectable {
 
   Future<ToastCollection?> getToastCollectionAsync(String collectionId) {
     final operation = calloc<COMObject>();
-    final collectionIdHString = collectionId.toHString();
 
     final hr =
         ptr.ref.vtable
@@ -101,9 +101,7 @@ class IToastCollectionManager extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, int collectionId,
                         Pointer<COMObject> operation)>()(
-            ptr.ref.lpVtbl, collectionIdHString, operation);
-
-    WindowsDeleteString(collectionIdHString);
+            ptr.ref.lpVtbl, collectionId.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -117,7 +115,6 @@ class IToastCollectionManager extends IInspectable {
 
   Future<void> removeToastCollectionAsync(String collectionId) {
     final operation = calloc<COMObject>();
-    final collectionIdHString = collectionId.toHString();
 
     final hr =
         ptr.ref.vtable
@@ -133,9 +130,7 @@ class IToastCollectionManager extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, int collectionId,
                         Pointer<COMObject> operation)>()(
-            ptr.ref.lpVtbl, collectionIdHString, operation);
-
-    WindowsDeleteString(collectionIdHString);
+            ptr.ref.lpVtbl, collectionId.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -216,7 +211,6 @@ class IToastCollectionManager extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }

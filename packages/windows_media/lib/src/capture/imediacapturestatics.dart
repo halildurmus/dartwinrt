@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -33,8 +34,6 @@ class IMediaCaptureStatics extends IInspectable {
     final value = calloc<Bool>();
 
     try {
-      final videoDeviceIdHString = videoDeviceId.toHString();
-
       final hr = ptr.ref.vtable
               .elementAt(6)
               .cast<
@@ -46,9 +45,7 @@ class IMediaCaptureStatics extends IInspectable {
               .asFunction<
                   int Function(VTablePointer lpVtbl, int videoDeviceId,
                       Pointer<Bool> value)>()(
-          ptr.ref.lpVtbl, videoDeviceIdHString, value);
-
-      WindowsDeleteString(videoDeviceIdHString);
+          ptr.ref.lpVtbl, videoDeviceId.toHString(), value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -60,7 +57,6 @@ class IMediaCaptureStatics extends IInspectable {
 
   List<MediaCaptureVideoProfile?> findAllVideoProfiles(String videoDeviceId) {
     final value = calloc<COMObject>();
-    final videoDeviceIdHString = videoDeviceId.toHString();
 
     final hr = ptr.ref.vtable
         .elementAt(7)
@@ -75,9 +71,7 @@ class IMediaCaptureStatics extends IInspectable {
                 VTablePointer lpVtbl,
                 int videoDeviceId,
                 Pointer<COMObject>
-                    value)>()(ptr.ref.lpVtbl, videoDeviceIdHString, value);
-
-    WindowsDeleteString(videoDeviceIdHString);
+                    value)>()(ptr.ref.lpVtbl, videoDeviceId.toHString(), value);
 
     if (FAILED(hr)) {
       free(value);
@@ -92,7 +86,6 @@ class IMediaCaptureStatics extends IInspectable {
 
   List<MediaCaptureVideoProfile?> findConcurrentProfiles(String videoDeviceId) {
     final value = calloc<COMObject>();
-    final videoDeviceIdHString = videoDeviceId.toHString();
 
     final hr = ptr.ref.vtable
         .elementAt(8)
@@ -107,9 +100,7 @@ class IMediaCaptureStatics extends IInspectable {
                 VTablePointer lpVtbl,
                 int videoDeviceId,
                 Pointer<COMObject>
-                    value)>()(ptr.ref.lpVtbl, videoDeviceIdHString, value);
-
-    WindowsDeleteString(videoDeviceIdHString);
+                    value)>()(ptr.ref.lpVtbl, videoDeviceId.toHString(), value);
 
     if (FAILED(hr)) {
       free(value);
@@ -125,7 +116,6 @@ class IMediaCaptureStatics extends IInspectable {
   List<MediaCaptureVideoProfile?> findKnownVideoProfiles(
       String videoDeviceId, KnownVideoProfile name) {
     final value = calloc<COMObject>();
-    final videoDeviceIdHString = videoDeviceId.toHString();
 
     final hr =
         ptr.ref.vtable
@@ -142,9 +132,7 @@ class IMediaCaptureStatics extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, int videoDeviceId,
                         int name, Pointer<COMObject> value)>()(
-            ptr.ref.lpVtbl, videoDeviceIdHString, name.value, value);
-
-    WindowsDeleteString(videoDeviceIdHString);
+            ptr.ref.lpVtbl, videoDeviceId.toHString(), name.value, value);
 
     if (FAILED(hr)) {
       free(value);

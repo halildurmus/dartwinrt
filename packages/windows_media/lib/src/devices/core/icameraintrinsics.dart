@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -45,7 +46,7 @@ class ICameraIntrinsics extends IInspectable {
 
       return value.toDart();
     } finally {
-      value.free();
+      free(value);
     }
   }
 
@@ -69,7 +70,7 @@ class ICameraIntrinsics extends IInspectable {
 
       return value.toDart();
     } finally {
-      value.free();
+      free(value);
     }
   }
 
@@ -93,7 +94,7 @@ class ICameraIntrinsics extends IInspectable {
 
       return value.toDart();
     } finally {
-      value.free();
+      free(value);
     }
   }
 
@@ -117,7 +118,7 @@ class ICameraIntrinsics extends IInspectable {
 
       return value.toDart();
     } finally {
-      value.free();
+      free(value);
     }
   }
 
@@ -190,13 +191,13 @@ class ICameraIntrinsics extends IInspectable {
                       Pointer<NativePoint> result)>()(
           ptr.ref.lpVtbl, coordinateNativeStructPtr.ref, result);
 
-      coordinateNativeStructPtr.free();
+      free(coordinateNativeStructPtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDart();
     } finally {
-      result.free();
+      free(result);
     }
   }
 
@@ -223,13 +224,13 @@ class ICameraIntrinsics extends IInspectable {
                       Pointer<NativeVector2> result)>()(
           ptr.ref.lpVtbl, pixelCoordinateNativeStructPtr.ref, result);
 
-      pixelCoordinateNativeStructPtr.free();
+      free(pixelCoordinateNativeStructPtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDart();
     } finally {
-      result.free();
+      free(result);
     }
   }
 

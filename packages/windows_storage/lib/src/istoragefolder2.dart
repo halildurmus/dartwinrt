@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -29,7 +30,6 @@ class IStorageFolder2 extends IInspectable {
 
   Future<IStorageItem?> tryGetItemAsync(String name) {
     final operation = calloc<COMObject>();
-    final nameHString = name.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -42,9 +42,7 @@ class IStorageFolder2 extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int name,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, nameHString, operation);
-
-    WindowsDeleteString(nameHString);
+        ptr.ref.lpVtbl, name.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);

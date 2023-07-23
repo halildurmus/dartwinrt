@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 import 'package:windows_system/windows_system.dart';
@@ -33,7 +34,6 @@ class IDownloadsFolderStatics2 extends IInspectable {
 
   Future<StorageFile?> createFileForUserAsync(User? user, String desiredName) {
     final operation = calloc<COMObject>();
-    final desiredNameHString = desiredName.toHString();
 
     final hr =
         ptr.ref.vtable
@@ -50,12 +50,7 @@ class IDownloadsFolderStatics2 extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer user,
                         int desiredName, Pointer<COMObject> operation)>()(
-            ptr.ref.lpVtbl,
-            user?.ptr.ref.lpVtbl ?? nullptr,
-            desiredNameHString,
-            operation);
-
-    WindowsDeleteString(desiredNameHString);
+            ptr.ref.lpVtbl, user.lpVtbl, desiredName.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -70,7 +65,6 @@ class IDownloadsFolderStatics2 extends IInspectable {
   Future<StorageFolder?> createFolderForUserAsync(
       User? user, String desiredName) {
     final operation = calloc<COMObject>();
-    final desiredNameHString = desiredName.toHString();
 
     final hr =
         ptr.ref.vtable
@@ -87,12 +81,7 @@ class IDownloadsFolderStatics2 extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer user,
                         int desiredName, Pointer<COMObject> operation)>()(
-            ptr.ref.lpVtbl,
-            user?.ptr.ref.lpVtbl ?? nullptr,
-            desiredNameHString,
-            operation);
-
-    WindowsDeleteString(desiredNameHString);
+            ptr.ref.lpVtbl, user.lpVtbl, desiredName.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -107,7 +96,6 @@ class IDownloadsFolderStatics2 extends IInspectable {
   Future<StorageFile?> createFileForUserWithCollisionOptionAsync(
       User? user, String desiredName, CreationCollisionOption option) {
     final operation = calloc<COMObject>();
-    final desiredNameHString = desiredName.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(8)
@@ -127,14 +115,8 @@ class IDownloadsFolderStatics2 extends IInspectable {
                     VTablePointer user,
                     int desiredName,
                     int option,
-                    Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl,
-        user?.ptr.ref.lpVtbl ?? nullptr,
-        desiredNameHString,
-        option.value,
-        operation);
-
-    WindowsDeleteString(desiredNameHString);
+                    Pointer<COMObject> operation)>()(ptr.ref.lpVtbl,
+        user.lpVtbl, desiredName.toHString(), option.value, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -149,7 +131,6 @@ class IDownloadsFolderStatics2 extends IInspectable {
   Future<StorageFolder?> createFolderForUserWithCollisionOptionAsync(
       User? user, String desiredName, CreationCollisionOption option) {
     final operation = calloc<COMObject>();
-    final desiredNameHString = desiredName.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(9)
@@ -169,14 +150,8 @@ class IDownloadsFolderStatics2 extends IInspectable {
                     VTablePointer user,
                     int desiredName,
                     int option,
-                    Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl,
-        user?.ptr.ref.lpVtbl ?? nullptr,
-        desiredNameHString,
-        option.value,
-        operation);
-
-    WindowsDeleteString(desiredNameHString);
+                    Pointer<COMObject> operation)>()(ptr.ref.lpVtbl,
+        user.lpVtbl, desiredName.toHString(), option.value, operation);
 
     if (FAILED(hr)) {
       free(operation);

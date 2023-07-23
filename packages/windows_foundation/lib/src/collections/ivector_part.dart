@@ -34,7 +34,7 @@ final class _IVectorAccessListEntry extends IVector<AccessListEntry> {
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 
@@ -68,7 +68,7 @@ final class _IVectorAccessListEntry extends IVector<AccessListEntry> {
 
       return (retValuePtr.value, index: index.value);
     } finally {
-      valueNativeStructPtr.free();
+      free(valueNativeStructPtr);
       free(index);
       free(retValuePtr);
     }
@@ -91,7 +91,7 @@ final class _IVectorAccessListEntry extends IVector<AccessListEntry> {
                     NativeAccessListEntry value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -113,7 +113,7 @@ final class _IVectorAccessListEntry extends IVector<AccessListEntry> {
                     NativeAccessListEntry value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -135,7 +135,7 @@ final class _IVectorAccessListEntry extends IVector<AccessListEntry> {
                     VTablePointer lpVtbl, NativeAccessListEntry value)>()(
         ptr.ref.lpVtbl, valueNativeStructPtr.ref);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -239,7 +239,7 @@ final class _IVectorBackgroundTransferFileRange
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 
@@ -273,7 +273,7 @@ final class _IVectorBackgroundTransferFileRange
 
       return (retValuePtr.value, index: index.value);
     } finally {
-      valueNativeStructPtr.free();
+      free(valueNativeStructPtr);
       free(index);
       free(retValuePtr);
     }
@@ -296,7 +296,7 @@ final class _IVectorBackgroundTransferFileRange
                     NativeBackgroundTransferFileRange value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -318,7 +318,7 @@ final class _IVectorBackgroundTransferFileRange
                     NativeBackgroundTransferFileRange value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -340,7 +340,7 @@ final class _IVectorBackgroundTransferFileRange
                     NativeBackgroundTransferFileRange value)>()(
         ptr.ref.lpVtbl, valueNativeStructPtr.ref);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -440,7 +440,7 @@ final class _IVectorBasicGeoposition extends IVector<BasicGeoposition> {
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 
@@ -474,7 +474,7 @@ final class _IVectorBasicGeoposition extends IVector<BasicGeoposition> {
 
       return (retValuePtr.value, index: index.value);
     } finally {
-      valueNativeStructPtr.free();
+      free(valueNativeStructPtr);
       free(index);
       free(retValuePtr);
     }
@@ -497,7 +497,7 @@ final class _IVectorBasicGeoposition extends IVector<BasicGeoposition> {
                     NativeBasicGeoposition value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -519,7 +519,7 @@ final class _IVectorBasicGeoposition extends IVector<BasicGeoposition> {
                     NativeBasicGeoposition value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -541,7 +541,7 @@ final class _IVectorBasicGeoposition extends IVector<BasicGeoposition> {
                     VTablePointer lpVtbl, NativeBasicGeoposition value)>()(
         ptr.ref.lpVtbl, valueNativeStructPtr.ref);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -813,7 +813,7 @@ final class _IVectorColor extends IVector<Color> {
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 
@@ -845,7 +845,7 @@ final class _IVectorColor extends IVector<Color> {
 
       return (retValuePtr.value, index: index.value);
     } finally {
-      valueNativeStructPtr.free();
+      free(valueNativeStructPtr);
       free(index);
       free(retValuePtr);
     }
@@ -868,7 +868,7 @@ final class _IVectorColor extends IVector<Color> {
                     VTablePointer lpVtbl, int index, NativeColor value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -890,7 +890,7 @@ final class _IVectorColor extends IVector<Color> {
                     VTablePointer lpVtbl, int index, NativeColor value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -911,7 +911,7 @@ final class _IVectorColor extends IVector<Color> {
                 int Function(VTablePointer lpVtbl, NativeColor value)>()(
         ptr.ref.lpVtbl, valueNativeStructPtr.ref);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -1712,7 +1712,7 @@ final class _IVectorGpioChangeRecord extends IVector<GpioChangeRecord> {
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 
@@ -1746,7 +1746,7 @@ final class _IVectorGpioChangeRecord extends IVector<GpioChangeRecord> {
 
       return (retValuePtr.value, index: index.value);
     } finally {
-      valueNativeStructPtr.free();
+      free(valueNativeStructPtr);
       free(index);
       free(retValuePtr);
     }
@@ -1769,7 +1769,7 @@ final class _IVectorGpioChangeRecord extends IVector<GpioChangeRecord> {
                     NativeGpioChangeRecord value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -1791,7 +1791,7 @@ final class _IVectorGpioChangeRecord extends IVector<GpioChangeRecord> {
                     NativeGpioChangeRecord value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -1813,7 +1813,7 @@ final class _IVectorGpioChangeRecord extends IVector<GpioChangeRecord> {
                     VTablePointer lpVtbl, NativeGpioChangeRecord value)>()(
         ptr.ref.lpVtbl, valueNativeStructPtr.ref);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -1910,7 +1910,7 @@ final class _IVectorGuid extends IVector<Guid> {
 
       return retValuePtr.toDartGuid();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 
@@ -1942,7 +1942,7 @@ final class _IVectorGuid extends IVector<Guid> {
 
       return (retValuePtr.value, index: index.value);
     } finally {
-      valueNativeStructPtr.free();
+      free(valueNativeStructPtr);
       free(index);
       free(retValuePtr);
     }
@@ -1964,7 +1964,7 @@ final class _IVectorGuid extends IVector<Guid> {
                 int Function(VTablePointer lpVtbl, int index, GUID value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -1985,7 +1985,7 @@ final class _IVectorGuid extends IVector<Guid> {
                 int Function(VTablePointer lpVtbl, int index, GUID value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -2004,7 +2004,7 @@ final class _IVectorGuid extends IVector<Guid> {
             .asFunction<int Function(VTablePointer lpVtbl, GUID value)>()(
         ptr.ref.lpVtbl, valueNativeStructPtr.ref);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -2626,7 +2626,7 @@ final class _IVectorMediaTimeRange extends IVector<MediaTimeRange> {
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 
@@ -2657,7 +2657,7 @@ final class _IVectorMediaTimeRange extends IVector<MediaTimeRange> {
 
       return (retValuePtr.value, index: index.value);
     } finally {
-      valueNativeStructPtr.free();
+      free(valueNativeStructPtr);
       free(index);
       free(retValuePtr);
     }
@@ -2680,7 +2680,7 @@ final class _IVectorMediaTimeRange extends IVector<MediaTimeRange> {
                     NativeMediaTimeRange value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -2702,7 +2702,7 @@ final class _IVectorMediaTimeRange extends IVector<MediaTimeRange> {
                     NativeMediaTimeRange value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -2724,7 +2724,7 @@ final class _IVectorMediaTimeRange extends IVector<MediaTimeRange> {
                     VTablePointer lpVtbl, NativeMediaTimeRange value)>()(
         ptr.ref.lpVtbl, valueNativeStructPtr.ref);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -2821,7 +2821,7 @@ final class _IVectorMseTimeRange extends IVector<MseTimeRange> {
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 
@@ -2852,7 +2852,7 @@ final class _IVectorMseTimeRange extends IVector<MseTimeRange> {
 
       return (retValuePtr.value, index: index.value);
     } finally {
-      valueNativeStructPtr.free();
+      free(valueNativeStructPtr);
       free(index);
       free(retValuePtr);
     }
@@ -2875,7 +2875,7 @@ final class _IVectorMseTimeRange extends IVector<MseTimeRange> {
                     NativeMseTimeRange value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -2897,7 +2897,7 @@ final class _IVectorMseTimeRange extends IVector<MseTimeRange> {
                     NativeMseTimeRange value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -2918,7 +2918,7 @@ final class _IVectorMseTimeRange extends IVector<MseTimeRange> {
                 int Function(VTablePointer lpVtbl, NativeMseTimeRange value)>()(
         ptr.ref.lpVtbl, valueNativeStructPtr.ref);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -3015,7 +3015,7 @@ final class _IVectorNitRange extends IVector<NitRange> {
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 
@@ -3046,7 +3046,7 @@ final class _IVectorNitRange extends IVector<NitRange> {
 
       return (retValuePtr.value, index: index.value);
     } finally {
-      valueNativeStructPtr.free();
+      free(valueNativeStructPtr);
       free(index);
       free(retValuePtr);
     }
@@ -3069,7 +3069,7 @@ final class _IVectorNitRange extends IVector<NitRange> {
                     VTablePointer lpVtbl, int index, NativeNitRange value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -3091,7 +3091,7 @@ final class _IVectorNitRange extends IVector<NitRange> {
                     VTablePointer lpVtbl, int index, NativeNitRange value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -3112,7 +3112,7 @@ final class _IVectorNitRange extends IVector<NitRange> {
                 int Function(VTablePointer lpVtbl, NativeNitRange value)>()(
         ptr.ref.lpVtbl, valueNativeStructPtr.ref);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -3241,10 +3241,7 @@ final class _IVectorInspectable<T> extends IVector<T> {
               .asFunction<
                   int Function(VTablePointer lpVtbl, VTablePointer value,
                       Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
-          ptr.ref.lpVtbl,
-          (value as IInspectable).ptr.ref.lpVtbl,
-          index,
-          retValuePtr);
+          ptr.ref.lpVtbl, (value as IInspectable).lpVtbl, index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -3268,7 +3265,7 @@ final class _IVectorInspectable<T> extends IVector<T> {
             .asFunction<
                 int Function(
                     VTablePointer lpVtbl, int index, VTablePointer value)>()(
-        ptr.ref.lpVtbl, index, (value as IInspectable).ptr.ref.lpVtbl);
+        ptr.ref.lpVtbl, index, (value as IInspectable).lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -3286,7 +3283,7 @@ final class _IVectorInspectable<T> extends IVector<T> {
             .asFunction<
                 int Function(
                     VTablePointer lpVtbl, int index, VTablePointer value)>()(
-        ptr.ref.lpVtbl, index, (value as IInspectable).ptr.ref.lpVtbl);
+        ptr.ref.lpVtbl, index, (value as IInspectable).lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -3303,7 +3300,7 @@ final class _IVectorInspectable<T> extends IVector<T> {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer value)>()(
-        ptr.ref.lpVtbl, (value as IInspectable).ptr.ref.lpVtbl);
+        ptr.ref.lpVtbl, (value as IInspectable).lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -3351,7 +3348,7 @@ final class _IVectorInspectable<T> extends IVector<T> {
   void replaceAll(List<T> items) {
     final itemsArray = calloc<VTablePointer>(items.length);
     for (var i = 0; i < items.length; i++) {
-      itemsArray[i] = items.cast<IInspectable>()[i].ptr.ref.lpVtbl;
+      itemsArray[i] = items.cast<IInspectable>()[i].lpVtbl;
     }
 
     final hr = ptr.ref.vtable
@@ -3427,7 +3424,7 @@ final class _IVectorObject extends IVector<Object?> {
                   int Function(VTablePointer lpVtbl, VTablePointer value,
                       Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
           ptr.ref.lpVtbl,
-          value?.intoBox().ptr.ref.lpVtbl ?? nullptr,
+          value?.intoBox().lpVtbl ?? nullptr,
           index,
           retValuePtr);
 
@@ -3453,7 +3450,7 @@ final class _IVectorObject extends IVector<Object?> {
             .asFunction<
                 int Function(
                     VTablePointer lpVtbl, int index, VTablePointer value)>()(
-        ptr.ref.lpVtbl, index, value?.intoBox().ptr.ref.lpVtbl ?? nullptr);
+        ptr.ref.lpVtbl, index, value?.intoBox().lpVtbl ?? nullptr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -3471,7 +3468,7 @@ final class _IVectorObject extends IVector<Object?> {
             .asFunction<
                 int Function(
                     VTablePointer lpVtbl, int index, VTablePointer value)>()(
-        ptr.ref.lpVtbl, index, value?.intoBox().ptr.ref.lpVtbl ?? nullptr);
+        ptr.ref.lpVtbl, index, value?.intoBox().lpVtbl ?? nullptr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -3488,7 +3485,7 @@ final class _IVectorObject extends IVector<Object?> {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer value)>()(
-        ptr.ref.lpVtbl, value?.intoBox().ptr.ref.lpVtbl ?? nullptr);
+        ptr.ref.lpVtbl, value?.intoBox().lpVtbl ?? nullptr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -3536,7 +3533,7 @@ final class _IVectorObject extends IVector<Object?> {
   void replaceAll(List<Object?> items) {
     final itemsArray = calloc<VTablePointer>(items.length);
     for (var i = 0; i < items.length; i++) {
-      itemsArray[i] = items[i]?.intoBox().ptr.ref.lpVtbl ?? nullptr;
+      itemsArray[i] = items[i]?.intoBox().lpVtbl ?? nullptr;
     }
 
     final hr = ptr.ref.vtable
@@ -3612,7 +3609,7 @@ final class _IVectorUri extends IVector<Uri?> {
                   int Function(VTablePointer lpVtbl, VTablePointer value,
                       Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
           ptr.ref.lpVtbl,
-          value?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr,
+          value?.toWinRTUri().lpVtbl ?? nullptr,
           index,
           retValuePtr);
 
@@ -3638,7 +3635,7 @@ final class _IVectorUri extends IVector<Uri?> {
             .asFunction<
                 int Function(
                     VTablePointer lpVtbl, int index, VTablePointer value)>()(
-        ptr.ref.lpVtbl, index, value?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr);
+        ptr.ref.lpVtbl, index, value?.toWinRTUri().lpVtbl ?? nullptr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -3656,7 +3653,7 @@ final class _IVectorUri extends IVector<Uri?> {
             .asFunction<
                 int Function(
                     VTablePointer lpVtbl, int index, VTablePointer value)>()(
-        ptr.ref.lpVtbl, index, value?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr);
+        ptr.ref.lpVtbl, index, value?.toWinRTUri().lpVtbl ?? nullptr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -3673,7 +3670,7 @@ final class _IVectorUri extends IVector<Uri?> {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer value)>()(
-        ptr.ref.lpVtbl, value?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr);
+        ptr.ref.lpVtbl, value?.toWinRTUri().lpVtbl ?? nullptr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -3721,7 +3718,7 @@ final class _IVectorUri extends IVector<Uri?> {
   void replaceAll(List<Uri?> items) {
     final itemsArray = calloc<VTablePointer>(items.length);
     for (var i = 0; i < items.length; i++) {
-      itemsArray[i] = items[i]?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr;
+      itemsArray[i] = items[i]?.toWinRTUri().lpVtbl ?? nullptr;
     }
 
     final hr = ptr.ref.vtable
@@ -3768,7 +3765,7 @@ final class _IVectorPoint extends IVector<Point> {
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 
@@ -3800,7 +3797,7 @@ final class _IVectorPoint extends IVector<Point> {
 
       return (retValuePtr.value, index: index.value);
     } finally {
-      valueNativeStructPtr.free();
+      free(valueNativeStructPtr);
       free(index);
       free(retValuePtr);
     }
@@ -3823,7 +3820,7 @@ final class _IVectorPoint extends IVector<Point> {
                     VTablePointer lpVtbl, int index, NativePoint value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -3845,7 +3842,7 @@ final class _IVectorPoint extends IVector<Point> {
                     VTablePointer lpVtbl, int index, NativePoint value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -3866,7 +3863,7 @@ final class _IVectorPoint extends IVector<Point> {
                 int Function(VTablePointer lpVtbl, NativePoint value)>()(
         ptr.ref.lpVtbl, valueNativeStructPtr.ref);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -3965,7 +3962,7 @@ final class _IVectorPointerDeviceUsage extends IVector<PointerDeviceUsage> {
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 
@@ -3999,7 +3996,7 @@ final class _IVectorPointerDeviceUsage extends IVector<PointerDeviceUsage> {
 
       return (retValuePtr.value, index: index.value);
     } finally {
-      valueNativeStructPtr.free();
+      free(valueNativeStructPtr);
       free(index);
       free(retValuePtr);
     }
@@ -4022,7 +4019,7 @@ final class _IVectorPointerDeviceUsage extends IVector<PointerDeviceUsage> {
                     NativePointerDeviceUsage value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -4044,7 +4041,7 @@ final class _IVectorPointerDeviceUsage extends IVector<PointerDeviceUsage> {
                     NativePointerDeviceUsage value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -4066,7 +4063,7 @@ final class _IVectorPointerDeviceUsage extends IVector<PointerDeviceUsage> {
                     VTablePointer lpVtbl, NativePointerDeviceUsage value)>()(
         ptr.ref.lpVtbl, valueNativeStructPtr.ref);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -4164,7 +4161,7 @@ final class _IVectorRect extends IVector<Rect> {
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 
@@ -4196,7 +4193,7 @@ final class _IVectorRect extends IVector<Rect> {
 
       return (retValuePtr.value, index: index.value);
     } finally {
-      valueNativeStructPtr.free();
+      free(valueNativeStructPtr);
       free(index);
       free(retValuePtr);
     }
@@ -4219,7 +4216,7 @@ final class _IVectorRect extends IVector<Rect> {
                     VTablePointer lpVtbl, int index, NativeRect value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -4241,7 +4238,7 @@ final class _IVectorRect extends IVector<Rect> {
                     VTablePointer lpVtbl, int index, NativeRect value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -4261,7 +4258,7 @@ final class _IVectorRect extends IVector<Rect> {
             .asFunction<int Function(VTablePointer lpVtbl, NativeRect value)>()(
         ptr.ref.lpVtbl, valueNativeStructPtr.ref);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -4358,7 +4355,7 @@ final class _IVectorRectInt32 extends IVector<RectInt32> {
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 
@@ -4389,7 +4386,7 @@ final class _IVectorRectInt32 extends IVector<RectInt32> {
 
       return (retValuePtr.value, index: index.value);
     } finally {
-      valueNativeStructPtr.free();
+      free(valueNativeStructPtr);
       free(index);
       free(retValuePtr);
     }
@@ -4412,7 +4409,7 @@ final class _IVectorRectInt32 extends IVector<RectInt32> {
                     VTablePointer lpVtbl, int index, NativeRectInt32 value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -4434,7 +4431,7 @@ final class _IVectorRectInt32 extends IVector<RectInt32> {
                     VTablePointer lpVtbl, int index, NativeRectInt32 value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -4455,7 +4452,7 @@ final class _IVectorRectInt32 extends IVector<RectInt32> {
                 int Function(VTablePointer lpVtbl, NativeRectInt32 value)>()(
         ptr.ref.lpVtbl, valueNativeStructPtr.ref);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -4552,7 +4549,7 @@ final class _IVectorSize extends IVector<Size> {
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 
@@ -4584,7 +4581,7 @@ final class _IVectorSize extends IVector<Size> {
 
       return (retValuePtr.value, index: index.value);
     } finally {
-      valueNativeStructPtr.free();
+      free(valueNativeStructPtr);
       free(index);
       free(retValuePtr);
     }
@@ -4607,7 +4604,7 @@ final class _IVectorSize extends IVector<Size> {
                     VTablePointer lpVtbl, int index, NativeSize value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -4629,7 +4626,7 @@ final class _IVectorSize extends IVector<Size> {
                     VTablePointer lpVtbl, int index, NativeSize value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -4649,7 +4646,7 @@ final class _IVectorSize extends IVector<Size> {
             .asFunction<int Function(VTablePointer lpVtbl, NativeSize value)>()(
         ptr.ref.lpVtbl, valueNativeStructPtr.ref);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -4746,7 +4743,7 @@ final class _IVectorSizeUInt32 extends IVector<SizeUInt32> {
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 
@@ -4777,7 +4774,7 @@ final class _IVectorSizeUInt32 extends IVector<SizeUInt32> {
 
       return (retValuePtr.value, index: index.value);
     } finally {
-      valueNativeStructPtr.free();
+      free(valueNativeStructPtr);
       free(index);
       free(retValuePtr);
     }
@@ -4800,7 +4797,7 @@ final class _IVectorSizeUInt32 extends IVector<SizeUInt32> {
                     VTablePointer lpVtbl, int index, NativeSizeUInt32 value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -4822,7 +4819,7 @@ final class _IVectorSizeUInt32 extends IVector<SizeUInt32> {
                     VTablePointer lpVtbl, int index, NativeSizeUInt32 value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -4843,7 +4840,7 @@ final class _IVectorSizeUInt32 extends IVector<SizeUInt32> {
                 int Function(VTablePointer lpVtbl, NativeSizeUInt32 value)>()(
         ptr.ref.lpVtbl, valueNativeStructPtr.ref);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -4940,7 +4937,7 @@ final class _IVectorSortEntry extends IVector<SortEntry> {
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 
@@ -4971,7 +4968,7 @@ final class _IVectorSortEntry extends IVector<SortEntry> {
 
       return (retValuePtr.value, index: index.value);
     } finally {
-      valueNativeStructPtr.free();
+      free(valueNativeStructPtr);
       free(index);
       free(retValuePtr);
     }
@@ -4994,7 +4991,7 @@ final class _IVectorSortEntry extends IVector<SortEntry> {
                     VTablePointer lpVtbl, int index, NativeSortEntry value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -5016,7 +5013,7 @@ final class _IVectorSortEntry extends IVector<SortEntry> {
                     VTablePointer lpVtbl, int index, NativeSortEntry value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -5037,7 +5034,7 @@ final class _IVectorSortEntry extends IVector<SortEntry> {
                 int Function(VTablePointer lpVtbl, NativeSortEntry value)>()(
         ptr.ref.lpVtbl, valueNativeStructPtr.ref);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -5139,7 +5136,7 @@ final class _IVectorStorePackageUpdateStatus
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 
@@ -5173,7 +5170,7 @@ final class _IVectorStorePackageUpdateStatus
 
       return (retValuePtr.value, index: index.value);
     } finally {
-      valueNativeStructPtr.free();
+      free(valueNativeStructPtr);
       free(index);
       free(retValuePtr);
     }
@@ -5196,7 +5193,7 @@ final class _IVectorStorePackageUpdateStatus
                     NativeStorePackageUpdateStatus value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -5218,7 +5215,7 @@ final class _IVectorStorePackageUpdateStatus
                     NativeStorePackageUpdateStatus value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -5240,7 +5237,7 @@ final class _IVectorStorePackageUpdateStatus
                     NativeStorePackageUpdateStatus value)>()(
         ptr.ref.lpVtbl, valueNativeStructPtr.ref);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -5338,7 +5335,6 @@ final class _IVectorString extends IVector<String> {
 
       return retValuePtr.toDartString();
     } finally {
-      WindowsDeleteString(retValuePtr.value);
       free(retValuePtr);
     }
   }
@@ -5346,7 +5342,6 @@ final class _IVectorString extends IVector<String> {
   @override
   (bool, {int index}) indexOf(String value) {
     final retValuePtr = calloc<Bool>();
-    final valueHString = value.toHString();
     final index = calloc<Uint32>();
 
     try {
@@ -5365,13 +5360,12 @@ final class _IVectorString extends IVector<String> {
                   .asFunction<
                       int Function(VTablePointer lpVtbl, int value,
                           Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
-              ptr.ref.lpVtbl, valueHString, index, retValuePtr);
+              ptr.ref.lpVtbl, value.toHString(), index, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
       return (retValuePtr.value, index: index.value);
     } finally {
-      WindowsDeleteString(valueHString);
       free(index);
       free(retValuePtr);
     }
@@ -5379,8 +5373,6 @@ final class _IVectorString extends IVector<String> {
 
   @override
   void setAt(int index, String value) {
-    final valueHString = value.toHString();
-
     final hr = ptr.ref.vtable
         .elementAt(10)
         .cast<
@@ -5391,17 +5383,13 @@ final class _IVectorString extends IVector<String> {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl, int index,
-                int value)>()(ptr.ref.lpVtbl, index, valueHString);
-
-    WindowsDeleteString(valueHString);
+                int value)>()(ptr.ref.lpVtbl, index, value.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
   void insertAt(int index, String value) {
-    final valueHString = value.toHString();
-
     final hr = ptr.ref.vtable
         .elementAt(11)
         .cast<
@@ -5412,17 +5400,13 @@ final class _IVectorString extends IVector<String> {
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl, int index,
-                int value)>()(ptr.ref.lpVtbl, index, valueHString);
-
-    WindowsDeleteString(valueHString);
+                int value)>()(ptr.ref.lpVtbl, index, value.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   @override
   void append(String value) {
-    final valueHString = value.toHString();
-
     final hr =
         ptr.ref.vtable
                 .elementAt(13)
@@ -5433,9 +5417,7 @@ final class _IVectorString extends IVector<String> {
                                 VTablePointer lpVtbl, IntPtr value)>>>()
                 .value
                 .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-            ptr.ref.lpVtbl, valueHString);
-
-    WindowsDeleteString(valueHString);
+            ptr.ref.lpVtbl, value.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -5481,11 +5463,9 @@ final class _IVectorString extends IVector<String> {
 
   @override
   void replaceAll(List<String> items) {
-    final itemsHandles = <int>[];
-    final itemsArray = calloc<HSTRING>(items.length);
+    final itemsArray = calloc<IntPtr>(items.length);
     for (var i = 0; i < items.length; i++) {
       itemsArray[i] = items[i].toHString();
-      itemsHandles.add(itemsArray[i]);
     }
 
     final hr = ptr.ref.vtable
@@ -5501,7 +5481,6 @@ final class _IVectorString extends IVector<String> {
                     Pointer<IntPtr> items)>()(
         ptr.ref.lpVtbl, items.length, itemsArray);
 
-    itemsHandles.forEach(WindowsDeleteString);
     free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
@@ -5533,7 +5512,7 @@ final class _IVectorTextRange extends IVector<TextRange> {
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 
@@ -5564,7 +5543,7 @@ final class _IVectorTextRange extends IVector<TextRange> {
 
       return (retValuePtr.value, index: index.value);
     } finally {
-      valueNativeStructPtr.free();
+      free(valueNativeStructPtr);
       free(index);
       free(retValuePtr);
     }
@@ -5587,7 +5566,7 @@ final class _IVectorTextRange extends IVector<TextRange> {
                     VTablePointer lpVtbl, int index, NativeTextRange value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -5609,7 +5588,7 @@ final class _IVectorTextRange extends IVector<TextRange> {
                     VTablePointer lpVtbl, int index, NativeTextRange value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -5630,7 +5609,7 @@ final class _IVectorTextRange extends IVector<TextRange> {
                 int Function(VTablePointer lpVtbl, NativeTextRange value)>()(
         ptr.ref.lpVtbl, valueNativeStructPtr.ref);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -5727,7 +5706,7 @@ final class _IVectorTextSegment extends IVector<TextSegment> {
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 
@@ -5758,7 +5737,7 @@ final class _IVectorTextSegment extends IVector<TextSegment> {
 
       return (retValuePtr.value, index: index.value);
     } finally {
-      valueNativeStructPtr.free();
+      free(valueNativeStructPtr);
       free(index);
       free(retValuePtr);
     }
@@ -5781,7 +5760,7 @@ final class _IVectorTextSegment extends IVector<TextSegment> {
                     NativeTextSegment value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -5803,7 +5782,7 @@ final class _IVectorTextSegment extends IVector<TextSegment> {
                     NativeTextSegment value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -5824,7 +5803,7 @@ final class _IVectorTextSegment extends IVector<TextSegment> {
                 int Function(VTablePointer lpVtbl, NativeTextSegment value)>()(
         ptr.ref.lpVtbl, valueNativeStructPtr.ref);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -6630,7 +6609,7 @@ final class _IVectorWindowId extends IVector<WindowId> {
 
       return retValuePtr.toDart();
     } finally {
-      retValuePtr.free();
+      free(retValuePtr);
     }
   }
 
@@ -6661,7 +6640,7 @@ final class _IVectorWindowId extends IVector<WindowId> {
 
       return (retValuePtr.value, index: index.value);
     } finally {
-      valueNativeStructPtr.free();
+      free(valueNativeStructPtr);
       free(index);
       free(retValuePtr);
     }
@@ -6684,7 +6663,7 @@ final class _IVectorWindowId extends IVector<WindowId> {
                     VTablePointer lpVtbl, int index, NativeWindowId value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -6706,7 +6685,7 @@ final class _IVectorWindowId extends IVector<WindowId> {
                     VTablePointer lpVtbl, int index, NativeWindowId value)>()(
         ptr.ref.lpVtbl, index, valueNativeStructPtr.ref);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -6727,7 +6706,7 @@ final class _IVectorWindowId extends IVector<WindowId> {
                 int Function(VTablePointer lpVtbl, NativeWindowId value)>()(
         ptr.ref.lpVtbl, valueNativeStructPtr.ref);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

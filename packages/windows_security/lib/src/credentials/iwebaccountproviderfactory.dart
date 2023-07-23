@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -31,8 +32,6 @@ class IWebAccountProviderFactory extends IInspectable {
   WebAccountProvider createWebAccountProvider(
       String id, String displayName, Uri? iconUri) {
     final instance = calloc<COMObject>();
-    final idHString = id.toHString();
-    final displayNameHString = displayName.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -50,13 +49,10 @@ class IWebAccountProviderFactory extends IInspectable {
                 int Function(VTablePointer lpVtbl, int id, int displayName,
                     VTablePointer iconUri, Pointer<COMObject> instance)>()(
         ptr.ref.lpVtbl,
-        idHString,
-        displayNameHString,
-        iconUri?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr,
+        id.toHString(),
+        displayName.toHString(),
+        iconUri?.toWinRTUri().lpVtbl ?? nullptr,
         instance);
-
-    WindowsDeleteString(idHString);
-    WindowsDeleteString(displayNameHString);
 
     if (FAILED(hr)) {
       free(instance);

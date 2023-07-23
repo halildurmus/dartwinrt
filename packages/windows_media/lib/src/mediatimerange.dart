@@ -9,7 +9,8 @@
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -42,19 +43,13 @@ final class MediaTimeRange implements WinRTStruct {
 /// @nodoc
 extension NativeMediaTimeRangeConversion on NativeMediaTimeRange {
   /// Converts this [NativeMediaTimeRange] into a Dart [MediaTimeRange].
-  MediaTimeRange toDart() {
-    return MediaTimeRange(start.toDartDuration(), end.toDartDuration());
-  }
+  MediaTimeRange toDart() =>
+      MediaTimeRange(start.toDartDuration(), end.toDartDuration());
 }
 
 /// @nodoc
 extension PointerNativeMediaTimeRangeConversion
     on Pointer<NativeMediaTimeRange> {
-  /// Frees the allocated memory for [NativeMediaTimeRange].
-  void free() {
-    calloc.free(this);
-  }
-
   /// Converts the referenced [NativeMediaTimeRange] into a Dart
   /// [MediaTimeRange].
   MediaTimeRange toDart() {

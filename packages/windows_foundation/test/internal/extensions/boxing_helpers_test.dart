@@ -17,8 +17,8 @@ void main() {
 
   group('intoBox', () {
     test('Pointer<COMObject>', () {
-      final propertyValuePtr = PropertyValue.createString('Dart').ptr;
-      final boxed = propertyValuePtr.intoBox();
+      final pv = PropertyValue.createString('Dart');
+      final boxed = pv.ptr.intoBox();
       expect(getClassName(boxed),
           equals('Windows.Foundation.IReference`1<String>'));
     });

@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -68,15 +69,7 @@ class IRegionsOfInterestControl extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer regions,
                     Pointer<COMObject> asyncInfo)>()(
-        ptr.ref.lpVtbl,
-        regions == null
-            ? nullptr
-            : IInspectable(regions
-                    .toInterface('{d73144c7-9d75-5dfb-8040-626202dcf454}'))
-                .ptr
-                .ref
-                .lpVtbl,
-        asyncInfo);
+        ptr.ref.lpVtbl, regions.lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -104,16 +97,7 @@ class IRegionsOfInterestControl extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer regions,
                     bool lockValues, Pointer<COMObject> asyncInfo)>()(
-        ptr.ref.lpVtbl,
-        regions == null
-            ? nullptr
-            : IInspectable(regions
-                    .toInterface('{d73144c7-9d75-5dfb-8040-626202dcf454}'))
-                .ptr
-                .ref
-                .lpVtbl,
-        lockValues,
-        asyncInfo);
+        ptr.ref.lpVtbl, regions.lpVtbl, lockValues, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);

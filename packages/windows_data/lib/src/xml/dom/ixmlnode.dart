@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -77,7 +78,7 @@ class IXmlNode extends IInspectable
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer value)>()(
-        ptr.ref.lpVtbl, value?.intoBox().ptr.ref.lpVtbl ?? nullptr);
+        ptr.ref.lpVtbl, value?.intoBox().lpVtbl ?? nullptr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -126,7 +127,6 @@ class IXmlNode extends IInspectable
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
@@ -399,10 +399,7 @@ class IXmlNode extends IInspectable
                     VTablePointer newChild,
                     VTablePointer referenceChild,
                     Pointer<COMObject> insertedChild)>()(
-        ptr.ref.lpVtbl,
-        newChild?.ptr.ref.lpVtbl ?? nullptr,
-        referenceChild?.ptr.ref.lpVtbl ?? nullptr,
-        insertedChild);
+        ptr.ref.lpVtbl, newChild.lpVtbl, referenceChild.lpVtbl, insertedChild);
 
     if (FAILED(hr)) {
       free(insertedChild);
@@ -437,10 +434,7 @@ class IXmlNode extends IInspectable
                     VTablePointer newChild,
                     VTablePointer referenceChild,
                     Pointer<COMObject> previousChild)>()(
-        ptr.ref.lpVtbl,
-        newChild?.ptr.ref.lpVtbl ?? nullptr,
-        referenceChild?.ptr.ref.lpVtbl ?? nullptr,
-        previousChild);
+        ptr.ref.lpVtbl, newChild.lpVtbl, referenceChild.lpVtbl, previousChild);
 
     if (FAILED(hr)) {
       free(previousChild);
@@ -471,7 +465,7 @@ class IXmlNode extends IInspectable
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer childNode,
                     Pointer<COMObject> removedChild)>()(
-        ptr.ref.lpVtbl, childNode?.ptr.ref.lpVtbl ?? nullptr, removedChild);
+        ptr.ref.lpVtbl, childNode.lpVtbl, removedChild);
 
     if (FAILED(hr)) {
       free(removedChild);
@@ -502,7 +496,7 @@ class IXmlNode extends IInspectable
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer newChild,
                     Pointer<COMObject> appendedChild)>()(
-        ptr.ref.lpVtbl, newChild?.ptr.ref.lpVtbl ?? nullptr, appendedChild);
+        ptr.ref.lpVtbl, newChild.lpVtbl, appendedChild);
 
     if (FAILED(hr)) {
       free(appendedChild);
@@ -650,7 +644,7 @@ class IXmlNode extends IInspectable
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer value)>()(
-        ptr.ref.lpVtbl, value?.intoBox().ptr.ref.lpVtbl ?? nullptr);
+        ptr.ref.lpVtbl, value?.intoBox().lpVtbl ?? nullptr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

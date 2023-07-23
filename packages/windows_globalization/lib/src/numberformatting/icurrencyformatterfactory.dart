@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -30,7 +31,6 @@ class ICurrencyFormatterFactory extends IInspectable {
 
   CurrencyFormatter createCurrencyFormatterCode(String currencyCode) {
     final result = calloc<COMObject>();
-    final currencyCodeHString = currencyCode.toHString();
 
     final hr = ptr.ref.vtable
         .elementAt(6)
@@ -45,9 +45,7 @@ class ICurrencyFormatterFactory extends IInspectable {
                 VTablePointer lpVtbl,
                 int currencyCode,
                 Pointer<COMObject>
-                    result)>()(ptr.ref.lpVtbl, currencyCodeHString, result);
-
-    WindowsDeleteString(currencyCodeHString);
+                    result)>()(ptr.ref.lpVtbl, currencyCode.toHString(), result);
 
     if (FAILED(hr)) {
       free(result);
@@ -60,8 +58,6 @@ class ICurrencyFormatterFactory extends IInspectable {
   CurrencyFormatter createCurrencyFormatterCodeContext(String currencyCode,
       IIterable<String>? languages, String geographicRegion) {
     final result = calloc<COMObject>();
-    final currencyCodeHString = currencyCode.toHString();
-    final geographicRegionHString = geographicRegion.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(7)
@@ -83,19 +79,10 @@ class ICurrencyFormatterFactory extends IInspectable {
                     int geographicRegion,
                     Pointer<COMObject> result)>()(
         ptr.ref.lpVtbl,
-        currencyCodeHString,
-        languages == null
-            ? nullptr
-            : IInspectable(languages
-                    .toInterface('{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'))
-                .ptr
-                .ref
-                .lpVtbl,
-        geographicRegionHString,
+        currencyCode.toHString(),
+        languages.lpVtbl,
+        geographicRegion.toHString(),
         result);
-
-    WindowsDeleteString(currencyCodeHString);
-    WindowsDeleteString(geographicRegionHString);
 
     if (FAILED(hr)) {
       free(result);

@@ -9,7 +9,8 @@
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -48,19 +49,13 @@ extension NativeDirect3DMultisampleDescriptionConversion
     on NativeDirect3DMultisampleDescription {
   /// Converts this [NativeDirect3DMultisampleDescription] into a Dart
   /// [Direct3DMultisampleDescription].
-  Direct3DMultisampleDescription toDart() {
-    return Direct3DMultisampleDescription(count, quality);
-  }
+  Direct3DMultisampleDescription toDart() =>
+      Direct3DMultisampleDescription(count, quality);
 }
 
 /// @nodoc
 extension PointerNativeDirect3DMultisampleDescriptionConversion
     on Pointer<NativeDirect3DMultisampleDescription> {
-  /// Frees the allocated memory for [NativeDirect3DMultisampleDescription].
-  void free() {
-    calloc.free(this);
-  }
-
   /// Converts the referenced [NativeDirect3DMultisampleDescription] into a
   /// Dart [Direct3DMultisampleDescription].
   Direct3DMultisampleDescription toDart() {

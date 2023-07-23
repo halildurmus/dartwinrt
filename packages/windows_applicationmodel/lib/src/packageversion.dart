@@ -9,7 +9,8 @@
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -51,19 +52,12 @@ final class PackageVersion implements WinRTStruct {
 /// @nodoc
 extension NativePackageVersionConversion on NativePackageVersion {
   /// Converts this [NativePackageVersion] into a Dart [PackageVersion].
-  PackageVersion toDart() {
-    return PackageVersion(major, minor, build, revision);
-  }
+  PackageVersion toDart() => PackageVersion(major, minor, build, revision);
 }
 
 /// @nodoc
 extension PointerNativePackageVersionConversion
     on Pointer<NativePackageVersion> {
-  /// Frees the allocated memory for [NativePackageVersion].
-  void free() {
-    calloc.free(this);
-  }
-
   /// Converts the referenced [NativePackageVersion] into a Dart
   /// [PackageVersion].
   PackageVersion toDart() {

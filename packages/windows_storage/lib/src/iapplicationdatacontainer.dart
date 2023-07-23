@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -50,7 +51,6 @@ class IApplicationDataContainer extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
@@ -141,7 +141,6 @@ class IApplicationDataContainer extends IInspectable {
   ApplicationDataContainer? createContainer(
       String name, ApplicationDataCreateDisposition disposition) {
     final container = calloc<COMObject>();
-    final nameHString = name.toHString();
 
     final hr =
         ptr.ref.vtable
@@ -158,9 +157,7 @@ class IApplicationDataContainer extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, int name,
                         int disposition, Pointer<COMObject> container)>()(
-            ptr.ref.lpVtbl, nameHString, disposition.value, container);
-
-    WindowsDeleteString(nameHString);
+            ptr.ref.lpVtbl, name.toHString(), disposition.value, container);
 
     if (FAILED(hr)) {
       free(container);
@@ -176,8 +173,6 @@ class IApplicationDataContainer extends IInspectable {
   }
 
   void deleteContainer(String name) {
-    final nameHString = name.toHString();
-
     final hr = ptr.ref.vtable
             .elementAt(11)
             .cast<
@@ -186,9 +181,7 @@ class IApplicationDataContainer extends IInspectable {
                         HRESULT Function(VTablePointer lpVtbl, IntPtr name)>>>()
             .value
             .asFunction<int Function(VTablePointer lpVtbl, int name)>()(
-        ptr.ref.lpVtbl, nameHString);
-
-    WindowsDeleteString(nameHString);
+        ptr.ref.lpVtbl, name.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

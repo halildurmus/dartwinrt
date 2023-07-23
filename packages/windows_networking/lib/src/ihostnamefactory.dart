@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -29,7 +30,6 @@ class IHostNameFactory extends IInspectable {
 
   HostName createHostName(String hostName) {
     final value = calloc<COMObject>();
-    final hostNameHString = hostName.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -42,9 +42,7 @@ class IHostNameFactory extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int hostName,
                     Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, hostNameHString, value);
-
-    WindowsDeleteString(hostNameHString);
+        ptr.ref.lpVtbl, hostName.toHString(), value);
 
     if (FAILED(hr)) {
       free(value);

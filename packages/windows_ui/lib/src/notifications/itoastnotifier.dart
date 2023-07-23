@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -41,7 +42,7 @@ class IToastNotifier extends IInspectable {
             .asFunction<
                 int Function(
                     VTablePointer lpVtbl, VTablePointer notification)>()(
-        ptr.ref.lpVtbl, notification?.ptr.ref.lpVtbl ?? nullptr);
+        ptr.ref.lpVtbl, notification.lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -58,7 +59,7 @@ class IToastNotifier extends IInspectable {
             .asFunction<
                 int Function(
                     VTablePointer lpVtbl, VTablePointer notification)>()(
-        ptr.ref.lpVtbl, notification?.ptr.ref.lpVtbl ?? nullptr);
+        ptr.ref.lpVtbl, notification.lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -99,7 +100,7 @@ class IToastNotifier extends IInspectable {
             .asFunction<
                 int Function(
                     VTablePointer lpVtbl, VTablePointer scheduledToast)>()(
-        ptr.ref.lpVtbl, scheduledToast?.ptr.ref.lpVtbl ?? nullptr);
+        ptr.ref.lpVtbl, scheduledToast.lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -116,7 +117,7 @@ class IToastNotifier extends IInspectable {
             .asFunction<
                 int Function(
                     VTablePointer lpVtbl, VTablePointer scheduledToast)>()(
-        ptr.ref.lpVtbl, scheduledToast?.ptr.ref.lpVtbl ?? nullptr);
+        ptr.ref.lpVtbl, scheduledToast.lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

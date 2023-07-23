@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -54,14 +55,11 @@ class IXmlCharacterData extends IInspectable
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
 
   set data(String value) {
-    final valueHString = value.toHString();
-
     final hr =
         ptr.ref.vtable
                 .elementAt(7)
@@ -72,9 +70,7 @@ class IXmlCharacterData extends IInspectable
                                 VTablePointer lpVtbl, IntPtr value)>>>()
                 .value
                 .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-            ptr.ref.lpVtbl, valueHString);
-
-    WindowsDeleteString(valueHString);
+            ptr.ref.lpVtbl, value.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -123,14 +119,11 @@ class IXmlCharacterData extends IInspectable
 
       return data.toDartString();
     } finally {
-      WindowsDeleteString(data.value);
       free(data);
     }
   }
 
   void appendData(String data) {
-    final dataHString = data.toHString();
-
     final hr = ptr.ref.vtable
             .elementAt(10)
             .cast<
@@ -139,16 +132,12 @@ class IXmlCharacterData extends IInspectable
                         HRESULT Function(VTablePointer lpVtbl, IntPtr data)>>>()
             .value
             .asFunction<int Function(VTablePointer lpVtbl, int data)>()(
-        ptr.ref.lpVtbl, dataHString);
-
-    WindowsDeleteString(dataHString);
+        ptr.ref.lpVtbl, data.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void insertData(int offset, String data) {
-    final dataHString = data.toHString();
-
     final hr = ptr.ref.vtable
         .elementAt(11)
         .cast<
@@ -159,9 +148,7 @@ class IXmlCharacterData extends IInspectable
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl, int offset,
-                int data)>()(ptr.ref.lpVtbl, offset, dataHString);
-
-    WindowsDeleteString(dataHString);
+                int data)>()(ptr.ref.lpVtbl, offset, data.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -183,8 +170,6 @@ class IXmlCharacterData extends IInspectable
   }
 
   void replaceData(int offset, int count, String data) {
-    final dataHString = data.toHString();
-
     final hr = ptr.ref.vtable
         .elementAt(13)
         .cast<
@@ -195,9 +180,7 @@ class IXmlCharacterData extends IInspectable
         .value
         .asFunction<
             int Function(VTablePointer lpVtbl, int offset, int count,
-                int data)>()(ptr.ref.lpVtbl, offset, count, dataHString);
-
-    WindowsDeleteString(dataHString);
+                int data)>()(ptr.ref.lpVtbl, offset, count, data.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

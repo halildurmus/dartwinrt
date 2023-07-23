@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 import 'package:windows_media/windows_media.dart';
@@ -33,17 +34,19 @@ class IImageFeatureValueStatics extends IInspectable {
     final result = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-            .elementAt(6)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, VTablePointer image,
-                            Pointer<COMObject> result)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer image,
-                    Pointer<COMObject> result)>()(
-        ptr.ref.lpVtbl, image?.ptr.ref.lpVtbl ?? nullptr, result);
+        .elementAt(6)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl, VTablePointer image,
+                        Pointer<COMObject> result)>>>()
+        .value
+        .asFunction<
+            int Function(
+                VTablePointer lpVtbl,
+                VTablePointer image,
+                Pointer<COMObject>
+                    result)>()(ptr.ref.lpVtbl, image.lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);

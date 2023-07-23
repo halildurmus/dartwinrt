@@ -153,7 +153,7 @@ void main() {
           fieldProjection.toString(), equals('final Duration relativeTime;'));
     });
 
-    test('has correct instance variable (3)', () {
+    test('has correct instance variable (4)', () {
       final projection =
           StructProjection.from('Windows.Storage.Search.SortEntry');
       final fieldProjection = projection.fieldProjections.first;
@@ -165,7 +165,7 @@ void main() {
       expect(fieldProjection.toString(), equals('final String propertyName;'));
     });
 
-    test('has correct instance variable (4)', () {
+    test('has correct instance variable (5)', () {
       final fieldProjection = rectProjection.fieldProjections.last;
       expect(fieldProjection.dartType, equals('double'));
       expect(fieldProjection.fieldName, equals('height'));
@@ -173,7 +173,7 @@ void main() {
       expect(fieldProjection.toString(), equals('final double height;'));
     });
 
-    test('has correct instance variable (5)', () {
+    test('has correct instance variable (6)', () {
       final projection =
           StructProjection.from('Windows.Devices.Gpio.GpioChangeRecord');
       final fieldProjection = projection.fieldProjections.last;
@@ -184,7 +184,7 @@ void main() {
       expect(fieldProjection.toString(), equals('final GpioPinEdge edge;'));
     });
 
-    test('has correct instance variable (6)', () {
+    test('has correct instance variable (7)', () {
       final projection = StructProjection.from('Windows.Web.Http.HttpProgress');
       final fieldProjection = projection.fieldProjections[2];
       expect(fieldProjection.dartType, equals('int?'));
@@ -235,12 +235,10 @@ void main() {
       ..stage = stage.value
       ..bytesSent = bytesSent
       ..totalBytesToSend =
-          totalBytesToSend?.toReference(IntType.uint64).ptr.ref.lpVtbl ??
-              nullptr
+          totalBytesToSend?.toReference(IntType.uint64).lpVtbl ?? nullptr
       ..bytesReceived = bytesReceived
       ..totalBytesToReceive =
-          totalBytesToReceive?.toReference(IntType.uint64).ptr.ref.lpVtbl ??
-              nullptr
+          totalBytesToReceive?.toReference(IntType.uint64).lpVtbl ?? nullptr
       ..retries = retries;
     return nativeStructPtr;
   }
@@ -282,9 +280,7 @@ void main() {
 /// @nodoc
 extension NativeRectConversion on NativeRect {
   /// Converts this [NativeRect] into a Dart [Rect].
-  Rect toDart() {
-    return Rect(x, y, width, height);
-  }
+  Rect toDart() => Rect(x, y, width, height);
 }
 '''));
     });
@@ -296,9 +292,7 @@ extension NativeRectConversion on NativeRect {
 /// @nodoc
 extension NativeGpioChangeRecordConversion on NativeGpioChangeRecord {
   /// Converts this [NativeGpioChangeRecord] into a Dart [GpioChangeRecord].
-  GpioChangeRecord toDart() {
-    return GpioChangeRecord(relativeTime.toDartDuration(), GpioPinEdge.from(edge));
-  }
+  GpioChangeRecord toDart() => GpioChangeRecord(relativeTime.toDartDuration(), GpioPinEdge.from(edge));
 }
 '''));
     });
@@ -309,9 +303,7 @@ extension NativeGpioChangeRecordConversion on NativeGpioChangeRecord {
 /// @nodoc
 extension NativeHttpProgressConversion on NativeHttpProgress {
   /// Converts this [NativeHttpProgress] into a Dart [HttpProgress].
-  HttpProgress toDart() {
-    return HttpProgress(HttpProgressStage.from(stage), bytesSent, IReference<int?>.fromPtr(calloc<COMObject>()..ref.lpVtbl = totalBytesToSend, referenceIid: '{6755e376-53bb-568b-a11d-17239868309e}').value, bytesReceived, IReference<int?>.fromPtr(calloc<COMObject>()..ref.lpVtbl = totalBytesToReceive, referenceIid: '{6755e376-53bb-568b-a11d-17239868309e}').value, retries);
-  }
+  HttpProgress toDart() => HttpProgress(HttpProgressStage.from(stage), bytesSent, IReference<int?>.fromPtr(calloc<COMObject>()..ref.lpVtbl = totalBytesToSend, referenceIid: '{6755e376-53bb-568b-a11d-17239868309e}').value, bytesReceived, IReference<int?>.fromPtr(calloc<COMObject>()..ref.lpVtbl = totalBytesToReceive, referenceIid: '{6755e376-53bb-568b-a11d-17239868309e}').value, retries);
 }
 '''));
     });
@@ -323,11 +315,7 @@ extension NativeHttpProgressConversion on NativeHttpProgress {
 /// @nodoc
 extension NativeSortEntryConversion on NativeSortEntry {
   /// Converts this [NativeSortEntry] into a Dart [SortEntry].
-  SortEntry toDart() {
-    final propertyNameDartString = propertyName.toDartString();
-    WindowsDeleteString(propertyName);
-    return SortEntry(propertyNameDartString, ascendingOrder);
-  }
+  SortEntry toDart() => SortEntry(propertyName.toDartString(), ascendingOrder);
 }
 '''));
     });
@@ -339,9 +327,7 @@ extension NativeSortEntryConversion on NativeSortEntry {
 /// @nodoc
 extension NativeSpatialRayConversion on NativeSpatialRay {
   /// Converts this [NativeSpatialRay] into a Dart [SpatialRay].
-  SpatialRay toDart() {
-    return SpatialRay(origin.toDart(), direction.toDart());
-  }
+  SpatialRay toDart() => SpatialRay(origin.toDart(), direction.toDart());
 }
 '''));
     });
@@ -351,11 +337,6 @@ extension NativeSpatialRayConversion on NativeSpatialRay {
           equalsIgnoringWhitespace('''
 /// @nodoc
 extension PointerNativeRectConversion on Pointer<NativeRect> {
-  /// Frees the allocated memory for [NativeRect].
-  void free() {
-    calloc.free(this);
-  }
-
   /// Converts the referenced [NativeRect] into a Dart [Rect].
   Rect toDart() {
     final ref = this.ref;
@@ -380,11 +361,6 @@ extension PointerNativeRectConversion on Pointer<NativeRect> {
 /// @nodoc
 extension PointerNativeGpioChangeRecordConversion
     on Pointer<NativeGpioChangeRecord> {
-  /// Frees the allocated memory for [NativeGpioChangeRecord].
-  void free() {
-    calloc.free(this);
-  }
-
   /// Converts the referenced [NativeGpioChangeRecord] into a Dart
   /// [GpioChangeRecord].
   GpioChangeRecord toDart() {
@@ -409,11 +385,6 @@ extension PointerNativeGpioChangeRecordConversion
           projection.pointerNativeStructExtension, equalsIgnoringWhitespace('''
 /// @nodoc
 extension PointerNativeHttpProgressConversion on Pointer<NativeHttpProgress> {
-  /// Frees the allocated memory for [NativeHttpProgress].
-  void free() {
-    calloc.free(this);
-  }
-
   /// Converts the referenced [NativeHttpProgress] into a Dart [HttpProgress].
   HttpProgress toDart() {
     final ref = this.ref;
@@ -437,19 +408,10 @@ extension PointerNativeHttpProgressConversion on Pointer<NativeHttpProgress> {
           projection.pointerNativeStructExtension, equalsIgnoringWhitespace('''
 /// @nodoc
 extension PointerNativeSortEntryConversion on Pointer<NativeSortEntry> {
-  /// Frees the allocated memory for [NativeSortEntry].
-  void free() {
-    final ref = this.ref;
-    WindowsDeleteString(ref.propertyName);
-    calloc.free(this);
-  }
-
   /// Converts the referenced [NativeSortEntry] into a Dart [SortEntry].
   SortEntry toDart() {
     final ref = this.ref;
-    final propertyNameDartString = ref.propertyName.toDartString();
-    WindowsDeleteString(ref.propertyName);
-    return SortEntry(propertyNameDartString, ref.ascendingOrder);
+    return SortEntry(ref.propertyName.toDartString(), ref.ascendingOrder);
   }
 
   /// Creates a `List<SortEntry>` from `Pointer<NativeSortEntry>`.

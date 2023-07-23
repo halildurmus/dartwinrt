@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -33,7 +34,6 @@ class IJsonObject extends IInspectable implements IJsonValue {
 
   JsonValue? getNamedValue(String name) {
     final returnValue = calloc<COMObject>();
-    final nameHString = name.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -46,9 +46,7 @@ class IJsonObject extends IInspectable implements IJsonValue {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int name,
                     Pointer<COMObject> returnValue)>()(
-        ptr.ref.lpVtbl, nameHString, returnValue);
-
-    WindowsDeleteString(nameHString);
+        ptr.ref.lpVtbl, name.toHString(), returnValue);
 
     if (FAILED(hr)) {
       free(returnValue);
@@ -64,8 +62,6 @@ class IJsonObject extends IInspectable implements IJsonValue {
   }
 
   void setNamedValue(String name, IJsonValue? value) {
-    final nameHString = name.toHString();
-
     final hr = ptr.ref.vtable
             .elementAt(7)
             .cast<
@@ -77,16 +73,13 @@ class IJsonObject extends IInspectable implements IJsonValue {
             .asFunction<
                 int Function(
                     VTablePointer lpVtbl, int name, VTablePointer value)>()(
-        ptr.ref.lpVtbl, nameHString, value?.ptr.ref.lpVtbl ?? nullptr);
-
-    WindowsDeleteString(nameHString);
+        ptr.ref.lpVtbl, name.toHString(), value.lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   JsonObject getNamedObject(String name) {
     final returnValue = calloc<COMObject>();
-    final nameHString = name.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(8)
@@ -99,9 +92,7 @@ class IJsonObject extends IInspectable implements IJsonValue {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int name,
                     Pointer<COMObject> returnValue)>()(
-        ptr.ref.lpVtbl, nameHString, returnValue);
-
-    WindowsDeleteString(nameHString);
+        ptr.ref.lpVtbl, name.toHString(), returnValue);
 
     if (FAILED(hr)) {
       free(returnValue);
@@ -113,7 +104,6 @@ class IJsonObject extends IInspectable implements IJsonValue {
 
   JsonArray getNamedArray(String name) {
     final returnValue = calloc<COMObject>();
-    final nameHString = name.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(9)
@@ -126,9 +116,7 @@ class IJsonObject extends IInspectable implements IJsonValue {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int name,
                     Pointer<COMObject> returnValue)>()(
-        ptr.ref.lpVtbl, nameHString, returnValue);
-
-    WindowsDeleteString(nameHString);
+        ptr.ref.lpVtbl, name.toHString(), returnValue);
 
     if (FAILED(hr)) {
       free(returnValue);
@@ -142,8 +130,6 @@ class IJsonObject extends IInspectable implements IJsonValue {
     final returnValue = calloc<IntPtr>();
 
     try {
-      final nameHString = name.toHString();
-
       final hr = ptr.ref.vtable
               .elementAt(10)
               .cast<
@@ -155,15 +141,12 @@ class IJsonObject extends IInspectable implements IJsonValue {
               .asFunction<
                   int Function(VTablePointer lpVtbl, int name,
                       Pointer<IntPtr> returnValue)>()(
-          ptr.ref.lpVtbl, nameHString, returnValue);
-
-      WindowsDeleteString(nameHString);
+          ptr.ref.lpVtbl, name.toHString(), returnValue);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
       return returnValue.toDartString();
     } finally {
-      WindowsDeleteString(returnValue.value);
       free(returnValue);
     }
   }
@@ -172,8 +155,6 @@ class IJsonObject extends IInspectable implements IJsonValue {
     final returnValue = calloc<Double>();
 
     try {
-      final nameHString = name.toHString();
-
       final hr = ptr.ref.vtable
               .elementAt(11)
               .cast<
@@ -185,9 +166,7 @@ class IJsonObject extends IInspectable implements IJsonValue {
               .asFunction<
                   int Function(VTablePointer lpVtbl, int name,
                       Pointer<Double> returnValue)>()(
-          ptr.ref.lpVtbl, nameHString, returnValue);
-
-      WindowsDeleteString(nameHString);
+          ptr.ref.lpVtbl, name.toHString(), returnValue);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -201,8 +180,6 @@ class IJsonObject extends IInspectable implements IJsonValue {
     final returnValue = calloc<Bool>();
 
     try {
-      final nameHString = name.toHString();
-
       final hr = ptr.ref.vtable
               .elementAt(12)
               .cast<
@@ -214,9 +191,7 @@ class IJsonObject extends IInspectable implements IJsonValue {
               .asFunction<
                   int Function(VTablePointer lpVtbl, int name,
                       Pointer<Bool> returnValue)>()(
-          ptr.ref.lpVtbl, nameHString, returnValue);
-
-      WindowsDeleteString(nameHString);
+          ptr.ref.lpVtbl, name.toHString(), returnValue);
 
       if (FAILED(hr)) throwWindowsException(hr);
 

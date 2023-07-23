@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -34,7 +35,6 @@ class IMediaFrameSourceController extends IInspectable {
   Future<MediaFrameSourceGetPropertyResult?> getPropertyAsync(
       String propertyId) {
     final value = calloc<COMObject>();
-    final propertyIdHString = propertyId.toHString();
 
     final hr = ptr.ref.vtable
         .elementAt(6)
@@ -49,9 +49,7 @@ class IMediaFrameSourceController extends IInspectable {
                 VTablePointer lpVtbl,
                 int propertyId,
                 Pointer<COMObject>
-                    value)>()(ptr.ref.lpVtbl, propertyIdHString, value);
-
-    WindowsDeleteString(propertyIdHString);
+                    value)>()(ptr.ref.lpVtbl, propertyId.toHString(), value);
 
     if (FAILED(hr)) {
       free(value);
@@ -67,7 +65,6 @@ class IMediaFrameSourceController extends IInspectable {
   Future<MediaFrameSourceSetPropertyStatus> setPropertyAsync(
       String propertyId, Object? propertyValue) {
     final value = calloc<COMObject>();
-    final propertyIdHString = propertyId.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(7)
@@ -84,11 +81,9 @@ class IMediaFrameSourceController extends IInspectable {
                 int Function(VTablePointer lpVtbl, int propertyId,
                     VTablePointer propertyValue, Pointer<COMObject> value)>()(
         ptr.ref.lpVtbl,
-        propertyIdHString,
-        propertyValue?.intoBox().ptr.ref.lpVtbl ?? nullptr,
+        propertyId.toHString(),
+        propertyValue?.intoBox().lpVtbl ?? nullptr,
         value);
-
-    WindowsDeleteString(propertyIdHString);
 
     if (FAILED(hr)) {
       free(value);

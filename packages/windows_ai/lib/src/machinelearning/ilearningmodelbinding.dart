@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -27,8 +28,6 @@ class ILearningModelBinding extends IInspectable {
           interface.toInterface(IID_ILearningModelBinding));
 
   void bind(String name, Object? value) {
-    final nameHString = name.toHString();
-
     final hr = ptr.ref.vtable
             .elementAt(6)
             .cast<
@@ -40,18 +39,12 @@ class ILearningModelBinding extends IInspectable {
             .asFunction<
                 int Function(
                     VTablePointer lpVtbl, int name, VTablePointer value)>()(
-        ptr.ref.lpVtbl,
-        nameHString,
-        value?.intoBox().ptr.ref.lpVtbl ?? nullptr);
-
-    WindowsDeleteString(nameHString);
+        ptr.ref.lpVtbl, name.toHString(), value?.intoBox().lpVtbl ?? nullptr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void bindWithProperties(String name, Object? value, IPropertySet? props) {
-    final nameHString = name.toHString();
-
     final hr = ptr.ref.vtable
             .elementAt(7)
             .cast<
@@ -62,13 +55,8 @@ class ILearningModelBinding extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int name,
-                    VTablePointer value, VTablePointer props)>()(
-        ptr.ref.lpVtbl,
-        nameHString,
-        value?.intoBox().ptr.ref.lpVtbl ?? nullptr,
-        props?.ptr.ref.lpVtbl ?? nullptr);
-
-    WindowsDeleteString(nameHString);
+                    VTablePointer value, VTablePointer props)>()(ptr.ref.lpVtbl,
+        name.toHString(), value?.intoBox().lpVtbl ?? nullptr, props.lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

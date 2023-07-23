@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -35,8 +36,6 @@ class INetworkOperatorTetheringManagerStatics extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final networkAccountIdHString = networkAccountId.toHString();
-
       final hr =
           ptr.ref.vtable
                   .elementAt(6)
@@ -51,9 +50,7 @@ class INetworkOperatorTetheringManagerStatics extends IInspectable {
                   .asFunction<
                       int Function(VTablePointer lpVtbl, int networkAccountId,
                           Pointer<Int32> value)>()(
-              ptr.ref.lpVtbl, networkAccountIdHString, value);
-
-      WindowsDeleteString(networkAccountIdHString);
+              ptr.ref.lpVtbl, networkAccountId.toHString(), value);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -66,7 +63,6 @@ class INetworkOperatorTetheringManagerStatics extends IInspectable {
   NetworkOperatorTetheringManager? createFromNetworkAccountId(
       String networkAccountId) {
     final ppManager = calloc<COMObject>();
-    final networkAccountIdHString = networkAccountId.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(7)
@@ -81,9 +77,7 @@ class INetworkOperatorTetheringManagerStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int networkAccountId,
                     Pointer<COMObject> ppManager)>()(
-        ptr.ref.lpVtbl, networkAccountIdHString, ppManager);
-
-    WindowsDeleteString(networkAccountIdHString);
+        ptr.ref.lpVtbl, networkAccountId.toHString(), ppManager);
 
     if (FAILED(hr)) {
       free(ppManager);

@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 
 import '../internal.dart';
 import 'collections/iiterator.dart';
@@ -32,7 +33,6 @@ class IWwwFormUrlDecoderRuntimeClassFactory extends IInspectable {
 
   WwwFormUrlDecoder createWwwFormUrlDecoder(String query) {
     final instance = calloc<COMObject>();
-    final queryHString = query.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -45,9 +45,7 @@ class IWwwFormUrlDecoderRuntimeClassFactory extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int query,
                     Pointer<COMObject> instance)>()(
-        ptr.ref.lpVtbl, queryHString, instance);
-
-    WindowsDeleteString(queryHString);
+        ptr.ref.lpVtbl, query.toHString(), instance);
 
     if (FAILED(hr)) {
       free(instance);

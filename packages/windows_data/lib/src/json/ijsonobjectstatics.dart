@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -29,7 +30,6 @@ class IJsonObjectStatics extends IInspectable {
 
   JsonObject parse(String input) {
     final jsonObject = calloc<COMObject>();
-    final inputHString = input.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -42,9 +42,7 @@ class IJsonObjectStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int input,
                     Pointer<COMObject> jsonObject)>()(
-        ptr.ref.lpVtbl, inputHString, jsonObject);
-
-    WindowsDeleteString(inputHString);
+        ptr.ref.lpVtbl, input.toHString(), jsonObject);
 
     if (FAILED(hr)) {
       free(jsonObject);
@@ -56,7 +54,6 @@ class IJsonObjectStatics extends IInspectable {
 
   (bool, {JsonObject? result}) tryParse(String input) {
     final succeeded = calloc<Bool>();
-    final inputHString = input.toHString();
     final result = calloc<COMObject>();
 
     try {
@@ -74,7 +71,7 @@ class IJsonObjectStatics extends IInspectable {
               .asFunction<
                   int Function(VTablePointer lpVtbl, int input,
                       Pointer<COMObject> result, Pointer<Bool> succeeded)>()(
-          ptr.ref.lpVtbl, inputHString, result, succeeded);
+          ptr.ref.lpVtbl, input.toHString(), result, succeeded);
 
       if (FAILED(hr)) {
         free(result);
@@ -92,7 +89,6 @@ class IJsonObjectStatics extends IInspectable {
         result: resultIsNull ? null : JsonObject.fromPtr(result)
       );
     } finally {
-      WindowsDeleteString(inputHString);
       free(succeeded);
     }
   }

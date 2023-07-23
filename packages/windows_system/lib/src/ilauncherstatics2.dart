@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_applicationmodel/windows_applicationmodel.dart';
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
@@ -51,8 +52,8 @@ class ILauncherStatics2 extends IInspectable {
                 int Function(VTablePointer lpVtbl, VTablePointer uri,
                     VTablePointer options, Pointer<COMObject> operation)>()(
         ptr.ref.lpVtbl,
-        uri?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr,
-        options?.ptr.ref.lpVtbl ?? nullptr,
+        uri?.toWinRTUri().lpVtbl ?? nullptr,
+        options.lpVtbl,
         operation);
 
     if (FAILED(hr)) {
@@ -89,9 +90,9 @@ class ILauncherStatics2 extends IInspectable {
                     VTablePointer inputData,
                     Pointer<COMObject> operation)>()(
         ptr.ref.lpVtbl,
-        uri?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr,
-        options?.ptr.ref.lpVtbl ?? nullptr,
-        inputData?.ptr.ref.lpVtbl ?? nullptr,
+        uri?.toWinRTUri().lpVtbl ?? nullptr,
+        options.lpVtbl,
+        inputData.lpVtbl,
         operation);
 
     if (FAILED(hr)) {
@@ -128,9 +129,9 @@ class ILauncherStatics2 extends IInspectable {
                     VTablePointer inputData,
                     Pointer<COMObject> operation)>()(
         ptr.ref.lpVtbl,
-        uri?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr,
-        options?.ptr.ref.lpVtbl ?? nullptr,
-        inputData?.ptr.ref.lpVtbl ?? nullptr,
+        uri?.toWinRTUri().lpVtbl ?? nullptr,
+        options.lpVtbl,
+        inputData.lpVtbl,
         operation);
 
     if (FAILED(hr)) {
@@ -164,7 +165,7 @@ class ILauncherStatics2 extends IInspectable {
                     int launchQuerySupportType,
                     Pointer<COMObject> operation)>()(
         ptr.ref.lpVtbl,
-        uri?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr,
+        uri?.toWinRTUri().lpVtbl ?? nullptr,
         launchQuerySupportType.value,
         operation);
 
@@ -184,7 +185,6 @@ class ILauncherStatics2 extends IInspectable {
       LaunchQuerySupportType launchQuerySupportType,
       String packageFamilyName) {
     final operation = calloc<COMObject>();
-    final packageFamilyNameHString = packageFamilyName.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(10)
@@ -206,12 +206,10 @@ class ILauncherStatics2 extends IInspectable {
                     int packageFamilyName,
                     Pointer<COMObject> operation)>()(
         ptr.ref.lpVtbl,
-        uri?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr,
+        uri?.toWinRTUri().lpVtbl ?? nullptr,
         launchQuerySupportType.value,
-        packageFamilyNameHString,
+        packageFamilyName.toHString(),
         operation);
-
-    WindowsDeleteString(packageFamilyNameHString);
 
     if (FAILED(hr)) {
       free(operation);
@@ -241,7 +239,7 @@ class ILauncherStatics2 extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer file,
                         Pointer<COMObject> operation)>()(
-            ptr.ref.lpVtbl, file?.ptr.ref.lpVtbl ?? nullptr, operation);
+            ptr.ref.lpVtbl, file.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -257,7 +255,6 @@ class ILauncherStatics2 extends IInspectable {
   Future<LaunchQuerySupportStatus> queryFileSupportWithPackageFamilyNameAsync(
       StorageFile? file, String packageFamilyName) {
     final operation = calloc<COMObject>();
-    final packageFamilyNameHString = packageFamilyName.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(12)
@@ -273,12 +270,7 @@ class ILauncherStatics2 extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer file,
                     int packageFamilyName, Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl,
-        file?.ptr.ref.lpVtbl ?? nullptr,
-        packageFamilyNameHString,
-        operation);
-
-    WindowsDeleteString(packageFamilyNameHString);
+        ptr.ref.lpVtbl, file.lpVtbl, packageFamilyName.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -293,7 +285,6 @@ class ILauncherStatics2 extends IInspectable {
 
   Future<List<AppInfo?>> findUriSchemeHandlersAsync(String scheme) {
     final operation = calloc<COMObject>();
-    final schemeHString = scheme.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(13)
@@ -306,9 +297,7 @@ class ILauncherStatics2 extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int scheme,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, schemeHString, operation);
-
-    WindowsDeleteString(schemeHString);
+        ptr.ref.lpVtbl, scheme.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -326,7 +315,6 @@ class ILauncherStatics2 extends IInspectable {
   Future<List<AppInfo?>> findUriSchemeHandlersWithLaunchUriTypeAsync(
       String scheme, LaunchQuerySupportType launchQuerySupportType) {
     final operation = calloc<COMObject>();
-    final schemeHString = scheme.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(14)
@@ -344,10 +332,8 @@ class ILauncherStatics2 extends IInspectable {
                     VTablePointer lpVtbl,
                     int scheme,
                     int launchQuerySupportType,
-                    Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, schemeHString, launchQuerySupportType.value, operation);
-
-    WindowsDeleteString(schemeHString);
+                    Pointer<COMObject> operation)>()(ptr.ref.lpVtbl,
+        scheme.toHString(), launchQuerySupportType.value, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -364,7 +350,6 @@ class ILauncherStatics2 extends IInspectable {
 
   Future<List<AppInfo?>> findFileHandlersAsync(String extension) {
     final operation = calloc<COMObject>();
-    final extensionHString = extension.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(15)
@@ -377,9 +362,7 @@ class ILauncherStatics2 extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int extension,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, extensionHString, operation);
-
-    WindowsDeleteString(extensionHString);
+        ptr.ref.lpVtbl, extension.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);

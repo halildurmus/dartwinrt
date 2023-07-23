@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -35,8 +36,6 @@ class IAdvancedVideoCaptureDeviceController11 extends IInspectable {
     final result = calloc<Bool>();
 
     try {
-      final deviceIdHString = deviceId.toHString();
-
       final hr =
           ptr.ref.vtable
                   .elementAt(6)
@@ -52,9 +51,7 @@ class IAdvancedVideoCaptureDeviceController11 extends IInspectable {
                   .asFunction<
                       int Function(VTablePointer lpVtbl, int deviceId, int mode,
                           Pointer<Bool> result)>()(
-              ptr.ref.lpVtbl, deviceIdHString, mode.value, result);
-
-      WindowsDeleteString(deviceIdHString);
+              ptr.ref.lpVtbl, deviceId.toHString(), mode.value, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 

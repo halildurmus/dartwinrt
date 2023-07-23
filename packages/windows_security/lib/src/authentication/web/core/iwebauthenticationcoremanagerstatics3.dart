@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -52,15 +53,7 @@ class IWebAuthenticationCoreManagerStatics3 extends IInspectable
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer webAccounts,
                     Pointer<COMObject> result)>()(
-        ptr.ref.lpVtbl,
-        webAccounts == null
-            ? nullptr
-            : IInspectable(webAccounts
-                    .toInterface('{cb15d439-a910-542a-89ed-7cfe67848a83}'))
-                .ptr
-                .ref
-                .lpVtbl,
-        result);
+        ptr.ref.lpVtbl, webAccounts.lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);

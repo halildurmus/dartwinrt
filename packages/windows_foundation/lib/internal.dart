@@ -12,6 +12,7 @@ export 'src/iasyncinfo.dart';
 export 'src/iasyncoperation.dart';
 export 'src/internal/extensions/extensions.dart';
 export 'src/internal/helpers.dart';
+export 'src/internal/hstring.dart';
 export 'src/internal/iids.dart';
 export 'src/internal/native_structs.g.dart';
 export 'src/ipropertyvalue.dart';

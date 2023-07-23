@@ -9,7 +9,8 @@
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -48,19 +49,12 @@ final class WhiteBalanceGain implements WinRTStruct {
 /// @nodoc
 extension NativeWhiteBalanceGainConversion on NativeWhiteBalanceGain {
   /// Converts this [NativeWhiteBalanceGain] into a Dart [WhiteBalanceGain].
-  WhiteBalanceGain toDart() {
-    return WhiteBalanceGain(r, g, b);
-  }
+  WhiteBalanceGain toDart() => WhiteBalanceGain(r, g, b);
 }
 
 /// @nodoc
 extension PointerNativeWhiteBalanceGainConversion
     on Pointer<NativeWhiteBalanceGain> {
-  /// Frees the allocated memory for [NativeWhiteBalanceGain].
-  void free() {
-    calloc.free(this);
-  }
-
   /// Converts the referenced [NativeWhiteBalanceGain] into a Dart
   /// [WhiteBalanceGain].
   WhiteBalanceGain toDart() {

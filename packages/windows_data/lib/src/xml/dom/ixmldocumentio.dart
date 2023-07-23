@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 import 'package:windows_storage/windows_storage.dart';
@@ -29,8 +30,6 @@ class IXmlDocumentIO extends IInspectable {
       IXmlDocumentIO.fromPtr(interface.toInterface(IID_IXmlDocumentIO));
 
   void loadXml(String xml) {
-    final xmlHString = xml.toHString();
-
     final hr = ptr.ref.vtable
             .elementAt(6)
             .cast<
@@ -39,16 +38,12 @@ class IXmlDocumentIO extends IInspectable {
                         HRESULT Function(VTablePointer lpVtbl, IntPtr xml)>>>()
             .value
             .asFunction<int Function(VTablePointer lpVtbl, int xml)>()(
-        ptr.ref.lpVtbl, xmlHString);
-
-    WindowsDeleteString(xmlHString);
+        ptr.ref.lpVtbl, xml.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
 
   void loadXmlWithSettings(String xml, XmlLoadSettings? loadSettings) {
-    final xmlHString = xml.toHString();
-
     final hr = ptr.ref.vtable
             .elementAt(7)
             .cast<
@@ -60,9 +55,7 @@ class IXmlDocumentIO extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int xml,
                     VTablePointer loadSettings)>()(
-        ptr.ref.lpVtbl, xmlHString, loadSettings?.ptr.ref.lpVtbl ?? nullptr);
-
-    WindowsDeleteString(xmlHString);
+        ptr.ref.lpVtbl, xml.toHString(), loadSettings.lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -84,7 +77,7 @@ class IXmlDocumentIO extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer file,
                         Pointer<COMObject> asyncInfo)>()(
-            ptr.ref.lpVtbl, file?.ptr.ref.lpVtbl ?? nullptr, asyncInfo);
+            ptr.ref.lpVtbl, file.lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);

@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -47,10 +48,7 @@ class IRandomAccessStreamStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer source,
                     VTablePointer destination, Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl,
-        source?.ptr.ref.lpVtbl ?? nullptr,
-        destination?.ptr.ref.lpVtbl ?? nullptr,
-        operation);
+        ptr.ref.lpVtbl, source.lpVtbl, destination.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -82,12 +80,8 @@ class IRandomAccessStreamStatics extends IInspectable {
                     VTablePointer source,
                     VTablePointer destination,
                     int bytesToCopy,
-                    Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl,
-        source?.ptr.ref.lpVtbl ?? nullptr,
-        destination?.ptr.ref.lpVtbl ?? nullptr,
-        bytesToCopy,
-        operation);
+                    Pointer<COMObject> operation)>()(ptr.ref.lpVtbl,
+        source.lpVtbl, destination.lpVtbl, bytesToCopy, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -115,10 +109,7 @@ class IRandomAccessStreamStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer source,
                     VTablePointer destination, Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl,
-        source?.ptr.ref.lpVtbl ?? nullptr,
-        destination?.ptr.ref.lpVtbl ?? nullptr,
-        operation);
+        ptr.ref.lpVtbl, source.lpVtbl, destination.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);

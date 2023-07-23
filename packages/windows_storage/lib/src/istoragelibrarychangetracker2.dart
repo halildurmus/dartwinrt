@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -40,7 +41,7 @@ class IStorageLibraryChangeTracker2 extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer options)>()(
-        ptr.ref.lpVtbl, options?.ptr.ref.lpVtbl ?? nullptr);
+        ptr.ref.lpVtbl, options.lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

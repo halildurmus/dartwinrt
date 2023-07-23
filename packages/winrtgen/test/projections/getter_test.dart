@@ -396,7 +396,7 @@ void main() {
       expect(projection.failedCheck, equals(failedCheck()));
       expect(projection.nullCheck, isEmpty);
       expect(projection.returnStatement, equals('return value.toDartGuid();'));
-      expect(projection.postambles, equals(['value.free();']));
+      expect(projection.postambles, equals(['free(value);']));
     });
 
     test('projects int', () {
@@ -1094,8 +1094,7 @@ void main() {
       expect(projection.nullCheck, isEmpty);
       expect(
           projection.returnStatement, equals('return value.toDartString();'));
-      expect(projection.postambles,
-          equals(['WindowsDeleteString(value.value);', 'free(value);']));
+      expect(projection.postambles, equals(['free(value);']));
     });
 
     test('projects struct', () {
@@ -1122,7 +1121,7 @@ void main() {
       expect(projection.failedCheck, equals(failedCheck()));
       expect(projection.nullCheck, isEmpty);
       expect(projection.returnStatement, equals('return value.toDart();'));
-      expect(projection.postambles, equals(['value.free();']));
+      expect(projection.postambles, equals(['free(value);']));
     });
 
     test('projects Uri', () {

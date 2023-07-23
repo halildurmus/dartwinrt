@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -30,8 +31,6 @@ class IDateTimeFormatter2 extends IInspectable {
     final result = calloc<IntPtr>();
 
     try {
-      final timeZoneIdHString = timeZoneId.toHString();
-
       final hr = ptr.ref.vtable
               .elementAt(6)
               .cast<
@@ -43,15 +42,12 @@ class IDateTimeFormatter2 extends IInspectable {
               .asFunction<
                   int Function(VTablePointer lpVtbl, int datetime,
                       int timeZoneId, Pointer<IntPtr> result)>()(ptr.ref.lpVtbl,
-          datetime.toWinRTDateTime(), timeZoneIdHString, result);
-
-      WindowsDeleteString(timeZoneIdHString);
+          datetime.toWinRTDateTime(), timeZoneId.toHString(), result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDartString();
     } finally {
-      WindowsDeleteString(result.value);
       free(result);
     }
   }

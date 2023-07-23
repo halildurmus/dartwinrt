@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -28,8 +29,6 @@ class ILearningModelSessionOptions3 extends IInspectable {
           interface.toInterface(IID_ILearningModelSessionOptions3));
 
   void overrideNamedDimension(String name, int dimension) {
-    final nameHString = name.toHString();
-
     final hr = ptr.ref.vtable
             .elementAt(6)
             .cast<
@@ -40,9 +39,7 @@ class ILearningModelSessionOptions3 extends IInspectable {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, int name, int dimension)>()(
-        ptr.ref.lpVtbl, nameHString, dimension);
-
-    WindowsDeleteString(nameHString);
+        ptr.ref.lpVtbl, name.toHString(), dimension);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

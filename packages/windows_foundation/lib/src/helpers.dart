@@ -20,12 +20,11 @@ import 'extensions/iunknown_helpers.dart';
 /// for ease of memory management.
 Pointer<COMObject> activateClass(String className,
     {Allocator allocator = calloc}) {
-  // Create a HSTRING representing the object
-  final hClassName = className.toHString();
+  final classNameHString = className.toHString();
   final inspectablePtr = allocator<COMObject>();
 
   try {
-    final hr = RoActivateInstance(hClassName, inspectablePtr.cast());
+    final hr = RoActivateInstance(classNameHString, inspectablePtr.cast());
     if (FAILED(hr)) throwWindowsException(hr);
     // Return a pointer to the relevant class
     return inspectablePtr;
@@ -34,14 +33,12 @@ Pointer<COMObject> activateClass(String className,
     // load combase so that it "just works" for apartment-agnostic code.
     if (e.hr == CO_E_NOTINITIALIZED) {
       _initializeMTA();
-      final hr = RoActivateInstance(hClassName, inspectablePtr.cast());
+      final hr = RoActivateInstance(classNameHString, inspectablePtr.cast());
       if (FAILED(hr)) throwWindowsException(hr);
       // Return a pointer to the relevant class
       return inspectablePtr;
     }
     rethrow;
-  } finally {
-    WindowsDeleteString(hClassName);
   }
 }
 
@@ -62,35 +59,32 @@ Pointer<COMObject> activateClass(String className,
 ///     'Windows.Globalization.Calendar', IID_ICalendarFactory);
 /// ```
 T createActivationFactory<T extends IInspectable>(
-    T Function(Pointer<COMObject>) creator, String className, String iid) {
-  // Create a HSTRING representing the object
-  final hClassName = className.toHString();
-  final pIID = GUIDFromString(iid);
-  final activationFactoryPtr = calloc<COMObject>();
+        T Function(Pointer<COMObject>) creator, String className, String iid) =>
+    using((arena) {
+      final classNameHString = className.toHString();
+      final pIID = GUIDFromString(iid, allocator: arena);
+      final activationFactoryPtr = calloc<COMObject>();
 
-  try {
-    final hr =
-        RoGetActivationFactory(hClassName, pIID, activationFactoryPtr.cast());
-    if (FAILED(hr)) throwWindowsException(hr);
-    // Create and return the relevant interface
-    return creator(activationFactoryPtr);
-  } on WindowsException catch (e) {
-    // If RoGetActivationFactory fails because combase hasn't been loaded yet
-    // then load combase so that it "just works" for apartment-agnostic code.
-    if (e.hr == CO_E_NOTINITIALIZED) {
-      _initializeMTA();
-      final hr =
-          RoGetActivationFactory(hClassName, pIID, activationFactoryPtr.cast());
-      if (FAILED(hr)) throwWindowsException(hr);
-      // Create and return the relevant interface
-      return creator(activationFactoryPtr);
-    }
-    rethrow;
-  } finally {
-    free(pIID);
-    WindowsDeleteString(hClassName);
-  }
-}
+      try {
+        final hr = RoGetActivationFactory(
+            classNameHString, pIID, activationFactoryPtr.cast());
+        if (FAILED(hr)) throwWindowsException(hr);
+        // Create and return the relevant interface
+        return creator(activationFactoryPtr);
+      } on WindowsException catch (e) {
+        // If RoGetActivationFactory fails because combase hasn't been loaded yet
+        // then load combase so that it "just works" for apartment-agnostic code.
+        if (e.hr == CO_E_NOTINITIALIZED) {
+          _initializeMTA();
+          final hr = RoGetActivationFactory(
+              classNameHString, pIID, activationFactoryPtr.cast());
+          if (FAILED(hr)) throwWindowsException(hr);
+          // Create and return the relevant interface
+          return creator(activationFactoryPtr);
+        }
+        rethrow;
+      }
+    });
 
 /// Creates a WinRT object.
 ///
@@ -115,18 +109,15 @@ T createObject<T extends IInspectable>(
 /// Ensures the current thread is enabled for COM, using the multithreaded
 /// apartment model (MTA).
 void _initializeMTA() {
-  final pCookie = calloc<IntPtr>();
-
-  try {
+  using((arena) {
+    final pCookie = arena<IntPtr>();
     final hr = CoIncrementMTAUsage(pCookie);
     if (FAILED(hr)) throwWindowsException(hr);
-  } finally {
-    free(pCookie);
-  }
+  });
 }
 
 /// Whether the program is running in Flutter.
-bool _isFlutter = const bool.fromEnvironment('dart.library.ui');
+const _isFlutter = const bool.fromEnvironment('dart.library.ui');
 
 /// Returns the window handle (HWND) of the current window.
 ///

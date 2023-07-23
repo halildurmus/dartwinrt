@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 import 'package:windows_system/windows_system.dart';
@@ -58,7 +59,6 @@ class IAppInfoStatics extends IInspectable {
 
   AppInfo? getFromAppUserModelId(String appUserModelId) {
     final result = calloc<COMObject>();
-    final appUserModelIdHString = appUserModelId.toHString();
 
     final hr =
         ptr.ref.vtable
@@ -74,9 +74,7 @@ class IAppInfoStatics extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, int appUserModelId,
                         Pointer<COMObject> result)>()(
-            ptr.ref.lpVtbl, appUserModelIdHString, result);
-
-    WindowsDeleteString(appUserModelIdHString);
+            ptr.ref.lpVtbl, appUserModelId.toHString(), result);
 
     if (FAILED(hr)) {
       free(result);
@@ -93,7 +91,6 @@ class IAppInfoStatics extends IInspectable {
 
   AppInfo? getFromAppUserModelIdForUser(User? user, String appUserModelId) {
     final result = calloc<COMObject>();
-    final appUserModelIdHString = appUserModelId.toHString();
 
     final hr =
         ptr.ref.vtable
@@ -110,12 +107,7 @@ class IAppInfoStatics extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer user,
                         int appUserModelId, Pointer<COMObject> result)>()(
-            ptr.ref.lpVtbl,
-            user?.ptr.ref.lpVtbl ?? nullptr,
-            appUserModelIdHString,
-            result);
-
-    WindowsDeleteString(appUserModelIdHString);
+            ptr.ref.lpVtbl, user.lpVtbl, appUserModelId.toHString(), result);
 
     if (FAILED(hr)) {
       free(result);

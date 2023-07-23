@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -46,14 +47,11 @@ class IPasswordCredential extends IInspectable {
 
       return resource.toDartString();
     } finally {
-      WindowsDeleteString(resource.value);
       free(resource);
     }
   }
 
   set resource(String resource) {
-    final resourceHString = resource.toHString();
-
     final hr =
         ptr.ref.vtable
                 .elementAt(7)
@@ -64,9 +62,7 @@ class IPasswordCredential extends IInspectable {
                                 VTablePointer lpVtbl, IntPtr resource)>>>()
                 .value
                 .asFunction<int Function(VTablePointer lpVtbl, int resource)>()(
-            ptr.ref.lpVtbl, resourceHString);
-
-    WindowsDeleteString(resourceHString);
+            ptr.ref.lpVtbl, resource.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -91,14 +87,11 @@ class IPasswordCredential extends IInspectable {
 
       return userName.toDartString();
     } finally {
-      WindowsDeleteString(userName.value);
       free(userName);
     }
   }
 
   set userName(String userName) {
-    final userNameHString = userName.toHString();
-
     final hr =
         ptr.ref.vtable
                 .elementAt(9)
@@ -109,9 +102,7 @@ class IPasswordCredential extends IInspectable {
                                 VTablePointer lpVtbl, IntPtr userName)>>>()
                 .value
                 .asFunction<int Function(VTablePointer lpVtbl, int userName)>()(
-            ptr.ref.lpVtbl, userNameHString);
-
-    WindowsDeleteString(userNameHString);
+            ptr.ref.lpVtbl, userName.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -136,14 +127,11 @@ class IPasswordCredential extends IInspectable {
 
       return password.toDartString();
     } finally {
-      WindowsDeleteString(password.value);
       free(password);
     }
   }
 
   set password(String password) {
-    final passwordHString = password.toHString();
-
     final hr =
         ptr.ref.vtable
                 .elementAt(11)
@@ -154,9 +142,7 @@ class IPasswordCredential extends IInspectable {
                                 VTablePointer lpVtbl, IntPtr password)>>>()
                 .value
                 .asFunction<int Function(VTablePointer lpVtbl, int password)>()(
-            ptr.ref.lpVtbl, passwordHString);
-
-    WindowsDeleteString(passwordHString);
+            ptr.ref.lpVtbl, password.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

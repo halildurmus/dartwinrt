@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -48,14 +49,12 @@ class IDisplayMonitorStatics extends IInspectable {
 
       return result.toDartString();
     } finally {
-      WindowsDeleteString(result.value);
       free(result);
     }
   }
 
   Future<DisplayMonitor?> fromIdAsync(String deviceId) {
     final operation = calloc<COMObject>();
-    final deviceIdHString = deviceId.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(7)
@@ -68,9 +67,7 @@ class IDisplayMonitorStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int deviceId,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, deviceIdHString, operation);
-
-    WindowsDeleteString(deviceIdHString);
+        ptr.ref.lpVtbl, deviceId.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -84,7 +81,6 @@ class IDisplayMonitorStatics extends IInspectable {
 
   Future<DisplayMonitor?> fromInterfaceIdAsync(String deviceInterfaceId) {
     final operation = calloc<COMObject>();
-    final deviceInterfaceIdHString = deviceInterfaceId.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(8)
@@ -99,9 +95,7 @@ class IDisplayMonitorStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int deviceInterfaceId,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, deviceInterfaceIdHString, operation);
-
-    WindowsDeleteString(deviceInterfaceIdHString);
+        ptr.ref.lpVtbl, deviceInterfaceId.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);

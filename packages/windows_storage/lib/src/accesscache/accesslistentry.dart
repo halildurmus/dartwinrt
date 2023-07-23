@@ -9,7 +9,8 @@
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -45,35 +46,19 @@ final class AccessListEntry implements WinRTStruct {
 /// @nodoc
 extension NativeAccessListEntryConversion on NativeAccessListEntry {
   /// Converts this [NativeAccessListEntry] into a Dart [AccessListEntry].
-  AccessListEntry toDart() {
-    final tokenDartString = token.toDartString();
-    WindowsDeleteString(token);
-    final metadataDartString = metadata.toDartString();
-    WindowsDeleteString(metadata);
-    return AccessListEntry(tokenDartString, metadataDartString);
-  }
+  AccessListEntry toDart() =>
+      AccessListEntry(token.toDartString(), metadata.toDartString());
 }
 
 /// @nodoc
 extension PointerNativeAccessListEntryConversion
     on Pointer<NativeAccessListEntry> {
-  /// Frees the allocated memory for [NativeAccessListEntry].
-  void free() {
-    final ref = this.ref;
-    WindowsDeleteString(ref.token);
-    WindowsDeleteString(ref.metadata);
-    calloc.free(this);
-  }
-
   /// Converts the referenced [NativeAccessListEntry] into a Dart
   /// [AccessListEntry].
   AccessListEntry toDart() {
     final ref = this.ref;
-    final tokenDartString = ref.token.toDartString();
-    WindowsDeleteString(ref.token);
-    final metadataDartString = ref.metadata.toDartString();
-    WindowsDeleteString(ref.metadata);
-    return AccessListEntry(tokenDartString, metadataDartString);
+    return AccessListEntry(
+        ref.token.toDartString(), ref.metadata.toDartString());
   }
 
   /// Creates a `List<AccessListEntry>` from `Pointer<NativeAccessListEntry>`.

@@ -9,7 +9,8 @@
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -80,20 +81,20 @@ final class PointerDeviceUsage implements WinRTStruct {
 extension NativePointerDeviceUsageConversion on NativePointerDeviceUsage {
   /// Converts this [NativePointerDeviceUsage] into a Dart
   /// [PointerDeviceUsage].
-  PointerDeviceUsage toDart() {
-    return PointerDeviceUsage(usagePage, usage, minLogical, maxLogical,
-        minPhysical, maxPhysical, unit, physicalMultiplier);
-  }
+  PointerDeviceUsage toDart() => PointerDeviceUsage(
+      usagePage,
+      usage,
+      minLogical,
+      maxLogical,
+      minPhysical,
+      maxPhysical,
+      unit,
+      physicalMultiplier);
 }
 
 /// @nodoc
 extension PointerNativePointerDeviceUsageConversion
     on Pointer<NativePointerDeviceUsage> {
-  /// Frees the allocated memory for [NativePointerDeviceUsage].
-  void free() {
-    calloc.free(this);
-  }
-
   /// Converts the referenced [NativePointerDeviceUsage] into a Dart
   /// [PointerDeviceUsage].
   PointerDeviceUsage toDart() {

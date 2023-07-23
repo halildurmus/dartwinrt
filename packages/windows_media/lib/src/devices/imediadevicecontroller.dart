@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -113,11 +114,8 @@ class IMediaDeviceController extends IInspectable {
                     VTablePointer lpVtbl,
                     int mediaStreamType,
                     VTablePointer mediaEncodingProperties,
-                    Pointer<COMObject> asyncInfo)>()(
-        ptr.ref.lpVtbl,
-        mediaStreamType.value,
-        mediaEncodingProperties?.ptr.ref.lpVtbl ?? nullptr,
-        asyncInfo);
+                    Pointer<COMObject> asyncInfo)>()(ptr.ref.lpVtbl,
+        mediaStreamType.value, mediaEncodingProperties.lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);

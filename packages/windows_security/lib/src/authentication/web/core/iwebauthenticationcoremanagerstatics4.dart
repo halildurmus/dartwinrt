@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 import 'package:windows_system/windows_system.dart';
@@ -53,7 +54,7 @@ class IWebAuthenticationCoreManagerStatics4 extends IInspectable
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer provider,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, provider?.ptr.ref.lpVtbl ?? nullptr, operation);
+        ptr.ref.lpVtbl, provider.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -69,7 +70,6 @@ class IWebAuthenticationCoreManagerStatics4 extends IInspectable
   Future<FindAllAccountsResult?> findAllAccountsWithClientIdAsync(
       WebAccountProvider? provider, String clientId) {
     final operation = calloc<COMObject>();
-    final clientIdHString = clientId.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(7)
@@ -85,12 +85,7 @@ class IWebAuthenticationCoreManagerStatics4 extends IInspectable
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer provider,
                     int clientId, Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl,
-        provider?.ptr.ref.lpVtbl ?? nullptr,
-        clientIdHString,
-        operation);
-
-    WindowsDeleteString(clientIdHString);
+        ptr.ref.lpVtbl, provider.lpVtbl, clientId.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -106,7 +101,6 @@ class IWebAuthenticationCoreManagerStatics4 extends IInspectable
   Future<WebAccountProvider?> findSystemAccountProviderAsync(
       String webAccountProviderId) {
     final operation = calloc<COMObject>();
-    final webAccountProviderIdHString = webAccountProviderId.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(8)
@@ -121,9 +115,7 @@ class IWebAuthenticationCoreManagerStatics4 extends IInspectable
             .asFunction<
                 int Function(VTablePointer lpVtbl, int webAccountProviderId,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, webAccountProviderIdHString, operation);
-
-    WindowsDeleteString(webAccountProviderIdHString);
+        ptr.ref.lpVtbl, webAccountProviderId.toHString(), operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -139,8 +131,6 @@ class IWebAuthenticationCoreManagerStatics4 extends IInspectable
   Future<WebAccountProvider?> findSystemAccountProviderWithAuthorityAsync(
       String webAccountProviderId, String authority) {
     final operation = calloc<COMObject>();
-    final webAccountProviderIdHString = webAccountProviderId.toHString();
-    final authorityHString = authority.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(9)
@@ -157,12 +147,9 @@ class IWebAuthenticationCoreManagerStatics4 extends IInspectable
                 int Function(VTablePointer lpVtbl, int webAccountProviderId,
                     int authority, Pointer<COMObject> operation)>()(
         ptr.ref.lpVtbl,
-        webAccountProviderIdHString,
-        authorityHString,
+        webAccountProviderId.toHString(),
+        authority.toHString(),
         operation);
-
-    WindowsDeleteString(webAccountProviderIdHString);
-    WindowsDeleteString(authorityHString);
 
     if (FAILED(hr)) {
       free(operation);
@@ -179,8 +166,6 @@ class IWebAuthenticationCoreManagerStatics4 extends IInspectable
       findSystemAccountProviderWithAuthorityForUserAsync(
           String webAccountProviderId, String authority, User? user) {
     final operation = calloc<COMObject>();
-    final webAccountProviderIdHString = webAccountProviderId.toHString();
-    final authorityHString = authority.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(10)
@@ -202,13 +187,10 @@ class IWebAuthenticationCoreManagerStatics4 extends IInspectable
                     VTablePointer user,
                     Pointer<COMObject> operation)>()(
         ptr.ref.lpVtbl,
-        webAccountProviderIdHString,
-        authorityHString,
-        user?.ptr.ref.lpVtbl ?? nullptr,
+        webAccountProviderId.toHString(),
+        authority.toHString(),
+        user.lpVtbl,
         operation);
-
-    WindowsDeleteString(webAccountProviderIdHString);
-    WindowsDeleteString(authorityHString);
 
     if (FAILED(hr)) {
       free(operation);

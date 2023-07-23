@@ -9,7 +9,8 @@
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -63,20 +64,13 @@ extension NativeDirect3DSurfaceDescriptionConversion
     on NativeDirect3DSurfaceDescription {
   /// Converts this [NativeDirect3DSurfaceDescription] into a Dart
   /// [Direct3DSurfaceDescription].
-  Direct3DSurfaceDescription toDart() {
-    return Direct3DSurfaceDescription(width, height,
-        DirectXPixelFormat.from(format), multisampleDescription.toDart());
-  }
+  Direct3DSurfaceDescription toDart() => Direct3DSurfaceDescription(width,
+      height, DirectXPixelFormat.from(format), multisampleDescription.toDart());
 }
 
 /// @nodoc
 extension PointerNativeDirect3DSurfaceDescriptionConversion
     on Pointer<NativeDirect3DSurfaceDescription> {
-  /// Frees the allocated memory for [NativeDirect3DSurfaceDescription].
-  void free() {
-    calloc.free(this);
-  }
-
   /// Converts the referenced [NativeDirect3DSurfaceDescription] into a Dart
   /// [Direct3DSurfaceDescription].
   Direct3DSurfaceDescription toDart() {

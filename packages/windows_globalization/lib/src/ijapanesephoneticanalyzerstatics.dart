@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -31,7 +32,6 @@ class IJapanesePhoneticAnalyzerStatics extends IInspectable {
 
   List<JapanesePhoneme?> getWords(String input) {
     final result = calloc<COMObject>();
-    final inputHString = input.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -44,9 +44,7 @@ class IJapanesePhoneticAnalyzerStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int input,
                     Pointer<COMObject> result)>()(
-        ptr.ref.lpVtbl, inputHString, result);
-
-    WindowsDeleteString(inputHString);
+        ptr.ref.lpVtbl, input.toHString(), result);
 
     if (FAILED(hr)) {
       free(result);
@@ -62,7 +60,6 @@ class IJapanesePhoneticAnalyzerStatics extends IInspectable {
   List<JapanesePhoneme?> getWordsWithMonoRubyOption(
       String input, bool monoRuby) {
     final result = calloc<COMObject>();
-    final inputHString = input.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(7)
@@ -75,9 +72,7 @@ class IJapanesePhoneticAnalyzerStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int input, bool monoRuby,
                     Pointer<COMObject> result)>()(
-        ptr.ref.lpVtbl, inputHString, monoRuby, result);
-
-    WindowsDeleteString(inputHString);
+        ptr.ref.lpVtbl, input.toHString(), monoRuby, result);
 
     if (FAILED(hr)) {
       free(result);

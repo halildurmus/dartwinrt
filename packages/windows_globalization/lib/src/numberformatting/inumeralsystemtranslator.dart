@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -76,7 +77,6 @@ class INumeralSystemTranslator extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
@@ -101,14 +101,11 @@ class INumeralSystemTranslator extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
 
   set numeralSystem(String value) {
-    final valueHString = value.toHString();
-
     final hr =
         ptr.ref.vtable
                 .elementAt(9)
@@ -119,9 +116,7 @@ class INumeralSystemTranslator extends IInspectable {
                                 VTablePointer lpVtbl, IntPtr value)>>>()
                 .value
                 .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-            ptr.ref.lpVtbl, valueHString);
-
-    WindowsDeleteString(valueHString);
+            ptr.ref.lpVtbl, value.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -130,8 +125,6 @@ class INumeralSystemTranslator extends IInspectable {
     final result = calloc<IntPtr>();
 
     try {
-      final valueHString = value.toHString();
-
       final hr = ptr.ref.vtable
               .elementAt(10)
               .cast<
@@ -143,15 +136,12 @@ class INumeralSystemTranslator extends IInspectable {
               .asFunction<
                   int Function(VTablePointer lpVtbl, int value,
                       Pointer<IntPtr> result)>()(
-          ptr.ref.lpVtbl, valueHString, result);
-
-      WindowsDeleteString(valueHString);
+          ptr.ref.lpVtbl, value.toHString(), result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDartString();
     } finally {
-      WindowsDeleteString(result.value);
       free(result);
     }
   }

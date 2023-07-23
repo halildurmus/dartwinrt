@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -35,8 +36,6 @@ class IEndpointPairFactory extends IInspectable {
       HostName? remoteHostName,
       String remoteServiceName) {
     final value = calloc<COMObject>();
-    final localServiceNameHString = localServiceName.toHString();
-    final remoteServiceNameHString = remoteServiceName.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -60,14 +59,11 @@ class IEndpointPairFactory extends IInspectable {
                     int remoteServiceName,
                     Pointer<COMObject> value)>()(
         ptr.ref.lpVtbl,
-        localHostName?.ptr.ref.lpVtbl ?? nullptr,
-        localServiceNameHString,
-        remoteHostName?.ptr.ref.lpVtbl ?? nullptr,
-        remoteServiceNameHString,
+        localHostName.lpVtbl,
+        localServiceName.toHString(),
+        remoteHostName.lpVtbl,
+        remoteServiceName.toHString(),
         value);
-
-    WindowsDeleteString(localServiceNameHString);
-    WindowsDeleteString(remoteServiceNameHString);
 
     if (FAILED(hr)) {
       free(value);

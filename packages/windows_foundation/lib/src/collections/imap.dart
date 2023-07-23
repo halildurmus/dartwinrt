@@ -5,7 +5,7 @@
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart';
+import 'package:win32/win32.dart' hide WinRTStringConversion;
 import 'package:windows_media/windows_media.dart';
 
 import '../../internal.dart';

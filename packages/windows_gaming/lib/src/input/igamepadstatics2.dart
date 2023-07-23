@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -45,7 +46,7 @@ class IGamepadStatics2 extends IInspectable implements IGamepadStatics {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer gameController,
                     Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, gameController?.ptr.ref.lpVtbl ?? nullptr, value);
+        ptr.ref.lpVtbl, gameController.lpVtbl, value);
 
     if (FAILED(hr)) {
       free(value);

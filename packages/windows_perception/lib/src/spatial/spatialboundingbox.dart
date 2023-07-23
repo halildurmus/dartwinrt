@@ -9,7 +9,8 @@
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -46,19 +47,13 @@ final class SpatialBoundingBox implements WinRTStruct {
 extension NativeSpatialBoundingBoxConversion on NativeSpatialBoundingBox {
   /// Converts this [NativeSpatialBoundingBox] into a Dart
   /// [SpatialBoundingBox].
-  SpatialBoundingBox toDart() {
-    return SpatialBoundingBox(center.toDart(), extents.toDart());
-  }
+  SpatialBoundingBox toDart() =>
+      SpatialBoundingBox(center.toDart(), extents.toDart());
 }
 
 /// @nodoc
 extension PointerNativeSpatialBoundingBoxConversion
     on Pointer<NativeSpatialBoundingBox> {
-  /// Frees the allocated memory for [NativeSpatialBoundingBox].
-  void free() {
-    calloc.free(this);
-  }
-
   /// Converts the referenced [NativeSpatialBoundingBox] into a Dart
   /// [SpatialBoundingBox].
   SpatialBoundingBox toDart() {

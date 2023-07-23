@@ -9,7 +9,7 @@ import 'dart:ffi';
 import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
 
-import '../internal.dart';
+import 'helpers.dart';
 
 /// A string data type commonly used by Windows Runtime.
 ///
@@ -66,6 +66,9 @@ class HString {
     });
   }
 
+  /// Detaches the object from the [Finalizer].
+  void detach() => _finalizer.detach(this);
+
   /// Releases the native memory allocated to the [HString].
   void free() {
     _finalizer.detach(this);
@@ -93,4 +96,29 @@ class HString {
   String toString() => handle == 0
       ? ''
       : WindowsGetStringRawBuffer(handle, nullptr).toDartString();
+}
+
+/// @nodoc
+extension HStringHandleToDartStringConversion on int {
+  /// Converts the [HSTRING] into a Dart string.
+  String toDartString() => HString.fromHandle(this).toString();
+}
+
+/// @nodoc
+extension DartStringToHStringConversion on String {
+  /// Converts the string into an [HString], returning an HSTRING handle.
+  int toHString() => HString.fromString(this).handle;
+}
+
+/// @nodoc
+extension HSTRINGPointerHelpers on Pointer<HSTRING> {
+  /// Converts the [HSTRING] into a Dart string.
+  String toDartString() => value.toDartString();
+
+  /// Creates a [List] from `Pointer<HSTRING>`.
+  ///
+  /// [length] must not be greater than the number of elements stored inside the
+  /// `Pointer<HSTRING>`.
+  List<String> toList({int length = 1}) =>
+      [for (var i = 0; i < length; i++) this[i].toDartString()];
 }

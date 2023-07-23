@@ -9,7 +9,8 @@
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -47,19 +48,13 @@ extension NativeBackgroundTransferFileRangeConversion
     on NativeBackgroundTransferFileRange {
   /// Converts this [NativeBackgroundTransferFileRange] into a Dart
   /// [BackgroundTransferFileRange].
-  BackgroundTransferFileRange toDart() {
-    return BackgroundTransferFileRange(offset, length);
-  }
+  BackgroundTransferFileRange toDart() =>
+      BackgroundTransferFileRange(offset, length);
 }
 
 /// @nodoc
 extension PointerNativeBackgroundTransferFileRangeConversion
     on Pointer<NativeBackgroundTransferFileRange> {
-  /// Frees the allocated memory for [NativeBackgroundTransferFileRange].
-  void free() {
-    calloc.free(this);
-  }
-
   /// Converts the referenced [NativeBackgroundTransferFileRange] into a Dart
   /// [BackgroundTransferFileRange].
   BackgroundTransferFileRange toDart() {

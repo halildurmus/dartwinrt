@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -46,7 +47,7 @@ class IFileIOStatics extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer file,
                         Pointer<COMObject> textOperation)>()(
-            ptr.ref.lpVtbl, file?.ptr.ref.lpVtbl ?? nullptr, textOperation);
+            ptr.ref.lpVtbl, file.lpVtbl, textOperation);
 
     if (FAILED(hr)) {
       free(textOperation);
@@ -76,10 +77,7 @@ class IFileIOStatics extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer file,
                         int encoding, Pointer<COMObject> textOperation)>()(
-            ptr.ref.lpVtbl,
-            file?.ptr.ref.lpVtbl ?? nullptr,
-            encoding.value,
-            textOperation);
+            ptr.ref.lpVtbl, file.lpVtbl, encoding.value, textOperation);
 
     if (FAILED(hr)) {
       free(textOperation);
@@ -92,7 +90,6 @@ class IFileIOStatics extends IInspectable {
 
   Future<void> writeTextAsync(IStorageFile? file, String contents) {
     final textOperation = calloc<COMObject>();
-    final contentsHString = contents.toHString();
 
     final hr =
         ptr.ref.vtable
@@ -109,12 +106,7 @@ class IFileIOStatics extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer file,
                         int contents, Pointer<COMObject> textOperation)>()(
-            ptr.ref.lpVtbl,
-            file?.ptr.ref.lpVtbl ?? nullptr,
-            contentsHString,
-            textOperation);
-
-    WindowsDeleteString(contentsHString);
+            ptr.ref.lpVtbl, file.lpVtbl, contents.toHString(), textOperation);
 
     if (FAILED(hr)) {
       free(textOperation);
@@ -127,7 +119,6 @@ class IFileIOStatics extends IInspectable {
   Future<void> writeTextWithEncodingAsync(
       IStorageFile? file, String contents, UnicodeEncoding encoding) {
     final textOperation = calloc<COMObject>();
-    final contentsHString = contents.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(9)
@@ -147,14 +138,8 @@ class IFileIOStatics extends IInspectable {
                     VTablePointer file,
                     int contents,
                     int encoding,
-                    Pointer<COMObject> textOperation)>()(
-        ptr.ref.lpVtbl,
-        file?.ptr.ref.lpVtbl ?? nullptr,
-        contentsHString,
-        encoding.value,
-        textOperation);
-
-    WindowsDeleteString(contentsHString);
+                    Pointer<COMObject> textOperation)>()(ptr.ref.lpVtbl,
+        file.lpVtbl, contents.toHString(), encoding.value, textOperation);
 
     if (FAILED(hr)) {
       free(textOperation);
@@ -166,7 +151,6 @@ class IFileIOStatics extends IInspectable {
 
   Future<void> appendTextAsync(IStorageFile? file, String contents) {
     final textOperation = calloc<COMObject>();
-    final contentsHString = contents.toHString();
 
     final hr =
         ptr.ref.vtable
@@ -183,12 +167,7 @@ class IFileIOStatics extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer file,
                         int contents, Pointer<COMObject> textOperation)>()(
-            ptr.ref.lpVtbl,
-            file?.ptr.ref.lpVtbl ?? nullptr,
-            contentsHString,
-            textOperation);
-
-    WindowsDeleteString(contentsHString);
+            ptr.ref.lpVtbl, file.lpVtbl, contents.toHString(), textOperation);
 
     if (FAILED(hr)) {
       free(textOperation);
@@ -201,7 +180,6 @@ class IFileIOStatics extends IInspectable {
   Future<void> appendTextWithEncodingAsync(
       IStorageFile? file, String contents, UnicodeEncoding encoding) {
     final textOperation = calloc<COMObject>();
-    final contentsHString = contents.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(11)
@@ -221,14 +199,8 @@ class IFileIOStatics extends IInspectable {
                     VTablePointer file,
                     int contents,
                     int encoding,
-                    Pointer<COMObject> textOperation)>()(
-        ptr.ref.lpVtbl,
-        file?.ptr.ref.lpVtbl ?? nullptr,
-        contentsHString,
-        encoding.value,
-        textOperation);
-
-    WindowsDeleteString(contentsHString);
+                    Pointer<COMObject> textOperation)>()(ptr.ref.lpVtbl,
+        file.lpVtbl, contents.toHString(), encoding.value, textOperation);
 
     if (FAILED(hr)) {
       free(textOperation);
@@ -255,7 +227,7 @@ class IFileIOStatics extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer file,
                         Pointer<COMObject> linesOperation)>()(
-            ptr.ref.lpVtbl, file?.ptr.ref.lpVtbl ?? nullptr, linesOperation);
+            ptr.ref.lpVtbl, file.lpVtbl, linesOperation);
 
     if (FAILED(hr)) {
       free(linesOperation);
@@ -288,10 +260,7 @@ class IFileIOStatics extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer file,
                         int encoding, Pointer<COMObject> linesOperation)>()(
-            ptr.ref.lpVtbl,
-            file?.ptr.ref.lpVtbl ?? nullptr,
-            encoding.value,
-            linesOperation);
+            ptr.ref.lpVtbl, file.lpVtbl, encoding.value, linesOperation);
 
     if (FAILED(hr)) {
       free(linesOperation);
@@ -323,16 +292,7 @@ class IFileIOStatics extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer file,
                         VTablePointer lines, Pointer<COMObject> operation)>()(
-            ptr.ref.lpVtbl,
-            file?.ptr.ref.lpVtbl ?? nullptr,
-            lines == null
-                ? nullptr
-                : IInspectable(lines
-                        .toInterface('{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'))
-                    .ptr
-                    .ref
-                    .lpVtbl,
-            operation);
+            ptr.ref.lpVtbl, file.lpVtbl, lines.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -365,17 +325,7 @@ class IFileIOStatics extends IInspectable {
                     VTablePointer lines,
                     int encoding,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl,
-        file?.ptr.ref.lpVtbl ?? nullptr,
-        lines == null
-            ? nullptr
-            : IInspectable(
-                    lines.toInterface('{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'))
-                .ptr
-                .ref
-                .lpVtbl,
-        encoding.value,
-        operation);
+        ptr.ref.lpVtbl, file.lpVtbl, lines.lpVtbl, encoding.value, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -403,16 +353,7 @@ class IFileIOStatics extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer file,
                         VTablePointer lines, Pointer<COMObject> operation)>()(
-            ptr.ref.lpVtbl,
-            file?.ptr.ref.lpVtbl ?? nullptr,
-            lines == null
-                ? nullptr
-                : IInspectable(lines
-                        .toInterface('{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'))
-                    .ptr
-                    .ref
-                    .lpVtbl,
-            operation);
+            ptr.ref.lpVtbl, file.lpVtbl, lines.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -445,17 +386,7 @@ class IFileIOStatics extends IInspectable {
                     VTablePointer lines,
                     int encoding,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl,
-        file?.ptr.ref.lpVtbl ?? nullptr,
-        lines == null
-            ? nullptr
-            : IInspectable(
-                    lines.toInterface('{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'))
-                .ptr
-                .ref
-                .lpVtbl,
-        encoding.value,
-        operation);
+        ptr.ref.lpVtbl, file.lpVtbl, lines.lpVtbl, encoding.value, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -482,7 +413,7 @@ class IFileIOStatics extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer file,
                         Pointer<COMObject> operation)>()(
-            ptr.ref.lpVtbl, file?.ptr.ref.lpVtbl ?? nullptr, operation);
+            ptr.ref.lpVtbl, file.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -512,10 +443,7 @@ class IFileIOStatics extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer file,
                         VTablePointer buffer, Pointer<COMObject> operation)>()(
-            ptr.ref.lpVtbl,
-            file?.ptr.ref.lpVtbl ?? nullptr,
-            buffer?.ptr.ref.lpVtbl ?? nullptr,
-            operation);
+            ptr.ref.lpVtbl, file.lpVtbl, buffer.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -550,8 +478,8 @@ class IFileIOStatics extends IInspectable {
                     VTablePointer file,
                     int bufferSize,
                     Pointer<Uint8> buffer,
-                    Pointer<COMObject> operation)>()(ptr.ref.lpVtbl,
-        file?.ptr.ref.lpVtbl ?? nullptr, buffer.length, bufferArray, operation);
+                    Pointer<COMObject> operation)>()(
+        ptr.ref.lpVtbl, file.lpVtbl, buffer.length, bufferArray, operation);
 
     free(bufferArray);
 

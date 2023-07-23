@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -30,9 +31,6 @@ class ICredentialFactory extends IInspectable {
   PasswordCredential createPasswordCredential(
       String resource, String userName, String password) {
     final credential = calloc<COMObject>();
-    final resourceHString = resource.toHString();
-    final userNameHString = userName.toHString();
-    final passwordHString = password.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -50,14 +48,10 @@ class ICredentialFactory extends IInspectable {
                 int Function(VTablePointer lpVtbl, int resource, int userName,
                     int password, Pointer<COMObject> credential)>()(
         ptr.ref.lpVtbl,
-        resourceHString,
-        userNameHString,
-        passwordHString,
+        resource.toHString(),
+        userName.toHString(),
+        password.toHString(),
         credential);
-
-    WindowsDeleteString(resourceHString);
-    WindowsDeleteString(userNameHString);
-    WindowsDeleteString(passwordHString);
 
     if (FAILED(hr)) {
       free(credential);

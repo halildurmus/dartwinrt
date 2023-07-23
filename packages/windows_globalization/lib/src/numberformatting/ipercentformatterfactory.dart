@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -31,7 +32,6 @@ class IPercentFormatterFactory extends IInspectable {
   PercentFormatter createPercentFormatter(
       IIterable<String>? languages, String geographicRegion) {
     final result = calloc<COMObject>();
-    final geographicRegionHString = geographicRegion.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -47,18 +47,7 @@ class IPercentFormatterFactory extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer languages,
                     int geographicRegion, Pointer<COMObject> result)>()(
-        ptr.ref.lpVtbl,
-        languages == null
-            ? nullptr
-            : IInspectable(languages
-                    .toInterface('{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'))
-                .ptr
-                .ref
-                .lpVtbl,
-        geographicRegionHString,
-        result);
-
-    WindowsDeleteString(geographicRegionHString);
+        ptr.ref.lpVtbl, languages.lpVtbl, geographicRegion.toHString(), result);
 
     if (FAILED(hr)) {
       free(result);

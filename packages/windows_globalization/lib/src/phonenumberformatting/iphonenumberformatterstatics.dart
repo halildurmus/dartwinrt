@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -30,7 +31,6 @@ class IPhoneNumberFormatterStatics extends IInspectable {
           interface.toInterface(IID_IPhoneNumberFormatterStatics));
 
   PhoneNumberFormatter? tryCreate(String regionCode) {
-    final regionCodeHString = regionCode.toHString();
     final phoneNumber = calloc<COMObject>();
 
     try {
@@ -48,7 +48,7 @@ class IPhoneNumberFormatterStatics extends IInspectable {
                   .asFunction<
                       int Function(VTablePointer lpVtbl, int regionCode,
                           Pointer<COMObject> phoneNumber)>()(
-              ptr.ref.lpVtbl, regionCodeHString, phoneNumber);
+              ptr.ref.lpVtbl, regionCode.toHString(), phoneNumber);
 
       if (FAILED(hr)) {
         free(phoneNumber);
@@ -61,17 +61,13 @@ class IPhoneNumberFormatterStatics extends IInspectable {
       }
 
       return PhoneNumberFormatter.fromPtr(phoneNumber);
-    } finally {
-      WindowsDeleteString(regionCodeHString);
-    }
+    } finally {}
   }
 
   int getCountryCodeForRegion(String regionCode) {
     final result = calloc<Int32>();
 
     try {
-      final regionCodeHString = regionCode.toHString();
-
       final hr =
           ptr.ref.vtable
                   .elementAt(7)
@@ -84,9 +80,7 @@ class IPhoneNumberFormatterStatics extends IInspectable {
                   .asFunction<
                       int Function(VTablePointer lpVtbl, int regionCode,
                           Pointer<Int32> result)>()(
-              ptr.ref.lpVtbl, regionCodeHString, result);
-
-      WindowsDeleteString(regionCodeHString);
+              ptr.ref.lpVtbl, regionCode.toHString(), result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -101,8 +95,6 @@ class IPhoneNumberFormatterStatics extends IInspectable {
     final result = calloc<IntPtr>();
 
     try {
-      final regionCodeHString = regionCode.toHString();
-
       final hr =
           ptr.ref.vtable
                   .elementAt(8)
@@ -118,15 +110,12 @@ class IPhoneNumberFormatterStatics extends IInspectable {
                   .asFunction<
                       int Function(VTablePointer lpVtbl, int regionCode,
                           bool stripNonDigit, Pointer<IntPtr> result)>()(
-              ptr.ref.lpVtbl, regionCodeHString, stripNonDigit, result);
-
-      WindowsDeleteString(regionCodeHString);
+              ptr.ref.lpVtbl, regionCode.toHString(), stripNonDigit, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDartString();
     } finally {
-      WindowsDeleteString(result.value);
       free(result);
     }
   }
@@ -135,8 +124,6 @@ class IPhoneNumberFormatterStatics extends IInspectable {
     final result = calloc<IntPtr>();
 
     try {
-      final numberHString = number.toHString();
-
       final hr = ptr.ref.vtable
               .elementAt(9)
               .cast<
@@ -148,15 +135,12 @@ class IPhoneNumberFormatterStatics extends IInspectable {
               .asFunction<
                   int Function(VTablePointer lpVtbl, int number,
                       Pointer<IntPtr> result)>()(
-          ptr.ref.lpVtbl, numberHString, result);
-
-      WindowsDeleteString(numberHString);
+          ptr.ref.lpVtbl, number.toHString(), result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDartString();
     } finally {
-      WindowsDeleteString(result.value);
       free(result);
     }
   }

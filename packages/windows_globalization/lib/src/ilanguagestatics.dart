@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -29,8 +30,6 @@ class ILanguageStatics extends IInspectable {
     final result = calloc<Bool>();
 
     try {
-      final languageTagHString = languageTag.toHString();
-
       final hr =
           ptr.ref.vtable
                   .elementAt(6)
@@ -43,9 +42,7 @@ class ILanguageStatics extends IInspectable {
                   .asFunction<
                       int Function(VTablePointer lpVtbl, int languageTag,
                           Pointer<Bool> result)>()(
-              ptr.ref.lpVtbl, languageTagHString, result);
-
-      WindowsDeleteString(languageTagHString);
+              ptr.ref.lpVtbl, languageTag.toHString(), result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -75,7 +72,6 @@ class ILanguageStatics extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }

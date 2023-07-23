@@ -9,7 +9,8 @@
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -40,19 +41,12 @@ final class LoadMoreItemsResult implements WinRTStruct {
 extension NativeLoadMoreItemsResultConversion on NativeLoadMoreItemsResult {
   /// Converts this [NativeLoadMoreItemsResult] into a Dart
   /// [LoadMoreItemsResult].
-  LoadMoreItemsResult toDart() {
-    return LoadMoreItemsResult(count);
-  }
+  LoadMoreItemsResult toDart() => LoadMoreItemsResult(count);
 }
 
 /// @nodoc
 extension PointerNativeLoadMoreItemsResultConversion
     on Pointer<NativeLoadMoreItemsResult> {
-  /// Frees the allocated memory for [NativeLoadMoreItemsResult].
-  void free() {
-    calloc.free(this);
-  }
-
   /// Converts the referenced [NativeLoadMoreItemsResult] into a Dart
   /// [LoadMoreItemsResult].
   LoadMoreItemsResult toDart() {

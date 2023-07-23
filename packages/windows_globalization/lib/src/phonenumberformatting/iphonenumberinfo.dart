@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -73,7 +74,6 @@ class IPhoneNumberInfo extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
@@ -122,7 +122,6 @@ class IPhoneNumberInfo extends IInspectable {
 
       return result.toDartString();
     } finally {
-      WindowsDeleteString(result.value);
       free(result);
     }
   }
@@ -195,7 +194,6 @@ class IPhoneNumberInfo extends IInspectable {
 
       return result.toDartString();
     } finally {
-      WindowsDeleteString(result.value);
       free(result);
     }
   }
@@ -218,7 +216,7 @@ class IPhoneNumberInfo extends IInspectable {
                   .asFunction<
                       int Function(VTablePointer lpVtbl,
                           VTablePointer otherNumber, Pointer<Int32> result)>()(
-              ptr.ref.lpVtbl, otherNumber?.ptr.ref.lpVtbl ?? nullptr, result);
+              ptr.ref.lpVtbl, otherNumber.lpVtbl, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 

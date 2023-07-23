@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -32,7 +33,6 @@ class IPhoneNumberInfoStatics extends IInspectable {
   (PhoneNumberParseResult, {PhoneNumberInfo? phoneNumber}) tryParse(
       String input) {
     final result = calloc<Int32>();
-    final inputHString = input.toHString();
     final phoneNumber = calloc<COMObject>();
 
     try {
@@ -50,7 +50,7 @@ class IPhoneNumberInfoStatics extends IInspectable {
               .asFunction<
                   int Function(VTablePointer lpVtbl, int input,
                       Pointer<COMObject> phoneNumber, Pointer<Int32> result)>()(
-          ptr.ref.lpVtbl, inputHString, phoneNumber, result);
+          ptr.ref.lpVtbl, input.toHString(), phoneNumber, result);
 
       if (FAILED(hr)) {
         free(phoneNumber);
@@ -69,7 +69,6 @@ class IPhoneNumberInfoStatics extends IInspectable {
             phoneNumberIsNull ? null : PhoneNumberInfo.fromPtr(phoneNumber)
       );
     } finally {
-      WindowsDeleteString(inputHString);
       free(result);
     }
   }
@@ -77,8 +76,6 @@ class IPhoneNumberInfoStatics extends IInspectable {
   (PhoneNumberParseResult, {PhoneNumberInfo? phoneNumber}) tryParseWithRegion(
       String input, String regionCode) {
     final result = calloc<Int32>();
-    final inputHString = input.toHString();
-    final regionCodeHString = regionCode.toHString();
     final phoneNumber = calloc<COMObject>();
 
     try {
@@ -97,7 +94,11 @@ class IPhoneNumberInfoStatics extends IInspectable {
               .asFunction<
                   int Function(VTablePointer lpVtbl, int input, int regionCode,
                       Pointer<COMObject> phoneNumber, Pointer<Int32> result)>()(
-          ptr.ref.lpVtbl, inputHString, regionCodeHString, phoneNumber, result);
+          ptr.ref.lpVtbl,
+          input.toHString(),
+          regionCode.toHString(),
+          phoneNumber,
+          result);
 
       if (FAILED(hr)) {
         free(phoneNumber);
@@ -116,8 +117,6 @@ class IPhoneNumberInfoStatics extends IInspectable {
             phoneNumberIsNull ? null : PhoneNumberInfo.fromPtr(phoneNumber)
       );
     } finally {
-      WindowsDeleteString(inputHString);
-      WindowsDeleteString(regionCodeHString);
       free(result);
     }
   }

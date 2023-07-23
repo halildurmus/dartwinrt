@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 import 'package:windows_ui/windows_ui.dart';
@@ -47,14 +48,11 @@ class IDevicePickerAppearance extends IInspectable {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
 
   set title(String value) {
-    final valueHString = value.toHString();
-
     final hr =
         ptr.ref.vtable
                 .elementAt(7)
@@ -65,9 +63,7 @@ class IDevicePickerAppearance extends IInspectable {
                                 VTablePointer lpVtbl, IntPtr value)>>>()
                 .value
                 .asFunction<int Function(VTablePointer lpVtbl, int value)>()(
-            ptr.ref.lpVtbl, valueHString);
-
-    WindowsDeleteString(valueHString);
+            ptr.ref.lpVtbl, value.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -92,7 +88,7 @@ class IDevicePickerAppearance extends IInspectable {
 
       return value.toDart();
     } finally {
-      value.free();
+      free(value);
     }
   }
 
@@ -111,7 +107,7 @@ class IDevicePickerAppearance extends IInspectable {
                 int Function(VTablePointer lpVtbl, NativeColor value)>()(
         ptr.ref.lpVtbl, valueNativeStructPtr.ref);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -136,7 +132,7 @@ class IDevicePickerAppearance extends IInspectable {
 
       return value.toDart();
     } finally {
-      value.free();
+      free(value);
     }
   }
 
@@ -155,7 +151,7 @@ class IDevicePickerAppearance extends IInspectable {
                 int Function(VTablePointer lpVtbl, NativeColor value)>()(
         ptr.ref.lpVtbl, valueNativeStructPtr.ref);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -180,7 +176,7 @@ class IDevicePickerAppearance extends IInspectable {
 
       return value.toDart();
     } finally {
-      value.free();
+      free(value);
     }
   }
 
@@ -199,7 +195,7 @@ class IDevicePickerAppearance extends IInspectable {
                 int Function(VTablePointer lpVtbl, NativeColor value)>()(
         ptr.ref.lpVtbl, valueNativeStructPtr.ref);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -224,7 +220,7 @@ class IDevicePickerAppearance extends IInspectable {
 
       return value.toDart();
     } finally {
-      value.free();
+      free(value);
     }
   }
 
@@ -243,7 +239,7 @@ class IDevicePickerAppearance extends IInspectable {
                 int Function(VTablePointer lpVtbl, NativeColor value)>()(
         ptr.ref.lpVtbl, valueNativeStructPtr.ref);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -268,7 +264,7 @@ class IDevicePickerAppearance extends IInspectable {
 
       return value.toDart();
     } finally {
-      value.free();
+      free(value);
     }
   }
 
@@ -287,7 +283,7 @@ class IDevicePickerAppearance extends IInspectable {
                 int Function(VTablePointer lpVtbl, NativeColor value)>()(
         ptr.ref.lpVtbl, valueNativeStructPtr.ref);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -312,7 +308,7 @@ class IDevicePickerAppearance extends IInspectable {
 
       return value.toDart();
     } finally {
-      value.free();
+      free(value);
     }
   }
 
@@ -331,7 +327,7 @@ class IDevicePickerAppearance extends IInspectable {
                 int Function(VTablePointer lpVtbl, NativeColor value)>()(
         ptr.ref.lpVtbl, valueNativeStructPtr.ref);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

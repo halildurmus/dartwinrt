@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_applicationmodel/windows_applicationmodel.dart';
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
@@ -48,8 +49,8 @@ class ILauncherStatics4 extends IInspectable {
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer uri,
-                        Pointer<COMObject> operation)>()(ptr.ref.lpVtbl,
-            uri?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr, operation);
+                        Pointer<COMObject> operation)>()(
+            ptr.ref.lpVtbl, uri?.toWinRTUri().lpVtbl ?? nullptr, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -65,7 +66,6 @@ class ILauncherStatics4 extends IInspectable {
   Future<LaunchQuerySupportStatus> queryAppUriSupportWithPackageFamilyNameAsync(
       Uri? uri, String packageFamilyName) {
     final operation = calloc<COMObject>();
-    final packageFamilyNameHString = packageFamilyName.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(7)
@@ -82,11 +82,9 @@ class ILauncherStatics4 extends IInspectable {
                 int Function(VTablePointer lpVtbl, VTablePointer uri,
                     int packageFamilyName, Pointer<COMObject> operation)>()(
         ptr.ref.lpVtbl,
-        uri?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr,
-        packageFamilyNameHString,
+        uri?.toWinRTUri().lpVtbl ?? nullptr,
+        packageFamilyName.toHString(),
         operation);
-
-    WindowsDeleteString(packageFamilyNameHString);
 
     if (FAILED(hr)) {
       free(operation);
@@ -115,8 +113,8 @@ class ILauncherStatics4 extends IInspectable {
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer uri,
-                        Pointer<COMObject> operation)>()(ptr.ref.lpVtbl,
-            uri?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr, operation);
+                        Pointer<COMObject> operation)>()(
+            ptr.ref.lpVtbl, uri?.toWinRTUri().lpVtbl ?? nullptr, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -150,8 +148,8 @@ class ILauncherStatics4 extends IInspectable {
                     int Function(VTablePointer lpVtbl, VTablePointer user,
                         VTablePointer uri, Pointer<COMObject> operation)>()(
             ptr.ref.lpVtbl,
-            user?.ptr.ref.lpVtbl ?? nullptr,
-            uri?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr,
+            user.lpVtbl,
+            uri?.toWinRTUri().lpVtbl ?? nullptr,
             operation);
 
     if (FAILED(hr)) {
@@ -188,9 +186,9 @@ class ILauncherStatics4 extends IInspectable {
                     VTablePointer options,
                     Pointer<COMObject> operation)>()(
         ptr.ref.lpVtbl,
-        user?.ptr.ref.lpVtbl ?? nullptr,
-        uri?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr,
-        options?.ptr.ref.lpVtbl ?? nullptr,
+        user.lpVtbl,
+        uri?.toWinRTUri().lpVtbl ?? nullptr,
+        options.lpVtbl,
         operation);
 
     if (FAILED(hr)) {
@@ -229,10 +227,10 @@ class ILauncherStatics4 extends IInspectable {
                     VTablePointer inputData,
                     Pointer<COMObject> operation)>()(
         ptr.ref.lpVtbl,
-        user?.ptr.ref.lpVtbl ?? nullptr,
-        uri?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr,
-        options?.ptr.ref.lpVtbl ?? nullptr,
-        inputData?.ptr.ref.lpVtbl ?? nullptr,
+        user.lpVtbl,
+        uri?.toWinRTUri().lpVtbl ?? nullptr,
+        options.lpVtbl,
+        inputData.lpVtbl,
         operation);
 
     if (FAILED(hr)) {
@@ -269,9 +267,9 @@ class ILauncherStatics4 extends IInspectable {
                     VTablePointer options,
                     Pointer<COMObject> operation)>()(
         ptr.ref.lpVtbl,
-        user?.ptr.ref.lpVtbl ?? nullptr,
-        uri?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr,
-        options?.ptr.ref.lpVtbl ?? nullptr,
+        user.lpVtbl,
+        uri?.toWinRTUri().lpVtbl ?? nullptr,
+        options.lpVtbl,
         operation);
 
     if (FAILED(hr)) {
@@ -310,10 +308,10 @@ class ILauncherStatics4 extends IInspectable {
                     VTablePointer inputData,
                     Pointer<COMObject> operation)>()(
         ptr.ref.lpVtbl,
-        user?.ptr.ref.lpVtbl ?? nullptr,
-        uri?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr,
-        options?.ptr.ref.lpVtbl ?? nullptr,
-        inputData?.ptr.ref.lpVtbl ?? nullptr,
+        user.lpVtbl,
+        uri?.toWinRTUri().lpVtbl ?? nullptr,
+        options.lpVtbl,
+        inputData.lpVtbl,
         operation);
 
     if (FAILED(hr)) {

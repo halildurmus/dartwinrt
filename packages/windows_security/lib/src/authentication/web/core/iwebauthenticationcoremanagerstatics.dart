@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -49,7 +50,7 @@ class IWebAuthenticationCoreManagerStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer request,
                     Pointer<COMObject> asyncInfo)>()(
-        ptr.ref.lpVtbl, request?.ptr.ref.lpVtbl ?? nullptr, asyncInfo);
+        ptr.ref.lpVtbl, request.lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -80,10 +81,7 @@ class IWebAuthenticationCoreManagerStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer request,
                     VTablePointer webAccount, Pointer<COMObject> asyncInfo)>()(
-        ptr.ref.lpVtbl,
-        request?.ptr.ref.lpVtbl ?? nullptr,
-        webAccount?.ptr.ref.lpVtbl ?? nullptr,
-        asyncInfo);
+        ptr.ref.lpVtbl, request.lpVtbl, webAccount.lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -112,7 +110,7 @@ class IWebAuthenticationCoreManagerStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer request,
                     Pointer<COMObject> asyncInfo)>()(
-        ptr.ref.lpVtbl, request?.ptr.ref.lpVtbl ?? nullptr, asyncInfo);
+        ptr.ref.lpVtbl, request.lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -143,10 +141,7 @@ class IWebAuthenticationCoreManagerStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer request,
                     VTablePointer webAccount, Pointer<COMObject> asyncInfo)>()(
-        ptr.ref.lpVtbl,
-        request?.ptr.ref.lpVtbl ?? nullptr,
-        webAccount?.ptr.ref.lpVtbl ?? nullptr,
-        asyncInfo);
+        ptr.ref.lpVtbl, request.lpVtbl, webAccount.lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -162,7 +157,6 @@ class IWebAuthenticationCoreManagerStatics extends IInspectable {
   Future<WebAccount?> findAccountAsync(
       WebAccountProvider? provider, String webAccountId) {
     final asyncInfo = calloc<COMObject>();
-    final webAccountIdHString = webAccountId.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(10)
@@ -178,12 +172,7 @@ class IWebAuthenticationCoreManagerStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer provider,
                     int webAccountId, Pointer<COMObject> asyncInfo)>()(
-        ptr.ref.lpVtbl,
-        provider?.ptr.ref.lpVtbl ?? nullptr,
-        webAccountIdHString,
-        asyncInfo);
-
-    WindowsDeleteString(webAccountIdHString);
+        ptr.ref.lpVtbl, provider.lpVtbl, webAccountId.toHString(), asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -198,7 +187,6 @@ class IWebAuthenticationCoreManagerStatics extends IInspectable {
   Future<WebAccountProvider?> findAccountProviderAsync(
       String webAccountProviderId) {
     final asyncInfo = calloc<COMObject>();
-    final webAccountProviderIdHString = webAccountProviderId.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(11)
@@ -213,9 +201,7 @@ class IWebAuthenticationCoreManagerStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int webAccountProviderId,
                     Pointer<COMObject> asyncInfo)>()(
-        ptr.ref.lpVtbl, webAccountProviderIdHString, asyncInfo);
-
-    WindowsDeleteString(webAccountProviderIdHString);
+        ptr.ref.lpVtbl, webAccountProviderId.toHString(), asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -231,8 +217,6 @@ class IWebAuthenticationCoreManagerStatics extends IInspectable {
   Future<WebAccountProvider?> findAccountProviderWithAuthorityAsync(
       String webAccountProviderId, String authority) {
     final asyncInfo = calloc<COMObject>();
-    final webAccountProviderIdHString = webAccountProviderId.toHString();
-    final authorityHString = authority.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(12)
@@ -249,12 +233,9 @@ class IWebAuthenticationCoreManagerStatics extends IInspectable {
                 int Function(VTablePointer lpVtbl, int webAccountProviderId,
                     int authority, Pointer<COMObject> asyncInfo)>()(
         ptr.ref.lpVtbl,
-        webAccountProviderIdHString,
-        authorityHString,
+        webAccountProviderId.toHString(),
+        authority.toHString(),
         asyncInfo);
-
-    WindowsDeleteString(webAccountProviderIdHString);
-    WindowsDeleteString(authorityHString);
 
     if (FAILED(hr)) {
       free(asyncInfo);

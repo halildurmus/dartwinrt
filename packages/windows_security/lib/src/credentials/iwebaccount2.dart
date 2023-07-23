@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 import 'package:windows_storage/windows_storage.dart';
@@ -51,7 +52,6 @@ class IWebAccount2 extends IInspectable implements IWebAccount {
 
       return value.toDartString();
     } finally {
-      WindowsDeleteString(value.value);
       free(value);
     }
   }
@@ -142,7 +142,6 @@ class IWebAccount2 extends IInspectable implements IWebAccount {
 
   Future<void> signOutWithClientIdAsync(String clientId) {
     final asyncInfo = calloc<COMObject>();
-    final clientIdHString = clientId.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(10)
@@ -155,9 +154,7 @@ class IWebAccount2 extends IInspectable implements IWebAccount {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int clientId,
                     Pointer<COMObject> asyncInfo)>()(
-        ptr.ref.lpVtbl, clientIdHString, asyncInfo);
-
-    WindowsDeleteString(clientIdHString);
+        ptr.ref.lpVtbl, clientId.toHString(), asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);

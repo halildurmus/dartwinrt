@@ -9,7 +9,8 @@
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -48,20 +49,13 @@ final class GpioChangeRecord implements WinRTStruct {
 /// @nodoc
 extension NativeGpioChangeRecordConversion on NativeGpioChangeRecord {
   /// Converts this [NativeGpioChangeRecord] into a Dart [GpioChangeRecord].
-  GpioChangeRecord toDart() {
-    return GpioChangeRecord(
-        relativeTime.toDartDuration(), GpioPinEdge.from(edge));
-  }
+  GpioChangeRecord toDart() =>
+      GpioChangeRecord(relativeTime.toDartDuration(), GpioPinEdge.from(edge));
 }
 
 /// @nodoc
 extension PointerNativeGpioChangeRecordConversion
     on Pointer<NativeGpioChangeRecord> {
-  /// Frees the allocated memory for [NativeGpioChangeRecord].
-  void free() {
-    calloc.free(this);
-  }
-
   /// Converts the referenced [NativeGpioChangeRecord] into a Dart
   /// [GpioChangeRecord].
   GpioChangeRecord toDart() {

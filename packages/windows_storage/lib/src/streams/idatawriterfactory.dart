@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -44,7 +45,7 @@ class IDataWriterFactory extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer outputStream,
                     Pointer<COMObject> dataWriter)>()(
-        ptr.ref.lpVtbl, outputStream?.ptr.ref.lpVtbl ?? nullptr, dataWriter);
+        ptr.ref.lpVtbl, outputStream.lpVtbl, dataWriter);
 
     if (FAILED(hr)) {
       free(dataWriter);

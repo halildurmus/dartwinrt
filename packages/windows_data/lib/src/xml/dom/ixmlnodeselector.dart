@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -30,21 +31,19 @@ class IXmlNodeSelector extends IInspectable {
 
   IXmlNode? selectSingleNode(String xpath) {
     final node = calloc<COMObject>();
-    final xpathHString = xpath.toHString();
 
     final hr = ptr.ref.vtable
-        .elementAt(6)
-        .cast<
-            Pointer<
-                NativeFunction<
-                    HRESULT Function(VTablePointer lpVtbl, IntPtr xpath,
-                        Pointer<COMObject> node)>>>()
-        .value
-        .asFunction<
-            int Function(VTablePointer lpVtbl, int xpath,
-                Pointer<COMObject> node)>()(ptr.ref.lpVtbl, xpathHString, node);
-
-    WindowsDeleteString(xpathHString);
+            .elementAt(6)
+            .cast<
+                Pointer<
+                    NativeFunction<
+                        HRESULT Function(VTablePointer lpVtbl, IntPtr xpath,
+                            Pointer<COMObject> node)>>>()
+            .value
+            .asFunction<
+                int Function(VTablePointer lpVtbl, int xpath,
+                    Pointer<COMObject> node)>()(
+        ptr.ref.lpVtbl, xpath.toHString(), node);
 
     if (FAILED(hr)) {
       free(node);
@@ -61,7 +60,6 @@ class IXmlNodeSelector extends IInspectable {
 
   XmlNodeList selectNodes(String xpath) {
     final nodelist = calloc<COMObject>();
-    final xpathHString = xpath.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(7)
@@ -74,9 +72,7 @@ class IXmlNodeSelector extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int xpath,
                     Pointer<COMObject> nodelist)>()(
-        ptr.ref.lpVtbl, xpathHString, nodelist);
-
-    WindowsDeleteString(xpathHString);
+        ptr.ref.lpVtbl, xpath.toHString(), nodelist);
 
     if (FAILED(hr)) {
       free(nodelist);
@@ -88,7 +84,6 @@ class IXmlNodeSelector extends IInspectable {
 
   IXmlNode? selectSingleNodeNS(String xpath, Object? namespaces) {
     final node = calloc<COMObject>();
-    final xpathHString = xpath.toHString();
 
     final hr =
         ptr.ref.vtable
@@ -106,11 +101,9 @@ class IXmlNodeSelector extends IInspectable {
                     int Function(VTablePointer lpVtbl, int xpath,
                         VTablePointer namespaces, Pointer<COMObject> node)>()(
             ptr.ref.lpVtbl,
-            xpathHString,
-            namespaces?.intoBox().ptr.ref.lpVtbl ?? nullptr,
+            xpath.toHString(),
+            namespaces?.intoBox().lpVtbl ?? nullptr,
             node);
-
-    WindowsDeleteString(xpathHString);
 
     if (FAILED(hr)) {
       free(node);
@@ -127,7 +120,6 @@ class IXmlNodeSelector extends IInspectable {
 
   XmlNodeList selectNodesNS(String xpath, Object? namespaces) {
     final nodelist = calloc<COMObject>();
-    final xpathHString = xpath.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(9)
@@ -144,11 +136,9 @@ class IXmlNodeSelector extends IInspectable {
                 int Function(VTablePointer lpVtbl, int xpath,
                     VTablePointer namespaces, Pointer<COMObject> nodelist)>()(
         ptr.ref.lpVtbl,
-        xpathHString,
-        namespaces?.intoBox().ptr.ref.lpVtbl ?? nullptr,
+        xpath.toHString(),
+        namespaces?.intoBox().lpVtbl ?? nullptr,
         nodelist);
-
-    WindowsDeleteString(xpathHString);
 
     if (FAILED(hr)) {
       free(nodelist);

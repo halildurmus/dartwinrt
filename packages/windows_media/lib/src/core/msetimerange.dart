@@ -9,7 +9,8 @@
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -42,18 +43,12 @@ final class MseTimeRange implements WinRTStruct {
 /// @nodoc
 extension NativeMseTimeRangeConversion on NativeMseTimeRange {
   /// Converts this [NativeMseTimeRange] into a Dart [MseTimeRange].
-  MseTimeRange toDart() {
-    return MseTimeRange(start.toDartDuration(), end.toDartDuration());
-  }
+  MseTimeRange toDart() =>
+      MseTimeRange(start.toDartDuration(), end.toDartDuration());
 }
 
 /// @nodoc
 extension PointerNativeMseTimeRangeConversion on Pointer<NativeMseTimeRange> {
-  /// Frees the allocated memory for [NativeMseTimeRange].
-  void free() {
-    calloc.free(this);
-  }
-
   /// Converts the referenced [NativeMseTimeRange] into a Dart [MseTimeRange].
   MseTimeRange toDart() {
     final ref = this.ref;

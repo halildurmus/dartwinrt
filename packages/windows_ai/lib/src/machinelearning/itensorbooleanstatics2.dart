@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 import 'package:windows_storage/windows_storage.dart';
@@ -105,8 +106,8 @@ class ITensorBooleanStatics2 extends IInspectable {
                     int shapeSize,
                     Pointer<Int64> shape,
                     VTablePointer buffer,
-                    Pointer<COMObject> result)>()(ptr.ref.lpVtbl, shape.length,
-        shapeArray, buffer?.ptr.ref.lpVtbl ?? nullptr, result);
+                    Pointer<COMObject> result)>()(
+        ptr.ref.lpVtbl, shape.length, shapeArray, buffer.lpVtbl, result);
 
     free(shapeArray);
 

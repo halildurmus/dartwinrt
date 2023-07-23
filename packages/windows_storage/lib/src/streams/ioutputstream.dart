@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -44,7 +45,7 @@ class IOutputStream extends IInspectable implements IClosable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer buffer,
                         Pointer<COMObject> operation)>()(
-            ptr.ref.lpVtbl, buffer?.ptr.ref.lpVtbl ?? nullptr, operation);
+            ptr.ref.lpVtbl, buffer.lpVtbl, operation);
 
     if (FAILED(hr)) {
       free(operation);

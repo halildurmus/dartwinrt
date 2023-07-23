@@ -205,17 +205,11 @@ final class StructProjection extends NativeStructProjection {
   String get nativeStructExtension {
     final toDartComment = wrapCommentText(
         'Converts this [Native$structName] into a Dart [$structName].');
-    final stringPreambles = fieldProjections.where((f) => f.isString).map((f) {
-      return '''
-        final ${f.fieldName}DartString = ${f.fieldName}.toDartString();
-        WindowsDeleteString(${f.fieldName});''';
-    }).join();
     final structConstructorArgs = fieldProjections.map((f) {
       if (f.paramProjection.typeProjection.isDartPrimitive) {
-        return f.paramProjection.type == 'String'
-            ? '${f.fieldName}DartString'
-            : f.fieldName;
+        return f.isString ? f.paramProjection.creator : f.fieldName;
       }
+
       final creator = f.paramProjection.creator
           .replaceFirst('${f.fieldName}.value', f.fieldName);
       return f.paramProjection is IReferenceParameterProjection
@@ -228,42 +222,22 @@ final class StructProjection extends NativeStructProjection {
 /// @nodoc
 extension Native${structName}Conversion on Native$structName {
   $toDartComment
-  $structName toDart() {
-    $stringPreambles
-    return $structName($structConstructorArgs);
-  }
+  $structName toDart() => $structName($structConstructorArgs);
 }
 ''';
   }
 
   String get pointerNativeStructExtension {
-    final freeComment =
-        wrapCommentText('Frees the allocated memory for [Native$structName].');
-    final hasStringField = fieldProjections.any((f) => f.isString);
-    final freeStrings = hasStringField
-        ? [
-            'final ref = this.ref;',
-            ...fieldProjections
-                .where((f) => f.isString)
-                .map((f) => 'WindowsDeleteString(ref.${f.fieldName});')
-          ].join('\n')
-        : '';
     final toDartComment = wrapCommentText(
         'Converts the referenced [Native$structName] into a Dart [$structName].');
     final toListComment = wrapCommentText(
         'Creates a `List<$structName>` from `Pointer<Native$structName>`. \n '
         '[length] must not be greater than the number of elements stored '
         'inside the `Pointer<Native$structName>`.');
-    final stringPreambles = fieldProjections.where((f) => f.isString).map((f) {
-      return '''
-        final ${f.fieldName}DartString = ref.${f.fieldName}.toDartString();
-        WindowsDeleteString(ref.${f.fieldName});''';
-    }).join();
     final structConstructorArgs = fieldProjections.map((f) {
       if (f.paramProjection.typeProjection.isDartPrimitive) {
-        return f.paramProjection.type == 'String'
-            ? '${f.fieldName}DartString'
-            : 'ref.${f.fieldName}';
+        if (f.isString) return 'ref.${f.fieldName}.toDartString()';
+        return 'ref.${f.fieldName}';
       }
 
       final creator = f.paramProjection.creator
@@ -279,17 +253,9 @@ extension Native${structName}Conversion on Native$structName {
       '''
 /// @nodoc
 extension PointerNative${structName}Conversion on Pointer<Native$structName> {
-  $freeComment
-  void free() {
-    $freeStrings
-    calloc.free(this);
-  }
-
   $toDartComment
   $structName toDart() {
-    final ref = this.ref;''',
-      if (stringPreambles.isNotEmpty) stringPreambles,
-      '''
+    final ref = this.ref;
     return $structName($structConstructorArgs);
   }
 

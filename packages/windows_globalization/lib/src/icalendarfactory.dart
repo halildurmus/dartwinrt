@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -31,8 +32,7 @@ class ICalendarFactory extends IInspectable {
     final result = calloc<COMObject>();
 
     final hr =
-        ptr
-                .ref.vtable
+        ptr.ref.vtable
                 .elementAt(6)
                 .cast<
                     Pointer<
@@ -43,21 +43,9 @@ class ICalendarFactory extends IInspectable {
                                 Pointer<COMObject> result)>>>()
                 .value
                 .asFunction<
-                    int Function(
-                        VTablePointer lpVtbl,
-                        VTablePointer languages,
-                        Pointer<COMObject>
-                            result)>()(
-            ptr.ref.lpVtbl,
-            languages ==
-                    null
-                ? nullptr
-                : IInspectable(languages
-                        .toInterface('{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'))
-                    .ptr
-                    .ref
-                    .lpVtbl,
-            result);
+                    int Function(VTablePointer lpVtbl, VTablePointer languages,
+                        Pointer<COMObject> result)>()(
+            ptr.ref.lpVtbl, languages.lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -70,8 +58,6 @@ class ICalendarFactory extends IInspectable {
   Calendar createCalendar(
       IIterable<String>? languages, String calendar, String clock) {
     final result = calloc<COMObject>();
-    final calendarHString = calendar.toHString();
-    final clockHString = clock.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(7)
@@ -89,19 +75,10 @@ class ICalendarFactory extends IInspectable {
                 int Function(VTablePointer lpVtbl, VTablePointer languages,
                     int calendar, int clock, Pointer<COMObject> result)>()(
         ptr.ref.lpVtbl,
-        languages == null
-            ? nullptr
-            : IInspectable(languages
-                    .toInterface('{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'))
-                .ptr
-                .ref
-                .lpVtbl,
-        calendarHString,
-        clockHString,
+        languages.lpVtbl,
+        calendar.toHString(),
+        clock.toHString(),
         result);
-
-    WindowsDeleteString(calendarHString);
-    WindowsDeleteString(clockHString);
 
     if (FAILED(hr)) {
       free(result);

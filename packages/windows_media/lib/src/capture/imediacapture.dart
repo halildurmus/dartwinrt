@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 import 'package:windows_storage/windows_storage.dart';
@@ -78,9 +79,7 @@ class IMediaCapture extends IInspectable {
                     VTablePointer lpVtbl,
                     VTablePointer mediaCaptureInitializationSettings,
                     Pointer<COMObject> asyncInfo)>()(
-        ptr.ref.lpVtbl,
-        mediaCaptureInitializationSettings?.ptr.ref.lpVtbl ?? nullptr,
-        asyncInfo);
+        ptr.ref.lpVtbl, mediaCaptureInitializationSettings.lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -111,10 +110,7 @@ class IMediaCapture extends IInspectable {
                     VTablePointer encodingProfile,
                     VTablePointer file,
                     Pointer<COMObject> asyncInfo)>()(
-        ptr.ref.lpVtbl,
-        encodingProfile?.ptr.ref.lpVtbl ?? nullptr,
-        file?.ptr.ref.lpVtbl ?? nullptr,
-        asyncInfo);
+        ptr.ref.lpVtbl, encodingProfile.lpVtbl, file.lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -145,10 +141,7 @@ class IMediaCapture extends IInspectable {
                     VTablePointer encodingProfile,
                     VTablePointer stream,
                     Pointer<COMObject> asyncInfo)>()(
-        ptr.ref.lpVtbl,
-        encodingProfile?.ptr.ref.lpVtbl ?? nullptr,
-        stream?.ptr.ref.lpVtbl ?? nullptr,
-        asyncInfo);
+        ptr.ref.lpVtbl, encodingProfile.lpVtbl, stream.lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -178,11 +171,8 @@ class IMediaCapture extends IInspectable {
                     VTablePointer lpVtbl,
                     VTablePointer encodingProfile,
                     VTablePointer customMediaSink,
-                    Pointer<COMObject> asyncInfo)>()(
-        ptr.ref.lpVtbl,
-        encodingProfile?.ptr.ref.lpVtbl ?? nullptr,
-        customMediaSink?.ptr.ref.lpVtbl ?? nullptr,
-        asyncInfo);
+                    Pointer<COMObject> asyncInfo)>()(ptr.ref.lpVtbl,
+        encodingProfile.lpVtbl, customMediaSink.lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -197,7 +187,6 @@ class IMediaCapture extends IInspectable {
       String customSinkActivationId,
       IPropertySet? customSinkSettings) {
     final asyncInfo = calloc<COMObject>();
-    final customSinkActivationIdHString = customSinkActivationId.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(11)
@@ -219,12 +208,10 @@ class IMediaCapture extends IInspectable {
                     VTablePointer customSinkSettings,
                     Pointer<COMObject> asyncInfo)>()(
         ptr.ref.lpVtbl,
-        encodingProfile?.ptr.ref.lpVtbl ?? nullptr,
-        customSinkActivationIdHString,
-        customSinkSettings?.ptr.ref.lpVtbl ?? nullptr,
+        encodingProfile.lpVtbl,
+        customSinkActivationId.toHString(),
+        customSinkSettings.lpVtbl,
         asyncInfo);
-
-    WindowsDeleteString(customSinkActivationIdHString);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -276,10 +263,7 @@ class IMediaCapture extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer type,
                         VTablePointer file, Pointer<COMObject> asyncInfo)>()(
-            ptr.ref.lpVtbl,
-            type?.ptr.ref.lpVtbl ?? nullptr,
-            file?.ptr.ref.lpVtbl ?? nullptr,
-            asyncInfo);
+            ptr.ref.lpVtbl, type.lpVtbl, file.lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -308,10 +292,7 @@ class IMediaCapture extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer type,
                         VTablePointer stream, Pointer<COMObject> asyncInfo)>()(
-            ptr.ref.lpVtbl,
-            type?.ptr.ref.lpVtbl ?? nullptr,
-            stream?.ptr.ref.lpVtbl ?? nullptr,
-            asyncInfo);
+            ptr.ref.lpVtbl, type.lpVtbl, stream.lpVtbl, asyncInfo);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -326,7 +307,6 @@ class IMediaCapture extends IInspectable {
   Future<void> addEffectAsync(MediaStreamType mediaStreamType,
       String effectActivationID, IPropertySet? effectSettings) {
     final asyncInfo = calloc<COMObject>();
-    final effectActivationIDHString = effectActivationID.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(15)
@@ -349,11 +329,9 @@ class IMediaCapture extends IInspectable {
                     Pointer<COMObject> asyncInfo)>()(
         ptr.ref.lpVtbl,
         mediaStreamType.value,
-        effectActivationIDHString,
-        effectSettings?.ptr.ref.lpVtbl ?? nullptr,
+        effectActivationID.toHString(),
+        effectSettings.lpVtbl,
         asyncInfo);
-
-    WindowsDeleteString(effectActivationIDHString);
 
     if (FAILED(hr)) {
       free(asyncInfo);
@@ -410,9 +388,9 @@ class IMediaCapture extends IInspectable {
         ptr.ref.lpVtbl,
         mediaStreamType.value,
         propertyIdNativeStructPtr.ref,
-        propertyValue?.intoBox().ptr.ref.lpVtbl ?? nullptr);
+        propertyValue?.intoBox().lpVtbl ?? nullptr);
 
-    propertyIdNativeStructPtr.free();
+    free(propertyIdNativeStructPtr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -440,7 +418,7 @@ class IMediaCapture extends IInspectable {
         propertyIdNativeStructPtr.ref,
         propertyValue);
 
-    propertyIdNativeStructPtr.free();
+    free(propertyIdNativeStructPtr);
 
     if (FAILED(hr)) {
       free(propertyValue);

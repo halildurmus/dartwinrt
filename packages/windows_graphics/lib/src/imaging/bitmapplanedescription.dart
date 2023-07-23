@@ -9,7 +9,8 @@
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -54,19 +55,13 @@ extension NativeBitmapPlaneDescriptionConversion
     on NativeBitmapPlaneDescription {
   /// Converts this [NativeBitmapPlaneDescription] into a Dart
   /// [BitmapPlaneDescription].
-  BitmapPlaneDescription toDart() {
-    return BitmapPlaneDescription(startIndex, width, height, stride);
-  }
+  BitmapPlaneDescription toDart() =>
+      BitmapPlaneDescription(startIndex, width, height, stride);
 }
 
 /// @nodoc
 extension PointerNativeBitmapPlaneDescriptionConversion
     on Pointer<NativeBitmapPlaneDescription> {
-  /// Frees the allocated memory for [NativeBitmapPlaneDescription].
-  void free() {
-    calloc.free(this);
-  }
-
   /// Converts the referenced [NativeBitmapPlaneDescription] into a Dart
   /// [BitmapPlaneDescription].
   BitmapPlaneDescription toDart() {

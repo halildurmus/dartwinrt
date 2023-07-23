@@ -9,7 +9,8 @@
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -55,19 +56,13 @@ final class GamepadVibration implements WinRTStruct {
 /// @nodoc
 extension NativeGamepadVibrationConversion on NativeGamepadVibration {
   /// Converts this [NativeGamepadVibration] into a Dart [GamepadVibration].
-  GamepadVibration toDart() {
-    return GamepadVibration(leftMotor, rightMotor, leftTrigger, rightTrigger);
-  }
+  GamepadVibration toDart() =>
+      GamepadVibration(leftMotor, rightMotor, leftTrigger, rightTrigger);
 }
 
 /// @nodoc
 extension PointerNativeGamepadVibrationConversion
     on Pointer<NativeGamepadVibration> {
-  /// Frees the allocated memory for [NativeGamepadVibration].
-  void free() {
-    calloc.free(this);
-  }
-
   /// Converts the referenced [NativeGamepadVibration] into a Dart
   /// [GamepadVibration].
   GamepadVibration toDart() {

@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -32,7 +33,6 @@ class IMultiSourceMediaFrameReference extends IInspectable
 
   MediaFrameReference? tryGetFrameReferenceBySourceId(String sourceId) {
     final value = calloc<COMObject>();
-    final sourceIdHString = sourceId.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -45,9 +45,7 @@ class IMultiSourceMediaFrameReference extends IInspectable
             .asFunction<
                 int Function(VTablePointer lpVtbl, int sourceId,
                     Pointer<COMObject> value)>()(
-        ptr.ref.lpVtbl, sourceIdHString, value);
-
-    WindowsDeleteString(sourceIdHString);
+        ptr.ref.lpVtbl, sourceId.toHString(), value);
 
     if (FAILED(hr)) {
       free(value);

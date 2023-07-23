@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -57,7 +58,6 @@ class IBatteryStatics extends IInspectable {
 
   Future<Battery?> fromIdAsync(String deviceId) {
     final result = calloc<COMObject>();
-    final deviceIdHString = deviceId.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(7)
@@ -70,9 +70,7 @@ class IBatteryStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int deviceId,
                     Pointer<COMObject> result)>()(
-        ptr.ref.lpVtbl, deviceIdHString, result);
-
-    WindowsDeleteString(deviceIdHString);
+        ptr.ref.lpVtbl, deviceId.toHString(), result);
 
     if (FAILED(hr)) {
       free(result);
@@ -104,7 +102,6 @@ class IBatteryStatics extends IInspectable {
 
       return result.toDartString();
     } finally {
-      WindowsDeleteString(result.value);
       free(result);
     }
   }

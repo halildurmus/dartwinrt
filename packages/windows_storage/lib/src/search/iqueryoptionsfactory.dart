@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -51,16 +52,7 @@ class IQueryOptionsFactory extends IInspectable {
                     int query,
                     VTablePointer fileTypeFilter,
                     Pointer<COMObject> queryOptions)>()(
-        ptr.ref.lpVtbl,
-        query.value,
-        fileTypeFilter == null
-            ? nullptr
-            : IInspectable(fileTypeFilter
-                    .toInterface('{e2fcc7c1-3bfc-5a0b-b2b0-72e769d1cb7e}'))
-                .ptr
-                .ref
-                .lpVtbl,
-        queryOptions);
+        ptr.ref.lpVtbl, query.value, fileTypeFilter.lpVtbl, queryOptions);
 
     if (FAILED(hr)) {
       free(queryOptions);

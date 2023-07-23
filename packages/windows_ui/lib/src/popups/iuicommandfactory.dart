@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -29,7 +30,6 @@ class IUICommandFactory extends IInspectable {
 
   UICommand create(String label) {
     final instance = calloc<COMObject>();
-    final labelHString = label.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -42,9 +42,7 @@ class IUICommandFactory extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int label,
                     Pointer<COMObject> instance)>()(
-        ptr.ref.lpVtbl, labelHString, instance);
-
-    WindowsDeleteString(labelHString);
+        ptr.ref.lpVtbl, label.toHString(), instance);
 
     if (FAILED(hr)) {
       free(instance);
@@ -56,7 +54,6 @@ class IUICommandFactory extends IInspectable {
 
   UICommand createWithHandler(String label, Pointer<COMObject> action) {
     final instance = calloc<COMObject>();
-    final labelHString = label.toHString();
 
     final hr =
         ptr.ref.vtable
@@ -73,9 +70,7 @@ class IUICommandFactory extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, int label,
                         VTablePointer action, Pointer<COMObject> instance)>()(
-            ptr.ref.lpVtbl, labelHString, action.ref.lpVtbl, instance);
-
-    WindowsDeleteString(labelHString);
+            ptr.ref.lpVtbl, label.toHString(), action.ref.lpVtbl, instance);
 
     if (FAILED(hr)) {
       free(instance);
@@ -88,7 +83,6 @@ class IUICommandFactory extends IInspectable {
   UICommand createWithHandlerAndId(
       String label, Pointer<COMObject> action, Object? commandId) {
     final instance = calloc<COMObject>();
-    final labelHString = label.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(8)
@@ -110,12 +104,10 @@ class IUICommandFactory extends IInspectable {
                     VTablePointer commandId,
                     Pointer<COMObject> instance)>()(
         ptr.ref.lpVtbl,
-        labelHString,
+        label.toHString(),
         action.ref.lpVtbl,
-        commandId?.intoBox().ptr.ref.lpVtbl ?? nullptr,
+        commandId?.intoBox().lpVtbl ?? nullptr,
         instance);
-
-    WindowsDeleteString(labelHString);
 
     if (FAILED(hr)) {
       free(instance);

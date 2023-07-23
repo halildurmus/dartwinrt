@@ -20,9 +20,6 @@ abstract base class ArrayParameterProjection extends ParameterProjection {
       return switch (arrayPassingStyle) {
         ArrayPassingStyle.fill => FillArrayParameterProjection(param),
         ArrayPassingStyle.pass
-            when projectionKind == ProjectionKind.stringArray =>
-          StringPassArrayParameterProjection(param),
-        ArrayPassingStyle.pass
             when projectionKind == ProjectionKind.structArray =>
           StructPassArrayParameterProjection(param),
         ArrayPassingStyle.pass => PassArrayParameterProjection(param),

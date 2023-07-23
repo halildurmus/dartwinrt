@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 
 import '../internal.dart';
 import 'collections/iiterator.dart';
@@ -321,7 +322,6 @@ class IPropertyValueStatics extends IInspectable {
 
   IPropertyValue createString(String value) {
     final propertyValue = calloc<COMObject>();
-    final valueHString = value.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(18)
@@ -334,9 +334,7 @@ class IPropertyValueStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int value,
                     Pointer<COMObject> propertyValue)>()(
-        ptr.ref.lpVtbl, valueHString, propertyValue);
-
-    WindowsDeleteString(valueHString);
+        ptr.ref.lpVtbl, value.toHString(), propertyValue);
 
     if (FAILED(hr)) {
       free(propertyValue);
@@ -362,8 +360,8 @@ class IPropertyValueStatics extends IInspectable {
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer value,
-                        Pointer<COMObject> propertyValue)>()(ptr.ref.lpVtbl,
-            value?.intoBox().ptr.ref.lpVtbl ?? nullptr, propertyValue);
+                        Pointer<COMObject> propertyValue)>()(
+            ptr.ref.lpVtbl, value?.intoBox().lpVtbl ?? nullptr, propertyValue);
 
     if (FAILED(hr)) {
       free(propertyValue);
@@ -390,7 +388,7 @@ class IPropertyValueStatics extends IInspectable {
                     Pointer<COMObject> propertyValue)>()(
         ptr.ref.lpVtbl, valueNativeStructPtr.ref, propertyValue);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) {
       free(propertyValue);
@@ -468,7 +466,7 @@ class IPropertyValueStatics extends IInspectable {
                         Pointer<COMObject> propertyValue)>()(
             ptr.ref.lpVtbl, valueNativeStructPtr.ref, propertyValue);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) {
       free(propertyValue);
@@ -495,7 +493,7 @@ class IPropertyValueStatics extends IInspectable {
                     Pointer<COMObject> propertyValue)>()(
         ptr.ref.lpVtbl, valueNativeStructPtr.ref, propertyValue);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) {
       free(propertyValue);
@@ -522,7 +520,7 @@ class IPropertyValueStatics extends IInspectable {
                     Pointer<COMObject> propertyValue)>()(
         ptr.ref.lpVtbl, valueNativeStructPtr.ref, propertyValue);
 
-    valueNativeStructPtr.free();
+    free(valueNativeStructPtr);
 
     if (FAILED(hr)) {
       free(propertyValue);
@@ -897,11 +895,9 @@ class IPropertyValueStatics extends IInspectable {
 
   IPropertyValue createStringArray(List<String> value) {
     final propertyValue = calloc<COMObject>();
-    final valueHandles = <int>[];
-    final valueArray = calloc<HSTRING>(value.length);
+    final valueArray = calloc<IntPtr>(value.length);
     for (var i = 0; i < value.length; i++) {
       valueArray[i] = value[i].toHString();
-      valueHandles.add(valueArray[i]);
     }
 
     final hr = ptr.ref.vtable
@@ -920,7 +916,6 @@ class IPropertyValueStatics extends IInspectable {
                     Pointer<IntPtr> value, Pointer<COMObject> propertyValue)>()(
         ptr.ref.lpVtbl, value.length, valueArray, propertyValue);
 
-    valueHandles.forEach(WindowsDeleteString);
     free(valueArray);
 
     if (FAILED(hr)) {
@@ -935,7 +930,7 @@ class IPropertyValueStatics extends IInspectable {
     final propertyValue = calloc<COMObject>();
     final valueArray = calloc<VTablePointer>(value.length);
     for (var i = 0; i < value.length; i++) {
-      valueArray[i] = value[i]?.intoBox().ptr.ref.lpVtbl ?? nullptr;
+      valueArray[i] = value[i]?.intoBox().lpVtbl ?? nullptr;
     }
 
     final hr = ptr.ref.vtable

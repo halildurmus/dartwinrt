@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -45,7 +46,7 @@ class ICameraIntrinsics2 extends IInspectable {
 
       return value.toDart();
     } finally {
-      value.free();
+      free(value);
     }
   }
 
@@ -71,13 +72,13 @@ class ICameraIntrinsics2 extends IInspectable {
                           Pointer<NativePoint> result)>()(
               ptr.ref.lpVtbl, inputNativeStructPtr.ref, result);
 
-      inputNativeStructPtr.free();
+      free(inputNativeStructPtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDart();
     } finally {
-      result.free();
+      free(result);
     }
   }
 
@@ -143,13 +144,13 @@ class ICameraIntrinsics2 extends IInspectable {
                           Pointer<NativePoint> result)>()(
               ptr.ref.lpVtbl, inputNativeStructPtr.ref, result);
 
-      inputNativeStructPtr.free();
+      free(inputNativeStructPtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
       return result.toDart();
     } finally {
-      result.free();
+      free(result);
     }
   }
 

@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -184,8 +185,8 @@ class IStorageQueryResultBase extends IInspectable {
                 .value
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer value,
-                        Pointer<COMObject> operation)>()(ptr.ref.lpVtbl,
-            value?.intoBox().ptr.ref.lpVtbl ?? nullptr, operation);
+                        Pointer<COMObject> operation)>()(
+            ptr.ref.lpVtbl, value?.intoBox().lpVtbl ?? nullptr, operation);
 
     if (FAILED(hr)) {
       free(operation);
@@ -237,7 +238,7 @@ class IStorageQueryResultBase extends IInspectable {
             .asFunction<
                 int Function(
                     VTablePointer lpVtbl, VTablePointer newQueryOptions)>()(
-        ptr.ref.lpVtbl, newQueryOptions?.ptr.ref.lpVtbl ?? nullptr);
+        ptr.ref.lpVtbl, newQueryOptions.lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

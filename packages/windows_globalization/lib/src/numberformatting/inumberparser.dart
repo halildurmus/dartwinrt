@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -27,7 +28,6 @@ class INumberParser extends IInspectable {
 
   int? parseInt(String text) {
     final result = calloc<COMObject>();
-    final textHString = text.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -40,9 +40,7 @@ class INumberParser extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int text,
                     Pointer<COMObject> result)>()(
-        ptr.ref.lpVtbl, textHString, result);
-
-    WindowsDeleteString(textHString);
+        ptr.ref.lpVtbl, text.toHString(), result);
 
     if (FAILED(hr)) {
       free(result);
@@ -61,7 +59,6 @@ class INumberParser extends IInspectable {
 
   int? parseUInt(String text) {
     final result = calloc<COMObject>();
-    final textHString = text.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(7)
@@ -74,9 +71,7 @@ class INumberParser extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int text,
                     Pointer<COMObject> result)>()(
-        ptr.ref.lpVtbl, textHString, result);
-
-    WindowsDeleteString(textHString);
+        ptr.ref.lpVtbl, text.toHString(), result);
 
     if (FAILED(hr)) {
       free(result);
@@ -95,7 +90,6 @@ class INumberParser extends IInspectable {
 
   double? parseDouble(String text) {
     final result = calloc<COMObject>();
-    final textHString = text.toHString();
 
     final hr = ptr.ref.vtable
             .elementAt(8)
@@ -108,9 +102,7 @@ class INumberParser extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int text,
                     Pointer<COMObject> result)>()(
-        ptr.ref.lpVtbl, textHString, result);
-
-    WindowsDeleteString(textHString);
+        ptr.ref.lpVtbl, text.toHString(), result);
 
     if (FAILED(hr)) {
       free(result);

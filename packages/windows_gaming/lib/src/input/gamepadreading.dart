@@ -9,7 +9,8 @@
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -80,27 +81,20 @@ final class GamepadReading implements WinRTStruct {
 /// @nodoc
 extension NativeGamepadReadingConversion on NativeGamepadReading {
   /// Converts this [NativeGamepadReading] into a Dart [GamepadReading].
-  GamepadReading toDart() {
-    return GamepadReading(
-        timestamp,
-        GamepadButtons.from(buttons),
-        leftTrigger,
-        rightTrigger,
-        leftThumbstickX,
-        leftThumbstickY,
-        rightThumbstickX,
-        rightThumbstickY);
-  }
+  GamepadReading toDart() => GamepadReading(
+      timestamp,
+      GamepadButtons.from(buttons),
+      leftTrigger,
+      rightTrigger,
+      leftThumbstickX,
+      leftThumbstickY,
+      rightThumbstickX,
+      rightThumbstickY);
 }
 
 /// @nodoc
 extension PointerNativeGamepadReadingConversion
     on Pointer<NativeGamepadReading> {
-  /// Frees the allocated memory for [NativeGamepadReading].
-  void free() {
-    calloc.free(this);
-  }
-
   /// Converts the referenced [NativeGamepadReading] into a Dart
   /// [GamepadReading].
   GamepadReading toDart() {

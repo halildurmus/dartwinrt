@@ -9,7 +9,8 @@
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -50,20 +51,13 @@ extension NativeDisplayPresentationRateConversion
     on NativeDisplayPresentationRate {
   /// Converts this [NativeDisplayPresentationRate] into a Dart
   /// [DisplayPresentationRate].
-  DisplayPresentationRate toDart() {
-    return DisplayPresentationRate(
-        verticalSyncRate.toDart(), verticalSyncsPerPresentation);
-  }
+  DisplayPresentationRate toDart() => DisplayPresentationRate(
+      verticalSyncRate.toDart(), verticalSyncsPerPresentation);
 }
 
 /// @nodoc
 extension PointerNativeDisplayPresentationRateConversion
     on Pointer<NativeDisplayPresentationRate> {
-  /// Frees the allocated memory for [NativeDisplayPresentationRate].
-  void free() {
-    calloc.free(this);
-  }
-
   /// Converts the referenced [NativeDisplayPresentationRate] into a Dart
   /// [DisplayPresentationRate].
   DisplayPresentationRate toDart() {

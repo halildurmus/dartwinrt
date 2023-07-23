@@ -9,7 +9,8 @@
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 
 import '../../internal.dart';
 import '../winrt_struct.dart';
@@ -52,18 +53,11 @@ final class Quaternion implements WinRTStruct {
 /// @nodoc
 extension NativeQuaternionConversion on NativeQuaternion {
   /// Converts this [NativeQuaternion] into a Dart [Quaternion].
-  Quaternion toDart() {
-    return Quaternion(x, y, z, w);
-  }
+  Quaternion toDart() => Quaternion(x, y, z, w);
 }
 
 /// @nodoc
 extension PointerNativeQuaternionConversion on Pointer<NativeQuaternion> {
-  /// Frees the allocated memory for [NativeQuaternion].
-  void free() {
-    calloc.free(this);
-  }
-
   /// Converts the referenced [NativeQuaternion] into a Dart [Quaternion].
   Quaternion toDart() {
     final ref = this.ref;

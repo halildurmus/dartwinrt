@@ -54,7 +54,7 @@ final class IReferenceParameterProjection extends ParameterProjection {
 
   @override
   String get into =>
-      '$identifier?.toReference($toReferenceArgument).ptr.ref.lpVtbl ?? nullptr';
+      '$identifier?.toReference($toReferenceArgument).lpVtbl ?? nullptr';
 
   // No deallocation is needed as Finalizer will handle it.
   @override

@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 import 'package:windows_system/windows_system.dart';
@@ -61,7 +62,6 @@ class IToastNotificationManagerForUser extends IInspectable {
 
   ToastNotifier? createToastNotifierWithId(String applicationId) {
     final result = calloc<COMObject>();
-    final applicationIdHString = applicationId.toHString();
 
     final hr =
         ptr.ref.vtable
@@ -77,9 +77,7 @@ class IToastNotificationManagerForUser extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, int applicationId,
                         Pointer<COMObject> result)>()(
-            ptr.ref.lpVtbl, applicationIdHString, result);
-
-    WindowsDeleteString(applicationIdHString);
+            ptr.ref.lpVtbl, applicationId.toHString(), result);
 
     if (FAILED(hr)) {
       free(result);

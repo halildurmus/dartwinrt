@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 import 'package:windows_globalization/windows_globalization.dart';
@@ -98,7 +99,7 @@ class IOcrEngineStatics extends IInspectable {
               .asFunction<
                   int Function(VTablePointer lpVtbl, VTablePointer language,
                       Pointer<Bool> result)>()(
-          ptr.ref.lpVtbl, language?.ptr.ref.lpVtbl ?? nullptr, result);
+          ptr.ref.lpVtbl, language.lpVtbl, result);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -125,7 +126,7 @@ class IOcrEngineStatics extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer language,
                         Pointer<COMObject> result)>()(
-            ptr.ref.lpVtbl, language?.ptr.ref.lpVtbl ?? nullptr, result);
+            ptr.ref.lpVtbl, language.lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);

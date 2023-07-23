@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -60,25 +61,19 @@ class ITensorInt32BitStatics extends IInspectable {
     final result = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
-            .elementAt(7)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, VTablePointer shape,
-                            Pointer<COMObject> result)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer shape,
-                    Pointer<COMObject> result)>()(
-        ptr.ref.lpVtbl,
-        shape == null
-            ? nullptr
-            : IInspectable(
-                    shape.toInterface('{7784427e-f9cc-518d-964b-e50d5ce727f1}'))
-                .ptr
-                .ref
-                .lpVtbl,
-        result);
+        .elementAt(7)
+        .cast<
+            Pointer<
+                NativeFunction<
+                    HRESULT Function(VTablePointer lpVtbl, VTablePointer shape,
+                        Pointer<COMObject> result)>>>()
+        .value
+        .asFunction<
+            int Function(
+                VTablePointer lpVtbl,
+                VTablePointer shape,
+                Pointer<COMObject>
+                    result)>()(ptr.ref.lpVtbl, shape.lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -119,17 +114,7 @@ class ITensorInt32BitStatics extends IInspectable {
                     int dataSize,
                     Pointer<Int32> data,
                     Pointer<COMObject> result)>()(
-        ptr.ref.lpVtbl,
-        shape == null
-            ? nullptr
-            : IInspectable(
-                    shape.toInterface('{7784427e-f9cc-518d-964b-e50d5ce727f1}'))
-                .ptr
-                .ref
-                .lpVtbl,
-        data.length,
-        dataArray,
-        result);
+        ptr.ref.lpVtbl, shape.lpVtbl, data.length, dataArray, result);
 
     free(dataArray);
 
@@ -150,33 +135,22 @@ class ITensorInt32BitStatics extends IInspectable {
       IIterable<int>? shape, IIterable<int>? data) {
     final result = calloc<COMObject>();
 
-    final hr = ptr.ref.vtable
-            .elementAt(9)
-            .cast<
-                Pointer<
-                    NativeFunction<
-                        HRESULT Function(VTablePointer lpVtbl, VTablePointer shape,
-                            VTablePointer data, Pointer<COMObject> result)>>>()
-            .value
-            .asFunction<
-                int Function(VTablePointer lpVtbl, VTablePointer shape,
-                    VTablePointer data, Pointer<COMObject> result)>()(
-        ptr.ref.lpVtbl,
-        shape == null
-            ? nullptr
-            : IInspectable(
-                    shape.toInterface('{7784427e-f9cc-518d-964b-e50d5ce727f1}'))
-                .ptr
-                .ref
-                .lpVtbl,
-        data == null
-            ? nullptr
-            : IInspectable(
-                    data.toInterface('{81a643fb-f51c-5565-83c4-f96425777b66}'))
-                .ptr
-                .ref
-                .lpVtbl,
-        result);
+    final hr =
+        ptr.ref.vtable
+                .elementAt(9)
+                .cast<
+                    Pointer<
+                        NativeFunction<
+                            HRESULT Function(
+                                VTablePointer lpVtbl,
+                                VTablePointer shape,
+                                VTablePointer data,
+                                Pointer<COMObject> result)>>>()
+                .value
+                .asFunction<
+                    int Function(VTablePointer lpVtbl, VTablePointer shape,
+                        VTablePointer data, Pointer<COMObject> result)>()(
+            ptr.ref.lpVtbl, shape.lpVtbl, data.lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);

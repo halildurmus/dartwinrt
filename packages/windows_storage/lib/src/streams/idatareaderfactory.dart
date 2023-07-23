@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -44,7 +45,7 @@ class IDataReaderFactory extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer inputStream,
                     Pointer<COMObject> dataReader)>()(
-        ptr.ref.lpVtbl, inputStream?.ptr.ref.lpVtbl ?? nullptr, dataReader);
+        ptr.ref.lpVtbl, inputStream.lpVtbl, dataReader);
 
     if (FAILED(hr)) {
       free(dataReader);

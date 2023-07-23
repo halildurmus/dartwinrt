@@ -19,7 +19,7 @@ final class AsyncActionParameterProjection extends ParameterProjection {
   String get creator => 'IAsyncAction.fromPtr($identifier).toFuture()';
 
   @override
-  String get into => '$identifier.ptr.ref.lpVtbl';
+  String get into => '$identifier.lpVtbl';
 
   // No deallocation is needed as Finalizer will handle it.
   @override
@@ -149,7 +149,7 @@ final class AsyncOperationParameterProjection
   String get creator => 'asyncOperation.toFuture($onCompletedCallback)';
 
   @override
-  String get into => '$identifier.ptr.ref.lpVtbl';
+  String get into => '$identifier.lpVtbl';
 }
 
 /// Parameter projection for `IAsyncOperationWithProgress` parameters.

@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 import 'package:windows_graphics/windows_graphics.dart';
@@ -89,8 +90,8 @@ class IVideoFrameStatics extends IInspectable {
                     int width,
                     int height,
                     VTablePointer device,
-                    Pointer<COMObject> result)>()(ptr.ref.lpVtbl, format.value,
-        width, height, device?.ptr.ref.lpVtbl ?? nullptr, result);
+                    Pointer<COMObject> result)>()(
+        ptr.ref.lpVtbl, format.value, width, height, device.lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -122,7 +123,7 @@ class IVideoFrameStatics extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer bitmap,
                         Pointer<COMObject> result)>()(
-            ptr.ref.lpVtbl, bitmap?.ptr.ref.lpVtbl ?? nullptr, result);
+            ptr.ref.lpVtbl, bitmap.lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);
@@ -154,7 +155,7 @@ class IVideoFrameStatics extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer surface,
                         Pointer<COMObject> result)>()(
-            ptr.ref.lpVtbl, surface?.ptr.ref.lpVtbl ?? nullptr, result);
+            ptr.ref.lpVtbl, surface.lpVtbl, result);
 
     if (FAILED(hr)) {
       free(result);

@@ -42,17 +42,17 @@ final class UriParameterProjection extends ParameterProjection {
   @override
   String get into {
     final buffer = StringBuffer()..write(identifier);
-    if (isNullable) buffer.write('?');
+    if (isNullable && needsConversionToWinRTUri) buffer.write('?');
     if (needsConversionToWinRTUri) buffer.write('.toWinRTUri()');
-    buffer.write('.ptr.ref.lpVtbl');
-    if (isNullable) buffer.write(' ?? nullptr');
+    buffer.write('.lpVtbl');
+    if (isNullable && needsConversionToWinRTUri) buffer.write(' ?? nullptr');
     return buffer.toString();
   }
 
   @override
   String get toListInto => isNullable
-      ? '$identifier[i]?.toWinRTUri().ptr.ref.lpVtbl ?? nullptr'
-      : '$identifier[i].toWinRTUri().ptr.ref.lpVtbl';
+      ? '$identifier[i]?.toWinRTUri().lpVtbl ?? nullptr'
+      : '$identifier[i].toWinRTUri().lpVtbl';
 
   @override
   String get toListIdentifier => 'toDartUriList';

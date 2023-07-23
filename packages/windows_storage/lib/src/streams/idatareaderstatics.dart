@@ -11,7 +11,8 @@ import 'dart:async';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -45,7 +46,7 @@ class IDataReaderStatics extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer buffer,
                         Pointer<COMObject> dataReader)>()(
-            ptr.ref.lpVtbl, buffer?.ptr.ref.lpVtbl ?? nullptr, dataReader);
+            ptr.ref.lpVtbl, buffer.lpVtbl, dataReader);
 
     if (FAILED(hr)) {
       free(dataReader);

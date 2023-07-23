@@ -9,7 +9,8 @@
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -50,18 +51,11 @@ final class Color implements WinRTStruct {
 /// @nodoc
 extension NativeColorConversion on NativeColor {
   /// Converts this [NativeColor] into a Dart [Color].
-  Color toDart() {
-    return Color(a, r, g, b);
-  }
+  Color toDart() => Color(a, r, g, b);
 }
 
 /// @nodoc
 extension PointerNativeColorConversion on Pointer<NativeColor> {
-  /// Frees the allocated memory for [NativeColor].
-  void free() {
-    calloc.free(this);
-  }
-
   /// Converts the referenced [NativeColor] into a Dart [Color].
   Color toDart() {
     final ref = this.ref;

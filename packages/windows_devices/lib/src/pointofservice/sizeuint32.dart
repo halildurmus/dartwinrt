@@ -9,7 +9,8 @@
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -44,18 +45,11 @@ final class SizeUInt32 implements WinRTStruct {
 /// @nodoc
 extension NativeSizeUInt32Conversion on NativeSizeUInt32 {
   /// Converts this [NativeSizeUInt32] into a Dart [SizeUInt32].
-  SizeUInt32 toDart() {
-    return SizeUInt32(width, height);
-  }
+  SizeUInt32 toDart() => SizeUInt32(width, height);
 }
 
 /// @nodoc
 extension PointerNativeSizeUInt32Conversion on Pointer<NativeSizeUInt32> {
-  /// Frees the allocated memory for [NativeSizeUInt32].
-  void free() {
-    calloc.free(this);
-  }
-
   /// Converts the referenced [NativeSizeUInt32] into a Dart [SizeUInt32].
   SizeUInt32 toDart() {
     final ref = this.ref;

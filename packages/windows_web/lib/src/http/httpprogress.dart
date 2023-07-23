@@ -9,7 +9,8 @@
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:win32/win32.dart' hide DocumentProperties;
+import 'package:win32/win32.dart'
+    hide DocumentProperties, WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
@@ -34,12 +35,10 @@ final class HttpProgress implements WinRTStruct {
       ..stage = stage.value
       ..bytesSent = bytesSent
       ..totalBytesToSend =
-          totalBytesToSend?.toReference(IntType.uint64).ptr.ref.lpVtbl ??
-              nullptr
+          totalBytesToSend?.toReference(IntType.uint64).lpVtbl ?? nullptr
       ..bytesReceived = bytesReceived
       ..totalBytesToReceive =
-          totalBytesToReceive?.toReference(IntType.uint64).ptr.ref.lpVtbl ??
-              nullptr
+          totalBytesToReceive?.toReference(IntType.uint64).lpVtbl ?? nullptr
       ..retries = retries;
     return nativeStructPtr;
   }
@@ -69,30 +68,23 @@ final class HttpProgress implements WinRTStruct {
 /// @nodoc
 extension NativeHttpProgressConversion on NativeHttpProgress {
   /// Converts this [NativeHttpProgress] into a Dart [HttpProgress].
-  HttpProgress toDart() {
-    return HttpProgress(
-        HttpProgressStage.from(stage),
-        bytesSent,
-        IReference<int?>.fromPtr(
-                calloc<COMObject>()..ref.lpVtbl = totalBytesToSend,
-                referenceIid: '{6755e376-53bb-568b-a11d-17239868309e}')
-            .value,
-        bytesReceived,
-        IReference<int?>.fromPtr(
-                calloc<COMObject>()..ref.lpVtbl = totalBytesToReceive,
-                referenceIid: '{6755e376-53bb-568b-a11d-17239868309e}')
-            .value,
-        retries);
-  }
+  HttpProgress toDart() => HttpProgress(
+      HttpProgressStage.from(stage),
+      bytesSent,
+      IReference<int?>.fromPtr(
+              calloc<COMObject>()..ref.lpVtbl = totalBytesToSend,
+              referenceIid: '{6755e376-53bb-568b-a11d-17239868309e}')
+          .value,
+      bytesReceived,
+      IReference<int?>.fromPtr(
+              calloc<COMObject>()..ref.lpVtbl = totalBytesToReceive,
+              referenceIid: '{6755e376-53bb-568b-a11d-17239868309e}')
+          .value,
+      retries);
 }
 
 /// @nodoc
 extension PointerNativeHttpProgressConversion on Pointer<NativeHttpProgress> {
-  /// Frees the allocated memory for [NativeHttpProgress].
-  void free() {
-    calloc.free(this);
-  }
-
   /// Converts the referenced [NativeHttpProgress] into a Dart [HttpProgress].
   HttpProgress toDart() {
     final ref = this.ref;
