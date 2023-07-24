@@ -434,7 +434,7 @@ class IXmlDocument extends IInspectable
                 int Function(VTablePointer lpVtbl, VTablePointer namespaceUri,
                     int qualifiedName, Pointer<COMObject> newAttribute)>()(
         ptr.ref.lpVtbl,
-        namespaceUri?.intoBox().lpVtbl ?? nullptr,
+        namespaceUri?.boxValue().lpVtbl ?? nullptr,
         qualifiedName.toHString(),
         newAttribute);
 
@@ -469,7 +469,7 @@ class IXmlDocument extends IInspectable
                 int Function(VTablePointer lpVtbl, VTablePointer namespaceUri,
                     int qualifiedName, Pointer<COMObject> newElement)>()(
         ptr.ref.lpVtbl,
-        namespaceUri?.intoBox().lpVtbl ?? nullptr,
+        namespaceUri?.boxValue().lpVtbl ?? nullptr,
         qualifiedName.toHString(),
         newElement);
 

@@ -43,6 +43,18 @@ final class SizeUInt32 implements WinRTStruct {
 }
 
 /// @nodoc
+extension SizeUInt32ListToNativeSizeUInt32ArrayConversion on List<SizeUInt32> {
+  /// Creates an array of [NativeSizeUInt32]s from a List of [SizeUInt32]s.
+  Pointer<NativeSizeUInt32> toArray({Allocator allocator = calloc}) {
+    final array = allocator<NativeSizeUInt32>(length);
+    for (var i = 0; i < length; i++) {
+      array[i] = this[i].toNative(allocator: allocator).ref;
+    }
+    return array;
+  }
+}
+
+/// @nodoc
 extension NativeSizeUInt32Conversion on NativeSizeUInt32 {
   /// Converts this [NativeSizeUInt32] into a Dart [SizeUInt32].
   SizeUInt32 toDart() => SizeUInt32(width, height);

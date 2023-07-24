@@ -16,7 +16,4 @@ final class StringParameterProjection extends ParameterProjection {
 
   @override
   String get into => '$identifier.toHString()';
-
-  @override
-  String get toListInto => '$identifier[i].toHString()';
 }

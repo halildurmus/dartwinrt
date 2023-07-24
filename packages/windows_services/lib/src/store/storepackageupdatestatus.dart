@@ -71,6 +71,21 @@ final class StorePackageUpdateStatus implements WinRTStruct {
 }
 
 /// @nodoc
+extension StorePackageUpdateStatusListToNativeStorePackageUpdateStatusArrayConversion
+    on List<StorePackageUpdateStatus> {
+  /// Creates an array of [NativeStorePackageUpdateStatus]s from a List of
+  /// [StorePackageUpdateStatus]s.
+  Pointer<NativeStorePackageUpdateStatus> toArray(
+      {Allocator allocator = calloc}) {
+    final array = allocator<NativeStorePackageUpdateStatus>(length);
+    for (var i = 0; i < length; i++) {
+      array[i] = this[i].toNative(allocator: allocator).ref;
+    }
+    return array;
+  }
+}
+
+/// @nodoc
 extension NativeStorePackageUpdateStatusConversion
     on NativeStorePackageUpdateStatus {
   /// Converts this [NativeStorePackageUpdateStatus] into a Dart

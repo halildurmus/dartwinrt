@@ -48,6 +48,18 @@ final class NitRange implements WinRTStruct {
 }
 
 /// @nodoc
+extension NitRangeListToNativeNitRangeArrayConversion on List<NitRange> {
+  /// Creates an array of [NativeNitRange]s from a List of [NitRange]s.
+  Pointer<NativeNitRange> toArray({Allocator allocator = calloc}) {
+    final array = allocator<NativeNitRange>(length);
+    for (var i = 0; i < length; i++) {
+      array[i] = this[i].toNative(allocator: allocator).ref;
+    }
+    return array;
+  }
+}
+
+/// @nodoc
 extension NativeNitRangeConversion on NativeNitRange {
   /// Converts this [NativeNitRange] into a Dart [NitRange].
   NitRange toDart() => NitRange(minNits, maxNits, stepSizeNits);

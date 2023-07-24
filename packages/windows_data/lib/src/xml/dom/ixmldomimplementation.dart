@@ -47,7 +47,7 @@ class IXmlDomImplementation extends IInspectable {
                       VTablePointer version, Pointer<Bool> featureSupported)>()(
           ptr.ref.lpVtbl,
           feature.toHString(),
-          version?.intoBox().lpVtbl ?? nullptr,
+          version?.boxValue().lpVtbl ?? nullptr,
           featureSupported);
 
       if (FAILED(hr)) throwWindowsException(hr);

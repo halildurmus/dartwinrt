@@ -44,6 +44,21 @@ final class BackgroundTransferFileRange implements WinRTStruct {
 }
 
 /// @nodoc
+extension BackgroundTransferFileRangeListToNativeBackgroundTransferFileRangeArrayConversion
+    on List<BackgroundTransferFileRange> {
+  /// Creates an array of [NativeBackgroundTransferFileRange]s from a List of
+  /// [BackgroundTransferFileRange]s.
+  Pointer<NativeBackgroundTransferFileRange> toArray(
+      {Allocator allocator = calloc}) {
+    final array = allocator<NativeBackgroundTransferFileRange>(length);
+    for (var i = 0; i < length; i++) {
+      array[i] = this[i].toNative(allocator: allocator).ref;
+    }
+    return array;
+  }
+}
+
+/// @nodoc
 extension NativeBackgroundTransferFileRangeConversion
     on NativeBackgroundTransferFileRange {
   /// Converts this [NativeBackgroundTransferFileRange] into a Dart

@@ -46,6 +46,19 @@ final class TextSegment implements WinRTStruct {
 }
 
 /// @nodoc
+extension TextSegmentListToNativeTextSegmentArrayConversion
+    on List<TextSegment> {
+  /// Creates an array of [NativeTextSegment]s from a List of [TextSegment]s.
+  Pointer<NativeTextSegment> toArray({Allocator allocator = calloc}) {
+    final array = allocator<NativeTextSegment>(length);
+    for (var i = 0; i < length; i++) {
+      array[i] = this[i].toNative(allocator: allocator).ref;
+    }
+    return array;
+  }
+}
+
+/// @nodoc
 extension NativeTextSegmentConversion on NativeTextSegment {
   /// Converts this [NativeTextSegment] into a Dart [TextSegment].
   TextSegment toDart() => TextSegment(startPosition, length);

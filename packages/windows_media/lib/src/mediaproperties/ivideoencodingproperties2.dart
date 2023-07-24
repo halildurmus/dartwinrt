@@ -28,10 +28,7 @@ class IVideoEncodingProperties2 extends IInspectable {
           interface.toInterface(IID_IVideoEncodingProperties2));
 
   void setFormatUserData(List<int> value) {
-    final valueArray = calloc<Uint8>(value.length);
-    for (var i = 0; i < value.length; i++) {
-      valueArray[i] = value[i];
-    }
+    final valueArray = value.toArray<Uint8>();
 
     final hr = ptr.ref.vtable
             .elementAt(6)

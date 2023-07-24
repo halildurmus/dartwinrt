@@ -47,6 +47,21 @@ final class DisplayPresentationRate implements WinRTStruct {
 }
 
 /// @nodoc
+extension DisplayPresentationRateListToNativeDisplayPresentationRateArrayConversion
+    on List<DisplayPresentationRate> {
+  /// Creates an array of [NativeDisplayPresentationRate]s from a List of
+  /// [DisplayPresentationRate]s.
+  Pointer<NativeDisplayPresentationRate> toArray(
+      {Allocator allocator = calloc}) {
+    final array = allocator<NativeDisplayPresentationRate>(length);
+    for (var i = 0; i < length; i++) {
+      array[i] = this[i].toNative(allocator: allocator).ref;
+    }
+    return array;
+  }
+}
+
+/// @nodoc
 extension NativeDisplayPresentationRateConversion
     on NativeDisplayPresentationRate {
   /// Converts this [NativeDisplayPresentationRate] into a Dart

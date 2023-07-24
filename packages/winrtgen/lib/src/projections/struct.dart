@@ -202,6 +202,24 @@ final class StructProjection extends NativeStructProjection {
   int get hashCode => ${fieldProjections.map((f) => '${f.fieldName}.hashCode').join(' ^ ')};
 ''';
 
+  String get structListExtension {
+    final toArrayComment = wrapCommentText(
+        'Creates an array of [Native$structName]s from a List of [$structName]s.');
+    return '''
+/// @nodoc
+extension ${structName}ListToNative${structName}ArrayConversion on List<$structName> {
+  $toArrayComment
+  Pointer<Native$structName> toArray({Allocator allocator = calloc}) {
+    final array = allocator<Native$structName>(length);
+    for (var i = 0; i < length; i++) {
+      array[i] = this[i].toNative(allocator: allocator).ref;
+    }
+    return array;
+  }
+}
+''';
+  }
+
   String get nativeStructExtension {
     final toDartComment = wrapCommentText(
         'Converts this [Native$structName] into a Dart [$structName].');
@@ -282,6 +300,8 @@ $classHeader {
 
   $equalityOverrides
 }
+
+$structListExtension
 
 $nativeStructExtension
 

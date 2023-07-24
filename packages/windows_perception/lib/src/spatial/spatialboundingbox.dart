@@ -44,6 +44,20 @@ final class SpatialBoundingBox implements WinRTStruct {
 }
 
 /// @nodoc
+extension SpatialBoundingBoxListToNativeSpatialBoundingBoxArrayConversion
+    on List<SpatialBoundingBox> {
+  /// Creates an array of [NativeSpatialBoundingBox]s from a List of
+  /// [SpatialBoundingBox]s.
+  Pointer<NativeSpatialBoundingBox> toArray({Allocator allocator = calloc}) {
+    final array = allocator<NativeSpatialBoundingBox>(length);
+    for (var i = 0; i < length; i++) {
+      array[i] = this[i].toNative(allocator: allocator).ref;
+    }
+    return array;
+  }
+}
+
+/// @nodoc
 extension NativeSpatialBoundingBoxConversion on NativeSpatialBoundingBox {
   /// Converts this [NativeSpatialBoundingBox] into a Dart
   /// [SpatialBoundingBox].

@@ -147,10 +147,7 @@ class IDataWriter extends IInspectable {
   }
 
   void writeBytes(List<int> value) {
-    final valueArray = calloc<Uint8>(value.length);
-    for (var i = 0; i < value.length; i++) {
-      valueArray[i] = value[i];
-    }
+    final valueArray = value.toArray<Uint8>();
 
     final hr = ptr.ref.vtable
             .elementAt(12)

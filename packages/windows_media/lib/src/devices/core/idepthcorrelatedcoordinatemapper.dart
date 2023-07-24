@@ -74,10 +74,7 @@ class IDepthCorrelatedCoordinateMapper extends IInspectable
   List<Vector3> unprojectPoints(List<Point> sourcePoints,
       SpatialCoordinateSystem? targetCoordinateSystem, int resultsSize) {
     final allocator = Arena();
-    final sourcePointsArray = calloc<NativePoint>(sourcePoints.length);
-    for (var i = 0; i < sourcePoints.length; i++) {
-      sourcePointsArray[i] = sourcePoints[i].toNative(allocator: allocator).ref;
-    }
+    final sourcePointsArray = sourcePoints.toArray(allocator: allocator);
     final results = calloc<NativeVector3>(resultsSize);
 
     try {
@@ -114,7 +111,6 @@ class IDepthCorrelatedCoordinateMapper extends IInspectable
       return results.toList(length: resultsSize);
     } finally {
       allocator.releaseAll();
-      free(sourcePointsArray);
       free(results);
     }
   }
@@ -169,10 +165,7 @@ class IDepthCorrelatedCoordinateMapper extends IInspectable
       CameraIntrinsics? targetCameraIntrinsics,
       int resultsSize) {
     final allocator = Arena();
-    final sourcePointsArray = calloc<NativePoint>(sourcePoints.length);
-    for (var i = 0; i < sourcePoints.length; i++) {
-      sourcePointsArray[i] = sourcePoints[i].toNative(allocator: allocator).ref;
-    }
+    final sourcePointsArray = sourcePoints.toArray(allocator: allocator);
     final results = calloc<NativePoint>(resultsSize);
 
     try {
@@ -212,7 +205,6 @@ class IDepthCorrelatedCoordinateMapper extends IInspectable
       return results.toList(length: resultsSize);
     } finally {
       allocator.releaseAll();
-      free(sourcePointsArray);
       free(results);
     }
   }

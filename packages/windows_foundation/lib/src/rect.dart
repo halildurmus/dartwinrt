@@ -51,6 +51,18 @@ final class Rect implements WinRTStruct {
 }
 
 /// @nodoc
+extension RectListToNativeRectArrayConversion on List<Rect> {
+  /// Creates an array of [NativeRect]s from a List of [Rect]s.
+  Pointer<NativeRect> toArray({Allocator allocator = calloc}) {
+    final array = allocator<NativeRect>(length);
+    for (var i = 0; i < length; i++) {
+      array[i] = this[i].toNative(allocator: allocator).ref;
+    }
+    return array;
+  }
+}
+
+/// @nodoc
 extension NativeRectConversion on NativeRect {
   /// Converts this [NativeRect] into a Dart [Rect].
   Rect toDart() => Rect(x, y, width, height);

@@ -1924,7 +1924,7 @@ final class _IVectorViewObject extends IVectorView<Object?> {
                   int Function(VTablePointer lpVtbl, VTablePointer value,
                       Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
           ptr.ref.lpVtbl,
-          value?.intoBox().lpVtbl ?? nullptr,
+          value?.boxValue().lpVtbl ?? nullptr,
           index,
           retValuePtr);
 

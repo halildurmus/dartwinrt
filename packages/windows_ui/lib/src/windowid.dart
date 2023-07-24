@@ -38,6 +38,18 @@ final class WindowId implements WinRTStruct {
 }
 
 /// @nodoc
+extension WindowIdListToNativeWindowIdArrayConversion on List<WindowId> {
+  /// Creates an array of [NativeWindowId]s from a List of [WindowId]s.
+  Pointer<NativeWindowId> toArray({Allocator allocator = calloc}) {
+    final array = allocator<NativeWindowId>(length);
+    for (var i = 0; i < length; i++) {
+      array[i] = this[i].toNative(allocator: allocator).ref;
+    }
+    return array;
+  }
+}
+
+/// @nodoc
 extension NativeWindowIdConversion on NativeWindowId {
   /// Converts this [NativeWindowId] into a Dart [WindowId].
   WindowId toDart() => WindowId(value);

@@ -97,28 +97,3 @@ class HString {
       ? ''
       : WindowsGetStringRawBuffer(handle, nullptr).toDartString();
 }
-
-/// @nodoc
-extension HStringHandleToDartStringConversion on int {
-  /// Converts the [HSTRING] into a Dart string.
-  String toDartString() => HString.fromHandle(this).toString();
-}
-
-/// @nodoc
-extension DartStringToHStringConversion on String {
-  /// Converts the string into an [HString], returning an HSTRING handle.
-  int toHString() => HString.fromString(this).handle;
-}
-
-/// @nodoc
-extension HSTRINGPointerHelpers on Pointer<HSTRING> {
-  /// Converts the [HSTRING] into a Dart string.
-  String toDartString() => value.toDartString();
-
-  /// Creates a [List] from `Pointer<HSTRING>`.
-  ///
-  /// [length] must not be greater than the number of elements stored inside the
-  /// `Pointer<HSTRING>`.
-  List<String> toList({int length = 1}) =>
-      [for (var i = 0; i < length; i++) this[i].toDartString()];
-}

@@ -32,14 +32,8 @@ class ITensorStringStatics2 extends IInspectable {
   TensorString? createFromShapeArrayAndDataArray(
       List<int> shape, List<String> data) {
     final result = calloc<COMObject>();
-    final shapeArray = calloc<Int64>(shape.length);
-    for (var i = 0; i < shape.length; i++) {
-      shapeArray[i] = shape[i];
-    }
-    final dataArray = calloc<IntPtr>(data.length);
-    for (var i = 0; i < data.length; i++) {
-      dataArray[i] = data[i].toHString();
-    }
+    final shapeArray = shape.toArray<Int64>();
+    final dataArray = data.toArray();
 
     final hr = ptr.ref.vtable
             .elementAt(6)

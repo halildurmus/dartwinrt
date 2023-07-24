@@ -42,6 +42,18 @@ final class Size implements WinRTStruct {
 }
 
 /// @nodoc
+extension SizeListToNativeSizeArrayConversion on List<Size> {
+  /// Creates an array of [NativeSize]s from a List of [Size]s.
+  Pointer<NativeSize> toArray({Allocator allocator = calloc}) {
+    final array = allocator<NativeSize>(length);
+    for (var i = 0; i < length; i++) {
+      array[i] = this[i].toNative(allocator: allocator).ref;
+    }
+    return array;
+  }
+}
+
+/// @nodoc
 extension NativeSizeConversion on NativeSize {
   /// Converts this [NativeSize] into a Dart [Size].
   Size toDart() => Size(width, height);

@@ -44,6 +44,18 @@ final class Rational implements WinRTStruct {
 }
 
 /// @nodoc
+extension RationalListToNativeRationalArrayConversion on List<Rational> {
+  /// Creates an array of [NativeRational]s from a List of [Rational]s.
+  Pointer<NativeRational> toArray({Allocator allocator = calloc}) {
+    final array = allocator<NativeRational>(length);
+    for (var i = 0; i < length; i++) {
+      array[i] = this[i].toNative(allocator: allocator).ref;
+    }
+    return array;
+  }
+}
+
+/// @nodoc
 extension NativeRationalConversion on NativeRational {
   /// Converts this [NativeRational] into a Dart [Rational].
   Rational toDart() => Rational(numerator, denominator);

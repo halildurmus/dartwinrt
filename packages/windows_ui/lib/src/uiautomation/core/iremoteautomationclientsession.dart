@@ -77,7 +77,7 @@ class IRemoteAutomationClientSession extends IInspectable {
         ptr.ref.lpVtbl,
         remoteWindowId,
         remoteProcessId,
-        parentAutomationElement?.intoBox().lpVtbl ?? nullptr,
+        parentAutomationElement?.boxValue().lpVtbl ?? nullptr,
         operation);
 
     if (FAILED(hr)) {

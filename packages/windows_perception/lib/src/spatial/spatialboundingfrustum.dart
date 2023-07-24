@@ -64,6 +64,21 @@ final class SpatialBoundingFrustum implements WinRTStruct {
 }
 
 /// @nodoc
+extension SpatialBoundingFrustumListToNativeSpatialBoundingFrustumArrayConversion
+    on List<SpatialBoundingFrustum> {
+  /// Creates an array of [NativeSpatialBoundingFrustum]s from a List of
+  /// [SpatialBoundingFrustum]s.
+  Pointer<NativeSpatialBoundingFrustum> toArray(
+      {Allocator allocator = calloc}) {
+    final array = allocator<NativeSpatialBoundingFrustum>(length);
+    for (var i = 0; i < length; i++) {
+      array[i] = this[i].toNative(allocator: allocator).ref;
+    }
+    return array;
+  }
+}
+
+/// @nodoc
 extension NativeSpatialBoundingFrustumConversion
     on NativeSpatialBoundingFrustum {
   /// Converts this [NativeSpatialBoundingFrustum] into a Dart

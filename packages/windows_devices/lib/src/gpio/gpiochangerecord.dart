@@ -47,6 +47,20 @@ final class GpioChangeRecord implements WinRTStruct {
 }
 
 /// @nodoc
+extension GpioChangeRecordListToNativeGpioChangeRecordArrayConversion
+    on List<GpioChangeRecord> {
+  /// Creates an array of [NativeGpioChangeRecord]s from a List of
+  /// [GpioChangeRecord]s.
+  Pointer<NativeGpioChangeRecord> toArray({Allocator allocator = calloc}) {
+    final array = allocator<NativeGpioChangeRecord>(length);
+    for (var i = 0; i < length; i++) {
+      array[i] = this[i].toNative(allocator: allocator).ref;
+    }
+    return array;
+  }
+}
+
+/// @nodoc
 extension NativeGpioChangeRecordConversion on NativeGpioChangeRecord {
   /// Converts this [NativeGpioChangeRecord] into a Dart [GpioChangeRecord].
   GpioChangeRecord toDart() =>

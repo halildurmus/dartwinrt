@@ -66,6 +66,20 @@ final class HttpProgress implements WinRTStruct {
 }
 
 /// @nodoc
+extension HttpProgressListToNativeHttpProgressArrayConversion
+    on List<HttpProgress> {
+  /// Creates an array of [NativeHttpProgress]s from a List of
+  /// [HttpProgress]s.
+  Pointer<NativeHttpProgress> toArray({Allocator allocator = calloc}) {
+    final array = allocator<NativeHttpProgress>(length);
+    for (var i = 0; i < length; i++) {
+      array[i] = this[i].toNative(allocator: allocator).ref;
+    }
+    return array;
+  }
+}
+
+/// @nodoc
 extension NativeHttpProgressConversion on NativeHttpProgress {
   /// Converts this [NativeHttpProgress] into a Dart [HttpProgress].
   HttpProgress toDart() => HttpProgress(

@@ -44,6 +44,20 @@ final class AccessListEntry implements WinRTStruct {
 }
 
 /// @nodoc
+extension AccessListEntryListToNativeAccessListEntryArrayConversion
+    on List<AccessListEntry> {
+  /// Creates an array of [NativeAccessListEntry]s from a List of
+  /// [AccessListEntry]s.
+  Pointer<NativeAccessListEntry> toArray({Allocator allocator = calloc}) {
+    final array = allocator<NativeAccessListEntry>(length);
+    for (var i = 0; i < length; i++) {
+      array[i] = this[i].toNative(allocator: allocator).ref;
+    }
+    return array;
+  }
+}
+
+/// @nodoc
 extension NativeAccessListEntryConversion on NativeAccessListEntry {
   /// Converts this [NativeAccessListEntry] into a Dart [AccessListEntry].
   AccessListEntry toDart() =>

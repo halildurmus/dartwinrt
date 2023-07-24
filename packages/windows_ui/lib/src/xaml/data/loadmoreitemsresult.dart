@@ -38,6 +38,20 @@ final class LoadMoreItemsResult implements WinRTStruct {
 }
 
 /// @nodoc
+extension LoadMoreItemsResultListToNativeLoadMoreItemsResultArrayConversion
+    on List<LoadMoreItemsResult> {
+  /// Creates an array of [NativeLoadMoreItemsResult]s from a List of
+  /// [LoadMoreItemsResult]s.
+  Pointer<NativeLoadMoreItemsResult> toArray({Allocator allocator = calloc}) {
+    final array = allocator<NativeLoadMoreItemsResult>(length);
+    for (var i = 0; i < length; i++) {
+      array[i] = this[i].toNative(allocator: allocator).ref;
+    }
+    return array;
+  }
+}
+
+/// @nodoc
 extension NativeLoadMoreItemsResultConversion on NativeLoadMoreItemsResult {
   /// Converts this [NativeLoadMoreItemsResult] into a Dart
   /// [LoadMoreItemsResult].

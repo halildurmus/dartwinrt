@@ -40,11 +40,7 @@ class ICoreAutomationRemoteOperationExtensionProvider extends IInspectable {
       List<AutomationRemoteOperationOperandId> operandIds) {
     final extensionIdNativeStructPtr = extensionId.toNativeGUID();
     final allocator = Arena();
-    final operandIdsArray =
-        calloc<NativeAutomationRemoteOperationOperandId>(operandIds.length);
-    for (var i = 0; i < operandIds.length; i++) {
-      operandIdsArray[i] = operandIds[i].toNative(allocator: allocator).ref;
-    }
+    final operandIdsArray = operandIds.toArray(allocator: allocator);
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -75,7 +71,6 @@ class ICoreAutomationRemoteOperationExtensionProvider extends IInspectable {
 
     free(extensionIdNativeStructPtr);
     allocator.releaseAll();
-    free(operandIdsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

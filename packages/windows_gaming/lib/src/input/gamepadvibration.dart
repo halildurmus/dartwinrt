@@ -54,6 +54,20 @@ final class GamepadVibration implements WinRTStruct {
 }
 
 /// @nodoc
+extension GamepadVibrationListToNativeGamepadVibrationArrayConversion
+    on List<GamepadVibration> {
+  /// Creates an array of [NativeGamepadVibration]s from a List of
+  /// [GamepadVibration]s.
+  Pointer<NativeGamepadVibration> toArray({Allocator allocator = calloc}) {
+    final array = allocator<NativeGamepadVibration>(length);
+    for (var i = 0; i < length; i++) {
+      array[i] = this[i].toNative(allocator: allocator).ref;
+    }
+    return array;
+  }
+}
+
+/// @nodoc
 extension NativeGamepadVibrationConversion on NativeGamepadVibration {
   /// Converts this [NativeGamepadVibration] into a Dart [GamepadVibration].
   GamepadVibration toDart() =>

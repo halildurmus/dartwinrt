@@ -41,6 +41,21 @@ final class AutomationRemoteOperationOperandId implements WinRTStruct {
 }
 
 /// @nodoc
+extension AutomationRemoteOperationOperandIdListToNativeAutomationRemoteOperationOperandIdArrayConversion
+    on List<AutomationRemoteOperationOperandId> {
+  /// Creates an array of [NativeAutomationRemoteOperationOperandId]s from a
+  /// List of [AutomationRemoteOperationOperandId]s.
+  Pointer<NativeAutomationRemoteOperationOperandId> toArray(
+      {Allocator allocator = calloc}) {
+    final array = allocator<NativeAutomationRemoteOperationOperandId>(length);
+    for (var i = 0; i < length; i++) {
+      array[i] = this[i].toNative(allocator: allocator).ref;
+    }
+    return array;
+  }
+}
+
+/// @nodoc
 extension NativeAutomationRemoteOperationOperandIdConversion
     on NativeAutomationRemoteOperationOperandId {
   /// Converts this [NativeAutomationRemoteOperationOperandId] into a Dart

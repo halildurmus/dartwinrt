@@ -46,6 +46,20 @@ final class NetworkUsageStates implements WinRTStruct {
 }
 
 /// @nodoc
+extension NetworkUsageStatesListToNativeNetworkUsageStatesArrayConversion
+    on List<NetworkUsageStates> {
+  /// Creates an array of [NativeNetworkUsageStates]s from a List of
+  /// [NetworkUsageStates]s.
+  Pointer<NativeNetworkUsageStates> toArray({Allocator allocator = calloc}) {
+    final array = allocator<NativeNetworkUsageStates>(length);
+    for (var i = 0; i < length; i++) {
+      array[i] = this[i].toNative(allocator: allocator).ref;
+    }
+    return array;
+  }
+}
+
+/// @nodoc
 extension NativeNetworkUsageStatesConversion on NativeNetworkUsageStates {
   /// Converts this [NativeNetworkUsageStates] into a Dart
   /// [NetworkUsageStates].

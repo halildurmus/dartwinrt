@@ -256,7 +256,7 @@ class IXmlElement extends IInspectable
                 int Function(VTablePointer lpVtbl, VTablePointer namespaceUri,
                     int qualifiedName, int value)>()(
         ptr.ref.lpVtbl,
-        namespaceUri?.intoBox().lpVtbl ?? nullptr,
+        namespaceUri?.boxValue().lpVtbl ?? nullptr,
         qualifiedName.toHString(),
         value.toHString());
 
@@ -282,7 +282,7 @@ class IXmlElement extends IInspectable
                   int Function(VTablePointer lpVtbl, VTablePointer namespaceUri,
                       int localName, Pointer<IntPtr> value)>()(
           ptr.ref.lpVtbl,
-          namespaceUri?.intoBox().lpVtbl ?? nullptr,
+          namespaceUri?.boxValue().lpVtbl ?? nullptr,
           localName.toHString(),
           value);
 
@@ -306,7 +306,7 @@ class IXmlElement extends IInspectable
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer namespaceUri,
                     int localName)>()(ptr.ref.lpVtbl,
-        namespaceUri?.intoBox().lpVtbl ?? nullptr, localName.toHString());
+        namespaceUri?.boxValue().lpVtbl ?? nullptr, localName.toHString());
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -360,7 +360,7 @@ class IXmlElement extends IInspectable
                 int Function(VTablePointer lpVtbl, VTablePointer namespaceUri,
                     int localName, Pointer<COMObject> previousAttribute)>()(
         ptr.ref.lpVtbl,
-        namespaceUri?.intoBox().lpVtbl ?? nullptr,
+        namespaceUri?.boxValue().lpVtbl ?? nullptr,
         localName.toHString(),
         previousAttribute);
 

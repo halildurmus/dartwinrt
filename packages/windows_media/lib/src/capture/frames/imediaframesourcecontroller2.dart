@@ -34,10 +34,7 @@ class IMediaFrameSourceController2 extends IInspectable {
   Future<MediaFrameSourceGetPropertyResult?> getPropertyByExtendedIdAsync(
       List<int> extendedPropertyId, int? maxPropertyValueSize) {
     final operation = calloc<COMObject>();
-    final extendedPropertyIdArray = calloc<Uint8>(extendedPropertyId.length);
-    for (var i = 0; i < extendedPropertyId.length; i++) {
-      extendedPropertyIdArray[i] = extendedPropertyId[i];
-    }
+    final extendedPropertyIdArray = extendedPropertyId.toArray<Uint8>();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -80,14 +77,8 @@ class IMediaFrameSourceController2 extends IInspectable {
   Future<MediaFrameSourceSetPropertyStatus> setPropertyByExtendedIdAsync(
       List<int> extendedPropertyId, List<int> propertyValue) {
     final operation = calloc<COMObject>();
-    final extendedPropertyIdArray = calloc<Uint8>(extendedPropertyId.length);
-    for (var i = 0; i < extendedPropertyId.length; i++) {
-      extendedPropertyIdArray[i] = extendedPropertyId[i];
-    }
-    final propertyValueArray = calloc<Uint8>(propertyValue.length);
-    for (var i = 0; i < propertyValue.length; i++) {
-      propertyValueArray[i] = propertyValue[i];
-    }
+    final extendedPropertyIdArray = extendedPropertyId.toArray<Uint8>();
+    final propertyValueArray = propertyValue.toArray<Uint8>();
 
     final hr = ptr.ref.vtable
             .elementAt(7)

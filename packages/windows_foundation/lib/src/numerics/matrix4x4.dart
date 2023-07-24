@@ -118,6 +118,18 @@ final class Matrix4x4 implements WinRTStruct {
 }
 
 /// @nodoc
+extension Matrix4x4ListToNativeMatrix4x4ArrayConversion on List<Matrix4x4> {
+  /// Creates an array of [NativeMatrix4x4]s from a List of [Matrix4x4]s.
+  Pointer<NativeMatrix4x4> toArray({Allocator allocator = calloc}) {
+    final array = allocator<NativeMatrix4x4>(length);
+    for (var i = 0; i < length; i++) {
+      array[i] = this[i].toNative(allocator: allocator).ref;
+    }
+    return array;
+  }
+}
+
+/// @nodoc
 extension NativeMatrix4x4Conversion on NativeMatrix4x4 {
   /// Converts this [NativeMatrix4x4] into a Dart [Matrix4x4].
   Matrix4x4 toDart() => Matrix4x4(m11, m12, m13, m14, m21, m22, m23, m24, m31,

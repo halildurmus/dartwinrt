@@ -82,9 +82,17 @@ final class TypeProjection {
 
   bool get isDateTime => typeIdentifier.name == 'Windows.Foundation.DateTime';
 
+  bool get isDouble => dartType == 'double';
+
   bool get isGenericType => typeIdentifier.isGenericType;
 
   bool get isGuid => dartType == 'GUID';
+
+  bool get isInteger => switch (dartType) {
+        'int' when !isDateTime && !isString && !isTimeSpan && !isWinRTEnum =>
+          true,
+        _ => false
+      };
 
   bool get isIReference =>
       typeIdentifier.type?.name.endsWith('IReference`1') ?? false;

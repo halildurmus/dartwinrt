@@ -43,6 +43,18 @@ final class Point implements WinRTStruct {
 }
 
 /// @nodoc
+extension PointListToNativePointArrayConversion on List<Point> {
+  /// Creates an array of [NativePoint]s from a List of [Point]s.
+  Pointer<NativePoint> toArray({Allocator allocator = calloc}) {
+    final array = allocator<NativePoint>(length);
+    for (var i = 0; i < length; i++) {
+      array[i] = this[i].toNative(allocator: allocator).ref;
+    }
+    return array;
+  }
+}
+
+/// @nodoc
 extension NativePointConversion on NativePoint {
   /// Converts this [NativePoint] into a Dart [Point].
   Point toDart() => Point(x, y);

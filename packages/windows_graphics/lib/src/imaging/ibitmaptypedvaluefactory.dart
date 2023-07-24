@@ -48,7 +48,7 @@ class IBitmapTypedValueFactory extends IInspectable {
                     int Function(VTablePointer lpVtbl, VTablePointer value,
                         int type, Pointer<COMObject> bitmapTypedValue)>()(
             ptr.ref.lpVtbl,
-            value?.intoBox().lpVtbl ?? nullptr,
+            value?.boxValue().lpVtbl ?? nullptr,
             type.value,
             bitmapTypedValue);
 

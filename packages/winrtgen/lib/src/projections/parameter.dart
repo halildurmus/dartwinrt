@@ -111,14 +111,6 @@ base class ParameterProjection {
 
   String get into => identifier;
 
-  String get toListArg => '';
-
-  String get toListCreator => '';
-
-  String get toListInto => '$identifier[i]';
-
-  String get toListIdentifier => '';
-
   /// Whether the type of the parameter is nullable.
   bool get isNullable => type.endsWith('?');
 

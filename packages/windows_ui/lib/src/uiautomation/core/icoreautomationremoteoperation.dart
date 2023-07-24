@@ -133,10 +133,7 @@ class ICoreAutomationRemoteOperation extends IInspectable {
 
   AutomationRemoteOperationResult? execute(List<int> bytecodeBuffer) {
     final result = calloc<COMObject>();
-    final bytecodeBufferArray = calloc<Uint8>(bytecodeBuffer.length);
-    for (var i = 0; i < bytecodeBuffer.length; i++) {
-      bytecodeBufferArray[i] = bytecodeBuffer[i];
-    }
+    final bytecodeBufferArray = bytecodeBuffer.toArray<Uint8>();
 
     final hr = ptr.ref.vtable
             .elementAt(10)

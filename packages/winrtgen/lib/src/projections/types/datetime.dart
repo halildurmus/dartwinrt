@@ -16,10 +16,4 @@ final class DateTimeParameterProjection extends ParameterProjection {
 
   @override
   String get into => '$identifier.toWinRTDateTime()';
-
-  @override
-  String get toListInto => '$identifier[i].toWinRTDateTime()';
-
-  @override
-  String get toListIdentifier => 'toDateTimeList';
 }

@@ -6,8 +6,8 @@ import 'dart:ffi';
 
 import 'package:win32/win32.dart';
 
-extension VTablePointerHelper on IUnknown? {
-  /// Returns the [VTablePointer] associated with the object, or returns
-  /// [nullptr] if the object is `null`.
-  VTablePointer get lpVtbl => this?.ptr.ref.lpVtbl ?? nullptr;
+/// @nodoc
+extension COMObjectPointerHelper on Pointer<COMObject> {
+  /// Whether this is a null pointer.
+  bool get isNull => address == 0 || ref.isNull;
 }

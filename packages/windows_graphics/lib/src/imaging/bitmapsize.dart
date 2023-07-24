@@ -43,6 +43,18 @@ final class BitmapSize implements WinRTStruct {
 }
 
 /// @nodoc
+extension BitmapSizeListToNativeBitmapSizeArrayConversion on List<BitmapSize> {
+  /// Creates an array of [NativeBitmapSize]s from a List of [BitmapSize]s.
+  Pointer<NativeBitmapSize> toArray({Allocator allocator = calloc}) {
+    final array = allocator<NativeBitmapSize>(length);
+    for (var i = 0; i < length; i++) {
+      array[i] = this[i].toNative(allocator: allocator).ref;
+    }
+    return array;
+  }
+}
+
+/// @nodoc
 extension NativeBitmapSizeConversion on NativeBitmapSize {
   /// Converts this [NativeBitmapSize] into a Dart [BitmapSize].
   BitmapSize toDart() => BitmapSize(width, height);

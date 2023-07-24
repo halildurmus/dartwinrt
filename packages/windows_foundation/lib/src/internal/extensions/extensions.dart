@@ -3,14 +3,16 @@
 // license that can be found in the LICENSE file.
 
 export 'async_helpers.dart';
-export 'bool_array.dart';
-export 'boxing_helpers.dart';
-export 'comobject_helpers.dart';
+export 'bool_conversions.dart';
+export 'comobject_helper.dart';
 export 'datetime_conversions.dart';
-export 'double_array.dart';
+export 'double_conversions.dart';
 export 'duration_conversions.dart';
-export 'guid_array.dart';
-export 'int_array.dart';
+export 'enum_conversions.dart';
+export 'guid_conversions.dart';
+export 'int_conversions.dart';
 export 'ipropertyvalue_helpers.dart';
-export 'iunknown_helpers.dart';
+export 'object_conversions.dart';
+export 'string_conversions.dart';
+export 'struct_conversions.dart';
 export 'uri_conversions.dart';

@@ -48,15 +48,17 @@ Future<void> _completeAsyncDelegate<T extends IAsyncInfo, C>(T asyncDelegate,
           const Duration(microseconds: 1 * 1000 * 1000 ~/ 60));
     }
 
-    final status = asyncDelegate.status;
-    if (status == AsyncStatus.completed) {
-      onCompleted();
-    } else if (status == AsyncStatus.error) {
-      final errorCode = asyncDelegate.errorCode;
-      completer.completeError(WindowsException(errorCode,
-          message: getRestrictedErrorDescription(errorCode)));
-    } else if (status == AsyncStatus.canceled) {
-      completer.completeError('The async operation canceled!');
+    switch (asyncDelegate.status) {
+      case AsyncStatus.canceled:
+        completer.completeError('The async operation canceled!');
+      case AsyncStatus.completed:
+        onCompleted();
+      case AsyncStatus.error:
+        final errorCode = asyncDelegate.errorCode;
+        completer.completeError(WindowsException(errorCode,
+            message: getRestrictedErrorDescription(errorCode)));
+      case AsyncStatus.started:
+      // This case is handled by the while loop above.
     }
   } catch (error, stackTrace) {
     completer.completeError(error, stackTrace);

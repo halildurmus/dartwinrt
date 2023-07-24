@@ -91,21 +91,6 @@ final class ObjectParameterProjection extends ParameterProjection {
     return '$interfaceName.fromPtr($identifier)';
   }
 
-  @override
-  String get toListIdentifier =>
-      isObjectType ? 'toObjectList' : super.toListIdentifier;
-
-  @override
-  String get toListArg =>
-      isObjectType ? '' : '${stripQuestionMarkSuffix(type)}.fromPtr';
-
-  @override
-  String get toListInto => isObjectType
-      ? isNullable
-          ? '$identifier[i]?.intoBox().lpVtbl ?? nullptr'
-          : '$identifier[i].intoBox().lpVtbl'
-      : '$identifier[i].lpVtbl';
-
   // No deallocation is needed as Finalizer will handle it.
   @override
   bool get needsDeallocation => false;
@@ -126,8 +111,8 @@ final class ObjectParameterProjection extends ParameterProjection {
     if (isInParam) {
       if (typeProjection.isObjectType) {
         return isNullable
-            ? '$identifier?.intoBox().lpVtbl ?? nullptr'
-            : '$identifier.intoBox().lpVtbl';
+            ? '$identifier?.boxValue().lpVtbl ?? nullptr'
+            : '$identifier.boxValue().lpVtbl';
       }
 
       if (!typeProjection.isReferenceType && !typeProjection.isSimpleArray) {

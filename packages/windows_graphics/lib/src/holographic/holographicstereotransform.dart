@@ -46,6 +46,21 @@ final class HolographicStereoTransform implements WinRTStruct {
 }
 
 /// @nodoc
+extension HolographicStereoTransformListToNativeHolographicStereoTransformArrayConversion
+    on List<HolographicStereoTransform> {
+  /// Creates an array of [NativeHolographicStereoTransform]s from a List of
+  /// [HolographicStereoTransform]s.
+  Pointer<NativeHolographicStereoTransform> toArray(
+      {Allocator allocator = calloc}) {
+    final array = allocator<NativeHolographicStereoTransform>(length);
+    for (var i = 0; i < length; i++) {
+      array[i] = this[i].toNative(allocator: allocator).ref;
+    }
+    return array;
+  }
+}
+
+/// @nodoc
 extension NativeHolographicStereoTransformConversion
     on NativeHolographicStereoTransform {
   /// Converts this [NativeHolographicStereoTransform] into a Dart

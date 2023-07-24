@@ -72,7 +72,7 @@ class IAdvancedPhotoCapture extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer context,
                     Pointer<COMObject> operation)>()(
-        ptr.ref.lpVtbl, context?.intoBox().lpVtbl ?? nullptr, operation);
+        ptr.ref.lpVtbl, context?.boxValue().lpVtbl ?? nullptr, operation);
 
     if (FAILED(hr)) {
       free(operation);

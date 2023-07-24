@@ -51,6 +51,21 @@ final class BitmapPlaneDescription implements WinRTStruct {
 }
 
 /// @nodoc
+extension BitmapPlaneDescriptionListToNativeBitmapPlaneDescriptionArrayConversion
+    on List<BitmapPlaneDescription> {
+  /// Creates an array of [NativeBitmapPlaneDescription]s from a List of
+  /// [BitmapPlaneDescription]s.
+  Pointer<NativeBitmapPlaneDescription> toArray(
+      {Allocator allocator = calloc}) {
+    final array = allocator<NativeBitmapPlaneDescription>(length);
+    for (var i = 0; i < length; i++) {
+      array[i] = this[i].toNative(allocator: allocator).ref;
+    }
+    return array;
+  }
+}
+
+/// @nodoc
 extension NativeBitmapPlaneDescriptionConversion
     on NativeBitmapPlaneDescription {
   /// Converts this [NativeBitmapPlaneDescription] into a Dart

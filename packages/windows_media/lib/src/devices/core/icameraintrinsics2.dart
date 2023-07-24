@@ -84,10 +84,7 @@ class ICameraIntrinsics2 extends IInspectable {
 
   List<Point> distortPoints(List<Point> inputs, int resultsSize) {
     final allocator = Arena();
-    final inputsArray = calloc<NativePoint>(inputs.length);
-    for (var i = 0; i < inputs.length; i++) {
-      inputsArray[i] = inputs[i].toNative(allocator: allocator).ref;
-    }
+    final inputsArray = inputs.toArray(allocator: allocator);
     final results = calloc<NativePoint>(resultsSize);
 
     try {
@@ -117,7 +114,6 @@ class ICameraIntrinsics2 extends IInspectable {
       return results.toList(length: resultsSize);
     } finally {
       allocator.releaseAll();
-      free(inputsArray);
       free(results);
     }
   }
@@ -156,10 +152,7 @@ class ICameraIntrinsics2 extends IInspectable {
 
   List<Point> undistortPoints(List<Point> inputs, int resultsSize) {
     final allocator = Arena();
-    final inputsArray = calloc<NativePoint>(inputs.length);
-    for (var i = 0; i < inputs.length; i++) {
-      inputsArray[i] = inputs[i].toNative(allocator: allocator).ref;
-    }
+    final inputsArray = inputs.toArray(allocator: allocator);
     final results = calloc<NativePoint>(resultsSize);
 
     try {
@@ -189,7 +182,6 @@ class ICameraIntrinsics2 extends IInspectable {
       return results.toList(length: resultsSize);
     } finally {
       allocator.releaseAll();
-      free(inputsArray);
       free(results);
     }
   }

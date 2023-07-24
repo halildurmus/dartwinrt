@@ -50,6 +50,18 @@ final class RectInt32 implements WinRTStruct {
 }
 
 /// @nodoc
+extension RectInt32ListToNativeRectInt32ArrayConversion on List<RectInt32> {
+  /// Creates an array of [NativeRectInt32]s from a List of [RectInt32]s.
+  Pointer<NativeRectInt32> toArray({Allocator allocator = calloc}) {
+    final array = allocator<NativeRectInt32>(length);
+    for (var i = 0; i < length; i++) {
+      array[i] = this[i].toNative(allocator: allocator).ref;
+    }
+    return array;
+  }
+}
+
+/// @nodoc
 extension NativeRectInt32Conversion on NativeRectInt32 {
   /// Converts this [NativeRectInt32] into a Dart [RectInt32].
   RectInt32 toDart() => RectInt32(x, y, width, height);

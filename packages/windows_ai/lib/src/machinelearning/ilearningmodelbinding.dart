@@ -39,7 +39,7 @@ class ILearningModelBinding extends IInspectable {
             .asFunction<
                 int Function(
                     VTablePointer lpVtbl, int name, VTablePointer value)>()(
-        ptr.ref.lpVtbl, name.toHString(), value?.intoBox().lpVtbl ?? nullptr);
+        ptr.ref.lpVtbl, name.toHString(), value?.boxValue().lpVtbl ?? nullptr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -56,7 +56,7 @@ class ILearningModelBinding extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int name,
                     VTablePointer value, VTablePointer props)>()(ptr.ref.lpVtbl,
-        name.toHString(), value?.intoBox().lpVtbl ?? nullptr, props.lpVtbl);
+        name.toHString(), value?.boxValue().lpVtbl ?? nullptr, props.lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

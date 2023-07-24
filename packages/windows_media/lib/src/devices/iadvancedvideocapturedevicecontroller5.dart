@@ -115,7 +115,7 @@ class IAdvancedVideoCaptureDeviceController5 extends IInspectable {
                       VTablePointer propertyValue, Pointer<Int32> value)>()(
           ptr.ref.lpVtbl,
           propertyId.toHString(),
-          propertyValue?.intoBox().lpVtbl ?? nullptr,
+          propertyValue?.boxValue().lpVtbl ?? nullptr,
           value);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -129,10 +129,7 @@ class IAdvancedVideoCaptureDeviceController5 extends IInspectable {
   VideoDeviceControllerGetDevicePropertyResult? getDevicePropertyByExtendedId(
       List<int> extendedPropertyId, int? maxPropertyValueSize) {
     final value = calloc<COMObject>();
-    final extendedPropertyIdArray = calloc<Uint8>(extendedPropertyId.length);
-    for (var i = 0; i < extendedPropertyId.length; i++) {
-      extendedPropertyIdArray[i] = extendedPropertyId[i];
-    }
+    final extendedPropertyIdArray = extendedPropertyId.toArray<Uint8>();
 
     final hr = ptr.ref.vtable
             .elementAt(9)
@@ -179,14 +176,8 @@ class IAdvancedVideoCaptureDeviceController5 extends IInspectable {
     final value = calloc<Int32>();
 
     try {
-      final extendedPropertyIdArray = calloc<Uint8>(extendedPropertyId.length);
-      for (var i = 0; i < extendedPropertyId.length; i++) {
-        extendedPropertyIdArray[i] = extendedPropertyId[i];
-      }
-      final propertyValueArray = calloc<Uint8>(propertyValue.length);
-      for (var i = 0; i < propertyValue.length; i++) {
-        propertyValueArray[i] = propertyValue[i];
-      }
+      final extendedPropertyIdArray = extendedPropertyId.toArray<Uint8>();
+      final propertyValueArray = propertyValue.toArray<Uint8>();
 
       final hr = ptr.ref.vtable
               .elementAt(10)

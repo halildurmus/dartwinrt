@@ -102,7 +102,7 @@ class IXmlNodeSelector extends IInspectable {
                         VTablePointer namespaces, Pointer<COMObject> node)>()(
             ptr.ref.lpVtbl,
             xpath.toHString(),
-            namespaces?.intoBox().lpVtbl ?? nullptr,
+            namespaces?.boxValue().lpVtbl ?? nullptr,
             node);
 
     if (FAILED(hr)) {
@@ -137,7 +137,7 @@ class IXmlNodeSelector extends IInspectable {
                     VTablePointer namespaces, Pointer<COMObject> nodelist)>()(
         ptr.ref.lpVtbl,
         xpath.toHString(),
-        namespaces?.intoBox().lpVtbl ?? nullptr,
+        namespaces?.boxValue().lpVtbl ?? nullptr,
         nodelist);
 
     if (FAILED(hr)) {

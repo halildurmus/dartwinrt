@@ -186,7 +186,7 @@ class IStorageQueryResultBase extends IInspectable {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer value,
                         Pointer<COMObject> operation)>()(
-            ptr.ref.lpVtbl, value?.intoBox().lpVtbl ?? nullptr, operation);
+            ptr.ref.lpVtbl, value?.boxValue().lpVtbl ?? nullptr, operation);
 
     if (FAILED(hr)) {
       free(operation);

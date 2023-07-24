@@ -106,7 +106,7 @@ class IUICommandFactory extends IInspectable {
         ptr.ref.lpVtbl,
         label.toHString(),
         action.ref.lpVtbl,
-        commandId?.intoBox().lpVtbl ?? nullptr,
+        commandId?.boxValue().lpVtbl ?? nullptr,
         instance);
 
     if (FAILED(hr)) {
