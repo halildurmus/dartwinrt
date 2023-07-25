@@ -2,12 +2,21 @@
 // All rights reserved. Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+import '../../ipropertyvalue.dart';
+import '../../propertyvalue.dart';
 import '../../uri.dart' as winrt_uri;
 
 /// @nodoc
 extension DartUriToWinRTUriConversion on Uri {
   /// Converts this Uri into a WinRT Uri.
   winrt_uri.Uri toWinRTUri() => winrt_uri.Uri.createUri(toString());
+}
+
+/// @nodoc
+extension UriListConversion on List<Uri?> {
+  /// Converts the value to an [IPropertyValue].
+  IPropertyValue toPropertyValue() =>
+      PropertyValue.createInspectableArray(this);
 }
 
 /// @nodoc
