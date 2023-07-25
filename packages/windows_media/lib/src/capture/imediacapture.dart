@@ -388,7 +388,7 @@ class IMediaCapture extends IInspectable {
         ptr.ref.lpVtbl,
         mediaStreamType.value,
         propertyIdNativeStructPtr.ref,
-        propertyValue?.intoBox().lpVtbl ?? nullptr);
+        propertyValue?.boxValue().lpVtbl ?? nullptr);
 
     free(propertyIdNativeStructPtr);
 

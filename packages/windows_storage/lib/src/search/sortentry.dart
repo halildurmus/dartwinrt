@@ -44,6 +44,18 @@ final class SortEntry implements WinRTStruct {
 }
 
 /// @nodoc
+extension SortEntryListToNativeSortEntryArrayConversion on List<SortEntry> {
+  /// Creates an array of [NativeSortEntry]s from a List of [SortEntry]s.
+  Pointer<NativeSortEntry> toArray({Allocator allocator = calloc}) {
+    final array = allocator<NativeSortEntry>(length);
+    for (var i = 0; i < length; i++) {
+      array[i] = this[i].toNative(allocator: allocator).ref;
+    }
+    return array;
+  }
+}
+
+/// @nodoc
 extension NativeSortEntryConversion on NativeSortEntry {
   /// Converts this [NativeSortEntry] into a Dart [SortEntry].
   SortEntry toDart() => SortEntry(propertyName.toDartString(), ascendingOrder);

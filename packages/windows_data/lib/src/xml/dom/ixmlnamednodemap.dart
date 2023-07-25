@@ -188,7 +188,7 @@ class IXmlNamedNodeMap extends IInspectable
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer namespaceUri,
                     int name, Pointer<COMObject> node)>()(ptr.ref.lpVtbl,
-        namespaceUri?.intoBox().lpVtbl ?? nullptr, name.toHString(), node);
+        namespaceUri?.boxValue().lpVtbl ?? nullptr, name.toHString(), node);
 
     if (FAILED(hr)) {
       free(node);
@@ -221,7 +221,7 @@ class IXmlNamedNodeMap extends IInspectable
                 int Function(VTablePointer lpVtbl, VTablePointer namespaceUri,
                     int name, Pointer<COMObject> previousNode)>()(
         ptr.ref.lpVtbl,
-        namespaceUri?.intoBox().lpVtbl ?? nullptr,
+        namespaceUri?.boxValue().lpVtbl ?? nullptr,
         name.toHString(),
         previousNode);
 

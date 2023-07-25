@@ -41,6 +41,20 @@ final class MediaTimeRange implements WinRTStruct {
 }
 
 /// @nodoc
+extension MediaTimeRangeListToNativeMediaTimeRangeArrayConversion
+    on List<MediaTimeRange> {
+  /// Creates an array of [NativeMediaTimeRange]s from a List of
+  /// [MediaTimeRange]s.
+  Pointer<NativeMediaTimeRange> toArray({Allocator allocator = calloc}) {
+    final array = allocator<NativeMediaTimeRange>(length);
+    for (var i = 0; i < length; i++) {
+      array[i] = this[i].toNative(allocator: allocator).ref;
+    }
+    return array;
+  }
+}
+
+/// @nodoc
 extension NativeMediaTimeRangeConversion on NativeMediaTimeRange {
   /// Converts this [NativeMediaTimeRange] into a Dart [MediaTimeRange].
   MediaTimeRange toDart() =>

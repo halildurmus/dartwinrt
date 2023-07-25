@@ -31,29 +31,6 @@ abstract base class ArrayParameterProjection extends ParameterProjection {
     }
   }
 
-  @override
-  String get type => 'List<$typeArg>';
-
-  @override
-  String get creator {
-    final buffer = StringBuffer()
-      ..write('$toListCreatorIdentifier.$toListIdentifier(');
-    if (typeArgParamProjection.toListArg.isNotEmpty) {
-      buffer.write('${typeArgParamProjection.toListArg}, ');
-    }
-    buffer.write('length: $toListLengthIdentifier)');
-    if (typeArgParamProjection.toListCreator.isNotEmpty) {
-      buffer.write(typeArgParamProjection.toListCreator);
-    }
-    return buffer.toString();
-  }
-
-  @override
-  String get into => '${identifier}Array';
-
-  @override
-  bool get needsAllocation => true;
-
   ParameterProjection? _typeArgParamProjection;
 
   ParameterProjection get typeArgParamProjection =>
@@ -87,10 +64,31 @@ abstract base class ArrayParameterProjection extends ParameterProjection {
           ? '${method.returnType.name}.value'
           : 'retValuePtr.value';
 
-  String get toListIdentifier =>
-      typeArgParamProjection.toListIdentifier.isNotEmpty
-          ? typeArgParamProjection.toListIdentifier
-          : 'toList';
+  bool get typeArgIsObjectType =>
+      typeArgParamProjection.typeProjection.isObjectType;
+
+  String get toListArg {
+    final typeArgParamCreator = typeArgParamProjection.creator;
+    return switch (typeArgParamProjection) {
+      EnumParameterProjection() ||
+      ObjectParameterProjection() when !typeArgIsObjectType =>
+        typeArgParamCreator.substring(0, typeArgParamCreator.indexOf('(')),
+      GenericEnumParameterProjection() => 'enumCreator',
+      GenericObjectParameterProjection() => 'creator',
+      _ => ''
+    };
+  }
+
+  String get toListIdentifier => switch (typeArgParamProjection) {
+        DateTimeParameterProjection() => 'toDateTimeList',
+        DurationParameterProjection() => 'toDurationList',
+        ObjectParameterProjection() when typeArgIsObjectType => 'toObjectList',
+        EnumParameterProjection() ||
+        GenericEnumParameterProjection() =>
+          'toEnumList',
+        UriParameterProjection() => 'toDartUriList',
+        _ => 'toList'
+      };
 
   String get toListCreatorIdentifier => this is ReceiveArrayParameterProjection
       ? '$localIdentifier.value'
@@ -99,6 +97,24 @@ abstract base class ArrayParameterProjection extends ParameterProjection {
   String get toListLengthIdentifier => this is FillArrayParameterProjection
       ? fillArraySizeIdentifier
       : '$sizeIdentifier.value';
+
+  @override
+  String get type => 'List<$typeArg>';
+
+  @override
+  String get creator {
+    final buffer = StringBuffer()
+      ..write('$toListCreatorIdentifier.$toListIdentifier(');
+    if (toListArg.isNotEmpty) buffer.write('$toListArg, ');
+    buffer.write('length: $toListLengthIdentifier)');
+    return buffer.toString();
+  }
+
+  @override
+  String get into => '${identifier}Array';
+
+  @override
+  bool get needsAllocation => true;
 }
 
 base class FillArrayParameterProjection extends ArrayParameterProjection {
@@ -115,14 +131,29 @@ base class FillArrayParameterProjection extends ArrayParameterProjection {
 base class PassArrayParameterProjection extends ArrayParameterProjection {
   PassArrayParameterProjection(super.parameter);
 
+  String get nativeType => typeArgParamProjection.typeProjection.nativeType;
+
+  String get cast => switch (typeArgParamProjection) {
+        GenericEnumParameterProjection() when nativeType == 'Uint32' =>
+          '.cast<WinRTFlagsEnum>()',
+        GenericEnumParameterProjection() when nativeType == 'Int32' =>
+          '.cast<WinRTEnum>()',
+        GenericObjectParameterProjection() => '.cast<IInspectable>()',
+        _ => '',
+      };
+
+  String get genericTypeArg => switch (typeArgParamProjection) {
+        final projection
+            when projection is! GenericEnumParameterProjection &&
+                (projection.typeProjection.isDouble ||
+                    projection.typeProjection.isInteger) =>
+          '<$nativeType>',
+        _ => '',
+      };
+
   @override
-  List<String> get preambles => [
-        'final $localIdentifier = calloc<$nativeType>($identifier.length);',
-        '''
-    for (var i = 0; i < $identifier.length; i++) {
-      $localIdentifier[i] = ${typeArgParamProjection.toListInto};
-    }'''
-      ];
+  List<String> get preambles =>
+      ['final $localIdentifier = $identifier$cast.toArray$genericTypeArg();'];
 
   @override
   List<String> get postambles => ['free($localIdentifier);'];

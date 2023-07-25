@@ -33,14 +33,8 @@ class ITensorInt32BitStatics2 extends IInspectable {
   TensorInt32Bit? createFromShapeArrayAndDataArray(
       List<int> shape, List<int> data) {
     final result = calloc<COMObject>();
-    final shapeArray = calloc<Int64>(shape.length);
-    for (var i = 0; i < shape.length; i++) {
-      shapeArray[i] = shape[i];
-    }
-    final dataArray = calloc<Int32>(data.length);
-    for (var i = 0; i < data.length; i++) {
-      dataArray[i] = data[i];
-    }
+    final shapeArray = shape.toArray<Int64>();
+    final dataArray = data.toArray<Int32>();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -83,10 +77,7 @@ class ITensorInt32BitStatics2 extends IInspectable {
 
   TensorInt32Bit? createFromBuffer(List<int> shape, IBuffer? buffer) {
     final result = calloc<COMObject>();
-    final shapeArray = calloc<Int64>(shape.length);
-    for (var i = 0; i < shape.length; i++) {
-      shapeArray[i] = shape[i];
-    }
+    final shapeArray = shape.toArray<Int64>();
 
     final hr = ptr.ref.vtable
             .elementAt(7)

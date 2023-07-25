@@ -6,7 +6,7 @@ import 'package:win32/win32.dart';
 
 import '../../ipropertyvalue.dart';
 import '../../propertytype.dart';
-import 'comobject_helpers.dart';
+import 'comobject_helper.dart';
 
 extension IPropertyValueHelper on IPropertyValue {
   /// Gets the type that is represented as an [IPropertyValue].

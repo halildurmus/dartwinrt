@@ -49,14 +49,6 @@ final class UriParameterProjection extends ParameterProjection {
     return buffer.toString();
   }
 
-  @override
-  String get toListInto => isNullable
-      ? '$identifier[i]?.toWinRTUri().lpVtbl ?? nullptr'
-      : '$identifier[i].toWinRTUri().lpVtbl';
-
-  @override
-  String get toListIdentifier => 'toDartUriList';
-
   // No deallocation is needed as Finalizer will handle it.
   @override
   bool get needsDeallocation => false;

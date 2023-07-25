@@ -16,16 +16,16 @@ void main() {
     return;
   }
 
-  group('intoBox', () {
+  group('boxValue', () {
     test('Pointer<COMObject>', () {
       final pv = PropertyValue.createString('Dart');
-      final boxed = pv.ptr.intoBox();
+      final boxed = pv.ptr.boxValue();
       expect(getClassName(boxed),
           equals('Windows.Foundation.IReference`1<String>'));
     });
 
     test('Guid', () {
-      final boxed = Guid.parse(IID_IAsyncAction).intoBox();
+      final boxed = Guid.parse(IID_IAsyncAction).boxValue();
       expect(boxed, isA<IPropertyValue>());
       final pv = boxed as IPropertyValue;
       expect(pv.type, equals(PropertyType.guid));
@@ -34,14 +34,14 @@ void main() {
 
     test('IInspectable', () {
       final stringMap = StringMap();
-      final boxed = stringMap.intoBox();
+      final boxed = stringMap.boxValue();
       expect(boxed, isA<StringMap>());
       final newStringMap = boxed as StringMap;
       expect(newStringMap.size, equals(0));
     });
 
     test('List<double> (Double)', () {
-      final boxed = [1.5, -2.5].intoBox(doubleType: DoubleType.double);
+      final boxed = [1.5, -2.5].boxValue(doubleType: DoubleType.double);
       expect(boxed, isA<IPropertyValue>());
       final pv = boxed as IPropertyValue;
       expect(pv.type, equals(PropertyType.doubleArray));
@@ -51,7 +51,7 @@ void main() {
     });
 
     test('List<double> (Float)', () {
-      final boxed = [1.5, -2.5].intoBox(doubleType: DoubleType.float);
+      final boxed = [1.5, -2.5].boxValue(doubleType: DoubleType.float);
       expect(boxed, isA<IPropertyValue>());
       final pv = boxed as IPropertyValue;
       expect(pv.type, equals(PropertyType.singleArray));
@@ -61,7 +61,7 @@ void main() {
     });
 
     test('List<Uri?>', () {
-      final boxed = [Uri.parse('https://dartwinrt.dev'), null].intoBox();
+      final boxed = [Uri.parse('https://dartwinrt.dev'), null].boxValue();
       expect(boxed, isA<IPropertyValue>());
       final pv = boxed as IPropertyValue;
       expect(pv.type, equals(PropertyType.inspectableArray));
@@ -77,7 +77,7 @@ void main() {
     });
 
     test('String', () {
-      final boxed = 'dart'.intoBox();
+      final boxed = 'dart'.boxValue();
       expect(boxed, isA<IPropertyValue>());
       final pv = boxed as IPropertyValue;
       expect(pv.type, equals(PropertyType.string));
@@ -85,7 +85,7 @@ void main() {
     });
 
     test('Uri', () {
-      final boxed = Uri.parse('https://dartwinrt.dev').intoBox();
+      final boxed = Uri.parse('https://dartwinrt.dev').boxValue();
       expect(boxed, isA<winrt_uri.Uri>());
       final pv = boxed as winrt_uri.Uri;
       expect(pv.toString(), equals('https://dartwinrt.dev/'));

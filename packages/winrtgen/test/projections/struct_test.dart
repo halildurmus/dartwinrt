@@ -275,6 +275,22 @@ void main() {
 '''));
     });
 
+    test('has correct struct list extension declaration', () {
+      expect(rectProjection.structListExtension, equalsIgnoringWhitespace('''
+/// @nodoc
+extension RectListToNativeRectArrayConversion on List<Rect> {
+  /// Creates an array of [NativeRect]s from a List of [Rect]s.
+  Pointer<NativeRect> toArray({Allocator allocator = calloc}) {
+    final array = allocator<NativeRect>(length);
+    for (var i = 0; i < length; i++) {
+      array[i] = this[i].toNative(allocator: allocator).ref;
+    }
+    return array;
+  }
+}
+'''));
+    });
+
     test('has correct native struct extension declaration (1)', () {
       expect(rectProjection.nativeStructExtension, equalsIgnoringWhitespace('''
 /// @nodoc

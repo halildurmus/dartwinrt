@@ -226,7 +226,7 @@ final class _IMapGuidObject extends IMap<Guid, Object?> {
                           VTablePointer value, Pointer<Bool> retValuePtr)>()(
               ptr.ref.lpVtbl,
               keyNativeStructPtr.ref,
-              value?.intoBox().lpVtbl ?? nullptr,
+              value?.boxValue().lpVtbl ?? nullptr,
               retValuePtr);
 
       free(keyNativeStructPtr);
@@ -607,7 +607,7 @@ final class _IMapObjectObject extends IMap<Object, Object?> {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer key,
                         Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl, key.intoBox().lpVtbl, retValuePtr);
+            ptr.ref.lpVtbl, key.boxValue().lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -638,7 +638,7 @@ final class _IMapObjectObject extends IMap<Object, Object?> {
               .asFunction<
                   int Function(VTablePointer lpVtbl, VTablePointer key,
                       Pointer<Bool> retValuePtr)>()(
-          ptr.ref.lpVtbl, key.intoBox().lpVtbl, retValuePtr);
+          ptr.ref.lpVtbl, key.boxValue().lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 
@@ -669,8 +669,8 @@ final class _IMapObjectObject extends IMap<Object, Object?> {
                       int Function(VTablePointer lpVtbl, VTablePointer key,
                           VTablePointer value, Pointer<Bool> retValuePtr)>()(
               ptr.ref.lpVtbl,
-              key.intoBox().lpVtbl,
-              value?.intoBox().lpVtbl ?? nullptr,
+              key.boxValue().lpVtbl,
+              value?.boxValue().lpVtbl ?? nullptr,
               retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
@@ -693,7 +693,7 @@ final class _IMapObjectObject extends IMap<Object, Object?> {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer key)>()(
-        ptr.ref.lpVtbl, key.intoBox().lpVtbl);
+        ptr.ref.lpVtbl, key.boxValue().lpVtbl);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -892,7 +892,7 @@ final class _IMapStringObject extends IMap<String, Object?> {
                           VTablePointer value, Pointer<Bool> retValuePtr)>()(
               ptr.ref.lpVtbl,
               key.toHString(),
-              value?.intoBox().lpVtbl ?? nullptr,
+              value?.boxValue().lpVtbl ?? nullptr,
               retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);

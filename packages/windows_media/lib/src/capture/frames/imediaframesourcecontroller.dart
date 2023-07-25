@@ -82,7 +82,7 @@ class IMediaFrameSourceController extends IInspectable {
                     VTablePointer propertyValue, Pointer<COMObject> value)>()(
         ptr.ref.lpVtbl,
         propertyId.toHString(),
-        propertyValue?.intoBox().lpVtbl ?? nullptr,
+        propertyValue?.boxValue().lpVtbl ?? nullptr,
         value);
 
     if (FAILED(hr)) {

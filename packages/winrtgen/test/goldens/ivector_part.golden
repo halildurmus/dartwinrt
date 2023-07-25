@@ -182,10 +182,7 @@ final class _IVectorAccessListEntry extends IVector<AccessListEntry> {
   @override
   void replaceAll(List<AccessListEntry> items) {
     final allocator = Arena();
-    final itemsArray = calloc<NativeAccessListEntry>(items.length);
-    for (var i = 0; i < items.length; i++) {
-      itemsArray[i] = items[i].toNative(allocator: allocator).ref;
-    }
+    final itemsArray = items.toArray(allocator: allocator);
 
     final hr = ptr.ref.vtable
             .elementAt(17)
@@ -201,7 +198,6 @@ final class _IVectorAccessListEntry extends IVector<AccessListEntry> {
         ptr.ref.lpVtbl, items.length, itemsArray);
 
     allocator.releaseAll();
-    free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -388,10 +384,7 @@ final class _IVectorBackgroundTransferFileRange
   @override
   void replaceAll(List<BackgroundTransferFileRange> items) {
     final allocator = Arena();
-    final itemsArray = calloc<NativeBackgroundTransferFileRange>(items.length);
-    for (var i = 0; i < items.length; i++) {
-      itemsArray[i] = items[i].toNative(allocator: allocator).ref;
-    }
+    final itemsArray = items.toArray(allocator: allocator);
 
     final hr = ptr.ref.vtable
         .elementAt(17)
@@ -409,7 +402,6 @@ final class _IVectorBackgroundTransferFileRange
                     items)>()(ptr.ref.lpVtbl, items.length, itemsArray);
 
     allocator.releaseAll();
-    free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -588,10 +580,7 @@ final class _IVectorBasicGeoposition extends IVector<BasicGeoposition> {
   @override
   void replaceAll(List<BasicGeoposition> items) {
     final allocator = Arena();
-    final itemsArray = calloc<NativeBasicGeoposition>(items.length);
-    for (var i = 0; i < items.length; i++) {
-      itemsArray[i] = items[i].toNative(allocator: allocator).ref;
-    }
+    final itemsArray = items.toArray(allocator: allocator);
 
     final hr = ptr.ref.vtable
             .elementAt(17)
@@ -607,7 +596,6 @@ final class _IVectorBasicGeoposition extends IVector<BasicGeoposition> {
         ptr.ref.lpVtbl, items.length, itemsArray);
 
     allocator.releaseAll();
-    free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -764,10 +752,7 @@ final class _IVectorBool extends IVector<bool> {
 
   @override
   void replaceAll(List<bool> items) {
-    final itemsArray = calloc<Bool>(items.length);
-    for (var i = 0; i < items.length; i++) {
-      itemsArray[i] = items[i];
-    }
+    final itemsArray = items.toArray();
 
     final hr = ptr.ref.vtable
             .elementAt(17)
@@ -958,10 +943,7 @@ final class _IVectorColor extends IVector<Color> {
   @override
   void replaceAll(List<Color> items) {
     final allocator = Arena();
-    final itemsArray = calloc<NativeColor>(items.length);
-    for (var i = 0; i < items.length; i++) {
-      itemsArray[i] = items[i].toNative(allocator: allocator).ref;
-    }
+    final itemsArray = items.toArray(allocator: allocator);
 
     final hr = ptr.ref.vtable
             .elementAt(17)
@@ -977,7 +959,6 @@ final class _IVectorColor extends IVector<Color> {
         ptr.ref.lpVtbl, items.length, itemsArray);
 
     allocator.releaseAll();
-    free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -1134,10 +1115,7 @@ final class _IVectorDateTime extends IVector<DateTime> {
 
   @override
   void replaceAll(List<DateTime> items) {
-    final itemsArray = calloc<Int64>(items.length);
-    for (var i = 0; i < items.length; i++) {
-      itemsArray[i] = items[i].toWinRTDateTime();
-    }
+    final itemsArray = items.toArray();
 
     final hr = ptr.ref.vtable
             .elementAt(17)
@@ -1312,10 +1290,7 @@ final class _IVectorDouble extends IVector<double> {
 
   @override
   void replaceAll(List<double> items) {
-    final itemsArray = calloc<Double>(items.length);
-    for (var i = 0; i < items.length; i++) {
-      itemsArray[i] = items[i];
-    }
+    final itemsArray = items.toArray<Double>();
 
     final hr = ptr.ref.vtable
             .elementAt(17)
@@ -1487,10 +1462,7 @@ final class _IVectorDuration extends IVector<Duration> {
 
   @override
   void replaceAll(List<Duration> items) {
-    final itemsArray = calloc<Int64>(items.length);
-    for (var i = 0; i < items.length; i++) {
-      itemsArray[i] = items[i].toWinRTDuration();
-    }
+    final itemsArray = items.toArray();
 
     final hr = ptr.ref.vtable
             .elementAt(17)
@@ -1663,10 +1635,7 @@ final class _IVectorFloat extends IVector<double> {
 
   @override
   void replaceAll(List<double> items) {
-    final itemsArray = calloc<Float>(items.length);
-    for (var i = 0; i < items.length; i++) {
-      itemsArray[i] = items[i];
-    }
+    final itemsArray = items.toArray<Float>();
 
     final hr = ptr.ref.vtable
             .elementAt(17)
@@ -1860,10 +1829,7 @@ final class _IVectorGpioChangeRecord extends IVector<GpioChangeRecord> {
   @override
   void replaceAll(List<GpioChangeRecord> items) {
     final allocator = Arena();
-    final itemsArray = calloc<NativeGpioChangeRecord>(items.length);
-    for (var i = 0; i < items.length; i++) {
-      itemsArray[i] = items[i].toNative(allocator: allocator).ref;
-    }
+    final itemsArray = items.toArray(allocator: allocator);
 
     final hr = ptr.ref.vtable
             .elementAt(17)
@@ -1879,7 +1845,6 @@ final class _IVectorGpioChangeRecord extends IVector<GpioChangeRecord> {
         ptr.ref.lpVtbl, items.length, itemsArray);
 
     allocator.releaseAll();
-    free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -2051,10 +2016,7 @@ final class _IVectorGuid extends IVector<Guid> {
   @override
   void replaceAll(List<Guid> items) {
     final allocator = Arena();
-    final itemsArray = calloc<GUID>(items.length);
-    for (var i = 0; i < items.length; i++) {
-      itemsArray[i] = items[i].toNativeGUID(allocator: allocator).ref;
-    }
+    final itemsArray = items.toArray(allocator: allocator);
 
     final hr = ptr.ref.vtable
             .elementAt(17)
@@ -2070,7 +2032,6 @@ final class _IVectorGuid extends IVector<Guid> {
         ptr.ref.lpVtbl, items.length, itemsArray);
 
     allocator.releaseAll();
-    free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -2227,10 +2188,7 @@ final class _IVectorInt16 extends IVector<int> {
 
   @override
   void replaceAll(List<int> items) {
-    final itemsArray = calloc<Int16>(items.length);
-    for (var i = 0; i < items.length; i++) {
-      itemsArray[i] = items[i];
-    }
+    final itemsArray = items.toArray<Int16>();
 
     final hr = ptr.ref.vtable
             .elementAt(17)
@@ -2402,10 +2360,7 @@ final class _IVectorInt32 extends IVector<int> {
 
   @override
   void replaceAll(List<int> items) {
-    final itemsArray = calloc<Int32>(items.length);
-    for (var i = 0; i < items.length; i++) {
-      itemsArray[i] = items[i];
-    }
+    final itemsArray = items.toArray<Int32>();
 
     final hr = ptr.ref.vtable
             .elementAt(17)
@@ -2577,10 +2532,7 @@ final class _IVectorInt64 extends IVector<int> {
 
   @override
   void replaceAll(List<int> items) {
-    final itemsArray = calloc<Int64>(items.length);
-    for (var i = 0; i < items.length; i++) {
-      itemsArray[i] = items[i];
-    }
+    final itemsArray = items.toArray<Int64>();
 
     final hr = ptr.ref.vtable
             .elementAt(17)
@@ -2771,10 +2723,7 @@ final class _IVectorMediaTimeRange extends IVector<MediaTimeRange> {
   @override
   void replaceAll(List<MediaTimeRange> items) {
     final allocator = Arena();
-    final itemsArray = calloc<NativeMediaTimeRange>(items.length);
-    for (var i = 0; i < items.length; i++) {
-      itemsArray[i] = items[i].toNative(allocator: allocator).ref;
-    }
+    final itemsArray = items.toArray(allocator: allocator);
 
     final hr = ptr.ref.vtable
             .elementAt(17)
@@ -2790,7 +2739,6 @@ final class _IVectorMediaTimeRange extends IVector<MediaTimeRange> {
         ptr.ref.lpVtbl, items.length, itemsArray);
 
     allocator.releaseAll();
-    free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -2965,10 +2913,7 @@ final class _IVectorMseTimeRange extends IVector<MseTimeRange> {
   @override
   void replaceAll(List<MseTimeRange> items) {
     final allocator = Arena();
-    final itemsArray = calloc<NativeMseTimeRange>(items.length);
-    for (var i = 0; i < items.length; i++) {
-      itemsArray[i] = items[i].toNative(allocator: allocator).ref;
-    }
+    final itemsArray = items.toArray(allocator: allocator);
 
     final hr = ptr.ref.vtable
             .elementAt(17)
@@ -2984,7 +2929,6 @@ final class _IVectorMseTimeRange extends IVector<MseTimeRange> {
         ptr.ref.lpVtbl, items.length, itemsArray);
 
     allocator.releaseAll();
-    free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -3159,10 +3103,7 @@ final class _IVectorNitRange extends IVector<NitRange> {
   @override
   void replaceAll(List<NitRange> items) {
     final allocator = Arena();
-    final itemsArray = calloc<NativeNitRange>(items.length);
-    for (var i = 0; i < items.length; i++) {
-      itemsArray[i] = items[i].toNative(allocator: allocator).ref;
-    }
+    final itemsArray = items.toArray(allocator: allocator);
 
     final hr = ptr.ref.vtable
             .elementAt(17)
@@ -3178,7 +3119,6 @@ final class _IVectorNitRange extends IVector<NitRange> {
         ptr.ref.lpVtbl, items.length, itemsArray);
 
     allocator.releaseAll();
-    free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -3346,10 +3286,7 @@ final class _IVectorInspectable<T> extends IVector<T> {
 
   @override
   void replaceAll(List<T> items) {
-    final itemsArray = calloc<VTablePointer>(items.length);
-    for (var i = 0; i < items.length; i++) {
-      itemsArray[i] = items.cast<IInspectable>()[i].lpVtbl;
-    }
+    final itemsArray = items.cast<IInspectable>().toArray();
 
     final hr = ptr.ref.vtable
             .elementAt(17)
@@ -3424,7 +3361,7 @@ final class _IVectorObject extends IVector<Object?> {
                   int Function(VTablePointer lpVtbl, VTablePointer value,
                       Pointer<Uint32> index, Pointer<Bool> retValuePtr)>()(
           ptr.ref.lpVtbl,
-          value?.intoBox().lpVtbl ?? nullptr,
+          value?.boxValue().lpVtbl ?? nullptr,
           index,
           retValuePtr);
 
@@ -3450,7 +3387,7 @@ final class _IVectorObject extends IVector<Object?> {
             .asFunction<
                 int Function(
                     VTablePointer lpVtbl, int index, VTablePointer value)>()(
-        ptr.ref.lpVtbl, index, value?.intoBox().lpVtbl ?? nullptr);
+        ptr.ref.lpVtbl, index, value?.boxValue().lpVtbl ?? nullptr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -3468,7 +3405,7 @@ final class _IVectorObject extends IVector<Object?> {
             .asFunction<
                 int Function(
                     VTablePointer lpVtbl, int index, VTablePointer value)>()(
-        ptr.ref.lpVtbl, index, value?.intoBox().lpVtbl ?? nullptr);
+        ptr.ref.lpVtbl, index, value?.boxValue().lpVtbl ?? nullptr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -3485,7 +3422,7 @@ final class _IVectorObject extends IVector<Object?> {
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer value)>()(
-        ptr.ref.lpVtbl, value?.intoBox().lpVtbl ?? nullptr);
+        ptr.ref.lpVtbl, value?.boxValue().lpVtbl ?? nullptr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -3531,10 +3468,7 @@ final class _IVectorObject extends IVector<Object?> {
 
   @override
   void replaceAll(List<Object?> items) {
-    final itemsArray = calloc<VTablePointer>(items.length);
-    for (var i = 0; i < items.length; i++) {
-      itemsArray[i] = items[i]?.intoBox().lpVtbl ?? nullptr;
-    }
+    final itemsArray = items.toArray();
 
     final hr = ptr.ref.vtable
             .elementAt(17)
@@ -3716,10 +3650,7 @@ final class _IVectorUri extends IVector<Uri?> {
 
   @override
   void replaceAll(List<Uri?> items) {
-    final itemsArray = calloc<VTablePointer>(items.length);
-    for (var i = 0; i < items.length; i++) {
-      itemsArray[i] = items[i]?.toWinRTUri().lpVtbl ?? nullptr;
-    }
+    final itemsArray = items.toArray();
 
     final hr = ptr.ref.vtable
             .elementAt(17)
@@ -3910,10 +3841,7 @@ final class _IVectorPoint extends IVector<Point> {
   @override
   void replaceAll(List<Point> items) {
     final allocator = Arena();
-    final itemsArray = calloc<NativePoint>(items.length);
-    for (var i = 0; i < items.length; i++) {
-      itemsArray[i] = items[i].toNative(allocator: allocator).ref;
-    }
+    final itemsArray = items.toArray(allocator: allocator);
 
     final hr = ptr.ref.vtable
             .elementAt(17)
@@ -3929,7 +3857,6 @@ final class _IVectorPoint extends IVector<Point> {
         ptr.ref.lpVtbl, items.length, itemsArray);
 
     allocator.releaseAll();
-    free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -4111,10 +4038,7 @@ final class _IVectorPointerDeviceUsage extends IVector<PointerDeviceUsage> {
   @override
   void replaceAll(List<PointerDeviceUsage> items) {
     final allocator = Arena();
-    final itemsArray = calloc<NativePointerDeviceUsage>(items.length);
-    for (var i = 0; i < items.length; i++) {
-      itemsArray[i] = items[i].toNative(allocator: allocator).ref;
-    }
+    final itemsArray = items.toArray(allocator: allocator);
 
     final hr = ptr.ref.vtable
             .elementAt(17)
@@ -4130,7 +4054,6 @@ final class _IVectorPointerDeviceUsage extends IVector<PointerDeviceUsage> {
         ptr.ref.lpVtbl, items.length, itemsArray);
 
     allocator.releaseAll();
-    free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -4305,10 +4228,7 @@ final class _IVectorRect extends IVector<Rect> {
   @override
   void replaceAll(List<Rect> items) {
     final allocator = Arena();
-    final itemsArray = calloc<NativeRect>(items.length);
-    for (var i = 0; i < items.length; i++) {
-      itemsArray[i] = items[i].toNative(allocator: allocator).ref;
-    }
+    final itemsArray = items.toArray(allocator: allocator);
 
     final hr = ptr.ref.vtable
             .elementAt(17)
@@ -4324,7 +4244,6 @@ final class _IVectorRect extends IVector<Rect> {
         ptr.ref.lpVtbl, items.length, itemsArray);
 
     allocator.releaseAll();
-    free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -4499,10 +4418,7 @@ final class _IVectorRectInt32 extends IVector<RectInt32> {
   @override
   void replaceAll(List<RectInt32> items) {
     final allocator = Arena();
-    final itemsArray = calloc<NativeRectInt32>(items.length);
-    for (var i = 0; i < items.length; i++) {
-      itemsArray[i] = items[i].toNative(allocator: allocator).ref;
-    }
+    final itemsArray = items.toArray(allocator: allocator);
 
     final hr = ptr.ref.vtable
             .elementAt(17)
@@ -4518,7 +4434,6 @@ final class _IVectorRectInt32 extends IVector<RectInt32> {
         ptr.ref.lpVtbl, items.length, itemsArray);
 
     allocator.releaseAll();
-    free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -4693,10 +4608,7 @@ final class _IVectorSize extends IVector<Size> {
   @override
   void replaceAll(List<Size> items) {
     final allocator = Arena();
-    final itemsArray = calloc<NativeSize>(items.length);
-    for (var i = 0; i < items.length; i++) {
-      itemsArray[i] = items[i].toNative(allocator: allocator).ref;
-    }
+    final itemsArray = items.toArray(allocator: allocator);
 
     final hr = ptr.ref.vtable
             .elementAt(17)
@@ -4712,7 +4624,6 @@ final class _IVectorSize extends IVector<Size> {
         ptr.ref.lpVtbl, items.length, itemsArray);
 
     allocator.releaseAll();
-    free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -4887,10 +4798,7 @@ final class _IVectorSizeUInt32 extends IVector<SizeUInt32> {
   @override
   void replaceAll(List<SizeUInt32> items) {
     final allocator = Arena();
-    final itemsArray = calloc<NativeSizeUInt32>(items.length);
-    for (var i = 0; i < items.length; i++) {
-      itemsArray[i] = items[i].toNative(allocator: allocator).ref;
-    }
+    final itemsArray = items.toArray(allocator: allocator);
 
     final hr = ptr.ref.vtable
             .elementAt(17)
@@ -4906,7 +4814,6 @@ final class _IVectorSizeUInt32 extends IVector<SizeUInt32> {
         ptr.ref.lpVtbl, items.length, itemsArray);
 
     allocator.releaseAll();
-    free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -5081,10 +4988,7 @@ final class _IVectorSortEntry extends IVector<SortEntry> {
   @override
   void replaceAll(List<SortEntry> items) {
     final allocator = Arena();
-    final itemsArray = calloc<NativeSortEntry>(items.length);
-    for (var i = 0; i < items.length; i++) {
-      itemsArray[i] = items[i].toNative(allocator: allocator).ref;
-    }
+    final itemsArray = items.toArray(allocator: allocator);
 
     final hr = ptr.ref.vtable
             .elementAt(17)
@@ -5100,7 +5004,6 @@ final class _IVectorSortEntry extends IVector<SortEntry> {
         ptr.ref.lpVtbl, items.length, itemsArray);
 
     allocator.releaseAll();
-    free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -5285,10 +5188,7 @@ final class _IVectorStorePackageUpdateStatus
   @override
   void replaceAll(List<StorePackageUpdateStatus> items) {
     final allocator = Arena();
-    final itemsArray = calloc<NativeStorePackageUpdateStatus>(items.length);
-    for (var i = 0; i < items.length; i++) {
-      itemsArray[i] = items[i].toNative(allocator: allocator).ref;
-    }
+    final itemsArray = items.toArray(allocator: allocator);
 
     final hr = ptr.ref.vtable
             .elementAt(17)
@@ -5304,7 +5204,6 @@ final class _IVectorStorePackageUpdateStatus
         ptr.ref.lpVtbl, items.length, itemsArray);
 
     allocator.releaseAll();
-    free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -5463,10 +5362,7 @@ final class _IVectorString extends IVector<String> {
 
   @override
   void replaceAll(List<String> items) {
-    final itemsArray = calloc<IntPtr>(items.length);
-    for (var i = 0; i < items.length; i++) {
-      itemsArray[i] = items[i].toHString();
-    }
+    final itemsArray = items.toArray();
 
     final hr = ptr.ref.vtable
             .elementAt(17)
@@ -5656,10 +5552,7 @@ final class _IVectorTextRange extends IVector<TextRange> {
   @override
   void replaceAll(List<TextRange> items) {
     final allocator = Arena();
-    final itemsArray = calloc<NativeTextRange>(items.length);
-    for (var i = 0; i < items.length; i++) {
-      itemsArray[i] = items[i].toNative(allocator: allocator).ref;
-    }
+    final itemsArray = items.toArray(allocator: allocator);
 
     final hr = ptr.ref.vtable
             .elementAt(17)
@@ -5675,7 +5568,6 @@ final class _IVectorTextRange extends IVector<TextRange> {
         ptr.ref.lpVtbl, items.length, itemsArray);
 
     allocator.releaseAll();
-    free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -5850,10 +5742,7 @@ final class _IVectorTextSegment extends IVector<TextSegment> {
   @override
   void replaceAll(List<TextSegment> items) {
     final allocator = Arena();
-    final itemsArray = calloc<NativeTextSegment>(items.length);
-    for (var i = 0; i < items.length; i++) {
-      itemsArray[i] = items[i].toNative(allocator: allocator).ref;
-    }
+    final itemsArray = items.toArray(allocator: allocator);
 
     final hr = ptr.ref.vtable
             .elementAt(17)
@@ -5869,7 +5758,6 @@ final class _IVectorTextSegment extends IVector<TextSegment> {
         ptr.ref.lpVtbl, items.length, itemsArray);
 
     allocator.releaseAll();
-    free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -6026,10 +5914,7 @@ final class _IVectorUint8 extends IVector<int> {
 
   @override
   void replaceAll(List<int> items) {
-    final itemsArray = calloc<Uint8>(items.length);
-    for (var i = 0; i < items.length; i++) {
-      itemsArray[i] = items[i];
-    }
+    final itemsArray = items.toArray<Uint8>();
 
     final hr = ptr.ref.vtable
             .elementAt(17)
@@ -6204,10 +6089,7 @@ final class _IVectorUint16 extends IVector<int> {
 
   @override
   void replaceAll(List<int> items) {
-    final itemsArray = calloc<Uint16>(items.length);
-    for (var i = 0; i < items.length; i++) {
-      itemsArray[i] = items[i];
-    }
+    final itemsArray = items.toArray<Uint16>();
 
     final hr = ptr.ref.vtable
             .elementAt(17)
@@ -6382,10 +6264,7 @@ final class _IVectorUint32 extends IVector<int> {
 
   @override
   void replaceAll(List<int> items) {
-    final itemsArray = calloc<Uint32>(items.length);
-    for (var i = 0; i < items.length; i++) {
-      itemsArray[i] = items[i];
-    }
+    final itemsArray = items.toArray<Uint32>();
 
     final hr = ptr.ref.vtable
             .elementAt(17)
@@ -6560,10 +6439,7 @@ final class _IVectorUint64 extends IVector<int> {
 
   @override
   void replaceAll(List<int> items) {
-    final itemsArray = calloc<Uint64>(items.length);
-    for (var i = 0; i < items.length; i++) {
-      itemsArray[i] = items[i];
-    }
+    final itemsArray = items.toArray<Uint64>();
 
     final hr = ptr.ref.vtable
             .elementAt(17)
@@ -6753,10 +6629,7 @@ final class _IVectorWindowId extends IVector<WindowId> {
   @override
   void replaceAll(List<WindowId> items) {
     final allocator = Arena();
-    final itemsArray = calloc<NativeWindowId>(items.length);
-    for (var i = 0; i < items.length; i++) {
-      itemsArray[i] = items[i].toNative(allocator: allocator).ref;
-    }
+    final itemsArray = items.toArray(allocator: allocator);
 
     final hr = ptr.ref.vtable
             .elementAt(17)
@@ -6772,7 +6645,6 @@ final class _IVectorWindowId extends IVector<WindowId> {
         ptr.ref.lpVtbl, items.length, itemsArray);
 
     allocator.releaseAll();
-    free(itemsArray);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -6933,10 +6805,7 @@ final class _IVectorWinRTEnum<T> extends IVector<T> {
 
   @override
   void replaceAll(List<T> items) {
-    final itemsArray = calloc<Int32>(items.length);
-    for (var i = 0; i < items.length; i++) {
-      itemsArray[i] = items.cast<WinRTEnum>()[i].value;
-    }
+    final itemsArray = items.cast<WinRTEnum>().toArray();
 
     final hr = ptr.ref.vtable
             .elementAt(17)
@@ -7114,10 +6983,7 @@ final class _IVectorWinRTFlagsEnum<T> extends IVector<T> {
 
   @override
   void replaceAll(List<T> items) {
-    final itemsArray = calloc<Uint32>(items.length);
-    for (var i = 0; i < items.length; i++) {
-      itemsArray[i] = items.cast<WinRTEnum>()[i].value;
-    }
+    final itemsArray = items.cast<WinRTFlagsEnum>().toArray();
 
     final hr = ptr.ref.vtable
             .elementAt(17)

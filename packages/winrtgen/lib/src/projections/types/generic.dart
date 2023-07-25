@@ -25,15 +25,6 @@ final class GenericEnumParameterProjection extends ParameterProjection {
 
   @override
   String get into => '($identifier as WinRTEnum).value';
-
-  @override
-  String get toListInto => '$identifier.cast<WinRTEnum>()[i].value';
-
-  @override
-  String get toListIdentifier => 'toEnumList';
-
-  @override
-  String get toListArg => 'enumCreator';
 }
 
 /// Parameter projection for `T extends IInspectable` parameters.
@@ -56,12 +47,6 @@ final class GenericObjectParameterProjection extends ParameterProjection {
 
   @override
   String get into => '($identifier as IInspectable).lpVtbl';
-
-  @override
-  String get toListInto => '$identifier.cast<IInspectable>()[i].lpVtbl';
-
-  @override
-  String get toListArg => 'creator';
 
   // No deallocation is needed as Finalizer will handle it.
   @override

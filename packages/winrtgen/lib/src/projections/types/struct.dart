@@ -42,11 +42,6 @@ final class StructParameterProjection extends ParameterProjection {
   String get into => '${identifier}NativeStructPtr.ref';
 
   @override
-  String get toListInto => isGuid
-      ? '$identifier[i].toNativeGUID(allocator: allocator)'
-      : '$identifier[i].toNative(allocator: allocator)';
-
-  @override
   List<String> get preambles {
     if (isInParam) {
       final expression = isGuid
@@ -79,14 +74,9 @@ final class StructPassArrayParameterProjection
   @override
   List<String> get preambles => [
         'final allocator = Arena();',
-        'final $localIdentifier = calloc<$nativeType>($identifier.length);',
-        '''
-    for (var i = 0; i < $identifier.length; i++) {
-      $localIdentifier[i] = ${typeArgParamProjection.toListInto}.ref;
-    }'''
+        'final $localIdentifier = $identifier.toArray(allocator: allocator);',
       ];
 
   @override
-  List<String> get postambles =>
-      ['allocator.releaseAll();', 'free($localIdentifier);'];
+  List<String> get postambles => ['allocator.releaseAll();'];
 }

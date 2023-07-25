@@ -44,6 +44,20 @@ final class DisplayAdapterId implements WinRTStruct {
 }
 
 /// @nodoc
+extension DisplayAdapterIdListToNativeDisplayAdapterIdArrayConversion
+    on List<DisplayAdapterId> {
+  /// Creates an array of [NativeDisplayAdapterId]s from a List of
+  /// [DisplayAdapterId]s.
+  Pointer<NativeDisplayAdapterId> toArray({Allocator allocator = calloc}) {
+    final array = allocator<NativeDisplayAdapterId>(length);
+    for (var i = 0; i < length; i++) {
+      array[i] = this[i].toNative(allocator: allocator).ref;
+    }
+    return array;
+  }
+}
+
+/// @nodoc
 extension NativeDisplayAdapterIdConversion on NativeDisplayAdapterId {
   /// Converts this [NativeDisplayAdapterId] into a Dart [DisplayAdapterId].
   DisplayAdapterId toDart() => DisplayAdapterId(lowPart, highPart);

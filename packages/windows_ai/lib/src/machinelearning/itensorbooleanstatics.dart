@@ -90,10 +90,7 @@ class ITensorBooleanStatics extends IInspectable {
 
   TensorBoolean? createFromArray(IIterable<int>? shape, List<bool> data) {
     final result = calloc<COMObject>();
-    final dataArray = calloc<Bool>(data.length);
-    for (var i = 0; i < data.length; i++) {
-      dataArray[i] = data[i];
-    }
+    final dataArray = data.toArray();
 
     final hr = ptr.ref.vtable
             .elementAt(8)

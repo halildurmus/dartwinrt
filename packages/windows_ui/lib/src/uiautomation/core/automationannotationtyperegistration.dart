@@ -41,6 +41,21 @@ final class AutomationAnnotationTypeRegistration implements WinRTStruct {
 }
 
 /// @nodoc
+extension AutomationAnnotationTypeRegistrationListToNativeAutomationAnnotationTypeRegistrationArrayConversion
+    on List<AutomationAnnotationTypeRegistration> {
+  /// Creates an array of [NativeAutomationAnnotationTypeRegistration]s from a
+  /// List of [AutomationAnnotationTypeRegistration]s.
+  Pointer<NativeAutomationAnnotationTypeRegistration> toArray(
+      {Allocator allocator = calloc}) {
+    final array = allocator<NativeAutomationAnnotationTypeRegistration>(length);
+    for (var i = 0; i < length; i++) {
+      array[i] = this[i].toNative(allocator: allocator).ref;
+    }
+    return array;
+  }
+}
+
+/// @nodoc
 extension NativeAutomationAnnotationTypeRegistrationConversion
     on NativeAutomationAnnotationTypeRegistration {
   /// Converts this [NativeAutomationAnnotationTypeRegistration] into a Dart

@@ -90,10 +90,7 @@ class ITensorInt8BitStatics extends IInspectable {
 
   TensorInt8Bit? createFromArray(IIterable<int>? shape, List<int> data) {
     final result = calloc<COMObject>();
-    final dataArray = calloc<Uint8>(data.length);
-    for (var i = 0; i < data.length; i++) {
-      dataArray[i] = data[i];
-    }
+    final dataArray = data.toArray<Uint8>();
 
     final hr = ptr.ref.vtable
             .elementAt(8)

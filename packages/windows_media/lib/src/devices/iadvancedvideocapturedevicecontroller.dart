@@ -40,7 +40,7 @@ class IAdvancedVideoCaptureDeviceController extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int propertyId,
                     VTablePointer propertyValue)>()(ptr.ref.lpVtbl,
-        propertyId.toHString(), propertyValue?.intoBox().lpVtbl ?? nullptr);
+        propertyId.toHString(), propertyValue?.boxValue().lpVtbl ?? nullptr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

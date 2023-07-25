@@ -51,6 +51,18 @@ final class Quaternion implements WinRTStruct {
 }
 
 /// @nodoc
+extension QuaternionListToNativeQuaternionArrayConversion on List<Quaternion> {
+  /// Creates an array of [NativeQuaternion]s from a List of [Quaternion]s.
+  Pointer<NativeQuaternion> toArray({Allocator allocator = calloc}) {
+    final array = allocator<NativeQuaternion>(length);
+    for (var i = 0; i < length; i++) {
+      array[i] = this[i].toNative(allocator: allocator).ref;
+    }
+    return array;
+  }
+}
+
+/// @nodoc
 extension NativeQuaternionConversion on NativeQuaternion {
   /// Converts this [NativeQuaternion] into a Dart [Quaternion].
   Quaternion toDart() => Quaternion(x, y, z, w);

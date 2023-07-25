@@ -49,6 +49,18 @@ final class Color implements WinRTStruct {
 }
 
 /// @nodoc
+extension ColorListToNativeColorArrayConversion on List<Color> {
+  /// Creates an array of [NativeColor]s from a List of [Color]s.
+  Pointer<NativeColor> toArray({Allocator allocator = calloc}) {
+    final array = allocator<NativeColor>(length);
+    for (var i = 0; i < length; i++) {
+      array[i] = this[i].toNative(allocator: allocator).ref;
+    }
+    return array;
+  }
+}
+
+/// @nodoc
 extension NativeColorConversion on NativeColor {
   /// Converts this [NativeColor] into a Dart [Color].
   Color toDart() => Color(a, r, g, b);

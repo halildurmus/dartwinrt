@@ -9,7 +9,7 @@ import 'package:win32/win32.dart';
 
 import '../winrt_enum.dart';
 import '../winrt_struct.dart';
-import 'extensions/comobject_helpers.dart';
+import 'extensions/extensions.dart';
 
 /// Returns the restricted error description of the last error that occurred on
 /// the current logical thread.

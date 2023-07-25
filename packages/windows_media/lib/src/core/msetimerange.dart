@@ -41,6 +41,20 @@ final class MseTimeRange implements WinRTStruct {
 }
 
 /// @nodoc
+extension MseTimeRangeListToNativeMseTimeRangeArrayConversion
+    on List<MseTimeRange> {
+  /// Creates an array of [NativeMseTimeRange]s from a List of
+  /// [MseTimeRange]s.
+  Pointer<NativeMseTimeRange> toArray({Allocator allocator = calloc}) {
+    final array = allocator<NativeMseTimeRange>(length);
+    for (var i = 0; i < length; i++) {
+      array[i] = this[i].toNative(allocator: allocator).ref;
+    }
+    return array;
+  }
+}
+
+/// @nodoc
 extension NativeMseTimeRangeConversion on NativeMseTimeRange {
   /// Converts this [NativeMseTimeRange] into a Dart [MseTimeRange].
   MseTimeRange toDart() =>

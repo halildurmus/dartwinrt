@@ -78,7 +78,7 @@ class IXmlNode extends IInspectable
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer value)>()(
-        ptr.ref.lpVtbl, value?.intoBox().lpVtbl ?? nullptr);
+        ptr.ref.lpVtbl, value?.boxValue().lpVtbl ?? nullptr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }
@@ -644,7 +644,7 @@ class IXmlNode extends IInspectable
             .value
             .asFunction<
                 int Function(VTablePointer lpVtbl, VTablePointer value)>()(
-        ptr.ref.lpVtbl, value?.intoBox().lpVtbl ?? nullptr);
+        ptr.ref.lpVtbl, value?.boxValue().lpVtbl ?? nullptr);
 
     if (FAILED(hr)) throwWindowsException(hr);
   }

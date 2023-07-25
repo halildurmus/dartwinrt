@@ -43,6 +43,18 @@ final class Plane implements WinRTStruct {
 }
 
 /// @nodoc
+extension PlaneListToNativePlaneArrayConversion on List<Plane> {
+  /// Creates an array of [NativePlane]s from a List of [Plane]s.
+  Pointer<NativePlane> toArray({Allocator allocator = calloc}) {
+    final array = allocator<NativePlane>(length);
+    for (var i = 0; i < length; i++) {
+      array[i] = this[i].toNative(allocator: allocator).ref;
+    }
+    return array;
+  }
+}
+
+/// @nodoc
 extension NativePlaneConversion on NativePlane {
   /// Converts this [NativePlane] into a Dart [Plane].
   Plane toDart() => Plane(normal.toDart(), d);

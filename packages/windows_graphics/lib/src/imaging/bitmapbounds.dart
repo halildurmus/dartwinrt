@@ -50,6 +50,20 @@ final class BitmapBounds implements WinRTStruct {
 }
 
 /// @nodoc
+extension BitmapBoundsListToNativeBitmapBoundsArrayConversion
+    on List<BitmapBounds> {
+  /// Creates an array of [NativeBitmapBounds]s from a List of
+  /// [BitmapBounds]s.
+  Pointer<NativeBitmapBounds> toArray({Allocator allocator = calloc}) {
+    final array = allocator<NativeBitmapBounds>(length);
+    for (var i = 0; i < length; i++) {
+      array[i] = this[i].toNative(allocator: allocator).ref;
+    }
+    return array;
+  }
+}
+
+/// @nodoc
 extension NativeBitmapBoundsConversion on NativeBitmapBounds {
   /// Converts this [NativeBitmapBounds] into a Dart [BitmapBounds].
   BitmapBounds toDart() => BitmapBounds(x, y, width, height);

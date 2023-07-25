@@ -78,6 +78,20 @@ final class PointerDeviceUsage implements WinRTStruct {
 }
 
 /// @nodoc
+extension PointerDeviceUsageListToNativePointerDeviceUsageArrayConversion
+    on List<PointerDeviceUsage> {
+  /// Creates an array of [NativePointerDeviceUsage]s from a List of
+  /// [PointerDeviceUsage]s.
+  Pointer<NativePointerDeviceUsage> toArray({Allocator allocator = calloc}) {
+    final array = allocator<NativePointerDeviceUsage>(length);
+    for (var i = 0; i < length; i++) {
+      array[i] = this[i].toNative(allocator: allocator).ref;
+    }
+    return array;
+  }
+}
+
+/// @nodoc
 extension NativePointerDeviceUsageConversion on NativePointerDeviceUsage {
   /// Converts this [NativePointerDeviceUsage] into a Dart
   /// [PointerDeviceUsage].

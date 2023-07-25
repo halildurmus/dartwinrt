@@ -48,6 +48,21 @@ final class SpatialBoundingOrientedBox implements WinRTStruct {
 }
 
 /// @nodoc
+extension SpatialBoundingOrientedBoxListToNativeSpatialBoundingOrientedBoxArrayConversion
+    on List<SpatialBoundingOrientedBox> {
+  /// Creates an array of [NativeSpatialBoundingOrientedBox]s from a List of
+  /// [SpatialBoundingOrientedBox]s.
+  Pointer<NativeSpatialBoundingOrientedBox> toArray(
+      {Allocator allocator = calloc}) {
+    final array = allocator<NativeSpatialBoundingOrientedBox>(length);
+    for (var i = 0; i < length; i++) {
+      array[i] = this[i].toNative(allocator: allocator).ref;
+    }
+    return array;
+  }
+}
+
+/// @nodoc
 extension NativeSpatialBoundingOrientedBoxConversion
     on NativeSpatialBoundingOrientedBox {
   /// Converts this [NativeSpatialBoundingOrientedBox] into a Dart

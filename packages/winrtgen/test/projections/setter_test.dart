@@ -479,7 +479,7 @@ void main() {
       expect(projection.dartPrototype,
           equals('int Function(VTablePointer lpVtbl, VTablePointer value)'));
       expect(projection.identifiers,
-          equals('ptr.ref.lpVtbl, value?.intoBox().lpVtbl ?? nullptr'));
+          equals('ptr.ref.lpVtbl, value?.boxValue().lpVtbl ?? nullptr'));
       expect(projection.parametersPostamble, isEmpty);
       expect(projection.failedCheck, equals(failedCheck()));
       expect(projection.nullCheck, isEmpty);

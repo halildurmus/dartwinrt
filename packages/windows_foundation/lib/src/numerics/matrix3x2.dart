@@ -62,6 +62,18 @@ final class Matrix3x2 implements WinRTStruct {
 }
 
 /// @nodoc
+extension Matrix3x2ListToNativeMatrix3x2ArrayConversion on List<Matrix3x2> {
+  /// Creates an array of [NativeMatrix3x2]s from a List of [Matrix3x2]s.
+  Pointer<NativeMatrix3x2> toArray({Allocator allocator = calloc}) {
+    final array = allocator<NativeMatrix3x2>(length);
+    for (var i = 0; i < length; i++) {
+      array[i] = this[i].toNative(allocator: allocator).ref;
+    }
+    return array;
+  }
+}
+
+/// @nodoc
 extension NativeMatrix3x2Conversion on NativeMatrix3x2 {
   /// Converts this [NativeMatrix3x2] into a Dart [Matrix3x2].
   Matrix3x2 toDart() => Matrix3x2(m11, m12, m21, m22, m31, m32);

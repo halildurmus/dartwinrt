@@ -360,7 +360,7 @@ final class _IMapViewObjectObject extends IMapView<Object, Object?> {
                 .asFunction<
                     int Function(VTablePointer lpVtbl, VTablePointer key,
                         Pointer<COMObject> retValuePtr)>()(
-            ptr.ref.lpVtbl, key.intoBox().lpVtbl, retValuePtr);
+            ptr.ref.lpVtbl, key.boxValue().lpVtbl, retValuePtr);
 
     if (FAILED(hr)) {
       free(retValuePtr);
@@ -391,7 +391,7 @@ final class _IMapViewObjectObject extends IMapView<Object, Object?> {
               .asFunction<
                   int Function(VTablePointer lpVtbl, VTablePointer key,
                       Pointer<Bool> retValuePtr)>()(
-          ptr.ref.lpVtbl, key.intoBox().lpVtbl, retValuePtr);
+          ptr.ref.lpVtbl, key.boxValue().lpVtbl, retValuePtr);
 
       if (FAILED(hr)) throwWindowsException(hr);
 

@@ -79,6 +79,20 @@ final class GamepadReading implements WinRTStruct {
 }
 
 /// @nodoc
+extension GamepadReadingListToNativeGamepadReadingArrayConversion
+    on List<GamepadReading> {
+  /// Creates an array of [NativeGamepadReading]s from a List of
+  /// [GamepadReading]s.
+  Pointer<NativeGamepadReading> toArray({Allocator allocator = calloc}) {
+    final array = allocator<NativeGamepadReading>(length);
+    for (var i = 0; i < length; i++) {
+      array[i] = this[i].toNative(allocator: allocator).ref;
+    }
+    return array;
+  }
+}
+
+/// @nodoc
 extension NativeGamepadReadingConversion on NativeGamepadReading {
   /// Converts this [NativeGamepadReading] into a Dart [GamepadReading].
   GamepadReading toDart() => GamepadReading(

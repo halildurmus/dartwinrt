@@ -455,10 +455,7 @@ class IFileIOStatics extends IInspectable {
 
   Future<void> writeBytesAsync(IStorageFile? file, List<int> buffer) {
     final operation = calloc<COMObject>();
-    final bufferArray = calloc<Uint8>(buffer.length);
-    for (var i = 0; i < buffer.length; i++) {
-      bufferArray[i] = buffer[i];
-    }
+    final bufferArray = buffer.toArray<Uint8>();
 
     final hr = ptr.ref.vtable
             .elementAt(20)

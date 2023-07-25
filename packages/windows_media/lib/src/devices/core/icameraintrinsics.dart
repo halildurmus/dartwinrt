@@ -236,10 +236,7 @@ class ICameraIntrinsics extends IInspectable {
 
   List<Point> projectManyOntoFrame(List<Vector3> coordinates, int resultsSize) {
     final allocator = Arena();
-    final coordinatesArray = calloc<NativeVector3>(coordinates.length);
-    for (var i = 0; i < coordinates.length; i++) {
-      coordinatesArray[i] = coordinates[i].toNative(allocator: allocator).ref;
-    }
+    final coordinatesArray = coordinates.toArray(allocator: allocator);
     final results = calloc<NativePoint>(resultsSize);
 
     try {
@@ -269,7 +266,6 @@ class ICameraIntrinsics extends IInspectable {
       return results.toList(length: resultsSize);
     } finally {
       allocator.releaseAll();
-      free(coordinatesArray);
       free(results);
     }
   }
@@ -277,11 +273,8 @@ class ICameraIntrinsics extends IInspectable {
   List<Vector2> unprojectPixelsAtUnitDepth(
       List<Point> pixelCoordinates, int resultsSize) {
     final allocator = Arena();
-    final pixelCoordinatesArray = calloc<NativePoint>(pixelCoordinates.length);
-    for (var i = 0; i < pixelCoordinates.length; i++) {
-      pixelCoordinatesArray[i] =
-          pixelCoordinates[i].toNative(allocator: allocator).ref;
-    }
+    final pixelCoordinatesArray =
+        pixelCoordinates.toArray(allocator: allocator);
     final results = calloc<NativeVector2>(resultsSize);
 
     try {
@@ -311,7 +304,6 @@ class ICameraIntrinsics extends IInspectable {
       return results.toList(length: resultsSize);
     } finally {
       allocator.releaseAll();
-      free(pixelCoordinatesArray);
       free(results);
     }
   }

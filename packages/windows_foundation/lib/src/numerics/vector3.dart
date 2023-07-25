@@ -44,6 +44,18 @@ final class Vector3 implements WinRTStruct {
 }
 
 /// @nodoc
+extension Vector3ListToNativeVector3ArrayConversion on List<Vector3> {
+  /// Creates an array of [NativeVector3]s from a List of [Vector3]s.
+  Pointer<NativeVector3> toArray({Allocator allocator = calloc}) {
+    final array = allocator<NativeVector3>(length);
+    for (var i = 0; i < length; i++) {
+      array[i] = this[i].toNative(allocator: allocator).ref;
+    }
+    return array;
+  }
+}
+
+/// @nodoc
 extension NativeVector3Conversion on NativeVector3 {
   /// Converts this [NativeVector3] into a Dart [Vector3].
   Vector3 toDart() => Vector3(x, y, z);

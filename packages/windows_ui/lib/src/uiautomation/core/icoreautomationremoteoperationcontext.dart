@@ -84,7 +84,7 @@ class ICoreAutomationRemoteOperationContext extends IInspectable {
                     VTablePointer lpVtbl,
                     NativeAutomationRemoteOperationOperandId id,
                     VTablePointer operand)>()(ptr.ref.lpVtbl,
-        idNativeStructPtr.ref, operand?.intoBox().lpVtbl ?? nullptr);
+        idNativeStructPtr.ref, operand?.boxValue().lpVtbl ?? nullptr);
 
     free(idNativeStructPtr);
 
@@ -115,7 +115,7 @@ class ICoreAutomationRemoteOperationContext extends IInspectable {
                     GUID operandInterfaceId)>()(
         ptr.ref.lpVtbl,
         idNativeStructPtr.ref,
-        operand?.intoBox().lpVtbl ?? nullptr,
+        operand?.boxValue().lpVtbl ?? nullptr,
         operandInterfaceIdNativeStructPtr.ref);
 
     free(idNativeStructPtr);

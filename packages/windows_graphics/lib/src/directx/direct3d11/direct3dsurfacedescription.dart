@@ -60,6 +60,21 @@ final class Direct3DSurfaceDescription implements WinRTStruct {
 }
 
 /// @nodoc
+extension Direct3DSurfaceDescriptionListToNativeDirect3DSurfaceDescriptionArrayConversion
+    on List<Direct3DSurfaceDescription> {
+  /// Creates an array of [NativeDirect3DSurfaceDescription]s from a List of
+  /// [Direct3DSurfaceDescription]s.
+  Pointer<NativeDirect3DSurfaceDescription> toArray(
+      {Allocator allocator = calloc}) {
+    final array = allocator<NativeDirect3DSurfaceDescription>(length);
+    for (var i = 0; i < length; i++) {
+      array[i] = this[i].toNative(allocator: allocator).ref;
+    }
+    return array;
+  }
+}
+
+/// @nodoc
 extension NativeDirect3DSurfaceDescriptionConversion
     on NativeDirect3DSurfaceDescription {
   /// Converts this [NativeDirect3DSurfaceDescription] into a Dart

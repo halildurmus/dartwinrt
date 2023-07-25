@@ -47,6 +47,20 @@ final class WhiteBalanceGain implements WinRTStruct {
 }
 
 /// @nodoc
+extension WhiteBalanceGainListToNativeWhiteBalanceGainArrayConversion
+    on List<WhiteBalanceGain> {
+  /// Creates an array of [NativeWhiteBalanceGain]s from a List of
+  /// [WhiteBalanceGain]s.
+  Pointer<NativeWhiteBalanceGain> toArray({Allocator allocator = calloc}) {
+    final array = allocator<NativeWhiteBalanceGain>(length);
+    for (var i = 0; i < length; i++) {
+      array[i] = this[i].toNative(allocator: allocator).ref;
+    }
+    return array;
+  }
+}
+
+/// @nodoc
 extension NativeWhiteBalanceGainConversion on NativeWhiteBalanceGain {
   /// Converts this [NativeWhiteBalanceGain] into a Dart [WhiteBalanceGain].
   WhiteBalanceGain toDart() => WhiteBalanceGain(r, g, b);

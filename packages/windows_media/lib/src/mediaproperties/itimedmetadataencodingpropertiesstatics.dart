@@ -89,10 +89,7 @@ class ITimedMetadataEncodingPropertiesStatics extends IInspectable {
 
   TimedMetadataEncodingProperties? createSsa(List<int> formatUserData) {
     final result = calloc<COMObject>();
-    final formatUserDataArray = calloc<Uint8>(formatUserData.length);
-    for (var i = 0; i < formatUserData.length; i++) {
-      formatUserDataArray[i] = formatUserData[i];
-    }
+    final formatUserDataArray = formatUserData.toArray<Uint8>();
 
     final hr = ptr.ref.vtable
             .elementAt(8)
@@ -130,10 +127,7 @@ class ITimedMetadataEncodingPropertiesStatics extends IInspectable {
 
   TimedMetadataEncodingProperties? createVobSub(List<int> formatUserData) {
     final result = calloc<COMObject>();
-    final formatUserDataArray = calloc<Uint8>(formatUserData.length);
-    for (var i = 0; i < formatUserData.length; i++) {
-      formatUserDataArray[i] = formatUserData[i];
-    }
+    final formatUserDataArray = formatUserData.toArray<Uint8>();
 
     final hr = ptr.ref.vtable
             .elementAt(9)

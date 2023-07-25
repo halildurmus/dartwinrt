@@ -43,6 +43,18 @@ final class TextRange implements WinRTStruct {
 }
 
 /// @nodoc
+extension TextRangeListToNativeTextRangeArrayConversion on List<TextRange> {
+  /// Creates an array of [NativeTextRange]s from a List of [TextRange]s.
+  Pointer<NativeTextRange> toArray({Allocator allocator = calloc}) {
+    final array = allocator<NativeTextRange>(length);
+    for (var i = 0; i < length; i++) {
+      array[i] = this[i].toNative(allocator: allocator).ref;
+    }
+    return array;
+  }
+}
+
+/// @nodoc
 extension NativeTextRangeConversion on NativeTextRange {
   /// Converts this [NativeTextRange] into a Dart [TextRange].
   TextRange toDart() => TextRange(startIndex, length);

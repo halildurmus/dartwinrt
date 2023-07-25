@@ -50,6 +50,20 @@ final class PackageVersion implements WinRTStruct {
 }
 
 /// @nodoc
+extension PackageVersionListToNativePackageVersionArrayConversion
+    on List<PackageVersion> {
+  /// Creates an array of [NativePackageVersion]s from a List of
+  /// [PackageVersion]s.
+  Pointer<NativePackageVersion> toArray({Allocator allocator = calloc}) {
+    final array = allocator<NativePackageVersion>(length);
+    for (var i = 0; i < length; i++) {
+      array[i] = this[i].toNative(allocator: allocator).ref;
+    }
+    return array;
+  }
+}
+
+/// @nodoc
 extension NativePackageVersionConversion on NativePackageVersion {
   /// Converts this [NativePackageVersion] into a Dart [PackageVersion].
   PackageVersion toDart() => PackageVersion(major, minor, build, revision);

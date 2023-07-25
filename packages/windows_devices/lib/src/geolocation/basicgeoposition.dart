@@ -47,6 +47,20 @@ final class BasicGeoposition implements WinRTStruct {
 }
 
 /// @nodoc
+extension BasicGeopositionListToNativeBasicGeopositionArrayConversion
+    on List<BasicGeoposition> {
+  /// Creates an array of [NativeBasicGeoposition]s from a List of
+  /// [BasicGeoposition]s.
+  Pointer<NativeBasicGeoposition> toArray({Allocator allocator = calloc}) {
+    final array = allocator<NativeBasicGeoposition>(length);
+    for (var i = 0; i < length; i++) {
+      array[i] = this[i].toNative(allocator: allocator).ref;
+    }
+    return array;
+  }
+}
+
+/// @nodoc
 extension NativeBasicGeopositionConversion on NativeBasicGeoposition {
   /// Converts this [NativeBasicGeoposition] into a Dart [BasicGeoposition].
   BasicGeoposition toDart() => BasicGeoposition(latitude, longitude, altitude);

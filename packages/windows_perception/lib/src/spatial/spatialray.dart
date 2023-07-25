@@ -43,6 +43,18 @@ final class SpatialRay implements WinRTStruct {
 }
 
 /// @nodoc
+extension SpatialRayListToNativeSpatialRayArrayConversion on List<SpatialRay> {
+  /// Creates an array of [NativeSpatialRay]s from a List of [SpatialRay]s.
+  Pointer<NativeSpatialRay> toArray({Allocator allocator = calloc}) {
+    final array = allocator<NativeSpatialRay>(length);
+    for (var i = 0; i < length; i++) {
+      array[i] = this[i].toNative(allocator: allocator).ref;
+    }
+    return array;
+  }
+}
+
+/// @nodoc
 extension NativeSpatialRayConversion on NativeSpatialRay {
   /// Converts this [NativeSpatialRay] into a Dart [SpatialRay].
   SpatialRay toDart() => SpatialRay(origin.toDart(), direction.toDart());

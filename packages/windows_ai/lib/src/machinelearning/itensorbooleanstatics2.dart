@@ -33,14 +33,8 @@ class ITensorBooleanStatics2 extends IInspectable {
   TensorBoolean? createFromShapeArrayAndDataArray(
       List<int> shape, List<bool> data) {
     final result = calloc<COMObject>();
-    final shapeArray = calloc<Int64>(shape.length);
-    for (var i = 0; i < shape.length; i++) {
-      shapeArray[i] = shape[i];
-    }
-    final dataArray = calloc<Bool>(data.length);
-    for (var i = 0; i < data.length; i++) {
-      dataArray[i] = data[i];
-    }
+    final shapeArray = shape.toArray<Int64>();
+    final dataArray = data.toArray();
 
     final hr = ptr.ref.vtable
             .elementAt(6)
@@ -83,10 +77,7 @@ class ITensorBooleanStatics2 extends IInspectable {
 
   TensorBoolean? createFromBuffer(List<int> shape, IBuffer? buffer) {
     final result = calloc<COMObject>();
-    final shapeArray = calloc<Int64>(shape.length);
-    for (var i = 0; i < shape.length; i++) {
-      shapeArray[i] = shape[i];
-    }
+    final shapeArray = shape.toArray<Int64>();
 
     final hr = ptr.ref.vtable
             .elementAt(7)
