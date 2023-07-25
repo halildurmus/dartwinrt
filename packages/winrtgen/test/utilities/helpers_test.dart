@@ -337,9 +337,10 @@ void main() {
             'Creates a `List<Vector2>` from `Pointer<NativeVector2>`. \n '
             '[length] must not be greater than the number of elements stored inside '
             'the `Pointer<NativeVector2>`.'),
-        equals('/// Creates a `List<Vector2>` from `Pointer<NativeVector2>`.\n'
-            '///\n'
-            '/// [length] must not be greater than the number of elements '
-            'stored inside the\n/// `Pointer<NativeVector2>`.'));
+        equals('''
+/// Creates a `List<Vector2>` from `Pointer<NativeVector2>`.
+///
+/// [length] must not be greater than the number of elements stored inside the
+/// `Pointer<NativeVector2>`.'''));
   });
 }

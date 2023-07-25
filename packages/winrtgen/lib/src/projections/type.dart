@@ -143,7 +143,7 @@ final class TypeProjection {
 
   bool get isWinRTStruct => isWinRT && (typeIdentifier.type?.isStruct ?? false);
 
-  bool get exposedAsStruct => isWinRTStruct && !isSpecialType;
+  bool get exposedAsStruct => isGuid || (isWinRTStruct && !isSpecialType);
 
   TypeTuple _unwrapEnum() {
     final fieldType = typeIdentifier.type?.findField('value__')?.typeIdentifier;
@@ -223,9 +223,6 @@ final class TypeProjection {
     if (isReferenceType) return _unwrapReferenceType();
     if (isSimpleArray) return _unwrapSimpleArrayType();
 
-    // Strings in WinRT are defined as HSTRING which corresponding to IntPtr
-    if (isString) return _baseNativeMapping[BaseType.intPtrType]!;
-
     // Could be a WinRT struct like BasicGeoposition
     if (isWinRTStruct) return _unwrapStruct();
 
@@ -270,14 +267,15 @@ const _baseNativeMapping = <BaseType, TypeTuple>{
   BaseType.doubleType: TypeTuple('Double', 'double', attribute: '@Double()'),
   BaseType.floatType: TypeTuple('Float', 'double', attribute: '@Float()'),
   BaseType.int8Type: TypeTuple('Int8', 'int', attribute: '@Int8()'),
-  BaseType.uint8Type: TypeTuple('Uint8', 'int', attribute: '@Uint8()'),
   BaseType.int16Type: TypeTuple('Int16', 'int', attribute: '@Int16()'),
-  BaseType.uint16Type: TypeTuple('Uint16', 'int', attribute: '@Uint16()'),
   BaseType.int32Type: TypeTuple('Int32', 'int', attribute: '@Int32()'),
-  BaseType.uint32Type: TypeTuple('Uint32', 'int', attribute: '@Uint32()'),
   BaseType.int64Type: TypeTuple('Int64', 'int', attribute: '@Int64()'),
-  BaseType.uint64Type: TypeTuple('Uint64', 'int', attribute: '@Uint64()'),
   BaseType.intPtrType: TypeTuple('IntPtr', 'int', attribute: '@IntPtr()'),
+  BaseType.stringType: TypeTuple('IntPtr', 'int', attribute: '@IntPtr()'),
+  BaseType.uint8Type: TypeTuple('Uint8', 'int', attribute: '@Uint8()'),
+  BaseType.uint16Type: TypeTuple('Uint16', 'int', attribute: '@Uint16()'),
+  BaseType.uint32Type: TypeTuple('Uint32', 'int', attribute: '@Uint32()'),
+  BaseType.uint64Type: TypeTuple('Uint64', 'int', attribute: '@Uint64()'),
   BaseType.uintPtrType: TypeTuple('IntPtr', 'int', attribute: '@IntPtr()'),
   BaseType.voidType: TypeTuple('Void', 'void'),
 };
