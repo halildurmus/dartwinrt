@@ -14,156 +14,369 @@ void main() {
     return;
   }
 
-  group('Windows.Foundation.', () {
-    test('DateTime types are projected correctly', () {
-      final methodProjection = MethodProjection.fromTypeAndMethodName(
-          'Windows.Globalization.ICalendar', 'GetDateTime');
-      final typeProjection = methodProjection.typeProjection;
-      expect(typeProjection.dartType, equals('int'));
-      expect(typeProjection.nativeType, equals('Int64'));
-      expect(typeProjection.isDartPrimitive, isFalse);
-      expect(typeProjection.exposedAsStruct, isFalse);
-    });
-
-    test('EventRegistrationToken types are projected correctly', () {
-      final methodProjection = MethodProjection.fromTypeAndMethodName(
-          'Windows.UI.Notifications.IToastNotification', 'remove_Dismissed');
-      final typeProjection = methodProjection.parameters.first.typeProjection;
-      expect(typeProjection.dartType, equals('int'));
-      expect(typeProjection.nativeType, equals('IntPtr'));
-      expect(typeProjection.isDartPrimitive, isTrue);
-      expect(typeProjection.exposedAsStruct, isFalse);
-    });
-
-    test('HResult types are projected correctly', () {
-      final methodProjection = MethodProjection.fromTypeAndMethodName(
-          'Windows.Foundation.IAsyncInfo', 'get_ErrorCode');
-      final typeProjection = methodProjection.typeProjection;
-      expect(typeProjection.dartType, equals('int'));
-      expect(typeProjection.nativeType, equals('Int32'));
-      expect(typeProjection.isDartPrimitive, isTrue);
-      expect(typeProjection.exposedAsStruct, isFalse);
-    });
-
-    test('TimeSpan types are projected correctly', () {
-      final methodProjection = MethodProjection.fromTypeAndMethodName(
-          'Windows.Foundation.IPropertyValue', 'GetTimeSpan');
-      final typeProjection = methodProjection.typeProjection;
-      expect(typeProjection.dartType, equals('int'));
-      expect(typeProjection.nativeType, equals('Int64'));
-      expect(typeProjection.isDartPrimitive, isFalse);
-      expect(typeProjection.exposedAsStruct, isFalse);
-    });
+  test('Bool type is projected correctly', () {
+    final methodProjection = MethodProjection.fromTypeAndMethodName(
+        'Windows.Foundation.IPropertyValue', 'GetBoolean');
+    final typeProjection = methodProjection.typeProjection;
+    expect(typeProjection.dartType, equals('bool'));
+    expect(typeProjection.nativeType, equals('Bool'));
+    expect(typeProjection.attribute, equals('@Bool()'));
+    expect(typeProjection.isDartPrimitive, isTrue);
   });
 
-  test('Delegate types are projected correctly', () {
+  test('Char16 type is projected correctly', () {
+    final methodProjection = MethodProjection.fromTypeAndMethodName(
+        'Windows.Foundation.IPropertyValue', 'GetChar16');
+    final typeProjection = methodProjection.typeProjection;
+    expect(typeProjection.dartType, equals('int'));
+    expect(typeProjection.nativeType, equals('Uint16'));
+    expect(typeProjection.attribute, equals('@Uint16()'));
+    expect(typeProjection.isDartPrimitive, isTrue);
+  });
+
+  test('Delegate type is projected correctly', () {
     final methodProjection = MethodProjection.fromTypeAndMethodName(
         'Windows.UI.Notifications.IToastNotification', 'add_Activated');
     final typeProjection = methodProjection.parameters.first.typeProjection;
-    // TypedEventHandler<ToastNotification, object>
+    // TypedEventHandler<ToastNotification, Object>
     expect(typeProjection.dartType, equals('VTablePointer'));
     expect(typeProjection.nativeType, equals('VTablePointer'));
+    expect(typeProjection.isWinRTDelegate, isTrue);
   });
 
-  group('Simple array types are projected correctly', () {
-    test('(FillArray style)', () {
-      // virtual HRESULT STDMETHODCALLTYPE GetMany(
-      //   UINT32 startIndex,
-      //   UINT32 itemsLength,
-      //   HSTRING* items
-      // )
-      final methodProjection = MethodProjection.fromTypeAndMethodName(
-          'Windows.Storage.Pickers.FileExtensionVector', 'GetMany');
-      expect(methodProjection.parameters.length, equals(3));
+  test('Double type is projected correctly', () {
+    final methodProjection = MethodProjection.fromTypeAndMethodName(
+        'Windows.Foundation.IPropertyValue', 'GetDouble');
+    final typeProjection = methodProjection.typeProjection;
+    expect(typeProjection.dartType, equals('double'));
+    expect(typeProjection.nativeType, equals('Double'));
+    expect(typeProjection.attribute, equals('@Double()'));
+    expect(typeProjection.isDartPrimitive, isTrue);
+  });
 
-      final itemsSizeParam = methodProjection.parameters[1];
-      expect(itemsSizeParam.name, equals('__itemsSize'));
-      expect(itemsSizeParam.isInParam, isTrue);
-      final itemsSizeParamProjection = itemsSizeParam.typeProjection;
-      expect(itemsSizeParamProjection.dartType, equals('int'));
-      expect(itemsSizeParamProjection.nativeType, equals('Uint32'));
+  test('Class type is projected correctly', () {
+    final methodProjection = MethodProjection.fromTypeAndMethodName(
+        'Windows.Globalization.Calendar', 'Clone');
+    final typeProjection = methodProjection.typeProjection;
+    expect(typeProjection.dartType, equals('COMObject'));
+    expect(typeProjection.nativeType, equals('COMObject'));
+    expect(typeProjection.isWinRTClass, isTrue);
+    expect(typeProjection.isWinRTObject, isTrue);
+  });
 
-      final itemsParam = methodProjection.parameters.last;
-      expect(itemsParam.name, equals('items'));
-      expect(itemsParam.isOutParam, isTrue);
-      final itemsParamProjection = itemsParam.typeProjection;
-      expect(itemsParamProjection.dartType, equals('Pointer<IntPtr>'));
-      expect(itemsParamProjection.nativeType, equals('Pointer<IntPtr>'));
-    });
+  test('Enum type is projected correctly', () {
+    final methodProjection = MethodProjection.fromTypeAndMethodName(
+        'Windows.Foundation.IAsyncInfo', 'get_Status');
+    final typeProjection = methodProjection.typeProjection;
+    expect(typeProjection.dartType, equals('int'));
+    expect(typeProjection.nativeType, equals('Int32'));
+    expect(typeProjection.attribute, equals('@Int32()'));
+    expect(typeProjection.isDartPrimitive, isFalse);
+    expect(typeProjection.isWinRTEnum, isTrue);
+  });
 
-    test('(PassArray style)', () {
-      // virtual HRESULT STDMETHODCALLTYPE CreateUInt8Array(
-      //   UINT32 valueLength,
-      //   BYTE* value
-      // )
-      final methodProjection = MethodProjection.fromTypeAndMethodName(
-          'Windows.Foundation.IPropertyValueStatics', 'CreateUInt8Array');
-      expect(methodProjection.parameters.length, equals(2));
+  test('FlagsEnum type is projected correctly', () {
+    final methodProjection = MethodProjection.fromTypeAndMethodName(
+        'Windows.Storage.IStorageItem', 'get_Attributes');
+    final typeProjection = methodProjection.typeProjection;
+    expect(typeProjection.dartType, equals('int'));
+    expect(typeProjection.nativeType, equals('Uint32'));
+    expect(typeProjection.attribute, equals('@Uint32()'));
+    expect(typeProjection.isDartPrimitive, isFalse);
+    expect(typeProjection.isWinRTEnum, isTrue);
+  });
 
-      final valueSizeParam = methodProjection.parameters.first;
-      expect(valueSizeParam.name, equals('__valueSize'));
-      expect(valueSizeParam.isInParam, isTrue);
-      final valueSizeParamProjection = valueSizeParam.typeProjection;
-      expect(valueSizeParamProjection.dartType, equals('int'));
-      expect(valueSizeParamProjection.nativeType, equals('Uint32'));
+  test('Float type is projected correctly', () {
+    final methodProjection = MethodProjection.fromTypeAndMethodName(
+        'Windows.Foundation.IPropertyValue', 'GetSingle');
+    final typeProjection = methodProjection.typeProjection;
+    expect(typeProjection.dartType, equals('double'));
+    expect(typeProjection.nativeType, equals('Float'));
+    expect(typeProjection.attribute, equals('@Float()'));
+    expect(typeProjection.isDartPrimitive, isTrue);
+  });
 
-      final valueParam = methodProjection.parameters.last;
-      expect(valueParam.name, equals('value'));
-      expect(valueParam.isInParam, isTrue);
-      final valueParamProjection = valueParam.typeProjection;
-      expect(valueParamProjection.dartType, equals('Pointer<Uint8>'));
-      expect(valueParamProjection.nativeType, equals('Pointer<Uint8>'));
-    });
+  test('GUID type is projected correctly', () {
+    final methodProjection = MethodProjection.fromTypeAndMethodName(
+        'Windows.Foundation.IPropertyValue', 'GetGuid');
+    final typeProjection = methodProjection.typeProjection;
+    expect(typeProjection.dartType, equals('GUID'));
+    expect(typeProjection.nativeType, equals('GUID'));
+    expect(typeProjection.exposedAsStruct, isTrue);
+    expect(typeProjection.isGuid, isTrue);
+    expect(typeProjection.isSpecialType, isTrue);
+  });
 
-    test('(ReceiveArray style (1))', () {
-      // virtual HRESULT STDMETHODCALLTYPE GetInspectableArray(
-      //   UINT32* valueLength,
-      //   IInspectable*** value
-      // )
-      final methodProjection = MethodProjection.fromTypeAndMethodName(
-          'Windows.Foundation.IPropertyValue', 'GetInspectableArray');
-      expect(methodProjection.parameters.length, equals(2));
+  test('Interface type is projected correctly', () {
+    final methodProjection = MethodProjection.fromTypeAndMethodName(
+        'Windows.Storage.Streams.DataReader', 'ReadBuffer');
+    final typeProjection = methodProjection.typeProjection;
+    expect(typeProjection.dartType, equals('COMObject'));
+    expect(typeProjection.nativeType, equals('COMObject'));
+    expect(typeProjection.isWinRTInterface, isTrue);
+    expect(typeProjection.isWinRTObject, isTrue);
+  });
 
-      final valueSizeParam = methodProjection.parameters.first;
-      expect(valueSizeParam.name, equals('__valueSize'));
-      expect(valueSizeParam.isOutParam, isTrue);
-      final valueSizeParamProjection = valueSizeParam.typeProjection;
-      expect(valueSizeParamProjection.dartType, equals('Pointer<Uint32>'));
-      expect(valueSizeParamProjection.nativeType, equals('Pointer<Uint32>'));
+  test('Int16 type is projected correctly', () {
+    final methodProjection = MethodProjection.fromTypeAndMethodName(
+        'Windows.Foundation.IPropertyValue', 'GetInt16');
+    final typeProjection = methodProjection.typeProjection;
+    expect(typeProjection.dartType, equals('int'));
+    expect(typeProjection.nativeType, equals('Int16'));
+    expect(typeProjection.attribute, equals('@Int16()'));
+    expect(typeProjection.isDartPrimitive, isTrue);
+  });
 
-      final valueParam = methodProjection.parameters.last;
-      expect(valueParam.name, equals('value'));
-      expect(valueParam.isOutParam, isTrue);
-      final valueParamProjection = valueParam.typeProjection;
-      expect(
-          valueParamProjection.dartType, equals('Pointer<Pointer<COMObject>>'));
-      expect(valueParamProjection.nativeType,
-          equals('Pointer<Pointer<COMObject>>'));
-    });
+  test('Int32 type is projected correctly', () {
+    final methodProjection = MethodProjection.fromTypeAndMethodName(
+        'Windows.Foundation.IPropertyValue', 'GetInt32');
+    final typeProjection = methodProjection.typeProjection;
+    expect(typeProjection.dartType, equals('int'));
+    expect(typeProjection.nativeType, equals('Int32'));
+    expect(typeProjection.attribute, equals('@Int32()'));
+    expect(typeProjection.isDartPrimitive, isTrue);
+  });
 
-    test('(ReceiveArray style (2))', () {
-      // virtual HRESULT STDMETHODCALLTYPE GetUInt8Array(
-      //   UINT32* valueLength,
-      //   BYTE** value
-      // )
-      final methodProjection = MethodProjection.fromTypeAndMethodName(
-          'Windows.Foundation.IPropertyValue', 'GetUInt8Array');
-      expect(methodProjection.parameters.length, equals(2));
+  test('Int64 type is projected correctly', () {
+    final methodProjection = MethodProjection.fromTypeAndMethodName(
+        'Windows.Foundation.IPropertyValue', 'GetInt64');
+    final typeProjection = methodProjection.typeProjection;
+    expect(typeProjection.dartType, equals('int'));
+    expect(typeProjection.nativeType, equals('Int64'));
+    expect(typeProjection.attribute, equals('@Int64()'));
+    expect(typeProjection.isDartPrimitive, isTrue);
+  });
 
-      final valueSizeParam = methodProjection.parameters.first;
-      expect(valueSizeParam.name, equals('__valueSize'));
-      expect(valueSizeParam.isOutParam, isTrue);
-      final valueSizeParamProjection = valueSizeParam.typeProjection;
-      expect(valueSizeParamProjection.dartType, equals('Pointer<Uint32>'));
-      expect(valueSizeParamProjection.nativeType, equals('Pointer<Uint32>'));
+  test('Object type is projected correctly', () {
+    final methodProjection = MethodProjection.fromTypeAndMethodName(
+        'Windows.Data.Xml.Dom.XmlDocument', 'get_NodeValue');
+    final typeProjection = methodProjection.typeProjection;
+    expect(typeProjection.dartType, equals('COMObject'));
+    expect(typeProjection.nativeType, equals('COMObject'));
+    expect(typeProjection.isObjectType, isTrue);
+    expect(typeProjection.isWinRTObject, isTrue);
+  });
 
-      final valueParam = methodProjection.parameters.last;
-      expect(valueParam.name, equals('value'));
-      expect(valueParam.isOutParam, isTrue);
-      final valueParamProjection = valueParam.typeProjection;
-      expect(valueParamProjection.dartType, equals('Pointer<Pointer<Uint8>>'));
-      expect(
-          valueParamProjection.nativeType, equals('Pointer<Pointer<Uint8>>'));
-    });
+  test('String type is projected correctly', () {
+    final methodProjection = MethodProjection.fromTypeAndMethodName(
+        'Windows.Foundation.IPropertyValue', 'GetString');
+    final typeProjection = methodProjection.typeProjection;
+    expect(typeProjection.dartType, equals('int'));
+    expect(typeProjection.nativeType, equals('IntPtr'));
+    expect(typeProjection.attribute, equals('@IntPtr()'));
+    expect(typeProjection.isDartPrimitive, isTrue);
+    expect(typeProjection.isString, isTrue);
+  });
+
+  test('Struct type is projected correctly', () {
+    final methodProjection = MethodProjection.fromTypeAndMethodName(
+        'Windows.Foundation.IPropertyValue', 'GetPoint');
+    final typeProjection = methodProjection.typeProjection;
+    expect(typeProjection.dartType, equals('NativePoint'));
+    expect(typeProjection.nativeType, equals('NativePoint'));
+    expect(typeProjection.exposedAsStruct, isTrue);
+  });
+
+  test('UInt8 type is projected correctly', () {
+    final methodProjection = MethodProjection.fromTypeAndMethodName(
+        'Windows.Foundation.IPropertyValue', 'GetUInt8');
+    final typeProjection = methodProjection.typeProjection;
+    expect(typeProjection.dartType, equals('int'));
+    expect(typeProjection.nativeType, equals('Uint8'));
+    expect(typeProjection.attribute, equals('@Uint8()'));
+    expect(typeProjection.isDartPrimitive, isTrue);
+  });
+
+  test('UInt16 type is projected correctly', () {
+    final methodProjection = MethodProjection.fromTypeAndMethodName(
+        'Windows.Foundation.IPropertyValue', 'GetUInt16');
+    final typeProjection = methodProjection.typeProjection;
+    expect(typeProjection.dartType, equals('int'));
+    expect(typeProjection.nativeType, equals('Uint16'));
+    expect(typeProjection.attribute, equals('@Uint16()'));
+    expect(typeProjection.isDartPrimitive, isTrue);
+  });
+
+  test('UInt32 type is projected correctly', () {
+    final methodProjection = MethodProjection.fromTypeAndMethodName(
+        'Windows.Foundation.IPropertyValue', 'GetUInt32');
+    final typeProjection = methodProjection.typeProjection;
+    expect(typeProjection.dartType, equals('int'));
+    expect(typeProjection.nativeType, equals('Uint32'));
+    expect(typeProjection.attribute, equals('@Uint32()'));
+    expect(typeProjection.isDartPrimitive, isTrue);
+  });
+
+  test('UInt64 type is projected correctly', () {
+    final methodProjection = MethodProjection.fromTypeAndMethodName(
+        'Windows.Foundation.IPropertyValue', 'GetUInt64');
+    final typeProjection = methodProjection.typeProjection;
+    expect(typeProjection.dartType, equals('int'));
+    expect(typeProjection.nativeType, equals('Uint64'));
+    expect(typeProjection.attribute, equals('@Uint64()'));
+    expect(typeProjection.isDartPrimitive, isTrue);
+  });
+
+  test('Void type is projected correctly', () {
+    final methodProjection = MethodProjection.fromTypeAndMethodName(
+        'Windows.Foundation.IClosable', 'Close');
+    final typeProjection = methodProjection.typeProjection;
+    expect(typeProjection.dartType, equals('void'));
+    expect(typeProjection.nativeType, equals('Void'));
+    expect(typeProjection.isDartPrimitive, isTrue);
+  });
+
+  test('Windows.Foundation.DateTime type is projected correctly', () {
+    final methodProjection = MethodProjection.fromTypeAndMethodName(
+        'Windows.Globalization.ICalendar', 'GetDateTime');
+    final typeProjection = methodProjection.typeProjection;
+    expect(typeProjection.dartType, equals('int'));
+    expect(typeProjection.nativeType, equals('Int64'));
+    expect(typeProjection.attribute, equals('@Int64()'));
+    expect(typeProjection.exposedAsStruct, isFalse);
+    expect(typeProjection.isDartPrimitive, isFalse);
+    expect(typeProjection.isDateTime, isTrue);
+    expect(typeProjection.isSpecialType, isTrue);
+  });
+
+  test('Windows.Foundation.EventRegistrationToken type is projected correctly',
+      () {
+    final methodProjection = MethodProjection.fromTypeAndMethodName(
+        'Windows.UI.Notifications.IToastNotification', 'remove_Dismissed');
+    final typeProjection = methodProjection.parameters.first.typeProjection;
+    expect(typeProjection.dartType, equals('int'));
+    expect(typeProjection.nativeType, equals('IntPtr'));
+    expect(typeProjection.attribute, equals('@IntPtr()'));
+    expect(typeProjection.exposedAsStruct, isFalse);
+    expect(typeProjection.isDartPrimitive, isTrue);
+    expect(typeProjection.isSpecialType, isTrue);
+  });
+
+  test('Windows.Foundation.HResult type is projected correctly', () {
+    final methodProjection = MethodProjection.fromTypeAndMethodName(
+        'Windows.Foundation.IAsyncInfo', 'get_ErrorCode');
+    final typeProjection = methodProjection.typeProjection;
+    expect(typeProjection.dartType, equals('int'));
+    expect(typeProjection.nativeType, equals('Int32'));
+    expect(typeProjection.attribute, equals('@Int32()'));
+    expect(typeProjection.exposedAsStruct, isFalse);
+    expect(typeProjection.isDartPrimitive, isTrue);
+    expect(typeProjection.isSpecialType, isTrue);
+  });
+
+  test('Windows.Foundation.TimeSpan type is projected correctly', () {
+    final methodProjection = MethodProjection.fromTypeAndMethodName(
+        'Windows.Foundation.IPropertyValue', 'GetTimeSpan');
+    final typeProjection = methodProjection.typeProjection;
+    expect(typeProjection.dartType, equals('int'));
+    expect(typeProjection.nativeType, equals('Int64'));
+    expect(typeProjection.attribute, equals('@Int64()'));
+    expect(typeProjection.exposedAsStruct, isFalse);
+    expect(typeProjection.isDartPrimitive, isFalse);
+    expect(typeProjection.isSpecialType, isTrue);
+    expect(typeProjection.isTimeSpan, isTrue);
+  });
+
+  test('FillArray style parameters are projected correctly', () {
+    // virtual HRESULT STDMETHODCALLTYPE GetMany(
+    //   UINT32 startIndex,
+    //   UINT32 itemsLength,
+    //   HSTRING* items
+    // )
+    final methodProjection = MethodProjection.fromTypeAndMethodName(
+        'Windows.Storage.Pickers.FileExtensionVector', 'GetMany');
+    expect(methodProjection.parameters.length, equals(3));
+
+    final itemsSizeParam = methodProjection.parameters[1];
+    expect(itemsSizeParam.name, equals('__itemsSize'));
+    expect(itemsSizeParam.isInParam, isTrue);
+    final itemsSizeParamProjection = itemsSizeParam.typeProjection;
+    expect(itemsSizeParamProjection.dartType, equals('int'));
+    expect(itemsSizeParamProjection.nativeType, equals('Uint32'));
+    expect(itemsSizeParamProjection.isDartPrimitive, isTrue);
+
+    final itemsParam = methodProjection.parameters.last;
+    expect(itemsParam.name, equals('items'));
+    expect(itemsParam.isOutParam, isTrue);
+    final itemsParamProjection = itemsParam.typeProjection;
+    expect(itemsParamProjection.dartType, equals('Pointer<IntPtr>'));
+    expect(itemsParamProjection.nativeType, equals('Pointer<IntPtr>'));
+  });
+
+  test('PassArray style parameters are projected correctly', () {
+    // virtual HRESULT STDMETHODCALLTYPE CreateUInt8Array(
+    //   UINT32 valueLength,
+    //   BYTE* value
+    // )
+    final methodProjection = MethodProjection.fromTypeAndMethodName(
+        'Windows.Foundation.IPropertyValueStatics', 'CreateUInt8Array');
+    expect(methodProjection.parameters.length, equals(2));
+
+    final valueSizeParam = methodProjection.parameters.first;
+    expect(valueSizeParam.name, equals('__valueSize'));
+    expect(valueSizeParam.isInParam, isTrue);
+    final valueSizeParamProjection = valueSizeParam.typeProjection;
+    expect(valueSizeParamProjection.dartType, equals('int'));
+    expect(valueSizeParamProjection.nativeType, equals('Uint32'));
+    expect(valueSizeParamProjection.isDartPrimitive, isTrue);
+
+    final valueParam = methodProjection.parameters.last;
+    expect(valueParam.name, equals('value'));
+    expect(valueParam.isInParam, isTrue);
+    final valueParamProjection = valueParam.typeProjection;
+    expect(valueParamProjection.dartType, equals('Pointer<Uint8>'));
+    expect(valueParamProjection.nativeType, equals('Pointer<Uint8>'));
+  });
+
+  test('ReceiveArray style parameters are projected correctly (1)', () {
+    // virtual HRESULT STDMETHODCALLTYPE GetInspectableArray(
+    //   UINT32* valueLength,
+    //   IInspectable*** value
+    // )
+    final methodProjection = MethodProjection.fromTypeAndMethodName(
+        'Windows.Foundation.IPropertyValue', 'GetInspectableArray');
+    expect(methodProjection.parameters.length, equals(2));
+
+    final valueSizeParam = methodProjection.parameters.first;
+    expect(valueSizeParam.name, equals('__valueSize'));
+    expect(valueSizeParam.isOutParam, isTrue);
+    final valueSizeParamProjection = valueSizeParam.typeProjection;
+    expect(valueSizeParamProjection.dartType, equals('Pointer<Uint32>'));
+    expect(valueSizeParamProjection.nativeType, equals('Pointer<Uint32>'));
+    expect(valueSizeParamProjection.isPointer, isTrue);
+
+    final valueParam = methodProjection.parameters.last;
+    expect(valueParam.name, equals('value'));
+    expect(valueParam.isOutParam, isTrue);
+    final valueParamProjection = valueParam.typeProjection;
+    expect(
+        valueParamProjection.dartType, equals('Pointer<Pointer<COMObject>>'));
+    expect(
+        valueParamProjection.nativeType, equals('Pointer<Pointer<COMObject>>'));
+  });
+
+  test('ReceiveArray style parameters are projected correctly (2)', () {
+    // virtual HRESULT STDMETHODCALLTYPE GetUInt8Array(
+    //   UINT32* valueLength,
+    //   BYTE** value
+    // )
+    final methodProjection = MethodProjection.fromTypeAndMethodName(
+        'Windows.Foundation.IPropertyValue', 'GetUInt8Array');
+    expect(methodProjection.parameters.length, equals(2));
+
+    final valueSizeParam = methodProjection.parameters.first;
+    expect(valueSizeParam.name, equals('__valueSize'));
+    expect(valueSizeParam.isOutParam, isTrue);
+    final valueSizeParamProjection = valueSizeParam.typeProjection;
+    expect(valueSizeParamProjection.dartType, equals('Pointer<Uint32>'));
+    expect(valueSizeParamProjection.nativeType, equals('Pointer<Uint32>'));
+    expect(valueSizeParamProjection.isPointer, isTrue);
+
+    final valueParam = methodProjection.parameters.last;
+    expect(valueParam.name, equals('value'));
+    expect(valueParam.isOutParam, isTrue);
+    final valueParamProjection = valueParam.typeProjection;
+    expect(valueParamProjection.dartType, equals('Pointer<Pointer<Uint8>>'));
+    expect(valueParamProjection.nativeType, equals('Pointer<Pointer<Uint8>>'));
   });
 }
