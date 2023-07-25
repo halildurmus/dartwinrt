@@ -7,7 +7,8 @@
 import 'package:test/test.dart';
 import 'package:win32/win32.dart' hide IUnknown;
 import 'package:windows_foundation/internal.dart';
-import 'package:windows_foundation/src/exports.g.dart';
+import 'package:windows_foundation/uri.dart' as winrt_uri;
+import 'package:windows_foundation/windows_foundation.dart';
 
 void main() {
   if (!isWindowsRuntimeAvailable()) {
@@ -59,12 +60,35 @@ void main() {
       expect(list, orderedEquals([1.5, -2.5]));
     });
 
+    test('List<Uri?>', () {
+      final boxed = [Uri.parse('https://dartwinrt.dev'), null].intoBox();
+      expect(boxed, isA<IPropertyValue>());
+      final pv = boxed as IPropertyValue;
+      expect(pv.type, equals(PropertyType.inspectableArray));
+      final list = pv.getInspectableArray();
+      expect(list.length, equals(2));
+      expect(list.first, isA<IInspectable>());
+      final firstObject = list.first as IInspectable;
+      expect(getClassName(firstObject), equals('Windows.Foundation.Uri'));
+      final uri = firstObject.cast(
+          winrt_uri.Uri.fromPtr, winrt_uri.IID_IUriRuntimeClass);
+      expect(uri.toString(), equals('https://dartwinrt.dev/'));
+      expect(list.last, isNull);
+    });
+
     test('String', () {
       final boxed = 'dart'.intoBox();
       expect(boxed, isA<IPropertyValue>());
       final pv = boxed as IPropertyValue;
       expect(pv.type, equals(PropertyType.string));
       expect(pv.getString(), equals('dart'));
+    });
+
+    test('Uri', () {
+      final boxed = Uri.parse('https://dartwinrt.dev').intoBox();
+      expect(boxed, isA<winrt_uri.Uri>());
+      final pv = boxed as winrt_uri.Uri;
+      expect(pv.toString(), equals('https://dartwinrt.dev/'));
     });
   });
 }

@@ -16,6 +16,7 @@ import '../../types.dart';
 import '../../winrt_enum.dart';
 import '../../winrt_struct.dart';
 import '../iids.dart';
+import 'uri_conversions.dart';
 
 /// @nodoc
 extension IntoBoxHelper on Object {
@@ -51,6 +52,7 @@ extension IntoBoxHelper on Object {
     if (self is Rect) return self.toPropertyValue();
     if (self is Size) return self.toPropertyValue();
     if (self is String) return self.toPropertyValue();
+    if (self is Uri) return self.toWinRTUri();
     if (self is List<bool>) return self.toPropertyValue();
     if (self is List<DateTime>) return self.toPropertyValue();
     if (self is List<double>) return self.toPropertyValue(doubleType);
@@ -62,6 +64,7 @@ extension IntoBoxHelper on Object {
     if (self is List<Rect>) return self.toPropertyValue();
     if (self is List<Size>) return self.toPropertyValue();
     if (self is List<String>) return self.toPropertyValue();
+    if (self is List<Uri?>) return self.toPropertyValue();
 
     // TODO(halildurmus): Support boxing enums and other structs (e.g.
     // BasicGeoposition)
