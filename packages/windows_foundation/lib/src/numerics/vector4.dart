@@ -17,7 +17,7 @@ import '../winrt_struct.dart';
 
 /// Describes a vector of four floating-point components.
 final class Vector4 implements WinRTStruct {
-  Vector4(this.x, this.y, this.z, this.w);
+  const Vector4(this.x, this.y, this.z, this.w);
 
   final double x;
   final double y;

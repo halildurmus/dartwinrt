@@ -17,7 +17,7 @@ import '../winrt_struct.dart';
 
 /// Describes a 4*4 floating point matrix.
 final class Matrix4x4 implements WinRTStruct {
-  Matrix4x4(
+  const Matrix4x4(
       this.m11,
       this.m12,
       this.m13,

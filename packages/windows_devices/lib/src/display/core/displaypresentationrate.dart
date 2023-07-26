@@ -17,7 +17,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// Describes an overall presentation rate composed of a rational refresh
 /// rate and a divider.
 final class DisplayPresentationRate implements WinRTStruct {
-  DisplayPresentationRate(
+  const DisplayPresentationRate(
       this.verticalSyncRate, this.verticalSyncsPerPresentation);
 
   final Rational verticalSyncRate;

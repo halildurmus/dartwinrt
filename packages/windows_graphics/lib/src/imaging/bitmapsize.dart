@@ -16,7 +16,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 /// Represents the size of a bitmap, in pixels.
 final class BitmapSize implements WinRTStruct {
-  BitmapSize(this.width, this.height);
+  const BitmapSize(this.width, this.height);
 
   final int width;
   final int height;

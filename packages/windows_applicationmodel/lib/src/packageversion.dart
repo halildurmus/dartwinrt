@@ -16,7 +16,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 /// Represents the package version info.
 final class PackageVersion implements WinRTStruct {
-  PackageVersion(this.major, this.minor, this.build, this.revision);
+  const PackageVersion(this.major, this.minor, this.build, this.revision);
 
   final int major;
   final int minor;

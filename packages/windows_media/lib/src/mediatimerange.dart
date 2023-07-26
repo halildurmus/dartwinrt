@@ -16,7 +16,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 /// Represents a time range within media content.
 final class MediaTimeRange implements WinRTStruct {
-  MediaTimeRange(this.start, this.end);
+  const MediaTimeRange(this.start, this.end);
 
   final Duration start;
   final Duration end;

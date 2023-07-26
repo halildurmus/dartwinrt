@@ -16,7 +16,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 /// Specifies a bounding rectangle.
 final class BitmapBounds implements WinRTStruct {
-  BitmapBounds(this.x, this.y, this.width, this.height);
+  const BitmapBounds(this.x, this.y, this.width, this.height);
 
   final int x;
   final int y;

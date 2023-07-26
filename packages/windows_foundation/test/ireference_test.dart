@@ -97,14 +97,14 @@ void main() {
     });
 
     test('Point?', () {
-      final reference = Point(50, 100).toReference();
+      final reference = const Point(50, 100).toReference();
       expect(reference.value, isNotNull);
       expect(reference.value?.x, equals(50));
       expect(reference.value?.y, equals(100));
     });
 
     test('Rect?', () {
-      final reference = Rect(50, 100, 200, 100).toReference();
+      final reference = const Rect(50, 100, 200, 100).toReference();
       expect(reference.value, isNotNull);
       expect(reference.value?.height, equals(100));
       expect(reference.value?.width, equals(200));
@@ -113,7 +113,7 @@ void main() {
     });
 
     test('Size?', () {
-      final reference = Size(100, 200).toReference();
+      final reference = const Size(100, 200).toReference();
       expect(reference.value, isNotNull);
       expect(reference.value?.height, equals(200));
       expect(reference.value?.width, equals(100));

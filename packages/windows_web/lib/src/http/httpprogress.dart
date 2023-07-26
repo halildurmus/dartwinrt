@@ -18,7 +18,7 @@ import 'httpprogressstage.dart';
 
 /// Contains status information on the progress of an HttpClient operation.
 final class HttpProgress implements WinRTStruct {
-  HttpProgress(this.stage, this.bytesSent, this.totalBytesToSend,
+  const HttpProgress(this.stage, this.bytesSent, this.totalBytesToSend,
       this.bytesReceived, this.totalBytesToReceive, this.retries);
 
   final HttpProgressStage stage;

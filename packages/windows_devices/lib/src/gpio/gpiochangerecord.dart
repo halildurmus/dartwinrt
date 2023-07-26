@@ -20,7 +20,7 @@ import 'gpiopinedge.dart';
 /// change, and whether the pin transitioned from low to high or from high
 /// to low.
 final class GpioChangeRecord implements WinRTStruct {
-  GpioChangeRecord(this.relativeTime, this.edge);
+  const GpioChangeRecord(this.relativeTime, this.edge);
 
   final Duration relativeTime;
   final GpioPinEdge edge;

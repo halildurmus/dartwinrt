@@ -16,7 +16,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 /// Wraps the asynchronous results of a LoadMoreItemsAsync call.
 final class LoadMoreItemsResult implements WinRTStruct {
-  LoadMoreItemsResult(this.count);
+  const LoadMoreItemsResult(this.count);
 
   final int count;
 

@@ -18,7 +18,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// transform is for the left display, and the other is for the right
 /// display.
 final class HolographicStereoTransform implements WinRTStruct {
-  HolographicStereoTransform(this.left, this.right);
+  const HolographicStereoTransform(this.left, this.right);
 
   final Matrix4x4 left;
   final Matrix4x4 right;

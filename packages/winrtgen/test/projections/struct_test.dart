@@ -115,7 +115,7 @@ void main() {
 
     test('has correct constructor', () {
       expect(rectProjection.constructor,
-          equals('Rect(this.x, this.y, this.width, this.height);'));
+          equals('const Rect(this.x, this.y, this.width, this.height);'));
     });
 
     test('has correct number of instance variables', () {

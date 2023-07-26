@@ -16,7 +16,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 /// Contains status information about the file transfer operation.
 final class BackgroundTransferFileRange implements WinRTStruct {
-  BackgroundTransferFileRange(this.offset, this.length);
+  const BackgroundTransferFileRange(this.offset, this.length);
 
   final int offset;
   final int length;

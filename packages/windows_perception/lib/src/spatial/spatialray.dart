@@ -16,7 +16,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 /// A ray in the user's surroundings, with coordinates expressed in meters.
 final class SpatialRay implements WinRTStruct {
-  SpatialRay(this.origin, this.direction);
+  const SpatialRay(this.origin, this.direction);
 
   final Vector3 origin;
   final Vector3 direction;

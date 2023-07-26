@@ -17,7 +17,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// An axis-aligned bounding box in the user's surroundings, with
 /// coordinates expressed in meters.
 final class SpatialBoundingBox implements WinRTStruct {
-  SpatialBoundingBox(this.center, this.extents);
+  const SpatialBoundingBox(this.center, this.extents);
 
   final Vector3 center;
   final Vector3 extents;

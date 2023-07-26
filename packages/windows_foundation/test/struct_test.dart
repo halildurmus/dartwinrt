@@ -21,7 +21,7 @@ void main() {
         ..y = 2;
 
       final point = nativePoint.toDart();
-      expect(point, equals(Point(1, 2)));
+      expect(point, equals(const Point(1, 2)));
 
       free(nativePoint);
     });
@@ -29,7 +29,7 @@ void main() {
 
   group('Point', () {
     test('toNative', () {
-      final point = Point(1, -2);
+      const point = Point(1, -2);
       final nativePointPtr = point.toNative();
       final nativePoint = nativePointPtr.ref;
       expect(nativePoint.x, equals(1));
@@ -52,9 +52,9 @@ void main() {
 
       final list = nativePointPtr.toList(length: 3);
       expect(list.length, equals(3));
-      expect(list[0], equals(Point(1, 2)));
-      expect(list[1], equals(Point(3, 4)));
-      expect(list[2], equals(Point(5, 6)));
+      expect(list[0], equals(const Point(1, 2)));
+      expect(list[1], equals(const Point(3, 4)));
+      expect(list[2], equals(const Point(5, 6)));
 
       free(nativePointPtr);
     });

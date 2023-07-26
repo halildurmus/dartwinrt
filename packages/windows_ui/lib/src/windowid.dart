@@ -16,7 +16,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 /// Defines an identifier for a top-level window.
 final class WindowId implements WinRTStruct {
-  WindowId(this.value);
+  const WindowId(this.value);
 
   final int value;
 

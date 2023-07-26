@@ -123,7 +123,7 @@ void main() {
   });
 
   test('Point', () {
-    final point = Point(10, 20);
+    const point = Point(10, 20);
     final pv = PropertyValue.createPoint(point);
     expect(pv.type, equals(PropertyType.point));
     expect(pv.getPoint(), equals(point));
