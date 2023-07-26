@@ -13,27 +13,48 @@ import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
 void main() {
-  group('NativePoint', () {
-    test('toDart', () {
-      final nativePoint = calloc<NativePoint>();
-      nativePoint.ref
-        ..x = 1
-        ..y = 2;
+  test('Point toNative', () {
+    const point = Point(1, -2);
+    final nativePointPtr = point.toNative();
+    final nativePoint = nativePointPtr.ref;
+    expect(nativePoint.x, equals(1));
+    expect(nativePoint.y, equals(-2));
 
-      final point = nativePoint.toDart();
-      expect(point, equals(const Point(1, 2)));
-
-      free(nativePoint);
-    });
+    free(nativePointPtr);
   });
 
-  group('Point', () {
-    test('toNative', () {
-      const point = Point(1, -2);
-      final nativePointPtr = point.toNative();
-      final nativePoint = nativePointPtr.ref;
-      expect(nativePoint.x, equals(1));
-      expect(nativePoint.y, equals(-2));
+  test('List<Point> toArray', () {
+    final allocator = Arena();
+
+    const list = [Point(1, 2), Point(3, 4), Point(5, 6)];
+    final array = list.toArray(allocator: allocator);
+    final newList = array.toList(length: 3);
+    expect(newList, orderedEquals(list));
+
+    allocator.releaseAll();
+  });
+
+  test('NativePoint toDart', () {
+    final nativePoint = calloc<NativePoint>();
+    nativePoint.ref
+      ..x = 1
+      ..y = 2;
+
+    final point = nativePoint.toDart();
+    expect(point, equals(const Point(1, 2)));
+
+    free(nativePoint);
+  });
+
+  group('Pointer<NativePoint>', () {
+    test('toDart', () {
+      final nativePointPtr = calloc<NativePoint>();
+      nativePointPtr.ref
+        ..x = -1
+        ..y = 2;
+
+      final point = nativePointPtr.toDart();
+      expect(point, equals(const Point(-1, 2)));
 
       free(nativePointPtr);
     });

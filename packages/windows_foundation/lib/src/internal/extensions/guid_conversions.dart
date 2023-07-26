@@ -14,16 +14,13 @@ import '../iids.dart';
 
 /// @nodoc
 extension GuidConversions on Guid {
-  /// Returns the IID of `IReference<Guid>`.
-  String get referenceIid => IID_IReference_Guid;
-
   /// Converts the value to an [IPropertyValue].
   IPropertyValue toPropertyValue() => PropertyValue.createGuid(this);
 
   /// Converts the value to an [IReference].
   IReference<Guid?> toReference() {
     final propertyValue = toPropertyValue();
-    final iid = referenceIid;
+    final iid = IID_IReference_Guid;
     final reference = IReference<Guid?>.fromPtr(propertyValue.toInterface(iid),
         referenceIid: iid);
     return reference;
@@ -32,9 +29,6 @@ extension GuidConversions on Guid {
 
 /// @nodoc
 extension GuidListConversions on List<Guid> {
-  /// Returns the IID of `IReferenceArray<Guid>`.
-  String get referenceArrayIid => IID_IReferenceArray_Guid;
-
   /// Creates an array of [GUID]s from a List of [Guid]s.
   Pointer<GUID> toArray({Allocator allocator = calloc}) {
     final array = allocator<GUID>(length);

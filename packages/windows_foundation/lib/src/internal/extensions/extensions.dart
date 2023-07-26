@@ -10,6 +10,7 @@ export 'double_conversions.dart';
 export 'duration_conversions.dart';
 export 'enum_conversions.dart';
 export 'guid_conversions.dart';
+export 'iinspectable_helpers.dart';
 export 'int_conversions.dart';
 export 'ipropertyvalue_helpers.dart';
 export 'object_conversions.dart';

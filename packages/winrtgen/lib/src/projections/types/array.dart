@@ -86,7 +86,7 @@ abstract base class ArrayParameterProjection extends ParameterProjection {
         EnumParameterProjection() ||
         GenericEnumParameterProjection() =>
           'toEnumList',
-        UriParameterProjection() => 'toDartUriList',
+        UriParameterProjection() => 'toUriList',
         _ => 'toList'
       };
 

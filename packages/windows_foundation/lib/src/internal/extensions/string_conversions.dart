@@ -21,9 +21,6 @@ extension HSTRINGHandleToStringConversion on int {
 
 /// @nodoc
 extension StringConversions on String {
-  /// Returns the IID of `IReference<String>`.
-  String get referenceIid => IID_IReference_String;
-
   /// Converts the string into an [HString], returning an HSTRING handle.
   int toHString() => HString.fromString(this).handle;
 
@@ -33,7 +30,7 @@ extension StringConversions on String {
   /// Converts the value to an [IReference].
   IReference<String?> toReference() {
     final propertyValue = toPropertyValue();
-    final iid = referenceIid;
+    final iid = IID_IReference_String;
     final reference = IReference<String?>.fromPtr(
         propertyValue.toInterface(iid),
         referenceIid: iid);
@@ -43,9 +40,6 @@ extension StringConversions on String {
 
 /// @nodoc
 extension StringListConversions on List<String> {
-  /// Returns the IID of `IReferenceArray<String>`.
-  String get referenceArrayIid => IID_IReferenceArray_String;
-
   /// Creates an array of [HSTRING]s from a List of [String]s.
   Pointer<HSTRING> toArray({Allocator allocator = calloc}) {
     final array = allocator<HSTRING>(length);

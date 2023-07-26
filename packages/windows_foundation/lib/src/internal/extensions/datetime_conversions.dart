@@ -12,7 +12,7 @@ import '../../propertyvalue.dart';
 import '../iids.dart';
 
 /// @nodoc
-extension WinRTDateTimeToDateTimeConversion on int {
+extension WinRTDateTimeToDartDateTimeConversion on int {
   /// Converts this integer into a [DateTime].
   DateTime toDartDateTime() =>
       DateTime.utc(1601, 01, 01).add(Duration(microseconds: this ~/ 10));
@@ -20,16 +20,13 @@ extension WinRTDateTimeToDateTimeConversion on int {
 
 /// @nodoc
 extension DateTimeConversions on DateTime {
-  /// Returns the IID of `IReference<DateTime>`.
-  String get referenceIid => IID_IReference_DateTime;
-
   /// Converts the value to an [IPropertyValue].
   IPropertyValue toPropertyValue() => PropertyValue.createDateTime(this);
 
   /// Converts the value to an [IReference].
   IReference<DateTime?> toReference() {
     final propertyValue = toPropertyValue();
-    final iid = referenceIid;
+    final iid = IID_IReference_DateTime;
     final reference = IReference<DateTime?>.fromPtr(
         propertyValue.toInterface(iid),
         referenceIid: iid);
@@ -48,9 +45,6 @@ extension DateTimeConversions on DateTime {
 
 /// @nodoc
 extension DateTimeListConversions on List<DateTime> {
-  /// Returns the IID of `IReferenceArray<DateTime>`.
-  String get referenceArrayIid => IID_IReferenceArray_DateTime;
-
   /// Creates an array of [Int64]s from a List of [DateTime]s.
   Pointer<Int64> toArray({Allocator allocator = calloc}) {
     final array = allocator<Int64>(length);

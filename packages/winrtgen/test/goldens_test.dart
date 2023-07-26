@@ -20,62 +20,41 @@ void main() {
   test('ICalendar golden', () {
     const type = 'Windows.Globalization.ICalendar';
     final dartClass = InterfaceProjection.from(type).toString();
-    final formattedDartClass = DartFormatter().format(dartClass);
+    compareGolden('icalendar', dartClass.format());
+  });
 
-    File('test/goldens/icalendar.comparison')
-        .writeAsStringSync(formattedDartClass);
-    final golden = File('test/goldens/icalendar.golden').readAsStringSync();
-
-    // Ignore whitespace to avoid \r\n vs. \n conflicts.
-    expect(formattedDartClass, equalsIgnoringWhitespace(golden));
+  test('StorageFolder golden', () {
+    const type = 'Windows.Storage.StorageFolder';
+    final dartClass = ClassProjection.from(type).toString();
+    compareGolden('storagefolder', dartClass.format());
   });
 
   test('_IMapXX golden', () {
-    const type = 'Windows.Foundation.Collections.IMap`2';
-    final genericType =
-        genericTypes.firstWhere((e) => e.fullyQualifiedType == type);
-    final dartClass =
-        GenericInterfacePartFileProjection(genericType).toString();
-    final formattedDartClass = DartFormatter().format(dartClass);
-
-    File('test/goldens/imap_part.comparison')
-        .writeAsStringSync(formattedDartClass);
-    final golden = File('test/goldens/imap_part.golden').readAsStringSync();
-
-    // Ignore whitespace to avoid \r\n vs. \n conflicts.
-    expect(formattedDartClass, equalsIgnoringWhitespace(golden));
+    final dartClass = GenericInterfacePartFileProjection(imap).toString();
+    compareGolden('imap_part', dartClass.format());
   });
 
   test('_IReferenceXX golden', () {
-    const type = 'Windows.Foundation.IReference`1';
-    final genericType =
-        genericTypes.firstWhere((e) => e.fullyQualifiedType == type);
-    final dartClass =
-        GenericInterfacePartFileProjection(genericType).toString();
-    final formattedDartClass = DartFormatter().format(dartClass);
-
-    File('test/goldens/ireference_part.comparison')
-        .writeAsStringSync(formattedDartClass);
-    final golden =
-        File('test/goldens/ireference_part.golden').readAsStringSync();
-
-    // Ignore whitespace to avoid \r\n vs. \n conflicts.
-    expect(formattedDartClass, equalsIgnoringWhitespace(golden));
+    final dartClass = GenericInterfacePartFileProjection(ireference).toString();
+    compareGolden('ireference_part', dartClass.format());
   });
 
   test('_IVectorXX golden', () {
-    const type = 'Windows.Foundation.Collections.IVector`1';
-    final genericType =
-        genericTypes.firstWhere((e) => e.fullyQualifiedType == type);
-    final dartClass =
-        GenericInterfacePartFileProjection(genericType).toString();
-    final formattedDartClass = DartFormatter().format(dartClass);
-
-    File('test/goldens/ivector_part.comparison')
-        .writeAsStringSync(formattedDartClass);
-    final golden = File('test/goldens/ivector_part.golden').readAsStringSync();
-
-    // Ignore whitespace to avoid \r\n vs. \n conflicts.
-    expect(formattedDartClass, equalsIgnoringWhitespace(golden));
+    final dartClass = GenericInterfacePartFileProjection(ivector).toString();
+    compareGolden('ivector_part', dartClass.format());
   });
+}
+
+/// Compares the contents of a [content] with a golden file specified by the
+/// [fileName].
+void compareGolden(String fileName, String content) {
+  File('test/goldens/$fileName.comparison').writeAsStringSync(content);
+  final golden = File('test/goldens/$fileName.golden').readAsStringSync();
+  expect(content, equals(golden.convertLineEndingsToLF()));
+}
+
+extension on String {
+  String convertLineEndingsToLF() => replaceAll('\r\n', '\n');
+
+  String format() => DartFormatter().format(this);
 }

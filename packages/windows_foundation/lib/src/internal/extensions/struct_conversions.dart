@@ -22,16 +22,13 @@ extension WinRTStructConversion on WinRTStruct {
 
 /// @nodoc
 extension PointConversions on Point {
-  /// Returns the IID of `IReference<Point>`.
-  String get referenceIid => IID_IReference_Point;
-
   /// Converts the value to an [IPropertyValue].
   IPropertyValue toPropertyValue() => PropertyValue.createPoint(this);
 
   /// Converts the value to an [IReference].
   IReference<Point?> toReference() {
     final propertyValue = toPropertyValue();
-    final iid = referenceIid;
+    final iid = IID_IReference_Point;
     final reference = IReference<Point?>.fromPtr(propertyValue.toInterface(iid),
         referenceIid: iid);
     return reference;
@@ -40,25 +37,19 @@ extension PointConversions on Point {
 
 /// @nodoc
 extension PointListConversion on List<Point> {
-  /// Returns the IID of `IReferenceArray<Point>`.
-  String get referenceArrayIid => IID_IReferenceArray_Point;
-
   /// Converts the value to an [IPropertyValue].
   IPropertyValue toPropertyValue() => PropertyValue.createPointArray(this);
 }
 
 /// @nodoc
 extension RectConversions on Rect {
-  /// Returns the IID of `IReference<Rect>`.
-  String get referenceIid => IID_IReference_Rect;
-
   /// Converts the value to an [IPropertyValue].
   IPropertyValue toPropertyValue() => PropertyValue.createRect(this);
 
   /// Converts the value to an [IReference].
   IReference<Rect?> toReference() {
     final propertyValue = toPropertyValue();
-    final iid = referenceIid;
+    final iid = IID_IReference_Rect;
     final reference = IReference<Rect?>.fromPtr(propertyValue.toInterface(iid),
         referenceIid: iid);
     return reference;
@@ -67,25 +58,19 @@ extension RectConversions on Rect {
 
 /// @nodoc
 extension RectListConversion on List<Rect> {
-  /// Returns the IID of `IReferenceArray<Rect>`.
-  String get referenceArrayIid => IID_IReferenceArray_Rect;
-
   /// Converts the value to an [IPropertyValue].
   IPropertyValue toPropertyValue() => PropertyValue.createRectArray(this);
 }
 
 /// @nodoc
 extension SizeConversions on Size {
-  /// Returns the IID of `IReference<Size>`.
-  String get referenceIid => IID_IReference_Size;
-
   /// Converts the value to an [IPropertyValue].
   IPropertyValue toPropertyValue() => PropertyValue.createSize(this);
 
   /// Converts the value to an [IReference].
   IReference<Size?> toReference() {
     final propertyValue = toPropertyValue();
-    final iid = referenceIid;
+    final iid = IID_IReference_Size;
     final reference = IReference<Size?>.fromPtr(propertyValue.toInterface(iid),
         referenceIid: iid);
     return reference;
@@ -94,9 +79,6 @@ extension SizeConversions on Size {
 
 /// @nodoc
 extension SizeListConversion on List<Size> {
-  /// Returns the IID of `IReferenceArray<Size>`.
-  String get referenceArrayIid => IID_IReferenceArray_Size;
-
   /// Converts the value to an [IPropertyValue].
   IPropertyValue toPropertyValue() => PropertyValue.createSizeArray(this);
 }

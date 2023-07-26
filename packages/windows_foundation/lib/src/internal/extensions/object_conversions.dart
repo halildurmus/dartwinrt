@@ -13,13 +13,13 @@ import '../../propertyvalue.dart';
 import '../../rect.dart';
 import '../../size.dart';
 import '../../types.dart';
-import '../iids.dart';
 import 'bool_conversions.dart';
 import 'comobject_helper.dart';
 import 'datetime_conversions.dart';
 import 'double_conversions.dart';
 import 'duration_conversions.dart';
 import 'guid_conversions.dart';
+import 'iinspectable_helpers.dart';
 import 'int_conversions.dart';
 import 'ipropertyvalue_helpers.dart';
 import 'string_conversions.dart';
@@ -27,22 +27,13 @@ import 'struct_conversions.dart';
 import 'uri_conversions.dart';
 
 /// @nodoc
-extension IInspectableHelper on IInspectable? {
-  /// Returns the [VTablePointer] associated with the object, or returns
-  /// [nullptr] if the object is `null`.
-  VTablePointer get lpVtbl => this?.ptr.ref.lpVtbl ?? nullptr;
-}
-
-/// @nodoc
 extension IInspectableListConversions on List<IInspectable?> {
-  /// Returns the IID of `IReferenceArray<Object>`.
-  String get referenceArrayIid => IID_IReferenceArray_Object;
-
   /// Creates an array of [VTablePointer]s from a List of [IInspectable]s.
   Pointer<VTablePointer> toArray({Allocator allocator = calloc}) {
     final array = allocator<VTablePointer>(length);
     for (var i = 0; i < length; i++) {
-      array[i] = this[i].lpVtbl;
+      final element = this[i];
+      array[i] = element.lpVtbl;
     }
     return array;
   }
@@ -114,7 +105,10 @@ extension ObjectListToVTablePointerArrayConversion on List<Object?> {
   Pointer<VTablePointer> toArray({Allocator allocator = calloc}) {
     final array = allocator<VTablePointer>(length);
     for (var i = 0; i < length; i++) {
-      array[i] = this[i]?.boxValue().lpVtbl ?? nullptr;
+      final element = this[i];
+      if (element == null) continue;
+      final boxed = element.boxValue();
+      array[i] = boxed.lpVtbl;
     }
     return array;
   }

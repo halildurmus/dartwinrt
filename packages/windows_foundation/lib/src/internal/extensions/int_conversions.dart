@@ -15,17 +15,6 @@ import '../iids.dart';
 
 /// @nodoc
 extension IntConversions on int {
-  /// Returns the IID of `IReference<int>`.
-  String referenceIid(IntType type) => switch (type) {
-        IntType.int16 => IID_IReference_Int16,
-        IntType.int32 => IID_IReference_Int32,
-        IntType.int64 => IID_IReference_Int64,
-        IntType.uint8 => IID_IReference_Uint8,
-        IntType.uint16 => IID_IReference_Uint16,
-        IntType.uint32 => IID_IReference_Uint32,
-        IntType.uint64 => IID_IReference_Uint64
-      };
-
   /// Converts the value to an [IPropertyValue].
   IPropertyValue toPropertyValue(IntType type) => switch (type) {
         IntType.int16 => PropertyValue.createInt16(this),
@@ -40,7 +29,15 @@ extension IntConversions on int {
   /// Converts the value to an [IReference].
   IReference<int?> toReference(IntType type) {
     final propertyValue = toPropertyValue(type);
-    final iid = referenceIid(type);
+    final iid = switch (type) {
+      IntType.int16 => IID_IReference_Int16,
+      IntType.int32 => IID_IReference_Int32,
+      IntType.int64 => IID_IReference_Int64,
+      IntType.uint8 => IID_IReference_Uint8,
+      IntType.uint16 => IID_IReference_Uint16,
+      IntType.uint32 => IID_IReference_Uint32,
+      IntType.uint64 => IID_IReference_Uint64
+    };
     final reference = IReference<int?>.fromPtr(propertyValue.toInterface(iid),
         referenceIid: iid);
     return reference;
@@ -49,17 +46,6 @@ extension IntConversions on int {
 
 /// @nodoc
 extension IntListConversions on List<int> {
-  /// Returns the IID of `IReferenceArray<int>`.
-  String referenceArrayIid(IntType type) => switch (type) {
-        IntType.int16 => IID_IReferenceArray_Int16,
-        IntType.int32 => IID_IReferenceArray_Int32,
-        IntType.int64 => IID_IReferenceArray_Int64,
-        IntType.uint8 => IID_IReferenceArray_Uint8,
-        IntType.uint16 => IID_IReferenceArray_Uint16,
-        IntType.uint32 => IID_IReferenceArray_Uint32,
-        IntType.uint64 => IID_IReferenceArray_Uint64
-      };
-
   /// Creates an array of [T]s from a List of [int]s.
   Pointer<T> toArray<T extends NativeType>({Allocator allocator = calloc}) {
     if (T == Int16) {

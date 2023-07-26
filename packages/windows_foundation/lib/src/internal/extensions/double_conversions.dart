@@ -15,12 +15,6 @@ import '../iids.dart';
 
 /// @nodoc
 extension DoubleConversions on double {
-  /// Returns the IID of `IReference<double>`.
-  String referenceIid(DoubleType type) => switch (type) {
-        DoubleType.double => IID_IReference_Double,
-        DoubleType.float => IID_IReference_Float
-      };
-
   /// Converts the value to an [IPropertyValue].
   IPropertyValue toPropertyValue(DoubleType type) => switch (type) {
         DoubleType.double => PropertyValue.createDouble(this),
@@ -30,7 +24,10 @@ extension DoubleConversions on double {
   /// Converts the value to an [IReference].
   IReference<double?> toReference(DoubleType type) {
     final propertyValue = toPropertyValue(type);
-    final iid = referenceIid(type);
+    final iid = switch (type) {
+      DoubleType.double => IID_IReference_Double,
+      DoubleType.float => IID_IReference_Float
+    };
     final reference = IReference<double?>.fromPtr(
         propertyValue.toInterface(iid),
         referenceIid: iid);
@@ -40,12 +37,6 @@ extension DoubleConversions on double {
 
 /// @nodoc
 extension DoubleListConversions on List<double> {
-  /// Returns the IID of `IReferenceArray<double>`.
-  String referenceArrayIid(DoubleType type) => switch (type) {
-        DoubleType.double => IID_IReferenceArray_Double,
-        DoubleType.float => IID_IReferenceArray_Float
-      };
-
   /// Creates an array of doubles from a List of [double]s.
   Pointer<T> toArray<T extends NativeType>({Allocator allocator = calloc}) {
     if (T == Double) {

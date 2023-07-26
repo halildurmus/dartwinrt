@@ -12,23 +12,20 @@ import '../../propertyvalue.dart';
 import '../iids.dart';
 
 /// @nodoc
-extension WinRTTimeSpanToDurationConversion on int {
+extension WinRTTimeSpanToDartDurationConversion on int {
   /// Converts this integer into a [Duration].
   Duration toDartDuration() => Duration(microseconds: this ~/ 10);
 }
 
 /// @nodoc
 extension DurationConversions on Duration {
-  /// Returns the IID of `IReference<Duration>`.
-  String get referenceIid => IID_IReference_Duration;
-
   /// Converts the value to an [IPropertyValue].
   IPropertyValue toPropertyValue() => PropertyValue.createTimeSpan(this);
 
   /// Converts the value to an [IReference].
   IReference<Duration?> toReference() {
     final propertyValue = toPropertyValue();
-    final iid = referenceIid;
+    final iid = IID_IReference_Duration;
     final reference = IReference<Duration?>.fromPtr(
         propertyValue.toInterface(iid),
         referenceIid: iid);
@@ -44,9 +41,6 @@ extension DurationConversions on Duration {
 
 /// @nodoc
 extension DurationListConversions on List<Duration> {
-  /// Returns the IID of `IReferenceArray<Duration>`.
-  String get referenceArrayIid => IID_IReferenceArray_Duration;
-
   /// Creates an array of [Int64]s from a List of [Duration]s.
   Pointer<Int64> toArray({Allocator allocator = calloc}) {
     final array = allocator<Int64>(length);

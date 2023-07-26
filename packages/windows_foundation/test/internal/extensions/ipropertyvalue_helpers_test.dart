@@ -15,7 +15,7 @@ void main() {
     return;
   }
 
-  group("IPropertyValue's value extension getter returns", () {
+  group('value extension getter returns', () {
     test('Point', () {
       final pv = PropertyValue.createPoint(const Point(-1, 1));
       final value = pv.value;

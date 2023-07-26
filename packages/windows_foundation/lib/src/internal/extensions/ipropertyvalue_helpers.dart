@@ -4,18 +4,33 @@
 
 import 'package:win32/win32.dart';
 
+import '../../extensions/iunknown_helpers.dart';
 import '../../ipropertyvalue.dart';
+import '../../iuriruntimeclass.dart';
 import '../../propertytype.dart';
+import '../../uri.dart' as winrt_uri;
 import 'comobject_helper.dart';
+import 'iinspectable_helpers.dart';
+import 'uri_conversions.dart';
 
 extension IPropertyValueHelper on IPropertyValue {
   /// Gets the type that is represented as an [IPropertyValue].
   Object? get value {
     if (ptr.isNull) return null;
 
+    final interfaces = getInterfaces(this);
+    // If the object implements the IUriRuntimeClass interface, return it as a
+    // Dart Uri.
+    if (interfaces.contains(IID_IUriRuntimeClass)) {
+      final winrtUri = cast(winrt_uri.Uri.fromPtr, IID_IUriRuntimeClass);
+      final dartUri = winrtUri.toDartUri();
+      winrtUri.free();
+      return dartUri;
+    }
+
     // If the object does not implement the IPropertyValue interface, return it
     // as an IInspectable object.
-    if (!getInterfaces(this).contains(IID_IPropertyValue)) {
+    if (!interfaces.contains(IID_IPropertyValue)) {
       return IInspectable.from(this);
     }
 
