@@ -18,7 +18,7 @@ import 'vector3.dart';
 
 /// Describes a plane (a flat, two-dimensional surface).
 final class Plane implements WinRTStruct {
-  Plane(this.normal, this.d);
+  const Plane(this.normal, this.d);
 
   final Vector3 normal;
   final double d;

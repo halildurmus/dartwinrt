@@ -20,7 +20,7 @@ import 'direct3dmultisampledescription.dart';
 /// This is a Windows Runtime equivalent of the Desktop DXGI_SURFACE_DESC
 /// structure. Describes an IDirect3DSurface.
 final class Direct3DSurfaceDescription implements WinRTStruct {
-  Direct3DSurfaceDescription(
+  const Direct3DSurfaceDescription(
       this.width, this.height, this.format, this.multisampleDescription);
 
   final int width;

@@ -17,7 +17,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// Represents a list entry that contains the identifier and metadata for a
 /// StorageFile or StorageFolder object in a list.
 final class AccessListEntry implements WinRTStruct {
-  AccessListEntry(this.token, this.metadata);
+  const AccessListEntry(this.token, this.metadata);
 
   final String token;
   final String metadata;

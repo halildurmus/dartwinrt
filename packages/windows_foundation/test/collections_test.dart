@@ -33,9 +33,9 @@ void main() {
         ..insert('key6', const Duration(seconds: 30))
         ..insert('key7', guid)
         ..insert('key8', 259)
-        ..insert('key9', Point(3, -3))
-        ..insert('key10', Rect(2, -2, 200, 100))
-        ..insert('key11', Size(300, 1500))
+        ..insert('key9', const Point(3, -3))
+        ..insert('key10', const Rect(2, -2, 200, 100))
+        ..insert('key11', const Size(300, 1500))
         ..insert('key12', 'strVal')
         ..insert('key13', [true, false])
         ..insert('key14',
@@ -45,9 +45,9 @@ void main() {
         ..insert('key17', [guid])
         ..insert('key18', [StringMap()])
         ..insert('key19', [2022, -2022])
-        ..insert('key20', [Point(3, -3)])
-        ..insert('key21', [Rect(2, -2, 200, 100)])
-        ..insert('key22', [Size(300, 1500)])
+        ..insert('key20', [const Point(3, -3)])
+        ..insert('key21', [const Rect(2, -2, 200, 100)])
+        ..insert('key22', [const Size(300, 1500)])
         ..insert('key23', ['str1', 'str2']);
     }
 
@@ -302,9 +302,9 @@ void main() {
         ..insert('key6', const Duration(seconds: 30))
         ..insert('key7', guid)
         ..insert('key8', 259)
-        ..insert('key9', Point(3, -3))
-        ..insert('key10', Rect(2, -2, 200, 100))
-        ..insert('key11', Size(300, 1500))
+        ..insert('key9', const Point(3, -3))
+        ..insert('key10', const Rect(2, -2, 200, 100))
+        ..insert('key11', const Size(300, 1500))
         ..insert('key12', 'strVal')
         ..insert('key13', [true, false])
         ..insert('key14',
@@ -313,9 +313,9 @@ void main() {
         ..insert('key16', const [Duration(hours: 1), Duration(minutes: 60)])
         ..insert('key17', [guid])
         ..insert('key18', [2022, -2022])
-        ..insert('key19', [Point(3, -3)])
-        ..insert('key20', [Rect(2, -2, 200, 100)])
-        ..insert('key21', [Size(300, 1500)])
+        ..insert('key19', [const Point(3, -3)])
+        ..insert('key20', [const Rect(2, -2, 200, 100)])
+        ..insert('key21', [const Size(300, 1500)])
         ..insert('key22', ['str1', 'str2']);
     }
 

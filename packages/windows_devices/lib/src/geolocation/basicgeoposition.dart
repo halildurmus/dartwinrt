@@ -16,7 +16,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 /// The basic information to describe a geographic position.
 final class BasicGeoposition implements WinRTStruct {
-  BasicGeoposition(this.latitude, this.longitude, this.altitude);
+  const BasicGeoposition(this.latitude, this.longitude, this.altitude);
 
   final double latitude;
   final double longitude;

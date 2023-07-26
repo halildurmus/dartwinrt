@@ -17,7 +17,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// Represents the red, green, and blue values of a white balance gain
 /// setting.
 final class WhiteBalanceGain implements WinRTStruct {
-  WhiteBalanceGain(this.r, this.g, this.b);
+  const WhiteBalanceGain(this.r, this.g, this.b);
 
   final double r;
   final double g;

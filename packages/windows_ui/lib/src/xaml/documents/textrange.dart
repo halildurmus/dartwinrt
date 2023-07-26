@@ -16,7 +16,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 /// Represents a selection of text content.
 final class TextRange implements WinRTStruct {
-  TextRange(this.startIndex, this.length);
+  const TextRange(this.startIndex, this.length);
 
   final int startIndex;
   final int length;

@@ -19,7 +19,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// by AlternateWordForm, SelectableWordSegment, WordSegment, or
 /// SemanticTextQuery.
 final class TextSegment implements WinRTStruct {
-  TextSegment(this.startPosition, this.length);
+  const TextSegment(this.startPosition, this.length);
 
   final int startPosition;
   final int length;

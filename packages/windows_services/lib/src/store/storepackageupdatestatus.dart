@@ -19,7 +19,7 @@ import 'storepackageupdatestate.dart';
 /// Provides status info for a package that is associated with a download or
 /// installation request.
 final class StorePackageUpdateStatus implements WinRTStruct {
-  StorePackageUpdateStatus(
+  const StorePackageUpdateStatus(
       this.packageFamilyName,
       this.packageDownloadSizeInBytes,
       this.packageBytesDownloaded,

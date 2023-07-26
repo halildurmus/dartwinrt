@@ -17,7 +17,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// Identifies the Human Interface Device (HID) usage details for the input
 /// device.
 final class PointerDeviceUsage implements WinRTStruct {
-  PointerDeviceUsage(
+  const PointerDeviceUsage(
       this.usagePage,
       this.usage,
       this.minLogical,

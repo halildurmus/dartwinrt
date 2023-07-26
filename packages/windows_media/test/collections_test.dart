@@ -26,9 +26,9 @@ void main() {
       ..insert(Guid.parse(IID_IShellLink), const Duration(seconds: 30))
       ..insert(Guid.parse(IID_IShellService), Guid.parse(IID_ISpVoice))
       ..insert(Guid.parse(IID_IShellFolder), 259)
-      ..insert(Guid.parse(IID_IShellItem), Point(3, -3))
-      ..insert(Guid.parse(IID_IShellItem2), Rect(2, -2, 200, 100))
-      ..insert(Guid.parse(IID_IShellItemArray), Size(300, 1500))
+      ..insert(Guid.parse(IID_IShellItem), const Point(3, -3))
+      ..insert(Guid.parse(IID_IShellItem2), const Rect(2, -2, 200, 100))
+      ..insert(Guid.parse(IID_IShellItemArray), const Size(300, 1500))
       ..insert(Guid.parse(IID_IShellItemFilter), 'strVal')
       ..insert(Guid.parse(IID_IUnknown), [true, false])
       ..insert(Guid.parse(IID_IAppxManifestReader),
@@ -40,9 +40,10 @@ void main() {
           Guid.parse(IID_IAppxManifestReader4), [Guid.parse(IID_IShellItem)])
       ..insert(Guid.parse(IID_IAppxManifestReader5), [StringMap()])
       ..insert(Guid.parse(IID_IAppxManifestReader6), [2022, -2022])
-      ..insert(Guid.parse(IID_IAppxManifestReader7), [Point(3, -3)])
-      ..insert(Guid.parse(IID_IAppxManifestProperties), [Rect(2, -2, 200, 100)])
-      ..insert(Guid.parse(IID_IAppxManifestPackageId), [Size(300, 1500)])
+      ..insert(Guid.parse(IID_IAppxManifestReader7), [const Point(3, -3)])
+      ..insert(Guid.parse(IID_IAppxManifestProperties),
+          [const Rect(2, -2, 200, 100)])
+      ..insert(Guid.parse(IID_IAppxManifestPackageId), [const Size(300, 1500)])
       ..insert(Guid.parse(IID_IAppxFile), ['str1', 'str2']);
 
     test('fromMap', () {

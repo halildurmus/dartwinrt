@@ -167,7 +167,7 @@ final class StructProjection extends NativeStructProjection {
   String get constructor {
     final initializingParameters =
         fieldProjections.map((f) => 'this.${f.fieldName}').join(', ');
-    return '$structName($initializingParameters);';
+    return 'const $structName($initializingParameters);';
   }
 
   @override

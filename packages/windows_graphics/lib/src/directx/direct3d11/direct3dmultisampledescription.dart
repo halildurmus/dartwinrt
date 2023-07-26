@@ -17,7 +17,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// This is a Windows Runtime equivalent of the Desktop DXGI_SAMPLE_DESC
 /// structure.
 final class Direct3DMultisampleDescription implements WinRTStruct {
-  Direct3DMultisampleDescription(this.count, this.quality);
+  const Direct3DMultisampleDescription(this.count, this.quality);
 
   final int count;
   final int quality;

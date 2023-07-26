@@ -18,7 +18,7 @@ import 'gamepadbuttons.dart';
 
 /// Represents the current state of the gamepad.
 final class GamepadReading implements WinRTStruct {
-  GamepadReading(
+  const GamepadReading(
       this.timestamp,
       this.buttons,
       this.leftTrigger,

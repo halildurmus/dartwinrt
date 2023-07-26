@@ -17,7 +17,7 @@ import '../winrt_struct.dart';
 
 /// Describes a 3*2 floating point matrix.
 final class Matrix3x2 implements WinRTStruct {
-  Matrix3x2(this.m11, this.m12, this.m21, this.m22, this.m31, this.m32);
+  const Matrix3x2(this.m11, this.m12, this.m21, this.m22, this.m31, this.m32);
 
   final double m11;
   final double m12;

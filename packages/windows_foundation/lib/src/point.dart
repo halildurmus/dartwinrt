@@ -18,7 +18,7 @@ import 'winrt_struct.dart';
 /// Represents an x- and y-coordinate pair in two-dimensional space. Can
 /// also represent a logical point for certain property usages.
 final class Point implements WinRTStruct {
-  Point(this.x, this.y);
+  const Point(this.x, this.y);
 
   final double x;
   final double y;

@@ -17,10 +17,10 @@ void main() {
 
   group("IPropertyValue's value extension getter returns", () {
     test('Point', () {
-      final pv = PropertyValue.createPoint(Point(-1, 1));
+      final pv = PropertyValue.createPoint(const Point(-1, 1));
       final value = pv.value;
       expect(value, isA<Point>());
-      expect(value, equals(Point(-1, 1)));
+      expect(value, equals(const Point(-1, 1)));
     });
 
     test('String', () {
@@ -48,10 +48,11 @@ void main() {
     });
 
     test('List<Point>', () {
-      final pv = PropertyValue.createPointArray([Point(1, -1), Point(-1, 1)]);
+      final pv = PropertyValue.createPointArray(
+          [const Point(1, -1), const Point(-1, 1)]);
       final value = pv.value;
       expect(value, isA<List<Point>>());
-      expect(value, orderedEquals([Point(1, -1), Point(-1, 1)]));
+      expect(value, orderedEquals([const Point(1, -1), const Point(-1, 1)]));
     });
 
     test('List<String>', () {

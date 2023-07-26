@@ -16,7 +16,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 /// Defines the height and width of an object in a two-dimensional plane.
 final class SizeUInt32 implements WinRTStruct {
-  SizeUInt32(this.width, this.height);
+  const SizeUInt32(this.width, this.height);
 
   final int width;
   final int height;

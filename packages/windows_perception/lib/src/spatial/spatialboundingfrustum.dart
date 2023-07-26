@@ -17,7 +17,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// A bounding frustum in the user's surroundings defined as a set of 6
 /// planes, with coordinates expressed in meters.
 final class SpatialBoundingFrustum implements WinRTStruct {
-  SpatialBoundingFrustum(
+  const SpatialBoundingFrustum(
       this.near, this.far, this.right, this.left, this.top, this.bottom);
 
   final Plane near;

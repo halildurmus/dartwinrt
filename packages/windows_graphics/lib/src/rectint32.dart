@@ -16,7 +16,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 /// Defines the size and location of a rectangular surface.
 final class RectInt32 implements WinRTStruct {
-  RectInt32(this.x, this.y, this.width, this.height);
+  const RectInt32(this.x, this.y, this.width, this.height);
 
   final int x;
   final int y;

@@ -16,7 +16,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 /// Describes the start and end of a time range.
 final class MseTimeRange implements WinRTStruct {
-  MseTimeRange(this.start, this.end);
+  const MseTimeRange(this.start, this.end);
 
   final Duration start;
   final Duration end;

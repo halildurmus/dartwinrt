@@ -19,7 +19,7 @@ import 'tristates.dart';
 /// Defines the desired state of the connection profile for which usage data
 /// is returned by the method GetNetworkUsageAsync.
 final class NetworkUsageStates implements WinRTStruct {
-  NetworkUsageStates(this.roaming, this.shared);
+  const NetworkUsageStates(this.roaming, this.shared);
 
   final TriStates roaming;
   final TriStates shared;

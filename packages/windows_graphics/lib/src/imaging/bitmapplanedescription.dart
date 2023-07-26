@@ -16,7 +16,8 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 /// Defines the format of a bitmap plane.
 final class BitmapPlaneDescription implements WinRTStruct {
-  BitmapPlaneDescription(this.startIndex, this.width, this.height, this.stride);
+  const BitmapPlaneDescription(
+      this.startIndex, this.width, this.height, this.stride);
 
   final int startIndex;
   final int width;
