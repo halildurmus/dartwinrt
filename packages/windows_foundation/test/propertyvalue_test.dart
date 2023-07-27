@@ -24,7 +24,7 @@ void main() {
   });
 
   test('DateTimeArray', () {
-    final list = <DateTime>[
+    final list = [
       DateTime.utc(2021, 7, 9, 15, 59, 22),
       DateTime.utc(2022, 7, 9, 15, 59, 23),
       DateTime.utc(2023, 7, 9, 15, 59, 24)
@@ -50,7 +50,7 @@ void main() {
   });
 
   test('DurationArray', () {
-    final list = <Duration>[
+    final list = [
       const Duration(days: 1, hours: 2, minutes: 3, seconds: 4),
       const Duration(days: 5, hours: 6, minutes: 7, seconds: 8),
       const Duration(days: 9, hours: 10, minutes: 11, seconds: 12)
@@ -77,7 +77,7 @@ void main() {
   });
 
   test('GuidArray', () {
-    final list = <Guid>[
+    final list = [
       Guid.parse(IID_IAsyncAction),
       Guid.parse(IID_IAsyncInfo),
       Guid.parse(IID_IClosable)
@@ -102,8 +102,11 @@ void main() {
   test('Inspectable', () {
     final stringMap = StringMap();
     final pv = PropertyValue.createInspectable(stringMap.ptr);
-    expect(getClassName(IInspectable(pv)),
+    final inspectable = IInspectable(pv);
+    expect(getClassName(inspectable),
         equals('Windows.Foundation.Collections.StringMap'));
+    expect(refCount(inspectable), equals(2));
+    expect(refCount(stringMap), equals(2));
   });
 
   test('InspectableArray', () {

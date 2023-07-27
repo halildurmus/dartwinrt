@@ -13,27 +13,21 @@ import '../iids.dart';
 
 /// @nodoc
 extension BoolConversions on bool {
-  /// Returns the IID of `IReference<bool>`.
-  String get referenceIid => IID_IReference_bool;
-
   /// Converts the value to an [IPropertyValue].
   IPropertyValue toPropertyValue() => PropertyValue.createBoolean(this);
 
   /// Converts the value to an [IReference].
   IReference<bool?> toReference() {
     final propertyValue = toPropertyValue();
-    final reference = IReference<bool?>.fromPtr(
-        propertyValue.toInterface(referenceIid),
-        referenceIid: referenceIid);
+    final iid = IID_IReference_bool;
+    final reference = IReference<bool?>.fromPtr(propertyValue.toInterface(iid),
+        referenceIid: iid);
     return reference;
   }
 }
 
 /// @nodoc
 extension BoolListConversions on List<bool> {
-  /// Returns the IID of `IReferenceArray<bool>`.
-  String get referenceArrayIid => IID_IReferenceArray_bool;
-
   /// Creates an array of [Bool]s from a List of [bool]s.
   Pointer<Bool> toArray({Allocator allocator = calloc}) {
     final array = allocator<Bool>(length);

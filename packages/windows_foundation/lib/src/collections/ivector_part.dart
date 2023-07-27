@@ -3640,7 +3640,7 @@ final class _IVectorUri extends IVector<Uri?> {
 
       return (
         retValuePtr.value,
-        items: items.toDartUriList(length: retValuePtr.value)
+        items: items.toUriList(length: retValuePtr.value)
       );
     } finally {
       free(items);

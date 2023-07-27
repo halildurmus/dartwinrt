@@ -103,7 +103,9 @@ T createActivationFactory<T extends IInspectable>(
 T createObject<T extends IInspectable>(
     T Function(Pointer<COMObject>) creator, String className, String iid) {
   final inspectable = IInspectable(activateClass(className));
-  return inspectable.cast(creator, iid);
+  final object = inspectable.cast(creator, iid);
+  inspectable.free();
+  return object;
 }
 
 /// Ensures the current thread is enabled for COM, using the multithreaded

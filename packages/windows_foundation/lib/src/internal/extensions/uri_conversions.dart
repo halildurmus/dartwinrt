@@ -46,7 +46,7 @@ extension COMObjectPointerConversions on Pointer<COMObject> {
   ///
   /// [length] must not be greater than the number of elements stored inside the
   /// `Pointer<COMObject>`.
-  List<Uri?> toDartUriList({int length = 1}) {
+  List<Uri?> toUriList({int length = 1}) {
     final list = <Uri?>[];
 
     for (var i = 0; i < length; i++) {
