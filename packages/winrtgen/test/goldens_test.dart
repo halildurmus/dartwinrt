@@ -11,6 +11,9 @@ import 'package:test/test.dart';
 import 'package:win32/win32.dart';
 import 'package:winrtgen/winrtgen.dart';
 
+// Note: When adding new golden tests, please update the goldenFiles map in
+// lib/src/constants/golden_files.dart.
+
 void main() {
   if (!isWindowsRuntimeAvailable()) {
     print('Skipping tests because Windows Runtime is not available.');
@@ -25,7 +28,11 @@ void main() {
 
   test('StorageFolder golden', () {
     const type = 'Windows.Storage.StorageFolder';
-    final dartClass = ClassProjection.from(type).toString();
+    final dartClass = ClassProjection.from(
+      type,
+      comment:
+          'Manages folders and their contents and provides information about them.',
+    ).toString();
     compareGolden('storagefolder', dartClass.format());
   });
 
