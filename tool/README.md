@@ -41,3 +41,16 @@ C:\src\dartwinrt> tool\generate.cmd
 
 This tool will also test both the `winrtgen` package and the generated output
 with unit tests.
+
+## Update Golden files
+
+In the `test\goldens` directory, you can find `*.golden` files that contain the
+expected output of the code generation tool. These files are used by the unit
+tests to verify that the generated output is correct.
+
+To update those golden files with the latest generated output, call
+`update_goldens.cmd` from the project root:
+
+```terminal
+C:\src\dartwinrt> tool\update_goldens.cmd
+```
