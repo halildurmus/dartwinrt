@@ -20,8 +20,5 @@ enum FolderDepth implements WinRTEnum {
 
   const FolderDepth(this.value);
 
-  factory FolderDepth.from(int value) =>
-      FolderDepth.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+  factory FolderDepth.from(int value) => FolderDepth.values.byValue(value);
 }

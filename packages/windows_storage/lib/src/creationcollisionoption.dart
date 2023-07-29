@@ -22,7 +22,5 @@ enum CreationCollisionOption implements WinRTEnum {
   const CreationCollisionOption(this.value);
 
   factory CreationCollisionOption.from(int value) =>
-      CreationCollisionOption.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      CreationCollisionOption.values.byValue(value);
 }

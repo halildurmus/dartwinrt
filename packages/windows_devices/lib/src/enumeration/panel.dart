@@ -24,8 +24,5 @@ enum Panel implements WinRTEnum {
 
   const Panel(this.value);
 
-  factory Panel.from(int value) =>
-      Panel.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+  factory Panel.from(int value) => Panel.values.byValue(value);
 }

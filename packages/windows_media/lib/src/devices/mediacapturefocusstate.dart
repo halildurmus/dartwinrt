@@ -22,7 +22,5 @@ enum MediaCaptureFocusState implements WinRTEnum {
   const MediaCaptureFocusState(this.value);
 
   factory MediaCaptureFocusState.from(int value) =>
-      MediaCaptureFocusState.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      MediaCaptureFocusState.values.byValue(value);
 }

@@ -20,7 +20,5 @@ enum AppExecutionContext implements WinRTEnum {
   const AppExecutionContext(this.value);
 
   factory AppExecutionContext.from(int value) =>
-      AppExecutionContext.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      AppExecutionContext.values.byValue(value);
 }

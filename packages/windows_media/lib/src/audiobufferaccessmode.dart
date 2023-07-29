@@ -21,7 +21,5 @@ enum AudioBufferAccessMode implements WinRTEnum {
   const AudioBufferAccessMode(this.value);
 
   factory AudioBufferAccessMode.from(int value) =>
-      AudioBufferAccessMode.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      AudioBufferAccessMode.values.byValue(value);
 }

@@ -24,8 +24,5 @@ enum VideoDeviceControllerSetDevicePropertyStatus implements WinRTEnum {
   const VideoDeviceControllerSetDevicePropertyStatus(this.value);
 
   factory VideoDeviceControllerSetDevicePropertyStatus.from(int value) =>
-      VideoDeviceControllerSetDevicePropertyStatus.values.firstWhere(
-          (e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      VideoDeviceControllerSetDevicePropertyStatus.values.byValue(value);
 }

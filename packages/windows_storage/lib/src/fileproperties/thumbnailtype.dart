@@ -18,8 +18,5 @@ enum ThumbnailType implements WinRTEnum {
 
   const ThumbnailType(this.value);
 
-  factory ThumbnailType.from(int value) =>
-      ThumbnailType.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+  factory ThumbnailType.from(int value) => ThumbnailType.values.byValue(value);
 }

@@ -20,7 +20,5 @@ enum AutoFocusRange implements WinRTEnum {
   const AutoFocusRange(this.value);
 
   factory AutoFocusRange.from(int value) =>
-      AutoFocusRange.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      AutoFocusRange.values.byValue(value);
 }

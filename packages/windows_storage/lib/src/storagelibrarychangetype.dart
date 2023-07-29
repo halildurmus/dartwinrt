@@ -27,7 +27,5 @@ enum StorageLibraryChangeType implements WinRTEnum {
   const StorageLibraryChangeType(this.value);
 
   factory StorageLibraryChangeType.from(int value) =>
-      StorageLibraryChangeType.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      StorageLibraryChangeType.values.byValue(value);
 }

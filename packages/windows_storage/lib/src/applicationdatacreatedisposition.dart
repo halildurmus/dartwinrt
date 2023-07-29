@@ -21,8 +21,5 @@ enum ApplicationDataCreateDisposition implements WinRTEnum {
   const ApplicationDataCreateDisposition(this.value);
 
   factory ApplicationDataCreateDisposition.from(int value) =>
-      ApplicationDataCreateDisposition.values.firstWhere(
-          (e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      ApplicationDataCreateDisposition.values.byValue(value);
 }

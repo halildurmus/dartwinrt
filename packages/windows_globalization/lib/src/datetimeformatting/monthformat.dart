@@ -22,8 +22,5 @@ enum MonthFormat implements WinRTEnum {
 
   const MonthFormat(this.value);
 
-  factory MonthFormat.from(int value) =>
-      MonthFormat.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+  factory MonthFormat.from(int value) => MonthFormat.values.byValue(value);
 }

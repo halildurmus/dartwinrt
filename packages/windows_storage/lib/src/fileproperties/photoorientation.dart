@@ -28,7 +28,5 @@ enum PhotoOrientation implements WinRTEnum {
   const PhotoOrientation(this.value);
 
   factory PhotoOrientation.from(int value) =>
-      PhotoOrientation.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      PhotoOrientation.values.byValue(value);
 }

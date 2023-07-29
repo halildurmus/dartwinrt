@@ -20,7 +20,5 @@ enum ZoomTransitionMode implements WinRTEnum {
   const ZoomTransitionMode(this.value);
 
   factory ZoomTransitionMode.from(int value) =>
-      ZoomTransitionMode.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      ZoomTransitionMode.values.byValue(value);
 }

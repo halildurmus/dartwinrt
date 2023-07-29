@@ -28,7 +28,5 @@ enum RoundingAlgorithm implements WinRTEnum {
   const RoundingAlgorithm(this.value);
 
   factory RoundingAlgorithm.from(int value) =>
-      RoundingAlgorithm.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      RoundingAlgorithm.values.byValue(value);
 }

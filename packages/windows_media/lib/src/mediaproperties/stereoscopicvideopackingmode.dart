@@ -20,7 +20,5 @@ enum StereoscopicVideoPackingMode implements WinRTEnum {
   const StereoscopicVideoPackingMode(this.value);
 
   factory StereoscopicVideoPackingMode.from(int value) =>
-      StereoscopicVideoPackingMode.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      StereoscopicVideoPackingMode.values.byValue(value);
 }

@@ -23,7 +23,5 @@ enum PrintColorMode implements WinRTEnum {
   const PrintColorMode(this.value);
 
   factory PrintColorMode.from(int value) =>
-      PrintColorMode.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      PrintColorMode.values.byValue(value);
 }

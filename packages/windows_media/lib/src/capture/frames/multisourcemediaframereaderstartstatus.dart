@@ -24,8 +24,5 @@ enum MultiSourceMediaFrameReaderStartStatus implements WinRTEnum {
   const MultiSourceMediaFrameReaderStartStatus(this.value);
 
   factory MultiSourceMediaFrameReaderStartStatus.from(int value) =>
-      MultiSourceMediaFrameReaderStartStatus.values.firstWhere(
-          (e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      MultiSourceMediaFrameReaderStartStatus.values.byValue(value);
 }

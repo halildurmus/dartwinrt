@@ -19,7 +19,5 @@ enum CurrencyFormatterMode implements WinRTEnum {
   const CurrencyFormatterMode(this.value);
 
   factory CurrencyFormatterMode.from(int value) =>
-      CurrencyFormatterMode.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      CurrencyFormatterMode.values.byValue(value);
 }

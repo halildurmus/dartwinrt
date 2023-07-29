@@ -24,7 +24,5 @@ enum MediaFrameSourceKind implements WinRTEnum {
   const MediaFrameSourceKind(this.value);
 
   factory MediaFrameSourceKind.from(int value) =>
-      MediaFrameSourceKind.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      MediaFrameSourceKind.values.byValue(value);
 }

@@ -22,8 +22,5 @@ enum FocusPreset implements WinRTEnum {
 
   const FocusPreset(this.value);
 
-  factory FocusPreset.from(int value) =>
-      FocusPreset.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+  factory FocusPreset.from(int value) => FocusPreset.values.byValue(value);
 }

@@ -19,8 +19,5 @@ enum MinuteFormat implements WinRTEnum {
 
   const MinuteFormat(this.value);
 
-  factory MinuteFormat.from(int value) =>
-      MinuteFormat.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+  factory MinuteFormat.from(int value) => MinuteFormat.values.byValue(value);
 }

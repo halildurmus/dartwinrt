@@ -19,8 +19,5 @@ enum HourFormat implements WinRTEnum {
 
   const HourFormat(this.value);
 
-  factory HourFormat.from(int value) =>
-      HourFormat.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+  factory HourFormat.from(int value) => HourFormat.values.byValue(value);
 }

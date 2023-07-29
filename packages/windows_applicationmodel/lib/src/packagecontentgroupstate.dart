@@ -21,7 +21,5 @@ enum PackageContentGroupState implements WinRTEnum {
   const PackageContentGroupState(this.value);
 
   factory PackageContentGroupState.from(int value) =>
-      PackageContentGroupState.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      PackageContentGroupState.values.byValue(value);
 }

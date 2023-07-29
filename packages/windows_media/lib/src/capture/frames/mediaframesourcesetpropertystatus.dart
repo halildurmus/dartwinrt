@@ -24,8 +24,5 @@ enum MediaFrameSourceSetPropertyStatus implements WinRTEnum {
   const MediaFrameSourceSetPropertyStatus(this.value);
 
   factory MediaFrameSourceSetPropertyStatus.from(int value) =>
-      MediaFrameSourceSetPropertyStatus.values.firstWhere(
-          (e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      MediaFrameSourceSetPropertyStatus.values.byValue(value);
 }

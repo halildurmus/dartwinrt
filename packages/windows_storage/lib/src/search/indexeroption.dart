@@ -22,8 +22,5 @@ enum IndexerOption implements WinRTEnum {
 
   const IndexerOption(this.value);
 
-  factory IndexerOption.from(int value) =>
-      IndexerOption.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+  factory IndexerOption.from(int value) => IndexerOption.values.byValue(value);
 }

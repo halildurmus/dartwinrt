@@ -21,7 +21,5 @@ enum NetworkCostType implements WinRTEnum {
   const NetworkCostType(this.value);
 
   factory NetworkCostType.from(int value) =>
-      NetworkCostType.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      NetworkCostType.values.byValue(value);
 }

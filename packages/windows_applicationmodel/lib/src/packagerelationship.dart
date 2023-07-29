@@ -20,7 +20,5 @@ enum PackageRelationship implements WinRTEnum {
   const PackageRelationship(this.value);
 
   factory PackageRelationship.from(int value) =>
-      PackageRelationship.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      PackageRelationship.values.byValue(value);
 }

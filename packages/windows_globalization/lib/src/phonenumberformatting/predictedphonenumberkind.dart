@@ -30,7 +30,5 @@ enum PredictedPhoneNumberKind implements WinRTEnum {
   const PredictedPhoneNumberKind(this.value);
 
   factory PredictedPhoneNumberKind.from(int value) =>
-      PredictedPhoneNumberKind.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      PredictedPhoneNumberKind.values.byValue(value);
 }

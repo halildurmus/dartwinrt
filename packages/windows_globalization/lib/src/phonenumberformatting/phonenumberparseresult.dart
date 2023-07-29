@@ -22,7 +22,5 @@ enum PhoneNumberParseResult implements WinRTEnum {
   const PhoneNumberParseResult(this.value);
 
   factory PhoneNumberParseResult.from(int value) =>
-      PhoneNumberParseResult.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      PhoneNumberParseResult.values.byValue(value);
 }

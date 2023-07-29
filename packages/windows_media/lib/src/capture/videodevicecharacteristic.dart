@@ -22,7 +22,5 @@ enum VideoDeviceCharacteristic implements WinRTEnum {
   const VideoDeviceCharacteristic(this.value);
 
   factory VideoDeviceCharacteristic.from(int value) =>
-      VideoDeviceCharacteristic.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      VideoDeviceCharacteristic.values.byValue(value);
 }

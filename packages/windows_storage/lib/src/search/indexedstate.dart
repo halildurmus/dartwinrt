@@ -20,8 +20,5 @@ enum IndexedState implements WinRTEnum {
 
   const IndexedState(this.value);
 
-  factory IndexedState.from(int value) =>
-      IndexedState.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+  factory IndexedState.from(int value) => IndexedState.values.byValue(value);
 }

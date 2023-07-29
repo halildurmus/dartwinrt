@@ -25,7 +25,5 @@ enum WwanNetworkIPKind implements WinRTEnum {
   const WwanNetworkIPKind(this.value);
 
   factory WwanNetworkIPKind.from(int value) =>
-      WwanNetworkIPKind.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      WwanNetworkIPKind.values.byValue(value);
 }

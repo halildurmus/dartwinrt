@@ -22,7 +22,5 @@ enum JsonErrorStatus implements WinRTEnum {
   const JsonErrorStatus(this.value);
 
   factory JsonErrorStatus.from(int value) =>
-      JsonErrorStatus.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      JsonErrorStatus.values.byValue(value);
 }

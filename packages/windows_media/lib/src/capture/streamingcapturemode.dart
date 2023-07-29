@@ -20,7 +20,5 @@ enum StreamingCaptureMode implements WinRTEnum {
   const StreamingCaptureMode(this.value);
 
   factory StreamingCaptureMode.from(int value) =>
-      StreamingCaptureMode.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      StreamingCaptureMode.values.byValue(value);
 }

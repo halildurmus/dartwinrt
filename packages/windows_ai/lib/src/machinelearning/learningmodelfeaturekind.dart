@@ -21,7 +21,5 @@ enum LearningModelFeatureKind implements WinRTEnum {
   const LearningModelFeatureKind(this.value);
 
   factory LearningModelFeatureKind.from(int value) =>
-      LearningModelFeatureKind.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      LearningModelFeatureKind.values.byValue(value);
 }

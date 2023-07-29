@@ -22,7 +22,5 @@ enum FileOpenDisposition implements WinRTEnum {
   const FileOpenDisposition(this.value);
 
   factory FileOpenDisposition.from(int value) =>
-      FileOpenDisposition.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      FileOpenDisposition.values.byValue(value);
 }

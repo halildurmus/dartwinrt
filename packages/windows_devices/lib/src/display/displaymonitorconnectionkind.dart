@@ -22,7 +22,5 @@ enum DisplayMonitorConnectionKind implements WinRTEnum {
   const DisplayMonitorConnectionKind(this.value);
 
   factory DisplayMonitorConnectionKind.from(int value) =>
-      DisplayMonitorConnectionKind.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      DisplayMonitorConnectionKind.values.byValue(value);
 }

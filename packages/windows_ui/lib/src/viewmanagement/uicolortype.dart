@@ -26,8 +26,5 @@ enum UIColorType implements WinRTEnum {
 
   const UIColorType(this.value);
 
-  factory UIColorType.from(int value) =>
-      UIColorType.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+  factory UIColorType.from(int value) => UIColorType.values.byValue(value);
 }

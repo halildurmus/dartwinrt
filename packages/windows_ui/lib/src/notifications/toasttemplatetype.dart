@@ -25,7 +25,5 @@ enum ToastTemplateType implements WinRTEnum {
   const ToastTemplateType(this.value);
 
   factory ToastTemplateType.from(int value) =>
-      ToastTemplateType.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      ToastTemplateType.values.byValue(value);
 }

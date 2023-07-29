@@ -27,7 +27,5 @@ enum VideoEncodingQuality implements WinRTEnum {
   const VideoEncodingQuality(this.value);
 
   factory VideoEncodingQuality.from(int value) =>
-      VideoEncodingQuality.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      VideoEncodingQuality.values.byValue(value);
 }

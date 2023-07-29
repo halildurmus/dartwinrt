@@ -20,7 +20,5 @@ enum DigitalWindowMode implements WinRTEnum {
   const DigitalWindowMode(this.value);
 
   factory DigitalWindowMode.from(int value) =>
-      DigitalWindowMode.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      DigitalWindowMode.values.byValue(value);
 }

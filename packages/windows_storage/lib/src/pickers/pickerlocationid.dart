@@ -28,7 +28,5 @@ enum PickerLocationId implements WinRTEnum {
   const PickerLocationId(this.value);
 
   factory PickerLocationId.from(int value) =>
-      PickerLocationId.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      PickerLocationId.values.byValue(value);
 }

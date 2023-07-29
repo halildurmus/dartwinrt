@@ -19,7 +19,5 @@ enum MediaCaptureSharingMode implements WinRTEnum {
   const MediaCaptureSharingMode(this.value);
 
   factory MediaCaptureSharingMode.from(int value) =>
-      MediaCaptureSharingMode.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      MediaCaptureSharingMode.values.byValue(value);
 }

@@ -20,7 +20,5 @@ enum WindowingEnvironmentKind implements WinRTEnum {
   const WindowingEnvironmentKind(this.value);
 
   factory WindowingEnvironmentKind.from(int value) =>
-      WindowingEnvironmentKind.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      WindowingEnvironmentKind.values.byValue(value);
 }

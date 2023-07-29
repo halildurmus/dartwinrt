@@ -21,7 +21,5 @@ enum PowerlineFrequency implements WinRTEnum {
   const PowerlineFrequency(this.value);
 
   factory PowerlineFrequency.from(int value) =>
-      PowerlineFrequency.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      PowerlineFrequency.values.byValue(value);
 }

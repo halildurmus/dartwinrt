@@ -21,8 +21,5 @@ enum YearFormat implements WinRTEnum {
 
   const YearFormat(this.value);
 
-  factory YearFormat.from(int value) =>
-      YearFormat.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+  factory YearFormat.from(int value) => YearFormat.values.byValue(value);
 }

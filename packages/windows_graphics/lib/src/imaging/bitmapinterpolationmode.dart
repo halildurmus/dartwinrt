@@ -21,7 +21,5 @@ enum BitmapInterpolationMode implements WinRTEnum {
   const BitmapInterpolationMode(this.value);
 
   factory BitmapInterpolationMode.from(int value) =>
-      BitmapInterpolationMode.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      BitmapInterpolationMode.values.byValue(value);
 }

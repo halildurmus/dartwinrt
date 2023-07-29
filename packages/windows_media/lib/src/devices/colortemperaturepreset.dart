@@ -25,7 +25,5 @@ enum ColorTemperaturePreset implements WinRTEnum {
   const ColorTemperaturePreset(this.value);
 
   factory ColorTemperaturePreset.from(int value) =>
-      ColorTemperaturePreset.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      ColorTemperaturePreset.values.byValue(value);
 }

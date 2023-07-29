@@ -20,7 +20,5 @@ enum OpticalImageStabilizationMode implements WinRTEnum {
   const OpticalImageStabilizationMode(this.value);
 
   factory OpticalImageStabilizationMode.from(int value) =>
-      OpticalImageStabilizationMode.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      OpticalImageStabilizationMode.values.byValue(value);
 }

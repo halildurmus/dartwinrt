@@ -24,7 +24,5 @@ enum WwanNetworkRegistrationState implements WinRTEnum {
   const WwanNetworkRegistrationState(this.value);
 
   factory WwanNetworkRegistrationState.from(int value) =>
-      WwanNetworkRegistrationState.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      WwanNetworkRegistrationState.values.byValue(value);
 }

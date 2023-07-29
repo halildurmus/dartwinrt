@@ -23,7 +23,5 @@ enum PackageSignatureKind implements WinRTEnum {
   const PackageSignatureKind(this.value);
 
   factory PackageSignatureKind.from(int value) =>
-      PackageSignatureKind.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      PackageSignatureKind.values.byValue(value);
 }

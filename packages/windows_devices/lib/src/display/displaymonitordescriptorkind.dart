@@ -20,7 +20,5 @@ enum DisplayMonitorDescriptorKind implements WinRTEnum {
   const DisplayMonitorDescriptorKind(this.value);
 
   factory DisplayMonitorDescriptorKind.from(int value) =>
-      DisplayMonitorDescriptorKind.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      DisplayMonitorDescriptorKind.values.byValue(value);
 }

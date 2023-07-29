@@ -19,7 +19,5 @@ enum ToastNotificationPriority implements WinRTEnum {
   const ToastNotificationPriority(this.value);
 
   factory ToastNotificationPriority.from(int value) =>
-      ToastNotificationPriority.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      ToastNotificationPriority.values.byValue(value);
 }

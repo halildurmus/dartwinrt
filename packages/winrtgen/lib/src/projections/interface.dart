@@ -35,8 +35,7 @@ base class InterfaceProjection extends BaseProjection {
 
   String get iidConstant => '''
 /// @nodoc
-const IID_$shortName = ${quote(typeDef.iid)};
-''';
+const IID_$shortName = ${quote(typeDef.iid)};''';
 
   List<TypeDef> get inheritedInterfaces => typeDef.interfaces
     ..removeWhere((interface) =>
@@ -157,6 +156,7 @@ const IID_$shortName = ${quote(typeDef.iid)};
   String get projection => '''
 $header
 $importHeader
+
 $iidConstant
 
 $classPreamble
@@ -166,8 +166,8 @@ $classHeader {
 
   $fromFactoryConstructor
 
-  ${methodProjections.join('\n')}
-  ${methodForwarders.join('\n')}
+${methodProjections.join('\n')}
+${methodForwarders.join('\n')}
 }
 ''';
 }

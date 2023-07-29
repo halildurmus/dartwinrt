@@ -20,7 +20,5 @@ enum UnicodeEncoding implements WinRTEnum {
   const UnicodeEncoding(this.value);
 
   factory UnicodeEncoding.from(int value) =>
-      UnicodeEncoding.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      UnicodeEncoding.values.byValue(value);
 }

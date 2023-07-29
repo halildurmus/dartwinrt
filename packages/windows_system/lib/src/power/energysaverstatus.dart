@@ -20,7 +20,5 @@ enum EnergySaverStatus implements WinRTEnum {
   const EnergySaverStatus(this.value);
 
   factory EnergySaverStatus.from(int value) =>
-      EnergySaverStatus.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      EnergySaverStatus.values.byValue(value);
 }

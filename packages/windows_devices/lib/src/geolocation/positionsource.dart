@@ -24,7 +24,5 @@ enum PositionSource implements WinRTEnum {
   const PositionSource(this.value);
 
   factory PositionSource.from(int value) =>
-      PositionSource.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      PositionSource.values.byValue(value);
 }

@@ -33,7 +33,5 @@ enum CommonFolderQuery implements WinRTEnum {
   const CommonFolderQuery(this.value);
 
   factory CommonFolderQuery.from(int value) =>
-      CommonFolderQuery.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      CommonFolderQuery.values.byValue(value);
 }

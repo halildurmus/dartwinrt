@@ -164,7 +164,6 @@ void generateLibraryExports() {
     final path = '${packagePath}exports.g.dart';
     final content = '''
 $exportsFileHeader
-
 ${exports.map((e) => "export '$e';").join('\n')}
 ''';
     writeToFile(path, content);

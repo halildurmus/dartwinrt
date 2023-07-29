@@ -18,8 +18,5 @@ enum DayFormat implements WinRTEnum {
 
   const DayFormat(this.value);
 
-  factory DayFormat.from(int value) =>
-      DayFormat.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+  factory DayFormat.from(int value) => DayFormat.values.byValue(value);
 }

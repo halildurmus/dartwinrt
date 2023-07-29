@@ -22,7 +22,5 @@ enum ConnectionProfileDeleteStatus implements WinRTEnum {
   const ConnectionProfileDeleteStatus(this.value);
 
   factory ConnectionProfileDeleteStatus.from(int value) =>
-      ConnectionProfileDeleteStatus.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      ConnectionProfileDeleteStatus.values.byValue(value);
 }

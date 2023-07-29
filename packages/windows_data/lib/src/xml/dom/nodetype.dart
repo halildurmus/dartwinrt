@@ -29,8 +29,5 @@ enum NodeType implements WinRTEnum {
 
   const NodeType(this.value);
 
-  factory NodeType.from(int value) =>
-      NodeType.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+  factory NodeType.from(int value) => NodeType.values.byValue(value);
 }

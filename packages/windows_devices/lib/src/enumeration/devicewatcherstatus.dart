@@ -23,7 +23,5 @@ enum DeviceWatcherStatus implements WinRTEnum {
   const DeviceWatcherStatus(this.value);
 
   factory DeviceWatcherStatus.from(int value) =>
-      DeviceWatcherStatus.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      DeviceWatcherStatus.values.byValue(value);
 }

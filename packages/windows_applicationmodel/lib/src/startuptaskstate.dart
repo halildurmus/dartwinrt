@@ -23,7 +23,5 @@ enum StartupTaskState implements WinRTEnum {
   const StartupTaskState(this.value);
 
   factory StartupTaskState.from(int value) =>
-      StartupTaskState.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      StartupTaskState.values.byValue(value);
 }

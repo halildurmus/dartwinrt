@@ -23,7 +23,5 @@ enum AutomationRemoteOperationStatus implements WinRTEnum {
   const AutomationRemoteOperationStatus(this.value);
 
   factory AutomationRemoteOperationStatus.from(int value) =>
-      AutomationRemoteOperationStatus.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      AutomationRemoteOperationStatus.values.byValue(value);
 }

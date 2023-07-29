@@ -84,18 +84,11 @@ final class EnumProjection extends BaseProjection {
   List<EnumIdentifierProjection> get identifiers =>
       fields.map(EnumIdentifierProjection.new).toList();
 
-  String get valueField => '''
-  @override
-  final int value;''';
-
   @override
   String get constructor => 'const $shortName(this.value);';
 
-  String get factoryConstructor => '''
-  factory $shortName.from(int value) =>
-      $shortName.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));''';
+  String get factoryConstructor =>
+      'factory $shortName.from(int value) => $shortName.values.byValue(value);';
 
   @override
   String get projection => '''
@@ -104,9 +97,10 @@ $importHeader
 
 $classPreamble
 $classHeader {
-  ${identifiers.join(',\n')};
+  ${identifiers.join(',\n  ')};
 
-  $valueField
+  @override
+  final int value;
 
   $constructor
 
@@ -160,7 +154,7 @@ final class FlagsEnumProjection extends EnumProjection {
 
   @override
   String get factoryConstructor => '''
-  factory $shortName.from(int value) =>
+factory $shortName.from(int value) =>
       $shortName.values.firstWhere((e) => e.value == value,
           orElse: () => $shortName(value));''';
 
@@ -171,19 +165,15 @@ final class FlagsEnumProjection extends EnumProjection {
   String get valuesConstant {
     final fieldNames = fields
         .map((field) => safeIdentifierForString(field.name.toCamelCase()))
-        .join(',');
+        .join(', ');
     return 'static const List<$shortName> values = [$fieldNames];';
   }
 
-  String get andOperator => '''
-  @override
-  $shortName operator &($shortName other) =>
-      $shortName(value & other.value);''';
+  String get andOperator =>
+      '$shortName operator &($shortName other) => $shortName(value & other.value);';
 
-  String get orOperator => '''
-  @override
-  $shortName operator |($shortName other) =>
-      $shortName(value | other.value);''';
+  String get orOperator =>
+      '$shortName operator |($shortName other) => $shortName(value | other.value);';
 
   @override
   String get projection => '''
@@ -196,12 +186,14 @@ $classHeader {
 
   $factoryConstructor
 
-  ${staticEnumConstants.join()}
+  ${staticEnumConstants.join('\n  ')}
 
   $valuesConstant
 
+  @override
   $andOperator
 
+  @override
   $orOperator
 }
 ''';

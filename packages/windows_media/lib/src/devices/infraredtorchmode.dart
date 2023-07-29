@@ -20,7 +20,5 @@ enum InfraredTorchMode implements WinRTEnum {
   const InfraredTorchMode(this.value);
 
   factory InfraredTorchMode.from(int value) =>
-      InfraredTorchMode.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      InfraredTorchMode.values.byValue(value);
 }

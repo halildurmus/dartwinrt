@@ -23,8 +23,5 @@ enum ThumbnailMode implements WinRTEnum {
 
   const ThumbnailMode(this.value);
 
-  factory ThumbnailMode.from(int value) =>
-      ThumbnailMode.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+  factory ThumbnailMode.from(int value) => ThumbnailMode.values.byValue(value);
 }

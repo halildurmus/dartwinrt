@@ -20,7 +20,5 @@ enum UserAgeConsentGroup implements WinRTEnum {
   const UserAgeConsentGroup(this.value);
 
   factory UserAgeConsentGroup.from(int value) =>
-      UserAgeConsentGroup.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      UserAgeConsentGroup.values.byValue(value);
 }

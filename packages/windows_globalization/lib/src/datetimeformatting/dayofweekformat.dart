@@ -22,7 +22,5 @@ enum DayOfWeekFormat implements WinRTEnum {
   const DayOfWeekFormat(this.value);
 
   factory DayOfWeekFormat.from(int value) =>
-      DayOfWeekFormat.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      DayOfWeekFormat.values.byValue(value);
 }
