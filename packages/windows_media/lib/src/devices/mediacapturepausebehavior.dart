@@ -20,7 +20,5 @@ enum MediaCapturePauseBehavior implements WinRTEnum {
   const MediaCapturePauseBehavior(this.value);
 
   factory MediaCapturePauseBehavior.from(int value) =>
-      MediaCapturePauseBehavior.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      MediaCapturePauseBehavior.values.byValue(value);
 }

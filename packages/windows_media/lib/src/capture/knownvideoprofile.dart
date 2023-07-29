@@ -29,7 +29,5 @@ enum KnownVideoProfile implements WinRTEnum {
   const KnownVideoProfile(this.value);
 
   factory KnownVideoProfile.from(int value) =>
-      KnownVideoProfile.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      KnownVideoProfile.values.byValue(value);
 }

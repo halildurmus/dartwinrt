@@ -23,7 +23,5 @@ enum LearningModelDeviceKind implements WinRTEnum {
   const LearningModelDeviceKind(this.value);
 
   factory LearningModelDeviceKind.from(int value) =>
-      LearningModelDeviceKind.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      LearningModelDeviceKind.values.byValue(value);
 }

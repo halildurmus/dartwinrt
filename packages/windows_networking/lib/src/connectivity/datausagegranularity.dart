@@ -22,7 +22,5 @@ enum DataUsageGranularity implements WinRTEnum {
   const DataUsageGranularity(this.value);
 
   factory DataUsageGranularity.from(int value) =>
-      DataUsageGranularity.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      DataUsageGranularity.values.byValue(value);
 }

@@ -20,7 +20,5 @@ enum GeolocationAccessStatus implements WinRTEnum {
   const GeolocationAccessStatus(this.value);
 
   factory GeolocationAccessStatus.from(int value) =>
-      GeolocationAccessStatus.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      GeolocationAccessStatus.values.byValue(value);
 }

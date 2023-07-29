@@ -24,7 +24,5 @@ enum SpatialLocatability implements WinRTEnum {
   const SpatialLocatability(this.value);
 
   factory SpatialLocatability.from(int value) =>
-      SpatialLocatability.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      SpatialLocatability.values.byValue(value);
 }

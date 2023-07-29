@@ -22,7 +22,5 @@ enum FindAllWebAccountsStatus implements WinRTEnum {
   const FindAllWebAccountsStatus(this.value);
 
   factory FindAllWebAccountsStatus.from(int value) =>
-      FindAllWebAccountsStatus.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      FindAllWebAccountsStatus.values.byValue(value);
 }

@@ -19,7 +19,5 @@ enum ColorManagementMode implements WinRTEnum {
   const ColorManagementMode(this.value);
 
   factory ColorManagementMode.from(int value) =>
-      ColorManagementMode.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      ColorManagementMode.values.byValue(value);
 }

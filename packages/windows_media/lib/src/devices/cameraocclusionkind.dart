@@ -19,7 +19,5 @@ enum CameraOcclusionKind implements WinRTEnum {
   const CameraOcclusionKind(this.value);
 
   factory CameraOcclusionKind.from(int value) =>
-      CameraOcclusionKind.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      CameraOcclusionKind.values.byValue(value);
 }

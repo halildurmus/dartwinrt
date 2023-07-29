@@ -194,7 +194,7 @@ void main() {
       expect(
         fileAttributesProjection.valuesConstant,
         equals('static const List<FileAttributes> values = '
-            '[normal,readOnly,directory,archive,temporary,locallyIncomplete];'),
+            '[normal, readOnly, directory, archive, temporary, locallyIncomplete];'),
       );
     });
 

@@ -26,7 +26,5 @@ enum CommonFileQuery implements WinRTEnum {
   const CommonFileQuery(this.value);
 
   factory CommonFileQuery.from(int value) =>
-      CommonFileQuery.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      CommonFileQuery.values.byValue(value);
 }

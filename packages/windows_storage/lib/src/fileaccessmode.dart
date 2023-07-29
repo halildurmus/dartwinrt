@@ -20,7 +20,5 @@ enum FileAccessMode implements WinRTEnum {
   const FileAccessMode(this.value);
 
   factory FileAccessMode.from(int value) =>
-      FileAccessMode.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      FileAccessMode.values.byValue(value);
 }

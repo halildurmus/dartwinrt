@@ -20,8 +20,5 @@ enum AsyncStatus implements WinRTEnum {
 
   const AsyncStatus(this.value);
 
-  factory AsyncStatus.from(int value) =>
-      AsyncStatus.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+  factory AsyncStatus.from(int value) => AsyncStatus.values.byValue(value);
 }

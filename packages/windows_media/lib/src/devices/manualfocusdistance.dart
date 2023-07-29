@@ -20,7 +20,5 @@ enum ManualFocusDistance implements WinRTEnum {
   const ManualFocusDistance(this.value);
 
   factory ManualFocusDistance.from(int value) =>
-      ManualFocusDistance.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      ManualFocusDistance.values.byValue(value);
 }

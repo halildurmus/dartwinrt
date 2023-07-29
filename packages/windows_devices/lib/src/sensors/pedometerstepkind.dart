@@ -20,7 +20,5 @@ enum PedometerStepKind implements WinRTEnum {
   const PedometerStepKind(this.value);
 
   factory PedometerStepKind.from(int value) =>
-      PedometerStepKind.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      PedometerStepKind.values.byValue(value);
 }

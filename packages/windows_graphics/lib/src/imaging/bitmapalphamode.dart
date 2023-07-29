@@ -20,7 +20,5 @@ enum BitmapAlphaMode implements WinRTEnum {
   const BitmapAlphaMode(this.value);
 
   factory BitmapAlphaMode.from(int value) =>
-      BitmapAlphaMode.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      BitmapAlphaMode.values.byValue(value);
 }

@@ -32,8 +32,5 @@ enum TensorKind implements WinRTEnum {
 
   const TensorKind(this.value);
 
-  factory TensorKind.from(int value) =>
-      TensorKind.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+  factory TensorKind.from(int value) => TensorKind.values.byValue(value);
 }

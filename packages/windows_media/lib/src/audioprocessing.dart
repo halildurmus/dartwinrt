@@ -19,7 +19,5 @@ enum AudioProcessing implements WinRTEnum {
   const AudioProcessing(this.value);
 
   factory AudioProcessing.from(int value) =>
-      AudioProcessing.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      AudioProcessing.values.byValue(value);
 }

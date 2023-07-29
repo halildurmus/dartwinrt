@@ -21,7 +21,5 @@ enum CameraStreamState implements WinRTEnum {
   const CameraStreamState(this.value);
 
   factory CameraStreamState.from(int value) =>
-      CameraStreamState.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      CameraStreamState.values.byValue(value);
 }

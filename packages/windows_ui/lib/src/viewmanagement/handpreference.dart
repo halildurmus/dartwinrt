@@ -20,7 +20,5 @@ enum HandPreference implements WinRTEnum {
   const HandPreference(this.value);
 
   factory HandPreference.from(int value) =>
-      HandPreference.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      HandPreference.values.byValue(value);
 }

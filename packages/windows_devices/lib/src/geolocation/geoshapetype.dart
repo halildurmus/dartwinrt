@@ -20,8 +20,5 @@ enum GeoshapeType implements WinRTEnum {
 
   const GeoshapeType(this.value);
 
-  factory GeoshapeType.from(int value) =>
-      GeoshapeType.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+  factory GeoshapeType.from(int value) => GeoshapeType.values.byValue(value);
 }

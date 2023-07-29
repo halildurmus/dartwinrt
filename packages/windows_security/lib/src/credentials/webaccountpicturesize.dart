@@ -20,7 +20,5 @@ enum WebAccountPictureSize implements WinRTEnum {
   const WebAccountPictureSize(this.value);
 
   factory WebAccountPictureSize.from(int value) =>
-      WebAccountPictureSize.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      WebAccountPictureSize.values.byValue(value);
 }

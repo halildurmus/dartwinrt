@@ -20,7 +20,5 @@ enum PhotoCaptureSource implements WinRTEnum {
   const PhotoCaptureSource(this.value);
 
   factory PhotoCaptureSource.from(int value) =>
-      PhotoCaptureSource.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      PhotoCaptureSource.values.byValue(value);
 }

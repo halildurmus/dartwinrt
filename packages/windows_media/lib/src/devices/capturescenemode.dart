@@ -30,7 +30,5 @@ enum CaptureSceneMode implements WinRTEnum {
   const CaptureSceneMode(this.value);
 
   factory CaptureSceneMode.from(int value) =>
-      CaptureSceneMode.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      CaptureSceneMode.values.byValue(value);
 }

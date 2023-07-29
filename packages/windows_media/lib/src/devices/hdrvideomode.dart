@@ -19,8 +19,5 @@ enum HdrVideoMode implements WinRTEnum {
 
   const HdrVideoMode(this.value);
 
-  factory HdrVideoMode.from(int value) =>
-      HdrVideoMode.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+  factory HdrVideoMode.from(int value) => HdrVideoMode.values.byValue(value);
 }

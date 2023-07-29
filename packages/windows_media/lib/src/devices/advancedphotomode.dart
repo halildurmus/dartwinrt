@@ -21,7 +21,5 @@ enum AdvancedPhotoMode implements WinRTEnum {
   const AdvancedPhotoMode(this.value);
 
   factory AdvancedPhotoMode.from(int value) =>
-      AdvancedPhotoMode.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      AdvancedPhotoMode.values.byValue(value);
 }

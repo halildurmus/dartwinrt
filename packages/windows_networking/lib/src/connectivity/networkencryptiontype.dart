@@ -30,7 +30,5 @@ enum NetworkEncryptionType implements WinRTEnum {
   const NetworkEncryptionType(this.value);
 
   factory NetworkEncryptionType.from(int value) =>
-      NetworkEncryptionType.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      NetworkEncryptionType.values.byValue(value);
 }

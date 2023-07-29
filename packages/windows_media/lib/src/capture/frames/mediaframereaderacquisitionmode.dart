@@ -21,7 +21,5 @@ enum MediaFrameReaderAcquisitionMode implements WinRTEnum {
   const MediaFrameReaderAcquisitionMode(this.value);
 
   factory MediaFrameReaderAcquisitionMode.from(int value) =>
-      MediaFrameReaderAcquisitionMode.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      MediaFrameReaderAcquisitionMode.values.byValue(value);
 }

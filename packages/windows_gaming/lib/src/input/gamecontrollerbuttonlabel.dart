@@ -86,7 +86,5 @@ enum GameControllerButtonLabel implements WinRTEnum {
   const GameControllerButtonLabel(this.value);
 
   factory GameControllerButtonLabel.from(int value) =>
-      GameControllerButtonLabel.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      GameControllerButtonLabel.values.byValue(value);
 }

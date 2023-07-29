@@ -19,7 +19,5 @@ enum ExifOrientationMode implements WinRTEnum {
   const ExifOrientationMode(this.value);
 
   factory ExifOrientationMode.from(int value) =>
-      ExifOrientationMode.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      ExifOrientationMode.values.byValue(value);
 }

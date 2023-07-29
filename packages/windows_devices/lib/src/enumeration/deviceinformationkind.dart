@@ -26,7 +26,5 @@ enum DeviceInformationKind implements WinRTEnum {
   const DeviceInformationKind(this.value);
 
   factory DeviceInformationKind.from(int value) =>
-      DeviceInformationKind.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      DeviceInformationKind.values.byValue(value);
 }

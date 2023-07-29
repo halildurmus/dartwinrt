@@ -20,7 +20,5 @@ enum DeviceWatcherEventKind implements WinRTEnum {
   const DeviceWatcherEventKind(this.value);
 
   factory DeviceWatcherEventKind.from(int value) =>
-      DeviceWatcherEventKind.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      DeviceWatcherEventKind.values.byValue(value);
 }

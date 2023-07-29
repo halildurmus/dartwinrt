@@ -20,7 +20,5 @@ enum BitmapBufferAccessMode implements WinRTEnum {
   const BitmapBufferAccessMode(this.value);
 
   factory BitmapBufferAccessMode.from(int value) =>
-      BitmapBufferAccessMode.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      BitmapBufferAccessMode.values.byValue(value);
 }

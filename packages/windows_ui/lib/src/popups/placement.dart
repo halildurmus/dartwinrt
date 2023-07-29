@@ -22,8 +22,5 @@ enum Placement implements WinRTEnum {
 
   const Placement(this.value);
 
-  factory Placement.from(int value) =>
-      Placement.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+  factory Placement.from(int value) => Placement.values.byValue(value);
 }

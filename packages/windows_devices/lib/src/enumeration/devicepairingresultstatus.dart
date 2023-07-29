@@ -39,7 +39,5 @@ enum DevicePairingResultStatus implements WinRTEnum {
   const DevicePairingResultStatus(this.value);
 
   factory DevicePairingResultStatus.from(int value) =>
-      DevicePairingResultStatus.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      DevicePairingResultStatus.values.byValue(value);
 }

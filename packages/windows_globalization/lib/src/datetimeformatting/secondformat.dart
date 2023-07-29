@@ -19,8 +19,5 @@ enum SecondFormat implements WinRTEnum {
 
   const SecondFormat(this.value);
 
-  factory SecondFormat.from(int value) =>
-      SecondFormat.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+  factory SecondFormat.from(int value) => SecondFormat.values.byValue(value);
 }

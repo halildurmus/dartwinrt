@@ -14,6 +14,19 @@ abstract class WinRTEnum {
       _name != null ? '$runtimeType.$_name' : '$runtimeType(value: $value)';
 }
 
+extension WinRTEnumHelper<T extends WinRTEnum> on Iterable<T> {
+  /// Finds the enum value in this list with value [value].
+  ///
+  /// Goes through this collection looking for an enum with value [value].
+  /// Returns the first value with the given value. Such a value must be found.
+  T byValue(int value) {
+    for (final enumValue in this) {
+      if (enumValue.value == value) return enumValue;
+    }
+    throw ArgumentError.value(value, 'value', 'No enum value with that value');
+  }
+}
+
 /// The base class that all WinRT Flags enumerations implement.
 abstract base class WinRTFlagsEnum<T extends WinRTEnum> extends WinRTEnum {
   const WinRTFlagsEnum(super.value, {super.name});

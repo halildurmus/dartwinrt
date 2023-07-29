@@ -31,7 +31,5 @@ enum IsoSpeedPreset implements WinRTEnum {
   const IsoSpeedPreset(this.value);
 
   factory IsoSpeedPreset.from(int value) =>
-      IsoSpeedPreset.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      IsoSpeedPreset.values.byValue(value);
 }

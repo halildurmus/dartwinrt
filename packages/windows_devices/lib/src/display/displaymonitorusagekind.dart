@@ -21,7 +21,5 @@ enum DisplayMonitorUsageKind implements WinRTEnum {
   const DisplayMonitorUsageKind(this.value);
 
   factory DisplayMonitorUsageKind.from(int value) =>
-      DisplayMonitorUsageKind.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      DisplayMonitorUsageKind.values.byValue(value);
 }

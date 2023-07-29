@@ -23,7 +23,5 @@ enum PositionStatus implements WinRTEnum {
   const PositionStatus(this.value);
 
   factory PositionStatus.from(int value) =>
-      PositionStatus.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      PositionStatus.values.byValue(value);
 }

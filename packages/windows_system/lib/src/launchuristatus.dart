@@ -21,7 +21,5 @@ enum LaunchUriStatus implements WinRTEnum {
   const LaunchUriStatus(this.value);
 
   factory LaunchUriStatus.from(int value) =>
-      LaunchUriStatus.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      LaunchUriStatus.values.byValue(value);
 }

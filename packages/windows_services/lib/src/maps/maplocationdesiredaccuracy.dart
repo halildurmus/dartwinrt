@@ -20,7 +20,5 @@ enum MapLocationDesiredAccuracy implements WinRTEnum {
   const MapLocationDesiredAccuracy(this.value);
 
   factory MapLocationDesiredAccuracy.from(int value) =>
-      MapLocationDesiredAccuracy.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      MapLocationDesiredAccuracy.values.byValue(value);
 }

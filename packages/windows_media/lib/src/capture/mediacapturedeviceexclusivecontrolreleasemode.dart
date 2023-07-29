@@ -20,8 +20,5 @@ enum MediaCaptureDeviceExclusiveControlReleaseMode implements WinRTEnum {
   const MediaCaptureDeviceExclusiveControlReleaseMode(this.value);
 
   factory MediaCaptureDeviceExclusiveControlReleaseMode.from(int value) =>
-      MediaCaptureDeviceExclusiveControlReleaseMode.values.firstWhere(
-          (e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      MediaCaptureDeviceExclusiveControlReleaseMode.values.byValue(value);
 }

@@ -23,7 +23,5 @@ enum TetheringOperationalState implements WinRTEnum {
   const TetheringOperationalState(this.value);
 
   factory TetheringOperationalState.from(int value) =>
-      TetheringOperationalState.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      TetheringOperationalState.values.byValue(value);
 }

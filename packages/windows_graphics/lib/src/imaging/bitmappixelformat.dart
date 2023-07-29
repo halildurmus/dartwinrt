@@ -27,7 +27,5 @@ enum BitmapPixelFormat implements WinRTEnum {
   const BitmapPixelFormat(this.value);
 
   factory BitmapPixelFormat.from(int value) =>
-      BitmapPixelFormat.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      BitmapPixelFormat.values.byValue(value);
 }

@@ -21,7 +21,5 @@ enum BitmapRotation implements WinRTEnum {
   const BitmapRotation(this.value);
 
   factory BitmapRotation.from(int value) =>
-      BitmapRotation.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      BitmapRotation.values.byValue(value);
 }

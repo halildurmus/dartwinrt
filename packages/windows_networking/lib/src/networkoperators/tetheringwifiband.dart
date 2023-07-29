@@ -21,7 +21,5 @@ enum TetheringWiFiBand implements WinRTEnum {
   const TetheringWiFiBand(this.value);
 
   factory TetheringWiFiBand.from(int value) =>
-      TetheringWiFiBand.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      TetheringWiFiBand.values.byValue(value);
 }

@@ -20,7 +20,5 @@ enum VideoTemporalDenoisingMode implements WinRTEnum {
   const VideoTemporalDenoisingMode(this.value);
 
   factory VideoTemporalDenoisingMode.from(int value) =>
-      VideoTemporalDenoisingMode.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      VideoTemporalDenoisingMode.values.byValue(value);
 }

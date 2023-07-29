@@ -20,7 +20,5 @@ enum PositionAccuracy implements WinRTEnum {
   const PositionAccuracy(this.value);
 
   factory PositionAccuracy.from(int value) =>
-      PositionAccuracy.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      PositionAccuracy.values.byValue(value);
 }

@@ -21,7 +21,5 @@ enum NetworkConnectivityLevel implements WinRTEnum {
   const NetworkConnectivityLevel(this.value);
 
   factory NetworkConnectivityLevel.from(int value) =>
-      NetworkConnectivityLevel.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      NetworkConnectivityLevel.values.byValue(value);
 }

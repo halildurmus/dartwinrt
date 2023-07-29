@@ -27,7 +27,5 @@ enum HttpProgressStage implements WinRTEnum {
   const HttpProgressStage(this.value);
 
   factory HttpProgressStage.from(int value) =>
-      HttpProgressStage.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      HttpProgressStage.values.byValue(value);
 }

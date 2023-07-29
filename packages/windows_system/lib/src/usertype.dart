@@ -21,8 +21,5 @@ enum UserType implements WinRTEnum {
 
   const UserType(this.value);
 
-  factory UserType.from(int value) =>
-      UserType.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+  factory UserType.from(int value) => UserType.values.byValue(value);
 }

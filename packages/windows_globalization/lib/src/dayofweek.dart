@@ -23,8 +23,5 @@ enum DayOfWeek implements WinRTEnum {
 
   const DayOfWeek(this.value);
 
-  factory DayOfWeek.from(int value) =>
-      DayOfWeek.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+  factory DayOfWeek.from(int value) => DayOfWeek.values.byValue(value);
 }

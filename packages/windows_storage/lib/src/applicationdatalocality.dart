@@ -22,7 +22,5 @@ enum ApplicationDataLocality implements WinRTEnum {
   const ApplicationDataLocality(this.value);
 
   factory ApplicationDataLocality.from(int value) =>
-      ApplicationDataLocality.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      ApplicationDataLocality.values.byValue(value);
 }

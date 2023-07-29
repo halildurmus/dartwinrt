@@ -19,7 +19,5 @@ enum WebTokenRequestPromptType implements WinRTEnum {
   const WebTokenRequestPromptType(this.value);
 
   factory WebTokenRequestPromptType.from(int value) =>
-      WebTokenRequestPromptType.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      WebTokenRequestPromptType.values.byValue(value);
 }

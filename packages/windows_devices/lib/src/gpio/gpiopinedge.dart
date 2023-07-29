@@ -19,8 +19,5 @@ enum GpioPinEdge implements WinRTEnum {
 
   const GpioPinEdge(this.value);
 
-  factory GpioPinEdge.from(int value) =>
-      GpioPinEdge.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+  factory GpioPinEdge.from(int value) => GpioPinEdge.values.byValue(value);
 }

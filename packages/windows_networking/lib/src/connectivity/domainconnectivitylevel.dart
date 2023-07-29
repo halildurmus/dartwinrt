@@ -20,7 +20,5 @@ enum DomainConnectivityLevel implements WinRTEnum {
   const DomainConnectivityLevel(this.value);
 
   factory DomainConnectivityLevel.from(int value) =>
-      DomainConnectivityLevel.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      DomainConnectivityLevel.values.byValue(value);
 }

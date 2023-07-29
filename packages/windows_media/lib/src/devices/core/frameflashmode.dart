@@ -20,7 +20,5 @@ enum FrameFlashMode implements WinRTEnum {
   const FrameFlashMode(this.value);
 
   factory FrameFlashMode.from(int value) =>
-      FrameFlashMode.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      FrameFlashMode.values.byValue(value);
 }

@@ -19,7 +19,5 @@ enum AppInstallerPolicySource implements WinRTEnum {
   const AppInstallerPolicySource(this.value);
 
   factory AppInstallerPolicySource.from(int value) =>
-      AppInstallerPolicySource.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      AppInstallerPolicySource.values.byValue(value);
 }

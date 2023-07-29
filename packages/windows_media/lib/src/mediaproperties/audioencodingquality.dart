@@ -23,7 +23,5 @@ enum AudioEncodingQuality implements WinRTEnum {
   const AudioEncodingQuality(this.value);
 
   factory AudioEncodingQuality.from(int value) =>
-      AudioEncodingQuality.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      AudioEncodingQuality.values.byValue(value);
 }

@@ -23,7 +23,5 @@ enum UserWatcherStatus implements WinRTEnum {
   const UserWatcherStatus(this.value);
 
   factory UserWatcherStatus.from(int value) =>
-      UserWatcherStatus.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      UserWatcherStatus.values.byValue(value);
 }

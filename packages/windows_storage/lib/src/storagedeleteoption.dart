@@ -20,7 +20,5 @@ enum StorageDeleteOption implements WinRTEnum {
   const StorageDeleteOption(this.value);
 
   factory StorageDeleteOption.from(int value) =>
-      StorageDeleteOption.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      StorageDeleteOption.values.byValue(value);
 }

@@ -22,7 +22,5 @@ enum DeviceUnpairingResultStatus implements WinRTEnum {
   const DeviceUnpairingResultStatus(this.value);
 
   factory DeviceUnpairingResultStatus.from(int value) =>
-      DeviceUnpairingResultStatus.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      DeviceUnpairingResultStatus.values.byValue(value);
 }

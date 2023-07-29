@@ -19,7 +19,5 @@ enum ToastNotificationMode implements WinRTEnum {
   const ToastNotificationMode(this.value);
 
   factory ToastNotificationMode.from(int value) =>
-      ToastNotificationMode.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      ToastNotificationMode.values.byValue(value);
 }

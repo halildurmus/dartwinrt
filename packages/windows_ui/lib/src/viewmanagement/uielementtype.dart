@@ -42,8 +42,5 @@ enum UIElementType implements WinRTEnum {
 
   const UIElementType(this.value);
 
-  factory UIElementType.from(int value) =>
-      UIElementType.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+  factory UIElementType.from(int value) => UIElementType.values.byValue(value);
 }

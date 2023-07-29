@@ -21,7 +21,5 @@ enum DevicePairingProtectionLevel implements WinRTEnum {
   const DevicePairingProtectionLevel(this.value);
 
   factory DevicePairingProtectionLevel.from(int value) =>
-      DevicePairingProtectionLevel.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      DevicePairingProtectionLevel.values.byValue(value);
 }

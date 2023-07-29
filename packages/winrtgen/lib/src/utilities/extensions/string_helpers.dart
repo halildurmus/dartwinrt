@@ -2,6 +2,8 @@
 // All rights reserved. Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+import 'package:dart_style/dart_style.dart';
+
 extension StringHelpers on String {
   /// Capitalizes the first letter of this string.
   String capitalize() {
@@ -11,6 +13,9 @@ extension StringHelpers on String {
     // e.g. value -> Value
     return this[0].toUpperCase() + substring(1);
   }
+
+  /// Formats this string.
+  String format() => DartFormatter().format(this);
 
   /// Converts this string to `camelCase`.
   String toCamelCase() {

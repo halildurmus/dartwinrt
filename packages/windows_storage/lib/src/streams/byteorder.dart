@@ -18,8 +18,5 @@ enum ByteOrder implements WinRTEnum {
 
   const ByteOrder(this.value);
 
-  factory ByteOrder.from(int value) =>
-      ByteOrder.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+  factory ByteOrder.from(int value) => ByteOrder.values.byValue(value);
 }

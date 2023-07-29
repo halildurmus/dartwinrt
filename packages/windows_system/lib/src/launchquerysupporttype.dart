@@ -19,7 +19,5 @@ enum LaunchQuerySupportType implements WinRTEnum {
   const LaunchQuerySupportType(this.value);
 
   factory LaunchQuerySupportType.from(int value) =>
-      LaunchQuerySupportType.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      LaunchQuerySupportType.values.byValue(value);
 }

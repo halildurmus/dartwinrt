@@ -21,7 +21,5 @@ enum LearningModelPixelRange implements WinRTEnum {
   const LearningModelPixelRange(this.value);
 
   factory LearningModelPixelRange.from(int value) =>
-      LearningModelPixelRange.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      LearningModelPixelRange.values.byValue(value);
 }

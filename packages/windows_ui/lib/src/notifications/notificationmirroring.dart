@@ -20,7 +20,5 @@ enum NotificationMirroring implements WinRTEnum {
   const NotificationMirroring(this.value);
 
   factory NotificationMirroring.from(int value) =>
-      NotificationMirroring.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      NotificationMirroring.values.byValue(value);
 }

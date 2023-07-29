@@ -21,7 +21,5 @@ enum VideoOrientation implements WinRTEnum {
   const VideoOrientation(this.value);
 
   factory VideoOrientation.from(int value) =>
-      VideoOrientation.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      VideoOrientation.values.byValue(value);
 }

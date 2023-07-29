@@ -19,7 +19,5 @@ enum MediaThumbnailFormat implements WinRTEnum {
   const MediaThumbnailFormat(this.value);
 
   factory MediaThumbnailFormat.from(int value) =>
-      MediaThumbnailFormat.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      MediaThumbnailFormat.values.byValue(value);
 }

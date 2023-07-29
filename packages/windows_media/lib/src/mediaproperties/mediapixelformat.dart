@@ -20,7 +20,5 @@ enum MediaPixelFormat implements WinRTEnum {
   const MediaPixelFormat(this.value);
 
   factory MediaPixelFormat.from(int value) =>
-      MediaPixelFormat.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      MediaPixelFormat.values.byValue(value);
 }

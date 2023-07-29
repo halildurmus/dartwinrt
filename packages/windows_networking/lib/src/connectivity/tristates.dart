@@ -20,8 +20,5 @@ enum TriStates implements WinRTEnum {
 
   const TriStates(this.value);
 
-  factory TriStates.from(int value) =>
-      TriStates.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+  factory TriStates.from(int value) => TriStates.values.byValue(value);
 }

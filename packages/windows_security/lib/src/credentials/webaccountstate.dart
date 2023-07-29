@@ -20,7 +20,5 @@ enum WebAccountState implements WinRTEnum {
   const WebAccountState(this.value);
 
   factory WebAccountState.from(int value) =>
-      WebAccountState.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      WebAccountState.values.byValue(value);
 }

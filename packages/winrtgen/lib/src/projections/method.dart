@@ -296,8 +296,7 @@ base class MethodProjection {
       $returnStatement
     } finally {
       ${postambles.join('\n')}
-    }
-'''
+    }'''
       : '''
     ${preambles.join('\n')}
     ${parametersPreamble.join('\n')}
@@ -309,15 +308,16 @@ base class MethodProjection {
     $failedCheck
     $nullCheck
 
-    $returnStatement
-''';
+    $returnStatement''';
 
-  String get projection => '''
-  ${annotations.join('\n')}
+  String get projection => [
+        if (annotations.isNotEmpty) '  ${annotations.join('\n')}',
+        '''
   $header {
     $methodBody
   }
-''';
+'''
+      ].join('\n');
 
   @override
   String toString() {

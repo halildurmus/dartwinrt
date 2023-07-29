@@ -22,7 +22,5 @@ enum NotificationSetting implements WinRTEnum {
   const NotificationSetting(this.value);
 
   factory NotificationSetting.from(int value) =>
-      NotificationSetting.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      NotificationSetting.values.byValue(value);
 }

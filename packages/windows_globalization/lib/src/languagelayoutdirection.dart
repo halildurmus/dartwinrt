@@ -22,7 +22,5 @@ enum LanguageLayoutDirection implements WinRTEnum {
   const LanguageLayoutDirection(this.value);
 
   factory LanguageLayoutDirection.from(int value) =>
-      LanguageLayoutDirection.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      LanguageLayoutDirection.values.byValue(value);
 }

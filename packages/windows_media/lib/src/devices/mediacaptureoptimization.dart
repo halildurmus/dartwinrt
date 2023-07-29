@@ -24,7 +24,5 @@ enum MediaCaptureOptimization implements WinRTEnum {
   const MediaCaptureOptimization(this.value);
 
   factory MediaCaptureOptimization.from(int value) =>
-      MediaCaptureOptimization.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      MediaCaptureOptimization.values.byValue(value);
 }

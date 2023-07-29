@@ -24,7 +24,5 @@ enum ProcessorArchitecture implements WinRTEnum {
   const ProcessorArchitecture(this.value);
 
   factory ProcessorArchitecture.from(int value) =>
-      ProcessorArchitecture.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      ProcessorArchitecture.values.byValue(value);
 }

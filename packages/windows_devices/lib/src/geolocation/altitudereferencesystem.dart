@@ -23,7 +23,5 @@ enum AltitudeReferenceSystem implements WinRTEnum {
   const AltitudeReferenceSystem(this.value);
 
   factory AltitudeReferenceSystem.from(int value) =>
-      AltitudeReferenceSystem.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      AltitudeReferenceSystem.values.byValue(value);
 }

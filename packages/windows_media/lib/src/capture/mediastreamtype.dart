@@ -22,7 +22,5 @@ enum MediaStreamType implements WinRTEnum {
   const MediaStreamType(this.value);
 
   factory MediaStreamType.from(int value) =>
-      MediaStreamType.values.firstWhere((e) => e.value == value,
-          orElse: () => throw ArgumentError.value(
-              value, 'value', 'No enum value with that value'));
+      MediaStreamType.values.byValue(value);
 }
