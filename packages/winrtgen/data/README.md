@@ -1,7 +1,7 @@
-# WinRT APIs Generation
+The JSON files in this folder describe which WinRT APIs we'regenerating, and
+supplements this metadata with documentation.
 
-The Windows Runtime (WinRT) APIs exposed by this library are generated from
-WinMD files. Windows has structured metadata for APIs, which is loaded from
-package:winmd. The JSON files in this folder describe which items we're
-generating, and supplements this metadata with documentation. The winrtgen
-package consumes this metadata and transforms it into Dart files.
+The [winrtgen][winrtgen_link] package consumes this metadata and transforms it
+into Dart files.
+
+[winrtgen_link]: https://github.com/dart-windows/dartwinrt/tree/main/packages/winrtgen

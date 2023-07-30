@@ -17,62 +17,105 @@ command:
     workspaceChangelog: true
 
 scripts:
-  lint:all:
-    run: melos run analyze && melos run format
-    description: Run all static analysis checks.
+  add-api:
+    description: Add a new WinRT API.
+    run: cd packages\winrtgen && dart bin\add_api.dart
+
+  generate:
+    description: Generate WinRT APIs and format all files.
+    run: melos run generate-apis && melos run format
+
+  generate-and-test:
+    description: Generate WinRT APIs, format all files, and run tests.
+    run: melos run generate && melos run test:all
+
+  update-goldens:
+    description: Update golden files with the latest generated output.
+    exec: dart bin\update_goldens.dart
+    packageFilters:
+      scope: winrtgen
+
+  publish:
+    description: Publish all packages to pub.dev after validation.
+    run: >
+      melos run prepare-publish:all && melos run force-publish:all
+
+  test:all:
+    description: Run all tests available.
+    run: melos run test --no-select
+
+  test:
+    description: Run `dart test` for a specific package.
+    run: dart test
+    exec:
+      concurrency: 6
+      failFast: true
+    packageFilters:
+      dirExists:
+        - test
 
   analyze:
-    run: |
-      melos exec -c 6 -- \
-        dart analyze . --fatal-infos
-    description: |
-      Run `dart analyze` in all packages.
-       - Note: you can also rely on your IDEs Dart Analysis / Issues window.
+    description: Run `dart analyze . --fatal-infos` in all packages.
+    run: dart analyze . --fatal-infos
+    exec:
+      concurrency: 6
 
-  clean:deep:
-    run: git clean -x -d -f -q
+  clean:
     description: >
       Clean things very deeply, can be used to establish "pristine checkout"
       status.
+    run: git clean -x -d -f -q
 
   format:
-    run: dart format --set-exit-if-changed .
-    description: Run `dart format` in all packages.
+    description: Run `dart format . --show=none` in all packages.
+    run: dart format . --show=none
+    exec:
+      concurrency: 6
 
-  lint:pub:
-    run: >
-      melos exec -c 6 --fail-fast --no-private --ignore="*example*" -- \
-      dart pub publish --dry-run
-    description: Check pubspecs are valid and publishable in each package.
+  generate-apis:
+    description: Generate WinRT APIs.
+    run: cd packages\winrtgen && dart bin\generate.dart
 
-  publish:
-    run: >
-      melos run lint:pub && melos exec -c 6 --fail-fast --no-private --ignore="*example*" -- \
-      dart pub publish -f --skip-validation
-    description: Publish all packages to pub.dev.
+  prepare-publish:all:
+    description: Run `melos run prepare-publish` in all packages.
+    run: melos run prepare-publish --no-select
 
-  test:all:
-    run: |
-      melos run test --no-select
-    description: Run all tests available.
+  prepare-publish:
+    description: Run `dart pub publish --dry-run` for a specific package.
+    run: dart pub publish --dry-run
+    exec:
+      concurrency: 6
+      failFast: true
+    packageFilters:
+      private: false
 
-  test:
-    run: |
-      melos exec -c 6 --fail-fast -- \
-        "dart test"
-    description: Run `dart test` for a specific package.
+  force-publish:all:
+    description: Forcefully publish all packages to pub.dev without validation.
+    run: melos run force-publish --no-select
+
+  force-publish:
+    description: Forcefully publish a package to pub.dev without validation.
+    run: dart pub publish -f --skip-validation
+    exec:
+      concurrency: 6
+      failFast: true
+    packageFilters:
+      private: false
 
   qualitycheck:
+    description: >
+      Run all targets generally expected in CI for a full local quality check.
     run: >
       melos run clean:deep &&
       melos clean &&
       melos bootstrap &&
-      melos run lint:all &&
-      melos run test:all
-    description: >
-      Run all targets generally expected in CI for a full local quality check.
+      melos run analyze &&
+      melos run format &&
+      melos run test:all &&
+      melos run validate-pub:all
 
   add-license-header:
+    description: Add a license header to all necessary files.
     # If you add here another --ignore flag, add it also to
     # "check-license-header".
     run: |
@@ -104,9 +147,9 @@ scripts:
         --ignore "**/flutter/generated_plugin_registrant.h" \
         --ignore "**/flutter/generated_plugin_registrant.cc" \
         .
-    description: Add a license header to all necessary files.
 
   check-license-header:
+    description: Verify that all necessary files have a license header.
     # If you add here another --ignore flag, add it also to
     # "add-license-header".
     run: |
@@ -139,4 +182,3 @@ scripts:
         --ignore "**/flutter/generated_plugin_registrant.h" \
         --ignore "**/flutter/generated_plugin_registrant.cc" \
         .
-    description: Verify that all necessary files have a license header.

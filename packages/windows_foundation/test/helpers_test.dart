@@ -16,9 +16,6 @@ void main() {
     return;
   }
 
-  // TODO: Add tests for the following:
-  // - createObject
-
   test('activateClass', () {
     const className = 'Windows.Globalization.Calendar';
     final inspectablePtr = activateClass(className);
