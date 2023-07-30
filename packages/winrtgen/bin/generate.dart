@@ -5,10 +5,7 @@
 import 'dart:collection';
 import 'dart:io';
 
-import 'package:dart_style/dart_style.dart';
 import 'package:winrtgen/winrtgen.dart';
-
-final formatter = DartFormatter();
 
 ({
   Map<String, String> objects,
@@ -24,23 +21,10 @@ final formatter = DartFormatter();
   return (objects: objects, enums: enums, structs: structs);
 }
 
-/// Creates a file at the given [path] and writes the formatted [content] to it.
-///
-/// If the [content] cannot be formatted, it will be written as unformatted.
-void writeToFile(String path, String content) {
-  try {
-    File(path)
-      ..createSync(recursive: true)
-      ..writeAsStringSync(formatter.format(content));
-  } catch (_) {
-    // Better to write even on failure, so we can figure out what syntax error
-    // it was that thwarted DartFormatter.
-    print('Unable to format file. Writing unformatted...');
-    File(path)
-      ..createSync(recursive: true)
-      ..writeAsStringSync(content);
-  }
-}
+/// Creates a file at the given [path] and writes the [content] into it.
+void writeToFile(String path, String content) => File(path)
+  ..createSync(recursive: true)
+  ..writeAsStringSync(content);
 
 void generateObjects(Map<String, String> types) {
   // Catalog all the types we need to generate: the types themselves and their

@@ -6,10 +6,10 @@ import 'dart:io';
 
 import 'package:winrtgen/winrtgen.dart';
 
-final goldensDirectory = Directory('../../packages/winrtgen/test/goldens');
-final packagesDirectory = Directory('../../packages');
+final goldensDir = Directory('../../packages/winrtgen/test/goldens');
+final packagesDir = Directory('../../packages');
 
-Iterable<File> getGoldenFiles() => goldensDirectory
+Iterable<File> getGoldenFiles() => goldensDir
     .listSync()
     .whereType<File>()
     .where((file) => file.path.endsWith('.golden'));
@@ -19,9 +19,8 @@ void main() {
 
   for (final MapEntry(:key, :value) in goldenFiles.entries) {
     print(' - $key');
-    final originalFilePath = value;
-    final originalFileContent =
-        File('${packagesDirectory.path}/$originalFilePath').readAsStringSync();
+    final originalFilePath = '${packagesDir.path}/$value';
+    final originalFileContent = File(originalFilePath).readAsStringSync();
     // Update the golden file with the original file content.
     getGoldenFiles()
         .firstWhere((f) => f.path.endsWith(key))

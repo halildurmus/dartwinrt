@@ -6,6 +6,7 @@
 
 import 'dart:io';
 
+import 'package:dart_style/dart_style.dart';
 import 'package:test/test.dart';
 import 'package:win32/win32.dart';
 import 'package:winrtgen/winrtgen.dart';
@@ -61,4 +62,7 @@ void compareGolden(String fileName, String content) {
 
 extension on String {
   String convertLineEndingsToLF() => replaceAll('\r\n', '\n');
+
+  /// Formats this string.
+  String format() => DartFormatter().format(this);
 }
