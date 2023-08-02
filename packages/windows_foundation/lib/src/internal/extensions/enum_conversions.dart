@@ -45,9 +45,9 @@ extension WinRTFlagsEnumListToUint32ArrayConversion on List<WinRTFlagsEnum> {
 extension Int32ArrayToWinRTEnumListConversion on Pointer<Int32> {
   /// Creates a [List] of [T]s from `Pointer<Int32>`.
   ///
-  /// [T] must be [WinRTEnum] (e.g. `DeviceClass`).
+  /// [T] must be [WinRTEnum] (e.g., `DeviceClass`).
   ///
-  /// [creator] must be specified for [T] (e.g. `DeviceClass.from`).
+  /// [creator] must be specified for [T] (e.g., `DeviceClass.from`).
   ///
   /// [length] must not be greater than the number of elements stored inside the
   /// `Pointer<Int32>`.
@@ -59,9 +59,9 @@ extension Int32ArrayToWinRTEnumListConversion on Pointer<Int32> {
 extension Uint32ArrayToWinRTEnumListConversion on Pointer<Uint32> {
   /// Creates a [List] of [T]s from `Pointer<Uint32>`.
   ///
-  /// [T] must be [WinRTFlagsEnum] (e.g. `FileAttributes`).
+  /// [T] must be [WinRTFlagsEnum] (e.g., `FileAttributes`).
   ///
-  /// [creator] must be specified for [T] (e.g. `FileAttributes.from`).
+  /// [creator] must be specified for [T] (e.g., `FileAttributes.from`).
   ///
   /// [length] must not be greater than the number of elements stored inside the
   /// `Pointer<Uint32>`.

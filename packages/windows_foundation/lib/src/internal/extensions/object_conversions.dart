@@ -91,7 +91,7 @@ extension ObjectConversion on Object {
     if (self is List<String>) return self.toPropertyValue();
     if (self is List<Uri?>) return self.toPropertyValue();
 
-    // TODO(halildurmus): Support boxing enums and other structs (e.g.
+    // TODO(halildurmus): Support boxing enums and other structs (e.g.,
     // BasicGeoposition)
     // https://github.com/dart-windows/dartwinrt/issues/307
 
@@ -118,9 +118,9 @@ extension ObjectListToVTablePointerArrayConversion on List<Object?> {
 extension COMObjectArrayToObjectListConversion on Pointer<COMObject> {
   /// Creates a [List] of [T]s from `Pointer<COMObject>`.
   ///
-  /// [T] must be `IInspectable?` (e.g. `HostName?`).
+  /// [T] must be `IInspectable?` (e.g., `HostName?`).
   ///
-  /// [creator] must be specified for [T] (e.g. `HostName.fromPtr`).
+  /// [creator] must be specified for [T] (e.g., `HostName.fromPtr`).
   ///
   /// [length] must not be greater than the number of elements stored inside the
   /// `Pointer<COMObject>`.

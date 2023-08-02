@@ -11,7 +11,7 @@ import 'type_identifier_helpers.dart';
 
 extension TypeDefHelpers on TypeDef {
   /// Returns the fully-qualified type name of the type defined in this
-  /// TypeDef (e.g. `Windows.Foundation.Calendar`,
+  /// TypeDef (e.g., `Windows.Foundation.Calendar`,
   /// Windows.Foundation.IReference`1).
   String get fullyQualifiedName {
     if (typeSpec?.type case final type?) return type.name;
@@ -22,27 +22,27 @@ extension TypeDefHelpers on TypeDef {
   String get iid => iidFromSignature(signature);
 
   /// Returns `true` if the type defined in this TypeDef is a collection object,
-  /// i.e. implements `IIterable` (e.g. `JsonObject`, `XmlNamedNodeMap`, `IMap`,
+  /// i.e. implements `IIterable` (e.g., `JsonObject`, `XmlNamedNodeMap`, `IMap`,
   /// `IVector` etc.).
   bool get isCollectionObject => interfaces.any(
       (interface) => interface.typeSpec?.name.endsWith('IIterable`1') ?? false);
 
   /// Returns `true` if the type defined in this TypeDef is a factory interface
-  /// (e.g. `ICalendarFactory`).
+  /// (e.g., `ICalendarFactory`).
   bool get isFactoryInterface =>
       RegExp(r'^I\w+Factory\d{0,2}$').hasMatch(shortName);
 
-  /// Returns the package import for the type defined in this TypeDef (e.g.
+  /// Returns the package import for the type defined in this TypeDef (e.g.,
   /// `package:windows_globalization/windows_globalization.dart` for
   /// `Windows.Globalization.Calendar`).
   String get packageImport => 'package:$packageName/$packageName.dart';
 
-  /// Returns the package name for the type defined in this TypeDef (e.g.
+  /// Returns the package name for the type defined in this TypeDef (e.g.,
   /// `windows_globalization` for `Windows.Globalization.Calendar`).
   String get packageName =>
       fullyQualifiedName.split('.').take(2).join('_').toLowerCase();
 
-  /// Returns the shorter name of the type defined in this TypeDef (e.g.
+  /// Returns the shorter name of the type defined in this TypeDef (e.g.,
   /// `ICalendar`, `IVector` , `IMap<String, String>`).
   String get shortName {
     if (typeSpec case final typeSpec?) return typeSpec.shortName;

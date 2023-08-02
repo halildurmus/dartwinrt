@@ -17,7 +17,7 @@ final class InitializeWithWindow {
   /// used in a desktop app.
   ///
   /// [target] must be a WinRT object that implements the
-  /// `IInitializeWithWindow` interface (e.g. `FileOpenPicker`).
+  /// `IInitializeWithWindow` interface (e.g., `FileOpenPicker`).
   ///
   /// [hwnd] represents the handle of the window to be used as the owner window.
   /// If omitted, the current console or shell's desktop window is used.

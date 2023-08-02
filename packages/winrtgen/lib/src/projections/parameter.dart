@@ -13,8 +13,8 @@ import 'types/types.dart';
 ///
 /// Parameters are a tuple of a type and a name. WinRT parameters are
 /// specialized in that they have logic to translate primitive WinRT types to
-/// their Dart equivalents (e.g. a WinRT `TimeSpan` can be represented by a Dart
-/// [Duration]).
+/// their Dart equivalents (e.g., a WinRT `TimeSpan` can be represented by a
+/// Dart [Duration]).
 base class ParameterProjection {
   ParameterProjection(this.parameter)
       :
@@ -100,7 +100,7 @@ base class ParameterProjection {
 
   String get paramProjection => '$type $identifier';
 
-  /// The type of the parameter (e.g. `String`).
+  /// The type of the parameter (e.g., `String`).
   String get type => typeProjection.dartType;
 
   String get shortTypeName => typeProjection.typeIdentifier.shortName;
@@ -146,7 +146,7 @@ base class ParameterProjection {
       needsDeallocation ? ['free($identifier);'] : [];
 
   /// The name of the converted variable that should be passed inside the method
-  /// call (e.g. `value` -> `valueHString`)
+  /// call (e.g., `value` -> `valueHString`)
   String get localIdentifier {
     // Handle the __xxSize identifier specially as simpleArray parameters are
     // projected as List. See the ArrayParameterProjection class.

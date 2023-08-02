@@ -31,9 +31,9 @@ abstract interface class IIterator<T> extends IInspectable {
   /// Creates an instance of [IIterator] from the given [ptr].
   ///
   /// [T] must be of type `bool`, `DateTime`, `double`, `Duration`, `Guid`,
-  /// `int`, `Object?`, `String`, `Uri?`, `IInspectable?` (e.g. `StorageFile?`),
-  /// `WinRTEnum` (e.g. `DeviceClass`), or `WinRTStruct` (e.g.
-  /// `BasicGeoposition`).
+  /// `int`, `Object?`, `String`, `Uri?`, `IInspectable?` (e.g.,
+  /// `StorageFile?`), `WinRTEnum` (e.g., `DeviceClass`), or `WinRTStruct`
+  /// (e.g., `BasicGeoposition`).
   ///
   /// [doubleType] must be specified if [T] is `double`.
   /// ```dart

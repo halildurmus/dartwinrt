@@ -11,22 +11,22 @@ import 'type_arg_kind.dart';
 sealed class GenericType {
   const GenericType(this.fullyQualifiedType);
 
-  /// The fully qualified type (e.g. Windows.Foundation.IReference`1).
+  /// The fully qualified type (e.g., Windows.Foundation.IReference`1).
   final String fullyQualifiedType;
 
-  /// The short name of the type (e.g. `IReference`).
+  /// The short name of the type (e.g., `IReference`).
   String get shortName => lastComponent(stripGenerics(fullyQualifiedType));
 
   @override
   String toString() => shortName;
 }
 
-/// Represents a WinRT generic type with one type argument (e.g.
+/// Represents a WinRT generic type with one type argument (e.g.,
 /// Windows.Foundation.IAsyncOperation`1).
 final class GenericTypeWithOneTypeArg extends GenericType {
   const GenericTypeWithOneTypeArg(super.fullyQualifiedType, this.typeArgKinds);
 
-  /// The [TypeArgKind]s for this generic type (e.g. `TypeArgKind.bool_`,
+  /// The [TypeArgKind]s for this generic type (e.g., `TypeArgKind.bool_`,
   /// `TypeArgKind.string`).
   final Set<TypeArgKind> typeArgKinds;
 
@@ -61,13 +61,13 @@ final class GenericTypeWithOneTypeArg extends GenericType {
   }
 }
 
-/// Represents a WinRT generic type with two type arguments (e.g.
+/// Represents a WinRT generic type with two type arguments (e.g.,
 /// Windows.Foundation.Collections.IMap`2).
 final class GenericTypeWithTwoTypeArgs extends GenericType {
   const GenericTypeWithTwoTypeArgs(
       super.fullyQualifiedType, this.typeArgKindPairs);
 
-  /// The [TypeArgKind] pairs for this generic type (e.g.
+  /// The [TypeArgKind] pairs for this generic type (e.g.,
   /// `(TypeArgKind.string, TypeArgKind.string)`,
   /// `(TypeArgKind.string, TypeArgKind.nullableObject)`).
   final Set<(TypeArgKind, TypeArgKind)> typeArgKindPairs;

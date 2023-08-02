@@ -14,21 +14,22 @@ abstract base class BaseProjection {
   final String comment;
   final TypeDef typeDef;
 
-  /// Returns the path to the folder where the current class is located (e.g.
+  /// Returns the path to the folder where the current class is located (e.g.,
   /// `windows_foundation/lib/src` for `Windows.Foundation.Point`).
   String get currentFolderPath => folderFromType(typeDef.name);
 
   /// Whether the [typeDef] has the `DeprecatedAttribute`.
   bool get isDeprecated => typeDef.isDeprecated;
 
-  /// Returns the fully-qualified name of the [typeDef] (e.g.
+  /// Returns the fully-qualified name of the [typeDef] (e.g.,
   /// `Windows.Globalization.Calendar`, `Windows.Foundation.IReference`1`).
   String get name => typeDef.fullyQualifiedName;
 
-  /// Returns the shorter name of the [typeDef] (e.g. `IAsyncInfo`, `Calendar`).
+  /// Returns the shorter name of the [typeDef] (e.g., `IAsyncInfo`,
+  /// `Calendar`).
   String get shortName => outerType(typeDef.shortName);
 
-  /// Returns the package name for the [typeDef] (e.g. `windows_foundation`
+  /// Returns the package name for the [typeDef] (e.g., `windows_foundation`
   /// for `Windows.Foundation.Point`).
   String get packageName => typeDef.packageName;
 

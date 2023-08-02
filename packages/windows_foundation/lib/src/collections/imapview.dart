@@ -49,13 +49,13 @@ abstract interface class IMapView<K, V> extends IInspectable
   /// Creates an instance of [IMapView] from the given [ptr] and [iterableIid].
   ///
   /// [iterableIid] must be the IID of the `IIterable<IKeyValuePair<K, V>>`
-  /// interface (e.g. `'{dfabb6e1-0411-5a8f-aa87-354e7110f099}'`).
+  /// interface (e.g., `'{dfabb6e1-0411-5a8f-aa87-354e7110f099}'`).
   ///
   /// [K] must be of type `Guid`, `int`, `Object`, `String`, `Uri`, or
-  /// `WinRTEnum` (e.g. `PedometerStepKind`).
+  /// `WinRTEnum` (e.g., `PedometerStepKind`).
   ///
-  /// [V] must be of type `Object?`, `String`, `IInspectable?` (e.g.
-  /// `IJsonValue?`), or `WinRTEnum` (e.g. `ChatMessageStatus`).
+  /// [V] must be of type `Object?`, `String`, `IInspectable?` (e.g.,
+  /// `IJsonValue?`), or `WinRTEnum` (e.g., `ChatMessageStatus`).
   ///
   /// [creator] must be specified if [V] is `IInspectable?`.
   /// ```dart

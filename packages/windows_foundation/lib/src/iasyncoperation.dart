@@ -24,8 +24,8 @@ abstract interface class IAsyncOperation<TResult> extends IInspectable
   /// Creates an instance of [IAsyncOperation] from the given `ptr`.
   ///
   /// [TResult] must be of type `bool`, `double`, `Guid`, `int`, `Object?`,
-  /// `String`, `Uri?`, `IInspectable?` (e.g. `StorageFile?`), `WinRTEnum` (e.g.
-  /// `LaunchUriStatus`), or `WinRTStruct` (e.g. `LoadMoreItemsResult`).
+  /// `String`, `Uri?`, `IInspectable?` (e.g., `StorageFile?`), `WinRTEnum`
+  /// (e.g., `LaunchUriStatus`), or `WinRTStruct` (e.g., `LoadMoreItemsResult`).
   ///
   /// [doubleType] must be specified if [TResult] is `double`.
   /// ```darts

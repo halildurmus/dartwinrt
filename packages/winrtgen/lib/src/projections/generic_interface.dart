@@ -50,7 +50,7 @@ ${projections.join('\n')}
 final class GenericInterfaceProjection extends InterfaceProjection {
   GenericInterfaceProjection._(super.typeDef, this.typeArgs);
 
-  /// The type arguments of the interface (e.g. `[TypeArgKind.string]`,
+  /// The type arguments of the interface (e.g., `[TypeArgKind.string]`,
   /// `[TypeArgKind.string, TypeArgKind.nullableObject]`).
   final List<TypeArgKind> typeArgs;
 
@@ -64,7 +64,7 @@ final class GenericInterfaceProjection extends InterfaceProjection {
   /// ```
   ///
   /// [typeArg2] must be specified if [fullyQualifiedType] has two type
-  /// arguments (e.g. `Windows.Foundation.Collections.IMap`2`).
+  /// arguments (e.g., `Windows.Foundation.Collections.IMap`2`).
   ///
   /// ```dart
   /// final projection = GenericInterfaceProjection.from(
@@ -114,7 +114,7 @@ final class GenericInterfaceProjection extends InterfaceProjection {
 
   String get formattedTypeArgs => typeArgs.map(_formatTypeArgKind).join(', ');
 
-  /// The generic type parameters that are used in the class header (e.g.
+  /// The generic type parameters that are used in the class header (e.g.,
   /// `<K, V>`, `<T>`).
   String get typeParams {
     final params = typeDef.genericParams
@@ -125,7 +125,7 @@ final class GenericInterfaceProjection extends InterfaceProjection {
     return params.isNotEmpty ? '<${params.join(', ')}>' : '';
   }
 
-  /// The class name of the interface (e.g. `_IMapStringString`,
+  /// The class name of the interface (e.g., `_IMapStringString`,
   /// `_IVectorIInspectable`).
   String get className {
     final args = typeArgs

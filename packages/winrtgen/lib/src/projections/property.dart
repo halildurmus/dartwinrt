@@ -8,7 +8,7 @@ import 'method.dart';
 abstract base class PropertyProjection extends MethodProjection {
   PropertyProjection(super.method, super.vtableOffset);
 
-  /// Strip off all underscores, even if double underscores (e.g.
+  /// Strip off all underscores, even if double underscores (e.g.,
   /// `get_Languages` -> `languages`, `put__Data` -> `data`).
   @override
   String get camelCasedName {

@@ -16,7 +16,7 @@ final class MapParameterProjection extends ParameterProjection {
       : typeProjection.typeIdentifier;
 
   /// The type arguments of `IMap` and `IMapView`, as represented in the
-  /// [typeProjection]'s [TypeIdentifier] (e.g. `String, Object?`,
+  /// [typeProjection]'s [TypeIdentifier] (e.g., `String, Object?`,
   /// `String, String?`).
   String get mapTypeArgs => typeArguments(shortTypeName);
 
@@ -32,7 +32,7 @@ final class MapParameterProjection extends ParameterProjection {
     // 'IMapView' implementations can instantiate the enum.
     final enumKeyCreator = typeArgs.first.creator;
 
-    // If the type argument is an enum, a WinRT object (e.g. IJsonValue), the
+    // If the type argument is an enum, a WinRT object (e.g., IJsonValue), the
     // constructor of that class must be passed in the 'enumCreator' parameter
     // for enum, 'creator' parameter for WinRT object so that the 'IMap' and
     // 'IMapView' implementations can instantiate the object

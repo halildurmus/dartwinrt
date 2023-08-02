@@ -25,14 +25,14 @@ TypeIdentifier dereferenceType(TypeIdentifier typeIdentifier) {
   throw WinRTGenException('Could not de-reference type $typeIdentifier.');
 }
 
-/// Converts a [fullyQualifiedType] (e.g. `Windows.Globalization.Calendar`) and
-/// returns the matching file name (e.g. `calendar.dart`).
+/// Converts a [fullyQualifiedType] (e.g., `Windows.Globalization.Calendar`) and
+/// returns the matching file name (e.g., `calendar.dart`).
 String fileNameFromType(String fullyQualifiedType) =>
     '${stripGenerics(lastComponent(fullyQualifiedType)).toLowerCase()}.dart';
 
-/// Converts a [fullyQualifiedType] (e.g.
+/// Converts a [fullyQualifiedType] (e.g.,
 /// `Windows.Storage.Pickers.FileOpenPicker`) and returns the matching folder
-/// (e.g. `windows_storage/lib/src/pickers`).
+/// (e.g., `windows_storage/lib/src/pickers`).
 String folderFromType(String fullyQualifiedType) {
   // e.g. windows_storage
   final packageName = packageNameFromType(fullyQualifiedType);
@@ -143,12 +143,12 @@ String iterableIidFromVectorType(TypeIdentifier typeIdentifier) {
   return iidFromSignature(iterableSignature).toString();
 }
 
-/// Return the final component of a fully qualified name (e.g.
+/// Return the final component of a fully qualified name (e.g.,
 /// `Windows.Globalization.Calendar` becomes `Calendar`).
 String lastComponent(String fullyQualifiedType) =>
     fullyQualifiedType.split('.').last;
 
-/// Add the `?` suffix to the [type] (e.g. `StorageFile` -> `StorageFile?`).
+/// Add the `?` suffix to the [type] (e.g., `StorageFile` -> `StorageFile?`).
 String nullable(String type) => type.endsWith('?') ? type : '$type?';
 
 /// Take a [type] like `IAsyncOperation<StorageFile>` and return
@@ -156,22 +156,22 @@ String nullable(String type) => type.endsWith('?') ? type : '$type?';
 String outerType(String type) =>
     !type.contains('<') ? type : type.substring(0, type.indexOf('<'));
 
-/// Converts a [fullyQualifiedType] (e.g. `Windows.Globalization.Calendar`) and
-/// returns the matching package name (e.g. `windows_globalization`).
+/// Converts a [fullyQualifiedType] (e.g., `Windows.Globalization.Calendar`) and
+/// returns the matching package name (e.g., `windows_globalization`).
 String packageNameFromType(String fullyQualifiedType) =>
     fullyQualifiedType.split('.').take(2).join('_').toLowerCase();
 
-/// Return the parent namespace of a [fullyQualifiedType] (e.g.
+/// Return the parent namespace of a [fullyQualifiedType] (e.g.,
 /// `Windows.Gaming.Input.Gamepad` becomes `Windows.Gaming.Input`).
 String parentNamespace(String fullyQualifiedType) =>
     (fullyQualifiedType.split('.')..removeLast()).join('.');
 
-/// Wrap a [s] in single quotes (e.g. `foo` -> `'foo'`).
+/// Wrap a [s] in single quotes (e.g., `foo` -> `'foo'`).
 String quote(String s) => "'$s'";
 
-/// Converts a [fullyQualifiedType] (e.g.
+/// Converts a [fullyQualifiedType] (e.g.,
 /// `Windows.Storage.Pickers.FileOpenPicker`) and returns the relative path from
-/// the `dartwinrt/tool` folder to matching folder path  (e.g.
+/// the `dartwinrt/tool` folder to matching folder path  (e.g.,
 /// `../../packages/windows_storage/lib/src/pickers`).
 String relativeFolderPathFromType(String fullyQualifiedType) {
   final packageName = packageNameFromType(fullyQualifiedType);
@@ -187,9 +187,9 @@ String relativeFolderPathFromType(String fullyQualifiedType) {
 String relativePath(String targetPath, {required String start}) =>
     path.relative(targetPath, from: start).replaceAll(r'\', '/');
 
-/// Converts a [fullyQualifiedType] (e.g.
+/// Converts a [fullyQualifiedType] (e.g.,
 /// `Windows.Storage.Pickers.FileOpenPicker`) and returns the relative path from
-/// the `dartwinrt/tool` folder to matching file path  (e.g.
+/// the `dartwinrt/tool` folder to matching file path  (e.g.,
 /// `../../packages/windows_storage/lib/src/pickers/fileopenpicker.dart`).
 String relativePathForType(String fullyQualifiedType) =>
     '${relativeFolderPathFromType(fullyQualifiedType)}/${fileNameFromType(fullyQualifiedType)}';
@@ -253,7 +253,7 @@ String stripGenerics(String name) => name.replaceAll(RegExp(r'(`\d+)'), '');
 String stripLeadingUnderscores(String name) =>
     !name.startsWith('_') ? name : stripLeadingUnderscores(name.substring(1));
 
-/// Strip the `?` suffix from the [type] (e.g. `IJsonValue?` should become
+/// Strip the `?` suffix from the [type] (e.g., `IJsonValue?` should become
 /// `JsonValue`).
 String stripQuestionMarkSuffix(String type) =>
     type.endsWith('?') ? type.substring(0, type.length - 1) : type;

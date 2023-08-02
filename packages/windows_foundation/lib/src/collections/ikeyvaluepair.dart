@@ -24,10 +24,10 @@ abstract interface class IKeyValuePair<K, V> extends IInspectable {
   /// Creates an instance of [IKeyValuePair] from the given [ptr].
   ///
   /// [K] must be of type `Guid`, `int`, `Object`, `String`, `Uri`, or
-  /// `WinRTEnum` (e.g. `PedometerStepKind`).
+  /// `WinRTEnum` (e.g., `PedometerStepKind`).
   ///
-  /// [V] must be of type `Object?`, `String`, `IInspectable?` (e.g.
-  /// `IJsonValue?`), or `WinRTEnum` (e.g. `ChatMessageStatus`).
+  /// [V] must be of type `Object?`, `String`, `IInspectable?` (e.g.,
+  /// `IJsonValue?`), or `WinRTEnum` (e.g., `ChatMessageStatus`).
   ///
   /// [creator] must be specified if [V] is `IInspectable?`.
   /// ```dart

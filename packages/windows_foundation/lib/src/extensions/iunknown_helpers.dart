@@ -9,7 +9,7 @@ import 'package:win32/win32.dart';
 extension IUnknownHelpers on IUnknown {
   /// Casts this COM object to an interface specified in [iid].
   ///
-  /// [creator] must be the constructor of the class to be casted to (e.g.
+  /// [creator] must be the constructor of the class to be casted to (e.g.,
   /// `ICalendar.fromPtr`).
   ///
   /// Throws a [WindowsException] if the cast fails.
@@ -19,7 +19,7 @@ extension IUnknownHelpers on IUnknown {
 
   /// Tries to cast this COM object to an interface specified in [iid].
   ///
-  /// [creator] must be the constructor of the class to be casted to (e.g.
+  /// [creator] must be the constructor of the class to be casted to (e.g.,
   /// `ICalendar.fromPtr`).
   ///
   /// Returns `null` if the cast fails.
