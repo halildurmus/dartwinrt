@@ -15,26 +15,26 @@ import 'type.dart';
 final class MethodForwardersProjection {
   MethodForwardersProjection(this.interface, this.interfaceProjection);
 
-  /// The interface typedef that method forwarders are generated from (e.g.
+  /// The interface typedef that method forwarders are generated from (e.g.,
   /// `Windows.Storage.IStorageItem`).
   final TypeDef interface;
 
-  /// The interface projection that method forwarders are generated to (e.g.
+  /// The interface projection that method forwarders are generated to (e.g.,
   /// `Windows.Storage.StorageFile`, `Windows.Storage.IStorageFile`).
   final InterfaceProjection interfaceProjection;
 
   /// Whether the [interface] is a generic interface.
   bool get isGenericInterface => interface.typeSpec?.isGenericType ?? false;
 
-  /// The shorter [interface] name without type arguments (e.g. `IMap`,
+  /// The shorter [interface] name without type arguments (e.g., `IMap`,
   /// `ICalendar`).
   String get shortInterfaceName => outerType(interface.shortName);
 
-  /// The type arguments of the [interface] (e.g. `String, String?`,
+  /// The type arguments of the [interface] (e.g., `String, String?`,
   /// `StorageFile`).
   String get typeArgs => typeArguments(interface.shortName);
 
-  /// Private field identifier for the [interface] (e.g. `_iCalendar`).
+  /// Private field identifier for the [interface] (e.g., `_iCalendar`).
   String get fieldIdentifier => '_i${shortInterfaceName.substring(1)}';
 
   /// The constructor arguments passed to the constructors of the [interface].
@@ -159,8 +159,8 @@ final class MethodForwardersProjection {
     } else {
       // Try using the interface name as a class name by removing the 'I' prefix
       classTypeName = (interfaceProjection.typeDef.name.split('.')
-            ..removeLast() // Remove the shortName (e.g. IPropertySet)
-            // Add shortName without 'I' prefix (e.g. PropertySet)
+            ..removeLast() // Remove the shortName (e.g., IPropertySet)
+            // Add shortName without 'I' prefix (e.g., PropertySet)
             ..add(interfaceProjection.shortName.substring(1)))
           .join('.');
     }

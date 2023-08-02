@@ -140,7 +140,7 @@
     "Windows.Security.Authentication.Web.Core.FindAllWebAccountsStatus": "Contains values that describe the result of a web account enumeration operation (see the FindAllAccountsAsync method).",
     "Windows.Security.Authentication.Web.Core.WebTokenRequestPromptType": "Represents the prompt type of a web token request.",
     "Windows.Security.Authentication.Web.Core.WebTokenRequestStatus": "Represents the status of a web token request.",
-    "Windows.Security.Credentials.WebAccountPictureSize": "",
+    "Windows.Security.Credentials.WebAccountPictureSize": "Represents the sizes of a web account picture.",
     "Windows.Security.Credentials.WebAccountState": "Describes the state of a WebAccount object.",
     "Windows.Services.Maps.MapLocationDesiredAccuracy": "Indicates the desired accuracy to use when converting latitude and longitude coordinates to a physical location like a city or address.",
     "Windows.Services.Store.StorePackageUpdateState": "Defines values that represent the state of a package download or installation request.",

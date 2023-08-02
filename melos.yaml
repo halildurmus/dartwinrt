@@ -31,9 +31,7 @@ scripts:
 
   update-goldens:
     description: Update golden files with the latest generated output.
-    exec: dart bin\update_goldens.dart
-    packageFilters:
-      scope: winrtgen
+    run: cd packages\winrtgen && dart bin\update_goldens.dart
 
   publish:
     description: Publish all packages to pub.dev after validation.

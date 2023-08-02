@@ -127,21 +127,19 @@ final class TypeProjection {
 
   bool get isVoid => dartType == 'void';
 
-  bool get isWinRT => typeIdentifier.type?.isWindowsRuntime ?? false;
+  bool get isWinRT => typeIdentifier.isWinRT;
 
-  bool get isWinRTClass => isWinRT && (typeIdentifier.type?.isClass ?? false);
+  bool get isWinRTClass => typeIdentifier.isWinRTClass;
 
-  bool get isWinRTDelegate =>
-      isWinRT && (typeIdentifier.type?.isDelegate ?? false);
+  bool get isWinRTDelegate => typeIdentifier.isWinRTDelegate;
 
-  bool get isWinRTEnum => isWinRT && (typeIdentifier.type?.isEnum ?? false);
+  bool get isWinRTEnum => typeIdentifier.isWinRTEnum;
 
-  bool get isWinRTInterface =>
-      isWinRT && (typeIdentifier.type?.isInterface ?? false);
+  bool get isWinRTInterface => typeIdentifier.isWinRTInterface;
 
-  bool get isWinRTObject => isWinRTClass || isWinRTInterface || isObjectType;
+  bool get isWinRTObject => typeIdentifier.isWinRTObject;
 
-  bool get isWinRTStruct => isWinRT && (typeIdentifier.type?.isStruct ?? false);
+  bool get isWinRTStruct => typeIdentifier.isWinRTStruct;
 
   bool get exposedAsStruct => isGuid || (isWinRTStruct && !isSpecialType);
 

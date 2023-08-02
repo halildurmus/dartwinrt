@@ -7,26 +7,14 @@ import 'dart:io';
 
 import 'package:winrtgen/winrtgen.dart';
 
-({
-  Map<String, String> objects,
-  Map<String, String> enums,
-  Map<String, String> structs
-}) loadJsonFiles() {
-  final objects = loadMap('objects.json');
-  final enums = loadMap('enums.json');
-  final structs = loadMap('structs.json');
-  saveMap(objects, 'objects.json');
-  saveMap(enums, 'enums.json');
-  saveMap(structs, 'structs.json');
-  return (objects: objects, enums: enums, structs: structs);
-}
-
 /// Creates a file at the given [path] and writes the [content] into it.
 void writeToFile(String path, String content) => File(path)
   ..createSync(recursive: true)
   ..writeAsStringSync(content);
 
-void generateObjects(Map<String, String> types) {
+void generateObjects() {
+  final types = ObjectManager().types;
+
   // Catalog all the types we need to generate: the types themselves and their
   // dependencies
   final typesAndDependencies = <String>{};
@@ -69,8 +57,7 @@ void generateObjects(Map<String, String> types) {
   }
 }
 
-void generateConcreteClassesForGenericInterfaces(
-    List<GenericType> genericTypes) {
+void generateConcreteClassesForGenericInterfaces() {
   for (final genericType in genericTypes) {
     final type = genericType.fullyQualifiedType;
     final projection = GenericInterfacePartFileProjection(genericType);
@@ -79,23 +66,25 @@ void generateConcreteClassesForGenericInterfaces(
   }
 }
 
-void generateEnumerations(Map<String, String> enums) {
-  for (final type in enums.keys) {
-    final projection = EnumProjection.from(type, comment: enums[type] ?? '');
+void generateEnumerations() {
+  final types = EnumManager().types;
+  for (final type in types.keys) {
+    final projection = EnumProjection.from(type, comment: types[type] ?? '');
     final path = relativePathForType(type);
     writeToFile(path, projection.toString());
   }
 }
 
-void generateStructs(Map<String, String> structs) {
+void generateStructs() {
+  final types = StructManager().types;
   final nativeStructProjections = SplayTreeSet<NativeStructProjection>(
       (a, b) => a.typeDef.shortName.compareTo(b.typeDef.shortName));
 
-  for (final type in structs.keys) {
+  for (final type in types.keys) {
     final nativeStructProjection = NativeStructProjection.from(type);
     nativeStructProjections.add(nativeStructProjection);
     final structProjection =
-        StructProjection.from(type, comment: structs[type] ?? '');
+        StructProjection.from(type, comment: types[type] ?? '');
     final path = relativePathForType(type);
     writeToFile(path, structProjection.toString());
   }
@@ -157,21 +146,18 @@ ${exports.map((e) => "export '$e';").join('\n')}
 void main() {
   final stopwatch = Stopwatch()..start();
 
-  print('[${stopwatch.elapsed}] Loading JSON files...');
-  final (:enums, :objects, :structs) = loadJsonFiles();
-
   print('[${stopwatch.elapsed}] Generating WinRT objects...');
-  generateObjects(objects);
+  generateObjects();
 
   print('[${stopwatch.elapsed}] Generating concrete classes for WinRT generic '
       'interfaces...');
-  generateConcreteClassesForGenericInterfaces(genericTypes);
+  generateConcreteClassesForGenericInterfaces();
 
   print('[${stopwatch.elapsed}] Generating WinRT enumerations...');
-  generateEnumerations(enums);
+  generateEnumerations();
 
   print('[${stopwatch.elapsed}] Generating WinRT structures...');
-  generateStructs(structs);
+  generateStructs();
 
   print('[${stopwatch.elapsed}] Generating library exports...');
   generateLibraryExports();

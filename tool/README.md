@@ -10,8 +10,8 @@ The metadata extraction and parsing are handled by the separate
 [winmd][winmd_link] package.
 
 Not all WinRT APIs are projected. The JSON files located in the
-[packages\winrtgen\data][data_dir_link] directory are used to determine which
-APIs to project.
+[packages\winrtgen\assets][assets_dir_link] directory are used to determine
+which APIs to project.
 
 ## Getting Started
 
@@ -106,7 +106,7 @@ original file contents, as defined in the mapping specified in
 **Note**: Whenever you add a new golden test, remember to update the map in the
 `golden_files.dart` file.
 
-[data_dir_link]: https://github.com/dart-windows/dartwinrt/tree/main/packages/winrtgen/data
+[assets_dir_link]: https://github.com/dart-windows/dartwinrt/tree/main/packages/winrtgen/assets
 [ecma_335_link]: https://www.ecma-international.org/publications-and-standards/standards/ecma-335/
 [golden_files_dart_link]: https://github.com/dart-windows/dartwinrt/tree/main/packages/winrtgen/lib/src/constants/golden_files.dart
 [goldens_dir_link]: https://github.com/dart-windows/dartwinrt/tree/main/packages/winrtgen/test/goldens

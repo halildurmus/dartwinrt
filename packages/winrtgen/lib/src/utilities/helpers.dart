@@ -63,10 +63,12 @@ List<Method> getAllMethodsInMetadata() {
 TypeDef getMetadataForType(String type) {
   try {
     final typeDef = MetadataStore.getMetadataForType(type);
-    if (typeDef == null) throw WinRTGenException("Couldn't find type: $type");
+    if (typeDef == null) {
+      throw WinRTGenException('`$type` is not found in the Metadata!');
+    }
     return typeDef;
   } catch (_) {
-    throw WinRTGenException("Couldn't find type: $type");
+    throw WinRTGenException('`$type` is not found in the Metadata!');
   }
 }
 
@@ -107,6 +109,10 @@ String iidFromSignature(String signature) {
   return Guid.fromComponents(firstPart, secondPart, thirdPart, fourthPart)
       .toString();
 }
+
+/// Whether the [input] is a valid fully qualified type.
+bool isValidFullyQualifiedType(String input) =>
+    RegExp(r'^((?=[A-Z])\w+\.){2,}[A-Z]\w*$').hasMatch(input);
 
 /// Whether the [input] is a valid IID.
 bool isValidIID(String input) =>
@@ -274,6 +280,18 @@ String uniquelyNameMethod(Method method) {
   if (overloadName.isNotEmpty) return overloadName;
   // Otherwise the original name is fine.
   return method.name;
+}
+
+/// Verifies that the given [fullyQualifiedType] is fully qualified, otherwise
+/// throws an [ArgumentError].
+void verifyTypeIsFullyQualified(String fullyQualifiedType) {
+  if (!isValidFullyQualifiedType(fullyQualifiedType)) {
+    throw ArgumentError.value(
+      fullyQualifiedType,
+      'fullyQualifiedType',
+      'Type must be fully qualified (e.g., Windows.Foundation.Uri)',
+    );
+  }
 }
 
 /// Take a [commentText] and turn it into a multi-line doc comment.
