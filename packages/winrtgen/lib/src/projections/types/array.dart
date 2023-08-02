@@ -52,10 +52,10 @@ abstract base class ArrayParameterProjection extends ParameterProjection {
 
   /// Returns the identifier to use as the array size.
   ///
-  /// On `void` methods (e.g. `DataReader.readBytes`), `xxSize` parameter from
+  /// On `void` methods (e.g., `DataReader.readBytes`), `xxSize` parameter from
   /// the method is used.
   ///
-  /// On non-void methods (e.g. `IVector.getMany`), the number of items that
+  /// On non-void methods (e.g., `IVector.getMany`), the number of items that
   /// were retrieved is returned so `retValuePtr.value` is used instead.
   String get fillArraySizeIdentifier => method.isVoid
       ? sizeIdentifier

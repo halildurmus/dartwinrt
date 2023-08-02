@@ -123,12 +123,12 @@ base class MethodProjection {
     return params;
   }
 
-  /// The parameters exposed by a projected Dart method (e.g. `int age`,
+  /// The parameters exposed by a projected Dart method (e.g., `int age`,
   /// `int index, String value`).
   String get methodParams =>
       exposedParams.map((param) => param.paramProjection).join(', ');
 
-  /// The return type of the method (e.g. `String`).
+  /// The return type of the method (e.g., `String`).
   String get returnType => paramProjection.type;
 
   /// Type projection of the return type parameter.

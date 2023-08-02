@@ -71,7 +71,7 @@ final class ObjectParameterProjection extends ParameterProjection {
     if (isObjectType) {
       // IPropertyValueStatics' methods return 'IInspectable' in WinMD (i.e.
       // boxed value). Normally we expose them as 'Object?' and return the
-      // underlying value they carry (e.g. String, bool). However, since these
+      // underlying value they carry (e.g., String, bool). However, since these
       // methods are used when boxing values, we need the 'IPropertyValue'
       // interface to be returned instead of the underlying value (except for
       // 'CreateEmpty' and 'CreateInspectable' methods).

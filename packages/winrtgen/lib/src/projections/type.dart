@@ -16,19 +16,19 @@ final class TypeProjection {
   /// Whether this type represents an `in` parameter.
   final bool isInParam;
 
-  /// The type, as represented in the native function (e.g. `Int64`)
+  /// The type, as represented in the native function (e.g., `Int64`)
   String get nativeType => projection.nativeType;
 
-  /// The type, as represented in the Dart function (e.g. `int`)
+  /// The type, as represented in the Dart function (e.g., `int`)
   String get dartType => projection.dartType;
 
-  /// The type, as represented as a struct attribute (e.g. `@Int64()`)
+  /// The type, as represented as a struct attribute (e.g., `@Int64()`)
   String get attribute => projection.attribute ?? '';
 
-  /// The projection kind of this type (e.g. `ProjectionKind.dateTime`).
+  /// The projection kind of this type (e.g., `ProjectionKind.dateTime`).
   ProjectionKind get projectionKind => ProjectionKind.from(this);
 
-  /// The type of the pointer to [nativeType] (e.g. `Pointer<Int64>`).
+  /// The type of the pointer to [nativeType] (e.g., `Pointer<Int64>`).
   TypeTuple get pointer {
     final type = 'Pointer<$nativeType>';
     return TypeTuple(type, type);
@@ -210,7 +210,7 @@ final class TypeProjection {
   TypeTuple get projection => _projection ??= _projectType();
 
   TypeTuple _projectType() {
-    // Could be an intrinsic base type (e.g. Int32)
+    // Could be an intrinsic base type (e.g., Int32)
     if (isBaseType) return _baseNativeMapping[typeIdentifier.baseType]!;
 
     // Could be a GUID or other special type that we want to custom-map
@@ -226,8 +226,8 @@ final class TypeProjection {
     // Could be a WinRT struct like BasicGeoposition
     if (isWinRTStruct) return _unwrapStruct();
 
-    // Could be a WinRT delegate (e.g. AsyncActionCompletedHandler), class (e.g.
-    // Calendar), interface (e.g. ICalendar), or boxed value
+    // Could be a WinRT delegate (e.g., AsyncActionCompletedHandler), class
+    // (e.g., Calendar), interface (e.g., ICalendar), or boxed value
     if (isWinRTDelegate || isWinRTObject) {
       // VTablePointer is a type alias that represents a Pointer to the
       // COM v-table (i.e. Pointer<Pointer<IntPtr>>).
@@ -235,7 +235,7 @@ final class TypeProjection {
       return TypeTuple(type, type);
     }
 
-    // Handle generic type argument (e.g. TypeArgKind.inspectable,
+    // Handle generic type argument (e.g., TypeArgKind.inspectable,
     // TypeArgKind.nullableInspectable, TypeArgKind.winrtEnum, or
     // TypeArgKind.winrtFlagsEnum)
     if (isClassVariableType) return _unwrapGenericTypeArg();
@@ -251,13 +251,13 @@ final class TypeProjection {
 final class TypeTuple {
   const TypeTuple(this.nativeType, this.dartType, {this.attribute});
 
-  /// The type, as represented in the native function (e.g. `Int64`)
+  /// The type, as represented in the native function (e.g., `Int64`)
   final String nativeType;
 
-  /// The type, as represented in the Dart function (e.g. `int`)
+  /// The type, as represented in the Dart function (e.g., `int`)
   final String dartType;
 
-  /// The type, as represented as a struct attribute (e.g. `@Int64()`)
+  /// The type, as represented as a struct attribute (e.g., `@Int64()`)
   final String? attribute;
 }
 

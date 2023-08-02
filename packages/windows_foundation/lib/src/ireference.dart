@@ -29,12 +29,12 @@ abstract interface class IReference<T> extends IInspectable {
   /// Creates an instance of [IReference] from the given [ptr] and
   /// [referenceIid].
   ///
-  /// [referenceIid] must be the IID of the `IReference<T>` interface (e.g.
+  /// [referenceIid] must be the IID of the `IReference<T>` interface (e.g.,
   /// `'{513ef3af-e784-5325-a91e-97c2b8111cf3}'`).
   ///
   /// [T] must be of type `bool`, `DateTime?`, `double?`, `Duration?`, `Guid?`,
-  /// `int?`, `String?`, `WinRTEnum?` (e.g. `WebErrorStatus?`), or
-  /// `WinRTStruct?` (e.g. `BasicGeoposition?`).
+  /// `int?`, `String?`, `WinRTEnum?` (e.g., `WebErrorStatus?`), or
+  /// `WinRTStruct?` (e.g., `BasicGeoposition?`).
   ///
   /// [enumCreator] must be specified if [T] is `WinRTEnum?`.
   /// ```dart

@@ -45,13 +45,13 @@ Pointer<COMObject> activateClass(String className,
 /// Creates the activation factory for the specified Windows Runtime class in
 /// [className].
 ///
-/// [creator] must be the constructor of the class to be created (e.g.
+/// [creator] must be the constructor of the class to be created (e.g.,
 /// `ICalendarFactory.fromPtr`).
 ///
-/// [className] must be the name of the Windows Runtime class (e.g.
+/// [className] must be the name of the Windows Runtime class (e.g.,
 /// `Windows.Globalization.Calendar`).
 ///
-/// [iid] must be the IID of the object to be created (e.g.
+/// [iid] must be the IID of the object to be created (e.g.,
 /// `IID_ICalendarFactory`).
 ///
 /// ```dart
@@ -88,13 +88,13 @@ T createActivationFactory<T extends IInspectable>(
 
 /// Creates a WinRT object.
 ///
-/// [creator] must be the constructor of the class to be created (e.g.
+/// [creator] must be the constructor of the class to be created (e.g.,
 /// `ICalendar.fromPtr`).
 ///
-/// [className] must be an activatable Windows Runtime class (e.g.
+/// [className] must be an activatable Windows Runtime class (e.g.,
 /// `Windows.Globalization.Calendar`).
 ///
-/// [iid] must be the IID of the object to be created (e.g. `IID_ICalendar`).
+/// [iid] must be the IID of the object to be created (e.g., `IID_ICalendar`).
 ///
 /// ```dart
 /// final calendar = createObject(ICalendar.fromPtr,

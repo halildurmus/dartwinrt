@@ -8,7 +8,7 @@ import '../../constants/constants.dart';
 
 extension CustomAttributesMixinHelpers on CustomAttributesMixin {
   /// Returns the deprecated annotation for this object if it has a
-  /// `DeprecatedAttribute` (e.g.
+  /// `DeprecatedAttribute` (e.g.,
   /// `@Deprecated('Use pickSingleFileAsync instead')`) or an empty String if it
   /// hasn't.
   String get deprecatedAnnotation {

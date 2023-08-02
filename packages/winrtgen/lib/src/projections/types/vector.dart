@@ -16,7 +16,7 @@ final class VectorParameterProjection extends ParameterProjection {
       : typeProjection.typeIdentifier;
 
   /// The type argument of `IVector` and `IVectorView`, as represented in the
-  /// [typeProjection]'s [TypeIdentifier] (e.g. `String`, `StorageFile?`).
+  /// [typeProjection]'s [TypeIdentifier] (e.g., `String`, `StorageFile?`).
   String get vectorTypeArg => typeArguments(shortTypeName);
 
   /// The constructor arguments passed to the constructors of `IVector` and
@@ -24,10 +24,10 @@ final class VectorParameterProjection extends ParameterProjection {
   String get vectorConstructorArgs {
     final typeArgProjection = TypeProjection(typeIdentifier.typeArgs.first);
 
-    // If the type argument is an enum or a WinRT object (e.g. StorageFile), the
-    // constructor of that class must be passed in the 'enumCreator' parameter
-    // for enums, 'creator' parameter for WinRT objects so that the IVector and
-    // IVectorView implementations can instantiate the object
+    // If the type argument is an enum or a WinRT object (e.g., StorageFile),
+    // the constructor of that class must be passed in the 'enumCreator'
+    // parameter for enums, 'creator' parameter for WinRT objects so that the
+    // IVector and IVectorView implementations can instantiate the object
     final creator = typeArgProjection.typeIdentifier.creator;
 
     // The IID for IIterable<T> must be passed in the 'iterableIid' parameter so

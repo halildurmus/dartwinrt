@@ -60,7 +60,7 @@ extension ParameterHelpers on Parameter {
 
   bool get isReferenceType => typeIdentifier.isReferenceType;
 
-  /// Whether this is a simple array size parameter (e.g. `__valueSize`).
+  /// Whether this is a simple array size parameter (e.g., `__valueSize`).
   bool get isSimpleArraySizeParam => RegExp(r'^(__\w+Size)$').hasMatch(name);
 
   bool get isSimpleArrayType => typeIdentifier.isSimpleArrayType;
@@ -69,15 +69,15 @@ extension ParameterHelpers on Parameter {
   ProjectionKind get projectionKind =>
       TypeProjection(typeIdentifier).projectionKind;
 
-  /// Converts this simple array size parameter name (e.g. `__valueSize`) to the
-  /// corresponding array parameter name (e.g. `value`).
+  /// Converts this simple array size parameter name (e.g., `__valueSize`) to the
+  /// corresponding array parameter name (e.g., `value`).
   String toArrayParamName() {
     assert(isSimpleArraySizeParam);
     return name.substring(2, name.length - 4);
   }
 
-  /// Converts this array parameter name (e.g. `value`) to the corresponding
-  /// array size parameter name (e.g. `__valueSize`).
+  /// Converts this array parameter name (e.g., `value`) to the corresponding
+  /// array size parameter name (e.g., `__valueSize`).
   String toArraySizeParamName() {
     assert(!name.startsWith('__') && !name.endsWith('Size'));
     return '__${name}Size';

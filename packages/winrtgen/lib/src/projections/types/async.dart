@@ -69,7 +69,7 @@ final class AsyncOperationParameterProjection
   }
 
   /// The type argument of `IAsyncOperation`, as represented in the
-  /// [typeProjection]'s `TypeIdentifier` (e.g. `bool`, `String`,
+  /// [typeProjection]'s `TypeIdentifier` (e.g., `bool`, `String`,
   /// `StorageFile?`).
   String get typeArg => typeArguments(typeIdentifier.shortName);
 
@@ -93,9 +93,9 @@ final class AsyncOperationParameterProjection
     final typeArg = dereferenceType(typeIdentifier);
     final typeProjection = TypeProjection(typeArg);
 
-    // If the type argument is an enum or a WinRT object (e.g. StorageFile), the
-    // constructor of that class must be passed in the 'enumCreator' parameter
-    // for enums, 'creator' parameter for WinRT objects so that the
+    // If the type argument is an enum or a WinRT object (e.g., StorageFile),
+    // the constructor of that class must be passed in the 'enumCreator'
+    // parameter for enums, 'creator' parameter for WinRT objects so that the
     // IAsyncOperation implementation can instantiate the object.
     final creator = typeArg.creator;
 

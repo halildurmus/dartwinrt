@@ -106,10 +106,10 @@ const IID_$shortName = ${quote(typeDef.iid)};''';
   factory $shortName.from(IInspectable interface) =>
       $shortName.fromPtr(interface.toInterface(IID_$shortName));''';
 
-  // WinRT interfaces don't inherit in metadata (e.g. IAsyncInfo has no parent),
-  // but all WinRT interfaces have a base type of IInspectable as far as the
-  // COM vtable is concerned. They contain the methods of IInspectable (as well
-  // as IUnknown, from which IInspectable itself inherits).
+  // WinRT interfaces don't inherit in metadata (e.g., IAsyncInfo), but all
+  // WinRT interfaces have a base type of IInspectable as far as the COM vtable
+  // is concerned. They contain the methods of IInspectable (as well as
+  // IUnknown, from which IInspectable itself inherits).
   //
   // For more information, see the Interfaces section of the documentation here:
   // https://learn.microsoft.com/uwp/winrt-cref/winrt-type-system
