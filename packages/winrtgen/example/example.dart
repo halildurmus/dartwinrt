@@ -11,7 +11,7 @@ String format(Object object) {
   try {
     return formatter.format(object.toString());
   } catch (_) {
-    print('Unable to format ${object.runtimeType}');
+    print('Failed to format ${object.runtimeType}.');
     return object.toString();
   }
 }

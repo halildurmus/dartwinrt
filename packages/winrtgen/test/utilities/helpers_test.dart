@@ -31,7 +31,7 @@ void main() {
     expect(
       () => getMetadataForType('Windows.Foo.Bar'),
       throwsA(isA<WinRTGenException>().having((e) => e.message, 'message',
-          equals("Couldn't find type: Windows.Foo.Bar"))),
+          equals('`Windows.Foo.Bar` is not found in the Metadata!'))),
     );
   });
 
@@ -108,6 +108,14 @@ void main() {
               .toString(),
           equals('{98b9acc1-4b56-532e-ac73-03d5291cca90}'));
     });
+  });
+
+  test('isValidFullyQualifiedType', () {
+    expect(isValidFullyQualifiedType('Windows.Foundation.AsyncStatus'), isTrue);
+    expect(isValidFullyQualifiedType('Windows.Data.Json.JsonArray'), isTrue);
+    expect(isValidFullyQualifiedType('Windows'), isFalse);
+    expect(isValidFullyQualifiedType('Windows.Foundation'), isFalse);
+    expect(isValidFullyQualifiedType('not a fully qualified type'), isFalse);
   });
 
   test('isValidIID', () {
@@ -320,6 +328,16 @@ void main() {
     expect(typeArguments('IMap<String, Object?>'), equals('String, Object?'));
     expect(typeArguments('IMapView<String, IVectorView<TextSegment>?>'),
         equals('String, IVectorView<TextSegment>?'));
+  });
+
+  test('verifyTypeIsFullyQualified', () {
+    expect(() => verifyTypeIsFullyQualified('Windows.Foundation.Uri'),
+        returnsNormally);
+    expect(() => verifyTypeIsFullyQualified('Windows'), throwsArgumentError);
+    expect(() => verifyTypeIsFullyQualified('Windows.Foundation'),
+        throwsArgumentError);
+    expect(() => verifyTypeIsFullyQualified('not a fully qualified type'),
+        throwsArgumentError);
   });
 
   test('wrapCommentText', () {

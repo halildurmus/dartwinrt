@@ -1,0 +1,38 @@
+// Copyright (c) 2023, Dart | Windows. Please see the AUTHORS file for details.
+// All rights reserved. Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.
+
+import 'package:test/test.dart';
+import 'package:winrtgen/winrtgen.dart';
+
+void main() {
+  group('WinRTDocsService', () {
+    test('fetchDocumentation', () async {
+      final fullyQualifiedType = 'Windows.Globalization.Calendar';
+      final documentation =
+          await WinRTDocsService.fetchDocumentation(fullyQualifiedType);
+      expect(
+          documentation,
+          equals(
+              'Manipulates the representation of a DateTime within a given calendar and clock.'));
+    });
+
+    test('fetchDocumentations', () async {
+      final type1 = 'Windows.Globalization.Calendar';
+      final type2 = 'Windows.Storage.Streams.IRandomAccessStream';
+      final type3 = 'Windows.UI.Notifications.ToastNotificationMode';
+      final documentations =
+          await WinRTDocsService.fetchDocumentations({type1, type2, type3});
+      expect(documentations.length, equals(3));
+      expect(
+          documentations[type1],
+          equals(
+              'Manipulates the representation of a DateTime within a given calendar and clock.'));
+      expect(
+          documentations[type2],
+          equals(
+              'Supports random access of data in input and output streams.'));
+      expect(documentations[type3], isEmpty);
+    });
+  });
+}

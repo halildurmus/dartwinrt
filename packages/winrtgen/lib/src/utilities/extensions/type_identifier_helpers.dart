@@ -135,7 +135,21 @@ extension TypeIdentifierHelpers on TypeIdentifier {
 
   bool get isVoidType => baseType == BaseType.voidType;
 
-  /// Returns the shorter name of the type defined in this TypeIdentifier (e.g.
+  bool get isWinRT => type?.isWindowsRuntime ?? false;
+
+  bool get isWinRTClass => isWinRT && (type?.isClass ?? false);
+
+  bool get isWinRTDelegate => isWinRT && (type?.isDelegate ?? false);
+
+  bool get isWinRTEnum => isWinRT && (type?.isEnum ?? false);
+
+  bool get isWinRTInterface => isWinRT && (type?.isInterface ?? false);
+
+  bool get isWinRTObject => isWinRTClass || isWinRTInterface || isObjectType;
+
+  bool get isWinRTStruct => isWinRT && (type?.isStruct ?? false);
+
+  /// Returns the shorter name of the type defined in this TypeIdentifier (e.g.,
   /// `ICalendar`, `IMap<String, String>`).
   String get shortName {
     if (name == 'Windows.Foundation.TimeSpan') return 'Duration';

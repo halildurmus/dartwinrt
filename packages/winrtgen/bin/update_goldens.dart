@@ -17,14 +17,16 @@ Iterable<File> getGoldenFiles() => goldensDir
 void main() {
   print('Updating the following golden files:');
 
-  for (final MapEntry(:key, :value) in goldenFiles.entries) {
+  for (final goldenFile in getGoldenFiles()) {
+    final MapEntry(:key, :value) = goldenFiles.entries.firstWhere(
+        (entry) => goldenFile.path.endsWith(entry.key),
+        orElse: () => throw StateError(
+            'Could not find the original file for ${goldenFile.path}'));
     print(' - $key');
     final originalFilePath = '${packagesDir.path}/$value';
     final originalFileContent = File(originalFilePath).readAsStringSync();
     // Update the golden file with the original file content.
-    getGoldenFiles()
-        .firstWhere((f) => f.path.endsWith(key))
-        .writeAsStringSync(originalFileContent);
+    goldenFile.writeAsStringSync(originalFileContent);
   }
 
   print('Done.');

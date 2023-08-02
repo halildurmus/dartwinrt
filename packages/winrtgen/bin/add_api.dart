@@ -2,315 +2,41 @@
 // All rights reserved. Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import 'dart:collection';
-import 'dart:io';
-
 import 'package:args/args.dart';
-import 'package:html/parser.dart';
-import 'package:http/http.dart' as http;
-import 'package:pool/pool.dart';
-import 'package:winmd/winmd.dart';
 import 'package:winrtgen/winrtgen.dart';
 
-/// Represents the type dependencies of a WinRT type like
-/// `Windows.Storage.StorageFile`.
-class TypeDependencies {
-  TypeDependencies(
-    this.type, {
-    required this.enums,
-    required this.objects,
-    required this.structs,
-    required this.ignoredTypes,
-    this.alreadyGeneratedTypes = const {},
-  });
-
-  final String type;
-  final Set<String> enums;
-  final Set<String> objects;
-  final Set<String> structs;
-  final Set<String> ignoredTypes;
-  final Set<String> alreadyGeneratedTypes;
-
-  bool get hasNewDependencies =>
-      enums.isNotEmpty || objects.isNotEmpty || structs.isNotEmpty;
-
-  @override
-  String toString() {
-    final sb = StringBuffer()..writeln('Type dependencies of `$type`:');
-
-    if (alreadyGeneratedTypes.isNotEmpty) {
-      sb
-        ..writeln()
-        ..writeln('[Already generated]');
-      for (final type in alreadyGeneratedTypes) {
-        sb.writeln(' - $type');
-      }
-    }
-
-    if (ignoredTypes.isNotEmpty) {
-      sb
-        ..writeln()
-        ..writeln('[Ignored]');
-      for (final type in ignoredTypes) {
-        sb.writeln(' - $type');
-      }
-    }
-
-    if (enums.isNotEmpty) {
-      sb
-        ..writeln()
-        ..writeln('[Enums]');
-      for (final type in enums) {
-        sb.writeln(' - $type');
-      }
-    }
-
-    if (objects.isNotEmpty) {
-      sb
-        ..writeln()
-        ..writeln('[Objects]');
-      for (final type in objects) {
-        sb.writeln(' - $type');
-      }
-    }
-
-    if (structs.isNotEmpty) {
-      sb
-        ..writeln()
-        ..writeln('[Structs]');
-      for (final type in structs) {
-        sb.writeln(' - $type');
-      }
-    }
-
-    return sb.toString();
-  }
-}
-
-TypeDependencies getAllDependenciesOf(String type) {
-  final visitedTypes = SplayTreeSet<String>();
-
-  final enums = SplayTreeSet<String>();
-  final objects = SplayTreeSet<String>();
-  final structs = SplayTreeSet<String>();
-  final ignoredTypes = SplayTreeSet<String>();
-
-  final types = dependenciesOf(type);
-  final typesToVisit = SplayTreeSet<String>.from(types.objects);
-
-  while (typesToVisit.isNotEmpty) {
-    final typeToVisit = typesToVisit.first;
-    typesToVisit.remove(typeToVisit);
-    if (visitedTypes.contains(typeToVisit)) continue;
-    final dependencies = dependenciesOf(typeToVisit);
-    visitedTypes.add(typeToVisit);
-    enums.addAll(dependencies.enums);
-    ignoredTypes.addAll(dependencies.ignoredTypes);
-    objects.addAll(dependencies.objects);
-    structs.addAll(dependencies.structs);
-    typesToVisit.addAll(dependencies.objects);
-  }
-
-  final generatedFilePaths = getGeneratedFilePaths();
-  final enumsToGenerate = loadMap('enums.json');
-  final objectsToGenerate = loadMap('objects.json');
-  final structsToGenerate = loadMap('structs.json');
-
-  /// Returns `windows_globalization\lib\src\calendar.dart` for
-  /// `Windows.Globalization.Calendar`.
-  String filePath(String type) =>
-      '${relativeFolderPathFromType(type)}/${fileNameFromType(type)}'
-          .replaceFirst('../../packages/', '')
-          .replaceAll(r'/', r'\');
-
-  final alreadyGeneratedTypes = SplayTreeSet<String>()
-    ..addAll({...enums, ...objects, ...structs}.where((type) =>
-        generatedFilePaths.contains(filePath(type)) ||
-        enumsToGenerate.keys.contains(type) ||
-        objectsToGenerate.keys.contains(type) ||
-        structsToGenerate.keys.contains(type)));
-
-  enums.removeWhere((type) => enumsToGenerate.keys.contains(type));
-  objects.removeWhere((type) =>
-      generatedFilePaths.contains(filePath(type)) ||
-      objectsToGenerate.keys.contains(type));
-  structs.removeWhere((type) => structsToGenerate.keys.contains(type));
-
-  return TypeDependencies(type,
-      enums: enums,
-      objects: objects,
-      structs: structs,
-      ignoredTypes: ignoredTypes,
-      alreadyGeneratedTypes: alreadyGeneratedTypes);
-}
-
-TypeDependencies dependenciesOf(String type) {
-  final enums = SplayTreeSet<String>();
-  final objects = SplayTreeSet<String>()..add(type);
-  final structs = SplayTreeSet<String>();
-  final ignoredTypes = SplayTreeSet<String>();
-
-  final typeDef = getMetadataForType(type);
-
-  void handleTypeIdentifier(TypeIdentifier typeIdentifier) {
-    final typeName = typeIdentifier.name;
-    if (typeName.isEmpty) return;
-
-    if (typeDef.interfaces.any((interface) => interface.name == typeName) ||
-        ignoredTypesInImports.contains(typeName) ||
-        typeName.endsWith('EventArgs')) {
-      ignoredTypes.add(typeName);
-      return;
-    }
-
-    // Add generic types (e.g. ..IReference`1) to ignoredTypes
-    if (typeName.contains('`')) {
-      ignoredTypes.add(typeName);
-    } else {
-      final typeProjection = TypeProjection(typeIdentifier);
-      if (typeProjection.isWinRTObject) {
-        objects.add(typeName);
-      } else if (typeProjection.isWinRTEnum) {
-        enums.add(typeName);
-      } else if (typeProjection.isWinRTStruct) {
-        structs.add(typeName);
-      }
-    }
-  }
-
-  final methods = {
-    ...typeDef.methods,
-    // Also add the methods from typeDef's inherited interfaces
-    ...[for (final typeDef in typeDef.interfaces) ...typeDef.methods],
-  };
-
-  for (final method in methods) {
-    final paramsAndReturnType = [...method.parameters, method.returnType];
-    for (final param in paramsAndReturnType) {
-      handleTypeIdentifier(param.typeIdentifier);
-
-      // Keep unwrapping until there are no types left.
-      var refType = param.typeIdentifier.typeArg;
-      while (refType != null) {
-        handleTypeIdentifier(refType);
-        refType = refType.typeArg;
-      }
-    }
-  }
-
-  return TypeDependencies(type,
-      enums: enums,
-      objects: objects,
-      structs: structs,
-      ignoredTypes: ignoredTypes);
-}
-
-Set<String> getGeneratedFilePaths() {
-  final filePaths = <String>{};
-  final packagesDir = Directory.current.parent;
-  final files = packagesDir
-      .listSync(recursive: true, followLinks: false)
-      .whereType<File>();
-
-  for (final entity in files) {
-    if (entity.path.endsWith('.dart')) {
-      // Skip native_structs.g.dart file
-      if (entity.path.endsWith('native_structs.g.dart')) continue;
-
-      // Skip generated exports.g.dart files
-      if (entity.path.endsWith('exports.g.dart')) continue;
-
-      // Skip part files
-      if (entity.path.endsWith('_part.dart')) continue;
-
-      // e.g. windows_globalization\lib\src\calendar.dart
-      final path = entity.path.substring(entity.path.indexOf(r'packages\') + 9);
-      filePaths.add(path);
-    }
-  }
-
-  return filePaths;
-}
-
-/// Returns the documentation comments for the [types] as a [Map].
-Future<Map<String, String>> getDocumentationComments(Set<String> types) async {
-  final docs = SplayTreeMap<String, String>();
-  final comments = await Future.wait(types.map(getDocumentationComment));
-  for (var i = 0; i < comments.length; i++) {
-    docs[types.elementAt(i)] = comments[i];
-  }
-  return docs;
-}
-
-final pool = Pool(3, timeout: const Duration(seconds: 30));
-
-/// Attempts to fetch the documentation for the [fullyQualifiedType] (e.g.
-/// `Windows.Globalization.Calendar`).
-///
-/// Returns an empty string if no documentation is found.
-Future<String> getDocumentationComment(String fullyQualifiedType) async {
-  return pool.withResource(() async {
-    const authority = 'learn.microsoft.com';
-    const basePath = '/en-us/uwp/api/';
-    final uri = Uri.https(authority, '$basePath/$fullyQualifiedType');
-    final response = await http.get(uri);
-    final document = parse(response.body);
-    final paragraphs = document.querySelectorAll('div.summary > p');
-    switch (paragraphs) {
-      case [final paragraph] || [final paragraph, ...]:
-        return paragraph.text;
-      default:
-        print('No documentation comment found for `$fullyQualifiedType`!');
-        return '';
-    }
-  });
-}
-
 Future<void> addEnum(String type) async {
-  try {
-    final typeDef = getMetadataForType(type);
-    if (!typeDef.isEnum) {
-      print('`$type` is not a WinRT enum!');
-      return;
-    }
-  } catch (e) {
-    print('`$type` is not found in Windows Metadata!');
-    return;
+  final typeAnalyzer = TypeAnalyzer.fromType(type);
+  if (!typeAnalyzer.isEnum) throw WinRTGenException('`$type` is not an enum!');
+
+  final enumManager = EnumManager();
+  final assetPath = enumManager.path;
+
+  if (enumManager.contains(type)) {
+    throw WinRTGenException('`$type` already exists in `$assetPath`!');
   }
 
-  final enumsToGenerate = loadMap('enums.json');
-  if (enumsToGenerate.keys.contains(type)) {
-    print('`$type` already exists in `data\\enums.json`!');
-    return;
-  }
-
-  print('Fetching documentation comment for `$type`...');
-  final docComment = await getDocumentationComment(type);
-
-  print('Adding `$type` into `data\\enums.json`...');
-  enumsToGenerate[type] = docComment;
-  saveMap(enumsToGenerate, 'enums.json');
+  print('Fetching documentation for `$type`...');
+  final documentation = await WinRTDocsService.fetchDocumentation(type);
+  print('Adding `$type` into `$assetPath`...');
+  enumManager.add(type, comment: documentation);
   print('Done!');
 }
 
 Future<void> addObject(String type) async {
-  try {
-    final typeDef = getMetadataForType(type);
-    if (type.contains('`')) {
-      print('`$type` is a generic type! Generic types cannot be generated.');
-      return;
-    }
-
-    if (!typeDef.isClass && !typeDef.isInterface) {
-      print('`$type` is not a WinRT object!');
-      return;
-    }
-  } catch (e) {
-    print('`$type` is not found in Windows Metadata!');
-    return;
+  final typeAnalyzer = TypeAnalyzer.fromType(type);
+  if (!typeAnalyzer.isObject) {
+    throw WinRTGenException('`$type` is not an object!');
   }
 
-  final dependencies = getAllDependenciesOf(type);
+  final objectManager = ObjectManager();
+  final assetPath = objectManager.path;
+
+  if (objectManager.contains(type)) {
+    throw WinRTGenException('`$type` already exists in `$assetPath`!');
+  }
+
+  final dependencies = typeAnalyzer.dependencies;
   print(dependencies);
 
   if (!dependencies.hasNewDependencies) {
@@ -318,66 +44,60 @@ Future<void> addObject(String type) async {
     return;
   }
 
-  print('Fetching documentation comments for the dependencies of `$type`...');
-  final docs = await getDocumentationComments({
+  print('Fetching documentations for the dependencies of `$type`...');
+  final docs = await WinRTDocsService.fetchDocumentations({
     ...dependencies.enums,
     ...dependencies.objects,
     ...dependencies.structs
   });
 
-  print('Adding the dependencies to JSON files...');
+  print('Adding the dependencies into JSON files...');
+
   if (dependencies.enums.isNotEmpty) {
-    print(' - Updating `data\\enums.json`...');
-    final enumsToGenerate = loadMap('enums.json');
-    for (final enumName in dependencies.enums) {
-      enumsToGenerate[enumName] = docs[enumName] ?? '';
-    }
-    saveMap(enumsToGenerate, 'enums.json');
+    final enumManager = EnumManager();
+    final assetPath = enumManager.path;
+    print(' - Updating `$assetPath`...');
+    enumManager.addAll({
+      for (final enumType in dependencies.enums) enumType: docs[enumType] ?? ''
+    });
   }
 
   if (dependencies.objects.isNotEmpty) {
-    print(' - Updating `data\\objects.json`...');
-    final objectsToGenerate = loadMap('objects.json');
-    for (final objectName in dependencies.objects) {
-      objectsToGenerate[objectName] = docs[objectName] ?? '';
-    }
-    saveMap(objectsToGenerate, 'objects.json');
+    print(' - Updating `$assetPath`...');
+    objectManager.addAll({
+      for (final object in dependencies.objects) object: docs[object] ?? ''
+    });
   }
 
   if (dependencies.structs.isNotEmpty) {
-    print(' - Updating `data\\structs.json`...');
-    final structsToGenerate = loadMap('structs.json');
-    for (final structName in dependencies.structs) {
-      structsToGenerate[structName] = docs[structName] ?? '';
-    }
-    saveMap(structsToGenerate, 'structs.json');
+    final structManager = StructManager();
+    final assetPath = structManager.path;
+    print(' - Updating `$assetPath`...');
+    structManager.addAll({
+      for (final struct in dependencies.structs) struct: docs[struct] ?? ''
+    });
   }
+
   print('Done!');
 }
 
 Future<void> addStruct(String type) async {
-  try {
-    final typeDef = getMetadataForType(type);
-    if (!typeDef.isStruct) {
-      print('`$type` is not a WinRT struct!');
-      return;
-    }
-  } catch (e) {
-    print('`$type` is not found in Windows Metadata!');
-    return;
+  final typeAnalyzer = TypeAnalyzer.fromType(type);
+  if (!typeAnalyzer.isStruct) {
+    throw WinRTGenException('`$type` is not a struct!');
   }
 
-  final structsToGenerate = loadMap('structs.json');
-  if (structsToGenerate.keys.contains(type)) {
-    print('`$type` already exists in `data\\structs.json`!');
-    return;
+  final structManager = StructManager();
+  final assetPath = structManager.path;
+
+  if (structManager.contains(type)) {
+    throw WinRTGenException('`$type` already exists in `$assetPath`!');
   }
 
-  print('Fetching documentation comment for `$type`...');
-  final docComment = await getDocumentationComment(type);
-  print('Adding `$type` into `data\\structs.json`...');
-  structsToGenerate[type] = docComment;
-  saveMap(structsToGenerate, 'structs.json');
+  print('Fetching documentation for `$type`...');
+  final documentation = await WinRTDocsService.fetchDocumentation(type);
+  print('Adding `$type` into `$assetPath`...');
+  structManager.add(type, comment: documentation);
   print('Done!');
 }
 
@@ -386,19 +106,19 @@ void main(List<String> args) async {
     ..addOption(
       'enum',
       abbr: 'e',
-      help: 'WinRT enum type (e.g. Windows.Globalization.DayOfWeek).',
+      help: 'WinRT enum type (e.g., Windows.Globalization.DayOfWeek).',
       valueHelp: 'type',
     )
     ..addOption(
       'object',
       abbr: 'o',
-      help: 'WinRT object type (e.g. Windows.Storage.StorageFile).',
+      help: 'WinRT object type (e.g., Windows.Storage.StorageFile).',
       valueHelp: 'type',
     )
     ..addOption(
       'struct',
       abbr: 's',
-      help: 'WinRT struct type (e.g. Windows.Foundation.Point).',
+      help: 'WinRT struct type (e.g., Windows.Foundation.Point).',
       valueHelp: 'type',
     );
 
@@ -406,9 +126,9 @@ void main(List<String> args) async {
     final results = parser.parse(args);
     if (results.options.isEmpty) throw const FormatException();
     return switch (results.options.first) {
-      'enum' => await addEnum(results['enum'] as String),
-      'object' => await addObject(results['object'] as String),
-      'struct' => await addStruct(results['struct'] as String),
+      'enum' => await addEnum(results.get('enum')),
+      'object' => await addObject(results.get('object')),
+      'struct' => await addStruct(results.get('struct')),
       _ => throw const FormatException(),
     };
   } on FormatException {
@@ -416,4 +136,8 @@ void main(List<String> args) async {
     print('Usage: add_api [arguments]\n');
     print(parser.usage);
   }
+}
+
+extension on ArgResults {
+  String get(String name) => this[name] as String;
 }
