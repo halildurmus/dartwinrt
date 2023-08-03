@@ -25,8 +25,8 @@ import 'xmldocument.dart';
 import 'xmlnamednodemap.dart';
 import 'xmlnodelist.dart';
 
-/// Represents an attribute of an XmlElement. Valid and default values for
-/// the attribute are defined in a document type definition (DTD) or schema.
+/// Represents an attribute of an XmlElement. Valid and default values for the
+/// attribute are defined in a document type definition (DTD) or schema.
 class XmlAttribute extends IInspectable
     implements IXmlAttribute, IXmlNode, IXmlNodeSerializer, IXmlNodeSelector {
   XmlAttribute.fromPtr(super.ptr);

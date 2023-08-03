@@ -8,8 +8,7 @@
 
 import 'package:windows_foundation/windows_foundation.dart';
 
-/// Specifies the possible execution states of a
-/// CoreAutomationRemoteOperation.
+/// Specifies the possible execution states of a CoreAutomationRemoteOperation.
 enum AutomationRemoteOperationStatus implements WinRTEnum {
   success(0),
   malformedBytecode(1),

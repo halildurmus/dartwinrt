@@ -18,8 +18,8 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 import 'iframefocuscapabilities.dart';
 
-/// Provides information about the focus capabilities of the capture device
-/// for frames in a variable photo sequences.
+/// Provides information about the focus capabilities of the capture device for
+/// frames in a variable photo sequences.
 class FrameFocusCapabilities extends IInspectable
     implements IFrameFocusCapabilities {
   FrameFocusCapabilities.fromPtr(super.ptr);

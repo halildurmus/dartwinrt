@@ -8,8 +8,8 @@
 
 import 'package:windows_foundation/windows_foundation.dart';
 
-/// Describes whether an item that implements the IStorageItem interface is
-/// a file or a folder.
+/// Describes whether an item that implements the IStorageItem interface is a
+/// file or a folder.
 final class StorageItemTypes extends WinRTFlagsEnum<StorageItemTypes> {
   const StorageItemTypes(super.value, {super.name});
 

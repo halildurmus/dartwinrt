@@ -19,8 +19,8 @@ import 'package:windows_foundation/windows_foundation.dart';
 import 'iocrline.dart';
 import 'ocrword.dart';
 
-/// Represents a single line of text recognized by the OCR engine and
-/// returned as part of the OcrResult.
+/// Represents a single line of text recognized by the OCR engine and returned
+/// as part of the OcrResult.
 class OcrLine extends IInspectable implements IOcrLine {
   OcrLine.fromPtr(super.ptr);
 

@@ -8,9 +8,9 @@
 
 import 'package:windows_foundation/windows_foundation.dart';
 
-/// Specifies whether the query should use the system index of the file
-/// system when enumerating content in the folder being queried. The indexer
-/// can retrieve results faster but is not available in all file locations.
+/// Specifies whether the query should use the system index of the file system
+/// when enumerating content in the folder being queried. The indexer can
+/// retrieve results faster but is not available in all file locations.
 enum IndexerOption implements WinRTEnum {
   useIndexerWhenAvailable(0),
   onlyUseIndexer(1),

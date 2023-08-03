@@ -8,8 +8,8 @@
 
 import 'package:windows_foundation/windows_foundation.dart';
 
-/// Defines the list of image nominal pixel range suppored by Windows ML.
-/// The proper value is specified in a machine learning model's metadata.
+/// Defines the list of image nominal pixel range suppored by Windows ML. The
+/// proper value is specified in a machine learning model's metadata.
 enum LearningModelPixelRange implements WinRTEnum {
   zeroTo255(0),
   zeroToOne(1),

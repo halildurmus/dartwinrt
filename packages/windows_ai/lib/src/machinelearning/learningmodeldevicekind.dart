@@ -8,8 +8,7 @@
 
 import 'package:windows_foundation/windows_foundation.dart';
 
-/// Defines the list of device kinds that can evaluate a machine learning
-/// model.
+/// Defines the list of device kinds that can evaluate a machine learning model.
 enum LearningModelDeviceKind implements WinRTEnum {
   default_(0),
   cpu(1),

@@ -23,8 +23,8 @@ import 'queryoptions.dart';
 
 /// Provides access to the results of a query that lists the folder (or file
 /// groups) in the folder being queried (which is represented by a
-/// StorageFolder). You can use a StorageFolderQueryResult to enumerate
-/// folders or file groups in that folder.
+/// StorageFolder). You can use a StorageFolderQueryResult to enumerate folders
+/// or file groups in that folder.
 class StorageFolderQueryResult extends IInspectable
     implements IStorageFolderQueryResult, IStorageQueryResultBase {
   StorageFolderQueryResult.fromPtr(super.ptr);

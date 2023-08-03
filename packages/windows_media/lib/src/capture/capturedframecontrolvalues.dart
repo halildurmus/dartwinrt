@@ -23,8 +23,8 @@ import 'icapturedframecontrolvalues.dart';
 import 'icapturedframecontrolvalues2.dart';
 import 'whitebalancegain.dart';
 
-/// Provides information about the capture device settings that were used
-/// for a frame in a variable photo sequence.
+/// Provides information about the capture device settings that were used for a
+/// frame in a variable photo sequence.
 class CapturedFrameControlValues extends IInspectable
     implements ICapturedFrameControlValues, ICapturedFrameControlValues2 {
   CapturedFrameControlValues.fromPtr(super.ptr);

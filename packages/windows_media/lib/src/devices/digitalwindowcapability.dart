@@ -18,8 +18,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 import 'idigitalwindowcapability.dart';
 
-/// Represents the digital window capture capabilities of the capture
-/// device.
+/// Represents the digital window capture capabilities of the capture device.
 class DigitalWindowCapability extends IInspectable
     implements IDigitalWindowCapability {
   DigitalWindowCapability.fromPtr(super.ptr);

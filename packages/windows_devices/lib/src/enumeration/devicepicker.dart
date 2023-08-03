@@ -23,8 +23,8 @@ import 'devicepickerdisplaystatusoptions.dart';
 import 'devicepickerfilter.dart';
 import 'idevicepicker.dart';
 
-/// Represents a picker flyout that contains a list of devices for the user
-/// to choose from.
+/// Represents a picker flyout that contains a list of devices for the user to
+/// choose from.
 class DevicePicker extends IInspectable implements IDevicePicker {
   DevicePicker() : super(activateClass(_className));
   DevicePicker.fromPtr(super.ptr);

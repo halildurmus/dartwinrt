@@ -18,8 +18,8 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 import 'iocrword.dart';
 
-/// Represents a single word in a line of text recognized by the OCR engine
-/// and returned as part of the OcrLine.
+/// Represents a single word in a line of text recognized by the OCR engine and
+/// returned as part of the OcrLine.
 class OcrWord extends IInspectable implements IOcrWord {
   OcrWord.fromPtr(super.ptr);
 

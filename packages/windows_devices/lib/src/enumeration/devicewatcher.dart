@@ -24,9 +24,9 @@ import 'devicewatcherstatus.dart';
 import 'idevicewatcher.dart';
 import 'idevicewatcher2.dart';
 
-/// Enumerates devices dynamically, so that the app receives notifications
-/// if devices are added, removed, or changed after the initial enumeration
-/// is complete.
+/// Enumerates devices dynamically, so that the app receives notifications if
+/// devices are added, removed, or changed after the initial enumeration is
+/// complete.
 class DeviceWatcher extends IInspectable
     implements IDeviceWatcher, IDeviceWatcher2 {
   DeviceWatcher.fromPtr(super.ptr);

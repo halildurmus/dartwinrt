@@ -8,9 +8,8 @@
 
 import 'package:windows_foundation/windows_foundation.dart';
 
-/// Specifies pixel formats, which includes fully-typed and type-less
-/// formats. This is a Windows Runtime equivalent of the Desktop DXGI_FORMAT
-/// enumeration.
+/// Specifies pixel formats, which includes fully-typed and type-less formats.
+/// This is a Windows Runtime equivalent of the Desktop DXGI_FORMAT enumeration.
 enum DirectXPixelFormat implements WinRTEnum {
   unknown(0),
   r32G32B32A32Typeless(1),

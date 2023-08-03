@@ -8,8 +8,7 @@
 
 import 'package:windows_foundation/windows_foundation.dart';
 
-/// Specifies the intended format for the hour in a DateTimeFormatter
-/// object.
+/// Specifies the intended format for the hour in a DateTimeFormatter object.
 enum HourFormat implements WinRTEnum {
   none(0),
   default_(1);

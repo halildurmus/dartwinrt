@@ -20,8 +20,8 @@ import 'iimageproperties.dart';
 import 'istorageitemextraproperties.dart';
 import 'photoorientation.dart';
 
-/// Provides access to the image-related properties of an item (like a file
-/// or folder).
+/// Provides access to the image-related properties of an item (like a file or
+/// folder).
 class ImageProperties extends IInspectable
     implements IImageProperties, IStorageItemExtraProperties {
   ImageProperties.fromPtr(super.ptr);

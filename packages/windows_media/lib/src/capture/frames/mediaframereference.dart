@@ -25,10 +25,9 @@ import 'mediaframeformat.dart';
 import 'mediaframesourcekind.dart';
 import 'videomediaframe.dart';
 
-/// A wrapper class that represents a frame obtained from a
-/// MediaFrameSource. Use the properties of this class to access the
-/// specific frame type provided by the source, such as a VideoMediaFrame or
-/// BufferMediaFrame.
+/// A wrapper class that represents a frame obtained from a MediaFrameSource.
+/// Use the properties of this class to access the specific frame type provided
+/// by the source, such as a VideoMediaFrame or BufferMediaFrame.
 class MediaFrameReference extends IInspectable
     implements IMediaFrameReference, IClosable, IMediaFrameReference2 {
   MediaFrameReference.fromPtr(super.ptr);

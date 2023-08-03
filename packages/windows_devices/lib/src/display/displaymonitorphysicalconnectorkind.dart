@@ -8,8 +8,8 @@
 
 import 'package:windows_foundation/windows_foundation.dart';
 
-/// Defines constants that specify a physical connector standard used to
-/// connect a display.
+/// Defines constants that specify a physical connector standard used to connect
+/// a display.
 enum DisplayMonitorPhysicalConnectorKind implements WinRTEnum {
   unknown(0),
   hd15(1),

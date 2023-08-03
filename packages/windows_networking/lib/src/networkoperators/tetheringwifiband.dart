@@ -8,8 +8,7 @@
 
 import 'package:windows_foundation/windows_foundation.dart';
 
-/// Defines constants that specify a wireless frequency band for a WiFi
-/// adapter.
+/// Defines constants that specify a wireless frequency band for a WiFi adapter.
 enum TetheringWiFiBand implements WinRTEnum {
   auto(0),
   twoPointFourGigahertz(1),

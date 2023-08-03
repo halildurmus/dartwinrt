@@ -23,8 +23,8 @@ import 'istorageitemextraproperties.dart';
 import 'musicproperties.dart';
 import 'videoproperties.dart';
 
-/// Provides access to the content-related properties of an item (like a
-/// file or folder).
+/// Provides access to the content-related properties of an item (like a file or
+/// folder).
 class StorageItemContentProperties extends IInspectable
     implements IStorageItemContentProperties, IStorageItemExtraProperties {
   StorageItemContentProperties.fromPtr(super.ptr);

@@ -14,8 +14,8 @@ import 'package:win32/win32.dart'
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
-/// Describes the minimum, maximum, and step size you can use when using
-/// nits to describe brightness on a device.
+/// Describes the minimum, maximum, and step size you can use when using nits to
+/// describe brightness on a device.
 final class NitRange implements WinRTStruct {
   const NitRange(this.minNits, this.maxNits, this.stepSizeNits);
 

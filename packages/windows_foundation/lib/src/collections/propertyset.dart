@@ -24,8 +24,8 @@ import 'imapview.dart';
 import 'iobservablemap.dart';
 import 'ipropertyset.dart';
 
-/// Represents a property set, which is a set of [PropertyValue] objects
-/// with string keys.
+/// Represents a property set, which is a set of [PropertyValue] objects with
+/// string keys.
 class PropertySet extends IInspectable
     implements
         IPropertySet,

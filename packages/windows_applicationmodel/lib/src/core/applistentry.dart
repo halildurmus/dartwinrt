@@ -24,8 +24,8 @@ import 'iapplistentry2.dart';
 import 'iapplistentry3.dart';
 import 'iapplistentry4.dart';
 
-/// Provides an app's display info such as its display name and description,
-/// and a method to launch the app.
+/// Provides an app's display info such as its display name and description, and
+/// a method to launch the app.
 class AppListEntry extends IInspectable
     implements IAppListEntry, IAppListEntry2, IAppListEntry3, IAppListEntry4 {
   AppListEntry.fromPtr(super.ptr);

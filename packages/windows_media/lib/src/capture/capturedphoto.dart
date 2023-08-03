@@ -19,8 +19,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 import 'capturedframe.dart';
 import 'icapturedphoto.dart';
 
-/// Represents a photo taken from a capture device such as a webcam
-/// attached.
+/// Represents a photo taken from a capture device such as a webcam attached.
 class CapturedPhoto extends IInspectable implements ICapturedPhoto {
   CapturedPhoto.fromPtr(super.ptr);
 

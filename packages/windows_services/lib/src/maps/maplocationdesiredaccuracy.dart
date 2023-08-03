@@ -8,8 +8,8 @@
 
 import 'package:windows_foundation/windows_foundation.dart';
 
-/// Indicates the desired accuracy to use when converting latitude and
-/// longitude coordinates to a physical location like a city or address.
+/// Indicates the desired accuracy to use when converting latitude and longitude
+/// coordinates to a physical location like a city or address.
 enum MapLocationDesiredAccuracy implements WinRTEnum {
   high(0),
   low(1);

@@ -18,8 +18,8 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 import 'itorchcontrol.dart';
 
-/// Provides functionality for controlling the torch LED settings on a
-/// capture device.
+/// Provides functionality for controlling the torch LED settings on a capture
+/// device.
 class TorchControl extends IInspectable implements ITorchControl {
   TorchControl.fromPtr(super.ptr);
 

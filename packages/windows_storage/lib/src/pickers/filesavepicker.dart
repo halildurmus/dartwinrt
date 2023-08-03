@@ -25,8 +25,8 @@ import 'ifilesavepicker4.dart';
 import 'ifilesavepickerstatics.dart';
 import 'pickerlocationid.dart';
 
-/// Represents a file picker that lets the user choose the file name,
-/// extension, and storage location for a file.
+/// Represents a file picker that lets the user choose the file name, extension,
+/// and storage location for a file.
 class FileSavePicker extends IInspectable
     implements
         IFileSavePicker2,

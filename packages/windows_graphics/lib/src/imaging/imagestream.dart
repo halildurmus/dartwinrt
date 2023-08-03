@@ -17,8 +17,8 @@ import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 import 'package:windows_storage/windows_storage.dart';
 
-/// An implementation of IRandomAccessStreamWithContent type used in the
-/// Imaging namespace.
+/// An implementation of IRandomAccessStreamWithContent type used in the Imaging
+/// namespace.
 class ImageStream extends IInspectable
     implements
         IRandomAccessStreamWithContentType,

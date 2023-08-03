@@ -47,8 +47,8 @@ final class Direct3DMultisampleDescription implements WinRTStruct {
 /// @nodoc
 extension Direct3DMultisampleDescriptionListToNativeDirect3DMultisampleDescriptionArrayConversion
     on List<Direct3DMultisampleDescription> {
-  /// Creates an array of [NativeDirect3DMultisampleDescription]s from a List
-  /// of [Direct3DMultisampleDescription]s.
+  /// Creates an array of [NativeDirect3DMultisampleDescription]s from a List of
+  /// [Direct3DMultisampleDescription]s.
   Pointer<NativeDirect3DMultisampleDescription> toArray(
       {Allocator allocator = calloc}) {
     final array = allocator<NativeDirect3DMultisampleDescription>(length);
@@ -71,8 +71,8 @@ extension NativeDirect3DMultisampleDescriptionConversion
 /// @nodoc
 extension PointerNativeDirect3DMultisampleDescriptionConversion
     on Pointer<NativeDirect3DMultisampleDescription> {
-  /// Converts the referenced [NativeDirect3DMultisampleDescription] into a
-  /// Dart [Direct3DMultisampleDescription].
+  /// Converts the referenced [NativeDirect3DMultisampleDescription] into a Dart
+  /// [Direct3DMultisampleDescription].
   Direct3DMultisampleDescription toDart() {
     final ref = this.ref;
     return Direct3DMultisampleDescription(ref.count, ref.quality);

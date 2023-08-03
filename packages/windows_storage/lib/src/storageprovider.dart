@@ -20,8 +20,8 @@ import 'istorageprovider.dart';
 import 'istorageprovider2.dart';
 
 /// Contains info about the service that stores files and folders. Files and
-/// folders may be stored either by the local file system or by a remote
-/// service like Microsoft OneDrive.
+/// folders may be stored either by the local file system or by a remote service
+/// like Microsoft OneDrive.
 class StorageProvider extends IInspectable
     implements IStorageProvider, IStorageProvider2 {
   StorageProvider.fromPtr(super.ptr);

@@ -8,8 +8,7 @@
 
 import 'package:windows_foundation/windows_foundation.dart';
 
-/// Specifies whether to access a file in read-only mode or in read/write
-/// mode.
+/// Specifies whether to access a file in read-only mode or in read/write mode.
 enum FileAccessMode implements WinRTEnum {
   read(0),
   readWrite(1);

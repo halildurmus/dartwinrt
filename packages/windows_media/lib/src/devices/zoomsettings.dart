@@ -19,8 +19,8 @@ import 'package:windows_foundation/windows_foundation.dart';
 import 'izoomsettings.dart';
 import 'zoomtransitionmode.dart';
 
-/// Represents zoom settings that can be applied to the ZoomControl by
-/// calling the Configure method.
+/// Represents zoom settings that can be applied to the ZoomControl by calling
+/// the Configure method.
 class ZoomSettings extends IInspectable implements IZoomSettings {
   ZoomSettings() : super(activateClass(_className));
   ZoomSettings.fromPtr(super.ptr);

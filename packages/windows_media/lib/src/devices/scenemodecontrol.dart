@@ -19,8 +19,8 @@ import 'package:windows_foundation/windows_foundation.dart';
 import 'capturescenemode.dart';
 import 'iscenemodecontrol.dart';
 
-/// Provides functionality for controlling the scene mode settings on a
-/// capture device.
+/// Provides functionality for controlling the scene mode settings on a capture
+/// device.
 class SceneModeControl extends IInspectable implements ISceneModeControl {
   SceneModeControl.fromPtr(super.ptr);
 

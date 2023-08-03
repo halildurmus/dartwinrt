@@ -19,8 +19,8 @@ import 'package:windows_foundation/windows_foundation.dart';
 import 'inumeralsystemidentifiersstatics.dart';
 import 'inumeralsystemidentifiersstatics2.dart';
 
-/// Contains the numeral system identifiers for the supported numeral
-/// systems, as static properties.
+/// Contains the numeral system identifiers for the supported numeral systems,
+/// as static properties.
 class NumeralSystemIdentifiers extends IInspectable {
   NumeralSystemIdentifiers.fromPtr(super.ptr);
 

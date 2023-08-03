@@ -20,9 +20,9 @@ import 'applicationdatacreatedisposition.dart';
 import 'applicationdatalocality.dart';
 import 'iapplicationdatacontainer.dart';
 
-/// Represents a container for app settings. The methods and properties of
-/// this class support creating, deleting, enumerating, and traversing the
-/// container hierarchy.
+/// Represents a container for app settings. The methods and properties of this
+/// class support creating, deleting, enumerating, and traversing the container
+/// hierarchy.
 class ApplicationDataContainer extends IInspectable
     implements IApplicationDataContainer, IClosable {
   ApplicationDataContainer.fromPtr(super.ptr);

@@ -19,8 +19,8 @@ import 'package:windows_foundation/windows_foundation.dart';
 import 'imediaframesourcegetpropertyresult.dart';
 import 'mediaframesourcegetpropertystatus.dart';
 
-/// Represents the value of a MediaFrameSource property, if it was
-/// successfully retrieved, and the result status of the get operation.
+/// Represents the value of a MediaFrameSource property, if it was successfully
+/// retrieved, and the result status of the get operation.
 class MediaFrameSourceGetPropertyResult extends IInspectable
     implements IMediaFrameSourceGetPropertyResult {
   MediaFrameSourceGetPropertyResult.fromPtr(super.ptr);

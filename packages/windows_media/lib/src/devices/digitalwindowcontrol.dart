@@ -23,8 +23,8 @@ import 'idigitalwindowcontrol.dart';
 
 /// Allows apps to capture a subregion of the capture device's sensor. For
 /// cameras that offer high-resolution native sensors, this feature enables
-/// digital pan, tilt, and zoom  and allow apps to obtain higher detail
-/// images of such objects without the need to change media resolutions.
+/// digital pan, tilt, and zoom  and allow apps to obtain higher detail images
+/// of such objects without the need to change media resolutions.
 class DigitalWindowControl extends IInspectable
     implements IDigitalWindowControl {
   DigitalWindowControl.fromPtr(super.ptr);

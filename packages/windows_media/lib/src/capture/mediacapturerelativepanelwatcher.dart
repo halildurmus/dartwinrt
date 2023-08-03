@@ -19,8 +19,8 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 import 'imediacapturerelativepanelwatcher.dart';
 
-/// Monitors the panel associated with a DisplayRegion, so that the app
-/// receives notifications when the relative location of the panel changes.
+/// Monitors the panel associated with a DisplayRegion, so that the app receives
+/// notifications when the relative location of the panel changes.
 class MediaCaptureRelativePanelWatcher extends IInspectable
     implements IMediaCaptureRelativePanelWatcher, IClosable {
   MediaCaptureRelativePanelWatcher.fromPtr(super.ptr);

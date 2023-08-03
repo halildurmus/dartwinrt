@@ -24,8 +24,8 @@ import 'ischeduledtoastnotification4.dart';
 import 'ischeduledtoastnotificationfactory.dart';
 import 'notificationmirroring.dart';
 
-/// Contains the XML that defines the toast notification that will display
-/// at the scheduled time.
+/// Contains the XML that defines the toast notification that will display at
+/// the scheduled time.
 class ScheduledToastNotification extends IInspectable
     implements
         IScheduledToastNotification,

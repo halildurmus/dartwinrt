@@ -8,8 +8,7 @@
 
 import 'package:windows_foundation/windows_foundation.dart';
 
-/// Defines the access mode of an AudioBuffer returned by
-/// AudioFrame.LockBuffer.
+/// Defines the access mode of an AudioBuffer returned by AudioFrame.LockBuffer.
 enum AudioBufferAccessMode implements WinRTEnum {
   read(0),
   readWrite(1),

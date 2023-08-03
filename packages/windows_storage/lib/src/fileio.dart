@@ -21,8 +21,8 @@ import 'istoragefile.dart';
 import 'streams/ibuffer.dart';
 import 'streams/unicodeencoding.dart';
 
-/// Provides helper methods for reading and writing files that are
-/// represented by objects of type IStorageFile.
+/// Provides helper methods for reading and writing files that are represented
+/// by objects of type IStorageFile.
 class FileIO extends IInspectable {
   FileIO.fromPtr(super.ptr);
 

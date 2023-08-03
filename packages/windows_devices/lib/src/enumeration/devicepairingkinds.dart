@@ -8,11 +8,11 @@
 
 import 'package:windows_foundation/windows_foundation.dart';
 
-/// Indicates the kinds of pairing supported by your application or
-/// requested by the system. As an input value, use this value to indicate
-/// what kinds of pairing your application supports. When this datatype is
-/// received as an output value, it indicates the kind of pairing requested
-/// by the system. In this case, your code will need to respond accordingly.
+/// Indicates the kinds of pairing supported by your application or requested by
+/// the system. As an input value, use this value to indicate what kinds of
+/// pairing your application supports. When this datatype is received as an
+/// output value, it indicates the kind of pairing requested by the system. In
+/// this case, your code will need to respond accordingly.
 final class DevicePairingKinds extends WinRTFlagsEnum<DevicePairingKinds> {
   const DevicePairingKinds(super.value, {super.name});
 

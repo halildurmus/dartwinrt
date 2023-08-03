@@ -18,8 +18,8 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 import 'iframeflashcapabilities.dart';
 
-/// Provides information about the flash capabilities of the capture device
-/// for frames in a variable photo sequences.
+/// Provides information about the flash capabilities of the capture device for
+/// frames in a variable photo sequences.
 class FrameFlashCapabilities extends IInspectable
     implements IFrameFlashCapabilities {
   FrameFlashCapabilities.fromPtr(super.ptr);

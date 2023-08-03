@@ -8,8 +8,8 @@
 
 import 'package:windows_foundation/windows_foundation.dart';
 
-/// Indicates whether all files and subfolders of the folder being queried
-/// will be enumerated or if only the top-level files and subfolders will be
+/// Indicates whether all files and subfolders of the folder being queried will
+/// be enumerated or if only the top-level files and subfolders will be
 /// enumerated.
 enum FolderDepth implements WinRTEnum {
   shallow(0),

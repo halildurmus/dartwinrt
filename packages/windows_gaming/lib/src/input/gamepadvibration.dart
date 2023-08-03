@@ -85,8 +85,7 @@ extension PointerNativeGamepadVibrationConversion
         ref.leftMotor, ref.rightMotor, ref.leftTrigger, ref.rightTrigger);
   }
 
-  /// Creates a `List<GamepadVibration>` from
-  /// `Pointer<NativeGamepadVibration>`.
+  /// Creates a `List<GamepadVibration>` from `Pointer<NativeGamepadVibration>`.
   ///
   /// [length] must not be greater than the number of elements stored inside the
   /// `Pointer<NativeGamepadVibration>`.

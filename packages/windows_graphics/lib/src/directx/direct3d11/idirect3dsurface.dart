@@ -21,9 +21,8 @@ import 'direct3dsurfacedescription.dart';
 /// @nodoc
 const IID_IDirect3DSurface = '{0bf4a146-13c1-4694-bee3-7abf15eaf586}';
 
-/// This represents an IDXGISurface and can be used to interop between
-/// Windows Runtime components that need to exchange IDXGISurface
-/// references.
+/// This represents an IDXGISurface and can be used to interop between Windows
+/// Runtime components that need to exchange IDXGISurface references.
 class IDirect3DSurface extends IInspectable implements IClosable {
   // vtable begins at 6, is 1 entries long.
   IDirect3DSurface.fromPtr(super.ptr);

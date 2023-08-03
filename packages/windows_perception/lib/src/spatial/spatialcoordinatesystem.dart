@@ -18,8 +18,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 import 'ispatialcoordinatesystem.dart';
 
-/// Represents a coordinate system used to reason about the user's
-/// surroundings.
+/// Represents a coordinate system used to reason about the user's surroundings.
 class SpatialCoordinateSystem extends IInspectable
     implements ISpatialCoordinateSystem {
   SpatialCoordinateSystem.fromPtr(super.ptr);

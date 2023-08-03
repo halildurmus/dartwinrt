@@ -19,8 +19,8 @@ import 'package:windows_foundation/windows_foundation.dart';
 import 'dataplanusage.dart';
 import 'idataplanstatus.dart';
 
-/// Represents the current status information for the data plan associated
-/// with a connection.
+/// Represents the current status information for the data plan associated with
+/// a connection.
 class DataPlanStatus extends IInspectable implements IDataPlanStatus {
   DataPlanStatus.fromPtr(super.ptr);
 

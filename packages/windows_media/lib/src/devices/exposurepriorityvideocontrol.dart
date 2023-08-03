@@ -19,8 +19,8 @@ import 'package:windows_foundation/windows_foundation.dart';
 import 'iexposurepriorityvideocontrol.dart';
 
 /// When supported, allows an app to specify whether the camera driver can
-/// dynamically adjust the frame rate of video capture in order to improve
-/// video quality in low-light conditions.
+/// dynamically adjust the frame rate of video capture in order to improve video
+/// quality in low-light conditions.
 class ExposurePriorityVideoControl extends IInspectable
     implements IExposurePriorityVideoControl {
   ExposurePriorityVideoControl.fromPtr(super.ptr);

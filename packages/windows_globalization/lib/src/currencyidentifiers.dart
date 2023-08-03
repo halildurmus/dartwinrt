@@ -20,8 +20,8 @@ import 'icurrencyidentifiersstatics.dart';
 import 'icurrencyidentifiersstatics2.dart';
 import 'icurrencyidentifiersstatics3.dart';
 
-/// Contains the currency identifiers for the supported currencies, as
-/// static properties.
+/// Contains the currency identifiers for the supported currencies, as static
+/// properties.
 class CurrencyIdentifiers extends IInspectable {
   CurrencyIdentifiers.fromPtr(super.ptr);
 

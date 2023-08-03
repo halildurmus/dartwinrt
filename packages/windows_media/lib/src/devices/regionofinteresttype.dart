@@ -8,8 +8,8 @@
 
 import 'package:windows_foundation/windows_foundation.dart';
 
-/// Defines the different types of regions of interest that can be detected
-/// the capture device.
+/// Defines the different types of regions of interest that can be detected the
+/// capture device.
 enum RegionOfInterestType implements WinRTEnum {
   unknown(0),
   face(1);

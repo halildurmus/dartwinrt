@@ -27,8 +27,8 @@ import 'irandomaccessstream.dart';
 const IID_IRandomAccessStreamWithContentType =
     '{cc254827-4b3d-438f-9232-10c76bc7e038}';
 
-/// Supports random access of data in input and output streams for a
-/// specified data format.
+/// Supports random access of data in input and output streams for a specified
+/// data format.
 class IRandomAccessStreamWithContentType extends IInspectable
     implements
         IRandomAccessStream,

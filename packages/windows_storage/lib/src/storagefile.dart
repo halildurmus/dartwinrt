@@ -48,8 +48,8 @@ import 'streams/irandomaccessstream.dart';
 import 'streams/irandomaccessstreamreference.dart';
 import 'streams/irandomaccessstreamwithcontenttype.dart';
 
-/// Represents a file. Provides information about the file and its content,
-/// and ways to manipulate them.
+/// Represents a file. Provides information about the file and its content, and
+/// ways to manipulate them.
 class StorageFile extends IInspectable
     implements
         IStorageFile,

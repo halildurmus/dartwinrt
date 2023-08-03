@@ -15,9 +15,8 @@ import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Identifies a sub-string of a source text string. Your app can use this
-/// structure to obtain the segment of your provided text that is identified
-/// by AlternateWordForm, SelectableWordSegment, WordSegment, or
-/// SemanticTextQuery.
+/// structure to obtain the segment of your provided text that is identified by
+/// AlternateWordForm, SelectableWordSegment, WordSegment, or SemanticTextQuery.
 final class TextSegment implements WinRTStruct {
   const TextSegment(this.startPosition, this.length);
 

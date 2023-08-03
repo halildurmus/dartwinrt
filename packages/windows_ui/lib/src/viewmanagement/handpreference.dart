@@ -8,8 +8,8 @@
 
 import 'package:windows_foundation/windows_foundation.dart';
 
-/// Defines the set of directional preferences for the user interface
-/// presented by the app view.
+/// Defines the set of directional preferences for the user interface presented
+/// by the app view.
 enum HandPreference implements WinRTEnum {
   leftHanded(0),
   rightHanded(1);

@@ -21,8 +21,8 @@ import 'capturedframe.dart';
 import 'iadvancedcapturedphoto.dart';
 import 'iadvancedcapturedphoto2.dart';
 
-/// Represents a photo captured using system-provided computational
-/// photography techniques provided by the AdvancedPhotoCapture class.
+/// Represents a photo captured using system-provided computational photography
+/// techniques provided by the AdvancedPhotoCapture class.
 class AdvancedCapturedPhoto extends IInspectable
     implements IAdvancedCapturedPhoto, IAdvancedCapturedPhoto2 {
   AdvancedCapturedPhoto.fromPtr(super.ptr);

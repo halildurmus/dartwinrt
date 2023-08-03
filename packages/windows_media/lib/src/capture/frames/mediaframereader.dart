@@ -22,8 +22,8 @@ import 'mediaframereaderacquisitionmode.dart';
 import 'mediaframereaderstartstatus.dart';
 import 'mediaframereference.dart';
 
-/// Provides access to frames from a MediaFrameSource and notification when
-/// a new frame arrives.
+/// Provides access to frames from a MediaFrameSource and notification when a
+/// new frame arrives.
 class MediaFrameReader extends IInspectable
     implements IMediaFrameReader, IClosable, IMediaFrameReader2 {
   MediaFrameReader.fromPtr(super.ptr);

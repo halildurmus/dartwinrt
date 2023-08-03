@@ -19,9 +19,8 @@ import 'package:windows_foundation/windows_foundation.dart';
 import 'automationremoteoperationoperandid.dart';
 import 'icoreautomationremoteoperationcontext.dart';
 
-/// Provides the ability for a
-/// ICoreAutomationRemoteOperationExtensionProvider object to read and write
-/// operands.
+/// Provides the ability for a ICoreAutomationRemoteOperationExtensionProvider
+/// object to read and write operands.
 class CoreAutomationRemoteOperationContext extends IInspectable
     implements ICoreAutomationRemoteOperationContext {
   CoreAutomationRemoteOperationContext.fromPtr(super.ptr);

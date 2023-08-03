@@ -18,8 +18,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 import 'iconnectivityinterval.dart';
 
-/// Provides the start time and duration for an established or prior
-/// connection.
+/// Provides the start time and duration for an established or prior connection.
 class ConnectivityInterval extends IInspectable
     implements IConnectivityInterval {
   ConnectivityInterval.fromPtr(super.ptr);

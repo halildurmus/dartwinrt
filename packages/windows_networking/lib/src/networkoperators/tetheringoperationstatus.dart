@@ -8,9 +8,8 @@
 
 import 'package:windows_foundation/windows_foundation.dart';
 
-/// Defines the values returned with a
-/// NetworkOperatorTetheringOperationResult object to indicate the status of
-/// a tethering operation.
+/// Defines the values returned with a NetworkOperatorTetheringOperationResult
+/// object to indicate the status of a tethering operation.
 enum TetheringOperationStatus implements WinRTEnum {
   success(0),
   unknown(1),

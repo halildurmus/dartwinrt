@@ -22,8 +22,8 @@ import 'imediaframeformat.dart';
 import 'imediaframeformat2.dart';
 import 'videomediaframeformat.dart';
 
-/// Describes the format of a media frame obtained from a MediaFrameSource
-/// and represented by a MediaFrameReference.
+/// Describes the format of a media frame obtained from a MediaFrameSource and
+/// represented by a MediaFrameReference.
 class MediaFrameFormat extends IInspectable
     implements IMediaFrameFormat, IMediaFrameFormat2 {
   MediaFrameFormat.fromPtr(super.ptr);

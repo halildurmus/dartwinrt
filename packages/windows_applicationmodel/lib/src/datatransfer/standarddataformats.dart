@@ -21,8 +21,8 @@ import 'istandarddataformatsstatics2.dart';
 import 'istandarddataformatsstatics3.dart';
 
 /// Contains static properties that return string values. Each string
-/// corresponds to a known format ID. Use this class to avoid errors in
-/// using string constants to specify data formats.
+/// corresponds to a known format ID. Use this class to avoid errors in using
+/// string constants to specify data formats.
 class StandardDataFormats extends IInspectable {
   StandardDataFormats.fromPtr(super.ptr);
 

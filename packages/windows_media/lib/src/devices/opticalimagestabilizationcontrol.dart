@@ -19,8 +19,8 @@ import 'package:windows_foundation/windows_foundation.dart';
 import 'iopticalimagestabilizationcontrol.dart';
 import 'opticalimagestabilizationmode.dart';
 
-/// When supported, allows an app to enable optical image stabilization on
-/// the capture device.
+/// When supported, allows an app to enable optical image stabilization on the
+/// capture device.
 class OpticalImageStabilizationControl extends IInspectable
     implements IOpticalImageStabilizationControl {
   OpticalImageStabilizationControl.fromPtr(super.ptr);

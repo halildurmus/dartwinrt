@@ -18,8 +18,8 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 import 'iframeisospeedcapabilities.dart';
 
-/// Provides information about the ISO speed capabilities of the capture
-/// device for frames in a variable photo sequences.
+/// Provides information about the ISO speed capabilities of the capture device
+/// for frames in a variable photo sequences.
 class FrameIsoSpeedCapabilities extends IInspectable
     implements IFrameIsoSpeedCapabilities {
   FrameIsoSpeedCapabilities.fromPtr(super.ptr);

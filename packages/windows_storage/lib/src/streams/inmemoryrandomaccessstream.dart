@@ -22,8 +22,8 @@ import 'inputstreamoptions.dart';
 import 'ioutputstream.dart';
 import 'irandomaccessstream.dart';
 
-/// Provides random access of data in input and output streams that are
-/// stored in memory instead of on disk.
+/// Provides random access of data in input and output streams that are stored
+/// in memory instead of on disk.
 class InMemoryRandomAccessStream extends IInspectable
     implements IRandomAccessStream, IOutputStream, IClosable, IInputStream {
   InMemoryRandomAccessStream() : super(activateClass(_className));

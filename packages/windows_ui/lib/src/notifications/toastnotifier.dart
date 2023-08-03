@@ -25,9 +25,8 @@ import 'notificationupdateresult.dart';
 import 'scheduledtoastnotification.dart';
 import 'toastnotification.dart';
 
-/// Raises a toast notification to the specific app to which the
-/// ToastNotifier is bound. This class also lets you schedule and remove
-/// toast notifications.
+/// Raises a toast notification to the specific app to which the ToastNotifier
+/// is bound. This class also lets you schedule and remove toast notifications.
 class ToastNotifier extends IInspectable
     implements IToastNotifier, IToastNotifier2, IToastNotifier3 {
   ToastNotifier.fromPtr(super.ptr);

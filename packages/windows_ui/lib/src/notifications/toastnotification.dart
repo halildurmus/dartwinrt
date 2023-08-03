@@ -27,8 +27,8 @@ import 'notificationdata.dart';
 import 'notificationmirroring.dart';
 import 'toastnotificationpriority.dart';
 
-/// Defines the content, associated metadata and events, and expiration time
-/// of a toast notification.
+/// Defines the content, associated metadata and events, and expiration time of
+/// a toast notification.
 class ToastNotification extends IInspectable
     implements
         IToastNotification,

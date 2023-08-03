@@ -19,8 +19,8 @@ import 'package:windows_foundation/windows_foundation.dart';
 import 'ibackgroundtrigger.dart';
 import 'idevicewatchertrigger.dart';
 
-/// Represents an event that causes a background task to run when changes
-/// occur to the list of devices. Returned by GetBackgroundTrigger.
+/// Represents an event that causes a background task to run when changes occur
+/// to the list of devices. Returned by GetBackgroundTrigger.
 class DeviceWatcherTrigger extends IInspectable
     implements IDeviceWatcherTrigger, IBackgroundTrigger {
   DeviceWatcherTrigger.fromPtr(super.ptr);

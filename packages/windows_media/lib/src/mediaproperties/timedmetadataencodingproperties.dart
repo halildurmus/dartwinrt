@@ -21,10 +21,10 @@ import 'itimedmetadataencodingproperties.dart';
 import 'itimedmetadataencodingpropertiesstatics.dart';
 import 'mediapropertyset.dart';
 
-/// Describes the encoding properties of a timed metadata stream. Timed
-/// metadata streams are used to encode data that is neither audio or video.
-/// For example, a media file may contain a video stream and a timed
-/// metadata stream containing GPS coordinates correlated to the video.
+/// Describes the encoding properties of a timed metadata stream. Timed metadata
+/// streams are used to encode data that is neither audio or video. For example,
+/// a media file may contain a video stream and a timed metadata stream
+/// containing GPS coordinates correlated to the video.
 class TimedMetadataEncodingProperties extends IInspectable
     implements ITimedMetadataEncodingProperties, IMediaEncodingProperties {
   TimedMetadataEncodingProperties() : super(activateClass(_className));

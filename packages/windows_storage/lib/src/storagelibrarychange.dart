@@ -21,8 +21,8 @@ import 'istoragelibrarychange.dart';
 import 'storageitemtypes.dart';
 import 'storagelibrarychangetype.dart';
 
-/// Represents a change to an item in a storage library such as the
-/// documents, music, or video library.
+/// Represents a change to an item in a storage library such as the documents,
+/// music, or video library.
 class StorageLibraryChange extends IInspectable
     implements IStorageLibraryChange {
   StorageLibraryChange.fromPtr(super.ptr);

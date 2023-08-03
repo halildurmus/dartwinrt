@@ -19,8 +19,8 @@ import 'package:windows_foundation/windows_foundation.dart';
 import 'advancedcapturedphoto.dart';
 import 'iadvancedphotocapture.dart';
 
-/// Provides methods for capturing photos using system-provided
-/// computational photography techniques.
+/// Provides methods for capturing photos using system-provided computational
+/// photography techniques.
 class AdvancedPhotoCapture extends IInspectable
     implements IAdvancedPhotoCapture {
   AdvancedPhotoCapture.fromPtr(super.ptr);

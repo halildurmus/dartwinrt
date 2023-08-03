@@ -20,8 +20,8 @@ import 'iregionofinterest.dart';
 import 'iregionofinterest2.dart';
 import 'regionofinteresttype.dart';
 
-/// Represents a region of interest which is a rectangular region on the
-/// image which is used for functions such as focus and exposure.
+/// Represents a region of interest which is a rectangular region on the image
+/// which is used for functions such as focus and exposure.
 class RegionOfInterest extends IInspectable
     implements IRegionOfInterest, IRegionOfInterest2 {
   RegionOfInterest() : super(activateClass(_className));

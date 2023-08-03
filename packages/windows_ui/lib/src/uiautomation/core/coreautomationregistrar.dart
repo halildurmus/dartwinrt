@@ -19,8 +19,8 @@ import 'package:windows_foundation/windows_foundation.dart';
 import 'automationannotationtyperegistration.dart';
 import 'icoreautomationregistrarstatics.dart';
 
-/// Exposes methods for registering new control patterns, properties,
-/// events, and annotations.
+/// Exposes methods for registering new control patterns, properties, events,
+/// and annotations.
 class CoreAutomationRegistrar extends IInspectable {
   CoreAutomationRegistrar.fromPtr(super.ptr);
 

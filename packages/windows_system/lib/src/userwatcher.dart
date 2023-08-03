@@ -19,9 +19,8 @@ import 'package:windows_foundation/windows_foundation.dart';
 import 'iuserwatcher.dart';
 import 'userwatcherstatus.dart';
 
-/// Provides events that fire during enumeration of users, when the
-/// collection of users changes, or when a user's authentication status
-/// changes.
+/// Provides events that fire during enumeration of users, when the collection
+/// of users changes, or when a user's authentication status changes.
 class UserWatcher extends IInspectable implements IUserWatcher {
   UserWatcher.fromPtr(super.ptr);
 

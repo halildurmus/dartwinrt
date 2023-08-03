@@ -19,8 +19,8 @@ import 'package:windows_storage/windows_storage.dart';
 
 import 'iattributednetworkusage.dart';
 
-/// Provides access to property values containing information on current
-/// usage of the attributed network connection.
+/// Provides access to property values containing information on current usage
+/// of the attributed network connection.
 class AttributedNetworkUsage extends IInspectable
     implements IAttributedNetworkUsage {
   AttributedNetworkUsage.fromPtr(super.ptr);

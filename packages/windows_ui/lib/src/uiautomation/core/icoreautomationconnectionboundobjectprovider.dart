@@ -20,8 +20,8 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_ICoreAutomationConnectionBoundObjectProvider =
     '{0620bb64-9616-5593-be3a-eb8e6daeb3fa}';
 
-/// Exposes the properties of a connection-bound object in a remote
-/// operation for a UI Automation provider.
+/// Exposes the properties of a connection-bound object in a remote operation
+/// for a UI Automation provider.
 class ICoreAutomationConnectionBoundObjectProvider extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   ICoreAutomationConnectionBoundObjectProvider.fromPtr(super.ptr);

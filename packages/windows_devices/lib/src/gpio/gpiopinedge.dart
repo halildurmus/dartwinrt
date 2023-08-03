@@ -8,8 +8,8 @@
 
 import 'package:windows_foundation/windows_foundation.dart';
 
-/// Describes the possible types of change that can occur to the value of
-/// the general-purpose I/O (GPIO) pin for the GpioPin.ValueChanged event.
+/// Describes the possible types of change that can occur to the value of the
+/// general-purpose I/O (GPIO) pin for the GpioPin.ValueChanged event.
 enum GpioPinEdge implements WinRTEnum {
   fallingEdge(0),
   risingEdge(1);

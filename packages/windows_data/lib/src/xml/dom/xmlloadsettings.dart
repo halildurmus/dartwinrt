@@ -18,10 +18,10 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 import 'ixmlloadsettings.dart';
 
-/// Contains settings that are used during loading and parsing of XML
-/// documents. The default settings are chosen for the highest security.
-/// This class can be instantiated and is accepted by LoadXml,
-/// LoadFromUriAsync, and LoadFromFileAsync.
+/// Contains settings that are used during loading and parsing of XML documents.
+/// The default settings are chosen for the highest security. This class can be
+/// instantiated and is accepted by LoadXml, LoadFromUriAsync, and
+/// LoadFromFileAsync.
 class XmlLoadSettings extends IInspectable implements IXmlLoadSettings {
   XmlLoadSettings() : super(activateClass(_className));
   XmlLoadSettings.fromPtr(super.ptr);

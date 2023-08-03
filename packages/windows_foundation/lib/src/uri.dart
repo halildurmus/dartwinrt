@@ -24,10 +24,9 @@ import 'iuriruntimeclassfactory.dart';
 import 'iuriruntimeclasswithabsolutecanonicaluri.dart';
 import 'wwwformurldecoder.dart';
 
-/// Defines an object that represents a Uniform Resource Identifier (URI)
-/// value and parses it into components. The Uri object is used by many
-/// other Windows Runtime APIs that are not necessarily confined to web
-/// browser scenarios.
+/// Defines an object that represents a Uniform Resource Identifier (URI) value
+/// and parses it into components. The Uri object is used by many other Windows
+/// Runtime APIs that are not necessarily confined to web browser scenarios.
 class Uri extends IInspectable
     implements
         IUriRuntimeClass,

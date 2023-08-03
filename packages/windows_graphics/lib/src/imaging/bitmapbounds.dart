@@ -52,8 +52,7 @@ final class BitmapBounds implements WinRTStruct {
 /// @nodoc
 extension BitmapBoundsListToNativeBitmapBoundsArrayConversion
     on List<BitmapBounds> {
-  /// Creates an array of [NativeBitmapBounds]s from a List of
-  /// [BitmapBounds]s.
+  /// Creates an array of [NativeBitmapBounds]s from a List of [BitmapBounds]s.
   Pointer<NativeBitmapBounds> toArray({Allocator allocator = calloc}) {
     final array = allocator<NativeBitmapBounds>(length);
     for (var i = 0; i < length; i++) {
