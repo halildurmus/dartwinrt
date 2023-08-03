@@ -22,8 +22,7 @@ import 'point.dart';
 import 'rect.dart';
 import 'size.dart';
 
-/// Represents a value in a property store (such as a `PropertySet`
-/// instance).
+/// Represents a value in a property store (such as a `PropertySet` instance).
 class PropertyValue extends IInspectable {
   PropertyValue.fromPtr(super.ptr);
 

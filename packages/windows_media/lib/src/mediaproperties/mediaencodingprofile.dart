@@ -33,8 +33,8 @@ import 'videoencodingproperties.dart';
 import 'videoencodingquality.dart';
 
 /// Describes the encoding profile for an audio or video file. The encoding
-/// profile includes descriptions of the audio and video encoding formats,
-/// and a description of the media container.
+/// profile includes descriptions of the audio and video encoding formats, and a
+/// description of the media container.
 class MediaEncodingProfile extends IInspectable
     implements
         IMediaEncodingProfile,

@@ -24,10 +24,9 @@ import 'istoragefilequeryresult2.dart';
 import 'istoragequeryresultbase.dart';
 import 'queryoptions.dart';
 
-/// Provides access to the results of a query of the files in the location
-/// that is represented by a StorageFolder object. You can use
-/// StorageFileQueryResult to enumerate the files in that StorageFolder
-/// location.
+/// Provides access to the results of a query of the files in the location that
+/// is represented by a StorageFolder object. You can use StorageFileQueryResult
+/// to enumerate the files in that StorageFolder location.
 class StorageFileQueryResult extends IInspectable
     implements
         IStorageFileQueryResult,

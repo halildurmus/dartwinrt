@@ -8,8 +8,8 @@
 
 import 'package:windows_foundation/windows_foundation.dart';
 
-/// An enum that indicates if an application has an update, and if the
-/// update is required.
+/// An enum that indicates if an application has an update, and if the update is
+/// required.
 enum PackageUpdateAvailability implements WinRTEnum {
   unknown(0),
   noUpdates(1),

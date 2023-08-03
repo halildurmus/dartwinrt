@@ -20,8 +20,8 @@ import 'automationremoteoperationoperandid.dart';
 import 'automationremoteoperationstatus.dart';
 import 'iautomationremoteoperationresult.dart';
 
-/// Provides access to the execution results (status and remote objects) of
-/// a CoreAutomationRemoteOperation.
+/// Provides access to the execution results (status and remote objects) of a
+/// CoreAutomationRemoteOperation.
 class AutomationRemoteOperationResult extends IInspectable
     implements IAutomationRemoteOperationResult {
   AutomationRemoteOperationResult.fromPtr(super.ptr);

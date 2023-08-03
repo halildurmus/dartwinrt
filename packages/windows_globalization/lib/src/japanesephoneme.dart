@@ -18,8 +18,8 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 import 'ijapanesephoneme.dart';
 
-/// Represents a single Japanese word (a "reading") that has been extracted
-/// from a Japanese string by JapanesePhoneticAnalyzer.
+/// Represents a single Japanese word (a "reading") that has been extracted from
+/// a Japanese string by JapanesePhoneticAnalyzer.
 class JapanesePhoneme extends IInspectable implements IJapanesePhoneme {
   JapanesePhoneme.fromPtr(super.ptr);
 

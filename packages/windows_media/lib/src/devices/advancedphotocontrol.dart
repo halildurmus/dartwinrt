@@ -20,8 +20,8 @@ import 'advancedphotocapturesettings.dart';
 import 'advancedphotomode.dart';
 import 'iadvancedphotocontrol.dart';
 
-/// Provides functionality for controlling the advanced photo capture
-/// behavior on a capture device.
+/// Provides functionality for controlling the advanced photo capture behavior
+/// on a capture device.
 class AdvancedPhotoControl extends IInspectable
     implements IAdvancedPhotoControl {
   AdvancedPhotoControl.fromPtr(super.ptr);

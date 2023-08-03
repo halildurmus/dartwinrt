@@ -21,8 +21,8 @@ import '../mediaproperties/mediaratio.dart';
 import '../mediaproperties/mediathumbnailformat.dart';
 import 'ilowlagphotocontrol.dart';
 
-/// Provides functionality for managing the low shutter lag photo capture
-/// mode on the capture device.
+/// Provides functionality for managing the low shutter lag photo capture mode
+/// on the capture device.
 class LowLagPhotoControl extends IInspectable implements ILowLagPhotoControl {
   LowLagPhotoControl.fromPtr(super.ptr);
 

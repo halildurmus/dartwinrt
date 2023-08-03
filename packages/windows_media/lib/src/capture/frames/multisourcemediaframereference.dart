@@ -19,10 +19,10 @@ import 'package:windows_foundation/windows_foundation.dart';
 import 'imultisourcemediaframereference.dart';
 import 'mediaframereference.dart';
 
-/// A wrapper class that provides access to time-correlated frames obtained
-/// from one or more MediaFrameSource objects. Call
-/// TryGetFrameReferenceBySourceId to get the MediaFrameReference
-/// representing a frame from a particular media frame source.
+/// A wrapper class that provides access to time-correlated frames obtained from
+/// one or more MediaFrameSource objects. Call  TryGetFrameReferenceBySourceId
+/// to get the MediaFrameReference representing a frame from a particular media
+/// frame source.
 class MultiSourceMediaFrameReference extends IInspectable
     implements IMultiSourceMediaFrameReference, IClosable {
   MultiSourceMediaFrameReference.fromPtr(super.ptr);

@@ -20,8 +20,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 const IID_IAudioEffectDefinition = '{e4d7f974-7d80-4f73-9089-e31c9db9c294}';
 
 /// Exposes the methods and properties of an AudioEffectDefinition object.
-/// Implement this interface when you create a custom audio effect
-/// definition.
+/// Implement this interface when you create a custom audio effect definition.
 class IAudioEffectDefinition extends IInspectable {
   // vtable begins at 6, is 2 entries long.
   IAudioEffectDefinition.fromPtr(super.ptr);

@@ -8,8 +8,8 @@
 
 import 'package:windows_foundation/windows_foundation.dart';
 
-/// Specifies the intended format for the day of the week in a
-/// DateTimeFormatter object.
+/// Specifies the intended format for the day of the week in a DateTimeFormatter
+/// object.
 enum DayOfWeekFormat implements WinRTEnum {
   none(0),
   default_(1),

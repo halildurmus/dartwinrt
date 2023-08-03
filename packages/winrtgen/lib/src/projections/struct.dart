@@ -204,7 +204,8 @@ final class StructProjection extends NativeStructProjection {
 
   String get structListExtension {
     final toArrayComment = wrapCommentText(
-        'Creates an array of [Native$structName]s from a List of [$structName]s.');
+        'Creates an array of [Native$structName]s from a List of [$structName]s.',
+        78);
     return '''
 /// @nodoc
 extension ${structName}ListToNative${structName}ArrayConversion on List<$structName> {
@@ -222,7 +223,7 @@ extension ${structName}ListToNative${structName}ArrayConversion on List<$structN
 
   String get nativeStructExtension {
     final toDartComment = wrapCommentText(
-        'Converts this [Native$structName] into a Dart [$structName].');
+        'Converts this [Native$structName] into a Dart [$structName].', 78);
     final structConstructorArgs = fieldProjections.map((f) {
       if (f.paramProjection.typeProjection.isDartPrimitive) {
         return f.isString ? f.paramProjection.creator : f.fieldName;
@@ -247,11 +248,13 @@ extension Native${structName}Conversion on Native$structName {
 
   String get pointerNativeStructExtension {
     final toDartComment = wrapCommentText(
-        'Converts the referenced [Native$structName] into a Dart [$structName].');
+        'Converts the referenced [Native$structName] into a Dart [$structName].',
+        78);
     final toListComment = wrapCommentText(
         'Creates a `List<$structName>` from `Pointer<Native$structName>`. \n '
         '[length] must not be greater than the number of elements stored '
-        'inside the `Pointer<Native$structName>`.');
+        'inside the `Pointer<Native$structName>`.',
+        78);
     final structConstructorArgs = fieldProjections.map((f) {
       if (f.paramProjection.typeProjection.isDartPrimitive) {
         if (f.isString) return 'ref.${f.fieldName}.toDartString()';

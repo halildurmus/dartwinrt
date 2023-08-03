@@ -19,8 +19,8 @@ import 'package:windows_system/windows_system.dart';
 
 import 'ibatteryreport.dart';
 
-/// Provides properties that indicate the charge, capacity, and status of
-/// the battery.
+/// Provides properties that indicate the charge, capacity, and status of the
+/// battery.
 class BatteryReport extends IInspectable implements IBatteryReport {
   BatteryReport.fromPtr(super.ptr);
 

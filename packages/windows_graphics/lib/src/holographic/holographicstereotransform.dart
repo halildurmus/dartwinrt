@@ -14,9 +14,8 @@ import 'package:win32/win32.dart'
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
-/// Contains view or projection transforms for stereo rendering. One
-/// transform is for the left display, and the other is for the right
-/// display.
+/// Contains view or projection transforms for stereo rendering. One transform
+/// is for the left display, and the other is for the right display.
 final class HolographicStereoTransform implements WinRTStruct {
   const HolographicStereoTransform(this.left, this.right);
 

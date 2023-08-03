@@ -8,8 +8,8 @@
 
 import 'package:windows_foundation/windows_foundation.dart';
 
-/// Defines the behavior when media capture is paused with a call to
-/// PauseAsync or PauseRecordAsync.
+/// Defines the behavior when media capture is paused with a call to PauseAsync
+/// or PauseRecordAsync.
 enum MediaCapturePauseBehavior implements WinRTEnum {
   retainHardwareResources(0),
   releaseHardwareResources(1);

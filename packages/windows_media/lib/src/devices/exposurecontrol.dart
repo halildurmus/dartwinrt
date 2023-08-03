@@ -18,8 +18,8 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 import 'iexposurecontrol.dart';
 
-/// Provides functionality for controlling the exposure settings on a
-/// capture device.
+/// Provides functionality for controlling the exposure settings on a capture
+/// device.
 class ExposureControl extends IInspectable implements IExposureControl {
   ExposureControl.fromPtr(super.ptr);
 

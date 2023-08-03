@@ -18,8 +18,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 import 'iframeisospeedcontrol.dart';
 
-/// Represents the ISO speed settings for a frame in a variable photo
-/// sequence.
+/// Represents the ISO speed settings for a frame in a variable photo sequence.
 class FrameIsoSpeedControl extends IInspectable
     implements IFrameIsoSpeedControl {
   FrameIsoSpeedControl.fromPtr(super.ptr);

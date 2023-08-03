@@ -20,8 +20,8 @@ import 'imediaframesourcegroup.dart';
 import 'imediaframesourcegroupstatics.dart';
 import 'mediaframesourceinfo.dart';
 
-/// Represents a group of media frame sources that can be used
-/// simultaneously by a MediaCapture.
+/// Represents a group of media frame sources that can be used simultaneously by
+/// a MediaCapture.
 class MediaFrameSourceGroup extends IInspectable
     implements IMediaFrameSourceGroup {
   MediaFrameSourceGroup.fromPtr(super.ptr);

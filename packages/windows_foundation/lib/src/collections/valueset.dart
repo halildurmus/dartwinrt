@@ -24,11 +24,11 @@ import 'imapview.dart';
 import 'iobservablemap.dart';
 import 'ipropertyset.dart';
 
-/// Implements a map with keys of type String and values of type Object.
-/// Object must be a WinRT [PropertyValue] or [ValueSet]. As a
-/// [PropertyValue], it can be any type except [PropertyType]
-/// `InspectableArray`. This limitation exists to ensure that the value can
-/// be serialized; passed by value across a process boundary.
+/// Implements a map with keys of type String and values of type Object. Object
+/// must be a WinRT [PropertyValue] or [ValueSet]. As a [PropertyValue], it can
+/// be any type except [PropertyType] `InspectableArray`. This limitation exists
+/// to ensure that the value can be serialized; passed by value across a process
+/// boundary.
 class ValueSet extends IInspectable
     implements
         IPropertySet,

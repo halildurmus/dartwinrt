@@ -9,8 +9,7 @@
 import 'package:windows_foundation/windows_foundation.dart';
 
 /// Describes the level of quality of the audio encoding. The higher the
-/// quality, the better the audio fidelity, and the larger the resulting
-/// file.
+/// quality, the better the audio fidelity, and the larger the resulting file.
 enum AudioEncodingQuality implements WinRTEnum {
   auto(0),
   high(1),

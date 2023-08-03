@@ -68,8 +68,7 @@ final class HttpProgress implements WinRTStruct {
 /// @nodoc
 extension HttpProgressListToNativeHttpProgressArrayConversion
     on List<HttpProgress> {
-  /// Creates an array of [NativeHttpProgress]s from a List of
-  /// [HttpProgress]s.
+  /// Creates an array of [NativeHttpProgress]s from a List of [HttpProgress]s.
   Pointer<NativeHttpProgress> toArray({Allocator allocator = calloc}) {
     final array = allocator<NativeHttpProgress>(length);
     for (var i = 0; i < length; i++) {

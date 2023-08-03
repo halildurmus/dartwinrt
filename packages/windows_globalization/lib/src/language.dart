@@ -26,8 +26,8 @@ import 'ilanguagestatics2.dart';
 import 'ilanguagestatics3.dart';
 import 'languagelayoutdirection.dart';
 
-/// A class that provides information related to BCP-47 language tags such
-/// as the language name and the script.
+/// A class that provides information related to BCP-47 language tags such as
+/// the language name and the script.
 class Language extends IInspectable
     implements ILanguage, ILanguageExtensionSubtags, ILanguage2, ILanguage3 {
   Language.fromPtr(super.ptr);

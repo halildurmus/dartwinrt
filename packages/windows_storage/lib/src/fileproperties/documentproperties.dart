@@ -19,8 +19,8 @@ import 'package:windows_foundation/windows_foundation.dart';
 import 'idocumentproperties.dart';
 import 'istorageitemextraproperties.dart';
 
-/// Provides access to the document-related properties of an item (like a
-/// file or folder).
+/// Provides access to the document-related properties of an item (like a file
+/// or folder).
 class DocumentProperties extends IInspectable
     implements IDocumentProperties, IStorageItemExtraProperties {
   DocumentProperties.fromPtr(super.ptr);

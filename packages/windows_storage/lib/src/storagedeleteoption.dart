@@ -8,8 +8,8 @@
 
 import 'package:windows_foundation/windows_foundation.dart';
 
-/// Specifies whether a deleted item is moved to the Recycle Bin or
-/// permanently deleted.
+/// Specifies whether a deleted item is moved to the Recycle Bin or permanently
+/// deleted.
 enum StorageDeleteOption implements WinRTEnum {
   default_(0),
   permanentDelete(1);

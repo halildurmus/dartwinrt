@@ -18,8 +18,8 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 import 'iremoteautomationwindow.dart';
 
-/// Represents a window for a remote application (one that isnât running
-/// on the local machine).
+/// Represents a window for a remote application (one that isnât running on
+/// the local machine).
 class RemoteAutomationWindow extends IInspectable
     implements IRemoteAutomationWindow {
   RemoteAutomationWindow.fromPtr(super.ptr);

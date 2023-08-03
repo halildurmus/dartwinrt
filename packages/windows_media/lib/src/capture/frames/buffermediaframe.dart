@@ -20,8 +20,7 @@ import 'package:windows_storage/windows_storage.dart';
 import 'ibuffermediaframe.dart';
 import 'mediaframereference.dart';
 
-/// Represents a frame from a MediaFrameSource that provides data in an
-/// IBuffer.
+/// Represents a frame from a MediaFrameSource that provides data in an IBuffer.
 class BufferMediaFrame extends IInspectable implements IBufferMediaFrame {
   BufferMediaFrame.fromPtr(super.ptr);
 

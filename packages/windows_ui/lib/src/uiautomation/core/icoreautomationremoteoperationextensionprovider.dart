@@ -23,8 +23,8 @@ import 'coreautomationremoteoperationcontext.dart';
 const IID_ICoreAutomationRemoteOperationExtensionProvider =
     '{88f53e67-dc69-553b-a0aa-70477e724da8}';
 
-/// Provides support for implementing one or more pattern extensions for a
-/// UI Automation provider.
+/// Provides support for implementing one or more pattern extensions for a UI
+/// Automation provider.
 class ICoreAutomationRemoteOperationExtensionProvider extends IInspectable {
   // vtable begins at 6, is 2 entries long.
   ICoreAutomationRemoteOperationExtensionProvider.fromPtr(super.ptr);

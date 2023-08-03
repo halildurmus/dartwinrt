@@ -20,8 +20,8 @@ import 'charactergrouping.dart';
 import 'icharactergroupings.dart';
 import 'icharactergroupingsfactory.dart';
 
-/// Contains the set of character groups and the functionality to get the
-/// label for any given string.
+/// Contains the set of character groups and the functionality to get the label
+/// for any given string.
 class CharacterGroupings extends IInspectable
     implements
         ICharacterGroupings,

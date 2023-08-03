@@ -24,8 +24,8 @@ import 'frameisospeedcapabilities.dart';
 import 'iframecontrolcapabilities.dart';
 import 'iframecontrolcapabilities2.dart';
 
-/// Provides information about the variable photo sequence capabilities of
-/// the capture device.
+/// Provides information about the variable photo sequence capabilities of the
+/// capture device.
 class FrameControlCapabilities extends IInspectable
     implements IFrameControlCapabilities, IFrameControlCapabilities2 {
   FrameControlCapabilities.fromPtr(super.ptr);

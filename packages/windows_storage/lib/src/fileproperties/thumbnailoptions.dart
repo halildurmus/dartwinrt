@@ -8,8 +8,8 @@
 
 import 'package:windows_foundation/windows_foundation.dart';
 
-/// Describes the behavior used to retrieve and adjust thumbnails, including
-/// the size and quality of the image and how quickly the thumbnail image is
+/// Describes the behavior used to retrieve and adjust thumbnails, including the
+/// size and quality of the image and how quickly the thumbnail image is
 /// retrieved.
 final class ThumbnailOptions extends WinRTFlagsEnum<ThumbnailOptions> {
   const ThumbnailOptions(super.value, {super.name});

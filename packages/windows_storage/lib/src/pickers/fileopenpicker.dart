@@ -25,9 +25,8 @@ import 'pickerlocationid.dart';
 import 'pickerviewmode.dart';
 
 /// Represents a UI element that lets the user choose and open files. In a
-/// desktop app, before using an instance of this class in a way that
-/// displays UI, you'll need to associate the object with its owner's window
-/// handle.
+/// desktop app, before using an instance of this class in a way that displays
+/// UI, you'll need to associate the object with its owner's window handle.
 class FileOpenPicker extends IInspectable
     implements IFileOpenPicker, IFileOpenPicker3 {
   FileOpenPicker() : super(activateClass(_className));

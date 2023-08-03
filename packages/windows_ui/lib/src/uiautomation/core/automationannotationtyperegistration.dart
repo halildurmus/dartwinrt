@@ -67,8 +67,8 @@ extension NativeAutomationAnnotationTypeRegistrationConversion
 /// @nodoc
 extension PointerNativeAutomationAnnotationTypeRegistrationConversion
     on Pointer<NativeAutomationAnnotationTypeRegistration> {
-  /// Converts the referenced [NativeAutomationAnnotationTypeRegistration]
-  /// into a Dart [AutomationAnnotationTypeRegistration].
+  /// Converts the referenced [NativeAutomationAnnotationTypeRegistration] into
+  /// a Dart [AutomationAnnotationTypeRegistration].
   AutomationAnnotationTypeRegistration toDart() {
     final ref = this.ref;
     return AutomationAnnotationTypeRegistration(ref.localId);

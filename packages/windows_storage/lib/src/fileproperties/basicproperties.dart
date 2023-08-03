@@ -19,9 +19,8 @@ import 'package:windows_foundation/windows_foundation.dart';
 import 'ibasicproperties.dart';
 import 'istorageitemextraproperties.dart';
 
-/// Provides access to the basic properties, like the size of the item or
-/// the date the item was last modified, of the item (like a file or
-/// folder).
+/// Provides access to the basic properties, like the size of the item or the
+/// date the item was last modified, of the item (like a file or folder).
 class BasicProperties extends IInspectable
     implements IBasicProperties, IStorageItemExtraProperties {
   BasicProperties.fromPtr(super.ptr);

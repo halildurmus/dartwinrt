@@ -39,8 +39,8 @@ import 'xmlnodelist.dart';
 import 'xmlprocessinginstruction.dart';
 import 'xmltext.dart';
 
-/// Represents the top level of the XML source. This class includes members
-/// for retrieving and creating all other XML objects.
+/// Represents the top level of the XML source. This class includes members for
+/// retrieving and creating all other XML objects.
 class XmlDocument extends IInspectable
     implements
         IXmlDocument,

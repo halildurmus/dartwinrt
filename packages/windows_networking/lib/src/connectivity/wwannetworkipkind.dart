@@ -8,10 +8,9 @@
 
 import 'package:windows_foundation/windows_foundation.dart';
 
-/// Defines constants that describe a level of supported IP. The values
-/// reflect the WWAN_IP_TYPE enumeration. You can use these values to
-/// determine which cellular profile to use (for example, to choose between
-/// IMS and SUPL).
+/// Defines constants that describe a level of supported IP. The values reflect
+/// the WWAN_IP_TYPE enumeration. You can use these values to determine which
+/// cellular profile to use (for example, to choose between IMS and SUPL).
 enum WwanNetworkIPKind implements WinRTEnum {
   none(0),
   ipv4(1),

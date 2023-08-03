@@ -8,8 +8,8 @@
 
 import 'package:windows_foundation/windows_foundation.dart';
 
-/// Specifies the pixel format of pixel data. Each enumeration value defines
-/// a channel ordering, bit depth, and data type.
+/// Specifies the pixel format of pixel data. Each enumeration value defines a
+/// channel ordering, bit depth, and data type.
 enum BitmapPixelFormat implements WinRTEnum {
   unknown(0),
   rgba16(12),

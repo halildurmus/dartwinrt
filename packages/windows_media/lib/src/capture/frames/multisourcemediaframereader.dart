@@ -22,11 +22,11 @@ import 'mediaframereaderacquisitionmode.dart';
 import 'multisourcemediaframereaderstartstatus.dart';
 import 'multisourcemediaframereference.dart';
 
-/// Provides access to time-correlated frames from multiple MediaFrameSource
-/// and provides notifications when new frames arrive. This is useful if you
-/// need to process frames from different sources, such as a depth camera
-/// and an rbg camera, and you need to make sure that the frames from each
-/// source were captured close to each other in time.
+/// Provides access to time-correlated frames from multiple MediaFrameSource and
+/// provides notifications when new frames arrive. This is useful if you need to
+/// process frames from different sources, such as a depth camera and an rbg
+/// camera, and you need to make sure that the frames from each source were
+/// captured close to each other in time.
 class MultiSourceMediaFrameReader extends IInspectable
     implements
         IMultiSourceMediaFrameReader,

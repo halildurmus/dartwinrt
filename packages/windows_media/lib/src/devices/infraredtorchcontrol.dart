@@ -19,8 +19,8 @@ import 'package:windows_foundation/windows_foundation.dart';
 import 'iinfraredtorchcontrol.dart';
 import 'infraredtorchmode.dart';
 
-/// Provides functionality for controlling the infrared torch LED settings
-/// on a capture device.
+/// Provides functionality for controlling the infrared torch LED settings on a
+/// capture device.
 class InfraredTorchControl extends IInspectable
     implements IInfraredTorchControl {
   InfraredTorchControl.fromPtr(super.ptr);

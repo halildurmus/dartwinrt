@@ -20,8 +20,8 @@ import 'ijapanesephoneticanalyzerstatics.dart';
 import 'japanesephoneme.dart';
 
 /// Reads a Japanese string that is a combination of Kanji characters and
-/// Hiragana characters, and returns a collection of proper readings from
-/// the string with word breaks.
+/// Hiragana characters, and returns a collection of proper readings from the
+/// string with word breaks.
 class JapanesePhoneticAnalyzer extends IInspectable {
   JapanesePhoneticAnalyzer.fromPtr(super.ptr);
 

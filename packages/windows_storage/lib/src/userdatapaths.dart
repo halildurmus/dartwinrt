@@ -20,8 +20,8 @@ import 'package:windows_system/windows_system.dart';
 import 'iuserdatapaths.dart';
 import 'iuserdatapathsstatics.dart';
 
-/// Returns full paths for common user data folders. User data folders are
-/// based on the KNOWNFOLDERID naming pattern.
+/// Returns full paths for common user data folders. User data folders are based
+/// on the KNOWNFOLDERID naming pattern.
 class UserDataPaths extends IInspectable implements IUserDataPaths {
   UserDataPaths.fromPtr(super.ptr);
 

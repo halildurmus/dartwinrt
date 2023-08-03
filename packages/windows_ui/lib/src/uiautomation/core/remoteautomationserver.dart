@@ -19,8 +19,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 import 'iremoteautomationserverstatics.dart';
 
 /// Represents a UI Automation provider session for establishing the server
-/// (remote) side of a connection between a local client and a remote
-/// provider.
+/// (remote) side of a connection between a local client and a remote provider.
 class RemoteAutomationServer extends IInspectable {
   RemoteAutomationServer.fromPtr(super.ptr);
 

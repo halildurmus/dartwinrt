@@ -14,8 +14,8 @@ import 'package:win32/win32.dart'
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
-/// An axis-aligned bounding box in the user's surroundings, with
-/// coordinates expressed in meters.
+/// An axis-aligned bounding box in the user's surroundings, with coordinates
+/// expressed in meters.
 final class SpatialBoundingBox implements WinRTStruct {
   const SpatialBoundingBox(this.center, this.extents);
 
@@ -59,8 +59,7 @@ extension SpatialBoundingBoxListToNativeSpatialBoundingBoxArrayConversion
 
 /// @nodoc
 extension NativeSpatialBoundingBoxConversion on NativeSpatialBoundingBox {
-  /// Converts this [NativeSpatialBoundingBox] into a Dart
-  /// [SpatialBoundingBox].
+  /// Converts this [NativeSpatialBoundingBox] into a Dart [SpatialBoundingBox].
   SpatialBoundingBox toDart() =>
       SpatialBoundingBox(center.toDart(), extents.toDart());
 }

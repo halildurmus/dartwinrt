@@ -73,8 +73,7 @@ extension PointerNativeDisplayAdapterIdConversion
     return DisplayAdapterId(ref.lowPart, ref.highPart);
   }
 
-  /// Creates a `List<DisplayAdapterId>` from
-  /// `Pointer<NativeDisplayAdapterId>`.
+  /// Creates a `List<DisplayAdapterId>` from `Pointer<NativeDisplayAdapterId>`.
   ///
   /// [length] must not be greater than the number of elements stored inside the
   /// `Pointer<NativeDisplayAdapterId>`.

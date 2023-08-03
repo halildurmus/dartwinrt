@@ -8,8 +8,8 @@
 
 import 'package:windows_foundation/windows_foundation.dart';
 
-/// Indicates the altitude reference system to be used in defining a
-/// geographic shape.
+/// Indicates the altitude reference system to be used in defining a geographic
+/// shape.
 enum AltitudeReferenceSystem implements WinRTEnum {
   unspecified(0),
   terrain(1),

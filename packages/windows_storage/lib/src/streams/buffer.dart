@@ -20,8 +20,8 @@ import 'ibuffer.dart';
 import 'ibufferfactory.dart';
 import 'ibufferstatics.dart';
 
-/// Provides a default implementation of the IBuffer interface and its
-/// related interfaces.
+/// Provides a default implementation of the IBuffer interface and its related
+/// interfaces.
 class Buffer extends IInspectable implements IBuffer {
   Buffer.fromPtr(super.ptr);
 

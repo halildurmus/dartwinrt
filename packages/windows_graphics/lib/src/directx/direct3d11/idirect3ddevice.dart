@@ -19,8 +19,8 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// @nodoc
 const IID_IDirect3DDevice = '{a37624ab-8d5f-4650-9d3e-9eae3d9bc670}';
 
-/// This represents an IDXGIDevice, and can be used to interop between
-/// Windows Runtime components that need to exchange IDXGIDevice references.
+/// This represents an IDXGIDevice, and can be used to interop between Windows
+/// Runtime components that need to exchange IDXGIDevice references.
 class IDirect3DDevice extends IInspectable implements IClosable {
   // vtable begins at 6, is 1 entries long.
   IDirect3DDevice.fromPtr(super.ptr);

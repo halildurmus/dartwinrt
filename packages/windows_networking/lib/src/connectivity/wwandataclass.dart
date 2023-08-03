@@ -8,8 +8,8 @@
 
 import 'package:windows_foundation/windows_foundation.dart';
 
-/// Defines values used to indicate the class of data service provided by a
-/// WWAN network connection.
+/// Defines values used to indicate the class of data service provided by a WWAN
+/// network connection.
 final class WwanDataClass extends WinRTFlagsEnum<WwanDataClass> {
   const WwanDataClass(super.value, {super.name});
 

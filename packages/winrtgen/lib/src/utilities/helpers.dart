@@ -295,7 +295,7 @@ void verifyTypeIsFullyQualified(String fullyQualifiedType) {
 }
 
 /// Take a [commentText] and turn it into a multi-line doc comment.
-String wrapCommentText(String commentText, [int wrapLength = 76]) {
+String wrapCommentText(String commentText, [int wrapLength = 80]) {
   if (commentText.isEmpty) return '';
 
   final words = commentText.split(' ');

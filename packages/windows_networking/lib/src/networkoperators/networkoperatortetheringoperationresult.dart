@@ -20,9 +20,9 @@ import 'inetworkoperatortetheringoperationresult.dart';
 import 'tetheringoperationstatus.dart';
 
 /// Represents the results of a StartTetheringAsync or StopTetheringAsync
-/// operation. In addition to the TetheringOperationStatus value, it can
-/// include an optional error message string that provides mobile operator
-/// specific context to the error.
+/// operation. In addition to the TetheringOperationStatus value, it can include
+/// an optional error message string that provides mobile operator specific
+/// context to the error.
 class NetworkOperatorTetheringOperationResult extends IInspectable
     implements INetworkOperatorTetheringOperationResult {
   NetworkOperatorTetheringOperationResult.fromPtr(super.ptr);

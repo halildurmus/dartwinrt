@@ -8,8 +8,8 @@
 
 import 'package:windows_foundation/windows_foundation.dart';
 
-/// Specifies the result of a call to StartAsync to start the reading of
-/// media frames by a MediaFrameReader.
+/// Specifies the result of a call to StartAsync to start the reading of media
+/// frames by a MediaFrameReader.
 enum MediaFrameReaderStartStatus implements WinRTEnum {
   success(0),
   unknownFailure(1),

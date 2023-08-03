@@ -34,8 +34,8 @@ import 'imagestream.dart';
 import 'pixeldataprovider.dart';
 import 'softwarebitmap.dart';
 
-/// Provides read access to bitmap container data as well as data from the
-/// first frame.
+/// Provides read access to bitmap container data as well as data from the first
+/// frame.
 class BitmapDecoder extends IInspectable
     implements IBitmapDecoder, IBitmapFrame, IBitmapFrameWithSoftwareBitmap {
   BitmapDecoder.fromPtr(super.ptr);

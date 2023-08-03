@@ -18,8 +18,8 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 import 'iprinting3dmultiplepropertymaterial.dart';
 
-/// Represents a combination of properties and/or materials from the
-/// material groups specified in `MaterialGroupIndices`.
+/// Represents a combination of properties and/or materials from the material
+/// groups specified in `MaterialGroupIndices`.
 class Printing3DMultiplePropertyMaterial extends IInspectable
     implements IPrinting3DMultiplePropertyMaterial {
   Printing3DMultiplePropertyMaterial() : super(activateClass(_className));

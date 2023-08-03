@@ -21,8 +21,7 @@ import 'ipackageid.dart';
 import 'ipackageidwithmetadata.dart';
 import 'packageversion.dart';
 
-/// Provides package identification info, such as name, version, and
-/// publisher.
+/// Provides package identification info, such as name, version, and publisher.
 class PackageId extends IInspectable
     implements IPackageId, IPackageIdWithMetadata {
   PackageId.fromPtr(super.ptr);

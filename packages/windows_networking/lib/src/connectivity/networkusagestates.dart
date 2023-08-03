@@ -16,8 +16,8 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 import 'tristates.dart';
 
-/// Defines the desired state of the connection profile for which usage data
-/// is returned by the method GetNetworkUsageAsync.
+/// Defines the desired state of the connection profile for which usage data is
+/// returned by the method GetNetworkUsageAsync.
 final class NetworkUsageStates implements WinRTStruct {
   const NetworkUsageStates(this.roaming, this.shared);
 
@@ -61,8 +61,7 @@ extension NetworkUsageStatesListToNativeNetworkUsageStatesArrayConversion
 
 /// @nodoc
 extension NativeNetworkUsageStatesConversion on NativeNetworkUsageStates {
-  /// Converts this [NativeNetworkUsageStates] into a Dart
-  /// [NetworkUsageStates].
+  /// Converts this [NativeNetworkUsageStates] into a Dart [NetworkUsageStates].
   NetworkUsageStates toDart() =>
       NetworkUsageStates(TriStates.from(roaming), TriStates.from(shared));
 }

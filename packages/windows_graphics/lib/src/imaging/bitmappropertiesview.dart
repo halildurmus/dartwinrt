@@ -19,9 +19,9 @@ import 'package:windows_foundation/windows_foundation.dart';
 import 'bitmappropertyset.dart';
 import 'ibitmappropertiesview.dart';
 
-/// Provides read access to image properties and metadata. A particular
-/// instance of BitmapPropertiesView may represent the entire contents of
-/// the frame metadata, or any nested metadata block within the frame.
+/// Provides read access to image properties and metadata. A particular instance
+/// of BitmapPropertiesView may represent the entire contents of the frame
+/// metadata, or any nested metadata block within the frame.
 class BitmapPropertiesView extends IInspectable
     implements IBitmapPropertiesView {
   BitmapPropertiesView.fromPtr(super.ptr);

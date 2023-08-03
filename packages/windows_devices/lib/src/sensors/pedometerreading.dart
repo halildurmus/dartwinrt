@@ -19,8 +19,7 @@ import 'package:windows_foundation/windows_foundation.dart';
 import 'ipedometerreading.dart';
 import 'pedometerstepkind.dart';
 
-/// Provides an interface for a pedometer to measure the number of steps
-/// taken.
+/// Provides an interface for a pedometer to measure the number of steps taken.
 class PedometerReading extends IInspectable implements IPedometerReading {
   PedometerReading.fromPtr(super.ptr);
 

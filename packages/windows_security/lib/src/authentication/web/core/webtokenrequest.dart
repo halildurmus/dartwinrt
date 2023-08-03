@@ -23,8 +23,8 @@ import 'iwebtokenrequest3.dart';
 import 'iwebtokenrequestfactory.dart';
 import 'webtokenrequestprompttype.dart';
 
-/// Represents a request to an online identity provider for an
-/// authentication token.
+/// Represents a request to an online identity provider for an authentication
+/// token.
 class WebTokenRequest extends IInspectable
     implements IWebTokenRequest, IWebTokenRequest2, IWebTokenRequest3 {
   WebTokenRequest.fromPtr(super.ptr);

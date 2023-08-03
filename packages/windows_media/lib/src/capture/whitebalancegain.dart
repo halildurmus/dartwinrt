@@ -14,8 +14,7 @@ import 'package:win32/win32.dart'
 import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
-/// Represents the red, green, and blue values of a white balance gain
-/// setting.
+/// Represents the red, green, and blue values of a white balance gain setting.
 final class WhiteBalanceGain implements WinRTStruct {
   const WhiteBalanceGain(this.r, this.g, this.b);
 
@@ -76,8 +75,7 @@ extension PointerNativeWhiteBalanceGainConversion
     return WhiteBalanceGain(ref.r, ref.g, ref.b);
   }
 
-  /// Creates a `List<WhiteBalanceGain>` from
-  /// `Pointer<NativeWhiteBalanceGain>`.
+  /// Creates a `List<WhiteBalanceGain>` from `Pointer<NativeWhiteBalanceGain>`.
   ///
   /// [length] must not be greater than the number of elements stored inside the
   /// `Pointer<NativeWhiteBalanceGain>`.

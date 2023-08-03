@@ -21,8 +21,8 @@ import 'imediacapturevideoprofile.dart';
 import 'imediacapturevideoprofile2.dart';
 import 'mediacapturevideoprofilemediadescription.dart';
 
-/// Represents a video profile that indicates a configuration supported by
-/// the video capture device.
+/// Represents a video profile that indicates a configuration supported by the
+/// video capture device.
 class MediaCaptureVideoProfile extends IInspectable
     implements IMediaCaptureVideoProfile, IMediaCaptureVideoProfile2 {
   MediaCaptureVideoProfile.fromPtr(super.ptr);

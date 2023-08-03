@@ -67,8 +67,8 @@ extension NativeAutomationRemoteOperationOperandIdConversion
 /// @nodoc
 extension PointerNativeAutomationRemoteOperationOperandIdConversion
     on Pointer<NativeAutomationRemoteOperationOperandId> {
-  /// Converts the referenced [NativeAutomationRemoteOperationOperandId] into
-  /// a Dart [AutomationRemoteOperationOperandId].
+  /// Converts the referenced [NativeAutomationRemoteOperationOperandId] into a
+  /// Dart [AutomationRemoteOperationOperandId].
   AutomationRemoteOperationOperandId toDart() {
     final ref = this.ref;
     return AutomationRemoteOperationOperandId(ref.value);

@@ -28,10 +28,9 @@ import 'knownfolderid.dart';
 import 'knownfoldersaccessstatus.dart';
 import 'storagefolder.dart';
 
-/// Provides access to common locations that contain user content. This
-/// includes content from a user's local libraries (such as Documents,
-/// Pictures, Music, and Videos), HomeGroup, removable devices, and media
-/// server devices.
+/// Provides access to common locations that contain user content. This includes
+/// content from a user's local libraries (such as Documents, Pictures, Music,
+/// and Videos), HomeGroup, removable devices, and media server devices.
 class KnownFolders extends IInspectable {
   KnownFolders.fromPtr(super.ptr);
 

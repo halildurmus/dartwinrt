@@ -8,10 +8,10 @@
 
 import 'package:windows_foundation/windows_foundation.dart';
 
-/// Specifies how to sort the files in the query results and determines
-/// whether the query is shallow or deep. Query results for deep queries
-/// include all files in all of the subfolders of the current folder, sorted
-/// according to the specified option.
+/// Specifies how to sort the files in the query results and determines whether
+/// the query is shallow or deep. Query results for deep queries include all
+/// files in all of the subfolders of the current folder, sorted according to
+/// the specified option.
 enum CommonFileQuery implements WinRTEnum {
   defaultQuery(0),
   orderByName(1),

@@ -76,8 +76,7 @@ extension PointerNativeBasicGeopositionConversion
     return BasicGeoposition(ref.latitude, ref.longitude, ref.altitude);
   }
 
-  /// Creates a `List<BasicGeoposition>` from
-  /// `Pointer<NativeBasicGeoposition>`.
+  /// Creates a `List<BasicGeoposition>` from `Pointer<NativeBasicGeoposition>`.
   ///
   /// [length] must not be greater than the number of elements stored inside the
   /// `Pointer<NativeBasicGeoposition>`.

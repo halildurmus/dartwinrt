@@ -19,8 +19,8 @@ import 'package:windows_foundation/windows_foundation.dart';
 import 'iwebaccountmonitor.dart';
 import 'iwebaccountmonitor2.dart';
 
-/// Allows an app to monitor specific web accounts and raises events when
-/// those web accounts change.
+/// Allows an app to monitor specific web accounts and raises events when those
+/// web accounts change.
 class WebAccountMonitor extends IInspectable
     implements IWebAccountMonitor, IWebAccountMonitor2 {
   WebAccountMonitor.fromPtr(super.ptr);

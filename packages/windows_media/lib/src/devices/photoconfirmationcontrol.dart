@@ -19,8 +19,8 @@ import 'package:windows_foundation/windows_foundation.dart';
 import '../mediaproperties/mediapixelformat.dart';
 import 'iphotoconfirmationcontrol.dart';
 
-/// Provides functionality for controlling the photo confirmation settings
-/// on a capture device.
+/// Provides functionality for controlling the photo confirmation settings on a
+/// capture device.
 class PhotoConfirmationControl extends IInspectable
     implements IPhotoConfirmationControl {
   PhotoConfirmationControl.fromPtr(super.ptr);

@@ -19,8 +19,8 @@ import 'package:windows_foundation/windows_foundation.dart';
 /// @nodoc
 const IID_INumberRounder = '{5473c375-38ed-4631-b80c-ef34fc48b7f5}';
 
-/// An interface that returns rounded results for provided numbers of
-/// several data types.
+/// An interface that returns rounded results for provided numbers of several
+/// data types.
 class INumberRounder extends IInspectable {
   // vtable begins at 6, is 6 entries long.
   INumberRounder.fromPtr(super.ptr);

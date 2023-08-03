@@ -8,8 +8,8 @@
 
 import 'package:windows_foundation/windows_foundation.dart';
 
-/// Indicates the location of a panel on a computer. This enumeration is
-/// used for indicating the physical location of a device.
+/// Indicates the location of a panel on a computer. This enumeration is used
+/// for indicating the physical location of a device.
 enum Panel implements WinRTEnum {
   unknown(0),
   front(1),

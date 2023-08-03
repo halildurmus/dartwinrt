@@ -93,8 +93,7 @@ extension PointerDeviceUsageListToNativePointerDeviceUsageArrayConversion
 
 /// @nodoc
 extension NativePointerDeviceUsageConversion on NativePointerDeviceUsage {
-  /// Converts this [NativePointerDeviceUsage] into a Dart
-  /// [PointerDeviceUsage].
+  /// Converts this [NativePointerDeviceUsage] into a Dart [PointerDeviceUsage].
   PointerDeviceUsage toDart() => PointerDeviceUsage(
       usagePage,
       usage,

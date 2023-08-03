@@ -26,8 +26,8 @@ import 'iapplicationdatastatics.dart';
 import 'iapplicationdatastatics2.dart';
 import 'storagefolder.dart';
 
-/// Provides access to the application data store. Application data consists
-/// of files and settings that are either local, roaming, or temporary.
+/// Provides access to the application data store. Application data consists of
+/// files and settings that are either local, roaming, or temporary.
 class ApplicationData extends IInspectable
     implements
         IApplicationData,

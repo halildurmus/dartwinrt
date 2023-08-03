@@ -19,8 +19,8 @@ import 'package:windows_ui/windows_ui.dart';
 
 import 'ilauncheruioptions.dart';
 
-/// Specifies options for user interface elements such as the application
-/// picker that can be invoked by this API.
+/// Specifies options for user interface elements such as the application picker
+/// that can be invoked by this API.
 class LauncherUIOptions extends IInspectable implements ILauncherUIOptions {
   LauncherUIOptions.fromPtr(super.ptr);
 

@@ -18,8 +18,8 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 import 'iautomationtextrange.dart';
 
-/// Provides access to a span of continuous text in a container that
-/// supports the IUIAutomationTextPattern interface.
+/// Provides access to a span of continuous text in a container that supports
+/// the IUIAutomationTextPattern interface.
 class AutomationTextRange extends IInspectable implements IAutomationTextRange {
   AutomationTextRange.fromPtr(super.ptr);
 }

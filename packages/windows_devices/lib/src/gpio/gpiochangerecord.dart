@@ -16,9 +16,8 @@ import 'package:windows_foundation/windows_foundation.dart';
 
 import 'gpiopinedge.dart';
 
-/// Stores a relative timestap of a general-purpose I/O (GPIO) pin value
-/// change, and whether the pin transitioned from low to high or from high
-/// to low.
+/// Stores a relative timestap of a general-purpose I/O (GPIO) pin value change,
+/// and whether the pin transitioned from low to high or from high to low.
 final class GpioChangeRecord implements WinRTStruct {
   const GpioChangeRecord(this.relativeTime, this.edge);
 
@@ -78,8 +77,7 @@ extension PointerNativeGpioChangeRecordConversion
         ref.relativeTime.toDartDuration(), GpioPinEdge.from(ref.edge));
   }
 
-  /// Creates a `List<GpioChangeRecord>` from
-  /// `Pointer<NativeGpioChangeRecord>`.
+  /// Creates a `List<GpioChangeRecord>` from `Pointer<NativeGpioChangeRecord>`.
   ///
   /// [length] must not be greater than the number of elements stored inside the
   /// `Pointer<NativeGpioChangeRecord>`.
