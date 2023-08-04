@@ -2,8 +2,8 @@
 // All rights reserved. Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+import '../../extensions/extensions.dart';
 import '../../models/models.dart';
-import '../../utilities/utilities.dart';
 import '../parameter.dart';
 
 /// Parameter projection for `T extends WinRTEnum` parameters.

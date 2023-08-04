@@ -2,7 +2,7 @@
 // All rights reserved. Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import '../../utilities/utilities.dart';
+import '../../extensions/extensions.dart';
 import '../parameter.dart';
 
 /// Parameter projection for WinRT class, interface, or `boxed` value
@@ -63,7 +63,7 @@ final class ObjectParameterProjection extends ParameterProjection {
       }
     }
 
-    return isNullable ? nullable(shortTypeName) : shortTypeName;
+    return isNullable ? shortTypeName.nullable() : shortTypeName;
   }
 
   @override
@@ -87,7 +87,7 @@ final class ObjectParameterProjection extends ParameterProjection {
     }
 
     if (type == 'Pointer<COMObject>') return identifier;
-    final interfaceName = stripQuestionMarkSuffix(type);
+    final interfaceName = type.stripQuestionMarkSuffix();
     return '$interfaceName.fromPtr($identifier)';
   }
 

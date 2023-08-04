@@ -4,7 +4,7 @@
 
 import 'package:winmd/winmd.dart';
 
-import '../../utilities/utilities.dart';
+import '../../extensions/extensions.dart';
 import '../parameter.dart';
 import '../struct.dart';
 import 'array.dart';
@@ -28,7 +28,7 @@ final class StructParameterProjection extends ParameterProjection {
           fieldProjection.isIReference || fieldProjection.exposedAsStruct);
 
   TypeIdentifier get typeIdentifier => parameter.isReferenceType
-      ? dereferenceType(parameter.typeIdentifier)
+      ? parameter.typeIdentifier.dereference()
       : parameter.typeIdentifier;
 
   @override

@@ -4,7 +4,7 @@
 
 import 'package:winmd/winmd.dart';
 
-import '../../utilities/utilities.dart';
+import '../../extensions/extensions.dart';
 import '../parameter.dart';
 import '../type.dart';
 
@@ -12,13 +12,13 @@ final class MapParameterProjection extends ParameterProjection {
   MapParameterProjection(super.parameter);
 
   TypeIdentifier get typeIdentifier => typeProjection.isReferenceType
-      ? dereferenceType(typeProjection.typeIdentifier)
+      ? typeProjection.typeIdentifier.dereference()
       : typeProjection.typeIdentifier;
 
   /// The type arguments of `IMap` and `IMapView`, as represented in the
   /// [typeProjection]'s [TypeIdentifier] (e.g., `String, Object?`,
   /// `String, String?`).
-  String get mapTypeArgs => typeArguments(shortTypeName);
+  String get mapTypeArgs => shortTypeName.typeArguments;
 
   /// The constructor arguments passed to the constructors of `IMap` and
   /// `IMapView`.
@@ -48,9 +48,9 @@ final class MapParameterProjection extends ParameterProjection {
     // The IID for IIterable<IKeyValuePair<K, V>> must be passed in the
     // 'iterableIid' parameter so that the 'IMap' and 'IMapView' implementations
     // can use the correct IID when instantiating the IIterable object
-    final iterableIid = iterableIidFromMapType(typeIdentifier);
+    final iterableIid = typeIdentifier.iterableIID;
 
-    final args = <String>['iterableIid: ${quote(iterableIid)}'];
+    final args = <String>['iterableIid: ${iterableIid.quote()}'];
     if (keyArgTypeProjection.isWinRTEnum) {
       args.add('enumKeyCreator: $enumKeyCreator');
     }
@@ -69,7 +69,7 @@ final class MapParameterProjection extends ParameterProjection {
       !(isReturnParam && !method.isGetProperty);
 
   @override
-  String get type => isNullable ? nullable(shortTypeName) : shortTypeName;
+  String get type => isNullable ? shortTypeName.nullable() : shortTypeName;
 
   @override
   String get creator => 'IMap.fromPtr($identifier$mapConstructorArgs)';
@@ -102,7 +102,7 @@ final class MapViewParameterProjection extends MapParameterProjection {
       return 'Map<$mapTypeArgs>';
     }
 
-    return isNullable ? nullable(shortTypeName) : shortTypeName;
+    return isNullable ? shortTypeName.nullable() : shortTypeName;
   }
 
   @override

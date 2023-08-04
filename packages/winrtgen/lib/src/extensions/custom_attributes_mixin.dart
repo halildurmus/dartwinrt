@@ -4,7 +4,7 @@
 
 import 'package:winmd/winmd.dart';
 
-import '../../constants/constants.dart';
+import '../constants/constants.dart';
 
 extension CustomAttributesMixinHelpers on CustomAttributesMixin {
   /// Returns the deprecated annotation for this object if it has a

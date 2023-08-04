@@ -175,7 +175,8 @@ void main() {
             TypeArgKind.fromTypeIdentifier(
               TypeIdentifier(BaseType.valueTypeModifier,
                   name: 'Windows.Foundation.AsyncStatus',
-                  type: getMetadataForType('Windows.Foundation.AsyncStatus')),
+                  type: WinRTMetadataStore.findMetadata(
+                      'Windows.Foundation.AsyncStatus')),
             ),
             equals(TypeArgKind.winrtEnum));
       });
@@ -185,7 +186,8 @@ void main() {
             TypeArgKind.fromTypeIdentifier(
               TypeIdentifier(BaseType.valueTypeModifier,
                   name: 'Windows.Storage.FileAttributes',
-                  type: getMetadataForType('Windows.Storage.FileAttributes')),
+                  type: WinRTMetadataStore.findMetadata(
+                      'Windows.Storage.FileAttributes')),
             ),
             equals(TypeArgKind.winrtFlagsEnum));
       });

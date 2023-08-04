@@ -5,7 +5,8 @@
 import 'package:winmd/winmd.dart';
 
 import '../constants/constants.dart';
-import '../utilities/utilities.dart';
+import '../extensions/extensions.dart';
+import '../models/models.dart';
 import 'base.dart';
 import 'getter.dart';
 import 'method.dart';
@@ -27,7 +28,7 @@ base class InterfaceProjection extends BaseProjection {
   /// found.
   factory InterfaceProjection.from(String fullyQualifiedType,
       {String comment = ''}) {
-    final typeDef = getMetadataForType(fullyQualifiedType);
+    final typeDef = WinRTMetadataStore.findMetadata(fullyQualifiedType);
     return InterfaceProjection(typeDef, comment: comment);
   }
 
@@ -35,7 +36,7 @@ base class InterfaceProjection extends BaseProjection {
 
   String get iidConstant => '''
 /// @nodoc
-const IID_$shortName = ${quote(typeDef.iid)};''';
+const IID_$shortName = ${typeDef.iid.quote()};''';
 
   List<TypeDef> get inheritedInterfaces => typeDef.interfaces
     ..removeWhere((interface) =>

@@ -4,10 +4,10 @@
 
 import 'package:winmd/winmd.dart';
 
-import '../../exception/exception.dart';
-import '../../models/models.dart';
-import '../../projections/type.dart';
-import 'type_identifier_helpers.dart';
+import '../exception/exception.dart';
+import '../models/models.dart';
+import '../projections/type.dart';
+import 'type_identifier.dart';
 
 extension ParameterHelpers on Parameter {
   /// Returns a copy of this parameter.

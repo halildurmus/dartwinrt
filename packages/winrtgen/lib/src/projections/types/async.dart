@@ -5,7 +5,8 @@
 import 'package:winmd/winmd.dart';
 
 import '../../exception/exception.dart';
-import '../../utilities/utilities.dart';
+import '../../extensions/extensions.dart';
+import '../../models/models.dart';
 import '../projections.dart';
 
 /// Parameter projection for `IAsyncAction` parameters.
@@ -58,7 +59,8 @@ final class AsyncOperationParameterProjection
 
   TypeIdentifier get typeIdentifier {
     if (isSubtypeOfAsyncOperation) {
-      final typeDef = getMetadataForType(typeProjection.typeIdentifier.name);
+      final typeDef =
+          WinRTMetadataStore.findMetadata(typeProjection.typeIdentifier.name);
       final interface = typeDef.interfaces.firstWhere((interface) =>
           interface.typeSpec?.name.endsWith('IAsyncOperation`1') ?? false);
       if (interface.typeSpec case final typeSpec?) return typeSpec;
@@ -71,7 +73,7 @@ final class AsyncOperationParameterProjection
   /// The type argument of `IAsyncOperation`, as represented in the
   /// [typeProjection]'s `TypeIdentifier` (e.g., `bool`, `String`,
   /// `StorageFile?`).
-  String get typeArg => typeArguments(typeIdentifier.shortName);
+  String get typeArg => typeIdentifier.shortName.typeArguments;
 
   String get formattedTypeArg {
     if (typeArg.startsWith('IMapView')) {
@@ -82,7 +84,7 @@ final class AsyncOperationParameterProjection
       return typeArg.replaceFirst('IVectorView', 'List');
     } else if (typeArg.startsWith('IReference')) {
       // e.g. Duration? instead of IReference<Duration?>
-      return typeArguments(typeArg);
+      return typeArg.typeArguments;
     }
 
     return typeArg;
@@ -90,7 +92,7 @@ final class AsyncOperationParameterProjection
 
   /// The constructor arguments passed to the constructor of `IAsyncOperation`.
   String get constructorArgs {
-    final typeArg = dereferenceType(typeIdentifier);
+    final typeArg = typeIdentifier.dereference();
     final typeProjection = TypeProjection(typeArg);
 
     // If the type argument is an enum or a WinRT object (e.g., StorageFile),

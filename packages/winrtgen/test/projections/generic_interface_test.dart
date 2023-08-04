@@ -79,27 +79,27 @@ void main() {
       }
 
       test('(IAsyncOperation)', () {
-        verifySupportedTypeArgKindsOf(iasyncOperation);
+        verifySupportedTypeArgKindsOf(GenericType.iasyncOperation);
       });
 
       test('(IMap)', () {
-        verifySupportedTypeArgKindsOf(imap);
+        verifySupportedTypeArgKindsOf(GenericType.imap);
       });
 
       test('(IMapView)', () {
-        verifySupportedTypeArgKindsOf(imapView);
+        verifySupportedTypeArgKindsOf(GenericType.imapView);
       });
 
       test('(IReference)', () {
-        verifySupportedTypeArgKindsOf(ireference);
+        verifySupportedTypeArgKindsOf(GenericType.ireference);
       });
 
       test('(IVector)', () {
-        verifySupportedTypeArgKindsOf(ivector);
+        verifySupportedTypeArgKindsOf(GenericType.ivector);
       });
 
       test('(IVectorView)', () {
-        verifySupportedTypeArgKindsOf(ivectorView);
+        verifySupportedTypeArgKindsOf(GenericType.ivectorView);
       });
     });
 

@@ -2,6 +2,26 @@
 // All rights reserved. Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+/// WinRT interfaces to exclude when generating an interface's inherited
+/// interfaces.
+const excludedInterfacesInInherits = <String>{
+  // INumberFormatter2's methods conflict with INumberFormatter's methods
+  'Windows.Globalization.NumberFormatting.INumberFormatter2',
+  // Contains deprecated APIs
+  'Windows.Storage.Pickers.IFileOpenPicker2',
+  // IFileOpenPickerWithOperationId's pickSingleFileAsync(String operationId)
+  // method conflicts with IFileOpenPicker's pickSingleFileAsync() method
+  'Windows.Storage.Pickers.IFileOpenPickerWithOperationId',
+};
+
+/// WinRT interfaces to exclude when generating the method forwarders.
+const excludedInterfacesInMethodForwarders = <String>{
+  // The WinRT interfaces that inherit IIterable also inherit from IMap,
+  // IMapView, IVector, or IVectorView. As we generate method forwarders for
+  // the IIterable in these interfaces, we need to exclude this one.
+  'Windows.Foundation.Collections.IIterable`1',
+};
+
 /// Methods to exclude when generating the concrete classes for WinRT generic
 /// interfaces.
 const excludedMethodsInConcreteClasses = <String, Set<String>>{
@@ -11,6 +31,23 @@ const excludedMethodsInConcreteClasses = <String, Set<String>>{
   'Windows.Foundation.Collections.IMapView`2': {'Split'},
   // Excluded methods from the IVector interface
   'Windows.Foundation.Collections.IVector`1': {'GetView'},
+};
+
+/// WinRT objects to exclude from code generation.
+const excludedObjects = <String>{
+  ...excludedInterfacesInInherits,
+  ...excludedStaticInterfaces,
+
+  // These types are projected manually by design
+  'Windows.Foundation.IAsyncOperation`1',
+  'Windows.Foundation.Collections.IIterable`1',
+  'Windows.Foundation.Collections.IIterator`1',
+  'Windows.Foundation.Collections.IKeyValuePair`2',
+  'Windows.Foundation.Collections.IMap`2',
+  'Windows.Foundation.Collections.IMapView`2',
+  'Windows.Foundation.Collections.IObservableMap`2',
+  'Windows.Foundation.Collections.IVector`1',
+  'Windows.Foundation.Collections.IVectorView`1',
 };
 
 /// Files to exclude from packages when generating the package export files.
@@ -44,46 +81,9 @@ const excludedPackageFiles = <String, Set<String>>{
   },
 };
 
-/// WinRT objects to exclude from code generation.
-const excludedObjects = <String>{
-  ...excludedInterfacesInInherits,
-  ...excludedStaticInterfaces,
-
-  // These types are projected manually by design
-  'Windows.Foundation.IAsyncOperation`1',
-  'Windows.Foundation.Collections.IIterable`1',
-  'Windows.Foundation.Collections.IIterator`1',
-  'Windows.Foundation.Collections.IKeyValuePair`2',
-  'Windows.Foundation.Collections.IMap`2',
-  'Windows.Foundation.Collections.IMapView`2',
-  'Windows.Foundation.Collections.IObservableMap`2',
-  'Windows.Foundation.Collections.IVector`1',
-  'Windows.Foundation.Collections.IVectorView`1',
-};
-
-/// WinRT interfaces to exclude when generating an interface's inherited
-/// interfaces.
-const excludedInterfacesInInherits = <String>{
-  // INumberFormatter2's methods conflict with INumberFormatter's methods
-  'Windows.Globalization.NumberFormatting.INumberFormatter2',
-  // Contains deprecated APIs
-  'Windows.Storage.Pickers.IFileOpenPicker2',
-  // IFileOpenPickerWithOperationId's pickSingleFileAsync(String operationId)
-  // method conflicts with IFileOpenPicker's pickSingleFileAsync() method
-  'Windows.Storage.Pickers.IFileOpenPickerWithOperationId',
-};
-
 /// WinRT static interfaces to exclude when generating the static methods.
 const excludedStaticInterfaces = <String>{
   'Windows.Storage.Pickers.IFileOpenPickerStatics', // Contains deprecated APIs
-};
-
-/// WinRT interfaces to exclude when generating the method forwarders.
-const excludedInterfacesInMethodForwarders = <String>{
-  // The WinRT interfaces that inherit IIterable also inherit from IMap,
-  // IMapView, IVector, or IVectorView. As we generate method forwarders for
-  // the IIterable in these interfaces, we need to exclude this one.
-  'Windows.Foundation.Collections.IIterable`1',
 };
 
 /// WinRT types to ignore when generating the imports.

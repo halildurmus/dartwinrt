@@ -6,7 +6,8 @@ import 'package:winmd/winmd.dart';
 
 import '../constants/constants.dart';
 import '../exception/exception.dart';
-import '../utilities/utilities.dart';
+import '../extensions/extensions.dart';
+import 'metadata_store.dart';
 
 /// Represents a type argument kind for a generic class.
 ///
@@ -141,7 +142,7 @@ enum TypeArgKind {
           'Windows.Foundation.TimeSpan' =>
             isNullable ? TypeArgKind.nullableDuration : TypeArgKind.duration,
           _ => TypeArgKind.from(
-              isNullable ? nullable(lastComponent(name)) : lastComponent(name))
+              isNullable ? name.lastComponent.nullable() : name.lastComponent)
         },
       _ =>
         throw WinRTGenException('Unsupported TypeIdentifier: $typeIdentifier')
@@ -311,5 +312,5 @@ enum TypeArgKind {
 extension on String {
   TypeIdentifier get typeIdentifier =>
       TypeIdentifier(BaseType.classTypeModifier,
-          name: this, type: getMetadataForType(this));
+          name: this, type: WinRTMetadataStore.findMetadata(this));
 }

@@ -14,8 +14,8 @@ void main() {
     return;
   }
 
-  final geocoordinateTypeDef =
-      getMetadataForType('Windows.Devices.Geolocation.IGeocoordinate');
+  final geocoordinateTypeDef = WinRTMetadataStore.findMetadata(
+      'Windows.Devices.Geolocation.IGeocoordinate');
   final getLatitudeGetter =
       geocoordinateTypeDef.methods.firstWhere((m) => m.name == 'get_Latitude');
 

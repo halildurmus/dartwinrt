@@ -4,10 +4,9 @@
 
 import 'package:winmd/winmd.dart';
 
-import '../../constants/constants.dart';
-import '../../exception/exception.dart';
-import '../helpers.dart';
-import 'type_identifier_helpers.dart';
+import '../constants/constants.dart';
+import '../exception/exception.dart';
+import 'extensions.dart';
 
 extension TypeDefHelpers on TypeDef {
   /// Returns the fully-qualified type name of the type defined in this
@@ -19,7 +18,7 @@ extension TypeDefHelpers on TypeDef {
   }
 
   /// Returns the IID of the type defined in this TypeDef.
-  String get iid => iidFromSignature(signature);
+  String get iid => signature.toIID();
 
   /// Returns `true` if the type defined in this TypeDef is a collection object,
   /// i.e. implements `IIterable` (e.g., `JsonObject`, `XmlNamedNodeMap`, `IMap`,
@@ -46,7 +45,7 @@ extension TypeDefHelpers on TypeDef {
   /// `ICalendar`, `IVector` , `IMap<String, String>`).
   String get shortName {
     if (typeSpec case final typeSpec?) return typeSpec.shortName;
-    return stripGenerics(lastComponent(name));
+    return name.lastComponent.stripGenerics();
   }
 
   /// Returns the type signature of this TypeDef.

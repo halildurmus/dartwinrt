@@ -5,7 +5,8 @@
 import 'package:winmd/winmd.dart';
 
 import '../constants/constants.dart';
-import '../utilities/utilities.dart';
+import '../extensions/extensions.dart';
+import '../models/models.dart';
 import 'base.dart';
 
 /// An enum identifier.
@@ -16,8 +17,7 @@ final class EnumIdentifierProjection {
 
   final Field field;
 
-  String get identifierName =>
-      safeIdentifierForString(field.name.toCamelCase());
+  String get identifierName => field.name.toCamelCase().toSafeIdentifier();
 
   int get identifierValue => field.value;
 
@@ -60,7 +60,7 @@ final class EnumProjection extends BaseProjection {
   /// found.
   factory EnumProjection.from(String fullyQualifiedType,
       {String comment = ''}) {
-    final typeDef = getMetadataForType(fullyQualifiedType);
+    final typeDef = WinRTMetadataStore.findMetadata(fullyQualifiedType);
     return EnumProjection.create(typeDef, comment: comment);
   }
 
@@ -119,7 +119,7 @@ final class StaticEnumConstantProjection extends EnumIdentifierProjection {
   String toString() => [
         if (isDeprecated) field.deprecatedAnnotation,
         'static const $identifierName = $enumName($identifierValue, '
-            'name: ${quote(identifierName)});'
+            'name: ${identifierName.quote()});'
       ].join('\n');
 }
 
@@ -139,7 +139,7 @@ final class FlagsEnumProjection extends EnumProjection {
   /// found.
   factory FlagsEnumProjection.from(String fullyQualifiedType,
       {String comment = ''}) {
-    final typeDef = getMetadataForType(fullyQualifiedType);
+    final typeDef = WinRTMetadataStore.findMetadata(fullyQualifiedType);
     return FlagsEnumProjection(typeDef, comment: comment);
   }
 
@@ -164,7 +164,7 @@ factory $shortName.from(int value) =>
 
   String get valuesConstant {
     final fieldNames = fields
-        .map((field) => safeIdentifierForString(field.name.toCamelCase()))
+        .map((field) => field.name.toCamelCase().toSafeIdentifier())
         .join(', ');
     return 'static const List<$shortName> values = [$fieldNames];';
   }

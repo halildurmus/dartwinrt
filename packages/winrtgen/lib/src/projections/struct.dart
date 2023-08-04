@@ -6,7 +6,8 @@ import 'package:win32/win32.dart';
 import 'package:winmd/winmd.dart';
 
 import '../constants/constants.dart';
-import '../utilities/utilities.dart';
+import '../extensions/extensions.dart';
+import '../models/models.dart';
 import 'base.dart';
 import 'parameter.dart';
 import 'type.dart';
@@ -28,7 +29,7 @@ final class StructFieldProjection {
 
   String get dartType => typeProjection.dartType;
 
-  String get fieldName => safeIdentifierForString(field.name.toCamelCase());
+  String get fieldName => field.name.toCamelCase().toSafeIdentifier();
 
   bool get isDeprecated => field.isDeprecated;
 
@@ -91,7 +92,7 @@ final class NativeStructProjection extends BaseProjection {
     String fullyQualifiedType, {
     String? structName,
   }) {
-    final typeDef = getMetadataForType(fullyQualifiedType);
+    final typeDef = WinRTMetadataStore.findMetadata(fullyQualifiedType);
     return NativeStructProjection(typeDef, structName: structName);
   }
 
@@ -132,7 +133,7 @@ final class StructProjection extends NativeStructProjection {
     String comment = '',
     String? structName,
   }) {
-    final typeDef = getMetadataForType(fullyQualifiedType);
+    final typeDef = WinRTMetadataStore.findMetadata(fullyQualifiedType);
     return StructProjection(typeDef, comment: comment, structName: structName);
   }
 
@@ -203,9 +204,9 @@ final class StructProjection extends NativeStructProjection {
 ''';
 
   String get structListExtension {
-    final toArrayComment = wrapCommentText(
-        'Creates an array of [Native$structName]s from a List of [$structName]s.',
-        78);
+    final toArrayComment =
+        'Creates an array of [Native$structName]s from a List of [$structName]s.'
+            .toDocComment(wrapLength: 78);
     return '''
 /// @nodoc
 extension ${structName}ListToNative${structName}ArrayConversion on List<$structName> {
@@ -222,8 +223,9 @@ extension ${structName}ListToNative${structName}ArrayConversion on List<$structN
   }
 
   String get nativeStructExtension {
-    final toDartComment = wrapCommentText(
-        'Converts this [Native$structName] into a Dart [$structName].', 78);
+    final toDartComment =
+        'Converts this [Native$structName] into a Dart [$structName].'
+            .toDocComment(wrapLength: 78);
     final structConstructorArgs = fieldProjections.map((f) {
       if (f.paramProjection.typeProjection.isDartPrimitive) {
         return f.isString ? f.paramProjection.creator : f.fieldName;
@@ -247,14 +249,14 @@ extension Native${structName}Conversion on Native$structName {
   }
 
   String get pointerNativeStructExtension {
-    final toDartComment = wrapCommentText(
-        'Converts the referenced [Native$structName] into a Dart [$structName].',
-        78);
-    final toListComment = wrapCommentText(
+    final toDartComment =
+        'Converts the referenced [Native$structName] into a Dart [$structName].'
+            .toDocComment(wrapLength: 78);
+    final toListComment =
         'Creates a `List<$structName>` from `Pointer<Native$structName>`. \n '
-        '[length] must not be greater than the number of elements stored '
-        'inside the `Pointer<Native$structName>`.',
-        78);
+                '[length] must not be greater than the number of elements '
+                'stored inside the `Pointer<Native$structName>`.'
+            .toDocComment(wrapLength: 78);
     final structConstructorArgs = fieldProjections.map((f) {
       if (f.paramProjection.typeProjection.isDartPrimitive) {
         if (f.isString) return 'ref.${f.fieldName}.toDartString()';

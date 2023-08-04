@@ -14,12 +14,14 @@ void main() {
     return;
   }
 
-  final calendarTypeDef = getMetadataForType('Windows.Globalization.Calendar');
-  final jsonObjectTypeDef = getMetadataForType('Windows.Data.Json.JsonObject');
-  final mapViewTypeDef =
-      getMetadataForType('Windows.Foundation.Collections.IMapView`2');
-  final stringMapTypeDef =
-      getMetadataForType('Windows.Foundation.Collections.StringMap');
+  final calendarTypeDef =
+      WinRTMetadataStore.findMetadata('Windows.Globalization.Calendar');
+  final jsonObjectTypeDef =
+      WinRTMetadataStore.findMetadata('Windows.Data.Json.JsonObject');
+  final mapViewTypeDef = WinRTMetadataStore.findMetadata(
+      'Windows.Foundation.Collections.IMapView`2');
+  final stringMapTypeDef = WinRTMetadataStore.findMetadata(
+      'Windows.Foundation.Collections.StringMap');
 
   test('fullyQualifiedName', () {
     expect(calendarTypeDef.fullyQualifiedName,
@@ -40,15 +42,15 @@ void main() {
     });
 
     test('returns the IID of IObservableMap<String, Object>', () {
-      final typeDef =
-          getMetadataForType('Windows.Foundation.Collections.IPropertySet');
+      final typeDef = WinRTMetadataStore.findMetadata(
+          'Windows.Foundation.Collections.IPropertySet');
       expect(typeDef.interfaces[0].iid,
           equals('{236aac9d-fb12-5c4d-a41c-9e445fb4d7ec}'));
     });
 
     test('returns the IID of IMap<Guid, Object>', () {
-      final typeDef =
-          getMetadataForType('Windows.Media.MediaProperties.MediaPropertySet');
+      final typeDef = WinRTMetadataStore.findMetadata(
+          'Windows.Media.MediaProperties.MediaPropertySet');
       expect(typeDef.interfaces[0].iid,
           equals('{5ee3189c-7dbf-5998-ad07-5414fb82567c}'));
     });
@@ -71,10 +73,10 @@ void main() {
   });
 
   test('isFactoryInterface', () {
-    final typeDef1 =
-        getMetadataForType('Windows.Globalization.ICalendarFactory');
-    final typeDef2 =
-        getMetadataForType('Windows.Globalization.ICalendarFactory2');
+    final typeDef1 = WinRTMetadataStore.findMetadata(
+        'Windows.Globalization.ICalendarFactory');
+    final typeDef2 = WinRTMetadataStore.findMetadata(
+        'Windows.Globalization.ICalendarFactory2');
     expect(typeDef1.isFactoryInterface, isTrue);
     expect(typeDef2.isFactoryInterface, isTrue);
   });
@@ -100,14 +102,15 @@ void main() {
 
   group('signature', () {
     test('returns the signature of AsyncActionCompletedHandler', () {
-      final typeDef =
-          getMetadataForType('Windows.Foundation.AsyncActionCompletedHandler');
+      final typeDef = WinRTMetadataStore.findMetadata(
+          'Windows.Foundation.AsyncActionCompletedHandler');
       expect(typeDef.signature,
           equals('delegate({a4ed5c81-76c9-40bd-8be6-b1d90fb20ae7})'));
     });
 
     test('returns the signature of AsyncStatus', () {
-      final typeDef = getMetadataForType('Windows.Foundation.AsyncStatus');
+      final typeDef =
+          WinRTMetadataStore.findMetadata('Windows.Foundation.AsyncStatus');
       expect(
           typeDef.signature, equals('enum(Windows.Foundation.AsyncStatus;i4)'));
     });
@@ -120,7 +123,8 @@ void main() {
     });
 
     test('returns the signature of IAsyncAction', () {
-      final typeDef = getMetadataForType('Windows.Foundation.IAsyncAction');
+      final typeDef =
+          WinRTMetadataStore.findMetadata('Windows.Foundation.IAsyncAction');
       expect(
           typeDef.signature, equals('{5a648006-843a-4da9-865b-9d26e5dfad7b}'));
     });
@@ -135,7 +139,8 @@ void main() {
     });
 
     test('returns the signature of Point', () {
-      final typeDef = getMetadataForType('Windows.Foundation.Point');
+      final typeDef =
+          WinRTMetadataStore.findMetadata('Windows.Foundation.Point');
       expect(
           typeDef.signature, equals('struct(Windows.Foundation.Point;f4;f4)'));
     });

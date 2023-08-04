@@ -16,12 +16,12 @@ void main() {
 
   group('GenericTypeWithOneTypeArg', () {
     test('shortName', () {
-      expect(iasyncOperation.shortName, 'IAsyncOperation');
+      expect(GenericType.iasyncOperation.shortName, 'IAsyncOperation');
     });
 
     test('typeArgsInMetadata', () {
       expect(
-          iasyncOperation.typeArgKindsInMetadata,
+          GenericType.iasyncOperation.typeArgKindsInMetadata,
           equals({
             TypeArgKind.bool_,
             TypeArgKind.guid,
@@ -42,12 +42,12 @@ void main() {
 
   group('GenericTypeWithTwoTypeArgs', () {
     test('shortName', () {
-      expect(imap.shortName, 'IMap');
+      expect(GenericType.imap.shortName, 'IMap');
     });
 
     test('typeArgKindPairsInMetadata', () {
       expect(
-          imap.typeArgKindPairsInMetadata,
+          GenericType.imap.typeArgKindPairsInMetadata,
           equals({
             (TypeArgKind.guid, TypeArgKind.nullableObject),
             (TypeArgKind.object, TypeArgKind.nullableObject),

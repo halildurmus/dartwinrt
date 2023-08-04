@@ -5,7 +5,6 @@
 export 'attributes.dart';
 export 'bad_identifier_names.dart';
 export 'exclusions.dart';
-export 'generic_types.dart';
 export 'golden_files.dart';
 export 'headers.dart';
 export 'iids.dart';

@@ -7,11 +7,6 @@ import 'dart:io';
 
 import 'package:winrtgen/winrtgen.dart';
 
-/// Creates a file at the given [path] and writes the [content] into it.
-void writeToFile(String path, String content) => File(path)
-  ..createSync(recursive: true)
-  ..writeAsStringSync(content);
-
 void generateObjects() {
   final types = ObjectManager().types;
 
@@ -20,7 +15,7 @@ void generateObjects() {
   final typesAndDependencies = <String>{};
 
   for (final type in types.keys) {
-    final typeDef = getMetadataForType(type);
+    final typeDef = WinRTMetadataStore.findMetadata(type);
     final projection = typeDef.isInterface
         ? InterfaceProjection(typeDef)
         : ClassProjection(typeDef);
@@ -47,21 +42,23 @@ void generateObjects() {
 
   // Generate the type projection for each type
   for (final type in typesAndDependencies) {
-    final typeDef = getMetadataForType(type);
+    final typeDef = WinRTMetadataStore.findMetadata(type);
     final comment = types[type] ?? '';
     final projection = typeDef.isInterface
         ? InterfaceProjection(typeDef, comment: comment)
         : ClassProjection(typeDef, comment: comment);
-    final path = relativePathForType(type);
+    final path = type.toFilePath().relativePathFrom('winrtgen');
     writeToFile(path, projection.toString());
   }
 }
 
 void generateConcreteClassesForGenericInterfaces() {
-  for (final genericType in genericTypes) {
-    final type = genericType.fullyQualifiedType;
+  for (final genericType in GenericType.all) {
     final projection = GenericInterfacePartFileProjection(genericType);
-    final path = relativePathForType(type).replaceFirst('.dart', '_part.dart');
+    final path = genericType.fullyQualifiedType
+        .toFilePath()
+        .replaceFirst('.dart', '_part.dart')
+        .relativePathFrom('winrtgen');
     writeToFile(path, projection.toString());
   }
 }
@@ -70,7 +67,7 @@ void generateEnumerations() {
   final types = EnumManager().types;
   for (final type in types.keys) {
     final projection = EnumProjection.from(type, comment: types[type] ?? '');
-    final path = relativePathForType(type);
+    final path = type.toFilePath().relativePathFrom('winrtgen');
     writeToFile(path, projection.toString());
   }
 }
@@ -85,12 +82,13 @@ void generateStructs() {
     nativeStructProjections.add(nativeStructProjection);
     final structProjection =
         StructProjection.from(type, comment: types[type] ?? '');
-    final path = relativePathForType(type);
+    final path = type.toFilePath().relativePathFrom('winrtgen');
     writeToFile(path, structProjection.toString());
   }
 
   final nativeStructsFilePath =
-      '../../packages/windows_foundation/lib/src/internal/native_structs.g.dart';
+      'windows_foundation/lib/src/internal/native_structs.g.dart'
+          .relativePathFrom('winrtgen');
   final nativeStructsFileContent =
       [nativeStructsFileHeader, ...nativeStructProjections].join();
   writeToFile(nativeStructsFilePath, nativeStructsFileContent);
@@ -98,7 +96,7 @@ void generateStructs() {
 
 void generateLibraryExports() {
   for (final packageName in packageNames) {
-    final packagePath = '../$packageName/lib/src/';
+    final packagePath = '$packageName/lib/src/'.relativePathFrom('winrtgen');
     final dir = Directory(packagePath);
     final files =
         dir.listSync(recursive: true, followLinks: false).whereType<File>();
@@ -130,11 +128,11 @@ void generateLibraryExports() {
 
       // e.g. ..\windows_data\lib\src\json\jsonvalue.dart -> json/jsonvalue.dart
       final filePath =
-          file.path.replaceFirst(packagePath, '').replaceAll(r'\', '/');
+          file.path.substring(packagePath.length + 1).replaceAll(r'\', '/');
       exports.add(filePath);
     }
 
-    final path = '${packagePath}exports.g.dart';
+    final path = '${packagePath}/exports.g.dart';
     final content = '''
 $exportsFileHeader
 ${exports.map((e) => "export '$e';").join('\n')}
@@ -142,6 +140,11 @@ ${exports.map((e) => "export '$e';").join('\n')}
     writeToFile(path, content);
   }
 }
+
+/// Creates a file at the given [path] and writes the [content] into it.
+void writeToFile(String path, String content) => File(path)
+  ..createSync(recursive: true)
+  ..writeAsStringSync(content);
 
 void main() {
   final stopwatch = Stopwatch()..start();

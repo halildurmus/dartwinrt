@@ -6,7 +6,7 @@ import 'package:winmd/winmd.dart';
 
 import '../constants/attributes.dart';
 import '../exception/exception.dart';
-import '../utilities/utilities.dart';
+import '../extensions/extensions.dart';
 import 'class.dart';
 import 'interface.dart';
 import 'method.dart';
@@ -28,11 +28,11 @@ final class MethodForwardersProjection {
 
   /// The shorter [interface] name without type arguments (e.g., `IMap`,
   /// `ICalendar`).
-  String get shortInterfaceName => outerType(interface.shortName);
+  String get shortInterfaceName => interface.shortName.outerType;
 
   /// The type arguments of the [interface] (e.g., `String, String?`,
   /// `StorageFile`).
-  String get typeArgs => typeArguments(interface.shortName);
+  String get typeArgs => interface.shortName.typeArguments;
 
   /// Private field identifier for the [interface] (e.g., `_iCalendar`).
   String get fieldIdentifier => '_i${shortInterfaceName.substring(1)}';
@@ -79,17 +79,14 @@ final class MethodForwardersProjection {
     if (!isGenericInterface) return null;
 
     if (interface.typeSpec case final typeSpec?) {
-      if (shortInterfaceName case 'IMap' || 'IMapView') {
-        final iid = iterableIidFromMapType(typeSpec);
-        return 'iterableIid: ${quote(iid)}';
-      }
-
-      if (shortInterfaceName case 'IVector' || 'IVectorView') {
-        final iid = iterableIidFromVectorType(typeSpec);
-        return 'iterableIid: ${quote(iid)}';
-      }
-
-      return null;
+      return switch (shortInterfaceName) {
+        'IMap' ||
+        'IMapView' ||
+        'IVector' ||
+        'IVectorView' =>
+          'iterableIid: ${typeSpec.iterableIID.quote()}',
+        _ => null
+      };
     }
 
     throw WinRTGenException('Type $interface has no typeSpec.');
@@ -100,7 +97,7 @@ final class MethodForwardersProjection {
 
     if (interface.typeSpec case final typeSpec?) {
       if (typeArgs case 'int' || 'int?') {
-        final typeArg = dereferenceType(typeSpec);
+        final typeArg = typeSpec.dereference();
         final typeArgProjection = TypeProjection(typeArg);
         return 'intType: IntType.${typeArgProjection.nativeType.toLowerCase()}';
       }
@@ -112,7 +109,7 @@ final class MethodForwardersProjection {
 
   String get interfaceInstantiation {
     if (!isGenericInterface) return '$shortInterfaceName.from(this);';
-    final iid = quote(interface.iid);
+    final iid = interface.iid.quote();
     return '${interface.shortName}.fromPtr(toInterface($iid)$constructorArgs);';
   }
 

@@ -5,7 +5,8 @@
 import 'package:winmd/winmd.dart';
 
 import '../constants/constants.dart';
-import '../utilities/utilities.dart';
+import '../extensions/extensions.dart';
+import '../models/models.dart';
 import 'interface.dart';
 import 'method.dart';
 
@@ -24,7 +25,7 @@ base class ClassProjection extends InterfaceProjection {
   /// found.
   factory ClassProjection.from(String fullyQualifiedType,
       {String comment = ''}) {
-    final typeDef = getMetadataForType(fullyQualifiedType);
+    final typeDef = WinRTMetadataStore.findMetadata(fullyQualifiedType);
     return ClassProjection(typeDef, comment: comment);
   }
 
@@ -33,8 +34,8 @@ base class ClassProjection extends InterfaceProjection {
   @override
   Set<String> get interfaceImports => {
         ...super.interfaceImports,
-        ...factoryInterfaces.map(fileNameFromType),
-        ...staticInterfaces.map(fileNameFromType),
+        ...factoryInterfaces.map((interface) => interface.toFileName()),
+        ...staticInterfaces.map((interface) => interface.toFileName()),
       };
 
   /// Whether the class is an activatable runtime class.
@@ -50,7 +51,7 @@ base class ClassProjection extends InterfaceProjection {
   String get classNameConstant => (isActivatableWithNoParams ||
           factoryInterfaces.isNotEmpty ||
           staticInterfaces.isNotEmpty)
-      ? 'static const _className = ${quote(typeDef.name)};'
+      ? 'static const _className = ${typeDef.name.quote()};'
       : '';
 
   List<String>? _factoryInterfaces;

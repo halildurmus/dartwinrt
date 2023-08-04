@@ -3,7 +3,7 @@
 // license that can be found in the LICENSE file.
 
 import '../../constants/constants.dart';
-import '../../utilities/utilities.dart';
+import '../../extensions/extensions.dart';
 import '../parameter.dart';
 import '../type.dart';
 
@@ -12,7 +12,7 @@ final class IReferenceParameterProjection extends ParameterProjection {
   IReferenceParameterProjection(super.parameter);
 
   @override
-  String get type => typeArguments(shortTypeName);
+  String get type => shortTypeName.typeArguments;
 
   TypeProjection get typeArgProjection =>
       TypeProjection(typeProjection.typeIdentifier.typeArgs.first);
@@ -29,7 +29,7 @@ final class IReferenceParameterProjection extends ParameterProjection {
     // be passed in the 'enumCreator' parameter so that the 'IReference'
     // implementation can instantiate the object
     final enumCreator = typeArgProjection.isWinRTEnum
-        ? '${stripQuestionMarkSuffix(type)}.from'
+        ? '${type.stripQuestionMarkSuffix()}.from'
         : null;
 
     // The IID for IReference<T> must be passed in the 'referenceIid' parameter
@@ -41,9 +41,8 @@ final class IReferenceParameterProjection extends ParameterProjection {
         typeProjection.typeIdentifier.typeArgs.first.signature;
     final referenceSignature =
         'pinterface($IID_IReference;$referenceArgSignature)';
-    final referenceIid = iidFromSignature(referenceSignature);
-
-    final args = <String>['referenceIid: ${quote(referenceIid)}'];
+    final referenceIid = referenceSignature.toIID();
+    final args = <String>['referenceIid: ${referenceIid.quote()}'];
     if (enumCreator != null) args.add('enumCreator: $enumCreator');
     return ', ${args.join(', ')}';
   }

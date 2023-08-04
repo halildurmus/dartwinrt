@@ -4,8 +4,8 @@
 
 import 'package:winmd/winmd.dart';
 
+import '../extensions/extensions.dart';
 import '../models/models.dart';
-import '../utilities/utilities.dart';
 import 'type.dart';
 import 'types/types.dart';
 
@@ -115,7 +115,7 @@ base class ParameterProjection {
   bool get isNullable => type.endsWith('?');
 
   /// The name of the parameter that is safe to use as a Dart identifier.
-  String get identifier => safeIdentifierForString(name.toCamelCase());
+  String get identifier => name.toCamelCase().toSafeIdentifier();
 
   bool get needsAllocation {
     if (parameter.isSimpleArraySizeParam && isOutParam) return false;
@@ -133,7 +133,7 @@ base class ParameterProjection {
   List<String> get preambles {
     if (!needsAllocation) return [];
     final nativeType = typeProjection.isReferenceType
-        ? typeArguments(typeProjection.nativeType)
+        ? typeProjection.nativeType.typeArguments
         : typeProjection.nativeType;
     return ['final $identifier = calloc<$nativeType>();'];
   }

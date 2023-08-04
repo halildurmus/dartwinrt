@@ -5,7 +5,7 @@
 import 'package:winmd/winmd.dart';
 
 import '../constants/constants.dart';
-import '../utilities/utilities.dart';
+import '../extensions/extensions.dart';
 
 abstract base class BaseProjection {
   const BaseProjection(this.typeDef, {this.category = '', this.comment = ''});
@@ -16,7 +16,7 @@ abstract base class BaseProjection {
 
   /// Returns the path to the folder where the current class is located (e.g.,
   /// `windows_foundation/lib/src` for `Windows.Foundation.Point`).
-  String get currentFolderPath => folderFromType(typeDef.name);
+  String get currentFolderPath => typeDef.name.toFolderPath();
 
   /// Whether the [typeDef] has the `DeprecatedAttribute`.
   bool get isDeprecated => typeDef.isDeprecated;
@@ -27,16 +27,16 @@ abstract base class BaseProjection {
 
   /// Returns the shorter name of the [typeDef] (e.g., `IAsyncInfo`,
   /// `Calendar`).
-  String get shortName => outerType(typeDef.shortName);
+  String get shortName => typeDef.shortName.outerType;
 
   /// Returns the package name for the [typeDef] (e.g., `windows_foundation`
   /// for `Windows.Foundation.Point`).
   String get packageName => typeDef.packageName;
 
-  /// Converts [path] to an equivalent relative path from the
+  /// Converts [targetPath] to an equivalent relative path from the
   /// [currentFolderPath].
-  String relativePathTo(String path) =>
-      relativePath(path, start: currentFolderPath);
+  String relativePathTo(String targetPath) =>
+      targetPath.relativePathFrom(currentFolderPath);
 
   String get header => copyrightHeader;
 
@@ -45,15 +45,16 @@ abstract base class BaseProjection {
 
   Set<String> get imports => {};
 
-  String get importHeader => sortImports(
-        imports.map((import) => switch (import) {
-              // Hide DocumentProperties to avoid conflicts with a class of the
-              // same name in the windows_storage package.
-              'package:win32/win32.dart' =>
-                'import ${quote(import)} hide DocumentProperties, WinRTStringConversion;',
-              _ => 'import ${quote(import)};',
-            }),
-      ).join('\n');
+  String get importHeader => imports
+      .map((import) => switch (import) {
+            // Hide DocumentProperties to avoid conflicts with a class of the
+            // same name in the windows_storage package.
+            'package:win32/win32.dart' =>
+              'import ${import.quote()} hide DocumentProperties, WinRTStringConversion;',
+            _ => 'import ${import.quote()};',
+          })
+      .sortImports()
+      .join('\n');
 
   String? importForTypeDef(TypeDef typeDef) {
     final type = typeDef.fullyQualifiedName;
@@ -72,7 +73,7 @@ abstract base class BaseProjection {
     if (packageName != typeDef.packageName) return typeDef.packageImport;
 
     // Otherwise, return relative import for that file
-    return relativePathTo('${folderFromType(type)}/${fileNameFromType(type)}');
+    return relativePathTo(type.toFilePath());
   }
 
   String? importForTypeIdentifier(TypeIdentifier typeIdentifier) {
@@ -112,7 +113,7 @@ abstract base class BaseProjection {
   }
 
   String get classPreamble {
-    final wrappedComment = wrapCommentText(comment);
+    final wrappedComment = comment.toDocComment();
     return [
       if (wrappedComment.isNotEmpty) wrappedComment,
       if (wrappedComment.isNotEmpty && category.isNotEmpty) '///',

@@ -384,8 +384,7 @@ extension PointerNativeGpioChangeRecordConversion
     return GpioChangeRecord(ref.relativeTime.toDartDuration(), GpioPinEdge.from(ref.edge));
   }
 
-  /// Creates a `List<GpioChangeRecord>` from
-  /// `Pointer<NativeGpioChangeRecord>`.
+  /// Creates a `List<GpioChangeRecord>` from `Pointer<NativeGpioChangeRecord>`.
   ///
   /// [length] must not be greater than the number of elements stored inside the
   /// `Pointer<NativeGpioChangeRecord>`.

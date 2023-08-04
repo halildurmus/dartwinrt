@@ -37,17 +37,20 @@ void main() {
   });
 
   test('_IMapXX golden', () {
-    final dartClass = GenericInterfacePartFileProjection(imap).toString();
+    final dartClass =
+        GenericInterfacePartFileProjection(GenericType.imap).toString();
     compareGolden('imap_part', dartClass.format());
   });
 
   test('_IReferenceXX golden', () {
-    final dartClass = GenericInterfacePartFileProjection(ireference).toString();
+    final dartClass =
+        GenericInterfacePartFileProjection(GenericType.ireference).toString();
     compareGolden('ireference_part', dartClass.format());
   });
 
   test('_IVectorXX golden', () {
-    final dartClass = GenericInterfacePartFileProjection(ivector).toString();
+    final dartClass =
+        GenericInterfacePartFileProjection(GenericType.ivector).toString();
     compareGolden('ivector_part', dartClass.format());
   });
 }
