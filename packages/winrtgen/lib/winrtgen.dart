@@ -8,6 +8,6 @@ library winrtgen;
 
 export 'src/constants/constants.dart';
 export 'src/exception/exception.dart';
+export 'src/extensions/extensions.dart';
 export 'src/models/models.dart';
 export 'src/projections/projections.dart';
-export 'src/utilities/utilities.dart';

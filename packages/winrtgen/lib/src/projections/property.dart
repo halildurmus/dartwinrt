@@ -2,7 +2,7 @@
 // All rights reserved. Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import '../utilities/utilities.dart';
+import '../extensions/extensions.dart';
 import 'method.dart';
 
 abstract base class PropertyProjection extends MethodProjection {
@@ -21,6 +21,6 @@ abstract base class PropertyProjection extends MethodProjection {
       formattedName = name.substring(4);
     }
 
-    return safeIdentifierForString(formattedName.toCamelCase());
+    return formattedName.toCamelCase().toSafeIdentifier();
   }
 }

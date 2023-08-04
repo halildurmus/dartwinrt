@@ -6,8 +6,8 @@ import 'dart:io';
 
 import 'package:winrtgen/winrtgen.dart';
 
-final goldensDir = Directory('../../packages/winrtgen/test/goldens');
-final packagesDir = Directory('../../packages');
+final goldensDir = Directory('test/goldens');
+final packagesDir = Directory('../');
 
 Iterable<File> getGoldenFiles() => goldensDir
     .listSync()

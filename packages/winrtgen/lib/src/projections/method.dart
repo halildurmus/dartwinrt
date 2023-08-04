@@ -5,8 +5,8 @@
 import 'package:winmd/winmd.dart';
 
 import '../exception/exception.dart';
+import '../extensions/extensions.dart';
 import '../models/models.dart';
-import '../utilities/utilities.dart';
 import 'getter.dart';
 import 'interface.dart';
 import 'parameter.dart';
@@ -23,7 +23,7 @@ import 'types/types.dart';
 /// Methods have names, a list of parameters, and may return a type.
 base class MethodProjection {
   MethodProjection(this.method, this.vtableOffset)
-      : name = uniquelyNameMethod(method),
+      : name = method.uniqueName,
         parameters = method.isGetProperty
             ? const []
             : method.parameters.map(ParameterProjection.create).toList(),
@@ -95,7 +95,7 @@ base class MethodProjection {
   /// Windows Runtime methods and properties are typically named in TitleCase,
   /// but the Dart idiom is camelCase. This also has the significant advantage
   /// of making it easier to avoid name conflicts.
-  String get camelCasedName => safeIdentifierForString(name.toCamelCase());
+  String get camelCasedName => name.toCamelCase().toSafeIdentifier();
 
   List<ParameterProjection>? _exposedParams;
 

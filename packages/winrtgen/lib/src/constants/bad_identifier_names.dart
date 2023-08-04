@@ -18,5 +18,5 @@ const _dartReservedWords = <String>{
 
 /// Dart intrinsic types that will cause problems if used as identifiers.
 const _dartTypes = <String>{
-  'int', 'double', 'String', 'bool', 'List', 'Set', 'Map', //
+  'bool', 'double', 'int', 'List', 'Map', 'Set', 'String' //
 };

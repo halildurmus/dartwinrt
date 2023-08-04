@@ -4,7 +4,8 @@
 
 import 'package:winmd/winmd.dart';
 
-import '../utilities/utilities.dart';
+import '../extensions/extensions.dart';
+import 'metadata_store.dart';
 import 'type_arg_kind.dart';
 
 /// Represents a WinRT generic type.
@@ -14,8 +15,52 @@ sealed class GenericType {
   /// The fully qualified type (e.g., Windows.Foundation.IReference`1).
   final String fullyQualifiedType;
 
+  /// Returns all the generic types.
+  static List<GenericType> get all => [
+        iasyncOperation,
+        iiterator,
+        ikeyValuePair,
+        imap,
+        imapView,
+        ireference,
+        ivector,
+        ivectorView
+      ];
+
+  /// The `IAsyncOperation` generic type.
+  static const iasyncOperation = GenericTypeWithOneTypeArg(
+      'Windows.Foundation.IAsyncOperation`1', _asyncOperationTypeArgKinds);
+
+  /// The `IIterator` generic type.
+  static const iiterator = GenericTypeWithOneTypeArg(
+      'Windows.Foundation.Collections.IIterator`1', _vectorTypeArgKinds);
+
+  /// The `IKeyValuePair` generic type.
+  static const ikeyValuePair = GenericTypeWithTwoTypeArgs(
+      'Windows.Foundation.Collections.IKeyValuePair`2', _mapTypeArgKindPairs);
+
+  /// The `IMap` generic type.
+  static const imap = GenericTypeWithTwoTypeArgs(
+      'Windows.Foundation.Collections.IMap`2', _mapTypeArgKindPairs);
+
+  /// The `IMapView` generic type.
+  static const imapView = GenericTypeWithTwoTypeArgs(
+      'Windows.Foundation.Collections.IMapView`2', _mapTypeArgKindPairs);
+
+  /// The `IReference` generic type.
+  static const ireference = GenericTypeWithOneTypeArg(
+      'Windows.Foundation.IReference`1', _referenceTypeArgKinds);
+
+  /// The `IVector` generic type.
+  static const ivector = GenericTypeWithOneTypeArg(
+      'Windows.Foundation.Collections.IVector`1', _vectorTypeArgKinds);
+
+  /// The `IVectorView` generic type.
+  static const ivectorView = GenericTypeWithOneTypeArg(
+      'Windows.Foundation.Collections.IVectorView`1', _vectorTypeArgKinds);
+
   /// The short name of the type (e.g., `IReference`).
-  String get shortName => lastComponent(stripGenerics(fullyQualifiedType));
+  String get shortName => fullyQualifiedType.stripGenerics().lastComponent;
 
   @override
   String toString() => shortName;
@@ -34,13 +79,13 @@ final class GenericTypeWithOneTypeArg extends GenericType {
   Set<TypeArgKind> get typeArgKindsInMetadata {
     final typeArgKinds = <TypeArgKind>{};
 
-    for (final Method(:returnType) in getAllMethodsInMetadata()) {
+    for (final Method(:returnType) in WinRTMetadataStore.methods) {
       final Parameter(:isClassVariableType, :isGenericType) = returnType;
       if (isClassVariableType) continue;
 
       final typeIdentifier =
           returnType.typeIdentifier.name != fullyQualifiedType && isGenericType
-              ? dereferenceType(returnType.typeIdentifier)
+              ? returnType.typeIdentifier.dereference()
               : returnType.typeIdentifier;
 
       if (typeIdentifier.name == fullyQualifiedType) {
@@ -77,7 +122,7 @@ final class GenericTypeWithTwoTypeArgs extends GenericType {
   Set<(TypeArgKind, TypeArgKind)> get typeArgKindPairsInMetadata {
     final typeArgKindPairs = <(TypeArgKind, TypeArgKind)>{};
 
-    for (final method in getAllMethodsInMetadata()) {
+    for (final method in WinRTMetadataStore.methods) {
       final paramsAndReturnType = [...method.parameters, method.returnType];
 
       for (final param in paramsAndReturnType) {
@@ -86,7 +131,7 @@ final class GenericTypeWithTwoTypeArgs extends GenericType {
         final typeIdentifier =
             param.typeIdentifier.name != fullyQualifiedType &&
                     (param.isGenericType || param.isReferenceType)
-                ? dereferenceType(param.typeIdentifier)
+                ? param.typeIdentifier.dereference()
                 : param.typeIdentifier;
 
         if (typeIdentifier.name == fullyQualifiedType) {
@@ -111,3 +156,78 @@ final class GenericTypeWithTwoTypeArgs extends GenericType {
     return typeArgKindPairs;
   }
 }
+
+/// The type argument kinds for `IAsyncOperation`.
+const _asyncOperationTypeArgKinds = <TypeArgKind>{
+  TypeArgKind.bool_, TypeArgKind.double, TypeArgKind.float, TypeArgKind.guid, //
+  TypeArgKind.int16, TypeArgKind.int32, TypeArgKind.int64, //
+  TypeArgKind.loadMoreItemsResult, TypeArgKind.nullableInspectable, //
+  TypeArgKind.nullableObject, TypeArgKind.nullableUri, TypeArgKind.string, //
+  TypeArgKind.uint8, TypeArgKind.uint16, TypeArgKind.uint32, //
+  TypeArgKind.uint64, TypeArgKind.winrtEnum, TypeArgKind.winrtFlagsEnum
+};
+
+/// The common type argument kind pairs for `IKeyValuePair`, `IMap`, and
+/// `IMapView`.
+const _mapTypeArgKindPairs = <(TypeArgKind, TypeArgKind)>{
+  (TypeArgKind.guid, TypeArgKind.nullableInspectable),
+  (TypeArgKind.guid, TypeArgKind.nullableObject),
+  (TypeArgKind.int16, TypeArgKind.nullableInspectable),
+  (TypeArgKind.int32, TypeArgKind.nullableInspectable),
+  (TypeArgKind.int64, TypeArgKind.nullableInspectable),
+  (TypeArgKind.object, TypeArgKind.nullableObject),
+  (TypeArgKind.string, TypeArgKind.nullableInspectable),
+  (TypeArgKind.string, TypeArgKind.nullableObject),
+  (TypeArgKind.string, TypeArgKind.string),
+  (TypeArgKind.string, TypeArgKind.winrtEnum),
+  (TypeArgKind.string, TypeArgKind.winrtFlagsEnum),
+  (TypeArgKind.uint8, TypeArgKind.nullableInspectable),
+  (TypeArgKind.uint16, TypeArgKind.nullableInspectable),
+  (TypeArgKind.uint32, TypeArgKind.nullableInspectable),
+  (TypeArgKind.uint64, TypeArgKind.nullableInspectable),
+  (TypeArgKind.uri, TypeArgKind.string),
+  (TypeArgKind.winrtEnum, TypeArgKind.nullableInspectable),
+  (TypeArgKind.winrtFlagsEnum, TypeArgKind.nullableInspectable)
+};
+
+/// The type argument kinds for `IReference`.
+const _referenceTypeArgKinds = <TypeArgKind>{
+  TypeArgKind.nullableBasicGeoposition, TypeArgKind.nullableBool, //
+  TypeArgKind.nullableColor, TypeArgKind.nullableDateTime, //
+  TypeArgKind.nullableDisplayPresentationRate, TypeArgKind.nullableDouble, //
+  TypeArgKind.nullableDuration, TypeArgKind.nullableFloat, //
+  TypeArgKind.nullableGuid, TypeArgKind.nullableHolographicStereoTransform, //
+  TypeArgKind.nullableInt16, TypeArgKind.nullableInt32, //
+  TypeArgKind.nullableInt64, TypeArgKind.nullableMatrix4x4, //
+  TypeArgKind.nullableMseTimeRange, TypeArgKind.nullablePoint, //
+  TypeArgKind.nullableQuaternion, TypeArgKind.nullableRect, //
+  TypeArgKind.nullableSize, TypeArgKind.nullableSizeInt32, //
+  TypeArgKind.nullableSpatialBoundingBox, //
+  TypeArgKind.nullableSpatialBoundingFrustum, //
+  TypeArgKind.nullableSpatialBoundingOrientedBox, //
+  TypeArgKind.nullableSpatialRay, TypeArgKind.nullableString, //
+  TypeArgKind.nullableUint8, TypeArgKind.nullableUint16, //
+  TypeArgKind.nullableUint32, TypeArgKind.nullableUint64, //
+  TypeArgKind.nullableVector2, TypeArgKind.nullableVector3, //
+  TypeArgKind.nullableWhiteBalanceGain, TypeArgKind.winrtEnum, //
+  TypeArgKind.winrtFlagsEnum
+};
+
+/// The common type argument kinds for `IIterator`, `IVector`, and
+/// `IVectorView`.
+const _vectorTypeArgKinds = <TypeArgKind>{
+  TypeArgKind.accessListEntry, TypeArgKind.backgroundTransferFileRange, //
+  TypeArgKind.basicGeoposition, TypeArgKind.bool_, TypeArgKind.color, //
+  TypeArgKind.dateTime, TypeArgKind.double, TypeArgKind.duration, //
+  TypeArgKind.float, TypeArgKind.gpioChangeRecord, TypeArgKind.guid, //
+  TypeArgKind.int16, TypeArgKind.int32, TypeArgKind.int64, //
+  TypeArgKind.mediaTimeRange, TypeArgKind.mseTimeRange, TypeArgKind.nitRange, //
+  TypeArgKind.nullableInspectable, TypeArgKind.nullableObject, //
+  TypeArgKind.nullableUri, TypeArgKind.point, TypeArgKind.pointerDeviceUsage, //
+  TypeArgKind.rect, TypeArgKind.rectInt32, TypeArgKind.size, //
+  TypeArgKind.sizeUint32, TypeArgKind.sortEntry, //
+  TypeArgKind.storePackageUpdateStatus, TypeArgKind.string, //
+  TypeArgKind.textRange, TypeArgKind.textSegment, TypeArgKind.uint8, //
+  TypeArgKind.uint16, TypeArgKind.uint32, TypeArgKind.uint64, //
+  TypeArgKind.windowId, TypeArgKind.winrtEnum, TypeArgKind.winrtFlagsEnum
+};

@@ -6,6 +6,7 @@ export 'array_passing_style.dart';
 export 'asset_manager.dart';
 export 'generic_type.dart';
 export 'json.dart';
+export 'metadata_store.dart';
 export 'projection_kind.dart';
 export 'type_analyzer.dart';
 export 'type_arg_kind.dart';

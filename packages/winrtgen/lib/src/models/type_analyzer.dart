@@ -7,7 +7,7 @@ import 'dart:collection';
 import 'package:winmd/winmd.dart';
 
 import '../constants/constants.dart';
-import '../utilities/utilities.dart';
+import '../extensions/extensions.dart';
 import 'models.dart';
 
 class TypeAnalyzer {
@@ -17,7 +17,7 @@ class TypeAnalyzer {
   final TypeDef typeDef;
 
   factory TypeAnalyzer.fromType(String type) =>
-      TypeAnalyzer._(getMetadataForType(type));
+      TypeAnalyzer._(WinRTMetadataStore.findMetadata(type));
 
   factory TypeAnalyzer.fromTypeDef(TypeDef typeDef) => TypeAnalyzer._(typeDef);
 
@@ -106,7 +106,7 @@ class TypeAnalyzer {
     final structs = SplayTreeSet<String>();
     final ignoredTypes = SplayTreeSet<String>();
 
-    final typeDef = getMetadataForType(type);
+    final typeDef = WinRTMetadataStore.findMetadata(type);
 
     void handleTypeIdentifier(TypeIdentifier typeIdentifier) {
       final typeName = typeIdentifier.name;

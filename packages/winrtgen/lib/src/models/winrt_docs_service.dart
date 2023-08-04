@@ -10,7 +10,7 @@ import 'package:http/http.dart' as http;
 import 'package:pool/pool.dart';
 
 import '../exception/exception.dart';
-import '../utilities/utilities.dart';
+import '../extensions/extensions.dart';
 
 /// A class for fetching WinRT API documentation from Microsoft's
 /// documentation website.
@@ -37,7 +37,11 @@ final class WinRTDocsService {
   ///
   /// Throws a [WinRTGenException] if an error occurs during the process.
   static Future<String> fetchDocumentation(String fullyQualifiedType) async {
-    verifyTypeIsFullyQualified(fullyQualifiedType);
+    if (!fullyQualifiedType.isFullyQualifiedType) {
+      throw ArgumentError.value(fullyQualifiedType, 'fullyQualifiedType',
+          'Type must be fully qualified (e.g., Windows.Foundation.Uri)');
+    }
+
     try {
       return pool.withResource(() async {
         final uri = Uri.https(_authority, '$_basePath/$fullyQualifiedType');

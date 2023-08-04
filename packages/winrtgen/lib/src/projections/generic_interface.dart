@@ -6,8 +6,8 @@ import 'package:winmd/winmd.dart' hide TypeTuple;
 
 import '../constants/constants.dart';
 import '../exception/exception.dart';
+import '../extensions/extensions.dart';
 import '../models/models.dart';
-import '../utilities/utilities.dart';
 import 'getter.dart';
 import 'interface.dart';
 import 'method.dart';
@@ -77,7 +77,7 @@ final class GenericInterfaceProjection extends InterfaceProjection {
   factory GenericInterfaceProjection.from(
       String fullyQualifiedType, TypeArgKind typeArg1,
       [TypeArgKind? typeArg2]) {
-    final typeDef = getMetadataForType(fullyQualifiedType);
+    final typeDef = WinRTMetadataStore.findMetadata(fullyQualifiedType);
     if (fullyQualifiedType.endsWith('`2')) {
       if (typeArg2 == null) throw ArgumentError.notNull('typeArg2');
       return GenericInterfaceProjection._(typeDef, [typeArg1, typeArg2]);
@@ -129,7 +129,7 @@ final class GenericInterfaceProjection extends InterfaceProjection {
   /// `_IVectorIInspectable`).
   String get className {
     final args = typeArgs
-        .map((arg) => stripQuestionMarkSuffix(arg.name.capitalize()))
+        .map((arg) => arg.name.capitalize().stripQuestionMarkSuffix())
         .join();
     return '_$shortName$args';
   }
@@ -245,7 +245,7 @@ final class GenericInterfaceProjection extends InterfaceProjection {
   }
 
   void _handleSimpleArrayClassVariableParam(Parameter param, Method method) {
-    final typeArg = dereferenceType(param.typeIdentifier);
+    final typeArg = param.typeIdentifier.dereference();
     final paramIndex =
         method.parameters.indexWhere((p) => p.name == param.name);
     final genericParamSequence = typeArg.genericParamSequence;

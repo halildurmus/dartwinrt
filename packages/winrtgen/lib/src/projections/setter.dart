@@ -5,8 +5,8 @@
 import 'package:winmd/winmd.dart';
 
 import '../exception/exception.dart';
+import '../extensions/extensions.dart';
 import '../models/models.dart';
-import '../utilities/utilities.dart';
 import 'method.dart';
 import 'parameter.dart';
 import 'property.dart';

@@ -4,7 +4,7 @@
 
 import 'package:winmd/winmd.dart';
 
-import '../../utilities/utilities.dart';
+import '../../extensions/extensions.dart';
 import '../parameter.dart';
 import '../type.dart';
 
@@ -12,12 +12,12 @@ final class VectorParameterProjection extends ParameterProjection {
   VectorParameterProjection(super.parameter);
 
   TypeIdentifier get typeIdentifier => typeProjection.isReferenceType
-      ? dereferenceType(typeProjection.typeIdentifier)
+      ? typeProjection.typeIdentifier.dereference()
       : typeProjection.typeIdentifier;
 
   /// The type argument of `IVector` and `IVectorView`, as represented in the
   /// [typeProjection]'s [TypeIdentifier] (e.g., `String`, `StorageFile?`).
-  String get vectorTypeArg => typeArguments(shortTypeName);
+  String get vectorTypeArg => shortTypeName.typeArguments;
 
   /// The constructor arguments passed to the constructors of `IVector` and
   /// `IVectorView`.
@@ -33,8 +33,7 @@ final class VectorParameterProjection extends ParameterProjection {
     // The IID for IIterable<T> must be passed in the 'iterableIid' parameter so
     // that the IVector and IVectorView implementations can use the correct IID
     // when instantiating the IIterable object
-    final iterableIid =
-        iterableIidFromVectorType(typeProjection.typeIdentifier);
+    final iterableIid = typeProjection.typeIdentifier.iterableIID;
 
     // e.g. float, int32
     final nativeType = typeArgProjection.nativeType.toLowerCase();
@@ -50,7 +49,7 @@ final class VectorParameterProjection extends ParameterProjection {
     // native integer type
     final intType = vectorTypeArg == 'int' ? 'IntType.$nativeType' : null;
 
-    final args = <String>['iterableIid: ${quote(iterableIid)}'];
+    final args = <String>['iterableIid: ${iterableIid.quote()}'];
     if (typeArgProjection.isWinRTEnum) {
       args.add('enumCreator: $creator');
     } else if (creator != null) {
@@ -67,7 +66,7 @@ final class VectorParameterProjection extends ParameterProjection {
       !(isReturnParam && !method.isGetProperty);
 
   @override
-  String get type => isNullable ? nullable(shortTypeName) : shortTypeName;
+  String get type => isNullable ? shortTypeName.nullable() : shortTypeName;
 
   @override
   String get creator => 'IVector.fromPtr($identifier$vectorConstructorArgs)';
@@ -100,7 +99,7 @@ final class VectorViewParameterProjection extends VectorParameterProjection {
       return 'List<$vectorTypeArg>';
     }
 
-    return isNullable ? nullable(shortTypeName) : shortTypeName;
+    return isNullable ? shortTypeName.nullable() : shortTypeName;
   }
 
   @override

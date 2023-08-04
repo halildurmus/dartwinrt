@@ -5,8 +5,8 @@
 import 'package:winmd/winmd.dart';
 
 import '../exception/exception.dart';
+import '../extensions/extensions.dart';
 import '../models/models.dart';
-import '../utilities/utilities.dart';
 
 final class TypeProjection {
   TypeProjection(this.typeIdentifier, {this.isInParam = false});
@@ -164,7 +164,7 @@ final class TypeProjection {
   /// Throws a [WinRTGenException] if [typeIdentifier] is cannot be
   /// de-referenced.
   TypeProjection dereference() =>
-      TypeProjection(dereferenceType(typeIdentifier), isInParam: isInParam);
+      TypeProjection(typeIdentifier.dereference(), isInParam: isInParam);
 
   TypeTuple _unwrapGenericTypeArg() {
     final typeArg = TypeArgKind.from(typeIdentifier.name);
@@ -199,7 +199,7 @@ final class TypeProjection {
       throw WinRTGenException('Struct type missing for $typeIdentifier.');
     }
 
-    final structName = 'Native${lastComponent(structType.name)}';
+    final structName = 'Native${structType.name.lastComponent}';
     return TypeTuple(structName, structName);
   }
 

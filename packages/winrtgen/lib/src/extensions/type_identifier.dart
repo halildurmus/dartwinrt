@@ -4,10 +4,9 @@
 
 import 'package:winmd/winmd.dart';
 
-import '../../constants/constants.dart';
-import '../../exception/exception.dart';
-import '../../projections/projections.dart';
-import '../helpers.dart';
+import '../constants/constants.dart';
+import '../exception/exception.dart';
+import '../projections/projections.dart';
 import 'extensions.dart';
 
 extension TypeIdentifierHelpers on TypeIdentifier {
@@ -23,11 +22,11 @@ extension TypeIdentifierHelpers on TypeIdentifier {
     }
 
     return switch (baseType) {
-      BaseType.classTypeModifier => '${lastComponent(name)}.fromPtr',
+      BaseType.classTypeModifier => '${name.lastComponent}.fromPtr',
       BaseType.genericTypeModifier => _parseGenericTypeIdentifierCreator(this),
-      BaseType.referenceTypeModifier => dereferenceType(this).creator,
+      BaseType.referenceTypeModifier => dereference().creator,
       BaseType.valueTypeModifier when typeProjection.isWinRTEnum =>
-        '${lastComponent(name)}.from',
+        '${name.lastComponent}.from',
       _ => null,
     };
   }
@@ -35,7 +34,7 @@ extension TypeIdentifierHelpers on TypeIdentifier {
   /// Parses the argument to be passed to the `creator` parameter from a generic
   /// [typeIdentifier].
   String _parseGenericTypeIdentifierCreator(TypeIdentifier typeIdentifier) {
-    final shortName = outerType(typeIdentifier.shortName);
+    final shortName = typeIdentifier.shortName.outerType;
     final typeArgs = typeIdentifier.typeArgs;
     final args = <String>['ptr'];
 
@@ -68,31 +67,34 @@ extension TypeIdentifierHelpers on TypeIdentifier {
       args.add('$creatorParamName: $creator');
     }
 
-    if (shortName case 'IVector' || 'IVectorView') {
-      final iid = iterableIidFromVectorType(typeIdentifier);
-      args.add('iterableIid: ${quote(iid)}');
-    } else if (shortName case 'IMap' || 'IMapView') {
-      final iid = iterableIidFromMapType(typeIdentifier);
-      args.add('iterableIid: ${quote(iid)}');
+    if (shortName case 'IMap' || 'IMapView' || 'IVector' || 'IVectorView') {
+      args.add('iterableIid: ${typeIdentifier.iterableIID.quote()}');
     } else if (shortName == 'IReference') {
       final referenceArgSignature = typeArgs.first.signature;
       final referenceSignature =
           'pinterface($IID_IReference;$referenceArgSignature)';
-      final iid = iidFromSignature(referenceSignature);
-      args.add('referenceIid: ${quote(iid)}');
+      final iid = referenceSignature.toIID();
+      args.add('referenceIid: ${iid.quote()}');
     } else {
       if (creator == null) return '$shortName.fromPtr';
     }
 
     // Hanlde int typeArg in IIterable, IVector and IVectorView interfaces
-    if (typeArguments(_parseGenericTypeIdentifierName(typeIdentifier)) ==
-        'int') {
+    if (typeIdentifier.shortName.typeArguments == 'int') {
       final typeProjection = TypeProjection(typeArgs.first);
       final intType = 'IntType.${typeProjection.nativeType.toLowerCase()}';
       args.add('intType: $intType');
     }
 
     return '(ptr) => $shortName.fromPtr(${args.join(', ')})';
+  }
+
+  /// Convert this *TypeIdentifier into a TypeIdentifier.
+  ///
+  /// Throws a [WinRTGenException] if this TypeIdentifier is cannot be de-referenced.
+  TypeIdentifier dereference() {
+    if (typeArg case final typeArg?) return typeArg;
+    throw WinRTGenException('Could not de-reference type $this.');
   }
 
   /// The value identifying the generic parameter sequence, if there is one.
@@ -110,7 +112,7 @@ extension TypeIdentifierHelpers on TypeIdentifier {
       };
 
   /// Returns the IID of this TypeIdentifier.
-  String get iid => iidFromSignature(signature);
+  String get iid => signature.toIID();
 
   bool get isClassType => baseType == BaseType.classTypeModifier;
 
@@ -149,6 +151,29 @@ extension TypeIdentifierHelpers on TypeIdentifier {
 
   bool get isWinRTStruct => isWinRT && (type?.isStruct ?? false);
 
+  /// Returns the `IIterable<IKeyValuePair<K, V>>` IID for this `IMap` or
+  /// `IMapView` TypeIdentifier.
+  String get iterableIID {
+    if (shortName.outerType case 'IMap' || 'IMapView') {
+      final keyArgSignature = typeArgs.first.signature;
+      final valueArgSignature = typeArgs.last.signature;
+      final kvpSignature =
+          'pinterface($IID_IKeyValuePair;$keyArgSignature;$valueArgSignature)';
+      final iterableSignature = 'pinterface($IID_IIterable;$kvpSignature)';
+      return iterableSignature.toIID();
+    }
+
+    if (shortName.outerType case 'IVector' || 'IVectorView') {
+      final iterableArgSignature = typeArgs.first.signature;
+      final iterableSignature =
+          'pinterface($IID_IIterable;$iterableArgSignature)';
+      return iterableSignature.toIID();
+    }
+
+    throw UnsupportedError('$this is not an IMap, IMapView, IVector or '
+        'IVectorView.');
+  }
+
   /// Returns the shorter name of the type defined in this TypeIdentifier (e.g.,
   /// `ICalendar`, `IMap<String, String>`).
   String get shortName {
@@ -156,10 +181,10 @@ extension TypeIdentifierHelpers on TypeIdentifier {
     return switch (baseType) {
       BaseType.classTypeModifier ||
       BaseType.valueTypeModifier =>
-        lastComponent(name),
+        name.lastComponent,
       BaseType.genericTypeModifier => _parseGenericTypeIdentifierName(this),
       BaseType.objectType => 'Object',
-      BaseType.referenceTypeModifier => dereferenceType(this).shortName,
+      BaseType.referenceTypeModifier => dereference().shortName,
       _ => baseType.dartType,
     };
   }
@@ -262,7 +287,7 @@ TypeIdentifier _unwrapTypeIdentifiers(List<TypeIdentifier> typeIdentifiers) {
 
 /// Unpack a nested [typeIdentifier] into a single name.
 String _parseGenericTypeIdentifierName(TypeIdentifier typeIdentifier) {
-  final shortName = stripGenerics(lastComponent(typeIdentifier.name));
+  final shortName = typeIdentifier.name.lastComponent.stripGenerics();
   final typeArgs = typeIdentifier.typeArgs;
   final typeArg1 = typeArgs.first;
 
@@ -307,5 +332,5 @@ String _parseTypeArgName(TypeIdentifier typeIdentifier) {
   // Primitive types cannot be null.
   if (typeArg case 'bool' || 'double' || 'int' || 'String') return typeArg;
   // Everything else can be null.
-  return nullable(typeArg);
+  return typeArg.nullable();
 }

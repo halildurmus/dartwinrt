@@ -4,7 +4,7 @@
 
 import 'dart:collection';
 
-import '../utilities/utilities.dart';
+import '../extensions/extensions.dart';
 import 'json.dart';
 import 'type_analyzer.dart';
 
@@ -49,7 +49,7 @@ sealed class AssetManager {
   /// If the [fullyQualifiedType] was already in the JSON file, its associated
   /// comment is changed.
   void add(String fullyQualifiedType, {String comment = ''}) {
-    verifyTypeIsFullyQualified(fullyQualifiedType);
+    _throwIfNotFullyQualifiedType(fullyQualifiedType);
     types[fullyQualifiedType] = comment;
     jsonSaver.save(path, types);
   }
@@ -61,7 +61,10 @@ sealed class AssetManager {
   /// comments associated with the types.
   void addAll(Map<String, String> other) {
     for (final entry in other.entries) {
-      verifyTypeIsFullyQualified(entry.key);
+      if (!entry.key.isFullyQualifiedType) {
+        throw ArgumentError(
+            'Type must be fully qualified (e.g., Windows.Foundation.Uri)');
+      }
       types[entry.key] = entry.value;
     }
     jsonSaver.save(path, types);
@@ -83,7 +86,7 @@ sealed class AssetManager {
   /// Removes the specified [fullyQualifiedType] and its associated value from
   /// the JSON file.
   void remove(String fullyQualifiedType) {
-    verifyTypeIsFullyQualified(fullyQualifiedType);
+    _throwIfNotFullyQualifiedType(fullyQualifiedType);
     types.remove(fullyQualifiedType);
     jsonSaver.save(path, types);
   }
@@ -105,7 +108,7 @@ sealed class AssetManager {
   /// The associated comment for the given [fullyQualifiedType], or `null` if
   /// [fullyQualifiedType] is not in the JSON file.
   String? operator [](String fullyQualifiedType) {
-    verifyTypeIsFullyQualified(fullyQualifiedType);
+    _throwIfNotFullyQualifiedType(fullyQualifiedType);
     return types[fullyQualifiedType];
   }
 
@@ -115,9 +118,18 @@ sealed class AssetManager {
   /// If the [fullyQualifiedType] was already in the JSON file, its associated
   /// comment is changed.
   void operator []=(String fullyQualifiedType, String comment) {
-    verifyTypeIsFullyQualified(fullyQualifiedType);
+    _throwIfNotFullyQualifiedType(fullyQualifiedType);
     types[fullyQualifiedType] = comment;
     jsonSaver.save(path, types);
+  }
+
+  /// Throws an [ArgumentError] if this string does not represent a fully
+  /// qualified type.
+  void _throwIfNotFullyQualifiedType(String type) {
+    if (!type.isFullyQualifiedType) {
+      throw ArgumentError.value(type, 'fullyQualifiedType',
+          'Type must be fully qualified (e.g., Windows.Foundation.Uri)');
+    }
   }
 }
 

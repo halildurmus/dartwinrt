@@ -4,8 +4,8 @@
 
 import 'package:winmd/winmd.dart';
 
+import '../../extensions/extensions.dart';
 import '../../models/models.dart';
-import '../../utilities/utilities.dart';
 import '../projections.dart';
 
 /// Parameter projection for `List<T>` parameters (defined as `simpleArrayType`
@@ -39,8 +39,8 @@ abstract base class ArrayParameterProjection extends ParameterProjection {
   ParameterProjection _cacheTypeArgParamProjection() {
     final param = parameter.clone();
     param.typeIdentifier = param.typeIdentifier.isReferenceType
-        ? dereferenceType(dereferenceType(param.typeIdentifier))
-        : dereferenceType(param.typeIdentifier);
+        ? param.typeIdentifier.dereference().dereference()
+        : param.typeIdentifier.dereference();
     return ParameterProjection.create(param);
   }
 
