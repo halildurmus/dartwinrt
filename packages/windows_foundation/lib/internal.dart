@@ -4,6 +4,11 @@
 
 /// Exposes internally used classes, enums, native structs, and helper
 /// functions.
+///
+/// Note: This library is not intended for direct use by end users. Its purpose
+/// is to support other packages within this repository. Consequently, the API
+/// is not guaranteed to remain stable, and breaking changes may be introduced
+/// without a major version bump.
 library internal;
 
 export 'src/asyncstatus.dart';
