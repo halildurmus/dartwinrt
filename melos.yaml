@@ -110,7 +110,7 @@ scripts:
       melos run analyze &&
       melos run format &&
       melos run test:all &&
-      melos run validate-pub:all
+      melos run prepare-publish:all
 
   add-license-header:
     description: Add a license header to all necessary files.
