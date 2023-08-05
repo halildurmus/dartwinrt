@@ -7,7 +7,7 @@ import 'package:winmd/winmd.dart';
 import '../constants/constants.dart';
 import '../exception/exception.dart';
 import '../extensions/extensions.dart';
-import 'metadata_store.dart';
+import 'winrt_metadata_store.dart';
 
 /// Represents a type argument kind for a generic class.
 ///

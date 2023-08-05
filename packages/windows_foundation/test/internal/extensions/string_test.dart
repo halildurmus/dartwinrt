@@ -17,10 +17,8 @@ void main() {
     return;
   }
 
-  final hString1 = HString.fromString('dartwinrt');
-  final hString2 = HString.fromString('Hello world!');
-
   test('HSTRING handle to Dart String', () {
+    final hString1 = HString.fromString('dartwinrt').clone();
     final dartString = hString1.handle.toDartString();
     expect(dartString, equals('dartwinrt'));
   });
@@ -64,6 +62,7 @@ void main() {
 
   group('Pointer<HSTRING>', () {
     test('to Dart String', () {
+      final hString1 = HString.fromString('dartwinrt').clone();
       final ptr = calloc<HSTRING>()..value = hString1.handle;
       final dartString = ptr.toDartString();
       expect(dartString, equals('dartwinrt'));
@@ -71,6 +70,8 @@ void main() {
     });
 
     test('to List<String>', () {
+      final hString1 = HString.fromString('dartwinrt').clone();
+      final hString2 = HString.fromString('Hello world!').clone();
       final array = calloc<HSTRING>(3)
         ..[0] = hString1.handle
         ..[1] = 0

@@ -13,18 +13,18 @@ import '../../propertyvalue.dart';
 import '../../rect.dart';
 import '../../size.dart';
 import '../../types.dart';
-import 'bool_conversions.dart';
-import 'comobject_helper.dart';
-import 'datetime_conversions.dart';
-import 'double_conversions.dart';
-import 'duration_conversions.dart';
-import 'guid_conversions.dart';
-import 'iinspectable_helpers.dart';
-import 'int_conversions.dart';
-import 'ipropertyvalue_helpers.dart';
-import 'string_conversions.dart';
-import 'struct_conversions.dart';
-import 'uri_conversions.dart';
+import 'bool.dart';
+import 'comobject.dart';
+import 'datetime.dart';
+import 'double.dart';
+import 'duration.dart';
+import 'guid.dart';
+import 'iinspectable.dart';
+import 'int.dart';
+import 'ipropertyvalue.dart';
+import 'string.dart';
+import 'struct.dart';
+import 'uri.dart';
 
 /// @nodoc
 extension IInspectableListConversions on List<IInspectable?> {

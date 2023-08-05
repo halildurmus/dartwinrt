@@ -1,11 +1,3 @@
-coverage:
-  status:
-    project:
-      windows_foundation:
-        paths: packages/windows_foundation
-      winrtgen:
-        paths: packages/winrtgen
-
 # exclude generated files and examples from the coverage report
 ignore:
   - '**/example/'

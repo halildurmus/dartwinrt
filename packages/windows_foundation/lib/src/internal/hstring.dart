@@ -28,7 +28,7 @@ class HString {
   /// The handle to a [HSTRING].
   final int handle;
 
-  /// Create an empty [HString].
+  /// Creates an empty [HString].
   // There is no need to attach a finalizer to an empty HString, as it does not
   // need to be freed.
   const HString.empty() : handle = 0;
@@ -39,11 +39,11 @@ class HString {
 
   static final _finalizer = Finalizer<int>(WindowsDeleteString);
 
-  /// Create a [HString] from a given HSTRING [handle].
+  /// Creates a [HString] from a given HSTRING [handle].
   factory HString.fromHandle(int handle) =>
       handle == 0 ? const HString.empty() : HString._(handle);
 
-  /// Create a [HString] from a given Dart [string].
+  /// Creates a [HString] from a given Dart [string].
   factory HString.fromString(String string) {
     if (string.isEmpty) return const HString.empty();
     return using((arena) {
