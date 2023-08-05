@@ -3,6 +3,184 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2023-08-05
+
+### Changes
+
+---
+
+Packages with breaking changes:
+
+ - [`windows_ai` - `v0.2.0`](#windows_ai---v020)
+ - [`windows_applicationmodel` - `v0.2.0`](#windows_applicationmodel---v020)
+ - [`windows_data` - `v0.2.0`](#windows_data---v020)
+ - [`windows_devices` - `v0.2.0`](#windows_devices---v020)
+ - [`windows_foundation` - `v0.2.0`](#windows_foundation---v020)
+ - [`windows_gaming` - `v0.2.0`](#windows_gaming---v020)
+ - [`windows_graphics` - `v0.2.0`](#windows_graphics---v020)
+ - [`windows_media` - `v0.2.0`](#windows_media---v020)
+ - [`windows_networking` - `v0.2.0`](#windows_networking---v020)
+ - [`windows_perception` - `v0.1.0`](#windows_perception---v010)
+ - [`windows_services` - `v0.1.0`](#windows_services---v010)
+ - [`windows_storage` - `v0.2.0`](#windows_storage---v020)
+ - [`windows_ui` - `v0.2.0`](#windows_ui---v020)
+ - [`windows_web` - `v0.1.0`](#windows_web---v010)
+
+Packages with other changes:
+
+ - [`windows_globalization` - `v0.1.0+1`](#windows_globalization---v0101)
+ - [`windows_management` - `v0.0.1+4`](#windows_management---v0014)
+ - [`windows_security` - `v0.1.0+1`](#windows_security---v0101)
+ - [`windows_system` - `v0.1.0+1`](#windows_system---v0101)
+
+---
+
+#### `windows_ai` - `v0.2.0`
+
+ - **REFACTOR**: refactor enum projections ([#338](https://github.com/dart-windows/dartwinrt/issues/338)). ([8b2830c6](https://github.com/dart-windows/dartwinrt/commit/8b2830c6c9ffcfe4e5ffe745d65820e33c08dc98))
+ - **REFACTOR**: refactor the projection of `PassArray` style array parameters ([#326](https://github.com/dart-windows/dartwinrt/issues/326)). ([ca45f924](https://github.com/dart-windows/dartwinrt/commit/ca45f92440d371b65fbeaba5b36817c46d747b2f))
+ - **REFACTOR**: refactor parameter projections ([#325](https://github.com/dart-windows/dartwinrt/issues/325)). ([6774c4f8](https://github.com/dart-windows/dartwinrt/commit/6774c4f8d1e79b886116d951bfe18718921f659d))
+ - **BREAKING** **FEAT**: wrap struct fields ([#322](https://github.com/dart-windows/dartwinrt/issues/322)). ([a2094b38](https://github.com/dart-windows/dartwinrt/commit/a2094b386af8660babd95435cb4328dff92d1b1c))
+
+#### `windows_applicationmodel` - `v0.2.0`
+
+ - **REFACTOR**: refactor enum projections ([#338](https://github.com/dart-windows/dartwinrt/issues/338)). ([8b2830c6](https://github.com/dart-windows/dartwinrt/commit/8b2830c6c9ffcfe4e5ffe745d65820e33c08dc98))
+ - **REFACTOR**: refactor the projection of `PassArray` style array parameters ([#326](https://github.com/dart-windows/dartwinrt/issues/326)). ([ca45f924](https://github.com/dart-windows/dartwinrt/commit/ca45f92440d371b65fbeaba5b36817c46d747b2f))
+ - **REFACTOR**: refactor parameter projections ([#325](https://github.com/dart-windows/dartwinrt/issues/325)). ([6774c4f8](https://github.com/dart-windows/dartwinrt/commit/6774c4f8d1e79b886116d951bfe18718921f659d))
+ - **FEAT**: the constructors of the struct classes are now `const` ([#331](https://github.com/dart-windows/dartwinrt/issues/331)). ([c0ec409d](https://github.com/dart-windows/dartwinrt/commit/c0ec409d973dd27601bbf3e09e900589043a495d))
+ - **BREAKING** **FEAT**: wrap struct fields ([#322](https://github.com/dart-windows/dartwinrt/issues/322)). ([a2094b38](https://github.com/dart-windows/dartwinrt/commit/a2094b386af8660babd95435cb4328dff92d1b1c))
+
+#### `windows_data` - `v0.2.0`
+
+ - **REFACTOR**: refactor enum projections ([#338](https://github.com/dart-windows/dartwinrt/issues/338)). ([8b2830c6](https://github.com/dart-windows/dartwinrt/commit/8b2830c6c9ffcfe4e5ffe745d65820e33c08dc98))
+ - **REFACTOR**: refactor the projection of `PassArray` style array parameters ([#326](https://github.com/dart-windows/dartwinrt/issues/326)). ([ca45f924](https://github.com/dart-windows/dartwinrt/commit/ca45f92440d371b65fbeaba5b36817c46d747b2f))
+ - **REFACTOR**: refactor parameter projections ([#325](https://github.com/dart-windows/dartwinrt/issues/325)). ([6774c4f8](https://github.com/dart-windows/dartwinrt/commit/6774c4f8d1e79b886116d951bfe18718921f659d))
+ - **FEAT**: the constructors of the struct classes are now `const` ([#331](https://github.com/dart-windows/dartwinrt/issues/331)). ([c0ec409d](https://github.com/dart-windows/dartwinrt/commit/c0ec409d973dd27601bbf3e09e900589043a495d))
+ - **BREAKING** **FEAT**: wrap struct fields ([#322](https://github.com/dart-windows/dartwinrt/issues/322)). ([a2094b38](https://github.com/dart-windows/dartwinrt/commit/a2094b386af8660babd95435cb4328dff92d1b1c))
+
+#### `windows_devices` - `v0.2.0`
+
+ - **REFACTOR**: refactor enum projections ([#338](https://github.com/dart-windows/dartwinrt/issues/338)). ([8b2830c6](https://github.com/dart-windows/dartwinrt/commit/8b2830c6c9ffcfe4e5ffe745d65820e33c08dc98))
+ - **REFACTOR**: refactor the projection of `PassArray` style array parameters ([#326](https://github.com/dart-windows/dartwinrt/issues/326)). ([ca45f924](https://github.com/dart-windows/dartwinrt/commit/ca45f92440d371b65fbeaba5b36817c46d747b2f))
+ - **REFACTOR**: refactor parameter projections ([#325](https://github.com/dart-windows/dartwinrt/issues/325)). ([6774c4f8](https://github.com/dart-windows/dartwinrt/commit/6774c4f8d1e79b886116d951bfe18718921f659d))
+ - **FEAT**: the constructors of the struct classes are now `const` ([#331](https://github.com/dart-windows/dartwinrt/issues/331)). ([c0ec409d](https://github.com/dart-windows/dartwinrt/commit/c0ec409d973dd27601bbf3e09e900589043a495d))
+ - **FEAT**: support `WinRTStruct` type arguments in `IReference` ([#312](https://github.com/dart-windows/dartwinrt/issues/312)). ([d8468adf](https://github.com/dart-windows/dartwinrt/commit/d8468adf7a373a7ebee48d8f43c7a2d2d87b77df))
+ - **BREAKING** **FEAT**: wrap struct fields ([#322](https://github.com/dart-windows/dartwinrt/issues/322)). ([a2094b38](https://github.com/dart-windows/dartwinrt/commit/a2094b386af8660babd95435cb4328dff92d1b1c))
+
+#### `windows_foundation` - `v0.2.0`
+
+ - **REFACTOR**: refactor enum projections ([#338](https://github.com/dart-windows/dartwinrt/issues/338)). ([8b2830c6](https://github.com/dart-windows/dartwinrt/commit/8b2830c6c9ffcfe4e5ffe745d65820e33c08dc98))
+ - **REFACTOR**: refactor the projection of `PassArray` style array parameters ([#326](https://github.com/dart-windows/dartwinrt/issues/326)). ([ca45f924](https://github.com/dart-windows/dartwinrt/commit/ca45f92440d371b65fbeaba5b36817c46d747b2f))
+ - **REFACTOR**: refactor parameter projections ([#325](https://github.com/dart-windows/dartwinrt/issues/325)). ([6774c4f8](https://github.com/dart-windows/dartwinrt/commit/6774c4f8d1e79b886116d951bfe18718921f659d))
+ - **FEAT**: the constructors of the struct classes are now `const` ([#331](https://github.com/dart-windows/dartwinrt/issues/331)). ([c0ec409d](https://github.com/dart-windows/dartwinrt/commit/c0ec409d973dd27601bbf3e09e900589043a495d))
+ - **FEAT**(windows_foundation): support boxing `Uri` objects ([#328](https://github.com/dart-windows/dartwinrt/issues/328)). ([c4ddb4ab](https://github.com/dart-windows/dartwinrt/commit/c4ddb4aba7098ec9e03d65a7f8feb4e35ff396b3))
+ - **FEAT**(windows_foundation): add wrapper for `HSTRING` ([#324](https://github.com/dart-windows/dartwinrt/issues/324)). ([d8e3533b](https://github.com/dart-windows/dartwinrt/commit/d8e3533b76a41d35a9a8166e1ae1ba9c373f62e0))
+ - **FEAT**: support (Uri, String) and (Object, Object?) key-value pairs in Map ([#319](https://github.com/dart-windows/dartwinrt/issues/319)). ([c72958dd](https://github.com/dart-windows/dartwinrt/commit/c72958dd4b2030c22eeae328cae61367f6193fc5))
+ - **FEAT**: support DateTime, Duration, and TextRange type args in Vectors ([#317](https://github.com/dart-windows/dartwinrt/issues/317)). ([8a8ef2a1](https://github.com/dart-windows/dartwinrt/commit/8a8ef2a14bf9c75dfe553312b6d49eeb53f094eb))
+ - **FEAT**: support `double` type arguments in `IAsyncOperation` ([#315](https://github.com/dart-windows/dartwinrt/issues/315)). ([c03183ff](https://github.com/dart-windows/dartwinrt/commit/c03183ff0d320f31542ddcd44d816cc35668068f))
+ - **FEAT**: support `WinRTStruct` type arguments in `IAsyncOperation` ([#313](https://github.com/dart-windows/dartwinrt/issues/313)). ([a194214f](https://github.com/dart-windows/dartwinrt/commit/a194214f05867ac07813031aefa7412006b43a67))
+ - **FEAT**: support `WinRTStruct` type arguments in `IReference` ([#312](https://github.com/dart-windows/dartwinrt/issues/312)). ([d8468adf](https://github.com/dart-windows/dartwinrt/commit/d8468adf7a373a7ebee48d8f43c7a2d2d87b77df))
+ - **DOCS**: update docs for the `internal` library ([#346](https://github.com/dart-windows/dartwinrt/issues/346)). ([f71cd951](https://github.com/dart-windows/dartwinrt/commit/f71cd9519990f3e664a4f343040d0802e803a0e0))
+ - **DOCS**: fix grammar mistakes in docs ([#340](https://github.com/dart-windows/dartwinrt/issues/340)). ([a420d0d7](https://github.com/dart-windows/dartwinrt/commit/a420d0d7d28288b2589d95a3441758763eac7fa4))
+ - **BREAKING** **FEAT**: wrap struct fields ([#322](https://github.com/dart-windows/dartwinrt/issues/322)). ([a2094b38](https://github.com/dart-windows/dartwinrt/commit/a2094b386af8660babd95435cb4328dff92d1b1c))
+
+#### `windows_gaming` - `v0.2.0`
+
+ - **REFACTOR**: refactor enum projections ([#338](https://github.com/dart-windows/dartwinrt/issues/338)). ([8b2830c6](https://github.com/dart-windows/dartwinrt/commit/8b2830c6c9ffcfe4e5ffe745d65820e33c08dc98))
+ - **REFACTOR**: refactor the projection of `PassArray` style array parameters ([#326](https://github.com/dart-windows/dartwinrt/issues/326)). ([ca45f924](https://github.com/dart-windows/dartwinrt/commit/ca45f92440d371b65fbeaba5b36817c46d747b2f))
+ - **REFACTOR**: refactor parameter projections ([#325](https://github.com/dart-windows/dartwinrt/issues/325)). ([6774c4f8](https://github.com/dart-windows/dartwinrt/commit/6774c4f8d1e79b886116d951bfe18718921f659d))
+ - **FEAT**: the constructors of the struct classes are now `const` ([#331](https://github.com/dart-windows/dartwinrt/issues/331)). ([c0ec409d](https://github.com/dart-windows/dartwinrt/commit/c0ec409d973dd27601bbf3e09e900589043a495d))
+ - **BREAKING** **FEAT**: wrap struct fields ([#322](https://github.com/dart-windows/dartwinrt/issues/322)). ([a2094b38](https://github.com/dart-windows/dartwinrt/commit/a2094b386af8660babd95435cb4328dff92d1b1c))
+
+#### `windows_graphics` - `v0.2.0`
+
+ - **REFACTOR**: refactor enum projections ([#338](https://github.com/dart-windows/dartwinrt/issues/338)). ([8b2830c6](https://github.com/dart-windows/dartwinrt/commit/8b2830c6c9ffcfe4e5ffe745d65820e33c08dc98))
+ - **REFACTOR**: refactor the projection of `PassArray` style array parameters ([#326](https://github.com/dart-windows/dartwinrt/issues/326)). ([ca45f924](https://github.com/dart-windows/dartwinrt/commit/ca45f92440d371b65fbeaba5b36817c46d747b2f))
+ - **REFACTOR**: refactor parameter projections ([#325](https://github.com/dart-windows/dartwinrt/issues/325)). ([6774c4f8](https://github.com/dart-windows/dartwinrt/commit/6774c4f8d1e79b886116d951bfe18718921f659d))
+ - **FEAT**: the constructors of the struct classes are now `const` ([#331](https://github.com/dart-windows/dartwinrt/issues/331)). ([c0ec409d](https://github.com/dart-windows/dartwinrt/commit/c0ec409d973dd27601bbf3e09e900589043a495d))
+ - **FEAT**: support `WinRTStruct` type arguments in `IReference` ([#312](https://github.com/dart-windows/dartwinrt/issues/312)). ([d8468adf](https://github.com/dart-windows/dartwinrt/commit/d8468adf7a373a7ebee48d8f43c7a2d2d87b77df))
+ - **BREAKING** **FEAT**: wrap struct fields ([#322](https://github.com/dart-windows/dartwinrt/issues/322)). ([a2094b38](https://github.com/dart-windows/dartwinrt/commit/a2094b386af8660babd95435cb4328dff92d1b1c))
+
+#### `windows_media` - `v0.2.0`
+
+ - **REFACTOR**: refactor enum projections ([#338](https://github.com/dart-windows/dartwinrt/issues/338)). ([8b2830c6](https://github.com/dart-windows/dartwinrt/commit/8b2830c6c9ffcfe4e5ffe745d65820e33c08dc98))
+ - **REFACTOR**: refactor the projection of `PassArray` style array parameters ([#326](https://github.com/dart-windows/dartwinrt/issues/326)). ([ca45f924](https://github.com/dart-windows/dartwinrt/commit/ca45f92440d371b65fbeaba5b36817c46d747b2f))
+ - **REFACTOR**: refactor parameter projections ([#325](https://github.com/dart-windows/dartwinrt/issues/325)). ([6774c4f8](https://github.com/dart-windows/dartwinrt/commit/6774c4f8d1e79b886116d951bfe18718921f659d))
+ - **FEAT**: the constructors of the struct classes are now `const` ([#331](https://github.com/dart-windows/dartwinrt/issues/331)). ([c0ec409d](https://github.com/dart-windows/dartwinrt/commit/c0ec409d973dd27601bbf3e09e900589043a495d))
+ - **BREAKING** **FEAT**: wrap struct fields ([#322](https://github.com/dart-windows/dartwinrt/issues/322)). ([a2094b38](https://github.com/dart-windows/dartwinrt/commit/a2094b386af8660babd95435cb4328dff92d1b1c))
+
+#### `windows_networking` - `v0.2.0`
+
+ - **REFACTOR**: refactor enum projections ([#338](https://github.com/dart-windows/dartwinrt/issues/338)). ([8b2830c6](https://github.com/dart-windows/dartwinrt/commit/8b2830c6c9ffcfe4e5ffe745d65820e33c08dc98))
+ - **REFACTOR**: refactor the projection of `PassArray` style array parameters ([#326](https://github.com/dart-windows/dartwinrt/issues/326)). ([ca45f924](https://github.com/dart-windows/dartwinrt/commit/ca45f92440d371b65fbeaba5b36817c46d747b2f))
+ - **REFACTOR**: refactor parameter projections ([#325](https://github.com/dart-windows/dartwinrt/issues/325)). ([6774c4f8](https://github.com/dart-windows/dartwinrt/commit/6774c4f8d1e79b886116d951bfe18718921f659d))
+ - **FEAT**: the constructors of the struct classes are now `const` ([#331](https://github.com/dart-windows/dartwinrt/issues/331)). ([c0ec409d](https://github.com/dart-windows/dartwinrt/commit/c0ec409d973dd27601bbf3e09e900589043a495d))
+ - **BREAKING** **FEAT**: wrap struct fields ([#322](https://github.com/dart-windows/dartwinrt/issues/322)). ([a2094b38](https://github.com/dart-windows/dartwinrt/commit/a2094b386af8660babd95435cb4328dff92d1b1c))
+
+#### `windows_perception` - `v0.1.0`
+
+ - **REFACTOR**: refactor enum projections ([#338](https://github.com/dart-windows/dartwinrt/issues/338)). ([8b2830c6](https://github.com/dart-windows/dartwinrt/commit/8b2830c6c9ffcfe4e5ffe745d65820e33c08dc98))
+ - **REFACTOR**: refactor the projection of `PassArray` style array parameters ([#326](https://github.com/dart-windows/dartwinrt/issues/326)). ([ca45f924](https://github.com/dart-windows/dartwinrt/commit/ca45f92440d371b65fbeaba5b36817c46d747b2f))
+ - **REFACTOR**: refactor parameter projections ([#325](https://github.com/dart-windows/dartwinrt/issues/325)). ([6774c4f8](https://github.com/dart-windows/dartwinrt/commit/6774c4f8d1e79b886116d951bfe18718921f659d))
+ - **FEAT**: the constructors of the struct classes are now `const` ([#331](https://github.com/dart-windows/dartwinrt/issues/331)). ([c0ec409d](https://github.com/dart-windows/dartwinrt/commit/c0ec409d973dd27601bbf3e09e900589043a495d))
+ - **FEAT**: support `WinRTStruct` type arguments in `IReference` ([#312](https://github.com/dart-windows/dartwinrt/issues/312)). ([d8468adf](https://github.com/dart-windows/dartwinrt/commit/d8468adf7a373a7ebee48d8f43c7a2d2d87b77df))
+ - **BREAKING** **FEAT**: wrap struct fields ([#322](https://github.com/dart-windows/dartwinrt/issues/322)). ([a2094b38](https://github.com/dart-windows/dartwinrt/commit/a2094b386af8660babd95435cb4328dff92d1b1c))
+
+#### `windows_services` - `v0.1.0`
+
+ - **REFACTOR**: refactor enum projections ([#338](https://github.com/dart-windows/dartwinrt/issues/338)). ([8b2830c6](https://github.com/dart-windows/dartwinrt/commit/8b2830c6c9ffcfe4e5ffe745d65820e33c08dc98))
+ - **REFACTOR**: refactor the projection of `PassArray` style array parameters ([#326](https://github.com/dart-windows/dartwinrt/issues/326)). ([ca45f924](https://github.com/dart-windows/dartwinrt/commit/ca45f92440d371b65fbeaba5b36817c46d747b2f))
+ - **REFACTOR**: refactor parameter projections ([#325](https://github.com/dart-windows/dartwinrt/issues/325)). ([6774c4f8](https://github.com/dart-windows/dartwinrt/commit/6774c4f8d1e79b886116d951bfe18718921f659d))
+ - **FEAT**: the constructors of the struct classes are now `const` ([#331](https://github.com/dart-windows/dartwinrt/issues/331)). ([c0ec409d](https://github.com/dart-windows/dartwinrt/commit/c0ec409d973dd27601bbf3e09e900589043a495d))
+ - **BREAKING** **FEAT**: wrap struct fields ([#322](https://github.com/dart-windows/dartwinrt/issues/322)). ([a2094b38](https://github.com/dart-windows/dartwinrt/commit/a2094b386af8660babd95435cb4328dff92d1b1c))
+
+#### `windows_storage` - `v0.2.0`
+
+ - **REFACTOR**: refactor enum projections ([#338](https://github.com/dart-windows/dartwinrt/issues/338)). ([8b2830c6](https://github.com/dart-windows/dartwinrt/commit/8b2830c6c9ffcfe4e5ffe745d65820e33c08dc98))
+ - **REFACTOR**: refactor the projection of `PassArray` style array parameters ([#326](https://github.com/dart-windows/dartwinrt/issues/326)). ([ca45f924](https://github.com/dart-windows/dartwinrt/commit/ca45f92440d371b65fbeaba5b36817c46d747b2f))
+ - **REFACTOR**: refactor parameter projections ([#325](https://github.com/dart-windows/dartwinrt/issues/325)). ([6774c4f8](https://github.com/dart-windows/dartwinrt/commit/6774c4f8d1e79b886116d951bfe18718921f659d))
+ - **FEAT**: the constructors of the struct classes are now `const` ([#331](https://github.com/dart-windows/dartwinrt/issues/331)). ([c0ec409d](https://github.com/dart-windows/dartwinrt/commit/c0ec409d973dd27601bbf3e09e900589043a495d))
+ - **BREAKING** **FEAT**: wrap struct fields ([#322](https://github.com/dart-windows/dartwinrt/issues/322)). ([a2094b38](https://github.com/dart-windows/dartwinrt/commit/a2094b386af8660babd95435cb4328dff92d1b1c))
+
+#### `windows_ui` - `v0.2.0`
+
+ - **REFACTOR**: refactor enum projections ([#338](https://github.com/dart-windows/dartwinrt/issues/338)). ([8b2830c6](https://github.com/dart-windows/dartwinrt/commit/8b2830c6c9ffcfe4e5ffe745d65820e33c08dc98))
+ - **REFACTOR**: refactor the projection of `PassArray` style array parameters ([#326](https://github.com/dart-windows/dartwinrt/issues/326)). ([ca45f924](https://github.com/dart-windows/dartwinrt/commit/ca45f92440d371b65fbeaba5b36817c46d747b2f))
+ - **REFACTOR**: refactor parameter projections ([#325](https://github.com/dart-windows/dartwinrt/issues/325)). ([6774c4f8](https://github.com/dart-windows/dartwinrt/commit/6774c4f8d1e79b886116d951bfe18718921f659d))
+ - **FEAT**: the constructors of the struct classes are now `const` ([#331](https://github.com/dart-windows/dartwinrt/issues/331)). ([c0ec409d](https://github.com/dart-windows/dartwinrt/commit/c0ec409d973dd27601bbf3e09e900589043a495d))
+ - **FEAT**: support DateTime, Duration, and TextRange type args in Vectors ([#317](https://github.com/dart-windows/dartwinrt/issues/317)). ([8a8ef2a1](https://github.com/dart-windows/dartwinrt/commit/8a8ef2a14bf9c75dfe553312b6d49eeb53f094eb))
+ - **FEAT**: support `WinRTStruct` type arguments in `IAsyncOperation` ([#313](https://github.com/dart-windows/dartwinrt/issues/313)). ([a194214f](https://github.com/dart-windows/dartwinrt/commit/a194214f05867ac07813031aefa7412006b43a67))
+ - **BREAKING** **FEAT**: wrap struct fields ([#322](https://github.com/dart-windows/dartwinrt/issues/322)). ([a2094b38](https://github.com/dart-windows/dartwinrt/commit/a2094b386af8660babd95435cb4328dff92d1b1c))
+
+#### `windows_web` - `v0.1.0`
+
+ - **REFACTOR**: refactor enum projections ([#338](https://github.com/dart-windows/dartwinrt/issues/338)). ([8b2830c6](https://github.com/dart-windows/dartwinrt/commit/8b2830c6c9ffcfe4e5ffe745d65820e33c08dc98))
+ - **REFACTOR**: refactor the projection of `PassArray` style array parameters ([#326](https://github.com/dart-windows/dartwinrt/issues/326)). ([ca45f924](https://github.com/dart-windows/dartwinrt/commit/ca45f92440d371b65fbeaba5b36817c46d747b2f))
+ - **REFACTOR**: refactor parameter projections ([#325](https://github.com/dart-windows/dartwinrt/issues/325)). ([6774c4f8](https://github.com/dart-windows/dartwinrt/commit/6774c4f8d1e79b886116d951bfe18718921f659d))
+ - **FEAT**: the constructors of the struct classes are now `const` ([#331](https://github.com/dart-windows/dartwinrt/issues/331)). ([c0ec409d](https://github.com/dart-windows/dartwinrt/commit/c0ec409d973dd27601bbf3e09e900589043a495d))
+ - **BREAKING** **FEAT**: wrap struct fields ([#322](https://github.com/dart-windows/dartwinrt/issues/322)). ([a2094b38](https://github.com/dart-windows/dartwinrt/commit/a2094b386af8660babd95435cb4328dff92d1b1c))
+
+#### `windows_globalization` - `v0.1.0+1`
+
+ - **REFACTOR**: refactor enum projections ([#338](https://github.com/dart-windows/dartwinrt/issues/338)). ([8b2830c6](https://github.com/dart-windows/dartwinrt/commit/8b2830c6c9ffcfe4e5ffe745d65820e33c08dc98))
+ - **REFACTOR**: refactor parameter projections ([#325](https://github.com/dart-windows/dartwinrt/issues/325)). ([6774c4f8](https://github.com/dart-windows/dartwinrt/commit/6774c4f8d1e79b886116d951bfe18718921f659d))
+
+#### `windows_management` - `v0.0.1+4`
+
+ - **REFACTOR**: refactor enum projections ([#338](https://github.com/dart-windows/dartwinrt/issues/338)). ([8b2830c6](https://github.com/dart-windows/dartwinrt/commit/8b2830c6c9ffcfe4e5ffe745d65820e33c08dc98))
+
+#### `windows_security` - `v0.1.0+1`
+
+ - **REFACTOR**: refactor enum projections ([#338](https://github.com/dart-windows/dartwinrt/issues/338)). ([8b2830c6](https://github.com/dart-windows/dartwinrt/commit/8b2830c6c9ffcfe4e5ffe745d65820e33c08dc98))
+ - **REFACTOR**: refactor parameter projections ([#325](https://github.com/dart-windows/dartwinrt/issues/325)). ([6774c4f8](https://github.com/dart-windows/dartwinrt/commit/6774c4f8d1e79b886116d951bfe18718921f659d))
+ - **DOCS**(windows_security): add documentation for `WebAccountPictureSize` ([#341](https://github.com/dart-windows/dartwinrt/issues/341)). ([bd5da6e5](https://github.com/dart-windows/dartwinrt/commit/bd5da6e513c4639757884e0a982b539649ccfdbe))
+
+#### `windows_system` - `v0.1.0+1`
+
+ - **REFACTOR**: refactor enum projections ([#338](https://github.com/dart-windows/dartwinrt/issues/338)). ([8b2830c6](https://github.com/dart-windows/dartwinrt/commit/8b2830c6c9ffcfe4e5ffe745d65820e33c08dc98))
+ - **REFACTOR**: refactor parameter projections ([#325](https://github.com/dart-windows/dartwinrt/issues/325)). ([6774c4f8](https://github.com/dart-windows/dartwinrt/commit/6774c4f8d1e79b886116d951bfe18718921f659d))
+
+
 ## 2023-07-11
 
 ### Changes

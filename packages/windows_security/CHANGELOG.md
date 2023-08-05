@@ -1,3 +1,9 @@
+## 0.1.0+1
+
+ - **REFACTOR**: refactor enum projections ([#338](https://github.com/dart-windows/dartwinrt/issues/338)). ([8b2830c6](https://github.com/dart-windows/dartwinrt/commit/8b2830c6c9ffcfe4e5ffe745d65820e33c08dc98))
+ - **REFACTOR**: refactor parameter projections ([#325](https://github.com/dart-windows/dartwinrt/issues/325)). ([6774c4f8](https://github.com/dart-windows/dartwinrt/commit/6774c4f8d1e79b886116d951bfe18718921f659d))
+ - **DOCS**(windows_security): add documentation for `WebAccountPictureSize` ([#341](https://github.com/dart-windows/dartwinrt/issues/341)). ([bd5da6e5](https://github.com/dart-windows/dartwinrt/commit/bd5da6e513c4639757884e0a982b539649ccfdbe))
+
 ## 0.1.0
 
 > Note: This release has breaking changes.

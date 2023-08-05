@@ -1,3 +1,7 @@
+## 0.0.1+4
+
+ - **REFACTOR**: refactor enum projections ([#338](https://github.com/dart-windows/dartwinrt/issues/338)). ([8b2830c6](https://github.com/dart-windows/dartwinrt/commit/8b2830c6c9ffcfe4e5ffe745d65820e33c08dc98))
+
 ## 0.0.1+3
 
  - Update a dependency to the latest release.

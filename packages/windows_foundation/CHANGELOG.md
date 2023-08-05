@@ -1,3 +1,22 @@
+## 0.2.0
+
+> Note: This release has breaking changes.
+
+ - **REFACTOR**: refactor enum projections ([#338](https://github.com/dart-windows/dartwinrt/issues/338)). ([8b2830c6](https://github.com/dart-windows/dartwinrt/commit/8b2830c6c9ffcfe4e5ffe745d65820e33c08dc98))
+ - **REFACTOR**: refactor the projection of `PassArray` style array parameters ([#326](https://github.com/dart-windows/dartwinrt/issues/326)). ([ca45f924](https://github.com/dart-windows/dartwinrt/commit/ca45f92440d371b65fbeaba5b36817c46d747b2f))
+ - **REFACTOR**: refactor parameter projections ([#325](https://github.com/dart-windows/dartwinrt/issues/325)). ([6774c4f8](https://github.com/dart-windows/dartwinrt/commit/6774c4f8d1e79b886116d951bfe18718921f659d))
+ - **FEAT**: the constructors of the struct classes are now `const` ([#331](https://github.com/dart-windows/dartwinrt/issues/331)). ([c0ec409d](https://github.com/dart-windows/dartwinrt/commit/c0ec409d973dd27601bbf3e09e900589043a495d))
+ - **FEAT**(windows_foundation): support boxing `Uri` objects ([#328](https://github.com/dart-windows/dartwinrt/issues/328)). ([c4ddb4ab](https://github.com/dart-windows/dartwinrt/commit/c4ddb4aba7098ec9e03d65a7f8feb4e35ff396b3))
+ - **FEAT**(windows_foundation): add wrapper for `HSTRING` ([#324](https://github.com/dart-windows/dartwinrt/issues/324)). ([d8e3533b](https://github.com/dart-windows/dartwinrt/commit/d8e3533b76a41d35a9a8166e1ae1ba9c373f62e0))
+ - **FEAT**: support (Uri, String) and (Object, Object?) key-value pairs in Map ([#319](https://github.com/dart-windows/dartwinrt/issues/319)). ([c72958dd](https://github.com/dart-windows/dartwinrt/commit/c72958dd4b2030c22eeae328cae61367f6193fc5))
+ - **FEAT**: support DateTime, Duration, and TextRange type args in Vectors ([#317](https://github.com/dart-windows/dartwinrt/issues/317)). ([8a8ef2a1](https://github.com/dart-windows/dartwinrt/commit/8a8ef2a14bf9c75dfe553312b6d49eeb53f094eb))
+ - **FEAT**: support `double` type arguments in `IAsyncOperation` ([#315](https://github.com/dart-windows/dartwinrt/issues/315)). ([c03183ff](https://github.com/dart-windows/dartwinrt/commit/c03183ff0d320f31542ddcd44d816cc35668068f))
+ - **FEAT**: support `WinRTStruct` type arguments in `IAsyncOperation` ([#313](https://github.com/dart-windows/dartwinrt/issues/313)). ([a194214f](https://github.com/dart-windows/dartwinrt/commit/a194214f05867ac07813031aefa7412006b43a67))
+ - **FEAT**: support `WinRTStruct` type arguments in `IReference` ([#312](https://github.com/dart-windows/dartwinrt/issues/312)). ([d8468adf](https://github.com/dart-windows/dartwinrt/commit/d8468adf7a373a7ebee48d8f43c7a2d2d87b77df))
+ - **DOCS**: update docs for the `internal` library ([#346](https://github.com/dart-windows/dartwinrt/issues/346)). ([f71cd951](https://github.com/dart-windows/dartwinrt/commit/f71cd9519990f3e664a4f343040d0802e803a0e0))
+ - **DOCS**: fix grammar mistakes in docs ([#340](https://github.com/dart-windows/dartwinrt/issues/340)). ([a420d0d7](https://github.com/dart-windows/dartwinrt/commit/a420d0d7d28288b2589d95a3441758763eac7fa4))
+ - **BREAKING** **FEAT**: wrap struct fields ([#322](https://github.com/dart-windows/dartwinrt/issues/322)). ([a2094b38](https://github.com/dart-windows/dartwinrt/commit/a2094b386af8660babd95435cb4328dff92d1b1c))
+
 ## 0.1.0
 
 > Note: This release has breaking changes.
