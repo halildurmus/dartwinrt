@@ -104,7 +104,7 @@ scripts:
     description: >
       Run all targets generally expected in CI for a full local quality check.
     run: >
-      melos run clean:deep &&
+      melos run clean &&
       melos clean &&
       melos bootstrap &&
       melos run analyze &&
