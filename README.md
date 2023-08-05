@@ -7,6 +7,7 @@ Part of the [Dart | Windows][dart_windows_link] suite of Windows packages.
 [![Publisher: win32.pub][publisher_badge]][publisher_link]
 [![Language: Dart][language_badge]][language_link]
 [![License: BSD-3-Clause][license_badge]][license_link]
+[![codecov][codecov_badge_link]][codecov_link]
 
 ## Documentation 📝
 
@@ -91,6 +92,8 @@ The summary WinRT API documentation comments are
 [Creative Commons Attribution 4.0 International Public License][cc_license_link].
 
 [cc_license_link]: https://github.com/MicrosoftDocs/winrt-api/blob/89e9254fd8b53a648937dbb4324d7f7d6f8d1314/LICENSE
+[codecov_badge_link]: https://codecov.io/gh/dart-windows/dartwinrt/branch/main/graph/badge.svg?token=f9L9PfTTLa
+[codecov_link]: https://codecov.io/gh/dart-windows/dartwinrt
 [dart_windows_link]: https://github.com/dart-windows
 [issue_tracker_link]: https://github.com/dart-windows/dartwinrt/issues
 [language_badge]: https://img.shields.io/badge/language-Dart-blue.svg
