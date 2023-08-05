@@ -7,6 +7,7 @@ ignore:
   - packages/windows_applicationmodel
   - packages/windows_data
   - packages/windows_devices
+  - packages/windows_foundation/lib/src/numerics
   - packages/windows_gaming
   - packages/windows_globalization
   - packages/windows_graphics
