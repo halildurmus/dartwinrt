@@ -278,7 +278,7 @@ void main() {
       expect(projection.postambles, equals(['free(value);']));
     });
 
-    test('projects generic enum', () {
+    test('projects generic enum (1)', () {
       final genericInterfaceProjection = GenericInterfaceProjection.from(
           'Windows.Foundation.Collections.IIterator`1', TypeArgKind.winrtEnum);
       final projection = genericInterfaceProjection.methodProjections
@@ -306,6 +306,38 @@ void main() {
       expect(projection.nullCheck, isEmpty);
       expect(projection.returnStatement,
           equals('return enumCreator(retValuePtr.value);'));
+      expect(projection.postambles, equals(['free(retValuePtr);']));
+    });
+
+    test('projects generic enum (2)', () {
+      final genericInterfaceProjection = GenericInterfaceProjection.from(
+          'Windows.Foundation.Collections.IKeyValuePair`2',
+          TypeArgKind.winrtEnum,
+          TypeArgKind.nullableInspectable);
+      final projection = genericInterfaceProjection.methodProjections
+          .firstWhere((methodProjection) => methodProjection.name == 'get_Key');
+      expect(projection.annotations, isEmpty);
+      expect(projection.useTryFinallyBlock, isTrue);
+      expect(projection.returnType, equals('K'));
+      expect(projection.header, equals('K get key'));
+      expect(projection.paramIdentifier, equals('retValuePtr'));
+      expect(projection.preambles,
+          equals(['final retValuePtr = calloc<Int32>();']));
+      expect(projection.parametersPreamble, isEmpty);
+      expect(
+          projection.nativePrototype,
+          equals(
+              'HRESULT Function(VTablePointer lpVtbl, Pointer<Int32> retValuePtr)'));
+      expect(
+          projection.dartPrototype,
+          equals(
+              'int Function(VTablePointer lpVtbl, Pointer<Int32> retValuePtr)'));
+      expect(projection.identifiers, equals('ptr.ref.lpVtbl, retValuePtr'));
+      expect(projection.parametersPostamble, isEmpty);
+      expect(projection.failedCheck, equals(failedCheck()));
+      expect(projection.nullCheck, isEmpty);
+      expect(projection.returnStatement,
+          equals('return enumKeyCreator(retValuePtr.value);'));
       expect(projection.postambles, equals(['free(retValuePtr);']));
     });
 
@@ -541,6 +573,40 @@ void main() {
       expect(projection.returnStatement, equalsIgnoringWhitespace('''
         return IReference<DateTime?>.fromPtr(value,
             referenceIid: '{5541d8a7-497c-5aa4-86fc-7713adbf2a2c}').value;
+'''));
+      expect(projection.postambles, isEmpty);
+    });
+
+    test('projects IVector<DeviceClass>', () {
+      final projection = GetterProjection.fromTypeAndMethodName(
+          'Windows.Devices.Enumeration.IDevicePickerFilter',
+          'get_SupportedDeviceClasses');
+      expect(projection.annotations, isEmpty);
+      expect(projection.useTryFinallyBlock, isFalse);
+      expect(projection.returnType, equals('IVector<DeviceClass>?'));
+      expect(projection.header,
+          equals('IVector<DeviceClass>? get supportedDeviceClasses'));
+      expect(projection.paramIdentifier, equals('value'));
+      expect(
+          projection.preambles, equals(['final value = calloc<COMObject>();']));
+      expect(projection.parametersPreamble, isEmpty);
+      expect(
+          projection.nativePrototype,
+          equals(
+              'HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)'));
+      expect(
+          projection.dartPrototype,
+          equals(
+              'int Function(VTablePointer lpVtbl, Pointer<COMObject> value)'));
+      expect(projection.identifiers, equals('ptr.ref.lpVtbl, value'));
+      expect(projection.parametersPostamble, isEmpty);
+      expect(projection.failedCheck,
+          equals(failedCheck(freeRetVal: true, identifier: 'value')));
+      expect(projection.nullCheck, equals(nullCheck('value')));
+      expect(projection.returnStatement, equalsIgnoringWhitespace('''
+        return IVector.fromPtr(value,
+            iterableIid: '{47d4be05-58f1-522e-81c6-975eb4131bb9}',
+            enumCreator: DeviceClass.from);
 '''));
       expect(projection.postambles, isEmpty);
     });

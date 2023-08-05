@@ -354,6 +354,12 @@ void main() {
           equals(BaseType.int64Type));
     });
 
+    test('returns correct TypeIdentifier for TypeArgKind.loadMoreItemsResult',
+        () {
+      expect(TypeArgKind.loadMoreItemsResult.typeIdentifier.name,
+          equals('Windows.UI.Xaml.Data.LoadMoreItemsResult'));
+    });
+
     test('returns correct TypeIdentifier for TypeArgKind.object', () {
       expect(TypeArgKind.object.typeIdentifier.baseType,
           equals(BaseType.objectType));

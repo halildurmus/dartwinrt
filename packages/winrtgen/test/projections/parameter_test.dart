@@ -839,5 +839,12 @@ void main() {
       expect(projection.localIdentifier,
           equals('uri?.toWinRTUri().lpVtbl ?? nullptr'));
     });
+
+    test('toString', () {
+      final methodProjection = MethodProjection.fromTypeAndMethodName(
+          'Windows.Foundation.IPropertyValueStatics', 'CreatePoint');
+      final projection = methodProjection.parameters.first;
+      expect(projection.toString(), equals('Point value'));
+    });
   });
 }

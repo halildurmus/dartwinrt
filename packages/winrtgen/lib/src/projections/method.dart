@@ -4,7 +4,7 @@
 
 import 'package:winmd/winmd.dart';
 
-import '../exception/exception.dart';
+import '../exceptions/exceptions.dart';
 import '../extensions/extensions.dart';
 import '../models/models.dart';
 import 'getter.dart';

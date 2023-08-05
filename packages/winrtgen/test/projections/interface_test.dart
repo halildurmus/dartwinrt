@@ -97,7 +97,26 @@ void main() {
       );
     });
 
-    test('imports are meaningful', () {
+    test('imports are meaningful (1)', () {
+      final projection =
+          InterfaceProjection.from('Windows.Foundation.IMemoryBuffer');
+      expect(
+        projection.imports,
+        unorderedEquals([
+          'dart:async',
+          'dart:ffi',
+          'package:ffi/ffi.dart',
+          'package:win32/win32.dart',
+          '../internal.dart',
+          'helpers.dart',
+          'collections/iiterator.dart',
+          'iclosable.dart',
+          'imemorybufferreference.dart'
+        ]),
+      );
+    });
+
+    test('imports are meaningful (2)', () {
       expect(
         calendarProjection.imports,
         unorderedEquals([

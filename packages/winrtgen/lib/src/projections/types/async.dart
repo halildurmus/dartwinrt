@@ -4,7 +4,7 @@
 
 import 'package:winmd/winmd.dart';
 
-import '../../exception/exception.dart';
+import '../../exceptions/exceptions.dart';
 import '../../extensions/extensions.dart';
 import '../../models/models.dart';
 import '../projections.dart';
@@ -29,7 +29,7 @@ final class AsyncActionParameterProjection extends ParameterProjection {
 
 /// Parameter projection for `IAsyncActionWithProgress` parameters.
 final class AsyncActionWithProgressParameterProjection
-    extends ParameterProjection {
+    extends AsyncActionParameterProjection {
   AsyncActionWithProgressParameterProjection(super.parameter);
 
   @override
@@ -37,13 +37,6 @@ final class AsyncActionWithProgressParameterProjection
 
   @override
   String get creator => identifier;
-
-  @override
-  String get into => '$identifier.ref.lpVtbl';
-
-  // No deallocation is needed as Finalizer will handle it.
-  @override
-  bool get needsDeallocation => false;
 }
 
 /// Parameter projection for `IAsyncOperation` parameters.
@@ -149,14 +142,11 @@ final class AsyncOperationParameterProjection
 
   @override
   String get creator => 'asyncOperation.toFuture($onCompletedCallback)';
-
-  @override
-  String get into => '$identifier.lpVtbl';
 }
 
 /// Parameter projection for `IAsyncOperationWithProgress` parameters.
 final class AsyncOperationWithProgressParameterProjection
-    extends ParameterProjection {
+    extends AsyncActionParameterProjection {
   AsyncOperationWithProgressParameterProjection(super.parameter);
 
   @override
@@ -164,11 +154,4 @@ final class AsyncOperationWithProgressParameterProjection
 
   @override
   String get creator => identifier;
-
-  @override
-  String get into => '$identifier.ref.lpVtbl';
-
-  // No deallocation is needed as Finalizer will handle it.
-  @override
-  bool get needsDeallocation => false;
 }

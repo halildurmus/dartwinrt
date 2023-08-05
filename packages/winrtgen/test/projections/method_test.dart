@@ -29,7 +29,23 @@ void main() {
       expect(
           () =>
               MethodProjection.fromTypeAndMethodName('Windows.Foo.Bar', 'Foo'),
-          throwsA(isA<WinRTGenException>()));
+          throwsA(isA<WinRTGenException>().having((e) => e.message, 'message',
+              equals('`Windows.Foo.Bar` is not found in the Metadata!'))));
+    });
+
+    test('fromTypeAndMethodName constructor throws if method is not found', () {
+      expect(
+        () => MethodProjection.fromTypeAndMethodName(
+            'Windows.Foundation.IClosable', 'NonExistentMethod'),
+        throwsA(
+          isA<WinRTGenException>().having(
+            (e) => e.message,
+            'message',
+            equals(
+                "Could not find method 'NonExistentMethod' in 'Windows.Foundation.IClosable'."),
+          ),
+        ),
+      );
     });
   });
 
@@ -50,6 +66,18 @@ void main() {
           contains('@Deprecated("GetLocalUsage may be altered or unavailable '
               'for releases after Windows 8.1. Instead, use '
               'GetNetworkUsageAsync.")'));
+    });
+
+    test('isNullable (1)', () {
+      final projection = MethodProjection.fromTypeAndMethodName(
+          'Windows.Globalization.Calendar', 'Clone');
+      expect(projection.isNullable, isTrue);
+    });
+
+    test('isNullable (2)', () {
+      final projection = MethodProjection.fromTypeAndMethodName(
+          'Windows.Globalization.Calendar', 'GetDateTime');
+      expect(projection.isNullable, isFalse);
     });
 
     test('projects bool', () {

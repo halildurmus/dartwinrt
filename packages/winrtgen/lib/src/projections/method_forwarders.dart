@@ -5,7 +5,7 @@
 import 'package:winmd/winmd.dart';
 
 import '../constants/attributes.dart';
-import '../exception/exception.dart';
+import '../exceptions/exceptions.dart';
 import '../extensions/extensions.dart';
 import 'class.dart';
 import 'interface.dart';

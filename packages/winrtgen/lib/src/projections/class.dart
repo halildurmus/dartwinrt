@@ -44,7 +44,8 @@ base class ClassProjection extends InterfaceProjection {
       .where((attribute) => attribute.parameters.length == 2)
       .isNotEmpty;
 
-  String get defaultConstructor => isActivatableWithNoParams
+  @override
+  String get constructor => isActivatableWithNoParams
       ? '$shortName() : super(activateClass(_className));'
       : '';
 
@@ -110,7 +111,7 @@ $importHeader
 
 $classPreamble
 $classHeader {
-  $defaultConstructor
+  $constructor
   $namedConstructor
 
   $classNameConstant

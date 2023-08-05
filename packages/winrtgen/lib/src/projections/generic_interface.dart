@@ -5,7 +5,7 @@
 import 'package:winmd/winmd.dart' hide TypeTuple;
 
 import '../constants/constants.dart';
-import '../exception/exception.dart';
+import '../exceptions/exceptions.dart';
 import '../extensions/extensions.dart';
 import '../models/models.dart';
 import 'getter.dart';

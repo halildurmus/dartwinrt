@@ -126,14 +126,14 @@ void main() {
 
     test('with default constructor', () {
       expect(calendarProjection.isActivatableWithNoParams, isTrue);
-      expect(calendarProjection.defaultConstructor,
+      expect(calendarProjection.constructor,
           equals('Calendar() : super(activateClass(_className));'));
     });
 
     test('without default constructor', () {
       final projection = ClassProjection.from('Windows.Networking.HostName');
       expect(projection.isActivatableWithNoParams, isFalse);
-      expect(projection.defaultConstructor, isEmpty);
+      expect(projection.constructor, isEmpty);
     });
 
     test('with fromPtr named constructor', () {
