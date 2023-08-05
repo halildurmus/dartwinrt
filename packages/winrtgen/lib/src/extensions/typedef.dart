@@ -5,7 +5,7 @@
 import 'package:winmd/winmd.dart';
 
 import '../constants/constants.dart';
-import '../exception/exception.dart';
+import '../exceptions/exceptions.dart';
 import 'extensions.dart';
 
 extension TypeDefHelpers on TypeDef {
@@ -59,20 +59,10 @@ extension TypeDefHelpers on TypeDef {
       throw WinRTGenException('Type $this has no default interface.');
     }
 
-    if (isDelegate) {
-      if (guid case final guid?) return 'delegate($guid)';
-      throw WinRTGenException('TypeDef $this has no Guid');
-    }
-
     if (isEnum) {
       final isFlagsEnum = existsAttribute(flagsAttribute);
       final enumSignature = isFlagsEnum ? 'u4' : 'i4';
       return 'enum($name;$enumSignature)';
-    }
-
-    if (isInterface) {
-      if (guid case final guid?) return guid;
-      throw WinRTGenException('TypeDef $this has no Guid');
     }
 
     if (isStruct) {
@@ -81,6 +71,8 @@ extension TypeDefHelpers on TypeDef {
       return 'struct($name;${fieldSignatures.join(';')})';
     }
 
-    throw WinRTGenException('Unsupported type: $this');
+    if (guid case final guid?) return isDelegate ? 'delegate($guid)' : guid;
+
+    throw WinRTGenException('TypeDef $this has no Guid');
   }
 }

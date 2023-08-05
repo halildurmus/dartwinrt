@@ -4,7 +4,7 @@
 
 import 'package:winmd/winmd.dart';
 
-import '../exception/exception.dart';
+import '../exceptions/exceptions.dart';
 import '../extensions/extensions.dart';
 import '../models/models.dart';
 
@@ -126,8 +126,6 @@ final class TypeProjection {
       typeIdentifier.type?.name.endsWith('IVectorView`1') ?? false;
 
   bool get isVoid => dartType == 'void';
-
-  bool get isWinRT => typeIdentifier.isWinRT;
 
   bool get isWinRTClass => typeIdentifier.isWinRTClass;
 

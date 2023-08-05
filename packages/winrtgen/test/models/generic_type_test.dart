@@ -14,6 +14,28 @@ void main() {
     return;
   }
 
+  group('GenericType', () {
+    test('all', () {
+      expect(GenericType.all.length, equals(8));
+      expect(
+          GenericType.all,
+          orderedEquals([
+            GenericType.iasyncOperation,
+            GenericType.iiterator,
+            GenericType.ikeyValuePair,
+            GenericType.imap,
+            GenericType.imapView,
+            GenericType.ireference,
+            GenericType.ivector,
+            GenericType.ivectorView
+          ]));
+    });
+
+    test('toString', () {
+      expect(GenericType.iasyncOperation.toString(), equals('IAsyncOperation'));
+    });
+  });
+
   group('GenericTypeWithOneTypeArg', () {
     test('shortName', () {
       expect(GenericType.iasyncOperation.shortName, 'IAsyncOperation');

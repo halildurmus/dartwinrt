@@ -49,8 +49,6 @@ final class StructFieldProjection {
     return ParameterProjection.create(parameter);
   }
 
-  String get structName => typeProjection.dartType.replaceFirst('Native', '');
-
   @override
   String toString() => [
         if (isDeprecated) field.deprecatedAnnotation,
@@ -95,6 +93,15 @@ final class NativeStructProjection extends BaseProjection {
     final typeDef = WinRTMetadataStore.findMetadata(fullyQualifiedType);
     return NativeStructProjection(typeDef, structName: structName);
   }
+
+  @override
+  String get header => '';
+
+  @override
+  Set<String> get imports => {};
+
+  @override
+  String get constructor => '';
 
   @override
   String get classHeader => [

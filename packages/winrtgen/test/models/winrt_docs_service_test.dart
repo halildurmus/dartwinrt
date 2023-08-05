@@ -7,14 +7,24 @@ import 'package:winrtgen/winrtgen.dart';
 
 void main() {
   group('WinRTDocsService', () {
-    test('fetchDocumentation', () async {
-      final fullyQualifiedType = 'Windows.Globalization.Calendar';
-      final documentation =
-          await WinRTDocsService.fetchDocumentation(fullyQualifiedType);
-      expect(
-          documentation,
-          equals(
-              'Manipulates the representation of a DateTime within a given calendar and clock.'));
+    group('fetchDocumentation', () {
+      test('(1)', () async {
+        final fullyQualifiedType = 'Windows.Globalization.Calendar';
+        final documentation =
+            await WinRTDocsService.fetchDocumentation(fullyQualifiedType);
+        expect(
+            documentation,
+            equals(
+                'Manipulates the representation of a DateTime within a given calendar and clock.'));
+      });
+
+      test('throws an ArgumentError if type is not a fully qualified type',
+          () async {
+        expect(
+            () => WinRTDocsService.fetchDocumentation('Windows.Foundation'),
+            throwsA(isA<ArgumentError>().having((e) => e.message, 'message',
+                'Type must be fully qualified (e.g., Windows.Foundation.Uri)')));
+      });
     });
 
     test('fetchDocumentations', () async {

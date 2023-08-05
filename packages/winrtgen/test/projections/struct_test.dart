@@ -87,7 +87,7 @@ void main() {
       expect(rectProjection.header, contains(copyrightHeader));
     });
 
-    test('imports are meaningful', () {
+    test('imports are meaningful (1)', () {
       expect(
           rectProjection.imports,
           orderedEquals([
@@ -96,6 +96,21 @@ void main() {
             'package:win32/win32.dart',
             '../internal.dart',
             'winrt_struct.dart'
+          ]));
+    });
+
+    test('imports are meaningful (2)', () {
+      final projection =
+          StructProjection.from('Windows.Devices.Gpio.GpioChangeRecord');
+      expect(
+          projection.imports,
+          orderedEquals([
+            'dart:ffi',
+            'package:ffi/ffi.dart',
+            'package:win32/win32.dart',
+            'package:windows_foundation/internal.dart',
+            'package:windows_foundation/windows_foundation.dart',
+            'gpiopinedge.dart'
           ]));
     });
 

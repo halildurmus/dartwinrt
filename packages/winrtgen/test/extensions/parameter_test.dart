@@ -15,6 +15,65 @@ void main() {
     return;
   }
 
+  group('arrayPassingStyle', () {
+    test('fill', () {
+      final typeDef = MetadataStore.getMetadataForType(
+          'Windows.Storage.Pickers.FileExtensionVector')!;
+      final method = typeDef.findMethod('GetMany')!;
+      final arraySizeParam = method.parameters[1];
+      final arrayParam = method.parameters.last;
+      expect(arraySizeParam.arrayPassingStyle, equals(ArrayPassingStyle.fill));
+      expect(arrayParam.arrayPassingStyle, equals(ArrayPassingStyle.fill));
+    });
+
+    test('pass', () {
+      final typeDef = MetadataStore.getMetadataForType(
+          'Windows.Foundation.IPropertyValueStatics')!;
+      final method = typeDef.findMethod('CreateUInt8Array')!;
+      final arraySizeParam = method.parameters.first;
+      final arrayParam = method.parameters.last;
+      expect(arraySizeParam.arrayPassingStyle, equals(ArrayPassingStyle.pass));
+      expect(arrayParam.arrayPassingStyle, equals(ArrayPassingStyle.pass));
+    });
+
+    test('receive', () {
+      final typeDef = MetadataStore.getMetadataForType(
+          'Windows.Foundation.IPropertyValue')!;
+      final method = typeDef.findMethod('GetInspectableArray')!;
+      final arraySizeParam = method.parameters.first;
+      final arrayParam = method.parameters.last;
+      expect(
+          arraySizeParam.arrayPassingStyle, equals(ArrayPassingStyle.receive));
+      expect(arrayParam.arrayPassingStyle, equals(ArrayPassingStyle.receive));
+    });
+
+    test('throws a WinRTGenException on unknown array-passing style', () {
+      final typeDef = MetadataStore.getMetadataForType(
+          'Windows.Foundation.IPropertyValueStatics')!;
+      final method = typeDef.findMethod('CreateUInt8Array')!;
+      final arraySizeParam = method.parameters.first.clone()
+        ..attributes = CorParamAttr.pdOut;
+      expect(
+        () => arraySizeParam.arrayPassingStyle,
+        throwsA(
+          isA<WinRTGenException>().having(
+              (e) => e.message,
+              'message',
+              equals(
+                  'Failed to determine array-passing style for parameter __valueSize')),
+        ),
+      );
+    });
+  });
+
+  test('isPointerType', () {
+    final typeDef =
+        MetadataStore.getMetadataForType('Windows.Foundation.IPropertyValue')!;
+    final method = typeDef.findMethod('GetInspectableArray')!;
+    expect(method.parameters.first.isPointerType, isTrue);
+    expect(method.parameters.last.isPointerType, isFalse);
+  });
+
   group('isSimpleArraySizeParam', () {
     final scope = MetadataStore.getScopeForNamespace('Windows.Foundation');
 

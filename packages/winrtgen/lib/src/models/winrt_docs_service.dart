@@ -9,7 +9,7 @@ import 'package:html/parser.dart' as parser;
 import 'package:http/http.dart' as http;
 import 'package:pool/pool.dart';
 
-import '../exception/exception.dart';
+import '../exceptions/exceptions.dart';
 import '../extensions/extensions.dart';
 
 /// A class for fetching WinRT API documentation from Microsoft's

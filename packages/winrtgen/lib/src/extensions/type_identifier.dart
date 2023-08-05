@@ -5,7 +5,7 @@
 import 'package:winmd/winmd.dart';
 
 import '../constants/constants.dart';
-import '../exception/exception.dart';
+import '../exceptions/exceptions.dart';
 import '../projections/projections.dart';
 import 'extensions.dart';
 
@@ -210,15 +210,11 @@ extension TypeIdentifierHelpers on TypeIdentifier {
       throw WinRTGenException('Type $this has no default interface.');
     }
 
-    if (typeProjection.isWinRTDelegate) return type.signature;
-
     if (typeProjection.isWinRTEnum) {
       final isFlagsEnum = type.existsAttribute(flagsAttribute);
       final enumSignature = isFlagsEnum ? 'u4' : 'i4';
       return 'enum($name;$enumSignature)';
     }
-
-    if (typeProjection.isWinRTInterface) return type.signature;
 
     if (typeProjection.isWinRTStruct) {
       final fieldSignatures =
@@ -226,7 +222,7 @@ extension TypeIdentifierHelpers on TypeIdentifier {
       return 'struct($name;${fieldSignatures.join(';')})';
     }
 
-    throw WinRTGenException('Unsupported type: $type');
+    return type.signature;
   }
 
   /// Returns the type arguments of this TypeIdentifier.

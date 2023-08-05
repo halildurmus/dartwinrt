@@ -5,7 +5,7 @@
 import 'package:winmd/winmd.dart';
 
 import '../constants/constants.dart';
-import '../exception/exception.dart';
+import '../exceptions/exceptions.dart';
 import '../extensions/extensions.dart';
 import 'winrt_metadata_store.dart';
 

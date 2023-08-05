@@ -5,12 +5,10 @@
 import 'dart:convert';
 import 'dart:io';
 
-import '../exception/exception.dart';
+import '../exceptions/exceptions.dart';
 
 /// A sealed class for loading JSON data from a JSON file into a [Map].
 sealed class JsonLoader {
-  const JsonLoader();
-
   /// Loads the JSON file located in [path] into a [Map].
   ///
   /// Throws a [WinRTGenException] if there is any issue with loading or parsing
@@ -55,8 +53,6 @@ class FakeJsonLoader implements JsonLoader {
 
 /// A sealed class for saving JSON data from a [Map] into a JSON file.
 abstract class JsonSaver {
-  const JsonSaver();
-
   /// Saves the [map] into the JSON file specified by [path].
   ///
   /// The [indent] parameter specifies the indentation used for the JSON file.

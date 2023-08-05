@@ -8,19 +8,14 @@ import 'method.dart';
 abstract base class PropertyProjection extends MethodProjection {
   PropertyProjection(super.method, super.vtableOffset);
 
-  /// Strip off all underscores, even if double underscores (e.g.,
-  /// `get_Languages` -> `languages`, `put__Data` -> `data`).
+  static final _propertyPrefixRegExp = RegExp(r'^(get_|put_)([a-zA-Z]+)$');
+
+  /// Strip off all underscores (e.g., `get_Languages` -> `languages`,
+  /// `put_Data` -> `data`).
   @override
   String get camelCasedName {
-    final String formattedName;
-    if (name.startsWith('get__') || name.startsWith('put__')) {
-      // e.g. get__Languages -> Languages, put__Data -> Data
-      formattedName = name.substring(5);
-    } else {
-      // e.g. get_Size -> Size, put_Completed -> Completed
-      formattedName = name.substring(4);
-    }
-
-    return formattedName.toCamelCase().toSafeIdentifier();
+    assert(_propertyPrefixRegExp.hasMatch(name));
+    // e.g. get_Size -> Size, put_Completed -> Completed
+    return name.substring(4).toCamelCase().toSafeIdentifier();
   }
 }

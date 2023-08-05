@@ -4,7 +4,7 @@
 
 import 'package:winmd/winmd.dart';
 
-import '../exception/exception.dart';
+import '../exceptions/exceptions.dart';
 
 final class WinRTMetadataStore {
   static List<Method>? _methods;

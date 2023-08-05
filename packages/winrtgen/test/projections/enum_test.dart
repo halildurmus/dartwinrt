@@ -15,6 +15,13 @@ void main() {
   }
 
   group('EnumProjection', () {
+    test('create', () {
+      final typeDef =
+          WinRTMetadataStore.findMetadata('Windows.Storage.FileAttributes');
+      final projection = EnumProjection.create(typeDef);
+      expect(projection, isA<FlagsEnumProjection>());
+    });
+
     test('projects something', () {
       final output =
           EnumProjection.from('Windows.Foundation.AsyncStatus').toString();

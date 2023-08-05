@@ -38,12 +38,12 @@ abstract base class BaseProjection {
   String relativePathTo(String targetPath) =>
       targetPath.relativePathFrom(currentFolderPath);
 
-  String get header => copyrightHeader;
+  String get header;
 
   Set<String> get commonImports =>
       {'dart:ffi', 'package:ffi/ffi.dart', 'package:win32/win32.dart'};
 
-  Set<String> get imports => {};
+  Set<String> get imports;
 
   String get importHeader => imports
       .map((import) => switch (import) {
@@ -113,15 +113,17 @@ abstract base class BaseProjection {
   }
 
   String get classPreamble {
-    final wrappedComment = comment.toDocComment();
+    final docComment = comment.toDocComment();
     return [
-      if (wrappedComment.isNotEmpty) wrappedComment,
-      if (wrappedComment.isNotEmpty && category.isNotEmpty) '///',
+      if (docComment.isNotEmpty) ...[
+        docComment,
+        if (category.isNotEmpty) '///'
+      ],
       if (category.isNotEmpty) '/// {@category $category}',
     ].join('\n');
   }
 
-  String get constructor => '';
+  String get constructor;
 
   String get classHeader;
 

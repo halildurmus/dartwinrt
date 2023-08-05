@@ -4,7 +4,7 @@
 
 import 'package:winmd/winmd.dart';
 
-import '../exception/exception.dart';
+import '../exceptions/exceptions.dart';
 
 extension BaseTypeHelpers on BaseType {
   /// Returns the appropriate Dart type name of this BaseType.

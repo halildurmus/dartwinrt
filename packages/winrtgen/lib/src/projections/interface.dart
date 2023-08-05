@@ -101,6 +101,9 @@ const IID_$shortName = ${typeDef.iid.quote()};''';
     ].join('\n');
   }
 
+  @override
+  String get constructor => '';
+
   String get namedConstructor => '$shortName.fromPtr(super.ptr);';
 
   String get fromFactoryConstructor => '''

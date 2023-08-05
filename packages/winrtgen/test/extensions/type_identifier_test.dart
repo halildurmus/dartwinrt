@@ -168,28 +168,90 @@ void main() {
           equals(
               "(ptr) => IMapView.fromPtr(ptr, enumKeyCreator: PedometerStepKind.from, creator: PedometerReading.fromPtr, iterableIid: '{098f29cb-bc91-5639-a541-d5a4811ec35b}')"));
     });
+
+    test('(10)', () {
+      final pedometer2 =
+          WinRTMetadataStore.findMetadata('Windows.AI.MachineLearning.ITensor');
+      expect(
+          pedometer2.findMethod('get_Shape')!.returnType.typeIdentifier.creator,
+          equals(
+              "(ptr) => IVectorView.fromPtr(ptr, iterableIid: '{7784427e-f9cc-518d-964b-e50d5ce727f1}', intType: IntType.int64)"));
+    });
+
+    test('(11)', () {
+      final pedometer2 = WinRTMetadataStore.findMetadata(
+          'Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceProvider');
+      expect(
+          pedometer2
+              .findMethod('get_SdpRawAttributes')!
+              .returnType
+              .typeIdentifier
+              .creator,
+          equals(
+              "(ptr) => IMap.fromPtr(ptr, intType: IntType.uint32, creator: IBuffer.fromPtr, iterableIid: '{4fe7fe23-22b1-528c-881d-a4eceaef0f11}')"));
+    });
   });
 
-  test('dereference', () {
-    final typeDef = WinRTMetadataStore.findMetadata(
-        'Windows.Storage.Search.IStorageFileQueryResult2');
-    expect(
-        typeDef
-            .findMethod('GetMatchingPropertiesWithRanges')!
-            .returnType // IMap<String, IVectorView<TextSegment>>
-            .typeIdentifier
-            .dereference()
-            .baseType,
-        equals(BaseType.stringType));
-    expect(
-        typeDef
-            .findMethod('GetMatchingPropertiesWithRanges')!
-            .returnType // IMap<String, IVectorView<TextSegment>>
-            .typeIdentifier
-            .dereference()
-            .dereference()
-            .name,
-        endsWith('IVectorView`1'));
+  group('dereference', () {
+    test('(1)', () {
+      final typeDef = WinRTMetadataStore.findMetadata(
+          'Windows.Storage.Search.IStorageFileQueryResult2');
+      final method = typeDef.findMethod('GetMatchingPropertiesWithRanges')!;
+      expect(
+          method
+              .returnType // IMap<String, IVectorView<TextSegment>>
+              .typeIdentifier
+              .dereference()
+              .baseType,
+          equals(BaseType.stringType));
+      expect(
+          method
+              .returnType // IMap<String, IVectorView<TextSegment>>
+              .typeIdentifier
+              .dereference()
+              .dereference()
+              .name,
+          endsWith('IVectorView`1'));
+    });
+
+    test(
+        'throws a WinRTGenException if TypeIdentifier is cannot be de-referenced',
+        () {
+      final typeDef = WinRTMetadataStore.findMetadata(
+          'Windows.Globalization.ICalendarFactory');
+      expect(
+          () => typeDef
+              .findMethod('CreateCalendar')!
+              .returnType
+              .typeIdentifier
+              .dereference(),
+          throwsA(isA<WinRTGenException>().having((e) => e.message, 'message',
+              equals('Could not de-reference type Calendar.'))));
+    });
+  });
+
+  group('genericParamSequence', () {
+    test('(1)', () {
+      final typeDef = WinRTMetadataStore.findMetadata(
+          'Windows.Foundation.Collections.IMap`2');
+      final method = typeDef.findMethod('Insert')!;
+      expect(
+          method.parameters.first.typeIdentifier.genericParamSequence, isZero);
+      expect(method.parameters.last.typeIdentifier.genericParamSequence,
+          equals(1));
+    });
+
+    test(
+        'throws a WinRTGenException if TypeIdentifier is cannot be de-referenced',
+        () {
+      final typeDef = WinRTMetadataStore.findMetadata(
+          'Windows.Storage.Search.IStorageFileQueryResult2');
+      final method = typeDef.findMethod('GetMatchingPropertiesWithRanges')!;
+      expect(
+          () => method.returnType.typeIdentifier.genericParamSequence,
+          throwsA(isA<WinRTGenException>().having((e) => e.message, 'message',
+              equals('Type IMap`2 has no genericParameterSequence.'))));
+    });
   });
 
   group('iid', () {
@@ -295,6 +357,25 @@ void main() {
               .typeIdentifier
               .iterableIID,
           equals('{9e5f3ed0-cf1c-5d38-832c-acea6164bf5c}'));
+    });
+
+    test('throws an UnsupportedError', () {
+      final typeDef = WinRTMetadataStore.findMetadata(
+          'Windows.Globalization.ICalendarFactory');
+      expect(
+        () => typeDef
+            .findMethod('CreateCalendar')!
+            .returnType
+            .typeIdentifier
+            .iterableIID,
+        throwsA(
+          isA<UnsupportedError>().having(
+              (e) => e.message,
+              'message',
+              equals(
+                  'Calendar is not an IMap, IMapView, IVector or IVectorView.')),
+        ),
+      );
     });
   });
 
@@ -487,7 +568,7 @@ void main() {
   });
 
   group('signature', () {
-    test('returns the signature of DateTime', () {
+    test('of DateTime', () {
       final typeDef =
           WinRTMetadataStore.findMetadata('Windows.Foundation.IPropertyValue');
       final typeIdentifier =
@@ -496,7 +577,7 @@ void main() {
           equals('struct(Windows.Foundation.DateTime;i8)'));
     });
 
-    test('returns the signature of Guid', () {
+    test('of Guid', () {
       final typeDef =
           WinRTMetadataStore.findMetadata('Windows.Foundation.IPropertyValue');
       final typeIdentifier =
@@ -504,7 +585,7 @@ void main() {
       expect(typeIdentifier.signature, equals('g16'));
     });
 
-    test('returns the signature of Point', () {
+    test('of Point', () {
       final typeDef =
           WinRTMetadataStore.findMetadata('Windows.Foundation.IPropertyValue');
       final typeIdentifier =
@@ -513,7 +594,7 @@ void main() {
           equals('struct(Windows.Foundation.Point;f4;f4)'));
     });
 
-    test('returns the signature of TimeSpan', () {
+    test('of TimeSpan', () {
       final typeDef =
           WinRTMetadataStore.findMetadata('Windows.Foundation.IPropertyValue');
       final typeIdentifier =
@@ -522,7 +603,7 @@ void main() {
           equals('struct(Windows.Foundation.TimeSpan;i8)'));
     });
 
-    test('returns the signature of AsyncActionCompletedHandler', () {
+    test('AsyncActionCompletedHandler', () {
       final typeDef =
           WinRTMetadataStore.findMetadata('Windows.Foundation.IAsyncAction');
       final typeIdentifier =
@@ -531,7 +612,7 @@ void main() {
           equals('delegate({a4ed5c81-76c9-40bd-8be6-b1d90fb20ae7})'));
     });
 
-    test('returns the signature of AsyncStatus', () {
+    test('AsyncStatus', () {
       final typeDef =
           WinRTMetadataStore.findMetadata('Windows.Foundation.IAsyncInfo');
       final typeIdentifier =
@@ -540,7 +621,7 @@ void main() {
           equals('enum(Windows.Foundation.AsyncStatus;i4)'));
     });
 
-    test('returns the signature of Uri', () {
+    test('of Uri', () {
       final typeDef = WinRTMetadataStore.findMetadata(
           'Windows.Foundation.IUriRuntimeClassFactory');
       final typeIdentifier =
@@ -551,7 +632,7 @@ void main() {
               'rc(Windows.Foundation.Uri;{9e365e57-48b2-4160-956f-c7385120bbfc})'));
     });
 
-    test('returns the signature of IMap<String, String>', () {
+    test('of IMap<String, String>', () {
       final typeDef = WinRTMetadataStore.findMetadata(
           'Windows.Foundation.Collections.StringMap');
       expect(
@@ -560,7 +641,7 @@ void main() {
               'pinterface({3c2925fe-8519-45c1-aa79-197b6718c1c1};string;string)'));
     });
 
-    test('returns the signature of IMap<Guid, Object>', () {
+    test('of IMap<Guid, Object>', () {
       final typeDef = WinRTMetadataStore.findMetadata(
           'Windows.Media.MediaProperties.MediaPropertySet');
       expect(
@@ -569,7 +650,7 @@ void main() {
               'pinterface({3c2925fe-8519-45c1-aa79-197b6718c1c1};g16;cinterface(IInspectable))'));
     });
 
-    test('returns the signature of IIterable<IKeyValuePair<Guid, Object>>', () {
+    test('of IIterable<IKeyValuePair<Guid, Object>>', () {
       final typeDef = WinRTMetadataStore.findMetadata(
           'Windows.Media.MediaProperties.MediaPropertySet');
       expect(
@@ -578,7 +659,7 @@ void main() {
               'pinterface({faa585ea-6214-4217-afda-7f46de5869b3};pinterface({02b51929-c1c4-4a7e-8940-0312b5c18500};g16;cinterface(IInspectable)))'));
     });
 
-    test('returns the signature of IAsyncOperation<IReference<Duration>>', () {
+    test('of IAsyncOperation<IReference<Duration>>', () {
       final typeDef = WinRTMetadataStore.findMetadata(
           'Windows.UI.Xaml.Controls.ITimePickerFlyout');
       final typeIdentifier =
@@ -589,7 +670,7 @@ void main() {
               'pinterface({9fc2b0bb-e446-44e2-aa61-9cab8f636af2};pinterface({61c17706-2d65-11e0-9ae8-d48564015472};struct(Windows.Foundation.TimeSpan;i8)))'));
     });
 
-    test('returns the signature of IMap<String, IVectorView<TextSegment>>', () {
+    test('of IMap<String, IVectorView<TextSegment>>', () {
       final typeDef = WinRTMetadataStore.findMetadata(
           'Windows.Storage.Search.IStorageFileQueryResult2');
       expect(
@@ -602,9 +683,7 @@ void main() {
               'pinterface({3c2925fe-8519-45c1-aa79-197b6718c1c1};string;pinterface({bbe1fa4c-b0e3-4583-baef-1f1b2e483e56};struct(Windows.Data.Text.TextSegment;u4;u4)))'));
     });
 
-    test(
-        'returns the signature of IMapView<PedometerStepKind, PedometerReading>',
-        () {
+    test('of IMapView<PedometerStepKind, PedometerReading>', () {
       final typeDef = WinRTMetadataStore.findMetadata(
           'Windows.Devices.Sensors.IPedometer2');
       final typeIdentifier =
@@ -615,9 +694,7 @@ void main() {
               'pinterface({e480ce40-a338-4ada-adcf-272272e48cb9};enum(Windows.Devices.Sensors.PedometerStepKind;i4);rc(Windows.Devices.Sensors.PedometerReading;{2245dcf4-a8e1-432f-896a-be0dd9b02d24}))'));
     });
 
-    test(
-        'returns the signature of AsyncOperationProgressHandler<IVectorView<ISmsMessage>, int>',
-        () {
+    test('of AsyncOperationProgressHandler<IVectorView<ISmsMessage>, int>', () {
       final typeDef = WinRTMetadataStore.findMetadata(
           'Windows.Devices.Sms.GetSmsMessagesOperation');
       expect(
@@ -717,6 +794,11 @@ void main() {
       expect(typeArgs.first.typeArg!.typeArg, isNull);
       expect(typeArgs.last.baseType, equals(BaseType.int32Type));
       expect(typeArgs.last.typeArg, isNull);
+    });
+
+    test('6', () {
+      const typeIdentifier = TypeIdentifier(BaseType.genericTypeModifier);
+      expect(typeIdentifier.typeArgs, isEmpty);
     });
   });
 }

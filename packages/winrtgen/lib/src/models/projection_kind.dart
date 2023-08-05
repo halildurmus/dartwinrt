@@ -2,7 +2,7 @@
 // All rights reserved. Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import '../exception/exception.dart';
+import '../exceptions/exceptions.dart';
 import '../projections/projections.dart';
 import 'type_arg_kind.dart';
 
