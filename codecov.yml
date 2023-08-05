@@ -1,0 +1,30 @@
+coverage:
+  status:
+    project:
+      windows_foundation:
+        paths: packages/windows_foundation
+      winrtgen:
+        paths: packages/winrtgen
+
+# exclude generated files and examples from the coverage report
+ignore:
+  - '**/example/'
+  - '**/*.g.dart'
+  - '**/*_part.dart'
+  - packages/windows_ai
+  - packages/windows_applicationmodel
+  - packages/windows_data
+  - packages/windows_devices
+  - packages/windows_gaming
+  - packages/windows_globalization
+  - packages/windows_graphics
+  - packages/windows_management
+  - packages/windows_media
+  - packages/windows_networking
+  - packages/windows_perception
+  - packages/windows_security
+  - packages/windows_services
+  - packages/windows_storage
+  - packages/windows_system
+  - packages/windows_ui
+  - packages/windows_web
