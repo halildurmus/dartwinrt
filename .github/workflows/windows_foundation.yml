@@ -37,4 +37,5 @@ jobs:
       analyze_directories: example lib test
       dart_sdk: ${{ matrix.sdk }}
       runs_on: ${{ matrix.os }}
+      upload_coverage: true
       working_directory: packages/windows_foundation

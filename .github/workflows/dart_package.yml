@@ -19,6 +19,10 @@ on:
         required: false
         type: string
         default: ''
+      upload_coverage:
+        required: false
+        type: boolean
+        default: false
       working_directory:
         required: false
         type: string
@@ -63,3 +67,19 @@ jobs:
       - name: 📒 Check API Reference Documentation
         if: ${{ inputs.runs_on == 'windows-2022' }}
         run: dart doc --validate-links
+
+      - name: Install coverage
+        if: ${{ inputs.upload_coverage && inputs.runs_on == 'windows-2022' }}
+        run: dart pub global activate coverage
+
+      - name: 📊 Generate Code Coverage
+        if: ${{ inputs.upload_coverage && inputs.runs_on == 'windows-2022' }}
+        run: dart pub global run coverage:test_with_coverage
+
+      - name: Upload Code Coverage Reports to Codecov
+        if: ${{ inputs.upload_coverage && inputs.runs_on == 'windows-2022' }}
+        uses: codecov/codecov-action@v3
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+        with:
+          files: coverage/lcov.info
