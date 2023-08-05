@@ -9,9 +9,9 @@ import '../../ipropertyvalue.dart';
 import '../../iuriruntimeclass.dart';
 import '../../propertytype.dart';
 import '../../uri.dart' as winrt_uri;
-import 'comobject_helper.dart';
-import 'iinspectable_helpers.dart';
-import 'uri_conversions.dart';
+import 'comobject.dart';
+import 'iinspectable.dart';
+import 'uri.dart';
 
 extension IPropertyValueHelper on IPropertyValue {
   /// Gets the type that is represented as an [IPropertyValue].

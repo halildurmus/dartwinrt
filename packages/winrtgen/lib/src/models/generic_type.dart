@@ -5,8 +5,8 @@
 import 'package:winmd/winmd.dart';
 
 import '../extensions/extensions.dart';
-import 'metadata_store.dart';
 import 'type_arg_kind.dart';
+import 'winrt_metadata_store.dart';
 
 /// Represents a WinRT generic type.
 sealed class GenericType {
