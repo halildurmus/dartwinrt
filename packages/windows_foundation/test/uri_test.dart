@@ -14,38 +14,142 @@ void main() {
     return;
   }
 
-  test('createUri', () {
+  group('WinRT Uri', () {
     final dartUri = Uri.parse(
         'https://www.example.com:443/path/to/file.html?q1=v1&q2=v2#fragment');
-    final winrtUri = winrt_uri.Uri.createUri(dartUri.toString());
-    expect(winrtUri.rawUri, equals(dartUri.toString()));
-    expect(winrtUri.absoluteUri, equals(dartUri.toString()));
-    expect(winrtUri.absoluteCanonicalUri, equals(dartUri.toString()));
-    expect(winrtUri.displayIri, equals(dartUri.toString()));
-    expect(winrtUri.displayUri, equals(dartUri.toString()));
-    expect(winrtUri.toString(), equals(dartUri.toString()));
-    expect(winrtUri.schemeName, equals('https'));
-    expect(winrtUri.host, equals('www.example.com'));
-    expect(winrtUri.domain, equals('example.com'));
-    expect(winrtUri.port, equals(443));
-    expect(winrtUri.userName, isEmpty);
-    expect(winrtUri.password, isEmpty);
-    expect(winrtUri.path, equals('/path/to/file.html'));
-    expect(winrtUri.extension, equals('.html'));
-    expect(winrtUri.query, equals('?q1=v1&q2=v2'));
-    final queryParsed = winrtUri.queryParsed;
-    expect(queryParsed, isNotNull);
-    expect(queryParsed!.size, equals(2));
-    final queryParameters = queryParsed.toList();
-    expect(queryParameters.length, equals(2));
-    final firstQueryParam = queryParameters.first;
-    expect(firstQueryParam, isNotNull);
-    expect(firstQueryParam!.name, equals('q1'));
-    expect(firstQueryParam.value, equals('v1'));
-    final lastQueryParam = queryParameters.last;
-    expect(lastQueryParam, isNotNull);
-    expect(lastQueryParam!.name, equals('q2'));
-    expect(lastQueryParam.value, equals('v2'));
-    expect(winrtUri.fragment, equals('#fragment'));
+
+    test('createUri', () {
+      final winrtUri = winrt_uri.Uri.createUri(dartUri.toString());
+      expect(winrtUri.addRef(), equals(2));
+    });
+
+    test('createWithRelativeUri', () {
+      final winrtUri = winrt_uri.Uri.createWithRelativeUri(
+          'https://www.example.com', '/path/to/file.html');
+      expect(winrtUri.addRef(), equals(2));
+    });
+
+    test('rawUri', () {
+      final winrtUri = winrt_uri.Uri.createUri(dartUri.toString());
+      expect(winrtUri.rawUri, equals(dartUri.toString()));
+    });
+
+    test('absoluteUri', () {
+      final winrtUri = winrt_uri.Uri.createUri(dartUri.toString());
+      expect(winrtUri.absoluteUri, equals(dartUri.toString()));
+    });
+
+    test('absoluteCanonicalUri', () {
+      final winrtUri = winrt_uri.Uri.createUri(dartUri.toString());
+      expect(winrtUri.absoluteCanonicalUri, equals(dartUri.toString()));
+    });
+
+    test('displayIri', () {
+      final winrtUri = winrt_uri.Uri.createUri(dartUri.toString());
+      expect(winrtUri.displayIri, equals(dartUri.toString()));
+    });
+
+    test('displayUri', () {
+      final winrtUri = winrt_uri.Uri.createUri(dartUri.toString());
+      expect(winrtUri.displayUri, equals(dartUri.toString()));
+    });
+
+    test('toString', () {
+      final winrtUri = winrt_uri.Uri.createUri(dartUri.toString());
+      expect(winrtUri.toString(), equals(dartUri.toString()));
+    });
+
+    test('schemeName', () {
+      final winrtUri = winrt_uri.Uri.createUri(dartUri.toString());
+      expect(winrtUri.schemeName, equals('https'));
+    });
+
+    test('host', () {
+      final winrtUri = winrt_uri.Uri.createUri(dartUri.toString());
+      expect(winrtUri.host, equals('www.example.com'));
+    });
+
+    test('domain', () {
+      final winrtUri = winrt_uri.Uri.createUri(dartUri.toString());
+      expect(winrtUri.domain, equals('example.com'));
+    });
+
+    test('port', () {
+      final winrtUri = winrt_uri.Uri.createUri(dartUri.toString());
+      expect(winrtUri.port, equals(443));
+    });
+
+    test('suspicious', () {
+      final winrtUri = winrt_uri.Uri.createUri(dartUri.toString());
+      expect(winrtUri.suspicious, isFalse);
+    });
+
+    test('equals', () {
+      final winrtUri = winrt_uri.Uri.createUri(dartUri.toString());
+      expect(winrtUri.equals(winrtUri), isTrue);
+    });
+
+    test('userName', () {
+      final winrtUri = winrt_uri.Uri.createUri(dartUri.toString());
+      expect(winrtUri.userName, isEmpty);
+    });
+
+    test('password', () {
+      final winrtUri = winrt_uri.Uri.createUri(dartUri.toString());
+      expect(winrtUri.password, isEmpty);
+    });
+
+    test('path', () {
+      final winrtUri = winrt_uri.Uri.createUri(dartUri.toString());
+      expect(winrtUri.path, equals('/path/to/file.html'));
+    });
+
+    test('extension', () {
+      final winrtUri = winrt_uri.Uri.createUri(dartUri.toString());
+      expect(winrtUri.extension, equals('.html'));
+    });
+
+    test('fragment', () {
+      final winrtUri = winrt_uri.Uri.createUri(dartUri.toString());
+      expect(winrtUri.fragment, equals('#fragment'));
+    });
+
+    test('query', () {
+      final winrtUri = winrt_uri.Uri.createUri(dartUri.toString());
+      expect(winrtUri.query, equals('?q1=v1&q2=v2'));
+    });
+
+    test('queryParsed', () {
+      final winrtUri = winrt_uri.Uri.createUri(dartUri.toString());
+      final queryParsed = winrtUri.queryParsed;
+      expect(queryParsed, isNotNull);
+      expect(queryParsed!.size, equals(2));
+      final queryParameters = queryParsed.toList();
+      expect(queryParameters.length, equals(2));
+      final firstQueryParam = queryParameters.first;
+      expect(firstQueryParam, isNotNull);
+      expect(firstQueryParam!.name, equals('q1'));
+      expect(firstQueryParam.value, equals('v1'));
+      final lastQueryParam = queryParameters.last;
+      expect(lastQueryParam, isNotNull);
+      expect(lastQueryParam!.name, equals('q2'));
+      expect(lastQueryParam.value, equals('v2'));
+    });
+
+    test('combineUri', () {
+      final winrtUri = winrt_uri.Uri.createUri(dartUri.toString());
+      final combinedUri = winrtUri.combineUri('/path/to/other.html');
+      expect(combinedUri, isNotNull);
+      expect(combinedUri!.rawUri,
+          equals('https://www.example.com/path/to/other.html'));
+    });
+
+    test('escapeComponent', () {
+      expect(winrt_uri.Uri.escapeComponent('a=b'), equals('a%3Db'));
+    });
+
+    test('unescapeComponent', () {
+      expect(winrt_uri.Uri.unescapeComponent('a%3Db'), equals('a=b'));
+    });
   });
 }

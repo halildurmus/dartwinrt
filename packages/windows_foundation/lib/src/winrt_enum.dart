@@ -52,10 +52,10 @@ abstract base class WinRTFlagsEnum<T extends WinRTEnum> extends WinRTEnum {
   ///
   /// ```dart
   /// final fileAttributes = FileAttributes.readOnly | FileAttributes.archive;
-  /// fileAttributes.hasFlag(FileAttributes.readOnly)); // `true`
-  /// fileAttributes.hasFlag(FileAttributes.temporary)); // `false`
+  /// fileAttributes.hasFlag(FileAttributes.readOnly); // `true`
+  /// fileAttributes.hasFlag(FileAttributes.temporary); // `false`
   /// fileAttributes.hasFlag(
-  ///     FileAttributes.readOnly | FileAttributes.archive)); // `true`
+  ///     FileAttributes.readOnly | FileAttributes.archive); // `true`
   /// ```
   bool hasFlag(T flag) {
     if (value != 0 && flag.value == 0) return false;
