@@ -68,7 +68,7 @@ void main() {
       expect(analyzer.isStruct, isTrue);
     });
 
-    test('dependencies', () {
+    test('dependencies (1)', () {
       final analyzer = TypeAnalyzer.fromType('Windows.Storage.StorageFile');
       final dependencies = analyzer.dependencies;
       expect(dependencies.hasNewDependencies, isFalse);
@@ -131,6 +131,129 @@ Type dependencies of `Windows.Storage.StorageFile`:
  - Windows.Storage.Streams.IRandomAccessStreamReference
  - Windows.System.UserAuthenticationStatusChangingEventArgs
  - Windows.System.UserChangedEventArgs
+'''));
+    });
+
+    test('dependencies (2)', () {
+      final analyzer = TypeAnalyzer.fromType('Windows.Foundation.Size');
+      final dependencies = analyzer.dependencies;
+      expect(dependencies.hasNewDependencies, isFalse);
+      expect(dependencies.enums, isEmpty);
+      expect(dependencies.objects, isEmpty);
+      expect(dependencies.structs, isEmpty);
+      expect(dependencies.ignoredTypes, isEmpty);
+    });
+
+    test('dependencies (3)', () {
+      final analyzer = TypeAnalyzer.fromType(
+          'Windows.ApplicationModel.DataTransfer.Clipboard');
+      final dependencies = analyzer.dependencies;
+      expect(dependencies.hasNewDependencies, isTrue);
+      expect(dependencies.enums.length, 4);
+      expect(
+          dependencies.enums,
+          orderedEquals({
+            'Windows.ApplicationModel.DataTransfer.ClipboardHistoryItemsResultStatus',
+            'Windows.ApplicationModel.DataTransfer.DataPackageOperation',
+            'Windows.ApplicationModel.DataTransfer.SetHistoryItemAsContentStatus',
+            'Windows.Security.EnterpriseData.ProtectionPolicyEvaluationResult'
+          }));
+      expect(dependencies.objects.length, equals(8));
+      expect(
+          dependencies.objects,
+          orderedEquals({
+            'Windows.ApplicationModel.DataTransfer.Clipboard',
+            'Windows.ApplicationModel.DataTransfer.ClipboardContentOptions',
+            'Windows.ApplicationModel.DataTransfer.ClipboardHistoryItem',
+            'Windows.ApplicationModel.DataTransfer.ClipboardHistoryItemsResult',
+            'Windows.ApplicationModel.DataTransfer.DataPackage',
+            'Windows.ApplicationModel.DataTransfer.DataPackagePropertySet',
+            'Windows.ApplicationModel.DataTransfer.DataPackagePropertySetView',
+            'Windows.ApplicationModel.DataTransfer.DataPackageView'
+          }));
+      expect(dependencies.structs, isEmpty);
+      expect(dependencies.ignoredTypes.length, equals(28));
+      expect(
+          dependencies.ignoredTypes,
+          orderedEquals({
+            'Windows.ApplicationModel.DataTransfer.ClipboardHistoryChangedEventArgs',
+            'Windows.ApplicationModel.DataTransfer.OperationCompletedEventArgs',
+            'Windows.ApplicationModel.DataTransfer.ShareCompletedEventArgs',
+            'Windows.Foundation.Collections.IIterable`1',
+            'Windows.Foundation.Collections.IIterator`1',
+            'Windows.Foundation.Collections.IKeyValuePair`2',
+            'Windows.Foundation.Collections.IMapView`2',
+            'Windows.Foundation.Collections.IMap`2',
+            'Windows.Foundation.Collections.IVectorView`1',
+            'Windows.Foundation.Collections.IVector`1',
+            'Windows.Foundation.DateTime',
+            'Windows.Foundation.EventHandler`1',
+            'Windows.Foundation.EventRegistrationToken',
+            'Windows.Foundation.HResult',
+            'Windows.Foundation.IAsyncOperationWithProgress`2',
+            'Windows.Foundation.IAsyncOperation`1',
+            'Windows.Foundation.IReference`1',
+            'Windows.Foundation.TimeSpan',
+            'Windows.Foundation.TypedEventHandler`2',
+            'Windows.Storage.IStorageFile',
+            'Windows.Storage.IStorageItem',
+            'Windows.Storage.Search.IStorageQueryResultBase',
+            'Windows.Storage.Streams.IInputStream',
+            'Windows.Storage.Streams.IOutputStream',
+            'Windows.Storage.Streams.IRandomAccessStream',
+            'Windows.Storage.Streams.IRandomAccessStreamReference',
+            'Windows.System.UserAuthenticationStatusChangingEventArgs',
+            'Windows.System.UserChangedEventArgs'
+          }));
+      expect(dependencies.alreadyGeneratedTypes.length, isZero);
+      expect(dependencies.toString(), equalsIgnoringWhitespace('''
+Type dependencies of `Windows.ApplicationModel.DataTransfer.Clipboard`:
+
+[Ignored]
+ - Windows.ApplicationModel.DataTransfer.ClipboardHistoryChangedEventArgs
+ - Windows.ApplicationModel.DataTransfer.OperationCompletedEventArgs
+ - Windows.ApplicationModel.DataTransfer.ShareCompletedEventArgs
+ - Windows.Foundation.Collections.IIterable`1
+ - Windows.Foundation.Collections.IIterator`1
+ - Windows.Foundation.Collections.IKeyValuePair`2
+ - Windows.Foundation.Collections.IMapView`2
+ - Windows.Foundation.Collections.IMap`2
+ - Windows.Foundation.Collections.IVectorView`1
+ - Windows.Foundation.Collections.IVector`1
+ - Windows.Foundation.DateTime
+ - Windows.Foundation.EventHandler`1
+ - Windows.Foundation.EventRegistrationToken
+ - Windows.Foundation.HResult
+ - Windows.Foundation.IAsyncOperationWithProgress`2
+ - Windows.Foundation.IAsyncOperation`1
+ - Windows.Foundation.IReference`1
+ - Windows.Foundation.TimeSpan
+ - Windows.Foundation.TypedEventHandler`2
+ - Windows.Storage.IStorageFile
+ - Windows.Storage.IStorageItem
+ - Windows.Storage.Search.IStorageQueryResultBase
+ - Windows.Storage.Streams.IInputStream
+ - Windows.Storage.Streams.IOutputStream
+ - Windows.Storage.Streams.IRandomAccessStream
+ - Windows.Storage.Streams.IRandomAccessStreamReference
+ - Windows.System.UserAuthenticationStatusChangingEventArgs
+ - Windows.System.UserChangedEventArgs
+
+[Enums]
+ - Windows.ApplicationModel.DataTransfer.ClipboardHistoryItemsResultStatus
+ - Windows.ApplicationModel.DataTransfer.DataPackageOperation
+ - Windows.ApplicationModel.DataTransfer.SetHistoryItemAsContentStatus
+ - Windows.Security.EnterpriseData.ProtectionPolicyEvaluationResult
+
+[Objects]
+ - Windows.ApplicationModel.DataTransfer.Clipboard
+ - Windows.ApplicationModel.DataTransfer.ClipboardContentOptions
+ - Windows.ApplicationModel.DataTransfer.ClipboardHistoryItem
+ - Windows.ApplicationModel.DataTransfer.ClipboardHistoryItemsResult
+ - Windows.ApplicationModel.DataTransfer.DataPackage
+ - Windows.ApplicationModel.DataTransfer.DataPackagePropertySet
+ - Windows.ApplicationModel.DataTransfer.DataPackagePropertySetView
+ - Windows.ApplicationModel.DataTransfer.DataPackageView
 '''));
     });
   });

@@ -3,14 +3,14 @@ name: Upload code coverage reports to Codecov
 on:
   pull_request:
     paths:
-      - 'packages/windows_foundation/lib/**'
-      - 'packages/winrtgen/lib/**'
+      - 'packages/windows_foundation/**'
+      - 'packages/winrtgen/**'
   push:
     branches:
       - main
     paths:
-      - 'packages/windows_foundation/lib/**'
-      - 'packages/winrtgen/lib/**'
+      - 'packages/windows_foundation/**'
+      - 'packages/winrtgen/**'
 
 jobs:
   build:

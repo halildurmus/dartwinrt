@@ -1242,6 +1242,66 @@ void main() {
       expect(projection.postambles, isEmpty);
     });
 
+    test('projects Pointer<COMObject> (1)', () {
+      final projection = MethodProjection.fromTypeAndMethodName(
+          'Windows.Foundation.IPropertyValueStatics', 'CreateEmpty');
+      expect(projection.annotations, isEmpty);
+      expect(projection.useTryFinallyBlock, isFalse);
+      expect(projection.returnType, equals('Pointer<COMObject>'));
+      expect(projection.header, equals('Pointer<COMObject> createEmpty()'));
+      expect(projection.paramIdentifier, equals('propertyValue'));
+      expect(projection.preambles,
+          equals(['final propertyValue = calloc<COMObject>();']));
+      expect(projection.parametersPreamble, isEmpty);
+      expect(
+          projection.nativePrototype,
+          equals(
+              'HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> propertyValue)'));
+      expect(
+          projection.dartPrototype,
+          equals(
+              'int Function(VTablePointer lpVtbl, Pointer<COMObject> propertyValue)'));
+      expect(projection.identifiers, equals('ptr.ref.lpVtbl, propertyValue'));
+      expect(projection.parametersPostamble, isEmpty);
+      expect(projection.failedCheck,
+          equals(failedCheck(freeRetVal: true, identifier: 'propertyValue')));
+      expect(projection.nullCheck, isEmpty);
+      expect(projection.returnStatement, equals('return propertyValue;'));
+      expect(projection.postambles, isEmpty);
+    });
+
+    test('projects Pointer<COMObject> (2)', () {
+      final projection = MethodProjection.fromTypeAndMethodName(
+          'Windows.Foundation.IPropertyValueStatics', 'CreateInspectable');
+      expect(projection.annotations, isEmpty);
+      expect(projection.useTryFinallyBlock, isFalse);
+      expect(projection.returnType, equals('Pointer<COMObject>'));
+      expect(projection.header,
+          equals('Pointer<COMObject> createInspectable(Object? value)'));
+      expect(projection.paramIdentifier, equals('propertyValue'));
+      expect(projection.preambles,
+          equals(['final propertyValue = calloc<COMObject>();']));
+      expect(projection.parametersPreamble, isEmpty);
+      expect(
+          projection.nativePrototype,
+          equals(
+              'HRESULT Function(VTablePointer lpVtbl, VTablePointer value, Pointer<COMObject> propertyValue)'));
+      expect(
+          projection.dartPrototype,
+          equals(
+              'int Function(VTablePointer lpVtbl, VTablePointer value, Pointer<COMObject> propertyValue)'));
+      expect(
+          projection.identifiers,
+          equals(
+              'ptr.ref.lpVtbl, value?.boxValue().lpVtbl ?? nullptr, propertyValue'));
+      expect(projection.parametersPostamble, isEmpty);
+      expect(projection.failedCheck,
+          equals(failedCheck(freeRetVal: true, identifier: 'propertyValue')));
+      expect(projection.nullCheck, isEmpty);
+      expect(projection.returnStatement, equals('return propertyValue;'));
+      expect(projection.postambles, isEmpty);
+    });
+
     test('projects Record (1)', () {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Globalization.PhoneNumberFormatting.IPhoneNumberFormatterStatics',

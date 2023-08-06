@@ -484,6 +484,41 @@ void main() {
       expect(projection.postambles, isEmpty);
     });
 
+    test('projects IMap<int, IBuffer?>', () {
+      final projection = MethodProjection.fromTypeAndMethodName(
+          'Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceProvider',
+          'get_SdpRawAttributes');
+      expect(projection.annotations, isEmpty);
+      expect(projection.useTryFinallyBlock, isFalse);
+      expect(projection.returnType, equals('IMap<int, IBuffer?>?'));
+      expect(projection.header,
+          equals('IMap<int, IBuffer?>? get sdpRawAttributes'));
+      expect(projection.paramIdentifier, equals('value'));
+      expect(
+          projection.preambles, equals(['final value = calloc<COMObject>();']));
+      expect(projection.parametersPreamble, isEmpty);
+      expect(
+          projection.nativePrototype,
+          equals(
+              'HRESULT Function(VTablePointer lpVtbl, Pointer<COMObject> value)'));
+      expect(
+          projection.dartPrototype,
+          equals(
+              'int Function(VTablePointer lpVtbl, Pointer<COMObject> value)'));
+      expect(projection.identifiers, equals('ptr.ref.lpVtbl, value'));
+      expect(projection.parametersPostamble, isEmpty);
+      expect(projection.failedCheck,
+          equals(failedCheck(freeRetVal: true, identifier: 'value')));
+      expect(projection.nullCheck, equals(nullCheck('value')));
+      expect(projection.returnStatement, equalsIgnoringWhitespace('''
+        return IMap.fromPtr(value,
+            iterableIid: '{4fe7fe23-22b1-528c-881d-a4eceaef0f11}',
+            creator: IBuffer.fromPtr,
+            intType: IntType.uint32);
+'''));
+      expect(projection.postambles, isEmpty);
+    });
+
     test('projects IMap<String, String>', () {
       final projection = GetterProjection.fromTypeAndMethodName(
           'Windows.UI.Notifications.INotificationData', 'get_Values');
