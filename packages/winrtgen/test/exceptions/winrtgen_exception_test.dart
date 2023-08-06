@@ -7,6 +7,7 @@ import 'package:winrtgen/winrtgen.dart';
 
 void main() {
   test('WinRTGenException', () {
+    expect(WinRTGenException('Error').toString(), 'WinRTGenException: Error');
     expect(
       () => throw WinRTGenException(
           'Unsupported projection kind: ${ProjectionKind.delegate}'),
