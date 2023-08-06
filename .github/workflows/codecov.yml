@@ -1,0 +1,55 @@
+name: Upload code coverage reports to Codecov
+
+on:
+  pull_request:
+    paths:
+      - 'packages/windows_foundation/lib/**'
+      - 'packages/winrtgen/lib/**'
+  push:
+    branches:
+      - main
+    paths:
+      - 'packages/windows_foundation/lib/**'
+      - 'packages/winrtgen/lib/**'
+
+jobs:
+  build:
+    defaults:
+      run:
+        working-directory: ${{ matrix.package_path }}
+
+    runs-on: windows-2022
+
+    strategy:
+      matrix:
+        package_path:
+          - packages/windows_foundation
+          - packages/winrtgen
+
+    steps:
+      - name: 📚 Git Checkout
+        uses: actions/checkout@v3
+
+      - name: 🎯 Setup Dart
+        uses: dart-lang/setup-dart@v1
+        with:
+          sdk: main
+
+      - name: 📝 Print Dart SDK version
+        run: dart --version
+
+      - name: 📦 Install Dependencies
+        run: dart pub get
+
+      - name: Install coverage
+        run: dart pub global activate coverage
+
+      - name: 📊 Generate Code Coverage
+        run: dart pub global run coverage:test_with_coverage
+
+      - name: Upload Code Coverage Reports to Codecov
+        uses: codecov/codecov-action@v3
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+        with:
+          files: coverage/lcov.info
