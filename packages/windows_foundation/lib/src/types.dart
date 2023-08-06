@@ -2,6 +2,17 @@
 // All rights reserved. Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+import 'dart:ffi';
+
+import 'package:win32/win32.dart' show COMObject;
+
+/// Represents the constructor of an `IUnknown` object (e.g., `IUnknown.new`,
+/// `StorageFile.fromPtr`).
+typedef COMObjectCreator<S> = S Function(Pointer<COMObject>);
+
+/// Represents the constructor of a `WinRTEnum` (e.g., `AsyncStatus.from`).
+typedef EnumCreator<S> = S Function(int);
+
 /// Represents the double types supported by WinRT type system.
 enum DoubleType {
   /// A 32-bit floating point number.

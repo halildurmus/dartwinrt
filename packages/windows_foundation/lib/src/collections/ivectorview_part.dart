@@ -1767,7 +1767,7 @@ final class _IVectorViewInspectable<T> extends IVectorView<T> {
       {required super.iterableIid, required this.creator})
       : super(creator: creator);
 
-  final T Function(Pointer<COMObject>) creator;
+  final COMObjectCreator<T> creator;
 
   @override
   T getAt(int index) {
@@ -3740,7 +3740,7 @@ final class _IVectorViewWinRTEnum<T> extends IVectorView<T> {
       {required super.iterableIid, required this.enumCreator})
       : super(enumCreator: enumCreator);
 
-  final T Function(int) enumCreator;
+  final EnumCreator<T> enumCreator;
 
   @override
   T getAt(int index) {
@@ -3845,7 +3845,7 @@ final class _IVectorViewWinRTFlagsEnum<T> extends IVectorView<T> {
       {required super.iterableIid, required this.enumCreator})
       : super(enumCreator: enumCreator);
 
-  final T Function(int) enumCreator;
+  final EnumCreator<T> enumCreator;
 
   @override
   T getAt(int index) {

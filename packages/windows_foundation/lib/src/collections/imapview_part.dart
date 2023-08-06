@@ -14,7 +14,7 @@ final class _IMapViewGuidInspectable<V> extends IMapView<Guid, V> {
       {required super.iterableIid, required this.creator})
       : super(creator: creator);
 
-  final V Function(Pointer<COMObject>) creator;
+  final COMObjectCreator<V> creator;
 
   @override
   V lookup(Guid key) {
@@ -152,7 +152,7 @@ final class _IMapViewInt16Inspectable<V> extends IMapView<int, V> {
       {required super.iterableIid, super.intType, required this.creator})
       : super(creator: creator);
 
-  final V Function(Pointer<COMObject>) creator;
+  final COMObjectCreator<V> creator;
 
   @override
   V lookup(int key) {
@@ -216,7 +216,7 @@ final class _IMapViewInt32Inspectable<V> extends IMapView<int, V> {
       {required super.iterableIid, super.intType, required this.creator})
       : super(creator: creator);
 
-  final V Function(Pointer<COMObject>) creator;
+  final COMObjectCreator<V> creator;
 
   @override
   V lookup(int key) {
@@ -280,7 +280,7 @@ final class _IMapViewInt64Inspectable<V> extends IMapView<int, V> {
       {required super.iterableIid, super.intType, required this.creator})
       : super(creator: creator);
 
-  final V Function(Pointer<COMObject>) creator;
+  final COMObjectCreator<V> creator;
 
   @override
   V lookup(int key) {
@@ -407,7 +407,7 @@ final class _IMapViewStringInspectable<V> extends IMapView<String, V> {
       {required super.iterableIid, required this.creator})
       : super(creator: creator);
 
-  final V Function(Pointer<COMObject>) creator;
+  final COMObjectCreator<V> creator;
 
   @override
   V lookup(String key) {
@@ -587,7 +587,7 @@ final class _IMapViewStringWinRTEnum<V> extends IMapView<String, V> {
       {required super.iterableIid, required this.enumCreator})
       : super(enumCreator: enumCreator);
 
-  final V Function(int) enumCreator;
+  final EnumCreator<V> enumCreator;
 
   @override
   V lookup(String key) {
@@ -647,7 +647,7 @@ final class _IMapViewStringWinRTFlagsEnum<V> extends IMapView<String, V> {
       {required super.iterableIid, required this.enumCreator})
       : super(enumCreator: enumCreator);
 
-  final V Function(int) enumCreator;
+  final EnumCreator<V> enumCreator;
 
   @override
   V lookup(String key) {
@@ -707,7 +707,7 @@ final class _IMapViewUint8Inspectable<V> extends IMapView<int, V> {
       {required super.iterableIid, super.intType, required this.creator})
       : super(creator: creator);
 
-  final V Function(Pointer<COMObject>) creator;
+  final COMObjectCreator<V> creator;
 
   @override
   V lookup(int key) {
@@ -771,7 +771,7 @@ final class _IMapViewUint16Inspectable<V> extends IMapView<int, V> {
       {required super.iterableIid, super.intType, required this.creator})
       : super(creator: creator);
 
-  final V Function(Pointer<COMObject>) creator;
+  final COMObjectCreator<V> creator;
 
   @override
   V lookup(int key) {
@@ -835,7 +835,7 @@ final class _IMapViewUint32Inspectable<V> extends IMapView<int, V> {
       {required super.iterableIid, super.intType, required this.creator})
       : super(creator: creator);
 
-  final V Function(Pointer<COMObject>) creator;
+  final COMObjectCreator<V> creator;
 
   @override
   V lookup(int key) {
@@ -899,7 +899,7 @@ final class _IMapViewUint64Inspectable<V> extends IMapView<int, V> {
       {required super.iterableIid, super.intType, required this.creator})
       : super(creator: creator);
 
-  final V Function(Pointer<COMObject>) creator;
+  final COMObjectCreator<V> creator;
 
   @override
   V lookup(int key) {
@@ -1024,8 +1024,8 @@ final class _IMapViewWinRTEnumInspectable<K, V> extends IMapView<K, V> {
       required this.creator})
       : super(enumKeyCreator: enumKeyCreator, creator: creator);
 
-  final K Function(int) enumKeyCreator;
-  final V Function(Pointer<COMObject>) creator;
+  final EnumCreator<K> enumKeyCreator;
+  final COMObjectCreator<V> creator;
 
   @override
   V lookup(K key) {
@@ -1091,8 +1091,8 @@ final class _IMapViewWinRTFlagsEnumInspectable<K, V> extends IMapView<K, V> {
       required this.creator})
       : super(enumKeyCreator: enumKeyCreator, creator: creator);
 
-  final K Function(int) enumKeyCreator;
-  final V Function(Pointer<COMObject>) creator;
+  final EnumCreator<K> enumKeyCreator;
+  final COMObjectCreator<V> creator;
 
   @override
   V lookup(K key) {

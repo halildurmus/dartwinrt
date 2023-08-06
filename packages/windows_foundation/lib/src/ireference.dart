@@ -44,7 +44,7 @@ abstract interface class IReference<T> extends IInspectable {
   factory IReference.fromPtr(
     Pointer<COMObject> ptr, {
     required String referenceIid,
-    T Function(int)? enumCreator,
+    EnumCreator<T>? enumCreator,
   }) {
     if (isSameType<T, bool?>()) {
       return _IReferenceBool.fromPtr(ptr) as IReference<T>;

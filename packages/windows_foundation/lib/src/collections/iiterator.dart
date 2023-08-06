@@ -59,8 +59,8 @@ abstract interface class IIterator<T> extends IInspectable {
   /// ```
   factory IIterator.fromPtr(
     Pointer<COMObject> ptr, {
-    T Function(Pointer<COMObject>)? creator,
-    T Function(int)? enumCreator,
+    COMObjectCreator<T>? creator,
+    EnumCreator<T>? enumCreator,
     DoubleType? doubleType,
     IntType? intType,
   }) {

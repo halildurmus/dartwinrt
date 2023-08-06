@@ -34,8 +34,8 @@ abstract interface class IVector<T> extends IInspectable
   IVector(
     super.ptr, {
     required String iterableIid,
-    T Function(Pointer<COMObject>)? creator,
-    T Function(int)? enumCreator,
+    COMObjectCreator<T>? creator,
+    EnumCreator<T>? enumCreator,
     DoubleType? doubleType,
     IntType? intType,
   })  : _creator = creator,
@@ -44,8 +44,8 @@ abstract interface class IVector<T> extends IInspectable
         _intType = intType,
         _iterableIid = iterableIid;
 
-  final T Function(Pointer<COMObject>)? _creator;
-  final T Function(int)? _enumCreator;
+  final COMObjectCreator<T>? _creator;
+  final EnumCreator<T>? _enumCreator;
   final DoubleType? _doubleType;
   final IntType? _intType;
   final String _iterableIid;
@@ -90,8 +90,8 @@ abstract interface class IVector<T> extends IInspectable
   factory IVector.fromPtr(
     Pointer<COMObject> ptr, {
     required String iterableIid,
-    T Function(Pointer<COMObject>)? creator,
-    T Function(int)? enumCreator,
+    COMObjectCreator<T>? creator,
+    EnumCreator<T>? enumCreator,
     DoubleType? doubleType,
     IntType? intType,
   }) {

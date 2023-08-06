@@ -2,9 +2,9 @@
 // All rights reserved. Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import 'dart:ffi';
-
 import 'package:win32/win32.dart';
+
+import '../types.dart';
 
 extension IUnknownHelpers on IUnknown {
   /// Casts this COM object to an interface specified in [iid].
@@ -13,8 +13,7 @@ extension IUnknownHelpers on IUnknown {
   /// `ICalendar.fromPtr`).
   ///
   /// Throws a [WindowsException] if the cast fails.
-  T cast<T extends IUnknown>(
-          T Function(Pointer<COMObject>) creator, String iid) =>
+  T cast<T extends IUnknown>(COMObjectCreator<T> creator, String iid) =>
       creator(toInterface(iid));
 
   /// Tries to cast this COM object to an interface specified in [iid].
@@ -23,8 +22,7 @@ extension IUnknownHelpers on IUnknown {
   /// `ICalendar.fromPtr`).
   ///
   /// Returns `null` if the cast fails.
-  T? tryCast<T extends IUnknown>(
-      T Function(Pointer<COMObject>) creator, String iid) {
+  T? tryCast<T extends IUnknown>(COMObjectCreator<T> creator, String iid) {
     try {
       return cast(creator, iid);
     } on WindowsException {
