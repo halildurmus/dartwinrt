@@ -56,11 +56,32 @@ void main() {
       }
     });
 
+    test('detach', () {
+      const testString = 'Hello world!';
+      for (var i = 0; i < testRuns; i++) {
+        final hString = HString.fromString(testString);
+        expect(hString.toString(), equals(testString));
+        hString.detach();
+        WindowsDeleteString(hString.handle);
+      }
+    });
+
     test('empty', () {
       for (var i = 0; i < testRuns; i++) {
         final hString = const HString.empty();
         expect(hString.isEmpty, isTrue);
         expect(hString.toString(), isEmpty);
+      }
+    });
+
+    test('free', () {
+      const testString = 'Hello world!';
+      for (var i = 0; i < testRuns; i++) {
+        final hString = HString.fromString(testString);
+        expect(hString.toString(), equals(testString));
+        hString
+          ..detach()
+          ..free();
       }
     });
 

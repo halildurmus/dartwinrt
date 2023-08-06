@@ -10,7 +10,8 @@ import 'package:windows_foundation/windows_foundation.dart';
 import 'package:windows_storage/windows_storage.dart';
 
 void main() {
-  test('WinRTEnum toString', () {
+  test('WinRTEnum', () {
+    expect(AsyncStatus.from(1), equals(AsyncStatus.completed));
     expect(AsyncStatus.completed.toString(), equals('AsyncStatus.completed'));
   });
 
@@ -25,13 +26,21 @@ void main() {
     });
   });
 
-  group('WinRTFlagsEnum toString', () {
-    test('(1)', () {
-      expect(FileAttributes.directory.toString(),
-          equals('FileAttributes.directory'));
+  group('WinRTFlagsEnum', () {
+    test('hasFlag', () {
+      final fileAttributes = FileAttributes.readOnly | FileAttributes.archive;
+      expect(fileAttributes.hasFlag(FileAttributes.readOnly), isTrue);
+      expect(fileAttributes.hasFlag(FileAttributes.temporary), isFalse);
+      expect(
+          fileAttributes
+              .hasFlag(FileAttributes.readOnly | FileAttributes.archive),
+          isTrue);
+      expect(fileAttributes.hasFlag(FileAttributes.normal), isFalse);
     });
 
-    test('(2)', () {
+    test('toString', () {
+      expect(FileAttributes.directory.toString(),
+          equals('FileAttributes.directory'));
       expect((FileAttributes.directory | FileAttributes.readOnly).toString(),
           equals('FileAttributes(value: 17)'));
     });

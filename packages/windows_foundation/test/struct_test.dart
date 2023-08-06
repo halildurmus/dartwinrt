@@ -38,7 +38,7 @@ void main() {
       ..x = 1
       ..y = 2;
 
-    final point = nativePoint.toDart();
+    final point = nativePoint.ref.toDart();
     expect(point, equals(const Point(1, 2)));
 
     free(nativePoint);
@@ -77,5 +77,31 @@ void main() {
 
       free(nativePointPtr);
     });
+  });
+
+  test('NativeRect toDart', () {
+    final nativeRect = calloc<NativeRect>();
+    nativeRect.ref
+      ..x = 1
+      ..y = 2
+      ..width = 50
+      ..height = 100;
+
+    final rect = nativeRect.ref.toDart();
+    expect(rect, equals(const Rect(1, 2, 50, 100)));
+
+    free(nativeRect);
+  });
+
+  test('NativeSize toDart', () {
+    final nativeSize = calloc<NativeSize>();
+    nativeSize.ref
+      ..width = 50
+      ..height = 100;
+
+    final size = nativeSize.ref.toDart();
+    expect(size, equals(const Size(50, 100)));
+
+    free(nativeSize);
   });
 }
