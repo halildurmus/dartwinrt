@@ -11,6 +11,7 @@ import 'package:win32/win32.dart' hide IUnknown;
 
 import '../internal.dart';
 import 'extensions/iunknown_helpers.dart';
+import 'types.dart';
 
 /// Activates the specified Windows Runtime class in the [className] and returns
 /// a reference to the `IInspectable` interface.
@@ -59,7 +60,7 @@ Pointer<COMObject> activateClass(String className,
 ///     'Windows.Globalization.Calendar', IID_ICalendarFactory);
 /// ```
 T createActivationFactory<T extends IInspectable>(
-        T Function(Pointer<COMObject>) creator, String className, String iid) =>
+        COMObjectCreator<T> creator, String className, String iid) =>
     using((arena) {
       final classNameHString = className.toHString();
       final pIID = GUIDFromString(iid, allocator: arena);
@@ -101,7 +102,7 @@ T createActivationFactory<T extends IInspectable>(
 ///     'Windows.Globalization.Calendar', IID_ICalendar);
 /// ```
 T createObject<T extends IInspectable>(
-    T Function(Pointer<COMObject>) creator, String className, String iid) {
+    COMObjectCreator<T> creator, String className, String iid) {
   final inspectable = IInspectable(activateClass(className));
   final object = inspectable.cast(creator, iid);
   inspectable.free();

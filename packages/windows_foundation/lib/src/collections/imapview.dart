@@ -23,9 +23,9 @@ abstract interface class IMapView<K, V> extends IInspectable
   IMapView(
     super.ptr, {
     required String iterableIid,
-    V Function(Pointer<COMObject>)? creator,
-    K Function(int)? enumKeyCreator,
-    V Function(int)? enumCreator,
+    COMObjectCreator<V>? creator,
+    EnumCreator<K>? enumKeyCreator,
+    EnumCreator<V>? enumCreator,
     IntType? intType,
   })  : _iterableIid = iterableIid,
         _creator = creator,
@@ -40,11 +40,11 @@ abstract interface class IMapView<K, V> extends IInspectable
   }
 
   final String _iterableIid;
-  final V Function(Pointer<COMObject>)? _creator;
-  final K Function(int)? _enumKeyCreator;
-  final V Function(int)? _enumCreator;
+  final COMObjectCreator<V>? _creator;
+  final EnumCreator<K>? _enumKeyCreator;
+  final EnumCreator<V>? _enumCreator;
   final IntType? _intType;
-  late final IKeyValuePair<K, V> Function(Pointer<COMObject>)? _iterableCreator;
+  late final COMObjectCreator<IKeyValuePair<K, V>>? _iterableCreator;
 
   /// Creates an instance of [IMapView] from the given [ptr] and [iterableIid].
   ///
@@ -73,9 +73,9 @@ abstract interface class IMapView<K, V> extends IInspectable
   factory IMapView.fromPtr(
     Pointer<COMObject> ptr, {
     required String iterableIid,
-    V Function(Pointer<COMObject>)? creator,
-    K Function(int)? enumKeyCreator,
-    V Function(int)? enumCreator,
+    COMObjectCreator<V>? creator,
+    EnumCreator<K>? enumKeyCreator,
+    EnumCreator<V>? enumCreator,
     IntType? intType,
   }) {
     if (K == Guid) {

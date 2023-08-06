@@ -1121,7 +1121,7 @@ final class _IIteratorNitRange extends IIterator<NitRange> {
 final class _IIteratorInspectable<T> extends IIterator<T> {
   _IIteratorInspectable.fromPtr(super.ptr, {required this.creator});
 
-  final T Function(Pointer<COMObject>) creator;
+  final COMObjectCreator<T> creator;
 
   @override
   T get current {
@@ -2380,7 +2380,7 @@ final class _IIteratorWindowId extends IIterator<WindowId> {
 final class _IIteratorWinRTEnum<T> extends IIterator<T> {
   _IIteratorWinRTEnum.fromPtr(super.ptr, {required this.enumCreator});
 
-  final T Function(int) enumCreator;
+  final EnumCreator<T> enumCreator;
 
   @override
   T get current {
@@ -2445,7 +2445,7 @@ final class _IIteratorWinRTEnum<T> extends IIterator<T> {
 final class _IIteratorWinRTFlagsEnum<T> extends IIterator<T> {
   _IIteratorWinRTFlagsEnum.fromPtr(super.ptr, {required this.enumCreator});
 
-  final T Function(int) enumCreator;
+  final EnumCreator<T> enumCreator;
 
   @override
   T get current {

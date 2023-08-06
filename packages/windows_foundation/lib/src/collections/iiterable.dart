@@ -16,8 +16,8 @@ import 'iiterator.dart';
 /// specified type.
 interface class IIterable<T> extends IInspectable {
   // vtable begins at 6, is 1 entries long.
-  final T Function(Pointer<COMObject>)? _creator;
-  final T Function(int)? _enumCreator;
+  final COMObjectCreator<T>? _creator;
+  final EnumCreator<T>? _enumCreator;
   final DoubleType? _doubleType;
   final IntType? _intType;
 
@@ -52,8 +52,8 @@ interface class IIterable<T> extends IInspectable {
   /// ```
   IIterable.fromPtr(
     super.ptr, {
-    T Function(Pointer<COMObject>)? creator,
-    T Function(int)? enumCreator,
+    COMObjectCreator<T>? creator,
+    EnumCreator<T>? enumCreator,
     DoubleType? doubleType,
     IntType? intType,
   })  : _creator = creator,

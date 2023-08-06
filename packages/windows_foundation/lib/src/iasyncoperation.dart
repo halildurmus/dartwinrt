@@ -53,8 +53,8 @@ abstract interface class IAsyncOperation<TResult> extends IInspectable
   /// ```
   factory IAsyncOperation.fromPtr(
     Pointer<COMObject> ptr, {
-    TResult Function(Pointer<COMObject>)? creator,
-    TResult Function(int)? enumCreator,
+    COMObjectCreator<TResult>? creator,
+    EnumCreator<TResult>? enumCreator,
     DoubleType? doubleType,
     IntType? intType,
   }) {

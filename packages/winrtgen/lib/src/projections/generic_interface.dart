@@ -196,16 +196,16 @@ final class GenericInterfaceProjection extends InterfaceProjection {
     return {
       if (typeArgs case [final typeArg1, final typeArg2]) ...{
         if (typeArg1.isEnum)
-          'final ${genericParams[0].name} Function(int) enumKeyCreator;',
+          'final EnumCreator<${genericParams[0].name}> enumKeyCreator;',
         if (typeArg2.isInspectable)
-          'final ${genericParams[1].name} Function(Pointer<COMObject>) creator;',
+          'final COMObjectCreator<${genericParams[1].name}> creator;',
         if (typeArg2.isEnum)
-          'final ${genericParams[1].name} Function(int) enumCreator;'
+          'final EnumCreator<${genericParams[1].name}> enumCreator;'
       } else if (typeArgs case [final typeArg]) ...{
         if (typeArg.isInspectable)
-          'final ${genericParams[0].name} Function(Pointer<COMObject>) creator;',
+          'final COMObjectCreator<${genericParams[0].name}> creator;',
         if (typeArg.isEnum)
-          'final ${genericParams[0].name} Function(int) enumCreator;'
+          'final EnumCreator<${genericParams[0].name}> enumCreator;'
       }
     };
   }

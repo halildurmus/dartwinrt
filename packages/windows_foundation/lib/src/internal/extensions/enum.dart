@@ -7,6 +7,7 @@ import 'dart:ffi';
 import 'package:ffi/ffi.dart';
 
 import '../../ireference.dart';
+import '../../types.dart';
 import '../../winrt_enum.dart';
 
 /// @nodoc
@@ -51,7 +52,7 @@ extension Int32ArrayToWinRTEnumListConversion on Pointer<Int32> {
   ///
   /// [length] must not be greater than the number of elements stored inside the
   /// `Pointer<Int32>`.
-  List<T> toEnumList<T>(T Function(int) creator, {int length = 1}) =>
+  List<T> toEnumList<T>(EnumCreator<T> creator, {int length = 1}) =>
       [for (var i = 0; i < length; i++) creator(this[i])];
 }
 
@@ -65,6 +66,6 @@ extension Uint32ArrayToWinRTEnumListConversion on Pointer<Uint32> {
   ///
   /// [length] must not be greater than the number of elements stored inside the
   /// `Pointer<Uint32>`.
-  List<T> toEnumList<T>(T Function(int) creator, {int length = 1}) =>
+  List<T> toEnumList<T>(EnumCreator<T> creator, {int length = 1}) =>
       [for (var i = 0; i < length; i++) creator(this[i])];
 }

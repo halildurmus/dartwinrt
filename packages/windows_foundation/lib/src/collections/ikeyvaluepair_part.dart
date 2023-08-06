@@ -12,7 +12,7 @@ part of 'ikeyvaluepair.dart';
 final class _IKeyValuePairGuidInspectable<V> extends IKeyValuePair<Guid, V> {
   _IKeyValuePairGuidInspectable.fromPtr(super.ptr, {required this.creator});
 
-  final V Function(Pointer<COMObject>) creator;
+  final COMObjectCreator<V> creator;
 
   @override
   Guid get key {
@@ -130,7 +130,7 @@ final class _IKeyValuePairGuidObject extends IKeyValuePair<Guid, Object?> {
 final class _IKeyValuePairInt16Inspectable<V> extends IKeyValuePair<int, V> {
   _IKeyValuePairInt16Inspectable.fromPtr(super.ptr, {required this.creator});
 
-  final V Function(Pointer<COMObject>) creator;
+  final COMObjectCreator<V> creator;
 
   @override
   int get key {
@@ -190,7 +190,7 @@ final class _IKeyValuePairInt16Inspectable<V> extends IKeyValuePair<int, V> {
 final class _IKeyValuePairInt32Inspectable<V> extends IKeyValuePair<int, V> {
   _IKeyValuePairInt32Inspectable.fromPtr(super.ptr, {required this.creator});
 
-  final V Function(Pointer<COMObject>) creator;
+  final COMObjectCreator<V> creator;
 
   @override
   int get key {
@@ -250,7 +250,7 @@ final class _IKeyValuePairInt32Inspectable<V> extends IKeyValuePair<int, V> {
 final class _IKeyValuePairInt64Inspectable<V> extends IKeyValuePair<int, V> {
   _IKeyValuePairInt64Inspectable.fromPtr(super.ptr, {required this.creator});
 
-  final V Function(Pointer<COMObject>) creator;
+  final COMObjectCreator<V> creator;
 
   @override
   int get key {
@@ -368,7 +368,7 @@ final class _IKeyValuePairStringInspectable<V>
     extends IKeyValuePair<String, V> {
   _IKeyValuePairStringInspectable.fromPtr(super.ptr, {required this.creator});
 
-  final V Function(Pointer<COMObject>) creator;
+  final COMObjectCreator<V> creator;
 
   @override
   String get key {
@@ -540,7 +540,7 @@ final class _IKeyValuePairStringString extends IKeyValuePair<String, String> {
 final class _IKeyValuePairStringWinRTEnum<V> extends IKeyValuePair<String, V> {
   _IKeyValuePairStringWinRTEnum.fromPtr(super.ptr, {required this.enumCreator});
 
-  final V Function(int) enumCreator;
+  final EnumCreator<V> enumCreator;
 
   @override
   String get key {
@@ -598,7 +598,7 @@ final class _IKeyValuePairStringWinRTFlagsEnum<V>
   _IKeyValuePairStringWinRTFlagsEnum.fromPtr(super.ptr,
       {required this.enumCreator});
 
-  final V Function(int) enumCreator;
+  final EnumCreator<V> enumCreator;
 
   @override
   String get key {
@@ -654,7 +654,7 @@ final class _IKeyValuePairStringWinRTFlagsEnum<V>
 final class _IKeyValuePairUint8Inspectable<V> extends IKeyValuePair<int, V> {
   _IKeyValuePairUint8Inspectable.fromPtr(super.ptr, {required this.creator});
 
-  final V Function(Pointer<COMObject>) creator;
+  final COMObjectCreator<V> creator;
 
   @override
   int get key {
@@ -714,7 +714,7 @@ final class _IKeyValuePairUint8Inspectable<V> extends IKeyValuePair<int, V> {
 final class _IKeyValuePairUint16Inspectable<V> extends IKeyValuePair<int, V> {
   _IKeyValuePairUint16Inspectable.fromPtr(super.ptr, {required this.creator});
 
-  final V Function(Pointer<COMObject>) creator;
+  final COMObjectCreator<V> creator;
 
   @override
   int get key {
@@ -774,7 +774,7 @@ final class _IKeyValuePairUint16Inspectable<V> extends IKeyValuePair<int, V> {
 final class _IKeyValuePairUint32Inspectable<V> extends IKeyValuePair<int, V> {
   _IKeyValuePairUint32Inspectable.fromPtr(super.ptr, {required this.creator});
 
-  final V Function(Pointer<COMObject>) creator;
+  final COMObjectCreator<V> creator;
 
   @override
   int get key {
@@ -834,7 +834,7 @@ final class _IKeyValuePairUint32Inspectable<V> extends IKeyValuePair<int, V> {
 final class _IKeyValuePairUint64Inspectable<V> extends IKeyValuePair<int, V> {
   _IKeyValuePairUint64Inspectable.fromPtr(super.ptr, {required this.creator});
 
-  final V Function(Pointer<COMObject>) creator;
+  final COMObjectCreator<V> creator;
 
   @override
   int get key {
@@ -949,8 +949,8 @@ final class _IKeyValuePairWinRTEnumInspectable<K, V>
   _IKeyValuePairWinRTEnumInspectable.fromPtr(super.ptr,
       {required this.enumKeyCreator, required this.creator});
 
-  final K Function(int) enumKeyCreator;
-  final V Function(Pointer<COMObject>) creator;
+  final EnumCreator<K> enumKeyCreator;
+  final COMObjectCreator<V> creator;
 
   @override
   K get key {
@@ -1012,8 +1012,8 @@ final class _IKeyValuePairWinRTFlagsEnumInspectable<K, V>
   _IKeyValuePairWinRTFlagsEnumInspectable.fromPtr(super.ptr,
       {required this.enumKeyCreator, required this.creator});
 
-  final K Function(int) enumKeyCreator;
-  final V Function(Pointer<COMObject>) creator;
+  final EnumCreator<K> enumKeyCreator;
+  final COMObjectCreator<V> creator;
 
   @override
   K get key {

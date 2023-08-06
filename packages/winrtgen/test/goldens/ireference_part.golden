@@ -1036,7 +1036,7 @@ final class _IReferenceWhiteBalanceGain extends IReference<WhiteBalanceGain?> {
 final class _IReferenceWinRTEnum<T> extends IReference<T> {
   _IReferenceWinRTEnum.fromPtr(super.ptr, {required this.enumCreator});
 
-  final T Function(int) enumCreator;
+  final EnumCreator<T> enumCreator;
 
   @override
   T get value {
@@ -1069,7 +1069,7 @@ final class _IReferenceWinRTEnum<T> extends IReference<T> {
 final class _IReferenceWinRTFlagsEnum<T> extends IReference<T> {
   _IReferenceWinRTFlagsEnum.fromPtr(super.ptr, {required this.enumCreator});
 
-  final T Function(int) enumCreator;
+  final EnumCreator<T> enumCreator;
 
   @override
   T get value {

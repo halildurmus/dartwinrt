@@ -124,7 +124,7 @@ extension COMObjectArrayToObjectListConversion on Pointer<COMObject> {
   ///
   /// [length] must not be greater than the number of elements stored inside the
   /// `Pointer<COMObject>`.
-  List<T> toList<T>(T Function(Pointer<COMObject>) creator, {int length = 1}) {
+  List<T> toList<T>(COMObjectCreator<T> creator, {int length = 1}) {
     final list = <T>[];
 
     for (var i = 0; i < length; i++) {

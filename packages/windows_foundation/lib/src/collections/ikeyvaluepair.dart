@@ -50,9 +50,9 @@ abstract interface class IKeyValuePair<K, V> extends IInspectable {
   /// ```
   factory IKeyValuePair.fromPtr(
     Pointer<COMObject> ptr, {
-    V Function(Pointer<COMObject>)? creator,
-    K Function(int)? enumKeyCreator,
-    V Function(int)? enumCreator,
+    COMObjectCreator<V>? creator,
+    EnumCreator<K>? enumKeyCreator,
+    EnumCreator<V>? enumCreator,
     IntType? intType,
   }) {
     if (K == Guid) {

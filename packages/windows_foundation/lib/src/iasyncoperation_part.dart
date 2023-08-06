@@ -248,7 +248,7 @@ final class _IAsyncOperationInspectable<TResult>
     extends IAsyncOperation<TResult> {
   _IAsyncOperationInspectable.fromPtr(super.ptr, {required this.creator});
 
-  final TResult Function(Pointer<COMObject>) creator;
+  final COMObjectCreator<TResult> creator;
 
   @override
   TResult getResults() {
@@ -495,7 +495,7 @@ final class _IAsyncOperationWinRTEnum<TResult>
     extends IAsyncOperation<TResult> {
   _IAsyncOperationWinRTEnum.fromPtr(super.ptr, {required this.enumCreator});
 
-  final TResult Function(int) enumCreator;
+  final EnumCreator<TResult> enumCreator;
 
   @override
   TResult getResults() {
@@ -528,7 +528,7 @@ final class _IAsyncOperationWinRTFlagsEnum<TResult>
   _IAsyncOperationWinRTFlagsEnum.fromPtr(super.ptr,
       {required this.enumCreator});
 
-  final TResult Function(int) enumCreator;
+  final EnumCreator<TResult> enumCreator;
 
   @override
   TResult getResults() {
