@@ -15,7 +15,7 @@ import '../iids.dart';
 
 /// @nodoc
 extension HSTRINGHandleToStringConversion on int {
-  /// Converts the [HSTRING] into a Dart string.
+  /// Converts the [HSTRING] handle into a Dart string.
   String toDartString() => HString.fromHandle(this).toString();
 }
 
@@ -51,6 +51,15 @@ extension StringListConversions on List<String> {
 
   /// Converts the value to an [IPropertyValue].
   IPropertyValue toPropertyValue() => PropertyValue.createStringArray(this);
+
+  /// Creates an array of [Uint16]s from a List of [String]s.
+  Pointer<Uint16> toUint16Array({Allocator allocator = calloc}) {
+    final array = allocator<Uint16>(length);
+    for (var i = 0; i < length; i++) {
+      array[i] = this[i].codeUnitAt(0);
+    }
+    return array;
+  }
 }
 
 /// @nodoc
@@ -64,4 +73,14 @@ extension HSTRINGPointerConversions on Pointer<HSTRING> {
   /// `Pointer<HSTRING>`.
   List<String> toList({int length = 1}) =>
       [for (var i = 0; i < length; i++) this[i].toDartString()];
+}
+
+/// @nodoc
+extension Uint16PointerConversions on Pointer<Uint16> {
+  /// Creates a [List] from `Pointer<Uint16>`.
+  ///
+  /// [length] must not be greater than the number of elements stored inside the
+  /// `Pointer<Uint16>`.
+  List<String> toStringList({int length = 1}) =>
+      [for (var i = 0; i < length; i++) String.fromCharCode(this[i])];
 }

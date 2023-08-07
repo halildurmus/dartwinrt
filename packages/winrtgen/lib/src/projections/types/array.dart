@@ -64,6 +64,9 @@ abstract base class ArrayParameterProjection extends ParameterProjection {
           ? '${method.returnType.name}.value'
           : 'retValuePtr.value';
 
+  bool get typeArgIsCharType =>
+      typeArgParamProjection.typeProjection.isCharType;
+
   bool get typeArgIsObjectType =>
       typeArgParamProjection.typeProjection.isObjectType;
 
@@ -82,10 +85,11 @@ abstract base class ArrayParameterProjection extends ParameterProjection {
   String get toListIdentifier => switch (typeArgParamProjection) {
         DateTimeParameterProjection() => 'toDateTimeList',
         DurationParameterProjection() => 'toDurationList',
-        ObjectParameterProjection() when typeArgIsObjectType => 'toObjectList',
         EnumParameterProjection() ||
         GenericEnumParameterProjection() =>
           'toEnumList',
+        ObjectParameterProjection() when typeArgIsObjectType => 'toObjectList',
+        StringParameterProjection() when typeArgIsCharType => 'toStringList',
         UriParameterProjection() => 'toUriList',
         _ => 'toList'
       };
@@ -144,16 +148,23 @@ base class PassArrayParameterProjection extends ArrayParameterProjection {
 
   String get genericTypeArg => switch (typeArgParamProjection) {
         final projection
-            when projection is! GenericEnumParameterProjection &&
+            when !typeArgIsCharType &&
+                projection is! GenericEnumParameterProjection &&
                 (projection.typeProjection.isDouble ||
                     projection.typeProjection.isInteger) =>
           '<$nativeType>',
         _ => '',
       };
 
+  String get toArrayIdentifier => switch (typeArgParamProjection) {
+        StringParameterProjection() when typeArgIsCharType => 'toUint16Array',
+        _ => 'toArray'
+      };
+
   @override
-  List<String> get preambles =>
-      ['final $localIdentifier = $identifier$cast.toArray$genericTypeArg();'];
+  List<String> get preambles => [
+        'final $localIdentifier = $identifier$cast.$toArrayIdentifier$genericTypeArg();'
+      ];
 
   @override
   List<String> get postambles => ['free($localIdentifier);'];

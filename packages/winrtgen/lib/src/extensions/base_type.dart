@@ -11,7 +11,6 @@ extension BaseTypeHelpers on BaseType {
   String get dartType => switch (this) {
         BaseType.booleanType => 'bool',
         BaseType.doubleType || BaseType.floatType => 'double',
-        BaseType.charType ||
         BaseType.int8Type ||
         BaseType.int16Type ||
         BaseType.int32Type ||
@@ -21,7 +20,7 @@ extension BaseTypeHelpers on BaseType {
         BaseType.uint32Type ||
         BaseType.uint64Type =>
           'int',
-        BaseType.stringType => 'String',
+        BaseType.charType || BaseType.stringType => 'String',
         BaseType.voidType => 'void',
         _ => throw WinRTGenException('Unsupported BaseType: $this'),
       };

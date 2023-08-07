@@ -17,28 +17,26 @@ void main() {
 
   group('PropertyValue', () {
     test('createChar16', () {
-      const char = 65; // 'A'
-      final pv = PropertyValue.createChar16(char);
+      final pv = PropertyValue.createChar16('A');
       expect(pv.isNumericScalar, isFalse);
       expect(pv.type, equals(PropertyType.char16));
-      expect(pv.getChar16(), equals(char));
-      expect(pv.value, equals(char));
+      expect(pv.getChar16(), equals('A'));
+      expect(pv.value, equals('A'));
     });
 
     test('createChar16Array', () {
-      const chars = <int>[65, 66, 67, 68, 69]; // 'A', 'B', 'C', 'D', 'E'
-      final pv = PropertyValue.createChar16Array(chars);
+      final pv = PropertyValue.createChar16Array(['A', 'B', 'C', 'D', 'E']);
       expect(pv.isNumericScalar, isFalse);
       expect(pv.type, equals(PropertyType.char16Array));
 
       final list = pv.getChar16Array();
       expect(list.length, equals(5));
-      expect(list[0], equals(chars[0]));
-      expect(list[1], equals(chars[1]));
-      expect(list[2], equals(chars[2]));
-      expect(list[3], equals(chars[3]));
-      expect(list[4], equals(chars[4]));
-      expect(pv.value, equals(chars));
+      expect(list[0], equals('A'));
+      expect(list[1], equals('B'));
+      expect(list[2], equals('C'));
+      expect(list[3], equals('D'));
+      expect(list[4], equals('E'));
+      expect(pv.value, equals(['A', 'B', 'C', 'D', 'E']));
     });
 
     test('createDateTime', () {

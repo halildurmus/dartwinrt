@@ -1198,6 +1198,31 @@ void main() {
       expect(projection.postambles, equals(['free(value);']));
     });
 
+    test('projects String (Char16)', () {
+      final projection = GetterProjection.fromTypeAndMethodName(
+          'Windows.UI.Text.RichEditTextRange', 'get_Character');
+      expect(projection.annotations, isEmpty);
+      expect(projection.useTryFinallyBlock, isTrue);
+      expect(projection.returnType, equals('String'));
+      expect(projection.header, equals('String get character'));
+      expect(projection.paramIdentifier, equals('value'));
+      expect(projection.preambles, equals(['final value = calloc<Uint16>();']));
+      expect(projection.parametersPreamble, isEmpty);
+      expect(
+          projection.nativePrototype,
+          equals(
+              'HRESULT Function(VTablePointer lpVtbl, Pointer<Uint16> value)'));
+      expect(projection.dartPrototype,
+          equals('int Function(VTablePointer lpVtbl, Pointer<Uint16> value)'));
+      expect(projection.identifiers, equals('ptr.ref.lpVtbl, value'));
+      expect(projection.parametersPostamble, isEmpty);
+      expect(projection.failedCheck, equals(failedCheck()));
+      expect(projection.nullCheck, isEmpty);
+      expect(projection.returnStatement,
+          equals('return String.fromCharCode(value.value);'));
+      expect(projection.postambles, equals(['free(value);']));
+    });
+
     test('projects struct', () {
       final projection = GetterProjection.fromTypeAndMethodName(
           'Windows.Devices.Geolocation.IGeopoint', 'get_Position');

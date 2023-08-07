@@ -272,7 +272,7 @@ class IPropertyValueStatics extends IInspectable {
     return IPropertyValue.fromPtr(propertyValue);
   }
 
-  IPropertyValue createChar16(int value) {
+  IPropertyValue createChar16(String value) {
     final propertyValue = calloc<COMObject>();
 
     final hr = ptr.ref.vtable
@@ -286,7 +286,7 @@ class IPropertyValueStatics extends IInspectable {
             .asFunction<
                 int Function(VTablePointer lpVtbl, int value,
                     Pointer<COMObject> propertyValue)>()(
-        ptr.ref.lpVtbl, value, propertyValue);
+        ptr.ref.lpVtbl, value.codeUnitAt(0), propertyValue);
 
     if (FAILED(hr)) {
       free(propertyValue);
@@ -800,9 +800,9 @@ class IPropertyValueStatics extends IInspectable {
     return IPropertyValue.fromPtr(propertyValue);
   }
 
-  IPropertyValue createChar16Array(List<int> value) {
+  IPropertyValue createChar16Array(List<String> value) {
     final propertyValue = calloc<COMObject>();
-    final valueArray = value.toArray<Uint16>();
+    final valueArray = value.toUint16Array();
 
     final hr = ptr.ref.vtable
             .elementAt(35)

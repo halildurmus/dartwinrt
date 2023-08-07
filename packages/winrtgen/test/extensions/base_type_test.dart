@@ -9,17 +9,19 @@ import 'package:winrtgen/winrtgen.dart';
 void main() {
   test('dartType', () {
     expect(BaseType.booleanType.dartType, equals('bool'));
+    expect(BaseType.charType.dartType, equals('String'));
     expect(BaseType.doubleType.dartType, equals('double'));
     expect(BaseType.floatType.dartType, equals('double'));
     expect(BaseType.int8Type.dartType, equals('int'));
     expect(BaseType.int16Type.dartType, equals('int'));
     expect(BaseType.int32Type.dartType, equals('int'));
     expect(BaseType.int64Type.dartType, equals('int'));
+    expect(BaseType.stringType.dartType, equals('String'));
     expect(BaseType.uint8Type.dartType, equals('int'));
     expect(BaseType.uint16Type.dartType, equals('int'));
     expect(BaseType.uint32Type.dartType, equals('int'));
     expect(BaseType.uint64Type.dartType, equals('int'));
-    expect(BaseType.stringType.dartType, equals('String'));
+    expect(BaseType.voidType.dartType, equals('void'));
     expect(() => BaseType.genericTypeModifier.dartType,
         throwsA(isA<WinRTGenException>()));
   });
