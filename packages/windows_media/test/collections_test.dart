@@ -64,14 +64,16 @@ void main() {
       expect(map.lookup(propertyValueGuid), equals('strVal'));
     });
 
-    test('lookup fails if the map is empty', () {
+    test('lookup throws a WindowsException if the map is empty', () {
       final map = getMap()..clear();
-      expect(() => map.lookup(Guid.parse(IID_IStringable)), throwsException);
+      expect(() => map.lookup(Guid.parse(IID_IStringable)),
+          throwsA(isA<WindowsException>()));
     });
 
-    test('lookup throws exception if the item does not exists', () {
+    test('lookup throws a WindowsException if the item does not exists', () {
       final map = getMap();
-      expect(() => map.lookup(Guid.parse(IID_IInspectable)), throwsException);
+      expect(() => map.lookup(Guid.parse(IID_IInspectable)),
+          throwsA(isA<WindowsException>()));
     });
 
     test('lookup returns items', () {
@@ -215,16 +217,16 @@ void main() {
       expect(map.lookup(guid), equals('iclassfactory'));
     });
 
-    test('remove throws exception if the map is empty', () {
+    test('remove throws a WindowsException if the map is empty', () {
       final map = getMap()..clear();
       final guid = Guid.parse(IID_IStringable);
-      expect(() => map.remove(guid), throwsException);
+      expect(() => map.remove(guid), throwsA(isA<WindowsException>()));
     });
 
-    test('remove throws exception if the item does not exists', () {
+    test('remove throws a WindowsException if the item does not exists', () {
       final guid = Guid.parse(IID_IInspectable);
       final map = getMap();
-      expect(() => map.remove(guid), throwsException);
+      expect(() => map.remove(guid), throwsA(isA<WindowsException>()));
     });
 
     test('remove', () {
@@ -235,11 +237,11 @@ void main() {
 
       map.remove(guid1);
       expect(map.size, equals(22));
-      expect(() => map.lookup(guid1), throwsException);
+      expect(() => map.lookup(guid1), throwsA(isA<WindowsException>()));
 
       map.remove(guid2);
       expect(map.size, equals(21));
-      expect(() => map.lookup(guid2), throwsException);
+      expect(() => map.lookup(guid2), throwsA(isA<WindowsException>()));
     });
 
     test('clear', () {

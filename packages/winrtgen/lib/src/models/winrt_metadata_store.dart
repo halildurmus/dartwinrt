@@ -4,8 +4,6 @@
 
 import 'package:winmd/winmd.dart';
 
-import '../exceptions/exceptions.dart';
-
 final class WinRTMetadataStore {
   static List<Method>? _methods;
 
@@ -26,14 +24,13 @@ final class WinRTMetadataStore {
       ];
 
   /// Find a matching typedef, if one exists, for a Windows Runtime [type].
-  /// Otherwise, throws a [WinRTGenException].
   static TypeDef findMetadata(String type) {
     try {
       final typeDef = MetadataStore.getMetadataForType(type);
       if (typeDef == null) throw '';
       return typeDef;
     } catch (_) {
-      throw WinRTGenException('`$type` is not found in the Metadata!');
+      throw StateError('`$type` is not found in the Metadata!');
     }
   }
 }

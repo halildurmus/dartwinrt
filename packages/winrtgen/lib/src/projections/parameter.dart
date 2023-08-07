@@ -70,8 +70,8 @@ base class ParameterProjection {
         ProjectionKind.map => MapParameterProjection(param),
         ProjectionKind.mapView => MapViewParameterProjection(param),
         ProjectionKind.object => ObjectParameterProjection(param),
-        ProjectionKind.record => throw WinmdException(
-            'Unsupported projection kind: ${param.projectionKind}'),
+        ProjectionKind.record => throw UnsupportedError(
+            'Unsupported ProjectionKind: ${param.projectionKind}'),
         ProjectionKind.reference => ReferenceParameterProjection(param),
         ProjectionKind.string => StringParameterProjection(param),
         ProjectionKind.struct => StructParameterProjection(param),

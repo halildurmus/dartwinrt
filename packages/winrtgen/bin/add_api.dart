@@ -7,13 +7,15 @@ import 'package:winrtgen/winrtgen.dart';
 
 Future<void> addEnum(String type) async {
   final typeAnalyzer = TypeAnalyzer.fromType(type);
-  if (!typeAnalyzer.isEnum) throw WinRTGenException('`$type` is not an enum!');
+  if (!typeAnalyzer.isEnum) {
+    throw ArgumentError.value(type, 'type', 'Not an enum.');
+  }
 
   final enumManager = EnumManager();
   final assetPath = enumManager.path;
 
   if (enumManager.contains(type)) {
-    throw WinRTGenException('`$type` already exists in `$assetPath`!');
+    throw StateError('`$type` already exists in `$assetPath`.');
   }
 
   print('Fetching documentation for `$type`...');
@@ -26,14 +28,14 @@ Future<void> addEnum(String type) async {
 Future<void> addObject(String type) async {
   final typeAnalyzer = TypeAnalyzer.fromType(type);
   if (!typeAnalyzer.isObject) {
-    throw WinRTGenException('`$type` is not an object!');
+    throw ArgumentError.value(type, 'type', 'Not an object.');
   }
 
   final objectManager = ObjectManager();
   final assetPath = objectManager.path;
 
   if (objectManager.contains(type)) {
-    throw WinRTGenException('`$type` already exists in `$assetPath`!');
+    throw StateError('`$type` already exists in `$assetPath`.');
   }
 
   final dependencies = typeAnalyzer.dependencies;
@@ -84,14 +86,14 @@ Future<void> addObject(String type) async {
 Future<void> addStruct(String type) async {
   final typeAnalyzer = TypeAnalyzer.fromType(type);
   if (!typeAnalyzer.isStruct) {
-    throw WinRTGenException('`$type` is not a struct!');
+    throw ArgumentError.value(type, 'type', 'Not a struct.');
   }
 
   final structManager = StructManager();
   final assetPath = structManager.path;
 
   if (structManager.contains(type)) {
-    throw WinRTGenException('`$type` already exists in `$assetPath`!');
+    throw StateError('`$type` already exists in `$assetPath`.');
   }
 
   print('Fetching documentation for `$type`...');

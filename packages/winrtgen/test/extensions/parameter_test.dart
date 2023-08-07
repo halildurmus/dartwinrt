@@ -47,7 +47,7 @@ void main() {
       expect(arrayParam.arrayPassingStyle, equals(ArrayPassingStyle.receive));
     });
 
-    test('throws a WinRTGenException on unknown array-passing style', () {
+    test('throws a StateError on unknown array-passing style', () {
       final typeDef = MetadataStore.getMetadataForType(
           'Windows.Foundation.IPropertyValueStatics')!;
       final method = typeDef.findMethod('CreateUInt8Array')!;
@@ -56,7 +56,7 @@ void main() {
       expect(
         () => arraySizeParam.arrayPassingStyle,
         throwsA(
-          isA<WinRTGenException>().having(
+          isA<StateError>().having(
               (e) => e.message,
               'message',
               equals(

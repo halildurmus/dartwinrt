@@ -20,9 +20,6 @@ base class ClassProjection extends InterfaceProjection {
   /// final projection =
   ///     ClassProjection.from('Windows.Storage.Pickers.FileOpenPicker');
   /// ```
-  ///
-  /// Throws an [Exception] if no [TypeDef] matching [fullyQualifiedType] is
-  /// found.
   factory ClassProjection.from(String fullyQualifiedType,
       {String comment = ''}) {
     final typeDef = WinRTMetadataStore.findMetadata(fullyQualifiedType);

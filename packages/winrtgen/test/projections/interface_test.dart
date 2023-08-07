@@ -24,9 +24,10 @@ void main() {
       expect(output, contains('ICalendar'));
     });
 
-    test('from factory constructor throws if type is not found', () {
-      expect(() => InterfaceProjection.from('Windows.Foo.IBar'),
-          throwsA(isA<WinRTGenException>()));
+    test('from factory constructor throws a StateError if type is not found',
+        () {
+      expect(
+          () => InterfaceProjection.from('Windows.Foo.IBar'), throwsStateError);
     });
   });
 

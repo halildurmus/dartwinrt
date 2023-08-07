@@ -21,16 +21,16 @@ void main() {
       return picker.fileTypeFilter!;
     }
 
-    test('getAt fails if the vector is empty', () {
+    test('getAt throws a WindowsException if the vector is empty', () {
       final vector = getVector();
-      expect(() => vector.getAt(0), throwsException);
+      expect(() => vector.getAt(0), throwsA(isA<WindowsException>()));
     });
 
-    test('getAt throws exception if the index is out of bounds', () {
+    test('getAt throws a WindowsException if the index is out of bounds', () {
       final vector = getVector()
         ..append('.jpg')
         ..append('.jpeg');
-      expect(() => vector.getAt(2), throwsException);
+      expect(() => vector.getAt(2), throwsA(isA<WindowsException>()));
     });
 
     test('getAt returns elements', () {
@@ -69,16 +69,16 @@ void main() {
       expect(index, equals(0));
     });
 
-    test('setAt throws exception if the vector is empty', () {
+    test('setAt throws a WindowsException if the vector is empty', () {
       final vector = getVector();
-      expect(() => vector.setAt(0, '.jpg'), throwsException);
+      expect(() => vector.setAt(0, '.jpg'), throwsA(isA<WindowsException>()));
     });
 
-    test('setAt throws exception if the index is out of bounds', () {
+    test('setAt throws a WindowsException if the index is out of bounds', () {
       final vector = getVector()
         ..append('.jpg')
         ..append('.jpeg');
-      expect(() => vector.setAt(3, '.png'), throwsException);
+      expect(() => vector.setAt(3, '.png'), throwsA(isA<WindowsException>()));
     });
 
     test('setAt', () {
@@ -94,11 +94,13 @@ void main() {
       expect(vector.getAt(1), equals('.gif'));
     });
 
-    test('insertAt throws exception if the index is out of bounds', () {
+    test('insertAt throws a WindowsException if the index is out of bounds',
+        () {
       final vector = getVector()
         ..append('.jpg')
         ..append('.jpeg');
-      expect(() => vector.insertAt(3, '.png'), throwsException);
+      expect(
+          () => vector.insertAt(3, '.png'), throwsA(isA<WindowsException>()));
     });
 
     test('insertAt', () {
@@ -116,16 +118,17 @@ void main() {
       expect(vector.getAt(3), equals('.jpeg'));
     });
 
-    test('removeAt throws exception if the vector is empty', () {
+    test('removeAt throws a WindowsException if the vector is empty', () {
       final vector = getVector();
-      expect(() => vector.removeAt(0), throwsException);
+      expect(() => vector.removeAt(0), throwsA(isA<WindowsException>()));
     });
 
-    test('removeAt throws exception if the index is out of bounds', () {
+    test('removeAt throws a WindowsException if the index is out of bounds',
+        () {
       final vector = getVector()
         ..append('.jpg')
         ..append('.jpeg');
-      expect(() => vector.removeAt(3), throwsException);
+      expect(() => vector.removeAt(3), throwsA(isA<WindowsException>()));
     });
 
     test('removeAt', () {
@@ -157,9 +160,9 @@ void main() {
       expect(vector.size, equals(2));
     });
 
-    test('removeAtEnd throws exception if the vector is empty', () {
+    test('removeAtEnd throws a WindowsException if the vector is empty', () {
       final vector = getVector();
-      expect(vector.removeAtEnd, throwsException);
+      expect(vector.removeAtEnd, throwsA(isA<WindowsException>()));
     });
 
     test('removeAtEnd', () {

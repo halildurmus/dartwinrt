@@ -21,7 +21,7 @@ void generateObjects() {
         : ClassProjection(typeDef);
 
     typesAndDependencies.addAll({
-      // The type itself, e.g. 'Windows.Globalization.Calendar'
+      // The type itself, e.g., 'Windows.Globalization.Calendar'
       type,
 
       // Interfaces that the type implements e.g.'Windows.Globalization.ICalendar'
@@ -111,7 +111,7 @@ void generateLibraryExports() {
         if (file.path.endsWith('_part.dart')) continue;
       }
 
-      final fileName = file.uri.pathSegments.last; // e.g. calendar.dart
+      final fileName = file.uri.pathSegments.last; // e.g., calendar.dart
 
       // Skip generated library export files
       if (fileName == 'exports.g.dart') continue;
@@ -126,7 +126,7 @@ void generateLibraryExports() {
       // Skip factory and statics files
       if (factoryOrStaticsFileRegExp.hasMatch(fileName)) continue;
 
-      // e.g. ..\windows_data\lib\src\json\jsonvalue.dart -> json/jsonvalue.dart
+      // e.g., ..\windows_data\lib\src\json\jsonvalue.dart -> json/jsonvalue.dart
       final filePath =
           file.path.substring(packagePath.length + 1).replaceAll(r'\', '/');
       exports.add(filePath);

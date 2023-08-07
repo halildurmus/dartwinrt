@@ -5,14 +5,9 @@
 import 'dart:convert';
 import 'dart:io';
 
-import '../exceptions/exceptions.dart';
-
 /// A sealed class for loading JSON data from a JSON file into a [Map].
 sealed class JsonLoader {
   /// Loads the JSON file located in [path] into a [Map].
-  ///
-  /// Throws a [WinRTGenException] if there is any issue with loading or parsing
-  /// the JSON data.
   Map<String, dynamic> load(String path);
 }
 
@@ -34,7 +29,7 @@ class LocalJsonLoader implements JsonLoader {
       final jsonString = file.readAsStringSync();
       return json.decode(jsonString) as Map<String, dynamic>;
     } catch (e) {
-      throw WinRTGenException('Failed to load JSON from file: $e');
+      throw StateError('Failed to load JSON from file: $e');
     }
   }
 }
@@ -57,9 +52,6 @@ abstract class JsonSaver {
   ///
   /// The [indent] parameter specifies the indentation used for the JSON file.
   /// The indentation is four spaces by default.
-  ///
-  /// Throws a [WinRTGenException] if there is any issue with saving the JSON
-  /// data to the file.
   void save(String path, Map<String, dynamic> map, {String indent = '    '});
 }
 
@@ -83,7 +75,7 @@ class LocalJsonSaver implements JsonSaver {
       final jsonString = encoder.convert(map);
       file.writeAsStringSync(jsonString);
     } catch (e) {
-      throw WinRTGenException('Failed to save JSON to file: $e');
+      throw StateError('Failed to save JSON to file: $e');
     }
   }
 }

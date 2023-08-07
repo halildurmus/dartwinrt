@@ -5,7 +5,6 @@
 import 'package:winmd/winmd.dart';
 
 import '../constants/attributes.dart';
-import '../exceptions/exceptions.dart';
 import '../extensions/extensions.dart';
 import 'class.dart';
 import 'interface.dart';
@@ -56,7 +55,7 @@ final class MethodForwardersProjection {
 
     final typeSpec = interface.typeSpec;
     if (typeSpec == null) {
-      throw WinRTGenException('Type $interface has no typeSpec.');
+      throw StateError('Type $interface has no typeSpec.');
     }
 
     final typeArgs = typeSpec.typeArgs;
@@ -89,7 +88,7 @@ final class MethodForwardersProjection {
       };
     }
 
-    throw WinRTGenException('Type $interface has no typeSpec.');
+    throw StateError('Type $interface has no typeSpec.');
   }
 
   String? get intTypeArgument {
@@ -104,7 +103,7 @@ final class MethodForwardersProjection {
       return null;
     }
 
-    throw WinRTGenException('Type $interface has no typeSpec.');
+    throw StateError('Type $interface has no typeSpec.');
   }
 
   String get interfaceInstantiation {
@@ -124,7 +123,7 @@ final class MethodForwardersProjection {
               .contains(methodProjection.name))
           .toList();
     }
-    throw WinRTGenException('Type $interface has no TypeDef.');
+    throw StateError('Type $interface has no TypeDef.');
   }
 
   List<MethodProjection>? _methodProjections;
@@ -209,7 +208,7 @@ final class MethodForwardersProjection {
   }
 
   String defaultForwarder(MethodProjection methodProjection) {
-    // e.g. `int get Second` or `void addHours(int hours)`
+    // e.g., `int get Second` or `void addHours(int hours)`
     final methodHeader = methodProjection.header;
     final deprecatedAnnotation = methodProjection.method.isDeprecated
         ? methodProjection.method.deprecatedAnnotation

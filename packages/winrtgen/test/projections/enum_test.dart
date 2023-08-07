@@ -29,9 +29,9 @@ void main() {
       expect(output, contains('AsyncStatus'));
     });
 
-    test('from factory constructor throws if type is not found', () {
-      expect(() => EnumProjection.from('Windows.Foo.Bar'),
-          throwsA(isA<WinRTGenException>()));
+    test('from factory constructor throws a StateError if type is not found',
+        () {
+      expect(() => EnumProjection.from('Windows.Foo.Bar'), throwsStateError);
     });
   });
 
@@ -43,9 +43,10 @@ void main() {
       expect(output, contains('FileAttributes'));
     });
 
-    test('from factory constructor throws if type is not found', () {
-      expect(() => FlagsEnumProjection.from('Windows.Foo.Bar'),
-          throwsA(isA<WinRTGenException>()));
+    test('from factory constructor throws a StateError if type is not found',
+        () {
+      expect(
+          () => FlagsEnumProjection.from('Windows.Foo.Bar'), throwsStateError);
     });
   });
 

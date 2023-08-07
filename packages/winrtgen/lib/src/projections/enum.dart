@@ -55,9 +55,6 @@ final class EnumProjection extends BaseProjection {
   /// ```dart
   /// final projection = EnumProjection.from('Windows.Globalization.DayOfWeek');
   /// ```
-  ///
-  /// Throws an [Exception] if no [TypeDef] matching [fullyQualifiedType] is
-  /// found.
   factory EnumProjection.from(String fullyQualifiedType,
       {String comment = ''}) {
     final typeDef = WinRTMetadataStore.findMetadata(fullyQualifiedType);
@@ -134,9 +131,6 @@ final class FlagsEnumProjection extends EnumProjection {
   /// final projection =
   ///     FlagsEnumProjection.from('Windows.Storage.FileAttributes');
   /// ```
-  ///
-  /// Throws an [Exception] if no [TypeDef] matching [fullyQualifiedType] is
-  /// found.
   factory FlagsEnumProjection.from(String fullyQualifiedType,
       {String comment = ''}) {
     final typeDef = WinRTMetadataStore.findMetadata(fullyQualifiedType);

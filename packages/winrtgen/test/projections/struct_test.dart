@@ -22,9 +22,10 @@ void main() {
       expect(output, contains('NativeRect'));
     });
 
-    test('from factory constructor throws if type is not found', () {
+    test('from factory constructor throws a StateError if type is not found',
+        () {
       expect(() => NativeStructProjection.from('Windows.Foo.Bar'),
-          throwsA(isA<WinRTGenException>()));
+          throwsStateError);
     });
   });
 
@@ -36,9 +37,9 @@ void main() {
       expect(output, contains('Rect'));
     });
 
-    test('from factory constructor throws if type is not found', () {
-      expect(() => StructProjection.from('Windows.Foo.Bar'),
-          throwsA(isA<WinRTGenException>()));
+    test('from factory constructor throws a StateError if type is not found',
+        () {
+      expect(() => StructProjection.from('Windows.Foo.Bar'), throwsStateError);
     });
   });
 

@@ -5,7 +5,6 @@
 import 'package:winmd/winmd.dart';
 
 import '../constants/constants.dart';
-import '../exceptions/exceptions.dart';
 import 'extensions.dart';
 
 extension TypeDefHelpers on TypeDef {
@@ -56,7 +55,7 @@ extension TypeDefHelpers on TypeDef {
       if (defaultInterface?.signature case final signature?) {
         return 'rc($name;$signature)';
       }
-      throw WinRTGenException('Type $this has no default interface.');
+      throw StateError('Type $this has no default interface.');
     }
 
     if (isEnum) {
@@ -73,6 +72,6 @@ extension TypeDefHelpers on TypeDef {
 
     if (guid case final guid?) return isDelegate ? 'delegate($guid)' : guid;
 
-    throw WinRTGenException('TypeDef $this has no Guid');
+    throw StateError('TypeDef $this has no Guid');
   }
 }

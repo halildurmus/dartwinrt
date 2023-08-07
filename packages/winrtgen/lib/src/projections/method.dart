@@ -4,7 +4,6 @@
 
 import 'package:winmd/winmd.dart';
 
-import '../exceptions/exceptions.dart';
 import '../extensions/extensions.dart';
 import '../models/models.dart';
 import 'getter.dart';
@@ -53,8 +52,7 @@ base class MethodProjection {
         ProjectionKind.record => RecordMethodProjection(method, vtableOffset),
         ProjectionKind.pointer ||
         ProjectionKind.reference =>
-          throw WinRTGenException(
-              'Unsupported projection kind: $projectionKind'),
+          throw UnsupportedError('Unsupported ProjectionKind: $projectionKind'),
         _ => MethodProjection(method, vtableOffset),
       };
     } catch (_) {
@@ -74,9 +72,6 @@ base class MethodProjection {
   /// It does this by first creating an [InterfaceProjection] from the
   /// [fullyQualifiedType] and then searching the [MethodProjection] for the
   /// [methodName] in it.
-  ///
-  /// Throws an [Exception] if no [MethodProjection] matching [methodName] is
-  /// found.
   factory MethodProjection.fromTypeAndMethodName(
       String fullyQualifiedType, String methodName) {
     final interfaceProjection = InterfaceProjection.from(fullyQualifiedType);
@@ -84,7 +79,7 @@ base class MethodProjection {
         .where((methodProjection) => methodProjection.name == methodName)
         .firstOrNull;
     if (methodProjection == null) {
-      throw WinRTGenException(
+      throw StateError(
           "Could not find method '$methodName' in '$fullyQualifiedType'.");
     }
     return methodProjection;
@@ -150,9 +145,9 @@ base class MethodProjection {
       ];
 
   /// The header of the method.
-  ///   e.g. `void setDateTime(DateTime value)` or `void setToNow()` (method)
-  ///   e.g. `int get second` (getter)
-  ///   e.g. `set second(int value)` (setter)
+  ///   e.g., `void setDateTime(DateTime value)` or `void setToNow()` (method)
+  ///   e.g., `int get second` (getter)
+  ///   e.g., `set second(int value)` (setter)
   String get header => switch (this) {
         GetterProjection _ => '$returnType get $camelCasedName',
         final SetterProjection p =>
@@ -162,9 +157,9 @@ base class MethodProjection {
 
   /// A shortened version of the method for use in factory constructors, static
   /// methods, and method forwarders.
-  ///   e.g. `setDateTime(value)` or `setToNow()` (method)
-  ///   e.g. `period` or `second` (get property)
-  ///   e.g. `second = value` (set property)
+  ///   e.g., `setDateTime(value)` or `setToNow()` (method)
+  ///   e.g., `period` or `second` (get property)
+  ///   e.g., `second = value` (set property)
   String get shortForm {
     final identifiers = exposedParams.map((p) => p.identifier).join(', ');
     return '$camelCasedName($identifiers)';

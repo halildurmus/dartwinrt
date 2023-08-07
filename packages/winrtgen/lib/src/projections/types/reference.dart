@@ -10,8 +10,7 @@ final class ReferenceParameterProjection extends ParameterProjection {
 
   @override
   String get type =>
-      // e.g. Pointer<Uint32> -> int
-      typeProjection.dereference().dartType;
+      typeProjection.dereference().dartType; // e.g., Pointer<Uint32> -> int
 
   @override
   String get creator => '$identifier.value';

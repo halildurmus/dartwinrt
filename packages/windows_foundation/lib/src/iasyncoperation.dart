@@ -124,7 +124,7 @@ abstract interface class IAsyncOperation<TResult> extends IInspectable
       }
     }
 
-    throw ArgumentError.value(TResult, 'TResult', 'Unsupported type');
+    throw UnsupportedError('Unsupported type argument: $TResult');
   }
 
   /// Sets the method that handles the operation completed notification.

@@ -25,19 +25,22 @@ void main() {
       expect(output, contains('viewMode'));
     });
 
-    test('fromTypeAndMethodName constructor throws if type is not found', () {
+    test(
+        'fromTypeAndMethodName constructor throws a StateError if type is not found',
+        () {
       expect(
           () => SetterProjection.fromTypeAndMethodName(
               'Windows.Foo.IBar', 'put_Foo'),
-          throwsA(isA<WinRTGenException>()));
+          throwsStateError);
     });
 
-    test('fromTypeAndMethodName constructor throws if method name is invalid',
+    test(
+        'fromTypeAndMethodName constructor throws an ArgumentError if method name is invalid',
         () {
       expect(
           () => SetterProjection.fromTypeAndMethodName(
               'Windows.Globalization.ICalendar', 'NumeralSystem'),
-          throwsA(isA<ArgumentError>()));
+          throwsArgumentError);
     });
   });
 

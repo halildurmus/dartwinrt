@@ -21,16 +21,16 @@ void main() {
       return material.materialIndices!;
     }
 
-    test('getAt fails if the vector is empty', () {
+    test('getAt throws a WindowsException if the vector is empty', () {
       final vector = getVector();
-      expect(() => vector.getAt(0), throwsException);
+      expect(() => vector.getAt(0), throwsA(isA<WindowsException>()));
     });
 
-    test('getAt throws exception if the index is out of bounds', () {
+    test('getAt throws a WindowsException if the index is out of bounds', () {
       final vector = getVector()
         ..append(5)
         ..append(259);
-      expect(() => vector.getAt(2), throwsException);
+      expect(() => vector.getAt(2), throwsA(isA<WindowsException>()));
     });
 
     test('getAt returns elements', () {
@@ -69,16 +69,16 @@ void main() {
       expect(index, equals(0));
     });
 
-    test('setAt throws exception if the vector is empty', () {
+    test('setAt throws a WindowsException if the vector is empty', () {
       final vector = getVector();
-      expect(() => vector.setAt(0, 5), throwsException);
+      expect(() => vector.setAt(0, 5), throwsA(isA<WindowsException>()));
     });
 
-    test('setAt throws exception if the index is out of bounds', () {
+    test('setAt throws a WindowsException if the index is out of bounds', () {
       final vector = getVector()
         ..append(5)
         ..append(259);
-      expect(() => vector.setAt(3, 666), throwsException);
+      expect(() => vector.setAt(3, 666), throwsA(isA<WindowsException>()));
     });
 
     test('setAt', () {
@@ -94,11 +94,12 @@ void main() {
       expect(vector.getAt(1), equals(4294967295));
     });
 
-    test('insertAt throws exception if the index is out of bounds', () {
+    test('insertAt throws a WindowsException if the index is out of bounds',
+        () {
       final vector = getVector()
         ..append(5)
         ..append(259);
-      expect(() => vector.insertAt(3, 666), throwsException);
+      expect(() => vector.insertAt(3, 666), throwsA(isA<WindowsException>()));
     });
 
     test('insertAt', () {
@@ -116,16 +117,17 @@ void main() {
       expect(vector.getAt(3), equals(259));
     });
 
-    test('removeAt throws exception if the vector is empty', () {
+    test('removeAt throws a WindowsException if the vector is empty', () {
       final vector = getVector();
-      expect(() => vector.removeAt(0), throwsException);
+      expect(() => vector.removeAt(0), throwsA(isA<WindowsException>()));
     });
 
-    test('removeAt throws exception if the index is out of bounds', () {
+    test('removeAt throws a WindowsException if the index is out of bounds',
+        () {
       final vector = getVector()
         ..append(5)
         ..append(259);
-      expect(() => vector.removeAt(3), throwsException);
+      expect(() => vector.removeAt(3), throwsA(isA<WindowsException>()));
     });
 
     test('removeAt', () {
@@ -157,9 +159,9 @@ void main() {
       expect(vector.size, equals(2));
     });
 
-    test('removeAtEnd throws exception if the vector is empty', () {
+    test('removeAtEnd throws a WindowsException if the vector is empty', () {
       final vector = getVector();
-      expect(vector.removeAtEnd, throwsException);
+      expect(vector.removeAtEnd, throwsA(isA<WindowsException>()));
     });
 
     test('removeAtEnd', () {

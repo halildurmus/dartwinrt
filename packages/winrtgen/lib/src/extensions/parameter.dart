@@ -4,7 +4,6 @@
 
 import 'package:winmd/winmd.dart';
 
-import '../exceptions/exceptions.dart';
 import '../models/models.dart';
 import '../projections/type.dart';
 import 'type_identifier.dart';
@@ -46,7 +45,7 @@ extension ParameterHelpers on Parameter {
       return ArrayPassingStyle.pass;
     }
 
-    throw WinRTGenException(
+    throw StateError(
         'Failed to determine array-passing style for parameter $name');
   }
 

@@ -214,8 +214,7 @@ void main() {
           endsWith('IVectorView`1'));
     });
 
-    test(
-        'throws a WinRTGenException if TypeIdentifier is cannot be de-referenced',
+    test('throws a StateError if TypeIdentifier is cannot be de-referenced',
         () {
       final typeDef = WinRTMetadataStore.findMetadata(
           'Windows.Globalization.ICalendarFactory');
@@ -225,7 +224,7 @@ void main() {
               .returnType
               .typeIdentifier
               .dereference(),
-          throwsA(isA<WinRTGenException>().having((e) => e.message, 'message',
+          throwsA(isA<StateError>().having((e) => e.message, 'message',
               equals('Could not de-reference type Calendar.'))));
     });
   });
@@ -241,15 +240,14 @@ void main() {
           equals(1));
     });
 
-    test(
-        'throws a WinRTGenException if TypeIdentifier is cannot be de-referenced',
+    test('throws a StateError if TypeIdentifier is cannot be de-referenced',
         () {
       final typeDef = WinRTMetadataStore.findMetadata(
           'Windows.Storage.Search.IStorageFileQueryResult2');
       final method = typeDef.findMethod('GetMatchingPropertiesWithRanges')!;
       expect(
           () => method.returnType.typeIdentifier.genericParamSequence,
-          throwsA(isA<WinRTGenException>().having((e) => e.message, 'message',
+          throwsA(isA<StateError>().having((e) => e.message, 'message',
               equals('Type IMap`2 has no genericParameterSequence.'))));
     });
   });

@@ -60,9 +60,9 @@ void main() {
     });
 
     test('to Pointer<Uint16>', () {
-      final list = ['d', 'a', 'r', 't', '\x00', ' ', r'$'];
+      final list = ['D', 'a', 'r', 't', '\x00', ' ', r'$'];
       final array = list.toUint16Array();
-      expect(array[0], equals(100));
+      expect(array[0], equals(68));
       expect(array[1], equals(97));
       expect(array[2], equals(114));
       expect(array[3], equals(116));

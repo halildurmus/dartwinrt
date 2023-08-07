@@ -59,7 +59,7 @@ abstract interface class IReference<T> extends IInspectable {
         IID_IReference_Double => _IReferenceDouble.fromPtr(ptr),
         IID_IReference_Float => _IReferenceFloat.fromPtr(ptr),
         _ => throw ArgumentError.value(referenceIid, 'referenceIid',
-            'Invalid IID for IReference<double?>'),
+            'Invalid IID for IReference<double?> type'),
       };
       return reference as IReference<T>;
     }
@@ -81,8 +81,8 @@ abstract interface class IReference<T> extends IInspectable {
         IID_IReference_Uint16 => _IReferenceUint16.fromPtr(ptr),
         IID_IReference_Uint32 => _IReferenceUint32.fromPtr(ptr),
         IID_IReference_Uint64 => _IReferenceUint64.fromPtr(ptr),
-        _ => throw ArgumentError.value(
-            referenceIid, 'referenceIid', 'Invalid IID for IReference<int?>'),
+        _ => throw ArgumentError.value(referenceIid, 'referenceIid',
+            'Invalid IID for IReference<int?> type'),
       };
       return reference as IReference<T>;
     }
@@ -160,7 +160,7 @@ abstract interface class IReference<T> extends IInspectable {
       }
     }
 
-    throw ArgumentError.value(T, 'T', 'Unsupported type');
+    throw UnsupportedError('Unsupported type argument: $T');
   }
 
   /// Gets the type that is represented as an `IPropertyValue`.

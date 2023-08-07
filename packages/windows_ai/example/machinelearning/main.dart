@@ -25,7 +25,7 @@ Future<List<String>> loadLabels(String filePath) async {
 
   await for (final line in lines) {
     // Strip off the index number at the start of the line
-    // e.g. '281,tabby, tabby cat'-> 'tabby, tabby cat'
+    // e.g., '281,tabby, tabby cat'-> 'tabby, tabby cat'
     final formattedLine = line.split(',').skip(1).join(',');
     labels.add(formattedLine);
   }

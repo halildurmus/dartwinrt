@@ -51,11 +51,11 @@ void main() {
   });
 
   group('TypeArgKind.fromTypeIdentifier factory constructor', () {
-    test('throws a WinRTGenException if invalid TypeIdentifier is given', () {
+    test('throws an UnsupportedError if invalid TypeIdentifier is given', () {
       expect(
           () => TypeArgKind.fromTypeIdentifier(
               const TypeIdentifier(BaseType.classVariableTypeModifier)),
-          throwsA(isA<WinRTGenException>()));
+          throwsUnsupportedError);
     });
 
     group('returns the appropriate TypeArgKind', () {
@@ -245,24 +245,24 @@ void main() {
   });
 
   group('typeIdentifier', () {
-    test('throws WinRTGenException for TypeArgKind.inspectable', () {
-      expect(() => TypeArgKind.inspectable.typeIdentifier,
-          throwsA(isA<WinRTGenException>()));
+    test('throws an UnsupportedError for TypeArgKind.inspectable', () {
+      expect(
+          () => TypeArgKind.inspectable.typeIdentifier, throwsUnsupportedError);
     });
 
-    test('throws WinRTGenException for TypeArgKind.nullableInspectable', () {
+    test('throws an UnsupportedError for TypeArgKind.nullableInspectable', () {
       expect(() => TypeArgKind.nullableInspectable.typeIdentifier,
-          throwsA(isA<WinRTGenException>()));
+          throwsUnsupportedError);
     });
 
-    test('throws WinRTGenException for TypeArgKind.winrtEnum', () {
-      expect(() => TypeArgKind.winrtEnum.typeIdentifier,
-          throwsA(isA<WinRTGenException>()));
+    test('throws an UnsupportedError for TypeArgKind.winrtEnum', () {
+      expect(
+          () => TypeArgKind.winrtEnum.typeIdentifier, throwsUnsupportedError);
     });
 
-    test('throws WinRTGenException for TypeArgKind.winrtFlagsEnum', () {
+    test('throws an UnsupportedError for TypeArgKind.winrtFlagsEnum', () {
       expect(() => TypeArgKind.winrtFlagsEnum.typeIdentifier,
-          throwsA(isA<WinRTGenException>()));
+          throwsUnsupportedError);
     });
 
     test('returns correct TypeIdentifier for TypeArgKind.bool', () {

@@ -47,9 +47,9 @@ void main() {
       return getLanguages(calendar.ptr);
     }
 
-    test('getAt throws exception if the index is out of bounds', () {
+    test('getAt throws a WindowsException if the index is out of bounds', () {
       final vectorView = getVectorView();
-      expect(() => vectorView.getAt(20), throwsException);
+      expect(() => vectorView.getAt(20), throwsA(isA<WindowsException>()));
     });
 
     test('getAt returns elements', () {

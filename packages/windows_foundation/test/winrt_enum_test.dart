@@ -21,7 +21,7 @@ void main() {
       expect(AsyncStatus.values.byValue(3), equals(AsyncStatus.error));
     });
 
-    test('throws ArgumentError for invalid values', () {
+    test('throws an ArgumentError for invalid values', () {
       expect(() => AsyncStatus.values.byValue(4), throwsArgumentError);
     });
   });

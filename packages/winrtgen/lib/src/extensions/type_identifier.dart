@@ -5,7 +5,6 @@
 import 'package:winmd/winmd.dart';
 
 import '../constants/constants.dart';
-import '../exceptions/exceptions.dart';
 import '../projections/projections.dart';
 import 'extensions.dart';
 
@@ -90,11 +89,9 @@ extension TypeIdentifierHelpers on TypeIdentifier {
   }
 
   /// Convert this *TypeIdentifier into a TypeIdentifier.
-  ///
-  /// Throws a [WinRTGenException] if this TypeIdentifier is cannot be de-referenced.
   TypeIdentifier dereference() {
     if (typeArg case final typeArg?) return typeArg;
-    throw WinRTGenException('Could not de-reference type $this.');
+    throw StateError('Could not de-reference type $this.');
   }
 
   /// The value identifying the generic parameter sequence, if there is one.
@@ -102,13 +99,9 @@ extension TypeIdentifierHelpers on TypeIdentifier {
   /// For example, in class `Foo<T, U>`, a property that returns `T` will have a
   /// returnType with a [TypeIdentifier] that has a genericParameterSequence of
   /// `0`.
-  ///
-  /// Throws a [WinRTGenException] if this [TypeIdentifier] has no
-  /// [genericParameterSequence].
   int get genericParamSequence => switch (genericParameterSequence) {
         final sequence? => sequence,
-        _ => throw WinRTGenException(
-            'Type $this has no genericParameterSequence.'),
+        _ => throw StateError('Type $this has no genericParameterSequence.'),
       };
 
   /// Returns the IID of this TypeIdentifier.
@@ -209,7 +202,7 @@ extension TypeIdentifierHelpers on TypeIdentifier {
       if (type.defaultInterface?.signature case final signature?) {
         return 'rc($name;$signature)';
       }
-      throw WinRTGenException('Type $this has no default interface.');
+      throw StateError('Type $this has no default interface.');
     }
 
     if (typeProjection.isWinRTEnum) {
@@ -255,7 +248,7 @@ extension TypeIdentifierHelpers on TypeIdentifier {
         if (currentTypeIdentifier.type case final type?) {
           typeIdentifierCount += type.genericParams.length;
         } else {
-          throw WinRTGenException('Type $this has no TypeDef.');
+          throw StateError('Type $this has no TypeDef.');
         }
       }
 

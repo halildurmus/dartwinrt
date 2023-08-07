@@ -25,20 +25,24 @@ void main() {
       expect(output, contains('clone'));
     });
 
-    test('fromTypeAndMethodName constructor throws if type is not found', () {
+    test(
+        'fromTypeAndMethodName constructor throws a StateError if type is not found',
+        () {
       expect(
           () =>
               MethodProjection.fromTypeAndMethodName('Windows.Foo.Bar', 'Foo'),
-          throwsA(isA<WinRTGenException>().having((e) => e.message, 'message',
+          throwsA(isA<StateError>().having((e) => e.message, 'message',
               equals('`Windows.Foo.Bar` is not found in the Metadata!'))));
     });
 
-    test('fromTypeAndMethodName constructor throws if method is not found', () {
+    test(
+        'fromTypeAndMethodName constructor throws a StateError if method is not found',
+        () {
       expect(
         () => MethodProjection.fromTypeAndMethodName(
             'Windows.Foundation.IClosable', 'NonExistentMethod'),
         throwsA(
-          isA<WinRTGenException>().having(
+          isA<StateError>().having(
             (e) => e.message,
             'message',
             equals(

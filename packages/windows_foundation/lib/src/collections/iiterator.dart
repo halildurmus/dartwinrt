@@ -161,7 +161,7 @@ abstract interface class IIterator<T> extends IInspectable {
       if (T == WindowId) return _IIteratorWindowId.fromPtr(ptr) as IIterator<T>;
     }
 
-    throw ArgumentError.value(T, 'T', 'Unsupported type');
+    throw UnsupportedError('Unsupported type argument: $T');
   }
 
   /// Gets the current item in the collection.

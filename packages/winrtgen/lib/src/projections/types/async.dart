@@ -4,7 +4,6 @@
 
 import 'package:winmd/winmd.dart';
 
-import '../../exceptions/exceptions.dart';
 import '../../extensions/extensions.dart';
 import '../../models/models.dart';
 import '../projections.dart';
@@ -57,7 +56,7 @@ final class AsyncOperationParameterProjection
       final interface = typeDef.interfaces.firstWhere((interface) =>
           interface.typeSpec?.name.endsWith('IAsyncOperation`1') ?? false);
       if (interface.typeSpec case final typeSpec?) return typeSpec;
-      throw WinRTGenException("Type '$interface' has no TypeSpec.");
+      throw StateError("Type '$interface' has no TypeSpec.");
     }
 
     return typeProjection.typeIdentifier;
@@ -70,13 +69,13 @@ final class AsyncOperationParameterProjection
 
   String get formattedTypeArg {
     if (typeArg.startsWith('IMapView')) {
-      // e.g. Map<String, String> instead of IMapView<String, String>
+      // e.g., Map<String, String> instead of IMapView<String, String>
       return typeArg.replaceFirst('IMapView', 'Map');
     } else if (typeArg.startsWith('IVectorView')) {
-      // e.g. List<String> instead of IVectorView<String>
+      // e.g., List<String> instead of IVectorView<String>
       return typeArg.replaceFirst('IVectorView', 'List');
     } else if (typeArg.startsWith('IReference')) {
-      // e.g. Duration? instead of IReference<Duration?>
+      // e.g., Duration? instead of IReference<Duration?>
       return typeArg.typeArguments;
     }
 
@@ -94,7 +93,7 @@ final class AsyncOperationParameterProjection
     // IAsyncOperation implementation can instantiate the object.
     final creator = typeArg.creator;
 
-    // e.g. float, int32
+    // e.g., float, int32
     final nativeType = typeProjection.nativeType.toLowerCase();
 
     // If the type argument is a double, 'doubleType' parameter must be

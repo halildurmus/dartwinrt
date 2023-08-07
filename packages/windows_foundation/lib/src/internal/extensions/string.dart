@@ -77,7 +77,7 @@ extension HSTRINGPointerConversions on Pointer<HSTRING> {
 
 /// @nodoc
 extension Uint16PointerConversions on Pointer<Uint16> {
-  /// Creates a [List] from `Pointer<Uint16>`.
+  /// Creates a [List] of [String]s from `Pointer<Uint16>`.
   ///
   /// [length] must not be greater than the number of elements stored inside the
   /// `Pointer<Uint16>`.

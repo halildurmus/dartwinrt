@@ -23,9 +23,6 @@ base class InterfaceProjection extends BaseProjection {
   /// final projection =
   ///     InterfaceProjection.from('Windows.Foundation.IAsyncInfo');
   /// ```
-  ///
-  /// Throws an [Exception] if no [TypeDef] matching [fullyQualifiedType] is
-  /// found.
   factory InterfaceProjection.from(String fullyQualifiedType,
       {String comment = ''}) {
     final typeDef = WinRTMetadataStore.findMetadata(fullyQualifiedType);
