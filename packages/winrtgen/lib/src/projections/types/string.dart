@@ -8,12 +8,17 @@ import '../parameter.dart';
 final class StringParameterProjection extends ParameterProjection {
   StringParameterProjection(super.parameter);
 
+  bool get isCharType => typeProjection.isCharType;
+
   @override
   String get type => 'String';
 
   @override
-  String get creator => '$identifier.toDartString()';
+  String get creator => isCharType
+      ? 'String.fromCharCode($identifier.value)'
+      : '$identifier.toDartString()';
 
   @override
-  String get into => '$identifier.toHString()';
+  String get into =>
+      isCharType ? '$identifier.codeUnitAt(0)' : '$identifier.toHString()';
 }

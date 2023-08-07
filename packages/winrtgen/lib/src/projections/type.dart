@@ -72,6 +72,8 @@ final class TypeProjection {
   bool get isBaseType =>
       _baseNativeMapping.keys.contains(typeIdentifier.baseType);
 
+  bool get isCharType => typeIdentifier.isCharType;
+
   bool get isClassVariableType => typeIdentifier.isClassVariableType;
 
   bool get isDartPrimitive => switch (dartType) {

@@ -102,7 +102,7 @@ enum ProjectionKind {
     if (type.isMap) return ProjectionKind.map;
     if (type.isMapView) return ProjectionKind.mapView;
     if (type.isIReference) return ProjectionKind.ireference;
-    if (type.isString) return ProjectionKind.string;
+    if (type.isCharType || type.isString) return ProjectionKind.string;
     if (type.isUri) return ProjectionKind.uri;
     if (type.isVector) return ProjectionKind.vector;
     if (type.isVectorView) return ProjectionKind.vectorView;

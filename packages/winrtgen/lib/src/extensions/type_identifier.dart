@@ -114,6 +114,8 @@ extension TypeIdentifierHelpers on TypeIdentifier {
   /// Returns the IID of this TypeIdentifier.
   String get iid => signature.toIID();
 
+  bool get isCharType => baseType == BaseType.charType;
+
   bool get isClassType => baseType == BaseType.classTypeModifier;
 
   bool get isClassVariableType =>

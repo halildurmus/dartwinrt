@@ -32,7 +32,18 @@ void main() {
       expect(typeProjection.dartType, equals('int'));
       expect(typeProjection.nativeType, equals('Uint16'));
       expect(typeProjection.attribute, equals('@Uint16()'));
+      expect(typeProjection.isCharType, isTrue);
       expect(typeProjection.isDartPrimitive, isTrue);
+    });
+
+    test('Class type is projected correctly', () {
+      final methodProjection = MethodProjection.fromTypeAndMethodName(
+          'Windows.Globalization.Calendar', 'Clone');
+      final typeProjection = methodProjection.typeProjection;
+      expect(typeProjection.dartType, equals('COMObject'));
+      expect(typeProjection.nativeType, equals('COMObject'));
+      expect(typeProjection.isWinRTClass, isTrue);
+      expect(typeProjection.isWinRTObject, isTrue);
     });
 
     test('Delegate type is projected correctly', () {
@@ -53,16 +64,6 @@ void main() {
       expect(typeProjection.nativeType, equals('Double'));
       expect(typeProjection.attribute, equals('@Double()'));
       expect(typeProjection.isDartPrimitive, isTrue);
-    });
-
-    test('Class type is projected correctly', () {
-      final methodProjection = MethodProjection.fromTypeAndMethodName(
-          'Windows.Globalization.Calendar', 'Clone');
-      final typeProjection = methodProjection.typeProjection;
-      expect(typeProjection.dartType, equals('COMObject'));
-      expect(typeProjection.nativeType, equals('COMObject'));
-      expect(typeProjection.isWinRTClass, isTrue);
-      expect(typeProjection.isWinRTObject, isTrue);
     });
 
     test('Enum type is projected correctly', () {

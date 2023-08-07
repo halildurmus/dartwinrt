@@ -297,7 +297,7 @@ class IPropertyValue extends IInspectable {
     }
   }
 
-  int getChar16() {
+  String getChar16() {
     final value = calloc<Uint16>();
 
     try {
@@ -315,7 +315,7 @@ class IPropertyValue extends IInspectable {
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return value.value;
+      return String.fromCharCode(value.value);
     } finally {
       free(value);
     }
@@ -774,7 +774,7 @@ class IPropertyValue extends IInspectable {
     }
   }
 
-  List<int> getChar16Array() {
+  List<String> getChar16Array() {
     final valueSize = calloc<Uint32>();
     final value = calloc<Pointer<Uint16>>();
 
@@ -796,7 +796,7 @@ class IPropertyValue extends IInspectable {
 
       if (FAILED(hr)) throwWindowsException(hr);
 
-      return value.value.toList(length: valueSize.value);
+      return value.value.toStringList(length: valueSize.value);
     } finally {
       free(valueSize);
       free(value);

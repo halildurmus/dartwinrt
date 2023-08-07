@@ -1212,6 +1212,40 @@ void main() {
           orderedEquals(['free(resultSize);', 'free(result);']));
     });
 
+    test('projects List<String> (Char16)', () {
+      final projection = MethodProjection.fromTypeAndMethodName(
+          'Windows.Foundation.IPropertyValue', 'GetChar16Array');
+      expect(projection.annotations, isEmpty);
+      expect(projection.useTryFinallyBlock, isTrue);
+      expect(projection.returnType, equals('List<String>'));
+      expect(projection.header, equals('List<String> getChar16Array()'));
+      expect(projection.paramIdentifier, isEmpty);
+      expect(projection.preambles, isEmpty);
+      expect(
+          projection.parametersPreamble,
+          equals([
+            'final valueSize = calloc<Uint32>();',
+            'final value = calloc<Pointer<Uint16>>();'
+          ]));
+      expect(
+          projection.nativePrototype,
+          equals(
+              'HRESULT Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize, Pointer<Pointer<Uint16>> value)'));
+      expect(
+          projection.dartPrototype,
+          equals(
+              'int Function(VTablePointer lpVtbl, Pointer<Uint32> valueSize, Pointer<Pointer<Uint16>> value)'));
+      expect(
+          projection.identifiers, equals('ptr.ref.lpVtbl, valueSize, value'));
+      expect(projection.parametersPostamble,
+          equals(['free(valueSize);', 'free(value);']));
+      expect(projection.failedCheck, equals(failedCheck()));
+      expect(projection.nullCheck, isEmpty);
+      expect(projection.returnStatement,
+          equals('return value.value.toStringList(length: valueSize.value);'));
+      expect(projection.postambles, isEmpty);
+    });
+
     test('projects Object?', () {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Foundation.Collections.PropertySet', 'Lookup');
@@ -1500,7 +1534,7 @@ void main() {
       expect(projection.postambles, equals(['free(result);']));
     });
 
-    test('projects String (1)', () {
+    test('projects String', () {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Globalization.ICalendar', 'GetCalendarSystem');
       expect(projection.annotations, isEmpty);
@@ -1525,7 +1559,32 @@ void main() {
       expect(projection.postambles, orderedEquals(['free(value);']));
     });
 
-    test('projects String (2) (annotated with @override)', () {
+    test('projects String (Char16)', () {
+      final projection = MethodProjection.fromTypeAndMethodName(
+          'Windows.Foundation.IPropertyValue', 'GetChar16');
+      expect(projection.annotations, isEmpty);
+      expect(projection.useTryFinallyBlock, isTrue);
+      expect(projection.returnType, equals('String'));
+      expect(projection.header, equals('String getChar16()'));
+      expect(projection.paramIdentifier, equals('value'));
+      expect(projection.preambles, equals(['final value = calloc<Uint16>();']));
+      expect(projection.parametersPreamble, isEmpty);
+      expect(
+          projection.nativePrototype,
+          equals(
+              'HRESULT Function(VTablePointer lpVtbl, Pointer<Uint16> value)'));
+      expect(projection.dartPrototype,
+          equals('int Function(VTablePointer lpVtbl, Pointer<Uint16> value)'));
+      expect(projection.identifiers, equals('ptr.ref.lpVtbl, value'));
+      expect(projection.parametersPostamble, isEmpty);
+      expect(projection.failedCheck, equals(failedCheck()));
+      expect(projection.nullCheck, isEmpty);
+      expect(projection.returnStatement,
+          equals('return String.fromCharCode(value.value);'));
+      expect(projection.postambles, orderedEquals(['free(value);']));
+    });
+
+    test('projects String (annotated with @override)', () {
       final projection = MethodProjection.fromTypeAndMethodName(
           'Windows.Foundation.IStringable', 'ToString');
       expect(projection.annotations, equals(['@override']));

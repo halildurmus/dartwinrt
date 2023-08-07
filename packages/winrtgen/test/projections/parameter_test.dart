@@ -601,6 +601,29 @@ void main() {
       expect(projection.localIdentifier, equals('itemsArray'));
     });
 
+    test('projects List<String> (PassArray - Char16)', () {
+      final methodProjection = MethodProjection.fromTypeAndMethodName(
+          'Windows.Foundation.IPropertyValueStatics', 'CreateChar16Array');
+      final projection = methodProjection.parameters.last;
+      expect(projection, isA<ArrayParameterProjection>());
+      expect(projection.isInParam, isTrue);
+      expect(projection.isOutParam, isFalse);
+      expect(projection.isNullable, isFalse);
+      expect(projection.type, equals('List<String>'));
+      expect(projection.needsAllocation, isTrue);
+      expect(projection.needsDeallocation, isTrue);
+      expect(projection.creatorPreamble, isEmpty);
+      expect(projection.creator,
+          equals('valueArray.toStringList(length: valueSize.value)'));
+      expect(projection.into, equals('valueArray'));
+      expect(projection.preambles,
+          equals(['final valueArray = value.toUint16Array();']));
+      expect(projection.postambles, equals(['free(valueArray);']));
+      expect(projection.nullCheck, isEmpty);
+      expect(projection.identifier, equals('value'));
+      expect(projection.localIdentifier, equals('valueArray'));
+    });
+
     test('projects List<String> (ReceiveArray)', () {
       final methodProjection = MethodProjection.fromTypeAndMethodName(
           'Windows.Foundation.IPropertyValue', 'GetStringArray');
@@ -742,6 +765,27 @@ void main() {
       expect(projection.postambles, isEmpty);
       expect(projection.identifier, equals('value'));
       expect(projection.localIdentifier, equals('value.toHString()'));
+    });
+
+    test('projects String (Char16)', () {
+      final methodProjection = MethodProjection.fromTypeAndMethodName(
+          'Windows.Foundation.IPropertyValueStatics', 'CreateChar16');
+      final projection = methodProjection.parameters.first;
+      expect(projection, isA<StringParameterProjection>());
+      expect(projection.isInParam, isTrue);
+      expect(projection.isOutParam, isFalse);
+      expect(projection.isNullable, isFalse);
+      expect(projection.type, equals('String'));
+      expect(projection.needsAllocation, isFalse);
+      expect(projection.needsDeallocation, isFalse);
+      expect(projection.creatorPreamble, isEmpty);
+      expect(projection.creator, equals('String.fromCharCode(value.value)'));
+      expect(projection.into, 'value.codeUnitAt(0)');
+      expect(projection.preambles, isEmpty);
+      expect(projection.nullCheck, isEmpty);
+      expect(projection.postambles, isEmpty);
+      expect(projection.identifier, equals('value'));
+      expect(projection.localIdentifier, equals('value.codeUnitAt(0)'));
     });
 
     test('projects struct (1)', () {

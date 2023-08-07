@@ -510,6 +510,29 @@ void main() {
       expect(projection.postambles, isEmpty);
     });
 
+    test('projects String (Char16)', () {
+      final projection = SetterProjection.fromTypeAndMethodName(
+          'Windows.UI.Text.RichEditTextRange', 'put_Character');
+      expect(projection.annotations, isEmpty);
+      expect(projection.useTryFinallyBlock, isFalse);
+      expect(projection.header, equals('set character(String value)'));
+      expect(projection.returnType, isEmpty);
+      expect(projection.paramIdentifier, isEmpty);
+      expect(projection.preambles, isEmpty);
+      expect(projection.parametersPreamble, isEmpty);
+      expect(projection.nativePrototype,
+          equals('HRESULT Function(VTablePointer lpVtbl, Uint16 value)'));
+      expect(projection.dartPrototype,
+          equals('int Function(VTablePointer lpVtbl, int value)'));
+      expect(projection.identifiers,
+          equals('ptr.ref.lpVtbl, value.codeUnitAt(0)'));
+      expect(projection.parametersPostamble, isEmpty);
+      expect(projection.failedCheck, equals(failedCheck()));
+      expect(projection.nullCheck, isEmpty);
+      expect(projection.returnStatement, isEmpty);
+      expect(projection.postambles, isEmpty);
+    });
+
     test('projects struct', () {
       final projection = SetterProjection.fromTypeAndMethodName(
           'Windows.Gaming.Input.IGamepad', 'put_Vibration');

@@ -235,6 +235,13 @@ void main() {
           equals(ProjectionKind.string));
     });
 
+    test('returns string type (Char16)', () {
+      final methodProjection = MethodProjection.fromTypeAndMethodName(
+          'Windows.Foundation.IPropertyValue', 'GetChar16');
+      expect(ProjectionKind.from(methodProjection.typeProjection),
+          equals(ProjectionKind.string));
+    });
+
     test('returns stringList type', () {
       final methodProjection = MethodProjection.fromTypeAndMethodName(
           'Windows.Foundation.IPropertyValue', 'GetStringArray');

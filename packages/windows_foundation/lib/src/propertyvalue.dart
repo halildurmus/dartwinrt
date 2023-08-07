@@ -68,7 +68,7 @@ class PropertyValue extends IInspectable {
           IPropertyValueStatics.fromPtr, _className, IID_IPropertyValueStatics)
       .createDouble(value);
 
-  static IPropertyValue createChar16(int value) => createActivationFactory(
+  static IPropertyValue createChar16(String value) => createActivationFactory(
           IPropertyValueStatics.fromPtr, _className, IID_IPropertyValueStatics)
       .createChar16(value);
 
@@ -156,7 +156,7 @@ class PropertyValue extends IInspectable {
               IID_IPropertyValueStatics)
           .createDoubleArray(value);
 
-  static IPropertyValue createChar16Array(List<int> value) =>
+  static IPropertyValue createChar16Array(List<String> value) =>
       createActivationFactory(IPropertyValueStatics.fromPtr, _className,
               IID_IPropertyValueStatics)
           .createChar16Array(value);
