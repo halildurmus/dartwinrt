@@ -5,7 +5,6 @@
 import 'package:winmd/winmd.dart' hide TypeTuple;
 
 import '../constants/constants.dart';
-import '../exceptions/exceptions.dart';
 import '../extensions/extensions.dart';
 import '../models/models.dart';
 import 'getter.dart';
@@ -71,9 +70,6 @@ final class GenericInterfaceProjection extends InterfaceProjection {
   ///     'Windows.Foundation.Collections.IMap`2',
   ///     TypeArgKind.string, TypeArgKind.string);
   /// ```
-  ///
-  /// Throws a [WinRTGenException] if no [TypeDef] matching
-  /// [fullyQualifiedType] is found.
   factory GenericInterfaceProjection.from(
       String fullyQualifiedType, TypeArgKind typeArg1,
       [TypeArgKind? typeArg2]) {

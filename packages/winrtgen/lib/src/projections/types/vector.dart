@@ -35,7 +35,7 @@ final class VectorParameterProjection extends ParameterProjection {
     // when instantiating the IIterable object
     final iterableIid = typeProjection.typeIdentifier.iterableIID;
 
-    // e.g. float, int32
+    // e.g., float, int32
     final nativeType = typeArgProjection.nativeType.toLowerCase();
 
     // If the type argument is a double, 'doubleType' parameter must be

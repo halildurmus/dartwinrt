@@ -9,7 +9,6 @@ import 'package:html/parser.dart' as parser;
 import 'package:http/http.dart' as http;
 import 'package:pool/pool.dart';
 
-import '../exceptions/exceptions.dart';
 import '../extensions/extensions.dart';
 
 /// A class for fetching WinRT API documentation from Microsoft's
@@ -34,8 +33,6 @@ final class WinRTDocsService {
   /// `Windows.Foundation.Uri`) for which documentation is requested.
   ///
   /// Returns an empty string if no documentation is found.
-  ///
-  /// Throws a [WinRTGenException] if an error occurs during the process.
   static Future<String> fetchDocumentation(String fullyQualifiedType) async {
     if (!fullyQualifiedType.isFullyQualifiedType) {
       throw ArgumentError.value(fullyQualifiedType, 'fullyQualifiedType',
@@ -47,7 +44,7 @@ final class WinRTDocsService {
         final uri = Uri.https(_authority, '$_basePath/$fullyQualifiedType');
         final response = await http.get(uri);
         if (response.statusCode != 200) {
-          throw WinRTGenException(
+          throw StateError(
               'Failed to fetch documentation for $fullyQualifiedType. '
               'HTTP status code: ${response.statusCode}');
         }
@@ -61,7 +58,7 @@ final class WinRTDocsService {
         return documentation;
       });
     } catch (_) {
-      throw WinRTGenException(
+      throw StateError(
           'Failed to fetch documentation for $fullyQualifiedType.');
     }
   }

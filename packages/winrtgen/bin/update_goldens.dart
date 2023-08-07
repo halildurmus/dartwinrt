@@ -21,7 +21,7 @@ void main() {
     final MapEntry(:key, :value) = goldenFiles.entries.firstWhere(
         (entry) => goldenFile.path.endsWith(entry.key),
         orElse: () => throw StateError(
-            'Could not find the original file for ${goldenFile.path}'));
+            'Could not find the original file at ${goldenFile.path}'));
     print(' - $key');
     final originalFilePath = '${packagesDir.path}/$value';
     final originalFileContent = File(originalFilePath).readAsStringSync();

@@ -63,14 +63,14 @@ void main() {
       expect(map.lookup('key3'), equals('strVal'));
     });
 
-    test('lookup fails if the map is empty', () {
+    test('lookup throws a WindowsException if the map is empty', () {
       final map = getMap()..clear();
-      expect(() => map.lookup('key1'), throwsException);
+      expect(() => map.lookup('key1'), throwsA(isA<WindowsException>()));
     });
 
-    test('lookup throws exception if the item does not exists', () {
+    test('lookup throws a WindowsException if the item does not exists', () {
       final map = getMap();
-      expect(() => map.lookup('key0'), throwsException);
+      expect(() => map.lookup('key0'), throwsA(isA<WindowsException>()));
     });
 
     test('lookup returns items', () {
@@ -208,14 +208,14 @@ void main() {
       expect(map.lookup('key24'), isNull);
     });
 
-    test('remove throws exception if the map is empty', () {
+    test('remove throws a WindowsException if the map is empty', () {
       final map = getMap()..clear();
-      expect(() => map.remove('key1'), throwsException);
+      expect(() => map.remove('key1'), throwsA(isA<WindowsException>()));
     });
 
-    test('remove throws exception if the item does not exists', () {
+    test('remove throws a WindowsException if the item does not exists', () {
       final map = getMap();
-      expect(() => map.remove('key0'), throwsException);
+      expect(() => map.remove('key0'), throwsA(isA<WindowsException>()));
     });
 
     test('remove', () {
@@ -224,11 +224,11 @@ void main() {
 
       map.remove('key1');
       expect(map.size, equals(22));
-      expect(() => map.lookup('key1'), throwsException);
+      expect(() => map.lookup('key1'), throwsA(isA<WindowsException>()));
 
       map.remove('key6');
       expect(map.size, equals(21));
-      expect(() => map.lookup('key6'), throwsException);
+      expect(() => map.lookup('key6'), throwsA(isA<WindowsException>()));
     });
 
     test('clear', () {
@@ -319,14 +319,14 @@ void main() {
         ..insert('key22', ['str1', 'str2']);
     }
 
-    test('lookup fails if the map is empty', () {
+    test('lookup throws a WindowsException if the map is empty', () {
       final map = getMap()..clear();
-      expect(() => map.lookup('key1'), throwsException);
+      expect(() => map.lookup('key1'), throwsA(isA<WindowsException>()));
     });
 
-    test('lookup throws exception if the item does not exists', () {
+    test('lookup throws a WindowsException if the item does not exists', () {
       final map = getMap();
-      expect(() => map.lookup('key0'), throwsException);
+      expect(() => map.lookup('key0'), throwsA(isA<WindowsException>()));
     });
 
     test('lookup returns items', () {
@@ -463,14 +463,14 @@ void main() {
       expect(map.lookup('key23'), isNull);
     });
 
-    test('remove throws exception if the map is empty', () {
+    test('remove throws a WindowsException if the map is empty', () {
       final map = getMap()..clear();
-      expect(() => map.remove('key1'), throwsException);
+      expect(() => map.remove('key1'), throwsA(isA<WindowsException>()));
     });
 
-    test('remove throws exception if the item does not exists', () {
+    test('remove throws a WindowsException if the item does not exists', () {
       final map = getMap();
-      expect(() => map.remove('key0'), throwsException);
+      expect(() => map.remove('key0'), throwsA(isA<WindowsException>()));
     });
 
     test('remove', () {
@@ -479,11 +479,11 @@ void main() {
 
       map.remove('key1');
       expect(map.size, equals(21));
-      expect(() => map.lookup('key1'), throwsException);
+      expect(() => map.lookup('key1'), throwsA(isA<WindowsException>()));
 
       map.remove('key6');
       expect(map.size, equals(20));
-      expect(() => map.lookup('key6'), throwsException);
+      expect(() => map.lookup('key6'), throwsA(isA<WindowsException>()));
     });
 
     test('clear', () {
@@ -555,14 +555,14 @@ void main() {
       expect(map.lookup('key3'), equals('value3'));
     });
 
-    test('lookup fails if the map is empty', () {
+    test('lookup throws a WindowsException if the map is empty', () {
       final map = getMap()..clear();
-      expect(() => map.lookup('key1'), throwsException);
+      expect(() => map.lookup('key1'), throwsA(isA<WindowsException>()));
     });
 
-    test('lookup throws exception if the item does not exists', () {
+    test('lookup throws a WindowsException if the item does not exists', () {
       final map = getMap();
-      expect(() => map.lookup('key4'), throwsException);
+      expect(() => map.lookup('key4'), throwsA(isA<WindowsException>()));
     });
 
     test('lookup returns items', () {
@@ -607,14 +607,14 @@ void main() {
       expect(map.lookup('key4'), equals('value4'));
     });
 
-    test('remove throws exception if the map is empty', () {
+    test('remove throws a WindowsException if the map is empty', () {
       final map = getMap()..clear();
-      expect(() => map.remove('key0'), throwsException);
+      expect(() => map.remove('key0'), throwsA(isA<WindowsException>()));
     });
 
-    test('remove throws exception if the item does not exists', () {
+    test('remove throws a WindowsException if the item does not exists', () {
       final map = getMap();
-      expect(() => map.remove('key4'), throwsException);
+      expect(() => map.remove('key4'), throwsA(isA<WindowsException>()));
     });
 
     test('remove', () {
@@ -622,11 +622,11 @@ void main() {
       expect(map.size, equals(3));
       map.remove('key1');
       expect(map.size, equals(2));
-      expect(() => map.lookup('key1'), throwsException);
+      expect(() => map.lookup('key1'), throwsA(isA<WindowsException>()));
 
       map.remove('key2');
       expect(map.size, equals(1));
-      expect(() => map.lookup('key2'), throwsException);
+      expect(() => map.lookup('key2'), throwsA(isA<WindowsException>()));
     });
 
     test('clear', () {
@@ -718,15 +718,15 @@ void main() {
       return getView(map.ptr);
     }
 
-    test('lookup fails if the map is empty', () {
+    test('lookup throws a WindowsException if the map is empty', () {
       final map = IMap<String, String>.empty();
       final mapView = getView(map.ptr);
-      expect(() => mapView.lookup('key1'), throwsException);
+      expect(() => mapView.lookup('key1'), throwsA(isA<WindowsException>()));
     });
 
-    test('lookup throws exception if the item does not exists', () {
+    test('lookup throws a WindowsException if the item does not exists', () {
       final mapView = getMapView();
-      expect(() => mapView.lookup('key4'), throwsException);
+      expect(() => mapView.lookup('key4'), throwsA(isA<WindowsException>()));
     });
 
     test('lookup returns items', () {
@@ -817,16 +817,16 @@ void main() {
       return getServerUris(object.ptr);
     }
 
-    test('getAt fails if the vector is empty', () {
+    test('getAt throws a WindowsException if the vector is empty', () {
       final vector = getVector();
-      expect(() => vector.getAt(0), throwsException);
+      expect(() => vector.getAt(0), throwsA(isA<WindowsException>()));
     });
 
-    test('getAt throws exception if the index is out of bounds', () {
+    test('getAt throws a WindowsException if the index is out of bounds', () {
       final vector = getVector()
         ..append(Uri.parse('https://dart.dev/overview'))
         ..append(Uri.parse('https://dart.dev/docs'));
-      expect(() => vector.getAt(2), throwsException);
+      expect(() => vector.getAt(2), throwsA(isA<WindowsException>()));
     });
 
     test('getAt returns elements', () {
@@ -856,19 +856,19 @@ void main() {
       expect(() => list..clear(), throwsUnsupportedError);
     });
 
-    test('setAt throws exception if the vector is empty', () {
+    test('setAt throws a WindowsException if the vector is empty', () {
       final vector = getVector();
       expect(() => vector.setAt(0, Uri.parse('https://dart.dev/overview')),
-          throwsException);
+          throwsA(isA<WindowsException>()));
     });
 
-    test('setAt throws exception if the index is out of bounds', () {
+    test('setAt throws a WindowsException if the index is out of bounds', () {
       final vector = getVector()
         ..append(Uri.parse('https://dart.dev/overview'))
         ..append(Uri.parse('https://dart.dev/docs'));
       expect(
           () => vector.setAt(3, Uri.parse('https://flutter.dev/development')),
-          throwsException);
+          throwsA(isA<WindowsException>()));
     });
 
     test('setAt', () {
@@ -886,14 +886,15 @@ void main() {
           equals(Uri.parse('https://flutter.dev/multi-platform')));
     });
 
-    test('insertAt throws exception if the index is out of bounds', () {
+    test('insertAt throws a WindowsException if the index is out of bounds',
+        () {
       final vector = getVector()
         ..append(Uri.parse('https://dart.dev/overview'))
         ..append(Uri.parse('https://dart.dev/docs'));
       expect(
           () =>
               vector.insertAt(3, Uri.parse('https://flutter.dev/development')),
-          throwsException);
+          throwsA(isA<WindowsException>()));
     });
 
     test('insertAt', () {
@@ -912,16 +913,17 @@ void main() {
       expect(vector.getAt(3), equals(Uri.parse('https://dart.dev/docs')));
     });
 
-    test('removeAt throws exception if the vector is empty', () {
+    test('removeAt throws a WindowsException if the vector is empty', () {
       final vector = getVector();
-      expect(() => vector.removeAt(0), throwsException);
+      expect(() => vector.removeAt(0), throwsA(isA<WindowsException>()));
     });
 
-    test('removeAt throws exception if the index is out of bounds', () {
+    test('removeAt throws a WindowsException if the index is out of bounds',
+        () {
       final vector = getVector()
         ..append(Uri.parse('https://dart.dev/overview'))
         ..append(Uri.parse('https://dart.dev/docs'));
-      expect(() => vector.removeAt(3), throwsException);
+      expect(() => vector.removeAt(3), throwsA(isA<WindowsException>()));
     });
 
     test('removeAt', () {
@@ -956,9 +958,9 @@ void main() {
       expect(vector.size, equals(3));
     });
 
-    test('removeAtEnd throws exception if the vector is empty', () {
+    test('removeAtEnd throws a WindowsException if the vector is empty', () {
       final vector = getVector();
-      expect(vector.removeAtEnd, throwsException);
+      expect(vector.removeAtEnd, throwsA(isA<WindowsException>()));
     });
 
     test('removeAtEnd', () {

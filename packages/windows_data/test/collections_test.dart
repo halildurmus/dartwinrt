@@ -27,14 +27,14 @@ void main() {
         ..insert('key5', null);
     }
 
-    test('lookup fails if the map is empty', () {
+    test('lookup throws a WindowsException if the map is empty', () {
       final map = getMap()..clear();
-      expect(() => map.lookup('key1'), throwsException);
+      expect(() => map.lookup('key1'), throwsA(isA<WindowsException>()));
     });
 
-    test('lookup throws exception if the item does not exists', () {
+    test('lookup throws a WindowsException if the item does not exists', () {
       final map = getMap();
-      expect(() => map.lookup('key0'), throwsException);
+      expect(() => map.lookup('key0'), throwsA(isA<WindowsException>()));
     });
 
     test('lookup returns items', () {
@@ -103,11 +103,11 @@ void main() {
       expect(map.size, equals(5));
       map.remove('key1');
       expect(map.size, equals(4));
-      expect(() => map.lookup('key1'), throwsException);
+      expect(() => map.lookup('key1'), throwsA(isA<WindowsException>()));
 
       map.remove('key2');
       expect(map.size, equals(3));
-      expect(() => map.lookup('key2'), throwsException);
+      expect(() => map.lookup('key2'), throwsA(isA<WindowsException>()));
     });
 
     test('clear', () {

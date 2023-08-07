@@ -4,7 +4,6 @@
 
 import 'package:winmd/winmd.dart';
 
-import '../exceptions/exceptions.dart';
 import '../extensions/extensions.dart';
 import '../models/models.dart';
 import 'method.dart';
@@ -35,8 +34,8 @@ base class SetterProjection extends PropertyProjection {
         ProjectionKind.vector ||
         ProjectionKind.vectorView =>
           SetterProjection(method, vtableOffset),
-        _ => throw WinRTGenException(
-            'Unsupported projection kind: $projectionKind'),
+        _ =>
+          throw UnsupportedError('Unsupported ProjectionKind: $projectionKind'),
       };
     } catch (_) {
       print("Failed to project setter '$method' from '${method.parent}'.");
@@ -54,9 +53,6 @@ base class SetterProjection extends PropertyProjection {
   ///
   /// It does this by calling `MethodProjection.fromTypeAndMethodName`
   /// constructor with given [fullyQualifiedType] and [methodName].
-  ///
-  /// Throws an [Exception] if [methodName] is invalid or no [SetterProjection]
-  /// matching [methodName] is found.
   factory SetterProjection.fromTypeAndMethodName(
       String fullyQualifiedType, String methodName) {
     final setPropertyRegExp = RegExp(r'^put(_{1,2})(\w+)$');

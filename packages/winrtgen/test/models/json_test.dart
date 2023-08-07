@@ -30,10 +30,10 @@ void main() {
       file.deleteSync();
     });
 
-    test('should throw WinRTGenException when loading non-JSON file', () {
+    test('should throw a StateError when loading non-JSON file', () {
       const jsonLoader = LocalJsonLoader();
       expect(() => jsonLoader.load('test/goldens/icalendar.golden'),
-          throwsA(isA<WinRTGenException>()));
+          throwsStateError);
     });
   });
 
@@ -64,13 +64,12 @@ void main() {
       file.deleteSync();
     });
 
-    test('should throw WinRTGenException when saving fails', () {
+    test('should throw a StateError when saving fails', () {
       const jsonSaver = LocalJsonSaver();
       const jsonData = {'name': 'Jane Smith', 'age': 25};
       const invalidFilePath = 'invalid_path/invalid_file.json';
 
-      expect(() => jsonSaver.save(invalidFilePath, jsonData),
-          throwsA(isA<WinRTGenException>()));
+      expect(() => jsonSaver.save(invalidFilePath, jsonData), throwsStateError);
     });
   });
 

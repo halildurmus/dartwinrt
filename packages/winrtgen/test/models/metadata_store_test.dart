@@ -23,10 +23,10 @@ void main() {
             equals('Windows.Globalization.Calendar'));
       });
 
-      test('throws a WinRTGenException if type is not found', () {
+      test('throws a StateError if type is not found', () {
         expect(
           () => WinRTMetadataStore.findMetadata('Windows.Foo.Bar'),
-          throwsA(isA<WinRTGenException>().having((e) => e.message, 'message',
+          throwsA(isA<StateError>().having((e) => e.message, 'message',
               equals('`Windows.Foo.Bar` is not found in the Metadata!'))),
         );
       });

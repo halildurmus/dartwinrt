@@ -83,9 +83,6 @@ final class NativeStructProjection extends BaseProjection {
   /// ```dart
   /// final projection = NativeStructProjection.from('Windows.Foundation.Rect');
   /// ```
-  ///
-  /// Throws an [Exception] if no [TypeDef] matching [fullyQualifiedType] is
-  /// found.
   factory NativeStructProjection.from(
     String fullyQualifiedType, {
     String? structName,
@@ -132,9 +129,6 @@ final class StructProjection extends NativeStructProjection {
   /// ```dart
   /// final projection = StructProjection.from('Windows.Foundation.Rect');
   /// ```
-  ///
-  /// Throws an [Exception] if no [TypeDef] matching [fullyQualifiedType] is
-  /// found.
   factory StructProjection.from(
     String fullyQualifiedType, {
     String comment = '',

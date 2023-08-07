@@ -25,18 +25,21 @@ void main() {
     });
 
     test('createChar16Array', () {
-      final pv = PropertyValue.createChar16Array(['A', 'B', 'C', 'D', 'E']);
+      final pv = PropertyValue.createChar16Array(
+          ['D', 'a', 'r', 't', '\x00', ' ', r'$']);
       expect(pv.isNumericScalar, isFalse);
       expect(pv.type, equals(PropertyType.char16Array));
 
       final list = pv.getChar16Array();
-      expect(list.length, equals(5));
-      expect(list[0], equals('A'));
-      expect(list[1], equals('B'));
-      expect(list[2], equals('C'));
-      expect(list[3], equals('D'));
-      expect(list[4], equals('E'));
-      expect(pv.value, equals(['A', 'B', 'C', 'D', 'E']));
+      expect(list.length, equals(7));
+      expect(list[0], equals('D'));
+      expect(list[1], equals('a'));
+      expect(list[2], equals('r'));
+      expect(list[3], equals('t'));
+      expect(list[4], equals('\x00'));
+      expect(list[5], equals(' '));
+      expect(list[6], equals(r'$'));
+      expect(pv.value, equals(['D', 'a', 'r', 't', '\x00', ' ', r'$']));
     });
 
     test('createDateTime', () {

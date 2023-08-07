@@ -52,7 +52,8 @@ void main() {
           equals('New comment.'));
     });
 
-    test('add throws ArgumentError if the type is not a fully qualified type',
+    test(
+        'add throws an ArgumentError if the type is not a fully qualified type',
         () {
       expect(() => enumManager.add('Windows'), throwsArgumentError);
     });
@@ -70,7 +71,8 @@ void main() {
       expect(enumManager.contains('Windows.Storage.FileAttributes'), isTrue);
     });
 
-    test('addAll throws ArgumentError if a type is not a fully qualified type',
+    test(
+        'addAll throws an ArgumentError if a type is not a fully qualified type',
         () {
       expect(
           () => enumManager.addAll({
@@ -114,7 +116,7 @@ void main() {
       expect(enumManager.contains('Windows.Globalization.DayOfWeek'), isFalse);
     });
 
-    test('remove throws ArgumentError if type is not a fully qualified type',
+    test('remove throws an ArgumentError if type is not a fully qualified type',
         () {
       expect(
           () => enumManager.remove('Windows.Foundation'), throwsArgumentError);
@@ -142,7 +144,7 @@ void main() {
     });
 
     test(
-        'operator [] throws ArgumetError if type is not a fully qualified type',
+        'operator [] throws an ArgumentError if type is not a fully qualified type',
         () {
       expect(() => enumManager['Windows.Foundation'], throwsArgumentError);
     });
@@ -170,7 +172,7 @@ void main() {
     });
 
     test(
-        'operator []= throws ArgumetError if type is not a fully qualified type',
+        'operator []= throws an ArgumentError if type is not a fully qualified type',
         () {
       expect(() => enumManager['Windows.Foundation'] = 'New comment',
           throwsArgumentError);
@@ -219,7 +221,8 @@ void main() {
           equals('New comment.'));
     });
 
-    test('add throws ArgumentError if the type is not a fully qualified type',
+    test(
+        'add throws an ArgumentError if the type is not a fully qualified type',
         () {
       expect(() => objectManager.add('Windows'), throwsArgumentError);
     });
@@ -237,7 +240,8 @@ void main() {
       expect(objectManager.contains('Windows.Gaming.Input.Headset'), isTrue);
     });
 
-    test('addAll throws ArgumentError if a type is not a fully qualified type',
+    test(
+        'addAll throws an ArgumentError if a type is not a fully qualified type',
         () {
       expect(
           () => objectManager.addAll({
@@ -299,7 +303,7 @@ void main() {
           objectManager.contains('Windows.Foundation.MemoryBuffer'), isFalse);
     });
 
-    test('remove throws ArgumentError if type is not a fully qualified type',
+    test('remove throws an ArgumentError if type is not a fully qualified type',
         () {
       expect(() => objectManager.remove('Windows.Foundation'),
           throwsArgumentError);
@@ -328,7 +332,7 @@ void main() {
     });
 
     test(
-        'operator [] throws ArgumetError if type is not a fully qualified type',
+        'operator [] throws an ArgumentError if type is not a fully qualified type',
         () {
       expect(() => objectManager['Windows.Foundation'], throwsArgumentError);
     });
@@ -353,7 +357,7 @@ void main() {
     });
 
     test(
-        'operator []= throws ArgumetError if type is not a fully qualified type',
+        'operator []= throws an ArgumentError if type is not a fully qualified type',
         () {
       expect(() => objectManager['Windows.Foundation'] = 'New comment',
           throwsArgumentError);
@@ -399,7 +403,8 @@ void main() {
           equals('New comment.'));
     });
 
-    test('add throws ArgumentError if the type is not a fully qualified type',
+    test(
+        'add throws an ArgumentError if the type is not a fully qualified type',
         () {
       expect(() => structManager.add('Windows'), throwsArgumentError);
     });
@@ -418,7 +423,8 @@ void main() {
       expect(structManager.contains('Windows.Graphics.RectInt32'), isTrue);
     });
 
-    test('addAll throws ArgumentError if a type is not a fully qualified type',
+    test(
+        'addAll throws an ArgumentError if a type is not a fully qualified type',
         () {
       expect(
           () => structManager.addAll({
@@ -464,7 +470,7 @@ void main() {
           isFalse);
     });
 
-    test('remove throws ArgumentError if type is not a fully qualified type',
+    test('remove throws an ArgumentError if type is not a fully qualified type',
         () {
       expect(() => structManager.remove('Windows.Foundation'),
           throwsArgumentError);
@@ -490,7 +496,7 @@ void main() {
     });
 
     test(
-        'operator [] throws ArgumetError if type is not a fully qualified type',
+        'operator [] throws an ArgumentError if type is not a fully qualified type',
         () {
       expect(() => structManager['Windows.Foundation'], throwsArgumentError);
     });
@@ -515,7 +521,7 @@ void main() {
     });
 
     test(
-        'operator []= throws ArgumetError if type is not a fully qualified type',
+        'operator []= throws an ArgumentError if type is not a fully qualified type',
         () {
       expect(() => structManager['Windows.Foundation'] = 'New comment',
           throwsArgumentError);

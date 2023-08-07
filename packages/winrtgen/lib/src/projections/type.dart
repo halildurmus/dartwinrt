@@ -4,7 +4,6 @@
 
 import 'package:winmd/winmd.dart';
 
-import '../exceptions/exceptions.dart';
 import '../extensions/extensions.dart';
 import '../models/models.dart';
 
@@ -146,13 +145,13 @@ final class TypeProjection {
   TypeTuple _unwrapEnum() {
     final fieldType = typeIdentifier.type?.findField('value__')?.typeIdentifier;
     if (fieldType == null) {
-      throw WinRTGenException('Enum $typeIdentifier is missing value__ field');
+      throw StateError('Enum $typeIdentifier has no `value__` field.');
     }
 
     final typeTuple = _baseNativeMapping[fieldType.baseType];
     if (typeTuple == null) {
-      throw WinRTGenException(
-          'Enum $typeIdentifier has unsupported underlying type');
+      throw StateError(
+          'Enum $typeIdentifier has unsupported underlying type: ${fieldType.baseType}.');
     }
 
     return typeTuple;
@@ -160,21 +159,18 @@ final class TypeProjection {
 
   /// Convert the projection of a *[typeIdentifier] into the projection of a
   /// typeIdentifier.
-  ///
-  /// Throws a [WinRTGenException] if [typeIdentifier] is cannot be
-  /// de-referenced.
   TypeProjection dereference() =>
       TypeProjection(typeIdentifier.dereference(), isInParam: isInParam);
 
   TypeTuple _unwrapGenericTypeArg() {
-    final typeArg = TypeArgKind.from(typeIdentifier.name);
-    return switch (typeArg) {
+    final typeArgKind = TypeArgKind.from(typeIdentifier.name);
+    return switch (typeArgKind) {
       TypeArgKind.inspectable || TypeArgKind.nullableInspectable => TypeTuple(
           isInParam ? 'VTablePointer' : 'COMObject',
           isInParam ? 'VTablePointer' : 'COMObject'),
       TypeArgKind.winrtEnum => _baseNativeMapping[BaseType.int32Type]!,
       TypeArgKind.winrtFlagsEnum => _baseNativeMapping[BaseType.uint32Type]!,
-      _ => throw WinRTGenException('Unsupported TypeArgKind: $typeArg')
+      _ => throw UnsupportedError('Unsupported TypeArgKind: $typeArgKind')
     };
   }
 
@@ -196,7 +192,7 @@ final class TypeProjection {
   TypeTuple _unwrapStruct() {
     final structType = typeIdentifier.type;
     if (structType == null) {
-      throw WinRTGenException('Struct type missing for $typeIdentifier.');
+      throw StateError('Struct type missing for $typeIdentifier.');
     }
 
     final structName = 'Native${structType.name.lastComponent}';
@@ -238,7 +234,7 @@ final class TypeProjection {
     // TypeArgKind.winrtFlagsEnum)
     if (isClassVariableType) return _unwrapGenericTypeArg();
 
-    throw WinRTGenException('Type information missing for $typeIdentifier.');
+    throw StateError('Type information missing for $typeIdentifier.');
   }
 
   @override

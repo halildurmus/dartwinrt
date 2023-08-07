@@ -26,9 +26,9 @@ void main() {
       expect(output, contains('Calendar'));
     });
 
-    test('from factory constructor throws if type is not found', () {
-      expect(() => ClassProjection.from('Windows.Foo.Bar'),
-          throwsA(isA<WinRTGenException>()));
+    test('from factory constructor throws a StateError if type is not found',
+        () {
+      expect(() => ClassProjection.from('Windows.Foo.Bar'), throwsStateError);
     });
   });
 

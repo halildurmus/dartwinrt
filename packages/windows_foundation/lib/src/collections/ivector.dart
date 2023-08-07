@@ -257,7 +257,7 @@ abstract interface class IVector<T> extends IInspectable
       }
     }
 
-    throw ArgumentError.value(T, 'T', 'Unsupported type');
+    throw UnsupportedError('Unsupported type argument: $T');
   }
 
   /// Returns the item at the specified index in the vector view.

@@ -5,7 +5,6 @@
 import 'package:winmd/winmd.dart';
 
 import '../constants/constants.dart';
-import '../exceptions/exceptions.dart';
 import '../extensions/extensions.dart';
 import 'winrt_metadata_store.dart';
 
@@ -144,8 +143,7 @@ enum TypeArgKind {
           _ => TypeArgKind.from(
               isNullable ? name.lastComponent.nullable() : name.lastComponent)
         },
-      _ =>
-        throw WinRTGenException('Unsupported TypeIdentifier: $typeIdentifier')
+      _ => throw UnsupportedError('Unsupported TypeIdentifier: $typeIdentifier')
     };
   }
 
@@ -305,7 +303,7 @@ enum TypeArgKind {
         TypeArgKind.nullableUri =>
           'Windows.Foundation.Uri'.typeIdentifier,
         TypeArgKind.windowId => 'Windows.UI.WindowId'.typeIdentifier,
-        _ => throw WinRTGenException('Unsupported TypeArgKind: $this'),
+        _ => throw UnsupportedError('Unsupported TypeArgKind: $this'),
       };
 }
 

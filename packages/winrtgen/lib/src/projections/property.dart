@@ -15,7 +15,7 @@ abstract base class PropertyProjection extends MethodProjection {
   @override
   String get camelCasedName {
     assert(_propertyPrefixRegExp.hasMatch(name));
-    // e.g. get_Size -> Size, put_Completed -> Completed
+    // e.g., get_Size -> Size, put_Completed -> Completed
     return name.substring(4).toCamelCase().toSafeIdentifier();
   }
 }

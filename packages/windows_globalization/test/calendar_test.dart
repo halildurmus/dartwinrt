@@ -51,7 +51,7 @@ void main() {
       final languages = calendar.languages;
       expect(languages, isNotNull);
       expect(languages?.length, isPositive);
-      expect(languages?.first, contains('-')); // e.g. en-US
+      expect(languages?.first, contains('-')); // e.g., en-US
     });
 
     test('numeralSystem getter', () {

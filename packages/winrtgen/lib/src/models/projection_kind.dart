@@ -2,7 +2,6 @@
 // All rights reserved. Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import '../exceptions/exceptions.dart';
 import '../projections/projections.dart';
 import 'type_arg_kind.dart';
 
@@ -56,15 +55,15 @@ enum ProjectionKind {
     }
 
     if (type.isClassVariableType) {
-      final typeArg = TypeArgKind.from(type.typeIdentifier.name);
-      return switch (typeArg) {
+      final typeArgKind = TypeArgKind.from(type.typeIdentifier.name);
+      return switch (typeArgKind) {
         TypeArgKind.inspectable ||
         TypeArgKind.nullableInspectable =>
           ProjectionKind.genericObject,
         TypeArgKind.winrtEnum ||
         TypeArgKind.winrtFlagsEnum =>
           ProjectionKind.genericEnum,
-        _ => throw WinRTGenException('Unsupported TypeArgKind: $typeArg'),
+        _ => throw UnsupportedError('Unsupported TypeArgKind: $typeArgKind'),
       };
     }
 
@@ -81,8 +80,8 @@ enum ProjectionKind {
         ProjectionKind.string => ProjectionKind.stringArray,
         ProjectionKind.struct => ProjectionKind.structArray,
         ProjectionKind.uri => ProjectionKind.uriArray,
-        _ => throw WinRTGenException(
-            'Unsupported projection kind: $projectionKind'),
+        _ =>
+          throw UnsupportedError('Unsupported ProjectionKind: $projectionKind'),
       };
     }
 
@@ -112,6 +111,6 @@ enum ProjectionKind {
     if (type.isWinRTDelegate) return ProjectionKind.delegate;
     if (type.isWinRTStruct) return ProjectionKind.struct;
 
-    throw WinRTGenException('Unsupported type: ${type.typeIdentifier}');
+    throw UnsupportedError('Unsupported TypeProjection: $type');
   }
 }

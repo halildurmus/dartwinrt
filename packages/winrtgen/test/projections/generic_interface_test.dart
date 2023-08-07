@@ -34,18 +34,21 @@ void main() {
       expect(output, contains('_IAsyncOperationBool'));
     });
 
-    test('from factory constructor throws if typeArg2 is not specified', () {
+    test(
+        'from factory constructor throws an ArgumentError if typeArg2 is not specified',
+        () {
       expect(
           () => GenericInterfaceProjection.from(
               'Windows.Foundation.Collections.IMap`2', TypeArgKind.string),
-          throwsA(isA<ArgumentError>()));
+          throwsArgumentError);
     });
 
-    test('from factory constructor throws if type is not found', () {
+    test('from factory constructor throws a StateError if type is not found',
+        () {
       expect(
           () => GenericInterfaceProjection.from(
               'Windows.Foo.IBar', TypeArgKind.bool_),
-          throwsA(isA<WinRTGenException>()));
+          throwsStateError);
     });
   });
 

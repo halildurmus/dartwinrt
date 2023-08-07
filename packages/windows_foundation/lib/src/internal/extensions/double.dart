@@ -55,7 +55,7 @@ extension DoubleListConversions on List<double> {
       return array as Pointer<T>;
     }
 
-    throw UnsupportedError('Unsupported type: $T');
+    throw UnsupportedError('Unsupported type argument: $T');
   }
 
   /// Converts the value to an [IPropertyValue].

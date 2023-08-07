@@ -4,7 +4,6 @@
 
 import 'package:winmd/winmd.dart';
 
-import '../exceptions/exceptions.dart';
 import '../extensions/extensions.dart';
 import '../models/models.dart';
 import 'method.dart';
@@ -29,8 +28,7 @@ base class GetterProjection extends PropertyProjection {
         ProjectionKind.record ||
         ProjectionKind.reference ||
         ProjectionKind.void_ =>
-          throw WinRTGenException(
-              'Unsupported projection kind: $projectionKind'),
+          throw UnsupportedError('Unsupported ProjectionKind: $projectionKind'),
         ProjectionKind.dartPrimitive ||
         _ =>
           GetterProjection(method, vtableOffset),
@@ -51,9 +49,6 @@ base class GetterProjection extends PropertyProjection {
   ///
   /// It does this by calling `MethodProjection.fromTypeAndMethodName`
   /// constructor with given [fullyQualifiedType] and [methodName].
-  ///
-  /// Throws an [Exception] if [methodName] is invalid or no [GetterProjection]
-  /// matching [methodName] is found.
   factory GetterProjection.fromTypeAndMethodName(
       String fullyQualifiedType, String methodName) {
     final getPropertyRegExp = RegExp(r'^get(_{1,2})(\w+)$');

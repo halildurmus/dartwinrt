@@ -240,7 +240,7 @@ extension StringHelpers on String {
   /// (e.g., `windows_storage/lib/src/pickers`).
   String toFolderPath() {
     assert(isFullyQualifiedType);
-    // e.g. Windows.Storage.Pickers.FileOpenPicker -> [Pickers]
+    // e.g., Windows.Storage.Pickers.FileOpenPicker -> [Pickers]
     final segments = split('.').skip(2).toList()..removeLast();
     if (segments.isEmpty) return '${toPackageName()}/lib/src';
     return '${toPackageName()}/lib/src/${segments.join('/').toLowerCase()}';
