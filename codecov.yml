@@ -7,7 +7,14 @@ ignore:
   - packages/windows_applicationmodel
   - packages/windows_data
   - packages/windows_devices
+  - packages/windows_foundation/lib/src/collections/i*.dart
   - packages/windows_foundation/lib/src/numerics
+  - packages/windows_foundation/lib/src/ireference.dart
+  - packages/windows_foundation/lib/src/iwwwformurldecoderruntimeclass.dart
+  - packages/windows_foundation/lib/src/*factory.dart
+  - packages/windows_foundation/lib/src/*memorybuffer*.dart
+  - packages/windows_foundation/lib/src/*statics.dart
+  - packages/windows_foundation/lib/src/*wwwformurldecoderentry.dart
   - packages/windows_gaming
   - packages/windows_globalization
   - packages/windows_graphics
