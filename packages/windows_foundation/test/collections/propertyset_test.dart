@@ -230,9 +230,9 @@ void main() {
     });
 
     test('first', () {
-      final map =
-          IMap<String, Object?>.fromMap({'key1': 'icalendar', 'key2': 259});
-
+      final map = PropertySet()
+        ..insert('key1', 'icalendar')
+        ..insert('key2', 259);
       final iterator = map.first();
       expect(iterator.hasCurrent, isTrue);
       var current = iterator.current;
