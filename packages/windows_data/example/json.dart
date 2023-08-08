@@ -11,6 +11,7 @@ void main() {
   const jsonString =
       '{"width": 800,"height": 600,"title": "View from 15th Floor","ids": [116, 943, 234, 38793]}';
   final jsonValue = JsonValue.parse(jsonString);
+
   if (jsonValue case final jsonValue?) {
     final jsonObject = jsonValue.getObject();
     final width = jsonObject.getNamedNumber('width');
@@ -36,5 +37,6 @@ void main() {
     ..insert('height', JsonValue.createNumberValue(600))
     ..insert('title', JsonValue.createStringValue('View from 15th Floor'))
     ..insert('ids', JsonValue.parse('[116, 943, 234, 38793]'));
-  print('JSON string: ${jsonObject.stringify()}');
+  print('JSON string:');
+  print(jsonObject.stringify());
 }

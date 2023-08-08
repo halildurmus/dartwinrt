@@ -15,7 +15,7 @@ Future<StorageFile> pickFile() async {
   InitializeWithWindow.initialize(picker);
 
   final pickedFile = await picker.pickSingleFileAsync();
-  if (pickedFile == null) throw Exception('No file selected');
+  if (pickedFile == null) throw StateError('No file selected.');
   return pickedFile;
 }
 
@@ -44,7 +44,7 @@ Future<String> recognizeText(StorageFile file) async {
     stream?.close();
   }
 
-  throw Exception('Unable to recognize text');
+  throw StateError('Failed to recognize text.');
 }
 
 void main() async {
