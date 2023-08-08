@@ -10,5 +10,5 @@ int getWindowsBuildNumber() {
   final buildNumber = key.getValueAsString('CurrentBuildNumber');
   key.close();
   if (buildNumber != null) return int.parse(buildNumber);
-  throw Exception('Failed to retrieve Windows build number');
+  throw StateError('Failed to retrieve Windows build number.');
 }

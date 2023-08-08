@@ -7,8 +7,7 @@ import 'package:windows_devices/windows_devices.dart';
 void printAudioDevice(DeviceInformation? device) {
   if (device == null) return;
   final DeviceInformation(:id, :name, :isDefault, :isEnabled) = device;
-  print('Device name: $name, isDefault: $isDefault, isEnabled: $isEnabled, '
-      'ID: $id');
+  print('Name: $name, isDefault: $isDefault, isEnabled: $isEnabled, ID: $id');
 }
 
 void main() async {

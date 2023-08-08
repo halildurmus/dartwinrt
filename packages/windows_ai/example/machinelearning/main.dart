@@ -17,7 +17,9 @@ import 'package:windows_storage/windows_storage.dart';
 
 Future<List<String>> loadLabels(String filePath) async {
   final file = File(filePath);
-  if (!file.existsSync()) throw Exception('Labels.txt not found at $filePath');
+  if (!await file.exists()) {
+    throw StateError('Labels.txt not found at $filePath.');
+  }
 
   final labels = <String>[];
   final lines =
@@ -25,7 +27,7 @@ Future<List<String>> loadLabels(String filePath) async {
 
   await for (final line in lines) {
     // Strip off the index number at the start of the line
-    // e.g., '281,tabby, tabby cat'-> 'tabby, tabby cat'
+    // e.g., '281,tabby, tabby cat' -> 'tabby, tabby cat'
     final formattedLine = line.split(',').skip(1).join(',');
     labels.add(formattedLine);
   }
@@ -45,15 +47,16 @@ Future<VideoFrame> loadImageFile(String filePath) async {
     final softwareBitmap = await decoder?.getSoftwareBitmapAsync();
     // Load a VideoFrame from it
     final videoFrame = VideoFrame.createWithSoftwareBitmap(softwareBitmap);
-    if (videoFrame == null) throw Exception('Failed to load the image file!');
+    if (videoFrame == null) throw StateError('Failed to load the image file.');
     return videoFrame;
-  } catch (_) {
-    throw Exception('Failed to load the image file!');
+  } on WindowsException catch (e) {
+    throw StateError('Failed to load the image file: $e');
   }
 }
 
 void printResults(List<String> labels, List<double> results) {
   // Find the top 3 probabilities
+
   final topProbabilities = List<double>.filled(3, 0);
   final topProbabilityLabelIndexes = List<int>.filled(3, 0);
 
@@ -90,10 +93,8 @@ void main() async {
 
   // Load the labels
   final labels = await loadLabels(labelsPath);
-
   // Load the model
   final model = LearningModel.loadFromFilePath(modelPath)!;
-
   // Load the image
   final imageFrame = await loadImageFile(imagePath);
 
@@ -109,7 +110,6 @@ void main() async {
 
   // Run the model
   final results = session.evaluate(binding, 'RunId')!;
-
   // Get the output
   final resultTensor = results.outputs?['softmaxout_1'];
 
