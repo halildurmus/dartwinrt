@@ -4,6 +4,7 @@ on:
   pull_request:
     paths:
       - '.github/workflows/codecov.yml'
+      - 'codecov.yml'
       - 'packages/windows_foundation/**'
       - 'packages/winrtgen/**'
   push:
@@ -11,6 +12,7 @@ on:
       - main
     paths:
       - '.github/workflows/codecov.yml'
+      - 'codecov.yml'
       - 'packages/windows_foundation/**'
       - 'packages/winrtgen/**'
 
