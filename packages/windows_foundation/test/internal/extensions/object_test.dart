@@ -91,6 +91,15 @@ void main() {
     });
   });
 
+  test('List<IInspectable?> to Pointer<VTablePointer>', () {
+    final list = [StringMap(), null, ValueSet()];
+    final array = list.toArray();
+    expect(array[0].address, isNonZero);
+    expect(array[1].address, isZero);
+    expect(array[2].address, isNonZero);
+    free(array);
+  });
+
   test('List<Object?> to Pointer<VTablePointer>', () {
     final list = <Object?>[
       StringMap(),

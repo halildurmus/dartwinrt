@@ -40,12 +40,20 @@ void main() {
       free(array);
     });
 
-    test('to IPropertyValue', () {
+    test('to IPropertyValue (Double)', () {
       final pv = [1.0, 2.5].toPropertyValue(DoubleType.double);
       expect(pv.type, equals(PropertyType.doubleArray));
       final list = pv.getDoubleArray();
       expect(list.length, equals(2));
-      expect(list, orderedEquals(list));
+      expect(list, orderedEquals([1.0, 2.5]));
+    });
+
+    test('to IPropertyValue (Float)', () {
+      final pv = [1.0, 2.5].toPropertyValue(DoubleType.float);
+      expect(pv.type, equals(PropertyType.singleArray));
+      final list = pv.getSingleArray();
+      expect(list.length, equals(2));
+      expect(list, orderedEquals([1.0, 2.5]));
     });
   });
 

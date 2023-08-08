@@ -16,10 +16,14 @@ void main() {
   }
 
   group('InitializeWithWindow', () {
-    test('initialize', () {
+    test('initialize (1)', () {
       final picker = FileOpenPicker();
-      expect(
-          () => InitializeWithWindow.initialize(picker, GetForegroundWindow()),
+      expect(() => InitializeWithWindow.initialize(picker), returnsNormally);
+    });
+
+    test('initialize (2)', () {
+      final picker = FileOpenPicker();
+      expect(() => InitializeWithWindow.initialize(picker, getWindowHandle()),
           returnsNormally);
     });
   });

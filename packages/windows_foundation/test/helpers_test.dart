@@ -46,8 +46,12 @@ void main() {
     expect(refCount(calendar), equals(1));
   });
 
+  test('getWindowHandle', () {
+    expect(getWindowHandle(), isZero);
+  });
+
   test('refCount', () {
-    final propertySet = PropertySet()..detach();
+    final propertySet = PropertySet();
     expect(refCount(propertySet), 1);
     propertySet.addRef();
     expect(refCount(propertySet), 2);
