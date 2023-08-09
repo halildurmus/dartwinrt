@@ -6,6 +6,7 @@ import 'package:winmd/winmd.dart';
 
 import '../models/models.dart';
 import '../projections/type.dart';
+import 'string.dart';
 import 'type_identifier.dart';
 
 extension ParameterHelpers on Parameter {
@@ -60,7 +61,7 @@ extension ParameterHelpers on Parameter {
   bool get isReferenceType => typeIdentifier.isReferenceType;
 
   /// Whether this is a simple array size parameter (e.g., `__valueSize`).
-  bool get isSimpleArraySizeParam => RegExp(r'^(__\w+Size)$').hasMatch(name);
+  bool get isSimpleArraySizeParam => name.isSimpleArraySizeParam;
 
   bool get isSimpleArrayType => typeIdentifier.isSimpleArrayType;
 

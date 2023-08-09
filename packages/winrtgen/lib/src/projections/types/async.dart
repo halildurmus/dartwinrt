@@ -52,7 +52,7 @@ final class AsyncOperationParameterProjection
   TypeIdentifier get typeIdentifier {
     if (isSubtypeOfAsyncOperation) {
       final typeDef =
-          WinRTMetadataStore.findMetadata(typeProjection.typeIdentifier.name);
+          WinRTMetadataStore.findTypeDef(typeProjection.typeIdentifier.name);
       final interface = typeDef.interfaces.firstWhere((interface) =>
           interface.typeSpec?.name.endsWith('IAsyncOperation`1') ?? false);
       if (interface.typeSpec case final typeSpec?) return typeSpec;

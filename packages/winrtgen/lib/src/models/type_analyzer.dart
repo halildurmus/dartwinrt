@@ -17,7 +17,7 @@ class TypeAnalyzer {
   final TypeDef typeDef;
 
   factory TypeAnalyzer.fromType(String type) =>
-      TypeAnalyzer._(WinRTMetadataStore.findMetadata(type));
+      TypeAnalyzer._(WinRTMetadataStore.findTypeDef(type));
 
   factory TypeAnalyzer.fromTypeDef(TypeDef typeDef) => TypeAnalyzer._(typeDef);
 
@@ -31,9 +31,13 @@ class TypeAnalyzer {
 
   bool get isEnum => typeDef.isEnum;
 
+  bool get isFactoryInterface => typeDef.isFactoryInterface;
+
   bool get isInterface => typeDef.isInterface;
 
   bool get isObject => isClass || isInterface;
+
+  bool get isStaticsInterface => typeDef.isStaticsInterface;
 
   bool get isStruct => typeDef.isStruct;
 
@@ -106,7 +110,7 @@ class TypeAnalyzer {
     final structs = SplayTreeSet<String>();
     final ignoredTypes = SplayTreeSet<String>();
 
-    final typeDef = WinRTMetadataStore.findMetadata(type);
+    final typeDef = WinRTMetadataStore.findTypeDef(type);
 
     void handleTypeIdentifier(TypeIdentifier typeIdentifier) {
       final typeName = typeIdentifier.name;

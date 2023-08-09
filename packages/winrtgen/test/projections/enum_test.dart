@@ -17,7 +17,7 @@ void main() {
   group('EnumProjection', () {
     test('create', () {
       final typeDef =
-          WinRTMetadataStore.findMetadata('Windows.Storage.FileAttributes');
+          WinRTMetadataStore.findTypeDef('Windows.Storage.FileAttributes');
       final projection = EnumProjection.create(typeDef);
       expect(projection, isA<FlagsEnumProjection>());
     });

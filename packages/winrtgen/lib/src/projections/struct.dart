@@ -77,17 +77,14 @@ final class NativeStructProjection extends BaseProjection {
 
   final String structName;
 
-  /// Attempts to create a [NativeStructProjection] from [fullyQualifiedType]
-  /// by searching its [TypeDef].
+  /// Attempts to create a [NativeStructProjection] from [type] by searching its
+  /// [TypeDef].
   ///
   /// ```dart
   /// final projection = NativeStructProjection.from('Windows.Foundation.Rect');
   /// ```
-  factory NativeStructProjection.from(
-    String fullyQualifiedType, {
-    String? structName,
-  }) {
-    final typeDef = WinRTMetadataStore.findMetadata(fullyQualifiedType);
+  factory NativeStructProjection.from(String type, {String? structName}) {
+    final typeDef = WinRTMetadataStore.findTypeDef(type);
     return NativeStructProjection(typeDef, structName: structName);
   }
 
@@ -123,18 +120,18 @@ final class StructProjection extends NativeStructProjection {
   StructProjection(super.typeDef, {super.comment, String? structName})
       : super(structName: structName ?? typeDef.shortName);
 
-  /// Attempts to create a [StructProjection] from [fullyQualifiedType] by
-  /// searching its [TypeDef].
+  /// Attempts to create a [StructProjection] from [type] by searching its
+  /// [TypeDef].
   ///
   /// ```dart
   /// final projection = StructProjection.from('Windows.Foundation.Rect');
   /// ```
   factory StructProjection.from(
-    String fullyQualifiedType, {
+    String type, {
     String comment = '',
     String? structName,
   }) {
-    final typeDef = WinRTMetadataStore.findMetadata(fullyQualifiedType);
+    final typeDef = WinRTMetadataStore.findTypeDef(type);
     return StructProjection(typeDef, comment: comment, structName: structName);
   }
 

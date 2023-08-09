@@ -13,12 +13,40 @@ void main() {
     expect(''.capitalize(), isEmpty);
   });
 
-  test('isFullyQualifiedType', () {
-    expect('Windows.Foundation.AsyncStatus'.isFullyQualifiedType, isTrue);
-    expect('Windows.Data.Json.JsonArray'.isFullyQualifiedType, isTrue);
-    expect('Windows'.isFullyQualifiedType, isFalse);
-    expect('Windows.Foundation'.isFullyQualifiedType, isFalse);
-    expect('not a fully qualified type'.isFullyQualifiedType, isFalse);
+  test('isExportsFile', () {
+    expect('exports.g.dart'.isExportsFile, isTrue);
+    expect('not_exports.g.dart'.isExportsFile, isFalse);
+  });
+
+  test('isFactoryInterface', () {
+    expect('ICalendarFactory'.isFactoryInterface, isTrue);
+    expect('ICalendarFactory2'.isFactoryInterface, isTrue);
+    expect('ICalendar_Factory'.isFactoryInterface, isFalse);
+    expect('IcalendarFactory'.isFactoryInterface, isFalse);
+    expect('CalendarFactory'.isFactoryInterface, isFalse);
+    expect('ICalendar'.isFactoryInterface, isFalse);
+    expect('not a factory interface'.isFactoryInterface, isFalse);
+  });
+
+  test('isFactoryOrStaticsFile', () {
+    expect('icalendarfactory.dart'.isFactoryOrStaticsFile, isTrue);
+    expect('icalendarfactory2.dart'.isFactoryOrStaticsFile, isTrue);
+    expect('ilauncherstatics.dart'.isFactoryOrStaticsFile, isTrue);
+    expect('ilauncherstatics2.dart'.isFactoryOrStaticsFile, isTrue);
+    expect('iCalendarfactory.dart'.isFactoryOrStaticsFile, isFalse);
+    expect('icalendar_factory.dart'.isFactoryOrStaticsFile, isFalse);
+    expect('ifactory.dart'.isFactoryOrStaticsFile, isFalse);
+    expect('istatics.dart'.isFactoryOrStaticsFile, isFalse);
+    expect('factory.dart'.isFactoryOrStaticsFile, isFalse);
+    expect('statics.dart'.isFactoryOrStaticsFile, isFalse);
+  });
+
+  test('isGetProperty', () {
+    expect('get_Data'.isGetProperty, isTrue);
+    expect('get_data'.isGetProperty, isFalse);
+    expect('get_Data_Size'.isGetProperty, isFalse);
+    expect('Data'.isGetProperty, isFalse);
+    expect('data'.isGetProperty, isFalse);
   });
 
   test('isIID', () {
@@ -49,6 +77,71 @@ void main() {
     expect("import ''".isImportLine, isFalse);
     expect('not an import line'.isImportLine, isFalse);
     expect(''.isImportLine, isFalse);
+  });
+
+  test('isPartFile', () {
+    expect('ireference_part.dart'.isPartFile, isTrue);
+    expect('iReference_part.dart'.isPartFile, isFalse);
+    expect('imap_view_part.dart'.isPartFile, isFalse);
+    expect('calendar.dart'.isPartFile, isFalse);
+    expect('_part.dart'.isPartFile, isFalse);
+    expect('part.dart'.isPartFile, isFalse);
+  });
+
+  test('isProperty', () {
+    expect('get_Data'.isProperty, isTrue);
+    expect('put_Data'.isProperty, isTrue);
+    expect('Data'.isProperty, isFalse);
+    expect('data'.isProperty, isFalse);
+  });
+
+  test('isSetProperty', () {
+    expect('put_Data'.isSetProperty, isTrue);
+    expect('put_data'.isSetProperty, isFalse);
+    expect('put_Data_Size'.isSetProperty, isFalse);
+    expect('Data'.isSetProperty, isFalse);
+    expect('data'.isSetProperty, isFalse);
+  });
+
+  test('isSimpleArraySizeParam', () {
+    expect('__valueSize'.isSimpleArraySizeParam, isTrue);
+    expect('__ValueSize'.isSimpleArraySizeParam, isFalse);
+    expect('__value_Size'.isSimpleArraySizeParam, isFalse);
+    expect('_valueSize'.isSimpleArraySizeParam, isFalse);
+    expect('valueSize'.isSimpleArraySizeParam, isFalse);
+    expect('__value'.isSimpleArraySizeParam, isFalse);
+  });
+
+  test('isStaticsInterface', () {
+    expect('ILauncherStatics'.isStaticsInterface, isTrue);
+    expect('ILauncherStatics2'.isStaticsInterface, isTrue);
+    expect('ILauncher_Statics'.isStaticsInterface, isFalse);
+    expect('IlauncherStatics'.isStaticsInterface, isFalse);
+    expect('LauncherStatics'.isStaticsInterface, isFalse);
+    expect('ILauncher'.isStaticsInterface, isFalse);
+    expect('not a statics interface'.isStaticsInterface, isFalse);
+  });
+
+  test('isWinRTNamespace', () {
+    expect('Windows.Foundation'.isWinRTNamespace, isTrue);
+    expect('Windows.Storage.Streams'.isWinRTNamespace, isTrue);
+    expect('Windows.Storage.Streams'.isWinRTNamespace, isTrue);
+    expect('Windows.Media.Capture.Core'.isWinRTNamespace, isTrue);
+    expect('Windows.UI.Notifications_Core'.isWinRTNamespace, isFalse);
+    expect('System'.isWinRTNamespace, isFalse);
+    expect('Windows'.isWinRTNamespace, isFalse);
+    expect('not a WinRT namespace'.isWinRTNamespace, isFalse);
+  });
+
+  test('isWinRTType', () {
+    expect('Windows.Foundation.AsyncStatus'.isWinRTType, isTrue);
+    expect('Windows.Foundation.Collections.IMap`2'.isWinRTType, isTrue);
+    expect('Windows.Data.Json.JsonArray'.isWinRTType, isTrue);
+    expect('Windows.UI.Notifications._Core'.isWinRTType, isFalse);
+    expect('System.Guid'.isWinRTType, isFalse);
+    expect('Windows'.isWinRTType, isFalse);
+    expect('Windows.Foundation'.isWinRTType, isFalse);
+    expect('not a WinRT type'.isWinRTType, isFalse);
   });
 
   test('lastComponent', () {
@@ -302,6 +395,13 @@ void main() {
     expect('null'.toSafeIdentifier(), equals('null_'));
     expect('double'.toSafeIdentifier(), equals('double_'));
     expect('__valueSize'.toSafeIdentifier(), equals('valueSize'));
+  });
+
+  test('toUnixPath', () {
+    expect(r'windows_foundation\lib\src\uri.dart'.toUnixPath(),
+        equals('windows_foundation/lib/src/uri.dart'));
+    expect(r'windows_foundation\lib\src\collections\imap.dart'.toUnixPath(),
+        equals('windows_foundation/lib/src/collections/imap.dart'));
   });
 
   test('typeArguments', () {

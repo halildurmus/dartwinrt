@@ -61,26 +61,23 @@ base class MethodProjection {
     }
   }
 
-  /// Attempts to create a [MethodProjection] from [fullyQualifiedType] and
-  /// [methodName].
+  /// Attempts to create a [MethodProjection] from [type] and [methodName].
   ///
   /// ```dart
   /// final projection = MethodProjection.fromTypeAndMethodName(
   ///     'Windows.Globalization.Calendar', 'GetCalendarSystem');
   /// ```
   ///
-  /// It does this by first creating an [InterfaceProjection] from the
-  /// [fullyQualifiedType] and then searching the [MethodProjection] for the
-  /// [methodName] in it.
+  /// It does this by first creating an [InterfaceProjection] from the [type]
+  /// and then searching the [MethodProjection] for the [methodName] in it.
   factory MethodProjection.fromTypeAndMethodName(
-      String fullyQualifiedType, String methodName) {
-    final interfaceProjection = InterfaceProjection.from(fullyQualifiedType);
+      String type, String methodName) {
+    final interfaceProjection = InterfaceProjection.from(type);
     final methodProjection = interfaceProjection.methodProjections
         .where((methodProjection) => methodProjection.name == methodName)
         .firstOrNull;
     if (methodProjection == null) {
-      throw StateError(
-          "Could not find method '$methodName' in '$fullyQualifiedType'.");
+      throw StateError("Could not find method '$methodName' in '$type'.");
     }
     return methodProjection;
   }

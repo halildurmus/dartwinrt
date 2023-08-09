@@ -42,7 +42,7 @@ Future<void> addObject(String type) async {
   print(dependencies);
 
   if (!dependencies.hasNewDependencies) {
-    print('No new dependencies found for `$type`!');
+    print('No new dependencies found for `$type`.');
     return;
   }
 

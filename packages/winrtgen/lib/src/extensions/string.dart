@@ -20,20 +20,23 @@ extension StringHelpers on String {
     return this[0].toUpperCase() + substring(1); // e.g., value -> Value
   }
 
-  /// Checks if this string represents a fully qualified type.
-  ///
-  /// A fully qualified type consists of one or more namespace segments,
-  /// separated by periods (`.`), followed by the actual type name, which starts
-  /// with an uppercase letter.
-  ///
-  /// For example, `Windows.Gaming.Input.Gamepad` represents a fully qualified
-  /// type with three namespace segments and the type name `Gamepad`.
-  ///
-  /// Examples of valid fully qualified types:
-  ///   - `Windows.Gaming.Input.Gamepad`
-  ///   - `Windows.Globalization.Calendar`
-  bool get isFullyQualifiedType =>
-      RegExp(r'^((?=[A-Z])\w+\.){2,}[A-Z]\w*$').hasMatch(this);
+  /// Whether this string represents a generated exports file (i.e.,
+  /// `exports.g.dart`).
+  bool get isExportsFile => this == 'exports.g.dart';
+
+  /// Whether this string represents a factory interface (e.g.,
+  /// `ICalendarFactory`, `ICalendarFactory2`).
+  bool get isFactoryInterface =>
+      RegExp(r'^(I[A-Z][a-zA-Z0-9]+Factory\d{0,2})$').hasMatch(this);
+
+  /// Whether this string represents a factory or statics file (e.g.,
+  /// `icalendarfactory.dart`, `ilauncherstatics.dart`).
+  bool get isFactoryOrStaticsFile =>
+      RegExp(r'(i[a-z0-9]+(factory|statics)\d{0,2}\.dart)$').hasMatch(this);
+
+  /// Whether this string represents a get property (e.g., `get_Size`).
+  bool get isGetProperty =>
+      RegExp(r'^(get_([A-Z][a-zA-Z0-9]+))$').hasMatch(this);
 
   /// Checks if this string represents an Interface Identifier (IID).
   ///
@@ -70,7 +73,63 @@ extension StringHelpers on String {
           r'''^import\s(['"])([\w:\.\/]+)\1(?:\s+as\s+([\w]+))?(?:\s+show\s+([\w\s,]+))?(?:\s+hide\s+([\w\s,]+))?;$''')
       .hasMatch(this);
 
-  /// Returns the last component of a fully qualified type.
+  /// Whether this string represents a part file (e.g., `ireference_part.dart`).
+  bool get isPartFile => RegExp(r'^(([a-z0-9]+)_part\.dart)$').hasMatch(this);
+
+  /// Whether this string represents a property (e.g., `get_Size`, `put_Size`).
+  bool get isProperty => isGetProperty || isSetProperty;
+
+  /// Whether this string represents a set property (e.g., `put_Size`).
+  bool get isSetProperty =>
+      RegExp(r'^(put_([A-Z][a-zA-Z0-9]+))$').hasMatch(this);
+
+  /// Whether this string represents a simple array size parameter (e.g.,
+  /// `__valueSize`).
+  bool get isSimpleArraySizeParam =>
+      RegExp(r'^(__([a-z][a-zA-Z0-9]+)Size)$').hasMatch(this);
+
+  /// Whether this string represents a statics interface (e.g.,
+  /// `ILauncherStatics`, `ILauncherStatics2`).
+  bool get isStaticsInterface =>
+      RegExp(r'^(I[A-Z][a-zA-Z0-9]+Statics\d{0,2})$').hasMatch(this);
+
+  /// Checks if this string represents a WinRT namespace.
+  ///
+  /// A WinRT namespace consists of two or more namespace segments, separated by
+  /// periods (`.`), where each segment starts with an uppercase letter.
+  ///
+  /// The first segment of a WinRT namespace is always `Windows`, followed by
+  /// one or more additional namespace segments.
+  ///
+  /// Examples of valid WinRT namespaces:
+  ///  - `Windows.Foundation`
+  ///  - `Windows.Globalization`
+  ///  - `Windows.Storage.Streams`
+  bool get isWinRTNamespace =>
+      RegExp(r'^(Windows\.((?=[A-Z])[a-zA-Z0-9]+\.)*[A-Z][a-zA-Z0-9]*)$')
+          .hasMatch(this);
+
+  /// Checks if this string represents a WinRT type.
+  ///
+  /// A WinRT type consists of two or more namespace segments, separated by
+  /// periods (`.`), followed by the actual type name, which starts with an
+  /// uppercase letter.
+  ///
+  /// The first segment of a WinRT type is always `Windows`, followed by one or
+  /// more additional namespace segments, and the type name.
+  ///
+  /// For example, `Windows.Gaming.Input.Gamepad` represents a WinRT type with
+  /// three namespace segments and the type name `Gamepad`.
+  ///
+  /// Examples of valid WinRT types:
+  ///   - Windows.Foundation.Collections.IMap`2
+  ///   - `Windows.Gaming.Input.Gamepad`
+  ///   - `Windows.Globalization.Calendar`
+  bool get isWinRTType =>
+      RegExp(r'^(Windows\.((?=[A-Z])[a-zA-Z0-9]+\.)+[A-Z][a-zA-Z0-9]*(`\d)?)$')
+          .hasMatch(this);
+
+  /// Returns the last component of a WinRT type.
   ///
   /// For example, for the type `Windows.Globalization.Calendar`, the method
   /// will return `Calendar`.
@@ -115,7 +174,7 @@ extension StringHelpers on String {
   ///
   /// For example, if the string is `Windows.Foundation.IReference`1`, the
   /// method will return `Windows.Foundation.IReference`.
-  String stripGenerics() => replaceAll(RegExp(r'(`\d+)'), '');
+  String stripGenerics() => replaceAll(RegExp(r'(`\d)'), '');
 
   /// Removes all leading underscores from this string, if any.
   String stripLeadingUnderscores() =>
@@ -226,20 +285,19 @@ extension StringHelpers on String {
     return wrappedText.toString().trimRight();
   }
 
-  /// Converts a fully qualified type (e.g., `Windows.Globalization.Calendar`)
-  /// into a matching Dart file name (e.g., `calendar.dart`).
+  /// Converts a WinRT type (e.g., `Windows.Globalization.Calendar`) into a
+  /// matching Dart file name (e.g., `calendar.dart`).
   String toFileName() => '${lastComponent.stripGenerics().toLowerCase()}.dart';
 
-  /// Converts a fully qualified type (e.g.,
-  /// `Windows.Storage.Pickers.FileOpenPicker`) into a matching file path (e.g.,
+  /// Converts a WinRT type (e.g., `Windows.Storage.Pickers.FileOpenPicker`)
+  /// into a matching file path (e.g.,
   /// `windows_storage/lib/src/pickers/fileopenpicker.dart`).
   String toFilePath() => '${toFolderPath()}/${toFileName()}';
 
-  /// Converts a fully qualified type (e.g.,
-  /// `Windows.Storage.Pickers.FileOpenPicker`) into a matching folder path
-  /// (e.g., `windows_storage/lib/src/pickers`).
+  /// Converts a WinRT type (e.g., `Windows.Storage.Pickers.FileOpenPicker`)
+  /// into a matching folder path (e.g., `windows_storage/lib/src/pickers`).
   String toFolderPath() {
-    assert(isFullyQualifiedType);
+    assert(isWinRTType);
     // e.g., Windows.Storage.Pickers.FileOpenPicker -> [Pickers]
     final segments = split('.').skip(2).toList()..removeLast();
     if (segments.isEmpty) return '${toPackageName()}/lib/src';
@@ -273,15 +331,13 @@ extension StringHelpers on String {
         .toString();
   }
 
-  /// Converts a fully qualified type into a matching package name.
+  /// Converts a WinRT type (e.g., `Windows.Globalization.Calendar`) into a
+  /// matching package name.
   ///
   /// For example, if the string is `Windows.Globalization.Calendar`,
   /// `windows_globalization` will be returned.
-  ///
-  /// The istring is expected to be a fully qualified type (e.g.,
-  /// `Windows.Globalization.Calendar`).
   String toPackageName() {
-    assert(isFullyQualifiedType);
+    assert(isWinRTType);
     return split('.').take(2).join('_').toLowerCase();
   }
 
@@ -289,8 +345,8 @@ extension StringHelpers on String {
   ///
   /// This method ensures that the resulting identifier is not a reserved word
   /// or a private modifier. If the original string matches any of the known
-  /// reserved words or starts with an underscore (private modifier), it will
-  /// be transformed to ensure it becomes a valid and safe Dart identifier.
+  /// reserved words or starts with an underscore (private modifier), it will be
+  /// transformed to ensure it becomes a valid and safe Dart identifier.
   ///
   /// For instance, if the string is `null`, `null_` will be returned.
   ///
@@ -299,6 +355,10 @@ extension StringHelpers on String {
   String toSafeIdentifier() => badIdentifierNames.contains(this)
       ? '${this}_'
       : stripLeadingUnderscores();
+
+  /// Converts the Windows-style path separator characters (`\`) in this string
+  /// to Unix-style forward slashes (`/`).
+  String toUnixPath() => replaceAll(r'\', '/');
 
   /// Extracts the type arguments from this string if it represents a generic
   /// type; otherwise, returns the original string unchanged.
@@ -379,12 +439,6 @@ extension IterableStringHelpers on Iterable<String> {
     ];
   }
 }
-
-/// Acronyms that appear in various places in Windows Metadata.
-///
-/// Used in projections to comply with the Dart style guide.
-///
-/// See https://dart.dev/guides/language/effective-dart/style#do-capitalize-acronyms-and-abbreviations-longer-than-two-letters-like-words
 
 /// Represents a collection of acronyms that appear in various places within
 /// Windows Metadata.

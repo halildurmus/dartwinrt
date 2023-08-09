@@ -16,16 +16,16 @@ void main() {
 
   group('TypeAnalyzer', () {
     test('fromType', () {
-      const fullyQualifiedType = 'Windows.Globalization.Calendar';
-      final analyzer = TypeAnalyzer.fromType(fullyQualifiedType);
-      expect(analyzer.type, equals(fullyQualifiedType));
+      const type = 'Windows.Globalization.Calendar';
+      final analyzer = TypeAnalyzer.fromType(type);
+      expect(analyzer.type, equals(type));
     });
 
     test('fromTypeDef', () {
-      const fullyQualifiedType = 'Windows.Globalization.Calendar';
-      final typeDef = WinRTMetadataStore.findMetadata(fullyQualifiedType);
+      const type = 'Windows.Globalization.Calendar';
+      final typeDef = WinRTMetadataStore.findTypeDef(type);
       final analyzer = TypeAnalyzer.fromTypeDef(typeDef);
-      expect(analyzer.type, equals(fullyQualifiedType));
+      expect(analyzer.type, equals(type));
     });
 
     test('interfaces', () {
@@ -57,10 +57,23 @@ void main() {
       expect(analyzer.isEnum, isTrue);
     });
 
+    test('isFactoryInterface', () {
+      final analyzer =
+          TypeAnalyzer.fromType('Windows.Globalization.ICalendarFactory');
+      expect(analyzer.isFactoryInterface, isTrue);
+      expect(analyzer.isInterface, isTrue);
+    });
+
     test('isInterface', () {
       final analyzer = TypeAnalyzer.fromType('Windows.Globalization.ICalendar');
       expect(analyzer.isInterface, isTrue);
       expect(analyzer.isObject, isTrue);
+    });
+
+    test('isStaticsInterface', () {
+      final analyzer = TypeAnalyzer.fromType('Windows.System.ILauncherStatics');
+      expect(analyzer.isStaticsInterface, isTrue);
+      expect(analyzer.isInterface, isTrue);
     });
 
     test('isStruct', () {

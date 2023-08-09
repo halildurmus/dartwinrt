@@ -25,14 +25,13 @@ final class GenericInterfacePartFileProjection {
       _projections ??= _cacheProjections();
 
   List<GenericInterfaceProjection> _cacheProjections() {
-    final fullyQualifiedType = genericType.fullyQualifiedType;
+    final type = genericType.type;
     return switch (genericType) {
       GenericTypeWithOneTypeArg(:final typeArgKinds) => typeArgKinds.map(
-          (typeArgKind) =>
-              GenericInterfaceProjection.from(fullyQualifiedType, typeArgKind)),
+          (typeArgKind) => GenericInterfaceProjection.from(type, typeArgKind)),
       GenericTypeWithTwoTypeArgs(:final typeArgKindPairs) => typeArgKindPairs
           .map((typeArgKindPair) => GenericInterfaceProjection.from(
-              fullyQualifiedType, typeArgKindPair.$1, typeArgKindPair.$2)),
+              type, typeArgKindPair.$1, typeArgKindPair.$2)),
     }
         .toList();
   }
@@ -53,28 +52,26 @@ final class GenericInterfaceProjection extends InterfaceProjection {
   /// `[TypeArgKind.string, TypeArgKind.nullableObject]`).
   final List<TypeArgKind> typeArgs;
 
-  /// Attempts to create a [GenericInterfaceProjection] from
-  /// [fullyQualifiedType], [typeArg1], and optionally [typeArg2] by searching
-  /// its [TypeDef].
+  /// Attempts to create a [GenericInterfaceProjection] from [type], [typeArg1],
+  /// and optionally [typeArg2] by searching its [TypeDef].
   ///
   /// ```dart
   /// final projection = GenericInterfaceProjection.from(
   ///     'Windows.Foundation.IAsyncOperation`1', TypeArgKind.string);
   /// ```
   ///
-  /// [typeArg2] must be specified if [fullyQualifiedType] has two type
-  /// arguments (e.g., `Windows.Foundation.Collections.IMap`2`).
+  /// [typeArg2] must be specified if [type] has two type arguments (e.g.,
+  /// `Windows.Foundation.Collections.IMap`2`).
   ///
   /// ```dart
   /// final projection = GenericInterfaceProjection.from(
   ///     'Windows.Foundation.Collections.IMap`2',
   ///     TypeArgKind.string, TypeArgKind.string);
   /// ```
-  factory GenericInterfaceProjection.from(
-      String fullyQualifiedType, TypeArgKind typeArg1,
+  factory GenericInterfaceProjection.from(String type, TypeArgKind typeArg1,
       [TypeArgKind? typeArg2]) {
-    final typeDef = WinRTMetadataStore.findMetadata(fullyQualifiedType);
-    if (fullyQualifiedType.endsWith('`2')) {
+    final typeDef = WinRTMetadataStore.findTypeDef(type);
+    if (type.endsWith('`2')) {
       if (typeArg2 == null) throw ArgumentError.notNull('typeArg2');
       return GenericInterfaceProjection._(typeDef, [typeArg1, typeArg2]);
     }

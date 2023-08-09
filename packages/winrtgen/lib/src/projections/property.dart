@@ -8,13 +8,11 @@ import 'method.dart';
 abstract base class PropertyProjection extends MethodProjection {
   PropertyProjection(super.method, super.vtableOffset);
 
-  static final _propertyPrefixRegExp = RegExp(r'^(get_|put_)([a-zA-Z]+)$');
-
   /// Strip off all underscores (e.g., `get_Languages` -> `languages`,
   /// `put_Data` -> `data`).
   @override
   String get camelCasedName {
-    assert(_propertyPrefixRegExp.hasMatch(name));
+    assert(name.isProperty);
     // e.g., get_Size -> Size, put_Completed -> Completed
     return name.substring(4).toCamelCase().toSafeIdentifier();
   }

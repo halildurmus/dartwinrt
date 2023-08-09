@@ -49,15 +49,14 @@ final class EnumProjection extends BaseProjection {
         : EnumProjection(typeDef, comment: comment);
   }
 
-  /// Attempts to create a [EnumProjection] from [fullyQualifiedType] by
-  /// searching its [TypeDef].
+  /// Attempts to create a [EnumProjection] from [type] by searching its
+  /// [TypeDef].
   ///
   /// ```dart
   /// final projection = EnumProjection.from('Windows.Globalization.DayOfWeek');
   /// ```
-  factory EnumProjection.from(String fullyQualifiedType,
-      {String comment = ''}) {
-    final typeDef = WinRTMetadataStore.findMetadata(fullyQualifiedType);
+  factory EnumProjection.from(String type, {String comment = ''}) {
+    final typeDef = WinRTMetadataStore.findTypeDef(type);
     return EnumProjection.create(typeDef, comment: comment);
   }
 
@@ -124,16 +123,15 @@ final class StaticEnumConstantProjection extends EnumIdentifierProjection {
 final class FlagsEnumProjection extends EnumProjection {
   FlagsEnumProjection(super.typeDef, {super.comment});
 
-  /// Attempts to create a [FlagsEnumProjection] from [fullyQualifiedType] by
-  /// searching its [TypeDef].
+  /// Attempts to create a [FlagsEnumProjection] from [type] by searching its
+  /// [TypeDef].
   ///
   /// ```dart
   /// final projection =
   ///     FlagsEnumProjection.from('Windows.Storage.FileAttributes');
   /// ```
-  factory FlagsEnumProjection.from(String fullyQualifiedType,
-      {String comment = ''}) {
-    final typeDef = WinRTMetadataStore.findMetadata(fullyQualifiedType);
+  factory FlagsEnumProjection.from(String type, {String comment = ''}) {
+    final typeDef = WinRTMetadataStore.findTypeDef(type);
     return FlagsEnumProjection(typeDef, comment: comment);
   }
 

@@ -15,7 +15,7 @@ import '../extensions/extensions.dart';
 /// documentation website.
 ///
 /// This class provides static methods to fetch documentation for a specific
-/// fully qualified type or a set of fully qualified types.
+/// WinRT type or a set of WinRT types.
 final class WinRTDocsService {
   static const _authority = 'learn.microsoft.com';
   static const _basePath = '/en-us/uwp/api/';
@@ -26,62 +26,56 @@ final class WinRTDocsService {
   /// for multiple types concurrently.
   static final pool = Pool(3, timeout: const Duration(seconds: 30));
 
-  /// Attempts to fetch the documentation for the specified
-  /// [fullyQualifiedType].
+  /// Attempts to fetch the documentation for the specified [type].
   ///
-  /// The [fullyQualifiedType] parameter should be a fully qualified type (e.g.,
+  /// The [type] parameter should be a WinRT type (e.g.,
   /// `Windows.Foundation.Uri`) for which documentation is requested.
   ///
   /// Returns an empty string if no documentation is found.
-  static Future<String> fetchDocumentation(String fullyQualifiedType) async {
-    if (!fullyQualifiedType.isFullyQualifiedType) {
-      throw ArgumentError.value(fullyQualifiedType, 'fullyQualifiedType',
-          'Type must be fully qualified (e.g., Windows.Foundation.Uri)');
+  static Future<String> fetchDocumentation(String type) async {
+    if (!type.isWinRTType) {
+      throw ArgumentError.value(type, 'type',
+          'Type must be a WinRT type (e.g., Windows.Foundation.Uri)');
     }
 
     try {
       return pool.withResource(() async {
-        final uri = Uri.https(_authority, '$_basePath/$fullyQualifiedType');
+        final uri = Uri.https(_authority, '$_basePath/$type');
         final response = await http.get(uri);
         if (response.statusCode != 200) {
-          throw StateError(
-              'Failed to fetch documentation for $fullyQualifiedType. '
+          throw StateError('Failed to fetch documentation for $type. '
               'HTTP status code: ${response.statusCode}');
         }
 
         final document = parser.parse(response.body);
         final documentation = document.documentation;
         if (documentation.isEmpty) {
-          print('No documentation found for `$fullyQualifiedType`.');
+          print('No documentation found for `$type`.');
         }
 
         return documentation;
       });
     } catch (_) {
-      throw StateError(
-          'Failed to fetch documentation for $fullyQualifiedType.');
+      throw StateError('Failed to fetch documentation for $type.');
     }
   }
 
-  /// Attempts to fetch the documentations for the specified
-  /// [fullyQualifiedTypes].
+  /// Attempts to fetch the documentations for the specified [types].
   ///
-  /// The [fullyQualifiedTypes] parameter should be a [Set] of fully qualified
-  /// types (e.g., `Windows.Foundation.Uri`) for which documentation is
-  /// requested.
+  /// The [types] parameter should be a [Set] of WinRT types (e.g.,
+  /// `Windows.Foundation.Uri`) for which documentation is requested.
   ///
-  /// Returns a [Map] where the keys are the fully qualified types, and the
-  /// values are the corresponding documentations. If no documentation is found
-  /// for a type, the corresponding value in the map will be an empty string.
+  /// Returns a [Map] where the keys are the WinRT types, and the values are the
+  /// corresponding documentations. If no documentation is found for a type, the
+  /// corresponding value in the map will be an empty string.
   static Future<Map<String, String>> fetchDocumentations(
-      Set<String> fullyQualifiedTypes) async {
+      Set<String> types) async {
     final map = SplayTreeMap<String, String>();
-    final futures =
-        fullyQualifiedTypes.map(WinRTDocsService.fetchDocumentation);
+    final futures = types.map(WinRTDocsService.fetchDocumentation);
     final documentations = await Future.wait(futures);
 
     for (var i = 0; i < documentations.length; i++) {
-      final type = fullyQualifiedTypes.elementAt(i);
+      final type = types.elementAt(i);
       final documentation = documentations[i];
       map[type] = documentation;
     }

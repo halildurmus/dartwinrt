@@ -4,7 +4,41 @@
 
 import 'package:winmd/winmd.dart';
 
+import '../extensions/extensions.dart';
+
 final class WinRTMetadataStore {
+  /// Returns all [TypeDef]s of runtime classes in the given [namespace].
+  static List<TypeDef> classesInNamespace(String namespace) =>
+      MetadataStore.getScopeForNamespace(namespace).classes.toList();
+
+  /// Returns all [TypeDef]s of delegates in the given [namespace].
+  static List<TypeDef> delegatesInNamespace(String namespace) =>
+      MetadataStore.getScopeForNamespace(namespace).delegates.toList();
+
+  /// Returns all [TypeDef]s of enums in the given [namespace].
+  static List<TypeDef> enumsInNamespace(String namespace) =>
+      MetadataStore.getScopeForNamespace(namespace).enums.toList();
+
+  /// Find a matching [TypeDef], if one exists, for a WinRT [type] (e.g.,
+  /// `Windows.Foundation.MemoryBuffer`).
+  static TypeDef findTypeDef(String type) {
+    if (!type.isWinRTType) {
+      throw ArgumentError.value(type, 'type', 'Not a WinRT type.');
+    }
+
+    try {
+      final typeDef = MetadataStore.getMetadataForType(type);
+      if (typeDef == null) throw '';
+      return typeDef;
+    } catch (_) {
+      throw StateError('`$type` is not found in the Metadata!');
+    }
+  }
+
+  /// Returns all [TypeDef]s of interfaces in the given [namespace].
+  static List<TypeDef> interfacesInNamespace(String namespace) =>
+      MetadataStore.getScopeForNamespace(namespace).interfaces.toList();
+
   static List<Method>? _methods;
 
   /// Returns the all [Method]s in the Metadata.
@@ -23,14 +57,31 @@ final class WinRTMetadataStore {
         ]
       ];
 
-  /// Find a matching typedef, if one exists, for a Windows Runtime [type].
-  static TypeDef findMetadata(String type) {
+  /// Returns all [TypeDef]s of structs in the given [namespace].
+  static List<TypeDef> structsInNamespace(String namespace) =>
+      MetadataStore.getScopeForNamespace(namespace).structs.toList();
+
+  /// Try to find a matching typedef, if one exists, for a WinRT [type] (e.g.,
+  /// `Windows.Foundation.MemoryBuffer`).
+  ///
+  /// Returns `null` if the type is not found.
+  static TypeDef? tryFindTypeDef(String type) {
     try {
-      final typeDef = MetadataStore.getMetadataForType(type);
-      if (typeDef == null) throw '';
-      return typeDef;
+      return findTypeDef(type);
     } catch (_) {
-      throw StateError('`$type` is not found in the Metadata!');
+      return null;
     }
+  }
+
+  /// Returns all [TypeDef]s in a given WinRT [namespace].
+  static List<TypeDef> typeDefsInNamespace(String namespace) {
+    final scope = MetadataStore.getScopeForNamespace(namespace);
+    return [
+      ...scope.classes,
+      ...scope.delegates,
+      ...scope.enums,
+      ...scope.interfaces,
+      ...scope.structs
+    ];
   }
 }

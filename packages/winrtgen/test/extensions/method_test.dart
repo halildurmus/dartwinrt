@@ -16,14 +16,14 @@ void main() {
 
   test('isVoid', () {
     final typeDef =
-        WinRTMetadataStore.findMetadata('Windows.Foundation.IClosable');
+        WinRTMetadataStore.findTypeDef('Windows.Foundation.IClosable');
     final method = typeDef.findMethod('Close')!;
     expect(method.isVoid, isTrue);
   });
 
   group('uniqueName', () {
     test('returns the overload name', () {
-      final typeDef = WinRTMetadataStore.findMetadata(
+      final typeDef = WinRTMetadataStore.findTypeDef(
           'Windows.Globalization.ICalendarFactory');
       final method = typeDef.methods.first;
       expect(
@@ -32,7 +32,7 @@ void main() {
 
     test('returns the original name', () {
       final typeDef =
-          WinRTMetadataStore.findMetadata('Windows.Foundation.IClosable');
+          WinRTMetadataStore.findTypeDef('Windows.Foundation.IClosable');
       final method = typeDef.findMethod('Close')!;
       expect(method.uniqueName, equals('Close'));
     });

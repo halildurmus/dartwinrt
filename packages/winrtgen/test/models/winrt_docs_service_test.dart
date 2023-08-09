@@ -9,21 +9,19 @@ void main() {
   group('WinRTDocsService', () {
     group('fetchDocumentation', () {
       test('(1)', () async {
-        final fullyQualifiedType = 'Windows.Globalization.Calendar';
-        final documentation =
-            await WinRTDocsService.fetchDocumentation(fullyQualifiedType);
+        final type = 'Windows.Globalization.Calendar';
+        final documentation = await WinRTDocsService.fetchDocumentation(type);
         expect(
             documentation,
             equals(
                 'Manipulates the representation of a DateTime within a given calendar and clock.'));
       });
 
-      test('throws an ArgumentError if type is not a fully qualified type',
-          () async {
+      test('throws an ArgumentError if type is not a WinRT type', () async {
         expect(
             () => WinRTDocsService.fetchDocumentation('Windows.Foundation'),
             throwsA(isA<ArgumentError>().having((e) => e.message, 'message',
-                'Type must be fully qualified (e.g., Windows.Foundation.Uri)')));
+                'Type must be a WinRT type (e.g., Windows.Foundation.Uri)')));
       });
     });
 
