@@ -17,7 +17,7 @@ void main() {
 
   group('creator', () {
     test('(1)', () {
-      final typeDef = WinRTMetadataStore.findMetadata(
+      final typeDef = WinRTMetadataStore.findTypeDef(
           'Windows.Globalization.ICalendarFactory');
       expect(
           typeDef
@@ -29,7 +29,7 @@ void main() {
     });
 
     test('(2)', () {
-      final typeDef = WinRTMetadataStore.findMetadata(
+      final typeDef = WinRTMetadataStore.findTypeDef(
           'Windows.Foundation.IPropertyValueStatics');
       expect(
           typeDef
@@ -59,7 +59,7 @@ void main() {
 
     test('(3)', () {
       final typeDef =
-          WinRTMetadataStore.findMetadata('Windows.Data.Json.JsonObject');
+          WinRTMetadataStore.findTypeDef('Windows.Data.Json.JsonObject');
       expect(
           typeDef.interfaces[2].typeSpec!.creator,
           equals(
@@ -71,7 +71,7 @@ void main() {
     });
 
     test('(4)', () {
-      final typeDef = WinRTMetadataStore.findMetadata(
+      final typeDef = WinRTMetadataStore.findTypeDef(
           'Windows.Foundation.Collections.PropertySet');
       expect(
           typeDef.findMethod('Insert')!.parameters.last.typeIdentifier.creator,
@@ -79,7 +79,7 @@ void main() {
     });
 
     test('(5)', () {
-      final typeDef = WinRTMetadataStore.findMetadata(
+      final typeDef = WinRTMetadataStore.findTypeDef(
           'Windows.Globalization.PhoneNumberFormatting.IPhoneNumberFormatterStatics');
       expect(
           typeDef
@@ -92,7 +92,7 @@ void main() {
     });
 
     test('(6)', () {
-      final typeDef = WinRTMetadataStore.findMetadata(
+      final typeDef = WinRTMetadataStore.findTypeDef(
           'Windows.Foundation.Collections.StringMap');
       expect(
           typeDef.interfaces[0].typeSpec!.creator,
@@ -115,7 +115,7 @@ void main() {
     });
 
     test('(7)', () {
-      final fileOpenPicker = WinRTMetadataStore.findMetadata(
+      final fileOpenPicker = WinRTMetadataStore.findTypeDef(
           'Windows.Storage.Pickers.IFileOpenPicker');
       expect(
           fileOpenPicker
@@ -144,7 +144,7 @@ void main() {
     });
 
     test('(8)', () {
-      final storageFileQueryResult2 = WinRTMetadataStore.findMetadata(
+      final storageFileQueryResult2 = WinRTMetadataStore.findTypeDef(
           'Windows.Storage.Search.IStorageFileQueryResult2');
       expect(
           storageFileQueryResult2
@@ -157,8 +157,8 @@ void main() {
     });
 
     test('(9)', () {
-      final pedometer2 = WinRTMetadataStore.findMetadata(
-          'Windows.Devices.Sensors.IPedometer2');
+      final pedometer2 =
+          WinRTMetadataStore.findTypeDef('Windows.Devices.Sensors.IPedometer2');
       expect(
           pedometer2
               .findMethod('GetCurrentReadings')!
@@ -171,7 +171,7 @@ void main() {
 
     test('(10)', () {
       final pedometer2 =
-          WinRTMetadataStore.findMetadata('Windows.AI.MachineLearning.ITensor');
+          WinRTMetadataStore.findTypeDef('Windows.AI.MachineLearning.ITensor');
       expect(
           pedometer2.findMethod('get_Shape')!.returnType.typeIdentifier.creator,
           equals(
@@ -179,7 +179,7 @@ void main() {
     });
 
     test('(11)', () {
-      final pedometer2 = WinRTMetadataStore.findMetadata(
+      final pedometer2 = WinRTMetadataStore.findTypeDef(
           'Windows.Devices.Bluetooth.Rfcomm.IRfcommServiceProvider');
       expect(
           pedometer2
@@ -194,7 +194,7 @@ void main() {
 
   group('dereference', () {
     test('(1)', () {
-      final typeDef = WinRTMetadataStore.findMetadata(
+      final typeDef = WinRTMetadataStore.findTypeDef(
           'Windows.Storage.Search.IStorageFileQueryResult2');
       final method = typeDef.findMethod('GetMatchingPropertiesWithRanges')!;
       expect(
@@ -216,7 +216,7 @@ void main() {
 
     test('throws a StateError if TypeIdentifier is cannot be de-referenced',
         () {
-      final typeDef = WinRTMetadataStore.findMetadata(
+      final typeDef = WinRTMetadataStore.findTypeDef(
           'Windows.Globalization.ICalendarFactory');
       expect(
           () => typeDef
@@ -231,7 +231,7 @@ void main() {
 
   group('genericParamSequence', () {
     test('(1)', () {
-      final typeDef = WinRTMetadataStore.findMetadata(
+      final typeDef = WinRTMetadataStore.findTypeDef(
           'Windows.Foundation.Collections.IMap`2');
       final method = typeDef.findMethod('Insert')!;
       expect(
@@ -242,7 +242,7 @@ void main() {
 
     test('throws a StateError if TypeIdentifier is cannot be de-referenced',
         () {
-      final typeDef = WinRTMetadataStore.findMetadata(
+      final typeDef = WinRTMetadataStore.findTypeDef(
           'Windows.Storage.Search.IStorageFileQueryResult2');
       final method = typeDef.findMethod('GetMatchingPropertiesWithRanges')!;
       expect(
@@ -254,7 +254,7 @@ void main() {
 
   group('iid', () {
     test('returns the IID of IAsyncOperation<IVectorView<StorageFile>>', () {
-      final typeDef = WinRTMetadataStore.findMetadata(
+      final typeDef = WinRTMetadataStore.findTypeDef(
           'Windows.Storage.Pickers.IFileOpenPicker');
       expect(
           typeDef
@@ -267,7 +267,7 @@ void main() {
     });
 
     test('returns the IID of IMap<String, IVectorView<TextSegment>>', () {
-      final typeDef = WinRTMetadataStore.findMetadata(
+      final typeDef = WinRTMetadataStore.findTypeDef(
           'Windows.Storage.Search.IStorageFileQueryResult2');
       expect(
           typeDef
@@ -281,8 +281,8 @@ void main() {
 
     test('returns the IID of IMapView<PedometerStepKind, PedometerReading>',
         () {
-      final typeDef = WinRTMetadataStore.findMetadata(
-          'Windows.Devices.Sensors.IPedometer2');
+      final typeDef =
+          WinRTMetadataStore.findTypeDef('Windows.Devices.Sensors.IPedometer2');
       expect(
           typeDef
               .findMethod('GetCurrentReadings')!
@@ -294,7 +294,7 @@ void main() {
     });
 
     test('returns the IID of IAsyncOperation<IReference<TimeSpan>>', () {
-      final typeDef = WinRTMetadataStore.findMetadata(
+      final typeDef = WinRTMetadataStore.findTypeDef(
           'Windows.UI.Xaml.Controls.ITimePickerFlyout');
       expect(
           typeDef
@@ -309,7 +309,7 @@ void main() {
 
   group('iterableIID', () {
     test('of IIterable<IKeyValuePair<String, IVectorView<TextSegment>>>', () {
-      final typeDef = WinRTMetadataStore.findMetadata(
+      final typeDef = WinRTMetadataStore.findTypeDef(
           'Windows.Storage.Search.IStorageFileQueryResult2');
       expect(
           typeDef
@@ -322,8 +322,8 @@ void main() {
 
     test('of IIterable<IKeyValuePair<PedometerStepKind, PedometerReading>>',
         () {
-      final typeDef = WinRTMetadataStore.findMetadata(
-          'Windows.Devices.Sensors.IPedometer2');
+      final typeDef =
+          WinRTMetadataStore.findTypeDef('Windows.Devices.Sensors.IPedometer2');
       expect(
           typeDef
               .findMethod('GetCurrentReadings')!
@@ -334,7 +334,7 @@ void main() {
     });
 
     test('of IIterable<String>', () {
-      final typeDef = WinRTMetadataStore.findMetadata(
+      final typeDef = WinRTMetadataStore.findTypeDef(
           'Windows.Storage.Pickers.IFileOpenPicker');
       expect(
           typeDef
@@ -346,7 +346,7 @@ void main() {
     });
 
     test('of IIterable<HostName>', () {
-      final typeDef = WinRTMetadataStore.findMetadata(
+      final typeDef = WinRTMetadataStore.findTypeDef(
           'Windows.Networking.Connectivity.INetworkInformationStatics');
       expect(
           typeDef
@@ -358,7 +358,7 @@ void main() {
     });
 
     test('throws an UnsupportedError', () {
-      final typeDef = WinRTMetadataStore.findMetadata(
+      final typeDef = WinRTMetadataStore.findTypeDef(
           'Windows.Globalization.ICalendarFactory');
       expect(
         () => typeDef
@@ -379,7 +379,7 @@ void main() {
 
   group('shortName', () {
     test('(1)', () {
-      final typeDef = WinRTMetadataStore.findMetadata(
+      final typeDef = WinRTMetadataStore.findTypeDef(
           'Windows.Globalization.ICalendarFactory');
       expect(
           typeDef
@@ -391,7 +391,7 @@ void main() {
     });
 
     test('(2)', () {
-      final typeDef = WinRTMetadataStore.findMetadata(
+      final typeDef = WinRTMetadataStore.findTypeDef(
           'Windows.Foundation.IPropertyValueStatics');
       expect(
           typeDef
@@ -420,7 +420,7 @@ void main() {
     });
 
     test('(3)', () {
-      final typeDef = WinRTMetadataStore.findMetadata(
+      final typeDef = WinRTMetadataStore.findTypeDef(
           'Windows.Devices.Power.IBatteryReport');
       expect(
           typeDef
@@ -432,7 +432,7 @@ void main() {
     });
 
     test('(4)', () {
-      final typeDef = WinRTMetadataStore.findMetadata(
+      final typeDef = WinRTMetadataStore.findTypeDef(
           'Windows.Devices.Geolocation.IGeolocatorStatics2');
       expect(
           typeDef
@@ -445,7 +445,7 @@ void main() {
 
     test('(5)', () {
       final typeDef =
-          WinRTMetadataStore.findMetadata('Windows.Data.Json.JsonObject');
+          WinRTMetadataStore.findTypeDef('Windows.Data.Json.JsonObject');
       expect(typeDef.interfaces[2].typeSpec!.shortName,
           equals('IMap<String, IJsonValue?>'));
       expect(typeDef.interfaces[3].typeSpec!.shortName,
@@ -453,7 +453,7 @@ void main() {
     });
 
     test('(6)', () {
-      final typeDef = WinRTMetadataStore.findMetadata(
+      final typeDef = WinRTMetadataStore.findTypeDef(
           'Windows.Foundation.Collections.PropertySet');
       expect(
           typeDef
@@ -466,7 +466,7 @@ void main() {
     });
 
     test('(7)', () {
-      final typeDef = WinRTMetadataStore.findMetadata(
+      final typeDef = WinRTMetadataStore.findTypeDef(
           'Windows.Globalization.PhoneNumberFormatting.IPhoneNumberFormatterStatics');
       expect(
           typeDef
@@ -479,7 +479,7 @@ void main() {
     });
 
     test('(8)', () {
-      final typeDef = WinRTMetadataStore.findMetadata(
+      final typeDef = WinRTMetadataStore.findTypeDef(
           'Windows.Foundation.Collections.StringMap');
       expect(typeDef.interfaces[0].typeSpec!.shortName,
           equals('IMap<String, String>'));
@@ -494,7 +494,7 @@ void main() {
     });
 
     test('(9)', () {
-      final typeDef = WinRTMetadataStore.findMetadata(
+      final typeDef = WinRTMetadataStore.findTypeDef(
           'Windows.Storage.Pickers.IFileOpenPicker');
       expect(
           typeDef
@@ -520,7 +520,7 @@ void main() {
     });
 
     test('(10)', () {
-      final typeDef = WinRTMetadataStore.findMetadata(
+      final typeDef = WinRTMetadataStore.findTypeDef(
           'Windows.Storage.Search.IStorageFileQueryResult2');
       expect(
           typeDef
@@ -532,8 +532,8 @@ void main() {
     });
 
     test('(11)', () {
-      final typeDef = WinRTMetadataStore.findMetadata(
-          'Windows.Devices.Sensors.IPedometer2');
+      final typeDef =
+          WinRTMetadataStore.findTypeDef('Windows.Devices.Sensors.IPedometer2');
       expect(
           typeDef
               .findMethod('GetCurrentReadings')!
@@ -544,7 +544,7 @@ void main() {
     });
 
     test('(12)', () {
-      final typeDef = WinRTMetadataStore.findMetadata(
+      final typeDef = WinRTMetadataStore.findTypeDef(
           'Windows.Devices.Enumeration.DeviceThumbnail');
       expect(
           typeDef.findMethod('ReadAsync')!.returnType.typeIdentifier.shortName,
@@ -552,7 +552,7 @@ void main() {
     });
 
     test('(13)', () {
-      final typeDef = WinRTMetadataStore.findMetadata(
+      final typeDef = WinRTMetadataStore.findTypeDef(
           'Windows.Devices.Sms.GetSmsMessagesOperation');
       expect(
           typeDef
@@ -568,7 +568,7 @@ void main() {
   group('signature', () {
     test('of DateTime', () {
       final typeDef =
-          WinRTMetadataStore.findMetadata('Windows.Foundation.IPropertyValue');
+          WinRTMetadataStore.findTypeDef('Windows.Foundation.IPropertyValue');
       final typeIdentifier =
           typeDef.findMethod('GetDateTime')!.returnType.typeIdentifier;
       expect(typeIdentifier.signature,
@@ -577,7 +577,7 @@ void main() {
 
     test('of Guid', () {
       final typeDef =
-          WinRTMetadataStore.findMetadata('Windows.Foundation.IPropertyValue');
+          WinRTMetadataStore.findTypeDef('Windows.Foundation.IPropertyValue');
       final typeIdentifier =
           typeDef.findMethod('GetGuid')!.returnType.typeIdentifier;
       expect(typeIdentifier.signature, equals('g16'));
@@ -585,7 +585,7 @@ void main() {
 
     test('of Point', () {
       final typeDef =
-          WinRTMetadataStore.findMetadata('Windows.Foundation.IPropertyValue');
+          WinRTMetadataStore.findTypeDef('Windows.Foundation.IPropertyValue');
       final typeIdentifier =
           typeDef.findMethod('GetPoint')!.returnType.typeIdentifier;
       expect(typeIdentifier.signature,
@@ -594,7 +594,7 @@ void main() {
 
     test('of TimeSpan', () {
       final typeDef =
-          WinRTMetadataStore.findMetadata('Windows.Foundation.IPropertyValue');
+          WinRTMetadataStore.findTypeDef('Windows.Foundation.IPropertyValue');
       final typeIdentifier =
           typeDef.findMethod('GetTimeSpan')!.returnType.typeIdentifier;
       expect(typeIdentifier.signature,
@@ -603,7 +603,7 @@ void main() {
 
     test('AsyncActionCompletedHandler', () {
       final typeDef =
-          WinRTMetadataStore.findMetadata('Windows.Foundation.IAsyncAction');
+          WinRTMetadataStore.findTypeDef('Windows.Foundation.IAsyncAction');
       final typeIdentifier =
           typeDef.findMethod('get_Completed')!.returnType.typeIdentifier;
       expect(typeIdentifier.signature,
@@ -612,7 +612,7 @@ void main() {
 
     test('AsyncStatus', () {
       final typeDef =
-          WinRTMetadataStore.findMetadata('Windows.Foundation.IAsyncInfo');
+          WinRTMetadataStore.findTypeDef('Windows.Foundation.IAsyncInfo');
       final typeIdentifier =
           typeDef.findMethod('get_Status')!.returnType.typeIdentifier;
       expect(typeIdentifier.signature,
@@ -620,7 +620,7 @@ void main() {
     });
 
     test('of Uri', () {
-      final typeDef = WinRTMetadataStore.findMetadata(
+      final typeDef = WinRTMetadataStore.findTypeDef(
           'Windows.Foundation.IUriRuntimeClassFactory');
       final typeIdentifier =
           typeDef.findMethod('CreateUri')!.returnType.typeIdentifier;
@@ -631,7 +631,7 @@ void main() {
     });
 
     test('of IMap<String, String>', () {
-      final typeDef = WinRTMetadataStore.findMetadata(
+      final typeDef = WinRTMetadataStore.findTypeDef(
           'Windows.Foundation.Collections.StringMap');
       expect(
           typeDef.interfaces.first.typeSpec!.signature,
@@ -640,7 +640,7 @@ void main() {
     });
 
     test('of IMap<Guid, Object>', () {
-      final typeDef = WinRTMetadataStore.findMetadata(
+      final typeDef = WinRTMetadataStore.findTypeDef(
           'Windows.Media.MediaProperties.MediaPropertySet');
       expect(
           typeDef.interfaces.first.typeSpec!.signature,
@@ -649,7 +649,7 @@ void main() {
     });
 
     test('of IIterable<IKeyValuePair<Guid, Object>>', () {
-      final typeDef = WinRTMetadataStore.findMetadata(
+      final typeDef = WinRTMetadataStore.findTypeDef(
           'Windows.Media.MediaProperties.MediaPropertySet');
       expect(
           typeDef.interfaces[1].typeSpec!.signature,
@@ -658,7 +658,7 @@ void main() {
     });
 
     test('of IAsyncOperation<IReference<Duration>>', () {
-      final typeDef = WinRTMetadataStore.findMetadata(
+      final typeDef = WinRTMetadataStore.findTypeDef(
           'Windows.UI.Xaml.Controls.ITimePickerFlyout');
       final typeIdentifier =
           typeDef.findMethod('ShowAtAsync')!.returnType.typeIdentifier;
@@ -669,7 +669,7 @@ void main() {
     });
 
     test('of IMap<String, IVectorView<TextSegment>>', () {
-      final typeDef = WinRTMetadataStore.findMetadata(
+      final typeDef = WinRTMetadataStore.findTypeDef(
           'Windows.Storage.Search.IStorageFileQueryResult2');
       expect(
           typeDef
@@ -682,8 +682,8 @@ void main() {
     });
 
     test('of IMapView<PedometerStepKind, PedometerReading>', () {
-      final typeDef = WinRTMetadataStore.findMetadata(
-          'Windows.Devices.Sensors.IPedometer2');
+      final typeDef =
+          WinRTMetadataStore.findTypeDef('Windows.Devices.Sensors.IPedometer2');
       final typeIdentifier =
           typeDef.findMethod('GetCurrentReadings')!.returnType.typeIdentifier;
       expect(
@@ -693,7 +693,7 @@ void main() {
     });
 
     test('of AsyncOperationProgressHandler<IVectorView<ISmsMessage>, int>', () {
-      final typeDef = WinRTMetadataStore.findMetadata(
+      final typeDef = WinRTMetadataStore.findTypeDef(
           'Windows.Devices.Sms.GetSmsMessagesOperation');
       expect(
           typeDef
@@ -708,7 +708,7 @@ void main() {
 
   group('typeArgs', () {
     test('(1)', () {
-      final typeDef = WinRTMetadataStore.findMetadata(
+      final typeDef = WinRTMetadataStore.findTypeDef(
           'Windows.Devices.Power.IBatteryReport');
       // IReference<int?>
       final typeArgs = typeDef
@@ -722,7 +722,7 @@ void main() {
 
     test('(2)', () {
       final typeDef =
-          WinRTMetadataStore.findMetadata('Windows.Data.Json.JsonObject');
+          WinRTMetadataStore.findTypeDef('Windows.Data.Json.JsonObject');
       // IIterable<IKeyValuePair<String, IJsonValue?>>
       final typeArgs1 = typeDef.interfaces[3].typeSpec!.typeArgs;
       expect(typeArgs1.length, equals(1));
@@ -738,7 +738,7 @@ void main() {
     });
 
     test('(3)', () {
-      final typeDef = WinRTMetadataStore.findMetadata(
+      final typeDef = WinRTMetadataStore.findTypeDef(
           'Windows.Storage.Pickers.IFileOpenPicker');
       // IAsyncOperation<IVectorView<StorageFile>>
       final typeArgs = typeDef
@@ -755,7 +755,7 @@ void main() {
     });
 
     test('(4)', () {
-      final typeDef = WinRTMetadataStore.findMetadata(
+      final typeDef = WinRTMetadataStore.findTypeDef(
           'Windows.Storage.Search.IStorageFileQueryResult2');
       // IMap<String, IVectorView<TextSegment>>
       final typeArgs = typeDef
@@ -775,7 +775,7 @@ void main() {
     });
 
     test('(5)', () {
-      final typeDef = WinRTMetadataStore.findMetadata(
+      final typeDef = WinRTMetadataStore.findTypeDef(
           'Windows.Devices.Sms.GetSmsMessagesOperation');
       // AsyncOperationProgressHandler<IVectorView<ISmsMessage>, int>
       final typeArgs = typeDef

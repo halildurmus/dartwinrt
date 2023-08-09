@@ -43,8 +43,7 @@ base class SetterProjection extends PropertyProjection {
     }
   }
 
-  /// Attempts to create a [SetterProjection] from [fullyQualifiedType] and
-  /// [methodName].
+  /// Attempts to create a [SetterProjection] from [type] and [methodName].
   ///
   /// ```dart
   /// final projection = SetterProjection.fromTypeAndMethodName(
@@ -52,17 +51,16 @@ base class SetterProjection extends PropertyProjection {
   /// ```
   ///
   /// It does this by calling `MethodProjection.fromTypeAndMethodName`
-  /// constructor with given [fullyQualifiedType] and [methodName].
+  /// constructor with given [type] and [methodName].
   factory SetterProjection.fromTypeAndMethodName(
-      String fullyQualifiedType, String methodName) {
-    final setPropertyRegExp = RegExp(r'^put(_{1,2})(\w+)$');
-    if (!setPropertyRegExp.hasMatch(methodName)) {
-      throw ArgumentError.value(
-          methodName, 'methodName', 'Method name must start with `put_`.');
+      String type, String methodName) {
+    if (!methodName.isSetProperty) {
+      throw ArgumentError.value(methodName, 'methodName',
+          'Method name must start with `put_` (e.g., `put_Data`).');
     }
 
-    return MethodProjection.fromTypeAndMethodName(
-        fullyQualifiedType, methodName) as SetterProjection;
+    return MethodProjection.fromTypeAndMethodName(type, methodName)
+        as SetterProjection;
   }
 
   /// [ParameterProjection] for the parameter of the setter.

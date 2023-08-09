@@ -10,10 +10,10 @@ import 'winrt_metadata_store.dart';
 
 /// Represents a WinRT generic type.
 sealed class GenericType {
-  const GenericType(this.fullyQualifiedType);
+  const GenericType(this.type);
 
-  /// The fully qualified type (e.g., Windows.Foundation.IReference`1).
-  final String fullyQualifiedType;
+  /// The WinRT generic type (e.g., Windows.Foundation.IReference`1).
+  final String type;
 
   /// Returns all the generic types.
   static List<GenericType> get all => [
@@ -60,7 +60,7 @@ sealed class GenericType {
       'Windows.Foundation.Collections.IVectorView`1', _vectorTypeArgKinds);
 
   /// The short name of the type (e.g., `IReference`).
-  String get shortName => fullyQualifiedType.stripGenerics().lastComponent;
+  String get shortName => type.stripGenerics().lastComponent;
 
   @override
   String toString() => shortName;
@@ -69,7 +69,7 @@ sealed class GenericType {
 /// Represents a WinRT generic type with one type argument (e.g.,
 /// Windows.Foundation.IAsyncOperation`1).
 final class GenericTypeWithOneTypeArg extends GenericType {
-  const GenericTypeWithOneTypeArg(super.fullyQualifiedType, this.typeArgKinds);
+  const GenericTypeWithOneTypeArg(super.type, this.typeArgKinds);
 
   /// The [TypeArgKind]s for this generic type (e.g., `TypeArgKind.bool_`,
   /// `TypeArgKind.string`).
@@ -84,11 +84,11 @@ final class GenericTypeWithOneTypeArg extends GenericType {
       if (isClassVariableType) continue;
 
       final typeIdentifier =
-          returnType.typeIdentifier.name != fullyQualifiedType && isGenericType
+          returnType.typeIdentifier.name != type && isGenericType
               ? returnType.typeIdentifier.dereference()
               : returnType.typeIdentifier;
 
-      if (typeIdentifier.name == fullyQualifiedType) {
+      if (typeIdentifier.name == type) {
         final typeArg = typeIdentifier.typeArg!;
         if (typeArg.isClassVariableType) continue;
 
@@ -109,8 +109,7 @@ final class GenericTypeWithOneTypeArg extends GenericType {
 /// Represents a WinRT generic type with two type arguments (e.g.,
 /// Windows.Foundation.Collections.IMap`2).
 final class GenericTypeWithTwoTypeArgs extends GenericType {
-  const GenericTypeWithTwoTypeArgs(
-      super.fullyQualifiedType, this.typeArgKindPairs);
+  const GenericTypeWithTwoTypeArgs(super.type, this.typeArgKindPairs);
 
   /// The [TypeArgKind] pairs for this generic type (e.g.,
   /// `(TypeArgKind.string, TypeArgKind.string)`,
@@ -128,13 +127,12 @@ final class GenericTypeWithTwoTypeArgs extends GenericType {
       for (final param in paramsAndReturnType) {
         if (param.isClassVariableType) continue;
 
-        final typeIdentifier =
-            param.typeIdentifier.name != fullyQualifiedType &&
-                    (param.isGenericType || param.isReferenceType)
-                ? param.typeIdentifier.dereference()
-                : param.typeIdentifier;
+        final typeIdentifier = param.typeIdentifier.name != type &&
+                (param.isGenericType || param.isReferenceType)
+            ? param.typeIdentifier.dereference()
+            : param.typeIdentifier;
 
-        if (typeIdentifier.name == fullyQualifiedType) {
+        if (typeIdentifier.name == type) {
           final [typeArg1, typeArg2] = typeIdentifier.typeArgs;
           if (typeArg1.isClassVariableType || typeArg2.isClassVariableType) {
             continue;

@@ -199,10 +199,7 @@ extension TypeIdentifierHelpers on TypeIdentifier {
     final typeProjection = TypeProjection(this);
 
     if (typeProjection.isWinRTClass) {
-      if (type.defaultInterface?.signature case final signature?) {
-        return 'rc($name;$signature)';
-      }
-      throw StateError('Type $this has no default interface.');
+      return 'rc($name;${type.defaultInterface.signature})';
     }
 
     if (typeProjection.isWinRTEnum) {

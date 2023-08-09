@@ -310,5 +310,5 @@ enum TypeArgKind {
 extension on String {
   TypeIdentifier get typeIdentifier =>
       TypeIdentifier(BaseType.classTypeModifier,
-          name: this, type: WinRTMetadataStore.findMetadata(this));
+          name: this, type: WinRTMetadataStore.findTypeDef(this));
 }

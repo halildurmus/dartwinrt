@@ -16,14 +16,14 @@ void main() {
 
   group('MethodForwardersProjection', () {
     final typeDef1 =
-        WinRTMetadataStore.findMetadata('Windows.Data.Json.JsonArray')
+        WinRTMetadataStore.findTypeDef('Windows.Data.Json.JsonArray')
             .interfaces[2];
     final classProjection1 =
         ClassProjection.from('Windows.Data.Json.JsonArray');
     final methodForwardersProjection =
         MethodForwardersProjection(typeDef1, classProjection1);
     final typeDef2 =
-        WinRTMetadataStore.findMetadata('Windows.Data.Json.JsonObject')
+        WinRTMetadataStore.findTypeDef('Windows.Data.Json.JsonObject')
             .interfaces[2];
     final classProjection2 =
         ClassProjection.from('Windows.Data.Json.JsonObject');

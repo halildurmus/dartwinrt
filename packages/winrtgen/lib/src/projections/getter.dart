@@ -39,8 +39,7 @@ base class GetterProjection extends PropertyProjection {
     }
   }
 
-  /// Attempts to create a [GetterProjection] from [fullyQualifiedType] and
-  /// [methodName].
+  /// Attempts to create a [GetterProjection] from [type] and [methodName].
   ///
   /// ```dart
   /// final projection = GetterProjection.fromTypeAndMethodName(
@@ -48,17 +47,16 @@ base class GetterProjection extends PropertyProjection {
   /// ```
   ///
   /// It does this by calling `MethodProjection.fromTypeAndMethodName`
-  /// constructor with given [fullyQualifiedType] and [methodName].
+  /// constructor with given [type] and [methodName].
   factory GetterProjection.fromTypeAndMethodName(
-      String fullyQualifiedType, String methodName) {
-    final getPropertyRegExp = RegExp(r'^get(_{1,2})(\w+)$');
-    if (!getPropertyRegExp.hasMatch(methodName)) {
-      throw ArgumentError.value(
-          methodName, 'methodName', 'Method name must start with `get_`.');
+      String type, String methodName) {
+    if (!methodName.isGetProperty) {
+      throw ArgumentError.value(methodName, 'methodName',
+          'Method name must start with `get_` (e.g., `get_Data`).');
     }
 
-    return MethodProjection.fromTypeAndMethodName(
-        fullyQualifiedType, methodName) as GetterProjection;
+    return MethodProjection.fromTypeAndMethodName(type, methodName)
+        as GetterProjection;
   }
 
   // PropertyProjection overrides

@@ -23,9 +23,8 @@ sealed class AssetManager {
   /// be customized for different loading and saving behaviors.
   ///
   /// The JSON file specified in [path] is expected to have keys of type
-  /// [String] (representing fully qualified types e.g.,
-  /// `Windows.Foundation.Uri`) and values of type [String] (representing
-  /// comments associated with the types).
+  /// [String] (representing WinRT types e.g., `Windows.Foundation.Uri`) and
+  /// values of type [String] (representing comments associated with the types).
   AssetManager({
     required this.path,
     this.jsonLoader = const LocalJsonLoader(),
@@ -43,14 +42,13 @@ sealed class AssetManager {
 
   final SplayTreeMap<String, String> _types;
 
-  /// Adds the [fullyQualifiedType] into the JSON file with an optional
-  /// [comment].
+  /// Adds the [type] into the JSON file with an optional [comment].
   ///
-  /// If the [fullyQualifiedType] was already in the JSON file, its associated
-  /// comment is changed.
-  void add(String fullyQualifiedType, {String comment = ''}) {
-    _throwIfNotFullyQualifiedType(fullyQualifiedType);
-    types[fullyQualifiedType] = comment;
+  /// If the [type] was already in the JSON file, its associated comment is
+  /// changed.
+  void add(String type, {String comment = ''}) {
+    _throwIfNotWinRTType(type);
+    types[type] = comment;
     jsonSaver.save(path, types);
   }
 
@@ -61,9 +59,9 @@ sealed class AssetManager {
   /// comments associated with the types.
   void addAll(Map<String, String> other) {
     for (final entry in other.entries) {
-      if (!entry.key.isFullyQualifiedType) {
+      if (!entry.key.isWinRTType) {
         throw ArgumentError(
-            'Type must be fully qualified (e.g., Windows.Foundation.Uri)');
+            'Type must be a WinRT type (e.g., Windows.Foundation.Uri)');
       }
       types[entry.key] = entry.value;
     }
@@ -76,59 +74,55 @@ sealed class AssetManager {
     jsonSaver.save(path, types);
   }
 
-  /// Whether the JSON file contains the given [fullyQualifiedType] key.
-  bool contains(String fullyQualifiedType) =>
-      types.containsKey(fullyQualifiedType);
+  /// Whether the JSON file contains the given [type] key.
+  bool contains(String type) => types.containsKey(type);
 
   /// The number of key/value pairs present in the JSON file.
   int get length => types.length;
 
-  /// Removes the specified [fullyQualifiedType] and its associated value from
-  /// the JSON file.
-  void remove(String fullyQualifiedType) {
-    _throwIfNotFullyQualifiedType(fullyQualifiedType);
-    types.remove(fullyQualifiedType);
+  /// Removes the specified [type] and its associated value from the JSON file.
+  void remove(String type) {
+    _throwIfNotWinRTType(type);
+    types.remove(type);
     jsonSaver.save(path, types);
   }
 
   /// A map containing the loaded JSON data from the JSON file, where keys are
-  /// the fully qualified types (e.g., `Windows.Foundation.Uri`) and values are
-  /// their corresponding comments.
+  /// the WinRT types (e.g., `Windows.Foundation.Uri`) and values are their
+  /// corresponding comments.
   ///
   /// The map is sorted by its keys in ascending order.
   Map<String, String> get types => _types;
 
-  /// Returns a set of fully qualified types that have no associated
-  /// comments.
+  /// Returns a set of WinRT types that have no associated comments.
   Set<String> get typesWithoutComments => types.entries
       .where((entry) => entry.value.isEmpty)
       .map((entry) => entry.key)
       .toSet();
 
-  /// The associated comment for the given [fullyQualifiedType], or `null` if
-  /// [fullyQualifiedType] is not in the JSON file.
-  String? operator [](String fullyQualifiedType) {
-    _throwIfNotFullyQualifiedType(fullyQualifiedType);
-    return types[fullyQualifiedType];
+  /// The associated comment for the given [type], or `null` if [type] is not in
+  /// the JSON file.
+  String? operator [](String type) {
+    _throwIfNotWinRTType(type);
+    return types[type];
   }
 
-  /// Adds the [fullyQualifiedType] and its associated [comment] into the JSON
-  /// file.
+  /// Adds the [type] and its associated [comment] into the JSON file.
   ///
-  /// If the [fullyQualifiedType] was already in the JSON file, its associated
-  /// comment is changed.
-  void operator []=(String fullyQualifiedType, String comment) {
-    _throwIfNotFullyQualifiedType(fullyQualifiedType);
-    types[fullyQualifiedType] = comment;
+  /// If the [type] was already in the JSON file, its associated comment is
+  /// changed.
+  void operator []=(String type, String comment) {
+    _throwIfNotWinRTType(type);
+    types[type] = comment;
     jsonSaver.save(path, types);
   }
 
   /// Throws an [ArgumentError] if this string does not represent a fully
   /// qualified type.
-  void _throwIfNotFullyQualifiedType(String type) {
-    if (!type.isFullyQualifiedType) {
-      throw ArgumentError.value(type, 'fullyQualifiedType',
-          'Type must be fully qualified (e.g., Windows.Foundation.Uri)');
+  void _throwIfNotWinRTType(String type) {
+    if (!type.isWinRTType) {
+      throw ArgumentError.value(type, 'type',
+          'Type must be a WinRT type (e.g., Windows.Foundation.Uri)');
     }
   }
 }

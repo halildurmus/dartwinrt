@@ -15,7 +15,7 @@ void generateObjects() {
   final typesAndDependencies = <String>{};
 
   for (final type in types.keys) {
-    final typeDef = WinRTMetadataStore.findMetadata(type);
+    final typeDef = WinRTMetadataStore.findTypeDef(type);
     final projection = typeDef.isInterface
         ? InterfaceProjection(typeDef)
         : ClassProjection(typeDef);
@@ -42,7 +42,7 @@ void generateObjects() {
 
   // Generate the type projection for each type
   for (final type in typesAndDependencies) {
-    final typeDef = WinRTMetadataStore.findMetadata(type);
+    final typeDef = WinRTMetadataStore.findTypeDef(type);
     final comment = types[type] ?? '';
     final projection = typeDef.isInterface
         ? InterfaceProjection(typeDef, comment: comment)
@@ -55,7 +55,7 @@ void generateObjects() {
 void generateConcreteClassesForGenericInterfaces() {
   for (final genericType in GenericType.all) {
     final projection = GenericInterfacePartFileProjection(genericType);
-    final path = genericType.fullyQualifiedType
+    final path = genericType.type
         .toFilePath()
         .replaceFirst('.dart', '_part.dart')
         .relativePathFrom('winrtgen');
@@ -103,39 +103,36 @@ void generateLibraryExports() {
     final exports = <String>{};
 
     for (final file in files) {
+      final fileName = file.uri.pathSegments.last; // e.g., calendar.dart
+
       if (packageName == 'windows_foundation') {
         // Skip internally used files
         if (file.path.contains(r'internal\')) continue;
 
         // Skip generated part files
-        if (file.path.endsWith('_part.dart')) continue;
+        if (fileName.isPartFile) continue;
       }
-
-      final fileName = file.uri.pathSegments.last; // e.g., calendar.dart
-
-      // Skip generated library export files
-      if (fileName == 'exports.g.dart') continue;
 
       // Skip excluded package files
       if (excludedPackageFiles[packageName]?.contains(fileName) ?? false) {
         continue;
       }
 
-      final factoryOrStaticsFileRegExp =
-          RegExp(r'\w+(factory\d{0,2}|statics\d{0,2})\.dart');
+      // Skip generated library export files
+      if (fileName.isExportsFile) continue;
+
       // Skip factory and statics files
-      if (factoryOrStaticsFileRegExp.hasMatch(fileName)) continue;
+      if (fileName.isFactoryOrStaticsFile) continue;
 
       // e.g., ..\windows_data\lib\src\json\jsonvalue.dart -> json/jsonvalue.dart
-      final filePath =
-          file.path.substring(packagePath.length + 1).replaceAll(r'\', '/');
+      final filePath = file.path.substring(packagePath.length + 1).toUnixPath();
       exports.add(filePath);
     }
 
-    final path = '${packagePath}/exports.g.dart';
+    final path = '$packagePath/exports.g.dart';
     final content = '''
 $exportsFileHeader
-${exports.map((e) => "export '$e';").join('\n')}
+${exports.map((export) => 'export ${export.quote()};').join('\n')}
 ''';
     writeToFile(path, content);
   }

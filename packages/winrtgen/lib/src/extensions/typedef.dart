@@ -25,10 +25,13 @@ extension TypeDefHelpers on TypeDef {
   bool get isCollectionObject => interfaces.any(
       (interface) => interface.typeSpec?.name.endsWith('IIterable`1') ?? false);
 
-  /// Returns `true` if the type defined in this TypeDef is a factory interface
-  /// (e.g., `ICalendarFactory`).
-  bool get isFactoryInterface =>
-      RegExp(r'^I\w+Factory\d{0,2}$').hasMatch(shortName);
+  /// Whether the type defined in this TypeDef is a factory interface (e.g.,
+  /// `ICalendarFactory`, `ICalendarFactory2`).
+  bool get isFactoryInterface => shortName.isFactoryInterface;
+
+  /// Whether the type defined in this TypeDef is a statics interface (e.g.,
+  /// `ILauncherStatics`, `ILauncherStatics2`).
+  bool get isStaticsInterface => shortName.isStaticsInterface;
 
   /// Returns the package import for the type defined in this TypeDef (e.g.,
   /// `package:windows_globalization/windows_globalization.dart` for
@@ -51,12 +54,7 @@ extension TypeDefHelpers on TypeDef {
   String get signature {
     if (typeSpec case final typeSpec?) return typeSpec.signature;
 
-    if (isClass) {
-      if (defaultInterface?.signature case final signature?) {
-        return 'rc($name;$signature)';
-      }
-      throw StateError('Type $this has no default interface.');
-    }
+    if (isClass) return 'rc($name;${defaultInterface.signature})';
 
     if (isEnum) {
       final isFlagsEnum = existsAttribute(flagsAttribute);

@@ -13,16 +13,15 @@ import 'method.dart';
 base class ClassProjection extends InterfaceProjection {
   ClassProjection(super.typeDef, {super.comment});
 
-  /// Attempts to create a [ClassProjection] from [fullyQualifiedType] by
-  /// searching its [TypeDef].
+  /// Attempts to create a [ClassProjection] from [type] by searching its
+  /// [TypeDef].
   ///
   /// ```dart
   /// final projection =
   ///     ClassProjection.from('Windows.Storage.Pickers.FileOpenPicker');
   /// ```
-  factory ClassProjection.from(String fullyQualifiedType,
-      {String comment = ''}) {
-    final typeDef = WinRTMetadataStore.findMetadata(fullyQualifiedType);
+  factory ClassProjection.from(String type, {String comment = ''}) {
+    final typeDef = WinRTMetadataStore.findTypeDef(type);
     return ClassProjection(typeDef, comment: comment);
   }
 

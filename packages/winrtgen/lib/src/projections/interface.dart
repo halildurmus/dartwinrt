@@ -16,16 +16,15 @@ import 'setter.dart';
 base class InterfaceProjection extends BaseProjection {
   InterfaceProjection(super.typeDef, {super.comment});
 
-  /// Attempts to create an [InterfaceProjection] from [fullyQualifiedType] by
-  /// searching its [TypeDef].
+  /// Attempts to create an [InterfaceProjection] from [type] by searching its
+  /// [TypeDef].
   ///
   /// ```dart
   /// final projection =
   ///     InterfaceProjection.from('Windows.Foundation.IAsyncInfo');
   /// ```
-  factory InterfaceProjection.from(String fullyQualifiedType,
-      {String comment = ''}) {
-    final typeDef = WinRTMetadataStore.findMetadata(fullyQualifiedType);
+  factory InterfaceProjection.from(String type, {String comment = ''}) {
+    final typeDef = WinRTMetadataStore.findTypeDef(type);
     return InterfaceProjection(typeDef, comment: comment);
   }
 

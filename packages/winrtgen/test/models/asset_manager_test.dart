@@ -52,9 +52,7 @@ void main() {
           equals('New comment.'));
     });
 
-    test(
-        'add throws an ArgumentError if the type is not a fully qualified type',
-        () {
+    test('add throws an ArgumentError if the type is not a WinRT type', () {
       expect(() => enumManager.add('Windows'), throwsArgumentError);
     });
 
@@ -71,9 +69,7 @@ void main() {
       expect(enumManager.contains('Windows.Storage.FileAttributes'), isTrue);
     });
 
-    test(
-        'addAll throws an ArgumentError if a type is not a fully qualified type',
-        () {
+    test('addAll throws an ArgumentError if a type is not a WinRT type', () {
       expect(
           () => enumManager.addAll({
                 'Windows.Data.Json.JsonValueType':
@@ -116,8 +112,7 @@ void main() {
       expect(enumManager.contains('Windows.Globalization.DayOfWeek'), isFalse);
     });
 
-    test('remove throws an ArgumentError if type is not a fully qualified type',
-        () {
+    test('remove throws an ArgumentError if type is not a WinRT type', () {
       expect(
           () => enumManager.remove('Windows.Foundation'), throwsArgumentError);
     });
@@ -143,9 +138,7 @@ void main() {
       expect(enumManager['Windows.Storage.FileAttributes'], isNull);
     });
 
-    test(
-        'operator [] throws an ArgumentError if type is not a fully qualified type',
-        () {
+    test('operator [] throws an ArgumentError if type is not a WinRT type', () {
       expect(() => enumManager['Windows.Foundation'], throwsArgumentError);
     });
 
@@ -171,8 +164,7 @@ void main() {
           enumManager['Windows.Foundation.AsyncStatus'], equals('New comment'));
     });
 
-    test(
-        'operator []= throws an ArgumentError if type is not a fully qualified type',
+    test('operator []= throws an ArgumentError if type is not a WinRT type',
         () {
       expect(() => enumManager['Windows.Foundation'] = 'New comment',
           throwsArgumentError);
@@ -221,9 +213,7 @@ void main() {
           equals('New comment.'));
     });
 
-    test(
-        'add throws an ArgumentError if the type is not a fully qualified type',
-        () {
+    test('add throws an ArgumentError if the type is not a WinRT type', () {
       expect(() => objectManager.add('Windows'), throwsArgumentError);
     });
 
@@ -240,9 +230,7 @@ void main() {
       expect(objectManager.contains('Windows.Gaming.Input.Headset'), isTrue);
     });
 
-    test(
-        'addAll throws an ArgumentError if a type is not a fully qualified type',
-        () {
+    test('addAll throws an ArgumentError if a type is not a WinRT type', () {
       expect(
           () => objectManager.addAll({
                 'Windows.Foundation.IStringable':
@@ -303,8 +291,7 @@ void main() {
           objectManager.contains('Windows.Foundation.MemoryBuffer'), isFalse);
     });
 
-    test('remove throws an ArgumentError if type is not a fully qualified type',
-        () {
+    test('remove throws an ArgumentError if type is not a WinRT type', () {
       expect(() => objectManager.remove('Windows.Foundation'),
           throwsArgumentError);
     });
@@ -331,9 +318,7 @@ void main() {
               'Represents a media source that delivers media samples to a media pipeline.'));
     });
 
-    test(
-        'operator [] throws an ArgumentError if type is not a fully qualified type',
-        () {
+    test('operator [] throws an ArgumentError if type is not a WinRT type', () {
       expect(() => objectManager['Windows.Foundation'], throwsArgumentError);
     });
 
@@ -356,8 +341,7 @@ void main() {
           equals('New comment'));
     });
 
-    test(
-        'operator []= throws an ArgumentError if type is not a fully qualified type',
+    test('operator []= throws an ArgumentError if type is not a WinRT type',
         () {
       expect(() => objectManager['Windows.Foundation'] = 'New comment',
           throwsArgumentError);
@@ -403,9 +387,7 @@ void main() {
           equals('New comment.'));
     });
 
-    test(
-        'add throws an ArgumentError if the type is not a fully qualified type',
-        () {
+    test('add throws an ArgumentError if the type is not a WinRT type', () {
       expect(() => structManager.add('Windows'), throwsArgumentError);
     });
 
@@ -423,9 +405,7 @@ void main() {
       expect(structManager.contains('Windows.Graphics.RectInt32'), isTrue);
     });
 
-    test(
-        'addAll throws an ArgumentError if a type is not a fully qualified type',
-        () {
+    test('addAll throws an ArgumentError if a type is not a WinRT type', () {
       expect(
           () => structManager.addAll({
                 'Windows.Graphics.RectInt32':
@@ -470,8 +450,7 @@ void main() {
           isFalse);
     });
 
-    test('remove throws an ArgumentError if type is not a fully qualified type',
-        () {
+    test('remove throws an ArgumentError if type is not a WinRT type', () {
       expect(() => structManager.remove('Windows.Foundation'),
           throwsArgumentError);
     });
@@ -495,9 +474,7 @@ void main() {
       expect(structManager['Windows.Storage.Search.SortEntry'], isNull);
     });
 
-    test(
-        'operator [] throws an ArgumentError if type is not a fully qualified type',
-        () {
+    test('operator [] throws an ArgumentError if type is not a WinRT type', () {
       expect(() => structManager['Windows.Foundation'], throwsArgumentError);
     });
 
@@ -520,8 +497,7 @@ void main() {
       expect(structManager['Windows.Foundation.Size'], equals('New comment'));
     });
 
-    test(
-        'operator []= throws an ArgumentError if type is not a fully qualified type',
+    test('operator []= throws an ArgumentError if type is not a WinRT type',
         () {
       expect(() => structManager['Windows.Foundation'] = 'New comment',
           throwsArgumentError);
