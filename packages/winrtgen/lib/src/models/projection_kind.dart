@@ -2,6 +2,8 @@
 // All rights reserved. Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+import 'package:winmd/winmd.dart';
+
 import '../projections/projections.dart';
 import 'type_arg_kind.dart';
 
@@ -45,17 +47,28 @@ enum ProjectionKind {
   vectorView,
   void_;
 
-  /// Returns the appropriate [ProjectionKind] for the [type].
-  factory ProjectionKind.from(TypeProjection type) {
-    if (type.isReferenceType) {
-      final projectionKind = type.dereference().projectionKind;
+  /// Returns the appropriate [ProjectionKind] for the [method].
+  factory ProjectionKind.fromMethod(Method method) =>
+      method.parameters.any((p) => p.isOutParam)
+          ? ProjectionKind.record
+          : ProjectionKind.fromTypeIdentifier(method.returnType.typeIdentifier);
+
+  /// Returns the appropriate [ProjectionKind] for the [typeIdentifier].
+  factory ProjectionKind.fromTypeIdentifier(TypeIdentifier typeIdentifier) =>
+      ProjectionKind.fromTypeProjection(TypeProjection(typeIdentifier));
+
+  /// Returns the appropriate [ProjectionKind] for the [projection].
+  factory ProjectionKind.fromTypeProjection(TypeProjection projection) {
+    if (projection.isReferenceType) {
+      final projectionKind =
+          ProjectionKind.fromTypeProjection(projection.dereference());
       return projectionKind == ProjectionKind.dartPrimitive
           ? ProjectionKind.reference
           : projectionKind;
     }
 
-    if (type.isClassVariableType) {
-      final typeArgKind = TypeArgKind.from(type.typeIdentifier.name);
+    if (projection.isClassVariableType) {
+      final typeArgKind = TypeArgKind.fromName(projection.typeIdentifier.name);
       return switch (typeArgKind) {
         TypeArgKind.inspectable ||
         TypeArgKind.nullableInspectable =>
@@ -67,8 +80,9 @@ enum ProjectionKind {
       };
     }
 
-    if (type.isSimpleArray) {
-      final projectionKind = type.dereference().projectionKind;
+    if (projection.isSimpleArray) {
+      final projectionKind =
+          ProjectionKind.fromTypeProjection(projection.dereference());
       return switch (projectionKind) {
         ProjectionKind.dartPrimitive => ProjectionKind.dartPrimitiveArray,
         ProjectionKind.dateTime => ProjectionKind.dateTimeArray,
@@ -85,32 +99,34 @@ enum ProjectionKind {
       };
     }
 
-    if (type.isPointer) return ProjectionKind.pointer;
-    if (type.isDateTime) return ProjectionKind.dateTime;
-    if (type.isTimeSpan) return ProjectionKind.duration;
-    if (type.isWinRTEnum) return ProjectionKind.enum_;
-    if (type.isGuid) return ProjectionKind.struct;
-    if (type.isAsyncAction) return ProjectionKind.asyncAction;
-    if (type.isAsyncActionWithProgress) {
+    if (projection.isPointer) return ProjectionKind.pointer;
+    if (projection.isDateTime) return ProjectionKind.dateTime;
+    if (projection.isTimeSpan) return ProjectionKind.duration;
+    if (projection.isWinRTEnum) return ProjectionKind.enum_;
+    if (projection.isGuid) return ProjectionKind.struct;
+    if (projection.isAsyncAction) return ProjectionKind.asyncAction;
+    if (projection.isAsyncActionWithProgress) {
       return ProjectionKind.asyncActionWithProgress;
     }
-    if (type.isAsyncOperation) return ProjectionKind.asyncOperation;
-    if (type.isAsyncOperationWithProgress) {
+    if (projection.isAsyncOperation) return ProjectionKind.asyncOperation;
+    if (projection.isAsyncOperationWithProgress) {
       return ProjectionKind.asyncOperationWithProgress;
     }
-    if (type.isMap) return ProjectionKind.map;
-    if (type.isMapView) return ProjectionKind.mapView;
-    if (type.isIReference) return ProjectionKind.ireference;
-    if (type.isCharType || type.isString) return ProjectionKind.string;
-    if (type.isUri) return ProjectionKind.uri;
-    if (type.isVector) return ProjectionKind.vector;
-    if (type.isVectorView) return ProjectionKind.vectorView;
-    if (type.isVoid) return ProjectionKind.void_;
-    if (type.isDartPrimitive) return ProjectionKind.dartPrimitive;
-    if (type.isWinRTObject) return ProjectionKind.object;
-    if (type.isWinRTDelegate) return ProjectionKind.delegate;
-    if (type.isWinRTStruct) return ProjectionKind.struct;
+    if (projection.isMap) return ProjectionKind.map;
+    if (projection.isMapView) return ProjectionKind.mapView;
+    if (projection.isIReference) return ProjectionKind.ireference;
+    if (projection.isCharType || projection.isString) {
+      return ProjectionKind.string;
+    }
+    if (projection.isUri) return ProjectionKind.uri;
+    if (projection.isVector) return ProjectionKind.vector;
+    if (projection.isVectorView) return ProjectionKind.vectorView;
+    if (projection.isVoid) return ProjectionKind.void_;
+    if (projection.isDartPrimitive) return ProjectionKind.dartPrimitive;
+    if (projection.isWinRTObject) return ProjectionKind.object;
+    if (projection.isWinRTDelegate) return ProjectionKind.delegate;
+    if (projection.isWinRTStruct) return ProjectionKind.struct;
 
-    throw UnsupportedError('Unsupported TypeProjection: $type');
+    throw UnsupportedError('Unsupported TypeProjection: $projection');
   }
 }

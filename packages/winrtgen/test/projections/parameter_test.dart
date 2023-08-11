@@ -167,8 +167,10 @@ void main() {
     });
 
     test('projects generic enum', () {
-      final genericInterfaceProjection = GenericInterfaceProjection.from(
-          'Windows.Foundation.Collections.IVector`1', TypeArgKind.winrtEnum);
+      final genericInterfaceProjection =
+          GenericInterfaceProjection.fromTypeAndTypeArgs(
+              'Windows.Foundation.Collections.IVector`1',
+              TypeArgKind.winrtEnum);
       final methodProjection = genericInterfaceProjection.methodProjections
           .firstWhere((methodProjection) => methodProjection.name == 'Append');
       final projection = methodProjection.parameters.first;
@@ -190,9 +192,10 @@ void main() {
     });
 
     test('projects generic Flags enum', () {
-      final genericInterfaceProjection = GenericInterfaceProjection.from(
-          'Windows.Foundation.Collections.IVector`1',
-          TypeArgKind.winrtFlagsEnum);
+      final genericInterfaceProjection =
+          GenericInterfaceProjection.fromTypeAndTypeArgs(
+              'Windows.Foundation.Collections.IVector`1',
+              TypeArgKind.winrtFlagsEnum);
       final methodProjection = genericInterfaceProjection.methodProjections
           .firstWhere((methodProjection) => methodProjection.name == 'Append');
       final projection = methodProjection.parameters.first;
@@ -214,9 +217,10 @@ void main() {
     });
 
     test('projects generic object', () {
-      final genericInterfaceProjection = GenericInterfaceProjection.from(
-          'Windows.Foundation.Collections.IVector`1',
-          TypeArgKind.nullableInspectable);
+      final genericInterfaceProjection =
+          GenericInterfaceProjection.fromTypeAndTypeArgs(
+              'Windows.Foundation.Collections.IVector`1',
+              TypeArgKind.nullableInspectable);
       final methodProjection = genericInterfaceProjection.methodProjections
           .firstWhere((methodProjection) => methodProjection.name == 'Append');
       final projection = methodProjection.parameters.first;
@@ -678,10 +682,11 @@ void main() {
     });
 
     test('projects Object', () {
-      final genericInterfaceProjection = GenericInterfaceProjection.from(
-          'Windows.Foundation.Collections.IMap`2',
-          TypeArgKind.object,
-          TypeArgKind.nullableObject);
+      final genericInterfaceProjection =
+          GenericInterfaceProjection.fromTypeAndTypeArgs(
+              'Windows.Foundation.Collections.IMap`2',
+              TypeArgKind.object,
+              TypeArgKind.nullableObject);
       final methodProjection = genericInterfaceProjection.methodProjections
           .firstWhere((methodProjection) => methodProjection.name == 'Insert');
       final projection = methodProjection.parameters.first;
@@ -811,8 +816,9 @@ void main() {
     });
 
     test('projects struct (2)', () {
-      final genericInterfaceProjection = GenericInterfaceProjection.from(
-          'Windows.Foundation.Collections.IVector`1', TypeArgKind.plane);
+      final genericInterfaceProjection =
+          GenericInterfaceProjection.fromTypeAndTypeArgs(
+              'Windows.Foundation.Collections.IVector`1', TypeArgKind.plane);
       final methodProjection = genericInterfaceProjection.methodProjections
           .firstWhere((methodProjection) => methodProjection.name == 'Append');
       final projection = methodProjection.parameters.first;
@@ -838,10 +844,11 @@ void main() {
     });
 
     test('projects Uri', () {
-      final genericInterfaceProjection = GenericInterfaceProjection.from(
-          'Windows.Foundation.Collections.IMap`2',
-          TypeArgKind.uri,
-          TypeArgKind.string);
+      final genericInterfaceProjection =
+          GenericInterfaceProjection.fromTypeAndTypeArgs(
+              'Windows.Foundation.Collections.IMap`2',
+              TypeArgKind.uri,
+              TypeArgKind.string);
       final methodProjection = genericInterfaceProjection.methodProjections
           .firstWhere((methodProjection) => methodProjection.name == 'Insert');
       final projection = methodProjection.parameters.first;

@@ -5,7 +5,6 @@
 import 'package:winmd/winmd.dart';
 
 import '../models/models.dart';
-import '../projections/type.dart';
 import 'string.dart';
 import 'type_identifier.dart';
 
@@ -16,6 +15,7 @@ extension ParameterHelpers on Parameter {
         ..attributes = attributes
         ..name = name;
 
+  /// Returns the array passing style for simple array parameters.
   ArrayPassingStyle get arrayPassingStyle {
     assert(isReferenceType || isSimpleArraySizeParam || isSimpleArrayType);
 
@@ -47,7 +47,7 @@ extension ParameterHelpers on Parameter {
     }
 
     throw StateError(
-        'Failed to determine array-passing style for parameter $name');
+        'Failed to determine array-passing style for parameter $name.');
   }
 
   bool get isClassVariableType => typeIdentifier.isClassVariableType;
@@ -67,10 +67,10 @@ extension ParameterHelpers on Parameter {
 
   /// Returns the appropriate [ProjectionKind] for this parameter.
   ProjectionKind get projectionKind =>
-      TypeProjection(typeIdentifier).projectionKind;
+      ProjectionKind.fromTypeIdentifier(typeIdentifier);
 
-  /// Converts this simple array size parameter name (e.g., `__valueSize`) to the
-  /// corresponding array parameter name (e.g., `value`).
+  /// Converts this simple array size parameter name (e.g., `__valueSize`) to
+  /// the corresponding array parameter name (e.g., `value`).
   String toArrayParamName() {
     assert(isSimpleArraySizeParam);
     return name.substring(2, name.length - 4);
@@ -79,7 +79,7 @@ extension ParameterHelpers on Parameter {
   /// Converts this array parameter name (e.g., `value`) to the corresponding
   /// array size parameter name (e.g., `__valueSize`).
   String toArraySizeParamName() {
-    assert(!name.startsWith('__') && !name.endsWith('Size'));
+    assert(!isSimpleArraySizeParam);
     return '__${name}Size';
   }
 }

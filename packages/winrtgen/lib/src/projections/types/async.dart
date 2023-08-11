@@ -5,7 +5,6 @@
 import 'package:winmd/winmd.dart';
 
 import '../../extensions/extensions.dart';
-import '../../models/models.dart';
 import '../projections.dart';
 
 /// Parameter projection for `IAsyncAction` parameters.
@@ -51,8 +50,7 @@ final class AsyncOperationParameterProjection
 
   TypeIdentifier get typeIdentifier {
     if (isSubtypeOfAsyncOperation) {
-      final typeDef =
-          WinRTMetadataStore.findTypeDef(typeProjection.typeIdentifier.name);
+      final typeDef = typeProjection.typeIdentifier.name.typeDef;
       final interface = typeDef.interfaces.firstWhere((interface) =>
           interface.typeSpec?.name.endsWith('IAsyncOperation`1') ?? false);
       if (interface.typeSpec case final typeSpec?) return typeSpec;

@@ -7,7 +7,6 @@ import 'package:winmd/winmd.dart';
 
 import '../constants/constants.dart';
 import '../extensions/extensions.dart';
-import '../models/models.dart';
 import 'base.dart';
 import 'parameter.dart';
 import 'type.dart';
@@ -81,12 +80,11 @@ final class NativeStructProjection extends BaseProjection {
   /// [TypeDef].
   ///
   /// ```dart
-  /// final projection = NativeStructProjection.from('Windows.Foundation.Rect');
+  /// final projection =
+  ///     NativeStructProjection.fromType('Windows.Foundation.Rect');
   /// ```
-  factory NativeStructProjection.from(String type, {String? structName}) {
-    final typeDef = WinRTMetadataStore.findTypeDef(type);
-    return NativeStructProjection(typeDef, structName: structName);
-  }
+  factory NativeStructProjection.fromType(String type, {String? structName}) =>
+      NativeStructProjection(type.typeDef, structName: structName);
 
   @override
   String get header => '';
@@ -124,19 +122,17 @@ final class StructProjection extends NativeStructProjection {
   /// [TypeDef].
   ///
   /// ```dart
-  /// final projection = StructProjection.from('Windows.Foundation.Rect');
+  /// final projection = StructProjection.fromType('Windows.Foundation.Rect');
   /// ```
-  factory StructProjection.from(
+  factory StructProjection.fromType(
     String type, {
     String comment = '',
     String? structName,
-  }) {
-    final typeDef = WinRTMetadataStore.findTypeDef(type);
-    return StructProjection(typeDef, comment: comment, structName: structName);
-  }
+  }) =>
+      StructProjection(type.typeDef, comment: comment, structName: structName);
 
   @override
-  String get header => structFileHeader;
+  String get header => Header.struct;
 
   Set<String> get importsForTypes => {
         for (final field in typeDef.fields)
@@ -290,7 +286,7 @@ extension PointerNative${structName}Conversion on Pointer<Native$structName> {
 
   @override
   String get projection => '''
-$structFileHeader
+$header
 $importHeader
 
 $classPreamble

@@ -9,7 +9,7 @@ import 'package:winrtgen/winrtgen.dart';
 final goldensDir = Directory('test/goldens');
 final packagesDir = Directory('../');
 
-Iterable<File> getGoldenFiles() => goldensDir
+Iterable<File> goldenFiles() => goldensDir
     .listSync()
     .whereType<File>()
     .where((file) => file.path.endsWith('.golden'));
@@ -17,14 +17,14 @@ Iterable<File> getGoldenFiles() => goldensDir
 void main() {
   print('Updating the following golden files:');
 
-  for (final goldenFile in getGoldenFiles()) {
-    final MapEntry(:key, :value) = goldenFiles.entries.firstWhere(
-        (entry) => goldenFile.path.endsWith(entry.key),
+  for (final goldenFile in goldenFiles()) {
+    final (:goldenFileName, :originalFilePath) = goldenFileEntries.firstWhere(
+        (entry) => goldenFile.path.endsWith(entry.goldenFileName),
         orElse: () => throw StateError(
-            'Could not find the original file at ${goldenFile.path}'));
-    print(' - $key');
-    final originalFilePath = '${packagesDir.path}/$value';
-    final originalFileContent = File(originalFilePath).readAsStringSync();
+            'Could not find the original file at ${goldenFile.path}.'));
+    print(' - $goldenFileName');
+    final filePath = '${packagesDir.path}/$originalFilePath';
+    final originalFileContent = File(filePath).readAsStringSync();
     // Update the golden file with the original file content.
     goldenFile.writeAsStringSync(originalFileContent);
   }

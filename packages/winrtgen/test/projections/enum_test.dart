@@ -16,46 +16,47 @@ void main() {
 
   group('EnumProjection', () {
     test('create', () {
-      final typeDef =
-          WinRTMetadataStore.findTypeDef('Windows.Storage.FileAttributes');
+      final typeDef = 'Windows.Storage.FileAttributes'.typeDef;
       final projection = EnumProjection.create(typeDef);
       expect(projection, isA<FlagsEnumProjection>());
     });
 
     test('projects something', () {
       final output =
-          EnumProjection.from('Windows.Foundation.AsyncStatus').toString();
+          EnumProjection.fromType('Windows.Foundation.AsyncStatus').toString();
       expect(output, isNotEmpty);
       expect(output, contains('AsyncStatus'));
     });
 
     test('from factory constructor throws a StateError if type is not found',
         () {
-      expect(() => EnumProjection.from('Windows.Foo.Bar'), throwsStateError);
+      expect(
+          () => EnumProjection.fromType('Windows.Foo.Bar'), throwsStateError);
     });
   });
 
   group('FlagsEnumProjection', () {
     test('projects something', () {
       final output =
-          FlagsEnumProjection.from('Windows.Storage.FileAttributes').toString();
+          FlagsEnumProjection.fromType('Windows.Storage.FileAttributes')
+              .toString();
       expect(output, isNotEmpty);
       expect(output, contains('FileAttributes'));
     });
 
     test('from factory constructor throws a StateError if type is not found',
         () {
-      expect(
-          () => FlagsEnumProjection.from('Windows.Foo.Bar'), throwsStateError);
+      expect(() => FlagsEnumProjection.fromType('Windows.Foo.Bar'),
+          throwsStateError);
     });
   });
 
   group('WinRT enum', () {
     final asyncStatusProjection =
-        EnumProjection.from('Windows.Foundation.AsyncStatus');
+        EnumProjection.fromType('Windows.Foundation.AsyncStatus');
 
     test('has copyright header', () {
-      expect(asyncStatusProjection.header, contains(copyrightHeader));
+      expect(asyncStatusProjection.header, contains(Header.copyright));
     });
 
     test('imports are meaningful', () {
@@ -73,8 +74,8 @@ void main() {
     });
 
     test('annotated with @Deprecated', () {
-      final projection =
-          EnumProjection.from('Windows.System.UserProfile.AccountPictureKind');
+      final projection = EnumProjection.fromType(
+          'Windows.System.UserProfile.AccountPictureKind');
       expect(
           projection.classHeader,
           contains('@Deprecated("Use User instead of UserInformation. For more '
@@ -100,7 +101,7 @@ void main() {
 
     test('identifiers are correctly converted to lowercase', () {
       final projection =
-          EnumProjection.from('Windows.Devices.Geolocation.PositionSource');
+          EnumProjection.fromType('Windows.Devices.Geolocation.PositionSource');
       final identifiers = projection.identifiers;
       expect(identifiers[0].toString(), equals('cellular(0)'));
       expect(identifiers[1].toString(), equals('satellite(1)'));
@@ -113,7 +114,7 @@ void main() {
 
     test('identifier annotated with @Deprecated', () {
       final projection =
-          EnumProjection.from('Windows.Media.Render.AudioRenderCategory');
+          EnumProjection.fromType('Windows.Media.Render.AudioRenderCategory');
       final backgroundCapableMedia = projection.identifiers.firstWhere(
           (identifier) =>
               identifier.identifierName == 'backgroundCapableMedia');
@@ -128,10 +129,10 @@ void main() {
 
   group('WinRT Flags enum', () {
     final fileAttributesProjection =
-        FlagsEnumProjection.from('Windows.Storage.FileAttributes');
+        FlagsEnumProjection.fromType('Windows.Storage.FileAttributes');
 
     test('has copyright header', () {
-      expect(fileAttributesProjection.header, contains(copyrightHeader));
+      expect(fileAttributesProjection.header, contains(Header.copyright));
     });
 
     test('imports are meaningful', () {
@@ -151,7 +152,7 @@ void main() {
     });
 
     test('annotated with @Deprecated', () {
-      final projection = FlagsEnumProjection.from(
+      final projection = FlagsEnumProjection.fromType(
           'Windows.Security.Authentication.Identity.Provider.SecondaryAuthenticationFactorDeviceCapabilities');
       expect(
           projection.classHeader,
@@ -207,7 +208,7 @@ void main() {
     });
 
     test('static enum constant annotated with @Deprecated', () {
-      final projection = FlagsEnumProjection.from(
+      final projection = FlagsEnumProjection.fromType(
           'Windows.Networking.Sockets.SocketProtectionLevel');
       final ssl = projection.staticEnumConstants
           .firstWhere((enumConstant) => enumConstant.identifierName == 'ssl');

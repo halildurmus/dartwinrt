@@ -265,8 +265,10 @@ void main() {
     });
 
     test('projects generic enum', () {
-      final genericInterfaceProjection = GenericInterfaceProjection.from(
-          'Windows.Foundation.Collections.IVector`1', TypeArgKind.winrtEnum);
+      final genericInterfaceProjection =
+          GenericInterfaceProjection.fromTypeAndTypeArgs(
+              'Windows.Foundation.Collections.IVector`1',
+              TypeArgKind.winrtEnum);
       final projection = genericInterfaceProjection.methodProjections
           .firstWhere((methodProjection) => methodProjection.name == 'GetAt');
       expect(projection.annotations, isEmpty);
@@ -296,9 +298,10 @@ void main() {
     });
 
     test('projects generic Flags enum', () {
-      final genericInterfaceProjection = GenericInterfaceProjection.from(
-          'Windows.Foundation.Collections.IVector`1',
-          TypeArgKind.winrtFlagsEnum);
+      final genericInterfaceProjection =
+          GenericInterfaceProjection.fromTypeAndTypeArgs(
+              'Windows.Foundation.Collections.IVector`1',
+              TypeArgKind.winrtFlagsEnum);
       final projection = genericInterfaceProjection.methodProjections
           .firstWhere((methodProjection) => methodProjection.name == 'GetAt');
       expect(projection.annotations, isEmpty);
@@ -328,9 +331,10 @@ void main() {
     });
 
     test('projects generic object', () {
-      final genericInterfaceProjection = GenericInterfaceProjection.from(
-          'Windows.Foundation.Collections.IVector`1',
-          TypeArgKind.nullableInspectable);
+      final genericInterfaceProjection =
+          GenericInterfaceProjection.fromTypeAndTypeArgs(
+              'Windows.Foundation.Collections.IVector`1',
+              TypeArgKind.nullableInspectable);
       final projection = genericInterfaceProjection.methodProjections
           .firstWhere((methodProjection) => methodProjection.name == 'GetAt');
       expect(projection.annotations, isEmpty);
@@ -1724,8 +1728,9 @@ void main() {
     });
 
     test('projects void (2)', () {
-      final genericInterfaceProjection = GenericInterfaceProjection.from(
-          'Windows.Foundation.Collections.IVector`1', TypeArgKind.plane);
+      final genericInterfaceProjection =
+          GenericInterfaceProjection.fromTypeAndTypeArgs(
+              'Windows.Foundation.Collections.IVector`1', TypeArgKind.plane);
       final projection = genericInterfaceProjection.methodProjections
           .firstWhere((methodProjection) => methodProjection.name == 'Append');
       expect(projection.annotations, isEmpty);

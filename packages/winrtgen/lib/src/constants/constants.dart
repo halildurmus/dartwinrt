@@ -2,10 +2,9 @@
 // All rights reserved. Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-export 'attributes.dart';
-export 'bad_identifier_names.dart';
-export 'exclusions.dart';
-export 'golden_files.dart';
-export 'headers.dart';
+export 'attribute.dart';
+export 'exclusion.dart';
+export 'golden_file_entries.dart';
+export 'header.dart';
 export 'iids.dart';
-export 'package_names.dart';
+export 'package.dart';

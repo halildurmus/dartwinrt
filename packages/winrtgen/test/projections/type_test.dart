@@ -300,9 +300,11 @@ void main() {
       // )
       final methodProjection = MethodProjection.fromTypeAndMethodName(
           'Windows.Storage.Pickers.FileExtensionVector', 'GetMany');
-      expect(methodProjection.parameters.length, equals(3));
+      final parameters = methodProjection.parameters;
+      expect(parameters.length, equals(3));
 
-      final itemsSizeParam = methodProjection.parameters[1];
+      final [_, itemsSizeParam, itemsParam] = parameters;
+
       expect(itemsSizeParam.name, equals('__itemsSize'));
       expect(itemsSizeParam.isInParam, isTrue);
       final itemsSizeParamProjection = itemsSizeParam.typeProjection;
@@ -310,7 +312,6 @@ void main() {
       expect(itemsSizeParamProjection.nativeType, equals('Uint32'));
       expect(itemsSizeParamProjection.isDartPrimitive, isTrue);
 
-      final itemsParam = methodProjection.parameters.last;
       expect(itemsParam.name, equals('items'));
       expect(itemsParam.isOutParam, isTrue);
       final itemsParamProjection = itemsParam.typeProjection;
@@ -325,9 +326,11 @@ void main() {
       // )
       final methodProjection = MethodProjection.fromTypeAndMethodName(
           'Windows.Foundation.IPropertyValueStatics', 'CreateUInt8Array');
-      expect(methodProjection.parameters.length, equals(2));
+      final parameters = methodProjection.parameters;
+      expect(parameters.length, equals(2));
 
-      final valueSizeParam = methodProjection.parameters.first;
+      final [valueSizeParam, valueParam] = parameters;
+
       expect(valueSizeParam.name, equals('__valueSize'));
       expect(valueSizeParam.isInParam, isTrue);
       final valueSizeParamProjection = valueSizeParam.typeProjection;
@@ -335,7 +338,6 @@ void main() {
       expect(valueSizeParamProjection.nativeType, equals('Uint32'));
       expect(valueSizeParamProjection.isDartPrimitive, isTrue);
 
-      final valueParam = methodProjection.parameters.last;
       expect(valueParam.name, equals('value'));
       expect(valueParam.isInParam, isTrue);
       final valueParamProjection = valueParam.typeProjection;
@@ -350,9 +352,11 @@ void main() {
       // )
       final methodProjection = MethodProjection.fromTypeAndMethodName(
           'Windows.Foundation.IPropertyValue', 'GetInspectableArray');
-      expect(methodProjection.parameters.length, equals(2));
+      final parameters = methodProjection.parameters;
+      expect(parameters.length, equals(2));
 
-      final valueSizeParam = methodProjection.parameters.first;
+      final [valueSizeParam, valueParam] = parameters;
+
       expect(valueSizeParam.name, equals('__valueSize'));
       expect(valueSizeParam.isOutParam, isTrue);
       final valueSizeParamProjection = valueSizeParam.typeProjection;
@@ -360,7 +364,6 @@ void main() {
       expect(valueSizeParamProjection.nativeType, equals('Pointer<Uint32>'));
       expect(valueSizeParamProjection.isPointer, isTrue);
 
-      final valueParam = methodProjection.parameters.last;
       expect(valueParam.name, equals('value'));
       expect(valueParam.isOutParam, isTrue);
       final valueParamProjection = valueParam.typeProjection;
@@ -377,9 +380,11 @@ void main() {
       // )
       final methodProjection = MethodProjection.fromTypeAndMethodName(
           'Windows.Foundation.IPropertyValue', 'GetUInt8Array');
-      expect(methodProjection.parameters.length, equals(2));
+      final parameters = methodProjection.parameters;
+      expect(parameters.length, equals(2));
 
-      final valueSizeParam = methodProjection.parameters.first;
+      final [valueSizeParam, valueParam] = parameters;
+
       expect(valueSizeParam.name, equals('__valueSize'));
       expect(valueSizeParam.isOutParam, isTrue);
       final valueSizeParamProjection = valueSizeParam.typeProjection;
@@ -387,7 +392,6 @@ void main() {
       expect(valueSizeParamProjection.nativeType, equals('Pointer<Uint32>'));
       expect(valueSizeParamProjection.isPointer, isTrue);
 
-      final valueParam = methodProjection.parameters.last;
       expect(valueParam.name, equals('value'));
       expect(valueParam.isOutParam, isTrue);
       final valueParamProjection = valueParam.typeProjection;

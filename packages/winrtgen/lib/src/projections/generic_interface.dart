@@ -27,18 +27,20 @@ final class GenericInterfacePartFileProjection {
   List<GenericInterfaceProjection> _cacheProjections() {
     final type = genericType.type;
     return switch (genericType) {
-      GenericTypeWithOneTypeArg(:final typeArgKinds) => typeArgKinds.map(
-          (typeArgKind) => GenericInterfaceProjection.from(type, typeArgKind)),
-      GenericTypeWithTwoTypeArgs(:final typeArgKindPairs) => typeArgKindPairs
-          .map((typeArgKindPair) => GenericInterfaceProjection.from(
-              type, typeArgKindPair.$1, typeArgKindPair.$2)),
+      GenericTypeWithOneTypeArg(:final typeArgKinds) =>
+        typeArgKinds.map((typeArgKind) =>
+            GenericInterfaceProjection.fromTypeAndTypeArgs(type, typeArgKind)),
+      GenericTypeWithTwoTypeArgs(:final typeArgKindPairs) =>
+        typeArgKindPairs.map((typeArgKindPair) =>
+            GenericInterfaceProjection.fromTypeAndTypeArgs(
+                type, typeArgKindPair.$1, typeArgKindPair.$2)),
     }
         .toList();
   }
 
   @override
   String toString() => '''
-$classFileHeader
+${Header.class_}
 part of '$fileName.dart';
 
 ${projections.join('\n')}
@@ -56,7 +58,7 @@ final class GenericInterfaceProjection extends InterfaceProjection {
   /// and optionally [typeArg2] by searching its [TypeDef].
   ///
   /// ```dart
-  /// final projection = GenericInterfaceProjection.from(
+  /// final projection = GenericInterfaceProjection.fromTypeAndTypeArgs(
   ///     'Windows.Foundation.IAsyncOperation`1', TypeArgKind.string);
   /// ```
   ///
@@ -64,13 +66,14 @@ final class GenericInterfaceProjection extends InterfaceProjection {
   /// `Windows.Foundation.Collections.IMap`2`).
   ///
   /// ```dart
-  /// final projection = GenericInterfaceProjection.from(
+  /// final projection = GenericInterfaceProjection.fromTypeAndTypeArgs(
   ///     'Windows.Foundation.Collections.IMap`2',
   ///     TypeArgKind.string, TypeArgKind.string);
   /// ```
-  factory GenericInterfaceProjection.from(String type, TypeArgKind typeArg1,
+  factory GenericInterfaceProjection.fromTypeAndTypeArgs(
+      String type, TypeArgKind typeArg1,
       [TypeArgKind? typeArg2]) {
-    final typeDef = WinRTMetadataStore.findTypeDef(type);
+    final typeDef = type.typeDef;
     if (type.endsWith('`2')) {
       if (typeArg2 == null) throw ArgumentError.notNull('typeArg2');
       return GenericInterfaceProjection._(typeDef, [typeArg1, typeArg2]);
@@ -264,7 +267,7 @@ final class GenericInterfaceProjection extends InterfaceProjection {
       if (method.returnType.isDelegate) continue;
 
       // Skip excluded methods
-      if (excludedMethodsInConcreteClasses[typeDef.name]
+      if (Exclusion.excludedMethodsInConcreteClasses[typeDef.name]
               ?.contains(method.name) ??
           false) {
         continue;
@@ -337,7 +340,7 @@ final class GenericInterfaceProjection extends InterfaceProjection {
           .map((method) {
             var methodHeader = method.header;
             final isGenericGetter = method.method.isGetProperty &&
-                switch (method.typeProjection.projectionKind) {
+                switch (ProjectionKind.fromMethod(method.method)) {
                   ProjectionKind.genericEnum ||
                   ProjectionKind.genericObject =>
                     true,

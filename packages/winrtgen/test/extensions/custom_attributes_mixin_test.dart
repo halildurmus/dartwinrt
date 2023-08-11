@@ -14,21 +14,23 @@ void main() {
     return;
   }
 
-  final geocoordinateTypeDef = WinRTMetadataStore.findTypeDef(
-      'Windows.Devices.Geolocation.IGeocoordinate');
-  final getLatitudeGetter =
-      geocoordinateTypeDef.methods.firstWhere((m) => m.name == 'get_Latitude');
+  group('CustomAttributesMixin', () {
+    final igeocoordinateTypeDef =
+        'Windows.Devices.Geolocation.IGeocoordinate'.typeDef;
+    final getLatitudeMethod = igeocoordinateTypeDef.findMethod('get_Latitude')!;
 
-  test('deprecatedAnnotation', () {
-    expect(geocoordinateTypeDef.deprecatedAnnotation, isEmpty);
-    expect(
-        getLatitudeGetter.deprecatedAnnotation,
-        '@Deprecated("Latitude may be altered or unavailable after '
-        'Windows 8.1. Instead, use Point.Position.Latitude")');
-  });
+    test('deprecatedAnnotation', () {
+      expect(igeocoordinateTypeDef.deprecatedAnnotation, isEmpty);
+      expect(
+        getLatitudeMethod.deprecatedAnnotation,
+        equals('@Deprecated("Latitude may be altered or unavailable after '
+            'Windows 8.1. Instead, use Point.Position.Latitude")'),
+      );
+    });
 
-  test('isDeprecated', () {
-    expect(geocoordinateTypeDef.isDeprecated, isFalse);
-    expect(getLatitudeGetter.isDeprecated, isTrue);
+    test('isDeprecated', () {
+      expect(igeocoordinateTypeDef.isDeprecated, isFalse);
+      expect(getLatitudeMethod.isDeprecated, isTrue);
+    });
   });
 }

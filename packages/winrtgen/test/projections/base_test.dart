@@ -15,7 +15,7 @@ void main() {
     return;
   }
 
-  final geolocatorProjection = ClassProjection.from(
+  final geolocatorProjection = ClassProjection.fromType(
       'Windows.Devices.Geolocation.Geolocator',
       comment: 'Provides access to the current geographic location.');
 
@@ -42,29 +42,31 @@ void main() {
 
     group('importForTypeDef', () {
       test('returns null for ignored types', () {
-        final tokenTypeDef = WinRTMetadataStore.findTypeDef(
-            'Windows.Foundation.EventRegistrationToken');
-        expect(geolocatorProjection.importForTypeDef(tokenTypeDef), isNull);
-
-        final picker2TypeDef = WinRTMetadataStore.findTypeDef(
-            'Windows.Storage.Pickers.IFileOpenPicker2');
-        expect(geolocatorProjection.importForTypeDef(picker2TypeDef), isNull);
+        expect(
+            geolocatorProjection.importForTypeDef(
+                'Windows.Foundation.EventRegistrationToken'.typeDef),
+            isNull);
+        expect(
+            geolocatorProjection.importForTypeDef(
+                'Windows.Storage.Pickers.IFileOpenPicker2'.typeDef),
+            isNull);
       });
 
-      test('returns null for WinRT delegate', () {
-        final typeDef = WinRTMetadataStore.findTypeDef(
-            'Windows.Foundation.TypedEventHandler`2');
-        expect(geolocatorProjection.importForTypeDef(typeDef), isNull);
+      test('returns null for WinRT delegates', () {
+        expect(
+            geolocatorProjection.importForTypeDef(
+                'Windows.Foundation.TypedEventHandler`2'.typeDef),
+            isNull);
       });
 
-      test('returns package import for WinRT enum', () {
-        final typeDef =
-            WinRTMetadataStore.findTypeDef('Windows.Foundation.AsyncStatus');
-        expect(geolocatorProjection.importForTypeDef(typeDef),
+      test('returns package import for WinRT enums', () {
+        expect(
+            geolocatorProjection
+                .importForTypeDef('Windows.Foundation.AsyncStatus'.typeDef),
             equals('package:windows_foundation/windows_foundation.dart'));
       });
 
-      test('returns relative import for WinRT enum', () {
+      test('returns relative import for WinRT enums', () {
         final methodProjection = geolocatorProjection.methodProjections
             .firstWhere((m) => m.name == 'get_DesiredAccuracy');
         expect(
@@ -73,63 +75,59 @@ void main() {
             equals('positionaccuracy.dart'));
       });
 
-      test('returns package import for WinRT class', () {
-        final typeDef =
-            WinRTMetadataStore.findTypeDef('Windows.Globalization.Calendar');
-        expect(geolocatorProjection.importForTypeDef(typeDef),
+      test('returns package import for WinRT classes', () {
+        expect(
+            geolocatorProjection
+                .importForTypeDef('Windows.Globalization.Calendar'.typeDef),
             equals('package:windows_globalization/windows_globalization.dart'));
       });
 
-      test('returns relative import for WinRT class', () {
-        final typeDef = WinRTMetadataStore.findTypeDef(
-            'Windows.Devices.Geolocation.Geoposition');
-        expect(geolocatorProjection.importForTypeDef(typeDef),
+      test('returns relative import for WinRT classes', () {
+        expect(
+            geolocatorProjection.importForTypeDef(
+                'Windows.Devices.Geolocation.Geoposition'.typeDef),
             equals('geoposition.dart'));
       });
 
-      test('returns package import for WinRT interface', () {
-        final typeDef =
-            WinRTMetadataStore.findTypeDef('Windows.Globalization.ICalendar');
-        expect(geolocatorProjection.importForTypeDef(typeDef),
+      test('returns package import for WinRT interfaces', () {
+        expect(
+            geolocatorProjection
+                .importForTypeDef('Windows.Globalization.ICalendar'.typeDef),
             equals('package:windows_globalization/windows_globalization.dart'));
       });
 
-      test('returns relative import for WinRT interface', () {
+      test('returns relative import for WinRT interfaces', () {
         expect(
             geolocatorProjection.importForTypeDef(
                 geolocatorProjection.inheritedInterfaces.first),
             equals('igeolocator.dart'));
       });
 
-      test('returns package import for WinRT struct', () {
-        final typeDef =
-            WinRTMetadataStore.findTypeDef('Windows.Foundation.Point');
-        expect(geolocatorProjection.importForTypeDef(typeDef),
+      test('returns package import for WinRT structs', () {
+        expect(
+            geolocatorProjection
+                .importForTypeDef('Windows.Foundation.Point'.typeDef),
             equals('package:windows_foundation/windows_foundation.dart'));
-      });
-
-      test('returns relative import for WinRT struct', () {
-        final typeDef = WinRTMetadataStore.findTypeDef(
-            'Windows.Devices.Geolocation.BasicGeoposition');
-        expect(geolocatorProjection.importForTypeDef(typeDef),
+        expect(
+            geolocatorProjection.importForTypeDef(
+                'Windows.Devices.Geolocation.BasicGeoposition'.typeDef),
             equals('basicgeoposition.dart'));
       });
     });
 
     group('importForTypeIdentifier', () {
-      test('returns null for non-WinRT type', () {
+      test('returns null for non-WinRT types', () {
         final typeIdentifier = const TypeIdentifier(BaseType.classTypeModifier,
             name: 'System.Guid');
         expect(geolocatorProjection.importForTypeIdentifier(typeIdentifier),
             isNull);
       });
 
-      test('returns relative import for WinRT enum', () {
-        final methodProjection = geolocatorProjection.methodProjections
-            .firstWhere((m) => m.name == 'get_DesiredAccuracy');
-        expect(
-            geolocatorProjection.importForTypeIdentifier(
-                methodProjection.typeProjection.typeIdentifier),
+      test('returns relative import for WinRT enums', () {
+        final typeIdentifier = TypeIdentifier(BaseType.valueTypeModifier,
+            name: 'Windows.Devices.Geolocation.PositionAccuracy',
+            type: 'Windows.Devices.Geolocation.PositionAccuracy'.typeDef);
+        expect(geolocatorProjection.importForTypeIdentifier(typeIdentifier),
             equals('positionaccuracy.dart'));
       });
     });

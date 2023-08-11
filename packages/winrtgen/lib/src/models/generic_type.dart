@@ -28,35 +28,35 @@ sealed class GenericType {
       ];
 
   /// The `IAsyncOperation` generic type.
-  static const iasyncOperation = GenericTypeWithOneTypeArg(
+  static const iasyncOperation = GenericTypeWithOneTypeArg._(
       'Windows.Foundation.IAsyncOperation`1', _asyncOperationTypeArgKinds);
 
   /// The `IIterator` generic type.
-  static const iiterator = GenericTypeWithOneTypeArg(
+  static const iiterator = GenericTypeWithOneTypeArg._(
       'Windows.Foundation.Collections.IIterator`1', _vectorTypeArgKinds);
 
   /// The `IKeyValuePair` generic type.
-  static const ikeyValuePair = GenericTypeWithTwoTypeArgs(
+  static const ikeyValuePair = GenericTypeWithTwoTypeArgs._(
       'Windows.Foundation.Collections.IKeyValuePair`2', _mapTypeArgKindPairs);
 
   /// The `IMap` generic type.
-  static const imap = GenericTypeWithTwoTypeArgs(
+  static const imap = GenericTypeWithTwoTypeArgs._(
       'Windows.Foundation.Collections.IMap`2', _mapTypeArgKindPairs);
 
   /// The `IMapView` generic type.
-  static const imapView = GenericTypeWithTwoTypeArgs(
+  static const imapView = GenericTypeWithTwoTypeArgs._(
       'Windows.Foundation.Collections.IMapView`2', _mapTypeArgKindPairs);
 
   /// The `IReference` generic type.
-  static const ireference = GenericTypeWithOneTypeArg(
+  static const ireference = GenericTypeWithOneTypeArg._(
       'Windows.Foundation.IReference`1', _referenceTypeArgKinds);
 
   /// The `IVector` generic type.
-  static const ivector = GenericTypeWithOneTypeArg(
+  static const ivector = GenericTypeWithOneTypeArg._(
       'Windows.Foundation.Collections.IVector`1', _vectorTypeArgKinds);
 
   /// The `IVectorView` generic type.
-  static const ivectorView = GenericTypeWithOneTypeArg(
+  static const ivectorView = GenericTypeWithOneTypeArg._(
       'Windows.Foundation.Collections.IVectorView`1', _vectorTypeArgKinds);
 
   /// The short name of the type (e.g., `IReference`).
@@ -69,7 +69,7 @@ sealed class GenericType {
 /// Represents a WinRT generic type with one type argument (e.g.,
 /// Windows.Foundation.IAsyncOperation`1).
 final class GenericTypeWithOneTypeArg extends GenericType {
-  const GenericTypeWithOneTypeArg(super.type, this.typeArgKinds);
+  const GenericTypeWithOneTypeArg._(super.type, this.typeArgKinds);
 
   /// The [TypeArgKind]s for this generic type (e.g., `TypeArgKind.bool_`,
   /// `TypeArgKind.string`).
@@ -109,7 +109,7 @@ final class GenericTypeWithOneTypeArg extends GenericType {
 /// Represents a WinRT generic type with two type arguments (e.g.,
 /// Windows.Foundation.Collections.IMap`2).
 final class GenericTypeWithTwoTypeArgs extends GenericType {
-  const GenericTypeWithTwoTypeArgs(super.type, this.typeArgKindPairs);
+  const GenericTypeWithTwoTypeArgs._(super.type, this.typeArgKindPairs);
 
   /// The [TypeArgKind] pairs for this generic type (e.g.,
   /// `(TypeArgKind.string, TypeArgKind.string)`,

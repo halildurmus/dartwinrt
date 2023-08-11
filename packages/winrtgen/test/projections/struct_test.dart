@@ -17,14 +17,14 @@ void main() {
   group('NativeStructProjection', () {
     test('projects something', () {
       final output =
-          NativeStructProjection.from('Windows.Foundation.Rect').toString();
+          NativeStructProjection.fromType('Windows.Foundation.Rect').toString();
       expect(output, isNotEmpty);
       expect(output, contains('NativeRect'));
     });
 
     test('from factory constructor throws a StateError if type is not found',
         () {
-      expect(() => NativeStructProjection.from('Windows.Foo.Bar'),
+      expect(() => NativeStructProjection.fromType('Windows.Foo.Bar'),
           throwsStateError);
     });
   });
@@ -32,28 +32,41 @@ void main() {
   group('StructProjection', () {
     test('projects something', () {
       final output =
-          StructProjection.from('Windows.Foundation.Rect').toString();
+          StructProjection.fromType('Windows.Foundation.Rect').toString();
       expect(output, isNotEmpty);
       expect(output, contains('Rect'));
     });
 
     test('from factory constructor throws a StateError if type is not found',
         () {
-      expect(() => StructProjection.from('Windows.Foo.Bar'), throwsStateError);
+      expect(
+          () => StructProjection.fromType('Windows.Foo.Bar'), throwsStateError);
     });
   });
 
   group('WinRT native struct', () {
     final rectProjection =
-        NativeStructProjection.from('Windows.Foundation.Rect');
+        NativeStructProjection.fromType('Windows.Foundation.Rect');
 
     test('has correct struct name', () {
       expect(rectProjection.structName, equals('NativeRect'));
     });
 
+    test('does not have header', () {
+      expect(rectProjection.header, isEmpty);
+    });
+
+    test('does not have imports', () {
+      expect(rectProjection.imports, isEmpty);
+    });
+
     test('has correct class header', () {
       expect(rectProjection.classHeader,
           equals('/// @nodoc\nfinal class NativeRect extends Struct'));
+    });
+
+    test('does not have constructor', () {
+      expect(rectProjection.constructor, isEmpty);
     });
 
     test('has correct number of fields', () {
@@ -82,10 +95,10 @@ void main() {
   });
 
   group('WinRT struct', () {
-    final rectProjection = StructProjection.from('Windows.Foundation.Rect');
+    final rectProjection = StructProjection.fromType('Windows.Foundation.Rect');
 
     test('has copyright header', () {
-      expect(rectProjection.header, contains(copyrightHeader));
+      expect(rectProjection.header, contains(Header.copyright));
     });
 
     test('imports are meaningful (1)', () {
@@ -102,7 +115,7 @@ void main() {
 
     test('imports are meaningful (2)', () {
       final projection =
-          StructProjection.from('Windows.Devices.Gpio.GpioChangeRecord');
+          StructProjection.fromType('Windows.Devices.Gpio.GpioChangeRecord');
       expect(
           projection.imports,
           orderedEquals([
@@ -148,7 +161,7 @@ void main() {
 
     test('has correct instance variable (2)', () {
       final projection =
-          StructProjection.from('Windows.Perception.Spatial.SpatialRay');
+          StructProjection.fromType('Windows.Perception.Spatial.SpatialRay');
       final fieldProjection = projection.fieldProjections.first;
       expect(fieldProjection.dartType, equals('Vector3'));
       expect(fieldProjection.fieldName, equals('origin'));
@@ -159,7 +172,7 @@ void main() {
 
     test('has correct instance variable (3)', () {
       final projection =
-          StructProjection.from('Windows.Devices.Gpio.GpioChangeRecord');
+          StructProjection.fromType('Windows.Devices.Gpio.GpioChangeRecord');
       final fieldProjection = projection.fieldProjections.first;
       expect(fieldProjection.dartType, equals('Duration'));
       expect(fieldProjection.fieldName, equals('relativeTime'));
@@ -171,7 +184,7 @@ void main() {
 
     test('has correct instance variable (4)', () {
       final projection =
-          StructProjection.from('Windows.Storage.Search.SortEntry');
+          StructProjection.fromType('Windows.Storage.Search.SortEntry');
       final fieldProjection = projection.fieldProjections.first;
       expect(fieldProjection.dartType, equals('String'));
       expect(fieldProjection.fieldName, equals('propertyName'));
@@ -191,7 +204,7 @@ void main() {
 
     test('has correct instance variable (6)', () {
       final projection =
-          StructProjection.from('Windows.Devices.Gpio.GpioChangeRecord');
+          StructProjection.fromType('Windows.Devices.Gpio.GpioChangeRecord');
       final fieldProjection = projection.fieldProjections.last;
       expect(fieldProjection.dartType, equals('GpioPinEdge'));
       expect(fieldProjection.fieldName, equals('edge'));
@@ -201,7 +214,8 @@ void main() {
     });
 
     test('has correct instance variable (7)', () {
-      final projection = StructProjection.from('Windows.Web.Http.HttpProgress');
+      final projection =
+          StructProjection.fromType('Windows.Web.Http.HttpProgress');
       final fieldProjection = projection.fieldProjections[2];
       expect(fieldProjection.dartType, equals('int?'));
       expect(fieldProjection.fieldName, equals('totalBytesToSend'));
@@ -228,7 +242,7 @@ void main() {
 
     test('has correct toNative method (2)', () {
       final projection =
-          StructProjection.from('Windows.Devices.Gpio.GpioChangeRecord');
+          StructProjection.fromType('Windows.Devices.Gpio.GpioChangeRecord');
       expect(projection.toNativeMethod, equalsIgnoringWhitespace('''
   @override
   Pointer<NativeGpioChangeRecord> toNative({Allocator allocator = malloc}) {
@@ -242,7 +256,8 @@ void main() {
     });
 
     test('has correct toNative method (3)', () {
-      final projection = StructProjection.from('Windows.Web.Http.HttpProgress');
+      final projection =
+          StructProjection.fromType('Windows.Web.Http.HttpProgress');
       expect(projection.toNativeMethod, equalsIgnoringWhitespace('''
   @override
   Pointer<NativeHttpProgress> toNative({Allocator allocator = malloc}) {
@@ -263,7 +278,7 @@ void main() {
 
     test('has correct toNative method (4)', () {
       final projection =
-          StructProjection.from('Windows.Storage.Search.SortEntry');
+          StructProjection.fromType('Windows.Storage.Search.SortEntry');
       expect(projection.toNativeMethod, equalsIgnoringWhitespace('''
   @override
   Pointer<NativeSortEntry> toNative({Allocator allocator = malloc}) {
@@ -278,7 +293,7 @@ void main() {
 
     test('has correct toNative method (5)', () {
       final projection =
-          StructProjection.from('Windows.Perception.Spatial.SpatialRay');
+          StructProjection.fromType('Windows.Perception.Spatial.SpatialRay');
       expect(projection.toNativeMethod, equalsIgnoringWhitespace('''
   @override
   Pointer<NativeSpatialRay> toNative({Allocator allocator = malloc}) {
@@ -319,7 +334,7 @@ extension NativeRectConversion on NativeRect {
 
     test('has correct native struct extension declaration (2)', () {
       final projection =
-          StructProjection.from('Windows.Devices.Gpio.GpioChangeRecord');
+          StructProjection.fromType('Windows.Devices.Gpio.GpioChangeRecord');
       expect(projection.nativeStructExtension, equalsIgnoringWhitespace('''
 /// @nodoc
 extension NativeGpioChangeRecordConversion on NativeGpioChangeRecord {
@@ -330,7 +345,8 @@ extension NativeGpioChangeRecordConversion on NativeGpioChangeRecord {
     });
 
     test('has correct native struct extension declaration (3)', () {
-      final projection = StructProjection.from('Windows.Web.Http.HttpProgress');
+      final projection =
+          StructProjection.fromType('Windows.Web.Http.HttpProgress');
       expect(projection.nativeStructExtension, equalsIgnoringWhitespace('''
 /// @nodoc
 extension NativeHttpProgressConversion on NativeHttpProgress {
@@ -342,7 +358,7 @@ extension NativeHttpProgressConversion on NativeHttpProgress {
 
     test('has correct native struct extension declaration (4)', () {
       final projection =
-          StructProjection.from('Windows.Storage.Search.SortEntry');
+          StructProjection.fromType('Windows.Storage.Search.SortEntry');
       expect(projection.nativeStructExtension, equalsIgnoringWhitespace('''
 /// @nodoc
 extension NativeSortEntryConversion on NativeSortEntry {
@@ -354,7 +370,7 @@ extension NativeSortEntryConversion on NativeSortEntry {
 
     test('has correct native struct extension declaration (5)', () {
       final projection =
-          StructProjection.from('Windows.Perception.Spatial.SpatialRay');
+          StructProjection.fromType('Windows.Perception.Spatial.SpatialRay');
       expect(projection.nativeStructExtension, equalsIgnoringWhitespace('''
 /// @nodoc
 extension NativeSpatialRayConversion on NativeSpatialRay {
@@ -387,7 +403,7 @@ extension PointerNativeRectConversion on Pointer<NativeRect> {
 
     test('has correct pointer to native struct extension declaration (2)', () {
       final projection =
-          StructProjection.from('Windows.Devices.Gpio.GpioChangeRecord');
+          StructProjection.fromType('Windows.Devices.Gpio.GpioChangeRecord');
       expect(
           projection.pointerNativeStructExtension, equalsIgnoringWhitespace('''
 /// @nodoc
@@ -411,7 +427,8 @@ extension PointerNativeGpioChangeRecordConversion
     });
 
     test('has correct pointer to native struct extension declaration (3)', () {
-      final projection = StructProjection.from('Windows.Web.Http.HttpProgress');
+      final projection =
+          StructProjection.fromType('Windows.Web.Http.HttpProgress');
       expect(
           projection.pointerNativeStructExtension, equalsIgnoringWhitespace('''
 /// @nodoc
@@ -434,7 +451,7 @@ extension PointerNativeHttpProgressConversion on Pointer<NativeHttpProgress> {
 
     test('has correct pointer to native struct extension declaration (4)', () {
       final projection =
-          StructProjection.from('Windows.Storage.Search.SortEntry');
+          StructProjection.fromType('Windows.Storage.Search.SortEntry');
       expect(
           projection.pointerNativeStructExtension, equalsIgnoringWhitespace('''
 /// @nodoc

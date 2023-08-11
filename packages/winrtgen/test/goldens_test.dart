@@ -11,8 +11,8 @@ import 'package:test/test.dart';
 import 'package:win32/win32.dart';
 import 'package:winrtgen/winrtgen.dart';
 
-// Note: When adding new golden tests, please update the goldenFiles map in
-// lib/src/constants/golden_files.dart.
+// Note: When adding new golden tests, please update the goldenFileEntries set
+// in lib/src/constants/golden_file_entries.dart.
 
 void main() {
   if (!isWindowsRuntimeAvailable()) {
@@ -21,37 +21,34 @@ void main() {
   }
 
   test('ICalendar golden', () {
-    const type = 'Windows.Globalization.ICalendar';
-    final dartClass = InterfaceProjection.from(type).toString();
-    compareGolden('icalendar', dartClass.format());
+    final projection =
+        InterfaceProjection.fromType('Windows.Globalization.ICalendar');
+    compareGolden('icalendar', projection.toString().format());
   });
 
   test('StorageFolder golden', () {
-    const type = 'Windows.Storage.StorageFolder';
-    final dartClass = ClassProjection.from(
-      type,
+    final projection = ClassProjection.fromType(
+      'Windows.Storage.StorageFolder',
       comment:
           'Manages folders and their contents and provides information about them.',
-    ).toString();
-    compareGolden('storagefolder', dartClass.format());
+    );
+    compareGolden('storagefolder', projection.toString().format());
   });
 
   test('_IMapXX golden', () {
-    final dartClass =
-        GenericInterfacePartFileProjection(GenericType.imap).toString();
-    compareGolden('imap_part', dartClass.format());
+    final projection = GenericInterfacePartFileProjection(GenericType.imap);
+    compareGolden('imap_part', projection.toString().format());
   });
 
   test('_IReferenceXX golden', () {
-    final dartClass =
-        GenericInterfacePartFileProjection(GenericType.ireference).toString();
-    compareGolden('ireference_part', dartClass.format());
+    final projection =
+        GenericInterfacePartFileProjection(GenericType.ireference);
+    compareGolden('ireference_part', projection.toString().format());
   });
 
   test('_IVectorXX golden', () {
-    final dartClass =
-        GenericInterfacePartFileProjection(GenericType.ivector).toString();
-    compareGolden('ivector_part', dartClass.format());
+    final projection = GenericInterfacePartFileProjection(GenericType.ivector);
+    compareGolden('ivector_part', projection.toString().format());
   });
 }
 

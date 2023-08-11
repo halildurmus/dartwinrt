@@ -9,7 +9,7 @@ import '../../models/models.dart';
 import '../projections.dart';
 
 /// Parameter projection for `List<T>` parameters (defined as `simpleArrayType`
-/// in WinMD).
+/// in Metadata).
 abstract base class ArrayParameterProjection extends ParameterProjection {
   ArrayParameterProjection(super.parameter);
 

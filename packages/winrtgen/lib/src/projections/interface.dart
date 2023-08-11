@@ -6,7 +6,6 @@ import 'package:winmd/winmd.dart';
 
 import '../constants/constants.dart';
 import '../extensions/extensions.dart';
-import '../models/models.dart';
 import 'base.dart';
 import 'getter.dart';
 import 'method.dart';
@@ -21,22 +20,20 @@ base class InterfaceProjection extends BaseProjection {
   ///
   /// ```dart
   /// final projection =
-  ///     InterfaceProjection.from('Windows.Foundation.IAsyncInfo');
+  ///     InterfaceProjection.fromType('Windows.Foundation.IAsyncInfo');
   /// ```
-  factory InterfaceProjection.from(String type, {String comment = ''}) {
-    final typeDef = WinRTMetadataStore.findTypeDef(type);
-    return InterfaceProjection(typeDef, comment: comment);
-  }
+  factory InterfaceProjection.fromType(String type, {String comment = ''}) =>
+      InterfaceProjection(type.typeDef, comment: comment);
 
-  String get header => classFileHeader;
+  String get header => Header.class_;
 
   String get iidConstant => '''
 /// @nodoc
 const IID_$shortName = ${typeDef.iid.quote()};''';
 
   List<TypeDef> get inheritedInterfaces => typeDef.interfaces
-    ..removeWhere((interface) =>
-        excludedInterfacesInInherits.contains(interface.fullyQualifiedName));
+    ..removeWhere((interface) => Exclusion.excludedInheritedInterfaces
+        .contains(interface.fullyQualifiedName));
 
   String get inheritsFrom => inheritedInterfaces
       .map((interface) => interface.shortName)
@@ -149,7 +146,7 @@ const IID_$shortName = ${typeDef.iid.quote()};''';
 
   List<MethodForwardersProjection> _cacheMethodForwarders() =>
       inheritedInterfaces
-          .where((interface) => !excludedInterfacesInMethodForwarders
+          .where((interface) => !Exclusion.excludedInterfacesInMethodForwarders
               .contains(interface.fullyQualifiedName))
           .map((interface) => MethodForwardersProjection(interface, this))
           .toList();

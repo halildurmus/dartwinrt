@@ -5,7 +5,7 @@
 import 'package:winmd/winmd.dart';
 
 extension BaseTypeHelpers on BaseType {
-  /// Returns the appropriate Dart type name of this BaseType.
+  /// Returns the appropriate Dart type for this BaseType.
   String get dartType => switch (this) {
         BaseType.booleanType => 'bool',
         BaseType.doubleType || BaseType.floatType => 'double',
@@ -23,7 +23,7 @@ extension BaseTypeHelpers on BaseType {
         _ => throw UnsupportedError('Unsupported BaseType: $this'),
       };
 
-  /// Returns the type signature of this BaseType as defined in:
+  /// Returns the type signature of this BaseType as defined in here:
   /// https://learn.microsoft.com/uwp/winrt-cref/winrt-type-system#guid-generation-for-parameterized-types
   String get signature => switch (this) {
         BaseType.booleanType => 'b1',

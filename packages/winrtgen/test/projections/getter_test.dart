@@ -282,8 +282,10 @@ void main() {
     });
 
     test('projects generic enum (1)', () {
-      final genericInterfaceProjection = GenericInterfaceProjection.from(
-          'Windows.Foundation.Collections.IIterator`1', TypeArgKind.winrtEnum);
+      final genericInterfaceProjection =
+          GenericInterfaceProjection.fromTypeAndTypeArgs(
+              'Windows.Foundation.Collections.IIterator`1',
+              TypeArgKind.winrtEnum);
       final projection = genericInterfaceProjection.methodProjections
           .firstWhere(
               (methodProjection) => methodProjection.name == 'get_Current');
@@ -313,10 +315,11 @@ void main() {
     });
 
     test('projects generic enum (2)', () {
-      final genericInterfaceProjection = GenericInterfaceProjection.from(
-          'Windows.Foundation.Collections.IKeyValuePair`2',
-          TypeArgKind.winrtEnum,
-          TypeArgKind.nullableInspectable);
+      final genericInterfaceProjection =
+          GenericInterfaceProjection.fromTypeAndTypeArgs(
+              'Windows.Foundation.Collections.IKeyValuePair`2',
+              TypeArgKind.winrtEnum,
+              TypeArgKind.nullableInspectable);
       final projection = genericInterfaceProjection.methodProjections
           .firstWhere((methodProjection) => methodProjection.name == 'get_Key');
       expect(projection.annotations, isEmpty);
@@ -345,9 +348,10 @@ void main() {
     });
 
     test('projects generic Flags enum', () {
-      final genericInterfaceProjection = GenericInterfaceProjection.from(
-          'Windows.Foundation.Collections.IIterator`1',
-          TypeArgKind.winrtFlagsEnum);
+      final genericInterfaceProjection =
+          GenericInterfaceProjection.fromTypeAndTypeArgs(
+              'Windows.Foundation.Collections.IIterator`1',
+              TypeArgKind.winrtFlagsEnum);
       final projection = genericInterfaceProjection.methodProjections
           .firstWhere(
               (methodProjection) => methodProjection.name == 'get_Current');
@@ -377,9 +381,10 @@ void main() {
     });
 
     test('projects generic object', () {
-      final genericInterfaceProjection = GenericInterfaceProjection.from(
-          'Windows.Foundation.Collections.IIterator`1',
-          TypeArgKind.nullableInspectable);
+      final genericInterfaceProjection =
+          GenericInterfaceProjection.fromTypeAndTypeArgs(
+              'Windows.Foundation.Collections.IIterator`1',
+              TypeArgKind.nullableInspectable);
       final projection = genericInterfaceProjection.methodProjections
           .firstWhere(
               (methodProjection) => methodProjection.name == 'get_Current');
@@ -1113,10 +1118,11 @@ void main() {
     });
 
     test('projects Object', () {
-      final genericInterfaceProjection = GenericInterfaceProjection.from(
-          'Windows.Foundation.Collections.IKeyValuePair`2',
-          TypeArgKind.object,
-          TypeArgKind.nullableObject);
+      final genericInterfaceProjection =
+          GenericInterfaceProjection.fromTypeAndTypeArgs(
+              'Windows.Foundation.Collections.IKeyValuePair`2',
+              TypeArgKind.object,
+              TypeArgKind.nullableObject);
       final projection = genericInterfaceProjection.methodProjections
           .firstWhere((methodProjection) => methodProjection.name == 'get_Key');
       expect(projection.annotations, isEmpty);
@@ -1254,10 +1260,11 @@ void main() {
     });
 
     test('projects Uri', () {
-      final genericInterfaceProjection = GenericInterfaceProjection.from(
-          'Windows.Foundation.Collections.IKeyValuePair`2',
-          TypeArgKind.uri,
-          TypeArgKind.string);
+      final genericInterfaceProjection =
+          GenericInterfaceProjection.fromTypeAndTypeArgs(
+              'Windows.Foundation.Collections.IKeyValuePair`2',
+              TypeArgKind.uri,
+              TypeArgKind.string);
       final projection = genericInterfaceProjection.methodProjections
           .firstWhere((methodProjection) => methodProjection.name == 'get_Key');
       expect(projection.annotations, isEmpty);

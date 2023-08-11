@@ -64,7 +64,7 @@ abstract base class BaseProjection {
     if (this.typeDef.name == type) return null;
 
     // Don't add import for ignored types
-    if (ignoredTypesInImports.contains(type)) return null;
+    if (Exclusion.excludedImports.contains(type)) return null;
 
     // TODO(halildurmus): Remove this once delegates are supported.
     if (typeDef.isDelegate) return null;

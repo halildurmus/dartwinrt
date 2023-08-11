@@ -6,7 +6,6 @@ import 'package:winmd/winmd.dart';
 
 import '../constants/constants.dart';
 import '../extensions/extensions.dart';
-import 'winrt_metadata_store.dart';
 
 /// Represents a type argument kind for a generic class.
 ///
@@ -93,7 +92,7 @@ enum TypeArgKind {
 
   const TypeArgKind(this.name);
 
-  factory TypeArgKind.from(String name) =>
+  factory TypeArgKind.fromName(String name) =>
       TypeArgKind.values.firstWhere((e) => e.name == name,
           orElse: () => throw ArgumentError.value(
               name, 'name', 'No enum value with that name'));
@@ -132,7 +131,7 @@ enum TypeArgKind {
       BaseType.uint64Type =>
         isNullable ? TypeArgKind.nullableUint64 : TypeArgKind.uint64,
       BaseType.valueTypeModifier when type?.isEnum ?? false =>
-        type!.existsAttribute(flagsAttribute)
+        type!.existsAttribute(Attribute.flags.name)
             ? TypeArgKind.winrtFlagsEnum
             : TypeArgKind.winrtEnum,
       BaseType.valueTypeModifier => switch (name) {
@@ -140,7 +139,7 @@ enum TypeArgKind {
             isNullable ? TypeArgKind.nullableGuid : TypeArgKind.guid,
           'Windows.Foundation.TimeSpan' =>
             isNullable ? TypeArgKind.nullableDuration : TypeArgKind.duration,
-          _ => TypeArgKind.from(
+          _ => TypeArgKind.fromName(
               isNullable ? name.lastComponent.nullable() : name.lastComponent)
         },
       _ => throw UnsupportedError('Unsupported TypeIdentifier: $typeIdentifier')
@@ -309,6 +308,5 @@ enum TypeArgKind {
 
 extension on String {
   TypeIdentifier get typeIdentifier =>
-      TypeIdentifier(BaseType.classTypeModifier,
-          name: this, type: WinRTMetadataStore.findTypeDef(this));
+      TypeIdentifier(BaseType.classTypeModifier, name: this, type: typeDef);
 }
