@@ -26,9 +26,8 @@ class IVideoMediaFrameFormat extends IInspectable {
   // vtable begins at 6, is 4 entries long.
   IVideoMediaFrameFormat.fromPtr(super.ptr);
 
-  factory IVideoMediaFrameFormat.from(IInspectable interface) =>
-      IVideoMediaFrameFormat.fromPtr(
-          interface.toInterface(IID_IVideoMediaFrameFormat));
+  factory IVideoMediaFrameFormat.from(IInspectable interface) => interface.cast(
+      IVideoMediaFrameFormat.fromPtr, IID_IVideoMediaFrameFormat);
 
   MediaFrameFormat? get mediaFrameFormat {
     final value = calloc<COMObject>();

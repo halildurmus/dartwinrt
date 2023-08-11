@@ -24,7 +24,7 @@ class IWebProviderError extends IInspectable {
   IWebProviderError.fromPtr(super.ptr);
 
   factory IWebProviderError.from(IInspectable interface) =>
-      IWebProviderError.fromPtr(interface.toInterface(IID_IWebProviderError));
+      interface.cast(IWebProviderError.fromPtr, IID_IWebProviderError);
 
   int get errorCode {
     final value = calloc<Uint32>();

@@ -26,9 +26,8 @@ class IMediaCaptureSettings2 extends IInspectable {
   // vtable begins at 6, is 8 entries long.
   IMediaCaptureSettings2.fromPtr(super.ptr);
 
-  factory IMediaCaptureSettings2.from(IInspectable interface) =>
-      IMediaCaptureSettings2.fromPtr(
-          interface.toInterface(IID_IMediaCaptureSettings2));
+  factory IMediaCaptureSettings2.from(IInspectable interface) => interface.cast(
+      IMediaCaptureSettings2.fromPtr, IID_IMediaCaptureSettings2);
 
   bool get concurrentRecordAndPhotoSupported {
     final value = calloc<Bool>();

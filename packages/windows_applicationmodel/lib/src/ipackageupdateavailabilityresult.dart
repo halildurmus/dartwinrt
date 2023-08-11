@@ -27,8 +27,8 @@ class IPackageUpdateAvailabilityResult extends IInspectable {
   IPackageUpdateAvailabilityResult.fromPtr(super.ptr);
 
   factory IPackageUpdateAvailabilityResult.from(IInspectable interface) =>
-      IPackageUpdateAvailabilityResult.fromPtr(
-          interface.toInterface(IID_IPackageUpdateAvailabilityResult));
+      interface.cast(IPackageUpdateAvailabilityResult.fromPtr,
+          IID_IPackageUpdateAvailabilityResult);
 
   PackageUpdateAvailability get availability {
     final value = calloc<Int32>();

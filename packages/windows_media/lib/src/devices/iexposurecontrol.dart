@@ -24,7 +24,7 @@ class IExposureControl extends IInspectable {
   IExposureControl.fromPtr(super.ptr);
 
   factory IExposureControl.from(IInspectable interface) =>
-      IExposureControl.fromPtr(interface.toInterface(IID_IExposureControl));
+      interface.cast(IExposureControl.fromPtr, IID_IExposureControl);
 
   bool get supported {
     final value = calloc<Bool>();

@@ -24,7 +24,7 @@ class INetworkUsage extends IInspectable {
   INetworkUsage.fromPtr(super.ptr);
 
   factory INetworkUsage.from(IInspectable interface) =>
-      INetworkUsage.fromPtr(interface.toInterface(IID_INetworkUsage));
+      interface.cast(INetworkUsage.fromPtr, IID_INetworkUsage);
 
   int get bytesSent {
     final value = calloc<Uint64>();

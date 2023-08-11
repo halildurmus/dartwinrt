@@ -27,8 +27,8 @@ class IStorageLibraryChangeReader extends IInspectable {
   IStorageLibraryChangeReader.fromPtr(super.ptr);
 
   factory IStorageLibraryChangeReader.from(IInspectable interface) =>
-      IStorageLibraryChangeReader.fromPtr(
-          interface.toInterface(IID_IStorageLibraryChangeReader));
+      interface.cast(
+          IStorageLibraryChangeReader.fromPtr, IID_IStorageLibraryChangeReader);
 
   Future<List<StorageLibraryChange?>> readBatchAsync() {
     final operation = calloc<COMObject>();

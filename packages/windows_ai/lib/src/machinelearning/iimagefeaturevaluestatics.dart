@@ -26,9 +26,8 @@ class IImageFeatureValueStatics extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IImageFeatureValueStatics.fromPtr(super.ptr);
 
-  factory IImageFeatureValueStatics.from(IInspectable interface) =>
-      IImageFeatureValueStatics.fromPtr(
-          interface.toInterface(IID_IImageFeatureValueStatics));
+  factory IImageFeatureValueStatics.from(IInspectable interface) => interface
+      .cast(IImageFeatureValueStatics.fromPtr, IID_IImageFeatureValueStatics);
 
   ImageFeatureValue? createFromVideoFrame(VideoFrame? image) {
     final result = calloc<COMObject>();

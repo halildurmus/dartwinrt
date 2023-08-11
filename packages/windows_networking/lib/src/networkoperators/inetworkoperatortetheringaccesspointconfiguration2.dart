@@ -28,8 +28,8 @@ class INetworkOperatorTetheringAccessPointConfiguration2 extends IInspectable {
 
   factory INetworkOperatorTetheringAccessPointConfiguration2.from(
           IInspectable interface) =>
-      INetworkOperatorTetheringAccessPointConfiguration2.fromPtr(interface
-          .toInterface(IID_INetworkOperatorTetheringAccessPointConfiguration2));
+      interface.cast(INetworkOperatorTetheringAccessPointConfiguration2.fromPtr,
+          IID_INetworkOperatorTetheringAccessPointConfiguration2);
 
   bool isBandSupported(TetheringWiFiBand band) {
     final result = calloc<Bool>();

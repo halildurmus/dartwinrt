@@ -27,8 +27,7 @@ class IMediaCaptureStatics extends IInspectable {
   IMediaCaptureStatics.fromPtr(super.ptr);
 
   factory IMediaCaptureStatics.from(IInspectable interface) =>
-      IMediaCaptureStatics.fromPtr(
-          interface.toInterface(IID_IMediaCaptureStatics));
+      interface.cast(IMediaCaptureStatics.fromPtr, IID_IMediaCaptureStatics);
 
   bool isVideoProfileSupported(String videoDeviceId) {
     final value = calloc<Bool>();

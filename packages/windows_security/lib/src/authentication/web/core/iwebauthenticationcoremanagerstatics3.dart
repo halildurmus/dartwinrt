@@ -33,8 +33,8 @@ class IWebAuthenticationCoreManagerStatics3 extends IInspectable
   IWebAuthenticationCoreManagerStatics3.fromPtr(super.ptr);
 
   factory IWebAuthenticationCoreManagerStatics3.from(IInspectable interface) =>
-      IWebAuthenticationCoreManagerStatics3.fromPtr(
-          interface.toInterface(IID_IWebAuthenticationCoreManagerStatics3));
+      interface.cast(IWebAuthenticationCoreManagerStatics3.fromPtr,
+          IID_IWebAuthenticationCoreManagerStatics3);
 
   WebAccountMonitor? createWebAccountMonitor(
       IIterable<WebAccount?>? webAccounts) {

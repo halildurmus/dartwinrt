@@ -28,8 +28,8 @@ class IWindowingEnvironmentStatics extends IInspectable {
   IWindowingEnvironmentStatics.fromPtr(super.ptr);
 
   factory IWindowingEnvironmentStatics.from(IInspectable interface) =>
-      IWindowingEnvironmentStatics.fromPtr(
-          interface.toInterface(IID_IWindowingEnvironmentStatics));
+      interface.cast(IWindowingEnvironmentStatics.fromPtr,
+          IID_IWindowingEnvironmentStatics);
 
   List<WindowingEnvironment?> findAll() {
     final result = calloc<COMObject>();

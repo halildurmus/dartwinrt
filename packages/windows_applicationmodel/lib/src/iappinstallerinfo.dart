@@ -24,7 +24,7 @@ class IAppInstallerInfo extends IInspectable {
   IAppInstallerInfo.fromPtr(super.ptr);
 
   factory IAppInstallerInfo.from(IInspectable interface) =>
-      IAppInstallerInfo.fromPtr(interface.toInterface(IID_IAppInstallerInfo));
+      interface.cast(IAppInstallerInfo.fromPtr, IID_IAppInstallerInfo);
 
   Uri? get uri {
     final value = calloc<COMObject>();

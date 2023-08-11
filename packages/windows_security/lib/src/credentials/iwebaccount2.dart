@@ -30,7 +30,7 @@ class IWebAccount2 extends IInspectable implements IWebAccount {
   IWebAccount2.fromPtr(super.ptr);
 
   factory IWebAccount2.from(IInspectable interface) =>
-      IWebAccount2.fromPtr(interface.toInterface(IID_IWebAccount2));
+      interface.cast(IWebAccount2.fromPtr, IID_IWebAccount2);
 
   String get id {
     final value = calloc<IntPtr>();

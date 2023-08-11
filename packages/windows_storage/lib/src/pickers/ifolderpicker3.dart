@@ -25,7 +25,7 @@ class IFolderPicker3 extends IInspectable {
   IFolderPicker3.fromPtr(super.ptr);
 
   factory IFolderPicker3.from(IInspectable interface) =>
-      IFolderPicker3.fromPtr(interface.toInterface(IID_IFolderPicker3));
+      interface.cast(IFolderPicker3.fromPtr, IID_IFolderPicker3);
 
   User? get user {
     final value = calloc<COMObject>();

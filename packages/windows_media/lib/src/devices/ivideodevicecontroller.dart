@@ -30,9 +30,8 @@ class IVideoDeviceController extends IInspectable
   // vtable begins at 6, is 13 entries long.
   IVideoDeviceController.fromPtr(super.ptr);
 
-  factory IVideoDeviceController.from(IInspectable interface) =>
-      IVideoDeviceController.fromPtr(
-          interface.toInterface(IID_IVideoDeviceController));
+  factory IVideoDeviceController.from(IInspectable interface) => interface.cast(
+      IVideoDeviceController.fromPtr, IID_IVideoDeviceController);
 
   MediaDeviceControl? get brightness {
     final value = calloc<COMObject>();

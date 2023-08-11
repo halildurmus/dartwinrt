@@ -27,8 +27,8 @@ class IImageEncodingPropertiesStatics extends IInspectable {
   IImageEncodingPropertiesStatics.fromPtr(super.ptr);
 
   factory IImageEncodingPropertiesStatics.from(IInspectable interface) =>
-      IImageEncodingPropertiesStatics.fromPtr(
-          interface.toInterface(IID_IImageEncodingPropertiesStatics));
+      interface.cast(IImageEncodingPropertiesStatics.fromPtr,
+          IID_IImageEncodingPropertiesStatics);
 
   ImageEncodingProperties? createJpeg() {
     final value = calloc<COMObject>();

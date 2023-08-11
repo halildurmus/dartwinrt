@@ -26,7 +26,7 @@ class IUISettings6 extends IInspectable {
   IUISettings6.fromPtr(super.ptr);
 
   factory IUISettings6.from(IInspectable interface) =>
-      IUISettings6.fromPtr(interface.toInterface(IID_IUISettings6));
+      interface.cast(IUISettings6.fromPtr, IID_IUISettings6);
 
   int add_AnimationsEnabledChanged(Pointer<COMObject> handler) {
     final token = calloc<IntPtr>();

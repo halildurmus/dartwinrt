@@ -26,7 +26,7 @@ class IUISettings4 extends IInspectable {
   IUISettings4.fromPtr(super.ptr);
 
   factory IUISettings4.from(IInspectable interface) =>
-      IUISettings4.fromPtr(interface.toInterface(IID_IUISettings4));
+      interface.cast(IUISettings4.fromPtr, IID_IUISettings4);
 
   bool get advancedEffectsEnabled {
     final value = calloc<Bool>();

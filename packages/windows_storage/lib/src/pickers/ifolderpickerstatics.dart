@@ -27,8 +27,7 @@ class IFolderPickerStatics extends IInspectable {
   IFolderPickerStatics.fromPtr(super.ptr);
 
   factory IFolderPickerStatics.from(IInspectable interface) =>
-      IFolderPickerStatics.fromPtr(
-          interface.toInterface(IID_IFolderPickerStatics));
+      interface.cast(IFolderPickerStatics.fromPtr, IID_IFolderPickerStatics);
 
   FolderPicker? createForUser(User? user) {
     final result = calloc<COMObject>();

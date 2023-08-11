@@ -23,9 +23,8 @@ class ILanguageExtensionSubtags extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   ILanguageExtensionSubtags.fromPtr(super.ptr);
 
-  factory ILanguageExtensionSubtags.from(IInspectable interface) =>
-      ILanguageExtensionSubtags.fromPtr(
-          interface.toInterface(IID_ILanguageExtensionSubtags));
+  factory ILanguageExtensionSubtags.from(IInspectable interface) => interface
+      .cast(ILanguageExtensionSubtags.fromPtr, IID_ILanguageExtensionSubtags);
 
   List<String> getExtensionSubtags(String singleton) {
     final value = calloc<COMObject>();

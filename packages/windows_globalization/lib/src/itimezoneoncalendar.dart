@@ -24,8 +24,7 @@ class ITimeZoneOnCalendar extends IInspectable {
   ITimeZoneOnCalendar.fromPtr(super.ptr);
 
   factory ITimeZoneOnCalendar.from(IInspectable interface) =>
-      ITimeZoneOnCalendar.fromPtr(
-          interface.toInterface(IID_ITimeZoneOnCalendar));
+      interface.cast(ITimeZoneOnCalendar.fromPtr, IID_ITimeZoneOnCalendar);
 
   String getTimeZone() {
     final value = calloc<IntPtr>();

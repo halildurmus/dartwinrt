@@ -24,7 +24,7 @@ class IGeographicRegion extends IInspectable {
   IGeographicRegion.fromPtr(super.ptr);
 
   factory IGeographicRegion.from(IInspectable interface) =>
-      IGeographicRegion.fromPtr(interface.toInterface(IID_IGeographicRegion));
+      interface.cast(IGeographicRegion.fromPtr, IID_IGeographicRegion);
 
   String get code {
     final value = calloc<IntPtr>();

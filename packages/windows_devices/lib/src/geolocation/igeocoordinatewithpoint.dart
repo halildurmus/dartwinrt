@@ -25,9 +25,8 @@ class IGeocoordinateWithPoint extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IGeocoordinateWithPoint.fromPtr(super.ptr);
 
-  factory IGeocoordinateWithPoint.from(IInspectable interface) =>
-      IGeocoordinateWithPoint.fromPtr(
-          interface.toInterface(IID_IGeocoordinateWithPoint));
+  factory IGeocoordinateWithPoint.from(IInspectable interface) => interface
+      .cast(IGeocoordinateWithPoint.fromPtr, IID_IGeocoordinateWithPoint);
 
   Geopoint? get point {
     final value = calloc<COMObject>();

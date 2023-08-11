@@ -28,7 +28,7 @@ class IFocusSettings extends IInspectable {
   IFocusSettings.fromPtr(super.ptr);
 
   factory IFocusSettings.from(IInspectable interface) =>
-      IFocusSettings.fromPtr(interface.toInterface(IID_IFocusSettings));
+      interface.cast(IFocusSettings.fromPtr, IID_IFocusSettings);
 
   FocusMode get mode {
     final value = calloc<Int32>();

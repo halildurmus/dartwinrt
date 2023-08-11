@@ -26,6 +26,6 @@ class ILearningModelOperatorProvider extends IInspectable {
   ILearningModelOperatorProvider.fromPtr(super.ptr);
 
   factory ILearningModelOperatorProvider.from(IInspectable interface) =>
-      ILearningModelOperatorProvider.fromPtr(
-          interface.toInterface(IID_ILearningModelOperatorProvider));
+      interface.cast(ILearningModelOperatorProvider.fromPtr,
+          IID_ILearningModelOperatorProvider);
 }

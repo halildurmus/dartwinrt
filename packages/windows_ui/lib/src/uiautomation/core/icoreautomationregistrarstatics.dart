@@ -27,8 +27,8 @@ class ICoreAutomationRegistrarStatics extends IInspectable {
   ICoreAutomationRegistrarStatics.fromPtr(super.ptr);
 
   factory ICoreAutomationRegistrarStatics.from(IInspectable interface) =>
-      ICoreAutomationRegistrarStatics.fromPtr(
-          interface.toInterface(IID_ICoreAutomationRegistrarStatics));
+      interface.cast(ICoreAutomationRegistrarStatics.fromPtr,
+          IID_ICoreAutomationRegistrarStatics);
 
   AutomationAnnotationTypeRegistration registerAnnotationType(Guid guid) {
     final result = calloc<NativeAutomationAnnotationTypeRegistration>();

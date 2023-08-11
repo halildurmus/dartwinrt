@@ -25,9 +25,8 @@ class IWebProviderErrorFactory extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IWebProviderErrorFactory.fromPtr(super.ptr);
 
-  factory IWebProviderErrorFactory.from(IInspectable interface) =>
-      IWebProviderErrorFactory.fromPtr(
-          interface.toInterface(IID_IWebProviderErrorFactory));
+  factory IWebProviderErrorFactory.from(IInspectable interface) => interface
+      .cast(IWebProviderErrorFactory.fromPtr, IID_IWebProviderErrorFactory);
 
   WebProviderError create(int errorCode, String errorMessage) {
     final webProviderError = calloc<COMObject>();

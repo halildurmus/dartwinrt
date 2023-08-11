@@ -24,8 +24,7 @@ class IProxyConfiguration extends IInspectable {
   IProxyConfiguration.fromPtr(super.ptr);
 
   factory IProxyConfiguration.from(IInspectable interface) =>
-      IProxyConfiguration.fromPtr(
-          interface.toInterface(IID_IProxyConfiguration));
+      interface.cast(IProxyConfiguration.fromPtr, IID_IProxyConfiguration);
 
   List<Uri?>? get proxyUris {
     final value = calloc<COMObject>();

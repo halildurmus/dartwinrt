@@ -26,7 +26,7 @@ class ILanguageFactory extends IInspectable {
   ILanguageFactory.fromPtr(super.ptr);
 
   factory ILanguageFactory.from(IInspectable interface) =>
-      ILanguageFactory.fromPtr(interface.toInterface(IID_ILanguageFactory));
+      interface.cast(ILanguageFactory.fromPtr, IID_ILanguageFactory);
 
   Language createLanguage(String languageTag) {
     final result = calloc<COMObject>();

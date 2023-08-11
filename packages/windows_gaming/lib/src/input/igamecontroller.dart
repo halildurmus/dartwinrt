@@ -27,7 +27,7 @@ class IGameController extends IInspectable {
   IGameController.fromPtr(super.ptr);
 
   factory IGameController.from(IInspectable interface) =>
-      IGameController.fromPtr(interface.toInterface(IID_IGameController));
+      interface.cast(IGameController.fromPtr, IID_IGameController);
 
   int add_HeadsetConnected(Pointer<COMObject> value) {
     final token = calloc<IntPtr>();

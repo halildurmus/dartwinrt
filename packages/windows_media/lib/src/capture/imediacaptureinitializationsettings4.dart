@@ -28,8 +28,8 @@ class IMediaCaptureInitializationSettings4 extends IInspectable {
   IMediaCaptureInitializationSettings4.fromPtr(super.ptr);
 
   factory IMediaCaptureInitializationSettings4.from(IInspectable interface) =>
-      IMediaCaptureInitializationSettings4.fromPtr(
-          interface.toInterface(IID_IMediaCaptureInitializationSettings4));
+      interface.cast(IMediaCaptureInitializationSettings4.fromPtr,
+          IID_IMediaCaptureInitializationSettings4);
 
   MediaCaptureVideoProfile? get videoProfile {
     final value = calloc<COMObject>();

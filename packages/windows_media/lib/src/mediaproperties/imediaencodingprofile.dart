@@ -28,8 +28,7 @@ class IMediaEncodingProfile extends IInspectable {
   IMediaEncodingProfile.fromPtr(super.ptr);
 
   factory IMediaEncodingProfile.from(IInspectable interface) =>
-      IMediaEncodingProfile.fromPtr(
-          interface.toInterface(IID_IMediaEncodingProfile));
+      interface.cast(IMediaEncodingProfile.fromPtr, IID_IMediaEncodingProfile);
 
   set audio(AudioEncodingProperties? value) {
     final hr = ptr.ref.vtable

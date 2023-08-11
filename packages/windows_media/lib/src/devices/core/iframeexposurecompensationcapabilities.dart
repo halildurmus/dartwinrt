@@ -25,8 +25,8 @@ class IFrameExposureCompensationCapabilities extends IInspectable {
   IFrameExposureCompensationCapabilities.fromPtr(super.ptr);
 
   factory IFrameExposureCompensationCapabilities.from(IInspectable interface) =>
-      IFrameExposureCompensationCapabilities.fromPtr(
-          interface.toInterface(IID_IFrameExposureCompensationCapabilities));
+      interface.cast(IFrameExposureCompensationCapabilities.fromPtr,
+          IID_IFrameExposureCompensationCapabilities);
 
   bool get supported {
     final value = calloc<Bool>();

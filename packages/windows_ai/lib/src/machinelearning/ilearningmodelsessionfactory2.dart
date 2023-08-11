@@ -30,8 +30,8 @@ class ILearningModelSessionFactory2 extends IInspectable {
   ILearningModelSessionFactory2.fromPtr(super.ptr);
 
   factory ILearningModelSessionFactory2.from(IInspectable interface) =>
-      ILearningModelSessionFactory2.fromPtr(
-          interface.toInterface(IID_ILearningModelSessionFactory2));
+      interface.cast(ILearningModelSessionFactory2.fromPtr,
+          IID_ILearningModelSessionFactory2);
 
   LearningModelSession createFromModelOnDeviceWithSessionOptions(
       LearningModel? model,

@@ -27,8 +27,8 @@ class IMediaFrameSourceGetPropertyResult extends IInspectable {
   IMediaFrameSourceGetPropertyResult.fromPtr(super.ptr);
 
   factory IMediaFrameSourceGetPropertyResult.from(IInspectable interface) =>
-      IMediaFrameSourceGetPropertyResult.fromPtr(
-          interface.toInterface(IID_IMediaFrameSourceGetPropertyResult));
+      interface.cast(IMediaFrameSourceGetPropertyResult.fromPtr,
+          IID_IMediaFrameSourceGetPropertyResult);
 
   MediaFrameSourceGetPropertyStatus get status {
     final value = calloc<Int32>();

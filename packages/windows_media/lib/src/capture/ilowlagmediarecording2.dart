@@ -25,9 +25,8 @@ class ILowLagMediaRecording2 extends IInspectable {
   // vtable begins at 6, is 2 entries long.
   ILowLagMediaRecording2.fromPtr(super.ptr);
 
-  factory ILowLagMediaRecording2.from(IInspectable interface) =>
-      ILowLagMediaRecording2.fromPtr(
-          interface.toInterface(IID_ILowLagMediaRecording2));
+  factory ILowLagMediaRecording2.from(IInspectable interface) => interface.cast(
+      ILowLagMediaRecording2.fromPtr, IID_ILowLagMediaRecording2);
 
   Future<void> pauseAsync(MediaCapturePauseBehavior behavior) {
     final operation = calloc<COMObject>();

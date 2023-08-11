@@ -24,7 +24,7 @@ class IDataPlanUsage extends IInspectable {
   IDataPlanUsage.fromPtr(super.ptr);
 
   factory IDataPlanUsage.from(IInspectable interface) =>
-      IDataPlanUsage.fromPtr(interface.toInterface(IID_IDataPlanUsage));
+      interface.cast(IDataPlanUsage.fromPtr, IID_IDataPlanUsage);
 
   int get megabytesUsed {
     final value = calloc<Uint32>();

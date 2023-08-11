@@ -27,8 +27,8 @@ class IVideoEncodingPropertiesStatics extends IInspectable {
   IVideoEncodingPropertiesStatics.fromPtr(super.ptr);
 
   factory IVideoEncodingPropertiesStatics.from(IInspectable interface) =>
-      IVideoEncodingPropertiesStatics.fromPtr(
-          interface.toInterface(IID_IVideoEncodingPropertiesStatics));
+      interface.cast(IVideoEncodingPropertiesStatics.fromPtr,
+          IID_IVideoEncodingPropertiesStatics);
 
   VideoEncodingProperties? createH264() {
     final value = calloc<COMObject>();

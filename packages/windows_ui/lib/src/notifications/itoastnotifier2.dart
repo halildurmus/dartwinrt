@@ -27,7 +27,7 @@ class IToastNotifier2 extends IInspectable {
   IToastNotifier2.fromPtr(super.ptr);
 
   factory IToastNotifier2.from(IInspectable interface) =>
-      IToastNotifier2.fromPtr(interface.toInterface(IID_IToastNotifier2));
+      interface.cast(IToastNotifier2.fromPtr, IID_IToastNotifier2);
 
   NotificationUpdateResult updateWithTagAndGroup(
       NotificationData? data, String tag, String group) {

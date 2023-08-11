@@ -26,8 +26,7 @@ class ILowLagPhotoCapture extends IInspectable {
   ILowLagPhotoCapture.fromPtr(super.ptr);
 
   factory ILowLagPhotoCapture.from(IInspectable interface) =>
-      ILowLagPhotoCapture.fromPtr(
-          interface.toInterface(IID_ILowLagPhotoCapture));
+      interface.cast(ILowLagPhotoCapture.fromPtr, IID_ILowLagPhotoCapture);
 
   Future<CapturedPhoto?> captureAsync() {
     final operation = calloc<COMObject>();

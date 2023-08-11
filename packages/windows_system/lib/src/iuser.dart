@@ -29,7 +29,7 @@ class IUser extends IInspectable {
   IUser.fromPtr(super.ptr);
 
   factory IUser.from(IInspectable interface) =>
-      IUser.fromPtr(interface.toInterface(IID_IUser));
+      interface.cast(IUser.fromPtr, IID_IUser);
 
   String get nonRoamableId {
     final value = calloc<IntPtr>();

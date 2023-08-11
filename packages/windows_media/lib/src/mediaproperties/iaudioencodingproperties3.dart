@@ -25,9 +25,8 @@ class IAudioEncodingProperties3 extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IAudioEncodingProperties3.fromPtr(super.ptr);
 
-  factory IAudioEncodingProperties3.from(IInspectable interface) =>
-      IAudioEncodingProperties3.fromPtr(
-          interface.toInterface(IID_IAudioEncodingProperties3));
+  factory IAudioEncodingProperties3.from(IInspectable interface) => interface
+      .cast(IAudioEncodingProperties3.fromPtr, IID_IAudioEncodingProperties3);
 
   AudioEncodingProperties? copy() {
     final result = calloc<COMObject>();

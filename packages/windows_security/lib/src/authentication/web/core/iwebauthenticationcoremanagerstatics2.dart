@@ -33,8 +33,8 @@ class IWebAuthenticationCoreManagerStatics2 extends IInspectable
   IWebAuthenticationCoreManagerStatics2.fromPtr(super.ptr);
 
   factory IWebAuthenticationCoreManagerStatics2.from(IInspectable interface) =>
-      IWebAuthenticationCoreManagerStatics2.fromPtr(
-          interface.toInterface(IID_IWebAuthenticationCoreManagerStatics2));
+      interface.cast(IWebAuthenticationCoreManagerStatics2.fromPtr,
+          IID_IWebAuthenticationCoreManagerStatics2);
 
   Future<WebAccountProvider?> findAccountProviderWithAuthorityForUserAsync(
       String webAccountProviderId, String authority, User? user) {

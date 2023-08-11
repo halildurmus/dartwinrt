@@ -16,6 +16,7 @@ import 'package:win32/win32.dart'
 
 import '../internal.dart';
 import 'collections/iiterator.dart';
+import 'extensions/extensions.dart';
 import 'helpers.dart';
 import 'point.dart';
 import 'rect.dart';
@@ -29,8 +30,7 @@ class IPropertyValueStatics extends IInspectable {
   IPropertyValueStatics.fromPtr(super.ptr);
 
   factory IPropertyValueStatics.from(IInspectable interface) =>
-      IPropertyValueStatics.fromPtr(
-          interface.toInterface(IID_IPropertyValueStatics));
+      interface.cast(IPropertyValueStatics.fromPtr, IID_IPropertyValueStatics);
 
   Pointer<COMObject> createEmpty() {
     final propertyValue = calloc<COMObject>();

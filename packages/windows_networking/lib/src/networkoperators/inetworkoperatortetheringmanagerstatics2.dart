@@ -30,8 +30,8 @@ class INetworkOperatorTetheringManagerStatics2 extends IInspectable {
 
   factory INetworkOperatorTetheringManagerStatics2.from(
           IInspectable interface) =>
-      INetworkOperatorTetheringManagerStatics2.fromPtr(
-          interface.toInterface(IID_INetworkOperatorTetheringManagerStatics2));
+      interface.cast(INetworkOperatorTetheringManagerStatics2.fromPtr,
+          IID_INetworkOperatorTetheringManagerStatics2);
 
   TetheringCapability getTetheringCapabilityFromConnectionProfile(
       ConnectionProfile? profile) {

@@ -25,8 +25,8 @@ class ILearningModelSessionOptions3 extends IInspectable {
   ILearningModelSessionOptions3.fromPtr(super.ptr);
 
   factory ILearningModelSessionOptions3.from(IInspectable interface) =>
-      ILearningModelSessionOptions3.fromPtr(
-          interface.toInterface(IID_ILearningModelSessionOptions3));
+      interface.cast(ILearningModelSessionOptions3.fromPtr,
+          IID_ILearningModelSessionOptions3);
 
   void overrideNamedDimension(String name, int dimension) {
     final hr = ptr.ref.vtable

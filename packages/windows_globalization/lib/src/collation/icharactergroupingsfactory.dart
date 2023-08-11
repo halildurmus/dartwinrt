@@ -25,9 +25,8 @@ class ICharacterGroupingsFactory extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   ICharacterGroupingsFactory.fromPtr(super.ptr);
 
-  factory ICharacterGroupingsFactory.from(IInspectable interface) =>
-      ICharacterGroupingsFactory.fromPtr(
-          interface.toInterface(IID_ICharacterGroupingsFactory));
+  factory ICharacterGroupingsFactory.from(IInspectable interface) => interface
+      .cast(ICharacterGroupingsFactory.fromPtr, IID_ICharacterGroupingsFactory);
 
   CharacterGroupings create(String language) {
     final result = calloc<COMObject>();

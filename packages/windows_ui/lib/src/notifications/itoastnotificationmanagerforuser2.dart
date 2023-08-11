@@ -29,8 +29,8 @@ class IToastNotificationManagerForUser2 extends IInspectable {
   IToastNotificationManagerForUser2.fromPtr(super.ptr);
 
   factory IToastNotificationManagerForUser2.from(IInspectable interface) =>
-      IToastNotificationManagerForUser2.fromPtr(
-          interface.toInterface(IID_IToastNotificationManagerForUser2));
+      interface.cast(IToastNotificationManagerForUser2.fromPtr,
+          IID_IToastNotificationManagerForUser2);
 
   Future<ToastNotifier?> getToastNotifierForToastCollectionIdAsync(
       String collectionId) {

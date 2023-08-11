@@ -24,7 +24,7 @@ class ILanguageStatics3 extends IInspectable {
   ILanguageStatics3.fromPtr(super.ptr);
 
   factory ILanguageStatics3.from(IInspectable interface) =>
-      ILanguageStatics3.fromPtr(interface.toInterface(IID_ILanguageStatics3));
+      interface.cast(ILanguageStatics3.fromPtr, IID_ILanguageStatics3);
 
   IVector<String> getMuiCompatibleLanguageListFromLanguageTags(
       IIterable<String>? languageTags) {

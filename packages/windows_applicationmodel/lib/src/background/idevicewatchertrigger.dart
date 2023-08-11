@@ -26,6 +26,5 @@ class IDeviceWatcherTrigger extends IInspectable implements IBackgroundTrigger {
   IDeviceWatcherTrigger.fromPtr(super.ptr);
 
   factory IDeviceWatcherTrigger.from(IInspectable interface) =>
-      IDeviceWatcherTrigger.fromPtr(
-          interface.toInterface(IID_IDeviceWatcherTrigger));
+      interface.cast(IDeviceWatcherTrigger.fromPtr, IID_IDeviceWatcherTrigger);
 }

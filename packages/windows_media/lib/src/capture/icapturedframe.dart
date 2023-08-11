@@ -32,7 +32,7 @@ class ICapturedFrame extends IInspectable
   ICapturedFrame.fromPtr(super.ptr);
 
   factory ICapturedFrame.from(IInspectable interface) =>
-      ICapturedFrame.fromPtr(interface.toInterface(IID_ICapturedFrame));
+      interface.cast(ICapturedFrame.fromPtr, IID_ICapturedFrame);
 
   int get width {
     final value = calloc<Uint32>();

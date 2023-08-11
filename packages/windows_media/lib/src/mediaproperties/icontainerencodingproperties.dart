@@ -29,8 +29,8 @@ class IContainerEncodingProperties extends IInspectable
   IContainerEncodingProperties.fromPtr(super.ptr);
 
   factory IContainerEncodingProperties.from(IInspectable interface) =>
-      IContainerEncodingProperties.fromPtr(
-          interface.toInterface(IID_IContainerEncodingProperties));
+      interface.cast(IContainerEncodingProperties.fromPtr,
+          IID_IContainerEncodingProperties);
 
   late final _iMediaEncodingProperties = IMediaEncodingProperties.from(this);
 

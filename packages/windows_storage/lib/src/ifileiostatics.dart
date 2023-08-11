@@ -28,7 +28,7 @@ class IFileIOStatics extends IInspectable {
   IFileIOStatics.fromPtr(super.ptr);
 
   factory IFileIOStatics.from(IInspectable interface) =>
-      IFileIOStatics.fromPtr(interface.toInterface(IID_IFileIOStatics));
+      interface.cast(IFileIOStatics.fromPtr, IID_IFileIOStatics);
 
   Future<String> readTextAsync(IStorageFile? file) {
     final textOperation = calloc<COMObject>();

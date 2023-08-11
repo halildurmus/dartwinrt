@@ -26,8 +26,8 @@ class IGeocoordinateWithPositionSourceTimestamp extends IInspectable {
 
   factory IGeocoordinateWithPositionSourceTimestamp.from(
           IInspectable interface) =>
-      IGeocoordinateWithPositionSourceTimestamp.fromPtr(
-          interface.toInterface(IID_IGeocoordinateWithPositionSourceTimestamp));
+      interface.cast(IGeocoordinateWithPositionSourceTimestamp.fromPtr,
+          IID_IGeocoordinateWithPositionSourceTimestamp);
 
   DateTime? get positionSourceTimestamp {
     final value = calloc<COMObject>();

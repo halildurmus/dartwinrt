@@ -25,8 +25,8 @@ class IFrameExposureCompensationControl extends IInspectable {
   IFrameExposureCompensationControl.fromPtr(super.ptr);
 
   factory IFrameExposureCompensationControl.from(IInspectable interface) =>
-      IFrameExposureCompensationControl.fromPtr(
-          interface.toInterface(IID_IFrameExposureCompensationControl));
+      interface.cast(IFrameExposureCompensationControl.fromPtr,
+          IID_IFrameExposureCompensationControl);
 
   double? get value {
     final value = calloc<COMObject>();

@@ -26,7 +26,7 @@ class IFrameFlashControl extends IInspectable {
   IFrameFlashControl.fromPtr(super.ptr);
 
   factory IFrameFlashControl.from(IInspectable interface) =>
-      IFrameFlashControl.fromPtr(interface.toInterface(IID_IFrameFlashControl));
+      interface.cast(IFrameFlashControl.fromPtr, IID_IFrameFlashControl);
 
   FrameFlashMode get mode {
     final value = calloc<Int32>();

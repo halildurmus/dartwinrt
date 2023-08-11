@@ -26,8 +26,7 @@ class ITensorStringStatics2 extends IInspectable {
   ITensorStringStatics2.fromPtr(super.ptr);
 
   factory ITensorStringStatics2.from(IInspectable interface) =>
-      ITensorStringStatics2.fromPtr(
-          interface.toInterface(IID_ITensorStringStatics2));
+      interface.cast(ITensorStringStatics2.fromPtr, IID_ITensorStringStatics2);
 
   TensorString? createFromShapeArrayAndDataArray(
       List<int> shape, List<String> data) {

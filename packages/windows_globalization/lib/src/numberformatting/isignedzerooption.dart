@@ -24,7 +24,7 @@ class ISignedZeroOption extends IInspectable {
   ISignedZeroOption.fromPtr(super.ptr);
 
   factory ISignedZeroOption.from(IInspectable interface) =>
-      ISignedZeroOption.fromPtr(interface.toInterface(IID_ISignedZeroOption));
+      interface.cast(ISignedZeroOption.fromPtr, IID_ISignedZeroOption);
 
   bool get isZeroSigned {
     final value = calloc<Bool>();

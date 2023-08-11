@@ -24,7 +24,7 @@ class IXmlLoadSettings extends IInspectable {
   IXmlLoadSettings.fromPtr(super.ptr);
 
   factory IXmlLoadSettings.from(IInspectable interface) =>
-      IXmlLoadSettings.fromPtr(interface.toInterface(IID_IXmlLoadSettings));
+      interface.cast(IXmlLoadSettings.fromPtr, IID_IXmlLoadSettings);
 
   int get maxElementDepth {
     final value = calloc<Uint32>();

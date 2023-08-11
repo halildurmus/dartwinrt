@@ -25,8 +25,8 @@ class IGeocoordinateWithRemoteSource extends IInspectable {
   IGeocoordinateWithRemoteSource.fromPtr(super.ptr);
 
   factory IGeocoordinateWithRemoteSource.from(IInspectable interface) =>
-      IGeocoordinateWithRemoteSource.fromPtr(
-          interface.toInterface(IID_IGeocoordinateWithRemoteSource));
+      interface.cast(IGeocoordinateWithRemoteSource.fromPtr,
+          IID_IGeocoordinateWithRemoteSource);
 
   bool get isRemoteSource {
     final value = calloc<Bool>();

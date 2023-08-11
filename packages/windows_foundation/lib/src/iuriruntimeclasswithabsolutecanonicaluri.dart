@@ -16,6 +16,7 @@ import 'package:win32/win32.dart'
 
 import '../internal.dart';
 import 'collections/iiterator.dart';
+import 'extensions/extensions.dart';
 import 'helpers.dart';
 
 /// @nodoc
@@ -28,8 +29,8 @@ class IUriRuntimeClassWithAbsoluteCanonicalUri extends IInspectable {
 
   factory IUriRuntimeClassWithAbsoluteCanonicalUri.from(
           IInspectable interface) =>
-      IUriRuntimeClassWithAbsoluteCanonicalUri.fromPtr(
-          interface.toInterface(IID_IUriRuntimeClassWithAbsoluteCanonicalUri));
+      interface.cast(IUriRuntimeClassWithAbsoluteCanonicalUri.fromPtr,
+          IID_IUriRuntimeClassWithAbsoluteCanonicalUri);
 
   String get absoluteCanonicalUri {
     final value = calloc<IntPtr>();

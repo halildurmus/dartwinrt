@@ -25,8 +25,8 @@ class IExposurePriorityVideoControl extends IInspectable {
   IExposurePriorityVideoControl.fromPtr(super.ptr);
 
   factory IExposurePriorityVideoControl.from(IInspectable interface) =>
-      IExposurePriorityVideoControl.fromPtr(
-          interface.toInterface(IID_IExposurePriorityVideoControl));
+      interface.cast(IExposurePriorityVideoControl.fromPtr,
+          IID_IExposurePriorityVideoControl);
 
   bool get supported {
     final value = calloc<Bool>();

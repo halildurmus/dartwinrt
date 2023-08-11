@@ -25,7 +25,7 @@ class IPackage7 extends IInspectable {
   IPackage7.fromPtr(super.ptr);
 
   factory IPackage7.from(IInspectable interface) =>
-      IPackage7.fromPtr(interface.toInterface(IID_IPackage7));
+      interface.cast(IPackage7.fromPtr, IID_IPackage7);
 
   StorageFolder? get mutableLocation {
     final value = calloc<COMObject>();

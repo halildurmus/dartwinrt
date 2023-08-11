@@ -28,8 +28,8 @@ class IMediaCaptureRelativePanelWatcher extends IInspectable {
   IMediaCaptureRelativePanelWatcher.fromPtr(super.ptr);
 
   factory IMediaCaptureRelativePanelWatcher.from(IInspectable interface) =>
-      IMediaCaptureRelativePanelWatcher.fromPtr(
-          interface.toInterface(IID_IMediaCaptureRelativePanelWatcher));
+      interface.cast(IMediaCaptureRelativePanelWatcher.fromPtr,
+          IID_IMediaCaptureRelativePanelWatcher);
 
   Panel get relativePanel {
     final value = calloc<Int32>();

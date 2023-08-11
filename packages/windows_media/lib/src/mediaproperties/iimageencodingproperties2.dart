@@ -25,9 +25,8 @@ class IImageEncodingProperties2 extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IImageEncodingProperties2.fromPtr(super.ptr);
 
-  factory IImageEncodingProperties2.from(IInspectable interface) =>
-      IImageEncodingProperties2.fromPtr(
-          interface.toInterface(IID_IImageEncodingProperties2));
+  factory IImageEncodingProperties2.from(IInspectable interface) => interface
+      .cast(IImageEncodingProperties2.fromPtr, IID_IImageEncodingProperties2);
 
   ImageEncodingProperties? copy() {
     final result = calloc<COMObject>();

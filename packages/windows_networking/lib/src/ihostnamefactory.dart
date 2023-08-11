@@ -26,7 +26,7 @@ class IHostNameFactory extends IInspectable {
   IHostNameFactory.fromPtr(super.ptr);
 
   factory IHostNameFactory.from(IInspectable interface) =>
-      IHostNameFactory.fromPtr(interface.toInterface(IID_IHostNameFactory));
+      interface.cast(IHostNameFactory.fromPtr, IID_IHostNameFactory);
 
   HostName createHostName(String hostName) {
     final value = calloc<COMObject>();

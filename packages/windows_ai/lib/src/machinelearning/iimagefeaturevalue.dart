@@ -25,7 +25,7 @@ class IImageFeatureValue extends IInspectable {
   IImageFeatureValue.fromPtr(super.ptr);
 
   factory IImageFeatureValue.from(IInspectable interface) =>
-      IImageFeatureValue.fromPtr(interface.toInterface(IID_IImageFeatureValue));
+      interface.cast(IImageFeatureValue.fromPtr, IID_IImageFeatureValue);
 
   VideoFrame? get videoFrame {
     final value = calloc<COMObject>();

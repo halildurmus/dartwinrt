@@ -24,7 +24,7 @@ class IPackageStatus2 extends IInspectable {
   IPackageStatus2.fromPtr(super.ptr);
 
   factory IPackageStatus2.from(IInspectable interface) =>
-      IPackageStatus2.fromPtr(interface.toInterface(IID_IPackageStatus2));
+      interface.cast(IPackageStatus2.fromPtr, IID_IPackageStatus2);
 
   bool get isPartiallyStaged {
     final value = calloc<Bool>();

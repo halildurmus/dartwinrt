@@ -24,7 +24,7 @@ class ILanIdentifierData extends IInspectable {
   ILanIdentifierData.fromPtr(super.ptr);
 
   factory ILanIdentifierData.from(IInspectable interface) =>
-      ILanIdentifierData.fromPtr(interface.toInterface(IID_ILanIdentifierData));
+      interface.cast(ILanIdentifierData.fromPtr, IID_ILanIdentifierData);
 
   int get type {
     final value = calloc<Uint32>();

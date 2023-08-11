@@ -24,7 +24,7 @@ class IZoomControl extends IInspectable {
   IZoomControl.fromPtr(super.ptr);
 
   factory IZoomControl.from(IInspectable interface) =>
-      IZoomControl.fromPtr(interface.toInterface(IID_IZoomControl));
+      interface.cast(IZoomControl.fromPtr, IID_IZoomControl);
 
   bool get supported {
     final value = calloc<Bool>();

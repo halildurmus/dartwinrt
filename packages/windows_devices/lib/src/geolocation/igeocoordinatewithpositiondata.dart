@@ -30,8 +30,8 @@ class IGeocoordinateWithPositionData extends IInspectable
   IGeocoordinateWithPositionData.fromPtr(super.ptr);
 
   factory IGeocoordinateWithPositionData.from(IInspectable interface) =>
-      IGeocoordinateWithPositionData.fromPtr(
-          interface.toInterface(IID_IGeocoordinateWithPositionData));
+      interface.cast(IGeocoordinateWithPositionData.fromPtr,
+          IID_IGeocoordinateWithPositionData);
 
   PositionSource get positionSource {
     final pValue = calloc<Int32>();

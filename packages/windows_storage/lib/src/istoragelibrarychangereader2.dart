@@ -25,8 +25,8 @@ class IStorageLibraryChangeReader2 extends IInspectable {
   IStorageLibraryChangeReader2.fromPtr(super.ptr);
 
   factory IStorageLibraryChangeReader2.from(IInspectable interface) =>
-      IStorageLibraryChangeReader2.fromPtr(
-          interface.toInterface(IID_IStorageLibraryChangeReader2));
+      interface.cast(IStorageLibraryChangeReader2.fromPtr,
+          IID_IStorageLibraryChangeReader2);
 
   int getLastChangeId() {
     final result = calloc<Uint64>();

@@ -27,8 +27,7 @@ class IDocumentProperties extends IInspectable
   IDocumentProperties.fromPtr(super.ptr);
 
   factory IDocumentProperties.from(IInspectable interface) =>
-      IDocumentProperties.fromPtr(
-          interface.toInterface(IID_IDocumentProperties));
+      interface.cast(IDocumentProperties.fromPtr, IID_IDocumentProperties);
 
   IVector<String>? get author {
     final value = calloc<COMObject>();

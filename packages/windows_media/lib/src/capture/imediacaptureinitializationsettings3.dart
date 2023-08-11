@@ -27,8 +27,8 @@ class IMediaCaptureInitializationSettings3 extends IInspectable {
   IMediaCaptureInitializationSettings3.fromPtr(super.ptr);
 
   factory IMediaCaptureInitializationSettings3.from(IInspectable interface) =>
-      IMediaCaptureInitializationSettings3.fromPtr(
-          interface.toInterface(IID_IMediaCaptureInitializationSettings3));
+      interface.cast(IMediaCaptureInitializationSettings3.fromPtr,
+          IID_IMediaCaptureInitializationSettings3);
 
   set audioSource(IMediaSource? value) {
     final hr = ptr.ref.vtable

@@ -27,8 +27,8 @@ class IWwanConnectionProfileDetails2 extends IInspectable {
   IWwanConnectionProfileDetails2.fromPtr(super.ptr);
 
   factory IWwanConnectionProfileDetails2.from(IInspectable interface) =>
-      IWwanConnectionProfileDetails2.fromPtr(
-          interface.toInterface(IID_IWwanConnectionProfileDetails2));
+      interface.cast(IWwanConnectionProfileDetails2.fromPtr,
+          IID_IWwanConnectionProfileDetails2);
 
   WwanNetworkIPKind get ipKind {
     final value = calloc<Int32>();

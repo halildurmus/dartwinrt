@@ -25,9 +25,8 @@ class ILearningModelFeatureValue extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   ILearningModelFeatureValue.fromPtr(super.ptr);
 
-  factory ILearningModelFeatureValue.from(IInspectable interface) =>
-      ILearningModelFeatureValue.fromPtr(
-          interface.toInterface(IID_ILearningModelFeatureValue));
+  factory ILearningModelFeatureValue.from(IInspectable interface) => interface
+      .cast(ILearningModelFeatureValue.fromPtr, IID_ILearningModelFeatureValue);
 
   LearningModelFeatureKind get kind {
     final value = calloc<Int32>();

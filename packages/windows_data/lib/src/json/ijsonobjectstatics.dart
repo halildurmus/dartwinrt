@@ -26,7 +26,7 @@ class IJsonObjectStatics extends IInspectable {
   IJsonObjectStatics.fromPtr(super.ptr);
 
   factory IJsonObjectStatics.from(IInspectable interface) =>
-      IJsonObjectStatics.fromPtr(interface.toInterface(IID_IJsonObjectStatics));
+      interface.cast(IJsonObjectStatics.fromPtr, IID_IJsonObjectStatics);
 
   JsonObject parse(String input) {
     final jsonObject = calloc<COMObject>();

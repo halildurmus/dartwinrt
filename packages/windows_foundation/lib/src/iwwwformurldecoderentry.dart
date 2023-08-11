@@ -16,6 +16,7 @@ import 'package:win32/win32.dart'
 
 import '../internal.dart';
 import 'collections/iiterator.dart';
+import 'extensions/extensions.dart';
 import 'helpers.dart';
 
 /// @nodoc
@@ -25,9 +26,8 @@ class IWwwFormUrlDecoderEntry extends IInspectable {
   // vtable begins at 6, is 2 entries long.
   IWwwFormUrlDecoderEntry.fromPtr(super.ptr);
 
-  factory IWwwFormUrlDecoderEntry.from(IInspectable interface) =>
-      IWwwFormUrlDecoderEntry.fromPtr(
-          interface.toInterface(IID_IWwwFormUrlDecoderEntry));
+  factory IWwwFormUrlDecoderEntry.from(IInspectable interface) => interface
+      .cast(IWwwFormUrlDecoderEntry.fromPtr, IID_IWwwFormUrlDecoderEntry);
 
   String get name {
     final value = calloc<IntPtr>();

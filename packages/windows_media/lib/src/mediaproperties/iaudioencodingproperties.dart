@@ -27,9 +27,8 @@ class IAudioEncodingProperties extends IInspectable
   // vtable begins at 6, is 8 entries long.
   IAudioEncodingProperties.fromPtr(super.ptr);
 
-  factory IAudioEncodingProperties.from(IInspectable interface) =>
-      IAudioEncodingProperties.fromPtr(
-          interface.toInterface(IID_IAudioEncodingProperties));
+  factory IAudioEncodingProperties.from(IInspectable interface) => interface
+      .cast(IAudioEncodingProperties.fromPtr, IID_IAudioEncodingProperties);
 
   set bitrate(int value) {
     final hr =

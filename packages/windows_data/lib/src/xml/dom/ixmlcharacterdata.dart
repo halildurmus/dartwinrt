@@ -33,7 +33,7 @@ class IXmlCharacterData extends IInspectable
   IXmlCharacterData.fromPtr(super.ptr);
 
   factory IXmlCharacterData.from(IInspectable interface) =>
-      IXmlCharacterData.fromPtr(interface.toInterface(IID_IXmlCharacterData));
+      interface.cast(IXmlCharacterData.fromPtr, IID_IXmlCharacterData);
 
   String get data {
     final value = calloc<IntPtr>();

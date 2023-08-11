@@ -24,7 +24,7 @@ class IFolderPicker2 extends IInspectable {
   IFolderPicker2.fromPtr(super.ptr);
 
   factory IFolderPicker2.from(IInspectable interface) =>
-      IFolderPicker2.fromPtr(interface.toInterface(IID_IFolderPicker2));
+      interface.cast(IFolderPicker2.fromPtr, IID_IFolderPicker2);
 
   ValueSet? get continuationData {
     final value = calloc<COMObject>();

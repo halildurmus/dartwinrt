@@ -25,8 +25,8 @@ class IStandardDataFormatsStatics2 extends IInspectable {
   IStandardDataFormatsStatics2.fromPtr(super.ptr);
 
   factory IStandardDataFormatsStatics2.from(IInspectable interface) =>
-      IStandardDataFormatsStatics2.fromPtr(
-          interface.toInterface(IID_IStandardDataFormatsStatics2));
+      interface.cast(IStandardDataFormatsStatics2.fromPtr,
+          IID_IStandardDataFormatsStatics2);
 
   String get webLink {
     final value = calloc<IntPtr>();

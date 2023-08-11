@@ -27,7 +27,7 @@ class IBattery extends IInspectable {
   IBattery.fromPtr(super.ptr);
 
   factory IBattery.from(IInspectable interface) =>
-      IBattery.fromPtr(interface.toInterface(IID_IBattery));
+      interface.cast(IBattery.fromPtr, IID_IBattery);
 
   String get deviceId {
     final value = calloc<IntPtr>();

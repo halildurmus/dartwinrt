@@ -32,8 +32,8 @@ class IFileRandomAccessStreamStatics extends IInspectable {
   IFileRandomAccessStreamStatics.fromPtr(super.ptr);
 
   factory IFileRandomAccessStreamStatics.from(IInspectable interface) =>
-      IFileRandomAccessStreamStatics.fromPtr(
-          interface.toInterface(IID_IFileRandomAccessStreamStatics));
+      interface.cast(IFileRandomAccessStreamStatics.fromPtr,
+          IID_IFileRandomAccessStreamStatics);
 
   Future<IRandomAccessStream?> openAsync(
       String filePath, FileAccessMode accessMode) {

@@ -24,7 +24,7 @@ class IVenueData extends IInspectable {
   IVenueData.fromPtr(super.ptr);
 
   factory IVenueData.from(IInspectable interface) =>
-      IVenueData.fromPtr(interface.toInterface(IID_IVenueData));
+      interface.cast(IVenueData.fromPtr, IID_IVenueData);
 
   String get id {
     final value = calloc<IntPtr>();

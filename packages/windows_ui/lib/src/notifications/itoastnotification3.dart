@@ -26,8 +26,7 @@ class IToastNotification3 extends IInspectable {
   IToastNotification3.fromPtr(super.ptr);
 
   factory IToastNotification3.from(IInspectable interface) =>
-      IToastNotification3.fromPtr(
-          interface.toInterface(IID_IToastNotification3));
+      interface.cast(IToastNotification3.fromPtr, IID_IToastNotification3);
 
   NotificationMirroring get notificationMirroring {
     final value = calloc<Int32>();

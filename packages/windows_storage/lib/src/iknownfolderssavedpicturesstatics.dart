@@ -27,8 +27,8 @@ class IKnownFoldersSavedPicturesStatics extends IInspectable {
   IKnownFoldersSavedPicturesStatics.fromPtr(super.ptr);
 
   factory IKnownFoldersSavedPicturesStatics.from(IInspectable interface) =>
-      IKnownFoldersSavedPicturesStatics.fromPtr(
-          interface.toInterface(IID_IKnownFoldersSavedPicturesStatics));
+      interface.cast(IKnownFoldersSavedPicturesStatics.fromPtr,
+          IID_IKnownFoldersSavedPicturesStatics);
 
   StorageFolder? get savedPictures {
     final value = calloc<COMObject>();

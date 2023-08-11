@@ -28,8 +28,8 @@ class IVideoDeviceControllerGetDevicePropertyResult extends IInspectable {
 
   factory IVideoDeviceControllerGetDevicePropertyResult.from(
           IInspectable interface) =>
-      IVideoDeviceControllerGetDevicePropertyResult.fromPtr(interface
-          .toInterface(IID_IVideoDeviceControllerGetDevicePropertyResult));
+      interface.cast(IVideoDeviceControllerGetDevicePropertyResult.fromPtr,
+          IID_IVideoDeviceControllerGetDevicePropertyResult);
 
   VideoDeviceControllerGetDevicePropertyStatus get status {
     final value = calloc<Int32>();

@@ -33,7 +33,7 @@ class IGamepad2 extends IInspectable implements IGamepad, IGameController {
   IGamepad2.fromPtr(super.ptr);
 
   factory IGamepad2.from(IInspectable interface) =>
-      IGamepad2.fromPtr(interface.toInterface(IID_IGamepad2));
+      interface.cast(IGamepad2.fromPtr, IID_IGamepad2);
 
   GameControllerButtonLabel getButtonLabel(GamepadButtons button) {
     final value = calloc<Int32>();

@@ -28,7 +28,7 @@ class IDeviceInformation extends IInspectable {
   IDeviceInformation.fromPtr(super.ptr);
 
   factory IDeviceInformation.from(IInspectable interface) =>
-      IDeviceInformation.fromPtr(interface.toInterface(IID_IDeviceInformation));
+      interface.cast(IDeviceInformation.fromPtr, IID_IDeviceInformation);
 
   String get id {
     final value = calloc<IntPtr>();

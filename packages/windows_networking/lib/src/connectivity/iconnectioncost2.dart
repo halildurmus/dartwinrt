@@ -24,7 +24,7 @@ class IConnectionCost2 extends IInspectable {
   IConnectionCost2.fromPtr(super.ptr);
 
   factory IConnectionCost2.from(IInspectable interface) =>
-      IConnectionCost2.fromPtr(interface.toInterface(IID_IConnectionCost2));
+      interface.cast(IConnectionCost2.fromPtr, IID_IConnectionCost2);
 
   bool get backgroundDataUsageRestricted {
     final value = calloc<Bool>();

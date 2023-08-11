@@ -27,7 +27,7 @@ class IXmlDocumentIO2 extends IInspectable {
   IXmlDocumentIO2.fromPtr(super.ptr);
 
   factory IXmlDocumentIO2.from(IInspectable interface) =>
-      IXmlDocumentIO2.fromPtr(interface.toInterface(IID_IXmlDocumentIO2));
+      interface.cast(IXmlDocumentIO2.fromPtr, IID_IXmlDocumentIO2);
 
   void loadXmlFromBuffer(IBuffer? buffer) {
     final hr = ptr.ref.vtable

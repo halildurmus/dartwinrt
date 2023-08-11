@@ -24,8 +24,7 @@ class IXmlDomImplementation extends IInspectable {
   IXmlDomImplementation.fromPtr(super.ptr);
 
   factory IXmlDomImplementation.from(IInspectable interface) =>
-      IXmlDomImplementation.fromPtr(
-          interface.toInterface(IID_IXmlDomImplementation));
+      interface.cast(IXmlDomImplementation.fromPtr, IID_IXmlDomImplementation);
 
   bool hasFeature(String feature, Object? version) {
     final featureSupported = calloc<Bool>();

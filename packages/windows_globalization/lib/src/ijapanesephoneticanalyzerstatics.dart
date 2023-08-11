@@ -27,8 +27,8 @@ class IJapanesePhoneticAnalyzerStatics extends IInspectable {
   IJapanesePhoneticAnalyzerStatics.fromPtr(super.ptr);
 
   factory IJapanesePhoneticAnalyzerStatics.from(IInspectable interface) =>
-      IJapanesePhoneticAnalyzerStatics.fromPtr(
-          interface.toInterface(IID_IJapanesePhoneticAnalyzerStatics));
+      interface.cast(IJapanesePhoneticAnalyzerStatics.fromPtr,
+          IID_IJapanesePhoneticAnalyzerStatics);
 
   List<JapanesePhoneme?> getWords(String input) {
     final result = calloc<COMObject>();

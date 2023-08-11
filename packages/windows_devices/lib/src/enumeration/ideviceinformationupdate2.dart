@@ -25,9 +25,8 @@ class IDeviceInformationUpdate2 extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IDeviceInformationUpdate2.fromPtr(super.ptr);
 
-  factory IDeviceInformationUpdate2.from(IInspectable interface) =>
-      IDeviceInformationUpdate2.fromPtr(
-          interface.toInterface(IID_IDeviceInformationUpdate2));
+  factory IDeviceInformationUpdate2.from(IInspectable interface) => interface
+      .cast(IDeviceInformationUpdate2.fromPtr, IID_IDeviceInformationUpdate2);
 
   DeviceInformationKind get kind {
     final value = calloc<Int32>();

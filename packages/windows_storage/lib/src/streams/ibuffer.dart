@@ -24,7 +24,7 @@ class IBuffer extends IInspectable {
   IBuffer.fromPtr(super.ptr);
 
   factory IBuffer.from(IInspectable interface) =>
-      IBuffer.fromPtr(interface.toInterface(IID_IBuffer));
+      interface.cast(IBuffer.fromPtr, IID_IBuffer);
 
   int get capacity {
     final value = calloc<Uint32>();

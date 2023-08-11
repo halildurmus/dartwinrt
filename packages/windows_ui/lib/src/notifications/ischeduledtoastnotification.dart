@@ -26,8 +26,8 @@ class IScheduledToastNotification extends IInspectable {
   IScheduledToastNotification.fromPtr(super.ptr);
 
   factory IScheduledToastNotification.from(IInspectable interface) =>
-      IScheduledToastNotification.fromPtr(
-          interface.toInterface(IID_IScheduledToastNotification));
+      interface.cast(
+          IScheduledToastNotification.fromPtr, IID_IScheduledToastNotification);
 
   XmlDocument? get content {
     final value = calloc<COMObject>();

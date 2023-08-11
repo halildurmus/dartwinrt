@@ -26,9 +26,8 @@ class IMediaCaptureVideoProfile extends IInspectable {
   // vtable begins at 6, is 6 entries long.
   IMediaCaptureVideoProfile.fromPtr(super.ptr);
 
-  factory IMediaCaptureVideoProfile.from(IInspectable interface) =>
-      IMediaCaptureVideoProfile.fromPtr(
-          interface.toInterface(IID_IMediaCaptureVideoProfile));
+  factory IMediaCaptureVideoProfile.from(IInspectable interface) => interface
+      .cast(IMediaCaptureVideoProfile.fromPtr, IID_IMediaCaptureVideoProfile);
 
   String get id {
     final value = calloc<IntPtr>();

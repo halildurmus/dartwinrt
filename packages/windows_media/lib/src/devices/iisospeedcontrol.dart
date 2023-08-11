@@ -26,7 +26,7 @@ class IIsoSpeedControl extends IInspectable {
   IIsoSpeedControl.fromPtr(super.ptr);
 
   factory IIsoSpeedControl.from(IInspectable interface) =>
-      IIsoSpeedControl.fromPtr(interface.toInterface(IID_IIsoSpeedControl));
+      interface.cast(IIsoSpeedControl.fromPtr, IID_IIsoSpeedControl);
 
   bool get supported {
     final value = calloc<Bool>();

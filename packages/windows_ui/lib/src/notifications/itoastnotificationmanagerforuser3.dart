@@ -28,8 +28,8 @@ class IToastNotificationManagerForUser3 extends IInspectable {
   IToastNotificationManagerForUser3.fromPtr(super.ptr);
 
   factory IToastNotificationManagerForUser3.from(IInspectable interface) =>
-      IToastNotificationManagerForUser3.fromPtr(
-          interface.toInterface(IID_IToastNotificationManagerForUser3));
+      interface.cast(IToastNotificationManagerForUser3.fromPtr,
+          IID_IToastNotificationManagerForUser3);
 
   ToastNotificationMode get notificationMode {
     final value = calloc<Int32>();

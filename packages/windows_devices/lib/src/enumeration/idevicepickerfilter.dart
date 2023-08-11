@@ -26,8 +26,7 @@ class IDevicePickerFilter extends IInspectable {
   IDevicePickerFilter.fromPtr(super.ptr);
 
   factory IDevicePickerFilter.from(IInspectable interface) =>
-      IDevicePickerFilter.fromPtr(
-          interface.toInterface(IID_IDevicePickerFilter));
+      interface.cast(IDevicePickerFilter.fromPtr, IID_IDevicePickerFilter);
 
   IVector<DeviceClass>? get supportedDeviceClasses {
     final value = calloc<COMObject>();

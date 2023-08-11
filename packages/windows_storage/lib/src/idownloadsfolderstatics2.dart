@@ -28,9 +28,8 @@ class IDownloadsFolderStatics2 extends IInspectable {
   // vtable begins at 6, is 4 entries long.
   IDownloadsFolderStatics2.fromPtr(super.ptr);
 
-  factory IDownloadsFolderStatics2.from(IInspectable interface) =>
-      IDownloadsFolderStatics2.fromPtr(
-          interface.toInterface(IID_IDownloadsFolderStatics2));
+  factory IDownloadsFolderStatics2.from(IInspectable interface) => interface
+      .cast(IDownloadsFolderStatics2.fromPtr, IID_IDownloadsFolderStatics2);
 
   Future<StorageFile?> createFileForUserAsync(User? user, String desiredName) {
     final operation = calloc<COMObject>();

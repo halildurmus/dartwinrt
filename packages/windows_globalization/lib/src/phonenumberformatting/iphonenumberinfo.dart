@@ -28,7 +28,7 @@ class IPhoneNumberInfo extends IInspectable {
   IPhoneNumberInfo.fromPtr(super.ptr);
 
   factory IPhoneNumberInfo.from(IInspectable interface) =>
-      IPhoneNumberInfo.fromPtr(interface.toInterface(IID_IPhoneNumberInfo));
+      interface.cast(IPhoneNumberInfo.fromPtr, IID_IPhoneNumberInfo);
 
   int get countryCode {
     final value = calloc<Int32>();

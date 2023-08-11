@@ -26,9 +26,8 @@ class ITensorFloat16BitStatics2 extends IInspectable {
   // vtable begins at 6, is 2 entries long.
   ITensorFloat16BitStatics2.fromPtr(super.ptr);
 
-  factory ITensorFloat16BitStatics2.from(IInspectable interface) =>
-      ITensorFloat16BitStatics2.fromPtr(
-          interface.toInterface(IID_ITensorFloat16BitStatics2));
+  factory ITensorFloat16BitStatics2.from(IInspectable interface) => interface
+      .cast(ITensorFloat16BitStatics2.fromPtr, IID_ITensorFloat16BitStatics2);
 
   TensorFloat16Bit? createFromShapeArrayAndDataArray(
       List<int> shape, List<double> data) {

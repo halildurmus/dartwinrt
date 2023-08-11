@@ -24,8 +24,7 @@ class IDigitalWindowBounds extends IInspectable {
   IDigitalWindowBounds.fromPtr(super.ptr);
 
   factory IDigitalWindowBounds.from(IInspectable interface) =>
-      IDigitalWindowBounds.fromPtr(
-          interface.toInterface(IID_IDigitalWindowBounds));
+      interface.cast(IDigitalWindowBounds.fromPtr, IID_IDigitalWindowBounds);
 
   double get normalizedOriginTop {
     final value = calloc<Double>();

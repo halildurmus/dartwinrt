@@ -29,9 +29,8 @@ class IStorageItemQueryResult extends IInspectable
   // vtable begins at 6, is 2 entries long.
   IStorageItemQueryResult.fromPtr(super.ptr);
 
-  factory IStorageItemQueryResult.from(IInspectable interface) =>
-      IStorageItemQueryResult.fromPtr(
-          interface.toInterface(IID_IStorageItemQueryResult));
+  factory IStorageItemQueryResult.from(IInspectable interface) => interface
+      .cast(IStorageItemQueryResult.fromPtr, IID_IStorageItemQueryResult);
 
   Future<List<IStorageItem?>> getItemsAsync(
       int startIndex, int maxNumberOfItems) {

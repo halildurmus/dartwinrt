@@ -29,8 +29,8 @@ class IMediaFrameSourceController extends IInspectable {
   IMediaFrameSourceController.fromPtr(super.ptr);
 
   factory IMediaFrameSourceController.from(IInspectable interface) =>
-      IMediaFrameSourceController.fromPtr(
-          interface.toInterface(IID_IMediaFrameSourceController));
+      interface.cast(
+          IMediaFrameSourceController.fromPtr, IID_IMediaFrameSourceController);
 
   Future<MediaFrameSourceGetPropertyResult?> getPropertyAsync(
       String propertyId) {

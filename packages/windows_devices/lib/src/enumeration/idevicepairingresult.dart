@@ -27,8 +27,7 @@ class IDevicePairingResult extends IInspectable {
   IDevicePairingResult.fromPtr(super.ptr);
 
   factory IDevicePairingResult.from(IInspectable interface) =>
-      IDevicePairingResult.fromPtr(
-          interface.toInterface(IID_IDevicePairingResult));
+      interface.cast(IDevicePairingResult.fromPtr, IID_IDevicePairingResult);
 
   DevicePairingResultStatus get status {
     final status = calloc<Int32>();

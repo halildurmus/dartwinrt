@@ -27,7 +27,7 @@ class IXmlDocumentIO extends IInspectable {
   IXmlDocumentIO.fromPtr(super.ptr);
 
   factory IXmlDocumentIO.from(IInspectable interface) =>
-      IXmlDocumentIO.fromPtr(interface.toInterface(IID_IXmlDocumentIO));
+      interface.cast(IXmlDocumentIO.fromPtr, IID_IXmlDocumentIO);
 
   void loadXml(String xml) {
     final hr = ptr.ref.vtable

@@ -24,7 +24,7 @@ class ICameraIntrinsics2 extends IInspectable {
   ICameraIntrinsics2.fromPtr(super.ptr);
 
   factory ICameraIntrinsics2.from(IInspectable interface) =>
-      ICameraIntrinsics2.fromPtr(interface.toInterface(IID_ICameraIntrinsics2));
+      interface.cast(ICameraIntrinsics2.fromPtr, IID_ICameraIntrinsics2);
 
   Matrix4x4 get undistortedProjectionTransform {
     final value = calloc<NativeMatrix4x4>();

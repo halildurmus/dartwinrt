@@ -26,8 +26,7 @@ class IGeolocatorStatics2 extends IInspectable {
   IGeolocatorStatics2.fromPtr(super.ptr);
 
   factory IGeolocatorStatics2.from(IInspectable interface) =>
-      IGeolocatorStatics2.fromPtr(
-          interface.toInterface(IID_IGeolocatorStatics2));
+      interface.cast(IGeolocatorStatics2.fromPtr, IID_IGeolocatorStatics2);
 
   bool get isDefaultGeopositionRecommended {
     final value = calloc<Bool>();

@@ -26,7 +26,7 @@ class IPedometerReading extends IInspectable {
   IPedometerReading.fromPtr(super.ptr);
 
   factory IPedometerReading.from(IInspectable interface) =>
-      IPedometerReading.fromPtr(interface.toInterface(IID_IPedometerReading));
+      interface.cast(IPedometerReading.fromPtr, IID_IPedometerReading);
 
   PedometerStepKind get stepKind {
     final value = calloc<Int32>();

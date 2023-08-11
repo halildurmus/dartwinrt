@@ -24,7 +24,7 @@ class IHeadset extends IInspectable {
   IHeadset.fromPtr(super.ptr);
 
   factory IHeadset.from(IInspectable interface) =>
-      IHeadset.fromPtr(interface.toInterface(IID_IHeadset));
+      interface.cast(IHeadset.fromPtr, IID_IHeadset);
 
   String get captureDeviceId {
     final value = calloc<IntPtr>();

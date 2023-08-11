@@ -25,8 +25,8 @@ class IGeocoordinateSatelliteData extends IInspectable {
   IGeocoordinateSatelliteData.fromPtr(super.ptr);
 
   factory IGeocoordinateSatelliteData.from(IInspectable interface) =>
-      IGeocoordinateSatelliteData.fromPtr(
-          interface.toInterface(IID_IGeocoordinateSatelliteData));
+      interface.cast(
+          IGeocoordinateSatelliteData.fromPtr, IID_IGeocoordinateSatelliteData);
 
   double? get positionDilutionOfPrecision {
     final ppValue = calloc<COMObject>();

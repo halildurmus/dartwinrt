@@ -25,8 +25,8 @@ class IKnownUserPropertiesStatics extends IInspectable {
   IKnownUserPropertiesStatics.fromPtr(super.ptr);
 
   factory IKnownUserPropertiesStatics.from(IInspectable interface) =>
-      IKnownUserPropertiesStatics.fromPtr(
-          interface.toInterface(IID_IKnownUserPropertiesStatics));
+      interface.cast(
+          IKnownUserPropertiesStatics.fromPtr, IID_IKnownUserPropertiesStatics);
 
   String get displayName {
     final value = calloc<IntPtr>();

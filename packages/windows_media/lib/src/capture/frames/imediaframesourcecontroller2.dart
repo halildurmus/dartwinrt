@@ -28,8 +28,8 @@ class IMediaFrameSourceController2 extends IInspectable {
   IMediaFrameSourceController2.fromPtr(super.ptr);
 
   factory IMediaFrameSourceController2.from(IInspectable interface) =>
-      IMediaFrameSourceController2.fromPtr(
-          interface.toInterface(IID_IMediaFrameSourceController2));
+      interface.cast(IMediaFrameSourceController2.fromPtr,
+          IID_IMediaFrameSourceController2);
 
   Future<MediaFrameSourceGetPropertyResult?> getPropertyByExtendedIdAsync(
       List<int> extendedPropertyId, int? maxPropertyValueSize) {

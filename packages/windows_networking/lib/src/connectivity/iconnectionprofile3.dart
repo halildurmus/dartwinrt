@@ -27,8 +27,7 @@ class IConnectionProfile3 extends IInspectable {
   IConnectionProfile3.fromPtr(super.ptr);
 
   factory IConnectionProfile3.from(IInspectable interface) =>
-      IConnectionProfile3.fromPtr(
-          interface.toInterface(IID_IConnectionProfile3));
+      interface.cast(IConnectionProfile3.fromPtr, IID_IConnectionProfile3);
 
   Future<List<AttributedNetworkUsage?>> getAttributedNetworkUsageAsync(
       DateTime startTime, DateTime endTime, NetworkUsageStates states) {

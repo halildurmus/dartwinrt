@@ -25,9 +25,8 @@ class IMediaEncodingProfile3 extends IInspectable {
   // vtable begins at 6, is 2 entries long.
   IMediaEncodingProfile3.fromPtr(super.ptr);
 
-  factory IMediaEncodingProfile3.from(IInspectable interface) =>
-      IMediaEncodingProfile3.fromPtr(
-          interface.toInterface(IID_IMediaEncodingProfile3));
+  factory IMediaEncodingProfile3.from(IInspectable interface) => interface.cast(
+      IMediaEncodingProfile3.fromPtr, IID_IMediaEncodingProfile3);
 
   void setTimedMetadataTracks(
       IIterable<TimedMetadataStreamDescriptor?>? value) {

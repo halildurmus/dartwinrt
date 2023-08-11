@@ -27,8 +27,8 @@ class IImageEncodingPropertiesStatics3 extends IInspectable {
   IImageEncodingPropertiesStatics3.fromPtr(super.ptr);
 
   factory IImageEncodingPropertiesStatics3.from(IInspectable interface) =>
-      IImageEncodingPropertiesStatics3.fromPtr(
-          interface.toInterface(IID_IImageEncodingPropertiesStatics3));
+      interface.cast(IImageEncodingPropertiesStatics3.fromPtr,
+          IID_IImageEncodingPropertiesStatics3);
 
   ImageEncodingProperties? createHeif() {
     final result = calloc<COMObject>();

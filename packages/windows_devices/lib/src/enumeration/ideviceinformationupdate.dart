@@ -23,9 +23,8 @@ class IDeviceInformationUpdate extends IInspectable {
   // vtable begins at 6, is 2 entries long.
   IDeviceInformationUpdate.fromPtr(super.ptr);
 
-  factory IDeviceInformationUpdate.from(IInspectable interface) =>
-      IDeviceInformationUpdate.fromPtr(
-          interface.toInterface(IID_IDeviceInformationUpdate));
+  factory IDeviceInformationUpdate.from(IInspectable interface) => interface
+      .cast(IDeviceInformationUpdate.fromPtr, IID_IDeviceInformationUpdate);
 
   String get id {
     final value = calloc<IntPtr>();

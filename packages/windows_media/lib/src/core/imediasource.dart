@@ -25,5 +25,5 @@ class IMediaSource extends IInspectable {
   IMediaSource.fromPtr(super.ptr);
 
   factory IMediaSource.from(IInspectable interface) =>
-      IMediaSource.fromPtr(interface.toInterface(IID_IMediaSource));
+      interface.cast(IMediaSource.fromPtr, IID_IMediaSource);
 }

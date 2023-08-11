@@ -36,7 +36,7 @@ class IMediaCapture4 extends IInspectable {
   IMediaCapture4.fromPtr(super.ptr);
 
   factory IMediaCapture4.from(IInspectable interface) =>
-      IMediaCapture4.fromPtr(interface.toInterface(IID_IMediaCapture4));
+      interface.cast(IMediaCapture4.fromPtr, IID_IMediaCapture4);
 
   Future<IMediaExtension?> addAudioEffectAsync(
       IAudioEffectDefinition? definition) {

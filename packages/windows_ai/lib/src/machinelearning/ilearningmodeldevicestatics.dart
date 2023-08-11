@@ -28,8 +28,8 @@ class ILearningModelDeviceStatics extends IInspectable {
   ILearningModelDeviceStatics.fromPtr(super.ptr);
 
   factory ILearningModelDeviceStatics.from(IInspectable interface) =>
-      ILearningModelDeviceStatics.fromPtr(
-          interface.toInterface(IID_ILearningModelDeviceStatics));
+      interface.cast(
+          ILearningModelDeviceStatics.fromPtr, IID_ILearningModelDeviceStatics);
 
   LearningModelDevice? createFromDirect3D11Device(IDirect3DDevice? device) {
     final result = calloc<COMObject>();

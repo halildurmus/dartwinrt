@@ -27,7 +27,7 @@ class IUser2 extends IInspectable {
   IUser2.fromPtr(super.ptr);
 
   factory IUser2.from(IInspectable interface) =>
-      IUser2.fromPtr(interface.toInterface(IID_IUser2));
+      interface.cast(IUser2.fromPtr, IID_IUser2);
 
   Future<UserAgeConsentResult> checkUserAgeConsentGroupAsync(
       UserAgeConsentGroup consentGroup) {

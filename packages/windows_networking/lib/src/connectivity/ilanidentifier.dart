@@ -26,7 +26,7 @@ class ILanIdentifier extends IInspectable {
   ILanIdentifier.fromPtr(super.ptr);
 
   factory ILanIdentifier.from(IInspectable interface) =>
-      ILanIdentifier.fromPtr(interface.toInterface(IID_ILanIdentifier));
+      interface.cast(ILanIdentifier.fromPtr, IID_ILanIdentifier);
 
   LanIdentifierData? get infrastructureId {
     final value = calloc<COMObject>();

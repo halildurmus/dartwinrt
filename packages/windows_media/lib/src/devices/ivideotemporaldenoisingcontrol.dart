@@ -27,8 +27,8 @@ class IVideoTemporalDenoisingControl extends IInspectable {
   IVideoTemporalDenoisingControl.fromPtr(super.ptr);
 
   factory IVideoTemporalDenoisingControl.from(IInspectable interface) =>
-      IVideoTemporalDenoisingControl.fromPtr(
-          interface.toInterface(IID_IVideoTemporalDenoisingControl));
+      interface.cast(IVideoTemporalDenoisingControl.fromPtr,
+          IID_IVideoTemporalDenoisingControl);
 
   bool get supported {
     final value = calloc<Bool>();

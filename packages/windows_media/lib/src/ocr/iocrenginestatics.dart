@@ -27,7 +27,7 @@ class IOcrEngineStatics extends IInspectable {
   IOcrEngineStatics.fromPtr(super.ptr);
 
   factory IOcrEngineStatics.from(IInspectable interface) =>
-      IOcrEngineStatics.fromPtr(interface.toInterface(IID_IOcrEngineStatics));
+      interface.cast(IOcrEngineStatics.fromPtr, IID_IOcrEngineStatics);
 
   int get maxImageDimension {
     final value = calloc<Uint32>();

@@ -27,7 +27,7 @@ class IWebAccount extends IInspectable {
   IWebAccount.fromPtr(super.ptr);
 
   factory IWebAccount.from(IInspectable interface) =>
-      IWebAccount.fromPtr(interface.toInterface(IID_IWebAccount));
+      interface.cast(IWebAccount.fromPtr, IID_IWebAccount);
 
   WebAccountProvider? get webAccountProvider {
     final value = calloc<COMObject>();

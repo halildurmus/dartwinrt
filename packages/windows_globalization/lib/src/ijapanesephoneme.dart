@@ -24,7 +24,7 @@ class IJapanesePhoneme extends IInspectable {
   IJapanesePhoneme.fromPtr(super.ptr);
 
   factory IJapanesePhoneme.from(IInspectable interface) =>
-      IJapanesePhoneme.fromPtr(interface.toInterface(IID_IJapanesePhoneme));
+      interface.cast(IJapanesePhoneme.fromPtr, IID_IJapanesePhoneme);
 
   String get displayText {
     final value = calloc<IntPtr>();

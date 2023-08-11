@@ -23,9 +23,8 @@ class INumberFormatterOptions extends IInspectable {
   // vtable begins at 6, is 14 entries long.
   INumberFormatterOptions.fromPtr(super.ptr);
 
-  factory INumberFormatterOptions.from(IInspectable interface) =>
-      INumberFormatterOptions.fromPtr(
-          interface.toInterface(IID_INumberFormatterOptions));
+  factory INumberFormatterOptions.from(IInspectable interface) => interface
+      .cast(INumberFormatterOptions.fromPtr, IID_INumberFormatterOptions);
 
   List<String>? get languages {
     final value = calloc<COMObject>();

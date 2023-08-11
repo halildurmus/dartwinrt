@@ -27,8 +27,8 @@ class IContainerEncodingProperties2 extends IInspectable {
   IContainerEncodingProperties2.fromPtr(super.ptr);
 
   factory IContainerEncodingProperties2.from(IInspectable interface) =>
-      IContainerEncodingProperties2.fromPtr(
-          interface.toInterface(IID_IContainerEncodingProperties2));
+      interface.cast(IContainerEncodingProperties2.fromPtr,
+          IID_IContainerEncodingProperties2);
 
   ContainerEncodingProperties? copy() {
     final result = calloc<COMObject>();

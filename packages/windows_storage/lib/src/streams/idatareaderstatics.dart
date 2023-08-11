@@ -27,7 +27,7 @@ class IDataReaderStatics extends IInspectable {
   IDataReaderStatics.fromPtr(super.ptr);
 
   factory IDataReaderStatics.from(IInspectable interface) =>
-      IDataReaderStatics.fromPtr(interface.toInterface(IID_IDataReaderStatics));
+      interface.cast(IDataReaderStatics.fromPtr, IID_IDataReaderStatics);
 
   DataReader? fromBuffer(IBuffer? buffer) {
     final dataReader = calloc<COMObject>();

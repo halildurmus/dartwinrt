@@ -23,9 +23,8 @@ class IMediaStreamDescriptor extends IInspectable {
   // vtable begins at 6, is 5 entries long.
   IMediaStreamDescriptor.fromPtr(super.ptr);
 
-  factory IMediaStreamDescriptor.from(IInspectable interface) =>
-      IMediaStreamDescriptor.fromPtr(
-          interface.toInterface(IID_IMediaStreamDescriptor));
+  factory IMediaStreamDescriptor.from(IInspectable interface) => interface.cast(
+      IMediaStreamDescriptor.fromPtr, IID_IMediaStreamDescriptor);
 
   bool get isSelected {
     final selected = calloc<Bool>();

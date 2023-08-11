@@ -25,7 +25,7 @@ class IAppListEntry3 extends IInspectable {
   IAppListEntry3.fromPtr(super.ptr);
 
   factory IAppListEntry3.from(IInspectable interface) =>
-      IAppListEntry3.fromPtr(interface.toInterface(IID_IAppListEntry3));
+      interface.cast(IAppListEntry3.fromPtr, IID_IAppListEntry3);
 
   Future<bool> launchForUserAsync(User? user) {
     final operation = calloc<COMObject>();

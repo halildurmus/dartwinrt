@@ -27,8 +27,8 @@ class ICapturedFrameControlValues extends IInspectable {
   ICapturedFrameControlValues.fromPtr(super.ptr);
 
   factory ICapturedFrameControlValues.from(IInspectable interface) =>
-      ICapturedFrameControlValues.fromPtr(
-          interface.toInterface(IID_ICapturedFrameControlValues));
+      interface.cast(
+          ICapturedFrameControlValues.fromPtr, IID_ICapturedFrameControlValues);
 
   Duration? get exposure {
     final value = calloc<COMObject>();

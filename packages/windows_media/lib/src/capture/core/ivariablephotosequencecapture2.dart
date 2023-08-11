@@ -25,8 +25,8 @@ class IVariablePhotoSequenceCapture2 extends IInspectable {
   IVariablePhotoSequenceCapture2.fromPtr(super.ptr);
 
   factory IVariablePhotoSequenceCapture2.from(IInspectable interface) =>
-      IVariablePhotoSequenceCapture2.fromPtr(
-          interface.toInterface(IID_IVariablePhotoSequenceCapture2));
+      interface.cast(IVariablePhotoSequenceCapture2.fromPtr,
+          IID_IVariablePhotoSequenceCapture2);
 
   Future<void> updateSettingsAsync() {
     final operation = calloc<COMObject>();

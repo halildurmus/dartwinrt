@@ -25,8 +25,8 @@ class IKnownUserPropertiesStatics2 extends IInspectable {
   IKnownUserPropertiesStatics2.fromPtr(super.ptr);
 
   factory IKnownUserPropertiesStatics2.from(IInspectable interface) =>
-      IKnownUserPropertiesStatics2.fromPtr(
-          interface.toInterface(IID_IKnownUserPropertiesStatics2));
+      interface.cast(IKnownUserPropertiesStatics2.fromPtr,
+          IID_IKnownUserPropertiesStatics2);
 
   String get ageEnforcementRegion {
     final value = calloc<IntPtr>();

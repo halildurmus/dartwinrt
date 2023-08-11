@@ -26,9 +26,8 @@ class IRandomAccessStreamStatics extends IInspectable {
   // vtable begins at 6, is 3 entries long.
   IRandomAccessStreamStatics.fromPtr(super.ptr);
 
-  factory IRandomAccessStreamStatics.from(IInspectable interface) =>
-      IRandomAccessStreamStatics.fromPtr(
-          interface.toInterface(IID_IRandomAccessStreamStatics));
+  factory IRandomAccessStreamStatics.from(IInspectable interface) => interface
+      .cast(IRandomAccessStreamStatics.fromPtr, IID_IRandomAccessStreamStatics);
 
   Pointer<COMObject> copyAsync(
       IInputStream? source, IOutputStream? destination) {

@@ -30,7 +30,7 @@ class IDisplayMonitor extends IInspectable {
   IDisplayMonitor.fromPtr(super.ptr);
 
   factory IDisplayMonitor.from(IInspectable interface) =>
-      IDisplayMonitor.fromPtr(interface.toInterface(IID_IDisplayMonitor));
+      interface.cast(IDisplayMonitor.fromPtr, IID_IDisplayMonitor);
 
   String get deviceId {
     final value = calloc<IntPtr>();

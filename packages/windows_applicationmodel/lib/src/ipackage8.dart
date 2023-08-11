@@ -27,7 +27,7 @@ class IPackage8 extends IInspectable {
   IPackage8.fromPtr(super.ptr);
 
   factory IPackage8.from(IInspectable interface) =>
-      IPackage8.fromPtr(interface.toInterface(IID_IPackage8));
+      interface.cast(IPackage8.fromPtr, IID_IPackage8);
 
   StorageFolder? get effectiveExternalLocation {
     final value = calloc<COMObject>();

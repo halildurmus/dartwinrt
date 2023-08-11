@@ -28,7 +28,7 @@ class ITensor extends IInspectable implements ILearningModelFeatureValue {
   ITensor.fromPtr(super.ptr);
 
   factory ITensor.from(IInspectable interface) =>
-      ITensor.fromPtr(interface.toInterface(IID_ITensor));
+      interface.cast(ITensor.fromPtr, IID_ITensor);
 
   TensorKind get tensorKind {
     final value = calloc<Int32>();

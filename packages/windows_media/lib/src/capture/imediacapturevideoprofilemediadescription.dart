@@ -26,8 +26,8 @@ class IMediaCaptureVideoProfileMediaDescription extends IInspectable {
 
   factory IMediaCaptureVideoProfileMediaDescription.from(
           IInspectable interface) =>
-      IMediaCaptureVideoProfileMediaDescription.fromPtr(
-          interface.toInterface(IID_IMediaCaptureVideoProfileMediaDescription));
+      interface.cast(IMediaCaptureVideoProfileMediaDescription.fromPtr,
+          IID_IMediaCaptureVideoProfileMediaDescription);
 
   int get width {
     final value = calloc<Uint32>();

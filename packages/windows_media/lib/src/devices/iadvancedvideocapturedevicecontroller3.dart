@@ -29,8 +29,8 @@ class IAdvancedVideoCaptureDeviceController3 extends IInspectable {
   IAdvancedVideoCaptureDeviceController3.fromPtr(super.ptr);
 
   factory IAdvancedVideoCaptureDeviceController3.from(IInspectable interface) =>
-      IAdvancedVideoCaptureDeviceController3.fromPtr(
-          interface.toInterface(IID_IAdvancedVideoCaptureDeviceController3));
+      interface.cast(IAdvancedVideoCaptureDeviceController3.fromPtr,
+          IID_IAdvancedVideoCaptureDeviceController3);
 
   VariablePhotoSequenceController? get variablePhotoSequenceController {
     final value = calloc<COMObject>();

@@ -25,9 +25,8 @@ class IPercentFormatterFactory extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IPercentFormatterFactory.fromPtr(super.ptr);
 
-  factory IPercentFormatterFactory.from(IInspectable interface) =>
-      IPercentFormatterFactory.fromPtr(
-          interface.toInterface(IID_IPercentFormatterFactory));
+  factory IPercentFormatterFactory.from(IInspectable interface) => interface
+      .cast(IPercentFormatterFactory.fromPtr, IID_IPercentFormatterFactory);
 
   PercentFormatter createPercentFormatter(
       IIterable<String>? languages, String geographicRegion) {

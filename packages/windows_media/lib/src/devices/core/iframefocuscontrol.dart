@@ -24,7 +24,7 @@ class IFrameFocusControl extends IInspectable {
   IFrameFocusControl.fromPtr(super.ptr);
 
   factory IFrameFocusControl.from(IInspectable interface) =>
-      IFrameFocusControl.fromPtr(interface.toInterface(IID_IFrameFocusControl));
+      interface.cast(IFrameFocusControl.fromPtr, IID_IFrameFocusControl);
 
   int? get value {
     final value = calloc<COMObject>();

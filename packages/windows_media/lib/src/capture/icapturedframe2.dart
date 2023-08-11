@@ -27,7 +27,7 @@ class ICapturedFrame2 extends IInspectable {
   ICapturedFrame2.fromPtr(super.ptr);
 
   factory ICapturedFrame2.from(IInspectable interface) =>
-      ICapturedFrame2.fromPtr(interface.toInterface(IID_ICapturedFrame2));
+      interface.cast(ICapturedFrame2.fromPtr, IID_ICapturedFrame2);
 
   CapturedFrameControlValues? get controlValues {
     final value = calloc<COMObject>();

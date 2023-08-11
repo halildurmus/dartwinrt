@@ -28,8 +28,8 @@ class ITimedMetadataStreamDescriptorFactory extends IInspectable {
   ITimedMetadataStreamDescriptorFactory.fromPtr(super.ptr);
 
   factory ITimedMetadataStreamDescriptorFactory.from(IInspectable interface) =>
-      ITimedMetadataStreamDescriptorFactory.fromPtr(
-          interface.toInterface(IID_ITimedMetadataStreamDescriptorFactory));
+      interface.cast(ITimedMetadataStreamDescriptorFactory.fromPtr,
+          IID_ITimedMetadataStreamDescriptorFactory);
 
   TimedMetadataStreamDescriptor create(
       TimedMetadataEncodingProperties? encodingProperties) {

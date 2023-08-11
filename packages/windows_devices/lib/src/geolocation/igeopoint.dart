@@ -29,7 +29,7 @@ class IGeopoint extends IInspectable implements IGeoshape {
   IGeopoint.fromPtr(super.ptr);
 
   factory IGeopoint.from(IInspectable interface) =>
-      IGeopoint.fromPtr(interface.toInterface(IID_IGeopoint));
+      interface.cast(IGeopoint.fromPtr, IID_IGeopoint);
 
   BasicGeoposition get position {
     final value = calloc<NativeBasicGeoposition>();

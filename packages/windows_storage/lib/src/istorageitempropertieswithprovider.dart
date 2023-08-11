@@ -33,8 +33,8 @@ class IStorageItemPropertiesWithProvider extends IInspectable
   IStorageItemPropertiesWithProvider.fromPtr(super.ptr);
 
   factory IStorageItemPropertiesWithProvider.from(IInspectable interface) =>
-      IStorageItemPropertiesWithProvider.fromPtr(
-          interface.toInterface(IID_IStorageItemPropertiesWithProvider));
+      interface.cast(IStorageItemPropertiesWithProvider.fromPtr,
+          IID_IStorageItemPropertiesWithProvider);
 
   StorageProvider? get provider {
     final value = calloc<COMObject>();

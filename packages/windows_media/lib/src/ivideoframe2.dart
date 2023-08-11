@@ -27,7 +27,7 @@ class IVideoFrame2 extends IInspectable {
   IVideoFrame2.fromPtr(super.ptr);
 
   factory IVideoFrame2.from(IInspectable interface) =>
-      IVideoFrame2.fromPtr(interface.toInterface(IID_IVideoFrame2));
+      interface.cast(IVideoFrame2.fromPtr, IID_IVideoFrame2);
 
   Future<void> copyToWithBoundsAsync(VideoFrame? frame,
       BitmapBounds? sourceBounds, BitmapBounds? destinationBounds) {

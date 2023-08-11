@@ -30,7 +30,7 @@ class IGamepad extends IInspectable implements IGameController {
   IGamepad.fromPtr(super.ptr);
 
   factory IGamepad.from(IInspectable interface) =>
-      IGamepad.fromPtr(interface.toInterface(IID_IGamepad));
+      interface.cast(IGamepad.fromPtr, IID_IGamepad);
 
   GamepadVibration get vibration {
     final value = calloc<NativeGamepadVibration>();

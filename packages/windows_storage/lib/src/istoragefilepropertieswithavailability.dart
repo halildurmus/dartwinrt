@@ -25,8 +25,8 @@ class IStorageFilePropertiesWithAvailability extends IInspectable {
   IStorageFilePropertiesWithAvailability.fromPtr(super.ptr);
 
   factory IStorageFilePropertiesWithAvailability.from(IInspectable interface) =>
-      IStorageFilePropertiesWithAvailability.fromPtr(
-          interface.toInterface(IID_IStorageFilePropertiesWithAvailability));
+      interface.cast(IStorageFilePropertiesWithAvailability.fromPtr,
+          IID_IStorageFilePropertiesWithAvailability);
 
   bool get isAvailable {
     final value = calloc<Bool>();

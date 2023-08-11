@@ -24,6 +24,5 @@ class IAutomationTextRange extends IInspectable {
   IAutomationTextRange.fromPtr(super.ptr);
 
   factory IAutomationTextRange.from(IInspectable interface) =>
-      IAutomationTextRange.fromPtr(
-          interface.toInterface(IID_IAutomationTextRange));
+      interface.cast(IAutomationTextRange.fromPtr, IID_IAutomationTextRange);
 }

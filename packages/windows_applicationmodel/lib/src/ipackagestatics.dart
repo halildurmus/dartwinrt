@@ -26,7 +26,7 @@ class IPackageStatics extends IInspectable {
   IPackageStatics.fromPtr(super.ptr);
 
   factory IPackageStatics.from(IInspectable interface) =>
-      IPackageStatics.fromPtr(interface.toInterface(IID_IPackageStatics));
+      interface.cast(IPackageStatics.fromPtr, IID_IPackageStatics);
 
   Package? get current {
     final value = calloc<COMObject>();

@@ -25,9 +25,8 @@ class IPhoneNumberInfoFactory extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IPhoneNumberInfoFactory.fromPtr(super.ptr);
 
-  factory IPhoneNumberInfoFactory.from(IInspectable interface) =>
-      IPhoneNumberInfoFactory.fromPtr(
-          interface.toInterface(IID_IPhoneNumberInfoFactory));
+  factory IPhoneNumberInfoFactory.from(IInspectable interface) => interface
+      .cast(IPhoneNumberInfoFactory.fromPtr, IID_IPhoneNumberInfoFactory);
 
   PhoneNumberInfo create(String number) {
     final result = calloc<COMObject>();

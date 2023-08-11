@@ -26,7 +26,7 @@ class IAppListEntry4 extends IInspectable {
   IAppListEntry4.fromPtr(super.ptr);
 
   factory IAppListEntry4.from(IInspectable interface) =>
-      IAppListEntry4.fromPtr(interface.toInterface(IID_IAppListEntry4));
+      interface.cast(IAppListEntry4.fromPtr, IID_IAppListEntry4);
 
   AppInfo? get appInfo {
     final value = calloc<COMObject>();

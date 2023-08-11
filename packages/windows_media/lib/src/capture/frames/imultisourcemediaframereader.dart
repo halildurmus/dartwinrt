@@ -29,8 +29,8 @@ class IMultiSourceMediaFrameReader extends IInspectable implements IClosable {
   IMultiSourceMediaFrameReader.fromPtr(super.ptr);
 
   factory IMultiSourceMediaFrameReader.from(IInspectable interface) =>
-      IMultiSourceMediaFrameReader.fromPtr(
-          interface.toInterface(IID_IMultiSourceMediaFrameReader));
+      interface.cast(IMultiSourceMediaFrameReader.fromPtr,
+          IID_IMultiSourceMediaFrameReader);
 
   int add_FrameArrived(Pointer<COMObject> handler) {
     final token = calloc<IntPtr>();

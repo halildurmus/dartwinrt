@@ -25,9 +25,8 @@ class ICurrencyAmountFactory extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   ICurrencyAmountFactory.fromPtr(super.ptr);
 
-  factory ICurrencyAmountFactory.from(IInspectable interface) =>
-      ICurrencyAmountFactory.fromPtr(
-          interface.toInterface(IID_ICurrencyAmountFactory));
+  factory ICurrencyAmountFactory.from(IInspectable interface) => interface.cast(
+      ICurrencyAmountFactory.fromPtr, IID_ICurrencyAmountFactory);
 
   CurrencyAmount create(String amount, String currency) {
     final result = calloc<COMObject>();

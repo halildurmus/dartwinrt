@@ -27,7 +27,7 @@ class IVideoFrameFactory extends IInspectable {
   IVideoFrameFactory.fromPtr(super.ptr);
 
   factory IVideoFrameFactory.from(IInspectable interface) =>
-      IVideoFrameFactory.fromPtr(interface.toInterface(IID_IVideoFrameFactory));
+      interface.cast(IVideoFrameFactory.fromPtr, IID_IVideoFrameFactory);
 
   VideoFrame create(BitmapPixelFormat format, int width, int height) {
     final value = calloc<COMObject>();

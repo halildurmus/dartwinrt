@@ -29,7 +29,7 @@ class IBitmapTransform extends IInspectable {
   IBitmapTransform.fromPtr(super.ptr);
 
   factory IBitmapTransform.from(IInspectable interface) =>
-      IBitmapTransform.fromPtr(interface.toInterface(IID_IBitmapTransform));
+      interface.cast(IBitmapTransform.fromPtr, IID_IBitmapTransform);
 
   int get scaledWidth {
     final value = calloc<Uint32>();

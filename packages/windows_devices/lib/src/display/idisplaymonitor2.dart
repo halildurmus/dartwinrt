@@ -24,7 +24,7 @@ class IDisplayMonitor2 extends IInspectable {
   IDisplayMonitor2.fromPtr(super.ptr);
 
   factory IDisplayMonitor2.from(IInspectable interface) =>
-      IDisplayMonitor2.fromPtr(interface.toInterface(IID_IDisplayMonitor2));
+      interface.cast(IDisplayMonitor2.fromPtr, IID_IDisplayMonitor2);
 
   bool get isDolbyVisionSupportedInHdrMode {
     final value = calloc<Bool>();

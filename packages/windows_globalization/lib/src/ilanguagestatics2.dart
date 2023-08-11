@@ -24,7 +24,7 @@ class ILanguageStatics2 extends IInspectable {
   ILanguageStatics2.fromPtr(super.ptr);
 
   factory ILanguageStatics2.from(IInspectable interface) =>
-      ILanguageStatics2.fromPtr(interface.toInterface(IID_ILanguageStatics2));
+      interface.cast(ILanguageStatics2.fromPtr, IID_ILanguageStatics2);
 
   bool trySetInputMethodLanguageTag(String languageTag) {
     final result = calloc<Bool>();

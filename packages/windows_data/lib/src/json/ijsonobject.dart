@@ -30,7 +30,7 @@ class IJsonObject extends IInspectable implements IJsonValue {
   IJsonObject.fromPtr(super.ptr);
 
   factory IJsonObject.from(IInspectable interface) =>
-      IJsonObject.fromPtr(interface.toInterface(IID_IJsonObject));
+      interface.cast(IJsonObject.fromPtr, IID_IJsonObject);
 
   JsonValue? getNamedValue(String name) {
     final returnValue = calloc<COMObject>();

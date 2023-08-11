@@ -25,8 +25,8 @@ class ILearningModelEvaluationResult extends IInspectable {
   ILearningModelEvaluationResult.fromPtr(super.ptr);
 
   factory ILearningModelEvaluationResult.from(IInspectable interface) =>
-      ILearningModelEvaluationResult.fromPtr(
-          interface.toInterface(IID_ILearningModelEvaluationResult));
+      interface.cast(ILearningModelEvaluationResult.fromPtr,
+          IID_ILearningModelEvaluationResult);
 
   String get correlationId {
     final value = calloc<IntPtr>();

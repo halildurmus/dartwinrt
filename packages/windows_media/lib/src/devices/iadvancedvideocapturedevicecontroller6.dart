@@ -27,8 +27,8 @@ class IAdvancedVideoCaptureDeviceController6 extends IInspectable {
   IAdvancedVideoCaptureDeviceController6.fromPtr(super.ptr);
 
   factory IAdvancedVideoCaptureDeviceController6.from(IInspectable interface) =>
-      IAdvancedVideoCaptureDeviceController6.fromPtr(
-          interface.toInterface(IID_IAdvancedVideoCaptureDeviceController6));
+      interface.cast(IAdvancedVideoCaptureDeviceController6.fromPtr,
+          IID_IAdvancedVideoCaptureDeviceController6);
 
   VideoTemporalDenoisingControl? get videoTemporalDenoisingControl {
     final value = calloc<COMObject>();

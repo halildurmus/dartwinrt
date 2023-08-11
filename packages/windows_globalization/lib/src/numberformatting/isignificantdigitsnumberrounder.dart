@@ -27,8 +27,8 @@ class ISignificantDigitsNumberRounder extends IInspectable {
   ISignificantDigitsNumberRounder.fromPtr(super.ptr);
 
   factory ISignificantDigitsNumberRounder.from(IInspectable interface) =>
-      ISignificantDigitsNumberRounder.fromPtr(
-          interface.toInterface(IID_ISignificantDigitsNumberRounder));
+      interface.cast(ISignificantDigitsNumberRounder.fromPtr,
+          IID_ISignificantDigitsNumberRounder);
 
   RoundingAlgorithm get roundingAlgorithm {
     final value = calloc<Int32>();

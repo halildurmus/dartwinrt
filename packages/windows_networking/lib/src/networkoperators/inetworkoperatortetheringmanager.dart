@@ -29,8 +29,8 @@ class INetworkOperatorTetheringManager extends IInspectable {
   INetworkOperatorTetheringManager.fromPtr(super.ptr);
 
   factory INetworkOperatorTetheringManager.from(IInspectable interface) =>
-      INetworkOperatorTetheringManager.fromPtr(
-          interface.toInterface(IID_INetworkOperatorTetheringManager));
+      interface.cast(INetworkOperatorTetheringManager.fromPtr,
+          IID_INetworkOperatorTetheringManager);
 
   int get maxClientCount {
     final value = calloc<Uint32>();

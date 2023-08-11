@@ -32,9 +32,8 @@ class IXmlProcessingInstruction extends IInspectable
   // vtable begins at 6, is 3 entries long.
   IXmlProcessingInstruction.fromPtr(super.ptr);
 
-  factory IXmlProcessingInstruction.from(IInspectable interface) =>
-      IXmlProcessingInstruction.fromPtr(
-          interface.toInterface(IID_IXmlProcessingInstruction));
+  factory IXmlProcessingInstruction.from(IInspectable interface) => interface
+      .cast(IXmlProcessingInstruction.fromPtr, IID_IXmlProcessingInstruction);
 
   String get target {
     final value = calloc<IntPtr>();

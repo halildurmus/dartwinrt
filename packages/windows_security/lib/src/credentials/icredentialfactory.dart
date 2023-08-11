@@ -26,7 +26,7 @@ class ICredentialFactory extends IInspectable {
   ICredentialFactory.fromPtr(super.ptr);
 
   factory ICredentialFactory.from(IInspectable interface) =>
-      ICredentialFactory.fromPtr(interface.toInterface(IID_ICredentialFactory));
+      interface.cast(ICredentialFactory.fromPtr, IID_ICredentialFactory);
 
   PasswordCredential createPasswordCredential(
       String resource, String userName, String password) {

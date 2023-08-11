@@ -25,9 +25,8 @@ class ICurrencyFormatterFactory extends IInspectable {
   // vtable begins at 6, is 2 entries long.
   ICurrencyFormatterFactory.fromPtr(super.ptr);
 
-  factory ICurrencyFormatterFactory.from(IInspectable interface) =>
-      ICurrencyFormatterFactory.fromPtr(
-          interface.toInterface(IID_ICurrencyFormatterFactory));
+  factory ICurrencyFormatterFactory.from(IInspectable interface) => interface
+      .cast(ICurrencyFormatterFactory.fromPtr, IID_ICurrencyFormatterFactory);
 
   CurrencyFormatter createCurrencyFormatterCode(String currencyCode) {
     final result = calloc<COMObject>();

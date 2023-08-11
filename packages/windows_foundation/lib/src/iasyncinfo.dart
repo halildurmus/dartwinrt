@@ -17,6 +17,7 @@ import 'package:win32/win32.dart'
 import '../internal.dart';
 import 'asyncstatus.dart';
 import 'collections/iiterator.dart';
+import 'extensions/extensions.dart';
 import 'helpers.dart';
 
 /// @nodoc
@@ -32,7 +33,7 @@ class IAsyncInfo extends IInspectable {
   IAsyncInfo.fromPtr(super.ptr);
 
   factory IAsyncInfo.from(IInspectable interface) =>
-      IAsyncInfo.fromPtr(interface.toInterface(IID_IAsyncInfo));
+      interface.cast(IAsyncInfo.fromPtr, IID_IAsyncInfo);
 
   int get id {
     final retValuePtr = calloc<Uint32>();

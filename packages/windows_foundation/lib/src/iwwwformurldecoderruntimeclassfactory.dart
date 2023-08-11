@@ -16,6 +16,7 @@ import 'package:win32/win32.dart'
 
 import '../internal.dart';
 import 'collections/iiterator.dart';
+import 'extensions/extensions.dart';
 import 'helpers.dart';
 import 'wwwformurldecoder.dart';
 
@@ -28,8 +29,8 @@ class IWwwFormUrlDecoderRuntimeClassFactory extends IInspectable {
   IWwwFormUrlDecoderRuntimeClassFactory.fromPtr(super.ptr);
 
   factory IWwwFormUrlDecoderRuntimeClassFactory.from(IInspectable interface) =>
-      IWwwFormUrlDecoderRuntimeClassFactory.fromPtr(
-          interface.toInterface(IID_IWwwFormUrlDecoderRuntimeClassFactory));
+      interface.cast(IWwwFormUrlDecoderRuntimeClassFactory.fromPtr,
+          IID_IWwwFormUrlDecoderRuntimeClassFactory);
 
   WwwFormUrlDecoder createWwwFormUrlDecoder(String query) {
     final instance = calloc<COMObject>();

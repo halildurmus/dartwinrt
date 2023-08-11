@@ -26,9 +26,8 @@ class IMediaEncodingProperties extends IInspectable {
   // vtable begins at 6, is 4 entries long.
   IMediaEncodingProperties.fromPtr(super.ptr);
 
-  factory IMediaEncodingProperties.from(IInspectable interface) =>
-      IMediaEncodingProperties.fromPtr(
-          interface.toInterface(IID_IMediaEncodingProperties));
+  factory IMediaEncodingProperties.from(IInspectable interface) => interface
+      .cast(IMediaEncodingProperties.fromPtr, IID_IMediaEncodingProperties);
 
   MediaPropertySet? get properties {
     final value = calloc<COMObject>();

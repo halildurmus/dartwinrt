@@ -24,7 +24,7 @@ class IBitmapTypedValue extends IInspectable {
   IBitmapTypedValue.fromPtr(super.ptr);
 
   factory IBitmapTypedValue.from(IInspectable interface) =>
-      IBitmapTypedValue.fromPtr(interface.toInterface(IID_IBitmapTypedValue));
+      interface.cast(IBitmapTypedValue.fromPtr, IID_IBitmapTypedValue);
 
   Object? get value {
     final value = calloc<COMObject>();

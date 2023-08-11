@@ -27,7 +27,7 @@ class IXmlNodeList extends IInspectable
   IXmlNodeList.fromPtr(super.ptr);
 
   factory IXmlNodeList.from(IInspectable interface) =>
-      IXmlNodeList.fromPtr(interface.toInterface(IID_IXmlNodeList));
+      interface.cast(IXmlNodeList.fromPtr, IID_IXmlNodeList);
 
   int get length {
     final value = calloc<Uint32>();

@@ -27,8 +27,8 @@ class ITimedMetadataEncodingProperties extends IInspectable {
   ITimedMetadataEncodingProperties.fromPtr(super.ptr);
 
   factory ITimedMetadataEncodingProperties.from(IInspectable interface) =>
-      ITimedMetadataEncodingProperties.fromPtr(
-          interface.toInterface(IID_ITimedMetadataEncodingProperties));
+      interface.cast(ITimedMetadataEncodingProperties.fromPtr,
+          IID_ITimedMetadataEncodingProperties);
 
   void setFormatUserData(List<int> value) {
     final valueArray = value.toArray<Uint8>();

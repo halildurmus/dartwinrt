@@ -31,7 +31,7 @@ class IDepthMediaFrame extends IInspectable {
   IDepthMediaFrame.fromPtr(super.ptr);
 
   factory IDepthMediaFrame.from(IInspectable interface) =>
-      IDepthMediaFrame.fromPtr(interface.toInterface(IID_IDepthMediaFrame));
+      interface.cast(IDepthMediaFrame.fromPtr, IID_IDepthMediaFrame);
 
   MediaFrameReference? get frameReference {
     final value = calloc<COMObject>();

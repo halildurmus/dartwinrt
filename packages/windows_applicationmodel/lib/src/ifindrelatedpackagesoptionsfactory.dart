@@ -28,8 +28,8 @@ class IFindRelatedPackagesOptionsFactory extends IInspectable {
   IFindRelatedPackagesOptionsFactory.fromPtr(super.ptr);
 
   factory IFindRelatedPackagesOptionsFactory.from(IInspectable interface) =>
-      IFindRelatedPackagesOptionsFactory.fromPtr(
-          interface.toInterface(IID_IFindRelatedPackagesOptionsFactory));
+      interface.cast(IFindRelatedPackagesOptionsFactory.fromPtr,
+          IID_IFindRelatedPackagesOptionsFactory);
 
   FindRelatedPackagesOptions createInstance(PackageRelationship relationship) {
     final value = calloc<COMObject>();

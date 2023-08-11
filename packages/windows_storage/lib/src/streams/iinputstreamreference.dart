@@ -26,8 +26,7 @@ class IInputStreamReference extends IInspectable {
   IInputStreamReference.fromPtr(super.ptr);
 
   factory IInputStreamReference.from(IInspectable interface) =>
-      IInputStreamReference.fromPtr(
-          interface.toInterface(IID_IInputStreamReference));
+      interface.cast(IInputStreamReference.fromPtr, IID_IInputStreamReference);
 
   Future<IInputStream?> openSequentialReadAsync() {
     final operation = calloc<COMObject>();

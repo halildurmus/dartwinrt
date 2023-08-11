@@ -27,8 +27,8 @@ class ICoreAutomationRemoteOperationContext extends IInspectable {
   ICoreAutomationRemoteOperationContext.fromPtr(super.ptr);
 
   factory ICoreAutomationRemoteOperationContext.from(IInspectable interface) =>
-      ICoreAutomationRemoteOperationContext.fromPtr(
-          interface.toInterface(IID_ICoreAutomationRemoteOperationContext));
+      interface.cast(ICoreAutomationRemoteOperationContext.fromPtr,
+          IID_ICoreAutomationRemoteOperationContext);
 
   Object? getOperand(AutomationRemoteOperationOperandId id) {
     final result = calloc<COMObject>();

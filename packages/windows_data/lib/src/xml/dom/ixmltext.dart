@@ -38,7 +38,7 @@ class IXmlText extends IInspectable
   IXmlText.fromPtr(super.ptr);
 
   factory IXmlText.from(IInspectable interface) =>
-      IXmlText.fromPtr(interface.toInterface(IID_IXmlText));
+      interface.cast(IXmlText.fromPtr, IID_IXmlText);
 
   IXmlText? splitText(int offset) {
     final secondPart = calloc<COMObject>();

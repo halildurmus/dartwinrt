@@ -27,8 +27,8 @@ class INetworkOperatorTetheringClientManager extends IInspectable {
   INetworkOperatorTetheringClientManager.fromPtr(super.ptr);
 
   factory INetworkOperatorTetheringClientManager.from(IInspectable interface) =>
-      INetworkOperatorTetheringClientManager.fromPtr(
-          interface.toInterface(IID_INetworkOperatorTetheringClientManager));
+      interface.cast(INetworkOperatorTetheringClientManager.fromPtr,
+          IID_INetworkOperatorTetheringClientManager);
 
   List<NetworkOperatorTetheringClient?> getTetheringClients() {
     final value = calloc<COMObject>();

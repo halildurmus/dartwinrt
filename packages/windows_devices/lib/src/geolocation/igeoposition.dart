@@ -27,7 +27,7 @@ class IGeoposition extends IInspectable {
   IGeoposition.fromPtr(super.ptr);
 
   factory IGeoposition.from(IInspectable interface) =>
-      IGeoposition.fromPtr(interface.toInterface(IID_IGeoposition));
+      interface.cast(IGeoposition.fromPtr, IID_IGeoposition);
 
   Geocoordinate? get coordinate {
     final value = calloc<COMObject>();

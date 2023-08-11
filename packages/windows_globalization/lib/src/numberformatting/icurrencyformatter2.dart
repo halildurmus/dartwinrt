@@ -27,8 +27,7 @@ class ICurrencyFormatter2 extends IInspectable {
   ICurrencyFormatter2.fromPtr(super.ptr);
 
   factory ICurrencyFormatter2.from(IInspectable interface) =>
-      ICurrencyFormatter2.fromPtr(
-          interface.toInterface(IID_ICurrencyFormatter2));
+      interface.cast(ICurrencyFormatter2.fromPtr, IID_ICurrencyFormatter2);
 
   CurrencyFormatterMode get mode {
     final value = calloc<Int32>();

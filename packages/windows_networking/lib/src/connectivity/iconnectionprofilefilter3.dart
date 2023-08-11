@@ -23,9 +23,8 @@ class IConnectionProfileFilter3 extends IInspectable {
   // vtable begins at 6, is 2 entries long.
   IConnectionProfileFilter3.fromPtr(super.ptr);
 
-  factory IConnectionProfileFilter3.from(IInspectable interface) =>
-      IConnectionProfileFilter3.fromPtr(
-          interface.toInterface(IID_IConnectionProfileFilter3));
+  factory IConnectionProfileFilter3.from(IInspectable interface) => interface
+      .cast(IConnectionProfileFilter3.fromPtr, IID_IConnectionProfileFilter3);
 
   set purposeGuid(Guid? value) {
     final hr = ptr.ref.vtable

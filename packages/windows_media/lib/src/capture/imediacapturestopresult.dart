@@ -25,9 +25,8 @@ class IMediaCaptureStopResult extends IInspectable {
   // vtable begins at 6, is 2 entries long.
   IMediaCaptureStopResult.fromPtr(super.ptr);
 
-  factory IMediaCaptureStopResult.from(IInspectable interface) =>
-      IMediaCaptureStopResult.fromPtr(
-          interface.toInterface(IID_IMediaCaptureStopResult));
+  factory IMediaCaptureStopResult.from(IInspectable interface) => interface
+      .cast(IMediaCaptureStopResult.fromPtr, IID_IMediaCaptureStopResult);
 
   VideoFrame? get lastFrame {
     final value = calloc<COMObject>();

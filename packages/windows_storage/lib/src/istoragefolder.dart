@@ -34,7 +34,7 @@ class IStorageFolder extends IInspectable implements IStorageItem {
   IStorageFolder.fromPtr(super.ptr);
 
   factory IStorageFolder.from(IInspectable interface) =>
-      IStorageFolder.fromPtr(interface.toInterface(IID_IStorageFolder));
+      interface.cast(IStorageFolder.fromPtr, IID_IStorageFolder);
 
   Future<StorageFile?> createFileAsyncOverloadDefaultOptions(
       String desiredName) {

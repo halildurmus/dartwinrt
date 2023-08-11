@@ -28,8 +28,7 @@ class IPowerManagerStatics extends IInspectable {
   IPowerManagerStatics.fromPtr(super.ptr);
 
   factory IPowerManagerStatics.from(IInspectable interface) =>
-      IPowerManagerStatics.fromPtr(
-          interface.toInterface(IID_IPowerManagerStatics));
+      interface.cast(IPowerManagerStatics.fromPtr, IID_IPowerManagerStatics);
 
   EnergySaverStatus get energySaverStatus {
     final value = calloc<Int32>();

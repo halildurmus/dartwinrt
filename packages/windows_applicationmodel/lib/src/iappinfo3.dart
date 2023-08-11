@@ -26,7 +26,7 @@ class IAppInfo3 extends IInspectable {
   IAppInfo3.fromPtr(super.ptr);
 
   factory IAppInfo3.from(IInspectable interface) =>
-      IAppInfo3.fromPtr(interface.toInterface(IID_IAppInfo3));
+      interface.cast(IAppInfo3.fromPtr, IID_IAppInfo3);
 
   AppExecutionContext get executionContext {
     final value = calloc<Int32>();

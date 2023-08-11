@@ -24,7 +24,7 @@ class IHostNameStatics extends IInspectable {
   IHostNameStatics.fromPtr(super.ptr);
 
   factory IHostNameStatics.from(IInspectable interface) =>
-      IHostNameStatics.fromPtr(interface.toInterface(IID_IHostNameStatics));
+      interface.cast(IHostNameStatics.fromPtr, IID_IHostNameStatics);
 
   int compare(String value1, String value2) {
     final result = calloc<Int32>();

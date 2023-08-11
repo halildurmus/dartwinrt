@@ -25,9 +25,8 @@ class IMediaFrameSourceGroup extends IInspectable {
   // vtable begins at 6, is 3 entries long.
   IMediaFrameSourceGroup.fromPtr(super.ptr);
 
-  factory IMediaFrameSourceGroup.from(IInspectable interface) =>
-      IMediaFrameSourceGroup.fromPtr(
-          interface.toInterface(IID_IMediaFrameSourceGroup));
+  factory IMediaFrameSourceGroup.from(IInspectable interface) => interface.cast(
+      IMediaFrameSourceGroup.fromPtr, IID_IMediaFrameSourceGroup);
 
   String get id {
     final value = calloc<IntPtr>();

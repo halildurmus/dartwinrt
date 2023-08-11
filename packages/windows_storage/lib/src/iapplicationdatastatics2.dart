@@ -26,9 +26,8 @@ class IApplicationDataStatics2 extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IApplicationDataStatics2.fromPtr(super.ptr);
 
-  factory IApplicationDataStatics2.from(IInspectable interface) =>
-      IApplicationDataStatics2.fromPtr(
-          interface.toInterface(IID_IApplicationDataStatics2));
+  factory IApplicationDataStatics2.from(IInspectable interface) => interface
+      .cast(IApplicationDataStatics2.fromPtr, IID_IApplicationDataStatics2);
 
   Future<ApplicationData?> getForUserAsync(User? user) {
     final getForUserOperation = calloc<COMObject>();

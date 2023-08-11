@@ -29,9 +29,8 @@ class IDeviceInformationPairing2 extends IInspectable {
   // vtable begins at 6, is 4 entries long.
   IDeviceInformationPairing2.fromPtr(super.ptr);
 
-  factory IDeviceInformationPairing2.from(IInspectable interface) =>
-      IDeviceInformationPairing2.fromPtr(
-          interface.toInterface(IID_IDeviceInformationPairing2));
+  factory IDeviceInformationPairing2.from(IInspectable interface) => interface
+      .cast(IDeviceInformationPairing2.fromPtr, IID_IDeviceInformationPairing2);
 
   DevicePairingProtectionLevel get protectionLevel {
     final value = calloc<Int32>();

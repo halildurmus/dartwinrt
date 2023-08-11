@@ -26,7 +26,7 @@ class IStorageFolder3 extends IInspectable {
   IStorageFolder3.fromPtr(super.ptr);
 
   factory IStorageFolder3.from(IInspectable interface) =>
-      IStorageFolder3.fromPtr(interface.toInterface(IID_IStorageFolder3));
+      interface.cast(IStorageFolder3.fromPtr, IID_IStorageFolder3);
 
   StorageLibraryChangeTracker? tryGetChangeTracker() {
     final result = calloc<COMObject>();

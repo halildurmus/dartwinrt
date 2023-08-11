@@ -28,8 +28,8 @@ class IDeviceInformationPairingStatics2 extends IInspectable {
   IDeviceInformationPairingStatics2.fromPtr(super.ptr);
 
   factory IDeviceInformationPairingStatics2.from(IInspectable interface) =>
-      IDeviceInformationPairingStatics2.fromPtr(
-          interface.toInterface(IID_IDeviceInformationPairingStatics2));
+      interface.cast(IDeviceInformationPairingStatics2.fromPtr,
+          IID_IDeviceInformationPairingStatics2);
 
   bool tryRegisterForAllInboundPairingRequestsWithProtectionLevel(
       DevicePairingKinds pairingKindsSupported,

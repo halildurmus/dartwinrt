@@ -28,8 +28,8 @@ class INetworkOperatorTetheringOperationResult extends IInspectable {
 
   factory INetworkOperatorTetheringOperationResult.from(
           IInspectable interface) =>
-      INetworkOperatorTetheringOperationResult.fromPtr(
-          interface.toInterface(IID_INetworkOperatorTetheringOperationResult));
+      interface.cast(INetworkOperatorTetheringOperationResult.fromPtr,
+          IID_INetworkOperatorTetheringOperationResult);
 
   TetheringOperationStatus get status {
     final value = calloc<Int32>();

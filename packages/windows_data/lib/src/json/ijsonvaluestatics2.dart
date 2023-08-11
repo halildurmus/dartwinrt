@@ -26,7 +26,7 @@ class IJsonValueStatics2 extends IInspectable {
   IJsonValueStatics2.fromPtr(super.ptr);
 
   factory IJsonValueStatics2.from(IInspectable interface) =>
-      IJsonValueStatics2.fromPtr(interface.toInterface(IID_IJsonValueStatics2));
+      interface.cast(IJsonValueStatics2.fromPtr, IID_IJsonValueStatics2);
 
   JsonValue? createNullValue() {
     final jsonValue = calloc<COMObject>();

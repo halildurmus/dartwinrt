@@ -26,8 +26,8 @@ class IPanelBasedOptimizationControl extends IInspectable {
   IPanelBasedOptimizationControl.fromPtr(super.ptr);
 
   factory IPanelBasedOptimizationControl.from(IInspectable interface) =>
-      IPanelBasedOptimizationControl.fromPtr(
-          interface.toInterface(IID_IPanelBasedOptimizationControl));
+      interface.cast(IPanelBasedOptimizationControl.fromPtr,
+          IID_IPanelBasedOptimizationControl);
 
   bool get isSupported {
     final value = calloc<Bool>();

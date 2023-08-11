@@ -23,9 +23,8 @@ class IFrameExposureCapabilities extends IInspectable {
   // vtable begins at 6, is 4 entries long.
   IFrameExposureCapabilities.fromPtr(super.ptr);
 
-  factory IFrameExposureCapabilities.from(IInspectable interface) =>
-      IFrameExposureCapabilities.fromPtr(
-          interface.toInterface(IID_IFrameExposureCapabilities));
+  factory IFrameExposureCapabilities.from(IInspectable interface) => interface
+      .cast(IFrameExposureCapabilities.fromPtr, IID_IFrameExposureCapabilities);
 
   bool get supported {
     final value = calloc<Bool>();

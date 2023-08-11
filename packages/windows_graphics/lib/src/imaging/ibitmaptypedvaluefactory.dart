@@ -25,9 +25,8 @@ class IBitmapTypedValueFactory extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IBitmapTypedValueFactory.fromPtr(super.ptr);
 
-  factory IBitmapTypedValueFactory.from(IInspectable interface) =>
-      IBitmapTypedValueFactory.fromPtr(
-          interface.toInterface(IID_IBitmapTypedValueFactory));
+  factory IBitmapTypedValueFactory.from(IInspectable interface) => interface
+      .cast(IBitmapTypedValueFactory.fromPtr, IID_IBitmapTypedValueFactory);
 
   BitmapTypedValue create(Object? value, PropertyType type) {
     final bitmapTypedValue = calloc<COMObject>();

@@ -24,8 +24,7 @@ class IProviderNetworkUsage extends IInspectable {
   IProviderNetworkUsage.fromPtr(super.ptr);
 
   factory IProviderNetworkUsage.from(IInspectable interface) =>
-      IProviderNetworkUsage.fromPtr(
-          interface.toInterface(IID_IProviderNetworkUsage));
+      interface.cast(IProviderNetworkUsage.fromPtr, IID_IProviderNetworkUsage);
 
   int get bytesSent {
     final value = calloc<Uint64>();

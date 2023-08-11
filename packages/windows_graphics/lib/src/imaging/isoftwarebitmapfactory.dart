@@ -27,9 +27,8 @@ class ISoftwareBitmapFactory extends IInspectable {
   // vtable begins at 6, is 2 entries long.
   ISoftwareBitmapFactory.fromPtr(super.ptr);
 
-  factory ISoftwareBitmapFactory.from(IInspectable interface) =>
-      ISoftwareBitmapFactory.fromPtr(
-          interface.toInterface(IID_ISoftwareBitmapFactory));
+  factory ISoftwareBitmapFactory.from(IInspectable interface) => interface.cast(
+      ISoftwareBitmapFactory.fromPtr, IID_ISoftwareBitmapFactory);
 
   SoftwareBitmap create(BitmapPixelFormat format, int width, int height) {
     final value = calloc<COMObject>();

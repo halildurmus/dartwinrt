@@ -25,9 +25,8 @@ class IMediaFrameSourceInfo2 extends IInspectable {
   // vtable begins at 6, is 2 entries long.
   IMediaFrameSourceInfo2.fromPtr(super.ptr);
 
-  factory IMediaFrameSourceInfo2.from(IInspectable interface) =>
-      IMediaFrameSourceInfo2.fromPtr(
-          interface.toInterface(IID_IMediaFrameSourceInfo2));
+  factory IMediaFrameSourceInfo2.from(IInspectable interface) => interface.cast(
+      IMediaFrameSourceInfo2.fromPtr, IID_IMediaFrameSourceInfo2);
 
   String get profileId {
     final value = calloc<IntPtr>();

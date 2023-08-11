@@ -26,7 +26,7 @@ class IBitmapBuffer extends IInspectable implements IMemoryBuffer, IClosable {
   IBitmapBuffer.fromPtr(super.ptr);
 
   factory IBitmapBuffer.from(IInspectable interface) =>
-      IBitmapBuffer.fromPtr(interface.toInterface(IID_IBitmapBuffer));
+      interface.cast(IBitmapBuffer.fromPtr, IID_IBitmapBuffer);
 
   int getPlaneCount() {
     final value = calloc<Int32>();

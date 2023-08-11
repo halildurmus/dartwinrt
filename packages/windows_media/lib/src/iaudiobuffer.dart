@@ -24,7 +24,7 @@ class IAudioBuffer extends IInspectable implements IMemoryBuffer, IClosable {
   IAudioBuffer.fromPtr(super.ptr);
 
   factory IAudioBuffer.from(IInspectable interface) =>
-      IAudioBuffer.fromPtr(interface.toInterface(IID_IAudioBuffer));
+      interface.cast(IAudioBuffer.fromPtr, IID_IAudioBuffer);
 
   int get capacity {
     final value = calloc<Uint32>();

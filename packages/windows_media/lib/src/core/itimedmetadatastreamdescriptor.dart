@@ -28,8 +28,8 @@ class ITimedMetadataStreamDescriptor extends IInspectable {
   ITimedMetadataStreamDescriptor.fromPtr(super.ptr);
 
   factory ITimedMetadataStreamDescriptor.from(IInspectable interface) =>
-      ITimedMetadataStreamDescriptor.fromPtr(
-          interface.toInterface(IID_ITimedMetadataStreamDescriptor));
+      interface.cast(ITimedMetadataStreamDescriptor.fromPtr,
+          IID_ITimedMetadataStreamDescriptor);
 
   TimedMetadataEncodingProperties? get encodingProperties {
     final value = calloc<COMObject>();

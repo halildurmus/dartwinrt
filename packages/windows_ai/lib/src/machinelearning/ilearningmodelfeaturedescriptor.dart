@@ -27,8 +27,8 @@ class ILearningModelFeatureDescriptor extends IInspectable {
   ILearningModelFeatureDescriptor.fromPtr(super.ptr);
 
   factory ILearningModelFeatureDescriptor.from(IInspectable interface) =>
-      ILearningModelFeatureDescriptor.fromPtr(
-          interface.toInterface(IID_ILearningModelFeatureDescriptor));
+      interface.cast(ILearningModelFeatureDescriptor.fromPtr,
+          IID_ILearningModelFeatureDescriptor);
 
   String get name {
     final value = calloc<IntPtr>();

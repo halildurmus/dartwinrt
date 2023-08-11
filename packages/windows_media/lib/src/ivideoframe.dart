@@ -28,7 +28,7 @@ class IVideoFrame extends IInspectable implements IMediaFrame, IClosable {
   IVideoFrame.fromPtr(super.ptr);
 
   factory IVideoFrame.from(IInspectable interface) =>
-      IVideoFrame.fromPtr(interface.toInterface(IID_IVideoFrame));
+      interface.cast(IVideoFrame.fromPtr, IID_IVideoFrame);
 
   SoftwareBitmap? get softwareBitmap {
     final value = calloc<COMObject>();

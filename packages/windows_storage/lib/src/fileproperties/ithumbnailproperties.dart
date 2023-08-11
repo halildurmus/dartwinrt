@@ -26,8 +26,7 @@ class IThumbnailProperties extends IInspectable {
   IThumbnailProperties.fromPtr(super.ptr);
 
   factory IThumbnailProperties.from(IInspectable interface) =>
-      IThumbnailProperties.fromPtr(
-          interface.toInterface(IID_IThumbnailProperties));
+      interface.cast(IThumbnailProperties.fromPtr, IID_IThumbnailProperties);
 
   int get originalWidth {
     final value = calloc<Uint32>();

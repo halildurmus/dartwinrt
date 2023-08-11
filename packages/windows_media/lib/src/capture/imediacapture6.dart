@@ -28,7 +28,7 @@ class IMediaCapture6 extends IInspectable {
   IMediaCapture6.fromPtr(super.ptr);
 
   factory IMediaCapture6.from(IInspectable interface) =>
-      IMediaCapture6.fromPtr(interface.toInterface(IID_IMediaCapture6));
+      interface.cast(IMediaCapture6.fromPtr, IID_IMediaCapture6);
 
   int add_CaptureDeviceExclusiveControlStatusChanged(
       Pointer<COMObject> handler) {

@@ -16,6 +16,7 @@ import 'package:win32/win32.dart'
 
 import '../internal.dart';
 import 'collections/iiterator.dart';
+import 'extensions/extensions.dart';
 import 'helpers.dart';
 
 /// @nodoc
@@ -27,7 +28,7 @@ class IStringable extends IInspectable {
   IStringable.fromPtr(super.ptr);
 
   factory IStringable.from(IInspectable interface) =>
-      IStringable.fromPtr(interface.toInterface(IID_IStringable));
+      interface.cast(IStringable.fromPtr, IID_IStringable);
 
   @override
   String toString() {

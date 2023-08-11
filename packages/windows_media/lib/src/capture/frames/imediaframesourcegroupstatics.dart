@@ -27,8 +27,8 @@ class IMediaFrameSourceGroupStatics extends IInspectable {
   IMediaFrameSourceGroupStatics.fromPtr(super.ptr);
 
   factory IMediaFrameSourceGroupStatics.from(IInspectable interface) =>
-      IMediaFrameSourceGroupStatics.fromPtr(
-          interface.toInterface(IID_IMediaFrameSourceGroupStatics));
+      interface.cast(IMediaFrameSourceGroupStatics.fromPtr,
+          IID_IMediaFrameSourceGroupStatics);
 
   Future<List<MediaFrameSourceGroup?>> findAllAsync() {
     final value = calloc<COMObject>();

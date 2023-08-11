@@ -26,7 +26,7 @@ class INetworkItem extends IInspectable {
   INetworkItem.fromPtr(super.ptr);
 
   factory INetworkItem.from(IInspectable interface) =>
-      INetworkItem.fromPtr(interface.toInterface(IID_INetworkItem));
+      interface.cast(INetworkItem.fromPtr, IID_INetworkItem);
 
   Guid get networkId {
     final value = calloc<GUID>();

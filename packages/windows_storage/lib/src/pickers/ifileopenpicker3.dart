@@ -25,7 +25,7 @@ class IFileOpenPicker3 extends IInspectable {
   IFileOpenPicker3.fromPtr(super.ptr);
 
   factory IFileOpenPicker3.from(IInspectable interface) =>
-      IFileOpenPicker3.fromPtr(interface.toInterface(IID_IFileOpenPicker3));
+      interface.cast(IFileOpenPicker3.fromPtr, IID_IFileOpenPicker3);
 
   User? get user {
     final value = calloc<COMObject>();

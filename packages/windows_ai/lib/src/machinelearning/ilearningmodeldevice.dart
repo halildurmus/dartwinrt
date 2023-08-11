@@ -25,8 +25,7 @@ class ILearningModelDevice extends IInspectable {
   ILearningModelDevice.fromPtr(super.ptr);
 
   factory ILearningModelDevice.from(IInspectable interface) =>
-      ILearningModelDevice.fromPtr(
-          interface.toInterface(IID_ILearningModelDevice));
+      interface.cast(ILearningModelDevice.fromPtr, IID_ILearningModelDevice);
 
   DisplayAdapterId get adapterId {
     final value = calloc<NativeDisplayAdapterId>();

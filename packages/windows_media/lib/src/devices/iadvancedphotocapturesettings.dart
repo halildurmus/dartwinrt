@@ -27,8 +27,8 @@ class IAdvancedPhotoCaptureSettings extends IInspectable {
   IAdvancedPhotoCaptureSettings.fromPtr(super.ptr);
 
   factory IAdvancedPhotoCaptureSettings.from(IInspectable interface) =>
-      IAdvancedPhotoCaptureSettings.fromPtr(
-          interface.toInterface(IID_IAdvancedPhotoCaptureSettings));
+      interface.cast(IAdvancedPhotoCaptureSettings.fromPtr,
+          IID_IAdvancedPhotoCaptureSettings);
 
   AdvancedPhotoMode get mode {
     final value = calloc<Int32>();

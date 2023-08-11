@@ -38,7 +38,7 @@ class IXmlComment extends IInspectable
   IXmlComment.fromPtr(super.ptr);
 
   factory IXmlComment.from(IInspectable interface) =>
-      IXmlComment.fromPtr(interface.toInterface(IID_IXmlComment));
+      interface.cast(IXmlComment.fromPtr, IID_IXmlComment);
 
   late final _iXmlCharacterData = IXmlCharacterData.from(this);
 

@@ -27,9 +27,8 @@ class IWebTokenRequestResult extends IInspectable {
   // vtable begins at 6, is 4 entries long.
   IWebTokenRequestResult.fromPtr(super.ptr);
 
-  factory IWebTokenRequestResult.from(IInspectable interface) =>
-      IWebTokenRequestResult.fromPtr(
-          interface.toInterface(IID_IWebTokenRequestResult));
+  factory IWebTokenRequestResult.from(IInspectable interface) => interface.cast(
+      IWebTokenRequestResult.fromPtr, IID_IWebTokenRequestResult);
 
   List<WebTokenResponse?>? get responseData {
     final value = calloc<COMObject>();

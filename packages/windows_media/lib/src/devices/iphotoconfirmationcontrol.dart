@@ -25,9 +25,8 @@ class IPhotoConfirmationControl extends IInspectable {
   // vtable begins at 6, is 5 entries long.
   IPhotoConfirmationControl.fromPtr(super.ptr);
 
-  factory IPhotoConfirmationControl.from(IInspectable interface) =>
-      IPhotoConfirmationControl.fromPtr(
-          interface.toInterface(IID_IPhotoConfirmationControl));
+  factory IPhotoConfirmationControl.from(IInspectable interface) => interface
+      .cast(IPhotoConfirmationControl.fromPtr, IID_IPhotoConfirmationControl);
 
   bool get supported {
     final pbSupported = calloc<Bool>();

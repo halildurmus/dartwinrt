@@ -26,7 +26,7 @@ class IBatteryStatics extends IInspectable {
   IBatteryStatics.fromPtr(super.ptr);
 
   factory IBatteryStatics.from(IInspectable interface) =>
-      IBatteryStatics.fromPtr(interface.toInterface(IID_IBatteryStatics));
+      interface.cast(IBatteryStatics.fromPtr, IID_IBatteryStatics);
 
   Battery? get aggregateBattery {
     final result = calloc<COMObject>();

@@ -26,7 +26,7 @@ class IGamepadStatics extends IInspectable {
   IGamepadStatics.fromPtr(super.ptr);
 
   factory IGamepadStatics.from(IInspectable interface) =>
-      IGamepadStatics.fromPtr(interface.toInterface(IID_IGamepadStatics));
+      interface.cast(IGamepadStatics.fromPtr, IID_IGamepadStatics);
 
   int add_GamepadAdded(Pointer<COMObject> value) {
     final token = calloc<IntPtr>();

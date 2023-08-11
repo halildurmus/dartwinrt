@@ -27,8 +27,8 @@ class IAudioEncodingPropertiesStatics2 extends IInspectable {
   IAudioEncodingPropertiesStatics2.fromPtr(super.ptr);
 
   factory IAudioEncodingPropertiesStatics2.from(IInspectable interface) =>
-      IAudioEncodingPropertiesStatics2.fromPtr(
-          interface.toInterface(IID_IAudioEncodingPropertiesStatics2));
+      interface.cast(IAudioEncodingPropertiesStatics2.fromPtr,
+          IID_IAudioEncodingPropertiesStatics2);
 
   AudioEncodingProperties? createAlac(
       int sampleRate, int channelCount, int bitsPerSample) {

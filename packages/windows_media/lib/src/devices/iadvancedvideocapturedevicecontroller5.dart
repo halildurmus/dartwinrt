@@ -28,8 +28,8 @@ class IAdvancedVideoCaptureDeviceController5 extends IInspectable {
   IAdvancedVideoCaptureDeviceController5.fromPtr(super.ptr);
 
   factory IAdvancedVideoCaptureDeviceController5.from(IInspectable interface) =>
-      IAdvancedVideoCaptureDeviceController5.fromPtr(
-          interface.toInterface(IID_IAdvancedVideoCaptureDeviceController5));
+      interface.cast(IAdvancedVideoCaptureDeviceController5.fromPtr,
+          IID_IAdvancedVideoCaptureDeviceController5);
 
   String get id {
     final value = calloc<IntPtr>();

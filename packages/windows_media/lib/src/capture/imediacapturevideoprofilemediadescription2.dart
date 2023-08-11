@@ -26,8 +26,8 @@ class IMediaCaptureVideoProfileMediaDescription2 extends IInspectable {
 
   factory IMediaCaptureVideoProfileMediaDescription2.from(
           IInspectable interface) =>
-      IMediaCaptureVideoProfileMediaDescription2.fromPtr(interface
-          .toInterface(IID_IMediaCaptureVideoProfileMediaDescription2));
+      interface.cast(IMediaCaptureVideoProfileMediaDescription2.fromPtr,
+          IID_IMediaCaptureVideoProfileMediaDescription2);
 
   String get subtype {
     final value = calloc<IntPtr>();

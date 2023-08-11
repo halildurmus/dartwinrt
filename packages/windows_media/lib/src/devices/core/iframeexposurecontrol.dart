@@ -24,8 +24,7 @@ class IFrameExposureControl extends IInspectable {
   IFrameExposureControl.fromPtr(super.ptr);
 
   factory IFrameExposureControl.from(IInspectable interface) =>
-      IFrameExposureControl.fromPtr(
-          interface.toInterface(IID_IFrameExposureControl));
+      interface.cast(IFrameExposureControl.fromPtr, IID_IFrameExposureControl);
 
   bool get auto {
     final value = calloc<Bool>();

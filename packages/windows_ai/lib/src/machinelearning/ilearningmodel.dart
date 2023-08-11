@@ -26,7 +26,7 @@ class ILearningModel extends IInspectable {
   ILearningModel.fromPtr(super.ptr);
 
   factory ILearningModel.from(IInspectable interface) =>
-      ILearningModel.fromPtr(interface.toInterface(IID_ILearningModel));
+      interface.cast(ILearningModel.fromPtr, IID_ILearningModel);
 
   String get author {
     final value = calloc<IntPtr>();

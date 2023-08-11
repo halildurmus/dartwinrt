@@ -23,9 +23,8 @@ class IBitmapCodecInformation extends IInspectable {
   // vtable begins at 6, is 4 entries long.
   IBitmapCodecInformation.fromPtr(super.ptr);
 
-  factory IBitmapCodecInformation.from(IInspectable interface) =>
-      IBitmapCodecInformation.fromPtr(
-          interface.toInterface(IID_IBitmapCodecInformation));
+  factory IBitmapCodecInformation.from(IInspectable interface) => interface
+      .cast(IBitmapCodecInformation.fromPtr, IID_IBitmapCodecInformation);
 
   Guid get codecId {
     final value = calloc<GUID>();

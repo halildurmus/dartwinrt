@@ -25,8 +25,8 @@ class ILearningModelSessionOptions2 extends IInspectable {
   ILearningModelSessionOptions2.fromPtr(super.ptr);
 
   factory ILearningModelSessionOptions2.from(IInspectable interface) =>
-      ILearningModelSessionOptions2.fromPtr(
-          interface.toInterface(IID_ILearningModelSessionOptions2));
+      interface.cast(ILearningModelSessionOptions2.fromPtr,
+          IID_ILearningModelSessionOptions2);
 
   bool get closeModelOnSessionCreation {
     final value = calloc<Bool>();

@@ -25,9 +25,8 @@ class ISequenceFeatureDescriptor extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   ISequenceFeatureDescriptor.fromPtr(super.ptr);
 
-  factory ISequenceFeatureDescriptor.from(IInspectable interface) =>
-      ISequenceFeatureDescriptor.fromPtr(
-          interface.toInterface(IID_ISequenceFeatureDescriptor));
+  factory ISequenceFeatureDescriptor.from(IInspectable interface) => interface
+      .cast(ISequenceFeatureDescriptor.fromPtr, IID_ISequenceFeatureDescriptor);
 
   ILearningModelFeatureDescriptor? get elementDescriptor {
     final value = calloc<COMObject>();

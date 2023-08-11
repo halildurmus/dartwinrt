@@ -29,7 +29,7 @@ class IFrameController extends IInspectable {
   IFrameController.fromPtr(super.ptr);
 
   factory IFrameController.from(IInspectable interface) =>
-      IFrameController.fromPtr(interface.toInterface(IID_IFrameController));
+      interface.cast(IFrameController.fromPtr, IID_IFrameController);
 
   FrameExposureControl? get exposureControl {
     final value = calloc<COMObject>();

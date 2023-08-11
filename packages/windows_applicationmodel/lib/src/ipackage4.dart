@@ -26,7 +26,7 @@ class IPackage4 extends IInspectable {
   IPackage4.fromPtr(super.ptr);
 
   factory IPackage4.from(IInspectable interface) =>
-      IPackage4.fromPtr(interface.toInterface(IID_IPackage4));
+      interface.cast(IPackage4.fromPtr, IID_IPackage4);
 
   PackageSignatureKind get signatureKind {
     final value = calloc<Int32>();

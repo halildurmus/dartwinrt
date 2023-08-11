@@ -16,6 +16,7 @@ import 'package:win32/win32.dart'
 
 import '../internal.dart';
 import 'collections/iiterator.dart';
+import 'extensions/extensions.dart';
 import 'helpers.dart';
 import 'iclosable.dart';
 import 'imemorybufferreference.dart';
@@ -29,7 +30,7 @@ class IMemoryBuffer extends IInspectable implements IClosable {
   IMemoryBuffer.fromPtr(super.ptr);
 
   factory IMemoryBuffer.from(IInspectable interface) =>
-      IMemoryBuffer.fromPtr(interface.toInterface(IID_IMemoryBuffer));
+      interface.cast(IMemoryBuffer.fromPtr, IID_IMemoryBuffer);
 
   IMemoryBufferReference? createReference() {
     final reference = calloc<COMObject>();

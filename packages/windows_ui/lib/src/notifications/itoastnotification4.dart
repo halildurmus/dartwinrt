@@ -27,8 +27,7 @@ class IToastNotification4 extends IInspectable {
   IToastNotification4.fromPtr(super.ptr);
 
   factory IToastNotification4.from(IInspectable interface) =>
-      IToastNotification4.fromPtr(
-          interface.toInterface(IID_IToastNotification4));
+      interface.cast(IToastNotification4.fromPtr, IID_IToastNotification4);
 
   NotificationData? get data {
     final value = calloc<COMObject>();

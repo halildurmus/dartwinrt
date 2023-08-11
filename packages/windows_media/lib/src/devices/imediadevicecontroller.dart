@@ -26,9 +26,8 @@ class IMediaDeviceController extends IInspectable {
   // vtable begins at 6, is 3 entries long.
   IMediaDeviceController.fromPtr(super.ptr);
 
-  factory IMediaDeviceController.from(IInspectable interface) =>
-      IMediaDeviceController.fromPtr(
-          interface.toInterface(IID_IMediaDeviceController));
+  factory IMediaDeviceController.from(IInspectable interface) => interface.cast(
+      IMediaDeviceController.fromPtr, IID_IMediaDeviceController);
 
   List<IMediaEncodingProperties?> getAvailableMediaStreamProperties(
       MediaStreamType mediaStreamType) {

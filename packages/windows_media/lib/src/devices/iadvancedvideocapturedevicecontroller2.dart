@@ -38,8 +38,8 @@ class IAdvancedVideoCaptureDeviceController2 extends IInspectable {
   IAdvancedVideoCaptureDeviceController2.fromPtr(super.ptr);
 
   factory IAdvancedVideoCaptureDeviceController2.from(IInspectable interface) =>
-      IAdvancedVideoCaptureDeviceController2.fromPtr(
-          interface.toInterface(IID_IAdvancedVideoCaptureDeviceController2));
+      interface.cast(IAdvancedVideoCaptureDeviceController2.fromPtr,
+          IID_IAdvancedVideoCaptureDeviceController2);
 
   LowLagPhotoSequenceControl? get lowLagPhotoSequence {
     final value = calloc<COMObject>();

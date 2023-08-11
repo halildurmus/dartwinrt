@@ -27,8 +27,7 @@ class IPhoneNumberFormatter extends IInspectable {
   IPhoneNumberFormatter.fromPtr(super.ptr);
 
   factory IPhoneNumberFormatter.from(IInspectable interface) =>
-      IPhoneNumberFormatter.fromPtr(
-          interface.toInterface(IID_IPhoneNumberFormatter));
+      interface.cast(IPhoneNumberFormatter.fromPtr, IID_IPhoneNumberFormatter);
 
   String format(PhoneNumberInfo? number) {
     final result = calloc<IntPtr>();

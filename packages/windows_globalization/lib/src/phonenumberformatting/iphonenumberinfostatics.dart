@@ -26,9 +26,8 @@ class IPhoneNumberInfoStatics extends IInspectable {
   // vtable begins at 6, is 2 entries long.
   IPhoneNumberInfoStatics.fromPtr(super.ptr);
 
-  factory IPhoneNumberInfoStatics.from(IInspectable interface) =>
-      IPhoneNumberInfoStatics.fromPtr(
-          interface.toInterface(IID_IPhoneNumberInfoStatics));
+  factory IPhoneNumberInfoStatics.from(IInspectable interface) => interface
+      .cast(IPhoneNumberInfoStatics.fromPtr, IID_IPhoneNumberInfoStatics);
 
   (PhoneNumberParseResult, {PhoneNumberInfo? phoneNumber}) tryParse(
       String input) {

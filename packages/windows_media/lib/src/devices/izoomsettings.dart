@@ -26,7 +26,7 @@ class IZoomSettings extends IInspectable {
   IZoomSettings.fromPtr(super.ptr);
 
   factory IZoomSettings.from(IInspectable interface) =>
-      IZoomSettings.fromPtr(interface.toInterface(IID_IZoomSettings));
+      interface.cast(IZoomSettings.fromPtr, IID_IZoomSettings);
 
   ZoomTransitionMode get mode {
     final value = calloc<Int32>();

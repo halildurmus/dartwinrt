@@ -24,8 +24,7 @@ class IToastNotification2 extends IInspectable {
   IToastNotification2.fromPtr(super.ptr);
 
   factory IToastNotification2.from(IInspectable interface) =>
-      IToastNotification2.fromPtr(
-          interface.toInterface(IID_IToastNotification2));
+      interface.cast(IToastNotification2.fromPtr, IID_IToastNotification2);
 
   set tag(String value) {
     final hr =

@@ -28,8 +28,7 @@ class IKnownFoldersStatics3 extends IInspectable {
   IKnownFoldersStatics3.fromPtr(super.ptr);
 
   factory IKnownFoldersStatics3.from(IInspectable interface) =>
-      IKnownFoldersStatics3.fromPtr(
-          interface.toInterface(IID_IKnownFoldersStatics3));
+      interface.cast(IKnownFoldersStatics3.fromPtr, IID_IKnownFoldersStatics3);
 
   Future<StorageFolder?> getFolderForUserAsync(
       User? user, KnownFolderId folderId) {

@@ -25,8 +25,8 @@ class IScheduledToastNotification4 extends IInspectable {
   IScheduledToastNotification4.fromPtr(super.ptr);
 
   factory IScheduledToastNotification4.from(IInspectable interface) =>
-      IScheduledToastNotification4.fromPtr(
-          interface.toInterface(IID_IScheduledToastNotification4));
+      interface.cast(IScheduledToastNotification4.fromPtr,
+          IID_IScheduledToastNotification4);
 
   DateTime? get expirationTime {
     final value = calloc<COMObject>();

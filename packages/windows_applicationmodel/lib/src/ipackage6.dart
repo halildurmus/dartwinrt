@@ -27,7 +27,7 @@ class IPackage6 extends IInspectable {
   IPackage6.fromPtr(super.ptr);
 
   factory IPackage6.from(IInspectable interface) =>
-      IPackage6.fromPtr(interface.toInterface(IID_IPackage6));
+      interface.cast(IPackage6.fromPtr, IID_IPackage6);
 
   AppInstallerInfo? getAppInstallerInfo() {
     final value = calloc<COMObject>();

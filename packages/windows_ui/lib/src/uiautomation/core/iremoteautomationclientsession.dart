@@ -28,8 +28,8 @@ class IRemoteAutomationClientSession extends IInspectable {
   IRemoteAutomationClientSession.fromPtr(super.ptr);
 
   factory IRemoteAutomationClientSession.from(IInspectable interface) =>
-      IRemoteAutomationClientSession.fromPtr(
-          interface.toInterface(IID_IRemoteAutomationClientSession));
+      interface.cast(IRemoteAutomationClientSession.fromPtr,
+          IID_IRemoteAutomationClientSession);
 
   void start() {
     final hr = ptr.ref.vtable

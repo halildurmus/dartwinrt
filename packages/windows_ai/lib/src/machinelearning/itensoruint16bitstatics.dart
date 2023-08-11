@@ -25,9 +25,8 @@ class ITensorUInt16BitStatics extends IInspectable {
   // vtable begins at 6, is 4 entries long.
   ITensorUInt16BitStatics.fromPtr(super.ptr);
 
-  factory ITensorUInt16BitStatics.from(IInspectable interface) =>
-      ITensorUInt16BitStatics.fromPtr(
-          interface.toInterface(IID_ITensorUInt16BitStatics));
+  factory ITensorUInt16BitStatics.from(IInspectable interface) => interface
+      .cast(ITensorUInt16BitStatics.fromPtr, IID_ITensorUInt16BitStatics);
 
   TensorUInt16Bit? create() {
     final result = calloc<COMObject>();

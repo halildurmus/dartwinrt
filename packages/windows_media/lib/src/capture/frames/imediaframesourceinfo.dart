@@ -30,8 +30,7 @@ class IMediaFrameSourceInfo extends IInspectable {
   IMediaFrameSourceInfo.fromPtr(super.ptr);
 
   factory IMediaFrameSourceInfo.from(IInspectable interface) =>
-      IMediaFrameSourceInfo.fromPtr(
-          interface.toInterface(IID_IMediaFrameSourceInfo));
+      interface.cast(IMediaFrameSourceInfo.fromPtr, IID_IMediaFrameSourceInfo);
 
   String get id {
     final value = calloc<IntPtr>();

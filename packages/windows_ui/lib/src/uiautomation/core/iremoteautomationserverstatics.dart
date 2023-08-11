@@ -25,8 +25,8 @@ class IRemoteAutomationServerStatics extends IInspectable {
   IRemoteAutomationServerStatics.fromPtr(super.ptr);
 
   factory IRemoteAutomationServerStatics.from(IInspectable interface) =>
-      IRemoteAutomationServerStatics.fromPtr(
-          interface.toInterface(IID_IRemoteAutomationServerStatics));
+      interface.cast(IRemoteAutomationServerStatics.fromPtr,
+          IID_IRemoteAutomationServerStatics);
 
   void reportSession(Guid sessionId) {
     final sessionIdNativeStructPtr = sessionId.toNativeGUID();

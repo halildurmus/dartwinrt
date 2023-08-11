@@ -27,7 +27,7 @@ class IVideoFrameStatics extends IInspectable {
   IVideoFrameStatics.fromPtr(super.ptr);
 
   factory IVideoFrameStatics.from(IInspectable interface) =>
-      IVideoFrameStatics.fromPtr(interface.toInterface(IID_IVideoFrameStatics));
+      interface.cast(IVideoFrameStatics.fromPtr, IID_IVideoFrameStatics);
 
   VideoFrame? createAsDirect3D11SurfaceBacked(
       DirectXPixelFormat format, int width, int height) {

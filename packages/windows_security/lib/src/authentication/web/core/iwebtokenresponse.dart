@@ -27,7 +27,7 @@ class IWebTokenResponse extends IInspectable {
   IWebTokenResponse.fromPtr(super.ptr);
 
   factory IWebTokenResponse.from(IInspectable interface) =>
-      IWebTokenResponse.fromPtr(interface.toInterface(IID_IWebTokenResponse));
+      interface.cast(IWebTokenResponse.fromPtr, IID_IWebTokenResponse);
 
   String get token {
     final value = calloc<IntPtr>();

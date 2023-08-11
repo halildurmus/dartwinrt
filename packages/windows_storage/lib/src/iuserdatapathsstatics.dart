@@ -27,8 +27,7 @@ class IUserDataPathsStatics extends IInspectable {
   IUserDataPathsStatics.fromPtr(super.ptr);
 
   factory IUserDataPathsStatics.from(IInspectable interface) =>
-      IUserDataPathsStatics.fromPtr(
-          interface.toInterface(IID_IUserDataPathsStatics));
+      interface.cast(IUserDataPathsStatics.fromPtr, IID_IUserDataPathsStatics);
 
   UserDataPaths? getForUser(User? user) {
     final result = calloc<COMObject>();

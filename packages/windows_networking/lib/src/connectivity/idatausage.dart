@@ -26,7 +26,7 @@ class IDataUsage extends IInspectable {
   IDataUsage.fromPtr(super.ptr);
 
   factory IDataUsage.from(IInspectable interface) =>
-      IDataUsage.fromPtr(interface.toInterface(IID_IDataUsage));
+      interface.cast(IDataUsage.fromPtr, IID_IDataUsage);
 
   @Deprecated(
       "IDataUsage may be altered or unavailable for releases after Windows 8.1. Instead, use INetworkUsage.")

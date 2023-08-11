@@ -28,7 +28,7 @@ class IMediaCapture7 extends IInspectable {
   IMediaCapture7.fromPtr(super.ptr);
 
   factory IMediaCapture7.from(IInspectable interface) =>
-      IMediaCapture7.fromPtr(interface.toInterface(IID_IMediaCapture7));
+      interface.cast(IMediaCapture7.fromPtr, IID_IMediaCapture7);
 
   MediaCaptureRelativePanelWatcher? createRelativePanelWatcher(
       StreamingCaptureMode captureMode, DisplayRegion? displayRegion) {

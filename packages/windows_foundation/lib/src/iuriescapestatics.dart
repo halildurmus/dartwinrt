@@ -16,6 +16,7 @@ import 'package:win32/win32.dart'
 
 import '../internal.dart';
 import 'collections/iiterator.dart';
+import 'extensions/extensions.dart';
 import 'helpers.dart';
 
 /// @nodoc
@@ -26,7 +27,7 @@ class IUriEscapeStatics extends IInspectable {
   IUriEscapeStatics.fromPtr(super.ptr);
 
   factory IUriEscapeStatics.from(IInspectable interface) =>
-      IUriEscapeStatics.fromPtr(interface.toInterface(IID_IUriEscapeStatics));
+      interface.cast(IUriEscapeStatics.fromPtr, IID_IUriEscapeStatics);
 
   String unescapeComponent(String toUnescape) {
     final value = calloc<IntPtr>();

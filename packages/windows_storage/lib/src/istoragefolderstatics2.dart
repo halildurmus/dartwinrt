@@ -26,9 +26,8 @@ class IStorageFolderStatics2 extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IStorageFolderStatics2.fromPtr(super.ptr);
 
-  factory IStorageFolderStatics2.from(IInspectable interface) =>
-      IStorageFolderStatics2.fromPtr(
-          interface.toInterface(IID_IStorageFolderStatics2));
+  factory IStorageFolderStatics2.from(IInspectable interface) => interface.cast(
+      IStorageFolderStatics2.fromPtr, IID_IStorageFolderStatics2);
 
   Future<StorageFolder?> getFolderFromPathForUserAsync(
       User? user, String path) {

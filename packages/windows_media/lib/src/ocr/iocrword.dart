@@ -24,7 +24,7 @@ class IOcrWord extends IInspectable {
   IOcrWord.fromPtr(super.ptr);
 
   factory IOcrWord.from(IInspectable interface) =>
-      IOcrWord.fromPtr(interface.toInterface(IID_IOcrWord));
+      interface.cast(IOcrWord.fromPtr, IID_IOcrWord);
 
   Rect get boundingRect {
     final value = calloc<NativeRect>();

@@ -27,7 +27,7 @@ class IGeolocatorStatics extends IInspectable {
   IGeolocatorStatics.fromPtr(super.ptr);
 
   factory IGeolocatorStatics.from(IInspectable interface) =>
-      IGeolocatorStatics.fromPtr(interface.toInterface(IID_IGeolocatorStatics));
+      interface.cast(IGeolocatorStatics.fromPtr, IID_IGeolocatorStatics);
 
   Future<GeolocationAccessStatus> requestAccessAsync() {
     final result = calloc<COMObject>();

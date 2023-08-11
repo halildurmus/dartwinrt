@@ -27,9 +27,8 @@ class IFindAllAccountsResult extends IInspectable {
   // vtable begins at 6, is 3 entries long.
   IFindAllAccountsResult.fromPtr(super.ptr);
 
-  factory IFindAllAccountsResult.from(IInspectable interface) =>
-      IFindAllAccountsResult.fromPtr(
-          interface.toInterface(IID_IFindAllAccountsResult));
+  factory IFindAllAccountsResult.from(IInspectable interface) => interface.cast(
+      IFindAllAccountsResult.fromPtr, IID_IFindAllAccountsResult);
 
   List<WebAccount?>? get accounts {
     final value = calloc<COMObject>();

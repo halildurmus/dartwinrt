@@ -25,9 +25,8 @@ class IVideoEncodingProperties5 extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IVideoEncodingProperties5.fromPtr(super.ptr);
 
-  factory IVideoEncodingProperties5.from(IInspectable interface) =>
-      IVideoEncodingProperties5.fromPtr(
-          interface.toInterface(IID_IVideoEncodingProperties5));
+  factory IVideoEncodingProperties5.from(IInspectable interface) => interface
+      .cast(IVideoEncodingProperties5.fromPtr, IID_IVideoEncodingProperties5);
 
   VideoEncodingProperties? copy() {
     final result = calloc<COMObject>();

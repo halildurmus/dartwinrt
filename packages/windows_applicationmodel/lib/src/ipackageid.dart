@@ -27,7 +27,7 @@ class IPackageId extends IInspectable {
   IPackageId.fromPtr(super.ptr);
 
   factory IPackageId.from(IInspectable interface) =>
-      IPackageId.fromPtr(interface.toInterface(IID_IPackageId));
+      interface.cast(IPackageId.fromPtr, IID_IPackageId);
 
   String get name {
     final value = calloc<IntPtr>();

@@ -31,7 +31,7 @@ class IDevicePicker extends IInspectable {
   IDevicePicker.fromPtr(super.ptr);
 
   factory IDevicePicker.from(IInspectable interface) =>
-      IDevicePicker.fromPtr(interface.toInterface(IID_IDevicePicker));
+      interface.cast(IDevicePicker.fromPtr, IID_IDevicePicker);
 
   DevicePickerFilter? get filter {
     final filter = calloc<COMObject>();

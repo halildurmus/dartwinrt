@@ -24,5 +24,5 @@ class IBackgroundTrigger extends IInspectable {
   IBackgroundTrigger.fromPtr(super.ptr);
 
   factory IBackgroundTrigger.from(IInspectable interface) =>
-      IBackgroundTrigger.fromPtr(interface.toInterface(IID_IBackgroundTrigger));
+      interface.cast(IBackgroundTrigger.fromPtr, IID_IBackgroundTrigger);
 }

@@ -29,7 +29,7 @@ class IApplicationData extends IInspectable {
   IApplicationData.fromPtr(super.ptr);
 
   factory IApplicationData.from(IInspectable interface) =>
-      IApplicationData.fromPtr(interface.toInterface(IID_IApplicationData));
+      interface.cast(IApplicationData.fromPtr, IID_IApplicationData);
 
   int get version {
     final value = calloc<Uint32>();

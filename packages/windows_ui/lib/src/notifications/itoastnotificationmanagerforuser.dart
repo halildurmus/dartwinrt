@@ -29,8 +29,8 @@ class IToastNotificationManagerForUser extends IInspectable {
   IToastNotificationManagerForUser.fromPtr(super.ptr);
 
   factory IToastNotificationManagerForUser.from(IInspectable interface) =>
-      IToastNotificationManagerForUser.fromPtr(
-          interface.toInterface(IID_IToastNotificationManagerForUser));
+      interface.cast(IToastNotificationManagerForUser.fromPtr,
+          IID_IToastNotificationManagerForUser);
 
   ToastNotifier? createToastNotifier() {
     final result = calloc<COMObject>();

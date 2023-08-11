@@ -26,9 +26,8 @@ class IMediaCaptureVideoPreview extends IInspectable {
   // vtable begins at 6, is 4 entries long.
   IMediaCaptureVideoPreview.fromPtr(super.ptr);
 
-  factory IMediaCaptureVideoPreview.from(IInspectable interface) =>
-      IMediaCaptureVideoPreview.fromPtr(
-          interface.toInterface(IID_IMediaCaptureVideoPreview));
+  factory IMediaCaptureVideoPreview.from(IInspectable interface) => interface
+      .cast(IMediaCaptureVideoPreview.fromPtr, IID_IMediaCaptureVideoPreview);
 
   Future<void> startPreviewAsync() {
     final asyncInfo = calloc<COMObject>();

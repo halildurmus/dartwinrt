@@ -23,9 +23,8 @@ class IBitmapDecoderStatics2 extends IInspectable {
   // vtable begins at 6, is 2 entries long.
   IBitmapDecoderStatics2.fromPtr(super.ptr);
 
-  factory IBitmapDecoderStatics2.from(IInspectable interface) =>
-      IBitmapDecoderStatics2.fromPtr(
-          interface.toInterface(IID_IBitmapDecoderStatics2));
+  factory IBitmapDecoderStatics2.from(IInspectable interface) => interface.cast(
+      IBitmapDecoderStatics2.fromPtr, IID_IBitmapDecoderStatics2);
 
   Guid get heifDecoderId {
     final value = calloc<GUID>();

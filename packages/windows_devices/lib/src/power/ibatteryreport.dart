@@ -25,7 +25,7 @@ class IBatteryReport extends IInspectable {
   IBatteryReport.fromPtr(super.ptr);
 
   factory IBatteryReport.from(IInspectable interface) =>
-      IBatteryReport.fromPtr(interface.toInterface(IID_IBatteryReport));
+      interface.cast(IBatteryReport.fromPtr, IID_IBatteryReport);
 
   int? get chargeRateInMilliwatts {
     final value = calloc<COMObject>();

@@ -24,7 +24,7 @@ class IRegionOfInterest extends IInspectable {
   IRegionOfInterest.fromPtr(super.ptr);
 
   factory IRegionOfInterest.from(IInspectable interface) =>
-      IRegionOfInterest.fromPtr(interface.toInterface(IID_IRegionOfInterest));
+      interface.cast(IRegionOfInterest.fromPtr, IID_IRegionOfInterest);
 
   bool get autoFocusEnabled {
     final value = calloc<Bool>();

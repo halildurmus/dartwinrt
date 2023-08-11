@@ -24,7 +24,7 @@ class ITensorDouble extends IInspectable {
   ITensorDouble.fromPtr(super.ptr);
 
   factory ITensorDouble.from(IInspectable interface) =>
-      ITensorDouble.fromPtr(interface.toInterface(IID_ITensorDouble));
+      interface.cast(ITensorDouble.fromPtr, IID_ITensorDouble);
 
   List<double> getAsVectorView() {
     final result = calloc<COMObject>();

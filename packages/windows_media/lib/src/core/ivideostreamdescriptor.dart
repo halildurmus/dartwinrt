@@ -27,9 +27,8 @@ class IVideoStreamDescriptor extends IInspectable
   // vtable begins at 6, is 1 entries long.
   IVideoStreamDescriptor.fromPtr(super.ptr);
 
-  factory IVideoStreamDescriptor.from(IInspectable interface) =>
-      IVideoStreamDescriptor.fromPtr(
-          interface.toInterface(IID_IVideoStreamDescriptor));
+  factory IVideoStreamDescriptor.from(IInspectable interface) => interface.cast(
+      IVideoStreamDescriptor.fromPtr, IID_IVideoStreamDescriptor);
 
   VideoEncodingProperties? get encodingProperties {
     final encodingProperties = calloc<COMObject>();

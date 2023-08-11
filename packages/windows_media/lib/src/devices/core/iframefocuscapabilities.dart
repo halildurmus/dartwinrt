@@ -23,9 +23,8 @@ class IFrameFocusCapabilities extends IInspectable {
   // vtable begins at 6, is 4 entries long.
   IFrameFocusCapabilities.fromPtr(super.ptr);
 
-  factory IFrameFocusCapabilities.from(IInspectable interface) =>
-      IFrameFocusCapabilities.fromPtr(
-          interface.toInterface(IID_IFrameFocusCapabilities));
+  factory IFrameFocusCapabilities.from(IInspectable interface) => interface
+      .cast(IFrameFocusCapabilities.fromPtr, IID_IFrameFocusCapabilities);
 
   bool get supported {
     final value = calloc<Bool>();

@@ -24,7 +24,7 @@ class INotificationData extends IInspectable {
   INotificationData.fromPtr(super.ptr);
 
   factory INotificationData.from(IInspectable interface) =>
-      INotificationData.fromPtr(interface.toInterface(IID_INotificationData));
+      interface.cast(INotificationData.fromPtr, IID_INotificationData);
 
   IMap<String, String>? get values {
     final value = calloc<COMObject>();

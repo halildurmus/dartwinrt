@@ -37,8 +37,8 @@ class IBitmapFrameWithSoftwareBitmap extends IInspectable
   IBitmapFrameWithSoftwareBitmap.fromPtr(super.ptr);
 
   factory IBitmapFrameWithSoftwareBitmap.from(IInspectable interface) =>
-      IBitmapFrameWithSoftwareBitmap.fromPtr(
-          interface.toInterface(IID_IBitmapFrameWithSoftwareBitmap));
+      interface.cast(IBitmapFrameWithSoftwareBitmap.fromPtr,
+          IID_IBitmapFrameWithSoftwareBitmap);
 
   Future<SoftwareBitmap?> getSoftwareBitmapAsync() {
     final value = calloc<COMObject>();

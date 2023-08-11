@@ -23,9 +23,8 @@ class IGeographicRegionStatics extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IGeographicRegionStatics.fromPtr(super.ptr);
 
-  factory IGeographicRegionStatics.from(IInspectable interface) =>
-      IGeographicRegionStatics.fromPtr(
-          interface.toInterface(IID_IGeographicRegionStatics));
+  factory IGeographicRegionStatics.from(IInspectable interface) => interface
+      .cast(IGeographicRegionStatics.fromPtr, IID_IGeographicRegionStatics);
 
   bool isSupported(String geographicRegionCode) {
     final result = calloc<Bool>();

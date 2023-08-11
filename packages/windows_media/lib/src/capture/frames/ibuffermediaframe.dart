@@ -27,7 +27,7 @@ class IBufferMediaFrame extends IInspectable {
   IBufferMediaFrame.fromPtr(super.ptr);
 
   factory IBufferMediaFrame.from(IInspectable interface) =>
-      IBufferMediaFrame.fromPtr(interface.toInterface(IID_IBufferMediaFrame));
+      interface.cast(IBufferMediaFrame.fromPtr, IID_IBufferMediaFrame);
 
   MediaFrameReference? get frameReference {
     final value = calloc<COMObject>();

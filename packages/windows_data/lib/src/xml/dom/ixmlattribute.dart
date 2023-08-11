@@ -33,7 +33,7 @@ class IXmlAttribute extends IInspectable
   IXmlAttribute.fromPtr(super.ptr);
 
   factory IXmlAttribute.from(IInspectable interface) =>
-      IXmlAttribute.fromPtr(interface.toInterface(IID_IXmlAttribute));
+      interface.cast(IXmlAttribute.fromPtr, IID_IXmlAttribute);
 
   String get name {
     final value = calloc<IntPtr>();

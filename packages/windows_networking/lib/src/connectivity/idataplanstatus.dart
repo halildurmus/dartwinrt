@@ -26,7 +26,7 @@ class IDataPlanStatus extends IInspectable {
   IDataPlanStatus.fromPtr(super.ptr);
 
   factory IDataPlanStatus.from(IInspectable interface) =>
-      IDataPlanStatus.fromPtr(interface.toInterface(IID_IDataPlanStatus));
+      interface.cast(IDataPlanStatus.fromPtr, IID_IDataPlanStatus);
 
   DataPlanUsage? get dataPlanUsage {
     final value = calloc<COMObject>();

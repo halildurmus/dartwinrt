@@ -24,8 +24,7 @@ class IToastNotification6 extends IInspectable {
   IToastNotification6.fromPtr(super.ptr);
 
   factory IToastNotification6.from(IInspectable interface) =>
-      IToastNotification6.fromPtr(
-          interface.toInterface(IID_IToastNotification6));
+      interface.cast(IToastNotification6.fromPtr, IID_IToastNotification6);
 
   bool get expiresOnReboot {
     final value = calloc<Bool>();

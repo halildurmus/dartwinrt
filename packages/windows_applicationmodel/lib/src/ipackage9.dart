@@ -27,7 +27,7 @@ class IPackage9 extends IInspectable {
   IPackage9.fromPtr(super.ptr);
 
   factory IPackage9.from(IInspectable interface) =>
-      IPackage9.fromPtr(interface.toInterface(IID_IPackage9));
+      interface.cast(IPackage9.fromPtr, IID_IPackage9);
 
   IVector<Package?> findRelatedPackages(FindRelatedPackagesOptions? options) {
     final result = calloc<COMObject>();

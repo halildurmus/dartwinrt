@@ -27,8 +27,8 @@ class IAdvancedVideoCaptureDeviceController9 extends IInspectable {
   IAdvancedVideoCaptureDeviceController9.fromPtr(super.ptr);
 
   factory IAdvancedVideoCaptureDeviceController9.from(IInspectable interface) =>
-      IAdvancedVideoCaptureDeviceController9.fromPtr(
-          interface.toInterface(IID_IAdvancedVideoCaptureDeviceController9));
+      interface.cast(IAdvancedVideoCaptureDeviceController9.fromPtr,
+          IID_IAdvancedVideoCaptureDeviceController9);
 
   DigitalWindowControl? get digitalWindowControl {
     final value = calloc<COMObject>();

@@ -26,7 +26,7 @@ class IEnclosureLocation extends IInspectable {
   IEnclosureLocation.fromPtr(super.ptr);
 
   factory IEnclosureLocation.from(IInspectable interface) =>
-      IEnclosureLocation.fromPtr(interface.toInterface(IID_IEnclosureLocation));
+      interface.cast(IEnclosureLocation.fromPtr, IID_IEnclosureLocation);
 
   bool get inDock {
     final value = calloc<Bool>();

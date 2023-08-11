@@ -28,9 +28,8 @@ class IStorageFolderQueryResult extends IInspectable
   // vtable begins at 6, is 2 entries long.
   IStorageFolderQueryResult.fromPtr(super.ptr);
 
-  factory IStorageFolderQueryResult.from(IInspectable interface) =>
-      IStorageFolderQueryResult.fromPtr(
-          interface.toInterface(IID_IStorageFolderQueryResult));
+  factory IStorageFolderQueryResult.from(IInspectable interface) => interface
+      .cast(IStorageFolderQueryResult.fromPtr, IID_IStorageFolderQueryResult);
 
   Future<List<StorageFolder?>> getFoldersAsync(
       int startIndex, int maxNumberOfItems) {

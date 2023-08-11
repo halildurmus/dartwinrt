@@ -27,7 +27,7 @@ class ILauncherStatics extends IInspectable {
   ILauncherStatics.fromPtr(super.ptr);
 
   factory ILauncherStatics.from(IInspectable interface) =>
-      ILauncherStatics.fromPtr(interface.toInterface(IID_ILauncherStatics));
+      interface.cast(ILauncherStatics.fromPtr, IID_ILauncherStatics);
 
   Future<bool> launchFileAsync(IStorageFile? file) {
     final operation = calloc<COMObject>();

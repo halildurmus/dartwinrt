@@ -27,8 +27,7 @@ class ITensorFloatStatics2 extends IInspectable {
   ITensorFloatStatics2.fromPtr(super.ptr);
 
   factory ITensorFloatStatics2.from(IInspectable interface) =>
-      ITensorFloatStatics2.fromPtr(
-          interface.toInterface(IID_ITensorFloatStatics2));
+      interface.cast(ITensorFloatStatics2.fromPtr, IID_ITensorFloatStatics2);
 
   TensorFloat? createFromShapeArrayAndDataArray(
       List<int> shape, List<double> data) {

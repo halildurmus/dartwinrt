@@ -28,7 +28,7 @@ class IMediaCapture3 extends IInspectable {
   IMediaCapture3.fromPtr(super.ptr);
 
   factory IMediaCapture3.from(IInspectable interface) =>
-      IMediaCapture3.fromPtr(interface.toInterface(IID_IMediaCapture3));
+      interface.cast(IMediaCapture3.fromPtr, IID_IMediaCapture3);
 
   Future<VariablePhotoSequenceCapture?>
       prepareVariablePhotoSequenceCaptureAsync(ImageEncodingProperties? type) {

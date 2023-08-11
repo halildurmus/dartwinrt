@@ -25,9 +25,8 @@ class IVideoEncodingProperties4 extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IVideoEncodingProperties4.fromPtr(super.ptr);
 
-  factory IVideoEncodingProperties4.from(IInspectable interface) =>
-      IVideoEncodingProperties4.fromPtr(
-          interface.toInterface(IID_IVideoEncodingProperties4));
+  factory IVideoEncodingProperties4.from(IInspectable interface) => interface
+      .cast(IVideoEncodingProperties4.fromPtr, IID_IVideoEncodingProperties4);
 
   SphericalVideoFrameFormat get sphericalVideoFrameFormat {
     final value = calloc<Int32>();

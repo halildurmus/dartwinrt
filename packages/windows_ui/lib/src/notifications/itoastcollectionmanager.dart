@@ -26,9 +26,8 @@ class IToastCollectionManager extends IInspectable {
   // vtable begins at 6, is 7 entries long.
   IToastCollectionManager.fromPtr(super.ptr);
 
-  factory IToastCollectionManager.from(IInspectable interface) =>
-      IToastCollectionManager.fromPtr(
-          interface.toInterface(IID_IToastCollectionManager));
+  factory IToastCollectionManager.from(IInspectable interface) => interface
+      .cast(IToastCollectionManager.fromPtr, IID_IToastCollectionManager);
 
   Future<void> saveToastCollectionAsync(ToastCollection? collection) {
     final operation = calloc<COMObject>();

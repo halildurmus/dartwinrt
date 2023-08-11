@@ -27,8 +27,8 @@ class INetworkOperatorTetheringClient extends IInspectable {
   INetworkOperatorTetheringClient.fromPtr(super.ptr);
 
   factory INetworkOperatorTetheringClient.from(IInspectable interface) =>
-      INetworkOperatorTetheringClient.fromPtr(
-          interface.toInterface(IID_INetworkOperatorTetheringClient));
+      interface.cast(INetworkOperatorTetheringClient.fromPtr,
+          IID_INetworkOperatorTetheringClient);
 
   String get macAddress {
     final value = calloc<IntPtr>();

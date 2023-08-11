@@ -27,8 +27,7 @@ class ICharacterGroupings extends IInspectable
   ICharacterGroupings.fromPtr(super.ptr);
 
   factory ICharacterGroupings.from(IInspectable interface) =>
-      ICharacterGroupings.fromPtr(
-          interface.toInterface(IID_ICharacterGroupings));
+      interface.cast(ICharacterGroupings.fromPtr, IID_ICharacterGroupings);
 
   String lookup(String text) {
     final result = calloc<IntPtr>();

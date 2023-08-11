@@ -26,7 +26,7 @@ class IStorageProvider2 extends IInspectable implements IStorageProvider {
   IStorageProvider2.fromPtr(super.ptr);
 
   factory IStorageProvider2.from(IInspectable interface) =>
-      IStorageProvider2.fromPtr(interface.toInterface(IID_IStorageProvider2));
+      interface.cast(IStorageProvider2.fromPtr, IID_IStorageProvider2);
 
   Future<bool> isPropertySupportedForPartialFileAsync(
       String propertyCanonicalName) {

@@ -27,7 +27,7 @@ class IDataWriterFactory extends IInspectable {
   IDataWriterFactory.fromPtr(super.ptr);
 
   factory IDataWriterFactory.from(IInspectable interface) =>
-      IDataWriterFactory.fromPtr(interface.toInterface(IID_IDataWriterFactory));
+      interface.cast(IDataWriterFactory.fromPtr, IID_IDataWriterFactory);
 
   DataWriter createDataWriter(IOutputStream? outputStream) {
     final dataWriter = calloc<COMObject>();

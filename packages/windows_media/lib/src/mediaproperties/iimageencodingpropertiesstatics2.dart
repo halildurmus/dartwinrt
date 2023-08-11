@@ -28,8 +28,8 @@ class IImageEncodingPropertiesStatics2 extends IInspectable {
   IImageEncodingPropertiesStatics2.fromPtr(super.ptr);
 
   factory IImageEncodingPropertiesStatics2.from(IInspectable interface) =>
-      IImageEncodingPropertiesStatics2.fromPtr(
-          interface.toInterface(IID_IImageEncodingPropertiesStatics2));
+      interface.cast(IImageEncodingPropertiesStatics2.fromPtr,
+          IID_IImageEncodingPropertiesStatics2);
 
   ImageEncodingProperties? createUncompressed(MediaPixelFormat format) {
     final value = calloc<COMObject>();

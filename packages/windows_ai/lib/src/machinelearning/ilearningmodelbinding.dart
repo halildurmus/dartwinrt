@@ -24,8 +24,7 @@ class ILearningModelBinding extends IInspectable {
   ILearningModelBinding.fromPtr(super.ptr);
 
   factory ILearningModelBinding.from(IInspectable interface) =>
-      ILearningModelBinding.fromPtr(
-          interface.toInterface(IID_ILearningModelBinding));
+      interface.cast(ILearningModelBinding.fromPtr, IID_ILearningModelBinding);
 
   void bind(String name, Object? value) {
     final hr = ptr.ref.vtable

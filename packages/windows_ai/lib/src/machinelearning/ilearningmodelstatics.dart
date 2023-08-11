@@ -28,8 +28,7 @@ class ILearningModelStatics extends IInspectable {
   ILearningModelStatics.fromPtr(super.ptr);
 
   factory ILearningModelStatics.from(IInspectable interface) =>
-      ILearningModelStatics.fromPtr(
-          interface.toInterface(IID_ILearningModelStatics));
+      interface.cast(ILearningModelStatics.fromPtr, IID_ILearningModelStatics);
 
   Future<LearningModel?> loadFromStorageFileAsync(IStorageFile? modelFile) {
     final operation = calloc<COMObject>();

@@ -25,9 +25,8 @@ class IDeviceUnpairingResult extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IDeviceUnpairingResult.fromPtr(super.ptr);
 
-  factory IDeviceUnpairingResult.from(IInspectable interface) =>
-      IDeviceUnpairingResult.fromPtr(
-          interface.toInterface(IID_IDeviceUnpairingResult));
+  factory IDeviceUnpairingResult.from(IInspectable interface) => interface.cast(
+      IDeviceUnpairingResult.fromPtr, IID_IDeviceUnpairingResult);
 
   DeviceUnpairingResultStatus get status {
     final status = calloc<Int32>();

@@ -24,7 +24,7 @@ class IGeolocator2 extends IInspectable {
   IGeolocator2.fromPtr(super.ptr);
 
   factory IGeolocator2.from(IInspectable interface) =>
-      IGeolocator2.fromPtr(interface.toInterface(IID_IGeolocator2));
+      interface.cast(IGeolocator2.fromPtr, IID_IGeolocator2);
 
   void allowFallbackToConsentlessPositions() {
     final hr = ptr.ref.vtable

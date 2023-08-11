@@ -28,7 +28,7 @@ class IAudioFrame extends IInspectable implements IMediaFrame, IClosable {
   IAudioFrame.fromPtr(super.ptr);
 
   factory IAudioFrame.from(IInspectable interface) =>
-      IAudioFrame.fromPtr(interface.toInterface(IID_IAudioFrame));
+      interface.cast(IAudioFrame.fromPtr, IID_IAudioFrame);
 
   AudioBuffer? lockBuffer(AudioBufferAccessMode mode) {
     final value = calloc<COMObject>();

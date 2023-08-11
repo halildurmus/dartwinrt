@@ -29,8 +29,8 @@ class IMediaCaptureInitializationSettings5 extends IInspectable {
   IMediaCaptureInitializationSettings5.fromPtr(super.ptr);
 
   factory IMediaCaptureInitializationSettings5.from(IInspectable interface) =>
-      IMediaCaptureInitializationSettings5.fromPtr(
-          interface.toInterface(IID_IMediaCaptureInitializationSettings5));
+      interface.cast(IMediaCaptureInitializationSettings5.fromPtr,
+          IID_IMediaCaptureInitializationSettings5);
 
   MediaFrameSourceGroup? get sourceGroup {
     final value = calloc<COMObject>();

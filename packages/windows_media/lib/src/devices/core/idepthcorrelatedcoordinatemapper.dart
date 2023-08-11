@@ -29,8 +29,8 @@ class IDepthCorrelatedCoordinateMapper extends IInspectable
   IDepthCorrelatedCoordinateMapper.fromPtr(super.ptr);
 
   factory IDepthCorrelatedCoordinateMapper.from(IInspectable interface) =>
-      IDepthCorrelatedCoordinateMapper.fromPtr(
-          interface.toInterface(IID_IDepthCorrelatedCoordinateMapper));
+      interface.cast(IDepthCorrelatedCoordinateMapper.fromPtr,
+          IID_IDepthCorrelatedCoordinateMapper);
 
   Vector3 unprojectPoint(
       Point sourcePoint, SpatialCoordinateSystem? targetCoordinateSystem) {

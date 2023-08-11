@@ -24,7 +24,7 @@ class IDepthMediaFrame2 extends IInspectable {
   IDepthMediaFrame2.fromPtr(super.ptr);
 
   factory IDepthMediaFrame2.from(IInspectable interface) =>
-      IDepthMediaFrame2.fromPtr(interface.toInterface(IID_IDepthMediaFrame2));
+      interface.cast(IDepthMediaFrame2.fromPtr, IID_IDepthMediaFrame2);
 
   int get maxReliableDepth {
     final value = calloc<Uint32>();

@@ -26,9 +26,8 @@ class IMediaEncodingProfile2 extends IInspectable {
   // vtable begins at 6, is 4 entries long.
   IMediaEncodingProfile2.fromPtr(super.ptr);
 
-  factory IMediaEncodingProfile2.from(IInspectable interface) =>
-      IMediaEncodingProfile2.fromPtr(
-          interface.toInterface(IID_IMediaEncodingProfile2));
+  factory IMediaEncodingProfile2.from(IInspectable interface) => interface.cast(
+      IMediaEncodingProfile2.fromPtr, IID_IMediaEncodingProfile2);
 
   void setAudioTracks(IIterable<AudioStreamDescriptor?>? value) {
     final hr = ptr.ref.vtable

@@ -17,6 +17,7 @@ import 'package:win32/win32.dart'
 import '../internal.dart';
 import 'asyncstatus.dart';
 import 'collections/iiterator.dart';
+import 'extensions/extensions.dart';
 import 'helpers.dart';
 import 'iasyncinfo.dart';
 
@@ -31,7 +32,7 @@ class IAsyncAction extends IInspectable implements IAsyncInfo {
   IAsyncAction.fromPtr(super.ptr);
 
   factory IAsyncAction.from(IInspectable interface) =>
-      IAsyncAction.fromPtr(interface.toInterface(IID_IAsyncAction));
+      interface.cast(IAsyncAction.fromPtr, IID_IAsyncAction);
 
   set completed(Pointer<COMObject> handler) {
     final hr = ptr.ref.vtable

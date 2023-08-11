@@ -16,6 +16,7 @@ import 'package:win32/win32.dart'
 
 import '../internal.dart';
 import 'collections/iiterator.dart';
+import 'extensions/extensions.dart';
 import 'helpers.dart';
 
 /// @nodoc
@@ -27,7 +28,7 @@ class IClosable extends IInspectable {
   IClosable.fromPtr(super.ptr);
 
   factory IClosable.from(IInspectable interface) =>
-      IClosable.fromPtr(interface.toInterface(IID_IClosable));
+      interface.cast(IClosable.fromPtr, IID_IClosable);
 
   void close() {
     final hr = ptr.ref.vtable

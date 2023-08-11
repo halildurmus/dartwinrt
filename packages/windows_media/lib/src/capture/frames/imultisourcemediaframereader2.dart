@@ -27,8 +27,8 @@ class IMultiSourceMediaFrameReader2 extends IInspectable {
   IMultiSourceMediaFrameReader2.fromPtr(super.ptr);
 
   factory IMultiSourceMediaFrameReader2.from(IInspectable interface) =>
-      IMultiSourceMediaFrameReader2.fromPtr(
-          interface.toInterface(IID_IMultiSourceMediaFrameReader2));
+      interface.cast(IMultiSourceMediaFrameReader2.fromPtr,
+          IID_IMultiSourceMediaFrameReader2);
 
   set acquisitionMode(MediaFrameReaderAcquisitionMode value) {
     final hr = ptr.ref.vtable

@@ -26,8 +26,8 @@ class INetworkOperatorTetheringAccessPointConfiguration extends IInspectable {
 
   factory INetworkOperatorTetheringAccessPointConfiguration.from(
           IInspectable interface) =>
-      INetworkOperatorTetheringAccessPointConfiguration.fromPtr(interface
-          .toInterface(IID_INetworkOperatorTetheringAccessPointConfiguration));
+      interface.cast(INetworkOperatorTetheringAccessPointConfiguration.fromPtr,
+          IID_INetworkOperatorTetheringAccessPointConfiguration);
 
   String get ssid {
     final value = calloc<IntPtr>();

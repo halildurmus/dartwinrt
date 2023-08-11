@@ -26,9 +26,8 @@ class IMediaStreamDescriptor2 extends IInspectable
   // vtable begins at 6, is 2 entries long.
   IMediaStreamDescriptor2.fromPtr(super.ptr);
 
-  factory IMediaStreamDescriptor2.from(IInspectable interface) =>
-      IMediaStreamDescriptor2.fromPtr(
-          interface.toInterface(IID_IMediaStreamDescriptor2));
+  factory IMediaStreamDescriptor2.from(IInspectable interface) => interface
+      .cast(IMediaStreamDescriptor2.fromPtr, IID_IMediaStreamDescriptor2);
 
   set label(String value) {
     final hr =

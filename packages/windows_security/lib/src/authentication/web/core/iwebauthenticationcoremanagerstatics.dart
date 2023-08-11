@@ -30,8 +30,8 @@ class IWebAuthenticationCoreManagerStatics extends IInspectable {
   IWebAuthenticationCoreManagerStatics.fromPtr(super.ptr);
 
   factory IWebAuthenticationCoreManagerStatics.from(IInspectable interface) =>
-      IWebAuthenticationCoreManagerStatics.fromPtr(
-          interface.toInterface(IID_IWebAuthenticationCoreManagerStatics));
+      interface.cast(IWebAuthenticationCoreManagerStatics.fromPtr,
+          IID_IWebAuthenticationCoreManagerStatics);
 
   Future<WebTokenRequestResult?> getTokenSilentlyAsync(
       WebTokenRequest? request) {

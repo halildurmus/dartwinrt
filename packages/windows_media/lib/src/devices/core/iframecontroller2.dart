@@ -26,7 +26,7 @@ class IFrameController2 extends IInspectable {
   IFrameController2.fromPtr(super.ptr);
 
   factory IFrameController2.from(IInspectable interface) =>
-      IFrameController2.fromPtr(interface.toInterface(IID_IFrameController2));
+      interface.cast(IFrameController2.fromPtr, IID_IFrameController2);
 
   FrameFlashControl? get flashControl {
     final value = calloc<COMObject>();

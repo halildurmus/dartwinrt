@@ -30,7 +30,7 @@ class IDataWriter extends IInspectable {
   IDataWriter.fromPtr(super.ptr);
 
   factory IDataWriter.from(IInspectable interface) =>
-      IDataWriter.fromPtr(interface.toInterface(IID_IDataWriter));
+      interface.cast(IDataWriter.fromPtr, IID_IDataWriter);
 
   int get unstoredBufferLength {
     final value = calloc<Uint32>();

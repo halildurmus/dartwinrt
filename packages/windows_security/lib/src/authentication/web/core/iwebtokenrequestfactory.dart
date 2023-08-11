@@ -27,9 +27,8 @@ class IWebTokenRequestFactory extends IInspectable {
   // vtable begins at 6, is 4 entries long.
   IWebTokenRequestFactory.fromPtr(super.ptr);
 
-  factory IWebTokenRequestFactory.from(IInspectable interface) =>
-      IWebTokenRequestFactory.fromPtr(
-          interface.toInterface(IID_IWebTokenRequestFactory));
+  factory IWebTokenRequestFactory.from(IInspectable interface) => interface
+      .cast(IWebTokenRequestFactory.fromPtr, IID_IWebTokenRequestFactory);
 
   WebTokenRequest create(
       WebAccountProvider? provider, String scope, String clientId) {

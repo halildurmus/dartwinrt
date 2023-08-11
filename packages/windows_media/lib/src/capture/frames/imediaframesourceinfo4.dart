@@ -23,9 +23,8 @@ class IMediaFrameSourceInfo4 extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IMediaFrameSourceInfo4.fromPtr(super.ptr);
 
-  factory IMediaFrameSourceInfo4.from(IInspectable interface) =>
-      IMediaFrameSourceInfo4.fromPtr(
-          interface.toInterface(IID_IMediaFrameSourceInfo4));
+  factory IMediaFrameSourceInfo4.from(IInspectable interface) => interface.cast(
+      IMediaFrameSourceInfo4.fromPtr, IID_IMediaFrameSourceInfo4);
 
   bool get isShareable {
     final value = calloc<Bool>();

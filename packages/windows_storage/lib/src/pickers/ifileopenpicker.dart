@@ -28,7 +28,7 @@ class IFileOpenPicker extends IInspectable {
   IFileOpenPicker.fromPtr(super.ptr);
 
   factory IFileOpenPicker.from(IInspectable interface) =>
-      IFileOpenPicker.fromPtr(interface.toInterface(IID_IFileOpenPicker));
+      interface.cast(IFileOpenPicker.fromPtr, IID_IFileOpenPicker);
 
   PickerViewMode get viewMode {
     final value = calloc<Int32>();

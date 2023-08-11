@@ -24,7 +24,7 @@ class IFlashControl2 extends IInspectable {
   IFlashControl2.fromPtr(super.ptr);
 
   factory IFlashControl2.from(IInspectable interface) =>
-      IFlashControl2.fromPtr(interface.toInterface(IID_IFlashControl2));
+      interface.cast(IFlashControl2.fromPtr, IID_IFlashControl2);
 
   bool get assistantLightSupported {
     final value = calloc<Bool>();

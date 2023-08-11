@@ -26,9 +26,8 @@ class IAdvancedCapturedPhoto extends IInspectable {
   // vtable begins at 6, is 3 entries long.
   IAdvancedCapturedPhoto.fromPtr(super.ptr);
 
-  factory IAdvancedCapturedPhoto.from(IInspectable interface) =>
-      IAdvancedCapturedPhoto.fromPtr(
-          interface.toInterface(IID_IAdvancedCapturedPhoto));
+  factory IAdvancedCapturedPhoto.from(IInspectable interface) => interface.cast(
+      IAdvancedCapturedPhoto.fromPtr, IID_IAdvancedCapturedPhoto);
 
   CapturedFrame? get frame {
     final value = calloc<COMObject>();

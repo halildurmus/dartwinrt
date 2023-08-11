@@ -27,7 +27,7 @@ class IXmlNodeSelector extends IInspectable {
   IXmlNodeSelector.fromPtr(super.ptr);
 
   factory IXmlNodeSelector.from(IInspectable interface) =>
-      IXmlNodeSelector.fromPtr(interface.toInterface(IID_IXmlNodeSelector));
+      interface.cast(IXmlNodeSelector.fromPtr, IID_IXmlNodeSelector);
 
   IXmlNode? selectSingleNode(String xpath) {
     final node = calloc<COMObject>();

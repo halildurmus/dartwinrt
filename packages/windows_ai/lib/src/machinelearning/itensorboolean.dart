@@ -24,7 +24,7 @@ class ITensorBoolean extends IInspectable {
   ITensorBoolean.fromPtr(super.ptr);
 
   factory ITensorBoolean.from(IInspectable interface) =>
-      ITensorBoolean.fromPtr(interface.toInterface(IID_ITensorBoolean));
+      interface.cast(ITensorBoolean.fromPtr, IID_ITensorBoolean);
 
   List<bool> getAsVectorView() {
     final result = calloc<COMObject>();

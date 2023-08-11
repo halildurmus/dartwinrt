@@ -29,7 +29,7 @@ class ICurrencyFormatter extends IInspectable
   ICurrencyFormatter.fromPtr(super.ptr);
 
   factory ICurrencyFormatter.from(IInspectable interface) =>
-      ICurrencyFormatter.fromPtr(interface.toInterface(IID_ICurrencyFormatter));
+      interface.cast(ICurrencyFormatter.fromPtr, IID_ICurrencyFormatter);
 
   String get currency {
     final value = calloc<IntPtr>();

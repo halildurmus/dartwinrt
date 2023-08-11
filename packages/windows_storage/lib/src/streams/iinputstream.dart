@@ -27,7 +27,7 @@ class IInputStream extends IInspectable implements IClosable {
   IInputStream.fromPtr(super.ptr);
 
   factory IInputStream.from(IInspectable interface) =>
-      IInputStream.fromPtr(interface.toInterface(IID_IInputStream));
+      interface.cast(IInputStream.fromPtr, IID_IInputStream);
 
   Pointer<COMObject> readAsync(
       IBuffer? buffer, int count, InputStreamOptions options) {

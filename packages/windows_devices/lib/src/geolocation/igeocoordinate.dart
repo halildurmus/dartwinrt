@@ -24,7 +24,7 @@ class IGeocoordinate extends IInspectable {
   IGeocoordinate.fromPtr(super.ptr);
 
   factory IGeocoordinate.from(IInspectable interface) =>
-      IGeocoordinate.fromPtr(interface.toInterface(IID_IGeocoordinate));
+      interface.cast(IGeocoordinate.fromPtr, IID_IGeocoordinate);
 
   @Deprecated(
       "Latitude may be altered or unavailable after Windows 8.1. Instead, use Point.Position.Latitude")

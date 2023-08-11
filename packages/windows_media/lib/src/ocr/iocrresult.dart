@@ -26,7 +26,7 @@ class IOcrResult extends IInspectable {
   IOcrResult.fromPtr(super.ptr);
 
   factory IOcrResult.from(IInspectable interface) =>
-      IOcrResult.fromPtr(interface.toInterface(IID_IOcrResult));
+      interface.cast(IOcrResult.fromPtr, IID_IOcrResult);
 
   List<OcrLine?>? get lines {
     final value = calloc<COMObject>();

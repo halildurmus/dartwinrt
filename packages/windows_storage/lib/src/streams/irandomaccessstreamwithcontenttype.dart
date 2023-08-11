@@ -40,8 +40,8 @@ class IRandomAccessStreamWithContentType extends IInspectable
   IRandomAccessStreamWithContentType.fromPtr(super.ptr);
 
   factory IRandomAccessStreamWithContentType.from(IInspectable interface) =>
-      IRandomAccessStreamWithContentType.fromPtr(
-          interface.toInterface(IID_IRandomAccessStreamWithContentType));
+      interface.cast(IRandomAccessStreamWithContentType.fromPtr,
+          IID_IRandomAccessStreamWithContentType);
 
   late final _iRandomAccessStream = IRandomAccessStream.from(this);
 

@@ -28,8 +28,8 @@ class ITimedMetadataEncodingPropertiesStatics extends IInspectable {
 
   factory ITimedMetadataEncodingPropertiesStatics.from(
           IInspectable interface) =>
-      ITimedMetadataEncodingPropertiesStatics.fromPtr(
-          interface.toInterface(IID_ITimedMetadataEncodingPropertiesStatics));
+      interface.cast(ITimedMetadataEncodingPropertiesStatics.fromPtr,
+          IID_ITimedMetadataEncodingPropertiesStatics);
 
   TimedMetadataEncodingProperties? createPgs() {
     final result = calloc<COMObject>();

@@ -27,7 +27,7 @@ class IMediaFrameFormat extends IInspectable {
   IMediaFrameFormat.fromPtr(super.ptr);
 
   factory IMediaFrameFormat.from(IInspectable interface) =>
-      IMediaFrameFormat.fromPtr(interface.toInterface(IID_IMediaFrameFormat));
+      interface.cast(IMediaFrameFormat.fromPtr, IID_IMediaFrameFormat);
 
   String get majorType {
     final value = calloc<IntPtr>();

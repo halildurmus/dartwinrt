@@ -26,8 +26,7 @@ class IMediaDeviceControl extends IInspectable {
   IMediaDeviceControl.fromPtr(super.ptr);
 
   factory IMediaDeviceControl.from(IInspectable interface) =>
-      IMediaDeviceControl.fromPtr(
-          interface.toInterface(IID_IMediaDeviceControl));
+      interface.cast(IMediaDeviceControl.fromPtr, IID_IMediaDeviceControl);
 
   MediaDeviceControlCapabilities? get capabilities {
     final value = calloc<COMObject>();

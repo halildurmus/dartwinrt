@@ -26,7 +26,7 @@ class IIPInformation extends IInspectable {
   IIPInformation.fromPtr(super.ptr);
 
   factory IIPInformation.from(IInspectable interface) =>
-      IIPInformation.fromPtr(interface.toInterface(IID_IIPInformation));
+      interface.cast(IIPInformation.fromPtr, IID_IIPInformation);
 
   NetworkAdapter? get networkAdapter {
     final value = calloc<COMObject>();

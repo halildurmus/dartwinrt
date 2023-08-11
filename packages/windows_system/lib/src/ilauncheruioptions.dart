@@ -25,7 +25,7 @@ class ILauncherUIOptions extends IInspectable {
   ILauncherUIOptions.fromPtr(super.ptr);
 
   factory ILauncherUIOptions.from(IInspectable interface) =>
-      ILauncherUIOptions.fromPtr(interface.toInterface(IID_ILauncherUIOptions));
+      interface.cast(ILauncherUIOptions.fromPtr, IID_ILauncherUIOptions);
 
   Point? get invocationPoint {
     final value = calloc<COMObject>();

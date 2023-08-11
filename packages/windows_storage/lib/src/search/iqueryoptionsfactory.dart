@@ -28,8 +28,7 @@ class IQueryOptionsFactory extends IInspectable {
   IQueryOptionsFactory.fromPtr(super.ptr);
 
   factory IQueryOptionsFactory.from(IInspectable interface) =>
-      IQueryOptionsFactory.fromPtr(
-          interface.toInterface(IID_IQueryOptionsFactory));
+      interface.cast(IQueryOptionsFactory.fromPtr, IID_IQueryOptionsFactory);
 
   QueryOptions createCommonFileQuery(
       CommonFileQuery query, IIterable<String>? fileTypeFilter) {

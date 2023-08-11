@@ -25,9 +25,8 @@ class IDisplayMonitorStatics extends IInspectable {
   // vtable begins at 6, is 3 entries long.
   IDisplayMonitorStatics.fromPtr(super.ptr);
 
-  factory IDisplayMonitorStatics.from(IInspectable interface) =>
-      IDisplayMonitorStatics.fromPtr(
-          interface.toInterface(IID_IDisplayMonitorStatics));
+  factory IDisplayMonitorStatics.from(IInspectable interface) => interface.cast(
+      IDisplayMonitorStatics.fromPtr, IID_IDisplayMonitorStatics);
 
   String getDeviceSelector() {
     final result = calloc<IntPtr>();
