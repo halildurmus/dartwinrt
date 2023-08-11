@@ -100,15 +100,15 @@ C:\src\dartwinrt> melos run update-goldens
 ```
 
 This script will replace the contents of the `*.golden` files with their
-original file contents, as defined in the mapping specified in
-[packages\winrtgen\lib\src\constants\golden_files.dart][golden_files_dart_link].
+original file contents, as defined in the set specified in
+[packages\winrtgen\lib\src\constants\golden_file_entries.dart][golden_file_entries_dart_link].
 
-**Note**: Whenever you add a new golden test, remember to update the map in the
-`golden_files.dart` file.
+**Note**: Whenever you add a new golden test, remember to update the set in the
+`golden_file_entries.dart` file.
 
 [assets_dir_link]: https://github.com/dart-windows/dartwinrt/tree/main/packages/winrtgen/assets
 [ecma_335_link]: https://www.ecma-international.org/publications-and-standards/standards/ecma-335/
-[golden_files_dart_link]: https://github.com/dart-windows/dartwinrt/tree/main/packages/winrtgen/lib/src/constants/golden_files.dart
+[golden_file_entries_dart_link]: https://github.com/dart-windows/dartwinrt/tree/main/packages/winrtgen/lib/src/constants/golden_file_entries.dart
 [goldens_dir_link]: https://github.com/dart-windows/dartwinrt/tree/main/packages/winrtgen/test/goldens
 [melos_link]: https://github.com/invertase/melos
 [melos_yaml_link]: https://github.com/dart-windows/dartwinrt/tree/main/melos.yaml

@@ -8,25 +8,28 @@ import 'package:winrtgen/winrtgen.dart';
 final formatter = DartFormatter();
 
 String format(Object object) {
+  final source = object.toString();
+
   try {
-    return formatter.format(object.toString());
+    return formatter.format(source);
   } catch (_) {
     print('Failed to format ${object.runtimeType}.');
-    return object.toString();
+    return source;
   }
 }
 
 void printEnum() {
-  final enumProjection = EnumProjection.from('Windows.Foundation.AsyncStatus');
+  final enumProjection =
+      EnumProjection.fromType('Windows.Foundation.AsyncStatus');
   print(format(enumProjection));
 }
 
 void printStruct() {
   final structProjection =
-      StructProjection.from('Windows.Gaming.Input.GamepadReading');
+      StructProjection.fromType('Windows.Gaming.Input.GamepadReading');
   print(format(structProjection));
   final nativeStructProjection =
-      NativeStructProjection.from('Windows.Gaming.Input.GamepadReading');
+      NativeStructProjection.fromType('Windows.Gaming.Input.GamepadReading');
   print(format(nativeStructProjection));
 }
 
@@ -50,22 +53,22 @@ void printSetter() {
 
 void printInterface() {
   final interfaceProjection =
-      InterfaceProjection.from('Windows.Storage.Pickers.IFileOpenPicker');
+      InterfaceProjection.fromType('Windows.Storage.Pickers.IFileOpenPicker');
   print(format(interfaceProjection));
 }
 
 void printClass() {
   final classProjection =
-      ClassProjection.from('Windows.Globalization.Calendar');
+      ClassProjection.fromType('Windows.Globalization.Calendar');
   print(format(classProjection));
 }
 
 void main() {
-  // printEnum();
-  // printStruct();
+  printEnum();
+  printStruct();
   printMethod();
-  // printGetter();
-  // printSetter();
-  // printInterface();
-  // printClass();
+  printGetter();
+  printSetter();
+  printInterface();
+  printClass();
 }

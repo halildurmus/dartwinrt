@@ -15,7 +15,7 @@ void generateObjects() {
   final typesAndDependencies = <String>{};
 
   for (final type in types.keys) {
-    final typeDef = WinRTMetadataStore.findTypeDef(type);
+    final typeDef = type.typeDef;
     final projection = typeDef.isInterface
         ? InterfaceProjection(typeDef)
         : ClassProjection(typeDef);
@@ -38,11 +38,11 @@ void generateObjects() {
     // Remove generic interfaces as they are projected manually
     ..removeWhere((type) => type.isEmpty)
     // Remove excluded WinRT types
-    ..removeWhere((type) => excludedObjects.contains(type));
+    ..removeWhere((type) => Exclusion.excludedObjects.contains(type));
 
   // Generate the type projection for each type
   for (final type in typesAndDependencies) {
-    final typeDef = WinRTMetadataStore.findTypeDef(type);
+    final typeDef = type.typeDef;
     final comment = types[type] ?? '';
     final projection = typeDef.isInterface
         ? InterfaceProjection(typeDef, comment: comment)
@@ -66,7 +66,8 @@ void generateConcreteClassesForGenericInterfaces() {
 void generateEnumerations() {
   final types = EnumManager().types;
   for (final type in types.keys) {
-    final projection = EnumProjection.from(type, comment: types[type] ?? '');
+    final projection =
+        EnumProjection.fromType(type, comment: types[type] ?? '');
     final path = type.toFilePath().relativePathFrom('winrtgen');
     writeToFile(path, projection.toString());
   }
@@ -78,10 +79,10 @@ void generateStructs() {
       (a, b) => a.typeDef.shortName.compareTo(b.typeDef.shortName));
 
   for (final type in types.keys) {
-    final nativeStructProjection = NativeStructProjection.from(type);
+    final nativeStructProjection = NativeStructProjection.fromType(type);
     nativeStructProjections.add(nativeStructProjection);
     final structProjection =
-        StructProjection.from(type, comment: types[type] ?? '');
+        StructProjection.fromType(type, comment: types[type] ?? '');
     final path = type.toFilePath().relativePathFrom('winrtgen');
     writeToFile(path, structProjection.toString());
   }
@@ -90,12 +91,13 @@ void generateStructs() {
       'windows_foundation/lib/src/internal/native_structs.g.dart'
           .relativePathFrom('winrtgen');
   final nativeStructsFileContent =
-      [nativeStructsFileHeader, ...nativeStructProjections].join();
+      [Header.nativeStructs, ...nativeStructProjections].join();
   writeToFile(nativeStructsFilePath, nativeStructsFileContent);
 }
 
 void generateLibraryExports() {
-  for (final packageName in packageNames) {
+  for (final package in Package.values) {
+    final packageName = package.name;
     final packagePath = '$packageName/lib/src/'.relativePathFrom('winrtgen');
     final dir = Directory(packagePath);
     final files =
@@ -105,7 +107,7 @@ void generateLibraryExports() {
     for (final file in files) {
       final fileName = file.uri.pathSegments.last; // e.g., calendar.dart
 
-      if (packageName == 'windows_foundation') {
+      if (package == Package.foundation) {
         // Skip internally used files
         if (file.path.contains(r'internal\')) continue;
 
@@ -114,7 +116,8 @@ void generateLibraryExports() {
       }
 
       // Skip excluded package files
-      if (excludedPackageFiles[packageName]?.contains(fileName) ?? false) {
+      if (Exclusion.excludedPackageFiles[packageName]?.contains(fileName) ??
+          false) {
         continue;
       }
 
@@ -131,7 +134,7 @@ void generateLibraryExports() {
 
     final path = '$packagePath/exports.g.dart';
     final content = '''
-$exportsFileHeader
+${Header.exports}
 ${exports.map((export) => 'export ${export.quote()};').join('\n')}
 ''';
     writeToFile(path, content);

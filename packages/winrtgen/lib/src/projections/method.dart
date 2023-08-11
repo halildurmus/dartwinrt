@@ -72,7 +72,7 @@ base class MethodProjection {
   /// and then searching the [MethodProjection] for the [methodName] in it.
   factory MethodProjection.fromTypeAndMethodName(
       String type, String methodName) {
-    final interfaceProjection = InterfaceProjection.from(type);
+    final interfaceProjection = InterfaceProjection.fromType(type);
     final methodProjection = interfaceProjection.methodProjections
         .where((methodProjection) => methodProjection.name == methodName)
         .firstOrNull;

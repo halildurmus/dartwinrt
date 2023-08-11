@@ -6,7 +6,6 @@ import 'package:winmd/winmd.dart';
 
 import '../constants/constants.dart';
 import '../extensions/extensions.dart';
-import '../models/models.dart';
 import 'base.dart';
 
 /// An enum identifier.
@@ -43,7 +42,7 @@ final class EnumProjection extends BaseProjection {
   /// Returns the appropriate enum projection for the [typeDef] depending on
   /// whether it has the `System.FlagsAttribute` attribute.
   factory EnumProjection.create(TypeDef typeDef, {String comment = ''}) {
-    final isFlagsEnum = typeDef.existsAttribute(flagsAttribute);
+    final isFlagsEnum = typeDef.existsAttribute(Attribute.flags.name);
     return isFlagsEnum
         ? FlagsEnumProjection(typeDef, comment: comment)
         : EnumProjection(typeDef, comment: comment);
@@ -53,15 +52,14 @@ final class EnumProjection extends BaseProjection {
   /// [TypeDef].
   ///
   /// ```dart
-  /// final projection = EnumProjection.from('Windows.Globalization.DayOfWeek');
+  /// final projection =
+  ///     EnumProjection.fromType('Windows.Globalization.DayOfWeek');
   /// ```
-  factory EnumProjection.from(String type, {String comment = ''}) {
-    final typeDef = WinRTMetadataStore.findTypeDef(type);
-    return EnumProjection.create(typeDef, comment: comment);
-  }
+  factory EnumProjection.fromType(String type, {String comment = ''}) =>
+      EnumProjection.create(type.typeDef, comment: comment);
 
   @override
-  String get header => enumFileHeader;
+  String get header => Header.enum_;
 
   @override
   Set<String> get imports => {
@@ -128,12 +126,10 @@ final class FlagsEnumProjection extends EnumProjection {
   ///
   /// ```dart
   /// final projection =
-  ///     FlagsEnumProjection.from('Windows.Storage.FileAttributes');
+  ///     FlagsEnumProjection.fromType('Windows.Storage.FileAttributes');
   /// ```
-  factory FlagsEnumProjection.from(String type, {String comment = ''}) {
-    final typeDef = WinRTMetadataStore.findTypeDef(type);
-    return FlagsEnumProjection(typeDef, comment: comment);
-  }
+  factory FlagsEnumProjection.fromType(String type, {String comment = ''}) =>
+      FlagsEnumProjection(type.typeDef, comment: comment);
 
   @override
   String get classHeader => [

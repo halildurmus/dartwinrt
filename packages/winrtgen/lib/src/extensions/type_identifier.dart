@@ -203,7 +203,7 @@ extension TypeIdentifierHelpers on TypeIdentifier {
     }
 
     if (typeProjection.isWinRTEnum) {
-      final isFlagsEnum = type.existsAttribute(flagsAttribute);
+      final isFlagsEnum = type.existsAttribute(Attribute.flags.name);
       final enumSignature = isFlagsEnum ? 'u4' : 'i4';
       return 'enum($name;$enumSignature)';
     }
@@ -277,11 +277,10 @@ TypeIdentifier _unwrapTypeIdentifiers(List<TypeIdentifier> typeIdentifiers) {
 String _parseGenericTypeIdentifierName(TypeIdentifier typeIdentifier) {
   final shortName = typeIdentifier.name.lastComponent.stripGenerics();
   final typeArgs = typeIdentifier.typeArgs;
-  final typeArg1 = typeArgs.first;
+  assert(typeArgs.length == 1 || typeArgs.length == 2);
 
   // Handle generic types with two type parameters
-  if (typeIdentifier.type?.genericParams.length == 2) {
-    final typeArg2 = typeArgs.last;
+  if (typeArgs case [final typeArg1, final typeArg2]) {
     final firstTypeArg = switch (typeIdentifier.type?.name) {
       'Windows.Foundation.AsyncOperationProgressHandler`2' ||
       'Windows.Foundation.AsyncOperationWithProgressCompletedHandler`2' ||
@@ -302,10 +301,11 @@ String _parseGenericTypeIdentifierName(TypeIdentifier typeIdentifier) {
   }
 
   // Handle generic types with one type parameter
+  final typeArg = typeArgs.first;
   return switch (shortName) {
     // Mark typeArg as nullable since all IReference types are nullable.
-    'IReference' => 'IReference<${typeArg1.shortName}?>',
-    _ => '$shortName<${_parseTypeArgName(typeArg1)}>',
+    'IReference' => 'IReference<${typeArg.shortName}?>',
+    _ => '$shortName<${_parseTypeArgName(typeArg)}>',
   };
 }
 

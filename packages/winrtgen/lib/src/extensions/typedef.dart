@@ -57,7 +57,7 @@ extension TypeDefHelpers on TypeDef {
     if (isClass) return 'rc($name;${defaultInterface.signature})';
 
     if (isEnum) {
-      final isFlagsEnum = existsAttribute(flagsAttribute);
+      final isFlagsEnum = existsAttribute(Attribute.flags.name);
       final enumSignature = isFlagsEnum ? 'u4' : 'i4';
       return 'enum($name;$enumSignature)';
     }

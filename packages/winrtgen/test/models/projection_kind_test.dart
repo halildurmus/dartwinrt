@@ -15,282 +15,321 @@ void main() {
     return;
   }
 
-  group('ProjectionKind.from constructor', () {
-    test('unwraps referenceTypeModifier correctly', () {
-      final methodProjection = MethodProjection.fromTypeAndMethodName(
-          'Windows.Globalization.PhoneNumberFormatting.PhoneNumberFormatter',
-          'TryCreate');
-      final paramProjection = methodProjection.parameters.last;
-      expect(ProjectionKind.from(paramProjection.typeProjection),
-          equals(ProjectionKind.object));
-    });
+  group('ProjectionKind', () {
+    group('fromTypeProjection constructor', () {
+      test('returns asyncAction (1)', () {
+        final methodProjection = MethodProjection.fromTypeAndMethodName(
+            'Windows.Storage.IStorageItem', 'DeleteAsync');
+        expect(
+            ProjectionKind.fromTypeProjection(methodProjection.typeProjection),
+            equals(ProjectionKind.asyncAction));
+      });
 
-    test('returns asyncAction type (1)', () {
-      final methodProjection = MethodProjection.fromTypeAndMethodName(
-          'Windows.Storage.IStorageItem', 'DeleteAsync');
-      expect(ProjectionKind.from(methodProjection.typeProjection),
-          equals(ProjectionKind.asyncAction));
-    });
+      test('returns asyncAction (2)', () {
+        final methodProjection = MethodProjection.fromTypeAndMethodName(
+            'Windows.Security.Authentication.OnlineId.OnlineIdAuthenticator',
+            'SignOutUserAsync');
+        expect(
+            ProjectionKind.fromTypeProjection(methodProjection.typeProjection),
+            equals(ProjectionKind.asyncAction));
+      });
 
-    test('returns asyncAction type (2)', () {
-      final methodProjection = MethodProjection.fromTypeAndMethodName(
-          'Windows.Security.Authentication.OnlineId.OnlineIdAuthenticator',
-          'SignOutUserAsync');
-      expect(ProjectionKind.from(methodProjection.typeProjection),
-          equals(ProjectionKind.asyncAction));
-    });
+      test('returns asyncOperation (1)', () {
+        final methodProjection = MethodProjection.fromTypeAndMethodName(
+            'Windows.Storage.Pickers.IFileOpenPicker', 'PickSingleFileAsync');
+        expect(
+            ProjectionKind.fromTypeProjection(methodProjection.typeProjection),
+            equals(ProjectionKind.asyncOperation));
+      });
 
-    test('returns asyncOperation type (1)', () {
-      final methodProjection = MethodProjection.fromTypeAndMethodName(
-          'Windows.Storage.Pickers.IFileOpenPicker', 'PickSingleFileAsync');
-      expect(ProjectionKind.from(methodProjection.typeProjection),
-          equals(ProjectionKind.asyncOperation));
-    });
+      test('returns asyncOperation (2)', () {
+        final methodProjection = MethodProjection.fromTypeAndMethodName(
+            'Windows.Storage.Streams.DataReader', 'LoadAsync');
+        expect(
+            ProjectionKind.fromTypeProjection(methodProjection.typeProjection),
+            equals(ProjectionKind.asyncOperation));
+      });
 
-    test('returns asyncOperation type (2)', () {
-      final methodProjection = MethodProjection.fromTypeAndMethodName(
-          'Windows.Storage.Streams.DataReader', 'LoadAsync');
-      expect(ProjectionKind.from(methodProjection.typeProjection),
-          equals(ProjectionKind.asyncOperation));
-    });
+      test('returns dartPrimitive (bool)', () {
+        final methodProjection = MethodProjection.fromTypeAndMethodName(
+            'Windows.Globalization.ICalendar', 'get_IsDaylightSavingTime');
+        expect(
+            ProjectionKind.fromTypeProjection(methodProjection.typeProjection),
+            equals(ProjectionKind.dartPrimitive));
+      });
 
-    test('returns dartPrimitive (bool) type', () {
-      final methodProjection = MethodProjection.fromTypeAndMethodName(
-          'Windows.Globalization.ICalendar', 'get_IsDaylightSavingTime');
-      expect(ProjectionKind.from(methodProjection.typeProjection),
-          equals(ProjectionKind.dartPrimitive));
-    });
+      test('returns dartPrimitive (double)', () {
+        final methodProjection = MethodProjection.fromTypeAndMethodName(
+            'Windows.Devices.Geolocation.IGeocoordinate', 'get_Latitude');
+        expect(
+            ProjectionKind.fromTypeProjection(methodProjection.typeProjection),
+            equals(ProjectionKind.dartPrimitive));
+      });
 
-    test('returns dartPrimitive (double) type', () {
-      final methodProjection = MethodProjection.fromTypeAndMethodName(
-          'Windows.Devices.Geolocation.IGeocoordinate', 'get_Latitude');
-      expect(ProjectionKind.from(methodProjection.typeProjection),
-          equals(ProjectionKind.dartPrimitive));
-    });
+      test('returns dartPrimitive (int)', () {
+        final methodProjection = MethodProjection.fromTypeAndMethodName(
+            'Windows.Globalization.ICalendar', 'get_Year');
+        expect(
+            ProjectionKind.fromTypeProjection(methodProjection.typeProjection),
+            equals(ProjectionKind.dartPrimitive));
+      });
 
-    test('returns dartPrimitive (int) type', () {
-      final methodProjection = MethodProjection.fromTypeAndMethodName(
-          'Windows.Globalization.ICalendar', 'get_Year');
-      expect(ProjectionKind.from(methodProjection.typeProjection),
-          equals(ProjectionKind.dartPrimitive));
-    });
+      test('returns dartPrimitiveArray', () {
+        final methodProjection = MethodProjection.fromTypeAndMethodName(
+            'Windows.Foundation.IPropertyValue', 'GetInt32Array');
+        final paramProjection = methodProjection.parameters.last;
+        expect(
+            ProjectionKind.fromTypeProjection(paramProjection.typeProjection),
+            equals(ProjectionKind.dartPrimitiveArray));
+      });
 
-    test('returns dartPrimitiveList type', () {
-      final methodProjection = MethodProjection.fromTypeAndMethodName(
-          'Windows.Foundation.IPropertyValue', 'GetInt32Array');
-      final paramProjection = methodProjection.parameters.last;
-      expect(ProjectionKind.from(paramProjection.typeProjection),
-          equals(ProjectionKind.dartPrimitiveArray));
-    });
+      test('returns dateTime', () {
+        final methodProjection = MethodProjection.fromTypeAndMethodName(
+            'Windows.Globalization.ICalendar', 'GetDateTime');
+        expect(
+            ProjectionKind.fromTypeProjection(methodProjection.typeProjection),
+            equals(ProjectionKind.dateTime));
+      });
 
-    test('returns dateTime type', () {
-      final methodProjection = MethodProjection.fromTypeAndMethodName(
-          'Windows.Globalization.ICalendar', 'GetDateTime');
-      expect(ProjectionKind.from(methodProjection.typeProjection),
-          equals(ProjectionKind.dateTime));
-    });
+      test('returns dateTimeArray', () {
+        final methodProjection = MethodProjection.fromTypeAndMethodName(
+            'Windows.Foundation.IPropertyValue', 'GetDateTimeArray');
+        final paramProjection = methodProjection.parameters.last;
+        expect(
+            ProjectionKind.fromTypeProjection(paramProjection.typeProjection),
+            equals(ProjectionKind.dateTimeArray));
+      });
 
-    test('returns dateTimeList type', () {
-      final methodProjection = MethodProjection.fromTypeAndMethodName(
-          'Windows.Foundation.IPropertyValue', 'GetDateTimeArray');
-      final paramProjection = methodProjection.parameters.last;
-      expect(ProjectionKind.from(paramProjection.typeProjection),
-          equals(ProjectionKind.dateTimeArray));
-    });
+      test('returns delegate', () {
+        final methodProjection = MethodProjection.fromTypeAndMethodName(
+            'Windows.Foundation.IAsyncAction', 'get_Completed');
+        expect(
+            ProjectionKind.fromTypeProjection(methodProjection.typeProjection),
+            equals(ProjectionKind.delegate));
+      });
 
-    test('returns delegate type', () {
-      final methodProjection = MethodProjection.fromTypeAndMethodName(
-          'Windows.Foundation.IAsyncAction', 'get_Completed');
-      expect(ProjectionKind.from(methodProjection.typeProjection),
-          equals(ProjectionKind.delegate));
-    });
+      test('returns duration', () {
+        final methodProjection = MethodProjection.fromTypeAndMethodName(
+            'Windows.System.Power.IPowerManagerStatics',
+            'get_RemainingDischargeTime');
+        expect(
+            ProjectionKind.fromTypeProjection(methodProjection.typeProjection),
+            equals(ProjectionKind.duration));
+      });
 
-    test('returns duration type', () {
-      final methodProjection = MethodProjection.fromTypeAndMethodName(
-          'Windows.System.Power.IPowerManagerStatics',
-          'get_RemainingDischargeTime');
-      expect(ProjectionKind.from(methodProjection.typeProjection),
-          equals(ProjectionKind.duration));
-    });
+      test('returns durationArray', () {
+        final methodProjection = MethodProjection.fromTypeAndMethodName(
+            'Windows.Foundation.IPropertyValue', 'GetTimeSpanArray');
+        final paramProjection = methodProjection.parameters.last;
+        expect(
+            ProjectionKind.fromTypeProjection(paramProjection.typeProjection),
+            equals(ProjectionKind.durationArray));
+      });
 
-    test('returns durationList type', () {
-      final methodProjection = MethodProjection.fromTypeAndMethodName(
-          'Windows.Foundation.IPropertyValue', 'GetTimeSpanArray');
-      final paramProjection = methodProjection.parameters.last;
-      expect(ProjectionKind.from(paramProjection.typeProjection),
-          equals(ProjectionKind.durationArray));
-    });
+      test('returns enum_', () {
+        final methodProjection = MethodProjection.fromTypeAndMethodName(
+            'Windows.Foundation.IAsyncInfo', 'get_Status');
+        expect(
+            ProjectionKind.fromTypeProjection(methodProjection.typeProjection),
+            equals(ProjectionKind.enum_));
+      });
 
-    test('returns enum_ type', () {
-      final methodProjection = MethodProjection.fromTypeAndMethodName(
-          'Windows.Foundation.IAsyncInfo', 'get_Status');
-      expect(ProjectionKind.from(methodProjection.typeProjection),
-          equals(ProjectionKind.enum_));
-    });
+      test('returns genericEnum (1)', () {
+        final typeIdentifier = TypeIdentifier(
+            BaseType.classVariableTypeModifier,
+            name: TypeArgKind.winrtEnum.name);
+        final typeProjection = TypeProjection(typeIdentifier);
+        expect(ProjectionKind.fromTypeProjection(typeProjection),
+            equals(ProjectionKind.genericEnum));
+      });
 
-    test('returns genericEnum (1)', () {
-      final typeIdentifier = TypeIdentifier(BaseType.classVariableTypeModifier,
-          name: TypeArgKind.winrtEnum.name);
-      final typeProjection = TypeProjection(typeIdentifier);
-      expect(ProjectionKind.from(typeProjection),
-          equals(ProjectionKind.genericEnum));
-    });
+      test('returns genericEnum (2)', () {
+        final typeIdentifier = TypeIdentifier(
+            BaseType.classVariableTypeModifier,
+            name: TypeArgKind.winrtFlagsEnum.name);
+        final typeProjection = TypeProjection(typeIdentifier);
+        expect(ProjectionKind.fromTypeProjection(typeProjection),
+            equals(ProjectionKind.genericEnum));
+      });
 
-    test('returns genericEnum (2)', () {
-      final typeIdentifier = TypeIdentifier(BaseType.classVariableTypeModifier,
-          name: TypeArgKind.winrtFlagsEnum.name);
-      final typeProjection = TypeProjection(typeIdentifier);
-      expect(ProjectionKind.from(typeProjection),
-          equals(ProjectionKind.genericEnum));
-    });
+      test('returns genericObject (1)', () {
+        final typeIdentifier = TypeIdentifier(
+            BaseType.classVariableTypeModifier,
+            name: TypeArgKind.inspectable.name);
+        final typeProjection = TypeProjection(typeIdentifier);
+        expect(ProjectionKind.fromTypeProjection(typeProjection),
+            equals(ProjectionKind.genericObject));
+      });
 
-    test('returns genericObject (1)', () {
-      final typeIdentifier = TypeIdentifier(BaseType.classVariableTypeModifier,
-          name: TypeArgKind.inspectable.name);
-      final typeProjection = TypeProjection(typeIdentifier);
-      expect(ProjectionKind.from(typeProjection),
-          equals(ProjectionKind.genericObject));
-    });
+      test('returns genericObject (2)', () {
+        final typeIdentifier = TypeIdentifier(
+            BaseType.classVariableTypeModifier,
+            name: TypeArgKind.nullableInspectable.name);
+        final typeProjection = TypeProjection(typeIdentifier);
+        expect(ProjectionKind.fromTypeProjection(typeProjection),
+            equals(ProjectionKind.genericObject));
+      });
 
-    test('returns genericObject (2)', () {
-      final typeIdentifier = TypeIdentifier(BaseType.classVariableTypeModifier,
-          name: TypeArgKind.nullableInspectable.name);
-      final typeProjection = TypeProjection(typeIdentifier);
-      expect(ProjectionKind.from(typeProjection),
-          equals(ProjectionKind.genericObject));
-    });
+      test('returns ireference', () {
+        final methodProjection = MethodProjection.fromTypeAndMethodName(
+            'Windows.Devices.Geolocation.IGeolocatorWithScalarAccuracy',
+            'get_DesiredAccuracyInMeters');
+        expect(
+            ProjectionKind.fromTypeProjection(methodProjection.typeProjection),
+            equals(ProjectionKind.ireference));
+      });
 
-    test('returns guid type', () {
-      final methodProjection = MethodProjection.fromTypeAndMethodName(
-          'Windows.Networking.Connectivity.INetworkAdapter',
-          'get_NetworkAdapterId');
-      expect(ProjectionKind.from(methodProjection.typeProjection),
-          equals(ProjectionKind.struct));
-    });
+      test('returns map', () {
+        final methodProjection = MethodProjection.fromTypeAndMethodName(
+            'Windows.UI.Notifications.INotificationData', 'get_Values');
+        expect(
+            ProjectionKind.fromTypeProjection(methodProjection.typeProjection),
+            equals(ProjectionKind.map));
+      });
 
-    test('returns guidList type', () {
-      final methodProjection = MethodProjection.fromTypeAndMethodName(
-          'Windows.Foundation.IPropertyValue', 'GetGuidArray');
-      final paramProjection = methodProjection.parameters.last;
-      expect(ProjectionKind.from(paramProjection.typeProjection),
-          equals(ProjectionKind.structArray));
-    });
+      test('returns mapView', () {
+        final methodProjection = MethodProjection.fromTypeAndMethodName(
+            'Windows.Foundation.Collections.StringMap', 'GetView');
+        expect(
+            ProjectionKind.fromTypeProjection(methodProjection.typeProjection),
+            equals(ProjectionKind.mapView));
+      });
 
-    test('returns map type', () {
-      final methodProjection = MethodProjection.fromTypeAndMethodName(
-          'Windows.UI.Notifications.INotificationData', 'get_Values');
-      expect(ProjectionKind.from(methodProjection.typeProjection),
-          equals(ProjectionKind.map));
-    });
+      test('returns object (1) - (WinRT class)', () {
+        final methodProjection = MethodProjection.fromTypeAndMethodName(
+            'Windows.Globalization.ICalendar', 'Clone');
+        expect(
+            ProjectionKind.fromTypeProjection(methodProjection.typeProjection),
+            equals(ProjectionKind.object));
+      });
 
-    test('returns mapView type', () {
-      final methodProjection = MethodProjection.fromTypeAndMethodName(
-          'Windows.Foundation.Collections.StringMap', 'GetView');
-      expect(ProjectionKind.from(methodProjection.typeProjection),
-          equals(ProjectionKind.mapView));
-    });
+      test('returns object (2) - (WinRT interface)', () {
+        final methodProjection = MethodProjection.fromTypeAndMethodName(
+            'Windows.Data.Json.JsonArray', 'GetAt');
+        expect(
+            ProjectionKind.fromTypeProjection(methodProjection.typeProjection),
+            equals(ProjectionKind.object));
+      });
 
-    test('returns object type (1) - (WinRT class)', () {
-      final methodProjection = MethodProjection.fromTypeAndMethodName(
-          'Windows.Globalization.ICalendar', 'Clone');
-      expect(ProjectionKind.from(methodProjection.typeProjection),
-          equals(ProjectionKind.object));
-    });
+      test('returns objectArray', () {
+        final methodProjection = MethodProjection.fromTypeAndMethodName(
+            'Windows.Foundation.WwwFormUrlDecoder', 'GetMany');
+        final paramProjection = methodProjection.parameters.last;
+        expect(
+            ProjectionKind.fromTypeProjection(paramProjection.typeProjection),
+            equals(ProjectionKind.objectArray));
+      });
 
-    test('returns object type (2) - (WinRT interface)', () {
-      final methodProjection = MethodProjection.fromTypeAndMethodName(
-          'Windows.Data.Json.JsonArray', 'GetAt');
-      expect(ProjectionKind.from(methodProjection.typeProjection),
-          equals(ProjectionKind.object));
-    });
+      test('returns pointer', () {
+        final methodProjection = MethodProjection.fromTypeAndMethodName(
+            'Windows.Foundation.IPropertyValue', 'GetInt32Array');
+        final paramProjection = methodProjection.parameters.first;
+        expect(
+            ProjectionKind.fromTypeProjection(paramProjection.typeProjection),
+            equals(ProjectionKind.pointer));
+      });
 
-    test('returns objectList type', () {
-      final methodProjection = MethodProjection.fromTypeAndMethodName(
-          'Windows.Foundation.WwwFormUrlDecoder', 'GetMany');
-      final paramProjection = methodProjection.parameters.last;
-      expect(ProjectionKind.from(paramProjection.typeProjection),
-          equals(ProjectionKind.objectArray));
-    });
+      test('returns string', () {
+        final methodProjection = MethodProjection.fromTypeAndMethodName(
+            'Windows.Globalization.ICalendar', 'get_NumeralSystem');
+        expect(
+            ProjectionKind.fromTypeProjection(methodProjection.typeProjection),
+            equals(ProjectionKind.string));
+      });
 
-    test('returns pointer type', () {
-      final methodProjection = MethodProjection.fromTypeAndMethodName(
-          'Windows.Foundation.IPropertyValue', 'GetInt32Array');
-      final paramProjection = methodProjection.parameters.first;
-      expect(ProjectionKind.from(paramProjection.typeProjection),
-          equals(ProjectionKind.pointer));
-    });
+      test('returns string (Char16)', () {
+        final methodProjection = MethodProjection.fromTypeAndMethodName(
+            'Windows.Foundation.IPropertyValue', 'GetChar16');
+        expect(
+            ProjectionKind.fromTypeProjection(methodProjection.typeProjection),
+            equals(ProjectionKind.string));
+      });
 
-    test('returns reference type', () {
-      final methodProjection = MethodProjection.fromTypeAndMethodName(
-          'Windows.Devices.Geolocation.IGeolocatorWithScalarAccuracy',
-          'get_DesiredAccuracyInMeters');
-      expect(ProjectionKind.from(methodProjection.typeProjection),
-          equals(ProjectionKind.ireference));
-    });
+      test('returns stringArray type', () {
+        final methodProjection = MethodProjection.fromTypeAndMethodName(
+            'Windows.Foundation.IPropertyValue', 'GetStringArray');
+        final paramProjection = methodProjection.parameters.last;
+        expect(
+            ProjectionKind.fromTypeProjection(paramProjection.typeProjection),
+            equals(ProjectionKind.stringArray));
+      });
 
-    test('returns string type', () {
-      final methodProjection = MethodProjection.fromTypeAndMethodName(
-          'Windows.Globalization.ICalendar', 'get_NumeralSystem');
-      expect(ProjectionKind.from(methodProjection.typeProjection),
-          equals(ProjectionKind.string));
-    });
+      test('returns struct (1)', () {
+        final methodProjection = MethodProjection.fromTypeAndMethodName(
+            'Windows.UI.ViewManagement.IUISettings3', 'GetColorValue');
+        expect(
+            ProjectionKind.fromTypeProjection(methodProjection.typeProjection),
+            equals(ProjectionKind.struct));
+      });
 
-    test('returns string type (Char16)', () {
-      final methodProjection = MethodProjection.fromTypeAndMethodName(
-          'Windows.Foundation.IPropertyValue', 'GetChar16');
-      expect(ProjectionKind.from(methodProjection.typeProjection),
-          equals(ProjectionKind.string));
-    });
+      test('returns struct (2)', () {
+        final methodProjection = MethodProjection.fromTypeAndMethodName(
+            'Windows.Networking.Connectivity.INetworkAdapter',
+            'get_NetworkAdapterId');
+        expect(
+            ProjectionKind.fromTypeProjection(methodProjection.typeProjection),
+            equals(ProjectionKind.struct));
+      });
 
-    test('returns stringList type', () {
-      final methodProjection = MethodProjection.fromTypeAndMethodName(
-          'Windows.Foundation.IPropertyValue', 'GetStringArray');
-      final paramProjection = methodProjection.parameters.last;
-      expect(ProjectionKind.from(paramProjection.typeProjection),
-          equals(ProjectionKind.stringArray));
-    });
+      test('returns structArray (1)', () {
+        final methodProjection = MethodProjection.fromTypeAndMethodName(
+            'Windows.Foundation.IPropertyValue', 'GetSizeArray');
+        final paramProjection = methodProjection.parameters.last;
+        expect(
+            ProjectionKind.fromTypeProjection(paramProjection.typeProjection),
+            equals(ProjectionKind.structArray));
+      });
 
-    test('returns struct type', () {
-      final methodProjection = MethodProjection.fromTypeAndMethodName(
-          'Windows.UI.ViewManagement.IUISettings3', 'GetColorValue');
-      expect(ProjectionKind.from(methodProjection.typeProjection),
-          equals(ProjectionKind.struct));
-    });
+      test('returns structArray (2)', () {
+        final methodProjection = MethodProjection.fromTypeAndMethodName(
+            'Windows.Foundation.IPropertyValue', 'GetGuidArray');
+        final paramProjection = methodProjection.parameters.last;
+        expect(
+            ProjectionKind.fromTypeProjection(paramProjection.typeProjection),
+            equals(ProjectionKind.structArray));
+      });
 
-    test('returns structList type', () {
-      final methodProjection = MethodProjection.fromTypeAndMethodName(
-          'Windows.Foundation.IPropertyValue', 'GetSizeArray');
-      final paramProjection = methodProjection.parameters.last;
-      expect(ProjectionKind.from(paramProjection.typeProjection),
-          equals(ProjectionKind.structArray));
-    });
+      test('returns uri type', () {
+        final methodProjection = MethodProjection.fromTypeAndMethodName(
+            'Windows.System.ILauncherOptions', 'get_FallbackUri');
+        expect(
+            ProjectionKind.fromTypeProjection(methodProjection.typeProjection),
+            equals(ProjectionKind.uri));
+      });
 
-    test('returns uri type', () {
-      final methodProjection = MethodProjection.fromTypeAndMethodName(
-          'Windows.System.ILauncherOptions', 'get_FallbackUri');
-      expect(ProjectionKind.from(methodProjection.typeProjection),
-          equals(ProjectionKind.uri));
-    });
+      test('returns vector', () {
+        final methodProjection = MethodProjection.fromTypeAndMethodName(
+            'Windows.Storage.Pickers.IFileOpenPicker', 'get_FileTypeFilter');
+        expect(
+            ProjectionKind.fromTypeProjection(methodProjection.typeProjection),
+            equals(ProjectionKind.vector));
+      });
 
-    test('returns vector type', () {
-      final methodProjection = MethodProjection.fromTypeAndMethodName(
-          'Windows.Storage.Pickers.IFileOpenPicker', 'get_FileTypeFilter');
-      expect(ProjectionKind.from(methodProjection.typeProjection),
-          equals(ProjectionKind.vector));
-    });
+      test('returns vectorView', () {
+        final methodProjection = MethodProjection.fromTypeAndMethodName(
+            'Windows.Data.Json.JsonArray', 'GetView');
+        expect(
+            ProjectionKind.fromTypeProjection(methodProjection.typeProjection),
+            equals(ProjectionKind.vectorView));
+      });
 
-    test('returns vectorView type', () {
-      final methodProjection = MethodProjection.fromTypeAndMethodName(
-          'Windows.Data.Json.JsonArray', 'GetView');
-      expect(ProjectionKind.from(methodProjection.typeProjection),
-          equals(ProjectionKind.vectorView));
-    });
+      test('returns void_', () {
+        final methodProjection = MethodProjection.fromTypeAndMethodName(
+            'Windows.Globalization.ICalendar', 'SetToMin');
+        expect(
+            ProjectionKind.fromTypeProjection(methodProjection.typeProjection),
+            equals(ProjectionKind.void_));
+      });
 
-    test('returns void_ type', () {
-      final methodProjection = MethodProjection.fromTypeAndMethodName(
-          'Windows.Globalization.ICalendar', 'SetToMin');
-      expect(ProjectionKind.from(methodProjection.typeProjection),
-          equals(ProjectionKind.void_));
+      test('unwraps referenceTypeModifier correctly', () {
+        final methodProjection = MethodProjection.fromTypeAndMethodName(
+            'Windows.Globalization.PhoneNumberFormatting.PhoneNumberFormatter',
+            'TryCreate');
+        final paramProjection = methodProjection.parameters.last;
+        expect(
+            ProjectionKind.fromTypeProjection(paramProjection.typeProjection),
+            equals(ProjectionKind.object));
+      });
     });
   });
 }

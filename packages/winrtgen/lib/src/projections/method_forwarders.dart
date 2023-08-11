@@ -4,7 +4,7 @@
 
 import 'package:winmd/winmd.dart';
 
-import '../constants/attributes.dart';
+import '../constants/attribute.dart';
 import '../extensions/extensions.dart';
 import 'class.dart';
 import 'interface.dart';
@@ -145,9 +145,10 @@ final class MethodForwardersProjection {
 
     // Try to find the class that implements the interface through the
     // 'ExclusiveToAttribute'.
-    if (interfaceProjection.typeDef.existsAttribute(exclusiveToAttribute)) {
+    if (interfaceProjection.typeDef
+        .existsAttribute(Attribute.exclusiveTo.name)) {
       classTypeName = interfaceProjection.typeDef
-          .findAttribute(exclusiveToAttribute)!
+          .findAttribute(Attribute.exclusiveTo.name)!
           .parameters
           .first
           .value
@@ -161,7 +162,7 @@ final class MethodForwardersProjection {
           .join('.');
     }
 
-    final classProjection = ClassProjection.from(classTypeName);
+    final classProjection = ClassProjection.fromType(classTypeName);
     return _methodProjectionsOfInterface(classProjection.methodProjections);
   }
 

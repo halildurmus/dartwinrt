@@ -7,11 +7,15 @@ import 'package:winmd/winmd.dart';
 import '../extensions/extensions.dart';
 import 'winrt_metadata_store.dart';
 
-class NamespaceAnalyzer {
+/// A class for analyzing a WinRT namespace to retrieve information about its
+/// classes, delegates, enums, interfaces, and structs.
+final class NamespaceAnalyzer {
   NamespaceAnalyzer._(this.namespace);
 
+  /// The WinRT namespace (e.g. `Windows.Foundation`) being analyzed.
   final String namespace;
 
+  /// Creates a [NamespaceAnalyzer] instance for the provided [namespace].
   factory NamespaceAnalyzer.fromNamespace(String namespace) {
     if (!namespace.isWinRTNamespace) {
       throw ArgumentError.value(
@@ -23,12 +27,15 @@ class NamespaceAnalyzer {
 
   Set<String>? _classes;
 
+  /// Returns a set of classes within the analyzed namespace.
   Set<String> get classes => _classes ??= _getClasses();
 
   Set<String> _getClasses() => WinRTMetadataStore.classesInNamespace(namespace)
       .map((typeDef) => typeDef.name)
       .toSet();
 
+  /// Whether the provided type (e.g. `Windows.Foundation.Uri`) exists within
+  /// the analyzed namespace.
   bool containsType(String type) {
     if (!type.isWinRTType) {
       throw ArgumentError.value(type, 'type', 'Not a WinRT type.');
@@ -43,6 +50,7 @@ class NamespaceAnalyzer {
 
   Set<String>? _delegates;
 
+  /// Returns a set of delegates within the analyzed namespace.
   Set<String> get delegates => _delegates ??= _getDelegates();
 
   Set<String> _getDelegates() =>
@@ -52,6 +60,7 @@ class NamespaceAnalyzer {
 
   Set<String>? _enums;
 
+  /// Returns a set of enums within the analyzed namespace.
   Set<String> get enums => _enums ??= _getEnums();
 
   Set<String> _getEnums() => WinRTMetadataStore.enumsInNamespace(namespace)
@@ -60,6 +69,7 @@ class NamespaceAnalyzer {
 
   Set<String>? _interfaces;
 
+  /// Returns a set of interfaces within the analyzed namespace.
   Set<String> get interfaces => _interfaces ??= _getInterfaces();
 
   Set<String> _getInterfaces() =>
@@ -69,6 +79,9 @@ class NamespaceAnalyzer {
 
   Set<String>? _interfacesExcludingFactoryAndStatics;
 
+  /// Returns a set of interfaces within the analyzed namespace, excluding
+  /// factory (e.g., `Windows.Globalization.Calendar.ICalendarFactory`) and
+  /// statics (e.g., `Windows.System.Launcher.ILauncherStatics`) interfaces.
   Set<String> get interfacesExcludingFactoryAndStatics =>
       _interfacesExcludingFactoryAndStatics ??=
           _getInterfacesExcludingFactoryAndStatics();
@@ -83,6 +96,7 @@ class NamespaceAnalyzer {
 
   Set<String>? _structs;
 
+  /// Returns a set of structs within the analyzed namespace.
   Set<String> get structs => _structs ??= _getStructs();
 
   Set<String> _getStructs() => WinRTMetadataStore.structsInNamespace(namespace)

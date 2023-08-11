@@ -9,8 +9,9 @@ import 'dart:typed_data';
 import 'package:crypto/crypto.dart';
 import 'package:path/path.dart' as path;
 import 'package:win32/win32.dart';
+import 'package:winmd/winmd.dart';
 
-import '../constants/constants.dart';
+import '../models/models.dart';
 
 extension StringHelpers on String {
   /// Capitalizes the first character of this string.
@@ -352,9 +353,8 @@ extension StringHelpers on String {
   ///
   /// In case of a string with leading underscores, like `__valueSize`,
   /// `valueSize` will be returned.
-  String toSafeIdentifier() => badIdentifierNames.contains(this)
-      ? '${this}_'
-      : stripLeadingUnderscores();
+  String toSafeIdentifier() =>
+      _badIdentifiers.contains(this) ? '${this}_' : stripLeadingUnderscores();
 
   /// Converts the Windows-style path separator characters (`\`) in this string
   /// to Unix-style forward slashes (`/`).
@@ -372,6 +372,10 @@ extension StringHelpers on String {
   /// be returned.
   String get typeArguments =>
       contains('<') ? substring(indexOf('<') + 1, lastIndexOf('>')) : this;
+
+  /// Returns the [TypeDef] for this string if it represents a WinRT type
+  /// (e.g., `Windows.Foundation.Uri`).
+  TypeDef get typeDef => WinRTMetadataStore.findTypeDef(this);
 }
 
 extension IterableStringHelpers on Iterable<String> {
@@ -451,6 +455,9 @@ const _acronyms = <String>{
   'AC', 'DB', 'DPad', 'HD', 'IO', 'IP', 'NT', 'TV', 'UI', 'WiFi', //
 };
 
+/// A list of all words that should not be used as identifiers.
+const _badIdentifiers = <String>{..._dartReservedWords, ..._dartTypes};
+
 /// Represents a collection of currency codes that appear in the
 /// `CurrencyIdentifiers` class.
 ///
@@ -472,6 +479,22 @@ const _currencyCodes = <String>{
   'TJS', 'TMT', 'TND', 'TOP', 'TRY', 'TTD', 'TWD', 'TZS', 'UAH', 'UGX', //
   'USD', 'UYU', 'UZS', 'VEF', 'VND', 'VUV', 'WST', 'XAF', 'XCD', 'XOF', //
   'XPF', 'XXX', 'YER', 'ZAR', 'ZMW', 'ZWL', 'BYN', 'SSP', 'STN', 'VES', 'MRU'
+};
+
+/// Reserved words in the Dart language that can never be used as identifiers.
+/// Keywords are from https://dart.dev/guides/language/language-tour#keywords.
+const _dartReservedWords = <String>{
+  // Contextual keywords and built-in identifiers are not included here, since
+  // they can be used as valid identifiers in most places.
+  'assert', 'break', 'case', 'catch', 'class', 'const', 'continue', 'default',
+  'do', 'else', 'enum', 'extends', 'false', 'final', 'finally', 'for', 'if',
+  'in', 'is', 'new', 'null', 'rethrow', 'return', 'super', 'switch', 'this',
+  'throw', 'true', 'try', 'var', 'void', 'while', 'with',
+};
+
+/// Dart intrinsic types that will cause problems if used as identifiers.
+const _dartTypes = <String>{
+  'bool', 'double', 'int', 'List', 'Map', 'Set', 'String' //
 };
 
 /// A byte representation of the pinterface instantiation.

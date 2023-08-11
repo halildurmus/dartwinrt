@@ -24,9 +24,6 @@ final class TypeProjection {
   /// The type, as represented as a struct attribute (e.g., `@Int64()`)
   String get attribute => projection.attribute ?? '';
 
-  /// The projection kind of this type (e.g., `ProjectionKind.dateTime`).
-  ProjectionKind get projectionKind => ProjectionKind.from(this);
-
   /// The type of the pointer to [nativeType] (e.g., `Pointer<Int64>`).
   TypeTuple get pointer {
     final type = 'Pointer<$nativeType>';
@@ -163,7 +160,7 @@ final class TypeProjection {
       TypeProjection(typeIdentifier.dereference(), isInParam: isInParam);
 
   TypeTuple _unwrapGenericTypeArg() {
-    final typeArgKind = TypeArgKind.from(typeIdentifier.name);
+    final typeArgKind = TypeArgKind.fromName(typeIdentifier.name);
     return switch (typeArgKind) {
       TypeArgKind.inspectable || TypeArgKind.nullableInspectable => TypeTuple(
           isInParam ? 'VTablePointer' : 'COMObject',

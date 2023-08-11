@@ -15,58 +15,50 @@ void main() {
     return;
   }
 
-  group('TypeArgKind.from factory constructor', () {
-    test('throws an ArgumentError if invalid name is given', () {
-      expect(() => TypeArgKind.from('foo'), throwsArgumentError);
-    });
-
-    group('returns the appropriate TypeArgKind', () {
-      test('(1)', () {
-        expect(TypeArgKind.from('bool'), equals(TypeArgKind.bool_));
+  group('TypeArgKind', () {
+    group('from constructor', () {
+      test('(bool)', () {
+        expect(TypeArgKind.fromName('bool'), equals(TypeArgKind.bool_));
       });
 
-      test('(2)', () {
-        expect(TypeArgKind.from('bool?'), equals(TypeArgKind.nullableBool));
+      test('(bool?)', () {
+        expect(TypeArgKind.fromName('bool?'), equals(TypeArgKind.nullableBool));
       });
 
-      test('(3)', () {
-        expect(
-            TypeArgKind.from('Inspectable'), equals(TypeArgKind.inspectable));
+      test('(Inspectable)', () {
+        expect(TypeArgKind.fromName('Inspectable'),
+            equals(TypeArgKind.inspectable));
       });
 
-      test('(4)', () {
-        expect(TypeArgKind.from('Inspectable?'),
+      test('(Inspectable?)', () {
+        expect(TypeArgKind.fromName('Inspectable?'),
             equals(TypeArgKind.nullableInspectable));
       });
 
-      test('(5)', () {
-        expect(TypeArgKind.from('WinRTEnum'), equals(TypeArgKind.winrtEnum));
+      test('(WinRTEnum)', () {
+        expect(
+            TypeArgKind.fromName('WinRTEnum'), equals(TypeArgKind.winrtEnum));
       });
 
-      test('(6)', () {
-        expect(TypeArgKind.from('WinRTFlagsEnum'),
+      test('(WinRTFlagsEnum)', () {
+        expect(TypeArgKind.fromName('WinRTFlagsEnum'),
             equals(TypeArgKind.winrtFlagsEnum));
       });
-    });
-  });
 
-  group('TypeArgKind.fromTypeIdentifier factory constructor', () {
-    test('throws an UnsupportedError if invalid TypeIdentifier is given', () {
-      expect(
-          () => TypeArgKind.fromTypeIdentifier(
-              const TypeIdentifier(BaseType.classVariableTypeModifier)),
-          throwsUnsupportedError);
+      test('throws an ArgumentError if invalid name is given', () {
+        expect(() => TypeArgKind.fromName('foo'), throwsArgumentError);
+      });
     });
 
-    group('returns the appropriate TypeArgKind', () {
-      test('(1)', () {
+    group('fromTypeIdentifier constructor', () {
+      test('(bool_)', () {
         expect(
             TypeArgKind.fromTypeIdentifier(
                 const TypeIdentifier(BaseType.booleanType)),
             equals(TypeArgKind.bool_));
       });
 
-      test('(2)', () {
+      test('(nullableBool)', () {
         expect(
             TypeArgKind.fromTypeIdentifier(
                 const TypeIdentifier(BaseType.booleanType),
@@ -74,45 +66,31 @@ void main() {
             equals(TypeArgKind.nullableBool));
       });
 
-      test('(3)', () {
-        expect(
-            TypeArgKind.fromTypeIdentifier(
-                const TypeIdentifier(BaseType.genericTypeModifier)),
-            equals(TypeArgKind.inspectable));
-      });
-
-      test('(4)', () {
-        expect(
-            TypeArgKind.fromTypeIdentifier(
-                const TypeIdentifier(BaseType.genericTypeModifier),
-                isNullable: true),
-            equals(TypeArgKind.nullableInspectable));
-      });
-
-      test('(5)', () {
-        expect(
-            TypeArgKind.fromTypeIdentifier(
-                const TypeIdentifier(BaseType.objectType)),
-            equals(TypeArgKind.object));
-      });
-
-      test('(6)', () {
-        expect(
-            TypeArgKind.fromTypeIdentifier(
-                const TypeIdentifier(BaseType.objectType),
-                isNullable: true),
-            equals(TypeArgKind.nullableObject));
-      });
-
-      test('(7)', () {
+      test('(dateTime)', () {
         expect(
             TypeArgKind.fromTypeIdentifier(const TypeIdentifier(
-                BaseType.classTypeModifier,
-                name: 'Windows.Foundation.Uri')),
-            equals(TypeArgKind.uri));
+                BaseType.valueTypeModifier,
+                name: 'Windows.Foundation.DateTime')),
+            equals(TypeArgKind.dateTime));
       });
 
-      test('(8)', () {
+      test('(duration)', () {
+        expect(
+            TypeArgKind.fromTypeIdentifier(const TypeIdentifier(
+                BaseType.valueTypeModifier,
+                name: 'Windows.Foundation.TimeSpan')),
+            equals(TypeArgKind.duration));
+      });
+
+      test('(guid)', () {
+        expect(
+            TypeArgKind.fromTypeIdentifier(const TypeIdentifier(
+                BaseType.valueTypeModifier,
+                name: 'System.Guid')),
+            equals(TypeArgKind.guid));
+      });
+
+      test('(inspectable) (1)', () {
         expect(
             TypeArgKind.fromTypeIdentifier(const TypeIdentifier(
                 BaseType.classTypeModifier,
@@ -120,7 +98,7 @@ void main() {
             equals(TypeArgKind.inspectable));
       });
 
-      test('(9)', () {
+      test('(nullableInspectable) (1)', () {
         expect(
             TypeArgKind.fromTypeIdentifier(
                 const TypeIdentifier(BaseType.classTypeModifier,
@@ -129,31 +107,37 @@ void main() {
             equals(TypeArgKind.nullableInspectable));
       });
 
-      test('(10)', () {
+      test('(inspectable) (2)', () {
         expect(
-            TypeArgKind.fromTypeIdentifier(const TypeIdentifier(
-                BaseType.valueTypeModifier,
-                name: 'System.Guid')),
-            equals(TypeArgKind.guid));
+            TypeArgKind.fromTypeIdentifier(
+                const TypeIdentifier(BaseType.genericTypeModifier)),
+            equals(TypeArgKind.inspectable));
       });
 
-      test('(11)', () {
+      test('(nullableInspectable) (2)', () {
         expect(
-            TypeArgKind.fromTypeIdentifier(const TypeIdentifier(
-                BaseType.valueTypeModifier,
-                name: 'Windows.Foundation.DateTime')),
-            equals(TypeArgKind.dateTime));
+            TypeArgKind.fromTypeIdentifier(
+                const TypeIdentifier(BaseType.genericTypeModifier),
+                isNullable: true),
+            equals(TypeArgKind.nullableInspectable));
       });
 
-      test('(12)', () {
+      test('(object)', () {
         expect(
-            TypeArgKind.fromTypeIdentifier(const TypeIdentifier(
-                BaseType.valueTypeModifier,
-                name: 'Windows.Foundation.TimeSpan')),
-            equals(TypeArgKind.duration));
+            TypeArgKind.fromTypeIdentifier(
+                const TypeIdentifier(BaseType.objectType)),
+            equals(TypeArgKind.object));
       });
 
-      test('(13)', () {
+      test('(nullableObject)', () {
+        expect(
+            TypeArgKind.fromTypeIdentifier(
+                const TypeIdentifier(BaseType.objectType),
+                isNullable: true),
+            equals(TypeArgKind.nullableObject));
+      });
+
+      test('(point)', () {
         expect(
             TypeArgKind.fromTypeIdentifier(const TypeIdentifier(
                 BaseType.valueTypeModifier,
@@ -161,7 +145,7 @@ void main() {
             equals(TypeArgKind.point));
       });
 
-      test('(14)', () {
+      test('(nullableSize)', () {
         expect(
             TypeArgKind.fromTypeIdentifier(
                 const TypeIdentifier(BaseType.valueTypeModifier,
@@ -170,284 +154,257 @@ void main() {
             equals(TypeArgKind.nullableSize));
       });
 
-      test('(15)', () {
+      test('(uri)', () {
+        expect(
+            TypeArgKind.fromTypeIdentifier(const TypeIdentifier(
+                BaseType.classTypeModifier,
+                name: 'Windows.Foundation.Uri')),
+            equals(TypeArgKind.uri));
+      });
+
+      test('(winrtEnum)', () {
         expect(
             TypeArgKind.fromTypeIdentifier(
               TypeIdentifier(BaseType.valueTypeModifier,
                   name: 'Windows.Foundation.AsyncStatus',
-                  type: WinRTMetadataStore.findTypeDef(
-                      'Windows.Foundation.AsyncStatus')),
+                  type: 'Windows.Foundation.AsyncStatus'.typeDef),
             ),
             equals(TypeArgKind.winrtEnum));
       });
 
-      test('(16)', () {
+      test('(winrtFlagsEnum)', () {
         expect(
             TypeArgKind.fromTypeIdentifier(
               TypeIdentifier(BaseType.valueTypeModifier,
                   name: 'Windows.Storage.FileAttributes',
-                  type: WinRTMetadataStore.findTypeDef(
-                      'Windows.Storage.FileAttributes')),
+                  type: 'Windows.Storage.FileAttributes'.typeDef),
             ),
             equals(TypeArgKind.winrtFlagsEnum));
       });
-    });
-  });
 
-  group('isEnum', () {
-    test('returns true for TypeArgKind.winrtEnum', () {
+      test('throws an UnsupportedError if invalid TypeIdentifier is given', () {
+        expect(
+            () => TypeArgKind.fromTypeIdentifier(
+                const TypeIdentifier(BaseType.classVariableTypeModifier)),
+            throwsUnsupportedError);
+      });
+    });
+
+    test('isEnum', () {
       expect(TypeArgKind.winrtEnum.isEnum, isTrue);
+      expect(TypeArgKind.winrtFlagsEnum.isEnum, isTrue);
     });
 
-    test('returns true for TypeArgKind.winrtFlagsEnum', () {
-      expect(TypeArgKind.winrtEnum.isEnum, isTrue);
-    });
-  });
-
-  group('isInt', () {
-    test('returns true for TypeArgKind.int16', () {
+    test('isInt', () {
       expect(TypeArgKind.int16.isInt, isTrue);
-    });
-
-    test('returns true for TypeArgKind.int32', () {
       expect(TypeArgKind.int32.isInt, isTrue);
-    });
-
-    test('returns false for TypeArgKind.int64', () {
       expect(TypeArgKind.int64.isInt, isTrue);
-    });
-
-    test('returns true for TypeArgKind.uint8', () {
       expect(TypeArgKind.uint16.isInt, isTrue);
-    });
-
-    test('returns true for TypeArgKind.uint16', () {
       expect(TypeArgKind.uint16.isInt, isTrue);
-    });
-
-    test('returns true for TypeArgKind.uint32', () {
       expect(TypeArgKind.uint32.isInt, isTrue);
-    });
-
-    test('returns false for TypeArgKind.uint64', () {
       expect(TypeArgKind.uint64.isInt, isTrue);
     });
-  });
 
-  group('isInspectable', () {
-    test('returns true for TypeArgKind.inspectable', () {
+    test('isInspectable', () {
       expect(TypeArgKind.inspectable.isInspectable, isTrue);
-    });
-
-    test('returns true for TypeArgKind.nullableInspectable', () {
       expect(TypeArgKind.nullableInspectable.isInspectable, isTrue);
     });
-  });
 
-  group('typeIdentifier', () {
-    test('throws an UnsupportedError for TypeArgKind.inspectable', () {
-      expect(
-          () => TypeArgKind.inspectable.typeIdentifier, throwsUnsupportedError);
-    });
+    group('typeIdentifier', () {
+      test('(bool)', () {
+        expect(TypeArgKind.bool_.typeIdentifier.baseType,
+            equals(BaseType.booleanType));
+      });
 
-    test('throws an UnsupportedError for TypeArgKind.nullableInspectable', () {
-      expect(() => TypeArgKind.nullableInspectable.typeIdentifier,
-          throwsUnsupportedError);
-    });
+      test('(nullableBool)', () {
+        expect(TypeArgKind.nullableBool.typeIdentifier.baseType,
+            equals(BaseType.booleanType));
+      });
 
-    test('throws an UnsupportedError for TypeArgKind.winrtEnum', () {
-      expect(
-          () => TypeArgKind.winrtEnum.typeIdentifier, throwsUnsupportedError);
-    });
+      test('(dateTime)', () {
+        expect(TypeArgKind.dateTime.typeIdentifier.name,
+            equals('Windows.Foundation.DateTime'));
+      });
 
-    test('throws an UnsupportedError for TypeArgKind.winrtFlagsEnum', () {
-      expect(() => TypeArgKind.winrtFlagsEnum.typeIdentifier,
-          throwsUnsupportedError);
-    });
+      test('(nullableDateTime)', () {
+        expect(TypeArgKind.nullableDateTime.typeIdentifier.name,
+            equals('Windows.Foundation.DateTime'));
+      });
 
-    test('returns correct TypeIdentifier for TypeArgKind.bool', () {
-      expect(TypeArgKind.bool_.typeIdentifier.baseType,
-          equals(BaseType.booleanType));
-    });
+      test('(double)', () {
+        expect(TypeArgKind.double.typeIdentifier.baseType,
+            equals(BaseType.doubleType));
+      });
 
-    test('returns correct TypeIdentifier for TypeArgKind.nullableBool', () {
-      expect(TypeArgKind.nullableBool.typeIdentifier.baseType,
-          equals(BaseType.booleanType));
-    });
+      test('(nullableDouble)', () {
+        expect(TypeArgKind.nullableDouble.typeIdentifier.baseType,
+            equals(BaseType.doubleType));
+      });
 
-    test('returns correct TypeIdentifier for TypeArgKind.dateTime', () {
-      expect(TypeArgKind.dateTime.typeIdentifier.name,
-          equals('Windows.Foundation.DateTime'));
-    });
+      test('(duration)', () {
+        expect(TypeArgKind.duration.typeIdentifier.name,
+            equals('Windows.Foundation.TimeSpan'));
+      });
 
-    test('returns correct TypeIdentifier for TypeArgKind.nullableDateTime', () {
-      expect(TypeArgKind.nullableDateTime.typeIdentifier.name,
-          equals('Windows.Foundation.DateTime'));
-    });
+      test('(nullableDuration)', () {
+        expect(TypeArgKind.nullableDuration.typeIdentifier.name,
+            equals('Windows.Foundation.TimeSpan'));
+      });
 
-    test('returns correct TypeIdentifier for TypeArgKind.double', () {
-      expect(TypeArgKind.double.typeIdentifier.baseType,
-          equals(BaseType.doubleType));
-    });
+      test('(float)', () {
+        expect(TypeArgKind.float.typeIdentifier.baseType,
+            equals(BaseType.floatType));
+      });
 
-    test('returns correct TypeIdentifier for TypeArgKind.nullableDouble', () {
-      expect(TypeArgKind.nullableDouble.typeIdentifier.baseType,
-          equals(BaseType.doubleType));
-    });
+      test('(nullableFloat)', () {
+        expect(TypeArgKind.nullableFloat.typeIdentifier.baseType,
+            equals(BaseType.floatType));
+      });
 
-    test('returns correct TypeIdentifier for TypeArgKind.duration', () {
-      expect(TypeArgKind.duration.typeIdentifier.name,
-          equals('Windows.Foundation.TimeSpan'));
-    });
+      test('(guid)', () {
+        expect(TypeArgKind.guid.typeIdentifier.name, equals('System.Guid'));
+      });
 
-    test('returns correct TypeIdentifier for TypeArgKind.nullableDuration', () {
-      expect(TypeArgKind.nullableDuration.typeIdentifier.name,
-          equals('Windows.Foundation.TimeSpan'));
-    });
+      test('(nullableGuid)', () {
+        expect(TypeArgKind.nullableGuid.typeIdentifier.name,
+            equals('System.Guid'));
+      });
 
-    test('returns correct TypeIdentifier for TypeArgKind.float', () {
-      expect(TypeArgKind.float.typeIdentifier.baseType,
-          equals(BaseType.floatType));
-    });
+      test('(int16)', () {
+        expect(TypeArgKind.int16.typeIdentifier.baseType,
+            equals(BaseType.int16Type));
+      });
 
-    test('returns correct TypeIdentifier for TypeArgKind.nullableFloat', () {
-      expect(TypeArgKind.nullableFloat.typeIdentifier.baseType,
-          equals(BaseType.floatType));
-    });
+      test('(nullableInt16)', () {
+        expect(TypeArgKind.nullableInt16.typeIdentifier.baseType,
+            equals(BaseType.int16Type));
+      });
 
-    test('returns correct TypeIdentifier for TypeArgKind.guid', () {
-      expect(TypeArgKind.guid.typeIdentifier.name, equals('System.Guid'));
-    });
+      test('(int32)', () {
+        expect(TypeArgKind.int32.typeIdentifier.baseType,
+            equals(BaseType.int32Type));
+      });
 
-    test('returns correct TypeIdentifier for TypeArgKind.nullableGuid', () {
-      expect(
-          TypeArgKind.nullableGuid.typeIdentifier.name, equals('System.Guid'));
-    });
+      test('(nullableInt32)', () {
+        expect(TypeArgKind.nullableInt32.typeIdentifier.baseType,
+            equals(BaseType.int32Type));
+      });
 
-    test('returns correct TypeIdentifier for TypeArgKind.int16', () {
-      expect(TypeArgKind.int16.typeIdentifier.baseType,
-          equals(BaseType.int16Type));
-    });
+      test('(int64)', () {
+        expect(TypeArgKind.int64.typeIdentifier.baseType,
+            equals(BaseType.int64Type));
+      });
 
-    test('returns correct TypeIdentifier for TypeArgKind.nullableInt16', () {
-      expect(TypeArgKind.nullableInt16.typeIdentifier.baseType,
-          equals(BaseType.int16Type));
-    });
+      test('(nullableInt64)', () {
+        expect(TypeArgKind.nullableInt64.typeIdentifier.baseType,
+            equals(BaseType.int64Type));
+      });
 
-    test('returns correct TypeIdentifier for TypeArgKind.int32', () {
-      expect(TypeArgKind.int32.typeIdentifier.baseType,
-          equals(BaseType.int32Type));
-    });
+      test('(loadMoreItemsResult)', () {
+        expect(TypeArgKind.loadMoreItemsResult.typeIdentifier.name,
+            equals('Windows.UI.Xaml.Data.LoadMoreItemsResult'));
+      });
 
-    test('returns correct TypeIdentifier for TypeArgKind.nullableInt32', () {
-      expect(TypeArgKind.nullableInt32.typeIdentifier.baseType,
-          equals(BaseType.int32Type));
-    });
+      test('(object)', () {
+        expect(TypeArgKind.object.typeIdentifier.baseType,
+            equals(BaseType.objectType));
+      });
 
-    test('returns correct TypeIdentifier for TypeArgKind.int64', () {
-      expect(TypeArgKind.int64.typeIdentifier.baseType,
-          equals(BaseType.int64Type));
-    });
+      test('(nullableObject)', () {
+        expect(TypeArgKind.nullableObject.typeIdentifier.baseType,
+            equals(BaseType.objectType));
+      });
 
-    test('returns correct TypeIdentifier for TypeArgKind.nullableInt64', () {
-      expect(TypeArgKind.nullableInt64.typeIdentifier.baseType,
-          equals(BaseType.int64Type));
-    });
+      test('(point)', () {
+        expect(TypeArgKind.point.typeIdentifier.name,
+            equals('Windows.Foundation.Point'));
+      });
 
-    test('returns correct TypeIdentifier for TypeArgKind.loadMoreItemsResult',
-        () {
-      expect(TypeArgKind.loadMoreItemsResult.typeIdentifier.name,
-          equals('Windows.UI.Xaml.Data.LoadMoreItemsResult'));
-    });
+      test('(nullablePoint)', () {
+        expect(TypeArgKind.nullablePoint.typeIdentifier.name,
+            equals('Windows.Foundation.Point'));
+      });
 
-    test('returns correct TypeIdentifier for TypeArgKind.object', () {
-      expect(TypeArgKind.object.typeIdentifier.baseType,
-          equals(BaseType.objectType));
-    });
+      test('(rect)', () {
+        expect(TypeArgKind.rect.typeIdentifier.name,
+            equals('Windows.Foundation.Rect'));
+      });
 
-    test('returns correct TypeIdentifier for TypeArgKind.nullableObject', () {
-      expect(TypeArgKind.nullableObject.typeIdentifier.baseType,
-          equals(BaseType.objectType));
-    });
+      test('(nullableRect)', () {
+        expect(TypeArgKind.nullableRect.typeIdentifier.name,
+            equals('Windows.Foundation.Rect'));
+      });
 
-    test('returns correct TypeIdentifier for TypeArgKind.point', () {
-      expect(TypeArgKind.point.typeIdentifier.name,
-          equals('Windows.Foundation.Point'));
-    });
+      test('(size)', () {
+        expect(TypeArgKind.size.typeIdentifier.name,
+            equals('Windows.Foundation.Size'));
+      });
 
-    test('returns correct TypeIdentifier for TypeArgKind.nullablePoint', () {
-      expect(TypeArgKind.nullablePoint.typeIdentifier.name,
-          equals('Windows.Foundation.Point'));
-    });
+      test('(nullableSize)', () {
+        expect(TypeArgKind.nullableSize.typeIdentifier.name,
+            equals('Windows.Foundation.Size'));
+      });
 
-    test('returns correct TypeIdentifier for TypeArgKind.rect', () {
-      expect(TypeArgKind.rect.typeIdentifier.name,
-          equals('Windows.Foundation.Rect'));
-    });
+      test('(string)', () {
+        expect(TypeArgKind.string.typeIdentifier.baseType,
+            equals(BaseType.stringType));
+      });
 
-    test('returns correct TypeIdentifier for TypeArgKind.nullableRect', () {
-      expect(TypeArgKind.nullableRect.typeIdentifier.name,
-          equals('Windows.Foundation.Rect'));
-    });
+      test('(nullableString)', () {
+        expect(TypeArgKind.nullableString.typeIdentifier.baseType,
+            equals(BaseType.stringType));
+      });
 
-    test('returns correct TypeIdentifier for TypeArgKind.size', () {
-      expect(TypeArgKind.size.typeIdentifier.name,
-          equals('Windows.Foundation.Size'));
-    });
+      test('(uint16)', () {
+        expect(TypeArgKind.uint16.typeIdentifier.baseType,
+            equals(BaseType.uint16Type));
+      });
 
-    test('returns correct TypeIdentifier for TypeArgKind.nullableSize', () {
-      expect(TypeArgKind.nullableSize.typeIdentifier.name,
-          equals('Windows.Foundation.Size'));
-    });
+      test('(nullableUint16)', () {
+        expect(TypeArgKind.nullableUint16.typeIdentifier.baseType,
+            equals(BaseType.uint16Type));
+      });
 
-    test('returns correct TypeIdentifier for TypeArgKind.string', () {
-      expect(TypeArgKind.string.typeIdentifier.baseType,
-          equals(BaseType.stringType));
-    });
+      test('(uint32)', () {
+        expect(TypeArgKind.uint32.typeIdentifier.baseType,
+            equals(BaseType.uint32Type));
+      });
 
-    test('returns correct TypeIdentifier for TypeArgKind.nullableString', () {
-      expect(TypeArgKind.nullableString.typeIdentifier.baseType,
-          equals(BaseType.stringType));
-    });
+      test('(nullableUint32)', () {
+        expect(TypeArgKind.nullableUint32.typeIdentifier.baseType,
+            equals(BaseType.uint32Type));
+      });
 
-    test('returns correct TypeIdentifier for TypeArgKind.uint16', () {
-      expect(TypeArgKind.uint16.typeIdentifier.baseType,
-          equals(BaseType.uint16Type));
-    });
+      test('(uint64)', () {
+        expect(TypeArgKind.uint64.typeIdentifier.baseType,
+            equals(BaseType.uint64Type));
+      });
 
-    test('returns correct TypeIdentifier for TypeArgKind.nullableUint16', () {
-      expect(TypeArgKind.nullableUint16.typeIdentifier.baseType,
-          equals(BaseType.uint16Type));
-    });
+      test('(nullableUint64)', () {
+        expect(TypeArgKind.nullableUint64.typeIdentifier.baseType,
+            equals(BaseType.uint64Type));
+      });
 
-    test('returns correct TypeIdentifier for TypeArgKind.uint32', () {
-      expect(TypeArgKind.uint32.typeIdentifier.baseType,
-          equals(BaseType.uint32Type));
-    });
+      test('(uri)', () {
+        expect(TypeArgKind.uri.typeIdentifier.name,
+            equals('Windows.Foundation.Uri'));
+      });
 
-    test('returns correct TypeIdentifier for TypeArgKind.nullableUint32', () {
-      expect(TypeArgKind.nullableUint32.typeIdentifier.baseType,
-          equals(BaseType.uint32Type));
-    });
+      test('(nullableUri)', () {
+        expect(TypeArgKind.nullableUri.typeIdentifier.name,
+            equals('Windows.Foundation.Uri'));
+      });
 
-    test('returns correct TypeIdentifier for TypeArgKind.uint64', () {
-      expect(TypeArgKind.uint64.typeIdentifier.baseType,
-          equals(BaseType.uint64Type));
-    });
-
-    test('returns correct TypeIdentifier for TypeArgKind.nullableUint64', () {
-      expect(TypeArgKind.nullableUint64.typeIdentifier.baseType,
-          equals(BaseType.uint64Type));
-    });
-
-    test('returns correct TypeIdentifier for TypeArgKind.uri', () {
-      expect(TypeArgKind.uri.typeIdentifier.name,
-          equals('Windows.Foundation.Uri'));
-    });
-
-    test('returns correct TypeIdentifier for TypeArgKind.nullableUri', () {
-      expect(TypeArgKind.nullableUri.typeIdentifier.name,
-          equals('Windows.Foundation.Uri'));
+      test('throws an UnsupportedError', () {
+        expect(() => TypeArgKind.inspectable.typeIdentifier,
+            throwsUnsupportedError);
+        expect(() => TypeArgKind.nullableInspectable.typeIdentifier,
+            throwsUnsupportedError);
+        expect(
+            () => TypeArgKind.winrtEnum.typeIdentifier, throwsUnsupportedError);
+        expect(() => TypeArgKind.winrtFlagsEnum.typeIdentifier,
+            throwsUnsupportedError);
+      });
     });
   });
 }

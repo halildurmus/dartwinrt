@@ -14,39 +14,39 @@ void main() {
     return;
   }
 
-  final calendarProjection =
-      InterfaceProjection.from('Windows.Globalization.ICalendar');
+  final icalendarProjection =
+      InterfaceProjection.fromType('Windows.Globalization.ICalendar');
 
   group('InterfaceProjection', () {
     test('projects something', () {
-      final output = calendarProjection.toString();
+      final output = icalendarProjection.toString();
       expect(output, isNotEmpty);
       expect(output, contains('ICalendar'));
     });
 
     test('from factory constructor throws a StateError if type is not found',
         () {
-      expect(
-          () => InterfaceProjection.from('Windows.Foo.IBar'), throwsStateError);
+      expect(() => InterfaceProjection.fromType('Windows.Foo.IBar'),
+          throwsStateError);
     });
   });
 
   group('WinRT interface', () {
     test('has copyright header', () {
-      expect(calendarProjection.header, contains(copyrightHeader));
+      expect(icalendarProjection.header, contains(Header.copyright));
     });
 
     test('has correct dartdoc category comment', () {
-      expect(calendarProjection.category, isEmpty);
-      expect(calendarProjection.classPreamble, isEmpty);
+      expect(icalendarProjection.category, isEmpty);
+      expect(icalendarProjection.classPreamble, isEmpty);
     });
 
     test('has correct short name', () {
-      expect(calendarProjection.shortName, equals('ICalendar'));
+      expect(icalendarProjection.shortName, equals('ICalendar'));
     });
 
     test('annotated with @Deprecated', () {
-      final projection = InterfaceProjection.from(
+      final projection = InterfaceProjection.fromType(
           'Windows.Networking.Connectivity.IDataUsage');
       expect(projection.isDeprecated, isTrue);
       expect(
@@ -56,15 +56,15 @@ void main() {
     });
 
     test('has correct inheritance chain (1)', () {
-      expect(calendarProjection.inheritsFrom, isEmpty);
-      expect(calendarProjection.classHeader,
+      expect(icalendarProjection.inheritsFrom, isEmpty);
+      expect(icalendarProjection.classHeader,
           equals('class ICalendar extends IInspectable'));
-      expect(calendarProjection.interfaceImports, isEmpty);
+      expect(icalendarProjection.interfaceImports, isEmpty);
     });
 
     test('has correct inheritance chain (2)', () {
       final projection =
-          InterfaceProjection.from('Windows.Gaming.Input.IGamepad');
+          InterfaceProjection.fromType('Windows.Gaming.Input.IGamepad');
       expect(projection.inheritsFrom, equals('IGameController'));
       expect(
         projection.classHeader,
@@ -76,7 +76,7 @@ void main() {
     });
 
     test('has correct inheritance chain (3) (ignores excluded interfaces)', () {
-      final projection = ClassProjection.from(
+      final projection = ClassProjection.fromType(
           'Windows.Globalization.NumberFormatting.ICurrencyFormatter');
       // INumberFormatter2 interface is excluded
       expect(
@@ -100,7 +100,7 @@ void main() {
 
     test('imports are meaningful (1)', () {
       final projection =
-          InterfaceProjection.from('Windows.Foundation.IMemoryBuffer');
+          InterfaceProjection.fromType('Windows.Foundation.IMemoryBuffer');
       expect(
         projection.imports,
         unorderedEquals([
@@ -120,7 +120,7 @@ void main() {
 
     test('imports are meaningful (2)', () {
       expect(
-        calendarProjection.imports,
+        icalendarProjection.imports,
         unorderedEquals([
           'dart:async',
           'dart:ffi',
@@ -135,27 +135,36 @@ void main() {
     });
 
     test('has correct vtable start', () {
-      expect(calendarProjection.vtableStart, equals(6));
+      expect(icalendarProjection.vtableStart, equals(6));
     });
 
     test('has correct IID', () {
       expect(
-        calendarProjection.iidConstant,
+        icalendarProjection.iidConstant,
         contains("const IID_ICalendar = "
             "'{ca30221d-86d9-40fb-a26b-d44eb7cf08ea}';"),
       );
     });
 
+    test('does not have default constructor', () {
+      expect(icalendarProjection.constructor, isEmpty);
+    });
+
+    test('has named constructor', () {
+      expect(icalendarProjection.namedConstructor,
+          equals('ICalendar.fromPtr(super.ptr);'));
+    });
+
     test('has correct number of methods', () {
-      expect(calendarProjection.methodProjections.length, equals(98));
+      expect(icalendarProjection.methodProjections.length, equals(98));
     });
 
     test('has correct first method', () {
-      expect(calendarProjection.methodProjections.first.name, equals('Clone'));
+      expect(icalendarProjection.methodProjections.first.name, equals('Clone'));
     });
 
     test('has correct last method', () {
-      expect(calendarProjection.methodProjections.last.name,
+      expect(icalendarProjection.methodProjections.last.name,
           equals('get_IsDaylightSavingTime'));
     });
   });

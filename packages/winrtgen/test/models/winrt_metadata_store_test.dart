@@ -50,16 +50,26 @@ void main() {
       test('throws an ArgumentError if type is not a WinRT type', () {
         expect(
           () => WinRTMetadataStore.findTypeDef('Windows'),
-          throwsA(isA<ArgumentError>().having(
-              (e) => e.message, 'message', equals('Not a WinRT type.'))),
+          throwsA(
+            isA<ArgumentError>().having(
+              (e) => e.message,
+              'message',
+              equals('Not a WinRT type.'),
+            ),
+          ),
         );
       });
 
       test('throws a StateError if type is not found', () {
         expect(
           () => WinRTMetadataStore.findTypeDef('Windows.Foo.Bar'),
-          throwsA(isA<StateError>().having((e) => e.message, 'message',
-              equals('`Windows.Foo.Bar` is not found in the Metadata!'))),
+          throwsA(
+            isA<StateError>().having(
+              (e) => e.message,
+              'message',
+              equals('`Windows.Foo.Bar` is not found in the Metadata!'),
+            ),
+          ),
         );
       });
     });

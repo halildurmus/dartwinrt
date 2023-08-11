@@ -10,17 +10,25 @@ import '../constants/constants.dart';
 import '../extensions/extensions.dart';
 import 'models.dart';
 
-class TypeAnalyzer {
+/// A class for analyzing WinRT types to retrieve information about their
+/// attributes and dependent types.
+final class TypeAnalyzer {
   TypeAnalyzer._(this.typeDef) : type = typeDef.name;
 
+  /// The analyzed WinRT type (e.g., `Windows.Globalization.Calendar`).
   final String type;
+
+  /// The underlying [TypeDef] for the analyzed type.
   final TypeDef typeDef;
 
-  factory TypeAnalyzer.fromType(String type) =>
-      TypeAnalyzer._(WinRTMetadataStore.findTypeDef(type));
+  /// Creates a [TypeAnalyzer] instance for the provided [type] (e.g.,
+  /// `Windows.Globalization.Calendar`).
+  factory TypeAnalyzer.fromType(String type) => TypeAnalyzer._(type.typeDef);
 
+  /// Creates a [TypeAnalyzer] instance for the provided [typeDef].
   factory TypeAnalyzer.fromTypeDef(TypeDef typeDef) => TypeAnalyzer._(typeDef);
 
+  /// Returns a set of interfaces implemented by the analyzed type.
   Set<String> get interfaces => isObject
       ? typeDef.interfaces.map((interface) => interface.name).toSet()
       : {};
@@ -43,6 +51,7 @@ class TypeAnalyzer {
 
   TypeDependencies? _dependencies;
 
+  /// Returns the type dependencies of the analyzed type.
   TypeDependencies get dependencies {
     if (isObject) return _dependencies ??= _getDependencies();
     return TypeDependencies(type,
@@ -110,13 +119,13 @@ class TypeAnalyzer {
     final structs = SplayTreeSet<String>();
     final ignoredTypes = SplayTreeSet<String>();
 
-    final typeDef = WinRTMetadataStore.findTypeDef(type);
+    final typeDef = type.typeDef;
 
     void handleTypeIdentifier(TypeIdentifier typeIdentifier) {
       final typeName = typeIdentifier.name;
       if (typeName.isEmpty) return;
 
-      if (ignoredTypesInImports.contains(typeName) ||
+      if (Exclusion.excludedImports.contains(typeName) ||
           typeDef.interfaces.any((interface) => interface.name == typeName) ||
           typeName.endsWith('EventArgs')) {
         ignoredTypes.add(typeName);

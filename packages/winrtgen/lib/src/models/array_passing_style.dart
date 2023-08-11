@@ -3,6 +3,7 @@
 // license that can be found in the LICENSE file.
 
 /// Represents the various array-passing styles in WinRT.
+///
 /// See https://learn.microsoft.com/uwp/winrt-cref/winrt-type-system#array-parameters
 enum ArrayPassingStyle {
   /// Used when the caller provides an array for the method to fill, up to a

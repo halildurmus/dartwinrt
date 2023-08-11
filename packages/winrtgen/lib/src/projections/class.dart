@@ -6,7 +6,6 @@ import 'package:winmd/winmd.dart';
 
 import '../constants/constants.dart';
 import '../extensions/extensions.dart';
-import '../models/models.dart';
 import 'interface.dart';
 import 'method.dart';
 
@@ -18,12 +17,10 @@ base class ClassProjection extends InterfaceProjection {
   ///
   /// ```dart
   /// final projection =
-  ///     ClassProjection.from('Windows.Storage.Pickers.FileOpenPicker');
+  ///     ClassProjection.fromType('Windows.Storage.Pickers.FileOpenPicker');
   /// ```
-  factory ClassProjection.from(String type, {String comment = ''}) {
-    final typeDef = WinRTMetadataStore.findTypeDef(type);
-    return ClassProjection(typeDef, comment: comment);
-  }
+  factory ClassProjection.fromType(String type, {String comment = ''}) =>
+      ClassProjection(type.typeDef, comment: comment);
 
   // InterfaceProjection overrides
 
@@ -36,7 +33,7 @@ base class ClassProjection extends InterfaceProjection {
 
   /// Whether the class is an activatable runtime class.
   bool get isActivatableWithNoParams => typeDef.customAttributes
-      .where((attribute) => attribute.name == activatableAttribute)
+      .where((attribute) => attribute.name == Attribute.activatable.name)
       .where((attribute) => attribute.parameters.length == 2)
       .isNotEmpty;
 
@@ -57,7 +54,7 @@ base class ClassProjection extends InterfaceProjection {
       _factoryInterfaces ??= _cacheFactoryInterfaces();
 
   List<String> _cacheFactoryInterfaces() => typeDef.customAttributes
-      .where((attribute) => attribute.name == activatableAttribute)
+      .where((attribute) => attribute.name == Attribute.activatable.name)
       .where((attribute) => attribute.parameters.length == 3)
       .map((attribute) => attribute.parameters.first.value as String)
       .toList()
@@ -70,7 +67,7 @@ base class ClassProjection extends InterfaceProjection {
 
   List<FactoryConstructorProjection> _cacheFactoryConstructors() => [
         for (final interface in factoryInterfaces)
-          ...InterfaceProjection.from(interface)
+          ...InterfaceProjection.fromType(interface)
               .methodProjections
               .map(FactoryConstructorProjection.new)
       ];
@@ -81,11 +78,11 @@ base class ClassProjection extends InterfaceProjection {
       _staticInterfaces ??= _cacheStaticInterfaces();
 
   List<String> _cacheStaticInterfaces() => typeDef.customAttributes
-      .where((attribute) => attribute.name == staticAttribute)
+      .where((attribute) => attribute.name == Attribute.static.name)
       .where((attribute) => attribute.parameters.length == 3)
       .map((attribute) => attribute.parameters.first.value as String)
       .toList()
-    ..removeWhere(excludedStaticInterfaces.contains)
+    ..removeWhere(Exclusion.excludedStaticInterfaces.contains)
     ..sort();
 
   List<StaticMethodProjection>? _staticMethods;
@@ -95,7 +92,7 @@ base class ClassProjection extends InterfaceProjection {
 
   List<StaticMethodProjection> _cacheStaticMethods() => [
         for (final interface in staticInterfaces)
-          ...InterfaceProjection.from(interface)
+          ...InterfaceProjection.fromType(interface)
               .methodProjections
               .map(StaticMethodProjection.new)
       ];

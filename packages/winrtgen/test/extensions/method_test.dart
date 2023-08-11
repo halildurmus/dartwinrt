@@ -14,27 +14,26 @@ void main() {
     return;
   }
 
-  test('isVoid', () {
-    final typeDef =
-        WinRTMetadataStore.findTypeDef('Windows.Foundation.IClosable');
-    final method = typeDef.findMethod('Close')!;
-    expect(method.isVoid, isTrue);
-  });
+  group('Method', () {
+    final iclosableTypeDef = 'Windows.Foundation.IClosable'.typeDef;
+    final closeMethod = iclosableTypeDef.findMethod('Close')!;
 
-  group('uniqueName', () {
-    test('returns the overload name', () {
-      final typeDef = WinRTMetadataStore.findTypeDef(
-          'Windows.Globalization.ICalendarFactory');
-      final method = typeDef.methods.first;
-      expect(
-          method.uniqueName, equals('CreateCalendarDefaultCalendarAndClock'));
+    test('isVoid', () {
+      expect(closeMethod.isVoid, isTrue);
     });
 
-    test('returns the original name', () {
-      final typeDef =
-          WinRTMetadataStore.findTypeDef('Windows.Foundation.IClosable');
-      final method = typeDef.findMethod('Close')!;
-      expect(method.uniqueName, equals('Close'));
+    group('uniqueName', () {
+      test('returns the original name', () {
+        expect(closeMethod.uniqueName, equals('Close'));
+      });
+
+      test('returns the overload name', () {
+        final typeDef = 'Windows.Globalization.ICalendarFactory'.typeDef;
+        final [method1, method2] = typeDef.methods;
+        expect(method1.uniqueName,
+            equals('CreateCalendarDefaultCalendarAndClock'));
+        expect(method2.uniqueName, equals('CreateCalendar'));
+      });
     });
   });
 }

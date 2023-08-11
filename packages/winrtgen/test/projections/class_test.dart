@@ -15,9 +15,9 @@ void main() {
   }
 
   final calendarProjection =
-      ClassProjection.from('Windows.Globalization.Calendar');
+      ClassProjection.fromType('Windows.Globalization.Calendar');
   final geolocatorProjection =
-      ClassProjection.from('Windows.Devices.Geolocation.Geolocator');
+      ClassProjection.fromType('Windows.Devices.Geolocation.Geolocator');
 
   group('ClassProjection', () {
     test('projects something', () {
@@ -28,13 +28,14 @@ void main() {
 
     test('from factory constructor throws a StateError if type is not found',
         () {
-      expect(() => ClassProjection.from('Windows.Foo.Bar'), throwsStateError);
+      expect(
+          () => ClassProjection.fromType('Windows.Foo.Bar'), throwsStateError);
     });
   });
 
   group('WinRT class', () {
     test('has copyright header', () {
-      expect(calendarProjection.header, contains(copyrightHeader));
+      expect(calendarProjection.header, contains(Header.copyright));
     });
 
     test('includes correct dartdoc category comment', () {
@@ -48,7 +49,7 @@ void main() {
 
     test('annotated with @Deprecated', () {
       final projection =
-          ClassProjection.from('Windows.Networking.Connectivity.DataUsage');
+          ClassProjection.fromType('Windows.Networking.Connectivity.DataUsage');
       expect(projection.isDeprecated, isTrue);
       expect(
           projection.classHeader,
@@ -76,7 +77,7 @@ void main() {
 
     test('has correct inheritance chain (2)', () {
       final projection =
-          ClassProjection.from('Windows.Foundation.PropertyValue');
+          ClassProjection.fromType('Windows.Foundation.PropertyValue');
       expect(projection.inheritsFrom, isEmpty);
       expect(projection.classHeader,
           equals('class PropertyValue extends IInspectable'));
@@ -86,7 +87,7 @@ void main() {
 
     test('has correct inheritance chain (3) (ignores excluded interfaces)', () {
       final projection =
-          ClassProjection.from('Windows.Storage.Pickers.FileOpenPicker');
+          ClassProjection.fromType('Windows.Storage.Pickers.FileOpenPicker');
       // IFileOpenPicker2 and IFileOpenPickerStatics and
       // IFileOpenPickerWithOperationId interfaces are excluded
       expect(
@@ -131,7 +132,8 @@ void main() {
     });
 
     test('without default constructor', () {
-      final projection = ClassProjection.from('Windows.Networking.HostName');
+      final projection =
+          ClassProjection.fromType('Windows.Networking.HostName');
       expect(projection.isActivatableWithNoParams, isFalse);
       expect(projection.constructor, isEmpty);
     });
@@ -152,7 +154,7 @@ void main() {
     });
 
     test('without _className variable', () {
-      final projection = ClassProjection.from(
+      final projection = ClassProjection.fromType(
           'Windows.Storage.FileProperties.BasicProperties');
       expect(projection.isActivatableWithNoParams, isFalse);
       expect(projection.factoryInterfaces, isEmpty);
@@ -189,7 +191,7 @@ void main() {
     });
 
     test('has a static method annotated with @Deprecated', () {
-      final classProjection = ClassProjection.from(
+      final classProjection = ClassProjection.fromType(
           'Windows.ApplicationModel.DataTransfer.StandardDataFormats');
       final methodProjection = classProjection.staticMethods
           .firstWhere((m) => m.methodProjection.name == 'get_Uri');

@@ -6,7 +6,6 @@ import 'package:winmd/winmd.dart';
 
 import '../constants/constants.dart';
 import '../models/models.dart';
-import '../projections/projections.dart';
 import 'type_identifier.dart';
 
 extension MethodHelpers on Method {
@@ -17,19 +16,20 @@ extension MethodHelpers on Method {
   bool get isVoid => returnType.typeIdentifier.isVoidType;
 
   /// Returns the appropriate [ProjectionKind] for this method.
-  ProjectionKind get projectionKind => parameters.any((p) => p.isOutParam)
-      ? ProjectionKind.record
-      : TypeProjection(returnType.typeIdentifier).projectionKind;
+  ProjectionKind get projectionKind => ProjectionKind.fromMethod(this);
 
   /// Returns a unique name for this method.
   ///
-  /// Since Dart doesn't allow overloaded methods, we have to rename methods
-  /// that are duplicated.
+  /// Since Dart doesn't allow overloaded methods, it is imperative for each
+  /// method to possess a unique name.
+  ///
+  /// If this method is overloaded, the name provided by the metadata is
+  /// returned. Otherwise, the original name is returned.
   String get uniqueName {
-    // Is it a WinRT method overloaded with a name provided by the metadata?
-    final overloadName = attributeAsString(overloadAttribute);
+    // Is this a WinRT method overloaded with a name provided by the metadata?
+    final overloadName = attributeAsString(Attribute.overload.name);
     if (overloadName.isNotEmpty) return overloadName;
-    // Otherwise the original name is fine.
+    // If not, the original name suffices.
     return name;
   }
 }

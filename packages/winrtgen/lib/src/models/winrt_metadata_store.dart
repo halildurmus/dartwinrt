@@ -6,6 +6,7 @@ import 'package:winmd/winmd.dart';
 
 import '../extensions/extensions.dart';
 
+/// A class that provides access to the WinRT Metadata.
 final class WinRTMetadataStore {
   /// Returns all [TypeDef]s of runtime classes in the given [namespace].
   static List<TypeDef> classesInNamespace(String namespace) =>

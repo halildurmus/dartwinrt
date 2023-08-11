@@ -23,7 +23,7 @@ void main() {
 
     test('fromTypeDef', () {
       const type = 'Windows.Globalization.Calendar';
-      final typeDef = WinRTMetadataStore.findTypeDef(type);
+      final typeDef = type.typeDef;
       final analyzer = TypeAnalyzer.fromTypeDef(typeDef);
       expect(analyzer.type, equals(type));
     });
