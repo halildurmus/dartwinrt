@@ -30,7 +30,7 @@ class IMediaFrameSource extends IInspectable {
   IMediaFrameSource.fromPtr(super.ptr);
 
   factory IMediaFrameSource.from(IInspectable interface) =>
-      IMediaFrameSource.fromPtr(interface.toInterface(IID_IMediaFrameSource));
+      interface.cast(IMediaFrameSource.fromPtr, IID_IMediaFrameSource);
 
   MediaFrameSourceInfo? get info {
     final value = calloc<COMObject>();

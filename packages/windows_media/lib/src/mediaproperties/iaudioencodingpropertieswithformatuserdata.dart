@@ -26,8 +26,8 @@ class IAudioEncodingPropertiesWithFormatUserData extends IInspectable {
 
   factory IAudioEncodingPropertiesWithFormatUserData.from(
           IInspectable interface) =>
-      IAudioEncodingPropertiesWithFormatUserData.fromPtr(interface
-          .toInterface(IID_IAudioEncodingPropertiesWithFormatUserData));
+      interface.cast(IAudioEncodingPropertiesWithFormatUserData.fromPtr,
+          IID_IAudioEncodingPropertiesWithFormatUserData);
 
   void setFormatUserData(List<int> value) {
     final valueArray = value.toArray<Uint8>();

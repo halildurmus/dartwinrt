@@ -24,7 +24,7 @@ class ILanguage3 extends IInspectable {
   ILanguage3.fromPtr(super.ptr);
 
   factory ILanguage3.from(IInspectable interface) =>
-      ILanguage3.fromPtr(interface.toInterface(IID_ILanguage3));
+      interface.cast(ILanguage3.fromPtr, IID_ILanguage3);
 
   String get abbreviatedName {
     final value = calloc<IntPtr>();

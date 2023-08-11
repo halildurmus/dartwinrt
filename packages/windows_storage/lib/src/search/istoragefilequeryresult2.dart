@@ -30,9 +30,8 @@ class IStorageFileQueryResult2 extends IInspectable
   // vtable begins at 6, is 1 entries long.
   IStorageFileQueryResult2.fromPtr(super.ptr);
 
-  factory IStorageFileQueryResult2.from(IInspectable interface) =>
-      IStorageFileQueryResult2.fromPtr(
-          interface.toInterface(IID_IStorageFileQueryResult2));
+  factory IStorageFileQueryResult2.from(IInspectable interface) => interface
+      .cast(IStorageFileQueryResult2.fromPtr, IID_IStorageFileQueryResult2);
 
   IMap<String, IVectorView<TextSegment>> getMatchingPropertiesWithRanges(
       StorageFile? file) {

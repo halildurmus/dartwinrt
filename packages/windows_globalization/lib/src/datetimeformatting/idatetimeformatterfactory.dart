@@ -32,9 +32,8 @@ class IDateTimeFormatterFactory extends IInspectable {
   // vtable begins at 6, is 7 entries long.
   IDateTimeFormatterFactory.fromPtr(super.ptr);
 
-  factory IDateTimeFormatterFactory.from(IInspectable interface) =>
-      IDateTimeFormatterFactory.fromPtr(
-          interface.toInterface(IID_IDateTimeFormatterFactory));
+  factory IDateTimeFormatterFactory.from(IInspectable interface) => interface
+      .cast(IDateTimeFormatterFactory.fromPtr, IID_IDateTimeFormatterFactory);
 
   DateTimeFormatter createDateTimeFormatter(String formatTemplate) {
     final result = calloc<COMObject>();

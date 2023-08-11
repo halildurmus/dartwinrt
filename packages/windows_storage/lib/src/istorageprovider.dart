@@ -24,7 +24,7 @@ class IStorageProvider extends IInspectable {
   IStorageProvider.fromPtr(super.ptr);
 
   factory IStorageProvider.from(IInspectable interface) =>
-      IStorageProvider.fromPtr(interface.toInterface(IID_IStorageProvider));
+      interface.cast(IStorageProvider.fromPtr, IID_IStorageProvider);
 
   String get id {
     final value = calloc<IntPtr>();

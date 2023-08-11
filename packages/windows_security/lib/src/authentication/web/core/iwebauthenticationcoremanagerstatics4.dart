@@ -34,8 +34,8 @@ class IWebAuthenticationCoreManagerStatics4 extends IInspectable
   IWebAuthenticationCoreManagerStatics4.fromPtr(super.ptr);
 
   factory IWebAuthenticationCoreManagerStatics4.from(IInspectable interface) =>
-      IWebAuthenticationCoreManagerStatics4.fromPtr(
-          interface.toInterface(IID_IWebAuthenticationCoreManagerStatics4));
+      interface.cast(IWebAuthenticationCoreManagerStatics4.fromPtr,
+          IID_IWebAuthenticationCoreManagerStatics4);
 
   Future<FindAllAccountsResult?> findAllAccountsAsync(
       WebAccountProvider? provider) {

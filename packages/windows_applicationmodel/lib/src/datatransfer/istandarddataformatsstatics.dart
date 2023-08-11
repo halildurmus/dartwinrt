@@ -25,8 +25,8 @@ class IStandardDataFormatsStatics extends IInspectable {
   IStandardDataFormatsStatics.fromPtr(super.ptr);
 
   factory IStandardDataFormatsStatics.from(IInspectable interface) =>
-      IStandardDataFormatsStatics.fromPtr(
-          interface.toInterface(IID_IStandardDataFormatsStatics));
+      interface.cast(
+          IStandardDataFormatsStatics.fromPtr, IID_IStandardDataFormatsStatics);
 
   String get text {
     final value = calloc<IntPtr>();

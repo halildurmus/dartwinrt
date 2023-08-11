@@ -24,9 +24,8 @@ class IImageFeatureDescriptor extends IInspectable {
   // vtable begins at 6, is 4 entries long.
   IImageFeatureDescriptor.fromPtr(super.ptr);
 
-  factory IImageFeatureDescriptor.from(IInspectable interface) =>
-      IImageFeatureDescriptor.fromPtr(
-          interface.toInterface(IID_IImageFeatureDescriptor));
+  factory IImageFeatureDescriptor.from(IInspectable interface) => interface
+      .cast(IImageFeatureDescriptor.fromPtr, IID_IImageFeatureDescriptor);
 
   BitmapPixelFormat get bitmapPixelFormat {
     final value = calloc<Int32>();

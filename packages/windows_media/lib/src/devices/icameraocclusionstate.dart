@@ -26,8 +26,7 @@ class ICameraOcclusionState extends IInspectable {
   ICameraOcclusionState.fromPtr(super.ptr);
 
   factory ICameraOcclusionState.from(IInspectable interface) =>
-      ICameraOcclusionState.fromPtr(
-          interface.toInterface(IID_ICameraOcclusionState));
+      interface.cast(ICameraOcclusionState.fromPtr, IID_ICameraOcclusionState);
 
   bool get isOccluded {
     final value = calloc<Bool>();

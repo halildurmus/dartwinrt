@@ -28,9 +28,8 @@ class IFrameControlCapabilities extends IInspectable {
   // vtable begins at 6, is 5 entries long.
   IFrameControlCapabilities.fromPtr(super.ptr);
 
-  factory IFrameControlCapabilities.from(IInspectable interface) =>
-      IFrameControlCapabilities.fromPtr(
-          interface.toInterface(IID_IFrameControlCapabilities));
+  factory IFrameControlCapabilities.from(IInspectable interface) => interface
+      .cast(IFrameControlCapabilities.fromPtr, IID_IFrameControlCapabilities);
 
   FrameExposureCapabilities? get exposure {
     final value = calloc<COMObject>();

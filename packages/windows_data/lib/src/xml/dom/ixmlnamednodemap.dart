@@ -27,7 +27,7 @@ class IXmlNamedNodeMap extends IInspectable
   IXmlNamedNodeMap.fromPtr(super.ptr);
 
   factory IXmlNamedNodeMap.from(IInspectable interface) =>
-      IXmlNamedNodeMap.fromPtr(interface.toInterface(IID_IXmlNamedNodeMap));
+      interface.cast(IXmlNamedNodeMap.fromPtr, IID_IXmlNamedNodeMap);
 
   int get length {
     final value = calloc<Uint32>();

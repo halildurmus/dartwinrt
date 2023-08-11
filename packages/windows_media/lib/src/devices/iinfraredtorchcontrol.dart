@@ -26,8 +26,7 @@ class IInfraredTorchControl extends IInspectable {
   IInfraredTorchControl.fromPtr(super.ptr);
 
   factory IInfraredTorchControl.from(IInspectable interface) =>
-      IInfraredTorchControl.fromPtr(
-          interface.toInterface(IID_IInfraredTorchControl));
+      interface.cast(IInfraredTorchControl.fromPtr, IID_IInfraredTorchControl);
 
   bool get isSupported {
     final value = calloc<Bool>();

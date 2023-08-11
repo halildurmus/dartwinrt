@@ -23,9 +23,8 @@ class IPackageIdWithMetadata extends IInspectable {
   // vtable begins at 6, is 2 entries long.
   IPackageIdWithMetadata.fromPtr(super.ptr);
 
-  factory IPackageIdWithMetadata.from(IInspectable interface) =>
-      IPackageIdWithMetadata.fromPtr(
-          interface.toInterface(IID_IPackageIdWithMetadata));
+  factory IPackageIdWithMetadata.from(IInspectable interface) => interface.cast(
+      IPackageIdWithMetadata.fromPtr, IID_IPackageIdWithMetadata);
 
   String get productId {
     final value = calloc<IntPtr>();

@@ -24,8 +24,7 @@ class IConnectivityInterval extends IInspectable {
   IConnectivityInterval.fromPtr(super.ptr);
 
   factory IConnectivityInterval.from(IInspectable interface) =>
-      IConnectivityInterval.fromPtr(
-          interface.toInterface(IID_IConnectivityInterval));
+      interface.cast(IConnectivityInterval.fromPtr, IID_IConnectivityInterval);
 
   DateTime get startTime {
     final startTime = calloc<Int64>();

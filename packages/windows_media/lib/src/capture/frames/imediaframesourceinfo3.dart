@@ -25,9 +25,8 @@ class IMediaFrameSourceInfo3 extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IMediaFrameSourceInfo3.fromPtr(super.ptr);
 
-  factory IMediaFrameSourceInfo3.from(IInspectable interface) =>
-      IMediaFrameSourceInfo3.fromPtr(
-          interface.toInterface(IID_IMediaFrameSourceInfo3));
+  factory IMediaFrameSourceInfo3.from(IInspectable interface) => interface.cast(
+      IMediaFrameSourceInfo3.fromPtr, IID_IMediaFrameSourceInfo3);
 
   Panel getRelativePanel(DisplayRegion? displayRegion) {
     final result = calloc<Int32>();

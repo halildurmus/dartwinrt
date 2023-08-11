@@ -28,8 +28,7 @@ class IXmlDocumentStatics extends IInspectable {
   IXmlDocumentStatics.fromPtr(super.ptr);
 
   factory IXmlDocumentStatics.from(IInspectable interface) =>
-      IXmlDocumentStatics.fromPtr(
-          interface.toInterface(IID_IXmlDocumentStatics));
+      interface.cast(IXmlDocumentStatics.fromPtr, IID_IXmlDocumentStatics);
 
   Future<XmlDocument?> loadFromUriAsync(Uri? uri) {
     final asyncInfo = calloc<COMObject>();

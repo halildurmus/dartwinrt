@@ -24,7 +24,7 @@ class ITorchControl extends IInspectable {
   ITorchControl.fromPtr(super.ptr);
 
   factory ITorchControl.from(IInspectable interface) =>
-      ITorchControl.fromPtr(interface.toInterface(IID_ITorchControl));
+      interface.cast(ITorchControl.fromPtr, IID_ITorchControl);
 
   bool get supported {
     final value = calloc<Bool>();

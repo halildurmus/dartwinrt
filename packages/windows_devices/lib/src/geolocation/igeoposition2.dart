@@ -29,7 +29,7 @@ class IGeoposition2 extends IInspectable implements IGeoposition {
   IGeoposition2.fromPtr(super.ptr);
 
   factory IGeoposition2.from(IInspectable interface) =>
-      IGeoposition2.fromPtr(interface.toInterface(IID_IGeoposition2));
+      interface.cast(IGeoposition2.fromPtr, IID_IGeoposition2);
 
   VenueData? get venueData {
     final value = calloc<COMObject>();

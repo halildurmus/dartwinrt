@@ -27,8 +27,8 @@ class IMediaFrameSourceController3 extends IInspectable {
   IMediaFrameSourceController3.fromPtr(super.ptr);
 
   factory IMediaFrameSourceController3.from(IInspectable interface) =>
-      IMediaFrameSourceController3.fromPtr(
-          interface.toInterface(IID_IMediaFrameSourceController3));
+      interface.cast(IMediaFrameSourceController3.fromPtr,
+          IID_IMediaFrameSourceController3);
 
   AudioDeviceController? get audioDeviceController {
     final value = calloc<COMObject>();

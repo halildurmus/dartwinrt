@@ -26,9 +26,8 @@ class IAudioStreamDescriptor2 extends IInspectable
   // vtable begins at 6, is 4 entries long.
   IAudioStreamDescriptor2.fromPtr(super.ptr);
 
-  factory IAudioStreamDescriptor2.from(IInspectable interface) =>
-      IAudioStreamDescriptor2.fromPtr(
-          interface.toInterface(IID_IAudioStreamDescriptor2));
+  factory IAudioStreamDescriptor2.from(IInspectable interface) => interface
+      .cast(IAudioStreamDescriptor2.fromPtr, IID_IAudioStreamDescriptor2);
 
   set leadingEncoderPadding(int? value) {
     final hr = ptr.ref.vtable

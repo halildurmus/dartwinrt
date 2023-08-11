@@ -29,8 +29,7 @@ class IKnownFoldersStatics4 extends IInspectable {
   IKnownFoldersStatics4.fromPtr(super.ptr);
 
   factory IKnownFoldersStatics4.from(IInspectable interface) =>
-      IKnownFoldersStatics4.fromPtr(
-          interface.toInterface(IID_IKnownFoldersStatics4));
+      interface.cast(IKnownFoldersStatics4.fromPtr, IID_IKnownFoldersStatics4);
 
   Future<KnownFoldersAccessStatus> requestAccessAsync(KnownFolderId folderId) {
     final operation = calloc<COMObject>();

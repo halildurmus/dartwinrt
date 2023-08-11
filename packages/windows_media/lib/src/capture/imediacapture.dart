@@ -35,7 +35,7 @@ class IMediaCapture extends IInspectable {
   IMediaCapture.fromPtr(super.ptr);
 
   factory IMediaCapture.from(IInspectable interface) =>
-      IMediaCapture.fromPtr(interface.toInterface(IID_IMediaCapture));
+      interface.cast(IMediaCapture.fromPtr, IID_IMediaCapture);
 
   Future<void> initializeAsync() {
     final asyncInfo = calloc<COMObject>();

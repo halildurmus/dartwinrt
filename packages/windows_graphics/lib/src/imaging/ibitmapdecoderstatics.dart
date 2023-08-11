@@ -28,8 +28,7 @@ class IBitmapDecoderStatics extends IInspectable {
   IBitmapDecoderStatics.fromPtr(super.ptr);
 
   factory IBitmapDecoderStatics.from(IInspectable interface) =>
-      IBitmapDecoderStatics.fromPtr(
-          interface.toInterface(IID_IBitmapDecoderStatics));
+      interface.cast(IBitmapDecoderStatics.fromPtr, IID_IBitmapDecoderStatics);
 
   Guid get bmpDecoderId {
     final value = calloc<GUID>();

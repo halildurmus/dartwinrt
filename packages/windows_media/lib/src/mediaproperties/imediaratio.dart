@@ -24,7 +24,7 @@ class IMediaRatio extends IInspectable {
   IMediaRatio.fromPtr(super.ptr);
 
   factory IMediaRatio.from(IInspectable interface) =>
-      IMediaRatio.fromPtr(interface.toInterface(IID_IMediaRatio));
+      interface.cast(IMediaRatio.fromPtr, IID_IMediaRatio);
 
   set numerator(int value) {
     final hr =

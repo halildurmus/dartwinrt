@@ -24,7 +24,7 @@ class ICurrencyAmount extends IInspectable {
   ICurrencyAmount.fromPtr(super.ptr);
 
   factory ICurrencyAmount.from(IInspectable interface) =>
-      ICurrencyAmount.fromPtr(interface.toInterface(IID_ICurrencyAmount));
+      interface.cast(ICurrencyAmount.fromPtr, IID_ICurrencyAmount);
 
   String get amount {
     final value = calloc<IntPtr>();

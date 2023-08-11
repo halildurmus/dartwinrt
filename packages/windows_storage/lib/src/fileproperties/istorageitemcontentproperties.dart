@@ -32,8 +32,8 @@ class IStorageItemContentProperties extends IInspectable
   IStorageItemContentProperties.fromPtr(super.ptr);
 
   factory IStorageItemContentProperties.from(IInspectable interface) =>
-      IStorageItemContentProperties.fromPtr(
-          interface.toInterface(IID_IStorageItemContentProperties));
+      interface.cast(IStorageItemContentProperties.fromPtr,
+          IID_IStorageItemContentProperties);
 
   Future<MusicProperties?> getMusicPropertiesAsync() {
     final operation = calloc<COMObject>();

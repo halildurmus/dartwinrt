@@ -29,9 +29,8 @@ class IStorageFileQueryResult extends IInspectable
   // vtable begins at 6, is 2 entries long.
   IStorageFileQueryResult.fromPtr(super.ptr);
 
-  factory IStorageFileQueryResult.from(IInspectable interface) =>
-      IStorageFileQueryResult.fromPtr(
-          interface.toInterface(IID_IStorageFileQueryResult));
+  factory IStorageFileQueryResult.from(IInspectable interface) => interface
+      .cast(IStorageFileQueryResult.fromPtr, IID_IStorageFileQueryResult);
 
   Future<List<StorageFile?>> getFilesAsync(
       int startIndex, int maxNumberOfItems) {

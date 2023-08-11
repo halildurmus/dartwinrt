@@ -24,7 +24,7 @@ class IUICommand extends IInspectable {
   IUICommand.fromPtr(super.ptr);
 
   factory IUICommand.from(IInspectable interface) =>
-      IUICommand.fromPtr(interface.toInterface(IID_IUICommand));
+      interface.cast(IUICommand.fromPtr, IID_IUICommand);
 
   String get label {
     final value = calloc<IntPtr>();

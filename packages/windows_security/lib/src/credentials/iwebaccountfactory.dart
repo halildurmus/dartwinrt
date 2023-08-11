@@ -28,7 +28,7 @@ class IWebAccountFactory extends IInspectable {
   IWebAccountFactory.fromPtr(super.ptr);
 
   factory IWebAccountFactory.from(IInspectable interface) =>
-      IWebAccountFactory.fromPtr(interface.toInterface(IID_IWebAccountFactory));
+      interface.cast(IWebAccountFactory.fromPtr, IID_IWebAccountFactory);
 
   WebAccount createWebAccount(WebAccountProvider? webAccountProvider,
       String userName, WebAccountState state) {

@@ -26,8 +26,7 @@ class IKnownFoldersStatics2 extends IInspectable {
   IKnownFoldersStatics2.fromPtr(super.ptr);
 
   factory IKnownFoldersStatics2.from(IInspectable interface) =>
-      IKnownFoldersStatics2.fromPtr(
-          interface.toInterface(IID_IKnownFoldersStatics2));
+      interface.cast(IKnownFoldersStatics2.fromPtr, IID_IKnownFoldersStatics2);
 
   StorageFolder? get objects3D {
     final value = calloc<COMObject>();

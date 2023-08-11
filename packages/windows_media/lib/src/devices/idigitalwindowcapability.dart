@@ -23,9 +23,8 @@ class IDigitalWindowCapability extends IInspectable {
   // vtable begins at 6, is 6 entries long.
   IDigitalWindowCapability.fromPtr(super.ptr);
 
-  factory IDigitalWindowCapability.from(IInspectable interface) =>
-      IDigitalWindowCapability.fromPtr(
-          interface.toInterface(IID_IDigitalWindowCapability));
+  factory IDigitalWindowCapability.from(IInspectable interface) => interface
+      .cast(IDigitalWindowCapability.fromPtr, IID_IDigitalWindowCapability);
 
   int get width {
     final value = calloc<Int32>();

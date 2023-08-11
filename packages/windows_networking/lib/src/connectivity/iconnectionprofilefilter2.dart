@@ -24,9 +24,8 @@ class IConnectionProfileFilter2 extends IInspectable {
   // vtable begins at 6, is 7 entries long.
   IConnectionProfileFilter2.fromPtr(super.ptr);
 
-  factory IConnectionProfileFilter2.from(IInspectable interface) =>
-      IConnectionProfileFilter2.fromPtr(
-          interface.toInterface(IID_IConnectionProfileFilter2));
+  factory IConnectionProfileFilter2.from(IInspectable interface) => interface
+      .cast(IConnectionProfileFilter2.fromPtr, IID_IConnectionProfileFilter2);
 
   set isRoaming(bool? value) {
     final hr = ptr.ref.vtable

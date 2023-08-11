@@ -32,7 +32,7 @@ class IStorageItem2 extends IInspectable implements IStorageItem {
   IStorageItem2.fromPtr(super.ptr);
 
   factory IStorageItem2.from(IInspectable interface) =>
-      IStorageItem2.fromPtr(interface.toInterface(IID_IStorageItem2));
+      interface.cast(IStorageItem2.fromPtr, IID_IStorageItem2);
 
   Future<StorageFolder?> getParentAsync() {
     final operation = calloc<COMObject>();

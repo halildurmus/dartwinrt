@@ -26,7 +26,7 @@ class ICapturedPhoto extends IInspectable {
   ICapturedPhoto.fromPtr(super.ptr);
 
   factory ICapturedPhoto.from(IInspectable interface) =>
-      ICapturedPhoto.fromPtr(interface.toInterface(IID_ICapturedPhoto));
+      interface.cast(ICapturedPhoto.fromPtr, IID_ICapturedPhoto);
 
   CapturedFrame? get frame {
     final value = calloc<COMObject>();

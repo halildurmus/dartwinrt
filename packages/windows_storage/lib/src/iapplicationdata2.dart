@@ -26,7 +26,7 @@ class IApplicationData2 extends IInspectable {
   IApplicationData2.fromPtr(super.ptr);
 
   factory IApplicationData2.from(IInspectable interface) =>
-      IApplicationData2.fromPtr(interface.toInterface(IID_IApplicationData2));
+      interface.cast(IApplicationData2.fromPtr, IID_IApplicationData2);
 
   StorageFolder? get localCacheFolder {
     final value = calloc<COMObject>();

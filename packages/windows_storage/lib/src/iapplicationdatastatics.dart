@@ -25,9 +25,8 @@ class IApplicationDataStatics extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IApplicationDataStatics.fromPtr(super.ptr);
 
-  factory IApplicationDataStatics.from(IInspectable interface) =>
-      IApplicationDataStatics.fromPtr(
-          interface.toInterface(IID_IApplicationDataStatics));
+  factory IApplicationDataStatics.from(IInspectable interface) => interface
+      .cast(IApplicationDataStatics.fromPtr, IID_IApplicationDataStatics);
 
   ApplicationData? get current {
     final value = calloc<COMObject>();

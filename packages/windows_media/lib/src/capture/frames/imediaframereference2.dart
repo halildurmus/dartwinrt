@@ -26,8 +26,7 @@ class IMediaFrameReference2 extends IInspectable {
   IMediaFrameReference2.fromPtr(super.ptr);
 
   factory IMediaFrameReference2.from(IInspectable interface) =>
-      IMediaFrameReference2.fromPtr(
-          interface.toInterface(IID_IMediaFrameReference2));
+      interface.cast(IMediaFrameReference2.fromPtr, IID_IMediaFrameReference2);
 
   AudioMediaFrame? get audioMediaFrame {
     final value = calloc<COMObject>();

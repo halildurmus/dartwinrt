@@ -26,8 +26,7 @@ class IConnectionProfile6 extends IInspectable {
   IConnectionProfile6.fromPtr(super.ptr);
 
   factory IConnectionProfile6.from(IInspectable interface) =>
-      IConnectionProfile6.fromPtr(
-          interface.toInterface(IID_IConnectionProfile6));
+      interface.cast(IConnectionProfile6.fromPtr, IID_IConnectionProfile6);
 
   bool isDomainAuthenticatedBy(DomainAuthenticationKind kind) {
     final result = calloc<Bool>();

@@ -30,9 +30,8 @@ class INetworkInformationStatics extends IInspectable {
   // vtable begins at 6, is 8 entries long.
   INetworkInformationStatics.fromPtr(super.ptr);
 
-  factory INetworkInformationStatics.from(IInspectable interface) =>
-      INetworkInformationStatics.fromPtr(
-          interface.toInterface(IID_INetworkInformationStatics));
+  factory INetworkInformationStatics.from(IInspectable interface) => interface
+      .cast(INetworkInformationStatics.fromPtr, IID_INetworkInformationStatics);
 
   List<ConnectionProfile?> getConnectionProfiles() {
     final value = calloc<COMObject>();

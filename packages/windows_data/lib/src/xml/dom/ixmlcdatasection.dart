@@ -40,7 +40,7 @@ class IXmlCDataSection extends IInspectable
   IXmlCDataSection.fromPtr(super.ptr);
 
   factory IXmlCDataSection.from(IInspectable interface) =>
-      IXmlCDataSection.fromPtr(interface.toInterface(IID_IXmlCDataSection));
+      interface.cast(IXmlCDataSection.fromPtr, IID_IXmlCDataSection);
 
   late final _iXmlText = IXmlText.from(this);
 

@@ -26,8 +26,7 @@ class IMessageDialogFactory extends IInspectable {
   IMessageDialogFactory.fromPtr(super.ptr);
 
   factory IMessageDialogFactory.from(IInspectable interface) =>
-      IMessageDialogFactory.fromPtr(
-          interface.toInterface(IID_IMessageDialogFactory));
+      interface.cast(IMessageDialogFactory.fromPtr, IID_IMessageDialogFactory);
 
   MessageDialog create(String content) {
     final messageDialog = calloc<COMObject>();

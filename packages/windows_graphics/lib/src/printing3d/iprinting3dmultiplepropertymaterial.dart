@@ -25,8 +25,8 @@ class IPrinting3DMultiplePropertyMaterial extends IInspectable {
   IPrinting3DMultiplePropertyMaterial.fromPtr(super.ptr);
 
   factory IPrinting3DMultiplePropertyMaterial.from(IInspectable interface) =>
-      IPrinting3DMultiplePropertyMaterial.fromPtr(
-          interface.toInterface(IID_IPrinting3DMultiplePropertyMaterial));
+      interface.cast(IPrinting3DMultiplePropertyMaterial.fromPtr,
+          IID_IPrinting3DMultiplePropertyMaterial);
 
   IVector<int>? get materialIndices {
     final value = calloc<COMObject>();

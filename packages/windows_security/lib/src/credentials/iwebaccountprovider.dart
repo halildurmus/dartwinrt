@@ -24,8 +24,7 @@ class IWebAccountProvider extends IInspectable {
   IWebAccountProvider.fromPtr(super.ptr);
 
   factory IWebAccountProvider.from(IInspectable interface) =>
-      IWebAccountProvider.fromPtr(
-          interface.toInterface(IID_IWebAccountProvider));
+      interface.cast(IWebAccountProvider.fromPtr, IID_IWebAccountProvider);
 
   String get id {
     final value = calloc<IntPtr>();

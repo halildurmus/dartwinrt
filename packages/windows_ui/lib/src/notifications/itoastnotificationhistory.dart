@@ -23,9 +23,8 @@ class IToastNotificationHistory extends IInspectable {
   // vtable begins at 6, is 7 entries long.
   IToastNotificationHistory.fromPtr(super.ptr);
 
-  factory IToastNotificationHistory.from(IInspectable interface) =>
-      IToastNotificationHistory.fromPtr(
-          interface.toInterface(IID_IToastNotificationHistory));
+  factory IToastNotificationHistory.from(IInspectable interface) => interface
+      .cast(IToastNotificationHistory.fromPtr, IID_IToastNotificationHistory);
 
   void removeGroup(String group) {
     final hr =

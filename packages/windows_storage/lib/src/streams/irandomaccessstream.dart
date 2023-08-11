@@ -31,8 +31,7 @@ class IRandomAccessStream extends IInspectable
   IRandomAccessStream.fromPtr(super.ptr);
 
   factory IRandomAccessStream.from(IInspectable interface) =>
-      IRandomAccessStream.fromPtr(
-          interface.toInterface(IID_IRandomAccessStream));
+      interface.cast(IRandomAccessStream.fromPtr, IID_IRandomAccessStream);
 
   int get size {
     final value = calloc<Uint64>();

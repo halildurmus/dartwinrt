@@ -27,8 +27,8 @@ class IAdvancedVideoCaptureDeviceController8 extends IInspectable {
   IAdvancedVideoCaptureDeviceController8.fromPtr(super.ptr);
 
   factory IAdvancedVideoCaptureDeviceController8.from(IInspectable interface) =>
-      IAdvancedVideoCaptureDeviceController8.fromPtr(
-          interface.toInterface(IID_IAdvancedVideoCaptureDeviceController8));
+      interface.cast(IAdvancedVideoCaptureDeviceController8.fromPtr,
+          IID_IAdvancedVideoCaptureDeviceController8);
 
   PanelBasedOptimizationControl? get panelBasedOptimizationControl {
     final value = calloc<COMObject>();

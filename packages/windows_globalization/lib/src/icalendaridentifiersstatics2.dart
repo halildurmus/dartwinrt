@@ -25,8 +25,8 @@ class ICalendarIdentifiersStatics2 extends IInspectable {
   ICalendarIdentifiersStatics2.fromPtr(super.ptr);
 
   factory ICalendarIdentifiersStatics2.from(IInspectable interface) =>
-      ICalendarIdentifiersStatics2.fromPtr(
-          interface.toInterface(IID_ICalendarIdentifiersStatics2));
+      interface.cast(ICalendarIdentifiersStatics2.fromPtr,
+          IID_ICalendarIdentifiersStatics2);
 
   String get persian {
     final value = calloc<IntPtr>();

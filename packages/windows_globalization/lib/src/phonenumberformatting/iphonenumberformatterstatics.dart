@@ -27,8 +27,8 @@ class IPhoneNumberFormatterStatics extends IInspectable {
   IPhoneNumberFormatterStatics.fromPtr(super.ptr);
 
   factory IPhoneNumberFormatterStatics.from(IInspectable interface) =>
-      IPhoneNumberFormatterStatics.fromPtr(
-          interface.toInterface(IID_IPhoneNumberFormatterStatics));
+      interface.cast(IPhoneNumberFormatterStatics.fromPtr,
+          IID_IPhoneNumberFormatterStatics);
 
   PhoneNumberFormatter? tryCreate(String regionCode) {
     final phoneNumber = calloc<COMObject>();

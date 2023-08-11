@@ -25,8 +25,8 @@ class ICurrencyIdentifiersStatics3 extends IInspectable {
   ICurrencyIdentifiersStatics3.fromPtr(super.ptr);
 
   factory ICurrencyIdentifiersStatics3.from(IInspectable interface) =>
-      ICurrencyIdentifiersStatics3.fromPtr(
-          interface.toInterface(IID_ICurrencyIdentifiersStatics3));
+      interface.cast(ICurrencyIdentifiersStatics3.fromPtr,
+          IID_ICurrencyIdentifiersStatics3);
 
   String get mru {
     final value = calloc<IntPtr>();

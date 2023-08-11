@@ -27,8 +27,7 @@ class IAdvancedPhotoCapture extends IInspectable {
   IAdvancedPhotoCapture.fromPtr(super.ptr);
 
   factory IAdvancedPhotoCapture.from(IInspectable interface) =>
-      IAdvancedPhotoCapture.fromPtr(
-          interface.toInterface(IID_IAdvancedPhotoCapture));
+      interface.cast(IAdvancedPhotoCapture.fromPtr, IID_IAdvancedPhotoCapture);
 
   Future<AdvancedCapturedPhoto?> captureAsync() {
     final operation = calloc<COMObject>();

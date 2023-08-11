@@ -26,8 +26,7 @@ class IBitmapPropertiesView extends IInspectable {
   IBitmapPropertiesView.fromPtr(super.ptr);
 
   factory IBitmapPropertiesView.from(IInspectable interface) =>
-      IBitmapPropertiesView.fromPtr(
-          interface.toInterface(IID_IBitmapPropertiesView));
+      interface.cast(IBitmapPropertiesView.fromPtr, IID_IBitmapPropertiesView);
 
   Future<BitmapPropertySet> getPropertiesAsync(
       IIterable<String>? propertiesToRetrieve) {

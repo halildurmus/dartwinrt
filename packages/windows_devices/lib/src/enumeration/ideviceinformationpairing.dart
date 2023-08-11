@@ -26,9 +26,8 @@ class IDeviceInformationPairing extends IInspectable {
   // vtable begins at 6, is 4 entries long.
   IDeviceInformationPairing.fromPtr(super.ptr);
 
-  factory IDeviceInformationPairing.from(IInspectable interface) =>
-      IDeviceInformationPairing.fromPtr(
-          interface.toInterface(IID_IDeviceInformationPairing));
+  factory IDeviceInformationPairing.from(IInspectable interface) => interface
+      .cast(IDeviceInformationPairing.fromPtr, IID_IDeviceInformationPairing);
 
   bool get isPaired {
     final value = calloc<Bool>();

@@ -27,7 +27,7 @@ class IUserWatcher extends IInspectable {
   IUserWatcher.fromPtr(super.ptr);
 
   factory IUserWatcher.from(IInspectable interface) =>
-      IUserWatcher.fromPtr(interface.toInterface(IID_IUserWatcher));
+      interface.cast(IUserWatcher.fromPtr, IID_IUserWatcher);
 
   UserWatcherStatus get status {
     final value = calloc<Int32>();

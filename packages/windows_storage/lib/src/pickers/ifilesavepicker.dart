@@ -27,7 +27,7 @@ class IFileSavePicker extends IInspectable {
   IFileSavePicker.fromPtr(super.ptr);
 
   factory IFileSavePicker.from(IInspectable interface) =>
-      IFileSavePicker.fromPtr(interface.toInterface(IID_IFileSavePicker));
+      interface.cast(IFileSavePicker.fromPtr, IID_IFileSavePicker);
 
   String get settingsIdentifier {
     final value = calloc<IntPtr>();

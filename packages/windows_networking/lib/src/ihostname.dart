@@ -28,7 +28,7 @@ class IHostName extends IInspectable {
   IHostName.fromPtr(super.ptr);
 
   factory IHostName.from(IInspectable interface) =>
-      IHostName.fromPtr(interface.toInterface(IID_IHostName));
+      interface.cast(IHostName.fromPtr, IID_IHostName);
 
   IPInformation? get ipInformation {
     final value = calloc<COMObject>();

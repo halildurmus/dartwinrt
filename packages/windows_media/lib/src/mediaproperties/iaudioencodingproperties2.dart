@@ -23,9 +23,8 @@ class IAudioEncodingProperties2 extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IAudioEncodingProperties2.fromPtr(super.ptr);
 
-  factory IAudioEncodingProperties2.from(IInspectable interface) =>
-      IAudioEncodingProperties2.fromPtr(
-          interface.toInterface(IID_IAudioEncodingProperties2));
+  factory IAudioEncodingProperties2.from(IInspectable interface) => interface
+      .cast(IAudioEncodingProperties2.fromPtr, IID_IAudioEncodingProperties2);
 
   bool get isSpatial {
     final value = calloc<Bool>();

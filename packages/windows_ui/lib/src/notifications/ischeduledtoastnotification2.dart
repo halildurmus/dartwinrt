@@ -25,8 +25,8 @@ class IScheduledToastNotification2 extends IInspectable {
   IScheduledToastNotification2.fromPtr(super.ptr);
 
   factory IScheduledToastNotification2.from(IInspectable interface) =>
-      IScheduledToastNotification2.fromPtr(
-          interface.toInterface(IID_IScheduledToastNotification2));
+      interface.cast(IScheduledToastNotification2.fromPtr,
+          IID_IScheduledToastNotification2);
 
   set tag(String value) {
     final hr =

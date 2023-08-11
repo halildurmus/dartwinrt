@@ -25,8 +25,8 @@ class IPackageContentGroupStatics extends IInspectable {
   IPackageContentGroupStatics.fromPtr(super.ptr);
 
   factory IPackageContentGroupStatics.from(IInspectable interface) =>
-      IPackageContentGroupStatics.fromPtr(
-          interface.toInterface(IID_IPackageContentGroupStatics));
+      interface.cast(
+          IPackageContentGroupStatics.fromPtr, IID_IPackageContentGroupStatics);
 
   String get requiredGroupName {
     final value = calloc<IntPtr>();

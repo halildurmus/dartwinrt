@@ -26,7 +26,7 @@ class IPackage5 extends IInspectable {
   IPackage5.fromPtr(super.ptr);
 
   factory IPackage5.from(IInspectable interface) =>
-      IPackage5.fromPtr(interface.toInterface(IID_IPackage5));
+      interface.cast(IPackage5.fromPtr, IID_IPackage5);
 
   Future<IVector<PackageContentGroup?>> getContentGroupsAsync() {
     final operation = calloc<COMObject>();

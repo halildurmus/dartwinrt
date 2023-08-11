@@ -26,8 +26,7 @@ class ITensorStringStatics extends IInspectable {
   ITensorStringStatics.fromPtr(super.ptr);
 
   factory ITensorStringStatics.from(IInspectable interface) =>
-      ITensorStringStatics.fromPtr(
-          interface.toInterface(IID_ITensorStringStatics));
+      interface.cast(ITensorStringStatics.fromPtr, IID_ITensorStringStatics);
 
   TensorString? create() {
     final result = calloc<COMObject>();

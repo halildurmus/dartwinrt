@@ -25,9 +25,8 @@ class IAudioEffectDefinition extends IInspectable {
   // vtable begins at 6, is 2 entries long.
   IAudioEffectDefinition.fromPtr(super.ptr);
 
-  factory IAudioEffectDefinition.from(IInspectable interface) =>
-      IAudioEffectDefinition.fromPtr(
-          interface.toInterface(IID_IAudioEffectDefinition));
+  factory IAudioEffectDefinition.from(IInspectable interface) => interface.cast(
+      IAudioEffectDefinition.fromPtr, IID_IAudioEffectDefinition);
 
   String get activatableClassId {
     final value = calloc<IntPtr>();

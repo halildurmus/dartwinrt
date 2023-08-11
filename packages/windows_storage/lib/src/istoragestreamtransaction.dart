@@ -25,9 +25,8 @@ class IStorageStreamTransaction extends IInspectable implements IClosable {
   // vtable begins at 6, is 2 entries long.
   IStorageStreamTransaction.fromPtr(super.ptr);
 
-  factory IStorageStreamTransaction.from(IInspectable interface) =>
-      IStorageStreamTransaction.fromPtr(
-          interface.toInterface(IID_IStorageStreamTransaction));
+  factory IStorageStreamTransaction.from(IInspectable interface) => interface
+      .cast(IStorageStreamTransaction.fromPtr, IID_IStorageStreamTransaction);
 
   IRandomAccessStream? get stream {
     final value = calloc<COMObject>();

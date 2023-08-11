@@ -24,8 +24,7 @@ class ILowLagMediaRecording extends IInspectable {
   ILowLagMediaRecording.fromPtr(super.ptr);
 
   factory ILowLagMediaRecording.from(IInspectable interface) =>
-      ILowLagMediaRecording.fromPtr(
-          interface.toInterface(IID_ILowLagMediaRecording));
+      interface.cast(ILowLagMediaRecording.fromPtr, IID_ILowLagMediaRecording);
 
   Future<void> startAsync() {
     final operation = calloc<COMObject>();

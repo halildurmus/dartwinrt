@@ -28,8 +28,8 @@ class IAudioStreamDescriptorFactory extends IInspectable {
   IAudioStreamDescriptorFactory.fromPtr(super.ptr);
 
   factory IAudioStreamDescriptorFactory.from(IInspectable interface) =>
-      IAudioStreamDescriptorFactory.fromPtr(
-          interface.toInterface(IID_IAudioStreamDescriptorFactory));
+      interface.cast(IAudioStreamDescriptorFactory.fromPtr,
+          IID_IAudioStreamDescriptorFactory);
 
   AudioStreamDescriptor create(AudioEncodingProperties? encodingProperties) {
     final result = calloc<COMObject>();

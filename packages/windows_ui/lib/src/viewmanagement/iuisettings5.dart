@@ -26,7 +26,7 @@ class IUISettings5 extends IInspectable {
   IUISettings5.fromPtr(super.ptr);
 
   factory IUISettings5.from(IInspectable interface) =>
-      IUISettings5.fromPtr(interface.toInterface(IID_IUISettings5));
+      interface.cast(IUISettings5.fromPtr, IID_IUISettings5);
 
   bool get autoHideScrollBars {
     final value = calloc<Bool>();

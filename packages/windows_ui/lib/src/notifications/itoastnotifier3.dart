@@ -26,7 +26,7 @@ class IToastNotifier3 extends IInspectable {
   IToastNotifier3.fromPtr(super.ptr);
 
   factory IToastNotifier3.from(IInspectable interface) =>
-      IToastNotifier3.fromPtr(interface.toInterface(IID_IToastNotifier3));
+      interface.cast(IToastNotifier3.fromPtr, IID_IToastNotifier3);
 
   int add_ScheduledToastNotificationShowing(Pointer<COMObject> handler) {
     final token = calloc<IntPtr>();

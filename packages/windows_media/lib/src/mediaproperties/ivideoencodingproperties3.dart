@@ -25,9 +25,8 @@ class IVideoEncodingProperties3 extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IVideoEncodingProperties3.fromPtr(super.ptr);
 
-  factory IVideoEncodingProperties3.from(IInspectable interface) =>
-      IVideoEncodingProperties3.fromPtr(
-          interface.toInterface(IID_IVideoEncodingProperties3));
+  factory IVideoEncodingProperties3.from(IInspectable interface) => interface
+      .cast(IVideoEncodingProperties3.fromPtr, IID_IVideoEncodingProperties3);
 
   StereoscopicVideoPackingMode get stereoscopicVideoPackingMode {
     final value = calloc<Int32>();

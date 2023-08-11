@@ -27,7 +27,7 @@ class IBufferStatics extends IInspectable {
   IBufferStatics.fromPtr(super.ptr);
 
   factory IBufferStatics.from(IInspectable interface) =>
-      IBufferStatics.fromPtr(interface.toInterface(IID_IBufferStatics));
+      interface.cast(IBufferStatics.fromPtr, IID_IBufferStatics);
 
   Buffer? createCopyFromMemoryBuffer(IMemoryBuffer? input) {
     final value = calloc<COMObject>();

@@ -28,7 +28,7 @@ class IDirect3DSurface extends IInspectable implements IClosable {
   IDirect3DSurface.fromPtr(super.ptr);
 
   factory IDirect3DSurface.from(IInspectable interface) =>
-      IDirect3DSurface.fromPtr(interface.toInterface(IID_IDirect3DSurface));
+      interface.cast(IDirect3DSurface.fromPtr, IID_IDirect3DSurface);
 
   Direct3DSurfaceDescription get description {
     final value = calloc<NativeDirect3DSurfaceDescription>();

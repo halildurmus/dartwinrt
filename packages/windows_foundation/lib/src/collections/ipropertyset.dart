@@ -15,6 +15,7 @@ import 'package:win32/win32.dart'
     hide DocumentProperties, WinRTStringConversion;
 
 import '../../internal.dart';
+import '../extensions/extensions.dart';
 import '../helpers.dart';
 import 'iiterable.dart';
 import 'iiterator.dart';
@@ -36,7 +37,7 @@ class IPropertySet extends IInspectable
   IPropertySet.fromPtr(super.ptr);
 
   factory IPropertySet.from(IInspectable interface) =>
-      IPropertySet.fromPtr(interface.toInterface(IID_IPropertySet));
+      interface.cast(IPropertySet.fromPtr, IID_IPropertySet);
 
   late final _iObservableMap = IObservableMap<String, Object?>.fromPtr(
       toInterface('{236aac9d-fb12-5c4d-a41c-9e445fb4d7ec}'));

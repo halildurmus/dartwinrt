@@ -25,8 +25,8 @@ class IStorageLibraryChangeTrackerOptions extends IInspectable {
   IStorageLibraryChangeTrackerOptions.fromPtr(super.ptr);
 
   factory IStorageLibraryChangeTrackerOptions.from(IInspectable interface) =>
-      IStorageLibraryChangeTrackerOptions.fromPtr(
-          interface.toInterface(IID_IStorageLibraryChangeTrackerOptions));
+      interface.cast(IStorageLibraryChangeTrackerOptions.fromPtr,
+          IID_IStorageLibraryChangeTrackerOptions);
 
   bool get trackChangeDetails {
     final value = calloc<Bool>();

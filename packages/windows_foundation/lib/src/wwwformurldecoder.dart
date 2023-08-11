@@ -18,6 +18,7 @@ import '../internal.dart';
 import 'collections/iiterable.dart';
 import 'collections/iiterator.dart';
 import 'collections/ivectorview.dart';
+import 'extensions/extensions.dart';
 import 'helpers.dart';
 import 'iwwwformurldecoderentry.dart';
 import 'iwwwformurldecoderruntimeclass.dart';

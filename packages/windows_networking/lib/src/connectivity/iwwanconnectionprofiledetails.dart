@@ -28,8 +28,8 @@ class IWwanConnectionProfileDetails extends IInspectable {
   IWwanConnectionProfileDetails.fromPtr(super.ptr);
 
   factory IWwanConnectionProfileDetails.from(IInspectable interface) =>
-      IWwanConnectionProfileDetails.fromPtr(
-          interface.toInterface(IID_IWwanConnectionProfileDetails));
+      interface.cast(IWwanConnectionProfileDetails.fromPtr,
+          IID_IWwanConnectionProfileDetails);
 
   String get homeProviderId {
     final value = calloc<IntPtr>();

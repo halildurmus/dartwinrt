@@ -26,7 +26,7 @@ class ICalendarFactory extends IInspectable {
   ICalendarFactory.fromPtr(super.ptr);
 
   factory ICalendarFactory.from(IInspectable interface) =>
-      ICalendarFactory.fromPtr(interface.toInterface(IID_ICalendarFactory));
+      interface.cast(ICalendarFactory.fromPtr, IID_ICalendarFactory);
 
   Calendar createCalendarDefaultCalendarAndClock(IIterable<String>? languages) {
     final result = calloc<COMObject>();

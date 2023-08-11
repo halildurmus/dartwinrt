@@ -28,8 +28,7 @@ class ICameraOcclusionInfo extends IInspectable {
   ICameraOcclusionInfo.fromPtr(super.ptr);
 
   factory ICameraOcclusionInfo.from(IInspectable interface) =>
-      ICameraOcclusionInfo.fromPtr(
-          interface.toInterface(IID_ICameraOcclusionInfo));
+      interface.cast(ICameraOcclusionInfo.fromPtr, IID_ICameraOcclusionInfo);
 
   CameraOcclusionState? getState() {
     final result = calloc<COMObject>();

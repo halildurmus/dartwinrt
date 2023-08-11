@@ -28,7 +28,7 @@ class IImageProperties extends IInspectable
   IImageProperties.fromPtr(super.ptr);
 
   factory IImageProperties.from(IInspectable interface) =>
-      IImageProperties.fromPtr(interface.toInterface(IID_IImageProperties));
+      interface.cast(IImageProperties.fromPtr, IID_IImageProperties);
 
   int get rating {
     final value = calloc<Uint32>();

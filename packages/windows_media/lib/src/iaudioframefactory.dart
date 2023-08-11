@@ -26,7 +26,7 @@ class IAudioFrameFactory extends IInspectable {
   IAudioFrameFactory.fromPtr(super.ptr);
 
   factory IAudioFrameFactory.from(IInspectable interface) =>
-      IAudioFrameFactory.fromPtr(interface.toInterface(IID_IAudioFrameFactory));
+      interface.cast(IAudioFrameFactory.fromPtr, IID_IAudioFrameFactory);
 
   AudioFrame create(int capacity) {
     final value = calloc<COMObject>();

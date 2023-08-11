@@ -31,8 +31,8 @@ class IAdvancedVideoCaptureDeviceController4 extends IInspectable {
   IAdvancedVideoCaptureDeviceController4.fromPtr(super.ptr);
 
   factory IAdvancedVideoCaptureDeviceController4.from(IInspectable interface) =>
-      IAdvancedVideoCaptureDeviceController4.fromPtr(
-          interface.toInterface(IID_IAdvancedVideoCaptureDeviceController4));
+      interface.cast(IAdvancedVideoCaptureDeviceController4.fromPtr,
+          IID_IAdvancedVideoCaptureDeviceController4);
 
   ExposurePriorityVideoControl? get exposurePriorityVideoControl {
     final value = calloc<COMObject>();

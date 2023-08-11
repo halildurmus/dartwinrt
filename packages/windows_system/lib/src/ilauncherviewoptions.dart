@@ -25,8 +25,7 @@ class ILauncherViewOptions extends IInspectable {
   ILauncherViewOptions.fromPtr(super.ptr);
 
   factory ILauncherViewOptions.from(IInspectable interface) =>
-      ILauncherViewOptions.fromPtr(
-          interface.toInterface(IID_ILauncherViewOptions));
+      interface.cast(ILauncherViewOptions.fromPtr, IID_ILauncherViewOptions);
 
   ViewSizePreference get desiredRemainingView {
     final value = calloc<Int32>();

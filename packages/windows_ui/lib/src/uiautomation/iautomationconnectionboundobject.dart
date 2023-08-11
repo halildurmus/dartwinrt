@@ -27,8 +27,8 @@ class IAutomationConnectionBoundObject extends IInspectable {
   IAutomationConnectionBoundObject.fromPtr(super.ptr);
 
   factory IAutomationConnectionBoundObject.from(IInspectable interface) =>
-      IAutomationConnectionBoundObject.fromPtr(
-          interface.toInterface(IID_IAutomationConnectionBoundObject));
+      interface.cast(IAutomationConnectionBoundObject.fromPtr,
+          IID_IAutomationConnectionBoundObject);
 
   AutomationConnection? get connection {
     final value = calloc<COMObject>();

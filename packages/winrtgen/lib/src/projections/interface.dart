@@ -76,6 +76,8 @@ const IID_$shortName = ${typeDef.iid.quote()};''';
           relativePathTo('windows_foundation/lib/src/helpers.dart'),
           relativePathTo(
               'windows_foundation/lib/src/collections/iiterator.dart'),
+          relativePathTo(
+              'windows_foundation/lib/src/extensions/extensions.dart'),
         ] else ...[
           'package:windows_foundation/internal.dart',
           'package:windows_foundation/windows_foundation.dart',
@@ -104,7 +106,7 @@ const IID_$shortName = ${typeDef.iid.quote()};''';
 
   String get fromFactoryConstructor => '''
   factory $shortName.from(IInspectable interface) =>
-      $shortName.fromPtr(interface.toInterface(IID_$shortName));''';
+      interface.cast($shortName.fromPtr, IID_$shortName);''';
 
   // WinRT interfaces don't inherit in metadata (e.g., IAsyncInfo), but all
   // WinRT interfaces have a base type of IInspectable as far as the COM vtable

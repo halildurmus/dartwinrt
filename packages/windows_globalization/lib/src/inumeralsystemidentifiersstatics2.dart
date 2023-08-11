@@ -25,8 +25,8 @@ class INumeralSystemIdentifiersStatics2 extends IInspectable {
   INumeralSystemIdentifiersStatics2.fromPtr(super.ptr);
 
   factory INumeralSystemIdentifiersStatics2.from(IInspectable interface) =>
-      INumeralSystemIdentifiersStatics2.fromPtr(
-          interface.toInterface(IID_INumeralSystemIdentifiersStatics2));
+      interface.cast(INumeralSystemIdentifiersStatics2.fromPtr,
+          IID_INumeralSystemIdentifiersStatics2);
 
   String get brah {
     final value = calloc<IntPtr>();

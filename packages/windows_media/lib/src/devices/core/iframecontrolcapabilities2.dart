@@ -25,9 +25,8 @@ class IFrameControlCapabilities2 extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IFrameControlCapabilities2.fromPtr(super.ptr);
 
-  factory IFrameControlCapabilities2.from(IInspectable interface) =>
-      IFrameControlCapabilities2.fromPtr(
-          interface.toInterface(IID_IFrameControlCapabilities2));
+  factory IFrameControlCapabilities2.from(IInspectable interface) => interface
+      .cast(IFrameControlCapabilities2.fromPtr, IID_IFrameControlCapabilities2);
 
   FrameFlashCapabilities? get flash {
     final value = calloc<COMObject>();

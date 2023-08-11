@@ -28,9 +28,8 @@ class IDeviceInformationStatics extends IInspectable {
   // vtable begins at 6, is 10 entries long.
   IDeviceInformationStatics.fromPtr(super.ptr);
 
-  factory IDeviceInformationStatics.from(IInspectable interface) =>
-      IDeviceInformationStatics.fromPtr(
-          interface.toInterface(IID_IDeviceInformationStatics));
+  factory IDeviceInformationStatics.from(IInspectable interface) => interface
+      .cast(IDeviceInformationStatics.fromPtr, IID_IDeviceInformationStatics);
 
   Future<DeviceInformation?> createFromIdAsync(String deviceId) {
     final asyncOp = calloc<COMObject>();

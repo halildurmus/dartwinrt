@@ -29,7 +29,7 @@ class IBitmapDecoder extends IInspectable {
   IBitmapDecoder.fromPtr(super.ptr);
 
   factory IBitmapDecoder.from(IInspectable interface) =>
-      IBitmapDecoder.fromPtr(interface.toInterface(IID_IBitmapDecoder));
+      interface.cast(IBitmapDecoder.fromPtr, IID_IBitmapDecoder);
 
   BitmapPropertiesView? get bitmapContainerProperties {
     final value = calloc<COMObject>();

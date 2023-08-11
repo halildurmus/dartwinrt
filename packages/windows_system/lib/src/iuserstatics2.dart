@@ -26,7 +26,7 @@ class IUserStatics2 extends IInspectable {
   IUserStatics2.fromPtr(super.ptr);
 
   factory IUserStatics2.from(IInspectable interface) =>
-      IUserStatics2.fromPtr(interface.toInterface(IID_IUserStatics2));
+      interface.cast(IUserStatics2.fromPtr, IID_IUserStatics2);
 
   User? getDefault() {
     final result = calloc<COMObject>();

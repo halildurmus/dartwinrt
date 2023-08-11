@@ -28,9 +28,8 @@ class IAudioDeviceController extends IInspectable
   // vtable begins at 6, is 4 entries long.
   IAudioDeviceController.fromPtr(super.ptr);
 
-  factory IAudioDeviceController.from(IInspectable interface) =>
-      IAudioDeviceController.fromPtr(
-          interface.toInterface(IID_IAudioDeviceController));
+  factory IAudioDeviceController.from(IInspectable interface) => interface.cast(
+      IAudioDeviceController.fromPtr, IID_IAudioDeviceController);
 
   set muted(bool value) {
     final hr = ptr.ref.vtable

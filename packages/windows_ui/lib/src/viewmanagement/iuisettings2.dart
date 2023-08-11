@@ -26,7 +26,7 @@ class IUISettings2 extends IInspectable {
   IUISettings2.fromPtr(super.ptr);
 
   factory IUISettings2.from(IInspectable interface) =>
-      IUISettings2.fromPtr(interface.toInterface(IID_IUISettings2));
+      interface.cast(IUISettings2.fromPtr, IID_IUISettings2);
 
   double get textScaleFactor {
     final value = calloc<Double>();

@@ -29,8 +29,8 @@ class IMediaEncodingProfileStatics2 extends IInspectable {
   IMediaEncodingProfileStatics2.fromPtr(super.ptr);
 
   factory IMediaEncodingProfileStatics2.from(IInspectable interface) =>
-      IMediaEncodingProfileStatics2.fromPtr(
-          interface.toInterface(IID_IMediaEncodingProfileStatics2));
+      interface.cast(IMediaEncodingProfileStatics2.fromPtr,
+          IID_IMediaEncodingProfileStatics2);
 
   MediaEncodingProfile? createWav(AudioEncodingQuality quality) {
     final value = calloc<COMObject>();

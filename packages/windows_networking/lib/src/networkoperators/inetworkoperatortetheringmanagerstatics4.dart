@@ -26,8 +26,8 @@ class INetworkOperatorTetheringManagerStatics4 extends IInspectable {
 
   factory INetworkOperatorTetheringManagerStatics4.from(
           IInspectable interface) =>
-      INetworkOperatorTetheringManagerStatics4.fromPtr(
-          interface.toInterface(IID_INetworkOperatorTetheringManagerStatics4));
+      interface.cast(INetworkOperatorTetheringManagerStatics4.fromPtr,
+          IID_INetworkOperatorTetheringManagerStatics4);
 
   bool isNoConnectionsTimeoutEnabled() {
     final result = calloc<Bool>();

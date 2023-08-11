@@ -27,8 +27,8 @@ class IAdvancedVideoCaptureDeviceController7 extends IInspectable {
   IAdvancedVideoCaptureDeviceController7.fromPtr(super.ptr);
 
   factory IAdvancedVideoCaptureDeviceController7.from(IInspectable interface) =>
-      IAdvancedVideoCaptureDeviceController7.fromPtr(
-          interface.toInterface(IID_IAdvancedVideoCaptureDeviceController7));
+      interface.cast(IAdvancedVideoCaptureDeviceController7.fromPtr,
+          IID_IAdvancedVideoCaptureDeviceController7);
 
   InfraredTorchControl? get infraredTorchControl {
     final value = calloc<COMObject>();

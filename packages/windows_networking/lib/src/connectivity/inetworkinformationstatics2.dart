@@ -28,8 +28,8 @@ class INetworkInformationStatics2 extends IInspectable {
   INetworkInformationStatics2.fromPtr(super.ptr);
 
   factory INetworkInformationStatics2.from(IInspectable interface) =>
-      INetworkInformationStatics2.fromPtr(
-          interface.toInterface(IID_INetworkInformationStatics2));
+      interface.cast(
+          INetworkInformationStatics2.fromPtr, IID_INetworkInformationStatics2);
 
   Future<List<ConnectionProfile?>> findConnectionProfilesAsync(
       ConnectionProfileFilter? pProfileFilter) {

@@ -24,8 +24,7 @@ class IContentTypeProvider extends IInspectable {
   IContentTypeProvider.fromPtr(super.ptr);
 
   factory IContentTypeProvider.from(IInspectable interface) =>
-      IContentTypeProvider.fromPtr(
-          interface.toInterface(IID_IContentTypeProvider));
+      interface.cast(IContentTypeProvider.fromPtr, IID_IContentTypeProvider);
 
   String get contentType {
     final value = calloc<IntPtr>();

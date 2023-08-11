@@ -25,9 +25,8 @@ class IIncrementNumberRounder extends IInspectable {
   // vtable begins at 6, is 4 entries long.
   IIncrementNumberRounder.fromPtr(super.ptr);
 
-  factory IIncrementNumberRounder.from(IInspectable interface) =>
-      IIncrementNumberRounder.fromPtr(
-          interface.toInterface(IID_IIncrementNumberRounder));
+  factory IIncrementNumberRounder.from(IInspectable interface) => interface
+      .cast(IIncrementNumberRounder.fromPtr, IID_IIncrementNumberRounder);
 
   RoundingAlgorithm get roundingAlgorithm {
     final value = calloc<Int32>();

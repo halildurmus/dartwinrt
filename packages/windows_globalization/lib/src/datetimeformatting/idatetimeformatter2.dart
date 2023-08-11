@@ -24,8 +24,7 @@ class IDateTimeFormatter2 extends IInspectable {
   IDateTimeFormatter2.fromPtr(super.ptr);
 
   factory IDateTimeFormatter2.from(IInspectable interface) =>
-      IDateTimeFormatter2.fromPtr(
-          interface.toInterface(IID_IDateTimeFormatter2));
+      interface.cast(IDateTimeFormatter2.fromPtr, IID_IDateTimeFormatter2);
 
   String formatUsingTimeZone(DateTime datetime, String timeZoneId) {
     final result = calloc<IntPtr>();

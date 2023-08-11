@@ -24,7 +24,7 @@ class IWebTokenRequest2 extends IInspectable {
   IWebTokenRequest2.fromPtr(super.ptr);
 
   factory IWebTokenRequest2.from(IInspectable interface) =>
-      IWebTokenRequest2.fromPtr(interface.toInterface(IID_IWebTokenRequest2));
+      interface.cast(IWebTokenRequest2.fromPtr, IID_IWebTokenRequest2);
 
   IMap<String, String>? get appProperties {
     final requestProperties = calloc<COMObject>();

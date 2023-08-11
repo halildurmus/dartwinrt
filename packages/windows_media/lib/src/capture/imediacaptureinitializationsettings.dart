@@ -28,8 +28,8 @@ class IMediaCaptureInitializationSettings extends IInspectable {
   IMediaCaptureInitializationSettings.fromPtr(super.ptr);
 
   factory IMediaCaptureInitializationSettings.from(IInspectable interface) =>
-      IMediaCaptureInitializationSettings.fromPtr(
-          interface.toInterface(IID_IMediaCaptureInitializationSettings));
+      interface.cast(IMediaCaptureInitializationSettings.fromPtr,
+          IID_IMediaCaptureInitializationSettings);
 
   set audioDeviceId(String value) {
     final hr =

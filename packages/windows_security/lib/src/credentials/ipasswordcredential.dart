@@ -24,8 +24,7 @@ class IPasswordCredential extends IInspectable {
   IPasswordCredential.fromPtr(super.ptr);
 
   factory IPasswordCredential.from(IInspectable interface) =>
-      IPasswordCredential.fromPtr(
-          interface.toInterface(IID_IPasswordCredential));
+      interface.cast(IPasswordCredential.fromPtr, IID_IPasswordCredential);
 
   String get resource {
     final resource = calloc<IntPtr>();

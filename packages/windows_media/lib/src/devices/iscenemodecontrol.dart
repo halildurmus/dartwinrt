@@ -26,7 +26,7 @@ class ISceneModeControl extends IInspectable {
   ISceneModeControl.fromPtr(super.ptr);
 
   factory ISceneModeControl.from(IInspectable interface) =>
-      ISceneModeControl.fromPtr(interface.toInterface(IID_ISceneModeControl));
+      interface.cast(ISceneModeControl.fromPtr, IID_ISceneModeControl);
 
   List<CaptureSceneMode>? get supportedModes {
     final value = calloc<COMObject>();

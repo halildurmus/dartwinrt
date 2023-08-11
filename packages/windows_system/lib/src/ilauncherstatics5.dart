@@ -27,7 +27,7 @@ class ILauncherStatics5 extends IInspectable {
   ILauncherStatics5.fromPtr(super.ptr);
 
   factory ILauncherStatics5.from(IInspectable interface) =>
-      ILauncherStatics5.fromPtr(interface.toInterface(IID_ILauncherStatics5));
+      interface.cast(ILauncherStatics5.fromPtr, IID_ILauncherStatics5);
 
   Future<bool> launchFolderPathAsync(String path) {
     final operation = calloc<COMObject>();

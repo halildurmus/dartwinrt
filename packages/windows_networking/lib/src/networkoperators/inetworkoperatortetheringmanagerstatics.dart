@@ -29,8 +29,8 @@ class INetworkOperatorTetheringManagerStatics extends IInspectable {
 
   factory INetworkOperatorTetheringManagerStatics.from(
           IInspectable interface) =>
-      INetworkOperatorTetheringManagerStatics.fromPtr(
-          interface.toInterface(IID_INetworkOperatorTetheringManagerStatics));
+      interface.cast(INetworkOperatorTetheringManagerStatics.fromPtr,
+          IID_INetworkOperatorTetheringManagerStatics);
 
   TetheringCapability getTetheringCapability(String networkAccountId) {
     final value = calloc<Int32>();

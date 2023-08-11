@@ -26,7 +26,7 @@ class IAppInfo2 extends IInspectable {
   IAppInfo2.fromPtr(super.ptr);
 
   factory IAppInfo2.from(IInspectable interface) =>
-      IAppInfo2.fromPtr(interface.toInterface(IID_IAppInfo2));
+      interface.cast(IAppInfo2.fromPtr, IID_IAppInfo2);
 
   Package? get package {
     final value = calloc<COMObject>();

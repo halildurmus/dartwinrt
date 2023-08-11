@@ -16,6 +16,7 @@ import 'package:win32/win32.dart'
 
 import '../internal.dart';
 import 'collections/iiterator.dart';
+import 'extensions/extensions.dart';
 import 'helpers.dart';
 import 'iclosable.dart';
 
@@ -27,9 +28,8 @@ class IMemoryBufferReference extends IInspectable implements IClosable {
   // vtable begins at 6, is 3 entries long.
   IMemoryBufferReference.fromPtr(super.ptr);
 
-  factory IMemoryBufferReference.from(IInspectable interface) =>
-      IMemoryBufferReference.fromPtr(
-          interface.toInterface(IID_IMemoryBufferReference));
+  factory IMemoryBufferReference.from(IInspectable interface) => interface.cast(
+      IMemoryBufferReference.fromPtr, IID_IMemoryBufferReference);
 
   int get capacity {
     final value = calloc<Uint32>();

@@ -26,8 +26,7 @@ class ITensorInt8BitStatics extends IInspectable {
   ITensorInt8BitStatics.fromPtr(super.ptr);
 
   factory ITensorInt8BitStatics.from(IInspectable interface) =>
-      ITensorInt8BitStatics.fromPtr(
-          interface.toInterface(IID_ITensorInt8BitStatics));
+      interface.cast(ITensorInt8BitStatics.fromPtr, IID_ITensorInt8BitStatics);
 
   TensorInt8Bit? create() {
     final result = calloc<COMObject>();

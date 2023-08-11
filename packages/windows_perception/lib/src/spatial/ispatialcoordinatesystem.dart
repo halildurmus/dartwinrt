@@ -25,9 +25,8 @@ class ISpatialCoordinateSystem extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   ISpatialCoordinateSystem.fromPtr(super.ptr);
 
-  factory ISpatialCoordinateSystem.from(IInspectable interface) =>
-      ISpatialCoordinateSystem.fromPtr(
-          interface.toInterface(IID_ISpatialCoordinateSystem));
+  factory ISpatialCoordinateSystem.from(IInspectable interface) => interface
+      .cast(ISpatialCoordinateSystem.fromPtr, IID_ISpatialCoordinateSystem);
 
   Matrix4x4? tryGetTransformTo(SpatialCoordinateSystem? target) {
     final value = calloc<COMObject>();

@@ -25,8 +25,8 @@ class ICalendarIdentifiersStatics extends IInspectable {
   ICalendarIdentifiersStatics.fromPtr(super.ptr);
 
   factory ICalendarIdentifiersStatics.from(IInspectable interface) =>
-      ICalendarIdentifiersStatics.fromPtr(
-          interface.toInterface(IID_ICalendarIdentifiersStatics));
+      interface.cast(
+          ICalendarIdentifiersStatics.fromPtr, IID_ICalendarIdentifiersStatics);
 
   String get gregorian {
     final value = calloc<IntPtr>();

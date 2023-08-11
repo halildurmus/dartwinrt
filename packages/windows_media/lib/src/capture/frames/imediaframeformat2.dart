@@ -26,7 +26,7 @@ class IMediaFrameFormat2 extends IInspectable {
   IMediaFrameFormat2.fromPtr(super.ptr);
 
   factory IMediaFrameFormat2.from(IInspectable interface) =>
-      IMediaFrameFormat2.fromPtr(interface.toInterface(IID_IMediaFrameFormat2));
+      interface.cast(IMediaFrameFormat2.fromPtr, IID_IMediaFrameFormat2);
 
   AudioEncodingProperties? get audioEncodingProperties {
     final value = calloc<COMObject>();

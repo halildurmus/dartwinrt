@@ -26,7 +26,7 @@ class IWebAccountMonitor extends IInspectable {
   IWebAccountMonitor.fromPtr(super.ptr);
 
   factory IWebAccountMonitor.from(IInspectable interface) =>
-      IWebAccountMonitor.fromPtr(interface.toInterface(IID_IWebAccountMonitor));
+      interface.cast(IWebAccountMonitor.fromPtr, IID_IWebAccountMonitor);
 
   int add_Updated(Pointer<COMObject> handler) {
     final token = calloc<IntPtr>();

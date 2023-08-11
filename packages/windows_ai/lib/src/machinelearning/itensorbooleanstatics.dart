@@ -26,8 +26,7 @@ class ITensorBooleanStatics extends IInspectable {
   ITensorBooleanStatics.fromPtr(super.ptr);
 
   factory ITensorBooleanStatics.from(IInspectable interface) =>
-      ITensorBooleanStatics.fromPtr(
-          interface.toInterface(IID_ITensorBooleanStatics));
+      interface.cast(ITensorBooleanStatics.fromPtr, IID_ITensorBooleanStatics);
 
   TensorBoolean? create() {
     final result = calloc<COMObject>();

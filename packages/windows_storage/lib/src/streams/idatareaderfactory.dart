@@ -27,7 +27,7 @@ class IDataReaderFactory extends IInspectable {
   IDataReaderFactory.fromPtr(super.ptr);
 
   factory IDataReaderFactory.from(IInspectable interface) =>
-      IDataReaderFactory.fromPtr(interface.toInterface(IID_IDataReaderFactory));
+      interface.cast(IDataReaderFactory.fromPtr, IID_IDataReaderFactory);
 
   DataReader createDataReader(IInputStream? inputStream) {
     final dataReader = calloc<COMObject>();

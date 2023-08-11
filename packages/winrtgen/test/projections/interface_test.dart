@@ -111,6 +111,7 @@ void main() {
           '../internal.dart',
           'helpers.dart',
           'collections/iiterator.dart',
+          'extensions/extensions.dart',
           'iclosable.dart',
           'imemorybufferreference.dart'
         ]),

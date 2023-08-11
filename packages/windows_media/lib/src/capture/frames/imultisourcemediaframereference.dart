@@ -28,8 +28,8 @@ class IMultiSourceMediaFrameReference extends IInspectable
   IMultiSourceMediaFrameReference.fromPtr(super.ptr);
 
   factory IMultiSourceMediaFrameReference.from(IInspectable interface) =>
-      IMultiSourceMediaFrameReference.fromPtr(
-          interface.toInterface(IID_IMultiSourceMediaFrameReference));
+      interface.cast(IMultiSourceMediaFrameReference.fromPtr,
+          IID_IMultiSourceMediaFrameReference);
 
   MediaFrameReference? tryGetFrameReferenceBySourceId(String sourceId) {
     final value = calloc<COMObject>();

@@ -25,8 +25,8 @@ class IMediaCaptureInitializationSettings6 extends IInspectable {
   IMediaCaptureInitializationSettings6.fromPtr(super.ptr);
 
   factory IMediaCaptureInitializationSettings6.from(IInspectable interface) =>
-      IMediaCaptureInitializationSettings6.fromPtr(
-          interface.toInterface(IID_IMediaCaptureInitializationSettings6));
+      interface.cast(IMediaCaptureInitializationSettings6.fromPtr,
+          IID_IMediaCaptureInitializationSettings6);
 
   bool get alwaysPlaySystemShutterSound {
     final value = calloc<Bool>();

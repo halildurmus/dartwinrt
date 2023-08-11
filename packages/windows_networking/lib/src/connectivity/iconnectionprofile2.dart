@@ -32,8 +32,7 @@ class IConnectionProfile2 extends IInspectable {
   IConnectionProfile2.fromPtr(super.ptr);
 
   factory IConnectionProfile2.from(IInspectable interface) =>
-      IConnectionProfile2.fromPtr(
-          interface.toInterface(IID_IConnectionProfile2));
+      interface.cast(IConnectionProfile2.fromPtr, IID_IConnectionProfile2);
 
   bool get isWwanConnectionProfile {
     final value = calloc<Bool>();

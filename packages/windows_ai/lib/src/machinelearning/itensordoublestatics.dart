@@ -26,8 +26,7 @@ class ITensorDoubleStatics extends IInspectable {
   ITensorDoubleStatics.fromPtr(super.ptr);
 
   factory ITensorDoubleStatics.from(IInspectable interface) =>
-      ITensorDoubleStatics.fromPtr(
-          interface.toInterface(IID_ITensorDoubleStatics));
+      interface.cast(ITensorDoubleStatics.fromPtr, IID_ITensorDoubleStatics);
 
   TensorDouble? create() {
     final result = calloc<COMObject>();

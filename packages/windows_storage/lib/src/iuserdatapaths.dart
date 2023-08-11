@@ -24,7 +24,7 @@ class IUserDataPaths extends IInspectable {
   IUserDataPaths.fromPtr(super.ptr);
 
   factory IUserDataPaths.from(IInspectable interface) =>
-      IUserDataPaths.fromPtr(interface.toInterface(IID_IUserDataPaths));
+      interface.cast(IUserDataPaths.fromPtr, IID_IUserDataPaths);
 
   String get cameraRoll {
     final value = calloc<IntPtr>();

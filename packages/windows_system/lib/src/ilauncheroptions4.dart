@@ -24,7 +24,7 @@ class ILauncherOptions4 extends IInspectable {
   ILauncherOptions4.fromPtr(super.ptr);
 
   factory ILauncherOptions4.from(IInspectable interface) =>
-      ILauncherOptions4.fromPtr(interface.toInterface(IID_ILauncherOptions4));
+      interface.cast(ILauncherOptions4.fromPtr, IID_ILauncherOptions4);
 
   bool get limitPickerToCurrentAppAndAppUriHandlers {
     final value = calloc<Bool>();

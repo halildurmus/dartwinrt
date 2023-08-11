@@ -29,7 +29,7 @@ class IUserStatics extends IInspectable {
   IUserStatics.fromPtr(super.ptr);
 
   factory IUserStatics.from(IInspectable interface) =>
-      IUserStatics.fromPtr(interface.toInterface(IID_IUserStatics));
+      interface.cast(IUserStatics.fromPtr, IID_IUserStatics);
 
   UserWatcher? createWatcher() {
     final result = calloc<COMObject>();

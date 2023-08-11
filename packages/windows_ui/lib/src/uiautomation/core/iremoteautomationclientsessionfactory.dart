@@ -27,8 +27,8 @@ class IRemoteAutomationClientSessionFactory extends IInspectable {
   IRemoteAutomationClientSessionFactory.fromPtr(super.ptr);
 
   factory IRemoteAutomationClientSessionFactory.from(IInspectable interface) =>
-      IRemoteAutomationClientSessionFactory.fromPtr(
-          interface.toInterface(IID_IRemoteAutomationClientSessionFactory));
+      interface.cast(IRemoteAutomationClientSessionFactory.fromPtr,
+          IID_IRemoteAutomationClientSessionFactory);
 
   RemoteAutomationClientSession createInstance(String name) {
     final value = calloc<COMObject>();

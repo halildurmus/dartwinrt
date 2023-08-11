@@ -25,8 +25,8 @@ class IStandardDataFormatsStatics3 extends IInspectable {
   IStandardDataFormatsStatics3.fromPtr(super.ptr);
 
   factory IStandardDataFormatsStatics3.from(IInspectable interface) =>
-      IStandardDataFormatsStatics3.fromPtr(
-          interface.toInterface(IID_IStandardDataFormatsStatics3));
+      interface.cast(IStandardDataFormatsStatics3.fromPtr,
+          IID_IStandardDataFormatsStatics3);
 
   String get userActivityJsonArray {
     final value = calloc<IntPtr>();

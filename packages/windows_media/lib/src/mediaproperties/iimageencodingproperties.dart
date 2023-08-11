@@ -27,9 +27,8 @@ class IImageEncodingProperties extends IInspectable
   // vtable begins at 6, is 4 entries long.
   IImageEncodingProperties.fromPtr(super.ptr);
 
-  factory IImageEncodingProperties.from(IInspectable interface) =>
-      IImageEncodingProperties.fromPtr(
-          interface.toInterface(IID_IImageEncodingProperties));
+  factory IImageEncodingProperties.from(IInspectable interface) => interface
+      .cast(IImageEncodingProperties.fromPtr, IID_IImageEncodingProperties);
 
   set width(int value) {
     final hr =

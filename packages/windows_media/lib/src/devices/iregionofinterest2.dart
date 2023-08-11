@@ -26,7 +26,7 @@ class IRegionOfInterest2 extends IInspectable {
   IRegionOfInterest2.fromPtr(super.ptr);
 
   factory IRegionOfInterest2.from(IInspectable interface) =>
-      IRegionOfInterest2.fromPtr(interface.toInterface(IID_IRegionOfInterest2));
+      interface.cast(IRegionOfInterest2.fromPtr, IID_IRegionOfInterest2);
 
   RegionOfInterestType get type {
     final value = calloc<Int32>();

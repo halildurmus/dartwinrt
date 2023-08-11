@@ -27,8 +27,7 @@ class IEnclosureLocation2 extends IInspectable implements IEnclosureLocation {
   IEnclosureLocation2.fromPtr(super.ptr);
 
   factory IEnclosureLocation2.from(IInspectable interface) =>
-      IEnclosureLocation2.fromPtr(
-          interface.toInterface(IID_IEnclosureLocation2));
+      interface.cast(IEnclosureLocation2.fromPtr, IID_IEnclosureLocation2);
 
   int get rotationAngleInDegreesClockwise {
     final value = calloc<Uint32>();

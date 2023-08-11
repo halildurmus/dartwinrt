@@ -29,8 +29,8 @@ class IRandomAccessStreamReferenceStatics extends IInspectable {
   IRandomAccessStreamReferenceStatics.fromPtr(super.ptr);
 
   factory IRandomAccessStreamReferenceStatics.from(IInspectable interface) =>
-      IRandomAccessStreamReferenceStatics.fromPtr(
-          interface.toInterface(IID_IRandomAccessStreamReferenceStatics));
+      interface.cast(IRandomAccessStreamReferenceStatics.fromPtr,
+          IID_IRandomAccessStreamReferenceStatics);
 
   RandomAccessStreamReference? createFromFile(IStorageFile? file) {
     final streamReference = calloc<COMObject>();

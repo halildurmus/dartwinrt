@@ -27,7 +27,7 @@ class IDisplayRegion extends IInspectable {
   IDisplayRegion.fromPtr(super.ptr);
 
   factory IDisplayRegion.from(IInspectable interface) =>
-      IDisplayRegion.fromPtr(interface.toInterface(IID_IDisplayRegion));
+      interface.cast(IDisplayRegion.fromPtr, IID_IDisplayRegion);
 
   String get displayMonitorDeviceId {
     final value = calloc<IntPtr>();

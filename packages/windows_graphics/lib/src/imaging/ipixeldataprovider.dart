@@ -24,7 +24,7 @@ class IPixelDataProvider extends IInspectable {
   IPixelDataProvider.fromPtr(super.ptr);
 
   factory IPixelDataProvider.from(IInspectable interface) =>
-      IPixelDataProvider.fromPtr(interface.toInterface(IID_IPixelDataProvider));
+      interface.cast(IPixelDataProvider.fromPtr, IID_IPixelDataProvider);
 
   List<int> detachPixelData() {
     final pixelDataSize = calloc<Uint32>();

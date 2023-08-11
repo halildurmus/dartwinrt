@@ -28,8 +28,7 @@ class IWindowingEnvironment extends IInspectable {
   IWindowingEnvironment.fromPtr(super.ptr);
 
   factory IWindowingEnvironment.from(IInspectable interface) =>
-      IWindowingEnvironment.fromPtr(
-          interface.toInterface(IID_IWindowingEnvironment));
+      interface.cast(IWindowingEnvironment.fromPtr, IID_IWindowingEnvironment);
 
   bool get isEnabled {
     final value = calloc<Bool>();

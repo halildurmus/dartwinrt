@@ -24,7 +24,7 @@ class IToastCollection extends IInspectable {
   IToastCollection.fromPtr(super.ptr);
 
   factory IToastCollection.from(IInspectable interface) =>
-      IToastCollection.fromPtr(interface.toInterface(IID_IToastCollection));
+      interface.cast(IToastCollection.fromPtr, IID_IToastCollection);
 
   String get id {
     final value = calloc<IntPtr>();

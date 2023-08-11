@@ -24,8 +24,7 @@ class IPackageWithMetadata extends IInspectable {
   IPackageWithMetadata.fromPtr(super.ptr);
 
   factory IPackageWithMetadata.from(IInspectable interface) =>
-      IPackageWithMetadata.fromPtr(
-          interface.toInterface(IID_IPackageWithMetadata));
+      interface.cast(IPackageWithMetadata.fromPtr, IID_IPackageWithMetadata);
 
   DateTime get installDate {
     final value = calloc<Int64>();

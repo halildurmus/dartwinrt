@@ -29,8 +29,8 @@ class ILowLagPhotoSequenceControl extends IInspectable {
   ILowLagPhotoSequenceControl.fromPtr(super.ptr);
 
   factory ILowLagPhotoSequenceControl.from(IInspectable interface) =>
-      ILowLagPhotoSequenceControl.fromPtr(
-          interface.toInterface(IID_ILowLagPhotoSequenceControl));
+      interface.cast(
+          ILowLagPhotoSequenceControl.fromPtr, IID_ILowLagPhotoSequenceControl);
 
   bool get supported {
     final value = calloc<Bool>();

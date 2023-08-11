@@ -26,7 +26,7 @@ class ILanguage2 extends IInspectable {
   ILanguage2.fromPtr(super.ptr);
 
   factory ILanguage2.from(IInspectable interface) =>
-      ILanguage2.fromPtr(interface.toInterface(IID_ILanguage2));
+      interface.cast(ILanguage2.fromPtr, IID_ILanguage2);
 
   LanguageLayoutDirection get layoutDirection {
     final value = calloc<Int32>();

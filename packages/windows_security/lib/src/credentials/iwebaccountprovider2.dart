@@ -26,8 +26,7 @@ class IWebAccountProvider2 extends IInspectable implements IWebAccountProvider {
   IWebAccountProvider2.fromPtr(super.ptr);
 
   factory IWebAccountProvider2.from(IInspectable interface) =>
-      IWebAccountProvider2.fromPtr(
-          interface.toInterface(IID_IWebAccountProvider2));
+      interface.cast(IWebAccountProvider2.fromPtr, IID_IWebAccountProvider2);
 
   String get displayPurpose {
     final value = calloc<IntPtr>();

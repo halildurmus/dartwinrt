@@ -31,8 +31,8 @@ class IDeviceInformationCustomPairing extends IInspectable {
   IDeviceInformationCustomPairing.fromPtr(super.ptr);
 
   factory IDeviceInformationCustomPairing.from(IInspectable interface) =>
-      IDeviceInformationCustomPairing.fromPtr(
-          interface.toInterface(IID_IDeviceInformationCustomPairing));
+      interface.cast(IDeviceInformationCustomPairing.fromPtr,
+          IID_IDeviceInformationCustomPairing);
 
   Future<DevicePairingResult?> pairAsync(
       DevicePairingKinds pairingKindsSupported) {

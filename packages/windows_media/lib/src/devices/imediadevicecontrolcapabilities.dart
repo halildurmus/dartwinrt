@@ -25,8 +25,8 @@ class IMediaDeviceControlCapabilities extends IInspectable {
   IMediaDeviceControlCapabilities.fromPtr(super.ptr);
 
   factory IMediaDeviceControlCapabilities.from(IInspectable interface) =>
-      IMediaDeviceControlCapabilities.fromPtr(
-          interface.toInterface(IID_IMediaDeviceControlCapabilities));
+      interface.cast(IMediaDeviceControlCapabilities.fromPtr,
+          IID_IMediaDeviceControlCapabilities);
 
   bool get supported {
     final value = calloc<Bool>();

@@ -27,7 +27,7 @@ class IAppInfoStatics extends IInspectable {
   IAppInfoStatics.fromPtr(super.ptr);
 
   factory IAppInfoStatics.from(IInspectable interface) =>
-      IAppInfoStatics.fromPtr(interface.toInterface(IID_IAppInfoStatics));
+      interface.cast(IAppInfoStatics.fromPtr, IID_IAppInfoStatics);
 
   AppInfo? get current {
     final value = calloc<COMObject>();

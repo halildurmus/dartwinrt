@@ -28,8 +28,8 @@ class ICoreAutomationRemoteOperation2 extends IInspectable {
   ICoreAutomationRemoteOperation2.fromPtr(super.ptr);
 
   factory ICoreAutomationRemoteOperation2.from(IInspectable interface) =>
-      ICoreAutomationRemoteOperation2.fromPtr(
-          interface.toInterface(IID_ICoreAutomationRemoteOperation2));
+      interface.cast(ICoreAutomationRemoteOperation2.fromPtr,
+          IID_ICoreAutomationRemoteOperation2);
 
   void importConnectionBoundObject(AutomationRemoteOperationOperandId operandId,
       AutomationConnectionBoundObject? connectionBoundObject) {

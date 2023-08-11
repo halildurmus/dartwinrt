@@ -26,9 +26,8 @@ class IFileOpenPickerStatics2 extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IFileOpenPickerStatics2.fromPtr(super.ptr);
 
-  factory IFileOpenPickerStatics2.from(IInspectable interface) =>
-      IFileOpenPickerStatics2.fromPtr(
-          interface.toInterface(IID_IFileOpenPickerStatics2));
+  factory IFileOpenPickerStatics2.from(IInspectable interface) => interface
+      .cast(IFileOpenPickerStatics2.fromPtr, IID_IFileOpenPickerStatics2);
 
   FileOpenPicker? createForUser(User? user) {
     final result = calloc<COMObject>();

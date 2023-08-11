@@ -29,9 +29,8 @@ class IDeviceInformationStatics2 extends IInspectable {
   // vtable begins at 6, is 4 entries long.
   IDeviceInformationStatics2.fromPtr(super.ptr);
 
-  factory IDeviceInformationStatics2.from(IInspectable interface) =>
-      IDeviceInformationStatics2.fromPtr(
-          interface.toInterface(IID_IDeviceInformationStatics2));
+  factory IDeviceInformationStatics2.from(IInspectable interface) => interface
+      .cast(IDeviceInformationStatics2.fromPtr, IID_IDeviceInformationStatics2);
 
   String getAqsFilterFromDeviceClass(DeviceClass deviceClass) {
     final aqsFilter = calloc<IntPtr>();

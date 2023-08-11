@@ -26,8 +26,7 @@ class IConnectionProfile5 extends IInspectable {
   IConnectionProfile5.fromPtr(super.ptr);
 
   factory IConnectionProfile5.from(IInspectable interface) =>
-      IConnectionProfile5.fromPtr(
-          interface.toInterface(IID_IConnectionProfile5));
+      interface.cast(IConnectionProfile5.fromPtr, IID_IConnectionProfile5);
 
   bool get canDelete {
     final value = calloc<Bool>();

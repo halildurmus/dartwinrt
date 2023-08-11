@@ -25,8 +25,8 @@ class IAdvancedVideoCaptureDeviceController extends IInspectable {
   IAdvancedVideoCaptureDeviceController.fromPtr(super.ptr);
 
   factory IAdvancedVideoCaptureDeviceController.from(IInspectable interface) =>
-      IAdvancedVideoCaptureDeviceController.fromPtr(
-          interface.toInterface(IID_IAdvancedVideoCaptureDeviceController));
+      interface.cast(IAdvancedVideoCaptureDeviceController.fromPtr,
+          IID_IAdvancedVideoCaptureDeviceController);
 
   void setDeviceProperty(String propertyId, Object? propertyValue) {
     final hr = ptr.ref.vtable

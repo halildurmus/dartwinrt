@@ -33,7 +33,7 @@ class IBitmapFrame extends IInspectable {
   IBitmapFrame.fromPtr(super.ptr);
 
   factory IBitmapFrame.from(IInspectable interface) =>
-      IBitmapFrame.fromPtr(interface.toInterface(IID_IBitmapFrame));
+      interface.cast(IBitmapFrame.fromPtr, IID_IBitmapFrame);
 
   Future<ImageStream?> getThumbnailAsync() {
     final asyncInfo = calloc<COMObject>();

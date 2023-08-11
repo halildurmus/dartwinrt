@@ -27,7 +27,7 @@ class IZoomControl2 extends IInspectable {
   IZoomControl2.fromPtr(super.ptr);
 
   factory IZoomControl2.from(IInspectable interface) =>
-      IZoomControl2.fromPtr(interface.toInterface(IID_IZoomControl2));
+      interface.cast(IZoomControl2.fromPtr, IID_IZoomControl2);
 
   List<ZoomTransitionMode>? get supportedModes {
     final value = calloc<COMObject>();

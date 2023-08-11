@@ -26,7 +26,7 @@ class IBufferFactory extends IInspectable {
   IBufferFactory.fromPtr(super.ptr);
 
   factory IBufferFactory.from(IInspectable interface) =>
-      IBufferFactory.fromPtr(interface.toInterface(IID_IBufferFactory));
+      interface.cast(IBufferFactory.fromPtr, IID_IBufferFactory);
 
   Buffer create(int capacity) {
     final value = calloc<COMObject>();

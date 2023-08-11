@@ -23,9 +23,8 @@ class IFrameIsoSpeedCapabilities extends IInspectable {
   // vtable begins at 6, is 4 entries long.
   IFrameIsoSpeedCapabilities.fromPtr(super.ptr);
 
-  factory IFrameIsoSpeedCapabilities.from(IInspectable interface) =>
-      IFrameIsoSpeedCapabilities.fromPtr(
-          interface.toInterface(IID_IFrameIsoSpeedCapabilities));
+  factory IFrameIsoSpeedCapabilities.from(IInspectable interface) => interface
+      .cast(IFrameIsoSpeedCapabilities.fromPtr, IID_IFrameIsoSpeedCapabilities);
 
   bool get supported {
     final value = calloc<Bool>();

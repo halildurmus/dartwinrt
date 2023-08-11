@@ -32,8 +32,8 @@ class IGeolocatorWithScalarAccuracy extends IInspectable
   IGeolocatorWithScalarAccuracy.fromPtr(super.ptr);
 
   factory IGeolocatorWithScalarAccuracy.from(IInspectable interface) =>
-      IGeolocatorWithScalarAccuracy.fromPtr(
-          interface.toInterface(IID_IGeolocatorWithScalarAccuracy));
+      interface.cast(IGeolocatorWithScalarAccuracy.fromPtr,
+          IID_IGeolocatorWithScalarAccuracy);
 
   int? get desiredAccuracyInMeters {
     final value = calloc<COMObject>();

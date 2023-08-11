@@ -25,9 +25,8 @@ class ITensorFeatureDescriptor extends IInspectable {
   // vtable begins at 6, is 2 entries long.
   ITensorFeatureDescriptor.fromPtr(super.ptr);
 
-  factory ITensorFeatureDescriptor.from(IInspectable interface) =>
-      ITensorFeatureDescriptor.fromPtr(
-          interface.toInterface(IID_ITensorFeatureDescriptor));
+  factory ITensorFeatureDescriptor.from(IInspectable interface) => interface
+      .cast(ITensorFeatureDescriptor.fromPtr, IID_ITensorFeatureDescriptor);
 
   TensorKind get tensorKind {
     final value = calloc<Int32>();

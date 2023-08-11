@@ -28,7 +28,7 @@ class IUISettings extends IInspectable {
   IUISettings.fromPtr(super.ptr);
 
   factory IUISettings.from(IInspectable interface) =>
-      IUISettings.fromPtr(interface.toInterface(IID_IUISettings));
+      interface.cast(IUISettings.fromPtr, IID_IUISettings);
 
   HandPreference get handPreference {
     final value = calloc<Int32>();

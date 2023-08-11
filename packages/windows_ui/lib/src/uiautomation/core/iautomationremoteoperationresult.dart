@@ -28,8 +28,8 @@ class IAutomationRemoteOperationResult extends IInspectable {
   IAutomationRemoteOperationResult.fromPtr(super.ptr);
 
   factory IAutomationRemoteOperationResult.from(IInspectable interface) =>
-      IAutomationRemoteOperationResult.fromPtr(
-          interface.toInterface(IID_IAutomationRemoteOperationResult));
+      interface.cast(IAutomationRemoteOperationResult.fromPtr,
+          IID_IAutomationRemoteOperationResult);
 
   AutomationRemoteOperationStatus get status {
     final value = calloc<Int32>();

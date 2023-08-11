@@ -33,8 +33,7 @@ class IXmlDocumentFragment extends IInspectable
   IXmlDocumentFragment.fromPtr(super.ptr);
 
   factory IXmlDocumentFragment.from(IInspectable interface) =>
-      IXmlDocumentFragment.fromPtr(
-          interface.toInterface(IID_IXmlDocumentFragment));
+      interface.cast(IXmlDocumentFragment.fromPtr, IID_IXmlDocumentFragment);
 
   late final _iXmlNode = IXmlNode.from(this);
 

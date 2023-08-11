@@ -43,7 +43,7 @@ class IXmlDocument extends IInspectable
   IXmlDocument.fromPtr(super.ptr);
 
   factory IXmlDocument.from(IInspectable interface) =>
-      IXmlDocument.fromPtr(interface.toInterface(IID_IXmlDocument));
+      interface.cast(IXmlDocument.fromPtr, IID_IXmlDocument);
 
   XmlDocumentType? get doctype {
     final value = calloc<COMObject>();

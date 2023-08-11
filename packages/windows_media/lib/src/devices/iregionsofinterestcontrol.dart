@@ -25,9 +25,8 @@ class IRegionsOfInterestControl extends IInspectable {
   // vtable begins at 6, is 7 entries long.
   IRegionsOfInterestControl.fromPtr(super.ptr);
 
-  factory IRegionsOfInterestControl.from(IInspectable interface) =>
-      IRegionsOfInterestControl.fromPtr(
-          interface.toInterface(IID_IRegionsOfInterestControl));
+  factory IRegionsOfInterestControl.from(IInspectable interface) => interface
+      .cast(IRegionsOfInterestControl.fromPtr, IID_IRegionsOfInterestControl);
 
   int get maxRegions {
     final value = calloc<Uint32>();

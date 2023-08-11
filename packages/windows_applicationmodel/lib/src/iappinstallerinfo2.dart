@@ -27,7 +27,7 @@ class IAppInstallerInfo2 extends IInspectable {
   IAppInstallerInfo2.fromPtr(super.ptr);
 
   factory IAppInstallerInfo2.from(IInspectable interface) =>
-      IAppInstallerInfo2.fromPtr(interface.toInterface(IID_IAppInstallerInfo2));
+      interface.cast(IAppInstallerInfo2.fromPtr, IID_IAppInstallerInfo2);
 
   bool get onLaunch {
     final value = calloc<Bool>();

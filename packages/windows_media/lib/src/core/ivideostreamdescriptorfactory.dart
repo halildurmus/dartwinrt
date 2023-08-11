@@ -28,8 +28,8 @@ class IVideoStreamDescriptorFactory extends IInspectable {
   IVideoStreamDescriptorFactory.fromPtr(super.ptr);
 
   factory IVideoStreamDescriptorFactory.from(IInspectable interface) =>
-      IVideoStreamDescriptorFactory.fromPtr(
-          interface.toInterface(IID_IVideoStreamDescriptorFactory));
+      interface.cast(IVideoStreamDescriptorFactory.fromPtr,
+          IID_IVideoStreamDescriptorFactory);
 
   VideoStreamDescriptor create(VideoEncodingProperties? encodingProperties) {
     final result = calloc<COMObject>();

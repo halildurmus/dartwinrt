@@ -32,7 +32,7 @@ class IDateTimeFormatter extends IInspectable {
   IDateTimeFormatter.fromPtr(super.ptr);
 
   factory IDateTimeFormatter.from(IInspectable interface) =>
-      IDateTimeFormatter.fromPtr(interface.toInterface(IID_IDateTimeFormatter));
+      interface.cast(IDateTimeFormatter.fromPtr, IID_IDateTimeFormatter);
 
   List<String>? get languages {
     final value = calloc<COMObject>();

@@ -24,7 +24,7 @@ class IAppListEntry2 extends IInspectable {
   IAppListEntry2.fromPtr(super.ptr);
 
   factory IAppListEntry2.from(IInspectable interface) =>
-      IAppListEntry2.fromPtr(interface.toInterface(IID_IAppListEntry2));
+      interface.cast(IAppListEntry2.fromPtr, IID_IAppListEntry2);
 
   String get appUserModelId {
     final value = calloc<IntPtr>();

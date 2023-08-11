@@ -24,7 +24,7 @@ class ICivicAddress extends IInspectable {
   ICivicAddress.fromPtr(super.ptr);
 
   factory ICivicAddress.from(IInspectable interface) =>
-      ICivicAddress.fromPtr(interface.toInterface(IID_ICivicAddress));
+      interface.cast(ICivicAddress.fromPtr, IID_ICivicAddress);
 
   String get country {
     final value = calloc<IntPtr>();

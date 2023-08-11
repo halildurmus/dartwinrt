@@ -25,8 +25,8 @@ class INumeralSystemIdentifiersStatics extends IInspectable {
   INumeralSystemIdentifiersStatics.fromPtr(super.ptr);
 
   factory INumeralSystemIdentifiersStatics.from(IInspectable interface) =>
-      INumeralSystemIdentifiersStatics.fromPtr(
-          interface.toInterface(IID_INumeralSystemIdentifiersStatics));
+      interface.cast(INumeralSystemIdentifiersStatics.fromPtr,
+          IID_INumeralSystemIdentifiersStatics);
 
   String get arab {
     final value = calloc<IntPtr>();

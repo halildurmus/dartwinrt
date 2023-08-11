@@ -28,7 +28,7 @@ class IJsonValue extends IInspectable {
   IJsonValue.fromPtr(super.ptr);
 
   factory IJsonValue.from(IInspectable interface) =>
-      IJsonValue.fromPtr(interface.toInterface(IID_IJsonValue));
+      interface.cast(IJsonValue.fromPtr, IID_IJsonValue);
 
   JsonValueType get valueType {
     final value = calloc<Int32>();

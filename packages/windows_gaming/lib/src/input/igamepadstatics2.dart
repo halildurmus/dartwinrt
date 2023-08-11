@@ -28,7 +28,7 @@ class IGamepadStatics2 extends IInspectable implements IGamepadStatics {
   IGamepadStatics2.fromPtr(super.ptr);
 
   factory IGamepadStatics2.from(IInspectable interface) =>
-      IGamepadStatics2.fromPtr(interface.toInterface(IID_IGamepadStatics2));
+      interface.cast(IGamepadStatics2.fromPtr, IID_IGamepadStatics2);
 
   Gamepad? fromGameController(IGameController? gameController) {
     final value = calloc<COMObject>();

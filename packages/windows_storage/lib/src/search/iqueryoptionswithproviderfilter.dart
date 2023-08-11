@@ -25,8 +25,8 @@ class IQueryOptionsWithProviderFilter extends IInspectable {
   IQueryOptionsWithProviderFilter.fromPtr(super.ptr);
 
   factory IQueryOptionsWithProviderFilter.from(IInspectable interface) =>
-      IQueryOptionsWithProviderFilter.fromPtr(
-          interface.toInterface(IID_IQueryOptionsWithProviderFilter));
+      interface.cast(IQueryOptionsWithProviderFilter.fromPtr,
+          IID_IQueryOptionsWithProviderFilter);
 
   IVector<String>? get storageProviderIdFilter {
     final value = calloc<COMObject>();

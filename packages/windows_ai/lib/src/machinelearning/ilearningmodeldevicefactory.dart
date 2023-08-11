@@ -28,8 +28,8 @@ class ILearningModelDeviceFactory extends IInspectable {
   ILearningModelDeviceFactory.fromPtr(super.ptr);
 
   factory ILearningModelDeviceFactory.from(IInspectable interface) =>
-      ILearningModelDeviceFactory.fromPtr(
-          interface.toInterface(IID_ILearningModelDeviceFactory));
+      interface.cast(
+          ILearningModelDeviceFactory.fromPtr, IID_ILearningModelDeviceFactory);
 
   LearningModelDevice create(LearningModelDeviceKind deviceKind) {
     final value = calloc<COMObject>();

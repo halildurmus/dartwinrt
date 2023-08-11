@@ -29,7 +29,7 @@ class IDeviceWatcher extends IInspectable {
   IDeviceWatcher.fromPtr(super.ptr);
 
   factory IDeviceWatcher.from(IInspectable interface) =>
-      IDeviceWatcher.fromPtr(interface.toInterface(IID_IDeviceWatcher));
+      interface.cast(IDeviceWatcher.fromPtr, IID_IDeviceWatcher);
 
   int add_Added(Pointer<COMObject> handler) {
     final token = calloc<IntPtr>();

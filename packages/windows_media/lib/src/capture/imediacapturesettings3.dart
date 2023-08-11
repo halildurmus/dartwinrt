@@ -24,9 +24,8 @@ class IMediaCaptureSettings3 extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IMediaCaptureSettings3.fromPtr(super.ptr);
 
-  factory IMediaCaptureSettings3.from(IInspectable interface) =>
-      IMediaCaptureSettings3.fromPtr(
-          interface.toInterface(IID_IMediaCaptureSettings3));
+  factory IMediaCaptureSettings3.from(IInspectable interface) => interface.cast(
+      IMediaCaptureSettings3.fromPtr, IID_IMediaCaptureSettings3);
 
   IDirect3DDevice? get direct3D11Device {
     final value = calloc<COMObject>();

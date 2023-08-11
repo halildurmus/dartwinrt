@@ -27,7 +27,7 @@ class IGeoshape extends IInspectable {
   IGeoshape.fromPtr(super.ptr);
 
   factory IGeoshape.from(IInspectable interface) =>
-      IGeoshape.fromPtr(interface.toInterface(IID_IGeoshape));
+      interface.cast(IGeoshape.fromPtr, IID_IGeoshape);
 
   GeoshapeType get geoshapeType {
     final value = calloc<Int32>();

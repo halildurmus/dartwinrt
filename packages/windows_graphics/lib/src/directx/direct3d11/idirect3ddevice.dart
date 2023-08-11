@@ -26,7 +26,7 @@ class IDirect3DDevice extends IInspectable implements IClosable {
   IDirect3DDevice.fromPtr(super.ptr);
 
   factory IDirect3DDevice.from(IInspectable interface) =>
-      IDirect3DDevice.fromPtr(interface.toInterface(IID_IDirect3DDevice));
+      interface.cast(IDirect3DDevice.fromPtr, IID_IDirect3DDevice);
 
   void trim() {
     final hr = ptr.ref.vtable

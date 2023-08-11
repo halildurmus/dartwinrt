@@ -24,8 +24,7 @@ class IWebAccountProvider4 extends IInspectable {
   IWebAccountProvider4.fromPtr(super.ptr);
 
   factory IWebAccountProvider4.from(IInspectable interface) =>
-      IWebAccountProvider4.fromPtr(
-          interface.toInterface(IID_IWebAccountProvider4));
+      interface.cast(IWebAccountProvider4.fromPtr, IID_IWebAccountProvider4);
 
   bool get isSystemProvider {
     final value = calloc<Bool>();

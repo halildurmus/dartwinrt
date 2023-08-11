@@ -26,9 +26,8 @@ class IFileSavePickerStatics extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IFileSavePickerStatics.fromPtr(super.ptr);
 
-  factory IFileSavePickerStatics.from(IInspectable interface) =>
-      IFileSavePickerStatics.fromPtr(
-          interface.toInterface(IID_IFileSavePickerStatics));
+  factory IFileSavePickerStatics.from(IInspectable interface) => interface.cast(
+      IFileSavePickerStatics.fromPtr, IID_IFileSavePickerStatics);
 
   FileSavePicker? createForUser(User? user) {
     final result = calloc<COMObject>();

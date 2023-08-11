@@ -26,7 +26,7 @@ class ILauncherOptions extends IInspectable {
   ILauncherOptions.fromPtr(super.ptr);
 
   factory ILauncherOptions.from(IInspectable interface) =>
-      ILauncherOptions.fromPtr(interface.toInterface(IID_ILauncherOptions));
+      interface.cast(ILauncherOptions.fromPtr, IID_ILauncherOptions);
 
   bool get treatAsUntrusted {
     final value = calloc<Bool>();

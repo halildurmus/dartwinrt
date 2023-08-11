@@ -25,9 +25,8 @@ class IImageFeatureDescriptor2 extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IImageFeatureDescriptor2.fromPtr(super.ptr);
 
-  factory IImageFeatureDescriptor2.from(IInspectable interface) =>
-      IImageFeatureDescriptor2.fromPtr(
-          interface.toInterface(IID_IImageFeatureDescriptor2));
+  factory IImageFeatureDescriptor2.from(IInspectable interface) => interface
+      .cast(IImageFeatureDescriptor2.fromPtr, IID_IImageFeatureDescriptor2);
 
   LearningModelPixelRange get pixelRange {
     final value = calloc<Int32>();

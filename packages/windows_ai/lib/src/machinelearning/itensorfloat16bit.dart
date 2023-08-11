@@ -24,7 +24,7 @@ class ITensorFloat16Bit extends IInspectable {
   ITensorFloat16Bit.fromPtr(super.ptr);
 
   factory ITensorFloat16Bit.from(IInspectable interface) =>
-      ITensorFloat16Bit.fromPtr(interface.toInterface(IID_ITensorFloat16Bit));
+      interface.cast(ITensorFloat16Bit.fromPtr, IID_ITensorFloat16Bit);
 
   List<double> getAsVectorView() {
     final result = calloc<COMObject>();

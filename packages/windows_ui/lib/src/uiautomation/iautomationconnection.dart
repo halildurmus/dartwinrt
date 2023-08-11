@@ -24,8 +24,7 @@ class IAutomationConnection extends IInspectable {
   IAutomationConnection.fromPtr(super.ptr);
 
   factory IAutomationConnection.from(IInspectable interface) =>
-      IAutomationConnection.fromPtr(
-          interface.toInterface(IID_IAutomationConnection));
+      interface.cast(IAutomationConnection.fromPtr, IID_IAutomationConnection);
 
   bool get isRemoteSystem {
     final value = calloc<Bool>();

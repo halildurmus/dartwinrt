@@ -25,9 +25,8 @@ class IPermilleFormatterFactory extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IPermilleFormatterFactory.fromPtr(super.ptr);
 
-  factory IPermilleFormatterFactory.from(IInspectable interface) =>
-      IPermilleFormatterFactory.fromPtr(
-          interface.toInterface(IID_IPermilleFormatterFactory));
+  factory IPermilleFormatterFactory.from(IInspectable interface) => interface
+      .cast(IPermilleFormatterFactory.fromPtr, IID_IPermilleFormatterFactory);
 
   PermilleFormatter createPermilleFormatter(
       IIterable<String>? languages, String geographicRegion) {

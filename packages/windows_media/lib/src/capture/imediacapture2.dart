@@ -35,7 +35,7 @@ class IMediaCapture2 extends IInspectable {
   IMediaCapture2.fromPtr(super.ptr);
 
   factory IMediaCapture2.from(IInspectable interface) =>
-      IMediaCapture2.fromPtr(interface.toInterface(IID_IMediaCapture2));
+      interface.cast(IMediaCapture2.fromPtr, IID_IMediaCapture2);
 
   Future<LowLagMediaRecording?> prepareLowLagRecordToStorageFileAsync(
       MediaEncodingProfile? encodingProfile, IStorageFile? file) {

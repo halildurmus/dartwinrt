@@ -27,8 +27,8 @@ class IVideoEncodingPropertiesStatics2 extends IInspectable {
   IVideoEncodingPropertiesStatics2.fromPtr(super.ptr);
 
   factory IVideoEncodingPropertiesStatics2.from(IInspectable interface) =>
-      IVideoEncodingPropertiesStatics2.fromPtr(
-          interface.toInterface(IID_IVideoEncodingPropertiesStatics2));
+      interface.cast(IVideoEncodingPropertiesStatics2.fromPtr,
+          IID_IVideoEncodingPropertiesStatics2);
 
   VideoEncodingProperties? createHevc() {
     final value = calloc<COMObject>();

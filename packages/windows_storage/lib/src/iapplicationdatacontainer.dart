@@ -27,9 +27,8 @@ class IApplicationDataContainer extends IInspectable {
   // vtable begins at 6, is 6 entries long.
   IApplicationDataContainer.fromPtr(super.ptr);
 
-  factory IApplicationDataContainer.from(IInspectable interface) =>
-      IApplicationDataContainer.fromPtr(
-          interface.toInterface(IID_IApplicationDataContainer));
+  factory IApplicationDataContainer.from(IInspectable interface) => interface
+      .cast(IApplicationDataContainer.fromPtr, IID_IApplicationDataContainer);
 
   String get name {
     final value = calloc<IntPtr>();

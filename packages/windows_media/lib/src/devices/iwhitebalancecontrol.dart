@@ -26,8 +26,7 @@ class IWhiteBalanceControl extends IInspectable {
   IWhiteBalanceControl.fromPtr(super.ptr);
 
   factory IWhiteBalanceControl.from(IInspectable interface) =>
-      IWhiteBalanceControl.fromPtr(
-          interface.toInterface(IID_IWhiteBalanceControl));
+      interface.cast(IWhiteBalanceControl.fromPtr, IID_IWhiteBalanceControl);
 
   bool get supported {
     final value = calloc<Bool>();

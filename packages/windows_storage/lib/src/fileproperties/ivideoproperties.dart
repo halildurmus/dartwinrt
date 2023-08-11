@@ -28,7 +28,7 @@ class IVideoProperties extends IInspectable
   IVideoProperties.fromPtr(super.ptr);
 
   factory IVideoProperties.from(IInspectable interface) =>
-      IVideoProperties.fromPtr(interface.toInterface(IID_IVideoProperties));
+      interface.cast(IVideoProperties.fromPtr, IID_IVideoProperties);
 
   int get rating {
     final value = calloc<Uint32>();

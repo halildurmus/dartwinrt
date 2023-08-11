@@ -29,8 +29,7 @@ class IWebAccountProvider3 extends IInspectable
   IWebAccountProvider3.fromPtr(super.ptr);
 
   factory IWebAccountProvider3.from(IInspectable interface) =>
-      IWebAccountProvider3.fromPtr(
-          interface.toInterface(IID_IWebAccountProvider3));
+      interface.cast(IWebAccountProvider3.fromPtr, IID_IWebAccountProvider3);
 
   User? get user {
     final user = calloc<COMObject>();

@@ -27,9 +27,8 @@ class IWebTokenResponseFactory extends IInspectable {
   // vtable begins at 6, is 3 entries long.
   IWebTokenResponseFactory.fromPtr(super.ptr);
 
-  factory IWebTokenResponseFactory.from(IInspectable interface) =>
-      IWebTokenResponseFactory.fromPtr(
-          interface.toInterface(IID_IWebTokenResponseFactory));
+  factory IWebTokenResponseFactory.from(IInspectable interface) => interface
+      .cast(IWebTokenResponseFactory.fromPtr, IID_IWebTokenResponseFactory);
 
   WebTokenResponse createWithToken(String token) {
     final webTokenResponse = calloc<COMObject>();

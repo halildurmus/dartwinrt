@@ -27,7 +27,7 @@ class IMessageDialog extends IInspectable {
   IMessageDialog.fromPtr(super.ptr);
 
   factory IMessageDialog.from(IInspectable interface) =>
-      IMessageDialog.fromPtr(interface.toInterface(IID_IMessageDialog));
+      interface.cast(IMessageDialog.fromPtr, IID_IMessageDialog);
 
   String get title {
     final value = calloc<IntPtr>();

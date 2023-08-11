@@ -28,8 +28,7 @@ class IDigitalWindowControl extends IInspectable {
   IDigitalWindowControl.fromPtr(super.ptr);
 
   factory IDigitalWindowControl.from(IInspectable interface) =>
-      IDigitalWindowControl.fromPtr(
-          interface.toInterface(IID_IDigitalWindowControl));
+      interface.cast(IDigitalWindowControl.fromPtr, IID_IDigitalWindowControl);
 
   bool get isSupported {
     final value = calloc<Bool>();

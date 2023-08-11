@@ -24,7 +24,7 @@ class IAppInfo4 extends IInspectable {
   IAppInfo4.fromPtr(super.ptr);
 
   factory IAppInfo4.from(IInspectable interface) =>
-      IAppInfo4.fromPtr(interface.toInterface(IID_IAppInfo4));
+      interface.cast(IAppInfo4.fromPtr, IID_IAppInfo4);
 
   List<String> get supportedFileExtensions {
     final valueSize = calloc<Uint32>();

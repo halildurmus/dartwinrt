@@ -24,7 +24,7 @@ class IMediaFrame extends IInspectable implements IClosable {
   IMediaFrame.fromPtr(super.ptr);
 
   factory IMediaFrame.from(IInspectable interface) =>
-      IMediaFrame.fromPtr(interface.toInterface(IID_IMediaFrame));
+      interface.cast(IMediaFrame.fromPtr, IID_IMediaFrame);
 
   String get type {
     final value = calloc<IntPtr>();

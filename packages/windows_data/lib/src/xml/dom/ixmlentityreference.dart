@@ -33,8 +33,7 @@ class IXmlEntityReference extends IInspectable
   IXmlEntityReference.fromPtr(super.ptr);
 
   factory IXmlEntityReference.from(IInspectable interface) =>
-      IXmlEntityReference.fromPtr(
-          interface.toInterface(IID_IXmlEntityReference));
+      interface.cast(IXmlEntityReference.fromPtr, IID_IXmlEntityReference);
 
   late final _iXmlNode = IXmlNode.from(this);
 

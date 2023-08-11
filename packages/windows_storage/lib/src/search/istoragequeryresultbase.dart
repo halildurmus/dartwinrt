@@ -26,9 +26,8 @@ class IStorageQueryResultBase extends IInspectable {
   // vtable begins at 6, is 9 entries long.
   IStorageQueryResultBase.fromPtr(super.ptr);
 
-  factory IStorageQueryResultBase.from(IInspectable interface) =>
-      IStorageQueryResultBase.fromPtr(
-          interface.toInterface(IID_IStorageQueryResultBase));
+  factory IStorageQueryResultBase.from(IInspectable interface) => interface
+      .cast(IStorageQueryResultBase.fromPtr, IID_IStorageQueryResultBase);
 
   Future<int> getItemCountAsync() {
     final operation = calloc<COMObject>();

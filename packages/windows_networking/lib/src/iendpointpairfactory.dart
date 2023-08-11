@@ -27,8 +27,7 @@ class IEndpointPairFactory extends IInspectable {
   IEndpointPairFactory.fromPtr(super.ptr);
 
   factory IEndpointPairFactory.from(IInspectable interface) =>
-      IEndpointPairFactory.fromPtr(
-          interface.toInterface(IID_IEndpointPairFactory));
+      interface.cast(IEndpointPairFactory.fromPtr, IID_IEndpointPairFactory);
 
   EndpointPair createEndpointPair(
       HostName? localHostName,

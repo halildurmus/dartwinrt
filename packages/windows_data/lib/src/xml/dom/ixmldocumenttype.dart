@@ -33,7 +33,7 @@ class IXmlDocumentType extends IInspectable
   IXmlDocumentType.fromPtr(super.ptr);
 
   factory IXmlDocumentType.from(IInspectable interface) =>
-      IXmlDocumentType.fromPtr(interface.toInterface(IID_IXmlDocumentType));
+      interface.cast(IXmlDocumentType.fromPtr, IID_IXmlDocumentType);
 
   String get name {
     final value = calloc<IntPtr>();

@@ -28,9 +28,8 @@ class IStorageItemProperties extends IInspectable {
   // vtable begins at 6, is 7 entries long.
   IStorageItemProperties.fromPtr(super.ptr);
 
-  factory IStorageItemProperties.from(IInspectable interface) =>
-      IStorageItemProperties.fromPtr(
-          interface.toInterface(IID_IStorageItemProperties));
+  factory IStorageItemProperties.from(IInspectable interface) => interface.cast(
+      IStorageItemProperties.fromPtr, IID_IStorageItemProperties);
 
   Future<StorageItemThumbnail?>
       getThumbnailAsyncOverloadDefaultSizeDefaultOptions(ThumbnailMode mode) {

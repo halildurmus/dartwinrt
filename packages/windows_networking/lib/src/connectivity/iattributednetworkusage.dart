@@ -24,9 +24,8 @@ class IAttributedNetworkUsage extends IInspectable {
   // vtable begins at 6, is 5 entries long.
   IAttributedNetworkUsage.fromPtr(super.ptr);
 
-  factory IAttributedNetworkUsage.from(IInspectable interface) =>
-      IAttributedNetworkUsage.fromPtr(
-          interface.toInterface(IID_IAttributedNetworkUsage));
+  factory IAttributedNetworkUsage.from(IInspectable interface) => interface
+      .cast(IAttributedNetworkUsage.fromPtr, IID_IAttributedNetworkUsage);
 
   int get bytesSent {
     final value = calloc<Uint64>();

@@ -28,8 +28,8 @@ class IAdvancedVideoCaptureDeviceController11 extends IInspectable {
 
   factory IAdvancedVideoCaptureDeviceController11.from(
           IInspectable interface) =>
-      IAdvancedVideoCaptureDeviceController11.fromPtr(
-          interface.toInterface(IID_IAdvancedVideoCaptureDeviceController11));
+      interface.cast(IAdvancedVideoCaptureDeviceController11.fromPtr,
+          IID_IAdvancedVideoCaptureDeviceController11);
 
   bool tryAcquireExclusiveControl(
       String deviceId, MediaCaptureDeviceExclusiveControlReleaseMode mode) {

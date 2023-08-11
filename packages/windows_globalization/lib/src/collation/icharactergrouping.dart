@@ -24,7 +24,7 @@ class ICharacterGrouping extends IInspectable {
   ICharacterGrouping.fromPtr(super.ptr);
 
   factory ICharacterGrouping.from(IInspectable interface) =>
-      ICharacterGrouping.fromPtr(interface.toInterface(IID_ICharacterGrouping));
+      interface.cast(ICharacterGrouping.fromPtr, IID_ICharacterGrouping);
 
   String get first {
     final value = calloc<IntPtr>();

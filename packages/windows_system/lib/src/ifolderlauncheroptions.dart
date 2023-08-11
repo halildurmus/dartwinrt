@@ -24,9 +24,8 @@ class IFolderLauncherOptions extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IFolderLauncherOptions.fromPtr(super.ptr);
 
-  factory IFolderLauncherOptions.from(IInspectable interface) =>
-      IFolderLauncherOptions.fromPtr(
-          interface.toInterface(IID_IFolderLauncherOptions));
+  factory IFolderLauncherOptions.from(IInspectable interface) => interface.cast(
+      IFolderLauncherOptions.fromPtr, IID_IFolderLauncherOptions);
 
   IVector<IStorageItem?>? get itemsToSelect {
     final value = calloc<COMObject>();

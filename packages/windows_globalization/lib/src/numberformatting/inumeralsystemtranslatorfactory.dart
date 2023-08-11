@@ -27,8 +27,8 @@ class INumeralSystemTranslatorFactory extends IInspectable {
   INumeralSystemTranslatorFactory.fromPtr(super.ptr);
 
   factory INumeralSystemTranslatorFactory.from(IInspectable interface) =>
-      INumeralSystemTranslatorFactory.fromPtr(
-          interface.toInterface(IID_INumeralSystemTranslatorFactory));
+      interface.cast(INumeralSystemTranslatorFactory.fromPtr,
+          IID_INumeralSystemTranslatorFactory);
 
   NumeralSystemTranslator create(IIterable<String>? languages) {
     final result = calloc<COMObject>();

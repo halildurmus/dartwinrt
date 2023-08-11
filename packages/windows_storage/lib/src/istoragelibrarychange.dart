@@ -28,8 +28,7 @@ class IStorageLibraryChange extends IInspectable {
   IStorageLibraryChange.fromPtr(super.ptr);
 
   factory IStorageLibraryChange.from(IInspectable interface) =>
-      IStorageLibraryChange.fromPtr(
-          interface.toInterface(IID_IStorageLibraryChange));
+      interface.cast(IStorageLibraryChange.fromPtr, IID_IStorageLibraryChange);
 
   StorageLibraryChangeType get changeType {
     final value = calloc<Int32>();

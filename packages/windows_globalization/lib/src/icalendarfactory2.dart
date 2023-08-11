@@ -26,7 +26,7 @@ class ICalendarFactory2 extends IInspectable {
   ICalendarFactory2.fromPtr(super.ptr);
 
   factory ICalendarFactory2.from(IInspectable interface) =>
-      ICalendarFactory2.fromPtr(interface.toInterface(IID_ICalendarFactory2));
+      interface.cast(ICalendarFactory2.fromPtr, IID_ICalendarFactory2);
 
   Calendar createCalendarWithTimeZone(IIterable<String>? languages,
       String calendar, String clock, String timeZoneId) {

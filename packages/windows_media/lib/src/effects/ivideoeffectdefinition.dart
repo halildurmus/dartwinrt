@@ -25,9 +25,8 @@ class IVideoEffectDefinition extends IInspectable {
   // vtable begins at 6, is 2 entries long.
   IVideoEffectDefinition.fromPtr(super.ptr);
 
-  factory IVideoEffectDefinition.from(IInspectable interface) =>
-      IVideoEffectDefinition.fromPtr(
-          interface.toInterface(IID_IVideoEffectDefinition));
+  factory IVideoEffectDefinition.from(IInspectable interface) => interface.cast(
+      IVideoEffectDefinition.fromPtr, IID_IVideoEffectDefinition);
 
   String get activatableClassId {
     final value = calloc<IntPtr>();

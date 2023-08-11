@@ -29,8 +29,7 @@ class ILearningModelSession extends IInspectable {
   ILearningModelSession.fromPtr(super.ptr);
 
   factory ILearningModelSession.from(IInspectable interface) =>
-      ILearningModelSession.fromPtr(
-          interface.toInterface(IID_ILearningModelSession));
+      interface.cast(ILearningModelSession.fromPtr, IID_ILearningModelSession);
 
   LearningModel? get model {
     final value = calloc<COMObject>();

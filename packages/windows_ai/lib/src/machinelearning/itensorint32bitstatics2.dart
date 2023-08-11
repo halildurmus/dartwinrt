@@ -26,9 +26,8 @@ class ITensorInt32BitStatics2 extends IInspectable {
   // vtable begins at 6, is 2 entries long.
   ITensorInt32BitStatics2.fromPtr(super.ptr);
 
-  factory ITensorInt32BitStatics2.from(IInspectable interface) =>
-      ITensorInt32BitStatics2.fromPtr(
-          interface.toInterface(IID_ITensorInt32BitStatics2));
+  factory ITensorInt32BitStatics2.from(IInspectable interface) => interface
+      .cast(ITensorInt32BitStatics2.fromPtr, IID_ITensorInt32BitStatics2);
 
   TensorInt32Bit? createFromShapeArrayAndDataArray(
       List<int> shape, List<int> data) {

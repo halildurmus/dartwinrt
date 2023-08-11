@@ -29,7 +29,7 @@ class IStorageFile2 extends IInspectable {
   IStorageFile2.fromPtr(super.ptr);
 
   factory IStorageFile2.from(IInspectable interface) =>
-      IStorageFile2.fromPtr(interface.toInterface(IID_IStorageFile2));
+      interface.cast(IStorageFile2.fromPtr, IID_IStorageFile2);
 
   Future<IRandomAccessStream?> openWithOptionsAsync(
       FileAccessMode accessMode, StorageOpenOptions options) {

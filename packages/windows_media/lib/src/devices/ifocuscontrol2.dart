@@ -30,7 +30,7 @@ class IFocusControl2 extends IInspectable {
   IFocusControl2.fromPtr(super.ptr);
 
   factory IFocusControl2.from(IInspectable interface) =>
-      IFocusControl2.fromPtr(interface.toInterface(IID_IFocusControl2));
+      interface.cast(IFocusControl2.fromPtr, IID_IFocusControl2);
 
   bool get focusChangedSupported {
     final value = calloc<Bool>();

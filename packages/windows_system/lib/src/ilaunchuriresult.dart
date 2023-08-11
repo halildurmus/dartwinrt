@@ -26,7 +26,7 @@ class ILaunchUriResult extends IInspectable {
   ILaunchUriResult.fromPtr(super.ptr);
 
   factory ILaunchUriResult.from(IInspectable interface) =>
-      ILaunchUriResult.fromPtr(interface.toInterface(IID_ILaunchUriResult));
+      interface.cast(ILaunchUriResult.fromPtr, IID_ILaunchUriResult);
 
   LaunchUriStatus get status {
     final value = calloc<Int32>();

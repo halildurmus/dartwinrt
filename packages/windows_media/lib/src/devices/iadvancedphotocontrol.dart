@@ -27,8 +27,7 @@ class IAdvancedPhotoControl extends IInspectable {
   IAdvancedPhotoControl.fromPtr(super.ptr);
 
   factory IAdvancedPhotoControl.from(IInspectable interface) =>
-      IAdvancedPhotoControl.fromPtr(
-          interface.toInterface(IID_IAdvancedPhotoControl));
+      interface.cast(IAdvancedPhotoControl.fromPtr, IID_IAdvancedPhotoControl);
 
   bool get supported {
     final value = calloc<Bool>();

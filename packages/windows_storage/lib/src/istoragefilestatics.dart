@@ -28,8 +28,7 @@ class IStorageFileStatics extends IInspectable {
   IStorageFileStatics.fromPtr(super.ptr);
 
   factory IStorageFileStatics.from(IInspectable interface) =>
-      IStorageFileStatics.fromPtr(
-          interface.toInterface(IID_IStorageFileStatics));
+      interface.cast(IStorageFileStatics.fromPtr, IID_IStorageFileStatics);
 
   Future<StorageFile?> getFileFromPathAsync(String path) {
     final operation = calloc<COMObject>();

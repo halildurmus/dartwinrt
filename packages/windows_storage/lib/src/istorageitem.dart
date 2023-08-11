@@ -30,7 +30,7 @@ class IStorageItem extends IInspectable {
   IStorageItem.fromPtr(super.ptr);
 
   factory IStorageItem.from(IInspectable interface) =>
-      IStorageItem.fromPtr(interface.toInterface(IID_IStorageItem));
+      interface.cast(IStorageItem.fromPtr, IID_IStorageItem);
 
   Future<void> renameAsyncOverloadDefaultOptions(String desiredName) {
     final operation = calloc<COMObject>();

@@ -26,9 +26,8 @@ class IToastNotificationFactory extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IToastNotificationFactory.fromPtr(super.ptr);
 
-  factory IToastNotificationFactory.from(IInspectable interface) =>
-      IToastNotificationFactory.fromPtr(
-          interface.toInterface(IID_IToastNotificationFactory));
+  factory IToastNotificationFactory.from(IInspectable interface) => interface
+      .cast(IToastNotificationFactory.fromPtr, IID_IToastNotificationFactory);
 
   ToastNotification createToastNotification(XmlDocument? content) {
     final value = calloc<COMObject>();

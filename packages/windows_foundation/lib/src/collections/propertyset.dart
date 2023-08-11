@@ -15,6 +15,7 @@ import 'package:win32/win32.dart'
     hide DocumentProperties, WinRTStringConversion;
 
 import '../../internal.dart';
+import '../extensions/extensions.dart';
 import '../helpers.dart';
 import 'iiterable.dart';
 import 'iiterator.dart';

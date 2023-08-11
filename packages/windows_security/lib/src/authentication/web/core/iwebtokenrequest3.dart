@@ -24,7 +24,7 @@ class IWebTokenRequest3 extends IInspectable {
   IWebTokenRequest3.fromPtr(super.ptr);
 
   factory IWebTokenRequest3.from(IInspectable interface) =>
-      IWebTokenRequest3.fromPtr(interface.toInterface(IID_IWebTokenRequest3));
+      interface.cast(IWebTokenRequest3.fromPtr, IID_IWebTokenRequest3);
 
   String get correlationId {
     final value = calloc<IntPtr>();

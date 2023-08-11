@@ -31,7 +31,7 @@ class ISoftwareBitmap extends IInspectable implements IClosable {
   ISoftwareBitmap.fromPtr(super.ptr);
 
   factory ISoftwareBitmap.from(IInspectable interface) =>
-      ISoftwareBitmap.fromPtr(interface.toInterface(IID_ISoftwareBitmap));
+      interface.cast(ISoftwareBitmap.fromPtr, IID_ISoftwareBitmap);
 
   BitmapPixelFormat get bitmapPixelFormat {
     final value = calloc<Int32>();

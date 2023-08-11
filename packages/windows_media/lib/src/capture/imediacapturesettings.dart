@@ -28,8 +28,7 @@ class IMediaCaptureSettings extends IInspectable {
   IMediaCaptureSettings.fromPtr(super.ptr);
 
   factory IMediaCaptureSettings.from(IInspectable interface) =>
-      IMediaCaptureSettings.fromPtr(
-          interface.toInterface(IID_IMediaCaptureSettings));
+      interface.cast(IMediaCaptureSettings.fromPtr, IID_IMediaCaptureSettings);
 
   String get audioDeviceId {
     final value = calloc<IntPtr>();

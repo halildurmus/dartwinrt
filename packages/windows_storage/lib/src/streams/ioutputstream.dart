@@ -26,7 +26,7 @@ class IOutputStream extends IInspectable implements IClosable {
   IOutputStream.fromPtr(super.ptr);
 
   factory IOutputStream.from(IInspectable interface) =>
-      IOutputStream.fromPtr(interface.toInterface(IID_IOutputStream));
+      interface.cast(IOutputStream.fromPtr, IID_IOutputStream);
 
   Pointer<COMObject> writeAsync(IBuffer? buffer) {
     final operation = calloc<COMObject>();

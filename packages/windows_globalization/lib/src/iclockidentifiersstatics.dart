@@ -23,9 +23,8 @@ class IClockIdentifiersStatics extends IInspectable {
   // vtable begins at 6, is 2 entries long.
   IClockIdentifiersStatics.fromPtr(super.ptr);
 
-  factory IClockIdentifiersStatics.from(IInspectable interface) =>
-      IClockIdentifiersStatics.fromPtr(
-          interface.toInterface(IID_IClockIdentifiersStatics));
+  factory IClockIdentifiersStatics.from(IInspectable interface) => interface
+      .cast(IClockIdentifiersStatics.fromPtr, IID_IClockIdentifiersStatics);
 
   String get twelveHour {
     final value = calloc<IntPtr>();

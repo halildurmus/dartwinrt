@@ -28,8 +28,8 @@ class ICoreAutomationConnectionBoundObjectProvider extends IInspectable {
 
   factory ICoreAutomationConnectionBoundObjectProvider.from(
           IInspectable interface) =>
-      ICoreAutomationConnectionBoundObjectProvider.fromPtr(interface
-          .toInterface(IID_ICoreAutomationConnectionBoundObjectProvider));
+      interface.cast(ICoreAutomationConnectionBoundObjectProvider.fromPtr,
+          IID_ICoreAutomationConnectionBoundObjectProvider);
 
   bool get isComThreadingRequired {
     final value = calloc<Bool>();

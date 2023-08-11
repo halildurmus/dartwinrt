@@ -28,7 +28,7 @@ class IUISettings3 extends IInspectable {
   IUISettings3.fromPtr(super.ptr);
 
   factory IUISettings3.from(IInspectable interface) =>
-      IUISettings3.fromPtr(interface.toInterface(IID_IUISettings3));
+      interface.cast(IUISettings3.fromPtr, IID_IUISettings3);
 
   Color getColorValue(UIColorType desiredColor) {
     final value = calloc<NativeColor>();

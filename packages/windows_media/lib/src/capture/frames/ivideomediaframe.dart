@@ -32,7 +32,7 @@ class IVideoMediaFrame extends IInspectable {
   IVideoMediaFrame.fromPtr(super.ptr);
 
   factory IVideoMediaFrame.from(IInspectable interface) =>
-      IVideoMediaFrame.fromPtr(interface.toInterface(IID_IVideoMediaFrame));
+      interface.cast(IVideoMediaFrame.fromPtr, IID_IVideoMediaFrame);
 
   MediaFrameReference? get frameReference {
     final value = calloc<COMObject>();

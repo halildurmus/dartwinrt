@@ -27,8 +27,8 @@ class IOpticalImageStabilizationControl extends IInspectable {
   IOpticalImageStabilizationControl.fromPtr(super.ptr);
 
   factory IOpticalImageStabilizationControl.from(IInspectable interface) =>
-      IOpticalImageStabilizationControl.fromPtr(
-          interface.toInterface(IID_IOpticalImageStabilizationControl));
+      interface.cast(IOpticalImageStabilizationControl.fromPtr,
+          IID_IOpticalImageStabilizationControl);
 
   bool get supported {
     final value = calloc<Bool>();

@@ -25,8 +25,8 @@ class IStorageItemExtraProperties extends IInspectable {
   IStorageItemExtraProperties.fromPtr(super.ptr);
 
   factory IStorageItemExtraProperties.from(IInspectable interface) =>
-      IStorageItemExtraProperties.fromPtr(
-          interface.toInterface(IID_IStorageItemExtraProperties));
+      interface.cast(
+          IStorageItemExtraProperties.fromPtr, IID_IStorageItemExtraProperties);
 
   Future<IMap<String, Object?>> retrievePropertiesAsync(
       IIterable<String>? propertiesToRetrieve) {

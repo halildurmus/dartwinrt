@@ -24,7 +24,7 @@ class IFlashControl extends IInspectable {
   IFlashControl.fromPtr(super.ptr);
 
   factory IFlashControl.from(IInspectable interface) =>
-      IFlashControl.fromPtr(interface.toInterface(IID_IFlashControl));
+      interface.cast(IFlashControl.fromPtr, IID_IFlashControl);
 
   bool get supported {
     final value = calloc<Bool>();

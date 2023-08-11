@@ -25,7 +25,7 @@ class IAppDisplayInfo extends IInspectable {
   IAppDisplayInfo.fromPtr(super.ptr);
 
   factory IAppDisplayInfo.from(IInspectable interface) =>
-      IAppDisplayInfo.fromPtr(interface.toInterface(IID_IAppDisplayInfo));
+      interface.cast(IAppDisplayInfo.fromPtr, IID_IAppDisplayInfo);
 
   String get displayName {
     final value = calloc<IntPtr>();

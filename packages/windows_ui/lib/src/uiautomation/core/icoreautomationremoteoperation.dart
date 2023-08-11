@@ -30,8 +30,8 @@ class ICoreAutomationRemoteOperation extends IInspectable {
   ICoreAutomationRemoteOperation.fromPtr(super.ptr);
 
   factory ICoreAutomationRemoteOperation.from(IInspectable interface) =>
-      ICoreAutomationRemoteOperation.fromPtr(
-          interface.toInterface(IID_ICoreAutomationRemoteOperation));
+      interface.cast(ICoreAutomationRemoteOperation.fromPtr,
+          IID_ICoreAutomationRemoteOperation);
 
   bool isOpcodeSupported(int opcode) {
     final result = calloc<Bool>();

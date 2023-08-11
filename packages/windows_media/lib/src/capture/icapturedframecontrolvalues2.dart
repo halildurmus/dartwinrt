@@ -29,8 +29,8 @@ class ICapturedFrameControlValues2 extends IInspectable {
   ICapturedFrameControlValues2.fromPtr(super.ptr);
 
   factory ICapturedFrameControlValues2.from(IInspectable interface) =>
-      ICapturedFrameControlValues2.fromPtr(
-          interface.toInterface(IID_ICapturedFrameControlValues2));
+      interface.cast(ICapturedFrameControlValues2.fromPtr,
+          IID_ICapturedFrameControlValues2);
 
   MediaCaptureFocusState? get focusState {
     final value = calloc<COMObject>();

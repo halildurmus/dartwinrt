@@ -26,8 +26,7 @@ class ITensorFloatStatics extends IInspectable {
   ITensorFloatStatics.fromPtr(super.ptr);
 
   factory ITensorFloatStatics.from(IInspectable interface) =>
-      ITensorFloatStatics.fromPtr(
-          interface.toInterface(IID_ITensorFloatStatics));
+      interface.cast(ITensorFloatStatics.fromPtr, IID_ITensorFloatStatics);
 
   TensorFloat? create() {
     final result = calloc<COMObject>();

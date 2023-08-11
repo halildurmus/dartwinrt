@@ -32,7 +32,7 @@ class IQueryOptions extends IInspectable {
   IQueryOptions.fromPtr(super.ptr);
 
   factory IQueryOptions.from(IInspectable interface) =>
-      IQueryOptions.fromPtr(interface.toInterface(IID_IQueryOptions));
+      interface.cast(IQueryOptions.fromPtr, IID_IQueryOptions);
 
   IVector<String>? get fileTypeFilter {
     final value = calloc<COMObject>();

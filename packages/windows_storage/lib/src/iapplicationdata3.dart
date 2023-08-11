@@ -26,7 +26,7 @@ class IApplicationData3 extends IInspectable {
   IApplicationData3.fromPtr(super.ptr);
 
   factory IApplicationData3.from(IInspectable interface) =>
-      IApplicationData3.fromPtr(interface.toInterface(IID_IApplicationData3));
+      interface.cast(IApplicationData3.fromPtr, IID_IApplicationData3);
 
   StorageFolder? getPublisherCacheFolder(String folderName) {
     final value = calloc<COMObject>();

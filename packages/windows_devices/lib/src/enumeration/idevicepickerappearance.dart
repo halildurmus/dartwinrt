@@ -24,9 +24,8 @@ class IDevicePickerAppearance extends IInspectable {
   // vtable begins at 6, is 14 entries long.
   IDevicePickerAppearance.fromPtr(super.ptr);
 
-  factory IDevicePickerAppearance.from(IInspectable interface) =>
-      IDevicePickerAppearance.fromPtr(
-          interface.toInterface(IID_IDevicePickerAppearance));
+  factory IDevicePickerAppearance.from(IInspectable interface) => interface
+      .cast(IDevicePickerAppearance.fromPtr, IID_IDevicePickerAppearance);
 
   String get title {
     final value = calloc<IntPtr>();

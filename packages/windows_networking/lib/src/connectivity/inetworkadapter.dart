@@ -27,7 +27,7 @@ class INetworkAdapter extends IInspectable {
   INetworkAdapter.fromPtr(super.ptr);
 
   factory INetworkAdapter.from(IInspectable interface) =>
-      INetworkAdapter.fromPtr(interface.toInterface(IID_INetworkAdapter));
+      interface.cast(INetworkAdapter.fromPtr, IID_INetworkAdapter);
 
   int get outboundMaxBitsPerSecond {
     final value = calloc<Uint64>();

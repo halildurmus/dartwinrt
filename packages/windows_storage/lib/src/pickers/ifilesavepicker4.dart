@@ -25,7 +25,7 @@ class IFileSavePicker4 extends IInspectable {
   IFileSavePicker4.fromPtr(super.ptr);
 
   factory IFileSavePicker4.from(IInspectable interface) =>
-      IFileSavePicker4.fromPtr(interface.toInterface(IID_IFileSavePicker4));
+      interface.cast(IFileSavePicker4.fromPtr, IID_IFileSavePicker4);
 
   User? get user {
     final value = calloc<COMObject>();

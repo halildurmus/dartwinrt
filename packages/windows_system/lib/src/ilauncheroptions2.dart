@@ -25,7 +25,7 @@ class ILauncherOptions2 extends IInspectable {
   ILauncherOptions2.fromPtr(super.ptr);
 
   factory ILauncherOptions2.from(IInspectable interface) =>
-      ILauncherOptions2.fromPtr(interface.toInterface(IID_ILauncherOptions2));
+      interface.cast(ILauncherOptions2.fromPtr, IID_ILauncherOptions2);
 
   String get targetApplicationPackageFamilyName {
     final value = calloc<IntPtr>();

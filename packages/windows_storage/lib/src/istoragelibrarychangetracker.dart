@@ -27,8 +27,8 @@ class IStorageLibraryChangeTracker extends IInspectable {
   IStorageLibraryChangeTracker.fromPtr(super.ptr);
 
   factory IStorageLibraryChangeTracker.from(IInspectable interface) =>
-      IStorageLibraryChangeTracker.fromPtr(
-          interface.toInterface(IID_IStorageLibraryChangeTracker));
+      interface.cast(IStorageLibraryChangeTracker.fromPtr,
+          IID_IStorageLibraryChangeTracker);
 
   StorageLibraryChangeReader? getChangeReader() {
     final value = calloc<COMObject>();

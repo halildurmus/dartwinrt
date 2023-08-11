@@ -23,9 +23,8 @@ class IVideoEncodingProperties2 extends IInspectable {
   // vtable begins at 6, is 4 entries long.
   IVideoEncodingProperties2.fromPtr(super.ptr);
 
-  factory IVideoEncodingProperties2.from(IInspectable interface) =>
-      IVideoEncodingProperties2.fromPtr(
-          interface.toInterface(IID_IVideoEncodingProperties2));
+  factory IVideoEncodingProperties2.from(IInspectable interface) => interface
+      .cast(IVideoEncodingProperties2.fromPtr, IID_IVideoEncodingProperties2);
 
   void setFormatUserData(List<int> value) {
     final valueArray = value.toArray<Uint8>();

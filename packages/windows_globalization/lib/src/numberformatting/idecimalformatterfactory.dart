@@ -25,9 +25,8 @@ class IDecimalFormatterFactory extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IDecimalFormatterFactory.fromPtr(super.ptr);
 
-  factory IDecimalFormatterFactory.from(IInspectable interface) =>
-      IDecimalFormatterFactory.fromPtr(
-          interface.toInterface(IID_IDecimalFormatterFactory));
+  factory IDecimalFormatterFactory.from(IInspectable interface) => interface
+      .cast(IDecimalFormatterFactory.fromPtr, IID_IDecimalFormatterFactory);
 
   DecimalFormatter createDecimalFormatter(
       IIterable<String>? languages, String geographicRegion) {

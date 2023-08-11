@@ -16,6 +16,7 @@ import 'package:win32/win32.dart'
 
 import '../internal.dart';
 import 'collections/iiterator.dart';
+import 'extensions/extensions.dart';
 import 'helpers.dart';
 import 'memorybuffer.dart';
 
@@ -27,8 +28,7 @@ class IMemoryBufferFactory extends IInspectable {
   IMemoryBufferFactory.fromPtr(super.ptr);
 
   factory IMemoryBufferFactory.from(IInspectable interface) =>
-      IMemoryBufferFactory.fromPtr(
-          interface.toInterface(IID_IMemoryBufferFactory));
+      interface.cast(IMemoryBufferFactory.fromPtr, IID_IMemoryBufferFactory);
 
   MemoryBuffer create(int capacity) {
     final value = calloc<COMObject>();

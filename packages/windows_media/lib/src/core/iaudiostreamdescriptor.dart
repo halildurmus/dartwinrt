@@ -27,9 +27,8 @@ class IAudioStreamDescriptor extends IInspectable
   // vtable begins at 6, is 1 entries long.
   IAudioStreamDescriptor.fromPtr(super.ptr);
 
-  factory IAudioStreamDescriptor.from(IInspectable interface) =>
-      IAudioStreamDescriptor.fromPtr(
-          interface.toInterface(IID_IAudioStreamDescriptor));
+  factory IAudioStreamDescriptor.from(IInspectable interface) => interface.cast(
+      IAudioStreamDescriptor.fromPtr, IID_IAudioStreamDescriptor);
 
   AudioEncodingProperties? get encodingProperties {
     final encodingProperties = calloc<COMObject>();

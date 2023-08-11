@@ -25,9 +25,8 @@ class INotificationDataFactory extends IInspectable {
   // vtable begins at 6, is 2 entries long.
   INotificationDataFactory.fromPtr(super.ptr);
 
-  factory INotificationDataFactory.from(IInspectable interface) =>
-      INotificationDataFactory.fromPtr(
-          interface.toInterface(IID_INotificationDataFactory));
+  factory INotificationDataFactory.from(IInspectable interface) => interface
+      .cast(INotificationDataFactory.fromPtr, IID_INotificationDataFactory);
 
   NotificationData createNotificationDataWithValuesAndSequenceNumber(
       IIterable<IKeyValuePair<String, String>>? initialValues,

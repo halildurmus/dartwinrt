@@ -29,9 +29,8 @@ class ISoftwareBitmapStatics extends IInspectable {
   // vtable begins at 6, is 7 entries long.
   ISoftwareBitmapStatics.fromPtr(super.ptr);
 
-  factory ISoftwareBitmapStatics.from(IInspectable interface) =>
-      ISoftwareBitmapStatics.fromPtr(
-          interface.toInterface(IID_ISoftwareBitmapStatics));
+  factory ISoftwareBitmapStatics.from(IInspectable interface) => interface.cast(
+      ISoftwareBitmapStatics.fromPtr, IID_ISoftwareBitmapStatics);
 
   SoftwareBitmap? copy(SoftwareBitmap? source) {
     final value = calloc<COMObject>();

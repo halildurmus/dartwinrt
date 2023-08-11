@@ -26,8 +26,7 @@ class IKnownFoldersStatics extends IInspectable {
   IKnownFoldersStatics.fromPtr(super.ptr);
 
   factory IKnownFoldersStatics.from(IInspectable interface) =>
-      IKnownFoldersStatics.fromPtr(
-          interface.toInterface(IID_IKnownFoldersStatics));
+      interface.cast(IKnownFoldersStatics.fromPtr, IID_IKnownFoldersStatics);
 
   StorageFolder? get musicLibrary {
     final value = calloc<COMObject>();

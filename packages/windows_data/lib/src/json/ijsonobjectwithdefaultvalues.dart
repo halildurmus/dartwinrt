@@ -33,8 +33,8 @@ class IJsonObjectWithDefaultValues extends IInspectable
   IJsonObjectWithDefaultValues.fromPtr(super.ptr);
 
   factory IJsonObjectWithDefaultValues.from(IInspectable interface) =>
-      IJsonObjectWithDefaultValues.fromPtr(
-          interface.toInterface(IID_IJsonObjectWithDefaultValues));
+      interface.cast(IJsonObjectWithDefaultValues.fromPtr,
+          IID_IJsonObjectWithDefaultValues);
 
   JsonValue? getNamedValueOrDefault(String name, JsonValue? defaultValue) {
     final returnValue = calloc<COMObject>();

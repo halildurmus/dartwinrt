@@ -25,9 +25,8 @@ class IDateTimeFormatterStatics extends IInspectable {
   // vtable begins at 6, is 4 entries long.
   IDateTimeFormatterStatics.fromPtr(super.ptr);
 
-  factory IDateTimeFormatterStatics.from(IInspectable interface) =>
-      IDateTimeFormatterStatics.fromPtr(
-          interface.toInterface(IID_IDateTimeFormatterStatics));
+  factory IDateTimeFormatterStatics.from(IInspectable interface) => interface
+      .cast(IDateTimeFormatterStatics.fromPtr, IID_IDateTimeFormatterStatics);
 
   DateTimeFormatter? get longDate {
     final value = calloc<COMObject>();

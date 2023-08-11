@@ -29,7 +29,7 @@ class IGeolocator extends IInspectable {
   IGeolocator.fromPtr(super.ptr);
 
   factory IGeolocator.from(IInspectable interface) =>
-      IGeolocator.fromPtr(interface.toInterface(IID_IGeolocator));
+      interface.cast(IGeolocator.fromPtr, IID_IGeolocator);
 
   PositionAccuracy get desiredAccuracy {
     final value = calloc<Int32>();

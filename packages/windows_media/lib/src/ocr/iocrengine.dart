@@ -28,7 +28,7 @@ class IOcrEngine extends IInspectable {
   IOcrEngine.fromPtr(super.ptr);
 
   factory IOcrEngine.from(IInspectable interface) =>
-      IOcrEngine.fromPtr(interface.toInterface(IID_IOcrEngine));
+      interface.cast(IOcrEngine.fromPtr, IID_IOcrEngine);
 
   Future<OcrResult?> recognizeAsync(SoftwareBitmap? bitmap) {
     final result = calloc<COMObject>();

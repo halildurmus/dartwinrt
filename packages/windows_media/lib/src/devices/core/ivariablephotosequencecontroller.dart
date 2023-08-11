@@ -30,8 +30,8 @@ class IVariablePhotoSequenceController extends IInspectable {
   IVariablePhotoSequenceController.fromPtr(super.ptr);
 
   factory IVariablePhotoSequenceController.from(IInspectable interface) =>
-      IVariablePhotoSequenceController.fromPtr(
-          interface.toInterface(IID_IVariablePhotoSequenceController));
+      interface.cast(IVariablePhotoSequenceController.fromPtr,
+          IID_IVariablePhotoSequenceController);
 
   bool get supported {
     final value = calloc<Bool>();

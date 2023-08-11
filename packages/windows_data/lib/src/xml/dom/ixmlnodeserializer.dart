@@ -24,7 +24,7 @@ class IXmlNodeSerializer extends IInspectable {
   IXmlNodeSerializer.fromPtr(super.ptr);
 
   factory IXmlNodeSerializer.from(IInspectable interface) =>
-      IXmlNodeSerializer.fromPtr(interface.toInterface(IID_IXmlNodeSerializer));
+      interface.cast(IXmlNodeSerializer.fromPtr, IID_IXmlNodeSerializer);
 
   String getXml() {
     final outerXml = calloc<IntPtr>();

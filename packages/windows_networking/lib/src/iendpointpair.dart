@@ -26,7 +26,7 @@ class IEndpointPair extends IInspectable {
   IEndpointPair.fromPtr(super.ptr);
 
   factory IEndpointPair.from(IInspectable interface) =>
-      IEndpointPair.fromPtr(interface.toInterface(IID_IEndpointPair));
+      interface.cast(IEndpointPair.fromPtr, IID_IEndpointPair);
 
   HostName? get localHostName {
     final value = calloc<COMObject>();

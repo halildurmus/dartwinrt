@@ -26,7 +26,7 @@ class IUICommandFactory extends IInspectable {
   IUICommandFactory.fromPtr(super.ptr);
 
   factory IUICommandFactory.from(IInspectable interface) =>
-      IUICommandFactory.fromPtr(interface.toInterface(IID_IUICommandFactory));
+      interface.cast(IUICommandFactory.fromPtr, IID_IUICommandFactory);
 
   UICommand create(String label) {
     final instance = calloc<COMObject>();

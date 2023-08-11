@@ -24,7 +24,7 @@ class IFileSavePicker3 extends IInspectable {
   IFileSavePicker3.fromPtr(super.ptr);
 
   factory IFileSavePicker3.from(IInspectable interface) =>
-      IFileSavePicker3.fromPtr(interface.toInterface(IID_IFileSavePicker3));
+      interface.cast(IFileSavePicker3.fromPtr, IID_IFileSavePicker3);
 
   String get enterpriseId {
     final value = calloc<IntPtr>();

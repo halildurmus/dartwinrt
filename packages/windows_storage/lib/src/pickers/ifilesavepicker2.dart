@@ -24,7 +24,7 @@ class IFileSavePicker2 extends IInspectable {
   IFileSavePicker2.fromPtr(super.ptr);
 
   factory IFileSavePicker2.from(IInspectable interface) =>
-      IFileSavePicker2.fromPtr(interface.toInterface(IID_IFileSavePicker2));
+      interface.cast(IFileSavePicker2.fromPtr, IID_IFileSavePicker2);
 
   ValueSet? get continuationData {
     final value = calloc<COMObject>();

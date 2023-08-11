@@ -31,7 +31,7 @@ class ILauncherStatics4 extends IInspectable {
   ILauncherStatics4.fromPtr(super.ptr);
 
   factory ILauncherStatics4.from(IInspectable interface) =>
-      ILauncherStatics4.fromPtr(interface.toInterface(IID_ILauncherStatics4));
+      interface.cast(ILauncherStatics4.fromPtr, IID_ILauncherStatics4);
 
   Future<LaunchQuerySupportStatus> queryAppUriSupportAsync(Uri? uri) {
     final operation = calloc<COMObject>();

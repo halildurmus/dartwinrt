@@ -27,7 +27,7 @@ class IDeviceWatcher2 extends IInspectable {
   IDeviceWatcher2.fromPtr(super.ptr);
 
   factory IDeviceWatcher2.from(IInspectable interface) =>
-      IDeviceWatcher2.fromPtr(interface.toInterface(IID_IDeviceWatcher2));
+      interface.cast(IDeviceWatcher2.fromPtr, IID_IDeviceWatcher2);
 
   DeviceWatcherTrigger? getBackgroundTrigger(
       IIterable<DeviceWatcherEventKind>? requestedEventKinds) {

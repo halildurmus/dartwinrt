@@ -28,7 +28,7 @@ class IGeopointFactory extends IInspectable {
   IGeopointFactory.fromPtr(super.ptr);
 
   factory IGeopointFactory.from(IInspectable interface) =>
-      IGeopointFactory.fromPtr(interface.toInterface(IID_IGeopointFactory));
+      interface.cast(IGeopointFactory.fromPtr, IID_IGeopointFactory);
 
   Geopoint create(BasicGeoposition position) {
     final value = calloc<COMObject>();

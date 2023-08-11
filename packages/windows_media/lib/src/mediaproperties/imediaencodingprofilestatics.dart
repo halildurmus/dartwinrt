@@ -30,8 +30,8 @@ class IMediaEncodingProfileStatics extends IInspectable {
   IMediaEncodingProfileStatics.fromPtr(super.ptr);
 
   factory IMediaEncodingProfileStatics.from(IInspectable interface) =>
-      IMediaEncodingProfileStatics.fromPtr(
-          interface.toInterface(IID_IMediaEncodingProfileStatics));
+      interface.cast(IMediaEncodingProfileStatics.fromPtr,
+          IID_IMediaEncodingProfileStatics);
 
   MediaEncodingProfile? createM4a(AudioEncodingQuality quality) {
     final value = calloc<COMObject>();

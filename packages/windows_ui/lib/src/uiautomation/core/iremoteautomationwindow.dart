@@ -23,9 +23,8 @@ class IRemoteAutomationWindow extends IInspectable {
   // vtable begins at 6, is 2 entries long.
   IRemoteAutomationWindow.fromPtr(super.ptr);
 
-  factory IRemoteAutomationWindow.from(IInspectable interface) =>
-      IRemoteAutomationWindow.fromPtr(
-          interface.toInterface(IID_IRemoteAutomationWindow));
+  factory IRemoteAutomationWindow.from(IInspectable interface) => interface
+      .cast(IRemoteAutomationWindow.fromPtr, IID_IRemoteAutomationWindow);
 
   Object? get automationProvider {
     final value = calloc<COMObject>();

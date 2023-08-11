@@ -24,7 +24,7 @@ class ITensorString extends IInspectable {
   ITensorString.fromPtr(super.ptr);
 
   factory ITensorString.from(IInspectable interface) =>
-      ITensorString.fromPtr(interface.toInterface(IID_ITensorString));
+      interface.cast(ITensorString.fromPtr, IID_ITensorString);
 
   List<String> getAsVectorView() {
     final result = calloc<COMObject>();

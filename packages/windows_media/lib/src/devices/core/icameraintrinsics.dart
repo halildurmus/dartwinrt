@@ -24,7 +24,7 @@ class ICameraIntrinsics extends IInspectable {
   ICameraIntrinsics.fromPtr(super.ptr);
 
   factory ICameraIntrinsics.from(IInspectable interface) =>
-      ICameraIntrinsics.fromPtr(interface.toInterface(IID_ICameraIntrinsics));
+      interface.cast(ICameraIntrinsics.fromPtr, IID_ICameraIntrinsics);
 
   Vector2 get focalLength {
     final value = calloc<NativeVector2>();

@@ -27,8 +27,8 @@ class IStorageLibraryChangeTracker2 extends IInspectable {
   IStorageLibraryChangeTracker2.fromPtr(super.ptr);
 
   factory IStorageLibraryChangeTracker2.from(IInspectable interface) =>
-      IStorageLibraryChangeTracker2.fromPtr(
-          interface.toInterface(IID_IStorageLibraryChangeTracker2));
+      interface.cast(IStorageLibraryChangeTracker2.fromPtr,
+          IID_IStorageLibraryChangeTracker2);
 
   void enableWithOptions(StorageLibraryChangeTrackerOptions? options) {
     final hr = ptr.ref.vtable

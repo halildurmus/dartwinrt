@@ -25,8 +25,8 @@ class IWlanConnectionProfileDetails extends IInspectable {
   IWlanConnectionProfileDetails.fromPtr(super.ptr);
 
   factory IWlanConnectionProfileDetails.from(IInspectable interface) =>
-      IWlanConnectionProfileDetails.fromPtr(
-          interface.toInterface(IID_IWlanConnectionProfileDetails));
+      interface.cast(IWlanConnectionProfileDetails.fromPtr,
+          IID_IWlanConnectionProfileDetails);
 
   String getConnectedSsid() {
     final value = calloc<IntPtr>();

@@ -26,8 +26,8 @@ class IMediaCaptureInitializationSettings7 extends IInspectable {
   IMediaCaptureInitializationSettings7.fromPtr(super.ptr);
 
   factory IMediaCaptureInitializationSettings7.from(IInspectable interface) =>
-      IMediaCaptureInitializationSettings7.fromPtr(
-          interface.toInterface(IID_IMediaCaptureInitializationSettings7));
+      interface.cast(IMediaCaptureInitializationSettings7.fromPtr,
+          IID_IMediaCaptureInitializationSettings7);
 
   PasswordCredential? get deviceUriPasswordCredential {
     final value = calloc<COMObject>();

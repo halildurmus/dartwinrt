@@ -27,8 +27,8 @@ class IRandomAccessStreamReference extends IInspectable {
   IRandomAccessStreamReference.fromPtr(super.ptr);
 
   factory IRandomAccessStreamReference.from(IInspectable interface) =>
-      IRandomAccessStreamReference.fromPtr(
-          interface.toInterface(IID_IRandomAccessStreamReference));
+      interface.cast(IRandomAccessStreamReference.fromPtr,
+          IID_IRandomAccessStreamReference);
 
   Future<IRandomAccessStreamWithContentType?> openReadAsync() {
     final operation = calloc<COMObject>();

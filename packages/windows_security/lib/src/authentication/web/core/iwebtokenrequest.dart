@@ -27,7 +27,7 @@ class IWebTokenRequest extends IInspectable {
   IWebTokenRequest.fromPtr(super.ptr);
 
   factory IWebTokenRequest.from(IInspectable interface) =>
-      IWebTokenRequest.fromPtr(interface.toInterface(IID_IWebTokenRequest));
+      interface.cast(IWebTokenRequest.fromPtr, IID_IWebTokenRequest);
 
   WebAccountProvider? get webAccountProvider {
     final value = calloc<COMObject>();

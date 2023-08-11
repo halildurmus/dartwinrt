@@ -25,8 +25,8 @@ class ICurrencyIdentifiersStatics2 extends IInspectable {
   ICurrencyIdentifiersStatics2.fromPtr(super.ptr);
 
   factory ICurrencyIdentifiersStatics2.from(IInspectable interface) =>
-      ICurrencyIdentifiersStatics2.fromPtr(
-          interface.toInterface(IID_ICurrencyIdentifiersStatics2));
+      interface.cast(ICurrencyIdentifiersStatics2.fromPtr,
+          IID_ICurrencyIdentifiersStatics2);
 
   String get byn {
     final value = calloc<IntPtr>();

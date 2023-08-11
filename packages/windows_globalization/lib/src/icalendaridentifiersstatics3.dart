@@ -25,8 +25,8 @@ class ICalendarIdentifiersStatics3 extends IInspectable {
   ICalendarIdentifiersStatics3.fromPtr(super.ptr);
 
   factory ICalendarIdentifiersStatics3.from(IInspectable interface) =>
-      ICalendarIdentifiersStatics3.fromPtr(
-          interface.toInterface(IID_ICalendarIdentifiersStatics3));
+      interface.cast(ICalendarIdentifiersStatics3.fromPtr,
+          IID_ICalendarIdentifiersStatics3);
 
   String get chineseLunar {
     final value = calloc<IntPtr>();

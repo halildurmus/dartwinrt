@@ -18,6 +18,7 @@ import '../internal.dart';
 import 'collections/iiterable.dart';
 import 'collections/iiterator.dart';
 import 'collections/ivectorview.dart';
+import 'extensions/extensions.dart';
 import 'helpers.dart';
 import 'iwwwformurldecoderentry.dart';
 
@@ -33,8 +34,8 @@ class IWwwFormUrlDecoderRuntimeClass extends IInspectable
   IWwwFormUrlDecoderRuntimeClass.fromPtr(super.ptr);
 
   factory IWwwFormUrlDecoderRuntimeClass.from(IInspectable interface) =>
-      IWwwFormUrlDecoderRuntimeClass.fromPtr(
-          interface.toInterface(IID_IWwwFormUrlDecoderRuntimeClass));
+      interface.cast(IWwwFormUrlDecoderRuntimeClass.fromPtr,
+          IID_IWwwFormUrlDecoderRuntimeClass);
 
   String getFirstValueByName(String name) {
     final phstrValue = calloc<IntPtr>();

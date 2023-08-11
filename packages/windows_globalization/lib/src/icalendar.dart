@@ -27,7 +27,7 @@ class ICalendar extends IInspectable {
   ICalendar.fromPtr(super.ptr);
 
   factory ICalendar.from(IInspectable interface) =>
-      ICalendar.fromPtr(interface.toInterface(IID_ICalendar));
+      interface.cast(ICalendar.fromPtr, IID_ICalendar);
 
   Calendar? clone() {
     final value = calloc<COMObject>();

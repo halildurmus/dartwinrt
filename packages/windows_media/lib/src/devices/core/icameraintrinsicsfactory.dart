@@ -25,9 +25,8 @@ class ICameraIntrinsicsFactory extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   ICameraIntrinsicsFactory.fromPtr(super.ptr);
 
-  factory ICameraIntrinsicsFactory.from(IInspectable interface) =>
-      ICameraIntrinsicsFactory.fromPtr(
-          interface.toInterface(IID_ICameraIntrinsicsFactory));
+  factory ICameraIntrinsicsFactory.from(IInspectable interface) => interface
+      .cast(ICameraIntrinsicsFactory.fromPtr, IID_ICameraIntrinsicsFactory);
 
   CameraIntrinsics create(
       Vector2 focalLength,

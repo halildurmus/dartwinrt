@@ -31,7 +31,7 @@ class IDataReader extends IInspectable {
   IDataReader.fromPtr(super.ptr);
 
   factory IDataReader.from(IInspectable interface) =>
-      IDataReader.fromPtr(interface.toInterface(IID_IDataReader));
+      interface.cast(IDataReader.fromPtr, IID_IDataReader);
 
   int get unconsumedBufferLength {
     final value = calloc<Uint32>();

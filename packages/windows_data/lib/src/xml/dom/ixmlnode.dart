@@ -36,7 +36,7 @@ class IXmlNode extends IInspectable
   IXmlNode.fromPtr(super.ptr);
 
   factory IXmlNode.from(IInspectable interface) =>
-      IXmlNode.fromPtr(interface.toInterface(IID_IXmlNode));
+      interface.cast(IXmlNode.fromPtr, IID_IXmlNode);
 
   Object? get nodeValue {
     final value = calloc<COMObject>();

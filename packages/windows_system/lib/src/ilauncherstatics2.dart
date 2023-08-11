@@ -31,7 +31,7 @@ class ILauncherStatics2 extends IInspectable {
   ILauncherStatics2.fromPtr(super.ptr);
 
   factory ILauncherStatics2.from(IInspectable interface) =>
-      ILauncherStatics2.fromPtr(interface.toInterface(IID_ILauncherStatics2));
+      interface.cast(ILauncherStatics2.fromPtr, IID_ILauncherStatics2);
 
   Future<LaunchUriResult?> launchUriForResultsAsync(
       Uri? uri, LauncherOptions? options) {

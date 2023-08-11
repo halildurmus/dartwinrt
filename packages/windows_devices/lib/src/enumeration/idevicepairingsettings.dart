@@ -25,7 +25,6 @@ class IDevicePairingSettings extends IInspectable {
   // vtable begins at 6, is 0 entries long.
   IDevicePairingSettings.fromPtr(super.ptr);
 
-  factory IDevicePairingSettings.from(IInspectable interface) =>
-      IDevicePairingSettings.fromPtr(
-          interface.toInterface(IID_IDevicePairingSettings));
+  factory IDevicePairingSettings.from(IInspectable interface) => interface.cast(
+      IDevicePairingSettings.fromPtr, IID_IDevicePairingSettings);
 }

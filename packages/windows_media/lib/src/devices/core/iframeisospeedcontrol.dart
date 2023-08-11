@@ -24,8 +24,7 @@ class IFrameIsoSpeedControl extends IInspectable {
   IFrameIsoSpeedControl.fromPtr(super.ptr);
 
   factory IFrameIsoSpeedControl.from(IInspectable interface) =>
-      IFrameIsoSpeedControl.fromPtr(
-          interface.toInterface(IID_IFrameIsoSpeedControl));
+      interface.cast(IFrameIsoSpeedControl.fromPtr, IID_IFrameIsoSpeedControl);
 
   bool get auto {
     final value = calloc<Bool>();

@@ -24,7 +24,7 @@ class ITensorInt64Bit extends IInspectable {
   ITensorInt64Bit.fromPtr(super.ptr);
 
   factory ITensorInt64Bit.from(IInspectable interface) =>
-      ITensorInt64Bit.fromPtr(interface.toInterface(IID_ITensorInt64Bit));
+      interface.cast(ITensorInt64Bit.fromPtr, IID_ITensorInt64Bit);
 
   List<int> getAsVectorView() {
     final result = calloc<COMObject>();

@@ -26,8 +26,7 @@ class INumberRounderOption extends IInspectable {
   INumberRounderOption.fromPtr(super.ptr);
 
   factory INumberRounderOption.from(IInspectable interface) =>
-      INumberRounderOption.fromPtr(
-          interface.toInterface(IID_INumberRounderOption));
+      interface.cast(INumberRounderOption.fromPtr, IID_INumberRounderOption);
 
   INumberRounder? get numberRounder {
     final value = calloc<COMObject>();

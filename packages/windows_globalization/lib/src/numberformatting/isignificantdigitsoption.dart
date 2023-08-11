@@ -23,9 +23,8 @@ class ISignificantDigitsOption extends IInspectable {
   // vtable begins at 6, is 2 entries long.
   ISignificantDigitsOption.fromPtr(super.ptr);
 
-  factory ISignificantDigitsOption.from(IInspectable interface) =>
-      ISignificantDigitsOption.fromPtr(
-          interface.toInterface(IID_ISignificantDigitsOption));
+  factory ISignificantDigitsOption.from(IInspectable interface) => interface
+      .cast(ISignificantDigitsOption.fromPtr, IID_ISignificantDigitsOption);
 
   int get significantDigits {
     final value = calloc<Int32>();

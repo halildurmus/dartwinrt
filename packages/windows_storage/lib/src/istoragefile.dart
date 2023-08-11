@@ -44,7 +44,7 @@ class IStorageFile extends IInspectable
   IStorageFile.fromPtr(super.ptr);
 
   factory IStorageFile.from(IInspectable interface) =>
-      IStorageFile.fromPtr(interface.toInterface(IID_IStorageFile));
+      interface.cast(IStorageFile.fromPtr, IID_IStorageFile);
 
   String get fileType {
     final value = calloc<IntPtr>();

@@ -26,7 +26,7 @@ class IStorageFolder2 extends IInspectable {
   IStorageFolder2.fromPtr(super.ptr);
 
   factory IStorageFolder2.from(IInspectable interface) =>
-      IStorageFolder2.fromPtr(interface.toInterface(IID_IStorageFolder2));
+      interface.cast(IStorageFolder2.fromPtr, IID_IStorageFolder2);
 
   Future<IStorageItem?> tryGetItemAsync(String name) {
     final operation = calloc<COMObject>();

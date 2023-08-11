@@ -24,7 +24,7 @@ class IBasicProperties extends IInspectable {
   IBasicProperties.fromPtr(super.ptr);
 
   factory IBasicProperties.from(IInspectable interface) =>
-      IBasicProperties.fromPtr(interface.toInterface(IID_IBasicProperties));
+      interface.cast(IBasicProperties.fromPtr, IID_IBasicProperties);
 
   int get size {
     final value = calloc<Uint64>();

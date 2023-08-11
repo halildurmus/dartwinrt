@@ -25,8 +25,8 @@ class ILearningModelSessionOptions extends IInspectable {
   ILearningModelSessionOptions.fromPtr(super.ptr);
 
   factory ILearningModelSessionOptions.from(IInspectable interface) =>
-      ILearningModelSessionOptions.fromPtr(
-          interface.toInterface(IID_ILearningModelSessionOptions));
+      interface.cast(ILearningModelSessionOptions.fromPtr,
+          IID_ILearningModelSessionOptions);
 
   int get batchSizeOverride {
     final value = calloc<Uint32>();

@@ -26,9 +26,8 @@ class INetworkSecuritySettings extends IInspectable {
   // vtable begins at 6, is 2 entries long.
   INetworkSecuritySettings.fromPtr(super.ptr);
 
-  factory INetworkSecuritySettings.from(IInspectable interface) =>
-      INetworkSecuritySettings.fromPtr(
-          interface.toInterface(IID_INetworkSecuritySettings));
+  factory INetworkSecuritySettings.from(IInspectable interface) => interface
+      .cast(INetworkSecuritySettings.fromPtr, IID_INetworkSecuritySettings);
 
   NetworkAuthenticationType get networkAuthenticationType {
     final value = calloc<Int32>();

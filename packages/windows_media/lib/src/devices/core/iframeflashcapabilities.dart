@@ -23,9 +23,8 @@ class IFrameFlashCapabilities extends IInspectable {
   // vtable begins at 6, is 3 entries long.
   IFrameFlashCapabilities.fromPtr(super.ptr);
 
-  factory IFrameFlashCapabilities.from(IInspectable interface) =>
-      IFrameFlashCapabilities.fromPtr(
-          interface.toInterface(IID_IFrameFlashCapabilities));
+  factory IFrameFlashCapabilities.from(IInspectable interface) => interface
+      .cast(IFrameFlashCapabilities.fromPtr, IID_IFrameFlashCapabilities);
 
   bool get supported {
     final value = calloc<Bool>();

@@ -26,7 +26,7 @@ class INumberRounder extends IInspectable {
   INumberRounder.fromPtr(super.ptr);
 
   factory INumberRounder.from(IInspectable interface) =>
-      INumberRounder.fromPtr(interface.toInterface(IID_INumberRounder));
+      interface.cast(INumberRounder.fromPtr, IID_INumberRounder);
 
   int roundInt32(int value) {
     final result = calloc<Int32>();

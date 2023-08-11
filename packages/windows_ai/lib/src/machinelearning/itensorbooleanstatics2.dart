@@ -26,9 +26,8 @@ class ITensorBooleanStatics2 extends IInspectable {
   // vtable begins at 6, is 2 entries long.
   ITensorBooleanStatics2.fromPtr(super.ptr);
 
-  factory ITensorBooleanStatics2.from(IInspectable interface) =>
-      ITensorBooleanStatics2.fromPtr(
-          interface.toInterface(IID_ITensorBooleanStatics2));
+  factory ITensorBooleanStatics2.from(IInspectable interface) => interface.cast(
+      ITensorBooleanStatics2.fromPtr, IID_ITensorBooleanStatics2);
 
   TensorBoolean? createFromShapeArrayAndDataArray(
       List<int> shape, List<bool> data) {

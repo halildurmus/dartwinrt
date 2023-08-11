@@ -28,7 +28,7 @@ class IToastNotifier extends IInspectable {
   IToastNotifier.fromPtr(super.ptr);
 
   factory IToastNotifier.from(IInspectable interface) =>
-      IToastNotifier.fromPtr(interface.toInterface(IID_IToastNotifier));
+      interface.cast(IToastNotifier.fromPtr, IID_IToastNotifier);
 
   void show(ToastNotification? notification) {
     final hr = ptr.ref.vtable

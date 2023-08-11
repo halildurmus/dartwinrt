@@ -27,7 +27,7 @@ class IMusicProperties extends IInspectable
   IMusicProperties.fromPtr(super.ptr);
 
   factory IMusicProperties.from(IInspectable interface) =>
-      IMusicProperties.fromPtr(interface.toInterface(IID_IMusicProperties));
+      interface.cast(IMusicProperties.fromPtr, IID_IMusicProperties);
 
   String get album {
     final value = calloc<IntPtr>();

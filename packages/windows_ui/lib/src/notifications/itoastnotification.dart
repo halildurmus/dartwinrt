@@ -27,7 +27,7 @@ class IToastNotification extends IInspectable {
   IToastNotification.fromPtr(super.ptr);
 
   factory IToastNotification.from(IInspectable interface) =>
-      IToastNotification.fromPtr(interface.toInterface(IID_IToastNotification));
+      interface.cast(IToastNotification.fromPtr, IID_IToastNotification);
 
   XmlDocument? get content {
     final value = calloc<COMObject>();

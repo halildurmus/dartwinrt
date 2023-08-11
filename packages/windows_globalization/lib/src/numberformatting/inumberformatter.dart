@@ -24,7 +24,7 @@ class INumberFormatter extends IInspectable {
   INumberFormatter.fromPtr(super.ptr);
 
   factory INumberFormatter.from(IInspectable interface) =>
-      INumberFormatter.fromPtr(interface.toInterface(IID_INumberFormatter));
+      interface.cast(INumberFormatter.fromPtr, IID_INumberFormatter);
 
   String formatInt(int value) {
     final result = calloc<IntPtr>();

@@ -26,9 +26,8 @@ class IPropertySetSerializer extends IInspectable {
   // vtable begins at 6, is 2 entries long.
   IPropertySetSerializer.fromPtr(super.ptr);
 
-  factory IPropertySetSerializer.from(IInspectable interface) =>
-      IPropertySetSerializer.fromPtr(
-          interface.toInterface(IID_IPropertySetSerializer));
+  factory IPropertySetSerializer.from(IInspectable interface) => interface.cast(
+      IPropertySetSerializer.fromPtr, IID_IPropertySetSerializer);
 
   IBuffer? serialize(IPropertySet? propertySet) {
     final result = calloc<COMObject>();

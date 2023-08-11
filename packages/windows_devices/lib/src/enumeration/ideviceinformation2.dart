@@ -27,8 +27,7 @@ class IDeviceInformation2 extends IInspectable {
   IDeviceInformation2.fromPtr(super.ptr);
 
   factory IDeviceInformation2.from(IInspectable interface) =>
-      IDeviceInformation2.fromPtr(
-          interface.toInterface(IID_IDeviceInformation2));
+      interface.cast(IDeviceInformation2.fromPtr, IID_IDeviceInformation2);
 
   DeviceInformationKind get kind {
     final value = calloc<Int32>();

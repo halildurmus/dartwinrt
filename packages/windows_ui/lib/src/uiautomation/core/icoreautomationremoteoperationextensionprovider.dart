@@ -31,8 +31,8 @@ class ICoreAutomationRemoteOperationExtensionProvider extends IInspectable {
 
   factory ICoreAutomationRemoteOperationExtensionProvider.from(
           IInspectable interface) =>
-      ICoreAutomationRemoteOperationExtensionProvider.fromPtr(interface
-          .toInterface(IID_ICoreAutomationRemoteOperationExtensionProvider));
+      interface.cast(ICoreAutomationRemoteOperationExtensionProvider.fromPtr,
+          IID_ICoreAutomationRemoteOperationExtensionProvider);
 
   void callExtension(
       Guid extensionId,

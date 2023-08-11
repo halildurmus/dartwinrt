@@ -28,7 +28,7 @@ class IFolderPicker extends IInspectable {
   IFolderPicker.fromPtr(super.ptr);
 
   factory IFolderPicker.from(IInspectable interface) =>
-      IFolderPicker.fromPtr(interface.toInterface(IID_IFolderPicker));
+      interface.cast(IFolderPicker.fromPtr, IID_IFolderPicker);
 
   PickerViewMode get viewMode {
     final value = calloc<Int32>();

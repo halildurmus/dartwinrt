@@ -24,7 +24,7 @@ class ILanguageStatics extends IInspectable {
   ILanguageStatics.fromPtr(super.ptr);
 
   factory ILanguageStatics.from(IInspectable interface) =>
-      ILanguageStatics.fromPtr(interface.toInterface(IID_ILanguageStatics));
+      interface.cast(ILanguageStatics.fromPtr, IID_ILanguageStatics);
 
   bool isWellFormed(String languageTag) {
     final result = calloc<Bool>();

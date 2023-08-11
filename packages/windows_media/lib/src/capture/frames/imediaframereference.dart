@@ -30,8 +30,7 @@ class IMediaFrameReference extends IInspectable implements IClosable {
   IMediaFrameReference.fromPtr(super.ptr);
 
   factory IMediaFrameReference.from(IInspectable interface) =>
-      IMediaFrameReference.fromPtr(
-          interface.toInterface(IID_IMediaFrameReference));
+      interface.cast(IMediaFrameReference.fromPtr, IID_IMediaFrameReference);
 
   MediaFrameSourceKind get sourceKind {
     final value = calloc<Int32>();

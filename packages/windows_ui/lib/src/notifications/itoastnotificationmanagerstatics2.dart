@@ -27,8 +27,8 @@ class IToastNotificationManagerStatics2 extends IInspectable {
   IToastNotificationManagerStatics2.fromPtr(super.ptr);
 
   factory IToastNotificationManagerStatics2.from(IInspectable interface) =>
-      IToastNotificationManagerStatics2.fromPtr(
-          interface.toInterface(IID_IToastNotificationManagerStatics2));
+      interface.cast(IToastNotificationManagerStatics2.fromPtr,
+          IID_IToastNotificationManagerStatics2);
 
   ToastNotificationHistory? get history {
     final value = calloc<COMObject>();

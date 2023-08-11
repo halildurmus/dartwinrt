@@ -24,7 +24,7 @@ class IPackageStatus extends IInspectable {
   IPackageStatus.fromPtr(super.ptr);
 
   factory IPackageStatus.from(IInspectable interface) =>
-      IPackageStatus.fromPtr(interface.toInterface(IID_IPackageStatus));
+      interface.cast(IPackageStatus.fromPtr, IID_IPackageStatus);
 
   bool verifyIsOK() {
     final value = calloc<Bool>();

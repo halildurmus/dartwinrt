@@ -16,6 +16,7 @@ import 'package:win32/win32.dart'
 
 import '../internal.dart';
 import 'collections/iiterator.dart';
+import 'extensions/extensions.dart';
 import 'helpers.dart';
 import 'uri.dart';
 
@@ -26,9 +27,8 @@ class IUriRuntimeClassFactory extends IInspectable {
   // vtable begins at 6, is 2 entries long.
   IUriRuntimeClassFactory.fromPtr(super.ptr);
 
-  factory IUriRuntimeClassFactory.from(IInspectable interface) =>
-      IUriRuntimeClassFactory.fromPtr(
-          interface.toInterface(IID_IUriRuntimeClassFactory));
+  factory IUriRuntimeClassFactory.from(IInspectable interface) => interface
+      .cast(IUriRuntimeClassFactory.fromPtr, IID_IUriRuntimeClassFactory);
 
   Uri createUri(String uri) {
     final instance = calloc<COMObject>();

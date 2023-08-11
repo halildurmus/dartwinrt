@@ -16,6 +16,7 @@ import 'package:win32/win32.dart'
 
 import '../internal.dart';
 import 'collections/iiterator.dart';
+import 'extensions/extensions.dart';
 import 'helpers.dart';
 import 'point.dart';
 import 'propertytype.dart';
@@ -31,7 +32,7 @@ class IPropertyValue extends IInspectable {
   IPropertyValue.fromPtr(super.ptr);
 
   factory IPropertyValue.from(IInspectable interface) =>
-      IPropertyValue.fromPtr(interface.toInterface(IID_IPropertyValue));
+      interface.cast(IPropertyValue.fromPtr, IID_IPropertyValue);
 
   PropertyType get type {
     final value = calloc<Int32>();

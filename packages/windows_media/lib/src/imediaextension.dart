@@ -26,7 +26,7 @@ class IMediaExtension extends IInspectable {
   IMediaExtension.fromPtr(super.ptr);
 
   factory IMediaExtension.from(IInspectable interface) =>
-      IMediaExtension.fromPtr(interface.toInterface(IID_IMediaExtension));
+      interface.cast(IMediaExtension.fromPtr, IID_IMediaExtension);
 
   void setProperties(IPropertySet? configuration) {
     final hr = ptr.ref.vtable

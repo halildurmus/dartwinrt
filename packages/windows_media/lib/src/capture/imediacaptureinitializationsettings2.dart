@@ -28,8 +28,8 @@ class IMediaCaptureInitializationSettings2 extends IInspectable {
   IMediaCaptureInitializationSettings2.fromPtr(super.ptr);
 
   factory IMediaCaptureInitializationSettings2.from(IInspectable interface) =>
-      IMediaCaptureInitializationSettings2.fromPtr(
-          interface.toInterface(IID_IMediaCaptureInitializationSettings2));
+      interface.cast(IMediaCaptureInitializationSettings2.fromPtr,
+          IID_IMediaCaptureInitializationSettings2);
 
   set mediaCategory(MediaCategory value) {
     final hr = ptr.ref.vtable

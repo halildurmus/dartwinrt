@@ -28,8 +28,7 @@ class ILowLagPhotoControl extends IInspectable {
   ILowLagPhotoControl.fromPtr(super.ptr);
 
   factory ILowLagPhotoControl.from(IInspectable interface) =>
-      ILowLagPhotoControl.fromPtr(
-          interface.toInterface(IID_ILowLagPhotoControl));
+      interface.cast(ILowLagPhotoControl.fromPtr, IID_ILowLagPhotoControl);
 
   MediaRatio? getHighestConcurrentFrameRate(
       IMediaEncodingProperties? captureProperties) {

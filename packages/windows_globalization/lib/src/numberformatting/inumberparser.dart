@@ -24,7 +24,7 @@ class INumberParser extends IInspectable {
   INumberParser.fromPtr(super.ptr);
 
   factory INumberParser.from(IInspectable interface) =>
-      INumberParser.fromPtr(interface.toInterface(IID_INumberParser));
+      interface.cast(INumberParser.fromPtr, IID_INumberParser);
 
   int? parseInt(String text) {
     final result = calloc<COMObject>();

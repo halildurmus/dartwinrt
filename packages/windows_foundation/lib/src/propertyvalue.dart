@@ -16,6 +16,7 @@ import 'package:win32/win32.dart'
 
 import '../internal.dart';
 import 'collections/iiterator.dart';
+import 'extensions/extensions.dart';
 import 'helpers.dart';
 import 'ipropertyvaluestatics.dart';
 import 'point.dart';

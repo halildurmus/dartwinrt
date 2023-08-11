@@ -34,7 +34,7 @@ class IXmlElement extends IInspectable
   IXmlElement.fromPtr(super.ptr);
 
   factory IXmlElement.from(IInspectable interface) =>
-      IXmlElement.fromPtr(interface.toInterface(IID_IXmlElement));
+      interface.cast(IXmlElement.fromPtr, IID_IXmlElement);
 
   String get tagName {
     final value = calloc<IntPtr>();

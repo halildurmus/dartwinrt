@@ -29,7 +29,7 @@ class IJsonArray extends IInspectable implements IJsonValue {
   IJsonArray.fromPtr(super.ptr);
 
   factory IJsonArray.from(IInspectable interface) =>
-      IJsonArray.fromPtr(interface.toInterface(IID_IJsonArray));
+      interface.cast(IJsonArray.fromPtr, IID_IJsonArray);
 
   JsonObject getObjectAt(int index) {
     final returnValue = calloc<COMObject>();

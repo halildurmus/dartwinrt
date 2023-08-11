@@ -25,9 +25,8 @@ class IToastCollectionFactory extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IToastCollectionFactory.fromPtr(super.ptr);
 
-  factory IToastCollectionFactory.from(IInspectable interface) =>
-      IToastCollectionFactory.fromPtr(
-          interface.toInterface(IID_IToastCollectionFactory));
+  factory IToastCollectionFactory.from(IInspectable interface) => interface
+      .cast(IToastCollectionFactory.fromPtr, IID_IToastCollectionFactory);
 
   ToastCollection createInstance(String collectionId, String displayName,
       String launchArgs, Uri? iconUri) {

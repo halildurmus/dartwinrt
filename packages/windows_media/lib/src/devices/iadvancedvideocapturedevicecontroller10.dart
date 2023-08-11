@@ -28,8 +28,8 @@ class IAdvancedVideoCaptureDeviceController10 extends IInspectable {
 
   factory IAdvancedVideoCaptureDeviceController10.from(
           IInspectable interface) =>
-      IAdvancedVideoCaptureDeviceController10.fromPtr(
-          interface.toInterface(IID_IAdvancedVideoCaptureDeviceController10));
+      interface.cast(IAdvancedVideoCaptureDeviceController10.fromPtr,
+          IID_IAdvancedVideoCaptureDeviceController10);
 
   CameraOcclusionInfo? get cameraOcclusionInfo {
     final value = calloc<COMObject>();

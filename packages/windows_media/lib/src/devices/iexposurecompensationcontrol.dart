@@ -25,8 +25,8 @@ class IExposureCompensationControl extends IInspectable {
   IExposureCompensationControl.fromPtr(super.ptr);
 
   factory IExposureCompensationControl.from(IInspectable interface) =>
-      IExposureCompensationControl.fromPtr(
-          interface.toInterface(IID_IExposureCompensationControl));
+      interface.cast(IExposureCompensationControl.fromPtr,
+          IID_IExposureCompensationControl);
 
   bool get supported {
     final value = calloc<Bool>();

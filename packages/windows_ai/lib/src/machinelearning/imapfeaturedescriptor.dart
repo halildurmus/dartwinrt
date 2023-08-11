@@ -27,8 +27,7 @@ class IMapFeatureDescriptor extends IInspectable {
   IMapFeatureDescriptor.fromPtr(super.ptr);
 
   factory IMapFeatureDescriptor.from(IInspectable interface) =>
-      IMapFeatureDescriptor.fromPtr(
-          interface.toInterface(IID_IMapFeatureDescriptor));
+      interface.cast(IMapFeatureDescriptor.fromPtr, IID_IMapFeatureDescriptor);
 
   TensorKind get keyKind {
     final value = calloc<Int32>();

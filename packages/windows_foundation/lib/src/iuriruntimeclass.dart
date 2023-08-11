@@ -16,6 +16,7 @@ import 'package:win32/win32.dart'
 
 import '../internal.dart';
 import 'collections/iiterator.dart';
+import 'extensions/extensions.dart';
 import 'helpers.dart';
 import 'uri.dart';
 import 'wwwformurldecoder.dart';
@@ -28,7 +29,7 @@ class IUriRuntimeClass extends IInspectable {
   IUriRuntimeClass.fromPtr(super.ptr);
 
   factory IUriRuntimeClass.from(IInspectable interface) =>
-      IUriRuntimeClass.fromPtr(interface.toInterface(IID_IUriRuntimeClass));
+      interface.cast(IUriRuntimeClass.fromPtr, IID_IUriRuntimeClass);
 
   String get absoluteUri {
     final value = calloc<IntPtr>();

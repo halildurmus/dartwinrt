@@ -32,7 +32,7 @@ class IConnectionProfile extends IInspectable {
   IConnectionProfile.fromPtr(super.ptr);
 
   factory IConnectionProfile.from(IInspectable interface) =>
-      IConnectionProfile.fromPtr(interface.toInterface(IID_IConnectionProfile));
+      interface.cast(IConnectionProfile.fromPtr, IID_IConnectionProfile);
 
   String get profileName {
     final value = calloc<IntPtr>();

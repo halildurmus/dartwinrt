@@ -25,9 +25,8 @@ class IGeographicRegionFactory extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IGeographicRegionFactory.fromPtr(super.ptr);
 
-  factory IGeographicRegionFactory.from(IInspectable interface) =>
-      IGeographicRegionFactory.fromPtr(
-          interface.toInterface(IID_IGeographicRegionFactory));
+  factory IGeographicRegionFactory.from(IInspectable interface) => interface
+      .cast(IGeographicRegionFactory.fromPtr, IID_IGeographicRegionFactory);
 
   GeographicRegion createGeographicRegion(String geographicRegionCode) {
     final result = calloc<COMObject>();

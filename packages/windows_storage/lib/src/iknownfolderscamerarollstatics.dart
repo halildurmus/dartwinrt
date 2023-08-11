@@ -27,8 +27,8 @@ class IKnownFoldersCameraRollStatics extends IInspectable {
   IKnownFoldersCameraRollStatics.fromPtr(super.ptr);
 
   factory IKnownFoldersCameraRollStatics.from(IInspectable interface) =>
-      IKnownFoldersCameraRollStatics.fromPtr(
-          interface.toInterface(IID_IKnownFoldersCameraRollStatics));
+      interface.cast(IKnownFoldersCameraRollStatics.fromPtr,
+          IID_IKnownFoldersCameraRollStatics);
 
   StorageFolder? get cameraRoll {
     final value = calloc<COMObject>();

@@ -27,8 +27,7 @@ class IInfraredMediaFrame extends IInspectable {
   IInfraredMediaFrame.fromPtr(super.ptr);
 
   factory IInfraredMediaFrame.from(IInspectable interface) =>
-      IInfraredMediaFrame.fromPtr(
-          interface.toInterface(IID_IInfraredMediaFrame));
+      interface.cast(IInfraredMediaFrame.fromPtr, IID_IInfraredMediaFrame);
 
   MediaFrameReference? get frameReference {
     final value = calloc<COMObject>();

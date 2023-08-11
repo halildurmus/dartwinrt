@@ -26,7 +26,7 @@ class IHdrVideoControl extends IInspectable {
   IHdrVideoControl.fromPtr(super.ptr);
 
   factory IHdrVideoControl.from(IInspectable interface) =>
-      IHdrVideoControl.fromPtr(interface.toInterface(IID_IHdrVideoControl));
+      interface.cast(IHdrVideoControl.fromPtr, IID_IHdrVideoControl);
 
   bool get supported {
     final value = calloc<Bool>();

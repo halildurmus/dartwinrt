@@ -25,9 +25,8 @@ class IWebAccountProviderFactory extends IInspectable {
   // vtable begins at 6, is 1 entries long.
   IWebAccountProviderFactory.fromPtr(super.ptr);
 
-  factory IWebAccountProviderFactory.from(IInspectable interface) =>
-      IWebAccountProviderFactory.fromPtr(
-          interface.toInterface(IID_IWebAccountProviderFactory));
+  factory IWebAccountProviderFactory.from(IInspectable interface) => interface
+      .cast(IWebAccountProviderFactory.fromPtr, IID_IWebAccountProviderFactory);
 
   WebAccountProvider createWebAccountProvider(
       String id, String displayName, Uri? iconUri) {

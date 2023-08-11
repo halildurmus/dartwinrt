@@ -24,7 +24,7 @@ class IIsoSpeedControl2 extends IInspectable {
   IIsoSpeedControl2.fromPtr(super.ptr);
 
   factory IIsoSpeedControl2.from(IInspectable interface) =>
-      IIsoSpeedControl2.fromPtr(interface.toInterface(IID_IIsoSpeedControl2));
+      interface.cast(IIsoSpeedControl2.fromPtr, IID_IIsoSpeedControl2);
 
   int get min {
     final value = calloc<Uint32>();

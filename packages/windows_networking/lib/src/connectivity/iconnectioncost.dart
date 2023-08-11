@@ -26,7 +26,7 @@ class IConnectionCost extends IInspectable {
   IConnectionCost.fromPtr(super.ptr);
 
   factory IConnectionCost.from(IInspectable interface) =>
-      IConnectionCost.fromPtr(interface.toInterface(IID_IConnectionCost));
+      interface.cast(IConnectionCost.fromPtr, IID_IConnectionCost);
 
   NetworkCostType get networkCostType {
     final value = calloc<Int32>();

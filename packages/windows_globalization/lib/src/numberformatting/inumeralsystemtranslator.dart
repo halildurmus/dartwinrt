@@ -23,9 +23,8 @@ class INumeralSystemTranslator extends IInspectable {
   // vtable begins at 6, is 5 entries long.
   INumeralSystemTranslator.fromPtr(super.ptr);
 
-  factory INumeralSystemTranslator.from(IInspectable interface) =>
-      INumeralSystemTranslator.fromPtr(
-          interface.toInterface(IID_INumeralSystemTranslator));
+  factory INumeralSystemTranslator.from(IInspectable interface) => interface
+      .cast(INumeralSystemTranslator.fromPtr, IID_INumeralSystemTranslator);
 
   List<String>? get languages {
     final value = calloc<COMObject>();

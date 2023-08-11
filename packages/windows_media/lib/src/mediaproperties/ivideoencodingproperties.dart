@@ -28,9 +28,8 @@ class IVideoEncodingProperties extends IInspectable
   // vtable begins at 6, is 8 entries long.
   IVideoEncodingProperties.fromPtr(super.ptr);
 
-  factory IVideoEncodingProperties.from(IInspectable interface) =>
-      IVideoEncodingProperties.fromPtr(
-          interface.toInterface(IID_IVideoEncodingProperties));
+  factory IVideoEncodingProperties.from(IInspectable interface) => interface
+      .cast(IVideoEncodingProperties.fromPtr, IID_IVideoEncodingProperties);
 
   set bitrate(int value) {
     final hr =

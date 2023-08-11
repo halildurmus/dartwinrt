@@ -28,8 +28,8 @@ class IScheduledToastNotificationFactory extends IInspectable {
   IScheduledToastNotificationFactory.fromPtr(super.ptr);
 
   factory IScheduledToastNotificationFactory.from(IInspectable interface) =>
-      IScheduledToastNotificationFactory.fromPtr(
-          interface.toInterface(IID_IScheduledToastNotificationFactory));
+      interface.cast(IScheduledToastNotificationFactory.fromPtr,
+          IID_IScheduledToastNotificationFactory);
 
   ScheduledToastNotification createScheduledToastNotification(
       XmlDocument? content, DateTime deliveryTime) {

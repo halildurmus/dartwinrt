@@ -24,7 +24,7 @@ class ILauncherOptions3 extends IInspectable {
   ILauncherOptions3.fromPtr(super.ptr);
 
   factory ILauncherOptions3.from(IInspectable interface) =>
-      ILauncherOptions3.fromPtr(interface.toInterface(IID_ILauncherOptions3));
+      interface.cast(ILauncherOptions3.fromPtr, IID_ILauncherOptions3);
 
   bool get ignoreAppUriHandlers {
     final value = calloc<Bool>();

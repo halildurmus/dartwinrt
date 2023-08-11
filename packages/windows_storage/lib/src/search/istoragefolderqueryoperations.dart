@@ -36,8 +36,8 @@ class IStorageFolderQueryOperations extends IInspectable {
   IStorageFolderQueryOperations.fromPtr(super.ptr);
 
   factory IStorageFolderQueryOperations.from(IInspectable interface) =>
-      IStorageFolderQueryOperations.fromPtr(
-          interface.toInterface(IID_IStorageFolderQueryOperations));
+      interface.cast(IStorageFolderQueryOperations.fromPtr,
+          IID_IStorageFolderQueryOperations);
 
   Future<IndexedState> getIndexedStateAsync() {
     final operation = calloc<COMObject>();
