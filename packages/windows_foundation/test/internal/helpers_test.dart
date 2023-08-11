@@ -10,6 +10,10 @@ import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
 void main() {
+  test('getWindowsBuildNumber', () {
+    expect(getWindowsBuildNumber(), greaterThanOrEqualTo(17763));
+  });
+
   test('isNullableObjectType', () {
     expect(isNullableObjectType<Object?>(), isTrue);
     expect(isNullableObjectType<Object>(), isFalse);

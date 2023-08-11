@@ -6,6 +6,7 @@ import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
 import 'package:win32/win32.dart';
+import 'package:win32_registry/win32_registry.dart';
 
 import '../winrt_enum.dart';
 import '../winrt_struct.dart';
@@ -50,6 +51,16 @@ String? getRestrictedErrorDescription(int hresult) {
     free(ppRestrictedErrorInfo);
     return null;
   }
+}
+
+/// Returns the Windows build number of the current system.
+int getWindowsBuildNumber() {
+  final key = Registry.openPath(RegistryHive.localMachine,
+      path: r'Software\Microsoft\Windows NT\CurrentVersion');
+  final buildNumber = key.getValueAsString('CurrentBuildNumber');
+  key.close();
+  if (buildNumber != null) return int.parse(buildNumber);
+  throw StateError('Failed to retrieve Windows build number.');
 }
 
 /// Throws a [WindowsException] with the given [hr] and the restricted error
