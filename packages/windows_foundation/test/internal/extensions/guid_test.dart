@@ -59,4 +59,6 @@ void main() {
     expect(list, orderedEquals([guid1, guid2]));
     allocator.releaseAll();
   });
+
+  tearDownAll(forceGC);
 }

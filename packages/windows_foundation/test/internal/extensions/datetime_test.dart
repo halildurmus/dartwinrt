@@ -80,4 +80,6 @@ void main() {
       free(array);
     });
   });
+
+  tearDownAll(forceGC);
 }

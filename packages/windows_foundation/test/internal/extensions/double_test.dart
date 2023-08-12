@@ -76,4 +76,6 @@ void main() {
     expect(list, orderedEquals([1.0, 2.5]));
     free(array);
   });
+
+  tearDownAll(forceGC);
 }

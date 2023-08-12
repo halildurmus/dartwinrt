@@ -108,4 +108,6 @@ void main() {
       }
     });
   });
+
+  tearDownAll(forceGC);
 }

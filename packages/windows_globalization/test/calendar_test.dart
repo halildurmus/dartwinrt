@@ -6,6 +6,7 @@
 
 import 'package:test/test.dart';
 import 'package:win32/win32.dart';
+import 'package:windows_foundation/internal.dart';
 import 'package:windows_globalization/windows_globalization.dart';
 
 // Exhaustively test the WinRT Calendar class to make sure overrides, properties
@@ -502,4 +503,6 @@ void main() {
     //   expect(customCal.getTimeZone(), equals('America/Los_Angeles'));
     // });
   });
+
+  tearDownAll(forceGC);
 }

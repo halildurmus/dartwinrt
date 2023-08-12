@@ -75,4 +75,6 @@ void main() {
       expect(winrtUri.host, equals('dartwinrt.dev'));
     });
   });
+
+  tearDownAll(forceGC);
 }

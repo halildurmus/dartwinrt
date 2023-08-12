@@ -124,4 +124,6 @@ void main() {
       expect(newList.last?.displayName, equals('test'));
     });
   });
+
+  tearDownAll(forceGC);
 }

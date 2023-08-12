@@ -37,12 +37,13 @@ void main() {
       final value = pv.value;
       expect(value, isA<List<Object?>>());
       final list = value as List<Object?>;
-      expect(list.first, isA<IInspectable>());
-      final firstObject = list.first as IInspectable;
+      final [element1, element2] = list;
+      expect(element1, isA<IInspectable>());
+      final firstObject = element1 as IInspectable;
       expect(getClassName(firstObject),
           equals('Windows.Foundation.Collections.PropertySet'));
-      expect(list.last, isA<IInspectable>());
-      final secondObject = list.last as IInspectable;
+      expect(element2, isA<IInspectable>());
+      final secondObject = element2 as IInspectable;
       expect(getClassName(secondObject),
           equals('Windows.Foundation.Collections.StringMap'));
     });
@@ -62,4 +63,6 @@ void main() {
       expect(value, orderedEquals(['Hello', 'World']));
     });
   });
+
+  tearDownAll(forceGC);
 }

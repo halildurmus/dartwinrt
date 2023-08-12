@@ -6,6 +6,7 @@
 
 import 'package:test/test.dart';
 import 'package:win32/win32.dart';
+import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/uri.dart';
 
 void main() {
@@ -18,6 +19,7 @@ void main() {
     test('createWwwFormUrlDecoder', () {
       final decoder = WwwFormUrlDecoder.createWwwFormUrlDecoder('a=1&b=2&c=3');
       expect(decoder.addRef(), equals(2));
+      expect(decoder.release(), equals(1));
     });
 
     test('getFirstValueByName', () {
@@ -117,4 +119,6 @@ void main() {
       expect(last.value, equals('5'));
     });
   });
+
+  tearDownAll(forceGC);
 }

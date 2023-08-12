@@ -82,4 +82,6 @@ void main() {
     expect(list.length, equals(2));
     expect(list, orderedEquals([size1, size2]));
   });
+
+  tearDownAll(forceGC);
 }

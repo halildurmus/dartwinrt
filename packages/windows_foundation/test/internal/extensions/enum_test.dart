@@ -50,4 +50,6 @@ void main() {
         list, orderedEquals([FileAttributes.normal, FileAttributes.directory]));
     free(array);
   });
+
+  tearDownAll(forceGC);
 }

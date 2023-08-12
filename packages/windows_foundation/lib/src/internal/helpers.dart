@@ -2,6 +2,8 @@
 // All rights reserved. Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
+import 'dart:async';
+import 'dart:developer';
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
@@ -11,6 +13,29 @@ import 'package:win32_registry/win32_registry.dart';
 import '../winrt_enum.dart';
 import '../winrt_struct.dart';
 import 'extensions/extensions.dart';
+
+/// Forces garbage collection through aggressive memory allocation.
+///
+/// Used to ensure `Finalizer`s run after all tests within a file.
+///
+/// Its purpose is to prevent any potential occurrences of "double free" or
+/// "use after free" errors in the projection.
+/// @nodoc
+Future<void> forceGC({int fullGcCycles = 2}) async {
+  final barrier = reachabilityBarrier;
+
+  final storage = <List<int>>[];
+
+  void allocateMemory() {
+    storage.add(List.generate(30000, (n) => n));
+    if (storage.length > 100) storage.removeAt(0);
+  }
+
+  while (reachabilityBarrier < barrier + fullGcCycles) {
+    await Future<void>.delayed(Duration.zero);
+    allocateMemory();
+  }
+}
 
 /// Returns the restricted error description of the last error that occurred on
 /// the current logical thread.
@@ -54,6 +79,7 @@ String? getRestrictedErrorDescription(int hresult) {
 }
 
 /// Returns the Windows build number of the current system.
+/// @nodoc
 int getWindowsBuildNumber() {
   final key = Registry.openPath(RegistryHive.localMachine,
       path: r'Software\Microsoft\Windows NT\CurrentVersion');

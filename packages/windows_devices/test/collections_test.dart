@@ -7,6 +7,7 @@
 import 'package:test/test.dart';
 import 'package:win32/win32.dart';
 import 'package:windows_devices/windows_devices.dart';
+import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
 void main() {
@@ -308,4 +309,6 @@ void main() {
           ]));
     });
   });
+
+  tearDownAll(forceGC);
 }

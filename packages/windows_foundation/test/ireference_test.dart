@@ -125,4 +125,6 @@ void main() {
       expect(reference.value, equals('Hello World'));
     });
   });
+
+  tearDownAll(forceGC);
 }

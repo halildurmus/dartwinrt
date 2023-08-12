@@ -54,4 +54,6 @@ void main() {
     expect(list, orderedEquals([true, false]));
     free(array);
   });
+
+  tearDownAll(forceGC);
 }

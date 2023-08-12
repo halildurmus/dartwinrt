@@ -347,4 +347,6 @@ void main() {
           ]));
     });
   });
+
+  tearDownAll(forceGC);
 }

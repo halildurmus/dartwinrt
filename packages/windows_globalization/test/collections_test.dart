@@ -129,4 +129,6 @@ void main() {
       expect(newList.last, equals('tr-TR'));
     });
   });
+
+  tearDownAll(forceGC);
 }

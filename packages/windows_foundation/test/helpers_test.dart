@@ -8,6 +8,7 @@ import 'dart:ffi';
 
 import 'package:test/test.dart';
 import 'package:win32/win32.dart' hide IUnknown;
+import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
 void main() {
@@ -46,6 +47,10 @@ void main() {
     expect(refCount(calendar), equals(1));
   });
 
+  test('forceGC', () {
+    expect(() async => forceGC(), returnsNormally);
+  });
+
   test('getWindowHandle', () {
     expect(getWindowHandle(), isZero);
   });
@@ -58,4 +63,6 @@ void main() {
     propertySet.release();
     expect(refCount(propertySet), 1);
   });
+
+  tearDownAll(forceGC);
 }
