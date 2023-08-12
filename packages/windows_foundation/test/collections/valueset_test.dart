@@ -116,9 +116,10 @@ void main() {
       final dateTimeListVal = map.lookup('key14');
       expect(dateTimeListVal, isA<List<DateTime>>());
       final dateTimeList = dateTimeListVal as List<DateTime>;
-      expect(dateTimeList.first.millisecondsSinceEpoch,
+      final [dateTime1, dateTime2] = dateTimeList;
+      expect(dateTime1.millisecondsSinceEpoch,
           equals(DateTime(2020, 7, 11, 17, 30).millisecondsSinceEpoch));
-      expect(dateTimeList.last.millisecondsSinceEpoch,
+      expect(dateTime2.millisecondsSinceEpoch,
           equals(DateTime(2022, 7, 11, 17, 30).millisecondsSinceEpoch));
 
       expect(map.lookup('key15'), equals([2.5, 0.99]));
@@ -268,4 +269,6 @@ void main() {
       expect(map.lookup('key23'), equals(23));
     });
   });
+
+  tearDownAll(forceGC);
 }

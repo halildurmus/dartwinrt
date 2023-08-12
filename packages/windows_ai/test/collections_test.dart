@@ -123,4 +123,6 @@ void main() {
       expect(newList.last, equals(1.5));
     });
   }, skip: getWindowsBuildNumber() < 18362);
+
+  tearDownAll(forceGC);
 }

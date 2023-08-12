@@ -307,4 +307,6 @@ void main() {
       expect(map.lookup(guid2), equals('iclassfactory'));
     });
   });
+
+  tearDownAll(forceGC);
 }

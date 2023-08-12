@@ -71,4 +71,6 @@ void main() {
       expect(list, orderedEquals([0, 9223372036854775807]));
     });
   });
+
+  tearDownAll(forceGC);
 }

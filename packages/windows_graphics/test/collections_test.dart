@@ -6,6 +6,7 @@
 
 import 'package:test/test.dart';
 import 'package:win32/win32.dart';
+import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 import 'package:windows_graphics/windows_graphics.dart';
 
@@ -297,4 +298,6 @@ void main() {
       expect(newList, orderedEquals([259, 11811, 32367]));
     });
   });
+
+  tearDownAll(forceGC);
 }

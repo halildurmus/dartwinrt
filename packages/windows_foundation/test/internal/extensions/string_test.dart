@@ -107,4 +107,6 @@ void main() {
     expect(list, orderedEquals(['d', '\x00', ' ', r'$']));
     free(array);
   });
+
+  tearDownAll(forceGC);
 }

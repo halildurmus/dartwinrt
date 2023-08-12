@@ -79,4 +79,6 @@ void main() {
           throwsA(isA<WindowsException>()));
     });
   });
+
+  tearDownAll(forceGC);
 }

@@ -6,6 +6,7 @@
 
 import 'package:test/test.dart';
 import 'package:win32/win32.dart';
+import 'package:windows_foundation/internal.dart';
 import 'package:windows_globalization/windows_globalization.dart';
 
 // Test the WinRT PhoneNumberFormatter class to make sure overrides, properties
@@ -64,4 +65,6 @@ void main() {
             'TZ', true),
         equals('0'));
   });
+
+  tearDownAll(forceGC);
 }

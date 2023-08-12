@@ -6,6 +6,7 @@
 
 import 'package:test/test.dart';
 import 'package:win32/win32.dart';
+import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 import 'package:windows_storage/windows_storage.dart';
 
@@ -27,4 +28,6 @@ void main() {
           returnsNormally);
     });
   });
+
+  tearDownAll(forceGC);
 }

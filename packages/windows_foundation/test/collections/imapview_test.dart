@@ -114,4 +114,6 @@ void main() {
       expect(map['key3'], equals('value3'));
     });
   });
+
+  tearDownAll(forceGC);
 }

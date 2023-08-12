@@ -6,6 +6,7 @@
 
 import 'package:test/test.dart';
 import 'package:win32/win32.dart';
+import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
 void main() {
@@ -46,4 +47,6 @@ void main() {
       expect(map.lookup('key3'), equals('value3'));
     });
   });
+
+  tearDownAll(forceGC);
 }

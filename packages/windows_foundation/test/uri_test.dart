@@ -6,6 +6,7 @@
 
 import 'package:test/test.dart';
 import 'package:win32/win32.dart';
+import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/uri.dart' as winrt_uri;
 
 void main() {
@@ -21,12 +22,14 @@ void main() {
     test('createUri', () {
       final winrtUri = winrt_uri.Uri.createUri(dartUri.toString());
       expect(winrtUri.addRef(), equals(2));
+      expect(winrtUri.release(), equals(1));
     });
 
     test('createWithRelativeUri', () {
       final winrtUri = winrt_uri.Uri.createWithRelativeUri(
           'https://www.example.com', '/path/to/file.html');
       expect(winrtUri.addRef(), equals(2));
+      expect(winrtUri.release(), equals(1));
     });
 
     test('rawUri', () {
@@ -126,14 +129,13 @@ void main() {
       expect(queryParsed!.size, equals(2));
       final queryParameters = queryParsed.toList();
       expect(queryParameters.length, equals(2));
-      final firstQueryParam = queryParameters.first;
-      expect(firstQueryParam, isNotNull);
-      expect(firstQueryParam!.name, equals('q1'));
-      expect(firstQueryParam.value, equals('v1'));
-      final lastQueryParam = queryParameters.last;
-      expect(lastQueryParam, isNotNull);
-      expect(lastQueryParam!.name, equals('q2'));
-      expect(lastQueryParam.value, equals('v2'));
+      final [queryParam1, queryParam2] = queryParameters;
+      expect(queryParam1, isNotNull);
+      expect(queryParam1!.name, equals('q1'));
+      expect(queryParam1.value, equals('v1'));
+      expect(queryParam2, isNotNull);
+      expect(queryParam2!.name, equals('q2'));
+      expect(queryParam2.value, equals('v2'));
     });
 
     test('combineUri', () {
@@ -152,4 +154,6 @@ void main() {
       expect(winrt_uri.Uri.unescapeComponent('a%3Db'), equals('a=b'));
     });
   });
+
+  tearDownAll(forceGC);
 }

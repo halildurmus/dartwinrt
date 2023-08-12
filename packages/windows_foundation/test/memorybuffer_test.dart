@@ -6,6 +6,7 @@
 
 import 'package:test/test.dart';
 import 'package:win32/win32.dart';
+import 'package:windows_foundation/internal.dart';
 import 'package:windows_foundation/windows_foundation.dart';
 
 void main() {
@@ -18,6 +19,7 @@ void main() {
     test('create', () {
       final buffer = MemoryBuffer.create(10);
       expect(buffer.addRef(), equals(2));
+      expect(buffer.release(), equals(1));
       buffer.close();
     });
 
@@ -30,4 +32,6 @@ void main() {
       buffer.close();
     });
   });
+
+  tearDownAll(forceGC);
 }

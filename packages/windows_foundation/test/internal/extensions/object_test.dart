@@ -70,9 +70,10 @@ void main() {
       expect(pv.type, equals(PropertyType.inspectableArray));
       final list = pv.getInspectableArray();
       expect(list.length, equals(2));
-      expect(list.first, isA<Uri>());
-      expect(list.first.toString(), equals('https://dartwinrt.dev/'));
-      expect(list.last, isNull);
+      final [element1, element2] = list;
+      expect(element1, isA<Uri>());
+      expect(element1.toString(), equals('https://dartwinrt.dev/'));
+      expect(element2, isNull);
     });
 
     test('String', () {
@@ -201,4 +202,6 @@ void main() {
       expect(list[8], isA<Uri>());
     });
   });
+
+  tearDownAll(forceGC);
 }
