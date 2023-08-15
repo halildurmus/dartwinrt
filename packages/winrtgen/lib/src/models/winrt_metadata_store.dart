@@ -46,12 +46,12 @@ final class WinRTMetadataStore {
   static List<Method> get methods => _methods ??= _getMethods();
 
   static List<Method> _getMethods() => [
-        for (final namespace in WinRTNamespace.values) ...[
-          ...MetadataStore.getWinRTScopeForNamespace(namespace)
+        for (final namespace in _WinRTNamespace.values) ...[
+          ...MetadataStore.getScopeForNamespace(namespace.name)
               .classes
               .map((typeDef) => typeDef.methods)
               .expand((e) => e),
-          ...MetadataStore.getWinRTScopeForNamespace(namespace)
+          ...MetadataStore.getScopeForNamespace(namespace.name)
               .interfaces
               .map((typeDef) => typeDef.methods)
               .expand((e) => e),
@@ -85,4 +85,30 @@ final class WinRTMetadataStore {
       ...scope.structs
     ];
   }
+}
+
+/// Represents the Windows Runtime namespaces.
+enum _WinRTNamespace {
+  ai('Windows.AI'),
+  applicationmodel('Windows.ApplicationModel'),
+  data('Windows.Data'),
+  devices('Windows.Devices'),
+  foundation('Windows.Foundation'),
+  gaming('Windows.Gaming'),
+  globalization('Windows.Globalization'),
+  graphics('Windows.Graphics'),
+  management('Windows.Management'),
+  media('Windows.Media'),
+  networking('Windows.Networking'),
+  perception('Windows.Perception'),
+  security('Windows.Security'),
+  services('Windows.Services'),
+  storage('Windows.Storage'),
+  system('Windows.System'),
+  ui('Windows.UI'),
+  web('Windows.Web');
+
+  final String name;
+
+  const _WinRTNamespace(this.name);
 }
