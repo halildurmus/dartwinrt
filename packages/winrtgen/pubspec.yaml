@@ -20,10 +20,10 @@ dependencies:
   dart_style: ^2.3.0
 
   # Foreign Function Interface extension methods
-  ffi: ^2.0.2
+  ffi: ^2.1.0
 
   html: ^0.15.1
-  http: ^0.13.5
+  http: ^1.1.0
 
   # For calculating the relative file paths
   path: ^1.8.3

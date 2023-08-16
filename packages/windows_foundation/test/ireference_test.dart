@@ -18,111 +18,128 @@ void main() {
   group('IReference', () {
     test('bool?', () {
       final reference = true.toReference();
-      expect(reference.value, isNotNull);
-      expect(reference.value, isTrue);
+      final value = reference.value;
+      expect(value, isNotNull);
+      expect(value, isTrue);
     });
 
     test('DateTime?', () {
       final dateTime = DateTime(2022, 8, 28, 17);
       final reference = dateTime.toReference();
-      expect(reference.value, isNotNull);
-      expect(reference.value!.millisecondsSinceEpoch,
-          dateTime.millisecondsSinceEpoch);
+      final value = reference.value;
+      expect(value, isNotNull);
+      expect(value!.millisecondsSinceEpoch,
+          equals(dateTime.millisecondsSinceEpoch));
     });
 
     test('double? (Double)', () {
       final reference = 3.0.toReference(DoubleType.double);
-      expect(reference.value, isNotNull);
-      expect(reference.value, equals(3.0));
+      final value = reference.value;
+      expect(value, isNotNull);
+      expect(value, equals(3.0));
     });
 
     test('double? (Float)', () {
       final reference = 3.0.toReference(DoubleType.float);
-      expect(reference.value, isNotNull);
-      expect(reference.value, equals(3.0));
+      final value = reference.value;
+      expect(value, isNotNull);
+      expect(value, equals(3.0));
     });
 
     test('Duration?', () {
       final reference = const Duration(seconds: 30).toReference();
-      expect(reference.value, isNotNull);
-      expect(reference.value?.inSeconds, equals(30));
+      final value = reference.value;
+      expect(value, isNotNull);
+      expect(value!.inSeconds, equals(30));
     });
 
     test('Guid?', () {
       final reference = Guid.parse(IID_IAsyncInfo).toReference();
-      expect(reference.value, isNotNull);
-      expect(reference.value?.toString(), equals(IID_IAsyncInfo));
+      final value = reference.value;
+      expect(value, isNotNull);
+      expect(value!.toString(), equals(IID_IAsyncInfo));
     });
 
     test('int? (Int16)', () {
       final reference = 16.toReference(IntType.int16);
-      expect(reference.value, isNotNull);
-      expect(reference.value, equals(16));
+      final value = reference.value;
+      expect(value, isNotNull);
+      expect(value, equals(16));
     });
 
     test('int? (Int32)', () {
       final reference = 32.toReference(IntType.int32);
-      expect(reference.value, isNotNull);
-      expect(reference.value, equals(32));
+      final value = reference.value;
+      expect(value, isNotNull);
+      expect(value, equals(32));
     });
 
     test('int? (Int64)', () {
       final reference = 64.toReference(IntType.int64);
-      expect(reference.value, isNotNull);
-      expect(reference.value, equals(64));
+      final value = reference.value;
+      expect(value, isNotNull);
+      expect(value, equals(64));
     });
 
     test('int? (Uint8)', () {
       final reference = 8.toReference(IntType.uint8);
-      expect(reference.value, isNotNull);
-      expect(reference.value, equals(8));
+      final value = reference.value;
+      expect(value, isNotNull);
+      expect(value, equals(8));
     });
 
     test('int? (Uint16)', () {
       final reference = 16.toReference(IntType.uint16);
-      expect(reference.value, isNotNull);
-      expect(reference.value, equals(16));
+      final value = reference.value;
+      expect(value, isNotNull);
+      expect(value, equals(16));
     });
 
     test('int? (Uint32)', () {
       final reference = 32.toReference(IntType.uint32);
-      expect(reference.value, isNotNull);
-      expect(reference.value, equals(32));
+      final value = reference.value;
+      expect(value, isNotNull);
+      expect(value, equals(32));
     });
 
     test('int? (Uint64)', () {
       final reference = 64.toReference(IntType.uint64);
-      expect(reference.value, isNotNull);
-      expect(reference.value, equals(64));
+      final value = reference.value;
+      expect(value, isNotNull);
+      expect(value, equals(64));
     });
 
     test('Point?', () {
       final reference = const Point(50, 100).toReference();
-      expect(reference.value, isNotNull);
-      expect(reference.value?.x, equals(50));
-      expect(reference.value?.y, equals(100));
+      final value = reference.value;
+      expect(value, isNotNull);
+      expect(value!.x, equals(50));
+      expect(value.y, equals(100));
     });
 
     test('Rect?', () {
       final reference = const Rect(50, 100, 200, 100).toReference();
-      expect(reference.value, isNotNull);
-      expect(reference.value?.height, equals(100));
-      expect(reference.value?.width, equals(200));
-      expect(reference.value?.x, equals(50));
-      expect(reference.value?.y, equals(100));
+      final value = reference.value;
+      expect(value, isNotNull);
+      expect(value!.height, equals(100));
+      expect(value.width, equals(200));
+      expect(value.x, equals(50));
+      expect(value.y, equals(100));
     });
 
     test('Size?', () {
       final reference = const Size(100, 200).toReference();
-      expect(reference.value, isNotNull);
-      expect(reference.value?.height, equals(200));
-      expect(reference.value?.width, equals(100));
+      final value = reference.value;
+      expect(value, isNotNull);
+      expect(value!.height, equals(200));
+      expect(value.width, equals(100));
     });
 
     test('String?', () {
       final reference = 'Hello World'.toReference();
-      expect(reference.value, isNotNull);
-      expect(reference.value, equals('Hello World'));
+      final value = reference.value;
+      expect(value, isNotNull);
+      expect(value, equals('Hello World'));
     });
   });
 

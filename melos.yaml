@@ -11,9 +11,7 @@ command:
     # makes the CI much more stable.
     runPubGetInParallel: false
   version:
-    # Generate commit links in package changelogs.
     linkToCommits: true
-    # Additionally build a changelog at the root of the workspace.
     workspaceChangelog: true
 
 scripts:
