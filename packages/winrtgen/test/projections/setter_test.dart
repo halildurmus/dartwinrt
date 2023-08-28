@@ -16,6 +16,8 @@ void main() {
     return;
   }
 
+  setUpAll(WinRTMetadataStore.loadMetadata);
+
   group('SetterProjection', () {
     test('projects something', () {
       final output = SetterProjection.fromTypeAndMethodName(

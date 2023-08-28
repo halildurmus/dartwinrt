@@ -16,6 +16,8 @@ void main() {
     return;
   }
 
+  setUpAll(WinRTMetadataStore.loadMetadata);
+
   group('GetterProjection', () {
     test('projects something', () {
       final output = GetterProjection.fromTypeAndMethodName(

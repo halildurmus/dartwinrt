@@ -6,6 +6,7 @@
 
 import 'package:test/test.dart';
 import 'package:win32/win32.dart';
+import 'package:winmd/winmd.dart';
 import 'package:winrtgen/winrtgen.dart';
 
 void main() {
@@ -15,10 +16,18 @@ void main() {
   }
 
   group('TypeDef', () {
-    final calendarTypeDef = 'Windows.Globalization.Calendar'.typeDef;
-    final jsonObjectTypeDef = 'Windows.Data.Json.JsonObject'.typeDef;
-    final mapViewTypeDef = 'Windows.Foundation.Collections.IMapView`2'.typeDef;
-    final stringMapTypeDef = 'Windows.Foundation.Collections.StringMap'.typeDef;
+    late TypeDef calendarTypeDef;
+    late TypeDef jsonObjectTypeDef;
+    late TypeDef mapViewTypeDef;
+    late TypeDef stringMapTypeDef;
+
+    setUpAll(() async {
+      await WinRTMetadataStore.loadMetadata();
+      calendarTypeDef = 'Windows.Globalization.Calendar'.typeDef;
+      jsonObjectTypeDef = 'Windows.Data.Json.JsonObject'.typeDef;
+      mapViewTypeDef = 'Windows.Foundation.Collections.IMapView`2'.typeDef;
+      stringMapTypeDef = 'Windows.Foundation.Collections.StringMap'.typeDef;
+    });
 
     test('fullyQualifiedName', () {
       expect(calendarTypeDef.fullyQualifiedName,

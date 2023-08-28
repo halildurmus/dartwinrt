@@ -6,6 +6,7 @@
 
 import 'package:test/test.dart';
 import 'package:win32/win32.dart';
+import 'package:winmd/winmd.dart';
 import 'package:winrtgen/winrtgen.dart';
 
 void main() {
@@ -15,16 +16,26 @@ void main() {
   }
 
   group('MethodForwardersProjection', () {
-    final typeDef1 = 'Windows.Data.Json.JsonArray'.typeDef.interfaces[2];
-    final classProjection1 =
-        ClassProjection.fromType('Windows.Data.Json.JsonArray');
-    final methodForwardersProjection =
-        MethodForwardersProjection(typeDef1, classProjection1);
-    final typeDef2 = 'Windows.Data.Json.JsonObject'.typeDef.interfaces[2];
-    final classProjection2 =
-        ClassProjection.fromType('Windows.Data.Json.JsonObject');
-    final methodForwardersProjection2 =
-        MethodForwardersProjection(typeDef2, classProjection2);
+    late TypeDef typeDef1;
+    late ClassProjection classProjection1;
+    late MethodForwardersProjection methodForwardersProjection;
+    late TypeDef typeDef2;
+    late ClassProjection classProjection2;
+    late MethodForwardersProjection methodForwardersProjection2;
+
+    setUpAll(() async {
+      await WinRTMetadataStore.loadMetadata();
+      typeDef1 = 'Windows.Data.Json.JsonArray'.typeDef.interfaces[2];
+      classProjection1 =
+          ClassProjection.fromType('Windows.Data.Json.JsonArray');
+      methodForwardersProjection =
+          MethodForwardersProjection(typeDef1, classProjection1);
+      typeDef2 = 'Windows.Data.Json.JsonObject'.typeDef.interfaces[2];
+      classProjection2 =
+          ClassProjection.fromType('Windows.Data.Json.JsonObject');
+      methodForwardersProjection2 =
+          MethodForwardersProjection(typeDef2, classProjection2);
+    });
 
     test('isGenericInterface', () {
       expect(methodForwardersProjection.isGenericInterface, isTrue);

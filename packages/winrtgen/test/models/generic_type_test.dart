@@ -14,6 +14,8 @@ void main() {
     return;
   }
 
+  setUpAll(WinRTMetadataStore.loadMetadata);
+
   group('GenericType', () {
     test('all', () {
       expect(GenericType.all.length, equals(8));

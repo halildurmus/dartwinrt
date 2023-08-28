@@ -15,6 +15,8 @@ void main() {
   }
 
   group('TypeAnalyzer', () {
+    setUpAll(WinRTMetadataStore.loadMetadata);
+
     test('fromType', () {
       const type = 'Windows.Globalization.Calendar';
       final analyzer = TypeAnalyzer.fromType(type);

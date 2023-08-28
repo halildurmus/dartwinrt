@@ -14,6 +14,8 @@ void main() {
     return;
   }
 
+  setUpAll(WinRTMetadataStore.loadMetadata);
+
   group('EnumProjection', () {
     test('create', () {
       final typeDef = 'Windows.Storage.FileAttributes'.typeDef;

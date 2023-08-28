@@ -16,6 +16,8 @@ void main() {
   }
 
   group('ProjectionKind', () {
+    setUpAll(WinRTMetadataStore.loadMetadata);
+
     group('fromTypeProjection constructor', () {
       test('returns asyncAction (1)', () {
         final methodProjection = MethodProjection.fromTypeAndMethodName(

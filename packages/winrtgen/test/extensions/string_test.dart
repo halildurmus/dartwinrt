@@ -14,6 +14,8 @@ void main() {
     return;
   }
 
+  setUpAll(WinRTMetadataStore.loadMetadata);
+
   group('String', () {
     test('capitalize', () {
       expect('value'.capitalize(), equals('Value'));

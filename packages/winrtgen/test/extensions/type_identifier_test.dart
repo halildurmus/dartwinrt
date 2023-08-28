@@ -16,6 +16,8 @@ void main() {
   }
 
   group('TypeIdentifier', () {
+    setUpAll(WinRTMetadataStore.loadMetadata);
+
     group('creator', () {
       test('(Calendar)', () {
         final typeDef = 'Windows.Globalization.ICalendarFactory'.typeDef;

@@ -16,9 +16,7 @@ void main() {
   }
 
   group('Parameter', () {
-    final scope = MetadataStore.getScopeForNamespace('Windows.Foundation');
-    final arraySizeParam = Parameter.fromVoid(scope, 0)..name = '__valueSize';
-    final arrayParam = Parameter.fromVoid(scope, 0)..name = 'value';
+    setUpAll(WinRTMetadataStore.loadMetadata);
 
     group('arrayPassingStyle', () {
       test('fill', () {
@@ -75,16 +73,25 @@ void main() {
     });
 
     test('isSimpleArraySizeParam', () {
+      final scope = MetadataStore.getScopeForType('Windows.Foundation');
+      final arraySizeParam = Parameter.fromVoid(scope, 0)..name = '__valueSize';
+      final arrayParam = Parameter.fromVoid(scope, 0)..name = 'value';
       expect(arraySizeParam.isSimpleArraySizeParam, isTrue);
       expect(arrayParam.isSimpleArraySizeParam, isFalse);
     });
 
     test('toArrayParamName', () {
+      final scope = MetadataStore.getScopeForType('Windows.Foundation');
+      final arraySizeParam = Parameter.fromVoid(scope, 0)..name = '__valueSize';
+      final arrayParam = Parameter.fromVoid(scope, 0)..name = 'value';
       expect(arraySizeParam.toArrayParamName(), equals('value'));
       expect(arrayParam.toArrayParamName, throwsA(isA<AssertionError>()));
     });
 
     test('toArraySizeParamName', () {
+      final scope = MetadataStore.getScopeForType('Windows.Foundation');
+      final arraySizeParam = Parameter.fromVoid(scope, 0)..name = '__valueSize';
+      final arrayParam = Parameter.fromVoid(scope, 0)..name = 'value';
       expect(arrayParam.toArraySizeParamName(), equals('__valueSize'));
       expect(
           arraySizeParam.toArraySizeParamName, throwsA(isA<AssertionError>()));

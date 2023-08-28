@@ -15,16 +15,19 @@ void main() {
   }
 
   group('Method', () {
-    final iclosableTypeDef = 'Windows.Foundation.IClosable'.typeDef;
-    final closeMethod = iclosableTypeDef.findMethod('Close')!;
+    setUpAll(WinRTMetadataStore.loadMetadata);
 
     test('isVoid', () {
-      expect(closeMethod.isVoid, isTrue);
+      final typeDef = 'Windows.Foundation.IClosable'.typeDef;
+      final method = typeDef.findMethod('Close')!;
+      expect(method.isVoid, isTrue);
     });
 
     group('uniqueName', () {
       test('returns the original name', () {
-        expect(closeMethod.uniqueName, equals('Close'));
+        final typeDef = 'Windows.Foundation.IClosable'.typeDef;
+        final method = typeDef.findMethod('Close')!;
+        expect(method.uniqueName, equals('Close'));
       });
 
       test('returns the overload name', () {
