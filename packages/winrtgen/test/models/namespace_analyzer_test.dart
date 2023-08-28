@@ -15,6 +15,8 @@ void main() {
   }
 
   group('NamespaceAnalyzer', () {
+    setUpAll(WinRTMetadataStore.loadMetadata);
+
     test('fromNamespace', () {
       const namespace = 'Windows.Foundation';
       final analyzer = NamespaceAnalyzer.fromNamespace(namespace);

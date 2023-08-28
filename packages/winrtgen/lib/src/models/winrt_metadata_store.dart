@@ -10,15 +10,24 @@ import '../extensions/extensions.dart';
 final class WinRTMetadataStore {
   /// Returns all [TypeDef]s of runtime classes in the given [namespace].
   static List<TypeDef> classesInNamespace(String namespace) =>
-      MetadataStore.getScopeForNamespace(namespace).classes.toList();
+      MetadataStore.getScopeForType(namespace)
+          .classes
+          .where((typeDef) => typeDef.name.startsWith(namespace))
+          .toList();
 
   /// Returns all [TypeDef]s of delegates in the given [namespace].
   static List<TypeDef> delegatesInNamespace(String namespace) =>
-      MetadataStore.getScopeForNamespace(namespace).delegates.toList();
+      MetadataStore.getScopeForType(namespace)
+          .delegates
+          .where((typeDef) => typeDef.name.startsWith(namespace))
+          .toList();
 
   /// Returns all [TypeDef]s of enums in the given [namespace].
   static List<TypeDef> enumsInNamespace(String namespace) =>
-      MetadataStore.getScopeForNamespace(namespace).enums.toList();
+      MetadataStore.getScopeForType(namespace)
+          .enums
+          .where((typeDef) => typeDef.name.startsWith(namespace))
+          .toList();
 
   /// Find a matching [TypeDef], if one exists, for a WinRT [type] (e.g.,
   /// `Windows.Foundation.MemoryBuffer`).
@@ -28,7 +37,8 @@ final class WinRTMetadataStore {
     }
 
     try {
-      final typeDef = MetadataStore.getMetadataForType(type);
+      final scope = MetadataStore.getScopeForType(type);
+      final typeDef = scope.findTypeDef(type);
       if (typeDef == null) throw '';
       return typeDef;
     } catch (_) {
@@ -38,7 +48,14 @@ final class WinRTMetadataStore {
 
   /// Returns all [TypeDef]s of interfaces in the given [namespace].
   static List<TypeDef> interfacesInNamespace(String namespace) =>
-      MetadataStore.getScopeForNamespace(namespace).interfaces.toList();
+      MetadataStore.getScopeForType(namespace)
+          .interfaces
+          .where((typeDef) => typeDef.name.startsWith(namespace))
+          .toList();
+
+  /// Returns the scope that contains the WinRT metadata.
+  static Future<Scope> loadMetadata({String? version}) async =>
+      await MetadataStore.loadWinRTMetadata(version: version);
 
   static List<Method>? _methods;
 
@@ -47,12 +64,10 @@ final class WinRTMetadataStore {
 
   static List<Method> _getMethods() => [
         for (final namespace in _WinRTNamespace.values) ...[
-          ...MetadataStore.getScopeForNamespace(namespace.name)
-              .classes
+          ...classesInNamespace(namespace.name)
               .map((typeDef) => typeDef.methods)
               .expand((e) => e),
-          ...MetadataStore.getScopeForNamespace(namespace.name)
-              .interfaces
+          ...interfacesInNamespace(namespace.name)
               .map((typeDef) => typeDef.methods)
               .expand((e) => e),
         ]
@@ -60,7 +75,10 @@ final class WinRTMetadataStore {
 
   /// Returns all [TypeDef]s of structs in the given [namespace].
   static List<TypeDef> structsInNamespace(String namespace) =>
-      MetadataStore.getScopeForNamespace(namespace).structs.toList();
+      MetadataStore.getScopeForType(namespace)
+          .structs
+          .where((typeDef) => typeDef.name.startsWith(namespace))
+          .toList();
 
   /// Try to find a matching typedef, if one exists, for a WinRT [type] (e.g.,
   /// `Windows.Foundation.MemoryBuffer`).
@@ -75,16 +93,11 @@ final class WinRTMetadataStore {
   }
 
   /// Returns all [TypeDef]s in a given WinRT [namespace].
-  static List<TypeDef> typeDefsInNamespace(String namespace) {
-    final scope = MetadataStore.getScopeForNamespace(namespace);
-    return [
-      ...scope.classes,
-      ...scope.delegates,
-      ...scope.enums,
-      ...scope.interfaces,
-      ...scope.structs
-    ];
-  }
+  static List<TypeDef> typeDefsInNamespace(String namespace) =>
+      MetadataStore.getScopeForType(namespace)
+          .typeDefs
+          .where((typeDef) => typeDef.name.startsWith(namespace))
+          .toList();
 }
 
 /// Represents the Windows Runtime namespaces.

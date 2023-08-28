@@ -20,6 +20,8 @@ void main() {
     return;
   }
 
+  setUpAll(WinRTMetadataStore.loadMetadata);
+
   test('ICalendar golden', () {
     final projection =
         InterfaceProjection.fromType('Windows.Globalization.ICalendar');

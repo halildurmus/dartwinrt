@@ -15,11 +15,17 @@ void main() {
     return;
   }
 
-  final geolocatorProjection = ClassProjection.fromType(
-      'Windows.Devices.Geolocation.Geolocator',
-      comment: 'Provides access to the current geographic location.');
-
   group('BaseProjection', () {
+    late ClassProjection geolocatorProjection;
+
+    setUpAll(() async {
+      await WinRTMetadataStore.loadMetadata();
+      geolocatorProjection = ClassProjection.fromType(
+        'Windows.Devices.Geolocation.Geolocator',
+        comment: 'Provides access to the current geographic location.',
+      );
+    });
+
     test('classPreamble', () {
       expect(geolocatorProjection.classPreamble,
           equals('/// Provides access to the current geographic location.'));

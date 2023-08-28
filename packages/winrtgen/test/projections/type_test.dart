@@ -15,6 +15,8 @@ void main() {
   }
 
   group('TypeProjection', () {
+    setUpAll(WinRTMetadataStore.loadMetadata);
+
     test('Bool type is projected correctly', () {
       final methodProjection = MethodProjection.fromTypeAndMethodName(
           'Windows.Foundation.IPropertyValue', 'GetBoolean');

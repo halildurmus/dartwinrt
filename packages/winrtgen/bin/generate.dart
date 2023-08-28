@@ -146,8 +146,11 @@ void writeToFile(String path, String content) => File(path)
   ..createSync(recursive: true)
   ..writeAsStringSync(content);
 
-void main() {
+void main() async {
   final stopwatch = Stopwatch()..start();
+
+  print('[${stopwatch.elapsed}] Loading WinRT Metadata...');
+  await WinRTMetadataStore.loadMetadata();
 
   print('[${stopwatch.elapsed}] Generating WinRT objects...');
   generateObjects();

@@ -14,8 +14,13 @@ void main() {
     return;
   }
 
-  final icalendarProjection =
-      InterfaceProjection.fromType('Windows.Globalization.ICalendar');
+  late InterfaceProjection icalendarProjection;
+
+  setUpAll(() async {
+    await WinRTMetadataStore.loadMetadata();
+    icalendarProjection =
+        InterfaceProjection.fromType('Windows.Globalization.ICalendar');
+  });
 
   group('InterfaceProjection', () {
     test('projects something', () {

@@ -14,9 +14,14 @@ void main() {
     return;
   }
 
-  final asyncOperationBoolProjection =
-      GenericInterfaceProjection.fromTypeAndTypeArgs(
-          'Windows.Foundation.IAsyncOperation`1', TypeArgKind.bool_);
+  late GenericInterfaceProjection asyncOperationBoolProjection;
+
+  setUpAll(() async {
+    await WinRTMetadataStore.loadMetadata();
+    asyncOperationBoolProjection =
+        GenericInterfaceProjection.fromTypeAndTypeArgs(
+            'Windows.Foundation.IAsyncOperation`1', TypeArgKind.bool_);
+  });
 
   group('GenericInterfacePartFileProjection', () {
     test('projects something', () {

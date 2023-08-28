@@ -14,6 +14,8 @@ void main() {
     return;
   }
 
+  setUpAll(WinRTMetadataStore.loadMetadata);
+
   const fakeJsonLoader = FakeJsonLoader();
   const fakeJsonSaver = FakeJsonSaver();
 

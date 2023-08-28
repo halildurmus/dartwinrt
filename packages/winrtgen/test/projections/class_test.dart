@@ -14,10 +14,16 @@ void main() {
     return;
   }
 
-  final calendarProjection =
-      ClassProjection.fromType('Windows.Globalization.Calendar');
-  final geolocatorProjection =
-      ClassProjection.fromType('Windows.Devices.Geolocation.Geolocator');
+  late ClassProjection calendarProjection;
+  late ClassProjection geolocatorProjection;
+
+  setUpAll(() async {
+    await WinRTMetadataStore.loadMetadata();
+    calendarProjection =
+        ClassProjection.fromType('Windows.Globalization.Calendar');
+    geolocatorProjection =
+        ClassProjection.fromType('Windows.Devices.Geolocation.Geolocator');
+  });
 
   group('ClassProjection', () {
     test('projects something', () {

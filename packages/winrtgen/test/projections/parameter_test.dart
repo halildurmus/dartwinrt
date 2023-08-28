@@ -17,6 +17,8 @@ void main() {
   }
 
   group('WinRT parameter', () {
+    setUpAll(WinRTMetadataStore.loadMetadata);
+
     test('projects bool', () {
       final methodProjection = MethodProjection.fromTypeAndMethodName(
           'Windows.Globalization.PhoneNumberFormatting.IPhoneNumberFormatterStatics',

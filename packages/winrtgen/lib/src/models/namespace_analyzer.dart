@@ -2,8 +2,6 @@
 // All rights reserved. Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-import 'package:winmd/winmd.dart';
-
 import '../extensions/extensions.dart';
 import 'winrt_metadata_store.dart';
 
@@ -87,8 +85,7 @@ final class NamespaceAnalyzer {
           _getInterfacesExcludingFactoryAndStatics();
 
   Set<String> _getInterfacesExcludingFactoryAndStatics() =>
-      MetadataStore.getScopeForNamespace(namespace)
-          .interfaces
+      WinRTMetadataStore.interfacesInNamespace(namespace)
           .where((typeDef) =>
               !typeDef.isFactoryInterface && !typeDef.isStaticsInterface)
           .map((typeDef) => typeDef.name)

@@ -16,6 +16,8 @@ void main() {
   }
 
   group('TypeArgKind', () {
+    setUpAll(WinRTMetadataStore.loadMetadata);
+
     group('from constructor', () {
       test('(bool)', () {
         expect(TypeArgKind.fromName('bool'), equals(TypeArgKind.bool_));

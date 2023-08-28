@@ -6,7 +6,6 @@
 
 import 'package:test/test.dart';
 import 'package:win32/win32.dart';
-import 'package:winmd/winmd.dart';
 import 'package:winrtgen/winrtgen.dart';
 
 void main() {
@@ -16,11 +15,16 @@ void main() {
   }
 
   group('WinRTMetadataStore', () {
+    setUpAll(WinRTMetadataStore.loadMetadata);
+
     test('classesInNamespace', () {
       final typeDefs =
           WinRTMetadataStore.classesInNamespace('Windows.Foundation');
       expect(typeDefs.length, greaterThanOrEqualTo(63));
-      expect(typeDefs.containsType('Windows.Foundation.Uri'), isTrue);
+      expect(
+        typeDefs.where((typeDef) => typeDef.name == 'Windows.Foundation.Uri'),
+        isNotEmpty,
+      );
     });
 
     test('delegatesInNamespace', () {
@@ -28,16 +32,21 @@ void main() {
           WinRTMetadataStore.delegatesInNamespace('Windows.Foundation');
       expect(typeDefs.length, greaterThanOrEqualTo(11));
       expect(
-          typeDefs
-              .containsType('Windows.Foundation.AsyncActionCompletedHandler'),
-          isTrue);
+        typeDefs.where((typeDef) =>
+            typeDef.name == 'Windows.Foundation.AsyncActionCompletedHandler'),
+        isNotEmpty,
+      );
     });
 
     test('enumsInNamespace', () {
       final typeDefs =
           WinRTMetadataStore.enumsInNamespace('Windows.Foundation');
       expect(typeDefs.length, greaterThanOrEqualTo(19));
-      expect(typeDefs.containsType('Windows.Foundation.AsyncStatus'), isTrue);
+      expect(
+        typeDefs.where(
+            (typeDef) => typeDef.name == 'Windows.Foundation.AsyncStatus'),
+        isNotEmpty,
+      );
     });
 
     group('findTypeDef', () {
@@ -79,15 +88,20 @@ void main() {
           WinRTMetadataStore.interfacesInNamespace('Windows.Foundation');
       expect(typeDefs.length, greaterThanOrEqualTo(61));
       expect(
-          typeDefs.containsType('Windows.Foundation.Collections.IPropertySet'),
-          isTrue);
+        typeDefs.where((typeDef) =>
+            typeDef.name == 'Windows.Foundation.Collections.IPropertySet'),
+        isNotEmpty,
+      );
     });
 
     test('structsInNamespace', () {
       final typeDefs =
           WinRTMetadataStore.structsInNamespace('Windows.Foundation');
       expect(typeDefs.length, greaterThanOrEqualTo(15));
-      expect(typeDefs.containsType('Windows.Foundation.Point'), isTrue);
+      expect(
+        typeDefs.where((typeDef) => typeDef.name == 'Windows.Foundation.Point'),
+        isNotEmpty,
+      );
     });
 
     group('tryFindTypeDef', () {
@@ -109,22 +123,40 @@ void main() {
         final typeDefs =
             WinRTMetadataStore.typeDefsInNamespace('Windows.Foundation');
         expect(typeDefs.length, greaterThanOrEqualTo(169));
-        expect(typeDefs.containsType('Windows.Foundation.Uri'), isTrue);
-        expect(typeDefs.classes.length, greaterThanOrEqualTo(63));
         expect(
-            typeDefs
-                .containsType('Windows.Foundation.AsyncActionCompletedHandler'),
-            isTrue);
-        expect(typeDefs.delegates.length, greaterThanOrEqualTo(11));
-        expect(typeDefs.containsType('Windows.Foundation.AsyncStatus'), isTrue);
-        expect(typeDefs.enums.length, greaterThanOrEqualTo(19));
+          typeDefs.where((typeDef) => typeDef.name == 'Windows.Foundation.Uri'),
+          isNotEmpty,
+        );
+        expect(typeDefs.where((typeDef) => typeDef.isClass).length,
+            greaterThanOrEqualTo(63));
         expect(
-            typeDefs
-                .containsType('Windows.Foundation.Collections.IPropertySet'),
-            isTrue);
-        expect(typeDefs.interfaces.length, greaterThanOrEqualTo(61));
-        expect(typeDefs.containsType('Windows.Foundation.Point'), isTrue);
-        expect(typeDefs.structs.length, greaterThanOrEqualTo(15));
+          typeDefs.where((typeDef) =>
+              typeDef.name == 'Windows.Foundation.AsyncActionCompletedHandler'),
+          isNotEmpty,
+        );
+        expect(typeDefs.where((typeDef) => typeDef.isDelegate).length,
+            greaterThanOrEqualTo(11));
+        expect(
+          typeDefs.where(
+              (typeDef) => typeDef.name == 'Windows.Foundation.AsyncStatus'),
+          isNotEmpty,
+        );
+        expect(typeDefs.where((typeDef) => typeDef.isEnum).length,
+            greaterThanOrEqualTo(19));
+        expect(
+          typeDefs.where((typeDef) =>
+              typeDef.name == 'Windows.Foundation.Collections.IPropertySet'),
+          isNotEmpty,
+        );
+        expect(typeDefs.where((typeDef) => typeDef.isInterface).length,
+            greaterThanOrEqualTo(61));
+        expect(
+          typeDefs
+              .where((typeDef) => typeDef.name == 'Windows.Foundation.Point'),
+          isNotEmpty,
+        );
+        expect(typeDefs.where((typeDef) => typeDef.isStruct).length,
+            greaterThanOrEqualTo(15));
       });
     });
   });

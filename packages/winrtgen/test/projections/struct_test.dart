@@ -14,6 +14,8 @@ void main() {
     return;
   }
 
+  setUpAll(WinRTMetadataStore.loadMetadata);
+
   group('NativeStructProjection', () {
     test('projects something', () {
       final output =
