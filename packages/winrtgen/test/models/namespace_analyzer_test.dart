@@ -9,10 +9,9 @@ import 'package:win32/win32.dart';
 import 'package:winrtgen/winrtgen.dart';
 
 void main() {
-  if (!isWindowsRuntimeAvailable()) {
-    print('Skipping tests because Windows Runtime is not available.');
-    return;
-  }
+  test('Windows Runtime is available on test machine', () {
+    expect(isWindowsRuntimeAvailable(), isTrue);
+  });
 
   group('NamespaceAnalyzer', () {
     setUpAll(WinRTMetadataStore.loadMetadata);

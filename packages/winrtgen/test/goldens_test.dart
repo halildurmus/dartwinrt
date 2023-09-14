@@ -15,10 +15,9 @@ import 'package:winrtgen/winrtgen.dart';
 // in lib/src/constants/golden_file_entries.dart.
 
 void main() {
-  if (!isWindowsRuntimeAvailable()) {
-    print('Skipping tests because Windows Runtime is not available.');
-    return;
-  }
+  test('Windows Runtime is available on test machine', () {
+    expect(isWindowsRuntimeAvailable(), isTrue);
+  });
 
   setUpAll(WinRTMetadataStore.loadMetadata);
 
