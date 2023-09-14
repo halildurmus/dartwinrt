@@ -135,8 +135,10 @@ void printUsage(ArgParser argParser) {
 }
 
 void main(List<String> args) async {
-  final argParser = buildParser();
+  print('Loading WinRT Metadata...');
+  await WinRTMetadataStore.loadMetadata();
 
+  final argParser = buildParser();
   try {
     final results = argParser.parse(args);
 

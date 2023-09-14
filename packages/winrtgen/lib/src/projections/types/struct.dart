@@ -27,9 +27,16 @@ final class StructParameterProjection extends ParameterProjection {
       fieldProjections.any((fieldProjection) =>
           fieldProjection.isIReference || fieldProjection.exposedAsStruct);
 
-  TypeIdentifier get typeIdentifier => parameter.isReferenceType
-      ? parameter.typeIdentifier.dereference()
-      : parameter.typeIdentifier;
+  TypeIdentifier get typeIdentifier {
+    if (parameter.typeIdentifier.isCLanguageOptionalModifier &&
+        parameter.typeIdentifier.typeArg!.isReferenceType) {
+      return parameter.typeIdentifier.dereference().dereference();
+    }
+
+    return parameter.isReferenceType
+        ? parameter.typeIdentifier.dereference()
+        : parameter.typeIdentifier;
+  }
 
   @override
   String get type => shortTypeName;
@@ -39,7 +46,10 @@ final class StructParameterProjection extends ParameterProjection {
       isGuid ? '$identifier.toDartGuid()' : '$identifier.toDart()';
 
   @override
-  String get into => '${identifier}NativeStructPtr.ref';
+  String get into => parameter.typeIdentifier.isCLanguageOptionalModifier &&
+          parameter.typeIdentifier.typeArg!.isReferenceType
+      ? '${identifier}NativeStructPtr'
+      : '${identifier}NativeStructPtr.ref';
 
   @override
   List<String> get preambles {

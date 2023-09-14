@@ -109,6 +109,12 @@ extension TypeIdentifierHelpers on TypeIdentifier {
 
   bool get isCharType => baseType == BaseType.charType;
 
+  bool get isCLanguageOptionalModifier =>
+      baseType == BaseType.cLanguageOptionalModifier;
+
+  bool get isCLanguageRequiredModifier =>
+      baseType == BaseType.cLanguageRequiredModifier;
+
   bool get isClassType => baseType == BaseType.classTypeModifier;
 
   bool get isClassVariableType =>
@@ -179,7 +185,10 @@ extension TypeIdentifierHelpers on TypeIdentifier {
         name.lastComponent,
       BaseType.genericTypeModifier => _parseGenericTypeIdentifierName(this),
       BaseType.objectType => 'Object',
-      BaseType.referenceTypeModifier => dereference().shortName,
+      BaseType.cLanguageOptionalModifier ||
+      BaseType.cLanguageRequiredModifier ||
+      BaseType.referenceTypeModifier =>
+        dereference().shortName,
       _ => baseType.dartType,
     };
   }

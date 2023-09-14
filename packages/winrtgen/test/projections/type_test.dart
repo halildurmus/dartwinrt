@@ -409,7 +409,7 @@ void main() {
       expect(
           typeProjection.toString(),
           equals(
-              "TypeProjection(Calendar, isInParam: false, nativeType: COMObject, dartType: COMObject, pointer: Instance of 'TypeTuple')"));
+              'TypeProjection(Calendar, isInParam: false, nativeType: COMObject, dartType: COMObject, pointer: TypeTuple(nativeType: Pointer<COMObject>, dartType: Pointer<COMObject>, attribute: null))'));
     });
   });
 }

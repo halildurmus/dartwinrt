@@ -62,6 +62,28 @@ void main() {
       expect(projection.localIdentifier, equals('other.lpVtbl'));
     });
 
+    test('projects constant reference type', () {
+      final methodProjection = MethodProjection.fromTypeAndMethodName(
+          'Windows.Foundation.GuidHelper', 'Equals');
+      final projection = methodProjection.parameters.first;
+      expect(projection, isA<StructParameterProjection>());
+      expect(projection.isInParam, isTrue);
+      expect(projection.isOutParam, isFalse);
+      expect(projection.isNullable, isFalse);
+      expect(projection.type, equals('Guid'));
+      expect(projection.needsAllocation, isTrue);
+      expect(projection.needsDeallocation, isTrue);
+      expect(projection.creatorPreamble, isEmpty);
+      expect(projection.creator, equals('target.toDartGuid()'));
+      expect(projection.into, equals('targetNativeStructPtr'));
+      expect(projection.preambles,
+          equals(['final targetNativeStructPtr = target.toNativeGUID();']));
+      expect(projection.nullCheck, isEmpty);
+      expect(projection.postambles, equals(['free(targetNativeStructPtr);']));
+      expect(projection.identifier, equals('target'));
+      expect(projection.localIdentifier, equals('targetNativeStructPtr'));
+    });
+
     test('projects DateTime', () {
       final methodProjection = MethodProjection.fromTypeAndMethodName(
           'Windows.Globalization.ICalendar', 'SetDateTime');
