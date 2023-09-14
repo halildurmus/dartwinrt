@@ -12,10 +12,9 @@ import 'package:win32/win32.dart' hide WinRTStringConversion;
 import 'package:windows_foundation/internal.dart';
 
 void main() {
-  if (!isWindowsRuntimeAvailable()) {
-    print('Skipping tests because Windows Runtime is not available.');
-    return;
-  }
+  test('Windows Runtime is available on test machine', () {
+    expect(isWindowsRuntimeAvailable(), isTrue);
+  });
 
   test('HSTRING handle to Dart String', () {
     final hString1 = HString.fromString('dartwinrt').clone();

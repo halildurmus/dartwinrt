@@ -13,10 +13,9 @@ import 'package:windows_globalization/windows_globalization.dart';
 // and methods are working correctly.
 
 void main() {
-  if (!isWindowsRuntimeAvailable()) {
-    print('Skipping tests because Windows Runtime is not available.');
-    return;
-  }
+  test('Windows Runtime is available on test machine', () {
+    expect(isWindowsRuntimeAvailable(), isTrue);
+  });
 
   test('Formatter is a materialized object', () {
     final formatter = PhoneNumberFormatter();

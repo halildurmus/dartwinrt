@@ -10,10 +10,9 @@ import 'package:win32/win32.dart';
 import 'package:windows_foundation/internal.dart';
 
 void main() {
-  if (!isWindowsRuntimeAvailable()) {
-    print('Skipping tests because Windows Runtime is not available.');
-    return;
-  }
+  test('Windows Runtime is available on test machine', () {
+    expect(isWindowsRuntimeAvailable(), isTrue);
+  });
 
   final dartDateTime1 = DateTime.utc(2023, 8, 28, 12, 12, 12);
   final dartDateTime2 = DateTime.utc(1999, 12, 31, 23, 59, 59);

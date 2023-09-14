@@ -10,10 +10,9 @@ import 'package:win32/win32.dart';
 import 'package:windows_foundation/internal.dart';
 
 void main() {
-  if (!isWindowsRuntimeAvailable()) {
-    print('Skipping tests because Windows Runtime is not available.');
-    return;
-  }
+  test('Windows Runtime is available on test machine', () {
+    expect(isWindowsRuntimeAvailable(), isTrue);
+  });
 
   final dartDuration1 =
       const Duration(days: 28, hours: 12, minutes: 12, seconds: 12);

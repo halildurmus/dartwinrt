@@ -11,10 +11,9 @@ import 'package:windows_foundation/internal.dart';
 import 'package:windows_storage/windows_storage.dart';
 
 void main() {
-  if (!isWindowsRuntimeAvailable()) {
-    print('Skipping tests because Windows Runtime is not available.');
-    return;
-  }
+  test('Windows Runtime is available on test machine', () {
+    expect(isWindowsRuntimeAvailable(), isTrue);
+  });
 
   test('List<WinRTEnum> to Pointer<Int32>', () {
     final array = [PropertyType.boolean, PropertyType.string].toArray();

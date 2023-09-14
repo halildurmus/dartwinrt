@@ -14,10 +14,9 @@ import 'package:windows_foundation/windows_foundation.dart';
 import 'package:windows_globalization/windows_globalization.dart';
 
 void main() {
-  if (!isWindowsRuntimeAvailable()) {
-    print('Skipping tests because Windows Runtime is not available.');
-    return;
-  }
+  test('Windows Runtime is available on test machine', () {
+    expect(isWindowsRuntimeAvailable(), isTrue);
+  });
 
   group('IVectorView<String>', () {
     IVectorView<String> getLanguages(Pointer<COMObject> ptr) {
