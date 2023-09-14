@@ -18,6 +18,7 @@ export 'collections/stringmap.dart';
 export 'collections/valueset.dart';
 export 'extensions/extensions.dart';
 export 'extensions/iunknown_helpers.dart';
+export 'guidhelper.dart';
 export 'helpers.dart';
 export 'iclosable.dart';
 export 'imemorybuffer.dart';
