@@ -47,8 +47,12 @@ void main() {
   });
 
   group('WinRT native struct', () {
-    final rectProjection =
-        NativeStructProjection.fromType('Windows.Foundation.Rect');
+    late NativeStructProjection rectProjection;
+
+    setUpAll(() {
+      rectProjection =
+          NativeStructProjection.fromType('Windows.Foundation.Rect');
+    });
 
     test('has correct struct name', () {
       expect(rectProjection.structName, equals('NativeRect'));
@@ -97,7 +101,11 @@ void main() {
   });
 
   group('WinRT struct', () {
-    final rectProjection = StructProjection.fromType('Windows.Foundation.Rect');
+    late StructProjection rectProjection;
+
+    setUpAll(() {
+      rectProjection = StructProjection.fromType('Windows.Foundation.Rect');
+    });
 
     test('has copyright header', () {
       expect(rectProjection.header, contains(Header.copyright));

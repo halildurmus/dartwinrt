@@ -9,7 +9,6 @@ final formatter = DartFormatter();
 
 String format(Object object) {
   final source = object.toString();
-
   try {
     return formatter.format(source);
   } catch (_) {

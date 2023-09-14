@@ -8,6 +8,9 @@ import '../extensions/extensions.dart';
 
 /// A class that provides access to the WinRT Metadata.
 final class WinRTMetadataStore {
+  /// The version of the Windows SDK that was used to generate the projections.
+  static const version = '10.0.22621.755';
+
   /// Returns all [TypeDef]s of runtime classes in the given [namespace].
   static List<TypeDef> classesInNamespace(String namespace) =>
       MetadataStore.getScopeForType(namespace)
@@ -37,8 +40,7 @@ final class WinRTMetadataStore {
     }
 
     try {
-      final scope = MetadataStore.getScopeForType(type);
-      final typeDef = scope.findTypeDef(type);
+      final typeDef = MetadataStore.getMetadataForType(type);
       if (typeDef == null) throw '';
       return typeDef;
     } catch (_) {
@@ -53,8 +55,13 @@ final class WinRTMetadataStore {
           .where((typeDef) => typeDef.name.startsWith(namespace))
           .toList();
 
-  /// Returns the scope that contains the WinRT metadata.
-  static Future<Scope> loadMetadata({String? version}) async =>
+  /// Loads WinRT metadata.
+  ///
+  /// If [version] is not specified, it defaults to
+  /// [WinRTMetadataStore.version].
+  static Future<Scope> loadMetadata({
+    String? version = WinRTMetadataStore.version,
+  }) async =>
       await MetadataStore.loadWinRTMetadata(version: version);
 
   static List<Method>? _methods;
