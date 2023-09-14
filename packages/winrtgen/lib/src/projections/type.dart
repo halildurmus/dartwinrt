@@ -70,6 +70,12 @@ final class TypeProjection {
 
   bool get isCharType => typeIdentifier.isCharType;
 
+  bool get isCLanguageOptionalModifier =>
+      typeIdentifier.isCLanguageOptionalModifier;
+
+  bool get isCLanguageRequiredModifier =>
+      typeIdentifier.isCLanguageRequiredModifier;
+
   bool get isClassVariableType => typeIdentifier.isClassVariableType;
 
   bool get isDartPrimitive => switch (dartType) {
@@ -159,6 +165,8 @@ final class TypeProjection {
   TypeProjection dereference() =>
       TypeProjection(typeIdentifier.dereference(), isInParam: isInParam);
 
+  TypeTuple _unwrapCustomModifier() => dereference().projection;
+
   TypeTuple _unwrapGenericTypeArg() {
     final typeArgKind = TypeArgKind.fromName(typeIdentifier.name);
     return switch (typeArgKind) {
@@ -226,6 +234,9 @@ final class TypeProjection {
       return TypeTuple(type, type);
     }
 
+    // Handle custom modifiers (e.g., BaseType.cLanguageOptionalModifier)
+    if (isCLanguageOptionalModifier) return _unwrapCustomModifier();
+
     // Handle generic type argument (e.g., TypeArgKind.inspectable,
     // TypeArgKind.nullableInspectable, TypeArgKind.winrtEnum, or
     // TypeArgKind.winrtFlagsEnum)
@@ -250,6 +261,11 @@ final class TypeTuple {
 
   /// The type, as represented as a struct attribute (e.g., `@Int64()`)
   final String? attribute;
+
+  @override
+  String toString() =>
+      'TypeTuple(nativeType: $nativeType, dartType: $dartType, '
+      'attribute: $attribute)';
 }
 
 const _baseNativeMapping = <BaseType, TypeTuple>{

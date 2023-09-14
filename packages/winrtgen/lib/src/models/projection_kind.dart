@@ -59,7 +59,9 @@ enum ProjectionKind {
 
   /// Returns the appropriate [ProjectionKind] for the [projection].
   factory ProjectionKind.fromTypeProjection(TypeProjection projection) {
-    if (projection.isReferenceType) {
+    if (projection.isCLanguageOptionalModifier ||
+        projection.isCLanguageRequiredModifier ||
+        projection.isReferenceType) {
       final projectionKind =
           ProjectionKind.fromTypeProjection(projection.dereference());
       return projectionKind == ProjectionKind.dartPrimitive
