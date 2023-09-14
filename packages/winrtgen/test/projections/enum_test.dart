@@ -54,8 +54,12 @@ void main() {
   });
 
   group('WinRT enum', () {
-    final asyncStatusProjection =
-        EnumProjection.fromType('Windows.Foundation.AsyncStatus');
+    late EnumProjection asyncStatusProjection;
+
+    setUpAll(() {
+      asyncStatusProjection =
+          EnumProjection.fromType('Windows.Foundation.AsyncStatus');
+    });
 
     test('has copyright header', () {
       expect(asyncStatusProjection.header, contains(Header.copyright));
@@ -130,8 +134,12 @@ void main() {
   });
 
   group('WinRT Flags enum', () {
-    final fileAttributesProjection =
-        FlagsEnumProjection.fromType('Windows.Storage.FileAttributes');
+    late FlagsEnumProjection fileAttributesProjection;
+
+    setUpAll(() {
+      fileAttributesProjection =
+          FlagsEnumProjection.fromType('Windows.Storage.FileAttributes');
+    });
 
     test('has copyright header', () {
       expect(fileAttributesProjection.header, contains(Header.copyright));
