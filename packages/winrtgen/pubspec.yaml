@@ -16,7 +16,7 @@ dependencies:
   crypto: ^3.0.3
 
   # For formatting Dart code (APIs for performing dart format)
-  dart_style: ^2.3.2
+  dart_style: ^2.3.3
 
   # Foreign Function Interface extension methods
   ffi: ^2.1.0
@@ -30,7 +30,7 @@ dependencies:
   pool: ^1.5.1
 
   # Windows metadata for automatically generating API signatures
-  winmd: ^4.0.0
+  winmd: ^4.0.1
 
   win32: ^5.0.7
 

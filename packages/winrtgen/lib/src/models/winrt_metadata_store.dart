@@ -105,6 +105,9 @@ final class WinRTMetadataStore {
           .typeDefs
           .where((typeDef) => typeDef.name.startsWith(namespace))
           .toList();
+
+  /// Closes the [MetadataStore].
+  static void close() => MetadataStore.close();
 }
 
 /// Represents the Windows Runtime namespaces.

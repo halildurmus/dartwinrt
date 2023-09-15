@@ -168,6 +168,7 @@ void main() async {
   print('[${stopwatch.elapsed}] Generating library exports...');
   generateLibraryExports();
 
+  WinRTMetadataStore.close();
   stopwatch.stop();
   print('[${stopwatch.elapsed}] Completed');
 }
