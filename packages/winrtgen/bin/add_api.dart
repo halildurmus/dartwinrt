@@ -167,6 +167,8 @@ void main(List<String> args) async {
     print(e.message);
     print('');
     printUsage(argParser);
+  } finally {
+    WinRTMetadataStore.close();
   }
 }
 
